@@ -53,7 +53,7 @@ export default () => {
 
   return (
     <div>
-      <EuiButton onClick={() => setIsFlyoutVisible((visible) => !visible)}>
+      <EuiButton onClick={() => setIsFlyoutVisible(true)}>
         Show flyout
       </EuiButton>
       {flyout}

@@ -57,9 +57,9 @@ describe('EuiFlyout', () => {
       ).toMatchSnapshot();
     });
 
-    test('closeButton for a custom button', () => {
+    test('closeButtonProps', () => {
       const component = mount(
-        <EuiFlyout onClose={() => {}} closeButton={<button>CLOSE</button>} />
+        <EuiFlyout onClose={() => {}} closeButtonProps={requiredProps} />
       );
 
       expect(

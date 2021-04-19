@@ -128,7 +128,7 @@ const flyoutWithBannerSnippet = `<EuiFlyout onClose={closeFlyout}>
 </EuiFlyout>
 `;
 
-const flyoutPushedSnippet = `<EuiFlyout type={push} onClose={closeFlyout}>
+const flyoutPushedSnippet = `<EuiFlyout type="push" onClose={closeFlyout}>
   <EuiFlyoutHeader hasBorder aria-labelledby={flyoutHeadingId}>
     <EuiTitle>
       <h2 id={flyoutHeadingId}><!-- Defaults to medium size. Change the heading level based on your context. --></h2>

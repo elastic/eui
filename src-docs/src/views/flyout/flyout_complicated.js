@@ -204,7 +204,6 @@ export default () => {
                 Even popovers can be included
               </EuiButton>
             }
-            repositionOnScroll
             isOpen={isPopoverOpen}>
             <p>
               This is the popover content, notice how it can overflow the

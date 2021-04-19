@@ -25,7 +25,6 @@ import React, {
   useState,
   ComponentProps,
   PropsWithChildren,
-  ReactNode,
   Ref,
 } from 'react';
 import classnames from 'classnames';
@@ -41,7 +40,7 @@ import {
 import { CommonProps, keysOf } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
-import { EuiButtonIcon } from '../button';
+import { EuiButtonIcon, EuiButtonIconProps } from '../button';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
@@ -71,13 +70,13 @@ const sizeToClassNameMap = {
 };
 
 export const SIZES = keysOf(sizeToClassNameMap);
-type _EuiFlyoutSize = typeof SIZES[number];
+export type EuiFlyoutSize = typeof SIZES[number];
 
 /**
  * Custom type checker for named flyout sizes since the prop
  * `size` can also be CSSProperties['width'] (string | number)
  */
-function isEuiFlyoutSizeNamed(value: any): value is _EuiFlyoutSize {
+function isEuiFlyoutSizeNamed(value: any): value is EuiFlyoutSize {
   return SIZES.includes(value as any);
 }
 
@@ -102,9 +101,9 @@ export type EuiFlyoutProps<T extends ComponentTypes = 'div'> = CommonProps &
     as?: T;
     /**
      * Defines the width of the panel.
-     * Pass a predefined size of `s | m | l`, or pass any number/string compatabile with the CSS `width` attribute
+     * Pass a predefined size of `s | m | l`, or pass any number/string compatible with the CSS `width` attribute
      */
-    size?: _EuiFlyoutSize | CSSProperties['width'];
+    size?: EuiFlyoutSize | CSSProperties['width'];
     /**
      * Sets the max-width of the panel,
      * set to `true` to use the default size,
@@ -131,9 +130,9 @@ export type EuiFlyoutProps<T extends ComponentTypes = 'div'> = CommonProps &
      */
     closeButtonAriaLabel?: string;
     /**
-     * Pass an entirely custom close button component
+     * Extends EuiButtonIconProps onto the close button
      */
-    closeButton?: ReactNode;
+    closeButtonProps?: EuiButtonIconProps;
     /**
      * Position of close button.
      * `inside`: Floating to just inside the flyout, always top right;
@@ -156,7 +155,7 @@ export type EuiFlyoutProps<T extends ComponentTypes = 'div'> = CommonProps &
     outsideClickCloses?: boolean;
     /**
      * Which side of the window to attach to.
-     * The `right` option should only be used for navigation.
+     * The `left` option should only be used for navigation.
      */
     side?: _EuiFlyoutSide;
     /**
@@ -165,7 +164,7 @@ export type EuiFlyoutProps<T extends ComponentTypes = 'div'> = CommonProps &
      */
     role?: 'none' | HTMLAttributes['role'];
     /**
-     * Named breakpoint or pixel value for customizing the minimum window width to enable docking
+     * Named breakpoint or pixel value for customizing the minimum window width to enable the `push` type
      */
     pushMinBreakpoint?: EuiBreakpointSize | number;
     ref?: Ref<T>;
@@ -176,7 +175,7 @@ export const EuiFlyout = <T extends ComponentTypes>({
   children,
   as: Element = 'div' as T,
   hideCloseButton = false,
-  closeButton,
+  closeButtonProps,
   closeButtonAriaLabel,
   closeButtonPosition = 'inside',
   onClose,
@@ -305,25 +304,29 @@ export const EuiFlyout = <T extends ComponentTypes>({
     className
   );
 
-  if (!closeButton && onClose && !hideCloseButton) {
+  let closeButton;
+  if (onClose && !hideCloseButton) {
     const closeButtonClasses = classnames(
       'euiFlyout__closeButton',
-      `euiFlyout__closeButton--${closeButtonPosition}`
+      `euiFlyout__closeButton--${closeButtonPosition}`,
+      closeButtonProps?.className
     );
 
     closeButton = (
       <EuiI18n token="euiFlyout.closeAriaLabel" default="Close this dialog">
         {(closeAriaLabel: string) => (
           <EuiButtonIcon
-            className={closeButtonClasses}
             display={closeButtonPosition === 'outside' ? 'fill' : 'empty'}
             iconType="cross"
             color="text"
             aria-label={closeButtonAriaLabel || closeAriaLabel}
+            data-test-subj="euiFlyoutCloseButton"
+            {...closeButtonProps}
+            className={closeButtonClasses}
             onClick={() => {
               onClose();
+              closeButtonProps?.onClick();
             }}
-            data-test-subj="euiFlyoutCloseButton"
           />
         )}
       </EuiI18n>

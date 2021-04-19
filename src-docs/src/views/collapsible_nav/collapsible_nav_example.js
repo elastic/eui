@@ -47,11 +47,11 @@ export const CollapsibleNavExample = {
       text: (
         <>
           <p>
-            <strong>EuiCollapsibleNav</strong> is a similar implementation to{' '}
+            <strong>EuiCollapsibleNav</strong> is a custom implementation of{' '}
             <Link to="/layout/flyout">
               <strong>EuiFlyout</strong>
             </Link>
-            ; the visibility of which must be maintained by the consuming
+            ; the visibility of which must still be maintained by the consuming
             application. An extra feature that it provides is the ability to{' '}
             <EuiCode>dock</EuiCode> the flyout. This affixes the flyout to the
             window and pushes the body content by adding left side padding.
