@@ -722,7 +722,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
             {borderRadiusExample}
           </EuiCodeBlock>
         </EuiFlexItem>
-        <EuiFlexItem className="guideSass__border guideSass__border--radius--small">
+        <EuiFlexItem className="guideSass__border guideSass__border--radiusSmall">
           <EuiCodeBlock
             language="scss"
             transparentBackground
