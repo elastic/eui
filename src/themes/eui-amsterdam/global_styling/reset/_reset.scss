@@ -111,7 +111,7 @@ input {
   margin: 0;
   padding: 0;
 
-  &:disabled:not([type='file']) {
+  &:disabled {
     opacity: 1; /* required on iOS */
   }
 }
