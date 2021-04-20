@@ -4,14 +4,6 @@ import { Helmet } from 'react-helmet';
 import { GuidePageChrome, ThemeContext } from '../components';
 import { registerRouter, translateUsingPseudoLocale } from '../services';
 
-// favicon
-import favicon16Prod from '../images/favicon/prod/favicon-16x16.png';
-import favicon32Prod from '../images/favicon/prod/favicon-32x32.png';
-import favicon96Prod from '../images/favicon/prod/favicon-96x96.png';
-import favicon16Dev from '../images/favicon/dev/favicon-16x16.png';
-import favicon32Dev from '../images/favicon/dev/favicon-32x32.png';
-import favicon96Dev from '../images/favicon/dev/favicon-96x96.png';
-
 import {
   EuiErrorBoundary,
   EuiPage,
@@ -21,6 +13,14 @@ import {
 
 import { keys } from '../../../src/services';
 import { GuidePageHeader } from '../components/guide_page/guide_page_header';
+
+import favicon16Prod from '../images/favicon/prod/favicon-16x16.png';
+import favicon32Prod from '../images/favicon/prod/favicon-32x32.png';
+import favicon96Prod from '../images/favicon/prod/favicon-96x96.png';
+import favicon16Dev from '../images/favicon/dev/favicon-16x16.png';
+import favicon32Dev from '../images/favicon/dev/favicon-32x32.png';
+import favicon96Dev from '../images/favicon/dev/favicon-96x96.png';
+import socialMediaThumbnail from '../images/thumbnails/social_media_thumbnail.jpg';
 
 export class AppView extends Component {
   constructor(...args) {
@@ -88,6 +88,16 @@ export class AppView extends Component {
             href={isLocalDev ? favicon96Dev : favicon96Prod}
             sizes="96x96"
           />
+
+          {/* For social media */}
+          <meta property="og:title" content="Elastic UI" />
+          <meta
+            property="og:description"
+            content="The Elastic UI framework (EUI) is a design library in use at Elastic."
+          />
+          <meta property="og:image" content={socialMediaThumbnail} />
+          <meta property="og:url" content="https://elastic.github.io/eui" />
+          <meta name="twitter:card" content="summary_large_image" />
         </Helmet>
         <GuidePageHeader
           onToggleLocale={toggleLocale}
