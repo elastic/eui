@@ -30,6 +30,10 @@ jest.mock('../overlay_mask', () => ({
   ),
 }));
 
+jest.mock('../portal', () => ({
+  EuiPortal: ({ children }: { children: any }) => children,
+}));
+
 const propsNeededToRender = { id: 'id', isOpen: true, onClose: () => {} };
 const flyoutProps = {
   size: 240,

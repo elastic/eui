@@ -65,6 +65,8 @@ export const CollapsibleNavExample = {
       props: { EuiCollapsibleNav },
       demo: <CollapsibleNav />,
       snippet: `<EuiCollapsibleNav
+  ownFocus={false}
+  size={240}
   button={<EuiButton onClick={() => setNavIsOpen(!navIsOpen)}>Toggle nav</EuiButton>}
   isOpen={navIsOpen}
   isDocked={navIsDocked}
