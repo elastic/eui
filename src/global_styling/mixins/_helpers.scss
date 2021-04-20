@@ -88,7 +88,7 @@
 
 // Hiding elements offscreen to only be read by screen reader
 @mixin euiScreenReaderOnly {
-  position: absolute;
+  position: fixed; // Ensures it doesn't create scrollbars on <body>
   left: -10000px;
   top: auto;
   width: 1px;
