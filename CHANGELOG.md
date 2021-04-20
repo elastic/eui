@@ -4,8 +4,9 @@
 
 **Bug fixes**
 
-- Fixed `EuiInMemoryTable` `pagination` prop to update visible items when changed  ([#4714](https://github.com/elastic/eui/pull/4714))
+- Fixed `EuiInMemoryTable` `pagination` prop to update visible items when changed ([#4714](https://github.com/elastic/eui/pull/4714))
 - Fixed a bug in `EuiFilePicker` where the HTML input was being shown when `disabled` ([#4738](https://github.com/elastic/eui/pull/4738))
+- Fixed inverted asc and desc labels for `EuiDataGrid` `datetime` schema ([#4733](https://github.com/elastic/eui/pull/4733))
 
 ## [`32.1.0`](https://github.com/elastic/eui/tree/v32.1.0)
 
