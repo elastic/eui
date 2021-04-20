@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import imageIcons from '../../images/icons.svg';
 import imageButtons from '../../images/buttons.svg';
 import imageTables from '../../images/tables.svg';
@@ -9,7 +9,6 @@ import imageCards from '../../images/cards.svg';
 import imagePages from '../../images/page.svg';
 import imageText from '../../images/text.svg';
 import imageCharts from '../../images/charts.svg';
-import imageLogoElastic from '../../images/logo-elastic-horizontal.svg';
 import HomeIllustration from './home_illustration';
 import {
   EuiCard,
@@ -25,7 +24,7 @@ import {
   EuiPageContent,
   EuiPageContentBody,
 } from '../../../../src/components';
-import { Link } from 'react-router-dom';
+import { HomeFooterElasticLogo } from './home_footer_elastic_logo';
 
 export const HomeView = () => (
   <EuiPageContent
@@ -221,11 +220,7 @@ export const HomeView = () => (
             </span>{' '}
             by{' '}
             <EuiLink href="http://elastic.co/" external={false} target="_blank">
-              <img
-                alt="Elastic logo"
-                className="guideHome__footerLogo"
-                src={imageLogoElastic}
-              />
+              <HomeFooterElasticLogo />
             </EuiLink>
           </p>
         </EuiText>
