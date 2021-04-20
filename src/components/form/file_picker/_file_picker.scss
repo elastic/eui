@@ -35,6 +35,10 @@
     cursor: not-allowed;
   }
 
+  &:disabled {
+    opacity: 0;
+  }
+
   &:disabled ~ .euiFilePicker__prompt {
     color: $euiColorMediumShade;
   }
