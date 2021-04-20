@@ -2,6 +2,10 @@
 
 - Removed `MutationObserver` fallback from `EuiResizeObserver` ([#4709](https://github.com/elastic/eui/pull/4709))
 
+**Bug fixes**
+
+- Fixed `EuiInMemoryTable` `pagination` prop to update visible items when changed  ([#4714](https://github.com/elastic/eui/pull/4714))
+
 ## [`32.1.0`](https://github.com/elastic/eui/tree/v32.1.0)
 
 - Added `readOnly` as a `sorting` option of `EuiBasicTable` and its columns ([#4626](https://github.com/elastic/eui/pull/4626))
