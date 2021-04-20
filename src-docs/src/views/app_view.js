@@ -20,7 +20,6 @@ import favicon96Prod from '../images/favicon/prod/favicon-96x96.png';
 import favicon16Dev from '../images/favicon/dev/favicon-16x16.png';
 import favicon32Dev from '../images/favicon/dev/favicon-32x32.png';
 import favicon96Dev from '../images/favicon/dev/favicon-96x96.png';
-import socialMediaThumbnail from '../images/thumbnails/social_media_thumbnail.jpg';
 
 export class AppView extends Component {
   constructor(...args) {
@@ -61,6 +60,15 @@ export class AppView extends Component {
 
     const isLocalDev = window.location.host.includes('803');
 
+    const metaTitle = 'Elastic UI';
+    const metaDesc =
+      'The Elastic UI framework (EUI) is a design library in use at Elastic.';
+
+    // We're using the github repo image that is prepared for social media
+    const metaImage =
+      'https://repository-images.githubusercontent.com/107422373/b6180480-a1d7-11eb-8a3c-902086232aa7';
+    const metaUrl = 'https://elastic.github.io/eui';
+
     return (
       <>
         <Helmet>
@@ -90,13 +98,13 @@ export class AppView extends Component {
           />
 
           {/* For social media */}
-          <meta property="og:title" content="Elastic UI" />
-          <meta
-            property="og:description"
-            content="The Elastic UI framework (EUI) is a design library in use at Elastic."
-          />
-          <meta property="og:image" content={socialMediaThumbnail} />
-          <meta property="og:url" content="https://elastic.github.io/eui" />
+          <meta property="og:title" content={metaTitle} />
+          <meta property="og:description" content={metaDesc} />
+          <meta property="og:image" content={metaImage} />
+          <meta property="og:url" content={metaUrl} />
+          <meta name="twitter:title" content={metaTitle} />
+          <meta name="twitter:description" content={metaDesc} />
+          <meta name="twitter:image" content={metaImage} />
           <meta name="twitter:card" content="summary_large_image" />
         </Helmet>
         <GuidePageHeader
