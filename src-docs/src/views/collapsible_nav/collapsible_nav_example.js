@@ -205,7 +205,7 @@ export const CollapsibleNavExample = {
           </p>
         </>
       ),
-      demoRoute: {
+      fullScreen: {
         slug: 'collapsible-nav-all',
         demo: <CollapsibleNavAll />,
       },

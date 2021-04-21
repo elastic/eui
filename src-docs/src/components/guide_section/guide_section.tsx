@@ -25,7 +25,7 @@ export interface GuideSection {
   text?: ReactNode;
   source?: any[];
   demo?: ReactNode;
-  demoRoute?: {
+  fullScreen?: {
     slug: string;
     demo: ReactNode;
   };
@@ -57,7 +57,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   title,
   text,
   demo,
-  demoRoute,
+  fullScreen,
   source = [],
   props = {},
   playground,
@@ -173,16 +173,19 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
       </GuideSectionExampleText>
 
       {renderingPlayground && renderPlayground()}
-      {!renderingPlayground && (demo || demoRoute) && (
+      {!renderingPlayground && (demo || fullScreen) && (
         <GuideSectionExample
           example={
             <EuiErrorBoundary>
               {/* eslint-disable-next-line no-nested-ternary */}
-              {demoRoute == null ? (
+              {fullScreen == null ? (
                 <div>{demo}</div>
               ) : demo == null ? (
-                <EuiButton href={`#${path}/${demoRoute.slug}`}>
-                  Goto Fullscreen Example
+                <EuiButton
+                  fill
+                  iconType="fullScreen"
+                  href={`#${path}/${fullScreen.slug}`}>
+                  Fullscreen demo
                 </EuiButton>
               ) : (
                 demo

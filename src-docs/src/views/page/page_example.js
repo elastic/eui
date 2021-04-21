@@ -173,7 +173,7 @@ export const PageExample = {
       demo: (
         <PageDemo slug="full-page" pattern={PageNew} template={PageTemplate} />
       ),
-      demoRoute: {
+      fullScreen: {
         slug: 'full-page',
         demo: (
           <PageDemo
@@ -229,7 +229,7 @@ export const PageExample = {
           template={PageRestrictingWidthTemplate}
         />
       ),
-      demoRoute: {
+      fullScreen: {
         slug: 'restricting-page-width',
         demo: (
           <PageDemo
@@ -295,7 +295,7 @@ export const PageExample = {
           template={PageBottomBarTemplate}
         />
       ),
-      demoRoute: {
+      fullScreen: {
         slug: 'bottom-bar',
         demo: (
           <PageDemo
@@ -351,7 +351,7 @@ export const PageExample = {
           template={PageCenteredBodyTemplate}
         />
       ),
-      demoRoute: {
+      fullScreen: {
         slug: 'centered-body',
         demo: (
           <PageDemo
@@ -406,7 +406,7 @@ export const PageExample = {
           template={PageCenteredContentTemplate}
         />
       ),
-      demoRoute: {
+      fullScreen: {
         slug: 'centered-content',
         demo: (
           <PageDemo
@@ -460,7 +460,7 @@ export const PageExample = {
           template={PageSimpleTemplate}
         />
       ),
-      demoRoute: {
+      fullScreen: {
         slug: 'tabs',
         demo: (
           <PageDemo
@@ -505,7 +505,7 @@ export const PageExample = {
           template={PageSimpleCenteredBodyTemplate}
         />
       ),
-      demoRoute: {
+      fullScreen: {
         slug: 'simple-centered-body',
         demo: (
           <PageDemo
@@ -548,7 +548,7 @@ export const PageExample = {
           template={PageSimpleEmptyContentTemplate}
         />
       ),
-      demoRoute: {
+      fullScreen: {
         slug: 'simple-centered-content',
         demo: (
           <PageDemo
@@ -601,7 +601,7 @@ export const PageExample = {
           template={PageCustomContentTemplate}
         />
       ),
-      demoRoute: {
+      fullScreen: {
         slug: 'simple-custom-content',
         demo: (
           <PageDemo

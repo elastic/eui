@@ -78,9 +78,9 @@ ReactDOM.render(
               );
 
               const standaloneSections = (sections || [])
-                .map(({ demoRoute }) => {
-                  if (!demoRoute) return undefined;
-                  const { slug, demo } = demoRoute;
+                .map(({ fullScreen }) => {
+                  if (!fullScreen) return undefined;
+                  const { slug, demo } = fullScreen;
                   return (
                     <Route
                       key={`/${path}/${slug}`}
