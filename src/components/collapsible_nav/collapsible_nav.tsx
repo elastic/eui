@@ -134,8 +134,11 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
           'aria-controls': flyoutID,
           'aria-expanded': isOpen,
           'aria-pressed': isOpen,
+          // When EuiOutsideClickDetector is enabled, we don't want both the toggle button and document touches/clicks to happen, they'll cancel eachother out
+          onTouchEnd: (e: React.MouseEvent<HTMLElement>) => {
+            e.nativeEvent.stopImmediatePropagation();
+          },
           onMouseUpCapture: (e: React.MouseEvent<HTMLElement>) => {
-            // When EuiOutsideClickDetector is enabled, we don't want both the toggle button and document clicks to happen, they'll cancel eachother out
             e.nativeEvent.stopImmediatePropagation();
           },
         });
