@@ -1377,7 +1377,7 @@
   },
   {
     "token": "euiDataGridSchema.dateSortTextAsc",
-    "defString": "New-Old",
+    "defString": "Old-New",
     "highlighting": "string",
     "loc": {
       "start": {
@@ -1393,7 +1393,7 @@
   },
   {
     "token": "euiDataGridSchema.dateSortTextDesc",
-    "defString": "Old-New",
+    "defString": "New-Old",
     "highlighting": "string",
     "loc": {
       "start": {
