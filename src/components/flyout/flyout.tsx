@@ -47,6 +47,7 @@ import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 import { throttle } from '../color_picker/utils';
+import { EuiPortal } from '../portal';
 
 const typeToClassNameMap = {
   push: 'euiFlyout--push',
@@ -111,7 +112,7 @@ type _EuiFlyoutProps = {
    */
   paddingSize?: _EuiFlyoutPaddingSize;
   /**
-   * Adds an EuiOverlayMask when set to `true`
+   * Adds an EuiOverlayMask and wraps in an EuiPortal
    */
   ownFocus?: boolean;
   /**
@@ -363,8 +364,11 @@ const EuiFlyout = forwardRef(
 
     // If ownFocus is set, show an overlay behind the flyout and allow the user
     // to click it to close it.
+    let usePortal;
     let optionalOverlay;
     if (ownFocus && !isPushed) {
+      // Also wrap the flyout in an EuiPortal whenever EuiOverlayMask is present to maintain proper z-indexing.
+      usePortal = true;
       optionalOverlay = (
         <EuiOverlayMask
           onClick={onClose}
@@ -374,26 +378,30 @@ const EuiFlyout = forwardRef(
       );
     }
 
+    /*
+     * Trap focus even when `ownFocus={false}`, otherwise closing
+     * the flyout won't return focus to the originating button.
+     *
+     * Set `clickOutsideDisables={true}` when `ownFocus={false}`
+     * to allow non-keyboard users the ability to interact with
+     * elements outside the flyout.
+     */
+    const flyout = (
+      <EuiFocusTrap disabled={isPushed} clickOutsideDisables={!ownFocus}>
+        {/* Outside click detector is needed if theres no overlay mask to auto-close when clicking on elements outside */}
+        <EuiOutsideClickDetector
+          isDisabled={isPushed || !outsideClickCloses}
+          onOutsideClick={() => onClose()}>
+          {flyoutContent}
+        </EuiOutsideClickDetector>
+      </EuiFocusTrap>
+    );
+
     return (
       <Fragment>
         <EuiWindowEvent event="keydown" handler={onKeyDown} />
         {optionalOverlay}
-        {/*
-         * Trap focus even when `ownFocus={false}`, otherwise closing
-         * the flyout won't return focus to the originating button.
-         *
-         * Set `clickOutsideDisables={true}` when `ownFocus={false}`
-         * to allow non-keyboard users the ability to interact with
-         * elements outside the flyout.
-         */}
-        <EuiFocusTrap disabled={isPushed} clickOutsideDisables={!ownFocus}>
-          {/* Outside click detector is needed if theres no overlay mask to auto-close when clicking on elements outside */}
-          <EuiOutsideClickDetector
-            isDisabled={isPushed || !outsideClickCloses}
-            onOutsideClick={() => onClose()}>
-            {flyoutContent}
-          </EuiOutsideClickDetector>
-        </EuiFocusTrap>
+        {usePortal ? <EuiPortal>{flyout}</EuiPortal> : flyout}
       </Fragment>
     );
   }
