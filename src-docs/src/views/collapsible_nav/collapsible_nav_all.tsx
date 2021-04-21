@@ -14,7 +14,7 @@ import {
 } from '../../../../src/components/header';
 import { EuiIcon } from '../../../../src/components/icon';
 import { EuiButtonEmpty } from '../../../../src/components/button';
-import { EuiPage } from '../../../../src/components/page';
+import { EuiPageTemplate } from '../../../../src/components/page';
 import {
   EuiPinnableListGroup,
   EuiListGroupItem,
@@ -29,6 +29,8 @@ import {
   SecurityGroup,
 } from './collapsible_nav_list';
 import { EuiShowFor } from '../../../../src/components/responsive';
+import { EuiImage } from '../../../../src/components/image';
+import contentSvg from '../../images/content.svg';
 
 const TopLinks: EuiPinnableListGroupItemProps[] = [
   {
@@ -36,7 +38,7 @@ const TopLinks: EuiPinnableListGroupItemProps[] = [
     iconType: 'home',
     isActive: true,
     'aria-current': true,
-    href: '#/navigation/collapsible-nav',
+    onClick: () => {},
     pinnable: false,
   },
 ];
@@ -44,14 +46,14 @@ const KibanaLinks: EuiPinnableListGroupItemProps[] = KibanaNavLinks.map(
   (link) => {
     return {
       ...link,
-      href: '#/navigation/collapsible-nav',
+      onClick: () => {},
     };
   }
 );
 const LearnLinks: EuiPinnableListGroupItemProps[] = [
-  { label: 'Docs', href: '#/navigation/collapsible-nav' },
-  { label: 'Blogs', href: '#/navigation/collapsible-nav' },
-  { label: 'Webinars', href: '#/navigation/collapsible-nav' },
+  { label: 'Docs', onClick: () => {} },
+  { label: 'Blogs', onClick: () => {} },
+  { label: 'Webinars', onClick: () => {} },
   { label: 'Elastic.co', href: 'https://elastic.co' },
 ];
 
@@ -249,7 +251,11 @@ const CollapsibleNavAll = () => {
 
   const leftSectionItems = [
     collapsibleNav,
-    <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
+    <EuiHeaderLogo
+      href={`#${path.match(/^(?<parent>.*)\/.+$/)?.groups?.parent}`}
+      iconType="logoElastic">
+      Elastic
+    </EuiHeaderLogo>,
   ];
 
   return (
@@ -273,7 +279,9 @@ const CollapsibleNavAll = () => {
         ]}
       />
 
-      <EuiPage />
+      <EuiPageTemplate template="centeredBody">
+        <EuiImage size="fullWidth" alt="Fake paragraph" url={contentSvg} />
+      </EuiPageTemplate>
     </>
   );
 };
