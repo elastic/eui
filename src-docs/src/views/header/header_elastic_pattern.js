@@ -343,7 +343,7 @@ export default ({ theme }) => {
                       <EuiHeaderLink color="primary">Share</EuiHeaderLink>
                       <EuiHeaderLink color="primary">Clone</EuiHeaderLink>
                       <EuiButton
-                        iconType="minimize"
+                        iconType="exit"
                         style={{ minWidth: 80 }}
                         size="s"
                         color="primary"

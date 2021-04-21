@@ -30,7 +30,7 @@ export const StandaloneExample: FunctionComponent<{
   return (
     <>
       <EuiButton href={`#${route}`} iconType="fullScreen">
-        Goto fullscreen demo
+        Full screen demo
       </EuiButton>
       <Switch>
         <Route path={route}>

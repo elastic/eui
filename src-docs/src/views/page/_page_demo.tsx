@@ -23,7 +23,7 @@ const ExitFullscreenDemoButton = () => {
     <EuiButton
       fill
       href={`#${path.match(/^(?<parent>.*)\/.+$/)?.groups?.parent}`}
-      iconType="minimize">
+      iconType="exit">
       Exit full screen
     </EuiButton>
   );
@@ -71,7 +71,7 @@ export const PageDemo: FunctionComponent<{
     <ExitFullscreenDemoButton />
   ) : (
     <EuiButton fill href={`#${path}/${slug}`}>
-      Go fullscreen
+      Go full screen
     </EuiButton>
   );
 

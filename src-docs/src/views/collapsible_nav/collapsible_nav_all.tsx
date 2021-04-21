@@ -271,7 +271,7 @@ const CollapsibleNavAll = () => {
             items: [
               <EuiButtonEmpty
                 href={`#${path.match(/^(?<parent>.*)\/.+$/)?.groups?.parent}`}
-                iconType="minimize">
+                iconType="exit">
                 Exit full screen
               </EuiButtonEmpty>,
             ],
