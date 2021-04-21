@@ -7,7 +7,6 @@ import React, {
 import { useRouteMatch } from 'react-router';
 import { EuiImage } from '../../../../src/components/image';
 import { EuiButton } from '../../../../src/components/button';
-import { EuiFocusTrap } from '../../../../src/components/focus_trap';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiSwitch } from '../../../../src/components/form';
 import { EuiTextAlign } from '../../../../src/components/text';
@@ -111,23 +110,23 @@ export const PageDemo: FunctionComponent<{
   );
 
   const Child = showTemplate ? template : pattern;
-  return (
+  return fullscreen ? (
+    <Child
+      button={button}
+      content={content}
+      sideNav={sideNav}
+      bottomBar={bottomBar}
+    />
+  ) : (
     <>
-      <EuiFocusTrap disabled={!fullscreen}>
-        <div
-          className={
-            fullscreen
-              ? 'guideFullScreenOverlay guideFullScreenOverlay--withHeader'
-              : 'guideDemo__highlightLayout'
-          }>
-          <Child
-            button={button}
-            content={content}
-            sideNav={sideNav}
-            bottomBar={bottomBar}
-          />
-        </div>
-      </EuiFocusTrap>
+      <div className={'guideDemo__highlightLayout'}>
+        <Child
+          button={button}
+          content={content}
+          sideNav={sideNav}
+          bottomBar={bottomBar}
+        />
+      </div>
       <EuiTextAlign textAlign="right">
         <EuiSpacer />
         <EuiSwitch
