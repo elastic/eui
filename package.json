@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "32.0.4",
+  "version": "32.2.0",
   "license": "Apache-2.0",
   "main": "lib",
   "module": "es",
@@ -53,6 +53,7 @@
     "@types/react-input-autosize": "^2.2.0",
     "@types/react-virtualized-auto-sizer": "^1.0.0",
     "@types/react-window": "^1.8.2",
+    "@types/resize-observer-browser": "^0.1.5",
     "@types/vfile-message": "^2.0.0",
     "chroma-js": "^2.1.0",
     "classnames": "^2.2.6",
