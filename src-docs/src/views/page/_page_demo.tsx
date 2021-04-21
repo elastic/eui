@@ -30,6 +30,14 @@ const ExitFullscreenDemoButton = () => {
   );
 };
 
+/**
+ * Because the discrete[by slug] usages of <PageDemo> are not rendered at the same time,
+ * it is safe to cache their showTemplate status in a set rather than an approach triggering
+ * React re-rendering. If that changes, moving this to a redux store, recoiljs atom(s), or similar
+ * would resolve any introduced issue.
+ */
+const demosAsIndividualComponents = new Set<string>();
+
 export const PageDemo: FunctionComponent<{
   slug: string;
   fullscreen?: boolean;
@@ -49,7 +57,16 @@ export const PageDemo: FunctionComponent<{
 }> = ({ slug, fullscreen, pattern, template, centered }) => {
   const { path } = useRouteMatch();
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
-  const [showTemplate, setShowTemplate] = useState(true);
+  const [showTemplate, _setShowTemplate] = useState(
+    !demosAsIndividualComponents.has(slug)
+  );
+  const setShowTemplate = (cb: (showTemplate: boolean) => boolean) => {
+    _setShowTemplate((showing) => {
+      const nextValue = cb(showing);
+      demosAsIndividualComponents[nextValue ? 'delete' : 'add'](slug);
+      return nextValue;
+    });
+  };
 
   const button = fullscreen ? (
     <ExitFullscreenDemoButton />
