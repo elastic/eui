@@ -11,7 +11,7 @@ import {
 const THEME_NAMES = EUI_THEMES.map(({ value }) => value);
 
 const defaultState = {
-  theme: THEME_NAMES[0],
+  theme: THEME_NAMES[2],
   changeTheme: (themeValue: EUI_THEME['value']) => {
     applyTheme(themeValue);
   },

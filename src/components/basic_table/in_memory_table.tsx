@@ -584,15 +584,16 @@ export class EuiInMemoryTable<T> extends Component<
           .sort(this.getItemSorter()) // sort, causes mutation
       : matchingItems;
 
-    const visibleItems = pageSize
-      ? (() => {
-          const startIndex = pageIndex * pageSize;
-          return sortedItems.slice(
-            startIndex,
-            Math.min(startIndex + pageSize, sortedItems.length)
-          );
-        })()
-      : sortedItems;
+    const visibleItems =
+      pageSize && this.props.pagination
+        ? (() => {
+            const startIndex = pageIndex * pageSize;
+            return sortedItems.slice(
+              startIndex,
+              Math.min(startIndex + pageSize, sortedItems.length)
+            );
+          })()
+        : sortedItems;
 
     return {
       items: visibleItems,
