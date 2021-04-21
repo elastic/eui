@@ -64,11 +64,6 @@ export class AppView extends Component {
       <>
         <Helmet>
           <title>{`${this.props.currentRoute.name} - Elastic UI Framework`}</title>
-          <meta
-            name="description"
-            content="The Elastic UI framework (EUI) is a design library in use at Elastic to build internal products that need to share our aesthetics. It distributes UI React components and static assets for use in building web layouts."
-          />
-
           <link
             rel="icon"
             type="image/png"
