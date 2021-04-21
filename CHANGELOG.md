@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Removed `MutationObserver` fallback from `EuiResizeObserver` ([#4709](https://github.com/elastic/eui/pull/4709))
+- Fixed `EuiComoboBox` to use correct placeholder text color ([#4744](https://github.com/elastic/eui/pull/4744))
 
 **Bug fixes**
 
