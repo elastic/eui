@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 
 import {
   EuiHeaderLogo,
@@ -11,6 +11,7 @@ import { EuiToolTip } from '../../../../src/components/tool_tip';
 import { EuiPopover } from '../../../../src/components/popover';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import { EuiButtonEmpty } from '../../../../src/components/button';
+import { GuidePageSearch } from './guide_page_search';
 
 // @ts-ignore Not TS
 import { CodeSandboxLink } from '../../components/codesandbox/link';
@@ -25,11 +26,30 @@ const pkg = require('../../../../package.json');
 export type GuidePageHeaderProps = {
   onToggleLocale: () => {};
   selectedLocale: string;
+  historyPush: (path: string) => void;
+  navigation: Array<{
+    name: string;
+    type: string;
+    items: Array<{
+      isNew?: boolean;
+      name: string;
+      path: string;
+      component: ReactNode;
+      sections?: Array<{
+        id: string;
+        text: any;
+        title?: string;
+        wrapText: boolean;
+      }>;
+    }>;
+  }>;
 };
 
 export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
   onToggleLocale,
   selectedLocale,
+  navigation,
+  historyPush,
 }) => {
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
 
@@ -146,6 +166,14 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         {
           items: [renderLogo(), renderVersion()],
           borders: 'none',
+        },
+        {
+          items: [
+            <GuidePageSearch
+              historyPush={historyPush}
+              navigation={navigation}
+            />,
+          ],
         },
         {
           items: rightSideItems,

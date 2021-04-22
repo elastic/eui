@@ -57,14 +57,14 @@ export class AppView extends Component {
         <GuidePageHeader
           onToggleLocale={toggleLocale}
           selectedLocale={locale}
+          navigation={navigation}
+          historyPush={routes.history.push}
         />
         <EuiPage paddingSize="none">
           <EuiErrorBoundary>
             <GuidePageChrome
               currentRoute={currentRoute}
               navigation={navigation}
-              onToggleLocale={toggleLocale}
-              selectedLocale={locale}
             />
           </EuiErrorBoundary>
 

@@ -1,17 +1,12 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import React, { Component } from 'react';
 import {
-  EuiFieldSearch,
+  EuiBadge,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiSideNav,
   EuiPageSideBar,
-  EuiText,
+  EuiSideNav,
 } from '../../../../src/components';
-
-import { EuiHighlight } from '../../../../src/components/highlight';
-import { EuiBadge } from '../../../../src/components/badge';
 
 export class GuidePageChrome extends Component {
   _isMounted = false;
@@ -86,70 +81,34 @@ export class GuidePageChrome extends Component {
     });
   }
 
-  renderSubSections = (href, subSections = [], searchTerm = '') => {
-    const subSectionsWithTitles = subSections.filter((item) => {
-      if (!item.title) {
-        return false;
-      }
+  renderSubSections = (href, subSections = []) => {
+    const subSectionsWithTitles = subSections.filter(({ title }) => !!title);
 
-      if (searchTerm) {
-        return item.title.toLowerCase().indexOf(searchTerm) !== -1;
-      }
+    if (subSectionsWithTitles.length < 2) return;
 
-      return true;
-    });
-
-    // don't render solitary sub-items unless there's an active search
-    if (subSectionsWithTitles.length <= (searchTerm ? 0 : 1)) {
-      return;
-    }
-
-    return subSectionsWithTitles.map(({ title, id }) => {
-      let name = title;
-      if (searchTerm) {
-        name = (
-          <EuiHighlight
-            className="guideSideNav__item--inSearch"
-            search={searchTerm}>
-            {title}
-          </EuiHighlight>
-        );
-      }
-
-      return {
-        id: `subSection-${id}`,
-        name,
-        href: href.concat(`#${id}`),
-      };
-    });
+    return subSectionsWithTitles.map(({ title, id }) => ({
+      id: `subSection-${id}`,
+      name: title,
+      href: href.concat(`#${id}`),
+    }));
   };
 
   renderSideNav = (sideNav) => {
     // TODO: Add contents pages
     const sideNavSections = [];
 
-    const searchTerm = this.state.search.toLowerCase();
-
     sideNav.forEach((section) => {
-      let hasMatchingSubItem = false;
-
       const matchingItems = section.items.filter((item) => {
-        if (item.hidden) {
-          return false;
-        }
+        if (item.hidden) return false;
 
-        const itemSections = item.sections || [];
+        const itemSections = item.sections ?? [];
+
         for (let i = 0; i < itemSections.length; i++) {
-          const sectionTitle = itemSections[i].title || '';
-          if (sectionTitle.toLowerCase().indexOf(searchTerm) !== -1) {
-            hasMatchingSubItem = true;
-            return true;
-          }
+          const sectionTitle = itemSections[i].title ?? '';
+          if (sectionTitle.toLowerCase().indexOf('') !== -1) return true;
         }
 
-        if (item.name.toLowerCase().indexOf(searchTerm) !== -1) {
-          return true;
-        }
+        if (item.name.toLowerCase().indexOf('') !== -1) return true;
       });
 
       const items = matchingItems.map((item) => {
@@ -165,24 +124,13 @@ export class GuidePageChrome extends Component {
           );
         }
 
-        let visibleName = name;
-        if (searchTerm) {
-          visibleName = (
-            <EuiHighlight
-              className="guideSideNav__item--inSearch"
-              search={searchTerm}>
-              {name}
-            </EuiHighlight>
-          );
-        }
-
         return {
           id: `${section.type}-${path}`,
-          name: visibleName,
+          name,
           href,
-          items: this.renderSubSections(href, sections, searchTerm),
+          items: this.renderSubSections(href, sections),
           isSelected: item.path === this.props.currentRoute.path,
-          forceOpen: !!(searchTerm && hasMatchingSubItem),
+          forceOpen: item.path === this.props.currentRoute.path,
           className: 'guideSideNav__item',
           icon: newBadge,
         };
@@ -203,28 +151,6 @@ export class GuidePageChrome extends Component {
   };
 
   render() {
-    const sideNav = this.renderSideNav(this.props.navigation);
-
-    let sideNavContent;
-
-    if (sideNav.length) {
-      sideNavContent = (
-        <EuiSideNav
-          mobileTitle="Navigate components"
-          toggleOpenOnMobile={this.toggleOpenOnMobile}
-          isOpenOnMobile={this.state.isSideNavOpenOnMobile}
-          items={sideNav}
-          aria-label="EUI"
-        />
-      );
-    } else {
-      sideNavContent = (
-        <EuiText color="subdued" size="s">
-          <p>No matches</p>
-        </EuiText>
-      );
-    }
-
     return (
       <EuiPageSideBar className="guideSideNav" sticky>
         <EuiFlexGroup
@@ -232,20 +158,14 @@ export class GuidePageChrome extends Component {
           direction="column"
           responsive={false}
           gutterSize="none">
-          <EuiFlexItem
-            role="search"
-            grow={false}
-            className="guideSideNav__search">
-            <EuiFieldSearch
-              fullWidth
-              placeholder="Search"
-              value={this.state.search}
-              onChange={this.onSearchChange}
-              aria-label="Search for a docs section"
-            />
-          </EuiFlexItem>
           <EuiFlexItem className="guideSideNav__content">
-            {sideNavContent}
+            <EuiSideNav
+              mobileTitle="Navigate components"
+              toggleOpenOnMobile={this.toggleOpenOnMobile}
+              isOpenOnMobile={this.state.isSideNavOpenOnMobile}
+              items={this.renderSideNav(this.props.navigation)}
+              aria-label="EUI"
+            />
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiPageSideBar>
@@ -255,7 +175,5 @@ export class GuidePageChrome extends Component {
 
 GuidePageChrome.propTypes = {
   currentRoute: PropTypes.object.isRequired,
-  onToggleLocale: PropTypes.func.isRequired,
-  selectedLocale: PropTypes.string.isRequired,
   navigation: PropTypes.array.isRequired,
 };
