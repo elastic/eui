@@ -211,7 +211,7 @@ export default () => {
             </p>
           </EuiPopover>
           <EuiSpacer size="m" />
-          <EuiForm>
+          <EuiForm component="form">
             <EuiFormRow label="A SuperSelect field">
               <EuiSuperSelect
                 options={superSelectOptions}

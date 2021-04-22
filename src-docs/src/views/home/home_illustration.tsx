@@ -1,9 +1,18 @@
-import React from 'react';
-import IllustrationBg from './home_illustration_parts/illustration_bg';
-import IllustrationDots from './home_illustration_parts/illustration_dots';
-import IllustrationComponents from './home_illustration_parts/illustration_components';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../../components/with_theme';
+import illustrationDarkMode from '../../images/illustration-eui-hero-500-darkmode-shadow.svg';
+import illustrationLightMode from '../../images/illustration-eui-hero-500-shadow.svg';
+import { EuiImage } from '../../../../src/components/image';
 
 function Icon() {
+  const themeContext: any = useContext(ThemeContext);
+
+  const illustration = themeContext.theme.includes('dark') ? (
+    <EuiImage alt="Elastic UI" url={illustrationDarkMode} />
+  ) : (
+    <EuiImage alt="Elastic UI" url={illustrationLightMode} />
+  );
+
   return (
     <div className="guideHomePage__illustration">
       <div className="guideHomePage__illustrationEffect">
@@ -12,16 +21,8 @@ function Icon() {
         <div className="guideHomePage__illustrationBottomLeftCorner" />
         <div className="guideHomePage__illustrationBottomRightCorner" />
 
-        <div className="guideHomePage__illustrationEffectParts">
-          <div className="guideHomePage__illustrationEffectPartsDots">
-            <IllustrationDots />
-          </div>
-
-          <div className="guideHomePage__illustrationEffectPartsComps">
-            <IllustrationComponents />
-          </div>
-
-          <IllustrationBg />
+        <div className="guideHomePage__illustrationEffectSVG">
+          {illustration}
         </div>
       </div>
     </div>
