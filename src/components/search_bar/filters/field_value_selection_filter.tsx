@@ -90,6 +90,7 @@ interface State {
     shown: FieldValueOptionType[];
   } | null;
   cachedOptions?: FieldValueOptionType[] | null;
+  activeItems: FieldValueOptionType[];
 }
 
 export class FieldValueSelectionFilter extends Component<
@@ -115,6 +116,7 @@ export class FieldValueSelectionFilter extends Component<
       popoverOpen: false,
       error: null,
       options: preloadedOptions,
+      activeItems: [],
     };
   }
 
@@ -177,8 +179,8 @@ export class FieldValueSelectionFilter extends Component<
             return;
           });
         }
-
         this.setState({
+          activeItems: items.on,
           error: null,
           options: {
             all: options,
@@ -268,7 +270,7 @@ export class FieldValueSelectionFilter extends Component<
     const {
       config: { autoClose = true, operator = Operator.EQ },
     } = this.props;
-
+    this.loadOptions();
     // we're closing popover only if the user can only select one item... if the
     // user can select more, we'll leave it open so she can continue selecting
 
@@ -350,6 +352,7 @@ export class FieldValueSelectionFilter extends Component<
         iconSide="right"
         onClick={this.onButtonClick.bind(this)}
         hasActiveFilters={active}
+        numActiveFilters={this.state.activeItems.length || undefined}
         grow>
         {config.name}
       </EuiFilterButton>

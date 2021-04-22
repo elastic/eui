@@ -116,7 +116,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
         {children}
       </span>
 
-      {numFiltersDefined && (
+      {(numFiltersDefined || numActiveFilters) && (
         <EuiI18n
           token="euiFilterButton.filterBadge"
           values={{
