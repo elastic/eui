@@ -42,7 +42,7 @@ const statSizeHtml = renderToHtml(StatSize);
 const statSizeSnippet = `<EuiStat
   title="22,123"
   description="Total people"
-  titleSize="xxl"
+  titleSize="s"
 />
 `;
 
@@ -158,8 +158,11 @@ export const StatExample = {
           and thus uses the same sizing property values (applied via the{' '}
           <EuiCode>titleSize</EuiCode> property). Although all{' '}
           <strong>EuiTitle</strong> sizes are available, suggested sizes include{' '}
-          <EuiCode language="ts">{"'l' | 'm' | 's'"}</EuiCode>. By default, the
-          size is set to large <EuiCode language="ts">{"'l'"}</EuiCode>. The{' '}
+          <EuiCode language="ts">
+            {"'l' | 'm' | 's' | 'xs' | 'xxs' | 'xxxs'"}
+          </EuiCode>
+          . By default, the size is set to large{' '}
+          <EuiCode language="ts">{"'l'"}</EuiCode>. The{' '}
           <EuiCode>description</EuiCode> label cannot be re-sized via component
           properties.
         </p>
