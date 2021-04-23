@@ -13,7 +13,9 @@ import {
   EuiSpacer,
   EuiSwitch,
   EuiText,
+  EuiCode,
 } from '../../../../src/components';
+import { EuiCallOut } from '../../../../src/components/call_out';
 
 import { htmlIdGenerator } from '../../../../src/services';
 
@@ -84,17 +86,6 @@ export default () => {
         <EuiRange min={0} max={100} name="range" id="range" />
       </EuiFormRow>
 
-      <EuiFormRow
-        label="Use a switch instead of a single checkbox and set 'hasChildLabel' to false"
-        hasChildLabel={false}>
-        <EuiSwitch
-          name="switch"
-          label="Should we do this?"
-          checked={isSwitchChecked}
-          onChange={onSwitchChange}
-        />
-      </EuiFormRow>
-
       <EuiSpacer />
 
       <EuiCheckboxGroup
@@ -106,6 +97,37 @@ export default () => {
             'Checkbox groups should use the `legend` prop instead of form row',
         }}
       />
+
+      <EuiSpacer />
+
+      <EuiFormRow
+        label="Use a switch instead of a single checkbox"
+        hasChildLabel={false}>
+        <EuiSwitch
+          name="switch"
+          label="Should we do this?"
+          checked={isSwitchChecked}
+          onChange={onSwitchChange}
+        />
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiCallOut
+        color="warning"
+        iconType="accessibility"
+        title={
+          <>
+            Set <EuiCode>hasChildLabel=false</EuiCode> on{' '}
+            <strong>EuiFormRow</strong> when passing in{' '}
+            <strong>EuiSwitch</strong>, <strong>EuiButton</strong>, and{' '}
+            <strong>EuiLink</strong>.
+          </>
+        }>
+        Because these form element already have their own text, we want to do
+        this to prevent EUI from wiring <EuiCode>htmlFor</EuiCode> between the
+        label and the form element(s).
+      </EuiCallOut>
 
       <EuiSpacer />
 
