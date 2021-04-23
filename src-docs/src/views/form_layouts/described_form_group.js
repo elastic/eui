@@ -51,6 +51,7 @@ export default () => {
           helpText={<span>This is a help text</span>}>
           <EuiSelect
             hasNoInitialSelection
+            onChange={() => {}}
             options={[
               { value: 'option_one', text: 'Option one' },
               { value: 'option_two', text: 'Option two' },

@@ -13,9 +13,7 @@ import {
   EuiSpacer,
   EuiSwitch,
   EuiText,
-  EuiCode,
 } from '../../../../src/components';
-import { EuiCallOut } from '../../../../src/components/call_out';
 
 import { htmlIdGenerator } from '../../../../src/services';
 
@@ -70,6 +68,7 @@ export default () => {
         }>
         <EuiSelect
           hasNoInitialSelection
+          onChange={() => {}}
           options={[
             { value: 'option_one', text: 'Option one' },
             { value: 'option_two', text: 'Option two' },
@@ -110,24 +109,6 @@ export default () => {
           onChange={onSwitchChange}
         />
       </EuiFormRow>
-
-      <EuiSpacer />
-
-      <EuiCallOut
-        color="warning"
-        iconType="accessibility"
-        title={
-          <>
-            Set <EuiCode>hasChildLabel=false</EuiCode> on{' '}
-            <strong>EuiFormRow</strong> when passing in{' '}
-            <strong>EuiSwitch</strong>, <strong>EuiButton</strong>, and{' '}
-            <strong>EuiLink</strong>.
-          </>
-        }>
-        Because these form element already have their own text, we want to do
-        this to prevent EUI from wiring <EuiCode>htmlFor</EuiCode> between the
-        label and the form element(s).
-      </EuiCallOut>
 
       <EuiSpacer />
 

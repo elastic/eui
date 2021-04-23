@@ -11,6 +11,7 @@ import {
   EuiFormRow,
   EuiText,
   EuiDescribedFormGroup,
+  EuiLink,
 } from '../../../../src/components';
 import Guidelines from './guidelines';
 import FormRows from './form_rows';
@@ -36,6 +37,8 @@ const inlineSizingHtml = renderToHtml(InlineSizing);
 import InlinePopover from './inline_popover';
 const inlinePopoverSource = require('!!raw-loader!./inline_popover');
 const inlinePopoverHtml = renderToHtml(InlinePopover);
+
+import AccessibleLabels from './accessible_labels';
 
 export const FormLayoutsExample = {
   title: 'Form layouts',
@@ -83,39 +86,6 @@ export const FormLayoutsExample = {
 </EuiFormRow>`,
     },
     {
-      title: 'Full-width',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: fullWidthSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fullWidthHtml,
-        },
-      ],
-      text: (
-        <p>
-          Form elements will automatically flex to a max-width of{' '}
-          <EuiCode>400px</EuiCode>. You can optionally pass the{' '}
-          <EuiCode>fullWidth</EuiCode> prop to the row and form control to
-          expand to their container. This should be done rarely and usually you
-          will only need it for isolated controls like search bars and sliders.
-        </p>
-      ),
-      props: {
-        EuiFormRow,
-      },
-      demo: <FullWidth />,
-      snippet: `<EuiFormRow
-  fullWidth
-  label="Works on form rows too"
-  helpText="Note that the fullWidth prop is not passed to the form row's child"
->
-  <EuiRange fullWidth />
-</EuiFormRow>`,
-    },
-    {
       title: 'Described form groups',
       source: [
         {
@@ -154,6 +124,58 @@ export const FormLayoutsExample = {
   </EuiFormRow>
 </EuiDescribedFormGroup>`,
     },
+    {
+      title: 'Accessible labels',
+      text: (
+        <p>
+          Because of the many form elements and the flexibility offered by EUI,
+          sometimes extra care has to be taken to ensure an accessible
+          experience. There are a lot of ways to achieve this and only some will
+          be covered but the import end result is that every form control has an{' '}
+          <EuiLink
+            href="https://www.tpgi.com/what-is-an-accessible-name/"
+            external>
+            accessible name
+          </EuiLink>
+          .
+        </p>
+      ),
+      demo: <AccessibleLabels />,
+    },
+    {
+      title: 'Full-width',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: fullWidthSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: fullWidthHtml,
+        },
+      ],
+      text: (
+        <p>
+          Form elements will automatically flex to a max-width of{' '}
+          <EuiCode>400px</EuiCode>. You can optionally pass the{' '}
+          <EuiCode>fullWidth</EuiCode> prop to the row and form control to
+          expand to their container. This should be done rarely and usually you
+          will only need it for isolated controls like search bars and sliders.
+        </p>
+      ),
+      props: {
+        EuiFormRow,
+      },
+      demo: <FullWidth />,
+      snippet: `<EuiFormRow
+  fullWidth
+  label="Works on form rows too"
+  helpText="Note that the fullWidth prop is not passed to the form row's child"
+>
+  <EuiRange fullWidth />
+</EuiFormRow>`,
+    },
+
     {
       title: 'Inline',
       text: (
