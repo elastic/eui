@@ -62,9 +62,11 @@ function extractGridData(datagrid: ReactWrapper<EuiDataGridProps>) {
 }
 
 function extractColumnWidths(datagrid: ReactWrapper) {
-  return (findTestSubject(datagrid, 'dataGridHeaderCell', '|=') as ReactWrapper<
-    any
-  >).reduce((widths: { [key: string]: number }, cell) => {
+  return (findTestSubject(
+    datagrid,
+    'dataGridHeaderCell',
+    '|='
+  ) as ReactWrapper<any>).reduce((widths: { [key: string]: number }, cell) => {
     const [, columnId] = cell
       .props()
       ['data-test-subj'].match(/dataGridHeaderCell-(.*)/);
@@ -538,6 +540,7 @@ describe('EuiDataGrid', () => {
               "height": 34,
               "left": 0,
               "position": "absolute",
+              "right": undefined,
               "top": "100px",
               "width": 100,
             },
@@ -556,6 +559,7 @@ describe('EuiDataGrid', () => {
               "height": 34,
               "left": 100,
               "position": "absolute",
+              "right": undefined,
               "top": "100px",
               "width": 100,
             },
@@ -574,6 +578,7 @@ describe('EuiDataGrid', () => {
               "height": 34,
               "left": 0,
               "position": "absolute",
+              "right": undefined,
               "top": "134px",
               "width": 100,
             },
@@ -592,6 +597,7 @@ describe('EuiDataGrid', () => {
               "height": 34,
               "left": 100,
               "position": "absolute",
+              "right": undefined,
               "top": "134px",
               "width": 100,
             },

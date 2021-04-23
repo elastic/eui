@@ -44,6 +44,7 @@ import { EuiFocusTrap } from '../focus_trap';
 import { keys } from '../../services';
 import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
 import { EuiDataGridCellPopover } from './data_grid_cell_popover';
+import { EuiDataGridSchemaDetector } from './data_grid_schema';
 
 export interface EuiDataGridCellValueElementProps {
   /**
@@ -92,6 +93,7 @@ export interface EuiDataGridCellProps {
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
   setRowHeight?: (height: number) => void;
   style?: React.CSSProperties;
+  schema?: EuiDataGridSchemaDetector[];
 }
 
 interface EuiDataGridCellState {
@@ -117,9 +119,7 @@ const EuiDataGridCellContent: FunctionComponent<
   const { renderCellValue, ...rest } = props;
 
   // React is more permissible than the TS types indicate
-  const CellElement = renderCellValue as JSXElementConstructor<
-    EuiDataGridCellValueElementProps
-  >;
+  const CellElement = renderCellValue as JSXElementConstructor<EuiDataGridCellValueElementProps>;
 
   return (
     <CellElement isDetails={false} data-test-subj="cell-content" {...rest} />
@@ -345,11 +345,26 @@ export class EuiDataGridCell extends Component<
       this.state.enableInteractions ||
       this.state.popoverIsOpen;
 
+    const transformClass = this.props.schema?.filter((v: any) =>
+      this.props.column?.schema
+        ? this.props.column?.schema === v.type
+        : this.props.columnId === v.type
+    )[0];
+
     const cellClasses = classNames(
       'euiDataGridRowCell',
       {
         [`euiDataGridRowCell--${columnType}`]: columnType,
         ['euiDataGridRowCell--open']: this.state.popoverIsOpen,
+        ['euiDataGridRowCell--uppercase']:
+          transformClass !== undefined &&
+          transformClass.textTransform === 'uppercase',
+        ['euiDataGridRowCell--lowercase']:
+          transformClass !== undefined &&
+          transformClass.textTransform === 'lowercase',
+        ['euiDataGridRowCell--capital']:
+          transformClass !== undefined &&
+          transformClass.textTransform === 'capital',
       },
       className
     );

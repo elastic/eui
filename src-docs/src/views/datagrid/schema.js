@@ -189,6 +189,7 @@ export default class DataGridSchema extends Component {
         schemaDetectors={[
           {
             type: 'favoriteFranchise',
+            textTransform: 'uppercase',
             detector(value) {
               return value.toLowerCase() === 'star wars' ||
                 value.toLowerCase() === 'star trek'
