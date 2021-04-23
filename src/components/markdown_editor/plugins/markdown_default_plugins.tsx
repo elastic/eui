@@ -47,6 +47,7 @@ import highlight from 'remark-highlight.js';
 import emoji from 'remark-emoji';
 import all from 'mdast-util-to-hast/lib/all';
 import { Options as Remark2RehypeOptions, Handler } from 'mdast-util-to-hast';
+import { EuiMarkdownEditorUiPlugin } from './../markdown_types';
 
 export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
   [markdown, {}],
@@ -63,7 +64,7 @@ const unknownHandler: Handler = (h, node) => {
   return h(node, node.type, node, all(h, node));
 };
 
-interface Rehype2ReactOptions {
+export interface Rehype2ReactOptions {
   components: { [key: string]: React.ComponentType<any> };
   [key: string]: any;
 }
@@ -103,7 +104,7 @@ export const getDefaultEuiMarkdownProcessingPlugins = (): [
 
 export const defaultProcessingPlugins = getDefaultEuiMarkdownProcessingPlugins();
 
-export const getDefaultEuiMarkdownUiPlugins = () => {
+export const getDefaultEuiMarkdownUiPlugins = (): EuiMarkdownEditorUiPlugin[] => {
   const array = [MarkdownTooltip.plugin];
   // @ts-ignore __originatedFromEui is a custom property
   array.__originatedFromEui = true;

@@ -1,15 +1,9 @@
 // Export basic class & modifiers
 @include euiPanel($selector: '.euiPanel');
-@include euiHasBetaBadge($selector: '.euiPanel');
 
 // Padding
 @each $modifier, $amount in $euiPanelPaddingModifiers {
   .euiPanel--#{$modifier} {
     padding: $amount;
-
-    // Overwrite @hasBetaBadge max-width depending upon padding
-    .euiPanel__betaBadgeWrapper {
-      max-width: calc(100% - #{$amount*2});
-    }
   }
 }

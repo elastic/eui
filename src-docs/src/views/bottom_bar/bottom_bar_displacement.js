@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {
   EuiBottomBar,
   EuiButtonGroup,
-  EuiButtonEmpty,
+  EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
 } from '../../../../src/components';
@@ -32,6 +32,7 @@ export default () => {
         legend="Bottom Bar demo toggle buttons group"
         type="single"
         buttonSize="m"
+        color="primary"
         options={toggleButtons}
         idSelected={toggleIdSelected}
         onChange={(id) => onChange(id)}
@@ -42,13 +43,13 @@ export default () => {
           affordForDisplacement={toggleIdSelected === 'bottomBarStandard'}>
           <EuiFlexGroup justifyContent="flexEnd">
             <EuiFlexItem grow={false}>
-              <EuiButtonEmpty
+              <EuiButton
                 onClick={() => setToggleIdSelected(null)}
                 color="ghost"
                 size="s"
                 iconType="cross">
                 close
-              </EuiButtonEmpty>
+              </EuiButton>
             </EuiFlexItem>
           </EuiFlexGroup>
         </EuiBottomBar>

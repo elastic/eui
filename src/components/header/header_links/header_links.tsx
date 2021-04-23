@@ -38,7 +38,9 @@ import { EuiBreakpointSize } from '../../../services/breakpoint';
 import { EuiHideFor, EuiShowFor } from '../../responsive';
 
 type EuiHeaderLinksGutterSize = 'xs' | 's' | 'm' | 'l';
-type EuiHeaderLinksPopoverButtonProps = EuiHeaderSectionItemButtonProps & {
+type EuiHeaderLinksPopoverButtonProps = Partial<
+  EuiHeaderSectionItemButtonProps
+> & {
   iconType?: IconType;
 };
 
@@ -88,7 +90,9 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
 
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
 
-  const onMenuButtonClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+  const onMenuButtonClick: MouseEventHandler<
+    HTMLButtonElement & HTMLAnchorElement
+  > = (e) => {
     _onClick && _onClick(e);
     setMobileMenuIsOpen(!mobileMenuIsOpen);
   };
@@ -134,7 +138,6 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
 
           <EuiShowFor sizes={popoverBreakpoints}>
             <EuiPopover
-              ownFocus
               button={button}
               isOpen={mobileMenuIsOpen}
               anchorPosition="downRight"

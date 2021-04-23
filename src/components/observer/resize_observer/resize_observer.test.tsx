@@ -28,7 +28,12 @@ export async function waitforResizeObserver(period = 30) {
   await sleep(period);
 }
 
-describe('testResizeObservers', () => {
+// EuiResizeObserver and useResizeObserver do not have a fallback for
+// environments that do not implement the ResizeObserver API.
+// jsdom does not implement ResizeObserver and we therefore
+// cannot currently test production functionality of those components.
+// Re-enable these tests when test support changes.
+describe.skip('testResizeObservers', () => {
   // refactor the tests structure to make sure that `EuiResizeObserver` test can get
   // the proper size of the dom element.
   type GetBoundingClientRect = typeof HTMLElement['prototype']['getBoundingClientRect'];

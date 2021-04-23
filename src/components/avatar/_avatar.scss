@@ -1,6 +1,8 @@
 .euiAvatar {
   flex-shrink: 0; // Ensures it never scales down below its intended size
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   background-size: cover;
   text-align: center;
   vertical-align: middle;
@@ -16,6 +18,15 @@
 .euiAvatar--space {
   @include innerBorder('dark', $euiBorderRadius, .05);
   border-radius: $euiBorderRadius;
+}
+
+.euiAvatar-isDisabled {
+  cursor: not-allowed;
+  filter: grayscale(100%);
+}
+
+.euiAvatar--plain {
+  background-color: $euiColorEmptyShade;
 }
 
 // Modifiers for sizing.

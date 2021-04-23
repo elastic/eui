@@ -17,7 +17,13 @@
  * under the License.
  */
 
-import React, { createContext, ReactChild, ReactNode } from 'react';
+import React, {
+  createContext,
+  Context,
+  FunctionComponent,
+  ReactChild,
+  ReactNode,
+} from 'react';
 
 export interface RenderableValues {
   // undefined values are ignored, but including support here improves usability
@@ -36,7 +42,7 @@ export interface I18nShape {
   locale?: string;
 }
 
-const I18nContext: React.Context<I18nShape> = createContext({});
+const I18nContext: Context<I18nShape> = createContext({});
 const { Provider: EuiI18nProvider, Consumer: EuiI18nConsumer } = I18nContext;
 
 export interface EuiContextProps {
@@ -47,7 +53,7 @@ export interface EuiContextProps {
   children: ReactNode;
 }
 
-const EuiContext: React.FunctionComponent<EuiContextProps> = ({
+const EuiContext: FunctionComponent<EuiContextProps> = ({
   i18n = {},
   children,
 }) => <EuiI18nProvider value={i18n}>{children}</EuiI18nProvider>;

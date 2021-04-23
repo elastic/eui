@@ -211,7 +211,7 @@ export default () => {
             </p>
           </EuiPopover>
           <EuiSpacer size="m" />
-          <EuiForm>
+          <EuiForm component="form">
             <EuiFormRow label="A SuperSelect field">
               <EuiSuperSelect
                 options={superSelectOptions}
@@ -226,7 +226,6 @@ export default () => {
           <EuiPopover
             isOpen={isExpressionOpen}
             closePopover={() => setIsExpressionOpen(false)}
-            ownFocus={true}
             button={
               <EuiExpression
                 description="expression"

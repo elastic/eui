@@ -25,7 +25,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiOverlayMask } from '../overlay_mask';
 
 import { EuiIcon } from '../icon';
@@ -71,51 +71,63 @@ const fullScreenIconColorMap: { [color in FullScreenIconColor]: string } = {
   dark: 'default',
 };
 
-export interface EuiImageProps
-  extends CommonProps,
-    HTMLAttributes<HTMLImageElement> {
-  /**
-   * Separate from the caption is a title on the alt tag itself.
-   * This one is required for accessibility.
-   */
-  alt: string;
-  /**
-   * Accepts `s` / `m` / `l` / `xl` / `original` / `fullWidth` / or a CSS size of `number` or `string`.
-   * `fullWidth` will set the figure to stretch to 100% of its container.
-   * `string` and `number` types will max both the width or height, whichever is greater.
-   */
-  size?: ImageSize | number | string;
-  /**
-   * Changes the color of the icon that floats above the image when it can be clicked to fullscreen.
-   * The default value of `light` is fine unless your image has a white background, in which case you should change it to `dark`.
-   */
-  fullScreenIconColor?: FullScreenIconColor;
-  url: string;
-  /**
-   * Provides the visible caption to the image
-   */
-  caption?: ReactNode;
-  /**
-   * When set to `true` (default) will apply a slight shadow to the image
-   */
-  hasShadow?: boolean;
-  /**
-   * When set to `true` will make the image clickable to a larger version
-   */
-  allowFullScreen?: boolean;
-  /**
-   * Float the image to the left or right. Useful in large text blocks.
-   */
-  float?: Floats;
-  /**
-   * Margin around the image.
-   */
-  margin?: Margins;
-}
+type _EuiImageSrcOrUrl = ExclusiveUnion<
+  {
+    /**
+     * Requires either `src` or `url` but defaults to using `src` if both are provided
+     */
+    src: string;
+  },
+  {
+    url: string;
+  }
+>;
+
+export type EuiImageProps = CommonProps &
+  _EuiImageSrcOrUrl &
+  HTMLAttributes<HTMLImageElement> & {
+    /**
+     * Separate from the caption is a title on the alt tag itself.
+     * This one is required for accessibility.
+     */
+    alt: string;
+    /**
+     * Accepts `s` / `m` / `l` / `xl` / `original` / `fullWidth` / or a CSS size of `number` or `string`.
+     * `fullWidth` will set the figure to stretch to 100% of its container.
+     * `string` and `number` types will max both the width or height, whichever is greater.
+     */
+    size?: ImageSize | number | string;
+    /**
+     * Changes the color of the icon that floats above the image when it can be clicked to fullscreen.
+     * The default value of `light` is fine unless your image has a white background, in which case you should change it to `dark`.
+     */
+    fullScreenIconColor?: FullScreenIconColor;
+    /**
+     * Provides the visible caption to the image
+     */
+    caption?: ReactNode;
+    /**
+     * When set to `true` (default) will apply a slight shadow to the image
+     */
+    hasShadow?: boolean;
+    /**
+     * When set to `true` will make the image clickable to a larger version
+     */
+    allowFullScreen?: boolean;
+    /**
+     * Float the image to the left or right. Useful in large text blocks.
+     */
+    float?: Floats;
+    /**
+     * Margin around the image.
+     */
+    margin?: Margins;
+  };
 
 export const EuiImage: FunctionComponent<EuiImageProps> = ({
   className,
   url,
+  src,
   size = 'original',
   caption,
   hasShadow,
@@ -217,7 +229,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
               onClick={closeFullScreen}
               onKeyDown={onKeyDown}>
               <img
-                src={url}
+                src={src || url}
                 alt={alt}
                 className="euiImage-isFullScreen__img"
                 {...rest}
@@ -252,7 +264,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
           onClick={openFullScreen}>
           <img
             style={customStyle}
-            src={url}
+            src={src || url}
             alt={alt}
             className="euiImage__img"
             {...rest}
@@ -268,7 +280,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
       <figure className={classes} aria-label={optionalCaptionText}>
         <img
           style={customStyle}
-          src={url}
+          src={src || url}
           className="euiImage__img"
           alt={alt}
           {...rest}

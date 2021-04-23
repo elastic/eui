@@ -198,6 +198,11 @@
   border-radius: $euiBorderRadius;
 }
 
+.guideSass__border--radiusSmall {
+  border: $euiBorderThin;
+  border-radius: $euiBorderRadiusSmall;
+}
+
 .guideSass__border--euiBorderThin {
   border: $euiBorderThin;
 }
@@ -316,12 +321,6 @@
     fill: makeGraphicContrastColor($euiColorWarning, $backgroundColor);
     vertical-align: bottom;
   }
-}
-
-.guideSection__shadedBox {
-  background-color: $euiPageBackgroundColor;
-  padding: $euiSize;
-  border-radius: $euiBorderRadius;
 }
 
 .guideSection__emptyBox {

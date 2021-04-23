@@ -64,7 +64,9 @@ export default () => {
     modal = (
       <EuiModal onClose={closeModal} style={{ width: '800px' }}>
         <EuiModalHeader>
-          <EuiModalHeaderTitle>Color picker in a modal</EuiModalHeaderTitle>
+          <EuiModalHeaderTitle>
+            <h1>Color picker in a modal</h1>
+          </EuiModalHeaderTitle>
         </EuiModalHeader>
 
         <EuiModalBody>
@@ -95,7 +97,6 @@ export default () => {
       <EuiFormRow label="Unruly focus management">
         <EuiPopover
           id="popover"
-          ownFocus={true}
           button={button}
           isOpen={isPopoverOpen}
           closePopover={closePopover}>

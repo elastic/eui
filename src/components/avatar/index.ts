@@ -17,4 +17,4 @@
  * under the License.
  */
 
-export { EuiAvatar, checkValidColor } from './avatar';
+export { EuiAvatar, EuiAvatarProps, checkValidColor } from './avatar';

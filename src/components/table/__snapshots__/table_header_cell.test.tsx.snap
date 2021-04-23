@@ -86,6 +86,117 @@ exports[`renders td when children is null/undefined 1`] = `
 </td>
 `;
 
+exports[`sorting does not render a button with readOnly 1`] = `
+<th
+  aria-live="polite"
+  aria-sort="descending"
+  class="euiTableHeaderCell"
+  role="columnheader"
+  scope="col"
+>
+  <span
+    class="euiTableCellContent"
+  >
+    <span
+      class="euiTableCellContent__text"
+      title="; Sorted in descending order"
+    >
+      Test
+    </span>
+    <span
+      class="euiTableSortIcon"
+      data-euiicon-type="sortDown"
+    />
+  </span>
+</th>
+`;
+
+exports[`sorting is rendered with isSortAscending 1`] = `
+<th
+  aria-live="polite"
+  aria-sort="ascending"
+  class="euiTableHeaderCell"
+  role="columnheader"
+  scope="col"
+>
+  <span
+    class="euiTableCellContent"
+  >
+    <span
+      class="euiTableCellContent__text"
+      title="; Sorted in ascending order"
+    >
+      Test
+    </span>
+    <span
+      class="euiTableSortIcon"
+      data-euiicon-type="sortUp"
+    />
+  </span>
+</th>
+`;
+
+exports[`sorting is rendered with isSorted 1`] = `
+<th
+  aria-live="polite"
+  aria-sort="descending"
+  class="euiTableHeaderCell"
+  role="columnheader"
+  scope="col"
+>
+  <span
+    class="euiTableCellContent"
+  >
+    <span
+      class="euiTableCellContent__text"
+      title="; Sorted in descending order"
+    >
+      Test
+    </span>
+    <span
+      class="euiTableSortIcon"
+      data-euiicon-type="sortDown"
+    />
+  </span>
+</th>
+`;
+
+exports[`sorting renders a button with onSort 1`] = `
+<th
+  aria-live="polite"
+  aria-sort="descending"
+  class="euiTableHeaderCell"
+  role="columnheader"
+  scope="col"
+>
+  <button
+    class="euiTableHeaderButton euiTableHeaderButton-isSorted"
+    data-test-subj="tableHeaderSortButton"
+    type="button"
+  >
+    <span
+      class="euiTableCellContent"
+    >
+      <span
+        class="euiTableCellContent__text"
+        title="; Sorted in descending order"
+      >
+        Test
+      </span>
+      <span
+        class="euiTableSortIcon"
+        data-euiicon-type="sortDown"
+      />
+    </span>
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Click to sort in ascending order
+    </span>
+  </button>
+</th>
+`;
+
 exports[`width and style accepts style attribute 1`] = `
 <th
   class="euiTableHeaderCell"
