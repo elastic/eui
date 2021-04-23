@@ -83,7 +83,7 @@
 
   // sass-lint:disable-block mixins-before-declarations
   @include euiPlaceholderPerBrowser {
-    color: $euiColorPlaceholderText;
+    color: $euiFormControlPlaceholderText;
   }
 }
 

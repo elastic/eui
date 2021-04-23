@@ -1,7 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Removed `MutationObserver` fallback from `EuiResizeObserver` ([#4709](https://github.com/elastic/eui/pull/4709))
-- Added global SASS variable `$euiColorPlaceholderText` ([#4744](https://github.com/elastic/eui/pull/4744))
+- Added forms Sass variable `$euiFormControlPlaceholderText` ([#4744](https://github.com/elastic/eui/pull/4744))
 
 **Bug fixes**
 
