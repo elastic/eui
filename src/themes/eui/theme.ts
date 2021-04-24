@@ -20,14 +20,13 @@
 import { buildTheme } from '../../services/theme/utils';
 import { EuiThemeShape } from '../../services/theme/types';
 import { animation } from '../../global_styling/variables/_animations';
-import { breakpoints } from '../../global_styling/variables/_responsive';
+import { breakpoint } from '../../global_styling/variables/_responsive';
 import { colors } from '../../global_styling/variables/_colors';
 import { base, size } from '../../global_styling/variables/_size';
 import { focus } from '../../global_styling/variables/_states';
 import { font } from '../../global_styling/variables/_typography';
 import { border } from '../../global_styling/variables/_borders';
 import { shadow } from '../../global_styling/variables/_shadows';
-import { zIndex } from '../../global_styling/variables/_z_index';
 
 export const euiThemeDefault: EuiThemeShape = {
   colors,
@@ -38,8 +37,7 @@ export const euiThemeDefault: EuiThemeShape = {
   focus,
   shadow,
   animation,
-  breakpoints,
-  zIndex,
+  breakpoint,
 };
 
 export const EuiThemeDefault = buildTheme(euiThemeDefault, 'EUI_THEME_DEFAULT');

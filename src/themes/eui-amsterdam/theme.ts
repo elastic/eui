@@ -19,9 +19,8 @@
 
 import { buildTheme, EuiThemeShape } from '../../services/theme';
 import { animation } from '../../global_styling/variables/_animations';
-import { breakpoints } from '../../global_styling/variables/_responsive';
+import { breakpoint } from '../../global_styling/variables/_responsive';
 import { base, size } from '../../global_styling/variables/_size';
-import { zIndex } from '../../global_styling/variables/_z_index';
 
 import { colors_ams } from './global_styling/variables/_colors';
 import { font_ams } from './global_styling/variables/_typography';
@@ -38,8 +37,7 @@ export const euiThemeAmsterdam: EuiThemeShape = {
   focus: focus_ams,
   shadow: shadow_ams,
   animation,
-  breakpoints,
-  zIndex,
+  breakpoint,
 };
 
 export const EuiThemeAmsterdam = buildTheme(

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-export interface EuiThemeBreakpoints {
+export interface EuiThemeBreakpoint {
   xs: string;
   s: string;
   m: string;
@@ -25,7 +25,7 @@ export interface EuiThemeBreakpoints {
   xl: string;
 }
 
-export const breakpoints: EuiThemeBreakpoints = {
+export const breakpoint: EuiThemeBreakpoint = {
   xs: '0',
   s: '575px',
   m: '768px',

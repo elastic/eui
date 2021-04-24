@@ -19,7 +19,7 @@
 
 import { RecursivePartial, ValueOf } from '../../components/common';
 import { EuiThemeAnimation } from '../../global_styling/variables/_animations';
-import { EuiThemeBreakpoints } from '../../global_styling/variables/_responsive';
+import { EuiThemeBreakpoint } from '../../global_styling/variables/_responsive';
 import { EuiThemeBorder } from '../../global_styling/variables/_borders';
 import { EuiThemeColors } from '../../global_styling/variables/_colors';
 import {
@@ -29,7 +29,6 @@ import {
 import { EuiThemeShadow } from '../../global_styling/variables/_shadows';
 import { EuiThemeFocus } from '../../global_styling/variables/_states';
 import { EuiThemeFont } from '../../global_styling/variables/_typography';
-import { EuiThemeZIndex } from '../../global_styling/variables/_z_index';
 
 export const COLOR_MODES_STANDARD = {
   light: 'LIGHT',
@@ -63,8 +62,7 @@ export type EuiThemeShape = {
   focus: EuiThemeFocus;
   shadow: EuiThemeShadow;
   animation: EuiThemeAnimation;
-  breakpoints: EuiThemeBreakpoints;
-  zIndex: EuiThemeZIndex;
+  breakpoint: EuiThemeBreakpoint;
 };
 
 export type EuiThemeSystem<T = {}> = {

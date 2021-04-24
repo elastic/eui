@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import { computed } from '../../services/theme/utils';
+// import { computed } from '../../services/theme/utils';
 
 // Z-Index
 
@@ -44,15 +44,6 @@ export interface EuiThemeZIndex {
   level7: number;
   level8: number;
   level9: number;
-
-  content: number;
-  header: number;
-  contentMenu: number;
-  flyout: number;
-  navigation: number;
-  mask: number;
-  modal: number;
-  toastList: number;
 }
 
 export const zIndex: EuiThemeZIndex = {
@@ -67,12 +58,13 @@ export const zIndex: EuiThemeZIndex = {
   level8: 8000,
   level9: 9000,
 
-  content: computed(({ zIndex }) => zIndex.level0),
-  header: computed(({ zIndex }) => zIndex.level1),
-  contentMenu: computed(({ zIndex }) => zIndex.level2),
-  flyout: computed(({ zIndex }) => zIndex.level3),
-  navigation: computed(({ zIndex }) => zIndex.level4),
-  mask: computed(({ zIndex }) => zIndex.level6),
-  modal: computed(({ zIndex }) => zIndex.level8),
-  toastList: computed(({ zIndex }) => zIndex.level9),
+  // --> These should be declared at the component level
+  // content: computed(({ zIndex }) => zIndex.level0),
+  // header: computed(({ zIndex }) => zIndex.level1),
+  // contentMenu: computed(({ zIndex }) => zIndex.level2),
+  // flyout: computed(({ zIndex }) => zIndex.level3),
+  // navigation: computed(({ zIndex }) => zIndex.level4),
+  // mask: computed(({ zIndex }) => zIndex.level6),
+  // modal: computed(({ zIndex }) => zIndex.level8),
+  // toastList: computed(({ zIndex }) => zIndex.level9),
 };
