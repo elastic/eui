@@ -20,10 +20,10 @@
 import { CSSProperties } from 'react';
 import { keysOf } from '../../components/common';
 import { computed } from '../../services/theme/utils';
-import {
-  fontSizeFromScale,
-  lineHeightFromBaseline,
-} from '../functions/_typography';
+
+/*
+ * Font scale
+ */
 
 // Typographic scale -- loosely based on Major Third (1.250)
 export const fontScale = {
@@ -39,6 +39,10 @@ export const fontScale = {
 
 export const SCALES = keysOf(fontScale);
 export type EuiFontScale = keyof typeof fontScale;
+
+/*
+ * Font base settings
+ */
 
 export type _EuiThemeFontBase = {
   family: string;
@@ -64,7 +68,9 @@ export const fontBase: _EuiThemeFontBase = {
   lineHeightMultiplier: 1.5,
 };
 
-// Font weights
+/*
+ * Font weights
+ */
 export interface _EuiThemeFontWeight {
   light: CSSProperties['fontWeight'];
   regular: CSSProperties['fontWeight'];
@@ -72,6 +78,7 @@ export interface _EuiThemeFontWeight {
   semiBold: CSSProperties['fontWeight'];
   bold: CSSProperties['fontWeight'];
 }
+
 export const fontWeight: _EuiThemeFontWeight = {
   light: 300,
   regular: 400,
@@ -80,39 +87,17 @@ export const fontWeight: _EuiThemeFontWeight = {
   bold: 700,
 };
 
-export type _EuiThemeFontSize = {
-  [mapType in EuiFontScale]: {
-    fontSize: string;
-    lineHeight: string;
-  };
-};
-const fontSize: _EuiThemeFontSize = SCALES.reduce((acc, elem) => {
-  acc[elem] = {
-    fontSize: computed(([base, scale]) => fontSizeFromScale(base, scale), [
-      'base',
-      `font.scale.${elem}`,
-    ]),
-    lineHeight: computed(
-      ([base, font]) => lineHeightFromBaseline(base, font, font.scale[elem]),
-      ['base', 'font']
-    ),
-  };
-  return acc;
-}, {} as _EuiThemeFontSize);
-
-// TODO -> MOVE TO COMPONENT
-// $euiCodeFontWeightRegular:  400;
-// $euiCodeFontWeightBold:     700;
+/*
+ * Font
+ */
 
 export type EuiThemeFont = _EuiThemeFontBase & {
   scale: { [key in EuiFontScale]: number };
   weight: _EuiThemeFontWeight;
-  size: _EuiThemeFontSize;
 };
 
 export const font: EuiThemeFont = {
   ...fontBase,
   scale: fontScale,
   weight: fontWeight,
-  size: fontSize,
 };

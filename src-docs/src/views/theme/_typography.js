@@ -18,7 +18,6 @@ import {
 } from '../../../../src/global_styling/variables/_typography';
 
 import { ThemeValue } from './_values';
-import { EuiCallOut } from '../../../../src/components/call_out';
 
 const baseKeys = Object.keys(fontBase);
 const weightKeys = Object.keys(fontWeight);
@@ -118,51 +117,21 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiPanel paddingSize="l" color="subdued">
-            <EuiFlexGroup direction="column" gutterSize="s">
-              {scaleKeys.map((key) => (
-                <ThemeValue
-                  key={key}
-                  property="font"
-                  name={key}
-                  value={font.scale[key]}
-                />
-              ))}
-            </EuiFlexGroup>
+            {scaleKeys.map((key) => (
+              <ThemeValue
+                key={key}
+                property="font.scale"
+                name={key}
+                value={font.scale[key]}
+                buttonStyle={css`
+                  font-size: ${font.scale[key] * euiTheme.base}px;
+                  min-width: ${euiTheme.size.xxl};
+                  text-align: left;
+                `}
+                example={'Aa'}
+              />
+            ))}
           </EuiPanel>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-
-      <EuiSpacer />
-
-      <EuiFlexGroup>
-        <EuiFlexItem>
-          <EuiText grow={false} size="s">
-            <h3>Size</h3>
-            <p>
-              Each <EuiCode>font.size</EuiCode> comes with both the{' '}
-              <EuiCode>fontSize</EuiCode> and <EuiCode>lineHeight</EuiCode>{' '}
-              values to be applied appropriately. If you just want to apply the
-              font size, you need to grab the nested value like{' '}
-              <EuiCode>euiTheme.font.size.s.fontSize</EuiCode>.
-            </p>
-            <EuiCallOut title="Move this out of main theme?" />
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem>
-          {scaleKeys.map((key) => (
-            <React.Fragment key={key}>
-              <EuiPanel paddingSize="l" color="subdued">
-                <div css={[font.size[key]]}>The quick brown fox</div>
-                <EuiSpacer size="s" />
-                <ThemeValue
-                  property="font"
-                  name={key}
-                  value={JSON.stringify(font.size[key])}
-                />
-              </EuiPanel>
-              <EuiSpacer size="s" />
-            </React.Fragment>
-          ))}
         </EuiFlexItem>
       </EuiFlexGroup>
     </div>
