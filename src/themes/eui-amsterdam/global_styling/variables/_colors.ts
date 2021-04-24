@@ -46,6 +46,7 @@ export const light_colors_ams: _EuiThemeColors = {
 
   // Shades
   ...shade_colors,
+  lightestShade: '#f0f4fb',
 
   // Special
   body: computed(([lightestShade]) => tint(lightestShade, 0.5), [
