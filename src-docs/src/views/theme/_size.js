@@ -13,7 +13,7 @@ import {
   EuiCode,
 } from '../../../../src/components';
 
-const SizeSquare = ({ name, size }) => {
+export const SizeSquare = ({ name, size, buttonStyle, value }) => {
   const { euiTheme } = useEuiTheme();
   const iconSize = typeof size === 'number' ? `${size}px` : size;
 
@@ -31,7 +31,7 @@ const SizeSquare = ({ name, size }) => {
           <EuiCopy
             beforeMessage="Click to copy full theme variable"
             textToCopy={`euiTheme.size.${name}`}>
-            {(copy) => <button onClick={copy} css={style} />}
+            {(copy) => <button onClick={copy} css={[style, buttonStyle]} />}
           </EuiCopy>
         </EuiFlexItem>
         <EuiFlexItem grow={true}>
@@ -42,7 +42,7 @@ const SizeSquare = ({ name, size }) => {
         <EuiFlexItem grow={false}>
           <EuiText size="s" color="subdued">
             <p>
-              <code>{size}</code>
+              <code>{value || size}</code>
             </p>
           </EuiText>
         </EuiFlexItem>

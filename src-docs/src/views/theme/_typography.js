@@ -4,7 +4,6 @@ import { useEuiTheme } from '../../../../src/services';
 
 import {
   EuiText,
-  EuiTitle,
   EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
@@ -20,7 +19,7 @@ import {
 
 const Values = ({ name, value, example, groupProps }) => {
   return (
-    <EuiFlexItem key={name} grow={false}>
+    <EuiFlexItem grow={false}>
       <EuiFlexGroup responsive={false} alignItems="center" {...groupProps}>
         {example && (
           <EuiFlexItem grow={false}>
@@ -58,23 +57,13 @@ export default () => {
 
   return (
     <div>
-      <EuiTitle>
+      <EuiText>
         <h2>Typography</h2>
-      </EuiTitle>
-
-      <EuiSpacer />
-
-      <EuiFlexGroup>
-        <EuiFlexItem>
-          <EuiText>
-            <p>
-              The typography specific theme keys start with the{' '}
-              <EuiCode>font</EuiCode> key.
-            </p>
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem />
-      </EuiFlexGroup>
+        <p>
+          The typography specific theme keys start with the{' '}
+          <EuiCode>font</EuiCode> key.
+        </p>
+      </EuiText>
 
       <EuiSpacer />
 
@@ -100,6 +89,7 @@ export default () => {
             <EuiFlexGroup direction="column" gutterSize="s">
               {baseKeys.map((key) => (
                 <Values
+                  key={key}
                   name={key}
                   value={font[key]}
                   groupProps={{ wrap: true, gutterSize: 'none' }}
@@ -127,6 +117,7 @@ export default () => {
             <EuiFlexGroup direction="column" gutterSize="s">
               {weightKeys.map((key) => (
                 <Values
+                  key={key}
                   name={key}
                   value={font.weight[key]}
                   example={
@@ -162,7 +153,7 @@ export default () => {
           <EuiPanel paddingSize="l" color="subdued">
             <EuiFlexGroup direction="column" gutterSize="s">
               {scaleKeys.map((key) => (
-                <Values name={key} value={font.scale[key]} />
+                <Values key={key} name={key} value={font.scale[key]} />
               ))}
             </EuiFlexGroup>
           </EuiPanel>
@@ -189,6 +180,7 @@ export default () => {
             <EuiFlexGroup direction="column" gutterSize="s">
               {scaleKeys.map((key) => (
                 <Values
+                  key={key}
                   name={key}
                   value={JSON.stringify(font.size[key])}
                   groupProps={{ wrap: true, gutterSize: 'none' }}
