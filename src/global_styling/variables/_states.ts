@@ -20,21 +20,34 @@
 import { computed } from '../../services/theme/utils';
 import { ColorModeSwitch } from '../../services/theme/types';
 import { shade, tint, transparentize } from '../../services/color';
+import { CSSProperties } from 'react';
 
 export interface EuiThemeFocus {
+  /**
+   * Color is used deterministically by the legacy theme, and as fallback for Amsterdam
+   */
+  color: ColorModeSwitch;
+  /**
+   * Used to transprentize any color at certain values
+   */
   transparency: ColorModeSwitch<number>;
+  /**
+   * Default color plus transparency
+   */
   background: ColorModeSwitch;
-  ring: {
-    color: string;
-    animStartColor: string;
-    animStartSize: string;
-    animStartSizeLarge: string;
-    sizeLarge: string;
-    size: string;
-  };
+  /**
+   * Width is the thickness of the outline or faux ring
+   */
+  width: CSSProperties['borderWidth'];
+  widthLarge: CSSProperties['borderWidth'];
+  /**
+   * Using `outline` is new for Amsterdam but is set to `none` in legacy theme
+   */
+  outline: ColorModeSwitch;
 }
 
 export const focus: EuiThemeFocus = {
+  color: computed(({ colors }) => transparentize(colors.primary, 0.3)),
   transparency: { LIGHT: 0.1, DARK: 0.3 },
   background: {
     LIGHT: computed(
@@ -46,15 +59,11 @@ export const focus: EuiThemeFocus = {
       ['colors.primary', 'focus.transparency']
     ),
   },
-  ring: {
-    // Colors
-    color: computed(({ colors }) => transparentize(colors.primary, 0.3)),
-    animStartColor: computed(({ colors }) => transparentize(colors.primary, 0)),
-    animStartSize: '6px',
-    animStartSizeLarge: '10px',
 
-    // Sizing
-    sizeLarge: computed(({ size }) => size.xs),
-    size: computed(({ focus }) => `calc(${focus.ring.sizeLarge} * .75)`),
-  },
+  // Sizing
+  widthLarge: computed(({ size }) => size.xs),
+  width: computed(({ size }) => `calc(${size.xs} * .5)`),
+
+  // Outline
+  outline: 'none',
 };

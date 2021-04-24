@@ -25,15 +25,15 @@ import {
 } from '../../../../global_styling/variables/_states';
 
 export const focus_ams: EuiThemeFocus = {
+  ...focus,
+
   transparency: { LIGHT: 0.9, DARK: 0.7 },
   background: computed(({ colors, focus }) =>
     transparentize(colors.primary, focus.transparency)
   ),
-  ring: {
-    ...focus.ring,
-    // Color when not using currentColor
-    color: computed(({ colors }) => colors.primaryText),
-    animStartSize: '2px',
-    size: '2px',
-  },
+
+  // Fallback for when not using `currentColor`
+  color: computed(({ colors }) => colors.primaryText),
+
+  outline: computed(({ focus }) => `${focus.width} solid currentColor`),
 };

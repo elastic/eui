@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import { computed } from '../../services/theme/utils';
+// import { computed } from '../../services/theme/utils';
 
 export interface EuiThemeAnimation {
   slightBounce: string;
@@ -31,12 +31,12 @@ export interface EuiThemeAnimation {
     extraSlow: string;
   };
 
-  keyframes: {
-    fadeIn: string;
-    grow: string;
-    focusRingAnimate: string;
-    focusRingAnimateLarge: string;
-  };
+  // keyframes: {
+  //   fadeIn: string;
+  //   grow: string;
+  //   focusRingAnimate: string;
+  //   focusRingAnimateLarge: string;
+  // };
 }
 
 export const animation: EuiThemeAnimation = {
@@ -51,63 +51,63 @@ export const animation: EuiThemeAnimation = {
     extraSlow: '350ms',
   },
 
-  keyframes: {
-    fadeIn: `
-  0% {
-    opacity: 0;
-  }
+  //   keyframes: {
+  //     fadeIn: `
+  //   0% {
+  //     opacity: 0;
+  //   }
 
-  100% {
-    opacity: 1;
-  }
-`,
+  //   100% {
+  //     opacity: 1;
+  //   }
+  // `,
 
-    grow: `
-  0% {
-    opacity: 0;
-  }
+  //     grow: `
+  //   0% {
+  //     opacity: 0;
+  //   }
 
-  1% {
-    opacity: 0;
-    transform: scale(0);
-  }
+  //   1% {
+  //     opacity: 0;
+  //     transform: scale(0);
+  //   }
 
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-`,
+  //   100% {
+  //     opacity: 1;
+  //     transform: scale(1);
+  //   }
+  // `,
 
-    focusRingAnimate: computed(
-      ({ focus }) => `
-  0% {
-    box-shadow: 0 0 0 ${focus.ring.animStartSize} ${focus.ring.animStartColor};
-  }
+  //     focusRingAnimate: computed(
+  //       ({ focus }) => `
+  //   0% {
+  //     box-shadow: 0 0 0 ${focus.ring.animStartSize} ${focus.ring.animStartColor};
+  //   }
 
-  100% {
-    box-shadow: 0 0 0 ${focus.ring.size} ${focus.ring.color};
-  }
-`
-    ),
+  //   100% {
+  //     box-shadow: 0 0 0 ${focus.ring.size} ${focus.ring.color};
+  //   }
+  // `
+  //     ),
 
-    focusRingAnimateLarge: computed(
-      ({ focus }) => `
-  0% {
-    box-shadow: 0 0 0 ${focus.ring.animStartSizeLarge} ${focus.ring.animStartColor};
-  }
+  //     focusRingAnimateLarge: computed(
+  //       ({ focus }) => `
+  //   0% {
+  //     box-shadow: 0 0 0 ${focus.ring.animStartSizeLarge} ${focus.ring.animStartColor};
+  //   }
 
-  100% {
-    box-shadow: 0 0 0 ${focus.ring.sizeLarge} ${focus.ring.color};
-  }
-`
-    ),
+  //   100% {
+  //     box-shadow: 0 0 0 ${focus.ring.sizeLarge} ${focus.ring.color};
+  //   }
+  // `
+  //     ),
 
-    // Component specific
+  // Component specific
 
-    // euiButtonActive {
-    //   50% {
-    //     transform: translateY(1px);
-    //   }
-    // }
-  },
+  // euiButtonActive {
+  //   50% {
+  //     transform: translateY(1px);
+  //   }
+  // }
+  // },
 };

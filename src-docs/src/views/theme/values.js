@@ -7,6 +7,7 @@ import Size from './_size';
 import Typography from './_typography';
 import Border from './_border';
 import Shadow from './_shadow';
+import Focus from './_focus';
 
 import { EuiSpacer, EuiCodeBlock } from '../../../../src/components';
 import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
@@ -32,6 +33,10 @@ export default () => {
       <EuiHorizontalRule margin="xxl" />
 
       <Shadow />
+
+      <EuiHorizontalRule margin="xxl" />
+
+      <Focus />
 
       <EuiHorizontalRule margin="xxl" />
 
