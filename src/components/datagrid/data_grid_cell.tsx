@@ -44,6 +44,7 @@ import { EuiFocusTrap } from '../focus_trap';
 import { keys } from '../../services';
 import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
 import { EuiDataGridCellPopover } from './data_grid_cell_popover';
+import { EuiDataGridSchemaDetector } from './data_grid_schema';
 
 export interface EuiDataGridCellValueElementProps {
   /**
@@ -92,6 +93,7 @@ export interface EuiDataGridCellProps {
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
   setRowHeight?: (height: number) => void;
   style?: React.CSSProperties;
+  schema?: EuiDataGridSchemaDetector[];
 }
 
 interface EuiDataGridCellState {
@@ -345,11 +347,26 @@ export class EuiDataGridCell extends Component<
       this.state.enableInteractions ||
       this.state.popoverIsOpen;
 
+    const transformClass = this.props.schema?.filter(
+      (column: EuiDataGridSchemaDetector) =>
+        this.props.column?.schema
+          ? this.props.column?.schema === column.type
+          : this.props.columnId === column.type
+    )[0];
     const cellClasses = classNames(
       'euiDataGridRowCell',
       {
         [`euiDataGridRowCell--${columnType}`]: columnType,
         ['euiDataGridRowCell--open']: this.state.popoverIsOpen,
+        ['euiDataGridRowCell--uppercase']:
+          transformClass !== undefined &&
+          transformClass.textTransform === 'uppercase',
+        ['euiDataGridRowCell--lowercase']:
+          transformClass !== undefined &&
+          transformClass.textTransform === 'lowercase',
+        ['euiDataGridRowCell--capital']:
+          transformClass !== undefined &&
+          transformClass.textTransform === 'capital',
       },
       className
     );

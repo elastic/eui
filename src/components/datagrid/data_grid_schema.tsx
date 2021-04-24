@@ -65,6 +65,10 @@ export interface EuiDataGridSchemaDetector {
   /**
    * Default sort direction of the column
    */
+  textTransform?: string;
+  /**
+   *  This property controls the capitalization of text
+   */
   defaultSortDirection?: 'asc' | 'desc';
 }
 
