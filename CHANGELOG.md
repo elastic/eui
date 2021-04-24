@@ -14,6 +14,7 @@
 - Fixed a bug in `EuiFilePicker` where the HTML input was being shown when `disabled` ([#4738](https://github.com/elastic/eui/pull/4738))
 - Fixed inverted asc and desc labels for `EuiDataGrid` `datetime` schema ([#4733](https://github.com/elastic/eui/pull/4733))
 - Added and implemented `textTransform` property under `schemaDetectors` prop in `EuiDataGrid`([#4752](https://github.com/elastic/eui/pull/4752))
+
 ## [`32.1.0`](https://github.com/elastic/eui/tree/v32.1.0)
 
 - Added `readOnly` as a `sorting` option of `EuiBasicTable` and its columns ([#4626](https://github.com/elastic/eui/pull/4626))
