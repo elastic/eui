@@ -8,39 +8,9 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiPanel,
-  EuiCopy,
-  EuiCode,
 } from '../../../../src/components';
 
-const Values = ({ name, value, example, groupProps }) => {
-  return (
-    <EuiFlexItem key={name} grow={false}>
-      <EuiFlexGroup responsive={false} alignItems="center" {...groupProps}>
-        {example && (
-          <EuiFlexItem grow={false}>
-            <EuiCopy
-              beforeMessage="Click to copy full theme variable"
-              textToCopy={`euiTheme.size.${name}`}>
-              {(copy) => <button onClick={copy}>{example}</button>}
-            </EuiCopy>
-          </EuiFlexItem>
-        )}
-        <EuiFlexItem grow={true}>
-          <EuiText size="s">
-            <EuiCode transparentBackground>{name}</EuiCode>
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiText size="s" color="subdued">
-            <p>
-              <code>{value}</code>
-            </p>
-          </EuiText>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </EuiFlexItem>
-  );
-};
+import { ThemeValue } from './_values';
 
 export default () => {
   const { euiTheme } = useEuiTheme();
@@ -67,7 +37,12 @@ export default () => {
         <EuiFlexItem>
           <EuiPanel paddingSize="l" color="subdued">
             {Object.keys(focus).map((key) => (
-              <Values key={key} name={key} value={focus[key]} />
+              <ThemeValue
+                key={key}
+                property="focus"
+                name={key}
+                value={focus[key]}
+              />
             ))}
           </EuiPanel>
         </EuiFlexItem>

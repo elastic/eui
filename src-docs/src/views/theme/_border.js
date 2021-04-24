@@ -9,50 +9,25 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiPanel,
-  EuiCopy,
   EuiCode,
 } from '../../../../src/components';
 
-import { SizeSquare } from './_size';
-
-const Values = ({ name, value, example, groupProps }) => {
-  return (
-    <EuiFlexItem key={name} grow={false}>
-      <EuiFlexGroup responsive={false} alignItems="center" {...groupProps}>
-        {example && (
-          <EuiFlexItem grow={false}>
-            <EuiCopy
-              beforeMessage="Click to copy full theme variable"
-              textToCopy={`euiTheme.size.${name}`}>
-              {(copy) => <button onClick={copy}>{example}</button>}
-            </EuiCopy>
-          </EuiFlexItem>
-        )}
-        <EuiFlexItem grow={true}>
-          <EuiText size="s">
-            <EuiCode transparentBackground>{name}</EuiCode>
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiText size="s" color="subdued">
-            <p>
-              <code>{value}</code>
-            </p>
-          </EuiText>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </EuiFlexItem>
-  );
-};
+import { ThemeValue } from './_values';
 
 export default () => {
   const { euiTheme } = useEuiTheme();
   const border = euiTheme.border;
 
+  const style = css`
+    width: ${euiTheme.size.l};
+    height: ${euiTheme.size.l};
+    border-radius: ${euiTheme.border.radiusSmall};
+  `;
+
   return (
     <div>
       <EuiTitle>
-        <h2>Borders</h2>
+        <h2>Border</h2>
       </EuiTitle>
 
       <EuiSpacer />
@@ -69,11 +44,23 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiPanel paddingSize="l" color="subdued">
-            <Values name="widthThin" value={border.widthThin} />
-            <Values name="widthThick" value={border.widthThick} />
-            <Values name="color" value={border.color} />
-            <Values name="radius" value={border.radius} />
-            <Values name="radiusSmall" value={border.radiusSmall} />
+            <ThemeValue
+              property="border"
+              name="widthThin"
+              value={border.widthThin}
+            />
+            <ThemeValue
+              property="border"
+              name="widthThick"
+              value={border.widthThick}
+            />
+            <ThemeValue property="border" name="color" value={border.color} />
+            <ThemeValue property="border" name="radius" value={border.radius} />
+            <ThemeValue
+              property="border"
+              name="radiusSmall"
+              value={border.radiusSmall}
+            />
           </EuiPanel>
         </EuiFlexItem>
       </EuiFlexGroup>
@@ -92,35 +79,39 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiPanel paddingSize="l" color="subdued">
-            <EuiFlexGroup direction="column" gutterSize="s">
-              <SizeSquare
-                name="thin"
-                size={euiTheme.size.l}
-                value={border.thin}
-                buttonStyle={css`
+            <ThemeValue
+              property="border"
+              name="thin"
+              value={border.thin}
+              buttonStyle={[
+                style,
+                css`
                   border: ${border.thin};
-                  background: transparent;
-                `}
-              />
-              <SizeSquare
-                name="thick"
-                size={euiTheme.size.l}
-                value={border.thick}
-                buttonStyle={css`
+                `,
+              ]}
+            />
+            <ThemeValue
+              property="border"
+              name="thick"
+              value={border.thick}
+              buttonStyle={[
+                style,
+                css`
                   border: ${border.thick};
-                  background: transparent;
-                `}
-              />
-              <SizeSquare
-                name="editable"
-                size={euiTheme.size.l}
-                value={border.editable}
-                buttonStyle={css`
+                `,
+              ]}
+            />
+            <ThemeValue
+              property="border"
+              name="editable"
+              value={border.editable}
+              buttonStyle={[
+                style,
+                css`
                   border: ${border.editable};
-                  background: transparent;
-                `}
-              />
-            </EuiFlexGroup>
+                `,
+              ]}
+            />
           </EuiPanel>
         </EuiFlexItem>
       </EuiFlexGroup>

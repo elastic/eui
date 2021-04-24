@@ -8,44 +8,17 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiPanel,
-  EuiCopy,
   EuiCode,
 } from '../../../../src/components';
+
 import {
   fontBase,
   fontWeight,
   fontScale,
 } from '../../../../src/global_styling/variables/_typography';
 
-const Values = ({ name, value, example, groupProps }) => {
-  return (
-    <EuiFlexItem grow={false}>
-      <EuiFlexGroup responsive={false} alignItems="center" {...groupProps}>
-        {example && (
-          <EuiFlexItem grow={false}>
-            <EuiCopy
-              beforeMessage="Click to copy full theme variable"
-              textToCopy={`euiTheme.size.${name}`}>
-              {(copy) => <button onClick={copy}>{example}</button>}
-            </EuiCopy>
-          </EuiFlexItem>
-        )}
-        <EuiFlexItem grow={true}>
-          <EuiText size="s">
-            <EuiCode transparentBackground>{name}</EuiCode>
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiText size="s" color="subdued">
-            <p>
-              <code>{value}</code>
-            </p>
-          </EuiText>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </EuiFlexItem>
-  );
-};
+import { ThemeValue } from './_values';
+import { EuiCallOut } from '../../../../src/components/call_out';
 
 const baseKeys = Object.keys(fontBase);
 const weightKeys = Object.keys(fontWeight);
@@ -86,16 +59,15 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiPanel paddingSize="l" color="subdued">
-            <EuiFlexGroup direction="column" gutterSize="s">
-              {baseKeys.map((key) => (
-                <Values
-                  key={key}
-                  name={key}
-                  value={font[key]}
-                  groupProps={{ wrap: true, gutterSize: 'none' }}
-                />
-              ))}
-            </EuiFlexGroup>
+            {baseKeys.map((key) => (
+              <ThemeValue
+                key={key}
+                property={'font'}
+                name={key}
+                value={font[key]}
+                groupProps={{ wrap: true, gutterSize: 'none' }}
+              />
+            ))}
           </EuiPanel>
         </EuiFlexItem>
       </EuiFlexGroup>
@@ -114,23 +86,18 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiPanel paddingSize="l" color="subdued">
-            <EuiFlexGroup direction="column" gutterSize="s">
-              {weightKeys.map((key) => (
-                <Values
-                  key={key}
-                  name={key}
-                  value={font.weight[key]}
-                  example={
-                    <span
-                      css={css`
-                        font-weight: ${font.weight[key]};
-                      `}>
-                      Aa
-                    </span>
-                  }
-                />
-              ))}
-            </EuiFlexGroup>
+            {weightKeys.map((key) => (
+              <ThemeValue
+                key={key}
+                property="font"
+                name={key}
+                value={font.weight[key]}
+                buttonStyle={css`
+                  font-weight: ${font.weight[key]};
+                `}
+                example={'Aa'}
+              />
+            ))}
           </EuiPanel>
         </EuiFlexItem>
       </EuiFlexGroup>
@@ -153,7 +120,12 @@ export default () => {
           <EuiPanel paddingSize="l" color="subdued">
             <EuiFlexGroup direction="column" gutterSize="s">
               {scaleKeys.map((key) => (
-                <Values key={key} name={key} value={font.scale[key]} />
+                <ThemeValue
+                  key={key}
+                  property="font"
+                  name={key}
+                  value={font.scale[key]}
+                />
               ))}
             </EuiFlexGroup>
           </EuiPanel>
@@ -173,24 +145,24 @@ export default () => {
               font size, you need to grab the nested value like{' '}
               <EuiCode>euiTheme.font.size.s.fontSize</EuiCode>.
             </p>
+            <EuiCallOut title="Move this out of main theme?" />
           </EuiText>
         </EuiFlexItem>
         <EuiFlexItem>
-          <EuiPanel paddingSize="l" color="subdued">
-            <EuiFlexGroup direction="column" gutterSize="s">
-              {scaleKeys.map((key) => (
-                <Values
-                  key={key}
+          {scaleKeys.map((key) => (
+            <React.Fragment key={key}>
+              <EuiPanel paddingSize="l" color="subdued">
+                <div css={[font.size[key]]}>The quick brown fox</div>
+                <EuiSpacer size="s" />
+                <ThemeValue
+                  property="font"
                   name={key}
                   value={JSON.stringify(font.size[key])}
-                  groupProps={{ wrap: true, gutterSize: 'none' }}
-                  example={
-                    <span css={[font.size[key]]}>The quick brown fox</span>
-                  }
                 />
-              ))}
-            </EuiFlexGroup>
-          </EuiPanel>
+              </EuiPanel>
+              <EuiSpacer size="s" />
+            </React.Fragment>
+          ))}
         </EuiFlexItem>
       </EuiFlexGroup>
     </div>

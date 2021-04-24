@@ -9,47 +9,10 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiPanel,
-  EuiCopy,
   EuiCode,
 } from '../../../../src/components';
 
-export const SizeSquare = ({ name, size, buttonStyle, value }) => {
-  const { euiTheme } = useEuiTheme();
-  const iconSize = typeof size === 'number' ? `${size}px` : size;
-
-  const style = css`
-    width: ${iconSize};
-    height: ${iconSize};
-    border-radius: min(25%, ${euiTheme.border.radiusSmall});
-    background: ${euiTheme.colors.mediumShade};
-  `;
-
-  return (
-    <EuiFlexItem grow={false}>
-      <EuiFlexGroup responsive={false} alignItems="center">
-        <EuiFlexItem grow={false}>
-          <EuiCopy
-            beforeMessage="Click to copy full theme variable"
-            textToCopy={`euiTheme.size.${name}`}>
-            {(copy) => <button onClick={copy} css={[style, buttonStyle]} />}
-          </EuiCopy>
-        </EuiFlexItem>
-        <EuiFlexItem grow={true}>
-          <EuiText size="s">
-            <EuiCode transparentBackground>{name}</EuiCode>
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiText size="s" color="subdued">
-            <p>
-              <code>{value || size}</code>
-            </p>
-          </EuiText>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </EuiFlexItem>
-  );
-};
+import { ThemeValue } from './_values';
 
 export default () => {
   const { euiTheme } = useEuiTheme();
@@ -75,7 +38,17 @@ export default () => {
         <EuiFlexItem>
           <EuiPanel paddingSize="l" color="subdued">
             <EuiFlexGroup direction="column" gutterSize="s">
-              <SizeSquare name="base" size={euiTheme.base} />
+              <ThemeValue
+                property=""
+                name="base"
+                value={euiTheme.base}
+                buttonStyle={css`
+                  width: ${euiTheme.base}px;
+                  height: ${euiTheme.base}px;
+                  border-radius: min(25%, ${euiTheme.border.radiusSmall});
+                  background: ${euiTheme.colors.mediumShade};
+                `}
+              />
             </EuiFlexGroup>
           </EuiPanel>
         </EuiFlexItem>
@@ -89,11 +62,20 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiPanel paddingSize="l" color="subdued">
-            <EuiFlexGroup direction="column" gutterSize="s">
-              {Object.keys(sizes).map((size) => (
-                <SizeSquare key={size} name={size} size={sizes[size]} />
-              ))}
-            </EuiFlexGroup>
+            {Object.keys(sizes).map((size) => (
+              <ThemeValue
+                property="size"
+                key={size}
+                name={size}
+                value={sizes[size]}
+                buttonStyle={css`
+                  width: ${sizes[size]};
+                  height: ${sizes[size]};
+                  border-radius: min(25%, ${euiTheme.border.radiusSmall});
+                  background: ${euiTheme.colors.mediumShade};
+                `}
+              />
+            ))}
           </EuiPanel>
         </EuiFlexItem>
       </EuiFlexGroup>

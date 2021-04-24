@@ -1,4 +1,5 @@
 import React from 'react';
+import { css } from '@emotion/react';
 import { useEuiTheme } from '../../../../src/services';
 
 import {
@@ -16,43 +17,11 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiPanel,
-  EuiCopy,
   EuiCode,
   EuiIcon,
 } from '../../../../src/components';
 
-function renderPaletteColor(name, color, icon = 'stopFilled') {
-  icon = name.includes('Text') ? 'editorHeading' : icon;
-  return (
-    <EuiFlexItem key={name} grow={false}>
-      <EuiFlexGroup responsive={false} alignItems="center">
-        <EuiFlexItem grow={false}>
-          <EuiCopy
-            beforeMessage="Click to copy full theme variable"
-            textToCopy={`euiTheme.colors.${name}`}>
-            {(copy) => (
-              <button onClick={copy}>
-                <EuiIcon size="xl" type={icon} color={color} />
-              </button>
-            )}
-          </EuiCopy>
-        </EuiFlexItem>
-        <EuiFlexItem grow={true}>
-          <EuiText size="s">
-            <EuiCode transparentBackground>{name}</EuiCode>
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiText size="s" color="subdued">
-            <p>
-              <code>{color.toUpperCase()}</code>
-            </p>
-          </EuiText>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </EuiFlexItem>
-  );
-}
+import { ThemeValue } from './_values';
 
 const brandKeys = Object.keys(brand_colors);
 const brandTextKeys = Object.keys(brand_text_colors);
@@ -144,17 +113,28 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiPanel paddingSize="l" color="subdued">
-            <EuiFlexGroup direction="column" gutterSize="s">
-              {brandKeys.map((color, index) => (
-                <React.Fragment key={color}>
-                  {renderPaletteColor(color, colors[color])}
-                  {renderPaletteColor(
-                    brandTextKeys[index],
-                    colors[brandTextKeys[index]]
-                  )}
-                </React.Fragment>
-              ))}
-            </EuiFlexGroup>
+            {brandKeys.map((color, index) => (
+              <React.Fragment key={color}>
+                <ThemeValue
+                  property="color"
+                  name={color}
+                  value={colors[color].toUpperCase()}
+                  example={
+                    <EuiIcon size="l" type="stopFilled" color={colors[color]} />
+                  }
+                />
+                <ThemeValue
+                  property="color"
+                  name={brandTextKeys[index]}
+                  value={colors[brandTextKeys[index]].toUpperCase()}
+                  buttonStyle={css`
+                    color: ${colors[brandTextKeys[index]]};
+                    min-width: ${euiTheme.size.l};
+                  `}
+                  example={<strong>Aa</strong>}
+                />
+              </React.Fragment>
+            ))}
           </EuiPanel>
         </EuiFlexItem>
       </EuiFlexGroup>
@@ -170,11 +150,17 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiPanel paddingSize="l" color="subdued">
-            <EuiFlexGroup direction="column" gutterSize="s">
-              {shadeKeys.map(function (color) {
-                return renderPaletteColor(color, colors[color]);
-              })}
-            </EuiFlexGroup>
+            {shadeKeys.map((color) => (
+              <ThemeValue
+                key={color}
+                property="color"
+                name={color}
+                value={colors[color].toUpperCase()}
+                example={
+                  <EuiIcon size="l" type="stopFilled" color={colors[color]} />
+                }
+              />
+            ))}
           </EuiPanel>
         </EuiFlexItem>
       </EuiFlexGroup>
@@ -193,15 +179,19 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiPanel paddingSize="l" color="subdued">
-            <EuiFlexGroup direction="column" gutterSize="s">
-              {textKeys.map(function (color) {
-                return renderPaletteColor(
-                  color,
-                  colors[color],
-                  'editorHeading'
-                );
-              })}
-            </EuiFlexGroup>
+            {textKeys.map((color) => (
+              <ThemeValue
+                key={color}
+                property="color"
+                name={color}
+                value={colors[color].toUpperCase()}
+                buttonStyle={css`
+                  color: ${colors[color]};
+                  min-width: ${euiTheme.size.l};
+                `}
+                example={<strong>Aa</strong>}
+              />
+            ))}
           </EuiPanel>
         </EuiFlexItem>
       </EuiFlexGroup>
@@ -217,11 +207,39 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiPanel paddingSize="l" color="subdued">
-            <EuiFlexGroup direction="column" gutterSize="s">
-              {specialKeys.map(function (color) {
-                return renderPaletteColor(color, colors[color]);
-              })}
-            </EuiFlexGroup>
+            {specialKeys.map((color) => {
+              if (color.includes('Text')) {
+                return (
+                  <ThemeValue
+                    key={color}
+                    property="color"
+                    name={color}
+                    value={colors[color].toUpperCase()}
+                    buttonStyle={css`
+                      color: ${colors[color]};
+                      min-width: ${euiTheme.size.l};
+                    `}
+                    example={<strong>Aa</strong>}
+                  />
+                );
+              } else {
+                return (
+                  <ThemeValue
+                    key={color}
+                    property="color"
+                    name={color}
+                    value={colors[color].toUpperCase()}
+                    example={
+                      <EuiIcon
+                        size="l"
+                        type="stopFilled"
+                        color={colors[color]}
+                      />
+                    }
+                  />
+                );
+              }
+            })}
           </EuiPanel>
         </EuiFlexItem>
       </EuiFlexGroup>
@@ -237,10 +255,22 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiPanel paddingSize="l" color="subdued">
-            <EuiFlexGroup direction="column" gutterSize="s">
-              {renderPaletteColor('ghost', colors.ghost)}
-              {renderPaletteColor('ink', colors.ink)}
-            </EuiFlexGroup>
+            <ThemeValue
+              property="color"
+              name={'ink'}
+              value={colors.ink.toUpperCase()}
+              example={
+                <EuiIcon size="l" type="stopFilled" color={colors.ink} />
+              }
+            />
+            <ThemeValue
+              property="color"
+              name={'ghost'}
+              value={colors.ghost.toUpperCase()}
+              example={
+                <EuiIcon size="l" type="stopFilled" color={colors.ghost} />
+              }
+            />
           </EuiPanel>
         </EuiFlexItem>
       </EuiFlexGroup>
