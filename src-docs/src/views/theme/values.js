@@ -6,6 +6,7 @@ import Colors from './_colors';
 import Size from './_size';
 import Typography from './_typography';
 import Border from './_border';
+import Shadow from './_shadow';
 
 import { EuiSpacer, EuiCodeBlock } from '../../../../src/components';
 import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
@@ -27,6 +28,10 @@ export default () => {
       <EuiHorizontalRule margin="xxl" />
 
       <Border />
+
+      <EuiHorizontalRule margin="xxl" />
+
+      <Shadow />
 
       <EuiHorizontalRule margin="xxl" />
 
