@@ -29,9 +29,19 @@ const shadeKeys = Object.keys(shade_colors);
 const specialKeys = Object.keys(special_colors);
 const textKeys = Object.keys(text_colors);
 
-export default () => {
+export default ({ onThemeUpdate }) => {
   const { euiTheme, colorMode } = useEuiTheme();
   const colors = euiTheme.colors;
+
+  const updateColor = (property, value) => {
+    onThemeUpdate({
+      colors: {
+        [colorMode]: {
+          [property]: value,
+        },
+      },
+    });
+  };
 
   return (
     <div>
@@ -122,6 +132,7 @@ export default () => {
                   example={
                     <EuiIcon size="l" type="stopFilled" color={colors[color]} />
                   }
+                  onUpdate={(hex) => updateColor(color, hex)}
                 />
                 <ThemeValue
                   property="color"

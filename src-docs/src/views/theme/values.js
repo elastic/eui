@@ -1,6 +1,10 @@
 import React from 'react';
 
-import { useEuiTheme } from '../../../../src/services';
+import {
+  useEuiTheme,
+  mergeDeep,
+  EuiThemeProvider,
+} from '../../../../src/services';
 
 import Colors from './_colors';
 import Size from './_size';
@@ -15,10 +19,16 @@ import { EuiSpacer, EuiCodeBlock } from '../../../../src/components';
 import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
 
 export default () => {
+  const [overrides, setOverrides] = React.useState({});
   const { euiTheme } = useEuiTheme();
+
+  const lightColors = (newOverrides) => {
+    setOverrides(mergeDeep(overrides, newOverrides));
+  };
+
   return (
-    <div>
-      <Colors />
+    <EuiThemeProvider modify={overrides}>
+      <Colors onThemeUpdate={(overrides) => lightColors(overrides)} />
 
       <EuiHorizontalRule margin="xxl" />
 
@@ -53,6 +63,6 @@ export default () => {
       <EuiSpacer />
 
       <EuiCodeBlock>{JSON.stringify(euiTheme, null, 2)}</EuiCodeBlock>
-    </div>
+    </EuiThemeProvider>
   );
 };
