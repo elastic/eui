@@ -31,7 +31,7 @@ import {
   dark_shades,
 } from '../../../../global_styling/variables/_colors';
 
-/**
+/*
  * LIGHT THEME
  */
 
@@ -63,7 +63,7 @@ export const light_colors_ams: _EuiThemeColors = {
   link: computed(([primaryText]) => primaryText, ['colors.primaryText']),
 };
 
-/**
+/*
  * DARK THEME
  */
 
@@ -94,7 +94,7 @@ export const dark_colors_ams: _EuiThemeColors = {
   link: computed(([primaryText]) => primaryText, ['colors.primaryText']),
 };
 
-/**
+/*
  * FULL
  */
 

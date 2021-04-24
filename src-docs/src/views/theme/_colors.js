@@ -61,8 +61,7 @@ const specialKeys = Object.keys(special_colors);
 const textKeys = Object.keys(text_colors);
 
 export default () => {
-  const { euiTheme } = useEuiTheme();
-
+  const { euiTheme, colorMode } = useEuiTheme();
   const colors = euiTheme.colors;
 
   return (
@@ -70,6 +69,61 @@ export default () => {
       <EuiTitle>
         <h2>Colors</h2>
       </EuiTitle>
+
+      <EuiSpacer />
+
+      <EuiFlexGroup>
+        <EuiFlexItem>
+          <EuiText>
+            <p>
+              The <EuiCode>colors</EuiCode> theme key is a mix of hard-coded hex
+              values and computed colors. The <EuiCode>colorMode</EuiCode>{' '}
+              determines which values to return.
+            </p>
+          </EuiText>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiPanel paddingSize="l" color="subdued">
+            <EuiFlexGroup responsive={false} alignItems="center">
+              <EuiFlexItem grow={false}>
+                <div>
+                  <EuiIcon
+                    aria-hidden="true"
+                    type="stopFilled"
+                    size="s"
+                    css={{ color: euiTheme.colors.primary }}
+                  />
+                  <EuiIcon
+                    aria-hidden="true"
+                    type="stopFilled"
+                    size="s"
+                    css={{ color: euiTheme.colors.success }}
+                  />
+                  <EuiIcon
+                    aria-hidden="true"
+                    type="stopFilled"
+                    size="s"
+                    css={{ color: euiTheme.colors.text }}
+                  />
+                </div>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiText size="s">
+                  <EuiCode transparentBackground>colorMode</EuiCode>
+                </EuiText>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiText size="s" color="subdued">
+                  <p>
+                    <code>{colorMode}</code>
+                  </p>
+                </EuiText>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiPanel>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
       <EuiSpacer />
 
       <EuiFlexGroup>

@@ -1,52 +1,24 @@
 import React from 'react';
-import { css } from '@emotion/react';
 
 import { useEuiTheme } from '../../../../src/services';
 
 import Colors from './_colors';
+import Size from './_size';
 
-import { EuiSpacer, EuiCodeBlock, EuiIcon } from '../../../../src/components';
+import { EuiSpacer, EuiCodeBlock } from '../../../../src/components';
+import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
 
 export default () => {
-  const { euiTheme, colorMode } = useEuiTheme();
-  const style = css`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: ${euiTheme.font.family};
-  `;
-
+  const { euiTheme } = useEuiTheme();
   return (
     <div>
-      <div css={style}>
-        <div css={[euiTheme.title.xxl, { color: euiTheme.colors.primary }]}>
-          <strong>colorMode:</strong> {colorMode}
-        </div>
-        <div>
-          <EuiIcon
-            aria-hidden="true"
-            type="stopFilled"
-            size="xxl"
-            css={{ color: euiTheme.colors.primary }}
-          />
-          <EuiIcon
-            aria-hidden="true"
-            type="stopFilled"
-            size="xxl"
-            css={{ color: euiTheme.colors.success }}
-          />
-          <EuiIcon
-            aria-hidden="true"
-            type="stopFilled"
-            size="xxl"
-            css={{ color: euiTheme.colors.text }}
-          />
-        </div>
-      </div>
-
-      <EuiSpacer />
-
       <Colors />
+
+      <EuiHorizontalRule margin="xxl" />
+
+      <Size />
+
+      <EuiHorizontalRule margin="xxl" />
 
       <EuiSpacer />
 
