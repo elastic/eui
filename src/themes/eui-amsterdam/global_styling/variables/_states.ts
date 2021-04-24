@@ -32,7 +32,7 @@ export const focus_ams: EuiThemeFocus = {
   ring: {
     ...focus.ring,
     // Color when not using currentColor
-    color: computed(({ colors }) => colors.textPrimary),
+    color: computed(({ colors }) => colors.primaryText),
     animStartSize: '2px',
     size: '2px',
   },

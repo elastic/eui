@@ -12,6 +12,8 @@ import {
 } from '../../../../src/components';
 import { EuiThemeProvider } from '../../../../src/services';
 
+import Values from './values';
+
 import Consuming from './consuming';
 const consumingSource = require('!!raw-loader!./consuming');
 const consumingHtml = renderToHtml(Consuming);
@@ -39,6 +41,7 @@ const createComputedHtml = renderToHtml(CreateComputed);
 export const ThemeExample = {
   title: 'Theme provider',
   isNew: true,
+  guidelines: <Values />, // TOOD, allow changing of tab name
   intro: (
     <>
       <EuiText>
@@ -53,7 +56,6 @@ export const ThemeExample = {
         size="s"
         title="The following examples assume that you have wrapped your entire application with this provider."
       />
-      <EuiSpacer size="xl" />
     </>
   ),
   sections: [
