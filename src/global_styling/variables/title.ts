@@ -32,11 +32,27 @@ export type EuiThemeTitle = {
 };
 
 const titlesPartial: {
-  [size in EuiFontScale]?: {
+  [size in EuiFontScale]: {
     fontWeight: string;
-    letterSpacing: string;
+    letterSpacing?: string;
   };
 } = {
+  xxxs: {
+    fontWeight: 'bold',
+    letterSpacing: undefined,
+  },
+  xxs: {
+    fontWeight: 'bold',
+    letterSpacing: undefined,
+  },
+  xs: {
+    fontWeight: 'bold',
+    letterSpacing: undefined,
+  },
+  s: {
+    fontWeight: 'bold',
+    letterSpacing: undefined,
+  },
   m: {
     fontWeight: 'semiBold',
     letterSpacing: '-.02em',
@@ -56,77 +72,16 @@ const titlesPartial: {
 };
 
 export const title: EuiThemeTitle = SCALES.reduce((acc, size) => {
-  const partial = titlesPartial[size] || {
-    fontWeight: 'bold',
-    letterSpacing: undefined,
-  };
   acc[size] = {
-    fontSize: computed(([{ fontSize }]) => fontSize, [`fontSize.${size}`]),
+    fontSize: computed(([{ fontSize }]) => fontSize, [`font.size.${size}`]),
     lineHeight: computed(([{ lineHeight }]) => lineHeight, [
-      `fontSize.${size}`,
+      `font.size.${size}`,
     ]),
     color: computed(([color]) => color, ['colors.title']),
     fontWeight: computed(([fontWeight]) => fontWeight, [
-      `fontWeight.${partial.fontWeight}`,
+      `font.weight.${titlesPartial[size].fontWeight}`,
     ]),
-    letterSpacing: partial.letterSpacing,
+    letterSpacing: titlesPartial[size].letterSpacing,
   };
   return acc;
 }, {} as EuiThemeTitle);
-
-// Titles map
-// TODO --> MOVE TO COMPONENTS and rename to `title` when out of `colors` key
-// Lists all the properties per EuiTitle size that then gets looped through to create the selectors.
-// The map allows for tokenization and easier customization per theme, otherwise you'd have to override the selectors themselves
-
-// export const title: EuiThemeTitle = {
-//   xxxs: {
-//     color: computed(([color]) => color, ['colors.title']),
-//     fontSize: computed(([fontSize]) => fontSize.fontSize, ['fontSize.xxxs']),
-//     lineHeight: computed(([lineHeight]) => lineHeight.lineHeight, [
-//       'fontSize.xxxs',
-//     ]),
-//     fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.bold']),
-//   },
-//   xxs: {
-//     color: computed(([color]) => color, ['colors.title']),
-//     // HELP: Spreading doesn't work
-//     // ...computed(([fontSize]) => fontSize, [`fontSize.xxs`]),
-//     fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.bold']),
-//   },
-//   xs: {
-//     color: computed(([color]) => color, ['colors.title']),
-//     fontSize: computed(([fontSize]) => fontSize, ['fontSize.xs']),
-//     fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.bold']),
-//   },
-//   s: {
-//     color: computed(([color]) => color, ['colors.title']),
-//     fontSize: computed(([fontSize]) => fontSize, ['fontSize.s']),
-//     fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.bold']),
-//   },
-//   m: {
-//     color: computed(([color]) => color, ['colors.title']),
-//     fontSize: computed(([fontSize]) => fontSize, ['fontSize.m']),
-//     fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.semiBold']),
-//     letterSpacing: '-.02em',
-//   },
-//   l: {
-//     color: computed(([color]) => color, ['colors.title']),
-//     fontSize: computed(([fontSize]) => fontSize, ['fontSize.l']),
-//     fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.medium']),
-//     letterSpacing: '-.025em',
-//   },
-//   xl: {
-//     color: computed(([color]) => color, ['colors.title']),
-//     fontSize: computed(([fontSize]) => fontSize, ['fontSize.xl']),
-//     fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.light']),
-//     letterSpacing: '-.04em',
-//   },
-//   xxl: {
-//     color: computed(([color]) => color, ['colors.title']),
-//     fontSize: computed(([font]) => font.fontSize, ['fontSize.xxl']),
-//     lineHeight: computed(([font]) => font.lineHeight, ['fontSize.xxl']),
-//     fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.light']),
-//     letterSpacing: '-.03em',
-//   },
-// };

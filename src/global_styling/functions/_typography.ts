@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import { EuiThemeFont } from '../variables/_typography';
+import { _EuiThemeFontBase } from '../variables/_typography';
 
 // Typography functions
 // TODO: Can we automatically get some of these values without needing them manually?
@@ -34,7 +34,7 @@ export function fontSizeFromScale(base: number, scale: number) {
 
 export function lineHeightFromBaseline(
   base: number,
-  font: EuiThemeFont,
+  font: _EuiThemeFontBase,
   scale: number
 ) {
   const { lineHeightMultiplier, baseline } = font;

@@ -17,15 +17,7 @@
  * under the License.
  */
 
-import fontBase, {
-  EuiThemeFont,
-} from '../../../../global_styling/variables/_typography';
-
-const font: EuiThemeFont = {
-  ...fontBase.font,
-  family:
-    "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-};
+import { font } from '../../../../global_styling/variables/_typography';
 
 // Creates the font sizes by multiplying the `base` with each of the scale values
 // const fontSize = Object.keys(font.scale).reduce((acc, elem) => {
@@ -36,13 +28,10 @@ const font: EuiThemeFont = {
 //   return acc;
 // }, {});
 
-export default {
-  ...fontBase,
-  font,
-  // fontSize: fontBase.fontScale.small,
-  // lineHeight: fontBase.lineHeight,
-  // lineHeightBody: fontBase.lineHeightBody,
-  // baseline: fontBase.baseline,
+export const font_ams = {
+  ...font,
+  family:
+    "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
 };
 
 // $euiFontSizeXS:   floor($euiFontSize * .86);  // 12px // h6

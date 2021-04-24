@@ -24,9 +24,8 @@ import { breakpoints } from '../../global_styling/variables/_responsive';
 import { colors } from '../../global_styling/variables/_colors';
 import { base, size } from '../../global_styling/variables/_size';
 import { focus } from '../../global_styling/variables/_states';
-import fonts from '../../global_styling/variables/_typography';
+import { font } from '../../global_styling/variables/_typography';
 import { border } from '../../global_styling/variables/_borders';
-import { title } from '../../global_styling/variables/title';
 import { shadow } from '../../global_styling/variables/_shadows';
 import { zIndex } from '../../global_styling/variables/_z_index';
 
@@ -34,9 +33,8 @@ export const euiThemeDefault: EuiThemeShape = {
   colors,
   base,
   size,
-  ...fonts,
+  font,
   border,
-  title,
   focus,
   shadow,
   animation,

@@ -28,12 +28,7 @@ import {
 } from '../../global_styling/variables/_size';
 import { EuiThemeShadow } from '../../global_styling/variables/_shadows';
 import { EuiThemeFocus } from '../../global_styling/variables/_states';
-import { EuiThemeTitle } from '../../global_styling/variables/title';
-import {
-  EuiThemeFont,
-  EuiThemeFontSize,
-  EuiThemeFontWeight,
-} from '../../global_styling/variables/_typography';
+import { EuiThemeFont } from '../../global_styling/variables/_typography';
 import { EuiThemeZIndex } from '../../global_styling/variables/_z_index';
 
 export const COLOR_MODES_STANDARD = {
@@ -64,10 +59,7 @@ export type EuiThemeShape = {
   base: EuiThemeBase;
   size: EuiThemeSize;
   font: EuiThemeFont;
-  fontSize: EuiThemeFontSize;
-  fontWeight: EuiThemeFontWeight;
   border: EuiThemeBorder;
-  title: EuiThemeTitle;
   focus: EuiThemeFocus;
   shadow: EuiThemeShadow;
   animation: EuiThemeAnimation;

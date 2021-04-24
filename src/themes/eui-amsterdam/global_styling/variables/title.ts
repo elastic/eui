@@ -24,12 +24,12 @@ import {
 import { SCALES } from '../../../../global_styling/variables/_typography';
 import { computed } from '../../../../services/theme/utils';
 
-// For Amsterdam, change all font-weights to bold and remover letter-spacing
+// For Amsterdam, change all font-weights to bold and remove letter-spacing
 
 export const title_ams: EuiThemeTitle = SCALES.reduce((acc, elem) => {
   acc[elem] = {
     ...title[elem],
-    fontWeight: computed(([fontWeight]) => fontWeight, ['fontWeight.bold']),
+    fontWeight: computed(([fontWeight]) => fontWeight, ['font.weight.bold']),
     letterSpacing: undefined,
   };
   return acc;

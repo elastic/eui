@@ -25,7 +25,7 @@ const SizeSquare = ({ name, size }) => {
   `;
 
   return (
-    <EuiFlexItem key={name} grow={false}>
+    <EuiFlexItem grow={false}>
       <EuiFlexGroup responsive={false} alignItems="center">
         <EuiFlexItem grow={false}>
           <EuiCopy
@@ -91,7 +91,7 @@ export default () => {
           <EuiPanel paddingSize="l" color="subdued">
             <EuiFlexGroup direction="column" gutterSize="s">
               {Object.keys(sizes).map((size) => (
-                <SizeSquare name={size} size={sizes[size]} />
+                <SizeSquare key={size} name={size} size={sizes[size]} />
               ))}
             </EuiFlexGroup>
           </EuiPanel>

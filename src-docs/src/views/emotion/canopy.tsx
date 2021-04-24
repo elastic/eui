@@ -52,7 +52,7 @@ const View = () => {
       <div css={style}>
         <div
           // TODO: FOr docs, add in what a function vs array does in `css` and how to tell if a theme key is returning a single value or a set of properties
-          css={[euiTheme.title.xxl, { color: euiTheme.colors.primary }]}>
+          css={[euiTheme.font.size.xxl, { color: euiTheme.colors.primary }]}>
           <strong>colorMode:</strong> {colorMode}
         </div>
         <div>
@@ -226,7 +226,7 @@ export default () => {
   const Extend = () => {
     // Generic type (ExtensionsComputed) necessary if accessing extensions/custom properties
     const {
-      euiTheme: { font, colors, custom, title },
+      euiTheme: { font, colors, custom },
       colorMode,
     } = useEuiTheme<ExtensionsComputed>();
     return (
@@ -240,7 +240,7 @@ export default () => {
           }}>
           <div
             // TODO: FOr docs, add in what a function vs array does in `css`
-            css={[title.xxl, { color: colors.success }]}>
+            css={[font.size.xxl, { color: colors.success }]}>
             <strong>colorMode:</strong> {colorMode}
           </div>
           <div>

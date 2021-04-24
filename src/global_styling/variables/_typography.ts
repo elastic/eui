@@ -26,9 +26,7 @@ import {
 } from '../functions/_typography';
 
 // Typographic scale -- loosely based on Major Third (1.250)
-// TODO: Doesn't seem to like arrays -- Not necessary for this specific key anymore though
-// scale: [2.25, 1.75, 1.25, 1.125, 1, 0.875, 0.75],
-const scale = {
+export const fontScale = {
   xxxs: 0.5625,
   xxs: 0.6875,
   xs: 0.75,
@@ -39,23 +37,22 @@ const scale = {
   xxl: 2.125,
 };
 
-export const SCALES = keysOf(scale);
-export type EuiFontScale = keyof typeof scale;
+export const SCALES = keysOf(fontScale);
+export type EuiFontScale = keyof typeof fontScale;
 
-const baseline = 4;
-const lineHeightMultiplier = 1.5;
-
-export type EuiThemeFont = {
+export type _EuiThemeFontBase = {
   family: string;
   familyCode?: string;
   featureSettings?: string;
+  /**
+   * A calculated number that is 1/4 of `base`
+   */
   baseline: number;
   lineHeightMultiplier: number;
-  scale: { [key in EuiFontScale]: number };
 };
 
 // Families & base font settings
-const font: EuiThemeFont = {
+export const fontBase: _EuiThemeFontBase = {
   family:
     "'Inter UI', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
   familyCode: "'Roboto Mono', Consolas, Menlo, Courier, monospace",
@@ -63,20 +60,19 @@ const font: EuiThemeFont = {
   // Careful using ligatures. Code editors like ACE will often error because of width calculations
   featureSettings: "'calt' 1, 'kern' 1, 'liga' 1",
 
-  baseline,
-  lineHeightMultiplier,
-  scale,
+  baseline: computed(([base]) => base / 4, ['base']),
+  lineHeightMultiplier: 1.5,
 };
 
 // Font weights
-export interface EuiThemeFontWeight {
+export interface _EuiThemeFontWeight {
   light: CSSProperties['fontWeight'];
   regular: CSSProperties['fontWeight'];
   medium: CSSProperties['fontWeight'];
   semiBold: CSSProperties['fontWeight'];
   bold: CSSProperties['fontWeight'];
 }
-const fontWeight: EuiThemeFontWeight = {
+export const fontWeight: _EuiThemeFontWeight = {
   light: 300,
   regular: 400,
   medium: 500,
@@ -84,13 +80,13 @@ const fontWeight: EuiThemeFontWeight = {
   bold: 700,
 };
 
-export type EuiThemeFontSize = {
+export type _EuiThemeFontSize = {
   [mapType in EuiFontScale]: {
     fontSize: string;
     lineHeight: string;
   };
 };
-const fontSize: EuiThemeFontSize = SCALES.reduce((acc, elem) => {
+const fontSize: _EuiThemeFontSize = SCALES.reduce((acc, elem) => {
   acc[elem] = {
     fontSize: computed(([base, scale]) => fontSizeFromScale(base, scale), [
       'base',
@@ -102,14 +98,21 @@ const fontSize: EuiThemeFontSize = SCALES.reduce((acc, elem) => {
     ),
   };
   return acc;
-}, {} as EuiThemeFontSize);
+}, {} as _EuiThemeFontSize);
 
 // TODO -> MOVE TO COMPONENT
 // $euiCodeFontWeightRegular:  400;
 // $euiCodeFontWeightBold:     700;
 
-export default {
-  font,
-  fontSize,
-  fontWeight,
+export type EuiThemeFont = _EuiThemeFontBase & {
+  scale: { [key in EuiFontScale]: number };
+  weight: _EuiThemeFontWeight;
+  size: _EuiThemeFontSize;
+};
+
+export const font: EuiThemeFont = {
+  ...fontBase,
+  scale: fontScale,
+  weight: fontWeight,
+  size: fontSize,
 };
