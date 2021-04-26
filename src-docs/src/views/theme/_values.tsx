@@ -1,5 +1,5 @@
 import React, { FunctionComponent, ReactNode } from 'react';
-import { EuiButtonEmpty } from '../../../../src/components/button';
+import { SerializedStyles } from '@emotion/react';
 import { EuiCode } from '../../../../src/components/code';
 import { EuiColorPicker } from '../../../../src/components/color_picker';
 import { EuiCopy } from '../../../../src/components/copy';
@@ -8,9 +8,12 @@ import {
   EuiFlexGroupProps,
   EuiFlexItem,
 } from '../../../../src/components/flex';
-import { EuiIcon } from '../../../../src/components/icon';
 import { EuiText } from '../../../../src/components/text';
-import { isValidHex, useColorPickerState } from '../../../../src/services';
+import {
+  isValidHex,
+  useColorPickerState,
+  EuiSetColorMethod,
+} from '../../../../src/services';
 
 export const LANGUAGES = ['javascript', 'html'] as const;
 
@@ -20,7 +23,7 @@ type ThemeValue = {
   value?: ReactNode;
   example?: ReactNode;
   groupProps?: EuiFlexGroupProps;
-  buttonStyle?: any; // What is the Emotion CSS type?
+  buttonStyle?: SerializedStyles;
   onUpdate?: (color: string) => void;
 };
 
@@ -40,7 +43,7 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
     isValidHex(String(value)) ? String(value) : ''
   );
 
-  const handleColorChange = (text, { hex, isValid }) => {
+  const handleColorChange: EuiSetColorMethod = (text, { hex, isValid }) => {
     setColor(text, { hex, isValid });
     onUpdate && onUpdate(hex);
   };

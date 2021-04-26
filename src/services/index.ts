@@ -73,7 +73,11 @@ export {
   getSteppedGradient,
 } from './color';
 
-export { useColorPickerState, useColorStopsState } from './color_picker';
+export {
+  useColorPickerState,
+  useColorStopsState,
+  EuiSetColorMethod,
+} from './color_picker';
 
 export { copyToClipboard } from './copy_to_clipboard';
 
