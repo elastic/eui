@@ -71,7 +71,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   showButtonIfDocked = false,
   dockedBreakpoint = 'l',
   // Setting different EuiFlyout defaults
-  as = 'nav',
+  as = 'nav' as EuiCollapsibleNavProps['as'],
   size = 320,
   side = 'left',
   role = 'none',
