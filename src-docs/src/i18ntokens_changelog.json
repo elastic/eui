@@ -1,5 +1,20 @@
 [
   {
+    "version": "32.2.0",
+    "changes": [
+      {
+        "token": "euiDataGridSchema.dateSortTextAsc",
+        "changeType": "modified",
+        "value": "Old-New"
+      },
+      {
+        "token": "euiDataGridSchema.dateSortTextDesc",
+        "changeType": "modified",
+        "value": "New-Old"
+      }
+    ]
+  },
+  {
     "version": "32.1.0",
     "changes": [
       {

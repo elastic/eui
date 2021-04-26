@@ -1,5 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Bug fixes**
+
+- Fixed missing i18n tokens for `EuiFilePicker` ([#4750](https://github.com/elastic/eui/pull/4750))
+
+## [`32.2.0`](https://github.com/elastic/eui/tree/v32.2.0)
+
 - Removed `MutationObserver` fallback from `EuiResizeObserver` ([#4709](https://github.com/elastic/eui/pull/4709))
 - Added forms Sass variable `$euiFormControlPlaceholderText` ([#4744](https://github.com/elastic/eui/pull/4744))
 
