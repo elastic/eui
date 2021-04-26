@@ -9,8 +9,11 @@ import {
   EuiFlexItem,
 } from '../../../../src/components/flex';
 import { EuiText } from '../../../../src/components/text';
-import { isValidHex, useColorPickerState } from '../../../../src/services';
-import { _SetColorMethod } from '../../../../src/services/color_picker/color_picker';
+import {
+  isValidHex,
+  useColorPickerState,
+  EuiSetColorMethod,
+} from '../../../../src/services';
 
 export const LANGUAGES = ['javascript', 'html'] as const;
 
@@ -40,7 +43,7 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
     isValidHex(String(value)) ? String(value) : ''
   );
 
-  const handleColorChange: _SetColorMethod = (text, { hex, isValid }) => {
+  const handleColorChange: EuiSetColorMethod = (text, { hex, isValid }) => {
     setColor(text, { hex, isValid });
     onUpdate && onUpdate(hex);
   };
