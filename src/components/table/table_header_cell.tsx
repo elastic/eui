@@ -79,6 +79,7 @@ export type EuiTableHeaderCellProps = CommonProps &
     onSort?: NoArgCallback<void>;
     scope?: TableHeaderCellScope;
     width?: string | number;
+    description?: string;
     /**
      * Shows the sort indicator but removes the button
      */
@@ -103,6 +104,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   // Soon to be deprecated for {...mobileOptions}
   isMobileHeader,
   hideForMobile,
+  description,
   ...rest
 }) => {
   const classes = classNames('euiTableHeaderCell', className, {
@@ -166,7 +168,9 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
               values={{ innerText, ariaSortValue }}>
               {(titleTextWithSort: string) => (
                 <span
-                  title={isSorted ? titleTextWithSort : innerText}
+                  title={
+                    isSorted ? titleTextWithSort : description || innerText
+                  }
                   ref={ref}
                   className="euiTableCellContent__text">
                   {children}
@@ -223,7 +227,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
         <EuiInnerText>
           {(ref, innerText) => (
             <span
-              title={innerText}
+              title={description || innerText}
               ref={ref}
               className="euiTableCellContent__text">
               {children}

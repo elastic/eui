@@ -150,6 +150,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                   <EuiTableHeaderCell
                     align="left"
                     data-test-subj="tableHeaderCell_name_0"
+                    description="description"
                     key="_data_h_name_0"
                   >
                     <th
@@ -169,7 +170,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                         <EuiInnerText>
                           <span
                             className="euiTableCellContent__text"
-                            title="Name"
+                            title="description"
                           >
                             Name
                           </span>
@@ -1001,6 +1002,7 @@ exports[`EuiInMemoryTable with initial selection 1`] = `
                   <EuiTableHeaderCell
                     align="left"
                     data-test-subj="tableHeaderCell_name_0"
+                    description="description"
                     key="_data_h_name_0"
                   >
                     <th
@@ -1020,7 +1022,7 @@ exports[`EuiInMemoryTable with initial selection 1`] = `
                         <EuiInnerText>
                           <span
                             className="euiTableCellContent__text"
-                            title="Name"
+                            title="description"
                           >
                             Name
                           </span>

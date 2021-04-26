@@ -811,6 +811,7 @@ export class EuiBasicTable<T = any> extends Component<
         isMobileHeader,
         hideForMobile,
         readOnly,
+        description,
       } = column as EuiTableFieldDataColumnType<T>;
 
       const columnAlign = align || this.getAlignForDataType(dataType);
@@ -822,6 +823,7 @@ export class EuiBasicTable<T = any> extends Component<
             key={`_actions_h_${index}`}
             align="right"
             width={width}
+            description={description}
             mobileOptions={mobileOptions}>
             {name}
           </EuiTableHeaderCell>
@@ -850,6 +852,7 @@ export class EuiBasicTable<T = any> extends Component<
             width={width}
             mobileOptions={mobileOptions}
             data-test-subj={`tableHeaderCell_${name}_${index}`}
+            description={description}
             {...sorting}>
             {name}
           </EuiTableHeaderCell>
@@ -893,6 +896,7 @@ export class EuiBasicTable<T = any> extends Component<
           hideForMobile={hideForMobile}
           mobileOptions={mobileOptions}
           data-test-subj={`tableHeaderCell_${field}_${index}`}
+          description={description}
           {...sorting}>
           {name}
         </EuiTableHeaderCell>
