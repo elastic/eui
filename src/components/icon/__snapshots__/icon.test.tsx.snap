@@ -91,7 +91,7 @@ exports[`EuiIcon props color danger is rendered 1`] = `
 exports[`EuiIcon props color default is rendered 1`] = `
 <svg
   aria-hidden="true"
-  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  class="euiIcon euiIcon--medium euiIcon--default euiIcon-isLoaded"
   focusable="false"
   height="16"
   role="img"

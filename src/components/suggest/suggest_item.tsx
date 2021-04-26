@@ -167,7 +167,10 @@ export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
   const innerContent = (
     <React.Fragment>
       <span className={`euiSuggestItem__type ${colorClass}`}>
-        <EuiIcon type={type.iconType} />
+        <EuiIcon
+          type={type.iconType}
+          color="default" // forces app icons to inherit de parent color
+        />
       </span>
       <span className={labelClassNames}>{label}</span>
       {description && (

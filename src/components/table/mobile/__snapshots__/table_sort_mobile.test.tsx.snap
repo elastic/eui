@@ -20,6 +20,7 @@ exports[`EuiTableSortMobile is rendered 1`] = `
         >
           <span
             class="euiButtonContent__icon"
+            color="default"
             data-euiicon-type="arrowDown"
           />
           <span

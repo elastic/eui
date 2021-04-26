@@ -452,7 +452,7 @@ export type EuiIconType = keyof typeof typeToPathMap;
 export type IconType = EuiIconType | string | ComponentType;
 
 const colorToClassMap = {
-  default: null,
+  default: 'euiIcon--default',
   primary: 'euiIcon--primary',
   secondary: 'euiIcon--secondary',
   success: 'euiIcon--success',
@@ -691,12 +691,15 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       typeof type === 'string' &&
       (/.+App$/.test(type) || /.+Job$/.test(type) || type === 'dataVisualizer');
 
+    // parent is not one of
+
     const classes = classNames(
       'euiIcon',
       sizeToClassNameMap[size],
       optionalColorClass,
       {
-        'euiIcon--app': isAppIcon,
+        // The app icon only gets the .euiIcon--app class if no color is passed
+        'euiIcon--app': isAppIcon && !color,
         'euiIcon-isLoading': isLoading,
         'euiIcon-isLoaded': !isLoading && neededLoading,
       },

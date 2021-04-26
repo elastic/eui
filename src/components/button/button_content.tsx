@@ -79,7 +79,12 @@ export const EuiButtonContent: FunctionComponent<
     );
   } else if (iconType) {
     buttonIcon = (
-      <EuiIcon className="euiButtonContent__icon" type={iconType} size="m" />
+      <EuiIcon
+        className="euiButtonContent__icon"
+        type={iconType}
+        size="m"
+        color="default" // forces app icons to inherit de parent color
+      />
     );
   }
 

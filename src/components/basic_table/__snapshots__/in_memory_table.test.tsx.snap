@@ -394,11 +394,13 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 >
                                   <EuiIcon
                                     className="euiButtonContent__icon"
+                                    color="default"
                                     size="m"
                                     type="arrowDown"
                                   >
                                     <span
                                       className="euiButtonContent__icon"
+                                      color="default"
                                       data-euiicon-type="arrowDown"
                                       size="m"
                                     />
@@ -473,12 +475,14 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 <EuiIcon
                                   aria-hidden="true"
                                   className="euiButtonIcon__icon"
+                                  color="default"
                                   size="m"
                                   type="arrowLeft"
                                 >
                                   <span
                                     aria-hidden="true"
                                     className="euiButtonIcon__icon"
+                                    color="default"
                                     data-euiicon-type="arrowLeft"
                                     size="m"
                                   />
@@ -685,12 +689,14 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 <EuiIcon
                                   aria-hidden="true"
                                   className="euiButtonIcon__icon"
+                                  color="default"
                                   size="m"
                                   type="arrowRight"
                                 >
                                   <span
                                     aria-hidden="true"
                                     className="euiButtonIcon__icon"
+                                    color="default"
                                     data-euiicon-type="arrowRight"
                                     size="m"
                                   />

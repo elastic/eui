@@ -184,7 +184,13 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   let iconNode;
 
   if (iconType) {
-    iconNode = <EuiIcon className="euiListGroupItem__icon" type={iconType} />;
+    iconNode = (
+      <EuiIcon
+        className="euiListGroupItem__icon"
+        type={iconType}
+        color="default" // forces app icons to inherit de parent color
+      />
+    );
 
     if (icon) {
       console.warn(
