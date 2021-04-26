@@ -57,10 +57,16 @@ export const useColorStopsState = (
   return [colorStops, updateColorStops, addColor];
 };
 
-export const useColorPickerState = (initialColor = '') => {
+export type _SetColorMethod = (
+  text: string,
+  { hex, isValid }: { hex: string; isValid: boolean }
+) => void;
+export const useColorPickerState = (
+  initialColor = ''
+): [color: string, setColor: _SetColorMethod, errors: string[] | null] => {
   const [color, setColorValue] = useState(initialColor);
   const [isValid, setIsValid] = useState(true);
-  const setColor = (text: string, { isValid }: { isValid: boolean }) => {
+  const setColor: _SetColorMethod = (text, { isValid }) => {
     setColorValue(text);
     setIsValid(isValid);
   };
