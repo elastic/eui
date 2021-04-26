@@ -252,9 +252,7 @@ export default ({ selectedTheme }) => {
           showTextVariants={showTextVariants}>
           <p>
             A slightly less subtle shade for text, yet more subtle than the
-            default text color. Mapped to{' '}
-            <EuiCode>euiFormControlPlaceholderText</EuiCode> for placeholder
-            text in forms.
+            default text color.
           </p>
         </ColorSection>
 
