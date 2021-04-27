@@ -383,6 +383,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 className="euiButtonEmpty__content"
                                 iconSide="right"
                                 iconType="arrowDown"
+                                size="xs"
                                 textProps={
                                   Object {
                                     "className": "euiButtonEmpty__text",
@@ -394,13 +395,13 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 >
                                   <EuiIcon
                                     className="euiButtonContent__icon"
-                                    size="m"
+                                    size="s"
                                     type="arrowDown"
                                   >
                                     <span
                                       className="euiButtonContent__icon"
                                       data-euiicon-type="arrowDown"
-                                      size="m"
+                                      size="s"
                                     />
                                   </EuiIcon>
                                   <span
@@ -547,6 +548,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                         <EuiButtonContent
                                           className="euiButtonEmpty__content"
                                           iconSide="left"
+                                          size="s"
                                           textProps={
                                             Object {
                                               "className": "euiButtonEmpty__text",
@@ -629,6 +631,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                         <EuiButtonContent
                                           className="euiButtonEmpty__content"
                                           iconSide="left"
+                                          size="s"
                                           textProps={
                                             Object {
                                               "className": "euiButtonEmpty__text",
