@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Reduced icon size in `EuiButtonEmpty` of `size` xs. ([#4759](https://github.com/elastic/eui/pull/4759))
+
 **Bug fixes**
 
 - Fixed missing i18n tokens for `EuiFilePicker` ([#4750](https://github.com/elastic/eui/pull/4750))
