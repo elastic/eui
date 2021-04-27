@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed missing i18n tokens for `EuiFilePicker` ([#4750](https://github.com/elastic/eui/pull/4750))
+- Fixed `EuiComoboBox` to use correct placeholder text color ([#4744](https://github.com/elastic/eui/pull/4744))
 
 ## [`32.2.0`](https://github.com/elastic/eui/tree/v32.2.0)
 
