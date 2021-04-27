@@ -382,8 +382,8 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                               <EuiButtonContent
                                 className="euiButtonEmpty__content"
                                 iconSide="right"
+                                iconSize="s"
                                 iconType="arrowDown"
-                                size="xs"
                                 textProps={
                                   Object {
                                     "className": "euiButtonEmpty__text",
@@ -548,7 +548,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                         <EuiButtonContent
                                           className="euiButtonEmpty__content"
                                           iconSide="left"
-                                          size="s"
+                                          iconSize="m"
                                           textProps={
                                             Object {
                                               "className": "euiButtonEmpty__text",
@@ -631,7 +631,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                         <EuiButtonContent
                                           className="euiButtonEmpty__content"
                                           iconSide="left"
-                                          size="s"
+                                          iconSize="m"
                                           textProps={
                                             Object {
                                               "className": "euiButtonEmpty__text",

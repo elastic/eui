@@ -58,7 +58,7 @@ export interface EuiButtonContentProps extends CommonProps {
       ref?: Ref<HTMLSpanElement>;
       'data-text'?: string;
     };
-  size?: 'xs' | 's' | 'm' | 'l' | 'compressed' | undefined;
+  iconSize?: 's' | 'm';
 }
 
 export const EuiButtonContent: FunctionComponent<
@@ -68,7 +68,7 @@ export const EuiButtonContent: FunctionComponent<
   textProps,
   isLoading = false,
   iconType,
-  size,
+  iconSize = 'm',
   iconSide = 'left',
   ...contentProps
 }) => {
@@ -84,7 +84,7 @@ export const EuiButtonContent: FunctionComponent<
       <EuiIcon
         className="euiButtonContent__icon"
         type={iconType}
-        size={size === 'xs' ? 's' : 'm'}
+        size={iconSize}
       />
     );
   }
