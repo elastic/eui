@@ -21,6 +21,9 @@ exports[`renders EuiTable 1`] = `
             class="euiTableCellContent__text"
           >
             Hi Title
+            <span
+              class="euiScreenReaderOnly"
+            />
           </span>
         </div>
       </th>
@@ -36,6 +39,9 @@ exports[`renders EuiTable 1`] = `
             class="euiTableCellContent__text"
           >
             Bye Title
+            <span
+              class="euiScreenReaderOnly"
+            />
           </span>
         </div>
       </th>

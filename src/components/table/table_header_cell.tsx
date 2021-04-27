@@ -163,17 +163,18 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
         <EuiInnerText>
           {(ref, innerText) => (
             <EuiI18n
-              token="euiTableHeaderCell.titleTextWithSort"
-              default="{innerText}; Sorted in {ariaSortValue} order"
-              values={{ innerText, ariaSortValue }}>
-              {(titleTextWithSort: string) => (
+              token="euiTableHeaderCell.titleTextWithDesc"
+              default="{innerText}; {description}"
+              values={{ innerText, description }}>
+              {(titleTextWithDesc: string) => (
                 <span
-                  title={
-                    isSorted ? titleTextWithSort : description || innerText
-                  }
+                  title={description ? titleTextWithDesc : innerText}
                   ref={ref}
                   className="euiTableCellContent__text">
                   {children}
+                  <EuiScreenReaderOnly>
+                    <span>{description}</span>
+                  </EuiScreenReaderOnly>
                 </span>
               )}
             </EuiI18n>
@@ -227,10 +228,13 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
         <EuiInnerText>
           {(ref, innerText) => (
             <span
-              title={description || innerText}
+              title={description ? `${innerText}: ${description}` : innerText}
               ref={ref}
               className="euiTableCellContent__text">
               {children}
+              <EuiScreenReaderOnly>
+                <span>{description}</span>
+              </EuiScreenReaderOnly>
             </span>
           )}
         </EuiInnerText>

@@ -1615,9 +1615,16 @@ exports[`EuiBasicTable with initial selection 1`] = `
                       <EuiInnerText>
                         <span
                           className="euiTableCellContent__text"
-                          title="description"
+                          title="Namedescription: description"
                         >
                           Name
+                          <EuiScreenReaderOnly>
+                            <span
+                              className="euiScreenReaderOnly"
+                            >
+                              description
+                            </span>
+                          </EuiScreenReaderOnly>
                         </span>
                       </EuiInnerText>
                     </div>

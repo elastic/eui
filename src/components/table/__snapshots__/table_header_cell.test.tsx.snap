@@ -11,7 +11,11 @@ exports[`align defaults to left 1`] = `
   >
     <span
       class="euiTableCellContent__text"
-    />
+    >
+      <span
+        class="euiScreenReaderOnly"
+      />
+    </span>
   </div>
 </td>
 `;
@@ -27,7 +31,11 @@ exports[`align renders center when specified 1`] = `
   >
     <span
       class="euiTableCellContent__text"
-    />
+    >
+      <span
+        class="euiScreenReaderOnly"
+      />
+    </span>
   </div>
 </td>
 `;
@@ -43,7 +51,11 @@ exports[`align renders right when specified 1`] = `
   >
     <span
       class="euiTableCellContent__text"
-    />
+    >
+      <span
+        class="euiScreenReaderOnly"
+      />
+    </span>
   </div>
 </td>
 `;
@@ -63,6 +75,9 @@ exports[`renders EuiTableHeaderCell 1`] = `
       class="euiTableCellContent__text"
     >
       children
+      <span
+        class="euiScreenReaderOnly"
+      />
     </span>
   </div>
 </th>
@@ -81,7 +96,11 @@ exports[`renders td when children is null/undefined 1`] = `
   >
     <span
       class="euiTableCellContent__text"
-    />
+    >
+      <span
+        class="euiScreenReaderOnly"
+      />
+    </span>
   </div>
 </td>
 `;
@@ -99,9 +118,11 @@ exports[`sorting does not render a button with readOnly 1`] = `
   >
     <span
       class="euiTableCellContent__text"
-      title="; Sorted in descending order"
     >
       Test
+      <span
+        class="euiScreenReaderOnly"
+      />
     </span>
     <span
       class="euiTableSortIcon"
@@ -124,9 +145,11 @@ exports[`sorting is rendered with isSortAscending 1`] = `
   >
     <span
       class="euiTableCellContent__text"
-      title="; Sorted in ascending order"
     >
       Test
+      <span
+        class="euiScreenReaderOnly"
+      />
     </span>
     <span
       class="euiTableSortIcon"
@@ -149,9 +172,11 @@ exports[`sorting is rendered with isSorted 1`] = `
   >
     <span
       class="euiTableCellContent__text"
-      title="; Sorted in descending order"
     >
       Test
+      <span
+        class="euiScreenReaderOnly"
+      />
     </span>
     <span
       class="euiTableSortIcon"
@@ -179,9 +204,11 @@ exports[`sorting renders a button with onSort 1`] = `
     >
       <span
         class="euiTableCellContent__text"
-        title="; Sorted in descending order"
       >
         Test
+        <span
+          class="euiScreenReaderOnly"
+        />
       </span>
       <span
         class="euiTableSortIcon"
@@ -211,6 +238,9 @@ exports[`width and style accepts style attribute 1`] = `
       class="euiTableCellContent__text"
     >
       Test
+      <span
+        class="euiScreenReaderOnly"
+      />
     </span>
   </div>
 </th>
@@ -230,6 +260,9 @@ exports[`width and style accepts width attribute 1`] = `
       class="euiTableCellContent__text"
     >
       Test
+      <span
+        class="euiScreenReaderOnly"
+      />
     </span>
   </div>
 </th>
@@ -249,6 +282,9 @@ exports[`width and style accepts width attribute as number 1`] = `
       class="euiTableCellContent__text"
     >
       Test
+      <span
+        class="euiScreenReaderOnly"
+      />
     </span>
   </div>
 </th>
@@ -268,6 +304,9 @@ exports[`width and style resolves style and width attribute 1`] = `
       class="euiTableCellContent__text"
     >
       Test
+      <span
+        class="euiScreenReaderOnly"
+      />
     </span>
   </div>
 </th>
