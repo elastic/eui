@@ -32,7 +32,7 @@ export default () => (
         className="eui-textCenter"
         grow={false}
         style={{ minWidth: 96 }}>
-        <EuiIcon type="gisApp" color="text" size="xl" />
+        <EuiIcon type="gisApp" color="default" size="xl" />
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="s" color="subdued">
         <EuiCodeBlock
@@ -40,7 +40,7 @@ export default () => (
           isCopyable
           transparentBackground
           paddingSize="m">
-          {'<EuiIcon type="gisApp" color="text" size="xl" />'}
+          {'<EuiIcon type="gisApp" color="default" size="xl" />'}
         </EuiCodeBlock>
       </EuiSplitPanel.Inner>
     </EuiSplitPanel.Outer>
@@ -59,6 +59,24 @@ export default () => (
           transparentBackground
           paddingSize="m">
           {'<EuiIcon type="gisApp" color="primary" size="xl" />'}
+        </EuiCodeBlock>
+      </EuiSplitPanel.Inner>
+    </EuiSplitPanel.Outer>
+    <EuiSpacer />
+    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
+      <EuiSplitPanel.Inner
+        className="eui-textCenter"
+        grow={false}
+        style={{ minWidth: 96 }}>
+        <EuiIcon type="gisApp" color="text" size="xl" />
+      </EuiSplitPanel.Inner>
+      <EuiSplitPanel.Inner paddingSize="s" color="subdued">
+        <EuiCodeBlock
+          language="html"
+          isCopyable
+          transparentBackground
+          paddingSize="m">
+          {'<EuiIcon type="gisApp" color="text" size="xl" />'}
         </EuiCodeBlock>
       </EuiSplitPanel.Inner>
     </EuiSplitPanel.Outer>
