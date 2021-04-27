@@ -188,7 +188,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
       <EuiIcon
         className="euiListGroupItem__icon"
         type={iconType}
-        color="default" // forces app icons to inherit de parent color
+        color="default" // forces two-tone icons to inherit their parent color
       />
     );
 

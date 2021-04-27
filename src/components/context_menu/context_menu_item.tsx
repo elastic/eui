@@ -126,7 +126,7 @@ export class EuiContextMenuItem extends Component<Props> {
               type={icon}
               size="m"
               className="euiContextMenu__icon"
-              color="default" // forces app icons to inherit de parent color
+              color="default" // forces two-tone icons to inherit their parent color
             />
           );
           break;

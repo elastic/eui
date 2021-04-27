@@ -83,7 +83,7 @@ export const EuiButtonContent: FunctionComponent<
         className="euiButtonContent__icon"
         type={iconType}
         size="m"
-        color="default" // forces app icons to inherit de parent color
+        color="default" // forces two-tone icons to inherit their parent color
       />
     );
   }

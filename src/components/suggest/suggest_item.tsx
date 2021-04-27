@@ -169,7 +169,7 @@ export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
       <span className={`euiSuggestItem__type ${colorClass}`}>
         <EuiIcon
           type={type.iconType}
-          color="default" // forces app icons to inherit de parent color
+          color="default" // forces two-tone icons to inherit their parent color
         />
       </span>
       <span className={labelClassNames}>{label}</span>
