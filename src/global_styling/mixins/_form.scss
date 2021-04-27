@@ -57,10 +57,10 @@
   // sass-lint:disable-block no-vendor-prefixes
   // Each prefix must be its own content block
   &::-webkit-input-placeholder { @content; }
-  &::-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; opacity: 1; }
   &:-ms-input-placeholder { @content; }
-  &:-moz-placeholder { @content; }
-  &::placeholder { @content; }
+  &:-moz-placeholder { @content; opacity: 1; }
+  &::placeholder { @content; opacity: 1; }
 }
 
 @function euiFormControlGradient($color: $euiColorPrimary) {
