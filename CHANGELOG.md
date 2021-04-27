@@ -3,7 +3,7 @@
 **Bug fixes**
 
 - Fixed missing i18n tokens for `EuiFilePicker` ([#4750](https://github.com/elastic/eui/pull/4750))
-- Fixed a bug in `EuiIcon` where app icons were getting two-tone colors when nested in specific components ([#4750](https://github.com/elastic/eui/pull/4750))
+- Fixed a bug in `EuiIcon` where two-tone icons were not inheriting their parent color when nested in specific components ([#4760](https://github.com/elastic/eui/pull/4760))
 
 ## [`32.2.0`](https://github.com/elastic/eui/tree/v32.2.0)
 
