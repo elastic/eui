@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `32.3.0`.
+
+## [`32.3.0`](https://github.com/elastic/eui/tree/v32.3.0)
+
 - Reduced icon size in `EuiButtonEmpty` of `size` xs. ([#4759](https://github.com/elastic/eui/pull/4759))
 
 **Bug fixes**
