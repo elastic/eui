@@ -27,7 +27,7 @@ import React, {
   ComponentPropsWithRef,
   PropsWithChildren,
   MutableRefObject,
-  ReactHTML,
+  // ReactHTML,
 } from 'react';
 import classnames from 'classnames';
 
@@ -167,7 +167,15 @@ type _EuiFlyoutProps = {
 
 // Using ReactHTML rather than JSX.IntrinsicElements here because it does not include
 // SVG element types which cause errors because they do not have all the attributes needed.
-type ComponentTypes = keyof ReactHTML | ComponentType;
+type ComponentTypes =
+  | 'div'
+  | 'span'
+  | 'nav'
+  | 'aside'
+  | 'section'
+  | 'article'
+  | 'header'
+  | ComponentType;
 
 export type EuiFlyoutProps<T extends ComponentTypes = 'div'> = CommonProps &
   ComponentPropsWithRef<T> & {
