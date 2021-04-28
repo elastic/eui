@@ -140,7 +140,7 @@ exports[`EuiSelectableListItem props isFocused 1`] = `
         >
           <span
             class="euiBadge__icon"
-            color="default"
+            color="inherit"
             data-euiicon-type="returnKey"
           />
         </span>

@@ -10,7 +10,7 @@ exports[`EuiButtonIcon is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -25,7 +25,7 @@ exports[`EuiButtonIcon props color accent is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -40,7 +40,7 @@ exports[`EuiButtonIcon props color danger is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -55,7 +55,7 @@ exports[`EuiButtonIcon props color ghost is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -70,7 +70,7 @@ exports[`EuiButtonIcon props color primary is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -85,7 +85,7 @@ exports[`EuiButtonIcon props color subdued is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -100,7 +100,7 @@ exports[`EuiButtonIcon props color success is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -115,7 +115,7 @@ exports[`EuiButtonIcon props color text is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -130,7 +130,7 @@ exports[`EuiButtonIcon props color warning is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -145,7 +145,7 @@ exports[`EuiButtonIcon props display base is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -160,7 +160,7 @@ exports[`EuiButtonIcon props display empty is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -175,7 +175,7 @@ exports[`EuiButtonIcon props display fill is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -192,7 +192,7 @@ exports[`EuiButtonIcon props href secures the rel attribute when the target is _
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </a>
@@ -207,7 +207,7 @@ exports[`EuiButtonIcon props iconType is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -223,7 +223,7 @@ exports[`EuiButtonIcon props isDisabled is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -239,7 +239,7 @@ exports[`EuiButtonIcon props isDisabled renders a button even when href is defin
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -255,7 +255,7 @@ exports[`EuiButtonIcon props isSelected is rendered as false 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -271,7 +271,7 @@ exports[`EuiButtonIcon props isSelected is rendered as true 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -286,7 +286,7 @@ exports[`EuiButtonIcon props size m is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -301,7 +301,7 @@ exports[`EuiButtonIcon props size s is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>
@@ -316,7 +316,7 @@ exports[`EuiButtonIcon props size xs is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="user"
   />
 </button>

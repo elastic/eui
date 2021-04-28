@@ -200,7 +200,7 @@ exports[`EuiButtonEmpty props iconSide left is rendered 1`] = `
   >
     <span
       class="euiButtonContent__icon"
-      color="default"
+      color="inherit"
       data-euiicon-type="user"
     />
     <span
@@ -222,7 +222,7 @@ exports[`EuiButtonEmpty props iconSide right is rendered 1`] = `
   >
     <span
       class="euiButtonContent__icon"
-      color="default"
+      color="inherit"
       data-euiicon-type="user"
     />
     <span
@@ -244,7 +244,7 @@ exports[`EuiButtonEmpty props iconType is rendered 1`] = `
   >
     <span
       class="euiButtonContent__icon"
-      color="default"
+      color="inherit"
       data-euiicon-type="user"
     />
     <span

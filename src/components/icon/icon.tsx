@@ -452,7 +452,7 @@ export type EuiIconType = keyof typeof typeToPathMap;
 export type IconType = EuiIconType | string | ComponentType;
 
 const colorToClassMap = {
-  default: 'euiIcon--default',
+  default: null,
   primary: 'euiIcon--primary',
   secondary: 'euiIcon--secondary',
   success: 'euiIcon--success',
@@ -462,6 +462,7 @@ const colorToClassMap = {
   text: 'euiIcon--text',
   subdued: 'euiIcon--subdued',
   ghost: 'euiIcon--ghost',
+  inherit: 'euiIcon--inherit',
 };
 
 export const COLORS: NamedColor[] = keysOf(colorToClassMap);

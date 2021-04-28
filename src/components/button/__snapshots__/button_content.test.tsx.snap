@@ -26,7 +26,7 @@ exports[`EuiButtonContent props iconSide is rendered 1`] = `
 >
   <span
     class="euiButtonContent__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="bolt"
   />
   <span />
@@ -39,7 +39,7 @@ exports[`EuiButtonContent props iconType is rendered 1`] = `
 >
   <span
     class="euiButtonContent__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="bolt"
   />
   <span />

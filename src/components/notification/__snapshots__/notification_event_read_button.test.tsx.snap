@@ -11,7 +11,7 @@ exports[`EuiNotificationEventReadButton is rendered 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="dot"
   />
 </button>
@@ -28,7 +28,7 @@ exports[`EuiNotificationEventReadButton renders isRead to false 1`] = `
   <span
     aria-hidden="true"
     class="euiButtonIcon__icon"
-    color="default"
+    color="inherit"
     data-euiicon-type="dot"
   />
 </button>

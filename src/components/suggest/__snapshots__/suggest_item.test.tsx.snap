@@ -10,7 +10,7 @@ exports[`EuiSuggestItem is rendered 1`] = `
     class="euiSuggestItem__type euiSuggestItem__type--tint1"
   >
     <span
-      color="default"
+      color="inherit"
       data-euiicon-type="search"
     />
   </span>
@@ -30,7 +30,7 @@ exports[`props descriptionDisplay as wrap is rendered 1`] = `
     class="euiSuggestItem__type euiSuggestItem__type--tint2"
   >
     <span
-      color="default"
+      color="inherit"
       data-euiicon-type="kqlValue"
     />
   </span>
@@ -55,7 +55,7 @@ exports[`props item with no description has expanded label is rendered 1`] = `
     class="euiSuggestItem__type euiSuggestItem__type--tint2"
   >
     <span
-      color="default"
+      color="inherit"
       data-euiicon-type="kqlValue"
     />
   </span>
@@ -75,7 +75,7 @@ exports[`props labelDisplay as expand is rendered 1`] = `
     class="euiSuggestItem__type euiSuggestItem__type--tint2"
   >
     <span
-      color="default"
+      color="inherit"
       data-euiicon-type="kqlValue"
     />
   </span>
@@ -100,7 +100,7 @@ exports[`props labelWidth is 30% is rendered 1`] = `
     class="euiSuggestItem__type euiSuggestItem__type--tint2"
   >
     <span
-      color="default"
+      color="inherit"
       data-euiicon-type="kqlValue"
     />
   </span>

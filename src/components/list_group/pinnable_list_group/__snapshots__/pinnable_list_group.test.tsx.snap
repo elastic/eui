@@ -14,7 +14,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
     >
       <span
         class="euiListGroupItem__icon"
-        color="default"
+        color="inherit"
         data-euiicon-type="stop"
       />
       <span
@@ -33,7 +33,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
-        color="default"
+        color="inherit"
         data-euiicon-type="pinFilled"
       />
     </button>
@@ -59,7 +59,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
-        color="default"
+        color="inherit"
         data-euiicon-type="bell"
       />
     </button>
@@ -88,7 +88,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
-        color="default"
+        color="inherit"
         data-euiicon-type="pinFilled"
       />
     </button>
@@ -116,7 +116,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
-        color="default"
+        color="inherit"
         data-euiicon-type="pinFilled"
       />
     </button>
@@ -145,7 +145,7 @@ exports[`EuiPinnableListGroup can have custom pin icon titles 1`] = `
       <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
-        color="default"
+        color="inherit"
         data-euiicon-type="pinFilled"
       />
     </button>
@@ -183,7 +183,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
     >
       <span
         class="euiListGroupItem__icon"
-        color="default"
+        color="inherit"
         data-euiicon-type="stop"
       />
       <span
@@ -202,7 +202,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
-        color="default"
+        color="inherit"
         data-euiicon-type="pinFilled"
       />
     </button>
@@ -228,7 +228,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
-        color="default"
+        color="inherit"
         data-euiicon-type="bell"
       />
     </button>
@@ -257,7 +257,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
-        color="default"
+        color="inherit"
         data-euiicon-type="pinFilled"
       />
     </button>
@@ -285,7 +285,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
-        color="default"
+        color="inherit"
         data-euiicon-type="pinFilled"
       />
     </button>
@@ -314,7 +314,7 @@ exports[`EuiPinnableListGroup is rendered 1`] = `
       <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
-        color="default"
+        color="inherit"
         data-euiicon-type="pinFilled"
       />
     </button>

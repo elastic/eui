@@ -124,7 +124,7 @@ exports[`EuiListGroupItem props extraAction can be disabled 1`] = `
     <span
       aria-hidden="true"
       class="euiButtonIcon__icon"
-      color="default"
+      color="inherit"
       data-euiicon-type="empty"
     />
   </button>
@@ -153,7 +153,7 @@ exports[`EuiListGroupItem props extraAction is rendered 1`] = `
     <span
       aria-hidden="true"
       class="euiButtonIcon__icon"
-      color="default"
+      color="inherit"
       data-euiicon-type="empty"
     />
   </button>
@@ -244,7 +244,7 @@ exports[`EuiListGroupItem props iconType is rendered 1`] = `
   >
     <span
       class="euiListGroupItem__icon"
-      color="default"
+      color="inherit"
       data-euiicon-type="empty"
     />
     <span
@@ -440,7 +440,7 @@ exports[`EuiListGroupItem throws a warning if both iconType and icon are provide
   >
     <span
       class="euiListGroupItem__icon"
-      color="default"
+      color="inherit"
       data-euiicon-type="empty"
     />
     <span

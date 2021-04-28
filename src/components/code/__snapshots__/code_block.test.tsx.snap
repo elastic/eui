@@ -112,7 +112,7 @@ console.log(some);
           <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
-            color="default"
+            color="inherit"
             data-euiicon-type="copy"
           />
         </button>
@@ -168,7 +168,7 @@ console.log(some);
       <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
-        color="default"
+        color="inherit"
         data-euiicon-type="fullScreen"
       />
     </button>

@@ -259,9 +259,9 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
           <EuiIcon
             type={iconType}
             size="s"
+            color="inherit" // forces the icon to inherit its parent color
             {...closeButtonProps}
             className={closeClassNames}
-            color="default" // forces two-tone icons to inherit their parent color
           />
         </button>
       );
@@ -271,7 +271,7 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
           type={iconType}
           size={children ? 's' : 'm'}
           className="euiBadge__icon"
-          color="default" // forces two-tone icons to inherit their parent color
+          color="inherit" // forces the icon to inherit its parent color
         />
       );
     }

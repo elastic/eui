@@ -213,7 +213,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
                 >
                   <span
                     class="euiContextMenu__icon"
-                    color="default"
+                    color="inherit"
                     data-euiicon-type="empty"
                   />
                   <span
@@ -235,7 +235,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
                 >
                   <span
                     class="euiContextMenu__icon"
-                    color="default"
+                    color="inherit"
                     data-euiicon-type="empty"
                   />
                   <span
@@ -491,7 +491,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
                 >
                   <span
                     class="euiContextMenu__icon"
-                    color="default"
+                    color="inherit"
                     data-euiicon-type="check"
                   />
                   <span
@@ -514,7 +514,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
                 >
                   <span
                     class="euiContextMenu__icon"
-                    color="default"
+                    color="inherit"
                     data-euiicon-type="empty"
                   />
                   <span
@@ -652,7 +652,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
                 >
                   <span
                     class="euiContextMenu__icon"
-                    color="default"
+                    color="inherit"
                     data-euiicon-type="empty"
                   />
                   <span
@@ -674,7 +674,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
                 >
                   <span
                     class="euiContextMenu__icon"
-                    color="default"
+                    color="inherit"
                     data-euiicon-type="empty"
                   />
                   <span
