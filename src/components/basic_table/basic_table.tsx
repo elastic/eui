@@ -842,7 +842,6 @@ export class EuiBasicTable<T = any> extends Component<
             ? SortDirection.isAsc(sortDirection)
             : undefined;
           sorting.onSort = this.resolveColumnOnSort(column);
-          sorting.allowNeutralSort = this.props.sorting.allowNeutralSort;
           sorting.readOnly = this.props.sorting.readOnly || readOnly;
         }
         headers.push(
@@ -883,7 +882,6 @@ export class EuiBasicTable<T = any> extends Component<
             ? SortDirection.isAsc(sortDirection)
             : undefined;
           sorting.onSort = this.resolveColumnOnSort(column);
-          sorting.allowNeutralSort = this.props.sorting.allowNeutralSort;
           sorting.readOnly = this.props.sorting.readOnly || readOnly;
         }
       }

@@ -14,36 +14,30 @@ exports[`renders EuiTable 1`] = `
         role="columnheader"
         scope="col"
       >
-        <div
+        <span
           class="euiTableCellContent"
         >
           <span
             class="euiTableCellContent__text"
           >
             Hi Title
-            <span
-              class="euiScreenReaderOnly"
-            />
           </span>
-        </div>
+        </span>
       </th>
       <th
         class="euiTableHeaderCell"
         role="columnheader"
         scope="col"
       >
-        <div
+        <span
           class="euiTableCellContent"
         >
           <span
             class="euiTableCellContent__text"
           >
             Bye Title
-            <span
-              class="euiScreenReaderOnly"
-            />
           </span>
-        </div>
+        </span>
       </th>
     </tr>
   </thead>

@@ -6,17 +6,13 @@ exports[`align defaults to left 1`] = `
   role="columnheader"
   scope="col"
 >
-  <div
+  <span
     class="euiTableCellContent"
   >
     <span
       class="euiTableCellContent__text"
-    >
-      <span
-        class="euiScreenReaderOnly"
-      />
-    </span>
-  </div>
+    />
+  </span>
 </td>
 `;
 
@@ -26,17 +22,13 @@ exports[`align renders center when specified 1`] = `
   role="columnheader"
   scope="col"
 >
-  <div
+  <span
     class="euiTableCellContent euiTableCellContent--alignCenter"
   >
     <span
       class="euiTableCellContent__text"
-    >
-      <span
-        class="euiScreenReaderOnly"
-      />
-    </span>
-  </div>
+    />
+  </span>
 </td>
 `;
 
@@ -46,17 +38,13 @@ exports[`align renders right when specified 1`] = `
   role="columnheader"
   scope="col"
 >
-  <div
+  <span
     class="euiTableCellContent euiTableCellContent--alignRight"
   >
     <span
       class="euiTableCellContent__text"
-    >
-      <span
-        class="euiScreenReaderOnly"
-      />
-    </span>
-  </div>
+    />
+  </span>
 </td>
 `;
 
@@ -68,18 +56,15 @@ exports[`renders EuiTableHeaderCell 1`] = `
   role="columnheader"
   scope="col"
 >
-  <div
+  <span
     class="euiTableCellContent testClass1 testClass2"
   >
     <span
       class="euiTableCellContent__text"
     >
       children
-      <span
-        class="euiScreenReaderOnly"
-      />
     </span>
-  </div>
+  </span>
 </th>
 `;
 
@@ -91,17 +76,13 @@ exports[`renders td when children is null/undefined 1`] = `
   role="columnheader"
   scope="col"
 >
-  <div
+  <span
     class="euiTableCellContent testClass1 testClass2"
   >
     <span
       class="euiTableCellContent__text"
-    >
-      <span
-        class="euiScreenReaderOnly"
-      />
-    </span>
-  </div>
+    />
+  </span>
 </td>
 `;
 
@@ -120,9 +101,6 @@ exports[`sorting does not render a button with readOnly 1`] = `
       class="euiTableCellContent__text"
     >
       Test
-      <span
-        class="euiScreenReaderOnly"
-      />
     </span>
     <span
       class="euiTableSortIcon"
@@ -147,9 +125,6 @@ exports[`sorting is rendered with isSortAscending 1`] = `
       class="euiTableCellContent__text"
     >
       Test
-      <span
-        class="euiScreenReaderOnly"
-      />
     </span>
     <span
       class="euiTableSortIcon"
@@ -174,9 +149,6 @@ exports[`sorting is rendered with isSorted 1`] = `
       class="euiTableCellContent__text"
     >
       Test
-      <span
-        class="euiScreenReaderOnly"
-      />
     </span>
     <span
       class="euiTableSortIcon"
@@ -206,19 +178,11 @@ exports[`sorting renders a button with onSort 1`] = `
         class="euiTableCellContent__text"
       >
         Test
-        <span
-          class="euiScreenReaderOnly"
-        />
       </span>
       <span
         class="euiTableSortIcon"
         data-euiicon-type="sortDown"
       />
-    </span>
-    <span
-      class="euiScreenReaderOnly"
-    >
-      Click to sort in ascending order
     </span>
   </button>
 </th>
@@ -231,18 +195,15 @@ exports[`width and style accepts style attribute 1`] = `
   scope="col"
   style="width:20%"
 >
-  <div
+  <span
     class="euiTableCellContent"
   >
     <span
       class="euiTableCellContent__text"
     >
       Test
-      <span
-        class="euiScreenReaderOnly"
-      />
     </span>
-  </div>
+  </span>
 </th>
 `;
 
@@ -253,18 +214,15 @@ exports[`width and style accepts width attribute 1`] = `
   scope="col"
   style="width:10%"
 >
-  <div
+  <span
     class="euiTableCellContent"
   >
     <span
       class="euiTableCellContent__text"
     >
       Test
-      <span
-        class="euiScreenReaderOnly"
-      />
     </span>
-  </div>
+  </span>
 </th>
 `;
 
@@ -275,18 +233,15 @@ exports[`width and style accepts width attribute as number 1`] = `
   scope="col"
   style="width:100px"
 >
-  <div
+  <span
     class="euiTableCellContent"
   >
     <span
       class="euiTableCellContent__text"
     >
       Test
-      <span
-        class="euiScreenReaderOnly"
-      />
     </span>
-  </div>
+  </span>
 </th>
 `;
 
@@ -297,17 +252,14 @@ exports[`width and style resolves style and width attribute 1`] = `
   scope="col"
   style="width:10%"
 >
-  <div
+  <span
     class="euiTableCellContent"
   >
     <span
       class="euiTableCellContent__text"
     >
       Test
-      <span
-        class="euiScreenReaderOnly"
-      />
     </span>
-  </div>
+  </span>
 </th>
 `;
