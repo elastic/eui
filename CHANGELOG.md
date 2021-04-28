@@ -2,8 +2,16 @@
 
 **Bug fixes**
 
-- Fixed missing i18n tokens for `EuiFilePicker` ([#4750](https://github.com/elastic/eui/pull/4750))
 - Fixed a bug in `EuiIcon` where two-tone icons were not inheriting their parent color when nested in specific components ([#4760](https://github.com/elastic/eui/pull/4760))
+
+## [`32.3.0`](https://github.com/elastic/eui/tree/v32.3.0)
+
+- Reduced icon size in `EuiButtonEmpty` of `size` xs. ([#4759](https://github.com/elastic/eui/pull/4759))
+
+**Bug fixes**
+
+- Fixed missing i18n tokens for `EuiFilePicker` ([#4750](https://github.com/elastic/eui/pull/4750))
+- Fixed `EuiComboBox` to use correct placeholder text color ([#4744](https://github.com/elastic/eui/pull/4744))
 
 ## [`32.2.0`](https://github.com/elastic/eui/tree/v32.2.0)
 

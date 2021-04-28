@@ -170,11 +170,14 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
     textProps && textProps.className
   );
 
+  const iconSize = size === 'xs' ? 's' : 'm';
+
   const innerNode = (
     <EuiButtonContent
       isLoading={isLoading}
       iconType={iconType}
       iconSide={iconSide}
+      iconSize={iconSize}
       textProps={{ ...textProps, className: textClassNames }}
       {...contentProps}
       // className has to come last to override contentProps.className
