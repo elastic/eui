@@ -362,22 +362,6 @@ const EuiFlyout = forwardRef(
       </Element>
     );
 
-    // If ownFocus is set, show an overlay behind the flyout and allow the user
-    // to click it to close it.
-    let usePortal;
-    let optionalOverlay;
-    if (ownFocus && !isPushed) {
-      // Also wrap the flyout in an EuiPortal whenever EuiOverlayMask is present to maintain proper z-indexing.
-      usePortal = true;
-      optionalOverlay = (
-        <EuiOverlayMask
-          onClick={onClose}
-          headerZindexLocation="below"
-          {...maskProps}
-        />
-      );
-    }
-
     /*
      * Trap focus even when `ownFocus={false}`, otherwise closing
      * the flyout won't return focus to the originating button.
@@ -386,7 +370,7 @@ const EuiFlyout = forwardRef(
      * to allow non-keyboard users the ability to interact with
      * elements outside the flyout.
      */
-    const flyout = (
+    let flyout = (
       <EuiFocusTrap disabled={isPushed} clickOutsideDisables={!ownFocus}>
         {/* Outside click detector is needed if theres no overlay mask to auto-close when clicking on elements outside */}
         <EuiOutsideClickDetector
@@ -397,11 +381,25 @@ const EuiFlyout = forwardRef(
       </EuiFocusTrap>
     );
 
+    // If ownFocus is set, wrap with an overlay and allow the user to click it to close it.
+    if (ownFocus && !isPushed) {
+      flyout = (
+        <EuiOverlayMask
+          onClick={onClose}
+          headerZindexLocation="below"
+          {...maskProps}>
+          {flyout}
+        </EuiOverlayMask>
+      );
+    } else if (!isPushed) {
+      // Otherwise still wrap within an EuiPortal so it appends (unless it is the push style)
+      flyout = <EuiPortal>{flyout}</EuiPortal>;
+    }
+
     return (
       <Fragment>
         <EuiWindowEvent event="keydown" handler={onKeyDown} />
-        {optionalOverlay}
-        {usePortal ? <EuiPortal>{flyout}</EuiPortal> : flyout}
+        {flyout}
       </Fragment>
     );
   }

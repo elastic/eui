@@ -290,10 +290,11 @@ export const FlyoutExample = {
         <>
           <p>
             Like modals, you will usually want to obscure the page content
-            beneath with <EuiCode>ownFocus</EuiCode> which adds an{' '}
+            beneath with <EuiCode>ownFocus</EuiCode> which wraps the flyout with
+            an{' '}
             <Link to="/utilities/overlay-mask">
               <strong>EuiOverlayMask</strong>
-            </Link>
+            </Link>{' '}
             . However, there are use-cases where flyouts present more
             information or controls, but need to maintain the interactions of
             the page content. By setting{' '}

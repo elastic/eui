@@ -24,7 +24,6 @@ export default () => {
       <EuiCollapsibleNav
         isOpen={navIsOpen}
         isDocked={navIsDocked}
-        ownFocus={false}
         size={240}
         button={
           <EuiButton onClick={() => setNavIsOpen((isOpen) => !isOpen)}>
