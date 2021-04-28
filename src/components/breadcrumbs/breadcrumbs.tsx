@@ -18,7 +18,7 @@
  */
 
 import React, {
-  Fragment,
+  AriaAttributes,
   FunctionComponent,
   MouseEventHandler,
   ReactNode,
@@ -28,7 +28,7 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { EuiI18n } from '../i18n';
+import { useEuiI18n } from '../i18n';
 import { EuiInnerText } from '../inner_text';
 import { EuiLink } from '../link';
 import { EuiPopover } from '../popover';
@@ -131,28 +131,25 @@ const limitBreadcrumbs = (
 
   const EuiBreadcrumbCollapsed = () => {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+    const ariaLabel = useEuiI18n(
+      'euiBreadcrumbs.collapsedBadge.ariaLabel',
+      'See collapsed breadcrumbs'
+    );
 
     const ellipsisButton = (
-      <EuiI18n
-        token="euiBreadcrumbs.collapsedBadge.ariaLabel"
-        default="Show collapsed breadcrumbs">
-        {(ariaLabel: string) => (
-          <EuiLink
-            className="euiBreadcrumb__collapsedLink"
-            color="subdued"
-            aria-label={ariaLabel}
-            title={ariaLabel}
-            onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
-            &hellip; <EuiIcon type="arrowDown" size="s" />
-          </EuiLink>
-        )}
-      </EuiI18n>
+      <EuiLink
+        className="euiBreadcrumb__collapsedLink"
+        color="subdued"
+        aria-label={ariaLabel}
+        title={ariaLabel}
+        onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+        &hellip; <EuiIcon type="arrowDown" size="s" />
+      </EuiLink>
     );
 
     return (
-      <Fragment>
+      <li className="euiBreadcrumb euiBreadcrumb--collapsed">
         <EuiPopover
-          className="euiBreadcrumb euiBreadcrumb--collapsed"
           button={ellipsisButton}
           isOpen={isPopoverOpen}
           closePopover={() => setIsPopoverOpen(false)}>
@@ -164,8 +161,7 @@ const limitBreadcrumbs = (
             max={0}
           />
         </EuiPopover>
-        <EuiBreadcrumbSeparator />
-      </Fragment>
+      </li>
     );
   };
 
@@ -175,8 +171,6 @@ const limitBreadcrumbs = (
 
   return [...breadcrumbsAtStart, ...breadcrumbsAtEnd];
 };
-
-const EuiBreadcrumbSeparator = () => <div className="euiBreadcrumbSeparator" />;
 
 export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   breadcrumbs,
@@ -218,59 +212,50 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
     } = breadcrumb;
 
     const isLastBreadcrumb = index === breadcrumbs.length - 1;
-
-    const breadcrumbClasses = classNames('euiBreadcrumb', breadcrumbClassName, {
+    const className = classNames('euiBreadcrumb', breadcrumbClassName, {
       'euiBreadcrumb--last': isLastBreadcrumb,
       'euiBreadcrumb--truncate': truncate,
     });
+    const linkProps = {
+      className: 'euiBreadcrumb__content',
+      'aria-current': isLastBreadcrumb ? 'page' : undefined,
+    } as { className: string; 'aria-current': AriaAttributes['aria-current'] };
 
-    let link;
+    const link = (
+      <EuiInnerText>
+        {(ref, innerText) => {
+          if (!href && !onClick) {
+            return (
+              <span
+                ref={ref}
+                title={innerText}
+                {...linkProps}
+                {...breadcrumbRest}>
+                {text}
+              </span>
+            );
+          }
 
-    if (!href && !onClick) {
-      link = (
-        <EuiInnerText>
-          {(ref, innerText) => (
-            <span
-              ref={ref}
-              className={breadcrumbClasses}
-              title={innerText}
-              aria-current={isLastBreadcrumb ? 'page' : 'false'}
-              {...breadcrumbRest}>
-              {text}
-            </span>
-          )}
-        </EuiInnerText>
-      );
-    } else {
-      link = (
-        <EuiInnerText>
-          {(ref, innerText) => (
+          return (
             <EuiLink
               ref={ref}
               color={isLastBreadcrumb ? 'text' : 'subdued'}
               onClick={onClick}
               href={href}
-              className={breadcrumbClasses}
               title={innerText}
+              {...linkProps}
               {...breadcrumbRest}>
               {text}
             </EuiLink>
-          )}
-        </EuiInnerText>
-      );
-    }
-
-    let separator;
-
-    if (!isLastBreadcrumb) {
-      separator = <EuiBreadcrumbSeparator />;
-    }
+          );
+        }}
+      </EuiInnerText>
+    );
 
     return (
-      <Fragment key={index}>
+      <li className={className} key={index}>
         {link}
-        {separator}
-      </Fragment>
+      </li>
     );
   });
 
@@ -300,8 +285,8 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   });
 
   return (
-    <nav aria-label="breadcrumb" className={classes} {...rest}>
-      {limitedBreadcrumbs}
+    <nav aria-label="Breadcrumbs" className={classes} {...rest}>
+      <ol className="euiBreadcrumbs__list">{limitedBreadcrumbs}</ol>
     </nav>
   );
 };
