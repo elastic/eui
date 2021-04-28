@@ -692,15 +692,16 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       typeof type === 'string' &&
       (/.+App$/.test(type) || /.+Job$/.test(type) || type === 'dataVisualizer');
 
-    // parent is not one of
+    const appIconHasColor = color && color !== 'default';
 
+    // parent is not one of
     const classes = classNames(
       'euiIcon',
       sizeToClassNameMap[size],
       optionalColorClass,
       {
-        // The app icon only gets the .euiIcon--app class if no color is passed
-        'euiIcon--app': isAppIcon && !color,
+        // The app icon only gets the .euiIcon--app class if no color is passed or if color="default" is passed
+        'euiIcon--app': isAppIcon && !appIconHasColor,
         'euiIcon-isLoading': isLoading,
         'euiIcon-isLoaded': !isLoading && neededLoading,
       },
