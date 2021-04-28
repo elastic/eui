@@ -32,6 +32,24 @@ export default () => (
         className="eui-textCenter"
         grow={false}
         style={{ minWidth: 96 }}>
+        <EuiIcon type="gisApp" color="inherit" size="xl" />
+      </EuiSplitPanel.Inner>
+      <EuiSplitPanel.Inner paddingSize="s" color="subdued">
+        <EuiCodeBlock
+          language="html"
+          isCopyable
+          transparentBackground
+          paddingSize="m">
+          {'<EuiIcon type="gisApp" color="inherit" size="xl" />'}
+        </EuiCodeBlock>
+      </EuiSplitPanel.Inner>
+    </EuiSplitPanel.Outer>
+    <EuiSpacer />
+    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
+      <EuiSplitPanel.Inner
+        className="eui-textCenter"
+        grow={false}
+        style={{ minWidth: 96 }}>
         <EuiIcon type="gisApp" color="default" size="xl" />
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="s" color="subdued">
