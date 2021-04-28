@@ -8,6 +8,11 @@ import {
   EuiIcon,
   EuiLink,
   EuiToolTip,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSwitch,
+  EuiSpacer,
+  EuiCode,
 } from '../../../../../src/components';
 
 /*
@@ -35,6 +40,9 @@ Example country object:
 const store = createDataStore();
 
 export const Table = () => {
+  const [enableAll, setEnableAll] = useState(false);
+  const [readonly, setReadonly] = useState(false);
+
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(5);
   const [sortField, setSortField] = useState('firstName');
@@ -79,7 +87,6 @@ export const Table = () => {
     {
       field: 'lastName',
       name: 'Last Name',
-      sortable: true,
       truncateText: true,
       mobileOptions: {
         show: false,
@@ -100,7 +107,6 @@ export const Table = () => {
           </span>
         </EuiToolTip>
       ),
-      sortable: true,
       render: (username) => (
         <EuiLink href={`https://github.com/${username}`} target="_blank">
           {username}
@@ -124,7 +130,6 @@ export const Table = () => {
       ),
       schema: 'date',
       render: (date) => formatDate(date, 'dobLong'),
-      sortable: true,
     },
     {
       field: 'nationality',
@@ -141,7 +146,6 @@ export const Table = () => {
           </span>
         </EuiToolTip>
       ),
-      sortable: true,
       render: (countryCode) => {
         const country = store.getCountry(countryCode);
         return `${country.flag} ${country.name}`;
@@ -163,7 +167,6 @@ export const Table = () => {
         </EuiToolTip>
       ),
       schema: 'boolean',
-      sortable: true,
       render: (online) => {
         const color = online ? 'success' : 'danger';
         const label = online ? 'Online' : 'Offline';
@@ -184,10 +187,29 @@ export const Table = () => {
       field: sortField,
       direction: sortDirection,
     },
+    enableAllColumns: enableAll,
+    readOnly: readonly,
   };
 
   return (
     <div>
+      <EuiFlexGroup>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label={<EuiCode>enableAllColumns</EuiCode>}
+            checked={enableAll}
+            onChange={() => setEnableAll((enabled) => !enabled)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label={<EuiCode>readOnly</EuiCode>}
+            checked={readonly}
+            onChange={() => setReadonly((readonly) => !readonly)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer />
       <EuiBasicTable
         items={pageOfItems}
         columns={columns}

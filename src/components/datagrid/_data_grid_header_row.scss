@@ -43,28 +43,38 @@
       border-top: none;
     }
 
+    .euiDataGridHeaderCell__sortingArrow {
+      margin-right: $euiSizeXS;
+    }
+
+    .euiDataGridHeaderCell__anchor {
+      width: 100%;
+    }
+
     .euiDataGridHeaderCell__button {
       flex: 0 0 auto;
       position: relative;
       align-items: center;
       display: flex;
-      text-align: left;
+      width: 100%;
       font-weight: $euiFontWeightBold;
       outline: none;
-    }
 
-    .euiDataGridHeaderCell__sortingArrow {
-      margin-right: $euiSizeXS;
+      .euiDataGridHeaderCell__sortingArrow {
+        flex-grow: 0;
+      }
     }
 
     .euiDataGridHeaderCell__content {
       @include euiTextTruncate;
       overflow: hidden;
       white-space: nowrap;
+      text-align: left;
       flex-grow: 1;
+      align-self: baseline;
     }
 
-    .euiDataGridHeaderCell__popover {
+    .euiDataGridHeaderCell__icon {
       flex-grow: 0;
       flex-basis: auto;
       width: auto;
