@@ -150,6 +150,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                   <EuiTableHeaderCell
                     align="left"
                     data-test-subj="tableHeaderCell_name_0"
+                    description="description"
                     key="_data_h_name_0"
                   >
                     <th
@@ -163,18 +164,42 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                         }
                       }
                     >
-                      <div
+                      <CellContents
                         className="euiTableCellContent"
+                        description="description"
+                        showSortMsg={false}
                       >
-                        <EuiInnerText>
-                          <span
-                            className="euiTableCellContent__text"
-                            title="Name"
-                          >
-                            Name
-                          </span>
-                        </EuiInnerText>
-                      </div>
+                        <span
+                          className="euiTableCellContent"
+                        >
+                          <EuiInnerText>
+                            <EuiI18n
+                              default="{innerText}; {description}"
+                              token="euiTableHeaderCell.titleTextWithDesc"
+                              values={
+                                Object {
+                                  "description": "description",
+                                  "innerText": "Name",
+                                }
+                              }
+                            >
+                              <span
+                                className="euiTableCellContent__text"
+                                title="Name; description"
+                              >
+                                Name
+                              </span>
+                            </EuiI18n>
+                          </EuiInnerText>
+                          <EuiScreenReaderOnly>
+                            <span
+                              className="euiScreenReaderOnly"
+                            >
+                              description
+                            </span>
+                          </EuiScreenReaderOnly>
+                        </span>
+                      </CellContents>
                     </th>
                   </EuiTableHeaderCell>
                 </tr>
@@ -1004,6 +1029,7 @@ exports[`EuiInMemoryTable with initial selection 1`] = `
                   <EuiTableHeaderCell
                     align="left"
                     data-test-subj="tableHeaderCell_name_0"
+                    description="description"
                     key="_data_h_name_0"
                   >
                     <th
@@ -1017,18 +1043,42 @@ exports[`EuiInMemoryTable with initial selection 1`] = `
                         }
                       }
                     >
-                      <div
+                      <CellContents
                         className="euiTableCellContent"
+                        description="description"
+                        showSortMsg={false}
                       >
-                        <EuiInnerText>
-                          <span
-                            className="euiTableCellContent__text"
-                            title="Name"
-                          >
-                            Name
-                          </span>
-                        </EuiInnerText>
-                      </div>
+                        <span
+                          className="euiTableCellContent"
+                        >
+                          <EuiInnerText>
+                            <EuiI18n
+                              default="{innerText}; {description}"
+                              token="euiTableHeaderCell.titleTextWithDesc"
+                              values={
+                                Object {
+                                  "description": "description",
+                                  "innerText": "Name",
+                                }
+                              }
+                            >
+                              <span
+                                className="euiTableCellContent__text"
+                                title="Name; description"
+                              >
+                                Name
+                              </span>
+                            </EuiI18n>
+                          </EuiInnerText>
+                          <EuiScreenReaderOnly>
+                            <span
+                              className="euiScreenReaderOnly"
+                            >
+                              description
+                            </span>
+                          </EuiScreenReaderOnly>
+                        </span>
+                      </CellContents>
                     </th>
                   </EuiTableHeaderCell>
                 </tr>

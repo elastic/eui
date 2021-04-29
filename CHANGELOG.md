@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed `initialFocus` prop functionality in `EuiPopover` ([#4768](https://github.com/elastic/eui/pull/4768))
+- Fixed `description` prop in `EuiTable`([#4754](https://github.com/elastic/eui/pull/4754))
 
 ## [`32.3.0`](https://github.com/elastic/eui/tree/v32.3.0)
 
