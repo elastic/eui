@@ -2192,6 +2192,22 @@
     "filepath": "src/components/form/file_picker/file_picker.tsx"
   },
   {
+    "token": "euiFilePicker.removeSelected",
+    "defString": "Remove",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 198,
+        "column": 18
+      },
+      "end": {
+        "line": 201,
+        "column": 20
+      }
+    },
+    "filepath": "src/components/form/file_picker/file_picker.tsx"
+  },
+  {
     "token": "euiFormControlLayoutClearButton.label",
     "defString": "Clear input",
     "highlighting": "string",
