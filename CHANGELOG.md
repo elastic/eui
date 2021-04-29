@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `32.1.0`.
+**Bug fixes**
+
+- Fixed `initialFocus` prop functionality in `EuiPopover` ([#4768](https://github.com/elastic/eui/pull/4768))
 
 ## [`32.1.0`](https://github.com/elastic/eui/tree/v32.1.0)
 

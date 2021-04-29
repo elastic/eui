@@ -122,7 +122,8 @@ export default () => {
         id="formPopover"
         button={button2}
         isOpen={isPopover2Open}
-        closePopover={closePopover2}>
+        closePopover={closePopover2}
+        initialFocus="[name='popfirst']">
         <div style={{ width: '300px' }}>{formSample2}</div>
       </EuiPopover>
     </div>
