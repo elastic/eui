@@ -1,88 +1,95 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
-  EuiButtonEmpty,
-  EuiFieldText,
+  EuiPopover,
   EuiForm,
   EuiFormRow,
-  EuiModal,
-  EuiModalBody,
-  EuiModalFooter,
-  EuiModalHeader,
-  EuiModalHeaderTitle,
+  EuiFieldText,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFieldNumber,
   EuiRange,
+  EuiSpacer,
   EuiSwitch,
-  EuiSuperSelect,
-  EuiText,
 } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isPopover2Open, setIsPopover2Open] = useState(false);
   const [isSwitchChecked, setIsSwitchChecked] = useState(true);
-  const [superSelectvalue, setSuperSelectValue] = useState('option_one');
 
-  const onSwitchChange = () =>
-    setIsSwitchChecked((isSwitchChecked) => !isSwitchChecked);
+  const onButtonClick = () => {
+    setIsPopoverOpen(!isPopoverOpen);
+  };
 
-  const closeModal = () => setIsModalVisible(false);
+  const closePopover = () => {
+    setIsPopoverOpen(false);
+  };
 
-  const showModal = () => setIsModalVisible(true);
+  const onSwitchChange = () => {
+    setIsSwitchChecked(!isSwitchChecked);
+  };
 
-  const superSelectOptions = [
-    {
-      value: 'option_one',
-      inputDisplay: 'Option one',
-      dropdownDisplay: (
-        <Fragment>
-          <strong>Option one</strong>
-          <EuiText size="s" color="subdued">
-            <p className="euiTextColor--subdued">
-              Has a short description giving more detail to the option.
-            </p>
-          </EuiText>
-        </Fragment>
-      ),
-    },
-    {
-      value: 'option_two',
-      inputDisplay: 'Option two',
-      dropdownDisplay: (
-        <Fragment>
-          <strong>Option two</strong>
-          <EuiText size="s" color="subdued">
-            <p className="euiTextColor--subdued">
-              Has a short description giving more detail to the option.
-            </p>
-          </EuiText>
-        </Fragment>
-      ),
-    },
-    {
-      value: 'option_three',
-      inputDisplay: 'Option three',
-      dropdownDisplay: (
-        <Fragment>
-          <strong>Option three</strong>
-          <EuiText size="s" color="subdued">
-            <p className="euiTextColor--subdued">
-              Has a short description giving more detail to the option.
-            </p>
-          </EuiText>
-        </Fragment>
-      ),
-    },
-  ];
+  const onButton2Click = () => {
+    setIsPopover2Open(!isPopover2Open);
+  };
+
+  const closePopover2 = () => {
+    setIsPopover2Open(false);
+  };
+
+  const button = (
+    <EuiButton
+      iconSide="right"
+      fill
+      iconType="arrowDown"
+      onClick={onButtonClick}>
+      Inline form in a popover
+    </EuiButton>
+  );
 
   const formSample = (
-    <EuiForm id="modalFormId" component="form">
+    <EuiForm component="form">
+      <EuiFlexGroup>
+        <EuiFlexItem grow={false} style={{ width: 100 }}>
+          <EuiFormRow label="Age">
+            <EuiFieldNumber max={10} placeholder={42} />
+          </EuiFormRow>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiFormRow label="Full name">
+            <EuiFieldText icon="user" placeholder="John Doe" />
+          </EuiFormRow>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiFormRow hasEmptyLabelSpace>
+            <EuiButton>Save</EuiButton>
+          </EuiFormRow>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </EuiForm>
+  );
+
+  const button2 = (
+    <EuiButton
+      iconSide="right"
+      fill
+      iconType="arrowDown"
+      onClick={onButton2Click}>
+      Vertical form in a popover
+    </EuiButton>
+  );
+
+  const formSample2 = (
+    <EuiForm component="form">
       <EuiFormRow>
         <EuiSwitch
           id={htmlIdGenerator()()}
           name="popswitch"
-          label="Isn't this modal form cool?"
+          label="Isn't this popover form cool?"
           checked={isSwitchChecked}
           onChange={onSwitchChange}
         />
@@ -96,49 +103,31 @@ export default () => {
         <EuiRange min={0} max={100} name="poprange" />
       </EuiFormRow>
 
-      <EuiFormRow label="An EuiSuperSelect">
-        <EuiSuperSelect
-          options={superSelectOptions}
-          valueOfSelected={superSelectvalue}
-          onChange={(value) => onSuperSelectChange(value)}
-          itemLayoutAlign="top"
-          hasDividers
-        />
-      </EuiFormRow>
+      <EuiSpacer />
+      <EuiButton fullWidth>Save</EuiButton>
     </EuiForm>
   );
 
-  const onSuperSelectChange = (value) => {
-    setSuperSelectValue(value);
-  };
-
-  let modal;
-
-  if (isModalVisible) {
-    modal = (
-      <EuiModal onClose={closeModal} initialFocus="[name=popswitch]">
-        <EuiModalHeader>
-          <EuiModalHeaderTitle>
-            <h1>Modal title</h1>
-          </EuiModalHeaderTitle>
-        </EuiModalHeader>
-
-        <EuiModalBody>{formSample}</EuiModalBody>
-
-        <EuiModalFooter>
-          <EuiButtonEmpty onClick={closeModal}>Cancel</EuiButtonEmpty>
-
-          <EuiButton type="submit" form="modalFormId" onClick={closeModal} fill>
-            Save
-          </EuiButton>
-        </EuiModalFooter>
-      </EuiModal>
-    );
-  }
   return (
     <div>
-      <EuiButton onClick={showModal}>Show form modal</EuiButton>
-      {modal}
+      <EuiPopover
+        ownFocus={false}
+        id="inlineFormPopover"
+        button={button}
+        isOpen={isPopoverOpen}
+        initialFocus="[name='popfirst']"
+        closePopover={closePopover}>
+        <div style={{ width: 500 }}>{formSample}</div>
+      </EuiPopover>
+      &emsp;
+      <EuiPopover
+        id="formPopover"
+        button={button2}
+        isOpen={isPopover2Open}
+        closePopover={closePopover2}
+        initialFocus="[name='popfirst']">
+        <div style={{ width: '300px' }}>{formSample2}</div>
+      </EuiPopover>
     </div>
   );
 };
