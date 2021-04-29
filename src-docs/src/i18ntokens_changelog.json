@@ -1,5 +1,15 @@
 [
   {
+    "version": "32.3.0",
+    "changes": [
+      {
+        "token": "euiFilePicker.removeSelected",
+        "changeType": "added",
+        "value": "Remove"
+      }
+    ]
+  },
+  {
     "version": "32.2.0",
     "changes": [
       {
