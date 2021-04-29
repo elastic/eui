@@ -77,12 +77,12 @@ const addLineData = (
   return nodes.reduce<ExtendedRefractorNode[]>((result, node) => {
     const lineStart = data.lineNumber;
     if (node.type === 'text') {
-      if (node.value.indexOf('\n') === -1) {
+      if (!node.value.match(/\r\n?|\n/)) {
         node.lineStart = lineStart;
         node.lineEnd = lineStart;
         result.push(node);
       } else {
-        const lines = node.value.split('\n');
+        const lines = node.value.split(/\r\n?|\n/);
         lines.forEach((line, i) => {
           const num = i === 0 ? data.lineNumber : ++data.lineNumber;
           result.push({
@@ -219,9 +219,10 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [wrapperRef, setWrapperRef] = useState<Element | null>(null);
   const [innerTextRef, _innerText] = useInnerText('');
-  const innerText = useMemo(() => _innerText?.replace(/\n\n/g, '\n'), [
-    _innerText,
-  ]);
+  const innerText = useMemo(
+    () => _innerText?.replace(/[\r\n?]{2}|\n\n/g, '\n'),
+    [_innerText]
+  );
   const [tabIndex, setTabIndex] = useState<-1 | 0>(-1);
   const combinedRef = useCombinedRefs<HTMLPreElement>([
     innerTextRef,
