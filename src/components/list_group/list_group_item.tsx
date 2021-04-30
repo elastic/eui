@@ -30,7 +30,7 @@ import React, {
 import classNames from 'classnames';
 
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
-import { EuiIcon, IconType } from '../icon';
+import { EuiIcon, IconType, EuiIconProps } from '../icon';
 import { EuiToolTip } from '../tool_tip';
 import { useInnerText } from '../inner_text';
 import { ExclusiveUnion, CommonProps } from '../common';
@@ -109,8 +109,13 @@ export type EuiListGroupItemProps = CommonProps &
     iconType?: IconType;
 
     /**
+     * Further extend the props applied to EuiIcon
+     */
+    iconProps?: Omit<EuiIconProps, 'type' | 'size'>;
+
+    /**
      * Custom node to pass as the icon. Cannot be used in conjunction
-     * with `iconType`.
+     * with `iconType` and `iconProps`.
      */
     icon?: ReactElement;
 
@@ -155,6 +160,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   className,
   iconType,
   icon,
+  iconProps,
   extraAction,
   onClick,
   size = 'm',
@@ -189,6 +195,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
         className="euiListGroupItem__icon"
         type={iconType}
         color="inherit" // forces the icon to inherit its parent color
+        {...iconProps}
       />
     );
 

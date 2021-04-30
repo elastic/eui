@@ -203,15 +203,14 @@ export const IconExample = {
             <p>
               Two-tone icons, like our app style icons, will behave similarly to
               normal glyphs when provided a specific color by applying the color
-              to <strong>all</strong> the shapes within. Most of the time, you
-              just need to pass <EuiCode>color="default"</EuiCode> to force the
-              icon to inherit its color from its parent.
+              to <strong>all</strong> the shapes within. You can force the icon
+              to match the parent's text color by passing{' '}
+              <EuiCode>color="inherit"</EuiCode> to the icon.
             </p>
           </EuiText>
-          <EuiSpacer />
-          <AppIconColors />
         </>
       ),
+      demo: <AppIconColors />,
     },
     {
       title: 'Custom SVGs',

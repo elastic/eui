@@ -2,9 +2,11 @@
 
 **Bug fixes**
 
-- Fixed a bug in `EuiIcon` where two-tone icons were not inheriting their parent color when nested in specific components ([#4760](https://github.com/elastic/eui/pull/4760))
 - Fixed `initialFocus` prop functionality in `EuiPopover` ([#4768](https://github.com/elastic/eui/pull/4768))
 - Fixed `description` prop in `EuiTable`([#4754](https://github.com/elastic/eui/pull/4754))
+- Added `inherit` color option to `EuiIcon` to force two-tone (app) icons to inherit their parent's color ([#4760](https://github.com/elastic/eui/pull/4760))
+- Updated `[EuiBetaBadge, EuiBadge, EuiButtonIcon, EuiButtonContent, EuiCallOut, EuiContextMenuItem, EuiListGroupItem]` icon usage to inherit their parent's color ([#4760](https://github.com/elastic/eui/pull/4760))
+- Added `iconProps` prop to `EuiListGroupItem` ([#4760](https://github.com/elastic/eui/pull/4760))
 
 ## [`32.3.0`](https://github.com/elastic/eui/tree/v32.3.0)
 
