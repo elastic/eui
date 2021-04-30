@@ -353,20 +353,14 @@ export class EuiDataGridCell extends Component<
           ? this.props.column?.schema === column.type
           : this.props.columnId === column.type
     )[0];
+    const textTransform = transformClass?.textTransform;
+
     const cellClasses = classNames(
       'euiDataGridRowCell',
       {
         [`euiDataGridRowCell--${columnType}`]: columnType,
         ['euiDataGridRowCell--open']: this.state.popoverIsOpen,
-        ['euiDataGridRowCell--uppercase']:
-          transformClass !== undefined &&
-          transformClass.textTransform === 'uppercase',
-        ['euiDataGridRowCell--lowercase']:
-          transformClass !== undefined &&
-          transformClass.textTransform === 'lowercase',
-        ['euiDataGridRowCell--capital']:
-          transformClass !== undefined &&
-          transformClass.textTransform === 'capital',
+        [`euiDataGridRowCell--${textTransform}`]: textTransform,
       },
       className
     );

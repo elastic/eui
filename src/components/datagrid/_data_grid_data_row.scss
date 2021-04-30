@@ -106,11 +106,7 @@
     text-transform: lowercase;
   }
 
-  &.euiDataGridRowCell--capital {
-    text-transform: capitalize;
-  }
-
-  &.euiDataGridRowCell--boolean {
+  &.euiDataGridRowCell--capitalize {
     text-transform: capitalize;
   }
 

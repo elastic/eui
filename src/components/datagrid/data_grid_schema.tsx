@@ -63,11 +63,11 @@ export interface EuiDataGridSchemaDetector {
    */
   isSortable?: boolean;
   /**
-   * Default sort direction of the column
-   */
-  textTransform?: string;
-  /**
    *  This property controls the capitalization of text
+   */
+  textTransform?: 'uppercase' | 'lowercase' | 'capitalize';
+  /**
+   * Default sort direction of the column
    */
   defaultSortDirection?: 'asc' | 'desc';
 }
