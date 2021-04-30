@@ -8,6 +8,7 @@
 ## [`32.3.0`](https://github.com/elastic/eui/tree/v32.3.0)
 
 - Reduced icon size in `EuiButtonEmpty` of `size` xs. ([#4759](https://github.com/elastic/eui/pull/4759))
+- Renamed  `eiPaletteNegtive` and `eiPalettePositive` to `eiPaletteRed` and `eiPaletteGreen` respectively ([#4773](https://github.com/elastic/eui/pull/4773))
 
 **Bug fixes**
 

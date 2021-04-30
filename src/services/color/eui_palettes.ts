@@ -207,7 +207,7 @@ export const euiPaletteComplimentary = function (steps: number): EuiPalette {
   );
 };
 
-export const euiPaletteNegative = function (steps: number): EuiPalette {
+export const euiPaletteRed = function (steps: number): EuiPalette {
   if (steps === 1) {
     return [lightNegativeColor];
   }
@@ -215,7 +215,7 @@ export const euiPaletteNegative = function (steps: number): EuiPalette {
   return euiPalette(['white', negativeColor], steps);
 };
 
-export const euiPalettePositive = function (steps: number): EuiPalette {
+export const euiPaletteGreen = function (steps: number): EuiPalette {
   if (steps === 1) {
     return [euiPaletteColorBlind()[0]];
   }

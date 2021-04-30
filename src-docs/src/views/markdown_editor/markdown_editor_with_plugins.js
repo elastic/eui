@@ -38,8 +38,8 @@ import {
   euiPaletteForStatus,
   euiPaletteForTemperature,
   euiPaletteGray,
-  euiPaletteNegative,
-  euiPalettePositive,
+  euiPaletteRed,
+  euiPaletteGreen,
   euiPaletteWarm,
 } from '../../../../src/services/color';
 import { getDefaultEuiMarkdownUiPlugins } from '../../../../src/components/markdown_editor';
@@ -48,8 +48,8 @@ const paletteData = {
   euiPaletteForStatus,
   euiPaletteForTemperature,
   euiPaletteComplimentary,
-  euiPaletteNegative,
-  euiPalettePositive,
+  euiPaletteRed,
+  euiPaletteGreen,
   euiPaletteCool,
   euiPaletteWarm,
   euiPaletteGray,

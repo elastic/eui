@@ -25,7 +25,7 @@ import {
 import { CHART_COMPONENTS, ChartCard } from './shared';
 import {
   euiPaletteColorBlind,
-  euiPalettePositive,
+  euiPaletteGreen,
   euiPaletteForStatus,
   euiPaletteGray,
 } from '../../../../src/services';
@@ -136,7 +136,7 @@ export const Categorical = () => {
   };
 
   const createQuantityChart = (numCharts) => {
-    const vizColors = euiPalettePositive(numCharts);
+    const vizColors = euiPaletteGreen(numCharts);
 
     // convert series labels to percentages
     const dg = new DataGenerator();

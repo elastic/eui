@@ -28,8 +28,8 @@ import {
   euiPaletteForTemperature,
   euiPaletteCool,
   euiPaletteWarm,
-  euiPaletteNegative,
-  euiPalettePositive,
+  euiPaletteRed,
+  euiPaletteGreen,
   euiPaletteGray,
 } from '../../../../src/services';
 
@@ -38,8 +38,8 @@ const paletteData = {
   euiPaletteForStatus,
   euiPaletteForTemperature,
   euiPaletteComplimentary,
-  euiPaletteNegative,
-  euiPalettePositive,
+  euiPaletteRed,
+  euiPaletteGreen,
   euiPaletteCool,
   euiPaletteWarm,
   euiPaletteGray,
