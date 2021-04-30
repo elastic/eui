@@ -20,7 +20,6 @@ export default () => {
       <EuiFlyout
         type="push"
         size="s"
-        ownFocus
         onClose={() => setIsFlyoutVisible(false)}
         aria-labelledby="pushedFlyoutTitle">
         <EuiFlyoutHeader hasBorder>
