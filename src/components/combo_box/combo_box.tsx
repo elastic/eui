@@ -149,6 +149,10 @@ export interface _EuiComboBoxProps<T>
    * A special character to use as a value separator. Typically a comma `,`
    */
   delimiter?: string;
+  /**
+   * Specifies that the input should have focus when the component loads
+   */
+  autoFocus?: boolean;
 }
 
 /**
@@ -930,6 +934,7 @@ export class EuiComboBox<T> extends Component<
       sortMatchesBy,
       delimiter,
       append,
+      autoFocus,
       ...rest
     } = this.props;
     const {
@@ -1060,6 +1065,7 @@ export class EuiComboBox<T> extends Component<
           append={singleSelection ? append : undefined}
           prepend={singleSelection ? prepend : undefined}
           isLoading={isLoading}
+          autoFocus={autoFocus}
         />
         {optionsList}
       </div>
