@@ -150,7 +150,7 @@ export interface _EuiComboBoxProps<T>
    */
   delimiter?: string;
   /**
-   * Specifies that the input should have focus when the page loads
+   * Specifies that the input should have focus when the component loads
    */
   autoFocus?: boolean;
 }

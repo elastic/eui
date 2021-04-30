@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Adds `autoFocus` prop functionality to `EuiComboBox` ([#4772](https://github.com/elastic/eui/pull/4772))
+- Added `autoFocus` prop and functionality to `EuiComboBox` ([#4772](https://github.com/elastic/eui/pull/4772))
 
 **Bug fixes**
 

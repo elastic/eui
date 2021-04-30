@@ -205,7 +205,6 @@ describe('props', () => {
       <EuiComboBox
         options={options}
         selectedOptions={[options[2], options[3]]}
-        delimiter=","
       />
     );
 
