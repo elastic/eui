@@ -111,7 +111,7 @@ export type EuiListGroupItemProps = CommonProps &
     /**
      * Further extend the props applied to EuiIcon
      */
-    iconProps?: Omit<EuiIconProps, 'type' | 'size'>;
+    iconProps?: Omit<EuiIconProps, 'type'>;
 
     /**
      * Custom node to pass as the icon. Cannot be used in conjunction
@@ -192,10 +192,10 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   if (iconType) {
     iconNode = (
       <EuiIcon
-        className="euiListGroupItem__icon"
-        type={iconType}
         color="inherit" // forces the icon to inherit its parent color
         {...iconProps}
+        type={iconType}
+        className={classNames('euiListGroupItem__icon', iconProps?.className)}
       />
     );
 
