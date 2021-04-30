@@ -23,6 +23,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
           >
             <span
               class="euiButtonContent__icon"
+              color="inherit"
               data-euiicon-type="arrowDown"
             />
             <span
@@ -53,6 +54,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
         <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
+          color="inherit"
           data-euiicon-type="arrowLeft"
         />
       </a>
@@ -116,6 +118,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
         <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
+          color="inherit"
           data-euiicon-type="arrowRight"
         />
       </button>
@@ -155,10 +158,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="eyeClosed"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="eyeClosed"
           />
         </EuiIcon>
@@ -211,10 +216,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortUp"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortUp"
           />
         </EuiIcon>
@@ -291,10 +298,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortDown"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortDown"
           />
         </EuiIcon>
@@ -363,10 +372,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortLeft"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortLeft"
           />
         </EuiIcon>
@@ -411,10 +422,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortRight"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortRight"
           />
         </EuiIcon>
@@ -508,10 +521,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortUp"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortUp"
           />
         </EuiIcon>
@@ -588,10 +603,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortDown"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortDown"
           />
         </EuiIcon>
@@ -687,10 +704,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="eyeClosed"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="eyeClosed"
           />
         </EuiIcon>
@@ -725,10 +744,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortUp"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortUp"
           />
         </EuiIcon>
@@ -763,10 +784,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortDown"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortDown"
           />
         </EuiIcon>
@@ -801,10 +824,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortLeft"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortLeft"
           />
         </EuiIcon>
@@ -839,10 +864,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortRight"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortRight"
           />
         </EuiIcon>
@@ -927,6 +954,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -955,6 +983,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -976,6 +1005,7 @@ Array [
           >
             <span
               class="euiButtonContent__icon"
+              color="inherit"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -1266,6 +1296,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -1294,6 +1325,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -1315,6 +1347,7 @@ Array [
           >
             <span
               class="euiButtonContent__icon"
+              color="inherit"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -1902,6 +1935,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -1930,6 +1964,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -1951,6 +1986,7 @@ Array [
           >
             <span
               class="euiButtonContent__icon"
+              color="inherit"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -2240,6 +2276,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -2268,6 +2305,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -2289,6 +2327,7 @@ Array [
           >
             <span
               class="euiButtonContent__icon"
+              color="inherit"
               data-euiicon-type="fullScreen"
             />
             <span
