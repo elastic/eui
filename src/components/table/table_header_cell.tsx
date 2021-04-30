@@ -44,11 +44,6 @@ export type EuiTableHeaderCellProps = CommonProps &
   Omit<ThHTMLAttributes<HTMLTableHeaderCellElement>, 'align' | 'scope'> & {
     align?: HorizontalAlignment;
     /**
-     * Set `allowNeutralSort` on EuiInMemoryTable to false to force column
-     * sorting.  EuiBasicTable always forces column sorting.
-     */
-    allowNeutralSort?: boolean;
-    /**
      * _DEPRECATED: use `mobileOptions.show = false`_ Indicates if the
      * column should not show for mobile users (typically hidden because a
      * custom mobile header utilizes the column's contents)
@@ -79,11 +74,62 @@ export type EuiTableHeaderCellProps = CommonProps &
     onSort?: NoArgCallback<void>;
     scope?: TableHeaderCellScope;
     width?: string | number;
+    description?: string;
     /**
      * Shows the sort indicator but removes the button
      */
     readOnly?: boolean;
   };
+
+const CellContents = ({
+  className,
+  description,
+  children,
+  isSorted,
+  isSortAscending,
+  showSortMsg,
+}: {
+  className: string;
+  description: EuiTableHeaderCellProps['description'];
+  children: EuiTableHeaderCellProps['children'];
+  isSorted: EuiTableHeaderCellProps['isSorted'];
+  isSortAscending?: EuiTableHeaderCellProps['isSortAscending'];
+  showSortMsg: boolean;
+}) => {
+  return (
+    <span className={className}>
+      <EuiInnerText>
+        {(ref, innerText) => (
+          <EuiI18n
+            token="euiTableHeaderCell.titleTextWithDesc"
+            default="{innerText}; {description}"
+            values={{ innerText, description }}>
+            {(titleTextWithDesc: string) => (
+              <span
+                title={description ? titleTextWithDesc : innerText}
+                ref={ref}
+                className="euiTableCellContent__text">
+                {children}
+              </span>
+            )}
+          </EuiI18n>
+        )}
+      </EuiInnerText>
+      {description && (
+        <EuiScreenReaderOnly>
+          <span>{description}</span>
+        </EuiScreenReaderOnly>
+      )}
+      {showSortMsg && isSorted && (
+        <EuiIcon
+          className="euiTableSortIcon"
+          type={isSortAscending ? 'sortUp' : 'sortDown'}
+          size="m"
+        />
+      )}
+    </span>
+  );
+};
 
 export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   children,
@@ -91,7 +137,6 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   onSort,
   isSorted,
   isSortAscending,
-  allowNeutralSort,
   className,
   scope = 'col',
   mobileOptions = {
@@ -103,6 +148,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   // Soon to be deprecated for {...mobileOptions}
   isMobileHeader,
   hideForMobile,
+  description,
   ...rest
 }) => {
   const classes = classNames('euiTableHeaderCell', className, {
@@ -129,60 +175,15 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
       ariaSortValue = isSortAscending ? 'ascending' : 'descending';
     }
 
-    function getScreenCasterDirection() {
-      if (ariaSortValue === 'ascending') {
-        return (
-          <EuiI18n
-            token="euiTableHeaderCell.clickForDescending"
-            default="Click to sort in descending order"
-          />
-        );
-      }
-
-      if (allowNeutralSort && ariaSortValue === 'descending') {
-        return (
-          <EuiI18n
-            token="euiTableHeaderCell.clickForUnsort"
-            default="Click to unsort"
-          />
-        );
-      }
-
-      return (
-        <EuiI18n
-          token="euiTableHeaderCell.clickForAscending"
-          default="Click to sort in ascending order"
-        />
-      );
-    }
-
     const cellContents = (
-      <span className={contentClasses}>
-        <EuiInnerText>
-          {(ref, innerText) => (
-            <EuiI18n
-              token="euiTableHeaderCell.titleTextWithSort"
-              default="{innerText}; Sorted in {ariaSortValue} order"
-              values={{ innerText, ariaSortValue }}>
-              {(titleTextWithSort: string) => (
-                <span
-                  title={isSorted ? titleTextWithSort : innerText}
-                  ref={ref}
-                  className="euiTableCellContent__text">
-                  {children}
-                </span>
-              )}
-            </EuiI18n>
-          )}
-        </EuiInnerText>
-        {isSorted && (
-          <EuiIcon
-            className="euiTableSortIcon"
-            type={isSortAscending ? 'sortUp' : 'sortDown'}
-            size="m"
-          />
-        )}
-      </span>
+      <CellContents
+        className={contentClasses}
+        description={description}
+        showSortMsg={true}
+        children={children}
+        isSorted={isSorted}
+        isSortAscending={isSortAscending}
+      />
     );
 
     return (
@@ -201,9 +202,6 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
             onClick={onSort}
             data-test-subj="tableHeaderSortButton">
             {cellContents}
-            <EuiScreenReaderOnly>
-              <span>{getScreenCasterDirection()}</span>
-            </EuiScreenReaderOnly>
           </button>
         ) : (
           cellContents
@@ -219,18 +217,14 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
       role="columnheader"
       style={styleObj}
       {...rest}>
-      <div className={contentClasses}>
-        <EuiInnerText>
-          {(ref, innerText) => (
-            <span
-              title={innerText}
-              ref={ref}
-              className="euiTableCellContent__text">
-              {children}
-            </span>
-          )}
-        </EuiInnerText>
-      </div>
+      <CellContents
+        className={contentClasses}
+        description={description}
+        showSortMsg={false}
+        children={children}
+        isSorted={isSorted}
+        isSortAscending={isSortAscending}
+      />
     </CellComponent>
   );
 };
