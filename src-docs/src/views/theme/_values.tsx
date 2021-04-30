@@ -1,8 +1,9 @@
 import React, { FunctionComponent, ReactNode } from 'react';
-import { SerializedStyles } from '@emotion/react';
+import { css, SerializedStyles } from '@emotion/react';
 import { EuiCode } from '../../../../src/components/code';
 import { EuiColorPicker } from '../../../../src/components/color_picker';
 import { EuiCopy } from '../../../../src/components/copy';
+import { EuiSpacer } from '../../../../src/components/spacer';
 import {
   EuiFlexGroup,
   EuiFlexGroupProps,
@@ -13,7 +14,10 @@ import {
   isValidHex,
   useColorPickerState,
   EuiSetColorMethod,
+  useEuiTheme,
 } from '../../../../src/services';
+// @ts-ignore NOT TS yet
+import { humanizeType, markup } from '../../services/playground/knobs';
 
 export const LANGUAGES = ['javascript', 'html'] as const;
 
@@ -25,6 +29,7 @@ type ThemeValue = {
   groupProps?: EuiFlexGroupProps;
   buttonStyle?: SerializedStyles;
   onUpdate?: (color: string) => void;
+  type?: any;
 };
 
 export const ThemeValue: FunctionComponent<ThemeValue> = ({
@@ -35,9 +40,9 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
   groupProps,
   buttonStyle,
   onUpdate,
+  type,
 }) => {
-  // Add dot if property exists
-  property = property ? `.${property}` : '';
+  const { euiTheme } = useEuiTheme();
 
   const [color, setColor, errors] = useColorPickerState(
     isValidHex(String(value)) ? String(value) : ''
@@ -49,11 +54,13 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
   };
 
   let exampleRender;
-  if (property === '.color' && onUpdate) {
+  if (property === 'color' && onUpdate) {
     exampleRender = (
       <EuiFlexItem grow={false}>
         <EuiColorPicker
+          swatches={[]}
           onChange={handleColorChange}
+          // @ts-ignore TODO
           color={color}
           isInvalid={!!errors}
           secondaryInputDisplay="bottom"
@@ -62,6 +69,8 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
       </EuiFlexItem>
     );
   } else if (example || buttonStyle) {
+    // Add dot if property exists
+    property = property ? `.${property}` : '';
     exampleRender = (
       <EuiFlexItem grow={false}>
         <EuiCopy
@@ -77,13 +86,47 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
     );
   }
 
+  let typeRender;
+  if (type?.custom?.origin?.type) {
+    typeRender = (
+      <span
+        css={css`
+          font-weight: ${euiTheme.font.weight.light};
+          color: ${euiTheme.colors.subdued};
+        `}>
+        : {humanizeType(type.custom.origin.type)}
+      </span>
+    );
+  }
+
+  let descriptionRender;
+  if (type?.description) {
+    descriptionRender = (
+      <>
+        <EuiSpacer size="xs" />
+        <EuiText
+          color="subdued"
+          size="xs"
+          css={css`
+            padding: 0 ${euiTheme.size.s};
+          `}>
+          <i>{markup(type.description)}</i>
+        </EuiText>
+      </>
+    );
+  }
+
   return (
-    <EuiFlexGroup responsive={false} alignItems="center" {...groupProps}>
+    <EuiFlexGroup responsive={false} alignItems="flexStart" {...groupProps}>
       {exampleRender}
       <EuiFlexItem grow={true}>
         <EuiText size="s">
-          <EuiCode transparentBackground>{name}</EuiCode>
+          <EuiCode language="ts" transparentBackground>
+            {name}
+            {typeRender}
+          </EuiCode>
         </EuiText>
+        {descriptionRender}
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiText size="s" color="subdued">

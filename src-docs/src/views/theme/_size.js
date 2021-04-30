@@ -12,11 +12,16 @@ import {
   EuiCode,
 } from '../../../../src/components';
 
+import { getPropsFromThemeKey, EuiTheme, _EuiThemeSize } from './_props';
+
 import { ThemeValue } from './_values';
 
 export default () => {
   const { euiTheme } = useEuiTheme();
   const sizes = euiTheme.size;
+
+  const themeProps = getPropsFromThemeKey(EuiTheme);
+  const themeSizeProps = getPropsFromThemeKey(_EuiThemeSize);
 
   return (
     <div>
@@ -41,6 +46,7 @@ export default () => {
               <ThemeValue
                 property=""
                 name="base"
+                type={themeProps.base}
                 value={euiTheme.base}
                 buttonStyle={css`
                   width: ${euiTheme.base}px;
@@ -65,6 +71,7 @@ export default () => {
             {Object.keys(sizes).map((size) => (
               <ThemeValue
                 property="size"
+                type={themeSizeProps[size]}
                 key={size}
                 name={size}
                 value={sizes[size]}

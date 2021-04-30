@@ -19,6 +19,13 @@ import {
 
 import { ThemeValue } from './_values';
 
+import {
+  getPropsFromThemeKey,
+  EuiThemeFontBase,
+  EuiThemeFontWeight,
+  _EuiFontScale,
+} from './_props';
+
 const baseKeys = Object.keys(fontBase);
 const weightKeys = Object.keys(fontWeight);
 const scaleKeys = Object.keys(fontScale);
@@ -26,6 +33,10 @@ const scaleKeys = Object.keys(fontScale);
 export default () => {
   const { euiTheme } = useEuiTheme();
   const font = euiTheme.font;
+
+  const baseProps = getPropsFromThemeKey(EuiThemeFontBase);
+  const weightProps = getPropsFromThemeKey(EuiThemeFontWeight);
+  const scaleProps = getPropsFromThemeKey(_EuiFontScale);
 
   return (
     <div>
@@ -62,6 +73,7 @@ export default () => {
               <ThemeValue
                 key={key}
                 property={'font'}
+                type={baseProps[key]}
                 name={key}
                 value={font[key]}
                 groupProps={{ wrap: true, gutterSize: 'none' }}
@@ -89,6 +101,7 @@ export default () => {
               <ThemeValue
                 key={key}
                 property="font"
+                type={weightProps[key]}
                 name={key}
                 value={font.weight[key]}
                 buttonStyle={css`
@@ -121,6 +134,7 @@ export default () => {
               <ThemeValue
                 key={key}
                 property="font.scale"
+                type={scaleProps[key]}
                 name={key}
                 value={font.scale[key]}
                 buttonStyle={css`

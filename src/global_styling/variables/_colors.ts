@@ -32,16 +32,22 @@ import {
  * TYPES
  */
 
-type _EuiThemeBrandColors = {
+/**
+ * Top 5 colors
+ */
+export type _EuiThemeBrandColors = {
   primary: ColorModeSwitch;
   accent: ColorModeSwitch;
+  /**
+   * Test: Successful messages
+   */
   success: ColorModeSwitch;
   warning: ColorModeSwitch;
   danger: ColorModeSwitch;
 };
 
 // Every color below must be based mathematically on the set above and in a particular order.
-type _EuiThemeBrandTextColors = {
+export type _EuiThemeBrandTextColors = {
   primaryText: ColorModeSwitch;
   accentText: ColorModeSwitch;
   successText: ColorModeSwitch;
@@ -49,7 +55,7 @@ type _EuiThemeBrandTextColors = {
   dangerText: ColorModeSwitch;
 };
 
-type _EuiThemeShadeColors = {
+export type _EuiThemeShadeColors = {
   emptyShade: ColorModeSwitch;
   lightestShade: ColorModeSwitch;
   lightShade: ColorModeSwitch;
@@ -59,7 +65,7 @@ type _EuiThemeShadeColors = {
   fullShade: ColorModeSwitch;
 };
 
-type _EuiThemeTextColors = {
+export type _EuiThemeTextColors = {
   text: ColorModeSwitch;
   title: ColorModeSwitch;
   subdued: ColorModeSwitch;
@@ -67,7 +73,7 @@ type _EuiThemeTextColors = {
 };
 
 export type EUI_BODY_COLOR_KEY = 'body'; // TOOD, get this to work in `makeHighContrastColor`
-type _EuiThemeSpecialColors = {
+export type _EuiThemeSpecialColors = {
   body: ColorModeSwitch;
   highlight: ColorModeSwitch;
   disabled: ColorModeSwitch;
