@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- NPM publish `i18ntokens.json` ([#4771](https://github.com/elastic/eui/pull/4771))
+
 **Bug fixes**
 
 - Fixed `initialFocus` prop functionality in `EuiPopover` ([#4768](https://github.com/elastic/eui/pull/4768))
