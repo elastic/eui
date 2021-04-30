@@ -9,7 +9,6 @@
   justify-content: center;
   padding-bottom: 10vh;
   animation: euiAnimFadeIn $euiAnimSpeedFast ease-in;
-  z-index: $euiZMask;
 
   $backgroundColor: $euiColorEmptyShade;
 
@@ -22,4 +21,13 @@
 
 .euiBody-hasOverlayMask {
   overflow: hidden;
+}
+
+// Handling the z-index based on whether it should be displayed above or below the header
+.euiOverlayMask--aboveHeader {
+  z-index: $euiZMask;
+}
+
+.euiOverlayMask--belowHeader {
+  z-index: $euiZMaskBelowHeader;
 }

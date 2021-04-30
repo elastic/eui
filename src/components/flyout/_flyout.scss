@@ -183,11 +183,11 @@ $flyoutSizes: (
   box-shadow: none;
   clip-path: none;
   animation-duration: 0s; // Don't animate on loading a docked nav
-  border-left: $euiBorderThin;
-  z-index: $euiZHeader - 1;
+  border-left: $euiBorderThick;
+  z-index: $euiZHeader - 1; // Make sure the header shadows are above
 
   &.euiFlyout--left {
     border-left: none;
-    border-right: $euiBorderThin;
+    border-right: $euiBorderThick;
   }
 }
