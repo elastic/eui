@@ -56,11 +56,11 @@
 @mixin euiPlaceholderPerBrowser {
   // sass-lint:disable-block no-vendor-prefixes
   // Each prefix must be its own content block
-  &::-webkit-input-placeholder { @content; }
-  &::-moz-placeholder { @content; }
-  &:-ms-input-placeholder { @content; }
-  &:-moz-placeholder { @content; }
-  &::placeholder { @content; }
+  &::-webkit-input-placeholder { @content; opacity: 1; }
+  &::-moz-placeholder { @content; opacity: 1; }
+  &:-ms-input-placeholder { @content; opacity: 1; }
+  &:-moz-placeholder { @content; opacity: 1; }
+  &::placeholder { @content; opacity: 1; }
 }
 
 @function euiFormControlGradient($color: $euiColorPrimary) {
@@ -83,7 +83,7 @@
 
   // sass-lint:disable-block mixins-before-declarations
   @include euiPlaceholderPerBrowser {
-    color: $euiColorDarkShade;
+    color: $euiFormControlPlaceholderText;
   }
 }
 

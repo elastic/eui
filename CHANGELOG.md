@@ -1,10 +1,28 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Bug fixes**
+
+- Fixed `initialFocus` prop functionality in `EuiPopover` ([#4768](https://github.com/elastic/eui/pull/4768))
+- Fixed `description` prop in `EuiTable`([#4754](https://github.com/elastic/eui/pull/4754))
+
+## [`32.3.0`](https://github.com/elastic/eui/tree/v32.3.0)
+
+- Reduced icon size in `EuiButtonEmpty` of `size` xs. ([#4759](https://github.com/elastic/eui/pull/4759))
+
+**Bug fixes**
+
+- Fixed missing i18n tokens for `EuiFilePicker` ([#4750](https://github.com/elastic/eui/pull/4750))
+- Fixed `EuiComoboBox` to use correct placeholder text color ([#4744](https://github.com/elastic/eui/pull/4744))
+
+## [`32.2.0`](https://github.com/elastic/eui/tree/v32.2.0)
+
 - Removed `MutationObserver` fallback from `EuiResizeObserver` ([#4709](https://github.com/elastic/eui/pull/4709))
 
 **Bug fixes**
 
-- Fixed `EuiInMemoryTable` `pagination` prop to update visible items when changed  ([#4714](https://github.com/elastic/eui/pull/4714))
+- Fixed `EuiInMemoryTable` `pagination` prop to update visible items when changed ([#4714](https://github.com/elastic/eui/pull/4714))
+- Fixed a bug in `EuiFilePicker` where the HTML input was being shown when `disabled` ([#4738](https://github.com/elastic/eui/pull/4738))
+- Fixed inverted asc and desc labels for `EuiDataGrid` `datetime` schema ([#4733](https://github.com/elastic/eui/pull/4733))
 
 ## [`32.1.0`](https://github.com/elastic/eui/tree/v32.1.0)
 

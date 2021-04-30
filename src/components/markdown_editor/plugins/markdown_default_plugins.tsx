@@ -64,7 +64,7 @@ const unknownHandler: Handler = (h, node) => {
   return h(node, node.type, node, all(h, node));
 };
 
-interface Rehype2ReactOptions {
+export interface Rehype2ReactOptions {
   components: { [key: string]: React.ComponentType<any> };
   [key: string]: any;
 }

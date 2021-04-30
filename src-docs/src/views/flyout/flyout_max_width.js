@@ -68,7 +68,7 @@ export default () => {
 
           <EuiSpacer />
 
-          <EuiForm>
+          <EuiForm component="form">
             <EuiFormRow
               label="Text field"
               helpText="I am some friendly help text.">
