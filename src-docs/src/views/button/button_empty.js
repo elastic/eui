@@ -64,7 +64,9 @@ export default () => (
           Extra small with icon right
         </EuiButtonEmpty>
       </EuiFlexItem>
+    </EuiFlexGroup>
 
+    <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
         <EuiButtonEmpty color="text" onClick={() => {}} iconType="dashboardApp">
           Text with app icon left
