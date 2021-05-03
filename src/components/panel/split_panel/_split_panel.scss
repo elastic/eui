@@ -5,18 +5,20 @@
 
   .euiSplitPanel__inner {
     flex-basis: 0%; // Make sure they're evenly split
+    // Ensure no movement if they have click handlers
+    transform: none !important; // sass-lint:disable-line no-important
+    box-shadow: none !important; // sass-lint:disable-line no-important
   }
 
   @each $modifier, $amount in $euiPanelBorderRadiusModifiers {
+    &.euiSplitPanel-isResponsive.euiPanel--#{$modifier} .euiSplitPanel__inner,
     &.euiPanel--#{$modifier} .euiSplitPanel__inner {
       &:first-child {
-        border-top-left-radius: $amount - 1;
-        border-top-right-radius: $amount - 1;
+        border-radius: ($amount - 1) ($amount - 1) 0 0;
       }
 
       &:last-child {
-        border-bottom-left-radius: $amount - 1;
-        border-bottom-right-radius: $amount - 1;
+        border-radius: 0 0 ($amount - 1) ($amount - 1);
       }
     }
   }
@@ -32,13 +34,11 @@
   @each $modifier, $amount in $euiPanelBorderRadiusModifiers {
     &.euiPanel--#{$modifier} .euiSplitPanel__inner {
       &:first-child {
-        border-top-left-radius: $amount - 1;
-        border-bottom-left-radius: $amount - 1;
+        border-radius: ($amount - 1) 0 0 ($amount - 1);
       }
 
       &:last-child {
-        border-bottom-right-radius: $amount - 1;
-        border-top-right-radius: $amount - 1;
+        border-radius: 0 ($amount - 1) ($amount - 1) 0;
       }
     }
   }

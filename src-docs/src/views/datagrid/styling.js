@@ -263,7 +263,7 @@ const DataGrid = () => {
   );
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: 50,
+    pageSize: 5,
   });
   const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
@@ -566,7 +566,7 @@ const DataGrid = () => {
                       buttonSize="compressed"
                       legend="Border"
                       options={showColumnSelectorOptions}
-                      idSelected={displayColumnSelector.toString()}
+                      idSelected={displayColumnSelector ? 'true' : 'false'}
                       onChange={onShowColumnSelectorChange}
                     />
                   </EuiFormRow>

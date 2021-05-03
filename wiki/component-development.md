@@ -54,12 +54,27 @@ Refer to the [automated accessibility testing guide](automated-accessibility-tes
 
 Note that `yarn link` currently does not work with Kibana. You'll need to manually pack and insert it into Kibana to test locally.
 
-1. In the `eui` folder, run `yarn build` then `npm pack`. This will create a `.tgz` file with the changes in your EUI directory. At this point you can move it anywhere.
-2. Point the `package.json` file in Kibana to that file: `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"` and run `yarn kbn bootstrap --no-validate`.
-    * The `--no-validate` flag is required when bootstrapping with a `.tgz`.
-    * Change the name of the `.tgz` after subsequent `yarn build` and `npm pack` steps (e.g., `elastic-eui-xx.x.x-1.tgz`, `elastic-eui-xx.x.x-2.tgz`). This is required for `yarn` to recognize new changes to the package.
-3. Rebuild Kibana's shared-ui-deps by running `yarn kbn:bootstrap` inside of `kibana/packages/kbn-ui-shared-deps/`.
-4. Run Kibana with `FORCE_DLL_CREATION=true node scripts/kibana --dev` to make sure it doesn't use a previously cached version of EUI.
+#### In EUI run:
+
+```bash
+yarn build && npm pack
+```
+
+This will create a `.tgz` file with the changes in your EUI directory. At this point you can move it anywhere.
+
+#### In Kibana:
+
+Point the `package.json` file in Kibana to that file: `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"`. Then run the following commands at Kibana's root folder:
+
+```bash
+yarn kbn bootstrap --no-validate && cd packages/kbn-ui-shared-deps/ && yarn kbn:bootstrap && cd ../../ && FORCE_DLL_CREATION=true node scripts/kibana --dev
+```
+
+* The `--no-validate` flag is required when bootstrapping with a `.tgz`.
+  * Change the name of the `.tgz` after subsequent `yarn build` and `npm pack` steps (e.g., `elastic-eui-xx.x.x-1.tgz`, `elastic-eui-xx.x.x-2.tgz`). This is required for `yarn` to recognize new changes to the package.
+* Running `yarn kbn:bootstrap` inside of `kibana/packages/kbn-ui-shared-deps/` rebuilds Kibana's shared-ui-deps.
+* Running Kibana with `FORCE_DLL_CREATION=true node scripts/kibana --dev` ensures it doesn't use a previously cached version of EUI.
+
 
 ## Principles
 
@@ -101,11 +116,101 @@ interface FooProps extends HTMLAttributes<HTMLDivElement> {
 }
 ```
 
-If your component forwards the `ref` through to an underlying element, the interface is further extended with `DetailedHTMLProps`
+If your component forwards a `ref` through to an underlying element, the interface needs to be further extended with `DetailedHTMLProps`
 
 ```ts
 // passes extra props and forwards the ref to a button
 interface FooProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   title: string
 }
+```
+
+### forwardRef
+
+React's `forwardRef` should be used to provide access to the component's outermost element. We impose two additional requirements when using `forwardRef`:
+
+1. use `forwardRef` instead of `React.forwardRef`, otherwise [react-docgen-typescript](https://www.npmjs.com/package/react-docgen-typescript) does not understand it and the component's props will not be rendered in our documentation
+2. the resulting component must have a `displayName`, this is useful when the component is included in a snapshot or when inspected in devtools. There is an eslint rule which checks for this.  
+
+#### Simple forward/pass-through
+
+```ts
+import React, { forwardRef } from 'react';
+
+interface MyComponentProps {...}
+
+export const MyComponent = forwardRef<
+  HTMLDivElement, // type of element or component the ref will be passed to
+  MyComponentProps // what properties apart from `ref` the component accepts
+>(
+  (
+    { destructure, props, here, ...rest },
+    ref
+  ) => {
+    return (
+      <div ref={ref} {...rest}>
+        ...
+      </div>
+    );
+  }
+);
+
+MyComponent.displayName = 'MyComponent';
+```
+
+#### Combining with additional refs
+
+Sometimes an element needs to have 2+ refs passed to it, for example a component interacts with the same element the forwarded ref needs to be given to. For this EUI provides a `useCombinedRefs` hook:
+
+```ts
+import React, { forwardRef, createRef } from 'react';
+import { useCombinedRefs } from '../../services';
+
+interface MyComponentProps {...}
+
+export const MyComponent = forwardRef<
+  HTMLDivElement, // type of element or component the ref will be passed to
+  MyComponentProps // what properties apart from `ref` the component accepts
+>(
+  (
+    { destructure, props, here, ...rest },
+    ref
+  ) => {
+    const localRef = useRef<HTMLDivElement>(null);
+    const combinedRefs = useCombinedRefs([ref, localRef]);
+    return (
+      <div ref={combinedRefs} {...rest}>
+        ...
+      </div>
+    );
+  }
+);
+
+MyComponent.displayName = 'MyComponent';
+```
+
+#### Providing custom or additional data 
+
+Rarely, a component's ref needs to be something other than a DOM element, or provide additional information. In these cases, React's `useImperativeHandle` can be used to provide a custom object as the ref's value. For example, **EuiMarkdownEditor**'s ref includes both its textarea element and the `replaceNode` method to interact with the abstract syntax tree. https://github.com/elastic/eui/blob/v31.10.0/src/components/markdown_editor/markdown_editor.tsx#L331
+
+```ts
+import React, { useImperativeHandle } from 'react';
+
+export const EuiMarkdownEditor = forwardRef<
+  EuiMarkdownEditorRef,
+  EuiMarkdownEditorProps
+  >(
+  (props, ref) => {
+    ...
+
+    // combines the textarea element & `replaceNode` into a single object, which is then passed back to the forwarded `ref`
+    useImperativeHandle(
+      ref,
+      () => ({ textarea: textareaRef.current, replaceNode }),
+      [replaceNode]
+    );
+
+    ...
+  }
+);
 ```

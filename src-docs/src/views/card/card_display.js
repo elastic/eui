@@ -17,17 +17,17 @@ export default () => (
           layout="horizontal"
           icon={<EuiIcon size="xl" type="logoLogging" />}
           onClick={() => {}}
-          title="Logs"
+          title="Plain"
           display="plain"
-          description="The Elastic Stack is the most popular open source logging platform."
+          description="This one still has a solid background color."
         />
       </EuiFlexItem>
       <EuiFlexItem>
         <EuiCard
           icon={<EuiIcon size="xl" type="logoLogging" />}
-          title="Logs"
-          display="plain"
-          description="The Elastic Stack is the most popular open source logging platform."
+          title="Subdued"
+          display="subdued"
+          description="This one has a subdued background color."
           onClick={() => {}}
         />
       </EuiFlexItem>
@@ -35,9 +35,9 @@ export default () => (
         <EuiCard
           layout="horizontal"
           icon={<EuiIcon size="xl" type="logoLogging" />}
-          title="Logs"
-          display="plain"
-          description="The Elastic Stack is the most popular open source logging platform."
+          title="Transparent"
+          display="transparent"
+          description="This one doesn't have a background color anymore."
           betaBadgeLabel="Beta"
           betaBadgeTooltipContent="This module is not GA. Please help us by reporting any bugs."
           onClick={() => {}}

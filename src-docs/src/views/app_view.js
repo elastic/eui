@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-
+import { Helmet } from 'react-helmet';
 import { GuidePageChrome, ThemeContext } from '../components';
 import { registerRouter, translateUsingPseudoLocale } from '../services';
 
@@ -13,6 +13,13 @@ import {
 
 import { keys } from '../../../src/services';
 import { GuidePageHeader } from '../components/guide_page/guide_page_header';
+
+import favicon16Prod from '../images/favicon/prod/favicon-16x16.png';
+import favicon32Prod from '../images/favicon/prod/favicon-32x32.png';
+import favicon96Prod from '../images/favicon/prod/favicon-96x96.png';
+import favicon16Dev from '../images/favicon/dev/favicon-16x16.png';
+import favicon32Dev from '../images/favicon/dev/favicon-32x32.png';
+import favicon96Dev from '../images/favicon/dev/favicon-96x96.png';
 
 export class AppView extends Component {
   constructor(...args) {
@@ -30,7 +37,6 @@ export class AppView extends Component {
   }
 
   componentDidMount() {
-    document.title = `Elastic UI Framework - ${this.props.currentRoute.name}`;
     document.addEventListener('keydown', this.onKeydown);
   }
 
@@ -52,8 +58,31 @@ export class AppView extends Component {
       locale,
     };
 
+    const isLocalDev = window.location.host.includes('803');
+
     return (
       <>
+        <Helmet>
+          <title>{`${this.props.currentRoute.name} - Elastic UI Framework`}</title>
+          <link
+            rel="icon"
+            type="image/png"
+            href={isLocalDev ? favicon16Dev : favicon16Prod}
+            sizes="16x16"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            href={isLocalDev ? favicon32Dev : favicon32Prod}
+            sizes="32x32"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            href={isLocalDev ? favicon96Dev : favicon96Prod}
+            sizes="96x96"
+          />
+        </Helmet>
         <GuidePageHeader
           onToggleLocale={toggleLocale}
           selectedLocale={locale}

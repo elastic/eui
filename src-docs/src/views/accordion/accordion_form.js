@@ -18,7 +18,7 @@ import {
 } from '../../../../src/components';
 
 const repeatableForm = (
-  <EuiForm>
+  <EuiForm component="form">
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiFieldText label="Username" icon="user" placeholder="John" />
@@ -49,7 +49,7 @@ const buttonContent = (
       </EuiFlexItem>
 
       <EuiFlexItem>
-        <EuiTitle size="s" className="euiAccordionForm__title">
+        <EuiTitle size="xs">
           <h3>Webhook</h3>
         </EuiTitle>
       </EuiFlexItem>
@@ -76,12 +76,6 @@ const extraAction = (
 
 export default () => (
   <div>
-    <EuiTitle size="s">
-      <h3>I am a complicated, highly styled, repeatable form!</h3>
-    </EuiTitle>
-
-    <EuiSpacer size="l" />
-
     <EuiAccordion
       id="accordionForm1"
       className="euiAccordionForm"

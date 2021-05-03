@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { ReactNode, HTMLAttributes } from 'react';
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 
 import classNames from 'classnames';
 
@@ -70,7 +70,7 @@ export type EuiDescribedFormGroupProps = CommonProps &
     fieldFlexItemProps?: PropsOf<typeof EuiFlexItem>;
   };
 
-export const EuiDescribedFormGroup: React.FunctionComponent<EuiDescribedFormGroupProps> = ({
+export const EuiDescribedFormGroup: FunctionComponent<EuiDescribedFormGroupProps> = ({
   children,
   className,
   gutterSize = 'l',

@@ -17,6 +17,12 @@
   z-index: $euiZModal;
   min-width: $euiFormMaxWidth;
   animation: euiModal $euiAnimSpeedSlow $euiAnimSlightBounce;
+  max-width: calc(100vw - #{$euiSize});
+
+  // Remove the outline from the focusable container
+  &:focus {
+    outline: none;
+  }
 
   .euiModal__flex { /* 1 */
     flex: 1 1 auto;
@@ -28,7 +34,10 @@
 }
 
 .euiModal--maxWidth-default {
-  max-width: map-get($euiBreakpoints, 'm');
+  // Sass and CSS's versions of `min` collide here, so we use all uppercase to ensure the CSS version is used
+  // https://css-tricks.com/when-sass-and-new-css-features-collide/#the-solution
+  // sass-lint:disable-block function-name-format
+  max-width: MIN(#{map-get($euiBreakpoints, 'm')}, calc(100vw - #{$euiSize}));
 }
 
 .euiModal--confirmation {
