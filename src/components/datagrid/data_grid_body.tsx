@@ -170,12 +170,27 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
   const isTrailingControlColumn =
     columnIndex >= leadingControlColumns.length + columns.length;
 
+  const dataColumnIndex = columnIndex - leadingControlColumns.length;
+  const column = columns[dataColumnIndex];
+  const columnId = column?.id;
+
+  const transformClass = schemaDetectors.filter(
+    (row: EuiDataGridSchemaDetector) => {
+      console.log(column);
+      return column?.schema
+        ? column?.schema === row.type
+        : columnId === row.type;
+    }
+  )[0];
+  const textTransform = transformClass?.textTransform;
+
   const classes = classNames({
     'euiDataGridRowCell--stripe': isStripableRow,
     'euiDataGridRowCell--firstColumn': isFirstColumn,
     'euiDataGridRowCell--lastColumn': isLastColumn,
     'euiDataGridRowCell--controlColumn':
       isLeadingControlColumn || isTrailingControlColumn,
+    [`euiDataGridRowCell--${textTransform}`]: textTransform,
   });
 
   if (isLeadingControlColumn) {
@@ -195,7 +210,6 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         isExpandable={false}
         className={classes}
         setRowHeight={setRowHeight}
-        schema={schemaDetectors}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -220,7 +234,6 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         interactiveCellId={interactiveCellId}
         isExpandable={false}
         className={classes}
-        schema={schemaDetectors}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -231,9 +244,6 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
     // this is a normal data cell
 
     // offset the column index by the leading control columns
-    const dataColumnIndex = columnIndex - leadingControlColumns.length;
-    const column = columns[dataColumnIndex];
-    const columnId = column.id;
     const columnType = schema[columnId] ? schema[columnId].columnType : null;
 
     const isExpandable =
@@ -258,7 +268,6 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         interactiveCellId={interactiveCellId}
         isExpandable={isExpandable}
         className={classes}
-        schema={schemaDetectors}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
