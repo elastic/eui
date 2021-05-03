@@ -125,11 +125,13 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
     );
   }
 
+  name = property ? `${property}.${name}` : name;
+
   return (
     <EuiFlexGroup responsive={false} alignItems="flexStart" {...groupProps}>
       <EuiFlexItem grow={true}>
         <EuiText size="s">
-          <EuiCode language="ts" transparentBackground>
+          <EuiCode language="tsx" transparentBackground>
             {name}
             {typeRender}
           </EuiCode>
