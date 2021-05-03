@@ -45,50 +45,52 @@ export const ThemeSection: FunctionComponent<ThemeSection> = ({
           )}
           {description}
         </EuiText>
-        {themeValues && (
-          <>
-            <EuiSpacer />
-            <EuiPanel grow={false} paddingSize="m" color="subdued">
-              {property ? (
-                <>
-                  <EuiCode transparentBackground>{`${property}: {`}</EuiCode>
-                  <EuiSpacer size="s" />
-                  <EuiFlexGroup
-                    style={{ paddingLeft: 16 }}
-                    direction="column"
-                    gutterSize="s">
-                    {themeValues}
-                  </EuiFlexGroup>
-                  <EuiSpacer size="s" />
-                  <EuiCode transparentBackground>{'}'}</EuiCode>
-                </>
-              ) : (
-                <EuiFlexGroup direction="column" gutterSize="s">
+      </EuiFlexItem>
+      {themeValues && (
+        <EuiFlexItem grow={2}>
+          <EuiSpacer />
+          <EuiPanel grow={false} paddingSize="m" color="subdued">
+            {property ? (
+              <>
+                <EuiCode transparentBackground>{`${property}: {`}</EuiCode>
+                <EuiSpacer size="s" />
+                <EuiFlexGroup
+                  style={{ paddingLeft: 16 }}
+                  direction="column"
+                  gutterSize="s">
                   {themeValues}
                 </EuiFlexGroup>
-              )}
-            </EuiPanel>
-          </>
-        )}
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiSplitPanel.Outer style={{ overflow: 'hidden' }}>
-          <EuiSplitPanel.Inner>{example}</EuiSplitPanel.Inner>
-          <EuiSplitPanel.Inner color="subdued">
-            {snippet && (
-              <EuiCodeBlock
-                isCopyable={true}
-                paddingSize="none"
-                transparentBackground={true}
-                language="jsx">
-                {`css\`
+                <EuiSpacer size="s" />
+                <EuiCode transparentBackground>{'}'}</EuiCode>
+              </>
+            ) : (
+              <EuiFlexGroup direction="column" gutterSize="s">
+                {themeValues}
+              </EuiFlexGroup>
+            )}
+          </EuiPanel>
+        </EuiFlexItem>
+      )}
+      {snippet && (
+        <EuiFlexItem grow={2}>
+          <EuiSplitPanel.Outer style={{ overflow: 'hidden' }}>
+            <EuiSplitPanel.Inner>{example}</EuiSplitPanel.Inner>
+            <EuiSplitPanel.Inner color="subdued">
+              {snippet && (
+                <EuiCodeBlock
+                  isCopyable={true}
+                  paddingSize="none"
+                  transparentBackground={true}
+                  language="jsx">
+                  {`css\`
   ${snippet}
 \``}
-              </EuiCodeBlock>
-            )}
-          </EuiSplitPanel.Inner>
-        </EuiSplitPanel.Outer>
-      </EuiFlexItem>
+                </EuiCodeBlock>
+              )}
+            </EuiSplitPanel.Inner>
+          </EuiSplitPanel.Outer>
+        </EuiFlexItem>
+      )}
     </EuiFlexGroup>
   );
 };

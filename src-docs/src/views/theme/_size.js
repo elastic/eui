@@ -49,9 +49,7 @@ export default ({ onThemeUpdate }) => {
         description={
           <p>
             All sizing keys are calculated from a single <EuiCode>base</EuiCode>{' '}
-            integer and evaluate to pixel values. You can use calculations on
-            top of the base value, just be sure to append the{' '}
-            <EuiCode>px</EuiCode> unit to the end.
+            integer and evaluate to pixel values.
           </p>
         }
         themeValues={
@@ -71,6 +69,17 @@ export default ({ onThemeUpdate }) => {
               onUpdate={(value) => updateBase(value)}
             />
           </EuiFlexItem>
+        }
+      />
+
+      <EuiSpacer />
+
+      <ThemeSection
+        description={
+          <p>
+            You can use calculations on top of the base value, just be sure to
+            append the <EuiCode>px</EuiCode> unit to the end.
+          </p>
         }
         example={
           <div
@@ -117,6 +126,12 @@ export default ({ onThemeUpdate }) => {
             />
           </EuiFlexItem>
         ))}
+      />
+
+      <EuiSpacer />
+
+      <ThemeSection
+        description={<p>Using the values as they are is straight foward.</p>}
         example={
           <div
             style={wrappingExampleStyle}
