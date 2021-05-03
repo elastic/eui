@@ -1,0 +1,19 @@
+.euiRangeDraggable {
+  height: $euiFormControlHeight / 2;
+  position: absolute;
+  top: $euiFormControlHeight / 4;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  &.euiRangeDraggable--compressed {
+    height: $euiFormControlCompressedHeight / 2;
+    top: $euiFormControlCompressedHeight / 4;
+  }
+
+  &.euiRangeDraggable--hasTicks {
+    top: 0;
+  }
+}
