@@ -22,17 +22,17 @@ export default () => {
   const [overrides, setOverrides] = React.useState({});
   const { euiTheme } = useEuiTheme();
 
-  const lightColors = (newOverrides) => {
+  const updateTheme = (newOverrides) => {
     setOverrides(mergeDeep(overrides, newOverrides));
   };
 
   return (
     <EuiThemeProvider modify={overrides}>
-      <Colors onThemeUpdate={(overrides) => lightColors(overrides)} />
+      <Colors onThemeUpdate={(overrides) => updateTheme(overrides)} />
 
       <EuiHorizontalRule margin="xxl" />
 
-      <Size />
+      <Size onThemeUpdate={(overrides) => updateTheme(overrides)} />
 
       <EuiHorizontalRule margin="xxl" />
 

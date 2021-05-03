@@ -10,6 +10,7 @@ import {
   EuiFlexItem,
 } from '../../../../src/components/flex';
 import { EuiText } from '../../../../src/components/text';
+import { EuiFieldNumber } from '../../../../src/components/form';
 import {
   isValidHex,
   useColorPickerState,
@@ -28,7 +29,7 @@ type ThemeValue = {
   example?: ReactNode;
   groupProps?: EuiFlexGroupProps;
   buttonStyle?: SerializedStyles;
-  onUpdate?: (color: string) => void;
+  onUpdate?: (color: string | number) => void;
   type?: any;
 };
 
@@ -47,7 +48,6 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
   const [color, setColor, errors] = useColorPickerState(
     isValidHex(String(value)) ? String(value) : ''
   );
-
   const handleColorChange: EuiSetColorMethod = (text, { hex, isValid }) => {
     setColor(text, { hex, isValid });
     onUpdate && onUpdate(hex);
@@ -116,6 +116,24 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
     );
   }
 
+  let valueRender;
+  if (typeof value === 'number' && onUpdate) {
+    valueRender = (
+      <EuiFieldNumber
+        compressed
+        aria-label="Update base value"
+        value={value}
+        onChange={(e) => onUpdate(Number(e.target.value))}
+      />
+    );
+  } else {
+    valueRender = (
+      <EuiText size="s" color="subdued">
+        <code>{value}</code>
+      </EuiText>
+    );
+  }
+
   return (
     <EuiFlexGroup responsive={false} alignItems="flexStart" {...groupProps}>
       {exampleRender}
@@ -128,11 +146,7 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
         </EuiText>
         {descriptionRender}
       </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiText size="s" color="subdued">
-          <code>{value}</code>
-        </EuiText>
-      </EuiFlexItem>
+      <EuiFlexItem grow={false}>{valueRender}</EuiFlexItem>
     </EuiFlexGroup>
   );
 };
