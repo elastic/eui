@@ -19,9 +19,11 @@ import {
   EuiPanel,
   EuiCode,
   EuiIcon,
+  EuiColorPickerSwatch,
 } from '../../../../src/components';
 
 import { ThemeValue } from './_values';
+import { ThemeSection } from './_theme_section';
 
 import { getPropsFromThemeKey, EuiThemeColors } from './_props';
 
@@ -108,213 +110,203 @@ export default ({ onThemeUpdate }) => {
 
       <EuiSpacer />
 
-      <EuiFlexGroup>
-        <EuiFlexItem>
-          <EuiText size="s">
-            <h3>_EuiThemeBrandColors</h3>
-            <p>
-              Elastic has two main brand colors the other three are used for
-              statefulness like indicating between successful and dangerous
-              actions.
-            </p>
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem grow={2}>
-          <EuiPanel grow={false} paddingSize="l" color="subdued">
-            {brandKeys.map((color) => (
-              <React.Fragment key={color}>
+      <ThemeSection
+        code="_EuiThemeBrandColors"
+        description={
+          <p>
+            Elastic has two main brand colors the other three are used for
+            statefulness like indicating between successful and dangerous
+            actions.
+          </p>
+        }
+        property="colors"
+        themeValues={brandKeys.map((color) => (
+          <EuiFlexItem key={color}>
+            <ThemeValue
+              property="color"
+              type={props[color]}
+              name={color}
+              value={colors[color].toUpperCase()}
+              example={<EuiColorPickerSwatch color={colors[color]} />}
+              onUpdate={(hex) => updateColor(color, hex)}
+            />
+          </EuiFlexItem>
+        ))}
+      />
+
+      <EuiSpacer size="xxl" />
+
+      <ThemeSection
+        code="_EuiThemeBrandTextColors"
+        description={
+          <p>
+            Each color also has a corresponding text variant that has been
+            calculated for proper (4.5) contrast against the body color and
+            should be used specifically when coloring text.
+          </p>
+        }
+        property="colors"
+        themeValues={brandTextKeys.map((color, index) => (
+          <EuiFlexItem key={color}>
+            <ThemeValue
+              property="color"
+              name={brandTextKeys[index]}
+              type={props[color]}
+              value={colors[brandTextKeys[index]].toUpperCase()}
+              onUpdate={(hex) => updateColor(color, hex)}
+              example={
+                <button
+                  css={css`
+                    color: ${colors[color]};
+                    min-width: ${euiTheme.size.l};
+                    min-height: ${euiTheme.size.l};
+                  `}>
+                  <strong>Aa</strong>
+                </button>
+              }
+            />
+          </EuiFlexItem>
+        ))}
+      />
+
+      <EuiSpacer size="xxl" />
+
+      <ThemeSection
+        code="_EuiThemeShadeColors"
+        description={<p>Grayscale</p>}
+        property="colors"
+        themeValues={shadeKeys.map((color) => (
+          <EuiFlexItem key={color}>
+            <ThemeValue
+              key={color}
+              property="color"
+              type={props[color]}
+              name={color}
+              value={colors[color].toUpperCase()}
+              example={<EuiColorPickerSwatch color={colors[color]} />}
+              onUpdate={(hex) => updateColor(color, hex)}
+            />
+          </EuiFlexItem>
+        ))}
+      />
+
+      <EuiSpacer size="xxl" />
+
+      <ThemeSection
+        code="_EuiThemeTextColors"
+        description={
+          <p>
+            Specific text colors calculated off either the brand or shade
+            colors.
+          </p>
+        }
+        property="colors"
+        themeValues={textKeys.map((color) => (
+          <EuiFlexItem key={color}>
+            <ThemeValue
+              property="color"
+              name={color}
+              type={props[color]}
+              value={colors[color].toUpperCase()}
+              onUpdate={(hex) => updateColor(color, hex)}
+              example={
+                <button
+                  css={css`
+                    color: ${colors[color]};
+                    min-width: ${euiTheme.size.l};
+                    min-height: ${euiTheme.size.l};
+                  `}>
+                  <strong>Aa</strong>
+                </button>
+              }
+            />
+          </EuiFlexItem>
+        ))}
+      />
+
+      <EuiSpacer size="xxl" />
+
+      <ThemeSection
+        code="_EuiThemeSpecialColors"
+        description={<p>These are used a lot for special cases.</p>}
+        property="colors"
+        themeValues={specialKeys.map((color) => {
+          if (color.includes('Text')) {
+            return (
+              <EuiFlexItem key={color}>
                 <ThemeValue
+                  key={color}
                   property="color"
-                  type={props[color]}
                   name={color}
+                  type={props[color]}
                   value={colors[color].toUpperCase()}
+                  onUpdate={(hex) => updateColor(color, hex)}
                   example={
-                    <EuiIcon size="l" type="stopFilled" color={colors[color]} />
+                    <button
+                      css={css`
+                        color: ${colors[color]};
+                        min-width: ${euiTheme.size.l};
+                        min-height: ${euiTheme.size.l};
+                      `}>
+                      <strong>Aa</strong>
+                    </button>
                   }
+                />
+              </EuiFlexItem>
+            );
+          } else {
+            return (
+              <EuiFlexItem key={color}>
+                <ThemeValue
+                  key={color}
+                  property="color"
+                  name={color}
+                  type={props[color]}
+                  value={colors[color].toUpperCase()}
+                  example={<EuiColorPickerSwatch color={colors[color]} />}
                   onUpdate={(hex) => updateColor(color, hex)}
                 />
-              </React.Fragment>
-            ))}
-          </EuiPanel>
-        </EuiFlexItem>
-      </EuiFlexGroup>
+              </EuiFlexItem>
+            );
+          }
+        })}
+      />
 
-      <EuiSpacer />
+      <EuiSpacer size="xxl" />
 
-      <EuiFlexGroup>
-        <EuiFlexItem>
-          <EuiText size="s">
-            <h3>_EuiThemeBrandTextColors</h3>
-            <p>
-              Each color also has a corresponding text variant that has been
-              calculated for proper (4.5) contrast against the body color and
-              should be used specifically when coloring text.
-            </p>
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem grow={2}>
-          <EuiPanel grow={false} paddingSize="l" color="subdued">
-            {brandTextKeys.map((color, index) => (
-              <React.Fragment key={color}>
-                <ThemeValue
-                  property="color"
-                  name={brandTextKeys[index]}
-                  type={props[color]}
-                  value={colors[brandTextKeys[index]].toUpperCase()}
-                  buttonStyle={css`
-                    color: ${colors[brandTextKeys[index]]};
-                    min-width: ${euiTheme.size.l};
-                    padding-top: 2px;
-                  `}
-                  example={<strong>Aa</strong>}
-                />
-              </React.Fragment>
-            ))}
-          </EuiPanel>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-
-      <EuiSpacer />
-
-      <EuiFlexGroup>
-        <EuiFlexItem>
-          <EuiText size="s">
-            <h3>_EuiThemeShadeColors</h3>
-            <p>Grayscale</p>
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem grow={2}>
-          <EuiPanel paddingSize="l" color="subdued">
-            {shadeKeys.map((color) => (
+      <ThemeSection
+        code="Constants"
+        description={
+          <p>These are constant no matter the theme or color mode.</p>
+        }
+        property="colors"
+        themeValues={
+          <>
+            <EuiFlexItem>
               <ThemeValue
-                key={color}
                 property="color"
-                type={props[color]}
-                name={color}
-                value={colors[color].toUpperCase()}
+                name={'ink'}
+                type={props.ink}
+                value={colors.ink.toUpperCase()}
                 example={
-                  <EuiIcon size="l" type="stopFilled" color={colors[color]} />
+                  <EuiIcon size="l" type="stopFilled" color={colors.ink} />
                 }
               />
-            ))}
-          </EuiPanel>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-
-      <EuiSpacer />
-
-      <EuiFlexGroup>
-        <EuiFlexItem>
-          <EuiText size="s">
-            <h3>_EuiThemeTextColors</h3>
-            <p>
-              Specific text colors calculated off either the brand or shade
-              colors.
-            </p>
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem grow={2}>
-          <EuiPanel paddingSize="l" color="subdued">
-            {textKeys.map((color) => (
+            </EuiFlexItem>
+            <EuiFlexItem>
               <ThemeValue
-                key={color}
                 property="color"
-                name={color}
-                type={props[color]}
-                value={colors[color].toUpperCase()}
-                buttonStyle={css`
-                  color: ${colors[color]};
-                  min-width: ${euiTheme.size.l};
-                `}
-                example={<strong>Aa</strong>}
+                name={'ghost'}
+                type={props.ghost}
+                value={colors.ghost.toUpperCase()}
+                example={
+                  <EuiIcon size="l" type="stopFilled" color={colors.ghost} />
+                }
               />
-            ))}
-          </EuiPanel>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-
-      <EuiSpacer />
-
-      <EuiFlexGroup>
-        <EuiFlexItem>
-          <EuiText size="s">
-            <h3>_EuiThemeSpecialColors</h3>
-            <p>These are used a lot for special cases.</p>
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem grow={2}>
-          <EuiPanel paddingSize="l" color="subdued">
-            {specialKeys.map((color) => {
-              if (color.includes('Text')) {
-                return (
-                  <ThemeValue
-                    key={color}
-                    property="color"
-                    name={color}
-                    type={props[color]}
-                    value={colors[color].toUpperCase()}
-                    buttonStyle={css`
-                      color: ${colors[color]};
-                      min-width: ${euiTheme.size.l};
-                    `}
-                    example={<strong>Aa</strong>}
-                  />
-                );
-              } else {
-                return (
-                  <ThemeValue
-                    key={color}
-                    property="color"
-                    name={color}
-                    type={props[color]}
-                    value={colors[color].toUpperCase()}
-                    example={
-                      <EuiIcon
-                        size="l"
-                        type="stopFilled"
-                        color={colors[color]}
-                      />
-                    }
-                  />
-                );
-              }
-            })}
-          </EuiPanel>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-
-      <EuiSpacer />
-
-      <EuiFlexGroup>
-        <EuiFlexItem>
-          <EuiText size="s">
-            <h3>Constants</h3>
-            <p>These are constant no matter the theme or color mode.</p>
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem grow={2}>
-          <EuiPanel paddingSize="l" color="subdued">
-            <ThemeValue
-              property="color"
-              name={'ink'}
-              type={props.ink}
-              value={colors.ink.toUpperCase()}
-              example={
-                <EuiIcon size="l" type="stopFilled" color={colors.ink} />
-              }
-            />
-            <ThemeValue
-              property="color"
-              name={'ghost'}
-              type={props.ghost}
-              value={colors.ghost.toUpperCase()}
-              example={
-                <EuiIcon size="l" type="stopFilled" color={colors.ghost} />
-              }
-            />
-          </EuiPanel>
-        </EuiFlexItem>
-      </EuiFlexGroup>
+            </EuiFlexItem>
+          </>
+        }
+      />
     </div>
   );
 };

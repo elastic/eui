@@ -1,8 +1,7 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, ReactElement, ReactNode } from 'react';
 import { css, SerializedStyles } from '@emotion/react';
 import { EuiCode } from '../../../../src/components/code';
 import { EuiColorPicker } from '../../../../src/components/color_picker';
-import { EuiCopy } from '../../../../src/components/copy';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import {
   EuiFlexGroup,
@@ -50,7 +49,9 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
   );
   const handleColorChange: EuiSetColorMethod = (text, { hex, isValid }) => {
     setColor(text, { hex, isValid });
-    onUpdate && onUpdate(hex);
+    if (isValid) {
+      onUpdate && onUpdate(hex);
+    }
   };
 
   let exampleRender;
@@ -64,24 +65,14 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
           color={color}
           isInvalid={!!errors}
           secondaryInputDisplay="bottom"
-          button={<button css={buttonStyle}>{example}</button>}
+          button={example as ReactElement}
         />
       </EuiFlexItem>
     );
   } else if (example || buttonStyle) {
-    // Add dot if property exists
-    property = property ? `.${property}` : '';
     exampleRender = (
       <EuiFlexItem grow={false}>
-        <EuiCopy
-          beforeMessage={`Click to copy euiTheme${property}.${name}`}
-          textToCopy={`euiTheme${property}.${name}`}>
-          {(copy) => (
-            <button onClick={copy} css={buttonStyle}>
-              {example}
-            </button>
-          )}
-        </EuiCopy>
+        <span css={buttonStyle}>{example}</span>
       </EuiFlexItem>
     );
   }
@@ -136,7 +127,6 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
 
   return (
     <EuiFlexGroup responsive={false} alignItems="flexStart" {...groupProps}>
-      {exampleRender}
       <EuiFlexItem grow={true}>
         <EuiText size="s">
           <EuiCode language="ts" transparentBackground>
@@ -147,6 +137,7 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
         {descriptionRender}
       </EuiFlexItem>
       <EuiFlexItem grow={false}>{valueRender}</EuiFlexItem>
+      {exampleRender}
     </EuiFlexGroup>
   );
 };

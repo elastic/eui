@@ -11,7 +11,6 @@ import {
 
 import { getPropsFromThemeKey, EuiTheme, _EuiThemeSize } from './_props';
 import { ThemeSection } from './_theme_section';
-
 import { ThemeValue } from './_values';
 import { EuiFlexItem } from '../../../../src/components/flex';
 
@@ -109,11 +108,10 @@ export default ({ onThemeUpdate }) => {
         }
         property="size"
         themeValues={Object.keys(sizes).map((size) => (
-          <EuiFlexItem>
+          <EuiFlexItem key={size}>
             <ThemeValue
               property="size"
               type={themeSizeProps[size]}
-              key={size}
               name={size}
               value={sizes[size]}
               groupProps={{ alignItems: 'center' }}
