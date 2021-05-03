@@ -27,8 +27,12 @@ import React, {
   useState,
 } from 'react';
 import classNames from 'classnames';
-import { throttle } from '../color_picker/utils';
-import { EuiWindowEvent, htmlIdGenerator, keys } from '../../services';
+import {
+  EuiWindowEvent,
+  htmlIdGenerator,
+  keys,
+  throttle,
+} from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { CommonProps } from '../common';

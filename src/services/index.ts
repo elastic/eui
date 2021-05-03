@@ -121,4 +121,8 @@ export {
   useCombinedRefs,
   useDependentState,
   useIsWithinBreakpoints,
+  useMouseMove,
+  isMouseEvent,
 } from './hooks';
+
+export { throttle } from './throttle';
