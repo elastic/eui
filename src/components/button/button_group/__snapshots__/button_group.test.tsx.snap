@@ -25,6 +25,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -46,6 +47,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -68,6 +70,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -104,6 +107,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -129,6 +133,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -158,6 +163,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -196,6 +202,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -217,6 +224,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -239,6 +247,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -275,6 +284,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -300,6 +310,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -329,6 +340,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -367,6 +379,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -388,6 +401,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -410,6 +424,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -446,6 +461,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -471,6 +487,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -500,6 +517,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -538,6 +556,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -559,6 +578,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -581,6 +601,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -617,6 +638,7 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -642,6 +664,7 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -671,6 +694,7 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -709,6 +733,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -730,6 +755,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -752,6 +778,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -788,6 +815,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -813,6 +841,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -842,6 +871,7 @@ exports[`EuiButtonGroup button props color ghost is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -880,6 +910,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -901,6 +932,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -923,6 +955,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -959,6 +992,7 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -984,6 +1018,7 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1013,6 +1048,7 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1051,6 +1087,7 @@ exports[`EuiButtonGroup button props color secondary is rendered for multi 1`] =
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1072,6 +1109,7 @@ exports[`EuiButtonGroup button props color secondary is rendered for multi 1`] =
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1094,6 +1132,7 @@ exports[`EuiButtonGroup button props color secondary is rendered for multi 1`] =
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1130,6 +1169,7 @@ exports[`EuiButtonGroup button props color secondary is rendered for single 1`] 
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1155,6 +1195,7 @@ exports[`EuiButtonGroup button props color secondary is rendered for single 1`] 
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1184,6 +1225,7 @@ exports[`EuiButtonGroup button props color secondary is rendered for single 1`] 
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1222,6 +1264,7 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1243,6 +1286,7 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1265,6 +1309,7 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1301,6 +1346,7 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1326,6 +1372,7 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1355,6 +1402,7 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1393,6 +1441,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1414,6 +1463,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1436,6 +1486,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1472,6 +1523,7 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1497,6 +1549,7 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1526,6 +1579,7 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1566,6 +1620,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1588,6 +1643,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1610,6 +1666,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1650,6 +1707,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1672,6 +1730,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1694,6 +1753,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1732,6 +1792,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1753,6 +1814,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1775,6 +1837,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1811,6 +1874,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1836,6 +1900,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1865,6 +1930,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1903,6 +1969,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1924,6 +1991,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1946,6 +2014,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -1982,6 +2051,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -2007,6 +2077,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -2036,6 +2107,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -2072,6 +2144,7 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -2098,6 +2171,7 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -2127,6 +2201,7 @@ exports[`EuiButtonGroup button props selection idSelected is rendered for single
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -2165,6 +2240,7 @@ exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for m
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -2186,6 +2262,7 @@ exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for m
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -2208,6 +2285,7 @@ exports[`EuiButtonGroup button props selection idToSelectedMap is rendered for m
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -2248,6 +2326,7 @@ exports[`EuiButtonGroup type multi is rendered 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -2269,6 +2348,7 @@ exports[`EuiButtonGroup type multi is rendered 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -2291,6 +2371,7 @@ exports[`EuiButtonGroup type multi is rendered 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -2329,6 +2410,7 @@ exports[`EuiButtonGroup type single is rendered 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -2354,6 +2436,7 @@ exports[`EuiButtonGroup type single is rendered 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span
@@ -2383,6 +2466,7 @@ exports[`EuiButtonGroup type single is rendered 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
         <span

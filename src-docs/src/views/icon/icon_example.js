@@ -203,13 +203,14 @@ export const IconExample = {
             <p>
               Two-tone icons, like our app style icons, will behave similarly to
               normal glyphs when provided a specific color by applying the color
-              to <strong>all</strong> the shapes within.
+              to <strong>all</strong> the shapes within. You can force the icon
+              to match the parent's text color by passing{' '}
+              <EuiCode>color="inherit"</EuiCode> to the icon.
             </p>
           </EuiText>
-          <EuiSpacer />
-          <AppIconColors />
         </>
       ),
+      demo: <AppIconColors />,
     },
     {
       title: 'Custom SVGs',
@@ -218,8 +219,8 @@ export const IconExample = {
           <p>
             The <EuiCode>type</EuiCode> prop can accept a valid enum, string or
             React SVG Element. When using a custom SVG, please make sure it sits
-            on a square canvas and preferably utilizes one of EUI&apos;s sizes
-            (<EuiCode>16x16</EuiCode> or <EuiCode>32x32</EuiCode>).
+            on a square canvas and preferably utilizes one of EUI&apos;s sizes (
+            <EuiCode>16x16</EuiCode> or <EuiCode>32x32</EuiCode>).
           </p>
           <p>
             When using custom SVGs for simple glyphs,{' '}
