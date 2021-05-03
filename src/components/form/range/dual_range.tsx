@@ -31,6 +31,7 @@ import {
 import { htmlIdGenerator } from '../../../services/accessibility';
 
 import { EuiRangeProps } from './range';
+import { EuiRangeDraggable } from './range_draggable';
 import { EuiRangeHighlight } from './range_highlight';
 import { EuiRangeInput, EuiRangeInputProps } from './range_input';
 import { EuiRangeLabel } from './range_label';
@@ -58,7 +59,7 @@ export interface EuiDualRangeProps
   onChange: (
     values: [ValueMember, ValueMember],
     isValid: boolean,
-    event:
+    event?:
       | React.ChangeEvent<HTMLInputElement>
       | React.MouseEvent<HTMLButtonElement>
       | React.KeyboardEvent<HTMLInputElement>
@@ -105,6 +106,10 @@ export interface EuiDualRangeProps
    *  Intended to be uses with aria attributes. Some attributes may be overwritten.
    */
   maxInputProps?: Partial<EuiRangeInputProps>;
+  /**
+   *  Creates a draggble highlighted range area
+   */
+  isDraggable?: boolean;
 }
 
 export class EuiDualRange extends Component<EuiDualRangeProps> {
@@ -139,6 +144,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       rangeWidth: !!ref ? ref.clientWidth : null,
     });
   };
+  private leftPosition = 0;
 
   get lowerValue() {
     return this.props.value ? this.props.value[0] : this.props.min;
@@ -246,7 +252,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
   _handleOnChange = (
     lower: ValueMember,
     upper: ValueMember,
-    e:
+    e?:
       | React.ChangeEvent<HTMLInputElement>
       | React.MouseEvent<HTMLButtonElement>
       | React.KeyboardEvent<HTMLInputElement>
@@ -443,6 +449,23 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     });
   };
 
+  handleDrag = (x: number, isFirstInteraction?: boolean) => {
+    if (isFirstInteraction) {
+      this.leftPosition = x;
+    }
+    const delta = this.leftPosition - x;
+    this.leftPosition = x;
+    const dp =
+      (delta / this.rangeSliderRef!.clientWidth) *
+      (this.props.max - this.props.min);
+    // TODO: handle decimals; match `step` size
+    const round = delta > 0 ? Math.floor : Math.ceil;
+    const newLower = round(Number(this.lowerValue) - dp);
+    const newUpper = round(Number(this.upperValue) - dp);
+    if (newLower >= this.props.min && newUpper <= this.props.max)
+      this._handleOnChange(newLower, newUpper);
+  };
+
   render() {
     const {
       className,
@@ -472,6 +495,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       prepend,
       minInputProps,
       maxInputProps,
+      isDraggable,
       ...rest
     } = this.props;
 
@@ -544,6 +568,18 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     ) : undefined;
 
     const classes = classNames('euiDualRange', className);
+    const leftThumbPosition = this.state.rangeSliderRefAvailable
+      ? this.calculateThumbPositionStyle(
+          Number(this.lowerValue) || min,
+          this.state.rangeWidth
+        )
+      : { left: '0' };
+    const rightThumbPosition = this.state.rangeSliderRefAvailable
+      ? this.calculateThumbPositionStyle(
+          Number(this.upperValue) || max,
+          this.state.rangeWidth
+        )
+      : { left: '0' };
     const theRange = (
       <EuiRangeWrapper
         className={classes}
@@ -619,13 +655,21 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
                 onKeyDown={this.handleLowerKeyDown}
                 onFocus={this.onThumbFocus}
                 onBlur={this.onThumbBlur}
-                style={this.calculateThumbPositionStyle(
-                  Number(this.lowerValue) || min,
-                  this.state.rangeWidth
-                )}
+                style={leftThumbPosition}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
+
+              {isDraggable && (
+                <EuiRangeDraggable
+                  lowerPosition={leftThumbPosition.left}
+                  upperPosition={rightThumbPosition.left}
+                  showTicks={showTicks}
+                  compressed={compressed}
+                  onChange={this.handleDrag}
+                />
+              )}
+
               <EuiRangeThumb
                 min={Number(this.lowerValue)}
                 max={max}
@@ -636,10 +680,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
                 onKeyDown={this.handleUpperKeyDown}
                 onFocus={this.onThumbFocus}
                 onBlur={this.onThumbBlur}
-                style={this.calculateThumbPositionStyle(
-                  Number(this.upperValue) || max,
-                  this.state.rangeWidth
-                )}
+                style={rightThumbPosition}
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
