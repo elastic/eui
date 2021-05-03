@@ -176,7 +176,6 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
 
   const transformClass = schemaDetectors.filter(
     (row: EuiDataGridSchemaDetector) => {
-      console.log(column);
       return column?.schema
         ? column?.schema === row.type
         : columnId === row.type;
