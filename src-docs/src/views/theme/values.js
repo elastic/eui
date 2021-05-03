@@ -15,8 +15,16 @@ import Focus from './_focus';
 import Animation from './_animation';
 import Breakpoints from './_breakpoints';
 
-import { EuiSpacer, EuiCodeBlock } from '../../../../src/components';
+import {
+  EuiSpacer,
+  EuiCodeBlock,
+  EuiBottomBar,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '../../../../src/components';
 import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
+import { EuiButton } from '../../../../src/components/button';
+import { EuiCopy } from '../../../../src/components/copy';
 
 export default () => {
   const [overrides, setOverrides] = React.useState({});
@@ -61,6 +69,22 @@ export default () => {
       <EuiHorizontalRule margin="xxl" />
 
       <EuiSpacer />
+
+      {Object.keys(overrides).length && (
+        <EuiBottomBar position="sticky">
+          <EuiFlexGroup justifyContent="flexEnd">
+            <EuiFlexItem grow={false}>
+              <EuiCopy textToCopy={JSON.stringify(overrides, null, 2)}>
+                {(copy) => (
+                  <EuiButton onClick={copy} fill iconType="copyClipboard">
+                    Copy overrides
+                  </EuiButton>
+                )}
+              </EuiCopy>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiBottomBar>
+      )}
 
       <EuiCodeBlock>{JSON.stringify(euiTheme, null, 2)}</EuiCodeBlock>
     </EuiThemeProvider>
