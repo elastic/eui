@@ -1,11 +1,9 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { EuiCode, EuiCodeBlock } from '../../../../src/components/code';
-import { EuiCopy } from '../../../../src/components/copy';
 import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
 import { EuiText } from '../../../../src/components/text';
 import { EuiSplitPanel, EuiPanel } from '../../../../src/components/panel';
 import { GuideSectionExample } from '../../components/guide_section/guide_section_parts/guide_section_example';
-import { EuiSpacer } from '../../../../src/components/spacer';
 
 export const LANGUAGES = ['javascript', 'html'] as const;
 
@@ -22,7 +20,7 @@ export const ThemeSection: FunctionComponent<ThemeSection> = ({
   code,
   description,
   themeValues,
-  property,
+  // property,
   example,
   snippet,
 }) => {
@@ -32,15 +30,9 @@ export const ThemeSection: FunctionComponent<ThemeSection> = ({
         <EuiText size="s">
           {code && (
             <h3>
-              <EuiCopy textToCopy={code}>
-                {(copy) => (
-                  <button onClick={copy}>
-                    <EuiCode language="ts" className="eui-textInheritColor">
-                      {code}
-                    </EuiCode>
-                  </button>
-                )}
-              </EuiCopy>
+              <EuiCode language="ts" className="eui-textInheritColor">
+                {code}
+              </EuiCode>
             </h3>
           )}
           {description}
@@ -48,30 +40,14 @@ export const ThemeSection: FunctionComponent<ThemeSection> = ({
       </EuiFlexItem>
       {themeValues && (
         <EuiFlexItem grow={2}>
-          <EuiSpacer />
           <EuiPanel grow={false} paddingSize="m" color="subdued">
-            {property ? (
-              <>
-                <EuiCode transparentBackground>{`${property}: {`}</EuiCode>
-                <EuiSpacer size="s" />
-                <EuiFlexGroup
-                  style={{ paddingLeft: 16 }}
-                  direction="column"
-                  gutterSize="s">
-                  {themeValues}
-                </EuiFlexGroup>
-                <EuiSpacer size="s" />
-                <EuiCode transparentBackground>{'}'}</EuiCode>
-              </>
-            ) : (
-              <EuiFlexGroup direction="column" gutterSize="s">
-                {themeValues}
-              </EuiFlexGroup>
-            )}
+            <EuiFlexGroup direction="column" gutterSize="s">
+              {themeValues}
+            </EuiFlexGroup>
           </EuiPanel>
         </EuiFlexItem>
       )}
-      {snippet && (
+      {example && (
         <EuiFlexItem grow={2}>
           <EuiSplitPanel.Outer style={{ overflow: 'hidden' }}>
             <EuiSplitPanel.Inner>{example}</EuiSplitPanel.Inner>
