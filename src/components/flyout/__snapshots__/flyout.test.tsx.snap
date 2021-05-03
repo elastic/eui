@@ -21,7 +21,7 @@ Array [
         class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge testClass1 testClass2"
         data-test-subj="test subject string"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -66,7 +66,7 @@ Array [
         class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
         id="imaflyout"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -110,7 +110,7 @@ Array [
       <div
         class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -154,7 +154,7 @@ Array [
       <div
         class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="aria-label"
@@ -198,7 +198,7 @@ Array [
       <div
         class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       />
     </div>
     <div
@@ -229,7 +229,7 @@ Array [
       <nav
         class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -274,7 +274,7 @@ Array [
         class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
         role="dialog"
         style="max-width: 1024px;"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -319,7 +319,7 @@ Array [
         class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
         role="dialog"
         style="max-width: 24rem;"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -363,7 +363,7 @@ Array [
       <div
         class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge euiFlyout--maxWidth-default"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -407,7 +407,7 @@ Array [
       <div
         class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -451,7 +451,7 @@ Array [
       <div
         class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -494,7 +494,7 @@ Array [
     <div
       class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
       role="dialog"
-      tabindex="0"
+      tabindex="-1"
     >
       <button
         aria-label="Close this dialog"
@@ -537,7 +537,7 @@ Array [
       <div
         class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -581,7 +581,7 @@ Array [
       <div
         class="euiFlyout euiFlyout--medium euiFlyout--paddingMedium"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -625,7 +625,7 @@ Array [
       <div
         class="euiFlyout euiFlyout--medium euiFlyout--paddingNone"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -669,7 +669,7 @@ Array [
       <div
         class="euiFlyout euiFlyout--medium euiFlyout--paddingSmall"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -712,7 +712,7 @@ Array [
     >
       <div
         class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -756,7 +756,7 @@ Array [
       <div
         class="euiFlyout euiFlyout--left euiFlyout--medium euiFlyout--paddingLarge"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -800,7 +800,7 @@ Array [
       <div
         class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -845,7 +845,7 @@ Array [
         class="euiFlyout euiFlyout--paddingLarge"
         role="dialog"
         style="width: 500px;"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -889,7 +889,7 @@ Array [
       <div
         class="euiFlyout euiFlyout--large euiFlyout--paddingLarge"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -933,7 +933,7 @@ Array [
       <div
         class="euiFlyout euiFlyout--medium euiFlyout--paddingLarge"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -977,7 +977,7 @@ Array [
       <div
         class="euiFlyout euiFlyout--small euiFlyout--paddingLarge"
         role="dialog"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -1020,7 +1020,7 @@ Array [
     <div
       class="euiFlyout euiFlyout--push euiFlyout--medium euiFlyout--paddingLarge"
       role="dialog"
-      tabindex="0"
+      tabindex="-1"
     >
       <button
         aria-label="Close this dialog"

@@ -20,7 +20,7 @@ Array [
         class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
         id="id"
         style="width: 320px;"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -69,7 +69,7 @@ Array [
         data-test-subj="test subject string"
         id="id"
         style="width: 320px;"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -113,7 +113,7 @@ Array [
       class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
       id="id"
       style="width: 240px;"
-      tabindex="0"
+      tabindex="-1"
     >
       <button
         aria-label="Close this dialog"
@@ -162,7 +162,7 @@ Array [
         class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
         id="id"
         style="width: 320px;"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -207,7 +207,7 @@ Array [
         class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
         id="id"
         style="width: 320px;"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -251,7 +251,7 @@ Array [
       class="euiFlyout euiFlyout--push euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
       id="id"
       style="width:320px"
-      tabindex="0"
+      tabindex="-1"
     />
   </div>,
   <div
@@ -282,7 +282,7 @@ Array [
         class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
         id="id"
         style="width: 320px;"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"
@@ -331,7 +331,7 @@ Array [
       class="euiFlyout euiFlyout--push euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
       id="id"
       style="width: 320px;"
-      tabindex="0"
+      tabindex="-1"
     />
   </div>,
   <div
@@ -362,7 +362,7 @@ Array [
         class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
         id="id"
         style="width: 240px;"
-        tabindex="0"
+        tabindex="-1"
       >
         <button
           aria-label="Close this dialog"

@@ -361,7 +361,7 @@ const EuiFlyout = forwardRef(
         {...(rest as ComponentPropsWithRef<T>)}
         role={role === 'none' ? undefined : role}
         className={classes}
-        tabIndex={0}
+        tabIndex={-1}
         style={newStyle || style}
         ref={setRef}>
         {closeButton}
