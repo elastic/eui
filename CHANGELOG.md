@@ -4,7 +4,7 @@
 - Added `inherit` color option to `EuiIcon` to force two-tone (app) icons to inherit their parent's color ([#4760](https://github.com/elastic/eui/pull/4760))
 - Updated `EuiBetaBadge, EuiBadge, EuiButtonIcon, EuiButtonContent, EuiCallOut, EuiContextMenuItem, EuiListGroupItem` icon usage to inherit their parent's color ([#4760](https://github.com/elastic/eui/pull/4760))
 - Added `iconProps` prop to `EuiListGroupItem` ([#4760](https://github.com/elastic/eui/pull/4760))
-- NPM publish `i18ntokens.json` ([#4771](https://github.com/elastic/eui/pull/4771))
+- Added `i18ntokens.json` to published package ([#4771](https://github.com/elastic/eui/pull/4771))
 
 **Bug fixes**
 
