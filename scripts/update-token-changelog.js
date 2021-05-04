@@ -149,7 +149,7 @@ async function main() {
   const previousVersionCommit = await getCommitForTagName(repo, `v${oldPackageVersion}`);
 
   // check for i18n token differences between the current file & the most recent EUI version
-  const originalTokens = getPreviousI18nTokens(previousVersionCommit);
+  const originalTokens = await getPreviousI18nTokens(previousVersionCommit);
   const newTokens = require(tokensPath);
 
   const changes = getTokenChanges(originalTokens, newTokens);
