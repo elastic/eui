@@ -101,11 +101,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1166,
+        "line": 1168,
         "column": 8
       },
       "end": {
-        "line": 1166,
+        "line": 1168,
         "column": 79
       }
     },
@@ -117,11 +117,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1387,
+        "line": 1389,
         "column": 10
       },
       "end": {
-        "line": 1391,
+        "line": 1393,
         "column": 12
       }
     },
@@ -2901,11 +2901,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 742,
+        "line": 754,
         "column": 14
       },
       "end": {
-        "line": 745,
+        "line": 757,
         "column": 16
       }
     },
@@ -3440,65 +3440,17 @@
     "filepath": "src/components/table/mobile/table_sort_mobile.tsx"
   },
   {
-    "token": "euiTableHeaderCell.clickForDescending",
-    "defString": "Click to sort in descending order",
+    "token": "euiTableHeaderCell.titleTextWithDesc",
+    "defString": "{innerText}; {description}",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 135,
+        "line": 103,
         "column": 10
       },
       "end": {
-        "line": 138,
-        "column": 12
-      }
-    },
-    "filepath": "src/components/table/table_header_cell.tsx"
-  },
-  {
-    "token": "euiTableHeaderCell.clickForUnsort",
-    "defString": "Click to unsort",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 144,
-        "column": 10
-      },
-      "end": {
-        "line": 147,
-        "column": 12
-      }
-    },
-    "filepath": "src/components/table/table_header_cell.tsx"
-  },
-  {
-    "token": "euiTableHeaderCell.clickForAscending",
-    "defString": "Click to sort in ascending order",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 152,
-        "column": 8
-      },
-      "end": {
-        "line": 155,
-        "column": 10
-      }
-    },
-    "filepath": "src/components/table/table_header_cell.tsx"
-  },
-  {
-    "token": "euiTableHeaderCell.titleTextWithSort",
-    "defString": "{innerText}; Sorted in {ariaSortValue} order",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 163,
-        "column": 12
-      },
-      "end": {
-        "line": 166,
-        "column": 52
+        "line": 106,
+        "column": 48
       }
     },
     "filepath": "src/components/table/table_header_cell.tsx"
