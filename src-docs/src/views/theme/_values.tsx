@@ -18,6 +18,7 @@ import {
 } from '../../../../src/services';
 // @ts-ignore NOT TS yet
 import { humanizeType, markup } from '../../services/playground/knobs';
+import { EuiCopy } from '../../../../src/components/copy';
 
 export const LANGUAGES = ['javascript', 'html'] as const;
 
@@ -77,7 +78,7 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
     );
   }
 
-  let typeRender;
+  let typeRender: ReactNode;
   if (type?.custom?.origin?.type) {
     typeRender = (
       <span
@@ -132,10 +133,18 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
     <EuiFlexGroup responsive={false} alignItems="flexStart" {...groupProps}>
       <EuiFlexItem grow={true}>
         <EuiText size="s">
-          <EuiCode language="tsx" transparentBackground>
-            {name}
-            {typeRender}
-          </EuiCode>
+          <EuiCopy
+            beforeMessage={`Click to copy euiTheme.${name}`}
+            textToCopy={`euiTheme.${name}`}>
+            {(copy) => (
+              <button className="eui-textLeft" onClick={copy}>
+                <EuiCode language="ts" transparentBackground>
+                  {name}
+                  {typeRender}
+                </EuiCode>
+              </button>
+            )}
+          </EuiCopy>
         </EuiText>
         {descriptionRender}
       </EuiFlexItem>

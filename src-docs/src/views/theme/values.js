@@ -39,7 +39,7 @@ export default () => {
   };
 
   return (
-    <GuidePage title="Global theme">
+    <GuidePage title="Global values">
       <EuiThemeProvider modify={overrides}>
         <EuiCallOut color="warning">
           <p>

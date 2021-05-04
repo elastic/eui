@@ -99,7 +99,7 @@ export const humanizeType = (type) => {
   let typeMarkup;
 
   if (humanizedType) {
-    typeMarkup = markup(humanizedType);
+    typeMarkup = humanizedType;
 
     const functionMatches = [
       ...humanizedType.matchAll(/\([^=]*\) =>\s\w*\)*/g),
@@ -108,17 +108,19 @@ export const humanizeType = (type) => {
     const types = humanizedType.split(/\([^=]*\) =>\s\w*\)*/);
 
     if (functionMatches.length > 0) {
-      const elements = [];
+      let elements = '';
       let j = 0;
       for (let i = 0; i < types.length; i++) {
         if (functionMatches[j]) {
-          elements.push(<div key={`type-${i}`}>{types[i]}</div>);
-          elements.push(
-            <div key={`function-${i}`}>{functionMatches[j][0]}</div>
-          );
+          elements =
+            `${elements}` +
+            `${types[i]}` +
+            '\n' +
+            `${functionMatches[j][0]}` +
+            '\n';
           j++;
         } else {
-          elements.push(<div key={`type-${i}`}>{types[i]}</div>);
+          elements = `${elements}` + `${types[i]}` + '\n';
         }
       }
       typeMarkup = elements;

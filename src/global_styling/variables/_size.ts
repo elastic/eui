@@ -33,23 +33,29 @@ export type EuiThemeBase = number;
 export const base: EuiThemeBase = 16;
 
 export type EuiThemeSize = {
+  '2xs': string;
   xs: string;
   s: string;
   m: string;
   base: string;
   l: string;
   xl: string;
-  xxl: string;
+  '2xl': string;
+  '3xl': string;
+  '4xl': string;
 };
 
 export const size: EuiThemeSize = {
+  '2xs': computed(sizeToPixel(0.125)),
   xs: computed(sizeToPixel(0.25)),
   s: computed(sizeToPixel(0.5)),
   m: computed(sizeToPixel(0.75)),
   base: computed(sizeToPixel()),
   l: computed(sizeToPixel(1.5)),
   xl: computed(sizeToPixel(2)),
-  xxl: computed(sizeToPixel(2.5)),
+  '2xl': computed(sizeToPixel(2.5)),
+  '3xl': computed(sizeToPixel(3)),
+  '4xl': computed(sizeToPixel(4)),
 };
 
 // $euiButtonMinWidth: $euiSize * 7 !default;
