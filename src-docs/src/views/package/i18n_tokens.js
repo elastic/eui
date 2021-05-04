@@ -1,6 +1,6 @@
 import React from 'react';
-import tokens from '../../i18ntokens';
-import tokenChangelog from '../../i18ntokens_changelog';
+import tokens from '../../../../i18ntokens.json';
+import tokenChangelog from '../../../../i18ntokens_changelog.json';
 
 import {
   EuiAccordion,
