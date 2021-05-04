@@ -15,7 +15,7 @@ export default () => (
     <EuiSpacer />
 
     <EuiCodeBlock
-      language="js"
+      language="jsx"
       fontSize="m"
       paddingSize="m"
       overflowHeight={300}

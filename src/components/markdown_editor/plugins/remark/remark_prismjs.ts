@@ -17,19 +17,32 @@
  * under the License.
  */
 
-import React from 'react';
-import { render } from 'enzyme';
-import { requiredProps } from '../../test/required_props';
+import refractor from 'refractor';
+import visit from 'unist-util-visit';
+import { Plugin } from 'unified';
 
-import { EuiCode } from './code';
+const attacher: Plugin = () => {
+  return (ast) => visit(ast, 'code', visitor);
 
-const code = `var some = 'code';
-console.log(some);`;
+  function visitor(node: any) {
+    const { data = {}, lang: language } = node;
 
-describe('EuiCode', () => {
-  test('renders a code snippet', () => {
-    const component = render(<EuiCode {...requiredProps}>{code}</EuiCode>);
+    if (!language) {
+      return;
+    }
 
-    expect(component).toMatchSnapshot();
-  });
-});
+    node.data = data;
+    data.hChildren = refractor.highlight(node.value, language);
+    data.hProperties = {
+      ...data.hProperties,
+      language,
+      className: [
+        'prismjs',
+        ...(data.hProperties?.className || []),
+        `language-${language}`,
+      ],
+    };
+  }
+};
+
+export default attacher;
