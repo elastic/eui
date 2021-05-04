@@ -195,7 +195,7 @@ export const FormControlsExample = {
                 </Link>{' '}
                 props directly. For instance, when providing the{' '}
                 <EuiCode>label</EuiCode> prop, it will automically wrap itself
-                in a <strong>EuiFormRow</strong>. Other promoted props include{' '}
+                in a <strong>EuiFormRow</strong>. Other examples of promoted props include{' '}
                 <EuiCode>helpText</EuiCode>, <EuiCode>error</EuiCode> , and{' '}
                 <EuiCode>display</EuiCode>. Providing form row props at this
                 level also decreases the need for duplicate props like{' '}
