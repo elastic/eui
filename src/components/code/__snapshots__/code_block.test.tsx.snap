@@ -144,12 +144,14 @@ console.log(some);"
                       <EuiIcon
                         aria-hidden="true"
                         className="euiButtonIcon__icon"
+                        color="inherit"
                         size="m"
                         type="copy"
                       >
                         <span
                           aria-hidden="true"
                           className="euiButtonIcon__icon"
+                          color="inherit"
                           data-euiicon-type="copy"
                           size="m"
                         />
@@ -222,6 +224,7 @@ console.log(some);
       <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
+        color="inherit"
         data-euiicon-type="fullScreen"
       />
     </button>

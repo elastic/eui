@@ -23,6 +23,7 @@ exports[`EuiTablePagination is rendered 1`] = `
           >
             <span
               class="euiButtonContent__icon"
+              color="inherit"
               data-euiicon-type="arrowDown"
             />
             <span
@@ -52,6 +53,7 @@ exports[`EuiTablePagination is rendered 1`] = `
         <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
+          color="inherit"
           data-euiicon-type="arrowLeft"
         />
       </button>
@@ -171,6 +173,7 @@ exports[`EuiTablePagination is rendered 1`] = `
         <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
+          color="inherit"
           data-euiicon-type="arrowRight"
         />
       </button>
@@ -203,6 +206,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
+          color="inherit"
           data-euiicon-type="arrowLeft"
         />
       </button>
@@ -322,6 +326,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
+          color="inherit"
           data-euiicon-type="arrowRight"
         />
       </button>

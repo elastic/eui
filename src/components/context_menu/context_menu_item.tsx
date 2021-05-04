@@ -122,7 +122,12 @@ export class EuiContextMenuItem extends Component<Props> {
       switch (typeof icon) {
         case 'string':
           iconInstance = (
-            <EuiIcon type={icon} size="m" className="euiContextMenu__icon" />
+            <EuiIcon
+              type={icon}
+              size="m"
+              className="euiContextMenu__icon"
+              color="inherit" // forces the icon to inherit its parent color
+            />
           );
           break;
 
