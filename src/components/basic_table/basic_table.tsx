@@ -811,6 +811,7 @@ export class EuiBasicTable<T = any> extends Component<
         isMobileHeader,
         hideForMobile,
         readOnly,
+        description,
       } = column as EuiTableFieldDataColumnType<T>;
 
       const columnAlign = align || this.getAlignForDataType(dataType);
@@ -822,6 +823,7 @@ export class EuiBasicTable<T = any> extends Component<
             key={`_actions_h_${index}`}
             align="right"
             width={width}
+            description={description}
             mobileOptions={mobileOptions}>
             {name}
           </EuiTableHeaderCell>
@@ -840,7 +842,6 @@ export class EuiBasicTable<T = any> extends Component<
             ? SortDirection.isAsc(sortDirection)
             : undefined;
           sorting.onSort = this.resolveColumnOnSort(column);
-          sorting.allowNeutralSort = this.props.sorting.allowNeutralSort;
           sorting.readOnly = this.props.sorting.readOnly || readOnly;
         }
         headers.push(
@@ -850,6 +851,7 @@ export class EuiBasicTable<T = any> extends Component<
             width={width}
             mobileOptions={mobileOptions}
             data-test-subj={`tableHeaderCell_${name}_${index}`}
+            description={description}
             {...sorting}>
             {name}
           </EuiTableHeaderCell>
@@ -880,7 +882,6 @@ export class EuiBasicTable<T = any> extends Component<
             ? SortDirection.isAsc(sortDirection)
             : undefined;
           sorting.onSort = this.resolveColumnOnSort(column);
-          sorting.allowNeutralSort = this.props.sorting.allowNeutralSort;
           sorting.readOnly = this.props.sorting.readOnly || readOnly;
         }
       }
@@ -893,6 +894,7 @@ export class EuiBasicTable<T = any> extends Component<
           hideForMobile={hideForMobile}
           mobileOptions={mobileOptions}
           data-test-subj={`tableHeaderCell_${field}_${index}`}
+          description={description}
           {...sorting}>
           {name}
         </EuiTableHeaderCell>

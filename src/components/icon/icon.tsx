@@ -462,6 +462,7 @@ const colorToClassMap = {
   text: 'euiIcon--text',
   subdued: 'euiIcon--subdued',
   ghost: 'euiIcon--ghost',
+  inherit: 'euiIcon--inherit',
 };
 
 export const COLORS: NamedColor[] = keysOf(colorToClassMap);
@@ -691,12 +692,16 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       typeof type === 'string' &&
       (/.+App$/.test(type) || /.+Job$/.test(type) || type === 'dataVisualizer');
 
+    const appIconHasColor = color && color !== 'default';
+
+    // parent is not one of
     const classes = classNames(
       'euiIcon',
       sizeToClassNameMap[size],
       optionalColorClass,
       {
-        'euiIcon--app': isAppIcon,
+        // The app icon only gets the .euiIcon--app class if no color is passed or if color="default" is passed
+        'euiIcon--app': isAppIcon && !appIconHasColor,
         'euiIcon-isLoading': isLoading,
         'euiIcon-isLoaded': !isLoading && neededLoading,
       },

@@ -11,6 +11,7 @@ $euiIconColors: (
   subdued: $euiTextSubduedColor,
   text: $euiTextColor,
   warning: makeGraphicContrastColor($euiColorWarning),
+  inherit: inherit
 );
 
 $euiIconSizes: (

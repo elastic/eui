@@ -20,6 +20,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
     >
       <span
         class="euiListGroupItem__icon"
+        color="inherit"
         data-euiicon-type="stop"
       />
       <span
@@ -51,6 +52,7 @@ exports[`EuiListGroup listItems is rendered 1`] = `
       <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
+        color="inherit"
         data-euiicon-type="bell"
       />
     </button>
@@ -117,6 +119,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
     >
       <span
         class="euiListGroupItem__icon"
+        color="inherit"
         data-euiicon-type="stop"
       />
       <span
@@ -148,6 +151,7 @@ exports[`EuiListGroup listItems is rendered with color 1`] = `
       <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
+        color="inherit"
         data-euiicon-type="bell"
       />
     </button>

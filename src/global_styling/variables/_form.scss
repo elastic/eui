@@ -36,6 +36,7 @@ $euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 4
 $euiFormCustomControlBorderColor: shadeOrTint($euiColorLightestShade, 18%, 30%) !default;
 $euiFormControlDisabledColor: $euiColorMediumShade !default;
 $euiFormControlBoxShadow: 0 1px 1px -1px transparentize($euiShadowColor, .8), 0 3px 2px -2px transparentize($euiShadowColor, .8) !default;
+$euiFormControlPlaceholderText: makeHighContrastColor($euiTextSubduedColor, $euiFormBackgroundColor) !default;
 $euiFormInputGroupLabelBackground: tintOrShade($euiColorLightShade, 50%, 40%) !default;
 $euiFormInputGroupBorder: 1px solid shadeOrTint($euiFormInputGroupLabelBackground, 2%, 4%) !default;
 $euiSwitchOffColor: lightOrDarkTheme(transparentize($euiColorMediumShade, .8), transparentize($euiColorMediumShade, .3)) !default;
@@ -62,4 +63,3 @@ $euiRangeTrackRadius: $euiBorderRadius !default;
 $euiRangeDisabledOpacity: .25 !default;
 
 $euiRangeHighlightHeight: $euiSizeXS !default;
-

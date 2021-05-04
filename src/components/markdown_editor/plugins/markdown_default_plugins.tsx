@@ -17,6 +17,7 @@
  * under the License.
  */
 
+import React, { createElement } from 'react';
 // Importing seemingly unused types from `unified` because the definitions
 // are exported for two versions of TypeScript (3.4, 4.0) and implicit
 // imports during eui.d.ts generation default to the incorrect version (3.4).
@@ -34,20 +35,19 @@ import {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   Settings,
 } from 'unified';
-import remark2rehype from 'remark-rehype';
+import { Options as Remark2RehypeOptions, Handler } from 'mdast-util-to-hast';
+import all from 'mdast-util-to-hast/lib/all';
 import rehype2react from 'rehype-react';
+import markdown from 'remark-parse';
+import emoji from 'remark-emoji';
+import remark2rehype from 'remark-rehype';
+import highlight from './remark/remark_prismjs';
 import * as MarkdownTooltip from './markdown_tooltip';
 import * as MarkdownCheckbox from './markdown_checkbox';
 import { markdownLinkValidator } from './markdown_link_validator';
-import React, { createElement } from 'react';
+import { EuiMarkdownEditorUiPlugin } from './../markdown_types';
 import { EuiLink } from '../../link';
 import { EuiCodeBlock, EuiCode } from '../../code';
-import markdown from 'remark-parse';
-import highlight from 'remark-highlight.js';
-import emoji from 'remark-emoji';
-import all from 'mdast-util-to-hast/lib/all';
-import { Options as Remark2RehypeOptions, Handler } from 'mdast-util-to-hast';
-import { EuiMarkdownEditorUiPlugin } from './../markdown_types';
 
 export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
   [markdown, {}],
@@ -64,7 +64,7 @@ const unknownHandler: Handler = (h, node) => {
   return h(node, node.type, node, all(h, node));
 };
 
-interface Rehype2ReactOptions {
+export interface Rehype2ReactOptions {
   components: { [key: string]: React.ComponentType<any> };
   [key: string]: any;
 }
