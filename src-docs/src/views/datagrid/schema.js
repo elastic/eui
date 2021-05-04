@@ -180,7 +180,7 @@ const DataGridSchema = () => {
       schemaDetectors={[
         {
           type: 'favoriteFranchise',
-          textTransform: 'lowercase',
+          textTransform: 'capitalize',
           detector(value) {
             return value.toLowerCase() === 'star wars' ||
               value.toLowerCase() === 'star trek'
