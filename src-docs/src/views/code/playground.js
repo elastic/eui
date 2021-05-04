@@ -20,12 +20,6 @@ export const codeBlockConfig = () => {
     hidden: false,
   };
 
-  propsToUse.inline = {
-    ...propsToUse.inline,
-    type: PropTypes.Boolean,
-    value: false,
-  };
-
   return {
     config: {
       componentName: 'EuiCodeBlock',
@@ -54,12 +48,6 @@ export const codeConfig = () => {
     type: PropTypes.ReactNode,
     value: codeDemo,
     hidden: false,
-  };
-
-  propsToUse.inline = {
-    ...propsToUse.inline,
-    type: PropTypes.Boolean,
-    value: false,
   };
 
   return {

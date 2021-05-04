@@ -5,7 +5,7 @@ import { EuiCodeBlock } from '../../../../src/components';
 export default () => (
   <div>
     <EuiCodeBlock
-      language="js"
+      language="jsx"
       fontSize="m"
       paddingSize="m"
       color="dark"

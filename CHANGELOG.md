@@ -5,11 +5,17 @@
 - Updated `EuiBetaBadge, EuiBadge, EuiButtonIcon, EuiButtonContent, EuiCallOut, EuiContextMenuItem, EuiListGroupItem` icon usage to inherit their parent's color ([#4760](https://github.com/elastic/eui/pull/4760))
 - Added `iconProps` prop to `EuiListGroupItem` ([#4760](https://github.com/elastic/eui/pull/4760))
 - Added `i18ntokens.json` to published package ([#4771](https://github.com/elastic/eui/pull/4771))
+- Replaced `highlight.js` with `prism.js`/`refractor` for code syntax highlighting in `EuiCodeBlock` ([#4638](https://github.com/elastic/eui/pull/4638))
 
 **Bug fixes**
 
 - Fixed `initialFocus` prop functionality in `EuiPopover` ([#4768](https://github.com/elastic/eui/pull/4768))
 - Fixed `description` prop in `EuiTable`([#4754](https://github.com/elastic/eui/pull/4754))
+
+**Breaking changes**
+
+- Changed some language syntax references in `EuiCodeBlock`, such as `jsx` ([#4638](https://github.com/elastic/eui/pull/4638))
+- Removed ability to parse non-string content in `EuiCodeBlock` ([#4638](https://github.com/elastic/eui/pull/4638))
 
 ## [`32.3.0`](https://github.com/elastic/eui/tree/v32.3.0)
 
