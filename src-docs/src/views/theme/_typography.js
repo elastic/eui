@@ -100,7 +100,7 @@ export default () => {
             {weightKeys.map((key) => (
               <ThemeValue
                 key={key}
-                property="font"
+                property="font.weight"
                 type={weightProps[key]}
                 name={key}
                 value={font.weight[key]}

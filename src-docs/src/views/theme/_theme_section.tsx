@@ -41,7 +41,7 @@ export const ThemeSection: FunctionComponent<ThemeSection> = ({
       {themeValues && (
         <EuiFlexItem grow={2}>
           <EuiPanel grow={false} paddingSize="m" color="subdued">
-            <EuiFlexGroup direction="column" gutterSize="s">
+            <EuiFlexGroup direction="column" gutterSize="m">
               {themeValues}
             </EuiFlexGroup>
           </EuiPanel>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { useEuiTheme } from '../../../../src/services';
+import { Link } from 'react-router-dom';
 
 import {
   brand_colors,
@@ -57,17 +58,22 @@ export default ({ onThemeUpdate }) => {
       <EuiSpacer />
 
       <EuiFlexGroup>
-        <EuiFlexItem>
+        <EuiFlexItem grow={2}>
           <EuiText>
             <p>
               The <EuiCode>colors</EuiCode> theme key is a mix of hard-coded hex
               values and computed colors. The <EuiCode>colorMode</EuiCode>{' '}
               determines which values to return.
             </p>
+            <p>
+              When switching between light and dark color modes, the theme keys
+              do not change, only their values do. This is why most keys are not
+              named for their <strong>evaluated</strong> value.
+            </p>
           </EuiText>
         </EuiFlexItem>
         <EuiFlexItem>
-          <EuiPanel paddingSize="l" color="subdued">
+          <EuiPanel grow={false} paddingSize="l" color="subdued">
             <EuiFlexGroup responsive={false} alignItems="center">
               <EuiFlexItem grow={false}>
                 <div>
@@ -108,7 +114,7 @@ export default ({ onThemeUpdate }) => {
         </EuiFlexItem>
       </EuiFlexGroup>
 
-      <EuiSpacer />
+      <EuiSpacer size="xxl" />
 
       <ThemeSection
         code="_EuiThemeBrandColors"
@@ -123,7 +129,7 @@ export default ({ onThemeUpdate }) => {
         themeValues={brandKeys.map((color) => (
           <EuiFlexItem key={color}>
             <ThemeValue
-              property="color"
+              property="colors"
               type={props[color]}
               name={color}
               value={colors[color].toUpperCase()}
@@ -141,15 +147,20 @@ export default ({ onThemeUpdate }) => {
         description={
           <p>
             Each color also has a corresponding text variant that has been
-            calculated for proper (4.5) contrast against the body color and
-            should be used specifically when coloring text.
+            calculated for proper (4.5) contrast against{' '}
+            <EuiCode>colors.body</EuiCode> and should be used specifically when
+            coloring text. As is used in{' '}
+            <Link to="/display/text#coloring-text">
+              <strong>EuiTextColor</strong>
+            </Link>
+            .
           </p>
         }
         property="colors"
         themeValues={brandTextKeys.map((color, index) => (
           <EuiFlexItem key={color}>
             <ThemeValue
-              property="color"
+              property="colors"
               name={brandTextKeys[index]}
               type={props[color]}
               value={colors[brandTextKeys[index]].toUpperCase()}
@@ -173,13 +184,18 @@ export default ({ onThemeUpdate }) => {
 
       <ThemeSection
         code="_EuiThemeShadeColors"
-        description={<p>Grayscale</p>}
+        description={
+          <p>
+            A six-color grayscale palette. Variation beyond these colors is
+            minimal and always done through computations against this set.
+          </p>
+        }
         property="colors"
         themeValues={shadeKeys.map((color) => (
           <EuiFlexItem key={color}>
             <ThemeValue
               key={color}
-              property="color"
+              property="colors"
               type={props[color]}
               name={color}
               value={colors[color].toUpperCase()}
@@ -204,7 +220,7 @@ export default ({ onThemeUpdate }) => {
         themeValues={textKeys.map((color) => (
           <EuiFlexItem key={color}>
             <ThemeValue
-              property="color"
+              property="colors"
               name={color}
               type={props[color]}
               value={colors[color].toUpperCase()}
@@ -236,7 +252,7 @@ export default ({ onThemeUpdate }) => {
               <EuiFlexItem key={color}>
                 <ThemeValue
                   key={color}
-                  property="color"
+                  property="colors"
                   name={color}
                   type={props[color]}
                   value={colors[color].toUpperCase()}
@@ -259,7 +275,7 @@ export default ({ onThemeUpdate }) => {
               <EuiFlexItem key={color}>
                 <ThemeValue
                   key={color}
-                  property="color"
+                  property="colors"
                   name={color}
                   type={props[color]}
                   value={colors[color].toUpperCase()}
@@ -284,24 +300,20 @@ export default ({ onThemeUpdate }) => {
           <>
             <EuiFlexItem>
               <ThemeValue
-                property="color"
+                property="colors"
                 name={'ink'}
                 type={props.ink}
                 value={colors.ink.toUpperCase()}
-                example={
-                  <EuiIcon size="l" type="stopFilled" color={colors.ink} />
-                }
+                example={<EuiColorPickerSwatch disabled color={colors.ink} />}
               />
             </EuiFlexItem>
             <EuiFlexItem>
               <ThemeValue
-                property="color"
+                property="colors"
                 name={'ghost'}
                 type={props.ghost}
                 value={colors.ghost.toUpperCase()}
-                example={
-                  <EuiIcon size="l" type="stopFilled" color={colors.ghost} />
-                }
+                example={<EuiColorPickerSwatch disabled color={colors.ghost} />}
               />
             </EuiFlexItem>
           </>

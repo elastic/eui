@@ -28,7 +28,7 @@ import {
   makeHighContrastColor,
 } from '../functions/_colors';
 
-/**
+/*
  * TYPES
  */
 
@@ -36,47 +36,119 @@ import {
  * Top 5 colors
  */
 export type _EuiThemeBrandColors = {
+  /**
+   * Main brand color and used for most call to actions like buttons and links.
+   */
   primary: ColorModeSwitch;
+  /**
+   * Pulls attention to key indicators like notifications or number of selections.
+   */
   accent: ColorModeSwitch;
   /**
-   * Test: Successful messages
+   * Used for positive messages/graphics and additive actions.
    */
   success: ColorModeSwitch;
+  /**
+   * Used for warnings and actions that have a potential to be destructive.
+   */
   warning: ColorModeSwitch;
+  /**
+   * Used for negative messages/graphics like errors and destructive actions.
+   */
   danger: ColorModeSwitch;
 };
 
-// Every color below must be based mathematically on the set above and in a particular order.
+/**
+ * Every brand color must have a contrast computed text equivelant
+ */
 export type _EuiThemeBrandTextColors = {
+  /**
+   * Typically computed against colors.primary
+   */
   primaryText: ColorModeSwitch;
+  /**
+   * Typically computed against colors.accent
+   */
   accentText: ColorModeSwitch;
+  /**
+   * Typically computed against colors.success
+   */
   successText: ColorModeSwitch;
+  /**
+   * Typically computed against colors.warning
+   */
   warningText: ColorModeSwitch;
+  /**
+   * Typically computed against colors.danger
+   */
   dangerText: ColorModeSwitch;
 };
 
 export type _EuiThemeShadeColors = {
+  /**
+   * Used as the background color of primary page content and panels including modals and flyouts.
+   */
   emptyShade: ColorModeSwitch;
+  /**
+   * Used to lightly shade areas that contain secondary content or contain panel-like components.
+   */
   lightestShade: ColorModeSwitch;
+  /**
+   * Used for most borders and dividers (horizontal rules).
+   */
   lightShade: ColorModeSwitch;
+  /**
+   * The middle gray for all themes; this is the base for colors.subdued.
+   */
   mediumShade: ColorModeSwitch;
+  /**
+   * ?
+   */
   darkShade: ColorModeSwitch;
+  /**
+   * Used as the text color and the background color for inverted components like tooltips and the control bar.
+   */
   darkestShade: ColorModeSwitch;
   fullShade: ColorModeSwitch;
 };
 
 export type _EuiThemeTextColors = {
+  /**
+   * Computed against colors.darkestShade
+   */
   text: ColorModeSwitch;
+  /**
+   * Computed against colors.text.
+   */
   title: ColorModeSwitch;
+  /**
+   * Computed against colors.mediumShade
+   */
   subdued: ColorModeSwitch;
+  /**
+   * Computed against colors.primaryText
+   */
   link: ColorModeSwitch;
 };
 
 export type EUI_BODY_COLOR_KEY = 'body'; // TOOD, get this to work in `makeHighContrastColor`
 export type _EuiThemeSpecialColors = {
+  /**
+   * The background color for the whole window (body) and is a computed value of colors.lightestShade.
+   * Provides denominator (background) value for contrast calculations.
+   */
   body: ColorModeSwitch;
+  /**
+   * Used to highlight text when matching against search strings
+   */
   highlight: ColorModeSwitch;
+  /**
+   * Computed against colors.darkestShade
+   */
   disabled: ColorModeSwitch;
+  /**
+   * Computed against colors.disabled
+   */
   disabledText: ColorModeSwitch;
 };
 

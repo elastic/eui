@@ -55,7 +55,7 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
   };
 
   let exampleRender;
-  if (property === 'color' && onUpdate) {
+  if (property === 'colors' && onUpdate) {
     exampleRender = (
       <EuiFlexItem grow={false}>
         <EuiColorPicker
@@ -115,6 +115,7 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
         aria-label="Update base value"
         value={value}
         onChange={(e) => onUpdate(Number(e.target.value))}
+        style={{ width: 64 }}
       />
     );
   } else {

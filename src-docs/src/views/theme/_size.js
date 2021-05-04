@@ -38,8 +38,9 @@ export default ({ onThemeUpdate }) => {
       <EuiText>
         <h2>Sizing</h2>
         <p>
-          All sizing values are calculated from a single <EuiCode>base</EuiCode>{' '}
-          integer and converted to pixel string values.
+          All sizing values. including font size, are calculated from a single{' '}
+          <EuiCode>base</EuiCode> integer and converted to pixel or rem string
+          values.
         </p>
       </EuiText>
       <EuiSpacer />
