@@ -63,6 +63,7 @@ export interface EuiDualRangeProps
       | React.ChangeEvent<HTMLInputElement>
       | React.MouseEvent<HTMLButtonElement>
       | React.KeyboardEvent<HTMLInputElement>
+      | React.KeyboardEvent<HTMLDivElement>
   ) => void;
   fullWidth?: boolean;
   isInvalid?: boolean;
@@ -256,6 +257,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       | React.ChangeEvent<HTMLInputElement>
       | React.MouseEvent<HTMLButtonElement>
       | React.KeyboardEvent<HTMLInputElement>
+      | React.KeyboardEvent<HTMLDivElement>
   ) => {
     const isValid =
       isWithinRange(this.props.min, upper, lower) &&
@@ -308,7 +310,9 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
 
   _handleKeyDown = (
     value: ValueMember,
-    event: React.KeyboardEvent<HTMLInputElement>
+    event:
+      | React.KeyboardEvent<HTMLInputElement>
+      | React.KeyboardEvent<HTMLDivElement>
   ) => {
     let newVal = Number(value);
     let stepRemainder = 0;
@@ -370,6 +374,21 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     }
     if (upper <= this.lowerValue || upper > this.props.max) return;
     this._handleOnChange(this.lowerValue, upper, event);
+  };
+
+  handleDraggableKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    let lower = this.lowerValue;
+    let upper = this.upperValue;
+    switch (event.key) {
+      case keys.TAB:
+        return;
+      default:
+        lower = this._handleKeyDown(lower, event);
+        upper = this._handleKeyDown(upper, event);
+    }
+    if (lower >= this.upperValue || lower < this.props.min) return;
+    if (upper <= this.lowerValue || upper > this.props.max) return;
+    this._handleOnChange(lower, upper, event);
   };
 
   calculateThumbPositionStyle = (value: number, width?: number) => {
@@ -645,6 +664,19 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
 
           {this.state.rangeSliderRefAvailable && (
             <React.Fragment>
+              {isDraggable && this.isValid && (
+                <EuiRangeDraggable
+                  lowerPosition={leftThumbPosition.left}
+                  upperPosition={rightThumbPosition.left}
+                  showTicks={showTicks}
+                  compressed={compressed}
+                  onChange={this.handleDrag}
+                  onFocus={this.onThumbFocus}
+                  onBlur={this.onThumbBlur}
+                  onKeyDown={this.handleDraggableKeyDown}
+                />
+              )}
+
               <EuiRangeThumb
                 min={min}
                 max={Number(this.upperValue)}
@@ -659,16 +691,6 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
                 aria-describedby={this.props['aria-describedby']}
                 aria-label={this.props['aria-label']}
               />
-
-              {isDraggable && (
-                <EuiRangeDraggable
-                  lowerPosition={leftThumbPosition.left}
-                  upperPosition={rightThumbPosition.left}
-                  showTicks={showTicks}
-                  compressed={compressed}
-                  onChange={this.handleDrag}
-                />
-              )}
 
               <EuiRangeThumb
                 min={Number(this.lowerValue)}

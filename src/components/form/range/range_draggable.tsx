@@ -17,13 +17,13 @@
  * under the License.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { useMouseMove } from '../../../services';
 
-export interface EuiRangeDraggableProps {
-  className?: string;
+export interface EuiRangeDraggableProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   compressed?: boolean;
   showTicks?: boolean;
   lowerPosition: string;
@@ -38,10 +38,11 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
   upperPosition,
   compressed,
   onChange,
+  ...rest
 }) => {
-  const style = {
-    left: `calc(${lowerPosition} + 16px)`,
-    right: `calc(100% - ${upperPosition})`,
+  const outerStyle: React.CSSProperties = {
+    left: `calc(${lowerPosition})`,
+    right: `calc(100% - ${upperPosition} - 16px)`,
   };
 
   const classes = classNames(
@@ -63,12 +64,14 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
   const [handleMouseDown, handleInteraction] = useMouseMove(handleChange);
 
   return (
-    <div
-      className={classes}
-      onMouseDown={handleMouseDown}
-      onTouchStart={handleInteraction}
-      onTouchMove={handleInteraction}
-      style={style}
-    />
+    // TODO: ARIA
+    <div className={classes} style={outerStyle} tabIndex={0} {...rest}>
+      <div
+        className="euiRangeDraggle__inner"
+        onMouseDown={handleMouseDown}
+        onTouchStart={handleInteraction}
+        onTouchMove={handleInteraction}
+      />
+    </div>
   );
 };
