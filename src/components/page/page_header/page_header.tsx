@@ -50,12 +50,14 @@ export type EuiPageHeaderProps = CommonProps &
     /**
      * Adds a bottom border to separate it from the content after
      */
+    bottomBorder?: boolean;
   };
 
 export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   className,
   restrictWidth = false,
   paddingSize = 'none',
+  bottomBorder,
   style,
 
   // Page header content shared props:
@@ -83,6 +85,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
     'euiPageHeader',
     paddingSizeToClassNameMap[paddingSize],
     {
+      'euiPageHeader--bottomBorder': bottomBorder,
       'euiPageHeader--responsive': responsive === true,
       'euiPageHeader--responsiveReverse': responsive === 'reverse',
       'euiPageHeader--tabsAtBottom': pageTitle && tabs,

@@ -1,5 +1,65 @@
 [
   {
+    "version": "33.0.0",
+    "changes": [
+      {
+        "token": "euiTableHeaderCell.clickForDescending",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTableHeaderCell.clickForUnsort",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTableHeaderCell.clickForAscending",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTableHeaderCell.titleTextWithSort",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTableHeaderCell.titleTextWithDesc",
+        "changeType": "added",
+        "value": "{innerText}; {description}"
+      }
+    ]
+  },
+  {
+    "version": "32.3.0",
+    "changes": [
+      {
+        "token": "euiFilePicker.removeSelected",
+        "changeType": "added",
+        "value": "Remove"
+      }
+    ]
+  },
+  {
+    "version": "32.2.0",
+    "changes": [
+      {
+        "token": "euiDataGridSchema.dateSortTextAsc",
+        "changeType": "modified",
+        "value": "Old-New"
+      },
+      {
+        "token": "euiDataGridSchema.dateSortTextDesc",
+        "changeType": "modified",
+        "value": "New-Old"
+      }
+    ]
+  },
+  {
+    "version": "32.1.0",
+    "changes": [
+      {
+        "token": "euiTableHeaderCell.sortedAriaLabel",
+        "changeType": "deleted"
+      }
+    ]
+  },
+  {
     "version": "31.11.0",
     "changes": [
       {

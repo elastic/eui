@@ -403,6 +403,7 @@ exports[`EuiNotificationEvent props isRead  is rendered 1`] = `
       <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
+        color="inherit"
         data-euiicon-type="dot"
       />
     </button>
@@ -748,6 +749,7 @@ exports[`EuiNotificationEvent props primaryActionProps is rendered 1`] = `
         >
           <span
             class="euiButtonContent__icon"
+            color="inherit"
             data-euiicon-type="download"
           />
           <span

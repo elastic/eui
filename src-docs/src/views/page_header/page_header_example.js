@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -15,20 +13,16 @@ import { pageHeaderConfig } from './playground';
 
 import PageHeader from './page_header';
 const pageHeaderSource = require('!!raw-loader!./page_header');
-const pageHeaderHtml = renderToHtml(PageHeader);
 
 import PageHeaderTabs from './page_header_tabs';
 const pageHeaderTabsSource = require('!!raw-loader!./page_header_tabs');
-const pageHeaderTabsHtml = renderToHtml(PageHeaderTabs);
 
 import PageHeaderCustom from './page_header_custom';
 import { EuiText } from '../../../../src/components/text';
 const pageHeaderCustomSource = require('!!raw-loader!./page_header_custom');
-const pageHeaderCustomHtml = renderToHtml(PageHeaderCustom);
 
 export const PageHeaderExample = {
   title: 'Page header',
-  playground: [pageHeaderConfig],
   intro: (
     <EuiText>
       <p>
@@ -49,11 +43,8 @@ export const PageHeaderExample = {
           type: GuideSectionTypes.JS,
           code: pageHeaderSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pageHeaderHtml,
-        },
       ],
+      playground: pageHeaderConfig,
       text: (
         <>
           <p>
@@ -84,16 +75,16 @@ export const PageHeaderExample = {
       demo: <PageHeader />,
       props: { EuiPageHeader },
       snippet: `<EuiPageHeader
-pageTitle="Page title"
-tabs={[
-  { label:"Tab 1", isSelected: true },
-  { label:"Tab 2" }
-]}
-description="Example of a description."
-rightSideItems={[
-  <EuiButton fill>Button 1</EuiButton>,
-  <EuiButton>Button 2</EuiButton>
-]}
+  pageTitle="Page title"
+  tabs={[
+    { label:"Tab 1", isSelected: true },
+    { label:"Tab 2" }
+  ]}
+  description="Example of a description."
+  rightSideItems={[
+    <EuiButton fill>Button 1</EuiButton>,
+    <EuiButton>Button 2</EuiButton>
+  ]}
 />`,
     },
     {
@@ -102,10 +93,6 @@ rightSideItems={[
         {
           type: GuideSectionTypes.JS,
           code: pageHeaderTabsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pageHeaderTabsHtml,
         },
       ],
       text: (
@@ -122,11 +109,11 @@ rightSideItems={[
       demo: <PageHeaderTabs />,
       props: { EuiPageHeader },
       snippet: `<EuiPageHeader
-tabs={[
-  { label:"Tab 1", isSelected: true },
-  { label:"Tab 2" }
-]}
-description="Example of a description."
+  tabs={[
+    { label:"Tab 1", isSelected: true },
+    { label:"Tab 2" }
+  ]}
+  description="Example of a description."
 />`,
     },
     {
@@ -135,10 +122,6 @@ description="Example of a description."
         {
           type: GuideSectionTypes.JS,
           code: pageHeaderCustomSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pageHeaderCustomHtml,
         },
       ],
       text: (

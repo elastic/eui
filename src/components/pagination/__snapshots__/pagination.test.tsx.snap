@@ -15,6 +15,7 @@ exports[`EuiPagination is rendered 1`] = `
     <span
       aria-hidden="true"
       class="euiButtonIcon__icon"
+      color="inherit"
       data-euiicon-type="arrowLeft"
     />
   </button>
@@ -27,7 +28,7 @@ exports[`EuiPagination is rendered 1`] = `
     >
       <button
         aria-label="Page 1 of 1"
-        class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton euiPaginationButton--hideOnMobile"
+        class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton euiPaginationButton--hideOnMobile"
         data-test-subj="pagination-button-0"
         type="button"
       >
@@ -52,6 +53,7 @@ exports[`EuiPagination is rendered 1`] = `
     <span
       aria-hidden="true"
       class="euiButtonIcon__icon"
+      color="inherit"
       data-euiicon-type="arrowRight"
     />
   </button>

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 import { pageTemplateConfig } from './playground';
 import { PageDemo } from './_page_demo';
@@ -20,67 +18,56 @@ import {
   EuiPageTemplate,
   EuiCallOut,
   EuiSpacer,
+  EuiBottomBar,
 } from '../../../../src/components';
 
 import PageNew from './page_new';
 const pageNewSource = require('!!raw-loader!./page_new');
 import PageTemplate from './page_template';
 const PageTemplateSource = require('!!raw-loader!./page_template');
-const PageTemplateHtml = renderToHtml(PageTemplate);
+
+import PageBottomBar from './page_bottom_bar';
+const pageBottomBarSource = require('!!raw-loader!./page_bottom_bar');
+import PageBottomBarTemplate from './page_bottom_bar_template';
+const PageBottomBarTemplateSource = require('!!raw-loader!./page_bottom_bar_template');
 
 import PageRestricingWidth from './page_restricting_width';
 const PageRestricingWidthSource = require('!!raw-loader!./page_restricting_width');
 import PageRestricingWidthTemplate from './page_restricting_width_template';
 const PageRestricingWidthTemplateSource = require('!!raw-loader!./page_restricting_width_template');
-const PageRestricingWidthTemplateHtml = renderToHtml(
-  PageRestricingWidthTemplate
-);
 
 import PageCenteredBody from './page_centered_body';
 const PageCenteredBodySource = require('!!raw-loader!./page_centered_body');
 import PageCenteredBodyTemplate from './page_centered_body_template';
 const PageCenteredBodyTemplateSource = require('!!raw-loader!./page_centered_body_template');
-const PageCenteredBodyTemplateHtml = renderToHtml(PageCenteredBodyTemplate);
 
 import PageCenteredContent from './page_centered_content';
 const PageCenteredContentSource = require('!!raw-loader!./page_centered_content');
 import PageCenteredContentTemplate from './page_centered_content_template';
 const PageCenteredContentTemplateSource = require('!!raw-loader!./page_centered_content_template');
-const PageCenteredContentTemplateHtml = renderToHtml(
-  PageCenteredContentTemplate
-);
 
 import PageSimple from './page_simple';
 const PageSimpleSource = require('!!raw-loader!./page_simple');
 import PageSimpleTemplate from './page_simple_template';
 const PageSimpleTemplateSource = require('!!raw-loader!./page_simple_template');
-const PageSimpleTemplateHtml = renderToHtml(PageSimpleTemplate);
 
 import PageSimpleCenteredBody from './page_simple_content_body';
 const PageSimpleCenteredBodySource = require('!!raw-loader!./page_simple_content_body');
 import PageSimpleCenteredBodyTemplate from './page_simple_content_body_template';
 const PageSimpleCenteredBodyTemplateSource = require('!!raw-loader!./page_simple_content_body_template');
-const PageSimpleCenteredBodyTemplateHtml = renderToHtml(
-  PageSimpleCenteredBodyTemplate
-);
 
 import PageSimpleEmptyContent from './page_simple_empty_content';
 const PageSimpleEmptyContentSource = require('!!raw-loader!./page_simple_empty_content');
 import PageSimpleEmptyContentTemplate from './page_simple_empty_content_template';
 const PageSimpleEmptyContentTemplateSource = require('!!raw-loader!./page_simple_empty_content_template');
-const PageSimpleEmptyContentTemplateHtml = renderToHtml(
-  PageSimpleEmptyContentTemplate
-);
 
 import PageCustomContent from './page_custom_content';
 const PageCustomContentSource = require('!!raw-loader!./page_custom_content');
 import PageCustomContentTemplate from './page_custom_content_template';
 const PageCustomContentTemplateSource = require('!!raw-loader!./page_custom_content_template');
-const PageCustomContentTemplateHtml = renderToHtml(PageCustomContentTemplate);
 
 import PageLegacy from './page';
 const PageLegacySource = require('!!raw-loader!./page');
-const PageLegacyHtml = renderToHtml(PageLegacy);
 
 export const PageExample = {
   title: 'Page',
@@ -101,7 +88,7 @@ export const PageExample = {
         <p>
           You&apos;ll find the code for each in their own tab and if you go to
           full screen, you can see how they would behave in a typical
-          applicaiton layout.
+          application layout.
         </p>
       </EuiCallOut>
     </>
@@ -119,10 +106,6 @@ export const PageExample = {
           type: GuideSectionTypes.JS,
           code: pageNewSource,
           displayName: 'Components JS',
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PageTemplateHtml,
         },
       ],
       text: (
@@ -184,22 +167,25 @@ export const PageExample = {
         EuiPageHeader,
         EuiPageContent,
         EuiPageContentBody,
+        EuiBottomBar,
       },
       playground: pageTemplateConfig,
       demo: (
         <PageDemo>
-          {(Button, Content, SideNav, showTemplate) =>
+          {(Button, Content, SideNav, showTemplate, BottomBar) =>
             showTemplate ? (
               <PageTemplate
                 button={<Button />}
                 content={<Content />}
                 sideNav={<SideNav />}
+                bottomBar={<BottomBar />}
               />
             ) : (
               <PageNew
                 button={<Button />}
                 content={<Content />}
                 sideNav={<SideNav />}
+                bottomBar={<BottomBar />}
               />
             )
           }
@@ -218,10 +204,6 @@ export const PageExample = {
           type: GuideSectionTypes.JS,
           code: PageRestricingWidthSource,
           displayName: 'Components JS',
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PageRestricingWidthTemplateHtml,
         },
       ],
       text: (
@@ -268,6 +250,75 @@ export const PageExample = {
       ),
     },
     {
+      title: 'Showing a bottom bar',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageBottomBarTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: pageBottomBarSource,
+          displayName: 'Components JS',
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Adding an{' '}
+            <Link to="/layout/bottom-bar">
+              <strong>EuiBottomBar</strong>
+            </Link>{' '}
+            can be tricky to use and account for any side bars.{' '}
+            <strong>EuiPageTemplate</strong> handles this nicely by supplying a{' '}
+            <EuiCode>bottomBar</EuiCode> prop for passing the contents of your
+            bottom bar, and <EuiCode>bottomBarProps</EuiCode> that extends{' '}
+            <strong>EuiBottomBar</strong>.
+          </p>
+          <p>
+            It uses the <EuiCode>sticky</EuiCode> position so that it sticks to
+            the bottom of and remains within the bounds of{' '}
+            <strong>EuiPageBody</strong>. This way it will never overlap the{' '}
+            <strong>EuiPageSideBar</strong>, no matter the screen size. It also
+            means not needing to accomodate for the height of the bar in the
+            body element.
+          </p>
+          <EuiCallOut
+            size="s"
+            color="warning"
+            title={
+              <>
+                <strong>EuiPageTemplate</strong> only supports bottom bars in
+                the <EuiCode>default</EuiCode> template.
+              </>
+            }
+          />
+        </>
+      ),
+      demo: (
+        <PageDemo>
+          {(Button, Content, SideNav, showTemplate, BottomBar) =>
+            showTemplate ? (
+              <PageBottomBarTemplate
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+                bottomBar={<BottomBar />}
+              />
+            ) : (
+              <PageBottomBar
+                button={<Button />}
+                content={<Content />}
+                sideNav={<SideNav />}
+                bottomBar={<BottomBar />}
+              />
+            )
+          }
+        </PageDemo>
+      ),
+    },
+    {
       title: 'Centered body',
       source: [
         {
@@ -279,10 +330,6 @@ export const PageExample = {
           type: GuideSectionTypes.JS,
           code: PageCenteredBodySource,
           displayName: 'Components JS',
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PageCenteredBodyTemplateHtml,
         },
       ],
       text: (
@@ -341,10 +388,6 @@ export const PageExample = {
           code: PageCenteredContentSource,
           displayName: 'Components JS',
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PageCenteredContentTemplateHtml,
-        },
       ],
       text: (
         <>
@@ -398,10 +441,6 @@ export const PageExample = {
           code: PageSimpleSource,
           displayName: 'Components JS',
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PageSimpleTemplateHtml,
-        },
       ],
       text: (
         <>
@@ -448,10 +487,6 @@ export const PageExample = {
           code: PageSimpleCenteredBodySource,
           displayName: 'Components JS',
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PageSimpleCenteredBodyTemplateHtml,
-        },
       ],
       text: (
         <p>
@@ -495,10 +530,6 @@ export const PageExample = {
           code: PageSimpleEmptyContentSource,
           displayName: 'Components JS',
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PageSimpleEmptyContentTemplateHtml,
-        },
       ],
       text: (
         <p>
@@ -539,10 +570,6 @@ export const PageExample = {
           code: PageCustomContentSource,
           displayName: 'Components JS',
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PageCustomContentTemplateHtml,
-        },
       ],
       text: (
         <>
@@ -581,10 +608,6 @@ export const PageExample = {
         {
           type: GuideSectionTypes.JS,
           code: PageLegacySource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PageLegacyHtml,
         },
       ],
       text: (

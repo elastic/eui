@@ -16,6 +16,8 @@ export default () => (
     />
     &emsp;
     <EuiBetaBadge label="Lab" iconType="beaker" />
+    &emsp;
+    <EuiBetaBadge label="Lens" iconType="lensApp" />
     <EuiSpacer />
     <EuiTitle size="s">
       <h3>

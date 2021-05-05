@@ -23,20 +23,14 @@ const { AxePuppeteer } = require('@axe-core/puppeteer');
 
 const docsPages = async (root, page) => {
   const pagesToSkip = [
-    `${root}#/layout/resizable-container`,
     `${root}#/layout/page`, // Has duplicate `<main>` element
+    `${root}#/layout/page-header`, // Has duplicate `<header>` element
     `${root}#/tabular-content/tables`,
     `${root}#/tabular-content/in-memory-tables`,
     `${root}#/display/aspect-ratio`,
-    `${root}#/display/code`,
-    `${root}#/display/drag-and-drop`,
-    `${root}#/forms/compressed-forms`,
-    `${root}#/forms/super-select`,
     `${root}#/forms/combo-box`,
     `${root}#/forms/color-selection`,
-    `${root}#/forms/code-editor`,
     `${root}#/forms/date-picker`,
-    `${root}#/forms/suggest`,
     `${root}#/forms/super-date-picker`,
     `${root}#/tabular-content/data-grid`,
     `${root}#/tabular-content/data-grid-in-memory-settings`,
@@ -46,8 +40,6 @@ const docsPages = async (root, page) => {
     `${root}#/tabular-content/data-grid-control-columns`,
     `${root}#/tabular-content/data-grid-footer-row`,
     `${root}#/tabular-content/data-grid-virtualization`,
-    `${root}#/elastic-charts/creating-charts`,
-    `${root}#/elastic-charts/part-to-whole-comparisons`,
   ];
 
   return [

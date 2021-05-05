@@ -98,8 +98,15 @@
     text-align: right;
   }
 
+  &.euiDataGridRowCell--uppercase {
+    text-transform: uppercase;
+  }
 
-  &.euiDataGridRowCell--boolean {
+  &.euiDataGridRowCell--lowercase {
+    text-transform: lowercase;
+  }
+
+  &.euiDataGridRowCell--capitalize {
     text-transform: capitalize;
   }
 
@@ -150,6 +157,10 @@
   width: 0;
   overflow: hidden;
   transition: none; // Have to take out the generic transition so it is instaneous on focus
+  box-shadow: none !important; // sass-lint:disable-line no-important
+  // Remove default .euiButtonIcon--fill border
+  // This way we don't need to animate the border that is inexistent in Amsterdam and unnecessary for a fill button
+  border: none;
 
   &-isActive {
     margin-left: $euiDataGridCellPaddingM;

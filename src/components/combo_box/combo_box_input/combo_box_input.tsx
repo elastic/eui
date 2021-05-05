@@ -72,6 +72,7 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   prepend?: EuiFormControlLayoutProps['prepend'];
   append?: EuiFormControlLayoutProps['append'];
   isLoading?: boolean;
+  autoFocus?: boolean;
 }
 
 interface EuiComboBoxInputState {
@@ -159,6 +160,7 @@ export class EuiComboBoxInput<T> extends Component<
       prepend,
       append,
       isLoading,
+      autoFocus,
     } = this.props;
 
     const singleSelection = Boolean(singleSelectionProp);
@@ -300,6 +302,7 @@ export class EuiComboBoxInput<T> extends Component<
             role="textbox"
             style={{ fontSize: 14 }}
             value={searchValue}
+            autoFocus={autoFocus}
           />
           {removeOptionMessage}
         </div>

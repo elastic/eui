@@ -28,7 +28,9 @@ const ConflictModal = (props) => {
   return (
     <EuiModal onClose={props.onClose} style={{ width: '800px' }}>
       <EuiModalHeader>
-        <EuiModalHeaderTitle>Example modal</EuiModalHeaderTitle>
+        <EuiModalHeaderTitle>
+          <h1>Example modal</h1>
+        </EuiModalHeaderTitle>
       </EuiModalHeader>
       <EuiModalBody>
         <EuiFieldText

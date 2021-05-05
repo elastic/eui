@@ -285,6 +285,28 @@ describe('EuiPopover', () => {
       });
     });
 
+    describe('focusTrapProps', () => {
+      test('is rendered', () => {
+        const component = mount(
+          <div>
+            <EuiPopover
+              id={getId()}
+              button={<button />}
+              closePopover={() => {}}
+              focusTrapProps={{
+                clickOutsideDisables: false,
+                noIsolation: false,
+                scrollLock: false,
+              }}
+              isOpen
+            />
+          </div>
+        );
+
+        expect(component.render()).toMatchSnapshot();
+      });
+    });
+
     describe('offset', () => {
       test('with arrow', () => {
         const component = mount(

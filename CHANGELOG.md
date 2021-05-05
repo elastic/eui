@@ -1,9 +1,110 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `textTransform` property to `schemaDetectors` prop of `EuiDataGrid`([#4752](https://github.com/elastic/eui/pull/4752))
+- Added `color`, `continuityAbove`, `continuityAboveBelow`, `continuityBelow`, `continuityWithin`, `eraser`, `fullScreenExit`, `function`, `percent`, `wordWrap`, and `wordWrapDisabled` glyphs to `EuiIcon` ([#4779](https://github.com/elastic/eui/pull/4779))
+
+**Bug fixes**
+
+- Fixed `Event` details for `EuiCard` `outerOnClick` handler  ([#4624](https://github.com/elastic/eui/pull/4624))
+
+## [`33.0.0`](https://github.com/elastic/eui/tree/v33.0.0)
+
+- Added `autoFocus` prop and functionality to `EuiComboBox` ([#4772](https://github.com/elastic/eui/pull/4772))
+- Added `inherit` color option to `EuiIcon` to force two-tone (app) icons to inherit their parent's color ([#4760](https://github.com/elastic/eui/pull/4760))
+- Updated `EuiBetaBadge, EuiBadge, EuiButtonIcon, EuiButtonContent, EuiCallOut, EuiContextMenuItem, EuiListGroupItem` icon usage to inherit their parent's color ([#4760](https://github.com/elastic/eui/pull/4760))
+- Added `iconProps` prop to `EuiListGroupItem` ([#4760](https://github.com/elastic/eui/pull/4760))
+- Added `i18ntokens.json` to published package ([#4771](https://github.com/elastic/eui/pull/4771))
+- Replaced `highlight.js` with `prism.js`/`refractor` for code syntax highlighting in `EuiCodeBlock` ([#4638](https://github.com/elastic/eui/pull/4638))
+
+**Bug fixes**
+
+- Fixed `initialFocus` prop functionality in `EuiPopover` ([#4768](https://github.com/elastic/eui/pull/4768))
+- Fixed `description` prop in `EuiTable`([#4754](https://github.com/elastic/eui/pull/4754))
+
+**Breaking changes**
+
+- Changed some language syntax references in `EuiCodeBlock`, such as `jsx` ([#4638](https://github.com/elastic/eui/pull/4638))
+- Removed ability to parse non-string content in `EuiCodeBlock` ([#4638](https://github.com/elastic/eui/pull/4638))
+
+## [`32.3.0`](https://github.com/elastic/eui/tree/v32.3.0)
+
+- Reduced icon size in `EuiButtonEmpty` of `size` xs. ([#4759](https://github.com/elastic/eui/pull/4759))
+
+**Bug fixes**
+
+- Fixed missing i18n tokens for `EuiFilePicker` ([#4750](https://github.com/elastic/eui/pull/4750))
+- Fixed `EuiComboBox` to use correct placeholder text color ([#4744](https://github.com/elastic/eui/pull/4744))
+
+## [`32.2.0`](https://github.com/elastic/eui/tree/v32.2.0)
+
+- Removed `MutationObserver` fallback from `EuiResizeObserver` ([#4709](https://github.com/elastic/eui/pull/4709))
+
+**Bug fixes**
+
+- Fixed `EuiInMemoryTable` `pagination` prop to update visible items when changed ([#4714](https://github.com/elastic/eui/pull/4714))
+- Fixed a bug in `EuiFilePicker` where the HTML input was being shown when `disabled` ([#4738](https://github.com/elastic/eui/pull/4738))
+- Fixed inverted asc and desc labels for `EuiDataGrid` `datetime` schema ([#4733](https://github.com/elastic/eui/pull/4733))
+
+## [`32.1.0`](https://github.com/elastic/eui/tree/v32.1.0)
+
+- Added `readOnly` as a `sorting` option of `EuiBasicTable` and its columns ([#4626](https://github.com/elastic/eui/pull/4626))
+
+**Bug fixes**
+
+- Fixed a bug where on hovering an expandable row cell in `EuiDataGrid` a vertical line would show ([#4689](https://github.com/elastic/eui/pull/4689))
+- Fixed a bug in `EuiDataGrid` where key presses in portalled content were being handled by the grid ([#4706](https://github.com/elastic/eui/pull/4706))
+- Fixed `EuiDataGrid`'s header content arrangement prevented closing a header cell's popover ([#4706](https://github.com/elastic/eui/pull/4706))
+- Fixed a performance issue in `EuiDataGrid` when its `rowCount` changes  ([#4706](https://github.com/elastic/eui/pull/4706))
+
+## [`32.0.4`](https://github.com/elastic/eui/tree/v32.0.4)
+
+**Bug fixes**
+
+- Removed the restriction on `selectable` `EuiCard` with `layout="horizontal"` ([#4692](https://github.com/elastic/eui/pull/4692))
+
+## [`32.0.3`](https://github.com/elastic/eui/tree/v32.0.3)
+
+**Bug fixes**
+
+- Exported `EuiAvatarProps` ([#4690](https://github.com/elastic/eui/pull/4690))
+- Fixed type overrides in `EuiCard` ([#4690](https://github.com/elastic/eui/pull/4690))
+
+## [`32.0.2`](https://github.com/elastic/eui/tree/v32.0.2)
+
+**Bug fixes**
+
+- Fixed `htmlIdGenerator` import path in `button_group_button.tsx` ([#4682](https://github.com/elastic/eui/pull/4682))
+- Fixed `EuiColorStops` popover failing to close ([#4687](https://github.com/elastic/eui/pull/4687))
+
+## [`32.0.1`](https://github.com/elastic/eui/tree/v32.0.1)
+
+**Bug fixes**
+
+- Fixed block style of `EuiPanel` when rendered as a `<button>` ([#4681](https://github.com/elastic/eui/pull/4681))
+
+## [`32.0.0`](https://github.com/elastic/eui/tree/v32.0.0)
+
+- Added `stepNumber` prop and `stepped` as `stopType` option to `EuiColorStops` ([#4613](https://github.com/elastic/eui/pull/4613))
+- Expanded `display` prop of `EuiCard` to inherit `color` values from `EuiPanel` ([#4649](https://github.com/elastic/eui/pull/4649))
+- Added `element` prop to `EuiPanel` for forcing to `div` or `button` ([#4649](https://github.com/elastic/eui/pull/4649))
+- Increased padding on `EuiCheckableCard` with refactor to use `EuiSplitPanel` ([#4649](https://github.com/elastic/eui/pull/4649))
+- Added `valueInputProps` prop to `EuiColorStops` ([#4669](https://github.com/elastic/eui/pull/4669))
+- Added `position`, `usePortal`, `top`, `right`, `bottom`, and `left` props to `EuiBottomBar` ([#4662](https://github.com/elastic/eui/pull/4662))
+- Added `bottomBar` and `bottomBarProps` to `EuiPageTemplate` when `template = 'default'` ([#4662](https://github.com/elastic/eui/pull/4662))
+- Added `role="main"` to `EuiPageContent` by default ([#4662](https://github.com/elastic/eui/pull/4662))
+- Added `bottomBorder` prop to `EuiPageHeader` ([#4662](https://github.com/elastic/eui/pull/4662))
+
 **Bug fixes**
 
 - Fixed `id` attribute to be unique across `EuiButtonGroupButton` elements ([#4657](https://github.com/elastic/eui/pull/4657))
-- Fixed `Event` details for `EuiCard` `outerOnClick` handler  ([#4624](https://github.com/elastic/eui/pull/4624))
+- Fixed responsive sizing of `EuiModal` ([#4670](https://github.com/elastic/eui/pull/4670))
+- Fixed `disabled` interactions of `EuiHeaderSectionItemButton` ([#4670](https://github.com/elastic/eui/pull/4670))
+- Hid `of` text on small screens for compressed `EuiPagination`([#4661](https://github.com/elastic/eui/pull/4661))
+
+**Breaking changes**
+
+- Removed `betaBadgeLabel`, `betaBadgeTooltipContent`, and `betaBadgeTitle` props from `EuiPanel` ([#4649](https://github.com/elastic/eui/pull/4649))
+- Changed `EuiBottomBar` positioning styles from being applied at the CSS layer to the `style` property  ([#4662](https://github.com/elastic/eui/pull/4662))
 
 ## [`31.12.0`](https://github.com/elastic/eui/tree/v31.12.0)
 

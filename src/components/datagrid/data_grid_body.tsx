@@ -145,6 +145,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
     renderCellValue,
     interactiveCellId,
     setRowHeight,
+    schemaDetectors,
   } = data;
 
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
@@ -169,12 +170,26 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
   const isTrailingControlColumn =
     columnIndex >= leadingControlColumns.length + columns.length;
 
+  const dataColumnIndex = columnIndex - leadingControlColumns.length;
+  const column = columns[dataColumnIndex];
+  const columnId = column?.id;
+
+  const transformClass = schemaDetectors.filter(
+    (row: EuiDataGridSchemaDetector) => {
+      return column?.schema
+        ? column?.schema === row.type
+        : columnId === row.type;
+    }
+  )[0];
+  const textTransform = transformClass?.textTransform;
+
   const classes = classNames({
     'euiDataGridRowCell--stripe': isStripableRow,
     'euiDataGridRowCell--firstColumn': isFirstColumn,
     'euiDataGridRowCell--lastColumn': isLastColumn,
     'euiDataGridRowCell--controlColumn':
       isLeadingControlColumn || isTrailingControlColumn,
+    [`euiDataGridRowCell--${textTransform}`]: textTransform,
   });
 
   if (isLeadingControlColumn) {
@@ -228,9 +243,6 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
     // this is a normal data cell
 
     // offset the column index by the leading control columns
-    const dataColumnIndex = columnIndex - leadingControlColumns.length;
-    const column = columns[dataColumnIndex];
-    const columnId = column.id;
     const columnType = schema[columnId] ? schema[columnId].columnType : null;
 
     const isExpandable =
@@ -525,24 +537,24 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const [height, setHeight] = useState<number | undefined>(undefined);
   const [width, setWidth] = useState<number | undefined>(undefined);
 
-  // reset height constraint when rowCount or fullscreen setting changes
-  useEffect(() => {
-    setHeight(undefined);
-  }, [rowCount, isFullScreen]);
-
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const wrapperDimensions = useResizeObserver(wrapperRef.current);
+
+  // reset height constraint when rowCount changes
+  useEffect(() => {
+    setHeight(wrapperRef.current!.getBoundingClientRect().height);
+  }, [rowCount]);
 
   useEffect(() => {
     const boundingRect = wrapperRef.current!.getBoundingClientRect();
 
-    if (boundingRect.height !== unconstrainedHeight) {
+    if (boundingRect.height !== unconstrainedHeight && !isFullScreen) {
       setHeight(boundingRect.height);
     }
     if (boundingRect.width !== unconstrainedWidth) {
       setWidth(boundingRect.width);
     }
-  }, [unconstrainedHeight, wrapperDimensions]);
+  }, [unconstrainedHeight, wrapperDimensions, isFullScreen]);
 
   const preventTabbing = useCallback(() => {
     if (wrapperRef.current) {
@@ -600,6 +612,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 height={finalHeight}
                 rowHeight={getRowHeight}
                 itemData={{
+                  schemaDetectors,
                   setRowHeight,
                   rowMap,
                   rowOffset: pagination

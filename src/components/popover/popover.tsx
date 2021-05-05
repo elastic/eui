@@ -30,7 +30,7 @@ import classNames from 'classnames';
 import tabbable from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
-import { FocusTarget, EuiFocusTrap } from '../focus_trap';
+import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
 import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 
 import {
@@ -107,6 +107,13 @@ export interface EuiPopoverProps {
    */
   display?: keyof typeof displayToClassNameMap;
   /**
+   * Object of props passed to EuiFocusTrap
+   */
+  focusTrapProps?: Pick<
+    EuiFocusTrapProps,
+    'clickOutsideDisables' | 'noIsolation' | 'scrollLock'
+  >;
+  /**
    * Show arrow indicating to originating button
    */
   hasArrow?: boolean;
@@ -115,8 +122,10 @@ export interface EuiPopoverProps {
    * node, or a selector string (which will be passed to
    * document.querySelector() to find the DOM node), or a function that
    * returns a DOM node
+   * Set to `false` to prevent initial auto-focus. Use only
+   * when your app handles setting initial focus state.
    */
-  initialFocus?: FocusTarget;
+  initialFocus?: FocusTarget | false;
   /**
    * Passed directly to EuiPortal for DOM positioning. Both properties are
    * required if prop is specified
@@ -351,6 +360,7 @@ export class EuiPopover extends Component<Props, State> {
   private updateFocusAnimationFrame: number | undefined;
   private button: HTMLElement | null = null;
   private panel: HTMLElement | null = null;
+  private hasSetInitialFocus: boolean = false;
 
   constructor(props: Props) {
     super(props);
@@ -401,12 +411,19 @@ export class EuiPopover extends Component<Props, State> {
   updateFocus() {
     // Wait for the DOM to update.
     this.updateFocusAnimationFrame = window.requestAnimationFrame(() => {
-      if (!this.props.ownFocus || !this.panel) {
+      if (
+        !this.props.ownFocus ||
+        !this.panel ||
+        this.props.initialFocus === false
+      ) {
         return;
       }
 
       // If we've already focused on something inside the panel, everything's fine.
-      if (this.panel.contains(document.activeElement)) {
+      if (
+        this.hasSetInitialFocus &&
+        this.panel.contains(document.activeElement)
+      ) {
         return;
       }
 
@@ -446,7 +463,10 @@ export class EuiPopover extends Component<Props, State> {
         }
       }
 
-      if (focusTarget != null) focusTarget.focus();
+      if (focusTarget != null) {
+        this.hasSetInitialFocus = true;
+        focusTarget.focus();
+      }
     });
   }
 
@@ -499,8 +519,6 @@ export class EuiPopover extends Component<Props, State> {
     if (this.props.repositionOnScroll) {
       window.addEventListener('scroll', this.positionPopoverFixed);
     }
-
-    this.updateFocus();
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -523,6 +541,7 @@ export class EuiPopover extends Component<Props, State> {
       // If the user has just closed the popover, queue up the removal of the content after the
       // transition is complete.
       this.closingTransitionTimeout = window.setTimeout(() => {
+        this.hasSetInitialFocus = false;
         this.setState({
           isClosing: false,
         });
@@ -681,6 +700,7 @@ export class EuiPopover extends Component<Props, State> {
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
       container,
+      focusTrapProps,
       ...rest
     } = this.props;
 
@@ -750,8 +770,9 @@ export class EuiPopover extends Component<Props, State> {
       panel = (
         <EuiPortal insert={insert}>
           <EuiFocusTrap
-            returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             clickOutsideDisables={true}
+            {...focusTrapProps}
+            returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             initialFocus={initialFocus}
             onDeactivation={onTrapDeactivation}
             onClickOutside={this.onClickOutside}
