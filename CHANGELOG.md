@@ -5,7 +5,7 @@
 
 **Bug fixes**
 
-- Fixed `Event` details for `EuiCard` `outerOnClick` handler  ([#4624](https://github.com/elastic/eui/pull/4624))
+- Fixed `Event` details for `EuiCard` `outerOnClick` handler ([#4624](https://github.com/elastic/eui/pull/4624))
 
 ## [`33.0.0`](https://github.com/elastic/eui/tree/v33.0.0)
 

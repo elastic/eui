@@ -302,10 +302,20 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   let optionalCardTop;
   if (imageNode || iconNode) {
+    console.log({ href, title });
     optionalCardTop = (
       <div className="euiCard__top">
         {imageNode}
         {iconNode}
+        {/* eslint-disable jsx-a11y/anchor-has-content */}
+        {href && (
+          <a
+            href={href}
+            aria-hidden="true"
+            tabIndex={-1}
+            className="euiCard__hidden-top-link"
+          />
+        )}
       </div>
     );
   }
