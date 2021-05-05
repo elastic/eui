@@ -4,7 +4,12 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiCodeBlock } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiCodeBlock,
+  EuiLink,
+  EuiText,
+} from '../../../../src/components';
 import { codeBlockConfig, codeConfig } from './playground';
 
 import Code from './code';
@@ -26,6 +31,34 @@ const codeBlockPreHtml = renderToHtml(CodeBlockPre);
 
 export const CodeExample = {
   title: 'Code',
+  intro: (
+    <>
+      <EuiText>
+        <p>
+          The <strong>EuiCode</strong> and <strong>EuiCodeBlock</strong>{' '}
+          components support{' '}
+          <EuiLink external href="https://github.com/wooorm/refractor#syntaxes">
+            all language syntaxes
+          </EuiLink>{' '}
+          supported by the
+          <EuiCode>prism</EuiCode>{' '}
+          <EuiLink external href="https://prismjs.com/">
+            library
+          </EuiLink>
+          .
+          <br />
+          The <EuiCode>language</EuiCode> prop can also be omitted to simply
+          render formatted but unhighlighted code.
+        </p>
+        <p>
+          JSX code (often React) has distinct language syntaxes from the base
+          JavaScript and TypeScript languages. For these instances, use{' '}
+          <EuiCode>language=&quot;jsx&quot;</EuiCode> or{' '}
+          <EuiCode>language=&quot;tsx&quot;</EuiCode>.
+        </p>
+      </EuiText>
+    </>
+  ),
   sections: [
     {
       title: 'Inline',
@@ -48,6 +81,7 @@ export const CodeExample = {
       snippet: codeSnippet,
       props: { EuiCode },
       demo: <Code />,
+      playground: codeConfig,
     },
     {
       title: 'Code block',
@@ -72,6 +106,7 @@ export const CodeExample = {
       snippet: codeBlockSnippet,
       props: { EuiCodeBlock },
       demo: <CodeBlock />,
+      playground: codeBlockConfig,
     },
     {
       title: 'Code block and white-space',
@@ -98,5 +133,4 @@ export const CodeExample = {
       demo: <CodeBlockPre />,
     },
   ],
-  playground: [codeBlockConfig, codeConfig],
 };

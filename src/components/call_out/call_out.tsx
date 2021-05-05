@@ -84,6 +84,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
           type={iconType}
           size="m"
           aria-hidden="true"
+          color="inherit" // forces the icon to inherit its parent color
         />
       );
     }

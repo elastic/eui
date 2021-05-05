@@ -59,6 +59,7 @@ Array [
         >
           <span
             class="euiButtonContent__icon"
+            color="inherit"
             data-euiicon-type="cross"
           />
           <span
@@ -111,6 +112,7 @@ Array [
         >
           <span
             class="euiButtonContent__icon"
+            color="inherit"
             data-euiicon-type="cross"
           />
           <span
@@ -165,6 +167,7 @@ Array [
         >
           <span
             class="euiButtonContent__icon"
+            color="inherit"
             data-euiicon-type="cross"
           />
           <span
@@ -213,6 +216,7 @@ Array [
         >
           <span
             class="euiButtonContent__icon"
+            color="inherit"
             data-euiicon-type="cross"
           />
           <span
@@ -261,6 +265,7 @@ Array [
         >
           <span
             class="euiButtonContent__icon"
+            color="inherit"
             data-euiicon-type="cross"
           />
           <span
@@ -308,6 +313,7 @@ Array [
         >
           <span
             class="euiButtonContent__icon"
+            color="inherit"
             data-euiicon-type="cross"
           />
           <span
@@ -356,6 +362,7 @@ Array [
         >
           <span
             class="euiButtonContent__icon"
+            color="inherit"
             data-euiicon-type="cross"
           />
           <span
@@ -409,6 +416,7 @@ Array [
         >
           <span
             class="euiButtonContent__icon"
+            color="inherit"
             data-euiicon-type="cross"
           />
           <span
