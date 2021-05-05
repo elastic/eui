@@ -138,22 +138,22 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
     this.validateValueIsInStep(max);
 
     let tickSequence;
-    const inputWrapperStyle: { marginLeft?: string; marginRight?: string } = {};
+    // const inputWrapperStyle: { marginLeft?: string; marginRight?: string } = {};
     if (showTicks) {
       tickSequence = this.calculateTicks(min, max, step, tickInterval, ticks);
 
       // Calculate if any extra margin should be added to the inputWrapper
       // because of longer tick labels on the ends
-      const lengthOfMinLabel = String(tickSequence[0]).length;
-      const lenghtOfMaxLabel = String(tickSequence[tickSequence.length - 1])
-        .length;
-      const isLastTickTheMax = tickSequence[tickSequence.length - 1] === max;
-      if (lengthOfMinLabel > 2) {
-        inputWrapperStyle.marginLeft = `${lengthOfMinLabel / 5}em`;
-      }
-      if (isLastTickTheMax && lenghtOfMaxLabel > 2) {
-        inputWrapperStyle.marginRight = `${lenghtOfMaxLabel / 5}em`;
-      }
+      // const lengthOfMinLabel = String(tickSequence[0]).length;
+      // const lenghtOfMaxLabel = String(tickSequence[tickSequence.length - 1])
+      //   .length;
+      // const isLastTickTheMax = tickSequence[tickSequence.length - 1] === max;
+      // if (lengthOfMinLabel > 2) {
+      //   inputWrapperStyle.marginLeft = `${lengthOfMinLabel / 5}em`;
+      // }
+      // if (isLastTickTheMax && lenghtOfMaxLabel > 2) {
+      //   inputWrapperStyle.marginRight = `${lenghtOfMaxLabel / 5}em`;
+      // }
     }
 
     const trackClasses = classNames('euiRangeTrack', {
@@ -161,7 +161,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
     });
 
     return (
-      <div className={trackClasses} style={inputWrapperStyle} {...rest}>
+      <div className={trackClasses} {...rest}>
         {levels && !!levels.length && (
           <EuiRangeLevels
             compressed={compressed}
