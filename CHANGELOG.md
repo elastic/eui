@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `textTransform` property to `schemaDetectors` prop of `EuiDataGrid`([#4752](https://github.com/elastic/eui/pull/4752))
+- Changed the `helpText` prope in `EuiFormRow` to accept an array of messages([#4782](https://github.com/elastic/eui/pull/4782))
 
 ## [`33.0.0`](https://github.com/elastic/eui/tree/v33.0.0)
 

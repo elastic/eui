@@ -90,7 +90,7 @@ type EuiFormRowCommonProps = CommonProps & {
   id?: string;
   isInvalid?: boolean;
   error?: ReactNode | ReactNode[];
-  helpText?: ReactNode;
+  helpText?: ReactNode | ReactNode[];
 };
 
 type LabelProps = {
@@ -185,14 +185,21 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       className
     );
 
-    let optionalHelpText;
+    let optionalHelpTexts;
 
     if (helpText) {
-      optionalHelpText = (
-        <EuiFormHelpText id={`${id}-help`} className="euiFormRow__text">
-          {helpText}
-        </EuiFormHelpText>
-      );
+      const helpTexts = Array.isArray(helpText) ? helpText : [helpText];
+      optionalHelpTexts = helpTexts.map((helpText, i) => {
+        const key = typeof helpText === 'string' ? helpText : i;
+        return (
+          <EuiFormHelpText
+            key={key}
+            id={`${id}-help-${i}`}
+            className="euiFormRow__text">
+            {helpText}
+          </EuiFormHelpText>
+        );
+      });
     }
 
     let optionalErrors;
@@ -249,8 +256,10 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
      */
     const describingIds = [...describedByIds!];
 
-    if (optionalHelpText) {
-      describingIds.push(optionalHelpText.props.id);
+    if (optionalHelpTexts) {
+      optionalHelpTexts.forEach((optionalHelpText) =>
+        describingIds.push(optionalHelpText.props.id)
+      );
     }
 
     if (optionalErrors) {
@@ -287,7 +296,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
         <div className={fieldWrapperClasses}>
           {field}
           {optionalErrors}
-          {optionalHelpText}
+          {optionalHelpTexts}
         </div>
       </React.Fragment>
     );
