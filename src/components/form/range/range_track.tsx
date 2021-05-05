@@ -137,24 +137,9 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
     // TODO: Move these to only re-calculate if no-value props have changed
     this.validateValueIsInStep(max);
 
-    let tickSequence;
-    // const inputWrapperStyle: { marginLeft?: string; marginRight?: string } = {};
-    if (showTicks) {
-      tickSequence = this.calculateTicks(min, max, step, tickInterval, ticks);
-
-      // Calculate if any extra margin should be added to the inputWrapper
-      // because of longer tick labels on the ends
-      // const lengthOfMinLabel = String(tickSequence[0]).length;
-      // const lenghtOfMaxLabel = String(tickSequence[tickSequence.length - 1])
-      //   .length;
-      // const isLastTickTheMax = tickSequence[tickSequence.length - 1] === max;
-      // if (lengthOfMinLabel > 2) {
-      //   inputWrapperStyle.marginLeft = `${lengthOfMinLabel / 5}em`;
-      // }
-      // if (isLastTickTheMax && lenghtOfMaxLabel > 2) {
-      //   inputWrapperStyle.marginRight = `${lenghtOfMaxLabel / 5}em`;
-      // }
-    }
+    const tickSequence =
+      showTicks === true &&
+      this.calculateTicks(min, max, step, tickInterval, ticks);
 
     const trackClasses = classNames('euiRangeTrack', {
       'euiRangeTrack--disabled': disabled,
