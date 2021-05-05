@@ -60,7 +60,7 @@ export default () => {
 
         <EuiHorizontalRule margin="xxl" />
 
-        <Typography />
+        <Typography onThemeUpdate={(overrides) => updateTheme(overrides)} />
 
         <EuiHorizontalRule margin="xxl" />
 
@@ -86,7 +86,7 @@ export default () => {
 
         <EuiSpacer />
 
-        {Object.keys(overrides).length && (
+        {Object.keys(overrides).length > 0 && (
           <EuiBottomBar position="sticky">
             <EuiFlexGroup justifyContent="flexEnd">
               <EuiFlexItem grow={false}>

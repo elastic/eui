@@ -30,8 +30,7 @@ import { font } from '../../../../global_styling/variables/_typography';
 
 export const font_ams = {
   ...font,
-  family:
-    "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+  family: "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
 };
 
 // $euiFontSizeXS:   floor($euiFontSize * .86);  // 12px // h6

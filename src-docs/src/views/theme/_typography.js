@@ -12,12 +12,12 @@ import {
 } from '../../../../src/components';
 
 import {
-  fontBase,
   fontWeight,
   fontScale,
 } from '../../../../src/global_styling/variables/_typography';
 
 import { ThemeValue } from './_values';
+import { ThemeSection } from './_theme_section';
 
 import {
   getPropsFromThemeKey,
@@ -26,17 +26,27 @@ import {
   _EuiFontScale,
 } from './_props';
 
-const baseKeys = Object.keys(fontBase);
 const weightKeys = Object.keys(fontWeight);
 const scaleKeys = Object.keys(fontScale);
 
-export default () => {
+export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
   const font = euiTheme.font;
 
   const baseProps = getPropsFromThemeKey(EuiThemeFontBase);
   const weightProps = getPropsFromThemeKey(EuiThemeFontWeight);
   const scaleProps = getPropsFromThemeKey(_EuiFontScale);
+
+  const fontFamilies = font.family.split(',');
+  const codeFontFamilies = font.familyCode.split(',');
+
+  const updateFont = (property, value) => {
+    onThemeUpdate({
+      font: {
+        [property]: value,
+      },
+    });
+  };
 
   return (
     <div>
@@ -48,12 +58,12 @@ export default () => {
         </p>
       </EuiText>
 
-      <EuiSpacer />
+      <EuiSpacer size="xxl" />
 
-      <EuiFlexGroup>
-        <EuiFlexItem>
-          <EuiText grow={false} size="s">
-            <h3>Base</h3>
+      <ThemeSection
+        code="_EuiThemeFontBase"
+        description={
+          <>
             <p>
               The base font settings determine things like{' '}
               <EuiCode>family</EuiCode> and <EuiCode>featureSettings</EuiCode>.
@@ -65,23 +75,90 @@ export default () => {
               pixel/rem value by ensuring it falls on a multiplier of this
               baseline.
             </p>
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <EuiPanel paddingSize="l" color="subdued">
-            {baseKeys.map((key) => (
+          </>
+        }
+        property="font"
+        themeValues={
+          <>
+            <EuiFlexItem>
               <ThemeValue
-                key={key}
                 property={'font'}
-                type={baseProps[key]}
-                name={key}
-                value={font[key]}
-                groupProps={{ wrap: true, gutterSize: 'none' }}
+                type={baseProps.family}
+                name={'family'}
+                // value={fontFamilies[0]}
+                // onUpdate={(value) => updateFont('family', value)}
               />
-            ))}
-          </EuiPanel>
-        </EuiFlexItem>
-      </EuiFlexGroup>
+              <EuiSpacer size="s" />
+              {/* The loop below renders each font family applied to a span. */}
+              <EuiText size="s" color="subdued" textAlign="right">
+                {fontFamilies.map((family, i) => (
+                  <span
+                    css={css`
+                      font-family: ${family};
+                    `}>
+                    {family}
+                    {i < fontFamilies.length - 1 ? ', ' : ''}
+                  </span>
+                ))}
+              </EuiText>
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <ThemeValue
+                property={'font'}
+                type={baseProps.familyCode}
+                name={'familyCode'}
+                // value={codeFontFamilies[0]}
+                // onUpdate={(value) => updateFont('familyCode', value)}
+              />
+              <EuiSpacer size="s" />
+              {/* The loop below renders each font family applied to a span. */}
+              <EuiText size="s" color="subdued" textAlign="right">
+                {codeFontFamilies.map((family, i) => (
+                  <span
+                    css={css`
+                      font-family: ${family};
+                    `}>
+                    {family}
+                    {i < codeFontFamilies.length - 1 ? ', ' : ''}
+                  </span>
+                ))}
+              </EuiText>
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <ThemeValue
+                property={'font'}
+                type={baseProps.featureSettings}
+                name={'featureSettings'}
+              />
+              <EuiSpacer size="s" />
+              <EuiText size="s" color="subdued" textAlign="right">
+                <code>{font.featureSettings}</code>
+              </EuiText>
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <ThemeValue
+                property={'font'}
+                type={baseProps.baseline}
+                name={'baseline'}
+                value={font.baseline}
+                onUpdate={(value) => updateFont('baseline', value)}
+              />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <ThemeValue
+                property={'font'}
+                type={baseProps.lineHeightMultiplier}
+                name={'lineHeightMultiplier'}
+                value={font.lineHeightMultiplier}
+                onUpdate={(value) => updateFont('lineHeightMultiplier', value)}
+                numberProps={{ step: 0.1 }}
+              />
+            </EuiFlexItem>
+          </>
+        }
+      />
+
+      <EuiSpacer size="xxl" />
 
       <EuiSpacer />
 

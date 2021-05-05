@@ -45,21 +45,34 @@ export type EuiFontScale = keyof typeof fontScale;
  */
 
 export type _EuiThemeFontBase = {
+  /**
+   * The whole font family stack for all parts of the UI.
+   * We encourage only customizing the first font in the stack.
+   */
   family: string;
+  /**
+   * The font family used for monospace UI elements like EuiCode
+   */
   familyCode?: string;
+  /**
+   * Controls advanced features OpenType fonts.
+   * https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings
+   */
   featureSettings?: string;
   /**
-   * A calculated number that is 1/4 of `base`
+   * A computed number that is 1/4 of `base`
    */
   baseline: number;
+  /**
+   * Establishes the ideal line-height percentage, but it is the `baseline` integer that establishes the final pixel/rem value
+   */
   lineHeightMultiplier: number;
 };
 
 // Families & base font settings
 export const fontBase: _EuiThemeFontBase = {
-  family:
-    "'Inter UI', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-  familyCode: "'Roboto Mono', Consolas, Menlo, Courier, monospace",
+  family: "'Inter UI', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
+  familyCode: "'Roboto Mono', Menlo, Courier, monospace",
 
   // Careful using ligatures. Code editors like ACE will often error because of width calculations
   featureSettings: "'calt' 1, 'kern' 1, 'liga' 1",

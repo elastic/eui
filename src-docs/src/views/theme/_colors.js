@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { useEuiTheme } from '../../../../src/services';
 import { Link } from 'react-router-dom';
+import { useEuiTheme } from '../../../../src/services';
 
 import {
   brand_colors,

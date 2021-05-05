@@ -9,7 +9,12 @@ import {
   EuiFlexItem,
 } from '../../../../src/components/flex';
 import { EuiText } from '../../../../src/components/text';
-import { EuiFieldNumber } from '../../../../src/components/form';
+import {
+  EuiFieldNumber,
+  EuiFieldNumberProps,
+  EuiFieldText,
+  EuiFieldTextProps,
+} from '../../../../src/components/form';
 import {
   isValidHex,
   useColorPickerState,
@@ -31,6 +36,8 @@ type ThemeValue = {
   buttonStyle?: SerializedStyles;
   onUpdate?: (color: string | number) => void;
   type?: any;
+  numberProps?: EuiFieldNumberProps;
+  stringProps?: EuiFieldTextProps;
 };
 
 export const ThemeValue: FunctionComponent<ThemeValue> = ({
@@ -42,6 +49,8 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
   buttonStyle,
   onUpdate,
   type,
+  numberProps,
+  stringProps,
 }) => {
   const { euiTheme } = useEuiTheme();
 
@@ -113,15 +122,27 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
     valueRender = (
       <EuiFieldNumber
         compressed
-        aria-label="Update base value"
+        aria-label={`Update ${name} value`}
         value={value}
         onChange={(e) => onUpdate(Number(e.target.value))}
         style={{ width: 64 }}
+        {...numberProps}
+      />
+    );
+  } else if (property !== 'colors' && typeof value === 'string' && onUpdate) {
+    valueRender = (
+      <EuiFieldText
+        compressed
+        aria-label={`Update ${name} value`}
+        value={value}
+        onChange={(e) => onUpdate(e.target.value)}
+        style={{ width: 120 }}
+        {...stringProps}
       />
     );
   } else {
     valueRender = (
-      <EuiText size="s" color="subdued">
+      <EuiText textAlign="right" size="s" color="subdued">
         <code>{value}</code>
       </EuiText>
     );
