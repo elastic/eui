@@ -98,8 +98,15 @@
     text-align: right;
   }
 
+  &.euiDataGridRowCell--uppercase {
+    text-transform: uppercase;
+  }
 
-  &.euiDataGridRowCell--boolean {
+  &.euiDataGridRowCell--lowercase {
+    text-transform: lowercase;
+  }
+
+  &.euiDataGridRowCell--capitalize {
     text-transform: capitalize;
   }
 

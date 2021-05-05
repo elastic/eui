@@ -50,6 +50,7 @@ exports[`EuiFilterButton props iconType and iconSide is rendered 1`] = `
   >
     <span
       class="euiButtonContent__icon"
+      color="inherit"
       data-euiicon-type="user"
     />
     <span

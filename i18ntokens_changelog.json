@@ -1,5 +1,31 @@
 [
   {
+    "version": "33.0.0",
+    "changes": [
+      {
+        "token": "euiTableHeaderCell.clickForDescending",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTableHeaderCell.clickForUnsort",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTableHeaderCell.clickForAscending",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTableHeaderCell.titleTextWithSort",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTableHeaderCell.titleTextWithDesc",
+        "changeType": "added",
+        "value": "{innerText}; {description}"
+      }
+    ]
+  },
+  {
     "version": "32.3.0",
     "changes": [
       {

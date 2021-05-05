@@ -190,6 +190,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
         type={iconType}
         size={iconSize}
         aria-hidden="true"
+        color="inherit" // forces the icon to inherit its parent color
       />
     );
   }
