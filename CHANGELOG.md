@@ -2,6 +2,7 @@
 
 - Added `textTransform` property to `schemaDetectors` prop of `EuiDataGrid`([#4752](https://github.com/elastic/eui/pull/4752))
 - Added `color`, `continuityAbove`, `continuityAboveBelow`, `continuityBelow`, `continuityWithin`, `eraser`, `fullScreenExit`, `function`, `percent`, `wordWrap`, and `wordWrapDisabled` glyphs to `EuiIcon` ([#4779](https://github.com/elastic/eui/pull/4779))
+- Added draggable highlight area to `EuiDualRange` ([#4776](https://github.com/elastic/eui/pull/4776))
 
 ## [`33.0.0`](https://github.com/elastic/eui/tree/v33.0.0)
 
