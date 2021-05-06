@@ -113,7 +113,7 @@ describe('EuiCard', () => {
           <EuiCard title="Hoi" description="There" href="#" onClick={handler} />
         );
         // title click
-        component.find('a').simulate('click');
+        component.find('a.euiCard__titleAnchor').simulate('click');
         expect(handler.mock.calls.length).toEqual(1);
         // card body click
         component.simulate('click');

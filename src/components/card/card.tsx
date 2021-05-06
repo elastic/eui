@@ -202,6 +202,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 }) => {
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
+  const renderAnchor = !isDisabled && href;
   const link = useRef<HTMLAnchorElement | HTMLButtonElement>();
   const isClickable =
     !isDisabled && (onClick || href || (selectable && !selectable.isDisabled));
@@ -302,13 +303,12 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   let optionalCardTop;
   if (imageNode || iconNode) {
-    console.log({ href, title });
     optionalCardTop = (
       <div className="euiCard__top">
         {imageNode}
         {iconNode}
         {/* eslint-disable jsx-a11y/anchor-has-content */}
-        {href && (
+        {renderAnchor && (
           <a
             href={href}
             aria-hidden="true"
@@ -369,7 +369,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
    */
 
   let theTitle;
-  if (!isDisabled && href) {
+  if (renderAnchor) {
     theTitle = (
       <a
         className="euiCard__titleAnchor"
@@ -413,32 +413,42 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       hasBorder={display ? false : undefined}
       paddingSize={paddingSize}
       {...rest}>
-      {optionalCardTop}
-
-      <div className="euiCard__content">
-        <EuiTitle
-          id={`${ariaId}Title`}
-          className="euiCard__title"
-          size={titleSize}>
-          <TitleElement>{theTitle}</TitleElement>
-        </EuiTitle>
-
-        {description && (
-          <EuiText id={ariaDesc} size="s" className="euiCard__description">
-            <p>{description}</p>
-          </EuiText>
-        )}
-
-        {children && <div className="euiCard__children">{children}</div>}
-      </div>
-
-      {/* Beta badge should always be after the title/description but before any footer buttons */}
-      {optionalBetaBadge}
-
-      {layout === 'vertical' && footer && (
-        <div className="euiCard__footer">{footer}</div>
+      {renderAnchor && (
+        <a
+          href={href}
+          aria-hidden="true"
+          tabIndex={-1}
+          className="euiCard__hidden-bottom-link"
+        />
       )}
-      {optionalSelectButton}
+      <div className="euiCard__content-container">
+        {optionalCardTop}
+
+        <div className="euiCard__content">
+          <EuiTitle
+            id={`${ariaId}Title`}
+            className="euiCard__title"
+            size={titleSize}>
+            <TitleElement>{theTitle}</TitleElement>
+          </EuiTitle>
+
+          {description && (
+            <EuiText id={ariaDesc} size="s" className="euiCard__description">
+              <p>{description}</p>
+            </EuiText>
+          )}
+
+          {children && <div className="euiCard__children">{children}</div>}
+        </div>
+
+        {/* Beta badge should always be after the title/description but before any footer buttons */}
+        {optionalBetaBadge}
+
+        {layout === 'vertical' && footer && (
+          <div className="euiCard__footer">{footer}</div>
+        )}
+        {optionalSelectButton}
+      </div>
     </EuiPanel>
   );
 };
