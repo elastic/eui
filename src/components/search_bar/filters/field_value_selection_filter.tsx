@@ -336,6 +336,7 @@ export class FieldValueSelectionFilter extends Component<
       ? config.multiSelect
       : defaults.config.multiSelect;
   }
+
   componentDidUpdate(
     prevProps: Readonly<FieldValueSelectionFilterProps> &
       Readonly<{
@@ -344,6 +345,7 @@ export class FieldValueSelectionFilter extends Component<
   ) {
     if (this.props.query !== prevProps.query) this.loadOptions();
   }
+
   render() {
     const { index, query, config } = this.props;
     const multiSelect = this.resolveMultiSelect();
