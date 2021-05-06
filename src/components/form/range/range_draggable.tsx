@@ -85,10 +85,7 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
   };
 
   return (
-    <div
-      style={outerStyle}
-      {...commonProps}
-      {...(rest as HTMLAttributes<HTMLDivElement>)}>
+    <div style={outerStyle} {...commonProps} {...rest}>
       <div
         className="euiRangeDraggle__inner"
         onMouseDown={handleMouseDown}
