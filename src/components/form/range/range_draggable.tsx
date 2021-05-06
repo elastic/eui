@@ -24,6 +24,10 @@ import { useMouseMove } from '../../../services';
 
 export interface EuiRangeDraggableProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+  min: number;
+  max: number;
+  value?: number | string;
+  disabled?: boolean;
   compressed?: boolean;
   showTicks?: boolean;
   lowerPosition: string;
@@ -38,6 +42,10 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
   upperPosition,
   compressed,
   onChange,
+  min,
+  max,
+  disabled,
+  value,
   ...rest
 }) => {
   const outerStyle: React.CSSProperties = {
@@ -50,6 +58,7 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
     {
       'euiRangeDraggable--hasTicks': showTicks,
       'euiRangeDraggable--compressed': compressed,
+      'euiRangeDraggable--disabled': disabled,
     },
     className
   );
@@ -58,14 +67,28 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
     { x }: { x: number; y: number },
     isFirstInteraction?: boolean
   ) => {
+    if (disabled) return;
     onChange(x, isFirstInteraction);
   };
 
   const [handleMouseDown, handleInteraction] = useMouseMove(handleChange);
 
+  const commonProps = {
+    className: classes,
+    role: 'slider',
+    'aria-valuemin': min,
+    'aria-valuemax': max,
+    // This is not a native input element, so the types don't match
+    'aria-valuenow': value as number,
+    'aria-disabled': !!disabled,
+    tabIndex: !!disabled ? -1 : 0,
+  };
+
   return (
-    // TODO: ARIA
-    <div className={classes} style={outerStyle} tabIndex={0} {...rest}>
+    <div
+      style={outerStyle}
+      {...commonProps}
+      {...(rest as HTMLAttributes<HTMLDivElement>)}>
       <div
         className="euiRangeDraggle__inner"
         onMouseDown={handleMouseDown}

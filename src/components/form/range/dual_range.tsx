@@ -125,6 +125,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     showRange: true,
     showTicks: false,
     levels: [],
+    isDraggable: true,
   };
 
   state = {
@@ -666,6 +667,10 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
             <React.Fragment>
               {isDraggable && this.isValid && (
                 <EuiRangeDraggable
+                  min={min}
+                  max={max}
+                  value={`${this.lowerValue},${this.upperValue}`}
+                  disabled={disabled}
                   lowerPosition={leftThumbPosition.left}
                   upperPosition={rightThumbPosition.left}
                   showTicks={showTicks}
