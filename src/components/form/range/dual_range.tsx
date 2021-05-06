@@ -125,7 +125,6 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     showRange: true,
     showTicks: false,
     levels: [],
-    isDraggable: true,
   };
 
   state = {
