@@ -174,9 +174,8 @@ export const FlyoutExample = {
             iconType="accessibility"
             title={
               <>
-                Use <EuiCode>{'aria-labelledby={headingId}'}</EuiCode> and{' '}
-                <EuiCode>ownFocus</EuiCode> to announce the flyout to screen
-                readers.
+                Use <EuiCode>{'aria-labelledby={headingId}'}</EuiCode> to 
+                announce the flyout to screen readers.
               </>
             }
           />
