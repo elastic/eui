@@ -7,6 +7,10 @@ $spacerSizes: (
   xxl: $euiSizeXXL,
 );
 
+.euiSpacer {
+  flex-shrink: 0;
+}
+
 @each $name, $size in $spacerSizes {
   .euiSpacer--#{$name} {
     height: $size;
