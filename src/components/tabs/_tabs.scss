@@ -5,6 +5,7 @@
   overflow-x: auto;
   overflow-y: hidden; // don't scroll vertically when scrolling horizontally
   position: relative;
+  flex-shrink: 0;
 
   // Changing height of scrollbar so it sits flush with border
   // sass-lint:disable no-vendor-prefixes
