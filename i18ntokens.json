@@ -3633,7 +3633,7 @@
   },
   {
     "token": "euiTourStep.closeTour",
-    "defString": "Close",
+    "defString": "Close tour",
     "highlighting": "string",
     "loc": {
       "start": {

@@ -310,7 +310,7 @@
       {
         "token": "euiTourStep.closeTour",
         "changeType": "added",
-        "value": "Close"
+        "value": "Close tour"
       }
     ]
   },
