@@ -30,6 +30,8 @@ import {
   EuiPageContentBodyProps,
 } from './page_content';
 import { EuiBottomBarProps, EuiBottomBar } from '../bottom_bar';
+import { useIsWithinBreakpoints } from '../../services';
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
 
 export const TEMPLATES = [
   'default',
@@ -48,8 +50,7 @@ export type EuiPageTemplateProps = Omit<EuiPageProps, 'paddingSize'> & {
    */
   template?: typeof TEMPLATES[number];
   /**
-   *
-   * Padding size will not get applie to the over-arching #EuiPage,
+   * Padding size will not get applied to the over-arching #EuiPage,
    * but will propogate through all the components to keep them in sync
    */
   paddingSize?: typeof SIZES[number];
@@ -88,8 +89,12 @@ export type EuiPageTemplateProps = Omit<EuiPageProps, 'paddingSize'> & {
    */
   bottomBarProps?: EuiBottomBarProps;
   /**
-   *
+   * Stretches or restricts the height to 100% of the parent;
+   * `true`: scrolls the EuiPageContentBody;
+   * `noscroll`: removes all scroll ability;
+   * Only works when `template = 'default | empty'`
    */
+  fullHeight?: boolean | 'noscroll';
 };
 
 export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
@@ -97,6 +102,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   restrictWidth = true,
   grow = true,
   paddingSize = 'l',
+  fullHeight,
   children,
   className,
   pageSideBar,
@@ -109,7 +115,49 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   bottomBarProps,
   ...rest
 }) => {
-  const classes = classNames('euiPageTemplate', className);
+  /**
+   * Full height ~madness~ logic
+   */
+  const canFullHeight =
+    useIsWithinBreakpoints(['m', 'l', 'xl']) &&
+    (template === 'default' || template === 'empty');
+  const fullHeightClass = { 'eui-fullHeight': fullHeight && canFullHeight };
+  const yScrollClass = { 'eui-yScroll': fullHeight && canFullHeight };
+
+  if (canFullHeight && fullHeight) {
+    // By using flex group it will also fix the negative margin issues for nested flex groups
+    children = (
+      <EuiFlexGroup
+        className="eui-fullHeight"
+        gutterSize="none"
+        direction="column"
+        responsive={false}>
+        <EuiFlexItem
+          className={classNames({
+            'eui-yScroll': fullHeight === true,
+            'eui-fullHeight': fullHeight === 'noscroll',
+          })}
+          grow={true}>
+          {children}
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    );
+
+    pageBodyProps = {
+      ...pageBodyProps,
+      className: classNames(fullHeightClass, pageBodyProps?.className),
+    };
+    pageContentProps = {
+      ...pageContentProps,
+      className: classNames(yScrollClass, pageContentProps?.className),
+    };
+    pageContentBodyProps = {
+      ...pageContentBodyProps,
+      className: classNames(fullHeightClass, pageContentBodyProps?.className),
+    };
+  }
+
+  const classes = classNames('euiPageTemplate', fullHeightClass, className);
 
   /**
    * This seems very repetitious but it's the most readable, scalable, and maintainable
@@ -304,7 +352,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
       const bottomBarNode = bottomBar ? (
         <EuiBottomBar
           paddingSize={paddingSize}
-          position="sticky"
+          position={canFullHeight && fullHeight ? 'static' : 'sticky'}
           // Using uknown here because of the possible conflict with overriding props and position `sticky`
           {...(bottomBarProps as unknown)}>
           {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}
@@ -324,7 +372,10 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
           {/* The extra PageBody is to accomodate the bottom bar stretching to both sides */}
           <EuiPageBody panelled paddingSize="none" {...pageBodyProps}>
-            <EuiPageBody component="div" paddingSize={paddingSize}>
+            <EuiPageBody
+              component="div"
+              paddingSize={paddingSize}
+              className={pageBodyProps?.className}>
               {pageHeader && (
                 <EuiPageHeader
                   bottomBorder

@@ -1,5 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiPageTemplate fullHeight is rendered with noscroll 1`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+      role="main"
+    >
+      <div
+        class="euiPageContentBody euiPage--paddingLarge euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;
+
+exports[`EuiPageTemplate fullHeight is rendered with true 1`] = `
+<div
+  class="euiPage euiPage--grow euiPageTemplate"
+>
+  <main
+    class="euiPageBody euiPageBody--borderRadiusNone"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--borderRadiusNone"
+      role="main"
+    >
+      <div
+        class="euiPageContentBody euiPage--paddingLarge euiPage--restrictWidth-default"
+      />
+    </div>
+  </main>
+</div>
+`;
+
 exports[`EuiPageTemplate is rendered 1`] = `
 <div
   aria-label="aria-label"

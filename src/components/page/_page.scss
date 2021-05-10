@@ -39,3 +39,7 @@
     }
   }
 }
+
+.euiPageTemplate {
+  min-height: 460px; // Totally arbitrary but makes sure there's some height especially with fullHeight config
+}

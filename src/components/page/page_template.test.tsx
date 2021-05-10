@@ -140,4 +140,18 @@ describe('EuiPageTemplate', () => {
       expect(component).toMatchSnapshot();
     });
   });
+
+  describe('fullHeight', () => {
+    test('is rendered with true', () => {
+      const component = render(<EuiPageTemplate fullHeight={true} />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('is rendered with noscroll', () => {
+      const component = render(<EuiPageTemplate fullHeight={'noscroll'} />);
+
+      expect(component).toMatchSnapshot();
+    });
+  });
 });
