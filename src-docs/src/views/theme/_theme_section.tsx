@@ -14,6 +14,7 @@ type ThemeSection = {
   property?: string;
   example?: GuideSectionExample['example'];
   snippet?: GuideSectionExample['tabContent'];
+  customSnippet?: string;
 };
 
 export const ThemeSection: FunctionComponent<ThemeSection> = ({
@@ -23,7 +24,14 @@ export const ThemeSection: FunctionComponent<ThemeSection> = ({
   // property,
   example,
   snippet,
+  customSnippet,
 }) => {
+  const finalSnippet = customSnippet
+    ? customSnippet
+    : `css\`
+  ${snippet}
+\``;
+
   return (
     <EuiFlexGroup>
       <EuiFlexItem>
@@ -52,15 +60,13 @@ export const ThemeSection: FunctionComponent<ThemeSection> = ({
           <EuiSplitPanel.Outer style={{ overflow: 'hidden' }}>
             <EuiSplitPanel.Inner>{example}</EuiSplitPanel.Inner>
             <EuiSplitPanel.Inner color="subdued">
-              {snippet && (
+              {finalSnippet && (
                 <EuiCodeBlock
                   isCopyable={true}
                   paddingSize="none"
                   transparentBackground={true}
                   language="jsx">
-                  {`css\`
-  ${snippet}
-\``}
+                  {finalSnippet}
                 </EuiCodeBlock>
               )}
             </EuiSplitPanel.Inner>

@@ -23,10 +23,10 @@ import {
   fontSizeFromScale,
   lineHeightFromBaseline,
 } from '../functions/_typography';
-import { EuiFontScale, SCALES } from './_typography';
+import { _EuiThemeFontScale, SCALES } from './_typography';
 
 export type EuiThemeFontSize = {
-  [mapType in EuiFontScale]: {
+  [mapType in _EuiThemeFontScale]: {
     fontSize: CSSProperties['fontSize'];
     lineHeight: CSSProperties['lineHeight'];
   };

@@ -38,7 +38,7 @@ export const fontScale = {
 };
 
 export const SCALES = keysOf(fontScale);
-export type EuiFontScale = keyof typeof fontScale;
+export type _EuiThemeFontScale = keyof typeof fontScale;
 
 /*
  * Font base settings
@@ -105,7 +105,7 @@ export const fontWeight: _EuiThemeFontWeight = {
  */
 
 export type EuiThemeFont = _EuiThemeFontBase & {
-  scale: { [key in EuiFontScale]: number };
+  scale: { [key in _EuiThemeFontScale]: number };
   weight: _EuiThemeFontWeight;
 };
 

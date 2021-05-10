@@ -27,12 +27,16 @@ import { focus } from '../../global_styling/variables/_states';
 import { font } from '../../global_styling/variables/_typography';
 import { border } from '../../global_styling/variables/_borders';
 import { shadow } from '../../global_styling/variables/_shadows';
+import { fontSize } from '../../global_styling/variables/text';
 
 export const euiThemeDefault: EuiThemeShape = {
   colors,
   base,
   size,
-  font,
+  font: {
+    ...font,
+    ...fontSize,
+  },
   border,
   focus,
   shadow,

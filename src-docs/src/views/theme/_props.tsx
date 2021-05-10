@@ -28,7 +28,7 @@ export const _EuiThemeSize: FunctionComponent<EuiThemeSize> = () => <div />;
 import {
   _EuiThemeFontBase,
   _EuiThemeFontWeight,
-  EuiFontScale,
+  _EuiThemeFontScale,
 } from '../../../../src/global_styling/variables/_typography';
 
 export const EuiThemeFontBase: FunctionComponent<_EuiThemeFontBase> = () => (
@@ -37,4 +37,6 @@ export const EuiThemeFontBase: FunctionComponent<_EuiThemeFontBase> = () => (
 export const EuiThemeFontWeight: FunctionComponent<_EuiThemeFontWeight> = () => (
   <div />
 );
-export const _EuiFontScale: FunctionComponent<EuiFontScale> = () => <div />;
+export const EuiThemeFontScale: FunctionComponent<_EuiThemeFontScale> = () => (
+  <div />
+);

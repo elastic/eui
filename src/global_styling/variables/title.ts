@@ -19,10 +19,10 @@
 
 import { CSSProperties } from 'react';
 import { computed } from '../../services/theme/utils';
-import { EuiFontScale, SCALES } from './_typography';
+import { _EuiThemeFontScale, SCALES } from './_typography';
 
 export type EuiThemeTitle = {
-  [size in EuiFontScale]: {
+  [size in _EuiThemeFontScale]: {
     color: string;
     fontSize: string;
     fontWeight: CSSProperties['fontWeight'];
@@ -32,7 +32,7 @@ export type EuiThemeTitle = {
 };
 
 const titlesPartial: {
-  [size in EuiFontScale]: {
+  [size in _EuiThemeFontScale]: {
     fontWeight: string;
     letterSpacing?: string;
   };
