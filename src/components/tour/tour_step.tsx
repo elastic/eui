@@ -190,7 +190,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
               'euiTourStep.skipTour',
               'euiTourStep.closeTour',
             ]}
-            defaults={['End tour', 'Skip tour', 'Close']}>
+            defaults={['End tour', 'Skip tour', 'Close tour']}>
             {([endTour, skipTour, closeTour]: string[]) => {
               let content = closeTour;
               if (stepsTotal > 1) {
