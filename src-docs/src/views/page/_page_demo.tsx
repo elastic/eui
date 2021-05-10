@@ -11,6 +11,7 @@ import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiSwitch } from '../../../../src/components/form';
 import { EuiTextAlign } from '../../../../src/components/text';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
+import { useExitPath } from '../../services/routing/routing';
 
 import contentSvg from '../../images/content.svg';
 import contentCenterSvg from '../../images/content_center.svg';
@@ -18,12 +19,9 @@ import sideNavSvg from '../../images/side_nav.svg';
 import singleSvg from '../../images/single.svg';
 
 const ExitFullscreenDemoButton = () => {
-  const { path } = useRouteMatch();
+  const exitPath = useExitPath();
   return (
-    <EuiButton
-      fill
-      href={`#${path.match(/^(?<parent>.*)\/.+$/)?.groups?.parent}`}
-      iconType="exit">
+    <EuiButton fill href={exitPath} iconType="exit">
       Exit full screen
     </EuiButton>
   );

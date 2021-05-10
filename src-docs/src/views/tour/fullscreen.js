@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import { useRouteMatch } from 'react-router';
 
 import {
   EuiButton,
@@ -13,6 +12,7 @@ import {
   EuiTourStep,
   useEuiTour,
 } from '../../../../src/components';
+import { ExampleContext } from '../../services';
 
 const demoTourSteps = [
   {
@@ -48,7 +48,6 @@ const tourConfig = {
 };
 
 export default () => {
-  const { path } = useRouteMatch();
   const [color, setColor] = useState('#000');
   const [selectedTabId, setSelectedTabId] = useState('query');
   const [
@@ -167,12 +166,13 @@ export default () => {
       pageHeader={{
         pageTitle: 'My app',
         rightSideItems: [
-          <EuiButton
-            fill
-            href={`#${path.match(/^(?<parent>.*)\/.+$/)?.groups?.parent}`}
-            iconType="exit">
-            Exit full screen demo
-          </EuiButton>,
+          <ExampleContext.Consumer>
+            {({ parentPath }) => (
+              <EuiButton fill href={`#${parentPath}`} iconType="exit">
+                Exit full screen demo
+              </EuiButton>
+            )}
+          </ExampleContext.Consumer>,
         ],
         tabs: tabs.map((tab, index) => {
           return {

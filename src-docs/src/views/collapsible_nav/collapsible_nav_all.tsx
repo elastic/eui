@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
-import { useRouteMatch } from 'react-router';
 
 import {
   EuiCollapsibleNav,
@@ -31,6 +30,7 @@ import {
 import { EuiShowFor } from '../../../../src/components/responsive';
 import { EuiImage } from '../../../../src/components/image';
 import contentSvg from '../../images/content.svg';
+import { useExitPath } from '../../services/routing/routing';
 
 const TopLinks: EuiPinnableListGroupItemProps[] = [
   {
@@ -58,7 +58,7 @@ const LearnLinks: EuiPinnableListGroupItemProps[] = [
 ];
 
 const CollapsibleNavAll = () => {
-  const { path } = useRouteMatch();
+  const exitPath = useExitPath();
   const [navIsOpen, setNavIsOpen] = useState(
     JSON.parse(String(localStorage.getItem('navIsDocked'))) || false
   );
@@ -251,9 +251,7 @@ const CollapsibleNavAll = () => {
 
   const leftSectionItems = [
     collapsibleNav,
-    <EuiHeaderLogo
-      href={`#${path.match(/^(?<parent>.*)\/.+$/)?.groups?.parent}`}
-      iconType="logoElastic">
+    <EuiHeaderLogo href={exitPath} iconType="logoElastic">
       Elastic
     </EuiHeaderLogo>,
   ];
@@ -269,9 +267,7 @@ const CollapsibleNavAll = () => {
           },
           {
             items: [
-              <EuiButtonEmpty
-                href={`#${path.match(/^(?<parent>.*)\/.+$/)?.groups?.parent}`}
-                iconType="exit">
+              <EuiButtonEmpty href={exitPath} iconType="exit">
                 Exit full screen
               </EuiButtonEmpty>,
             ],

@@ -10,4 +10,4 @@ export {
 
 export { registerTheme, applyTheme } from './theme/theme';
 
-export { getRouterLinkProps, registerRouter } from './routing/routing';
+export { ExampleContext, useExitPath } from './routing/routing';

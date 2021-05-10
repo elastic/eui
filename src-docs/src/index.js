@@ -8,7 +8,7 @@ import configureStore, { history } from './store/configure_store';
 import { AppContainer } from './views/app_container';
 import { HomeView } from './views/home/home_view';
 import { NotFoundView } from './views/not_found/not_found_view';
-import { registerTheme } from './services';
+import { registerTheme, ExampleContext } from './services';
 
 import Routes from './routes';
 import themeLight from './theme_light.scss';
@@ -78,14 +78,19 @@ ReactDOM.render(
               );
 
               const standaloneSections = (sections || [])
-                .map(({ fullScreen }) => {
+                .map(({ id, fullScreen }) => {
                   if (!fullScreen) return undefined;
                   const { slug, demo } = fullScreen;
                   return (
                     <Route
                       key={`/${path}/${slug}`}
                       path={`/${path}/${slug}`}
-                      render={() => demo}
+                      render={() => (
+                        <ExampleContext.Provider
+                          value={{ parentPath: `/${path}#${id}` }}>
+                          {demo}
+                        </ExampleContext.Provider>
+                      )}
                     />
                   );
                 })

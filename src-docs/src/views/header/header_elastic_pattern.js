@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useRouteMatch } from 'react-router';
 // Uncomment to use in consuming apps or CodeSandbox
 // import theme from '@elastic/eui/dist/eui_theme_light.json';
 
@@ -30,13 +29,9 @@ import {
   EuiSelectableTemplateSitewide,
   EuiSelectableMessage,
 } from '../../../../src/components';
+import { ExampleContext } from '../../services';
 
 export default ({ theme }) => {
-  /**
-   * Path for docs only
-   */
-  const { path } = useRouteMatch();
-
   useEffect(() => {
     document.body.classList.add('euiBody--headerIsFixed--double');
 
@@ -327,16 +322,18 @@ export default ({ theme }) => {
                 }}>
                 <EuiHeaderLink color="primary">Share</EuiHeaderLink>
                 <EuiHeaderLink color="primary">Clone</EuiHeaderLink>
-                <EuiButton
-                  iconType="exit"
-                  style={{ minWidth: 80 }}
-                  size="s"
-                  color="primary"
-                  href={`#${
-                    path.match(/^(?<parent>.*)\/.+$/)?.groups?.parent
-                  }`}>
-                  Exit full screen
-                </EuiButton>
+                <ExampleContext.Consumer>
+                  {({ parentPath }) => (
+                    <EuiButton
+                      iconType="exit"
+                      style={{ minWidth: 80 }}
+                      size="s"
+                      color="primary"
+                      href={`#${parentPath}`}>
+                      Exit full screen
+                    </EuiButton>
+                  )}
+                </ExampleContext.Consumer>
               </EuiHeaderLinks>,
             ],
           },
