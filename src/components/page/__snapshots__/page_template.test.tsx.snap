@@ -668,7 +668,7 @@ exports[`EuiPageTemplate template with pageSideBar is rendered 1`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <div
-    class="euiPageSideBar euiPageSideBar--sticky"
+    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky"
   >
     Side Bar
   </div>
@@ -696,7 +696,7 @@ exports[`EuiPageTemplate template with pageSideBar is rendered 2`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <div
-    class="euiPageSideBar euiPageSideBar--sticky"
+    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky"
   >
     Side Bar
   </div>
@@ -720,7 +720,7 @@ exports[`EuiPageTemplate template with pageSideBar is rendered 3`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <div
-    class="euiPageSideBar euiPageSideBar--sticky"
+    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky"
   >
     Side Bar
   </div>
@@ -744,7 +744,7 @@ exports[`EuiPageTemplate template with pageSideBar is rendered 4`] = `
   class="euiPage euiPage--grow euiPageTemplate"
 >
   <div
-    class="euiPageSideBar euiPageSideBar--sticky"
+    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky"
   >
     Side Bar
   </div>
@@ -769,7 +769,7 @@ exports[`EuiPageTemplate template with pageSideBar is rendered with pageSideBarP
 >
   <div
     aria-label="aria-label"
-    class="euiPageSideBar euiPageSideBar--sticky testClass1 testClass2"
+    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky testClass1 testClass2"
     data-test-subj="test subject string"
   >
     Side Bar
@@ -799,7 +799,7 @@ exports[`EuiPageTemplate template with pageSideBar is rendered with pageSideBarP
 >
   <div
     aria-label="aria-label"
-    class="euiPageSideBar euiPageSideBar--sticky testClass1 testClass2"
+    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky testClass1 testClass2"
     data-test-subj="test subject string"
   >
     Side Bar
@@ -825,7 +825,7 @@ exports[`EuiPageTemplate template with pageSideBar is rendered with pageSideBarP
 >
   <div
     aria-label="aria-label"
-    class="euiPageSideBar euiPageSideBar--sticky testClass1 testClass2"
+    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky testClass1 testClass2"
     data-test-subj="test subject string"
   >
     Side Bar
@@ -851,7 +851,7 @@ exports[`EuiPageTemplate template with pageSideBar is rendered with pageSideBarP
 >
   <div
     aria-label="aria-label"
-    class="euiPageSideBar euiPageSideBar--sticky testClass1 testClass2"
+    class="euiPageSideBar euiPageSideBar--paddingLarge euiPageSideBar--sticky testClass1 testClass2"
     data-test-subj="test subject string"
   >
     Side Bar

@@ -171,7 +171,10 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     case 'centeredBody':
       return pageSideBar ? (
         <EuiPage className={classes} paddingSize="none" grow={grow} {...rest}>
-          <EuiPageSideBar sticky {...pageSideBarProps}>
+          <EuiPageSideBar
+            sticky
+            paddingSize={paddingSize}
+            {...pageSideBarProps}>
             {pageSideBar}
           </EuiPageSideBar>
 
@@ -227,7 +230,10 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     case 'centeredContent':
       return pageSideBar ? (
         <EuiPage className={classes} paddingSize="none" grow={grow} {...rest}>
-          <EuiPageSideBar sticky {...pageSideBarProps}>
+          <EuiPageSideBar
+            sticky
+            paddingSize={paddingSize}
+            {...pageSideBarProps}>
             {pageSideBar}
           </EuiPageSideBar>
 
@@ -291,7 +297,10 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     case 'empty':
       return pageSideBar ? (
         <EuiPage className={classes} paddingSize="none" grow={grow} {...rest}>
-          <EuiPageSideBar sticky {...pageSideBarProps}>
+          <EuiPageSideBar
+            sticky
+            paddingSize={paddingSize}
+            {...pageSideBarProps}>
             {pageSideBar}
           </EuiPageSideBar>
 
@@ -366,7 +375,10 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
 
       return pageSideBar ? (
         <EuiPage className={classes} paddingSize="none" grow={grow} {...rest}>
-          <EuiPageSideBar sticky {...pageSideBarProps}>
+          <EuiPageSideBar
+            sticky
+            paddingSize={paddingSize}
+            {...pageSideBarProps}>
             {pageSideBar}
           </EuiPageSideBar>
 
