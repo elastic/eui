@@ -81,6 +81,7 @@ export default () => {
         onCreateOption={onCreateOption}
         isClearable={true}
         data-test-subj="demoComboBox"
+        autoFocus
       />
     </DisplayToggles>
   );

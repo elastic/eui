@@ -24,12 +24,6 @@ declare module 'remark-emoji' {
   export = RemarkEmoji;
 }
 
-declare module 'remark-highlight.js' {
-  import { Plugin } from 'unified';
-  const RemarkHighlight: Plugin;
-  export = RemarkHighlight;
-}
-
 declare module 'mdast-util-to-hast/lib/all' {
   // eslint-disable-next-line import/no-unresolved
   import { Node } from 'unist';

@@ -195,7 +195,10 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
                   className="euiFilePicker__clearButton"
                   size="xs"
                   onClick={this.removeFiles}>
-                  Remove
+                  <EuiI18n
+                    token="euiFilePicker.removeSelected"
+                    default="Remove"
+                  />
                 </EuiButtonEmpty>
               );
             }

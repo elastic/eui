@@ -23,6 +23,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
           >
             <span
               class="euiButtonContent__icon"
+              color="inherit"
               data-euiicon-type="arrowDown"
             />
             <span
@@ -53,6 +54,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
         <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
+          color="inherit"
           data-euiicon-type="arrowLeft"
         />
       </a>
@@ -116,6 +118,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
         <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
+          color="inherit"
           data-euiicon-type="arrowRight"
         />
       </button>
@@ -155,10 +158,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="eyeClosed"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="eyeClosed"
           />
         </EuiIcon>
@@ -212,10 +217,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortUp"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortUp"
           />
         </EuiIcon>
@@ -293,10 +300,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortDown"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortDown"
           />
         </EuiIcon>
@@ -365,10 +374,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortLeft"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortLeft"
           />
         </EuiIcon>
@@ -413,10 +424,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortRight"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortRight"
           />
         </EuiIcon>
@@ -511,10 +524,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortUp"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortUp"
           />
         </EuiIcon>
@@ -592,10 +607,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortDown"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortDown"
           />
         </EuiIcon>
@@ -691,10 +708,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="eyeClosed"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="eyeClosed"
           />
         </EuiIcon>
@@ -730,10 +749,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortUp"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortUp"
           />
         </EuiIcon>
@@ -769,10 +790,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortDown"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortDown"
           />
         </EuiIcon>
@@ -807,10 +830,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortLeft"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortLeft"
           />
         </EuiIcon>
@@ -845,10 +870,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortRight"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortRight"
           />
         </EuiIcon>
@@ -933,6 +960,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -961,6 +989,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -982,6 +1011,7 @@ Array [
           >
             <span
               class="euiButtonContent__icon"
+              color="inherit"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -1033,29 +1063,31 @@ Array [
                         data-test-subj="dataGridColumnResizer"
                         style="margin-right:0px"
                       />
-                      <button
-                        class="euiDataGridHeaderCell__button"
+                      <div
+                        class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
-                          class="euiDataGridHeaderCell__content"
+                          class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                         >
-                          A
-                        </div>
-                        <div
-                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                        >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            class="euiDataGridHeaderCell__button"
                           >
+                            <div
+                              class="euiDataGridHeaderCell__content"
+                            >
+                              A
+                            </div>
                             <span
                               aria-label="Header actions"
+                              class="euiDataGridHeaderCell__icon"
                               color="text"
                               data-euiicon-type="arrowDown"
                               data-test-subj="dataGridHeaderCellActionButton-A"
                             />
-                          </div>
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     </div>
                     <div
                       class="euiDataGridHeaderCell"
@@ -1069,29 +1101,31 @@ Array [
                         data-test-subj="dataGridColumnResizer"
                         style="margin-right:0px"
                       />
-                      <button
-                        class="euiDataGridHeaderCell__button"
+                      <div
+                        class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
-                          class="euiDataGridHeaderCell__content"
+                          class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                         >
-                          B
-                        </div>
-                        <div
-                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                        >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            class="euiDataGridHeaderCell__button"
                           >
+                            <div
+                              class="euiDataGridHeaderCell__content"
+                            >
+                              B
+                            </div>
                             <span
                               aria-label="Header actions"
+                              class="euiDataGridHeaderCell__icon"
                               color="text"
                               data-euiicon-type="arrowDown"
                               data-test-subj="dataGridHeaderCellActionButton-B"
                             />
-                          </div>
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -1268,6 +1302,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -1296,6 +1331,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -1317,6 +1353,7 @@ Array [
           >
             <span
               class="euiButtonContent__icon"
+              color="inherit"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -1383,29 +1420,31 @@ Array [
                         data-test-subj="dataGridColumnResizer"
                         style="margin-right:0px"
                       />
-                      <button
-                        class="euiDataGridHeaderCell__button"
+                      <div
+                        class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
-                          class="euiDataGridHeaderCell__content"
+                          class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                         >
-                          A
-                        </div>
-                        <div
-                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                        >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            class="euiDataGridHeaderCell__button"
                           >
+                            <div
+                              class="euiDataGridHeaderCell__content"
+                            >
+                              A
+                            </div>
                             <span
                               aria-label="Header actions"
+                              class="euiDataGridHeaderCell__icon"
                               color="text"
                               data-euiicon-type="arrowDown"
                               data-test-subj="dataGridHeaderCellActionButton-A"
                             />
-                          </div>
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     </div>
                     <div
                       class="euiDataGridHeaderCell"
@@ -1419,29 +1458,31 @@ Array [
                         data-test-subj="dataGridColumnResizer"
                         style="margin-right:0px"
                       />
-                      <button
-                        class="euiDataGridHeaderCell__button"
+                      <div
+                        class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
-                          class="euiDataGridHeaderCell__content"
+                          class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                         >
-                          B
-                        </div>
-                        <div
-                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                        >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            class="euiDataGridHeaderCell__button"
                           >
+                            <div
+                              class="euiDataGridHeaderCell__content"
+                            >
+                              B
+                            </div>
                             <span
                               aria-label="Header actions"
+                              class="euiDataGridHeaderCell__icon"
                               color="text"
                               data-euiicon-type="arrowDown"
                               data-test-subj="dataGridHeaderCellActionButton-B"
                             />
-                          </div>
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     </div>
                     <div
                       class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
@@ -1900,6 +1941,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -1928,6 +1970,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -1949,6 +1992,7 @@ Array [
           >
             <span
               class="euiButtonContent__icon"
+              color="inherit"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -2000,29 +2044,31 @@ Array [
                         data-test-subj="dataGridColumnResizer"
                         style="margin-right:0px"
                       />
-                      <button
-                        class="euiDataGridHeaderCell__button"
+                      <div
+                        class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
-                          class="euiDataGridHeaderCell__content"
+                          class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                         >
-                          Column A
-                        </div>
-                        <div
-                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                        >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            class="euiDataGridHeaderCell__button"
                           >
+                            <div
+                              class="euiDataGridHeaderCell__content"
+                            >
+                              Column A
+                            </div>
                             <span
                               aria-label="Header actions"
+                              class="euiDataGridHeaderCell__icon"
                               color="text"
                               data-euiicon-type="arrowDown"
                               data-test-subj="dataGridHeaderCellActionButton-A"
                             />
-                          </div>
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     </div>
                     <div
                       class="euiDataGridHeaderCell"
@@ -2036,31 +2082,33 @@ Array [
                         data-test-subj="dataGridColumnResizer"
                         style="margin-right:0px"
                       />
-                      <button
-                        class="euiDataGridHeaderCell__button"
+                      <div
+                        class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
-                          class="euiDataGridHeaderCell__content"
+                          class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                         >
-                          <div>
-                            More Elements
-                          </div>
-                        </div>
-                        <div
-                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                        >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            class="euiDataGridHeaderCell__button"
                           >
+                            <div
+                              class="euiDataGridHeaderCell__content"
+                            >
+                              <div>
+                                More Elements
+                              </div>
+                            </div>
                             <span
                               aria-label="Header actions"
+                              class="euiDataGridHeaderCell__icon"
                               color="text"
                               data-euiicon-type="arrowDown"
                               data-test-subj="dataGridHeaderCellActionButton-B"
                             />
-                          </div>
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -2234,6 +2282,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -2262,6 +2311,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -2283,6 +2333,7 @@ Array [
           >
             <span
               class="euiButtonContent__icon"
+              color="inherit"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -2334,29 +2385,31 @@ Array [
                         data-test-subj="dataGridColumnResizer"
                         style="margin-right:0px"
                       />
-                      <button
-                        class="euiDataGridHeaderCell__button"
+                      <div
+                        class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
-                          class="euiDataGridHeaderCell__content"
+                          class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                         >
-                          A
-                        </div>
-                        <div
-                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                        >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            class="euiDataGridHeaderCell__button"
                           >
+                            <div
+                              class="euiDataGridHeaderCell__content"
+                            >
+                              A
+                            </div>
                             <span
                               aria-label="Header actions"
+                              class="euiDataGridHeaderCell__icon"
                               color="text"
                               data-euiicon-type="arrowDown"
                               data-test-subj="dataGridHeaderCellActionButton-A"
                             />
-                          </div>
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     </div>
                     <div
                       class="euiDataGridHeaderCell"
@@ -2370,29 +2423,31 @@ Array [
                         data-test-subj="dataGridColumnResizer"
                         style="margin-right:0px"
                       />
-                      <button
-                        class="euiDataGridHeaderCell__button"
+                      <div
+                        class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
-                          class="euiDataGridHeaderCell__content"
+                          class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                         >
-                          B
-                        </div>
-                        <div
-                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                        >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            class="euiDataGridHeaderCell__button"
                           >
+                            <div
+                              class="euiDataGridHeaderCell__content"
+                            >
+                              B
+                            </div>
                             <span
                               aria-label="Header actions"
+                              class="euiDataGridHeaderCell__icon"
                               color="text"
                               data-euiicon-type="arrowDown"
                               data-test-subj="dataGridHeaderCellActionButton-B"
                             />
-                          </div>
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     </div>
                   </div>
                   <div

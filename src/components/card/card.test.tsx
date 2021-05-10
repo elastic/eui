@@ -24,6 +24,7 @@ import { requiredProps } from '../../test';
 import { EuiCard } from './card';
 
 import { EuiIcon } from '../icon';
+import { EuiI18n } from '../i18n';
 import { COLORS, SIZES } from '../panel/panel';
 
 describe('EuiCard', () => {
@@ -129,6 +130,20 @@ describe('EuiCard', () => {
       const component = render(
         <EuiCard
           title="Card title"
+          description="Card description"
+          titleElement="h4"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('titleElement with nodes', () => {
+      const component = render(
+        <EuiCard
+          title={
+            <EuiI18n token="euiCard.title" default="Card title" /> // eslint-disable-line
+          }
           description="Card description"
           titleElement="h4"
         />
@@ -256,5 +271,20 @@ describe('EuiCard', () => {
 
       expect(component).toMatchSnapshot();
     });
+  });
+
+  test('horizontal selectable', () => {
+    const component = render(
+      <EuiCard
+        title="Card title"
+        description="Card description"
+        layout="horizontal"
+        selectable={{
+          onClick: () => {},
+        }}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
   });
 });

@@ -63,6 +63,10 @@ export interface EuiDataGridSchemaDetector {
    */
   isSortable?: boolean;
   /**
+   *  This property controls the capitalization of text
+   */
+  textTransform?: 'uppercase' | 'lowercase' | 'capitalize';
+  /**
    * Default sort direction of the column
    */
   defaultSortDirection?: 'asc' | 'desc';
@@ -178,10 +182,10 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
     },
     icon: 'tokenDate',
     sortTextAsc: (
-      <EuiI18n token="euiDataGridSchema.dateSortTextAsc" default="New-Old" />
+      <EuiI18n token="euiDataGridSchema.dateSortTextAsc" default="Old-New" />
     ),
     sortTextDesc: (
-      <EuiI18n token="euiDataGridSchema.dateSortTextDesc" default="Old-New" />
+      <EuiI18n token="euiDataGridSchema.dateSortTextDesc" default="New-Old" />
     ),
   },
   {

@@ -76,9 +76,14 @@ const typeToPathMap = {
   cloudDrizzle: 'cloudDrizzle',
   cloudStormy: 'cloudStormy',
   cloudSunny: 'cloudSunny',
+  color: 'color',
   compute: 'compute',
   console: 'console',
   consoleApp: 'app_console',
+  continuityAbove: 'continuityAbove',
+  continuityAboveBelow: 'continuityAboveBelow',
+  continuityBelow: 'continuityBelow',
+  continuityWithin: 'continuityWithin',
   controlsHorizontal: 'controls_horizontal',
   controlsVertical: 'controls_vertical',
   copy: 'copy',
@@ -135,6 +140,7 @@ const typeToPathMap = {
   empty: 'empty',
   emsApp: 'app_ems',
   eql: 'eql',
+  eraser: 'eraser',
   exit: 'exit',
   expand: 'expand',
   expandMini: 'expandMini',
@@ -153,6 +159,8 @@ const typeToPathMap = {
   folderExclamation: 'folder_exclamation',
   folderOpen: 'folder_open',
   fullScreen: 'full_screen',
+  fullScreenExit: 'fullScreenExit',
+  function: 'function',
   gear: 'gear',
   gisApp: 'app_gis',
   glasses: 'glasses',
@@ -295,6 +303,7 @@ const typeToPathMap = {
   paperClip: 'paper_clip',
   pause: 'pause',
   pencil: 'pencil',
+  percent: 'percent',
   pin: 'pin',
   pinFilled: 'pin_filled',
   pipelineApp: 'app_pipeline',
@@ -390,6 +399,8 @@ const typeToPathMap = {
   visVega: 'vis_vega',
   visVisualBuilder: 'vis_visual_builder',
   watchesApp: 'app_watches',
+  wordWrap: 'wordWrap',
+  wordWrapDisabled: 'wordWrapDisabled',
   workplaceSearchApp: 'app_workplace_search',
   wrench: 'wrench',
   // Token Icon Imports
@@ -462,6 +473,7 @@ const colorToClassMap = {
   text: 'euiIcon--text',
   subdued: 'euiIcon--subdued',
   ghost: 'euiIcon--ghost',
+  inherit: 'euiIcon--inherit',
 };
 
 export const COLORS: NamedColor[] = keysOf(colorToClassMap);
@@ -691,12 +703,16 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       typeof type === 'string' &&
       (/.+App$/.test(type) || /.+Job$/.test(type) || type === 'dataVisualizer');
 
+    const appIconHasColor = color && color !== 'default';
+
+    // parent is not one of
     const classes = classNames(
       'euiIcon',
       sizeToClassNameMap[size],
       optionalColorClass,
       {
-        'euiIcon--app': isAppIcon,
+        // The app icon only gets the .euiIcon--app class if no color is passed or if color="default" is passed
+        'euiIcon--app': isAppIcon && !appIconHasColor,
         'euiIcon-isLoading': isLoading,
         'euiIcon-isLoaded': !isLoading && neededLoading,
       },

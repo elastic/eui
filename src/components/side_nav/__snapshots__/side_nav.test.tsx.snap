@@ -15,6 +15,7 @@ exports[`EuiSideNav is rendered 1`] = `
     >
       <span
         class="euiButtonContent__icon"
+        color="inherit"
         data-euiicon-type="apps"
       />
       <span
@@ -41,6 +42,7 @@ exports[`EuiSideNav props isOpenOnMobile defaults to false 1`] = `
     >
       <span
         class="euiButtonContent__icon"
+        color="inherit"
         data-euiicon-type="apps"
       />
       <span
@@ -67,6 +69,7 @@ exports[`EuiSideNav props isOpenOnMobile is rendered when specified as true 1`] 
     >
       <span
         class="euiButtonContent__icon"
+        color="inherit"
         data-euiicon-type="apps"
       />
       <span
@@ -93,6 +96,7 @@ exports[`EuiSideNav props items is rendered 1`] = `
     >
       <span
         class="euiButtonContent__icon"
+        color="inherit"
         data-euiicon-type="apps"
       />
       <span
@@ -181,6 +185,7 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
     >
       <span
         class="euiButtonContent__icon"
+        color="inherit"
         data-euiicon-type="apps"
       />
       <span
@@ -305,6 +310,7 @@ exports[`EuiSideNav props items renders items using a specified callback 1`] = `
     >
       <span
         class="euiButtonContent__icon"
+        color="inherit"
         data-euiicon-type="apps"
       />
       <span
@@ -373,6 +379,7 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
     >
       <span
         class="euiButtonContent__icon"
+        color="inherit"
         data-euiicon-type="apps"
       />
       <span
@@ -461,6 +468,7 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
     >
       <span
         class="euiButtonContent__icon"
+        color="inherit"
         data-euiicon-type="apps"
       />
       <span
