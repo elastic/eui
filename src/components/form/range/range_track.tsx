@@ -76,9 +76,12 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
     interval?: EuiRangeTrackProps['tickInterval']
   ) => {
     // Loop from min to max, creating adding values at each interval
-    // (adds a very small number to the max since `range` is not inclusive of the max value)
-    const toBeInclusive = 0.000000001;
-    return range(min, max + toBeInclusive, interval);
+    const sequence = range(min, max, interval);
+    // range is non-inclusive of max, so make it inclusive
+    if (max % interval! === 0 && !sequence.includes(max)) {
+      sequence.push(max);
+    }
+    return sequence;
   };
 
   calculateTicks = (
