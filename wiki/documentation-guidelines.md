@@ -195,15 +195,18 @@ If you want something other than a button to display in the default demo render,
 }
 ```
 
-In your full screen demo component, you'll want to provide an easy exit back to the original page. You can do this by adding a button with the following properties.
+In your full screen demo component, you'll want to provide an easy exit back to the original page. You can do this by adding a button wrapped with `ExampleContext.consumer` which passes the `parentPath` through.
 
 ```tsx
-<EuiButton
-  fill
-  href={`#${path.match(/^(?<parent>.*)\/.+$/)?.groups?.parent}`}
-  iconType="exit">
-  Exit full screen
-</EuiButton>
+import { ExampleContext } from '../../services';
+
+<ExampleContext.Consumer>
+  {({ parentPath }) => (
+    <EuiButton fill href={`#${parentPath}`} iconType="exit">
+      Exit full screen
+    </EuiButton>
+  )}
+</ExampleContext.Consumer>
 ```
 
 ## Changelog
