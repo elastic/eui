@@ -59,11 +59,9 @@ const LearnLinks: EuiPinnableListGroupItemProps[] = [
 
 const CollapsibleNavAll = () => {
   const exitPath = useExitPath();
-  const [navIsOpen, setNavIsOpen] = useState(
-    JSON.parse(String(localStorage.getItem('navIsDocked'))) || false
-  );
+  const [navIsOpen, setNavIsOpen] = useState(true);
   const [navIsDocked, setNavIsDocked] = useState(
-    JSON.parse(String(localStorage.getItem('navIsDocked'))) || false
+    JSON.parse(String(localStorage.getItem('nav2IsDocked'))) || false
   );
 
   /**
@@ -237,7 +235,7 @@ const CollapsibleNavAll = () => {
               onClick={() => {
                 setNavIsDocked(!navIsDocked);
                 localStorage.setItem(
-                  'navIsDocked',
+                  'nav2IsDocked',
                   JSON.stringify(!navIsDocked)
                 );
               }}
