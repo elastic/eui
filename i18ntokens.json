@@ -1317,11 +1317,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 102,
+        "line": 106,
         "column": 6
       },
       "end": {
-        "line": 105,
+        "line": 109,
         "column": 8
       }
     },
@@ -1333,11 +1333,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 108,
+        "line": 112,
         "column": 6
       },
       "end": {
-        "line": 111,
+        "line": 115,
         "column": 8
       }
     },
@@ -1349,11 +1349,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 143,
+        "line": 147,
         "column": 6
       },
       "end": {
-        "line": 146,
+        "line": 150,
         "column": 8
       }
     },
@@ -1365,11 +1365,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 149,
+        "line": 153,
         "column": 6
       },
       "end": {
-        "line": 152,
+        "line": 156,
         "column": 8
       }
     },
@@ -1381,11 +1381,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 181,
+        "line": 185,
         "column": 6
       },
       "end": {
-        "line": 181,
+        "line": 185,
         "column": 77
       }
     },
@@ -1397,11 +1397,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 184,
+        "line": 188,
         "column": 6
       },
       "end": {
-        "line": 184,
+        "line": 188,
         "column": 78
       }
     },
@@ -1413,11 +1413,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 218,
+        "line": 222,
         "column": 6
       },
       "end": {
-        "line": 218,
+        "line": 222,
         "column": 80
       }
     },
@@ -1429,11 +1429,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 221,
+        "line": 225,
         "column": 6
       },
       "end": {
-        "line": 224,
+        "line": 228,
         "column": 8
       }
     },
@@ -1445,11 +1445,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 249,
+        "line": 253,
         "column": 6
       },
       "end": {
-        "line": 252,
+        "line": 256,
         "column": 8
       }
     },
@@ -1461,11 +1461,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 255,
+        "line": 259,
         "column": 6
       },
       "end": {
-        "line": 258,
+        "line": 262,
         "column": 8
       }
     },
@@ -3585,16 +3585,16 @@
   },
   {
     "token": "euiTourStepIndicator.ariaLabel",
-    "defString": "({\n  status\n}: {\n  status: EuiTourStepStatus;\n}) => {\n  return `Step ${number} ${status}`;\n};",
-    "highlighting": "code",
+    "defString": "Step {number} {status}",
+    "highlighting": "string",
     "loc": {
       "start": {
         "line": 101,
         "column": 4
       },
       "end": {
-        "line": 106,
-        "column": 26
+        "line": 104,
+        "column": 34
       }
     },
     "filepath": "src/components/tour/tour_step_indicator.tsx"
