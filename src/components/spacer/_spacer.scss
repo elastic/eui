@@ -8,7 +8,7 @@ $spacerSizes: (
 );
 
 .euiSpacer {
-  flex-shrink: 0;
+  flex-shrink: 0; // don't ever let this shrink in height if direct descendent of flex
 }
 
 @each $name, $size in $spacerSizes {

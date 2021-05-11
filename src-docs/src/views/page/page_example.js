@@ -515,7 +515,7 @@ export const PageExample = {
                 <strong>EuiFlexGroup</strong> and <strong>EuiFlexItem</strong>
               </Link>{' '}
               around the template children in an attempt to negate the negative
-              margins.{' '}
+              margins.
             </li>
             <li>
               Using <EuiCode>{'fullHeight=true'}</EuiCode> will automatically
@@ -531,6 +531,12 @@ export const PageExample = {
               When using either values for <EuiCode>{'fullHeight'}</EuiCode>,
               there will always be a minimum height of <EuiCode>460px</EuiCode>{' '}
               to the page contents.
+            </li>
+            <li>
+              Full height layouts are restricted to{' '}
+              <strong>medium breakpoints</strong> and above. We recommend
+              retaining any responsive behavior and allowing normal page scroll
+              on smaller screens.
             </li>
           </ol>
           <EuiCallOut

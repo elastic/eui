@@ -38,7 +38,7 @@ export interface EuiPageSideBarProps
    */
   sticky?: boolean;
   /**
-   * Adds around the children
+   * Adds padding around the children
    */
   paddingSize?: typeof PADDING_SIZES[number];
 }

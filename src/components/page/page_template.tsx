@@ -92,7 +92,7 @@ export type EuiPageTemplateProps = Omit<EuiPageProps, 'paddingSize'> & {
    * Stretches or restricts the height to 100% of the parent;
    * `true`: scrolls the EuiPageContentBody;
    * `noscroll`: removes all scroll ability;
-   * Only works when `template = 'default | empty'`
+   * Only works when `template = 'default | empty'` and breakpoint is `m` and above
    */
   fullHeight?: boolean | 'noscroll';
 };
