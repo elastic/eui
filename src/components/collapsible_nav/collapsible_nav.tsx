@@ -111,7 +111,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
 
   useEffect(() => {
     if (isDocked) {
-      // Only add the event listener if we'll need to accomodate with padding
+      // Only add the event listener if we'll need to accommodate with padding
       window.addEventListener('resize', functionToCallOnWindowResize);
     }
 

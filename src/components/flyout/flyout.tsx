@@ -241,7 +241,7 @@ const EuiFlyout = forwardRef(
 
     /**
      * Setting up the refs on the actual flyout element in order to
-     * accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
+     * accommodate for the `isPushed` state by adding padding to the body equal to the width of the element
      */
     const [resizeRef, setResizeRef] = useState<ComponentPropsWithRef<T> | null>(
       null
@@ -258,7 +258,7 @@ const EuiFlyout = forwardRef(
        * Accomodate for the `isPushed` state by adding padding to the body equal to the width of the element
        */
       if (type === 'push') {
-        // Only add the event listener if we'll need to accomodate with padding
+        // Only add the event listener if we'll need to accommodate with padding
         window.addEventListener('resize', functionToCallOnWindowResize);
 
         if (isPushed) {

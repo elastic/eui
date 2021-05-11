@@ -174,7 +174,7 @@ export const FlyoutExample = {
             iconType="accessibility"
             title={
               <>
-                Use <EuiCode>{'aria-labelledby={headingId}'}</EuiCode> to 
+                Use <EuiCode>{'aria-labelledby={headingId}'}</EuiCode> to
                 announce the flyout to screen readers.
               </>
             }
@@ -221,7 +221,7 @@ export const FlyoutExample = {
       text: (
         <p>
           Flyouts come in three predefined <EuiCode>size</EuiCode>s of{' '}
-          <EuiCode>{"'s' | 'm' | 'l'"}</EuiCode>, which define the width
+          <EuiCode>{"'s' | 'm' | 'l'"}</EuiCode>, which define the width{' '}
           <strong>relative to the window size</strong> with a minimum width
           defined in pixels. You can otherwise supply your own fixed width in
           number or string format.
@@ -245,7 +245,7 @@ export const FlyoutExample = {
           wrapping <strong>EuiFlyout</strong> component. This ensures that all
           the horizontal edges line up no matter the{' '}
           <EuiCode>paddingSize</EuiCode>. When using the{' '}
-          <EuiCode>{'"none"'}</EuiCode> size, you will need to accomodate your
+          <EuiCode>{'"none"'}</EuiCode> size, you will need to accommodate your
           content with some other way of creating distance to the edges of the
           flyout.
         </p>
@@ -323,7 +323,7 @@ export const FlyoutExample = {
           </p>
           <p>
             A pushed flyout still positions itself as <EuiCode>fixed</EuiCode>,
-            but adds padding to the document&apos;s body element to accomodate
+            but adds padding to the document&apos;s body element to accommodate
             for the flyout&apos;s width. Because this squishes the page content,
             the flyout changes back to <EuiCode>overlay</EuiCode> at smaller
             window widths. You can adjust this minimum breakpoint with{' '}
