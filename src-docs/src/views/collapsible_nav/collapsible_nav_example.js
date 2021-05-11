@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -11,23 +9,22 @@ import {
   EuiText,
   EuiCallOut,
   EuiCollapsibleNavGroup,
+  EuiHorizontalRule,
 } from '../../../../src/components';
+
+import { collapsibleNavConfig } from './playground';
 
 import CollapsibleNav from './collapsible_nav';
 const collapsibleNavSource = require('!!raw-loader!./collapsible_nav');
-const collapsibleNavHtml = renderToHtml(CollapsibleNav);
 
 import CollapsibleNavGroup from './collapsible_nav_group';
 const collapsibleNavGroupSource = require('!!raw-loader!./collapsible_nav_group');
-const collapsibleNavGroupHtml = renderToHtml(CollapsibleNavGroup);
 
 import CollapsibleNavList from './collapsible_nav_list';
 const collapsibleNavListSource = require('!!raw-loader!./collapsible_nav_list');
-const collapsibleNavListHtml = renderToHtml(CollapsibleNavList);
 
 import CollapsibleNavAll from './collapsible_nav_all';
 const collapsibleNavAllSource = require('!!raw-loader!./collapsible_nav_all');
-const collapsibleNavAllHtml = renderToHtml(CollapsibleNavAll);
 
 export const CollapsibleNavExample = {
   title: 'Collapsible nav',
@@ -46,19 +43,15 @@ export const CollapsibleNavExample = {
           type: GuideSectionTypes.JS,
           code: collapsibleNavSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: collapsibleNavHtml,
-        },
       ],
       text: (
         <>
           <p>
-            <strong>EuiCollapsibleNav</strong> is a similar implementation to{' '}
+            <strong>EuiCollapsibleNav</strong> is a custom implementation of{' '}
             <Link to="/layout/flyout">
               <strong>EuiFlyout</strong>
             </Link>
-            ; the visibility of which must be maintained by the consuming
+            ; the visibility of which must still be maintained by the consuming
             application. An extra feature that it provides is the ability to{' '}
             <EuiCode>dock</EuiCode> the flyout. This affixes the flyout to the
             window and pushes the body content by adding left side padding.
@@ -72,11 +65,13 @@ export const CollapsibleNavExample = {
       props: { EuiCollapsibleNav },
       demo: <CollapsibleNav />,
       snippet: `<EuiCollapsibleNav
+  size={240}
   button={<EuiButton onClick={() => setNavIsOpen(!navIsOpen)}>Toggle nav</EuiButton>}
   isOpen={navIsOpen}
   isDocked={navIsDocked}
   onClose={() => setNavIsOpen(false)}
 />`,
+      playground: collapsibleNavConfig,
     },
     {
       title: 'Collapsible nav group',
@@ -84,10 +79,6 @@ export const CollapsibleNavExample = {
         {
           type: GuideSectionTypes.JS,
           code: collapsibleNavGroupSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: collapsibleNavGroupHtml,
         },
       ],
       text: (
@@ -130,10 +121,6 @@ export const CollapsibleNavExample = {
           type: GuideSectionTypes.JS,
           code: collapsibleNavListSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: collapsibleNavListHtml,
-        },
       ],
       text: (
         <>
@@ -152,7 +139,15 @@ export const CollapsibleNavExample = {
           <p>Below are a few established patterns to use.</p>
         </>
       ),
-      demo: <CollapsibleNavList />,
+      demo: (
+        <div>
+          <CollapsibleNavList />
+          <EuiHorizontalRule margin="none" />
+        </div>
+      ),
+      demoPanelProps: {
+        paddingSize: 'none',
+      },
       snippet: `<EuiCollapsibleNavGroup
   title="Kibana"
   iconType="logoKibana"
@@ -178,10 +173,6 @@ export const CollapsibleNavExample = {
         {
           type: GuideSectionTypes.JS,
           code: collapsibleNavAllSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: collapsibleNavAllHtml,
         },
       ],
       text: (
