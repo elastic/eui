@@ -2,11 +2,13 @@
 
 - Added `textTransform` property to `schemaDetectors` prop of `EuiDataGrid`([#4752](https://github.com/elastic/eui/pull/4752))
 - Added `color`, `continuityAbove`, `continuityAboveBelow`, `continuityBelow`, `continuityWithin`, `eraser`, `fullScreenExit`, `function`, `percent`, `wordWrap`, and `wordWrapDisabled` glyphs to `EuiIcon` ([#4779](https://github.com/elastic/eui/pull/4779))
+- Updated `max` and  `min` label positioning for `EuiRange` and `EuiDualRange` ([#4781](https://github.com/elastic/eui/pull/4781))
 
 **Bug fixes**
 
 - Fixed `EuiTourStepIndicator` to use `EuiI18n` following the standard way ([#4785](https://github.com/elastic/eui/pull/4785))
 - Fixed `euiTourStep.closeTour` default token value in `EuiTourStep` to be more specific ([#4790](https://github.com/elastic/eui/pull/4790))
+- Fixed inconsistent width of `EuiRange` and `EuiDualRange` with custom tick values ([#4781](https://github.com/elastic/eui/pull/4781))
 
 ## [`33.0.0`](https://github.com/elastic/eui/tree/v33.0.0)
 
