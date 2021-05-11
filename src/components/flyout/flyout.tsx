@@ -154,9 +154,9 @@ type _EuiFlyoutProps = {
   side?: _EuiFlyoutSide;
   /**
    * Defaults to `dialog` which is best for most cases of the flyout.
-   * Otherwise pass in your own, aria-role, or `none` to remove it and use the semantic `as` element instead
+   * Otherwise pass in your own, aria-role, or `null` to remove it and use the semantic `as` element instead
    */
-  role?: 'none' | string;
+  role?: null | string;
   /**
    * Named breakpoint or pixel value for customizing the minimum window width to enable the `push` type
    */
@@ -359,7 +359,7 @@ const EuiFlyout = forwardRef(
       // @ts-expect-error JSX element without construct
       <Element
         {...(rest as ComponentPropsWithRef<T>)}
-        role={role === 'none' ? undefined : role}
+        role={role}
         className={classes}
         tabIndex={-1}
         style={newStyle || style}

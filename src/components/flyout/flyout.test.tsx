@@ -46,7 +46,7 @@ describe('EuiFlyout', () => {
 
   describe('props', () => {
     test('role can be removed', () => {
-      const component = mount(<EuiFlyout onClose={() => {}} role={'none'} />);
+      const component = mount(<EuiFlyout onClose={() => {}} role={null} />);
 
       expect(
         takeMountedSnapshot(component, { hasArrayOutput: true })
