@@ -22,11 +22,10 @@ import {
   border,
   EuiThemeBorder,
 } from '../../../../global_styling/variables/_borders';
+import { sizeToPixel } from '../../../../global_styling/variables/_size';
 
 export const border_ams: EuiThemeBorder = {
   ...border,
-  // TODO: Decide if we should always calculate from `base`
-  radius: computed(([base]) => `${base * 0.375}px`, ['base']),
-  // Or we're ok with `calc()` at the global level
-  radiusSmall: computed(([sizeS]) => `calc(${sizeS} * 0.5)`, ['size.s']),
+  radius: computed(sizeToPixel(0.375)),
+  radiusSmall: computed(sizeToPixel(0.25)),
 };

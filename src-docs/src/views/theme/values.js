@@ -64,7 +64,7 @@ export default () => {
 
         <EuiHorizontalRule margin="xxl" />
 
-        <Border />
+        <Border onThemeUpdate={(overrides) => updateTheme(overrides)} />
 
         <EuiHorizontalRule margin="xxl" />
 

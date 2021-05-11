@@ -65,7 +65,7 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
   };
 
   let exampleRender;
-  if (property === 'colors' && onUpdate) {
+  if ((property === 'colors' || name.includes('color')) && onUpdate) {
     exampleRender = (
       <EuiFlexItem grow={false}>
         <EuiColorPicker
@@ -76,6 +76,7 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
           isInvalid={!!errors}
           secondaryInputDisplay="bottom"
           button={example as ReactElement}
+          compressed
         />
       </EuiFlexItem>
     );
@@ -129,7 +130,12 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
         {...numberProps}
       />
     );
-  } else if (property !== 'colors' && typeof value === 'string' && onUpdate) {
+  } else if (
+    property !== 'colors' &&
+    !name.includes('color') &&
+    typeof value === 'string' &&
+    onUpdate
+  ) {
     valueRender = (
       <EuiFieldText
         compressed

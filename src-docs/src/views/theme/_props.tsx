@@ -40,3 +40,15 @@ export const EuiThemeFontWeight: FunctionComponent<_EuiThemeFontWeight> = () => 
 export const EuiThemeFontScale: FunctionComponent<_EuiThemeFontScale> = () => (
   <div />
 );
+
+import {
+  _EuiThemeBorderValues,
+  _EuiThemeBorderTypes,
+} from '../../../../src/global_styling/variables/_borders';
+
+export const EuiThemeBorderValues: FunctionComponent<_EuiThemeBorderValues> = () => (
+  <div />
+);
+export const EuiThemeBorderTypes: FunctionComponent<_EuiThemeBorderTypes> = () => (
+  <div />
+);
