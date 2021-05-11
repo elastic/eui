@@ -6,6 +6,7 @@
 **Bug fixes**
 
 - Fixed `EuiTourStepIndicator` to use `EuiI18n` following the standard way ([#4785](https://github.com/elastic/eui/pull/4785))
+- Fixed `euiTourStep.closeTour` default token value in `EuiTourStep` to be more specific ([#4790](https://github.com/elastic/eui/pull/4790))
 
 ## [`33.0.0`](https://github.com/elastic/eui/tree/v33.0.0)
 
