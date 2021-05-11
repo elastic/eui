@@ -84,7 +84,7 @@ const EuiTickValue: FunctionComponent<
   // Shifts the label into the reserved margin of EuiRangeTrack
   const labelShiftVal =
     (isMinTick || isMaxTick) && label.length > 3
-      ? Math.min(label.length * 0.25, 1.5)
+      ? Math.min(label.length * 0.25, 1.25)
       : 0;
 
   let labelShift;

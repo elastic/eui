@@ -1,7 +1,7 @@
 .euiRangeTicks {
   position: absolute;
-  left: ($euiRangeThumbWidth / 2);
-  right: ($euiRangeThumbWidth / 2);
+  left: ($euiRangeThumbWidth / 8);
+  right: ($euiRangeThumbWidth / 8);
   top: $euiSizeS;
   display: flex;
 }
