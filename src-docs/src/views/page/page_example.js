@@ -281,7 +281,7 @@ export const PageExample = {
             the bottom of and remains within the bounds of{' '}
             <strong>EuiPageBody</strong>. This way it will never overlap the{' '}
             <strong>EuiPageSideBar</strong>, no matter the screen size. It also
-            means not needing to accomodate for the height of the bar in the
+            means not needing to accommodate for the height of the bar in the
             body element.
           </p>
           <EuiCallOut

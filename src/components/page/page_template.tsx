@@ -329,7 +329,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
             {pageSideBar}
           </EuiPageSideBar>
 
-          {/* The extra PageBody is to accomodate the bottom bar stretching to both sides */}
+          {/* The extra PageBody is to accommodate the bottom bar stretching to both sides */}
           <EuiPageBody panelled paddingSize="none" {...pageBodyProps}>
             <EuiPageBody component="div" paddingSize={paddingSize}>
               {pageHeader && (

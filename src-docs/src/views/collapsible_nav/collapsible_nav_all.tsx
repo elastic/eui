@@ -56,11 +56,9 @@ const LearnLinks: EuiPinnableListGroupItemProps[] = [
 ];
 
 export default () => {
-  const [navIsOpen, setNavIsOpen] = useState(
-    JSON.parse(String(localStorage.getItem('navIsDocked'))) || false
-  );
+  const [navIsOpen, setNavIsOpen] = useState(true);
   const [navIsDocked, setNavIsDocked] = useState(
-    JSON.parse(String(localStorage.getItem('navIsDocked'))) || false
+    JSON.parse(String(localStorage.getItem('nav2IsDocked'))) || false
   );
 
   /**
@@ -234,7 +232,7 @@ export default () => {
               onClick={() => {
                 setNavIsDocked(!navIsDocked);
                 localStorage.setItem(
-                  'navIsDocked',
+                  'nav2IsDocked',
                   JSON.stringify(!navIsDocked)
                 );
               }}
