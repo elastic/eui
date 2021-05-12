@@ -17,13 +17,57 @@
  * under the License.
  */
 
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import React, {
+  AriaAttributes,
+  Fragment,
+  FunctionComponent,
+  HTMLAttributes,
+  MouseEventHandler,
+  ReactNode,
+  Ref,
+} from 'react';
 import classNames from 'classnames';
-import { CommonProps, ExclusiveUnion } from '../../common';
+import { CommonProps, ExclusiveUnion, keysOf } from '../../common';
+
+import { getSecureRelForTarget } from '../../../services';
 
 import { EuiToolTip, ToolTipPositions } from '../../tool_tip';
 
 import { EuiIcon, IconType } from '../../icon';
+
+import { EuiInnerText } from '../../inner_text';
+
+const colorToClassMap = {
+  accent: 'euiBetaBadge--accent',
+  subdued: 'euiBetaBadge--subdued',
+  hollow: 'euiBetaBadge--hollow',
+};
+
+export const COLORS: BadgeNotificationColor[] = keysOf(colorToClassMap);
+export type BadgeNotificationColor = keyof typeof colorToClassMap;
+
+type WithButtonProps = {
+  /**
+   * Will apply an onclick to the badge itself
+   */
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+
+  /**
+   * Aria label applied to the onClick button
+   */
+  onClickAriaLabel?: AriaAttributes['aria-label'];
+} & Omit<HTMLAttributes<HTMLButtonElement>, 'onClick' | 'color'>;
+
+type WithAnchorProps = {
+  href: string;
+  target?: string;
+  rel?: string;
+} & Omit<HTMLAttributes<HTMLAnchorElement>, 'href' | 'color' | 'onClick'>;
+
+type WithSpanProps = Omit<
+  HTMLAttributes<HTMLSpanElement>,
+  'onClick' | 'color' | 'title'
+>;
 
 // `label` prop can be a `ReactNode` only if `title` or `tooltipContent` is provided
 type LabelAsNode = (
@@ -72,19 +116,29 @@ type BadgeProps = {
    * otherwise the label will be used
    */
   title?: string;
+  color?: BadgeNotificationColor;
 } & ExclusiveUnion<LabelAsNode, LabelAsString>;
 
 export type EuiBetaBadgeProps = CommonProps &
-  Omit<HTMLAttributes<HTMLSpanElement>, 'title'> &
+  ExclusiveUnion<
+    ExclusiveUnion<WithButtonProps, WithAnchorProps>,
+    WithSpanProps
+  > &
   BadgeProps;
 
 export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
   className,
   label,
+  color = 'hollow',
   tooltipContent,
   tooltipPosition = 'top',
   title,
   iconType,
+  onClick,
+  onClickAriaLabel,
+  href,
+  rel,
+  target,
   ...rest
 }) => {
   const classes = classNames(
@@ -92,10 +146,11 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
     {
       'euiBetaBadge--iconOnly': iconType,
     },
+    colorToClassMap[color],
     className
   );
 
-  let icon;
+  let icon: JSX.Element | undefined;
   if (iconType) {
     icon = (
       <EuiIcon
@@ -107,31 +162,109 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
     );
   }
 
-  if (tooltipContent) {
-    return (
-      <EuiToolTip
-        position={tooltipPosition}
-        content={tooltipContent}
-        title={title || label}>
-        <span tabIndex={0} className={classes} {...rest}>
+  const Element = href ? 'a' : 'button';
+  const relObj: {
+    href?: string;
+    target?: string;
+    rel?: string;
+    onClick?:
+      | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+      | ((event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void);
+  } = {};
+
+  if (href) {
+    relObj.href = href;
+    relObj.target = target;
+    relObj.rel = getSecureRelForTarget({ href, target, rel });
+  }
+  if (onClick) {
+    relObj.onClick = onClick;
+  }
+
+  let content;
+  if (onClick || href) {
+    content = (
+      <EuiInnerText>
+        {(ref, innerText) => (
+          <Element
+            aria-label={onClickAriaLabel}
+            className={classes}
+            ref={ref as Ref<HTMLButtonElement & HTMLAnchorElement>}
+            title={innerText}
+            {...(relObj as HTMLAttributes<HTMLElement>)}
+            {...(rest as HTMLAttributes<HTMLElement>)}>
+            {icon || label}
+          </Element>
+        )}
+      </EuiInnerText>
+    );
+    if (tooltipContent) {
+      return (
+        <EuiToolTip
+          position={tooltipPosition}
+          content={tooltipContent}
+          title={title || label}>
+          <Fragment>{content}</Fragment>
+        </EuiToolTip>
+      );
+    } else {
+      return <Fragment>{content}</Fragment>;
+    }
+  } else {
+    if (tooltipContent) {
+      return (
+        <EuiToolTip
+          position={tooltipPosition}
+          content={tooltipContent}
+          title={title || label}>
+          <span tabIndex={0} className={classes} {...rest}>
+            {icon || label}
+          </span>
+        </EuiToolTip>
+      );
+    } else {
+      const spanTitle = title || label;
+      if (spanTitle && typeof spanTitle !== 'string') {
+        console.warn(
+          `Only string titles are permitted on badges that do not use tooltips. Found: ${typeof spanTitle}`
+        );
+      }
+      return (
+        <span
+          className={classes}
+          title={spanTitle as string | undefined}
+          {...rest}>
           {icon || label}
         </span>
-      </EuiToolTip>
-    );
-  } else {
-    const spanTitle = title || label;
-    if (spanTitle && typeof spanTitle !== 'string') {
-      console.warn(
-        `Only string titles are permitted on badges that do not use tooltips. Found: ${typeof spanTitle}`
       );
     }
-    return (
-      <span
-        className={classes}
-        title={spanTitle as string | undefined}
-        {...rest}>
-        {icon || label}
-      </span>
-    );
   }
+
+  // if (tooltipContent) {
+  //   return (
+  //     <EuiToolTip
+  //       position={tooltipPosition}
+  //       content={tooltipContent}
+  //       title={title || label}>
+  //       <span tabIndex={0} className={classes} {...rest}>
+  //         {icon || label}
+  //       </span>
+  //     </EuiToolTip>
+  //   );
+  // } else {
+  //   const spanTitle = title || label;
+  //   if (spanTitle && typeof spanTitle !== 'string') {
+  //     console.warn(
+  //       `Only string titles are permitted on badges that do not use tooltips. Found: ${typeof spanTitle}`
+  //     );
+  //   }
+  //   return (
+  //     <span
+  //       className={classes}
+  //       title={spanTitle as string | undefined}
+  //       {...rest}>
+  //       {icon || label}
+  //     </span>
+  //   );
+  // }
 };

@@ -17,6 +17,10 @@
   &:focus {
     @include euiFocusRing;
   }
+
+  &:not(.euiBetaBadge--hollow) {
+    box-shadow: none;
+  }
 }
 
 // When it's just an icon, make it a circle
@@ -28,4 +32,16 @@
     position: relative;
     margin-top: -1px;
   }
+}
+
+.euiBetaBadge--subdued {
+  $backgroundColor: tint($euiColorLightShade, 30%);
+  background: $backgroundColor;
+  color: chooseLightOrDarkText($backgroundColor, $euiColorGhost, $euiColorInk);
+}
+
+.euiBetaBadge--accent {
+  $backgroundColor: $euiColorAccent;
+  background: $backgroundColor;
+  color: chooseLightOrDarkText($backgroundColor, $euiColorGhost, $euiColorInk);
 }

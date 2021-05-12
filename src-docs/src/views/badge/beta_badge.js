@@ -16,6 +16,16 @@ export default () => (
     />
     &emsp;
     <EuiBetaBadge label="Lab" iconType="beaker" />
+    <EuiBetaBadge label="Mila" color="subdued" />
+    <EuiBetaBadge label="Mila" color="accent" />
+    <EuiBetaBadge
+      label="Mila con click"
+      onClick={() => {
+        alert('okay');
+      }}
+      color="accent"
+    />
+    <EuiBetaBadge label="M" />
     <EuiSpacer />
     <EuiTitle size="s">
       <h3>
