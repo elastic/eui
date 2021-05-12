@@ -273,6 +273,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
               paddingSize={paddingSize}
               style={{ display: 'flex' }}>
               <EuiPageContent
+                role={null}
                 verticalPosition="center"
                 horizontalPosition="center"
                 hasShadow={false}
