@@ -1,0 +1,13 @@
+.euiRangeHighlight {
+  z-index: 1;
+  pointer-events: none;
+
+  &__progress {
+    background-color: $euiColorPrimary;
+    border-color: $euiColorPrimary;
+
+    &--hasFocus {
+      background-color: $euiColorPrimary;
+    }
+  }
+}

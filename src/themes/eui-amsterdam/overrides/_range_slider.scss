@@ -1,0 +1,16 @@
+
+.euiRangeSlider {
+
+  // no dual range thumbs
+  @include euiRangeThumbPerBrowser {
+    position: relative;
+    z-index: 2; // higher than .euiRangeHighlight that is 1
+  }
+}
+
+.euiRangeSlider--hasRange {
+  @include euiRangeTrackPerBrowser {
+    background-color: $euiRangeTrackColor;
+    border-color: $euiRangeTrackBorderColor;
+  }
+}

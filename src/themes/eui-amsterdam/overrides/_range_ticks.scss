@@ -1,0 +1,27 @@
+.euiRangeTick {
+  &::before {
+    width: $euiSizeXS;
+    height: $euiSizeM / 2;
+    background-color: $euiColorLightShade;
+    top: $euiSizeS;
+    border-radius: $euiBorderRadiusSmall;
+  }
+
+  &:enabled:hover,
+  &:focus,
+  &--selected {
+    color: $euiColorPrimary;
+  }
+
+  &--selected {
+    font-weight: $euiFontWeightMedium;
+  }
+}
+
+.euiRangeTicks--compressed {
+  top: $euiSizeS - 2px;
+
+  .euiRangeTick {
+    padding-top: $euiSize - 2px;
+  }
+}
