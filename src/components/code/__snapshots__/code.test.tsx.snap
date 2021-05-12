@@ -2,7 +2,7 @@
 
 exports[`EuiCode renders a code snippet 1`] = `
 <span
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline prismjs language-none testClass1 testClass2"
 >
   <code
     aria-label="aria-label"

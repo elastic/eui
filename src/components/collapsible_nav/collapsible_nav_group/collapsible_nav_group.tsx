@@ -146,7 +146,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<EuiCollapsibleNavGroupPro
     );
   }
 
-  const content = (
+  const content = children && (
     <div className="euiCollapsibleNavGroup__children">{children}</div>
   );
 
