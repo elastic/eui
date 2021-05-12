@@ -272,7 +272,6 @@ export class FieldValueSelectionFilter extends Component<
       config: { autoClose = true, operator = Operator.EQ },
     } = this.props;
 
-    this.loadOptions();
     // we're closing popover only if the user can only select one item... if the
     // user can select more, we'll leave it open so she can continue selecting
 
