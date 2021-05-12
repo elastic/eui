@@ -55,7 +55,13 @@ interface EuiFormRowState {
   id: string;
 }
 
-type EuiFormRowCommonProps = CommonProps & {
+export function euiFormRowDisplayIsCompressed(
+  display?: EuiFormRowDisplayKeys
+): boolean {
+  return display ? display.includes('Compressed') : false;
+}
+
+export type EuiFormRowCommonProps = CommonProps & {
   /**
    * When `rowCompressed`, just tightens up the spacing;
    * Set to `columnCompressed` if compressed
@@ -66,7 +72,6 @@ type EuiFormRowCommonProps = CommonProps & {
    * as the child is a switch.
    */
   display?: EuiFormRowDisplayKeys;
-  hasEmptyLabelSpace?: boolean;
   fullWidth?: boolean;
   /**
    * IDs of additional elements that should be part of children's `aria-describedby`
@@ -80,17 +85,45 @@ type EuiFormRowCommonProps = CommonProps & {
    * ReactElement to render as this component's content
    */
   children: ReactElement;
+  /**
+   * The content for the `<label>` (or `<legend>`) element
+   */
   label?: ReactNode;
+  /**
+   * Pass some common props to the `<label>` (or `<legend>`) element
+   */
+  labelProps?: CommonProps;
   /**
    * Adds an extra node to the right of the form label without
    * being contained inside the form label. Good for things
    * like documentation links.
    */
-  labelAppend?: any;
+  labelAppend?: ReactNode;
+  /**
+   * Used to generate the wrapper `id`s and will be passed plainly to the child (input) if `inputId` is not supplied.
+   * If not provided, one will be generated
+   */
   id?: string;
+  /**
+   * Specific `id` passed to the label as the `htmlFor` attribute.
+   * If not provided, one will be generated
+   */
+  inputId?: string;
   isInvalid?: boolean;
+  /**
+   * Error nodes will only show when `isInvalid` is true;
+   * Displayed after the input, before the `helpText`
+   */
   error?: ReactNode | ReactNode[];
+  /**
+   * Small text that displays below the input
+   */
   helpText?: ReactNode;
+  /**
+   * For use only in inline forms to align the inputs
+   * in case the form row has no label
+   */
+  hasEmptyLabelSpace?: boolean;
 };
 
 type LabelProps = {
@@ -163,6 +196,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       label,
       labelType,
       labelAppend,
+      labelProps: _labelProps,
       hasEmptyLabelSpace,
       fullWidth,
       className,
@@ -170,6 +204,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       display,
       hasChildLabel,
       id: propsId,
+      inputId,
       ...rest
     } = this.props;
 
@@ -219,11 +254,13 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       let labelProps = {};
       if (isLegend) {
         labelProps = {
+          ..._labelProps,
           type: labelType,
         };
       } else {
         labelProps = {
-          htmlFor: hasChildLabel ? id : undefined,
+          ..._labelProps,
+          htmlFor: hasChildLabel ? inputId || id : undefined,
           isFocused: this.state.isFocused,
           type: labelType,
         };
@@ -262,7 +299,8 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     }
 
     const field = cloneElement(Children.only(children), {
-      id,
+      id: inputId ? undefined : id,
+      ...children.props,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       ...optionalProps,

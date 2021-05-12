@@ -6,7 +6,6 @@ import {
   EuiFlexItem,
   EuiSpacer,
   EuiCode,
-  EuiFormRow,
 } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
@@ -35,22 +34,20 @@ export const PrefixSufix = () => {
         gutterSize="m"
         alignItems="center">
         <EuiFlexItem grow={false}>
-          <EuiFormRow label="Prefix">
-            <EuiFieldText
-              value={prefix}
-              onChange={onPrefixChange}
-              placeholder="Enter prefix"
-            />
-          </EuiFormRow>
+          <EuiFieldText
+            label="Prefix"
+            value={prefix}
+            onChange={onPrefixChange}
+            placeholder="Enter prefix"
+          />
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
-          <EuiFormRow label="Suffix">
-            <EuiFieldText
-              value={suffix}
-              onChange={onSuffixChange}
-              placeholder="Enter suffix"
-            />
-          </EuiFormRow>
+          <EuiFieldText
+            label="Suffix"
+            value={suffix}
+            onChange={onSuffixChange}
+            placeholder="Enter suffix"
+          />
         </EuiFlexItem>
       </EuiFlexGroup>
       <EuiSpacer size="xl" />

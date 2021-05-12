@@ -112,9 +112,8 @@ export default () => (
             <EuiModalHeaderTitle>Save dashboard</EuiModalHeaderTitle>
           </EuiModalHeader>
           <EuiModalBody>
-            <EuiFormRow label="Name">
-              <EuiFieldText />
-            </EuiFormRow>
+            <EuiFieldText label="Name" />
+
             <EuiFormRow label="Description">
               <EuiTextArea />
             </EuiFormRow>
@@ -143,12 +142,10 @@ export default () => (
               <h3>Step 1 of 3: the basics</h3>
             </EuiTitle>
             <EuiSpacer />
-            <EuiFormRow label="Name">
-              <EuiFieldText />
-            </EuiFormRow>
-            <EuiFormRow label="Email">
-              <EuiFieldText />
-            </EuiFormRow>
+
+            <EuiFieldText label="Name" />
+
+            <EuiFieldText label="Email" />
           </EuiModalBody>
 
           <EuiModalFooter>

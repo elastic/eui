@@ -2,8 +2,6 @@ import React, { Fragment } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -28,6 +26,7 @@ import {
   EuiSwitch,
   EuiTextArea,
   EuiSpacer,
+  EuiText,
 } from '../../../../src/components';
 
 import {
@@ -43,7 +42,6 @@ import {
 
 import FieldSearch from './field_search';
 const fieldSearchSource = require('!!raw-loader!./field_search');
-const fieldSearchHtml = renderToHtml(FieldSearch);
 const fieldSearchSnippet = [
   `<EuiFieldSearch
   placeholder="Search this"
@@ -55,9 +53,9 @@ const fieldSearchSnippet = [
 
 import FieldText from './field_text';
 const fieldTextSource = require('!!raw-loader!./field_text');
-const fieldTextHtml = renderToHtml(FieldText);
 const fieldTextSnippet = [
   `<EuiFieldText
+  label="Text field"
   placeholder="Placeholder text"
   value={value}
   onChange={onChange}
@@ -66,7 +64,6 @@ const fieldTextSnippet = [
 
 import FieldNumber from './field_number';
 const fieldNumberSource = require('!!raw-loader!./field_number');
-const fieldNumberHtml = renderToHtml(FieldNumber);
 const fieldNumberSnippet = [
   `<EuiFieldNumber
   placeholder="Placeholder text"
@@ -77,7 +74,6 @@ const fieldNumberSnippet = [
 
 import FieldPassword from './field_password';
 const fieldPasswordSource = require('!!raw-loader!./field_password');
-const fieldPasswordHtml = renderToHtml(FieldPassword);
 const fieldPasswordSnippet = [
   `<EuiFieldPassword
   placeholder="Placeholder text"
@@ -89,7 +85,6 @@ const fieldPasswordSnippet = [
 
 import TextArea from './text_area';
 const textAreaSource = require('!!raw-loader!./text_area');
-const textAreaHtml = renderToHtml(TextArea);
 const textAreaSnippet = [
   `<EuiTextArea
   placeholder="Placeholder text"
@@ -100,7 +95,6 @@ const textAreaSnippet = [
 
 import FilePicker from './file_picker';
 const filePickerSource = require('!!raw-loader!./file_picker');
-const filePickerHtml = renderToHtml(FilePicker);
 const filePickerSnippet = [
   `<EuiFilePicker
   id={filePickerId}
@@ -112,7 +106,6 @@ const filePickerSnippet = [
 
 import Select from './select';
 const selectSource = require('!!raw-loader!./select');
-const selectHtml = renderToHtml(Select);
 const selectSnippet = [
   `<EuiSelect
   options={[
@@ -128,7 +121,6 @@ const selectSnippet = [
 
 import Checkbox from './checkbox';
 const checkboxSource = require('!!raw-loader!./checkbox');
-const checkboxHtml = renderToHtml(Checkbox);
 const checkboxSnippet = [
   `<EuiCheckbox
   id={checkboxId}
@@ -146,11 +138,9 @@ const checkboxSnippet = [
 
 import CheckboxGroup from './checkbox_group';
 const checkboxGroupSource = require('!!raw-loader!./checkbox_group');
-const checkboxGroupHtml = renderToHtml(CheckboxGroup);
 
 import Radio from './radio';
 const radioSource = require('!!raw-loader!./radio');
-const radioHtml = renderToHtml(Radio);
 const radioSnippet = [
   `<EuiRadio
   label="I am a radio"
@@ -161,11 +151,9 @@ const radioSnippet = [
 
 import RadioGroup from './radio_group';
 const radioGroupSource = require('!!raw-loader!./radio_group');
-const radioGroupHtml = renderToHtml(RadioGroup);
 
 import Switch from './switch';
 const switchSource = require('!!raw-loader!./switch');
-const switchHtml = renderToHtml(Switch);
 const switchSnippet = [
   `<EuiSwitch
   label="I am a switch"
@@ -176,33 +164,51 @@ const switchSnippet = [
 
 import PrependAppend from './prepend_append';
 const PrependAppendSource = require('!!raw-loader!./prepend_append');
-const PrependAppendHtml = renderToHtml(PrependAppend);
 
 import Fieldset from './fieldset';
 const fieldsetSource = require('!!raw-loader!./fieldset');
-const fieldsetHtml = renderToHtml(Fieldset);
 
 import FormControlLayout from './form_control_layout';
 const formControlLayoutSource = require('!!raw-loader!./form_control_layout');
-const formControlLayoutHtml = renderToHtml(FormControlLayout);
 
 import FormControlLayoutRange from './form_control_layout_range';
 const formControlLayoutRangeSource = require('!!raw-loader!./form_control_layout_range');
-const formControlLayoutRangeHtml = renderToHtml(FormControlLayoutRange);
 
 export const FormControlsExample = {
   title: 'Form controls',
   sections: [
     {
       title: 'Text field',
+      text: (
+        <>
+          <p>
+            A simple wrapper around{' '}
+            <EuiCode language="html">{'<input type="text" >'}</EuiCode>.
+          </p>
+          <EuiCallOut>
+            <EuiText size="m">
+              <p>
+                <strong>EuiTextField</strong> is <strong>currently</strong> the
+                only field component to accept{' '}
+                <Link to="/forms/form-layouts#form-and-form-rows">
+                  <strong>EuiFormRow</strong>
+                </Link>{' '}
+                props directly. For instance, when providing the{' '}
+                <EuiCode>label</EuiCode> prop, it will automically wrap itself
+                in a <strong>EuiFormRow</strong>. Other examples of promoted props include{' '}
+                <EuiCode>helpText</EuiCode>, <EuiCode>error</EuiCode> , and{' '}
+                <EuiCode>display</EuiCode>. Providing form row props at this
+                level also decreases the need for duplicate props like{' '}
+                <EuiCode>isInvalid</EuiCode> and <EuiCode>fullWidth</EuiCode>.
+              </p>
+            </EuiText>
+          </EuiCallOut>
+        </>
+      ),
       source: [
         {
           type: GuideSectionTypes.JS,
           code: fieldTextSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fieldTextHtml,
         },
       ],
       snippet: fieldTextSnippet,
@@ -219,10 +225,6 @@ export const FormControlsExample = {
           type: GuideSectionTypes.JS,
           code: fieldSearchSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fieldSearchHtml,
-        },
       ],
       snippet: fieldSearchSnippet,
       props: {
@@ -237,10 +239,6 @@ export const FormControlsExample = {
         {
           type: GuideSectionTypes.JS,
           code: fieldNumberSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fieldNumberHtml,
         },
       ],
       snippet: fieldNumberSnippet,
@@ -257,10 +255,6 @@ export const FormControlsExample = {
           type: GuideSectionTypes.JS,
           code: fieldPasswordSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fieldPasswordHtml,
-        },
       ],
       snippet: fieldPasswordSnippet,
       props: {
@@ -275,10 +269,6 @@ export const FormControlsExample = {
         {
           type: GuideSectionTypes.JS,
           code: selectSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectHtml,
         },
       ],
       text: (
@@ -311,10 +301,6 @@ export const FormControlsExample = {
           type: GuideSectionTypes.JS,
           code: textAreaSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: textAreaHtml,
-        },
       ],
       snippet: textAreaSnippet,
       props: {
@@ -329,10 +315,6 @@ export const FormControlsExample = {
         {
           type: GuideSectionTypes.JS,
           code: filePickerSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: filePickerHtml,
         },
       ],
       text: (
@@ -362,10 +344,6 @@ export const FormControlsExample = {
           type: GuideSectionTypes.JS,
           code: checkboxSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: checkboxHtml,
-        },
       ],
       snippet: checkboxSnippet,
       props: {
@@ -380,10 +358,6 @@ export const FormControlsExample = {
         {
           type: GuideSectionTypes.JS,
           code: checkboxGroupSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: checkboxGroupHtml,
         },
       ],
       props: {
@@ -408,10 +382,6 @@ export const FormControlsExample = {
           type: GuideSectionTypes.JS,
           code: radioSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: radioHtml,
-        },
       ],
       snippet: radioSnippet,
       props: {
@@ -426,10 +396,6 @@ export const FormControlsExample = {
         {
           type: GuideSectionTypes.JS,
           code: radioGroupSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: radioGroupHtml,
         },
       ],
       props: {
@@ -458,10 +424,6 @@ export const FormControlsExample = {
           type: GuideSectionTypes.JS,
           code: switchSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: switchHtml,
-        },
       ],
       snippet: switchSnippet,
       props: {
@@ -476,10 +438,6 @@ export const FormControlsExample = {
         {
           type: GuideSectionTypes.JS,
           code: fieldsetSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fieldsetHtml,
         },
       ],
       text: (
@@ -552,10 +510,6 @@ export const FormControlsExample = {
           type: GuideSectionTypes.JS,
           code: PrependAppendSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PrependAppendHtml,
-        },
       ],
       demo: <PrependAppend />,
       snippet: [
@@ -575,10 +529,6 @@ export const FormControlsExample = {
         {
           type: GuideSectionTypes.JS,
           code: formControlLayoutSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: formControlLayoutHtml,
         },
       ],
       text: (
@@ -616,10 +566,6 @@ export const FormControlsExample = {
         {
           type: GuideSectionTypes.JS,
           code: formControlLayoutRangeSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: formControlLayoutRangeHtml,
         },
       ],
       text: (

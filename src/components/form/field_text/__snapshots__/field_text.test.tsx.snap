@@ -1,88 +1,290 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiFieldText is rendered 1`] = `
-<eui-form-control-layout
-  fullwidth="false"
-  icon="foo"
-  inputid="1"
+exports[`EuiFieldText form row props are rendered 1`] = `
+<div
+  class="euiFormRow euiFormRow--hasEmptyLabelSpace euiFormRow--fullWidth euiFormRow--compressed euiFormRow--horizontal"
+  id="generated-id-row"
 >
-  <eui-validatable-control>
-    <input
+  <div
+    class="euiFormRow__labelWrapper"
+  >
+    <label
+      aria-invalid="true"
       aria-label="aria-label"
-      class="euiFieldText testClass1 testClass2 euiFieldText--withIcon"
+      class="euiFormLabel testClass1 testClass2 euiFormLabel-isInvalid"
       data-test-subj="test subject string"
-      id="1"
-      name="elastic"
-      placeholder="Placeholder"
-      type="text"
-      value="1"
-    />
-  </eui-validatable-control>
-</eui-form-control-layout>
+      for="euiFieldText_generated-id"
+    >
+      label
+    </label>
+     labelAppend
+  </div>
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <div
+      aria-describedby="generated-id-help generated-id-error-0"
+      class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--compressed"
+    >
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <eui-validatable-control
+          isinvalid="true"
+        >
+          <input
+            class="euiFieldText euiFieldText--fullWidth euiFieldText--compressed"
+            id="euiFieldText_generated-id"
+            type="text"
+          />
+        </eui-validatable-control>
+      </div>
+    </div>
+    <div
+      aria-live="polite"
+      class="euiFormErrorText euiFormRow__text"
+      id="generated-id-error-0"
+    >
+      error
+    </div>
+    <div
+      class="euiFormHelpText euiFormRow__text"
+      id="generated-id-help"
+    >
+      helpText
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiFieldText is rendered 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <eui-validatable-control>
+      <input
+        aria-label="aria-label"
+        class="euiFieldText testClass1 testClass2"
+        data-test-subj="test subject string"
+        id="1"
+        name="elastic"
+        type="text"
+        value="1"
+      />
+    </eui-validatable-control>
+  </div>
+</div>
+`;
+
+exports[`EuiFieldText props append is rendered 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--group"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <eui-validatable-control>
+      <input
+        aria-describedby="euiFieldText_generated-id-append0"
+        class="euiFieldText euiFieldText--inGroup"
+        id="euiFieldText_generated-id"
+        type="text"
+      />
+    </eui-validatable-control>
+  </div>
+  <label
+    class="euiFormLabel euiFormControlLayout__append"
+    id="euiFieldText_generated-id-append0"
+  >
+    append
+  </label>
+</div>
+`;
+
+exports[`EuiFieldText props compressed is rendered 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--compressed"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <eui-validatable-control>
+      <input
+        class="euiFieldText euiFieldText--compressed"
+        id="euiFieldText_generated-id"
+        type="text"
+      />
+    </eui-validatable-control>
+  </div>
+</div>
 `;
 
 exports[`EuiFieldText props controlOnly is rendered 1`] = `
 <eui-validatable-control>
   <input
     class="euiFieldText"
+    id="euiFieldText_generated-id"
     type="text"
   />
 </eui-validatable-control>
 `;
 
 exports[`EuiFieldText props fullWidth is rendered 1`] = `
-<eui-form-control-layout
-  fullwidth="true"
+<div
+  class="euiFormControlLayout euiFormControlLayout--fullWidth"
 >
-  <eui-validatable-control>
-    <input
-      class="euiFieldText euiFieldText--fullWidth"
-      type="text"
-    />
-  </eui-validatable-control>
-</eui-form-control-layout>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <eui-validatable-control>
+      <input
+        class="euiFieldText euiFieldText--fullWidth"
+        id="euiFieldText_generated-id"
+        type="text"
+      />
+    </eui-validatable-control>
+  </div>
+</div>
+`;
+
+exports[`EuiFieldText props icon is rendered 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <eui-validatable-control>
+      <input
+        class="euiFieldText euiFieldText--withIcon"
+        id="euiFieldText_generated-id"
+        type="text"
+      />
+    </eui-validatable-control>
+    <div
+      class="euiFormControlLayoutIcons"
+    >
+      <span
+        class="euiFormControlLayoutCustomIcon"
+      >
+        <span
+          aria-hidden="true"
+          class="euiFormControlLayoutCustomIcon__icon"
+          data-euiicon-type="bolt"
+        />
+      </span>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`EuiFieldText props isInvalid is rendered 1`] = `
-<eui-form-control-layout
-  fullwidth="false"
+<div
+  class="euiFormControlLayout"
 >
-  <eui-validatable-control
-    isinvalid="true"
+  <div
+    class="euiFormControlLayout__childrenWrapper"
   >
-    <input
-      class="euiFieldText"
-      type="text"
-    />
-  </eui-validatable-control>
-</eui-form-control-layout>
+    <eui-validatable-control
+      isinvalid="true"
+    >
+      <input
+        class="euiFieldText"
+        id="euiFieldText_generated-id"
+        type="text"
+      />
+    </eui-validatable-control>
+  </div>
+</div>
 `;
 
 exports[`EuiFieldText props isLoading is rendered 1`] = `
-<eui-form-control-layout
-  fullwidth="false"
-  isloading="true"
+<div
+  class="euiFormControlLayout"
 >
-  <eui-validatable-control>
-    <input
-      class="euiFieldText euiFieldText-isLoading"
-      type="text"
-    />
-  </eui-validatable-control>
-</eui-form-control-layout>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <eui-validatable-control>
+      <input
+        class="euiFieldText euiFieldText-isLoading"
+        id="euiFieldText_generated-id"
+        type="text"
+      />
+    </eui-validatable-control>
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+    >
+      <span
+        class="euiLoadingSpinner euiLoadingSpinner--medium"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiFieldText props placeholder is rendered 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <eui-validatable-control>
+      <input
+        class="euiFieldText"
+        id="euiFieldText_generated-id"
+        placeholder="Placeholder"
+        type="text"
+      />
+    </eui-validatable-control>
+  </div>
+</div>
+`;
+
+exports[`EuiFieldText props prepend is rendered 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--group"
+>
+  <label
+    class="euiFormLabel euiFormControlLayout__prepend"
+    id="euiFieldText_generated-id-prepend0"
+  >
+    prepend
+  </label>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <eui-validatable-control>
+      <input
+        aria-describedby="euiFieldText_generated-id-prepend0"
+        class="euiFieldText euiFieldText--inGroup"
+        id="euiFieldText_generated-id"
+        type="text"
+      />
+    </eui-validatable-control>
+  </div>
+</div>
 `;
 
 exports[`EuiFieldText props readOnly is rendered 1`] = `
-<eui-form-control-layout
-  fullwidth="false"
-  readonly="true"
+<div
+  class="euiFormControlLayout euiFormControlLayout--readOnly"
 >
-  <eui-validatable-control>
-    <input
-      class="euiFieldText"
-      readonly=""
-      type="text"
-    />
-  </eui-validatable-control>
-</eui-form-control-layout>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <eui-validatable-control>
+      <input
+        class="euiFieldText"
+        id="euiFieldText_generated-id"
+        readonly=""
+        type="text"
+      />
+    </eui-validatable-control>
+  </div>
+</div>
 `;

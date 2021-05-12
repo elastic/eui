@@ -6,7 +6,6 @@ import {
   EuiFieldText,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiFormRow,
   EuiSpacer,
   EuiI18n,
   EuiI18nNumber,
@@ -42,12 +41,10 @@ const ContextConsumer = () => {
       <EuiSpacer size="m" />
 
       <Fragment>
-        <EuiFormRow
-          label={useEuiI18n('euiContext.question', 'What is your name?')}>
-          <EuiFieldText
-            placeholder={useEuiI18n('euiContext.placeholder', 'John Doe')}
-          />
-        </EuiFormRow>
+        <EuiFieldText
+          label={useEuiI18n('euiContext.question', 'What is your name?')}
+          placeholder={useEuiI18n('euiContext.placeholder', 'John Doe')}
+        />
 
         <EuiSpacer />
 

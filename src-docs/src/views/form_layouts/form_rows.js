@@ -55,9 +55,11 @@ export default () => {
 
   return (
     <EuiForm component="form">
-      <EuiFormRow label="Text field" helpText="I am some friendly help text.">
-        <EuiFieldText name="first" />
-      </EuiFormRow>
+      <EuiFieldText
+        label="Text field"
+        helpText="I am some friendly help text."
+        name="first"
+      />
 
       <EuiFormRow
         label="Select (with no initial selection)"

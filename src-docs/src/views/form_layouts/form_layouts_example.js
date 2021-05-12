@@ -147,11 +147,7 @@ export const FormLayoutsExample = {
     </Fragment>
   }
 >
-  <EuiFormRow
-    label="Text field"
-  >
-    <EuiFieldText />
-  </EuiFormRow>
+  <EuiFieldText label="Text field" />
 </EuiDescribedFormGroup>`,
     },
     {

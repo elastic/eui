@@ -208,9 +208,12 @@ const GlobalFilterForm = (props) => {
       {useCustomLabel && (
         <div>
           <EuiSpacer size="m" />
-          <EuiFormRow label="Custom label">
-            <EuiFieldText value={customLabel} onChange={onCustomLabelChange} />
-          </EuiFormRow>
+
+          <EuiFieldText
+            label="Custom label"
+            value={customLabel}
+            onChange={onCustomLabelChange}
+          />
         </div>
       )}
 

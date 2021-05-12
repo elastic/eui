@@ -36,7 +36,9 @@ import { EuiFormLabel } from '../form_label';
 export { ICON_SIDES } from './form_control_layout_icons';
 
 type StringOrReactElement = string | ReactElement;
-type PrependAppendType = StringOrReactElement | StringOrReactElement[];
+export type _EuiPrependAppendType =
+  | StringOrReactElement
+  | StringOrReactElement[];
 
 export type EuiFormControlLayoutProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
@@ -44,12 +46,12 @@ export type EuiFormControlLayoutProps = CommonProps &
      * Creates an input group with element(s) coming before children.
      * `string` | `ReactElement` or an array of these
      */
-    prepend?: PrependAppendType;
+    prepend?: _EuiPrependAppendType;
     /**
      * Creates an input group with element(s) coming after children.
      * `string` | `ReactElement` or an array of these
      */
-    append?: PrependAppendType;
+    append?: _EuiPrependAppendType;
     children?: ReactNode;
     icon?: EuiFormControlLayoutIconsProps['icon'];
     clear?: EuiFormControlLayoutIconsProps['clear'];
@@ -118,7 +120,7 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
 
   renderSideNode(
     side: 'append' | 'prepend',
-    nodes?: PrependAppendType,
+    nodes?: _EuiPrependAppendType,
     inputId?: string
   ) {
     if (!nodes) {

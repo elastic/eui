@@ -4,7 +4,6 @@ import {
   EuiCode,
   EuiFieldText,
   EuiI18n,
-  EuiFormRow,
   EuiTitle,
   useEuiI18n,
   EuiSpacer,
@@ -17,20 +16,18 @@ export default () => {
         <h3>useEuiI18n used in an attribute</h3>
       </EuiTitle>
       <p>
-        <EuiFormRow
+        <EuiFieldText
           label={
             <>
               This text field&apos;s placeholder reads from{' '}
               <EuiCode>euiI18nAttribute.placeholderName</EuiCode>
             </>
-          }>
-          <EuiFieldText
-            placeholder={useEuiI18n(
-              'euiI18nAttribute.placeholderName',
-              'John Doe'
-            )}
-          />
-        </EuiFormRow>
+          }
+          placeholder={useEuiI18n(
+            'euiI18nAttribute.placeholderName',
+            'John Doe'
+          )}
+        />
       </p>
 
       <EuiSpacer size="l" />
@@ -40,15 +37,15 @@ export default () => {
       </EuiTitle>
       <EuiI18n token="euiI18nAttribute.placeholderName" default="John Doe">
         {(placeholderName) => (
-          <EuiFormRow
+          <EuiFieldText
             label={
               <>
                 This text field&apos;s placeholder reads from{' '}
                 <EuiCode>euiI18nAttribute.placeholderName</EuiCode>
               </>
-            }>
-            <EuiFieldText placeholder={placeholderName} />
-          </EuiFormRow>
+            }
+            placeholder={placeholderName}
+          />
         )}
       </EuiI18n>
     </>

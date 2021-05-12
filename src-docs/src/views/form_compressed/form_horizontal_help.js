@@ -11,12 +11,12 @@ import { EuiToolTip } from '../../../../src/components/tool_tip';
 
 export default () => (
   <EuiPanel style={{ maxWidth: 300 }}>
-    <EuiFormRow
+    <EuiFieldText
+      name="first"
       label="Text field"
       helpText="Show validation help text only."
-      display="columnCompressed">
-      <EuiFieldText name="first" compressed />
-    </EuiFormRow>
+      display="columnCompressed"
+    />
 
     <EuiFormRow
       label={

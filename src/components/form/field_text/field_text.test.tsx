@@ -23,13 +23,6 @@ import { requiredProps } from '../../../test/required_props';
 
 import { EuiFieldText } from './field_text';
 
-jest.mock('../form_control_layout', () => {
-  const formControlLayout = jest.requireActual('../form_control_layout');
-  return {
-    ...formControlLayout,
-    EuiFormControlLayout: 'eui-form-control-layout',
-  };
-});
 jest.mock('../validatable_control', () => ({
   EuiValidatableControl: 'eui-validatable-control',
 }));
@@ -40,9 +33,7 @@ describe('EuiFieldText', () => {
       <EuiFieldText
         name="elastic"
         id="1"
-        placeholder="Placeholder"
         value="1"
-        icon="foo"
         inputRef={() => {}}
         onChange={() => {}}
         {...requiredProps}
@@ -53,6 +44,12 @@ describe('EuiFieldText', () => {
   });
 
   describe('props', () => {
+    test('icon is rendered', () => {
+      const component = render(<EuiFieldText icon="bolt" />);
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('isInvalid is rendered', () => {
       const component = render(<EuiFieldText isInvalid />);
 
@@ -77,8 +74,52 @@ describe('EuiFieldText', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('compressed is rendered', () => {
+      const component = render(<EuiFieldText compressed />);
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('controlOnly is rendered', () => {
       const component = render(<EuiFieldText controlOnly />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('placeholder is rendered', () => {
+      const component = render(<EuiFieldText placeholder="Placeholder" />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('prepend is rendered', () => {
+      const component = render(<EuiFieldText prepend="prepend" />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('append is rendered', () => {
+      const component = render(<EuiFieldText append="append" />);
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('form row props', () => {
+    test('are rendered', () => {
+      const component = render(
+        <EuiFieldText
+          helpText={'helpText'}
+          error={'error'}
+          label={'label'}
+          labelAppend={'labelAppend'}
+          labelProps={requiredProps}
+          hasEmptyLabelSpace={true}
+          display="columnCompressed"
+          fullWidth={true}
+          isInvalid={true}
+        />
+      );
 
       expect(component).toMatchSnapshot();
     });

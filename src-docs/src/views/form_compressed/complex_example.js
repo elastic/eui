@@ -121,9 +121,12 @@ export default () => {
 
   return (
     <EuiPanel style={{ maxWidth: 432 }}>
-      <EuiFormRow label="Name" display="columnCompressed">
-        <EuiFieldText prepend="Label" placeholder="Input" compressed />
-      </EuiFormRow>
+      <EuiFieldText
+        prepend="Label"
+        placeholder="Input"
+        label="Name"
+        display="columnCompressed"
+      />
 
       <EuiFormRow label="Visibility" display="columnCompressed">
         <EuiDualRange
