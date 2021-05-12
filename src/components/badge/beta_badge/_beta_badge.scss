@@ -41,7 +41,7 @@
 }
 
 .euiBetaBadge--accent {
-  $backgroundColor: $euiColorAccent;
+  $backgroundColor: $euiColorAccentText;
   background: $backgroundColor;
   color: chooseLightOrDarkText($backgroundColor, $euiColorGhost, $euiColorInk);
 }
