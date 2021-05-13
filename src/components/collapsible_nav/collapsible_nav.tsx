@@ -20,144 +20,109 @@
 import React, {
   cloneElement,
   FunctionComponent,
-  HTMLAttributes,
   ReactElement,
   ReactNode,
   useEffect,
   useState,
 } from 'react';
 import classNames from 'classnames';
+import { htmlIdGenerator, isWithinMinBreakpoint } from '../../services';
+import { EuiFlyout, EuiFlyoutProps } from '../flyout';
 import { throttle } from '../color_picker/utils';
-import { EuiWindowEvent, htmlIdGenerator, keys } from '../../services';
-import { EuiFocusTrap } from '../focus_trap';
-import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
-import { CommonProps } from '../common';
-import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
-import { EuiI18n } from '../i18n';
-import { EuiScreenReaderOnly } from '../accessibility';
 
-export type EuiCollapsibleNavProps = CommonProps &
-  HTMLAttributes<HTMLElement> & {
-    /**
-     * ReactNode to render as this component's content
-     */
-    children?: ReactNode;
-    /**
-     * Keeps navigation flyout visible and push `<body>` content via padding
-     */
-    isDocked?: boolean;
-    /**
-     * Pixel value for customizing the minimum window width for enabling docking
-     */
-    dockedBreakpoint?: number;
-    /**
-     * Shows the navigation flyout
-     */
-    isOpen?: boolean;
-    /**
-     * Button for controlling visible state of the nav
-     */
-    button?: ReactElement;
-    /**
-     * Keeps the display of toggle button when in docked state
-     */
-    showButtonIfDocked?: boolean;
-    /**
-     * Keeps the display of floating close button.
-     * If `false`, you must then keep the `button` displayed at all breakpoints.
-     */
-    showCloseButton?: boolean;
-    /**
-     * Extend the props of the close button, an EuiButtonEmpty
-     */
-    closeButtonProps?: EuiButtonEmptyProps;
-    onClose?: () => void;
-    /**
-     * Adjustments to the EuiOverlayMask
-     */
-    maskProps?: EuiOverlayMaskProps;
-  };
+// Extend all the flyout props except `onClose` because we handle this internally
+export type EuiCollapsibleNavProps = Omit<
+  EuiFlyoutProps,
+  'closeButtonAriaLabel' | 'type' | 'pushBreakpoint'
+> & {
+  /**
+   * ReactNode to render as this component's content
+   */
+  children?: ReactNode;
+  /**
+   * Shows the navigation flyout
+   */
+  isOpen?: boolean;
+  /**
+   * Keeps navigation flyout visible and push `<body>` content via padding
+   */
+  isDocked?: boolean;
+  /**
+   * Named breakpoint or pixel value for customizing the minimum window width to enable docking
+   */
+  dockedBreakpoint?: EuiFlyoutProps['pushMinBreakpoint'];
+  /**
+   * Button for controlling visible state of the nav
+   */
+  button?: ReactElement;
+  /**
+   * Keeps the display of toggle button when in docked state
+   */
+  showButtonIfDocked?: boolean;
+};
 
 export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
+  id,
   children,
   className,
   isDocked = false,
   isOpen = false,
   button,
   showButtonIfDocked = false,
-  dockedBreakpoint = 992,
-  showCloseButton = true,
-  closeButtonProps,
-  onClose,
-  id,
-  maskProps,
+  dockedBreakpoint = 'l',
+  // Setting different EuiFlyout defaults
+  as = 'nav' as EuiCollapsibleNavProps['as'],
+  size = 320,
+  side = 'left',
+  role = null,
+  ownFocus = true,
+  outsideClickCloses = true,
+  closeButtonPosition = 'outside',
+  paddingSize = 'none',
   ...rest
 }) => {
   const [flyoutID] = useState(id || htmlIdGenerator()('euiCollapsibleNav'));
-  const [windowIsLargeEnoughToDock, setWindowIsLargeEnoughToDock] = useState(
-    (typeof window === 'undefined' ? Infinity : window.innerWidth) >=
-      dockedBreakpoint
-  );
-  const navIsDocked = isDocked && windowIsLargeEnoughToDock;
 
+  /**
+   * Setting the initial state of pushed based on the `type` prop
+   * and if the current window size is large enough (larger than `pushBreakpoint`)
+   */
+  const [windowIsLargeEnoughToPush, setWindowIsLargeEnoughToPush] = useState(
+    isWithinMinBreakpoint(
+      typeof window === 'undefined' ? 0 : window.innerWidth,
+      dockedBreakpoint
+    )
+  );
+
+  const navIsDocked = isDocked && windowIsLargeEnoughToPush;
+
+  /**
+   * Watcher added to the window to maintain `isPushed` state depending on
+   * the window size compared to the `pushBreakpoint`
+   */
   const functionToCallOnWindowResize = throttle(() => {
-    if (window.innerWidth < dockedBreakpoint) {
-      setWindowIsLargeEnoughToDock(false);
+    if (isWithinMinBreakpoint(window.innerWidth, dockedBreakpoint)) {
+      setWindowIsLargeEnoughToPush(true);
     } else {
-      setWindowIsLargeEnoughToDock(true);
+      setWindowIsLargeEnoughToPush(false);
     }
     // reacts every 50ms to resize changes and always gets the final update
   }, 50);
 
-  // Watch for docked status and appropriately add/remove body classes and resize handlers
   useEffect(() => {
-    window.addEventListener('resize', functionToCallOnWindowResize);
-
-    if (navIsDocked) {
-      document.body.classList.add('euiBody--collapsibleNavIsDocked');
-    } else if (isOpen) {
-      document.body.classList.add('euiBody--collapsibleNavIsOpen');
+    if (isDocked) {
+      // Only add the event listener if we'll need to accommodate with padding
+      window.addEventListener('resize', functionToCallOnWindowResize);
     }
 
     return () => {
-      document.body.classList.remove('euiBody--collapsibleNavIsDocked');
-      document.body.classList.remove('euiBody--collapsibleNavIsOpen');
-      window.removeEventListener('resize', functionToCallOnWindowResize);
+      if (isDocked) {
+        window.removeEventListener('resize', functionToCallOnWindowResize);
+      }
     };
-  }, [navIsDocked, functionToCallOnWindowResize, isOpen]);
+  }, [isDocked, functionToCallOnWindowResize]);
 
-  const onKeyDown = (event: KeyboardEvent) => {
-    if (event.key === keys.ESCAPE) {
-      event.preventDefault();
-      collapse();
-    }
-  };
-
-  const collapse = () => {
-    // Skip collapsing if it is docked
-    if (navIsDocked) {
-      return;
-    } else {
-      onClose && onClose();
-    }
-  };
-
-  const classes = classNames(
-    'euiCollapsibleNav',
-    { 'euiCollapsibleNav--isDocked': navIsDocked },
-    className
-  );
-
-  let optionalOverlay;
-  if (!navIsDocked) {
-    optionalOverlay = (
-      <EuiOverlayMask
-        onClick={collapse}
-        headerZindexLocation="below"
-        {...maskProps}
-      />
-    );
-  }
+  const classes = classNames('euiCollapsibleNav', className);
 
   // Show a trigger button if one was passed but
   // not if navIsDocked and showButtonIfDocked is false
@@ -169,41 +134,35 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
           'aria-controls': flyoutID,
           'aria-expanded': isOpen,
           'aria-pressed': isOpen,
-          className: classNames(
-            button.props.className,
-            'euiCollapsibleNav__toggle'
-          ),
+          // When EuiOutsideClickDetector is enabled, we don't want both the toggle button and document touches/clicks to happen, they'll cancel eachother out
+          onTouchEnd: (e: React.MouseEvent<HTMLElement>) => {
+            e.nativeEvent.stopImmediatePropagation();
+          },
+          onMouseUpCapture: (e: React.MouseEvent<HTMLElement>) => {
+            e.nativeEvent.stopImmediatePropagation();
+          },
         });
 
-  const closeButton = showCloseButton && (
-    <EuiScreenReaderOnly showOnFocus>
-      <EuiButtonEmpty
-        onClick={collapse}
-        size="xs"
-        textProps={{ className: 'euiCollapsibleNav__closeButtonText' }}
-        iconType="cross"
-        {...closeButtonProps}
-        className={classNames(
-          'euiCollapsibleNav__closeButton',
-          closeButtonProps && closeButtonProps.className
-        )}>
-        <EuiI18n token="euiCollapsibleNav.closeButtonLabel" default="close" />
-      </EuiButtonEmpty>
-    </EuiScreenReaderOnly>
-  );
-
   const flyout = (
-    <>
-      <EuiWindowEvent event="keydown" handler={onKeyDown} />
-      {optionalOverlay}
-      {/* Trap focus only when docked={false} */}
-      <EuiFocusTrap disabled={navIsDocked} clickOutsideDisables={true}>
-        <nav id={flyoutID} className={classes} {...rest}>
-          {children}
-          {closeButton}
-        </nav>
-      </EuiFocusTrap>
-    </>
+    <EuiFlyout
+      id={flyoutID}
+      className={classes}
+      // Flyout props we set different defaults for
+      as={as}
+      size={size}
+      side={side}
+      role={role}
+      ownFocus={ownFocus}
+      outsideClickCloses={outsideClickCloses}
+      closeButtonPosition={closeButtonPosition}
+      paddingSize={paddingSize}
+      {...rest}
+      // Props dependent on internal docked status
+      type={navIsDocked ? 'push' : 'overlay'}
+      hideCloseButton={navIsDocked}
+      pushMinBreakpoint={dockedBreakpoint}>
+      {children}
+    </EuiFlyout>
   );
 
   return (

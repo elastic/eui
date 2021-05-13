@@ -211,7 +211,7 @@ $elasticLogoTextDark: #1C1E23;
   height: 100%;
   left: 0;
   top: 0;
-  z-index: $euiZHeader + 1;
+  z-index: $euiZHeader;
   overflow: auto;
 
   &--withHeader {
