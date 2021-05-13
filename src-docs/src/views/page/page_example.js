@@ -514,8 +514,7 @@ export const PageExample = {
               <Link to="/layout/flex">
                 <strong>EuiFlexGroup</strong> and <strong>EuiFlexItem</strong>
               </Link>{' '}
-              around the template children in an attempt to negate the negative
-              margins.
+              around the template children to negate the negative margins.
             </li>
             <li>
               Using <EuiCode>{'fullHeight=true'}</EuiCode> will automatically

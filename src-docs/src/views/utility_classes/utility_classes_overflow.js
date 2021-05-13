@@ -51,21 +51,21 @@ export default () => (
             style={{ padding: 16 }}>
             <p>
               Orbiting this at a distance of roughly ninety-two million miles is
-              an utterly insignificant little blue green planet whose ape-
-              descended life forms are so amazingly primitive that they still
-              think digital watches are a pretty neat idea.
+              an utterly insignificant little blue green planet whose
+              ape-descended life forms are so amazingly primitive that they
+              still think digital watches are a pretty neat idea.
             </p>
             <p>
               Orbiting this at a distance of roughly ninety-two million miles is
-              an utterly insignificant little blue green planet whose ape-
-              descended life forms are so amazingly primitive that they still
-              think digital watches are a pretty neat idea.
+              an utterly insignificant little blue green planet whose
+              ape-descended life forms are so amazingly primitive that they
+              still think digital watches are a pretty neat idea.
             </p>
             <p>
               Orbiting this at a distance of roughly ninety-two million miles is
-              an utterly insignificant little blue green planet whose ape-
-              descended life forms are so amazingly primitive that they still
-              think digital watches are a pretty neat idea.
+              an utterly insignificant little blue green planet whose
+              ape-descended life forms are so amazingly primitive that they
+              still think digital watches are a pretty neat idea.
             </p>
           </EuiText>
         </EuiPanel>
@@ -107,9 +107,9 @@ export default () => (
             <EuiText size="s" style={{ width: '150%', padding: 16 }}>
               <p>
                 Orbiting this at a distance of roughly ninety-two million miles
-                is an utterly insignificant little blue green planet whose ape-
-                descended life forms are so amazingly primitive that they still
-                think digital watches are a pretty neat idea.
+                is an utterly insignificant little blue green planet whose
+                ape-descended life forms are so amazingly primitive that they
+                still think digital watches are a pretty neat idea.
               </p>
             </EuiText>
           </div>
@@ -157,7 +157,7 @@ export default () => (
                   <p>
                     Orbiting this at a distance of roughly ninety-two million
                     miles is an utterly insignificant little blue green planet
-                    whose ape- descended life forms are so amazingly primitive
+                    whose ape-descended life forms are so amazingly primitive
                     that they still think digital watches are a pretty neat
                     idea.
                   </p>
@@ -170,7 +170,7 @@ export default () => (
                   <p>
                     Orbiting this at a distance of roughly ninety-two million
                     miles is an utterly insignificant little blue green planet
-                    whose ape- descended life forms are so amazingly primitive
+                    whose ape-descended life forms are so amazingly primitive
                     that they still think digital watches are a pretty neat
                     idea.
                   </p>
