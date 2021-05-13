@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added display of number of selected options in `EuiFilterButton` when `numActiveFilters` exists ([#4748](https://github.com/elastic/eui/pull/4748))
 - Added `textTransform` property to `schemaDetectors` prop of `EuiDataGrid`([#4752](https://github.com/elastic/eui/pull/4752))
 - Added `color`, `continuityAbove`, `continuityAboveBelow`, `continuityBelow`, `continuityWithin`, `eraser`, `fullScreenExit`, `function`, `percent`, `wordWrap`, and `wordWrapDisabled` glyphs to `EuiIcon` ([#4779](https://github.com/elastic/eui/pull/4779))
 - Added `as`, `role`, `closeButtonProps`, `closeButtonPosition`, `outsideClickCloses`, `side`, `type`, and `pushMinBreakpoint` props to `EuiFlyout` ([#4713](https://github.com/elastic/eui/pull/4713))
@@ -41,7 +42,6 @@
 ## [`32.3.0`](https://github.com/elastic/eui/tree/v32.3.0)
 
 - Reduced icon size in `EuiButtonEmpty` of `size` xs. ([#4759](https://github.com/elastic/eui/pull/4759))
-- Added display of number of selected options in `EuiFilterButton` when `numActiveFilters` exists ([#4748](https://github.com/elastic/eui/pull/4748))
 
 **Bug fixes**
 
