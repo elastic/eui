@@ -10,4 +10,10 @@
       background-color: $euiColorPrimary;
     }
   }
+
+  &--compressed {
+    .euiRangeHighlight__progress {
+      height: $euiRangeHighlightCompressedHeight;
+    }
+  }
 }

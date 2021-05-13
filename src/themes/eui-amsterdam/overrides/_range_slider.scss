@@ -1,6 +1,12 @@
 
 .euiRangeSlider {
 
+  &--compressed {
+    @include euiRangeTrackPerBrowser {
+      @include euiRangeTrackSize($compressed: true);
+    }
+  }
+
   // no dual range thumbs
   @include euiRangeThumbPerBrowser {
     position: relative;

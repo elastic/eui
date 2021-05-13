@@ -1,10 +1,14 @@
 // Prefixes are unique in this file
 // sass-lint:disable no-vendor-prefixes
 
-@mixin euiRangeTrackSize {
+@mixin euiRangeTrackSize($compressed: false) {
   height: $euiRangeTrackHeight;
   transition: all $euiAnimSpeedNormal ease-in;
   width: $euiRangeTrackWidth;
+
+  @if ($compressed) {
+    height: $euiRangeTrackCompressedHeight;
+  }
 }
 
 @mixin euiRangeTrackPerBrowser {
