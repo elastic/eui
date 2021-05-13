@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { CSSProperties, FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 import { EuiPage, EuiPageProps, SIZES } from './page';
 import { EuiPageSideBar, EuiPageSideBarProps } from './page_side_bar';
@@ -95,6 +95,10 @@ export type EuiPageTemplateProps = Omit<EuiPageProps, 'paddingSize'> & {
    * Only works when `template = 'default | empty'` and breakpoint is `m` and above
    */
   fullHeight?: boolean | 'noscroll';
+  /**
+   * Minimum height in which to enforce scrolling
+   */
+  minHeight?: CSSProperties['minHeight'];
 };
 
 export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
@@ -113,6 +117,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   pageContentBodyProps,
   bottomBar,
   bottomBarProps,
+  minHeight = 460,
   ...rest
 }) => {
   /**
@@ -158,6 +163,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   }
 
   const classes = classNames('euiPageTemplate', fullHeightClass, className);
+  const pageStyle = { minHeight, ...rest.style };
 
   /**
    * This seems very repetitious but it's the most readable, scalable, and maintainable
@@ -170,7 +176,12 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
      */
     case 'centeredBody':
       return pageSideBar ? (
-        <EuiPage className={classes} paddingSize="none" grow={grow} {...rest}>
+        <EuiPage
+          className={classes}
+          paddingSize="none"
+          grow={grow}
+          {...rest}
+          style={pageStyle}>
           <EuiPageSideBar
             sticky
             paddingSize={paddingSize}
@@ -196,7 +207,12 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           </EuiPageBody>
         </EuiPage>
       ) : (
-        <EuiPage className={classes} paddingSize="none" grow={grow} {...rest}>
+        <EuiPage
+          className={classes}
+          paddingSize="none"
+          grow={grow}
+          {...rest}
+          style={pageStyle}>
           <EuiPageBody paddingSize="none" {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader
@@ -229,7 +245,12 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
      */
     case 'centeredContent':
       return pageSideBar ? (
-        <EuiPage className={classes} paddingSize="none" grow={grow} {...rest}>
+        <EuiPage
+          className={classes}
+          paddingSize="none"
+          grow={grow}
+          {...rest}
+          style={pageStyle}>
           <EuiPageSideBar
             sticky
             paddingSize={paddingSize}
@@ -257,7 +278,12 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           </EuiPageBody>
         </EuiPage>
       ) : (
-        <EuiPage className={classes} paddingSize="none" grow={grow} {...rest}>
+        <EuiPage
+          className={classes}
+          paddingSize="none"
+          grow={grow}
+          {...rest}
+          style={pageStyle}>
           <EuiPageBody {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader
@@ -297,7 +323,12 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
      */
     case 'empty':
       return pageSideBar ? (
-        <EuiPage className={classes} paddingSize="none" grow={grow} {...rest}>
+        <EuiPage
+          className={classes}
+          paddingSize="none"
+          grow={grow}
+          {...rest}
+          style={pageStyle}>
           <EuiPageSideBar
             sticky
             paddingSize={paddingSize}
@@ -325,7 +356,12 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           </EuiPageBody>
         </EuiPage>
       ) : (
-        <EuiPage className={classes} paddingSize="none" grow={grow} {...rest}>
+        <EuiPage
+          className={classes}
+          paddingSize="none"
+          grow={grow}
+          {...rest}
+          style={pageStyle}>
           <EuiPageBody {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader
@@ -375,7 +411,12 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
       ) : undefined;
 
       return pageSideBar ? (
-        <EuiPage className={classes} paddingSize="none" grow={grow} {...rest}>
+        <EuiPage
+          className={classes}
+          paddingSize="none"
+          grow={grow}
+          {...rest}
+          style={pageStyle}>
           <EuiPageSideBar
             sticky
             paddingSize={paddingSize}
@@ -414,7 +455,12 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
           </EuiPageBody>
         </EuiPage>
       ) : (
-        <EuiPage className={classes} paddingSize="none" grow={grow} {...rest}>
+        <EuiPage
+          className={classes}
+          paddingSize="none"
+          grow={grow}
+          {...rest}
+          style={pageStyle}>
           <EuiPageBody {...pageBodyProps}>
             {pageHeader && (
               <EuiPageHeader
