@@ -552,7 +552,13 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         {showInput && !showInputOnly && (
           <>
             {minInput}
-            <div className="euiRange__horizontalSpacer" />
+            <div
+              className={
+                showTicks || ticks
+                  ? 'euiRange__slimHorizontalSpacer'
+                  : 'euiRange__horizontalSpacer'
+              }
+            />
           </>
         )}
         {showLabels && (
@@ -649,7 +655,13 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         {showLabels && <EuiRangeLabel disabled={disabled}>{max}</EuiRangeLabel>}
         {showInput && !showInputOnly && (
           <>
-            <div className="euiRange__horizontalSpacer" />
+            <div
+              className={
+                showTicks || ticks
+                  ? 'euiRange__slimHorizontalSpacer'
+                  : 'euiRange__horizontalSpacer'
+              }
+            />
             {maxInput}
           </>
         )}

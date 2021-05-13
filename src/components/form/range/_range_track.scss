@@ -3,8 +3,11 @@
   flex-grow: 1;
   position: relative; // for positioning ticks/levels
   align-self: flex-start; // Adjust vertical alignment of input based on extras
-  margin-left: 1em;
-  margin-right: 1em;
+
+  &--hasTicks {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
 
   &--disabled {
     opacity: $euiRangeDisabledOpacity;

@@ -146,6 +146,7 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
 
     const trackClasses = classNames('euiRangeTrack', {
       'euiRangeTrack--disabled': disabled,
+      'euiRangeTrack--hasTicks': tickSequence || ticks,
     });
 
     return (
