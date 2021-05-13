@@ -384,22 +384,6 @@
     "filepath": "src/components/code/_code_block.tsx"
   },
   {
-    "token": "euiCollapsibleNav.closeButtonLabel",
-    "defString": "close",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 190,
-        "column": 8
-      },
-      "end": {
-        "line": 190,
-        "column": 78
-      }
-    },
-    "filepath": "src/components/collapsible_nav/collapsible_nav.tsx"
-  },
-  {
     "token": "euiColorPicker.colorLabel",
     "defString": "Color value",
     "highlighting": "string",
@@ -2117,12 +2101,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 147,
-        "column": 6
+        "line": 338,
+        "column": 8
       },
       "end": {
-        "line": 147,
-        "column": 76
+        "line": 338,
+        "column": 78
       }
     },
     "filepath": "src/components/flyout/flyout.tsx"
@@ -3610,7 +3594,7 @@
       },
       "end": {
         "line": 193,
-        "column": 58
+        "column": 63
       }
     },
     "filepath": "src/components/tour/tour_step.tsx"
@@ -3626,14 +3610,14 @@
       },
       "end": {
         "line": 193,
-        "column": 58
+        "column": 63
       }
     },
     "filepath": "src/components/tour/tour_step.tsx"
   },
   {
     "token": "euiTourStep.closeTour",
-    "defString": "Close",
+    "defString": "Close tour",
     "highlighting": "string",
     "loc": {
       "start": {
@@ -3642,7 +3626,7 @@
       },
       "end": {
         "line": 193,
-        "column": 58
+        "column": 63
       }
     },
     "filepath": "src/components/tour/tour_step.tsx"
