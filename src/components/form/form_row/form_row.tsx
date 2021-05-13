@@ -90,6 +90,9 @@ type EuiFormRowCommonProps = CommonProps & {
   id?: string;
   isInvalid?: boolean;
   error?: ReactNode | ReactNode[];
+  /**
+   *  Adds a single node/string or an array of nodes/strings below the input
+   */
   helpText?: ReactNode | ReactNode[];
 };
 
