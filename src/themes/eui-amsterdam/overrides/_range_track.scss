@@ -1,9 +1,51 @@
 .euiRangeTrack--hasLevels {
-  .euiRangeTicks:not(.euiRangeTicks--compressed) .euiRangeTick::before {
+  .euiRangeTicks .euiRangeTick::before {
     top: 11px;
+  }
+}
+
+.euiRangeTrack {
+  &::after {
+    content: '';
+    display: block;
+    background: $euiRangeTrackColor;
+    border: $euiRangeTrackBorderWidth solid $euiRangeTrackBorderColor;
+    border-radius: $euiRangeTrackRadius;
+    position: absolute;
+    left: 0;
   }
 
-  .euiRangeTicks--compressed .euiRangeTick::before {
-    top: 11px;
+  &:not(.euiRangeTrack--compressed)::after {
+    @include euiRangeTrackSize;
   }
+
+  &--compressed::after {
+    @include euiRangeTrackSize($compressed: true);
+  }
+
+  &--compressed {
+    &.euiRangeTrack--hasTicks::after {
+      top: 6px;
+    }
+
+    &:not(.euiRangeTrack--hasTicks)::after {
+      top: 18px;
+    }
+
+    .euiRangeThumb--hasTicks {
+      top: 0;
+    }
+  }
+
+  &:not(.euiRangeTrack--compressed) {
+    &.euiRangeTrack--hasTicks::after {
+      top: 7px;
+    }
+
+    &:not(.euiRangeTrack--hasTicks)::after {
+      top: 17px;
+    }
+  }
+
+
 }

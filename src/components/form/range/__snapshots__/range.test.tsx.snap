@@ -85,7 +85,7 @@ exports[`EuiRange props compressed should render 1`] = `
 >
   <div
     aria-hidden="false"
-    class="euiRangeTrack"
+    class="euiRangeTrack euiRangeTrack--compressed"
   >
     <input
       aria-hidden="false"

@@ -1,22 +1,17 @@
 
 .euiRangeSlider {
-  &--compressed {
-    @include euiRangeTrackPerBrowser {
-      @include euiRangeTrackSize($compressed: true);
-    }
+  // all the tracks should be transparent
+  // because in firefox just setting the z-index to the thumb doesn't work
+  // so need to set the z-index to all the range slider and make the track transparent
+  @include euiRangeTrackPerBrowser {
+    background-color: transparent;
   }
 
   // range sliders with only one thumb
   @include euiRangeThumbPerBrowser {
     @include euiBottomShadowFlat;
-    position: relative;
-    z-index: 3; // higher than .euiRangeHighlight that is 1
   }
-}
 
-.euiRangeSlider--hasRange {
-  @include euiRangeTrackPerBrowser {
-    background-color: $euiRangeTrackColor;
-    border-color: $euiRangeTrackBorderColor;
-  }
+  // z-index higher than .euiRangeHighlight that is 1
+  z-index: 2;
 }

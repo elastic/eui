@@ -166,7 +166,7 @@ exports[`EuiDualRange props compressed should render 1`] = `
 >
   <div
     aria-hidden="false"
-    class="euiRangeTrack"
+    class="euiRangeTrack euiRangeTrack--compressed"
   >
     <div
       class="euiRangeHighlight euiRangeHighlight--compressed"
