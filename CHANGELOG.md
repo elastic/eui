@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.0.0`.
+- Added `color` and `size` props and added support for click event to `EuiBetaBadge` ([#4798](https://github.com/elastic/eui/pull/4798))
 
 ## [`34.0.0`](https://github.com/elastic/eui/tree/v34.0.0)
 
