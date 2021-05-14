@@ -43,8 +43,17 @@ const colorToClassMap = {
   hollow: 'euiBetaBadge--hollow',
 };
 
-export const COLORS: BadgeNotificationColor[] = keysOf(colorToClassMap);
-export type BadgeNotificationColor = keyof typeof colorToClassMap;
+export const COLORS: BetaBadgeColor[] = keysOf(colorToClassMap);
+export type BetaBadgeColor = keyof typeof colorToClassMap;
+
+export type BetaBadgeSize = 's' | 'm';
+
+export const sizeToClassMap: { [size in BetaBadgeSize]: string | null } = {
+  s: 'euiBetaBadge--small',
+  m: null,
+};
+
+export const SIZES = keysOf(sizeToClassMap);
 
 type WithButtonProps = {
   /**
@@ -116,7 +125,11 @@ type BadgeProps = {
    * otherwise the label will be used
    */
   title?: string;
-  color?: BadgeNotificationColor;
+  /**
+   * Accepts accent, subdued and hollow.
+   */
+  color?: BetaBadgeColor;
+  size?: BetaBadgeSize;
 } & ExclusiveUnion<LabelAsNode, LabelAsString>;
 
 export type EuiBetaBadgeProps = CommonProps &
@@ -139,14 +152,24 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
   href,
   rel,
   target,
+  size = 'm',
   ...rest
 }) => {
+  let singleLetter = false;
+  if (typeof label === 'string' && label.length === 1) {
+    singleLetter = true;
+  }
+
   const classes = classNames(
     'euiBetaBadge',
     {
       'euiBetaBadge--iconOnly': iconType,
     },
+    {
+      'euiBetaBadge--singleLetter': singleLetter,
+    },
     colorToClassMap[color],
+    sizeToClassMap[size],
     className
   );
 
@@ -156,7 +179,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
       <EuiIcon
         className="euiBetaBadge__icon"
         type={iconType}
-        size="m"
+        size={size === 'm' ? 'm' : 's'}
         aria-hidden="true"
         color="inherit" // forces the icon to inherit its parent color
       />
@@ -240,32 +263,4 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
       );
     }
   }
-
-  // if (tooltipContent) {
-  //   return (
-  //     <EuiToolTip
-  //       position={tooltipPosition}
-  //       content={tooltipContent}
-  //       title={title || label}>
-  //       <span tabIndex={0} className={classes} {...rest}>
-  //         {icon || label}
-  //       </span>
-  //     </EuiToolTip>
-  //   );
-  // } else {
-  //   const spanTitle = title || label;
-  //   if (spanTitle && typeof spanTitle !== 'string') {
-  //     console.warn(
-  //       `Only string titles are permitted on badges that do not use tooltips. Found: ${typeof spanTitle}`
-  //     );
-  //   }
-  //   return (
-  //     <span
-  //       className={classes}
-  //       title={spanTitle as string | undefined}
-  //       {...rest}>
-  //       {icon || label}
-  //     </span>
-  //   );
-  // }
 };

@@ -21,6 +21,12 @@
   &:not(.euiBetaBadge--hollow) {
     box-shadow: none;
   }
+
+  &.euiBetaBadge--small {
+    @include fontSize($euiFontSize * .625)
+    line-height: $euiSize + $euiSizeXS;
+    padding: 0 $euiSizeM;
+  }
 }
 
 // When it's just an icon, make it a circle
@@ -31,6 +37,21 @@
   .euiBetaBadge__icon {
     position: relative;
     margin-top: -1px;
+  }
+
+  &.euiBetaBadge--small {
+    width: $euiSize + $euiSizeXS;
+    padding: 0;
+  }
+}
+
+.euiBetaBadge--singleLetter {
+  padding: 0 0 0 1px;
+  width: $euiSizeL;
+
+  &.euiBetaBadge--small {
+    width: $euiSize + $euiSizeXS;
+    padding: 0 0 0 1px;
   }
 }
 
