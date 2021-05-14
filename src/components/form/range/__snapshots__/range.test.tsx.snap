@@ -280,7 +280,7 @@ exports[`EuiRange props levels should render 1`] = `
 >
   <div
     aria-hidden="false"
-    class="euiRangeTrack"
+    class="euiRangeTrack euiRangeTrack--hasLevels"
   >
     <div
       class="euiRangeLevels"

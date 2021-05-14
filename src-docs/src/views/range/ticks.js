@@ -44,6 +44,7 @@ export default () => {
         id={htmlIdGenerator()()}
         value={value}
         onChange={onChange}
+        compressed
         showInput
         showRange
         showTicks

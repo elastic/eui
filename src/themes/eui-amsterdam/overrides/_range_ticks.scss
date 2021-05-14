@@ -1,9 +1,34 @@
-.euiRangeTick {
-  &::before {
+.euiRangeTicks:not(.euiRangeTicks--compressed) {
+  top: 10px;
+
+  .euiRangeTick {
+    padding-top: 18px;
+  }
+
+  .euiRangeTick::before {
     width: $euiSizeXS;
     height: $euiSizeM / 2;
+    top: 8px;
+  }
+}
+
+.euiRangeTicks--compressed {
+  top: $euiSizeS - 2px;
+
+  .euiRangeTick {
+    padding-top: $euiSize - 2px;
+
+    &::before {
+      background-color: $euiColorLightShade;
+      border-radius: $euiBorderRadiusSmall;
+      top: 8px;
+    }
+  }
+}
+
+.euiRangeTick {
+  &::before {
     background-color: $euiColorLightShade;
-    top: $euiSizeS;
     border-radius: $euiBorderRadiusSmall;
   }
 
@@ -15,13 +40,5 @@
 
   &--selected {
     font-weight: $euiFontWeightMedium;
-  }
-}
-
-.euiRangeTicks--compressed {
-  top: $euiSizeS - 2px;
-
-  .euiRangeTick {
-    padding-top: $euiSize - 2px;
   }
 }

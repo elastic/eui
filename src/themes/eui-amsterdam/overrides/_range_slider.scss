@@ -1,6 +1,5 @@
 
 .euiRangeSlider {
-
   &--compressed {
     @include euiRangeTrackPerBrowser {
       @include euiRangeTrackSize($compressed: true);
@@ -9,6 +8,7 @@
 
   // no dual range thumbs
   @include euiRangeThumbPerBrowser {
+    @include euiBottomShadowFlat;
     position: relative;
     z-index: 2; // higher than .euiRangeHighlight that is 1
   }

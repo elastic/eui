@@ -1,0 +1,9 @@
+.euiRangeTrack--hasLevels {
+  .euiRangeTicks:not(.euiRangeTicks--compressed) .euiRangeTick::before {
+    top: 11px;
+  }
+
+  .euiRangeTicks--compressed .euiRangeTick::before {
+    top: 11px;
+  }
+}

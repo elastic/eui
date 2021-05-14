@@ -1,10 +1,11 @@
 .euiRangeThumb {
+  @include euiBottomShadowFlat;
   background-color: $euiColorPrimary !important; // sass-lint:disable-line no-important
   border: 2px solid $euiRangeThumbBorderColor;
   z-index: 2; // higher than .euiRangeHighlight that is 1
 
   &--hasTicks {
-    top: 0;
+    top: 2px;
     margin-top: 0;
   }
 }

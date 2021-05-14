@@ -12,8 +12,14 @@
   }
 
   &--compressed {
+    top: $euiRangeHighlightHeight;
+
     .euiRangeHighlight__progress {
       height: $euiRangeHighlightCompressedHeight;
     }
+  }
+
+  &--hasTicks.euiRangeHighlight--compressed {
+    top: $euiRangeHighlightHeight;
   }
 }

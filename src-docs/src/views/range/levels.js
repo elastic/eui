@@ -61,6 +61,7 @@ export default () => {
           { label: '100kb', value: 100 },
         ]}
         showInput
+        compressed
         levels={levels}
         aria-label="An example of EuiDualRange with levels prop"
         aria-describedby="levelsHelp3"

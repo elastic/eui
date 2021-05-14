@@ -1,0 +1,33 @@
+.euiRangeLevels {
+  .euiRangeLevel:first-child {
+    margin-left: 0;
+  }
+
+  .euiRangeLevel:last-child {
+    margin-right: 0;
+  }
+
+  &--compressed {
+    top: 9px;
+
+    .euiRangeLevel {
+      height: $euiRangeTrackCompressedHeight;
+
+      &::before {
+        top: 10px;
+      }
+    }
+
+    &.euiRangeLevels--hasTicks {
+      top: 9px;
+    }
+
+    .euiRangeThumb--hasTicks {
+      top: 0;
+    }
+  }
+
+  &--hasTicks {
+    top: 12px;
+  }
+}
