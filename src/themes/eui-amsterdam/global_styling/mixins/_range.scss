@@ -25,6 +25,7 @@
   padding: 0;
   height: $euiRangeThumbHeight;
   width: $euiRangeThumbWidth;
+  box-sizing: border-box;  // required for firefox or the border makes the width and height increase
 }
 
 @mixin euiRangeThumbPerBrowser {
