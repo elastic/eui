@@ -6,44 +6,28 @@ exports[`EuiCollapsibleNavGroup is rendered 1`] = `
   class="euiCollapsibleNavGroup testClass1 testClass2"
   data-test-subj="test subject string"
   id="id"
->
-  <div
-    class="euiCollapsibleNavGroup__children"
-  />
-</div>
+/>
 `;
 
 exports[`EuiCollapsibleNavGroup props background dark is rendered 1`] = `
 <div
   class="euiCollapsibleNavGroup euiCollapsibleNavGroup--dark"
   id="id"
->
-  <div
-    class="euiCollapsibleNavGroup__children"
-  />
-</div>
+/>
 `;
 
 exports[`EuiCollapsibleNavGroup props background light is rendered 1`] = `
 <div
   class="euiCollapsibleNavGroup euiCollapsibleNavGroup--light"
   id="id"
->
-  <div
-    class="euiCollapsibleNavGroup__children"
-  />
-</div>
+/>
 `;
 
 exports[`EuiCollapsibleNavGroup props background none is rendered 1`] = `
 <div
   class="euiCollapsibleNavGroup"
   id="id"
->
-  <div
-    class="euiCollapsibleNavGroup__children"
-  />
-</div>
+/>
 `;
 
 exports[`EuiCollapsibleNavGroup props iconProps renders data-test-subj 1`] = `
@@ -77,9 +61,6 @@ exports[`EuiCollapsibleNavGroup props iconProps renders data-test-subj 1`] = `
       </div>
     </div>
   </div>
-  <div
-    class="euiCollapsibleNavGroup__children"
-  />
 </div>
 `;
 
@@ -113,9 +94,6 @@ exports[`EuiCollapsibleNavGroup props iconSize is rendered 1`] = `
       </div>
     </div>
   </div>
-  <div
-    class="euiCollapsibleNavGroup__children"
-  />
 </div>
 `;
 
@@ -149,9 +127,6 @@ exports[`EuiCollapsibleNavGroup props iconType is rendered 1`] = `
       </div>
     </div>
   </div>
-  <div
-    class="euiCollapsibleNavGroup__children"
-  />
 </div>
 `;
 
@@ -178,9 +153,6 @@ exports[`EuiCollapsibleNavGroup props title is rendered 1`] = `
       </div>
     </div>
   </div>
-  <div
-    class="euiCollapsibleNavGroup__children"
-  />
 </div>
 `;
 
@@ -207,9 +179,6 @@ exports[`EuiCollapsibleNavGroup props titleElement can change the rendered eleme
       </div>
     </div>
   </div>
-  <div
-    class="euiCollapsibleNavGroup__children"
-  />
 </div>
 `;
 
@@ -217,22 +186,14 @@ exports[`EuiCollapsibleNavGroup props titleSize can be larger 1`] = `
 <div
   class="euiCollapsibleNavGroup"
   id="id"
->
-  <div
-    class="euiCollapsibleNavGroup__children"
-  />
-</div>
+/>
 `;
 
 exports[`EuiCollapsibleNavGroup throws a warning if iconType is passed without a title 1`] = `
 <div
   class="euiCollapsibleNavGroup"
   id="id"
->
-  <div
-    class="euiCollapsibleNavGroup__children"
-  />
-</div>
+/>
 `;
 
 exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion props 1`] = `
@@ -291,11 +252,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
     <div>
       <div
         class=""
-      >
-        <div
-          class="euiCollapsibleNavGroup__children"
-        />
-      </div>
+      />
     </div>
   </div>
 </div>
@@ -353,11 +310,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
     <div>
       <div
         class=""
-      >
-        <div
-          class="euiCollapsibleNavGroup__children"
-        />
-      </div>
+      />
     </div>
   </div>
 </div>
