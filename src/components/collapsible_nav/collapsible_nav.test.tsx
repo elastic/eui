@@ -22,6 +22,7 @@ import { render, mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 
 import { EuiCollapsibleNav } from './collapsible_nav';
+import { EuiOverlayMaskProps } from '../overlay_mask';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, ...props }: any) => (
@@ -29,7 +30,17 @@ jest.mock('../overlay_mask', () => ({
   ),
 }));
 
-const propsNeededToRender = { id: 'id', isOpen: true };
+jest.mock('../portal', () => ({
+  EuiPortal: ({ children }: { children: any }) => children,
+}));
+
+const propsNeededToRender = { id: 'id', isOpen: true, onClose: () => {} };
+const flyoutProps = {
+  size: 240,
+  ownFocus: false,
+  outsideClickCloses: false,
+  maskProps: { headerZindexLocation: 'above' } as EuiOverlayMaskProps,
+};
 
 describe('EuiCollapsibleNav', () => {
   test('is rendered', () => {
@@ -48,6 +59,18 @@ describe('EuiCollapsibleNav', () => {
     test('onClose', () => {
       const component = mount(
         <EuiCollapsibleNav {...propsNeededToRender} onClose={() => {}} />
+      );
+
+      expect(
+        takeMountedSnapshot(component, {
+          hasArrayOutput: true,
+        })
+      ).toMatchSnapshot();
+    });
+
+    test('size', () => {
+      const component = mount(
+        <EuiCollapsibleNav {...propsNeededToRender} size={240} />
       );
 
       expect(
@@ -106,12 +129,9 @@ describe('EuiCollapsibleNav', () => {
       ).toMatchSnapshot();
     });
 
-    test('can alter mask props with maskProps without throwing error', () => {
+    test('accepts EuiFlyout props', () => {
       const component = mount(
-        <EuiCollapsibleNav
-          {...propsNeededToRender}
-          maskProps={{ headerZindexLocation: 'above' }}
-        />
+        <EuiCollapsibleNav {...propsNeededToRender} {...flyoutProps} />
       );
 
       expect(
@@ -125,22 +145,7 @@ describe('EuiCollapsibleNav', () => {
   describe('close button', () => {
     test('can be hidden', () => {
       const component = mount(
-        <EuiCollapsibleNav {...propsNeededToRender} showCloseButton={false} />
-      );
-
-      expect(
-        takeMountedSnapshot(component, {
-          hasArrayOutput: true,
-        })
-      ).toMatchSnapshot();
-    });
-
-    test('extends EuiButtonEmpty', () => {
-      const component = mount(
-        <EuiCollapsibleNav
-          {...propsNeededToRender}
-          closeButtonProps={{ className: 'class', 'data-test-subj': 'test' }}
-        />
+        <EuiCollapsibleNav {...propsNeededToRender} hideCloseButton={true} />
       );
 
       expect(
@@ -152,7 +157,7 @@ describe('EuiCollapsibleNav', () => {
   });
 
   test('does not render if isOpen is false', () => {
-    const component = render(<EuiCollapsibleNav id="id" />);
+    const component = render(<EuiCollapsibleNav onClose={() => {}} id="id" />);
 
     expect(component).toMatchSnapshot();
   });

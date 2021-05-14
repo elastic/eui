@@ -15,7 +15,7 @@ export default ({ button = <></>, content, sideNav, bottomBar }) => {
     <EuiPage paddingSize="none">
       <EuiPageSideBar sticky>{sideNav}</EuiPageSideBar>
 
-      {/* Double EuiPageBody to accomodate for the bottom bar */}
+      {/* Double EuiPageBody to accommodate for the bottom bar */}
       <EuiPageBody panelled paddingSize="none">
         <EuiPageBody paddingSize="l">
           <EuiPageHeader

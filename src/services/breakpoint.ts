@@ -81,6 +81,31 @@ export function isWithinMaxBreakpoint(
 }
 
 /**
+ * Given the current `width` and a max breakpoint key,
+ * this function returns true or false if the `width` falls within the max
+ * breakpoint or any breakpoints below
+ *
+ * @param {number} width Can either be the full window width or any width
+ * @param {EuiBreakpointSize | number} min The named breakpoint or custom number to check against
+ * @param {EuiBreakpoints} breakpoints An object with keys for sizing and values for minimum width
+ * @returns {boolean} Will return `false` if it can't find a value for the `min` breakpoint
+ */
+export function isWithinMinBreakpoint(
+  width: number,
+  min: EuiBreakpointSize | number,
+  breakpoints: EuiBreakpoints = BREAKPOINTS
+): boolean {
+  if (typeof min === 'number') {
+    return width >= min;
+  } else {
+    const currentBreakpoint = getBreakpoint(width, breakpoints);
+    return currentBreakpoint
+      ? breakpoints[currentBreakpoint] >= breakpoints[min]
+      : false;
+  }
+}
+
+/**
  * Given the current `width` and an array of breakpoint keys,
  * this function returns true or false if the `width` falls within
  * any of the named breakpoints
