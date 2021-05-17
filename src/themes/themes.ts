@@ -24,11 +24,11 @@ export interface EUI_THEME {
 
 export const EUI_THEMES: EUI_THEME[] = [
   {
-    text: 'Light',
+    text: 'Imperva: light ',
     value: 'light',
   },
   {
-    text: 'Dark',
+    text: 'Elastic: Dark',
     value: 'dark',
   },
   {
@@ -38,9 +38,5 @@ export const EUI_THEMES: EUI_THEME[] = [
   {
     text: 'Amsterdam: Dark',
     value: 'amsterdam-dark',
-  },
-  {
-    text: 'Imperva',
-    value: 'imperva',
   },
 ];

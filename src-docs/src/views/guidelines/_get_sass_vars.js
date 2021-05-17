@@ -16,11 +16,10 @@ export const getSassVars = theme => {
     case 'dark':
       palette = darkColors;
       break;
+    case 'light':
     case 'imperva':
-      palette = { ...lightColors, ...impervaColors };
-      break;
     default:
-      palette = lightColors;
+      palette = { ...lightColors, ...impervaColors };
       break;
   }
 

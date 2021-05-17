@@ -1,11 +1,15 @@
 // This is the default theme.
-@import 'themes/eui/eui_colors_light';
+@import 'themes/imperva/imperva_colors';
 
 // Global styling
-@import 'global_styling/index';
+@import 'themes/imperva/global_styling/index';
 
 // Components
 @import 'components/index';
 
 // Packages
 @import '../packages/index';
+
+// Component overrides
+// Comes after the component import and overrides via cascade
+@import 'themes/imperva/overrides/index';
