@@ -1,0 +1,39 @@
+// This extra import allows any variables that are created via functions to work when loaded into JS
+@import '../../global_styling/variables/colors';
+
+// Core
+$euiColorPrimary: #285AE6;    // primary blue
+$euiColorSecondary: #2DB07F;  // primary success
+$euiColorAccent: #E561AF;     // primary magenta
+$euiColorHighlight: #F0F6FF;  // blue 50
+
+// These colors stay the same no matter the theme
+$euiColorGhost: #FFF;
+$euiColorInk: #000;
+
+// Status
+$euiColorSuccess: $euiColorSecondary;
+$euiColorWarning: #FAC73A;    // warning primary
+$euiColorDanger: #DF2427;     // alert primary
+
+// Grays
+$euiColorEmptyShade: #FEFEFE;     // gray 50
+$euiColorLightestShade: #E5EBF2;  // gray 200
+$euiColorLightShade: #ACB9C5;     // gray 400
+$euiColorMediumShade: #808B95;    // gray 500
+$euiColorDarkShade: #606A73;      // gray 600
+$euiColorDarkestShade: #212121;   // gray 800
+$euiColorFullShade: #000;         // gray 900
+
+// Every color below must be based mathematically on the set above and in a particular order.
+$euiTextColor: $euiColorDarkestShade;
+$euiPageBackgroundColor: tintOrShade($euiColorLightestShade, 50%, 30%);
+$euiTextSubduedColor: makeHighContrastColor($euiColorMediumShade);
+$euiTitleColor: shadeOrTint($euiTextColor, 0%, 0%);
+$euiLinkColor: $euiColorPrimary;
+$euiFocusBackgroundColor: tintOrShade($euiColorPrimary, 90%, 50%);
+
+// Contrasty text variants
+$euiColorPrimaryText: makeHighContrastColor($euiColorPrimary);
+$euiColorSecondaryText: makeHighContrastColor($euiColorSecondary);
+$euiColorAccentText: makeHighContrastColor($euiColorAccent);

@@ -39,4 +39,8 @@ export const EUI_THEMES: EUI_THEME[] = [
     text: 'Amsterdam: Dark',
     value: 'amsterdam-dark',
   },
+  {
+    text: 'Imperva',
+    value: 'imperva',
+  },
 ];
