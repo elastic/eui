@@ -1,7 +1,10 @@
 import React, { FunctionComponent, ReactElement, ReactNode } from 'react';
 import { css, SerializedStyles } from '@emotion/react';
 import { EuiCode } from '../../../../src/components/code';
-import { EuiColorPicker } from '../../../../src/components/color_picker';
+import {
+  EuiColorPicker,
+  EuiColorPickerProps,
+} from '../../../../src/components/color_picker';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import {
   EuiFlexGroup,
@@ -38,6 +41,7 @@ type ThemeValue = {
   type?: any;
   numberProps?: EuiFieldNumberProps;
   stringProps?: EuiFieldTextProps;
+  colorProps?: Partial<EuiColorPickerProps>;
 };
 
 export const ThemeValue: FunctionComponent<ThemeValue> = ({
@@ -51,6 +55,7 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
   type,
   numberProps,
   stringProps,
+  colorProps,
 }) => {
   const { euiTheme } = useEuiTheme();
 
@@ -65,7 +70,10 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
   };
 
   let exampleRender;
-  if ((property === 'colors' || name.includes('color')) && onUpdate) {
+  if (
+    (property === 'colors' || name.toLowerCase().includes('color')) &&
+    onUpdate
+  ) {
     exampleRender = (
       <EuiFlexItem grow={false}>
         <EuiColorPicker
@@ -77,6 +85,7 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
           secondaryInputDisplay="bottom"
           button={example as ReactElement}
           compressed
+          {...colorProps}
         />
       </EuiFlexItem>
     );
@@ -132,7 +141,7 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
     );
   } else if (
     property !== 'colors' &&
-    !name.includes('color') &&
+    !name.toLowerCase().includes('color') &&
     typeof value === 'string' &&
     onUpdate
   ) {

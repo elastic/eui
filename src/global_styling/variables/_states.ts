@@ -21,8 +21,16 @@ import { computed } from '../../services/theme/utils';
 import { ColorModeSwitch } from '../../services/theme/types';
 import { shade, tint, transparentize } from '../../services/color';
 import { CSSProperties } from 'react';
+import { sizeToPixel } from './_size';
 
-export interface EuiThemeFocus {
+export interface _EuiThemeFocusOutline {
+  /**
+   * A single CSS property: value
+   */
+  [key: string]: ColorModeSwitch;
+}
+
+export interface _EuiThemeFocus {
   /**
    * Color is used deterministically by the legacy theme, and as fallback for Amsterdam
    */
@@ -34,22 +42,25 @@ export interface EuiThemeFocus {
   /**
    * Default color plus transparency
    */
-  background: ColorModeSwitch;
+  backgroundColor: ColorModeSwitch;
   /**
    * Width is the thickness of the outline or faux ring
    */
   width: CSSProperties['borderWidth'];
+  /**
+   * Larger thickness of the outline for larger components
+   */
   widthLarge: CSSProperties['borderWidth'];
   /**
    * Using `outline` is new for Amsterdam but is set to `none` in legacy theme
    */
-  outline: ColorModeSwitch;
+  outline: _EuiThemeFocusOutline;
 }
 
-export const focus: EuiThemeFocus = {
+export const focus: _EuiThemeFocus = {
   color: computed(({ colors }) => transparentize(colors.primary, 0.3)),
   transparency: { LIGHT: 0.1, DARK: 0.3 },
-  background: {
+  backgroundColor: {
     LIGHT: computed(
       ([primary, transparency]) => tint(primary, 1 - transparency),
       ['colors.primary', 'focus.transparency']
@@ -61,9 +72,14 @@ export const focus: EuiThemeFocus = {
   },
 
   // Sizing
-  widthLarge: computed(({ size }) => size.xs),
-  width: computed(({ size }) => `calc(${size.xs} * .5)`),
+  widthLarge: computed(sizeToPixel(0.25)),
+  width: computed(sizeToPixel(0.125)),
 
   // Outline
-  outline: 'none',
+  outline: {
+    'box-shadow': computed(([color, width]) => `0 0 0 ${width} ${color}`, [
+      'focus.color',
+      'focus.width',
+    ]),
+  },
 };

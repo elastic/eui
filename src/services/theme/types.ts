@@ -27,7 +27,7 @@ import {
   EuiThemeSize,
 } from '../../global_styling/variables/_size';
 import { EuiThemeShadow } from '../../global_styling/variables/_shadows';
-import { EuiThemeFocus } from '../../global_styling/variables/_states';
+import { _EuiThemeFocus } from '../../global_styling/variables/_states';
 import { EuiThemeFont } from '../../global_styling/variables/_typography';
 
 export const COLOR_MODES_STANDARD = {
@@ -59,7 +59,7 @@ export type EuiThemeShape = {
   size: EuiThemeSize;
   font: EuiThemeFont;
   border: EuiThemeBorder;
-  focus: EuiThemeFocus;
+  focus: _EuiThemeFocus;
   shadow: EuiThemeShadow;
   animation: EuiThemeAnimation;
   breakpoint: EuiThemeBreakpoint;

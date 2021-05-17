@@ -13,7 +13,7 @@ import Size from './_size';
 import Typography from './_typography';
 import Border from './_border';
 import Shadow from './_shadow';
-import Focus from './_focus';
+// import Focus from './_focus';
 import Animation from './_animation';
 import Breakpoints from './_breakpoints';
 
@@ -70,9 +70,9 @@ export default () => {
 
         <Shadow />
 
-        <EuiHorizontalRule margin="xxl" />
+        {/* <EuiHorizontalRule margin="xxl" />
 
-        <Focus />
+        <Focus onThemeUpdate={(overrides) => updateTheme(overrides)} /> */}
 
         <EuiHorizontalRule margin="xxl" />
 

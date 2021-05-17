@@ -21,19 +21,19 @@ import { computed } from '../../../../services/theme/utils';
 import { transparentize } from '../../../../services/color';
 import {
   focus,
-  EuiThemeFocus,
+  _EuiThemeFocus,
 } from '../../../../global_styling/variables/_states';
 
-export const focus_ams: EuiThemeFocus = {
+export const focus_ams: _EuiThemeFocus = {
   ...focus,
-
+  color: 'currentColor',
   transparency: { LIGHT: 0.9, DARK: 0.7 },
-  background: computed(({ colors, focus }) =>
+  backgroundColor: computed(({ colors, focus }) =>
     transparentize(colors.primary, focus.transparency)
   ),
 
-  // Fallback for when not using `currentColor`
-  color: computed(({ colors }) => colors.primaryText),
-
-  outline: computed(({ focus }) => `${focus.width} solid currentColor`),
+  // Outline
+  outline: {
+    outline: computed(({ focus }) => `${focus.width} solid ${focus.color}`),
+  },
 };
