@@ -56,3 +56,15 @@ export const EuiThemeBorderTypes: FunctionComponent<_EuiThemeBorderTypes> = () =
 import { _EuiThemeFocus } from '../../../../src/global_styling/variables/_states';
 
 export const EuiThemeFocus: FunctionComponent<_EuiThemeFocus> = () => <div />;
+
+import {
+  _EuiThemeAnimationSpeed,
+  _EuiThemeAnimationEasing,
+} from '../../../../src/global_styling/variables/_animations';
+
+export const EuiThemeAnimationSpeed: FunctionComponent<_EuiThemeAnimationSpeed> = () => (
+  <div />
+);
+export const EuiThemeAnimationEasing: FunctionComponent<_EuiThemeAnimationEasing> = () => (
+  <div />
+);

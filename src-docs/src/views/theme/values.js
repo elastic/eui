@@ -71,7 +71,7 @@ export default () => {
 
         <EuiHorizontalRule margin="xxl" />
 
-        <Animation />
+        <Animation onThemeUpdate={(overrides) => updateTheme(overrides)} />
 
         <EuiHorizontalRule margin="xxl" />
 

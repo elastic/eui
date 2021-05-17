@@ -17,29 +17,22 @@
  * under the License.
  */
 
-// import { computed } from '../../services/theme/utils';
+import { CSSProperties } from 'react';
 
 export interface _EuiThemeAnimationSpeed {
-  extraFast: string;
-  fast: string;
-  normal: string;
-  slow: string;
-  extraSlow: string;
+  extraFast: CSSProperties['animationDuration'];
+  fast: CSSProperties['animationDuration'];
+  normal: CSSProperties['animationDuration'];
+  slow: CSSProperties['animationDuration'];
+  extraSlow: CSSProperties['animationDuration'];
 }
 export interface _EuiThemeAnimationEasing {
-  bounce: string;
-  resistance: string;
+  bounce: CSSProperties['animationTimingFunction'];
+  resistance: CSSProperties['animationTimingFunction'];
 }
 
 export type EuiThemeAnimation = _EuiThemeAnimationEasing &
   _EuiThemeAnimationSpeed;
-
-// keyframes: {
-//   fadeIn: string;
-//   grow: string;
-//   focusRingAnimate: string;
-//   focusRingAnimateLarge: string;
-// };
 
 export const animation_speed: _EuiThemeAnimationSpeed = {
   extraFast: '90ms',
@@ -57,64 +50,4 @@ export const animation_ease: _EuiThemeAnimationEasing = {
 export const animation: EuiThemeAnimation = {
   ...animation_speed,
   ...animation_ease,
-
-  //   keyframes: {
-  //     fadeIn: `
-  //   0% {
-  //     opacity: 0;
-  //   }
-
-  //   100% {
-  //     opacity: 1;
-  //   }
-  // `,
-
-  //     grow: `
-  //   0% {
-  //     opacity: 0;
-  //   }
-
-  //   1% {
-  //     opacity: 0;
-  //     transform: scale(0);
-  //   }
-
-  //   100% {
-  //     opacity: 1;
-  //     transform: scale(1);
-  //   }
-  // `,
-
-  //     focusRingAnimate: computed(
-  //       ({ focus }) => `
-  //   0% {
-  //     box-shadow: 0 0 0 ${focus.ring.animStartSize} ${focus.ring.animStartColor};
-  //   }
-
-  //   100% {
-  //     box-shadow: 0 0 0 ${focus.ring.size} ${focus.ring.color};
-  //   }
-  // `
-  //     ),
-
-  //     focusRingAnimateLarge: computed(
-  //       ({ focus }) => `
-  //   0% {
-  //     box-shadow: 0 0 0 ${focus.ring.animStartSizeLarge} ${focus.ring.animStartColor};
-  //   }
-
-  //   100% {
-  //     box-shadow: 0 0 0 ${focus.ring.sizeLarge} ${focus.ring.color};
-  //   }
-  // `
-  //     ),
-
-  // Component specific
-
-  // euiButtonActive {
-  //   50% {
-  //     transform: translateY(1px);
-  //   }
-  // }
-  // },
 };

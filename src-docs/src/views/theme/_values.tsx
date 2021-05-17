@@ -174,7 +174,12 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
             textToCopy={`euiTheme.${name}`}>
             {(copy) => (
               <button className="eui-textLeft" onClick={copy}>
-                <EuiCode language="ts" transparentBackground>
+                <EuiCode
+                  css={css`
+                    padding: 0 !important;
+                  `}
+                  language="ts"
+                  transparentBackground>
                   {name}
                   {typeRender}
                 </EuiCode>

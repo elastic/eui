@@ -1,28 +1,36 @@
 import React from 'react';
 import { useEuiTheme } from '../../../../src/services';
 
-import {
-  EuiText,
-  EuiTitle,
-  EuiSpacer,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiPanel,
-} from '../../../../src/components';
+import { EuiTitle, EuiSpacer, EuiFlexItem } from '../../../../src/components';
 
-import {
-  animation_ease,
-  animation_speed,
-} from '../../../../src/global_styling/variables/_animations';
-
+import { ThemeSection } from './_theme_section';
 import { ThemeValue } from './_values';
 
-const speedKeys = Object.keys(animation_speed);
-const easeKeys = Object.keys(animation_ease);
+import {
+  getPropsFromThemeKey,
+  EuiThemeAnimationSpeed,
+  EuiThemeAnimationEasing,
+} from './_props';
 
-export default () => {
+export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
   const animation = euiTheme.animation;
+  const speedTypes = getPropsFromThemeKey(EuiThemeAnimationSpeed);
+  const easingTypes = getPropsFromThemeKey(EuiThemeAnimationEasing);
+
+  const updateAnimation = (property, value) => {
+    onThemeUpdate({
+      animation: {
+        [property]: value,
+      },
+    });
+  };
+
+  // const style = css`
+  //   width: ${euiTheme.size.xl};
+  //   height: ${euiTheme.size.xl};
+  //   border-radius: ${euiTheme.border.radiusSmall};
+  // `;
 
   return (
     <div>
@@ -32,40 +40,73 @@ export default () => {
 
       <EuiSpacer />
 
-      <EuiFlexGroup>
-        <EuiFlexItem>
-          <EuiText grow={false}>
-            <p>
-              These are general properties that can be used to create subtle
-              animations or transitions that share similar timing and easing
-              functions.
-            </p>
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <EuiPanel paddingSize="l" color="subdued">
-            {speedKeys.map((key) => (
+      <ThemeSection
+        code="_EuiThemeAnimationSpeed"
+        description={
+          <p>
+            These are general properties that can be used to create subtle
+            animations or transitions that share similar timing and easing
+            functions.
+          </p>
+        }
+        themeValues={Object.keys(speedTypes).map((prop) => {
+          return (
+            <EuiFlexItem key={prop} className={'guideSass__animRow'}>
               <ThemeValue
-                key={key}
                 property="animation"
-                name={key}
-                value={animation[key]}
+                type={speedTypes[prop]}
+                name={prop}
+                value={animation[prop]}
+                onUpdate={(value) => updateAnimation(prop, value)}
               />
-            ))}
-          </EuiPanel>
-          <EuiSpacer />
-          <EuiPanel paddingSize="l" color="subdued">
-            {easeKeys.map((key) => (
+              <EuiSpacer size="xs" />
+              <div className={'guideSass__animParent'}>
+                <div
+                  className="guideSass__animChild"
+                  // Using inline style tag to override `:focus`
+                  style={{
+                    transitionDuration: animation[prop],
+                  }}
+                />
+              </div>
+            </EuiFlexItem>
+          );
+        })}
+      />
+      <EuiSpacer />
+
+      <ThemeSection
+        code="_EuiThemeAnimationEasing"
+        description={
+          <p>
+            EUI utilizes the following constants to maintain a similar
+            &apos;bounce&apos; to its animations.
+          </p>
+        }
+        themeValues={Object.keys(easingTypes).map((prop) => {
+          return (
+            <EuiFlexItem key={prop} className={'guideSass__animRow'}>
               <ThemeValue
-                key={key}
                 property="animation"
-                name={key}
-                value={animation[key]}
+                type={easingTypes[prop]}
+                name={prop}
+                value={animation[prop]}
+                onUpdate={(value) => updateAnimation(prop, value)}
               />
-            ))}
-          </EuiPanel>
-        </EuiFlexItem>
-      </EuiFlexGroup>
+              <EuiSpacer size="xs" />
+              <div className={'guideSass__animParent'}>
+                <div
+                  className="guideSass__animChild"
+                  // Using inline style tag to override `:focus`
+                  style={{
+                    transitionTimingFunction: animation[prop],
+                  }}
+                />
+              </div>
+            </EuiFlexItem>
+          );
+        })}
+      />
     </div>
   );
 };

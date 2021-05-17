@@ -47,8 +47,12 @@ export const ThemeSection: FunctionComponent<ThemeSection> = ({
         </EuiText>
       </EuiFlexItem>
       {themeValues && (
-        <EuiFlexItem grow={2}>
-          <EuiPanel grow={false} paddingSize="m" color="subdued">
+        <EuiFlexItem className="eui-xScroll" grow={2}>
+          <EuiPanel
+            className="eui-xScroll"
+            grow={false}
+            paddingSize="m"
+            color="subdued">
             <EuiFlexGroup direction="column" gutterSize="m">
               {themeValues}
             </EuiFlexGroup>
