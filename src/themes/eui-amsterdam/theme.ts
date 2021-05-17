@@ -25,7 +25,6 @@ import { base, size } from '../../global_styling/variables/_size';
 import { colors_ams } from './global_styling/variables/_colors';
 import { font_ams } from './global_styling/variables/_typography';
 import { border_ams } from './global_styling/variables/_borders';
-import { shadow_ams } from './global_styling/variables/_shadows';
 import { focus_ams } from './global_styling/variables/_states';
 import { fontSize } from '../../global_styling/variables/text';
 
@@ -39,7 +38,6 @@ export const euiThemeAmsterdam: EuiThemeShape = {
   },
   border: border_ams,
   focus: focus_ams,
-  shadow: shadow_ams,
   animation,
   breakpoint,
 };

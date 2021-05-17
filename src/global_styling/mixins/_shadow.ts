@@ -32,9 +32,9 @@ export const useSlightShadow = ({
   opacity?: number;
 } = {}) => {
   const {
-    euiTheme: { shadow },
+    euiTheme: { colors },
   } = useEuiTheme();
-  const rgba = chroma(color || shadow.color)
+  const rgba = chroma(color || colors.shadow)
     .alpha(opacity || 0.3)
     .css();
   return `box-shadow: 0 2px 2px -1px ${rgba};`;
@@ -48,9 +48,9 @@ export const useBottomShadowSmall = ({
   opacity?: number;
 } = {}) => {
   const {
-    euiTheme: { shadow },
+    euiTheme: { colors },
   } = useEuiTheme();
-  const rgba = chroma(color || shadow.color)
+  const rgba = chroma(color || colors.shadow)
     .alpha(opacity || 0.3)
     .css();
   return `
@@ -68,9 +68,9 @@ export const useBottomShadowMedium = ({
   opacity?: number;
 } = {}) => {
   const {
-    euiTheme: { shadow },
+    euiTheme: { colors },
   } = useEuiTheme();
-  const rgba = chroma(color || shadow.color)
+  const rgba = chroma(color || colors.shadow)
     .alpha(opacity || 0.2)
     .css();
   return `
@@ -91,9 +91,9 @@ export const useBottomShadowFlat = ({
   opacity?: number;
 } = {}) => {
   const {
-    euiTheme: { shadow },
+    euiTheme: { colors },
   } = useEuiTheme();
-  const rgba = chroma(color || shadow.color)
+  const rgba = chroma(color || colors.shadow)
     .alpha(opacity || 0.2)
     .css();
   return `
@@ -116,9 +116,9 @@ export const useBottomShadow = ({
   adjustBorders?: boolean;
 } = {}) => {
   const {
-    euiTheme: { border, shadow },
+    euiTheme: { border, colors },
   } = useEuiTheme();
-  const color = _color || shadow.color;
+  const color = _color || colors.shadow;
   const rgba = chroma(color)
     .alpha(opacity || 0.2)
     .css();
@@ -154,9 +154,9 @@ export const useBottomShadowLarge = ({
   reverse?: boolean;
 } = {}) => {
   const {
-    euiTheme: { border, shadow },
+    euiTheme: { border, colors },
   } = useEuiTheme();
-  const color = _color || shadow.colorLarge;
+  const color = _color || colors.shadow;
   const rgba = chroma(color)
     .alpha(opacity || 0.1)
     .css();
@@ -202,13 +202,13 @@ export const useSlightShadowHover = ({
   opacity?: number;
 } = {}) => {
   const {
-    euiTheme: { shadow },
+    euiTheme: { colors },
   } = useEuiTheme();
   const opacity = _opacity || 0.3;
-  const rgba1 = chroma(color || shadow.color)
+  const rgba1 = chroma(color || colors.shadow)
     .alpha(opacity)
     .css();
-  const rgba2 = chroma(color || shadow.color)
+  const rgba2 = chroma(color || colors.shadow)
     .alpha(opacity / 2)
     .css();
   return `

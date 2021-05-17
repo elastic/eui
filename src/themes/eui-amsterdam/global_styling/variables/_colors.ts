@@ -55,6 +55,7 @@ export const light_colors_ams: _EuiThemeColors = {
   highlight: computed(([warning]) => tint(warning, 0.9), ['colors.warning']),
   disabled: '#ABB4C4',
   disabledText: computed(makeDisabledContrastColor('colors.disabled')),
+  shadow: computed(({ colors }) => colors.ink),
 
   // Text
   text: computed(([darkestShade]) => darkestShade, ['colors.darkestShade']),
@@ -86,6 +87,7 @@ export const dark_colors_ams: _EuiThemeColors = {
   highlight: '#2E2D25',
   disabled: '#515761',
   disabledText: computed(makeDisabledContrastColor('colors.disabled')),
+  shadow: computed(({ colors }) => colors.ink),
 
   // Text
   text: '#DFE5EF',

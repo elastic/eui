@@ -26,7 +26,6 @@ import {
   EuiThemeBase,
   EuiThemeSize,
 } from '../../global_styling/variables/_size';
-import { EuiThemeShadow } from '../../global_styling/variables/_shadows';
 import { _EuiThemeFocus } from '../../global_styling/variables/_states';
 import { EuiThemeFont } from '../../global_styling/variables/_typography';
 
@@ -60,7 +59,6 @@ export type EuiThemeShape = {
   font: EuiThemeFont;
   border: EuiThemeBorder;
   focus: _EuiThemeFocus;
-  shadow: EuiThemeShadow;
   animation: EuiThemeAnimation;
   breakpoint: EuiThemeBreakpoint;
 };

@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import { shade, tint } from '../../services/color';
+import { saturate, shade, tint } from '../../services/color';
 import { computed } from '../../services/theme/utils';
 import {
   ColorModeSwitch,
@@ -150,6 +150,10 @@ export type _EuiThemeSpecialColors = {
    * Computed against colors.disabled
    */
   disabledText: ColorModeSwitch;
+  /**
+   * Base color for shadows that gets transparentized
+   */
+  shadow: ColorModeSwitch;
 };
 
 export type _EuiThemeColors = _EuiThemeBrandColors &
@@ -198,6 +202,9 @@ export const special_colors: _EuiThemeSpecialColors = {
     'colors.darkestShade',
   ]),
   disabledText: computed(makeDisabledContrastColor('colors.disabled')),
+  shadow: computed(({ colors }) =>
+    shade(saturate(colors.mediumShade, 0.25), 0.5)
+  ),
 };
 
 export const text_colors: _EuiThemeTextColors = {
@@ -248,6 +255,9 @@ export const dark_colors: _EuiThemeColors = {
     'colors.darkestShade',
   ]),
   disabledText: computed(makeDisabledContrastColor('colors.disabled')),
+  shadow: computed(({ colors }) =>
+    shade(saturate(colors.mediumShade, 0.25), 0.5)
+  ),
 
   // Text
   text: '#DFE5EF',
