@@ -112,9 +112,17 @@ const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
     setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
     isExpanded: boolean;
+    setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
+    screenReaderPosition: JSX.Element;
   }
 > = memo((props) => {
-  const { renderCellValue, ...rest } = props;
+  const {
+    renderCellValue,
+    column,
+    screenReaderPosition,
+    setCellContentsRef,
+    ...rest
+  } = props;
 
   // React is more permissible than the TS types indicate
   const CellElement = renderCellValue as JSXElementConstructor<
@@ -122,7 +130,16 @@ const EuiDataGridCellContent: FunctionComponent<
   >;
 
   return (
-    <CellElement isDetails={false} data-test-subj="cell-content" {...rest} />
+    <div
+      ref={setCellContentsRef}
+      className={
+        column?.isTruncated ?? true
+          ? 'euiDataGridRowCell__truncate'
+          : 'euiDataGridRowCell__dynamic'
+      }>
+      <CellElement isDetails={false} data-test-subj="cell-content" {...rest} />
+      {screenReaderPosition}
+    </div>
   );
 });
 
@@ -458,12 +475,11 @@ export class EuiDataGridCell extends Component<
         clickOutsideDisables={true}>
         <div className="euiDataGridRowCell__expandFlex">
           <div className="euiDataGridRowCell__expandContent">
-            {screenReaderPosition}
-            <div
-              ref={this.setCellContentsRef}
-              className="euiDataGridRowCell__truncate">
-              <EuiDataGridCellContent {...cellContentProps} />
-            </div>
+            <EuiDataGridCellContent
+              setCellContentsRef={this.setCellContentsRef}
+              screenReaderPosition={screenReaderPosition}
+              {...cellContentProps}
+            />
           </div>
         </div>
       </EuiFocusTrap>
@@ -474,12 +490,11 @@ export class EuiDataGridCell extends Component<
         anchorContent = (
           <div className="euiDataGridRowCell__expandFlex">
             <div className="euiDataGridRowCell__expandContent">
-              <div
-                ref={this.setCellContentsRef}
-                className="euiDataGridRowCell__truncate">
-                <EuiDataGridCellContent {...cellContentProps} />
-              </div>
-              {screenReaderPosition}
+              <EuiDataGridCellContent
+                setCellContentsRef={this.setCellContentsRef}
+                screenReaderPosition={screenReaderPosition}
+                {...cellContentProps}
+              />
             </div>
             {showCellButtons && (
               <EuiDataGridCellButtons
@@ -498,12 +513,11 @@ export class EuiDataGridCell extends Component<
         );
       } else {
         anchorContent = (
-          <div
-            ref={this.setCellContentsRef}
-            className="euiDataGridRowCell__truncate">
-            <EuiDataGridCellContent {...cellContentProps} />
-            {screenReaderPosition}
-          </div>
+          <EuiDataGridCellContent
+            setCellContentsRef={this.setCellContentsRef}
+            screenReaderPosition={screenReaderPosition}
+            {...cellContentProps}
+          />
         );
       }
     }

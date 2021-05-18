@@ -65,6 +65,7 @@ import {
   DataGridWrapperRowsContext,
 } from './data_grid_context';
 import { useResizeObserver } from '../observer/resize_observer';
+import type { RowMeasurementCache } from './data_grid_row_measurement_cache';
 
 export interface EuiDataGridBodyProps {
   isFullScreen: boolean;
@@ -89,6 +90,7 @@ export interface EuiDataGridBodyProps {
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
   toolbarHeight: number;
+  rowMeasurementCache?: RowMeasurementCache;
 }
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
@@ -332,6 +334,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     setVisibleColumns,
     switchColumnPos,
     toolbarHeight,
+    rowMeasurementCache,
   } = props;
 
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
@@ -520,7 +523,21 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   );
 
   const [rowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
-  const getRowHeight = useCallback(() => rowHeight, [rowHeight]);
+
+  const getRowHeight = useCallback(
+    (rowIndex) => {
+      if (rowMeasurementCache) {
+        const cachedValue = rowMeasurementCache.getRowHeight(rowIndex);
+
+        if (cachedValue) {
+          return cachedValue;
+        }
+      }
+      return rowHeight;
+    },
+    [rowHeight, rowMeasurementCache]
+  );
+
   useEffect(() => {
     if (gridRef.current) gridRef.current.resetAfterRowIndex(0);
   }, [getRowHeight]);

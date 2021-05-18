@@ -78,6 +78,7 @@ import {
   DataGridSortingContext,
 } from './data_grid_context';
 import { useDataGridColumnSorting } from './column_sorting';
+import type { RowMeasurementCache } from './data_grid_row_measurement_cache';
 
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
@@ -163,6 +164,10 @@ type CommonGridProps = CommonProps &
      * Sets the grid's width, forcing it to overflow in a scrollable container with cell virtualization
      */
     width?: CSSProperties['width'];
+    /**
+     * Todo
+     */
+    rowMeasurementCache?: RowMeasurementCache;
   };
 
 // Force either aria-label or aria-labelledby to be defined
@@ -692,6 +697,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     minSizeForControls = MINIMUM_WIDTH_FOR_GRID_CONTROLS,
     height,
     width,
+    rowMeasurementCache,
     ...rest
   } = props;
 
@@ -1128,6 +1134,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                         renderFooterCellValue={renderFooterCellValue}
                         rowCount={rowCount}
                         interactiveCellId={interactiveCellId}
+                        rowMeasurementCache={rowMeasurementCache}
                       />
                     </div>
                   </div>

@@ -80,6 +80,7 @@ import { DataGridStylingExample } from './views/datagrid/datagrid_styling_exampl
 import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
 import { DataGridFooterRowExample } from './views/datagrid/datagrid_footer_row_example';
 import { DataGridVirtualizationExample } from './views/datagrid/datagrid_virtualization_example';
+import { DataGridDynamicHeightExample } from './views/datagrid/datagrid_dynamic_height_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
@@ -388,6 +389,7 @@ const navigation = [
       DataGridControlColumnsExample,
       DataGridFooterRowExample,
       DataGridVirtualizationExample,
+      DataGridDynamicHeightExample,
       TableExample,
       TableInMemoryExample,
     ].map((example) => createExample(example)),
