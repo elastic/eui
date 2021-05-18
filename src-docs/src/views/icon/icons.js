@@ -210,7 +210,7 @@ export const iconTypes = [
   'tear',
   'temperature',
   'timeline',
-  'timeSlider',
+  'timeslider',
   'training',
   'trash',
   'unfold',

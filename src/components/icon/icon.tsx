@@ -370,7 +370,7 @@ const typeToPathMap = {
   temperature: 'temperature',
   timeline: 'timeline',
   timelionApp: 'app_timelion',
-  timeSlider: 'timeSlider',
+  timeslider: 'timeslider',
   training: 'training',
   trash: 'trash',
   upgradeAssistantApp: 'app_upgrade_assistant',
