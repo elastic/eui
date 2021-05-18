@@ -30,7 +30,7 @@ import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { getSecureRelForTarget } from '../../services';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
-import { EuiBetaBadge } from '../badge/beta_badge';
+import { EuiBetaBadge, EuiBetaBadgeProps } from '../badge/beta_badge';
 import { EuiIconProps } from '../icon';
 import {
   EuiCardSelect,
@@ -147,6 +147,10 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
      * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
      */
     betaBadgeTitle?: string;
+    betaBadgeProps?: Omit<
+      EuiBetaBadgeProps,
+      'label' | 'tooltipContent' | 'title'
+    >;
     /**
      * Matches to the color property of EuiPanel. If defined, removes any border & shadow.
      * Leave as `undefined` to display as a default panel.
@@ -192,6 +196,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   betaBadgeLabel,
   betaBadgeTooltipContent,
   betaBadgeTitle,
+  betaBadgeProps,
   layout = 'vertical',
   selectable,
   display,
@@ -298,6 +303,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
           label={betaBadgeLabel}
           title={betaBadgeTitle}
           tooltipContent={betaBadgeTooltipContent}
+          {...betaBadgeProps}
           className="euiCard__betaBadge"
         />
       </span>

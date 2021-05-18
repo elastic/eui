@@ -41,5 +41,20 @@ export default () => (
         />
       </h3>
     </EuiTitle>
+    <EuiTitle size="xxs">
+      <h4>Clickable beta badges</h4>
+    </EuiTitle>
+    <EuiSpacer size="s" />
+    <EuiBetaBadge
+      label="Lens"
+      iconType="lensApp"
+      onClick={() => alert('Goes to Lens')}
+    />
+    &emsp;
+    <EuiBetaBadge
+      label="Basic"
+      href="http://www.elastic.co/subscriptions"
+      target="_blank"
+    />
   </div>
 );

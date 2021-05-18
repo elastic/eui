@@ -168,6 +168,9 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
     {
       'euiBetaBadge--singleLetter': singleLetter,
     },
+    {
+      'euiBetaBadge-isClickable': onClick || href,
+    },
     colorToClassMap[color],
     sizeToClassMap[size],
     className
