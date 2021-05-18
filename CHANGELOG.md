@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Updated `max` and  `min` label positioning for `EuiRange` and `EuiDualRange` ([#4781](https://github.com/elastic/eui/pull/4781))
+- Added `timeSlider`, `playFilled`, `previousFrame` and `nextFrame` glyphs to `EuiIcon` ([#0000](https://github.com/elastic/eui/pull/0000))
 
 **Bug fixes**
 
