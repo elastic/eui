@@ -19,7 +19,7 @@
 
 import { buildTheme, EuiThemeShape } from '../../services/theme';
 import { animation } from '../../global_styling/variables/_animations';
-import { breakpoint } from '../../global_styling/variables/_responsive';
+import { breakpoint } from '../../global_styling/variables/_breakpoint';
 import { base, size } from '../../global_styling/variables/_size';
 
 import { colors_ams } from './global_styling/variables/_colors';

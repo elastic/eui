@@ -17,18 +17,19 @@
  * under the License.
  */
 
-export interface EuiThemeBreakpoint {
-  xs: string;
-  s: string;
-  m: string;
-  l: string;
-  xl: string;
-}
+export type _EuiBreakpointSize = 'xs' | 's' | 'm' | 'l' | 'xl';
 
-export const breakpoint: EuiThemeBreakpoint = {
-  xs: '0',
-  s: '575px',
-  m: '768px',
-  l: '992px',
-  xl: '1200px',
+export type _EuiThemeBreakpoint = {
+  /**
+   * Set the minimum window width at which to start to the breakpoint
+   */
+  [key in _EuiBreakpointSize]: number;
+};
+
+export const breakpoint: _EuiThemeBreakpoint = {
+  xl: 1200,
+  l: 992,
+  m: 768,
+  s: 575,
+  xs: 0,
 };

@@ -20,7 +20,7 @@
 import { buildTheme } from '../../services/theme/utils';
 import { EuiThemeShape } from '../../services/theme/types';
 import { animation } from '../../global_styling/variables/_animations';
-import { breakpoint } from '../../global_styling/variables/_responsive';
+import { breakpoint } from '../../global_styling/variables/_breakpoint';
 import { colors } from '../../global_styling/variables/_colors';
 import { base, size } from '../../global_styling/variables/_size';
 import { focus } from '../../global_styling/variables/_states';

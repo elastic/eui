@@ -68,3 +68,9 @@ export const EuiThemeAnimationSpeed: FunctionComponent<_EuiThemeAnimationSpeed> 
 export const EuiThemeAnimationEasing: FunctionComponent<_EuiThemeAnimationEasing> = () => (
   <div />
 );
+
+import { _EuiThemeBreakpoint } from '../../../../src/global_styling/variables/_breakpoint';
+
+export const EuiThemeBreakpoint: FunctionComponent<_EuiThemeBreakpoint> = () => (
+  <div />
+);
