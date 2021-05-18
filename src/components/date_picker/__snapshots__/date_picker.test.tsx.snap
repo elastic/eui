@@ -913,7 +913,7 @@ exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
                   <Manager>
                     <Reference>
                       <InnerReference
-                        getReferenceRef={[Function]}
+                        setReferenceNode={[Function]}
                       >
                         <div
                           className="react-datepicker-wrapper"
