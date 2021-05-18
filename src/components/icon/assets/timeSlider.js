@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const EuiIconTimeSlider = ({ title, titleId, ...props }) => (
+const EuiIconTimeslider = ({ title, titleId, ...props }) => (
   <svg
     width={16}
     height={16}
@@ -17,4 +17,4 @@ const EuiIconTimeSlider = ({ title, titleId, ...props }) => (
   </svg>
 );
 
-export const icon = EuiIconTimeSlider;
+export const icon = EuiIconTimeslider;
