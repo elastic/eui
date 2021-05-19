@@ -196,8 +196,7 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
 >
   <div
     aria-hidden="false"
-    class="euiRangeTrack"
-    style="margin-right:0.6em"
+    class="euiRangeTrack euiRangeTrack--hasTicks"
   >
     <div
       class="euiRangeTicks"
@@ -210,17 +209,26 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
         type="button"
         value="20"
       >
-        20kb
+        <span
+          class="euiRangeTick__label"
+        >
+          20kb
+        </span>
       </button>
       <button
-        class="euiRangeTick euiRangeTick--isCustom"
+        class="euiRangeTick euiRangeTick--isCustom euiRangeTick--isMax"
         style="left:100%"
         tabindex="-1"
         title="100kb"
         type="button"
         value="100"
       >
-        100kb
+        <span
+          class="euiRangeTick__label"
+          style="margin-right:-1.25em"
+        >
+          100kb
+        </span>
       </button>
     </div>
     <div
@@ -551,8 +559,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
 >
   <div
     aria-hidden="false"
-    class="euiRangeTrack"
-    style="margin-right:0.6em"
+    class="euiRangeTrack euiRangeTrack--hasTicks"
   >
     <div
       class="euiRangeTicks"
@@ -565,7 +572,11 @@ exports[`EuiDualRange props ticks should render 1`] = `
         type="button"
         value="0"
       >
-        0
+        <span
+          class="euiRangeTick__label"
+        >
+          0
+        </span>
       </button>
       <button
         class="euiRangeTick"
@@ -574,7 +585,11 @@ exports[`EuiDualRange props ticks should render 1`] = `
         type="button"
         value="20"
       >
-        20
+        <span
+          class="euiRangeTick__label"
+        >
+          20
+        </span>
       </button>
       <button
         class="euiRangeTick"
@@ -583,7 +598,11 @@ exports[`EuiDualRange props ticks should render 1`] = `
         type="button"
         value="40"
       >
-        40
+        <span
+          class="euiRangeTick__label"
+        >
+          40
+        </span>
       </button>
       <button
         class="euiRangeTick"
@@ -592,7 +611,11 @@ exports[`EuiDualRange props ticks should render 1`] = `
         type="button"
         value="60"
       >
-        60
+        <span
+          class="euiRangeTick__label"
+        >
+          60
+        </span>
       </button>
       <button
         class="euiRangeTick"
@@ -601,7 +624,11 @@ exports[`EuiDualRange props ticks should render 1`] = `
         type="button"
         value="80"
       >
-        80
+        <span
+          class="euiRangeTick__label"
+        >
+          80
+        </span>
       </button>
       <button
         class="euiRangeTick"
@@ -610,7 +637,11 @@ exports[`EuiDualRange props ticks should render 1`] = `
         type="button"
         value="100"
       >
-        100
+        <span
+          class="euiRangeTick__label"
+        >
+          100
+        </span>
       </button>
     </div>
     <div
