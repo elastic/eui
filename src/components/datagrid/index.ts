@@ -39,6 +39,6 @@ export { useDataGridColumnSelector } from './column_selector';
 export { useDataGridColumnSorting } from './column_sorting';
 export { useDataGridStyleSelector } from './style_selector';
 
-export { createRowMeasurementCache } from './data_grid_row_measurement_cache';
+export { useRowMeasurementCache } from './data_grid_row_measurement_cache';
 
 export * from './data_grid_types';

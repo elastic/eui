@@ -9,7 +9,7 @@ import React, {
 import { fake } from 'faker';
 
 import { EuiDataGrid, EuiText } from '../../../../src/components/';
-import { createRowMeasurementCache } from '../../../../src/components/datagrid';
+import { useRowMeasurementCache } from '../../../../src/components/datagrid';
 
 const DataContext = createContext();
 
@@ -28,13 +28,16 @@ const columns = [
 // it is expensive to compute 10000 rows of fake data
 // instead of loading up front, generate entries on the fly
 const raw_data = [];
+
 function RenderCellValue({ rowIndex, columnId }) {
-  const { data, adjustMountedCellCount } = useContext(DataContext);
+  const { data, adjustMountedCellCount, rowMeasurementCache } = useContext(
+    DataContext
+  );
 
   useEffect(() => {
-    adjustMountedCellCount(1);
+    rowMeasurementCache.set(rowIndex.toString(), 25 + rowIndex * 5);
     return () => adjustMountedCellCount(-1);
-  }, [adjustMountedCellCount]);
+  }, [adjustMountedCellCount, rowMeasurementCache, rowIndex]);
 
   if (data[rowIndex] == null) {
     data[rowIndex] = {
@@ -49,6 +52,13 @@ function RenderCellValue({ rowIndex, columnId }) {
 export default () => {
   // ** Pagination config
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
+  const rowMeasurementCache = useRowMeasurementCache({
+    defaultHeight: 10,
+    initialValues: {
+      '1': 200,
+    },
+  });
+
   const onChangeItemsPerPage = useCallback(
     (pageSize) =>
       setPagination((pagination) => ({
@@ -58,6 +68,7 @@ export default () => {
       })),
     [setPagination]
   );
+
   const onChangePage = useCallback(
     (pageIndex) =>
       setPagination((pagination) => ({ ...pagination, pageIndex })),
@@ -74,20 +85,14 @@ export default () => {
   const dataContext = useMemo(
     () => ({
       data: raw_data,
+      rowMeasurementCache,
       adjustMountedCellCount: (adjustment) =>
         setMountedCellCount(
           (mountedCellCount) => mountedCellCount + adjustment
         ),
     }),
-    []
+    [rowMeasurementCache]
   );
-
-  const rowMeasurementCache = createRowMeasurementCache({
-    defaultHeight: (rowIndex) => 25 + rowIndex * 4,
-    initialValues: {
-      '1': 200,
-    },
-  });
 
   rowMeasurementCache.set('2', 2);
 

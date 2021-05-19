@@ -17,7 +17,9 @@
  * under the License.
  */
 
-interface DeferredRowMeasurementCacheParams {
+import { useState } from 'react';
+
+interface RowMeasurementCacheParams {
   defaultHeight?: ((rowIndex: number) => number) | number;
   initialValues?: Record<string, number>;
   keyMapper?: (rowIndex: number) => string;
@@ -25,44 +27,52 @@ interface DeferredRowMeasurementCacheParams {
 
 const defaultKeyMapper = (rowIndex: number) => `${rowIndex}`;
 
-export const createRowMeasurementCache = ({
-  defaultHeight,
-  initialValues,
-  keyMapper = defaultKeyMapper,
-}: DeferredRowMeasurementCacheParams) => {
-  const cache = new Map<string, number>(
-    initialValues ? Object.entries(initialValues) : undefined
-  );
+export class RowMeasurementCache {
+  private readonly cache: Map<string, number>;
+  private readonly options: RowMeasurementCacheParams;
+  private readonly keyMapper: (rowIndex: number) => string;
 
-  return {
-    set(rowIndex: number, height: number): void {
-      cache.set(keyMapper(rowIndex), height);
-    },
+  constructor(options: RowMeasurementCacheParams) {
+    this.options = options;
 
-    getRowHeight(rowIndex: number) {
-      const key = keyMapper(rowIndex);
+    this.cache = new Map(
+      options.initialValues ? Object.entries(options.initialValues) : undefined
+    );
 
-      if (cache.has(key)) {
-        const value = cache.get(key);
+    this.keyMapper = this.options.keyMapper ?? defaultKeyMapper;
+  }
 
-        if (value) {
-          return value;
-        }
+  set(rowIndex: number, height: number) {
+    this.cache.set(this.keyMapper(rowIndex), height);
+  }
+
+  getRowHeight(rowIndex: number) {
+    const key = this.keyMapper(rowIndex);
+
+    if (this.cache.has(key)) {
+      const value = this.cache.get(key);
+
+      if (value) {
+        return value;
       }
+    }
 
-      return typeof defaultHeight === 'function'
-        ? defaultHeight(rowIndex)
-        : defaultHeight;
-    },
+    return typeof this.options.defaultHeight === 'function'
+      ? this.options.defaultHeight(rowIndex)
+      : this.options.defaultHeight;
+  }
 
-    clear(rowIndex: number) {
-      cache.delete(keyMapper(rowIndex));
-    },
+  clear(rowIndex: number) {
+    this.cache.delete(this.keyMapper(rowIndex));
+  }
 
-    clearAll() {
-      cache.clear();
-    },
-  };
+  clearAll() {
+    this.cache.clear();
+  }
+}
+
+export const useRowMeasurementCache = (options: RowMeasurementCacheParams) => {
+  const [cache] = useState(() => new RowMeasurementCache(options));
+
+  return cache;
 };
-
-export type RowMeasurementCache = ReturnType<typeof createRowMeasurementCache>;
