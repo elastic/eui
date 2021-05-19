@@ -2678,6 +2678,44 @@ exports[`EuiIcon props type folderOpen is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type frameNext is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M3 2a1 1 0 00-1 1v10a1 1 0 102 0V3a1 1 0 00-1-1zm5.146.22l7.2 4.581a1.425 1.425 0 010 2.398l-7.2 4.581C7.21 14.375 6 13.692 6 12.581V3.42c0-1.112 1.21-1.795 2.146-1.2z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type framePrevious is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M13 2a1 1 0 011 1v10a1 1 0 11-2 0V3a1 1 0 011-1zm-5.146.22l-7.2 4.581a1.425 1.425 0 000 2.398l7.2 4.581c.936.595 2.146-.088 2.146-1.199V3.42c0-1.111-1.21-1.794-2.146-1.199z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type fullScreen is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -6494,25 +6532,6 @@ exports[`EuiIcon props type nested is rendered 1`] = `
 </svg>
 `;
 
-exports[`EuiIcon props type nextFrame is rendered 1`] = `
-<svg
-  aria-hidden="true"
-  class="euiIcon euiIcon--medium euiIcon-isLoaded"
-  fill="none"
-  focusable="false"
-  height="16"
-  role="img"
-  viewBox="0 0 16 16"
-  width="16"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path
-    clip-rule="evenodd"
-    d="M3 2a1 1 0 00-1 1v10a1 1 0 102 0V3a1 1 0 00-1-1zm5.146.22l7.2 4.581a1.425 1.425 0 010 2.398l-7.2 4.581C7.21 14.375 6 13.692 6 12.581V3.42c0-1.112 1.21-1.795 2.146-1.2z"
-  />
-</svg>
-`;
-
 exports[`EuiIcon props type node is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -6951,25 +6970,6 @@ exports[`EuiIcon props type popout is rendered 1`] = `
 >
   <path
     d="M13 8.5a.5.5 0 111 0V12a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2h3.5a.5.5 0 010 1H4a1 1 0 00-1 1v8a1 1 0 001 1h8a1 1 0 001-1V8.5zm-5.12.339a.5.5 0 11-.706-.707L13.305 2H10.5a.5.5 0 110-1H14a1 1 0 011 1v3.5a.5.5 0 11-1 0V2.72L7.88 8.838z"
-  />
-</svg>
-`;
-
-exports[`EuiIcon props type previousFrame is rendered 1`] = `
-<svg
-  aria-hidden="true"
-  class="euiIcon euiIcon--medium euiIcon-isLoaded"
-  fill="none"
-  focusable="false"
-  height="16"
-  role="img"
-  viewBox="0 0 16 16"
-  width="16"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path
-    clip-rule="evenodd"
-    d="M13 2a1 1 0 011 1v10a1 1 0 11-2 0V3a1 1 0 011-1zm-5.146.22l-7.2 4.581a1.425 1.425 0 000 2.398l7.2 4.581c.936.595 2.146-.088 2.146-1.199V3.42c0-1.111-1.21-1.794-2.146-1.199z"
   />
 </svg>
 `;
