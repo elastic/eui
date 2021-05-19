@@ -2678,6 +2678,44 @@ exports[`EuiIcon props type folderOpen is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type frameNext is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M3 2a1 1 0 00-1 1v10a1 1 0 102 0V3a1 1 0 00-1-1zm5.146.22l7.2 4.581a1.425 1.425 0 010 2.398l-7.2 4.581C7.21 14.375 6 13.692 6 12.581V3.42c0-1.112 1.21-1.795 2.146-1.2z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type framePrevious is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M13 2a1 1 0 011 1v10a1 1 0 11-2 0V3a1 1 0 011-1zm-5.146.22l-7.2 4.581a1.425 1.425 0 000 2.398l7.2 4.581c.936.595 2.146-.088 2.146-1.199V3.42c0-1.111-1.21-1.794-2.146-1.199z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type fullScreen is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -6849,6 +6887,24 @@ exports[`EuiIcon props type play is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type playFilled is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M12.345 6.801l-7.2-4.581C4.21 1.625 3 2.308 3 3.419v9.162c0 1.111 1.21 1.794 2.146 1.199l7.2-4.581a1.425 1.425 0 000-2.398z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type plus is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -7975,6 +8031,25 @@ exports[`EuiIcon props type timelionApp is rendered 1`] = `
   <path
     class="euiIcon__fillSecondary"
     d="M4 0h24v2H4z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type timeslider is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M13.923 8A5.93 5.93 0 008 2.077 5.93 5.93 0 002.077 8a5.93 5.93 0 006.296 5.912c.328-.021.625.227.625.556a.504.504 0 01-.458.511 7 7 0 116.43-6.333c-.036.398-.487.58-.817.354a.595.595 0 01-.248-.54c.012-.152.018-.305.018-.46zm1.684 3.2l-4.32-3.055c-.56-.396-1.287.059-1.287.8v6.108c0 .74.726 1.196 1.287.8l4.32-3.055c.524-.37.524-1.228 0-1.598zM7.462 7.462H4.769a.539.539 0 000 1.076H8A.539.539 0 008.538 8V3.692a.539.539 0 00-1.076 0v3.77z"
   />
 </svg>
 `;
