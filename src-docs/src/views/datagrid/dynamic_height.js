@@ -22,6 +22,7 @@ const columns = [
   {
     id: 'text',
     isTruncated: false,
+    isExpandable: false,
   },
 ];
 
@@ -30,14 +31,27 @@ const columns = [
 const raw_data = [];
 
 function RenderCellValue({ rowIndex, columnId }) {
+  const myRef = React.createRef();
+
   const { data, adjustMountedCellCount, rowMeasurementCache } = useContext(
     DataContext
   );
 
+  const isDynamicHeight = columns.find(
+    (item) => item.id === columnId && item.isTruncated === false
+  );
+
   useEffect(() => {
-    rowMeasurementCache.set(rowIndex.toString(), 25 + rowIndex * 5);
+    if (myRef.current) {
+      const { height } = myRef.current.getBoundingClientRect();
+
+      if (height) {
+        rowMeasurementCache.set(rowIndex.toString(), height + 10);
+      }
+    }
+
     return () => adjustMountedCellCount(-1);
-  }, [adjustMountedCellCount, rowMeasurementCache, rowIndex]);
+  }, [adjustMountedCellCount, rowMeasurementCache, rowIndex, myRef]);
 
   if (data[rowIndex] == null) {
     data[rowIndex] = {
@@ -46,7 +60,11 @@ function RenderCellValue({ rowIndex, columnId }) {
     };
   }
 
-  return data[rowIndex][columnId];
+  return isDynamicHeight ? (
+    <div ref={myRef}>{data[rowIndex][columnId]}</div>
+  ) : (
+    data[rowIndex][columnId]
+  );
 }
 
 export default () => {
@@ -93,8 +111,6 @@ export default () => {
     }),
     [rowMeasurementCache]
   );
-
-  rowMeasurementCache.set('2', 2);
 
   const grid = (
     <EuiDataGrid

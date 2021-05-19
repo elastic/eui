@@ -493,6 +493,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     if (gridRef.current) {
       gridRef.current.resetAfterColumnIndex(0);
       //todo
+
       gridRef.current.resetAfterRowIndex(0, false);
     }
   }, [columns, columnWidths, defaultColumnWidth]);
