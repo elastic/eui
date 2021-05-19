@@ -286,13 +286,15 @@ export class EuiDataGridCell extends Component<
     //      event up, which can trigger the focus() call below, causing focus lock fighting
     if (this.cellRef.current === e.target) {
       const { colIndex, visibleRowIndex, isExpandable } = this.props;
-      this.context.setFocusedCell([colIndex, visibleRowIndex]);
+      setTimeout(() => {
+        this.context.setFocusedCell([colIndex, visibleRowIndex]);
 
-      const interactables = this.getInteractables();
-      if (interactables.length === 1 && isExpandable === false) {
-        interactables[0].focus();
-        this.setState({ disableCellTabIndex: true });
-      }
+        const interactables = this.getInteractables();
+        if (interactables.length === 1 && isExpandable === false) {
+          interactables[0].focus();
+          this.setState({ disableCellTabIndex: true });
+        }
+      }, 0);
     }
   };
 

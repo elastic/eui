@@ -369,6 +369,7 @@ const EuiFlyout = forwardRef(
       </Element>
     );
 
+    console.log('rendering flyout with focus trap disabled: ' + isPushed);
     /*
      * Trap focus even when `ownFocus={false}`, otherwise closing
      * the flyout won't return focus to the originating button.

@@ -14,6 +14,11 @@ import {
   EuiLink,
   EuiText,
   EuiResizableContainer,
+  EuiButton,
+  EuiFlyout,
+  EuiFlyoutHeader,
+  EuiFlyoutBody,
+  EuiTitle,
 } from '../../../../src/components/';
 
 const DataContext = createContext();
@@ -125,6 +130,39 @@ export default () => {
     []
   );
 
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+
+  const closeFlyout = () => setIsFlyoutVisible(false);
+
+  const toggleFlyout = () => setIsFlyoutVisible((isVisible) => !isVisible);
+
+  const flyoutTitleId = 'myid';
+
+  let flyout;
+  if (isFlyoutVisible) {
+    flyout = (
+      <EuiFlyout
+        ownFocus={false}
+        onClose={closeFlyout}
+        outsideClickCloses={true}
+        aria-labelledby={flyoutTitleId}>
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="s">
+            <h2 id={flyoutTitleId}>A flyout without ownFocus</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              The page contents is still interactable though screenreader users
+              will find themselves still within the bounds of the flyout.
+            </p>
+          </EuiText>
+        </EuiFlyoutBody>
+      </EuiFlyout>
+    );
+  }
+
   const grid = (
     <EuiDataGrid
       aria-label="Virtualized data grid demo"
@@ -142,32 +180,37 @@ export default () => {
   );
 
   return (
-    <DataContext.Provider value={dataContext}>
-      <EuiText>
-        <p>There are {mountedCellCount} rendered cells</p>
-      </EuiText>
+    <div>
+      <EuiButton onClick={toggleFlyout}>Toggle flyout</EuiButton>
 
-      <EuiResizableContainer style={{ height: '400px' }}>
-        {(EuiResizablePanel, EuiResizableButton) => (
-          <>
-            <EuiResizablePanel initialSize={50} minSize="30%">
-              {grid}
-            </EuiResizablePanel>
+      {flyout}
+      <DataContext.Provider value={dataContext}>
+        <EuiText>
+          <p>There are {mountedCellCount} rendered cells</p>
+        </EuiText>
 
-            <EuiResizableButton />
+        <EuiResizableContainer style={{ height: '400px' }}>
+          {(EuiResizablePanel, EuiResizableButton) => (
+            <>
+              <EuiResizablePanel initialSize={50} minSize="30%">
+                {grid}
+              </EuiResizablePanel>
 
-            <EuiResizablePanel initialSize={50} minSize="200px">
-              <EuiText>
-                <p>
-                  This panel is constraining the datagrid. You can resize it
-                  using the drag handle and <strong>EuiDataGrid</strong>{' '}
-                  automatically detects the changes to its container size.
-                </p>
-              </EuiText>
-            </EuiResizablePanel>
-          </>
-        )}
-      </EuiResizableContainer>
-    </DataContext.Provider>
+              <EuiResizableButton />
+
+              <EuiResizablePanel initialSize={50} minSize="200px">
+                <EuiText>
+                  <p>
+                    This panel is constraining the datagrid. You can resize it
+                    using the drag handle and <strong>EuiDataGrid</strong>{' '}
+                    automatically detects the changes to its container size.
+                  </p>
+                </EuiText>
+              </EuiResizablePanel>
+            </>
+          )}
+        </EuiResizableContainer>
+      </DataContext.Provider>
+    </div>
   );
 };
