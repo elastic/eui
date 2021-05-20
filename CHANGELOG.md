@@ -6,6 +6,7 @@
 
 **Bug fixes**
 
+- Fixed the `z-index` of EuiPopover ([#4817](https://github.com/elastic/eui/pull/4817))
 - Fixed inconsistent width of `EuiRange` and `EuiDualRange` with custom tick values ([#4781](https://github.com/elastic/eui/pull/4781))
 
 ## [`34.0.0`](https://github.com/elastic/eui/tree/v34.0.0)

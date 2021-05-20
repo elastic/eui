@@ -611,7 +611,7 @@ export class EuiPopover extends Component<Props, State> {
     const { zIndex: zIndexProp } = this.props;
     const zIndex =
       zIndexProp == null
-        ? getElementZIndex(this.button, this.panel) + 2000
+        ? getElementZIndex(this.button, this.panel) + 999
         : zIndexProp;
 
     const popoverStyles = {
