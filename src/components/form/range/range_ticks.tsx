@@ -130,7 +130,7 @@ export const EuiRangeTicks: FunctionComponent<EuiRangeTicksProps> = (props) => {
   // left and right negative margins that is half of the tick marks
   const ticksStyle = !!ticks
     ? undefined
-    : { margin: `0 ${percentageWidth / -2}%`, left: 0, right: 0 };
+    : { margin: `0 ${percentageWidth / -2}%`, left: 4, right: 4 };
 
   const classes = classNames('euiRangeTicks', {
     'euiRangeTicks--compressed': compressed,

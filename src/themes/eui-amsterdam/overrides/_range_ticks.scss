@@ -1,5 +1,7 @@
 .euiRangeTicks {
   top: 0;
+  right: $euiSizeS;
+  left: $euiSizeS;
 }
 
 .euiRangeTicks:not(.euiRangeTicks--compressed) {

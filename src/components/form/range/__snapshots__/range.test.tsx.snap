@@ -389,7 +389,7 @@ exports[`EuiRange props ticks should render 1`] = `
   >
     <div
       class="euiRangeTicks"
-      style="margin:0 -8.333333333333332%;left:0;right:0"
+      style="margin:0 -8.333333333333332%;left:4px;right:4px"
     >
       <button
         class="euiRangeTick"

@@ -72,7 +72,8 @@
       }
 
       .euiRangeTick {
-        padding-top: $euiRangeTrackHeight * 2;
+        // removing 1px to prevent label getting cut in Safari
+        padding-top: ($euiRangeTrackHeight * 2) - 1;
       }
     }
 
