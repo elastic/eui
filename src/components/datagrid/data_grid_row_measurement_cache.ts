@@ -16,26 +16,27 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+import { useState, RefObject } from 'react';
+import type { VariableSizeGrid as Grid } from 'react-window';
 
-import { useState } from 'react';
+const INITIAL_ROW_HEIGHT = 34;
 
-interface RowMeasurementCacheParams {
+export interface RowMeasurementOptions {
   defaultHeight?: ((rowIndex: number) => number) | number;
-  initialValues?: Record<string, number>;
+  initialValues?: Record<string, Record<string, number>>;
   keyMapper?: (rowIndex: number) => string;
 }
 
 const defaultKeyMapper = (rowIndex: number) => `${rowIndex}`;
 
 export class RowMeasurementCache {
-  private readonly cache: Map<string, number>;
-  private readonly options: RowMeasurementCacheParams;
+  private readonly cache: Map<string, Record<string, number>>;
   private readonly keyMapper: (rowIndex: number) => string;
-  private readonly handlers: Function[] = [];
 
-  constructor(options: RowMeasurementCacheParams) {
-    this.options = options;
-
+  constructor(
+    private options: RowMeasurementOptions,
+    private gridRef: RefObject<Grid>
+  ) {
     this.cache = new Map(
       options.initialValues ? Object.entries(options.initialValues) : undefined
     );
@@ -43,17 +44,20 @@ export class RowMeasurementCache {
     this.keyMapper = this.options.keyMapper ?? defaultKeyMapper;
   }
 
-  subscribe(handler: Function) {
-    this.handlers.push(handler);
+  get initialRowHeight() {
+    return INITIAL_ROW_HEIGHT;
   }
 
-  set(rowIndex: number, height: number) {
+  set(rowIndex: number, columnId: string, height: number) {
     const key = this.keyMapper(rowIndex);
-    if (this.cache.get(key) !== height) {
-      // we can have several cells in one row and we should cache max height
-      this.cache.set(key, Math.max(height, this.cache.get(key) || 0));
-      this.handlers.forEach((handler) => handler(0));
+    const values = this.cache.get(key) ?? {};
+
+    if (values[columnId] !== height) {
+      values[columnId] = height;
+      this.cache.set(key, values);
     }
+
+    this.resetGrid(rowIndex);
   }
 
   getRowHeight(rowIndex: number) {
@@ -62,14 +66,14 @@ export class RowMeasurementCache {
     if (this.cache.has(key)) {
       const value = this.cache.get(key);
 
-      if (value) {
-        return value;
-      }
+      return value
+        ? Math.max(...Object.values(value))
+        : this.options.defaultHeight;
     }
 
     return typeof this.options.defaultHeight === 'function'
       ? this.options.defaultHeight(rowIndex)
-      : this.options.defaultHeight;
+      : this.options.defaultHeight ?? this.initialRowHeight;
   }
 
   clear(rowIndex: number) {
@@ -79,10 +83,19 @@ export class RowMeasurementCache {
   clearAll() {
     this.cache.clear();
   }
+
+  private resetGrid(rowIndex: number = 0) {
+    if (this.gridRef?.current) {
+      this.gridRef?.current.resetAfterRowIndex(rowIndex);
+    }
+  }
 }
 
-export const useRowMeasurementCache = (options: RowMeasurementCacheParams) => {
-  const [cache] = useState(() => new RowMeasurementCache(options));
+export const useRowMeasurementCache = (
+  options: RowMeasurementOptions,
+  gridRef: RefObject<Grid>
+) => {
+  const [cache] = useState(() => new RowMeasurementCache(options, gridRef));
 
   return cache;
 };

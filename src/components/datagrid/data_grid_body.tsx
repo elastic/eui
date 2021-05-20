@@ -65,7 +65,10 @@ import {
   DataGridWrapperRowsContext,
 } from './data_grid_context';
 import { useResizeObserver } from '../observer/resize_observer';
-import type { RowMeasurementCache } from './data_grid_row_measurement_cache';
+import {
+  useRowMeasurementCache,
+  RowMeasurementOptions,
+} from './data_grid_row_measurement_cache';
 
 export interface EuiDataGridBodyProps {
   isFullScreen: boolean;
@@ -90,7 +93,7 @@ export interface EuiDataGridBodyProps {
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
   toolbarHeight: number;
-  rowMeasurementCache?: RowMeasurementCache;
+  rowMeasurementOptions: RowMeasurementOptions;
 }
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
@@ -229,6 +232,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         visibleRowIndex={visibleRowIndex}
         colIndex={columnIndex}
         columnId={id}
+        setRowHeight={setRowHeight}
         popoverContent={DefaultColumnFormatter}
         width={trailingColumn.width}
         renderCellValue={rowCellRender}
@@ -263,6 +267,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         columnId={columnId}
         column={column}
         columnType={columnType}
+        setRowHeight={setRowHeight}
         popoverContent={popoverContent}
         width={width || undefined}
         renderCellValue={renderCellValue}
@@ -305,7 +310,6 @@ const InnerElement: VariableSizeGridProps['innerElementType'] = forwardRef<
 });
 InnerElement.displayName = 'EuiDataGridInnerElement';
 
-const INITIAL_ROW_HEIGHT = 34;
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
 
 export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
@@ -334,7 +338,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     setVisibleColumns,
     switchColumnPos,
     toolbarHeight,
-    rowMeasurementCache,
+    rowMeasurementOptions,
   } = props;
 
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
@@ -492,9 +496,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   useEffect(() => {
     if (gridRef.current) {
       gridRef.current.resetAfterColumnIndex(0);
-      //todo
-
-      gridRef.current.resetAfterRowIndex(0, false);
     }
   }, [columns, columnWidths, defaultColumnWidth]);
 
@@ -525,26 +526,28 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     ]
   );
 
-  const [rowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
+  const rowMeasurementCache = useRowMeasurementCache(rowMeasurementOptions, gridRef);
+  const [rowHeight] = useState(rowMeasurementCache.initialRowHeight);
 
-  const getRowHeight = useCallback(
-    (rowIndex) => {
-      if (rowMeasurementCache) {
-        const cachedValue = rowMeasurementCache.getRowHeight(rowIndex);
-
-        if (cachedValue) {
-          return cachedValue;
-        }
-      }
-      return rowHeight;
+  const setRowHeight = useCallback(
+    (rowIndex: number, columnId: string, height: number) => {
+      rowMeasurementCache.set(rowIndex, columnId, height);
     },
     [rowHeight, rowMeasurementCache]
   );
 
-  useEffect(() => {
-    if (gridRef.current && rowMeasurementCache)
-      rowMeasurementCache.subscribe(gridRef.current.resetAfterRowIndex);
-  }, [rowMeasurementCache]);
+  const getRowHeight = useCallback(
+    (rowIndex) => {
+      const cachedValue = rowMeasurementCache.getRowHeight(rowIndex);
+
+      if (cachedValue) {
+        return cachedValue;
+      }
+
+      return rowHeight;
+    },
+    [rowHeight, rowMeasurementCache]
+  );
 
   useEffect(() => {
     if (gridRef.current) {

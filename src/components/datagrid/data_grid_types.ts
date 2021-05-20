@@ -61,7 +61,7 @@ export interface EuiDataGridColumn {
   /**
    * todo
    */
-  isTruncated?: boolean;
+  hasDynamicHeight?: boolean;
   /**
    * Whether this column's width can be changed by the user, defaults to true
    */

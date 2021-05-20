@@ -90,7 +90,7 @@ export interface EuiDataGridCellProps {
   renderCellValue:
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
-  setRowHeight?: (height: number) => void;
+  setRowHeight?: (rowIndex: number, columnId: string, height: number) => void;
   style?: React.CSSProperties;
 }
 
@@ -124,6 +124,8 @@ const EuiDataGridCellContent: FunctionComponent<
     ...rest
   } = props;
 
+  console.log(props);
+
   // React is more permissible than the TS types indicate
   const CellElement = renderCellValue as JSXElementConstructor<
     EuiDataGridCellValueElementProps
@@ -131,14 +133,19 @@ const EuiDataGridCellContent: FunctionComponent<
 
   return (
     <div
-      ref={setCellContentsRef}
       className={
-        column?.isTruncated ?? true
-          ? 'euiDataGridRowCell__truncate'
-          : 'euiDataGridRowCell__dynamic'
+        column?.hasDynamicHeight
+          ? 'euiDataGridRowCell__dynamic'
+          : 'euiDataGridRowCell__truncate'
       }>
-      <CellElement isDetails={false} data-test-subj="cell-content" {...rest} />
-      {screenReaderPosition}
+      <div ref={setCellContentsRef}>
+        <CellElement
+          isDetails={false}
+          data-test-subj="cell-content"
+          {...rest}
+        />
+        {screenReaderPosition}
+      </div>
     </div>
   );
 });
@@ -175,13 +182,21 @@ export class EuiDataGridCell extends Component<
     this.cellRef.current = ref;
 
     // watch the first cell for size changes and use that to re-compute row heights
-    if (this.props.colIndex === 0 && this.props.visibleRowIndex === 0) {
+    if (
+      this.props.column?.hasDynamicHeight ||
+      (this.props.colIndex === 0 && this.props.visibleRowIndex === 0)
+    ) {
       if (ref && hasResizeObserver) {
         this.observer = new (window as any).ResizeObserver(() => {
-          const rowHeight = this.cellRef.current!.getBoundingClientRect()
+          const rowHeight = this.cellContentsRef?.getBoundingClientRect()
             .height;
-          if (this.props.setRowHeight) {
-            this.props.setRowHeight(rowHeight);
+
+          if (rowHeight && this.props.setRowHeight) {
+            this.props.setRowHeight(
+              this.props.rowIndex,
+              this.props.column?.id ?? '0',
+              rowHeight
+            );
           }
         });
         this.observer.observe(ref);

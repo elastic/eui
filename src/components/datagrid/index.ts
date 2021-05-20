@@ -19,7 +19,6 @@
 
 export { EuiDataGridColumnSortingDraggableProps } from './column_sorting_draggable';
 export { EuiDataGrid, EuiDataGridProps } from './data_grid';
-export { EuiDataGridCellMeasure } from './data_grid_cell_measure';
 export { EuiDataGridBodyProps } from './data_grid_body';
 export {
   EuiDataGridCellProps,

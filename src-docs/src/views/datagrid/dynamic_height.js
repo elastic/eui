@@ -9,10 +9,6 @@ import React, {
 import { fake } from 'faker';
 
 import { EuiDataGrid, EuiText } from '../../../../src/components/';
-import {
-  useRowMeasurementCache,
-  EuiDataGridCellMeasure,
-} from '../../../../src/components/datagrid';
 
 const DataContext = createContext();
 
@@ -24,8 +20,7 @@ const columns = [
   },
   {
     id: 'text',
-    isTruncated: false,
-    isExpandable: false,
+    hasDynamicHeight: true,
   },
 ];
 
@@ -34,13 +29,7 @@ const columns = [
 const raw_data = [];
 
 function RenderCellValue({ rowIndex, columnId }) {
-  const { data, adjustMountedCellCount, rowMeasurementCache } = useContext(
-    DataContext
-  );
-
-  const isDynamicHeight = columns.find(
-    (item) => item.id === columnId && item.isTruncated === false
-  );
+  const { data, adjustMountedCellCount } = useContext(DataContext);
 
   useEffect(() => {
     adjustMountedCellCount(1);
@@ -54,27 +43,12 @@ function RenderCellValue({ rowIndex, columnId }) {
     };
   }
 
-  return isDynamicHeight ? (
-    <EuiDataGridCellMeasure
-      rowMeasurementCache={rowMeasurementCache}
-      rowIndex={rowIndex}
-      columnId={columnId}>
-      {data[rowIndex][columnId]}
-    </EuiDataGridCellMeasure>
-  ) : (
-    data[rowIndex][columnId]
-  );
+  return data[rowIndex][columnId];
 }
 
 export default () => {
   // ** Pagination config
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
-  const rowMeasurementCache = useRowMeasurementCache({
-    defaultHeight: 10,
-    initialValues: {
-      '1': 200,
-    },
-  });
 
   const onChangeItemsPerPage = useCallback(
     (pageSize) =>
@@ -102,13 +76,12 @@ export default () => {
   const dataContext = useMemo(
     () => ({
       data: raw_data,
-      rowMeasurementCache,
       adjustMountedCellCount: (adjustment) =>
         setMountedCellCount(
           (mountedCellCount) => mountedCellCount + adjustment
         ),
     }),
-    [rowMeasurementCache]
+    []
   );
 
   const grid = (
@@ -119,7 +92,9 @@ export default () => {
       rowCount={10000}
       height={400}
       renderCellValue={RenderCellValue}
-      rowMeasurementCache={rowMeasurementCache}
+      rowMeasurementOptions={{
+        defaultHeight: 10,
+      }}
       pagination={{
         ...pagination,
         pageSizeOptions: [50, 250, 1000],

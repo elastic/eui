@@ -78,7 +78,7 @@ import {
   DataGridSortingContext,
 } from './data_grid_context';
 import { useDataGridColumnSorting } from './column_sorting';
-import type { RowMeasurementCache } from './data_grid_row_measurement_cache';
+import { RowMeasurementOptions } from './data_grid_row_measurement_cache';
 
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
@@ -167,7 +167,7 @@ type CommonGridProps = CommonProps &
     /**
      * Todo
      */
-    rowMeasurementCache?: RowMeasurementCache;
+    rowMeasurementOptions?: RowMeasurementOptions;
   };
 
 // Force either aria-label or aria-labelledby to be defined
@@ -697,7 +697,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     minSizeForControls = MINIMUM_WIDTH_FOR_GRID_CONTROLS,
     height,
     width,
-    rowMeasurementCache,
+    rowMeasurementOptions = {},
     ...rest
   } = props;
 
@@ -706,7 +706,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
   const [interactiveCellId] = useState(htmlIdGenerator()());
   const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
-
   const cellsUpdateFocus = useRef<Map<string, Function>>(new Map());
 
   const [wrappingDivFocusProps, focusedCell, setFocusedCell] = useFocus(
@@ -1134,7 +1133,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                         renderFooterCellValue={renderFooterCellValue}
                         rowCount={rowCount}
                         interactiveCellId={interactiveCellId}
-                        rowMeasurementCache={rowMeasurementCache}
+                        rowMeasurementOptions={rowMeasurementOptions}
                       />
                     </div>
                   </div>
