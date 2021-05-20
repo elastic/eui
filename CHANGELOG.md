@@ -2,6 +2,7 @@
 
 - Updated `max` and  `min` label positioning for `EuiRange` and `EuiDualRange` ([#4781](https://github.com/elastic/eui/pull/4781))
 - Added `timeslider`, `playFilled`, `frameNext` and `framePrevious` glyphs to `EuiIcon` ([#4810](https://github.com/elastic/eui/pull/4810))
+- Added default generic value for `EuiSideNavProps` ([#4802](https://github.com/elastic/eui/pull/4802))
 
 **Bug fixes**
 

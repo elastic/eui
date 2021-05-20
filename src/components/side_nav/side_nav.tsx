@@ -26,7 +26,7 @@ import { EuiSideNavItem, RenderItem } from './side_nav_item';
 import { EuiSideNavItemType } from './side_nav_types';
 import { EuiButtonEmpty } from '../button';
 
-export type EuiSideNavProps<T> = T &
+export type EuiSideNavProps<T = {}> = T &
   CommonProps & {
     /**
      * `children` are not rendered. Use `items` to specify navigation items instead.
