@@ -9,7 +9,10 @@ import React, {
 import { fake } from 'faker';
 
 import { EuiDataGrid, EuiText } from '../../../../src/components/';
-import { useRowMeasurementCache } from '../../../../src/components/datagrid';
+import {
+  useRowMeasurementCache,
+  EuiDataGridCellMeasure,
+} from '../../../../src/components/datagrid';
 
 const DataContext = createContext();
 
@@ -31,8 +34,6 @@ const columns = [
 const raw_data = [];
 
 function RenderCellValue({ rowIndex, columnId }) {
-  const myRef = React.createRef();
-
   const { data, adjustMountedCellCount, rowMeasurementCache } = useContext(
     DataContext
   );
@@ -42,16 +43,9 @@ function RenderCellValue({ rowIndex, columnId }) {
   );
 
   useEffect(() => {
-    if (myRef.current) {
-      const { height } = myRef.current.getBoundingClientRect();
-
-      if (height) {
-        rowMeasurementCache.set(rowIndex.toString(), height + 10);
-      }
-    }
-
+    adjustMountedCellCount(1);
     return () => adjustMountedCellCount(-1);
-  }, [adjustMountedCellCount, rowMeasurementCache, rowIndex, myRef]);
+  }, [adjustMountedCellCount]);
 
   if (data[rowIndex] == null) {
     data[rowIndex] = {
@@ -61,7 +55,12 @@ function RenderCellValue({ rowIndex, columnId }) {
   }
 
   return isDynamicHeight ? (
-    <div ref={myRef}>{data[rowIndex][columnId]}</div>
+    <EuiDataGridCellMeasure
+      rowMeasurementCache={rowMeasurementCache}
+      rowIndex={rowIndex}
+      columnId={columnId}>
+      {data[rowIndex][columnId]}
+    </EuiDataGridCellMeasure>
   ) : (
     data[rowIndex][columnId]
   );
@@ -118,6 +117,7 @@ export default () => {
       columns={columns}
       columnVisibility={{ visibleColumns, setVisibleColumns }}
       rowCount={10000}
+      height={400}
       renderCellValue={RenderCellValue}
       rowMeasurementCache={rowMeasurementCache}
       pagination={{

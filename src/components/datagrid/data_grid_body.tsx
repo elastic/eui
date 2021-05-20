@@ -542,7 +542,14 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   );
 
   useEffect(() => {
-    if (gridRef.current) gridRef.current.resetAfterRowIndex(0);
+    if (gridRef.current && rowMeasurementCache)
+      rowMeasurementCache.subscribe(gridRef.current.resetAfterRowIndex);
+  }, [rowMeasurementCache]);
+
+  useEffect(() => {
+    if (gridRef.current) {
+      gridRef.current.resetAfterRowIndex(0);
+    }
   }, [getRowHeight]);
 
   const rowCountToAffordFor = pagination

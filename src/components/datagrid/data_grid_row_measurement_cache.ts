@@ -31,6 +31,7 @@ export class RowMeasurementCache {
   private readonly cache: Map<string, number>;
   private readonly options: RowMeasurementCacheParams;
   private readonly keyMapper: (rowIndex: number) => string;
+  private readonly handlers: Function[] = [];
 
   constructor(options: RowMeasurementCacheParams) {
     this.options = options;
@@ -42,8 +43,17 @@ export class RowMeasurementCache {
     this.keyMapper = this.options.keyMapper ?? defaultKeyMapper;
   }
 
+  subscribe(handler: Function) {
+    this.handlers.push(handler);
+  }
+
   set(rowIndex: number, height: number) {
-    this.cache.set(this.keyMapper(rowIndex), height);
+    const key = this.keyMapper(rowIndex);
+    if (this.cache.get(key) !== height) {
+      // we can have several cells in one row and we should cache max height
+      this.cache.set(key, Math.max(height, this.cache.get(key) || 0));
+      this.handlers.forEach((handler) => handler(0));
+    }
   }
 
   getRowHeight(rowIndex: number) {
