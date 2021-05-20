@@ -110,7 +110,7 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
         data-autofocus="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 999;"
         tabindex="0"
       >
         <div
@@ -168,7 +168,7 @@ exports[`EuiPopover props buffer 1`] = `
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
         data-autofocus="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 999;"
         tabindex="0"
       >
         <div
@@ -224,7 +224,7 @@ exports[`EuiPopover props buffer for all sides 1`] = `
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
         data-autofocus="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 999;"
         tabindex="0"
       >
         <div
@@ -293,7 +293,7 @@ exports[`EuiPopover props focusTrapProps is rendered 1`] = `
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
         data-autofocus="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 999;"
         tabindex="0"
       >
         <div
@@ -362,7 +362,7 @@ exports[`EuiPopover props isOpen renders true 1`] = `
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
         data-autofocus="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 999;"
         tabindex="0"
       >
         <div
@@ -419,7 +419,7 @@ exports[`EuiPopover props offset with arrow 1`] = `
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
         data-autofocus="true"
         role="dialog"
-        style="top: 26px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 26px; left: -22px; will-change: transform, opacity; z-index: 999;"
         tabindex="0"
       >
         <div
@@ -476,7 +476,7 @@ exports[`EuiPopover props offset without arrow 1`] = `
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen euiPopover__panel-noArrow"
         data-autofocus="true"
         role="dialog"
-        style="top: 18px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 18px; left: -22px; will-change: transform, opacity; z-index: 999;"
         tabindex="0"
       >
         <div
@@ -531,7 +531,7 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
         data-autofocus="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 999;"
         tabindex="0"
       >
         <div
@@ -585,7 +585,7 @@ exports[`EuiPopover props ownFocus renders false 1`] = `
         aria-modal="true"
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 999;"
       >
         <div
           class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
@@ -634,7 +634,7 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
         class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen test"
         data-autofocus="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 999;"
         tabindex="0"
       >
         <div
@@ -690,7 +690,7 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
         class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
         data-autofocus="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 999;"
         tabindex="0"
       >
         <div
@@ -747,7 +747,7 @@ exports[`EuiPopover props panelProps is rendered 1`] = `
         data-autofocus="true"
         data-test-subj="test subject string"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 999;"
         tabindex="0"
       >
         <div
