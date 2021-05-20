@@ -1,0 +1,56 @@
+// This file uses RGBA literal values responsibly
+// This file uses off-pattern indentation to be more readable
+
+// sass-lint:disable no-color-literals, no-color-keywords, indentation, quotes
+
+// Depth 4: tiles
+@mixin euiSlightShadow($color: $euiShadowColor, $opacity: .1) {
+  box-shadow:
+    0 2px 6px -2px rgba($color, .13),
+    0 1px 1px rgba($color, .1);
+}
+
+// Depth 8: hover, dropdown, panel, toggle
+@mixin euiBottomShadowSmall($color: $euiShadowColor, $opacity: .1) {
+  box-shadow:
+    0 4px 8px -1px rgba($color, .13),
+    0 1px 1px rgba($color, .1);
+}
+
+// Depth 16: tooltips
+@mixin euiBottomShadowMedium($color: $euiShadowColor, $opacity: .1) {
+  box-shadow:
+    0 1px 1px rgba($color, .1),
+    0 6px 7px -1px rgba($color, .15),
+}
+
+// Depth 32: pop up dialogs
+@mixin euiBottomShadow($color: $euiShadowColorLarge, $opacity: .1, $adjustBorders: false) {
+  box-shadow:
+    0 8px 24px rgba($color, .13),
+    0 4px 14px rgba($color, .1),
+}
+
+// Depth 64
+@mixin euiBottomShadowLarge(
+  $color: $euiShadowColorLarge,
+  $opacity: .1,
+  $adjustBorders: false,
+  $reverse: false
+) {
+  @if ($reverse) {
+    box-shadow:
+      0 -24px 60px rgba($color, .18),
+      0 -4px 14px rgba($color, $opacity),
+  } @else {
+    box-shadow:
+      0 24px 60px rgba($color, .18),
+      0 4px 14px rgba($color, .1),
+  }
+}
+
+@mixin euiSlightShadowHover($color: $euiShadowColor, $opacity: .3) {
+  box-shadow:
+    0 4px 8px 0 rgba($color, $opacity/2),
+    0 2px 2px -1px rgba($color, $opacity);
+}
