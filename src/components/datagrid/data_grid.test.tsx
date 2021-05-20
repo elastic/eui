@@ -2300,7 +2300,7 @@ describe('EuiDataGrid', () => {
       ).toEqual('6, C');
     });
 
-    it('does not break arrow key focus control behavior when also using a mouse', () => {
+    it('does not break arrow key focus control behavior when also using a mouse', async () => {
       const component = mount(
         <EuiDataGrid
           {...requiredProps}
@@ -2333,6 +2333,12 @@ describe('EuiDataGrid', () => {
       ).toEqual('0, A');
 
       findTestSubject(component, 'dataGridRowCell').at(3).simulate('focus');
+
+      // wait for a tick to give focus logic time to run
+      await act(async () => {
+        await new Promise((r) => setTimeout(r, 0));
+      });
+      component.update();
 
       focusableCell = getFocusableCell(component);
       expect(focusableCell.length).toEqual(1);

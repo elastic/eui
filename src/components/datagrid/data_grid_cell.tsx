@@ -152,6 +152,7 @@ export class EuiDataGridCell extends Component<
     disableCellTabIndex: false,
   };
   unsubscribeCell?: Function = () => {};
+  focusTimeout: number | undefined;
   style = null;
 
   setCellRef = (ref: HTMLDivElement | null) => {
@@ -227,6 +228,7 @@ export class EuiDataGridCell extends Component<
   };
 
   componentWillUnmount() {
+    window.clearTimeout(this.focusTimeout);
     if (this.unsubscribeCell) {
       this.unsubscribeCell();
     }
@@ -286,7 +288,8 @@ export class EuiDataGridCell extends Component<
     //      event up, which can trigger the focus() call below, causing focus lock fighting
     if (this.cellRef.current === e.target) {
       const { colIndex, visibleRowIndex, isExpandable } = this.props;
-      setTimeout(() => {
+      // focus in next tick to give potential focus capturing mechanisms time to release their traps
+      this.focusTimeout = window.setTimeout(() => {
         this.context.setFocusedCell([colIndex, visibleRowIndex]);
 
         const interactables = this.getInteractables();
