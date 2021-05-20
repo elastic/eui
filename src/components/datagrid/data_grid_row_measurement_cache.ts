@@ -52,23 +52,30 @@ export class RowMeasurementCache {
     const key = this.keyMapper(rowIndex);
     const values = this.cache.get(key) ?? {};
 
+    const currentRowHeight = this.getRowHeight(rowIndex);
+
     if (values[columnId] !== height) {
       values[columnId] = height;
       this.cache.set(key, values);
-    }
 
-    this.resetGrid(rowIndex);
+      const newRowHeight = this.getRowHeight(rowIndex);
+
+      if (currentRowHeight !== newRowHeight) {
+        this.resetGrid();
+      }
+    }
   }
 
   getRowHeight(rowIndex: number) {
     const key = this.keyMapper(rowIndex);
 
     if (this.cache.has(key)) {
-      const value = this.cache.get(key);
+      const rowData = this.cache.get(key) ?? {};
+      const values = Object.values(rowData);
 
-      return value
-        ? Math.max(...Object.values(value))
-        : this.options.defaultHeight;
+      if (values.length) {
+        return Math.max(...values);
+      }
     }
 
     return typeof this.options.defaultHeight === 'function'
@@ -84,11 +91,11 @@ export class RowMeasurementCache {
     this.cache.clear();
   }
 
-  private resetGrid(rowIndex: number = 0) {
+  private resetGrid = (rowIndex: number = 0) => {
     if (this.gridRef?.current) {
-      this.gridRef?.current.resetAfterRowIndex(rowIndex);
+      this.gridRef?.current.resetAfterRowIndex(rowIndex, false);
     }
-  }
+  };
 }
 
 export const useRowMeasurementCache = (

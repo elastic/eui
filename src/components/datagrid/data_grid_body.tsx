@@ -526,27 +526,30 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     ]
   );
 
-  const rowMeasurementCache = useRowMeasurementCache(rowMeasurementOptions, gridRef);
-  const [rowHeight] = useState(rowMeasurementCache.initialRowHeight);
+  const rowMeasurementCache = useRowMeasurementCache(
+    {
+      ...rowMeasurementOptions,
+      keyMapper: (rowIndex) => {
+        const rowMap = gridRef.current?.props.itemData.rowMap || {};
+
+        return `${rowMap[rowIndex] ? rowMap[rowIndex] : rowIndex}`;
+      },
+    },
+    gridRef
+  );
 
   const setRowHeight = useCallback(
     (rowIndex: number, columnId: string, height: number) => {
       rowMeasurementCache.set(rowIndex, columnId, height);
     },
-    [rowHeight, rowMeasurementCache]
+    [rowMeasurementCache]
   );
 
   const getRowHeight = useCallback(
     (rowIndex) => {
-      const cachedValue = rowMeasurementCache.getRowHeight(rowIndex);
-
-      if (cachedValue) {
-        return cachedValue;
-      }
-
-      return rowHeight;
+      return rowMeasurementCache.getRowHeight(rowIndex);
     },
-    [rowHeight, rowMeasurementCache]
+    [rowMeasurementCache]
   );
 
   useEffect(() => {
@@ -558,8 +561,11 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const rowCountToAffordFor = pagination
     ? pagination.pageSize
     : visibleRowIndices.length;
+
   const unconstrainedHeight =
-    rowHeight * rowCountToAffordFor + headerRowHeight + footerRowHeight;
+    rowMeasurementCache.initialRowHeight * rowCountToAffordFor +
+    headerRowHeight +
+    footerRowHeight;
 
   // unable to determine this until the container's size is known anyway
   const unconstrainedWidth = 0;
