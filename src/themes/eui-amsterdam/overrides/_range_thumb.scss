@@ -5,7 +5,7 @@
   z-index: 2; // higher than .euiRangeHighlight that is 1
 
   &--hasTicks {
-    top: 2px;
+    top: 0;
     margin-top: 0;
   }
 }

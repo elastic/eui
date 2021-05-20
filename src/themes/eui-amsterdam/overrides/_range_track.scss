@@ -1,9 +1,3 @@
-.euiRangeTrack--hasLevels {
-  .euiRangeTicks .euiRangeTick::before {
-    top: 11px;
-  }
-}
-
 .euiRangeTrack {
   &::after {
     content: '';
@@ -24,12 +18,34 @@
   }
 
   &--compressed {
+    &.euiRangeTrack--hasLevels {
+      .euiRangeTicks {
+        height: $euiRangeThumbHeight + ($euiRangeTrackCompressedHeight / 2);
+        top: $euiRangeThumbHeight;
+      }
+
+      .euiRangeTick {
+        padding-top: $euiRangeTrackCompressedHeight;
+      }
+    }
+
+    &:not(.euiRangeTrack--hasLevels) {
+      .euiRangeTicks {
+        height: $euiRangeTrackCompressedHeight + $euiRangeThumbHeight;
+        top: $euiRangeTrackHeight * 2;
+      }
+
+      .euiRangeTick {
+        padding-top: $euiSizeM / 2;
+      }
+    }
+
     &.euiRangeTrack--hasTicks::after {
-      top: 6px;
+      top: ($euiRangeThumbHeight - $euiRangeTrackCompressedHeight) / 2;
     }
 
     &:not(.euiRangeTrack--hasTicks)::after {
-      top: 18px;
+      top: calc(50% - #{($euiRangeTrackCompressedHeight/2)});
     }
 
     .euiRangeThumb--hasTicks {
@@ -38,14 +54,34 @@
   }
 
   &:not(.euiRangeTrack--compressed) {
+    &.euiRangeTrack--hasLevels {
+      .euiRangeTicks {
+        height: $euiRangeThumbHeight + ($euiRangeThumbHeight / 4);
+        top: $euiRangeThumbHeight + ($euiRangeThumbHeight / 4);
+      }
+
+      .euiRangeTick {
+        padding-top: $euiRangeTrackHeight;
+      }
+    }
+
+    &:not(.euiRangeTrack--hasLevels) {
+      .euiRangeTicks {
+        height: $euiRangeHeight - $euiRangeThumbHeight;
+        top: $euiRangeThumbHeight;
+      }
+
+      .euiRangeTick {
+        padding-top: $euiRangeTrackHeight * 2;
+      }
+    }
+
     &.euiRangeTrack--hasTicks::after {
-      top: 7px;
+      top: ($euiRangeThumbHeight - $euiRangeTrackHeight) / 2;
     }
 
     &:not(.euiRangeTrack--hasTicks)::after {
-      top: 17px;
+      top: calc(50% - #{($euiRangeTrackHeight/2)});
     }
   }
-
-
 }

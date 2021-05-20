@@ -14,4 +14,8 @@
 
   // z-index higher than .euiRangeHighlight that is 1
   z-index: 2;
+
+  &--hasTicks {
+    height: $euiRangeThumbHeight;
+  }
 }

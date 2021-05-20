@@ -1,27 +1,25 @@
-.euiRangeTicks:not(.euiRangeTicks--compressed) {
-  top: 10px;
+.euiRangeTicks {
+  top: 0;
+}
 
+.euiRangeTicks:not(.euiRangeTicks--compressed) {
   .euiRangeTick {
-    padding-top: 18px;
+    padding-top: 0;
   }
 
   .euiRangeTick::before {
     width: $euiSizeXS;
     height: $euiSizeM / 2;
-    top: 8px;
   }
 }
 
 .euiRangeTicks--compressed {
-  top: $euiSizeS - 2px;
-
   .euiRangeTick {
     padding-top: $euiSize - 2px;
 
     &::before {
       background-color: $euiColorLightShade;
       border-radius: $euiBorderRadiusSmall;
-      top: 8px;
     }
   }
 }

@@ -32,6 +32,7 @@ export default () => {
         max={200}
         value={value}
         onChange={onChange}
+        compressed
         showLabels
         showValue
         aria-label="An example of EuiRange with showValue prop"
@@ -45,6 +46,22 @@ export default () => {
         max={200}
         value={value}
         onChange={onChange}
+        showLabels
+        showRange
+        showValue
+        valuePrepend="100 - "
+        aria-label="An example of EuiRange with valuePrepend prop"
+      />
+
+      <EuiSpacer size="xl" />
+
+      <EuiRange
+        id={htmlIdGenerator()()}
+        min={100}
+        max={200}
+        value={value}
+        onChange={onChange}
+        compressed
         showLabels
         showRange
         showValue

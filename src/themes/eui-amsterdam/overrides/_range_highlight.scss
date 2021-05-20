@@ -11,15 +11,22 @@
     }
   }
 
+
   &--compressed {
-    top: $euiRangeHighlightHeight;
+    top: calc(50% - #{($euiRangeTrackCompressedHeight/2)});
 
     .euiRangeHighlight__progress {
       height: $euiRangeHighlightCompressedHeight;
     }
+
+    &.euiRangeHighlight--hasTicks {
+      top: ($euiRangeThumbHeight - $euiRangeTrackCompressedHeight) / 2;
+    }
   }
 
-  &--hasTicks.euiRangeHighlight--compressed {
-    top: $euiRangeHighlightHeight;
+  &:not(.euiRangeHighlight--compressed) {
+    &.euiRangeHighlight--hasTicks {
+      top: ($euiRangeThumbHeight - $euiRangeTrackHeight) / 2;
+    }
   }
 }

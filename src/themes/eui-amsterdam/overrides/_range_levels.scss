@@ -1,4 +1,9 @@
 .euiRangeLevels {
+  .euiRangeLevel {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
   .euiRangeLevel:first-child {
     margin-left: 0;
   }
@@ -8,18 +13,12 @@
   }
 
   &--compressed {
-    top: 9px;
-
     .euiRangeLevel {
       height: $euiRangeTrackCompressedHeight;
-
-      &::before {
-        top: 10px;
-      }
     }
 
     &.euiRangeLevels--hasTicks {
-      top: 9px;
+      top: $euiRangeThumbHeight - ($euiRangeTrackCompressedHeight + 1);
     }
 
     .euiRangeThumb--hasTicks {
@@ -27,7 +26,7 @@
     }
   }
 
-  &--hasTicks {
-    top: 12px;
+  &:not(.euiRangeLevels--compressed) {
+    top: $euiRangeThumbHeight - ($euiRangeTrackHeight / 2);
   }
 }
