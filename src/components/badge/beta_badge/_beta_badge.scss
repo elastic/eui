@@ -28,10 +28,6 @@
     padding: 0 $euiSizeM;
   }
 
-  &.euiBetaBadge-isClickable {
-    color: inherit;
-  }
-
 }
 
 // When it's just an icon, make it a circle
@@ -66,6 +62,13 @@
   color: chooseLightOrDarkText($backgroundColor, $euiColorGhost, $euiColorInk);
 
   &.euiBetaBadge-isClickable {
+    color: chooseLightOrDarkText($backgroundColor, $euiColorGhost, $euiColorInk);
+  }
+}
+
+.euiBetaBadge--hollow {
+  &.euiBetaBadge-isClickable {
+    $backgroundColor: tint($euiColorLightShade, 30%);
     color: chooseLightOrDarkText($backgroundColor, $euiColorGhost, $euiColorInk);
   }
 }
