@@ -18,6 +18,7 @@
  */
 import { useState, RefObject } from 'react';
 import type { VariableSizeGrid as Grid } from 'react-window';
+import { EuiDataGridPaginationProps } from './data_grid_types';
 
 const INITIAL_ROW_HEIGHT = 34;
 
@@ -32,6 +33,7 @@ const defaultKeyMapper = (rowIndex: number) => `${rowIndex}`;
 export class RowMeasurementCache {
   private readonly cache: Map<string, Record<string, number>>;
   private readonly keyMapper: (rowIndex: number) => string;
+  private lastMeasuredRowIndex?: number;
 
   constructor(
     private options: RowMeasurementOptions,
@@ -51,23 +53,21 @@ export class RowMeasurementCache {
   set(rowIndex: number, columnId: string, height: number) {
     const key = this.keyMapper(rowIndex);
     const values = this.cache.get(key) ?? {};
-
-    const currentRowHeight = this.getRowHeight(rowIndex);
+    
+    if (this.lastMeasuredRowIndex !== rowIndex) {
+      this.resetGrid();
+      this.lastMeasuredRowIndex = rowIndex;
+    }
 
     if (values[columnId] !== height) {
       values[columnId] = height;
+      console.log('setRowHeight', rowIndex)
       this.cache.set(key, values);
-
-      const newRowHeight = this.getRowHeight(rowIndex);
-
-      if (currentRowHeight !== newRowHeight) {
-        this.resetGrid();
-      }
     }
   }
 
-  getRowHeight(rowIndex: number) {
-    const key = this.keyMapper(rowIndex);
+  getRowHeight(rowIndex: number, pagination?: EuiDataGridPaginationProps) {
+    const key = this.keyMapper(rowIndex + (pagination ? pagination.pageSize * pagination.pageIndex : 0));
 
     if (this.cache.has(key)) {
       const rowData = this.cache.get(key) ?? {};
@@ -91,8 +91,9 @@ export class RowMeasurementCache {
     this.cache.clear();
   }
 
-  private resetGrid = (rowIndex: number = 0) => {
+  public resetGrid = (rowIndex: number = 0) => {
     if (this.gridRef?.current) {
+      console.log('resetAfterRowIndex');
       this.gridRef?.current.resetAfterRowIndex(rowIndex, false);
     }
   };

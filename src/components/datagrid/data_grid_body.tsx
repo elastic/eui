@@ -547,9 +547,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 
   const getRowHeight = useCallback(
     (rowIndex) => {
-      return rowMeasurementCache.getRowHeight(rowIndex);
+      return rowMeasurementCache.getRowHeight(rowIndex, pagination);
     },
-    [rowMeasurementCache]
+    [rowMeasurementCache, pagination]
   );
 
   useEffect(() => {

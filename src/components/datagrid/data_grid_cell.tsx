@@ -124,8 +124,6 @@ const EuiDataGridCellContent: FunctionComponent<
     ...rest
   } = props;
 
-  console.log(props);
-
   // React is more permissible than the TS types indicate
   const CellElement = renderCellValue as JSXElementConstructor<
     EuiDataGridCellValueElementProps
@@ -178,6 +176,19 @@ export class EuiDataGridCell extends Component<
   unsubscribeCell?: Function = () => {};
   style = null;
 
+  calculateHeight = () => {
+    const rowHeight = this.cellContentsRef?.getBoundingClientRect()
+      .height;
+
+    if (rowHeight && this.props.setRowHeight) {
+      this.props.setRowHeight(
+        this.props.rowIndex,
+        this.props.column?.id ?? '0',
+        rowHeight
+      );
+    }
+  }
+
   setCellRef = (ref: HTMLDivElement | null) => {
     this.cellRef.current = ref;
 
@@ -188,16 +199,7 @@ export class EuiDataGridCell extends Component<
     ) {
       if (ref && hasResizeObserver) {
         this.observer = new (window as any).ResizeObserver(() => {
-          const rowHeight = this.cellContentsRef?.getBoundingClientRect()
-            .height;
-
-          if (rowHeight && this.props.setRowHeight) {
-            this.props.setRowHeight(
-              this.props.rowIndex,
-              this.props.column?.id ?? '0',
-              rowHeight
-            );
-          }
+          this.calculateHeight();
         });
         this.observer.observe(ref);
       } else if (this.observer) {
@@ -248,6 +250,12 @@ export class EuiDataGridCell extends Component<
       [this.props.colIndex, this.props.visibleRowIndex],
       this.onFocusUpdate
     );
+  }
+
+  componentDidUpdate() {
+    if (this.cellContentsRef) {
+      this.calculateHeight();
+    }
   }
 
   onFocusUpdate = (isFocused: boolean) => {
