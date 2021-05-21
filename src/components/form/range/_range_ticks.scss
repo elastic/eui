@@ -1,7 +1,7 @@
 .euiRangeTicks {
   position: absolute;
-  left: ($euiRangeThumbWidth / 2);
-  right: ($euiRangeThumbWidth / 2);
+  left: ($euiRangeThumbWidth / 8);
+  right: ($euiRangeThumbWidth / 8);
   top: $euiSizeS;
   display: flex;
 }
@@ -27,6 +27,28 @@
   &--isCustom {
     position: absolute;
     transform: translateX(-50%);
+  }
+
+  &--isMin,
+  &--isMax {
+    overflow-x: visible;
+
+    .euiRangeTick__label {
+      position: absolute;
+      white-space: nowrap;
+    }
+  }
+
+  &--isMin {
+    .euiRangeTick__label {
+      left: 0;
+    }
+  }
+
+  &--isMax {
+    .euiRangeTick__label {
+      right: 0;
+    }
   }
 
   &:enabled:hover,

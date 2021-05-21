@@ -42,6 +42,9 @@
     "type": "git",
     "url": "https://github.com/elastic/eui.git"
   },
+  "resolutions": {
+    "**/trim": "0.0.3"
+  },
   "pre-commit": [
     "test-staged"
   ],
