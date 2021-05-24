@@ -1,7 +1,8 @@
 .euiRangeTicks {
   top: 0;
-  right: $euiSizeS;
-  left: $euiSizeS;
+  // sass-lint:disable no-important
+  right: $euiSizeS !important;
+  left: $euiSizeS !important;
 }
 
 .euiRangeTicks:not(.euiRangeTicks--compressed) {
