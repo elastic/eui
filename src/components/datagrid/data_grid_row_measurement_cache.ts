@@ -16,14 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 import { useState, RefObject } from 'react';
 import type { VariableSizeGrid as Grid } from 'react-window';
-import { EuiDataGridPaginationProps } from './data_grid_types';
 
 const INITIAL_ROW_HEIGHT = 34;
 
 export interface RowMeasurementOptions {
   defaultHeight?: ((rowIndex: number) => number) | number;
+  minRowHeight?: number;
   initialValues?: Record<string, Record<string, number>>;
   keyMapper?: (rowIndex: number) => string;
 }
@@ -33,7 +34,6 @@ const defaultKeyMapper = (rowIndex: number) => `${rowIndex}`;
 export class RowMeasurementCache {
   private readonly cache: Map<string, Record<string, number>>;
   private readonly keyMapper: (rowIndex: number) => string;
-  private lastMeasuredRowIndex?: number;
 
   constructor(
     private options: RowMeasurementOptions,
@@ -46,45 +46,37 @@ export class RowMeasurementCache {
     this.keyMapper = this.options.keyMapper ?? defaultKeyMapper;
   }
 
-  get initialRowHeight() {
-    return INITIAL_ROW_HEIGHT;
+  get minRowHeight() {
+    return this.options.minRowHeight ?? INITIAL_ROW_HEIGHT;
   }
 
   set(rowIndex: number, columnId: string, height: number) {
     const key = this.keyMapper(rowIndex);
     const values = this.cache.get(key) ?? {};
-    
-    if (this.lastMeasuredRowIndex !== rowIndex) {
-      this.resetGrid();
-      this.lastMeasuredRowIndex = rowIndex;
-    }
 
     if (values[columnId] !== height) {
       values[columnId] = height;
-      console.log('setRowHeight', rowIndex)
+
       this.cache.set(key, values);
     }
+    this.resetGrid();
   }
 
-  getRowHeight(rowIndex: number, pagination?: EuiDataGridPaginationProps) {
-    const key = this.keyMapper(rowIndex + (pagination ? pagination.pageSize * pagination.pageIndex : 0));
+  getRowHeight(rowIndex: number) {
+    const key = this.keyMapper(rowIndex);
 
     if (this.cache.has(key)) {
       const rowData = this.cache.get(key) ?? {};
       const values = Object.values(rowData);
 
       if (values.length) {
-        return Math.max(...values);
+        return Math.max(this.minRowHeight, ...values);
       }
     }
 
     return typeof this.options.defaultHeight === 'function'
       ? this.options.defaultHeight(rowIndex)
-      : this.options.defaultHeight ?? this.initialRowHeight;
-  }
-
-  clear(rowIndex: number) {
-    this.cache.delete(this.keyMapper(rowIndex));
+      : Math.max(this.minRowHeight, this.options.defaultHeight ?? 0);
   }
 
   clearAll() {
@@ -93,7 +85,6 @@ export class RowMeasurementCache {
 
   public resetGrid = (rowIndex: number = 0) => {
     if (this.gridRef?.current) {
-      console.log('resetAfterRowIndex');
       this.gridRef?.current.resetAfterRowIndex(rowIndex, false);
     }
   };

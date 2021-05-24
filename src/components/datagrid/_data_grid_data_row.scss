@@ -122,10 +122,10 @@
       white-space: nowrap;
     }
   }
-}
 
-.euiDataGridRowCell__dynamic {
-  white-space: break-spaces;
+  .euiDataGridRowCell__multiline {
+    white-space: break-spaces;
+  }
 }
 
 .euiDataGridRowCell__popover {

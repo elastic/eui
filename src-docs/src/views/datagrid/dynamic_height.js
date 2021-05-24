@@ -20,6 +20,7 @@ const columns = [
   },
   {
     id: 'text',
+    isTruncated: false,
     hasDynamicHeight: true,
   },
 ];
@@ -92,9 +93,7 @@ export default () => {
       rowCount={10000}
       height={400}
       renderCellValue={RenderCellValue}
-      rowMeasurementOptions={{
-        defaultHeight: 10,
-      }}
+      rowMeasurementOptions={{}}
       pagination={{
         ...pagination,
         pageSizeOptions: [50, 250, 1000],

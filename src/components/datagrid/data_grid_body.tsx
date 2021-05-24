@@ -252,7 +252,10 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
     const columnType = schema[columnId] ? schema[columnId].columnType : null;
 
     const isExpandable =
-      column.isExpandable !== undefined ? column.isExpandable : true;
+      column.isExpandable !== undefined
+        ? column.isExpandable
+        : // if column has a dynamic size, it makes no sense to set "isExpandable" to true
+          !column.hasDynamicHeight;
 
     const popoverContent =
       popoverContents[columnType as string] || DefaultColumnFormatter;
@@ -493,11 +496,12 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   ]);
 
   const gridRef = useRef<Grid>(null);
+
   useEffect(() => {
     if (gridRef.current) {
-      gridRef.current.resetAfterColumnIndex(0);
+      gridRef.current.resetAfterColumnIndex(0, false);
     }
-  }, [columns, columnWidths, defaultColumnWidth]);
+  }, [pagination?.pageIndex]);
 
   const getWidth = useCallback(
     (index: number) => {
@@ -530,7 +534,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     {
       ...rowMeasurementOptions,
       keyMapper: (rowIndex) => {
-        const rowMap = gridRef.current?.props.itemData.rowMap || {};
+        const { rowMap = {} } = gridRef.current?.props.itemData ?? {};
 
         return `${rowMap[rowIndex] ? rowMap[rowIndex] : rowIndex}`;
       },
@@ -547,7 +551,11 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 
   const getRowHeight = useCallback(
     (rowIndex) => {
-      return rowMeasurementCache.getRowHeight(rowIndex, pagination);
+      const offset = pagination
+        ? pagination.pageIndex * pagination.pageSize
+        : 0;
+
+      return rowMeasurementCache.getRowHeight(rowIndex + offset);
     },
     [rowMeasurementCache, pagination]
   );
@@ -557,13 +565,12 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       gridRef.current.resetAfterRowIndex(0);
     }
   }, [getRowHeight]);
-
   const rowCountToAffordFor = pagination
     ? pagination.pageSize
     : visibleRowIndices.length;
 
   const unconstrainedHeight =
-    rowMeasurementCache.initialRowHeight * rowCountToAffordFor +
+    rowMeasurementCache.minRowHeight * rowCountToAffordFor +
     headerRowHeight +
     footerRowHeight;
 

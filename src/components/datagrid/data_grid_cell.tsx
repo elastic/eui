@@ -131,19 +131,14 @@ const EuiDataGridCellContent: FunctionComponent<
 
   return (
     <div
+      ref={setCellContentsRef}
       className={
-        column?.hasDynamicHeight
-          ? 'euiDataGridRowCell__dynamic'
+        column?.isTruncated === false
+          ? 'euiDataGridRowCell__multiline'
           : 'euiDataGridRowCell__truncate'
       }>
-      <div ref={setCellContentsRef}>
-        <CellElement
-          isDetails={false}
-          data-test-subj="cell-content"
-          {...rest}
-        />
-        {screenReaderPosition}
-      </div>
+      <CellElement isDetails={false} data-test-subj="cell-content" {...rest} />
+      {screenReaderPosition}
     </div>
   );
 });
@@ -177,8 +172,7 @@ export class EuiDataGridCell extends Component<
   style = null;
 
   calculateHeight = () => {
-    const rowHeight = this.cellContentsRef?.getBoundingClientRect()
-      .height;
+    const rowHeight = this.cellContentsRef?.getBoundingClientRect().height;
 
     if (rowHeight && this.props.setRowHeight) {
       this.props.setRowHeight(
@@ -187,7 +181,7 @@ export class EuiDataGridCell extends Component<
         rowHeight
       );
     }
-  }
+  };
 
   setCellRef = (ref: HTMLDivElement | null) => {
     this.cellRef.current = ref;
