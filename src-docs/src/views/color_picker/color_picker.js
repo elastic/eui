@@ -7,7 +7,12 @@ export default () => {
   const [color, setColor, errors] = useColorPickerState('#D36086');
   return (
     <EuiFormRow label="Pick a color" isInvalid={!!errors} error={errors}>
-      <EuiColorPicker onChange={setColor} color={color} isInvalid={!!errors} />
+      <EuiColorPicker
+        onChange={setColor}
+        color={color}
+        isInvalid={!!errors}
+        onBlur={() => console.log('blur')}
+      />
     </EuiFormRow>
   );
 };

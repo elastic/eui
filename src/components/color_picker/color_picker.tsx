@@ -46,7 +46,7 @@ import {
 import { EuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
 import { EuiSpacer } from '../spacer';
-import { VISUALIZATION_COLORS, keys } from '../../services';
+import { VISUALIZATION_COLORS, keys, htmlIdGenerator } from '../../services';
 
 import { EuiHue } from './hue';
 import { EuiSaturation } from './saturation';
@@ -217,6 +217,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   secondaryInputDisplay = 'none',
   isClearable = false,
   placeholder,
+  'data-test-subj': dataTestSubj,
 }) => {
   const preferredFormat = useMemo(() => {
     if (format) return format;
@@ -257,6 +258,11 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const satruationRef = useRef<HTMLDivElement>(null);
   const swatchRef = useRef<HTMLButtonElement>(null);
 
+  const [testSubjId] = useState(dataTestSubj || htmlIdGenerator()());
+  const testSubjAnchor = `${testSubjId}`;
+  const testSubjPopover = `${testSubjId}_popover`;
+  const testSubjAlpha = `${testSubjId}_alpha`;
+
   const updateColorAsHsv = ([h, s, v]: ColorSpaces['hsv']) => {
     setColorAsHsv(getHsv([h, s, v], usableHsv[0]));
   };
@@ -269,8 +275,6 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     'euiColorPicker__popoverPanel--customButton': button,
   });
   const swatchClass = 'euiColorPicker__swatchSelect';
-  const testSubjAnchor = 'colorPickerAnchor';
-  const testSubjPopover = 'colorPickerPopover';
   const inputClasses = classNames('euiColorPicker__input', {
     'euiColorPicker__input--inGroup': prepend || append,
   });
@@ -281,6 +285,12 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       prevColor.current = output.rgba.join();
     }
     onChange(text, output);
+  };
+
+  const handleOnBlur = () => {
+    if (!isColorSelectorShown && onBlur) {
+      onBlur();
+    }
   };
 
   const closeColorSelector = (shouldDelay = false) => {
@@ -471,7 +481,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
               readOnly={readOnly}
               aria-label={colorLabel}
               autoComplete="off"
-              data-test-subj={`${secondaryInputDisplay}ColorPickerInput`}
+              data-test-subj={`${testSubjId}_${secondaryInputDisplay}Input`}
             />
           </EuiFormControlLayout>
         </EuiFormRow>
@@ -546,7 +556,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
             {(alphaLabel: string) => (
               <EuiRange
                 className="euiColorPicker__alphaRange"
-                data-test-subj="colorPickerAlpha"
+                data-test-subj={testSubjAlpha}
                 compressed={true}
                 showInput={true}
                 max={100}
@@ -615,6 +625,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
                 className={inputClasses}
                 onClick={handleInputActivity}
                 onKeyDown={handleInputActivity}
+                onBlur={handleOnBlur}
                 value={color ? color.toUpperCase() : HEX_FALLBACK}
                 placeholder={!color ? placeholder || transparent : undefined}
                 id={id}
