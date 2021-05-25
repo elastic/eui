@@ -147,10 +147,7 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
      * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
      */
     betaBadgeTitle?: string;
-    betaBadgeProps?: Omit<
-      EuiBetaBadgeProps,
-      'label' | 'tooltipContent' | 'title'
-    >;
+    betaBadgeProps?: Partial<EuiBetaBadgeProps>;
     /**
      * Matches to the color property of EuiPanel. If defined, removes any border & shadow.
      * Leave as `undefined` to display as a default panel.
@@ -300,11 +297,14 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       <span className="euiCard__betaBadgeWrapper">
         <EuiBetaBadge
           id={optionalBetaBadgeID}
+          {...(betaBadgeProps as EuiBetaBadgeProps)}
           label={betaBadgeLabel}
           title={betaBadgeTitle}
           tooltipContent={betaBadgeTooltipContent}
-          {...betaBadgeProps}
-          className="euiCard__betaBadge"
+          className={classNames(
+            'euiCard__betaBadge',
+            betaBadgeProps?.className
+          )}
         />
       </span>
     );
