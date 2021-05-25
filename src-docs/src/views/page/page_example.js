@@ -173,7 +173,7 @@ export const PageExample = {
       demo: (
         <PageDemo>
           {(Button, Content, SideNav, showTemplate, BottomBar) =>
-            showTemplate ? (
+            !showTemplate ? (
               <PageTemplate
                 button={<Button />}
                 content={<Content />}
