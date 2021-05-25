@@ -38,7 +38,7 @@
   }
 
   &:disabled {
-    @include euiDisabledState;
+    @include euiDisabledState($euiSideNavDisabledTextcolor);
   }
 }
 
