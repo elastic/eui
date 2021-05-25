@@ -7,6 +7,7 @@
 **Bug fixes**
 
 - Fixed inconsistent width of `EuiRange` and `EuiDualRange` with custom tick values ([#4781](https://github.com/elastic/eui/pull/4781))
+- Fixes browser freezing when `EuiDataGrid` is used together with `EuiFlyout` and the user clicks a cell ([4813](https://github.com/elastic/eui/pull/4813))
 
 ## [`34.0.0`](https://github.com/elastic/eui/tree/v34.0.0)
 
