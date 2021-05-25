@@ -47,6 +47,11 @@ export const pageTemplateConfig = () => {
     type: PropTypes.String,
   };
 
+  propsToUse.fullHeight = {
+    ...propsToUse.fullHeight,
+    type: PropTypes.Boolean,
+  };
+
   return {
     config: {
       componentName: 'EuiPageTemplate',
