@@ -7,11 +7,13 @@ exports[`EuiSideNav is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <button
+    aria-controls="euiSideNavContent_generated-id"
+    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content euiSideNav__mobileToggleContent"
     >
       <span
         class="euiButtonContent__icon"
@@ -19,12 +21,99 @@ exports[`EuiSideNav is rendered 1`] = `
         data-euiicon-type="apps"
       />
       <span
-        class="euiButtonEmpty__text"
-      />
+        class="euiButtonEmpty__text euiSideNav__mobileToggleText"
+      >
+        <h2
+          class="eui-displayInline"
+        />
+      </span>
     </span>
   </button>
   <div
     class="euiSideNav__content"
+    id="euiSideNavContent_generated-id"
+  />
+</nav>
+`;
+
+exports[`EuiSideNav props heading is rendered 1`] = `
+<nav
+  class="euiSideNav"
+>
+  <button
+    aria-controls="euiSideNavContent_generated-id"
+    aria-haspopup="true"
+    class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
+    type="button"
+  >
+    <span
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content euiSideNav__mobileToggleContent"
+    >
+      <span
+        class="euiButtonContent__icon"
+        color="inherit"
+        data-euiicon-type="apps"
+      />
+      <span
+        class="euiButtonEmpty__text euiSideNav__mobileToggleText"
+      >
+        <h2
+          class="eui-displayInline"
+        >
+          Side Nav Heading
+        </h2>
+      </span>
+    </span>
+  </button>
+  <h2
+    class="euiTitle euiTitle--xsmall euiSideNav__heading"
+  >
+    Side Nav Heading
+  </h2>
+  <div
+    class="euiSideNav__content"
+    id="euiSideNavContent_generated-id"
+  />
+</nav>
+`;
+
+exports[`EuiSideNav props heading is screen reader hidden with hideHeading 1`] = `
+<nav
+  class="euiSideNav"
+>
+  <button
+    aria-controls="euiSideNavContent_generated-id"
+    aria-haspopup="true"
+    class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
+    type="button"
+  >
+    <span
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content euiSideNav__mobileToggleContent"
+    >
+      <span
+        class="euiButtonContent__icon"
+        color="inherit"
+        data-euiicon-type="apps"
+      />
+      <span
+        class="euiButtonEmpty__text euiSideNav__mobileToggleText"
+      >
+        <h2
+          class="eui-displayInline"
+        >
+          Side Nav Heading
+        </h2>
+      </span>
+    </span>
+  </button>
+  <h2
+    class="euiTitle euiTitle--xsmall euiScreenReaderOnly euiSideNav__heading"
+  >
+    Side Nav Heading
+  </h2>
+  <div
+    class="euiSideNav__content"
+    id="euiSideNavContent_generated-id"
   />
 </nav>
 `;
@@ -34,11 +123,13 @@ exports[`EuiSideNav props isOpenOnMobile defaults to false 1`] = `
   class="euiSideNav"
 >
   <button
+    aria-controls="euiSideNavContent_generated-id"
+    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content euiSideNav__mobileToggleContent"
     >
       <span
         class="euiButtonContent__icon"
@@ -46,12 +137,17 @@ exports[`EuiSideNav props isOpenOnMobile defaults to false 1`] = `
         data-euiicon-type="apps"
       />
       <span
-        class="euiButtonEmpty__text"
-      />
+        class="euiButtonEmpty__text euiSideNav__mobileToggleText"
+      >
+        <h2
+          class="eui-displayInline"
+        />
+      </span>
     </span>
   </button>
   <div
     class="euiSideNav__content"
+    id="euiSideNavContent_generated-id"
   />
 </nav>
 `;
@@ -61,11 +157,14 @@ exports[`EuiSideNav props isOpenOnMobile is rendered when specified as true 1`] 
   class="euiSideNav euiSideNav-isOpenMobile"
 >
   <button
+    aria-controls="euiSideNavContent_generated-id"
+    aria-expanded="true"
+    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content euiSideNav__mobileToggleContent"
     >
       <span
         class="euiButtonContent__icon"
@@ -73,12 +172,17 @@ exports[`EuiSideNav props isOpenOnMobile is rendered when specified as true 1`] 
         data-euiicon-type="apps"
       />
       <span
-        class="euiButtonEmpty__text"
-      />
+        class="euiButtonEmpty__text euiSideNav__mobileToggleText"
+      >
+        <h2
+          class="eui-displayInline"
+        />
+      </span>
     </span>
   </button>
   <div
     class="euiSideNav__content"
+    id="euiSideNavContent_generated-id"
   />
 </nav>
 `;
@@ -88,11 +192,13 @@ exports[`EuiSideNav props items is rendered 1`] = `
   class="euiSideNav"
 >
   <button
+    aria-controls="euiSideNavContent_generated-id"
+    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content euiSideNav__mobileToggleContent"
     >
       <span
         class="euiButtonContent__icon"
@@ -100,12 +206,17 @@ exports[`EuiSideNav props items is rendered 1`] = `
         data-euiicon-type="apps"
       />
       <span
-        class="euiButtonEmpty__text"
-      />
+        class="euiButtonEmpty__text euiSideNav__mobileToggleText"
+      >
+        <h2
+          class="eui-displayInline"
+        />
+      </span>
     </span>
   </button>
   <div
     class="euiSideNav__content"
+    id="euiSideNavContent_generated-id"
   >
     <div
       class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
@@ -177,11 +288,13 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
   class="euiSideNav"
 >
   <button
+    aria-controls="euiSideNavContent_generated-id"
+    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content euiSideNav__mobileToggleContent"
     >
       <span
         class="euiButtonContent__icon"
@@ -189,12 +302,17 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
         data-euiicon-type="apps"
       />
       <span
-        class="euiButtonEmpty__text"
-      />
+        class="euiButtonEmpty__text euiSideNav__mobileToggleText"
+      >
+        <h2
+          class="eui-displayInline"
+        />
+      </span>
     </span>
   </button>
   <div
     class="euiSideNav__content"
+    id="euiSideNavContent_generated-id"
   >
     <div
       class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
@@ -310,11 +428,13 @@ exports[`EuiSideNav props items renders items using a specified callback 1`] = `
   class="euiSideNav"
 >
   <button
+    aria-controls="euiSideNavContent_generated-id"
+    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content euiSideNav__mobileToggleContent"
     >
       <span
         class="euiButtonContent__icon"
@@ -322,12 +442,17 @@ exports[`EuiSideNav props items renders items using a specified callback 1`] = `
         data-euiicon-type="apps"
       />
       <span
-        class="euiButtonEmpty__text"
-      />
+        class="euiButtonEmpty__text euiSideNav__mobileToggleText"
+      >
+        <h2
+          class="eui-displayInline"
+        />
+      </span>
     </span>
   </button>
   <div
     class="euiSideNav__content"
+    id="euiSideNavContent_generated-id"
   >
     <div
       class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
@@ -379,11 +504,13 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
   class="euiSideNav"
 >
   <button
+    aria-controls="euiSideNavContent_generated-id"
+    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content euiSideNav__mobileToggleContent"
     >
       <span
         class="euiButtonContent__icon"
@@ -391,12 +518,17 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
         data-euiicon-type="apps"
       />
       <span
-        class="euiButtonEmpty__text"
-      />
+        class="euiButtonEmpty__text euiSideNav__mobileToggleText"
+      >
+        <h2
+          class="eui-displayInline"
+        />
+      </span>
     </span>
   </button>
   <div
     class="euiSideNav__content"
+    id="euiSideNavContent_generated-id"
   >
     <div
       class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
@@ -468,11 +600,13 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
   class="euiSideNav"
 >
   <button
+    aria-controls="euiSideNavContent_generated-id"
+    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
     <span
-      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+      class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content euiSideNav__mobileToggleContent"
     >
       <span
         class="euiButtonContent__icon"
@@ -480,12 +614,17 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
         data-euiicon-type="apps"
       />
       <span
-        class="euiButtonEmpty__text"
-      />
+        class="euiButtonEmpty__text euiSideNav__mobileToggleText"
+      >
+        <h2
+          class="eui-displayInline"
+        />
+      </span>
     </span>
   </button>
   <div
     class="euiSideNav__content"
+    id="euiSideNavContent_generated-id"
   >
     <div
       class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"

@@ -46,6 +46,22 @@ describe('EuiSideNav', () => {
       });
     });
 
+    describe('heading', () => {
+      test('is rendered', () => {
+        const component = render(<EuiSideNav heading="Side Nav Heading" />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('is screen reader hidden with hideHeading', () => {
+        const component = render(
+          <EuiSideNav heading="Side Nav Heading" hideHeading />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('items', () => {
       test('is rendered', () => {
         const sideNav = [

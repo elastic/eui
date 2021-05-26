@@ -1,15 +1,25 @@
 // These mobile children are hidden in everything but mobile view.
 .euiSideNav__mobileToggle {
   display: none;
+  height: auto;
   border-bottom: $euiBorderThin;
-  padding: $euiSize;
   width: 100%;
   text-align: left;
   border-radius: 0 !important; // sass-lint:disable-line no-important
+  font-size: $euiFontSizeM;
+  padding: 0 $euiSize; // This plus the inner padding is equal to paddingSize large for EuiPage
 
-  .euiButtonContent {
+  .euiSideNav__mobileToggleText {
+    padding: $euiSize 0;
+  }
+
+  .euiSideNav__mobileToggleContent {
     justify-content: space-between;
   }
+}
+
+.euiSideNav__heading {
+  margin-bottom: $euiSizeL;
 }
 
 
@@ -22,7 +32,7 @@
     .euiSideNav__content {
       visibility: visible;
       opacity: 1;
-      margin: $euiSizeL;
+      padding: $euiSizeL;
       max-height: 5000px; /* 1 */
       transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
     }
@@ -37,6 +47,10 @@
     visibility: hidden;
     opacity: 0;
     max-height: 0;
-    margin: 0 $euiSizeL;
+    padding: 0 $euiSizeL;
+  }
+
+  .euiSideNav__heading {
+    display: none;
   }
 }
