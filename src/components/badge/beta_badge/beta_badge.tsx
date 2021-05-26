@@ -212,7 +212,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
           <Element
             aria-label={onClickAriaLabel}
             className={classes}
-            ref={ref as Ref<HTMLButtonElement & HTMLAnchorElement>}
+            ref={ref}
             title={innerText}
             {...(relObj as HTMLAttributes<HTMLElement>)}
             {...(rest as HTMLAttributes<HTMLElement>)}>
