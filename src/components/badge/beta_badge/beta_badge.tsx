@@ -24,7 +24,6 @@ import React, {
   HTMLAttributes,
   MouseEventHandler,
   ReactNode,
-  Ref,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion, keysOf } from '../../common';
@@ -34,8 +33,6 @@ import { getSecureRelForTarget } from '../../../services';
 import { EuiToolTip, ToolTipPositions } from '../../tool_tip';
 
 import { EuiIcon, IconType } from '../../icon';
-
-import { EuiInnerText } from '../../inner_text';
 
 const colorToClassMap = {
   accent: 'euiBetaBadge--accent',
@@ -206,20 +203,16 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
 
   let content;
   if (onClick || href) {
+    const spanTitle = title || label;
     content = (
-      <EuiInnerText>
-        {(ref, innerText) => (
-          <Element
-            aria-label={onClickAriaLabel}
-            className={classes}
-            ref={ref}
-            title={innerText}
-            {...(relObj as HTMLAttributes<HTMLElement>)}
-            {...(rest as HTMLAttributes<HTMLElement>)}>
-            {icon || label}
-          </Element>
-        )}
-      </EuiInnerText>
+      <Element
+        aria-label={onClickAriaLabel}
+        className={classes}
+        title={spanTitle as string | undefined}
+        {...(relObj as HTMLAttributes<HTMLElement>)}
+        {...(rest as HTMLAttributes<HTMLElement>)}>
+        {icon || label}
+      </Element>
     );
     if (tooltipContent) {
       return (

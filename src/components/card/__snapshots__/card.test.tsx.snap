@@ -30,6 +30,7 @@ exports[`EuiCard betaBadgeProps renders href 1`] = `
       href="http://www.elastic.co/"
       id="generated-idBetaBadge"
       rel=""
+      title="Link"
     >
       Link
     </a>
