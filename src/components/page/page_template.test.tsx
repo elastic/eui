@@ -46,84 +46,108 @@ describe('EuiPageTemplate', () => {
 
   describe('template', () => {
     TEMPLATES.forEach((template) => {
-      it(`${template} is rendered`, () => {
-        const component = render(<EuiPageTemplate template={template} />);
+      describe(`${template}`, () => {
+        it('is rendered', () => {
+          const component = render(<EuiPageTemplate template={template} />);
 
-        expect(component).toMatchSnapshot();
-      });
+          expect(component).toMatchSnapshot();
+        });
 
-      it('paddingSize is rendered', () => {
-        const component = render(
-          <EuiPageTemplate template={template} paddingSize="none" />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-
-      describe('with pageSideBar', () => {
-        test('is rendered', () => {
+        it('paddingSize is rendered', () => {
           const component = render(
-            <EuiPageTemplate template={template} pageSideBar="Side Bar" />
+            <EuiPageTemplate template={template} paddingSize="none" />
           );
 
           expect(component).toMatchSnapshot();
         });
 
-        test('is rendered with pageSideBarProps', () => {
+        it('minHeight is rendered', () => {
+          const component = render(
+            <EuiPageTemplate template={template} minHeight="40vh" />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+
+        it('style is rendered', () => {
           const component = render(
             <EuiPageTemplate
               template={template}
-              pageSideBar="Side Bar"
-              pageSideBarProps={requiredProps}
+              style={{ maxHeight: '100vh' }}
             />
           );
 
           expect(component).toMatchSnapshot();
         });
-      });
 
-      test('is rendered with pageHeader', () => {
-        const component = render(
-          <EuiPageTemplate
-            template={template}
-            pageHeader={{
-              title: 'Page title',
-              ...requiredProps,
-            }}
-          />
-        );
+        describe('with pageSideBar', () => {
+          test('is rendered', () => {
+            const component = render(
+              <EuiPageTemplate template={template} pageSideBar="Side Bar" />
+            );
 
-        expect(component).toMatchSnapshot();
-      });
+            expect(component).toMatchSnapshot();
+          });
 
-      test('is rendered with pageBodyProps', () => {
-        const component = render(
-          <EuiPageTemplate template={template} pageBodyProps={requiredProps} />
-        );
+          test('is rendered with pageSideBarProps', () => {
+            const component = render(
+              <EuiPageTemplate
+                template={template}
+                pageSideBar="Side Bar"
+                pageSideBarProps={requiredProps}
+              />
+            );
 
-        expect(component).toMatchSnapshot();
-      });
+            expect(component).toMatchSnapshot();
+          });
+        });
 
-      test('is rendered with pageContentProps', () => {
-        const component = render(
-          <EuiPageTemplate
-            template={template}
-            pageContentProps={requiredProps}
-          />
-        );
+        test('is rendered with pageHeader', () => {
+          const component = render(
+            <EuiPageTemplate
+              template={template}
+              pageHeader={{
+                title: 'Page title',
+                ...requiredProps,
+              }}
+            />
+          );
 
-        expect(component).toMatchSnapshot();
-      });
+          expect(component).toMatchSnapshot();
+        });
 
-      test('is rendered with pageContentBodyProps', () => {
-        const component = render(
-          <EuiPageTemplate
-            template={template}
-            pageContentBodyProps={requiredProps}
-          />
-        );
+        test('is rendered with pageBodyProps', () => {
+          const component = render(
+            <EuiPageTemplate
+              template={template}
+              pageBodyProps={requiredProps}
+            />
+          );
 
-        expect(component).toMatchSnapshot();
+          expect(component).toMatchSnapshot();
+        });
+
+        test('is rendered with pageContentProps', () => {
+          const component = render(
+            <EuiPageTemplate
+              template={template}
+              pageContentProps={requiredProps}
+            />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+
+        test('is rendered with pageContentBodyProps', () => {
+          const component = render(
+            <EuiPageTemplate
+              template={template}
+              pageContentBodyProps={requiredProps}
+            />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
       });
     });
   });
@@ -136,6 +160,20 @@ describe('EuiPageTemplate', () => {
           bottomBarProps={{ paddingSize: 'none' }}
         />
       );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('fullHeight', () => {
+    test('is rendered with true', () => {
+      const component = render(<EuiPageTemplate fullHeight={true} />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('is rendered with noscroll', () => {
+      const component = render(<EuiPageTemplate fullHeight={'noscroll'} />);
 
       expect(component).toMatchSnapshot();
     });
