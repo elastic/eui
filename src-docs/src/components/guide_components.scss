@@ -24,6 +24,7 @@ $elasticLogoTextDark: #1C1E23;
 }
 
 .guideSideNav {
+  @include euiSideNavEmbellish;
   min-width: $guideSideNavWidth;
 }
 

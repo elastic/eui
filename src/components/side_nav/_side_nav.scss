@@ -22,7 +22,6 @@
   margin-bottom: $euiSizeL;
 }
 
-
 @include euiBreakpoint('xs', 's') {
   /**
    * 1. Animation doesn't work against height. Need max-height instead.
