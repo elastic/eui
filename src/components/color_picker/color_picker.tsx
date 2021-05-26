@@ -46,7 +46,7 @@ import {
 import { EuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
 import { EuiSpacer } from '../spacer';
-import { VISUALIZATION_COLORS, keys, htmlIdGenerator } from '../../services';
+import { VISUALIZATION_COLORS, keys } from '../../services';
 
 import { EuiHue } from './hue';
 import { EuiSaturation } from './saturation';
@@ -258,10 +258,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const satruationRef = useRef<HTMLDivElement>(null);
   const swatchRef = useRef<HTMLButtonElement>(null);
 
-  const [testSubjId] = useState(dataTestSubj || htmlIdGenerator()());
-  const testSubjAnchor = `${testSubjId}`;
-  const testSubjPopover = `${testSubjId}_popover`;
-  const testSubjAlpha = `${testSubjId}_alpha`;
+  const testSubjAnchor = classNames('euiColorPickerAnchor', dataTestSubj);
 
   const updateColorAsHsv = ([h, s, v]: ColorSpaces['hsv']) => {
     setColorAsHsv(getHsv([h, s, v], usableHsv[0]));
@@ -481,7 +478,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
               readOnly={readOnly}
               aria-label={colorLabel}
               autoComplete="off"
-              data-test-subj={`${testSubjId}_${secondaryInputDisplay}Input`}
+              data-test-subj={`euiColorPickerInput_${secondaryInputDisplay}`}
             />
           </EuiFormControlLayout>
         </EuiFormRow>
@@ -556,7 +553,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
             {(alphaLabel: string) => (
               <EuiRange
                 className="euiColorPicker__alphaRange"
-                data-test-subj={testSubjAlpha}
+                data-test-subj="euiColorPickerAlpha"
                 compressed={true}
                 showInput={true}
                 max={100}
@@ -667,7 +664,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       attachToAnchor={button ? false : true}
       anchorPosition="downLeft"
       panelPaddingSize="s">
-      <div className={classes} data-test-subj={testSubjPopover}>
+      <div className={classes} data-test-subj="euiColorPickerPopover">
         <EuiFocusTrap clickOutsideDisables={true}>
           <EuiScreenReaderOnly>
             <p aria-live="polite">
