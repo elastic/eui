@@ -144,7 +144,8 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
     betaBadgeTooltipContent?: ReactNode;
 
     /**
-     * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
+     * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used.
+     * **DEPRECATED: Use `betaBadgeProps.title` instead.**
      */
     betaBadgeTitle?: string;
     betaBadgeProps?: Partial<EuiBetaBadgeProps>;
