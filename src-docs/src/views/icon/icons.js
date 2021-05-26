@@ -144,6 +144,7 @@ export const iconTypes = [
   'minus',
   'minusInCircle',
   'minusInCircleFilled',
+  'mobile',
   'moon',
   'nested',
   'node',
