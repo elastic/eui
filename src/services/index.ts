@@ -41,6 +41,8 @@ export {
   getBreakpoint,
   isWithinBreakpoints,
   isWithinMaxBreakpoint,
+  isWithinMinBreakpoint,
+  EuiBreakpointSize,
 } from './breakpoint';
 
 export {

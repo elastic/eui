@@ -8,6 +8,7 @@ exports[`EuiFlyoutBody is rendered 1`] = `
 >
   <div
     class="euiFlyoutBody__overflow"
+    tabindex="0"
   >
     <div
       class="euiFlyoutBody__overflowContent"

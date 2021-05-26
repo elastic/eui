@@ -1,5 +1,24 @@
 [
   {
+    "version": "34.0.0",
+    "changes": [
+      {
+        "token": "euiCollapsibleNav.closeButtonLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTourStepIndicator.ariaLabel",
+        "changeType": "modified",
+        "value": "Step {number} {status}"
+      },
+      {
+        "token": "euiTourStep.closeTour",
+        "changeType": "modified",
+        "value": "Close tour"
+      }
+    ]
+  },
+  {
     "version": "33.0.0",
     "changes": [
       {

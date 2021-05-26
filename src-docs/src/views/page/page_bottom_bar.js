@@ -13,9 +13,11 @@ import {
 export default ({ button = <></>, content, sideNav, bottomBar }) => {
   return (
     <EuiPage paddingSize="none">
-      <EuiPageSideBar sticky>{sideNav}</EuiPageSideBar>
+      <EuiPageSideBar paddingSize="l" sticky>
+        {sideNav}
+      </EuiPageSideBar>
 
-      {/* Double EuiPageBody to accomodate for the bottom bar */}
+      {/* Double EuiPageBody to accommodate for the bottom bar */}
       <EuiPageBody panelled paddingSize="none">
         <EuiPageBody paddingSize="l">
           <EuiPageHeader

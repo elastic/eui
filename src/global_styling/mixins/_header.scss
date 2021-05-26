@@ -19,5 +19,9 @@
         top: #{$headerHeight};
       }
     }
+
+    .euiOverlayMask--belowHeader {
+      top: #{$headerHeight};
+    }
   }
 }

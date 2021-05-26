@@ -5,6 +5,7 @@
   overflow-x: auto;
   overflow-y: hidden; // don't scroll vertically when scrolling horizontally
   position: relative;
+  flex-shrink: 0; // don't ever let this shrink in height if direct descendent of flex
 
   // Changing height of scrollbar so it sits flush with border
   // sass-lint:disable no-vendor-prefixes
