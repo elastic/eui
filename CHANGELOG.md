@@ -1,6 +1,17 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.1.0`.
+- Added `mobile` glyph to `EuiIcon` ([#4827](https://github.com/elastic/eui/pull/4827))
+- Reduced display of arrow icon in `EuiSideNav` to only if the item is **not** linked but has children ([#4827](https://github.com/elastic/eui/pull/4827))
+- Increased size and prominence of mobile toggle in `EuiSideNav` ([#4827](https://github.com/elastic/eui/pull/4827))
+- Added `heading` and `hideHeading` props for better accessibility to `EuiSideNav` ([#4827](https://github.com/elastic/eui/pull/4827))
+
+**Bug fixes**
+
+- Fixed `EuiText` color of `EuiCallout` to `default` ([#4816](https://github.com/elastic/eui/pull/4816))
+
+**Theme: Amsterdam**
+
+- Decreased spacing and root element size of `EuiSideNav` ([#4816](https://github.com/elastic/eui/pull/4816))
 
 ## [`34.1.0`](https://github.com/elastic/eui/tree/v34.1.0)
 
@@ -13,7 +24,7 @@ No public interface changes since `34.1.0`.
 
 **Bug fixes**
 
-- Fixed `EuiText` color of `EuiCallout` to `default` ([#4816](https://github.com/elastic/eui/pull/4816)) 
+- Fixed `EuiText` color of `EuiCallout` to `default` ([#4816](https://github.com/elastic/eui/pull/4816))
 - Fixed inconsistent width of `EuiRange` and `EuiDualRange` with custom tick values ([#4781](https://github.com/elastic/eui/pull/4781))
 - Fixes browser freezing when `EuiDataGrid` is used together with `EuiFlyout` and the user clicks a cell ([4813](https://github.com/elastic/eui/pull/4813))
 - Added `flex-shrink: 0` to `EuiTabs`, `EuiSpacer`, and `EuiImage` to fix possible shrunken heights ([#4793](https://github.com/elastic/eui/pull/4793))
