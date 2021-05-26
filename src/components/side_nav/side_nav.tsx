@@ -111,10 +111,13 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
         renderedItems = this.renderTree(childItems, depth + 1);
       }
 
+      // Act as an accordion only if item is not linked but has children (and not the root)
+      const childrenOnly = depth > 0 && !onClick && !href && !!childItems;
+
       return (
         <EuiSideNavItem
           isOpen={isOpen}
-          isSelected={isSelected}
+          isSelected={!childrenOnly && isSelected}
           isParent={!!childItems}
           icon={icon}
           onClick={onClick}
@@ -124,6 +127,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
           depth={depth}
           renderItem={renderItem}
           truncate={truncate}
+          childrenOnly={childrenOnly}
           {...rest}>
           {name}
         </EuiSideNavItem>

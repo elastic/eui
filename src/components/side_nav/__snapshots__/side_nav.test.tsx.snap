@@ -148,8 +148,9 @@ exports[`EuiSideNav props items is rendered 1`] = `
         <div
           class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem--emphasized"
         >
-          <div
+          <button
             class="euiSideNavItemButton"
+            type="button"
           >
             <span
               class="euiSideNavItemButton__content"
@@ -160,11 +161,10 @@ exports[`EuiSideNav props items is rendered 1`] = `
                 C
               </span>
               <span
-                color="subdued"
-                data-euiicon-type="arrowDown"
+                data-euiicon-type="arrowRight"
               />
             </span>
-          </div>
+          </button>
         </div>
       </div>
     </div>
@@ -235,8 +235,9 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
         <div
           class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem--hasChildItems"
         >
-          <div
+          <button
             class="euiSideNavItemButton euiSideNavItemButton-isOpen"
+            type="button"
           >
             <span
               class="euiSideNavItemButton__content"
@@ -246,16 +247,20 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
               >
                 C
               </span>
+              <span
+                data-euiicon-type="arrowDown"
+              />
             </span>
-          </div>
+          </button>
           <div
             class="euiSideNavItem__items"
           >
             <div
               class="euiSideNavItem euiSideNavItem--branch euiSideNavItem--hasChildItems"
             >
-              <div
+              <button
                 class="euiSideNavItemButton euiSideNavItemButton-isOpen"
+                type="button"
               >
                 <span
                   class="euiSideNavItemButton__content"
@@ -265,8 +270,11 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
                   >
                     D
                   </span>
+                  <span
+                    data-euiicon-type="arrowDown"
+                  />
                 </span>
-              </div>
+              </button>
               <div
                 class="euiSideNavItem__items"
               >
@@ -431,8 +439,9 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
         <div
           class="euiSideNavItem euiSideNavItem--trunk"
         >
-          <div
+          <button
             class="euiSideNavItemButton"
+            type="button"
           >
             <span
               class="euiSideNavItemButton__content"
@@ -443,11 +452,10 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
                 C
               </span>
               <span
-                color="subdued"
-                data-euiicon-type="arrowDown"
+                data-euiicon-type="arrowRight"
               />
             </span>
-          </div>
+          </button>
         </div>
       </div>
     </div>
@@ -518,8 +526,9 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
         <div
           class="euiSideNavItem euiSideNavItem--trunk euiSideNavItem--hasChildItems"
         >
-          <div
+          <button
             class="euiSideNavItemButton euiSideNavItemButton-isOpen"
+            type="button"
           >
             <span
               class="euiSideNavItemButton__content"
@@ -529,8 +538,11 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
               >
                 C
               </span>
+              <span
+                data-euiicon-type="arrowDown"
+              />
             </span>
-          </div>
+          </button>
           <div
             class="euiSideNavItem__items"
           >
