@@ -22,6 +22,7 @@ import React, {
   MouseEventHandler,
   FunctionComponent,
   ReactNode,
+  CSSProperties,
 } from 'react';
 import classNames from 'classnames';
 
@@ -62,7 +63,7 @@ const EuiTickValue: FunctionComponent<
   percentageWidth,
   tickValue,
 }) => {
-  const tickStyle: { left?: string; width?: string } = {};
+  const tickStyle: CSSProperties = {};
   let customTick;
   let isMinTick;
   let isMaxTick;
@@ -72,7 +73,11 @@ const EuiTickValue: FunctionComponent<
     isMaxTick = customTick?.value === max;
 
     if (customTick) {
-      tickStyle.left = `${((customTick.value - min) / (max - min)) * 100}%`;
+      if (isMaxTick) {
+        tickStyle.right = '0%';
+      } else {
+        tickStyle.left = `${((customTick.value - min) / (max - min)) * 100}%`;
+      }
     }
   } else {
     tickStyle.width = `${percentageWidth}%`;
@@ -87,18 +92,21 @@ const EuiTickValue: FunctionComponent<
       ? Math.min(label.length * 0.25, 1.25)
       : 0;
 
-  let labelShift;
+  const pseudoShift: CSSProperties = {};
   if (labelShiftVal) {
-    labelShift = isMaxTick
-      ? { marginRight: `-${labelShiftVal}em` }
-      : { marginLeft: `-${labelShiftVal}em` };
+    const labelShift = isMaxTick ? 'marginRight' : 'marginLeft';
+    tickStyle[labelShift] = `-${labelShiftVal}em`;
+    pseudoShift[labelShift] = `calc(${labelShiftVal}em - 2px)`; // 2px derived from .euiRangeTicks left/right offset
   }
+
+  const pseudoTick = customTick && !!labelShiftVal && (isMinTick || isMaxTick);
 
   const tickClasses = classNames('euiRangeTick', {
     'euiRangeTick--selected': value === tickValue,
     'euiRangeTick--isCustom': customTick,
     'euiRangeTick--isMin': labelShiftVal && isMinTick,
     'euiRangeTick--isMax': labelShiftVal && isMaxTick,
+    'euiRangeTick--hasTickMark': pseudoTick,
   });
 
   const [ref, innerText] = useInnerText();
@@ -114,9 +122,14 @@ const EuiTickValue: FunctionComponent<
       tabIndex={-1}
       ref={ref}
       title={typeof label === 'string' ? label : innerText}>
-      <span className="euiRangeTick__label" style={labelShift}>
-        {label}
-      </span>
+      {pseudoTick && (
+        <span
+          className="euiRangeTick__pseudo"
+          aria-hidden
+          style={pseudoShift}
+        />
+      )}
+      {label}
     </button>
   );
 };

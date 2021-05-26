@@ -17,11 +17,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
       type="button"
       value="0"
     >
-      <span
-        class="euiRangeTick__label"
-      >
-        0
-      </span>
+      0
     </button>
     <button
       class="euiRangeTick"
@@ -30,11 +26,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
       type="button"
       value="10"
     >
-      <span
-        class="euiRangeTick__label"
-      >
-        10
-      </span>
+      10
     </button>
     <button
       class="euiRangeTick"
@@ -43,11 +35,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
       type="button"
       value="20"
     >
-      <span
-        class="euiRangeTick__label"
-      >
-        20
-      </span>
+      20
     </button>
     <button
       class="euiRangeTick"
@@ -56,11 +44,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
       type="button"
       value="30"
     >
-      <span
-        class="euiRangeTick__label"
-      >
-        30
-      </span>
+      30
     </button>
     <button
       class="euiRangeTick"
@@ -69,11 +53,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
       type="button"
       value="40"
     >
-      <span
-        class="euiRangeTick__label"
-      >
-        40
-      </span>
+      40
     </button>
     <button
       class="euiRangeTick"
@@ -82,11 +62,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
       type="button"
       value="50"
     >
-      <span
-        class="euiRangeTick__label"
-      >
-        50
-      </span>
+      50
     </button>
     <button
       class="euiRangeTick"
@@ -95,11 +71,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
       type="button"
       value="60"
     >
-      <span
-        class="euiRangeTick__label"
-      >
-        60
-      </span>
+      60
     </button>
     <button
       class="euiRangeTick"
@@ -108,11 +80,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
       type="button"
       value="70"
     >
-      <span
-        class="euiRangeTick__label"
-      >
-        70
-      </span>
+      70
     </button>
     <button
       class="euiRangeTick"
@@ -121,11 +89,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
       type="button"
       value="80"
     >
-      <span
-        class="euiRangeTick__label"
-      >
-        80
-      </span>
+      80
     </button>
     <button
       class="euiRangeTick"
@@ -134,11 +98,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
       type="button"
       value="90"
     >
-      <span
-        class="euiRangeTick__label"
-      >
-        90
-      </span>
+      90
     </button>
     <button
       class="euiRangeTick"
@@ -147,11 +107,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
       type="button"
       value="100"
     >
-      <span
-        class="euiRangeTick__label"
-      >
-        100
-      </span>
+      100
     </button>
   </div>
 </div>
