@@ -146,6 +146,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     });
   };
   private leftPosition = 0;
+  private dragAcc = 0;
 
   get lowerValue() {
     return this.props.value ? this.props.value[0] : this.props.min;
@@ -468,21 +469,51 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
     });
   };
 
+  getNearestStep = (value: number) => {
+    const steps = (this.props.max - this.props.min) / this.props.step!;
+    const approx =
+      Math.round(
+        ((value - this.props.min) * steps) / (this.props.max - this.props.min)
+      ) / steps;
+    const bound = Math.min(Math.max(approx, 0), 1);
+    const nearest = bound * (this.props.max - this.props.min) + this.props.min;
+    return (Number(nearest.toPrecision(10)) * 100) / 100;
+  };
+
   handleDrag = (x: number, isFirstInteraction?: boolean) => {
     if (isFirstInteraction) {
       this.leftPosition = x;
+      this.dragAcc = 0;
     }
     const delta = this.leftPosition - x;
     this.leftPosition = x;
-    const dp =
-      (delta / this.rangeSliderRef!.clientWidth) *
-      (this.props.max - this.props.min);
-    // TODO: handle decimals; match `step` size
-    const round = delta > 0 ? Math.floor : Math.ceil;
-    const newLower = round(Number(this.lowerValue) - dp);
-    const newUpper = round(Number(this.upperValue) - dp);
-    if (newLower >= this.props.min && newUpper <= this.props.max)
-      this._handleOnChange(newLower, newUpper);
+    this.dragAcc = this.dragAcc + delta;
+    const percentageOfArea = this.dragAcc / this.rangeSliderRef!.clientWidth;
+    const percentageOfRange =
+      percentageOfArea * (this.props.max - this.props.min);
+    const newLower = this.getNearestStep(
+      Number(this.lowerValue) - percentageOfRange
+    );
+    const newUpper = this.getNearestStep(
+      Number(this.upperValue) - percentageOfRange
+    );
+    if (
+      // Not enough movement
+      newLower === Number(this.lowerValue) ||
+      // Already at the min
+      (this.props.min === Number(this.lowerValue) &&
+        this.props.min === newLower) ||
+      // Already at the max
+      (this.props.max === Number(this.upperValue) &&
+        this.props.max === newUpper) ||
+      // Out of range
+      newLower < this.props.min ||
+      newUpper > this.props.max
+    ) {
+      return;
+    }
+    this._handleOnChange(newLower, newUpper);
+    this.dragAcc = 0;
   };
 
   render() {
