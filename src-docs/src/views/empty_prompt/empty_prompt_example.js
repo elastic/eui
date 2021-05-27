@@ -105,7 +105,7 @@ export const EmptyPromptExample = {
           <p>You can remove parts of the prompt to simplify it.</p>
           <p>
             You can also provide an array of multiple actions. Be sure to list
-            primary actions first and secondary actions last.
+            primary actions first and secondary actions as empty buttons.
           </p>
         </Fragment>
       ),

@@ -44,7 +44,7 @@ export const LoadingExample = {
         <Link to="/display/progress#progress-with-values">progress</Link> over
         infinite spinners. It is ok to use multiple loaders on a page if each
         section is progressively loaded. However, if the entire page is loaded
-        at once, use a single, larger, loading indicator.
+        at once, use a single, larger loading indicator.
       </p>
     </EuiText>
   ),

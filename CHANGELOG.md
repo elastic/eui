@@ -1,6 +1,13 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.1.0`.
+- Added `euiCantAnimate` Sass mixin ([#4835](https://github.com/elastic/eui/pull/4835))
+- Added new `EuiLoadingLogo` component ([#4835](https://github.com/elastic/eui/pull/4835))
+- Added `icon` props to `EuiEmptyPrompt` for custom icons ([#4835](https://github.com/elastic/eui/pull/4835))
+- Deprecated `EuiLoadingKibana` ([#4835](https://github.com/elastic/eui/pull/4135))
+
+**Bug fixes**
+
+- Added `paddingSize` prop to `EuiPageSideBar` ([#4835](https://github.com/elastic/eui/pull/4835))
 
 ## [`34.1.0`](https://github.com/elastic/eui/tree/v34.1.0)
 
@@ -13,7 +20,7 @@ No public interface changes since `34.1.0`.
 
 **Bug fixes**
 
-- Fixed `EuiText` color of `EuiCallout` to `default` ([#4816](https://github.com/elastic/eui/pull/4816)) 
+- Fixed `EuiText` color of `EuiCallout` to `default` ([#4816](https://github.com/elastic/eui/pull/4816))
 - Fixed inconsistent width of `EuiRange` and `EuiDualRange` with custom tick values ([#4781](https://github.com/elastic/eui/pull/4781))
 - Fixes browser freezing when `EuiDataGrid` is used together with `EuiFlyout` and the user clicks a cell ([4813](https://github.com/elastic/eui/pull/4813))
 - Added `flex-shrink: 0` to `EuiTabs`, `EuiSpacer`, and `EuiImage` to fix possible shrunken heights ([#4793](https://github.com/elastic/eui/pull/4793))
