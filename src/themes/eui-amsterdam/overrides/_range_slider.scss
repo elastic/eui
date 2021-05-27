@@ -14,11 +14,6 @@
     height: $euiRangeThumbHeight;
   }
 
-  &:hover~.euiRangeThumb {
-    transform: scale(1.1);
-    transition: all $euiAnimSpeedFast ease-in;
-  }
-
   &:focus-visible,
   &--hasFocus {
     @include euiRangeThumbPerBrowser {
