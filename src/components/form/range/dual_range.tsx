@@ -705,7 +705,7 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
                 <EuiRangeDraggable
                   min={min}
                   max={max}
-                  value={`${this.lowerValue},${this.upperValue}`}
+                  value={[Number(this.lowerValue), Number(this.upperValue)]}
                   disabled={disabled}
                   lowerPosition={leftThumbPosition.left}
                   upperPosition={rightThumbPosition.left}
@@ -715,6 +715,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
                   onFocus={this.onThumbFocus}
                   onBlur={this.onThumbBlur}
                   onKeyDown={this.handleDraggableKeyDown}
+                  aria-describedby={this.props['aria-describedby']}
+                  aria-label={this.props['aria-label']}
                 />
               )}
 

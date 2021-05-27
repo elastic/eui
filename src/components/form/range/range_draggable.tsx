@@ -26,7 +26,7 @@ export interface EuiRangeDraggableProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
   min: number;
   max: number;
-  value?: number | string;
+  value: number[];
   disabled?: boolean;
   compressed?: boolean;
   showTicks?: boolean;
@@ -78,8 +78,8 @@ export const EuiRangeDraggable: FunctionComponent<EuiRangeDraggableProps> = ({
     role: 'slider',
     'aria-valuemin': min,
     'aria-valuemax': max,
-    // This is not a native input element, so the types don't match
-    'aria-valuenow': value as number,
+    'aria-valuenow': value[0],
+    'aria-valuetext': `${value[0]}, ${value[1]}`,
     'aria-disabled': !!disabled,
     tabIndex: !!disabled ? -1 : 0,
   };
