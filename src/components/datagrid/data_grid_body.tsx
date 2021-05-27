@@ -70,6 +70,7 @@ export interface EuiDataGridBodyProps {
   isFullScreen: boolean;
   columnWidths: EuiDataGridColumnWidths;
   defaultColumnWidth?: number | null;
+  defaultColumnHeight?: number | null;
   leadingControlColumns?: EuiDataGridControlColumn[];
   trailingControlColumns?: EuiDataGridControlColumn[];
   columns: EuiDataGridColumn[];
@@ -313,6 +314,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     isFullScreen,
     columnWidths,
     defaultColumnWidth,
+    defaultColumnHeight,
     leadingControlColumns = [],
     trailingControlColumns = [],
     columns,
@@ -519,7 +521,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     ]
   );
 
-  const [rowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
+  const [rowHeight, setRowHeight] = useState(
+    defaultColumnHeight || INITIAL_ROW_HEIGHT
+  );
   const getRowHeight = useCallback(() => rowHeight, [rowHeight]);
   useEffect(() => {
     if (gridRef.current) gridRef.current.resetAfterRowIndex(0);

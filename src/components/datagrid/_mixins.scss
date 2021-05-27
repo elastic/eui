@@ -61,6 +61,8 @@ $euiDataGridStyles: (
 @mixin euiDataGridRowCell {
   .euiDataGridRowCell {
     @content;
+    align-items: flex-start;
+    overflow-y: hidden;
   }
 }
 

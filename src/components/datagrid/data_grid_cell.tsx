@@ -462,11 +462,20 @@ export class EuiDataGridCell extends Component<
         }}
         clickOutsideDisables={true}>
         <div className="euiDataGridRowCell__expandFlex">
-          <div className="euiDataGridRowCell__expandContent">
+          <div
+            className={
+              column?.isTruncating !== false
+                ? 'euiDataGridRowCell__expandContent'
+                : ''
+            }>
             {screenReaderPosition}
             <div
               ref={this.setCellContentsRef}
-              className="euiDataGridRowCell__truncate">
+              className={
+                column?.isTruncating !== false
+                  ? 'euiDataGridRowCell__truncate'
+                  : ''
+              }>
               <EuiDataGridCellContent {...cellContentProps} />
             </div>
           </div>

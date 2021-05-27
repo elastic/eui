@@ -62,6 +62,7 @@ export interface EuiDataGridColumn {
    * Whether this column's width can be changed by the user, defaults to true
    */
   isResizable?: boolean;
+  isTruncating?: boolean;
   /**
    * Initial width (in pixels) of the column
    */

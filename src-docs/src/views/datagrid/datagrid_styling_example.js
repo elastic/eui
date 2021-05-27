@@ -23,6 +23,7 @@ const dataGridControlsSource = require('!!raw-loader!./additional_controls');
 const dataGridControlsHtml = renderToHtml(DataGridControls);
 
 import DataGridColumnWidths from './column_widths';
+import DataGridCellHeight from './cell_height';
 import DataGridColumnActions from './column_actions';
 import DataGridColumnCellActions from './column_cell_actions';
 const dataGridColumnWidthsSource = require('!!raw-loader!./column_widths');
@@ -273,6 +274,31 @@ export const DataGridStylingExample = {
         EuiDataGridColumn,
       },
       demo: <DataGridColumnWidths />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dataGridColumnWidthsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: dataGridColumnWidthsHtml,
+        },
+      ],
+      title: 'Default cell height',
+      text: (
+        <Fragment>
+          <p>Lets try out assigning a custom cell height</p>
+        </Fragment>
+      ),
+      components: { DataGridCellHeight },
+      snippet: widthsSnippet,
+      props: {
+        EuiDataGrid,
+        EuiDataGridColumn,
+      },
+      demo: <DataGridCellHeight />,
     },
     {
       source: [
