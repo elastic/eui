@@ -1,3 +1,4 @@
+.euiLoadingLogo,
 .euiLoadingKibana {
   position: relative;
   display: inline-block;
@@ -23,6 +24,7 @@
     animation: 1s euiLoadingKibanaPulsate $euiAnimSlightResistance infinite;
   }
 
+  .euiLoadingLogo__icon,
   .euiLoadingKibana__icon {
     display: block;
   }
@@ -31,6 +33,7 @@
 /**
  * 1. Requires pixel math for animation.
  */
+.euiLoadingLogo--medium,
 .euiLoadingKibana--medium {
   width: $euiSize;
 
@@ -40,6 +43,7 @@
     bottom: -$euiSizeXS;
   }
 
+  .euiLoadingLogo__icon,
   .euiLoadingKibana__icon {
     z-index: 999;
     animation: 1s euiLoadingKibanaBounceMedium $euiAnimSlightResistance infinite;
@@ -49,6 +53,7 @@
 /**
  * 1. Requires pixel math for animation.
  */
+.euiLoadingLogo--large,
 .euiLoadingKibana--large {
   width: $euiSizeL;
 
@@ -58,11 +63,13 @@
     bottom: -$euiSizeS;
   }
 
+  .euiLoadingLogo__icon,
   .euiLoadingKibana__icon {
     animation: 1s euiLoadingKibanaBounceLarge $euiAnimSlightResistance infinite;
   }
 }
 
+.euiLoadingLogo--xLarge,
 .euiLoadingKibana--xLarge {
   width: $euiSizeXL;
 
@@ -72,6 +79,7 @@
     bottom: -$euiSizeM;
   }
 
+  .euiLoadingLogo__icon,
   .euiLoadingKibana__icon {
     animation: 1s euiLoadingKibanaBounceXLarge $euiAnimSlightResistance infinite;
   }
