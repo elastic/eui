@@ -135,11 +135,13 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
 
     /**
      * Add a badge to the card to label it as "Beta" or other non-GA state
+     * **DEPRECATED: Use `betaBadgeProps.label` instead.**
      */
     betaBadgeLabel?: string;
 
     /**
      * Add a description to the beta badge (will appear in a tooltip)
+     * **DEPRECATED: Use `betaBadgeProps.tooltipContent` instead.**
      */
     betaBadgeTooltipContent?: ReactNode;
 
