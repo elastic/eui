@@ -7,15 +7,33 @@
     background-color: transparent;
   }
 
-  // range sliders with only one thumb
-  @include euiRangeThumbPerBrowser {
-    @include euiBottomShadowFlat;
-  }
-
   // z-index higher than .euiRangeHighlight that is 1
   z-index: 2;
 
   &--hasTicks {
     height: $euiRangeThumbHeight;
+  }
+
+  &:hover~.euiRangeThumb {
+    transform: scale(1.1);
+    transition: all $euiAnimSpeedFast ease-in;
+  }
+
+  &:focus-visible,
+  &--hasFocus {
+    @include euiRangeThumbPerBrowser {
+      @include euiRangeThumbFocus;
+    }
+
+    @include euiRangeTrackPerBrowser {
+      background-color: transparent;
+      border-color: none;
+    }
+
+    outline: none;
+
+    ~ .euiRangeHighlight .euiRangeHighlight__progress {
+      background-color: $euiColorPrimary;
+    }
   }
 }

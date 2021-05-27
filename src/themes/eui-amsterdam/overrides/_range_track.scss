@@ -58,13 +58,14 @@
       .euiRangeTicks {
         height: $euiRangeThumbHeight + ($euiRangeThumbHeight / 4);
         top: $euiRangeThumbHeight + ($euiRangeThumbHeight / 4);
-        // sass-lint:disable no-important
-        right: $euiSizeXS !important;
-        left: $euiSizeXS !important;
       }
 
       .euiRangeTick {
         padding-top: $euiRangeTrackHeight;
+      }
+
+      .euiRangeTooltip {
+        top: -($euiSizeXS / 2);
       }
     }
 

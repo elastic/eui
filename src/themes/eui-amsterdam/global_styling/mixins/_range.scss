@@ -21,7 +21,7 @@
 @mixin euiRangeThumbStyle {
   cursor: pointer;
   background-color: $euiRangeThumbBackgroundColor;
-  border: 2px solid $euiRangeThumbBorderColor;
+  border: 1px solid $euiRangeThumbBorderColor;
   padding: 0;
   height: $euiRangeThumbHeight;
   width: $euiRangeThumbWidth;
@@ -32,4 +32,9 @@
   &::-webkit-slider-thumb { @content; }
   &::-moz-range-thumb { @content; }
   &::-ms-thumb { @content; }
+}
+
+@mixin euiRangeThumbFocus {
+  border: 1px solid $euiRangeThumbBorderColor;
+  box-shadow: 0 0 0 $euiSizeXS $euiRangeThumbFocusShadowColor;
 }

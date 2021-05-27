@@ -4,11 +4,11 @@
     margin-bottom: 0;
 
     &:first-child {
-      margin-left: $euiSizeXS;
+      margin-left: 0;
     }
 
     &:last-child {
-      margin-right: $euiSizeXS;
+      margin-right: 0;
     }
   }
 
@@ -17,11 +17,11 @@
       height: $euiRangeTrackCompressedHeight;
 
       &:first-child {
-        margin-left: $euiSizeS;
+        margin-left: 0;
       }
 
       &:last-child {
-        margin-right: $euiSizeS;
+        margin-right: 0;
       }
     }
 

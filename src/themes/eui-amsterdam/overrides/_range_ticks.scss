@@ -1,10 +1,3 @@
-.euiRangeTicks {
-  top: 0;
-  // sass-lint:disable no-important
-  right: $euiSizeS !important;
-  left: $euiSizeS !important;
-}
-
 .euiRangeTicks:not(.euiRangeTicks--compressed) {
   .euiRangeTick {
     padding-top: 0;

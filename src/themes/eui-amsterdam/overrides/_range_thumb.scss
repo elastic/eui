@@ -1,11 +1,20 @@
 .euiRangeThumb {
-  @include euiBottomShadowFlat;
   background-color: $euiColorPrimary !important; // sass-lint:disable-line no-important
-  border: 2px solid $euiRangeThumbBorderColor;
-  z-index: 2; // higher than .euiRangeHighlight that is 1
+  border: 1px solid $euiRangeThumbBorderColor;
+  z-index: 2; // higher than .euiRangeSlider that is 2
+  pointer-events: none;
 
   &--hasTicks {
     top: 0;
     margin-top: 0;
   }
+
+  &:focus {
+    @include euiRangeThumbFocus;
+  }
+
+  &:focus:focus-visible {
+    outline: none;
+  }
 }
+
