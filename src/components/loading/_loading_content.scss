@@ -26,7 +26,11 @@
     $euiGradientMiddle 50%,
     $euiGradientStartStop 55%,
     );
-  animation: euiLoadingContentGradientLoad 1.5s $euiAnimSlightResistance infinite;
+
+  // sass-lint:disable-block mixins-before-declarations
+  @include euiCanAnimate {
+    animation: euiLoadingContentGradientLoad 1.5s $euiAnimSlightResistance infinite;
+  }
 }
 
 @keyframes euiLoadingContentGradientLoad {
