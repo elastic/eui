@@ -25,16 +25,8 @@
       }
     }
 
-    &.euiRangeLevels--hasTicks {
-      top: $euiRangeThumbHeight - ($euiRangeTrackCompressedHeight + 1);
-    }
-
     .euiRangeThumb--hasTicks {
       top: 0;
     }
-  }
-
-  &:not(.euiRangeLevels--compressed) {
-    top: $euiRangeThumbHeight - ($euiRangeTrackHeight / 2);
   }
 }
