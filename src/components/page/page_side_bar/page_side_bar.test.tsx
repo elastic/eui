@@ -21,7 +21,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiPageSideBar } from './page_side_bar';
+import { EuiPageSideBar, PADDING_SIZES } from './page_side_bar';
 
 describe('EuiPageSideBar', () => {
   test('is rendered', () => {
@@ -34,5 +34,15 @@ describe('EuiPageSideBar', () => {
     const component = render(<EuiPageSideBar sticky />);
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('paddingSize', () => {
+    PADDING_SIZES.forEach((size) => {
+      it(`${size} is rendered`, () => {
+        const component = render(<EuiPageSideBar paddingSize={size} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

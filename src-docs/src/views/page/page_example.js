@@ -51,6 +51,11 @@ const PageSimpleSource = require('!!raw-loader!./page_simple');
 import PageSimpleTemplate from './page_simple_template';
 const PageSimpleTemplateSource = require('!!raw-loader!./page_simple_template');
 
+import PageFullHeight from './page_full_height';
+const PageFullHeightSource = require('!!raw-loader!./page_full_height');
+import PageFullHeightTemplate from './page_full_height_template';
+const PageFullHeightTemplateSource = require('!!raw-loader!./page_full_height_template');
+
 import PageSimpleCenteredBody from './page_simple_content_body';
 const PageSimpleCenteredBodySource = require('!!raw-loader!./page_simple_content_body');
 import PageSimpleCenteredBodyTemplate from './page_simple_content_body_template';
@@ -446,7 +451,7 @@ export const PageExample = {
         <>
           <p>
             When leaving off the <strong>EuiPageSideBar</strong>, we recommend a
-            slightly different configuration by pulling the page hader out of
+            slightly different configuration by pulling the page header out of
             the <strong>EuiPageContent</strong> and removing the shadow from{' '}
             <strong>EuiPageContent</strong>.
           </p>
@@ -469,6 +474,94 @@ export const PageExample = {
               <PageSimpleTemplate button={<Button />} content={<Content />} />
             ) : (
               <PageSimple button={<Button />} content={<Content />} />
+            )
+          }
+        </PageDemo>
+      ),
+    },
+    {
+      title: 'Full height layout',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageFullHeightTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: PageFullHeightSource,
+          displayName: 'Components JS',
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Though it is not recomended for most layouts, some require the
+            control of scrolling to be handled through child components. You can
+            achieve this through nested flex groups and overflow properties;
+            adding certain combinations of{' '}
+            <Link to="/utilities/css-utility-classes#overflows">
+              CSS overflow utility classes
+            </Link>{' '}
+            to these children. There are a few <strong>caveats</strong> to
+            understand when trying to acheive full height layouts with{' '}
+            <strong>EuiPageTemplate</strong>.
+          </p>
+          <ol>
+            <li>
+              Using the <EuiCode>{'fullHeight'}</EuiCode> prop adds an extra
+              layer of{' '}
+              <Link to="/layout/flex">
+                <strong>EuiFlexGroup</strong> and <strong>EuiFlexItem</strong>
+              </Link>{' '}
+              around the template children to negate the negative margins.
+            </li>
+            <li>
+              Using <EuiCode>{'fullHeight=true'}</EuiCode> will automatically
+              add scrolling behavior to the <strong>EuiFlexItem</strong> that
+              wraps the children.
+            </li>
+            <li>
+              Using <EuiCode>{'fullHeight="noscroll"'}</EuiCode> removes all
+              scrolling behavior and your layouts will break if you do not
+              manually add them.
+            </li>
+            <li>
+              When using either values for <EuiCode>{'fullHeight'}</EuiCode>,
+              there will always be a minimum height of <EuiCode>460px</EuiCode>{' '}
+              to the page contents.
+            </li>
+            <li>
+              Full height layouts are restricted to{' '}
+              <strong>medium breakpoints</strong> and above. We recommend
+              retaining any responsive behavior and allowing normal page scroll
+              on smaller screens.
+            </li>
+          </ol>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            size="s"
+            title={
+              <>
+                When applying the <EuiCode>.eui-yScroll</EuiCode> class, it is
+                recommended to also apply <EuiCode>tabindex=0</EuiCode> to
+                ensure keyboard users can scroll these containers.
+              </>
+            }
+          />
+        </>
+      ),
+      demo: (
+        <PageDemo>
+          {(Button, Content, SideNav, showTemplate) =>
+            showTemplate ? (
+              <PageFullHeightTemplate
+                button={<Button />}
+                content={<Content />}
+              />
+            ) : (
+              <PageFullHeight button={<Button />} content={<Content />} />
             )
           }
         </PageDemo>

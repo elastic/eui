@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "34.0.0",
+  "version": "34.1.0",
   "license": "Apache-2.0",
   "main": "lib",
   "module": "es",
@@ -41,6 +41,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/elastic/eui.git"
+  },
+  "resolutions": {
+    "**/trim": "0.0.3"
   },
   "pre-commit": [
     "test-staged"

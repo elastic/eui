@@ -176,8 +176,7 @@
     }
   }
 
-  .token.punctuation:not(.interpolation-punctuation):not([class*='attr-']),
-  .token.namespace {
+  .token.punctuation:not(.interpolation-punctuation):not([class*='attr-']) {
     opacity: .7;
   }
 
