@@ -3,9 +3,12 @@
     padding-top: 0;
   }
 
-  .euiRangeTick::before {
+  .euiRangeTick:not(.euiRangeTick--hasTickMark)::before,
+  .euiRangeTick__pseudo {
     width: $euiSizeXS;
     height: $euiSizeM / 2;
+    background-color: $euiColorLightShade;
+    border-radius: $euiBorderRadiusSmall;
   }
 }
 
@@ -13,7 +16,8 @@
   .euiRangeTick {
     padding-top: $euiSize - 2px;
 
-    &::before {
+    &::before,
+    .euiRangeTick__pseudo {
       background-color: $euiColorLightShade;
       border-radius: $euiBorderRadiusSmall;
     }
