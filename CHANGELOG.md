@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.1.0`.
+**Bug fixes**
+
+- Fixed `onBlur` and `data-test-subj` prop propagation in `EuiColorPicker` ([#4822](https://github.com/elastic/eui/pull/4822))
 
 ## [`34.1.0`](https://github.com/elastic/eui/tree/v34.1.0)
 
@@ -19,7 +21,6 @@ No public interface changes since `34.1.0`.
 - Added `flex-shrink: 0` to `EuiTabs`, `EuiSpacer`, and `EuiImage` to fix possible shrunken heights ([#4793](https://github.com/elastic/eui/pull/4793))
 - Fixed duplicate `main` aria roles in `EuiPageTemplate` and most common `EuiPage` patterns ([#4793](https://github.com/elastic/eui/pull/4793))
 - Fixed text color of `EuiBottomBar` ([#4793](https://github.com/elastic/eui/pull/4793))
-- Fixed `onBlur` and `data-test-subj` prop propagation in `EuiColorPicker` ([#4822](https://github.com/elastic/eui/pull/4822))
 
 ## [`34.0.0`](https://github.com/elastic/eui/tree/v34.0.0)
 
