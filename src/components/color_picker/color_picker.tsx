@@ -285,6 +285,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   };
 
   const handleOnBlur = () => {
+    // `onBlur` also gets called when the popover is closing
+    // so prevent a second `onBlur` if the popover is open
     if (!isColorSelectorShown && onBlur) {
       onBlur();
     }
