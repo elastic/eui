@@ -59,8 +59,8 @@ export const LoadingExample = {
       ],
       text: (
         <p>
-          The Elastic logo based loader is great for full page or Elastic
-          product loading screens.
+          The <strong>EuiLoadingElastic</strong> loader is great for full page
+          or Elastic product loading screens.
         </p>
       ),
       props: { EuiLoadingElastic },
@@ -78,7 +78,7 @@ export const LoadingExample = {
       ],
       text: (
         <p>
-          This logo based loader accepts any of our{' '}
+          <strong>EuiLoadingLogo</strong> accepts any of our{' '}
           <Link to="/display/icons#elastic-logos">
             <strong>EuiIcon</strong>
           </Link>{' '}
@@ -101,9 +101,10 @@ export const LoadingExample = {
       ],
       text: (
         <p>
-          To indicate that a visualization is loading, use this chart-based
-          loader. The multi-color version should be used sparingly, and only
-          when a single large visualization is being loaded.
+          To indicate that a visualization is loading, use{' '}
+          <strong>EuiLoadingChart</strong>. The multi-color version should be
+          used sparingly, and only when a single large visualization is being
+          loaded.
         </p>
       ),
       props: { EuiLoadingChart },
@@ -119,7 +120,12 @@ export const LoadingExample = {
           code: loadingSpinnerSource,
         },
       ],
-      text: <p>A simple spinner for most loading contexts.</p>,
+      text: (
+        <p>
+          <strong>EuiLoadingSpinner</strong> is a simple spinner for most
+          loading contexts.
+        </p>
+      ),
       props: { EuiLoadingSpinner },
       demo: <LoadingSpinner />,
       snippet: '<EuiLoadingSpinner size="m" />',
@@ -135,8 +141,9 @@ export const LoadingExample = {
       ],
       text: (
         <p>
-          A simple loading animation for displaying placeholder text content.
-          You can pass in a number of <EuiCode>lines</EuiCode> between 1 and 10.
+          <strong>EuiLoadingContent</strong> is a simple loading animation for
+          displaying placeholder text content. You can pass in a number of{' '}
+          <EuiCode>lines</EuiCode> between 1 and 10.
         </p>
       ),
       props: { EuiLoadingContent },
