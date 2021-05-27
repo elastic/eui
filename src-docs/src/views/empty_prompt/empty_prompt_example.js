@@ -130,7 +130,8 @@ export const EmptyPromptExample = {
           <p>
             For <strong>loading</strong> states, you can simply replace the{' '}
             <EuiCode>iconType</EuiCode> with a custom <EuiCode>icon</EuiCode> by
-            passing in one of our loading components.
+            passing in one of our{' '}
+            <Link to="/display/loading">loading components</Link>.
           </p>
         </>
       ),
