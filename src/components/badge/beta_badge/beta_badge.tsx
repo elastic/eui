@@ -76,16 +76,16 @@ type WithSpanProps = Omit<
 >;
 
 // `label` prop can be a `ReactNode` only if `title` or `tooltipContent` is provided
-type LabelAsNode = (
-  | {
-      title: string;
-      tooltipContent?: ReactNode;
-    }
-  | {
-      tooltipContent: ReactNode;
-      title?: string;
-    }
-) & {
+type LabelAsNode = ExclusiveUnion<
+  {
+    title: string;
+    tooltipContent?: ReactNode;
+  },
+  {
+    tooltipContent: ReactNode;
+    title?: string;
+  }
+> & {
   label: ReactNode;
 };
 
@@ -203,12 +203,11 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
 
   let content;
   if (onClick || href) {
-    const spanTitle = title || label;
     content = (
       <Element
         aria-label={onClickAriaLabel}
         className={classes}
-        title={spanTitle as string | undefined}
+        title={typeof label === 'string' ? label : title}
         {...(relObj as HTMLAttributes<HTMLElement>)}
         {...(rest as HTMLAttributes<HTMLElement>)}>
         {icon || label}
@@ -246,10 +245,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
         );
       }
       return (
-        <span
-          className={classes}
-          title={spanTitle as string | undefined}
-          {...rest}>
+        <span className={classes} title={spanTitle as string} {...rest}>
           {icon || label}
         </span>
       );
