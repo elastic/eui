@@ -1,13 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `color` and `size` props and added support for click event to `EuiBetaBadge` ([#4798](https://github.com/elastic/eui/pull/4798))
+- Added `documentation` and `layers` glyphs to `EuiIcon` ([#4833](https://github.com/elastic/eui/pull/4833))
 - Added `euiCantAnimate` Sass mixin ([#4835](https://github.com/elastic/eui/pull/4835))
 - Added new `EuiLoadingLogo` component ([#4835](https://github.com/elastic/eui/pull/4835))
 - Added `icon` props to `EuiEmptyPrompt` for custom icons ([#4835](https://github.com/elastic/eui/pull/4835))
 - Deprecated `EuiLoadingKibana` ([#4835](https://github.com/elastic/eui/pull/4135))
+- Paused animations when `prefers-reduced-motion` is on for loader components ([#4835](https://github.com/elastic/eui/pull/4135))
 
 **Bug fixes**
 
-- Added `paddingSize` prop to `EuiPageSideBar` ([#4835](https://github.com/elastic/eui/pull/4835))
+- Fixed `onBlur` and `data-test-subj` prop propagation in `EuiColorPicker` ([#4822](https://github.com/elastic/eui/pull/4822))
 
 ## [`34.1.0`](https://github.com/elastic/eui/tree/v34.1.0)
 

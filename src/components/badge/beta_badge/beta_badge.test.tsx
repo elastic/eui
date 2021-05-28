@@ -21,12 +21,34 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test';
 
-import { EuiBetaBadge } from './beta_badge';
+import { EuiBetaBadge, COLORS, SIZES } from './beta_badge';
 
 describe('EuiBetaBadge', () => {
   test('is rendered', () => {
     const component = render(<EuiBetaBadge label="Beta" {...requiredProps} />);
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('props', () => {
+    describe('color', () => {
+      COLORS.forEach((color) => {
+        test(`${color} is rendered`, () => {
+          const component = render(<EuiBetaBadge label="Beta" color={color} />);
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('size', () => {
+      SIZES.forEach((size) => {
+        test(`${size} is rendered`, () => {
+          const component = render(<EuiBetaBadge label="Beta" size={size} />);
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
   });
 });
