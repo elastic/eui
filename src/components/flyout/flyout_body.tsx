@@ -44,7 +44,7 @@ export const EuiFlyoutBody: EuiFlyoutBodyProps = ({
 
   return (
     <div className={classes} {...rest}>
-      <div className={overflowClasses}>
+      <div tabIndex={0} className={overflowClasses}>
         {banner && <div className="euiFlyoutBody__banner">{banner}</div>}
         <div className="euiFlyoutBody__overflowContent">{children}</div>
       </div>

@@ -2,79 +2,47 @@
 
 exports[`EuiCollapsibleNav close button can be hidden 1`] = `
 Array [
-  <div />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="1"
-  />,
-  <div
-    data-focus-lock-disabled="false"
-  >
-    <nav
-      class="euiCollapsibleNav"
-      id="id"
+  <div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
     />
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-]
-`;
-
-exports[`EuiCollapsibleNav close button extends EuiButtonEmpty 1`] = `
-Array [
-  <div />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="1"
-  />,
-  <div
-    data-focus-lock-disabled="false"
-  >
-    <nav
-      class="euiCollapsibleNav"
-      id="id"
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      data-focus-lock-disabled="false"
     >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton class"
-        data-test-subj="test"
-        type="button"
+      <nav
+        class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
+        id="id"
+        style="width: 320px;"
+        tabindex="-1"
       >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
+        <button
+          aria-label="Close this dialog"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside"
+          data-test-subj="euiFlyoutCloseButton"
+          type="button"
         >
           <span
-            class="euiButtonContent__icon"
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
             data-euiicon-type="cross"
           />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
+        </button>
+      </nav>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
   </div>,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
 ]
 `;
 
@@ -82,7 +50,54 @@ exports[`EuiCollapsibleNav does not render if isOpen is false 1`] = `null`;
 
 exports[`EuiCollapsibleNav is rendered 1`] = `
 Array [
-  <div />,
+  <div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      data-focus-lock-disabled="false"
+    >
+      <nav
+        aria-label="aria-label"
+        class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav testClass1 testClass2"
+        data-test-subj="test subject string"
+        id="id"
+        style="width: 320px;"
+        tabindex="-1"
+      >
+        <button
+          aria-label="Close this dialog"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside"
+          data-test-subj="euiFlyoutCloseButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="cross"
+          />
+        </button>
+      </nav>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>,
+]
+`;
+
+exports[`EuiCollapsibleNav props accepts EuiFlyout props 1`] = `
+Array [
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -97,28 +112,23 @@ Array [
     data-focus-lock-disabled="false"
   >
     <nav
-      aria-label="aria-label"
-      class="euiCollapsibleNav testClass1 testClass2"
-      data-test-subj="test subject string"
+      class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
       id="id"
+      style="width: 240px;"
+      tabindex="-1"
     >
       <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
+        aria-label="Close this dialog"
+        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside"
+        data-test-subj="euiFlyoutCloseButton"
         type="button"
       >
         <span
-          class="euiButtonContent euiButtonEmpty__content"
-        >
-          <span
-            class="euiButtonContent__icon"
-            data-euiicon-type="cross"
-          />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="cross"
+        />
       </button>
     </nav>
   </div>,
@@ -136,147 +146,94 @@ Array [
     aria-controls="id"
     aria-expanded="true"
     aria-pressed="true"
-    class="euiCollapsibleNav__toggle"
   />,
-  <div />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="1"
-  />,
-  <div
-    data-focus-lock-disabled="false"
-  >
-    <nav
-      class="euiCollapsibleNav"
-      id="id"
+  <div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      data-focus-lock-disabled="false"
     >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
-        type="button"
+      <nav
+        class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
+        id="id"
+        style="width: 320px;"
+        tabindex="-1"
       >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
+        <button
+          aria-label="Close this dialog"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside"
+          data-test-subj="euiFlyoutCloseButton"
+          type="button"
         >
           <span
-            class="euiButtonContent__icon"
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
             data-euiicon-type="cross"
           />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
+        </button>
+      </nav>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
   </div>,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-]
-`;
-
-exports[`EuiCollapsibleNav props can alter mask props with maskProps without throwing error 1`] = `
-Array [
-  <div />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="1"
-  />,
-  <div
-    data-focus-lock-disabled="false"
-  >
-    <nav
-      class="euiCollapsibleNav"
-      id="id"
-    >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
-        >
-          <span
-            class="euiButtonContent__icon"
-            data-euiicon-type="cross"
-          />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
-  </div>,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
 ]
 `;
 
 exports[`EuiCollapsibleNav props dockedBreakpoint 1`] = `
 Array [
-  <div />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="1"
-  />,
-  <div
-    data-focus-lock-disabled="false"
-  >
-    <nav
-      class="euiCollapsibleNav"
-      id="id"
+  <div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      data-focus-lock-disabled="false"
     >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
-        type="button"
+      <nav
+        class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
+        id="id"
+        style="width: 320px;"
+        tabindex="-1"
       >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
+        <button
+          aria-label="Close this dialog"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside"
+          data-test-subj="euiFlyoutCloseButton"
+          type="button"
         >
           <span
-            class="euiButtonContent__icon"
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
             data-euiicon-type="cross"
           />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
+        </button>
+      </nav>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
   </div>,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
 ]
 `;
 
@@ -296,28 +253,11 @@ Array [
     data-focus-lock-disabled="disabled"
   >
     <nav
-      class="euiCollapsibleNav euiCollapsibleNav--isDocked"
+      class="euiFlyout euiFlyout--push euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
       id="id"
-    >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
-        >
-          <span
-            class="euiButtonContent__icon"
-            data-euiicon-type="cross"
-          />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
+      style="width:320px"
+      tabindex="-1"
+    />
   </div>,
   <div
     data-focus-guard="true"
@@ -329,49 +269,47 @@ Array [
 
 exports[`EuiCollapsibleNav props onClose 1`] = `
 Array [
-  <div />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="1"
-  />,
-  <div
-    data-focus-lock-disabled="false"
-  >
-    <nav
-      class="euiCollapsibleNav"
-      id="id"
+  <div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      data-focus-lock-disabled="false"
     >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
-        type="button"
+      <nav
+        class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
+        id="id"
+        style="width: 320px;"
+        tabindex="-1"
       >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
+        <button
+          aria-label="Close this dialog"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside"
+          data-test-subj="euiFlyoutCloseButton"
+          type="button"
         >
           <span
-            class="euiButtonContent__icon"
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
             data-euiicon-type="cross"
           />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
+        </button>
+      </nav>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
   </div>,
-  <div
-    data-focus-guard="true"
-    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
-    tabindex="0"
-  />,
 ]
 `;
 
@@ -381,7 +319,6 @@ Array [
     aria-controls="id"
     aria-expanded="true"
     aria-pressed="true"
-    class="euiCollapsibleNav__toggle"
   />,
   <div
     data-focus-guard="true"
@@ -397,33 +334,62 @@ Array [
     data-focus-lock-disabled="disabled"
   >
     <nav
-      class="euiCollapsibleNav euiCollapsibleNav--isDocked"
+      class="euiFlyout euiFlyout--push euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
       id="id"
-    >
-      <button
-        class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiScreenReaderOnly--showOnFocus euiCollapsibleNav__closeButton"
-        type="button"
-      >
-        <span
-          class="euiButtonContent euiButtonEmpty__content"
-        >
-          <span
-            class="euiButtonContent__icon"
-            data-euiicon-type="cross"
-          />
-          <span
-            class="euiButtonEmpty__text euiCollapsibleNav__closeButtonText"
-          >
-            close
-          </span>
-        </span>
-      </button>
-    </nav>
+      style="width: 320px;"
+      tabindex="-1"
+    />
   </div>,
   <div
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="-1"
   />,
+]
+`;
+
+exports[`EuiCollapsibleNav props size 1`] = `
+Array [
+  <div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="1"
+    />
+    <div
+      data-focus-lock-disabled="false"
+    >
+      <nav
+        class="euiFlyout euiFlyout--left euiFlyout--paddingNone euiCollapsibleNav"
+        id="id"
+        style="width: 240px;"
+        tabindex="-1"
+      >
+        <button
+          aria-label="Close this dialog"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--fill euiButtonIcon--xSmall euiFlyout__closeButton euiFlyout__closeButton--outside"
+          data-test-subj="euiFlyoutCloseButton"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="cross"
+          />
+        </button>
+      </nav>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>,
 ]
 `;

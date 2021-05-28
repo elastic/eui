@@ -10,6 +10,10 @@ export default () => (
 
     <EuiBadge iconType="check">Default</EuiBadge>
 
+    <EuiBadge iconType="lensApp" color="primary">
+      Primary with an app icon
+    </EuiBadge>
+
     <EuiBadge iconType="returnKey" />
   </div>
 );

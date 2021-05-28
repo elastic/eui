@@ -8,6 +8,30 @@ exports[`EuiPageSideBar is rendered 1`] = `
 />
 `;
 
+exports[`EuiPageSideBar paddingSize l is rendered 1`] = `
+<div
+  class="euiPageSideBar euiPageSideBar--paddingLarge"
+/>
+`;
+
+exports[`EuiPageSideBar paddingSize m is rendered 1`] = `
+<div
+  class="euiPageSideBar euiPageSideBar--paddingMedium"
+/>
+`;
+
+exports[`EuiPageSideBar paddingSize none is rendered 1`] = `
+<div
+  class="euiPageSideBar"
+/>
+`;
+
+exports[`EuiPageSideBar paddingSize s is rendered 1`] = `
+<div
+  class="euiPageSideBar euiPageSideBar--paddingSmall"
+/>
+`;
+
 exports[`EuiPageSideBar sticky is rendered 1`] = `
 <div
   class="euiPageSideBar euiPageSideBar--sticky"

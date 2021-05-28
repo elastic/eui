@@ -312,7 +312,13 @@ export class EuiRange extends Component<EuiRangeProps> {
         )}
         {showInput && !showInputOnly && (
           <>
-            <div className="euiRange__horizontalSpacer" />
+            <div
+              className={
+                showTicks || ticks
+                  ? 'euiRange__slimHorizontalSpacer'
+                  : 'euiRange__horizontalSpacer'
+              }
+            />
             {theInput}
           </>
         )}

@@ -140,6 +140,23 @@ exports[`EuiIcon props color hsla(270, 60%, 70%, 0.9) is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props color inherit is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon--inherit euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M11.271 11.978l3.872 3.873a.502.502 0 00.708 0 .502.502 0 000-.708l-3.565-3.564c2.38-2.747 2.267-6.923-.342-9.532-2.73-2.73-7.17-2.73-9.898 0-2.728 2.729-2.728 7.17 0 9.9a6.955 6.955 0 004.949 2.05.5.5 0 000-1 5.96 5.96 0 01-4.242-1.757 6.01 6.01 0 010-8.486c2.337-2.34 6.143-2.34 8.484 0a6.01 6.01 0 010 8.486.5.5 0 00.034.738z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props color primary is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -1180,6 +1197,23 @@ exports[`EuiIcon props type codeApp is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type color is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M13 11c1.334 1.393 2 2.435 2 3.125C15 15.161 14.105 16 13 16c-1.104 0-2-.84-2-1.875 0-.69.667-1.732 2-3.125zM5.857.15l6.34 6.45.016.02.324.321a1.5 1.5 0 01.11 2.006l-.103.114-4.474 4.513a1.5 1.5 0 01-2.123.008L1.464 9.06a1.5 1.5 0 01.007-2.12l4.472-4.45c.145-.146.313-.254.492-.327L5.144.85a.5.5 0 01.713-.7zm1.496 3.049a.5.5 0 00-.705 0L2.177 7.65a.498.498 0 00-.148.35h9.95a.498.498 0 00-.148-.35L7.353 3.2z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type compute is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -1241,6 +1275,74 @@ exports[`EuiIcon props type consoleApp is rendered 1`] = `
   />
   <path
     d="M7.29 17.71l3.3 3.29-3.3 3.29 1.42 1.42 4.7-4.71-4.7-4.71zM15 24h9v2h-9z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type continuityAbove is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M1.5 3a.5.5 0 00-.5.5v9a.5.5 0 001 0v-9a.5.5 0 00-.5-.5zm3 0a.5.5 0 00-.5.5v9a.5.5 0 001 0V9h6v1.5a.5.5 0 00.82.384l3-2.5a.5.5 0 000-.768l-3-2.5A.5.5 0 0011 5.5V7H5V3.5a.5.5 0 00-.5-.5z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type continuityAboveBelow is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M6.5 3a.5.5 0 01.5.5v9a.5.5 0 01-1 0V9H4v1.5a.5.5 0 01-.82.384l-3-2.5a.5.5 0 010-.768l3-2.5A.5.5 0 014 5.5V7h2V3.5a.5.5 0 01.5-.5zm3 0a.5.5 0 00-.5.5v9a.5.5 0 001 0V9h2v1.5a.5.5 0 00.82.384l3-2.5a.5.5 0 000-.768l-3-2.5A.5.5 0 0012 5.5V7h-2V3.5a.5.5 0 00-.5-.5z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type continuityBelow is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M11.5 3a.5.5 0 01.5.5v9a.5.5 0 01-1 0V9H5v1.5a.5.5 0 01-.82.384l-3-2.5a.5.5 0 010-.768l3-2.5A.5.5 0 015 5.5V7h6V3.5a.5.5 0 01.5-.5zm3 0a.5.5 0 01.5.5v9a.5.5 0 01-1 0v-9a.5.5 0 01.5-.5z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type continuityWithin is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M.5 3a.5.5 0 00-.5.5v9a.5.5 0 001 0v-9A.5.5 0 00.5 3zm14.5.5a.5.5 0 011 0v9a.5.5 0 01-1 0v-9zm-4.712 1.547a.5.5 0 01.532.069l3 2.5a.5.5 0 010 .768l-3 2.5A.5.5 0 0110 10.5V9H6v1.5a.5.5 0 01-.82.384l-3-2.5a.5.5 0 010-.768l3-2.5A.5.5 0 016 5.5V7h4V5.5a.5.5 0 01.288-.453z"
   />
 </svg>
 `;
@@ -2258,6 +2360,26 @@ exports[`EuiIcon props type eql is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type eraser is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M2.648 9.937l7.29-7.288a2.21 2.21 0 013.124 0l2.29 2.288a2.21 2.21 0 010 3.126L10.413 13H12.5a.5.5 0 010 1H4.501a2.21 2.21 0 01-1.563-.647l.707-.707c.227.226.535.354.856.354h4.005a1.21 1.21 0 00.848-.354l1.292-1.293-4-4-3.29 3.291a1.21 1.21 0 000 1.712l.29.29-.708.707-.29-.29a2.21 2.21 0 010-3.126zM8 6h6.89a1.208 1.208 0 00-.246-.356L14 5H9L8 6zm2-2h3l-.645-.644a1.21 1.21 0 00-1.71 0L10 4zm4.89 3H7.708l1 1H14l.644-.644A1.22 1.22 0 0014.891 7zM9.708 9l1.646 1.646L13 9H9.707z"
+  />
+  <path
+    d="M14 11.5a.5.5 0 11-1 0 .5.5 0 011 0zm1.5-.5a.5.5 0 100-1 .5.5 0 000 1zm-1 2a.5.5 0 000 1h1a.5.5 0 000-1h-1z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type exit is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -2556,6 +2678,44 @@ exports[`EuiIcon props type folderOpen is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type frameNext is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M3 2a1 1 0 00-1 1v10a1 1 0 102 0V3a1 1 0 00-1-1zm5.146.22l7.2 4.581a1.425 1.425 0 010 2.398l-7.2 4.581C7.21 14.375 6 13.692 6 12.581V3.42c0-1.112 1.21-1.795 2.146-1.2z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type framePrevious is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M13 2a1 1 0 011 1v10a1 1 0 11-2 0V3a1 1 0 011-1zm-5.146.22l-7.2 4.581a1.425 1.425 0 000 2.398l7.2 4.581c.936.595 2.146-.088 2.146-1.199V3.42c0-1.111-1.21-1.794-2.146-1.199z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type fullScreen is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -2570,6 +2730,40 @@ exports[`EuiIcon props type fullScreen is rendered 1`] = `
   <path
     d="M13 3v4h-1V4H9V3h4zM3 3h4v1H4v3H3V3zm10 10H9v-1h3V9h1v4zM3 13V9h1v3h3v1H3zM0 1.994C0 .893.895 0 1.994 0h12.012C15.107 0 16 .895 16 1.994v12.012A1.995 1.995 0 0114.006 16H1.994A1.995 1.995 0 010 14.006V1.994zm1 0v12.012c0 .548.446.994.994.994h12.012a.995.995 0 00.994-.994V1.994A.995.995 0 0014.006 1H1.994A.995.995 0 001 1.994z"
     fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type fullScreenExit is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M9 7V3h1v3h3v1H9zM7 7H3V6h3V3h1v4zm2 2h4v1h-3v3H9V9zM7 9v4H6v-3H3V9h4zM0 1.994C0 .893.895 0 1.994 0h12.012C15.107 0 16 .895 16 1.994v12.012A1.995 1.995 0 0114.006 16H1.994A1.995 1.995 0 010 14.006V1.994zm1 0v12.012c0 .548.446.994.994.994h12.012a.995.995 0 00.994-.994V1.994A.995.995 0 0014.006 1H1.994A.995.995 0 001 1.994z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type function is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M13 2.226v2.218c-.359-.143-.845-.218-1.315-.218-1.059 0-1.631.519-1.802 1.565l-.168.937h2.798v2.159H9.41l-.313 1.674C8.696 12.987 7.261 14 4.785 14c-.718 0-1.35-.092-1.785-.251v-2.243c.418.176.905.268 1.383.268 1.008 0 1.546-.435 1.725-1.523l.24-1.364H3.787V6.728h2.812l.288-1.264C7.286 3.071 8.662 2 11.352 2c.598 0 1.306.1 1.648.226z"
   />
 </svg>
 `;
@@ -6595,6 +6789,31 @@ exports[`EuiIcon props type pencil is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type percent is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M5 8c1.105 0 2-1.12 2-2.5S6.105 3 5 3 3 4.12 3 5.5 3.895 8 5 8zm0-1c.356 0 1-.452 1-1.5S5.356 4 5 4s-1 .452-1 1.5S4.644 7 5 7z"
+    fill-rule="evenodd"
+  />
+  <path
+    d="M10.5 3H12L5.5 13H4l6.5-10z"
+  />
+  <path
+    d="M13 10.5c0 1.38-.895 2.5-2 2.5s-2-1.12-2-2.5S9.895 8 11 8s2 1.12 2 2.5zm-1 0c0 1.048-.644 1.5-1 1.5s-1-.452-1-1.5.644-1.5 1-1.5 1 .452 1 1.5z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type pin is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -6664,6 +6883,24 @@ exports[`EuiIcon props type play is rendered 1`] = `
 >
   <path
     d="M4.608 3.063C4.345 2.895 4 3.089 4 3.418v9.167c0 .329.345.523.608.356l7.2-4.584a.426.426 0 000-.711l-7.2-4.583zm.538-.844l7.2 4.583a1.426 1.426 0 010 2.399l-7.2 4.583C4.21 14.38 3 13.696 3 12.585V3.418C3 2.307 4.21 1.624 5.146 2.22z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type playFilled is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M12.345 6.801l-7.2-4.581C4.21 1.625 3 2.308 3 3.419v9.162c0 1.111 1.21 1.794 2.146 1.199l7.2-4.581a1.425 1.425 0 000-2.398z"
   />
 </svg>
 `;
@@ -7794,6 +8031,25 @@ exports[`EuiIcon props type timelionApp is rendered 1`] = `
   <path
     class="euiIcon__fillSecondary"
     d="M4 0h24v2H4z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type timeslider is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M13.923 8A5.93 5.93 0 008 2.077 5.93 5.93 0 002.077 8a5.93 5.93 0 006.296 5.912c.328-.021.625.227.625.556a.504.504 0 01-.458.511 7 7 0 116.43-6.333c-.036.398-.487.58-.817.354a.595.595 0 01-.248-.54c.012-.152.018-.305.018-.46zm1.684 3.2l-4.32-3.055c-.56-.396-1.287.059-1.287.8v6.108c0 .74.726 1.196 1.287.8l4.32-3.055c.524-.37.524-1.228 0-1.598zM7.462 7.462H4.769a.539.539 0 000 1.076H8A.539.539 0 008.538 8V3.692a.539.539 0 00-1.076 0v3.77z"
   />
 </svg>
 `;
@@ -9292,6 +9548,43 @@ exports[`EuiIcon props type watchesApp is rendered 1`] = `
   <path
     class="euiIcon__fillSecondary"
     d="M21 15a5 5 0 10-6 4.9V31h2V19.9a5 5 0 004-4.9zm-5 3a3 3 0 110-6 3 3 0 010 6z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type wordWrap is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M2 3h12v1H2V3zm0 8h6v1H2v-1z"
+  />
+  <path
+    d="M2 7h9.5v.5V7h.039l.083.005a2.958 2.958 0 011.102.298c.309.154.633.394.88.763.248.373.396.847.396 1.434 0 .588-.148 1.061-.396 1.434a2.257 2.257 0 01-.88.763 2.957 2.957 0 01-1.185.302h-.025l-.009.001h-.003s-.002 0-.002-.5v.5H11v1l-2-1.5 2-1.5v1h.506l.044-.003a1.959 1.959 0 00.726-.195c.191-.095.367-.23.495-.423.127-.19.229-.466.229-.879s-.102-.689-.229-.879a1.256 1.256 0 00-.495-.424 1.958 1.958 0 00-.77-.197H2V7z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type wordWrapDisabled is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M14 3.5L12 2v1H2v1h10v1l2-1.5zM12 9V8H2V7h10V6l2 1.5L12 9zm0 3v1l2-1.5-2-1.5v1H2v1h10z"
   />
 </svg>
 `;

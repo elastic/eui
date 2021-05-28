@@ -103,6 +103,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
         type={iconType}
         size="m"
         aria-hidden="true"
+        color="inherit" // forces the icon to inherit its parent color
       />
     );
   }

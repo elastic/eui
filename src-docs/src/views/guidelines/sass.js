@@ -306,6 +306,10 @@ const borderRadiusExample = `border: $euiBorderThin;
 border-radius: $euiBorderRadius;
 `;
 
+const borderRadiusSmallExample = `border: $euiBorderThin;
+border-radius: $euiBorderRadiusSmall;
+`;
+
 const importKibanaExample = `// In Kibana you can add this to the top of your Sass file
 @import 'ui/public/styles/styling_constants';
 `;
@@ -702,8 +706,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
       <EuiText grow={false}>
         <p>
-          In addition, you can utilize <EuiCode>$euiBorderRadius</EuiCode> to
-          round the corners.
+          In addition, you can utilize <EuiCode>$euiBorderRadius</EuiCode> or{' '}
+          <EuiCode>$euiBorderRadiusSmall</EuiCode> to round the corners.
         </p>
       </EuiText>
 
@@ -716,6 +720,14 @@ export const SassGuidelines = ({ selectedTheme }) => {
             transparentBackground
             paddingSize="none">
             {borderRadiusExample}
+          </EuiCodeBlock>
+        </EuiFlexItem>
+        <EuiFlexItem className="guideSass__border guideSass__border--radiusSmall">
+          <EuiCodeBlock
+            language="scss"
+            transparentBackground
+            paddingSize="none">
+            {borderRadiusSmallExample}
           </EuiCodeBlock>
         </EuiFlexItem>
       </EuiFlexGrid>

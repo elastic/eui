@@ -329,37 +329,40 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           </div>
         </>
       ) : (
-        <button
-          className="euiDataGridHeaderCell__button"
-          onClick={() => setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen)}>
-          {sortingArrow}
-          <div className="euiDataGridHeaderCell__content">
-            {display || displayAsText || id}
-          </div>
-          <EuiPopover
-            className="euiDataGridHeaderCell__popover"
-            panelPaddingSize="none"
-            anchorPosition="downRight"
-            button={
+        <EuiPopover
+          anchorClassName="euiDataGridHeaderCell__anchor"
+          panelPaddingSize="none"
+          offset={7}
+          button={
+            <button
+              className="euiDataGridHeaderCell__button"
+              onClick={() =>
+                setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen)
+              }>
+              {sortingArrow}
+              <div className="euiDataGridHeaderCell__content">
+                {display || displayAsText || id}
+              </div>
               <EuiIcon
+                className="euiDataGridHeaderCell__icon"
                 type="arrowDown"
                 size="s"
                 color="text"
                 aria-label={actionButtonAriaLabel}
                 data-test-subj={`dataGridHeaderCellActionButton-${id}`}
               />
-            }
-            isOpen={isPopoverOpen}
-            closePopover={() => setIsPopoverOpen(false)}>
-            <div>
-              <EuiListGroup
-                listItems={columnActions}
-                gutterSize="none"
-                data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
-              />
-            </div>
-          </EuiPopover>
-        </button>
+            </button>
+          }
+          isOpen={isPopoverOpen}
+          closePopover={() => setIsPopoverOpen(false)}>
+          <div>
+            <EuiListGroup
+              listItems={columnActions}
+              gutterSize="none"
+              data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
+            />
+          </div>
+        </EuiPopover>
       )}
     </div>
   );

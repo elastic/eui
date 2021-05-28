@@ -22,6 +22,7 @@ import React, {
   MouseEventHandler,
   FunctionComponent,
   ReactNode,
+  CSSProperties,
 } from 'react';
 import classNames from 'classnames';
 
@@ -62,24 +63,51 @@ const EuiTickValue: FunctionComponent<
   percentageWidth,
   tickValue,
 }) => {
-  const tickStyle: { left?: string; width?: string } = {};
+  const tickStyle: CSSProperties = {};
   let customTick;
+  let isMinTick;
+  let isMaxTick;
   if (ticks) {
     customTick = ticks.find((o) => o.value === tickValue);
+    isMinTick = customTick?.value === min;
+    isMaxTick = customTick?.value === max;
 
     if (customTick) {
-      tickStyle.left = `${((customTick.value - min) / (max - min)) * 100}%`;
+      if (isMaxTick) {
+        tickStyle.right = '0%';
+      } else {
+        tickStyle.left = `${((customTick.value - min) / (max - min)) * 100}%`;
+      }
     }
   } else {
     tickStyle.width = `${percentageWidth}%`;
   }
 
+  const label = customTick ? customTick.label : tickValue;
+
+  // Math worked out by trial and error
+  // Shifts the label into the reserved margin of EuiRangeTrack
+  const labelShiftVal =
+    (isMinTick || isMaxTick) && label.length > 3
+      ? Math.min(label.length * 0.25, 1.25)
+      : 0;
+
+  const pseudoShift: CSSProperties = {};
+  if (labelShiftVal) {
+    const labelShift = isMaxTick ? 'marginRight' : 'marginLeft';
+    tickStyle[labelShift] = `-${labelShiftVal}em`;
+    pseudoShift[labelShift] = `calc(${labelShiftVal}em - 2px)`; // 2px derived from .euiRangeTicks left/right offset
+  }
+
+  const pseudoTick = customTick && !!labelShiftVal && (isMinTick || isMaxTick);
+
   const tickClasses = classNames('euiRangeTick', {
     'euiRangeTick--selected': value === tickValue,
     'euiRangeTick--isCustom': customTick,
+    'euiRangeTick--isMin': labelShiftVal && isMinTick,
+    'euiRangeTick--isMax': labelShiftVal && isMaxTick,
+    'euiRangeTick--hasTickMark': pseudoTick,
   });
-
-  const label = customTick ? customTick.label : tickValue;
 
   const [ref, innerText] = useInnerText();
 
@@ -94,6 +122,13 @@ const EuiTickValue: FunctionComponent<
       tabIndex={-1}
       ref={ref}
       title={typeof label === 'string' ? label : innerText}>
+      {pseudoTick && (
+        <span
+          className="euiRangeTick__pseudo"
+          aria-hidden
+          style={pseudoShift}
+        />
+      )}
       {label}
     </button>
   );

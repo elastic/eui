@@ -232,7 +232,10 @@ export class GuidePageChrome extends Component {
           direction="column"
           responsive={false}
           gutterSize="none">
-          <EuiFlexItem grow={false} className="guideSideNav__search">
+          <EuiFlexItem
+            role="search"
+            grow={false}
+            className="guideSideNav__search">
             <EuiFieldSearch
               fullWidth
               placeholder="Search"

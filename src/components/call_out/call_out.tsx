@@ -84,15 +84,24 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
           type={iconType}
           size="m"
           aria-hidden="true"
+          color="inherit" // forces the icon to inherit its parent color
         />
       );
     }
 
     let optionalChildren;
     if (children && size === 's') {
-      optionalChildren = <EuiText size="xs">{children}</EuiText>;
+      optionalChildren = (
+        <EuiText size="xs" color="default">
+          {children}
+        </EuiText>
+      );
     } else if (children) {
-      optionalChildren = <EuiText size="s">{children}</EuiText>;
+      optionalChildren = (
+        <EuiText size="s" color="default">
+          {children}
+        </EuiText>
+      );
     }
 
     const H: any = heading ? `${heading}` : 'span';

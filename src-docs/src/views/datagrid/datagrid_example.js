@@ -344,7 +344,7 @@ export const DataGridExample = {
               to display more content and actions into popovers.
             </li>
             <li>
-              <Link to="/tabular-content/data-grid-styling-and-toolbar/">
+              <Link to="/tabular-content/data-grid-styling-and-control/">
                 Grid styling
               </Link>{' '}
               can be controlled by the engineer, but augmented by user

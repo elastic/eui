@@ -10,25 +10,25 @@ export default () => (
   <div>
     <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButton onClick={() => {}} iconType="arrowUp">
+        <EuiButton onClick={() => {}} iconType="heart">
           Primary
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton fill iconType="arrowDown" onClick={() => {}}>
+        <EuiButton fill iconType="lensApp" onClick={() => {}}>
           Filled
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton iconType="arrowLeft" size="s" onClick={() => {}}>
+        <EuiButton iconType="heart" size="s" onClick={() => {}}>
           small
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton iconType="arrowRight" size="s" fill onClick={() => {}}>
+        <EuiButton iconType="lensApp" size="s" fill onClick={() => {}}>
           small and filled
         </EuiButton>
       </EuiFlexItem>
@@ -36,17 +36,13 @@ export default () => (
 
     <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButton iconSide="right" onClick={() => {}} iconType="arrowUp">
+        <EuiButton iconSide="right" onClick={() => {}} iconType="heart">
           Primary
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButton
-          iconSide="right"
-          fill
-          iconType="arrowDown"
-          onClick={() => {}}>
+        <EuiButton iconSide="right" fill iconType="lensApp" onClick={() => {}}>
           Filled
         </EuiButton>
       </EuiFlexItem>
@@ -54,7 +50,7 @@ export default () => (
       <EuiFlexItem grow={false}>
         <EuiButton
           iconSide="right"
-          iconType="arrowLeft"
+          iconType="heart"
           size="s"
           onClick={() => {}}>
           small
@@ -64,7 +60,7 @@ export default () => (
       <EuiFlexItem grow={false}>
         <EuiButton
           iconSide="right"
-          iconType="arrowRight"
+          iconType="lensApp"
           size="s"
           fill
           onClick={() => {}}>
@@ -78,7 +74,7 @@ export default () => (
         <EuiButton
           iconSide="right"
           onClick={() => {}}
-          iconType="arrowUp"
+          iconType="heart"
           isDisabled>
           Disabled
         </EuiButton>
@@ -88,7 +84,7 @@ export default () => (
         <EuiButton
           iconSide="right"
           fill
-          iconType="arrowDown"
+          iconType="lensApp"
           onClick={() => {}}
           isDisabled>
           Filled
@@ -98,7 +94,7 @@ export default () => (
       <EuiFlexItem grow={false}>
         <EuiButton
           iconSide="right"
-          iconType="arrowLeft"
+          iconType="heart"
           size="s"
           onClick={() => {}}
           isDisabled>
@@ -109,7 +105,7 @@ export default () => (
       <EuiFlexItem grow={false}>
         <EuiButton
           iconSide="right"
-          iconType="arrowRight"
+          iconType="lensApp"
           size="s"
           fill
           onClick={() => {}}

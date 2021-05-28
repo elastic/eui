@@ -33,7 +33,7 @@ import { EuiPopover, EuiPopoverProps } from './popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { cascadingMenuKeys } from '../../services';
 
-interface _EuiInputPopoverProps
+export interface _EuiInputPopoverProps
   extends Omit<EuiPopoverProps, 'button' | 'buttonRef'> {
   disableFocusTrap?: boolean;
   fullWidth?: boolean;
