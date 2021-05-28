@@ -248,33 +248,36 @@ export default () => {
     collapsibleNav,
     <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
   ];
+  if (typeof document !== 'undefined') {
+    return (
+      <GuideFullScreen>
+        {(setIsFullScreen) => (
+          <React.Fragment>
+            <EuiHeader
+              position="fixed"
+              sections={[
+                {
+                  items: leftSectionItems,
+                  borders: 'right',
+                },
+                {
+                  items: [
+                    <EuiButtonEmpty
+                      iconType="minimize"
+                      onClick={() => setIsFullScreen(false)}>
+                      Exit full screen
+                    </EuiButtonEmpty>,
+                  ],
+                },
+              ]}
+            />
 
-  return (
-    <GuideFullScreen>
-      {(setIsFullScreen) => (
-        <React.Fragment>
-          <EuiHeader
-            position="fixed"
-            sections={[
-              {
-                items: leftSectionItems,
-                borders: 'right',
-              },
-              {
-                items: [
-                  <EuiButtonEmpty
-                    iconType="minimize"
-                    onClick={() => setIsFullScreen(false)}>
-                    Exit full screen
-                  </EuiButtonEmpty>,
-                ],
-              },
-            ]}
-          />
-
-          <EuiPage />
-        </React.Fragment>
-      )}
-    </GuideFullScreen>
-  );
+            <EuiPage />
+          </React.Fragment>
+        )}
+      </GuideFullScreen>
+    );
+  } else {
+    return null;
+  }
 };
