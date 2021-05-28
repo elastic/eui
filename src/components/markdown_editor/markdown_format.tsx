@@ -20,24 +20,28 @@
 import React, { FunctionComponent, useMemo } from 'react';
 import unified, { PluggableList } from 'unified';
 import { VFileContents } from 'vfile';
+import classNames from 'classnames';
+import { CommonProps } from '../common';
 import { EuiText } from '../text/text';
 import {
   defaultProcessingPlugins,
   defaultParsingPlugins,
 } from './plugins/markdown_default_plugins';
 
-export interface EuiMarkdownFormatProps {
+export type EuiMarkdownFormatProps = CommonProps & {
   children: string;
   /** array of unified plugins to parse content into an AST */
   parsingPluginList?: PluggableList;
   /** array of unified plugins to convert the AST into a ReactNode */
   processingPluginList?: PluggableList;
-}
+};
 
 export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   children,
+  className,
   parsingPluginList = defaultParsingPlugins,
   processingPluginList = defaultProcessingPlugins,
+  ...rest
 }) => {
   const processor = useMemo(
     () => unified().use(parsingPluginList).use(processingPluginList),
@@ -53,8 +57,11 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
       return children;
     }
   }, [children, processor]);
+
+  const classes = classNames('euiMarkdownFormat', className);
+
   return (
-    <div className="euiMarkdownFormat">
+    <div className={classes} {...rest}>
       <EuiText>{result}</EuiText>
     </div>
   );
