@@ -17,7 +17,7 @@ yarn add @elastic/eui @elastic/datemath moment prop-types
 
 ### Node
 
-We depend upon the version of node defined in [.nvmrc](.nvmrc).
+We depend upon the version of node defined in [.nvmrc](https://github.com/elastic/eui/.nvmrc).
 
 You will probably want to install a node version manager. [nvm](https://github.com/creationix/nvm) is recommended.
 
