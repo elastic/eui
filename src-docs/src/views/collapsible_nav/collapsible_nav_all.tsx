@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import find from 'lodash/find';
 import findIndex from 'lodash/findIndex';
 
@@ -57,10 +57,16 @@ const LearnLinks: EuiPinnableListGroupItemProps[] = [
 
 export default () => {
   const [navIsOpen, setNavIsOpen] = useState(true);
+  const [isMounted, setIsMounted] = useState(false)
   const [navIsDocked, setNavIsDocked] = useState(
     JSON.parse(String(localStorage.getItem('nav2IsDocked'))) || false
   );
-
+  useEffect(() => {
+    setIsMounted(true);
+    return () =>  {
+       setIsMounted(false);
+    }
+  }, []);
   /**
    * Accordion toggling
    */
@@ -248,7 +254,7 @@ export default () => {
     collapsibleNav,
     <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
   ];
-
+  if (!isMounted) return null;
   return (
     <GuideFullScreen>
       {(setIsFullScreen) => (
