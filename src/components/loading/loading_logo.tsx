@@ -30,17 +30,21 @@ const sizeToClassNameMap = {
 
 export const SIZES = keysOf(sizeToClassNameMap);
 
-export interface EuiLoadingLogoProps {
-  size?: keyof typeof sizeToClassNameMap;
-  /**
-   * While this component should be restricted to using logo icons, it works with any IconType
-   */
-  logo?: IconType;
-}
+export type EuiLoadingLogoProps = CommonProps &
+  HTMLAttributes<HTMLDivElement> & {
+    size?: keyof typeof sizeToClassNameMap;
+    /**
+     * While this component should be restricted to using logo icons, it works with any IconType
+     */
+    logo?: IconType;
+  };
 
-export const EuiLoadingLogo: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLDivElement> & EuiLoadingLogoProps
-> = ({ size = 'm', logo = 'logoKibana', className, ...rest }) => {
+export const EuiLoadingLogo: FunctionComponent<EuiLoadingLogoProps> = ({
+  size = 'm',
+  logo = 'logoKibana',
+  className,
+  ...rest
+}) => {
   const classes = classNames(
     'euiLoadingLogo',
     sizeToClassNameMap[size],

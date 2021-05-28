@@ -62,7 +62,7 @@ export type EuiEmptyPromptProps = CommonProps &
     body?: ReactNode;
     /**
      * Pass a single or an array of actions (buttons) that get stacked at the bottom.
-     * Recommendations is to pass the primary action first and secondary actions as empty buttons
+     * Recommendation is to pass the primary action first and secondary actions as empty buttons
      */
     actions?: ReactNode;
   };
