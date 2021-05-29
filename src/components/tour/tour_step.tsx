@@ -97,12 +97,12 @@ export interface EuiTourStepProps
   /**
    * Smaller title text that appears atop each step in the tour
    */
-  subtitle: string;
+  subtitle: ReactNode;
 
   /**
    * Larger title text specific to this step
    */
-  title: string;
+  title: ReactNode;
 
   /**
    * Extra visual indication of step location
