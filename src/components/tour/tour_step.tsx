@@ -95,12 +95,12 @@ export interface EuiTourStepProps
   style?: CSSProperties;
 
   /**
-   * Smaller title text that appears atop each step in the tour
+   * Smaller title text that appears atop each step in the tour. The subtitle gets wrapped in the appropriate heading level.
    */
   subtitle: ReactNode;
 
   /**
-   * Larger title text specific to this step
+   * Larger title text specific to this step. The title gets wrapped in the appropriate heading level.
    */
   title: ReactNode;
 
