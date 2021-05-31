@@ -74,11 +74,13 @@ const collectMatchingOption = <T>(
   }
 };
 
+type SelectableOptions<T> = Array<EuiSelectableOption<T>>;
+
 export const getMatchingOptions = <T>(
   /**
    * All available options to match against
    */
-  options: Array<EuiSelectableOption<T>>,
+  options: SelectableOptions<T>,
   /**
    * String to match option.label || option.searchableLabel against
    */
@@ -91,10 +93,10 @@ export const getMatchingOptions = <T>(
    * To exclude selected options from the search list,
    * pass the array of selected options
    */
-  selectedOptions?: Array<EuiSelectableOption<T>>
+  selectedOptions?: SelectableOptions<T>
 ) => {
   const normalizedSearchValue = searchValue.toLowerCase();
-  const matchingOptions: Array<EuiSelectableOption<T>> = [];
+  const matchingOptions: SelectableOptions<T> = [];
 
   options.forEach((option) => {
     collectMatchingOption<T>(

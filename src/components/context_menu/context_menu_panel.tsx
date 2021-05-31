@@ -48,7 +48,8 @@ const titleSizeToClassNameMap = {
   m: null,
 };
 
-export const SIZES = keysOf(titleSizeToClassNameMap);
+export const SIZES: PanelSize[] = keysOf(titleSizeToClassNameMap);
+type PanelSize = keyof typeof titleSizeToClassNameMap;
 
 export interface EuiContextMenuPanelProps {
   hasFocus?: boolean;
@@ -67,7 +68,7 @@ export interface EuiContextMenuPanelProps {
   /**
    * Alters the size of the items and the title
    */
-  size?: typeof SIZES[number];
+  size?: PanelSize;
 }
 
 type Props = CommonProps &

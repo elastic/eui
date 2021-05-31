@@ -69,7 +69,7 @@ export interface EuiContextMenuPanelDescriptor {
   /**
    * Alters the size of the items and the title
    */
-  size?: keyof typeof sizeToClassNameMap;
+  size?: Size;
 }
 
 const sizeToClassNameMap = {
@@ -77,7 +77,8 @@ const sizeToClassNameMap = {
   m: null,
 };
 
-export const SIZES = keysOf(sizeToClassNameMap);
+export const SIZES: Size[] = keysOf(sizeToClassNameMap);
+type Size = keyof typeof sizeToClassNameMap;
 
 export type EuiContextMenuProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'style'> & {
@@ -86,7 +87,7 @@ export type EuiContextMenuProps = CommonProps &
     /**
      * Alters the size of the items and the title
      */
-    size?: keyof typeof sizeToClassNameMap;
+    size?: Size;
   };
 
 const isItemSeparator = (

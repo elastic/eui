@@ -30,6 +30,7 @@ export {
   EuiSelectableMessageProps,
 } from './selectable_message';
 export { EuiSelectableOption } from './selectable_option';
+export { getMatchingOptions } from './matching_options';
 export {
   EuiSelectableSearch,
   EuiSelectableSearchProps,
