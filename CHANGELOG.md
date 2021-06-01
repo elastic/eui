@@ -8,6 +8,7 @@
 **Bug fixes**
 
 - Fixed `onBlur` and `data-test-subj` prop propagation in `EuiColorPicker` ([#4822](https://github.com/elastic/eui/pull/4822))
+- Fixed mobile menus styles on `EuiDataGrid` ([#4844](https://github.com/elastic/eui/pull/4844))
 
 ## [`34.1.0`](https://github.com/elastic/eui/tree/v34.1.0)
 
