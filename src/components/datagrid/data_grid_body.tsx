@@ -499,9 +499,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 
   useEffect(() => {
     if (gridRef.current) {
-      gridRef.current.resetAfterColumnIndex(0, false);
+      gridRef.current.resetAfterColumnIndex(0);
     }
-  }, [pagination?.pageIndex]);
+  }, [pagination?.pageIndex, columns, columnWidths, defaultColumnWidth]);
 
   const getWidth = useCallback(
     (index: number) => {

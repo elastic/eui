@@ -299,7 +299,9 @@ export class EuiDataGridCell extends Component<
     if (nextState.disableCellTabIndex !== this.state.disableCellTabIndex)
       return true;
 
-    return false;
+    // we can remove 'if' statements which was created for performance optimizations
+    // because for correct working dynamic height functionality we should always update component
+    return true;
   }
 
   setCellProps = (cellProps: HTMLAttributes<HTMLDivElement>) => {
