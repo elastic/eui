@@ -66,6 +66,7 @@ export default () => {
       template="centeredContent"
       pageContentProps={{
         color: currentState === 'error' ? 'danger' : 'subdued',
+        role: null, // For passing a11y tests in EUI docs only
       }}>
       <EuiEmptyPrompt {...emptyPromptProps} />
     </EuiPageTemplate>
