@@ -30,6 +30,22 @@ const comboBoxSnippet = `<EuiComboBox
   isClearable={true}
 />`;
 
+import Editable from './combo_box_editable';
+const comboBoxEditableSource = require('!!raw-loader!./combo_box_editable');
+const comboBoxEditableHtml = renderToHtml(ComboBox);
+const comboBoxEditableSnippet = `<EuiComboBox
+  placeholder="Select or create options"
+  options={[
+    {
+      label: 'Tofu',
+    },
+  ]}
+  onChange={onChange}
+  onCreateOption={onCreateOption}
+  isClearable={true}
+  isEditable={true}
+/>`;
+
 import Containers from './containers';
 const containersSource = require('!!raw-loader!./containers');
 const containersHtml = renderToHtml(Containers);
@@ -225,6 +241,33 @@ export const ComboBoxExample = {
       props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: comboBoxSnippet,
       demo: <ComboBox />,
+    },
+    {
+      title: 'Editable',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: comboBoxEditableSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: comboBoxEditableHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            Set the prop <EuiCode>isEditable</EuiCode> to make the selected
+            options editable by clicking on them.
+          </p>
+          <p>
+            <strong>Note:</strong> losing focus will save changes.
+          </p>
+        </Fragment>
+      ),
+      props: { EuiComboBox, EuiComboBoxOptionOption },
+      snippet: comboBoxEditableSnippet,
+      demo: <Editable />,
     },
     {
       title: 'Disabled',

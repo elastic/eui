@@ -279,6 +279,32 @@ describe('behavior', () => {
     });
   });
 
+  describe('Editing', () => {
+    test('Clicking the selected option to have it entered as search input', async () => {
+      const onChangeHandler = jest.fn();
+      const component = mount(
+        <EuiComboBox
+          options={options}
+          isEditable={true}
+          selectedOptions={[options[0]]}
+          onChange={onChangeHandler}
+        />
+      );
+
+      // Selected option should be rendered
+      expect(findTestSubject(component, 'titanOption').exists()).toBe(true);
+
+      // Clicking the selected option should remove it from the list
+      findTestSubject(component, 'titanOption').simulate('click');
+      expect(onChangeHandler).toHaveBeenNthCalledWith(1, []);
+
+      // The input value should be the removed option value.
+      expect(
+        findTestSubject(component, 'comboBoxSearchInput').prop('value')
+      ).toBe('Titan');
+    });
+  });
+
   describe('tabbing', () => {
     test("off the search input closes the options list if the user isn't navigating the options", () => {
       const onKeyDownWrapper = jest.fn();

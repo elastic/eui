@@ -209,7 +209,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
   ListRow = ({ data, index, style }: ListChildComponentProps) => {
     const option = data[index];
-    const { key, isGroupLabelOption, label, value, ...rest } = option;
+    const { key, isGroupLabelOption, label, value, onClick, ...rest } = option;
     const {
       singleSelection,
       selectedOptions,

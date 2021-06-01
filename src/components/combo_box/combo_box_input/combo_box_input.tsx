@@ -50,6 +50,7 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   hasSelectedOptions: boolean;
   id?: string;
   inputRef?: RefCallback<HTMLInputElement>;
+  isEditable?: boolean;
   isDisabled?: boolean;
   isListOpen: boolean;
   noIcon: boolean;
@@ -142,6 +143,7 @@ export class EuiComboBoxInput<T> extends Component<
       hasSelectedOptions,
       id,
       inputRef,
+      isEditable,
       isDisabled,
       isListOpen,
       noIcon,
@@ -174,7 +176,7 @@ export class EuiComboBoxInput<T> extends Component<
       ? selectedOptions.map((option) => {
           const { key, label, color, onClick, ...rest } = option;
           const pillOnClose =
-            isDisabled || singleSelection || onClick
+            isDisabled || singleSelection || (onClick && !isEditable)
               ? undefined
               : onRemoveOption;
           return (

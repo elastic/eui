@@ -94,6 +94,10 @@ export interface _EuiComboBoxProps<T>
    */
   isClearable: boolean;
   /**
+   * When true clicking on an option will open it for editing
+   */
+  isEditable?: boolean;
+  /**
    * Disables the input
    */
   isDisabled?: boolean;
@@ -916,6 +920,7 @@ export class EuiComboBox<T> extends Component<
       id,
       inputRef,
       isClearable,
+      isEditable,
       isDisabled,
       isInvalid,
       isLoading,
@@ -1009,6 +1014,21 @@ export class EuiComboBox<T> extends Component<
       );
     }
 
+    const onEdit = (option: EuiComboBoxOptionOption<T>) => {
+      if (this.state.searchValue === '') {
+        this.onRemoveOption(option);
+        this.setState({
+          searchValue: option.label,
+        });
+      }
+    };
+
+    if (this.props.isEditable) {
+      selectedOptions.forEach(
+        (option) => (option.onClick = () => onEdit(option))
+      );
+    }
+
     return (
       /**
        * Re: jsx-a11y/interactive-supports-focus
@@ -1031,6 +1051,7 @@ export class EuiComboBox<T> extends Component<
         ref={this.comboBoxRefCallback}
         role="combobox">
         <EuiComboBoxInput
+          isEditable={this.props.isEditable}
           autoSizeInputRef={this.autoSizeInputRefCallback}
           compressed={compressed}
           focusedOptionId={
