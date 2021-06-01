@@ -35,11 +35,6 @@ const comboBoxEditableSource = require('!!raw-loader!./combo_box_editable');
 const comboBoxEditableHtml = renderToHtml(ComboBox);
 const comboBoxEditableSnippet = `<EuiComboBox
   placeholder="Select or create options"
-  options={[
-    {
-      label: 'Tofu',
-    },
-  ]}
   onChange={onChange}
   onCreateOption={onCreateOption}
   isClearable={true}
