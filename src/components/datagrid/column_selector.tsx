@@ -213,7 +213,10 @@ export const useDataGridColumnSelector = (
                           state.isDragging &&
                           'euiDataGridColumnSelector__item-isDragging'
                         }`}>
-                        <EuiFlexGroup gutterSize="m" alignItems="center">
+                        <EuiFlexGroup
+                          responsive={false}
+                          gutterSize="m"
+                          alignItems="center">
                           <EuiFlexItem>
                             {allowColumnHiding ? (
                               <EuiSwitch
@@ -260,7 +263,10 @@ export const useDataGridColumnSelector = (
       </div>
       {allowColumnHiding && (
         <EuiPopoverFooter>
-          <EuiFlexGroup gutterSize="s" justifyContent="spaceBetween">
+          <EuiFlexGroup
+            gutterSize="s"
+            responsive={false}
+            justifyContent="spaceBetween">
             <EuiFlexItem grow={false}>
               <EuiButtonEmpty
                 size="xs"
