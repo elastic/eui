@@ -20,39 +20,41 @@
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
-import { EuiIcon } from '../icon';
+import { EuiIcon, IconType } from '../icon';
 
 const sizeToClassNameMap = {
-  m: 'euiLoadingKibana--medium',
-  l: 'euiLoadingKibana--large',
-  xl: 'euiLoadingKibana--xLarge',
+  m: 'euiLoadingLogo--medium',
+  l: 'euiLoadingLogo--large',
+  xl: 'euiLoadingLogo--xLarge',
 };
 
 export const SIZES = keysOf(sizeToClassNameMap);
 
-export type EuiLoadingKibanaProps = CommonProps &
+export type EuiLoadingLogoProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     size?: keyof typeof sizeToClassNameMap;
+    /**
+     * While this component should be restricted to using logo icons, it works with any IconType
+     */
+    logo?: IconType;
   };
 
-/**
- * **DEPRECATED** Use EuiLoadingLogo instead
- */
-export const EuiLoadingKibana: FunctionComponent<EuiLoadingKibanaProps> = ({
+export const EuiLoadingLogo: FunctionComponent<EuiLoadingLogoProps> = ({
   size = 'm',
+  logo = 'logoKibana',
   className,
   ...rest
 }) => {
   const classes = classNames(
-    'euiLoadingKibana',
+    'euiLoadingLogo',
     sizeToClassNameMap[size],
     className
   );
 
   return (
     <span className={classes} {...rest}>
-      <span className="euiLoadingKibana__icon">
-        <EuiIcon type="logoKibana" size={size} />
+      <span className="euiLoadingLogo__icon">
+        <EuiIcon type={logo} size={size} />
       </span>
     </span>
   );
