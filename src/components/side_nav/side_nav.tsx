@@ -28,6 +28,7 @@ import { EuiButtonEmpty } from '../button';
 import { EuiTitle, EuiTitleProps } from '../title';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiBreakpointSize, htmlIdGenerator } from '../../services';
+import { EuiHideFor, EuiShowFor } from '../responsive';
 
 export type EuiSideNavProps<T = {}> = T &
   CommonProps & {
@@ -46,9 +47,9 @@ export type EuiSideNavProps<T = {}> = T &
     /**
      * The actual HTML heading element to wrap the `heading`
      */
-    headingElement: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
+    headingElement?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
     /**
-     * For best accesibilty, `<nav>` elements should have a nested heading. But you can hide this element if it's redundent from something else.
+     * For best accessibility, `<nav>` elements should have a nested heading. But you can hide this element if it's redundent from something else (except on mobile).
      */
     hideHeading?: boolean;
     /**
@@ -68,9 +69,9 @@ export type EuiSideNavProps<T = {}> = T &
      */
     mobileTitle?: ReactNode;
     /**
-     * Maximum breakpoint to show the mobile version
+     * Array of breakpoint names for when to show the mobile version
      */
-    mobileBreakpoint: EuiBreakpointSize;
+    mobileBreakpoints: EuiBreakpointSize[];
     /**
      *  An array of #EuiSideNavItem objects. Lists navigation menu items.
      */
@@ -90,7 +91,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     items: [],
     hideHeading: false,
     headingElement: 'h2',
-    mobileBreakpoint: 's',
+    mobileBreakpoints: ['xs', 's'],
   };
 
   isItemOpen = (item: EuiSideNavItemType<T>) => {
@@ -168,7 +169,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
       toggleOpenOnMobile,
       isOpenOnMobile,
       mobileTitle,
-      mobileBreakpoint,
+      mobileBreakpoints,
       // Extract this one out so it isn't passed to <nav>
       renderItem,
       truncate,
@@ -183,55 +184,89 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
       'euiSideNav-isOpenMobile': isOpenOnMobile,
     });
 
-    const nav = this.renderTree(items);
-    const HeadingElement = headingElement;
+    const sideNavContentId = htmlIdGenerator('euiSideNavContent')();
+    const navContent = (
+      <div id={sideNavContentId} className="euiSideNav__content">
+        {this.renderTree(items)}
+      </div>
+    );
 
+    const HeadingElement: keyof React.ReactHTML = headingElement!;
+    const hasMobileVersion = mobileBreakpoints.length > 0;
+    const hasHeader = !!heading;
     let headingNode;
-    if (heading) {
+
+    const sharedHeadingProps = {
+      id: headingProps?.id || htmlIdGenerator('euiSideNavHeading')(),
+      className: headingProps?.className,
+      'data-test-subj': headingProps?.['data-test-subj'],
+      'aria-label': headingProps?.['aria-label'],
+    };
+
+    if (hasHeader) {
       headingNode = (
-        <EuiTitle
-          size="xs"
-          {...headingProps}
-          className={classNames(
-            'euiSideNav__heading',
-            headingProps?.className
-          )}>
-          <HeadingElement>{heading}</HeadingElement>
-        </EuiTitle>
+        <HeadingElement {...sharedHeadingProps}>{heading}</HeadingElement>
       );
 
       if (hideHeading) {
         headingNode = <EuiScreenReaderOnly>{headingNode}</EuiScreenReaderOnly>;
+      } else {
+        headingNode = (
+          <EuiTitle
+            size="xs"
+            {...headingProps}
+            className={classNames(
+              'euiSideNav__heading',
+              headingProps?.className
+            )}>
+            <HeadingElement {...sharedHeadingProps}>{heading}</HeadingElement>
+          </EuiTitle>
+        );
       }
     }
 
-    const sideNavContentId = htmlIdGenerator('euiSideNavContent')();
+    let mobileNode;
+    if (hasMobileVersion) {
+      mobileNode = (
+        <EuiShowFor sizes={mobileBreakpoints}>
+          <nav
+            aria-labelledby={sharedHeadingProps.id}
+            className={classes}
+            {...rest}>
+            <HeadingElement {...sharedHeadingProps}>
+              <EuiButtonEmpty
+                className="euiSideNav__mobileToggle"
+                textProps={{ className: 'euiSideNav__mobileToggleText' }}
+                contentProps={{
+                  className: 'euiSideNav__mobileToggleContent',
+                }}
+                onClick={toggleOpenOnMobile}
+                iconType="apps"
+                iconSide="right"
+                aria-controls={sideNavContentId}
+                aria-expanded={isOpenOnMobile}>
+                {mobileTitle || heading}
+              </EuiButtonEmpty>
+            </HeadingElement>
+            {navContent}
+          </nav>
+        </EuiShowFor>
+      );
+    }
 
     return (
-      <nav className={classes} {...rest}>
-        {/* Hidden from view, except in mobile */}
-        <HeadingElement className="euiSideNav__mobileHeading">
-          <EuiButtonEmpty
-            className="euiSideNav__mobileToggle"
-            textProps={{ className: 'euiSideNav__mobileToggleText' }}
-            contentProps={{ className: 'euiSideNav__mobileToggleContent' }}
-            onClick={toggleOpenOnMobile}
-            iconType="apps"
-            iconSide="right"
-            aria-controls={sideNavContentId}
-            aria-expanded={isOpenOnMobile}>
-            {/* Inline h2 ensures truncation */}
-            {mobileTitle || heading}
-          </EuiButtonEmpty>
-        </HeadingElement>
-
-        {headingNode}
-
-        {/* Hidden from view in mobile, but toggled from the button above */}
-        <div id={sideNavContentId} className="euiSideNav__content">
-          {nav}
-        </div>
-      </nav>
+      <>
+        {mobileNode}
+        <EuiHideFor sizes={mobileBreakpoints}>
+          <nav
+            aria-labelledby={headingNode ? sharedHeadingProps.id : undefined}
+            className={classes}
+            {...rest}>
+            {headingNode}
+            {navContent}
+          </nav>
+        </EuiHideFor>
+      </>
     );
   }
 }

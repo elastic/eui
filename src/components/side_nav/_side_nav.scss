@@ -17,9 +17,6 @@
   }
 }
 
-.euiSideNav__mobileHeading {
-  display: none;
-}
 
 .euiSideNav__heading {
   margin-bottom: $euiSizeL;
@@ -40,9 +37,6 @@
     }
   }
 
-  .euiSideNav__mobileHeading {
-    display: block;
-  }
 
   .euiSideNav__content {
     overflow: hidden;
@@ -52,7 +46,4 @@
     padding: 0 $euiSizeL;
   }
 
-  .euiSideNav__heading {
-    display: none;
-  }
 }

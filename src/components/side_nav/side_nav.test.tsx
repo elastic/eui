@@ -46,6 +46,16 @@ describe('EuiSideNav', () => {
       });
     });
 
+    describe('mobileBreakpoints can be adjusted', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiSideNav mobileBreakpoints={['xs', 's', 'm', 'l', 'xl']} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('heading', () => {
       test('is rendered', () => {
         const component = render(<EuiSideNav heading="Side Nav Heading" />);
@@ -63,7 +73,18 @@ describe('EuiSideNav', () => {
 
       test('accepts more headingProps', () => {
         const component = render(
-          <EuiSideNav heading="Side Nav Heading" headingProps={requiredProps} />
+          <EuiSideNav
+            heading="Side Nav Heading"
+            headingProps={{ ...requiredProps, id: 'testID' }}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('can change headingElement', () => {
+        const component = render(
+          <EuiSideNav heading="Side Nav Heading" headingElement="h3" />
         );
 
         expect(component).toMatchSnapshot();
