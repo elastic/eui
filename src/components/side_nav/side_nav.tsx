@@ -27,7 +27,7 @@ import { EuiSideNavItemType } from './side_nav_types';
 import { EuiButtonEmpty } from '../button';
 import { EuiTitle, EuiTitleProps } from '../title';
 import { EuiScreenReaderOnly } from '../accessibility';
-import { htmlIdGenerator } from '../../services';
+import { EuiBreakpointSize, htmlIdGenerator } from '../../services';
 
 export type EuiSideNavProps<T = {}> = T &
   CommonProps & {
@@ -40,9 +40,13 @@ export type EuiSideNavProps<T = {}> = T &
      */
     className?: string;
     /**
-     * Creates an associated `<h2>` element and uses the same node as default for `mobileTitle`
+     * Creates an associated heading element and uses the same node as default for `mobileTitle`
      */
     heading?: ReactNode;
+    /**
+     * The actual HTML heading element to wrap the `heading`
+     */
+    headingElement: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
     /**
      * For best accesibilty, `<nav>` elements should have a nested heading. But you can hide this element if it's redundent from something else.
      */
@@ -64,6 +68,10 @@ export type EuiSideNavProps<T = {}> = T &
      */
     mobileTitle?: ReactNode;
     /**
+     * Maximum breakpoint to show the mobile version
+     */
+    mobileBreakpoint: EuiBreakpointSize;
+    /**
      *  An array of #EuiSideNavItem objects. Lists navigation menu items.
      */
     items: Array<EuiSideNavItemType<T>>;
@@ -81,6 +89,8 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
   static defaultProps = {
     items: [],
     hideHeading: false,
+    headingElement: 'h2',
+    mobileBreakpoint: 's',
   };
 
   isItemOpen = (item: EuiSideNavItemType<T>) => {
@@ -158,12 +168,14 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
       toggleOpenOnMobile,
       isOpenOnMobile,
       mobileTitle,
+      mobileBreakpoint,
       // Extract this one out so it isn't passed to <nav>
       renderItem,
       truncate,
       heading,
       hideHeading,
       headingProps,
+      headingElement,
       ...rest
     } = this.props;
 
@@ -172,6 +184,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     });
 
     const nav = this.renderTree(items);
+    const HeadingElement = headingElement;
 
     let headingNode;
     if (heading) {
@@ -183,7 +196,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
             'euiSideNav__heading',
             headingProps?.className
           )}>
-          <h2>{heading}</h2>
+          <HeadingElement>{heading}</HeadingElement>
         </EuiTitle>
       );
 
@@ -197,7 +210,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     return (
       <nav className={classes} {...rest}>
         {/* Hidden from view, except in mobile */}
-        <h2 className="euiSideNav__mobileHeading">
+        <HeadingElement className="euiSideNav__mobileHeading">
           <EuiButtonEmpty
             className="euiSideNav__mobileToggle"
             textProps={{ className: 'euiSideNav__mobileToggleText' }}
@@ -210,7 +223,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
             {/* Inline h2 ensures truncation */}
             {mobileTitle || heading}
           </EuiButtonEmpty>
-        </h2>
+        </HeadingElement>
 
         {headingNode}
 
