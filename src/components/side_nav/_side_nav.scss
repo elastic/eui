@@ -17,33 +17,32 @@
   }
 }
 
-
 .euiSideNav__heading {
   margin-bottom: $euiSizeL;
 }
 
-@include euiBreakpoint('xs', 's') {
-  /**
-   * 1. Animation doesn't work against height. Need max-height instead.
-   *    We set a value larger than what is needed to fake "auto".
-   */
-  .euiSideNav-isOpenMobile {
-    .euiSideNav__content {
-      visibility: visible;
-      opacity: 1;
-      padding: $euiSizeL;
-      max-height: 5000px; /* 1 */
+// Loop through the breakpoints and apply mobile styles only to the right className
+@each $breakpoint in $euiBreakpointKeys {
+  @include euiBreakpoint($breakpoint) {
+    .euiSideNav__contentMobile-#{$breakpoint} {
+      overflow: hidden;
+      visibility: hidden;
+      opacity: 0;
+      max-height: 0;
+      padding: 0 $euiSizeL;
+    }
+  }
+}
+
+.euiSideNav-isOpenMobile {
+  .euiSideNav__content[class*='euiSideNav__contentMobile'] {
+    visibility: visible;
+    opacity: 1;
+    padding: $euiSizeL;
+    max-height: 5000px; /* 1 */
+
+    @include euiCanAnimate {
       transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
     }
   }
-
-
-  .euiSideNav__content {
-    overflow: hidden;
-    visibility: hidden;
-    opacity: 0;
-    max-height: 0;
-    padding: 0 $euiSizeL;
-  }
-
 }

@@ -184,9 +184,17 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
       'euiSideNav-isOpenMobile': isOpenOnMobile,
     });
 
+    // To support the extra CSS needed to show/hide/animate the content,
+    // We add a className for every breakpoint supported
+    const contentClasses = classNames(
+      'euiSideNav__content',
+      mobileBreakpoints.map(
+        (breakpointName) => `euiSideNav__contentMobile-${breakpointName}`
+      )
+    );
     const sideNavContentId = htmlIdGenerator('euiSideNavContent')();
     const navContent = (
-      <div id={sideNavContentId} className="euiSideNav__content">
+      <div id={sideNavContentId} className={contentClasses}>
         {this.renderTree(items)}
       </div>
     );
