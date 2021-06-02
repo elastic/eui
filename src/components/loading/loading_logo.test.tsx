@@ -17,9 +17,34 @@
  * under the License.
  */
 
-export { EuiLoadingKibana, EuiLoadingKibanaProps } from './loading_kibana';
-export { EuiLoadingElastic, EuiLoadingElasticProps } from './loading_elastic';
-export { EuiLoadingChart, EuiLoadingChartProps } from './loading_chart';
-export { EuiLoadingContent, EuiLoadingContentProps } from './loading_content';
-export { EuiLoadingSpinner, EuiLoadingSpinnerProps } from './loading_spinner';
-export { EuiLoadingLogo, EuiLoadingLogoProps } from './loading_logo';
+import React from 'react';
+import { render } from 'enzyme';
+import { requiredProps } from '../../test/required_props';
+
+import { EuiLoadingLogo, SIZES } from './loading_logo';
+
+describe('EuiLoadingLogo', () => {
+  test('is rendered', () => {
+    const component = render(<EuiLoadingLogo {...requiredProps} />);
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('logo is rendered', () => {
+    const component = render(
+      <EuiLoadingLogo logo="logoElastic" {...requiredProps} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  describe('size', () => {
+    SIZES.forEach((size) => {
+      test(`${size} is rendered`, () => {
+        const component = render(<EuiLoadingLogo size={size} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+  });
+});

@@ -294,12 +294,12 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
             )}
             {/* Extra page content to get the correct alignment and padding of the centered EuiPageContent */}
             <EuiPageContent
+              role={null}
               borderRadius="none"
               hasShadow={false}
               paddingSize={paddingSize}
               style={{ display: 'flex' }}>
               <EuiPageContent
-                role={null}
                 verticalPosition="center"
                 horizontalPosition="center"
                 hasShadow={false}
