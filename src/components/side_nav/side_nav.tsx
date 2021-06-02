@@ -25,7 +25,7 @@ import { CommonProps } from '../common';
 import { EuiSideNavItem, RenderItem } from './side_nav_item';
 import { EuiSideNavItemType } from './side_nav_types';
 import { EuiButtonEmpty } from '../button';
-import { EuiTitle } from '../title';
+import { EuiTitle, EuiTitleProps } from '../title';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { htmlIdGenerator } from '../../services';
 
@@ -47,6 +47,10 @@ export type EuiSideNavProps<T = {}> = T &
      * For best accesibilty, `<nav>` elements should have a nested heading. But you can hide this element if it's redundent from something else.
      */
     hideHeading?: boolean;
+    /**
+     * Extends the props of EuiTitle that wraps the `heading`
+     */
+    headingProps?: Partial<EuiTitleProps>;
     /**
      * When called, toggles visibility of the navigation menu at mobile responsive widths. The callback should set the `isOpenOnMobile` prop to actually toggle navigation visibility.
      */
@@ -159,6 +163,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
       truncate,
       heading,
       hideHeading,
+      headingProps,
       ...rest
     } = this.props;
 
@@ -171,7 +176,13 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     let headingNode;
     if (heading) {
       headingNode = (
-        <EuiTitle size="xs" className="euiSideNav__heading">
+        <EuiTitle
+          size="xs"
+          {...headingProps}
+          className={classNames(
+            'euiSideNav__heading',
+            headingProps?.className
+          )}>
           <h2>{heading}</h2>
         </EuiTitle>
       );
@@ -186,18 +197,20 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     return (
       <nav className={classes} {...rest}>
         {/* Hidden from view, except in mobile */}
-        <EuiButtonEmpty
-          className="euiSideNav__mobileToggle"
-          textProps={{ className: 'euiSideNav__mobileToggleText' }}
-          contentProps={{ className: 'euiSideNav__mobileToggleContent' }}
-          onClick={toggleOpenOnMobile}
-          iconType="apps"
-          iconSide="right"
-          aria-controls={sideNavContentId}
-          aria-expanded={isOpenOnMobile}>
-          {/* Inline h2 ensures truncation */}
-          {mobileTitle || <h2 className="eui-displayInline">{heading}</h2>}
-        </EuiButtonEmpty>
+        <h2 className="euiSideNav__mobileHeading">
+          <EuiButtonEmpty
+            className="euiSideNav__mobileToggle"
+            textProps={{ className: 'euiSideNav__mobileToggleText' }}
+            contentProps={{ className: 'euiSideNav__mobileToggleContent' }}
+            onClick={toggleOpenOnMobile}
+            iconType="apps"
+            iconSide="right"
+            aria-controls={sideNavContentId}
+            aria-expanded={isOpenOnMobile}>
+            {/* Inline h2 ensures truncation */}
+            {mobileTitle || heading}
+          </EuiButtonEmpty>
+        </h2>
 
         {headingNode}
 

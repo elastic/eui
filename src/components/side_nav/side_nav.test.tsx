@@ -60,6 +60,14 @@ describe('EuiSideNav', () => {
 
         expect(component).toMatchSnapshot();
       });
+
+      test('accepts more headingProps', () => {
+        const component = render(
+          <EuiSideNav heading="Side Nav Heading" headingProps={requiredProps} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('items', () => {

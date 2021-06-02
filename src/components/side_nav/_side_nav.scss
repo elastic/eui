@@ -1,6 +1,5 @@
 // These mobile children are hidden in everything but mobile view.
 .euiSideNav__mobileToggle {
-  display: none;
   height: auto;
   border-bottom: $euiBorderThin;
   width: 100%;
@@ -16,6 +15,10 @@
   .euiSideNav__mobileToggleContent {
     justify-content: space-between;
   }
+}
+
+.euiSideNav__mobileHeading {
+  display: none;
 }
 
 .euiSideNav__heading {
@@ -37,7 +40,7 @@
     }
   }
 
-  .euiSideNav__mobileToggle {
+  .euiSideNav__mobileHeading {
     display: block;
   }
 
