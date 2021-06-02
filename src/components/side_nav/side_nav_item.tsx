@@ -184,11 +184,9 @@ export function EuiSideNavItem<
   // Forcing accordion style item if not linked, but has children
   const [itemIsOpen, setItemIsOpen] = useState(isOpen);
   useEffect(() => {
-    if (isOpen) setItemIsOpen(true);
-    return () => {
-      setItemIsOpen(false);
-    };
+    setItemIsOpen(isOpen);
   }, [isOpen]);
+
   const toggleItemOpen = () => {
     setItemIsOpen((isOpen) => !isOpen);
   };

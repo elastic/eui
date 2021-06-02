@@ -76,6 +76,7 @@ export type EuiSideNavProps<T = {}> = T &
 export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
   static defaultProps = {
     items: [],
+    hideHeading: false,
   };
 
   isItemOpen = (item: EuiSideNavItemType<T>) => {
@@ -193,8 +194,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
           iconType="apps"
           iconSide="right"
           aria-controls={sideNavContentId}
-          aria-expanded={isOpenOnMobile}
-          aria-haspopup="true">
+          aria-expanded={isOpenOnMobile}>
           {/* Inline h2 ensures truncation */}
           {mobileTitle || <h2 className="eui-displayInline">{heading}</h2>}
         </EuiButtonEmpty>

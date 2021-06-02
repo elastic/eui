@@ -8,7 +8,6 @@ exports[`EuiSideNav is rendered 1`] = `
 >
   <button
     aria-controls="euiSideNavContent_generated-id"
-    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
@@ -42,7 +41,6 @@ exports[`EuiSideNav props heading is rendered 1`] = `
 >
   <button
     aria-controls="euiSideNavContent_generated-id"
-    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
@@ -83,7 +81,6 @@ exports[`EuiSideNav props heading is screen reader hidden with hideHeading 1`] =
 >
   <button
     aria-controls="euiSideNavContent_generated-id"
-    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
@@ -124,7 +121,6 @@ exports[`EuiSideNav props isOpenOnMobile defaults to false 1`] = `
 >
   <button
     aria-controls="euiSideNavContent_generated-id"
-    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
@@ -159,7 +155,6 @@ exports[`EuiSideNav props isOpenOnMobile is rendered when specified as true 1`] 
   <button
     aria-controls="euiSideNavContent_generated-id"
     aria-expanded="true"
-    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
@@ -193,7 +188,6 @@ exports[`EuiSideNav props items is rendered 1`] = `
 >
   <button
     aria-controls="euiSideNavContent_generated-id"
-    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
@@ -289,7 +283,6 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
 >
   <button
     aria-controls="euiSideNavContent_generated-id"
-    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
@@ -429,7 +422,6 @@ exports[`EuiSideNav props items renders items using a specified callback 1`] = `
 >
   <button
     aria-controls="euiSideNavContent_generated-id"
-    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
@@ -505,7 +497,6 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
 >
   <button
     aria-controls="euiSideNavContent_generated-id"
-    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
@@ -601,7 +592,6 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
 >
   <button
     aria-controls="euiSideNavContent_generated-id"
-    aria-haspopup="true"
     class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
     type="button"
   >
