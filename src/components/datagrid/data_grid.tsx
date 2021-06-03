@@ -163,6 +163,8 @@ type CommonGridProps = CommonProps &
      * Sets the grid's width, forcing it to overflow in a scrollable container with cell virtualization
      */
     width?: CSSProperties['width'];
+
+    rowHeightOptions?: Record<any, any>;
   };
 
 // Force either aria-label or aria-labelledby to be defined
@@ -692,6 +694,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     minSizeForControls = MINIMUM_WIDTH_FOR_GRID_CONTROLS,
     height,
     width,
+    rowHeightOptions,
     ...rest
   } = props;
 
@@ -1128,6 +1131,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                         renderFooterCellValue={renderFooterCellValue}
                         rowCount={rowCount}
                         interactiveCellId={interactiveCellId}
+                        rowHeightOptions={rowHeightOptions}
                       />
                     </div>
                   </div>

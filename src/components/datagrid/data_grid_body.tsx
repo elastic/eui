@@ -89,6 +89,7 @@ export interface EuiDataGridBodyProps {
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
   toolbarHeight: number;
+  rowHeightOptions?: Record<any, any>;
 }
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
@@ -332,6 +333,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     setVisibleColumns,
     switchColumnPos,
     toolbarHeight,
+    rowHeightOptions,
   } = props;
 
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
@@ -520,7 +522,16 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   );
 
   const [rowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
-  const getRowHeight = useCallback(() => rowHeight, [rowHeight]);
+  const getRowHeight = useCallback((rowIndex) => {
+    const offset = pagination
+      ? pagination.pageIndex * pagination.pageSize
+      : 0;
+    if (rowHeightOptions && Object.keys(rowHeightOptions).length !== 0) {
+      return rowHeightOptions.initialHeights[rowIndex + offset] ?? rowHeightOptions.defaultHeight;
+    }
+
+    return rowHeight;
+  }, [rowHeight, pagination]);
   useEffect(() => {
     if (gridRef.current) gridRef.current.resetAfterRowIndex(0);
   }, [getRowHeight]);
