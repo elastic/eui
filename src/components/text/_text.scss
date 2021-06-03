@@ -1,8 +1,27 @@
 // This should only be used for .euiText, therefore it's not included in a separate mixin file
+@function calculateSize($size: $baseFontSize, $sizingMethod: 'rem') {
+  @if ($sizingMethod == 'rem') {
+    @return #{$size / $euiFontSize}rem;
+  } @else if ($sizingMethod == 'em') {
+    @return #{$size / $euiFontSize}em;
+  }
+}
 
-@mixin euiScaleText($baseFontSize) {
+// Spit out rem and px
+@mixin fontSize($size: $euiFontSize, $sizingMethod: 'rem') {
+  @if ($sizingMethod == 'rem') {
+    font-size: $size;
+    font-size: calculateSize($size, 'rem');
+  } @else if ($sizingMethod == 'em') {
+    font-size: calculateSize($size, 'em');
+  }
+}
+
+@mixin euiScaleText($baseFontSize, $sizingMethod: 'rem') {
+  @include fontSize($baseFontSize, $sizingMethod);
+
   $baseLineHeightMultiplier: $baseFontSize / 2;
-  line-height: convertToRem($baseLineHeightMultiplier * 3);
+  line-height: ($baseLineHeightMultiplier * 3) / $baseFontSize;
 
   p,
   ul,
@@ -11,7 +30,7 @@
   blockquote,
   img,
   pre {
-    margin-bottom: convertToRem($baseLineHeightMultiplier * 3);
+    margin-bottom: calculateSize(($baseLineHeightMultiplier * 3), $sizingMethod);
 
     &:last-child {
       margin-bottom: 0;
@@ -20,12 +39,12 @@
 
   ul,
   ol {
-    margin-left: convertToRem($baseLineHeightMultiplier * 3);
+    margin-left: calculateSize(($baseLineHeightMultiplier * 3), $sizingMethod);
   }
 
   blockquote {
-    padding:  convertToRem($baseFontSize * 1.5);
-    font-size: convertToRem($baseFontSize * nth($euiTextScale, 4));
+    padding:  calculateSize(($baseFontSize * 1.5), $sizingMethod);
+    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 4)), $sizingMethod);
   }
 
   h1,
@@ -34,11 +53,11 @@
   h4,
   h5,
   h6 {
-    margin-bottom: convertToRem($baseLineHeightMultiplier * 1);
+    margin-bottom: calculateSize(($baseLineHeightMultiplier * 1), $sizingMethod);
   }
 
   dd + dt {
-    margin-top: convertToRem($baseLineHeightMultiplier * 2);
+    margin-top: calculateSize(($baseLineHeightMultiplier * 2), $sizingMethod);
   }
 
   * + h2,
@@ -46,48 +65,48 @@
   * + h4,
   * + h5,
   * + h6 {
-    margin-top: convertToRem($baseLineHeightMultiplier * 4);
+    margin-top: calculateSize(($baseLineHeightMultiplier * 4), $sizingMethod);
   }
 
   h1 {
-    font-size: convertToRem($baseFontSize * nth($euiTextScale, 1));
-    line-height: convertToRem($baseLineHeightMultiplier * 6);
+    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 1)), $sizingMethod);
+    line-height: ($baseLineHeightMultiplier * 6) / ($baseFontSize * nth($euiTextScale, 1));
   }
 
   h2 {
-    font-size: convertToRem($baseFontSize * nth($euiTextScale, 2));
-    line-height: convertToRem($baseLineHeightMultiplier * 5);
+    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 2)), $sizingMethod);
+    line-height: ($baseLineHeightMultiplier * 5) / ($baseFontSize * nth($euiTextScale, 2));
   }
 
   h3 {
-    font-size: convertToRem($baseFontSize * nth($euiTextScale, 3));
-    line-height: convertToRem($baseLineHeightMultiplier * 4);
+    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 3)), $sizingMethod);
+    line-height: ($baseLineHeightMultiplier * 4) / ($baseFontSize * nth($euiTextScale, 3));
   }
 
   h4,
   dt,
   .eui-definitionListReverse dd {
-    font-size: convertToRem($baseFontSize * nth($euiTextScale, 5)); // skip level 4 on purpose
-    line-height: convertToRem($baseLineHeightMultiplier * 3);
+    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 5)), $sizingMethod); // skip level 4 on purpose
+    line-height: ($baseLineHeightMultiplier * 3) / ($baseFontSize * nth($euiTextScale, 5));
   }
 
   .eui-definitionListReverse dt {
-    font-size: convertToRem($baseFontSize * nth($euiTextScale, 7));
+    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 7)), $sizingMethod);
     color: $euiTextColor;
   }
 
   h5 {
-    font-size: convertToRem($baseFontSize * nth($euiTextScale, 6));
-    line-height: convertToRem($baseLineHeightMultiplier * 2);
+    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 6)), $sizingMethod);
+    line-height: ($baseLineHeightMultiplier * 2) / ($baseFontSize * nth($euiTextScale, 6));
   }
 
   h6 {
-    font-size: convertToRem($baseFontSize * nth($euiTextScale, 7));
-    line-height: convertToRem($baseLineHeightMultiplier * 2);
+    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 7)), $sizingMethod);
+    line-height: ($baseLineHeightMultiplier * 2) / ($baseFontSize * nth($euiTextScale, 7));
   }
 
   small {
-    font-size: convertToRem($baseFontSize * nth($euiTextScale, 6));
+    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 6)), $sizingMethod);
   }
 
   pre {
@@ -97,13 +116,12 @@
   code {
     // Setting the font size in rem's ensure it doesn't compound
     // the 90% set by euiCodeBlock
-    font-size: convertToRem($baseFontSize * .9);
+    font-size: calculateSize(($baseFontSize * .9), $sizingMethod);
   }
 }
 
 .euiText {
   @include euiText;
-  @include euiFontSize;
   // The euiText mixin forces a color. Since euiText is usually a child
   // of other styling concerns, we should inherit their coloring. The default
   // coloring will likely coming from the reset.scss anyway.
@@ -219,8 +237,6 @@
     font-weight: $euiFontWeightRegular;
   }
 
-  @include euiScaleText($euiFontSize);
-
   &.euiText--constrainedWidth {
     max-width: $euiTextConstrainedMaxWidth;
     // If the max-width is way too short of the width of the container,
@@ -234,12 +250,26 @@
   }
 }
 
+.euiText--medium {
+  @include euiScaleText($euiFontSize, 'rem');
+}
+
 .euiText--small {
-  @include fontSize($euiFontSizeS);
-  @include euiScaleText($euiFontSizeS);
+  @include euiScaleText($euiFontSizeS, 'rem');
 }
 
 .euiText--extraSmall {
-  @include fontSize($euiFontSizeXS);
-  @include euiScaleText($euiFontSizeXS);
+  @include euiScaleText($euiFontSizeXS, 'rem');
+}
+
+.euiText--emMedium {
+  @include euiScaleText($euiFontSize, 'em');
+}
+
+.euiText--emSmall {
+  @include euiScaleText($euiFontSizeS, 'em');
+}
+
+.euiText--emExtraSmall {
+  @include euiScaleText($euiFontSizeXS, 'em');
 }

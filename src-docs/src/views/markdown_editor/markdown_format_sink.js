@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { EuiMarkdownFormat } from '../../../../src';
+import {
+  EuiMarkdownFormat,
+  EuiPanel,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  useColorPickerState,
+  EuiColorPicker,
+  EuiFormRow,
+  EuiSelect,
+} from '../../../../src';
 
 const markdownContent = `# h1 Heading
 ## h2 Heading
@@ -146,5 +156,94 @@ Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 `;
 
 export default () => {
-  return <EuiMarkdownFormat>{markdownContent}</EuiMarkdownFormat>;
+  const sizingMethodOptions = [
+    {
+      value: 'em',
+      text: 'em',
+    },
+    {
+      value: 'rem',
+      text: 'rem',
+    },
+  ];
+
+  const percentages = ['33%', '50%', '66%', '100%', '150%', '200%'];
+
+  const fontSizeScaleOptions = percentages.map((item) => {
+    return { value: item, text: item };
+  });
+
+  const [textColor, setTextColor, textColorErrors] = useColorPickerState(
+    '#343741'
+  );
+
+  const [sizingMethod, setSizingMethod] = useState(
+    sizingMethodOptions[0].value
+  );
+  const [fontSizeScale, setFontSizeScale] = useState(
+    fontSizeScaleOptions[3].value
+  );
+
+  const onChangeSizingMethod = (e) => {
+    setSizingMethod(e.target.value);
+  };
+
+  const onChangeFontSizeScale = (e) => {
+    setFontSizeScale(e.target.value);
+  };
+
+  return (
+    <>
+      <EuiFlexGroup style={{ maxWidth: 600 }}>
+        <EuiFlexItem>
+          <EuiFormRow
+            label="Text color"
+            isInvalid={!!textColorErrors}
+            error={textColorErrors}>
+            <EuiColorPicker
+              onChange={setTextColor}
+              color={textColor}
+              isInvalid={!!textColorErrors}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+
+        <EuiFlexItem>
+          <EuiFormRow label="Sizing method">
+            <EuiSelect
+              options={sizingMethodOptions}
+              value={sizingMethod}
+              onChange={(e) => onChangeSizingMethod(e)}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+
+        <EuiFlexItem>
+          <EuiFormRow label="Font size">
+            <EuiSelect
+              options={fontSizeScaleOptions}
+              value={fontSizeScale}
+              onChange={(e) => onChangeFontSizeScale(e)}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer />
+      <EuiPanel
+        hasBorder={true}
+        style={{
+          fontSize: '16px',
+        }}>
+        <EuiMarkdownFormat
+          sizingMethod={sizingMethod}
+          style={{
+            fontSize: fontSizeScale,
+            color: textColor,
+          }}>
+          {markdownContent}
+        </EuiMarkdownFormat>
+      </EuiPanel>
+    </>
+  );
 };

@@ -11,9 +11,6 @@ $browserDefaultFontSize: 16px;
 }
 
 .euiMarkdownFormat {
-  @include euiFont;
-  @include euiText;
-
   // We're using `em` values to support apps where consumers might adjust sizes
   // and consequently the markdown needs to adjust to these changes
 
@@ -50,6 +47,16 @@ $browserDefaultFontSize: 16px;
     color: $euiColorLightestShade;
   }
 
+  .euiText {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: inherit;
+    }
+  }
 
   // Blockquotes
   .euiMarkdownFormat__blockquote {

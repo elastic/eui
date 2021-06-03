@@ -22,7 +22,7 @@ import unified, { PluggableList } from 'unified';
 import { VFileContents } from 'vfile';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { EuiText } from '../text/text';
+import { EuiText, EuiTextProps } from '../text/text';
 import {
   defaultProcessingPlugins,
   defaultParsingPlugins,
@@ -34,6 +34,7 @@ export type EuiMarkdownFormatProps = CommonProps & {
   parsingPluginList?: PluggableList;
   /** array of unified plugins to convert the AST into a ReactNode */
   processingPluginList?: PluggableList;
+  sizingMethod?: EuiTextProps['sizingMethod'];
 };
 
 export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
@@ -41,6 +42,7 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   className,
   parsingPluginList = defaultParsingPlugins,
   processingPluginList = defaultProcessingPlugins,
+  sizingMethod = 'rem',
   ...rest
 }) => {
   const processor = useMemo(
@@ -62,7 +64,7 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
 
   return (
     <div className={classes} {...rest}>
-      <EuiText>{result}</EuiText>
+      <EuiText sizingMethod={sizingMethod}>{result}</EuiText>
     </div>
   );
 };
