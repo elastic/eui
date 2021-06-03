@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import React, { JSXElementConstructor } from 'react';
+import React, { JSXElementConstructor, useMemo } from 'react';
 import {
   EuiDataGridColumn,
   EuiDataGridColumnCellAction,
@@ -52,8 +52,9 @@ export const EuiDataGridCellButtons = ({
       default="Click or hit enter to interact with cell content">
       {(expandButtonTitle: string) => (
         <EuiButtonIcon
+          display="fill"
           className={buttonIconClasses}
-          color="ghost"
+          color="primary"
           iconSize="s"
           iconType="expandMini"
           aria-hidden
@@ -63,16 +64,16 @@ export const EuiDataGridCellButtons = ({
       )}
     </EuiI18n>
   );
-  const ButtonComponent = (props: EuiButtonIconProps) => (
-    <EuiButtonIcon
-      {...props}
-      aria-hidden
-      className="euiDataGridRowCell__actionButtonIcon"
-      iconSize="s"
-    />
-  );
-  const additionalButtons =
-    column && Array.isArray(column.cellActions)
+  const additionalButtons = useMemo(() => {
+    const ButtonComponent = (props: EuiButtonIconProps) => (
+      <EuiButtonIcon
+        {...props}
+        aria-hidden
+        className="euiDataGridRowCell__actionButtonIcon"
+        iconSize="s"
+      />
+    );
+    return column && Array.isArray(column.cellActions)
       ? column.cellActions.map(
           (Action: EuiDataGridColumnCellAction, idx: number) => {
             // React is more permissible than the TS types indicate
@@ -92,6 +93,8 @@ export const EuiDataGridCellButtons = ({
           }
         )
       : [];
+  }, [column, rowIndex, closePopover]);
+
   return (
     <div className={buttonClasses}>{[...additionalButtons, expandButton]}</div>
   );

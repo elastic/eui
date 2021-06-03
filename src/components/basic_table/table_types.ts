@@ -94,6 +94,10 @@ export interface EuiTableFieldDataColumnType<T>
     | string
     | ReactElement
     | ((props: EuiTableFooterProps<T>) => ReactNode);
+  /**
+   * Disables the user's ability to change the sort but still shows the current direction
+   */
+  readOnly?: boolean;
 }
 
 export interface EuiTableComputedColumnType<T>
@@ -125,6 +129,10 @@ export interface EuiTableComputedColumnType<T>
   truncateText?: boolean;
   isExpander?: boolean;
   align?: HorizontalAlignment;
+  /**
+   * Disables the user's ability to change the sort but still shows the current direction
+   */
+  readOnly?: boolean;
 }
 
 export interface EuiTableActionsColumnType<T> {
@@ -142,7 +150,6 @@ export interface EuiTableActionsColumnType<T> {
   description?: string;
   /**
    * A CSS width property. Hints for the required width of the column
-
    */
   width?: string;
 }
@@ -163,6 +170,10 @@ export interface EuiTableSortingType<T> {
    * Enables the default sorting ability for each column.
    */
   enableAllColumns?: boolean;
+  /**
+   * Disables the user's ability to change the sort but still shows the current direction
+   */
+  readOnly?: boolean;
 }
 
 export interface EuiTableSelectionType<T> {

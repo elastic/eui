@@ -16,7 +16,7 @@ import {
 } from '../../../../src/components/';
 import { PropTypes } from 'react-view';
 
-const fieldTextConfig = () => {
+export const FieldTextConfig = () => {
   const docgenInfo = Array.isArray(EuiFieldText.__docgenInfo)
     ? EuiFieldText.__docgenInfo[0]
     : EuiFieldText.__docgenInfo;
@@ -26,8 +26,21 @@ const fieldTextConfig = () => {
     ...propsToUse.append,
     type: PropTypes.String,
   };
+
   propsToUse.prepend = {
     ...propsToUse.prepend,
+    type: PropTypes.String,
+  };
+
+  propsToUse.disabled = {
+    type: PropTypes.Boolean,
+  };
+
+  propsToUse.readOnly = {
+    type: PropTypes.Boolean,
+  };
+
+  propsToUse.placeholder = {
     type: PropTypes.String,
   };
 
@@ -38,7 +51,6 @@ const fieldTextConfig = () => {
     value: '',
   };
 
-  propsToUse.onChange = simulateFunction(propsToUse.onChange);
   propsToUse.icon = iconValidator(propsToUse.icon);
 
   return {
@@ -60,7 +72,7 @@ const fieldTextConfig = () => {
   };
 };
 
-export const fieldSearchConfig = () => {
+export const FieldSearchConfig = () => {
   const docgenInfo = Array.isArray(EuiFieldSearch.__docgenInfo)
     ? EuiFieldSearch.__docgenInfo[0]
     : EuiFieldSearch.__docgenInfo;
@@ -82,8 +94,17 @@ export const fieldSearchConfig = () => {
     value: '',
   };
 
-  propsToUse.onSearch = simulateFunction(propsToUse.onSearch);
-  propsToUse.onChange = simulateFunction(propsToUse.onChange);
+  propsToUse.disabled = {
+    type: PropTypes.Boolean,
+  };
+
+  propsToUse.readOnly = {
+    type: PropTypes.Boolean,
+  };
+
+  propsToUse.placeholder = {
+    type: PropTypes.String,
+  };
 
   return {
     config: {
@@ -104,7 +125,7 @@ export const fieldSearchConfig = () => {
   };
 };
 
-export const fieldNumberConfig = () => {
+export const FieldNumberConfig = () => {
   const docgenInfo = Array.isArray(EuiFieldNumber.__docgenInfo)
     ? EuiFieldNumber.__docgenInfo[0]
     : EuiFieldNumber.__docgenInfo;
@@ -120,7 +141,18 @@ export const fieldNumberConfig = () => {
   };
 
   propsToUse.icon = iconValidator(propsToUse.icon);
-  propsToUse.onChange = simulateFunction(propsToUse.onChange);
+
+  propsToUse.disabled = {
+    type: PropTypes.Boolean,
+  };
+
+  propsToUse.readOnly = {
+    type: PropTypes.Boolean,
+  };
+
+  propsToUse.placeholder = {
+    type: PropTypes.String,
+  };
 
   propsToUse.value = {
     ...propsToUse.value,
@@ -151,7 +183,7 @@ export const fieldNumberConfig = () => {
   };
 };
 
-export const fieldPasswordConfig = () => {
+export const FieldPasswordConfig = () => {
   const docgenInfo = Array.isArray(EuiFieldPassword.__docgenInfo)
     ? EuiFieldPassword.__docgenInfo[0]
     : EuiFieldPassword.__docgenInfo;
@@ -179,7 +211,17 @@ export const fieldPasswordConfig = () => {
     defaultValue: 'password',
   };
 
-  propsToUse.onChange = simulateFunction(propsToUse.onChange);
+  propsToUse.disabled = {
+    type: PropTypes.Boolean,
+  };
+
+  propsToUse.readOnly = {
+    type: PropTypes.Boolean,
+  };
+
+  propsToUse.placeholder = {
+    type: PropTypes.String,
+  };
 
   return {
     config: {
@@ -200,7 +242,7 @@ export const fieldPasswordConfig = () => {
   };
 };
 
-export const textAreaConfig = () => {
+export const TextAreaConfig = () => {
   const docgenInfo = Array.isArray(EuiTextArea.__docgenInfo)
     ? EuiTextArea.__docgenInfo[0]
     : EuiTextArea.__docgenInfo;
@@ -222,7 +264,17 @@ export const textAreaConfig = () => {
     defaultValue: 'vertical',
   };
 
-  propsToUse.onChange = simulateFunction(propsToUse.onChange);
+  propsToUse.disabled = {
+    type: PropTypes.Boolean,
+  };
+
+  propsToUse.readOnly = {
+    type: PropTypes.Boolean,
+  };
+
+  propsToUse.placeholder = {
+    type: PropTypes.String,
+  };
 
   return {
     config: {
@@ -243,7 +295,7 @@ export const textAreaConfig = () => {
   };
 };
 
-export const checkboxConfig = () => {
+export const CheckboxConfig = () => {
   const docgenInfo = Array.isArray(EuiCheckbox.__docgenInfo)
     ? EuiCheckbox.__docgenInfo[0]
     : EuiCheckbox.__docgenInfo;
@@ -253,6 +305,7 @@ export const checkboxConfig = () => {
     ...propsToUse.id,
     value: 'Playground__checkbox',
   };
+
   propsToUse.label = {
     ...propsToUse.label,
     type: PropTypes.String,
@@ -280,7 +333,7 @@ export const checkboxConfig = () => {
   };
 };
 
-export const radioConfig = () => {
+export const RadioConfig = () => {
   const docgenInfo = Array.isArray(EuiRadio.__docgenInfo)
     ? EuiRadio.__docgenInfo[0]
     : EuiRadio.__docgenInfo;
@@ -319,7 +372,7 @@ export const radioConfig = () => {
   };
 };
 
-const switchConfig = () => {
+export const SwitchConfig = () => {
   const docgenInfo = Array.isArray(EuiSwitch.__docgenInfo)
     ? EuiSwitch.__docgenInfo[0]
     : EuiSwitch.__docgenInfo;
@@ -356,14 +409,3 @@ const switchConfig = () => {
     },
   };
 };
-
-export default [
-  fieldTextConfig,
-  fieldSearchConfig,
-  fieldNumberConfig,
-  fieldPasswordConfig,
-  textAreaConfig,
-  checkboxConfig,
-  radioConfig,
-  switchConfig,
-];

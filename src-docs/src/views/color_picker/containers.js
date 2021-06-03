@@ -10,7 +10,6 @@ import {
   EuiModalBody,
   EuiModalHeader,
   EuiModalHeaderTitle,
-  EuiOverlayMask,
   EuiSpacer,
 } from '../../../../src/components';
 
@@ -63,19 +62,19 @@ export default () => {
 
   if (isModalVisible) {
     modal = (
-      <EuiOverlayMask>
-        <EuiModal onClose={closeModal} style={{ width: '800px' }}>
-          <EuiModalHeader>
-            <EuiModalHeaderTitle>Color picker in a modal</EuiModalHeaderTitle>
-          </EuiModalHeader>
+      <EuiModal onClose={closeModal} style={{ width: '800px' }}>
+        <EuiModalHeader>
+          <EuiModalHeaderTitle>
+            <h1>Color picker in a modal</h1>
+          </EuiModalHeaderTitle>
+        </EuiModalHeader>
 
-          <EuiModalBody>
-            <EuiFormRow label="Color picker">{colorPicker}</EuiFormRow>
-            <EuiSpacer />
-            <EuiFormRow label="Color stops">{stops}</EuiFormRow>
-          </EuiModalBody>
-        </EuiModal>
-      </EuiOverlayMask>
+        <EuiModalBody>
+          <EuiFormRow label="Color picker">{colorPicker}</EuiFormRow>
+          <EuiSpacer />
+          <EuiFormRow label="Color stops">{stops}</EuiFormRow>
+        </EuiModalBody>
+      </EuiModal>
     );
   }
 
@@ -98,7 +97,6 @@ export default () => {
       <EuiFormRow label="Unruly focus management">
         <EuiPopover
           id="popover"
-          ownFocus={true}
           button={button}
           isOpen={isPopoverOpen}
           closePopover={closePopover}>

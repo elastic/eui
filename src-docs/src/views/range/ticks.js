@@ -71,6 +71,27 @@ export default () => {
         showInput
         aria-label="An example of EuiDualRange with ticks"
       />
+
+      <EuiSpacer size="xl" />
+
+      <EuiTitle size="xxs">
+        <h3>Long labels</h3>
+      </EuiTitle>
+
+      <EuiSpacer size="l" />
+
+      <EuiDualRange
+        id={htmlIdGenerator()()}
+        value={dualValue}
+        onChange={onDualChange}
+        showTicks
+        ticks={[
+          { label: '0 kilobytes', value: 0 },
+          { label: '50 kilobytes', value: 50 },
+          { label: '100 kilobytes', value: 100 },
+        ]}
+        aria-label="An example of EuiDualRange with long tick labels"
+      />
     </Fragment>
   );
 };

@@ -18,36 +18,144 @@
  */
 
 import React, {
+  CSSProperties,
   FunctionComponent,
   KeyboardEvent,
-  CSSProperties,
+  ReactNode,
   useEffect,
-  useRef,
+  useMemo,
   useState,
 } from 'react';
-import { createPortal } from 'react-dom';
 import classNames from 'classnames';
-import hljs from 'highlight.js';
-
-import { EuiCopy } from '../copy';
-
+import { highlight, AST, RefractorNode } from 'refractor';
+import { keys, useCombinedRefs } from '../../services';
 import { EuiButtonIcon } from '../button';
-
+import { keysOf } from '../common';
+import { EuiCopy } from '../copy';
+import { EuiFocusTrap } from '../focus_trap';
+import { EuiI18n } from '../i18n';
+import { useInnerText } from '../inner_text';
+import { useMutationObserver } from '../observer/mutation_observer';
+import { useResizeObserver } from '../observer/resize_observer';
 import { EuiOverlayMask } from '../overlay_mask';
 
-import { EuiFocusTrap } from '../focus_trap';
+type ExtendedRefractorNode = RefractorNode & {
+  lineStart?: number;
+  lineEnd?: number;
+};
 
-import { keys } from '../../services';
-import { EuiI18n } from '../i18n';
-import { EuiInnerText } from '../inner_text';
-import { keysOf } from '../common';
-import { FontSize, PaddingSize } from './code_block';
+const isAstElement = (node: RefractorNode): node is AST.Element =>
+  node.hasOwnProperty('type') && node.type === 'element';
+
+const nodeToHtml = (
+  node: RefractorNode,
+  idx: number,
+  nodes: RefractorNode[],
+  depth: number = 0
+): ReactNode => {
+  if (isAstElement(node)) {
+    const { properties, tagName, children } = node;
+
+    return React.createElement(
+      tagName,
+      {
+        ...properties,
+        key: `node-${depth}-${idx}`,
+        className: classNames(properties.className),
+      },
+      children && children.map((el, i) => nodeToHtml(el, i, nodes, depth + 1))
+    );
+  }
+
+  return node.value;
+};
+
+const addLineData = (
+  nodes: ExtendedRefractorNode[],
+  data = { lineNumber: 1 }
+): ExtendedRefractorNode[] => {
+  return nodes.reduce<ExtendedRefractorNode[]>((result, node) => {
+    const lineStart = data.lineNumber;
+    if (node.type === 'text') {
+      if (!node.value.match(/\r\n?|\n/)) {
+        node.lineStart = lineStart;
+        node.lineEnd = lineStart;
+        result.push(node);
+      } else {
+        const lines = node.value.split(/\r\n?|\n/);
+        lines.forEach((line, i) => {
+          const num = i === 0 ? data.lineNumber : ++data.lineNumber;
+          result.push({
+            type: 'text',
+            value: i === lines.length - 1 ? line : `${line}\n`,
+            lineStart: num,
+            lineEnd: num,
+          });
+        });
+      }
+      return result;
+    }
+
+    if (node.children) {
+      const children = addLineData(node.children, data);
+      const first = children[0];
+      const last = children[children.length - 1];
+      const start = first.lineStart ?? lineStart;
+      const end = last.lineEnd ?? lineStart;
+      if (start !== end) {
+        children.forEach((node) => {
+          result.push(node);
+        });
+      } else {
+        node.lineStart = start;
+        node.lineEnd = end;
+        node.children = children;
+        result.push(node);
+      }
+      return result;
+    }
+
+    result.push(node);
+    return result;
+  }, []);
+};
+
+function wrapLines(nodes: ExtendedRefractorNode[]) {
+  const grouped: ExtendedRefractorNode[][] = [];
+  nodes.forEach((node) => {
+    const lineStart = node.lineStart! - 1;
+    if (grouped[lineStart]) {
+      grouped[lineStart].push(node);
+    } else {
+      grouped[lineStart] = [node];
+    }
+  });
+  const wrapped: RefractorNode[] = [];
+  grouped.forEach((node) => {
+    wrapped.push({
+      type: 'element',
+      tagName: 'span',
+      properties: {
+        className: ['euiCodeBlock__line'],
+      },
+      children: node,
+    });
+  });
+  return wrapped;
+}
+
+const highlightByLine = (children: string, language: string) => {
+  return wrapLines(addLineData(highlight(children, language)));
+};
 
 const fontSizeToClassNameMap = {
   s: 'euiCodeBlock--fontSmall',
   m: 'euiCodeBlock--fontMedium',
   l: 'euiCodeBlock--fontLarge',
 };
+
+type PaddingSize = 'none' | 's' | 'm' | 'l';
+type FontSize = 's' | 'm' | 'l';
 
 export const FONT_SIZES = keysOf(fontSizeToClassNameMap);
 
@@ -60,7 +168,7 @@ const paddingSizeToClassNameMap: { [paddingSize in PaddingSize]: string } = {
 
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
-interface Props {
+export interface EuiCodeBlockImplProps {
   className?: string;
   fontSize?: FontSize;
 
@@ -76,6 +184,8 @@ interface Props {
 
   /**
    * Sets the syntax highlighting for a specific language
+   * @see https://github.com/wooorm/refractor#syntaxes
+   * for options
    */
   language?: string;
   overflowHeight?: number;
@@ -93,7 +203,7 @@ interface Props {
  * This is the base component extended by EuiCode and EuiCodeBlock.
  * These components share the same propTypes definition with EuiCodeBlockImpl.
  */
-export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
+export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   transparentBackground = false,
   paddingSize = 'l',
   fontSize = 's',
@@ -107,48 +217,45 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
   ...rest
 }) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [isPortalTargetReady, setIsPortalTargetReady] = useState(false);
-  const codeTarget = useRef<HTMLDivElement | null>(null);
-  const code = useRef<HTMLElement | null>(null);
-  const [codeFullScreen, setCodeFullScreen] = useState<HTMLElement | null>(
-    null
+  const [wrapperRef, setWrapperRef] = useState<Element | null>(null);
+  const [innerTextRef, _innerText] = useInnerText('');
+  const innerText = useMemo(
+    () => _innerText?.replace(/[\r\n?]{2}|\n\n/g, '\n'),
+    [_innerText]
   );
+  const [tabIndex, setTabIndex] = useState<-1 | 0>(-1);
+  const combinedRef = useCombinedRefs<HTMLPreElement>([
+    innerTextRef,
+    setWrapperRef,
+  ]);
+  const { width, height } = useResizeObserver(wrapperRef);
 
-  useEffect(() => {
-    codeTarget.current = document.createElement('div');
-    setIsPortalTargetReady(true);
-  }, []);
-
-  useEffect(() => {
-    /**
-     * because React maintains a mapping between its Virtual DOM representation and the actual
-     * DOM elements (including text nodes), and hljs modifies the DOM structure which leads
-     * to React updating detached nodes, we render to a document fragment and
-     * copy from that fragment into the target elements
-     * (https://github.com/elastic/eui/issues/2322)
-     */
-    const html = isPortalTargetReady ? codeTarget.current!.innerHTML : '';
-
-    if (code.current) {
-      code.current.innerHTML = html;
+  const content = useMemo(() => {
+    if (!language || typeof children !== 'string') {
+      return children;
     }
+    const nodes = inline
+      ? highlight(children, language)
+      : highlightByLine(children, language);
+    return nodes.length === 0 ? children : nodes.map(nodeToHtml);
+  }, [children, language, inline]);
 
-    if (language) {
-      if (code.current) {
-        hljs.highlightBlock(code.current);
-      }
-    }
+  const doesOverflow = () => {
+    if (!wrapperRef) return;
+
+    const { clientWidth, clientHeight, scrollWidth, scrollHeight } = wrapperRef;
+    const doesOverflow =
+      scrollHeight > clientHeight || scrollWidth > clientWidth;
+
+    setTabIndex(doesOverflow ? 0 : -1);
+  };
+
+  useMutationObserver(wrapperRef, doesOverflow, {
+    subtree: true,
+    childList: true,
   });
 
-  useEffect(() => {
-    if (codeFullScreen) {
-      const html = isPortalTargetReady ? codeTarget.current!.innerHTML : '';
-      codeFullScreen.innerHTML = html;
-      if (language) {
-        hljs.highlightBlock(codeFullScreen);
-      }
-    }
-  }, [isPortalTargetReady, codeFullScreen, language]);
+  useEffect(doesOverflow, [width, height, wrapperRef]);
 
   const onKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === keys.ESCAPE) {
@@ -175,6 +282,10 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
       'euiCodeBlock--inline': inline,
       'euiCodeBlock--hasControls': isCopyable || overflowHeight,
     },
+    {
+      prismjs: !className?.includes('prismjs'),
+      [`language-${language || 'none'}`]: !className?.includes('language'),
+    },
     className
   );
 
@@ -191,7 +302,11 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
     optionalStyles.maxHeight = overflowHeight;
   }
 
-  const codeSnippet = <code ref={code} className={codeClasses} {...rest} />;
+  const codeSnippet = (
+    <code className={codeClasses} {...rest}>
+      {content}
+    </code>
+  );
 
   const wrapperProps = {
     className: classes,
@@ -199,12 +314,7 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
   };
 
   if (inline) {
-    return isPortalTargetReady ? (
-      <>
-        {createPortal(children, codeTarget.current!)}
-        <span {...wrapperProps}>{codeSnippet}</span>
-      </>
-    ) : null;
+    return <span {...wrapperProps}>{codeSnippet}</span>;
   }
 
   const getCopyButton = (textToCopy?: string) => {
@@ -218,7 +328,6 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
               <EuiCopy textToCopy={textToCopy}>
                 {(copy) => (
                   <EuiButtonIcon
-                    size="s"
                     onClick={copy}
                     iconType="copy"
                     color="text"
@@ -248,7 +357,6 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
         {([fullscreenCollapse, fullscreenExpand]: string[]) => (
           <EuiButtonIcon
             className="euiCodeBlock__fullScreenButton"
-            size="s"
             onClick={toggleFullScreen}
             iconType={isFullScreen ? 'cross' : 'fullScreen'}
             color="text"
@@ -292,13 +400,10 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
         <EuiOverlayMask>
           <EuiFocusTrap clickOutsideDisables={true}>
             <div className={fullScreenClasses}>
-              <pre className={preClasses}>
-                <code
-                  ref={setCodeFullScreen}
-                  className={codeClasses}
-                  tabIndex={0}
-                  onKeyDown={onKeyDown}
-                />
+              <pre className={preClasses} tabIndex={0}>
+                <code className={codeClasses} onKeyDown={onKeyDown}>
+                  {content}
+                </code>
               </pre>
 
               {codeBlockControls}
@@ -311,31 +416,22 @@ export const EuiCodeBlockImpl: FunctionComponent<Props> = ({
     return fullScreenDisplay;
   };
 
-  return isPortalTargetReady ? (
-    <>
-      {createPortal(children, codeTarget.current!)}
-      <EuiInnerText fallback="">
-        {(innerTextRef, innerText) => {
-          const codeBlockControls = getCodeBlockControls(innerText);
-          return (
-            <div {...wrapperProps}>
-              <pre
-                ref={innerTextRef}
-                style={optionalStyles}
-                className={preClasses}>
-                {codeSnippet}
-              </pre>
-
-              {/*
-                If the below fullScreen code renders, it actually attaches to the body because of
-                EuiOverlayMask's React portal usage.
-              */}
-              {codeBlockControls}
-              {getFullScreenDisplay(codeBlockControls)}
-            </div>
-          );
-        }}
-      </EuiInnerText>
-    </>
-  ) : null;
+  const codeBlockControls = getCodeBlockControls(innerText);
+  return (
+    <div {...wrapperProps}>
+      <pre
+        ref={combinedRef}
+        style={optionalStyles}
+        className={preClasses}
+        tabIndex={tabIndex}>
+        {codeSnippet}
+      </pre>
+      {/*
+          If the below fullScreen code renders, it actually attaches to the body because of
+          EuiOverlayMask's React portal usage.
+        */}
+      {codeBlockControls}
+      {getFullScreenDisplay(codeBlockControls)}
+    </div>
+  );
 };

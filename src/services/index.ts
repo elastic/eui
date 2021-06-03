@@ -41,6 +41,8 @@ export {
   getBreakpoint,
   isWithinBreakpoints,
   isWithinMaxBreakpoint,
+  isWithinMinBreakpoint,
+  EuiBreakpointSize,
 } from './breakpoint';
 
 export {
@@ -70,6 +72,7 @@ export {
   euiPaletteWarm,
   euiPaletteGray,
   HSV,
+  getSteppedGradient,
 } from './color';
 
 export { useColorPickerState, useColorStopsState } from './color_picker';
@@ -93,7 +96,7 @@ export { Random } from './random';
 
 export { getSecureRelForTarget } from './security';
 
-export { toInitials } from './string';
+export { toSentenceCase, toInitials, slugify } from './string';
 
 export {
   PropertySortType,
@@ -116,4 +119,8 @@ export {
 
 export { EuiWindowEvent } from './window_event';
 
-export { useCombinedRefs, useDependentState } from './hooks';
+export {
+  useCombinedRefs,
+  useDependentState,
+  useIsWithinBreakpoints,
+} from './hooks';

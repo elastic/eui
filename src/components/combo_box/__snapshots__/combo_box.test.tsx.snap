@@ -57,6 +57,49 @@ exports[`EuiComboBox is rendered 1`] = `
 </div>
 `;
 
+exports[`props autoFocus is rendered 1`] = `
+<div
+  aria-expanded={false}
+  aria-haspopup="listbox"
+  className="euiComboBox"
+  onKeyDown={[Function]}
+  role="combobox"
+>
+  <EuiComboBoxInput
+    autoSizeInputRef={[Function]}
+    compressed={false}
+    fullWidth={false}
+    hasSelectedOptions={true}
+    inputRef={[Function]}
+    isListOpen={false}
+    noIcon={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    rootId={[Function]}
+    searchValue=""
+    selectedOptions={
+      Array [
+        Object {
+          "label": "Mimas",
+        },
+        Object {
+          "label": "Dione",
+        },
+      ]
+    }
+    singleSelection={false}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value="Mimas, Dione"
+  />
+</div>
+`;
+
 exports[`props delimiter is rendered 1`] = `
 <div
   aria-expanded={false}
@@ -309,7 +352,7 @@ exports[`props options list is rendered 1`] = `
     </div>
   </div>
   <div
-    class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiComboBoxOptionsList euiPopover__panel euiPopover__panel-isAttached euiPopover__panel-noArrow euiPopover__panel-isOpen euiPopover__panel--bottom"
+    class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiComboBoxOptionsList euiPopover__panel euiPopover__panel-isAttached euiPopover__panel-noArrow euiPopover__panel-isOpen euiPopover__panel--bottom"
     data-test-subj="comboBoxOptionsList alsoGetsAppliedToOptionsList-optionsList"
     style="z-index: 100;"
   >

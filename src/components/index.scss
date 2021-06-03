@@ -44,10 +44,11 @@
 @import 'markdown_editor/index';
 @import 'mark/index';
 @import 'modal/index';
+@import 'notification/index';
 @import 'overlay_mask/index';
-@import 'page/index';
 @import 'pagination/index';
 @import 'panel/index';
+@import 'page/index'; // Page needs to come after Panel for cascade specificity
 @import 'popover/index';
 @import 'portal/index';
 @import 'progress/index';

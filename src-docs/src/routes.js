@@ -1,4 +1,7 @@
 import React, { createElement, Fragment } from 'react';
+import { slugify } from '../../src/services';
+
+import { createHashHistory } from 'history';
 
 import { GuidePage, GuideSection } from './components';
 
@@ -7,6 +10,7 @@ import { EuiErrorBoundary } from '../../src/components';
 import { playgroundCreator } from './services/playground';
 
 // Guidelines
+// const GettingStarted = require('!!raw-loader!./views/guidelines/getting_started.md');
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
 
@@ -75,6 +79,7 @@ import { DataGridFocusExample } from './views/datagrid/datagrid_focus_example';
 import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
 import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
 import { DataGridFooterRowExample } from './views/datagrid/datagrid_footer_row_example';
+import { DataGridVirtualizationExample } from './views/datagrid/datagrid_virtualization_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
@@ -144,11 +149,15 @@ import { ModalExample } from './views/modal/modal_example';
 
 import { MutationObserverExample } from './views/mutation_observer/mutation_observer_example';
 
+import { NotificationEventExample } from './views/notification_event/notification_event_example';
+
 import { OutsideClickDetectorExample } from './views/outside_click_detector/outside_click_detector_example';
 
 import { OverlayMaskExample } from './views/overlay_mask/overlay_mask_example';
 
 import { PageExample } from './views/page/page_example';
+
+import { PageHeaderExample } from './views/page_header/page_header_example';
 
 import { PaginationExample } from './views/pagination/pagination_example';
 
@@ -223,19 +232,6 @@ import { ElasticChartsCategoryExample } from './views/elastic_charts/category_ex
 import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparklines_example';
 
 import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
-/**
- * Lowercases input and replaces spaces with hyphens:
- * e.g. 'GridView Example' -> 'gridview-example'
- */
-const slugify = (str) => {
-  const parts = str
-    .toLowerCase()
-    .replace(/[-]+/g, ' ')
-    .replace(/[^\w^\s]+/g, '')
-    .replace(/ +/g, ' ')
-    .split(' ');
-  return parts.join('-');
-};
 
 const createExample = (example, customTitle) => {
   if (!example) {
@@ -261,12 +257,13 @@ const createExample = (example, customTitle) => {
     guidelines,
   } = example;
   sections.forEach((section) => {
-    section.id = slugify(section.title || title);
+    section.id = section.title ? slugify(section.title) : undefined;
   });
 
-  const renderedSections = sections.map((section) =>
+  const renderedSections = sections.map((section, index) =>
     createElement(GuideSection, {
-      key: section.title || title,
+      // Using index as the key because not all require a `title`
+      key: index,
       ...section,
     })
   );
@@ -304,10 +301,34 @@ const createExample = (example, customTitle) => {
   };
 };
 
+// const createMarkdownExample = (example, title) => {
+//   const headings = example.default.match(/^(##) (.*)/gm);
+
+//   const sections = headings.map((heading) => {
+//     const title = heading.replace('## ', '');
+
+//     return { id: slugify(title), title: title };
+//   });
+
+//   return {
+//     name: title,
+//     component: () => (
+//       <GuidePage title={title}>
+//         <GuideMarkdownFormat title={title}>
+//           {example.default}
+//         </GuideMarkdownFormat>
+//       </GuidePage>
+//     ),
+//     sections: sections,
+//   };
+// };
+
 const navigation = [
   {
     name: 'Guidelines',
     items: [
+      // TODO uncomment when EuiMarkdownFormat has a better text formatting
+      // createMarkdownExample(GettingStarted, 'Getting started'),
       createExample(AccessibilityGuidelines, 'Accessibility'),
       {
         name: 'Colors',
@@ -317,10 +338,7 @@ const navigation = [
         name: 'Sass',
         component: SassGuidelines,
       },
-      {
-        name: 'Writing',
-        component: WritingGuidelines,
-      },
+      createExample(WritingGuidelines, 'Writing'),
     ],
   },
   {
@@ -334,6 +352,7 @@ const navigation = [
       HorizontalRuleExample,
       ModalExample,
       PageExample,
+      PageHeaderExample,
       PanelExample,
       PopoverExample,
       ResizableContainerExample,
@@ -368,6 +387,7 @@ const navigation = [
       DataGridStylingExample,
       DataGridControlColumnsExample,
       DataGridFooterRowExample,
+      DataGridVirtualizationExample,
       TableExample,
       TableInMemoryExample,
     ].map((example) => createExample(example)),
@@ -389,9 +409,9 @@ const navigation = [
       ImageExample,
       ListGroupExample,
       LoadingExample,
+      NotificationEventExample,
       ProgressExample,
       StatExample,
-
       TextExample,
       TitleExample,
       ToastExample,
@@ -496,6 +516,7 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 }, []);
 
 export default {
+  history: createHashHistory(),
   navigation,
 
   getRouteForPath: (path) => {

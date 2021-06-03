@@ -9,18 +9,25 @@
         flex-grow: 0;
       }
 
-      &#{$selector}--shadow {
+      &#{$selector}--hasShadow {
         @include euiBottomShadowMedium;
       }
 
-      &#{$selector}--isClickable {
-        // in case of button wrapper which inherently is inline-block and no width
-        display: block;
-        width: 100%;
-        text-align: left;
+      &#{$selector}--hasBorder {
+        border: $euiBorderThin;
+        box-shadow: none;
+      }
 
+      &#{$selector}--isClickable {
         // transition the shadow
         transition: all $euiAnimSpeedFast $euiAnimSlightResistance;
+
+        &:enabled { // This is a good selector for buttons since it doesn't exist on divs
+          // in case of button wrapper which inherently is inline-block and no width
+          display: block;
+          width: 100%;
+          text-align: left;
+        }
 
         &:hover,
         &:focus {

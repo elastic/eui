@@ -178,6 +178,11 @@ function createTheme(colors: any): EuiChartThemeType {
           strokeWidth: 1,
           dash: [4, 4],
         },
+        crossLine: {
+          stroke: colors.euiColorDarkShade.rgba,
+          strokeWidth: 1,
+          dash: [4, 4],
+        },
       },
     },
   };

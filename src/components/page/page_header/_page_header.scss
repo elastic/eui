@@ -1,18 +1,53 @@
+/**
+ * Note: Bottom margin is added in _page.scss when EuiPage has `paddingSize`
+ *       Or it's added in _page_body.scss when EuiPageBody has `paddingSize`
+ */
+
 .euiPageHeader {
-  margin-bottom: $euiSize;
+  @include euiPageRestrictWidth;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  flex-shrink: 0; // Ensures Safari doesn't shrink beyond contents
+}
+
+.euiPageHeader--bottomBorder {
+  border-bottom: $euiBorderThin;
+}
+
+// Uses the same values as EuiPanel
+@each $modifier, $amount in $euiPanelPaddingModifiers {
+  .euiPageHeader--#{$modifier} {
+    padding: $amount;
+
+    &.euiPageHeader--tabsAtBottom {
+      // Use margin if there are tabs to keep border close to tabs
+      padding-bottom: 0;
+      margin-bottom: $amount;
+    }
+  }
+}
+
+.euiPageHeader--top {
+  align-items: flex-start;
+}
+
+.euiPageHeader--bottom {
+  align-items: flex-end;
+}
+
+.euiPageHeader--stretch {
+  align-items: stretch;
 }
 
 @include euiBreakpoint('xs', 's') {
-  .euiPageHeader {
-    padding: $euiSize 0;
-    margin-bottom: 0;
-  }
-
   .euiPageHeader--responsive {
     flex-direction: column;
+  }
+
+  .euiPageHeader--responsiveReverse {
+    flex-direction: column-reverse;
   }
 }

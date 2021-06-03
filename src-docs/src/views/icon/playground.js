@@ -2,8 +2,6 @@ import {
   propUtilityForPlayground,
   dummyFunction,
   iconValidator,
-  createOptionalEnum,
-  simulateFunction,
 } from '../../services/playground';
 import { EuiIcon } from '../../../../src/components/';
 
@@ -13,11 +11,12 @@ export default () => {
     : EuiIcon.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
-  propsToUse.type = iconValidator(propsToUse.type);
+  propsToUse.type = iconValidator({ ...propsToUse.type }, 'grid');
 
-  propsToUse.size = createOptionalEnum(propsToUse.size);
-
-  propsToUse.onIconLoad = simulateFunction(propsToUse.onIconLoad);
+  propsToUse.size = {
+    ...propsToUse.size,
+    defaultValue: 'm',
+  };
 
   return {
     config: {

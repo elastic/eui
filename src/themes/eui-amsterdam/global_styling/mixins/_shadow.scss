@@ -17,11 +17,10 @@
   box-shadow:
     0 .7px 1.4px rgba($color, shadowOpacity(.07)),
     0 1.9px 4px rgba($color, shadowOpacity(.05)),
-    0 4.5px 10px rgba($color, shadowOpacity(.05)),
-    0 15px 32px rgba($color, shadowOpacity(.04));
+    0 4.5px 10px rgba($color, shadowOpacity(.05));
 
   @if ($opacity > 0) {
-    @warn 'The $opacity variable of euiBottomShadowSmall() will be depricated in a future version of EUI.';
+    @warn 'The $opacity variable of euiBottomShadowSmall() will be deprecated in a future version of EUI.';
   }
 }
 
@@ -33,7 +32,7 @@
     0 15px 15px -1px rgba($color, shadowOpacity(.04));
 
   @if ($opacity > 0) {
-    @warn 'The $opacity variable of euiBottomShadowMedium() will be depricated in a future version of EUI.';
+    @warn 'The $opacity variable of euiBottomShadowMedium() will be deprecated in a future version of EUI.';
   }
 }
 
@@ -47,7 +46,7 @@
     0 0 17px rgba($color, shadowOpacity(.03));
 
   @if ($opacity > 0) {
-    @warn 'The $opacity variable of euiBottomShadowFlat() will be depricated in a future version of EUI.';
+    @warn 'The $opacity variable of euiBottomShadowFlat() will be deprecated in a future version of EUI.';
   }
 }
 
@@ -65,7 +64,7 @@
     0 23px 35px rgba($color, shadowOpacity(.05));
 
   @if ($opacity > 0) {
-    @warn 'The $opacity variable of euiBottomShadow() will be depricated in a future version of EUI.';
+    @warn 'The $opacity variable of euiBottomShadow() will be deprecated in a future version of EUI.';
   }
 }
 
@@ -77,9 +76,9 @@
 ) {
   @if ($reverse) {
     box-shadow:
-      0 2.7px -9px rgba($color, shadowOpacity(.13)),
-      0 9.4px -24px rgba($color, shadowOpacity(.09)),
-      0 21.8px -43px rgba($color, shadowOpacity(.08));
+      0 -2.7px 9px rgba($color, shadowOpacity(.13)),
+      0 -9.4px 24px rgba($color, shadowOpacity(.09)),
+      0 -21.8px 43px rgba($color, shadowOpacity(.08));
   } @else {
     box-shadow:
       0 2.7px 9px rgba($color, shadowOpacity(.13)),
@@ -88,7 +87,7 @@
   }
 
   @if ($opacity > 0) {
-    @warn 'The $opacity variable of euiBottomShadowLarge() will be depricated in a future version of EUI.';
+    @warn 'The $opacity variable of euiBottomShadowLarge() will be deprecated in a future version of EUI.';
   }
 }
 
@@ -100,6 +99,6 @@
     0 23px 35px rgba($color, shadowOpacity(.05));
 
   @if ($opacity > 0) {
-    @warn 'The $opacity variable of euiSlightShadowHover() will be depricated in a future version of EUI.';
+    @warn 'The $opacity variable of euiSlightShadowHover() will be deprecated in a future version of EUI.';
   }
 }

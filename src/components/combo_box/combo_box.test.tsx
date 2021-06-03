@@ -199,6 +199,17 @@ describe('props', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('autoFocus is rendered', () => {
+    const component = shallow(
+      <EuiComboBox
+        options={options}
+        selectedOptions={[options[2], options[3]]}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });
 
 test('does not show multiple checkmarks with duplicate labels', () => {

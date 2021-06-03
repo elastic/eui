@@ -161,7 +161,6 @@ const HeaderUserMenu = () => {
   return (
     <EuiPopover
       id={id}
-      ownFocus
       button={button}
       isOpen={isOpen}
       anchorPosition="downRight"
@@ -286,7 +285,6 @@ const HeaderSpacesMenu = () => {
   return (
     <EuiPopover
       id={id}
-      ownFocus
       button={button}
       isOpen={isOpen}
       anchorPosition="downLeft"
@@ -358,7 +356,6 @@ const HeaderAppMenu = () => {
   return (
     <EuiPopover
       id={popoverId}
-      ownFocus
       button={button}
       isOpen={isOpen}
       anchorPosition="downRight"

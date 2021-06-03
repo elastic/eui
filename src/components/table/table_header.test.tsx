@@ -25,10 +25,22 @@ import { EuiTableHeader } from './table_header';
 
 describe('EuiTableHeader', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiTableHeader {...requiredProps}>children</EuiTableHeader>
+    const component = (
+      <EuiTableHeader {...requiredProps}>
+        <td>children</td>
+      </EuiTableHeader>
     );
+    expect(render(component)).toMatchSnapshot();
+  });
 
-    expect(component).toMatchSnapshot();
+  test('is rendered without <tr>', () => {
+    const component = (
+      <EuiTableHeader wrapWithTableRow={false}>
+        <tr>
+          <td>children</td>
+        </tr>
+      </EuiTableHeader>
+    );
+    expect(render(component)).toMatchSnapshot();
   });
 });

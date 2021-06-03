@@ -1,0 +1,6 @@
+$euiSideNavEmphasizedBackgroundColor: tintOrShade($euiColorLightShade, 64%, 28%);
+
+// Ensure all the possible text color have proper contrast when "emphasized"
+$euiSideNavRootTextcolor: makeHighContrastColor($euiTitleColor, $euiSideNavEmphasizedBackgroundColor);
+$euiSideNavBranchTextcolor: makeHighContrastColor($euiTextSubduedColor, $euiSideNavEmphasizedBackgroundColor);
+$euiSideNavSelectedTextcolor: makeHighContrastColor($euiColorPrimary, $euiSideNavEmphasizedBackgroundColor);

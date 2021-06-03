@@ -43,7 +43,7 @@ export default () => {
       items: [
         createItem('Advanced settings', {
           items: [
-            createItem('General'),
+            createItem('General', { disabled: true }),
             createItem('Timelion', {
               items: [
                 createItem('Time stuff', {
@@ -70,6 +70,7 @@ export default () => {
 
   return (
     <EuiSideNav
+      aria-label="Complex example"
       mobileTitle="Navigate within $APP_NAME"
       toggleOpenOnMobile={toggleOpenOnMobile}
       isOpenOnMobile={isSideNavOpenOnMobile}

@@ -21,13 +21,11 @@ import React, {
   ButtonHTMLAttributes,
   FunctionComponent,
   HTMLAttributes,
-  ReactNode,
   Ref,
 } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, keysOf, ExclusiveUnion } from '../common';
-import { EuiBetaBadge } from '../badge/beta_badge';
 
 export const panelPaddingValues = {
   none: 0,
@@ -67,12 +65,18 @@ export type PanelColor = typeof COLORS[number];
 export type PanelPaddingSize = typeof SIZES[number];
 export type PanelBorderRadius = typeof BORDER_RADII[number];
 
-export interface PanelProps extends CommonProps {
+export interface _EuiPanelProps extends CommonProps {
   /**
    * Adds a medium shadow to the panel;
-   * Clickable cards will still get a shadow on hover
+   * Only works when `color="plain"`
    */
   hasShadow?: boolean;
+  /**
+   * Adds a slight 1px border on all edges.
+   * Only works when `color="plain | transparent"`
+   * Default is `undefined` and will default to that theme's panel style
+   */
+  hasBorder?: boolean;
   /**
    * Padding for all four sides
    */
@@ -87,37 +91,28 @@ export interface PanelProps extends CommonProps {
   grow?: boolean;
   panelRef?: Ref<HTMLDivElement>;
   /**
-   * *AMSTERDAM ONLY*
    * Background color of the panel;
    * Usually a lightened form of the brand colors
    */
   color?: PanelColor;
-  /**
-   * **DEPRECATED: use `EuiCard` instead.**
-   * Add a badge to the panel to label it as "Beta" or other non-GA state
-   */
-  betaBadgeLabel?: string;
-  /**
-   * **DEPRECATED: use `EuiCard` instead.**
-   * Add a description to the beta badge (will appear in a tooltip)
-   */
-  betaBadgeTooltipContent?: ReactNode;
-  /**
-   * **DEPRECATED: use `EuiCard` instead.**
-   * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
-   */
-  betaBadgeTitle?: string;
 }
 
-interface Divlike
-  extends PanelProps,
-    Omit<HTMLAttributes<HTMLDivElement>, 'onClick' | 'color'> {}
+export interface _EuiPanelDivlike
+  extends _EuiPanelProps,
+    Omit<HTMLAttributes<HTMLDivElement>, 'color'> {
+  element?: 'div';
+}
 
-interface Buttonlike
-  extends PanelProps,
-    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {}
+export interface _EuiPanelButtonlike
+  extends _EuiPanelProps,
+    Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {
+  element?: 'button';
+}
 
-export type EuiPanelProps = ExclusiveUnion<Divlike, Buttonlike>;
+export type EuiPanelProps = ExclusiveUnion<
+  _EuiPanelButtonlike,
+  _EuiPanelDivlike
+>;
 
 export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   children,
@@ -126,50 +121,40 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   borderRadius = 'm',
   color = 'plain',
   hasShadow = true,
+  hasBorder,
   grow = true,
   panelRef,
-  onClick,
-  betaBadgeLabel,
-  betaBadgeTooltipContent,
-  betaBadgeTitle,
+  element,
   ...rest
 }) => {
+  // Shadows are only allowed when there's a white background (plain)
+  const canHaveShadow = color === 'plain';
+  const canHaveBorder = color === 'plain' || color === 'transparent';
+
   const classes = classNames(
     'euiPanel',
     paddingSizeToClassNameMap[paddingSize],
     borderRadiusToClassNameMap[borderRadius],
     `euiPanel--${color}`,
     {
-      'euiPanel--shadow': hasShadow,
+      // The `no` classes turn off the option for default theme
+      // While the `has` classes turn it on for Amsterdam
+      'euiPanel--hasShadow': canHaveShadow && hasShadow === true,
+      'euiPanel--noShadow': !canHaveShadow || hasShadow === false,
+      'euiPanel--hasBorder': canHaveBorder && hasBorder === true,
+      'euiPanel--noBorder': !canHaveBorder || hasBorder === false,
       'euiPanel--flexGrowZero': !grow,
-      'euiPanel--isClickable': onClick,
-      'euiPanel--hasBetaBadge': betaBadgeLabel,
+      'euiPanel--isClickable': rest.onClick,
     },
     className
   );
 
-  let optionalBetaBadge;
-  if (betaBadgeLabel) {
-    optionalBetaBadge = (
-      <span className="euiPanel__betaBadgeWrapper">
-        <EuiBetaBadge
-          label={betaBadgeLabel}
-          title={betaBadgeTitle}
-          tooltipContent={betaBadgeTooltipContent}
-          className="euiPanel__betaBadge"
-        />
-      </span>
-    );
-  }
-
-  if (onClick) {
+  if (rest.onClick && element !== 'div') {
     return (
       <button
         ref={panelRef as Ref<HTMLButtonElement>}
         className={classes}
-        onClick={onClick}
         {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
-        {optionalBetaBadge}
         {children}
       </button>
     );
@@ -180,7 +165,6 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
       ref={panelRef as Ref<HTMLDivElement>}
       className={classes}
       {...(rest as HTMLAttributes<HTMLDivElement>)}>
-      {optionalBetaBadge}
       {children}
     </div>
   );

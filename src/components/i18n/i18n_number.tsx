@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { ReactChild, ReactElement } from 'react';
+import React, { FunctionComponent, ReactChild, ReactElement } from 'react';
 import { EuiI18nConsumer } from '../context';
 import { ExclusiveUnion } from '../common';
 
@@ -39,7 +39,7 @@ interface EuiI18nNumberValuesShape {
   children: (x: ReactChild[]) => ReactElement<any>;
 }
 
-type EuiI18nNumberProps = ExclusiveUnion<
+export type EuiI18nNumberProps = ExclusiveUnion<
   EuiI18nNumberValueShape,
   EuiI18nNumberValuesShape
 >;
@@ -48,7 +48,7 @@ function hasValues(x: EuiI18nNumberProps): x is EuiI18nNumberValuesShape {
   return x.values != null;
 }
 
-const EuiI18nNumber: React.FunctionComponent<EuiI18nNumberProps> = (props) => (
+const EuiI18nNumber: FunctionComponent<EuiI18nNumberProps> = (props) => (
   <EuiI18nConsumer>
     {(i18nConfig) => {
       const formatNumber = i18nConfig.formatNumber || defaultFormatNumber;

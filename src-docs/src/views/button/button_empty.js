@@ -11,7 +11,7 @@ const buttons = ['primary', 'success', 'warning', 'danger', 'text', 'disabled'];
 export default () => (
   <div>
     {buttons.map((value) => (
-      <>
+      <React.Fragment key={value}>
         <EuiFlexGroup gutterSize="s" key={value} alignItems="center">
           <EuiFlexItem grow={false}>
             <EuiButtonEmpty
@@ -45,13 +45,13 @@ export default () => (
             </EuiButtonEmpty>
           </EuiFlexItem>
         </EuiFlexGroup>
-      </>
+      </React.Fragment>
     ))}
 
     <EuiFlexGroup gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
         <EuiButtonEmpty onClick={() => {}} iconType="arrowDown">
-          Icon left
+          Primary with icon left
         </EuiButtonEmpty>
       </EuiFlexItem>
 
@@ -59,8 +59,28 @@ export default () => (
         <EuiButtonEmpty
           onClick={() => {}}
           iconType="arrowDown"
-          iconSide="right">
-          Icon right
+          iconSide="right"
+          size="xs">
+          Extra small with icon right
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty color="text" onClick={() => {}} iconType="dashboardApp">
+          Text with app icon left
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="text"
+          onClick={() => {}}
+          iconType="dashboardApp"
+          iconSide="right"
+          size="xs">
+          Extra small with app icon right
         </EuiButtonEmpty>
       </EuiFlexItem>
     </EuiFlexGroup>

@@ -34,9 +34,13 @@ export {
 
 export {
   EuiPageHeader,
+  EuiPageHeaderContent,
+  EuiPageHeaderContentProps,
   EuiPageHeaderProps,
   EuiPageHeaderSection,
   EuiPageHeaderSectionProps,
 } from './page_header';
 
 export { EuiPageSideBar, EuiPageSideBarProps } from './page_side_bar';
+
+export { EuiPageTemplate, EuiPageTemplateProps } from './page_template';

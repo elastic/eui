@@ -25,7 +25,7 @@ import {
   defaultParsingPlugins,
 } from './plugins/markdown_default_plugins';
 
-interface EuiMarkdownFormatProps {
+export interface EuiMarkdownFormatProps {
   children: string;
   /** array of unified plugins to parse content into an AST */
   parsingPluginList?: PluggableList;

@@ -18,14 +18,24 @@
  */
 
 export { EuiColorPicker, EuiColorPickerProps } from './color_picker';
-export { EuiColorPickerSwatch } from './color_picker_swatch';
-export { EuiHue } from './hue';
-export { EuiSaturation } from './saturation';
+export {
+  EuiColorPickerSwatch,
+  EuiColorPickerSwatchProps,
+} from './color_picker_swatch';
+export { EuiHue, EuiHueProps } from './hue';
+export { EuiSaturation, EuiSaturationProps } from './saturation';
 export { EuiColorStops } from './color_stops';
+// TODO: Exporting `EuiColorStopsProps` from `'./color_stops'`
+// results in a duplicate d.ts entry that causes build warnings
+// and potential downstream TS project failures.
+export { EuiColorStopsProps } from './color_stops/color_stops';
 export {
   EuiColorPalettePicker,
   EuiColorPalettePickerProps,
   EuiColorPalettePickerPaletteProps,
 } from './color_palette_picker';
 
-export { EuiColorPaletteDisplay } from './color_palette_display';
+export {
+  EuiColorPaletteDisplay,
+  EuiColorPaletteDisplayProps,
+} from './color_palette_display';

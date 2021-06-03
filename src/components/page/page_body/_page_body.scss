@@ -1,19 +1,37 @@
 .euiPageBody {
+  @include euiPageRestrictWidth;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   flex: 1 1 100%;
   // Make sure that inner flex layouts don't get larger than this container
   max-width: 100%;
+  min-width: 0;
 
-  &--restrictWidth-default,
-  &--restrictWidth-custom {
-    margin-left: auto;
-    margin-right: auto;
+  // Assumes that in the default theme, the borders are touching the edge of the EuiPage so remove them.
+  &.euiPageBody--borderRadiusNone { // Nested for specificity
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
   }
+}
 
-  &--restrictWidth-default {
-    max-width: 1000px;
+// Uses the same values as EuiPanel
+@each $modifier, $amount in $euiPanelPaddingModifiers {
+  .euiPageBody--#{$modifier} {
+    padding: $amount;
+
+    & > .euiPageHeader:not([class*='--padding']) {
+      // Match the body's padding for spacing if it doesn't have it's own
+      margin-bottom: $amount;
+      // When the page header is actually inside of a panelled page body,
+      // We want to add some extra separation between it and the content body
+      border-bottom: $euiBorderThin;
+
+      &:not(.euiPageHeader--tabsAtBottom) {
+        padding-bottom: $amount;
+      }
+    }
   }
 }
 

@@ -81,7 +81,10 @@ const text = [
 export default () => (
   <EuiFlexGroup>
     <EuiFlexItem>
-      <EuiPageContent className="guideDemo__textLines" style={{ padding: 32 }}>
+      <EuiPageContent
+        role={null}
+        className="guideDemo__textLines"
+        style={{ padding: 32 }}>
         <EuiPageContentBody>
           <EuiText grow={false}>{text}</EuiText>
         </EuiPageContentBody>
@@ -89,6 +92,7 @@ export default () => (
     </EuiFlexItem>
     <EuiFlexItem>
       <EuiPageContent
+        role={null}
         className="guideDemo__textLines--s"
         style={{ padding: 32 }}>
         <EuiPageContentBody>

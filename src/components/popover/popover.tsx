@@ -30,7 +30,7 @@ import classNames from 'classnames';
 import tabbable from 'tabbable';
 
 import { CommonProps, NoArgCallback } from '../common';
-import { FocusTarget, EuiFocusTrap } from '../focus_trap';
+import { FocusTarget, EuiFocusTrap, EuiFocusTrapProps } from '../focus_trap';
 import { ReactFocusOnProps } from 'react-focus-on/dist/es5/types';
 
 import {
@@ -43,7 +43,7 @@ import {
 
 import { EuiScreenReaderOnly } from '../accessibility';
 
-import { EuiPanel, PanelPaddingSize } from '../panel';
+import { EuiPanel, PanelPaddingSize, EuiPanelProps } from '../panel';
 
 import { EuiPortal } from '../portal';
 
@@ -107,6 +107,13 @@ export interface EuiPopoverProps {
    */
   display?: keyof typeof displayToClassNameMap;
   /**
+   * Object of props passed to EuiFocusTrap
+   */
+  focusTrapProps?: Pick<
+    EuiFocusTrapProps,
+    'clickOutsideDisables' | 'noIsolation' | 'scrollLock'
+  >;
+  /**
    * Show arrow indicating to originating button
    */
   hasArrow?: boolean;
@@ -115,8 +122,10 @@ export interface EuiPopoverProps {
    * node, or a selector string (which will be passed to
    * document.querySelector() to find the DOM node), or a function that
    * returns a DOM node
+   * Set to `false` to prevent initial auto-focus. Use only
+   * when your app handles setting initial focus state.
    */
-  initialFocus?: FocusTarget;
+  initialFocus?: FocusTarget | false;
   /**
    * Passed directly to EuiPortal for DOM positioning. Both properties are
    * required if prop is specified
@@ -145,6 +154,10 @@ export interface EuiPopoverProps {
    * Standard DOM `style` attribute. Passed to the EuiPanel
    */
   panelStyle?: CSSProperties;
+  /**
+   * Object of props passed to EuiPanel
+   */
+  panelProps?: Omit<EuiPanelProps, 'style'>;
   panelRef?: RefCallback<HTMLElement | null>;
   popoverRef?: Ref<HTMLDivElement>;
   /**
@@ -176,6 +189,15 @@ export interface EuiPopoverProps {
    * Use case is typically limited to an accompanying `EuiBeacon`
    */
   arrowChildren?: ReactNode;
+  /**
+   * Provide a name to the popover panel
+   */
+  'aria-label'?: string;
+  /**
+   * Alternative option to `aria-label` that takes an `id`.
+   * Usually takes the `id` of the popover title
+   */
+  'aria-labelledby'?: string;
 }
 
 type AnchorPosition = 'up' | 'right' | 'down' | 'left';
@@ -300,7 +322,7 @@ type PropsWithDefaults = Props & {
 export class EuiPopover extends Component<Props, State> {
   static defaultProps: Partial<PropsWithDefaults> = {
     isOpen: false,
-    ownFocus: false,
+    ownFocus: true,
     anchorPosition: 'downCenter',
     panelPaddingSize: 'm',
     hasArrow: true,
@@ -338,6 +360,7 @@ export class EuiPopover extends Component<Props, State> {
   private updateFocusAnimationFrame: number | undefined;
   private button: HTMLElement | null = null;
   private panel: HTMLElement | null = null;
+  private hasSetInitialFocus: boolean = false;
 
   constructor(props: Props) {
     super(props);
@@ -346,7 +369,7 @@ export class EuiPopover extends Component<Props, State> {
       prevProps: {
         isOpen: props.isOpen,
       },
-      suppressingPopover: this.props.isOpen, // only suppress if created with isOpen=true
+      suppressingPopover: props.isOpen, // only suppress if created with isOpen=true
       isClosing: false,
       isOpening: false,
       popoverStyles: DEFAULT_POPOVER_STYLES,
@@ -388,12 +411,19 @@ export class EuiPopover extends Component<Props, State> {
   updateFocus() {
     // Wait for the DOM to update.
     this.updateFocusAnimationFrame = window.requestAnimationFrame(() => {
-      if (!this.props.ownFocus || !this.panel) {
+      if (
+        !this.props.ownFocus ||
+        !this.panel ||
+        this.props.initialFocus === false
+      ) {
         return;
       }
 
       // If we've already focused on something inside the panel, everything's fine.
-      if (this.panel.contains(document.activeElement)) {
+      if (
+        this.hasSetInitialFocus &&
+        this.panel.contains(document.activeElement)
+      ) {
         return;
       }
 
@@ -433,62 +463,72 @@ export class EuiPopover extends Component<Props, State> {
         }
       }
 
-      if (focusTarget != null) focusTarget.focus();
+      if (focusTarget != null) {
+        this.hasSetInitialFocus = true;
+        focusTarget.focus();
+      }
     });
   }
+
+  onOpenPopover = () => {
+    clearTimeout(this.closingTransitionTimeout);
+    if (this.closingTransitionAnimationFrame) {
+      cancelAnimationFrame(this.closingTransitionAnimationFrame);
+    }
+    // We need to set this state a beat after the render takes place, so that the CSS
+    // transition can take effect.
+    this.closingTransitionAnimationFrame = window.requestAnimationFrame(() => {
+      this.setState({
+        isOpening: true,
+      });
+    });
+
+    // for each child element of `this.panel`, find any transition duration we should wait for before stabilizing
+    const { durationMatch, delayMatch } = Array.prototype.slice
+      .call(this.panel ? [this.panel, ...Array.from(this.panel.children)] : [])
+      .reduce(
+        ({ durationMatch, delayMatch }, element) => {
+          const transitionTimings = getTransitionTimings(element);
+
+          return {
+            durationMatch: Math.max(
+              durationMatch,
+              transitionTimings.durationMatch
+            ),
+            delayMatch: Math.max(delayMatch, transitionTimings.delayMatch),
+          };
+        },
+        { durationMatch: 0, delayMatch: 0 }
+      );
+
+    clearTimeout(this.respositionTimeout);
+    this.respositionTimeout = window.setTimeout(() => {
+      this.setState({ isOpenStable: true }, () => {
+        this.positionPopoverFixed();
+        this.updateFocus();
+      });
+    }, durationMatch + delayMatch);
+  };
 
   componentDidMount() {
     if (this.state.suppressingPopover) {
       // component was created with isOpen=true; now that it's mounted
       // stop suppressing and start opening
-      this.setState({ suppressingPopover: false, isOpening: true }); // eslint-disable-line react/no-did-mount-set-state
+      // eslint-disable-next-line react/no-did-mount-set-state
+      this.setState({ suppressingPopover: false, isOpening: true }, () => {
+        this.onOpenPopover();
+      });
     }
 
     if (this.props.repositionOnScroll) {
       window.addEventListener('scroll', this.positionPopoverFixed);
     }
-
-    this.updateFocus();
   }
 
   componentDidUpdate(prevProps: Props) {
     // The popover is being opened.
     if (!prevProps.isOpen && this.props.isOpen) {
-      clearTimeout(this.closingTransitionTimeout);
-      // We need to set this state a beat after the render takes place, so that the CSS
-      // transition can take effect.
-      this.closingTransitionAnimationFrame = window.requestAnimationFrame(
-        () => {
-          this.setState({
-            isOpening: true,
-          });
-        }
-      );
-
-      // for each child element of `this.panel`, find any transition duration we should wait for before stabilizing
-      const { durationMatch, delayMatch } = Array.prototype.slice
-        .call(this.panel ? this.panel.children : [])
-        .reduce(
-          ({ durationMatch, delayMatch }, element) => {
-            const transitionTimings = getTransitionTimings(element);
-
-            return {
-              durationMatch: Math.max(
-                durationMatch,
-                transitionTimings.durationMatch
-              ),
-              delayMatch: Math.max(delayMatch, transitionTimings.delayMatch),
-            };
-          },
-          { durationMatch: 0, delayMatch: 0 }
-        );
-
-      this.respositionTimeout = window.setTimeout(() => {
-        this.setState({ isOpenStable: true }, () => {
-          this.positionPopoverFixed();
-          this.updateFocus();
-        });
-      }, durationMatch + delayMatch);
+      this.onOpenPopover();
     }
 
     // update scroll listener
@@ -505,6 +545,7 @@ export class EuiPopover extends Component<Props, State> {
       // If the user has just closed the popover, queue up the removal of the content after the
       // transition is complete.
       this.closingTransitionTimeout = window.setTimeout(() => {
+        this.hasSetInitialFocus = false;
         this.setState({
           isClosing: false,
         });
@@ -647,6 +688,7 @@ export class EuiPopover extends Component<Props, State> {
       closePopover,
       panelClassName,
       panelPaddingSize,
+      panelProps,
       panelRef,
       panelStyle,
       popoverRef,
@@ -659,7 +701,10 @@ export class EuiPopover extends Component<Props, State> {
       display,
       onTrapDeactivation,
       buffer,
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledBy,
       container,
+      focusTrapProps,
       ...rest
     } = this.props;
 
@@ -683,7 +728,8 @@ export class EuiPopover extends Component<Props, State> {
       { 'euiPopover__panel-isOpen': this.state.isOpening },
       { 'euiPopover__panel-noArrow': !hasArrow || attachToAnchor },
       { 'euiPopover__panel-isAttached': attachToAnchor },
-      panelClassName
+      panelClassName,
+      panelProps?.className
     );
 
     let panel;
@@ -728,8 +774,9 @@ export class EuiPopover extends Component<Props, State> {
       panel = (
         <EuiPortal insert={insert}>
           <EuiFocusTrap
-            returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             clickOutsideDisables={true}
+            {...focusTrapProps}
+            returnFocus={returnFocus} // Ignore temporary state of indecisive focus
             initialFocus={initialFocus}
             onDeactivation={onTrapDeactivation}
             onClickOutside={this.onClickOutside}
@@ -738,6 +785,7 @@ export class EuiPopover extends Component<Props, State> {
               !ownFocus || !this.state.isOpenStable || this.state.isClosing
             }>
             <EuiPanel
+              {...(panelProps as EuiPanelProps)}
               panelRef={this.panelRef}
               className={panelClasses}
               hasShadow={false}
@@ -745,9 +793,17 @@ export class EuiPopover extends Component<Props, State> {
               tabIndex={tabIndex}
               aria-live={ariaLive}
               role="dialog"
+              aria-label={ariaLabel}
+              aria-labelledby={ariaLabelledBy}
               aria-modal="true"
               aria-describedby={ariaDescribedby}
-              style={this.state.popoverStyles}>
+              style={{
+                ...this.state.popoverStyles,
+                // Adding `will-change` to reduce risk of a blurry animation in Chrome 86+
+                willChange: !this.state.isOpenStable
+                  ? 'transform, opacity'
+                  : undefined,
+              }}>
               <div className={arrowClassNames} style={this.state.arrowStyles}>
                 {arrowChildren}
               </div>

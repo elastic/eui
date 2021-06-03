@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, Ref } from 'react';
 import classNames from 'classnames';
 
 import {
@@ -76,7 +76,9 @@ export const FLUSH_TYPES = keysOf(flushTypeToClassNameMap);
  * Extends EuiButtonContentProps which provides
  * `iconType`, `iconSide`, and `textProps`
  */
-interface CommonEuiButtonEmptyProps extends EuiButtonContentProps, CommonProps {
+export interface CommonEuiButtonEmptyProps
+  extends EuiButtonContentProps,
+    CommonProps {
   /**
    * Any of our named colors
    */
@@ -103,7 +105,7 @@ interface CommonEuiButtonEmptyProps extends EuiButtonContentProps, CommonProps {
   target?: string;
   rel?: string;
   type?: 'button' | 'submit';
-  buttonRef?: (ref: HTMLButtonElement | HTMLAnchorElement | null) => void;
+  buttonRef?: Ref<HTMLButtonElement | HTMLAnchorElement>;
   /**
    * Object of props passed to the <span/> wrapping the button's content
    */
@@ -168,11 +170,14 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
     textProps && textProps.className
   );
 
+  const iconSize = size === 'xs' ? 's' : 'm';
+
   const innerNode = (
     <EuiButtonContent
       isLoading={isLoading}
       iconType={iconType}
       iconSide={iconSide}
+      iconSize={iconSize}
       textProps={{ ...textProps, className: textClassNames }}
       {...contentProps}
       // className has to come last to override contentProps.className
@@ -192,7 +197,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
         href={href}
         target={target}
         rel={secureRel}
-        ref={buttonRef}
+        ref={buttonRef as Ref<HTMLAnchorElement>}
         {...(rest as EuiButtonEmptyPropsForAnchor)}>
         {innerNode}
       </a>
@@ -204,7 +209,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
       disabled={buttonIsDisabled}
       className={classes}
       type={type}
-      ref={buttonRef}
+      ref={buttonRef as Ref<HTMLButtonElement>}
       aria-pressed={isSelected}
       {...(rest as EuiButtonEmptyPropsForButton)}>
       {innerNode}

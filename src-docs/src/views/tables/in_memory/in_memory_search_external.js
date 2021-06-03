@@ -87,10 +87,11 @@ export const Table = () => {
     },
   ];
 
-  const handleOnChange = (search) => {
+  const handleOnChange = ({ queryText, error }) => {
     setSelectedOptionId(undefined);
-    setQuery(search.queryText);
-    return true;
+    if (!error) {
+      setQuery(queryText);
+    }
   };
 
   const facets = [

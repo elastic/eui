@@ -19,6 +19,7 @@
 
 import React, {
   ButtonHTMLAttributes,
+  HTMLAttributes,
   FunctionComponent,
   ReactNode,
   useState,
@@ -56,6 +57,10 @@ export type EuiSwitchProps = CommonProps &
     disabled?: boolean;
     compressed?: boolean;
     type?: 'submit' | 'reset' | 'button';
+    /**
+     * Object of props passed to the label's <span/>
+     */
+    labelProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   };
 
 export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
@@ -68,10 +73,11 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   className,
   showLabel = true,
   type = 'button',
+  labelProps,
   ...rest
 }) => {
   const [switchId] = useState(id || htmlIdGenerator()());
-  const [labelId] = useState(htmlIdGenerator()());
+  const [labelId] = useState(labelProps?.id || htmlIdGenerator()());
 
   const onClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement | HTMLParagraphElement>) => {
@@ -93,7 +99,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
     },
     className
   );
-
+  const labelClasses = classNames('euiSwitch__label', labelProps?.className);
   if (showLabel === false && typeof label !== 'string') {
     console.warn(
       'EuiSwitch `label` must be a string when `showLabel` is false.'
@@ -135,7 +141,11 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
         // <button> + <label> has poor screen reader support.
         // Click handler added to simulate natural, secondary <label> interactivity.
         // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-        <span className="euiSwitch__label" id={labelId} onClick={onClick}>
+        <span
+          {...labelProps}
+          className={labelClasses}
+          id={labelId}
+          onClick={onClick}>
           {label}
         </span>
       )}

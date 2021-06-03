@@ -31,46 +31,75 @@ import { EuiIcon } from '../icon';
 
 import { getSecureRelForTarget } from '../../services';
 import { validateHref } from '../../services/security/href_validator';
+import { EuiInnerText } from '../inner_text';
 
-type ItemProps = CommonProps & {
+/**
+ * The props that are exposed to, or altered for, the consumer
+ * for use in the object of items in `EuiSideNav`
+ * can be found in the `side_nave_types.ts` file.
+ */
+
+export type _EuiSideNavItemButtonProps = CommonProps & {
+  /**
+   * Is an optional string to be passed as the navigation item's `href` prop,
+   * and by default it will force rendering of the item as an `<a>`
+   */
   href?: string;
   target?: string;
   rel?: string;
+  /**
+   * Callback function to be passed as the navigation item's `onClick` prop,
+   * and by default it will force rendering of the item as a `<button>` instead of a link
+   */
   onClick?: MouseEventHandler<HTMLButtonElement | HTMLElement>;
   children: ReactNode;
+  disabled?: boolean;
 };
 
-interface SideNavItemProps {
-  isOpen?: boolean;
-  isSelected?: boolean;
-  isParent?: boolean;
+export interface _EuiSideNavItemProps {
+  /**
+   * React node which will be rendered as a small icon to the
+   * left of the navigation item text
+   */
   icon?: ReactElement;
+  /**
+   * If set to true it will render the item in a visible
+   * "selected" state, and will force all ancestor navigation items
+   * to render in an "open" state
+   */
+  isSelected?: boolean;
+  /**
+   * Enhances the whole item's section (including nested items) with
+   * a slight background and bold top item
+   */
+  emphasize?: boolean;
+  /**
+   * Restrict the item's text length to a single line
+   */
+  truncate?: boolean;
+  /**
+   * Passed to the actual `.euiSideNavItemButton` element
+   */
+  buttonClassName?: string;
+  // Exposed as different prop type to consumer
   items?: ReactNode;
+  // Not exposed to consumer
+  isOpen?: boolean;
+  isParent?: boolean;
   depth?: number;
 }
 
 type ExcludeEuiSideNavItemProps<T> = Pick<
   T,
-  Exclude<keyof T, keyof SideNavItemProps | 'renderItem'>
+  Exclude<keyof T, keyof _EuiSideNavItemProps | 'renderItem'>
 >;
 type OmitEuiSideNavItemProps<T> = {
   [K in keyof ExcludeEuiSideNavItemProps<T>]: T[K];
 };
 
-interface GuaranteedRenderItemProps {
-  href?: string;
-  target?: string;
-  rel?: string;
-  onClick?: ItemProps['onClick'];
-  className: string;
-  /**
-   * ReactNode to render as this component's content
-   */
-  children: ReactNode;
-}
 export type RenderItem<T> = (
-  // argument is the set of extra component props + GuaranteedRenderItemProps
-  props: OmitEuiSideNavItemProps<T> & GuaranteedRenderItemProps
+  // argument is the set of extra component props + _EuiSideNavItemButtonProps
+  props: OmitEuiSideNavItemProps<T> & _EuiSideNavItemButtonProps
 ) => JSX.Element;
 
 export type EuiSideNavItemProps<T> = T extends { renderItem: Function }
@@ -84,9 +113,10 @@ const DefaultRenderItem = ({
   onClick,
   className,
   children,
+  disabled,
   ...rest
-}: ItemProps) => {
-  if (href) {
+}: _EuiSideNavItemButtonProps) => {
+  if (href && !disabled) {
     const secureRel = getSecureRelForTarget({ href, rel, target });
     return (
       <a
@@ -101,9 +131,14 @@ const DefaultRenderItem = ({
     );
   }
 
-  if (onClick) {
+  if (onClick || disabled) {
     return (
-      <button type="button" className={className} onClick={onClick} {...rest}>
+      <button
+        type="button"
+        className={className}
+        onClick={onClick}
+        disabled={disabled}
+        {...rest}>
         {children}
       </button>
     );
@@ -117,8 +152,8 @@ const DefaultRenderItem = ({
 };
 
 export function EuiSideNavItem<
-  T extends ItemProps &
-    SideNavItemProps & { renderItem?: (props: any) => JSX.Element }
+  T extends _EuiSideNavItemButtonProps &
+    _EuiSideNavItemProps & { renderItem?: (props: any) => JSX.Element }
 >({
   isOpen,
   isSelected,
@@ -133,6 +168,9 @@ export function EuiSideNavItem<
   renderItem: RenderItem = DefaultRenderItem,
   depth = 0,
   className,
+  truncate = true,
+  emphasize,
+  buttonClassName,
   ...rest
 }: EuiSideNavItemProps<T>) {
   const isHrefValid = !_href || validateHref(_href);
@@ -159,15 +197,20 @@ export function EuiSideNavItem<
       'euiSideNavItem--trunk': depth === 1,
       'euiSideNavItem--branch': depth > 1,
       'euiSideNavItem--hasChildItems': !!childItems,
+      'euiSideNavItem--emphasized': emphasize,
     },
     className
   );
 
-  const buttonClasses = classNames('euiSideNavItemButton', {
-    'euiSideNavItemButton--isClickable': onClick || href,
-    'euiSideNavItemButton-isOpen': depth > 0 && isOpen && !isSelected,
-    'euiSideNavItemButton-isSelected': isSelected,
-  });
+  const buttonClasses = classNames(
+    'euiSideNavItemButton',
+    {
+      'euiSideNavItemButton--isClickable': onClick || href,
+      'euiSideNavItemButton-isOpen': depth > 0 && isOpen && !isSelected,
+      'euiSideNavItemButton-isSelected': isSelected,
+    },
+    buttonClassName
+  );
 
   let caret;
 
@@ -179,13 +222,24 @@ export function EuiSideNavItem<
     <span className="euiSideNavItemButton__content">
       {buttonIcon}
 
-      <span className="euiSideNavItemButton__label">{children}</span>
+      <EuiInnerText>
+        {(ref, innerText) => (
+          <span
+            ref={ref}
+            title={truncate ? innerText : undefined}
+            className={classNames('euiSideNavItemButton__label', {
+              'euiSideNavItemButton__label--truncated': truncate,
+            })}>
+            {children}
+          </span>
+        )}
+      </EuiInnerText>
 
       {caret}
     </span>
   );
 
-  const renderItemProps: GuaranteedRenderItemProps = {
+  const renderItemProps: _EuiSideNavItemButtonProps = {
     href,
     rel,
     target,

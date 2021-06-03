@@ -1,6 +1,11 @@
 import React from 'react';
 
-import { EuiAccordion, EuiText, EuiSpacer } from '../../../../src/components';
+import {
+  EuiAccordion,
+  EuiText,
+  EuiSpacer,
+  EuiPanel,
+} from '../../../../src/components';
 
 export default () => (
   <div>
@@ -8,7 +13,7 @@ export default () => (
       id="accordion3"
       buttonContent="An accordion with padding applied through props"
       paddingSize="l">
-      <EuiText>
+      <EuiText size="s">
         <p>The content inside can be of any height.</p>
         <p>The content inside can be of any height.</p>
         <p>The content inside can be of any height.</p>
@@ -22,7 +27,7 @@ export default () => (
       buttonContent="A second accordion with padding and a very long title that should truncate because of eui-textTruncate"
       buttonContentClassName="eui-textTruncate"
       paddingSize="l">
-      <EuiText>
+      <EuiText size="s">
         <p>The content inside can be of any height.</p>
         <p>The content inside can be of any height.</p>
         <p>The content inside can be of any height.</p>
@@ -38,24 +43,18 @@ export default () => (
       id="accordion5"
       buttonContent="A third accordion with a nested accordion"
       paddingSize="m">
-      <EuiText>
+      <EuiText size="s">
         <p>
-          This content area will grow to accomodate when the accordion below
+          This content area will grow to accommodate when the accordion below
           opens
         </p>
       </EuiText>
       <EuiSpacer />
       <EuiAccordion id="accordion6" buttonContent="A fourth nested accordion">
-        <EuiText>
-          <p>The content inside can be of any height.</p>
-          <p>The content inside can be of any height.</p>
-          <p>The content inside can be of any height.</p>
-          <p>The content inside can be of any height.</p>
-          <p>The content inside can be of any height.</p>
-          <p>The content inside can be of any height.</p>
-        </EuiText>
+        <EuiPanel color="subdued">
+          Any content inside of <strong>EuiAccordion</strong> will appear here.
+        </EuiPanel>
       </EuiAccordion>
-      <EuiSpacer />
     </EuiAccordion>
   </div>
 );

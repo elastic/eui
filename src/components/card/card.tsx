@@ -22,14 +22,15 @@ import React, {
   ReactElement,
   ReactNode,
   isValidElement,
+  HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, keysOf } from '../common';
+import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { getSecureRelForTarget } from '../../services';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
-import { EuiBetaBadge } from '../badge/beta_badge';
+import { EuiBetaBadge, EuiBetaBadgeProps } from '../badge/beta_badge';
 import { EuiIconProps } from '../icon';
 import {
   EuiCardSelect,
@@ -38,6 +39,7 @@ import {
 } from './card_select';
 import { htmlIdGenerator } from '../../services/accessibility';
 import { validateHref } from '../../services/security/href_validator';
+import { EuiPanel, EuiPanelProps } from '../panel';
 
 type CardAlignment = 'left' | 'center' | 'right';
 
@@ -58,121 +60,122 @@ const layoutToClassNameMap: { [layout in CardLayout]: string } = {
 
 export const LAYOUT_ALIGNMENTS = keysOf(layoutToClassNameMap);
 
-type CardDisplay = 'panel' | 'plain';
+/**
+ * Certain props are only allowed when the layout is vertical
+ */
+type EuiCardPropsLayout = ExclusiveUnion<
+  {
+    layout?: 'vertical';
+    /**
+     * Changes alignment of the title and description
+     */
+    textAlign?: CardAlignment;
+    /**
+     * Accepts any combination of elements
+     */
+    footer?: ReactNode;
+    /**
+     * Accepts a url in string form or ReactElement for a custom image component
+     */
+    image?: string | ReactElement;
+  },
+  {
+    /**
+     * Change to "horizontal" if you need the icon to be left of the content.
+     * Horizontal layouts cannot be used in conjunction with `image`, `footer`, or `textAlign`.
+     */
+    layout: 'horizontal';
+  }
+>;
 
-const displayToClassNameMap: { [display in CardDisplay]: string } = {
-  panel: '',
-  plain: 'euiCard--plain',
-};
+export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
+  Omit<HTMLAttributes<HTMLDivElement>, 'color' | 'title' | 'onClick'> &
+  EuiCardPropsLayout & {
+    /**
+     * Cards are required to have at least a title and a description and/or children
+     */
+    title: NonNullable<ReactNode>;
 
-export const DISPLAYS = keysOf(displayToClassNameMap);
+    /**
+     * Determines the title's heading element
+     */
+    titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
 
-type CardPaddingSize = 'none' | 's' | 'm' | 'l';
+    /**
+     * Determines the title's size, matching that of EuiTitle.
+     * Though, card titles can't be too large or small relative to the description text.
+     */
+    titleSize?: 's' | 'xs';
 
-export type EuiCardProps = Omit<CommonProps, 'aria-label'> & {
-  /**
-   * Card's are required to have at least a title and description
-   */
-  title: NonNullable<ReactNode>;
+    /**
+     * Placed within a small EuiText `<p>` tag
+     */
+    description?: NonNullable<ReactNode>;
 
-  /**
-   * Determines the title's heading element
-   */
-  titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
+    /**
+     * Accepts an `<EuiIcon>` node or `null`
+     */
+    icon?: ReactElement<EuiIconProps> | null;
 
-  /**
-   * Determines the title's size, matching that of EuiTitle.
-   * Though, card titles can't be too large or small relative to the description text.
-   */
-  titleSize?: 's' | 'xs';
+    /**
+     * Custom children
+     */
+    children?: ReactNode;
 
-  /**
-   * Card's are required to have at least a title and description
-   */
-  description: NonNullable<ReactNode>;
+    /**
+     * Use only if you want to forego a button in the footer and make the whole card clickable
+     */
+    onClick?:
+      | React.MouseEventHandler<HTMLButtonElement>
+      | React.MouseEventHandler<HTMLAnchorElement>;
+    isDisabled?: boolean;
+    href?: string;
+    target?: string;
+    rel?: string;
 
-  /**
-   * Accepts an `<EuiIcon>` node or `null`
-   */
-  icon?: ReactElement<EuiIconProps> | null;
+    /**
+     * Add a badge to the card to label it as "Beta" or other non-GA state
+     * **DEPRECATED: Use `betaBadgeProps.label` instead.**
+     */
+    betaBadgeLabel?: string;
 
-  /**
-   * Accepts a url in string form or ReactElement for a custom image component
-   */
-  image?: string | ReactElement;
+    /**
+     * Add a description to the beta badge (will appear in a tooltip)
+     * **DEPRECATED: Use `betaBadgeProps.tooltipContent` instead.**
+     */
+    betaBadgeTooltipContent?: ReactNode;
 
-  /**
-   * Content to be rendered between the description and the footer
-   */
-  children?: ReactNode;
-
-  /**
-   * Accepts any combination of elements
-   */
-  footer?: ReactNode;
-
-  /**
-   * Use only if you want to forego a button in the footer and make the whole card clickable
-   */
-  onClick?:
-    | React.MouseEventHandler<HTMLButtonElement>
-    | React.MouseEventHandler<HTMLAnchorElement>;
-  isDisabled?: boolean;
-  href?: string;
-  target?: string;
-  rel?: string;
-
-  /**
-   * Changes alignment of the title and description
-   */
-  textAlign?: CardAlignment;
-
-  /**
-   * Change to "horizontal" if you need the icon to be left of the content
-   */
-  layout?: CardLayout;
-
-  /**
-   * Add a badge to the card to label it as "Beta" or other non-GA state
-   */
-  betaBadgeLabel?: string;
-
-  /**
-   * Add a description to the beta badge (will appear in a tooltip)
-   */
-  betaBadgeTooltipContent?: ReactNode;
-
-  /**
-   * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
-   */
-  betaBadgeTitle?: string;
-
-  /**
-   * Adds a button to the bottom of the card to allow for in-place selection
-   */
-  selectable?: EuiCardSelectProps;
-
-  /**
-   * Visual display of the card. Display as 'panel' or 'plain'.
-   * Selectable cards will always display as 'panel'.
-   */
-  display?: CardDisplay;
-  /**
-   * Padding applied around the content of the card
-   */
-  paddingSize?: CardPaddingSize;
-};
-
-const paddingSizeToClassNameMap: {
-  [paddingSize in CardPaddingSize]: string;
-} = {
-  none: 'euiCard--paddingNone',
-  s: 'euiCard--paddingSmall',
-  m: 'euiCard--paddingMedium',
-  l: 'euiCard--paddingLarge',
-};
-
-export const SIZES = keysOf(paddingSizeToClassNameMap);
+    /**
+     * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used.
+     * **DEPRECATED: Use `betaBadgeProps.title` instead.**
+     */
+    betaBadgeTitle?: string;
+    betaBadgeProps?: Partial<EuiBetaBadgeProps>;
+    /**
+     * Matches to the color property of EuiPanel. If defined, removes any border & shadow.
+     * Leave as `undefined` to display as a default panel.
+     * Selectable cards will always display as a default panel.
+     */
+    display?: EuiPanelProps['color'];
+    /**
+     * Padding applied around the content of the card
+     */
+    paddingSize?: EuiPanelProps['paddingSize'];
+    /**
+     * Adds a button to the bottom of the card to allow for in-place selection
+     */
+    selectable?: EuiCardSelectProps;
+  } & (
+    | {
+        // description becomes optional when children is present
+        description?: NonNullable<ReactNode>;
+        children: ReactNode;
+      }
+    | {
+        // description is required if children is omitted
+        description: NonNullable<ReactNode>;
+      }
+  );
 
 export const EuiCard: FunctionComponent<EuiCardProps> = ({
   className,
@@ -193,14 +196,17 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   betaBadgeLabel,
   betaBadgeTooltipContent,
   betaBadgeTitle,
+  betaBadgeProps,
   layout = 'vertical',
   selectable,
-  display = 'panel',
-  paddingSize = 'm',
+  display,
+  paddingSize,
   ...rest
 }) => {
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
+  const isClickable =
+    !isDisabled && (onClick || href || (selectable && !selectable.isDisabled));
 
   /**
    * For a11y, we simulate the same click that's provided on the title when clicking the whole card
@@ -215,9 +221,9 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   };
 
   if (layout === 'horizontal') {
-    if (image || footer) {
+    if (image || footer || textAlign !== 'center') {
       throw new Error(
-        "EuiCard: layout = horizontal' cannot be used in conjunction with 'image', 'footer', or 'textAlign'."
+        'EuiCard: `layout="horizontal"` cannot be used in conjunction with `image`, `footer`, or `textAlign`.'
       );
     }
   }
@@ -231,20 +237,12 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   const classes = classNames(
     'euiCard',
-    'euiCard--shadow', // For matching EuiPanel mixin
-    'euiCard--borderRadiusMedium', // For matching EuiPanel mixin
-    paddingSizeToClassNameMap[paddingSize],
-    displayToClassNameMap[display],
     textAlignToClassNameMap[textAlign],
     layoutToClassNameMap[layout],
     {
-      'euiCard--isClickable':
-        (!isDisabled && onClick) ||
-        href ||
-        (selectable && !selectable.isDisabled),
+      'euiCard--isClickable': isClickable,
       'euiCard--hasBetaBadge': betaBadgeLabel,
       'euiCard--hasIcon': icon,
-      'euiCard--hasChildren': children,
       'euiCard--isSelectable': selectable,
       'euiCard-isSelected': selectable && selectable.isSelected,
       'euiCard-isDisabled': isDisabled,
@@ -254,6 +252,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   );
 
   const ariaId = htmlIdGenerator()();
+  const ariaDesc = description ? `${ariaId}Description` : '';
 
   /**
    * Top area containing image, icon or both
@@ -301,13 +300,20 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       <span className="euiCard__betaBadgeWrapper">
         <EuiBetaBadge
           id={optionalBetaBadgeID}
+          {...(betaBadgeProps as EuiBetaBadgeProps)}
           label={betaBadgeLabel}
           title={betaBadgeTitle}
           tooltipContent={betaBadgeTooltipContent}
-          className="euiCard__betaBadge"
+          className={classNames(
+            'euiCard__betaBadge',
+            betaBadgeProps?.className
+          )}
         />
       </span>
     );
+
+    // Increase padding size when there is a beta badge unless it's already determined
+    paddingSize = paddingSize || 'l';
   }
 
   /**
@@ -322,7 +328,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   if (selectable) {
     optionalSelectButton = (
       <EuiCardSelect
-        aria-describedby={`${ariaId}Title ${ariaId}Description`}
+        aria-describedby={`${ariaId}Title ${ariaDesc}`}
         {...selectable}
         buttonRef={(node) => {
           link = node;
@@ -344,7 +350,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}
         href={href}
         target={target}
-        aria-describedby={`${ariaId}Description`}
+        aria-describedby={ariaDesc}
         rel={getSecureRelForTarget({ href, target, rel })}
         ref={(node) => {
           link = node;
@@ -358,7 +364,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         className="euiCard__titleButton"
         onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
         disabled={isDisabled}
-        aria-describedby={`${optionalBetaBadgeID} ${ariaId}Description`}
+        aria-describedby={`${optionalBetaBadgeID} ${ariaDesc}`}
         ref={(node) => {
           link = node;
         }}>
@@ -376,7 +382,15 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   const TitleElement = titleElement;
 
   return (
-    <div className={classes} onClick={outerOnClick} {...rest}>
+    <EuiPanel
+      element="div"
+      className={classes}
+      onClick={isClickable ? outerOnClick : undefined}
+      color={isDisabled ? 'subdued' : display}
+      hasShadow={isDisabled || display ? false : true}
+      hasBorder={display ? false : undefined}
+      paddingSize={paddingSize}
+      {...rest}>
       {optionalCardTop}
 
       <div className="euiCard__content">
@@ -387,14 +401,13 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
           <TitleElement>{theTitle}</TitleElement>
         </EuiTitle>
 
-        <EuiText
-          id={`${ariaId}Description`}
-          size="s"
-          className="euiCard__description">
-          <p>{description}</p>
-        </EuiText>
+        {description && (
+          <EuiText id={ariaDesc} size="s" className="euiCard__description">
+            <p>{description}</p>
+          </EuiText>
+        )}
 
-        {children}
+        {children && <div className="euiCard__children">{children}</div>}
       </div>
 
       {/* Beta badge should always be after the title/description but before any footer buttons */}
@@ -404,6 +417,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         <div className="euiCard__footer">{footer}</div>
       )}
       {optionalSelectButton}
-    </div>
+    </EuiPanel>
   );
 };

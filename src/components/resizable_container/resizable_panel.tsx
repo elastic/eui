@@ -35,7 +35,7 @@ import { EuiPanel } from '../panel';
 import {
   PanelPaddingSize,
   panelPaddingValues,
-  PanelProps,
+  _EuiPanelProps,
 } from '../panel/panel';
 import { useEuiI18n } from '../i18n';
 import {
@@ -98,7 +98,7 @@ const paddingSizeToClassNameMap = {
   l: 'euiResizablePanel--paddingLarge',
 };
 export interface EuiResizablePanelProps
-  extends PanelProps,
+  extends _EuiPanelProps,
     CommonProps,
     Partial<EuiResizablePanelControls> {
   /**
@@ -359,16 +359,17 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     (modeType === 'custom' && isCollapsed) || isCollapsible;
 
   let theToggle;
+  let theResizer;
   if ((isCollapsible || modeType === 'custom') && hasLeftToggle) {
+    theResizer = resizers[resizerIds.current[0]];
     theToggle = (
       <EuiResizableCollapseButton
         externalPosition="before"
         direction={isHorizontal ? 'horizontal' : 'vertical'}
         isVisible={
-          resizers[resizerIds.current[0]].isFocused ||
-          resizers[resizerIds.current[0]].isDisabled
+          theResizer && (theResizer.isFocused || theResizer.isDisabled)
         }
-        isCollapsed={resizers[resizerIds.current[0]].isDisabled}
+        isCollapsed={theResizer && theResizer.isDisabled}
         internalPosition={toggleOpts.position as ToggleOptions['position']}
         data-test-subj={toggleOpts['data-test-subj']}
         aria-label={toggleButtonAriaLabel}
@@ -376,15 +377,15 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       />
     );
   } else if ((isCollapsible || modeType === 'custom') && hasRightToggle) {
+    theResizer = resizers[resizerIds.current[1]];
     theToggle = (
       <EuiResizableCollapseButton
         externalPosition="after"
         direction={isHorizontal ? 'horizontal' : 'vertical'}
         isVisible={
-          resizers[resizerIds.current[1]].isFocused ||
-          resizers[resizerIds.current[1]].isDisabled
+          theResizer && (theResizer.isFocused || theResizer.isDisabled)
         }
-        isCollapsed={resizers[resizerIds.current[1]].isDisabled}
+        isCollapsed={theResizer && theResizer.isDisabled}
         internalPosition={toggleOpts.position as ToggleOptions['position']}
         data-test-subj={toggleOpts['data-test-subj']}
         aria-label={toggleButtonAriaLabel}

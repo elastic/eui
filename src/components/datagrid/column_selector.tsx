@@ -21,6 +21,7 @@ import React, {
   Fragment,
   useState,
   useMemo,
+  useCallback,
   ReactElement,
   ChangeEvent,
 } from 'react';
@@ -82,18 +83,23 @@ export const useDataGridColumnSelector = (
   );
 
   const { visibleColumns, setVisibleColumns } = columnVisibility;
-  const visibleColumnIds = new Set(visibleColumns);
+  const visibleColumnIds = useMemo(() => new Set(visibleColumns), [
+    visibleColumns,
+  ]);
 
   const [isOpen, setIsOpen] = useState(false);
 
-  function setColumns(nextColumns: string[]) {
-    setSortedColumns(nextColumns);
+  const setColumns = useCallback(
+    (nextColumns: string[]) => {
+      setSortedColumns(nextColumns);
 
-    const nextVisibleColumns = nextColumns.filter((id) =>
-      visibleColumnIds.has(id)
-    );
-    setVisibleColumns(nextVisibleColumns);
-  }
+      const nextVisibleColumns = nextColumns.filter((id) =>
+        visibleColumnIds.has(id)
+      );
+      setVisibleColumns(nextVisibleColumns);
+    },
+    [setSortedColumns, setVisibleColumns, visibleColumnIds]
+  );
 
   function onDragEnd({
     source: { index: sourceIndex },
@@ -153,7 +159,6 @@ export const useDataGridColumnSelector = (
       isOpen={isOpen}
       closePopover={() => setIsOpen(false)}
       anchorPosition="downLeft"
-      ownFocus
       panelPaddingSize="s"
       panelClassName="euiDataGridColumnSelectorPopover"
       button={
@@ -296,17 +301,20 @@ export const useDataGridColumnSelector = (
   /**
    * Used for moving columns left/right, available in the headers actions menu
    */
-  const switchColumnPos = (fromColId: string, toColId: string) => {
-    const moveFromIdx = sortedColumns.indexOf(fromColId);
-    const moveToIdx = sortedColumns.indexOf(toColId);
-    if (moveFromIdx === -1 || moveToIdx === -1) {
-      return;
-    }
-    const nextSortedColumns = [...sortedColumns];
-    nextSortedColumns.splice(moveFromIdx, 1);
-    nextSortedColumns.splice(moveToIdx, 0, fromColId);
-    setColumns(nextSortedColumns);
-  };
+  const switchColumnPos = useCallback(
+    (fromColId: string, toColId: string) => {
+      const moveFromIdx = sortedColumns.indexOf(fromColId);
+      const moveToIdx = sortedColumns.indexOf(toColId);
+      if (moveFromIdx === -1 || moveToIdx === -1) {
+        return;
+      }
+      const nextSortedColumns = [...sortedColumns];
+      nextSortedColumns.splice(moveFromIdx, 1);
+      nextSortedColumns.splice(moveToIdx, 0, fromColId);
+      setColumns(nextSortedColumns);
+    },
+    [setColumns, sortedColumns]
+  );
 
   return [
     columnSelector,

@@ -61,7 +61,6 @@ for (let i = 1; i < 500; i++) {
     avatar: (
       <EuiAvatar
         size="s"
-        imageUrl={fake('{{internet.avatar}}')}
         name={fake('{{name.lastName}}, {{name.firstName}}')}
       />
     ),
@@ -95,8 +94,7 @@ const SelectionButton = () => {
             selected
           </EuiButtonEmpty>
         }
-        closePopover={() => setIsPopoverOpen(false)}
-        ownFocus={true}>
+        closePopover={() => setIsPopoverOpen(false)}>
         <EuiPopoverTitle>
           {selectedRows.size} {selectedRows.size > 1 ? 'items' : 'item'}
         </EuiPopoverTitle>
@@ -265,8 +263,7 @@ const trailingControlColumns = [
                 onClick={() => setIsPopoverOpen(!isPopoverOpen)}
               />
             }
-            closePopover={() => setIsPopoverOpen(false)}
-            ownFocus={true}>
+            closePopover={() => setIsPopoverOpen(false)}>
             <EuiPopoverTitle>Actions</EuiPopoverTitle>
             <div style={{ width: 150 }}>
               <button onClick={() => {}} component="span">

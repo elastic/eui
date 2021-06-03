@@ -40,6 +40,7 @@ import {
 import { EuiTitle } from '../title';
 
 import { EuiTourStepIndicator, EuiTourStepStatus } from './tour_step_indicator';
+import { htmlIdGenerator } from '../../services';
 
 type PopoverOverrides = 'button' | 'closePopover';
 
@@ -94,14 +95,14 @@ export interface EuiTourStepProps
   style?: CSSProperties;
 
   /**
-   * Smaller title text that appears atop each step in the tour
+   * Smaller title text that appears atop each step in the tour. The subtitle gets wrapped in the appropriate heading level.
    */
-  subtitle: string;
+  subtitle: ReactNode;
 
   /**
-   * Larger title text specific to this step
+   * Larger title text specific to this step. The title gets wrapped in the appropriate heading level.
    */
-  title: string;
+  title: ReactNode;
 
   /**
    * Extra visual indication of step location
@@ -132,6 +133,8 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   footerAction,
   ...rest
 }) => {
+  const generatedId = htmlIdGenerator();
+  const titleId = generatedId();
   if (step === 0) {
     console.warn(
       'EuiTourStep `step` should 1-based indexing. Please update to eliminate 0 indexes.'
@@ -187,7 +190,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
               'euiTourStep.skipTour',
               'euiTourStep.closeTour',
             ]}
-            defaults={['End tour', 'Skip tour', 'Close']}>
+            defaults={['End tour', 'Skip tour', 'Close tour']}>
             {([endTour, skipTour, closeTour]: string[]) => {
               let content = closeTour;
               if (stepsTotal > 1) {
@@ -213,12 +216,14 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       button={children}
       closePopover={closePopover}
       isOpen={isStepOpen}
+      ownFocus={false}
       panelClassName={classes}
       panelStyle={newStyle || style}
       offset={hasBeacon ? 10 : 0}
+      aria-labelledby={titleId}
       arrowChildren={hasBeacon && <EuiBeacon className="euiTour__beacon" />}
       {...rest}>
-      <EuiPopoverTitle className="euiTourHeader">
+      <EuiPopoverTitle className="euiTourHeader" id={titleId}>
         <EuiTitle size="xxxs" className="euiTourHeader__subtitle">
           <h1>{subtitle}</h1>
         </EuiTitle>

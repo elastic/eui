@@ -98,6 +98,7 @@ describe('EuiPopover', () => {
 
         const component = mount(
           <EuiPopover
+            ownFocus={false}
             id={getId()}
             button={<button />}
             closePopover={closePopoverHandler}
@@ -198,7 +199,7 @@ describe('EuiPopover', () => {
     });
 
     describe('ownFocus', () => {
-      test('defaults to false', () => {
+      test('defaults to true', () => {
         const component = mount(
           <div>
             <EuiPopover
@@ -213,13 +214,13 @@ describe('EuiPopover', () => {
         expect(component.render()).toMatchSnapshot();
       });
 
-      test('renders true', () => {
+      test('renders false', () => {
         const component = mount(
           <div>
             <EuiPopover
+              ownFocus={false}
               id={getId()}
               isOpen
-              ownFocus
               button={<button />}
               closePopover={() => {}}
             />
@@ -257,6 +258,46 @@ describe('EuiPopover', () => {
               button={<button />}
               closePopover={() => {}}
               panelPaddingSize="s"
+              isOpen
+            />
+          </div>
+        );
+
+        expect(component.render()).toMatchSnapshot();
+      });
+    });
+
+    describe('panelProps', () => {
+      test('is rendered', () => {
+        const component = mount(
+          <div>
+            <EuiPopover
+              id={getId()}
+              button={<button />}
+              closePopover={() => {}}
+              panelProps={requiredProps}
+              isOpen
+            />
+          </div>
+        );
+
+        expect(component.render()).toMatchSnapshot();
+      });
+    });
+
+    describe('focusTrapProps', () => {
+      test('is rendered', () => {
+        const component = mount(
+          <div>
+            <EuiPopover
+              id={getId()}
+              button={<button />}
+              closePopover={() => {}}
+              focusTrapProps={{
+                clickOutsideDisables: false,
+                noIsolation: false,
+                scrollLock: false,
+              }}
               isOpen
             />
           </div>

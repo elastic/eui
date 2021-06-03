@@ -57,7 +57,6 @@ for (let i = 1; i < 5; i++) {
     avatar: (
       <EuiAvatar
         size="s"
-        imageUrl={fake('{{internet.avatar}}')}
         name={fake('{{name.lastName}}, {{name.firstName}}')}
       />
     ),
@@ -70,7 +69,7 @@ for (let i = 1; i < 5; i++) {
 }
 
 export default () => {
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 5 });
 
   const [visibleColumns, setVisibleColumns] = useState(() =>
     columns.map(({ id }) => id)

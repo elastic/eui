@@ -1,15 +1,11 @@
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import {
-  EuiTitle,
-  EuiSpacer,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiBetaBadge,
-  EuiTab,
-  EuiTabs,
-  EuiHorizontalRule,
+  EuiPageHeader,
+  EuiPageContent,
+  EuiPageContentBody,
 } from '../../../../src/components';
 
 const GuidePageComponent = ({
@@ -61,64 +57,60 @@ const GuidePageComponent = ({
   const isPlaygroundView = location.pathname.includes('playground');
 
   const renderTabs = () => {
+    if (tabs.length < 2) {
+      return undefined;
+    }
+
     return tabs.map(({ id, handleClick, name }, index) => {
       let isSelected = false;
       if (id === 'playground') isSelected = isPlaygroundView;
       else if (id === 'guidelines') isSelected = isGuideLineView;
       else isSelected = !isGuideLineView && !isPlaygroundView;
 
-      return (
-        <EuiTab
-          onClick={() => {
-            if (handleClick) handleClick();
-          }}
-          isSelected={isSelected}
-          key={index}>
-          {name}
-        </EuiTab>
-      );
+      return {
+        onClick: () => {
+          if (handleClick) handleClick();
+        },
+        isSelected,
+        key: index,
+        label: name,
+      };
     });
   };
 
   return (
-    <Fragment>
-      <div className="guideSection__text">
-        <EuiFlexGroup justifyContent="spaceBetween">
-          <EuiFlexItem grow={false}>
-            <EuiTitle size="l">
-              <h1>
-                {title} {betaBadge}
-              </h1>
-            </EuiTitle>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiTabs display="condensed">
-              {tabs.length > 1 && renderTabs()}
-            </EuiTabs>
-          </EuiFlexItem>
-        </EuiFlexGroup>
+    <>
+      <EuiPageHeader
+        restrictWidth
+        pageTitle={
+          <>
+            {title} {betaBadge}
+          </>
+        }
+        tabs={renderTabs()}>
+        {intro}
+      </EuiPageHeader>
 
-        {tabs.length > 1 && <EuiHorizontalRule />}
-
-        <EuiSpacer size="m" />
-      </div>
-
-      <Switch>
-        {playground && (
-          <Route path={`${match.path}/playground`}>{playground}</Route>
-        )}
-        {guidelines && (
-          <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
-        )}
-        <Route path="">
-          <div className="guideSection__text">{intro}</div>
-          <>{children}</>
-        </Route>
-      </Switch>
-
-      {/* Give some space between the bottom of long content and the bottom of the screen */}
-      <EuiSpacer size="xl" />
-    </Fragment>
+      <EuiPageContent
+        role="main"
+        hasShadow={false}
+        paddingSize="none"
+        color="transparent"
+        hasBorder={false}
+        borderRadius="none">
+        <EuiPageContentBody restrictWidth>
+          <Switch>
+            {playground && (
+              <Route path={`${match.path}/playground`}>{playground}</Route>
+            )}
+            {guidelines && (
+              <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
+            )}
+            <Route path="">{children}</Route>
+          </Switch>
+        </EuiPageContentBody>
+      </EuiPageContent>
+    </>
   );
 };
 

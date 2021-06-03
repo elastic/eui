@@ -3,11 +3,15 @@
 exports[`renders EuiModal 1`] = `
 Array [
   <div
+    aria-hidden="true"
+    data-aria-hidden="true"
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"
   />,
   <div
+    aria-hidden="true"
+    data-aria-hidden="true"
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="1"
@@ -23,12 +27,13 @@ Array [
     >
       <button
         aria-label="Closes this modal window"
-        class="euiButtonIcon euiButtonIcon--text euiModal__closeIcon"
+        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiModal__closeIcon"
         type="button"
       >
         <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
+          color="inherit"
           data-euiicon-type="cross"
         />
       </button>
@@ -40,6 +45,8 @@ Array [
     </div>
   </div>,
   <div
+    aria-hidden="true"
+    data-aria-hidden="true"
     data-focus-guard="true"
     style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
     tabindex="0"

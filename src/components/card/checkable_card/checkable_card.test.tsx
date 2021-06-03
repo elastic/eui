@@ -38,6 +38,36 @@ describe('EuiCheckableCard', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('renders panel props', () => {
+    const component = render(
+      <EuiCheckableCard
+        hasBorder={false}
+        hasShadow={true}
+        {...checkablePanelRequiredProps}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('renders disabled', () => {
+    const component = render(
+      <EuiCheckableCard disabled={true} {...checkablePanelRequiredProps} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('renders children', () => {
+    const component = render(
+      <EuiCheckableCard {...checkablePanelRequiredProps}>
+        Child
+      </EuiCheckableCard>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('renders a checkbox when specified', () => {
     const component = render(
       <EuiCheckableCard
