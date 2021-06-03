@@ -485,33 +485,23 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       this.leftPosition = x;
       this.dragAcc = 0;
     }
+    const { min, max } = this.props;
+    const lowerValue = Number(this.lowerValue);
+    const upperValue = Number(this.upperValue);
     const delta = this.leftPosition - x;
     this.leftPosition = x;
     this.dragAcc = this.dragAcc + delta;
     const percentageOfArea = this.dragAcc / this.rangeSliderRef!.clientWidth;
-    const percentageOfRange =
-      percentageOfArea * (this.props.max - this.props.min);
-    const newLower = this.getNearestStep(
-      Number(this.lowerValue) - percentageOfRange
-    );
-    const newUpper = this.getNearestStep(
-      Number(this.upperValue) - percentageOfRange
-    );
-    if (
-      // Not enough movement
-      newLower === Number(this.lowerValue) ||
-      // Already at the min
-      (this.props.min === Number(this.lowerValue) &&
-        this.props.min === newLower) ||
-      // Already at the max
-      (this.props.max === Number(this.upperValue) &&
-        this.props.max === newUpper) ||
-      // Out of range
-      newLower < this.props.min ||
-      newUpper > this.props.max
-    ) {
-      return;
-    }
+    const percentageOfRange = percentageOfArea * (max - min);
+    const newLower = this.getNearestStep(lowerValue - percentageOfRange);
+    const newUpper = this.getNearestStep(upperValue - percentageOfRange);
+
+    const noMovement = newLower === lowerValue;
+    const isMin = min === lowerValue && min === newLower;
+    const isMax = max === upperValue && max === newUpper;
+    const isOutOfRange = newLower < min || newUpper > max;
+
+    if (noMovement || isMin || isMax || isOutOfRange) return;
     this._handleOnChange(newLower, newUpper);
     this.dragAcc = 0;
   };
