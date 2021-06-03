@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 
-import { EuiDualRange, EuiSpacer } from '../../../../src/components';
+import { EuiDualRange, EuiSpacer, EuiTitle } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
   const [value, setValue] = useState(['100', '150']);
   const [value2, setValue2] = useState(['40', '60']);
-  const [value3, setValue3] = useState(['.4', '.6']);
 
   return (
     <>
@@ -20,24 +19,15 @@ export default () => {
         onChange={setValue}
         showLabels
         aria-label="An example of EuiDualRange"
-        isDraggable
       />
 
-      <EuiSpacer />
+      <EuiSpacer size="xl" />
 
-      <EuiDualRange
-        id={htmlIdGenerator()()}
-        min={0}
-        max={1}
-        step={0.1}
-        value={value3}
-        onChange={setValue3}
-        showLabels
-        aria-label="An example of EuiDualRange"
-        isDraggable
-      />
+      <EuiTitle size="xxs">
+        <h3>Draggable highlight area</h3>
+      </EuiTitle>
 
-      <EuiSpacer />
+      <EuiSpacer size="l" />
 
       <EuiDualRange
         id={htmlIdGenerator()()}
@@ -47,7 +37,7 @@ export default () => {
         value={value2}
         onChange={setValue2}
         showLabels
-        aria-label="An example of EuiDualRange"
+        aria-label="An example of EuiDualRange with isDraggable='true'"
         isDraggable
       />
     </>
