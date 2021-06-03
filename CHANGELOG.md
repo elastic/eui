@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.2.0`.
+**Bug fixes**
+
+- Fixed mobile menus styles on `EuiDataGrid` ([#4844](https://github.com/elastic/eui/pull/4844))
 
 ## [`34.2.0`](https://github.com/elastic/eui/tree/v34.2.0)
 
