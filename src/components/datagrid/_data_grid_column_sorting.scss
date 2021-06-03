@@ -32,9 +32,15 @@
 }
 
 .euiDataGridColumnSorting__orderButtons {
+  @include euiBreakpoint('xs', 's') {
+    padding-left: $euiSizeXS;
+  }
   padding-left: $euiSizeL;
 
   .euiDataGridColumnSorting__order {
+    @include euiBreakpoint('xs', 's') {
+      min-width: unset;
+    }
     min-width: 200px;
     border: none;
 
