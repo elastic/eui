@@ -174,7 +174,7 @@ export class EuiDataGridCell extends Component<
   calculateHeight = () => {
     const rowHeight = this.cellContentsRef?.getBoundingClientRect().height;
 
-    if (rowHeight && this.props.setRowHeight) {
+    if (rowHeight && this.props.setRowHeight && this.props.column?.hasDynamicHeight) {
       this.props.setRowHeight(
         this.props.rowIndex,
         this.props.column?.id ?? '0',
