@@ -34,6 +34,10 @@
     margin-top: -1px;
   }
 
+  &.euiDataGridRowCell--noTruncated {
+    overflow-y: hidden;
+  }
+
   // Only add the transition effect on hover, so that it is instantaneous on focus
   // Long delays on hover to mitigate the accordion effect
   &:hover {

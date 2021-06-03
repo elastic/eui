@@ -55,6 +55,7 @@ import {
   EuiDataGridFocusedCell,
   EuiDataGridOnColumnResizeHandler,
   EuiDataGridStyleFooter,
+  EuiDataGridRowHeightOptions,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiButtonEmpty } from '../button';
@@ -164,7 +165,7 @@ type CommonGridProps = CommonProps &
      */
     width?: CSSProperties['width'];
 
-    rowHeightOptions?: Record<any, any>;
+    rowHeightOptions?: EuiDataGridRowHeightOptions;
   };
 
 // Force either aria-label or aria-labelledby to be defined

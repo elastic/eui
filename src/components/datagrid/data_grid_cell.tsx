@@ -356,7 +356,8 @@ export class EuiDataGridCell extends Component<
         [`euiDataGridRowCell--${columnType}`]: columnType,
         ['euiDataGridRowCell--open']: this.state.popoverIsOpen,
       },
-      className
+      className,
+      column?.isTruncated !== false ? '' : 'euiDataGridRowCell--noTruncated'
     );
 
     const cellProps = {
@@ -462,11 +463,20 @@ export class EuiDataGridCell extends Component<
         }}
         clickOutsideDisables={true}>
         <div className="euiDataGridRowCell__expandFlex">
-          <div className="euiDataGridRowCell__expandContent">
+          <div
+            className={
+              column?.isTruncated !== false
+                ? 'euiDataGridRowCell__expandContent'
+                : ''
+            }>
             {screenReaderPosition}
             <div
               ref={this.setCellContentsRef}
-              className="euiDataGridRowCell__truncate">
+              className={
+                column?.isTruncated !== false
+                  ? 'euiDataGridRowCell__truncate'
+                  : ''
+              }>
               <EuiDataGridCellContent {...cellContentProps} />
             </div>
           </div>
@@ -478,10 +488,19 @@ export class EuiDataGridCell extends Component<
       if (showCellButtons) {
         anchorContent = (
           <div className="euiDataGridRowCell__expandFlex">
-            <div className="euiDataGridRowCell__expandContent">
+            <div  
+              className={
+                column?.isTruncated !== false
+                  ? 'euiDataGridRowCell__expandContent'
+                  : ''
+              }>
               <div
                 ref={this.setCellContentsRef}
-                className="euiDataGridRowCell__truncate">
+                className={
+                  column?.isTruncated !== false
+                    ? 'euiDataGridRowCell__truncate'
+                    : ''
+                }>
                 <EuiDataGridCellContent {...cellContentProps} />
               </div>
               {screenReaderPosition}
@@ -505,7 +524,11 @@ export class EuiDataGridCell extends Component<
         anchorContent = (
           <div
             ref={this.setCellContentsRef}
-            className="euiDataGridRowCell__truncate">
+            className={
+              column?.isTruncated !== false
+                ? 'euiDataGridRowCell__truncate'
+                : ''
+            }>
             <EuiDataGridCellContent {...cellContentProps} />
             {screenReaderPosition}
           </div>

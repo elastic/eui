@@ -44,6 +44,7 @@ import {
   EuiDataGridInMemoryValues,
   EuiDataGridPaginationProps,
   EuiDataGridPopoverContent,
+  EuiDataGridRowHeightOptions,
 } from './data_grid_types';
 import { EuiDataGridCell, EuiDataGridCellProps } from './data_grid_cell';
 import {
@@ -89,7 +90,7 @@ export interface EuiDataGridBodyProps {
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
   toolbarHeight: number;
-  rowHeightOptions?: Record<any, any>;
+  rowHeightOptions?: EuiDataGridRowHeightOptions;
 }
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
