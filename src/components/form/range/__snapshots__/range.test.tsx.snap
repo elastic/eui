@@ -110,11 +110,11 @@ exports[`EuiRange props custom ticks should render 1`] = `
     class="euiRangeTrack euiRangeTrack--hasTicks"
   >
     <div
-      class="euiRangeTicks"
+      class="euiRangeTicks euiRangeTicks--isCustom"
     >
       <button
         class="euiRangeTick euiRangeTick--isCustom"
-        style="left:20%"
+        style="left:calc(-Infinity% + 8px)"
         tabindex="-1"
         title="20kb"
         type="button"
@@ -385,11 +385,10 @@ exports[`EuiRange props ticks should render 1`] = `
   >
     <div
       class="euiRangeTicks"
-      style="margin:0 -8.333333333333332%;left:0;right:0"
     >
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(NaN% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="0"
@@ -398,7 +397,7 @@ exports[`EuiRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="20"
@@ -407,7 +406,7 @@ exports[`EuiRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="40"
@@ -416,7 +415,7 @@ exports[`EuiRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="60"
@@ -425,7 +424,7 @@ exports[`EuiRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="80"
@@ -434,7 +433,7 @@ exports[`EuiRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="100"
