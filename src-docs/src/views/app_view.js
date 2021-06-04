@@ -13,7 +13,6 @@ import {
 
 import { keys } from '../../../src/services';
 import { GuidePageHeader } from '../components/guide_page/guide_page_header';
-import { ChromeContext } from './chrome_context';
 
 import favicon16Prod from '../images/favicon/prod/favicon-16x16.png';
 import favicon32Prod from '../images/favicon/prod/favicon-32x32.png';
@@ -23,12 +22,6 @@ import favicon32Dev from '../images/favicon/dev/favicon-32x32.png';
 import favicon96Dev from '../images/favicon/dev/favicon-96x96.png';
 
 export class AppView extends Component {
-  state = {
-    isChromeHidden: null,
-  };
-  setIsChromeHidden = (isChromeHidden) => this.setState({ isChromeHidden });
-  chromeContextValue = { setIsChromeHidden: this.setIsChromeHidden };
-
   componentDidUpdate(prevProps) {
     if (prevProps.currentRoute.path !== this.props.currentRoute.path) {
       window.scrollTo(0, 0);
@@ -60,7 +53,7 @@ export class AppView extends Component {
     const isLocalDev = window.location.host.includes('803');
 
     return (
-      <ChromeContext.Provider value={this.chromeContextValue}>
+      <>
         <Helmet>
           <title>{`${this.props.currentRoute.name} - Elastic UI Framework`}</title>
           <link
@@ -82,22 +75,18 @@ export class AppView extends Component {
             sizes="96x96"
           />
         </Helmet>
-        {!this.state.isChromeHidden && (
-          <GuidePageHeader
-            onToggleLocale={toggleLocale}
-            selectedLocale={locale}
-          />
-        )}
+        <GuidePageHeader
+          onToggleLocale={toggleLocale}
+          selectedLocale={locale}
+        />
         <EuiPage paddingSize="none">
           <EuiErrorBoundary>
-            {!this.state.isChromeHidden && (
-              <GuidePageChrome
-                currentRoute={currentRoute}
-                navigation={navigation}
-                onToggleLocale={toggleLocale}
-                selectedLocale={locale}
-              />
-            )}
+            <GuidePageChrome
+              currentRoute={currentRoute}
+              navigation={navigation}
+              onToggleLocale={toggleLocale}
+              selectedLocale={locale}
+            />
           </EuiErrorBoundary>
 
           <EuiPageBody panelled>
@@ -113,7 +102,7 @@ export class AppView extends Component {
             </EuiContext>
           </EuiPageBody>
         </EuiPage>
-      </ChromeContext.Provider>
+      </>
     );
   }
 
