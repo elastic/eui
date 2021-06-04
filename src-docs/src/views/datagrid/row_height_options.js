@@ -96,8 +96,8 @@ export default () => {
         defaultHeight: 60,
         initialHeights: {
           1: 100,
-          5: 80
-        }
+          5: 80,
+        },
       }}
       pagination={{
         ...pagination,

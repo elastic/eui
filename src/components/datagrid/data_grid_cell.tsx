@@ -488,7 +488,7 @@ export class EuiDataGridCell extends Component<
       if (showCellButtons) {
         anchorContent = (
           <div className="euiDataGridRowCell__expandFlex">
-            <div  
+            <div
               className={
                 column?.isTruncated !== false
                   ? 'euiDataGridRowCell__expandContent'

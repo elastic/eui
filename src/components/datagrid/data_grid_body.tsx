@@ -523,16 +523,22 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   );
 
   const [rowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
-  const getRowHeight = useCallback((rowIndex) => {
-    const offset = pagination
-      ? pagination.pageIndex * pagination.pageSize
-      : 0;
-    if (rowHeightOptions && Object.keys(rowHeightOptions).length !== 0) {
-      return rowHeightOptions.initialHeights[rowIndex + offset] ?? rowHeightOptions.defaultHeight;
-    }
+  const getRowHeight = useCallback(
+    (rowIndex) => {
+      const offset = pagination
+        ? pagination.pageIndex * pagination.pageSize
+        : 0;
+      if (rowHeightOptions && Object.keys(rowHeightOptions).length !== 0) {
+        return (
+          rowHeightOptions.initialHeights[rowIndex + offset] ??
+          rowHeightOptions.defaultHeight
+        );
+      }
 
-    return rowHeight;
-  }, [rowHeight, pagination]);
+      return rowHeight;
+    },
+    [rowHeight, pagination, rowHeightOptions]
+  );
   useEffect(() => {
     if (gridRef.current) gridRef.current.resetAfterRowIndex(0);
   }, [getRowHeight]);
