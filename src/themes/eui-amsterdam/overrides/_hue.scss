@@ -1,0 +1,7 @@
+.euiHue_range {
+  &:focus {
+    @include euiRangeThumbPerBrowser {
+      @include euiRangeThumbFocus;
+    }
+  }
+}

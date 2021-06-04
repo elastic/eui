@@ -19,13 +19,16 @@
 }
 
 @mixin euiRangeThumbStyle {
+  @include euiRangeThumbBoxShadow;
   cursor: pointer;
   background-color: $euiRangeThumbBackgroundColor;
-  border: 1px solid $euiRangeThumbBorderColor;
+  border: none;
   padding: 0;
   height: $euiRangeThumbHeight;
   width: $euiRangeThumbWidth;
   box-sizing: border-box;  // required for firefox or the border makes the width and height increase
+  // to animate border and box-shadow
+  transition: all $euiAnimSpeedFast ease-in;
 }
 
 @mixin euiRangeThumbPerBrowser {
@@ -34,7 +37,15 @@
   &::-ms-thumb { @content; }
 }
 
+@mixin euiRangeThumbBoxShadow($thumbBorderColor: $euiColorDarkShade) {
+  // sass-lint:disable-block no-color-literals, indentation
+  box-shadow: 0 0 0 1px $thumbBorderColor,
+  0 2px 2px -1px rgba($euiShadowColor, .2),
+  0 1px 5px -2px rgba($euiShadowColor, .2);
+}
+
+
 @mixin euiRangeThumbFocus {
-  border: 1px solid $euiRangeThumbBorderColor;
-  box-shadow: 0 0 0 $euiSizeXS $euiRangeThumbFocusShadowColor;
+  box-shadow: 0 0 0 $euiFocusRingSize $euiFocusRingColor;
+  border: 1px solid $euiFocusRingColor;
 }

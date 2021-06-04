@@ -3,8 +3,8 @@
   pointer-events: none;
 
   &__progress {
-    background-color: $euiColorPrimary;
-    border-color: $euiColorPrimary;
+    background-color: $euiRangeHighlightColor;
+    border-color: $euiRangeHighlightColor;
 
     &--hasFocus {
       background-color: $euiColorPrimary;

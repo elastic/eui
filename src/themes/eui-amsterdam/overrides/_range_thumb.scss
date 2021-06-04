@@ -1,6 +1,7 @@
 .euiRangeThumb {
-  background-color: $euiColorPrimary !important; // sass-lint:disable-line no-important
-  border: 1px solid $euiRangeThumbBorderColor;
+  @include euiRangeThumbBoxShadow;
+  background-color: $euiColorEmptyShade;
+  border: none;
   z-index: 2; // higher than .euiRangeSlider that is 2
   pointer-events: none;
 
