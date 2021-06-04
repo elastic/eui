@@ -22,20 +22,23 @@ export const EuiFlyout = ({
   as = 'div',
   children,
   closeButtonProps,
+  hideCloseButton,
   onClose,
   'data-test-subj': dataTestSubj,
 }: any) => {
   const Element = as;
   return (
     <Element data-eui="EuiFlyout" data-test-subj={dataTestSubj}>
-      <button
-        type="button"
-        data-test-subj="euiFlyoutCloseButton"
-        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-          onClose();
-          closeButtonProps?.onClick && closeButtonProps.onClick(e);
-        }}
-      />
+      {!hideCloseButton && (
+        <button
+          type="button"
+          data-test-subj="euiFlyoutCloseButton"
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+            onClose();
+            closeButtonProps?.onClick && closeButtonProps.onClick(e);
+          }}
+        />
+      )}
       {children}
     </Element>
   );
