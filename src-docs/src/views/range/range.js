@@ -32,7 +32,6 @@ export default () => {
         max={200}
         value={value}
         onChange={onChange}
-        compressed
         showLabels
         showValue
         aria-label="An example of EuiRange with showValue prop"

@@ -51,7 +51,6 @@ export default () => {
       </EuiFormHelpText>
 
       <EuiSpacer size="xl" />
-
       <EuiDualRange
         id={htmlIdGenerator()()}
         value={dualValue}
