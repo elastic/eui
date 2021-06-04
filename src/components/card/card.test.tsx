@@ -287,4 +287,19 @@ describe('EuiCard', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('betaBadgeProps renders href', () => {
+    const component = render(
+      <EuiCard
+        title="Card title"
+        description="Card description"
+        betaBadgeProps={{
+          href: 'http://www.elastic.co/',
+        }}
+        betaBadgeLabel="Link"
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });

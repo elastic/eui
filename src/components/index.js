@@ -206,6 +206,7 @@ export {
   EuiLoadingChart,
   EuiLoadingContent,
   EuiLoadingSpinner,
+  EuiLoadingLogo,
 } from './loading';
 
 export { EuiKeyPadMenu, EuiKeyPadMenuItem } from './key_pad_menu';

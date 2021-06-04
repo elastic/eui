@@ -29,6 +29,16 @@
       color: $euiColorDisabledText;
       cursor: inherit;
     }
+
+    .euiCard__betaBadge:not(.euiBetaBadge-isClickable):not(.euiBetaBadge--hollow) {
+      box-shadow: inset 0 0 0 1px $euiBorderColor;
+      background: transparent;
+      color: inherit;
+    }
+
+    .euiCard__betaBadge:not(.euiBetaBadge-isClickable).euiBetaBadge--hollow  {
+      background-color: $euiColorEmptyShade;
+    }
   }
 
   &.euiCard--isClickable {
@@ -91,9 +101,14 @@
 // This creates a bunch of sub selectors for the beta badge
 @include euiHasBetaBadge($selector: '.euiCard', $spacing: $euiCardSpacing);
 
+.euiCard__betaBadge.euiBetaBadge--hollow {
+  background-color: $euiColorEmptyShade;
+}
+
 .euiCard--isSelectable {
   position: relative;
 }
+
 
 @each $modifier, $paddingAmount in $euiPanelPaddingModifiers {
   .euiCard[class*='#{$modifier}'] {

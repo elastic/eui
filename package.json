@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "34.1.0",
+  "version": "34.2.0",
   "license": "Apache-2.0",
   "main": "lib",
   "module": "es",
@@ -62,6 +62,7 @@
     "chroma-js": "^2.1.0",
     "classnames": "^2.2.6",
     "lodash": "^4.17.21",
+    "mdast-util-to-hast": "^10.0.0",
     "numeral": "^2.0.6",
     "prop-types": "^15.6.0",
     "react-ace": "^7.0.5",
