@@ -1,13 +1,13 @@
 
 .euiRangeSlider {
-  // all the tracks should be transparent
-  // because in firefox just setting the z-index to the thumb doesn't work
-  // so need to set the z-index to all the range slider and make the track transparent
+  // in firefox just setting the z-index to the thumb doesn't work
+  // so we need to set the z-index to all the range slider and make the track transparent
   @include euiRangeTrackPerBrowser {
     background-color: transparent;
   }
 
   // z-index higher than .euiRangeHighlight that is 1
+  // the track is transparent we just want the thumb to be on top of the .euiRangeHighlight
   z-index: 2;
 
   &--hasTicks {

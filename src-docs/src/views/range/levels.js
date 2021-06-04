@@ -52,20 +52,6 @@ export default () => {
 
       <EuiSpacer size="xl" />
 
-      <EuiRange
-        id={htmlIdGenerator()()}
-        value={value}
-        onChange={(e) => onChange(e)}
-        levels={levels}
-        aria-label="An example of EuiRange with levels prop"
-        aria-describedby="levelsHelp2"
-      />
-      <EuiFormHelpText id="levelsHelp2">
-        Recommended levels are {levels[1].min} and above.
-      </EuiFormHelpText>
-
-      <EuiSpacer size="xl" />
-
       <EuiDualRange
         id={htmlIdGenerator()()}
         value={dualValue}
@@ -84,20 +70,6 @@ export default () => {
       <EuiFormHelpText id="levelsHelp3">
         Recommended size is {levels[1].min}kb and above.
       </EuiFormHelpText>
-
-      <EuiSpacer size="xl" />
-
-      <EuiRange
-        id={htmlIdGenerator()()}
-        value={value}
-        compressed
-        onChange={(e) => onChange(e)}
-        levels={levels}
-        aria-label="An example of EuiRange with levels prop"
-        aria-describedby="levelsHelp2"
-      />
-
-      <EuiSpacer size="xl" />
     </Fragment>
   );
 };

@@ -52,22 +52,6 @@ export default () => {
         valuePrepend="100 - "
         aria-label="An example of EuiRange with valuePrepend prop"
       />
-
-      <EuiSpacer size="xl" />
-
-      <EuiRange
-        id={htmlIdGenerator()()}
-        min={100}
-        max={200}
-        value={value}
-        onChange={onChange}
-        compressed
-        showLabels
-        showRange
-        showValue
-        valuePrepend="100 - "
-        aria-label="An example of EuiRange with valuePrepend prop"
-      />
     </Fragment>
   );
 };

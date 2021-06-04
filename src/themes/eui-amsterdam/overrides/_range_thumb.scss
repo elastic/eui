@@ -2,7 +2,7 @@
   @include euiRangeThumbBoxShadow;
   background-color: $euiColorEmptyShade;
   border: none;
-  z-index: 2; // higher than .euiRangeSlider that is 2
+  z-index: 2; // higher than .euiRangeHighlight that is 1
   pointer-events: none;
 
   &--hasTicks {
