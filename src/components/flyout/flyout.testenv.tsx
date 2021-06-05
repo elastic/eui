@@ -20,6 +20,7 @@
 import React from 'react';
 export const EuiFlyout = ({
   as = 'div',
+  role = 'dialog',
   children,
   closeButtonProps,
   hideCloseButton,
@@ -28,7 +29,7 @@ export const EuiFlyout = ({
 }: any) => {
   const Element = as;
   return (
-    <Element data-eui="EuiFlyout" data-test-subj={dataTestSubj}>
+    <Element data-eui="EuiFlyout" data-test-subj={dataTestSubj} role={role}>
       {!hideCloseButton && (
         <button
           type="button"
