@@ -30,19 +30,17 @@
       opacity: 0;
       max-height: 0;
       padding: 0 $euiSizeL;
-    }
-  }
-}
 
-.euiSideNav-isOpenMobile {
-  .euiSideNav__content[class*='euiSideNav__contentMobile'] {
-    visibility: visible;
-    opacity: 1;
-    padding: $euiSizeL;
-    max-height: 5000px; /* 1 */
+      .euiSideNav-isOpenMobile & {
+        visibility: visible;
+        opacity: 1;
+        padding: $euiSizeL;
+        max-height: 5000px; /* 1 */
 
-    @include euiCanAnimate {
-      transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
+        @include euiCanAnimate {
+          transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
+        }
+      }
     }
   }
 }
