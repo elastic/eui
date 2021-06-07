@@ -168,6 +168,47 @@ propsToUse.valueAppend = {
 
 Not all props lend themselves to becoming helpful playground toggles. For instance, optional "action" props that require the consumer to provide a fully configured button or link element. In cases such as this, it is acceptable to omit the toggle and rely on prop table documentation to convey how the prop is best used.
 
+## Full screen demos
+
+EUI's documentation sections provide an easy way to create full screen demos that are simply blank pages (no headers or other chrome). To create a basic full screen demo with a built-in button add the following as your section.
+
+```tsx
+{
+  title: '',
+  fullScreen: {
+    slug: 'url-you-want',
+    demo: <FullScreenDemo />,
+  }
+}
+```
+
+If you want something other than a button to display in the default demo render, you can still provide a `demo` key.
+
+```tsx
+{
+  title: '',
+  demo: <Demo />,
+  fullScreen: {
+    slug: 'url-you-want',
+    demo: <FullScreenDemo />,
+  }
+}
+```
+
+In your full screen demo component, you'll want to provide an easy exit back to the original page. You can do this by adding a button wrapped with `ExampleContext.consumer` which passes the `parentPath` through.
+
+```tsx
+import { ExampleContext } from '../../services';
+
+<ExampleContext.Consumer>
+  {({ parentPath }) => (
+    <EuiButton fill href={`#${parentPath}`} iconType="exit">
+      Exit full screen
+    </EuiButton>
+  )}
+</ExampleContext.Consumer>
+```
+
 ## Changelog
 
 Any updates to the `src/` folder require an entry in the [CHANGELOG.md](../CHANGELOG.md) file. Documentation-only changes do not. Here are our guidelines for updating the file:

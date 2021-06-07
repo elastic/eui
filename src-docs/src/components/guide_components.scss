@@ -8,13 +8,21 @@ $elasticLogoTextDark: #1C1E23;
 #guide { // sass-lint:disable-line no-ids
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - #{$euiHeaderHeightCompensation});
+  min-height: 100vh;
+
+  .euiBody--headerIsFixed & {
+    min-height: calc(100vh - #{$euiHeaderHeightCompensation});
+  }
 }
 
 @include euiHeaderAffordForFixed;
 
 .euiBody--headerIsFixed--double {
   @include euiHeaderAffordForFixed($euiHeaderHeightCompensation * 2);
+
+  #guide { // sass-lint:disable-line no-ids
+    min-height: calc(100vh - #{$euiHeaderHeightCompensation * 2});
+  }
 
   .euiHeader:not(.euiHeader--fixed) {
     // Force headers below the full screen.
@@ -203,33 +211,6 @@ $elasticLogoTextDark: #1C1E23;
 
 .guideCharts__customLegendLine--thin {
   height: 1px;
-}
-
-.guideFullScreenOverlay {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  z-index: $euiZHeader;
-  overflow: auto;
-
-  &--withHeader {
-    top: $euiHeaderHeightCompensation;
-    bottom: 0;
-    height: auto;
-    z-index: $euiZHeader - 1;
-    display: flex;
-    flex-direction: column;
-
-    .euiPageSideBar--sticky {
-      top: 0;
-    }
-  }
-}
-
-.guideBody--overflowHidden {
-  overflow: hidden;
 }
 
 .guideDemo__notificationEventCircleIndicator {
