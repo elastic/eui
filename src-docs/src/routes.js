@@ -519,12 +519,6 @@ export default {
   history: createHashHistory(),
   navigation,
 
-  getRouteForPath: (path) => {
-    // React-router kinda sucks. Sometimes the path contains a leading slash, sometimes it doesn't.
-    const normalizedPath = path[0] === '/' ? path.slice(1, path.length) : path;
-    return allRoutes.find((route) => normalizedPath === route.path);
-  },
-
   getAppRoutes: function getAppRoutes() {
     return allRoutes;
   },
