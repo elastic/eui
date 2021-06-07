@@ -26,11 +26,9 @@
 - Deprecated `EuiLoadingKibana` ([#4835](https://github.com/elastic/eui/pull/4135))
 - Paused animations when `prefers-reduced-motion` is on for loader components ([#4835](https://github.com/elastic/eui/pull/4135))
 
-
 **Bug fixes**
 
 - Fixed `onBlur` and `data-test-subj` prop propagation in `EuiColorPicker` ([#4822](https://github.com/elastic/eui/pull/4822))
-- Fixed `EuiText` color of `EuiCallout` to `default` ([#4816](https://github.com/elastic/eui/pull/4816))
 
 ## [`34.1.0`](https://github.com/elastic/eui/tree/v34.1.0)
 
