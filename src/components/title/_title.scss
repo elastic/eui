@@ -1,7 +1,7 @@
-.euiTitle {
+.euiTitle { 
   + .euiTitle {
     margin-top: $euiSizeL;
-  }
+   }
 }
 
 .euiTitle--uppercase {
@@ -29,5 +29,9 @@
 }
 
 .euiTitle--large {
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @include euiTitle('l');
 }

@@ -8,6 +8,7 @@
 
 ## [`34.2.0`](https://github.com/elastic/eui/tree/v34.2.0)
 
+- Added truncation in `EuiPageTitle` ([#4854](https://github.com/elastic/eui/pull/4854))
 - Removed `text-transform: capitalize` from the `EuiTourSteps` title to better fit with Elastic title guidelines ([#4839](https://github.com/elastic/eui/pull/4839))
 - Added `color` and `size` props and added support for click event to `EuiBetaBadge` ([#4798](https://github.com/elastic/eui/pull/4798))
 - Added `documentation` and `layers` glyphs to `EuiIcon` ([#4833](https://github.com/elastic/eui/pull/4833))
