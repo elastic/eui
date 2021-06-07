@@ -30,6 +30,18 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiBreakpointSize, htmlIdGenerator } from '../../services';
 import { EuiHideFor, EuiShowFor } from '../responsive';
 
+export type EuiSideNavHeadingProps = Partial<EuiTitleProps> & {
+  /**
+   * The actual HTML heading element to wrap the `heading`.
+   * Default is `h2`
+   */
+  element?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
+  /**
+   * For best accessibility, `<nav>` elements should have a nested heading. But you can hide this element if it's redundent from something else (except on mobile).
+   */
+  screenReaderOnly?: boolean;
+};
+
 export type EuiSideNavProps<T = {}> = T &
   CommonProps & {
     /**
@@ -45,17 +57,9 @@ export type EuiSideNavProps<T = {}> = T &
      */
     heading?: ReactNode;
     /**
-     * The actual HTML heading element to wrap the `heading`
+     * Adds a couple extra #EuiSideNavHeading props and extends the props of EuiTitle that wraps the `heading`
      */
-    headingElement?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
-    /**
-     * For best accessibility, `<nav>` elements should have a nested heading. But you can hide this element if it's redundent from something else (except on mobile).
-     */
-    hideHeading?: boolean;
-    /**
-     * Extends the props of EuiTitle that wraps the `heading`
-     */
-    headingProps?: Partial<EuiTitleProps>;
+    headingProps?: EuiSideNavHeadingProps;
     /**
      * When called, toggles visibility of the navigation menu at mobile responsive widths. The callback should set the `isOpenOnMobile` prop to actually toggle navigation visibility.
      */
@@ -89,8 +93,6 @@ export type EuiSideNavProps<T = {}> = T &
 export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
   static defaultProps = {
     items: [],
-    hideHeading: false,
-    headingElement: 'h2',
     mobileBreakpoints: ['xs', 's'],
   };
 
@@ -174,9 +176,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
       renderItem,
       truncate,
       heading,
-      hideHeading,
-      headingProps,
-      headingElement,
+      headingProps = {},
       ...rest
     } = this.props;
 
@@ -199,7 +199,12 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
       </div>
     );
 
-    const HeadingElement: keyof React.ReactHTML = headingElement!;
+    const {
+      screenReaderOnly: headingScreenReaderOnly = false,
+      element: HeadingElement = 'h2',
+      ...titleProps
+    } = headingProps!;
+
     const hasMobileVersion = mobileBreakpoints.length > 0;
     const hasHeader = !!heading;
     let headingNode;
@@ -216,13 +221,13 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
         <HeadingElement {...sharedHeadingProps}>{heading}</HeadingElement>
       );
 
-      if (hideHeading) {
+      if (headingScreenReaderOnly) {
         headingNode = <EuiScreenReaderOnly>{headingNode}</EuiScreenReaderOnly>;
       } else {
         headingNode = (
           <EuiTitle
             size="xs"
-            {...headingProps}
+            {...titleProps}
             className={classNames(
               'euiSideNav__heading',
               headingProps?.className

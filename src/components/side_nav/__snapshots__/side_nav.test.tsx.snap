@@ -18,14 +18,14 @@ exports[`EuiSideNav props heading accepts more headingProps 1`] = `
   aria-labelledby="testID"
   class="euiSideNav"
 >
-  <h2
+  <h3
     aria-label="aria-label"
     class="euiTitle euiTitle--xsmall euiSideNav__heading testClass1 testClass2 testClass1 testClass2"
     data-test-subj="test subject string"
     id="testID"
   >
     Side Nav Heading
-  </h2>
+  </h3>
   <div
     class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
     id="euiSideNavContent_generated-id"
@@ -33,17 +33,17 @@ exports[`EuiSideNav props heading accepts more headingProps 1`] = `
 </nav>
 `;
 
-exports[`EuiSideNav props heading can change headingElement 1`] = `
+exports[`EuiSideNav props heading is hidden with screenReaderOnly 1`] = `
 <nav
   aria-labelledby="euiSideNavHeading_generated-id"
   class="euiSideNav"
 >
-  <h3
-    class="euiTitle euiTitle--xsmall euiSideNav__heading"
+  <h2
+    class="euiScreenReaderOnly"
     id="euiSideNavHeading_generated-id"
   >
     Side Nav Heading
-  </h3>
+  </h2>
   <div
     class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
     id="euiSideNavContent_generated-id"
@@ -58,24 +58,6 @@ exports[`EuiSideNav props heading is rendered 1`] = `
 >
   <h2
     class="euiTitle euiTitle--xsmall euiSideNav__heading"
-    id="euiSideNavHeading_generated-id"
-  >
-    Side Nav Heading
-  </h2>
-  <div
-    class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
-    id="euiSideNavContent_generated-id"
-  />
-</nav>
-`;
-
-exports[`EuiSideNav props heading is screen reader hidden with hideHeading 1`] = `
-<nav
-  aria-labelledby="euiSideNavHeading_generated-id"
-  class="euiSideNav"
->
-  <h2
-    class="euiScreenReaderOnly"
     id="euiSideNavHeading_generated-id"
   >
     Side Nav Heading

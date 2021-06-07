@@ -63,9 +63,12 @@ describe('EuiSideNav', () => {
         expect(component).toMatchSnapshot();
       });
 
-      test('is screen reader hidden with hideHeading', () => {
+      test('is hidden with screenReaderOnly', () => {
         const component = render(
-          <EuiSideNav heading="Side Nav Heading" hideHeading />
+          <EuiSideNav
+            heading="Side Nav Heading"
+            headingProps={{ screenReaderOnly: true }}
+          />
         );
 
         expect(component).toMatchSnapshot();
@@ -75,16 +78,8 @@ describe('EuiSideNav', () => {
         const component = render(
           <EuiSideNav
             heading="Side Nav Heading"
-            headingProps={{ ...requiredProps, id: 'testID' }}
+            headingProps={{ ...requiredProps, id: 'testID', element: 'h3' }}
           />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-
-      test('can change headingElement', () => {
-        const component = render(
-          <EuiSideNav heading="Side Nav Heading" headingElement="h3" />
         );
 
         expect(component).toMatchSnapshot();

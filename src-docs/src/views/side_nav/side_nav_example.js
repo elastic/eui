@@ -3,7 +3,7 @@ import React from 'react';
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiSideNav, EuiCallOut } from '../../../../src/components';
-import { SideNavItem } from './props';
+import { EuiSideNavItem, EuiSideNavHeading } from './props';
 
 import SideNav from './side_nav';
 const sideNavSource = require('!!raw-loader!./side_nav');
@@ -248,7 +248,6 @@ export const SideNavExample = {
 
           <EuiCallOut
             iconType="mobile"
-            size="s"
             title="The responsive behavior converts the list into an accordion style component with a mobile only button.">
             <p>
               You will need to pass a string to the prop{' '}
@@ -257,7 +256,11 @@ export const SideNavExample = {
           </EuiCallOut>
         </>
       ),
-      props: { EuiSideNav, EuiSideNavItem: SideNavItem },
+      props: {
+        EuiSideNav,
+        EuiSideNavHeading,
+        EuiSideNavItem,
+      },
       snippet: sideNavSnippet,
       demo: <SideNav />,
     },
@@ -276,22 +279,26 @@ export const SideNavExample = {
             <EuiCode>{'<nav>'}</EuiCode> section element, it is recommended that
             the element contain a heading. Pass a string or node to the{' '}
             <EuiCode>heading</EuiCode> prop to display within an{' '}
-            <EuiCode>{'<h2>'}</EuiCode>.
+            <EuiCode>{'<h2>'}</EuiCode>. Though you can also adjust this heading
+            element with <EuiCode>headingProps.element</EuiCode>.
           </p>
 
           <p>
             If the heading is visually unnecessary for your application, pass{' '}
-            <EuiCode>hideHeading</EuiCode> to make it screen reader only.
+            <EuiCode>headingProps.screenReaderOnly</EuiCode> to ensure proper
+            accessibility for those using assitive technology.
           </p>
 
           <EuiCallOut
             iconType="mobile"
-            size="s"
             title="When providing a heading, this will then be the default display for the mobile button title."
           />
         </>
       ),
-      props: { EuiSideNav },
+      props: {
+        EuiSideNav,
+        EuiSideNavHeading,
+      },
       snippet: sideNavHeadingSnippet,
       demo: <SideNavHeading />,
     },
@@ -319,6 +326,10 @@ export const SideNavExample = {
       ),
       snippet: sideNavComplexSnippet,
       demo: <SideNavComplex />,
+      props: {
+        EuiSideNav,
+        EuiSideNavItem,
+      },
     },
     {
       title: 'Nested item options',
@@ -344,6 +355,10 @@ export const SideNavExample = {
         </>
       ),
       snippet: sideNavForceSnippet,
+      props: {
+        EuiSideNav,
+        EuiSideNavItem,
+      },
       demo: <SideNavForceOpen />,
     },
     {
@@ -376,6 +391,10 @@ export const SideNavExample = {
       ),
       snippet: sideNavEmphasisSnippet,
       demo: <SideNavEmphasis />,
+      props: {
+        EuiSideNav,
+        EuiSideNavItem,
+      },
     },
   ],
 };
