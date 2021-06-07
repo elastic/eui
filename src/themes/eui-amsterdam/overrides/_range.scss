@@ -2,7 +2,7 @@
   border-radius: $euiBorderRadiusSmall;
 }
 
-.euiRange:focus-within {
+.euiRange:not(.euiRange--hasInput):focus-within {
   .euiRangeHighlight .euiRangeHighlight__progress {
     background-color: $euiColorPrimary;
   }

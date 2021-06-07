@@ -199,7 +199,7 @@ exports[`EuiRange props fullWidth should render 1`] = `
 
 exports[`EuiRange props input should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange testClass1 testClass2"
+  class="euiRangeWrapper euiRange euiRange--hasInput testClass1 testClass2"
 >
   <div
     aria-hidden="true"

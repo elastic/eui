@@ -231,7 +231,13 @@ export class EuiRange extends Component<EuiRangeProps> {
       />
     ) : null;
 
-    const classes = classNames('euiRange', className);
+    const classes = classNames(
+      'euiRange',
+      {
+        'euiRange--hasInput': showInput,
+      },
+      className
+    );
 
     const theRange = (
       <EuiRangeWrapper
