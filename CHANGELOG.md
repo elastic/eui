@@ -5,6 +5,12 @@
 **Bug fixes**
 
 - Fixed mobile menus styles on `EuiDataGrid` ([#4844](https://github.com/elastic/eui/pull/4844))
+- Fixed `EuiRange` container expansion due to negative margin value ([#4815](https://github.com/elastic/eui/pull/4815))
+- Fixed `EuiRange` ticks position to better align with thumbs ([#4815](https://github.com/elastic/eui/pull/4815))
+
+**Theme: Amsterdam**
+
+- Fixed styles for `EuiRange` ([#4815](https://github.com/elastic/eui/pull/4815))
 
 ## [`34.2.0`](https://github.com/elastic/eui/tree/v34.2.0)
 
