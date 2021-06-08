@@ -308,6 +308,8 @@ export const BadgeExample = {
             If you pass in an <EuiCode>iconType</EuiCode>, only the icon will be
             used in the badge itself and the label will be applied as the title.
             Only use an icon when attaching the beta badge to small components.
+            Beta badges can also be made clickable by passing{' '}
+            <EuiCode>href</EuiCode> or <EuiCode>onClick</EuiCode> as needed.
           </p>
           <p>
             They can also be used in conjunction with{' '}

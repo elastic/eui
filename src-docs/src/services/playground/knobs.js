@@ -27,7 +27,7 @@ import {
 } from '../../../../src/components/';
 
 export const markup = (text) => {
-  const regex = /(#[a-zA-Z]+)|(`[^`]+`)/g;
+  const regex = /(\B#[a-zA-Z]+)|(`[^`]+`)/g;
   return text.split('\n').map((token) => {
     const values = token.split(regex).map((token, index) => {
       if (!token) {
@@ -324,7 +324,7 @@ const Knob = ({
             }}
           />
         );
-      } else return null;
+      } else return helpText || null;
 
     case PropTypes.Custom:
       if (custom && custom.use) {
@@ -352,9 +352,9 @@ const Knob = ({
     case PropTypes.Function:
     case PropTypes.Array:
     case PropTypes.Object:
-      return null;
+      return helpText || null;
     default:
-      return assertUnreachable();
+      return helpText || assertUnreachable();
   }
 };
 
@@ -382,7 +382,7 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
 
     if (humanizedType) {
       typeMarkup = humanizedType && (
-        <EuiCodeBlock {...codeBlockProps}>{markup(humanizedType)}</EuiCodeBlock>
+        <EuiCodeBlock {...codeBlockProps}>{humanizedType}</EuiCodeBlock>
       );
 
       const functionMatches = [
@@ -392,17 +392,19 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
       const types = humanizedType.split(/\([^=]*\) =>\s\w*\)*/);
 
       if (functionMatches.length > 0) {
-        const elements = [];
+        let elements = '';
         let j = 0;
         for (let i = 0; i < types.length; i++) {
           if (functionMatches[j]) {
-            elements.push(<div key={`type-${i}`}>{types[i]}</div>);
-            elements.push(
-              <div key={`function-${i}`}>{functionMatches[j][0]}</div>
-            );
+            elements =
+              `${elements}` +
+              `${types[i]}` +
+              '\n' +
+              `${functionMatches[j][0]}` +
+              '\n';
             j++;
           } else {
-            elements.push(<div key={`type-${i}`}>{types[i]}</div>);
+            elements = `${elements}` + `${types[i]}` + '\n';
           }
         }
         typeMarkup = (

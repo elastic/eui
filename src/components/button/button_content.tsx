@@ -58,6 +58,7 @@ export interface EuiButtonContentProps extends CommonProps {
       ref?: Ref<HTMLSpanElement>;
       'data-text'?: string;
     };
+  iconSize?: 's' | 'm';
 }
 
 export const EuiButtonContent: FunctionComponent<
@@ -67,6 +68,7 @@ export const EuiButtonContent: FunctionComponent<
   textProps,
   isLoading = false,
   iconType,
+  iconSize = 'm',
   iconSide = 'left',
   ...contentProps
 }) => {
@@ -79,7 +81,12 @@ export const EuiButtonContent: FunctionComponent<
     );
   } else if (iconType) {
     buttonIcon = (
-      <EuiIcon className="euiButtonContent__icon" type={iconType} size="m" />
+      <EuiIcon
+        className="euiButtonContent__icon"
+        type={iconType}
+        size={iconSize}
+        color="inherit" // forces the icon to inherit its parent color
+      />
     );
   }
 

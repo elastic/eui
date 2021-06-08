@@ -185,6 +185,7 @@ exports[`EuiButton props iconSide left is rendered 1`] = `
   >
     <span
       class="euiButtonContent__icon"
+      color="inherit"
       data-euiicon-type="user"
     />
     <span
@@ -206,6 +207,7 @@ exports[`EuiButton props iconSide right is rendered 1`] = `
   >
     <span
       class="euiButtonContent__icon"
+      color="inherit"
       data-euiicon-type="user"
     />
     <span
@@ -227,6 +229,7 @@ exports[`EuiButton props iconType is rendered 1`] = `
   >
     <span
       class="euiButtonContent__icon"
+      color="inherit"
       data-euiicon-type="user"
     />
     <span

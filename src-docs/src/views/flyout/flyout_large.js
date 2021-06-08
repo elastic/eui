@@ -28,6 +28,10 @@ export default () => {
       id: 'l',
       label: 'Large',
     },
+    {
+      id: '400px',
+      label: 'Fixed (400)',
+    },
   ];
 
   const closeFlyout = () => setIsFlyoutVisible(false);

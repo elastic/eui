@@ -13,7 +13,7 @@ export default () => {
 
   propsToUse.title = {
     ...propsToUse.title,
-    value: '<>You have no spice</>',
+    value: '<h2>You have no spice</h2>',
     type: PropTypes.ReactNode,
   };
 
@@ -36,10 +36,9 @@ export default () => {
   propsToUse.body.type = PropTypes.String;
   propsToUse.body.value = `Navigators use massive amounts of spice to gain a limited form of
     prescience. This allows them to safely navigate interstellar space,
-    enabling trade and travel throughout the galaxy.
-  `;
+    enabling trade and travel throughout the galaxy.`;
 
-  propsToUse.iconType = iconValidator(propsToUse.iconType);
+  propsToUse.iconType = iconValidator(propsToUse.iconType, 'editorStrike');
 
   return {
     config: {

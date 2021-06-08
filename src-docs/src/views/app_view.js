@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import { GuidePageChrome, ThemeContext } from '../components';
-import { registerRouter, translateUsingPseudoLocale } from '../services';
+import { translateUsingPseudoLocale } from '../services';
 
 import {
   EuiErrorBoundary,
@@ -22,14 +22,6 @@ import favicon32Dev from '../images/favicon/dev/favicon-32x32.png';
 import favicon96Dev from '../images/favicon/dev/favicon-96x96.png';
 
 export class AppView extends Component {
-  constructor(...args) {
-    super(...args);
-
-    // Share the router with the app without requiring React or context.
-    // See `/wiki/react-router.md`
-    const { history, location, match } = this.props;
-    registerRouter({ history, location, match });
-  }
   componentDidUpdate(prevProps) {
     if (prevProps.currentRoute.path !== this.props.currentRoute.path) {
       window.scrollTo(0, 0);

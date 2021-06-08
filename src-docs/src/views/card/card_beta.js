@@ -7,8 +7,8 @@ import {
   EuiFlexItem,
 } from '../../../../src/components';
 
-const icons = ['dashboard', 'monitoring', 'watches'];
-const badges = [null, 'Beta', 'Lab'];
+const icons = ['dashboard', 'monitoring'];
+const badges = [null, 'Beta'];
 
 const cardNodes = icons.map(function (item, index) {
   return (
@@ -29,4 +29,23 @@ const cardNodes = icons.map(function (item, index) {
   );
 });
 
-export default () => <EuiFlexGroup gutterSize="l">{cardNodes} </EuiFlexGroup>;
+export default () => (
+  <EuiFlexGroup gutterSize="l">
+    {cardNodes}
+    <EuiFlexItem>
+      <EuiCard
+        icon={<EuiIcon size="xxl" type="lensApp" />}
+        title="Lens"
+        isDisabled
+        description="Disabled cards can have active links using EuiBetaBadge."
+        betaBadgeProps={{
+          href: 'http://www.elastic.co/subscriptions',
+          target: '_blank',
+        }}
+        betaBadgeLabel="Basic"
+        betaBadgeTooltipContent="This feature requires a Basic License"
+        onClick={() => {}}
+      />
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);

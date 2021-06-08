@@ -46,6 +46,46 @@ describe('EuiSideNav', () => {
       });
     });
 
+    describe('mobileBreakpoints can be adjusted', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiSideNav mobileBreakpoints={['xs', 's', 'm', 'l', 'xl']} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('heading', () => {
+      test('is rendered', () => {
+        const component = render(<EuiSideNav heading="Side Nav Heading" />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('is hidden with screenReaderOnly', () => {
+        const component = render(
+          <EuiSideNav
+            heading="Side Nav Heading"
+            headingProps={{ screenReaderOnly: true }}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('accepts more headingProps', () => {
+        const component = render(
+          <EuiSideNav
+            heading="Side Nav Heading"
+            headingProps={{ ...requiredProps, id: 'testID', element: 'h3' }}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('items', () => {
       test('is rendered', () => {
         const sideNav = [

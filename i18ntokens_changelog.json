@@ -1,5 +1,60 @@
 [
   {
+    "version": "34.0.0",
+    "changes": [
+      {
+        "token": "euiCollapsibleNav.closeButtonLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTourStepIndicator.ariaLabel",
+        "changeType": "modified",
+        "value": "Step {number} {status}"
+      },
+      {
+        "token": "euiTourStep.closeTour",
+        "changeType": "modified",
+        "value": "Close tour"
+      }
+    ]
+  },
+  {
+    "version": "33.0.0",
+    "changes": [
+      {
+        "token": "euiTableHeaderCell.clickForDescending",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTableHeaderCell.clickForUnsort",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTableHeaderCell.clickForAscending",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTableHeaderCell.titleTextWithSort",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTableHeaderCell.titleTextWithDesc",
+        "changeType": "added",
+        "value": "{innerText}; {description}"
+      }
+    ]
+  },
+  {
+    "version": "32.3.0",
+    "changes": [
+      {
+        "token": "euiFilePicker.removeSelected",
+        "changeType": "added",
+        "value": "Remove"
+      }
+    ]
+  },
+  {
     "version": "32.2.0",
     "changes": [
       {

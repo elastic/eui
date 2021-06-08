@@ -5,26 +5,46 @@
   display: inline-block;
 }
 
+/**
+ * 1. Without the animation, the bars are all the same height,
+ *    so we apply transforms only if they can't animate
+ */
 .euiLoadingChart__bar {
   height: 100%;
   width: $euiSizeS;
   display: inline-block;
   margin-bottom: -$euiSize;
   margin-left: $euiSizeXS / 2;
-  animation: euiLoadingChart 1s infinite;
+
+  // sass-lint:disable-block mixins-before-declarations
+  @include euiCanAnimate {
+    animation: euiLoadingChart 1s infinite;
+  }
 
   &:nth-child(1) {
     background-color: $euiColorVis0;
+
+    @include euiCantAnimate {
+      transform: translateY(66%); /* 1 */
+    }
   }
 
   &:nth-child(2) {
     background-color: $euiColorVis1;
     animation-delay: .1s;
+
+    @include euiCantAnimate {
+      transform: translateY(44%); /* 1 */
+    }
   }
 
   &:nth-child(3) {
     background-color: $euiColorVis2;
     animation-delay: .2s;
+
+    @include euiCantAnimate {
+      transform: translateY(22%); /* 1 */
+    }
   }
 
   &:nth-child(4) {

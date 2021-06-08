@@ -107,8 +107,7 @@ exports[`EuiRange props custom ticks should render 1`] = `
 >
   <div
     aria-hidden="false"
-    class="euiRangeTrack"
-    style="margin-right:0.6em"
+    class="euiRangeTrack euiRangeTrack--hasTicks"
   >
     <div
       class="euiRangeTicks"
@@ -124,13 +123,18 @@ exports[`EuiRange props custom ticks should render 1`] = `
         20kb
       </button>
       <button
-        class="euiRangeTick euiRangeTick--isCustom"
-        style="left:100%"
+        class="euiRangeTick euiRangeTick--isCustom euiRangeTick--isMax euiRangeTick--hasTickMark"
+        style="right:0%;margin-right:-1.25em"
         tabindex="-1"
         title="100kb"
         type="button"
         value="100"
       >
+        <span
+          aria-hidden="true"
+          class="euiRangeTick__pseudo"
+          style="margin-right:calc(1.25em - 2px)"
+        />
         100kb
       </button>
     </div>
@@ -377,8 +381,7 @@ exports[`EuiRange props ticks should render 1`] = `
 >
   <div
     aria-hidden="false"
-    class="euiRangeTrack"
-    style="margin-right:0.6em"
+    class="euiRangeTrack euiRangeTrack--hasTicks"
   >
     <div
       class="euiRangeTicks"
