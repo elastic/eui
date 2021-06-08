@@ -1,22 +1,15 @@
 import React, { useState } from 'react';
-
 import {
   EuiButton,
-  EuiSelectable,
-  EuiFieldText,
-  EuiForm,
-  EuiFormRow,
-  EuiFilePicker,
-  EuiSwitch,
   EuiCode,
   EuiDescribedFormGroup,
+  EuiForm,
+  EuiFormRow,
+  EuiSwitch,
 } from '../../../../src/components';
-
-import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
   const [checkedState, setCheckedState] = useState(true);
-  const randomId = htmlIdGenerator()();
 
   return (
     <EuiForm component="form">
@@ -32,12 +25,18 @@ export default () => {
           </>
         }>
         <EuiFormRow
-          label="A switch"
-          helpText="The name of this switch is &rdquo;Do you love EUI?&ldquo; instead of &rdquo;A switch&ldquo;."
+          label="Settings"
+          helpText={
+            <>
+              Navigate to this Switch with a screen reader - with{' '}
+              <EuiCode>hasChildLabel:false</EuiCode> the name of this is
+              &rdquo;Dark mode?&ldquo; instead of &rdquo;Settings&ldquo;.
+            </>
+          }
           hasChildLabel={false}>
           <EuiSwitch
             name="switch"
-            label="Do you love EUI?"
+            label="Dark mode?"
             onChange={() => {
               setCheckedState(false);
               setTimeout(() => {
@@ -48,80 +47,15 @@ export default () => {
           />
         </EuiFormRow>
         <EuiFormRow
-          label="A button"
-          helpText="Navigate to this button using a screen reader, it&lsquo;s read out as &rdquo;A button&ldquo;">
-          <EuiButton>By any other name</EuiButton>
-        </EuiFormRow>
-      </EuiDescribedFormGroup>
-      <EuiDescribedFormGroup
-        title={
-          <h3 id={randomId}>Implicit titles for the first form control</h3>
-        }
-        description={
-          <>
-            Just because a form is first, don&lsquo;t mean it doesn&lsquo;t need
-            a label. If it won&lsquo;t have its own visual label, either pass in
-            an
-            <EuiCode>aria-label</EuiCode> or <EuiCode>aria-labelledby</EuiCode>.
-          </>
-        }>
-        <EuiFormRow
+          label="Your cluster data"
           helpText={
             <>
-              We use <EuiCode>aria-labelledby</EuiCode> here to point to the{' '}
-              <strong>EuiDescribedFormGroup</strong> title.
+              Navigate to this Switch with a screen reader - without{' '}
+              <EuiCode>hasChildLabel:false</EuiCode> the name of this switch is
+              &rdquo;Your cluster data&ldquo; instead of &rdquo;Download&ldquo;.
             </>
           }>
-          <EuiFieldText aria-labelledby={randomId} />
-        </EuiFormRow>
-        <EuiFormRow
-          aria-labelledby={randomId}
-          helpText={
-            <>
-              You can add <EuiCode>aria-labelledby</EuiCode> to any form control
-              though, it doesn&lsquo;t have to be the first. We do it here too!
-            </>
-          }>
-          <EuiFilePicker aria-labelledby={randomId} />
-        </EuiFormRow>
-      </EuiDescribedFormGroup>
-      <EuiDescribedFormGroup
-        title={<h3>Some controls are just hard though</h3>}
-        description={
-          <>
-            More complicated form controls will often require some custom work.
-            Refer to an individual component&lsquo;s documentation and remember
-            to test!
-          </>
-        }>
-        <EuiFormRow
-          label="Searchable example"
-          helpText={
-            <>
-              The <strong>EuiFormRow</strong> label can&lsquo;t reach{' '}
-              <strong>EuiSelectable</strong> without some help. Pass the label
-              along as an <EuiCode>aria-label</EuiCode> to{' '}
-              <strong>EuiSelectable</strong> for maximum effect!
-            </>
-          }>
-          <EuiSelectable
-            searchable
-            aria-label="Searchable example"
-            options={[
-              { label: 'hello' },
-              { label: 'good day' },
-              { label: 'hi' },
-              { label: 'hey' },
-              { label: 'yo' },
-            ]}
-            onChange={() => {}}>
-            {(list, search) => (
-              <>
-                {search}
-                {list}
-              </>
-            )}
-          </EuiSelectable>
+          <EuiButton>Download</EuiButton>
         </EuiFormRow>
       </EuiDescribedFormGroup>
     </EuiForm>

@@ -39,6 +39,31 @@ const inlinePopoverSource = require('!!raw-loader!./inline_popover');
 const inlinePopoverHtml = renderToHtml(InlinePopover);
 
 import AccessibleLabels from './accessible_labels';
+const AccessibleLabelsSource = require('!!raw-loader!./accessible_labels');
+const accessibleLabelsSnippet = `<EuiFormRow
+  label="Settings"
+  hasChildLabel={false}>
+  <EuiSwitch
+    label="Dark mode?"
+    onChange={}
+    checked={}
+  />
+</EuiFormRow>`;
+
+import ImplicitTitles from './implicit_titles';
+const ImplicitTitlesSource = require('!!raw-loader!./implicit_titles');
+const implicitTitleSnippet = `<EuiDescribedFormGroup
+  title={<h3 id={randomId}>{titleText}</h3>}
+  <EuiFormRow>
+    <EuiFieldText aria-labelledby={randomId} />
+  </EuiFormRow>
+  <EuiFormRow
+    <EuiFilePicker aria-label={titleText} />
+  </EuiFormRow>
+</EuiDescribedFormGroup>`;
+
+import DifficultAccessibleLabels from './difficult_accessibility_labels';
+const DifficultAccessibleLabelsSource = require('!!raw-loader!./difficult_accessibility_labels');
 
 export const FormLayoutsExample = {
   title: 'Form layouts',
@@ -141,6 +166,32 @@ export const FormLayoutsExample = {
         </p>
       ),
       demo: <AccessibleLabels />,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: AccessibleLabelsSource,
+        },
+      ],
+      snippet: accessibleLabelsSnippet,
+    },
+    {
+      demo: <ImplicitTitles />,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: ImplicitTitlesSource,
+        },
+      ],
+      snippet: implicitTitleSnippet,
+    },
+    {
+      demo: <DifficultAccessibleLabels />,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: DifficultAccessibleLabelsSource,
+        },
+      ],
     },
     {
       title: 'Full-width',
