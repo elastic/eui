@@ -20,7 +20,6 @@ const columns = [
   },
   {
     id: 'text',
-    isTruncated: false,
   },
 ];
 
@@ -96,6 +95,7 @@ export default () => {
         defaultHeight: 60,
         initialHeights: {
           1: 100,
+          4: 140,
           5: 80,
         },
       }}

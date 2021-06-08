@@ -38,12 +38,14 @@ import { EuiI18n } from '../i18n';
 import {
   EuiDataGridColumn,
   EuiDataGridPopoverContent,
+  EuiDataGridRowHeightOptions,
 } from './data_grid_types';
 import { DataGridFocusContext } from './data_grid_context';
 import { EuiFocusTrap } from '../focus_trap';
 import { keys } from '../../services';
 import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
 import { EuiDataGridCellPopover } from './data_grid_cell_popover';
+import { calculateMaxLines } from './get_max_lines';
 
 export interface EuiDataGridCellValueElementProps {
   /**
@@ -91,7 +93,9 @@ export interface EuiDataGridCellProps {
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
   setRowHeight?: (height: number) => void;
+  getRowHeight?: (rowIndex: number) => number;
   style?: React.CSSProperties;
+  rowHeightOptions?: EuiDataGridRowHeightOptions;
 }
 
 interface EuiDataGridCellState {
@@ -112,9 +116,20 @@ const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
     setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
     isExpanded: boolean;
+    setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
+    screenReaderPosition: JSX.Element;
   }
 > = memo((props) => {
-  const { renderCellValue, ...rest } = props;
+  const {
+    renderCellValue,
+    column,
+    screenReaderPosition,
+    setCellContentsRef,
+    rowHeightOptions,
+    rowIndex,
+    getRowHeight,
+    ...rest
+  } = props;
 
   // React is more permissible than the TS types indicate
   const CellElement = renderCellValue as JSXElementConstructor<
@@ -122,7 +137,29 @@ const EuiDataGridCellContent: FunctionComponent<
   >;
 
   return (
-    <CellElement isDetails={false} data-test-subj="cell-content" {...rest} />
+    <div
+      ref={setCellContentsRef}
+      style={
+        rowHeightOptions && getRowHeight
+          ? {
+              WebkitLineClamp: calculateMaxLines(getRowHeight(rowIndex)),
+              display: '-webkit-box',
+              WebkitBoxOrient: 'vertical',
+              height: '100%',
+              overflow: 'hidden',
+              flexGrow: 1
+            }
+          : {}
+      }
+      className={!rowHeightOptions ? 'euiDataGridRowCell__truncate' : ''}>
+      <CellElement
+        isDetails={false}
+        data-test-subj="cell-content"
+        {...rest}
+        rowIndex={rowIndex}
+      />
+      {screenReaderPosition}
+    </div>
   );
 });
 
@@ -267,7 +304,7 @@ export class EuiDataGridCell extends Component<
     if (nextState.disableCellTabIndex !== this.state.disableCellTabIndex)
       return true;
 
-    return false;
+    return true;
   }
 
   setCellProps = (cellProps: HTMLAttributes<HTMLDivElement>) => {
@@ -356,8 +393,7 @@ export class EuiDataGridCell extends Component<
         [`euiDataGridRowCell--${columnType}`]: columnType,
         ['euiDataGridRowCell--open']: this.state.popoverIsOpen,
       },
-      className,
-      column?.isTruncated !== false ? '' : 'euiDataGridRowCell--noTruncated'
+      className
     );
 
     const cellProps = {
@@ -428,16 +464,6 @@ export class EuiDataGridCell extends Component<
       }
     };
 
-    const cellContentProps = {
-      ...rest,
-      setCellProps: this.setCellProps,
-      column,
-      columnType: columnType,
-      isExpandable,
-      isExpanded: this.state.popoverIsOpen,
-      isDetails: false,
-    };
-
     const screenReaderPosition = (
       <EuiScreenReaderOnly>
         <p>
@@ -454,6 +480,20 @@ export class EuiDataGridCell extends Component<
       </EuiScreenReaderOnly>
     );
 
+    const cellContentProps = {
+      ...rest,
+      setCellProps: this.setCellProps,
+      column,
+      columnType: columnType,
+      isExpandable,
+      isExpanded: this.state.popoverIsOpen,
+      isDetails: false,
+      screenReaderPosition,
+      setCellContentsRef: this.setCellContentsRef,
+      rowHeightOptions: this.props.rowHeightOptions,
+      getRowHeight: this.props.getRowHeight,
+    };
+
     let anchorContent = (
       <EuiFocusTrap
         disabled={!this.state.isEntered}
@@ -465,20 +505,11 @@ export class EuiDataGridCell extends Component<
         <div className="euiDataGridRowCell__expandFlex">
           <div
             className={
-              column?.isTruncated !== false
+              !this.props.rowHeightOptions
                 ? 'euiDataGridRowCell__expandContent'
-                : ''
+                : 'euiDataGridRowCell__contentByHeight'
             }>
-            {screenReaderPosition}
-            <div
-              ref={this.setCellContentsRef}
-              className={
-                column?.isTruncated !== false
-                  ? 'euiDataGridRowCell__truncate'
-                  : ''
-              }>
-              <EuiDataGridCellContent {...cellContentProps} />
-            </div>
+            <EuiDataGridCellContent {...cellContentProps} />
           </div>
         </div>
       </EuiFocusTrap>
@@ -490,20 +521,11 @@ export class EuiDataGridCell extends Component<
           <div className="euiDataGridRowCell__expandFlex">
             <div
               className={
-                column?.isTruncated !== false
+                !this.props.rowHeightOptions
                   ? 'euiDataGridRowCell__expandContent'
-                  : ''
+                  : 'euiDataGridRowCell__contentByHeight'
               }>
-              <div
-                ref={this.setCellContentsRef}
-                className={
-                  column?.isTruncated !== false
-                    ? 'euiDataGridRowCell__truncate'
-                    : ''
-                }>
-                <EuiDataGridCellContent {...cellContentProps} />
-              </div>
-              {screenReaderPosition}
+              <EuiDataGridCellContent {...cellContentProps} />
             </div>
             {showCellButtons && (
               <EuiDataGridCellButtons
@@ -522,15 +544,8 @@ export class EuiDataGridCell extends Component<
         );
       } else {
         anchorContent = (
-          <div
-            ref={this.setCellContentsRef}
-            className={
-              column?.isTruncated !== false
-                ? 'euiDataGridRowCell__truncate'
-                : ''
-            }>
+          <div className="euiDataGridRowCell__expandFlex">
             <EuiDataGridCellContent {...cellContentProps} />
-            {screenReaderPosition}
           </div>
         );
       }
@@ -540,7 +555,10 @@ export class EuiDataGridCell extends Component<
     if (isExpandable || (column && column.cellActions)) {
       if (this.state.popoverIsOpen) {
         innerContent = (
-          <div className="euiDataGridRowCell__content">
+          <div
+            className={
+              !this.props.rowHeightOptions ? 'euiDataGridRowCell__content' : ''
+            }>
             <EuiDataGridCellPopover
               anchorContent={anchorContent}
               cellContentProps={cellContentProps}

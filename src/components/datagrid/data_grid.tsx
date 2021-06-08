@@ -79,6 +79,7 @@ import {
   DataGridSortingContext,
 } from './data_grid_context';
 import { useDataGridColumnSorting } from './column_sorting';
+import { computedStylesForGridCell } from './get_max_lines';
 
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
@@ -891,6 +892,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
       }
     }
   }, [focusedCell, contentRef]);
+
+  computedStylesForGridCell(gridStyles);
 
   const classes = classNames(
     'euiDataGrid',
