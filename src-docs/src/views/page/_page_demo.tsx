@@ -1,70 +1,92 @@
 import React, {
+  ComponentType,
+  ReactElement,
   useState,
-  useEffect,
-  ReactNode,
   FunctionComponent,
 } from 'react';
+import { useRouteMatch } from 'react-router';
 import { EuiImage } from '../../../../src/components/image';
 import { EuiButton } from '../../../../src/components/button';
-import { EuiFocusTrap } from '../../../../src/components/focus_trap';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiSwitch } from '../../../../src/components/form';
 import { EuiTextAlign } from '../../../../src/components/text';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
+import { useExitPath } from '../../services/routing/routing';
 
-import content from '../../images/content.svg';
-import contentCenter from '../../images/content_center.svg';
-import sideNav from '../../images/side_nav.svg';
-import single from '../../images/single.svg';
+import contentSvg from '../../images/content.svg';
+import contentCenterSvg from '../../images/content_center.svg';
+import sideNavSvg from '../../images/side_nav.svg';
+import singleSvg from '../../images/single.svg';
+
+const ExitFullscreenDemoButton = () => {
+  const exitPath = useExitPath();
+  return (
+    <EuiButton fill href={exitPath} iconType="exit">
+      Exit full screen
+    </EuiButton>
+  );
+};
+
+/**
+ * Because the discrete[by slug] usages of <PageDemo> are not rendered at the same time,
+ * it is safe to cache their showTemplate status in a set rather than an approach triggering
+ * React re-rendering. If that changes, moving this to a redux store, recoiljs atom(s), or similar
+ * would resolve any introduced issue.
+ */
+const demosAsIndividualComponents = new Set<string>();
 
 export const PageDemo: FunctionComponent<{
-  children?: (
-    button: typeof EuiButton,
-    Content: ReactNode,
-    SideNav: ReactNode,
-    showTemplate: boolean,
-    BottomBar: ReactNode
-  ) => ReactNode;
+  slug: string;
+  fullscreen?: boolean;
+  pattern: ComponentType<{
+    button: ReactElement;
+    content: ReactElement;
+    sideNav: ReactElement;
+    bottomBar: ReactElement;
+  }>;
+  template: ComponentType<{
+    button: ReactElement;
+    content: ReactElement;
+    sideNav: ReactElement;
+    bottomBar: ReactElement;
+  }>;
   centered?: boolean;
-}> = ({ children, centered }) => {
+}> = ({ slug, fullscreen, pattern, template, centered }) => {
+  const { path } = useRouteMatch();
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
-  const [showTemplate, setShowTemplate] = useState(true);
-  const [fullScreen, setFullScreen] = useState(false);
-  useEffect(() => {
-    if (fullScreen) {
-      document.body.classList.add('guideBody--overflowHidden');
-    }
-    return () => {
-      document.body.classList.remove('guideBody--overflowHidden');
-    };
-  }, [fullScreen]);
-
-  const Button = () => {
-    return fullScreen ? (
-      <EuiButton onClick={() => setFullScreen(false)} fill iconType="minimize">
-        Exit fullscreen
-      </EuiButton>
-    ) : (
-      <EuiButton onClick={() => setFullScreen(true)} fill iconType="fullScreen">
-        Go fullscreen
-      </EuiButton>
-    );
+  const [showTemplate, _setShowTemplate] = useState(
+    !demosAsIndividualComponents.has(slug)
+  );
+  const setShowTemplate = (cb: (showTemplate: boolean) => boolean) => {
+    _setShowTemplate((showing) => {
+      const nextValue = cb(showing);
+      demosAsIndividualComponents[nextValue ? 'delete' : 'add'](slug);
+      return nextValue;
+    });
   };
 
-  const SideNav = () => (
+  const button = fullscreen ? (
+    <ExitFullscreenDemoButton />
+  ) : (
+    <EuiButton fill href={`#${path}/${slug}`}>
+      Go full screen
+    </EuiButton>
+  );
+
+  const sideNav = (
     <EuiImage
       size={isMobileSize ? 'original' : 'fullWidth'}
       alt="Fake side nav list"
-      url={isMobileSize ? single : sideNav}
+      url={isMobileSize ? singleSvg : sideNavSvg}
     />
   );
 
-  const Content = () => (
+  const content = (
     <>
       <EuiImage
         size="fullWidth"
         alt="Fake paragraph"
-        url={centered ? contentCenter : content}
+        url={centered ? contentCenterSvg : contentSvg}
       />
       {!centered && (
         <>
@@ -72,32 +94,37 @@ export const PageDemo: FunctionComponent<{
           <EuiImage
             size="fullWidth"
             alt="Fake paragraph"
-            url={centered ? contentCenter : content}
+            url={centered ? contentCenterSvg : contentSvg}
           />
         </>
       )}
     </>
   );
 
-  const BottomBar = () => (
+  const bottomBar = (
     <EuiButton size="s" color="ghost">
       Save
     </EuiButton>
   );
 
-  return (
+  const Child = showTemplate ? template : pattern;
+  return fullscreen ? (
+    <Child
+      button={button}
+      content={content}
+      sideNav={sideNav}
+      bottomBar={bottomBar}
+    />
+  ) : (
     <>
-      <EuiFocusTrap disabled={!fullScreen}>
-        <div
-          className={
-            fullScreen
-              ? 'guideFullScreenOverlay guideFullScreenOverlay--withHeader'
-              : 'guideDemo__highlightLayout'
-          }>
-          {children &&
-            children(Button, Content, SideNav, showTemplate, BottomBar)}
-        </div>
-      </EuiFocusTrap>
+      <div className={'guideDemo__highlightLayout'}>
+        <Child
+          button={button}
+          content={content}
+          sideNav={sideNav}
+          bottomBar={bottomBar}
+        />
+      </div>
       <EuiTextAlign textAlign="right">
         <EuiSpacer />
         <EuiSwitch

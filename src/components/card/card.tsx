@@ -30,7 +30,7 @@ import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import { getSecureRelForTarget } from '../../services';
 import { EuiText } from '../text';
 import { EuiTitle } from '../title';
-import { EuiBetaBadge } from '../badge/beta_badge';
+import { EuiBetaBadge, EuiBetaBadgeProps } from '../badge/beta_badge';
 import { EuiIconProps } from '../icon';
 import {
   EuiCardSelect,
@@ -135,18 +135,22 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
 
     /**
      * Add a badge to the card to label it as "Beta" or other non-GA state
+     * **DEPRECATED: Use `betaBadgeProps.label` instead.**
      */
     betaBadgeLabel?: string;
 
     /**
      * Add a description to the beta badge (will appear in a tooltip)
+     * **DEPRECATED: Use `betaBadgeProps.tooltipContent` instead.**
      */
     betaBadgeTooltipContent?: ReactNode;
 
     /**
-     * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used
+     * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used.
+     * **DEPRECATED: Use `betaBadgeProps.title` instead.**
      */
     betaBadgeTitle?: string;
+    betaBadgeProps?: Partial<EuiBetaBadgeProps>;
     /**
      * Matches to the color property of EuiPanel. If defined, removes any border & shadow.
      * Leave as `undefined` to display as a default panel.
@@ -192,6 +196,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   betaBadgeLabel,
   betaBadgeTooltipContent,
   betaBadgeTitle,
+  betaBadgeProps,
   layout = 'vertical',
   selectable,
   display,
@@ -295,10 +300,14 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       <span className="euiCard__betaBadgeWrapper">
         <EuiBetaBadge
           id={optionalBetaBadgeID}
+          {...(betaBadgeProps as EuiBetaBadgeProps)}
           label={betaBadgeLabel}
           title={betaBadgeTitle}
           tooltipContent={betaBadgeTooltipContent}
-          className="euiCard__betaBadge"
+          className={classNames(
+            'euiCard__betaBadge',
+            betaBadgeProps?.className
+          )}
         />
       </span>
     );

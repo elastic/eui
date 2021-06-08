@@ -1,5 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiCard betaBadgeProps renders href 1`] = `
+<div
+  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiCard euiCard--centerAligned euiCard--hasBetaBadge"
+>
+  <div
+    class="euiCard__content"
+  >
+    <span
+      class="euiTitle euiTitle--small euiCard__title"
+      id="generated-idTitle"
+    >
+      Card title
+    </span>
+    <div
+      class="euiText euiText--small euiCard__description"
+      id="generated-idDescription"
+    >
+      <p>
+        Card description
+      </p>
+    </div>
+  </div>
+  <span
+    class="euiCard__betaBadgeWrapper"
+  >
+    <a
+      class="euiBetaBadge euiBetaBadge-isClickable euiBetaBadge--hollow euiCard__betaBadge"
+      href="http://www.elastic.co/"
+      id="generated-idBetaBadge"
+      rel=""
+      title="Link"
+    >
+      Link
+    </a>
+  </span>
+</div>
+`;
+
 exports[`EuiCard horizontal selectable 1`] = `
 <div
   class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPanel--isClickable euiCard euiCard--centerAligned euiCard--horizontal euiCard--isClickable euiCard--isSelectable euiCard--isSelectable--text"
