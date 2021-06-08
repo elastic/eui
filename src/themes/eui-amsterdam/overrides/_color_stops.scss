@@ -1,3 +1,8 @@
+.euiColorStops__addTarget,
+.euiColorStops__addContainer {
+  z-index: 1;
+}
+
 .euiColorStopThumb.euiRangeThumb:not(:disabled) {
   @include euiRangeThumbBoxShadow;
   // sass-lint:disable-block no-color-literals, indentation
