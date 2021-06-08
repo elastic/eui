@@ -538,7 +538,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
         : 0;
       if (rowHeightOptions) {
         if (rowHeightOptions.initialHeights) {
-          const correctRowIndex = rowMap[rowIndex + offset] ? rowMap[rowIndex + offset] : rowIndex;
+          const correctRowIndex = rowMap[rowIndex + offset]
+            ? rowMap[rowIndex + offset]
+            : rowIndex;
           console.log('getRowHeight', correctRowIndex);
           return (
             rowHeightOptions.initialHeights[correctRowIndex] ??

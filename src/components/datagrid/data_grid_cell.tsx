@@ -147,7 +147,7 @@ const EuiDataGridCellContent: FunctionComponent<
               WebkitBoxOrient: 'vertical',
               height: '100%',
               overflow: 'hidden',
-              flexGrow: 1
+              flexGrow: 1,
             }
           : {}
       }
