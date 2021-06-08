@@ -42,8 +42,7 @@ export default () => {
 
   return (
     <EuiSideNav
-      aria-label="Basic example"
-      mobileTitle="Basic example"
+      heading="Nav heading"
       toggleOpenOnMobile={() => toggleOpenOnMobile()}
       isOpenOnMobile={isSideNavOpenOnMobile}
       style={{ width: 192 }}
