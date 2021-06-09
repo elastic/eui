@@ -62,7 +62,7 @@
     }
 
     ~ .euiRangeThumb {
-      border-color: $euiColorPrimary;
+      border-color: $euiRangeThumbBorderColor;
     }
 
     @include euiRangeTrackPerBrowser {

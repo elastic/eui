@@ -1,7 +1,7 @@
 .euiRangeThumb {
   @include euiRangeThumbBoxShadow;
-  background-color: $euiColorEmptyShade;
-  border: none;
+  @include euiRangeThumbBorder;
+  background-color: $euiRangeThumbBackgroundColor;
   z-index: 2; // higher than .euiRangeHighlight that is 1
   pointer-events: none;
 

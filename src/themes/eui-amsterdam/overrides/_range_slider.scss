@@ -26,5 +26,9 @@
     }
 
     outline: none;
+
+    ~ .euiRangeThumb {
+      border-color: none;
+    }
   }
 }

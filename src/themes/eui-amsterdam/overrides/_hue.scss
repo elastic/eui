@@ -1,7 +1,17 @@
-.euiHue_range {
+.euiHue__range {
+  @include euiRangeThumbPerBrowser {
+    background-color: $euiColorEmptyShade;
+    box-shadow: none;
+    border: 1px solid $euiColorDarkShade;
+  }
+
   &:focus {
     @include euiRangeThumbPerBrowser {
-      @include euiRangeThumbFocus;
+      box-shadow: 0 0 0 2px $euiFocusRingColor;
     }
+  }
+
+  &:focus:focus-visible {
+    outline: none;
   }
 }

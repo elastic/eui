@@ -18,11 +18,27 @@
   &::-ms-fill-upper { @content; }
 }
 
+@mixin euiRangeThumbBorder {
+  border: 2px solid $euiRangeThumbBorderColor;
+}
+
+@mixin euiRangeThumbBoxShadow {
+  // sass-lint:disable-block no-color-literals
+  box-shadow: 0 2px 2px -1px rgba($euiShadowColor, .2),
+  0 1px 5px -2px rgba($euiShadowColor, .2);
+}
+
+@mixin euiRangeThumbFocusBoxShadow {
+  // sass-lint:disable-block no-color-literals
+  box-shadow: 0 2px 2px -1px rgba($euiShadowColor, .2),
+  0 0 0 4px $euiRangeThumbFocusBackgroundColor;
+}
+
 @mixin euiRangeThumbStyle {
   @include euiRangeThumbBoxShadow;
+  @include euiRangeThumbBorder;
   cursor: pointer;
   background-color: $euiRangeThumbBackgroundColor;
-  border: none;
   padding: 0;
   height: $euiRangeThumbHeight;
   width: $euiRangeThumbWidth;
@@ -35,15 +51,9 @@
   &::-ms-thumb { @content; }
 }
 
-@mixin euiRangeThumbBoxShadow($thumbBorderColor: $euiColorDarkShade) {
-  // sass-lint:disable-block no-color-literals, indentation
-  box-shadow: 0 0 0 1px $thumbBorderColor,
-  0 2px 2px -1px rgba($euiShadowColor, .2),
-  0 1px 5px -2px rgba($euiShadowColor, .2);
-}
-
 
 @mixin euiRangeThumbFocus {
-  box-shadow: 0 0 0 $euiFocusRingSize $euiFocusRingColor;
-  border: 1px solid $euiFocusRingColor;
+  @include euiRangeThumbBorder;
+  @include euiRangeThumbFocusBoxShadow;
+  background-color: $euiFocusRingColor;
 }

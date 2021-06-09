@@ -3,17 +3,20 @@
   z-index: 1;
 }
 
-.euiColorStopThumb.euiRangeThumb:not(:disabled) {
-  @include euiRangeThumbBoxShadow;
-  // sass-lint:disable-block no-color-literals, indentation
-  top: 0;
-  margin-top: 0;
-  pointer-events: auto;
-  cursor: grab;
-  border: ($euiSizeXS / 2) solid $euiColorEmptyShade;
+.euiColorStops__addTarget {
+  border: 1px solid $euiColorDarkShade;
+  box-shadow: none;
+}
 
-  &:active {
-    cursor: grabbing;
+.euiColorStopThumb.euiRangeThumb:not(:disabled) {
+  // sass-lint:disable-block no-important no-color-literals 
+  @include euiRangeThumbBorder;
+  box-shadow: 0 0 0 1px $euiRangeThumbBorderColor,
+  0 2px 2px -1px rgba($euiShadowColor, .2),
+  0 1px 5px -2px rgba($euiShadowColor, .2);
+
+  &:focus {
+    box-shadow: 0 0 0 2px $euiFocusRingColor;
   }
 }
 
