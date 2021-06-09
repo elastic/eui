@@ -73,6 +73,10 @@
   transition:
     height $euiAnimSpeedNormal $euiAnimSlightResistance,
     opacity $euiAnimSpeedNormal $euiAnimSlightResistance;
+
+  &:focus {
+    outline: none; // Hide focus ring because of `tabindex=-1` on Safari
+  }
 }
 
 $paddingSizes: (

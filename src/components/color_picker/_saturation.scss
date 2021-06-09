@@ -47,6 +47,8 @@
   }
 
   &:focus {
+    outline: none; // Hide focus ring because of `tabindex=0` on Safari
+
     .euiSaturation__indicator {
       @include euiFocusRing;
     }
