@@ -54,5 +54,5 @@
 @mixin euiRangeThumbFocus {
   @include euiRangeThumbBorder;
   @include euiRangeThumbFocusBoxShadow;
-  background-color: $euiFocusRingColor;
+  background-color: $euiColorPrimary;
 }
