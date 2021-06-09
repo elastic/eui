@@ -22,13 +22,8 @@
 
     @include euiRangeTrackPerBrowser {
       background-color: transparent;
-      border-color: none;
     }
 
     outline: none;
-
-    ~ .euiRangeThumb {
-      border-color: none;
-    }
   }
 }
