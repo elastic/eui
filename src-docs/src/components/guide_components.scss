@@ -32,6 +32,7 @@ $elasticLogoTextDark: #1C1E23;
 }
 
 .guideSideNav {
+  @include euiSideNavEmbellish;
   min-width: $guideSideNavWidth;
 }
 
@@ -42,7 +43,7 @@ $elasticLogoTextDark: #1C1E23;
 
 .guideSideNav__search {
   flex-shrink: 0;
-  padding: $euiSizeL;
+  padding: $euiSizeS $euiSizeS $euiSize;
 }
 
 .guideSideNav__item {
@@ -323,6 +324,10 @@ $elasticLogoTextDark: #1C1E23;
   .guideSideNav__content {
     padding: 0;
     border-top: $euiBorderThin;
+  }
+
+  .guideSideNav__search {
+    padding: $euiSizeS;
   }
 }
 

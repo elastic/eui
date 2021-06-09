@@ -290,6 +290,7 @@ const typeToPathMap = {
   minus: 'minus',
   minusInCircle: 'minus_in_circle',
   minusInCircleFilled: 'minus_in_circle_filled',
+  mobile: 'mobile',
   monitoringApp: 'app_monitoring',
   moon: 'moon',
   nested: 'nested',
