@@ -1,13 +1,15 @@
 .euiHue__range {
   @include euiRangeThumbPerBrowser {
+    // sass-lint:disable-block no-color-literals
     background-color: $euiColorEmptyShade;
-    box-shadow: none;
     border: 1px solid $euiColorDarkShade;
+    box-shadow: 0 2px 2px -1px rgba($euiShadowColor, .2),
+    0 1px 5px -2px rgba($euiShadowColor, .2);
   }
 
   &:focus {
     @include euiRangeThumbPerBrowser {
-      box-shadow: 0 0 0 2px $euiFocusRingColor;
+      @include euiRangeThumbFocusBoxShadow;
     }
   }
 
