@@ -1,6 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.3.0`.
+- Added `success` and `accent` `color` options to `EuiButton` ([#4874](https://github.com/elastic/eui/pull/4874))
+- Added `success` `color` option to `EuiLink` ([#4874](https://github.com/elastic/eui/pull/4874))
+
+**Bug fixes**
+
+- Fixed shaded colors of `EuiButtonIcon` ([#4874](https://github.com/elastic/eui/pull/4874))
 
 ## [`34.3.0`](https://github.com/elastic/eui/tree/v34.3.0)
 
@@ -16,7 +21,7 @@ No public interface changes since `34.3.0`.
 
 **Theme: Amsterdam**
 
-- Decreased spacing and root element size of `EuiSideNav` ([#4816](https://github.com/elastic/eui/pull/4816))
+- Decreased spacing and root element size of `EuiSideNav` ([#4816](https://github.com/elastic/eui/pull/4827))
 
 ## [`34.2.0`](https://github.com/elastic/eui/tree/v34.2.0)
 
