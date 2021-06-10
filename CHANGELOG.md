@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.3.0`.
+**Bug fixes**
+
+- Fixed DataGrid footer and header rows jumps in Firefox ([#4729](https://github.com/elastic/eui/issues/4729))
 
 ## [`34.3.0`](https://github.com/elastic/eui/tree/v34.3.0)
 
