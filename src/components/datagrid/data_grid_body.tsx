@@ -66,6 +66,7 @@ import {
   DataGridWrapperRowsContext,
 } from './data_grid_context';
 import { useResizeObserver } from '../observer/resize_observer';
+import { calculateHeightForLineCount } from './row_height_utils';
 
 export interface EuiDataGridBodyProps {
   isFullScreen: boolean;
@@ -149,12 +150,13 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
     setRowHeight,
     schemaDetectors,
     rowHeightOptions,
-    getRowHeight,
+    getCorrectRowIndex,
   } = data;
 
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
 
   const offsetRowIndex = visibleRowIndex + rowOffset;
+
   const rowIndex = rowMap.hasOwnProperty(offsetRowIndex)
     ? rowMap[offsetRowIndex]
     : offsetRowIndex;
@@ -214,7 +216,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         className={classes}
         setRowHeight={setRowHeight}
         rowHeightOptions={rowHeightOptions}
-        getRowHeight={getRowHeight}
+        getCorrectRowIndex={getCorrectRowIndex}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -240,7 +242,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         isExpandable={false}
         className={classes}
         rowHeightOptions={rowHeightOptions}
-        getRowHeight={getRowHeight}
+        getCorrectRowIndex={getCorrectRowIndex}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -276,7 +278,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         isExpandable={isExpandable}
         className={classes}
         rowHeightOptions={rowHeightOptions}
-        getRowHeight={getRowHeight}
+        getCorrectRowIndex={getCorrectRowIndex}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -531,19 +533,45 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   );
 
   const [rowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
-  const getRowHeight = useCallback(
+
+  const getCorrectRowIndex = useCallback(
     (rowIndex) => {
       const offset = pagination
         ? pagination.pageIndex * pagination.pageSize
         : 0;
+      let rowIndexWithOffset = rowIndex;
+
+      if (rowIndex - offset <= 0) {
+        rowIndexWithOffset = rowIndex + offset;
+      }
+
+      const correctRowIndex = rowMap[rowIndexWithOffset]
+        ? rowMap[rowIndexWithOffset]
+        : rowIndexWithOffset;
+      return correctRowIndex;
+    },
+    [pagination, rowMap]
+  );
+
+  const getRowHeight = useCallback(
+    (rowIndex) => {
+      const correctRowIndex = getCorrectRowIndex(rowIndex);
+
       if (rowHeightOptions) {
         if (rowHeightOptions.initialHeights) {
-          const correctRowIndex = rowMap[rowIndex + offset]
-            ? rowMap[rowIndex + offset]
-            : rowIndex;
-          console.log('getRowHeight', correctRowIndex);
+          const initialHeight =
+            rowHeightOptions.initialHeights[correctRowIndex];
+
+          if (typeof initialHeight === 'object' && initialHeight.lineCount) {
+            return calculateHeightForLineCount(initialHeight.lineCount);
+          }
+
+          if (typeof initialHeight === 'object' && initialHeight.height) {
+            return initialHeight.height;
+          }
+
           return (
-            rowHeightOptions.initialHeights[correctRowIndex] ??
+            (rowHeightOptions.initialHeights[correctRowIndex] as number) ??
             rowHeightOptions.defaultHeight
           );
         } else {
@@ -553,8 +581,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 
       return rowHeight;
     },
-    [rowHeight, pagination, rowHeightOptions, rowMap]
+    [rowHeight, rowHeightOptions, getCorrectRowIndex]
   );
+
   useEffect(() => {
     if (gridRef.current) gridRef.current.resetAfterRowIndex(0);
   }, [getRowHeight]);
@@ -661,7 +690,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 itemData={{
                   schemaDetectors,
                   setRowHeight,
-                  getRowHeight,
+                  getCorrectRowIndex,
                   rowMap,
                   rowOffset: pagination
                     ? pagination.pageIndex * pagination.pageSize

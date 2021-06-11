@@ -45,7 +45,7 @@ import { EuiFocusTrap } from '../focus_trap';
 import { keys } from '../../services';
 import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
 import { EuiDataGridCellPopover } from './data_grid_cell_popover';
-import { calculateMaxLines } from './get_max_lines';
+import { getStylesForCell } from './row_height_utils';
 
 export interface EuiDataGridCellValueElementProps {
   /**
@@ -93,9 +93,9 @@ export interface EuiDataGridCellProps {
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
   setRowHeight?: (height: number) => void;
-  getRowHeight?: (rowIndex: number) => number;
   style?: React.CSSProperties;
   rowHeightOptions?: EuiDataGridRowHeightOptions;
+  getCorrectRowIndex?: (rowIndex: number) => number;
 }
 
 interface EuiDataGridCellState {
@@ -127,7 +127,7 @@ const EuiDataGridCellContent: FunctionComponent<
     setCellContentsRef,
     rowHeightOptions,
     rowIndex,
-    getRowHeight,
+    getCorrectRowIndex,
     ...rest
   } = props;
 
@@ -140,15 +140,8 @@ const EuiDataGridCellContent: FunctionComponent<
     <div
       ref={setCellContentsRef}
       style={
-        rowHeightOptions && getRowHeight
-          ? {
-              WebkitLineClamp: calculateMaxLines(getRowHeight(rowIndex)),
-              display: '-webkit-box',
-              WebkitBoxOrient: 'vertical',
-              height: '100%',
-              overflow: 'hidden',
-              flexGrow: 1,
-            }
+        rowHeightOptions && getCorrectRowIndex
+          ? getStylesForCell(rowHeightOptions, getCorrectRowIndex(rowIndex))
           : {}
       }
       className={!rowHeightOptions ? 'euiDataGridRowCell__truncate' : ''}>
@@ -491,7 +484,7 @@ export class EuiDataGridCell extends Component<
       screenReaderPosition,
       setCellContentsRef: this.setCellContentsRef,
       rowHeightOptions: this.props.rowHeightOptions,
-      getRowHeight: this.props.getRowHeight,
+      getCorrectRowIndex: this.props.getCorrectRowIndex,
     };
 
     let anchorContent = (

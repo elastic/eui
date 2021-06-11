@@ -17,10 +17,12 @@
  * under the License.
  */
 
+import { CSSProperties } from 'react';
 import {
   EuiDataGridStyleCellPaddings,
   EuiDataGridStyleFontSizes,
   EuiDataGridStyle,
+  EuiDataGridRowHeightOptions,
 } from './data_grid_types';
 
 const cellPaddingsToClassMap: {
@@ -58,9 +60,35 @@ function getNumberFromPx(style: string) {
   return parseInt(style.replace('px', ''), 10);
 }
 
-export const calculateMaxLines = (height: number) => {
+export const calculateHeightForLineCount = (lineCount: number) => {
   const paddingTop = getNumberFromPx(styles.paddingTop);
   const paddingBottom = getNumberFromPx(styles.paddingBottom);
   const lineHeight = getNumberFromPx(styles.lineHeight);
-  return Math.floor((height - paddingTop - paddingBottom) / lineHeight);
+  return Math.ceil(lineCount * lineHeight + paddingTop + paddingBottom);
+};
+
+export const getStylesForCell = (
+  rowHeightOptions: EuiDataGridRowHeightOptions,
+  rowIndex: number
+): CSSProperties => {
+  const initialHeight = rowHeightOptions.initialHeights
+    ? rowHeightOptions.initialHeights[rowIndex]
+    : undefined;
+
+  if (typeof initialHeight === 'object' && initialHeight.lineCount) {
+    return {
+      WebkitLineClamp: initialHeight.lineCount,
+      display: '-webkit-box',
+      WebkitBoxOrient: 'vertical',
+      height: '100%',
+      overflow: 'hidden',
+      flexGrow: 1,
+    };
+  }
+
+  return {
+    height: '100%',
+    overflow: 'hidden',
+    flexGrow: 1,
+  };
 };

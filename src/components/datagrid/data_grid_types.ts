@@ -335,5 +335,8 @@ export type EuiDataGridOnColumnResizeHandler = (
 
 export interface EuiDataGridRowHeightOptions {
   defaultHeight: number;
-  initialHeights?: Record<number, number>;
+  initialHeights?: Record<
+    number,
+    number | { lineCount?: number; height?: number }
+  >;
 }

@@ -140,6 +140,7 @@
 .euiDataGridRowCell__expandFlex {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .euiDataGridRowCell__expandContent {
@@ -149,6 +150,7 @@
 .euiDataGridRowCell__contentByHeight {
   max-width: 100%;
   flex-grow: 1;
+  height: 100%;
 }
 
 .euiDataGridRowCell__expandButton {

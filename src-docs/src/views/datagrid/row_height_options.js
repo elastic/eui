@@ -94,7 +94,9 @@ export default () => {
       rowHeightOptions={{
         defaultHeight: 60,
         initialHeights: {
-          1: 100,
+          1: {
+            lineCount: 5,
+          },
           4: 140,
           5: 80,
         },
