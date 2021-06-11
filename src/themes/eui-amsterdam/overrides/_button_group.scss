@@ -1,3 +1,6 @@
+// This file has lots of modifiers and is somewhat nesty by nature
+// sass-lint:disable nesting-depth
+
 .euiButtonGroup__buttons {
   box-shadow: none !important; // sass-lint:disable-line no-important
 }
@@ -7,12 +10,21 @@
   .euiButtonGroupButton {
     border: none !important; // sass-lint:disable-line no-important
 
-    &:focus {
-      @include euiFocusRing(null, 'inner');
+    // Complicated set of focus states depending on whether it's a button and can receive :focus,
+    // or an input and uses focus-within, and browser support for :focus-visible
+    &:focus,
+    &:focus-within {
+      outline-style: solid;
+      outline-color: lightOrDarkTheme($euiColorInk, $euiColorGhost);
+      outline-offset: -2px;
+
+      &:focus-visible {
+        outline-style: auto; // For chrome only
+      }
     }
 
-    &.euiButtonGroupButton-isSelected:focus {
-      @include euiFocusRing(null, -3);
+    &:focus:not(:focus-visible) {
+      outline: none;
     }
   }
 
@@ -55,24 +67,22 @@
   // Add 1 to the border radius to account for the background-clip
   border-radius: $euiFormControlCompressedBorderRadius + 1;
 
-  &:not([class*='isDisabled']):focus-within {
-    outline: none; // Resetting from default theme
-  }
-
-  &:not([class*='isDisabled']):focus {
-    @include euiFocusRing(null, 'false');
-  }
-
   @each $name, $color in $euiButtonTypes {
     &--#{$name} {
-      &:not([class*='isDisabled']):hover,
+      // Complicated set of focus states depending on whether it's a button and can receive :focus,
+      // or an input and uses focus-within, and browser support for :focus-visible,
+      // and override nature of default theme
       &:not([class*='isDisabled']):focus,
       &:not([class*='isDisabled']):focus-within {
-        @include euiFocusBackground($color);
+        outline-color: $color;
+
+        &:focus-visible {
+          outline-style: auto; // For chrome only
+        }
       }
 
-      &:not([class*='isDisabled']):focus {
-        outline-color: $color;
+      &:not([class*='isDisabled']):focus:not(:focus-visible) {
+        outline: none;
       }
     }
   }
