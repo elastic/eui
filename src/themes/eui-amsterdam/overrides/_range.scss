@@ -1,9 +1,3 @@
 .euiRangeTooltip__value {
   border-radius: $euiBorderRadiusSmall;
 }
-
-.euiRange:not(.euiRange--hasInput):focus-within {
-  .euiRangeHighlight .euiRangeHighlight__progress {
-    background-color: $euiColorPrimary;
-  }
-}
