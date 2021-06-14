@@ -126,7 +126,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   grow = true,
   panelRef,
   element,
-  style = {},
+  style,
   ...rest
 }) => {
   // Shadows are only allowed when there's a white background (plain)
@@ -152,7 +152,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   );
 
   // If `hasBorder` is a string instead of a boolean, add it as the `borderWidth` style property
-  const newStyle = style;
+  const newStyle = style || {};
   if (hasBorder !== true && Boolean(hasBorder)) {
     newStyle.borderWidth = hasBorder as CSSProperties['borderWidth'];
   }

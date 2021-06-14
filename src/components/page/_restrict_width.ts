@@ -17,17 +17,6 @@
  * under the License.
  */
 
-/**
- * The `restrictedWidth` property is the same for all EuiPage components.
- * This is file contains the type specific to that prop and a helper
- * function for creating the corresponding classNames and style tags
- * based on the consumer's configuration
- *
- * @param {restrictWidth} boolean | number | string The prop value
- * @param {style} CSSProperties An object of style attributes if provided
- * @returns {{widthClassName: string, newStyle: CSSProperties}} Returns an object with keys for the class name to append to the component's class and the updated style props
- */
-
 import { CSSProperties } from 'react';
 
 export type _EuiPageRestrictWidth = {
@@ -40,6 +29,17 @@ export type _EuiPageRestrictWidth = {
    */
   restrictWidth?: boolean | number | string;
 };
+
+/**
+ * The `restrictedWidth` property is the same for all EuiPage components.
+ * This is file contains the type specific to that prop and a helper
+ * function for creating the corresponding classNames and style tags
+ * based on the consumer's configuration
+ *
+ * @param {restrictWidth} boolean | number | string The prop value
+ * @param {style} CSSProperties An object of style attributes if provided
+ * @returns {{widthClassName: string, newStyle: CSSProperties}} Returns an object with keys for the class name to append to the component's class and the updated style props
+ */
 
 export function setPropsForRestrictedPageWidth(
   restrictWidth: _EuiPageRestrictWidth['restrictWidth'],
