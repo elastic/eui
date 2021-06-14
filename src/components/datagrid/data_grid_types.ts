@@ -64,10 +64,6 @@ export interface EuiDataGridColumn {
    */
   isResizable?: boolean;
   /**
-   * Defaults to true. Defines whether or not the column's cells can be truncated.
-   */
-  isTruncated?: boolean;
-  /**
    * Initial width (in pixels) of the column
    */
   initialWidth?: number;

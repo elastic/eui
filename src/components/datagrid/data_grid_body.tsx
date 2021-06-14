@@ -563,8 +563,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 
       if (rowHeights) {
         if (rowHeights.initialHeights) {
-          const initialHeight =
-            rowHeights.initialHeights[correctRowIndex];
+          const initialHeight = rowHeights.initialHeights[correctRowIndex];
 
           if (typeof initialHeight === 'object' && initialHeight.lineCount) {
             return calculateHeightForLineCount(initialHeight.lineCount);
@@ -593,11 +592,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   }, [getRowHeight]);
 
   useEffect(() => {
-    if (
-      gridRef.current &&
-      rowHeights &&
-      rowHeights.initialHeights
-    ) {
+    if (gridRef.current && rowHeights && rowHeights.initialHeights) {
       gridRef.current.resetAfterRowIndex(0);
     }
   }, [pagination?.pageIndex, rowHeights]);
@@ -606,8 +601,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     ? pagination.pageSize
     : visibleRowIndices.length;
   const unconstrainedHeight =
-    (rowHeights ? rowHeights.defaultHeight : rowHeight) *
-      rowCountToAffordFor +
+    (rowHeights ? rowHeights.defaultHeight : rowHeight) * rowCountToAffordFor +
     headerRowHeight +
     footerRowHeight;
 
