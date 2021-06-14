@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.3.0`.
+- Added draggable highlight area to `EuiDualRange` ([#4776](https://github.com/elastic/eui/pull/4776))
 
 ## [`34.3.0`](https://github.com/elastic/eui/tree/v34.3.0)
 

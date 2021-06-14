@@ -26,7 +26,7 @@ import React, {
   useEffect,
 } from 'react';
 import classNames from 'classnames';
-import { useCombinedRefs } from '../../../services';
+import { useCombinedRefs, throttle } from '../../../services';
 import { EuiSelectable, EuiSelectableProps } from '../selectable';
 import { EuiPopoverTitle, EuiPopoverFooter } from '../../popover';
 import { EuiPopover, Props as PopoverProps } from '../../popover/popover';
@@ -42,7 +42,6 @@ import {
   EuiBreakpointSize,
   isWithinBreakpoints,
 } from '../../../services/breakpoint';
-import { throttle } from '../../color_picker/utils';
 import { EuiSpacer } from '../../spacer';
 
 export type EuiSelectableTemplateSitewideProps = Partial<

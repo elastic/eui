@@ -387,6 +387,36 @@ exports[`EuiDualRange props inputs should render 1`] = `
 </div>
 `;
 
+exports[`EuiDualRange props isDraggable should render 1`] = `
+<div
+  class="euiRangeWrapper euiDualRange"
+>
+  <div
+    aria-hidden="false"
+    class="euiRangeTrack"
+  >
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:1%;width:7.000000000000001%"
+      />
+    </div>
+    <input
+      aria-hidden="true"
+      class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
+      id="generated-id"
+      max="100"
+      min="0"
+      step="1"
+      tabindex="-1"
+      type="range"
+    />
+  </div>
+</div>
+`;
+
 exports[`EuiDualRange props labels should render 1`] = `
 <div
   class="euiRangeWrapper euiDualRange"
