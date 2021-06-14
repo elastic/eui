@@ -58,6 +58,11 @@ describe('EuiPanel', () => {
 
         expect(component).toMatchSnapshot();
       });
+      test('can be a string value', () => {
+        const component = render(<EuiPanel hasBorder="1px 0 0 0" />);
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('paddingSize', () => {

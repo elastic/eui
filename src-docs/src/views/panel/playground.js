@@ -19,10 +19,9 @@ export const panelConfig = () => {
     hidden: false,
   };
 
-  propsToUse.betaBadgeTooltipContent = {
-    ...propsToUse.betaBadgeTooltipContent,
+  propsToUse.hasBorder = {
+    ...propsToUse.hasBorder,
     type: PropTypes.String,
-    hidden: false,
   };
 
   propsToUse.onClick = {

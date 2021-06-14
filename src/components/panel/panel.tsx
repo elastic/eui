@@ -19,6 +19,7 @@
 
 import React, {
   ButtonHTMLAttributes,
+  CSSProperties,
   FunctionComponent,
   HTMLAttributes,
   Ref,
@@ -72,11 +73,11 @@ export interface _EuiPanelProps extends CommonProps {
    */
   hasShadow?: boolean;
   /**
-   * Adds a slight 1px border on all edges.
-   * Only works when `color="plain | transparent"`
-   * Default is `undefined` and will default to that theme's panel style
+   * Adds a slight 1px border on all edges when `true` or pass a valid `border-width` value.
+   * Only works when `color="plain | transparent"`.
+   * Default is `undefined` and will default to that theme's panel style.
    */
-  hasBorder?: boolean;
+  hasBorder?: boolean | CSSProperties['borderWidth'];
   /**
    * Padding for all four sides
    */
@@ -125,6 +126,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   grow = true,
   panelRef,
   element,
+  style = {},
   ...rest
 }) => {
   // Shadows are only allowed when there's a white background (plain)
@@ -141,7 +143,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
       // While the `has` classes turn it on for Amsterdam
       'euiPanel--hasShadow': canHaveShadow && hasShadow === true,
       'euiPanel--noShadow': !canHaveShadow || hasShadow === false,
-      'euiPanel--hasBorder': canHaveBorder && hasBorder === true,
+      'euiPanel--hasBorder': canHaveBorder && Boolean(hasBorder) === true,
       'euiPanel--noBorder': !canHaveBorder || hasBorder === false,
       'euiPanel--flexGrowZero': !grow,
       'euiPanel--isClickable': rest.onClick,
@@ -149,11 +151,18 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     className
   );
 
+  // If `hasBorder` is a string instead of a boolean, add it as the `borderWidth` style property
+  const newStyle = style;
+  if (hasBorder !== true && Boolean(hasBorder)) {
+    newStyle.borderWidth = hasBorder as CSSProperties['borderWidth'];
+  }
+
   if (rest.onClick && element !== 'div') {
     return (
       <button
         ref={panelRef as Ref<HTMLButtonElement>}
         className={classes}
+        style={newStyle}
         {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
         {children}
       </button>
@@ -164,6 +173,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     <div
       ref={panelRef as Ref<HTMLDivElement>}
       className={classes}
+      style={newStyle}
       {...(rest as HTMLAttributes<HTMLDivElement>)}>
       {children}
     </div>
