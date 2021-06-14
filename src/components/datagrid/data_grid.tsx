@@ -55,7 +55,7 @@ import {
   EuiDataGridFocusedCell,
   EuiDataGridOnColumnResizeHandler,
   EuiDataGridStyleFooter,
-  EuiDataGridRowHeightOptions,
+  EuiDataGridRowHeights,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiButtonEmpty } from '../button';
@@ -166,7 +166,7 @@ type CommonGridProps = CommonProps &
      */
     width?: CSSProperties['width'];
 
-    rowHeightOptions?: EuiDataGridRowHeightOptions;
+    rowHeights?: EuiDataGridRowHeights;
   };
 
 // Force either aria-label or aria-labelledby to be defined
@@ -696,7 +696,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     minSizeForControls = MINIMUM_WIDTH_FOR_GRID_CONTROLS,
     height,
     width,
-    rowHeightOptions,
+    rowHeights,
     ...rest
   } = props;
 
@@ -1137,7 +1137,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                         renderFooterCellValue={renderFooterCellValue}
                         rowCount={rowCount}
                         interactiveCellId={interactiveCellId}
-                        rowHeightOptions={rowHeightOptions}
+                        rowHeights={rowHeights}
                       />
                     </div>
                   </div>

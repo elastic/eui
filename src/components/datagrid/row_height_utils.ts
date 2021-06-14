@@ -22,7 +22,7 @@ import {
   EuiDataGridStyleCellPaddings,
   EuiDataGridStyleFontSizes,
   EuiDataGridStyle,
-  EuiDataGridRowHeightOptions,
+  EuiDataGridRowHeights,
 } from './data_grid_types';
 
 const cellPaddingsToClassMap: {
@@ -68,11 +68,11 @@ export const calculateHeightForLineCount = (lineCount: number) => {
 };
 
 export const getStylesForCell = (
-  rowHeightOptions: EuiDataGridRowHeightOptions,
+  rowHeights: EuiDataGridRowHeights,
   rowIndex: number
 ): CSSProperties => {
-  const initialHeight = rowHeightOptions.initialHeights
-    ? rowHeightOptions.initialHeights[rowIndex]
+  const initialHeight = rowHeights.initialHeights
+    ? rowHeights.initialHeights[rowIndex]
     : undefined;
 
   if (typeof initialHeight === 'object' && initialHeight.lineCount) {
