@@ -24,6 +24,10 @@
     }
 
     outline: none;
+
+    ~ .euiRangeThumb {
+      background-color: $euiColorPrimary;
+    }
   }
 
   &:disabled {

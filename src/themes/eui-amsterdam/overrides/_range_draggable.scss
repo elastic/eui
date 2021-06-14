@@ -1,0 +1,9 @@
+.euiRangeDraggable {
+  &:focus-visible {
+    outline: none;
+
+    ~ .euiRangeThumb {
+      @include euiRangeThumbFocus;
+    }
+  }
+}
