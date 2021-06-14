@@ -162,10 +162,6 @@ export class EuiComboBoxOptionsList<T> extends Component<
     ) {
       this.updatePosition();
     }
-
-    if (this.listRef && typeof this.props.activeOptionIndex !== 'undefined') {
-      this.listRef.scrollToItem(this.props.activeOptionIndex, 'auto');
-    }
   }
 
   componentWillUnmount() {
@@ -195,6 +191,10 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
   setListRef = (ref: FixedSizeList | null) => {
     this.listRef = ref;
+
+    if (this.listRef && typeof this.props.activeOptionIndex !== 'undefined') {
+      this.listRef.scrollToItem(this.props.activeOptionIndex, 'auto');
+    }
   };
 
   setListBoxRef = (ref: HTMLUListElement | null) => {
