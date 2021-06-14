@@ -26,4 +26,15 @@
 
     outline: none;
   }
+
+  &:disabled {
+    // sass-lint:disable-block mixins-before-declarations
+    @include euiRangeThumbPerBrowser {
+      background-color: $euiRangeThumbBackgroundColor;
+    }
+
+    ~ .euiRangeThumb {
+      background-color: $euiRangeThumbBackgroundColor;
+    }
+  }
 }
