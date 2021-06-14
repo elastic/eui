@@ -1,12 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiPageContent accepts panel props 1`] = `
-<div
-  class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--borderRadiusNone"
-  role="main"
-/>
-`;
-
 exports[`EuiPageContent horizontalPosition is rendered 1`] = `
 <div
   class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--horizontalCenter"
@@ -14,7 +7,41 @@ exports[`EuiPageContent horizontalPosition is rendered 1`] = `
 />
 `;
 
-exports[`EuiPageContent is rendered 1`] = `
+exports[`EuiPageContent role can be removed 1`] = `
+<div
+  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent"
+/>
+`;
+
+exports[`EuiPageContent template accepts EuiPanel props 1`] = `
+<div
+  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent"
+  role="main"
+/>
+`;
+
+exports[`EuiPageContent template accepts EuiPanel props 2`] = `
+<div
+  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+  role="main"
+/>
+`;
+
+exports[`EuiPageContent template accepts EuiPanel props 3`] = `
+<div
+  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--flex"
+  role="main"
+/>
+`;
+
+exports[`EuiPageContent template accepts EuiPanel props 4`] = `
+<div
+  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent"
+  role="main"
+/>
+`;
+
+exports[`EuiPageContent template is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent testClass1 testClass2"
@@ -23,9 +50,30 @@ exports[`EuiPageContent is rendered 1`] = `
 />
 `;
 
-exports[`EuiPageContent role can be removed 1`] = `
+exports[`EuiPageContent template is rendered 2`] = `
 <div
-  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent"
+  aria-label="aria-label"
+  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent testClass1 testClass2"
+  data-test-subj="test subject string"
+  role="main"
+/>
+`;
+
+exports[`EuiPageContent template is rendered 3`] = `
+<div
+  aria-label="aria-label"
+  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent testClass1 testClass2"
+  data-test-subj="test subject string"
+  role="main"
+/>
+`;
+
+exports[`EuiPageContent template is rendered 4`] = `
+<div
+  aria-label="aria-label"
+  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent testClass1 testClass2"
+  data-test-subj="test subject string"
+  role="main"
 />
 `;
 

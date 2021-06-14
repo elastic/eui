@@ -22,12 +22,29 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiPageContent } from './page_content';
+import { TEMPLATES } from '../_template';
 
 describe('EuiPageContent', () => {
-  test('is rendered', () => {
-    const component = render(<EuiPageContent {...requiredProps} />);
+  describe('template', () => {
+    TEMPLATES.forEach((template) => {
+      test('is rendered', () => {
+        const component = render(<EuiPageContent {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
+      });
+
+      it('accepts EuiPanel props', () => {
+        const component = render(
+          <EuiPageContent
+            template={template}
+            paddingSize={'s'}
+            color="danger"
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 
   test('verticalPosition is rendered', () => {
@@ -44,18 +61,6 @@ describe('EuiPageContent', () => {
 
   test('role can be removed', () => {
     const component = render(<EuiPageContent role={null} />);
-
-    expect(component).toMatchSnapshot();
-  });
-
-  test('accepts panel props', () => {
-    const component = render(
-      <EuiPageContent
-        borderRadius="none"
-        hasShadow={false}
-        paddingSize="none"
-      />
-    );
 
     expect(component).toMatchSnapshot();
   });

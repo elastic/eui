@@ -28,45 +28,35 @@ import {
   _EuiPanelDivlike,
 } from '../../panel/panel';
 import { HTMLAttributes } from 'enzyme';
+import { _EuiPageTemplate } from '../_template';
 
 export type EuiPageContentVerticalPositions = 'center';
 export type EuiPageContentHorizontalPositions = 'center';
 
-const verticalPositionToClassNameMap: {
-  [position in EuiPageContentVerticalPositions]: string | null;
-} = {
-  center: 'euiPageContent--verticalCenter',
-};
-
-const horizontalPositionToClassNameMap: {
-  [position in EuiPageContentHorizontalPositions]: string | null;
-} = {
-  center: 'euiPageContent--horizontalCenter',
-};
-
-export type EuiPageContentProps = CommonProps &
-  // Use only the div properties of EuiPanel (not button)
-  _EuiPanelProps &
-  Omit<_EuiPanelDivlike, 'onClick' | 'role'> & {
-    /**
-     * **DEPRECATED: use `paddingSize` instead.**
-     */
-    panelPaddingSize?: PanelPaddingSize;
-    verticalPosition?: EuiPageContentVerticalPositions;
-    horizontalPosition?: EuiPageContentHorizontalPositions;
-    /**
-     * There should only be one EuiPageContent per page and should contain the main contents.
-     * If this is untrue, set role = `null`, or change it to match your needed aria role
-     */
-    role?: HTMLAttributes['role'] | null;
-  };
+export interface EuiPageContentProps
+  extends CommonProps,
+    // Use only the div properties of EuiPanel (not button)
+    _EuiPanelProps,
+    Omit<_EuiPanelDivlike, 'onClick' | 'role'>,
+    _EuiPageTemplate {
+  /**
+   * **DEPRECATED: use `paddingSize` instead.**
+   */
+  panelPaddingSize?: PanelPaddingSize;
+  verticalPosition?: EuiPageContentVerticalPositions;
+  horizontalPosition?: EuiPageContentHorizontalPositions;
+  /**
+   * There should only be one EuiPageContent per page and should contain the main contents.
+   * If this is untrue, set role = `null`, or change it to match your needed aria role
+   */
+  role?: HTMLAttributes['role'] | null;
+}
 
 export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
+  template,
   verticalPosition,
   horizontalPosition,
   panelPaddingSize,
-  paddingSize = 'l',
-  borderRadius,
   children,
   className,
   role: _role = 'main',
@@ -74,26 +64,50 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
 }) => {
   const role = _role === null ? undefined : _role;
 
-  const borderRadiusClass =
-    borderRadius === 'none' ? 'euiPageContent--borderRadiusNone' : '';
-
   const classes = classNames(
     'euiPageContent',
-    borderRadiusClass,
-    verticalPosition ? verticalPositionToClassNameMap[verticalPosition] : null,
-    horizontalPosition
-      ? horizontalPositionToClassNameMap[horizontalPosition]
-      : null,
+    {
+      'euiPageContent--verticalCenter':
+        verticalPosition === 'center' || template === 'centeredBody',
+      'euiPageContent--horizontalCenter':
+        horizontalPosition === 'center' || template === 'centeredBody',
+      'euiPageContent--flex': template === 'centeredContent',
+    },
     className
   );
 
+  let templateProps: Partial<_EuiPanelProps> = {
+    paddingSize: rest.paddingSize || panelPaddingSize || 'l',
+  };
+
+  if (template === 'default') {
+    templateProps = {
+      borderRadius: 'none',
+      hasShadow: false,
+      paddingSize: 'none',
+    };
+  } else if (template === 'empty') {
+    templateProps = {
+      borderRadius: 'none',
+      hasBorder: false,
+      hasShadow: false,
+      color: 'transparent',
+      paddingSize: 'none',
+    };
+  } else if (template === 'centeredContent') {
+    templateProps = {
+      borderRadius: 'none',
+      hasShadow: false,
+      paddingSize: templateProps.paddingSize,
+    };
+  } else if (template === 'centeredBody') {
+    templateProps = {
+      paddingSize: 'none',
+    };
+  }
+
   return (
-    <EuiPanel
-      className={classes}
-      paddingSize={panelPaddingSize ?? paddingSize}
-      borderRadius={borderRadius}
-      role={role}
-      {...rest}>
+    <EuiPanel className={classes} role={role} {...templateProps} {...rest}>
       {children}
     </EuiPanel>
   );
