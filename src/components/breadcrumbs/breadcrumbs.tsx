@@ -26,7 +26,6 @@ import React, {
   useState,
 } from 'react';
 import classNames from 'classnames';
-import { throttle } from '../color_picker/utils';
 
 import { CommonProps } from '../common';
 import { EuiI18n } from '../i18n';
@@ -34,6 +33,7 @@ import { EuiInnerText } from '../inner_text';
 import { EuiLink } from '../link';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
+import { throttle } from '../../services';
 import { EuiBreakpointSize, getBreakpoint } from '../../services/breakpoint';
 
 export type EuiBreadcrumbResponsiveMaxCount = {

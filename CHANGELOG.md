@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added draggable highlight area to `EuiDualRange` ([#4776](https://github.com/elastic/eui/pull/4776))
+
 **Bug fixes**
 
 - Fixed `EuiRange` container expansion due to negative margin value ([#4815](https://github.com/elastic/eui/pull/4815))
@@ -7,7 +9,7 @@
 
 **Theme: Amsterdam**
 
-- Fixed styles for `EuiRange` ([#4815](https://github.com/elastic/eui/pull/4815))
+- Fixed styles for `EuiRange` ([#4815](https://github.com/elastic/eui/pull/4815)
 
 ## [`34.3.0`](https://github.com/elastic/eui/tree/v34.3.0)
 
