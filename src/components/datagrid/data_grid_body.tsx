@@ -151,6 +151,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
     schemaDetectors,
     rowHeightOptions,
     getCorrectRowIndex,
+    getRowHeight,
   } = data;
 
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
@@ -215,6 +216,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         isExpandable={false}
         className={classes}
         setRowHeight={setRowHeight}
+        getRowHeight={getRowHeight}
         rowHeightOptions={rowHeightOptions}
         getCorrectRowIndex={getCorrectRowIndex}
         style={{
@@ -243,6 +245,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         className={classes}
         rowHeightOptions={rowHeightOptions}
         getCorrectRowIndex={getCorrectRowIndex}
+        getRowHeight={getRowHeight}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -279,6 +282,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         className={classes}
         rowHeightOptions={rowHeightOptions}
         getCorrectRowIndex={getCorrectRowIndex}
+        getRowHeight={getRowHeight}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -690,6 +694,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 itemData={{
                   schemaDetectors,
                   setRowHeight,
+                  getRowHeight,
                   getCorrectRowIndex,
                   rowMap,
                   rowOffset: pagination

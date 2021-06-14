@@ -93,6 +93,7 @@ export interface EuiDataGridCellProps {
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
   setRowHeight?: (height: number) => void;
+  getRowHeight?: (rowIndex: number) => number;
   style?: React.CSSProperties;
   rowHeightOptions?: EuiDataGridRowHeightOptions;
   getCorrectRowIndex?: (rowIndex: number) => number;
@@ -297,7 +298,17 @@ export class EuiDataGridCell extends Component<
     if (nextState.disableCellTabIndex !== this.state.disableCellTabIndex)
       return true;
 
-    return true;
+    // check if we should update cell because height was changed
+    if (this.cellRef.current && this.props.getRowHeight) {
+      if (
+        this.cellRef.current.offsetHeight !==
+        this.props.getRowHeight(nextProps.rowIndex)
+      ) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   setCellProps = (cellProps: HTMLAttributes<HTMLDivElement>) => {
