@@ -577,18 +577,6 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
           onChange={this.handleSliderChange}
           value={value}
           aria-hidden={showInput === true}>
-          {showRange && this.isValid && (
-            <EuiRangeHighlight
-              compressed={compressed}
-              hasFocus={this.state.hasFocus}
-              showTicks={showTicks}
-              min={Number(min)}
-              max={Number(max)}
-              lowerValue={Number(this.lowerValue)}
-              upperValue={Number(this.upperValue)}
-            />
-          )}
-
           <EuiRangeSlider
             className="euiDualRange__slider"
             ref={this.handleRangeSliderRefUpdate}
@@ -610,6 +598,18 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
             onBlur={onBlur}
             {...rest}
           />
+
+          {showRange && this.isValid && (
+            <EuiRangeHighlight
+              compressed={compressed}
+              hasFocus={this.state.hasFocus}
+              showTicks={showTicks}
+              min={Number(min)}
+              max={Number(max)}
+              lowerValue={Number(this.lowerValue)}
+              upperValue={Number(this.upperValue)}
+            />
+          )}
 
           {this.state.rangeSliderRefAvailable && (
             <React.Fragment>

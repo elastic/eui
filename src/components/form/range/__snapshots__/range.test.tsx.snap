@@ -320,14 +320,6 @@ exports[`EuiRange props range should render 1`] = `
     aria-hidden="false"
     class="euiRangeTrack"
   >
-    <div
-      class="euiRangeHighlight"
-    >
-      <div
-        class="euiRangeHighlight__progress"
-        style="margin-left:0%;width:8%"
-      />
-    </div>
     <input
       aria-hidden="false"
       class="euiRangeSlider euiRangeSlider--hasRange"
@@ -338,6 +330,14 @@ exports[`EuiRange props range should render 1`] = `
       type="range"
       value="8"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:8%"
+      />
+    </div>
   </div>
 </div>
 `;

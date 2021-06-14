@@ -114,7 +114,6 @@ export class EuiRange extends Component<EuiRangeProps> {
   state = {
     id: this.props.id || htmlIdGenerator()(),
     isPopoverOpen: false,
-    hasFocus: false,
   };
 
   handleOnChange = (
@@ -168,26 +167,6 @@ export class EuiRange extends Component<EuiRangeProps> {
     this.setState({
       isPopoverOpen: false,
     });
-  };
-
-  toggleHasFocus = (shouldFocused = !this.state.hasFocus) => {
-    this.setState({
-      hasFocus: shouldFocused,
-    });
-  };
-
-  onSliderFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (this.props.onFocus) {
-      this.props.onFocus(e);
-    }
-    this.toggleHasFocus(true);
-  };
-
-  onSliderBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (this.props.onBlur) {
-      this.props.onBlur(e);
-    }
-    this.toggleHasFocus(false);
   };
 
   render() {
@@ -283,18 +262,6 @@ export class EuiRange extends Component<EuiRangeProps> {
           onChange={this.handleOnChange}
           value={value}
           aria-hidden={showInput === true}>
-          {showRange && this.isValid && (
-            <EuiRangeHighlight
-              compressed={compressed}
-              showTicks={showTicks}
-              hasFocus={this.state.hasFocus}
-              min={Number(min)}
-              max={Number(max)}
-              lowerValue={Number(min)}
-              upperValue={Number(value)}
-            />
-          )}
-
           <EuiRangeSlider
             id={showInput ? undefined : id} // Attach id only to the input if there is one
             name={name}
@@ -314,11 +281,22 @@ export class EuiRange extends Component<EuiRangeProps> {
                 ? () => (this.preventPopoverClose = true)
                 : undefined
             }
-            onFocus={showInput === true ? undefined : this.onSliderFocus}
-            onBlur={showInputOnly ? this.onInputBlur : this.onSliderBlur}
+            onFocus={showInput === true ? undefined : onFocus}
+            onBlur={showInputOnly ? this.onInputBlur : onBlur}
             aria-hidden={showInput === true ? true : false}
             {...rest}
           />
+
+          {showRange && this.isValid && (
+            <EuiRangeHighlight
+              compressed={compressed}
+              showTicks={showTicks}
+              min={Number(min)}
+              max={Number(max)}
+              lowerValue={Number(min)}
+              upperValue={Number(value)}
+            />
+          )}
 
           {showValue && !!String(value).length && (
             <EuiRangeTooltip
