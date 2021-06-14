@@ -21,44 +21,53 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiPageContentBody, PADDING_SIZES } from './page_content_body';
+import { EuiPageContentBody } from './page_content_body';
+import { TEMPLATES } from '../_template';
 
 describe('EuiPageContentBody', () => {
-  test('is rendered', () => {
-    const component = render(<EuiPageContentBody {...requiredProps} />);
+  describe('template', () => {
+    TEMPLATES.forEach((template) => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiPageContentBody template={template} {...requiredProps} />
+        );
 
-    expect(component).toMatchSnapshot();
-  });
+        expect(component).toMatchSnapshot();
+      });
 
-  describe('paddingSize', () => {
-    PADDING_SIZES.forEach((size) => {
-      it(`${size} is rendered`, () => {
-        const component = render(<EuiPageContentBody paddingSize={size} />);
+      it('accepts EuiPanel props', () => {
+        const component = render(
+          <EuiPageContentBody
+            template={template}
+            paddingSize={'s'}
+            color="danger"
+          />
+        );
 
         expect(component).toMatchSnapshot();
       });
     });
-  });
 
-  describe('restrict width', () => {
-    test('can be set to a default', () => {
-      const component = render(<EuiPageContentBody restrictWidth={true} />);
+    describe('restrict width', () => {
+      test('can be set to a default', () => {
+        const component = render(<EuiPageContentBody restrictWidth={true} />);
 
-      expect(component).toMatchSnapshot();
-    });
+        expect(component).toMatchSnapshot();
+      });
 
-    test('can be set to a custom number', () => {
-      const component = render(<EuiPageContentBody restrictWidth={1024} />);
+      test('can be set to a custom number', () => {
+        const component = render(<EuiPageContentBody restrictWidth={1024} />);
 
-      expect(component).toMatchSnapshot();
-    });
+        expect(component).toMatchSnapshot();
+      });
 
-    test('can be set to a custom value and does not override custom style', () => {
-      const component = render(
-        <EuiPageContentBody restrictWidth="24rem" style={{ color: 'red ' }} />
-      );
+      test('can be set to a custom value and does not override custom style', () => {
+        const component = render(
+          <EuiPageContentBody restrictWidth="24rem" style={{ color: 'red ' }} />
+        );
 
-      expect(component).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
+      });
     });
   });
 });

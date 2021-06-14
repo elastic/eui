@@ -2,10 +2,9 @@
   @include euiPageRestrictWidth;
 }
 
-// Uses the same values as EuiPanel
-@each $modifier, $amount in $euiPanelPaddingModifiers {
-  .euiPageContentBody--#{$modifier} {
-    padding: $amount;
-  }
+.euiPageContentBody--centeredContent {
+  align-self: center;
+  margin: auto;
+  width: auto;
+  flex-grow: 0; // Offsets the properties of .euiPanel within flexboxes
 }
-
