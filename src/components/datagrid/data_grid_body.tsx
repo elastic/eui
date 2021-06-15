@@ -591,7 +591,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 
       return rowHeight;
     },
-    [rowHeight, rowHeightsOptions, getCorrectRowIndex]
+    [rowHeight, rowHeightsOptions, getCorrectRowIndex, rowHeightUtils]
   );
 
   useEffect(() => {

@@ -899,7 +899,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
   useEffect(() => {
     rowHeightUtils.computedStylesForGridCell(gridStyles);
-  }, [gridStyles]);
+  }, [gridStyles, rowHeightUtils]);
 
   const classes = classNames(
     'euiDataGrid',
