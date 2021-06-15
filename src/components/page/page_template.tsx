@@ -22,14 +22,9 @@ import classNames from 'classnames';
 import { EuiPage, EuiPageProps, SIZES } from './page';
 import { EuiPageSideBar, EuiPageSideBarProps } from './page_side_bar';
 import { EuiPageBody, EuiPageBodyProps } from './page_body';
-import { EuiPageHeader, EuiPageHeaderProps } from './page_header';
-import {
-  EuiPageContent,
-  EuiPageContentBody,
-  EuiPageContentProps,
-  EuiPageContentBodyProps,
-} from './page_content';
-import { EuiBottomBarProps, EuiBottomBar } from '../bottom_bar';
+import { EuiPageHeaderProps } from './page_header';
+import { EuiPageContentProps, EuiPageContentBodyProps } from './page_content';
+import { EuiBottomBarProps } from '../bottom_bar';
 import { useIsWithinBreakpoints } from '../../services';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { _EuiPageTemplate } from './_template';
@@ -103,7 +98,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   pageContentProps,
   pageContentBodyProps,
   bottomBar,
-  bottomBarProps,
+  bottomBarProps = {},
   minHeight = 460,
   ...rest
 }) => {
@@ -152,327 +147,38 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   const classes = classNames('euiPageTemplate', fullHeightClass, className);
   const pageStyle = { minHeight, ...rest.style };
 
+  bottomBarProps.position = canFullHeight && fullHeight ? 'static' : 'sticky';
+
   /**
    * This seems very repetitious but it's the most readable, scalable, and maintainable
    */
+  const sideBarNode = pageSideBar && (
+    <EuiPageSideBar sticky paddingSize={paddingSize} {...pageSideBarProps}>
+      {pageSideBar}
+    </EuiPageSideBar>
+  );
 
-  switch (template) {
-    /**
-     * CENTERED BODY
-     * The panelled content is centered
-     */
-    case 'centeredBody':
-      return pageSideBar ? (
-        <EuiPage
-          className={classes}
-          paddingSize="none"
-          grow={grow}
-          {...rest}
-          style={pageStyle}>
-          <EuiPageSideBar
-            sticky
-            paddingSize={paddingSize}
-            {...pageSideBarProps}>
-            {pageSideBar}
-          </EuiPageSideBar>
+  return (
+    <EuiPage
+      className={classes}
+      paddingSize="none"
+      grow={grow}
+      {...rest}
+      style={pageStyle}>
+      {sideBarNode}
 
-          <EuiPageBody paddingSize={paddingSize} {...pageBodyProps}>
-            {pageHeader && (
-              <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
-            )}
-            <EuiPageContent
-              verticalPosition="center"
-              horizontalPosition="center"
-              paddingSize={paddingSize}
-              {...pageContentProps}>
-              <EuiPageContentBody
-                restrictWidth={restrictWidth}
-                {...pageContentBodyProps}>
-                {children}
-              </EuiPageContentBody>
-            </EuiPageContent>
-          </EuiPageBody>
-        </EuiPage>
-      ) : (
-        <EuiPage
-          className={classes}
-          paddingSize="none"
-          grow={grow}
-          {...rest}
-          style={pageStyle}>
-          <EuiPageBody paddingSize="none" {...pageBodyProps}>
-            {pageHeader && (
-              <EuiPageHeader
-                paddingSize={paddingSize}
-                restrictWidth={restrictWidth}
-                {...pageHeader}
-              />
-            )}
-            {/* Extra page body to get the correct alignment and padding of the centered EuiPageContent */}
-            <EuiPageBody paddingSize={paddingSize}>
-              <EuiPageContent
-                verticalPosition="center"
-                horizontalPosition="center"
-                paddingSize={paddingSize}
-                {...pageContentProps}>
-                <EuiPageContentBody
-                  restrictWidth={restrictWidth}
-                  {...pageContentBodyProps}>
-                  {children}
-                </EuiPageContentBody>
-              </EuiPageContent>
-            </EuiPageBody>
-          </EuiPageBody>
-        </EuiPage>
-      );
-
-    /**
-     * CENTERED CONTENT
-     * The content inside the panel is centered
-     */
-    case 'centeredContent':
-      return pageSideBar ? (
-        <EuiPage
-          className={classes}
-          paddingSize="none"
-          grow={grow}
-          {...rest}
-          style={pageStyle}>
-          <EuiPageSideBar
-            sticky
-            paddingSize={paddingSize}
-            {...pageSideBarProps}>
-            {pageSideBar}
-          </EuiPageSideBar>
-
-          <EuiPageBody panelled paddingSize={paddingSize} {...pageBodyProps}>
-            {pageHeader && (
-              <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
-            )}
-            <EuiPageContent
-              verticalPosition="center"
-              horizontalPosition="center"
-              hasShadow={false}
-              color="subdued"
-              paddingSize={paddingSize}
-              {...pageContentProps}>
-              <EuiPageContentBody
-                restrictWidth={restrictWidth}
-                {...pageContentBodyProps}>
-                {children}
-              </EuiPageContentBody>
-            </EuiPageContent>
-          </EuiPageBody>
-        </EuiPage>
-      ) : (
-        <EuiPage
-          className={classes}
-          paddingSize="none"
-          grow={grow}
-          {...rest}
-          style={pageStyle}>
-          <EuiPageBody {...pageBodyProps}>
-            {pageHeader && (
-              <EuiPageHeader
-                paddingSize={paddingSize}
-                restrictWidth={restrictWidth}
-                {...pageHeader}
-              />
-            )}
-            {/* Extra page content to get the correct alignment and padding of the centered EuiPageContent */}
-            <EuiPageContent
-              role={null}
-              borderRadius="none"
-              hasShadow={false}
-              paddingSize={paddingSize}
-              style={{ display: 'flex' }}>
-              <EuiPageContent
-                verticalPosition="center"
-                horizontalPosition="center"
-                hasShadow={false}
-                color="subdued"
-                paddingSize={paddingSize}
-                {...pageContentProps}>
-                <EuiPageContentBody
-                  restrictWidth={restrictWidth}
-                  {...pageContentBodyProps}>
-                  {children}
-                </EuiPageContentBody>
-              </EuiPageContent>
-            </EuiPageContent>
-          </EuiPageBody>
-        </EuiPage>
-      );
-
-    /**
-     * DEFAULT
-     * Typical layout with nothing "centered"
-     */
-    case 'empty':
-      return pageSideBar ? (
-        <EuiPage
-          className={classes}
-          paddingSize="none"
-          grow={grow}
-          {...rest}
-          style={pageStyle}>
-          <EuiPageSideBar
-            sticky
-            paddingSize={paddingSize}
-            {...pageSideBarProps}>
-            {pageSideBar}
-          </EuiPageSideBar>
-
-          <EuiPageBody paddingSize={paddingSize} {...pageBodyProps}>
-            {pageHeader && (
-              <EuiPageHeader restrictWidth={restrictWidth} {...pageHeader} />
-            )}
-            <EuiPageContent
-              hasBorder={false}
-              hasShadow={false}
-              paddingSize={'none'}
-              color={'transparent'}
-              borderRadius={'none'}
-              {...pageContentProps}>
-              <EuiPageContentBody
-                restrictWidth={restrictWidth}
-                {...pageContentBodyProps}>
-                {children}
-              </EuiPageContentBody>
-            </EuiPageContent>
-          </EuiPageBody>
-        </EuiPage>
-      ) : (
-        <EuiPage
-          className={classes}
-          paddingSize="none"
-          grow={grow}
-          {...rest}
-          style={pageStyle}>
-          <EuiPageBody {...pageBodyProps}>
-            {pageHeader && (
-              <EuiPageHeader
-                restrictWidth={restrictWidth}
-                paddingSize={paddingSize}
-                {...pageHeader}
-                style={{ paddingBottom: 0, ...pageHeader?.style }}
-              />
-            )}
-            <EuiPageContent
-              hasBorder={false}
-              hasShadow={false}
-              paddingSize={'none'}
-              color={'transparent'}
-              borderRadius={'none'}
-              {...pageContentProps}>
-              <EuiPageContentBody
-                restrictWidth={restrictWidth}
-                paddingSize={paddingSize}
-                {...pageContentBodyProps}>
-                {children}
-              </EuiPageContentBody>
-            </EuiPageContent>
-          </EuiPageBody>
-        </EuiPage>
-      );
-
-    /**
-     * DEFAULT
-     * Typical layout with nothing "centered"
-     */
-    default:
-      // Only the default template can display a bottom bar
-      const bottomBarNode = bottomBar ? (
-        <EuiBottomBar
-          paddingSize={paddingSize}
-          position={canFullHeight && fullHeight ? 'static' : 'sticky'}
-          // Using uknown here because of the possible conflict with overriding props and position `sticky`
-          {...(bottomBarProps as unknown)}>
-          {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}
-          <EuiPageContentBody
-            paddingSize={'none'}
-            restrictWidth={restrictWidth}>
-            {bottomBar}
-          </EuiPageContentBody>
-        </EuiBottomBar>
-      ) : undefined;
-
-      return pageSideBar ? (
-        <EuiPage
-          className={classes}
-          paddingSize="none"
-          grow={grow}
-          {...rest}
-          style={pageStyle}>
-          <EuiPageSideBar
-            sticky
-            paddingSize={paddingSize}
-            {...pageSideBarProps}>
-            {pageSideBar}
-          </EuiPageSideBar>
-
-          {/* The extra PageBody is to accommodate the bottom bar stretching to both sides */}
-          <EuiPageBody panelled paddingSize="none" {...pageBodyProps}>
-            <EuiPageBody
-              component="div"
-              paddingSize={paddingSize}
-              className={pageBodyProps?.className}>
-              {pageHeader && (
-                <EuiPageHeader
-                  bottomBorder
-                  restrictWidth={restrictWidth}
-                  {...pageHeader}
-                />
-              )}
-              <EuiPageContent
-                hasShadow={false}
-                hasBorder={false}
-                color={'transparent'}
-                borderRadius={'none'}
-                paddingSize="none"
-                {...pageContentProps}>
-                <EuiPageContentBody
-                  restrictWidth={restrictWidth}
-                  {...pageContentBodyProps}>
-                  {children}
-                </EuiPageContentBody>
-              </EuiPageContent>
-            </EuiPageBody>
-            {bottomBarNode}
-          </EuiPageBody>
-        </EuiPage>
-      ) : (
-        <EuiPage
-          className={classes}
-          paddingSize="none"
-          grow={grow}
-          {...rest}
-          style={pageStyle}>
-          <EuiPageBody {...pageBodyProps}>
-            {pageHeader && (
-              <EuiPageHeader
-                restrictWidth={restrictWidth}
-                paddingSize={paddingSize}
-                {...pageHeader}
-              />
-            )}
-            <EuiPageContent
-              hasBorder={pageHeader === undefined ? false : undefined}
-              hasShadow={false}
-              paddingSize={'none'}
-              color={'plain'}
-              borderRadius={'none'}
-              {...pageContentProps}>
-              <EuiPageContentBody
-                restrictWidth={restrictWidth}
-                paddingSize={paddingSize}
-                {...pageContentBodyProps}>
-                {children}
-              </EuiPageContentBody>
-            </EuiPageContent>
-            {bottomBarNode}
-          </EuiPageBody>
-        </EuiPage>
-      );
-  }
+      <EuiPageBody
+        panelled={Boolean(sideBarNode)}
+        {...pageBodyProps}
+        template={template}
+        paddingSize={paddingSize}
+        restrictWidth={restrictWidth}
+        pageHeader={pageHeader}
+        pageContentProps={pageContentProps}
+        pageContentBodyProps={pageContentBodyProps}
+        bottomBar={bottomBar}>
+        {children}
+      </EuiPageBody>
+    </EuiPage>
+  );
 };

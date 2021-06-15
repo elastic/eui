@@ -122,7 +122,7 @@ exports[`EuiPageBody template centeredBody paddingSize is rendered 1`] = `
 
 exports[`EuiPageBody template centeredBody panelled also accepts panelProps 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageBody"
 >
   <div
     class="euiPageBody"
@@ -132,7 +132,7 @@ exports[`EuiPageBody template centeredBody panelled also accepts panelProps 1`] 
 
 exports[`EuiPageBody template centeredBody panelled can be set to true 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody"
 >
   <div
     class="euiPageBody"
@@ -258,7 +258,7 @@ exports[`EuiPageBody template centeredContent paddingSize is rendered 1`] = `
 
 exports[`EuiPageBody template centeredContent panelled also accepts panelProps 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageBody"
 >
   <div
     class="euiPageBody"
@@ -268,7 +268,7 @@ exports[`EuiPageBody template centeredContent panelled also accepts panelProps 1
 
 exports[`EuiPageBody template centeredContent panelled can be set to true 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody"
 >
   <div
     class="euiPageBody"
@@ -394,7 +394,7 @@ exports[`EuiPageBody template default paddingSize is rendered 1`] = `
 
 exports[`EuiPageBody template default panelled also accepts panelProps 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageBody"
 >
   <div
     class="euiPageBody"
@@ -404,7 +404,7 @@ exports[`EuiPageBody template default panelled also accepts panelProps 1`] = `
 
 exports[`EuiPageBody template default panelled can be set to true 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody"
 >
   <div
     class="euiPageBody"
@@ -530,7 +530,7 @@ exports[`EuiPageBody template empty paddingSize is rendered 1`] = `
 
 exports[`EuiPageBody template empty panelled also accepts panelProps 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageBody"
 >
   <div
     class="euiPageBody"
@@ -540,7 +540,7 @@ exports[`EuiPageBody template empty panelled also accepts panelProps 1`] = `
 
 exports[`EuiPageBody template empty panelled can be set to true 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody"
 >
   <div
     class="euiPageBody"

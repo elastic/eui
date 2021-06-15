@@ -235,7 +235,8 @@ export const EuiPageBody = <T extends ComponentTypes>({
 
   return panelled ? (
     <EuiPanel
-      paddingSize={'none'}
+      paddingSize="none"
+      borderRadius="none"
       {...panelProps}
       // Needs the same top class name for flex layout
       className={classNames('euiPageBody', panelProps?.className)}>
