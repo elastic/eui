@@ -516,7 +516,7 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         ref={this.panelRef}
         className={classes}
         onKeyDown={this.onKeyDown}
-        tabIndex={0}
+        tabIndex={-1}
         onAnimationEnd={this.onTransitionComplete}
         {...rest}>
         {panelTitle}

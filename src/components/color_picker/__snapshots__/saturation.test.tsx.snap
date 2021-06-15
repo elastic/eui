@@ -10,7 +10,6 @@ exports[`EuiHue accepts a color 1`] = `
   data-test-subj="test subject string"
   role="application"
   style="background:hsl(180, 100%, 50%)"
-  tabindex="0"
 >
   <p
     class="euiScreenReaderOnly"
@@ -46,7 +45,6 @@ exports[`EuiHue is rendered 1`] = `
   data-test-subj="test subject string"
   role="application"
   style="background:hsl(1, 100%, 50%)"
-  tabindex="0"
 >
   <p
     class="euiScreenReaderOnly"

@@ -20,6 +20,7 @@
   &:focus {
     .euiAccordion__iconWrapper {
       @include euiAccordionIconFocus;
+      outline: none; // The `outline` gets applied to the whole button, we don't need a second one on the icon
     }
   }
 }
