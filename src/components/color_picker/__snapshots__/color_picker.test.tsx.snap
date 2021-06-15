@@ -746,6 +746,7 @@ exports[`renders inline EuiColorPicker 1`] = `
       data-test-subj="euiSaturation"
       role="application"
       style="background:hsl(30, 100%, 50%)"
+      tabindex="0"
     >
       <p
         class="euiScreenReaderOnly"
