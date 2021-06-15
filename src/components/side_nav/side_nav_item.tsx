@@ -22,6 +22,8 @@ import React, {
   ReactNode,
   ReactElement,
   MouseEventHandler,
+  useState,
+  useEffect,
 } from 'react';
 import classNames from 'classnames';
 
@@ -87,6 +89,7 @@ export interface _EuiSideNavItemProps {
   isOpen?: boolean;
   isParent?: boolean;
   depth?: number;
+  childrenOnly?: boolean;
 }
 
 type ExcludeEuiSideNavItemProps<T> = Pick<
@@ -171,18 +174,29 @@ export function EuiSideNavItem<
   truncate = true,
   emphasize,
   buttonClassName,
+  childrenOnly,
   ...rest
 }: EuiSideNavItemProps<T>) {
   const isHrefValid = !_href || validateHref(_href);
   const href = isHrefValid ? _href : '';
-  let childItems;
+  const isClickable = onClick || href;
 
-  if (items && isOpen) {
+  // Forcing accordion style item if not linked, but has children
+  const [itemIsOpen, setItemIsOpen] = useState(isOpen);
+  useEffect(() => {
+    setItemIsOpen(isOpen);
+  }, [isOpen]);
+
+  const toggleItemOpen = () => {
+    setItemIsOpen((isOpen) => !isOpen);
+  };
+
+  let childItems;
+  if (items && itemIsOpen) {
     childItems = <div className="euiSideNavItem__items">{items}</div>;
   }
 
   let buttonIcon;
-
   if (icon) {
     buttonIcon = cloneElement(icon, {
       className: classNames('euiSideNavItemButton__icon', icon.props.className),
@@ -205,8 +219,8 @@ export function EuiSideNavItem<
   const buttonClasses = classNames(
     'euiSideNavItemButton',
     {
-      'euiSideNavItemButton--isClickable': onClick || href,
-      'euiSideNavItemButton-isOpen': depth > 0 && isOpen && !isSelected,
+      'euiSideNavItemButton--isClickable': isClickable,
+      'euiSideNavItemButton-isOpen': depth > 0 && itemIsOpen && !isSelected,
       'euiSideNavItemButton-isSelected': isSelected,
     },
     buttonClassName
@@ -214,8 +228,8 @@ export function EuiSideNavItem<
 
   let caret;
 
-  if (depth > 0 && isParent && !isOpen && !isSelected) {
-    caret = <EuiIcon type="arrowDown" color="subdued" size="s" />;
+  if (depth > 0 && childrenOnly) {
+    caret = <EuiIcon type={itemIsOpen ? 'arrowDown' : 'arrowRight'} size="s" />;
   }
 
   const buttonContent = (
@@ -243,7 +257,7 @@ export function EuiSideNavItem<
     href,
     rel,
     target,
-    onClick,
+    onClick: childrenOnly ? toggleItemOpen : onClick,
     className: buttonClasses,
     children: buttonContent,
   };

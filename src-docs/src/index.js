@@ -8,7 +8,7 @@ import configureStore, { history } from './store/configure_store';
 import { AppContainer } from './views/app_container';
 import { HomeView } from './views/home/home_view';
 import { NotFoundView } from './views/not_found/not_found_view';
-import { registerTheme } from './services';
+import { registerTheme, ExampleContext } from './services';
 
 import Routes from './routes';
 import themeLight from './theme_light.scss';
@@ -51,10 +51,11 @@ ReactDOM.render(
         <ScrollToHash />
         <Switch>
           {routes.map(
-            ({ name, path, sections, isNew, component, from, to }, i) => {
-              const mainComponent = () => (
+            ({ name, path, sections, isNew, component, from, to }) => {
+              const mainComponent = (
                 <Route
-                  key={i}
+                  key={path}
+                  exact
                   path={`/${path}`}
                   render={(props) => {
                     const { location } = props;
@@ -76,14 +77,34 @@ ReactDOM.render(
                 />
               );
 
+              const standaloneSections = (sections || [])
+                .map(({ id, fullScreen }) => {
+                  if (!fullScreen) return undefined;
+                  const { slug, demo } = fullScreen;
+                  return (
+                    <Route
+                      key={`/${path}/${slug}`}
+                      path={`/${path}/${slug}`}
+                      render={() => (
+                        <ExampleContext.Provider
+                          value={{ parentPath: `/${path}#${id}` }}>
+                          {demo}
+                        </ExampleContext.Provider>
+                      )}
+                    />
+                  );
+                })
+                .filter((x) => !!x);
+
               if (from)
                 return [
-                  mainComponent(),
+                  mainComponent,
+                  ...standaloneSections,
                   <Route exact path={`/${from}`}>
                     <Redirect to={`/${to}`} />
                   </Route>,
                 ];
-              else if (component) return [mainComponent()];
+              else if (component) return [mainComponent, ...standaloneSections];
               return null;
             }
           )}
