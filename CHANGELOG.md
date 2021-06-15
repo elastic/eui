@@ -2,6 +2,10 @@
 
 - Added draggable highlight area to `EuiDualRange` ([#4776](https://github.com/elastic/eui/pull/4776))
 
+**Theme: Amsterdam**
+
+- Fixed more unique focus states using `outline` ([#4876](https://github.com/elastic/eui/pull/4876))
+
 ## [`34.3.0`](https://github.com/elastic/eui/tree/v34.3.0)
 
 - Added `testenv` mock for `EuiFlyout` ([#4858](https://github.com/elastic/eui/pull/4858))
