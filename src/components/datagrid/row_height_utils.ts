@@ -18,64 +18,65 @@
  */
 
 import { CSSProperties } from 'react';
+import { isObject } from '../../services/predicate';
 import {
   EuiDataGridStyleCellPaddings,
   EuiDataGridStyleFontSizes,
   EuiDataGridStyle,
-  EuiDataGridRowHeights,
+  EuiDataGridRowHeightsOptions,
 } from './data_grid_types';
 
-const cellPaddingsToClassMap: {
-  [cellPaddings in EuiDataGridStyleCellPaddings]: string;
-} = {
+const cellPaddingsToClassMap: Record<EuiDataGridStyleCellPaddings, string> = {
   s: 'euiDataGridRowCell--paddingSmall',
   m: '',
   l: 'euiDataGridRowCell--paddingLarge',
 };
 
-const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
+const fontSizesToClassMap: Record<EuiDataGridStyleFontSizes, string> = {
   s: 'euiDataGridRowCell--fontSizeSmall',
   m: '',
   l: 'euiDataGridRowCell--fontSizeLarge',
 };
 
 const fakeCell = document.createElement('div');
-let styles: CSSStyleDeclaration;
-
-// So that we use webkit-line-clamp property we should know exactly how many line can be fitted in row height.
-// For this we should know paddings and line height. Because of this we should compute styles for cell with grid styles
-
-export const computedStylesForGridCell = (gridStyles: EuiDataGridStyle) => {
-  fakeCell.className = `
-    euiDataGridRowCell 
-    ${cellPaddingsToClassMap[gridStyles.cellPadding!]} 
-    ${fontSizesToClassMap[gridStyles.fontSize!]}
-  `;
-  document.body.appendChild(fakeCell);
-  styles = { ...getComputedStyle(fakeCell) };
-  document.body.removeChild(fakeCell);
-};
 
 function getNumberFromPx(style: string) {
   return parseInt(style.replace('px', ''), 10);
 }
 
-export const calculateHeightForLineCount = (lineCount: number) => {
-  const paddingTop = getNumberFromPx(styles.paddingTop);
-  const paddingBottom = getNumberFromPx(styles.paddingBottom);
-  const lineHeight = getNumberFromPx(styles.lineHeight);
-  return Math.ceil(lineCount * lineHeight + paddingTop + paddingBottom);
-};
+// So that we use lineCount options we should know exactly row height which allow to show defined line count.
+// For this we should know paddings and line height. Because of this we should compute styles for cell with grid styles
+export class RowHeightUtils {
+  private styles?: CSSStyleDeclaration;
+
+  computedStylesForGridCell(gridStyles: EuiDataGridStyle) {
+    fakeCell.className = `
+      euiDataGridRowCell 
+      ${cellPaddingsToClassMap[gridStyles.cellPadding!]} 
+      ${fontSizesToClassMap[gridStyles.fontSize!]}
+    `;
+    document.body.appendChild(fakeCell);
+    this.styles = { ...getComputedStyle(fakeCell) };
+    document.body.removeChild(fakeCell);
+  }
+
+  calculateHeightForLineCount(lineCount: number) {
+    const paddingTop = getNumberFromPx(this.styles!.paddingTop);
+    const paddingBottom = getNumberFromPx(this.styles!.paddingBottom);
+    const lineHeight = getNumberFromPx(this.styles!.lineHeight);
+    return Math.ceil(lineCount * lineHeight + paddingTop + paddingBottom);
+  }
+}
 
 export const getStylesForCell = (
-  rowHeights: EuiDataGridRowHeights,
+  rowHeightsOptions: EuiDataGridRowHeightsOptions,
   rowIndex: number
 ): CSSProperties => {
-  const initialHeight = rowHeights.initialHeights
-    ? rowHeights.initialHeights[rowIndex]
+  const initialHeight = rowHeightsOptions.rowHeights
+    ? rowHeightsOptions.rowHeights[rowIndex]
     : undefined;
 
-  if (typeof initialHeight === 'object' && initialHeight.lineCount) {
+  if (isObject(initialHeight) && initialHeight.lineCount) {
     return {
       WebkitLineClamp: initialHeight.lineCount,
       display: '-webkit-box',

@@ -38,7 +38,7 @@ import { EuiI18n } from '../i18n';
 import {
   EuiDataGridColumn,
   EuiDataGridPopoverContent,
-  EuiDataGridRowHeights,
+  EuiDataGridRowHeightsOptions,
 } from './data_grid_types';
 import { DataGridFocusContext } from './data_grid_context';
 import { EuiFocusTrap } from '../focus_trap';
@@ -95,7 +95,7 @@ export interface EuiDataGridCellProps {
   setRowHeight?: (height: number) => void;
   getRowHeight?: (rowIndex: number) => number;
   style?: React.CSSProperties;
-  rowHeights?: EuiDataGridRowHeights;
+  rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   getCorrectRowIndex?: (rowIndex: number) => number;
 }
 
@@ -126,7 +126,7 @@ const EuiDataGridCellContent: FunctionComponent<
     column,
     screenReaderPosition,
     setCellContentsRef,
-    rowHeights,
+    rowHeightsOptions,
     rowIndex,
     getCorrectRowIndex,
     ...rest
@@ -141,16 +141,16 @@ const EuiDataGridCellContent: FunctionComponent<
     <div
       ref={setCellContentsRef}
       style={
-        rowHeights && getCorrectRowIndex
-          ? getStylesForCell(rowHeights, getCorrectRowIndex(rowIndex))
+        rowHeightsOptions && getCorrectRowIndex
+          ? getStylesForCell(rowHeightsOptions, getCorrectRowIndex(rowIndex))
           : {}
       }
-      className={!rowHeights ? 'euiDataGridRowCell__truncate' : ''}>
+      className={!rowHeightsOptions ? 'euiDataGridRowCell__truncate' : ''}>
       <CellElement
         isDetails={false}
         data-test-subj="cell-content"
-        {...rest}
         rowIndex={rowIndex}
+        {...rest}
       />
       {screenReaderPosition}
     </div>
@@ -494,7 +494,7 @@ export class EuiDataGridCell extends Component<
       isDetails: false,
       screenReaderPosition,
       setCellContentsRef: this.setCellContentsRef,
-      rowHeights: this.props.rowHeights,
+      rowHeightsOptions: this.props.rowHeightsOptions,
       getCorrectRowIndex: this.props.getCorrectRowIndex,
     };
 
@@ -509,7 +509,7 @@ export class EuiDataGridCell extends Component<
         <div className="euiDataGridRowCell__expandFlex">
           <div
             className={
-              !this.props.rowHeights
+              !this.props.rowHeightsOptions
                 ? 'euiDataGridRowCell__expandContent'
                 : 'euiDataGridRowCell__contentByHeight'
             }>
@@ -525,7 +525,7 @@ export class EuiDataGridCell extends Component<
           <div className="euiDataGridRowCell__expandFlex">
             <div
               className={
-                !this.props.rowHeights
+                !this.props.rowHeightsOptions
                   ? 'euiDataGridRowCell__expandContent'
                   : 'euiDataGridRowCell__contentByHeight'
               }>
@@ -561,7 +561,7 @@ export class EuiDataGridCell extends Component<
         innerContent = (
           <div
             className={
-              !this.props.rowHeights ? 'euiDataGridRowCell__content' : ''
+              !this.props.rowHeightsOptions ? 'euiDataGridRowCell__content' : ''
             }>
             <EuiDataGridCellPopover
               anchorContent={anchorContent}

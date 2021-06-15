@@ -55,7 +55,7 @@ import {
   EuiDataGridFocusedCell,
   EuiDataGridOnColumnResizeHandler,
   EuiDataGridStyleFooter,
-  EuiDataGridRowHeights,
+  EuiDataGridRowHeightsOptions,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiButtonEmpty } from '../button';
@@ -79,7 +79,7 @@ import {
   DataGridSortingContext,
 } from './data_grid_context';
 import { useDataGridColumnSorting } from './column_sorting';
-import { computedStylesForGridCell } from './row_height_utils';
+import { RowHeightUtils } from './row_height_utils';
 
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
@@ -165,8 +165,10 @@ type CommonGridProps = CommonProps &
      * Sets the grid's width, forcing it to overflow in a scrollable container with cell virtualization
      */
     width?: CSSProperties['width'];
-
-    rowHeights?: EuiDataGridRowHeights;
+    /**
+     * A #EuiDataGridRowHeightsOptions object that provides row heights options
+     */
+    rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   };
 
 // Force either aria-label or aria-labelledby to be defined
@@ -696,7 +698,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     minSizeForControls = MINIMUM_WIDTH_FOR_GRID_CONTROLS,
     height,
     width,
-    rowHeights,
+    rowHeightsOptions,
     ...rest
   } = props;
 
@@ -893,8 +895,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     }
   }, [focusedCell, contentRef]);
 
+  const [rowHeightUtils] = useState(new RowHeightUtils());
+
   useEffect(() => {
-    computedStylesForGridCell(gridStyles);
+    rowHeightUtils.computedStylesForGridCell(gridStyles);
   }, [gridStyles]);
 
   const classes = classNames(
@@ -1137,7 +1141,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                         renderFooterCellValue={renderFooterCellValue}
                         rowCount={rowCount}
                         interactiveCellId={interactiveCellId}
-                        rowHeights={rowHeights}
+                        rowHeightsOptions={rowHeightsOptions}
+                        rowHeightUtils={rowHeightUtils}
                       />
                     </div>
                   </div>

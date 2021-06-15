@@ -91,9 +91,9 @@ export default () => {
       rowCount={10000}
       height={400}
       renderCellValue={RenderCellValue}
-      rowHeights={{
+      rowHeightsOptions={{
         defaultHeight: 60,
-        initialHeights: {
+        rowHeights: {
           1: {
             lineCount: 5,
           },
