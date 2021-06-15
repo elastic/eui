@@ -4,12 +4,7 @@ import { Helmet } from 'react-helmet';
 import { GuidePageChrome, ThemeContext } from '../components';
 import { translateUsingPseudoLocale } from '../services';
 
-import {
-  EuiErrorBoundary,
-  EuiPage,
-  EuiContext,
-  EuiPageBody,
-} from '../../../src/components';
+import { EuiErrorBoundary, EuiPage, EuiContext } from '../../../src/components';
 
 import { keys } from '../../../src/services';
 import { GuidePageHeader } from '../components/guide_page/guide_page_header';
@@ -89,18 +84,16 @@ export class AppView extends Component {
             />
           </EuiErrorBoundary>
 
-          <EuiPageBody panelled>
-            <EuiContext i18n={i18n}>
-              <ThemeContext.Consumer>
-                {(context) => {
-                  return React.cloneElement(children, {
-                    selectedTheme: context.theme,
-                    title: currentRoute.name,
-                  });
-                }}
-              </ThemeContext.Consumer>
-            </EuiContext>
-          </EuiPageBody>
+          <EuiContext i18n={i18n}>
+            <ThemeContext.Consumer>
+              {(context) => {
+                return React.cloneElement(children, {
+                  selectedTheme: context.theme,
+                  title: currentRoute.name,
+                });
+              }}
+            </ThemeContext.Consumer>
+          </EuiContext>
         </EuiPage>
       </>
     );

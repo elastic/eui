@@ -1,12 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import {
-  EuiBetaBadge,
-  EuiPageHeader,
-  EuiPageContent,
-  EuiPageContentBody,
-} from '../../../../src/components';
+import { EuiBetaBadge, EuiPageBody } from '../../../../src/components';
 
 const GuidePageComponent = ({
   children,
@@ -79,38 +74,30 @@ const GuidePageComponent = ({
   };
 
   return (
-    <>
-      <EuiPageHeader
-        restrictWidth
-        pageTitle={
+    <EuiPageBody
+      template="default"
+      panelled
+      restrictWidth
+      paddingSize="l"
+      pageHeader={{
+        pageTitle: (
           <>
             {title} {betaBadge}
           </>
-        }
-        tabs={renderTabs()}>
-        {intro}
-      </EuiPageHeader>
-
-      <EuiPageContent
-        role="main"
-        hasShadow={false}
-        paddingSize="none"
-        color="transparent"
-        hasBorder={false}
-        borderRadius="none">
-        <EuiPageContentBody restrictWidth>
-          <Switch>
-            {playground && (
-              <Route path={`${match.path}/playground`}>{playground}</Route>
-            )}
-            {guidelines && (
-              <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
-            )}
-            <Route path="">{children}</Route>
-          </Switch>
-        </EuiPageContentBody>
-      </EuiPageContent>
-    </>
+        ),
+        tabs: renderTabs(),
+        children: intro,
+      }}>
+      <Switch>
+        {playground && (
+          <Route path={`${match.path}/playground`}>{playground}</Route>
+        )}
+        {guidelines && (
+          <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
+        )}
+        <Route path="">{children}</Route>
+      </Switch>
+    </EuiPageBody>
   );
 };
 
