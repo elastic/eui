@@ -1,0 +1,85 @@
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+import React, { FunctionComponent } from 'react';
+import { EuiButtonIconProps } from '../button';
+import { useEuiI18n } from '../i18n';
+import classNames from 'classnames';
+import { EuiIcon } from '../icon';
+
+export type EuiNotificationEventReadIconProps = Omit<
+  EuiButtonIconProps,
+  'iconType' | 'isDisabled' | 'isSelected' | 'size'
+> & {
+  id: string;
+  /**
+   * Shows an indicator of the read state of the event
+   */
+  isRead: boolean;
+  /**
+   * A unique, human-friendly name for the event to be used in aria attributes (e.g. "alert-critical-01", "cloud-no-severity-12", etc..).
+   */
+  eventName: string;
+};
+
+export const EuiNotificationEventReadIcon: FunctionComponent<EuiNotificationEventReadIconProps> = ({
+  id,
+  isRead,
+  eventName,
+}) => {
+  const classesReadState = classNames('euiNotificationEventReadIcon', {
+    'euiNotificationEventReadButton--isRead': isRead,
+  });
+
+  const readAria = useEuiI18n(
+    'euiNotificationEventReadIcon.readAria',
+    '{eventName} is read',
+    {
+      eventName,
+    }
+  );
+
+  const unreadAria = useEuiI18n(
+    'euiNotificationEventReadIcon.unreadAria',
+    '{eventName} is unread',
+    {
+      eventName,
+    }
+  );
+  const readTitle = useEuiI18n('euiNotificationEventReadIcon.read', 'Read');
+  const unreadTitle = useEuiI18n(
+    'euiNotificationEventReadIcon.unread',
+    'Unread'
+  );
+
+  const iconAriaLabel = isRead ? unreadAria : readAria;
+  const iconTitle = isRead ? readTitle : unreadTitle;
+
+  return (
+    <div className={classesReadState}>
+      <EuiIcon
+        type="dot"
+        aria-label={iconAriaLabel}
+        title={iconTitle}
+        color="primary"
+        data-test-subj={`${id}-notificationEventReadIcon`}
+      />
+    </div>
+  );
+};
