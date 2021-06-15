@@ -164,6 +164,14 @@ describe('EuiDualRange', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    test('isDraggable should render', () => {
+      const component = render(
+        <EuiDualRange isDraggable value={['1', '8']} onChange={() => {}} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 
   test('allows value prop to accept numbers', () => {
