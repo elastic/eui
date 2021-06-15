@@ -153,6 +153,10 @@
   height: 100%;
 }
 
+.euiDataGridRowCell__alignBaseLine {
+  align-items: baseline;
+}
+
 .euiDataGridRowCell__expandButton {
   display: flex;
   flex-grow: 0;
