@@ -55,7 +55,6 @@ ReactDOM.render(
               const mainComponent = (
                 <Route
                   key={path}
-                  exact
                   path={`/${path}`}
                   render={(props) => {
                     const { location } = props;
@@ -96,15 +95,17 @@ ReactDOM.render(
                 })
                 .filter((x) => !!x);
 
+              // place standaloneSections before mainComponent so their routes take precedent
+              const routes = [...standaloneSections, mainComponent];
+
               if (from)
                 return [
-                  mainComponent,
-                  ...standaloneSections,
+                  ...routes,
                   <Route exact path={`/${from}`}>
                     <Redirect to={`/${to}`} />
                   </Route>,
                 ];
-              else if (component) return [mainComponent, ...standaloneSections];
+              else if (component) return routes;
               return null;
             }
           )}
