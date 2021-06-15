@@ -1,11 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added draggable highlight area to `EuiDualRange` ([#4776](https://github.com/elastic/eui/pull/4776))
 - Added `success` and `accent` `color` options to `EuiButton` ([#4874](https://github.com/elastic/eui/pull/4874))
 - Added `success` `color` option to `EuiLink` ([#4874](https://github.com/elastic/eui/pull/4874))
 
 **Bug fixes**
 
-- Added draggable highlight area to `EuiDualRange` ([#4776](https://github.com/elastic/eui/pull/4776))
 - Fixed shaded colors of `EuiButtonIcon` ([#4874](https://github.com/elastic/eui/pull/4874))
 
 ## [`34.3.0`](https://github.com/elastic/eui/tree/v34.3.0)
