@@ -1,6 +1,13 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.4.0`.
+- Added `success` `color` option to `Badge` ([#4888](https://github.com/elastic/eui/pull/4888))
+- Added `success` `color` option and changed `success` to default color option in `Expression` ([#4888](https://github.com/elastic/eui/pull/4888))
+- Change default `color` option to `success` in `Progress` ([#4888](https://github.com/elastic/eui/pull/4888))
+- Change default `Icon` `color` option to `success` for `saved` and `unchanged` states in `Suggest Input` ([#4888](https://github.com/elastic/eui/pull/4888))
+- Added `success` `color` option to `Text Color` ([#4888](https://github.com/elastic/eui/pull/4888))
+- Change the indicator `Icon` `color` option to `success` in `Tour Step Indicator` ([#4888](https://github.com/elastic/eui/pull/4888))
+
+
 
 ## [`34.4.0`](https://github.com/elastic/eui/tree/v34.4.0)
 
