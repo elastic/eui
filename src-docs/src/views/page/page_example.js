@@ -551,19 +551,23 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageFullHeightTemplate
-                button={<Button />}
-                content={<Content />}
-              />
-            ) : (
-              <PageFullHeight button={<Button />} content={<Content />} />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="full-height"
+          pattern={PageFullHeight}
+          template={PageFullHeightTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'full-height',
+        demo: (
+          <PageDemo
+            slug="full-height"
+            pattern={PageFullHeight}
+            template={PageFullHeightTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'Simple layout with centered body',
