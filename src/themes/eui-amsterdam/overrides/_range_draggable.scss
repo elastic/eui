@@ -7,9 +7,10 @@
     }
   }
 
+  // in Chrome/FF/Edge we don't want to focus on click
   &:focus:not(:focus-visible)  {
     ~ .euiRangeThumb {
-      box-shadow: none;
+      @include euiRangeThumbBoxShadow;
       outline: none;
     }
   }

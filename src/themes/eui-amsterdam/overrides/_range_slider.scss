@@ -13,8 +13,7 @@
     height: $euiRangeThumbHeight;
   }
 
-  &:focus-visible,
-  &--hasFocus {
+  &:focus {
     @include euiRangeThumbPerBrowser {
       @include euiRangeThumbFocus;
     }
@@ -24,6 +23,22 @@
     }
 
     outline: none;
+
+    ~ .euiRangeHighlight .euiRangeHighlight__progress {
+      background-color: $euiColorPrimary;
+    }
+  }
+
+  // in Chrome/FF/Edge we don't want to focus on click
+  &:focus:not(:focus-visible) {
+    @include euiRangeThumbPerBrowser {
+      @include euiRangeThumbBoxShadow;
+      background-color: $euiRangeThumbBackgroundColor;
+    }
+
+    ~ .euiRangeHighlight .euiRangeHighlight__progress {
+      background-color: $euiRangeHighlightColor;
+    }
   }
 
   &:disabled {
