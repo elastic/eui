@@ -36,7 +36,7 @@ import { enqueueStateChange } from '../../services/react';
 
 import { htmlIdGenerator } from '../../services';
 
-const typeToPathMap = {
+export const typeToPathMap = {
   accessibility: 'accessibility',
   addDataApp: 'app_add_data',
   advancedSettingsApp: 'app_advanced_settings',
