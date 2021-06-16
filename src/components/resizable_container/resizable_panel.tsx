@@ -102,6 +102,11 @@ export interface EuiResizablePanelProps
     CommonProps,
     Partial<EuiResizablePanelControls> {
   /**
+   * Specify a desired maximum panel size in pixels or percents,
+   * for example "300px" or "30%"
+   */
+  maxSize?: string;
+  /**
    * Specify a desired minimum panel size in pixels or percents,
    * for example "300px" or "30%"
    * The actual minimum size will be calculated,
@@ -116,7 +121,7 @@ export interface EuiResizablePanelProps
    * Initial size of the panel in percents
    * Specify this prop if you don't need to handle the panel size from outside
    */
-  initialSize?: number;
+  initialSize?: number | 'grow';
   /**
    * Size of the panel in percents.
    * Specify this prop if you want to control the size from outside, the panel will ignore the "initialSize"
@@ -172,7 +177,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   id,
   isHorizontal,
   size,
-  initialSize,
+  initialSize: _initialSize,
+  maxSize,
   minSize = '0px', // Actual minSize is calculated in `./helpers.ts`
   scrollable = true,
   style = {},
@@ -199,10 +205,13 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   const resizerIds = useRef<string[]>([]);
   const modeType = useMemo(() => getModeType(mode), [mode]);
   const toggleOpts = useMemo(() => getToggleOptions(mode), [mode]);
+  const initialSize = useMemo(
+    () => (_initialSize === 'grow' ? 0 : _initialSize || 0),
+    [_initialSize]
+  );
   const innerSize = useMemo(
     () =>
-      (panels[panelId.current] && panels[panelId.current].size) ??
-      (initialSize || 0),
+      (panels[panelId.current] && panels[panelId.current].size) ?? initialSize,
     [panels, initialSize]
   );
   const isCollapsed = useMemo(
@@ -290,7 +299,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   useEffect(() => {
     if (!registration) return;
     const id = panelId.current;
-    const initSize = size ?? (initialSize || 0);
+    const initSize = size ?? initialSize;
     resizerIds.current = [
       divRef.current!.previousElementSibling
         ? divRef.current!.previousElementSibling.id
@@ -308,17 +317,21 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
           ? divRef.current!.getBoundingClientRect().width
           : divRef.current!.getBoundingClientRect().height;
       },
+      maxSize,
       minSize: [minSize, padding],
       mode: modeType,
       isCollapsed: false,
+      canGrow: _initialSize === 'grow',
       position: getPosition(divRef.current!),
     });
     return () => {
       registration.deregister(id);
     };
   }, [
+    _initialSize,
     initialSize,
     isHorizontal,
+    maxSize,
     minSize,
     size,
     registration,

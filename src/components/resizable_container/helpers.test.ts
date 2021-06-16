@@ -47,6 +47,7 @@ describe('sizesOnly', () => {
         isCollapsed: false,
         prevSize: 0,
         position: 'middle',
+        canGrow: false,
         ...panel,
       };
       return out;

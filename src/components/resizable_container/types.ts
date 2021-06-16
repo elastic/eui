@@ -29,8 +29,10 @@ export interface EuiResizablePanelController {
   id: string;
   size: number;
   getSizePx: () => number;
+  maxSize?: string;
   minSize: string[];
   mode?: PanelModeType;
+  canGrow: boolean;
   isCollapsed: boolean;
   prevSize: number;
   position: PanelPosition;
