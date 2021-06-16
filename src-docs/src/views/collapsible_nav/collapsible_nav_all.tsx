@@ -13,7 +13,7 @@ import {
 } from '../../../../src/components/header';
 import { EuiIcon } from '../../../../src/components/icon';
 import { EuiButtonEmpty } from '../../../../src/components/button';
-import { EuiPage } from '../../../../src/components/page';
+import { EuiPageTemplate } from '../../../../src/components/page';
 import {
   EuiPinnableListGroup,
   EuiListGroupItem,
@@ -21,7 +21,6 @@ import {
 } from '../../../../src/components/list_group';
 import { EuiFlexItem } from '../../../../src/components/flex';
 import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
-import { GuideFullScreen } from '../../services/full_screen/full_screen';
 
 import {
   DeploymentsGroup,
@@ -29,6 +28,9 @@ import {
   SecurityGroup,
 } from './collapsible_nav_list';
 import { EuiShowFor } from '../../../../src/components/responsive';
+import { EuiImage } from '../../../../src/components/image';
+import contentSvg from '../../images/content.svg';
+import { useExitPath } from '../../services/routing/routing';
 
 const TopLinks: EuiPinnableListGroupItemProps[] = [
   {
@@ -36,7 +38,7 @@ const TopLinks: EuiPinnableListGroupItemProps[] = [
     iconType: 'home',
     isActive: true,
     'aria-current': true,
-    href: '#/navigation/collapsible-nav',
+    onClick: () => {},
     pinnable: false,
   },
 ];
@@ -44,18 +46,19 @@ const KibanaLinks: EuiPinnableListGroupItemProps[] = KibanaNavLinks.map(
   (link) => {
     return {
       ...link,
-      href: '#/navigation/collapsible-nav',
+      onClick: () => {},
     };
   }
 );
 const LearnLinks: EuiPinnableListGroupItemProps[] = [
-  { label: 'Docs', href: '#/navigation/collapsible-nav' },
-  { label: 'Blogs', href: '#/navigation/collapsible-nav' },
-  { label: 'Webinars', href: '#/navigation/collapsible-nav' },
+  { label: 'Docs', onClick: () => {} },
+  { label: 'Blogs', onClick: () => {} },
+  { label: 'Webinars', onClick: () => {} },
   { label: 'Elastic.co', href: 'https://elastic.co' },
 ];
 
-export default () => {
+const CollapsibleNavAll = () => {
+  const exitPath = useExitPath();
   const [navIsOpen, setNavIsOpen] = useState(true);
   const [navIsDocked, setNavIsDocked] = useState(
     JSON.parse(String(localStorage.getItem('nav2IsDocked'))) || false
@@ -246,35 +249,35 @@ export default () => {
 
   const leftSectionItems = [
     collapsibleNav,
-    <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
+    <EuiHeaderLogo href={exitPath} iconType="logoElastic">
+      Elastic
+    </EuiHeaderLogo>,
   ];
 
   return (
-    <GuideFullScreen>
-      {(setIsFullScreen) => (
-        <React.Fragment>
-          <EuiHeader
-            position="fixed"
-            sections={[
-              {
-                items: leftSectionItems,
-                borders: 'right',
-              },
-              {
-                items: [
-                  <EuiButtonEmpty
-                    iconType="minimize"
-                    onClick={() => setIsFullScreen(false)}>
-                    Exit full screen
-                  </EuiButtonEmpty>,
-                ],
-              },
-            ]}
-          />
+    <>
+      <EuiHeader
+        position="fixed"
+        sections={[
+          {
+            items: leftSectionItems,
+            borders: 'right',
+          },
+          {
+            items: [
+              <EuiButtonEmpty href={exitPath} iconType="exit">
+                Exit full screen
+              </EuiButtonEmpty>,
+            ],
+          },
+        ]}
+      />
 
-          <EuiPage />
-        </React.Fragment>
-      )}
-    </GuideFullScreen>
+      <EuiPageTemplate template="centeredBody">
+        <EuiImage size="fullWidth" alt="Fake paragraph" url={contentSvg} />
+      </EuiPageTemplate>
+    </>
   );
 };
+
+export default CollapsibleNavAll;

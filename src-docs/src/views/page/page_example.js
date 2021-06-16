@@ -31,10 +31,10 @@ const pageBottomBarSource = require('!!raw-loader!./page_bottom_bar');
 import PageBottomBarTemplate from './page_bottom_bar_template';
 const PageBottomBarTemplateSource = require('!!raw-loader!./page_bottom_bar_template');
 
-import PageRestricingWidth from './page_restricting_width';
-const PageRestricingWidthSource = require('!!raw-loader!./page_restricting_width');
-import PageRestricingWidthTemplate from './page_restricting_width_template';
-const PageRestricingWidthTemplateSource = require('!!raw-loader!./page_restricting_width_template');
+import PageRestrictingWidth from './page_restricting_width';
+const PageRestrictingWidthSource = require('!!raw-loader!./page_restricting_width');
+import PageRestrictingWidthTemplate from './page_restricting_width_template';
+const PageRestrictingWidthTemplateSource = require('!!raw-loader!./page_restricting_width_template');
 
 import PageCenteredBody from './page_centered_body';
 const PageCenteredBodySource = require('!!raw-loader!./page_centered_body');
@@ -176,38 +176,31 @@ export const PageExample = {
       },
       playground: pageTemplateConfig,
       demo: (
-        <PageDemo>
-          {(Button, Content, SideNav, showTemplate, BottomBar) =>
-            showTemplate ? (
-              <PageTemplate
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-                bottomBar={<BottomBar />}
-              />
-            ) : (
-              <PageNew
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-                bottomBar={<BottomBar />}
-              />
-            )
-          }
-        </PageDemo>
+        <PageDemo slug="full-page" pattern={PageNew} template={PageTemplate} />
       ),
+      fullScreen: {
+        slug: 'full-page',
+        demo: (
+          <PageDemo
+            slug="full-page"
+            pattern={PageNew}
+            template={PageTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'Restricting page width',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: PageRestricingWidthTemplateSource,
+          code: PageRestrictingWidthTemplateSource,
           displayName: 'Template JS',
         },
         {
           type: GuideSectionTypes.JS,
-          code: PageRestricingWidthSource,
+          code: PageRestrictingWidthSource,
           displayName: 'Components JS',
         },
       ],
@@ -235,24 +228,23 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageRestricingWidthTemplate
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-              />
-            ) : (
-              <PageRestricingWidth
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-              />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="restricting-page-width"
+          pattern={PageRestrictingWidth}
+          template={PageRestrictingWidthTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'restricting-page-width',
+        demo: (
+          <PageDemo
+            slug="restricting-page-width"
+            pattern={PageRestrictingWidth}
+            template={PageRestrictingWidthTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'Showing a bottom bar',
@@ -302,26 +294,23 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo>
-          {(Button, Content, SideNav, showTemplate, BottomBar) =>
-            showTemplate ? (
-              <PageBottomBarTemplate
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-                bottomBar={<BottomBar />}
-              />
-            ) : (
-              <PageBottomBar
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-                bottomBar={<BottomBar />}
-              />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="bottom-bar"
+          pattern={PageBottomBar}
+          template={PageBottomBarTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'bottom-bar',
+        demo: (
+          <PageDemo
+            slug="bottom-bar"
+            pattern={PageBottomBar}
+            template={PageBottomBarTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'Centered body',
@@ -360,24 +349,25 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo centered>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageCenteredBodyTemplate
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-              />
-            ) : (
-              <PageCenteredBody
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-              />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="centered-body"
+          centered
+          pattern={PageCenteredBody}
+          template={PageCenteredBodyTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'centered-body',
+        demo: (
+          <PageDemo
+            slug="centered-body"
+            centered
+            pattern={PageCenteredBody}
+            template={PageCenteredBodyTemplate}
+            fullscreen
+          />
+        ),
+      },
       props: { EuiPageTemplate, EuiEmptyPrompt },
     },
     {
@@ -414,24 +404,25 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo centered>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageCenteredContentTemplate
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-              />
-            ) : (
-              <PageCenteredContent
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-              />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="centered-content"
+          centered
+          pattern={PageCenteredContent}
+          template={PageCenteredContentTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'centered-content',
+        demo: (
+          <PageDemo
+            slug="centered-content"
+            centered
+            pattern={PageCenteredContent}
+            template={PageCenteredContentTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'A simple page with tabs',
@@ -468,16 +459,23 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageSimpleTemplate button={<Button />} content={<Content />} />
-            ) : (
-              <PageSimple button={<Button />} content={<Content />} />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="tabs"
+          pattern={PageSimple}
+          template={PageSimpleTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'tabs',
+        demo: (
+          <PageDemo
+            slug="tabs"
+            pattern={PageSimple}
+            template={PageSimpleTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'Full height layout',
@@ -593,22 +591,25 @@ export const PageExample = {
         </p>
       ),
       demo: (
-        <PageDemo centered>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageSimpleCenteredBodyTemplate
-                button={<Button />}
-                content={<Content />}
-              />
-            ) : (
-              <PageSimpleCenteredBody
-                button={<Button />}
-                content={<Content />}
-              />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="simple-centered-body"
+          centered
+          pattern={PageSimpleCenteredBody}
+          template={PageSimpleCenteredBodyTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'simple-centered-body',
+        demo: (
+          <PageDemo
+            slug="simple-centered-body"
+            centered
+            pattern={PageSimpleCenteredBody}
+            template={PageSimpleCenteredBodyTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'Simple layout with centered content',
@@ -633,22 +634,25 @@ export const PageExample = {
         </p>
       ),
       demo: (
-        <PageDemo centered>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageSimpleEmptyContentTemplate
-                button={<Button />}
-                content={<Content />}
-              />
-            ) : (
-              <PageSimpleEmptyContent
-                button={<Button />}
-                content={<Content />}
-              />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="simple-centered-content"
+          centered
+          pattern={PageSimpleEmptyContent}
+          template={PageSimpleEmptyContentTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'simple-centered-content',
+        demo: (
+          <PageDemo
+            slug="simple-centered-content"
+            centered
+            pattern={PageSimpleEmptyContent}
+            template={PageSimpleEmptyContentTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'A simple page layout with custom content',
@@ -684,16 +688,23 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageCustomContentTemplate button={<Button />} />
-            ) : (
-              <PageCustomContent button={<Button />} />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="simple-custom-content"
+          pattern={PageCustomContent}
+          template={PageCustomContentTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'simple-custom-content',
+        demo: (
+          <PageDemo
+            slug="simple-custom-content"
+            pattern={PageCustomContent}
+            template={PageCustomContentTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'Legacy layout',

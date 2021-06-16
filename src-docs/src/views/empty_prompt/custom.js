@@ -5,7 +5,7 @@ import { EuiEmptyPrompt, EuiButton } from '../../../../src/components';
 export default () => (
   <EuiEmptyPrompt
     iconType="dataVisualizer"
-    iconColor={null}
+    iconColor="default"
     title={<h2>You have no spice</h2>}
     titleSize="xs"
     body={

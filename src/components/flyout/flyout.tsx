@@ -36,6 +36,7 @@ import {
   useCombinedRefs,
   EuiBreakpointSize,
   isWithinMinBreakpoint,
+  throttle,
 } from '../../services';
 
 import { CommonProps, keysOf } from '../common';
@@ -45,7 +46,6 @@ import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
 import { EuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
-import { throttle } from '../color_picker/utils';
 import { EuiPortal } from '../portal';
 
 const typeToClassNameMap = {
