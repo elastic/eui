@@ -5,6 +5,8 @@
 **Theme: Amsterdam**
 
 - Fixed more unique focus states using `outline` ([#4876](https://github.com/elastic/eui/pull/4876))
+- Fixed `border-radius` value of `EuiPanel` ([#4876](https://github.com/elastic/eui/pull/4876))
+- Fixed `disabled` background color of `EuiCard` for better visiblity on subdued backgrounds ([#4876](https://github.com/elastic/eui/pull/4876))
 
 ## [`34.3.0`](https://github.com/elastic/eui/tree/v34.3.0)
 
