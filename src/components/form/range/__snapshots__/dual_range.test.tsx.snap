@@ -222,7 +222,7 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
         <span
           aria-hidden="true"
           class="euiRangeTick__pseudo"
-          style="margin-right:calc(1.25em - 2px)"
+          style="margin-right:calc(1.25em + 4px)"
         />
         100kb
       </button>
