@@ -25,6 +25,7 @@ import ResizableContainerBasic from './resizable_container_basic';
 import ResizableContainerVertical from './resizable_container_vertical';
 import ResizableContainerResetValues from './resizable_container_reset_values';
 import ResizablePanels from './resizable_panels';
+import ResizablePanelsGrow from './resizable_panels_grow';
 import ResizablePanelCollapsible from './resizable_panel_collapsible';
 import ResizablePanelCollapsibleResponsive from './resizable_panel_collapsible_responsive';
 import ResizablePanelCollapsibleOpts from './resizable_panel_collapsible_options';
@@ -34,6 +35,7 @@ const ResizableContainerSource = require('!!raw-loader!./resizable_container_bas
 const ResizableContainerVerticalSource = require('!!raw-loader!./resizable_container_vertical');
 const ResizableContainerResetValuesSource = require('!!raw-loader!./resizable_container_reset_values');
 const ResizablePanelsSource = require('!!raw-loader!./resizable_panels');
+// const ResizablePanelsGrowSource = require('!!raw-loader!./resizable_panels_grow');
 const ResizablePanelCollapsibleSource = require('!!raw-loader!./resizable_panel_collapsible');
 const ResizablePanelCollapsibleResponsiveSource = require('!!raw-loader!./resizable_panel_collapsible_responsive');
 const ResizablePanelCollapsibleOptsSource = require('!!raw-loader!./resizable_panel_collapsible_options');
@@ -279,6 +281,17 @@ export const ResizableContainerExample = {
       props: { EuiResizablePanel },
       snippet: panelsSnippet,
       demo: <ResizablePanels />,
+    },
+    {
+      title: 'Resizable panel sizing',
+      text: (
+        <div>
+          <p>TBD</p>
+        </div>
+      ),
+      props: { EuiResizablePanel },
+      // snippet: panelsSnippet,
+      demo: <ResizablePanelsGrow />,
     },
     {
       source: [
