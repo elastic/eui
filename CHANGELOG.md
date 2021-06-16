@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.4.0`.
+- Exported `typeToPathMap` from `EuiIcons` ([#4889](https://github.com/elastic/eui/pull/4889))
 
 ## [`34.4.0`](https://github.com/elastic/eui/tree/v34.4.0)
 
