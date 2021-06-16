@@ -471,8 +471,10 @@ function useInMemoryValues(
   const onCellRender = useCallback((rowIndex, columnId, value) => {
     const nextInMemoryValues = _inMemoryValues.current;
     nextInMemoryValues[rowIndex] = nextInMemoryValues[rowIndex] || {};
-    nextInMemoryValues[rowIndex][columnId] = value;
-    setInMemoryValuesVersion((version) => version + 1);
+    if (nextInMemoryValues[rowIndex][columnId] !== value) {
+      nextInMemoryValues[rowIndex][columnId] = value;
+      setInMemoryValuesVersion((version) => version + 1);
+    }
   }, []);
 
   // if `inMemory.level` or `rowCount` changes reset the values

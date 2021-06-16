@@ -96,7 +96,6 @@ export interface EuiDataGridCellProps {
   getRowHeight?: (rowIndex: number) => number;
   style?: React.CSSProperties;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
-  getCorrectRowIndex?: (rowIndex: number) => number;
 }
 
 interface EuiDataGridCellState {
@@ -128,7 +127,6 @@ const EuiDataGridCellContent: FunctionComponent<
     setCellContentsRef,
     rowHeightsOptions,
     rowIndex,
-    getCorrectRowIndex,
     ...rest
   } = props;
 
@@ -141,9 +139,7 @@ const EuiDataGridCellContent: FunctionComponent<
     <div
       ref={setCellContentsRef}
       style={
-        rowHeightsOptions && getCorrectRowIndex
-          ? getStylesForCell(rowHeightsOptions, getCorrectRowIndex(rowIndex))
-          : {}
+        rowHeightsOptions ? getStylesForCell(rowHeightsOptions, rowIndex) : {}
       }
       className={!rowHeightsOptions ? 'euiDataGridRowCell__truncate' : ''}>
       <CellElement
@@ -280,13 +276,15 @@ export class EuiDataGridCell extends Component<
       return true;
     if (nextProps.popoverContent !== this.props.popoverContent) return true;
 
-    // respond to adjusted top/left
+    // respond to adjusted position & dimensions
     if (nextProps.style) {
       if (!this.props.style) return true;
       if (nextProps.style.top !== this.props.style.top) {
         return true;
       }
       if (nextProps.style.left !== this.props.style.left) return true;
+      if (nextProps.style.height !== this.props.style.height) return true;
+      if (nextProps.style.width !== this.props.style.width) return true;
     }
 
     if (nextState.cellProps !== this.state.cellProps) return true;
@@ -299,10 +297,10 @@ export class EuiDataGridCell extends Component<
       return true;
 
     // check if we should update cell because height was changed
-    if (this.cellRef.current && this.props.getRowHeight) {
+    if (this.cellRef.current && nextProps.getRowHeight) {
       if (
         this.cellRef.current.offsetHeight !==
-        this.props.getRowHeight(nextProps.rowIndex)
+        nextProps.getRowHeight(nextProps.rowIndex)
       ) {
         return true;
       }
@@ -495,7 +493,6 @@ export class EuiDataGridCell extends Component<
       screenReaderPosition,
       setCellContentsRef: this.setCellContentsRef,
       rowHeightsOptions: this.props.rowHeightsOptions,
-      getCorrectRowIndex: this.props.getCorrectRowIndex,
     };
 
     let anchorContent = (
