@@ -12,9 +12,16 @@
 
   &:focus {
     @include euiRangeThumbFocus;
+    outline: none;
+  }
+
+  &:focus:not(:focus-visible)  {
+    box-shadow: none;
+    outline: none;
   }
 
   &:focus:focus-visible {
+    @include euiRangeThumbFocus;
     outline: none;
   }
 }
