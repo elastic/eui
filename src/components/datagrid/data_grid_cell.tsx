@@ -117,16 +117,15 @@ const EuiDataGridCellContent: FunctionComponent<
     setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
     isExpanded: boolean;
     setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
-    screenReaderPosition: JSX.Element;
   }
 > = memo((props) => {
   const {
     renderCellValue,
     column,
-    screenReaderPosition,
     setCellContentsRef,
     rowHeightsOptions,
     rowIndex,
+    colIndex,
     ...rest
   } = props;
 
@@ -134,6 +133,22 @@ const EuiDataGridCellContent: FunctionComponent<
   const CellElement = renderCellValue as JSXElementConstructor<
     EuiDataGridCellValueElementProps
   >;
+
+  const screenReaderPosition = (
+    <EuiScreenReaderOnly>
+      <p>
+        <EuiI18n
+          tokens={['euiDataGridCell.row', 'euiDataGridCell.column']}
+          defaults={['Row', 'Column']}>
+          {([row, column]: ReactChild[]) => (
+            <>
+              {row}: {rowIndex + 1}, {column}: {colIndex + 1}:
+            </>
+          )}
+        </EuiI18n>
+      </p>
+    </EuiScreenReaderOnly>
+  );
 
   return (
     <div
@@ -299,8 +314,9 @@ export class EuiDataGridCell extends Component<
     // check if we should update cell because height was changed
     if (this.cellRef.current && nextProps.getRowHeight) {
       if (
+        this.cellRef.current.offsetHeight &&
         this.cellRef.current.offsetHeight !==
-        nextProps.getRowHeight(nextProps.rowIndex)
+          nextProps.getRowHeight(nextProps.rowIndex)
       ) {
         return true;
       }
@@ -381,7 +397,7 @@ export class EuiDataGridCell extends Component<
       style,
       ...rest
     } = this.props;
-    const { colIndex, rowIndex } = rest;
+    const { rowIndex } = rest;
 
     const showCellButtons =
       this.state.isFocused ||
@@ -466,22 +482,6 @@ export class EuiDataGridCell extends Component<
       }
     };
 
-    const screenReaderPosition = (
-      <EuiScreenReaderOnly>
-        <p>
-          <EuiI18n
-            tokens={['euiDataGridCell.row', 'euiDataGridCell.column']}
-            defaults={['Row', 'Column']}>
-            {([row, column]: ReactChild[]) => (
-              <>
-                {row}: {rowIndex + 1}, {column}: {colIndex + 1}:
-              </>
-            )}
-          </EuiI18n>
-        </p>
-      </EuiScreenReaderOnly>
-    );
-
     const cellContentProps = {
       ...rest,
       setCellProps: this.setCellProps,
@@ -490,7 +490,6 @@ export class EuiDataGridCell extends Component<
       isExpandable,
       isExpanded: this.state.popoverIsOpen,
       isDetails: false,
-      screenReaderPosition,
       setCellContentsRef: this.setCellContentsRef,
       rowHeightsOptions: this.props.rowHeightsOptions,
     };
