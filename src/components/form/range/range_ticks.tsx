@@ -100,7 +100,7 @@ const EuiTickValue: FunctionComponent<
   if (labelShiftVal) {
     const labelShift = isMaxTick ? 'marginRight' : 'marginLeft';
     tickStyle[labelShift] = `-${labelShiftVal}em`;
-    pseudoShift[labelShift] = `calc(${labelShiftVal}em - 2px)`; // 2px derived from .euiRangeTicks left/right offset
+    pseudoShift[labelShift] = `calc(${labelShiftVal}em + 4px)`; // 4px derived from .euiRangeTicks left/right offset
   }
 
   const pseudoTick = tickObject && !!labelShiftVal && (isMinTick || isMaxTick);
