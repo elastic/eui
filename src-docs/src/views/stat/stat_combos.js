@@ -51,7 +51,7 @@ export default () => {
               titleColor="secondary"
               textAlign="right"
               isLoading={isLoading}>
-              <EuiIcon type="check" color="secondary" />
+              <EuiIcon type="check" color="success" />
             </EuiStat>
           </EuiPanel>
         </EuiFlexItem>

@@ -93,7 +93,7 @@ export const Sparklines = () => {
                 />
               </Chart>
               <EuiSpacer size="s" />
-              <EuiText size="xs" color="secondary">
+              <EuiText size="xs" color="success">
                 <EuiIcon type="sortUp" /> <strong>15%</strong>
               </EuiText>
             </EuiStat>
