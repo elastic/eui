@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `updateButtonProps` to `EuiSuperDatePicker` to provide more control over the update/refresh button ([#4776](https://github.com/elastic/eui/pull/4776))
+- Reverted `z-index: 1` on `EuiPageBody` ([#4892](https://github.com/elastic/eui/pull/4892))
+- Added `updateButtonProps` to `EuiSuperDatePicker` to provide more control over the update/refresh button ([#4895](https://github.com/elastic/eui/pull/4895))
 
 ## [`34.4.0`](https://github.com/elastic/eui/tree/v34.4.0)
 
