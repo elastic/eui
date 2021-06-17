@@ -94,6 +94,29 @@ describe('EuiResizableContainer', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('can have size limits', () => {
+    const component = render(
+      <EuiResizableContainer {...requiredProps}>
+        {(EuiResizablePanel, EuiResizableButton) => (
+          <>
+            <EuiResizablePanel initialSize="grow" minSize="10%">
+              Testing
+            </EuiResizablePanel>
+            <EuiResizableButton />
+            <EuiResizablePanel
+              initialSize="300px"
+              minSize="100px"
+              maxSize="500px">
+              123
+            </EuiResizablePanel>
+          </>
+        )}
+      </EuiResizableContainer>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('can have more than two panels', () => {
     const component = render(
       <EuiResizableContainer {...requiredProps}>

@@ -208,6 +208,44 @@ exports[`EuiResizableContainer can have scrollable panels 1`] = `
 </div>
 `;
 
+exports[`EuiResizableContainer can have size limits 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiResizableContainer euiResizableContainer--horizontal testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiResizablePanel euiResizablePanel--middle"
+    id="resizable-panel_generated-id"
+    style="width:0%;height:auto"
+  >
+    <div
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
+    >
+      Testing
+    </div>
+  </div>
+  <button
+    aria-label="Press left or right to adjust panels size"
+    class="euiResizableButton euiResizableButton--horizontal"
+    data-test-subj="euiResizableButton"
+    id="resizable-button_generated-id"
+    type="button"
+  />
+  <div
+    class="euiResizablePanel euiResizablePanel--middle"
+    id="resizable-panel_generated-id"
+    style="width:300px;height:auto"
+  >
+    <div
+      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiResizablePanel__content euiResizablePanel__content--scrollable"
+    >
+      123
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiResizableContainer can have toggleable panels 1`] = `
 <div
   aria-label="aria-label"
