@@ -12,13 +12,13 @@ export default () => (
     {(EuiResizablePanel, EuiResizableButton) => (
       <>
         <EuiResizablePanel
-          initialSize={10}
+          initialSize={15}
           color="subdued"
           minSize="1%"
-          maxSize="100px">
+          maxSize="150px">
           <EuiText size="s">
             <p>
-              This <strong>EuiResizablePanel</strong> has a small
+              This <strong>EuiResizablePanel</strong> is set to a small
               <EuiCode>{'maxSize'}</EuiCode>.
             </p>
           </EuiText>

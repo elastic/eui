@@ -118,14 +118,15 @@ export interface EuiResizablePanelProps
    */
   id?: string;
   /**
-   * Initial size of the panel in percents
+   * Initial size of the panel.
    * Specify pixels or percents, for example "300px" or "30%", or 30 (30%)
    * Or set to "grow" to have the panel occupy all space left open by sibling panels
    * Specify this prop if you don't need to handle the panel size from outside
    */
   initialSize?: number | string | 'grow';
   /**
-   * Size of the panel in percents.
+   * Size of the panel.
+   * Specify pixels or percents, for example "300px" or "30%", or 30 (30%)
    * Specify this prop if you want to control the size from outside, the panel will ignore the "initialSize"
    */
   size?: number | string;

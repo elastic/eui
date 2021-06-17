@@ -35,7 +35,7 @@ const ResizableContainerSource = require('!!raw-loader!./resizable_container_bas
 const ResizableContainerVerticalSource = require('!!raw-loader!./resizable_container_vertical');
 const ResizableContainerResetValuesSource = require('!!raw-loader!./resizable_container_reset_values');
 const ResizablePanelsSource = require('!!raw-loader!./resizable_panels');
-// const ResizablePanelsGrowSource = require('!!raw-loader!./resizable_panels_grow');
+const ResizablePanelsGrowSource = require('!!raw-loader!./resizable_panels_grow');
 const ResizablePanelCollapsibleSource = require('!!raw-loader!./resizable_panel_collapsible');
 const ResizablePanelCollapsibleResponsiveSource = require('!!raw-loader!./resizable_panel_collapsible_responsive');
 const ResizablePanelCollapsibleOptsSource = require('!!raw-loader!./resizable_panel_collapsible_options');
@@ -85,6 +85,28 @@ const verticalSnippet = `<EuiResizableContainer direction="vertical">
     </>
   )}
 </EuiResizableContainer>`;
+
+const ResizableContainerGrowHtml = renderToHtml(ResizablePanelsGrowSource);
+const growSnippet = `<EuiResizableContainer>
+  {(EuiResizablePanel, EuiResizableButton) => (
+    <>
+      <EuiResizablePanel initialSize="grow" minSize="20%">
+        <EuiText>
+          <p>{text}</p>
+        </EuiText>
+      </EuiResizablePanel>
+
+      <EuiResizableButton />
+
+      <EuiResizablePanel initialSize={50} minSize="20%">
+        <EuiText>
+          <p>{text}</p>
+        </EuiText>
+      </EuiResizablePanel>
+    </>
+  )}
+</EuiResizableContainer>`;
+
 const ResizableContainerResetValuesHtml = renderToHtml(
   ResizableContainerResetValues
 );
@@ -283,14 +305,36 @@ export const ResizableContainerExample = {
       demo: <ResizablePanels />,
     },
     {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: ResizablePanelsGrowSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: ResizableContainerGrowHtml,
+        },
+      ],
       title: 'Resizable panel sizing',
       text: (
         <div>
-          <p>TBD</p>
+          <p>
+            Each <strong>EuiResizablePanel</strong> can set size restrictions
+            using the <EuiCode>minSize</EuiCode> and <EuiCode>maxSize</EuiCode>{' '}
+            props. These values take precedence over{' '}
+            <EuiCode>initialSize</EuiCode> to ensure proper size boundaries.
+            Take care when setting these values to ensure that the panels do not
+            overflow or underfill the parent container.
+          </p>
+          <p>
+            Set <EuiCode>{'initialSize="grow"'}</EuiCode> on a single panel to
+            specify that it should occupy all space not occupied by its sibling
+            containers.
+          </p>
         </div>
       ),
       props: { EuiResizablePanel },
-      // snippet: panelsSnippet,
+      snippet: growSnippet,
       demo: <ResizablePanelsGrow />,
     },
     {
