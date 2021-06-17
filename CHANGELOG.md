@@ -15,7 +15,7 @@
 
 - Added draggable highlight area to `EuiDualRange` ([#4776](https://github.com/elastic/eui/pull/4776))
 
-**Theme: Amsterdam**
+**Bug fixes**
 
 - Fixed auto scrolling on update in `EuiComboBox` ([#4879](https://github.com/elastic/eui/pull/4879))
 
