@@ -5,6 +5,7 @@
 
 **Bug fixes**
 
+- Fixed DataGrid footer and header rows jumps in Firefox ([#4869](https://github.com/elastic/eui/issues/4869))
 - Updated `EuiResizableContainer` to respect `minSize` and `maxSize` props in initial size calculation ([#4893](https://github.com/elastic/eui/pull/4893))
 
 ## [`34.4.0`](https://github.com/elastic/eui/tree/v34.4.0)
