@@ -28,7 +28,7 @@
 .euiColorStops:not(.euiColorStops-isDisabled) {
   &:focus {
     // prevents a flash of the outline in Safari
-    transition-delay: $euiAnimSpeedFast;
+    transition-delay: $euiAnimSpeedExtraFast;
   }
 
   &:focus:not(:focus-visible) {
