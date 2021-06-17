@@ -6,6 +6,12 @@
 
 - Fixed DataGrid footer and header rows jumps in Firefox ([#4869](https://github.com/elastic/eui/issues/4869))
 
+**Theme: Amsterdam**
+
+- Fixed more unique focus states using `outline` ([#4876](https://github.com/elastic/eui/pull/4876))
+- Fixed `border-radius` value of `EuiPanel` ([#4876](https://github.com/elastic/eui/pull/4876))
+- Fixed `disabled` background color of `EuiCard` for better visiblity on subdued backgrounds ([#4876](https://github.com/elastic/eui/pull/4876))
+
 ## [`34.4.0`](https://github.com/elastic/eui/tree/v34.4.0)
 
 - Added draggable highlight area to `EuiDualRange` ([#4776](https://github.com/elastic/eui/pull/4776))

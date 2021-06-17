@@ -65,6 +65,14 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('hasBorder', () => {
+      const component = render(
+        <EuiCard title="Card title" description="Card description" hasBorder />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('horizontal', () => {
       const component = render(
         <EuiCard
