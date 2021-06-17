@@ -501,6 +501,7 @@ export class EuiDataGridCell extends Component<
         onDeactivation={() => {
           this.setState({ isEntered: false }, this.preventTabbing);
         }}
+        style={this.props.rowHeightsOptions ? { height: '100%' } : {}}
         clickOutsideDisables={true}>
         <div
           className={`euiDataGridRowCell__expandFlex ${

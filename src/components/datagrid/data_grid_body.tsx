@@ -511,21 +511,22 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const paginationOffset = pagination
     ? pagination.pageIndex * pagination.pageSize
     : 0;
-  const getCorrectRowIndex = useMemo(() => {
-    const getCorrectRowIndex = (rowIndex: number) => {
+  const getCorrectRowIndex = useCallback(
+    (rowIndex: number) => {
       let rowIndexWithOffset = rowIndex;
 
       if (rowIndex - paginationOffset <= 0) {
         rowIndexWithOffset = rowIndex + paginationOffset;
       }
 
-      const correctRowIndex = rowMap[rowIndexWithOffset]
+      const correctRowIndex = rowMap.hasOwnProperty(rowIndexWithOffset)
         ? rowMap[rowIndexWithOffset]
         : rowIndexWithOffset;
+
       return correctRowIndex;
-    };
-    return getCorrectRowIndex;
-  }, [paginationOffset, rowMap]);
+    },
+    [paginationOffset, rowMap]
+  );
 
   const gridRef = useRef<Grid>(null);
   useEffect(() => {
@@ -533,11 +534,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       gridRef.current.resetAfterColumnIndex(0);
     }
   }, [columns, columnWidths, defaultColumnWidth]);
-  useEffect(() => {
-    if (gridRef.current) {
-      gridRef.current.resetAfterRowIndex(0);
-    }
-  }, [getCorrectRowIndex]);
 
   const getWidth = useCallback(
     (index: number) => {
@@ -607,6 +603,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       gridRef.current.resetAfterRowIndex(0);
     }
   }, [pagination?.pageIndex, rowHeightsOptions]);
+
   useEffect(() => {
     if (gridRef.current) {
       gridRef.current.resetAfterRowIndex(0);

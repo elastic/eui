@@ -84,6 +84,7 @@ export const getStylesForCell = (
       height: '100%',
       overflow: 'hidden',
       flexGrow: 1,
+      wordBreak: 'break-all',
     };
   }
 
@@ -91,5 +92,6 @@ export const getStylesForCell = (
     height: '100%',
     overflow: 'hidden',
     flexGrow: 1,
+    wordBreak: 'break-all',
   };
 };
