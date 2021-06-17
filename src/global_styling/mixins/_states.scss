@@ -31,7 +31,7 @@
   text-decoration: none;
 
   @if ($color) {
-    color: $euiButtonColorDisabledText;
+    color: $color;
   }
 }
 

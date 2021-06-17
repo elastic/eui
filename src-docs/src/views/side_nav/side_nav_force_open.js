@@ -17,16 +17,18 @@ export default () => {
   const createItem = (name, data = {}) => {
     // NOTE: Duplicate `name` values will cause `id` collisions.
     return {
-      ...data,
       id: name,
       name,
       isSelected: selectedItemName === name,
       onClick: () => selectItem(name),
+      ...data,
     };
   };
 
   const sideNav = [
-    createItem('Kibana', {
+    {
+      name: 'Kibana',
+      id: 'Kibana',
       icon: <EuiIcon type="logoKibana" />,
       items: [
         createItem('Has normal children', {
@@ -52,8 +54,16 @@ export default () => {
             }),
           ],
         }),
+        createItem('Children only, no link', {
+          onClick: undefined,
+          items: [
+            createItem('Another child', {
+              items: [createItem('Child 7'), createItem('Child 8')],
+            }),
+          ],
+        }),
       ],
-    }),
+    },
   ];
 
   return (

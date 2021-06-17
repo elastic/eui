@@ -13,7 +13,6 @@ import {
   EuiFlyout,
   EuiFlyoutBody,
   EuiFlyoutHeader,
-  EuiFocusTrap,
   EuiHeader,
   EuiHeaderLink,
   EuiHeaderLinks,
@@ -21,7 +20,7 @@ import {
   EuiHeaderSectionItemButton,
   EuiIcon,
   EuiListGroupItem,
-  EuiPage,
+  EuiPageTemplate,
   EuiPopover,
   EuiPortal,
   EuiShowFor,
@@ -29,24 +28,17 @@ import {
   EuiTitle,
   EuiSelectableTemplateSitewide,
   EuiSelectableMessage,
-  EuiFlexGroup,
 } from '../../../../src/components';
+import { ExampleContext } from '../../services';
 
 export default ({ theme }) => {
-  /**
-   * FullScreen for docs only
-   */
-  const [fullScreen, setFullScreen] = useState(false);
   useEffect(() => {
-    if (fullScreen) {
-      document.body.classList.add('guideBody--overflowHidden');
-      document.body.classList.add('euiBody--headerIsFixed--double');
-    }
+    document.body.classList.add('euiBody--headerIsFixed--double');
+
     return () => {
-      document.body.classList.remove('guideBody--overflowHidden');
       document.body.classList.remove('euiBody--headerIsFixed--double');
     };
-  }, [fullScreen]);
+  }, []);
 
   /**
    * Collapsible Nav
@@ -274,99 +266,82 @@ export default ({ theme }) => {
 
   return (
     <>
-      <EuiButton onClick={() => setFullScreen(true)} iconType="fullScreen">
-        Show fullscreen demo
-      </EuiButton>
-      {/* FocusTrap for Docs only */}
-      {fullScreen && (
-        <EuiFocusTrap>
-          <EuiFlexGroup
-            className="guideFullScreenOverlay"
-            gutterSize="none"
-            direction="column">
-            <EuiHeader
-              theme="dark"
-              sections={[
-                {
-                  items: [
-                    <EuiHeaderLogo iconType="logoElastic" href="">
-                      Elastic
-                    </EuiHeaderLogo>,
-                    deploymentMenu,
-                  ],
-                  borders: 'none',
-                },
-                {
-                  items: [
-                    <EuiShowFor sizes={['m', 'l', 'xl']}>{search}</EuiShowFor>,
-                  ],
-                  borders: 'none',
-                },
-                {
-                  items: [
-                    <EuiShowFor sizes={['xs', 's']}>{search}</EuiShowFor>,
-                    <EuiHeaderSectionItemButton
-                      notification={true}
-                      aria-label="Notifications: Updates available"
-                      onClick={() =>
-                        setIsAlertFlyoutVisible(!isAlertFlyoutVisible)
-                      }>
-                      <EuiIcon type="cheer" size="m" />
-                    </EuiHeaderSectionItemButton>,
-                    userMenu,
-                  ],
-                  borders: 'none',
-                },
-              ]}
-            />
-            <EuiHeader
-              sections={[
-                {
-                  items: [collapsibleNav, spacesMenu],
-                  breadcrumbs: [
-                    {
-                      text: 'Management',
-                      onClick: () => {},
-                    },
-                    {
-                      text: 'Users',
-                    },
-                  ],
-                  borders: 'right',
-                },
-                {
-                  items: [
-                    <EuiHeaderLinks
-                      popoverProps={{
-                        repositionOnScroll: true, // Necessary when placing search in a fixed component
-                      }}>
-                      <EuiHeaderLink color="primary">Share</EuiHeaderLink>
-                      <EuiHeaderLink color="primary">Clone</EuiHeaderLink>
-                      <EuiButton
-                        iconType="minimize"
-                        style={{ minWidth: 80 }}
-                        size="s"
-                        color="primary"
-                        onClick={() => {
-                          setFullScreen(false);
-                          document.body.classList.remove(
-                            'euiBody--headerIsFixed--double'
-                          );
-                        }}>
-                        Exit full screen
-                      </EuiButton>
-                    </EuiHeaderLinks>,
-                  ],
-                },
-              ]}
-            />
+      <EuiHeader
+        theme="dark"
+        position="fixed"
+        sections={[
+          {
+            items: [
+              <EuiHeaderLogo iconType="logoElastic" href="">
+                Elastic
+              </EuiHeaderLogo>,
+              deploymentMenu,
+            ],
+            borders: 'none',
+          },
+          {
+            items: [<EuiShowFor sizes={['m', 'l', 'xl']}>{search}</EuiShowFor>],
+            borders: 'none',
+          },
+          {
+            items: [
+              <EuiShowFor sizes={['xs', 's']}>{search}</EuiShowFor>,
+              <EuiHeaderSectionItemButton
+                notification={true}
+                aria-label="Notifications: Updates available"
+                onClick={() => setIsAlertFlyoutVisible(!isAlertFlyoutVisible)}>
+                <EuiIcon type="cheer" size="m" />
+              </EuiHeaderSectionItemButton>,
+              userMenu,
+            ],
+            borders: 'none',
+          },
+        ]}
+      />
+      <EuiHeader
+        position="fixed"
+        sections={[
+          {
+            items: [collapsibleNav, spacesMenu],
+            breadcrumbs: [
+              {
+                text: 'Management',
+                onClick: () => {},
+              },
+              {
+                text: 'Users',
+              },
+            ],
+            borders: 'right',
+          },
+          {
+            items: [
+              <EuiHeaderLinks
+                popoverProps={{
+                  repositionOnScroll: true, // Necessary when placing search in a fixed component
+                }}>
+                <EuiHeaderLink color="primary">Share</EuiHeaderLink>
+                <EuiHeaderLink color="primary">Clone</EuiHeaderLink>
+                <ExampleContext.Consumer>
+                  {({ parentPath }) => (
+                    <EuiButton
+                      iconType="exit"
+                      style={{ minWidth: 80 }}
+                      size="s"
+                      color="primary"
+                      href={`#${parentPath}`}>
+                      Exit full screen
+                    </EuiButton>
+                  )}
+                </ExampleContext.Consumer>
+              </EuiHeaderLinks>,
+            ],
+          },
+        ]}
+      />
 
-            {isAlertFlyoutVisible ? headerAlerts : null}
-
-            <EuiPage />
-          </EuiFlexGroup>
-        </EuiFocusTrap>
-      )}
+      {isAlertFlyoutVisible ? headerAlerts : null}
+      <EuiPageTemplate template="empty" />
     </>
   );
 };
