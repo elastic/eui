@@ -131,7 +131,7 @@ export interface EuiResizablePanelProps
    */
   size?: number | string;
   /**
-   * Add Eui scroll and overflow for the panel
+   * Add scroll and overflow for the panel
    */
   scrollable?: boolean;
   /*
@@ -148,7 +148,7 @@ export interface EuiResizablePanelProps
    */
   children: ReactNode;
   /**
-   * Custom CSS properties applied to the wrapping `.euiResizablePanel` div
+   * Custom CSS properties applied to the wrapping `.euiResizablePanel__content` div
    */
   style?: CSSProperties;
   /**
@@ -184,7 +184,6 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   maxSize,
   minSize = '0px', // Actual minSize is calculated in `./helpers.ts`
   scrollable = true,
-  style = {},
   mode,
   registration,
   onToggleCollapsed,
@@ -299,7 +298,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   }
 
   const styles = {
-    ...style,
+    ...wrapperProps?.style,
     ...dimensions,
   };
 

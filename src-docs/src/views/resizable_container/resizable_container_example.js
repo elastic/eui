@@ -30,6 +30,7 @@ import ResizablePanelCollapsible from './resizable_panel_collapsible';
 import ResizablePanelCollapsibleResponsive from './resizable_panel_collapsible_responsive';
 import ResizablePanelCollapsibleOpts from './resizable_panel_collapsible_options';
 import ResizablePanelCollapsibleExt from './resizable_panel_collapsible_external';
+import ResizablePage from './resizable_page';
 
 const ResizableContainerSource = require('!!raw-loader!./resizable_container_basic');
 const ResizableContainerVerticalSource = require('!!raw-loader!./resizable_container_vertical');
@@ -544,6 +545,30 @@ export const ResizableContainerExample = {
       ),
       demo: <ResizablePanelCollapsibleExt />,
       snippet: collapsibleExtSnippet,
+    },
+    {
+      title: 'A page layout pattern with resizable side bar',
+      // source: [
+      //   {
+      //     type: GuideSectionTypes.JS,
+      //     code: PageRestrictingWidthTemplateSource,
+      //     displayName: 'Template JS',
+      //   },
+      //   {
+      //     type: GuideSectionTypes.JS,
+      //     code: PageRestrictingWidthSource,
+      //     displayName: 'Components JS',
+      //   },
+      // ],
+      text: (
+        <>
+          <p />
+        </>
+      ),
+      fullScreen: {
+        slug: 'resizable-page',
+        demo: <ResizablePage />,
+      },
     },
   ],
 };

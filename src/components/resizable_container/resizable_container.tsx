@@ -80,6 +80,10 @@ export interface EuiResizableContainerProps
   onPanelWidthChange?: ({}: { [key: string]: number }) => any;
   onToggleCollapsed?: ToggleCollapseCallback;
   style?: CSSProperties;
+  /**
+   * Add Eui scroll and overflow for the panel
+   */
+  scrollable?: boolean;
 }
 
 const initialState: EuiResizableContainerState = {
@@ -98,6 +102,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   className,
   onPanelWidthChange,
   onToggleCollapsed,
+  scrollable = true,
   ...rest
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -108,6 +113,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     {
       'euiResizableContainer--vertical': !isHorizontal,
       'euiResizableContainer--horizontal': isHorizontal,
+      'euiResizableContainer--scrollable': scrollable,
     },
     className
   );

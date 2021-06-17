@@ -2,12 +2,15 @@
   display: flex;
   width: 100%;
 
-  &--horizontal {
-    overflow-x: scroll;
-  }
-
   &--vertical {
     flex-direction: column;
-    overflow-y: scroll;
+  }
+}
+
+.euiResizableContainer--scrollable {
+  overflow-x: auto;
+
+  .euiResizableContainer--vertical {
+    overflow-y: auto;
   }
 }
