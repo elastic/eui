@@ -41,13 +41,17 @@ const fontSizesToClassMap: Record<EuiDataGridStyleFontSizes, string> = {
 const fakeCell = document.createElement('div');
 
 function getNumberFromPx(style: string) {
-  return parseInt(style.replace('px', ''), 10);
+  return style ? parseInt(style.replace('px', ''), 10) : 0;
 }
 
 // So that we use lineCount options we should know exactly row height which allow to show defined line count.
 // For this we should know paddings and line height. Because of this we should compute styles for cell with grid styles
 export class RowHeightUtils {
-  private styles?: CSSStyleDeclaration;
+  private styles?: {
+    paddingTop: string;
+    paddingBottom: string;
+    lineHeight: string;
+  };
 
   computedStylesForGridCell(gridStyles: EuiDataGridStyle) {
     fakeCell.className = `
@@ -56,7 +60,12 @@ export class RowHeightUtils {
       ${fontSizesToClassMap[gridStyles.fontSize!]}
     `;
     document.body.appendChild(fakeCell);
-    this.styles = { ...getComputedStyle(fakeCell) };
+    const allStyles = getComputedStyle(fakeCell);
+    this.styles = {
+      paddingTop: allStyles.paddingTop,
+      paddingBottom: allStyles.paddingBottom,
+      lineHeight: allStyles.lineHeight,
+    };
     document.body.removeChild(fakeCell);
   }
 
