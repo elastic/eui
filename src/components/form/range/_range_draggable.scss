@@ -3,6 +3,7 @@
   position: absolute;
   top: $euiFormControlHeight / 4;
   pointer-events: none;
+  z-index: 2;
 
   &.euiRangeDraggable--compressed {
     height: $euiFormControlCompressedHeight / 2;

@@ -5,10 +5,13 @@
 
 **Bug fixes**
 
+- Fixed `EuiRange` container expansion due to negative margin value ([#4815](https://github.com/elastic/eui/pull/4815))
+- Fixed `EuiRange` ticks position to better align with thumbs ([#4815](https://github.com/elastic/eui/pull/4815))
 - Fixed DataGrid footer and header rows jumps in Firefox ([#4869](https://github.com/elastic/eui/issues/4869))
 
 **Theme: Amsterdam**
 
+- Updated styles for `EuiRange` ([#4815](https://github.com/elastic/eui/pull/4815)
 - Fixed more unique focus states using `outline` ([#4876](https://github.com/elastic/eui/pull/4876))
 - Fixed `border-radius` value of `EuiPanel` ([#4876](https://github.com/elastic/eui/pull/4876))
 - Fixed `disabled` background color of `EuiCard` for better visiblity on subdued backgrounds ([#4876](https://github.com/elastic/eui/pull/4876))

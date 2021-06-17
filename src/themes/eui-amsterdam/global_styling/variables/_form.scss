@@ -6,3 +6,18 @@ $euiFormBackgroundReadOnlyColor: $euiColorEmptyShade;
 $euiFormControlBoxShadow: 0 0 transparent;
 
 $euiCheckboxBorderRadius: $euiBorderRadiusSmall;
+
+// Range
+$euiRangeTrackColor: $euiColorLightShade;
+$euiRangeHighlightColor: $euiColorDarkShade;
+
+$euiRangeThumbBorderColor: $euiColorEmptyShade;
+$euiRangeThumbBackgroundColor: $euiRangeHighlightColor;
+
+$euiRangeTrackHeight: $euiSizeM / 2;
+$euiRangeTrackCompressedHeight: $euiSizeXS;
+$euiRangeHighlightHeight: $euiRangeTrackHeight;
+$euiRangeHighlightCompressedHeight: $euiRangeTrackCompressedHeight;
+
+$euiRangeHeight: $euiFormControlHeight;
+$euiRangeCompressedHeight: $euiFormControlCompressedHeight;
