@@ -1,8 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Reverted `z-index: 1` on `EuiPageBody` ([#4892](https://github.com/elastic/eui/pull/4892))
+
 **Bug fixes**
 
-- Fixed DataGrid footer and header rows jumps in Firefox ([#4729](https://github.com/elastic/eui/issues/4729))
+- Fixed DataGrid footer and header rows jumps in Firefox ([#4869](https://github.com/elastic/eui/issues/4869))
 
 ## [`34.3.0`](https://github.com/elastic/eui/tree/v34.3.0)
 

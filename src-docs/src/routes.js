@@ -240,13 +240,6 @@ const createExample = (example, customTitle) => {
     );
   }
 
-  const isPlaygroundUnsupported =
-    // Check for IE11
-    typeof window !== 'undefined' &&
-    typeof document !== 'undefined' &&
-    !!window.MSInputMethodContext &&
-    !!document.documentMode;
-
   const {
     title,
     intro,
@@ -269,9 +262,7 @@ const createExample = (example, customTitle) => {
   );
 
   let playgroundComponent;
-  if (isPlaygroundUnsupported) {
-    playgroundComponent = null;
-  } else if (playground) {
+  if (playground) {
     if (Array.isArray(playground)) {
       playgroundComponent = playground.map((elm, idx) => {
         return <Fragment key={idx}>{playgroundCreator(elm())}</Fragment>;
