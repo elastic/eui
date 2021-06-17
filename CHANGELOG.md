@@ -6,12 +6,14 @@
 - Change default `Icon` `color` option to `success` for `saved` and `unchanged` states in `Suggest Input` ([#4888](https://github.com/elastic/eui/pull/4888))
 - Added `success` `color` option to `Text Color` ([#4888](https://github.com/elastic/eui/pull/4888))
 - Change the indicator `Icon` `color` option to `success` in `Tour Step Indicator` ([#4888](https://github.com/elastic/eui/pull/4888))
-
-
-
+- Reverted `z-index: 1` on `EuiPageBody` ([#4892](https://github.com/elastic/eui/pull/4892))
 ## [`34.4.0`](https://github.com/elastic/eui/tree/v34.4.0)
 
 - Added draggable highlight area to `EuiDualRange` ([#4776](https://github.com/elastic/eui/pull/4776))
+
+**Bug fixes**
+
+- Fixed auto scrolling on update in `EuiComboBox` ([#4879](https://github.com/elastic/eui/pull/4879))
 
 ## [`34.3.0`](https://github.com/elastic/eui/tree/v34.3.0)
 
