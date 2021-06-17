@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.4.0`.
+- Added `updateButtonProps` to `EuiSuperDatePicker` to provide more control over the update/refresh button ([#4776](https://github.com/elastic/eui/pull/4776))
 
 ## [`34.4.0`](https://github.com/elastic/eui/tree/v34.4.0)
 
