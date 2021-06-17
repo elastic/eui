@@ -2,6 +2,10 @@
 
 - Reverted `z-index: 1` on `EuiPageBody` ([#4892](https://github.com/elastic/eui/pull/4892))
 
+**Bug fixes**
+
+- Fixed DataGrid footer and header rows jumps in Firefox ([#4869](https://github.com/elastic/eui/issues/4869))
+
 **Theme: Amsterdam**
 
 - Fixed more unique focus states using `outline` ([#4876](https://github.com/elastic/eui/pull/4876))
