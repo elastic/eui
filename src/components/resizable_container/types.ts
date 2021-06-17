@@ -27,14 +27,15 @@ export type PanelDirection = 'left' | 'right';
 
 export interface EuiResizablePanelController {
   id: string;
+  initSize: string | number;
   size: number;
+  prevSize: number;
   getSizePx: () => number;
   maxSize?: string;
   minSize: string[];
   mode?: PanelModeType;
   canGrow: boolean;
   isCollapsed: boolean;
-  prevSize: number;
   position: PanelPosition;
 }
 

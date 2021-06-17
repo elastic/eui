@@ -119,14 +119,16 @@ export interface EuiResizablePanelProps
   id?: string;
   /**
    * Initial size of the panel in percents
+   * Specify pixels or percents, for example "300px" or "30%", or 30 (30%)
+   * Or set to "grow" to have the panel occupy all space left open by sibling panels
    * Specify this prop if you don't need to handle the panel size from outside
    */
-  initialSize?: number | 'grow';
+  initialSize?: number | string | 'grow';
   /**
    * Size of the panel in percents.
    * Specify this prop if you want to control the size from outside, the panel will ignore the "initialSize"
    */
-  size?: number;
+  size?: number | string;
   /**
    * Add Eui scroll and overflow for the panel
    */
@@ -209,11 +211,15 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     () => (_initialSize === 'grow' ? 0 : _initialSize || 0),
     [_initialSize]
   );
-  const innerSize = useMemo(
-    () =>
-      (panels[panelId.current] && panels[panelId.current].size) ?? initialSize,
-    [panels, initialSize]
+  const sizeStr = useMemo(
+    () => (typeof size === 'number' ? `${size}%` : size),
+    [size]
   );
+  const innerSize = useMemo(() => {
+    const size =
+      (panels[panelId.current] && panels[panelId.current].size) ?? initialSize;
+    return typeof size === 'number' ? `${size}%` : size;
+  }, [panels, initialSize]);
   const isCollapsed = useMemo(
     () =>
       (panels[panelId.current] && panels[panelId.current].isCollapsed) || false,
@@ -281,13 +287,13 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
 
   if (size) {
     dimensions = {
-      width: isHorizontal ? `${size}%` : '100%',
-      height: isHorizontal ? 'auto' : `${size}%`,
+      width: isHorizontal ? sizeStr : '100%',
+      height: isHorizontal ? 'auto' : sizeStr,
     };
   } else {
     dimensions = {
-      width: isHorizontal ? `${innerSize}%` : '100%',
-      height: isHorizontal ? 'auto' : `${innerSize}%`,
+      width: isHorizontal ? innerSize : '100%',
+      height: isHorizontal ? 'auto' : innerSize,
     };
   }
 
@@ -310,8 +316,9 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     ];
     registration.register({
       id,
-      size: initSize,
-      prevSize: initSize,
+      initSize,
+      size: 0,
+      prevSize: 0,
       getSizePx() {
         return isHorizontal
           ? divRef.current!.getBoundingClientRect().width

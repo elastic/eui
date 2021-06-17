@@ -47,14 +47,14 @@ export default () => (
         <EuiResizableButton />
 
         <EuiResizablePanel
-          initialSize={40}
+          initialSize="300px"
           color="subdued"
           minSize="100px"
           maxSize="50%">
           <EuiPanel>
             <EuiText size="s">
               <p>
-                This <strong>EuiResizablePanel</strong> will eventually set its{' '}
+                This <strong>EuiResizablePanel</strong> sets its{' '}
                 <EuiCode>{'initialSize'}</EuiCode> in pixels.
               </p>
             </EuiText>

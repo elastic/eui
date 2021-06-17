@@ -45,6 +45,7 @@ describe('sizesOnly', () => {
         getSizePx: () => 10,
         minSize: ['0px', '0px'],
         isCollapsed: false,
+        initSize: panel.size,
         prevSize: 0,
         position: 'middle',
         canGrow: false,

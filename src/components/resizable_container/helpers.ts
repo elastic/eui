@@ -68,33 +68,37 @@ export const sizesOnly = (
   );
 };
 
-const _getPanelSize = (panelMinSize: string, containerSize: number) => {
-  let panelMinSizePercent = 0;
-  const panelMinSizeInt = parseInt(panelMinSize);
-  if (panelMinSize.indexOf('px') > -1) {
-    panelMinSizePercent = pxToPercent(panelMinSizeInt, containerSize);
-  } else if (panelMinSize.indexOf('%') > -1) {
-    panelMinSizePercent = pxToPercent(
-      containerSize * (panelMinSizeInt / 100),
+const getPanelSizePct = (
+  _panelSize: number | string,
+  containerSize: number
+) => {
+  const panelSize = `${_panelSize}`;
+  let panelSizePercent = 0;
+  const panelSizeInt = parseInt(panelSize);
+  if (panelSize.indexOf('px') > -1) {
+    panelSizePercent = pxToPercent(panelSizeInt, containerSize);
+  } else {
+    panelSizePercent = pxToPercent(
+      containerSize * (panelSizeInt / 100),
       containerSize
     );
   }
-  return panelMinSizePercent;
+  return panelSizePercent;
 };
 
 export const getPanelMaxSize = (
   panelMaxSize: string,
   containerSize: number
 ) => {
-  return _getPanelSize(panelMaxSize, containerSize);
+  return getPanelSizePct(panelMaxSize, containerSize);
 };
 
 export const getPanelMinSize = (
   panelMinSize: string[],
   containerSize: number
 ) => {
-  const paddingMin = _getPanelSize(panelMinSize[1], containerSize);
-  const configMin = _getPanelSize(panelMinSize[0], containerSize);
+  const paddingMin = getPanelSizePct(panelMinSize[1], containerSize);
+  const configMin = getPanelSizePct(panelMinSize[0], containerSize);
   return Math.max(configMin, paddingMin);
 };
 
@@ -186,9 +190,10 @@ export const useContainerCallbacks = ({
         let totalSize = 0;
         const panels = Object.values(state.panels).reduce(
           (out: EuiResizableContainerState['panels'], panel) => {
+            const sizeInPct = getPanelSizePct(panel.initSize, containerSize);
             const minSize = Math.max(
               getPanelMinSize(panel.minSize, containerSize),
-              panel.size
+              sizeInPct
             );
             const size = panel.maxSize
               ? Math.min(minSize, getPanelMaxSize(panel.maxSize, containerSize))
