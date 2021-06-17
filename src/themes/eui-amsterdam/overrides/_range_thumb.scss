@@ -15,13 +15,6 @@
     outline: none;
   }
 
-  // in Chrome/FF/Edge we don't want to focus on click
-  &:focus:not(:focus-visible) {
-    @include euiRangeThumbBoxShadow;
-    background-color: $euiRangeThumbBackgroundColor;
-    outline: none;
-  }
-
   &:focus:focus-visible {
     outline: none;
   }

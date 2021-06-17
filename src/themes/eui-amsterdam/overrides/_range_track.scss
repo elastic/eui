@@ -71,10 +71,6 @@
       .euiRangeTick {
         padding-top: $euiRangeTrackHeight;
       }
-
-      .euiRangeTooltip {
-        top: -($euiSizeXS / 2);
-      }
     }
 
     &:not(.euiRangeTrack--hasLevels) {
@@ -89,8 +85,14 @@
       }
     }
 
-    &.euiRangeTrack--hasTicks::after {
-      top: ($euiRangeThumbHeight - $euiRangeTrackHeight) / 2;
+    &.euiRangeTrack--hasTicks {
+      .euiRangeTooltip {
+        top: -($euiSizeXS / 2);
+      }
+
+      &::after {
+        top: ($euiRangeThumbHeight - $euiRangeTrackHeight) / 2;
+      }
     }
 
     &:not(.euiRangeTrack--hasTicks)::after {
