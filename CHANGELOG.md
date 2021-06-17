@@ -6,6 +6,14 @@
 
 - Fixed DataGrid footer and header rows jumps in Firefox ([#4869](https://github.com/elastic/eui/issues/4869))
 
+## [`34.4.0`](https://github.com/elastic/eui/tree/v34.4.0)
+
+- Added draggable highlight area to `EuiDualRange` ([#4776](https://github.com/elastic/eui/pull/4776))
+
+**Bug fixes**
+
+- Fixed auto scrolling on update in `EuiComboBox` ([#4879](https://github.com/elastic/eui/pull/4879))
+
 ## [`34.3.0`](https://github.com/elastic/eui/tree/v34.3.0)
 
 - Added `testenv` mock for `EuiFlyout` ([#4858](https://github.com/elastic/eui/pull/4858))
