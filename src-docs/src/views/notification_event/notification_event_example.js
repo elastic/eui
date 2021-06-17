@@ -143,10 +143,10 @@ export const NotificationEventExample = {
           <EuiText>
             <ul style={{ listStyleType: 'upper-alpha' }}>
               <li>
-                <EuiCode>isRead</EuiCode>: Shows a button that indicates the
-                current <EuiCode>isRead</EuiCode> state of the event. Use{' '}
-                <EuiCode>onRead</EuiCode> to allow users to toggle between read
-                and unread states.
+                <EuiCode>isRead</EuiCode>: Shows a button and icon that
+                indicates the current <EuiCode>isRead</EuiCode> state of the
+                event. Use <EuiCode>onRead</EuiCode> to allow users to toggle
+                between read and unread states.
               </li>
               <li>
                 <EuiCode>iconType</EuiCode>: Display an icon or logo to help

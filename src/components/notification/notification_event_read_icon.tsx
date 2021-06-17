@@ -68,7 +68,7 @@ export const EuiNotificationEventReadIcon: FunctionComponent<EuiNotificationEven
     'Unread'
   );
 
-  const iconAriaLabel = isRead ? unreadAria : readAria;
+  const iconAriaLabel = isRead ? readAria : unreadAria;
   const iconTitle = isRead ? readTitle : unreadTitle;
 
   return (
