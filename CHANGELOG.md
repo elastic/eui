@@ -1,6 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Reverted `z-index: 1` on `EuiPageBody` ([#4892](https://github.com/elastic/eui/pull/4892))
+- Added pixel value support to `initialSize` and `size` props in `EuiResizablePanel` ([#4893](https://github.com/elastic/eui/pull/4893))
+
+**Bug fixes**
+
+- Updated `EuiResizableContainer` to respect `minSize` and `maxSize` props in initial size calculation ([#4893](https://github.com/elastic/eui/pull/4893))
+
 ## [`34.4.0`](https://github.com/elastic/eui/tree/v34.4.0)
 
 - Added draggable highlight area to `EuiDualRange` ([#4776](https://github.com/elastic/eui/pull/4776))
