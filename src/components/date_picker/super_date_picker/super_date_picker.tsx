@@ -564,17 +564,3 @@ export class EuiSuperDatePicker extends Component<
     );
   }
 }
-
-export const A = () => (
-  <EuiSuperDatePicker
-    updateButtonProps={{ fill: false }}
-    isLoading={true}
-    start=""
-    end=""
-    onTimeChange={() => {}}
-    onRefresh={() => {}}
-    isPaused={false}
-    refreshInterval={5000}
-    onRefreshChange={() => {}}
-  />
-);
