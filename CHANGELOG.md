@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `success` as `color` option to `EuiBadge`, `EuiTextColor`, `EuiText`, and `EuiExpression` ([#4888](https://github.com/elastic/eui/pull/4888))
+- Added `success` as `color` option to `EuiBadge`, `EuiTextColor`, `EuiText`, `EuiStat`, and `EuiExpression` ([#4888](https://github.com/elastic/eui/pull/4888))
 - Changed default `color` props from `secondary` to `success` where necessary ([#4888](https://github.com/elastic/eui/pull/4888))
 - Reverted `z-index: 1` on `EuiPageBody` ([#4892](https://github.com/elastic/eui/pull/4892))
 ## [`34.4.0`](https://github.com/elastic/eui/tree/v34.4.0)
