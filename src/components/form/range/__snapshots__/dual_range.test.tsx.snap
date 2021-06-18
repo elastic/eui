@@ -30,14 +30,6 @@ exports[`EuiDualRange allows value prop to accept numbers 1`] = `
     aria-hidden="false"
     class="euiRangeTrack"
   >
-    <div
-      class="euiRangeHighlight"
-    >
-      <div
-        class="euiRangeHighlight__progress"
-        style="margin-left:1%;width:7.000000000000001%"
-      />
-    </div>
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
@@ -48,6 +40,14 @@ exports[`EuiDualRange allows value prop to accept numbers 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:1%;width:7.000000000000001%"
+      />
+    </div>
   </div>
 </div>
 `;
@@ -82,14 +82,6 @@ exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
     aria-hidden="true"
     class="euiRangeTrack"
   >
-    <div
-      class="euiRangeHighlight"
-    >
-      <div
-        class="euiRangeHighlight__progress"
-        style="margin-left:0%;width:77.77777777777779%"
-      />
-    </div>
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
@@ -101,6 +93,14 @@ exports[`EuiDualRange input props can be applied to min and max inputs 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:77.77777777777779%"
+      />
+    </div>
   </div>
   <div
     class="euiRange__horizontalSpacer"
@@ -135,14 +135,6 @@ exports[`EuiDualRange is rendered 1`] = `
     aria-hidden="false"
     class="euiRangeTrack"
   >
-    <div
-      class="euiRangeHighlight"
-    >
-      <div
-        class="euiRangeHighlight__progress"
-        style="margin-left:1%;width:7.000000000000001%"
-      />
-    </div>
     <input
       aria-hidden="true"
       aria-label="aria-label"
@@ -156,6 +148,14 @@ exports[`EuiDualRange is rendered 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:1%;width:7.000000000000001%"
+      />
+    </div>
   </div>
 </div>
 `;
@@ -166,16 +166,8 @@ exports[`EuiDualRange props compressed should render 1`] = `
 >
   <div
     aria-hidden="false"
-    class="euiRangeTrack"
+    class="euiRangeTrack euiRangeTrack--compressed"
   >
-    <div
-      class="euiRangeHighlight euiRangeHighlight--compressed"
-    >
-      <div
-        class="euiRangeHighlight__progress"
-        style="margin-left:1%;width:7.000000000000001%"
-      />
-    </div>
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiRangeSlider--compressed euiDualRange__slider"
@@ -186,6 +178,14 @@ exports[`EuiDualRange props compressed should render 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight euiRangeHighlight--compressed"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:1%;width:7.000000000000001%"
+      />
+    </div>
   </div>
 </div>
 `;
@@ -199,11 +199,11 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
     class="euiRangeTrack euiRangeTrack--hasTicks"
   >
     <div
-      class="euiRangeTicks"
+      class="euiRangeTicks euiRangeTicks--isCustom"
     >
       <button
         class="euiRangeTick euiRangeTick--isCustom"
-        style="left:20%"
+        style="left:calc(-Infinity% + 8px)"
         tabindex="-1"
         title="20kb"
         type="button"
@@ -222,18 +222,10 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
         <span
           aria-hidden="true"
           class="euiRangeTick__pseudo"
-          style="margin-right:calc(1.25em - 2px)"
+          style="margin-right:calc(1.25em + 4px)"
         />
         100kb
       </button>
-    </div>
-    <div
-      class="euiRangeHighlight euiRangeHighlight--hasTicks"
-    >
-      <div
-        class="euiRangeHighlight__progress"
-        style="margin-left:20%;width:80%"
-      />
     </div>
     <input
       aria-hidden="true"
@@ -245,6 +237,14 @@ exports[`EuiDualRange props custom ticks should render 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight euiRangeHighlight--hasTicks"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:20%;width:80%"
+      />
+    </div>
   </div>
 </div>
 `;
@@ -257,14 +257,6 @@ exports[`EuiDualRange props disabled should render 1`] = `
     aria-hidden="false"
     class="euiRangeTrack euiRangeTrack--disabled"
   >
-    <div
-      class="euiRangeHighlight"
-    >
-      <div
-        class="euiRangeHighlight__progress"
-        style="margin-left:1%;width:7.000000000000001%"
-      />
-    </div>
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
@@ -276,6 +268,14 @@ exports[`EuiDualRange props disabled should render 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:1%;width:7.000000000000001%"
+      />
+    </div>
   </div>
 </div>
 `;
@@ -288,14 +288,6 @@ exports[`EuiDualRange props fullWidth should render 1`] = `
     aria-hidden="false"
     class="euiRangeTrack"
   >
-    <div
-      class="euiRangeHighlight"
-    >
-      <div
-        class="euiRangeHighlight__progress"
-        style="margin-left:1%;width:7.000000000000001%"
-      />
-    </div>
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
@@ -306,6 +298,14 @@ exports[`EuiDualRange props fullWidth should render 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:1%;width:7.000000000000001%"
+      />
+    </div>
   </div>
 </div>
 `;
@@ -340,14 +340,6 @@ exports[`EuiDualRange props inputs should render 1`] = `
     aria-hidden="true"
     class="euiRangeTrack"
   >
-    <div
-      class="euiRangeHighlight"
-    >
-      <div
-        class="euiRangeHighlight__progress"
-        style="margin-left:1%;width:7.000000000000001%"
-      />
-    </div>
     <input
       aria-hidden="true"
       aria-label="aria-label"
@@ -361,6 +353,14 @@ exports[`EuiDualRange props inputs should render 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:1%;width:7.000000000000001%"
+      />
+    </div>
   </div>
   <div
     class="euiRange__horizontalSpacer"
@@ -395,14 +395,6 @@ exports[`EuiDualRange props isDraggable should render 1`] = `
     aria-hidden="false"
     class="euiRangeTrack"
   >
-    <div
-      class="euiRangeHighlight"
-    >
-      <div
-        class="euiRangeHighlight__progress"
-        style="margin-left:1%;width:7.000000000000001%"
-      />
-    </div>
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
@@ -413,6 +405,14 @@ exports[`EuiDualRange props isDraggable should render 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:1%;width:7.000000000000001%"
+      />
+    </div>
   </div>
 </div>
 `;
@@ -430,14 +430,6 @@ exports[`EuiDualRange props labels should render 1`] = `
     aria-hidden="false"
     class="euiRangeTrack"
   >
-    <div
-      class="euiRangeHighlight"
-    >
-      <div
-        class="euiRangeHighlight__progress"
-        style="margin-left:1%;width:7.000000000000001%"
-      />
-    </div>
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
@@ -448,6 +440,14 @@ exports[`EuiDualRange props labels should render 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:1%;width:7.000000000000001%"
+      />
+    </div>
   </div>
   <label
     class="euiRangeLabel euiRangeLabel--max"
@@ -463,7 +463,7 @@ exports[`EuiDualRange props levels should render 1`] = `
 >
   <div
     aria-hidden="false"
-    class="euiRangeTrack"
+    class="euiRangeTrack euiRangeTrack--hasLevels"
   >
     <div
       class="euiRangeLevels"
@@ -477,14 +477,6 @@ exports[`EuiDualRange props levels should render 1`] = `
         style="width:80%"
       />
     </div>
-    <div
-      class="euiRangeHighlight"
-    >
-      <div
-        class="euiRangeHighlight__progress"
-        style="margin-left:1%;width:7.000000000000001%"
-      />
-    </div>
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
@@ -495,6 +487,14 @@ exports[`EuiDualRange props levels should render 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:1%;width:7.000000000000001%"
+      />
+    </div>
   </div>
 </div>
 `;
@@ -507,14 +507,6 @@ exports[`EuiDualRange props range should render 1`] = `
     aria-hidden="false"
     class="euiRangeTrack"
   >
-    <div
-      class="euiRangeHighlight"
-    >
-      <div
-        class="euiRangeHighlight__progress"
-        style="margin-left:1%;width:7.000000000000001%"
-      />
-    </div>
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"
@@ -525,6 +517,14 @@ exports[`EuiDualRange props range should render 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:1%;width:7.000000000000001%"
+      />
+    </div>
   </div>
 </div>
 `;
@@ -589,11 +589,10 @@ exports[`EuiDualRange props ticks should render 1`] = `
   >
     <div
       class="euiRangeTicks"
-      style="margin:0 -8.333333333333332%;left:0;right:0"
     >
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(NaN% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="0"
@@ -602,7 +601,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="20"
@@ -611,7 +610,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="40"
@@ -620,7 +619,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="60"
@@ -629,7 +628,7 @@ exports[`EuiDualRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="80"
@@ -638,21 +637,13 @@ exports[`EuiDualRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="100"
       >
         100
       </button>
-    </div>
-    <div
-      class="euiRangeHighlight euiRangeHighlight--hasTicks"
-    >
-      <div
-        class="euiRangeHighlight__progress"
-        style="margin-left:1%;width:7.000000000000001%"
-      />
     </div>
     <input
       aria-hidden="true"
@@ -664,6 +655,14 @@ exports[`EuiDualRange props ticks should render 1`] = `
       tabindex="-1"
       type="range"
     />
+    <div
+      class="euiRangeHighlight euiRangeHighlight--hasTicks"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:1%;width:7.000000000000001%"
+      />
+    </div>
   </div>
 </div>
 `;

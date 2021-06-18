@@ -41,6 +41,7 @@ import { EuiRangeThumb } from './range_thumb';
 import { EuiRangeTick } from './range_ticks';
 import { EuiRangeTrack } from './range_track';
 import { EuiRangeWrapper } from './range_wrapper';
+import { calculateThumbPosition } from './utils';
 
 type ValueMember = number | string;
 
@@ -393,21 +394,18 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
   };
 
   calculateThumbPositionStyle = (value: number, width?: number) => {
-    // Calculate the left position based on value
-    const decimal =
-      (value - this.props.min) / (this.props.max - this.props.min);
-    // Must be between 0-100%
-    let valuePosition = decimal <= 1 ? decimal : 1;
-    valuePosition = valuePosition >= 0 ? valuePosition : 0;
-
-    const EUI_THUMB_SIZE = 16;
     const trackWidth =
       this.props.showInput === 'inputWithPopover' && !!width
         ? width
         : this.rangeSliderRef!.clientWidth;
-    const thumbToTrackRatio = EUI_THUMB_SIZE / trackWidth;
-    const trackPositionScale = (1 - thumbToTrackRatio) * 100;
-    return { left: `${valuePosition * trackPositionScale}%` };
+
+    const position = calculateThumbPosition(
+      value,
+      this.props.min,
+      this.props.max,
+      trackWidth
+    );
+    return { left: `${position}%` };
   };
 
   toggleHasFocus = (shouldFocused = !this.state.hasFocus) => {
@@ -655,18 +653,6 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
           onChange={this.handleSliderChange}
           value={value}
           aria-hidden={showInput === true}>
-          {showRange && this.isValid && (
-            <EuiRangeHighlight
-              compressed={compressed}
-              hasFocus={this.state.hasFocus}
-              showTicks={showTicks}
-              min={Number(min)}
-              max={Number(max)}
-              lowerValue={Number(this.lowerValue)}
-              upperValue={Number(this.upperValue)}
-            />
-          )}
-
           <EuiRangeSlider
             className="euiDualRange__slider"
             ref={this.handleRangeSliderRefUpdate}
@@ -688,6 +674,18 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
             onBlur={onBlur}
             {...rest}
           />
+
+          {showRange && this.isValid && (
+            <EuiRangeHighlight
+              compressed={compressed}
+              hasFocus={this.state.hasFocus}
+              showTicks={showTicks}
+              min={Number(min)}
+              max={Number(max)}
+              lowerValue={Number(this.lowerValue)}
+              upperValue={Number(this.upperValue)}
+            />
+          )}
 
           {this.state.rangeSliderRefAvailable && (
             <React.Fragment>
