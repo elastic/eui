@@ -53,7 +53,7 @@ export class RowHeightUtils {
     lineHeight?: string;
   } = {};
 
-  computedStylesForGridCell(gridStyles: EuiDataGridStyle) {
+  computeStylesForGridCell(gridStyles: EuiDataGridStyle) {
     fakeCell.className = `
       euiDataGridRowCell 
       ${cellPaddingsToClassMap[gridStyles.cellPadding!]} 

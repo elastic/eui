@@ -33,7 +33,7 @@ jest.mock('./row_height_utils', () => {
   return {
     RowHeightUtils: jest.fn().mockImplementation(() => {
       return {
-        computedStylesForGridCell: () => {},
+        computeStylesForGridCell: () => {},
         calculateHeightForLineCount: (lineCount: number) => {
           return lineCount;
         },
