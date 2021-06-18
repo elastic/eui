@@ -506,7 +506,7 @@ exports[`EuiIcon props type addDataApp is rendered 1`] = `
     d="M32 30H0V3h12.57l3 5H32v22zM2 28h28V10H14.43l-3-5H2v23z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M21 18h-4v-4h-2v4h-4v2h4v4h2v-4h4z"
   />
 </svg>
@@ -524,21 +524,21 @@ exports[`EuiIcon props type advancedSettingsApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M2.909 26.182h1.939v4.848H2.909z"
   />
   <path
     d="M4.848 16.62V0H2.91v16.62a3.879 3.879 0 101.94 0zm-.97 5.683a1.94 1.94 0 110-3.879 1.94 1.94 0 010 3.879z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M14.545 16.485h1.939V31.03h-1.939z"
   />
   <path
     d="M16.485 6.924V0h-1.94v6.924a3.879 3.879 0 101.94 0zm-.97 5.682a1.94 1.94 0 110-3.879 1.94 1.94 0 010 3.88z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M26.182 26.182h1.939v4.848h-1.939z"
   />
   <path
@@ -633,7 +633,7 @@ exports[`EuiIcon props type apmApp is rendered 1`] = `
     d="M3 10h4v2H1V1h30v6h-2V3H3v7zm26 19v-6h2v8H18v-8h2v6h9z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M31 10H9v11h12c5.523 0 10-4.477 10-10v-1zm-10 9H11v-7h17.938A8.001 8.001 0 0121 19z"
   />
 </svg>
@@ -672,7 +672,7 @@ exports[`EuiIcon props type appSearchApp is rendered 1`] = `
     fill-rule="evenodd"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M18.409 13.55a7.089 7.089 0 011.035 1.711A6.93 6.93 0 0120 17.98v13.27l7.5-4.33a7 7 0 003.5-6.061v-9.239a6.992 6.992 0 00-1.587-4.421L18.409 13.55zm2.777.705A8.933 8.933 0 0122 17.979v9.807l4.5-2.598a5 5 0 002.5-4.33V11.62c0-.588-.106-1.161-.303-1.7l-7.511 4.335z"
     fill-rule="evenodd"
   />
@@ -797,7 +797,7 @@ exports[`EuiIcon props type auditbeatApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M15 0h2v32h-2z"
   />
   <path
@@ -1024,7 +1024,7 @@ exports[`EuiIcon props type canvasApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M7 17h2v7H7zM12 14h2v10h-2zM17 16h2v8h-2zM22 14h3v2h-3zM22 18h3v2h-3zM22 22h3v2h-3z"
   />
   <path
@@ -1101,7 +1101,7 @@ exports[`EuiIcon props type classificationJob is rendered 1`] = `
     d="M7 16v5h2.038a13.179 13.179 0 000 2H7v5H5v-5H0v-2h5v-5h2zM7 0v5h5v2H7v5H5V7H0V5h5V0h2zm16 0v5h5v2h-5v2.038a13.179 13.179 0 00-2 0V7h-5V5h5V0h2z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M22 10c3.073 0 5.877 1.155 8 3.056v3.252A9.82 9.82 0 1016.307 30h-3.251A11.955 11.955 0 0110 22c0-6.627 5.373-12 12-12zm1 8v3h3v2h-3v3h-2v-3h-3v-2h3v-3h2z"
   />
 </svg>
@@ -1191,7 +1191,7 @@ exports[`EuiIcon props type codeApp is rendered 1`] = `
     d="M11.276 29l.594 2H0l7.621-14.29.811 2.73L3.333 29h7.943zM28.92 31l-4.987-16.598A16 16 0 008.688 3l1.8 6H8.4L6 1h2.607a18 18 0 0117.241 12.828L31 31h-2.08z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M12.037 14.02L16.492 29h6.827l-2.333-7.849a10 10 0 00-8.949-7.13zM9.35 12h2.05a12 12 0 0111.503 8.581L26 31H15L9.35 12z"
   />
 </svg>
@@ -1270,7 +1270,7 @@ exports[`EuiIcon props type consoleApp is rendered 1`] = `
     d="M29 9H3a3 3 0 01-3-3V3a3 3 0 013-3h26a3 3 0 013 3v3a3 3 0 01-3 3zM3 2a1 1 0 00-1 1v3a1 1 0 001 1h26a1 1 0 001-1V3a1 1 0 00-1-1H3z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M29 32H3a3 3 0 01-3-3V14a3 3 0 013-3h26a3 3 0 013 3v15a3 3 0 01-3 3zM3 13a1 1 0 00-1 1v15a1 1 0 001 1h26a1 1 0 001-1V14a1 1 0 00-1-1H3z"
   />
   <path
@@ -1438,7 +1438,7 @@ exports[`EuiIcon props type createAdvancedJob is rendered 1`] = `
     d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16h-2c0-7.732-6.268-14-14-14S2 8.268 2 16s6.268 14 14 14v2z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M27 20v12h-2V20h2zm-5 4v8h-2v-8h2zm10-2v10h-2V22h2zM17 9v6h6v2h-6v6h-2v-6H9v-2h6V9h2z"
   />
 </svg>
@@ -1456,7 +1456,7 @@ exports[`EuiIcon props type createMultiMetricJob is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M4 24a4 4 0 110 8 4 4 0 010-8zm24 0a4 4 0 110 8 4 4 0 010-8zM4 26a2 2 0 100 4 2 2 0 000-4zm24 0a2 2 0 100 4 2 2 0 000-4zM17 9v6h6v2h-6v6h-2v-6H9v-2h6V9h2zM4 0a4 4 0 110 8 4 4 0 010-8zm24 0a4 4 0 110 8 4 4 0 010-8zm0 2a2 2 0 100 4 2 2 0 000-4zM4 2a2 2 0 100 4 2 2 0 000-4z"
   />
   <path
@@ -1480,7 +1480,7 @@ exports[`EuiIcon props type createPopulationJob is rendered 1`] = `
     d="M16 0c5.523 0 10 4.477 10 10s-4.477 10-10 10S6 15.523 6 10 10.477 0 16 0zm0 2a8 8 0 100 16 8 8 0 000-16z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M8.4 19.288c.492.402 1.015.766 1.566 1.087L7.26 23.682a4 4 0 11-1.437-1.243l2.578-3.151zm15.2 0l2.577 3.15a4 4 0 11-1.437 1.243l-2.706-3.306a12.032 12.032 0 001.565-1.087zM4 24a2 2 0 100 4 2 2 0 000-4zm24 0a2 2 0 100 4 2 2 0 000-4zM17 6v3h3v2h-3v3h-2v-3h-3V9h3V6h2z"
   />
 </svg>
@@ -1501,7 +1501,7 @@ exports[`EuiIcon props type createSingleMetricJob is rendered 1`] = `
     d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16a16 16 0 01-16 16zm0-30C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14A14 14 0 0016 2z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M23 15h-6V9h-2v6H9v2h6v6h2v-6h6z"
   />
 </svg>
@@ -1539,7 +1539,7 @@ exports[`EuiIcon props type crossClusterReplicationApp is rendered 1`] = `
     d="M0 0v16h8.7l5.3-6V0H0zm2 2h10v7H7v5H2V2zm8.45 9L9 12.64V11h1.45zM18 16v16h8.7l5.3-6V16H18zm2 2h10v7h-5v5h-5V18zm8.45 9L27 28.64V27h1.45z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M5 18H3c0 6.075 4.925 11 11 11h2v-2h-2a9 9 0 01-9-9zM18 3h-2v2h2a9 9 0 019 9h2c0-6.075-4.925-11-11-11z"
   />
 </svg>
@@ -1629,14 +1629,14 @@ exports[`EuiIcon props type dashboardApp is rendered 1`] = `
     d="M29 9H3a3 3 0 01-3-3V3a3 3 0 013-3h26a3 3 0 013 3v3a3 3 0 01-3 3zM3 2a1 1 0 00-1 1v3a1 1 0 001 1h26a1 1 0 001-1V3a1 1 0 00-1-1H3z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M12 20H3a3 3 0 01-3-3v-3a3 3 0 013-3h9a3 3 0 013 3v3a3 3 0 01-3 3zm-9-7a1 1 0 00-1 1v3a1 1 0 001 1h9a1 1 0 001-1v-3a1 1 0 00-1-1H3z"
   />
   <path
     d="M12 31H3a3 3 0 01-3-3v-3a3 3 0 013-3h9a3 3 0 013 3v3a3 3 0 01-3 3zm-9-7a1 1 0 00-1 1v3a1 1 0 001 1h9a1 1 0 001-1v-3a1 1 0 00-1-1H3z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M29 31h-9a3 3 0 01-3-3V14a3 3 0 013-3h9a3 3 0 013 3v14a3 3 0 01-3 3zm-9-18a1 1 0 00-1 1v14a1 1 0 001 1h9a1 1 0 001-1V14a1 1 0 00-1-1h-9z"
   />
 </svg>
@@ -1657,7 +1657,7 @@ exports[`EuiIcon props type dataVisualizer is rendered 1`] = `
     d="M2 20v10h10v2H0V20h2zm30 0v12H20v-2h10V20h2zM12 4a8 8 0 110 16 8 8 0 010-16zm0 2a6 6 0 100 12 6 6 0 000-12zm0-6v2H2v10H0V0h12zm20 0v12h-2V2H20V0h12z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M21.997 12.251c-.017.689-.104 1.36-.253 2.006a6 6 0 11-7.487 7.487c-.646.15-1.317.236-2.006.253a8 8 0 109.746-9.746z"
   />
 </svg>
@@ -1695,7 +1695,7 @@ exports[`EuiIcon props type devToolsApp is rendered 1`] = `
     d="M21 28h-2v-8.49l.6-.26A9 9 0 0021 3.52V11H11V3.52a9 9 0 001.4 15.73l.6.26V28h-2v-7.21A11 11 0 0111.6.92L13 .31V9h6V.31l1.4.61a11 11 0 01.6 19.87V28z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M11 30h10v2H11z"
   />
 </svg>
@@ -1713,7 +1713,7 @@ exports[`EuiIcon props type discoverApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M8.33 23.67l4.79-10.55 10.55-4.79-4.79 10.55-10.55 4.79zm6.3-9l-2.28 5 5-2.28 2.28-5-5 2.28z"
   />
   <path
@@ -2354,7 +2354,7 @@ exports[`EuiIcon props type emsApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M3 22h3v2H1V1h23v5h-2V3H3z"
   />
   <path
@@ -2572,7 +2572,7 @@ exports[`EuiIcon props type filebeatApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M8 18h16v2H8zM8 13h9v2H8zM8 23h16v2H8z"
   />
   <path
@@ -2820,7 +2820,7 @@ exports[`EuiIcon props type gisApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M29.014 23.89l2.296 1.145L16 32.101.53 24.961l2.49-1.056 2.453 1.132-.003.002L16 29.899l10.69-4.934-.003-.001 2.327-1.074zm-4.972-7.482l7.268 3.627L16 27.101.53 19.961l7.668-3.252c.392.486.838 1.02 1.34 1.604L5.47 20.039 16 24.899l10.69-4.934-3.954-1.973c.493-.58.928-1.107 1.306-1.584z"
   />
   <path
@@ -2911,7 +2911,7 @@ exports[`EuiIcon props type graphApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M24 20a4 4 0 110-8 4 4 0 010 8zm0-6a2 2 0 100 4 2 2 0 000-4zm-8.2-5.62A4 4 0 1118 1.06a4 4 0 01-2.2 7.32zm0-6a2 2 0 10.01 0h-.01zm.01 29.24a4 4 0 11-.083-8 4 4 0 01.083 8zm0-6a2 2 0 10.39 0 2 2 0 00-.4 0h.01z"
   />
   <path
@@ -2952,7 +2952,7 @@ exports[`EuiIcon props type grokApp is rendered 1`] = `
     d="M9.727 2.91V.97c-1.357 0-4.18 0-5.818 1.94-.97 1.182-1.328 2.908-.97 4.983.563 3.307.97 6.332.301 7.157-.3.31-.97.465-2.24.465v1.94c1.27 0 1.94.155 2.25.494.698.824.262 3.879-.3 7.156-.35 2.124-.01 3.802.96 4.956C5.527 32 8.35 32 9.726 32v-1.94c-1.144 0-3.287 0-4.315-1.221a4.112 4.112 0 01-.533-3.414c.843-5.042.97-7.37-.136-8.727-.068-.077-.145-.136-.213-.203-.068-.068.145-.127.213-.204 1.144-1.367.97-3.695.136-8.727a4.112 4.112 0 01.543-3.414C6.44 2.91 8.583 2.91 9.727 2.91zM32.03 17.454v-1.94c-1.27 0-1.94-.155-2.25-.494-.698-.825-.261-3.88.301-7.157.35-2.123 0-3.801-.97-4.984C27.493.94 24.672.94 23.294.94v1.97c1.145 0 3.288 0 4.315 1.22a4.112 4.112 0 01.544 3.414c-.844 5.043-.97 7.37.135 8.728.068.077.146.135.214.203.067.068-.146.126-.214.204-1.144 1.367-.97 3.694-.135 8.727.329 1.162.13 2.41-.544 3.413-1.018 1.242-3.16 1.242-4.305 1.242V32c1.358 0 4.18 0 5.818-1.94.97-1.182 1.329-2.908.97-4.984-.563-3.306-.97-6.332-.3-7.156.3-.31.969-.465 2.24-.465z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M26.212 15.515h-2.007a7.758 7.758 0 00-6.72-6.72V6.788h-1.94v2.007a7.758 7.758 0 00-6.72 6.72H6.818v1.94h2.007a7.758 7.758 0 006.72 6.72v2.007h1.94v-2.007a7.758 7.758 0 006.72-6.72h2.007v-1.94zm-8.727 6.7v-1.851h-1.94v1.852a5.818 5.818 0 01-4.76-4.761h1.851v-1.94h-1.852a5.818 5.818 0 014.761-4.761v1.852h1.94v-1.852a5.818 5.818 0 014.761 4.761h-1.852v1.94h1.852a5.818 5.818 0 01-4.761 4.76z"
   />
 </svg>
@@ -2987,7 +2987,7 @@ exports[`EuiIcon props type heartbeatApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M4.14 15.39a8.058 8.058 0 01-2.2-4.043A6.788 6.788 0 014.198 5.47a6.73 6.73 0 018.727-.213l1.26-1.464a8.65 8.65 0 00-11.277.232A8.727 8.727 0 00.068 11.6a10.172 10.172 0 002.793 5.275l1.28-1.484z"
   />
   <path
@@ -3167,7 +3167,7 @@ exports[`EuiIcon props type indexManagementApp is rendered 1`] = `
     d="M17 18v-2h-2v2H3v6h2v-4h10v4h2v-4h10v4h2v-6z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M4 32a3 3 0 110-6 3 3 0 010 6zm0-4a1 1 0 100 2 1 1 0 000-2zm12 4a3 3 0 110-6 3 3 0 010 6zm0-4a1 1 0 100 2 1 1 0 000-2zm12 4a3 3 0 110-6 3 3 0 010 6zm0-4a1 1 0 100 2 1 1 0 000-2zM23 8V6h-2.1a5 5 0 00-.73-1.75l1.49-1.49-1.42-1.42-1.49 1.49A5 5 0 0017 2.1V0h-2v2.1a5 5 0 00-1.75.73l-1.49-1.49-1.42 1.42 1.49 1.49A5 5 0 0011.1 6H9v2h2.1a5 5 0 00.73 1.75l-1.49 1.49 1.41 1.41 1.49-1.49a5 5 0 001.76.74V14h2v-2.1a5 5 0 001.75-.73l1.49 1.49 1.41-1.41-1.48-1.5A5 5 0 0020.9 8H23zm-7 2a3 3 0 110-6 3 3 0 010 6z"
   />
   <path
@@ -3225,7 +3225,7 @@ exports[`EuiIcon props type indexPatternApp is rendered 1`] = `
     d="M20 14h-8a3 3 0 01-3-3V3a3 3 0 013-3h8a3 3 0 013 3v8a3 3 0 01-3 3zM12 2a1 1 0 00-1 1v8a1 1 0 001 1h8a1 1 0 001-1V3a1 1 0 00-1-1h-8zM17 18v-2h-2v2H3v6h2v-4h10v4h2v-4h10v4h2v-6z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M4 32a3 3 0 110-6 3 3 0 010 6zm0-4a1 1 0 100 2 1 1 0 000-2zm12 4a3 3 0 110-6 3 3 0 010 6zm0-4a1 1 0 100 2 1 1 0 000-2zm12 4a3 3 0 110-6 3 3 0 010 6zm0-4a1 1 0 100 2 1 1 0 000-2zM13 4h6v2h-6zM13 8h6v2h-6z"
   />
 </svg>
@@ -3249,7 +3249,7 @@ exports[`EuiIcon props type indexRollupApp is rendered 1`] = `
     d="M25.71 24.29a1 1 0 00-1.09-.21 1.15 1.15 0 00-.33.21.93.93 0 00-.21.33 1 1 0 001.3 1.3 1.15 1.15 0 00.33-.21 1 1 0 00.21-1.09.94.94 0 00-.21-.33z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M5 6h16v2H5zM5 12h16v2H5zM5 18h10v2H5zM5 24h8v2H5z"
   />
   <path
@@ -3515,7 +3515,7 @@ exports[`EuiIcon props type lensApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M23.793 14.293l1.414 1.414-6.408 6.409-3.75-3.25-4.342 4.341-1.414-1.414 5.658-5.659 3.75 3.25 5.092-5.091zM12 11v5l-2 2v-7h2zm10-6v8l-2 2V5h2zm-5 3v7l-2-2V8h2z"
   />
   <path
@@ -6080,7 +6080,7 @@ exports[`EuiIcon props type logsApp is rendered 1`] = `
     d="M1 8c3.983 0 7.732 1.013 11.001 2.797v2.312A20.887 20.887 0 002 10.023v11.025c4.85.462 9.27 4.183 9.955 8.691l.035.261H12v2h-1.938l-.018-1.236c-.116-4.015-4.336-7.631-8.793-7.76L0 22.986V8h1zm13-8h1c9.28 0 16.825 7.437 16.997 16.677L32 17v15h-2V17c0-7.84-6.014-14.274-13.68-14.943L16 2.033v7.681l-2-1.143V0h1-1z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M26.997 30.636L27.009 32H14V11.305l1.483.82c6.994 3.861 11.382 10.735 11.514 18.51zm-2.048-1.04C24.505 23.556 21.205 18.2 16 14.771V30h8.974l-.025-.404z"
   />
 </svg>
@@ -6183,7 +6183,7 @@ exports[`EuiIcon props type machineLearningApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M10 18v.56a1 1 0 01-.68.95L3 21.61V10a1 1 0 01.4-.8l3.2-2.4-1.2-1.6-3.2 2.4A3 3 0 001 10v12a3 3 0 001.2 2.4l3.2 2.4 1.2-1.6-2.47-1.85 5.82-1.95A3 3 0 0012 18.56V18h-2zM29.8 7.6l-3.2-2.4-1.2 1.6 3.2 2.4a1 1 0 01.4.8v11.61l-6.32-2.11a1 1 0 01-.68-.95V18h-2v.56a3 3 0 002.05 2.85l5.82 1.94-2.47 1.85 1.2 1.6 3.2-2.4A3 3 0 0031 22V10a3 3 0 00-1.2-2.4z"
   />
   <path
@@ -6255,7 +6255,7 @@ exports[`EuiIcon props type managementApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M16 21a5 5 0 110-10 5 5 0 010 10zm0-8a3 3 0 100 6 3 3 0 000-6z"
   />
   <path
@@ -6419,7 +6419,7 @@ exports[`EuiIcon props type metricbeatApp is rendered 1`] = `
     d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16a16 16 0 01-16 16zm0-30C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14A14 14 0 0016 2z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M28 16h-2c0-5.523-4.477-10-10-10S6 10.477 6 16H4C4 9.373 9.373 4 16 4s12 5.373 12 12z"
   />
   <path
@@ -6443,7 +6443,7 @@ exports[`EuiIcon props type metricsApp is rendered 1`] = `
     d="M30 19.092v12.88H2v-5.386l6.747-6.747.708.708c.236.236.48.463.733.68L4 27.414v2.558h24v-8.91c.186-.166.369-.339.546-.516L30 19.092zm-20.85-3.19A10.955 10.955 0 018 11C8 4.925 12.925 0 19 0s11 4.925 11 11c0 1.76-.414 3.425-1.15 4.9l-1.51-1.51A8.973 8.973 0 0028 11a9 9 0 10-17.34 3.391l-1.51 1.51z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M19 20a8.96 8.96 0 005.618-1.968l-4.202-4.204a2 2 0 00-2.828 0l-4.205 4.205A8.96 8.96 0 0019 20zm-2.826-7.586a4 4 0 015.656 0l5.656 5.657-.707.707A10.967 10.967 0 0119 22a10.967 10.967 0 01-7.778-3.221l-.707-.707 5.659-5.658z"
   />
 </svg>
@@ -6560,7 +6560,7 @@ exports[`EuiIcon props type monitoringApp is rendered 1`] = `
     d="M1.81 15.19A8.94 8.94 0 0115.62 3.86l.38.42.38-.42a8.94 8.94 0 0114.26 10.68l-1.7-1.07a6.94 6.94 0 00-11.07-8.28L16 7.29l-1.87-2.1A6.94 6.94 0 003.41 14l-1.6 1.19zM16 31.18l-7.74-8.51 1.48-1.34L16 28.21l6.26-6.88 1.48 1.34z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M16.16 23.29l-4.1-7.17L10.62 19H0v-2h9.38l2.56-5.12 3.9 6.83 4.13-10.32L23.66 17H32v2h-9.66l-2.31-5.39z"
   />
 </svg>
@@ -6635,7 +6635,7 @@ exports[`EuiIcon props type notebookApp is rendered 1`] = `
     d="M27 7v23H8v2h21V7z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M8 12h12v2H8zM8 17h12v2H8z"
   />
 </svg>
@@ -6708,7 +6708,7 @@ exports[`EuiIcon props type outlierDetectionJob is rendered 1`] = `
     d="M2 12v6h6v2H0v-8h2zm18 0v8h-8v-2h6v-6h2zM8 0v2H2v6H0V0h8zm12 0v8h-2V2h-6V0h8z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M16 24a4 4 0 110 8 4 4 0 010-8zm12 0a4 4 0 110 8 4 4 0 010-8zm-12 1.75a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5zm12 0a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5zM28 12a4 4 0 110 8 4 4 0 010-8zm0 1.75a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5zM10 6a4 4 0 110 8 4 4 0 010-8zm0 1.75a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z"
   />
 </svg>
@@ -6743,7 +6743,7 @@ exports[`EuiIcon props type packetbeatApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M16 20a4 4 0 110-8 4 4 0 010 8zm0-6a2 2 0 100 4 2 2 0 000-4z"
   />
   <path
@@ -6932,7 +6932,7 @@ exports[`EuiIcon props type pipelineApp is rendered 1`] = `
     d="M29 12a3 3 0 00-3 3h-4a3 3 0 00-3-3h-6a3 3 0 00-3 3H6a3 3 0 00-3-3H0v14h3a3 3 0 003-3h4a3 3 0 003 3h6a3 3 0 003-3h4a3 3 0 003 3h3V12h-3zM3 24H2V14h1a1 1 0 011 1v8a1 1 0 01-1 1zm17-3v2a1 1 0 01-1 1h-6a1 1 0 01-1-1v-2H6v-4h6v-2a1 1 0 011-1h6a1 1 0 011 1v2h6v4h-6zm10 3h-1a1 1 0 01-1-1v-8a1 1 0 011-1h1v10z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M22 6H10v2h5v2h2V8h5z"
   />
 </svg>
@@ -7111,7 +7111,7 @@ exports[`EuiIcon props type recentlyViewedApp is rendered 1`] = `
     d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16a16 16 0 01-16 16zm0-30C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14A14 14 0 0016 2z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M15 4h2v9.17A3.009 3.009 0 0118.83 15H26v2h-7.17A3.001 3.001 0 1115 13.17V4zm1 13a1 1 0 100-2 1 1 0 000 2z"
   />
 </svg>
@@ -7149,7 +7149,7 @@ exports[`EuiIcon props type regressionJob is rendered 1`] = `
     d="M24 0a8 8 0 11-4.906 14.32l-4.774 4.774a8 8 0 11-1.414-1.414l4.774-4.774A8 8 0 0124 0zM8 18a6 6 0 100 12 6 6 0 000-12zM24 2a6 6 0 100 12 6 6 0 000-12z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M32 20v12H20V20h12zm-2 2h-8v8h8v-8zM12 0v12H0V0h12zm-2 2H2v8h8V2z"
   />
 </svg>
@@ -7191,7 +7191,7 @@ exports[`EuiIcon props type reportingApp is rendered 1`] = `
     d="M23 3h-3V0h-8v3H9v6h14V3zm-2 4H11V5h3V2h4v3h3v2z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M10 13h12v2H10zM10 18h12v2H10zM10 23h12v2H10z"
   />
 </svg>
@@ -7243,7 +7243,7 @@ exports[`EuiIcon props type savedObjectsApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M20.38 7.001L17 9.619V0h-2v9.619l-3.37-2.618-1.25 1.513L16 12.878l5.63-4.364z"
   />
   <path
@@ -7299,14 +7299,14 @@ exports[`EuiIcon props type searchProfilerApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M11.63 8h7.38v2h-7.38z"
   />
   <path
     d="M7 8h3.19v2H7z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M7 16h7.38v2H7z"
   />
   <path
@@ -7333,7 +7333,7 @@ exports[`EuiIcon props type securityAnalyticsApp is rendered 1`] = `
     d="M3 10h4v2H5v7.928c0 1.299.808 2.795 2.88 4.48 1.83 1.489 4.524 3.02 8.12 4.584V26h2v5.992l-1.38-.567c-4.372-1.797-7.724-3.613-10-5.465C4.358 24.122 3 22.114 3 19.928V10z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M9 10h9v14l-1.272-.458c-1.367-.494-3.23-1.314-4.768-2.39C10.484 20.118 9 18.636 9 16.761V10zm1.895 1.876v4.887c0 .877.744 1.867 2.158 2.856.937.656 2.038 1.219 3.052 1.657v-9.4h-5.21z"
   />
   <path
@@ -7357,7 +7357,7 @@ exports[`EuiIcon props type securityApp is rendered 1`] = `
     d="M14 32l-.36-.14A21.07 21.07 0 010 12.07V5.44L14 .06l14 5.38v6.63a21.07 21.07 0 01-13.64 19.78L14 32zM2 6.82v5.25a19.08 19.08 0 0012 17.77 19.08 19.08 0 0012-17.77V6.82L14 2.2 2 6.82z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M9 17.83h2V23H9zM11 10.18V7H9v3.18a3 3 0 102 0zM10 14a1 1 0 110-2 1 1 0 010 2zM17 7h2v5.17h-2zM21 17a3 3 0 10-4 2.82V23h2v-3.18A3 3 0 0021 17zm-3 1a1 1 0 110-2 1 1 0 010 2z"
   />
 </svg>
@@ -7567,14 +7567,14 @@ exports[`EuiIcon props type spacesApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M4 4h6v2H4zM22 4h6v2h-6zM4 22h6v2H4z"
   />
   <path
     d="M0 14h14V0H0v14zM2 2h10v10H2V2zm16-2v14h14V0H18zm12 12H20V2h10v10zM0 32h14V18H0v14zm2-12h10v10H2V20zm16 12h14V18H18v14zm2-12h10v10H20V20z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M22 22h6v2h-6z"
   />
 </svg>
@@ -7592,7 +7592,7 @@ exports[`EuiIcon props type sqlApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M18 6h9v2h-9zM5 6h9v2H5zM5 12h9v2H5zM18 12h9v2h-9zM5 18h9v2H5zM18 18h9v2h-9zM18 24h9v2h-9zM5 24h9v2H5z"
   />
   <path
@@ -8097,7 +8097,7 @@ exports[`EuiIcon props type timelionApp is rendered 1`] = `
     d="M4 4v20.34L16 32l12-7.64V4H4zm22 2v4h-4a3 3 0 00-3 3v5h-6v-5a3 3 0 00-3-3H6V6h20zm-7.87 14L16 22.52 13.87 20h4.26zM6 12h4a1 1 0 011 1v6.7l3.69 4.37-2.58 3.06L6 23.24V12zm7.81 16.22l2.19-2.6 2.19 2.6L16 29.61l-2.19-1.39zm6.08-1.09l-2.58-3.06L21 19.7V13a1 1 0 011-1h4v11.24l-6.11 3.89z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M4 0h24v2H4z"
   />
 </svg>
@@ -9115,7 +9115,7 @@ exports[`EuiIcon props type upgradeAssistantApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M16 21a5 5 0 110-10 5 5 0 010 10zm0-8a3 3 0 100 6 3 3 0 000-6z"
   />
   <path
@@ -9136,7 +9136,7 @@ exports[`EuiIcon props type uptimeApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M4.216 12.377A10.948 10.948 0 002.181 17H.153a12.941 12.941 0 012.693-6.118l1.37 1.495zm2.948-2.703l-1.37-1.495A12.94 12.94 0 0113 6v2c-2.144 0-4.144.613-5.836 1.674z"
   />
   <path
@@ -9206,7 +9206,7 @@ exports[`EuiIcon props type usersRolesApp is rendered 1`] = `
     d="M19.307 3.21a2.91 2.91 0 10-.223 1.94 11.636 11.636 0 018.232 7.049l1.775-.698a13.576 13.576 0 00-9.784-8.291zm-2.822 1.638a.97.97 0 110-1.939.97.97 0 010 1.94zm-4.267.805l-.717-1.774a13.576 13.576 0 00-8.291 9.784 2.91 2.91 0 101.94.223 11.636 11.636 0 017.068-8.233zm-8.34 11.802a.97.97 0 110-1.94.97.97 0 010 1.94zm12.607 8.727a2.91 2.91 0 00-2.599 1.62 11.636 11.636 0 01-8.233-7.05l-1.774.717a13.576 13.576 0 009.813 8.291 2.91 2.91 0 102.793-3.578zm0 3.879a.97.97 0 110-1.94.97.97 0 010 1.94zM32 16.485a2.91 2.91 0 10-4.199 2.599 11.636 11.636 0 01-7.05 8.232l.718 1.775a13.576 13.576 0 008.291-9.813A2.91 2.91 0 0032 16.485zm-2.91.97a.97.97 0 110-1.94.97.97 0 010 1.94z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M19.19 16.35a3.879 3.879 0 10-5.42 0 4.848 4.848 0 00-2.134 4.014v1.939h9.697v-1.94a4.848 4.848 0 00-2.143-4.014zm-4.645-2.774a1.94 1.94 0 113.88 0 1.94 1.94 0 01-3.88 0zm-.97 6.788a2.91 2.91 0 115.819 0h-5.818z"
   />
 </svg>
@@ -9581,7 +9581,7 @@ exports[`EuiIcon props type visualizeApp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M32 32H4a4 4 0 01-4-4V0h2v28a2 2 0 002 2h28v2z"
   />
   <path
@@ -9614,7 +9614,7 @@ exports[`EuiIcon props type watchesApp is rendered 1`] = `
     d="M27 2.34l-1.5 1.32c5.708 6.483 5.708 16.197 0 22.68l1.5 1.33c6.377-7.24 6.377-18.09 0-25.33z"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M21 15a5 5 0 10-6 4.9V31h2V19.9a5 5 0 004-4.9zm-5 3a3 3 0 110-6 3 3 0 010 6z"
   />
 </svg>
@@ -9673,7 +9673,7 @@ exports[`EuiIcon props type workplaceSearchApp is rendered 1`] = `
     fill-rule="evenodd"
   />
   <path
-    class="euiIcon__fillSecondary"
+    class="euiIcon__fillSuccess"
     d="M23.801 3c-.382 0-1.052.231-1.925.812-.636.422-1.228.928-1.677 1.357l1.771 2.245.005.007.024.03.008.01c4.003 5.099 3.99 12.057-.035 17.145l-1.793 2.267a8.206 8.206 0 001.769 1.498c.698.427 1.337.629 1.852.629H28V3h-4.199zm-6.148 23.842l.765 1.053.023.027c.717.851 1.566 1.607 2.464 2.156.89.544 1.89.922 2.895.922H30V1h-6.199c-.987 0-2.066.505-3.032 1.146a14.934 14.934 0 00-2.352 1.974l-.276.288-.595.628 2.855 3.619.006.006c3.459 4.375 3.457 10.329-.004 14.704l-2.75 3.477z"
     fill-rule="evenodd"
   />

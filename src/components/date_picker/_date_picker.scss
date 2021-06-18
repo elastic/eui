@@ -422,11 +422,11 @@
 
   &--highlighted {
     border-radius: $euiBorderRadius;
-    background-color: $euiColorSecondary;
+    background-color: $euiColorSuccess;
     color: $euiColorGhost;
 
     &:hover {
-      background-color: darken($euiColorSecondary, 5%);
+      background-color: darken($euiColorSuccess, 5%);
     }
   }
 
