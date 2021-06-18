@@ -36,7 +36,7 @@ export const DataGridRowHeightOptionsExample = {
         <Fragment>
           <p>
             Row height options can be passed down to the grid through the{' '}
-            <EuiCode>rowHeightOptions</EuiCode> prop. It accepts an object that
+            <EuiCode>rowHeightsOptions</EuiCode> prop. It accepts an object that
             allows for customization.
           </p>
           <p>

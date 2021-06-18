@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Reverted `z-index: 1` on `EuiPageBody` ([#4892](https://github.com/elastic/eui/pull/4892))
+- Added `rowHeightsOptions` to `EuiDataGrid` ([#4853](https://github.com/elastic/eui/pull/4853))
 ## [`34.4.0`](https://github.com/elastic/eui/tree/v34.4.0)
 
 - Added draggable highlight area to `EuiDualRange` ([#4776](https://github.com/elastic/eui/pull/4776))
