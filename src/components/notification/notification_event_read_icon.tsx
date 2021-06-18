@@ -18,14 +18,13 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import { EuiButtonIconProps } from '../button';
 import { useEuiI18n } from '../i18n';
 import classNames from 'classnames';
-import { EuiIcon } from '../icon';
+import { EuiIcon, EuiIconProps } from '../icon';
 
 export type EuiNotificationEventReadIconProps = Omit<
-  EuiButtonIconProps,
-  'iconType' | 'isDisabled' | 'isSelected' | 'size'
+  EuiIconProps,
+  'type' | 'color' | 'size'
 > & {
   id: string;
   /**
@@ -44,7 +43,7 @@ export const EuiNotificationEventReadIcon: FunctionComponent<EuiNotificationEven
   eventName,
 }) => {
   const classesReadState = classNames('euiNotificationEventReadIcon', {
-    'euiNotificationEventReadButton--isRead': isRead,
+    'euiNotificationEventReadIcon--isRead': isRead,
   });
 
   const readAria = useEuiI18n(

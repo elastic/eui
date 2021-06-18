@@ -2,3 +2,9 @@
   margin-left: $euiSizeXS;
   margin-right: $euiSizeXS;
 }
+
+.euiNotificationEventReadIcon--isRead svg {
+  fill: transparent;
+  stroke-width: 1px;
+  stroke: $euiBorderColor;
+}
