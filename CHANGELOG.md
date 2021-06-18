@@ -8,6 +8,7 @@
 - Fixed `EuiRange` container expansion due to negative margin value ([#4815](https://github.com/elastic/eui/pull/4815))
 - Fixed `EuiRange` ticks position to better align with thumbs ([#4815](https://github.com/elastic/eui/pull/4815))
 - Fixed DataGrid footer and header rows jumps in Firefox ([#4869](https://github.com/elastic/eui/issues/4869))
+- Fixed bug in `EuiColorStops` where the outline was flashing when clicking or adding stops ([#0000](https://github.com/elastic/eui/issues/0000))
 
 **Theme: Amsterdam**
 
