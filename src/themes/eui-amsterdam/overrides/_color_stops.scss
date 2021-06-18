@@ -27,12 +27,21 @@
 
 .euiColorStops:not(.euiColorStops-isDisabled) {
   &:focus {
-    // prevents a flash of the outline in Safari
-    transition-delay: $euiAnimSpeedExtraFast;
+    outline: none;
+    transition-property: box-shadow;
+
+    .euiRangeTrack::after {
+      box-shadow: 0 0 0 1px $euiColorEmptyShade,
+      0 0 0 3px $euiFocusRingColor;
+      // prevents a flash of the outline in Safari
+      transition-delay: $euiAnimSpeedExtraFast;
+    }
   }
 
   &:focus:not(:focus-visible) {
-    outline: none;
+    .euiRangeTrack::after {
+      box-shadow: none;
+    }
   }
 }
 
