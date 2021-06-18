@@ -2114,8 +2114,7 @@ describe('EuiDataGrid', () => {
 
   describe('rowHeighsOptions', () => {
     it('all row heights options applied correctly', async () => {
-      let component;
-      component = mount(
+      const component = mount(
         <EuiDataGrid
           aria-labelledby="#test"
           columns={[{ id: 'Column 1' }, { id: 'Column 2' }]}
