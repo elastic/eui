@@ -2,6 +2,7 @@
 
 - Reverted `z-index: 1` on `EuiPageBody` ([#4892](https://github.com/elastic/eui/pull/4892))
 - Added `updateButtonProps` to `EuiSuperDatePicker` to provide more control over the update/refresh button ([#4895](https://github.com/elastic/eui/pull/4895))
+- Updated `EuiNotificationEvent` to render an icon instead of a button if `onRead` is undefined ([#4881](https://github.com/elastic/eui/pull/4881))
 
 **Bug fixes**
 
@@ -14,12 +15,11 @@
 - Updated styles for `EuiRange` ([#4815](https://github.com/elastic/eui/pull/4815)
 - Fixed more unique focus states using `outline` ([#4876](https://github.com/elastic/eui/pull/4876))
 - Fixed `border-radius` value of `EuiPanel` ([#4876](https://github.com/elastic/eui/pull/4876))
-- Fixed `disabled` background color of `EuiCard` for better visiblity on subdued backgrounds ([#4876](https://github.com/elastic/eui/pull/4876))
+- Fixed `disabled` background color of `EuiCard` for better visibility on subdued backgrounds ([#4876](https://github.com/elastic/eui/pull/4876))
 
 ## [`34.4.0`](https://github.com/elastic/eui/tree/v34.4.0)
 
 - Added draggable highlight area to `EuiDualRange` ([#4776](https://github.com/elastic/eui/pull/4776))
-- Updated `EuiNotificationEvent` to render an icon instead of a button if `onRead` is undefined ([#4881](https://github.com/elastic/eui/pull/4881))
 
 **Bug fixes**
 
