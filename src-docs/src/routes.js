@@ -240,13 +240,6 @@ const createExample = (example, customTitle) => {
     );
   }
 
-  const isPlaygroundUnsupported =
-    // Check for IE11
-    typeof window !== 'undefined' &&
-    typeof document !== 'undefined' &&
-    !!window.MSInputMethodContext &&
-    !!document.documentMode;
-
   const {
     title,
     intro,
@@ -269,9 +262,7 @@ const createExample = (example, customTitle) => {
   );
 
   let playgroundComponent;
-  if (isPlaygroundUnsupported) {
-    playgroundComponent = null;
-  } else if (playground) {
+  if (playground) {
     if (Array.isArray(playground)) {
       playgroundComponent = playground.map((elm, idx) => {
         return <Fragment key={idx}>{playgroundCreator(elm())}</Fragment>;
@@ -518,12 +509,6 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 export default {
   history: createHashHistory(),
   navigation,
-
-  getRouteForPath: (path) => {
-    // React-router kinda sucks. Sometimes the path contains a leading slash, sometimes it doesn't.
-    const normalizedPath = path[0] === '/' ? path.slice(1, path.length) : path;
-    return allRoutes.find((route) => normalizedPath === route.path);
-  },
 
   getAppRoutes: function getAppRoutes() {
     return allRoutes;

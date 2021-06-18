@@ -11,16 +11,16 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
     data-euiicon-type="arrowUp"
   />
   <div
-    class="euiSpacer euiSpacer--s"
+    class="euiSpacer euiSpacer--m"
   />
+  <h2
+    class="euiTitle euiTitle--medium"
+  >
+    Title
+  </h2>
   <span
     class="euiTextColor euiTextColor--subdued"
   >
-    <h2
-      class="euiTitle euiTitle--medium"
-    >
-      Title
-    </h2>
     <div
       class="euiSpacer euiSpacer--m"
     />
@@ -35,9 +35,6 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
   <div
     class="euiSpacer euiSpacer--l"
   />
-  <div
-    class="euiSpacer euiSpacer--s"
-  />
   <div>
     Actions
   </div>
@@ -49,7 +46,7 @@ exports[`EuiEmptyPrompt props actions renders alone 1`] = `
   class="euiEmptyPrompt"
 >
   <div
-    class="euiSpacer euiSpacer--s"
+    class="euiSpacer euiSpacer--l"
   />
   actions
 </div>
@@ -60,7 +57,7 @@ exports[`EuiEmptyPrompt props actions renders an array 1`] = `
   class="euiEmptyPrompt"
 >
   <div
-    class="euiSpacer euiSpacer--s"
+    class="euiSpacer euiSpacer--l"
   />
   <div
     class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentCenter euiFlexGroup--directionColumn euiFlexGroup--responsive"
@@ -95,6 +92,19 @@ exports[`EuiEmptyPrompt props body renders alone 1`] = `
 </div>
 `;
 
+exports[`EuiEmptyPrompt props icon renders alone 1`] = `
+<div
+  class="euiEmptyPrompt"
+>
+  <span>
+    Custom icon
+  </span>
+  <div
+    class="euiSpacer euiSpacer--m"
+  />
+</div>
+`;
+
 exports[`EuiEmptyPrompt props iconType renders alone 1`] = `
 <div
   class="euiEmptyPrompt"
@@ -104,7 +114,21 @@ exports[`EuiEmptyPrompt props iconType renders alone 1`] = `
     data-euiicon-type="arrowUp"
   />
   <div
-    class="euiSpacer euiSpacer--s"
+    class="euiSpacer euiSpacer--m"
+  />
+</div>
+`;
+
+exports[`EuiEmptyPrompt props iconType renders with iconColor 1`] = `
+<div
+  class="euiEmptyPrompt"
+>
+  <span
+    color="danger"
+    data-euiicon-type="arrowUp"
+  />
+  <div
+    class="euiSpacer euiSpacer--m"
   />
 </div>
 `;
@@ -113,17 +137,10 @@ exports[`EuiEmptyPrompt props title renders alone 1`] = `
 <div
   class="euiEmptyPrompt"
 >
-  <span
-    class="euiTextColor euiTextColor--subdued"
+  <div
+    class="euiTitle euiTitle--medium"
   >
-    <div
-      class="euiTitle euiTitle--medium"
-    >
-      title
-    </div>
-    <div
-      class="euiSpacer euiSpacer--m"
-    />
-  </span>
+    title
+  </div>
 </div>
 `;

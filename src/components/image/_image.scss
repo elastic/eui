@@ -10,6 +10,7 @@
   position: relative;
   min-height: 1px; /* 1 */
   line-height: 0; // Fixes cropping when image is resized by forcing its height to be determined by the image not line-height
+  flex-shrink: 0; // Don't ever let this shrink in height if direct descendent of flex
 
   // Required for common usage of nesting within EuiText
   .euiImage__img {

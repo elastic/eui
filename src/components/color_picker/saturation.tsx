@@ -29,12 +29,12 @@ import classNames from 'classnames';
 import { ColorSpaces } from 'chroma-js';
 
 import { CommonProps } from '../common';
-import { keys } from '../../services';
+import { keys, useMouseMove } from '../../services';
 import { isNil } from '../../services/predicate';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 
-import { getEventPosition, useMouseMove } from './utils';
+import { getEventPosition } from './utils';
 
 export type SaturationClientRect = Pick<
   ClientRect,

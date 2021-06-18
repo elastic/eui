@@ -20,3 +20,4 @@
 export * from './useCombinedRefs';
 export * from './useDependentState';
 export * from './useIsWithinBreakpoints';
+export * from './useMouseMove';

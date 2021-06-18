@@ -124,7 +124,7 @@ exports[`renders compressed EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack"
+    class="euiRangeTrack euiRangeTrack--compressed"
   >
     <div
       class="euiRangeHighlight euiRangeHighlight--compressed euiColorStops__highlight"

@@ -472,6 +472,9 @@ export class EuiPopover extends Component<Props, State> {
 
   onOpenPopover = () => {
     clearTimeout(this.closingTransitionTimeout);
+    if (this.closingTransitionAnimationFrame) {
+      cancelAnimationFrame(this.closingTransitionAnimationFrame);
+    }
     // We need to set this state a beat after the render takes place, so that the CSS
     // transition can take effect.
     this.closingTransitionAnimationFrame = window.requestAnimationFrame(() => {
@@ -498,6 +501,7 @@ export class EuiPopover extends Component<Props, State> {
         { durationMatch: 0, delayMatch: 0 }
       );
 
+    clearTimeout(this.respositionTimeout);
     this.respositionTimeout = window.setTimeout(() => {
       this.setState({ isOpenStable: true }, () => {
         this.positionPopoverFixed();

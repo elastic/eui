@@ -1,8 +1,10 @@
 import React, { FunctionComponent, ReactNode, useState } from 'react';
+import { useRouteMatch } from 'react-router';
 
 import { EuiErrorBoundary } from '../../../../src/components/error_boundary';
 import { EuiText } from '../../../../src/components/text';
 import { EuiSwitch } from '../../../../src/components/form';
+import { EuiButton } from '../../../../src/components/button';
 
 import { slugify } from '../../../../src/services/string/slugify';
 
@@ -23,6 +25,10 @@ export interface GuideSection {
   text?: ReactNode;
   source?: any[];
   demo?: ReactNode;
+  fullScreen?: {
+    slug: string;
+    demo: ReactNode;
+  };
   demoPanelProps?: GuideSectionExample['demoPanelProps'];
   props?: object;
   playground?: any;
@@ -51,6 +57,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   title,
   text,
   demo,
+  fullScreen,
   source = [],
   props = {},
   playground,
@@ -59,6 +66,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   demoPanelProps,
   snippet,
 }) => {
+  const { path } = useRouteMatch();
   const [renderingPlayground, setRenderingPlayground] = useState(false);
 
   const renderTabs = () => {
@@ -165,9 +173,25 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
       </GuideSectionExampleText>
 
       {renderingPlayground && renderPlayground()}
-      {!renderingPlayground && demo && (
+      {!renderingPlayground && (demo || fullScreen) && (
         <GuideSectionExample
-          example={<EuiErrorBoundary>{demo}</EuiErrorBoundary>}
+          example={
+            <EuiErrorBoundary>
+              {/* eslint-disable-next-line no-nested-ternary */}
+              {fullScreen == null ? (
+                <div>{demo}</div>
+              ) : demo == null ? (
+                <EuiButton
+                  fill
+                  iconType="fullScreen"
+                  href={`#${path}/${fullScreen.slug}`}>
+                  Full screen demo
+                </EuiButton>
+              ) : (
+                demo
+              )}
+            </EuiErrorBoundary>
+          }
           tabs={renderTabs()}
           ghostBackground={ghostBackground}
           demoPanelProps={demoPanelProps}

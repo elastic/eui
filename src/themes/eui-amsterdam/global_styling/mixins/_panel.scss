@@ -1,3 +1,9 @@
+// Forcing Amsterdam to get the theme-appropriate value for $euiBorderRadius.
+$euiPanelBorderRadiusModifiers: (
+  'borderRadiusNone': 0,
+  'borderRadiusMedium': $euiBorderRadius,
+);
+
 @mixin euiPanel($selector) {
   @if variable-exists(selector) == false {
     @error 'A $selector must be provided to @mixin euiPanel().';

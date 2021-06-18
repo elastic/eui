@@ -65,6 +65,14 @@ describe('EuiCard', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('hasBorder', () => {
+      const component = render(
+        <EuiCard title="Card title" description="Card description" hasBorder />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('horizontal', () => {
       const component = render(
         <EuiCard
@@ -282,6 +290,21 @@ describe('EuiCard', () => {
         selectable={{
           onClick: () => {},
         }}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('betaBadgeProps renders href', () => {
+    const component = render(
+      <EuiCard
+        title="Card title"
+        description="Card description"
+        betaBadgeProps={{
+          href: 'http://www.elastic.co/',
+        }}
+        betaBadgeLabel="Link"
       />
     );
 
