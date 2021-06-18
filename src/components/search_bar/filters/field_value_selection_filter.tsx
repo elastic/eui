@@ -357,7 +357,7 @@ export class FieldValueSelectionFilter extends Component<
         iconSide="right"
         onClick={this.onButtonClick.bind(this)}
         hasActiveFilters={active}
-        numActiveFilters={this.state.activeItems.length || undefined}
+        numActiveFilters={active ? this.state.activeItems.length : undefined}
         grow>
         {config.name}
       </EuiFilterButton>
