@@ -1,0 +1,45 @@
+.euiColorStops__addTarget,
+.euiColorStops__addContainer {
+  z-index: 1;
+}
+
+.euiColorStops__addTarget {
+  border: 1px solid $euiColorDarkShade;
+  box-shadow: none;
+}
+
+.euiColorStopThumb.euiRangeThumb:not(:disabled) {
+  // sass-lint:disable-block no-important no-color-literals 
+  @include euiRangeThumbBorder;
+  @include euiRangeThumbBoxShadow;;
+
+  &:focus {
+    @include euiRangeThumbFocusBoxShadow;
+    outline: none;
+  }
+
+  // in Chrome/FF/Edge we don't want to focus on click
+  &:focus:not(:focus-visible)  {
+    @include euiRangeThumbBoxShadow;
+    outline: none;
+  }
+}
+
+.euiColorStops:not(.euiColorStops-isDisabled) {
+  &:focus {
+    // prevents a flash of the outline in Safari
+    transition-delay: $euiAnimSpeedExtraFast;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+.euiColorStops__highlight {
+  color: $euiRangeTrackColor;
+
+  .euiRangeHighlight__progress {
+    background-color: $euiRangeTrackColor;
+  }
+}

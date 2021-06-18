@@ -26,9 +26,12 @@ import React, {
   useState,
 } from 'react';
 import classNames from 'classnames';
-import { htmlIdGenerator, isWithinMinBreakpoint } from '../../services';
+import {
+  htmlIdGenerator,
+  isWithinMinBreakpoint,
+  throttle,
+} from '../../services';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
-import { throttle } from '../color_picker/utils';
 
 // Extend all the flyout props except `onClose` because we handle this internally
 export type EuiCollapsibleNavProps = Omit<

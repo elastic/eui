@@ -23,8 +23,8 @@ import React, {
   useState,
   useEffect,
 } from 'react';
+import { throttle } from '../../services';
 import { EuiBreakpointSize, getBreakpoint } from '../../services/breakpoint';
-import { throttle } from '../color_picker/utils';
 
 export type EuiShowForBreakpoints = EuiBreakpointSize;
 

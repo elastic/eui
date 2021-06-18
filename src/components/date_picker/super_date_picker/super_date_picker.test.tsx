@@ -20,7 +20,11 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import { EuiSuperDatePicker } from './super_date_picker';
+import {
+  EuiSuperDatePicker,
+  EuiSuperDatePickerProps,
+} from './super_date_picker';
+import { EuiButton } from '../../button';
 
 const noop = () => {};
 
@@ -125,5 +129,20 @@ describe('EuiSuperDatePicker', () => {
     expect(onRefresh).toBeCalledTimes(1);
 
     jest.useRealTimers();
+  });
+
+  test('updateButtonProps', () => {
+    const updateButtonProps: EuiSuperDatePickerProps['updateButtonProps'] = {
+      fill: false,
+      color: 'ghost',
+    };
+
+    const component = mount(
+      <EuiSuperDatePicker
+        onTimeChange={noop}
+        updateButtonProps={updateButtonProps}
+      />
+    );
+    expect(component.find(EuiButton).props()).toMatchObject(updateButtonProps);
   });
 });
