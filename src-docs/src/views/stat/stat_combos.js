@@ -48,7 +48,7 @@ export default () => {
             <EuiStat
               title="6,800"
               description="Success widgets"
-              titleColor="secondary"
+              titleColor="success"
               textAlign="right"
               isLoading={isLoading}>
               <EuiIcon type="check" color="success" />

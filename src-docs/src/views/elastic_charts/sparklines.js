@@ -75,7 +75,7 @@ export const Sparklines = () => {
             <EuiStat
               title=""
               description="Increase over time"
-              titleColor="secondary"
+              titleColor="success"
               textAlign="right">
               <EuiSpacer size="s" />
               <Chart size={{ height: 48 }}>
