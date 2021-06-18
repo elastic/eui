@@ -165,6 +165,10 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
      * Adds a button to the bottom of the card to allow for in-place selection
      */
     selectable?: EuiCardSelectProps;
+    /**
+     * Use a border style of card instead of shadow
+     */
+    hasBorder?: EuiPanelProps['hasBorder'];
   } & (
     | {
         // description becomes optional when children is present

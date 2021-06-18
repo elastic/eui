@@ -20,8 +20,7 @@
 import { getEventPosition, getChromaColor } from '../utils';
 import { DEFAULT_VISUALIZATION_COLOR } from '../../../services';
 import { ColorStop } from './color_stop_thumb';
-
-const EUI_THUMB_SIZE = 16; // Same as $euiRangeThumbHeight & $euiRangeThumbWidth
+import { EUI_THUMB_SIZE } from '../../form/range/utils';
 
 export const removeStop = (colorStops: ColorStop[], index: number) => {
   if (colorStops.length === 1) {

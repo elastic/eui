@@ -18,9 +18,10 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import { EuiSuperUpdateButton } from './super_update_button';
+import { EuiButton, EuiButtonProps } from '../../button';
 
 const noop = () => {};
 
@@ -61,5 +62,48 @@ describe('EuiSuperUpdateButton', () => {
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  test('forwards props to EuiButton', () => {
+    const speciallyHandledProps = {
+      className: 'testClass',
+      textProps: {
+        className: 'textPropsTestClass',
+        id: 'test',
+      },
+    };
+    const extraProps: Partial<EuiButtonProps> = {
+      fill: false,
+      size: 's',
+      contentProps: { id: 'contentSpan' },
+    };
+
+    const component = mount(
+      <EuiSuperUpdateButton
+        onClick={() => {}}
+        {...speciallyHandledProps}
+        {...extraProps}
+      />
+    );
+
+    const {
+      // props not passed through
+      isDisabled,
+      isLoading,
+      onClick,
+
+      // props with special handling
+      className,
+      textProps,
+
+      ...forwardedProps
+    } = component.find(EuiButton).props();
+
+    expect(className).toBe('euiSuperUpdateButton testClass');
+    expect(textProps).toEqual({
+      className: 'euiSuperUpdateButton__text textPropsTestClass',
+      id: 'test',
+    });
+    expect(forwardedProps).toMatchObject(extraProps);
   });
 });

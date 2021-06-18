@@ -231,7 +231,13 @@ export class EuiRange extends Component<EuiRangeProps> {
       />
     ) : null;
 
-    const classes = classNames('euiRange', className);
+    const classes = classNames(
+      'euiRange',
+      {
+        'euiRange--hasInput': showInput,
+      },
+      className
+    );
 
     const theRange = (
       <EuiRangeWrapper
@@ -256,17 +262,6 @@ export class EuiRange extends Component<EuiRangeProps> {
           onChange={this.handleOnChange}
           value={value}
           aria-hidden={showInput === true}>
-          {showRange && this.isValid && (
-            <EuiRangeHighlight
-              compressed={compressed}
-              showTicks={showTicks}
-              min={Number(min)}
-              max={Number(max)}
-              lowerValue={Number(min)}
-              upperValue={Number(value)}
-            />
-          )}
-
           <EuiRangeSlider
             id={showInput ? undefined : id} // Attach id only to the input if there is one
             name={name}
@@ -291,6 +286,17 @@ export class EuiRange extends Component<EuiRangeProps> {
             aria-hidden={showInput === true ? true : false}
             {...rest}
           />
+
+          {showRange && this.isValid && (
+            <EuiRangeHighlight
+              compressed={compressed}
+              showTicks={showTicks}
+              min={Number(min)}
+              max={Number(max)}
+              lowerValue={Number(min)}
+              upperValue={Number(value)}
+            />
+          )}
 
           {showValue && !!String(value).length && (
             <EuiRangeTooltip

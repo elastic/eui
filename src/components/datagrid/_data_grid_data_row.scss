@@ -1,6 +1,5 @@
 .euiDataGridRow {
-  display: inline-flex;
-  min-width: 100%; // Needed to prevent wraps. Inline flex is tricky
+  display: flex;
 }
 
 @include euiDataGridRowCell {
@@ -121,7 +120,6 @@
       white-space: nowrap;
     }
   }
-
 }
 
 .euiDataGridRowCell__popover {
