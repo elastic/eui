@@ -28,7 +28,10 @@ import { prettyInterval } from './pretty_interval';
 
 import dateMath from '@elastic/datemath';
 
-import { EuiSuperUpdateButton } from './super_update_button';
+import {
+  EuiSuperUpdateButton,
+  EuiSuperUpdateButtonProps,
+} from './super_update_button';
 import { EuiQuickSelectPopover } from './quick_select_popover/quick_select_popover';
 import { EuiDatePopoverButton } from './date_popover/date_popover_button';
 
@@ -120,6 +123,16 @@ export type EuiSuperDatePickerProps = CommonProps & {
    */
   timeFormat: string;
   utcOffset?: number;
+
+  /**
+   * Props passed to the update button
+   */
+  updateButtonProps?: Partial<
+    Omit<
+      EuiSuperUpdateButtonProps,
+      'needsUpdate' | 'showTooltip' | 'isLoading' | 'isDisabled' | 'onClick'
+    >
+  >;
 };
 
 interface EuiSuperDatePickerState {
@@ -487,6 +500,7 @@ export class EuiSuperDatePicker extends Component<
           isDisabled={this.props.isDisabled || this.state.isInvalid}
           onClick={this.handleClickUpdateButton}
           data-test-subj="superDatePickerApplyTimeButton"
+          {...this.props.updateButtonProps}
         />
       </EuiFlexItem>
     );

@@ -19,6 +19,7 @@
   width: 100%; // ensures the slider expands to fill flex display
   position: relative;
   cursor: pointer; // Keep cursor to full range bounds
+  z-index: 1; // higher than .euiRangeHighlight that is 0
 
   &:disabled {
     cursor: not-allowed;
@@ -62,7 +63,7 @@
     }
 
     ~ .euiRangeThumb {
-      border-color: $euiColorPrimary;
+      border-color: $euiRangeThumbBorderColor;
     }
 
     @include euiRangeTrackPerBrowser {
