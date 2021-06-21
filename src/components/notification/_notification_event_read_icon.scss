@@ -1,5 +1,8 @@
 .euiNotificationEventReadIcon {
-  margin: $euiSizeXS;
+  display: flex;
+  align-items: center;
+  height: $euiSizeL;
+  margin: 0 $euiSizeXS;
 }
 
 .euiNotificationEventReadIcon--isRead svg {
