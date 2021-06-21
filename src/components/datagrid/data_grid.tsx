@@ -1145,6 +1145,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                         interactiveCellId={interactiveCellId}
                         rowHeightsOptions={rowHeightsOptions}
                         rowHeightUtils={rowHeightUtils}
+                        gridStyles={gridStyles}
                       />
                     </div>
                   </div>

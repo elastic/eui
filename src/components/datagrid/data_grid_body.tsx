@@ -34,7 +34,7 @@ import {
   VariableSizeGrid as Grid,
   VariableSizeGridProps,
 } from 'react-window';
-import { isObject } from '../../services/predicate';
+import { isObject, isNumber } from '../../services/predicate';
 import { EuiCodeBlock } from '../code';
 import {
   EuiDataGridControlColumn,
@@ -46,6 +46,7 @@ import {
   EuiDataGridPaginationProps,
   EuiDataGridPopoverContent,
   EuiDataGridRowHeightsOptions,
+  EuiDataGridStyle,
 } from './data_grid_types';
 import { EuiDataGridCell, EuiDataGridCellProps } from './data_grid_cell';
 import {
@@ -94,6 +95,7 @@ export interface EuiDataGridBodyProps {
   toolbarHeight: number;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils: RowHeightUtils;
+  gridStyles?: EuiDataGridStyle;
 }
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
@@ -348,6 +350,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     toolbarHeight,
     rowHeightsOptions,
     rowHeightUtils,
+    gridStyles,
   } = props;
 
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
@@ -580,16 +583,17 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
             }
 
             if (initialHeight.height) {
-              return initialHeight.height;
+              return Math.max(initialHeight.height, rowHeight);
             }
           }
 
-          return (
-            (initialHeight as number) ??
-            (rowHeightsOptions.defaultHeight || rowHeight)
-          );
-        } else if (rowHeightsOptions.defaultHeight) {
-          return rowHeightsOptions.defaultHeight;
+          if (initialHeight && isNumber(initialHeight)) {
+            return Math.max(initialHeight, rowHeight);
+          }
+        }
+
+        if (rowHeightsOptions.defaultHeight) {
+          return Math.max(rowHeightsOptions.defaultHeight, rowHeight);
         }
       }
 
@@ -602,7 +606,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     if (gridRef.current && rowHeightsOptions && rowHeightsOptions.rowHeights) {
       gridRef.current.resetAfterRowIndex(0);
     }
-  }, [pagination?.pageIndex, rowHeightsOptions]);
+  }, [pagination?.pageIndex, rowHeightsOptions, gridStyles]);
 
   useEffect(() => {
     if (gridRef.current) {
