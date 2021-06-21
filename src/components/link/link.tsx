@@ -36,6 +36,7 @@ export type EuiLinkColor =
   | 'primary'
   | 'subdued'
   | 'secondary'
+  | 'success'
   | 'accent'
   | 'danger'
   | 'warning'
@@ -46,6 +47,7 @@ const colorsToClassNameMap: { [color in EuiLinkColor]: string } = {
   primary: 'euiLink--primary',
   subdued: 'euiLink--subdued',
   secondary: 'euiLink--secondary',
+  success: 'euiLink--success',
   accent: 'euiLink--accent',
   danger: 'euiLink--danger',
   warning: 'euiLink--warning',
@@ -57,6 +59,10 @@ export const COLORS = keysOf(colorsToClassNameMap);
 
 export interface LinkButtonProps {
   type?: EuiLinkType;
+  /**
+   * Any of our named colors.
+   * **`secondary` color is DEPRECATED, use `success` instead**
+   */
   color?: EuiLinkColor;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
@@ -68,6 +74,10 @@ export interface EuiLinkButtonProps
 
 export interface LinkAnchorProps {
   type?: EuiLinkType;
+  /**
+   * Any of our named colors.
+   * **`secondary` color is DEPRECATED, use `success` instead**
+   */
   color?: EuiLinkColor;
   /**
    * Set to true to show an icon indicating that it is an external link;

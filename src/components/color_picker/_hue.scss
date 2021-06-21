@@ -14,7 +14,6 @@
   margin: $euiSizeXS 0;
   position: relative;
 
-
   // To make our fake range skinny, we add some pseudo borders to fake the height of the gradient
   &:before,
   &:after {
@@ -82,5 +81,8 @@
       box-shadow: 0 0 0 $euiFocusRingSize $euiFocusRingColor;
       border-color: $euiColorPrimary;
     }
+
+    // Focus is added to the thumb ^^ so we can remove the outer wrapping outline
+    outline: none;
   }
 }
