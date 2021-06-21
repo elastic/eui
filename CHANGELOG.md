@@ -1,5 +1,27 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `success` as `color` option to `EuiBadge`, `EuiTextColor`, `EuiText`, `EuiStat`, and `EuiExpression` ([#4888](https://github.com/elastic/eui/pull/4888))
+- Changed default `color` props from `secondary` to `success` where necessary ([#4888](https://github.com/elastic/eui/pull/4888))
+- Added display of number of selected options in `EuiSearchBar` filters when `numActiveFilters` exists ([#4748](https://github.com/elastic/eui/pull/4748))
+- Reverted `z-index: 1` on `EuiPageBody` ([#4892](https://github.com/elastic/eui/pull/4892))
+- Added `updateButtonProps` to `EuiSuperDatePicker` to provide more control over the update/refresh button ([#4895](https://github.com/elastic/eui/pull/4895))
+- Added `DraggableProvidedDragHandleProps` interface from 'react-beautiful-dnd' ([#4903](https://github.com/elastic/eui/pull/4903))
+
+**Bug fixes**
+
+- Fixed `EuiRange` container expansion due to negative margin value ([#4815](https://github.com/elastic/eui/pull/4815))
+- Fixed `EuiRange` ticks position to better align with thumbs ([#4815](https://github.com/elastic/eui/pull/4815))
+- Fixed DataGrid footer and header rows jumps in Firefox ([#4869](https://github.com/elastic/eui/issues/4869))
+
+**Theme: Amsterdam**
+
+- Updated styles for `EuiRange` ([#4815](https://github.com/elastic/eui/pull/4815)
+- Fixed more unique focus states using `outline` ([#4876](https://github.com/elastic/eui/pull/4876))
+- Fixed `border-radius` value of `EuiPanel` ([#4876](https://github.com/elastic/eui/pull/4876))
+- Fixed `disabled` background color of `EuiCard` for better visiblity on subdued backgrounds ([#4876](https://github.com/elastic/eui/pull/4876))
+
+## [`34.4.0`](https://github.com/elastic/eui/tree/v34.4.0)
+
 - Added draggable highlight area to `EuiDualRange` ([#4776](https://github.com/elastic/eui/pull/4776))
 - Added `success` and `accent` `color` options to `EuiButton` ([#4874](https://github.com/elastic/eui/pull/4874))
 - Added `success` `color` option to `EuiLink` ([#4874](https://github.com/elastic/eui/pull/4874))
@@ -7,6 +29,10 @@
 **Bug fixes**
 
 - Fixed shaded colors of `EuiButtonIcon` ([#4874](https://github.com/elastic/eui/pull/4874))
+
+**Bug fixes**
+
+- Fixed auto scrolling on update in `EuiComboBox` ([#4879](https://github.com/elastic/eui/pull/4879))
 
 ## [`34.3.0`](https://github.com/elastic/eui/tree/v34.3.0)
 

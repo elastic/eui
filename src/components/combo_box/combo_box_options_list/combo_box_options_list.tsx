@@ -163,7 +163,11 @@ export class EuiComboBoxOptionsList<T> extends Component<
       this.updatePosition();
     }
 
-    if (this.listRef && typeof this.props.activeOptionIndex !== 'undefined') {
+    if (
+      this.listRef &&
+      typeof this.props.activeOptionIndex !== 'undefined' &&
+      this.props.activeOptionIndex !== prevProps.activeOptionIndex
+    ) {
       this.listRef.scrollToItem(this.props.activeOptionIndex, 'auto');
     }
   }

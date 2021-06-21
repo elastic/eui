@@ -39,6 +39,9 @@ export type EuiTextProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
     textAlign?: TextAlignment;
     size?: TextSize;
+    /**
+     * **`secondary` color is DEPRECATED, use `success` instead**
+     */
     color?: TextColor;
     grow?: boolean;
   };

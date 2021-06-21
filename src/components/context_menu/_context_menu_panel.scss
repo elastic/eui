@@ -3,6 +3,10 @@
   visibility: visible;
   outline-offset: -$euiFocusRingSize;
 
+  &:focus {
+    outline: none; // Hide focus ring because of `tabindex=-1` on Safari
+  }
+
   &.euiContextMenuPanel-txInLeft {
     pointer-events: none;
     animation: euiContextMenuPanelTxInLeft $euiAnimSpeedNormal $euiAnimSlightResistance;

@@ -20,6 +20,7 @@
   &:focus {
     .euiAccordion__iconWrapper {
       @include euiAccordionIconFocus;
+      outline: none; // The `outline` gets applied to the whole button, we don't need a second one on the icon
     }
   }
 }
@@ -73,6 +74,10 @@
   transition:
     height $euiAnimSpeedNormal $euiAnimSlightResistance,
     opacity $euiAnimSpeedNormal $euiAnimSlightResistance;
+
+  &:focus {
+    outline: none; // Hide focus ring because of `tabindex=-1` on Safari
+  }
 }
 
 $paddingSizes: (

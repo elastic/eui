@@ -9,22 +9,27 @@
 
 .euiRangeTicks {
   position: absolute;
-  left: ($euiRangeThumbWidth / 8);
-  right: ($euiRangeThumbWidth / 8);
+  left: 0;
+  right: 0;
   top: $euiSizeS;
   display: flex;
+
+  &--isCustom {
+    left: ($euiRangeThumbWidth / 8);
+    right: ($euiRangeThumbWidth / 8);
+  }
 }
 
 .euiRangeTick {
   overflow-x: hidden;
   text-overflow: ellipsis;
   font-size: $euiFontSizeXS;
-  position: relative;
+  position: absolute;
+  transform: translateX(-50%);
   padding-top: $euiSize;
 
   &:not(.euiRangeTick--hasTickMark)::before {
     @include tickStyles;
-
     content: '';
     left: calc(50% - #{($euiSizeXS/2)});
   }
@@ -34,14 +39,12 @@
   }
 
   &--isCustom {
-    position: absolute;
-    transform: translateX(-50%);
+    overflow-x: visible;
   }
 
   &--isMin,
   &--isMax {
     transform: translateX(0);
-    overflow-x: visible;
   }
 
   &--isMin {
