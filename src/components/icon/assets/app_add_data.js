@@ -11,7 +11,7 @@ const EuiIconAppAddData = ({ title, titleId, ...props }) => (
     {title ? <title id={titleId}>{title}</title> : null}
     <path d="M32 30H0V3h12.57l3 5H32v22zM2 28h28V10H14.43l-3-5H2v23z" />
     <path
-      className="euiIcon__fillSuccess"
+      className="euiIcon__fillSecondary"
       d="M21 18h-4v-4h-2v4h-4v2h4v4h2v-4h4z"
     />
   </svg>

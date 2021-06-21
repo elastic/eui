@@ -15,9 +15,9 @@
 .euiIcon--app {
   fill: $euiTextColor;
 
-  // This provides the default success color
-  .euiIcon__fillSuccess {
-    fill: makeGraphicContrastColor($euiColorSuccess);
+  // This provides the default secondary color
+  .euiIcon__fillSecondary {
+    fill: makeGraphicContrastColor($euiColorSecondary);
   }
 }
 
@@ -46,7 +46,7 @@
 .euiIcon--primary,
 .euiIcon--customColor {
   &,
-  .euiIcon__fillSuccess {
+  .euiIcon__fillSecondary {
     fill: currentColor;
   }
 }

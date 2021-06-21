@@ -10,7 +10,7 @@ const EuiIconAppVisualize = ({ title, titleId, ...props }) => (
     {...props}>
     {title ? <title id={titleId}>{title}</title> : null}
     <path
-      className="euiIcon__fillSuccess"
+      className="euiIcon__fillSecondary"
       d="M32 32H4a4 4 0 01-4-4V0h2v28a2 2 0 002 2h28v2z"
     />
     <path d="M6 20h2v7H6zM16 12h2v15h-2zM26 17h2v10h-2z" />
