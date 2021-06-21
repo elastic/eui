@@ -1,12 +1,19 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Reverted `z-index: 1` on `EuiPageBody` ([#4892](https://github.com/elastic/eui/pull/4892))
+- Added `updateButtonProps` to `EuiSuperDatePicker` to provide more control over the update/refresh button ([#4895](https://github.com/elastic/eui/pull/4895))
 - Added pixel value support to `initialSize` and `size` props in `EuiResizablePanel` ([#4893](https://github.com/elastic/eui/pull/4893))
 
 **Bug fixes**
 
 - Fixed DataGrid footer and header rows jumps in Firefox ([#4869](https://github.com/elastic/eui/issues/4869))
 - Updated `EuiResizableContainer` to respect `minSize` and `maxSize` props in initial size calculation ([#4893](https://github.com/elastic/eui/pull/4893))
+
+**Theme: Amsterdam**
+
+- Fixed more unique focus states using `outline` ([#4876](https://github.com/elastic/eui/pull/4876))
+- Fixed `border-radius` value of `EuiPanel` ([#4876](https://github.com/elastic/eui/pull/4876))
+- Fixed `disabled` background color of `EuiCard` for better visiblity on subdued backgrounds ([#4876](https://github.com/elastic/eui/pull/4876))
 
 ## [`34.4.0`](https://github.com/elastic/eui/tree/v34.4.0)
 
