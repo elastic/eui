@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added display of number of selected options in `EuiSearchBar` filters when `numActiveFilters` exists ([#4748](https://github.com/elastic/eui/pull/4748))
 - Reverted `z-index: 1` on `EuiPageBody` ([#4892](https://github.com/elastic/eui/pull/4892))
 - Added `updateButtonProps` to `EuiSuperDatePicker` to provide more control over the update/refresh button ([#4895](https://github.com/elastic/eui/pull/4895))
 
