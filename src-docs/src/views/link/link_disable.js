@@ -31,7 +31,7 @@ export const LinkDisable = () => {
       <EuiSpacer size="m" />
       <EuiTextColor color="accent">
         When links are disabled, they inherit the{' '}
-        <EuiLink color="secondary" disabled={disableLink} onClick={() => {}}>
+        <EuiLink color="success" disabled={disableLink} onClick={() => {}}>
           color
         </EuiLink>{' '}
         of surrounding text.
