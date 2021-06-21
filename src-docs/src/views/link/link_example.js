@@ -24,7 +24,7 @@ const linkValidationHtml = renderToHtml(LinkValidation);
 const linkSnippet = [
   `<EuiLink href="#"><!-- Link text --></EuiLink>
 `,
-  `<EuiLink href="#" color="secondary">
+  `<EuiLink href="#" color="success">
   <!-- Colored link text -->
 </EuiLink>
 `,
