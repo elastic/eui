@@ -41,6 +41,7 @@ export const EuiNotificationEventReadIcon: FunctionComponent<EuiNotificationEven
   id,
   isRead,
   eventName,
+  ...rest
 }) => {
   const classesReadState = classNames('euiNotificationEventReadIcon', {
     'euiNotificationEventReadIcon--isRead': isRead,
@@ -78,6 +79,7 @@ export const EuiNotificationEventReadIcon: FunctionComponent<EuiNotificationEven
         title={iconTitle}
         color="primary"
         data-test-subj={`${id}-notificationEventReadIcon`}
+        {...rest}
       />
     </div>
   );
