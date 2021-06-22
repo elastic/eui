@@ -36,22 +36,6 @@ $euiCodeFontWeightBold:     700 !default;
   @return #{$size / $euiFontSize}rem;
 }
 
-@function fontSizeToRemOrEm($size, $sizingMethod: 'rem') {
-  @if ($sizingMethod == 'rem') {
-    @return #{$size / $euiFontSize}rem;
-  } @else if ($sizingMethod == 'em') {
-    @return #{$size / $euiFontSize}em;
-  }
-}
-
-@function sizeToRemOrEm($remSize, $emSize: 1, $sizingMethod: 'rem') {
-  @if ($sizingMethod == 'rem') {
-    @return #{$remSize / $euiFontSize}rem;
-  } @else if ($sizingMethod == 'em') {
-    @return #{$emSize}em;
-  }
-}
-
 // Our base gridline is at 1/2 the font-size, ensure line-heights stay on that gridline.
 // EX: A proper line-height for text is 1.5 times the font-size.
 //     If our base font size (euiFontSize) is 16, our baseline is 8 (16*1.5 / 3). To ensure the

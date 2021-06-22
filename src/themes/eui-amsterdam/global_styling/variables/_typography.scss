@@ -31,22 +31,6 @@ $euiCodeFontWeightBold: 700;
   @return convertToRem(($euiFontSize/2)*$multiplier);
 }
 
-@function fontSizeToRemOrEm($size, $sizingMethod: 'rem') {
-  @if ($sizingMethod == 'rem') {
-    @return #{$size / $euiFontSize}rem;
-  } @else if ($sizingMethod == 'em') {
-    @return #{$size / $euiFontSize}em;
-  }
-}
-
-@function sizeToRemOrEm($remSize, $emSize: 1, $sizingMethod: 'rem') {
-  @if ($sizingMethod == 'rem') {
-    @return #{$remSize / $euiFontSize}rem;
-  } @else if ($sizingMethod == 'em') {
-    @return #{$emSize}em;
-  }
-}
-
 $euiTitles: (
   'xxxs': (
     'font-size': $euiFontSizeXS,

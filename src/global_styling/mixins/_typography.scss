@@ -1,9 +1,22 @@
 // sass-lint:disable no-vendor-prefixes
 // sass-lint:disable no-important
 
-// Some mixins that help us deal with browser scaling of text more consistently.
-// Essentially, fonts across eui should scale against the root html element, not
-// against parent inheritance.
+@function fontSizeToRemOrEm($size, $sizingMethod: 'rem') {
+  @if ($sizingMethod == 'rem') {
+    @return #{$size / $euiFontSize}rem;
+  } @else if ($sizingMethod == 'em') {
+    @return #{$size / $euiFontSize}em;
+  }
+}
+
+// It can also be applied to calculate paddings
+@function marginToRemOrEm($elementSize, $elementFontSize, $sizingMethod: 'rem') {
+  @if ($sizingMethod == 'rem') {
+    @return #{$elementSize / $euiFontSize}rem;
+  } @else if ($sizingMethod == 'em') {
+    @return #{$elementSize / $elementFontSize}em;
+  }
+}
 
 // Spit out rem and px
 @mixin fontSize($size: $euiFontSize, $sizingMethod: 'rem') {
@@ -18,6 +31,10 @@
 @mixin lineHeightFromBaseline($multiplier: 3) {
   line-height: lineHeightFromBaseline($multiplier);
 }
+
+// Some mixins that help us deal with browser scaling of text more consistently.
+// Essentially, fonts across eui should scale against the root html element, not
+// against parent inheritance.
 
 // Our base fonts
 
