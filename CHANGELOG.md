@@ -9,6 +9,7 @@
 - Added `DraggableProvidedDragHandleProps` interface from 'react-beautiful-dnd' ([#4903](https://github.com/elastic/eui/pull/4903))
 - Added `success` and `accent` `color` options to `EuiButton` ([#4874](https://github.com/elastic/eui/pull/4874))
 - Added `success` `color` option to `EuiLink` ([#4874](https://github.com/elastic/eui/pull/4874))
+- Added pixel value support to `initialSize` and `size` props in `EuiResizablePanel` ([#4893](https://github.com/elastic/eui/pull/4893))
 
 **Bug fixes**
 
@@ -16,6 +17,7 @@
 - Fixed `EuiRange` ticks position to better align with thumbs ([#4815](https://github.com/elastic/eui/pull/4815))
 - Fixed `EuiDataGrid` footer and header rows jumps in Firefox ([#4869](https://github.com/elastic/eui/issues/4869))
 - Fixed shaded colors of `EuiButtonIcon` ([#4874](https://github.com/elastic/eui/pull/4874))
+- Updated `EuiResizableContainer` to respect `minSize` and `maxSize` props in initial size calculation ([#4893](https://github.com/elastic/eui/pull/4893))
 
 **Theme: Amsterdam**
 

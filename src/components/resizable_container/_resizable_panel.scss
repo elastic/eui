@@ -1,5 +1,6 @@
 .euiResizablePanel {
   position: relative;
+  flex-shrink: 0;
 }
 
 @each $modifier, $amount in $euiPanelPaddingModifiers {

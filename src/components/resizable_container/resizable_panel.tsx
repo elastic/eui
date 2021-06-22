@@ -102,6 +102,11 @@ export interface EuiResizablePanelProps
     CommonProps,
     Partial<EuiResizablePanelControls> {
   /**
+   * Specify a desired maximum panel size in pixels or percents,
+   * for example "300px" or "30%"
+   */
+  maxSize?: string;
+  /**
    * Specify a desired minimum panel size in pixels or percents,
    * for example "300px" or "30%"
    * The actual minimum size will be calculated,
@@ -113,17 +118,20 @@ export interface EuiResizablePanelProps
    */
   id?: string;
   /**
-   * Initial size of the panel in percents
+   * Initial size of the panel.
+   * Specify pixels or percents, for example "300px" or "30%", or 30 (30%)
+   * Or set to "grow" to have the panel occupy all space left open by sibling panels
    * Specify this prop if you don't need to handle the panel size from outside
    */
-  initialSize?: number;
+  initialSize?: number | string | 'grow';
   /**
-   * Size of the panel in percents.
+   * Size of the panel.
+   * Specify pixels or percents, for example "300px" or "30%", or 30 (30%)
    * Specify this prop if you want to control the size from outside, the panel will ignore the "initialSize"
    */
-  size?: number;
+  size?: number | string;
   /**
-   * Add Eui scroll and overflow for the panel
+   * Add scroll and overflow for the panel
    */
   scrollable?: boolean;
   /*
@@ -140,7 +148,7 @@ export interface EuiResizablePanelProps
    */
   children: ReactNode;
   /**
-   * Custom CSS properties applied to the wrapping `.euiResizablePanel` div
+   * Custom CSS properties applied to the wrapping `.euiResizablePanel__content` div
    */
   style?: CSSProperties;
   /**
@@ -172,10 +180,10 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   id,
   isHorizontal,
   size,
-  initialSize,
+  initialSize: _initialSize,
+  maxSize,
   minSize = '0px', // Actual minSize is calculated in `./helpers.ts`
   scrollable = true,
-  style = {},
   mode,
   registration,
   onToggleCollapsed,
@@ -199,12 +207,19 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   const resizerIds = useRef<string[]>([]);
   const modeType = useMemo(() => getModeType(mode), [mode]);
   const toggleOpts = useMemo(() => getToggleOptions(mode), [mode]);
-  const innerSize = useMemo(
-    () =>
-      (panels[panelId.current] && panels[panelId.current].size) ??
-      (initialSize || 0),
-    [panels, initialSize]
+  const initialSize = useMemo(
+    () => (_initialSize === 'grow' ? 0 : _initialSize || 0),
+    [_initialSize]
   );
+  const sizeStr = useMemo(
+    () => (typeof size === 'number' ? `${size}%` : size),
+    [size]
+  );
+  const innerSize = useMemo(() => {
+    const size =
+      (panels[panelId.current] && panels[panelId.current].size) ?? initialSize;
+    return typeof size === 'number' ? `${size}%` : size;
+  }, [panels, initialSize]);
   const isCollapsed = useMemo(
     () =>
       (panels[panelId.current] && panels[panelId.current].isCollapsed) || false,
@@ -272,25 +287,25 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
 
   if (size) {
     dimensions = {
-      width: isHorizontal ? `${size}%` : '100%',
-      height: isHorizontal ? 'auto' : `${size}%`,
+      width: isHorizontal ? sizeStr : '100%',
+      height: isHorizontal ? 'auto' : sizeStr,
     };
   } else {
     dimensions = {
-      width: isHorizontal ? `${innerSize}%` : '100%',
-      height: isHorizontal ? 'auto' : `${innerSize}%`,
+      width: isHorizontal ? innerSize : '100%',
+      height: isHorizontal ? 'auto' : innerSize,
     };
   }
 
   const styles = {
-    ...style,
+    ...wrapperProps?.style,
     ...dimensions,
   };
 
   useEffect(() => {
     if (!registration) return;
     const id = panelId.current;
-    const initSize = size ?? (initialSize || 0);
+    const initSize = size ?? initialSize;
     resizerIds.current = [
       divRef.current!.previousElementSibling
         ? divRef.current!.previousElementSibling.id
@@ -301,24 +316,29 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     ];
     registration.register({
       id,
-      size: initSize,
-      prevSize: initSize,
+      initSize,
+      size: 0,
+      prevSize: 0,
       getSizePx() {
         return isHorizontal
           ? divRef.current!.getBoundingClientRect().width
           : divRef.current!.getBoundingClientRect().height;
       },
+      maxSize,
       minSize: [minSize, padding],
       mode: modeType,
       isCollapsed: false,
+      canGrow: _initialSize === 'grow',
       position: getPosition(divRef.current!),
     });
     return () => {
       registration.deregister(id);
     };
   }, [
+    _initialSize,
     initialSize,
     isHorizontal,
+    maxSize,
     minSize,
     size,
     registration,

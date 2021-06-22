@@ -80,6 +80,10 @@ export interface EuiResizableContainerProps
   onPanelWidthChange?: ({}: { [key: string]: number }) => any;
   onToggleCollapsed?: ToggleCollapseCallback;
   style?: CSSProperties;
+  /**
+   * Add Eui scroll and overflow for the panel
+   */
+  scrollable?: boolean;
 }
 
 const initialState: EuiResizableContainerState = {
@@ -98,6 +102,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
   className,
   onPanelWidthChange,
   onToggleCollapsed,
+  scrollable = true,
   ...rest
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -108,6 +113,7 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     {
       'euiResizableContainer--vertical': !isHorizontal,
       'euiResizableContainer--horizontal': isHorizontal,
+      'euiResizableContainer--scrollable': scrollable,
     },
     className
   );
@@ -242,6 +248,14 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
     const content = children(EuiResizablePanel, EuiResizableButton, {
       togglePanel: actions.togglePanel,
     });
+    const growables = React.isValidElement(content)
+      ? content.props.children.filter(
+          (el: ReactElement) => el.props.initialSize === 'grow'
+        )
+      : [];
+    if (growables.length > 1) {
+      throw new Error('Only one panel can specify `initialSize="grow"');
+    }
     const modes = React.isValidElement(content)
       ? content.props.children.map(
           (el: ReactElement) => getModeType(el.props.mode) || DEFAULT

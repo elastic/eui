@@ -6,3 +6,11 @@
     flex-direction: column;
   }
 }
+
+.euiResizableContainer--scrollable {
+  overflow-x: auto;
+
+  .euiResizableContainer--vertical {
+    overflow-y: auto;
+  }
+}

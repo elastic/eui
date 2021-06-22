@@ -25,15 +25,18 @@ import ResizableContainerBasic from './resizable_container_basic';
 import ResizableContainerVertical from './resizable_container_vertical';
 import ResizableContainerResetValues from './resizable_container_reset_values';
 import ResizablePanels from './resizable_panels';
+import ResizablePanelsGrow from './resizable_panels_grow';
 import ResizablePanelCollapsible from './resizable_panel_collapsible';
 import ResizablePanelCollapsibleResponsive from './resizable_panel_collapsible_responsive';
 import ResizablePanelCollapsibleOpts from './resizable_panel_collapsible_options';
 import ResizablePanelCollapsibleExt from './resizable_panel_collapsible_external';
+import ResizablePage from './resizable_page';
 
 const ResizableContainerSource = require('!!raw-loader!./resizable_container_basic');
 const ResizableContainerVerticalSource = require('!!raw-loader!./resizable_container_vertical');
 const ResizableContainerResetValuesSource = require('!!raw-loader!./resizable_container_reset_values');
 const ResizablePanelsSource = require('!!raw-loader!./resizable_panels');
+const ResizablePanelsGrowSource = require('!!raw-loader!./resizable_panels_grow');
 const ResizablePanelCollapsibleSource = require('!!raw-loader!./resizable_panel_collapsible');
 const ResizablePanelCollapsibleResponsiveSource = require('!!raw-loader!./resizable_panel_collapsible_responsive');
 const ResizablePanelCollapsibleOptsSource = require('!!raw-loader!./resizable_panel_collapsible_options');
@@ -83,6 +86,28 @@ const verticalSnippet = `<EuiResizableContainer direction="vertical">
     </>
   )}
 </EuiResizableContainer>`;
+
+const ResizableContainerGrowHtml = renderToHtml(ResizablePanelsGrowSource);
+const growSnippet = `<EuiResizableContainer>
+  {(EuiResizablePanel, EuiResizableButton) => (
+    <>
+      <EuiResizablePanel initialSize="grow" minSize="20%">
+        <EuiText>
+          <p>{text}</p>
+        </EuiText>
+      </EuiResizablePanel>
+
+      <EuiResizableButton />
+
+      <EuiResizablePanel initialSize={50} minSize="20%">
+        <EuiText>
+          <p>{text}</p>
+        </EuiText>
+      </EuiResizablePanel>
+    </>
+  )}
+</EuiResizableContainer>`;
+
 const ResizableContainerResetValuesHtml = renderToHtml(
   ResizableContainerResetValues
 );
@@ -279,6 +304,39 @@ export const ResizableContainerExample = {
       props: { EuiResizablePanel },
       snippet: panelsSnippet,
       demo: <ResizablePanels />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: ResizablePanelsGrowSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: ResizableContainerGrowHtml,
+        },
+      ],
+      title: 'Resizable panel sizing',
+      text: (
+        <div>
+          <p>
+            Each <strong>EuiResizablePanel</strong> can set size restrictions
+            using the <EuiCode>minSize</EuiCode> and <EuiCode>maxSize</EuiCode>{' '}
+            props. These values take precedence over{' '}
+            <EuiCode>initialSize</EuiCode> to ensure proper size boundaries.
+            Take care when setting these values to ensure that the panels do not
+            overflow or underfill the parent container.
+          </p>
+          <p>
+            Set <EuiCode>{'initialSize="grow"'}</EuiCode> on a single panel to
+            specify that it should occupy all space not occupied by its sibling
+            containers.
+          </p>
+        </div>
+      ),
+      props: { EuiResizablePanel },
+      snippet: growSnippet,
+      demo: <ResizablePanelsGrow />,
     },
     {
       source: [
@@ -487,6 +545,30 @@ export const ResizableContainerExample = {
       ),
       demo: <ResizablePanelCollapsibleExt />,
       snippet: collapsibleExtSnippet,
+    },
+    {
+      title: 'A page layout pattern with resizable side bar',
+      // source: [
+      //   {
+      //     type: GuideSectionTypes.JS,
+      //     code: PageRestrictingWidthTemplateSource,
+      //     displayName: 'Template JS',
+      //   },
+      //   {
+      //     type: GuideSectionTypes.JS,
+      //     code: PageRestrictingWidthSource,
+      //     displayName: 'Components JS',
+      //   },
+      // ],
+      text: (
+        <>
+          <p />
+        </>
+      ),
+      fullScreen: {
+        slug: 'resizable-page',
+        demo: <ResizablePage />,
+      },
     },
   ],
 };

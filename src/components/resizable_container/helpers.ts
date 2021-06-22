@@ -68,27 +68,59 @@ export const sizesOnly = (
   );
 };
 
-const _getPanelMinSize = (panelMinSize: string, containerSize: number) => {
-  let panelMinSizePercent = 0;
-  const panelMinSizeInt = parseInt(panelMinSize);
-  if (panelMinSize.indexOf('px') > -1) {
-    panelMinSizePercent = pxToPercent(panelMinSizeInt, containerSize);
-  } else if (panelMinSize.indexOf('%') > -1) {
-    panelMinSizePercent = pxToPercent(
-      containerSize * (panelMinSizeInt / 100),
+const getPanelSizePct = (
+  _panelSize: number | string,
+  containerSize: number
+) => {
+  const panelSize = `${_panelSize}`;
+  let panelSizePercent = 0;
+  const panelSizeInt = parseInt(panelSize);
+  if (panelSize.indexOf('px') > -1) {
+    panelSizePercent = pxToPercent(panelSizeInt, containerSize);
+  } else {
+    panelSizePercent = pxToPercent(
+      containerSize * (panelSizeInt / 100),
       containerSize
     );
   }
-  return panelMinSizePercent;
+  return panelSizePercent;
+};
+
+export const getPanelMaxSize = (
+  panelMaxSize: string,
+  containerSize: number
+) => {
+  return getPanelSizePct(panelMaxSize, containerSize);
 };
 
 export const getPanelMinSize = (
   panelMinSize: string[],
   containerSize: number
 ) => {
-  const paddingMin = _getPanelMinSize(panelMinSize[1], containerSize);
-  const configMin = _getPanelMinSize(panelMinSize[0], containerSize);
+  const paddingMin = getPanelSizePct(panelMinSize[1], containerSize);
+  const configMin = getPanelSizePct(panelMinSize[0], containerSize);
   return Math.max(configMin, paddingMin);
+};
+
+export const getPanelSizes = (
+  prevPanel: EuiResizablePanelController,
+  nextPanel: EuiResizablePanelController,
+  containerSize: number
+) => {
+  const prevPanelMin = getPanelMinSize(prevPanel.minSize, containerSize);
+  const nextPanelMin = getPanelMinSize(nextPanel.minSize, containerSize);
+  const prevPanelMax = prevPanel.maxSize
+    ? getPanelMaxSize(prevPanel.maxSize, containerSize)
+    : null;
+  const nextPanelMax = nextPanel.maxSize
+    ? getPanelMaxSize(nextPanel.maxSize, containerSize)
+    : null;
+  return {
+    prevPanelMin,
+    nextPanelMin,
+    prevPanelMax,
+    nextPanelMax,
+  };
 };
 
 export const getPosition = (
@@ -154,10 +186,35 @@ export const useContainerCallbacks = ({
     switch (action.type) {
       case 'EUI_RESIZABLE_CONTAINER_INIT': {
         const { isHorizontal } = action.payload;
+        const containerSize = getContainerSize(isHorizontal);
+        let totalSize = 0;
+        const panels = Object.values(state.panels).reduce(
+          (out: EuiResizableContainerState['panels'], panel) => {
+            const sizeInPct = getPanelSizePct(panel.initSize, containerSize);
+            const minSize = Math.max(
+              getPanelMinSize(panel.minSize, containerSize),
+              sizeInPct
+            );
+            const size = panel.maxSize
+              ? Math.min(minSize, getPanelMaxSize(panel.maxSize, containerSize))
+              : minSize;
+            totalSize += size;
+            out[panel.id] = { ...panel, size, prevSize: size };
+            return out;
+          },
+          {}
+        );
+        const growPanel = Object.values(panels).find((panel) => panel.canGrow);
+        if (growPanel) {
+          const growPanelObj = panels[growPanel.id];
+          const remaining = 100 - totalSize;
+          growPanelObj.size += remaining;
+          growPanelObj.prevSize += remaining;
+        }
         return {
           ...state,
-          isHorizontal,
-          containerSize: getContainerSize(isHorizontal),
+          containerSize,
+          panels,
         };
       }
       case 'EUI_RESIZABLE_PANEL_REGISTER': {
@@ -229,14 +286,13 @@ export const useContainerCallbacks = ({
         const nextPanel = state.panels[nextPanelId];
         const delta = position - state.currentResizerPos;
 
-        const prevPanelMin = getPanelMinSize(
-          prevPanel.minSize,
-          state.containerSize
-        );
-        const nextPanelMin = getPanelMinSize(
-          nextPanel.minSize,
-          state.containerSize
-        );
+        const {
+          prevPanelMin,
+          nextPanelMin,
+          prevPanelMax,
+          nextPanelMax,
+        } = getPanelSizes(prevPanel, nextPanel, state.containerSize);
+
         const prevPanelSize = pxToPercent(
           prevPanel.getSizePx() + delta,
           state.containerSize
@@ -246,39 +302,44 @@ export const useContainerCallbacks = ({
           state.containerSize
         );
 
-        if (prevPanelSize >= prevPanelMin && nextPanelSize >= nextPanelMin) {
-          return withSideEffect({
-            ...state,
-            currentResizerPos: position,
-            panels: {
-              ...state.panels,
-              [prevPanelId]: {
-                ...state.panels[prevPanelId],
-                size: prevPanelSize,
-              },
-              [nextPanelId]: {
-                ...state.panels[nextPanelId],
-                size: nextPanelSize,
-              },
-            },
-          });
+        const tooLarge =
+          (prevPanelMax && prevPanelMax < prevPanelSize) ||
+          (nextPanelMax && nextPanelMax < nextPanelSize);
+        const tooSmall =
+          prevPanelSize < prevPanelMin || nextPanelSize < nextPanelMin;
+
+        if (tooLarge || tooSmall) {
+          return state;
         }
 
-        return state;
+        return withSideEffect({
+          ...state,
+          currentResizerPos: position,
+          panels: {
+            ...state.panels,
+            [prevPanelId]: {
+              ...state.panels[prevPanelId],
+              size: prevPanelSize,
+            },
+            [nextPanelId]: {
+              ...state.panels[nextPanelId],
+              size: nextPanelSize,
+            },
+          },
+        });
       }
       case 'EUI_RESIZABLE_KEY_MOVE': {
         const { prevPanelId, nextPanelId, direction } = action.payload;
         const prevPanel = state.panels[prevPanelId];
         const nextPanel = state.panels[nextPanelId];
 
-        const prevPanelMin = getPanelMinSize(
-          prevPanel.minSize,
-          state.containerSize
-        );
-        const nextPanelMin = getPanelMinSize(
-          nextPanel.minSize,
-          state.containerSize
-        );
+        const {
+          prevPanelMin,
+          nextPanelMin,
+          prevPanelMax,
+          nextPanelMax,
+        } = getPanelSizes(prevPanel, nextPanel, state.containerSize);
+
         const prevPanelSize = pxToPercent(
           prevPanel.getSizePx() - (direction === 'backward' ? 10 : -10),
           state.containerSize
@@ -287,6 +348,16 @@ export const useContainerCallbacks = ({
           nextPanel.getSizePx() - (direction === 'forward' ? 10 : -10),
           state.containerSize
         );
+
+        const tooLarge =
+          (prevPanelMax && prevPanelMax < prevPanelSize) ||
+          (nextPanelMax && nextPanelMax < nextPanelSize);
+        const tooSmall =
+          prevPanelSize < prevPanelMin || nextPanelSize < nextPanelMin;
+
+        if (tooLarge || tooSmall) {
+          return state;
+        }
 
         if (prevPanelSize >= prevPanelMin && nextPanelSize >= nextPanelMin) {
           return withSideEffect({
