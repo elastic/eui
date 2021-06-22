@@ -115,6 +115,11 @@
     .euiComboBoxPill--plainText {
       @include euiFormControlDisabledTextStyle;
     }
+
+    // overrides the `cursor: text;` that displays on hover for combo boxes that allow multiple pills
+    .euiComboBox__inputWrap:not(.euiComboBox__inputWrap--noWrap):hover {
+      cursor: not-allowed;
+    }
   }
 
   &.euiComboBox--compressed {
