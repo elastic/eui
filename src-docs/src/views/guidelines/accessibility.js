@@ -294,7 +294,7 @@ export default {
           <EuiSpacer />
           <EuiFlexGroup alignItems="center" gutterSize="s">
             <EuiFlexItem grow={false}>
-              <EuiIcon type="checkInCircleFilled" size="l" color="secondary" />
+              <EuiIcon type="checkInCircleFilled" size="l" color="success" />
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
               <EuiTitle size="xs">

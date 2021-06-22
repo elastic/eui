@@ -516,6 +516,7 @@ export type EuiIconProps = CommonProps &
     /**
      * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value.
      * Note that coloring only works if your SVG is removed of fill attributes.
+     * **`secondary` color is DEPRECATED, use `success` instead**
      */
     color?: IconColor;
     /**
