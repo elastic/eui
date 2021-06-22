@@ -112,14 +112,8 @@
       -webkit-text-fill-color: unset; // overrides $euiFormControlDisabledColor because the color doesn't work with multiple background colors 
     }
 
-    .euiComboBoxPill:not(.euiComboBoxPill--plainText) {
-      opacity: .25;
-    }
-
     .euiComboBoxPill--plainText {
-      // sass-lint:disable-block no-vendor-prefixes
-      color: $euiFormControlDisabledColor;
-      -webkit-text-fill-color: $euiFormControlDisabledColor; // Required for Safari
+      @include euiFormControlDisabledTextStyle;
     }
   }
 
