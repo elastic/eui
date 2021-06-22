@@ -5,35 +5,16 @@
 // Essentially, fonts across eui should scale against the root html element, not
 // against parent inheritance.
 
-@function convertToRem($size) {
-  @return #{$size / $euiFontSize}rem;
-}
-
-@function convertToRemOrEm($size, $sizingMethod) {
-  @if ($sizingMethod == 'rem') {
-    @return #{$size / $euiFontSize}rem;
-  } @else if ($sizingMethod == 'em') {
-    @return #{$size / $euiFontSize}em;
-  }
-}
-
 // Spit out rem and px
 @mixin fontSize($size: $euiFontSize, $sizingMethod: 'rem') {
   @if ($sizingMethod == 'rem') {
     font-size: $size;
-    font-size: convertToRemOrEm($size, 'rem');
+    font-size: fontSizeToRemOrEm($size, 'rem');
   } @else if ($sizingMethod == 'em') {
-    font-size: convertToRemOrEm($size, 'em');
+    font-size: fontSizeToRemOrEm($size, 'em');
   }
 }
 
-// Our base gridline is at 1/2 the font-size, ensure line-heights stay on that gridline.
-// EX: A proper line-height for text is 1.5 times the font-size.
-//     If our base font size (euiFontSize) is 16, our baseline is 8 (16*1.5 / 3). To ensure the
-//     text stays on the baseline, we pass a multiplier to calculate a line-height in rems.
-@function lineHeightFromBaseline($multiplier: 3) {
-  @return convertToRem(($euiFontSize/2)*$multiplier);
-}
 @mixin lineHeightFromBaseline($multiplier: 3) {
   line-height: lineHeightFromBaseline($multiplier);
 }

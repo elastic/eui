@@ -29,6 +29,38 @@ $euiFontWeightBold:         700 !default;
 $euiCodeFontWeightRegular:  400 !default;
 $euiCodeFontWeightBold:     700 !default;
 
+
+// Normally functions are imported before variables in `_index.scss` files
+// But because they need to consume some typography variables they need to live here
+@function convertToRem($size) {
+  @return #{$size / $euiFontSize}rem;
+}
+
+@function fontSizeToRemOrEm($size, $sizingMethod: 'rem') {
+  @if ($sizingMethod == 'rem') {
+    @return #{$size / $euiFontSize}rem;
+  } @else if ($sizingMethod == 'em') {
+    @return #{$size / $euiFontSize}em;
+  }
+}
+
+@function sizeToRemOrEm($remSize, $emSize: 1, $sizingMethod: 'rem') {
+  @if ($sizingMethod == 'rem') {
+    @return #{$remSize / $euiFontSize}rem;
+  } @else if ($sizingMethod == 'em') {
+    @return #{$emSize}em;
+  }
+}
+
+// Our base gridline is at 1/2 the font-size, ensure line-heights stay on that gridline.
+// EX: A proper line-height for text is 1.5 times the font-size.
+//     If our base font size (euiFontSize) is 16, our baseline is 8 (16*1.5 / 3). To ensure the
+//     text stays on the baseline, we pass a multiplier to calculate a line-height in rems.
+@function lineHeightFromBaseline($multiplier: 3) {
+  @return convertToRem(($euiFontSize/2)*$multiplier);
+}
+
+
 // Titles map
 // Lists all the properties per EuiTitle size that then gets looped through to create the selectors.
 // The map allows for tokenization and easier customization per theme, otherwise you'd have to override the selectors themselves
