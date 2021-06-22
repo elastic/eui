@@ -60,8 +60,7 @@ export default () => {
       </EuiFormRow>
 
       <EuiFormRow
-        label="Text field"
-        helpText="This is a disabled input field."
+        label="Disabled text field"
         isDisabled>
         <EuiFieldText name="last" />
       </EuiFormRow>
