@@ -1,22 +1,4 @@
 // This should only be used for .euiText, therefore it's not included in a separate mixin file
-@function calculateSize($size: $baseFontSize, $sizingMethod: 'rem') {
-  @if ($sizingMethod == 'rem') {
-    @return #{$size / $euiFontSize}rem;
-  } @else if ($sizingMethod == 'em') {
-    @return #{$size / $euiFontSize}em;
-  }
-}
-
-// Spit out rem and px
-@mixin fontSize($size: $euiFontSize, $sizingMethod: 'rem') {
-  @if ($sizingMethod == 'rem') {
-    font-size: $size;
-    font-size: calculateSize($size, 'rem');
-  } @else if ($sizingMethod == 'em') {
-    font-size: calculateSize($size, 'em');
-  }
-}
-
 @mixin euiScaleText($baseFontSize, $sizingMethod: 'rem') {
   @include fontSize($baseFontSize, $sizingMethod);
 
@@ -30,7 +12,7 @@
   blockquote,
   img,
   pre {
-    margin-bottom: calculateSize(($baseLineHeightMultiplier * 3), $sizingMethod);
+    margin-bottom: convertToRemOrEm(($baseLineHeightMultiplier * 3), $sizingMethod);
 
     &:last-child {
       margin-bottom: 0;
@@ -39,12 +21,12 @@
 
   ul,
   ol {
-    margin-left: calculateSize(($baseLineHeightMultiplier * 3), $sizingMethod);
+    margin-left: convertToRemOrEm(($baseLineHeightMultiplier * 3), $sizingMethod);
   }
 
   blockquote {
-    padding:  calculateSize(($baseFontSize * 1.5), $sizingMethod);
-    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 4)), $sizingMethod);
+    padding:  convertToRemOrEm(($baseFontSize * 1.5), $sizingMethod);
+    font-size: convertToRemOrEm(($baseFontSize * nth($euiTextScale, 4)), $sizingMethod);
   }
 
   h1,
@@ -53,11 +35,11 @@
   h4,
   h5,
   h6 {
-    margin-bottom: calculateSize(($baseLineHeightMultiplier * 1), $sizingMethod);
+    margin-bottom: convertToRemOrEm(($baseLineHeightMultiplier * 1), $sizingMethod);
   }
 
   dd + dt {
-    margin-top: calculateSize(($baseLineHeightMultiplier * 2), $sizingMethod);
+    margin-top: convertToRemOrEm(($baseLineHeightMultiplier * 2), $sizingMethod);
   }
 
   * + h2,
@@ -65,48 +47,48 @@
   * + h4,
   * + h5,
   * + h6 {
-    margin-top: calculateSize(($baseLineHeightMultiplier * 4), $sizingMethod);
+    margin-top: convertToRemOrEm(($baseLineHeightMultiplier * 4), $sizingMethod);
   }
 
   h1 {
-    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 1)), $sizingMethod);
+    font-size: convertToRemOrEm(($baseFontSize * nth($euiTextScale, 1)), $sizingMethod);
     line-height: ($baseLineHeightMultiplier * 6) / ($baseFontSize * nth($euiTextScale, 1));
   }
 
   h2 {
-    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 2)), $sizingMethod);
+    font-size: convertToRemOrEm(($baseFontSize * nth($euiTextScale, 2)), $sizingMethod);
     line-height: ($baseLineHeightMultiplier * 5) / ($baseFontSize * nth($euiTextScale, 2));
   }
 
   h3 {
-    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 3)), $sizingMethod);
+    font-size: convertToRemOrEm(($baseFontSize * nth($euiTextScale, 3)), $sizingMethod);
     line-height: ($baseLineHeightMultiplier * 4) / ($baseFontSize * nth($euiTextScale, 3));
   }
 
   h4,
   dt,
   .eui-definitionListReverse dd {
-    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 5)), $sizingMethod); // skip level 4 on purpose
+    font-size: convertToRemOrEm(($baseFontSize * nth($euiTextScale, 5)), $sizingMethod); // skip level 4 on purpose
     line-height: ($baseLineHeightMultiplier * 3) / ($baseFontSize * nth($euiTextScale, 5));
   }
 
   .eui-definitionListReverse dt {
-    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 7)), $sizingMethod);
+    font-size: convertToRemOrEm(($baseFontSize * nth($euiTextScale, 7)), $sizingMethod);
     color: $euiTextColor;
   }
 
   h5 {
-    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 6)), $sizingMethod);
+    font-size: convertToRemOrEm(($baseFontSize * nth($euiTextScale, 6)), $sizingMethod);
     line-height: ($baseLineHeightMultiplier * 2) / ($baseFontSize * nth($euiTextScale, 6));
   }
 
   h6 {
-    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 7)), $sizingMethod);
+    font-size: convertToRemOrEm(($baseFontSize * nth($euiTextScale, 7)), $sizingMethod);
     line-height: ($baseLineHeightMultiplier * 2) / ($baseFontSize * nth($euiTextScale, 7));
   }
 
   small {
-    font-size: calculateSize(($baseFontSize * nth($euiTextScale, 6)), $sizingMethod);
+    font-size: convertToRemOrEm(($baseFontSize * nth($euiTextScale, 6)), $sizingMethod);
   }
 
   pre {
@@ -116,7 +98,7 @@
   code {
     // Setting the font size in rem's ensure it doesn't compound
     // the 90% set by euiCodeBlock
-    font-size: calculateSize(($baseFontSize * .9), $sizingMethod);
+    font-size: convertToRemOrEm(($baseFontSize * .9), $sizingMethod);
   }
 }
 
