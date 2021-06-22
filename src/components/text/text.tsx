@@ -31,12 +31,6 @@ const textSizeToClassNameMap = {
   m: 'euiText--medium',
 };
 
-const textSizeEmToClassNameMap = {
-  xs: 'euiText--emExtraSmall',
-  s: 'euiText--emSmall',
-  m: 'euiText--emMedium',
-};
-
 export type TextSize = keyof typeof textSizeToClassNameMap;
 
 export const TEXT_SIZES = keysOf(textSizeToClassNameMap);
@@ -63,11 +57,13 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
   const classes = classNames(
     'euiText',
     sizingMethod === 'rem' && textSizeToClassNameMap[size],
-    sizingMethod === 'em' && textSizeEmToClassNameMap[size],
-    className,
+    {
+      'euiText--em': sizingMethod === 'em',
+    },
     {
       'euiText--constrainedWidth': !grow,
-    }
+    },
+    className
   );
 
   let optionallyAlteredText;

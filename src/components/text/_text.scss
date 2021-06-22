@@ -92,7 +92,7 @@
   }
 
   pre {
-    padding: $baseLineHeightMultiplier * 2;
+    padding: convertToRemOrEm(($baseLineHeightMultiplier * 2), $sizingMethod);
   }
 
   code {
@@ -244,14 +244,6 @@
   @include euiScaleText($euiFontSizeXS, 'rem');
 }
 
-.euiText--emMedium {
+.euiText--em {
   @include euiScaleText($euiFontSize, 'em');
-}
-
-.euiText--emSmall {
-  @include euiScaleText($euiFontSizeS, 'em');
-}
-
-.euiText--emExtraSmall {
-  @include euiScaleText($euiFontSizeXS, 'em');
 }
