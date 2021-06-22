@@ -125,6 +125,7 @@ export type EuiProgressProps = CommonProps & {
   size?: EuiProgressSize;
   /**
    * One of EUI's color palette, vis colors or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+   * **`secondary` color is DEPRECATED, use `success` instead**
    */
   color?: EuiProgressColor | CSSProperties['color'];
   position?: EuiProgressPosition;
@@ -151,7 +152,7 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
   Indeterminate
 >> = ({
   className,
-  color = 'secondary',
+  color = 'success',
   size = 'm',
   position = 'static',
   max,

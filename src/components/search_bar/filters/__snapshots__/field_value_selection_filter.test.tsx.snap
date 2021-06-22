@@ -9,6 +9,7 @@ exports[`FieldValueSelectionFilter active - field is global 1`] = `
       hasActiveFilters={true}
       iconSide="right"
       iconType="arrowDown"
+      numActiveFilters={0}
       onClick={[Function]}
     >
       Tag
@@ -66,6 +67,7 @@ exports[`FieldValueSelectionFilter active - fields in options 1`] = `
       hasActiveFilters={true}
       iconSide="right"
       iconType="arrowDown"
+      numActiveFilters={0}
       onClick={[Function]}
     >
       Tag

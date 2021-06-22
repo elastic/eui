@@ -87,7 +87,7 @@ There are a couple themes to keep in mind when adding snippets:
 ```
 
 ```js
-<EuiLink href="#" color="secondary">
+<EuiLink href="#" color="success">
   <!-- Colored link text -->
 </EuiLink>
 ```
