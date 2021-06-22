@@ -20,6 +20,24 @@
 import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { EuiObserver } from '../observer';
 
+const calculateDimensions = ({
+  height,
+  width,
+  top,
+  bottom,
+  left,
+  right,
+}: DOMRectReadOnly) => {
+  // `height` and `width` do not account for padding
+  // https://developer.mozilla.org/en-US/docs/Web/API/DOMRectReadOnly
+  const pBottom = bottom - height;
+  const pRight = right - width;
+  const heightPlus = height + top + pBottom;
+  const widthPlus = width + left + pRight;
+
+  return { height: heightPlus, width: widthPlus };
+};
+
 export interface EuiResizeObserverProps {
   /**
    * ReactNode to render as this component's content
@@ -39,7 +57,7 @@ export class EuiResizeObserver extends EuiObserver<EuiResizeObserverProps> {
   };
 
   onResize: ResizeObserverCallback = ([entry]) => {
-    const { height, width } = entry.contentRect;
+    const { height, width } = calculateDimensions(entry.contentRect);
     // Check for actual resize event
     if (this.state.height === height && this.state.width === width) {
       return;
@@ -109,7 +127,7 @@ export const useResizeObserver = (
       });
 
       const observer = makeResizeObserver(container, ([entry]) => {
-        const { height, width } = entry.contentRect;
+        const { height, width } = calculateDimensions(entry.contentRect);
         setSize({
           width,
           height,
