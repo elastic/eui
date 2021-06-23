@@ -64,15 +64,15 @@ exports[`EuiStepsHorizontal is rendered 1`] = `
   >
     <button
       class="euiStepHorizontal euiStepHorizontal-isIncomplete"
-      title="Step 3: Incomplete Step 3 is incomplete"
+      title="Step 3: Incomplete Step 3"
     >
       <span
-        class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+        class="euiStepNumber euiStepHorizontal__number"
       >
         <span
           class="euiScreenReaderOnly"
         >
-          Step 3 is incomplete
+          Step 3
         </span>
         <span
           aria-hidden="true"

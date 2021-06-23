@@ -277,10 +277,8 @@ export const StepsExample = {
             multiple pages.
           </p>
           <p>
-            For each step object, be sure to signify previous/completed steps
-            with <EuiCode language="ts">isComplete: true</EuiCode> and the
-            current/selected step with{' '}
-            <EuiCode language="ts">isSelected: true</EuiCode>.
+            For each step object, be sure to signify the appropriate step{' '}
+            <EuiCode language="ts">status</EuiCode>.
           </p>
         </Fragment>
       ),

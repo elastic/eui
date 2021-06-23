@@ -5,15 +5,15 @@ exports[`EuiStepHorizontal is rendered 1`] = `
   aria-label="aria-label"
   class="euiStepHorizontal testClass1 testClass2 euiStepHorizontal-isIncomplete"
   data-test-subj="test subject string"
-  title="Step 1 is incomplete"
+  title="Step 1"
 >
   <span
-    class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+    class="euiStepNumber euiStepHorizontal__number"
   >
     <span
       class="euiScreenReaderOnly"
     >
-      Step 1 is incomplete
+      Step 1
     </span>
     <span
       aria-hidden="true"
@@ -212,15 +212,15 @@ exports[`EuiStepHorizontal props status warning is rendered 1`] = `
 exports[`EuiStepHorizontal props step 1`] = `
 <button
   class="euiStepHorizontal euiStepHorizontal-isIncomplete"
-  title="Step 5 is incomplete"
+  title="Step 5"
 >
   <span
-    class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+    class="euiStepNumber euiStepHorizontal__number"
   >
     <span
       class="euiScreenReaderOnly"
     >
-      Step 5 is incomplete
+      Step 5
     </span>
     <span
       aria-hidden="true"
@@ -238,15 +238,15 @@ exports[`EuiStepHorizontal props step 1`] = `
 exports[`EuiStepHorizontal props title 1`] = `
 <button
   class="euiStepHorizontal euiStepHorizontal-isIncomplete"
-  title="Step 1: First step is incomplete"
+  title="Step 1: First step"
 >
   <span
-    class="euiStepNumber euiStepNumber--incomplete euiStepHorizontal__number"
+    class="euiStepNumber euiStepHorizontal__number"
   >
     <span
       class="euiScreenReaderOnly"
     >
-      Step 1 is incomplete
+      Step 1
     </span>
     <span
       aria-hidden="true"
