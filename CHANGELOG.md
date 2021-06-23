@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.5.2`.
+**Bug fixes**
+
+- Fixed `EuiIcon` from producing console warning in React.StrictMode ([#4910](https://github.com/elastic/eui/pull/4910))
 
 ## [`34.5.2`](https://github.com/elastic/eui/tree/v34.5.2)
 
@@ -39,6 +41,7 @@ No public interface changes since `34.5.2`.
 - Fixed `pageHeader` display in `EuiPageTemplate` when template is `empty` or `default` ([#4905](https://github.com/elastic/eui/pull/4905))
 - Fixed `EuiPageHeader` bottom padding when `borderBottom = true` ([#4905](https://github.com/elastic/eui/pull/4905))
 - Fixed incomplete `height` and `width` information in `EuiResizeObserver` ([#4909](https://github.com/elastic/eui/pull/4909))
+
 
 **Theme: Amsterdam**
 
