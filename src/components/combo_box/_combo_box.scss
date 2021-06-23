@@ -112,6 +112,7 @@
       -webkit-text-fill-color: unset; // overrides $euiFormControlDisabledColor because the color doesn't work with multiple background colors 
     }
 
+    .euiComboBoxPlaceholder,
     .euiComboBoxPill--plainText {
       @include euiFormControlDisabledTextStyle;
     }
