@@ -6,10 +6,9 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiSpacer,
-  useColorPickerState,
-  EuiColorPicker,
   EuiFormRow,
   EuiSelect,
+  EuiRange,
 } from '../../../../src';
 
 const markdownContent = `# h1 Heading
@@ -156,89 +155,99 @@ Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 `;
 
 export default () => {
-  const sizingMethodOptions = [
-    {
-      value: 'em',
-      text: 'em',
-    },
-    {
-      value: 'rem',
-      text: 'rem',
-    },
-  ];
+  const textSizeArray = ['xs', 's', 'm', 'relative'];
 
-  const percentages = ['33%', '50%', '66%', '100%', '150%', '200%'];
-
-  const fontSizeScaleOptions = percentages.map((item) => {
-    return { value: item, text: item };
+  const textSizeOptions = textSizeArray.map((name) => {
+    return {
+      value: name,
+      text: name,
+    };
   });
 
-  const [textColor, setTextColor, textColorErrors] = useColorPickerState(
-    '#343741'
-  );
+  const textColorsArray = [
+    'default',
+    'subdued',
+    'secondary',
+    'accent',
+    'danger',
+    'warning',
+    'ghost',
+    'inherit',
+  ];
 
-  const [sizingMethod, setSizingMethod] = useState(
-    sizingMethodOptions[0].value
-  );
-  const [fontSizeScale, setFontSizeScale] = useState(
-    fontSizeScaleOptions[3].value
-  );
+  const textColorsOptions = textColorsArray.map((name) => {
+    return {
+      value: name,
+      text: name,
+    };
+  });
 
-  const onChangeSizingMethod = (e) => {
-    setSizingMethod(e.target.value);
+  console.log('textSizeOptions', textSizeOptions);
+  console.log('textSizeOptions value', textSizeOptions[2].value);
+
+  const [textSize, setTextSize] = useState(textSizeOptions[2].value);
+  const [fontSizeScale, setFontSizeScale] = useState(16);
+  const [textColor, setTextColor] = useState(textColorsOptions[0].value);
+
+  const onChangeTextSize = (e) => {
+    setTextSize(e.target.value);
   };
 
   const onChangeFontSizeScale = (e) => {
+    console.log(fontSizeScale);
     setFontSizeScale(e.target.value);
+  };
+
+  const onChangeTextColor = (e) => {
+    setTextColor(e.target.value);
   };
 
   return (
     <>
       <EuiFlexGroup style={{ maxWidth: 600 }}>
         <EuiFlexItem>
-          <EuiFormRow
-            label="Text color"
-            isInvalid={!!textColorErrors}
-            error={textColorErrors}>
-            <EuiColorPicker
-              onChange={setTextColor}
-              color={textColor}
-              isInvalid={!!textColorErrors}
+          <EuiFormRow label="Text color">
+            <EuiSelect
+              options={textColorsOptions}
+              value={textColor}
+              onChange={(e) => onChangeTextColor(e)}
             />
           </EuiFormRow>
         </EuiFlexItem>
 
         <EuiFlexItem>
-          <EuiFormRow label="Sizing method">
+          <EuiFormRow label="Text size">
             <EuiSelect
-              options={sizingMethodOptions}
-              value={sizingMethod}
-              onChange={(e) => onChangeSizingMethod(e)}
+              options={textSizeOptions}
+              value={textSize}
+              onChange={(e) => onChangeTextSize(e)}
             />
           </EuiFormRow>
         </EuiFlexItem>
 
-        <EuiFlexItem>
-          <EuiFormRow label="Font size">
-            <EuiSelect
-              options={fontSizeScaleOptions}
-              value={fontSizeScale}
-              onChange={(e) => onChangeFontSizeScale(e)}
-            />
-          </EuiFormRow>
-        </EuiFlexItem>
+        {textSize === 'relative' && (
+          <EuiFlexItem>
+            <EuiFormRow label="Scale based on Font size">
+              <EuiRange
+                min={12}
+                max={24}
+                step={4}
+                value={fontSizeScale}
+                onChange={onChangeFontSizeScale}
+                showValue
+              />
+            </EuiFormRow>
+          </EuiFlexItem>
+        )}
       </EuiFlexGroup>
 
       <EuiSpacer />
-      <EuiPanel
-        hasBorder={true}
-        style={{
-          fontSize: '16px',
-        }}>
+      <EuiPanel hasBorder={true}>
         <EuiMarkdownFormat
-          sizingMethod={sizingMethod}
+          textSize={textSize}
+          color={textColor}
           style={{
-            fontSize: fontSizeScale,
+            fontSize: textSize === 'relative' && `${fontSizeScale}px`,
             color: textColor,
           }}>
           {markdownContent}

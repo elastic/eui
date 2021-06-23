@@ -13,10 +13,6 @@
   img,
   pre {
     margin-bottom: marginToRemOrEm(($baseLineHeightMultiplier * 3), $baseFontSize, $sizingMethod);
-
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
 
   ul,
@@ -125,6 +121,57 @@
     // Setting the font size in rem's ensure it doesn't compound
     // the 90% set by euiCodeBlock
     font-size: fontSizeToRemOrEm(($baseFontSize * .9), $sizingMethod);
+  }
+
+  // specific markdown format components that need to scale
+  &.euiMarkdownFormat {
+    .euiMarkdownFormat__blockquote {
+      padding: 0 marginToRemOrEm($baseLineHeightMultiplier * 2, $baseFontSize, $sizingMethod);
+      border-left-width:  marginToRemOrEm($baseLineHeightMultiplier / 2, $baseFontSize, $sizingMethod);
+      margin-bottom: marginToRemOrEm($baseLineHeightMultiplier * 2, $baseFontSize, $sizingMethod);
+    }
+
+    .euiCheckbox + *:not(.euiCheckbox) {
+      margin-top: marginToRemOrEm($baseLineHeightMultiplier * 2, $baseFontSize, $sizingMethod);
+    }
+
+    .euiCheckbox__label {
+      font-size: fontSizeToRemOrEm($baseFontSize, $sizingMethod);
+      padding-left: marginToRemOrEm($baseLineHeightMultiplier * 3, $baseFontSize, $sizingMethod);
+      line-height: $baseLineHeightMultiplier * 3 / $baseFontSize;
+    }
+
+    // Checkboxes
+    .euiCheckbox {
+      // sass-lint:disable-block no-important
+      margin-bottom: 0 !important;
+    }
+
+    .euiCheckbox + *:not(.euiCheckbox) {
+      margin-top: marginToRemOrEm($baseLineHeightMultiplier * 2, $baseFontSize, $sizingMethod);
+    }
+
+    .task-list-item + .task-list-item {
+      margin-top: marginToRemOrEm($baseLineHeightMultiplier / 4, $baseFontSize, $sizingMethod);
+    }
+
+    .task-list-item input {
+      margin: 0 .2em .25em -1.6em;
+      vertical-align: middle;
+    }
+
+    .euiMarkdownFormat__codeblockWrapper {
+      margin-bottom: marginToRemOrEm($baseLineHeightMultiplier * 2, $baseFontSize, $sizingMethod);
+    }
+
+    .euiMarkdownFormat__table {
+      margin-bottom: marginToRemOrEm($baseLineHeightMultiplier * 2, $baseFontSize, $sizingMethod);
+    }
+
+    .euiMarkdownFormat__table th,
+    .euiMarkdownFormat__table td {
+      padding: marginToRemOrEm($baseLineHeightMultiplier / 2, $baseFontSize, $sizingMethod) marginToRemOrEm($baseLineHeightMultiplier * 1, $baseFontSize, $sizingMethod);
+    }
   }
 }
 
@@ -270,6 +317,6 @@
   @include euiScaleText($euiFontSizeXS, 'rem');
 }
 
-.euiText--em {
+.euiText--relative {
   @include euiScaleText($euiFontSize, 'em');
 }

@@ -29,6 +29,7 @@ const colorsToClassNameMap = {
   danger: 'euiTextColor--danger',
   warning: 'euiTextColor--warning',
   ghost: 'euiTextColor--ghost',
+  inherit: 'euiTextColor--inherit',
 };
 
 export type TextColor = keyof typeof colorsToClassNameMap;

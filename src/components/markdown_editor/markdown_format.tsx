@@ -28,21 +28,22 @@ import {
   defaultParsingPlugins,
 } from './plugins/markdown_default_plugins';
 
-export type EuiMarkdownFormatProps = CommonProps & {
-  children: string;
-  /** array of unified plugins to parse content into an AST */
-  parsingPluginList?: PluggableList;
-  /** array of unified plugins to convert the AST into a ReactNode */
-  processingPluginList?: PluggableList;
-  sizingMethod?: EuiTextProps['sizingMethod'];
-};
+export type EuiMarkdownFormatProps = CommonProps &
+  Omit<EuiTextProps, 'size'> & {
+    children: string;
+    /** array of unified plugins to parse content into an AST */
+    parsingPluginList?: PluggableList;
+    /** array of unified plugins to convert the AST into a ReactNode */
+    processingPluginList?: PluggableList;
+    textSize?: EuiTextProps['size'];
+  };
 
 export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   children,
   className,
   parsingPluginList = defaultParsingPlugins,
   processingPluginList = defaultProcessingPlugins,
-  sizingMethod = 'rem',
+  textSize = 'relative',
   ...rest
 }) => {
   const processor = useMemo(
@@ -63,8 +64,8 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   const classes = classNames('euiMarkdownFormat', className);
 
   return (
-    <div className={classes} {...rest}>
-      <EuiText sizingMethod={sizingMethod}>{result}</EuiText>
-    </div>
+    <EuiText size={textSize} className={classes} {...rest}>
+      {result}
+    </EuiText>
   );
 };

@@ -2,34 +2,7 @@
 // Uses the EuiText to wrap all the content.
 // Uses the EuiLink, EuiCode and EuiHorizontalRule.
 
-$browserDefaultFontSize: 16px;
-
-// We're setting a function o transform px in em
-// because it's easier to think in px
-@function em($pixels, $context: $browserDefaultFontSize) {
-  @return #{$pixels/$context}em;
-}
-
 .euiMarkdownFormat {
-  // We're using `em` values to support apps where consumers might adjust sizes
-  // and consequently the markdown needs to adjust to these changes
-
-  // Font size variables
-  $euiMarkdownFontSizeXS: em(12px);
-  $euiMarkdownFontSizeS: em(14px);
-  $euiMarkdownFontSize: em(16px);
-  $euiMarkdownFontSizeM:  em(18px);
-  $euiMarkdownFontSizeL: em(20px);
-  $euiMarkdownFontSizeXL: em(28px);
-  $euiMarkdownFontSizeXXL: em(36px);
-
-  // Spacing variables
-  $euiMarkdownSizeXXS: em(4px);
-  $euiMarkdownSizeXS: em(8px);
-  $euiMarkdownSizeS: em(12px);
-  $euiMarkdownSize: em(16px);
-  $euiMarkdownSizeL: em(24px);
-
   // We're using alpha values to support apps that
   // display markdown on backgrounds of various colors
 
@@ -47,7 +20,7 @@ $browserDefaultFontSize: 16px;
     color: $euiColorLightestShade;
   }
 
-  .euiText {
+  &.euiText {
     h1,
     h2,
     h3,
@@ -60,9 +33,8 @@ $browserDefaultFontSize: 16px;
 
   // Blockquotes
   .euiMarkdownFormat__blockquote {
-    padding: 0 1em;
-    border-left: $euiMarkdownSizeXXS solid $euiMarkdownAlphaLightShade;
-    margin-bottom: $euiMarkdownFontSize;
+    border-left-style: solid;
+    border-left-color: $euiMarkdownAlphaLightShade;
   }
 
   &--reversed .euiMarkdownFormat__blockquote {
@@ -73,33 +45,13 @@ $browserDefaultFontSize: 16px;
     background-color: $euiMarkdownAlphaLightShade;
   }
 
-  // Checkboxes
-  .euiCheckbox {
-    // sass-lint:disable-block no-important
-    margin-bottom: 0 !important;
-  }
-
-  .euiCheckbox + *:not(.euiCheckbox) {
-    margin-top: $euiMarkdownSize;
-  }
-
   // Task list
   .task-list-item {
     list-style-type: none;
   }
 
-  .task-list-item + .task-list-item {
-    margin-top: $euiMarkdownSizeXXS;
-  }
-
   .task-list-item input {
-    margin: 0 .2em .25em -1.6em;
     vertical-align: middle;
-  }
-
-  // Code block
-  .euiMarkdownFormat__codeblockWrapper {
-    margin-bottom: $euiMarkdownSize;
   }
 
   // Tables
@@ -110,16 +62,10 @@ $browserDefaultFontSize: 16px;
     border-left: 1px solid $euiMarkdownAlphaLightShade;
     border-spacing: 0;
     border-collapse: collapse;
-    margin-bottom: $euiMarkdownSize;
-
-    &:last-child {
-      margin-bottom: $euiMarkdownSize;
-    }
   }
 
   .euiMarkdownFormat__table th,
   .euiMarkdownFormat__table td {
-    padding: $euiMarkdownSizeXXS $euiMarkdownSizeXS;
     border-top: 1px solid $euiMarkdownAlphaLightShade;
     border-bottom: 1px solid $euiMarkdownAlphaLightShade;
 
