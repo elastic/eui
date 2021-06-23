@@ -233,6 +233,8 @@ import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparkline
 
 import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 
+import { ElasticChartsAccessiblityExample } from './views/elastic_charts/accessibility';
+
 const createExample = (example, customTitle) => {
   if (!example) {
     throw new Error(
@@ -448,6 +450,7 @@ const navigation = [
       ElasticChartsTimeExample,
       ElasticChartsCategoryExample,
       ElasticChartsPieExample,
+      ElasticChartsAccessiblityExample,
     ].map((example) => createExample(example)),
   },
   {
