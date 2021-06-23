@@ -5,21 +5,21 @@ import { EuiStepsHorizontal } from '../../../../src/components';
 const horizontalSteps = [
   {
     title: 'Completed step 1',
-    isComplete: true,
+    status: 'complete',
     onClick: () => {},
   },
   {
     title: 'Selected step 2',
-    isSelected: true,
     onClick: () => {},
   },
   {
     title: 'Incomplete step 3 which will wrap to the next line',
+    status: 'incomplete',
     onClick: () => {},
   },
   {
     title: 'Disabled step 4',
-    disabled: true,
+    status: 'disabled',
     onClick: () => {},
   },
 ];

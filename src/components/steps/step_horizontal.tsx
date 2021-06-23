@@ -92,7 +92,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   if (disabled) status = 'disabled';
   else if (isComplete) status = 'complete';
   else if (isSelected) status = status;
-  else if (!status) status = 'incomplete';
+  else if (!status) status = undefined;
 
   let stepTitle = buttonTitle;
   if (status === 'disabled') stepTitle = disabledTitle;
