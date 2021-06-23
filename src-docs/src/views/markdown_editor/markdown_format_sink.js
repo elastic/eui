@@ -248,7 +248,6 @@ export default () => {
           color={textColor}
           style={{
             fontSize: textSize === 'relative' && `${fontSizeScale}px`,
-            color: textColor,
           }}>
           {markdownContent}
         </EuiMarkdownFormat>
