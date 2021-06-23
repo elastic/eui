@@ -16,6 +16,7 @@
 - Fixed `EuiRange` ticks position to better align with thumbs ([#4815](https://github.com/elastic/eui/pull/4815))
 - Fixed `EuiDataGrid` footer and header rows jumps in Firefox ([#4869](https://github.com/elastic/eui/issues/4869))
 - Fixed shaded colors of `EuiButtonIcon` ([#4874](https://github.com/elastic/eui/pull/4874))
+- Fixed default status of `EuiHorizontalSteps` to be undefined ([#4911](https://github.com/elastic/eui/pull/4911))
 
 **Theme: Amsterdam**
 
