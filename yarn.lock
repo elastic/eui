@@ -1009,15 +1009,16 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@elastic/charts@^24.5.1":
-  version "24.5.1"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-24.5.1.tgz#4757721b0323b15412c92d696dd76fdef9b963f8"
-  integrity sha512-eHJna3xyHREaSfTRb+3/34EmyoINopH6yP9KReakXRb0jW8DD4n9IkbPFwpVN3uXQ6ND2x1ObA0ZzLPSLCPozg==
+"@elastic/charts@^30.2.0":
+  version "30.2.0"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-30.2.0.tgz#95942317ac19a4b7cd81b78807059c82a565f3fb"
+  integrity sha512-DnCz8IXMB9X2LnmsT9MNI37iQoQOu0V2mP2a+SEQjpWEoIYrWIcJzSFC+H078FmZoRk4PHBo4yI9ynBmeeOZ+w==
   dependencies:
     "@popperjs/core" "^2.4.0"
     chroma-js "^2.1.0"
     classnames "^2.2.6"
     d3-array "^1.2.4"
+    d3-cloud "^1.2.5"
     d3-collection "^1.0.7"
     d3-color "^1.4.0"
     d3-interpolate "^1.4.0"
@@ -4756,6 +4757,13 @@ d3-array@^1.2.0, d3-array@^1.2.4:
   resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-1.2.4.tgz#635ce4d5eea759f6f605863dbcfc30edc737f71f"
   integrity sha512-KHW6M86R+FUPYGb3R5XiYjXPq7VzwxZ22buHhAEVG5ztoEcZZMLov530mmccaqA1GghZArjQV46fuc8kUqhhHw==
 
+d3-cloud@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/d3-cloud/-/d3-cloud-1.2.5.tgz#3e91564f2d27fba47fcc7d812eb5081ea24c603d"
+  integrity sha512-4s2hXZgvs0CoUIw31oBAGrHt9Kt/7P9Ik5HIVzISFiWkD0Ga2VLAuO/emO/z1tYIpE7KG2smB4PhMPfFMJpahw==
+  dependencies:
+    d3-dispatch "^1.0.3"
+
 d3-collection@1, d3-collection@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/d3-collection/-/d3-collection-1.0.7.tgz#349bd2aa9977db071091c13144d5e4f16b5b310e"
@@ -4765,6 +4773,11 @@ d3-color@1, d3-color@^1.4.0:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/d3-color/-/d3-color-1.4.1.tgz#c52002bf8846ada4424d55d97982fef26eb3bc8a"
   integrity sha512-p2sTHSLCJI2QKunbGb7ocOh7DgTAn8IrLx21QRc/BSnodXM4sv6aLQlnfpvehFMLZEfBc6g9pH9SWQccFYfJ9Q==
+
+d3-dispatch@^1.0.3:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/d3-dispatch/-/d3-dispatch-1.0.6.tgz#00d37bcee4dd8cd97729dd893a0ac29caaba5d58"
+  integrity sha512-fVjoElzjhCEy+Hbn8KygnmMS7Or0a9sI2UzGwoB7cCtvI1XpVN9GpoYlnb3xt2YV66oXYb1fLJ8GMvP4hdU1RA==
 
 d3-format@1:
   version "1.4.5"
