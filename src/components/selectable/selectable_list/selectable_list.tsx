@@ -247,8 +247,9 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         aria-setsize={data.length - labelCount}
         onFocusBadge={this.props.onFocusBadge}
         allowExclusions={this.props.allowExclusions}
-        showIcons={this.props.showIcons}
-        {...(optionRest as EuiSelectableListItemProps)}>
+        // @ts-ignore complex
+        {...(optionRest as EuiSelectableListItemProps)}
+        showIcons={this.props.showIcons}>
         {this.props.renderOption ? (
           this.props.renderOption(option, this.props.searchValue)
         ) : (
