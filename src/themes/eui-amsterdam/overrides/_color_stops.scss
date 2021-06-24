@@ -26,43 +26,26 @@
 }
 
 .euiColorStops:not(.euiColorStops-isDisabled) {
-  // pseudo-element that creates a shadow (focus ring) 
-  // initially we set the opacity to 0 
-  // on focus the .euiColorStops we transition the opacity to 1
-  // this is a higher-performance method. Better than transitioning the box-shadow.
-  // https://alligator.io/css/transition-box-shadows/
-  .euiRangeTrack::before {
-    @include euiRangeTrackSize;
-    content: '';
-    display: block;
-    position: absolute;
-    top: calc(50% - #{($euiRangeTrackHeight/2)});
-    left: 0;
-    background: transparent;
-    border-radius: $euiRangeTrackRadius;
-    box-shadow: 0 0 0 1px $euiColorEmptyShade,
-    0 0 0 3px $euiFocusRingColor;
-    opacity: 0;
-    transition-property: opacity;
+  .euiRangeTrack::after {
+    transition-property: box-shadow;
+    // this `transition-delay` prevents Safari of adding the focus ring (box-shadow) every time we click the `EuiColorStops`
+    // the focus still appear when we drag a color stop in Safari
     transition-delay: $euiAnimSpeedExtraFast;
-  }
-
-  .euiRangeTrack--compressed::before {
-    @include euiRangeTrackSize($compressed: true);
-    top: calc(50% - #{($euiRangeTrackCompressedHeight/2)});
   }
 
   &:focus {
     outline: none;
 
-    .euiRangeTrack::before {
-      opacity: 1;
+    .euiRangeTrack::after {
+      // sass-lint:disable-block no-color-literals
+      box-shadow: 0 0 0 1px rgba($euiColorEmptyShade, .8),
+      0 0 0 3px $euiFocusRingColor;
     }
   }
 
   &:focus:not(:focus-visible) {
-    .euiRangeTrack::before {
-      opacity: 0;
+    .euiRangeTrack::after {
+      box-shadow: none;
     }
   }
 }
