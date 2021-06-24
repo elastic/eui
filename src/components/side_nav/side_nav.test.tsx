@@ -54,6 +54,12 @@ describe('EuiSideNav', () => {
 
         expect(component).toMatchSnapshot();
       });
+
+      test('null is rendered', () => {
+        const component = render(<EuiSideNav mobileBreakpoints={undefined} />);
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('heading', () => {

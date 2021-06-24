@@ -75,7 +75,7 @@ export type EuiSideNavProps<T = {}> = T &
     /**
      * Array of breakpoint names for when to show the mobile version
      */
-    mobileBreakpoints: EuiBreakpointSize[];
+    mobileBreakpoints?: EuiBreakpointSize[];
     /**
      *  An array of #EuiSideNavItem objects. Lists navigation menu items.
      */
@@ -188,7 +188,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     // We add a className for every breakpoint supported
     const contentClasses = classNames(
       'euiSideNav__content',
-      mobileBreakpoints.map(
+      mobileBreakpoints?.map(
         (breakpointName) => `euiSideNav__contentMobile-${breakpointName}`
       )
     );
@@ -205,7 +205,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
       ...titleProps
     } = headingProps!;
 
-    const hasMobileVersion = mobileBreakpoints.length > 0;
+    const hasMobileVersion = mobileBreakpoints && mobileBreakpoints.length > 0;
     const hasHeader = !!heading;
     let headingNode;
 
@@ -241,7 +241,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     let mobileNode;
     if (hasMobileVersion) {
       mobileNode = (
-        <EuiShowFor sizes={mobileBreakpoints}>
+        <EuiShowFor sizes={mobileBreakpoints || 'none'}>
           <nav
             aria-labelledby={sharedHeadingProps.id}
             className={classes}
@@ -270,7 +270,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     return (
       <>
         {mobileNode}
-        <EuiHideFor sizes={mobileBreakpoints}>
+        <EuiHideFor sizes={mobileBreakpoints || 'none'}>
           <nav
             aria-labelledby={headingNode ? sharedHeadingProps.id : undefined}
             className={classes}

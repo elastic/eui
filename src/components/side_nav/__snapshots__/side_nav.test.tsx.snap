@@ -549,3 +549,14 @@ exports[`EuiSideNav props mobileBreakpoints can be adjusted is rendered 1`] = `
   />
 </nav>
 `;
+
+exports[`EuiSideNav props mobileBreakpoints can be adjusted null is rendered 1`] = `
+<nav
+  class="euiSideNav"
+>
+  <div
+    class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
+    id="euiSideNavContent_generated-id"
+  />
+</nav>
+`;
