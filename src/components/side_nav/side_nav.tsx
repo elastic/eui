@@ -240,9 +240,10 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     }
 
     let mobileNode;
+    const breakpoints: EuiBreakpointSize[] | undefined = mobileBreakpoints;
     if (hasMobileVersion) {
       mobileNode = (
-        <EuiShowFor sizes={mobileBreakpoints || 'none'}>
+        <EuiShowFor sizes={breakpoints || 'none'}>
           <nav
             aria-labelledby={sharedHeadingProps.id}
             className={classes}
@@ -271,7 +272,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     return (
       <>
         {mobileNode}
-        <EuiHideFor sizes={mobileBreakpoints || 'none'}>
+        <EuiHideFor sizes={breakpoints || 'none'}>
           <nav
             aria-labelledby={headingNode ? sharedHeadingProps.id : undefined}
             className={classes}
