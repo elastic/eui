@@ -16,20 +16,6 @@
   $euiMarkdownAlphaLightShadeReversed: rgba($euiColorEmptyShade, .15);
   $euiMarkdownAlphaDarkShadeReversed: rgba($euiColorEmptyShade, .65);
 
-  &--reversed {
-    color: $euiColorLightestShade;
-  }
-
-  &.euiText {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      color: inherit;
-    }
-  }
 
   // Blockquotes
   .euiMarkdownFormat__blockquote {
@@ -37,21 +23,29 @@
     border-left-color: $euiMarkdownAlphaLightShade;
   }
 
-  &--reversed .euiMarkdownFormat__blockquote {
+  .euiTextColor--ghost .euiMarkdownFormat__blockquote {
     border-left-color: $euiMarkdownAlphaLightShadeReversed;
   }
 
+  // Horizontal Rule
   .euiHorizontalRule {
     background-color: $euiMarkdownAlphaLightShade;
   }
 
-  // Task list
-  .task-list-item {
-    list-style-type: none;
+  .euiTextColor--ghost .euiHorizontalRule {
+    background-color: $euiMarkdownAlphaLightShadeReversed;
   }
 
-  .task-list-item input {
-    vertical-align: middle;
+
+  // Checkboxes
+  .euiCheckbox {
+    // sass-lint:disable-block no-important
+    margin-bottom: 0 !important;
+  }
+
+  .euiCheckbox .euiCheckbox__input + .euiCheckbox__square  {
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   // Tables

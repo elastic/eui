@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import classNames from 'classnames';
 import {
   EuiMarkdownFormat,
   EuiPanel,
@@ -202,6 +202,10 @@ export default () => {
     setTextColor(e.target.value);
   };
 
+  const panelClasses = classNames({
+    guideDemo__ghostBackground: textColor === 'ghost',
+  });
+
   return (
     <>
       <EuiFlexGroup style={{ maxWidth: 600 }}>
@@ -242,7 +246,7 @@ export default () => {
       </EuiFlexGroup>
 
       <EuiSpacer />
-      <EuiPanel hasBorder={true}>
+      <EuiPanel hasBorder={true} className={panelClasses}>
         <EuiMarkdownFormat
           textSize={textSize}
           color={textColor}
