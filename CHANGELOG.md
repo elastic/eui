@@ -2,6 +2,7 @@
 
 **Bug fixes**
 
+- Fixed bug in `EuiColorStops` where the outline was flashing when clicking or adding stops in Safari ([#4900](https://github.com/elastic/eui/issues/4900))
 - Fixed `showIcons` prop in `EuiSelectableListItem` ([#4920](https://github.com/elastic/eui/pull/4920))
 - Changed `mobileBreakpoints` prop to optional `EuiSideNav` ([#4921](https://github.com/elastic/eui/pull/4921))
 
