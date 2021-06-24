@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `34.5.1`.
+
+## [`34.5.1`](https://github.com/elastic/eui/tree/v34.5.1)
+
 **Bug fixes**
 
 - Fixed bug in `EuiColorStops` where the outline was flashing when clicking or adding stops in Safari ([#4900](https://github.com/elastic/eui/issues/4900))
