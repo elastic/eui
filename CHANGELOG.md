@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed `showIcons` prop in `EuiSelectableListItem` ([#4920](https://github.com/elastic/eui/pull/4920))
+- Changed `mobileBreakpoints` prop to optional `EuiSideNav` ([#4921](https://github.com/elastic/eui/pull/4921))
 
 ## [`34.5.0`](https://github.com/elastic/eui/tree/v34.5.0)
 
