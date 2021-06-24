@@ -73,7 +73,8 @@ export type EuiSideNavProps<T = {}> = T &
      */
     mobileTitle?: ReactNode;
     /**
-     * Array of breakpoint names for when to show the mobile version
+     * Array of breakpoint names for when to show the mobile version.
+     * Set to `undefined` to remove responsive behavior
      */
     mobileBreakpoints?: EuiBreakpointSize[];
     /**
