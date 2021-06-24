@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.5.0`.
+**Bug fixes**
+
+- Fixed `showIcons` prop in `EuiSelectableListItem` ([#4920](https://github.com/elastic/eui/pull/4920))
 
 ## [`34.5.0`](https://github.com/elastic/eui/tree/v34.5.0)
 
