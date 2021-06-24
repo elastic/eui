@@ -35,6 +35,7 @@ import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiLink } from '../link';
 import { EuiContextMenuItem, EuiContextMenuItemProps } from '../context_menu';
 import { htmlIdGenerator } from '../../services';
+import { EuiNotificationEventReadIcon } from './notification_event_read_icon';
 
 export type EuiNotificationHeadingLevel = 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
@@ -135,12 +136,20 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
     <article aria-labelledby={randomHeadingId} className={classes} key={id}>
       {typeof isRead === 'boolean' && (
         <div className="euiNotificationEvent__readButton">
-          <EuiNotificationEventReadButton
-            isRead={isRead}
-            onClick={() => onRead?.(id, isRead)}
-            eventName={title}
-            id={id}
-          />
+          {!!onRead ? (
+            <EuiNotificationEventReadButton
+              isRead={isRead}
+              onClick={() => onRead(id, isRead)}
+              eventName={title}
+              id={id}
+            />
+          ) : (
+            <EuiNotificationEventReadIcon
+              id={id}
+              isRead={isRead}
+              eventName={title}
+            />
+          )}
         </div>
       )}
 

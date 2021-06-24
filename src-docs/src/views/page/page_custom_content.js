@@ -12,15 +12,15 @@ import {
 } from '../../../../src/components';
 
 export default ({ button = <></> }) => (
-  <EuiPage paddingSize="none">
+  <EuiPage paddingSize="l">
     <EuiPageBody>
       <EuiPageHeader
         iconType="logoElastic"
         pageTitle="Page title"
         rightSideItems={[button, <EuiButton>Do something</EuiButton>]}
-        paddingSize="l"
+        bottomBorder
       />
-      <EuiPageContentBody paddingSize="l" style={{ paddingTop: 0 }}>
+      <EuiPageContentBody>
         <EuiFlexGrid columns={2}>
           <EuiFlexItem>
             <EuiPanel style={{ height: 200 }} />

@@ -19,6 +19,7 @@ export default () => {
     options: {
       primary: 'primary',
       secondary: 'secondary',
+      success: 'success',
       danger: 'danger',
       accent: 'accent',
       text: 'text',

@@ -63,7 +63,7 @@ export const EuiTourStepIndicator: FunctionComponent<EuiTourStepIndicatorProps> 
             type="dot"
             className="euiStepNumber__icon"
             aria-label={isActive}
-            color="secondary"
+            color="success"
             aria-current="step"
           />
         )}

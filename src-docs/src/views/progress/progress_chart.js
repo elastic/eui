@@ -21,7 +21,7 @@ export default () => (
           <EuiProgress
             valueText={true}
             max={100}
-            color="secondary"
+            color="success"
             size="s"
             {...item}
           />

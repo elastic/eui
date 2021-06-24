@@ -70,12 +70,12 @@ const statusMap: StatusMap = {
   },
   saved: {
     icon: 'checkInCircleFilled',
-    color: 'secondary',
+    color: 'success',
     tooltip: 'Saved.',
   },
   unchanged: {
     icon: '',
-    color: 'secondary',
+    color: 'success',
   },
   loading: {},
 };

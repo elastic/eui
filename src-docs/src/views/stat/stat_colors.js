@@ -17,8 +17,8 @@ export default () => (
       <EuiFlexItem>
         <EuiStat
           title="1,000"
-          description="Secondary color"
-          titleColor="secondary"
+          description="Success color"
+          titleColor="success"
         />
       </EuiFlexItem>
       <EuiFlexItem>

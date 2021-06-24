@@ -59,7 +59,7 @@ describe('EuiNotificationEventMeta', () => {
           type="Alert"
           time={<span>2 min ago</span>}
           eventName="eventName"
-          badgeColor="secondary"
+          badgeColor="success"
         />
       );
 
