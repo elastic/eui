@@ -11,7 +11,6 @@ import {
   EuiCard,
   EuiIcon,
   EuiText,
-  EuiListGroup,
 } from '../../../../src/components';
 import { TextureMultiSeriesChart } from './texture';
 
@@ -22,8 +21,8 @@ const warningCard = [
     iconColor: 'warning',
     description: (
       <>
-        Data tables are <strong>not yet available</strong> for chart types{' '}
-        <strong>besides</strong> partition charts{' '}
+        Currently, data tables are only available for{' '}
+        <strong>partition charts</strong>{' '}
       </>
     ),
   },
@@ -43,25 +42,15 @@ export const ElasticChartsAccessiblityExample = {
       <EuiText>
         <strong>Available a11y configurations</strong>
       </EuiText>
-      <EuiListGroup>
-        <li>
-          <EuiCode language="js">ariaDescription/ariaDescribedBy</EuiCode>
-        </li>
-        <li>
-          <EuiCode language="js">ariaLabel/ariaLabelledBy</EuiCode>
-        </li>
-        <li>
-          <EuiCode language="js">ariaLabelHeadingLevel</EuiCode>
-        </li>
-        <li>
-          <EuiCode language="js">
-            ariaUseDefaultSummary/ariaTableCaption
-          </EuiCode>
-        </li>
-        <li>
-          <EuiCode language="js">texture</EuiCode>
-        </li>
-      </EuiListGroup>
+      <EuiText>
+        <ul>
+          <li>ariaDescription/ariaDescribedBy</li>
+          <li>ariaLabel/ariaLabelledBy</li>
+          <li>ariaLabelHeadingLevel</li>
+          <li>ariaUseDefaultSummary/ariaTableCaption</li>
+          <li>texture</li>
+        </ul>
+      </EuiText>
     </Fragment>
   ),
   sections: [
@@ -69,7 +58,7 @@ export const ElasticChartsAccessiblityExample = {
       title: 'ariaDescription and ariaDescribedBy',
       text: (
         <>
-          The ariaDescription and ariaDescribedBy can be set via the through the{' '}
+          The ariaDescription and ariaDescribedBy can be set the through the{' '}
           <EuiCode>{'<Settings />'}</EuiCode> component.
           <EuiSpacer />
           <EuiCodeBlock language="javascript" isCopyable fontSize="s">
@@ -85,21 +74,21 @@ ariaUseDefaultSummary={false}
       title: 'ariaLabel and ariaLabelledBy',
       text: (
         <>
-          <p>
-            Within the <EuiCode>{'<Settings />'}</EuiCode> component, you can
-            add your own aria-label on the figure surrounding the chart element.
-            Use the <EuiCode>{'ariaLabel'}</EuiCode> prop on the{' '}
-            <EuiCode>{'<Settings />'}</EuiCode> component. The aria-labeledby
-            can be set with the <EuiCode>{'ariaLabelledBy'}</EuiCode> prop to
-            tie the charts to other accessible elements within your app.
-          </p>
+          Within the <EuiCode>{'<Settings />'}</EuiCode> component, you can add
+          your own aria-label on the figure surrounding the chart element. Use
+          the <EuiCode>{'ariaLabel'}</EuiCode> prop on the{' '}
+          <EuiCode>{'<Settings />'}</EuiCode> component.
+          <EuiSpacer />
+          The aria-labeledby can be set with the{' '}
+          <EuiCode>{'ariaLabelledBy'}</EuiCode> prop to tie the charts to other
+          accessible elements within your app.
         </>
       ),
     },
     {
       title: 'ariaLabelHeadingLevel',
       text: (
-        <p>
+        <>
           You can also change the heading level (instead of{' '}
           <EuiCode>{'p'}</EuiCode> as the default) by passing the
           ariaLabelHeadingLevel to the
@@ -108,7 +97,7 @@ ariaUseDefaultSummary={false}
           h2, h3, h4, h5, h6,`}</EuiCode>{' '}
           or
           <EuiCode>{'p'}</EuiCode>.
-        </p>
+        </>
       ),
     },
     {
@@ -149,7 +138,6 @@ ariaUseDefaultSummary={false}
     },
     {
       title: 'Texture',
-      demo: <TextureMultiSeriesChart />,
       text: (
         <>
           You can set the fill for area charts with texture fills with the{' '}
@@ -207,6 +195,57 @@ export type TexturedStyles = TexturedPathStyles | TexturedShapeStyles;`}
           </EuiCodeBlock>
         </>
       ),
+      demo: <TextureMultiSeriesChart />,
+      snippet: `
+    <Chart size={{ height: 200 }}>
+      <BarSeries
+        key={1}
+        id={'series-1'}
+        barSeriesStyle={{
+          rect: {
+            opacity: 0.2,
+            texture: {
+              opacity: 1,
+              offset: { x: undefined, y: undefined },
+              rotation: undefined,
+              shape: 'square',
+              shapeRotation: undefined,
+              size: 9,
+              spacing: { x: undefined, y: undefined },
+            },
+          },
+        }}
+        stackAccessors={['yes']}
+        data={SAMPLE_SMALL_DATA}
+        curve={CurveType.CURVE_MONOTONE_X}
+      />
+      <AreaSeries
+        key={2}
+        id={'series-2'}
+        areaSeriesStyle={{
+          area: {
+            opacity: 0.05,
+            shape: 'circle',
+            texture: {
+              opacity: 1,
+              shape: 'circle',
+              rotation: undefined,
+              shapeRotation: undefined,
+              size: 5,
+              spacing: {
+                x: 0,
+                y: 0,
+              },
+              offset: {
+                x: 0,
+                y: 1,
+              },
+            },
+          },
+        }}
+        data={SAMPLE_SMALL_DATA_2}
+      />
+    </Chart>`,
     },
   ],
 };
