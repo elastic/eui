@@ -1,8 +1,11 @@
-import { propUtilityForPlayground } from '../../services/playground';
+import {
+  propUtilityForPlayground,
+  iconValidator,
+} from '../../services/playground';
 import {
   EuiLoadingElastic,
   EuiLoadingChart,
-  EuiLoadingKibana,
+  EuiLoadingLogo,
   EuiLoadingSpinner,
   EuiLoadingContent,
 } from '../../../../src/components/';
@@ -52,22 +55,23 @@ export const loadingChartConfig = () => {
   };
 };
 
-export const loadingKibanaConfig = () => {
-  const docgenInfo = Array.isArray(EuiLoadingKibana.__docgenInfo)
-    ? EuiLoadingKibana.__docgenInfo[0]
-    : EuiLoadingKibana.__docgenInfo;
+export const loadingLogoConfig = () => {
+  const docgenInfo = Array.isArray(EuiLoadingLogo.__docgenInfo)
+    ? EuiLoadingLogo.__docgenInfo[0]
+    : EuiLoadingLogo.__docgenInfo;
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
+  propsToUse.logo = iconValidator(propsToUse.logo);
 
   return {
     config: {
-      componentName: 'EuiLoadingKibana',
+      componentName: 'EuiLoadingLogo',
       props: propsToUse,
       scope: {
-        EuiLoadingKibana,
+        EuiLoadingLogo,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiLoadingKibana'],
+          named: ['EuiLoadingLogo'],
         },
       },
     },

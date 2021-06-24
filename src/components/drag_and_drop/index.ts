@@ -34,6 +34,7 @@ export {
 export {
   DraggableLocation,
   DraggableProps,
+  DraggableProvidedDragHandleProps,
   DragDropContextProps,
   DragStart,
   DroppableProps,

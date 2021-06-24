@@ -11,7 +11,9 @@ import {
 
 export default ({ button = <></>, content, sideNav }) => (
   <EuiPage paddingSize="none">
-    <EuiPageSideBar sticky>{sideNav}</EuiPageSideBar>
+    <EuiPageSideBar paddingSize="l" sticky>
+      {sideNav}
+    </EuiPageSideBar>
 
     <EuiPageBody panelled>
       <EuiPageHeader

@@ -1,6 +1,5 @@
 .euiDataGridHeader {
-  display: inline-flex;
-  min-width: 100%; // Needed to prevent wraps. Inline flex is tricky
+  display: flex;
   z-index: 3; // Needs to sit above the content and focused cells
   background: $euiColorEmptyShade;
   position: sticky; // In IE11 this does not work, but doesn't cause a break.
@@ -37,7 +36,6 @@
 
   // We only truncate if the cell is not a control column.
   &:not(.euiDataGridHeaderCell--controlColumn) {
-
     &:focus-within {
       @include euiDataGridCellFocus;
       border-top: none;

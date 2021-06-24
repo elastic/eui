@@ -104,6 +104,7 @@ const typeToPathMap = {
   devToolsApp: 'app_devtools',
   discoverApp: 'app_discover',
   document: 'document',
+  documentation: 'documentation',
   documentEdit: 'documentEdit',
   documents: 'documents',
   dot: 'dot',
@@ -158,6 +159,8 @@ const typeToPathMap = {
   folderClosed: 'folder_closed',
   folderExclamation: 'folder_exclamation',
   folderOpen: 'folder_open',
+  frameNext: 'frameNext',
+  framePrevious: 'framePrevious',
   fullScreen: 'full_screen',
   fullScreenExit: 'fullScreenExit',
   function: 'function',
@@ -198,6 +201,7 @@ const typeToPathMap = {
   kqlOperand: 'kql_operand',
   kqlSelector: 'kql_selector',
   kqlValue: 'kql_value',
+  layers: 'layers',
   lensApp: 'app_lens',
   link: 'link',
   list: 'list',
@@ -286,6 +290,7 @@ const typeToPathMap = {
   minus: 'minus',
   minusInCircle: 'minus_in_circle',
   minusInCircleFilled: 'minus_in_circle_filled',
+  mobile: 'mobile',
   monitoringApp: 'app_monitoring',
   moon: 'moon',
   nested: 'nested',
@@ -308,6 +313,7 @@ const typeToPathMap = {
   pinFilled: 'pin_filled',
   pipelineApp: 'app_pipeline',
   play: 'play',
+  playFilled: 'playFilled',
   plus: 'plus',
   plusInCircle: 'plus_in_circle',
   plusInCircleFilled: 'plus_in_circle_filled',
@@ -367,6 +373,7 @@ const typeToPathMap = {
   temperature: 'temperature',
   timeline: 'timeline',
   timelionApp: 'app_timelion',
+  timeslider: 'timeslider',
   training: 'training',
   trash: 'trash',
   upgradeAssistantApp: 'app_upgrade_assistant',
@@ -509,6 +516,7 @@ export type EuiIconProps = CommonProps &
     /**
      * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value.
      * Note that coloring only works if your SVG is removed of fill attributes.
+     * **`secondary` color is DEPRECATED, use `success` instead**
      */
     color?: IconColor;
     /**

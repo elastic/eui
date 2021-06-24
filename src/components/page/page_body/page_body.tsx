@@ -63,7 +63,7 @@ export const EuiPageBody = <T extends ComponentTypes>({
   restrictWidth = false,
   style,
   className,
-  component: Component = 'main' as T,
+  component: Component = 'div' as T,
   panelled,
   panelProps,
   paddingSize,

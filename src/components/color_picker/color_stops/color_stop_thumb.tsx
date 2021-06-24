@@ -34,8 +34,8 @@ import {
   isColorInvalid,
   isStopInvalid,
 } from './utils';
-import { useMouseMove, getChromaColor } from '../utils';
-import { keys } from '../../../services';
+import { getChromaColor } from '../utils';
+import { keys, useMouseMove } from '../../../services';
 
 import { EuiButtonIcon } from '../../button';
 import { EuiColorPicker, EuiColorPickerProps } from '../color_picker';
