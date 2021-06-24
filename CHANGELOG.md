@@ -1,6 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.5.0`.
+No public interface changes since `34.5.1`.
+
+## [`34.5.1`](https://github.com/elastic/eui/tree/v34.5.1)
+
+**Bug fixes**
+
+- Fixed bug in `EuiColorStops` where the outline was flashing when clicking or adding stops in Safari ([#4900](https://github.com/elastic/eui/issues/4900))
+- Fixed `showIcons` prop in `EuiSelectableListItem` ([#4920](https://github.com/elastic/eui/pull/4920))
+- Changed `mobileBreakpoints` prop to optional `EuiSideNav` ([#4921](https://github.com/elastic/eui/pull/4921))
 
 ## [`34.5.0`](https://github.com/elastic/eui/tree/v34.5.0)
 
