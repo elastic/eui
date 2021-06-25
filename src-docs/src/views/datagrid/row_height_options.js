@@ -72,6 +72,22 @@ export default () => {
 
   const [mountedCellCount, setMountedCellCount] = useState(0);
 
+  const rowHeightsOptions = useMemo(
+    () => ({
+      defaultHeight: {
+        lineCount: 2,
+      },
+      rowHeights: {
+        1: {
+          lineCount: 5,
+        },
+        4: 10,
+        5: 80,
+      },
+    }),
+    []
+  );
+
   const dataContext = useMemo(
     () => ({
       data: raw_data,
@@ -91,16 +107,7 @@ export default () => {
       rowCount={10000}
       height={400}
       renderCellValue={RenderCellValue}
-      rowHeightsOptions={{
-        defaultHeight: 60,
-        rowHeights: {
-          1: {
-            lineCount: 5,
-          },
-          4: 140,
-          5: 80,
-        },
-      }}
+      rowHeightsOptions={rowHeightsOptions}
       pagination={{
         ...pagination,
         pageSizeOptions: [50, 250, 1000],

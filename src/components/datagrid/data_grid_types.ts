@@ -330,10 +330,11 @@ export type EuiDataGridOnColumnResizeHandler = (
   data: EuiDataGridOnColumnResizeData
 ) => void;
 
+export type EuiDataGridRowHeightOption =
+  | number
+  | ExclusiveUnion<{ lineCount: number }, { height: number }>;
+
 export type EuiDataGridRowHeightsOptions = AtLeastOne<{
-  defaultHeight: number;
-  rowHeights: Record<
-    number,
-    number | ExclusiveUnion<{ lineCount: number }, { height: number }>
-  >;
+  defaultHeight: EuiDataGridRowHeightOption;
+  rowHeights: Record<number, EuiDataGridRowHeightOption>;
 }>;

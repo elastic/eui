@@ -18,11 +18,12 @@
  */
 
 import { CSSProperties } from 'react';
-import { isObject } from '../../services/predicate';
+import { isObject, isNumber } from '../../services/predicate';
 import {
   EuiDataGridStyleCellPaddings,
   EuiDataGridStyleFontSizes,
   EuiDataGridStyle,
+  EuiDataGridRowHeightOption,
   EuiDataGridRowHeightsOptions,
 } from './data_grid_types';
 
@@ -38,8 +39,6 @@ const fontSizesToClassMap: Record<EuiDataGridStyleFontSizes, string> = {
   l: 'euiDataGridRowCell--fontSizeLarge',
 };
 
-const fakeCell = document.createElement('div');
-
 function getNumberFromPx(style?: string) {
   return style ? parseInt(style.replace('px', ''), 10) : 0;
 }
@@ -52,21 +51,22 @@ export class RowHeightUtils {
     paddingBottom?: string;
     lineHeight?: string;
   } = {};
+  private fakeCell = document.createElement('div');
 
   computeStylesForGridCell(gridStyles: EuiDataGridStyle) {
-    fakeCell.className = `
+    this.fakeCell.className = `
       euiDataGridRowCell 
       ${cellPaddingsToClassMap[gridStyles.cellPadding!]} 
       ${fontSizesToClassMap[gridStyles.fontSize!]}
     `;
-    document.body.appendChild(fakeCell);
-    const allStyles = getComputedStyle(fakeCell);
+    document.body.appendChild(this.fakeCell);
+    const allStyles = getComputedStyle(this.fakeCell);
     this.styles = {
       paddingTop: allStyles.paddingTop,
       paddingBottom: allStyles.paddingBottom,
       lineHeight: allStyles.lineHeight,
     };
-    document.body.removeChild(fakeCell);
+    document.body.removeChild(this.fakeCell);
   }
 
   calculateHeightForLineCount(lineCount: number) {
@@ -75,15 +75,41 @@ export class RowHeightUtils {
     const lineHeight = getNumberFromPx(this.styles.lineHeight);
     return Math.ceil(lineCount * lineHeight + paddingTop + paddingBottom);
   }
+
+  getCalculatedHeight(
+    heightOption: EuiDataGridRowHeightOption,
+    defaultHeight: number
+  ) {
+    if (isObject(heightOption)) {
+      if (heightOption.lineCount) {
+        return this.calculateHeightForLineCount(heightOption.lineCount);
+      }
+
+      if (heightOption.height) {
+        return Math.max(heightOption.height, defaultHeight);
+      }
+    }
+
+    if (heightOption && isNumber(heightOption)) {
+      return Math.max(heightOption, defaultHeight);
+    }
+
+    return defaultHeight;
+  }
 }
 
 export const getStylesForCell = (
   rowHeightsOptions: EuiDataGridRowHeightsOptions,
   rowIndex: number
 ): CSSProperties => {
-  const initialHeight = rowHeightsOptions.rowHeights
-    ? rowHeightsOptions.rowHeights[rowIndex]
-    : undefined;
+  let initialHeight =
+    rowHeightsOptions.rowHeights && rowHeightsOptions.rowHeights[rowIndex];
+
+  if (!initialHeight) {
+    initialHeight = rowHeightsOptions.defaultHeight;
+  }
+
+  console.log(rowHeightsOptions, initialHeight);
 
   if (isObject(initialHeight) && initialHeight.lineCount) {
     return {

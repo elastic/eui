@@ -34,7 +34,6 @@ import {
   VariableSizeGrid as Grid,
   VariableSizeGridProps,
 } from 'react-window';
-import { isObject, isNumber } from '../../services/predicate';
 import { EuiCodeBlock } from '../code';
 import {
   EuiDataGridControlColumn,
@@ -565,45 +564,49 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     ]
   );
 
-  const [rowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
+  const [minRowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
+  const defaultHeight = useMemo(
+    () =>
+      rowHeightsOptions?.defaultHeight
+        ? rowHeightUtils.getCalculatedHeight(
+            rowHeightsOptions.defaultHeight,
+            minRowHeight
+          )
+        : minRowHeight,
+    [rowHeightsOptions, minRowHeight, rowHeightUtils]
+  );
 
   const getRowHeight = useCallback(
     (rowIndex) => {
       const correctRowIndex = getCorrectRowIndex(rowIndex);
+      let height = defaultHeight;
 
       if (rowHeightsOptions) {
         if (rowHeightsOptions.rowHeights) {
           const initialHeight = rowHeightsOptions.rowHeights[correctRowIndex];
 
-          if (isObject(initialHeight)) {
-            if (initialHeight.lineCount) {
-              return rowHeightUtils.calculateHeightForLineCount(
-                initialHeight.lineCount
-              );
-            }
-
-            if (initialHeight.height) {
-              return Math.max(initialHeight.height, rowHeight);
-            }
+          if (initialHeight) {
+            height = rowHeightUtils.getCalculatedHeight(
+              initialHeight,
+              minRowHeight
+            );
           }
-
-          if (initialHeight && isNumber(initialHeight)) {
-            return Math.max(initialHeight, rowHeight);
-          }
-        }
-
-        if (rowHeightsOptions.defaultHeight) {
-          return Math.max(rowHeightsOptions.defaultHeight, rowHeight);
         }
       }
 
-      return rowHeight;
+      return height;
     },
-    [rowHeight, rowHeightsOptions, getCorrectRowIndex, rowHeightUtils]
+    [
+      minRowHeight,
+      rowHeightsOptions,
+      getCorrectRowIndex,
+      rowHeightUtils,
+      defaultHeight,
+    ]
   );
 
   useEffect(() => {
-    if (gridRef.current && rowHeightsOptions && rowHeightsOptions.rowHeights) {
+    if (gridRef.current && rowHeightsOptions) {
       gridRef.current.resetAfterRowIndex(0);
     }
   }, [pagination?.pageIndex, rowHeightsOptions, gridStyles]);
@@ -618,12 +621,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     ? pagination.pageSize
     : visibleRowIndices.length;
   const unconstrainedHeight =
-    (rowHeightsOptions && rowHeightsOptions.defaultHeight
-      ? rowHeightsOptions.defaultHeight
-      : rowHeight) *
-      rowCountToAffordFor +
-    headerRowHeight +
-    footerRowHeight;
+    defaultHeight * rowCountToAffordFor + headerRowHeight + footerRowHeight;
 
   // unable to determine this until the container's size is known anyway
   const unconstrainedWidth = 0;

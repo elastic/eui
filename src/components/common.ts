@@ -52,7 +52,7 @@ export type OneOf<T, K extends keyof T> = Omit<T, K> &
   { [k in K]: Pick<Required<T>, k> & { [k1 in Exclude<K, k>]?: never } }[K];
 
 /**
- * At least one or the properties should be
+ * Require at least one of the keys in `T`
  *
  * Usage: AtLeastOne<typeToExtend>
  */

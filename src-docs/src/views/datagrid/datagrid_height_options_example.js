@@ -9,12 +9,17 @@ const dataGridRowHeightOptionsSource = require('!!raw-loader!./row_height_option
 const dataGridRowHeightOptionsHtml = renderToHtml(DataGridRowHeightOptions);
 
 const rowHeightsSnippet = `
-  rowHeights: {
-    1: {
-      lineCount: 5 // for row which have index 1 we allow to show 5 lines after that we truncate
+  {
+    defaultHeight: {
+      lineCount: 2, // default every row to 2 lines of text. Also we can provide height in pixels 
     },
-    4: 140, // for row which have index 4 we set 140 pixel
-    5: 80
+    rowHeights: {
+      1: {
+        lineCount: 5, // for row which have index 1 we allow to show 5 lines after that we truncate
+      },
+      4: 140, // for row which have index 4 we set 140 pixel
+      5: 80,
+    },
   }
 `;
 
@@ -36,26 +41,22 @@ export const DataGridRowHeightOptionsExample = {
         <Fragment>
           <p>
             Row height options can be passed down to the grid through the{' '}
-            <EuiCode>rowHeightsOptions</EuiCode> prop. It accepts an object that
-            allows for customization.
-          </p>
-          <p>
-            The <EuiCode>rowHeightsOptions</EuiCode> prop have two properties:
+            <EuiCode>rowHeightsOptions</EuiCode> prop. It accepts an object
+            configuring the default height and/or specific row heights:
           </p>
           <ul>
             <li>
-              <EuiCode>defaultHeight</EuiCode> - uses for defining height which
-              will be used for all rows as default (number)
+              <EuiCode>defaultHeight</EuiCode> - defines the default size for
+              all rows
             </li>
             <li>
-              <EuiCode>rowHeights</EuiCode> - uses for defining height which
-              will be used for defined row.
-              <br />
-              <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
-                {rowHeightsSnippet}
-              </EuiCodeBlock>
+              <EuiCode>rowHeights</EuiCode> - overrides the height for a
+              specific row
             </li>
           </ul>
+          <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
+            {rowHeightsSnippet}
+          </EuiCodeBlock>
         </Fragment>
       ),
       components: { DataGridRowHeightOptions },
