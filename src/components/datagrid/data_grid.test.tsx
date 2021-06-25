@@ -28,7 +28,6 @@ import {
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiDataGridRowHeightOption } from './data_grid_types';
 import { keys } from '../../services';
-import { isObject, isNumber } from '../../services/predicate';
 import { act } from 'react-dom/test-utils';
 
 jest.mock('./row_height_utils', () => {
@@ -40,18 +39,18 @@ jest.mock('./row_height_utils', () => {
           heightOption: EuiDataGridRowHeightOption,
           defaultHeight: number
         ) => {
-          if (isObject(heightOption)) {
+          if (typeof heightOption === 'object') {
             if (heightOption.lineCount) {
               return heightOption.lineCount;
             }
 
             if (heightOption.height) {
-              return Math.max(heightOption.height, defaultHeight);
+              return heightOption.height;
             }
           }
 
-          if (heightOption && isNumber(heightOption)) {
-            return Math.max(heightOption, defaultHeight);
+          if (heightOption) {
+            return heightOption;
           }
 
           return defaultHeight;
