@@ -30,7 +30,7 @@ import { htmlIdGenerator } from '../../services';
 
 const paddingSizeToClassNameMap = {
   none: '',
-  xs: 'euiAccordion__padding--xs',
+  xs: 'euiAccordion__padding--xs'
   s: 'euiAccordion__padding--s',
   m: 'euiAccordion__padding--m',
   l: 'euiAccordion__padding--l',
