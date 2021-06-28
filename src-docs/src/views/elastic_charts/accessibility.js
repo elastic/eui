@@ -48,7 +48,7 @@ export const ElasticChartsAccessiblityExample = {
           <li>ariaLabel/ariaLabelledBy</li>
           <li>ariaLabelHeadingLevel</li>
           <li>ariaUseDefaultSummary/ariaTableCaption</li>
-          <li>texture</li>
+          <li>texture fill for xy charts</li>
         </ul>
       </EuiText>
     </Fragment>
@@ -58,13 +58,24 @@ export const ElasticChartsAccessiblityExample = {
       title: 'ariaDescription and ariaDescribedBy',
       text: (
         <>
-          The ariaDescription and ariaDescribedBy can be set the through the{' '}
-          <EuiCode>{'<Settings />'}</EuiCode> component.
+          The <EuiCode>{'ariaDescription'}</EuiCode> and{' '}
+          <EuiCode>{'ariaDescribedBy'}</EuiCode> can be set the through the{' '}
+          <EuiCode>{'<Settings />'}</EuiCode> component. You can pass in a
+          description of the chart through the{' '}
+          <EuiCode>{'ariaDescription'}</EuiCode> prop. The text will be a
+          visually hidden <EuiCode>{'p'}</EuiCode> element by default. You can
+          set the aria-describedby of the chart <EuiCode>{'<canvas>'}</EuiCode>{' '}
+          element and then use the id elsewhere in your app.
+          <EuiSpacer />
+          If you specify both a <EuiCode>{'ariaDescription'}</EuiCode> and{' '}
+          <EuiCode>{'ariaDescribedBy'}</EuiCode>, the
+          <EuiCode>{'ariaDescribedBy'}</EuiCode> will override the
+          <EuiCode>{'ariaDescription'}</EuiCode> prop.
           <EuiSpacer />
           <EuiCodeBlock language="javascript" isCopyable fontSize="s">
             {`<Settings 
 ariaDescription="This chart has three different types of series. There is a bar, line and area series." 
-ariaUseDefaultSummary={false} 
+ariaUseDefaultSummary={false}
 />`}
           </EuiCodeBlock>
         </>
