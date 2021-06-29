@@ -4,7 +4,7 @@ import { EuiCodeBlock, EuiSpacer } from '../../../../src/components';
 
 const htmlCode = require('!!raw-loader!./code_examples/example.html').default;
 
-// const jsCode = require('!!raw-loader!./code_examples/example.js').default;
+const jsCode = require('!!raw-loader!./code_examples/example.js').default;
 
 const sqlCode = require('!!raw-loader!./code_examples/example.sql').default;
 
@@ -15,12 +15,12 @@ export default () => (
     <EuiSpacer />
 
     <EuiCodeBlock
-      language="html"
+      language="jsx"
       fontSize="m"
       paddingSize="m"
       overflowHeight={300}
       isCopyable>
-      {'<script data-src="kbn_canvas.js"></script>'}
+      {jsCode}
     </EuiCodeBlock>
 
     <EuiSpacer />
