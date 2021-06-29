@@ -109,8 +109,6 @@ export const getStylesForCell = (
     initialHeight = rowHeightsOptions.defaultHeight;
   }
 
-  console.log(rowHeightsOptions, initialHeight);
-
   if (isObject(initialHeight) && initialHeight.lineCount) {
     return {
       WebkitLineClamp: initialHeight.lineCount,
