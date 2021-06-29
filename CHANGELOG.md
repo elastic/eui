@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.5.1`.
+**Bug fixes**
+
+- Fixed a render-blocking error in `EuiCodeBlock` when certain HTML tags are childless ([#4929](https://github.com/elastic/eui/issues/4929))
 
 ## [`34.5.1`](https://github.com/elastic/eui/tree/v34.5.1)
 
