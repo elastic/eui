@@ -1,5 +1,30 @@
 [
   {
+    "version": "34.5.0",
+    "changes": [
+      {
+        "token": "euiNotificationEventReadIcon.readAria",
+        "changeType": "added",
+        "value": "{eventName} is read"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.unreadAria",
+        "changeType": "added",
+        "value": "{eventName} is unread"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.read",
+        "changeType": "added",
+        "value": "Read"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.unread",
+        "changeType": "added",
+        "value": "Unread"
+      }
+    ]
+  },
+  {
     "version": "34.0.0",
     "changes": [
       {
