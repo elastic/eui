@@ -217,8 +217,8 @@ export const HomeView = () => (
         <EuiText size="xs" textAlign="center" color="subdued">
           <p>
             EUI is licensed under{' '}
-            <EuiLink href="https://github.com/elastic/eui/blob/master/LICENSE">
-              Apache License 2.0
+            <EuiLink href="https://github.com/elastic/eui/blob/master/LICENSE.txt">
+              Elastic License 2.0
             </EuiLink>{' '}
             | Crafted with{' '}
             <span
