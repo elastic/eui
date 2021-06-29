@@ -60,7 +60,7 @@ const items = times(10, (id) => {
   };
 });
 
-const initialQuery = EuiSearchBar.Query.MATCH_ALL;
+const initialQuery = 'tag:(marketing)';
 
 export const SearchBarFilters = () => {
   const [query, setQuery] = useState(initialQuery);
