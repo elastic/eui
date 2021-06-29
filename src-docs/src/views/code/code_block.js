@@ -15,12 +15,12 @@ export default () => (
     <EuiSpacer />
 
     <EuiCodeBlock
-      language="html"
+      language="jsx"
       fontSize="m"
       paddingSize="m"
       overflowHeight={300}
       isCopyable>
-      {'<div data-src="kbn_canvas.js"></div>'}
+      {jsCode}
     </EuiCodeBlock>
 
     <EuiSpacer />
