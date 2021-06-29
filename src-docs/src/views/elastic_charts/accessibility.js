@@ -21,6 +21,17 @@ const warningCard = [
     iconColor: 'warning',
     description: (
       <>
+        <EuiCode>{'ariaDescribedBy'}</EuiCode> will override{' '}
+        <EuiCode>{'ariaDescription'}</EuiCode> if both are specified.
+      </>
+    ),
+  },
+  {
+    title: 'Warning',
+    iconType: 'alert',
+    iconColor: 'warning',
+    description: (
+      <>
         Currently, data tables are only available for{' '}
         <strong>partition charts</strong>{' '}
       </>
@@ -29,26 +40,23 @@ const warningCard = [
 ];
 
 export const ElasticChartsAccessiblityExample = {
-  title: 'Accessibility Features in Elastic Charts',
+  title: 'Accessibility features',
   intro: (
     <Fragment>
       <ExternalBadge />
       <EuiSpacer size="l" />
       <EuiText>
-        Elastic charts is becoming more and more accessible for users of
-        assistive technologies.
+        Elastic charts is becoming more and more accessible for all users.
       </EuiText>
       <EuiSpacer />
       <EuiText>
-        <strong>Available a11y configurations</strong>
+        <strong>Available a11y-related features</strong>
       </EuiText>
       <EuiText>
         <ul>
-          <li>ariaDescription/ariaDescribedBy</li>
-          <li>ariaLabel/ariaLabelledBy</li>
-          <li>ariaLabelHeadingLevel</li>
-          <li>ariaUseDefaultSummary/ariaTableCaption</li>
-          <li>texture fill for xy charts</li>
+          <li>Chart titles</li>
+          <li>Chart descriptions</li>
+          <li>Texture fill (for xy charts)</li>
         </ul>
       </EuiText>
     </Fragment>
@@ -60,17 +68,35 @@ export const ElasticChartsAccessiblityExample = {
         <>
           The <EuiCode>{'ariaDescription'}</EuiCode> and{' '}
           <EuiCode>{'ariaDescribedBy'}</EuiCode> can be set the through the{' '}
-          <EuiCode>{'<Settings />'}</EuiCode> component. You can pass in a
-          description of the chart through the{' '}
-          <EuiCode>{'ariaDescription'}</EuiCode> prop. The text will be a
-          visually hidden <EuiCode>{'p'}</EuiCode> element by default. You can
-          set the aria-describedby of the chart <EuiCode>{'<canvas>'}</EuiCode>{' '}
-          element and then use the id elsewhere in your app.
+          <EuiCode>{'<Settings />'}</EuiCode> component.{' '}
+          <EuiCode>{'ariaDescription'}</EuiCode> takes a string description
+          which will be visually hidden whereas{' '}
+          <EuiCode>{'ariaDescribedBy'}</EuiCode> takes an `id` that you have
+          rendered elsewhere in your app.
           <EuiSpacer />
-          If you specify both a <EuiCode>{'ariaDescription'}</EuiCode> and{' '}
-          <EuiCode>{'ariaDescribedBy'}</EuiCode>, the
-          <EuiCode>{'ariaDescribedBy'}</EuiCode> will override the
-          <EuiCode>{'ariaDescription'}</EuiCode> prop.
+          <EuiFlexGroup responsive={false} wrap>
+            <EuiFlexItem key={warningCard[0].title} style={{ minWidth: 170 }}>
+              <EuiCard
+                layout="horizontal"
+                title={
+                  <EuiFlexGroup
+                    gutterSize="s"
+                    responsive={false}
+                    alignItems="center">
+                    <EuiFlexItem grow={false}>
+                      <EuiIcon
+                        type={warningCard[0].iconType}
+                        color={warningCard[0].iconColor}
+                      />
+                    </EuiFlexItem>
+                    <EuiFlexItem>{warningCard[0].title}</EuiFlexItem>
+                  </EuiFlexGroup>
+                }
+                titleElement="h2"
+                description={warningCard[0].description}
+              />
+            </EuiFlexItem>
+          </EuiFlexGroup>
           <EuiSpacer />
           <EuiCodeBlock language="javascript" isCopyable fontSize="s">
             {`<Settings 
@@ -123,26 +149,27 @@ ariaUseDefaultSummary={false}
           to the data table for users of assistive technologies.
           <EuiSpacer />
           <EuiFlexGroup responsive={false} wrap>
-            {warningCard.map((card) => (
-              <EuiFlexItem key={card.title} style={{ minWidth: 170 }}>
-                <EuiCard
-                  layout="horizontal"
-                  title={
-                    <EuiFlexGroup
-                      gutterSize="s"
-                      responsive={false}
-                      alignItems="center">
-                      <EuiFlexItem grow={false}>
-                        <EuiIcon type={card.iconType} color={card.iconColor} />
-                      </EuiFlexItem>
-                      <EuiFlexItem>{card.title}</EuiFlexItem>
-                    </EuiFlexGroup>
-                  }
-                  titleElement="h2"
-                  description={card.description}
-                />
-              </EuiFlexItem>
-            ))}
+            <EuiFlexItem key={warningCard[1].title} style={{ minWidth: 170 }}>
+              <EuiCard
+                layout="horizontal"
+                title={
+                  <EuiFlexGroup
+                    gutterSize="s"
+                    responsive={false}
+                    alignItems="center">
+                    <EuiFlexItem grow={false}>
+                      <EuiIcon
+                        type={warningCard[1].iconType}
+                        color={warningCard[1].iconColor}
+                      />
+                    </EuiFlexItem>
+                    <EuiFlexItem>{warningCard[1].title}</EuiFlexItem>
+                  </EuiFlexGroup>
+                }
+                titleElement="h2"
+                description={warningCard[1].description}
+              />
+            </EuiFlexItem>
           </EuiFlexGroup>
         </>
       ),
