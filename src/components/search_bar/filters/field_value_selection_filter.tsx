@@ -336,6 +336,10 @@ export class FieldValueSelectionFilter extends Component<
       : defaults.config.multiSelect;
   }
 
+  componentDidMount() {
+    if (this.props.query.text.length) this.loadOptions();
+  }
+
   componentDidUpdate(prevProps: FieldValueSelectionFilterProps) {
     if (this.props.query !== prevProps.query) this.loadOptions();
   }
