@@ -606,9 +606,8 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
 
   componentDidMount() {
     const { type } = this.props;
-    const initialIcon = getInitialIcon(type);
 
-    if (isEuiIconType(type) && initialIcon == null) {
+    if (isEuiIconType(type) && this.state.icon == null) {
       //eslint-disable-next-line react/no-did-mount-set-state
       this.setState({
         neededLoading: true,

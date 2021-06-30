@@ -42,7 +42,6 @@
 - Fixed `EuiPageHeader` bottom padding when `borderBottom = true` ([#4905](https://github.com/elastic/eui/pull/4905))
 - Fixed incomplete `height` and `width` information in `EuiResizeObserver` ([#4909](https://github.com/elastic/eui/pull/4909))
 
-
 **Theme: Amsterdam**
 
 - Updated styles for `EuiRange` ([#4815](https://github.com/elastic/eui/pull/4815)
