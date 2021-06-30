@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { ExternalBadge } from './shared';
 
@@ -8,13 +8,15 @@ import {
   EuiSpacer,
   EuiCallOut,
   EuiText,
+  // EuiButton,
 } from '../../../../src/components';
 import { TextureMultiSeriesChart } from './texture';
+import { TextureInterfacePortal } from './texture_interface_portal';
 
 export const ElasticChartsAccessiblityExample = {
   title: 'Accessibility features',
   intro: (
-    <Fragment>
+    <>
       <ExternalBadge />
       <EuiSpacer size="l" />
       <EuiText>
@@ -28,10 +30,12 @@ export const ElasticChartsAccessiblityExample = {
         <ul>
           <li>Chart titles</li>
           <li>Chart descriptions</li>
+          <li>Chart data in tabular form (partition charts)</li>
           <li>Texture fill (for xy charts)</li>
+          <li>Goal chart specific details</li>
         </ul>
       </EuiText>
-    </Fragment>
+    </>
   ),
   sections: [
     {
@@ -46,7 +50,7 @@ export const ElasticChartsAccessiblityExample = {
           <EuiCode>{'ariaDescribedBy'}</EuiCode> prop takes an `id` that you
           have rendered elsewhere in your app.
           <EuiSpacer />
-          <EuiCallOut title="Warning!" color="warning" iconType="alert">
+          <EuiCallOut title="Warning" color="warning" iconType="alert">
             <EuiCode>{'ariaDescribedBy'}</EuiCode> will override{' '}
             <EuiCode>{'ariaDescription'}</EuiCode> if both are specified.
           </EuiCallOut>
@@ -55,14 +59,17 @@ export const ElasticChartsAccessiblityExample = {
           false. By default, elastic charts provides a default summary for a
           screen reader. This consists of the type of chart, if it is a mixed
           chart (different types of series in the chart). For example:{' '}
-          <EuiCodeBlock language="javascript" isCopyable fontSize="s">
-            {`<dt>Chart type:</dt>
-              <dd id="61b6b2984--defaultSummary">Mixed chart: area and line and bar chart</dd>`}
+          <EuiCodeBlock language="jsx" isCopyable fontSize="s">
+            {`
+            <dl>
+              <dt>Chart type:</dt>
+              <dd id="61b6b2984--defaultSummary">Mixed chart: area and line and bar chart</dd>
+            </dl>`}
           </EuiCodeBlock>
-          This is without any configuration. If you are passing in a custom
-          description, you can disable this prop, like in the example below.
+          If you are passing in a custom description, you can disable this prop,
+          like in the example below.
           <EuiSpacer />
-          <EuiCodeBlock language="javascript" isCopyable fontSize="s">
+          <EuiCodeBlock language="jsx" isCopyable fontSize="s">
             {`<Settings 
 ariaDescription="This chart has three different types of series. There is a bar, line and area series." 
 ariaUseDefaultSummary={false}
@@ -180,7 +187,7 @@ ariaUseDefaultSummary={false}
           the <EuiCode>{'ariaTableCaption'}</EuiCode> prop. This information is
           below the <EuiCode>{'ariaDescription'}</EuiCode> HTML information.
           <EuiSpacer />
-          <EuiCallOut title="Warning!" color="warning" iconType="alert">
+          <EuiCallOut title="Warning" color="warning" iconType="alert">
             Currently, data tables are only available for{' '}
             <strong>partition charts</strong>{' '}
           </EuiCallOut>
@@ -194,60 +201,10 @@ ariaUseDefaultSummary={false}
         <>
           You can set the fill for area charts with texture fills with the{' '}
           <EuiCode>{'TextureStyles'}</EuiCode> interface.
-          <EuiSpacer />
-          <EuiCodeBlock language="javascript">
-            {`interface TexturedStylesBase {
-  /** polygon fill color for texture */
-  fill?: Color | ColorVariant;
-  /** polygon stroke color for texture */
-  stroke?: Color | ColorVariant;
-  /** polygon stroke width for texture  */
-  strokeWidth?: number;
-  /** polygon opacity for texture  */
-  opacity?: number;
-  /** polygon opacity for texture  */
-  dash?: number[];
-  /** polygon opacity for texture  */
-  size?: number;
-  /**
-   * The angle of rotation for entire texture
-   * in degrees
-   */
-  rotation?: number;
-  /**
-   * The angle of rotation for polygons
-   * in degrees
-   */
-  shapeRotation?: number;
-  /** texture spacing between polygons */
-  spacing?: Partial<Point> | number;
-  /** overall origin offset of pattern */
-  offset?: Partial<Point> & {
-    /** apply offset along global coordinate axes */
-    global?: boolean;
-  };
-}
-
-interface TexturedShapeStyles extends TexturedStylesBase {
-  /** typed of texture designs currently supported */
-  shape: TextureShape;
-}
-
-interface TexturedPathStyles extends TexturedStylesBase {
-  /** path for polygon texture */
-  path: string | Path2D;
-}
-
-/**
- * @public
- *
- * Texture style config for area spec
- */
-export type TexturedStyles = TexturedPathStyles | TexturedShapeStyles;`}
-          </EuiCodeBlock>
+          <TextureInterfacePortal />
         </>
       ),
-      demo: <TextureMultiSeriesChart />,
+      demo: <TextureInterfacePortal />,
       snippet: `
     <Chart size={{ height: 200 }}>
       <BarSeries
@@ -298,6 +255,11 @@ export type TexturedStyles = TexturedPathStyles | TexturedShapeStyles;`}
         data={SAMPLE_SMALL_DATA_2}
       />
     </Chart>`,
+      demo: <TextureMultiSeriesChart />,
+    },
+    {
+      title: 'Goal chart',
+      text: <></>,
     },
   ],
 };
