@@ -25,6 +25,7 @@ const colorsToClassNameMap = {
   default: 'euiTextColor--default',
   subdued: 'euiTextColor--subdued',
   secondary: 'euiTextColor--secondary',
+  success: 'euiTextColor--success',
   accent: 'euiTextColor--accent',
   danger: 'euiTextColor--danger',
   warning: 'euiTextColor--warning',
@@ -41,6 +42,9 @@ export type EuiTextColorProps = CommonProps &
     HTMLAttributes<HTMLDivElement> & HTMLAttributes<HTMLSpanElement>,
     'color'
   > & {
+    /**
+     * **`secondary` color is DEPRECATED, use `success` instead**
+     */
     color?: TextColor;
     /**
      * Determines the root element

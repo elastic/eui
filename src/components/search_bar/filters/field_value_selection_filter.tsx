@@ -90,6 +90,7 @@ interface State {
     shown: FieldValueOptionType[];
   } | null;
   cachedOptions?: FieldValueOptionType[] | null;
+  activeItems: FieldValueOptionType[];
 }
 
 export class FieldValueSelectionFilter extends Component<
@@ -115,6 +116,7 @@ export class FieldValueSelectionFilter extends Component<
       popoverOpen: false,
       error: null,
       options: preloadedOptions,
+      activeItems: [],
     };
   }
 
@@ -180,6 +182,7 @@ export class FieldValueSelectionFilter extends Component<
 
         this.setState({
           error: null,
+          activeItems: items.on,
           options: {
             all: options,
             shown: [...items.on, ...items.off, ...items.rest],
@@ -333,6 +336,14 @@ export class FieldValueSelectionFilter extends Component<
       : defaults.config.multiSelect;
   }
 
+  componentDidMount() {
+    if (this.props.query.text.length) this.loadOptions();
+  }
+
+  componentDidUpdate(prevProps: FieldValueSelectionFilterProps) {
+    if (this.props.query !== prevProps.query) this.loadOptions();
+  }
+
   render() {
     const { index, query, config } = this.props;
     const multiSelect = this.resolveMultiSelect();
@@ -350,6 +361,7 @@ export class FieldValueSelectionFilter extends Component<
         iconSide="right"
         onClick={this.onButtonClick.bind(this)}
         hasActiveFilters={active}
+        numActiveFilters={active ? this.state.activeItems.length : undefined}
         grow>
         {config.name}
       </EuiFilterButton>

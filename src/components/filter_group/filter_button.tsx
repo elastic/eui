@@ -96,7 +96,10 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
 
   const buttonTextClassNames = classNames(
     // 'euiFilterButton__textShift',
-    { 'euiFilterButton__text-hasNotification': numFiltersDefined },
+    {
+      'euiFilterButton__text-hasNotification':
+        numFiltersDefined || numActiveFilters,
+    },
     textProps && textProps.className
   );
 
@@ -116,7 +119,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
         {children}
       </span>
 
-      {numFiltersDefined && (
+      {(numFiltersDefined || numActiveFilters) && (
         <EuiI18n
           token="euiFilterButton.filterBadge"
           values={{

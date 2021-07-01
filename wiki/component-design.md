@@ -15,12 +15,12 @@ here's how we would define maps for colors and sizes in a fictional `MegaMenu` c
 
 ```tsx
 // We first define the enum values as a type
-type EuiMegaMenuColor = 'primary' | 'secondary' | 'warning' | 'danger';
+type EuiMegaMenuColor = 'primary' | 'success' | 'warning' | 'danger';
 
 // Then we define the map for getting the appropriate class for each enum value.
 const colorToClassNameMap: { [color in EuiMegaMenuColor]: string } = {
   primary: 'euiMegaMenu--primary',
-  secondary: 'euiMegaMenu--secondary',
+  success: 'euiMegaMenu--success',
   warning: 'euiMegaMenu--warning',
   danger: 'euiMegaMenu--danger',
 };

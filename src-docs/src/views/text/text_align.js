@@ -22,7 +22,7 @@ export default () => (
         prop
       </p>
     </EuiText>
-    <EuiText textAlign="center" color="secondary">
+    <EuiText textAlign="center" color="success">
       <p>And in conjunction with coloring.</p>
     </EuiText>
   </div>
