@@ -154,15 +154,15 @@ generator.then(() => {
 function buildEuiTokensObject() {
   // reduce over the tokens list as a few of the tokens are used multiple times and must be
   // filtered down to a list
-  const i18ndefs = require('../i18ntokens.json').reduce(
-    ({ definitions, tokens }, def) => {
-      if (tokens.has(def.token)) {
+  const { i18ndefs } = require('../i18ntokens.json').reduce(
+    ({ i18ndefs, tokens }, def) => {
+      if (!tokens.has(def.token)) {
         tokens.add(def.token);
-        definitions.push(def);
+        i18ndefs.push(def);
       }
-      return definitions;
+      return { i18ndefs, tokens };
     },
-    { definitions: [], tokens: new Set() }
+    { i18ndefs: [], tokens: new Set() }
   );
   return `
 declare module '@elastic/eui' {
