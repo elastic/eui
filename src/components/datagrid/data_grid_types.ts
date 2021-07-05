@@ -343,4 +343,4 @@ export interface EuiDataGridRowHeightsOptions {
    * Defines the height for a specific row. It can be line count or just height.
    */
   rowHeights?: Record<number, EuiDataGridRowHeightOption>;
-};
+}
