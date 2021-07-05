@@ -21,7 +21,7 @@ import { ComponentType, JSXElementConstructor, ReactNode } from 'react';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiListGroupItemProps } from '../list_group';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
-import { ExclusiveUnion, AtLeastOne } from '../common';
+import { ExclusiveUnion } from '../common';
 
 export interface EuiDataGridControlColumn {
   /**
@@ -334,7 +334,13 @@ export type EuiDataGridRowHeightOption =
   | number
   | ExclusiveUnion<{ lineCount: number }, { height: number }>;
 
-export type EuiDataGridRowHeightsOptions = AtLeastOne<{
-  defaultHeight: EuiDataGridRowHeightOption;
-  rowHeights: Record<number, EuiDataGridRowHeightOption>;
-}>;
+export interface EuiDataGridRowHeightsOptions {
+  /**
+   * Defines the default size for all rows. It can be line count or just height.
+   */
+  defaultHeight?: EuiDataGridRowHeightOption;
+  /**
+   * Defines the height for a specific row. It can be line count or just height.
+   */
+  rowHeights?: Record<number, EuiDataGridRowHeightOption>;
+};

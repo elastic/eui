@@ -57,6 +57,12 @@ export const DataGridRowHeightOptionsExample = {
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {rowHeightsSnippet}
           </EuiCodeBlock>
+          <p>
+            <strong>Requirement</strong>: you can provide height more than{' '}
+            <EuiCode>34 pixel</EuiCode> because it is minimum height for showing
+            one line of text. If you provide less that row automatically will
+            get <EuiCode>34 pixel</EuiCode>.
+          </p>
         </Fragment>
       ),
       components: { DataGridRowHeightOptions },

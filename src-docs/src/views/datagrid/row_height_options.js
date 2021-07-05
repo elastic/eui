@@ -81,7 +81,7 @@ export default () => {
         1: {
           lineCount: 5,
         },
-        4: 10,
+        4: 140,
         5: 80,
       },
     }),
