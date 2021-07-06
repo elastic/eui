@@ -44,6 +44,8 @@ import {
   EuiDataGridInMemoryValues,
   EuiDataGridPaginationProps,
   EuiDataGridPopoverContent,
+  EuiDataGridRowHeightsOptions,
+  EuiDataGridStyle,
 } from './data_grid_types';
 import { EuiDataGridCell, EuiDataGridCellProps } from './data_grid_cell';
 import {
@@ -65,6 +67,7 @@ import {
   DataGridWrapperRowsContext,
 } from './data_grid_context';
 import { useResizeObserver } from '../observer/resize_observer';
+import { RowHeightUtils } from './row_height_utils';
 
 export interface EuiDataGridBodyProps {
   isFullScreen: boolean;
@@ -89,6 +92,9 @@ export interface EuiDataGridBodyProps {
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
   toolbarHeight: number;
+  rowHeightsOptions?: EuiDataGridRowHeightsOptions;
+  rowHeightUtils: RowHeightUtils;
+  gridStyles?: EuiDataGridStyle;
 }
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
@@ -146,11 +152,14 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
     interactiveCellId,
     setRowHeight,
     schemaDetectors,
+    rowHeightsOptions,
+    getRowHeight,
   } = data;
 
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
 
   const offsetRowIndex = visibleRowIndex + rowOffset;
+
   const rowIndex = rowMap.hasOwnProperty(offsetRowIndex)
     ? rowMap[offsetRowIndex]
     : offsetRowIndex;
@@ -209,6 +218,8 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         isExpandable={false}
         className={classes}
         setRowHeight={setRowHeight}
+        getRowHeight={getRowHeight}
+        rowHeightsOptions={rowHeightsOptions}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -233,6 +244,8 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         interactiveCellId={interactiveCellId}
         isExpandable={false}
         className={classes}
+        rowHeightsOptions={rowHeightsOptions}
+        getRowHeight={getRowHeight}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -267,6 +280,8 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         interactiveCellId={interactiveCellId}
         isExpandable={isExpandable}
         className={classes}
+        rowHeightsOptions={rowHeightsOptions}
+        getRowHeight={getRowHeight}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -332,6 +347,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     setVisibleColumns,
     switchColumnPos,
     toolbarHeight,
+    rowHeightsOptions,
+    rowHeightUtils,
+    gridStyles,
   } = props;
 
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
@@ -359,14 +377,15 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   }, [startRow, endRow]);
 
   const sorting = useContext(DataGridSortingContext);
+  const sortingColumns = sorting?.columns;
 
   const rowMap = useMemo(() => {
     const rowMap: { [key: number]: number } = {};
 
     if (
       inMemory?.level === 'sorting' &&
-      sorting != null &&
-      sorting.columns.length > 0
+      sortingColumns != null &&
+      sortingColumns.length > 0
     ) {
       const inMemoryRowIndices = Object.keys(inMemoryValues);
       const wrappedValues: Array<{
@@ -379,8 +398,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       }
 
       wrappedValues.sort((a, b) => {
-        for (let i = 0; i < sorting.columns.length; i++) {
-          const column = sorting.columns[i];
+        for (let i = 0; i < sortingColumns.length; i++) {
+          const column = sortingColumns[i];
           const aValue = a.values[column.id];
           const bValue = b.values[column.id];
 
@@ -413,7 +432,13 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     }
 
     return rowMap;
-  }, [sorting, inMemoryValues, schema, schemaDetectors, inMemory?.level]);
+  }, [
+    sortingColumns,
+    inMemoryValues,
+    schema,
+    schemaDetectors,
+    inMemory?.level,
+  ]);
 
   const mergedPopoverContents = useMemo(
     () => ({
@@ -485,6 +510,26 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     visibleRowIndices.length,
   ]);
 
+  const paginationOffset = pagination
+    ? pagination.pageIndex * pagination.pageSize
+    : 0;
+  const getCorrectRowIndex = useCallback(
+    (rowIndex: number) => {
+      let rowIndexWithOffset = rowIndex;
+
+      if (rowIndex - paginationOffset <= 0) {
+        rowIndexWithOffset = rowIndex + paginationOffset;
+      }
+
+      const correctRowIndex = rowMap.hasOwnProperty(rowIndexWithOffset)
+        ? rowMap[rowIndexWithOffset]
+        : rowIndexWithOffset;
+
+      return correctRowIndex;
+    },
+    [paginationOffset, rowMap]
+  );
+
   const gridRef = useRef<Grid>(null);
   useEffect(() => {
     if (gridRef.current) {
@@ -519,17 +564,64 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     ]
   );
 
-  const [rowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
-  const getRowHeight = useCallback(() => rowHeight, [rowHeight]);
+  const [minRowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
+  const defaultHeight = useMemo(
+    () =>
+      rowHeightsOptions?.defaultHeight
+        ? rowHeightUtils.getCalculatedHeight(
+            rowHeightsOptions.defaultHeight,
+            minRowHeight
+          )
+        : minRowHeight,
+    [rowHeightsOptions, minRowHeight, rowHeightUtils]
+  );
+
+  const getRowHeight = useCallback(
+    (rowIndex) => {
+      const correctRowIndex = getCorrectRowIndex(rowIndex);
+      let height = defaultHeight;
+
+      if (rowHeightsOptions) {
+        if (rowHeightsOptions.rowHeights) {
+          const initialHeight = rowHeightsOptions.rowHeights[correctRowIndex];
+
+          if (initialHeight) {
+            height = rowHeightUtils.getCalculatedHeight(
+              initialHeight,
+              minRowHeight
+            );
+          }
+        }
+      }
+
+      return height;
+    },
+    [
+      minRowHeight,
+      rowHeightsOptions,
+      getCorrectRowIndex,
+      rowHeightUtils,
+      defaultHeight,
+    ]
+  );
+
   useEffect(() => {
-    if (gridRef.current) gridRef.current.resetAfterRowIndex(0);
+    if (gridRef.current && rowHeightsOptions) {
+      gridRef.current.resetAfterRowIndex(0);
+    }
+  }, [pagination?.pageIndex, rowHeightsOptions, gridStyles]);
+
+  useEffect(() => {
+    if (gridRef.current) {
+      gridRef.current.resetAfterRowIndex(0);
+    }
   }, [getRowHeight]);
 
   const rowCountToAffordFor = pagination
     ? pagination.pageSize
     : visibleRowIndices.length;
   const unconstrainedHeight =
-    rowHeight * rowCountToAffordFor + headerRowHeight + footerRowHeight;
+    defaultHeight * rowCountToAffordFor + headerRowHeight + footerRowHeight;
 
   // unable to determine this until the container's size is known anyway
   const unconstrainedWidth = 0;
@@ -614,6 +706,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 itemData={{
                   schemaDetectors,
                   setRowHeight,
+                  getRowHeight,
+                  getCorrectRowIndex,
                   rowMap,
                   rowOffset: pagination
                     ? pagination.pageIndex * pagination.pageSize
@@ -627,6 +721,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                   defaultColumnWidth,
                   renderCellValue,
                   interactiveCellId,
+                  rowHeightsOptions,
                 }}
                 rowCount={
                   IS_JEST_ENVIRONMENT || headerRowHeight > 0
