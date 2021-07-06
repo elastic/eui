@@ -55,8 +55,10 @@ export const MarkdownFormatExample = {
         <p>
           <strong>EuiMarkdownFormat</strong> is a wrapper that will render
           Markdown provided. EuiMarkdownFormat uses{' '}
-          <EuiLink href="https://github.com/remarkjs/remark">Remark</EuiLink> by
-          default. The translation layer automatically substitutes raw HTML
+          <EuiLink target="_blank" href="https://github.com/remarkjs/remark">
+            Remark
+          </EuiLink>{' '}
+          by default. The translation layer automatically substitutes raw HTML
           output with their EUI equivalent. This means anchor and code blocks
           will become <strong>EuiLink</strong> and <strong>EuiCodeBlock</strong>{' '}
           components respectively.
