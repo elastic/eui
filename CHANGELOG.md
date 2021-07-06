@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.5.2`.
+**Bug fixes**
+
+- Fixed `EuiIcon` from producing console warning in React.StrictMode ([#4910](https://github.com/elastic/eui/pull/4910))
 
 ## [`34.5.2`](https://github.com/elastic/eui/tree/v34.5.2)
 
