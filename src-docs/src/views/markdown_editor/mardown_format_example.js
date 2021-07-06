@@ -4,7 +4,11 @@ import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiLink, EuiMarkdownFormat, EuiText } from '../../../../src/components';
+import {
+  EuiLink,
+  EuiMarkdownFormat,
+  EuiText,
+} from '../../../../src/components';
 
 import { Link } from 'react-router-dom';
 
