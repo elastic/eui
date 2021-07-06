@@ -2,7 +2,12 @@ import React, { Fragment } from 'react';
 
 import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
-import { EuiCode, EuiCodeBlock } from '../../../../src/components';
+import {
+  EuiCallOut,
+  EuiCode,
+  EuiCodeBlock,
+  EuiSpacer,
+} from '../../../../src/components';
 
 import DataGridRowHeightOptions from './row_height_options';
 const dataGridRowHeightOptionsSource = require('!!raw-loader!./row_height_options');
@@ -11,7 +16,7 @@ const dataGridRowHeightOptionsHtml = renderToHtml(DataGridRowHeightOptions);
 const rowHeightsSnippet = `
   {
     defaultHeight: {
-      lineCount: 2, // default every row to 2 lines of text. Also we can provide height in pixels 
+      lineCount: 2, // default every row to 2 lines of text. Also we can provide height in pixels
     },
     rowHeights: {
       1: {
@@ -54,15 +59,19 @@ export const DataGridRowHeightOptionsExample = {
               specific row
             </li>
           </ul>
+          <EuiCallOut
+            color="warning"
+            title="Rows have minimum height requirements">
+            <p>
+              Rows must be at least <strong>34 pixels</strong> tall so they can
+              render at least one line of text. If you provide a smaller height
+              the row will default to 34 pixels.
+            </p>
+          </EuiCallOut>
+          <EuiSpacer />
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {rowHeightsSnippet}
           </EuiCodeBlock>
-          <p>
-            <strong>Requirement</strong>: you can provide height more than{' '}
-            <EuiCode>34 pixel</EuiCode> because it is minimum height for showing
-            one line of text. If you provide less that row automatically will
-            get <EuiCode>34 pixel</EuiCode>.
-          </p>
         </Fragment>
       ),
       components: { DataGridRowHeightOptions },

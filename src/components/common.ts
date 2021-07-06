@@ -52,14 +52,6 @@ export type OneOf<T, K extends keyof T> = Omit<T, K> &
   { [k in K]: Pick<Required<T>, k> & { [k1 in Exclude<K, k>]?: never } }[K];
 
 /**
- * Require at least one of the keys in `T`
- *
- * Usage: AtLeastOne<typeToExtend>
- */
-export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
-  U[keyof U];
-
-/**
  * Wraps Object.keys with proper typescript definition of the resulting array
  */
 export function keysOf<T, K extends keyof T>(obj: T): K[] {
