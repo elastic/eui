@@ -501,33 +501,6 @@ const WritingExamples = () => {
         </GuideRuleExample>
       </GuideRule>
 
-      <GuideRule description="Fields are more usable when you omit placeholder text.">
-        <GuideRuleExample
-          panelDisplay="block"
-          type="do"
-          text="Avoid using it. Create clear hints that sit outside empty form fields and in unison with the labels.">
-          <EuiFormRow
-            label="Set a custom interval"
-            helpText={
-              <span>Use shorthand notation, such as 30s, 10m, or 1h.</span>
-            }>
-            <EuiFieldNumber min={1} max={5} step={1} />
-          </EuiFormRow>
-        </GuideRuleExample>
-
-        <GuideRuleExample
-          panelDisplay="block"
-          type="dont"
-          text="Use placeholders because they hurt usability.">
-          <EuiFormRow
-            label="Name"
-            placeholder="My name"
-            helpText={<span>Your name will be on public display.</span>}>
-            <EuiFieldNumber min={1} max={5} step={1} />
-          </EuiFormRow>
-        </GuideRuleExample>
-      </GuideRule>
-
       <GuideRule description="Use clear language for validation messages.">
         <GuideRuleExample
           panelDisplay="block"
@@ -554,21 +527,37 @@ const WritingExamples = () => {
         </GuideRuleExample>
       </GuideRule>
 
-      <EuiSpacer size="m" />
+      <GuideRule description="Fields are more usable when you omit placeholder text.">
+        <GuideRuleExample
+          panelDisplay="block"
+          type="do"
+          text="Create clear hints that sit outside empty form fields and in unison with the labels.">
+          <EuiFormRow
+            label="Set a custom interval"
+            helpText={
+              <span>Use shorthand notation, such as 30s, 10m, or 1h.</span>
+            }>
+            <EuiFieldNumber min={1} max={5} step={1} />
+          </EuiFormRow>
+        </GuideRuleExample>
+
+        <GuideRuleExample panelDisplay="block" type="" text="" />
+      </GuideRule>
 
       <EuiSpacer size="m" />
 
       <EuiText>
         <h2 id="toasts">Toasts</h2>
 
-        <p>The most-common use of toasts is as a success message.</p>
+        <p>The most common use of toasts is as a success message.</p>
       </EuiText>
 
       <GuideRule description=" ">
         <GuideRuleExample
           type="do"
           text="For common actions such as create, add, delete, remove, and save,
-                    include the object type, the object name if available, and the past tense of the action.">
+                    include the object type, the object name if available, and the past tense of the action.
+                    Don't include &quot;successfully&quot;. It's implied.">
           <div>
             <EuiToast
               color="success"
@@ -577,19 +566,6 @@ const WritingExamples = () => {
             />
           </div>
         </GuideRuleExample>
-
-        <GuideRuleExample
-          type="dont"
-          text='Include "successfully." It&apos;s implied.'>
-          <EuiToast
-            color="success"
-            style={{ maxWidth: 300 }}
-            title="Dashboard 'My_dashboard' was successfully saved"
-          />
-        </GuideRuleExample>
-      </GuideRule>
-
-      <GuideRule description=" ">
         <GuideRuleExample
           type="do"
           text="For a message about multiple objects, include the object count, but not the names of the objects.">
@@ -599,16 +575,8 @@ const WritingExamples = () => {
             title="4 visualizations were deleted"
           />
         </GuideRuleExample>
-        <GuideRuleExample
-          type="dont"
-          text="Overwhelm the user by listing the names of all the objects.">
-          <EuiToast
-            color="success"
-            style={{ maxWidth: 300 }}
-            title="Visualization 1, Visualization 2, Visualization 3, and Visualization 4 were deleted"
-          />
-        </GuideRuleExample>
       </GuideRule>
+      <EuiSpacer />
       <EuiLink href="#/display/toast/guidelines">More toast examples</EuiLink>
 
       <EuiHorizontalRule />
@@ -619,8 +587,9 @@ const WritingExamples = () => {
         <h2 id="tooltips">Tooltips</h2>
 
         <p>
-          Provide additional information, such as what the user can do. Not for
-          essential information, which belongs directly in the UI.
+          Provide additional information, such as what the user can do.
+          Don&apos;t use tooltips for essential information, which belongs
+          directly in the UI.
         </p>
       </EuiText>
 
