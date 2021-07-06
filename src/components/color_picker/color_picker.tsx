@@ -311,11 +311,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const handleOnBlur = () => {
     // `onBlur` also gets called when the popover is closing
     // so prevent a second `onBlur` if the popover is open
-    console.log('blur');
-    if (!isColorSelectorShown) {
-      // if (!isColorSelectorShown && onBlur) {
-      // onBlur();
-      console.log('inner blur');
+    if (!isColorSelectorShown && onBlur) {
+      onBlur();
     }
   };
 
@@ -639,10 +636,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     <div className={classes}>{composite}</div>
   ) : (
     <EuiPopover
-      initialFocus={
-        (mode !== 'swatch' ? saturationRef.current : swatchRef.current) ??
-        undefined
-      }
+      initialFocus={inputRef ?? undefined}
       button={buttonOrInput}
       isOpen={isColorSelectorShown}
       closePopover={handleFinalSelection}
@@ -655,7 +649,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       panelPaddingSize="s"
       tabIndex={-1}
       aria-label={popoverLabel}
-      focusTrapProps={{ shards: [inputRef!] }}>
+      focusTrapProps={inputRef ? { shards: [inputRef] } : undefined}>
       <div className={classes} data-test-subj="euiColorPickerPopover">
         {composite}
       </div>
