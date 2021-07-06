@@ -61,7 +61,7 @@ export type EuiContextMenuPanelItemDescriptor = ExclusiveUnion<
 
 export interface EuiContextMenuPanelDescriptor {
   id: EuiContextMenuPanelId;
-  title?: string;
+  title?: ReactNode;
   items?: EuiContextMenuPanelItemDescriptor[];
   content?: ReactNode;
   width?: number;
