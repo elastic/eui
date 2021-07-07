@@ -9,6 +9,7 @@ import {
   EuiSpacer,
   EuiCallOut,
   EuiCode,
+  EuiLink,
 } from '../../../../src/components';
 import { EuiThemeProvider } from '../../../../src/services';
 
@@ -58,7 +59,46 @@ export const ThemeExample = {
   sections: [
     {
       title: 'EuiThemeProvider',
-      text: <p>TODO</p>,
+      text: (
+        <>
+          <p>
+            The context layer that enables theming (including the default theme
+            styles) comes from <EuiCode>EuiThemeProvider</EuiCode>. Simply put,
+            this is a thin wrapper around and caching layer built onto{' '}
+            <EuiCode>React.Context.Provider</EuiCode>.
+          </p>
+          <p>
+            Typically your app will only need a single instance at the top level
+            and the functionality will flow down the component tree. It is also
+            possible to use several nested theme providers. In this case each
+            nested provider will inherit from its closest ancestor provider.
+          </p>
+          <p>
+            <EuiCode>EuiThemeProvider</EuiCode> accepts three props, all of
+            which have default values and are therefore optional. To use the
+            default EUI theme, no configuration is required.
+          </p>
+          <ul>
+            <li>
+              <EuiCode language="ts">theme: EuiThemeSystem</EuiCode> Raw theme
+              values. Calculated values are acceptable.
+            </li>
+            <li>
+              <EuiCode language="ts">colorMode: EuiThemeColorMode</EuiCode>{' '}
+              Simply {"'light'"} or {"'dark'"}
+            </li>
+            <li>
+              <EuiCode language="ts">modify: EuiThemeModifications</EuiCode>{' '}
+              Overrides and modifications for theme values.
+            </li>
+          </ul>
+          <p>
+            The concept for each prop is explained in subsequent sections. More
+            information on the full shape of an EUI theme, see the{' '}
+            <EuiLink href="#/theming/theme">EuiTheme</EuiLink> page.
+          </p>
+        </>
+      ),
       props: { EuiThemeProvider },
     },
     {
