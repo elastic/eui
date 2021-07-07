@@ -1253,12 +1253,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 443,
-        "column": 10
+        "line": 140,
+        "column": 8
       },
       "end": {
-        "line": 445,
-        "column": 41
+        "line": 142,
+        "column": 39
       }
     },
     "filepath": "src/components/datagrid/data_grid_cell.tsx"
@@ -1269,12 +1269,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 443,
-        "column": 10
+        "line": 140,
+        "column": 8
       },
       "end": {
-        "line": 445,
-        "column": 41
+        "line": 142,
+        "column": 39
       }
     },
     "filepath": "src/components/datagrid/data_grid_cell.tsx"
@@ -1461,11 +1461,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 258,
+        "line": 264,
         "column": 4
       },
       "end": {
-        "line": 261,
+        "line": 267,
         "column": 46
       }
     },
@@ -1477,11 +1477,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 264,
+        "line": 270,
         "column": 10
       },
       "end": {
-        "line": 266,
+        "line": 272,
         "column": 52
       }
     },
@@ -1493,11 +1493,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 964,
+        "line": 979,
         "column": 4
       },
       "end": {
-        "line": 969,
+        "line": 984,
         "column": 53
       }
     },
@@ -1509,11 +1509,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 964,
+        "line": 979,
         "column": 4
       },
       "end": {
-        "line": 969,
+        "line": 984,
         "column": 53
       }
     },
@@ -1525,11 +1525,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1005,
+        "line": 1020,
         "column": 20
       },
       "end": {
-        "line": 1015,
+        "line": 1030,
         "column": 3
       }
     },
@@ -1541,11 +1541,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1017,
+        "line": 1032,
         "column": 25
       },
       "end": {
-        "line": 1026,
+        "line": 1041,
         "column": 3
       }
     },
@@ -1557,11 +1557,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1142,
+        "line": 1160,
         "column": 18
       },
       "end": {
-        "line": 1145,
+        "line": 1163,
         "column": 20
       }
     },
