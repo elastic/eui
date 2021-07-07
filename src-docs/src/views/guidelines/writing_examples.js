@@ -549,7 +549,7 @@ const WritingExamples = () => {
       <EuiText>
         <h2 id="toasts">Toasts</h2>
 
-        <p>The most common use of toasts is as a success message.</p>
+        <p>A common use of toasts is as a success message.</p>
       </EuiText>
 
       <GuideRule description=" ">
