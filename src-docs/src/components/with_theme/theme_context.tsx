@@ -54,7 +54,6 @@ export class ThemeProvider extends React.Component<object, State> {
           changeTheme: this.changeTheme,
         }}>
         <EuiThemeProvider
-          // @ts-ignore TODO: Align the two theme shapes to match
           theme={
             theme.includes('amsterdam') ? EuiThemeAmsterdam : EuiThemeDefault
           }
