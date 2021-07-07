@@ -84,7 +84,7 @@ directly in the code. And unit test coverage for the UI components allows us to 
 
 ## License
 
-[Elastic v2 Licensed.][license] Read the [FAQ][faq] for details.
+[Dual-licensed under Elastic v2 and Server Side Public License, v 1][license] Read the [FAQ][faq] for details.
 
 [license]: LICENSE.txt
 [faq]: FAQ.md
