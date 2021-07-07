@@ -742,6 +742,7 @@ exports[`renders inline EuiColorPicker 1`] = `
       class="euiSaturation"
       data-test-subj="euiSaturation"
       style="background:hsl(30, 100%, 50%)"
+      tabindex="-1"
     >
       <div
         class="euiSaturation__lightness"

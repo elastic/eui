@@ -6,6 +6,7 @@ exports[`EuiHue accepts a color 1`] = `
   class="euiSaturation testClass1 testClass2"
   data-test-subj="test subject string"
   style="background:hsl(180, 100%, 50%)"
+  tabindex="-1"
 >
   <div
     class="euiSaturation__lightness"
@@ -40,6 +41,7 @@ exports[`EuiHue is rendered 1`] = `
   class="euiSaturation testClass1 testClass2"
   data-test-subj="test subject string"
   style="background:hsl(1, 100%, 50%)"
+  tabindex="-1"
 >
   <div
     class="euiSaturation__lightness"

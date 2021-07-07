@@ -174,6 +174,7 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
         style={{
           background: `hsl(${color[0]}, 100%, 50%)`,
         }}
+        tabIndex={-1}
         {...rest}>
         <div className="euiSaturation__lightness" ref={boxRef}>
           <div className="euiSaturation__saturation" />
