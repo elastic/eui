@@ -11,7 +11,63 @@ import {
   // EuiButton,
 } from '../../../../src/components';
 import { TextureMultiSeriesChart } from './texture';
-import { TextureInterfacePortal } from './texture_interface_portal';
+import { Chart } from '@elastic/charts';
+
+const textureMultiSeriesChartSnippet = `
+    <Chart size={{ height: 200 }}>
+    <Settings 
+          ariaLabelHeadingLevel="h3"
+          ariaDescription="This chart has two series with texture fills. The bar series has squares and the area series is comprised of circles."
+          ariaUseDefaultSummary={false}
+      />
+      <BarSeries
+        key={1}
+        id={'series-1'}
+        barSeriesStyle={{
+          rect: {
+            opacity: 0.2,
+            texture: {
+              opacity: 1,
+              offset: { x: undefined, y: undefined },
+              rotation: undefined,
+              shape: 'square',
+              shapeRotation: undefined,
+              size: 9,
+              spacing: { x: undefined, y: undefined },
+            },
+          },
+        }}
+        stackAccessors={['yes']}
+        data={SAMPLE_SMALL_DATA}
+        curve={CurveType.CURVE_MONOTONE_X}
+      />
+      <AreaSeries
+        key={2}
+        id={'series-2'}
+        areaSeriesStyle={{
+          area: {
+            opacity: 0.05,
+            shape: 'circle',
+            texture: {
+              opacity: 1,
+              shape: 'circle',
+              rotation: undefined,
+              shapeRotation: undefined,
+              size: 5,
+              spacing: {
+                x: 0,
+                y: 0,
+              },
+              offset: {
+                x: 0,
+                y: 1,
+              },
+            },
+          },
+        }}
+        data={SAMPLE_SMALL_DATA_2}
+      />
+    </Chart>`;
 
 export const ElasticChartsAccessiblityExample = {
   title: 'Accessibility features',
@@ -197,69 +253,89 @@ ariaUseDefaultSummary={false}
     },
     {
       title: 'Texture',
+      // source: [
+      //   {
+      //     type: TextureMultiSeriesChart.HTML,
+      //     code: `interface TexturedStylesBase {
+      //       /** polygon fill color for texture */
+      //       fill?: Color | ColorVariant;
+      //       /** polygon stroke color for texture */
+      //       stroke?: Color | ColorVariant;
+      //       /** polygon stroke width for texture  */
+      //       strokeWidth?: number;
+      //       /** polygon opacity for texture  */
+      //       opacity?: number;
+      //       /** polygon opacity for texture  */
+      //       dash?: number[];
+      //       /** polygon opacity for texture  */
+      //       size?: number;
+      //       /**
+      //       * The angle of rotation for entire texture
+      //       * in degrees
+      //       */
+      //       rotation?: number;
+      //       /**
+      //       * The angle of rotation for polygons
+      //       * in degrees
+      //       */
+      //       shapeRotation?: number;
+      //       /** texture spacing between polygons */
+      //       spacing?: Partial<Point> | number;
+      //       /** overall origin offset of pattern */
+      //       offset?: Partial<Point> & {
+      //       /** apply offset along global coordinate axes */
+      //       global?: boolean;
+      //       };
+      //       }
+
+      //       interface TexturedShapeStyles extends TexturedStylesBase {
+      //       /** typed of texture designs currently supported */
+      //       shape: TextureShape;
+      //       }
+
+      //       interface TexturedPathStyles extends TexturedStylesBase {
+      //       /** path for polygon texture */
+      //       path: string | Path2D;
+      //       }
+
+      //       /**
+      //       * @public
+      //       *
+      //       * Texture style config for area spec
+      //       */
+      //       export type TexturedStyles = TexturedPathStyles | TexturedShapeStyles;`,
+      //   },
+      // ],
       text: (
         <>
           You can set the fill for area charts with texture fills with the{' '}
           <EuiCode>{'TextureStyles'}</EuiCode> interface.
-          <TextureInterfacePortal />
         </>
       ),
-      demo: <TextureInterfacePortal />,
-      snippet: `
-    <Chart size={{ height: 200 }}>
-      <BarSeries
-        key={1}
-        id={'series-1'}
-        barSeriesStyle={{
-          rect: {
-            opacity: 0.2,
-            texture: {
-              opacity: 1,
-              offset: { x: undefined, y: undefined },
-              rotation: undefined,
-              shape: 'square',
-              shapeRotation: undefined,
-              size: 9,
-              spacing: { x: undefined, y: undefined },
-            },
-          },
-        }}
-        stackAccessors={['yes']}
-        data={SAMPLE_SMALL_DATA}
-        curve={CurveType.CURVE_MONOTONE_X}
-      />
-      <AreaSeries
-        key={2}
-        id={'series-2'}
-        areaSeriesStyle={{
-          area: {
-            opacity: 0.05,
-            shape: 'circle',
-            texture: {
-              opacity: 1,
-              shape: 'circle',
-              rotation: undefined,
-              shapeRotation: undefined,
-              size: 5,
-              spacing: {
-                x: 0,
-                y: 0,
-              },
-              offset: {
-                x: 0,
-                y: 1,
-              },
-            },
-          },
-        }}
-        data={SAMPLE_SMALL_DATA_2}
-      />
-    </Chart>`,
+      props: { '@elastic/charts': Chart },
       demo: <TextureMultiSeriesChart />,
+      snippet: textureMultiSeriesChartSnippet,
     },
     {
       title: 'Goal chart',
-      text: <></>,
+      text: (
+        <>
+          By default, elastic charts provides the following of goal charts in
+          the DOM:
+          <ul>
+            <li>Maximum</li>
+            <li>Minimum</li>
+            <li>Target</li>
+            <li>Current value</li>
+            <li>Major label</li>
+            <li>Minor label</li>
+          </ul>
+          <EuiSpacer />
+          You can add meaning to your goal chart by passing in the{' '}
+          <EuiCode>{'bandLabels'}</EuiCode> prop in the{' '}
+          <EuiCode>{'Goal'}</EuiCode> component.
+        </>
+      ),
     },
   ],
 };

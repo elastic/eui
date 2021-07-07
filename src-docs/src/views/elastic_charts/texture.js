@@ -1,5 +1,11 @@
 import React, { Fragment } from 'react';
-import { Chart, CurveType, BarSeries, AreaSeries } from '@elastic/charts';
+import {
+  Chart,
+  CurveType,
+  BarSeries,
+  AreaSeries,
+  Settings,
+} from '@elastic/charts';
 import { EuiSpacer, EuiTitle } from '../../../../src/components';
 import { SAMPLE_SMALL_DATA, SAMPLE_SMALL_DATA_2 } from './data';
 
@@ -12,6 +18,11 @@ export const TextureMultiSeriesChart = () => {
 
       <EuiSpacer size="s" />
       <Chart size={{ height: 200 }}>
+        <Settings
+          ariaLabelHeadingLevel="h3"
+          ariaDescription="This chart has two series with texture fills. The bar series has squares and the area series is comprised of circles."
+          ariaUseDefaultSummary={false}
+        />
         <BarSeries
           key={1}
           id={'series-1'}
