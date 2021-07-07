@@ -51,7 +51,8 @@ export default () => {
       canDisabled={false}
       canReadOnly={false}
       canLoading={false}
-      canPrepend
+      canPrepend={false}
+      canIsDisabled
       canAppend>
       <EuiComboBox
         placeholder="Select a single option"
@@ -59,6 +60,7 @@ export default () => {
         options={options}
         selectedOptions={selectedOptions}
         onChange={onChange}
+        isDisabled
       />
     </DisplayToggles>
   );

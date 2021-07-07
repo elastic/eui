@@ -17,7 +17,7 @@
 
   // This provides the default secondary color
   .euiIcon__fillSecondary {
-    fill: makeGraphicContrastColor($euiColorSecondary);
+    fill: makeGraphicContrastColor($euiColorSuccess);
   }
 }
 

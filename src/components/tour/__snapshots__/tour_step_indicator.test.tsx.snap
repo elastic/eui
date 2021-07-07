@@ -40,7 +40,7 @@ exports[`EuiTourStepIndicator is rendered 1`] = `
     aria-current="step"
     aria-label="active"
     class="euiStepNumber__icon"
-    color="secondary"
+    color="success"
     data-euiicon-type="dot"
   />
 </li>

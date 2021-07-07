@@ -5,15 +5,13 @@ exports[`EuiRangeTrack is rendered 1`] = `
   aria-label="aria-label"
   class="testClass1 testClass2"
   data-test-subj="test subject string"
-  style="margin-right:0.6em"
 >
   <div
     class="euiRangeTicks"
-    style="margin:0 -4.545454545454546%;left:0;right:0"
   >
     <button
       class="euiRangeTick"
-      style="width:9.090909090909092%"
+      style="left:calc(NaN% + 8px);max-width:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="0"
@@ -22,7 +20,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick"
-      style="width:9.090909090909092%"
+      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="10"
@@ -31,7 +29,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick"
-      style="width:9.090909090909092%"
+      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="20"
@@ -40,7 +38,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick"
-      style="width:9.090909090909092%"
+      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="30"
@@ -49,7 +47,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick"
-      style="width:9.090909090909092%"
+      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="40"
@@ -58,7 +56,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick"
-      style="width:9.090909090909092%"
+      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="50"
@@ -67,7 +65,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick"
-      style="width:9.090909090909092%"
+      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="60"
@@ -76,7 +74,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick"
-      style="width:9.090909090909092%"
+      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="70"
@@ -85,7 +83,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick"
-      style="width:9.090909090909092%"
+      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="80"
@@ -94,7 +92,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick"
-      style="width:9.090909090909092%"
+      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="90"
@@ -103,7 +101,7 @@ exports[`EuiRangeTrack is rendered 1`] = `
     </button>
     <button
       class="euiRangeTick"
-      style="width:9.090909090909092%"
+      style="left:calc(-Infinity% + 8px);max-width:9.090909090909092%"
       tabindex="-1"
       type="button"
       value="100"
@@ -124,4 +122,4 @@ exports[`EuiRangeTrack should throw error if custom tick value is lower than \`m
 
 exports[`EuiRangeTrack should throw error if custom tick value is off sequence from \`step\` 1`] = `"The value of 10 is not included in the possible sequence provided by the step of 50."`;
 
-exports[`EuiRangeTrack should throw error if there are too many ticks to render 1`] = `"The number of ticks to render is too high (22), reduce the interval."`;
+exports[`EuiRangeTrack should throw error if there are too many ticks to render 1`] = `"The number of ticks to render is too high (21), reduce the interval."`;

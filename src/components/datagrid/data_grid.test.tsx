@@ -26,8 +26,40 @@ import {
   takeMountedSnapshot,
 } from '../../test';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
+import { EuiDataGridRowHeightOption } from './data_grid_types';
 import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';
+
+jest.mock('./row_height_utils', () => {
+  return {
+    RowHeightUtils: jest.fn().mockImplementation(() => {
+      return {
+        computeStylesForGridCell: () => {},
+        getCalculatedHeight: (
+          heightOption: EuiDataGridRowHeightOption,
+          defaultHeight: number
+        ) => {
+          if (typeof heightOption === 'object') {
+            if (heightOption.lineCount) {
+              return heightOption.lineCount;
+            }
+
+            if (heightOption.height) {
+              return heightOption.height;
+            }
+          }
+
+          if (heightOption) {
+            return heightOption;
+          }
+
+          return defaultHeight;
+        },
+      };
+    }),
+    getStylesForCell: () => ({}),
+  };
+});
 
 function getFocusableCell(component: ReactWrapper) {
   return findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');
@@ -59,6 +91,19 @@ function extractGridData(datagrid: ReactWrapper<EuiDataGridProps>) {
   }
 
   return rows;
+}
+
+function extractRowHeights(datagrid: ReactWrapper) {
+  return (findTestSubject(datagrid, 'dataGridRowCell') as ReactWrapper<
+    any
+  >).reduce((heights: { [key: string]: number }, cell) => {
+    const cellProps = cell.props();
+    const cellContentProps = cell
+      .find('[data-test-subj="cell-content"]')
+      .props() as any;
+    heights[cellContentProps.rowIndex] = parseFloat(cellProps.style.height);
+    return heights;
+  }, {});
 }
 
 function extractColumnWidths(datagrid: ReactWrapper) {
@@ -2085,6 +2130,99 @@ describe('EuiDataGrid', () => {
     });
   });
 
+  describe('rowHeighsOptions', () => {
+    it('all row heights options applied correctly', async () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          columns={[{ id: 'Column 1' }, { id: 'Column 2' }]}
+          columnVisibility={{
+            visibleColumns: ['Column 1', 'Column 2'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={3}
+          renderCellValue={() => 'value'}
+          rowHeightsOptions={{
+            defaultHeight: 50,
+            rowHeights: {
+              0: 70,
+              1: {
+                lineCount: 3,
+              },
+            },
+          }}
+        />
+      );
+
+      const cellHeights = extractRowHeights(component);
+      expect(cellHeights).toEqual({
+        0: 70,
+        1: 3,
+        2: 50,
+      });
+    });
+
+    it('render cells with correct height during pagination', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-label="test grid"
+          columns={[{ id: 'Column' }]}
+          columnVisibility={{
+            visibleColumns: ['Column'],
+            setVisibleColumns: () => {},
+          }}
+          rowCount={8}
+          renderCellValue={({ rowIndex }) => rowIndex}
+          rowHeightsOptions={{
+            defaultHeight: 50,
+            rowHeights: {
+              0: 70,
+              1: {
+                lineCount: 3,
+              },
+            },
+          }}
+          pagination={{
+            pageIndex: 0,
+            pageSize: 3,
+            pageSizeOptions: [3, 6, 10],
+            onChangePage: jest.fn((pageIndex) => {
+              const pagination = component.props().pagination;
+              component.setProps({
+                pagination: { ...pagination, pageIndex },
+              });
+            }),
+            onChangeItemsPerPage: jest.fn(),
+          }}
+        />
+      );
+
+      expect(extractRowHeights(component)).toEqual({
+        0: 70,
+        1: 3,
+        2: 50,
+      });
+
+      findTestSubject(component, 'pagination-button-next').simulate('click');
+
+      expect(extractRowHeights(component)).toEqual({
+        3: 50,
+        4: 50,
+        5: 50,
+      });
+
+      findTestSubject(component, 'pagination-button-previous').simulate(
+        'click'
+      );
+
+      expect(extractRowHeights(component)).toEqual({
+        0: 70,
+        1: 3,
+        2: 50,
+      });
+    });
+  });
+
   describe('keyboard controls', () => {
     it('supports simple arrow navigation', async () => {
       let pagination = {
@@ -2300,7 +2438,7 @@ describe('EuiDataGrid', () => {
       ).toEqual('6, C');
     });
 
-    it('does not break arrow key focus control behavior when also using a mouse', () => {
+    it('does not break arrow key focus control behavior when also using a mouse', async () => {
       const component = mount(
         <EuiDataGrid
           {...requiredProps}
@@ -2333,6 +2471,12 @@ describe('EuiDataGrid', () => {
       ).toEqual('0, A');
 
       findTestSubject(component, 'dataGridRowCell').at(3).simulate('focus');
+
+      // wait for a tick to give focus logic time to run
+      await act(async () => {
+        await new Promise((r) => setTimeout(r, 0));
+      });
+      component.update();
 
       focusableCell = getFocusableCell(component);
       expect(focusableCell.length).toEqual(1);

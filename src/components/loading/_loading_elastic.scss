@@ -21,7 +21,9 @@
 
 
 .euiLoadingElastic path {
-  animation-name: euiLoadingElastic;
+  @include euiCanAnimate {
+    animation-name: euiLoadingElastic;
+  }
   animation-fill-mode: forwards;
   animation-direction: alternate;
   transform-style: preserve-3d;

@@ -688,7 +688,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                   className="euiFormRow__fieldWrapper"
                 >
                   <input
-                    aria-describedby="generated-id-help generated-id-error-0 generated-id-error-1"
+                    aria-describedby="generated-id-help-0 generated-id-error-0 generated-id-error-1"
                     id="generated-id"
                     onBlur={[Function]}
                     onFocus={[Function]}
@@ -721,11 +721,12 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                   </EuiFormErrorText>
                   <EuiFormHelpText
                     className="euiFormRow__text"
-                    id="generated-id-help"
+                    id="generated-id-help-0"
+                    key="Help text"
                   >
                     <div
                       className="euiFormHelpText euiFormRow__text"
-                      id="generated-id-help"
+                      id="generated-id-help-0"
                     >
                       Help text
                     </div>

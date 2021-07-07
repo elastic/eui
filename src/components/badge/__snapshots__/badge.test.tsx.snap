@@ -277,6 +277,23 @@ exports[`EuiBadge props color secondary is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiBadge props color success is rendered 1`] = `
+<span
+  class="euiBadge euiBadge--iconLeft"
+  style="background-color:#6dccb1;color:#000"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span
+      class="euiBadge__text"
+    >
+      Content
+    </span>
+  </span>
+</span>
+`;
+
 exports[`EuiBadge props color warning is rendered 1`] = `
 <span
   class="euiBadge euiBadge--iconLeft"
@@ -463,6 +480,23 @@ exports[`EuiBadge props style is rendered with primary 1`] = `
 `;
 
 exports[`EuiBadge props style is rendered with secondary 1`] = `
+<span
+  class="euiBadge euiBadge--iconLeft"
+  style="background-color:#6dccb1;color:#000;border:4px solid tomato"
+>
+  <span
+    class="euiBadge__content"
+  >
+    <span
+      class="euiBadge__text"
+    >
+      Content
+    </span>
+  </span>
+</span>
+`;
+
+exports[`EuiBadge props style is rendered with success 1`] = `
 <span
   class="euiBadge euiBadge--iconLeft"
   style="background-color:#6dccb1;color:#000;border:4px solid tomato"

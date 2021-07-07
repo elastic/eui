@@ -30,7 +30,7 @@ export default () => (
       </EuiBadge>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiBadge color="secondary" href="/#/display/badge" isDisabled={true}>
+      <EuiBadge color="success" href="/#/display/badge" isDisabled={true}>
         disabled anchor badge
       </EuiBadge>
     </EuiFlexItem>

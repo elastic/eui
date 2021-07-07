@@ -31,6 +31,7 @@ import { EuiIcon } from '../icon';
 const colorToClassNameMap = {
   subdued: 'euiExpression--subdued',
   primary: 'euiExpression--primary',
+  success: 'euiExpression--success',
   secondary: 'euiExpression--secondary',
   accent: 'euiExpression--accent',
   warning: 'euiExpression--warning',
@@ -64,6 +65,7 @@ export type EuiExpressionProps = CommonProps & {
   valueProps?: HTMLAttributes<HTMLSpanElement>;
   /**
    * Color of the `description`
+   * **`secondary` color is DEPRECATED, use `success` instead**
    */
   color?: ExpressionColor;
   /**
@@ -116,7 +118,7 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
   descriptionProps,
   value,
   valueProps,
-  color = 'secondary',
+  color = 'success',
   uppercase = true,
   isActive = false,
   display = 'inline',

@@ -20,27 +20,29 @@
 import React, { Component, MouseEventHandler, Ref } from 'react';
 import classNames from 'classnames';
 
-import { EuiButton } from '../../button';
+import { EuiButton, EuiButtonProps } from '../../button';
 import { EuiI18n } from '../../i18n';
 import { EuiToolTip, EuiToolTipProps } from '../../tool_tip';
+import { CommonProps } from '../../common';
 
-export interface EuiSuperUpdateButtonProps {
-  className?: string;
-  isDisabled: boolean;
-  isLoading: boolean;
-  needsUpdate: boolean;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+export type EuiSuperUpdateButtonProps = CommonProps &
+  Partial<Omit<EuiButtonProps, 'isDisabled' | 'isLoading' | 'onClick'>> & {
+    className?: string;
+    isDisabled: boolean;
+    isLoading: boolean;
+    needsUpdate: boolean;
+    onClick: MouseEventHandler<HTMLButtonElement>;
 
-  /**
-   * Passes props to `EuiToolTip`
-   */
-  toolTipProps?: EuiToolTipProps;
+    /**
+     * Passes props to `EuiToolTip`
+     */
+    toolTipProps?: EuiToolTipProps;
 
-  /**
-   * Show the "Click to apply" tooltip
-   */
-  showTooltip: boolean;
-}
+    /**
+     * Show the "Click to apply" tooltip
+     */
+    showTooltip: boolean;
+  };
 
 export class EuiSuperUpdateButton extends Component<EuiSuperUpdateButtonProps> {
   static defaultProps = {
@@ -103,6 +105,8 @@ export class EuiSuperUpdateButton extends Component<EuiSuperUpdateButtonProps> {
       onClick,
       toolTipProps,
       showTooltip,
+
+      textProps: restTextProps,
       ...rest
     } = this.props;
 
@@ -153,10 +157,16 @@ export class EuiSuperUpdateButton extends Component<EuiSuperUpdateButtonProps> {
         {...toolTipProps}>
         <EuiButton
           className={classes}
-          color={needsUpdate || isLoading ? 'secondary' : 'primary'}
+          color={needsUpdate || isLoading ? 'success' : 'primary'}
           fill
           iconType={needsUpdate || isLoading ? 'kqlFunction' : 'refresh'}
-          textProps={{ className: 'euiSuperUpdateButton__text' }}
+          textProps={{
+            ...restTextProps,
+            className: classNames(
+              'euiSuperUpdateButton__text',
+              restTextProps?.className
+            ),
+          }}
           isDisabled={isDisabled}
           onClick={onClick}
           isLoading={isLoading}

@@ -169,7 +169,7 @@ test('popover color selector is not shown by default', () => {
     <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
 
-  const colorSelector = findTestSubject(colorPicker, 'colorPickerPopover');
+  const colorSelector = findTestSubject(colorPicker, 'euiColorPickerPopover');
   expect(colorSelector.length).toBe(0);
 });
 
@@ -184,9 +184,9 @@ test('popover color selector is shown when the input is clicked', () => {
     />
   );
 
-  findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
+  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
   expect(onFocusHandler).toBeCalled();
-  const colorSelector = findTestSubject(colorPicker, 'colorPickerPopover');
+  const colorSelector = findTestSubject(colorPicker, 'euiColorPickerPopover');
   expect(colorSelector.length).toBe(1);
 });
 
@@ -201,9 +201,9 @@ test('popover color selector is hidden when the ESC key pressed', async () => {
     />
   );
 
-  findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
+  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
   await sleep();
-  findTestSubject(colorPicker, 'colorPickerPopover').simulate('keydown', {
+  findTestSubject(colorPicker, 'euiColorPickerPopover').simulate('keydown', {
     key: keys.ESCAPE,
   });
   // Portal removal not working with Jest. The blur handler is called just before the portal would be removed.
@@ -221,12 +221,12 @@ test('popover color selector is hidden and input regains focus when the ENTER ke
     />
   );
 
-  findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
+  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
   findTestSubject(colorPicker, 'euiSaturation').simulate('keydown', {
     key: keys.ENTER,
   });
   expect(
-    findTestSubject(colorPicker, 'colorPickerAnchor').getDOMNode()
+    findTestSubject(colorPicker, 'euiColorPickerAnchor').getDOMNode()
   ).toEqual(document.activeElement);
   // Portal removal not working with Jest. The blur handler is called just before the portal would be removed.
   expect(onBlurHandler).toBeCalled();
@@ -237,7 +237,7 @@ test('Setting a new color calls onChange', () => {
     <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
 
-  findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
+  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
   const event = { target: { value: '#000000' } };
   const inputs = colorPicker.find('input[type="text"]');
   expect(inputs.length).toBe(1);
@@ -255,7 +255,7 @@ test('Clicking a swatch calls onChange', () => {
     <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
 
-  findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
+  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
   const swatches = colorPicker.find('button.euiColorPicker__swatchSelect');
   expect(swatches.length).toBe(VISUALIZATION_COLORS.length);
   swatches.first().simulate('click');
@@ -277,9 +277,9 @@ test('Setting a new alpha value calls onChange', () => {
     />
   );
 
-  findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
+  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
   // Slider
-  const alpha = findTestSubject(colorPicker, 'colorPickerAlpha');
+  const alpha = findTestSubject(colorPicker, 'euiColorPickerAlpha');
   const event1 = { target: { value: '50' } };
   const range = alpha.first(); // input[type=range]
   range.simulate('change', event1);
@@ -325,7 +325,7 @@ test('default mode does renders child components', () => {
     <EuiColorPicker onChange={onChange} color="#ffeedd" {...requiredProps} />
   );
 
-  findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
+  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
   const saturation = findTestSubject(colorPicker, 'euiSaturation');
   expect(saturation.length).toBe(1);
   const hue = colorPicker.find('EuiHue');
@@ -344,7 +344,7 @@ test('swatch mode does not render EuiSaturation or EuiHue', () => {
     />
   );
 
-  findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
+  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
   const saturation = colorPicker.find('EuiSaturation');
   expect(saturation.length).toBe(0);
   const hue = colorPicker.find('EuiHue');
@@ -363,7 +363,7 @@ test('picker mode does not render swatches', () => {
     />
   );
 
-  findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
+  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
   const saturation = findTestSubject(colorPicker, 'euiSaturation');
   expect(saturation.length).toBe(1);
   const hue = colorPicker.find('EuiHue');
@@ -382,9 +382,12 @@ test('secondaryInputDisplay `top` has a popover panel input', () => {
     />
   );
 
-  findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
-  const inputTop = findTestSubject(colorPicker, 'topColorPickerInput');
-  const inputBottom = findTestSubject(colorPicker, 'bottomColorPickerInput');
+  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
+  const inputTop = findTestSubject(colorPicker, 'euiColorPickerInput_top');
+  const inputBottom = findTestSubject(
+    colorPicker,
+    'euiColorPickerInput_bottom'
+  );
   expect(inputTop.length).toBe(1);
   expect(inputBottom.length).toBe(0);
 });
@@ -399,9 +402,12 @@ test('secondaryInputDisplay `bottom` has a popover panel input', () => {
     />
   );
 
-  findTestSubject(colorPicker, 'colorPickerAnchor').simulate('click');
-  const inputTop = findTestSubject(colorPicker, 'topColorPickerInput');
-  const inputBottom = findTestSubject(colorPicker, 'bottomColorPickerInput');
+  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
+  const inputTop = findTestSubject(colorPicker, 'euiColorPickerInput_top');
+  const inputBottom = findTestSubject(
+    colorPicker,
+    'euiColorPickerInput_bottom'
+  );
   expect(inputTop.length).toBe(0);
   expect(inputBottom.length).toBe(1);
 });

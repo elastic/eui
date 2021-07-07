@@ -65,22 +65,26 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
     <div
       class="euiText euiText--small"
     >
-      <ul>
-        <li
-          class="euiForm__error"
-        >
-          <span>
-            This is one error
-          </span>
-        </li>
-        <li
-          class="euiForm__error"
-        >
-          <span>
-            This is another error
-          </span>
-        </li>
-      </ul>
+      <div
+        class="euiTextColor euiTextColor--default"
+      >
+        <ul>
+          <li
+            class="euiForm__error"
+          >
+            <span>
+              This is one error
+            </span>
+          </li>
+          <li
+            class="euiForm__error"
+          >
+            <span>
+              This is another error
+            </span>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
@@ -110,15 +114,19 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
     <div
       class="euiText euiText--small"
     >
-      <ul>
-        <li
-          class="euiForm__error"
-        >
-          <span>
-            This is one error
-          </span>
-        </li>
-      </ul>
+      <div
+        class="euiTextColor euiTextColor--default"
+      >
+        <ul>
+          <li
+            class="euiForm__error"
+          >
+            <span>
+              This is one error
+            </span>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

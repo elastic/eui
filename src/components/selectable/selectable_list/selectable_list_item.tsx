@@ -47,7 +47,7 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
     /**
      * Shows icons based on `checked` type
      */
-    showIcons: boolean;
+    showIcons?: boolean;
     /**
      * Highlights the item for pseudo focus
      */
