@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.6.0`.
+- Refactored `EuiFlyout` types ([#4940](https://github.com/elastic/eui/pull/4940))
 
 ## [`34.6.0`](https://github.com/elastic/eui/tree/v34.6.0)
 
