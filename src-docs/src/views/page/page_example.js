@@ -31,10 +31,10 @@ const pageBottomBarSource = require('!!raw-loader!./page_bottom_bar');
 import PageBottomBarTemplate from './page_bottom_bar_template';
 const PageBottomBarTemplateSource = require('!!raw-loader!./page_bottom_bar_template');
 
-import PageRestricingWidth from './page_restricting_width';
-const PageRestricingWidthSource = require('!!raw-loader!./page_restricting_width');
-import PageRestricingWidthTemplate from './page_restricting_width_template';
-const PageRestricingWidthTemplateSource = require('!!raw-loader!./page_restricting_width_template');
+import PageRestrictingWidth from './page_restricting_width';
+const PageRestrictingWidthSource = require('!!raw-loader!./page_restricting_width');
+import PageRestrictingWidthTemplate from './page_restricting_width_template';
+const PageRestrictingWidthTemplateSource = require('!!raw-loader!./page_restricting_width_template');
 
 import PageCenteredBody from './page_centered_body';
 const PageCenteredBodySource = require('!!raw-loader!./page_centered_body');
@@ -50,6 +50,11 @@ import PageSimple from './page_simple';
 const PageSimpleSource = require('!!raw-loader!./page_simple');
 import PageSimpleTemplate from './page_simple_template';
 const PageSimpleTemplateSource = require('!!raw-loader!./page_simple_template');
+
+import PageFullHeight from './page_full_height';
+const PageFullHeightSource = require('!!raw-loader!./page_full_height');
+import PageFullHeightTemplate from './page_full_height_template';
+const PageFullHeightTemplateSource = require('!!raw-loader!./page_full_height_template');
 
 import PageSimpleCenteredBody from './page_simple_content_body';
 const PageSimpleCenteredBodySource = require('!!raw-loader!./page_simple_content_body');
@@ -171,38 +176,31 @@ export const PageExample = {
       },
       playground: pageTemplateConfig,
       demo: (
-        <PageDemo>
-          {(Button, Content, SideNav, showTemplate, BottomBar) =>
-            showTemplate ? (
-              <PageTemplate
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-                bottomBar={<BottomBar />}
-              />
-            ) : (
-              <PageNew
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-                bottomBar={<BottomBar />}
-              />
-            )
-          }
-        </PageDemo>
+        <PageDemo slug="full-page" pattern={PageNew} template={PageTemplate} />
       ),
+      fullScreen: {
+        slug: 'full-page',
+        demo: (
+          <PageDemo
+            slug="full-page"
+            pattern={PageNew}
+            template={PageTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'Restricting page width',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: PageRestricingWidthTemplateSource,
+          code: PageRestrictingWidthTemplateSource,
           displayName: 'Template JS',
         },
         {
           type: GuideSectionTypes.JS,
-          code: PageRestricingWidthSource,
+          code: PageRestrictingWidthSource,
           displayName: 'Components JS',
         },
       ],
@@ -230,24 +228,23 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageRestricingWidthTemplate
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-              />
-            ) : (
-              <PageRestricingWidth
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-              />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="restricting-page-width"
+          pattern={PageRestrictingWidth}
+          template={PageRestrictingWidthTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'restricting-page-width',
+        demo: (
+          <PageDemo
+            slug="restricting-page-width"
+            pattern={PageRestrictingWidth}
+            template={PageRestrictingWidthTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'Showing a bottom bar',
@@ -281,7 +278,7 @@ export const PageExample = {
             the bottom of and remains within the bounds of{' '}
             <strong>EuiPageBody</strong>. This way it will never overlap the{' '}
             <strong>EuiPageSideBar</strong>, no matter the screen size. It also
-            means not needing to accomodate for the height of the bar in the
+            means not needing to accommodate for the height of the bar in the
             body element.
           </p>
           <EuiCallOut
@@ -297,26 +294,23 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo>
-          {(Button, Content, SideNav, showTemplate, BottomBar) =>
-            showTemplate ? (
-              <PageBottomBarTemplate
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-                bottomBar={<BottomBar />}
-              />
-            ) : (
-              <PageBottomBar
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-                bottomBar={<BottomBar />}
-              />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="bottom-bar"
+          pattern={PageBottomBar}
+          template={PageBottomBarTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'bottom-bar',
+        demo: (
+          <PageDemo
+            slug="bottom-bar"
+            pattern={PageBottomBar}
+            template={PageBottomBarTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'Centered body',
@@ -355,24 +349,25 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo centered>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageCenteredBodyTemplate
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-              />
-            ) : (
-              <PageCenteredBody
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-              />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="centered-body"
+          centered
+          pattern={PageCenteredBody}
+          template={PageCenteredBodyTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'centered-body',
+        demo: (
+          <PageDemo
+            slug="centered-body"
+            centered
+            pattern={PageCenteredBody}
+            template={PageCenteredBodyTemplate}
+            fullscreen
+          />
+        ),
+      },
       props: { EuiPageTemplate, EuiEmptyPrompt },
     },
     {
@@ -409,24 +404,25 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo centered>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageCenteredContentTemplate
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-              />
-            ) : (
-              <PageCenteredContent
-                button={<Button />}
-                content={<Content />}
-                sideNav={<SideNav />}
-              />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="centered-content"
+          centered
+          pattern={PageCenteredContent}
+          template={PageCenteredContentTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'centered-content',
+        demo: (
+          <PageDemo
+            slug="centered-content"
+            centered
+            pattern={PageCenteredContent}
+            template={PageCenteredContentTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'A simple page with tabs',
@@ -446,7 +442,7 @@ export const PageExample = {
         <>
           <p>
             When leaving off the <strong>EuiPageSideBar</strong>, we recommend a
-            slightly different configuration by pulling the page hader out of
+            slightly different configuration by pulling the page header out of
             the <strong>EuiPageContent</strong> and removing the shadow from{' '}
             <strong>EuiPageContent</strong>.
           </p>
@@ -463,16 +459,115 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageSimpleTemplate button={<Button />} content={<Content />} />
-            ) : (
-              <PageSimple button={<Button />} content={<Content />} />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="tabs"
+          pattern={PageSimple}
+          template={PageSimpleTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'tabs',
+        demo: (
+          <PageDemo
+            slug="tabs"
+            pattern={PageSimple}
+            template={PageSimpleTemplate}
+            fullscreen
+          />
+        ),
+      },
+    },
+    {
+      title: 'Full height layout',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageFullHeightTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: PageFullHeightSource,
+          displayName: 'Components JS',
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Though it is not recomended for most layouts, some require the
+            control of scrolling to be handled through child components. You can
+            achieve this through nested flex groups and overflow properties;
+            adding certain combinations of{' '}
+            <Link to="/utilities/css-utility-classes#overflows">
+              CSS overflow utility classes
+            </Link>{' '}
+            to these children. There are a few <strong>caveats</strong> to
+            understand when trying to acheive full height layouts with{' '}
+            <strong>EuiPageTemplate</strong>.
+          </p>
+          <ol>
+            <li>
+              Using the <EuiCode>{'fullHeight'}</EuiCode> prop adds an extra
+              layer of{' '}
+              <Link to="/layout/flex">
+                <strong>EuiFlexGroup</strong> and <strong>EuiFlexItem</strong>
+              </Link>{' '}
+              around the template children to negate the negative margins.
+            </li>
+            <li>
+              Using <EuiCode>{'fullHeight=true'}</EuiCode> will automatically
+              add scrolling behavior to the <strong>EuiFlexItem</strong> that
+              wraps the children.
+            </li>
+            <li>
+              Using <EuiCode>{'fullHeight="noscroll"'}</EuiCode> removes all
+              scrolling behavior and your layouts will break if you do not
+              manually add them.
+            </li>
+            <li>
+              When using either values for <EuiCode>{'fullHeight'}</EuiCode>,
+              there will always be a minimum height of <EuiCode>460px</EuiCode>{' '}
+              to the page contents.
+            </li>
+            <li>
+              Full height layouts are restricted to{' '}
+              <strong>medium breakpoints</strong> and above. We recommend
+              retaining any responsive behavior and allowing normal page scroll
+              on smaller screens.
+            </li>
+          </ol>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            size="s"
+            title={
+              <>
+                When applying the <EuiCode>.eui-yScroll</EuiCode> class, it is
+                recommended to also apply <EuiCode>tabindex=0</EuiCode> to
+                ensure keyboard users can scroll these containers.
+              </>
+            }
+          />
+        </>
+      ),
+      demo: (
+        <PageDemo
+          slug="full-height"
+          pattern={PageFullHeight}
+          template={PageFullHeightTemplate}
+        />
+      ),
+      fullScreen: {
+        slug: 'full-height',
+        demo: (
+          <PageDemo
+            slug="full-height"
+            pattern={PageFullHeight}
+            template={PageFullHeightTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'Simple layout with centered body',
@@ -500,22 +595,25 @@ export const PageExample = {
         </p>
       ),
       demo: (
-        <PageDemo centered>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageSimpleCenteredBodyTemplate
-                button={<Button />}
-                content={<Content />}
-              />
-            ) : (
-              <PageSimpleCenteredBody
-                button={<Button />}
-                content={<Content />}
-              />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="simple-centered-body"
+          centered
+          pattern={PageSimpleCenteredBody}
+          template={PageSimpleCenteredBodyTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'simple-centered-body',
+        demo: (
+          <PageDemo
+            slug="simple-centered-body"
+            centered
+            pattern={PageSimpleCenteredBody}
+            template={PageSimpleCenteredBodyTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'Simple layout with centered content',
@@ -540,22 +638,25 @@ export const PageExample = {
         </p>
       ),
       demo: (
-        <PageDemo centered>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageSimpleEmptyContentTemplate
-                button={<Button />}
-                content={<Content />}
-              />
-            ) : (
-              <PageSimpleEmptyContent
-                button={<Button />}
-                content={<Content />}
-              />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="simple-centered-content"
+          centered
+          pattern={PageSimpleEmptyContent}
+          template={PageSimpleEmptyContentTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'simple-centered-content',
+        demo: (
+          <PageDemo
+            slug="simple-centered-content"
+            centered
+            pattern={PageSimpleEmptyContent}
+            template={PageSimpleEmptyContentTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'A simple page layout with custom content',
@@ -591,16 +692,23 @@ export const PageExample = {
         </>
       ),
       demo: (
-        <PageDemo>
-          {(Button, Content, SideNav, showTemplate) =>
-            showTemplate ? (
-              <PageCustomContentTemplate button={<Button />} />
-            ) : (
-              <PageCustomContent button={<Button />} />
-            )
-          }
-        </PageDemo>
+        <PageDemo
+          slug="simple-custom-content"
+          pattern={PageCustomContent}
+          template={PageCustomContentTemplate}
+        />
       ),
+      fullScreen: {
+        slug: 'simple-custom-content',
+        demo: (
+          <PageDemo
+            slug="simple-custom-content"
+            pattern={PageCustomContent}
+            template={PageCustomContentTemplate}
+            fullscreen
+          />
+        ),
+      },
     },
     {
       title: 'Legacy layout',

@@ -44,6 +44,22 @@ describe('EuiEmptyPrompt', () => {
         const component = render(<EuiEmptyPrompt iconType="arrowUp" />);
         expect(component).toMatchSnapshot();
       });
+
+      test('renders with iconColor', () => {
+        const component = render(
+          <EuiEmptyPrompt iconType="arrowUp" iconColor="danger" />
+        );
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('icon', () => {
+      test('renders alone', () => {
+        const component = render(
+          <EuiEmptyPrompt icon={<span>Custom icon</span>} />
+        );
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('title', () => {

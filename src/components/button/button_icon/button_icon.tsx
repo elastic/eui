@@ -65,7 +65,7 @@ export interface EuiButtonIconProps extends CommonProps {
   iconType: IconType;
   /**
    * Any of the named color palette options.
-   * **`subdued` set to be DEPRECATED**
+   * **`subdued` set to be DEPRECATED, use `text` instead**
    */
   color?: EuiButtonIconColor;
   'aria-label'?: string;

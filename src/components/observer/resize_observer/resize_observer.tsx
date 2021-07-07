@@ -38,8 +38,12 @@ export class EuiResizeObserver extends EuiObserver<EuiResizeObserverProps> {
     width: 0,
   };
 
-  onResize: ResizeObserverCallback = ([entry]) => {
-    const { height, width } = entry.contentRect;
+  onResize: ResizeObserverCallback = () => {
+    // `entry.contentRect` provides incomplete `height` and `width` data.
+    // Use `getBoundingClientRect` to account for padding and border.
+    // https://developer.mozilla.org/en-US/docs/Web/API/DOMRectReadOnly
+    if (!this.childNode) return;
+    const { height, width } = this.childNode.getBoundingClientRect();
     // Check for actual resize event
     if (this.state.height === height && this.state.width === width) {
       return;
@@ -108,13 +112,16 @@ export const useResizeObserver = (
         height: boundingRect.height,
       });
 
-      const observer = makeResizeObserver(container, ([entry]) => {
-        const { height, width } = entry.contentRect;
+      const observer = makeResizeObserver(container, () => {
+        // `entry.contentRect` provides incomplete `height` and `width` data.
+        // Use `getBoundingClientRect` to account for padding and border.
+        // https://developer.mozilla.org/en-US/docs/Web/API/DOMRectReadOnly
+        const { height, width } = container.getBoundingClientRect();
         setSize({
           width,
           height,
         });
-      })!;
+      });
 
       return () => observer && observer.disconnect();
     } else {

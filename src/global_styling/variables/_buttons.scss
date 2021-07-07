@@ -10,9 +10,12 @@ $euiButtonColorGhostDisabled: lightOrDarkTheme($euiColorDarkShade, $euiColorLigh
 // Modifier naming and colors.
 $euiButtonTypes: (
   primary: $euiColorPrimary,
+  accent: $euiColorAccent,
   secondary: $euiColorSecondary,
+  success: $euiColorSuccess,
   warning: $euiColorWarning,
   danger: $euiColorDanger,
+  subdued: $euiTextSubduedColor, // Should get deprecated in favor of `text`
   ghost: $euiColorGhost, // Ghost is special, and does not care about theming.
   text: $euiColorDarkShade, // Reserved for special use cases
 ) !default;

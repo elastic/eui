@@ -60,6 +60,7 @@ describe('EuiNotificationEvent', () => {
           type="Alert"
           time="1 min ago"
           isRead={true}
+          onRead={() => {}}
           title="title"
           messages={['message']}
         />
@@ -247,6 +248,7 @@ describe('EuiNotificationEvent', () => {
           type="Alert"
           time="1 min ago"
           isRead={true}
+          onRead={() => {}}
           onClickPrimaryAction={onClickPrimaryAction}
           primaryAction="primary action label"
           title="title"

@@ -22,3 +22,4 @@ export { EuiLoadingElastic, EuiLoadingElasticProps } from './loading_elastic';
 export { EuiLoadingChart, EuiLoadingChartProps } from './loading_chart';
 export { EuiLoadingContent, EuiLoadingContentProps } from './loading_content';
 export { EuiLoadingSpinner, EuiLoadingSpinnerProps } from './loading_spinner';
+export { EuiLoadingLogo, EuiLoadingLogoProps } from './loading_logo';

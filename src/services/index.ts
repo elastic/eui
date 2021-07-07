@@ -41,6 +41,8 @@ export {
   getBreakpoint,
   isWithinBreakpoints,
   isWithinMaxBreakpoint,
+  isWithinMinBreakpoint,
+  EuiBreakpointSize,
 } from './breakpoint';
 
 export {
@@ -121,7 +123,11 @@ export {
   useCombinedRefs,
   useDependentState,
   useIsWithinBreakpoints,
+  useMouseMove,
+  isMouseEvent,
 } from './hooks';
+
+export { throttle } from './throttle';
 
 export {
   EuiSystemContext,

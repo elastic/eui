@@ -1,5 +1,75 @@
 [
   {
+    "version": "34.5.0",
+    "changes": [
+      {
+        "token": "euiNotificationEventReadIcon.readAria",
+        "changeType": "added",
+        "value": "{eventName} is read"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.unreadAria",
+        "changeType": "added",
+        "value": "{eventName} is unread"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.read",
+        "changeType": "added",
+        "value": "Read"
+      },
+      {
+        "token": "euiNotificationEventReadIcon.unread",
+        "changeType": "added",
+        "value": "Unread"
+      }
+    ]
+  },
+  {
+    "version": "34.0.0",
+    "changes": [
+      {
+        "token": "euiCollapsibleNav.closeButtonLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTourStepIndicator.ariaLabel",
+        "changeType": "modified",
+        "value": "Step {number} {status}"
+      },
+      {
+        "token": "euiTourStep.closeTour",
+        "changeType": "modified",
+        "value": "Close tour"
+      }
+    ]
+  },
+  {
+    "version": "33.0.0",
+    "changes": [
+      {
+        "token": "euiTableHeaderCell.clickForDescending",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTableHeaderCell.clickForUnsort",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTableHeaderCell.clickForAscending",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTableHeaderCell.titleTextWithSort",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiTableHeaderCell.titleTextWithDesc",
+        "changeType": "added",
+        "value": "{innerText}; {description}"
+      }
+    ]
+  },
+  {
     "version": "32.3.0",
     "changes": [
       {

@@ -95,14 +95,14 @@ export interface EuiTourStepProps
   style?: CSSProperties;
 
   /**
-   * Smaller title text that appears atop each step in the tour
+   * Smaller title text that appears atop each step in the tour. The subtitle gets wrapped in the appropriate heading level.
    */
-  subtitle: string;
+  subtitle: ReactNode;
 
   /**
-   * Larger title text specific to this step
+   * Larger title text specific to this step. The title gets wrapped in the appropriate heading level.
    */
-  title: string;
+  title: ReactNode;
 
   /**
    * Extra visual indication of step location
@@ -190,7 +190,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
               'euiTourStep.skipTour',
               'euiTourStep.closeTour',
             ]}
-            defaults={['End tour', 'Skip tour', 'Close']}>
+            defaults={['End tour', 'Skip tour', 'Close tour']}>
             {([endTour, skipTour, closeTour]: string[]) => {
               let content = closeTour;
               if (stepsTotal > 1) {

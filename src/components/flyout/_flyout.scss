@@ -1,6 +1,11 @@
 .euiFlyout {
   @include euiFlyout;
   animation: euiFlyout $euiAnimSpeedNormal $euiAnimSlightResistance;
+
+  // Remove focus ring because of `tabindex=0`
+  &:focus {
+    outline: none;
+  }
 }
 
 .euiFlyout__closeButton {
@@ -9,6 +14,23 @@
   right: $euiSizeS;
   top: $euiSizeS;
   z-index: 3;
+
+  &--outside {
+    // match dropshadow
+    @include euiBottomShadowLarge;
+    right: auto;
+    left: 0;
+    // Override the hover and focus transitions of buttons
+    // sass-lint:disable-block no-important
+    transform: translateX(calc(-100% - #{$euiSizeL})) !important;
+    animation: none !important;
+
+    .euiFlyout--left & {
+      left: auto;
+      right: 0;
+      transform: translateX(calc(100% + #{$euiSizeL})) !important;
+    }
+  }
 }
 
 .euiFlyoutBody__banner {
@@ -93,22 +115,79 @@ $flyoutSizes: (
 }
 
 /**
- * 1. Only small flyouts should NOT takeover the entire screen
+ * 1. Leave only a small sliver exposed on small screens so users understand that this is not a new page
  * 2. If a custom maxWidth is set, we need to override it.
  */
 @include euiBreakpoint('xs', 's') {
   // sass-lint:disable-block no-important
-  .euiFlyout:not(.euiFlyout--small) {  /* 1 */
-    left: 0;
-    min-width: 0;
-    width: auto;
-    border-left: none;
-    max-width: 100vw !important; /* 2 */
+  .euiFlyout {
+    max-width: 90vw !important; /* 1, 2 */
   }
 
   .euiFlyout--small {
-    width: 90vw; // ensure that it's only partially showing the main content
-    min-width: 0; /* 1 */
-    max-width: map-get(map-get($flyoutSizes, 'small'), 'max');
+    min-width: 0;
+    width: map-get(map-get($flyoutSizes, 'small'), 'min');
+  }
+
+  .euiFlyout--medium {
+    min-width: 0;
+    width: map-get(map-get($flyoutSizes, 'medium'), 'min');
+  }
+
+  .euiFlyout--large {
+    min-width: 0;
+    width: map-get(map-get($flyoutSizes, 'large'), 'min');
+  }
+
+  // Pull in close buttons a little
+  .euiFlyout__closeButton--outside {
+    // Override the hover and focus transitions of buttons
+    // sass-lint:disable-block no-important
+    transform: translateX(calc(-100% - #{$euiSizeXS})) !important;
+
+    .euiFlyout--left & {
+      transform: translateX(calc(100% + #{$euiSizeXS})) !important;
+    }
+  }
+}
+
+/**
+ * Left side flyout (should only be used for navigation)
+ */
+.euiFlyout--left {
+  border-right: $euiFlyoutBorder;
+  border-left: none;
+  right: auto;
+  left: 0;
+  clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
+  animation-name: euiFlyoutLeft;
+}
+
+// Specific keyframes so in comes in from the left
+@keyframes euiFlyoutLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  75% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+/**
+ * Pushed style (inside body)
+ */
+.euiFlyout.euiFlyout--push {
+  box-shadow: none;
+  clip-path: none;
+  animation-duration: 0s; // Don't animate on loading a docked nav
+  border-left: $euiBorderThick;
+  z-index: $euiZHeader - 1; // Make sure the header shadows are above
+
+  &.euiFlyout--left {
+    border-left: none;
+    border-right: $euiBorderThick;
   }
 }
