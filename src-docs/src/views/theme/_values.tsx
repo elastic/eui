@@ -1,5 +1,11 @@
-import React, { FunctionComponent, ReactElement, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  ReactElement,
+  ReactNode,
+  useCallback,
+} from 'react';
 import { css, SerializedStyles } from '@emotion/react';
+import debounce from 'lodash/debounce';
 import { EuiCode } from '../../../../src/components/code';
 import {
   EuiColorPicker,
@@ -62,13 +68,24 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
   const [color, setColor, errors] = useColorPickerState(
     isValidHex(String(value)) ? String(value) : ''
   );
-  const handleColorChange: EuiSetColorMethod = (text, { hex, isValid }) => {
-    setColor(text, { hex, isValid });
-    if (isValid) {
-      onUpdate && onUpdate(hex);
-    }
-  };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedOnUpdate = useCallback(
+    debounce<(...args: any[]) => void>((hex, isValid) => {
+      if (isValid) {
+        onUpdate && onUpdate(hex);
+      }
+    }, 100),
+    []
+  );
+
+  const handleColorChange: EuiSetColorMethod = useCallback(
+    (text, { hex, isValid }) => {
+      setColor(text, { hex, isValid });
+      debouncedOnUpdate(hex, isValid);
+    },
+    [setColor, debouncedOnUpdate]
+  );
   let exampleRender;
   if (
     (property === 'colors' || name.toLowerCase().includes('color')) &&
@@ -79,7 +96,6 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
         <EuiColorPicker
           swatches={[]}
           onChange={handleColorChange}
-          // @ts-ignore TODO
           color={color}
           isInvalid={!!errors}
           secondaryInputDisplay="bottom"

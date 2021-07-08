@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import {
   useEuiTheme,
@@ -33,13 +33,16 @@ export default () => {
   const [overrides, setOverrides] = React.useState({});
   const { euiTheme } = useEuiTheme();
 
-  const updateTheme = (newOverrides) => {
-    setOverrides(mergeDeep(overrides, newOverrides));
-  };
+  const updateTheme = useCallback(
+    (newOverrides) => {
+      setOverrides(mergeDeep(overrides, newOverrides));
+    },
+    [overrides]
+  );
 
   return (
-    <GuidePage title="Global values">
-      <EuiThemeProvider modify={overrides}>
+    <EuiThemeProvider modify={overrides}>
+      <GuidePage title="Global values">
         <EuiCallOut color="warning">
           <p>
             The <EuiCode>euiTheme()</EuiCode> hook is only available for
@@ -51,27 +54,27 @@ export default () => {
 
         <EuiSpacer />
 
-        <Colors onThemeUpdate={(overrides) => updateTheme(overrides)} />
+        <Colors onThemeUpdate={updateTheme} />
 
         <EuiHorizontalRule margin="xxl" />
 
-        <Size onThemeUpdate={(overrides) => updateTheme(overrides)} />
+        <Size onThemeUpdate={updateTheme} />
 
         <EuiHorizontalRule margin="xxl" />
 
-        <Typography onThemeUpdate={(overrides) => updateTheme(overrides)} />
+        <Typography onThemeUpdate={updateTheme} />
 
         <EuiHorizontalRule margin="xxl" />
 
-        <Border onThemeUpdate={(overrides) => updateTheme(overrides)} />
+        <Border onThemeUpdate={updateTheme} />
 
         {/* <EuiHorizontalRule margin="xxl" />
 
-        <Focus onThemeUpdate={(overrides) => updateTheme(overrides)} /> */}
+        <Focus onThemeUpdate={updateTheme} /> */}
 
         <EuiHorizontalRule margin="xxl" />
 
-        <Animation onThemeUpdate={(overrides) => updateTheme(overrides)} />
+        <Animation onThemeUpdate={updateTheme} />
 
         <EuiHorizontalRule margin="xxl" />
 
@@ -98,7 +101,7 @@ export default () => {
         )}
 
         <EuiCodeBlock>{JSON.stringify(euiTheme, null, 2)}</EuiCodeBlock>
-      </EuiThemeProvider>
-    </GuidePage>
+      </GuidePage>
+    </EuiThemeProvider>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import { useEuiTheme } from '../../../../src/services';
@@ -39,15 +39,18 @@ export default ({ onThemeUpdate }) => {
   const colors = euiTheme.colors;
   const props = getPropsFromThemeKey(EuiThemeColors);
 
-  const updateColor = (property, value) => {
-    onThemeUpdate({
-      colors: {
-        [colorMode]: {
-          [property]: value,
+  const updateColor = useCallback(
+    (property, value) => {
+      onThemeUpdate({
+        colors: {
+          [colorMode]: {
+            [property]: value,
+          },
         },
-      },
-    });
-  };
+      });
+    },
+    [colorMode, onThemeUpdate]
+  );
 
   return (
     <div>

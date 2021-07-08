@@ -124,6 +124,7 @@ export default ({ onThemeUpdate }) => {
                         <EuiText size="s" color="subdued" textAlign="right">
                           {fontFamilies.map((family, i) => (
                             <span
+                              key={family}
                               css={css`
                                 font-family: ${family};
                               `}>
@@ -146,6 +147,7 @@ export default ({ onThemeUpdate }) => {
                         <EuiText size="s" color="subdued" textAlign="right">
                           {codeFontFamilies.map((family, i) => (
                             <span
+                              key={family}
                               css={css`
                                 font-family: ${family};
                               `}>
