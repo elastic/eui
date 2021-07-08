@@ -100,7 +100,7 @@ export interface EuiPopoverProps {
    */
   focusTrapProps?: Pick<
     EuiFocusTrapProps,
-    'clickOutsideDisables' | 'noIsolation' | 'scrollLock'
+    'clickOutsideDisables' | 'noIsolation' | 'scrollLock' | 'shards'
   >;
   /**
    * Show arrow indicating to originating button
@@ -694,6 +694,7 @@ export class EuiPopover extends Component<Props, State> {
       'aria-labelledby': ariaLabelledBy,
       container,
       focusTrapProps,
+      tabIndex: tabIndexProp,
       ...rest
     } = this.props;
 
@@ -724,13 +725,13 @@ export class EuiPopover extends Component<Props, State> {
     let panel;
 
     if (!this.state.suppressingPopover && (isOpen || this.state.isClosing)) {
-      let tabIndex;
+      let tabIndex = tabIndexProp;
       let initialFocus;
       let ariaDescribedby;
       let ariaLive: HTMLAttributes<any>['aria-live'];
 
       if (ownFocus) {
-        tabIndex = 0;
+        tabIndex = tabIndexProp ?? 0;
         ariaLive = 'off';
 
         initialFocus = () => this.panel!;

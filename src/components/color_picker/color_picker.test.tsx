@@ -192,6 +192,10 @@ test('popover color selector is hidden when the ESC key pressed', async () => {
 
   findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('click');
   await sleep();
+  findTestSubject(colorPicker, 'euiColorPickerAnchor').simulate('keydown', {
+    key: keys.ENTER,
+  });
+  await sleep();
   findTestSubject(colorPicker, 'euiColorPickerPopover').simulate('keydown', {
     key: keys.ESCAPE,
   });
