@@ -386,7 +386,6 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       event.preventDefault();
       if (isColorSelectorShown) {
         const nextFocusEl = mode !== 'swatch' ? saturationRef : swatchRef;
-        console.log({ isColorSelectorShown, nextFocusEl, mode });
         if (nextFocusEl.current) {
           nextFocusEl.current.focus();
         }
