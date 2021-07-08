@@ -10,6 +10,7 @@ import { ComponentType, JSXElementConstructor, ReactNode } from 'react';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiListGroupItemProps } from '../list_group';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
+import { ExclusiveUnion } from '../common';
 
 export interface EuiDataGridControlColumn {
   /**
@@ -317,3 +318,18 @@ export interface EuiDataGridOnColumnResizeData {
 export type EuiDataGridOnColumnResizeHandler = (
   data: EuiDataGridOnColumnResizeData
 ) => void;
+
+export type EuiDataGridRowHeightOption =
+  | number
+  | ExclusiveUnion<{ lineCount: number }, { height: number }>;
+
+export interface EuiDataGridRowHeightsOptions {
+  /**
+   * Defines the default size for all rows. It can be line count or just height.
+   */
+  defaultHeight?: EuiDataGridRowHeightOption;
+  /**
+   * Defines the height for a specific row. It can be line count or just height.
+   */
+  rowHeights?: Record<number, EuiDataGridRowHeightOption>;
+}

@@ -67,7 +67,7 @@ export const TextExample = {
             <strong>EuiText</strong> is a generic catchall wrapper that will
             apply our standard typography styling and spacing to naked HTML.
             Because of its forced style it{' '}
-            <strong>only accepts raw HTML</strong> and can not / should not be
+            <strong>only accepts raw XHTML</strong> and can not / should not be
             used to wrap React components (which would break their styling).
           </p>
           <p>

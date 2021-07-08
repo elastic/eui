@@ -44,6 +44,7 @@ import {
   EuiDataGridFocusedCell,
   EuiDataGridOnColumnResizeHandler,
   EuiDataGridStyleFooter,
+  EuiDataGridRowHeightsOptions,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiButtonEmpty } from '../button';
@@ -67,6 +68,7 @@ import {
   DataGridSortingContext,
 } from './data_grid_context';
 import { useDataGridColumnSorting } from './column_sorting';
+import { RowHeightUtils } from './row_height_utils';
 
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
@@ -152,6 +154,10 @@ type CommonGridProps = CommonProps &
      * Sets the grid's width, forcing it to overflow in a scrollable container with cell virtualization
      */
     width?: CSSProperties['width'];
+    /**
+     * A #EuiDataGridRowHeightsOptions object that provides row heights options
+     */
+    rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   };
 
 // Force either aria-label or aria-labelledby to be defined
@@ -454,8 +460,10 @@ function useInMemoryValues(
   const onCellRender = useCallback((rowIndex, columnId, value) => {
     const nextInMemoryValues = _inMemoryValues.current;
     nextInMemoryValues[rowIndex] = nextInMemoryValues[rowIndex] || {};
-    nextInMemoryValues[rowIndex][columnId] = value;
-    setInMemoryValuesVersion((version) => version + 1);
+    if (nextInMemoryValues[rowIndex][columnId] !== value) {
+      nextInMemoryValues[rowIndex][columnId] = value;
+      setInMemoryValuesVersion((version) => version + 1);
+    }
   }, []);
 
   // if `inMemory.level` or `rowCount` changes reset the values
@@ -681,6 +689,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     minSizeForControls = MINIMUM_WIDTH_FOR_GRID_CONTROLS,
     height,
     width,
+    rowHeightsOptions,
     ...rest
   } = props;
 
@@ -876,6 +885,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
       }
     }
   }, [focusedCell, contentRef]);
+
+  const [rowHeightUtils] = useState(new RowHeightUtils());
+
+  useEffect(() => {
+    rowHeightUtils.computeStylesForGridCell(gridStyles);
+  }, [gridStyles, rowHeightUtils]);
 
   const classes = classNames(
     'euiDataGrid',
@@ -1117,6 +1132,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                         renderFooterCellValue={renderFooterCellValue}
                         rowCount={rowCount}
                         interactiveCellId={interactiveCellId}
+                        rowHeightsOptions={rowHeightsOptions}
+                        rowHeightUtils={rowHeightUtils}
+                        gridStyles={gridStyles}
                       />
                     </div>
                   </div>

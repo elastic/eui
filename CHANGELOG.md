@@ -1,6 +1,19 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `34.5.1`.
+No public interface changes since `34.6.0`.
+
+## [`34.6.0`](https://github.com/elastic/eui/tree/v34.6.0)
+
+- Updated `EuiContextMenuPanelDescriptor`'s `title` prop type from `string` to `ReactNode` ([#4933](https://github.com/elastic/eui/pull/4933))
+- Added `EuiTokensObject` type definition to allow enforcing i18n token coverage in consuming applications ([#4927](https://github.com/elastic/eui/issues/4927))
+- Added `rowHeightsOptions` to `EuiDataGrid` to allow configuring row heights ([#4853](https://github.com/elastic/eui/pull/4853))
+
+## [`34.5.2`](https://github.com/elastic/eui/tree/v34.5.2)
+
+**Bug fixes**
+
+- Fixed incorrect active filter count badge when `EuiSearchBar` is initialized with a query value ([#4928](https://github.com/elastic/eui/issues/4928))
+- Fixed a render-blocking error in `EuiCodeBlock` when certain HTML tags are childless ([#4929](https://github.com/elastic/eui/issues/4929))
 
 ## [`34.5.1`](https://github.com/elastic/eui/tree/v34.5.1)
 

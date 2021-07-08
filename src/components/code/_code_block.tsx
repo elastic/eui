@@ -85,7 +85,7 @@ const addLineData = (
       return result;
     }
 
-    if (node.children) {
+    if (node.children && node.children.length) {
       const children = addLineData(node.children, data);
       const first = children[0];
       const last = children[children.length - 1];
