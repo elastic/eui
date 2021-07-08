@@ -2,7 +2,7 @@
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
   "version": "34.6.0",
-  "license": "Apache-2.0",
+  "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
   "types": "eui.d.ts",
