@@ -145,4 +145,17 @@ describe('EuiSuperDatePicker', () => {
     );
     expect(component.find(EuiButton).props()).toMatchObject(updateButtonProps);
   });
+
+  test('onFocus prop-callback should be fired once', () => {
+    const focusMock = jest.fn();
+
+    const componentFocus = mount<EuiSuperDatePicker>(
+      <EuiSuperDatePicker onTimeChange={noop} onFocus={focusMock} />
+    );
+
+    componentFocus.find('EuiSuperDatePicker').simulate('focus');
+    componentFocus.find('EuiDatePickerRange').simulate('focus');
+
+    expect(focusMock).toBeCalledTimes(1);
+  });
 });

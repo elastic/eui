@@ -17,7 +17,7 @@
  * under the License.
  */
 
-import React, { Component } from 'react';
+import React, { Component, FocusEvent } from 'react';
 import classNames from 'classnames';
 import {
   prettyDuration,
@@ -86,6 +86,12 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * Used to localize e.g. month names, passed to `moment`
    */
   locale?: LocaleSpecifier;
+
+  /**
+   * Callback for when the super date picker gets focus
+   * Only triggered once on the parent Element
+   */
+  onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
 
   /**
    * Callback for when the refresh interval is fired.
@@ -516,6 +522,7 @@ export class EuiSuperDatePicker extends Component<
       isDisabled,
       isPaused,
       onRefreshChange,
+      onFocus,
       recentlyUsedRanges,
       refreshInterval,
       showUpdateButton,
@@ -555,7 +562,8 @@ export class EuiSuperDatePicker extends Component<
           <EuiFormControlLayout
             className="euiSuperDatePicker"
             isDisabled={isDisabled}
-            prepend={quickSelect}>
+            prepend={quickSelect}
+            onFocus={onFocus}>
             {this.renderDatePickerRange()}
           </EuiFormControlLayout>
         </EuiFlexItem>
