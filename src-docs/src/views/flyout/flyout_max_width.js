@@ -100,11 +100,11 @@ export default () => {
   }
   return (
     <div>
-      <EuiLink color="secondary" onClick={() => showFlyout('s')}>
+      <EuiLink color="success" onClick={() => showFlyout('s')}>
         Show <strong>small</strong> flyout with <strong>no max-width</strong>
       </EuiLink>
       <EuiSpacer size="s" />
-      <EuiLink color="secondary" onClick={() => showFlyout('s', true)}>
+      <EuiLink color="success" onClick={() => showFlyout('s', true)}>
         Show <strong>small</strong> flyout with{' '}
         <strong>default max-width</strong>
       </EuiLink>
@@ -123,11 +123,11 @@ export default () => {
 
       <EuiSpacer />
 
-      <EuiLink color="secondary" onClick={() => showFlyout('m')}>
+      <EuiLink color="success" onClick={() => showFlyout('m')}>
         Show <strong>medium</strong> flyout with <strong>no max-width</strong>
       </EuiLink>
       <EuiSpacer size="s" />
-      <EuiLink color="secondary" onClick={() => showFlyout('m', true)}>
+      <EuiLink color="success" onClick={() => showFlyout('m', true)}>
         Show <strong>medium</strong> flyout with{' '}
         <strong>default max-width</strong>
       </EuiLink>
@@ -138,18 +138,18 @@ export default () => {
         100vw wins on small screens
       </EuiLink>
       <EuiSpacer size="s" />
-      <EuiLink color="secondary" onClick={() => showFlyout('m', 900)}>
+      <EuiLink color="success" onClick={() => showFlyout('m', 900)}>
         Show <strong>medium</strong> flyout with{' '}
         <strong>larger custom max-width</strong>
       </EuiLink>
 
       <EuiSpacer />
 
-      <EuiLink color="secondary" onClick={() => showFlyout('l')}>
+      <EuiLink color="success" onClick={() => showFlyout('l')}>
         Show <strong>large</strong> flyout with <strong>no max-width</strong>
       </EuiLink>
       <EuiSpacer size="s" />
-      <EuiLink color="secondary" onClick={() => showFlyout('l', true)}>
+      <EuiLink color="success" onClick={() => showFlyout('l', true)}>
         Show <strong>large</strong> flyout with{' '}
         <strong>default max-width</strong>
       </EuiLink>
@@ -160,18 +160,18 @@ export default () => {
         100vw wins on small screens
       </EuiLink>
       <EuiSpacer size="s" />
-      <EuiLink color="secondary" onClick={() => showFlyout('l', 1600)}>
+      <EuiLink color="success" onClick={() => showFlyout('l', 1600)}>
         Show <strong>large</strong> flyout with{' '}
         <strong>larger custom max-width</strong>
       </EuiLink>
 
       <EuiSpacer />
 
-      <EuiLink color="secondary" onClick={() => showFlyout(240)}>
+      <EuiLink color="success" onClick={() => showFlyout(240)}>
         Show <strong>240</strong> flyout with <strong>no max-width</strong>
       </EuiLink>
       <EuiSpacer size="s" />
-      <EuiLink color="secondary" onClick={() => showFlyout(240, true)}>
+      <EuiLink color="success" onClick={() => showFlyout(240, true)}>
         Show <strong>240</strong> flyout with <strong>default max-width</strong>
       </EuiLink>
       <EuiSpacer size="s" />
@@ -181,7 +181,7 @@ export default () => {
         wins on small screens
       </EuiLink>
       <EuiSpacer size="s" />
-      <EuiLink color="secondary" onClick={() => showFlyout(240, 1600)}>
+      <EuiLink color="success" onClick={() => showFlyout(240, 1600)}>
         Show <strong>240</strong> flyout with{' '}
         <strong>larger custom max-width</strong>
       </EuiLink>

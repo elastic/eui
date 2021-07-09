@@ -31,6 +31,7 @@ import {
   EuiDataGridPopoverContentProps,
   EuiDataGridControlColumn,
   EuiDataGridToolBarVisibilityColumnSelectorOptions,
+  EuiDataGridRowHeightsOptions,
 } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 
 import { EuiDataGridCellValueElementProps } from '!!prop-loader!../../../../src/components/datagrid/data_grid_cell';
@@ -377,6 +378,7 @@ export const DataGridExample = {
         EuiDataGridToolBarVisibilityOptions,
         EuiDataGridToolBarVisibilityColumnSelectorOptions,
         EuiDataGridPopoverContentProps,
+        EuiDataGridRowHeightsOptions,
       },
       demo: (
         <Fragment>
