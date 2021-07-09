@@ -85,7 +85,7 @@ type _EuiImageSrcOrUrl = ExclusiveUnion<
 
 export type EuiImageProps = CommonProps &
   _EuiImageSrcOrUrl &
-  ImgHTMLAttributes<HTMLImageElement> & {
+  Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt'> & {
     /**
      * Separate from the caption is a title on the alt tag itself.
      * This one is required for accessibility.
