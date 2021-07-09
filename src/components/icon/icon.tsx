@@ -8,7 +8,7 @@
 
 import React, {
   PureComponent,
-  HTMLAttributes,
+  ImgHTMLAttributes,
   ComponentType,
   SVGAttributes,
 } from 'react';
@@ -733,7 +733,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
           src={icon}
           className={classes}
           tabIndex={tabIndex}
-          {...(rest as HTMLAttributes<HTMLImageElement>)}
+          {...(rest as ImgHTMLAttributes<HTMLImageElement>)}
         />
       );
     } else {
