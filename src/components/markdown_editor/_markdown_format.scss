@@ -2,40 +2,59 @@
 // Uses the EuiText to wrap all the content.
 // Uses the EuiLink, EuiCode and EuiHorizontalRule.
 
-.euiMarkdownFormat {
-  // We're using alpha values to support apps that
-  // display markdown on backgrounds of various colors
-
-  // Grayscale variables
-  $euiMarkdownAlphaLightestShade: rgba($euiColorFullShade, .05);
-  $euiMarkdownAlphaLightShade: rgba($euiColorFullShade, .15);
-  $euiMarkdownAlphaDarkShade: rgba($euiColorFullShade, .65);
-
-  // Reverse grayscale for opposite of theme
-  $euiMarkdownAlphaLightestShadeReversed: rgba($euiColorEmptyShade, .05);
-  $euiMarkdownAlphaLightShadeReversed: rgba($euiColorEmptyShade, .15);
-  $euiMarkdownAlphaDarkShadeReversed: rgba($euiColorEmptyShade, .65);
-
+@mixin adjustComponentColors($color) {
 
   // Blockquotes
   .euiMarkdownFormat__blockquote {
     border-left-style: solid;
-    border-left-color: $euiMarkdownAlphaLightShade;
   }
 
-  .euiTextColor--ghost .euiMarkdownFormat__blockquote {
-    border-left-color: $euiMarkdownAlphaLightShadeReversed;
+  .euiMarkdownFormat__blockquote {
+    border-left-color: $color;
   }
 
   // Horizontal Rule
   .euiHorizontalRule {
-    background-color: $euiMarkdownAlphaLightShade;
+    background-color: $color;
   }
 
-  .euiTextColor--ghost .euiHorizontalRule {
-    background-color: $euiMarkdownAlphaLightShadeReversed;
+  .euiMarkdownFormat__table tr {
+    background-color: transparent;
   }
 
+  .euiMarkdownFormat__table {
+    border-left: 1px solid $color;
+  }
+
+  .euiMarkdownFormat__table th,
+  .euiMarkdownFormat__table td {
+    border-top: 1px solid $color;
+    border-bottom: 1px solid $color;
+
+    &:last-child {
+      border-right: 1px solid $color;
+    }
+  }
+
+  .euiMarkdownFormat__table tr {
+    border-top: 1px solid $color;
+  }
+}
+
+.euiMarkdownFormat {
+  $euiMarkdownAlphaGhostShade: rgba($euiColorGhost, .15);
+  $euiMarkdownAlphaInkShade: rgba($euiColorInk, .15);
+  $euiMarkdownAlphaShade: rgba($euiColorFullShade, .15);
+
+  @include adjustComponentColors($euiMarkdownAlphaShade);
+
+  &--lightComponents {
+    @include adjustComponentColors($euiMarkdownAlphaGhostShade);
+  }
+
+  &--darkComponents {
+    @include adjustComponentColors($euiMarkdownAlphaInkShade);
+  }
 
   // Checkboxes
   .euiCheckbox {
@@ -53,23 +72,7 @@
     display: block;
     width: 100%;
     overflow: auto;
-    border-left: 1px solid $euiMarkdownAlphaLightShade;
     border-spacing: 0;
     border-collapse: collapse;
-  }
-
-  .euiMarkdownFormat__table th,
-  .euiMarkdownFormat__table td {
-    border-top: 1px solid $euiMarkdownAlphaLightShade;
-    border-bottom: 1px solid $euiMarkdownAlphaLightShade;
-
-    &:last-child {
-      border-right: 1px solid $euiMarkdownAlphaLightShade;
-    }
-  }
-
-  .euiMarkdownFormat__table tr {
-    background-color: transparent;
-    border-top: 1px solid $euiMarkdownAlphaLightShade;
   }
 }

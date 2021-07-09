@@ -182,12 +182,27 @@ export default () => {
     };
   });
 
-  console.log('textSizeOptions', textSizeOptions);
-  console.log('textSizeOptions value', textSizeOptions[2].value);
+  const componentsThemeOptions = [
+    {
+      value: 'default',
+      text: 'Default theme',
+    },
+    {
+      value: 'light',
+      text: 'Light theme',
+    },
+    {
+      value: 'dark',
+      text: 'Dark theme',
+    },
+  ];
 
   const [textSize, setTextSize] = useState(textSizeOptions[2].value);
   const [fontSizeScale, setFontSizeScale] = useState(16);
   const [textColor, setTextColor] = useState(textColorsOptions[0].value);
+  const [componentsTheme, setComponentsTheme] = useState(
+    componentsThemeOptions[0].value
+  );
 
   const onChangeTextSize = (e) => {
     setTextSize(e.target.value);
@@ -202,19 +217,33 @@ export default () => {
     setTextColor(e.target.value);
   };
 
+  const onChangeComponentsTheme = (e) => {
+    setComponentsTheme(e.target.value);
+  };
+
   const panelClasses = classNames({
     guideDemo__ghostBackground: textColor === 'ghost',
   });
 
   return (
     <>
-      <EuiFlexGroup style={{ maxWidth: 600 }}>
+      <EuiFlexGroup>
         <EuiFlexItem>
           <EuiFormRow label="Text color">
             <EuiSelect
               options={textColorsOptions}
               value={textColor}
               onChange={(e) => onChangeTextColor(e)}
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+
+        <EuiFlexItem>
+          <EuiFormRow label="Components theme">
+            <EuiSelect
+              options={componentsThemeOptions}
+              value={componentsTheme}
+              onChange={(e) => onChangeComponentsTheme(e)}
             />
           </EuiFormRow>
         </EuiFlexItem>
@@ -250,6 +279,7 @@ export default () => {
         <EuiMarkdownFormat
           textSize={textSize}
           color={textColor}
+          componentsTheme={componentsTheme}
           style={{
             fontSize: textSize === 'relative' && `${fontSizeScale}px`,
           }}>
