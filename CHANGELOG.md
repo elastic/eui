@@ -6,6 +6,7 @@
 **Bug fixes**
 
 - Fixed focus bug in `EuiColorPicker` which allowed user to break out of focus lock ([#4886](https://github.com/elastic/eui/pull/4886))
+- Fixed render-blocking error when `EuiCodeBlock` is configured with an unsupported language ([#4943](https://github.com/elastic/eui/pull/4943))
 
 ## [`35.0.0`](https://github.com/elastic/eui/tree/v35.0.0)
 
