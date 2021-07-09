@@ -2,11 +2,11 @@
 
 exports[`EuiCode renders a code snippet 1`] = `
 <span
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline prismjs language-none testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline prismjs language-text testClass1 testClass2"
 >
   <code
     aria-label="aria-label"
-    class="euiCodeBlock__code"
+    class="euiCodeBlock__code text"
     data-test-subj="test subject string"
   >
     var some = 'code';

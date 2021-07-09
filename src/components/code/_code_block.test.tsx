@@ -42,6 +42,14 @@ describe('EuiCodeBlockImpl', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    test('gracefully falls back to `text` language', () => {
+      const component = render(
+        <EuiCodeBlockImpl language="nonsense">{code}</EuiCodeBlockImpl>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 
   describe('block', () => {
