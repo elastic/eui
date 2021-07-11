@@ -38,7 +38,7 @@ $elasticLogoTextDark: #1C1E23;
 
 .guideSideNav__content {
   @include euiYScroll;
-  padding: 0 $euiSizeL $euiSizeL;
+  padding: $euiSizeL;
 }
 
 .guideSideNav__search {
