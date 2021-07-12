@@ -1,4 +1,4 @@
-<img src="https://repository-images.githubusercontent.com/107422373/d4a9f100-4734-11ea-8bb9-bf6a193cb8fb" />
+<img src="https://repository-images.githubusercontent.com/107422373/b6180480-a1d7-11eb-8a3c-902086232aa7" />
 
 # Elastic UI Framework
 
@@ -84,9 +84,9 @@ directly in the code. And unit test coverage for the UI components allows us to 
 
 ## License
 
-[Apache Licensed.][license] Read the [FAQ][faq] for details.
+[Dual-licensed under Elastic v2 and Server Side Public License, v 1][license] Read the [FAQ][faq] for details.
 
-[license]: LICENSE
+[license]: LICENSE.txt
 [faq]: FAQ.md
 [consuming]: wiki/consuming.md
 [docs]: https://elastic.github.io/eui/

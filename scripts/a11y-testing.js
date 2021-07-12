@@ -1,62 +1,40 @@
-/*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
 const chalk = require('chalk');
 const puppeteer = require('puppeteer');
-const { AxePuppeteer } = require('axe-puppeteer');
+const { AxePuppeteer } = require('@axe-core/puppeteer');
 
 const docsPages = async (root, page) => {
   const pagesToSkip = [
-    `${root}#/layout/resizable-container`,
-    `${root}#/navigation/button`,
-    `${root}#/navigation/tree-view`,
-    `${root}#/navigation/side-nav`,
+    `${root}#/layout/page`, // Has duplicate `<main>` element
+    `${root}#/layout/page-header`, // Has duplicate `<header>` element
     `${root}#/tabular-content/tables`,
     `${root}#/tabular-content/in-memory-tables`,
     `${root}#/display/aspect-ratio`,
-    `${root}#/display/code`,
-    `${root}#/display/drag-and-drop`,
-    `${root}#/forms/compressed-forms`,
-    `${root}#/forms/super-select`,
     `${root}#/forms/combo-box`,
     `${root}#/forms/color-selection`,
-    `${root}#/forms/code-editor`,
     `${root}#/forms/date-picker`,
-    `${root}#/forms/suggest`,
     `${root}#/forms/super-date-picker`,
-    `${root}#/elastic-charts/creating-charts`,
-    `${root}#/elastic-charts/part-to-whole-comparisons`,
-    `${root}#/utilities/css-utility-classes`,
-    `${root}#/utilities/focus-trap`,
+    `${root}#/tabular-content/data-grid`,
+    `${root}#/tabular-content/data-grid-in-memory-settings`,
+    `${root}#/tabular-content/data-grid-schemas-and-popovers`,
+    `${root}#/tabular-content/data-grid-focus`,
+    `${root}#/tabular-content/data-grid-styling-and-control`,
+    `${root}#/tabular-content/data-grid-control-columns`,
+    `${root}#/tabular-content/data-grid-footer-row`,
+    `${root}#/tabular-content/data-grid-virtualization`,
+    `${root}#/tabular-content/data-grid-row-height-options`,
   ];
 
   return [
     root,
-    ...(await page.$$eval('nav a', anchors => anchors.map(a => a.href))),
-  ].filter(link => !pagesToSkip.includes(link));
+    ...(await page.$$eval('nav a', (anchors) => anchors.map((a) => a.href))),
+  ].filter((link) => !pagesToSkip.includes(link));
 };
 
-const printResult = result =>
+const printResult = (result) =>
   console.log(`[${result.id}]: ${result.description}
   Help: ${chalk.blue(result.helpUrl)}
   Elements:
-    - ${result.nodes.map(node => node.target).join('\n    - ')}`);
+    - ${result.nodes.map((node) => node.target).join('\n    - ')}`);
 
 (async () => {
   let totalViolationsCount = 0;
@@ -103,6 +81,11 @@ const printResult = result =>
             id: 'scrollable-region-focusable',
             selector: '[data-skip-axe="scrollable-region-focusable"]',
           },
+          {
+            // can remove after https://github.com/dequelabs/axe-core/issues/2690 is resolved
+            id: 'region',
+            selector: 'iframe, #player,',
+          },
         ],
       })
       .analyze();
@@ -114,7 +97,7 @@ const printResult = result =>
       console.log(chalk.red(`Errors on ${pageName}`));
     }
 
-    violations.forEach(result => {
+    violations.forEach((result) => {
       printResult(result);
     });
   }
@@ -136,4 +119,4 @@ Firefox: https://addons.mozilla.org/en-US/firefox/addon/axe-devtools/`);
   } else {
     console.log(chalk.green('axe found no accessibility errors!'));
   }
-})().catch(e => console.error(e));
+})().catch((e) => console.error(e));

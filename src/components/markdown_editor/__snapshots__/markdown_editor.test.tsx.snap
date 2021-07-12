@@ -16,12 +16,13 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Bold"
-          class="euiButtonIcon euiButtonIcon--text"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
           type="button"
         >
           <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
+            color="inherit"
             data-euiicon-type="editorBold"
           />
         </button>
@@ -31,12 +32,13 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Italic"
-          class="euiButtonIcon euiButtonIcon--text"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
           type="button"
         >
           <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
+            color="inherit"
             data-euiicon-type="editorItalic"
           />
         </button>
@@ -49,12 +51,13 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Unordered list"
-          class="euiButtonIcon euiButtonIcon--text"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
           type="button"
         >
           <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
+            color="inherit"
             data-euiicon-type="editorUnorderedList"
           />
         </button>
@@ -64,12 +67,13 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Ordered list"
-          class="euiButtonIcon euiButtonIcon--text"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
           type="button"
         >
           <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
+            color="inherit"
             data-euiicon-type="editorOrderedList"
           />
         </button>
@@ -79,12 +83,13 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Task list"
-          class="euiButtonIcon euiButtonIcon--text"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
           type="button"
         >
           <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
+            color="inherit"
             data-euiicon-type="MarkdownCheckmark"
           />
         </button>
@@ -97,12 +102,13 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Quote"
-          class="euiButtonIcon euiButtonIcon--text"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
           type="button"
         >
           <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
+            color="inherit"
             data-euiicon-type="quote"
           />
         </button>
@@ -112,12 +118,13 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Code"
-          class="euiButtonIcon euiButtonIcon--text"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
           type="button"
         >
           <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
+            color="inherit"
             data-euiicon-type="editorCodeBlock"
           />
         </button>
@@ -127,12 +134,13 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Link"
-          class="euiButtonIcon euiButtonIcon--text"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
           type="button"
         >
           <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
+            color="inherit"
             data-euiicon-type="editorLink"
           />
         </button>
@@ -145,12 +153,13 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <button
           aria-label="Tooltip"
-          class="euiButtonIcon euiButtonIcon--text"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
           type="button"
         >
           <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
+            color="inherit"
             data-euiicon-type="editorComment"
           />
         </button>
@@ -165,6 +174,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       >
         <span
           class="euiButtonContent__icon"
+          color="inherit"
           data-euiicon-type="eye"
         />
         <span
@@ -176,7 +186,8 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
     </button>
   </div>
   <div
-    style="display:block"
+    class="euiMarkdownEditor__toggleContainer"
+    style="height:calc(100% - 0px)"
   >
     <div
       class="euiMarkdownEditorDropZone"
@@ -186,7 +197,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
         class="euiMarkdownEditorTextArea"
         id="editorId"
         rows="6"
-        style="height:calc(116px"
+        style="height:calc(250px);max-height:500px"
       />
       <div
         class="euiMarkdownEditorFooter"
@@ -196,12 +207,933 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
         />
         <button
           aria-label="Show markdown help"
-          class="euiButtonIcon euiButtonIcon--text euiMarkdownEditorFooter__help"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiMarkdownEditorFooter__help"
           type="button"
         >
           <span
             aria-hidden="true"
             class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="MarkdownLogo"
+          />
+        </button>
+      </div>
+      <input
+        autocomplete="off"
+        multiple=""
+        style="display:none"
+        tabindex="-1"
+        type="file"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = `
+<div
+  class="euiMarkdownEditor testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiMarkdownEditorToolbar"
+  >
+    <div
+      class="euiMarkdownEditorToolbar__buttons"
+    >
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Bold"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorBold"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Italic"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorItalic"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Unordered list"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorUnorderedList"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Ordered list"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorOrderedList"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Task list"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="MarkdownCheckmark"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Quote"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="quote"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Code"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorCodeBlock"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Link"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorLink"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Tooltip"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorComment"
+          />
+        </button>
+      </span>
+    </div>
+    <button
+      class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small"
+      type="button"
+    >
+      <span
+        class="euiButtonContent euiButtonEmpty__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="eye"
+        />
+        <span
+          class="euiButtonEmpty__text"
+        >
+          Preview
+        </span>
+      </span>
+    </button>
+  </div>
+  <div
+    class="euiMarkdownEditor__toggleContainer"
+    style="height:calc(100% - 0px)"
+  >
+    <div
+      class="euiMarkdownEditorDropZone"
+    >
+      <textarea
+        aria-label="aria-label"
+        class="euiMarkdownEditorTextArea"
+        id="editorId"
+        rows="6"
+        style="height:calc(250px);max-height:500px"
+      />
+      <div
+        class="euiMarkdownEditorFooter"
+      >
+        <div
+          class="euiMarkdownEditorFooter__actions"
+        />
+        <button
+          aria-label="Show markdown help"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiMarkdownEditorFooter__help"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="MarkdownLogo"
+          />
+        </button>
+      </div>
+      <input
+        autocomplete="off"
+        multiple=""
+        style="display:none"
+        tabindex="-1"
+        type="file"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
+<div
+  class="euiMarkdownEditor euiMarkdownEditor--fullHeight testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiMarkdownEditorToolbar"
+  >
+    <div
+      class="euiMarkdownEditorToolbar__buttons"
+    >
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Bold"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorBold"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Italic"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorItalic"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Unordered list"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorUnorderedList"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Ordered list"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorOrderedList"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Task list"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="MarkdownCheckmark"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Quote"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="quote"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Code"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorCodeBlock"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Link"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorLink"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Tooltip"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorComment"
+          />
+        </button>
+      </span>
+    </div>
+    <button
+      class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small"
+      type="button"
+    >
+      <span
+        class="euiButtonContent euiButtonEmpty__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="eye"
+        />
+        <span
+          class="euiButtonEmpty__text"
+        >
+          Preview
+        </span>
+      </span>
+    </button>
+  </div>
+  <div
+    class="euiMarkdownEditor__toggleContainer"
+    style="height:calc(100% - 0px)"
+  >
+    <div
+      class="euiMarkdownEditorDropZone"
+    >
+      <textarea
+        aria-label="aria-label"
+        class="euiMarkdownEditorTextArea"
+        id="editorId"
+        rows="6"
+        style="height:100%;max-height:"
+      />
+      <div
+        class="euiMarkdownEditorFooter"
+      >
+        <div
+          class="euiMarkdownEditorFooter__actions"
+        />
+        <button
+          aria-label="Show markdown help"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiMarkdownEditorFooter__help"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="MarkdownLogo"
+          />
+        </button>
+      </div>
+      <input
+        autocomplete="off"
+        multiple=""
+        style="display:none"
+        tabindex="-1"
+        type="file"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
+<div
+  class="euiMarkdownEditor testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiMarkdownEditorToolbar"
+  >
+    <div
+      class="euiMarkdownEditorToolbar__buttons"
+    >
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Bold"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorBold"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Italic"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorItalic"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Unordered list"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorUnorderedList"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Ordered list"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorOrderedList"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Task list"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="MarkdownCheckmark"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Quote"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="quote"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Code"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorCodeBlock"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Link"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorLink"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Tooltip"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorComment"
+          />
+        </button>
+      </span>
+    </div>
+    <button
+      class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small"
+      type="button"
+    >
+      <span
+        class="euiButtonContent euiButtonEmpty__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="eye"
+        />
+        <span
+          class="euiButtonEmpty__text"
+        >
+          Preview
+        </span>
+      </span>
+    </button>
+  </div>
+  <div
+    class="euiMarkdownEditor__toggleContainer"
+    style="height:calc(100% - 0px)"
+  >
+    <div
+      class="euiMarkdownEditorDropZone"
+    >
+      <textarea
+        aria-label="aria-label"
+        class="euiMarkdownEditorTextArea"
+        id="editorId"
+        rows="6"
+        style="height:calc(400px);max-height:500px"
+      />
+      <div
+        class="euiMarkdownEditorFooter"
+      >
+        <div
+          class="euiMarkdownEditorFooter__actions"
+        />
+        <button
+          aria-label="Show markdown help"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiMarkdownEditorFooter__help"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="MarkdownLogo"
+          />
+        </button>
+      </div>
+      <input
+        autocomplete="off"
+        multiple=""
+        style="display:none"
+        tabindex="-1"
+        type="file"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = `
+<div
+  class="euiMarkdownEditor testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiMarkdownEditorToolbar"
+  >
+    <div
+      class="euiMarkdownEditorToolbar__buttons"
+    >
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Bold"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorBold"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Italic"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorItalic"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Unordered list"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorUnorderedList"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Ordered list"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorOrderedList"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Task list"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="MarkdownCheckmark"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Quote"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="quote"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Code"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorCodeBlock"
+          />
+        </button>
+      </span>
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Link"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorLink"
+          />
+        </button>
+      </span>
+      <span
+        class="euiMarkdownEditorToolbar__divider"
+      />
+      <span
+        class="euiToolTipAnchor"
+      >
+        <button
+          aria-label="Tooltip"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="editorComment"
+          />
+        </button>
+      </span>
+    </div>
+    <button
+      class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small"
+      type="button"
+    >
+      <span
+        class="euiButtonContent euiButtonEmpty__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="eye"
+        />
+        <span
+          class="euiButtonEmpty__text"
+        >
+          Preview
+        </span>
+      </span>
+    </button>
+  </div>
+  <div
+    class="euiMarkdownEditor__toggleContainer"
+    style="height:calc(100% - 0px)"
+  >
+    <div
+      class="euiMarkdownEditorDropZone"
+    >
+      <textarea
+        aria-label="aria-label"
+        class="euiMarkdownEditorTextArea"
+        id="editorId"
+        rows="6"
+        style="height:calc(250px);max-height:600px"
+      />
+      <div
+        class="euiMarkdownEditorFooter"
+      >
+        <div
+          class="euiMarkdownEditorFooter__actions"
+        />
+        <button
+          aria-label="Show markdown help"
+          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiMarkdownEditorFooter__help"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
             data-euiicon-type="MarkdownLogo"
           />
         </button>

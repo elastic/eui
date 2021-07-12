@@ -5,9 +5,9 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import {
+  EuiLink,
   EuiMarkdownFormat,
   EuiText,
-  EuiSpacer,
 } from '../../../../src/components';
 
 import { Link } from 'react-router-dom';
@@ -23,7 +23,6 @@ const markdownFormatSinkHtml = renderToHtml(MarkdownFormatSink);
 export const MarkdownFormatExample = {
   title: 'Markdown format',
   beta: true,
-  isNew: true,
   intro: (
     <Fragment>
       <EuiText>
@@ -37,7 +36,6 @@ export const MarkdownFormatExample = {
           <Link to="/editors-syntax/markdown-plugins">markdown plugins</Link>.
         </p>
       </EuiText>
-      <EuiSpacer size="xxl" />
     </Fragment>
   ),
   sections: [
@@ -57,9 +55,11 @@ export const MarkdownFormatExample = {
         <p>
           <strong>EuiMarkdownFormat</strong> is a wrapper that will render
           Markdown provided. EuiMarkdownFormat uses{' '}
-          <Link to="https://github.com/remarkjs/remark)">Remark</Link> by
-          default. The translation layer automatically substitutes raw HTML
-          output with their EUI equivilant. This means anchor and code blocks
+          <EuiLink target="_blank" href="https://github.com/remarkjs/remark">
+            Remark
+          </EuiLink>{' '}
+          by default. The translation layer automatically substitutes raw HTML
+          output with their EUI equivalent. This means anchor and code blocks
           will become <strong>EuiLink</strong> and <strong>EuiCodeBlock</strong>{' '}
           components respectively.
         </p>

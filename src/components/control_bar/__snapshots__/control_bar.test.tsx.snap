@@ -304,7 +304,9 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                 className="euiControlBar__button"
                 color="ghost"
                 data-test-subj="dts"
+                disabled={false}
                 element="button"
+                isDisabled={false}
                 onClick={[Function]}
                 size="s"
                 type="button"
@@ -312,6 +314,7 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
                 <button
                   className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                   data-test-subj="dts"
+                  disabled={false}
                   onClick={[Function]}
                   style={
                     Object {
@@ -625,7 +628,9 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                 className="euiControlBar__button"
                 color="ghost"
                 data-test-subj="dts"
+                disabled={false}
                 element="button"
+                isDisabled={false}
                 onClick={[Function]}
                 size="s"
                 type="button"
@@ -633,6 +638,7 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
                 <button
                   className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                   data-test-subj="dts"
+                  disabled={false}
                   onClick={[Function]}
                   style={
                     Object {
@@ -945,7 +951,9 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                 className="euiControlBar__button"
                 color="ghost"
                 data-test-subj="dts"
+                disabled={false}
                 element="button"
+                isDisabled={false}
                 onClick={[Function]}
                 size="s"
                 type="button"
@@ -953,6 +961,7 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
                 <button
                   className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                   data-test-subj="dts"
+                  disabled={false}
                   onClick={[Function]}
                   style={
                     Object {
@@ -1178,7 +1187,9 @@ exports[`EuiControlBar props position is rendered 1`] = `
             className="euiControlBar__button"
             color="ghost"
             data-test-subj="dts"
+            disabled={false}
             element="button"
+            isDisabled={false}
             onClick={[Function]}
             size="s"
             type="button"
@@ -1186,6 +1197,7 @@ exports[`EuiControlBar props position is rendered 1`] = `
             <button
               className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
               data-test-subj="dts"
+              disabled={false}
               onClick={[Function]}
               style={
                 Object {
@@ -1483,7 +1495,9 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                 className="euiControlBar__button"
                 color="ghost"
                 data-test-subj="dts"
+                disabled={false}
                 element="button"
+                isDisabled={false}
                 onClick={[Function]}
                 size="s"
                 type="button"
@@ -1491,6 +1505,7 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
                 <button
                   className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                   data-test-subj="dts"
+                  disabled={false}
                   onClick={[Function]}
                   style={
                     Object {
@@ -1808,7 +1823,9 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                 className="euiControlBar__button"
                 color="ghost"
                 data-test-subj="dts"
+                disabled={false}
                 element="button"
+                isDisabled={false}
                 onClick={[Function]}
                 size="s"
                 type="button"
@@ -1816,6 +1833,7 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
                 <button
                   className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                   data-test-subj="dts"
+                  disabled={false}
                   onClick={[Function]}
                   style={
                     Object {
@@ -2133,7 +2151,9 @@ exports[`EuiControlBar props size is rendered 1`] = `
                 className="euiControlBar__button"
                 color="ghost"
                 data-test-subj="dts"
+                disabled={false}
                 element="button"
+                isDisabled={false}
                 onClick={[Function]}
                 size="s"
                 type="button"
@@ -2141,6 +2161,7 @@ exports[`EuiControlBar props size is rendered 1`] = `
                 <button
                   className="euiButton euiButton--ghost euiButton--small euiControlBar__button"
                   data-test-subj="dts"
+                  disabled={false}
                   onClick={[Function]}
                   style={
                     Object {

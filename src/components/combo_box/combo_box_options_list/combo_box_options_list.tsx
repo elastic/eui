@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -53,13 +42,6 @@ import {
 import { CommonProps } from '../../common';
 import { EuiBadge } from '../../badge/';
 
-const positionToClassNameMap: {
-  [position in EuiComboBoxOptionsListPosition]: string;
-} = {
-  top: 'euiComboBoxOptionsList--top',
-  bottom: 'euiComboBoxOptionsList--bottom',
-};
-
 const OPTION_CONTENT_CLASSNAME = 'euiComboBoxOption__content';
 
 export type EuiComboBoxOptionsListProps<T> = CommonProps &
@@ -89,6 +71,9 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps &
     onOptionEnterKey?: OptionHandler<T>;
     onScroll?: ListProps['onScroll'];
     optionRef: (index: number, node: RefInstance<EuiFilterSelectItem>) => void;
+    /**
+     * Array of EuiComboBoxOptionOption objects. See #EuiComboBoxOptionOption
+     */
     options: Array<EuiComboBoxOptionOption<T>>;
     position?: EuiComboBoxOptionsListPosition;
     renderOption?: (
@@ -167,7 +152,11 @@ export class EuiComboBoxOptionsList<T> extends Component<
       this.updatePosition();
     }
 
-    if (this.listRef && typeof this.props.activeOptionIndex !== 'undefined') {
+    if (
+      this.listRef &&
+      typeof this.props.activeOptionIndex !== 'undefined' &&
+      this.props.activeOptionIndex !== prevProps.activeOptionIndex
+    ) {
       this.listRef.scrollToItem(this.props.activeOptionIndex, 'auto');
     }
   }
@@ -303,7 +292,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       onScroll,
       optionRef,
       options,
-      position,
+      position = 'bottom',
       renderOption,
       rootId,
       rowHeight,
@@ -447,7 +436,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
 
     const numVisibleOptions =
       matchingOptions.length < 7 ? matchingOptions.length : 7;
-    const height = numVisibleOptions * rowHeight;
+    const height = numVisibleOptions * (rowHeight + 1); // Add one for the border
 
     // bounded by max-height of euiComboBoxOptionsList__rowWrap
     const boundedHeight = height > 200 ? 200 : height;
@@ -466,12 +455,17 @@ export class EuiComboBoxOptionsList<T> extends Component<
       </FixedSizeList>
     );
 
+    /**
+     * Reusing the EuiPopover__panel classes to help with consistency/maintenance.
+     * But this should really be converted to user the popover component.
+     */
     const classes = classNames(
       'euiComboBoxOptionsList',
-      position ? positionToClassNameMap[position] : '',
-      {
-        'euiComboBoxOptionsList--fullWidth': fullWidth,
-      }
+      'euiPopover__panel',
+      'euiPopover__panel-isAttached',
+      'euiPopover__panel-noArrow',
+      'euiPopover__panel-isOpen',
+      `euiPopover__panel--${position}`
     );
 
     return (

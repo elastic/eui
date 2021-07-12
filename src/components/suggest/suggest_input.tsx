@@ -1,52 +1,42 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, FunctionComponent } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
-import { EuiFieldText } from '../form';
+import { EuiFieldText, EuiFieldTextProps } from '../form';
 import { EuiToolTip } from '../tool_tip';
 import { EuiIcon } from '../icon';
 import { EuiInputPopover } from '../popover';
 import { EuiSuggestItemProps } from './suggest_item';
 
-export type EuiSuggestInputProps = CommonProps & {
-  tooltipContent?: string;
+export type EuiSuggestInputProps = CommonProps &
+  EuiFieldTextProps & {
+    tooltipContent?: string;
 
-  /**
-   * Status of the current query 'unsaved', 'saved', 'unchanged' or 'loading'.
-   */
-  status?: 'unsaved' | 'saved' | 'unchanged' | 'loading';
+    /**
+     * Status of the current query 'unsaved', 'saved', 'unchanged' or 'loading'.
+     */
+    status?: 'unsaved' | 'saved' | 'unchanged' | 'loading';
 
-  /**
-   * Element to be appended to the input bar.
-   */
-  append?: JSX.Element;
+    /**
+     * Element to be appended to the input bar.
+     */
+    append?: JSX.Element;
 
-  /**
-   * List of suggestions to display using 'suggestItem'.
-   */
-  suggestions: JSX.Element[] | EuiSuggestItemProps[];
+    /**
+     * List of suggestions to display using 'suggestItem'.
+     */
+    suggestions: JSX.Element[] | EuiSuggestItemProps[];
 
-  sendValue?: Function;
-};
+    sendValue?: Function;
+  };
 
 interface Status {
   icon?: string;
@@ -69,12 +59,12 @@ const statusMap: StatusMap = {
   },
   saved: {
     icon: 'checkInCircleFilled',
-    color: 'secondary',
+    color: 'success',
     tooltip: 'Saved.',
   },
   unchanged: {
     icon: '',
-    color: 'secondary',
+    color: 'success',
   },
   loading: {},
 };
@@ -150,7 +140,7 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = (
     <EuiInputPopover
       className={classes}
       input={customInput}
-      isOpen={isPopoverOpen}
+      isOpen={suggestions.length > 0 && isPopoverOpen}
       panelPaddingSize="none"
       fullWidth
       closePopover={closePopover}>

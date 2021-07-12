@@ -3,58 +3,135 @@
 exports[`EuiHeaderSectionItemButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiHeaderSectionItem__button testClass1 testClass2"
+  class="euiButtonEmpty euiButtonEmpty--text euiHeaderSectionItemButton testClass1 testClass2"
   data-test-subj="test subject string"
   type="button"
-/>
+>
+  <span
+    class="euiButtonContent euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    >
+      <span
+        class="euiHeaderSectionItemButton__content"
+      />
+    </span>
+  </span>
+</button>
+`;
+
+exports[`EuiHeaderSectionItemButton renders a link 1`] = `
+<a
+  class="euiButtonEmpty euiButtonEmpty--text euiHeaderSectionItemButton"
+  href="#"
+  rel="noreferrer"
+>
+  <span
+    class="euiButtonContent euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    >
+      <span
+        class="euiHeaderSectionItemButton__content"
+      />
+    </span>
+  </span>
+</a>
 `;
 
 exports[`EuiHeaderSectionItemButton renders children 1`] = `
 <button
-  class="euiHeaderSectionItem__button"
+  class="euiButtonEmpty euiButtonEmpty--text euiHeaderSectionItemButton"
   type="button"
 >
-  <span>
-    Ahoy!
+  <span
+    class="euiButtonContent euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    >
+      <span
+        class="euiHeaderSectionItemButton__content"
+      >
+        <span>
+          Ahoy!
+        </span>
+      </span>
+    </span>
   </span>
 </button>
 `;
 
 exports[`EuiHeaderSectionItemButton renders notification as a badge 1`] = `
 <button
-  class="euiHeaderSectionItem__button"
+  class="euiButtonEmpty euiButtonEmpty--text euiHeaderSectionItemButton"
   type="button"
 >
   <span
-    class="euiNotificationBadge euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
+    class="euiButtonContent euiButtonEmpty__content"
   >
-    1
+    <span
+      class="euiButtonEmpty__text"
+    >
+      <span
+        class="euiHeaderSectionItemButton__content"
+      />
+      <span
+        class="euiNotificationBadge euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
+      >
+        1
+      </span>
+    </span>
   </span>
 </button>
 `;
 
 exports[`EuiHeaderSectionItemButton renders notification as a dot 1`] = `
 <button
-  class="euiHeaderSectionItem__button"
+  class="euiButtonEmpty euiButtonEmpty--text euiHeaderSectionItemButton"
   type="button"
 >
   <span
-    class="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
-    color="accent"
-    data-euiicon-type="dot"
-  />
+    class="euiButtonContent euiButtonEmpty__content"
+  >
+    <span
+      class="euiButtonEmpty__text"
+    >
+      <span
+        class="euiHeaderSectionItemButton__content"
+      />
+      <span
+        class="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
+        color="accent"
+        data-euiicon-type="dot"
+      />
+    </span>
+  </span>
 </button>
 `;
 
 exports[`EuiHeaderSectionItemButton renders notification color 1`] = `
 <button
-  class="euiHeaderSectionItem__button"
+  class="euiButtonEmpty euiButtonEmpty--text euiHeaderSectionItemButton"
   type="button"
 >
   <span
-    class="euiNotificationBadge euiNotificationBadge--subdued euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
+    class="euiButtonContent euiButtonEmpty__content"
   >
-    1
+    <span
+      class="euiButtonEmpty__text"
+    >
+      <span
+        class="euiHeaderSectionItemButton__content"
+      />
+      <span
+        class="euiNotificationBadge euiNotificationBadge--subdued euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
+      >
+        1
+      </span>
+    </span>
   </span>
 </button>
 `;

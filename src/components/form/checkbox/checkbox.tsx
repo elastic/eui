@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -22,6 +11,7 @@ import React, {
   ChangeEventHandler,
   ReactNode,
   InputHTMLAttributes,
+  LabelHTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
 
@@ -50,6 +40,10 @@ export interface EuiCheckboxProps
    */
   compressed?: boolean;
   indeterminate?: boolean;
+  /**
+   * Object of props passed to the <label/>
+   */
+  labelProps?: CommonProps & LabelHTMLAttributes<HTMLLabelElement>;
 }
 
 export class EuiCheckbox extends Component<EuiCheckboxProps> {
@@ -80,10 +74,11 @@ export class EuiCheckbox extends Component<EuiCheckboxProps> {
       type,
       disabled,
       compressed,
+      indeterminate,
+      inputRef,
+      labelProps,
       ...rest
     } = this.props;
-
-    const { indeterminate, ...inputProps } = rest; // `indeterminate` is set dynamically later
 
     const classes = classNames(
       'euiCheckbox',
@@ -94,12 +89,15 @@ export class EuiCheckbox extends Component<EuiCheckboxProps> {
       },
       className
     );
-
+    const labelClasses = classNames(
+      'euiCheckbox__label',
+      labelProps?.className
+    );
     let optionalLabel;
 
     if (label) {
       optionalLabel = (
-        <label className="euiCheckbox__label" htmlFor={id}>
+        <label {...labelProps} className={labelClasses} htmlFor={id}>
           {label}
         </label>
       );
@@ -115,7 +113,7 @@ export class EuiCheckbox extends Component<EuiCheckboxProps> {
           onChange={onChange}
           disabled={disabled}
           ref={this.setInputRef}
-          {...inputProps}
+          {...rest}
         />
 
         <div className="euiCheckbox__square" />

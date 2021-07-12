@@ -1,23 +1,12 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, Ref } from 'react';
 import classNames from 'classnames';
 
 import {
@@ -33,14 +22,23 @@ import {
   EuiButtonContentProps,
   EuiButtonContentType,
 } from '../button_content';
+import { validateHref } from '../../../services/security/href_validator';
 
-export type EuiButtonEmptyColor = 'primary' | 'danger' | 'text' | 'ghost';
+export type EuiButtonEmptyColor =
+  | 'primary'
+  | 'danger'
+  | 'text'
+  | 'ghost'
+  | 'success'
+  | 'warning';
 
 const colorToClassNameMap: { [color in EuiButtonEmptyColor]: string } = {
   primary: 'euiButtonEmpty--primary',
   danger: 'euiButtonEmpty--danger',
   text: 'euiButtonEmpty--text',
   ghost: 'euiButtonEmpty--ghost',
+  success: 'euiButtonEmpty--success',
+  warning: 'euiButtonEmpty--warning',
 };
 
 export const COLORS = keysOf(colorToClassNameMap);
@@ -67,7 +65,9 @@ export const FLUSH_TYPES = keysOf(flushTypeToClassNameMap);
  * Extends EuiButtonContentProps which provides
  * `iconType`, `iconSide`, and `textProps`
  */
-interface CommonEuiButtonEmptyProps extends EuiButtonContentProps, CommonProps {
+export interface CommonEuiButtonEmptyProps
+  extends EuiButtonContentProps,
+    CommonProps {
   /**
    * Any of our named colors
    */
@@ -94,7 +94,7 @@ interface CommonEuiButtonEmptyProps extends EuiButtonContentProps, CommonProps {
   target?: string;
   rel?: string;
   type?: 'button' | 'submit';
-  buttonRef?: (ref: HTMLButtonElement | HTMLAnchorElement | null) => void;
+  buttonRef?: Ref<HTMLButtonElement | HTMLAnchorElement>;
   /**
    * Object of props passed to the <span/> wrapping the button's content
    */
@@ -118,8 +118,8 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   color = 'primary',
   size,
   flush,
-  isDisabled,
-  disabled,
+  isDisabled: _isDisabled,
+  disabled: _disabled,
   isLoading,
   href,
   target,
@@ -131,6 +131,10 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   isSelected,
   ...rest
 }) => {
+  const isHrefValid = !href || validateHref(href);
+  const disabled = _disabled || !isHrefValid;
+  const isDisabled = _isDisabled || !isHrefValid;
+
   // If in the loading state, force disabled to true
   const buttonIsDisabled = isLoading || isDisabled || disabled;
 
@@ -155,11 +159,14 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
     textProps && textProps.className
   );
 
+  const iconSize = size === 'xs' ? 's' : 'm';
+
   const innerNode = (
     <EuiButtonContent
       isLoading={isLoading}
       iconType={iconType}
       iconSide={iconSide}
+      iconSize={iconSize}
       textProps={{ ...textProps, className: textClassNames }}
       {...contentProps}
       // className has to come last to override contentProps.className
@@ -179,7 +186,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
         href={href}
         target={target}
         rel={secureRel}
-        ref={buttonRef}
+        ref={buttonRef as Ref<HTMLAnchorElement>}
         {...(rest as EuiButtonEmptyPropsForAnchor)}>
         {innerNode}
       </a>
@@ -191,7 +198,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
       disabled={buttonIsDisabled}
       className={classes}
       type={type}
-      ref={buttonRef}
+      ref={buttonRef as Ref<HTMLButtonElement>}
       aria-pressed={isSelected}
       {...(rest as EuiButtonEmptyPropsForButton)}>
       {innerNode}

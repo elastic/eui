@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -59,6 +48,7 @@ interface ToolTipStyles {
   left: number | 'auto';
   right?: number | 'auto';
   opacity?: number;
+  visibility?: 'hidden';
 }
 
 const displayToClassNameMap = {
@@ -75,9 +65,11 @@ const DEFAULT_TOOLTIP_STYLES: ToolTipStyles = {
   // just in case, avoid any potential flicker by hiding
   // the tooltip before it is positioned
   opacity: 0,
+  // prevent accidental mouse interaction while positioning
+  visibility: 'hidden',
 };
 
-export interface Props {
+export interface EuiToolTipProps {
   /**
    * Passes onto the the trigger.
    */
@@ -130,7 +122,7 @@ interface State {
   id: string;
 }
 
-export class EuiToolTip extends Component<Props, State> {
+export class EuiToolTip extends Component<EuiToolTipProps, State> {
   _isMounted = false;
   anchor: null | HTMLElement = null;
   popover: null | HTMLElement = null;
@@ -144,7 +136,7 @@ export class EuiToolTip extends Component<Props, State> {
     id: this.props.id || htmlIdGenerator()(),
   };
 
-  static defaultProps: Partial<Props> = {
+  static defaultProps: Partial<EuiToolTipProps> = {
     position: 'top',
     delay: 'regular',
   };
@@ -165,7 +157,7 @@ export class EuiToolTip extends Component<Props, State> {
     window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
   }
 
-  componentDidUpdate(prevProps: Props, prevState: State) {
+  componentDidUpdate(prevProps: EuiToolTipProps, prevState: State) {
     if (prevState.visible === false && this.state.visible === true) {
       requestAnimationFrame(this.testAnchor);
     }

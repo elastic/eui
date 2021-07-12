@@ -1,37 +1,27 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
+import React, {
+  FunctionComponent,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import classnames from 'classnames';
 import { keys } from '../../services';
 import tabbable from 'tabbable';
-import {
-  EuiDataGridControlColumn,
-  EuiDataGridFocusedCell,
-} from './data_grid_types';
-import { EuiDataGridDataRowProps } from './data_grid_data_row';
+import { EuiDataGridControlColumn } from './data_grid_types';
+import { DataGridFocusContext } from './data_grid_context';
 
 export interface EuiDataGridControlHeaderRowProps {
   index: number;
   controlColumn: EuiDataGridControlColumn;
-  focusedCell?: EuiDataGridFocusedCell;
-  setFocusedCell: EuiDataGridDataRowProps['onCellFocus'];
   headerIsInteractive: boolean;
   className?: string;
 }
@@ -39,22 +29,22 @@ export interface EuiDataGridControlHeaderRowProps {
 export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlHeaderRowProps> = (
   props
 ) => {
-  const {
-    controlColumn,
-    index,
-    focusedCell,
-    setFocusedCell,
-    headerIsInteractive,
-    className,
-  } = props;
+  const { controlColumn, index, headerIsInteractive, className } = props;
+
+  const { setFocusedCell, onFocusUpdate } = useContext(DataGridFocusContext);
 
   const { headerCellRender: HeaderCellRender, width, id } = controlColumn;
 
   const classes = classnames('euiDataGridHeaderCell', className);
 
+  const [isFocused, setIsFocused] = useState(false);
+  useEffect(() => {
+    onFocusUpdate([index, -1], (isFocused: boolean) => {
+      setIsFocused(isFocused);
+    });
+  }, [index, onFocusUpdate]);
+
   const headerRef = useRef<HTMLDivElement>(null);
-  const isFocused =
-    focusedCell != null && focusedCell[0] === index && focusedCell[1] === -1;
   const [isCellEntered, setIsCellEntered] = useState(false);
 
   useEffect(() => {
@@ -175,7 +165,7 @@ export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlH
         headerNode.removeEventListener('keyup', onKeyUp);
       };
     }
-  }, [headerIsInteractive, isFocused, setIsCellEntered, setFocusedCell, index]);
+  }, [setFocusedCell, headerIsInteractive, isFocused, setIsCellEntered, index]);
 
   return (
     <div

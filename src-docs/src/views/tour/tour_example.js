@@ -7,7 +7,6 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCallOut,
   EuiCode,
-  EuiSpacer,
   EuiText,
   EuiTourStep,
 } from '../../../../src/components';
@@ -53,7 +52,6 @@ const fullHtml = renderToHtml(FullScreen);
 
 export const TourExample = {
   title: 'Tour',
-  isNew: true,
   beta: true,
   intro: (
     <EuiText>
@@ -66,7 +64,6 @@ export const TourExample = {
         iconType="save"
         title="The examples on this page, use localStorage to persist state to demonstrate starting a tour at different stages."
       />
-      <EuiSpacer />
     </EuiText>
   ),
   sections: [
@@ -168,7 +165,7 @@ export const TourExample = {
       demo: <Managed />,
     },
     {
-      title: 'Fullscreen demo',
+      title: 'Full screen demo',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -185,7 +182,10 @@ export const TourExample = {
           <EuiCode>localStorage</EuiCode> to persist state.
         </p>
       ),
-      demo: <FullScreen />,
+      fullScreen: {
+        slug: 'full-screen',
+        demo: <FullScreen />,
+      },
     },
   ],
 };

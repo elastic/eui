@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { useMemo, ReactNode } from 'react';
@@ -63,6 +52,10 @@ export interface EuiDataGridSchemaDetector {
    */
   isSortable?: boolean;
   /**
+   *  This property controls the capitalization of text
+   */
+  textTransform?: 'uppercase' | 'lowercase' | 'capitalize';
+  /**
    * Default sort direction of the column
    */
   defaultSortDirection?: 'asc' | 'desc';
@@ -93,21 +86,21 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
     comparator(a, b, direction) {
       const aValue = a.toLowerCase() === 'true';
       const bValue = b.toLowerCase() === 'true';
-      if (aValue < bValue) return direction === 'asc' ? 1 : -1;
-      if (aValue > bValue) return direction === 'asc' ? -1 : 1;
+      if (aValue < bValue) return direction === 'asc' ? -1 : 1;
+      if (aValue > bValue) return direction === 'asc' ? 1 : -1;
       return 0;
     },
     icon: 'tokenBoolean',
     sortTextAsc: (
       <EuiI18n
         token="euiDataGridSchema.booleanSortTextAsc"
-        default="True-False"
+        default="False-True"
       />
     ),
     sortTextDesc: (
       <EuiI18n
         token="euiDataGridSchema.booleanSortTextDesc"
-        default="False-True"
+        default="True-False"
       />
     ),
   },
@@ -178,10 +171,10 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
     },
     icon: 'tokenDate',
     sortTextAsc: (
-      <EuiI18n token="euiDataGridSchema.dateSortTextAsc" default="New-Old" />
+      <EuiI18n token="euiDataGridSchema.dateSortTextAsc" default="Old-New" />
     ),
     sortTextDesc: (
-      <EuiI18n token="euiDataGridSchema.dateSortTextDesc" default="Old-New" />
+      <EuiI18n token="euiDataGridSchema.dateSortTextDesc" default="New-Old" />
     ),
   },
   {
@@ -288,6 +281,7 @@ function scoreValueBySchemaType(
 // represents lowest score a type detector can have to be considered valid
 const MINIMUM_SCORE_MATCH = 0.5;
 
+const emptyArray: unknown = []; // for in-memory object permanence
 export function useDetectSchema(
   inMemory: EuiDataGridInMemory | undefined,
   inMemoryValues: EuiDataGridInMemoryValues,
@@ -295,6 +289,10 @@ export function useDetectSchema(
   definedColumnSchemas: { [key: string]: string },
   autoDetectSchema: boolean
 ) {
+  const inMemorySkipColumns =
+    inMemory?.skipColumns ??
+    (emptyArray as NonNullable<EuiDataGridInMemory['skipColumns']>);
+
   const schema = useMemo(() => {
     const schema: EuiDataGridSchema = {};
     if (autoDetectSchema === false) {
@@ -309,7 +307,7 @@ export function useDetectSchema(
     const rowIndices = Object.keys(inMemoryValues);
 
     const columnIdsWithDefinedSchemas = new Set<string>([
-      ...((inMemory && inMemory.skipColumns) || []),
+      ...inMemorySkipColumns,
       ...Object.keys(definedColumnSchemas),
     ]);
 
@@ -404,7 +402,7 @@ export function useDetectSchema(
   }, [
     autoDetectSchema,
     definedColumnSchemas,
-    inMemory,
+    inMemorySkipColumns,
     inMemoryValues,
     schemaDetectors,
   ]);

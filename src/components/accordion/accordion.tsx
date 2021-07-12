@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { Component, HTMLAttributes, ReactNode } from 'react';
@@ -47,6 +36,10 @@ export type EuiAccordionProps = CommonProps &
      * Class that will apply to the trigger for the accordion.
      */
     buttonClassName?: string;
+    /**
+     * Apply more props to the triggering button
+     */
+    buttonProps?: CommonProps & HTMLAttributes<HTMLButtonElement>;
     /**
      * Class that will apply to the trigger content for the accordion.
      */
@@ -142,6 +135,9 @@ export class EuiAccordion extends Component<
           isOpen: !prevState.isOpen,
         }),
         () => {
+          if (this.state.isOpen && this.childWrapper) {
+            this.childWrapper.focus();
+          }
           this.props.onToggle && this.props.onToggle(this.state.isOpen);
         }
       );
@@ -167,6 +163,7 @@ export class EuiAccordion extends Component<
       forceState,
       isLoading,
       isLoadingMessage,
+      buttonProps,
       ...rest
     } = this.props;
 
@@ -193,7 +190,8 @@ export class EuiAccordion extends Component<
       {
         euiAccordion__buttonReverse: !extraAction && arrowDisplay === 'right',
       },
-      buttonClassName
+      buttonClassName,
+      buttonProps?.className
     );
 
     const iconClasses = classNames('euiAccordion__icon', {
@@ -211,7 +209,7 @@ export class EuiAccordion extends Component<
 
     let icon;
     let iconButton;
-    const buttonId = htmlIdGenerator()();
+    const buttonId = buttonProps?.id ?? htmlIdGenerator()();
     if (extraAction && arrowDisplay === 'right') {
       iconButton = (
         <button
@@ -264,6 +262,7 @@ export class EuiAccordion extends Component<
       <div className={classes} {...rest}>
         <div className="euiAccordion__triggerWrapper">
           <button
+            {...buttonProps}
             id={buttonId}
             aria-controls={id}
             aria-expanded={isOpen}
@@ -288,6 +287,9 @@ export class EuiAccordion extends Component<
           ref={(node) => {
             this.childWrapper = node;
           }}
+          tabIndex={-1}
+          role="region"
+          aria-labelledby={buttonId}
           id={id}>
           <EuiResizeObserver onResize={this.setChildContentHeight}>
             {(resizeRef) => (

@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -39,6 +28,7 @@ import { getSecureRelForTarget, htmlIdGenerator } from '../../services';
 
 import { IconType } from '../icon';
 import { EuiRadio, EuiCheckbox } from '../form';
+import { validateHref } from '../../services/security/href_validator';
 
 export type EuiKeyPadMenuItemCommonProps = {
   /**
@@ -149,8 +139,8 @@ export type EuiKeyPadMenuItemProps = CommonProps &
 
 export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   id,
-  isDisabled,
   isSelected,
+  isDisabled: _isDisabled,
   label,
   children,
   className,
@@ -169,20 +159,21 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   onChange,
   ...rest
 }) => {
-  const actuallyDisabled = isDisabled || disabled;
+  const isHrefValid = !href || validateHref(href);
+  const isDisabled = disabled || _isDisabled || !isHrefValid;
 
   const classes = classNames(
     'euiKeyPadMenuItem',
     {
       'euiKeyPadMenuItem--hasBetaBadge': betaBadgeLabel,
       'euiKeyPadMenuItem--checkable': checkable,
-      'euiKeyPadMenuItem-isDisabled': actuallyDisabled,
+      'euiKeyPadMenuItem-isDisabled': isDisabled,
       'euiKeyPadMenuItem-isSelected': isSelected,
     },
     className
   );
 
-  let Element = href && !actuallyDisabled ? 'a' : 'button';
+  let Element = href && !isDisabled ? 'a' : 'button';
   if (checkable) Element = 'label';
   const itemId = id || htmlIdGenerator()();
 
@@ -199,7 +190,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
           id={itemId}
           className={inputClasses}
           checked={isSelected}
-          disabled={actuallyDisabled}
+          disabled={isDisabled}
           name={nameIfSingle}
           // value={value}
           onChange={() => {
@@ -214,7 +205,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
           id={itemId}
           className={inputClasses}
           checked={isSelected}
-          disabled={actuallyDisabled}
+          disabled={isDisabled}
           // @ts-ignore HELP!
           onChange={() => onChange && onChange(itemId)}
         />
@@ -258,7 +249,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     htmlFor?: string;
   } = {};
 
-  if (href && !actuallyDisabled) {
+  if (href && !isDisabled) {
     relObj.href = href;
     relObj.rel = getSecureRelForTarget({ href, target, rel });
     relObj.target = target;
@@ -266,7 +257,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   } else if (checkable) {
     relObj.htmlFor = itemId;
   } else {
-    relObj.disabled = actuallyDisabled;
+    relObj.disabled = isDisabled;
     relObj.type = 'button';
     relObj['aria-pressed'] = isSelected;
   }

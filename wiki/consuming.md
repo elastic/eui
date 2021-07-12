@@ -68,7 +68,7 @@ import '@elastic/eui/dist/eui_theme_amsterdam_dark.css';
 
 ### Using our Sass variables on top of compiled CSS
 
-If you want to build **on top** of the EUI theme by accessing the Sass variables, functions, and mixins, you'll need to import the Sass globals. This will require `style`, `css`, `postcss`, and `sass` loaders.
+If you want to build **on top** of the EUI theme by accessing the Sass variables, functions, and mixins, you'll need to import the Sass globals in addition to the compiled CSS mentioned above. This will require `style`, `css`, `postcss`, and `sass` loaders.
 
 First import the correct colors file, followed by the globals file.
 

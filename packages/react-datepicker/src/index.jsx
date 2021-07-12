@@ -27,6 +27,7 @@ import {
   subtractWeeks,
   subtractYears,
   isSameDay,
+  isSameTime,
   isDayDisabled,
   isOutOfBounds,
   isDayInRange,
@@ -168,7 +169,8 @@ export default class DatePicker extends React.Component {
     renderCustomHeader: PropTypes.func,
     renderDayContents: PropTypes.func,
     accessibleMode: PropTypes.bool,
-    accessibleModeButton: PropTypes.element
+    accessibleModeButton: PropTypes.element,
+    strictParsing: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
   };
 
   static get defaultProps() {
@@ -201,7 +203,8 @@ export default class DatePicker extends React.Component {
       nextMonthButtonLabel: "Next month",
       renderDayContents(date) {
         return date;
-      }
+      },
+      strictParsing: false
     };
   }
 
@@ -262,7 +265,12 @@ export default class DatePicker extends React.Component {
       // transforming highlighted days (perhaps nested array)
       // to flat Map for faster access in day.jsx
       highlightDates: getHightLightDaysMap(this.props.highlightDates),
-      focused: false
+      focused: false,
+      // We attempt to handle focus trap activation manually,
+      // but that is not possible with custom inputs like buttons.
+      // Err on the side of a11y and trap focus when we can't be certain
+      // that the trigger comoponent will work with our keyDown logic.
+      enableFocusTrap: this.props.customInput && this.props.customInput.type !== 'input' ? true : false,
     };
   };
 
@@ -291,20 +299,20 @@ export default class DatePicker extends React.Component {
   };
 
   setOpen = (open, skipSetBlur = false) => {
-    this.setState(
-      {
-        open: open,
-        preSelection:
-          open && this.state.open
-            ? this.state.preSelection
-            : this.calcInitialState().preSelection,
-        lastPreSelectChange: PRESELECT_CHANGE_VIA_NAVIGATE
-      },
+    this.setState({
+          open: open,
+          preSelection:
+            open && this.state.open
+              ? this.state.preSelection
+              : this.calcInitialState().preSelection,
+          lastPreSelectChange: PRESELECT_CHANGE_VIA_NAVIGATE,
+    },
       () => {
         if (!open) {
           this.setState(
             prev => ({
-              focused: skipSetBlur ? prev.focused : false
+              focused: skipSetBlur ? prev.focused : false,
+              enableFocusTrap: skipSetBlur ? false : prev.enableFocusTrap
             }),
             () => {
               !skipSetBlur && this.setBlur();
@@ -329,7 +337,7 @@ export default class DatePicker extends React.Component {
       this.props.onFocus(event);
       if (
         !this.props.preventOpenOnFocus &&
-        !this.props.readOnly && !this.props.accessibleMode
+        !this.props.readOnly
       ) {
         this.setOpen(true);
       }
@@ -410,7 +418,7 @@ export default class DatePicker extends React.Component {
     if (!this.props.shouldCloseOnSelect || this.props.showTimeSelect) {
       this.setPreSelection(date);
     } else if (!this.props.inline) {
-      this.setOpen(false);
+      this.setOpen(false, true);
     }
   };
 
@@ -433,21 +441,22 @@ export default class DatePicker extends React.Component {
       return;
     }
 
+    if (changedDate !== null && this.props.selected) {
+      let selected = this.props.selected;
+      if (keepInput) selected = newDate(changedDate);
+      changedDate = setTime(newDate(changedDate), {
+        hour: getHour(selected),
+        minute: getMinute(selected),
+        second: getSecond(selected),
+        millisecond: getMillisecond(selected),
+      });
+    }
+
     if (
-      !isSameDay(this.props.selected, changedDate) ||
+      !isSameTime(this.props.selected, changedDate) ||
       this.props.allowSameDay
     ) {
       if (changedDate !== null) {
-        if (this.props.selected) {
-          let selected = this.props.selected;
-          if (keepInput) selected = newDate(changedDate);
-          changedDate = setTime(newDate(changedDate), {
-            hour: getHour(selected),
-            minute: getMinute(selected),
-            second: getSecond(selected),
-            millisecond: getMillisecond(selected),
-          });
-        }
         if (!this.props.inline) {
           this.setState({
             preSelection: changedDate
@@ -490,13 +499,18 @@ export default class DatePicker extends React.Component {
       millisecond: 0,
     });
 
-    this.setState({
-      preSelection: changedDate
-    });
+    if (!isSameTime(selected, changedDate)) {
+      this.setState({
+        preSelection: changedDate
+      });
 
-    this.props.onChange(changedDate);
+      this.props.onChange(changedDate);
+    }
+
+    this.props.onSelect(changedDate);
+    
     if (this.props.shouldCloseOnSelect) {
-      this.setOpen(false);
+      this.setOpen(false, true);
     }
     this.setState({ inputValue: null });
   };
@@ -528,7 +542,21 @@ export default class DatePicker extends React.Component {
     ) {
       if (eventKey === "ArrowDown" || eventKey === "ArrowUp") {
         event.preventDefault();
-        this.onInputClick();
+        this.setState({enableFocusTrap: true}, () => {
+          this.onInputClick();
+        });
+      }
+      return;
+    }
+    if (this.state.open && !this.state.enableFocusTrap) {
+      if (eventKey === "ArrowDown" || eventKey === "Tab") {
+        event.preventDefault();
+        this.setState({enableFocusTrap: true}, () => {
+          this.onInputClick();
+        });
+      } else if (eventKey === "Escape" || eventKey === "Enter") {
+        event.preventDefault();
+        this.setOpen(false, true);
       }
       return;
     }
@@ -542,12 +570,12 @@ export default class DatePicker extends React.Component {
         this.handleSelect(copy, event);
         !this.props.shouldCloseOnSelect && this.setPreSelection(copy);
       } else {
-        this.setOpen(false);
+        this.setOpen(false, true);
       }
     } else if (eventKey === "Escape") {
       event.preventDefault();
 
-      this.setOpen(false);
+      this.setOpen(false, true);
       if (!this.inputOk()) {
         this.props.onInputError({ code: 1, msg: INPUT_ERR_1 });
       }
@@ -686,6 +714,7 @@ export default class DatePicker extends React.Component {
         renderDayContents={this.props.renderDayContents}
         updateSelection={this.updateSelection}
         accessibleMode={this.props.accessibleMode}
+        enableFocusTrap={this.state.enableFocusTrap}
       >
         {this.props.children}
       </WrappedCalendar>
@@ -729,7 +758,7 @@ export default class DatePicker extends React.Component {
       readOnly: this.props.readOnly,
       required: this.props.required,
       tabIndex: this.props.tabIndex,
-      "aria-label": inputValue
+      "aria-label": this.state.open ? 'Press the down key to enter a popover containing a calendar. Press the escape key to close the popover.' : 'Press the down key to open a popover containing a calendar.'
     });
   };
 

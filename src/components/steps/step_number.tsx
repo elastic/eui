@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import classNames from 'classnames';
@@ -30,24 +19,21 @@ import {
   useI18nIncompleteStep,
   useI18nStep,
   useI18nWarningStep,
+  useI18nLoadingStep,
 } from './step_strings';
+import { EuiLoadingSpinner } from '../loading';
 
 const statusToClassNameMap = {
-  complete: 'euiStepNumber--complete',
   incomplete: 'euiStepNumber--incomplete',
+  disabled: 'euiStepNumber--disabled',
+  loading: 'euiStepNumber--loading',
   warning: 'euiStepNumber--warning',
   danger: 'euiStepNumber--danger',
-  disabled: 'euiStepNumber--disabled',
+  complete: 'euiStepNumber--complete',
 };
 
 export const STATUS = keysOf(statusToClassNameMap);
-
-export type EuiStepStatus =
-  | 'complete'
-  | 'incomplete'
-  | 'warning'
-  | 'danger'
-  | 'disabled';
+export type EuiStepStatus = typeof STATUS[number];
 
 export interface EuiStepNumberProps
   extends CommonProps,
@@ -58,7 +44,8 @@ export interface EuiStepNumberProps
   status?: EuiStepStatus;
   number?: number;
   /**
-   * Uses a border and removes the step number
+   * **DEPRECATED IN AMSTERDAM**
+   * Uses a border and removes the step number.
    */
   isHollow?: boolean;
   /**
@@ -81,6 +68,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   const errorsAriaLabel = useI18nErrorsStep({ number });
   const incompleteAriaLabel = useI18nIncompleteStep({ number });
   const disabledAriaLabel = useI18nDisabledStep({ number });
+  const loadingAriaLabel = useI18nLoadingStep({ number });
 
   const classes = classNames(
     'euiStepNumber',
@@ -93,13 +81,16 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   let screenReaderText = stepAriaLabel;
   if (status === 'incomplete') screenReaderText = incompleteAriaLabel;
   else if (status === 'disabled') screenReaderText = disabledAriaLabel;
+  else if (status === 'loading') screenReaderText = loadingAriaLabel;
 
   let numberOrIcon = (
     <>
       <EuiScreenReaderOnly>
         <span>{screenReaderText}</span>
       </EuiScreenReaderOnly>
-      {!isHollow && <span aria-hidden="true">{number}</span>}
+      <span className="euiStepNumber__number" aria-hidden="true">
+        {number}
+      </span>
     </>
   );
 
@@ -129,6 +120,18 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
         size={iconSize}
         aria-label={errorsAriaLabel}
       />
+    );
+  } else if (status === 'loading') {
+    numberOrIcon = (
+      <>
+        <EuiScreenReaderOnly>
+          <span>{screenReaderText}</span>
+        </EuiScreenReaderOnly>
+        <EuiLoadingSpinner
+          className="euiStepNumber__loader"
+          size={iconSize === 's' ? 'l' : 'xl'}
+        />
+      </>
     );
   }
 

@@ -22,13 +22,14 @@ const columns = [
     id: 'email',
     isSortable: true,
     cellActions: [
-      ({ rowIndex, columnId, Component }) => {
+      ({ rowIndex, columnId, Component, closePopover }) => {
         const row = ++rowIndex;
         return (
           <Component
-            onClick={() =>
-              alert(`Love sent from row ${row}, column "${columnId}"`)
-            }
+            onClick={() => {
+              alert(`Love sent from row ${row}, column "${columnId}"`);
+              closePopover();
+            }}
             iconType="heart"
             aria-label={`Send love to ${row}, column "${columnId}" `}>
             Send love
@@ -103,7 +104,6 @@ for (let i = 1; i < 5; i++) {
     avatar: (
       <EuiAvatar
         size="s"
-        imageUrl={fake('{{internet.avatar}}')}
         name={fake('{{name.lastName}}, {{name.firstName}}')}
       />
     ),

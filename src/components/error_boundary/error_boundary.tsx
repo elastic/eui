@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { Component, HTMLAttributes, ReactNode } from 'react';
@@ -25,7 +14,7 @@ import { EuiText } from '../text';
 
 interface EuiErrorBoundaryState {
   hasError: boolean;
-  error?: Error;
+  error?: string;
 }
 
 export type EuiErrorBoundaryProps = CommonProps &
@@ -55,8 +44,14 @@ export class EuiErrorBoundary extends Component<
     this.state = errorState;
   }
 
-  componentDidCatch(error: Error) {
+  componentDidCatch({ message, stack }: Error) {
     // Display fallback UI
+    // Only Chrome includes the `message` property as part of `stack`.
+    // For consistency, rebuild the full error text from the Error subparts.
+    const idx = stack?.indexOf(message) || -1;
+    const stackStr = idx > -1 ? stack?.substr(idx + message.length + 1) : stack;
+    const error = `Error: ${message}
+${stackStr}`;
     this.setState({
       hasError: true,
       error,
@@ -74,7 +69,7 @@ export class EuiErrorBoundary extends Component<
             <EuiText size="xs">
               <h1>Error</h1>
               <pre className="euiErrorBoundary__stack">
-                <p>{this.state.error && this.state.error.stack}</p>
+                <p>{this.state.error}</p>
               </pre>
             </EuiText>
           </div>

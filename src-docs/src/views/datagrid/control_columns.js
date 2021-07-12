@@ -61,7 +61,6 @@ for (let i = 1; i < 500; i++) {
     avatar: (
       <EuiAvatar
         size="s"
-        imageUrl={fake('{{internet.avatar}}')}
         name={fake('{{name.lastName}}, {{name.firstName}}')}
       />
     ),
@@ -101,7 +100,11 @@ const SelectionButton = () => {
         </EuiPopoverTitle>
         <div style={{ width: 150 }}>
           <button onClick={() => {}} component="span">
-            <EuiFlexGroup alignItems="center" component="span" gutterSize="s">
+            <EuiFlexGroup
+              responsive={false}
+              alignItems="center"
+              component="span"
+              gutterSize="s">
               <EuiFlexItem grow={false}>
                 <EuiButtonIcon
                   aria-label="Pin selected items"
@@ -114,7 +117,11 @@ const SelectionButton = () => {
           </button>
           <EuiSpacer size="s" />
           <button onClick={() => {}}>
-            <EuiFlexGroup alignItems="center" component="span" gutterSize="s">
+            <EuiFlexGroup
+              responsive={false}
+              alignItems="center"
+              component="span"
+              gutterSize="s">
               <EuiFlexItem grow={false}>
                 <EuiButtonIcon
                   aria-label="Delete selected items"

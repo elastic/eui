@@ -1,31 +1,20 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
   FunctionComponent,
-  HTMLAttributes,
+  ImgHTMLAttributes,
   useState,
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiOverlayMask } from '../overlay_mask';
 
 import { EuiIcon } from '../icon';
@@ -71,49 +60,63 @@ const fullScreenIconColorMap: { [color in FullScreenIconColor]: string } = {
   dark: 'default',
 };
 
-interface EuiImageProps extends CommonProps, HTMLAttributes<HTMLImageElement> {
-  /**
-   * Separate from the caption is a title on the alt tag itself.
-   * This one is required for accessibility.
-   */
-  alt: string;
-  /**
-   * Accepts `s` / `m` / `l` / `xl` / `original` / `fullWidth` / or a CSS size of `number` or `string`.
-   * `fullWidth` will set the figure to stretch to 100% of its container.
-   * `string` and `number` types will max both the width or height, whichever is greater.
-   */
-  size?: ImageSize | number | string;
-  /**
-   * Changes the color of the icon that floats above the image when it can be clicked to fullscreen.
-   * The default value of `light` is fine unless your image has a white background, in which case you should change it to `dark`.
-   */
-  fullScreenIconColor?: FullScreenIconColor;
-  url: string;
-  /**
-   * Provides the visible caption to the image
-   */
-  caption?: ReactNode;
-  /**
-   * When set to `true` (default) will apply a slight shadow to the image
-   */
-  hasShadow?: boolean;
-  /**
-   * When set to `true` will make the image clickable to a larger version
-   */
-  allowFullScreen?: boolean;
-  /**
-   * Float the image to the left or right. Useful in large text blocks.
-   */
-  float?: Floats;
-  /**
-   * Margin around the image.
-   */
-  margin?: Margins;
-}
+type _EuiImageSrcOrUrl = ExclusiveUnion<
+  {
+    /**
+     * Requires either `src` or `url` but defaults to using `src` if both are provided
+     */
+    src: string;
+  },
+  {
+    url: string;
+  }
+>;
+
+export type EuiImageProps = CommonProps &
+  _EuiImageSrcOrUrl &
+  Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt'> & {
+    /**
+     * Separate from the caption is a title on the alt tag itself.
+     * This one is required for accessibility.
+     */
+    alt: string;
+    /**
+     * Accepts `s` / `m` / `l` / `xl` / `original` / `fullWidth` / or a CSS size of `number` or `string`.
+     * `fullWidth` will set the figure to stretch to 100% of its container.
+     * `string` and `number` types will max both the width or height, whichever is greater.
+     */
+    size?: ImageSize | number | string;
+    /**
+     * Changes the color of the icon that floats above the image when it can be clicked to fullscreen.
+     * The default value of `light` is fine unless your image has a white background, in which case you should change it to `dark`.
+     */
+    fullScreenIconColor?: FullScreenIconColor;
+    /**
+     * Provides the visible caption to the image
+     */
+    caption?: ReactNode;
+    /**
+     * When set to `true` (default) will apply a slight shadow to the image
+     */
+    hasShadow?: boolean;
+    /**
+     * When set to `true` will make the image clickable to a larger version
+     */
+    allowFullScreen?: boolean;
+    /**
+     * Float the image to the left or right. Useful in large text blocks.
+     */
+    float?: Floats;
+    /**
+     * Margin around the image.
+     */
+    margin?: Margins;
+  };
 
 export const EuiImage: FunctionComponent<EuiImageProps> = ({
   className,
   url,
+  src,
   size = 'original',
   caption,
   hasShadow,
@@ -215,7 +218,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
               onClick={closeFullScreen}
               onKeyDown={onKeyDown}>
               <img
-                src={url}
+                src={src || url}
                 alt={alt}
                 className="euiImage-isFullScreen__img"
                 {...rest}
@@ -250,7 +253,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
           onClick={openFullScreen}>
           <img
             style={customStyle}
-            src={url}
+            src={src || url}
             alt={alt}
             className="euiImage__img"
             {...rest}
@@ -266,7 +269,7 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
       <figure className={classes} aria-label={optionalCaptionText}>
         <img
           style={customStyle}
-          src={url}
+          src={src || url}
           className="euiImage__img"
           alt={alt}
           {...rest}

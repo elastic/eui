@@ -63,8 +63,8 @@ export function cloneDate(date) {
   return date.clone();
 }
 
-export function parseDate(value, { dateFormat, locale }) {
-  const m = moment(value, dateFormat, locale || moment.locale(), true);
+export function parseDate(value, { dateFormat, locale, strictParsing}) {
+  const m = moment(value, dateFormat, locale || moment.locale(), strictParsing);
   return m.isValid() ? m : null;
 }
 
@@ -267,6 +267,14 @@ export function isSameMonth(date1, date2) {
 export function isSameDay(moment1, moment2) {
   if (moment1 && moment2) {
     return moment1.isSame(moment2, "day");
+  } else {
+    return !moment1 && !moment2;
+  }
+}
+
+export function isSameTime(moment1, moment2) {
+  if (moment1 && moment2) {
+    return moment1.isSame(moment2, "second");
   } else {
     return !moment1 && !moment2;
   }

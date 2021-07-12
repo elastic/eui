@@ -11,7 +11,7 @@ import {
   EuiCode,
   EuiButtonGroup,
   EuiCallOut,
-  EuiText,
+  EuiTitle,
 } from '../../../../src/components';
 
 import { EuiButtonGroupOptionProps } from '!!prop-loader!../../../../src/components/button/button_group/button_group';
@@ -55,9 +55,41 @@ const buttonOptionFlushSnippet = `<EuiButtonEmpty flush="left"><!-- Button text 
 import ButtonIcon from './button_icon';
 const buttonIconSource = require('!!raw-loader!./button_icon');
 const buttonIconHtml = renderToHtml(ButtonIcon);
-const buttonIconSnippet = `<EuiButtonIcon
+const buttonIconSnippet = [
+  `<EuiButtonIcon
   iconType={icon}
-/>`;
+/>`,
+  `<EuiButtonIcon
+  display="fill"
+  iconType={icon}
+/>`,
+  `<EuiButtonIcon
+  display="base"
+  size="s"
+  iconType={icon}
+/>`,
+];
+
+import SplitButton from './split_button';
+const splitButtonSource = require('!!raw-loader!./split_button');
+const splitButtonHtml = renderToHtml(SplitButton);
+const splitButtonSnippet = [
+  `<EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
+  <EuiFlexItem grow={false}>
+    <EuiButton size="s">
+      Primary action
+    </EuiButton>
+  </EuiFlexItem>
+  <EuiFlexItem grow={false}>
+    <EuiButtonIcon
+      display="base"
+      size="s"
+      iconType="boxesVertical"
+      aria-label="More"
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>`,
+];
 
 import ButtonGhost from './button_ghost';
 const buttonGhostSource = require('!!raw-loader!./button_ghost');
@@ -109,6 +141,14 @@ const buttonToggleSnippet = [
 import ButtonGroup from './button_group';
 const buttonGroupSource = require('!!raw-loader!./button_group');
 const buttonGroupHtml = renderToHtml(ButtonGroup);
+
+import ButtonGroupIcons from './button_group_icon';
+const buttonGroupIconsSource = require('!!raw-loader!./button_group_icon');
+const buttonGroupIconsHtml = renderToHtml(ButtonGroupIcons);
+
+import ButtonGroupCompressed from './button_group_compressed';
+const buttonGroupCompressedSource = require('!!raw-loader!./button_group_compressed');
+const buttonGroupCompressedHtml = renderToHtml(ButtonGroupCompressed);
 const buttonGroupSnippet = [
   `<EuiButtonGroup
   type="single"
@@ -123,6 +163,8 @@ const buttonGroupSnippet = [
   idSelected={idSelected}
   onChange={(optionId) => {}}
 />`,
+];
+const buttonGroupIconsSnippet = [
   `<EuiButtonGroup
   type="multi"
   isIconOnly
@@ -141,16 +183,6 @@ const buttonGroupSnippet = [
 
 export const ButtonExample = {
   title: 'Button',
-  intro: (
-    <EuiText>
-      <p>
-        <strong>EuiButton</strong> comes in two styles. The{' '}
-        <EuiCode>fill</EuiCode> style should be reserved for the main action and
-        limited in number for a single page. Be sure to read the full{' '}
-        <Link to="/guidelines/button">button usage guidelines</Link>.
-      </p>
-    </EuiText>
-  ),
   sections: [
     {
       source: [
@@ -163,9 +195,18 @@ export const ButtonExample = {
           code: buttonHtml,
         },
       ],
+      text: (
+        <p>
+          <strong>EuiButton</strong> comes in two styles. The{' '}
+          <EuiCode>fill</EuiCode> style should be reserved for the main action
+          and limited in number for a single page. Be sure to read the full{' '}
+          <Link to="/guidelines/button">button usage guidelines</Link>.
+        </p>
+      ),
       props: { EuiButton },
       snippet: buttonSnippet,
       demo: <Button />,
+      playground: Playground,
     },
     {
       title: 'Buttons can also be links',
@@ -300,14 +341,59 @@ export const ButtonExample = {
         },
       ],
       text: (
-        <p>
-          <strong>EuiButtonIcons</strong> are buttons that only contain an icon
-          (no text).
-        </p>
+        <>
+          <p>
+            An <strong>EuiButtonIcon</strong> is a button that only contains an
+            icon (no text). Use the <EuiCode>display</EuiCode> and{' '}
+            <EuiCode>size</EuiCode> props to match the appearance of your{' '}
+            <strong>EuiButtonIcon</strong> to other standard buttons. By default
+            they will appear as <EuiCode>xs</EuiCode>, <EuiCode>empty</EuiCode>{' '}
+            buttons.
+          </p>
+          <EuiCallOut
+            size="s"
+            color="warning"
+            iconType="accessibility"
+            title={
+              <>
+                <strong>EuiButtonIcon</strong> requires an{' '}
+                <EuiCode>aria-label</EuiCode> to express the meaning to screen
+                readers.
+              </>
+            }
+          />
+        </>
       ),
       props: { EuiButtonIcon },
       snippet: buttonIconSnippet,
       demo: <ButtonIcon />,
+    },
+    {
+      title: 'Split buttons',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: splitButtonSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: splitButtonHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            EUI does not support split buttons specifically. Instead, we
+            recommend using separate buttons for the main and overflow actions.
+            You can achieve this by simply using the <EuiCode>display</EuiCode>{' '}
+            and <EuiCode>size</EuiCode> props <strong>EuiButtonIcon</strong> to
+            match that of the primary action button.
+          </p>
+        </>
+      ),
+      props: { EuiButton, EuiButtonIcon },
+      snippet: splitButtonSnippet,
+      demo: <SplitButton />,
     },
     {
       title: 'Toggle buttons',
@@ -401,7 +487,41 @@ export const ButtonExample = {
       props: { EuiButtonGroup, EuiButtonGroupOptionProps },
     },
     {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: buttonGroupIconsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: buttonGroupIconsHtml,
+        },
+      ],
+      wrapText: false,
+      text: (
+        <EuiTitle size="xs">
+          <h3>Icons only</h3>
+        </EuiTitle>
+      ),
+      demo: <ButtonGroupIcons />,
+      snippet: buttonGroupIconsSnippet,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: buttonGroupCompressedSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: buttonGroupCompressedHtml,
+        },
+      ],
+      demo: <ButtonGroupCompressed />,
+    },
+    {
       title: 'Ghost',
+      ghostBackground: true,
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -430,5 +550,4 @@ export const ButtonExample = {
     },
   ],
   guidelines: <Guidelines />,
-  playground: Playground,
 };

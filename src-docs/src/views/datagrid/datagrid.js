@@ -6,6 +6,7 @@ import React, {
   useState,
   createContext,
   useContext,
+  useRef,
 } from 'react';
 import { fake } from 'faker';
 
@@ -84,6 +85,8 @@ const columns = [
   },
   {
     id: 'email',
+    displayAsText: 'Email address',
+    initialWidth: 130,
     cellActions: [
       ({ rowIndex, columnId, Component }) => {
         const data = useContext(DataContext);
@@ -100,9 +103,11 @@ const columns = [
   },
   {
     id: 'location',
+    displayAsText: 'Location',
   },
   {
     id: 'account',
+    displayAsText: 'Account',
     actions: {
       showHide: { label: 'Custom hide label' },
       showMoveLeft: false,
@@ -140,19 +145,23 @@ const columns = [
   },
   {
     id: 'date',
+    displayAsText: 'Date',
     defaultSortDirection: 'desc',
   },
   {
     id: 'amount',
+    displayAsText: 'Amount',
   },
   {
     id: 'phone',
+    displayAsText: 'Phone',
     isSortable: false,
   },
   {
     id: 'version',
+    displayAsText: 'Version',
     defaultSortDirection: 'desc',
-    initialWidth: 65,
+    initialWidth: 70,
     isResizable: false,
     actions: false,
   },
@@ -182,7 +191,7 @@ const trailingControlColumns = [
             closePopover={() => setIsPopoverOpen(false)}>
             <EuiPopoverTitle>Actions</EuiPopoverTitle>
             <div style={{ width: 150 }}>
-              <button onClick={() => {}} component="span">
+              <button onClick={() => {}}>
                 <EuiFlexGroup
                   alignItems="center"
                   component="span"
@@ -284,6 +293,10 @@ export default () => {
     };
   }, []);
 
+  const onColumnResize = useRef((eventData) => {
+    console.log(eventData);
+  });
+
   return (
     <DataContext.Provider value={raw_data}>
       <EuiDataGrid
@@ -301,9 +314,7 @@ export default () => {
           onChangeItemsPerPage: onChangeItemsPerPage,
           onChangePage: onChangePage,
         }}
-        onColumnResize={(eventData) => {
-          console.log(eventData);
-        }}
+        onColumnResize={onColumnResize.current}
       />
     </DataContext.Provider>
   );

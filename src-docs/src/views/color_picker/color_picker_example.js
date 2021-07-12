@@ -11,7 +11,6 @@ import {
   EuiColorPaletteDisplay,
   EuiColorPalettePicker,
   EuiColorStops,
-  EuiSpacer,
   EuiText,
 } from '../../../../src/components';
 import {
@@ -106,6 +105,17 @@ const colorStopsSnippetFixed = `<EuiColorStops
   min={0}
   max={100}
   stopType="fixed"
+/>
+`;
+
+const colorStopsSnippetStepped = `<EuiColorStops
+  label="Stepped color segments"
+  onChange={handleChange}
+  colorStops={colorStops}
+  min={0}
+  max={100}
+  stopType="stepped"
+  stepNumber={stepNumber}
 />
 `;
 
@@ -321,7 +331,6 @@ export const ColorPickerExample = {
           <strong>EuiColorStops</strong>.
         </p>
       </EuiText>
-      <EuiSpacer />
     </React.Fragment>
   ),
   sections: [
@@ -479,6 +488,7 @@ export const ColorPickerExample = {
         colorStopsSnippetStandard,
         colorStopsSnippetAdd,
         colorStopsSnippetFixed,
+        colorStopsSnippetStepped,
       ],
       demo: <ColorStops />,
     },

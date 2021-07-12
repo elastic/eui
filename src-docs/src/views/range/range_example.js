@@ -8,7 +8,6 @@ import {
   EuiCallOut,
   EuiDualRange,
   EuiRange,
-  EuiSpacer,
   EuiCode,
 } from '../../../../src/components';
 
@@ -63,7 +62,6 @@ export const RangeControlExample = {
           or use a <strong>EuiFieldNumber</strong> instead.
         </p>
       </EuiCallOut>
-      <EuiSpacer />
     </Fragment>
   ),
   sections: [
@@ -195,7 +193,8 @@ export const RangeControlExample = {
         EuiDualRange,
       },
       demo: <DualRangeExample />,
-      snippet: `<EuiDualRange
+      snippet: [
+        `<EuiDualRange
   min={100}
   max={200}
   step={10}
@@ -203,6 +202,15 @@ export const RangeControlExample = {
   onChange={handleChange}
   showLabels
 />`,
+        `<EuiDualRange
+  min={0}
+  max={100}
+  step={1}
+  value={value}
+  onChange={handleChange}
+  isDraggable
+/>`,
+      ],
     },
     {
       title: 'Inputs',

@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { Component, MouseEventHandler, HTMLAttributes } from 'react';
@@ -76,9 +65,12 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
     interval?: EuiRangeTrackProps['tickInterval']
   ) => {
     // Loop from min to max, creating adding values at each interval
-    // (adds a very small number to the max since `range` is not inclusive of the max value)
-    const toBeInclusive = 0.000000001;
-    return range(min, max + toBeInclusive, interval);
+    const sequence = range(min, max, interval);
+    // range is non-inclusive of max, so make it inclusive
+    if (max % interval! === 0 && !sequence.includes(max)) {
+      sequence.push(max);
+    }
+    return sequence;
   };
 
   calculateTicks = (
@@ -137,31 +129,19 @@ export class EuiRangeTrack extends Component<EuiRangeTrackProps> {
     // TODO: Move these to only re-calculate if no-value props have changed
     this.validateValueIsInStep(max);
 
-    let tickSequence;
-    const inputWrapperStyle: { marginLeft?: string; marginRight?: string } = {};
-    if (showTicks) {
-      tickSequence = this.calculateTicks(min, max, step, tickInterval, ticks);
-
-      // Calculate if any extra margin should be added to the inputWrapper
-      // because of longer tick labels on the ends
-      const lengthOfMinLabel = String(tickSequence[0]).length;
-      const lenghtOfMaxLabel = String(tickSequence[tickSequence.length - 1])
-        .length;
-      const isLastTickTheMax = tickSequence[tickSequence.length - 1] === max;
-      if (lengthOfMinLabel > 2) {
-        inputWrapperStyle.marginLeft = `${lengthOfMinLabel / 5}em`;
-      }
-      if (isLastTickTheMax && lenghtOfMaxLabel > 2) {
-        inputWrapperStyle.marginRight = `${lenghtOfMaxLabel / 5}em`;
-      }
-    }
+    const tickSequence =
+      showTicks === true &&
+      this.calculateTicks(min, max, step, tickInterval, ticks);
 
     const trackClasses = classNames('euiRangeTrack', {
       'euiRangeTrack--disabled': disabled,
+      'euiRangeTrack--hasLevels': levels && !!levels.length,
+      'euiRangeTrack--hasTicks': tickSequence || ticks,
+      'euiRangeTrack--compressed': compressed,
     });
 
     return (
-      <div className={trackClasses} style={inputWrapperStyle} {...rest}>
+      <div className={trackClasses} {...rest}>
         {levels && !!levels.length && (
           <EuiRangeLevels
             compressed={compressed}

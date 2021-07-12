@@ -250,7 +250,7 @@ function renderAnimationTiming(speed) {
   );
 }
 
-function renderBreakpoint(size) {
+export function renderBreakpoint(size, breakpoints) {
   return (
     <EuiFlexGroup
       responsive={false}
@@ -304,6 +304,10 @@ const bemExample = `// Use camelCase naming
 
 const borderRadiusExample = `border: $euiBorderThin;
 border-radius: $euiBorderRadius;
+`;
+
+const borderRadiusSmallExample = `border: $euiBorderThin;
+border-radius: $euiBorderRadiusSmall;
 `;
 
 const importKibanaExample = `// In Kibana you can add this to the top of your Sass file
@@ -593,7 +597,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
       <GuideRuleTitle>Typography</GuideRuleTitle>
 
-      <EuiText grow={false} className="guideSection__text">
+      <EuiText grow={false}>
         <p>
           View the{' '}
           <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_typography.scss">
@@ -702,8 +706,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
       <EuiText grow={false}>
         <p>
-          In addition, you can utilize <EuiCode>$euiBorderRadius</EuiCode> to
-          round the corners.
+          In addition, you can utilize <EuiCode>$euiBorderRadius</EuiCode> or{' '}
+          <EuiCode>$euiBorderRadiusSmall</EuiCode> to round the corners.
         </p>
       </EuiText>
 
@@ -716,6 +720,14 @@ export const SassGuidelines = ({ selectedTheme }) => {
             transparentBackground
             paddingSize="none">
             {borderRadiusExample}
+          </EuiCodeBlock>
+        </EuiFlexItem>
+        <EuiFlexItem className="guideSass__border guideSass__border--radiusSmall">
+          <EuiCodeBlock
+            language="scss"
+            transparentBackground
+            paddingSize="none">
+            {borderRadiusSmallExample}
           </EuiCodeBlock>
         </EuiFlexItem>
       </EuiFlexGrid>
@@ -878,7 +890,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
       <GuideRuleTitle>Media queries and breakpoints</GuideRuleTitle>
 
-      <EuiText className="guideSection__text">
+      <EuiText>
         <p>
           <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_responsive.scss">
             View the Sass code for media queries
@@ -905,8 +917,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
             <EuiSpacer />
 
-            {euiBreakPoints.map(function (size, index) {
-              return renderBreakpoint(size, index);
+            {euiBreakPoints.map(function (size) {
+              return renderBreakpoint(size, breakpoints);
             })}
           </div>
         </EuiFlexItem>
@@ -958,7 +970,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
       <EuiSpacer size="xxl" />
 
       <GuideRuleTitle>Animation</GuideRuleTitle>
-      <EuiText grow={false} className="guideSection__text">
+      <EuiText grow={false}>
         <p>
           <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_animations.scss">
             View the Sass code for animation
@@ -1026,7 +1038,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
           </EuiCodeBlock>
         </EuiFlexItem>
         <EuiFlexItem>
-          <EuiText grow={false} className="guideSection__text">
+          <EuiText grow={false}>
             <h3>Writing Sass the EUI way</h3>
             <p>
               In general, when writing new SCSS in a project that installs EUI
@@ -1034,7 +1046,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
             </p>
           </EuiText>
           <EuiSpacer />
-          <EuiText size="s" grow={false} className="guideSection__text">
+          <EuiText size="s" grow={false}>
             <ul>
               <li>
                 Utilize color variables and functions rather than hard-coded
@@ -1073,7 +1085,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
           <EuiSpacer />
 
-          <EuiText grow={false} className="guideSection__text">
+          <EuiText grow={false}>
             <p>
               Most EUI based projects should already import the EUI global
               scope. For example, Kibana has its own liner that will give you
@@ -1088,7 +1100,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
             {importKibanaExample}
           </EuiCodeBlock>
           <EuiSpacer />
-          <EuiText grow={false} className="guideSection__text">
+          <EuiText grow={false}>
             <p>
               If you want to construct your own import, you would just need to
               import the following core files into a fresh Sass project.

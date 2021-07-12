@@ -1,23 +1,12 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
+import React, { forwardRef, Ref, HTMLAttributes, ReactNode } from 'react';
 
 import classNames from 'classnames';
 
@@ -54,59 +43,74 @@ const sizeToClassNameMap: { [size in Size]: string } = {
   m: '',
 };
 
-export const EuiCallOut: FunctionComponent<EuiCallOutProps> = ({
-  title,
-  color = 'primary',
-  size = 'm',
-  iconType,
-  children,
-  className,
-  heading,
-  ...rest
-}) => {
-  const classes = classNames(
-    'euiCallOut',
-    colorToClassNameMap[color],
-    sizeToClassNameMap[size],
-    className
-  );
-
-  let headerIcon;
-
-  if (iconType) {
-    headerIcon = (
-      <EuiIcon
-        className="euiCallOutHeader__icon"
-        type={iconType}
-        size="m"
-        aria-hidden="true"
-      />
+export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
+  (
+    {
+      title,
+      color = 'primary',
+      size = 'm',
+      iconType,
+      children,
+      className,
+      heading,
+      ...rest
+    },
+    ref: Ref<HTMLDivElement>
+  ) => {
+    const classes = classNames(
+      'euiCallOut',
+      colorToClassNameMap[color],
+      sizeToClassNameMap[size],
+      className
     );
-  }
 
-  let optionalChildren;
-  if (children && size === 's') {
-    optionalChildren = <EuiText size="xs">{children}</EuiText>;
-  } else if (children) {
-    optionalChildren = <EuiText size="s">{children}</EuiText>;
-  }
+    let headerIcon;
 
-  const H: any = heading ? `${heading}` : 'span';
-  let header;
+    if (iconType) {
+      headerIcon = (
+        <EuiIcon
+          className="euiCallOutHeader__icon"
+          type={iconType}
+          size="m"
+          aria-hidden="true"
+          color="inherit" // forces the icon to inherit its parent color
+        />
+      );
+    }
 
-  if (title) {
-    header = (
-      <div className="euiCallOutHeader">
-        {headerIcon}
-        <H className="euiCallOutHeader__title">{title}</H>
+    let optionalChildren;
+    if (children && size === 's') {
+      optionalChildren = (
+        <EuiText size="xs" color="default">
+          {children}
+        </EuiText>
+      );
+    } else if (children) {
+      optionalChildren = (
+        <EuiText size="s" color="default">
+          {children}
+        </EuiText>
+      );
+    }
+
+    const H: any = heading ? `${heading}` : 'span';
+    let header;
+
+    if (title) {
+      header = (
+        <div className="euiCallOutHeader">
+          {headerIcon}
+          <H className="euiCallOutHeader__title">{title}</H>
+        </div>
+      );
+    }
+    return (
+      <div className={classes} ref={ref} {...rest}>
+        {header}
+
+        {optionalChildren}
       </div>
     );
   }
-  return (
-    <div className={classes} {...rest}>
-      {header}
-
-      {optionalChildren}
-    </div>
-  );
-};
+);
+EuiCallOut.displayName = 'EuiCallOut';

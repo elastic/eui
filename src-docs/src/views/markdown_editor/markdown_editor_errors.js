@@ -1,7 +1,5 @@
 import React, { useCallback, useState, useRef } from 'react';
 
-import { Link } from 'react-router-dom';
-
 import {
   EuiMarkdownEditor,
   EuiSpacer,
@@ -47,7 +45,7 @@ export default () => {
         className="euiFormRow__text">
         Utilize error text or{' '}
         <strong>
-          <Link to="/forms/form-validation">EuiFormRow</Link>
+          <a href="/#/forms/form-validation">EuiFormRow</a>
         </strong>{' '}
         for more permanent error feedback
       </EuiFormErrorText>

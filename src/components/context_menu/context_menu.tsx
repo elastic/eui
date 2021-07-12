@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -25,7 +14,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps, ExclusiveUnion } from '../common';
+import { CommonProps, ExclusiveUnion, keysOf } from '../common';
 import {
   EuiContextMenuPanel,
   EuiContextMenuPanelTransitionDirection,
@@ -61,17 +50,32 @@ export type EuiContextMenuPanelItemDescriptor = ExclusiveUnion<
 
 export interface EuiContextMenuPanelDescriptor {
   id: EuiContextMenuPanelId;
-  title?: string;
+  title?: ReactNode;
   items?: EuiContextMenuPanelItemDescriptor[];
   content?: ReactNode;
   width?: number;
   initialFocusedItemIndex?: number;
+  /**
+   * Alters the size of the items and the title
+   */
+  size?: keyof typeof sizeToClassNameMap;
 }
+
+const sizeToClassNameMap = {
+  s: 'euiContextMenu--small',
+  m: null,
+};
+
+export const SIZES = keysOf(sizeToClassNameMap);
 
 export type EuiContextMenuProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'style'> & {
     panels?: EuiContextMenuPanelDescriptor[];
     initialPanelId?: EuiContextMenuPanelId;
+    /**
+     * Alters the size of the items and the title
+     */
+    size?: keyof typeof sizeToClassNameMap;
   };
 
 const isItemSeparator = (
@@ -151,6 +155,7 @@ interface State {
 export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
   static defaultProps: Partial<EuiContextMenuProps> = {
     panels: [],
+    size: 'm',
   };
 
   static getDerivedStateFromProps(
@@ -366,6 +371,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
     return (
       <EuiContextMenuPanel
         key={panelId}
+        size={this.props.size}
         className="euiContextMenu__panel"
         onHeightChange={
           transitionType === 'in' ? this.onIncomingPanelHeightChange : undefined
@@ -401,7 +407,7 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
   }
 
   render() {
-    const { panels, className, initialPanelId, ...rest } = this.props;
+    const { panels, className, initialPanelId, size, ...rest } = this.props;
 
     const incomingPanel = this.renderPanel(this.state.incomingPanelId!, 'in');
     let outgoingPanel;
@@ -416,7 +422,11 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
         ? this.state.idToPanelMap[this.state.incomingPanelId!].width
         : undefined;
 
-    const classes = classNames('euiContextMenu', className);
+    const classes = classNames(
+      'euiContextMenu',
+      size && sizeToClassNameMap[size],
+      className
+    );
 
     return (
       <div

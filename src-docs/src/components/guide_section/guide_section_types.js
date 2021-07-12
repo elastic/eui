@@ -1,4 +1,4 @@
 export const GuideSectionTypes = {
-  JS: 'javascript',
-  HTML: 'html',
+  JS: 'JS',
+  HTML: 'HTML',
 };

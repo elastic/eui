@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React from 'react';
@@ -28,6 +17,7 @@ import {
   keys,
 } from '../../../services';
 import { requiredProps, findTestSubject } from '../../../test';
+import { EuiFieldNumber } from '../../form/field_number';
 
 jest.mock('../../portal', () => ({
   EuiPortal: ({ children }: { children: any }) => children,
@@ -172,6 +162,24 @@ test('renders fixed stop EuiColorStops', () => {
   expect(colorStops).toMatchSnapshot();
 });
 
+test('renders stepped stop EuiColorStops', () => {
+  const colorStops = mount(
+    <EuiColorStops
+      label="Test"
+      onChange={onChange}
+      colorStops={colorStopsArray}
+      min={0}
+      max={100}
+      stopType="stepped"
+      stepNumber={10}
+      {...requiredProps}
+    />
+  );
+  expect(
+    colorStops.find('.euiRangeHighlight__progress').prop('style')
+  ).toMatchSnapshot();
+});
+
 test('renders empty EuiColorStops', () => {
   const colorStops = render(
     <EuiColorStops
@@ -203,6 +211,28 @@ test('popover color selector is shown when the thumb is clicked', () => {
     .simulate('mousedown', { pageX: 0, pageY: 0 });
   const colorSelector = findTestSubject(colorStops, 'euiColorStopPopover');
   expect(colorSelector.length).toBe(1);
+});
+
+test('passes value input props to number input', () => {
+  const colorStops = mount(
+    <EuiColorStops
+      label="Test"
+      onChange={onChange}
+      colorStops={colorStopsArray}
+      min={0}
+      max={100}
+      valueInputProps={{
+        append: '%',
+      }}
+      {...requiredProps}
+    />
+  );
+
+  findTestSubject(colorStops, 'euiColorStopThumb')
+    .first()
+    .simulate('mousedown', { pageX: 0, pageY: 0 });
+  const colorSelector = findTestSubject(colorStops, 'euiColorStopPopover');
+  expect(colorSelector.find(EuiFieldNumber).prop('append')).toEqual('%');
 });
 
 test('stop input updates stops', () => {

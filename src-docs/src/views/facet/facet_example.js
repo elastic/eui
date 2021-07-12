@@ -17,7 +17,7 @@ const facetSource = require('!!raw-loader!./facet');
 const facetHtml = renderToHtml(Facet);
 const facetSnippet = `<EuiFacetButton
   quantity={6}
-  icon={<EuiIcon type="dot" color="secondary" />}
+  icon={<EuiIcon type="dot" color="success" />}
   isSelected>
   <!-- Facet with EuiIcon content -->
 </EuiFacetButton>
@@ -58,6 +58,7 @@ export const FacetExample = {
       props: { EuiFacetButton },
       snippet: facetSnippet,
       demo: <Facet />,
+      playground: facetButtonConfig,
     },
     {
       title: 'Facet layout',
@@ -98,7 +99,7 @@ export const FacetExample = {
         `// Horizontal
 <EuiFacetGroup layout="horizontal" gutterSize="l">{facets}</EuiFacetGroup>`,
       ],
+      playground: facetLayoutConfig,
     },
   ],
-  playground: [facetButtonConfig, facetLayoutConfig],
 };

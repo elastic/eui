@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React from 'react';
@@ -41,6 +30,38 @@ describe('EuiAvatar', () => {
       it('is rendered', () => {
         const component = render(
           <EuiAvatar name="name" imageUrl="image url" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('iconType', () => {
+      it('is rendered', () => {
+        const component = render(<EuiAvatar name="name" iconType="bolt" />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('and iconSize is rendered', () => {
+        const component = render(
+          <EuiAvatar name="name" iconType="bolt" iconSize="xl" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('and iconColor is rendered', () => {
+        const component = render(
+          <EuiAvatar name="name" iconType="bolt" iconColor="primary" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('and iconColor as null is rendered', () => {
+        const component = render(
+          <EuiAvatar name="name" iconType="bolt" iconColor={null} />
         );
 
         expect(component).toMatchSnapshot();
@@ -82,8 +103,28 @@ describe('EuiAvatar', () => {
     });
 
     describe('color', () => {
-      it('is rendered', () => {
+      it('as string is rendered', () => {
         const component = render(<EuiAvatar name="name" color="#000" />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('as null is rendered', () => {
+        const component = render(<EuiAvatar name="name" color={null} />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('as plain is rendered', () => {
+        const component = render(<EuiAvatar name="name" color="plain" />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('isDisabled', () => {
+      it('is rendered', () => {
+        const component = render(<EuiAvatar name="name" isDisabled={true} />);
 
         expect(component).toMatchSnapshot();
       });

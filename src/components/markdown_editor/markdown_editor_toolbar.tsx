@@ -1,27 +1,17 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
-  FunctionComponent,
   HTMLAttributes,
   MouseEventHandler,
   useContext,
+  forwardRef,
+  Ref,
 } from 'react';
 import { CommonProps } from '../common';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
@@ -100,108 +90,112 @@ const quoteCodeLinkButtons = [
   },
 ];
 
-export const EuiMarkdownEditorToolbar: FunctionComponent<EuiMarkdownEditorToolbarProps> = ({
-  markdownActions,
-  viewMode,
-  onClickPreview,
-  uiPlugins,
-  selectedNode,
-}) => {
-  const { openPluginEditor } = useContext(EuiMarkdownContext);
+export const EuiMarkdownEditorToolbar = forwardRef<
+  HTMLDivElement,
+  EuiMarkdownEditorToolbarProps
+>(
+  (
+    { markdownActions, viewMode, onClickPreview, uiPlugins, selectedNode },
+    ref: Ref<HTMLDivElement>
+  ) => {
+    const { openPluginEditor } = useContext(EuiMarkdownContext);
 
-  const handleMdButtonClick = (mdButtonId: string) => {
-    const actionResult = markdownActions.do(mdButtonId);
-    if (actionResult !== true) openPluginEditor(actionResult);
-  };
+    const handleMdButtonClick = (mdButtonId: string) => {
+      const actionResult = markdownActions.do(mdButtonId);
+      if (actionResult !== true) openPluginEditor(actionResult);
+    };
 
-  const isPreviewing = viewMode === MODE_VIEWING;
+    const isPreviewing = viewMode === MODE_VIEWING;
 
-  return (
-    <div className="euiMarkdownEditorToolbar">
-      <div className="euiMarkdownEditorToolbar__buttons">
-        {boldItalicButtons.map((item) => (
-          <EuiToolTip key={item.id} content={item.label} delay="long">
-            <EuiButtonIcon
-              color="text"
-              onClick={() => handleMdButtonClick(item.id)}
-              iconType={item.iconType}
-              aria-label={item.label}
-              isDisabled={isPreviewing}
+    return (
+      <div ref={ref} className="euiMarkdownEditorToolbar">
+        <div className="euiMarkdownEditorToolbar__buttons">
+          {boldItalicButtons.map((item) => (
+            <EuiToolTip key={item.id} content={item.label} delay="long">
+              <EuiButtonIcon
+                color="text"
+                onClick={() => handleMdButtonClick(item.id)}
+                iconType={item.iconType}
+                aria-label={item.label}
+                isDisabled={isPreviewing}
+              />
+            </EuiToolTip>
+          ))}
+          <span className="euiMarkdownEditorToolbar__divider" />
+          {listButtons.map((item) => (
+            <EuiToolTip key={item.id} content={item.label} delay="long">
+              <EuiButtonIcon
+                color="text"
+                onClick={() => handleMdButtonClick(item.id)}
+                iconType={item.iconType}
+                aria-label={item.label}
+                isDisabled={isPreviewing}
+              />
+            </EuiToolTip>
+          ))}
+          <span className="euiMarkdownEditorToolbar__divider" />
+          {quoteCodeLinkButtons.map((item) => (
+            <EuiToolTip key={item.id} content={item.label} delay="long">
+              <EuiButtonIcon
+                color="text"
+                onClick={() => handleMdButtonClick(item.id)}
+                iconType={item.iconType}
+                aria-label={item.label}
+                isDisabled={isPreviewing}
+              />
+            </EuiToolTip>
+          ))}
+
+          {uiPlugins.length > 0 ? (
+            <>
+              <span className="euiMarkdownEditorToolbar__divider" />
+              {uiPlugins.map(({ name, button }) => {
+                const isSelectedNodeType =
+                  selectedNode && selectedNode.type === name;
+                return (
+                  <EuiToolTip key={name} content={button.label} delay="long">
+                    <EuiButtonIcon
+                      color="text"
+                      {...(isSelectedNodeType
+                        ? {
+                            style: { background: 'rgba(0, 0, 0, 0.15)' },
+                          }
+                        : null)}
+                      onClick={() => handleMdButtonClick(name)}
+                      iconType={button.iconType}
+                      aria-label={button.label}
+                      isDisabled={isPreviewing}
+                    />
+                  </EuiToolTip>
+                );
+              })}
+            </>
+          ) : null}
+        </div>
+
+        {isPreviewing ? (
+          <EuiButtonEmpty
+            iconType="editorCodeBlock"
+            color="text"
+            size="s"
+            onClick={onClickPreview}>
+            <EuiI18n token="euiMarkdownEditorToolbar.editor" default="Editor" />
+          </EuiButtonEmpty>
+        ) : (
+          <EuiButtonEmpty
+            iconType="eye"
+            color="text"
+            size="s"
+            onClick={onClickPreview}>
+            <EuiI18n
+              token="euiMarkdownEditorToolbar.previewMarkdown"
+              default="Preview"
             />
-          </EuiToolTip>
-        ))}
-        <span className="euiMarkdownEditorToolbar__divider" />
-        {listButtons.map((item) => (
-          <EuiToolTip key={item.id} content={item.label} delay="long">
-            <EuiButtonIcon
-              color="text"
-              onClick={() => handleMdButtonClick(item.id)}
-              iconType={item.iconType}
-              aria-label={item.label}
-              isDisabled={isPreviewing}
-            />
-          </EuiToolTip>
-        ))}
-        <span className="euiMarkdownEditorToolbar__divider" />
-        {quoteCodeLinkButtons.map((item) => (
-          <EuiToolTip key={item.id} content={item.label} delay="long">
-            <EuiButtonIcon
-              color="text"
-              onClick={() => handleMdButtonClick(item.id)}
-              iconType={item.iconType}
-              aria-label={item.label}
-              isDisabled={isPreviewing}
-            />
-          </EuiToolTip>
-        ))}
-
-        {uiPlugins.length > 0 ? (
-          <>
-            <span className="euiMarkdownEditorToolbar__divider" />
-            {uiPlugins.map(({ name, button }) => {
-              const isSelectedNodeType =
-                selectedNode && selectedNode.type === name;
-              return (
-                <EuiToolTip key={name} content={button.label} delay="long">
-                  <EuiButtonIcon
-                    color="text"
-                    {...(isSelectedNodeType
-                      ? {
-                          style: { background: 'rgba(0, 0, 0, 0.15)' },
-                        }
-                      : null)}
-                    onClick={() => handleMdButtonClick(name)}
-                    iconType={button.iconType}
-                    aria-label={button.label}
-                    isDisabled={isPreviewing}
-                  />
-                </EuiToolTip>
-              );
-            })}
-          </>
-        ) : null}
+          </EuiButtonEmpty>
+        )}
       </div>
+    );
+  }
+);
 
-      {isPreviewing ? (
-        <EuiButtonEmpty
-          iconType="editorCodeBlock"
-          color="text"
-          size="s"
-          onClick={onClickPreview}>
-          <EuiI18n token="euiMarkdownEditorToolbar.editor" default="Editor" />
-        </EuiButtonEmpty>
-      ) : (
-        <EuiButtonEmpty
-          iconType="eye"
-          color="text"
-          size="s"
-          onClick={onClickPreview}>
-          <EuiI18n
-            token="euiMarkdownEditorToolbar.previewMarkdown"
-            default="Preview"
-          />
-        </EuiButtonEmpty>
-      )}
-    </div>
-  );
-};
+EuiMarkdownEditorToolbar.displayName = 'EuiMarkdownEditorToolbar';

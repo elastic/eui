@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { Component } from 'react';
@@ -28,7 +17,7 @@ import {
   EuiSuperSelectControlProps,
   EuiSuperSelectOption,
 } from './super_select_control';
-import { EuiPopover } from '../../popover';
+import { EuiInputPopover } from '../../popover';
 import {
   EuiContextMenuItem,
   EuiContextMenuItemLayoutAlignment,
@@ -100,20 +89,10 @@ export class EuiSuperSelect<T extends string> extends Component<
   };
 
   private itemNodes: Array<HTMLButtonElement | null> = [];
-  private popoverRef: HTMLDivElement | null = null;
-  private buttonRef: HTMLElement | null = null;
-  private setButtonRef = (popoverButtonRef: HTMLDivElement | null) => {
-    if (popoverButtonRef) {
-      this.buttonRef = popoverButtonRef.querySelector('button')!;
-    } else {
-      this.buttonRef = null;
-    }
-  };
   private _isMounted: boolean = false;
 
   state = {
     isPopoverOpen: this.props.isOpen || false,
-    menuWidth: undefined,
   };
 
   componentDidMount() {
@@ -129,10 +108,6 @@ export class EuiSuperSelect<T extends string> extends Component<
 
   setItemNode = (node: HTMLButtonElement | null, index: number) => {
     this.itemNodes[index] = node;
-  };
-
-  setPopoverRef = (ref: HTMLDivElement | null) => {
-    this.popoverRef = ref;
   };
 
   openPopover = () => {
@@ -154,11 +129,6 @@ export class EuiSuperSelect<T extends string> extends Component<
         if (!this._isMounted) {
           return;
         }
-        this.setState({
-          menuWidth: this.popoverRef
-            ? this.popoverRef.getBoundingClientRect().width - 2 // account for border not inner shadow
-            : undefined,
-        });
 
         if (this.props.valueOfSelected != null) {
           if (indexOfSelected != null) {
@@ -185,9 +155,6 @@ export class EuiSuperSelect<T extends string> extends Component<
     });
     if (this.props.onChange) {
       this.props.onChange(value);
-    }
-    if (this.buttonRef) {
-      this.buttonRef.focus();
     }
   };
 
@@ -274,17 +241,7 @@ export class EuiSuperSelect<T extends string> extends Component<
       ...rest
     } = this.props;
 
-    const popoverClasses = classNames(
-      'euiSuperSelect',
-      {
-        'euiSuperSelect--fullWidth': fullWidth,
-      },
-      popoverClassName
-    );
-
-    const popoverPanelClasses = classNames('euiSuperSelect__popoverPanel', {
-      [`${popoverClassName}__popoverPanel`]: !!popoverClassName,
-    });
+    const popoverClasses = classNames('euiSuperSelect', popoverClassName);
 
     const buttonClasses = classNames(
       {
@@ -339,20 +296,13 @@ export class EuiSuperSelect<T extends string> extends Component<
     });
 
     return (
-      <EuiPopover
+      <EuiInputPopover
         className={popoverClasses}
-        display="block"
-        panelClassName={popoverPanelClasses}
-        button={button}
+        input={button}
         isOpen={isOpen || this.state.isPopoverOpen}
         closePopover={this.closePopover}
         panelPaddingSize="none"
-        anchorPosition="downCenter"
-        ownFocus={false}
-        popoverRef={this.setPopoverRef}
-        buttonRef={this.setButtonRef}
-        hasArrow={false}
-        buffer={0}>
+        fullWidth={fullWidth}>
         <EuiScreenReaderOnly>
           <p role="alert">
             <EuiI18n
@@ -367,11 +317,10 @@ export class EuiSuperSelect<T extends string> extends Component<
           className="euiSuperSelect__listbox"
           role="listbox"
           aria-activedescendant={valueOfSelected}
-          style={{ width: this.state.menuWidth }}
           tabIndex={0}>
           {items}
         </div>
-      </EuiPopover>
+      </EuiInputPopover>
     );
   }
 }

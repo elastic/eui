@@ -22,7 +22,7 @@ export default () => (
 
     <EuiCallOut
       title="Callouts can exist as just a title. Simply omit the child content."
-      iconType="gear"
+      iconType="lensApp"
     />
 
     <EuiSpacer size="m" />

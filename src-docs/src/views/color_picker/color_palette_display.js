@@ -150,7 +150,6 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiPopover
             panelStyle={{ minWidth: 380 }}
-            ownFocus
             button={button}
             isOpen={isPopoverOpen}
             closePopover={closePopover}>
@@ -192,6 +191,8 @@ export default () => {
                 checked={selectionType}
                 onChange={() => setSelectionType(!selectionType)}
                 compressed
+                showLabel={false}
+                label="Display as fixed"
               />
             </EuiFormRow>
           </EuiPopover>

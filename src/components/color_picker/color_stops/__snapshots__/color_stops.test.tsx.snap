@@ -124,7 +124,7 @@ exports[`renders compressed EuiColorStops 1`] = `
     Test:   Color stop picker. Each stop consists of a number and corresponding color value. Use the Down and Up arrow keys to select individual stops. Press the Enter key to create a new stop.
   </p>
   <div
-    class="euiRangeTrack"
+    class="euiRangeTrack euiRangeTrack--compressed"
   >
     <div
       class="euiRangeHighlight euiRangeHighlight--compressed euiColorStops__highlight"
@@ -811,4 +811,12 @@ exports[`renders readOnly EuiColorStops 1`] = `
     </div>
   </div>
 </div>
+`;
+
+exports[`renders stepped stop EuiColorStops 1`] = `
+Object {
+  "background": "linear-gradient(to right, currentColor 0%, #ff0000 0% 2.94%, #d72800 2.94% 5.88%, #b04f00 5.880000000000001% 8.82%, #887700 8.82% 11.76%, #609f00 11.76% 14.7%, #39c600 14.700000000000001% 17.64%, #11ee00 17.64% 20.580000000000002%, #00c639 20.580000000000002% 23.520000000000003%, #00639c 23.520000000000003% 26.460000000000004%, #0000ff 26.460000000000004% 29.400000000000006%)",
+  "marginLeft": "0%",
+  "width": "100%",
+}
 `;

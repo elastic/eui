@@ -1,23 +1,13 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
+  forwardRef,
   FunctionComponent,
   Ref,
   ButtonHTMLAttributes,
@@ -42,24 +32,25 @@ import {
   EuiButtonContentType,
   EuiButtonContent,
 } from './button_content';
+import { validateHref } from '../../services/security/href_validator';
 
 export type ButtonColor =
   | 'primary'
+  | 'accent'
   | 'secondary'
+  | 'success'
   | 'warning'
   | 'danger'
   | 'ghost'
-  /**
-   * Set for deprecation 2/26/20
-   * This color button can easily be confused with disabled, it should not be used
-   */
   | 'text';
 
 export type ButtonSize = 's' | 'm';
 
 export const colorToClassNameMap: { [color in ButtonColor]: string } = {
   primary: '--primary',
+  accent: '--accent',
   secondary: '--secondary',
+  success: '--success',
   warning: '--warning',
   danger: '--danger',
   ghost: '--ghost',
@@ -86,7 +77,8 @@ export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
    */
   fill?: boolean;
   /**
-   * Any of our named colors. `text` color is set for deprecation
+   * Any of our named colors.
+   * **`secondary` color is DEPRECATED, use `success` instead**
    */
   color?: ButtonColor;
   /**
@@ -139,7 +131,7 @@ export type EuiButtonDisplayProps = EuiButtonProps &
  * EuiButton is largely responsible for providing relevant props
  * and the logic for element-specific attributes
  */
-const EuiButtonDisplay = React.forwardRef<HTMLElement, EuiButtonDisplayProps>(
+const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
   (
     {
       element = 'button',
@@ -250,8 +242,8 @@ export type Props = ExclusiveUnion<
 >;
 
 export const EuiButton: FunctionComponent<Props> = ({
-  isDisabled,
-  disabled,
+  isDisabled: _isDisabled,
+  disabled: _disabled,
   href,
   target,
   rel,
@@ -259,6 +251,10 @@ export const EuiButton: FunctionComponent<Props> = ({
   buttonRef,
   ...rest
 }) => {
+  const isHrefValid = !href || validateHref(href);
+  const disabled = _disabled || !isHrefValid;
+  const isDisabled = _isDisabled || !isHrefValid;
+
   const buttonIsDisabled = rest.isLoading || isDisabled || disabled;
   const element = href && !isDisabled ? 'a' : 'button';
 

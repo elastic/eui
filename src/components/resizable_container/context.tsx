@@ -1,104 +1,42 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { createContext, useContext } from 'react';
-
-export interface EuiResizablePanelController {
-  id: string;
-  setSize: (panelSize: number) => void;
-  getSizePx: () => number;
-  minSize: string;
+import { EuiResizableContainerRegistry } from './types';
+interface ContainerContextProps {
+  registry?: EuiResizableContainerRegistry;
 }
 
-export class EuiResizablePanelRegistry {
-  private panels: { [key: string]: EuiResizablePanelController } = {};
-  private resizerRefs = new Set<HTMLElement>();
+const EuiResizableContainerContext = createContext<ContainerContextProps>({});
 
-  registerPanel(panel: EuiResizablePanelController) {
-    this.panels[panel.id] = panel;
-  }
-
-  deregisterPanel(id: EuiResizablePanelController['id']) {
-    delete this.panels[id];
-  }
-
-  registerResizerRef(resizerRef: HTMLElement) {
-    this.resizerRefs.add(resizerRef);
-  }
-
-  deregisterResizerRef(resizerRef: HTMLElement) {
-    this.resizerRefs.delete(resizerRef);
-  }
-
-  getResizerSiblings(prevPanelId: string, nextPanelId: string) {
-    return [this.panels[prevPanelId], this.panels[nextPanelId]];
-  }
-
-  getAllResizers() {
-    return Array.from(this.resizerRefs);
-  }
-
-  fetchAllPanels(
-    prevPanelId: string,
-    nextPanelId: string,
-    containerSize: number
-  ) {
-    const panelWithSizes: { [key: string]: number } = {};
-    for (const key in this.panels) {
-      if (key !== prevPanelId && key !== nextPanelId) {
-        panelWithSizes[key] =
-          (this.panels[key].getSizePx() / containerSize) * 100;
-      }
-    }
-    return panelWithSizes;
-  }
-}
-
-interface ContextProps {
-  registry?: EuiResizablePanelRegistry;
-}
-
-const EuiResizablePanelContext = createContext<ContextProps>({});
-
-interface ContextProviderProps extends Required<ContextProps> {
+interface ContextProviderProps extends Required<ContainerContextProps> {
   /**
    * ReactNode to render as this component's content
    */
   children: any;
 }
 
-export function EuiResizablePanelContextProvider({
+export function EuiResizableContainerContextProvider({
   children,
   registry,
 }: ContextProviderProps) {
   return (
-    <EuiResizablePanelContext.Provider value={{ registry }}>
+    <EuiResizableContainerContext.Provider value={{ registry }}>
       {children}
-    </EuiResizablePanelContext.Provider>
+    </EuiResizableContainerContext.Provider>
   );
 }
 
-export const useEuiResizablePanelContext = () => {
-  const context = useContext(EuiResizablePanelContext);
+export const useEuiResizableContainerContext = () => {
+  const context = useContext(EuiResizableContainerContext);
   if (!context.registry) {
     throw new Error(
-      'useEuiResizablePanelContext must be used within a <EuiResizablePanelContextProvider />'
+      'useEuiResizableContainerContext must be used within a <EuiResizableContainerContextProvider />'
     );
   }
   return context;

@@ -10,9 +10,10 @@ import {
   EuiLink,
   EuiCode,
   EuiComboBox,
-  EuiSpacer,
   EuiText,
 } from '../../../../src/components';
+
+import { EuiComboBoxOptionOption } from '!!prop-loader!../../../../src/components/combo_box/types';
 
 import ComboBox from './combo_box';
 const comboBoxSource = require('!!raw-loader!./combo_box');
@@ -207,8 +208,6 @@ export const ComboBoxExample = {
           predetermined list.
         </p>
       </EuiText>
-
-      <EuiSpacer size="l" />
     </Fragment>
   ),
   sections: [
@@ -223,7 +222,7 @@ export const ComboBoxExample = {
           code: comboBoxHtml,
         },
       ],
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: comboBoxSnippet,
       demo: <ComboBox />,
     },
@@ -245,7 +244,7 @@ export const ComboBoxExample = {
           disabled.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: disabledSnippet,
       demo: <Disabled />,
     },
@@ -271,7 +270,7 @@ export const ComboBoxExample = {
           options there are.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: virtualizedSnippet,
       demo: <Virtualized />,
     },
@@ -294,7 +293,7 @@ export const ComboBoxExample = {
           works within other portal-using components.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       demo: <Containers />,
     },
     {
@@ -321,7 +320,7 @@ export const ComboBoxExample = {
           component.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: colorsSnippet,
       demo: <Colors />,
     },
@@ -355,7 +354,7 @@ export const ComboBoxExample = {
           </p>
         </Fragment>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: renderOptionSnippet,
       demo: <RenderOption />,
     },
@@ -377,7 +376,7 @@ export const ComboBoxExample = {
           against the search value.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: groupsSnippet,
       demo: <Groups />,
     },
@@ -413,7 +412,7 @@ export const ComboBoxExample = {
           </p>
         </Fragment>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: singleSelectionSnippet,
       demo: <SingleSelection />,
     },
@@ -445,7 +444,7 @@ export const ComboBoxExample = {
           </p>
         </Fragment>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: singleSelectionCustomOptionsSnippet,
       demo: <SingleSelectionCustomOptions />,
     },
@@ -467,7 +466,7 @@ export const ComboBoxExample = {
           creation of custom options.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: disallowCustomOptionsSnippet,
       demo: <DisallowCustomOptions />,
     },
@@ -490,7 +489,7 @@ export const ComboBoxExample = {
           custom options.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: customOptionsOnlySnippet,
       demo: <CustomOptionsOnly />,
     },
@@ -514,7 +513,7 @@ export const ComboBoxExample = {
           async is happening.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: asyncSnippet,
       demo: <Async />,
     },
@@ -537,7 +536,7 @@ export const ComboBoxExample = {
           may be pasted from elsewhere such as a comma separated list.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: delimiterSnippet,
       demo: <Delimiter />,
     },
@@ -562,7 +561,7 @@ export const ComboBoxExample = {
           to display those options at the top of the list.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: startingWithSnippet,
       demo: <StartingWith />,
     },
@@ -586,7 +585,7 @@ export const ComboBoxExample = {
           <EuiCode language="js">key</EuiCode> for each option.
         </p>
       ),
-      props: { EuiComboBox },
+      props: { EuiComboBox, EuiComboBoxOptionOption },
       demo: <DuplicateOptions />,
       snippet: duplicateOptionsSnippet,
     },

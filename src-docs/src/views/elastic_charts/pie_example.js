@@ -117,7 +117,6 @@ const orderingTooltip = (
 
 export const ElasticChartsPieExample = {
   title: 'Part to whole comparisons',
-  isNew: true,
   intro: (
     <Fragment>
       <ExternalBadge />
@@ -144,7 +143,6 @@ export const ElasticChartsPieExample = {
           </EuiFlexItem>
         ))}
       </EuiFlexGroup>
-      <EuiSpacer size="l" />
     </Fragment>
   ),
   sections: [

@@ -8,7 +8,7 @@ The Elastic UI Framework (EUI) is a design library in use at Elastic to build Re
 
 ## Can I use EUI?
 
-Yes, but be aware of the [license](LICENSE) as always. Although the roadmap and priorities are directed by our own usage within Elastic, we do attempt to make the platform generically useful for any React application and try to test for it.
+See our licensing FAQ: [I’m using EUI or Elastic Charts in my application outside of Kibana, how does this affect me?](https://www.elastic.co/pricing/faq/licensing#im-using-eui-or-elastic-charts-in-my-application-outside-of-kibana-how-does-this-affect-me)
 
 ## What is the versioning, releases and upgrade strategy?
 
@@ -20,7 +20,7 @@ Traditionally releases are made weekly against whatever is in master and you can
 
 EUI started as a JS and Sass library that outputs separate CSS and JS bundles. Over time we introduced TypeScript and started adding types, writing new components in TS, and migrating old components over. The goal is to actively convert everything over into a full TS system while retaining our build targets of ES5+commonjs, ES5+ES Modules, and a consolidated bundle file.
 
-For styling we use Sass and generate a final CSS blob for the entire library, with some JSON theming files extracted from the Sass. You can find more information in [consuming EUI](wiki/consuming) and [theming](wiki/theming.md).
+For styling we use Sass and generate a final CSS blob for the entire library, with some JSON theming files extracted from the Sass. You can find more information in [consuming EUI](wiki/consuming.md) and [theming](wiki/theming.md).
 
 ## Can I contribute to EUI
 

@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import { EuiPopoverPosition } from './types';
@@ -81,7 +70,7 @@ interface FindPopoverPositionArgs {
   align?: EuiPopoverPosition;
   position: EuiPopoverPosition;
   forcePosition?: boolean;
-  buffer?: number;
+  buffer?: number | [number, number, number, number];
   offset?: number;
   allowCrossAxis?: boolean;
   container?: HTMLElement;
@@ -97,6 +86,16 @@ interface FindPopoverPositionResult {
   arrow?: { left: number; top: number };
   anchorBoundingBox?: EuiClientRect;
 }
+
+const getBufferValues = (
+  buffer: number | [number, number, number, number]
+): [number, number, number, number] => {
+  if (Array.isArray(buffer)) {
+    const [topBuffer, rightBuffer, bottomBuffer, leftBuffer] = buffer;
+    return [topBuffer, rightBuffer, bottomBuffer, leftBuffer];
+  }
+  return [buffer, buffer, buffer, buffer];
+};
 
 /**
  * Calculates the absolute positioning (relative to document.body) to place a popover element
@@ -259,7 +258,7 @@ interface GetPopoverScreenCoordinatesArgs {
   containerBoundingBox: EuiClientRect;
   arrowConfig?: { arrowWidth: number; arrowBuffer: number };
   offset?: number;
-  buffer?: number;
+  buffer?: number | [number, number, number, number];
 }
 
 interface GetPopoverScreenCoordinatesResult {
@@ -339,6 +338,10 @@ export function getPopoverScreenCoordinates({
   const crossAxisSecondSide = positionComplements[crossAxisFirstSide]; // "left" -> "right"
   const crossAxisDimension = relatedDimension[crossAxisFirstSide]; // "left" -> "width"
 
+  const [topBuffer, rightBuffer, bottomBuffer, leftBuffer] = getBufferValues(
+    buffer
+  );
+
   const { crossAxisPosition, crossAxisArrowPosition } = getCrossAxisPosition({
     crossAxisFirstSide,
     crossAxisSecondSide,
@@ -383,10 +386,10 @@ export function getPopoverScreenCoordinates({
 
   // shrink the visible bounding box by `buffer`
   // to compute a fit value
-  combinedBoundingBox.top += buffer;
-  combinedBoundingBox.right -= buffer;
-  combinedBoundingBox.bottom -= buffer;
-  combinedBoundingBox.left += buffer;
+  combinedBoundingBox.top += topBuffer;
+  combinedBoundingBox.right -= rightBuffer;
+  combinedBoundingBox.bottom -= bottomBuffer;
+  combinedBoundingBox.left += leftBuffer;
 
   const fit = getVisibleFit(
     {
@@ -422,7 +425,7 @@ interface GetCrossAxisPositionArgs {
   crossAxisDimension: Dimension;
   position: EuiPopoverPosition;
   align?: EuiPopoverPosition;
-  buffer: number;
+  buffer: number | [number, number, number, number];
   offset: number;
   windowBoundingBox: EuiClientRect;
   containerBoundingBox: EuiClientRect;
@@ -638,30 +641,33 @@ export function getElementBoundingBox(element: HTMLElement): EuiClientRect {
 export function getAvailableSpace(
   anchorBoundingBox: BoundingBox,
   containerBoundingBox: BoundingBox,
-  buffer: number,
+  buffer: number | [number, number, number, number],
   offset: number,
   offsetSide: EuiPopoverPosition
 ): BoundingBox {
+  const [topBuffer, rightBuffer, bottomBuffer, leftBuffer] = getBufferValues(
+    buffer
+  );
   return {
     top:
       anchorBoundingBox.top -
       containerBoundingBox.top -
-      buffer -
+      topBuffer -
       (offsetSide === 'top' ? offset : 0),
     right:
       containerBoundingBox.right -
       anchorBoundingBox.right -
-      buffer -
+      rightBuffer -
       (offsetSide === 'right' ? offset : 0),
     bottom:
       containerBoundingBox.bottom -
       anchorBoundingBox.bottom -
-      buffer -
+      bottomBuffer -
       (offsetSide === 'bottom' ? offset : 0),
     left:
       anchorBoundingBox.left -
       containerBoundingBox.left -
-      buffer -
+      leftBuffer -
       (offsetSide === 'left' ? offset : 0),
   };
 }

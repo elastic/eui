@@ -1,6 +1,5 @@
 .euiDataGridRow {
-  display: inline-flex;
-  min-width: 100%; // Needed to prevent wraps. Inline flex is tricky
+  display: flex;
 }
 
 @include euiDataGridRowCell {
@@ -21,11 +20,11 @@
     width: 100%;
   }
 
-  &:first-of-type {
+  &.euiDataGridRowCell--firstColumn {
     border-left: $euiBorderThin;
   }
 
-  &:last-of-type {
+  &.euiDataGridRowCell--lastColumn {
     border-right-color: $euiBorderColor;
   }
 
@@ -34,30 +33,54 @@
     margin-top: -1px;
   }
 
-  &:focus,
+  // Only add the transition effect on hover, so that it is instantaneous on focus
+  // Long delays on hover to mitigate the accordion effect
   &:hover {
-
     .euiDataGridRowCell__expandButtonIcon {
-      margin-left: $euiDataGridCellPaddingM;
-      width: $euiSizeM;
-      background: $euiColorPrimary; // Needed to prevent the bg-color of .euiButtonIcon--text:focus
+      animation-duration: $euiAnimSpeedExtraFast;
+      animation-name: euiDataGridCellButtonSlideIn;
+      animation-iteration-count: 1;
+      animation-delay: $euiAnimSpeedNormal;
+      animation-fill-mode: forwards;
     }
 
+    .euiDataGridRowCell__actionButtonIcon {
+      animation-duration: $euiAnimSpeedExtraFast;
+      animation-name: euiDataGridCellButtonSlideIn;
+      animation-iteration-count: 1;
+      animation-delay: $euiAnimSpeedNormal;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  &:not(:hover),
+  &.euiDataGridRowCell--open {
+    .euiDataGridRowCell__expandButtonIcon {
+      animation: none;
+      margin-left: $euiDataGridCellPaddingM;
+      width: $euiSizeM;
+    }
+
+    .euiDataGridRowCell__actionButtonIcon {
+      animation: none;
+      margin-left: $euiDataGridCellPaddingM;
+      width: $euiSizeM;
+    }
+  }
+
+  // on focus, directly show action buttons (without animation), but still slide in the open popover button
+  &:focus {
     .euiDataGridRowCell__actionButtonIcon {
       margin-left: $euiDataGridCellPaddingM;
       width: $euiSizeM;
     }
   }
 
-  // Only add the transition effect on hover, so that it is instantaneous on focus
-  // Long delays on hover to mitigate the accordion effect
-  &:hover {
-    .euiDataGridRowCell__expandButtonIcon {
-      transition: margin $euiAnimSpeedFast 1000ms, width $euiAnimSpeedFast 1000ms;
-    }
-
+  // if a cell is not hovered nor focused nor open via popover, don't show buttons in general
+  &:not(:hover):not(:focus):not(.euiDataGridRowCell--open) {
+    .euiDataGridRowCell__expandButtonIcon,
     .euiDataGridRowCell__actionButtonIcon {
-      transition: margin $euiAnimSpeedFast 1000ms, width $euiAnimSpeedFast 1000ms;
+      display: none;
     }
   }
 
@@ -74,8 +97,15 @@
     text-align: right;
   }
 
+  &.euiDataGridRowCell--uppercase {
+    text-transform: uppercase;
+  }
 
-  &.euiDataGridRowCell--boolean {
+  &.euiDataGridRowCell--lowercase {
+    text-transform: lowercase;
+  }
+
+  &.euiDataGridRowCell--capitalize {
     text-transform: capitalize;
   }
 
@@ -83,6 +113,7 @@
   &:not(.euiDataGridRowCell--controlColumn) {
     .euiDataGridRowCell__content,
     .euiDataGridRowCell__truncate,
+    &.euiDataGridRowCell__truncate,
     .euiDataGridRowCell__expandContent {
       @include euiTextTruncate;
       overflow: hidden;
@@ -107,10 +138,20 @@
 .euiDataGridRowCell__expandFlex {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .euiDataGridRowCell__expandContent {
   flex-grow: 1;
+}
+
+.euiDataGridRowCell__contentByHeight {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.euiDataGridRowCell__alignBaseLine {
+  align-items: baseline;
 }
 
 .euiDataGridRowCell__expandButton {
@@ -120,14 +161,14 @@
 
 .euiDataGridRowCell__expandButtonIcon {
   height: $euiSizeM;
-  min-height: $euiSizeM;
-  background: $euiColorPrimary;
   border-radius: $euiBorderRadius / 2;
-  padding: 0;
   width: 0;
-  min-width: 0;
   overflow: hidden;
   transition: none; // Have to take out the generic transition so it is instaneous on focus
+  box-shadow: none !important; // sass-lint:disable-line no-important
+  // Remove default .euiButtonIcon--fill border
+  // This way we don't need to animate the border that is inexistent in Amsterdam and unnecessary for a fill button
+  border: none;
 
   &-isActive {
     margin-left: $euiDataGridCellPaddingM;
@@ -137,11 +178,8 @@
 
 .euiDataGridRowCell__actionButtonIcon {
   height: $euiSizeM;
-  min-height: $euiSizeM;
   border-radius: $euiBorderRadius / 2;
-  padding: 0;
   width: 0;
-  min-width: 0;
   overflow: hidden;
   transition: none; // Have to take out the generic transition so it is instaneous on focus
 }
@@ -159,8 +197,8 @@
 
 // Stripes
 @include euiDataGridStyles(stripes) {
-  .euiDataGridRow:nth-child(odd) {
-    @include euiDataGridRowCell {
+  @include euiDataGridRowCell {
+    &.euiDataGridRowCell--stripe {
       background: $euiColorLightestShade;
     }
   }
@@ -188,10 +226,18 @@
   }
 }
 
+.euiDataGridRowCell--fontSizeSmall {
+  @include euiFontSizeXS;
+}
+
 @include euiDataGridStyles(fontSizeLarge) {
   @include euiDataGridRowCell {
     @include euiFontSize;
   }
+}
+
+.euiDataGridRowCell--fontSizeLarge {
+  @include euiFontSize;
 }
 
 // Padding alternates
@@ -206,6 +252,10 @@
   }
 }
 
+.euiDataGridRowCell--paddingSmall {
+  padding: $euiDataGridCellPaddingS;
+}
+
 @include euiDataGridStyles(paddingLarge) {
   @include euiDataGridRowCell {
     padding: $euiDataGridCellPaddingL;
@@ -214,5 +264,21 @@
       // Needed because the focus state adds a border, which needs to be subtracted from padding
       padding-left: $euiDataGridCellPaddingL - 1px;
     }
+  }
+}
+
+.euiDataGridRowCell--paddingLarge {
+  padding: $euiDataGridCellPaddingL;
+}
+
+@keyframes euiDataGridCellButtonSlideIn {
+  from {
+    margin-left: 0;
+    width: 0;
+  }
+
+  to {
+    margin-left: $euiDataGridCellPaddingM;
+    width: $euiSizeM;
   }
 }

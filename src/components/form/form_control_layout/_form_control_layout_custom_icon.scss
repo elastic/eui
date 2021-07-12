@@ -1,9 +1,6 @@
 .euiFormControlLayoutCustomIcon {
   pointer-events: none;
-
-  .euiFormControlLayoutCustomIcon__icon {
-    transform: translateY(-1px);
-  }
+  font-size: 0; // ensures the icon stays vertically centered
 }
 
 .euiFormControlLayoutCustomIcon--clickable {

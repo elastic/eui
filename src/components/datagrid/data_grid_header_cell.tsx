@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -22,6 +11,7 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   useCallback,
+  useContext,
   useEffect,
   useRef,
   useState,
@@ -39,6 +29,10 @@ import { EuiDataGridColumn } from './data_grid_types';
 import { getColumnActions } from './column_actions';
 import { useEuiI18n } from '../i18n';
 import { EuiIcon } from '../icon';
+import {
+  DataGridFocusContext,
+  DataGridSortingContext,
+} from './data_grid_context';
 
 export interface EuiDataGridHeaderCellProps
   extends Omit<
@@ -64,13 +58,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     setColumnWidth,
     setVisibleColumns,
     switchColumnPos,
-    sorting,
-    focusedCell,
-    onCellFocus: setFocusedCell,
     headerIsInteractive,
     className,
   } = props;
-  const { id, display } = column;
+  const { id, display, displayAsText } = column;
 
   const width = columnWidths[id] || defaultColumnWidth;
 
@@ -85,6 +76,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     'euiDataGridHeaderCell.headerActions',
     'Header actions'
   );
+
+  const sorting = useContext(DataGridSortingContext);
+  const { setFocusedCell, onFocusUpdate } = useContext(DataGridFocusContext);
 
   if (sorting) {
     const sortedColumnIds = new Set(sorting.columns.map(({ id }) => id));
@@ -118,9 +112,14 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     className
   );
 
+  const [isFocused, setIsFocused] = useState(false);
+  useEffect(() => {
+    return onFocusUpdate([index, -1], (isFocused: boolean) => {
+      setIsFocused(isFocused);
+    });
+  }, [index, onFocusUpdate]);
+
   const headerRef = useRef<HTMLDivElement>(null);
-  const isFocused =
-    focusedCell != null && focusedCell[0] === index && focusedCell[1] === -1;
   const [isCellEntered, setIsCellEntered] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
@@ -189,11 +188,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           return false;
         } else {
           // take the focus
-          if (
-            focusedCell == null ||
-            focusedCell[0] !== index ||
-            focusedCell[1] !== -1
-          ) {
+          if (isFocused === false) {
             setFocusedCell([index, -1]);
           } else if (headerRef.current) {
             // this cell already had the grid's focus, so re-enable interactives
@@ -267,9 +262,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     headerIsInteractive,
     isFocused,
     setIsCellEntered,
-    focusedCell,
-    setFocusedCell,
     index,
+    setFocusedCell,
   ]);
 
   const columnActions = getColumnActions(
@@ -284,6 +278,15 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   );
 
   const showColumnActions = columnActions && columnActions.length > 0;
+  const sortedColumn = sorting?.columns.find((col) => col.id === id);
+  const sortingArrow = sortedColumn ? (
+    <EuiIcon
+      type={sortedColumn.direction === 'asc' ? 'sortUp' : 'sortDown'}
+      color="text"
+      className="euiDataGridHeaderCell__sortingArrow"
+      data-test-subj={`dataGridHeaderCellSortingIcon-${id}`}
+    />
+  ) : null;
 
   return (
     <div
@@ -308,37 +311,47 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         </EuiScreenReaderOnly>
       )}
       {!showColumnActions ? (
-        <div className="euiDataGridHeaderCell__content">{display || id}</div>
+        <>
+          {sortingArrow}
+          <div className="euiDataGridHeaderCell__content">
+            {display || displayAsText || id}
+          </div>
+        </>
       ) : (
-        <button
-          className="euiDataGridHeaderCell__button"
-          onClick={() => setIsPopoverOpen(true)}>
-          <div className="euiDataGridHeaderCell__content">{display || id}</div>
-          <EuiPopover
-            className="euiDataGridHeaderCell__popover"
-            panelPaddingSize="none"
-            anchorPosition="downRight"
-            button={
+        <EuiPopover
+          anchorClassName="euiDataGridHeaderCell__anchor"
+          panelPaddingSize="none"
+          offset={7}
+          button={
+            <button
+              className="euiDataGridHeaderCell__button"
+              onClick={() =>
+                setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen)
+              }>
+              {sortingArrow}
+              <div className="euiDataGridHeaderCell__content">
+                {display || displayAsText || id}
+              </div>
               <EuiIcon
+                className="euiDataGridHeaderCell__icon"
                 type="arrowDown"
                 size="s"
                 color="text"
                 aria-label={actionButtonAriaLabel}
                 data-test-subj={`dataGridHeaderCellActionButton-${id}`}
               />
-            }
-            isOpen={isPopoverOpen}
-            closePopover={() => setIsPopoverOpen(false)}
-            ownFocus={isFocused}>
-            <div>
-              <EuiListGroup
-                listItems={columnActions}
-                gutterSize="none"
-                data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
-              />
-            </div>
-          </EuiPopover>
-        </button>
+            </button>
+          }
+          isOpen={isPopoverOpen}
+          closePopover={() => setIsPopoverOpen(false)}>
+          <div>
+            <EuiListGroup
+              listItems={columnActions}
+              gutterSize="none"
+              data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
+            />
+          </div>
+        </EuiPopover>
       )}
     </div>
   );
