@@ -6840,6 +6840,24 @@ exports[`EuiIcon props type pause is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type pauseFilled is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M5 2a1 1 0 00-1 1v10a1 1 0 102 0V3a1 1 0 00-1-1zm6 0a1 1 0 00-1 1v10a1 1 0 102 0V3a1 1 0 00-1-1z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type pencil is rendered 1`] = `
 <svg
   aria-hidden="true"
