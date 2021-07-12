@@ -2,21 +2,25 @@ import React from 'react';
 
 import { EuiCodeBlock, EuiSpacer } from '../../../../src/components';
 
-const htmlCode = `<div>
+const htmlCode = `<!--I'm an example of HTML -->
+<div>
   <h1>My First Heading</h1>
   <p>My first paragraph.</p>
 </div>`;
 
-const jsCode = `<div className="MyComponent">
-  <h1>Hello world!</h1>
-</div>`;
+const jsCode = `import React from 'react';
+
+export default () => (
+  <div className="MyComponent">
+    <h1>Hello world!</h1>
+  </div>
+);`;
 
 const sqlCode = `CREATE TABLE "topic" (
   "id" serial NOT NULL PRIMARY KEY,
   "forum_id" integer NOT NULL,
   "subject" varchar(255) NOT NULL
 );
-
 ALTER TABLE "topic"
 ADD CONSTRAINT forum_id FOREIGN KEY ("forum_id")
 REFERENCES "forum" ("id");
