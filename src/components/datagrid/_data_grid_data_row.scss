@@ -1,6 +1,5 @@
 .euiDataGridRow {
-  display: inline-flex;
-  min-width: 100%; // Needed to prevent wraps. Inline flex is tricky
+  display: flex;
 }
 
 @include euiDataGridRowCell {
@@ -121,7 +120,6 @@
       white-space: nowrap;
     }
   }
-
 }
 
 .euiDataGridRowCell__popover {
@@ -140,10 +138,20 @@
 .euiDataGridRowCell__expandFlex {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .euiDataGridRowCell__expandContent {
   flex-grow: 1;
+}
+
+.euiDataGridRowCell__contentByHeight {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.euiDataGridRowCell__alignBaseLine {
+  align-items: baseline;
 }
 
 .euiDataGridRowCell__expandButton {
@@ -218,10 +226,18 @@
   }
 }
 
+.euiDataGridRowCell--fontSizeSmall {
+  @include euiFontSizeXS;
+}
+
 @include euiDataGridStyles(fontSizeLarge) {
   @include euiDataGridRowCell {
     @include euiFontSize;
   }
+}
+
+.euiDataGridRowCell--fontSizeLarge {
+  @include euiFontSize;
 }
 
 // Padding alternates
@@ -236,6 +252,10 @@
   }
 }
 
+.euiDataGridRowCell--paddingSmall {
+  padding: $euiDataGridCellPaddingS;
+}
+
 @include euiDataGridStyles(paddingLarge) {
   @include euiDataGridRowCell {
     padding: $euiDataGridCellPaddingL;
@@ -245,6 +265,10 @@
       padding-left: $euiDataGridCellPaddingL - 1px;
     }
   }
+}
+
+.euiDataGridRowCell--paddingLarge {
+  padding: $euiDataGridCellPaddingL;
 }
 
 @keyframes euiDataGridCellButtonSlideIn {

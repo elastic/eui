@@ -739,26 +739,11 @@ exports[`renders inline EuiColorPicker 1`] = `
 >
   <div>
     <div
-      aria-activedescendant="undefined-saturationIndicator"
-      aria-describedby="undefined-saturationDescription"
-      aria-roledescription="HSV color mode saturation and value selection"
       class="euiSaturation"
       data-test-subj="euiSaturation"
-      role="application"
       style="background:hsl(30, 100%, 50%)"
-      tabindex="0"
+      tabindex="-1"
     >
-      <p
-        class="euiScreenReaderOnly"
-      >
-        Use the arrow keys to navigate the square color gradient. The coordinates resulting from each key press will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right decrease and increase (respectively) the 'saturation' value. Up and down decrease and increase (respectively) the 'value' value.
-      </p>
-      <p
-        aria-live="polite"
-        class="euiScreenReaderOnly"
-      >
-        #ffeedd
-      </p>
       <div
         class="euiSaturation__lightness"
       >
@@ -766,11 +751,26 @@ exports[`renders inline EuiColorPicker 1`] = `
           class="euiSaturation__saturation"
         />
       </div>
-      <div
+      <button
+        aria-describedby="undefined-instructions"
+        aria-label="#ffeedd"
+        aria-roledescription="HSV color mode saturation and value 2-axis slider"
         class="euiSaturation__indicator"
         id="undefined-saturationIndicator"
         style="left:0;top:0"
       />
+      <span
+        aria-live="assertive"
+        hidden=""
+      >
+        #ffeedd
+      </span>
+      <span
+        hidden=""
+        id="undefined-instructions"
+      >
+        Arrow keys to navigate the square color gradient. Coordinates will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right to change the saturation. Up and down change the value.
+      </span>
     </div>
     <label
       class="euiScreenReaderOnly"
@@ -798,121 +798,110 @@ exports[`renders inline EuiColorPicker 1`] = `
       />
     </div>
   </div>
-  <div
-    class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--directionRow euiFlexGroup--wrap"
-    role="listbox"
+  <ul
+    class="euiColorPicker__swatches"
   >
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+    <li
+      class="euiColorPicker__swatch-item"
     >
       <button
         aria-label="Select #54B399 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
-        role="option"
         style="background:rgb(84,179,153)"
         type="button"
       />
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+    </li>
+    <li
+      class="euiColorPicker__swatch-item"
     >
       <button
         aria-label="Select #6092C0 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
-        role="option"
         style="background:rgb(96,146,192)"
         type="button"
       />
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+    </li>
+    <li
+      class="euiColorPicker__swatch-item"
     >
       <button
         aria-label="Select #D36086 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
-        role="option"
         style="background:rgb(211,96,134)"
         type="button"
       />
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+    </li>
+    <li
+      class="euiColorPicker__swatch-item"
     >
       <button
         aria-label="Select #9170B8 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
-        role="option"
         style="background:rgb(145,112,184)"
         type="button"
       />
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+    </li>
+    <li
+      class="euiColorPicker__swatch-item"
     >
       <button
         aria-label="Select #CA8EAE as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
-        role="option"
         style="background:rgb(202,142,174)"
         type="button"
       />
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+    </li>
+    <li
+      class="euiColorPicker__swatch-item"
     >
       <button
         aria-label="Select #D6BF57 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
-        role="option"
         style="background:rgb(214,191,87)"
         type="button"
       />
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+    </li>
+    <li
+      class="euiColorPicker__swatch-item"
     >
       <button
         aria-label="Select #B9A888 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
-        role="option"
         style="background:rgb(185,168,136)"
         type="button"
       />
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+    </li>
+    <li
+      class="euiColorPicker__swatch-item"
     >
       <button
         aria-label="Select #DA8B45 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
-        role="option"
         style="background:rgb(218,139,69)"
         type="button"
       />
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+    </li>
+    <li
+      class="euiColorPicker__swatch-item"
     >
       <button
         aria-label="Select #AA6556 as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
-        role="option"
         style="background:rgb(170,101,86)"
         type="button"
       />
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
+    </li>
+    <li
+      class="euiColorPicker__swatch-item"
     >
       <button
         aria-label="Select #E7664C as the color"
         class="euiColorPickerSwatch euiColorPicker__swatchSelect"
-        role="option"
         style="background:rgb(231,102,76)"
         type="button"
       />
-    </div>
-  </div>
+    </li>
+  </ul>
 </div>
 `;
 
