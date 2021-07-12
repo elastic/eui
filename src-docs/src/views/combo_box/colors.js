@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { EuiComboBox } from '../../../../src/components';
 import { euiPaletteColorBlindBehindText } from '../../../../src/services';
+import { DisplayToggles } from '../form_controls/display_toggles';
 
 const visColorsBehindText = euiPaletteColorBlindBehindText();
 const optionsStatic = [
@@ -86,12 +87,16 @@ export default () => {
   };
 
   return (
-    <EuiComboBox
-      placeholder="Select or create options"
-      options={options}
-      selectedOptions={selectedOptions}
-      onChange={onChange}
-      onCreateOption={onCreateOption}
-    />
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles canDisabled={false} canReadOnly={false} canIsDisabled>
+      <EuiComboBox
+        placeholder="Select or create options"
+        options={options}
+        selectedOptions={selectedOptions}
+        onChange={onChange}
+        onCreateOption={onCreateOption}
+        isDisabled
+      />
+    </DisplayToggles>
   );
 };

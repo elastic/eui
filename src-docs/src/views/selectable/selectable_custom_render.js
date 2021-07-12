@@ -19,6 +19,7 @@ export default () => {
       searchableLabel: `${country.name} ${'I am secondary content, I am!'}`,
       prepend: country.flag,
       append: <EuiBadge>{country.code}</EuiBadge>,
+      showIcons: false,
     };
   });
 

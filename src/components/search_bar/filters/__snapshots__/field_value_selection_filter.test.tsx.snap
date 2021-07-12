@@ -9,6 +9,7 @@ exports[`FieldValueSelectionFilter active - field is global 1`] = `
       hasActiveFilters={true}
       iconSide="right"
       iconType="arrowDown"
+      numActiveFilters={0}
       onClick={[Function]}
     >
       Tag
@@ -24,35 +25,21 @@ exports[`FieldValueSelectionFilter active - field is global 1`] = `
   panelPaddingSize="none"
 >
   <div
-    className="euiFilterSelect__items"
+    className="euiFilterSelect__note"
   >
-    <EuiFilterSelectItem
-      key="0"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      showIcons={true}
+    <div
+      className="euiFilterSelect__noteContent"
     >
-      feature
-    </EuiFilterSelectItem>
-    <EuiFilterSelectItem
-      key="1"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      showIcons={true}
-    >
-      Text
-    </EuiFilterSelectItem>
-    <EuiFilterSelectItem
-      checked="on"
-      key="2"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      showIcons={true}
-    >
-      <div>
-        bug
-      </div>
-    </EuiFilterSelectItem>
+      <EuiLoadingChart
+        size="m"
+      />
+      <EuiSpacer
+        size="xs"
+      />
+      <p>
+        Loading...
+      </p>
+    </div>
   </div>
 </EuiPopover>
 `;
@@ -63,7 +50,7 @@ exports[`FieldValueSelectionFilter active - fields in options 1`] = `
   button={
     <EuiFilterButton
       grow={true}
-      hasActiveFilters={true}
+      hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
       onClick={[Function]}
@@ -81,35 +68,21 @@ exports[`FieldValueSelectionFilter active - fields in options 1`] = `
   panelPaddingSize="none"
 >
   <div
-    className="euiFilterSelect__items"
+    className="euiFilterSelect__note"
   >
-    <EuiFilterSelectItem
-      key="0"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      showIcons={true}
+    <div
+      className="euiFilterSelect__noteContent"
     >
-      feature
-    </EuiFilterSelectItem>
-    <EuiFilterSelectItem
-      key="1"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      showIcons={true}
-    >
-      Text
-    </EuiFilterSelectItem>
-    <EuiFilterSelectItem
-      checked="on"
-      key="2"
-      onClick={[Function]}
-      onKeyDown={[Function]}
-      showIcons={true}
-    >
-      <div>
-        bug
-      </div>
-    </EuiFilterSelectItem>
+      <EuiLoadingChart
+        size="m"
+      />
+      <EuiSpacer
+        size="xs"
+      />
+      <p>
+        Loading...
+      </p>
+    </div>
   </div>
 </EuiPopover>
 `;

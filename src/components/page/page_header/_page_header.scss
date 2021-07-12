@@ -15,6 +15,11 @@
 
 .euiPageHeader--bottomBorder {
   border-bottom: $euiBorderThin;
+
+  &:not(.euiPageHeader--tabsAtBottom) {
+    // Default padding to separate contents (unless there's tabs)
+    padding-bottom: map-get($euiPanelPaddingModifiers, 'paddingLarge');
+  }
 }
 
 // Uses the same values as EuiPanel
@@ -22,9 +27,12 @@
   .euiPageHeader--#{$modifier} {
     padding: $amount;
 
+    // Use margin if there are tabs to keep border close to tabs
     &.euiPageHeader--tabsAtBottom {
-      // Use margin if there are tabs to keep border close to tabs
       padding-bottom: 0;
+    }
+
+    &.euiPageHeader--tabsAtBottom.euiPageHeader--bottomBorder {
       margin-bottom: $amount;
     }
   }

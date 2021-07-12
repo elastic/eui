@@ -122,6 +122,7 @@ export const HomeView = () => (
         justifyContent="spaceBetween">
         <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
           <EuiCard
+            hasBorder
             href="#/navigation/button"
             textAlign="left"
             image={imageButtons}
@@ -131,6 +132,7 @@ export const HomeView = () => (
         </EuiFlexItem>
         <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
           <EuiCard
+            hasBorder
             href="#/display/card"
             textAlign="left"
             image={imageCards}
@@ -140,6 +142,7 @@ export const HomeView = () => (
         </EuiFlexItem>
         <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
           <EuiCard
+            hasBorder
             href="#/elastic-charts/creating-charts"
             textAlign="left"
             image={imageCharts}
@@ -149,6 +152,7 @@ export const HomeView = () => (
         </EuiFlexItem>
         <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
           <EuiCard
+            hasBorder
             href="#/layout/flex"
             textAlign="left"
             image={imageFlexgrid}
@@ -158,6 +162,7 @@ export const HomeView = () => (
         </EuiFlexItem>
         <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
           <EuiCard
+            hasBorder
             href="#/forms/form-layouts"
             textAlign="left"
             image={imageForms}
@@ -167,6 +172,7 @@ export const HomeView = () => (
         </EuiFlexItem>
         <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
           <EuiCard
+            hasBorder
             href="#/display/icons"
             textAlign="left"
             image={imageIcons}
@@ -176,6 +182,7 @@ export const HomeView = () => (
         </EuiFlexItem>
         <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
           <EuiCard
+            hasBorder
             href="#/layout/page"
             textAlign="left"
             image={imagePages}
@@ -185,6 +192,7 @@ export const HomeView = () => (
         </EuiFlexItem>
         <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
           <EuiCard
+            hasBorder
             href="#/tabular-content/tables"
             textAlign="left"
             image={imageTables}
@@ -194,6 +202,7 @@ export const HomeView = () => (
         </EuiFlexItem>
         <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
           <EuiCard
+            hasBorder
             href="#/display/text"
             textAlign="left"
             image={imageText}
@@ -207,9 +216,13 @@ export const HomeView = () => (
       <div>
         <EuiText size="xs" textAlign="center" color="subdued">
           <p>
-            EUI is licensed under{' '}
-            <EuiLink href="https://github.com/elastic/eui/blob/master/LICENSE">
-              Apache License 2.0
+            EUI is dual-licensed under{' '}
+            <EuiLink href="https://github.com/elastic/eui/blob/master/licenses/ELASTIC-LICENSE-2.0.md">
+              Elastic License 2.0
+            </EuiLink>{' '}
+            and{' '}
+            <EuiLink href="https://github.com/elastic/eui/blob/master/licenses/SSPL-LICENSE.md">
+              Server Side Public License, v 1
             </EuiLink>{' '}
             | Crafted with{' '}
             <span

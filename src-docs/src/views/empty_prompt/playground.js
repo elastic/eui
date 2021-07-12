@@ -24,7 +24,7 @@ export default () => {
     options: {
       default: 'default',
       subdued: 'subdued',
-      secondary: 'secondary',
+      success: 'success',
       accent: 'accent',
       danger: 'danger',
       warning: 'warning',
