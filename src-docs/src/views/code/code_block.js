@@ -10,11 +10,12 @@ const htmlCode = `<!--I'm an example of HTML -->
 
 const jsCode = `import React from 'react';
 
-export default () => (
-  <div className="MyComponent">
+const MyComponent = () => (
+  <div className="myComponent">
     <h1>Hello world!</h1>
   </div>
-);`;
+);
+`;
 
 const sqlCode = `CREATE TABLE "topic" (
   "id" serial NOT NULL PRIMARY KEY,
