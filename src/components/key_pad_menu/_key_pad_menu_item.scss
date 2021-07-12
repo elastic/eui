@@ -16,7 +16,7 @@
   border-radius: $euiBorderRadius;
 
   // sass-lint:disable-block mixins-before-declarations
-  @include euiAnimationsAllowed {
+  @include euiCanAnimate {
     transition:
       background-color $euiAnimSpeedFast ease-in,
       border-color $euiAnimSpeedFast ease-in,
@@ -34,7 +34,7 @@
 
       // sass-lint:disable-block mixins-before-declarations
       // sass-lint:disable-block nesting-depth
-      @include euiAnimationsAllowed {
+      @include euiCanAnimate {
         .euiKeyPadMenuItem__icon {
           transform: translateY(0);
         }
