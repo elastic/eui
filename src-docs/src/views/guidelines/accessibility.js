@@ -28,49 +28,63 @@ export default {
   title: 'Accessibility guidelines',
   intro: (
     <>
-      <EuiText grow={false}>
+      <EuiText color="subdued" size="s" grow={false}>
         <p>
-          EUI provides a strong start to building accessibility into your apps.
-          The components provided strive to meet{' '}
-          <EuiLink href="https://www.w3.org/TR/WCAG21/">WCAG 2.1</EuiLink>{' '}
-          guidelines on semantics, keyboard functionality, color contrast, and
-          so on. How you stitch together these components in the overall page
-          structure also plays a large role in meeting accessibility goals.
-          Headings, landmarks, page titles, focus management, and accessible
-          names all work together to create accessible apps.
-        </p>
-        <p>
-          Building accessibility into your app is as important as code quality,
-          visual design, and performance, and it’s also important that you test
-          as you go. You can approach accessibility testing from three
-          dimensions: automated, manual, and empathetic thinking. Use automated
-          tests to quickly cover as much ground as possible, manual tests to
-          address more complicated scenarios, and empathy to fill in the gaps.
+          This page provides some general accessibility guidelines. For
+          component specific recommendations, be sure to check out their
+          individual documentation pages.
         </p>
       </EuiText>
-
-      <EuiSpacer size="xl" />
-      <EuiTitle size="xs">
-        <p>For a technical intro to accessibility and how EUI tackles it</p>
-      </EuiTitle>
-
-      <EuiSpacer size="l" />
-
-      <EuiAspectRatio width={16} height={9} maxWidth={700}>
-        <iframe
-          title="Building and Testing for Accessibility with EUI"
-          width="560"
-          height="315"
-          src="https://www.youtube-nocookie.com/embed/iDXoEe8NkrE"
-          frameBorder="0"
-          allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      </EuiAspectRatio>
-      <EuiSpacer size="xl" />
     </>
   ),
   sections: [
+    {
+      wrapText: false,
+      text: (
+        <>
+          <EuiText grow={false}>
+            <p>
+              EUI provides a strong start to building accessibility into your
+              apps. The components provided strive to meet{' '}
+              <EuiLink href="https://www.w3.org/TR/WCAG21/">WCAG 2.1</EuiLink>{' '}
+              guidelines on semantics, keyboard functionality, color contrast,
+              and so on. How you stitch together these components in the overall
+              page structure also plays a large role in meeting accessibility
+              goals. Headings, landmarks, page titles, focus management, and
+              accessible names all work together to create accessible apps.
+            </p>
+            <p>
+              Building accessibility into your app is as important as code
+              quality, visual design, and performance, and it’s also important
+              that you test as you go. You can approach accessibility testing
+              from three dimensions: automated, manual, and empathetic thinking.
+              Use automated tests to quickly cover as much ground as possible,
+              manual tests to address more complicated scenarios, and empathy to
+              fill in the gaps.
+            </p>
+          </EuiText>
+
+          <EuiSpacer size="xl" />
+          <EuiTitle size="xs">
+            <p>For a technical intro to accessibility and how EUI tackles it</p>
+          </EuiTitle>
+
+          <EuiSpacer size="l" />
+
+          <EuiAspectRatio width={16} height={9}>
+            <iframe
+              title="Building and Testing for Accessibility with EUI"
+              width="560"
+              height="315"
+              src="https://www.youtube-nocookie.com/embed/iDXoEe8NkrE"
+              frameBorder="0"
+              allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </EuiAspectRatio>
+        </>
+      ),
+    },
     {
       title: 'Headings and landmarks',
       wrapText: false,
