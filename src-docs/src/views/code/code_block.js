@@ -2,11 +2,28 @@ import React from 'react';
 
 import { EuiCodeBlock, EuiSpacer } from '../../../../src/components';
 
-const htmlCode = require('!!raw-loader!./code_examples/example.html').default;
+const htmlCode = `<div>
+  <h1>My First Heading</h1>
+  <p>My first paragraph.</p>
+</div>`;
 
-const jsCode = require('!!raw-loader!./code_examples/example.js').default;
+const jsCode = `<div className="MyComponent">
+  <h1>Hello world!</h1>
+</div>`;
 
-const sqlCode = require('!!raw-loader!./code_examples/example.sql').default;
+const sqlCode = `CREATE TABLE "topic" (
+  "id" serial NOT NULL PRIMARY KEY,
+  "forum_id" integer NOT NULL,
+  "subject" varchar(255) NOT NULL
+);
+
+ALTER TABLE "topic"
+ADD CONSTRAINT forum_id FOREIGN KEY ("forum_id")
+REFERENCES "forum" ("id");
+
+-- Initials
+insert into "topic" ("forum_id", "subject")
+values (2, 'D''artagnian');`;
 
 export default () => (
   <div>
