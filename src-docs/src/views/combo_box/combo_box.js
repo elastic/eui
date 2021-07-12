@@ -72,7 +72,7 @@ export default () => {
 
   return (
     /* DisplayToggles wrapper for Docs only */
-    <DisplayToggles canDisabled={false} canReadOnly={false}>
+    <DisplayToggles canDisabled={false} canReadOnly={false} canIsDisabled>
       <EuiComboBox
         placeholder="Select or create options"
         options={options}
@@ -81,6 +81,7 @@ export default () => {
         onCreateOption={onCreateOption}
         isClearable={true}
         data-test-subj="demoComboBox"
+        autoFocus
       />
     </DisplayToggles>
   );

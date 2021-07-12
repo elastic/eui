@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -22,7 +11,6 @@ import React, {
   forwardRef,
   useImperativeHandle,
   useRef,
-  useState,
 } from 'react';
 import classNames from 'classnames';
 import {
@@ -66,9 +54,9 @@ export const EuiHeaderSectionItemButton = forwardRef<
      */
     ref
   ) => {
-    const [buttonRef, setButtonRef] = useState<
-      HTMLAnchorElement | HTMLButtonElement | null
-    >();
+    const buttonRef = useRef<HTMLAnchorElement | HTMLButtonElement | null>(
+      null
+    );
     const animationTargetRef = useRef<HTMLSpanElement | null>(null);
 
     useImperativeHandle<
@@ -77,128 +65,124 @@ export const EuiHeaderSectionItemButton = forwardRef<
     >(
       ref,
       () => {
-        if (buttonRef) {
-          (buttonRef as any).euiAnimate = () => {
-            const keyframes: Keyframe[] = [
-              { transform: 'rotate(0)', offset: 0, easing: 'ease-in-out' },
-              {
-                transform: 'rotate(30deg)',
-                offset: 0.01,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(-28deg)',
-                offset: 0.03,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(34deg)',
-                offset: 0.05,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(-32deg)',
-                offset: 0.07,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(30deg)',
-                offset: 0.09,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(-28deg)',
-                offset: 0.11,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(26deg)',
-                offset: 0.13,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(-24deg)',
-                offset: 0.15,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(22deg)',
-                offset: 0.17,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(-20deg)',
-                offset: 0.19,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(18deg)',
-                offset: 0.21,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(-16deg)',
-                offset: 0.23,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(14deg)',
-                offset: 0.25,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(-12deg)',
-                offset: 0.27,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(10deg)',
-                offset: 0.29,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(-8deg)',
-                offset: 0.31,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(6deg)',
-                offset: 0.33,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(-4deg)',
-                offset: 0.35,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(2deg)',
-                offset: 0.37,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(-1deg)',
-                offset: 0.39,
-                easing: 'ease-in-out',
-              },
-              {
-                transform: 'rotate(1deg)',
-                offset: 0.41,
-                easing: 'ease-in-out',
-              },
-              { transform: 'rotate(0)', offset: 0.43, easing: 'ease-in-out' },
-              { transform: 'rotate(0)', offset: 1, easing: 'ease-in-out' },
-            ];
-            animationTargetRef.current?.animate(keyframes, {
-              duration: 5000,
-            });
-          };
-          return buttonRef as EuiHeaderSectionItemButtonRef;
-        } else {
-          return null;
-        }
+        (buttonRef.current as any).euiAnimate = () => {
+          const keyframes: Keyframe[] = [
+            { transform: 'rotate(0)', offset: 0, easing: 'ease-in-out' },
+            {
+              transform: 'rotate(30deg)',
+              offset: 0.01,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(-28deg)',
+              offset: 0.03,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(34deg)',
+              offset: 0.05,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(-32deg)',
+              offset: 0.07,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(30deg)',
+              offset: 0.09,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(-28deg)',
+              offset: 0.11,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(26deg)',
+              offset: 0.13,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(-24deg)',
+              offset: 0.15,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(22deg)',
+              offset: 0.17,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(-20deg)',
+              offset: 0.19,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(18deg)',
+              offset: 0.21,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(-16deg)',
+              offset: 0.23,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(14deg)',
+              offset: 0.25,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(-12deg)',
+              offset: 0.27,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(10deg)',
+              offset: 0.29,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(-8deg)',
+              offset: 0.31,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(6deg)',
+              offset: 0.33,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(-4deg)',
+              offset: 0.35,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(2deg)',
+              offset: 0.37,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(-1deg)',
+              offset: 0.39,
+              easing: 'ease-in-out',
+            },
+            {
+              transform: 'rotate(1deg)',
+              offset: 0.41,
+              easing: 'ease-in-out',
+            },
+            { transform: 'rotate(0)', offset: 0.43, easing: 'ease-in-out' },
+            { transform: 'rotate(0)', offset: 1, easing: 'ease-in-out' },
+          ];
+          animationTargetRef.current?.animate(keyframes, {
+            duration: 5000,
+          });
+        };
+        return buttonRef.current as EuiHeaderSectionItemButtonRef;
       },
-      [buttonRef]
+      []
     );
 
     const classes = classNames('euiHeaderSectionItemButton', className);
@@ -237,7 +221,7 @@ export const EuiHeaderSectionItemButton = forwardRef<
       <EuiButtonEmpty
         className={classes}
         color="text"
-        buttonRef={setButtonRef}
+        buttonRef={buttonRef}
         {...rest}>
         <span ref={animationTargetRef} className={animationClasses}>
           {children}

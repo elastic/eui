@@ -1,6 +1,5 @@
 .euiDataGridRow {
-  display: inline-flex;
-  min-width: 100%; // Needed to prevent wraps. Inline flex is tricky
+  display: flex;
 }
 
 @include euiDataGridRowCell {
@@ -98,8 +97,15 @@
     text-align: right;
   }
 
+  &.euiDataGridRowCell--uppercase {
+    text-transform: uppercase;
+  }
 
-  &.euiDataGridRowCell--boolean {
+  &.euiDataGridRowCell--lowercase {
+    text-transform: lowercase;
+  }
+
+  &.euiDataGridRowCell--capitalize {
     text-transform: capitalize;
   }
 
@@ -114,7 +120,6 @@
       white-space: nowrap;
     }
   }
-
 }
 
 .euiDataGridRowCell__popover {
@@ -133,10 +138,20 @@
 .euiDataGridRowCell__expandFlex {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .euiDataGridRowCell__expandContent {
   flex-grow: 1;
+}
+
+.euiDataGridRowCell__contentByHeight {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.euiDataGridRowCell__alignBaseLine {
+  align-items: baseline;
 }
 
 .euiDataGridRowCell__expandButton {
@@ -150,6 +165,10 @@
   width: 0;
   overflow: hidden;
   transition: none; // Have to take out the generic transition so it is instaneous on focus
+  box-shadow: none !important; // sass-lint:disable-line no-important
+  // Remove default .euiButtonIcon--fill border
+  // This way we don't need to animate the border that is inexistent in Amsterdam and unnecessary for a fill button
+  border: none;
 
   &-isActive {
     margin-left: $euiDataGridCellPaddingM;
@@ -207,10 +226,18 @@
   }
 }
 
+.euiDataGridRowCell--fontSizeSmall {
+  @include euiFontSizeXS;
+}
+
 @include euiDataGridStyles(fontSizeLarge) {
   @include euiDataGridRowCell {
     @include euiFontSize;
   }
+}
+
+.euiDataGridRowCell--fontSizeLarge {
+  @include euiFontSize;
 }
 
 // Padding alternates
@@ -225,6 +252,10 @@
   }
 }
 
+.euiDataGridRowCell--paddingSmall {
+  padding: $euiDataGridCellPaddingS;
+}
+
 @include euiDataGridStyles(paddingLarge) {
   @include euiDataGridRowCell {
     padding: $euiDataGridCellPaddingL;
@@ -234,6 +265,10 @@
       padding-left: $euiDataGridCellPaddingL - 1px;
     }
   }
+}
+
+.euiDataGridRowCell--paddingLarge {
+  padding: $euiDataGridCellPaddingL;
 }
 
 @keyframes euiDataGridCellButtonSlideIn {

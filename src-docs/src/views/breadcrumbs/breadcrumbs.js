@@ -36,7 +36,7 @@ export default () => {
   ];
 
   return (
-    <EuiPageContent>
+    <EuiPageContent role={null}>
       <EuiBreadcrumbs
         breadcrumbs={breadcrumbs}
         truncate={false}

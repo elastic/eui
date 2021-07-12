@@ -11,7 +11,7 @@
   text-align: left; /* 1 */
   display: block;
   width: 100%;
-  padding: $euiSizeXS / 2 0;
+  padding: ($euiSizeXS / 2) 0;
   color: inherit; /* 2 */
 
   &.euiSideNavItemButton--isClickable:not(:disabled) {
@@ -38,7 +38,7 @@
   }
 
   &:disabled {
-    @include euiDisabledState;
+    @include euiDisabledState($euiSideNavDisabledTextcolor);
   }
 }
 

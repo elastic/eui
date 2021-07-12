@@ -83,7 +83,7 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
 <div>
   <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen"
-    id="18"
+    id="19"
   >
     <div
       class="euiPopover__anchor"
@@ -141,7 +141,7 @@ exports[`EuiPopover props buffer 1`] = `
 <div>
   <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen"
-    id="19"
+    id="20"
   >
     <div
       class="euiPopover__anchor"
@@ -197,7 +197,7 @@ exports[`EuiPopover props buffer for all sides 1`] = `
 <div>
   <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen"
-    id="20"
+    id="21"
   >
     <div
       class="euiPopover__anchor"
@@ -258,6 +258,62 @@ exports[`EuiPopover props display block is rendered 1`] = `
     class="euiPopover__anchor"
   >
     <button />
+  </div>
+</div>
+`;
+
+exports[`EuiPopover props focusTrapProps is rendered 1`] = `
+<div>
+  <div
+    class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen"
+    id="16"
+  >
+    <div
+      class="euiPopover__anchor"
+    >
+      <button />
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
+    <div
+      data-focus-lock-disabled="disabled"
+    >
+      <div
+        aria-describedby="generated-id"
+        aria-live="off"
+        aria-modal="true"
+        class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-isOpen"
+        data-autofocus="true"
+        role="dialog"
+        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        tabindex="0"
+      >
+        <div
+          class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+          style="left: 10px; top: 0px;"
+        />
+        <p
+          class="euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. To close this dialog, hit escape.
+        </p>
+        <div />
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="-1"
+    />
   </div>
 </div>
 `;
@@ -335,7 +391,7 @@ exports[`EuiPopover props offset with arrow 1`] = `
 <div>
   <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen"
-    id="16"
+    id="17"
     offset="10"
   >
     <div
@@ -392,7 +448,7 @@ exports[`EuiPopover props offset without arrow 1`] = `
 <div>
   <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover-isOpen"
-    id="17"
+    id="18"
     offset="10"
   >
     <div

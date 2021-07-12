@@ -1,27 +1,16 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React from 'react';
 import { render, mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 
-import { EuiFlyout, EuiFlyoutSize, PADDING_SIZES } from './flyout';
+import { EuiFlyout, SIZES, PADDING_SIZES, SIDES } from './flyout';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, ...props }: any) => (
@@ -29,7 +18,9 @@ jest.mock('../overlay_mask', () => ({
   ),
 }));
 
-const SIZES: EuiFlyoutSize[] = ['s', 'm', 'l'];
+jest.mock('../portal', () => ({
+  EuiPortal: ({ children }: { children: any }) => children,
+}));
 
 describe('EuiFlyout', () => {
   test('is rendered', () => {
@@ -43,7 +34,15 @@ describe('EuiFlyout', () => {
   });
 
   describe('props', () => {
-    test('close button is not rendered', () => {
+    test('role can be removed', () => {
+      const component = mount(<EuiFlyout onClose={() => {}} role={null} />);
+
+      expect(
+        takeMountedSnapshot(component, { hasArrayOutput: true })
+      ).toMatchSnapshot();
+    });
+
+    test('hideCloseButton', () => {
       const component = mount(<EuiFlyout onClose={() => {}} hideCloseButton />);
 
       expect(
@@ -51,7 +50,27 @@ describe('EuiFlyout', () => {
       ).toMatchSnapshot();
     });
 
-    describe('closeButtonLabel', () => {
+    test('closeButtonProps', () => {
+      const component = mount(
+        <EuiFlyout onClose={() => {}} closeButtonProps={requiredProps} />
+      );
+
+      expect(
+        takeMountedSnapshot(component, { hasArrayOutput: true })
+      ).toMatchSnapshot();
+    });
+
+    test('closeButtonPosition can be outside', () => {
+      const component = mount(
+        <EuiFlyout onClose={() => {}} closeButtonPosition="outside" />
+      );
+
+      expect(
+        takeMountedSnapshot(component, { hasArrayOutput: true })
+      ).toMatchSnapshot();
+    });
+
+    describe('closeButtonAriaLabel', () => {
       test('has a default label for the close button', () => {
         const component = render(<EuiFlyout onClose={() => {}} />);
         const label = component
@@ -82,6 +101,38 @@ describe('EuiFlyout', () => {
       ).toMatchSnapshot();
     });
 
+    describe('sides', () => {
+      SIDES.forEach((side) => {
+        it(`${side} is rendered`, () => {
+          const component = mount(<EuiFlyout onClose={() => {}} side={side} />);
+
+          expect(
+            takeMountedSnapshot(component, { hasArrayOutput: true })
+          ).toMatchSnapshot();
+        });
+      });
+    });
+
+    describe('type=push', () => {
+      test('is rendered', () => {
+        const component = mount(
+          <EuiFlyout onClose={() => {}} type="push" pushMinBreakpoint="xs" />
+        );
+
+        expect(
+          takeMountedSnapshot(component, { hasArrayOutput: true })
+        ).toMatchSnapshot();
+      });
+    });
+
+    test('is rendered as nav', () => {
+      const component = mount(<EuiFlyout onClose={() => {}} as="nav" />);
+
+      expect(
+        takeMountedSnapshot(component, { hasArrayOutput: true })
+      ).toMatchSnapshot();
+    });
+
     describe('size', () => {
       SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
@@ -91,6 +142,14 @@ describe('EuiFlyout', () => {
             takeMountedSnapshot(component, { hasArrayOutput: true })
           ).toMatchSnapshot();
         });
+      });
+
+      it('accepts custom number', () => {
+        const component = mount(<EuiFlyout onClose={() => {}} size={500} />);
+
+        expect(
+          takeMountedSnapshot(component, { hasArrayOutput: true })
+        ).toMatchSnapshot();
       });
     });
 
@@ -108,7 +167,7 @@ describe('EuiFlyout', () => {
       });
     });
 
-    describe('max width', () => {
+    describe('maxWidth', () => {
       test('can be set to a default', () => {
         const component = mount(
           <EuiFlyout onClose={() => {}} maxWidth={true} />
@@ -140,10 +199,20 @@ describe('EuiFlyout', () => {
       });
     });
 
+    test('outsideClickCloses', () => {
+      const component = mount(
+        <EuiFlyout onClose={() => {}} outsideClickCloses />
+      );
+
+      expect(
+        takeMountedSnapshot(component, { hasArrayOutput: true })
+      ).toMatchSnapshot();
+    });
+
     describe('ownFocus', () => {
-      test('is rendered', () => {
+      test('can be false', () => {
         const component = mount(
-          <EuiFlyout onClose={() => {}} ownFocus={true} />
+          <EuiFlyout onClose={() => {}} ownFocus={false} />
         );
 
         expect(
@@ -155,7 +224,6 @@ describe('EuiFlyout', () => {
         const component = mount(
           <EuiFlyout
             onClose={() => {}}
-            ownFocus={true}
             maskProps={{ headerZindexLocation: 'above' }}
           />
         );

@@ -13,19 +13,29 @@
   flex-shrink: 0; // Ensures Safari doesn't shrink beyond contents
 }
 
-// Uses the same values as EuiPanel
-@each $modifier, $amount in $euiPanelPaddingModifiers {
-  .euiPageHeader--#{$modifier} {
-    padding-top: $amount;
-    padding-left: $amount;
-    padding-right: $amount;
-    // Use margin for the bottom in case there's a border
-    margin-bottom: $amount;
+.euiPageHeader--bottomBorder {
+  border-bottom: $euiBorderThin;
+
+  &:not(.euiPageHeader--tabsAtBottom) {
+    // Default padding to separate contents (unless there's tabs)
+    padding-bottom: map-get($euiPanelPaddingModifiers, 'paddingLarge');
   }
 }
 
-.euiPageHeader--tabsAtBottom {
-  margin-bottom: 0;
+// Uses the same values as EuiPanel
+@each $modifier, $amount in $euiPanelPaddingModifiers {
+  .euiPageHeader--#{$modifier} {
+    padding: $amount;
+
+    // Use margin if there are tabs to keep border close to tabs
+    &.euiPageHeader--tabsAtBottom {
+      padding-bottom: 0;
+    }
+
+    &.euiPageHeader--tabsAtBottom.euiPageHeader--bottomBorder {
+      margin-bottom: $amount;
+    }
+  }
 }
 
 .euiPageHeader--top {
@@ -41,7 +51,6 @@
 }
 
 @include euiBreakpoint('xs', 's') {
-
   .euiPageHeader--responsive {
     flex-direction: column;
   }

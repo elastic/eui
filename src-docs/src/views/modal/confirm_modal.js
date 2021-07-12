@@ -54,7 +54,7 @@ export default () => {
 
   return (
     <div>
-      <EuiFlexGroup wrap gutterSize="xs">
+      <EuiFlexGroup responsive={false} wrap gutterSize="xs">
         <EuiFlexItem grow={false}>
           <EuiButton onClick={showModal}>Show confirm modal</EuiButton>
         </EuiFlexItem>

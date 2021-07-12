@@ -14,7 +14,7 @@
   transition: all $euiAnimSpeedFast ease-in;
   cursor: default;
 
-  $backgroundColor: $euiColorAccent;
+  $backgroundColor: $euiColorAccentText;
   background: $backgroundColor;
   color: chooseLightOrDarkText($backgroundColor, $euiColorGhost, $euiColorInk);
 }

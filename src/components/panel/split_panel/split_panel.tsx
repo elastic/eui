@@ -1,38 +1,19 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { EuiPanel, _EuiPanelProps, EuiPanelProps } from '../panel';
+import { EuiPanel, _EuiPanelProps } from '../panel';
 import { EuiBreakpointSize } from '../../../services/breakpoint';
 import { useIsWithinBreakpoints } from '../../../services/hooks';
 
 export type _EuiSplitPanelInnerProps = HTMLAttributes<HTMLDivElement> &
-  Omit<
-    _EuiPanelProps,
-    | 'hasShadow'
-    | 'hasBorder'
-    | 'borderRadius'
-    | 'betaBadgeLabel'
-    | 'betaBadgeTooltipContent'
-    | 'betaBadgeTitle'
-  >;
+  Omit<_EuiPanelProps, 'hasShadow' | 'hasBorder' | 'borderRadius'>;
 
 /**
  * Consumed via `EuiSplitPanel.Inner`.
@@ -53,7 +34,11 @@ export const _EuiSplitPanelInner: FunctionComponent<_EuiSplitPanelInnerProps> = 
   };
 
   return (
-    <EuiPanel className={classes} {...panelProps} {...(rest as EuiPanelProps)}>
+    <EuiPanel
+      element="div"
+      className={classes}
+      {...panelProps}
+      {...(rest as _EuiPanelProps)}>
       {children}
     </EuiPanel>
   );
@@ -73,13 +58,7 @@ export type _EuiSplitPanelOuterProps = HTMLAttributes<HTMLDivElement> & {
    * Remove completely with `false` or provide your own list of breakpoint sizes to stack on.
    */
   responsive?: false | EuiBreakpointSize[];
-} & Omit<
-    _EuiPanelProps,
-    | 'paddingSize'
-    | 'betaBadgeLabel'
-    | 'betaBadgeTooltipContent'
-    | 'betaBadgeTitle'
-  >;
+} & Omit<_EuiPanelProps, 'paddingSize'>;
 
 /**
  * Consumed via `EuiSplitPanel.Outer`.
@@ -111,7 +90,7 @@ export const _EuiSplitPanelOuter: FunctionComponent<_EuiSplitPanelOuterProps> = 
       paddingSize="none"
       grow={false}
       className={classes}
-      {...(rest as EuiPanelProps)}>
+      {...(rest as _EuiPanelProps)}>
       {children}
     </EuiPanel>
   );

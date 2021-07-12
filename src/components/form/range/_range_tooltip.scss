@@ -8,6 +8,7 @@
   width: calc(100% - #{$euiRangeThumbWidth});
   margin-left: $euiRangeThumbWidth / 2;
   pointer-events: none;
+  z-index: 2; // higher than .euiRangeSlider that is 1
 }
 
 .euiRangeTooltip__value {

@@ -14,6 +14,7 @@ import { EuiButtonEmpty } from '../../../../src/components/button';
 
 // @ts-ignore Not TS
 import { CodeSandboxLink } from '../../components/codesandbox/link';
+import logoEUI from '../../images/logo-eui.svg';
 import {
   GuideThemeSelector,
   GuideSketchLink,
@@ -35,7 +36,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
 
   function renderLogo() {
     return (
-      <EuiHeaderLogo iconType="logoElastic" href="#/" aria-label="EUI home">
+      <EuiHeaderLogo iconType={logoEUI} href="#/" aria-label="EUI home">
         Elastic UI
       </EuiHeaderLogo>
     );

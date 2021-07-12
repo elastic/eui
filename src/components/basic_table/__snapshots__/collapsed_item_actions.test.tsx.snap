@@ -20,6 +20,7 @@ exports[`CollapsedItemActions render 1`] = `
         <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
+          color="inherit"
           data-euiicon-type="boxesHorizontal"
         />
       </button>

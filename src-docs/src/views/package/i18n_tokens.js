@@ -1,6 +1,6 @@
 import React from 'react';
-import tokens from '../../i18ntokens';
-import tokenChangelog from '../../i18ntokens_changelog';
+import tokens from '../../../../i18ntokens.json';
+import tokenChangelog from '../../../../i18ntokens_changelog.json';
 
 import {
   EuiAccordion,
@@ -37,7 +37,7 @@ const columns = [
     render({ defString, highlighting }) {
       return (
         <EuiCodeBlock
-          language={highlighting === 'code' ? 'javascript' : 'text'}
+          language={highlighting === 'code' ? 'javascript' : undefined}
           paddingSize="none"
           transparentBackground
           fontSize="s">

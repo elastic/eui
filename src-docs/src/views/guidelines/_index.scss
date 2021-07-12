@@ -198,6 +198,11 @@
   border-radius: $euiBorderRadius;
 }
 
+.guideSass__border--radiusSmall {
+  border: $euiBorderThin;
+  border-radius: $euiBorderRadiusSmall;
+}
+
 .guideSass__border--euiBorderThin {
   border: $euiBorderThin;
 }

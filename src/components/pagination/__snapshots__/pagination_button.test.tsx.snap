@@ -3,7 +3,7 @@
 exports[`EuiPaginationButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiPaginationButton testClass1 testClass2"
+  class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton testClass1 testClass2"
   data-test-subj="test subject string"
   type="button"
 >

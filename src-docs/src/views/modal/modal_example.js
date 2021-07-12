@@ -64,7 +64,7 @@ const modalFormSnippet = `<EuiModal onClose={closeModal}>
   </EuiModalHeader>
 
   <EuiModalBody>
-    <EuiForm id={formId}><!-- Modal body --></EuiForm>
+    <EuiForm id={formId} component="form"><!-- Modal body --></EuiForm>
   </EuiModalBody>
 
   <EuiModalFooter>
@@ -108,6 +108,7 @@ const confirmModalLoadingSnippet = [
 
 export const ModalExample = {
   title: 'Modal',
+  guidelines: <Guidelines />,
   intro: (
     <EuiText>
       <p>
@@ -259,5 +260,4 @@ export const ModalExample = {
       demo: <ModalWidth />,
     },
   ],
-  guidelines: <Guidelines />,
 };

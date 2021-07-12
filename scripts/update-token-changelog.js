@@ -5,8 +5,8 @@ const semver = require('semver');
 
 const repoDir = path.resolve(__dirname, '..');
 const packagePath = path.resolve(repoDir, 'package.json');
-const tokensPath = path.resolve(repoDir, 'src-docs', 'src', 'i18ntokens.json');
-const tokensChangelogPath = path.resolve(repoDir, 'src-docs', 'src', 'i18ntokens_changelog.json');
+const tokensPath = path.resolve(repoDir, 'i18ntokens.json');
+const tokensChangelogPath = path.resolve(repoDir, 'i18ntokens_changelog.json');
 
 const validVersionTypes = new Set(['patch', 'minor', 'major']);
 const [, , versionIncrementType] = process.argv;
@@ -101,14 +101,14 @@ async function commitTokenChanges(repo) {
 
   const index = await repo.refreshIndex();
 
-  if (dirtyFiles.has('src-docs/src/i18ntokens.json')) {
+  if (dirtyFiles.has('i18ntokens.json')) {
     createCommit = true;
-    await index.addByPath('src-docs/src/i18ntokens.json');
+    await index.addByPath('i18ntokens.json');
   }
 
-  if (dirtyFiles.has('src-docs/src/i18ntokens_changelog.json')) {
+  if (dirtyFiles.has('i18ntokens_changelog.json')) {
     createCommit = true;
-    await index.addByPath('src-docs/src/i18ntokens_changelog.json');
+    await index.addByPath('i18ntokens_changelog.json');
   }
 
   if (createCommit) {
@@ -128,12 +128,28 @@ async function getCommitForTagName(repo, tagname) {
   return git.Commit.lookup(repo, tag.targetId());
 }
 
+async function getPreviousI18nTokens(previousVersionCommit) {
+  try {
+    return JSON.parse(
+      await getFileContentsFromCommit(previousVersionCommit, 'i18ntokens.json')
+    );
+  } catch (err) {
+    // If failed, try with the previous path where it used to exist
+    return JSON.parse(
+      await getFileContentsFromCommit(
+        previousVersionCommit,
+        'src-docs/src/i18ntokens.json'
+      )
+    );
+  }
+}
+
 async function main() {
   const repo = await git.Repository.open(repoDir);
   const previousVersionCommit = await getCommitForTagName(repo, `v${oldPackageVersion}`);
 
   // check for i18n token differences between the current file & the most recent EUI version
-  const originalTokens = JSON.parse(await getFileContentsFromCommit(previousVersionCommit, 'src-docs/src/i18ntokens.json'));
+  const originalTokens = await getPreviousI18nTokens(previousVersionCommit);
   const newTokens = require(tokensPath);
 
   const changes = getTokenChanges(originalTokens, newTokens);

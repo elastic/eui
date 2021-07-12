@@ -30,6 +30,11 @@ export const pageTemplateConfig = () => {
     hidden: false,
   };
 
+  propsToUse.bottomBar = {
+    ...propsToUse.bottomBar,
+    type: PropTypes.String,
+  };
+
   propsToUse.pageSideBar = {
     ...propsToUse.pageSideBar,
     value: 'Side bar',
@@ -40,6 +45,11 @@ export const pageTemplateConfig = () => {
   propsToUse.restrictWidth = {
     ...propsToUse.restrictWidth,
     type: PropTypes.String,
+  };
+
+  propsToUse.fullHeight = {
+    ...propsToUse.fullHeight,
+    type: PropTypes.Boolean,
   };
 
   return {

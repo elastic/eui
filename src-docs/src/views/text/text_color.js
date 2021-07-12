@@ -12,7 +12,7 @@ export default () => (
     <EuiTitle>
       <h2>
         <EuiTextColor color="default">You </EuiTextColor>
-        <EuiTextColor color="secondary">use </EuiTextColor>
+        <EuiTextColor color="success">use </EuiTextColor>
         <EuiTextColor color="accent">it </EuiTextColor>
         <EuiTextColor color="warning">on </EuiTextColor>
         <EuiTextColor color="danger">anything!</EuiTextColor>
@@ -29,7 +29,7 @@ export default () => (
         <EuiTextColor color="subdued">Subdued text color</EuiTextColor>
       </p>
       <p>
-        <EuiTextColor color="secondary">Secondary text color</EuiTextColor>
+        <EuiTextColor color="success">Success text color</EuiTextColor>
       </p>
       <p>
         <EuiTextColor color="accent">Accent text color</EuiTextColor>
