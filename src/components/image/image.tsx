@@ -8,7 +8,7 @@
 
 import React, {
   FunctionComponent,
-  HTMLAttributes,
+  ImgHTMLAttributes,
   useState,
   ReactNode,
 } from 'react';
@@ -74,7 +74,7 @@ type _EuiImageSrcOrUrl = ExclusiveUnion<
 
 export type EuiImageProps = CommonProps &
   _EuiImageSrcOrUrl &
-  HTMLAttributes<HTMLImageElement> & {
+  Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'alt'> & {
     /**
      * Separate from the caption is a title on the alt tag itself.
      * This one is required for accessibility.

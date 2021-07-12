@@ -12,6 +12,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 
 import { getChromaColor } from './utils';
+import { useEuiI18n } from '../i18n';
 
 export type EuiColorPickerSwatchProps = CommonProps &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> & {
@@ -28,16 +29,22 @@ export const EuiColorPickerSwatch = forwardRef<
     () => (chromaColor ? chromaColor.css() : 'transparent'),
     [chromaColor]
   );
+  const ariaLabel = useEuiI18n(
+    'euiColorPickerSwatch.ariaLabel',
+    'Select {color} as the color',
+    { color }
+  );
 
   return (
     <button
       type="button"
       className={classes}
+      aria-label={ariaLabel}
+      ref={ref}
       style={{
         background,
         ...style,
       }}
-      ref={ref}
       {...rest}
     />
   );

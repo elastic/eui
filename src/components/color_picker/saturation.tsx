@@ -20,8 +20,7 @@ import { ColorSpaces } from 'chroma-js';
 import { CommonProps } from '../common';
 import { keys, useMouseMove } from '../../services';
 import { isNil } from '../../services/predicate';
-import { EuiScreenReaderOnly } from '../accessibility';
-import { EuiI18n } from '../i18n';
+import { useEuiI18n } from '../i18n';
 
 import { getEventPosition } from './utils';
 
@@ -54,16 +53,23 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
       hex,
       id,
       onChange,
-      tabIndex = 0,
       ...rest
     },
     ref
   ) => {
+    const [roleDescString, instructionsString] = useEuiI18n(
+      ['euiSaturation.ariaLabel', 'euiSaturation.screenReaderInstructions'],
+      [
+        'HSV color mode saturation and value 2-axis slider',
+        "Arrow keys to navigate the square color gradient. Coordinates will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right to change the saturation. Up and down change the value.",
+      ]
+    );
+
     const [indicator, setIndicator] = useState<SaturationPosition>({
       left: 0,
       top: 0,
     });
-    const [lastColor, setlastColor] = useState<ColorSpaces['hsv'] | []>([]);
+    const [lastColor, setLastColor] = useState<ColorSpaces['hsv'] | []>([]);
 
     const boxRef = useRef<HTMLDivElement>(null);
 
@@ -95,13 +101,11 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
       const { left, top } = box;
       setIndicator({ left, top });
       const newColor = calculateColor(box);
-      setlastColor(newColor);
+      setLastColor(newColor);
       onChange(newColor);
     };
     const handleChange = (location: { x: number; y: number }) => {
-      if (isNil(boxRef) || isNil(boxRef.current)) {
-        return;
-      }
+      if (isNil(boxRef?.current)) return;
       const box = getEventPosition(location, boxRef.current);
       handleUpdate(box);
     };
@@ -110,9 +114,7 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
       boxRef.current
     );
     const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-      if (isNil(boxRef) || isNil(boxRef.current)) {
-        return;
-      }
+      if (isNil(boxRef?.current)) return;
       const { height, width } = boxRef.current.getBoundingClientRect();
       const { left, top } = indicator;
       const heightScale = height / 100;
@@ -148,52 +150,39 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
     };
 
     const classes = classNames('euiSaturation', className);
+    const instructionsId = `${id}-instructions`;
     return (
-      <EuiI18n
-        token="euiSaturation.roleDescription"
-        default="HSV color mode saturation and value selection">
-        {(roleDescription: string) => (
-          // Unsure why this element causes errors as `tabIndex` and focus/interactivity (by extension) are accounted for.
-          // eslint-disable-next-line jsx-a11y/aria-activedescendant-has-tabindex, jsx-a11y/no-noninteractive-element-interactions
-          <div
-            role="application"
-            aria-roledescription={roleDescription}
-            aria-describedby={`${id}-saturationDescription`}
-            aria-activedescendant={`${id}-saturationIndicator`}
-            onMouseDown={handleMouseDown}
-            onTouchStart={handleInteraction}
-            onTouchMove={handleInteraction}
-            onKeyDown={handleKeyDown}
-            ref={ref}
-            tabIndex={tabIndex}
-            className={classes}
-            data-test-subj={dataTestSubj}
-            style={{
-              background: `hsl(${color[0]}, 100%, 50%)`,
-            }}
-            {...rest}>
-            <EuiScreenReaderOnly>
-              <p>
-                <EuiI18n
-                  token="euiSaturation.screenReaderAnnouncement"
-                  default="Use the arrow keys to navigate the square color gradient. The coordinates resulting from each key press will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right decrease and increase (respectively) the 'saturation' value. Up and down decrease and increase (respectively) the 'value' value."
-                />
-              </p>
-            </EuiScreenReaderOnly>
-            <EuiScreenReaderOnly>
-              <p aria-live="polite">{hex}</p>
-            </EuiScreenReaderOnly>
-            <div className="euiSaturation__lightness" ref={boxRef}>
-              <div className="euiSaturation__saturation" />
-            </div>
-            <div
-              id={`${id}-saturationIndicator`}
-              className="euiSaturation__indicator"
-              style={{ ...indicator }}
-            />
-          </div>
-        )}
-      </EuiI18n>
+      <div
+        onMouseDown={handleMouseDown}
+        onTouchStart={handleInteraction}
+        onTouchMove={handleInteraction}
+        onKeyDown={handleKeyDown}
+        ref={ref}
+        className={classes}
+        data-test-subj={dataTestSubj}
+        style={{
+          background: `hsl(${color[0]}, 100%, 50%)`,
+        }}
+        tabIndex={-1}
+        {...rest}>
+        <div className="euiSaturation__lightness" ref={boxRef}>
+          <div className="euiSaturation__saturation" />
+        </div>
+        <button
+          id={`${id}-saturationIndicator`}
+          className="euiSaturation__indicator"
+          style={{ ...indicator }}
+          aria-roledescription={roleDescString}
+          aria-label={hex}
+          aria-describedby={instructionsId}
+        />
+        <span hidden aria-live="assertive">
+          {hex}
+        </span>
+        <span hidden id={instructionsId}>
+          {instructionsString}
+        </span>
+      </div>
     );
   }
 );
