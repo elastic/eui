@@ -234,7 +234,7 @@ import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparkline
 
 import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 
-import { ElasticChartsAccessiblityExample } from './views/elastic_charts/accessibility';
+import { ElasticChartsAccessibilityExample } from './views/elastic_charts/accessibility_example';
 
 const createExample = (example, customTitle) => {
   if (!example) {
@@ -452,7 +452,7 @@ const navigation = [
       ElasticChartsTimeExample,
       ElasticChartsCategoryExample,
       ElasticChartsPieExample,
-      ElasticChartsAccessiblityExample,
+      ElasticChartsAccessibilityExample,
     ].map((example) => createExample(example)),
   },
   {
