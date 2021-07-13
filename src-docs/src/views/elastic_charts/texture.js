@@ -8,18 +8,21 @@ import {
 } from '@elastic/charts';
 import { EuiSpacer, EuiTitle } from '../../../../src/components';
 import { SAMPLE_SMALL_DATA, SAMPLE_SMALL_DATA_2 } from './data';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export const TextureMultiSeriesChart = () => {
+  const id = htmlIdGenerator()();
+
   return (
     <Fragment>
       <EuiTitle size="xs">
-        <h3>Example chart with texture fills</h3>
+        <h3 id={id}>Example chart with texture fills</h3>
       </EuiTitle>
 
       <EuiSpacer size="s" />
       <Chart size={{ height: 200 }}>
         <Settings
-          ariaLabelHeadingLevel="h3"
+          ariaLabelledBy={id}
           ariaDescription="This chart has two series with texture fills. The bar series has squares and the area series is comprised of circles."
           ariaUseDefaultSummary={false}
         />
