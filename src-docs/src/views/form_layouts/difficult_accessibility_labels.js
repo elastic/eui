@@ -1,55 +1,47 @@
 import React from 'react';
 import {
   EuiCode,
-  EuiDescribedFormGroup,
   EuiForm,
   EuiFormRow,
   EuiSelectable,
 } from '../../../../src/components';
 
 export default () => {
+  const labelText = 'Tea categories';
+
   return (
     <EuiForm component="form">
-      <EuiDescribedFormGroup
-        title={<h3>Some controls are just hard though</h3>}
-        description={
+      <EuiFormRow
+        label={labelText}
+        fullWidth
+        helpText={
           <>
-            More complicated form controls will often require some custom work.
-            Refer to an individual component&lsquo;s documentation and remember
-            to test!
+            The <strong>EuiFormRow</strong> label can&lsquo;t reach{' '}
+            <strong>EuiSelectable</strong> without some help. Use{' '}
+            <EuiCode>aria-label</EuiCode> or <EuiCode>aria-labelledby</EuiCode>{' '}
+            to give a name to <strong>EuiSelectable</strong> that screen readers
+            can use too.
           </>
         }>
-        <EuiFormRow
-          label="Tea categories"
-          helpText={
+        <EuiSelectable
+          searchable
+          aria-label={labelText}
+          options={[
+            { label: 'Black' },
+            { label: 'Oolong' },
+            { label: 'Green' },
+            { label: 'White' },
+            { label: 'Herbal' },
+          ]}
+          onChange={() => {}}>
+          {(list, search) => (
             <>
-              The <strong>EuiFormRow</strong> label can&lsquo;t reach{' '}
-              <strong>EuiSelectable</strong> without some help. Use{' '}
-              <EuiCode>aria-label</EuiCode> or{' '}
-              <EuiCode>aria-labelledby</EuiCode> to give a name to{' '}
-              <strong>EuiSelectable</strong> that screen readers can use too.
+              {search}
+              {list}
             </>
-          }>
-          <EuiSelectable
-            searchable
-            aria-label="Tea categories"
-            options={[
-              { label: 'Black' },
-              { label: 'Oolong' },
-              { label: 'Green' },
-              { label: 'White' },
-              { label: 'Herbal' },
-            ]}
-            onChange={() => {}}>
-            {(list, search) => (
-              <>
-                {search}
-                {list}
-              </>
-            )}
-          </EuiSelectable>
-        </EuiFormRow>
-      </EuiDescribedFormGroup>
+          )}
+        </EuiSelectable>
+      </EuiFormRow>
     </EuiForm>
   );
 };

@@ -13,7 +13,7 @@ import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
   const randomId = htmlIdGenerator()();
-  const titleText = 'Implicit titles for the first form control';
+  const titleText = 'Implicit titles';
 
   return (
     <EuiForm component="form">
@@ -21,11 +21,8 @@ export default () => {
         title={<h3 id={randomId}>{titleText}</h3>}
         description={
           <>
-            Often, we won&lsquo;t put a visual label on the first form field.
-            But the form field still needs to be associated with the title
-            somehow: use <EuiCode>aria-label</EuiCode> to pass in the form title
-            text again or <EuiCode>aria-labelledby</EuiCode> to pass in the{' '}
-            <EuiCode>id</EuiCode> of the title.
+            <strong>EuiDescribedFormGroup</strong> components tend to use this
+            pattern as the title and label are usually the same.
           </>
         }>
         <EuiFormRow

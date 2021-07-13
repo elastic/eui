@@ -150,20 +150,30 @@ export const FormLayoutsExample = {
 </EuiDescribedFormGroup>`,
     },
     {
-      title: 'Accessible labels',
+      title: 'Form labels',
       text: (
-        <p>
-          Because of the many form elements and the flexibility offered by EUI,
-          sometimes extra care has to be taken to ensure an accessible
-          experience. There are a lot of ways to achieve this and only some will
-          be covered but the import end result is that every form control has an{' '}
-          <EuiLink
-            href="https://www.tpgi.com/what-is-an-accessible-name/"
-            external>
-            accessible name
-          </EuiLink>
-          .
-        </p>
+        <>
+          <p>
+            The best way to provide an{' '}
+            <EuiLink
+              href="https://www.tpgi.com/what-is-an-accessible-name/"
+              external>
+              accessible name
+            </EuiLink>{' '}
+            to form elements is to use the <EuiCode>label</EuiCode> prop
+            provided by <strong>EuiFormRow</strong>. However, certain types of
+            form controls require extra care to ensure an accessible experience.
+            Below are just a few examples.
+          </p>
+          <p>
+            Form controls that come with their own label don&lsquo;t need the
+            one provided by <strong>EuiFormRow</strong>. For controls like{' '}
+            <EuiCode>EuiSwitch</EuiCode>, <EuiCode>EuiButton</EuiCode>, and{' '}
+            <EuiCode>EuiLink</EuiCode> be sure to pass{' '}
+            <EuiCode>{'hasChildLabel={false}'}</EuiCode> to the wrapping{' '}
+            <strong>EuiFormRow</strong>.
+          </p>
+        </>
       ),
       demo: <AccessibleLabels />,
       source: [
@@ -175,6 +185,26 @@ export const FormLayoutsExample = {
       snippet: accessibleLabelsSnippet,
     },
     {
+      text: (
+        <>
+          <h3>Implicit titles for the first form control</h3>
+          <p>
+            When displaying the form control&apos;s name in some other way than
+            through the visual <EuiCode>label</EuiCode> prop, the form control
+            still needs to be associated with that element. To do this, either:
+          </p>
+          <ul>
+            <li>
+              duplicate the text and pass it as the{' '}
+              <EuiCode>aria-label</EuiCode> of the form control, or
+            </li>
+            <li>
+              pass the <EuiCode>id</EuiCode> of the text to the form
+              control&apos;s <EuiCode>aria-labelledby</EuiCode>.
+            </li>
+          </ul>
+        </>
+      ),
       demo: <ImplicitTitles />,
       source: [
         {
@@ -185,6 +215,16 @@ export const FormLayoutsExample = {
       snippet: implicitTitleSnippet,
     },
     {
+      text: (
+        <>
+          <h3>More complicated form labels</h3>
+          <p>
+            Some controls are just hard though and will often require some
+            custom work. Refer to an individual component&lsquo;s documentation
+            and remember to test with a screen reader!
+          </p>
+        </>
+      ),
       demo: <DifficultAccessibleLabels />,
       source: [
         {
