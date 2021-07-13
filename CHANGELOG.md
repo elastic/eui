@@ -1,6 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Refactored `EuiFlyout` types ([#4940](https://github.com/elastic/eui/pull/4940))
+- Added `checkable` options to `EuiKeyPadMenuItem` ([#4950](https://github.com/elastic/eui/pull/4950))
+- Added `legend` prop to `EuiKeyPadMenu` ([#4950](https://github.com/elastic/eui/pull/4950))
+
+**Theme: Amsterdam**
+
+- Updated styles for `EuiKeyPadMenuItem` ([#4950](https://github.com/elastic/eui/pull/4950)
 
 ## [`35.1.0`](https://github.com/elastic/eui/tree/v35.1.0)
 
