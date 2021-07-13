@@ -40,7 +40,7 @@
 
   .euiBetaBadge__icon {
     position: relative;
-    margin-top: -1px;
+    transform: translate(0, -1px);
   }
 
   &.euiBetaBadge--small {
@@ -50,12 +50,12 @@
 }
 
 .euiBetaBadge--singleLetter {
-  padding: 0 0 0 1px;
+  padding: 0;
   width: $euiSizeL;
 
   &.euiBetaBadge--small {
     width: $euiSize + $euiSizeXS;
-    padding: 0 0 0 1px;
+    padding: 0;
   }
 }
 

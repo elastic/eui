@@ -102,14 +102,10 @@ exports[`EuiKeyPadMenuItem props betaBadge renders 1`] = `
     class="euiKeyPadMenuItem__inner"
   >
     <span
-      class="euiKeyPadMenuItem__betaBadgeWrapper"
+      class="euiBetaBadge euiBetaBadge--singleLetter euiBetaBadge--subdued euiBetaBadge--small euiKeyPadMenuItem__betaBadge"
+      title="Beta"
     >
-      <span
-        class="euiBetaBadge euiBetaBadge--hollow euiKeyPadMenuItem__betaBadge"
-        title="Beta"
-      >
-        Beta
-      </span>
+      B
     </span>
     <span
       class="euiKeyPadMenuItem__icon"
@@ -134,19 +130,15 @@ exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeIconType 1`] = 
     class="euiKeyPadMenuItem__inner"
   >
     <span
-      class="euiKeyPadMenuItem__betaBadgeWrapper"
+      class="euiBetaBadge euiBetaBadge--iconOnly euiBetaBadge--singleLetter euiBetaBadge--subdued euiBetaBadge--small euiKeyPadMenuItem__betaBadge"
+      title="Beta"
     >
       <span
-        class="euiBetaBadge euiBetaBadge--iconOnly euiBetaBadge--hollow euiKeyPadMenuItem__betaBadge"
-        title="Beta"
-      >
-        <span
-          aria-hidden="true"
-          class="euiBetaBadge__icon"
-          color="inherit"
-          data-euiicon-type="bolt"
-        />
-      </span>
+        aria-hidden="true"
+        class="euiBetaBadge__icon"
+        color="inherit"
+        data-euiicon-type="bolt"
+      />
     </span>
     <span
       class="euiKeyPadMenuItem__icon"
@@ -171,17 +163,13 @@ exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeTooltipContent 
     class="euiKeyPadMenuItem__inner"
   >
     <span
-      class="euiKeyPadMenuItem__betaBadgeWrapper"
+      class="euiToolTipAnchor"
     >
       <span
-        class="euiToolTipAnchor"
+        class="euiBetaBadge euiBetaBadge--singleLetter euiBetaBadge--subdued euiBetaBadge--small euiKeyPadMenuItem__betaBadge"
+        tabindex="0"
       >
-        <span
-          class="euiBetaBadge euiBetaBadge--hollow euiKeyPadMenuItem__betaBadge"
-          tabindex="0"
-        >
-          Beta
-        </span>
+        B
       </span>
     </span>
     <span

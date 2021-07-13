@@ -221,14 +221,15 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     if (!betaBadgeLabel) return;
 
     return (
-      <span className="euiKeyPadMenuItem__betaBadgeWrapper">
-        <EuiBetaBadge
-          className="euiKeyPadMenuItem__betaBadge"
-          label={betaBadgeLabel}
-          iconType={betaBadgeIconType}
-          tooltipContent={betaBadgeTooltipContent}
-        />
-      </span>
+      <EuiBetaBadge
+        size="s"
+        color="subdued"
+        className="euiKeyPadMenuItem__betaBadge"
+        label={betaBadgeLabel.charAt(0)}
+        title={betaBadgeLabel}
+        iconType={betaBadgeIconType}
+        tooltipContent={betaBadgeTooltipContent}
+      />
     );
   };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -7,20 +7,22 @@ import {
   EuiKeyPadMenu,
   EuiKeyPadMenuItem,
   EuiCallOut,
+  EuiText,
 } from '../../../../src/components';
 import { keyPadMenuItemConfig } from './playground';
 
 import KeyPadMenu from './key_pad_menu';
 const keyPadMenuSource = require('!!raw-loader!./key_pad_menu');
-const keyPadMenuSnippet = `<EuiKeyPadMenu>
-  <EuiKeyPadMenuItem label={label1} href="#">
-    <EuiIcon type={icon1} size="l" />
-  </EuiKeyPadMenuItem>
-  <EuiKeyPadMenuItem label={label2} href="#">
-    <EuiIcon type={icon2} size="l" />
-  </EuiKeyPadMenuItem>
-</EuiKeyPadMenu>
-`;
+const keyPadMenuSnippet = `<nav aria-label="Nav title">
+  <EuiKeyPadMenu>
+    <EuiKeyPadMenuItem label={label1} href="#">
+      <EuiIcon type={icon1} size="l" />
+    </EuiKeyPadMenuItem>
+    <EuiKeyPadMenuItem isSelected label={label2} href="#">
+      <EuiIcon type={icon2} size="l" />
+    </EuiKeyPadMenuItem>
+  </EuiKeyPadMenu>
+</nav>`;
 
 import KeyPadMenuItemButton from './key_pad_menu_item_button';
 const keyPadMenuItemButtonSource = require('!!raw-loader!./key_pad_menu_item_button');
@@ -50,6 +52,17 @@ const keyPadCheckableMultiSource = require('!!raw-loader!./key_pad_menu_checkabl
 
 export const KeyPadMenuExample = {
   title: 'Key pad menu',
+  intro: (
+    <>
+      <EuiText>
+        <p>
+          The <strong>EuiKeyPadMenu</strong> component presents{' '}
+          <strong>EuiKeyPadMenuItems</strong> in a tiled format, with a fixed
+          width which will accommodate three items and then wrap.
+        </p>
+      </EuiText>
+    </>
+  ),
   sections: [
     {
       source: [
@@ -61,11 +74,12 @@ export const KeyPadMenuExample = {
       text: (
         <>
           <p>
-            The <strong>EuiKeyPadMenu</strong> component presents{' '}
-            <strong>EuiKeyPadMenuItems</strong> in a tiled format, with a fixed
-            width which will accommodate three items and then wrap.
+            <strong>EuiKeyPadMenu</strong> is just a wrapping element for
+            creating the list elements but you must declare each{' '}
+            <strong>EuiKeyPadMenu</strong> component manually.
           </p>
           <EuiCallOut
+            color="warning"
             iconType="accessibility"
             title={
               <>
@@ -83,10 +97,9 @@ export const KeyPadMenuExample = {
       props: { EuiKeyPadMenu, EuiKeyPadMenuItem },
       snippet: keyPadMenuSnippet,
       demo: <KeyPadMenu />,
-      playground: keyPadMenuItemConfig,
     },
     {
-      title: 'Item button',
+      title: 'Menu item',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -94,13 +107,24 @@ export const KeyPadMenuExample = {
         },
       ],
       text: (
-        <p>
-          The <strong>EuiKeyPadMenuItem</strong> component can act both as an
-          anchor as well as a button by specifying <EuiCode>href</EuiCode> or
-          <EuiCode>onClick</EuiCode> respectively.
-        </p>
+        <>
+          <p>
+            The <strong>EuiKeyPadMenuItem</strong> component can act both as an
+            anchor as well as a button by specifying <EuiCode>href</EuiCode> or{' '}
+            <EuiCode>onClick</EuiCode> respectively. It requires a text-based{' '}
+            <EuiCode>label</EuiCode> and <EuiCode>children</EuiCode> for
+            declaring the <Link to="/display/icons">icon</Link>. This is the
+            most flexible way for handling the customization of the icon itself.
+          </p>
+          <p>
+            When using the <EuiCode>isSelected</EuiCode> prop to create a toggle
+            button, you must supply both the <EuiCode>true</EuiCode> and{' '}
+            <EuiCode>false</EuiCode> states explicitly.
+          </p>
+        </>
       ),
       snippet: keyPadMenuItemButtonSnippet,
+      playground: keyPadMenuItemConfig,
       demo: <KeyPadMenuItemButton />,
     },
     {
@@ -112,20 +136,23 @@ export const KeyPadMenuExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             If the item links to a module that is not GA (beta, lab, etc), you
             can add a <EuiCode>betaBadgeLabel</EuiCode> and{' '}
             <EuiCode>betaBadgeTooltipContent</EuiCode> to the card and it will
-            properly create and position an <strong>EuiBetaBadge</strong>.
+            properly create and position an{' '}
+            <Link to="/display/badge#beta-badge-type">
+              <strong>EuiBetaBadge</strong>
+            </Link>
+            .
           </p>
           <p>
             Supplying just a label will only show the first letter in the badge
-            and supply the full label to the tooltip. You can also pass an{' '}
-            <EuiCode>iconType</EuiCode> to replace the letter only badge and the
-            label will still become the title.
+            but displays the full label to the tooltip. You can also pass an{' '}
+            <EuiCode>iconType</EuiCode> to replace the letter.
           </p>
-        </div>
+        </>
       ),
       snippet: keyPadBetaSnippet,
       demo: <KeyPadBeta />,
@@ -141,7 +168,7 @@ export const KeyPadMenuExample = {
             <EuiCode>{'"single"'}</EuiCode> for radios.
           </p>
           <p>
-            The <strong>EuiKeyPadMenu</strong> provides it&apos;s own group
+            The <strong>EuiKeyPadMenu</strong> provides it&apos;s own form group
             labelling mechanism through the <EuiCode>legend</EuiCode> prop.
             Supplying this prop will properly wrap the input group in a{' '}
             <EuiCode language="html">{'<fieldset>'}</EuiCode> and display the{' '}
