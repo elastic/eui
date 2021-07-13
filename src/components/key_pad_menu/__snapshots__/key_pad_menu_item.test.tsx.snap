@@ -48,7 +48,7 @@ exports[`EuiKeyPadMenuItem checkable renders as radio 1`] = `
       <input
         class="euiRadio__input"
         id="generated-id"
-        name="generated-id"
+        name="single"
         type="radio"
       />
       <div
@@ -105,7 +105,7 @@ exports[`EuiKeyPadMenuItem props betaBadge renders 1`] = `
       class="euiKeyPadMenuItem__betaBadgeWrapper"
     >
       <span
-        class="euiBetaBadge euiKeyPadMenuItem__betaBadge"
+        class="euiBetaBadge euiBetaBadge--hollow euiKeyPadMenuItem__betaBadge"
         title="Beta"
       >
         Beta
@@ -137,12 +137,13 @@ exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeIconType 1`] = 
       class="euiKeyPadMenuItem__betaBadgeWrapper"
     >
       <span
-        class="euiBetaBadge euiBetaBadge--iconOnly euiKeyPadMenuItem__betaBadge"
+        class="euiBetaBadge euiBetaBadge--iconOnly euiBetaBadge--hollow euiKeyPadMenuItem__betaBadge"
         title="Beta"
       >
         <span
           aria-hidden="true"
           class="euiBetaBadge__icon"
+          color="inherit"
           data-euiicon-type="bolt"
         />
       </span>
@@ -176,7 +177,7 @@ exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeTooltipContent 
         class="euiToolTipAnchor"
       >
         <span
-          class="euiBetaBadge euiKeyPadMenuItem__betaBadge"
+          class="euiBetaBadge euiBetaBadge--hollow euiKeyPadMenuItem__betaBadge"
           tabindex="0"
         >
           Beta

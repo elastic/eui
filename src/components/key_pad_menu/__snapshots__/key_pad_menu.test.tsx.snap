@@ -7,3 +7,17 @@ exports[`EuiKeyPadMenu is rendered 1`] = `
   data-test-subj="test subject string"
 />
 `;
+
+exports[`EuiKeyPadMenu is rendered as a fieldset with legend 1`] = `
+<fieldset
+  aria-label="aria-label"
+  class="euiKeyPadMenu testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <legend
+    class="euiFormLabel"
+  >
+    Legend
+  </legend>
+</fieldset>
+`;

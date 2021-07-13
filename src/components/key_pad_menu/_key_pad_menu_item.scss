@@ -89,6 +89,11 @@
   justify-content: center;
   position: relative;
 
+  .euiKeyPadMenuItem__checkableInput {
+    transform: scale(.75);
+    transform-origin: top right;
+  }
+
   .euiKeyPadMenuItem__checkableInput,
   .euiKeyPadMenuItem__betaBadgeWrapper {
     position: absolute;

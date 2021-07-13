@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -14,7 +12,6 @@ import { keyPadMenuItemConfig } from './playground';
 
 import KeyPadMenu from './key_pad_menu';
 const keyPadMenuSource = require('!!raw-loader!./key_pad_menu');
-const keyPadMenuHtml = renderToHtml(KeyPadMenu);
 const keyPadMenuSnippet = `<EuiKeyPadMenu>
   <EuiKeyPadMenuItem label={label1} href="#">
     <EuiIcon type={icon1} size="l" />
@@ -27,7 +24,6 @@ const keyPadMenuSnippet = `<EuiKeyPadMenu>
 
 import KeyPadMenuItemButton from './key_pad_menu_item_button';
 const keyPadMenuItemButtonSource = require('!!raw-loader!./key_pad_menu_item_button');
-const keyPadMenuItemButtonHtml = renderToHtml(KeyPadMenuItemButton);
 const keyPadMenuItemButtonSnippet = `<EuiKeyPadMenuItem
   label={label}
   onClick={handleClick}>
@@ -37,7 +33,6 @@ const keyPadMenuItemButtonSnippet = `<EuiKeyPadMenuItem
 
 import KeyPadBeta from './key_pad_beta';
 const keyPadBetaSource = require('!!raw-loader!./key_pad_beta');
-const keyPadBetaHtml = renderToHtml(KeyPadBeta);
 const keyPadBetaSnippet = `<EuiKeyPadMenuItem
   label={label}
   href="#"
@@ -50,7 +45,8 @@ const keyPadBetaSnippet = `<EuiKeyPadMenuItem
 
 import KeyPadCheckable from './key_pad_menu_checkable';
 const keyPadCheckableSource = require('!!raw-loader!./key_pad_menu_checkable');
-const keyPadCheckableHtml = renderToHtml(KeyPadCheckable);
+import KeyPadCheckableMulti from './key_pad_menu_checkable_multi';
+const keyPadCheckableMultiSource = require('!!raw-loader!./key_pad_menu_checkable_multi');
 
 export const KeyPadMenuExample = {
   title: 'Key pad menu',
@@ -60,10 +56,6 @@ export const KeyPadMenuExample = {
         {
           type: GuideSectionTypes.JS,
           code: keyPadMenuSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: keyPadMenuHtml,
         },
       ],
       text: (
@@ -91,6 +83,7 @@ export const KeyPadMenuExample = {
       props: { EuiKeyPadMenu, EuiKeyPadMenuItem },
       snippet: keyPadMenuSnippet,
       demo: <KeyPadMenu />,
+      playground: keyPadMenuItemConfig,
     },
     {
       title: 'Item button',
@@ -98,10 +91,6 @@ export const KeyPadMenuExample = {
         {
           type: GuideSectionTypes.JS,
           code: keyPadMenuItemButtonSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: keyPadMenuItemButtonHtml,
         },
       ],
       text: (
@@ -120,10 +109,6 @@ export const KeyPadMenuExample = {
         {
           type: GuideSectionTypes.JS,
           code: keyPadBetaSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: keyPadBetaHtml,
         },
       ],
       text: (
@@ -147,24 +132,46 @@ export const KeyPadMenuExample = {
     },
     {
       title: 'Checkable',
+      text: (
+        <>
+          <p>
+            <strong>EuiKeyPadMenuItem</strong>s can also be rendered as checkbox
+            or radio form controls using the <EuiCode>checkable</EuiCode> prop.
+            Pass in <EuiCode>{'"multi"'}</EuiCode> for checkboxes or{' '}
+            <EuiCode>{'"single"'}</EuiCode> for radios.
+          </p>
+          <p>
+            The <strong>EuiKeyPadMenu</strong> provides it&apos;s own group
+            labelling mechanism through the <EuiCode>legend</EuiCode> prop.
+            Supplying this prop will properly wrap the input group in a{' '}
+            <EuiCode language="html">{'<fieldset>'}</EuiCode> and display the{' '}
+            <EuiCode language="html">{'<legend>'}</EuiCode>.
+          </p>
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: keyPadCheckableMultiSource,
+        },
+      ],
+      demo: <KeyPadCheckableMulti />,
+    },
+    {
       source: [
         {
           type: GuideSectionTypes.JS,
           code: keyPadCheckableSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: keyPadCheckableHtml,
-        },
       ],
       text: (
-        <div>
-          <p>...</p>
-        </div>
+        <p>
+          For single selection (radio) items, you must pass a singular{' '}
+          <EuiCode>name</EuiCode> prop to each item to ensure they are grouped
+          properly.
+        </p>
       ),
-      // snippet: keyPadBetaSnippet,
       demo: <KeyPadCheckable />,
     },
   ],
-  playground: keyPadMenuItemConfig,
 };

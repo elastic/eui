@@ -6,21 +6,34 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
+import { EuiFormLabel } from '../form';
 
-export type EuiKeyPadMenuProps = CommonProps & HTMLAttributes<HTMLUListElement>;
+export type EuiKeyPadMenuProps = CommonProps &
+  HTMLAttributes<HTMLElement> & {
+    /**
+     * Renders the the group as a `fieldset` with a `legend` to label the items.
+     */
+    legend?: ReactNode;
+  };
 
 export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
   children,
   className,
+  legend,
   ...rest
 }) => {
   const classes = classNames('euiKeyPadMenu', className);
 
-  return (
+  return legend ? (
+    <fieldset className={classes} {...rest}>
+      <EuiFormLabel type="legend">{legend}</EuiFormLabel>
+      {children}
+    </fieldset>
+  ) : (
     <ul className={classes} {...rest}>
       {React.Children.map(children, (child) => (
         <li>{child}</li>

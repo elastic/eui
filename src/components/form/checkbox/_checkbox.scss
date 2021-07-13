@@ -57,7 +57,7 @@
 
     &:indeterminate[disabled] {
       + .euiCheckbox__square {
-        @include euiCustomControlDisabled($type: 'dot');
+        @include euiCustomControlDisabled($type: 'square');
       }
     }
 

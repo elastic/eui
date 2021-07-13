@@ -172,7 +172,11 @@ describe('EuiKeyPadMenuItem', () => {
   describe('checkable', () => {
     test('renders as radio', () => {
       const component = render(
-        <EuiKeyPadMenuItem onChange={() => {}} checkable="single" label="Label">
+        <EuiKeyPadMenuItem
+          onChange={() => {}}
+          name="single"
+          checkable="single"
+          label="Label">
           Icon
         </EuiKeyPadMenuItem>
       );

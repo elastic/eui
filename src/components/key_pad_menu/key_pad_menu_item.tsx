@@ -30,6 +30,8 @@ import { IconType } from '../icon';
 import { EuiRadio, EuiCheckbox } from '../form';
 import { validateHref } from '../../services/security/href_validator';
 
+export type EuiKeyPadMenuItemCheckableType = 'single' | 'multi';
+
 export type EuiKeyPadMenuItemCommonProps = {
   /**
    * One will be generated if not provided
@@ -68,6 +70,10 @@ type EuiKeyPadMenuItemPropsForUncheckable = {
    * Add a description to the beta badge (will appear in a tooltip)
    */
   betaBadgeTooltipContent?: ReactNode;
+  /**
+   * Use `onClick` instead when the item is not `checkable`
+   */
+  onChange?: never;
 };
 
 type EuiKeyPadMenuItemPropsForAnchor = PropsForAnchor<
@@ -103,11 +109,11 @@ type EuiKeyPadMenuItemPropsForCheckable = Omit<
       checkable: 'single';
       /**
        * The `name` attribute for radio inputs;
-       * Defaults to a random string
+       * Required in order to group properly
        */
-      name?: string;
+      name: string;
       /**
-       * The value of the radio input for 'single'.
+       * The value of the radio input for 'single'
        */
       value?: string;
       /**
@@ -117,7 +123,7 @@ type EuiKeyPadMenuItemPropsForCheckable = Omit<
     },
     {
       /**
-       * Type `'single'` renders the item as a `<label>` and
+       * Type `'multi'` renders the item as a `<label>` and
        * adds a checkbox.
        */
       checkable: 'multi';
@@ -181,7 +187,6 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     if (!checkable) return;
 
     const inputClasses = classNames('euiKeyPadMenuItem__checkableInput');
-    const nameIfSingle = name || htmlIdGenerator()();
 
     let checkableElement;
     if (checkable === 'single') {
@@ -191,12 +196,9 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
           className={inputClasses}
           checked={isSelected}
           disabled={isDisabled}
-          name={nameIfSingle}
-          // value={value}
-          onChange={() => {
-            // @ts-ignore HELP!
-            onChange ? onChange(itemId, value) : undefined;
-          }}
+          name={name}
+          value={value as string}
+          onChange={() => onChange!(itemId, value)}
         />
       );
     } else {
@@ -206,8 +208,8 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
           className={inputClasses}
           checked={isSelected}
           disabled={isDisabled}
-          // @ts-ignore HELP!
-          onChange={() => onChange && onChange(itemId)}
+          name={name}
+          onChange={() => onChange!(itemId)}
         />
       );
     }
@@ -268,8 +270,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
       className={classes}
       {...(relObj as HTMLAttributes<HTMLElement>)}
       {...(rest as HTMLAttributes<HTMLElement>)}
-      // ref={buttonRef} HELP!
-    >
+      ref={buttonRef}>
       {renderContent()}
     </Element>
   );

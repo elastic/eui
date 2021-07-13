@@ -18,4 +18,12 @@ describe('EuiKeyPadMenu', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('is rendered as a fieldset with legend', () => {
+    const component = render(
+      <EuiKeyPadMenu legend="Legend" {...requiredProps} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });
