@@ -24,7 +24,8 @@ export const GuideMarkdownFormat: FunctionComponent<GuideMarkdownFormatProps> = 
   return (
     <EuiMarkdownFormat
       processingPluginList={processingPlugins}
-      className="guideMarkdownFormat">
+      className="guideMarkdownFormat"
+      textSize="m">
       {children}
     </EuiMarkdownFormat>
   );
