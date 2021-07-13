@@ -12,9 +12,8 @@ import React, {
   forwardRef,
   CSSProperties,
   Fragment,
-  ComponentType,
+  FunctionComponent,
   ComponentPropsWithRef,
-  PropsWithChildren,
   MutableRefObject,
 } from 'react';
 import classnames from 'classnames';
@@ -28,7 +27,7 @@ import {
   throttle,
 } from '../../services';
 
-import { CommonProps, keysOf } from '../common';
+import { CommonProps, keysOf, PropsOfElement } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask, EuiOverlayMaskProps } from '../overlay_mask';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
@@ -153,32 +152,26 @@ type _EuiFlyoutProps = {
   style?: React.CSSProperties;
 };
 
-// Using ReactHTML rather than JSX.IntrinsicElements here because it does not include
-// SVG element types which cause errors because they do not have all the attributes needed.
-type ComponentTypes =
-  | 'div'
-  | 'span'
-  | 'nav'
-  | 'aside'
-  | 'section'
-  | 'article'
-  | 'header'
-  | ComponentType;
+const defaultElement = 'div';
 
-export type EuiFlyoutProps<T extends ComponentTypes = 'div'> = CommonProps &
-  ComponentPropsWithRef<T> & {
-    /**
-     * Sets the HTML element for `EuiFlyout`
-     */
-    as?: T;
-  } & _EuiFlyoutProps;
+type Props<T extends React.ElementType> = CommonProps & {
+  /**
+   * Sets the HTML element for `EuiFlyout`
+   */
+  as?: T;
+} & _EuiFlyoutProps &
+  Omit<PropsOfElement<T>, keyof _EuiFlyoutProps>;
+
+export type EuiFlyoutProps<
+  T extends React.ElementType = typeof defaultElement
+> = Props<T> & Omit<ComponentPropsWithRef<T>, keyof Props<T>>;
 
 const EuiFlyout = forwardRef(
-  <T extends ComponentTypes>(
+  <T extends React.ElementType = typeof defaultElement>(
     {
       className,
       children,
-      as: Element = 'div' as T,
+      as,
       hideCloseButton = false,
       closeButtonProps,
       closeButtonAriaLabel,
@@ -196,12 +189,13 @@ const EuiFlyout = forwardRef(
       role = 'dialog',
       pushMinBreakpoint = 'l',
       ...rest
-    }: PropsWithChildren<EuiFlyoutProps<T>>,
+    }: EuiFlyoutProps<T>,
     ref:
       | ((instance: ComponentPropsWithRef<T> | null) => void)
       | MutableRefObject<ComponentPropsWithRef<T> | null>
       | null
   ) => {
+    const Element = as || defaultElement;
     /**
      * Setting the initial state of pushed based on the `type` prop
      * and if the current window size is large enough (larger than `pushMinBreakpoint`)
@@ -345,7 +339,6 @@ const EuiFlyout = forwardRef(
     }
 
     const flyoutContent = (
-      // @ts-expect-error JSX element without construct
       <Element
         {...(rest as ComponentPropsWithRef<T>)}
         role={role}
@@ -399,8 +392,13 @@ const EuiFlyout = forwardRef(
       </Fragment>
     );
   }
-);
-
-EuiFlyout.displayName = 'EuiFlyout';
+  // React.forwardRef interferes with the inferred element type
+  // Casting to ensure correct element prop type checking for `as`
+  // e.g., `href` is not on a `div`
+) as <E extends React.ElementType = typeof defaultElement>(
+  props: EuiFlyoutProps<E>
+) => JSX.Element;
+// Recast to allow `displayName`
+(EuiFlyout as FunctionComponent).displayName = 'EuiFlyout';
 
 export { EuiFlyout };
