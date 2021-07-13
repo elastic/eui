@@ -10,10 +10,10 @@
   padding: $euiSizeXS;
   height: $euiKeyPadMenuSize;
   width: $euiKeyPadMenuSize;
-  color: $euiTextSubduedColor;
   border: $euiBorderThin;
   border-color: transparent;
   border-radius: $euiBorderRadius;
+  color: $euiTextColor; // Override possible link color
 
   // sass-lint:disable-block mixins-before-declarations
   @include euiCanAnimate {
@@ -114,11 +114,6 @@
   font-weight: $euiFontWeightMedium;
   line-height: $euiSize;
   text-align: center;
-}
-
-.euiKeyPadMenuItem--checkable:not(.euiKeyPadMenuItem-isDisabled) {
-  // Increase contrast in dark mode for checkable style
-  color: lightOrDarkTheme($euiTextSubduedColor, $euiTextColor);
 }
 
 .euiKeyPadMenuItem--checkable.euiKeyPadMenuItem-isSelected:not(.euiKeyPadMenuItem-isDisabled) {

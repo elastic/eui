@@ -10,4 +10,5 @@ $euiFocusRingSize: $euiFocusRingSizeLarge * .75 !default;
 
 // Transparency
 $euiFocusTransparency: lightOrDarkTheme(.1, .2) !default;
-$euiFocusBackgroundColor: tintOrShade($euiColorPrimary, ((1 - $euiFocusTransparency) * 100%), ((1 - $euiFocusTransparency) * 100%)) !default;
+$euiFocusTransparencyPercent: lightOrDarkTheme(90%, 80%) !default;
+$euiFocusBackgroundColor: tintOrShade($euiColorPrimary, $euiFocusTransparencyPercent, $euiFocusTransparencyPercent) !default;
