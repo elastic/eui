@@ -1,9 +1,13 @@
-// Breadcrumb navigation included in the header.
-
 .euiHeaderBreadcrumbs {
   margin-left: $euiSizeM;
   margin-right: $euiSizeM;
   display: flex;
   align-items: center;
   flex-grow: 1;
+
+  .euiBreadcrumb {
+    &::after {
+      display: none;
+    }
+  }
 }
