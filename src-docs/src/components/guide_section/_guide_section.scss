@@ -31,3 +31,11 @@
 .guideSectionTabs__tab {
   font-weight: $euiFontWeightMedium !important; // sass-lint:disable-line no-important
 }
+
+.guideDemo__ghostBackground {
+  @if (lightness($euiTextColor) < 50) {
+    color: $euiColorGhost;
+    // Override EuiPanel specificity
+    background: $euiColorDarkestShade !important; // sass-lint:disable-line no-important
+  }
+}
