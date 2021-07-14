@@ -34,12 +34,8 @@ export const TextureMultiSeriesChart = () => {
               opacity: 0.2,
               texture: {
                 opacity: 1,
-                offset: { x: undefined, y: undefined },
-                rotation: undefined,
                 shape: 'square',
-                shapeRotation: undefined,
                 size: 9,
-                spacing: { x: undefined, y: undefined },
               },
             },
           }}
@@ -57,8 +53,6 @@ export const TextureMultiSeriesChart = () => {
               texture: {
                 opacity: 1,
                 shape: 'circle',
-                rotation: undefined,
-                shapeRotation: undefined,
                 size: 5,
                 spacing: {
                   x: 0,

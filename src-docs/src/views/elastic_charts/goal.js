@@ -1,18 +1,25 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Chart, Settings, Goal } from '@elastic/charts';
 import { EuiSpacer, EuiTitle, EuiCode } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services';
-import { EuiFlexGroup, EuiFlexItem } from '../../../../src/components/flex';
+import {
+  htmlIdGenerator,
+  useIsWithinBreakpoints,
+} from '../../../../src/services';
+import { EuiFlexGrid, EuiFlexItem } from '../../../../src/components/flex';
 
 export const GoalChart = () => {
   const id = htmlIdGenerator()();
-  const bandLabels = ['freezing', 'chilly', 'brisk'];
-  const bands = [200, 250, 300];
+  // const themeContext = useContext(ThemeContext);
+  const isDesktop = useIsWithinBreakpoints(['l', 'xl']);
+  const bandLabels = ['', 'freezing', 'cold', 'warm', 'hot'];
+  const bands = [-10, 0, 15, 25, 40];
 
   const opacityMap = {
-    '200': 0.2,
-    '250': 0.12,
-    '300': 0.05,
+    '-10': 0.8,
+    '0': 0.66,
+    '15': 0.5,
+    '25': 0.33,
+    '40': 0.05,
   };
 
   const colorMap = bands.reduce((acc, band) => {
@@ -24,52 +31,68 @@ export const GoalChart = () => {
   const bandFillColor = (x) => colorMap[x];
 
   return (
-    <Fragment>
-      <EuiTitle size="xs">
-        <h3 id={id}>Example goal chart</h3>
-      </EuiTitle>
-      <EuiFlexGroup>
-        <EuiFlexItem>
-          <EuiSpacer size="s" />
-          <Chart size={{ height: 200 }}>
-            <Settings
-              ariaLabelledBy={id}
-              ariaDescription="This goal chart has a target of 260."
-              ariaUseDefaultSummary={false}
-            />
-            <Goal
-              key={1}
-              id={'series-1'}
-              base={0}
-              target={260}
-              actual={170}
-              bands={bands}
-              ticks={[0, 50, 100, 150, 200, 250, 300]}
-              tickValueFormatter={({ value }) => String(value)}
-              bandFillColor={({ value }) => bandFillColor(value)}
-              labelMajor="Revenue 2020 YTD  "
-              labelMinor="(thousand USD)  "
-              centralMajor="170"
-              centralMinor=""
-              config={{ angleStart: Math.PI, angleEnd: 0 }}
-              bandLabels={bandLabels}
-            />
-          </Chart>
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <EuiCode language="jsx" inline={false}>
-            {`
-            <dl className="echScreenReaderOnly echGoalDescription">
-              <dt>0 - 200</dt>
-              <dd>freezing</dd>
-              <dt>200 - 250</dt>
-              <dd>chilly</dd>
-              <dt>250 - 300</dt>
-              <dd>brisk</dd>
-            </dl>`}
-          </EuiCode>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </Fragment>
+    <EuiFlexGrid direction={isDesktop ? 'row' : 'column'} columns={2}>
+      <EuiFlexItem>
+        <EuiTitle size="xs">
+          <h3 id={id}>Example goal chart</h3>
+        </EuiTitle>
+        <EuiSpacer size="s" />
+        <Chart size={{ height: 200 }}>
+          <Settings
+            ariaLabelledBy={id}
+            ariaDescription="This goal chart has a target of 22."
+            ariaUseDefaultSummary={false}
+          />
+          <Goal
+            base={-10}
+            target={22}
+            actual={12}
+            bands={bands}
+            ticks={[-10, 0, 10, 20, 30, 40]}
+            tickValueFormatter={({ value }) => String(value)}
+            bandFillColor={({ value }) => bandFillColor(value)}
+            labelMajor="Temperature"
+            labelMinor="Celsius"
+            centralMajor="12"
+            centralMinor=""
+            config={{ angleStart: Math.PI, angleEnd: 0 }}
+            bandLabels={bandLabels}
+          />
+        </Chart>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiTitle className="eui-textCenter" size="xs">
+          <h3>Visually hidden content for chart</h3>
+        </EuiTitle>
+        <EuiSpacer />
+        <EuiCode language="jsx" inline={false}>
+          {`<p>Temperature</p>
+<p>Celsius</p>
+<p>This goal chart has a target of 22.</p>
+<dl>
+  <dt>Chart type:</dt>
+  <dd>goal chart</dd>
+  <dt>Minimum:</dt>
+  <dd>-10</dd>
+  <dt>Maximum:</dt>
+  <dd>40</dd>
+  <dt>Target:</dt>
+  <dd>$22</dd>
+  <dd>Value:</dd>
+  <dt>12</dt>
+</dl>
+<dl>
+  <dt>-10 - 0</dt>
+  <dd>freezing</dd>
+  <dt>0 - 25</dt>
+  <dd>cold</dd>
+  <dt>25 - 40</dt>
+  <dd>warm</dd>
+  <dt>250 - 300</dt>
+  <dd>hot</dd>
+</dl>`}
+        </EuiCode>
+      </EuiFlexItem>
+    </EuiFlexGrid>
   );
 };
