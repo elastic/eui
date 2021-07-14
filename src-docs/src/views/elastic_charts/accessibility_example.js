@@ -10,8 +10,10 @@ import { GuideSectionTypes } from '../../components';
 import { ExternalBadge } from './shared';
 import { TextureMultiSeriesChart } from './texture';
 import { TexturedStylesProps, ChartProps } from './texture_props';
+import { GoalChart } from './goal';
 
 const TextureMultiSeriesChartSource = require('!!raw-loader!./texture');
+const GoalChartSource = require('!!raw-loader!./goal');
 
 export const ElasticChartsAccessibilityExample = {
   title: 'Accessibility features',
@@ -267,7 +269,7 @@ export const ElasticChartsAccessibilityExample = {
             title={
               <>
                 Currently, texture fills are only available for{' '}
-                <strong>XY charts and bar charts</strong>.
+                <strong>XY charts</strong>.
               </>
             }
             iconType="visAreaStacked">
@@ -306,8 +308,13 @@ export const ElasticChartsAccessibilityExample = {
           />
         </>
       ),
-      // TODO add demo
-      // TODO add source
+      demo: <GoalChart />,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: GoalChartSource,
+        },
+      ],
     },
   ],
 };
