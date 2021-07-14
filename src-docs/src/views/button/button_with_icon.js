@@ -4,6 +4,7 @@ import {
   EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiButtonEmpty,
 } from '../../../../src/components';
 
 export default () => (
@@ -112,6 +113,57 @@ export default () => (
           isDisabled>
           small and filled
         </EuiButton>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty onClick={() => {}} iconType="arrowDown">
+          Primary with icon left
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          onClick={() => {}}
+          iconType="arrowDown"
+          iconSide="right"
+          size="xs">
+          Extra small with icon right
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty color="text" onClick={() => {}} iconType="dashboardApp">
+          Text with app icon left
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          color="text"
+          onClick={() => {}}
+          iconType="dashboardApp"
+          iconSide="right"
+          size="xs">
+          Extra small with app icon right
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiFlexGroup gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty onClick={() => {}} isLoading>
+          Loading
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty onClick={() => {}} isLoading iconSide="right">
+          Loading
+        </EuiButtonEmpty>
       </EuiFlexItem>
     </EuiFlexGroup>
   </div>

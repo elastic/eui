@@ -19,7 +19,7 @@ import {
 import { EuiButtonGroupOptionProps } from '!!prop-loader!../../../../src/components/button/button_group/button_group';
 
 import Guidelines from './guidelines';
-import Playground from './playground';
+import { buttonConfig, buttonEmptyConfig } from './playground';
 
 import Button from './button';
 const buttonSource = require('!!raw-loader!./button');
@@ -46,14 +46,20 @@ const buttonWithIconSnippet = `<EuiButton iconType={icon}><!-- Button text --></
 
 import ButtonOption from './button_empty';
 const buttonOptionSource = require('!!raw-loader!./button_empty');
-const buttonOptionHtml = renderToHtml(ButtonOption);
-const buttonOptionSnippet = `<EuiButtonEmpty>
-  <!-- Button text -->
-</EuiButtonEmpty>`;
+const buttonOptionSnippet = [
+  `<EuiButtonEmpty>
+  <!-- Empty button -->
+</EuiButtonEmpty>`,
+  `<EuiButtonEmpty size="s">
+  <!-- Empty button -->
+</EuiButtonEmpty>`,
+  `<EuiButtonEmpty size="xs">
+  <!-- Empty button -->
+</EuiButtonEmpty>`,
+];
 
 import ButtonOptionFlush from './button_empty_flush';
 const buttonOptionFlushSource = require('!!raw-loader!./button_empty_flush');
-const buttonOptionFlushHtml = renderToHtml(ButtonOptionFlush);
 const buttonOptionFlushSnippet = `<EuiButtonEmpty flush="left"><!-- Button text --></EuiButtonEmpty>
 `;
 
@@ -231,7 +237,48 @@ export const ButtonExample = {
       props: { EuiButton },
       snippet: buttonSnippet,
       demo: <Button />,
-      playground: Playground,
+      playground: buttonConfig,
+    },
+    {
+      title: 'Empty button',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: buttonOptionSource,
+        },
+      ],
+      text: (
+        <p>
+          Use <strong>EuiButtonEmpty</strong> when you want to make reduce the
+          importance of the button, but still want to align it to the rest of
+          the buttons. It is also the only button component that supports down
+          to size <EuiCode>xs</EuiCode>.
+        </p>
+      ),
+      props: { EuiButtonEmpty },
+      snippet: buttonOptionSnippet,
+      demo: <ButtonOption />,
+      playground: buttonEmptyConfig,
+    },
+    {
+      title: 'Flush empty button',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: buttonOptionFlushSource,
+        },
+      ],
+      text: (
+        <p>
+          When aligning <strong>EuiButtonEmpty</strong> components to the left
+          or the right, you should make sure they&rsquo;re flush with the edge
+          of their container, so that they&rsquo;re horizontally aligned with
+          the other content in the container.
+        </p>
+      ),
+      props: { EuiButtonEmpty },
+      snippet: buttonOptionFlushSnippet,
+      demo: <ButtonOptionFlush />,
     },
     {
       title: 'Buttons as links',
@@ -314,53 +361,6 @@ export const ButtonExample = {
       ),
       snippet: buttonLoadingSnippet,
       demo: <ButtonLoading />,
-    },
-    {
-      title: 'Empty button',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: buttonOptionSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: buttonOptionHtml,
-        },
-      ],
-      text: (
-        <p>
-          <strong>EuiButtonEmpty</strong> is used when you want to make a button
-          look like a regular link, but still want to align it to the rest of
-          the buttons.
-        </p>
-      ),
-      props: { EuiButtonEmpty },
-      snippet: buttonOptionSnippet,
-      demo: <ButtonOption />,
-    },
-    {
-      title: 'Flush empty button',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: buttonOptionFlushSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: buttonOptionFlushHtml,
-        },
-      ],
-      text: (
-        <p>
-          When aligning <strong>EuiButtonEmpty</strong> components to the left
-          or the right, you should make sure they&rsquo;re flush with the edge
-          of their container, so that they&rsquo;re horizontally aligned with
-          the other content in the container.
-        </p>
-      ),
-      props: { EuiButtonEmpty },
-      snippet: buttonOptionFlushSnippet,
-      demo: <ButtonOptionFlush />,
     },
     {
       title: 'Button icon',
