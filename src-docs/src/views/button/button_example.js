@@ -12,6 +12,8 @@ import {
   EuiButtonGroup,
   EuiCallOut,
   EuiTitle,
+  EuiLink,
+  EuiText,
 } from '../../../../src/components';
 
 import { EuiButtonGroupOptionProps } from '!!prop-loader!../../../../src/components/button/button_group/button_group';
@@ -29,6 +31,10 @@ const buttonSnippet = [
   `<EuiButton size="s"><!-- Small button --></EuiButton>
 `,
   `<EuiButton size="s" fill><!-- Small and filled button --></EuiButton>
+`,
+  `<EuiButton fullWidth><!-- Full width button --></EuiButton>
+`,
+  `<EuiButton isDisabled><!-- Disabled button --></EuiButton>
 `,
 ];
 
@@ -182,6 +188,17 @@ const buttonGroupIconsSnippet = [
 
 export const ButtonExample = {
   title: 'Button',
+  intro: (
+    <EuiText>
+      <p>
+        EUI provides many types, colors and configurations of buttons. The one
+        best suited for you context depends on placement, prominence, and state.
+        For primary and secondary actions it is best to use the basic{' '}
+        <strong>EuiButton</strong>. For tertiary or low prominence actions, use{' '}
+        <strong>EuiButtonEmpty</strong>.
+      </p>
+    </EuiText>
+  ),
   sections: [
     {
       source: [
@@ -193,9 +210,10 @@ export const ButtonExample = {
       text: (
         <>
           <p>
-            <strong>EuiButton</strong> comes in two styles. The{' '}
-            <EuiCode>fill</EuiCode> style should be reserved for the main action
-            and limited in number for a single page. Use the small size (
+            The most standard button component is <strong>EuiButton</strong>{' '}
+            which comes in two styles and two sizes. The <EuiCode>fill</EuiCode>{' '}
+            style should be reserved for the main action and limited in number
+            for a single page. Use the small size (
             <EuiCode>{'size="s"'}</EuiCode>) when placing buttons into smaller
             containers like popovers.
           </p>
@@ -204,9 +222,9 @@ export const ButtonExample = {
             that either the words or an icon also represents the status. For
             instance, don&apos;t rely on color alone to represent dangerous
             actions but use words like &quot;Delete&quot; not
-            &quot;Confirm&quot;. The <EuiCode>text</EuiCode> color should be
-            used sparingly and only when you need a very subtle button that is
-            not the primary action.
+            &quot;Confirm&quot;. The <EuiCode>text</EuiCode> and{' '}
+            <EuiCode>accent</EuiCode> colors should be used sparingly as they
+            can easily be confused with other states like disabled and danger.
           </p>
         </>
       ),
@@ -216,7 +234,7 @@ export const ButtonExample = {
       playground: Playground,
     },
     {
-      title: 'Buttons can also be links',
+      title: 'Buttons as links',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -229,8 +247,17 @@ export const ButtonExample = {
       ],
       text: (
         <p>
-          Buttons will use an <EuiCode>{'<a>'}</EuiCode> tag if there is a{' '}
-          <EuiCode>href</EuiCode> prop present.
+          Every button component accepts either an <EuiCode>href</EuiCode>{' '}
+          (rendering it as an <EuiCode language="html">{'<a>'}</EuiCode>) or an{' '}
+          <EuiCode>onClick</EuiCode> (rendering it as a{' '}
+          <EuiCode language="html">{'<button>'}</EuiCode>). While they also
+          accept both props to be applied simultaneously to support certain
+          routing mechansims, it is not usually recommended. For more specific
+          information on how to integrate EUI buttons with react-router,{' '}
+          <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/react-router.md#how-react-router-works">
+            see this wiki page
+          </EuiLink>
+          .
         </p>
       ),
       snippet: buttonAsLinkSnippet,
