@@ -30,18 +30,6 @@ export const buttonConfig = () => {
     type: PropTypes.Number,
   };
 
-  propsToUse.color = {
-    ...propsToUse.color,
-    defaultValue: 'primary',
-  };
-
-  propsToUse.size = {
-    ...propsToUse.size,
-    defaultValue: 'm',
-  };
-
-  propsToUse.flush = createOptionalEnum(propsToUse.flush);
-
   const setGhostBackground = {
     color: 'ghost',
   };
@@ -71,20 +59,10 @@ export const buttonIconConfig = () => {
 
   propsToUse.iconType = iconValidator(propsToUse.iconType, 'help');
 
-  // propsToUse.ariaLabel = {
-  //   ...propsToUse.ariaLabel,
-  //   value: 'Icon button',
-  // };
-
-  // propsToUse.color = {
-  //   ...propsToUse.color,
-  //   defaultValue: 'primary',
-  // };
-
-  // propsToUse.size = {
-  //   ...propsToUse.size,
-  //   defaultValue: 'xs',
-  // };
+  propsToUse['aria-label'] = {
+    ...propsToUse['aria-label'],
+    value: 'Icon button',
+  };
 
   const setGhostBackground = {
     color: 'ghost',
@@ -122,15 +100,7 @@ export const buttonEmptyConfig = () => {
     hidden: false,
   };
 
-  propsToUse.color = {
-    ...propsToUse.color,
-    defaultValue: 'primary',
-  };
-
-  propsToUse.size = {
-    ...propsToUse.size,
-    defaultValue: 'm',
-  };
+  propsToUse.flush = createOptionalEnum(propsToUse.flush);
 
   const setGhostBackground = {
     color: 'ghost',
