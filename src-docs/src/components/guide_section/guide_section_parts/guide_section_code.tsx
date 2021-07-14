@@ -34,7 +34,7 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
 
   return (
     <>
-      <EuiCodeBlock language={'javascript'} overflowHeight={400} isCopyable>
+      <EuiCodeBlock language="jsx" overflowHeight={400} isCopyable>
         {codeToRender}
       </EuiCodeBlock>
       {codeSandboxLink}

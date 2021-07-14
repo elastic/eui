@@ -28,7 +28,7 @@ export default () => {
       items: [
         {
           name: 'Handle an onClick',
-          icon: <EuiIcon type="search" size="m" />,
+          icon: 'search',
           onClick: () => {
             closePopover();
           },
@@ -41,18 +41,26 @@ export default () => {
         },
         {
           name: 'Nest panels',
-          icon: 'user',
+          icon: 'wrench',
           panel: 1,
         },
         {
-          name: 'You can add a tooltip',
-          icon: 'user',
+          name: 'Add a tooltip',
+          icon: 'document',
           toolTipTitle: 'Optional tooltip',
           toolTipContent: 'Optional content for a tooltip',
           toolTipPosition: 'right',
           onClick: () => {
             closePopover();
           },
+        },
+        {
+          name: 'Use an app icon',
+          icon: 'visualizeApp',
+        },
+        {
+          name: 'Pass an icon as a component to customize it',
+          icon: <EuiIcon type="trash" size="m" color="danger" />,
         },
         {
           name: 'Disabled option',

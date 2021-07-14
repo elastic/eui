@@ -4,9 +4,12 @@ import { EuiLoadingElastic } from '../../../../src/components/loading';
 
 export default () => (
   <div>
-    <EuiLoadingElastic size="m" />
+    <EuiLoadingElastic />
+    &emsp;
     <EuiLoadingElastic size="l" />
+    &emsp;
     <EuiLoadingElastic size="xl" />
+    &emsp;
     <EuiLoadingElastic size="xxl" />
   </div>
 );

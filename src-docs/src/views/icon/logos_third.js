@@ -1,14 +1,3 @@
-// DON'T USE THIS
-// DON'T USE THIS
-// DON'T USE THIS
-// DON'T USE THIS
-// DON'T USE THIS
-
-// This example JS is overly complex for simple icon usage
-// and is set up this way for ease of use in our docs.
-//
-// Check the snippet tab for a more common usage.
-
 import React from 'react';
 
 import {

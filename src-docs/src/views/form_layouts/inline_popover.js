@@ -52,7 +52,7 @@ export default () => {
   );
 
   const formSample = (
-    <EuiForm>
+    <EuiForm component="form">
       <EuiFlexGroup>
         <EuiFlexItem grow={false} style={{ width: 100 }}>
           <EuiFormRow label="Age">
@@ -84,7 +84,7 @@ export default () => {
   );
 
   const formSample2 = (
-    <EuiForm>
+    <EuiForm component="form">
       <EuiFormRow>
         <EuiSwitch
           id={htmlIdGenerator()()}
@@ -122,7 +122,8 @@ export default () => {
         id="formPopover"
         button={button2}
         isOpen={isPopover2Open}
-        closePopover={closePopover2}>
+        closePopover={closePopover2}
+        initialFocus="[name='popfirst']">
         <div style={{ width: '300px' }}>{formSample2}</div>
       </EuiPopover>
     </div>

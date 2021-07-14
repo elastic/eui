@@ -263,7 +263,7 @@ const DataGrid = () => {
   );
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: 50,
+    pageSize: 5,
   });
   const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)

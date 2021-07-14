@@ -18,7 +18,7 @@ import {
 } from '../../../../src/components';
 
 const repeatableForm = (
-  <EuiForm>
+  <EuiForm component="form">
     <EuiFlexGroup>
       <EuiFlexItem>
         <EuiFormRow label="Username">

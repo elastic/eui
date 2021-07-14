@@ -34,7 +34,7 @@ export default () => {
 
   return (
     <Fragment>
-      <EuiForm isInvalid={showErrors} error={errors}>
+      <EuiForm isInvalid={showErrors} error={errors} component="form">
         <EuiFormRow label="Validation only" isInvalid={showErrors}>
           <EuiFieldText name="first" isInvalid={showErrors} />
         </EuiFormRow>

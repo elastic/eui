@@ -15,6 +15,7 @@ exports[`EuiPagination is rendered 1`] = `
     <span
       aria-hidden="true"
       class="euiButtonIcon__icon"
+      color="inherit"
       data-euiicon-type="arrowLeft"
     />
   </button>
@@ -52,6 +53,7 @@ exports[`EuiPagination is rendered 1`] = `
     <span
       aria-hidden="true"
       class="euiButtonIcon__icon"
+      color="inherit"
       data-euiicon-type="arrowRight"
     />
   </button>

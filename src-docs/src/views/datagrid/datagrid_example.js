@@ -31,6 +31,7 @@ import {
   EuiDataGridPopoverContentProps,
   EuiDataGridControlColumn,
   EuiDataGridToolBarVisibilityColumnSelectorOptions,
+  EuiDataGridRowHeightsOptions,
 } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 
 import { EuiDataGridCellValueElementProps } from '!!prop-loader!../../../../src/components/datagrid/data_grid_cell';
@@ -344,7 +345,7 @@ export const DataGridExample = {
               to display more content and actions into popovers.
             </li>
             <li>
-              <Link to="/tabular-content/data-grid-styling-and-toolbar/">
+              <Link to="/tabular-content/data-grid-styling-and-control/">
                 Grid styling
               </Link>{' '}
               can be controlled by the engineer, but augmented by user
@@ -377,6 +378,7 @@ export const DataGridExample = {
         EuiDataGridToolBarVisibilityOptions,
         EuiDataGridToolBarVisibilityColumnSelectorOptions,
         EuiDataGridPopoverContentProps,
+        EuiDataGridRowHeightsOptions,
       },
       demo: (
         <Fragment>

@@ -304,7 +304,7 @@ const HeaderUserMenu = () => {
 
 export default () => {
   const [position, setPosition] = useState('static');
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('default');
 
   return (
     <>
@@ -321,7 +321,7 @@ export default () => {
           <EuiSwitch
             label={'Change theme to dark'}
             checked={theme === 'dark'}
-            onChange={(e) => setTheme(e.target.checked ? 'dark' : 'light')}
+            onChange={(e) => setTheme(e.target.checked ? 'dark' : 'default')}
           />
         </EuiFlexItem>
       </EuiFlexGroup>

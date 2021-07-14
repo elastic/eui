@@ -25,8 +25,8 @@ import {
 import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
-  const idPrefix = htmlIdGenerator();
-  const idPrefix1 = htmlIdGenerator();
+  const idPrefix = htmlIdGenerator()();
+  const idPrefix1 = htmlIdGenerator()();
 
   const typeStyleToggleButtons = [
     {
@@ -134,6 +134,7 @@ export default () => {
           compressed
           showInput="inputWithPopover"
           showLabels
+          aria-label="EuiDualRange within compressed form"
           prepend="Zoom levels"
         />
       </EuiFormRow>

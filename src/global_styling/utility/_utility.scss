@@ -129,3 +129,16 @@
 .eui-isFocusable:focus {
   @include euiFocusRing('large');
 }
+
+/**
+ * For quickly applying a full-height element whether using flex or not
+ */
+@mixin euiFullHeight {
+  height: 100%;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.eui-fullHeight {
+  @include euiFullHeight;
+}

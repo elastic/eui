@@ -47,6 +47,7 @@ exports[`EuiBasicTable cellProps renders cells with custom props from a callback
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           key="_data_h_name_0"
         >
           Name
@@ -171,6 +172,7 @@ exports[`EuiBasicTable cellProps renders rows with custom props from an object 1
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           key="_data_h_name_0"
         >
           Name
@@ -297,6 +299,7 @@ exports[`EuiBasicTable empty is rendered 1`] = `
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           key="_data_h_name_0"
         >
           Name
@@ -365,6 +368,7 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           key="_data_h_name_0"
         >
           Name
@@ -441,6 +445,7 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           key="_data_h_name_0"
         >
           Name
@@ -509,6 +514,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="your name"
           key="_data_h_name_0"
         >
           Name
@@ -516,6 +522,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_id_1"
+          description="your id"
           key="_data_h_id_1"
         >
           ID
@@ -523,6 +530,7 @@ exports[`EuiBasicTable footers do not render without a column footer definition 
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_age_2"
+          description="your age"
           key="_data_h_age_2"
         >
           Age
@@ -756,6 +764,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="your name"
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
@@ -766,6 +775,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_id_1"
+          description="your id"
           key="_data_h_id_1"
         >
           ID
@@ -773,6 +783,7 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_age_2"
+          description="your age"
           key="_data_h_age_2"
         >
           Age
@@ -1045,6 +1056,7 @@ exports[`EuiBasicTable itemIdToExpandedRowMap renders an expanded row 1`] = `
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           key="_data_h_name_0"
         >
           Name
@@ -1174,6 +1186,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           key="_data_h_name_0"
         >
           Name
@@ -1304,6 +1317,7 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           key="_data_h_name_0"
         >
           Name
@@ -1581,6 +1595,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                 <EuiTableHeaderCell
                   align="left"
                   data-test-subj="tableHeaderCell_name_0"
+                  description="description"
                   key="_data_h_name_0"
                 >
                   <th
@@ -1594,18 +1609,42 @@ exports[`EuiBasicTable with initial selection 1`] = `
                       }
                     }
                   >
-                    <div
+                    <CellContents
                       className="euiTableCellContent"
+                      description="description"
+                      showSortMsg={false}
                     >
-                      <EuiInnerText>
-                        <span
-                          className="euiTableCellContent__text"
-                          title="Name"
-                        >
-                          Name
-                        </span>
-                      </EuiInnerText>
-                    </div>
+                      <span
+                        className="euiTableCellContent"
+                      >
+                        <EuiInnerText>
+                          <EuiI18n
+                            default="{innerText}; {description}"
+                            token="euiTableHeaderCell.titleTextWithDesc"
+                            values={
+                              Object {
+                                "description": "description",
+                                "innerText": "Name",
+                              }
+                            }
+                          >
+                            <span
+                              className="euiTableCellContent__text"
+                              title="Name; description"
+                            >
+                              Name
+                            </span>
+                          </EuiI18n>
+                        </EuiInnerText>
+                        <EuiScreenReaderOnly>
+                          <span
+                            className="euiScreenReaderOnly"
+                          >
+                            description
+                          </span>
+                        </EuiScreenReaderOnly>
+                      </span>
+                    </CellContents>
                   </th>
                 </EuiTableHeaderCell>
               </tr>
@@ -1950,6 +1989,7 @@ exports[`EuiBasicTable with multiple record actions with custom availability 1`]
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           key="_data_h_name_0"
         >
           Name
@@ -2262,6 +2302,7 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           key="_data_h_name_0"
         >
           Name
@@ -2374,6 +2415,7 @@ exports[`EuiBasicTable with pagination 1`] = `
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           key="_data_h_name_0"
         >
           Name
@@ -2504,6 +2546,7 @@ exports[`EuiBasicTable with pagination and error 1`] = `
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           key="_data_h_name_0"
         >
           Name
@@ -2597,6 +2640,7 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           key="_data_h_name_0"
         >
           Name
@@ -2760,6 +2804,7 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           key="_data_h_name_0"
         >
           Name
@@ -2922,6 +2967,7 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
@@ -3119,6 +3165,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
@@ -3409,6 +3456,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
         <EuiTableHeaderCell
           align="right"
           data-test-subj="tableHeaderCell_count_0"
+          description="description of count"
           isSortAscending={true}
           isSorted={true}
           key="_data_h_count_0"
@@ -3606,6 +3654,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
@@ -3803,6 +3852,7 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
@@ -4111,6 +4161,7 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
         <EuiTableHeaderCell
           align="right"
           data-test-subj="tableHeaderCell_count_0"
+          description="description of count"
           isSortAscending={true}
           isSorted={true}
           key="_data_h_count_0"
@@ -4274,6 +4325,7 @@ exports[`EuiBasicTable with sortable columns and sorting disabled 1`] = `
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           key="_data_h_name_0"
         >
           Name
@@ -4403,6 +4455,7 @@ exports[`EuiBasicTable with sorting 1`] = `
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"
@@ -4535,6 +4588,7 @@ exports[`EuiBasicTable with sorting enabled and enable all columns for sorting 1
         <EuiTableHeaderCell
           align="left"
           data-test-subj="tableHeaderCell_name_0"
+          description="description"
           isSortAscending={true}
           isSorted={true}
           key="_data_h_name_0"

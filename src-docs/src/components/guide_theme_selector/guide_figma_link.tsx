@@ -31,12 +31,10 @@ const GuideFigmaLinkComponent: React.FunctionComponent<GuideFigmaLinkProps> = ({
   const isAmsterdam = context.theme.includes('amsterdam');
 
   let href = 'https://www.figma.com/community/file/809845546262698150';
-  let label = 'EUI Figma Design Library';
+  const label = 'EUI Figma Design Library';
 
   if (isAmsterdam) {
-    href =
-      'https://www.figma.com/file/RzfYLj2xmH9K7gQtbSKygn/BETA-EUI-Amsterdam';
-    label = `${label} (private beta)`;
+    href = 'https://www.figma.com/community/file/964536385682658129';
   }
 
   return isMobileSize ? (
@@ -48,7 +46,6 @@ const GuideFigmaLinkComponent: React.FunctionComponent<GuideFigmaLinkProps> = ({
       title={label}
       content="The Figma Elastic UI framework (EUI) is a design library in use at Elastic to build internal products that need to share our aesthetics.">
       <EuiHeaderSectionItemButton
-        notification={isAmsterdam && 'B'}
         notificationColor="subdued"
         aria-label={label}
         // @ts-ignore TODO: FIX

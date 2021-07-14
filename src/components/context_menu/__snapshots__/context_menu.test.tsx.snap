@@ -6,7 +6,7 @@ exports[`EuiContextMenu can pass-through horizontal rule props 1`] = `
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel"
-    tabindex="0"
+    tabindex="-1"
   >
     <div
       class="euiContextMenuPanelTitle"
@@ -42,7 +42,7 @@ exports[`EuiContextMenu panel item can be a separator line 1`] = `
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel"
-    tabindex="0"
+    tabindex="-1"
   >
     <div
       class="euiContextMenuPanelTitle"
@@ -98,7 +98,7 @@ exports[`EuiContextMenu panel item can contain JSX 1`] = `
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel"
-    tabindex="0"
+    tabindex="-1"
   >
     <div
       class="euiContextMenuPanelTitle"
@@ -142,7 +142,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel"
-    tabindex="0"
+    tabindex="-1"
   >
     <button
       class="euiContextMenuPanelTitle"
@@ -181,7 +181,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel euiContextMenuPanel-txOutRight"
-    tabindex="0"
+    tabindex="-1"
   >
     <button
       class="euiContextMenuPanelTitle"
@@ -212,7 +212,7 @@ exports[`EuiContextMenu props panels and initialPanelId allows you to click the 
   </div>
   <div
     class="euiContextMenuPanel euiContextMenu__panel euiContextMenuPanel-txInRight"
-    tabindex="0"
+    tabindex="-1"
   >
     <button
       class="euiContextMenuPanelTitle"
@@ -301,7 +301,7 @@ exports[`EuiContextMenu props panels and initialPanelId renders the referenced p
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel"
-    tabindex="0"
+    tabindex="-1"
   >
     <button
       class="euiContextMenuPanelTitle"
@@ -339,7 +339,7 @@ exports[`EuiContextMenu props size m is rendered 1`] = `
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel"
-    tabindex="0"
+    tabindex="-1"
   >
     <button
       class="euiContextMenuPanelTitle"
@@ -377,7 +377,7 @@ exports[`EuiContextMenu props size s is rendered 1`] = `
 >
   <div
     class="euiContextMenuPanel euiContextMenu__panel"
-    tabindex="0"
+    tabindex="-1"
   >
     <button
       class="euiContextMenuPanelTitle euiContextMenuPanelTitle--small"

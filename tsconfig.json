@@ -9,6 +9,9 @@
     // generate declaration files
     "declaration": true,
 
+    // re-use info from previous runs to improve performance
+    "incremental": true,
+
     // don't allow un-used variables
     "noUnusedLocals": true,
 
@@ -47,10 +50,10 @@
 
     // Specifies where to find library definitions. When this is explicitly set,
     // it has to include the default location i.e. node_modules/@types
-    "typeRoots": ["node_modules/@types", "src/custom_typings"]
+    "typeRoots": ["node_modules/@types", "src/custom_typings"],
   },
   "include": [
     "./src/**/*",
-    "./src-docs/**/*",
-  ],
+    "./src-docs/**/*"
+  ]
 }

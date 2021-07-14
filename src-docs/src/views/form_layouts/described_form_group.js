@@ -21,7 +21,7 @@ export default () => {
   };
 
   return (
-    <EuiForm>
+    <EuiForm component="form">
       <EuiDescribedFormGroup
         title={<h3>Single text field</h3>}
         description={
@@ -38,13 +38,11 @@ export default () => {
           <EuiFieldText name="first" aria-label="Example" />
         </EuiFormRow>
       </EuiDescribedFormGroup>
-
       <EuiDescribedFormGroup title={<h3>No description</h3>}>
         <EuiFormRow label="Text field">
           <EuiFieldText name="first" />
         </EuiFormRow>
       </EuiDescribedFormGroup>
-
       <EuiDescribedFormGroup
         title={<h3>Multiple fields</h3>}
         description="Here are three form rows. The first form row does not have a title.">
@@ -70,7 +68,6 @@ export default () => {
           <EuiRange min={0} max={100} name="range" id="range" />
         </EuiFormRow>
       </EuiDescribedFormGroup>
-
       <EuiDescribedFormGroup
         title={<h2>Full width</h2>}
         titleSize="xxxs"

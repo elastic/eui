@@ -1,11 +1,13 @@
 import React from 'react';
 
-import { EuiLoadingKibana } from '../../../../src/components/loading';
+import { EuiLoadingLogo } from '../../../../src/components/loading';
 
 export default () => (
   <div>
-    <EuiLoadingKibana size="m" />
-    <EuiLoadingKibana size="l" />
-    <EuiLoadingKibana size="xl" />
+    <EuiLoadingLogo />
+    &emsp;
+    <EuiLoadingLogo logo="logoObservability" size="l" />
+    &emsp;
+    <EuiLoadingLogo logo="logoSecurity" size="xl" />
   </div>
 );

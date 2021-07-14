@@ -1,4 +1,7 @@
 .euiPopover__panel {
+  &:focus {
+    outline-offset: 0;
+  }
 
   &.euiPopover__panel-isAttached {
     @include euiBottomShadowMedium;

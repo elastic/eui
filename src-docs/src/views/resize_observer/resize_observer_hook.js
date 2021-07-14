@@ -32,7 +32,7 @@ export const ResizeObserverHookExample = () => {
       <EuiText>
         {hasResizeObserver ? (
           <p>
-            <EuiIcon type="checkInCircleFilled" color="secondary" /> Browser
+            <EuiIcon type="checkInCircleFilled" color="success" /> Browser
             supports ResizeObserver API.
           </p>
         ) : (

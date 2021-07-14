@@ -111,7 +111,7 @@ const chartDemoPlugin = {
 
         <EuiModalBody>
           <>
-            <EuiForm>
+            <EuiForm component="form">
               <EuiFlexGroup gutterSize="m" style={{ width: 600 }}>
                 <EuiFlexItem>
                   <EuiFormRow label="Palette">

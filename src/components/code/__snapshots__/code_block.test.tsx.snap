@@ -2,12 +2,9 @@
 
 exports[`EuiCodeBlock dynamic content updates DOM when input changes 1`] = `
 "<div>
-  <div class=\\"euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge\\">
+  <div class=\\"euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-javascript\\">
     <pre class=\\"euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap\\" tabindex=\\"-1\\">
-      <code class=\\"euiCodeBlock__code javascript hljs\\">
-        <span class=\\"hljs-keyword\\">const</span>value =
-        <span class=\\"hljs-string\\">'State 1'</span>
-      </code>
+      <code class=\\"euiCodeBlock__code javascript\\">const value = 'State 1'</code>
     </pre>
   </div>
 </div>"
@@ -15,12 +12,9 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 1`] = `
 
 exports[`EuiCodeBlock dynamic content updates DOM when input changes 2`] = `
 "<div>
-  <div class=\\"euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge\\">
+  <div class=\\"euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-javascript\\">
     <pre class=\\"euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap\\" tabindex=\\"-1\\">
-      <code class=\\"euiCodeBlock__code javascript hljs\\">
-        <span class=\\"hljs-keyword\\">const</span>value =
-        <span class=\\"hljs-string\\">'State 2'</span>
-      </code>
+      <code class=\\"euiCodeBlock__code javascript\\">const value = 'State 2'</code>
     </pre>
   </div>
 </div>"
@@ -28,7 +22,7 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 2`] = `
 
 exports[`EuiCodeBlock props fontSize l is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingLarge"
+  class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingLarge prismjs language-none"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -46,7 +40,7 @@ console.log(some);
 
 exports[`EuiCodeBlock props fontSize m is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontMedium euiCodeBlock--paddingLarge"
+  class="euiCodeBlock euiCodeBlock--fontMedium euiCodeBlock--paddingLarge prismjs language-none"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -64,7 +58,7 @@ console.log(some);
 
 exports[`EuiCodeBlock props fontSize s is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-none"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -81,59 +75,122 @@ console.log(some);
 `;
 
 exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
-<div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls"
+<EuiCodeBlock
+  isCopyable={true}
 >
-  <pre
-    class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
-    tabindex="-1"
-  >
-    <code
-      class="euiCodeBlock__code"
-    >
-      var some = 'code';
-console.log(some);
-    </code>
-  </pre>
-  <div
-    class="euiCodeBlock__controls"
+  <EuiCodeBlockImpl
+    inline={false}
+    isCopyable={true}
   >
     <div
-      class="euiCodeBlock__copyButton"
+      className="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls prismjs language-none"
+      style={Object {}}
     >
-      <span
-        class="euiToolTipAnchor"
+      <pre
+        className="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+        style={Object {}}
+        tabIndex={-1}
       >
-        <button
-          aria-label="Copy"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-          type="button"
+        <code
+          className="euiCodeBlock__code"
         >
-          <span
-            aria-hidden="true"
-            class="euiButtonIcon__icon"
-            data-euiicon-type="copy"
-          />
-        </button>
-      </span>
+          var some = 'code';
+console.log(some);
+        </code>
+      </pre>
+      <div
+        className="euiCodeBlock__controls"
+      >
+        <div
+          className="euiCodeBlock__copyButton"
+        >
+          <EuiI18n
+            default="Copy"
+            token="euiCodeBlock.copyButton"
+          >
+            <EuiCopy
+              afterMessage="Copied"
+              textToCopy="var some = 'code';
+console.log(some);"
+            >
+              <EuiToolTip
+                delay="regular"
+                onMouseOut={[Function]}
+                position="top"
+              >
+                <span
+                  className="euiToolTipAnchor"
+                  onKeyUp={[Function]}
+                  onMouseOut={[Function]}
+                  onMouseOver={[Function]}
+                >
+                  <EuiButtonIcon
+                    aria-label="Copy"
+                    color="text"
+                    iconType="copy"
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                  >
+                    <button
+                      aria-label="Copy"
+                      className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      type="button"
+                    >
+                      <EuiIcon
+                        aria-hidden="true"
+                        className="euiButtonIcon__icon"
+                        color="inherit"
+                        size="m"
+                        type="copy"
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="euiButtonIcon__icon"
+                          color="inherit"
+                          data-euiicon-type="copy"
+                          size="m"
+                        />
+                      </EuiIcon>
+                    </button>
+                  </EuiButtonIcon>
+                </span>
+              </EuiToolTip>
+            </EuiCopy>
+          </EuiI18n>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </EuiCodeBlockImpl>
+</EuiCodeBlock>
 `;
 
 exports[`EuiCodeBlock props language is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-html"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code html hljs xml"
+      class="euiCodeBlock__code html"
     >
-      var some = 'code';
-console.log(some);
+      <span
+        class="euiCodeBlock__line"
+      >
+        var some = 'code';
+
+      </span>
+      <span
+        class="euiCodeBlock__line"
+      >
+        console.log(some);
+      </span>
     </code>
   </pre>
 </div>
@@ -141,12 +198,12 @@ console.log(some);
 
 exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls"
-  style="max-height: 200px;"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls prismjs language-none"
+  style="max-height:200px"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
-    style="max-height: 200px;"
+    style="max-height:200px"
     tabindex="-1"
   >
     <code
@@ -167,6 +224,7 @@ console.log(some);
       <span
         aria-hidden="true"
         class="euiButtonIcon__icon"
+        color="inherit"
         data-euiicon-type="fullScreen"
       />
     </button>
@@ -176,7 +234,7 @@ console.log(some);
 
 exports[`EuiCodeBlock props paddingSize l is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-none"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -194,7 +252,7 @@ console.log(some);
 
 exports[`EuiCodeBlock props paddingSize m is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingMedium"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingMedium prismjs language-none"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -212,7 +270,7 @@ console.log(some);
 
 exports[`EuiCodeBlock props paddingSize none is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall"
+  class="euiCodeBlock euiCodeBlock--fontSmall prismjs language-none"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -230,7 +288,7 @@ console.log(some);
 
 exports[`EuiCodeBlock props paddingSize s is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingSmall"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingSmall prismjs language-none"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -248,7 +306,7 @@ console.log(some);
 
 exports[`EuiCodeBlock props transparentBackground is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground prismjs language-none"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -266,7 +324,7 @@ console.log(some);
 
 exports[`EuiCodeBlock renders a code block 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-none testClass1 testClass2"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"

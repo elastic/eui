@@ -5,10 +5,10 @@ import { PropTypes } from 'react-view';
 
 const iconOptions = mapOptions(iconTypes.concat(logoTypes));
 
-export const iconValidator = (prop = { custom: {} }) => {
+export const iconValidator = (prop = { custom: {} }, value) => {
   const newProp = {
     ...prop,
-    value: undefined,
+    value: value,
     type: PropTypes.String,
     custom: {
       ...prop.custom,

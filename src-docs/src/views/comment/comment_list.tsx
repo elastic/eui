@@ -34,7 +34,7 @@ const complexEvent = (
       <EuiBadge color="primary">sample</EuiBadge>
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
-      <EuiBadge color="secondary">review</EuiBadge>
+      <EuiBadge color="success">review</EuiBadge>
     </EuiFlexItem>
   </EuiFlexGroup>
 );

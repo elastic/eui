@@ -19,6 +19,16 @@
   }
 }
 
+.euiColorPicker__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -$euiSizeS / 2;
+}
+
+.euiColorPicker__swatch-item {
+  margin: $euiSizeS / 2;
+}
+
 // Adds a stroke color for the swatchInput icon. Unlike most EuiIcons it has a stroke in the SVG
 .euiSwatchInput__stroke {
   fill: none;

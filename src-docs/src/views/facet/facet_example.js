@@ -17,7 +17,7 @@ const facetSource = require('!!raw-loader!./facet');
 const facetHtml = renderToHtml(Facet);
 const facetSnippet = `<EuiFacetButton
   quantity={6}
-  icon={<EuiIcon type="dot" color="secondary" />}
+  icon={<EuiIcon type="dot" color="success" />}
   isSelected>
   <!-- Facet with EuiIcon content -->
 </EuiFacetButton>

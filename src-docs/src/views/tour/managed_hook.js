@@ -86,7 +86,7 @@ export default () => {
         Reset tour
       </EuiButtonEmpty>
       <EuiSpacer />
-      <EuiForm>
+      <EuiForm component="form">
         <EuiFormRow label="Enter an ES SQL query">
           <EuiTourStep {...euiTourStepOne}>
             <EuiTextArea

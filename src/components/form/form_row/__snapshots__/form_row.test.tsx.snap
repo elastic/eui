@@ -432,12 +432,12 @@ exports[`EuiFormRow props helpText is rendered 1`] = `
     class="euiFormRow__fieldWrapper"
   >
     <input
-      aria-describedby="generated-id-help"
+      aria-describedby="generated-id-help-0"
       id="generated-id"
     />
     <div
       class="euiFormHelpText euiFormRow__text"
-      id="generated-id-help"
+      id="generated-id-help-0"
     >
       <span>
         This is help text.

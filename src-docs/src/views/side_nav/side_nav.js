@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { EuiSideNav } from '../../../../src/components';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
   const [isSideNavOpenOnMobile, setisSideNavOpenOnMobile] = useState(false);
@@ -11,29 +12,29 @@ export default () => {
 
   const sideNav = [
     {
-      name: 'Kibana',
-      id: 0,
+      name: 'Root item',
+      id: htmlIdGenerator('basicExample')(),
       items: [
         {
-          name: 'Advanced settings',
-          id: 1,
+          name: 'Item with onClick',
+          id: htmlIdGenerator('basicExample')(),
           onClick: () => {},
         },
         {
-          name: 'Index Patterns (link)',
-          id: 2,
-          href: 'http://www.elastic.co',
+          name: 'Item with href',
+          id: htmlIdGenerator('basicExample')(),
+          href: '/#/navigation/side-nav',
         },
         {
-          name: 'Saved Objects',
-          id: 3,
+          name: 'Selected item',
+          id: htmlIdGenerator('basicExample')(),
           onClick: () => {},
           isSelected: true,
         },
         {
-          name: 'Reporting',
-          id: 4,
-          onClick: () => {},
+          name: 'Disabled item',
+          id: htmlIdGenerator('basicExample')(),
+          disabled: true,
         },
       ],
     },
@@ -42,7 +43,7 @@ export default () => {
   return (
     <EuiSideNav
       aria-label="Basic example"
-      mobileTitle="Navigate within $APP_NAME"
+      mobileTitle="Basic example"
       toggleOpenOnMobile={() => toggleOpenOnMobile()}
       isOpenOnMobile={isSideNavOpenOnMobile}
       style={{ width: 192 }}

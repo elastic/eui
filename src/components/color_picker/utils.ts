@@ -1,23 +1,11 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
-import { MouseEvent as ReactMouseEvent, TouchEvent, useEffect } from 'react';
 import chroma, { ColorSpaces } from 'chroma-js';
 import { ColorStop } from './color_stops';
 
@@ -44,63 +32,6 @@ export const getEventPosition = (
 
   return { left: leftPos, top: topPos, width, height };
 };
-
-export const throttle = (fn: (...args: any[]) => void, wait = 50) => {
-  let time = Date.now();
-  return (...args: any[]) => {
-    if (time + wait - Date.now() < 0) {
-      fn(...args);
-      time = Date.now();
-    }
-  };
-};
-
-export function isMouseEvent<T = HTMLDivElement>(
-  event: ReactMouseEvent<T> | TouchEvent<T>
-): event is ReactMouseEvent<T> {
-  return typeof event === 'object' && 'pageX' in event && 'pageY' in event;
-}
-
-export function useMouseMove<T = HTMLDivElement>(
-  handleChange: (
-    location: { x: number; y: number },
-    isFirstInteraction?: boolean
-  ) => void,
-  interactionConditional: any = true
-): [
-  (e: ReactMouseEvent<T>) => void,
-  (e: ReactMouseEvent<T> | TouchEvent<T>, isFirstInteraction?: boolean) => void
-] {
-  useEffect(() => {
-    return unbindEventListeners;
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  const handleInteraction = (
-    e: ReactMouseEvent<T> | TouchEvent<T>,
-    isFirstInteraction?: boolean
-  ) => {
-    if (e) {
-      if (interactionConditional) {
-        const x = isMouseEvent<T>(e) ? e.pageX : e.touches[0].pageX;
-        const y = isMouseEvent<T>(e) ? e.pageY : e.touches[0].pageY;
-        handleChange({ x, y }, isFirstInteraction);
-      }
-    }
-  };
-  const handleMouseMove = throttle((e: ReactMouseEvent) => {
-    handleChange({ x: e.pageX, y: e.pageY }, false);
-  });
-  const handleMouseDown = (e: ReactMouseEvent<T>) => {
-    handleInteraction(e, true);
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', unbindEventListeners);
-  };
-  const unbindEventListeners = () => {
-    document.removeEventListener('mousemove', handleMouseMove);
-    document.removeEventListener('mouseup', unbindEventListeners);
-  };
-
-  return [handleMouseDown, handleInteraction];
-}
 
 export const HEX_FALLBACK = '';
 export const HSV_FALLBACK: ColorSpaces['hsv'] = [0, 0, 0];

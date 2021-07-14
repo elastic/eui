@@ -15,7 +15,7 @@ export const LinkValidation = () => {
     <>
       {urls.map((url) => (
         <div key={url}>
-          <EuiLink color="secondary" href={url}>
+          <EuiLink color="success" href={url}>
             {url}
           </EuiLink>
         </div>

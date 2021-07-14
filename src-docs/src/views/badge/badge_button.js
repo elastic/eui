@@ -30,7 +30,7 @@ export default () => (
     </EuiFlexItem>
     <EuiFlexItem grow={false}>
       <EuiBadge
-        color="secondary"
+        color="success"
         iconType="cross"
         iconSide="right"
         onClick={() => {}}

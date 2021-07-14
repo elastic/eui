@@ -53,6 +53,12 @@
 
     &:focus {
       @include euiFocusRing(null, 'inner');
+
+      &:focus-visible {
+        // Turn radius and clip path off when in focus so the focus ring looks correct
+        border-radius: 0;
+        clip-path: none;
+      }
     }
 
     // If it's a link the easiest way to detect is via our .euiLink class since it can accept either href or onClick

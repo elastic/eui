@@ -1,57 +1,69 @@
 import React from 'react';
 
 import {
-  EuiFlexGrid,
   EuiFlexGroup,
   EuiFlexItem,
   EuiIcon,
-  EuiPanel,
   EuiText,
   EuiSpacer,
   EuiButton,
+  EuiSplitPanel,
+  EuiCodeBlock,
 } from '../../../../src/components';
 
 import reactSvg from '../../images/custom.svg';
 
 export default () => (
   <div>
-    <EuiFlexGrid columns={4}>
-      <EuiFlexItem className="guideDemo__icon" style={{ width: '200px' }}>
-        <EuiPanel>
-          <EuiIcon type="logoElastic" size="xl" />
-          <EuiText size="s">
-            <p>logoElastic</p>
-          </EuiText>
-        </EuiPanel>
-      </EuiFlexItem>
-      <EuiFlexItem className="guideDemo__icon" style={{ width: '200px' }}>
-        <EuiPanel>
-          <EuiIcon
-            type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg"
-            size="xl"
-            title="My SVG logo"
-          />
-          <EuiText size="s">
-            <p>http://some.svg</p>
-          </EuiText>
-        </EuiPanel>
-      </EuiFlexItem>
-      <EuiFlexItem className="guideDemo__icon" style={{ width: '200px' }}>
-        <EuiPanel>
-          <EuiIcon type={reactSvg} size="xl" title="Custom SVG icon" />
-          <EuiText size="s">
-            <p>{'{reactSvg}'}</p>
-          </EuiText>
-        </EuiPanel>
-      </EuiFlexItem>
-    </EuiFlexGrid>
+    <EuiSplitPanel.Outer hasShadow={false} direction="row">
+      <EuiSplitPanel.Inner
+        className="eui-textCenter"
+        grow={false}
+        style={{ minWidth: 96 }}>
+        <EuiIcon
+          type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg"
+          size="xl"
+          title="My SVG logo"
+        />
+      </EuiSplitPanel.Inner>
+      <EuiSplitPanel.Inner paddingSize="s" color="subdued">
+        <EuiCodeBlock
+          className="eui-textBreakWord"
+          language="html"
+          isCopyable
+          transparentBackground
+          paddingSize="m">
+          {
+            '<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg" size="xl" title="My SVG logo" />'
+          }
+        </EuiCodeBlock>
+      </EuiSplitPanel.Inner>
+    </EuiSplitPanel.Outer>
+    <EuiSpacer />
+    <EuiSplitPanel.Outer hasShadow={false} direction="row">
+      <EuiSplitPanel.Inner
+        className="eui-textCenter"
+        grow={false}
+        style={{ minWidth: 96 }}>
+        <EuiIcon type={reactSvg} size="xl" title="Custom SVG icon" />
+      </EuiSplitPanel.Inner>
+      <EuiSplitPanel.Inner paddingSize="s" color="subdued">
+        <EuiCodeBlock
+          language="html"
+          isCopyable
+          transparentBackground
+          paddingSize="m">
+          {'<EuiIcon type={reactSvg} size="xl" title="Custom SVG icon" />'}
+        </EuiCodeBlock>
+      </EuiSplitPanel.Inner>
+    </EuiSplitPanel.Outer>
 
     <EuiSpacer />
 
     <EuiText>
       <p>
         Any component that utlizes <strong>EuiIcon</strong> can use custom SVGs
-        as well
+        as well.
       </p>
     </EuiText>
 

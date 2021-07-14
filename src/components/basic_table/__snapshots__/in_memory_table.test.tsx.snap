@@ -150,6 +150,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                   <EuiTableHeaderCell
                     align="left"
                     data-test-subj="tableHeaderCell_name_0"
+                    description="description"
                     key="_data_h_name_0"
                   >
                     <th
@@ -163,18 +164,42 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                         }
                       }
                     >
-                      <div
+                      <CellContents
                         className="euiTableCellContent"
+                        description="description"
+                        showSortMsg={false}
                       >
-                        <EuiInnerText>
-                          <span
-                            className="euiTableCellContent__text"
-                            title="Name"
-                          >
-                            Name
-                          </span>
-                        </EuiInnerText>
-                      </div>
+                        <span
+                          className="euiTableCellContent"
+                        >
+                          <EuiInnerText>
+                            <EuiI18n
+                              default="{innerText}; {description}"
+                              token="euiTableHeaderCell.titleTextWithDesc"
+                              values={
+                                Object {
+                                  "description": "description",
+                                  "innerText": "Name",
+                                }
+                              }
+                            >
+                              <span
+                                className="euiTableCellContent__text"
+                                title="Name; description"
+                              >
+                                Name
+                              </span>
+                            </EuiI18n>
+                          </EuiInnerText>
+                          <EuiScreenReaderOnly>
+                            <span
+                              className="euiScreenReaderOnly"
+                            >
+                              description
+                            </span>
+                          </EuiScreenReaderOnly>
+                        </span>
+                      </CellContents>
                     </th>
                   </EuiTableHeaderCell>
                 </tr>
@@ -382,6 +407,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                               <EuiButtonContent
                                 className="euiButtonEmpty__content"
                                 iconSide="right"
+                                iconSize="s"
                                 iconType="arrowDown"
                                 textProps={
                                   Object {
@@ -394,13 +420,15 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 >
                                   <EuiIcon
                                     className="euiButtonContent__icon"
-                                    size="m"
+                                    color="inherit"
+                                    size="s"
                                     type="arrowDown"
                                   >
                                     <span
                                       className="euiButtonContent__icon"
+                                      color="inherit"
                                       data-euiicon-type="arrowDown"
-                                      size="m"
+                                      size="s"
                                     />
                                   </EuiIcon>
                                   <span
@@ -473,12 +501,14 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 <EuiIcon
                                   aria-hidden="true"
                                   className="euiButtonIcon__icon"
+                                  color="inherit"
                                   size="m"
                                   type="arrowLeft"
                                 >
                                   <span
                                     aria-hidden="true"
                                     className="euiButtonIcon__icon"
+                                    color="inherit"
                                     data-euiicon-type="arrowLeft"
                                     size="m"
                                   />
@@ -547,6 +577,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                         <EuiButtonContent
                                           className="euiButtonEmpty__content"
                                           iconSide="left"
+                                          iconSize="m"
                                           textProps={
                                             Object {
                                               "className": "euiButtonEmpty__text",
@@ -629,6 +660,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                         <EuiButtonContent
                                           className="euiButtonEmpty__content"
                                           iconSide="left"
+                                          iconSize="m"
                                           textProps={
                                             Object {
                                               "className": "euiButtonEmpty__text",
@@ -685,12 +717,14 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 <EuiIcon
                                   aria-hidden="true"
                                   className="euiButtonIcon__icon"
+                                  color="inherit"
                                   size="m"
                                   type="arrowRight"
                                 >
                                   <span
                                     aria-hidden="true"
                                     className="euiButtonIcon__icon"
+                                    color="inherit"
                                     data-euiicon-type="arrowRight"
                                     size="m"
                                   />
@@ -1001,6 +1035,7 @@ exports[`EuiInMemoryTable with initial selection 1`] = `
                   <EuiTableHeaderCell
                     align="left"
                     data-test-subj="tableHeaderCell_name_0"
+                    description="description"
                     key="_data_h_name_0"
                   >
                     <th
@@ -1014,18 +1049,42 @@ exports[`EuiInMemoryTable with initial selection 1`] = `
                         }
                       }
                     >
-                      <div
+                      <CellContents
                         className="euiTableCellContent"
+                        description="description"
+                        showSortMsg={false}
                       >
-                        <EuiInnerText>
-                          <span
-                            className="euiTableCellContent__text"
-                            title="Name"
-                          >
-                            Name
-                          </span>
-                        </EuiInnerText>
-                      </div>
+                        <span
+                          className="euiTableCellContent"
+                        >
+                          <EuiInnerText>
+                            <EuiI18n
+                              default="{innerText}; {description}"
+                              token="euiTableHeaderCell.titleTextWithDesc"
+                              values={
+                                Object {
+                                  "description": "description",
+                                  "innerText": "Name",
+                                }
+                              }
+                            >
+                              <span
+                                className="euiTableCellContent__text"
+                                title="Name; description"
+                              >
+                                Name
+                              </span>
+                            </EuiI18n>
+                          </EuiInnerText>
+                          <EuiScreenReaderOnly>
+                            <span
+                              className="euiScreenReaderOnly"
+                            >
+                              description
+                            </span>
+                          </EuiScreenReaderOnly>
+                        </span>
+                      </CellContents>
                     </th>
                   </EuiTableHeaderCell>
                 </tr>

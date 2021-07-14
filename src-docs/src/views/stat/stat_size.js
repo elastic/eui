@@ -15,5 +15,28 @@ export default () => (
         <EuiStat title="1,000,000" description="Small size" titleSize="s" />
       </EuiFlexItem>
     </EuiFlexGroup>
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <EuiStat
+          title="1,000,000"
+          description="Extra small size"
+          titleSize="xs"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiStat
+          title="1,000,000"
+          description="Extra extra small size"
+          titleSize="xxs"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiStat
+          title="1,000,000"
+          description="Extra extra extra small size"
+          titleSize="xxxs"
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
   </div>
 );

@@ -12,23 +12,23 @@
 
 // https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
 
+$euiZLevel0: 0;
+$euiZLevel1: 1000;
+$euiZLevel2: 2000;
+$euiZLevel3: 3000;
+$euiZLevel4: 4000;
+$euiZLevel5: 5000;
+$euiZLevel6: 6000;
+$euiZLevel7: 7000;
+$euiZLevel8: 8000;
+$euiZLevel9: 9000;
 
-$euiZLevel0:          0;
-$euiZLevel1:          1000;
-$euiZLevel2:          2000;
-$euiZLevel3:          3000;
-$euiZLevel4:          4000;
-$euiZLevel5:          5000;
-$euiZLevel6:          6000;
-$euiZLevel7:          7000;
-$euiZLevel8:          8000;
-$euiZLevel9:          9000;
-
-$euiZContent:         $euiZLevel0;
-$euiZHeader:          $euiZLevel1;
-$euiZContentMenu:     $euiZLevel2;
-$euiZFlyout:          $euiZLevel3;
-$euiZNavigation:      $euiZLevel4;
-$euiZMask:            $euiZLevel6;
-$euiZModal:           $euiZLevel8;
-$euiZToastList:       $euiZLevel9;
+$euiZToastList: $euiZLevel9;
+$euiZModal: $euiZLevel8;
+$euiZMask: $euiZLevel6;
+$euiZNavigation: $euiZLevel6;
+$euiZContentMenu: $euiZLevel2;
+$euiZHeader: $euiZLevel1;
+$euiZFlyout: $euiZHeader;
+$euiZMaskBelowHeader: $euiZHeader;
+$euiZContent: $euiZLevel0;

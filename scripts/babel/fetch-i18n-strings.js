@@ -192,6 +192,6 @@ tokenMappings.reduce(
 );
 
 fs.writeFileSync(
-  join(rootDir, 'src-docs', 'src', 'i18ntokens.json'),
+  join(rootDir, 'i18ntokens.json'),
   JSON.stringify(tokenMappings, null, 2)
 );

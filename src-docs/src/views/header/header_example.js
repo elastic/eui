@@ -495,7 +495,10 @@ export const HeaderExample = {
           </p>
         </>
       ),
-      demo: <HeaderElasticPattern theme={lightColors} />,
+      fullScreen: {
+        slug: 'elastic-pattern',
+        demo: <HeaderElasticPattern theme={lightColors} />,
+      },
     },
   ],
 };

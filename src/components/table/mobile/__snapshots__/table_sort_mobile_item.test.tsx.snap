@@ -12,6 +12,7 @@ exports[`EuiTableSortMobileItem is rendered 1`] = `
   >
     <span
       class="euiContextMenu__icon"
+      color="inherit"
       data-euiicon-type="empty"
     />
     <span

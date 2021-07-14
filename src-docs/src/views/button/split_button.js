@@ -7,22 +7,31 @@ import {
   EuiFlexItem,
 } from '../../../../src/components';
 
+const colors = ['primary', 'text', 'accent', 'success', 'warning', 'danger'];
+
 export default () => (
   <>
-    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
-      <EuiFlexItem grow={false}>
-        <EuiButton size="s" iconType="calendar">
-          Last 15 min
-        </EuiButton>
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon
-          display="base"
-          size="s"
-          iconType="boxesVertical"
-          aria-label="More"
-        />
-      </EuiFlexItem>
-    </EuiFlexGroup>
+    {colors.map((color) => (
+      <EuiFlexGroup
+        key={color}
+        responsive={false}
+        gutterSize="s"
+        alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiButton color={color} size="s" iconType="calendar">
+            Last 15 min
+          </EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButtonIcon
+            color={color}
+            display="base"
+            size="s"
+            iconType="boxesVertical"
+            aria-label="More"
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    ))}
   </>
 );

@@ -88,5 +88,33 @@ export default () => (
         />
       </EuiFlexItem>
     </EuiFlexGroup>
+    <EuiSpacer size="m" />
+    <EuiTitle size="xxs">
+      <h3>Icons inherit by default the button color</h3>
+    </EuiTitle>
+    <EuiSpacer size="s" />
+    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon iconType="heart" aria-label="Heart" color="accent" />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          iconType="dashboardApp"
+          aria-label="Dashboard"
+          color="success"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          display="base"
+          iconType="trash"
+          aria-label="Delete"
+          color="danger"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon display="base" iconType="lensApp" aria-label="Lens" />
+      </EuiFlexItem>
+    </EuiFlexGroup>
   </>
 );
