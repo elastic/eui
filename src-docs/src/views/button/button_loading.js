@@ -4,6 +4,7 @@ import {
   EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiButtonEmpty,
 } from '../../../../src/components';
 
 export default () => (
@@ -22,6 +23,18 @@ export default () => (
       <EuiButton fill isLoading={true} iconType="check" iconSide="right">
         Loading&hellip;
       </EuiButton>
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty onClick={() => {}} isLoading>
+        Loading
+      </EuiButtonEmpty>
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty onClick={() => {}} isLoading iconSide="right">
+        Loading
+      </EuiButtonEmpty>
     </EuiFlexItem>
   </EuiFlexGroup>
 );

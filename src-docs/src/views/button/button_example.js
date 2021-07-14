@@ -40,9 +40,10 @@ const buttonSnippet = [
 
 import ButtonWithIcon from './button_with_icon';
 const buttonWithIconSource = require('!!raw-loader!./button_with_icon');
-const buttonWithIconHtml = renderToHtml(Button);
-const buttonWithIconSnippet = `<EuiButton iconType={icon}><!-- Button text --></EuiButton>
-`;
+const buttonWithIconSnippet = [
+  '<EuiButton iconType={icon}><!-- Button text --></EuiButton>',
+  '<EuiButton iconType={icon} iconSide="right"><!-- Button text --></EuiButton>',
+];
 
 import ButtonOption from './button_empty';
 const buttonOptionSource = require('!!raw-loader!./button_empty');
@@ -281,6 +282,29 @@ export const ButtonExample = {
       demo: <ButtonOptionFlush />,
     },
     {
+      title: 'Buttons with icons',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: buttonWithIconSource,
+        },
+      ],
+      text: (
+        <p>
+          All button components accept an <EuiCode>iconType</EuiCode> which must
+          be an acceptable{' '}
+          <Link to="/display/icons">
+            <strong>EuiIcon</strong>
+          </Link>{' '}
+          type. Multi-color icons like app icons will be converted to single
+          color. Icons can be displayed on the opposite side by passing{' '}
+          <EuiCode language="js">{'iconSide="right"'}</EuiCode>.
+        </p>
+      ),
+      snippet: buttonWithIconSnippet,
+      demo: <ButtonWithIcon />,
+    },
+    {
       title: 'Buttons as links',
       source: [
         {
@@ -309,35 +333,6 @@ export const ButtonExample = {
       ),
       snippet: buttonAsLinkSnippet,
       demo: <ButtonAsLink />,
-    },
-    {
-      title: 'Button with icon',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: buttonWithIconSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: buttonWithIconHtml,
-        },
-      ],
-      text: (
-        <p>
-          The passed <EuiCode>iconType</EuiCode> must be an acceptable{' '}
-          <Link to="/display/icons">
-            <strong>EuiIcon</strong>
-          </Link>{' '}
-          type. It can be flipped{' '}
-          {
-            // eslint-disable-next-line react/no-unescaped-entities
-          }{' '}
-          to the opposite side by passing{' '}
-          <EuiCode language="js">iconSide=&quot;right&quot;</EuiCode>.
-        </p>
-      ),
-      snippet: buttonWithIconSnippet,
-      demo: <ButtonWithIcon />,
     },
     {
       title: 'Loading state',
