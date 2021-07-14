@@ -296,7 +296,6 @@ const typeToPathMap = {
   partial: 'partial',
   paperClip: 'paper_clip',
   pause: 'pause',
-  pauseFilled: 'pauseFilled',
   pencil: 'pencil',
   percent: 'percent',
   pin: 'pin',
