@@ -36,12 +36,6 @@ export type EuiMarkdownFormatProps = CommonProps &
     /** array of unified plugins to convert the AST into a ReactNode */
     processingPluginList?: PluggableList;
     textSize?: EuiTextProps['size'];
-    /**
-     * Changes the color of the components borders and backgrounds.
-     * The `default` will inherit its coloring from the light or dark theme.
-     * Or, force `light` or `dark` theme for all themes.
-     */
-    componentsTheme?: 'default' | 'light' | 'dark';
   };
 
 export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
@@ -50,7 +44,7 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   parsingPluginList = defaultParsingPlugins,
   processingPluginList = defaultProcessingPlugins,
   textSize = 'relative',
-  componentsTheme = 'default',
+
   ...rest
 }) => {
   const processor = useMemo(
@@ -68,12 +62,7 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
     }
   }, [children, processor]);
 
-  const classes = classNames(
-    'euiMarkdownFormat',
-    { 'euiMarkdownFormat--lightComponents': componentsTheme === 'light' },
-    { 'euiMarkdownFormat--darkComponents': componentsTheme === 'dark' },
-    className
-  );
+  const classes = classNames('euiMarkdownFormat', className);
 
   return (
     <EuiText size={textSize} className={classes} {...rest}>

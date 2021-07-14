@@ -9,6 +9,10 @@ import {
   EuiFormRow,
   EuiSelect,
   EuiRange,
+  EuiColorPicker,
+  useColorPickerState,
+  EuiButtonEmpty,
+  EuiPopover,
 } from '../../../../src';
 
 const markdownContent = `# h1 Heading
@@ -172,7 +176,7 @@ export default () => {
     'danger',
     'warning',
     'ghost',
-    'inherit',
+    'custom',
   ];
 
   const textColorsOptions = textColorsArray.map((name) => {
@@ -182,27 +186,10 @@ export default () => {
     };
   });
 
-  const componentsThemeOptions = [
-    {
-      value: 'default',
-      text: 'Default theme',
-    },
-    {
-      value: 'light',
-      text: 'Light theme',
-    },
-    {
-      value: 'dark',
-      text: 'Dark theme',
-    },
-  ];
-
   const [textSize, setTextSize] = useState(textSizeOptions[2].value);
   const [fontSizeScale, setFontSizeScale] = useState(16);
   const [textColor, setTextColor] = useState(textColorsOptions[0].value);
-  const [componentsTheme, setComponentsTheme] = useState(
-    componentsThemeOptions[0].value
-  );
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const onChangeTextSize = (e) => {
     setTextSize(e.target.value);
@@ -217,50 +204,65 @@ export default () => {
     setTextColor(e.target.value);
   };
 
-  const onChangeComponentsTheme = (e) => {
-    setComponentsTheme(e.target.value);
-  };
-
   const panelClasses = classNames({
     guideDemo__ghostBackground: textColor === 'ghost',
   });
 
+  const [color, setColor, colorErrors] = useColorPickerState('#c561dc');
+
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+  const closePopover = () => setIsPopoverOpen(false);
+
+  const button = (
+    <EuiButtonEmpty
+      onClick={onButtonClick}
+      iconType="controlsVertical"
+      aria-label="Open props customization"
+      color="text"
+      size="s">
+      Customize props
+    </EuiButtonEmpty>
+  );
+
   return (
     <>
       <EuiFlexGroup>
-        <EuiFlexItem>
-          <EuiFormRow label="Text color">
-            <EuiSelect
-              options={textColorsOptions}
-              value={textColor}
-              onChange={(e) => onChangeTextColor(e)}
-            />
-          </EuiFormRow>
-        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            panelStyle={{ minWidth: 380 }}
+            button={button}
+            isOpen={isPopoverOpen}
+            closePopover={closePopover}>
+            <EuiFormRow label="Color">
+              <EuiSelect
+                options={textColorsOptions}
+                value={textColor}
+                onChange={(e) => onChangeTextColor(e)}
+              />
+            </EuiFormRow>
 
-        <EuiFlexItem>
-          <EuiFormRow label="Components theme">
-            <EuiSelect
-              options={componentsThemeOptions}
-              value={componentsTheme}
-              onChange={(e) => onChangeComponentsTheme(e)}
-            />
-          </EuiFormRow>
-        </EuiFlexItem>
+            <EuiFormRow
+              label="Custom color"
+              isInvalid={!!colorErrors}
+              error={colorErrors}>
+              <EuiColorPicker
+                onChange={setColor}
+                color={color}
+                isInvalid={!!colorErrors}
+                disabled={textColor !== 'custom'}
+              />
+            </EuiFormRow>
 
-        <EuiFlexItem>
-          <EuiFormRow label="Text size">
-            <EuiSelect
-              options={textSizeOptions}
-              value={textSize}
-              onChange={(e) => onChangeTextSize(e)}
-            />
-          </EuiFormRow>
-        </EuiFlexItem>
+            <EuiFormRow label="Text size">
+              <EuiSelect
+                options={textSizeOptions}
+                value={textSize}
+                onChange={(e) => onChangeTextSize(e)}
+              />
+            </EuiFormRow>
 
-        {textSize === 'relative' && (
-          <EuiFlexItem>
-            <EuiFormRow label="Scale based on Font size">
+            <EuiFormRow label="Relative text size">
               <EuiRange
                 min={12}
                 max={24}
@@ -268,18 +270,19 @@ export default () => {
                 value={fontSizeScale}
                 onChange={onChangeFontSizeScale}
                 showValue
+                disabled={textSize !== 'relative'}
               />
             </EuiFormRow>
-          </EuiFlexItem>
-        )}
+          </EuiPopover>
+        </EuiFlexItem>
       </EuiFlexGroup>
 
-      <EuiSpacer />
+      <EuiSpacer size="s" />
+
       <EuiPanel hasBorder={true} className={panelClasses}>
         <EuiMarkdownFormat
           textSize={textSize}
-          color={textColor}
-          componentsTheme={componentsTheme}
+          color={textColor === 'custom' ? color : textColor}
           style={{
             fontSize: textSize === 'relative' && `${fontSizeScale}px`,
           }}>

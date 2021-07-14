@@ -39,11 +39,15 @@ export const TEXT_SIZES = keysOf(textSizeToClassNameMap);
 export type EuiTextProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
     textAlign?: TextAlignment;
+    /**
+     * Determines the text size. Choose `relative` to control the `font-size` based on the value of a parent container.
+     */
     size?: TextSize;
     /**
      * **`secondary` color is DEPRECATED, use `success` instead**
+     * Any of our named colors or a hex value like `#FFFFFF`, `#000`.
      */
-    color?: TextColor;
+    color?: TextColor | string;
     grow?: boolean;
   };
 

@@ -44,8 +44,9 @@ export type EuiTextColorProps = CommonProps &
   > & {
     /**
      * **`secondary` color is DEPRECATED, use `success` instead**
+     * Any of our named colors or a hex value like `#FFFFFF`, `#000`.
      */
-    color?: TextColor;
+    color?: TextColor | string;
     /**
      * Determines the root element
      */
@@ -59,15 +60,29 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
   component = 'span',
   ...rest
 }) => {
+  const isNamedColor = COLORS.includes(color as TextColor);
+
   const classes = classNames(
     'euiTextColor',
-    colorsToClassNameMap[color],
+    { 'euiTextColor--custom': !isNamedColor },
+    isNamedColor && colorsToClassNameMap[color as TextColor],
     className
   );
   const Component = component;
 
+  // We're checking if is a custom color.
+  // If it is a custom color we set the `color` of the `.euiTextColor` div to that custom color.
+  // This way the children text elements can `inherit` that color and border and backgrounds can get that `currentColor`.
+  const isCustomColor = !COLORS.includes(color as TextColor);
+
+  const style = isCustomColor
+    ? {
+        color: color,
+      }
+    : undefined;
+
   return (
-    <Component className={classes} {...rest}>
+    <Component className={classes} {...rest} style={style}>
       {children}
     </Component>
   );

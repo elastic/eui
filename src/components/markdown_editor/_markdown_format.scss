@@ -2,24 +2,15 @@
 // Uses the EuiText to wrap all the content.
 // Uses the EuiLink, EuiCode and EuiHorizontalRule.
 
-@mixin adjustComponentColors($color) {
-
-  // Blockquotes
-  .euiMarkdownFormat__blockquote {
-    border-left-style: solid;
-  }
+@mixin adjustBorderColors($color) {
 
   .euiMarkdownFormat__blockquote {
     border-left-color: $color;
   }
 
-  // Horizontal Rule
   .euiHorizontalRule {
     background-color: $color;
-  }
-
-  .euiMarkdownFormat__table tr {
-    background-color: transparent;
+    color: $color; // ensure that firefox gets the `currentColor`
   }
 
   .euiMarkdownFormat__table {
@@ -42,18 +33,32 @@
 }
 
 .euiMarkdownFormat {
-  $euiMarkdownAlphaGhostShade: rgba($euiColorGhost, .15);
-  $euiMarkdownAlphaInkShade: rgba($euiColorInk, .15);
+  // We want the default text to use a gray scale 
   $euiMarkdownAlphaShade: rgba($euiColorFullShade, .15);
 
-  @include adjustComponentColors($euiMarkdownAlphaShade);
+  $euiTextColors: (
+    default: $euiMarkdownAlphaShade,
+    subdued: $euiTextSubduedColor,
+    secondary: $euiColorSecondary,
+    success: $euiColorSuccess,
+    accent: $euiColorAccent,
+    warning: $euiColorWarning,
+    danger: $euiColorDanger,
+    ghost: $euiColorGhost,
+    custom: currentColor,
+  );
 
-  &--lightComponents {
-    @include adjustComponentColors($euiMarkdownAlphaGhostShade);
+  // We're adjusting the borders of the elements.
+  // For the custom color we're setting the value to the `currentColor` so we can get the current value of the color property or the computed value
+  @each $name, $color in $euiTextColors {
+    .euiTextColor--#{$name} {
+      @include adjustBorderColors($color);
+    }
   }
 
-  &--darkComponents {
-    @include adjustComponentColors($euiMarkdownAlphaInkShade);
+  // Blockquotes
+  .euiMarkdownFormat__blockquote {
+    border-left-style: solid;
   }
 
   // Checkboxes
