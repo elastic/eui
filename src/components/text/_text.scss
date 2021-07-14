@@ -280,7 +280,6 @@
   }
 
   // unset font-size from euiCodeBlock so it doesn't doubly add 90%
-
   code {
     @include euiCodeFont;
     display: inline-block; // ensures background stretches the full line-height

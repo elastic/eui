@@ -1,9 +1,8 @@
 // The Markdown Format uses by default a few EUI components.
-// Uses the EuiText to wrap all the content.
-// Uses the EuiLink, EuiCode and EuiHorizontalRule.
+// It uses the EuiText to wrap all the content so all the styles related with scaling based on the font-size live inside `_text.scss`
 
-@mixin adjustBorderColors($color) {
-
+// This should only be used for .euiMarkdownFormat, therefore it's not included in a separate mixin file
+@mixin euiMarkdownAdjustBorderColors($color) {
   .euiMarkdownFormat__blockquote {
     border-left-color: $color;
   }
@@ -33,10 +32,9 @@
 }
 
 .euiMarkdownFormat {
-  // We want the default text to use a gray scale 
   $euiMarkdownAlphaShade: rgba($euiColorFullShade, .15);
 
-  $euiTextColors: (
+  $euiMarkdownBorderColors: (
     default: $euiMarkdownAlphaShade,
     subdued: $euiTextSubduedColor,
     secondary: $euiColorSecondary,
@@ -48,25 +46,24 @@
     custom: currentColor,
   );
 
-  // We're adjusting the borders of the elements.
-  // For the custom color we're setting the value to the `currentColor` so we can get the current value of the color property or the computed value
-  @each $name, $color in $euiTextColors {
+  // We're adjusting the borders of the elements by passing a color defined in $euiMarkdownBorderColors.
+  // For the `custom` color we're assigning the `currentColor` so we can get the current or computed value of the `color` property
+  @each $name, $color in $euiMarkdownBorderColors {
     .euiTextColor--#{$name} {
-      @include adjustBorderColors($color);
+      @include euiMarkdownAdjustBorderColors($color);
     }
   }
 
-  // Blockquotes
   .euiMarkdownFormat__blockquote {
     border-left-style: solid;
   }
 
-  // Checkboxes
   .euiCheckbox {
     // sass-lint:disable-block no-important
     margin-bottom: 0 !important;
   }
 
+  // We're adjusting the position of the checkboxes so that when the text size is `relative` the checkboxes get better positioned
   .euiCheckbox .euiCheckbox__input + .euiCheckbox__square  {
     top: 50%;
     transform: translateY(-50%);
