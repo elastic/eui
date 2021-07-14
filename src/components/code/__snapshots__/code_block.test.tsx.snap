@@ -22,17 +22,26 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 2`] = `
 
 exports[`EuiCodeBlock props fontSize l is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingLarge prismjs language-none"
+  class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingLarge prismjs language-text"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code"
+      class="euiCodeBlock__code text"
     >
-      var some = 'code';
-console.log(some);
+      <span
+        class="euiCodeBlock__line"
+      >
+        var some = 'code';
+
+      </span>
+      <span
+        class="euiCodeBlock__line"
+      >
+        console.log(some);
+      </span>
     </code>
   </pre>
 </div>
@@ -40,17 +49,26 @@ console.log(some);
 
 exports[`EuiCodeBlock props fontSize m is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontMedium euiCodeBlock--paddingLarge prismjs language-none"
+  class="euiCodeBlock euiCodeBlock--fontMedium euiCodeBlock--paddingLarge prismjs language-text"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code"
+      class="euiCodeBlock__code text"
     >
-      var some = 'code';
-console.log(some);
+      <span
+        class="euiCodeBlock__line"
+      >
+        var some = 'code';
+
+      </span>
+      <span
+        class="euiCodeBlock__line"
+      >
+        console.log(some);
+      </span>
     </code>
   </pre>
 </div>
@@ -58,17 +76,26 @@ console.log(some);
 
 exports[`EuiCodeBlock props fontSize s is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-none"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-text"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code"
+      class="euiCodeBlock__code text"
     >
-      var some = 'code';
-console.log(some);
+      <span
+        class="euiCodeBlock__line"
+      >
+        var some = 'code';
+
+      </span>
+      <span
+        class="euiCodeBlock__line"
+      >
+        console.log(some);
+      </span>
     </code>
   </pre>
 </div>
@@ -83,7 +110,7 @@ exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
     isCopyable={true}
   >
     <div
-      className="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls prismjs language-none"
+      className="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls prismjs language-text"
       style={Object {}}
     >
       <pre
@@ -92,10 +119,21 @@ exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
         tabIndex={-1}
       >
         <code
-          className="euiCodeBlock__code"
+          className="euiCodeBlock__code text"
         >
-          var some = 'code';
-console.log(some);
+          <span
+            className="euiCodeBlock__line"
+            key="node-0-0"
+          >
+            var some = 'code';
+
+          </span>
+          <span
+            className="euiCodeBlock__line"
+            key="node-0-1"
+          >
+            console.log(some);
+          </span>
         </code>
       </pre>
       <div
@@ -198,7 +236,7 @@ exports[`EuiCodeBlock props language is rendered 1`] = `
 
 exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls prismjs language-none"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls prismjs language-text"
   style="max-height:200px"
 >
   <pre
@@ -207,10 +245,19 @@ exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code"
+      class="euiCodeBlock__code text"
     >
-      var some = 'code';
-console.log(some);
+      <span
+        class="euiCodeBlock__line"
+      >
+        var some = 'code';
+
+      </span>
+      <span
+        class="euiCodeBlock__line"
+      >
+        console.log(some);
+      </span>
     </code>
   </pre>
   <div
@@ -234,17 +281,26 @@ console.log(some);
 
 exports[`EuiCodeBlock props paddingSize l is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-none"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-text"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code"
+      class="euiCodeBlock__code text"
     >
-      var some = 'code';
-console.log(some);
+      <span
+        class="euiCodeBlock__line"
+      >
+        var some = 'code';
+
+      </span>
+      <span
+        class="euiCodeBlock__line"
+      >
+        console.log(some);
+      </span>
     </code>
   </pre>
 </div>
@@ -252,17 +308,26 @@ console.log(some);
 
 exports[`EuiCodeBlock props paddingSize m is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingMedium prismjs language-none"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingMedium prismjs language-text"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code"
+      class="euiCodeBlock__code text"
     >
-      var some = 'code';
-console.log(some);
+      <span
+        class="euiCodeBlock__line"
+      >
+        var some = 'code';
+
+      </span>
+      <span
+        class="euiCodeBlock__line"
+      >
+        console.log(some);
+      </span>
     </code>
   </pre>
 </div>
@@ -270,17 +335,26 @@ console.log(some);
 
 exports[`EuiCodeBlock props paddingSize none is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall prismjs language-none"
+  class="euiCodeBlock euiCodeBlock--fontSmall prismjs language-text"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code"
+      class="euiCodeBlock__code text"
     >
-      var some = 'code';
-console.log(some);
+      <span
+        class="euiCodeBlock__line"
+      >
+        var some = 'code';
+
+      </span>
+      <span
+        class="euiCodeBlock__line"
+      >
+        console.log(some);
+      </span>
     </code>
   </pre>
 </div>
@@ -288,17 +362,26 @@ console.log(some);
 
 exports[`EuiCodeBlock props paddingSize s is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingSmall prismjs language-none"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingSmall prismjs language-text"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code"
+      class="euiCodeBlock__code text"
     >
-      var some = 'code';
-console.log(some);
+      <span
+        class="euiCodeBlock__line"
+      >
+        var some = 'code';
+
+      </span>
+      <span
+        class="euiCodeBlock__line"
+      >
+        console.log(some);
+      </span>
     </code>
   </pre>
 </div>
@@ -306,17 +389,26 @@ console.log(some);
 
 exports[`EuiCodeBlock props transparentBackground is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground prismjs language-none"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground prismjs language-text"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code"
+      class="euiCodeBlock__code text"
     >
-      var some = 'code';
-console.log(some);
+      <span
+        class="euiCodeBlock__line"
+      >
+        var some = 'code';
+
+      </span>
+      <span
+        class="euiCodeBlock__line"
+      >
+        console.log(some);
+      </span>
     </code>
   </pre>
 </div>
@@ -324,7 +416,7 @@ console.log(some);
 
 exports[`EuiCodeBlock renders a code block 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-none testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-text testClass1 testClass2"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -332,11 +424,20 @@ exports[`EuiCodeBlock renders a code block 1`] = `
   >
     <code
       aria-label="aria-label"
-      class="euiCodeBlock__code"
+      class="euiCodeBlock__code text"
       data-test-subj="test subject string"
     >
-      var some = 'code';
-console.log(some);
+      <span
+        class="euiCodeBlock__line"
+      >
+        var some = 'code';
+
+      </span>
+      <span
+        class="euiCodeBlock__line"
+      >
+        console.log(some);
+      </span>
     </code>
   </pre>
 </div>
