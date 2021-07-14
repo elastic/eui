@@ -6834,7 +6834,6 @@ exports[`EuiIcon props type pause is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    clip-rule="evenodd"
     d="M5 2a1 1 0 00-1 1v10a1 1 0 102 0V3a1 1 0 00-1-1zm6 0a1 1 0 00-1 1v10a1 1 0 102 0V3a1 1 0 00-1-1z"
   />
 </svg>
