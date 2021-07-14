@@ -49,7 +49,7 @@ export default () => (
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButtonEmpty onClick={() => {}} iconType="lensApp" size="xs">
+        <EuiButtonEmpty onClick={() => {}} iconType="lensApp" size="s">
           Small empty
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -125,7 +125,7 @@ export default () => (
           iconSide="right"
           onClick={() => {}}
           iconType="arrowDown"
-          size="xs">
+          size="s">
           Small empty
         </EuiButtonEmpty>
       </EuiFlexItem>

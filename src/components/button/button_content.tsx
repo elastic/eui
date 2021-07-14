@@ -66,7 +66,10 @@ export const EuiButtonContent: FunctionComponent<
 
   if (isLoading) {
     buttonIcon = (
-      <EuiLoadingSpinner className="euiButtonContent__spinner" size="m" />
+      <EuiLoadingSpinner
+        className="euiButtonContent__spinner"
+        size={iconSize}
+      />
     );
   } else if (iconType) {
     buttonIcon = (

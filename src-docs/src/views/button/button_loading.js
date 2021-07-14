@@ -8,13 +8,13 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <EuiFlexGroup gutterSize="s" alignItems="center" wrap>
+  <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
     <EuiFlexItem grow={false}>
       <EuiButton isLoading={true}>Loading&hellip;</EuiButton>
     </EuiFlexItem>
 
     <EuiFlexItem grow={false}>
-      <EuiButton fill isLoading={true}>
+      <EuiButton fill size="s" isLoading={true}>
         Loading&hellip;
       </EuiButton>
     </EuiFlexItem>
@@ -27,13 +27,13 @@ export default () => (
 
     <EuiFlexItem grow={false}>
       <EuiButtonEmpty onClick={() => {}} isLoading>
-        Loading
+        Loading&hellip;
       </EuiButtonEmpty>
     </EuiFlexItem>
 
     <EuiFlexItem grow={false}>
-      <EuiButtonEmpty onClick={() => {}} isLoading iconSide="right">
-        Loading
+      <EuiButtonEmpty size="xs" onClick={() => {}} isLoading iconSide="right">
+        Loading&hellip;
       </EuiButtonEmpty>
     </EuiFlexItem>
   </EuiFlexGroup>

@@ -78,9 +78,8 @@ const buttonIconSnippet = [
 
 import SplitButton from './split_button';
 const splitButtonSource = require('!!raw-loader!./split_button');
-const splitButtonHtml = renderToHtml(SplitButton);
 const splitButtonSnippet = [
-  `<EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
+  `<EuiFlexGroup responsive={false} gutterSize="xs" alignItems="center">
   <EuiFlexItem grow={false}>
     <EuiButton size="s">
       Primary action
@@ -106,16 +105,13 @@ const buttonGhostSnippet = `<EuiButton color="ghost">
 
 import ButtonAsLink from './button_as_link';
 const buttonAsLinkSource = require('!!raw-loader!./button_as_link');
-const buttonAsLinkHtml = renderToHtml(ButtonAsLink);
 const buttonAsLinkSnippet = `<EuiButton href={someUrl}><!-- Button text --></EuiButton>
 `;
 
 import ButtonLoading from './button_loading';
 const buttonLoadingSource = require('!!raw-loader!./button_loading');
-const buttonLoadingHtml = renderToHtml(ButtonLoading);
-const buttonLoadingSnippet = `<EuiButton isLoading={true}>
-  <!-- Button text -->
-</EuiButton>`;
+const buttonLoadingSnippet =
+  '<EuiButton isLoading={true}><!-- Button text --></EuiButton>';
 
 import ButtonToggle from './button_toggle';
 const buttonToggleSource = require('!!raw-loader!./button_toggle');
@@ -341,16 +337,12 @@ export const ButtonExample = {
           type: GuideSectionTypes.JS,
           code: buttonAsLinkSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: buttonAsLinkHtml,
-        },
       ],
       text: (
         <p>
           Every button component accepts either an <EuiCode>href</EuiCode>{' '}
-          (rendering it as an <EuiCode language="html">{'<a>'}</EuiCode>) or an{' '}
-          <EuiCode>onClick</EuiCode> (rendering it as a{' '}
+          (rendered as an <EuiCode language="html">{'<a>'}</EuiCode>) or an{' '}
+          <EuiCode>onClick</EuiCode> (rendered as a{' '}
           <EuiCode language="html">{'<button>'}</EuiCode>). While they also
           accept both props to be applied simultaneously to support certain
           routing mechansims, it is not usually recommended. For more specific
@@ -371,10 +363,6 @@ export const ButtonExample = {
           type: GuideSectionTypes.JS,
           code: buttonLoadingSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: buttonLoadingHtml,
-        },
       ],
       text: (
         <p>
@@ -387,7 +375,6 @@ export const ButtonExample = {
       snippet: buttonLoadingSnippet,
       demo: <ButtonLoading />,
     },
-
     {
       title: 'Split buttons',
       source: [
@@ -395,18 +382,18 @@ export const ButtonExample = {
           type: GuideSectionTypes.JS,
           code: splitButtonSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: splitButtonHtml,
-        },
       ],
       text: (
         <>
           <p>
-            EUI does not support split buttons specifically. Instead, we
-            recommend using separate buttons for the main and overflow actions.
-            You can achieve this by simply using the <EuiCode>display</EuiCode>{' '}
-            and <EuiCode>size</EuiCode> props <strong>EuiButtonIcon</strong> to
+            EUI{' '}
+            <EuiLink href="https://github.com/elastic/eui/issues/4171">
+              does not support
+            </EuiLink>{' '}
+            split buttons specifically. Instead, we recommend using separate
+            buttons for the main and overflow actions. You can achieve this by
+            simply using the <EuiCode>display</EuiCode> and{' '}
+            <EuiCode>size</EuiCode> props <strong>EuiButtonIcon</strong> to
             match that of the primary action button.
           </p>
         </>

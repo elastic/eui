@@ -32,7 +32,7 @@ export default () => (
               isDisabled={value === 'disabled' ? true : false}
               color={value !== 'disabled' ? value : 'primary'}
               onClick={() => {}}>
-              small
+              Small
             </EuiButtonEmpty>
           </EuiFlexItem>
 
@@ -42,7 +42,7 @@ export default () => (
               isDisabled={value === 'disabled' ? true : false}
               color={value !== 'disabled' ? value : 'primary'}
               onClick={() => {}}>
-              extra small
+              Extra small
             </EuiButtonEmpty>
           </EuiFlexItem>
         </EuiFlexGroup>
