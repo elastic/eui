@@ -80,6 +80,7 @@ export const Sunburst = () => {
             config={{
               ...euiPartitionConfig,
               clockwiseSectors: false,
+              partitionLayout: 'sunburst',
             }}
           />
         </Chart>

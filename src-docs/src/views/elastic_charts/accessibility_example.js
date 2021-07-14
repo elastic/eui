@@ -236,6 +236,22 @@ export const ElasticChartsAccessibilityExample = {
           code: TextureMultiSeriesChartSource,
         },
       ],
+      snippet: `<Chart>
+  <Settings aria-label="Chart title" {...props} />
+  <BarSeries
+    barSeriesStyle={{
+      rect: {
+        opacity: 0.2,
+        texture: {
+          opacity: 1,
+          shape: 'square',
+          size: 9,
+        },
+      },
+    }}
+    {...otherProps}
+  />
+</Chart>`,
     },
     {
       title: 'Semantic groupings',
@@ -263,6 +279,14 @@ export const ElasticChartsAccessibilityExample = {
           code: GoalChartSource,
         },
       ],
+      snippet: `<Chart>
+  <Settings aria-label="Chart title" {...props} />
+  <Goal
+    bands=[0, 5, 15]
+    bandLabels=['freezing', 'chilly', 'brisk']
+    {...otherProps}
+  />
+</Chart>`,
     },
   ],
 };
