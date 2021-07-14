@@ -1,5 +1,9 @@
 import { PropTypes } from 'react-view';
-import { EuiButton, EuiButtonEmpty } from '../../../../src/components/';
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiButtonIcon,
+} from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   iconValidator,
@@ -52,6 +56,50 @@ export const buttonConfig = () => {
       imports: {
         '@elastic/eui': {
           named: ['EuiButton'],
+        },
+      },
+    },
+    setGhostBackground,
+  };
+};
+
+export const buttonIconConfig = () => {
+  const docgenInfo = Array.isArray(EuiButtonIcon.__docgenInfo)
+    ? EuiButtonIcon.__docgenInfo[0]
+    : EuiButtonIcon.__docgenInfo;
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
+
+  propsToUse.iconType = iconValidator(propsToUse.iconType, 'help');
+
+  // propsToUse.ariaLabel = {
+  //   ...propsToUse.ariaLabel,
+  //   value: 'Icon button',
+  // };
+
+  // propsToUse.color = {
+  //   ...propsToUse.color,
+  //   defaultValue: 'primary',
+  // };
+
+  // propsToUse.size = {
+  //   ...propsToUse.size,
+  //   defaultValue: 'xs',
+  // };
+
+  const setGhostBackground = {
+    color: 'ghost',
+  };
+
+  return {
+    config: {
+      componentName: 'EuiButtonIcon',
+      props: propsToUse,
+      scope: {
+        EuiButtonIcon,
+      },
+      imports: {
+        '@elastic/eui': {
+          named: ['EuiButtonIcon'],
         },
       },
     },

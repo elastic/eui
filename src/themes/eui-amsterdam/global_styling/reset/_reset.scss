@@ -69,7 +69,7 @@ body {
   line-height: $euiBodyLineHeight;
 }
 
-*:focus:not([tabindex='-1']) {
+*:focus {
   // 👉 Safari and Firefox innately respect only showing the outline with keyboard only
   // 💔 But they don't allow coloring of the 'auto'/default outline, so contrast is no good in dark mode.
   // 👉 For these browsers we use the solid type in order to match with `currentColor`.

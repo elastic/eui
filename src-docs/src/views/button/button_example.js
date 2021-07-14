@@ -19,7 +19,11 @@ import {
 import { EuiButtonGroupOptionProps } from '!!prop-loader!../../../../src/components/button/button_group/button_group';
 
 import Guidelines from './guidelines';
-import { buttonConfig, buttonEmptyConfig } from './playground';
+import {
+  buttonConfig,
+  buttonEmptyConfig,
+  buttonIconConfig,
+} from './playground';
 
 import Button from './button';
 const buttonSource = require('!!raw-loader!./button');
@@ -66,20 +70,10 @@ const buttonOptionFlushSnippet = `<EuiButtonEmpty flush="left"><!-- Button text 
 
 import ButtonIcon from './button_icon';
 const buttonIconSource = require('!!raw-loader!./button_icon');
-const buttonIconHtml = renderToHtml(ButtonIcon);
 const buttonIconSnippet = [
-  `<EuiButtonIcon
-  iconType={icon}
-/>`,
-  `<EuiButtonIcon
-  display="fill"
-  iconType={icon}
-/>`,
-  `<EuiButtonIcon
-  display="base"
-  size="s"
-  iconType={icon}
-/>`,
+  '<EuiButtonIcon iconType={icon} aria-label={label} />',
+  '<EuiButtonIcon display="fill" iconType={icon} aria-label={label} />',
+  '<EuiButtonIcon size="s" iconType={icon} aria-label={label} />',
 ];
 
 import SplitButton from './split_button';
@@ -305,6 +299,42 @@ export const ButtonExample = {
       demo: <ButtonWithIcon />,
     },
     {
+      title: 'Icon buttons',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: buttonIconSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            An <strong>EuiButtonIcon</strong> is a button that only contains an
+            icon (no text). Use the <EuiCode>display</EuiCode> and{' '}
+            <EuiCode>size</EuiCode> props to match the appearance of your{' '}
+            <strong>EuiButtonIcon</strong> to other standard buttons. By default
+            they will appear as <EuiCode>xs</EuiCode>, <EuiCode>empty</EuiCode>{' '}
+            buttons.
+          </p>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            title={
+              <>
+                <strong>EuiButtonIcon</strong> requires an{' '}
+                <EuiCode>aria-label</EuiCode> to express the meaning to screen
+                readers.
+              </>
+            }
+          />
+        </>
+      ),
+      props: { EuiButtonIcon },
+      snippet: buttonIconSnippet,
+      demo: <ButtonIcon />,
+      playground: buttonIconConfig,
+    },
+    {
       title: 'Buttons as links',
       source: [
         {
@@ -357,46 +387,7 @@ export const ButtonExample = {
       snippet: buttonLoadingSnippet,
       demo: <ButtonLoading />,
     },
-    {
-      title: 'Button icon',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: buttonIconSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: buttonIconHtml,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            An <strong>EuiButtonIcon</strong> is a button that only contains an
-            icon (no text). Use the <EuiCode>display</EuiCode> and{' '}
-            <EuiCode>size</EuiCode> props to match the appearance of your{' '}
-            <strong>EuiButtonIcon</strong> to other standard buttons. By default
-            they will appear as <EuiCode>xs</EuiCode>, <EuiCode>empty</EuiCode>{' '}
-            buttons.
-          </p>
-          <EuiCallOut
-            size="s"
-            color="warning"
-            iconType="accessibility"
-            title={
-              <>
-                <strong>EuiButtonIcon</strong> requires an{' '}
-                <EuiCode>aria-label</EuiCode> to express the meaning to screen
-                readers.
-              </>
-            }
-          />
-        </>
-      ),
-      props: { EuiButtonIcon },
-      snippet: buttonIconSnippet,
-      demo: <ButtonIcon />,
-    },
+
     {
       title: 'Split buttons',
       source: [
