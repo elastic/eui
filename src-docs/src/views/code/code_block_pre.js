@@ -6,7 +6,7 @@ export default () => (
   <div>
     <EuiCodeBlock
       language="jsx"
-      fontSize="m"
+      fontSize="s"
       paddingSize="m"
       color="dark"
       overflowHeight={300}

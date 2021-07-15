@@ -25,6 +25,14 @@ const codeBlockSnippet = `<EuiCodeBlock language="html" paddingSize="s" isCopyab
 </EuiCodeBlock>
 `;
 
+import CodeBlockVirtualized from './virtualized';
+const codeBlockVirtualizedSource = require('!!raw-loader!./virtualized');
+const codeBlockVirtualizedHtml = renderToHtml(CodeBlockVirtualized);
+const codeBlockVirtualizedSnippet = `<EuiCodeBlock language="json" isVirtualized overflowHeight={300}>
+{ \`{}\` }
+</EuiCodeBlock>
+`;
+
 import CodeBlockPre from './code_block_pre';
 const codeBlockPreSource = require('!!raw-loader!./code_block_pre');
 const codeBlockPreHtml = renderToHtml(CodeBlockPre);
@@ -107,6 +115,30 @@ export const CodeExample = {
       props: { EuiCodeBlock },
       demo: <CodeBlock />,
       playground: codeBlockConfig,
+    },
+    {
+      title: 'Code block virtualization',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: codeBlockVirtualizedSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: codeBlockVirtualizedHtml,
+        },
+      ],
+      text: (
+        <p>
+          For large blocks of code, set <EuiCode>isVirtualized</EuiCode> to
+          reduce the number of rendered rows and improve load times. Note that{' '}
+          <EuiCode>overflowHeight</EuiCode> is required when using this
+          configuration.
+        </p>
+      ),
+      props: { EuiCodeBlock },
+      snippet: codeBlockVirtualizedSnippet,
+      demo: <CodeBlockVirtualized />,
     },
     {
       title: 'Code block and white-space',

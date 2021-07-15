@@ -20,6 +20,10 @@
     white-space: pre-wrap;
   }
 
+  .euiCodeBlock__pre--isVirtualized {
+    position: relative;
+  }
+
   .euiCodeBlock__code {
     @include euiCodeFont;
     display: block;
