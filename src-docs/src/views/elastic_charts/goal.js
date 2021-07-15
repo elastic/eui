@@ -1,47 +1,62 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Chart, Settings, Goal } from '@elastic/charts';
 import { EuiSpacer, EuiTitle, EuiCode } from '../../../../src/components';
 import {
   htmlIdGenerator,
   useIsWithinBreakpoints,
+  euiPalettePositive,
 } from '../../../../src/services';
 import { EuiFlexGrid, EuiFlexItem } from '../../../../src/components/flex';
+import { ThemeContext } from '../../components';
+
+import {
+  EUI_CHARTS_THEME_DARK,
+  EUI_CHARTS_THEME_LIGHT,
+} from '../../../../src/themes/charts/themes';
 
 export const GoalChart = () => {
-  const id = htmlIdGenerator()();
-  // const themeContext = useContext(ThemeContext);
+  const id = htmlIdGenerator('goal')();
+  const themeContext = useContext(ThemeContext);
+  const isDarkTheme = themeContext.theme.includes('dark');
+  const euiChartTheme = isDarkTheme
+    ? EUI_CHARTS_THEME_DARK
+    : EUI_CHARTS_THEME_LIGHT;
+
+  const euiGoalConfig = euiChartTheme.euiGoalConfig;
+  // const { vizColors } = euiChartTheme.theme.colors;
+
   const isDesktop = useIsWithinBreakpoints(['l', 'xl']);
   const bandLabels = ['', 'freezing', 'cold', 'warm', 'hot'];
   const bands = [-10, 0, 15, 25, 40];
 
-  const opacityMap = {
-    '-10': 0.8,
-    '0': 0.66,
-    '15': 0.5,
-    '25': 0.33,
-    '40': 0.05,
+  const spectrum = euiPalettePositive(5);
+  const opacityMapHex = {
+    '-10': spectrum[0],
+    '0': spectrum[1],
+    '15': spectrum[2],
+    '25': spectrum[3],
+    '40': spectrum[4],
   };
 
-  const colorMap = bands.reduce((acc, band) => {
-    const defaultValue = opacityMap[band];
-    acc[band] = `rgba(0, 0, 0, ${defaultValue.toFixed(2)})`;
+  const colorMapTheme = bands.reduce((acc, band) => {
+    acc[band] = opacityMapHex[band];
     return acc;
   }, {});
 
-  const bandFillColor = (x) => colorMap[x];
-
+  const bandFillColor = (x) => colorMapTheme[x];
   return (
     <EuiFlexGrid direction={isDesktop ? 'row' : 'column'} columns={2}>
       <EuiFlexItem>
-        <EuiTitle size="xs">
+        <EuiTitle size="xs" className="eui-textCenter">
           <h3 id={id}>Example goal chart</h3>
         </EuiTitle>
-        <EuiSpacer size="s" />
+        <EuiSpacer />
         <Chart size={{ height: 200 }}>
           <Settings
             ariaLabelledBy={id}
             ariaDescription="This goal chart has a target of 22."
             ariaUseDefaultSummary={false}
+            theme={euiChartTheme}
           />
           <Goal
             base={-10}
@@ -55,13 +70,13 @@ export const GoalChart = () => {
             labelMinor="Celsius"
             centralMajor="12"
             centralMinor=""
-            config={{ angleStart: Math.PI, angleEnd: 0 }}
+            config={{ ...euiGoalConfig, angleStart: Math.PI, angleEnd: 0 }}
             bandLabels={bandLabels}
           />
         </Chart>
       </EuiFlexItem>
       <EuiFlexItem>
-        <EuiTitle className="eui-textCenter" size="xs">
+        <EuiTitle size="xs" className="eui-textCenter">
           <h3>Visually hidden content for chart</h3>
         </EuiTitle>
         <EuiSpacer />
