@@ -33,7 +33,7 @@ export type EuiTextColorProps = CommonProps &
   > & {
     /**
      * **`secondary` color is DEPRECATED, use `success` instead**
-     * Any of our named colors or a hex value like `#FFFFFF`, `#000`.
+     * Any of our named colors or a `hex`, `rgb` or `rgba` value.
      */
     color?: TextColor | string;
     /**
