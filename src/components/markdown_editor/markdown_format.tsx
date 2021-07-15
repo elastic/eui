@@ -43,8 +43,7 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   className,
   parsingPluginList = defaultParsingPlugins,
   processingPluginList = defaultProcessingPlugins,
-  textSize = 'relative',
-
+  textSize = 'm',
   ...rest
 }) => {
   const processor = useMemo(

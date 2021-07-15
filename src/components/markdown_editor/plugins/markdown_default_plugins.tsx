@@ -97,8 +97,8 @@ export const getDefaultEuiMarkdownProcessingPlugins = (): [
             <EuiCode {...props} />
           ),
         // When we use block code "fences" the code tag is replaced by the `EuiCodeBlock`.
-        // But there's a pre wrapping all the `EuiCodeBlock`.
-        // We want to replace this pre tag with a div because the `EuiCodeBlock` has its own children pre tag.
+        // But there's a `pre` tag wrapping all the `EuiCodeBlock`.
+        // We want to replace this `pre` tag with a `div` because the `EuiCodeBlock` has its own children `pre` tag.
         pre: (props) => (
           <div {...props} className="euiMarkdownFormat__codeblockWrapper" />
         ),
