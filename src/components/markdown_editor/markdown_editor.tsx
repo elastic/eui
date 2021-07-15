@@ -37,7 +37,7 @@ import { CommonProps, OneOf } from '../common';
 import MarkdownActions, { insertText } from './markdown_actions';
 import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
 import { EuiMarkdownEditorTextArea } from './markdown_editor_text_area';
-import { EuiMarkdownFormat } from './markdown_format';
+import { EuiMarkdownFormat, EuiMarkdownFormatProps } from './markdown_format';
 import { EuiMarkdownEditorDropZone } from './markdown_editor_drop_zone';
 import { htmlIdGenerator } from '../../services/';
 
@@ -129,6 +129,14 @@ type CommonMarkdownEditorProps = Omit<
 
     /** array defining any drag&drop handlers */
     dropHandlers?: EuiMarkdownDropHandler[];
+
+    /**
+     * Further extend the props applied to EuiMarkdownFormat
+     */
+    markdownFormatProps?: Omit<
+      EuiMarkdownFormatProps,
+      'parsingPluginList' | 'processingPluginList' | 'children'
+    >;
   };
 
 export type EuiMarkdownEditorProps = OneOf<
@@ -202,6 +210,7 @@ export const EuiMarkdownEditor = forwardRef<
       'aria-describedby': ariaDescribedBy,
       initialViewMode = MODE_EDITING,
       dropHandlers = [],
+      markdownFormatProps,
       ...rest
     },
     ref
@@ -422,7 +431,8 @@ export const EuiMarkdownEditor = forwardRef<
               style={{ height: previewHeight }}>
               <EuiMarkdownFormat
                 parsingPluginList={parsingPluginList}
-                processingPluginList={processingPluginList}>
+                processingPluginList={processingPluginList}
+                {...markdownFormatProps}>
                 {value}
               </EuiMarkdownFormat>
             </div>
