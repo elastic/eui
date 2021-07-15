@@ -171,7 +171,7 @@ export default () => {
   const textColorsArray = [
     'default',
     'subdued',
-    'secondary',
+    'success',
     'accent',
     'danger',
     'warning',
