@@ -98,6 +98,7 @@ type VirtualizedOptionProps = ExclusiveUnion<
     /**
      * Renders code block lines virtually.
      * Useful for improving load times of large code blocks.
+     * `overflowHeight` is required when using this configuration.
      */
     isVirtualized: true;
     /**
