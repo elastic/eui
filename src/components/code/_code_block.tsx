@@ -56,6 +56,12 @@ const virtualizedInnerElement = ({
     ))
   );
 
+const ListRow = ({ data, index, style }: ListChildComponentProps) => {
+  const row = data[index];
+  row.properties.style = style;
+  return nodeToHtml(row, index, data, 0);
+};
+
 const SUPPORTED_LANGUAGES = listLanguages();
 const DEFAULT_LANGUAGE = 'text';
 
@@ -337,12 +343,6 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
 
     return codeBlockControls;
   };
-
-  const ListRow = memo(({ data, index, style }: ListChildComponentProps) => {
-    const row = data[index];
-    row.properties.style = style;
-    return nodeToHtml(row, index, data, 0);
-  });
 
   const getFullScreenDisplay = (codeBlockControls?: JSX.Element) => {
     let fullScreenDisplay;
