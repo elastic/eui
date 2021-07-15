@@ -2,6 +2,10 @@
 
 - Refactored `EuiFlyout` types ([#4940](https://github.com/elastic/eui/pull/4940))
 - Updated `pause` icon ([#4947](https://github.com/elastic/eui/pull/4947))
+- Updated `EuiMarkdownFormat` to use `EuiHorizontalRule` and better render tables, code blocks and blockquotes ([#4663](https://github.com/elastic/eui/pull/4947))
+- Updated the `EuiMarkdownFormat` to use  `EuiText` as a wrapper to handle all the CSS styling ([#4663](https://github.com/elastic/eui/pull/4947))
+- Updated `EuiText`s `color` prop to accept `inherit` and custom colors. Updated the `size` prop to accept `relative` ([#4663](https://github.com/elastic/eui/pull/4947))
+- Added `markdownFormatProps` prop to `EuiMarkdownEditor`  to extend the props passed to the rendered `EuiMarkdownFormat` ([#4663](https://github.com/elastic/eui/pull/4947))
 
 **Bug fixes**
 
