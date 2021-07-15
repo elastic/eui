@@ -11,6 +11,7 @@ import React, {
   HTMLAttributes,
   FunctionComponent,
   KeyboardEvent,
+  ReactElement,
   ReactNode,
   memo,
   forwardRef,
@@ -186,7 +187,7 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   ]);
 
   // Used by `pre` when `isVirtualized=false` or `children` is not parsable (`isVirtualized=false`)
-  const content: React.ReactElement[] | ReactNode = useMemo(() => {
+  const content: ReactElement[] | ReactNode = useMemo(() => {
     if (!Array.isArray(data) || data.length < 1) {
       return children;
     }
@@ -337,13 +338,11 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
     return codeBlockControls;
   };
 
-  const ListRow = React.memo(
-    ({ data, index, style }: ListChildComponentProps) => {
-      const row = data[index];
-      row.properties.style = style;
-      return nodeToHtml(row, index, data, 0);
-    }
-  );
+  const ListRow = memo(({ data, index, style }: ListChildComponentProps) => {
+    const row = data[index];
+    row.properties.style = style;
+    return nodeToHtml(row, index, data, 0);
+  });
 
   const getFullScreenDisplay = (codeBlockControls?: JSX.Element) => {
     let fullScreenDisplay;
