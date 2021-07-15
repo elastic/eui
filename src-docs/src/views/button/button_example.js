@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -11,7 +10,6 @@ import {
   EuiCode,
   EuiButtonGroup,
   EuiCallOut,
-  EuiTitle,
   EuiLink,
   EuiText,
 } from '../../../../src/components';
@@ -23,6 +21,8 @@ import {
   buttonConfig,
   buttonEmptyConfig,
   buttonIconConfig,
+  buttonGroupConfig,
+  buttonIconGroupConfig,
 } from './playground';
 
 import Button from './button';
@@ -98,7 +98,6 @@ const splitButtonSnippet = [
 
 import ButtonGhost from './button_ghost';
 const buttonGhostSource = require('!!raw-loader!./button_ghost');
-const buttonGhostHtml = renderToHtml(ButtonGhost);
 const buttonGhostSnippet = `<EuiButton color="ghost">
   <!-- Button text -->
 </EuiButton>`;
@@ -115,15 +114,16 @@ const buttonLoadingSnippet =
 
 import ButtonToggle from './button_toggle';
 const buttonToggleSource = require('!!raw-loader!./button_toggle');
-const buttonToggleHtml = renderToHtml(ButtonToggle);
-const buttonToggleSnippet = [
-  `<EuiButton
+import ButtonToggleAria from './button_toggle_aria';
+const buttonToggleAriaSource = require('!!raw-loader!./button_toggle_aria');
+const buttonToggleSnippet = `<EuiButton
   iconType={toggleOn ? onIcon : offIcon}
   onClick={onToggleChange}
 >
   {toggleOn ? onLabel : offLabel}
 </EuiButton>
-`,
+`;
+const buttonToggleAriaSnippet = [
   `<EuiButton
   isSelected={toggleOn}
   fill={toggleOn}
@@ -142,31 +142,50 @@ const buttonToggleSnippet = [
 
 import ButtonGroup from './button_group';
 const buttonGroupSource = require('!!raw-loader!./button_group');
-const buttonGroupHtml = renderToHtml(ButtonGroup);
-
-import ButtonGroupIcons from './button_group_icon';
-const buttonGroupIconsSource = require('!!raw-loader!./button_group_icon');
-const buttonGroupIconsHtml = renderToHtml(ButtonGroupIcons);
-
-import ButtonGroupCompressed from './button_group_compressed';
-const buttonGroupCompressedSource = require('!!raw-loader!./button_group_compressed');
-const buttonGroupCompressedHtml = renderToHtml(ButtonGroupCompressed);
 const buttonGroupSnippet = [
   `<EuiButtonGroup
-  type="single"
   legend={legend}
   name={name}
+  idSelected={toggleIdSelected}
+  onChange={(optionId) => {}}
   options={[
     {
       id,
       label'
     }
   ]}
+/>`,
+  `<EuiButtonGroup
+  type="multi"
+  legend={legend}
+  idToSelectedMap={{ optionId: true }}
+  onChange={(optionId) => {}}
+  options={[
+    {
+      id,
+      label'
+    }
+  ]}
+/>`,
+];
+
+import ButtonGroupIcons from './button_group_icon';
+const buttonGroupIconsSource = require('!!raw-loader!./button_group_icon');
+const buttonGroupIconsSnippet = [
+  `<EuiButtonGroup
+  isIconOnly
+  legend={legend}
+  name={name}
+  options={[
+    {
+      id,
+      label,
+      iconType,
+    }
+  ]}
   idSelected={idSelected}
   onChange={(optionId) => {}}
 />`,
-];
-const buttonGroupIconsSnippet = [
   `<EuiButtonGroup
   type="multi"
   isIconOnly
@@ -179,7 +198,42 @@ const buttonGroupIconsSnippet = [
     }
   ]}
   idToSelectedMap={{ optionId: true }}
-  onChange={(optionId, optionValue) => {}}
+  onChange={(optionId) => {}}
+/>`,
+];
+
+import ButtonGroupCompressed from './button_group_compressed';
+const buttonGroupCompressedSource = require('!!raw-loader!./button_group_compressed');
+const buttonGroupCompressedSnippet = [
+  `<EuiButtonGroup
+  legend={legend}
+  name={name}
+  options={[
+    {
+      id,
+      label,
+    }
+  ]}
+  idSelected={idSelected}
+  onChange={(optionId) => {}}
+  buttonSize="compressed"
+  isFullWidth
+/>`,
+  `<EuiButtonGroup
+  type="multi"
+  isIconOnly
+  legend={legend}
+  options={[
+    {
+      id,
+      label,
+      iconType,
+    }
+  ]}
+  idToSelectedMap={{ optionId: true }}
+  onChange={(optionId) => {}}
+  buttonSize="compressed"
+  isFullWidth
 />`,
 ];
 
@@ -339,19 +393,29 @@ export const ButtonExample = {
         },
       ],
       text: (
-        <p>
-          Every button component accepts either an <EuiCode>href</EuiCode>{' '}
-          (rendered as an <EuiCode language="html">{'<a>'}</EuiCode>) or an{' '}
-          <EuiCode>onClick</EuiCode> (rendered as a{' '}
-          <EuiCode language="html">{'<button>'}</EuiCode>). While they also
-          accept both props to be applied simultaneously to support certain
-          routing mechansims, it is not usually recommended. For more specific
-          information on how to integrate EUI buttons with react-router,{' '}
-          <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/react-router.md#how-react-router-works">
-            see this wiki page
-          </EuiLink>
-          .
-        </p>
+        <>
+          <p>
+            Every button component accepts either an <EuiCode>href</EuiCode>{' '}
+            (rendered as an <EuiCode language="html">{'<a>'}</EuiCode>) or an{' '}
+            <EuiCode>onClick</EuiCode> (rendered as a{' '}
+            <EuiCode language="html">{'<button>'}</EuiCode>). While they also
+            accept both props to be applied simultaneously to support certain
+            routing mechansims, it is not usually recommended. For more specific
+            information on how to integrate EUI buttons with react-router,{' '}
+            <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/react-router.md#how-react-router-works">
+              see this wiki page
+            </EuiLink>
+            .
+          </p>
+          <p>
+            If you are creating a purely text-based link, like the one in the
+            previous paragraph, use{' '}
+            <Link to="/navigation/link">
+              <strong>EuiLink</strong>
+            </Link>{' '}
+            instead.
+          </p>
+        </>
       ),
       snippet: buttonAsLinkSnippet,
       demo: <ButtonAsLink />,
@@ -409,15 +473,11 @@ export const ButtonExample = {
           type: GuideSectionTypes.JS,
           code: buttonToggleSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: buttonToggleHtml,
-        },
       ],
       text: (
         <>
           <p>
-            You can create a toggle style button with any button type like the
+            You can create a toggle button with any button type like the
             standard <strong>EuiButton</strong>, <strong>EuiButtonEmpty</strong>
             , or <strong>EuiButtonIcon</strong>. Use state management to handle
             the visual differences for on and off. Though there are two{' '}
@@ -429,6 +489,23 @@ export const ButtonExample = {
               children or <EuiCode>aria-label</EuiCode>, then there is no
               additional accessibility concern.
             </li>
+          </ol>
+        </>
+      ),
+      demo: <ButtonToggle />,
+      snippet: buttonToggleSnippet,
+      props: { EuiButton, EuiButtonIcon },
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: buttonToggleAriaSource,
+        },
+      ],
+      text: (
+        <>
+          <ol start={2}>
             <li>
               If your button only changes the <strong>visual</strong>{' '}
               appearance, you must add <EuiCode>aria-pressed</EuiCode> passing a
@@ -449,8 +526,8 @@ export const ButtonExample = {
           />
         </>
       ),
-      demo: <ButtonToggle />,
-      snippet: buttonToggleSnippet,
+      demo: <ButtonToggleAria />,
+      snippet: buttonToggleAriaSnippet,
       props: { EuiButton, EuiButtonIcon },
     },
     {
@@ -460,20 +537,15 @@ export const ButtonExample = {
           type: GuideSectionTypes.JS,
           code: buttonGroupSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: buttonGroupHtml,
-        },
       ],
       text: (
         <div>
           <p>
-            <strong>EuiButtonGroups</strong> utilize the{' '}
+            An <strong>EuiButtonGroup</strong> is for indicating{' '}
+            <strong>selection</strong> only. They utilize the{' '}
             <EuiCode language="js">type=&quot;single&quot;</EuiCode> or{' '}
             <EuiCode language="js">&quot;multi&quot;</EuiCode> prop to determine
-            whether multiple or only single selections are allowed per group. If
-            you&apos;re just displaying a group of icons, add the prop{' '}
-            <EuiCode>isIconOnly</EuiCode>.
+            whether multiple or only single selections are allowed per group.
           </p>
           <EuiCallOut
             iconType="accessibility"
@@ -492,6 +564,7 @@ export const ButtonExample = {
       demo: <ButtonGroup />,
       snippet: buttonGroupSnippet,
       props: { EuiButtonGroup, EuiButtonGroupOptionProps },
+      playground: buttonGroupConfig,
     },
     {
       source: [
@@ -499,19 +572,20 @@ export const ButtonExample = {
           type: GuideSectionTypes.JS,
           code: buttonGroupIconsSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: buttonGroupIconsHtml,
-        },
       ],
-      wrapText: false,
       text: (
-        <EuiTitle size="xs">
-          <h3>Icons only</h3>
-        </EuiTitle>
+        <>
+          <h3>Icon only button groups</h3>
+          <p>
+            If you&apos;re just displaying a group of icons, add the prop{' '}
+            <EuiCode>isIconOnly</EuiCode>.
+          </p>
+        </>
       ),
       demo: <ButtonGroupIcons />,
       snippet: buttonGroupIconsSnippet,
+      props: { EuiButtonGroup, EuiButtonGroupOptionProps },
+      playground: buttonIconGroupConfig,
     },
     {
       source: [
@@ -519,12 +593,31 @@ export const ButtonExample = {
           type: GuideSectionTypes.JS,
           code: buttonGroupCompressedSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: buttonGroupCompressedHtml,
-        },
       ],
+
+      text: (
+        <>
+          <h3>Button groups in forms</h3>
+          <p>
+            When using button groups within compressed forms, match the form
+            elements by adding <EuiCode>{'buttonSize="compressed"'}</EuiCode>.
+            Compressed groups should always be <EuiCode>fullWidth</EuiCode> so
+            they line up nicely in their small container <strong>unless</strong>{' '}
+            they are icon only.
+          </p>
+          <p>
+            For a more detailed example of how to integrate with forms, see the{' '}
+            <Link to="/forms/compressed-forms#complex-example">
+              &quot;Complex example&quot;
+            </Link>{' '}
+            on the compressed forms page.{' '}
+          </p>
+        </>
+      ),
       demo: <ButtonGroupCompressed />,
+      snippet: buttonGroupCompressedSnippet,
+      props: { EuiButtonGroup, EuiButtonGroupOptionProps },
+      demoPanelProps: { color: 'subdued' },
     },
     {
       title: 'Ghost',
@@ -534,17 +627,13 @@ export const ButtonExample = {
           type: GuideSectionTypes.JS,
           code: buttonGhostSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: buttonGhostHtml,
-        },
       ],
       text: (
         <p>
           For buttons on dark color backgrounds, you can pass{' '}
           <EuiCode language="js">{'color="ghost"'}</EuiCode> to any of the
-          button styles on this page. These should be used extremely rarely, and
-          are only for placing buttons on top of dark or image-based
+          button components on this page. These should be used extremely rarely,
+          and are only for placing buttons on top of dark or image-based
           backgrounds. A good example of their use is in the{' '}
           <Link to="/layout/bottom-bar">
             <strong>EuiBottomBar</strong>
