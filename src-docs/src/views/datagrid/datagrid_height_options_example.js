@@ -14,7 +14,7 @@ const dataGridRowHeightOptionsSource = require('!!raw-loader!./row_height_option
 const dataGridRowHeightOptionsHtml = renderToHtml(DataGridRowHeightOptions);
 
 const rowHeightsSnippet = `
-  {
+  rowHeightsOptions = {
     defaultHeight: {
       lineCount: 2, // default every row to 2 lines of text. Also we can provide height in pixels
     },
