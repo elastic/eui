@@ -95,6 +95,10 @@ export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 // overflowHeight is required when using virtualization
 type VirtualizedOptionProps = ExclusiveUnion<
   {
+    /**
+     * Renders code block lines virtually.
+     * Useful for improving load times of large code blocks.
+     */
     isVirtualized: true;
     /**
      * Sets the maximum container height.
