@@ -2,6 +2,7 @@
 
 - Refactored `EuiFlyout` types ([#4940](https://github.com/elastic/eui/pull/4940))
 - Updated `pause` icon ([#4947](https://github.com/elastic/eui/pull/4947))
+- Added optional virtualized line rendering to `EuiCodeBlock` ([#4952](https://github.com/elastic/eui/pull/4952))
 
 **Bug fixes**
 
