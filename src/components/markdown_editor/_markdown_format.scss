@@ -43,11 +43,12 @@
     warning: $euiColorWarning,
     danger: $euiColorDanger,
     ghost: $euiColorGhost,
+    inherit: currentColor,
     custom: currentColor,
   );
 
   // We're adjusting the borders of the elements by passing a color defined in $euiMarkdownBorderColors.
-  // For the `custom` color we're assigning the `currentColor` so we can get the current or computed value of the `color` property
+  // For the `custom` and `inherit` colors we're assigning the `currentColor` so we can get the current or computed value of the `color` property
   @each $name, $color in $euiMarkdownBorderColors {
     .euiTextColor--#{$name} {
       @include euiMarkdownAdjustBorderColors($color);

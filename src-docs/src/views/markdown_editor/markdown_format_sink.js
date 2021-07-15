@@ -176,6 +176,7 @@ export default () => {
     'danger',
     'warning',
     'ghost',
+    'inherit',
     'custom',
   ];
 
