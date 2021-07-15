@@ -45,7 +45,7 @@ export const CodeExample = {
         <p>
           The <strong>EuiCode</strong> and <strong>EuiCodeBlock</strong>{' '}
           components support{' '}
-          <EuiLink external href="https://github.com/wooorm/refractor#syntaxes">
+          <EuiLink external href="https://prismjs.com/#supported-languages">
             all language syntaxes
           </EuiLink>{' '}
           supported by the
