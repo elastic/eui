@@ -23,7 +23,6 @@ export const GoalChart = () => {
     : EUI_CHARTS_THEME_LIGHT;
 
   const euiGoalConfig = euiChartTheme.euiGoalConfig;
-  // const { vizColors } = euiChartTheme.theme.colors;
 
   const isDesktop = useIsWithinBreakpoints(['l', 'xl']);
   const bandLabels = ['', 'freezing', 'cold', 'warm', 'hot'];
