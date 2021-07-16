@@ -25,17 +25,17 @@ export const BulletExample = () => {
   const euiGoalConfig = euiChartTheme.euiGoalConfig;
 
   const isDesktop = useIsWithinBreakpoints(['l', 'xl']);
-  const bandLabels = ['', 'freezing', 'cold', 'warm', 'hot'];
-  const bands = [-10, 0, 15, 25, 40];
+  const bandLabels = ['freezing', 'cold', 'brisk', 'warm', 'hot'];
+  const bands = [0, 100, 125, 150, 250];
 
   const spectrum = euiPalettePositive(5);
 
   const colorMap = {
-    '-10': spectrum[0],
-    '0': spectrum[1],
-    '15': spectrum[2],
-    '25': spectrum[3],
-    '40': spectrum[4],
+    '0': spectrum[0],
+    '100': spectrum[1],
+    '125': spectrum[2],
+    '150': spectrum[3],
+    '250': spectrum[4],
   };
 
   const bandFillColor = (x) => colorMap[x];
@@ -49,7 +49,7 @@ export const BulletExample = () => {
         <Chart size={{ height: 200 }}>
           <Settings
             ariaLabelledBy={id}
-            ariaDescription="This goal chart has a target of 22."
+            ariaDescription="This goal chart has a target of 260."
             ariaUseDefaultSummary={false}
             theme={euiChartTheme}
           />
@@ -85,7 +85,7 @@ export const BulletExample = () => {
   <dt>Chart type:</dt>
   <dd>horizontalBullet chart</dd>
   <dt>Minimum:</dt>
-  <dd>-10</dd>
+  <dd>0</dd>
   <dt>Maximum:</dt>
   <dd>300</dd>
   <dt>Target:</dt>
@@ -94,14 +94,14 @@ export const BulletExample = () => {
   <dt>280</dt>
 </dl>
 ...
-<dl>
-  <dt>-10 - 0</dt>
-  <dd>freezing</dd>
-  <dt>0 - 15<dt>
+<dl class="echScreenReaderOnly echGoalDescription">
+  <dt>0 - 100</dt>
   <dd>cold</dd>
-  <dt>15 - 25</dt>
+  <dt>100 - 125</dt>
+  <dd>brisk</dd>
+  <dt>125 - 150</dt>
   <dd>warm</dd>
-  <dt>25 - 40</dt>
+  <dt>150 - 250</dt>
   <dd>hot</dd>
 </dl>`}
         </EuiCode>
