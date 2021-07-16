@@ -6,7 +6,11 @@
 **Bug fixes**
 
 - Fixed render-blocking error when `EuiCodeBlock` is configured with an unsupported language ([#4943](https://github.com/elastic/eui/pull/4943))
-- Fixed background-color `EuiCardSelect`'s button ([#4954](https://github.com/elastic/eui/pull/4954))
+- Fixed background-color in `EuiCardSelect`'s button ([#4954](https://github.com/elastic/eui/pull/4954))
+
+**Theme: Amsterdam**
+
+- Fixed border-radius in `EuiCardSelect`'s button ([#4954](https://github.com/elastic/eui/pull/4954)
 
 ## [`35.1.0`](https://github.com/elastic/eui/tree/v35.1.0)
 
