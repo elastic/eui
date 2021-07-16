@@ -483,6 +483,13 @@ export class EuiDataGridCell extends Component<
       rowHeightsOptions: this.props.rowHeightsOptions,
     };
 
+    const anchorClass = classNames('euiDataGridRowCell__expandFlex', {
+      euiDataGridRowCell__alignBaseLine: this.props.rowHeightsOptions,
+    });
+    const expandClass = this.props.rowHeightsOptions
+      ? 'euiDataGridRowCell__contentByHeight'
+      : 'euiDataGridRowCell__expandContent';
+
     let anchorContent = (
       <EuiFocusTrap
         disabled={!this.state.isEntered}
@@ -492,18 +499,8 @@ export class EuiDataGridCell extends Component<
         }}
         style={this.props.rowHeightsOptions ? { height: '100%' } : {}}
         clickOutsideDisables={true}>
-        <div
-          className={`euiDataGridRowCell__expandFlex ${
-            this.props.rowHeightsOptions
-              ? 'euiDataGridRowCell__alignBaseLine'
-              : ''
-          }`}>
-          <div
-            className={
-              !this.props.rowHeightsOptions
-                ? 'euiDataGridRowCell__expandContent'
-                : 'euiDataGridRowCell__contentByHeight'
-            }>
+        <div className={anchorClass}>
+          <div className={expandClass}>
             <EuiDataGridCellContent {...cellContentProps} />
           </div>
         </div>
@@ -513,44 +510,29 @@ export class EuiDataGridCell extends Component<
     if (isExpandable || (column && column.cellActions)) {
       if (showCellButtons) {
         anchorContent = (
-          <div
-            className={`euiDataGridRowCell__expandFlex ${
-              this.props.rowHeightsOptions
-                ? 'euiDataGridRowCell__alignBaseLine'
-                : ''
-            }`}>
-            <div
-              className={
-                !this.props.rowHeightsOptions
-                  ? 'euiDataGridRowCell__expandContent'
-                  : 'euiDataGridRowCell__contentByHeight'
-              }>
+          <div className={anchorClass}>
+            <div className={expandClass}>
               <EuiDataGridCellContent {...cellContentProps} />
             </div>
-            {showCellButtons && (
-              <EuiDataGridCellButtons
-                rowIndex={rowIndex}
-                column={column}
-                popoverIsOpen={this.state.popoverIsOpen}
-                closePopover={this.closePopover}
-                onExpandClick={() => {
-                  this.setState(({ popoverIsOpen }) => ({
-                    popoverIsOpen: !popoverIsOpen,
-                  }));
-                }}
-              />
-            )}
+            <EuiDataGridCellButtons
+              rowIndex={rowIndex}
+              column={column}
+              popoverIsOpen={this.state.popoverIsOpen}
+              closePopover={this.closePopover}
+              onExpandClick={() => {
+                this.setState(({ popoverIsOpen }) => ({
+                  popoverIsOpen: !popoverIsOpen,
+                }));
+              }}
+            />
           </div>
         );
       } else {
         anchorContent = (
-          <div
-            className={`euiDataGridRowCell__expandFlex ${
-              this.props.rowHeightsOptions
-                ? 'euiDataGridRowCell__alignBaseLine'
-                : ''
-            }`}>
-            <EuiDataGridCellContent {...cellContentProps} />
+          <div className={anchorClass}>
+            <div className={expandClass}>
+              <EuiDataGridCellContent {...cellContentProps} />
+            </div>
           </div>
         );
       }
@@ -562,9 +544,9 @@ export class EuiDataGridCell extends Component<
         innerContent = (
           <div
             className={
-              !this.props.rowHeightsOptions
-                ? 'euiDataGridRowCell__content'
-                : 'euiDataGridRowCell__contentByHeight'
+              this.props.rowHeightsOptions
+                ? 'euiDataGridRowCell__contentByHeight'
+                : 'euiDataGridRowCell__content'
             }>
             <EuiDataGridCellPopover
               anchorContent={anchorContent}
