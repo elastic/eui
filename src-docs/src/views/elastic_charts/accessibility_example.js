@@ -10,8 +10,8 @@ import { GuideSectionTypes } from '../../components';
 import { ExternalBadge } from './shared';
 import { TextureMultiSeriesChart } from './texture';
 import { TexturedStylesProps } from './texture_props';
-import { GoalChart } from './goal';
 import { Sunburst } from './sunburst';
+import { BulletExample } from './bullet_example';
 
 const TextureMultiSeriesChartSource = require('!!raw-loader!./texture');
 const GoalChartSource = require('!!raw-loader!./goal');
@@ -272,7 +272,7 @@ export const ElasticChartsAccessibilityExample = {
           />
         </>
       ),
-      demo: <GoalChart />,
+      demo: <BulletExample />,
       source: [
         {
           type: GuideSectionTypes.JS,
