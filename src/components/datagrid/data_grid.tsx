@@ -893,7 +893,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
       cellPadding: gridStyles.cellPadding,
       fontSize: gridStyles.fontSize,
     });
-  }, [gridStyles.cellPadding, gridStyles.fontSize, rowHeightUtils]);
+  }, [gridStyles.cellPadding, gridStyles.fontSize]);
 
   const classes = classNames(
     'euiDataGrid',

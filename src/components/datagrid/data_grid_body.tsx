@@ -563,7 +563,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     if (gridRef.current) {
       rowHeightUtils.setGrid(gridRef.current);
     }
-  }, [gridRef.current]);
+  }, [gridRef.current, rowHeightUtils]);
 
   const defaultHeight = useMemo(
     () =>
