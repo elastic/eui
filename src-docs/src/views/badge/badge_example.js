@@ -33,7 +33,7 @@ const badgeSnippet = [
 `,
   `<EuiBadge color="#BADA55">Custom</EuiBadge>
 `,
-  `<EuiBadge color="secondary" isDisabled>Disabled</EuiBadge>
+  `<EuiBadge color="success" isDisabled>Disabled</EuiBadge>
 `,
 ];
 
@@ -66,7 +66,7 @@ const badgeButtonSnippet = [
   `<EuiBadge
   iconType="cross"
   iconSide="right"
-  color="secondary"
+  color="success"
   onClick={onBadgeClick}
   onClickAriaLabel="Aria label applied to text button"
   iconOnClick={onBadgeIconClick}
@@ -80,7 +80,7 @@ import BadgeHealth from './badge_health';
 const badgeHealthSource = require('!!raw-loader!./badge_health');
 const badgeHealthHtml = renderToHtml(BadgeHealth);
 const badgeHealthSnippet = [
-  `<EuiBadge color="secondary">Healthy</EuiBadge>
+  `<EuiBadge color="success">Healthy</EuiBadge>
 `,
   `<EuiBadge color="warning">Warning</EuiBadge>
 `,

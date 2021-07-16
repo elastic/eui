@@ -18,6 +18,7 @@
     transform: none !important;
     box-shadow: none !important;
     text-decoration: none !important;
+    background-color: transparentize($euiButtonColorDisabled, .9) !important;
     color: $euiColorDisabledText;
 
     .euiCard__top {

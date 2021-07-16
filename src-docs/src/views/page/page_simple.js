@@ -14,6 +14,7 @@ export default ({ button = <></>, content }) => (
       <EuiPageHeader
         restrictWidth
         paddingSize="l"
+        pageTitle="Page title"
         rightSideItems={[button]}
         tabs={[{ label: 'Tab 1', isSelected: true }, { label: 'Tab 2' }]}
       />

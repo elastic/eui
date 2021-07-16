@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { Component, ReactElement, ReactNode } from 'react';
@@ -90,6 +79,7 @@ interface State {
     shown: FieldValueOptionType[];
   } | null;
   cachedOptions?: FieldValueOptionType[] | null;
+  activeItems: FieldValueOptionType[];
 }
 
 export class FieldValueSelectionFilter extends Component<
@@ -115,6 +105,7 @@ export class FieldValueSelectionFilter extends Component<
       popoverOpen: false,
       error: null,
       options: preloadedOptions,
+      activeItems: [],
     };
   }
 
@@ -180,6 +171,7 @@ export class FieldValueSelectionFilter extends Component<
 
         this.setState({
           error: null,
+          activeItems: items.on,
           options: {
             all: options,
             shown: [...items.on, ...items.off, ...items.rest],
@@ -333,6 +325,14 @@ export class FieldValueSelectionFilter extends Component<
       : defaults.config.multiSelect;
   }
 
+  componentDidMount() {
+    if (this.props.query.text.length) this.loadOptions();
+  }
+
+  componentDidUpdate(prevProps: FieldValueSelectionFilterProps) {
+    if (this.props.query !== prevProps.query) this.loadOptions();
+  }
+
   render() {
     const { index, query, config } = this.props;
     const multiSelect = this.resolveMultiSelect();
@@ -350,6 +350,7 @@ export class FieldValueSelectionFilter extends Component<
         iconSide="right"
         onClick={this.onButtonClick.bind(this)}
         hasActiveFilters={active}
+        numActiveFilters={active ? this.state.activeItems.length : undefined}
         grow>
         {config.name}
       </EuiFilterButton>

@@ -16,6 +16,10 @@
 
   &:focus {
     @include euiFocusRing;
+    // Can't use `currentColor` because of possible white text, so always keep it black
+    outline-color: lightOrDarkTheme($euiColorInk, $euiColorGhost);
+    // The rounded corners of the badge doesn't match well with the outline, so push it outward
+    outline-offset: 2px;
   }
 
   &:not(.euiBetaBadge--hollow) {
@@ -27,7 +31,6 @@
     line-height: $euiSize + $euiSizeXS;
     padding: 0 $euiSizeM;
   }
-
 }
 
 // When it's just an icon, make it a circle

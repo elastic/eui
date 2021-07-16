@@ -85,7 +85,7 @@ exports[`EuiRange props compressed should render 1`] = `
 >
   <div
     aria-hidden="false"
-    class="euiRangeTrack"
+    class="euiRangeTrack euiRangeTrack--compressed"
   >
     <input
       aria-hidden="false"
@@ -110,11 +110,11 @@ exports[`EuiRange props custom ticks should render 1`] = `
     class="euiRangeTrack euiRangeTrack--hasTicks"
   >
     <div
-      class="euiRangeTicks"
+      class="euiRangeTicks euiRangeTicks--isCustom"
     >
       <button
         class="euiRangeTick euiRangeTick--isCustom"
-        style="left:20%"
+        style="left:calc(-Infinity% + 8px)"
         tabindex="-1"
         title="20kb"
         type="button"
@@ -133,7 +133,7 @@ exports[`EuiRange props custom ticks should render 1`] = `
         <span
           aria-hidden="true"
           class="euiRangeTick__pseudo"
-          style="margin-right:calc(1.25em - 2px)"
+          style="margin-right:calc(1.25em + 4px)"
         />
         100kb
       </button>
@@ -199,7 +199,7 @@ exports[`EuiRange props fullWidth should render 1`] = `
 
 exports[`EuiRange props input should render 1`] = `
 <div
-  class="euiRangeWrapper euiRange testClass1 testClass2"
+  class="euiRangeWrapper euiRange euiRange--hasInput testClass1 testClass2"
 >
   <div
     aria-hidden="true"
@@ -284,7 +284,7 @@ exports[`EuiRange props levels should render 1`] = `
 >
   <div
     aria-hidden="false"
-    class="euiRangeTrack"
+    class="euiRangeTrack euiRangeTrack--hasLevels"
   >
     <div
       class="euiRangeLevels"
@@ -320,14 +320,6 @@ exports[`EuiRange props range should render 1`] = `
     aria-hidden="false"
     class="euiRangeTrack"
   >
-    <div
-      class="euiRangeHighlight"
-    >
-      <div
-        class="euiRangeHighlight__progress"
-        style="margin-left:0%;width:8%"
-      />
-    </div>
     <input
       aria-hidden="false"
       class="euiRangeSlider euiRangeSlider--hasRange"
@@ -338,6 +330,14 @@ exports[`EuiRange props range should render 1`] = `
       type="range"
       value="8"
     />
+    <div
+      class="euiRangeHighlight"
+    >
+      <div
+        class="euiRangeHighlight__progress"
+        style="margin-left:0%;width:8%"
+      />
+    </div>
   </div>
 </div>
 `;
@@ -385,11 +385,10 @@ exports[`EuiRange props ticks should render 1`] = `
   >
     <div
       class="euiRangeTicks"
-      style="margin:0 -8.333333333333332%;left:0;right:0"
     >
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(NaN% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="0"
@@ -398,7 +397,7 @@ exports[`EuiRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="20"
@@ -407,7 +406,7 @@ exports[`EuiRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="40"
@@ -416,7 +415,7 @@ exports[`EuiRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="60"
@@ -425,7 +424,7 @@ exports[`EuiRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="80"
@@ -434,7 +433,7 @@ exports[`EuiRange props ticks should render 1`] = `
       </button>
       <button
         class="euiRangeTick"
-        style="width:16.666666666666664%"
+        style="left:calc(-Infinity% + 8px);max-width:16.666666666666664%"
         tabindex="-1"
         type="button"
         value="100"

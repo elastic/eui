@@ -43,8 +43,8 @@ export default () => (
         </EuiLink>
       </li>
       <li>
-        <EuiLink color="secondary" href="#">
-          secondary
+        <EuiLink color="success" href="#">
+          success
         </EuiLink>
       </li>
       <li>

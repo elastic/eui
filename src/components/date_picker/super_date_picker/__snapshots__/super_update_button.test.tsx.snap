@@ -67,7 +67,7 @@ exports[`EuiSuperUpdateButton isLoading 1`] = `
 >
   <EuiButton
     className="euiSuperUpdateButton"
-    color="secondary"
+    color="success"
     fill={true}
     iconType="kqlFunction"
     isDisabled={false}
@@ -100,7 +100,7 @@ exports[`EuiSuperUpdateButton needsUpdate 1`] = `
 >
   <EuiButton
     className="euiSuperUpdateButton"
-    color="secondary"
+    color="success"
     fill={true}
     iconType="kqlFunction"
     isDisabled={false}

@@ -1,42 +1,46 @@
 // These mobile children are hidden in everything but mobile view.
 .euiSideNav__mobileToggle {
-  display: none;
+  height: auto;
   border-bottom: $euiBorderThin;
-  padding: $euiSize;
   width: 100%;
   text-align: left;
   border-radius: 0 !important; // sass-lint:disable-line no-important
+  font-size: $euiFontSizeM;
+  padding: 0 $euiSize; // This plus the inner padding is equal to paddingSize large for EuiPage
 
-  .euiButtonContent {
+  .euiSideNav__mobileToggleText {
+    padding: $euiSize 0;
+  }
+
+  .euiSideNav__mobileToggleContent {
     justify-content: space-between;
   }
 }
 
+.euiSideNav__heading {
+  margin-bottom: $euiSizeL;
+}
 
-@include euiBreakpoint('xs', 's') {
-  /**
-   * 1. Animation doesn't work against height. Need max-height instead.
-   *    We set a value larger than what is needed to fake "auto".
-   */
-  .euiSideNav-isOpenMobile {
-    .euiSideNav__content {
-      visibility: visible;
-      opacity: 1;
-      margin: $euiSizeL;
-      max-height: 5000px; /* 1 */
-      transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
+// Loop through the breakpoints and apply mobile styles only to the right className
+@each $breakpoint in $euiBreakpointKeys {
+  @include euiBreakpoint($breakpoint) {
+    .euiSideNav__contentMobile-#{$breakpoint} {
+      overflow: hidden;
+      visibility: hidden;
+      opacity: 0;
+      max-height: 0;
+      padding: 0 $euiSizeL;
+
+      .euiSideNav-isOpenMobile & {
+        visibility: visible;
+        opacity: 1;
+        padding: $euiSizeL;
+        max-height: 5000px; /* 1 */
+
+        @include euiCanAnimate {
+          transition: all $euiAnimSpeedNormal $euiAnimSlightResistance;
+        }
+      }
     }
-  }
-
-  .euiSideNav__mobileToggle {
-    display: block;
-  }
-
-  .euiSideNav__content {
-    overflow: hidden;
-    visibility: hidden;
-    opacity: 0;
-    max-height: 0;
-    margin: 0 $euiSizeL;
   }
 }

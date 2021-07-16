@@ -531,6 +531,183 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
 </fieldset>
 `;
 
+exports[`EuiButtonGroup button props color accent is rendered for multi 1`] = `
+<fieldset
+  class="euiButtonGroup euiButtonGroup--small euiButtonGroup--accent"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup__buttons"
+  >
+    <button
+      aria-label="aria-label"
+      aria-pressed="false"
+      class="euiButtonGroupButton euiButtonGroupButton--accent euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
+      id="generated-id"
+      type="button"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiButtonGroupButton__textShift"
+        >
+          Option one
+        </span>
+      </span>
+    </button>
+    <button
+      aria-pressed="false"
+      class="euiButtonGroupButton euiButtonGroupButton--accent euiButtonGroupButton--small"
+      data-test-subj="button01"
+      id="generated-id"
+      type="button"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiButtonGroupButton__textShift"
+        >
+          Option two
+        </span>
+      </span>
+    </button>
+    <button
+      aria-pressed="false"
+      class="euiButtonGroupButton euiButtonGroupButton--accent euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      data-test-subj="button02"
+      disabled=""
+      id="generated-id"
+      type="submit"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiButtonGroupButton__textShift"
+        >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props color accent is rendered for single 1`] = `
+<fieldset
+  class="euiButtonGroup euiButtonGroup--small euiButtonGroup--accent"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup__buttons"
+  >
+    <label
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--accent euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
+      for="generated-id"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiButtonGroupButton__textShift"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            data-test-subj="button00"
+            id="generated-id"
+            name="test"
+            type="radio"
+          />
+          Option one
+        </span>
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--accent euiButtonGroupButton--small"
+      for="generated-id"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiButtonGroupButton__textShift"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            data-test-subj="button01"
+            id="generated-id"
+            name="test"
+            type="radio"
+          />
+          Option two
+        </span>
+      </span>
+    </label>
+    <button
+      aria-pressed="false"
+      class="euiButtonGroupButton euiButtonGroupButton--accent euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      data-test-subj="button02"
+      disabled=""
+      id="generated-id"
+      type="submit"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiButtonGroupButton__textShift"
+        >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
 exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
 <fieldset
   class="euiButtonGroup euiButtonGroup--small euiButtonGroup--danger"
@@ -1215,6 +1392,183 @@ exports[`EuiButtonGroup button props color secondary is rendered for single 1`] 
     <button
       aria-pressed="false"
       class="euiButtonGroupButton euiButtonGroupButton--secondary euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      data-test-subj="button02"
+      disabled=""
+      id="generated-id"
+      type="submit"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiButtonGroupButton__textShift"
+        >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props color success is rendered for multi 1`] = `
+<fieldset
+  class="euiButtonGroup euiButtonGroup--small euiButtonGroup--success"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup__buttons"
+  >
+    <button
+      aria-label="aria-label"
+      aria-pressed="false"
+      class="euiButtonGroupButton euiButtonGroupButton--success euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
+      id="generated-id"
+      type="button"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiButtonGroupButton__textShift"
+        >
+          Option one
+        </span>
+      </span>
+    </button>
+    <button
+      aria-pressed="false"
+      class="euiButtonGroupButton euiButtonGroupButton--success euiButtonGroupButton--small"
+      data-test-subj="button01"
+      id="generated-id"
+      type="button"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiButtonGroupButton__textShift"
+        >
+          Option two
+        </span>
+      </span>
+    </button>
+    <button
+      aria-pressed="false"
+      class="euiButtonGroupButton euiButtonGroupButton--success euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
+      data-test-subj="button02"
+      disabled=""
+      id="generated-id"
+      type="submit"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiButtonGroupButton__textShift"
+        >
+          Option three
+        </span>
+      </span>
+    </button>
+  </div>
+</fieldset>
+`;
+
+exports[`EuiButtonGroup button props color success is rendered for single 1`] = `
+<fieldset
+  class="euiButtonGroup euiButtonGroup--small euiButtonGroup--success"
+>
+  <legend
+    class="euiScreenReaderOnly"
+  >
+    test
+  </legend>
+  <div
+    class="euiButtonGroup__buttons"
+  >
+    <label
+      aria-label="aria-label"
+      class="euiButtonGroupButton euiButtonGroupButton--success euiButtonGroupButton--small testClass1 testClass2"
+      data-test-subj="test subject string"
+      for="generated-id"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiButtonGroupButton__textShift"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            data-test-subj="button00"
+            id="generated-id"
+            name="test"
+            type="radio"
+          />
+          Option one
+        </span>
+      </span>
+    </label>
+    <label
+      class="euiButtonGroupButton euiButtonGroupButton--success euiButtonGroupButton--small"
+      for="generated-id"
+    >
+      <span
+        class="euiButtonContent euiButton__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="bolt"
+        />
+        <span
+          class="euiButton__text euiButtonGroupButton__textShift"
+        >
+          <input
+            class="euiScreenReaderOnly"
+            data-test-subj="button01"
+            id="generated-id"
+            name="test"
+            type="radio"
+          />
+          Option two
+        </span>
+      </span>
+    </label>
+    <button
+      aria-pressed="false"
+      class="euiButtonGroupButton euiButtonGroupButton--success euiButtonGroupButton--small euiButtonGroupButton-isDisabled"
       data-test-subj="button02"
       disabled=""
       id="generated-id"

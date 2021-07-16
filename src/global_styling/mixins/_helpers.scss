@@ -119,3 +119,10 @@
     @content;
   }
 }
+
+// Does have reduced motion turned on
+@mixin euiCantAnimate {
+  @media screen and (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}

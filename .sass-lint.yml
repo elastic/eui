@@ -28,6 +28,10 @@ rules:
     - 2
     -
       style: 'uppercase'
+  mixins-before-declarations:
+    - 2
+    -
+      exclude: ['euiBreakpoint', 'euiCanAnimate']
   mixin-name-format:
     - 2
     -
