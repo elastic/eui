@@ -2,8 +2,7 @@
 
 - Refactored `EuiFlyout` types ([#4940](https://github.com/elastic/eui/pull/4940))
 - Updated `pause` icon ([#4947](https://github.com/elastic/eui/pull/4947))
-- Added `checkable` options to `EuiKeyPadMenuItem` ([#4950](https://github.com/elastic/eui/pull/4950))
-- Added `legend` prop to `EuiKeyPadMenu` ([#4950](https://github.com/elastic/eui/pull/4950))
+- Added `checkable` options to `EuiKeyPadMenu` and `EuiKeyPadMenuItem` ([#4950](https://github.com/elastic/eui/pull/4950))
 
 **Bug fixes**
 
