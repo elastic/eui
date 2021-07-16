@@ -14,14 +14,14 @@ export default () => {
     <EuiForm component="form">
       <EuiFormRow
         label="Settings"
+        hasChildLabel={false}
         helpText={
           <>
             Navigate to this Switch with a screen reader. With{' '}
             <EuiCode>hasChildLabel = false</EuiCode> the name of this is
             &ldquo;Dark mode?&rdquo; instead of &ldquo;Settings&rdquo;.
           </>
-        }
-        hasChildLabel={false}>
+        }>
         <EuiSwitch
           name="switch"
           label="Dark mode?"
@@ -36,11 +36,12 @@ export default () => {
       </EuiFormRow>
       <EuiFormRow
         label="Your cluster data"
+        hasChildLabel={false}
         helpText={
           <>
-            Navigate to this Switch with a screen reader. With{' '}
-            <EuiCode>hasChildLabel = true</EuiCode> the name of this switch is
-            &ldquo;Your cluster data&rdquo; instead of &ldquo;Download&rdquo;.
+            Navigate to this button with a screen reader. With{' '}
+            <EuiCode>hasChildLabel = false</EuiCode> the name of this button is
+            &ldquo;Download&rdquo; instead of &ldquo;Your cluster data&rdquo;.
           </>
         }>
         <EuiButton>Download</EuiButton>
