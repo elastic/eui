@@ -6,731 +6,818 @@ export default () => (
   <div>
     <EuiCodeBlock language="json" overflowHeight={300} isCopyable isVirtualized>
       {`{
-  "size": 500,
-  "sort": [
-    {
-      "@timestamp": {
-        "order": "desc",
-        "unmapped_type": "boolean"
-      }
-    }
-  ],
-  "version": true,
-  "fields": [
-    {
-      "field": "*",
-      "include_unmapped": "true"
-    },
-    {
-      "field": "@timestamp",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "aws.cloudtrail.digest.end_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "aws.cloudtrail.digest.newest_event_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "aws.cloudtrail.digest.oldest_event_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "aws.cloudtrail.digest.start_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "aws.cloudtrail.user_identity.session_context.creation_date",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "azure.auditlogs.properties.activity_datetime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "azure.enqueued_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "azure.signinlogs.properties.created_at",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "cef.extensions.agentReceiptTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "cef.extensions.deviceCustomDate1",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "cef.extensions.deviceCustomDate2",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "cef.extensions.deviceReceiptTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "cef.extensions.endTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "cef.extensions.fileCreateTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "cef.extensions.fileModificationTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "cef.extensions.flexDate1",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "cef.extensions.managerReceiptTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "cef.extensions.oldFileCreateTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "cef.extensions.oldFileModificationTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "cef.extensions.startTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "checkpoint.subs_exp",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "cisco.amp.threat_hunting.incident_end_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "cisco.amp.threat_hunting.incident_start_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "cisco.amp.timestamp_nanoseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "crowdstrike.event.EndTimestamp",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "crowdstrike.event.IncidentEndTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "crowdstrike.event.IncidentStartTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "crowdstrike.event.ProcessEndTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "crowdstrike.event.ProcessStartTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "crowdstrike.event.StartTimestamp",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "crowdstrike.event.Timestamp",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "crowdstrike.event.UTCTimestamp",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "crowdstrike.metadata.eventCreationTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "event.created",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "event.end",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "event.ingested",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "event.start",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "file.accessed",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "file.created",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "file.ctime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "file.mtime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "file.x509.not_after",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "file.x509.not_before",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "google_workspace.admin.email.log_search_filter.end_date",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "google_workspace.admin.email.log_search_filter.start_date",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "google_workspace.admin.user.birthdate",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "gsuite.admin.email.log_search_filter.end_date",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "gsuite.admin.email.log_search_filter.start_date",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "gsuite.admin.user.birthdate",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "juniper.srx.elapsed_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "juniper.srx.epoch_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "juniper.srx.timestamp",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "kafka.block_timestamp",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "microsoft.defender_atp.lastUpdateTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "microsoft.defender_atp.resolvedTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "microsoft.m365_defender.alerts.creationTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "microsoft.m365_defender.alerts.lastUpdatedTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "microsoft.m365_defender.alerts.resolvedTime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "misp.campaign.first_seen",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "misp.campaign.last_seen",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "misp.intrusion_set.first_seen",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "misp.intrusion_set.last_seen",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "misp.observed_data.first_observed",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "misp.observed_data.last_observed",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "misp.report.published",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "misp.threat_indicator.valid_from",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "misp.threat_indicator.valid_until",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.collection_time_milliseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.exporter.timestamp",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.flow_end_microseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.flow_end_milliseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.flow_end_nanoseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.flow_end_seconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.flow_start_microseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.flow_start_milliseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.flow_start_nanoseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.flow_start_seconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.max_export_seconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.max_flow_end_microseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.max_flow_end_milliseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.max_flow_end_nanoseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.max_flow_end_seconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.min_export_seconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.min_flow_start_microseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.min_flow_start_milliseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.min_flow_start_nanoseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.min_flow_start_seconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.monitoring_interval_end_milli_seconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.monitoring_interval_start_milli_seconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.observation_time_microseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.observation_time_milliseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.observation_time_nanoseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.observation_time_seconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "netflow.system_init_time_milliseconds",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "package.installed",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "pensando.dfw.timestamp",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "postgresql.log.session_start_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "process.parent.start",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "process.start",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "rsa.internal.lc_ctime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "rsa.internal.time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "rsa.time.effective_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "rsa.time.endtime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "rsa.time.event_queue_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "rsa.time.event_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "rsa.time.expire_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "rsa.time.recorded_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "rsa.time.stamp",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "rsa.time.starttime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "snyk.vulnerabilities.disclosure_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "snyk.vulnerabilities.introduced_date",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "snyk.vulnerabilities.publication_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "sophos.xg.date",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "sophos.xg.eventtime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "sophos.xg.start_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "sophos.xg.starttime",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "sophos.xg.timestamp",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "suricata.eve.flow.start",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "suricata.eve.tls.notafter",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "suricata.eve.tls.notbefore",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "threatintel.anomali.modified",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "threatintel.anomali.valid_from",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "threatintel.indicator.last_seen",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "threatintel.misp.attribute.timestamp",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "threatintel.misp.date",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "threatintel.misp.publish_timestamp",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "threatintel.misp.timestamp",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "tls.client.not_after",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "tls.client.not_before",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "tls.client.x509.not_after",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "tls.client.x509.not_before",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "tls.server.not_after",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "tls.server.not_before",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "tls.server.x509.not_after",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "tls.server.x509.not_before",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "x509.not_after",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "x509.not_before",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zeek.kerberos.valid.from",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zeek.kerberos.valid.until",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zeek.ocsp.revoke.time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zeek.ocsp.update.next",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zeek.ocsp.update.this",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zeek.pe.compile_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zeek.smb_files.times.accessed",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zeek.smb_files.times.changed",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zeek.smb_files.times.created",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zeek.smb_files.times.modified",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zeek.smtp.date",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zeek.snmp.up_since",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zeek.x509.certificate.valid.from",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zeek.x509.certificate.valid.until",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zoom.meeting.start_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zoom.participant.join_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zoom.participant.leave_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zoom.phone.answer_start_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zoom.phone.call_end_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zoom.phone.connected_start_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zoom.phone.date_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zoom.phone.ringing_start_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zoom.recording.recording_file.recording_end",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zoom.recording.recording_file.recording_start",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zoom.recording.start_time",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zoom.timestamp",
-      "format": "strict_date_optional_time"
-    },
-    {
-      "field": "zoom.webinar.start_time",
-      "format": "strict_date_optional_time"
-    }
-  ],
-  "aggs": {
-    "2": {
-      "date_histogram": {
-        "field": "@timestamp",
-        "fixed_interval": "30s",
-        "time_zone": "America/Chicago",
-        "min_doc_count": 1
-      }
-    }
-  },
-  "script_fields": {},
-  "stored_fields": [
-    "*"
-  ],
-  "runtime_mappings": {},
-  "_source": false,
-  "query": {
-    "bool": {
-      "must": [],
-      "filter": [
+  "id": "1",
+  "rawResponse": {
+    "took": 19,
+    "timed_out": false,
+    "_shards": {
+      "total": 1,
+      "successful": 1,
+      "skipped": 0,
+      "failed": 0
+    },
+    "hits": {
+      "total": 7,
+      "max_score": null,
+      "hits": [
         {
-          "match_all": {}
+          "_index": "kibana_sample_data_flights",
+          "_id": "i5-sr3oB9JvwH6mY-m2Q",
+          "_version": 1,
+          "_score": null,
+          "fields": {
+            "Origin": [
+              "Wichita Mid Continent Airport"
+            ],
+            "OriginLocation": [
+              {
+                "coordinates": [
+                  -97.43309784,
+                  37.64989853
+                ],
+                "type": "Point"
+              }
+            ],
+            "FlightNum": [
+              "Q4UQIF3"
+            ],
+            "DestLocation": [
+              {
+                "coordinates": [
+                  8.54917,
+                  47.464699
+                ],
+                "type": "Point"
+              }
+            ],
+            "FlightDelay": [
+              true
+            ],
+            "DistanceMiles": [
+              5013.5835
+            ],
+            "FlightTimeMin": [
+              822.3817
+            ],
+            "OriginWeather": [
+              "Cloudy"
+            ],
+            "dayOfWeek": [
+              4
+            ],
+            "AvgTicketPrice": [
+              276.2003
+            ],
+            "Carrier": [
+              "JetBeats"
+            ],
+            "FlightDelayMin": [
+              150
+            ],
+            "OriginRegion": [
+              "US-KS"
+            ],
+            "DestAirportID": [
+              "ZRH"
+            ],
+            "FlightDelayType": [
+              "Carrier Delay"
+            ],
+            "hour_of_day": [
+              14
+            ],
+            "timestamp": [
+              "2021-07-16T14:15:29.000Z"
+            ],
+            "Dest": [
+              "Zurich Airport"
+            ],
+            "FlightTimeHour": [
+              "13.706362235285443"
+            ],
+            "Cancelled": [
+              false
+            ],
+            "DistanceKilometers": [
+              8068.5806
+            ],
+            "OriginCityName": [
+              "Wichita"
+            ],
+            "DestWeather": [
+              "Rain"
+            ],
+            "OriginCountry": [
+              "US"
+            ],
+            "DestCountry": [
+              "CH"
+            ],
+            "DestRegion": [
+              "CH-ZH"
+            ],
+            "OriginAirportID": [
+              "ICT"
+            ],
+            "DestCityName": [
+              "Zurich"
+            ]
+          },
+          "sort": [
+            1626444929000
+          ]
         },
         {
-          "range": {
-            "@timestamp": {
-              "gte": "2021-07-13T20:40:15.011Z",
-              "lte": "2021-07-13T20:55:15.011Z",
-              "format": "strict_date_optional_time"
-            }
-          }
+          "_index": "kibana_sample_data_flights",
+          "_id": "AZ-sr3oB9JvwH6mY-m2P",
+          "_version": 1,
+          "_score": null,
+          "fields": {
+            "Origin": [
+              "Turin Airport"
+            ],
+            "OriginLocation": [
+              {
+                "coordinates": [
+                  7.64963,
+                  45.200802
+                ],
+                "type": "Point"
+              }
+            ],
+            "FlightNum": [
+              "WR15PZZ"
+            ],
+            "DestLocation": [
+              {
+                "coordinates": [
+                  20.96710014,
+                  52.16569901
+                ],
+                "type": "Point"
+              }
+            ],
+            "FlightDelay": [
+              false
+            ],
+            "DistanceMiles": [
+              774.4176
+            ],
+            "FlightTimeMin": [
+              95.86956
+            ],
+            "OriginWeather": [
+              "Clear"
+            ],
+            "dayOfWeek": [
+              4
+            ],
+            "AvgTicketPrice": [
+              360.27106
+            ],
+            "Carrier": [
+              "Kibana Airlines"
+            ],
+            "FlightDelayMin": [
+              0
+            ],
+            "OriginRegion": [
+              "IT-21"
+            ],
+            "DestAirportID": [
+              "WAW"
+            ],
+            "FlightDelayType": [
+              "No Delay"
+            ],
+            "hour_of_day": [
+              14
+            ],
+            "timestamp": [
+              "2021-07-16T14:14:06.000Z"
+            ],
+            "Dest": [
+              "Warsaw Chopin Airport"
+            ],
+            "FlightTimeHour": [
+              "1.597826006729792"
+            ],
+            "Cancelled": [
+              false
+            ],
+            "DistanceKilometers": [
+              1246.3043
+            ],
+            "OriginCityName": [
+              "Torino"
+            ],
+            "DestWeather": [
+              "Thunder & Lightning"
+            ],
+            "OriginCountry": [
+              "IT"
+            ],
+            "DestCountry": [
+              "PL"
+            ],
+            "DestRegion": [
+              "PL-MZ"
+            ],
+            "OriginAirportID": [
+              "TO11"
+            ],
+            "DestCityName": [
+              "Warsaw"
+            ]
+          },
+          "sort": [
+            1626444846000
+          ]
+        },
+        {
+          "_index": "kibana_sample_data_flights",
+          "_id": "LJ-sr3oB9JvwH6mY-m6Q",
+          "_version": 1,
+          "_score": null,
+          "fields": {
+            "Origin": [
+              "Chhatrapati Shivaji International Airport"
+            ],
+            "OriginLocation": [
+              {
+                "coordinates": [
+                  72.86789703,
+                  19.08869934
+                ],
+                "type": "Point"
+              }
+            ],
+            "FlightNum": [
+              "VZNTLIZ"
+            ],
+            "DestLocation": [
+              {
+                "coordinates": [
+                  33.46390152,
+                  68.15180206
+                ],
+                "type": "Point"
+              }
+            ],
+            "FlightDelay": [
+              false
+            ],
+            "DistanceMiles": [
+              3791.431
+            ],
+            "FlightTimeMin": [
+              305.08582
+            ],
+            "OriginWeather": [
+              "Cloudy"
+            ],
+            "dayOfWeek": [
+              4
+            ],
+            "AvgTicketPrice": [
+              845.4707
+            ],
+            "Carrier": [
+              "JetBeats"
+            ],
+            "FlightDelayMin": [
+              0
+            ],
+            "OriginRegion": [
+              "SE-BD"
+            ],
+            "DestAirportID": [
+              "XLMO"
+            ],
+            "FlightDelayType": [
+              "No Delay"
+            ],
+            "hour_of_day": [
+              14
+            ],
+            "timestamp": [
+              "2021-07-16T14:05:44.000Z"
+            ],
+            "Dest": [
+              "Olenya Air Base"
+            ],
+            "FlightTimeHour": [
+              "5.084763808440013"
+            ],
+            "Cancelled": [
+              false
+            ],
+            "DistanceKilometers": [
+              6101.717
+            ],
+            "OriginCityName": [
+              "Mumbai"
+            ],
+            "DestWeather": [
+              "Heavy Fog"
+            ],
+            "OriginCountry": [
+              "IN"
+            ],
+            "DestCountry": [
+              "RU"
+            ],
+            "DestRegion": [
+              "RU-MUR"
+            ],
+            "OriginAirportID": [
+              "BOM"
+            ],
+            "DestCityName": [
+              "Olenegorsk"
+            ]
+          },
+          "sort": [
+            1626444344000
+          ]
+        },
+        {
+          "_index": "kibana_sample_data_flights",
+          "_id": "Hp-sr3oB9JvwH6mY-m2P",
+          "_version": 1,
+          "_score": null,
+          "fields": {
+            "Origin": [
+              "Buffalo Niagara International Airport"
+            ],
+            "OriginLocation": [
+              {
+                "coordinates": [
+                  -78.73220062,
+                  42.94049835
+                ],
+                "type": "Point"
+              }
+            ],
+            "FlightNum": [
+              "QAXVRPQ"
+            ],
+            "DestLocation": [
+              {
+                "coordinates": [
+                  -78.3575,
+                  -0.129166667
+                ],
+                "type": "Point"
+              }
+            ],
+            "FlightDelay": [
+              false
+            ],
+            "DistanceMiles": [
+              2964.2756
+            ],
+            "FlightTimeMin": [
+              227.16853
+            ],
+            "OriginWeather": [
+              "Sunny"
+            ],
+            "dayOfWeek": [
+              4
+            ],
+            "AvgTicketPrice": [
+              719.76935
+            ],
+            "Carrier": [
+              "JetBeats"
+            ],
+            "FlightDelayMin": [
+              0
+            ],
+            "OriginRegion": [
+              "US-NY"
+            ],
+            "DestAirportID": [
+              "UIO"
+            ],
+            "FlightDelayType": [
+              "No Delay"
+            ],
+            "hour_of_day": [
+              13
+            ],
+            "timestamp": [
+              "2021-07-16T13:57:30.000Z"
+            ],
+            "Dest": [
+              "Mariscal Sucre International Airport"
+            ],
+            "FlightTimeHour": [
+              "3.7861423240197563"
+            ],
+            "Cancelled": [
+              false
+            ],
+            "DistanceKilometers": [
+              4770.5396
+            ],
+            "OriginCityName": [
+              "Buffalo"
+            ],
+            "DestWeather": [
+              "Clear"
+            ],
+            "OriginCountry": [
+              "US"
+            ],
+            "DestCountry": [
+              "EC"
+            ],
+            "DestRegion": [
+              "EC-P"
+            ],
+            "OriginAirportID": [
+              "BUF"
+            ],
+            "DestCityName": [
+              "Quito"
+            ]
+          },
+          "sort": [
+            1626443850000
+          ]
+        },
+        {
+          "_index": "kibana_sample_data_flights",
+          "_id": "U5-sr3oB9JvwH6mY-m2Q",
+          "_version": 1,
+          "_score": null,
+          "fields": {
+            "Origin": [
+              "Dubai International Airport"
+            ],
+            "OriginLocation": [
+              {
+                "coordinates": [
+                  55.36439896,
+                  25.25279999
+                ],
+                "type": "Point"
+              }
+            ],
+            "FlightNum": [
+              "TJQKCKN"
+            ],
+            "DestLocation": [
+              {
+                "coordinates": [
+                  -73.74079895,
+                  45.47060013
+                ],
+                "type": "Point"
+              }
+            ],
+            "FlightDelay": [
+              false
+            ],
+            "DistanceMiles": [
+              6611.2646
+            ],
+            "FlightTimeMin": [
+              709.31995
+            ],
+            "OriginWeather": [
+              "Rain"
+            ],
+            "dayOfWeek": [
+              4
+            ],
+            "AvgTicketPrice": [
+              756.61444
+            ],
+            "Carrier": [
+              "ES-Air"
+            ],
+            "FlightDelayMin": [
+              0
+            ],
+            "OriginRegion": [
+              "SE-BD"
+            ],
+            "DestAirportID": [
+              "YUL"
+            ],
+            "FlightDelayType": [
+              "No Delay"
+            ],
+            "hour_of_day": [
+              13
+            ],
+            "timestamp": [
+              "2021-07-16T13:51:52.000Z"
+            ],
+            "Dest": [
+              "Montreal / Pierre Elliott Trudeau International Airport"
+            ],
+            "FlightTimeHour": [
+              "11.821998598483413"
+            ],
+            "Cancelled": [
+              false
+            ],
+            "DistanceKilometers": [
+              10639.799
+            ],
+            "OriginCityName": [
+              "Dubai"
+            ],
+            "DestWeather": [
+              "Clear"
+            ],
+            "OriginCountry": [
+              "AE"
+            ],
+            "DestCountry": [
+              "CA"
+            ],
+            "DestRegion": [
+              "CA-QC"
+            ],
+            "OriginAirportID": [
+              "DXB"
+            ],
+            "DestCityName": [
+              "Montreal"
+            ]
+          },
+          "sort": [
+            1626443512000
+          ]
+        },
+        {
+          "_index": "kibana_sample_data_flights",
+          "_id": "TJ-sr3oB9JvwH6mY-m2Q",
+          "_version": 1,
+          "_score": null,
+          "fields": {
+            "Origin": [
+              "Jorge Chavez International Airport"
+            ],
+            "OriginLocation": [
+              {
+                "coordinates": [
+                  -77.114304,
+                  -12.0219
+                ],
+                "type": "Point"
+              }
+            ],
+            "FlightNum": [
+              "8B6BGMO"
+            ],
+            "DestLocation": [
+              {
+                "coordinates": [
+                  128.445007,
+                  51.169997
+                ],
+                "type": "Point"
+              }
+            ],
+            "FlightDelay": [
+              true
+            ],
+            "DistanceMiles": [
+              9375.942
+            ],
+            "FlightTimeMin": [
+              824.16406
+            ],
+            "OriginWeather": [
+              "Cloudy"
+            ],
+            "dayOfWeek": [
+              4
+            ],
+            "AvgTicketPrice": [
+              463.068
+            ],
+            "Carrier": [
+              "Logstash Airways"
+            ],
+            "FlightDelayMin": [
+              30
+            ],
+            "OriginRegion": [
+              "SE-BD"
+            ],
+            "DestAirportID": [
+              "XHBU"
+            ],
+            "FlightDelayType": [
+              "Late Aircraft Delay"
+            ],
+            "hour_of_day": [
+              13
+            ],
+            "timestamp": [
+              "2021-07-16T13:50:55.000Z"
+            ],
+            "Dest": [
+              "Ukrainka Air Base"
+            ],
+            "FlightTimeHour": [
+              "13.736067768266615"
+            ],
+            "Cancelled": [
+              false
+            ],
+            "DistanceKilometers": [
+              15089.117
+            ],
+            "OriginCityName": [
+              "Lima"
+            ],
+            "DestWeather": [
+              "Clear"
+            ],
+            "OriginCountry": [
+              "PE"
+            ],
+            "DestCountry": [
+              "RU"
+            ],
+            "DestRegion": [
+              "RU-AMU"
+            ],
+            "OriginAirportID": [
+              "LIM"
+            ],
+            "DestCityName": [
+              "Belogorsk"
+            ]
+          },
+          "sort": [
+            1626443455000
+          ]
+        },
+        {
+          "_index": "kibana_sample_data_flights",
+          "_id": "3J-sr3oB9JvwH6mY-m2Q",
+          "_version": 1,
+          "_score": null,
+          "fields": {
+            "Origin": [
+              "Sydney Kingsford Smith International Airport"
+            ],
+            "OriginLocation": [
+              {
+                "coordinates": [
+                  151.177002,
+                  -33.94609833
+                ],
+                "type": "Point"
+              }
+            ],
+            "FlightNum": [
+              "PASAN8N"
+            ],
+            "DestLocation": [
+              {
+                "coordinates": [
+                  8.54917,
+                  47.464699
+                ],
+                "type": "Point"
+              }
+            ],
+            "FlightDelay": [
+              false
+            ],
+            "DistanceMiles": [
+              10293.209
+            ],
+            "FlightTimeMin": [
+              1380.4429
+            ],
+            "OriginWeather": [
+              "Sunny"
+            ],
+            "dayOfWeek": [
+              4
+            ],
+            "AvgTicketPrice": [
+              380.29593
+            ],
+            "Carrier": [
+              "Logstash Airways"
+            ],
+            "FlightDelayMin": [
+              0
+            ],
+            "OriginRegion": [
+              "SE-BD"
+            ],
+            "DestAirportID": [
+              "ZRH"
+            ],
+            "FlightDelayType": [
+              "No Delay"
+            ],
+            "hour_of_day": [
+              13
+            ],
+            "timestamp": [
+              "2021-07-16T13:49:20.000Z"
+            ],
+            "Dest": [
+              "Zurich Airport"
+            ],
+            "FlightTimeHour": [
+              "23.007380215402044"
+            ],
+            "Cancelled": [
+              false
+            ],
+            "DistanceKilometers": [
+              16565.314
+            ],
+            "OriginCityName": [
+              "Sydney"
+            ],
+            "DestWeather": [
+              "Rain"
+            ],
+            "OriginCountry": [
+              "AU"
+            ],
+            "DestCountry": [
+              "CH"
+            ],
+            "DestRegion": [
+              "CH-ZH"
+            ],
+            "OriginAirportID": [
+              "SYD"
+            ],
+            "DestCityName": [
+              "Zurich"
+            ]
+          },
+          "sort": [
+            1626443360000
+          ]
         }
-      ],
-      "should": [],
-      "must_not": []
+      ]
+    },
+    "aggregations": {
+      "2": {
+        "buckets": [
+          {
+            "key_as_string": "2021-07-16T08:49:00.000-05:00",
+            "key": 1626443340000,
+            "doc_count": 1
+          },
+          {
+            "key_as_string": "2021-07-16T08:50:30.000-05:00",
+            "key": 1626443430000,
+            "doc_count": 1
+          },
+          {
+            "key_as_string": "2021-07-16T08:51:30.000-05:00",
+            "key": 1626443490000,
+            "doc_count": 1
+          },
+          {
+            "key_as_string": "2021-07-16T08:57:30.000-05:00",
+            "key": 1626443850000,
+            "doc_count": 1
+          },
+          {
+            "key_as_string": "2021-07-16T09:05:30.000-05:00",
+            "key": 1626444330000,
+            "doc_count": 1
+          },
+          {
+            "key_as_string": "2021-07-16T09:14:00.000-05:00",
+            "key": 1626444840000,
+            "doc_count": 1
+          },
+          {
+            "key_as_string": "2021-07-16T09:15:00.000-05:00",
+            "key": 1626444900000,
+            "doc_count": 1
+          }
+        ]
+      }
     }
   },
-  "highlight": {
-    "pre_tags": [
-      "@kibana-highlighted-field@"
-    ],
-    "post_tags": [
-      "@/kibana-highlighted-field@"
-    ],
-    "fields": {
-      "*": {}
-    },
-    "fragment_size": 2147483647
-  }
+  "isPartial": false,
+  "isRunning": false,
+  "total": 1,
+  "loaded": 1,
+  "isRestored": false
 }`}
     </EuiCodeBlock>
   </div>
