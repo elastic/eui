@@ -1,8 +1,13 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Refactored `EuiFlyout` types ([#4940](https://github.com/elastic/eui/pull/4940))
+- Updated `pause` icon ([#4947](https://github.com/elastic/eui/pull/4947))
 - Added `checkable` options to `EuiKeyPadMenuItem` ([#4950](https://github.com/elastic/eui/pull/4950))
 - Added `legend` prop to `EuiKeyPadMenu` ([#4950](https://github.com/elastic/eui/pull/4950))
+
+**Bug fixes**
+
+- Fixed render-blocking error when `EuiCodeBlock` is configured with an unsupported language ([#4943](https://github.com/elastic/eui/pull/4943))
 
 **Theme: Amsterdam**
 

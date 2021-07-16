@@ -10,10 +10,7 @@ const CircleIndicator = ({ name }) => (
 
 export default () => {
   return (
-    <EuiPanel
-      paddingSize="s"
-      className="guideDemo__highlightGrid"
-      style={{ maxWidth: '540px' }}>
+    <EuiPanel paddingSize="s" style={{ maxWidth: '540px' }}>
       <div className="guideDemo__notificationEvent">
         <div className="guideDemo__notificationEventTopRow">
           <div className="guideDemo__notificationEventHighlight">
