@@ -13,7 +13,7 @@ export default () => {
   );
 
   return (
-    <EuiKeyPadMenu legend="Single select as radios">
+    <EuiKeyPadMenu checkable={{ ariaLegend: 'Single select as radios' }}>
       <EuiKeyPadMenuItem
         checkable="single"
         name={radioGroupName}

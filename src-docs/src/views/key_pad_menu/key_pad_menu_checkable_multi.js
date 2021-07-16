@@ -11,7 +11,7 @@ export default () => {
   const [multiSelect3isSelected, setmultiSelect2isSelected] = useState(false);
 
   return (
-    <EuiKeyPadMenu legend="Multi select as checkboxes">
+    <EuiKeyPadMenu checkable={{ legend: 'Multi select as checkboxes' }}>
       <EuiKeyPadMenuItem
         checkable="multi"
         isSelected={multiSelect1isSelected}

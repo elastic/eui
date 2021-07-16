@@ -44,7 +44,7 @@ export type EuiKeyPadMenuItemCommonProps = {
   isDisabled?: boolean;
   /**
    * Indicate if an item is the current one.
-   * Be sure to use `true` AND `false` when acting as a toggle.
+   * Be sure to use `true` AND `false` when acting as a toggle to ensure the attribute is added for both states
    */
   isSelected?: boolean;
   /**

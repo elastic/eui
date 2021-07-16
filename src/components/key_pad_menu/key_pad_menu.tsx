@@ -9,28 +9,65 @@
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
-import { EuiFormLabel } from '../form';
+import { CommonProps, ExclusiveUnion } from '../common';
+import {
+  EuiFormLabel,
+  _EuiFormLegendProps,
+} from '../form/form_label/form_label';
+
+export type _EuiKeyPadMenuCheckableProps = ExclusiveUnion<
+  {
+    /**
+     * Rendered within a `legend` to label the `fieldset`.
+     * To create a visually hidden legend, use `ariaLegend`
+     */
+    legend: ReactNode;
+    /**
+     * Pass through props to a `EuiFormLabel` component, except for `type`
+     */
+    legendProps?: Omit<_EuiFormLegendProps, 'type'>;
+  },
+  {
+    /**
+     * Custom aria-attribute for creating a *visually hidden* legend.
+     * To create a visible legend, use `legend`
+     */
+    ariaLegend: string;
+  }
+>;
 
 export type EuiKeyPadMenuProps = CommonProps &
   HTMLAttributes<HTMLElement> & {
     /**
-     * Renders the the group as a `fieldset` with a `legend` to label the items.
+     * Renders the the group as a `fieldset`.
+     * Set to `true` to customize the labelling, or pass an #EuiKeyPadMenuCheckableProps object to add a `legend` or `ariaLegend`
      */
-    legend?: ReactNode;
+    checkable?: _EuiKeyPadMenuCheckableProps | true;
   };
 
 export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
   children,
   className,
-  legend,
+  checkable,
   ...rest
 }) => {
   const classes = classNames('euiKeyPadMenu', className);
 
-  return legend ? (
-    <fieldset className={classes} {...rest}>
-      <EuiFormLabel type="legend">{legend}</EuiFormLabel>
+  const legend =
+    typeof checkable === 'object' && checkable.legend ? (
+      <EuiFormLabel {...checkable.legendProps} type="legend">
+        {checkable.legend}
+      </EuiFormLabel>
+    ) : undefined;
+
+  return checkable ? (
+    <fieldset
+      className={classes}
+      aria-label={
+        typeof checkable === 'object' ? checkable.ariaLegend : undefined
+      }
+      {...rest}>
+      {legend}
       {children}
     </fieldset>
   ) : (

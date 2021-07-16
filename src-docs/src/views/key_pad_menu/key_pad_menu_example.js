@@ -9,6 +9,9 @@ import {
   EuiCallOut,
   EuiText,
 } from '../../../../src/components';
+
+import { EuiKeyPadMenuCheckableProps } from './props';
+
 import { keyPadMenuItemConfig } from './playground';
 
 import KeyPadMenu from './key_pad_menu';
@@ -119,12 +122,14 @@ export const KeyPadMenuExample = {
           <p>
             When using the <EuiCode>isSelected</EuiCode> prop to create a toggle
             button, you must supply both the <EuiCode>true</EuiCode> and{' '}
-            <EuiCode>false</EuiCode> states explicitly.
+            <EuiCode>false</EuiCode> states explicitly to ensure the attribute
+            is added for both states.
           </p>
         </>
       ),
       snippet: keyPadMenuItemButtonSnippet,
       playground: keyPadMenuItemConfig,
+      props: { EuiKeyPadMenuItem },
       demo: <KeyPadMenuItemButton />,
     },
     {
@@ -155,6 +160,7 @@ export const KeyPadMenuExample = {
         </>
       ),
       snippet: keyPadBetaSnippet,
+      props: { EuiKeyPadMenuItem },
       demo: <KeyPadBeta />,
     },
     {
@@ -168,11 +174,12 @@ export const KeyPadMenuExample = {
             <EuiCode>{'"single"'}</EuiCode> for radios.
           </p>
           <p>
-            The <strong>EuiKeyPadMenu</strong> provides it&apos;s own form group
-            labelling mechanism through the <EuiCode>legend</EuiCode> prop.
-            Supplying this prop will properly wrap the input group in a{' '}
-            <EuiCode language="html">{'<fieldset>'}</EuiCode> and display the{' '}
-            <EuiCode language="html">{'<legend>'}</EuiCode>.
+            To ensure the <strong>EuiKeyPadMenu</strong> renders the
+            semantically appropriate HTML elements, you will need to pass in the{' '}
+            <EuiCode>checkable</EuiCode> prop as <EuiCode>true</EuiCode> or an
+            object that requires a <EuiCode>legend</EuiCode>. This will wrap the
+            input group in a <EuiCode language="html">{'<fieldset>'}</EuiCode>{' '}
+            with a <EuiCode language="html">{'<legend>'}</EuiCode>.
           </p>
         </>
       ),
@@ -183,6 +190,16 @@ export const KeyPadMenuExample = {
         },
       ],
       demo: <KeyPadCheckableMulti />,
+      snippet: `<EuiKeyPadMenu checkable={{ legend }}>
+  <EuiKeyPadMenuItem
+    checkable="multi"
+    isSelected={isSelected}
+    label={label}
+    onChange={handleClick}>
+    <EuiIcon type={iconType} size="l" />
+  </EuiKeyPadMenuItem>
+</EuiKeyPadMenu>`,
+      props: { EuiKeyPadMenu, EuiKeyPadMenuCheckableProps, EuiKeyPadMenuItem },
     },
     {
       source: [
@@ -195,10 +212,24 @@ export const KeyPadMenuExample = {
         <p>
           For single selection (radio) items, you must pass a singular{' '}
           <EuiCode>name</EuiCode> prop to each item to ensure they are grouped
-          properly.
+          properly. Also, if you would like to hide the visible{' '}
+          <EuiCode language="html">{'<legend>'}</EuiCode> in favor of an
+          screen-reader only solution, you can pass{' '}
+          <EuiCode>ariaLegend</EuiCode> instead of <EuiCode>legend</EuiCode>.
         </p>
       ),
       demo: <KeyPadCheckable />,
+      snippet: `<EuiKeyPadMenu checkable={{ ariaLegend }}>
+  <EuiKeyPadMenuItem
+    checkable="single"
+    name={radioGroupName}
+    isSelected={isSelected}
+    label={label}
+    onChange={(id) => {}}>
+    <EuiIcon type={iconType} size="l" />
+  </EuiKeyPadMenuItem>
+</EuiKeyPadMenu>`,
+      props: { EuiKeyPadMenu, EuiKeyPadMenuCheckableProps, EuiKeyPadMenuItem },
     },
   ],
 };
