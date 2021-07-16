@@ -5,6 +5,8 @@ import {
   EuiCodeBlock,
   EuiSpacer,
   EuiText,
+  EuiLink,
+  EuiTitle,
 } from '../../../../src/components';
 import { GuideSectionTypes } from '../../components';
 import { ExternalBadge } from './shared';
@@ -12,9 +14,10 @@ import { TextureMultiSeriesChart } from './texture';
 import { TexturedStylesProps } from './texture_props';
 import { Sunburst } from './sunburst';
 import { BulletExample } from './bullet_example';
+import { EuiFlexGrid, EuiFlexItem } from '../../../../src/components/flex';
 
 const TextureMultiSeriesChartSource = require('!!raw-loader!./texture');
-const GoalChartSource = require('!!raw-loader!./goal');
+const BulletChartSource = require('!!raw-loader!./bullet_example');
 const SunburstSource = require('!!raw-loader!./sunburst');
 
 export const ElasticChartsAccessibilityExample = {
@@ -25,7 +28,13 @@ export const ElasticChartsAccessibilityExample = {
       <EuiSpacer size="l" />
       <EuiText>
         <p>
-          Elastic charts is becoming more and more accessible for all users.
+          {' '}
+          <EuiLink
+            href="https://elastic.github.io/elastic-charts"
+            target="_blank">
+            Elastic Charts
+          </EuiLink>{' '}
+          provides some accessibilty features for all users.
         </p>
         <p>
           <strong>Available a11y-related features</strong>
@@ -182,13 +191,60 @@ export const ElasticChartsAccessibilityExample = {
             }
             iconType="visPie">
             <p>
-              At time of this writing, partition charts include: sunburst,
+              Version <ExternalBadge />, partition charts include: sunburst,
               treemap, icicle, flame, and mosaic.
             </p>
           </EuiCallOut>
         </>
       ),
-      demo: <Sunburst />,
+      demo: (
+        <EuiFlexGrid columns={2}>
+          <EuiFlexItem>
+            {' '}
+            <Sunburst />{' '}
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiTitle className="eui-textCenter" size="xs">
+              <h3>Visually hidden content for chart</h3>
+            </EuiTitle>
+            <EuiSpacer />
+            <EuiCode language="jsx" inline={false}>
+              {`<p>There is a great variety of reported favorite fruit</p>
+
+<dl>
+  <dt>Chart type:</dt>
+  <dd>sunburst chart</dd>
+</dd>
+
+<table>
+  <caption>
+    After Clementine (22), individual results are not labelled as the segments become too small
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col">Label</th>
+      <th scope="col">Value</th>
+      <th scope="col">Percentage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Apple</th>
+      <td>100</td>
+      <td>27%</td>
+    </tr>
+    {/* rows abbreviated */}
+    <tr>
+      <th>Durian</th>
+      <td>1</td>
+      <td>0%</td>
+    </tr>
+  </tbody>
+</table>`}
+            </EuiCode>
+          </EuiFlexItem>
+        </EuiFlexGrid>
+      ),
       snippet: `<h3 id={randomId}>Students' favorite fruit</h3>
 <Chart>
   <Settings
@@ -272,18 +328,58 @@ export const ElasticChartsAccessibilityExample = {
           />
         </>
       ),
-      demo: <BulletExample />,
+      demo: (
+        <EuiFlexGrid columns={2}>
+          <EuiFlexItem>
+            <BulletExample />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiTitle size="xs" className="eui-textCenter">
+              <h3>Visually hidden content for chart</h3>
+            </EuiTitle>
+            <EuiSpacer />
+            <EuiCode language="jsx" inline={false}>
+              {`<p>Revenue 2020 YTD</p>
+<p>(thousand USD</p>
+<p>This goal chart has a target of 260.</p>
+<dl>
+<dt>Chart type:</dt>
+<dd>horizontalBullet chart</dd>
+<dt>Minimum:</dt>
+<dd>0</dd>
+<dt>Maximum:</dt>
+<dd>300</dd>
+<dt>Target:</dt>
+<dd>260</dd>
+<dd>Value:</dd>
+<dt>280</dt>
+</dl>
+...
+<dl class="echScreenReaderOnly echGoalDescription">
+<dt>0 - 100</dt>
+<dd>cold</dd>
+<dt>100 - 125</dt>
+<dd>brisk</dd>
+<dt>125 - 150</dt>
+<dd>warm</dd>
+<dt>150 - 250</dt>
+<dd>hot</dd>
+</dl>`}
+            </EuiCode>
+          </EuiFlexItem>
+        </EuiFlexGrid>
+      ),
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: GoalChartSource,
+          code: BulletChartSource,
         },
       ],
       snippet: `<Chart>
   <Settings aria-label="Chart title" {...props} />
   <Goal
-    bands=[0, 5, 15]
-    bandLabels=['freezing', 'chilly', 'brisk']
+    bands=[0, 100, 125, 150, 250]
+    bandLabels=['freezing', 'cold', 'brisk', 'warm', 'hot']
     {...otherProps}
   />
 </Chart>`,

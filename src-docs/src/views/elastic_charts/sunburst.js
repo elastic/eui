@@ -6,22 +6,12 @@ import {
   EUI_CHARTS_THEME_DARK,
   EUI_CHARTS_THEME_LIGHT,
 } from '../../../../src/themes/charts/themes';
-import {
-  EuiFlexGrid,
-  EuiFlexItem,
-  EuiTitle,
-  EuiSpacer,
-} from '../../../../src/components';
-import {
-  htmlIdGenerator,
-  useIsWithinBreakpoints,
-} from '../../../../src/services';
-import { EuiCode } from '../../../../src/components/code';
+import { EuiTitle, EuiSpacer } from '../../../../src/components';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export const Sunburst = () => {
   const themeContext = useContext(ThemeContext);
   const id = htmlIdGenerator()();
-  const isDesktop = useIsWithinBreakpoints(['l', 'xl']);
 
   /**
    * Setup theme based on current light/dark theme
@@ -53,78 +43,36 @@ export const Sunburst = () => {
   ];
 
   return (
-    <EuiFlexGrid direction={isDesktop ? 'row' : 'column'} columns={2}>
-      <EuiFlexItem>
-        <EuiTitle className="eui-textCenter" size="xs">
-          <h3 id={id}>Students&apos; favorite fruit</h3>
-        </EuiTitle>
-        <EuiSpacer />
-        <Chart size={{ height: 200 }}>
-          <Settings
-            ariaLabelledBy={id}
-            ariaDescription="There is a great variety of reported favorite fruit"
-            ariaTableCaption="For the chart representation, after Clementine (22) individual results are not labelled as the segments become too small"
-          />
-          <Partition
-            data={data}
-            valueAccessor={({ count }) => count}
-            layers={[
-              {
-                groupByRollup: ({ fruit }) => fruit,
-                shape: {
-                  fillColor: ({ sortIndex }) =>
-                    vizColors[sortIndex % vizColors.length],
-                },
+    <>
+      <EuiTitle className="eui-textCenter" size="xs">
+        <h3 id={id}>Students&apos; favorite fruit</h3>
+      </EuiTitle>
+      <EuiSpacer />
+      <Chart size={{ height: 200 }}>
+        <Settings
+          ariaLabelledBy={id}
+          ariaDescription="There is a great variety of reported favorite fruit"
+          ariaTableCaption="For the chart representation, after Clementine (22) individual results are not labelled as the segments become too small"
+        />
+        <Partition
+          data={data}
+          valueAccessor={({ count }) => count}
+          layers={[
+            {
+              groupByRollup: ({ fruit }) => fruit,
+              shape: {
+                fillColor: ({ sortIndex }) =>
+                  vizColors[sortIndex % vizColors.length],
               },
-            ]}
-            config={{
-              ...euiPartitionConfig,
-              clockwiseSectors: false,
-              partitionLayout: 'sunburst',
-            }}
-          />
-        </Chart>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiTitle className="eui-textCenter" size="xs">
-          <h3>Visually hidden content for chart</h3>
-        </EuiTitle>
-        <EuiSpacer />
-        <EuiCode language="jsx" inline={false}>
-          {`<p>There is a great variety of reported favorite fruit</p>
-
-<dl>
-  <dt>Chart type:</dt>
-  <dd>sunburst chart</dd>
-</dd>
-
-<table>
-  <caption>
-    After Clementine (22), individual results are not labelled as the segments become too small
-  </caption>
-  <thead>
-    <tr>
-      <th scope="col">Label</th>
-      <th scope="col">Value</th>
-      <th scope="col">Percentage</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Apple</th>
-      <td>100</td>
-      <td>27%</td>
-    </tr>
-    {/* rows abbreviated */}
-    <tr>
-      <th>Durian</th>
-      <td>1</td>
-      <td>0%</td>
-    </tr>
-  </tbody>
-</table>`}
-        </EuiCode>
-      </EuiFlexItem>
-    </EuiFlexGrid>
+            },
+          ]}
+          config={{
+            ...euiPartitionConfig,
+            clockwiseSectors: false,
+            partitionLayout: 'sunburst',
+          }}
+        />
+      </Chart>
+    </>
   );
 };
