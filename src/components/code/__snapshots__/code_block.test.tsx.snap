@@ -3,7 +3,7 @@
 exports[`EuiCodeBlock dynamic content renders a virtualized code block 1`] = `
 <div
   class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls prismjs language-text testClass1 testClass2"
-  style="max-height:50%"
+  style="height:50%"
 >
   <div
     style="overflow:visible;height:0;width:0"

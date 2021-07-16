@@ -265,7 +265,9 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   const optionalStyles: CSSProperties = {};
 
   if (overflowHeight) {
-    optionalStyles.maxHeight = overflowHeight;
+    const property =
+      typeof overflowHeight === 'string' ? 'height' : 'maxHeight';
+    optionalStyles[property] = overflowHeight;
   }
 
   const codeSnippet = (
