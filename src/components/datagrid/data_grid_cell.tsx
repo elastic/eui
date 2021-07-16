@@ -34,7 +34,7 @@ import { EuiFocusTrap } from '../focus_trap';
 import { keys } from '../../services';
 import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
 import { EuiDataGridCellPopover } from './data_grid_cell_popover';
-import { getStylesForCell } from './row_height_utils';
+import { RowHeightUtils } from './row_height_utils';
 
 export interface EuiDataGridCellValueElementProps {
   /**
@@ -85,6 +85,7 @@ export interface EuiDataGridCellProps {
   getRowHeight?: (rowIndex: number) => number;
   style?: React.CSSProperties;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
+  rowHeightUtils?: RowHeightUtils;
 }
 
 interface EuiDataGridCellState {
@@ -115,6 +116,7 @@ const EuiDataGridCellContent: FunctionComponent<
     rowHeightsOptions,
     rowIndex,
     colIndex,
+    rowHeightUtils,
     ...rest
   } = props;
 
@@ -143,7 +145,9 @@ const EuiDataGridCellContent: FunctionComponent<
     <div
       ref={setCellContentsRef}
       style={
-        rowHeightsOptions ? getStylesForCell(rowHeightsOptions, rowIndex) : {}
+        rowHeightsOptions && rowHeightUtils
+          ? rowHeightUtils.getStylesForCell(rowHeightsOptions, rowIndex)
+          : {}
       }
       className={!rowHeightsOptions ? 'euiDataGridRowCell__truncate' : ''}>
       <CellElement
@@ -248,6 +252,12 @@ export class EuiDataGridCell extends Component<
       [this.props.colIndex, this.props.visibleRowIndex],
       this.onFocusUpdate
     );
+    if (this.cellContentsRef?.offsetHeight) {
+      this.props.rowHeightUtils?.setRowHeight(
+        this.props.rowIndex,
+        this.cellContentsRef?.offsetHeight
+      );
+    }
   }
 
   onFocusUpdate = (isFocused: boolean) => {
@@ -481,6 +491,7 @@ export class EuiDataGridCell extends Component<
       isDetails: false,
       setCellContentsRef: this.setCellContentsRef,
       rowHeightsOptions: this.props.rowHeightsOptions,
+      rowHeightUtils: this.props.rowHeightUtils,
     };
 
     let anchorContent = (

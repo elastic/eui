@@ -70,6 +70,8 @@ import {
 import { useDataGridColumnSorting } from './column_sorting';
 import { RowHeightUtils } from './row_height_utils';
 
+const rowHeightUtils = new RowHeightUtils();
+
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
 
@@ -886,11 +888,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     }
   }, [focusedCell, contentRef]);
 
-  const [rowHeightUtils] = useState(new RowHeightUtils());
-
   useEffect(() => {
-    rowHeightUtils.computeStylesForGridCell(gridStyles);
-  }, [gridStyles, rowHeightUtils]);
+    rowHeightUtils.computeStylesForGridCell({
+      cellPadding: gridStyles.cellPadding,
+      fontSize: gridStyles.fontSize,
+    });
+  }, [gridStyles.cellPadding, gridStyles.fontSize, rowHeightUtils]);
 
   const classes = classNames(
     'euiDataGrid',

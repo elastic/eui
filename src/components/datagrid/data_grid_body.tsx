@@ -56,7 +56,7 @@ import {
   DataGridWrapperRowsContext,
 } from './data_grid_context';
 import { useResizeObserver } from '../observer/resize_observer';
-import { RowHeightUtils } from './row_height_utils';
+import { RowHeightUtils, AUTO_HEIGHT } from './row_height_utils';
 
 export interface EuiDataGridBodyProps {
   isFullScreen: boolean;
@@ -143,6 +143,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
     schemaDetectors,
     rowHeightsOptions,
     getRowHeight,
+    rowHeightUtils,
   } = data;
 
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
@@ -209,6 +210,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         setRowHeight={setRowHeight}
         getRowHeight={getRowHeight}
         rowHeightsOptions={rowHeightsOptions}
+        rowHeightUtils={rowHeightUtils}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -235,6 +237,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         className={classes}
         rowHeightsOptions={rowHeightsOptions}
         getRowHeight={getRowHeight}
+        rowHeightUtils={rowHeightUtils}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -271,6 +274,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         className={classes}
         rowHeightsOptions={rowHeightsOptions}
         getRowHeight={getRowHeight}
+        rowHeightUtils={rowHeightUtils}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -506,7 +510,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     (rowIndex: number) => {
       let rowIndexWithOffset = rowIndex;
 
-      if (rowIndex - paginationOffset <= 0) {
+      if (rowIndex - paginationOffset < 0) {
         rowIndexWithOffset = rowIndex + paginationOffset;
       }
 
@@ -554,6 +558,13 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   );
 
   const [minRowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
+
+  useEffect(() => {
+    if (gridRef.current) {
+      rowHeightUtils.setGrid(gridRef.current);
+    }
+  }, [gridRef.current]);
+
   const defaultHeight = useMemo(
     () =>
       rowHeightsOptions?.defaultHeight
@@ -568,7 +579,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const getRowHeight = useCallback(
     (rowIndex) => {
       const correctRowIndex = getCorrectRowIndex(rowIndex);
-      let height = defaultHeight;
+      let height;
 
       if (rowHeightsOptions) {
         if (rowHeightsOptions.rowHeights) {
@@ -577,13 +588,18 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
           if (initialHeight) {
             height = rowHeightUtils.getCalculatedHeight(
               initialHeight,
-              minRowHeight
+              minRowHeight,
+              correctRowIndex
             );
           }
         }
+
+        if (!height && rowHeightsOptions.defaultHeight === AUTO_HEIGHT) {
+          return rowHeightUtils.getRowHeight(correctRowIndex);
+        }
       }
 
-      return height;
+      return height || defaultHeight;
     },
     [
       minRowHeight,
@@ -711,6 +727,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                   renderCellValue,
                   interactiveCellId,
                   rowHeightsOptions,
+                  rowHeightUtils,
                 }}
                 rowCount={
                   IS_JEST_ENVIRONMENT || headerRowHeight > 0

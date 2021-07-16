@@ -321,6 +321,7 @@ export type EuiDataGridOnColumnResizeHandler = (
 
 export type EuiDataGridRowHeightOption =
   | number
+  | string
   | ExclusiveUnion<{ lineCount: number }, { height: number }>;
 
 export interface EuiDataGridRowHeightsOptions {
