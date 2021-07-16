@@ -55,6 +55,11 @@ export type PropsOf<C> = C extends SFC<infer SFCProps>
   ? ComponentProps
   : never;
 
+// Returns the props of a given HTML element
+export type PropsOfElement<
+  C extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>
+> = JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>;
+
 // Utility methods for ApplyClassComponentDefaults
 type ExtractDefaultProps<T> = T extends { defaultProps: infer D } ? D : never;
 type ExtractProps<

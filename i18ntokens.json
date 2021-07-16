@@ -384,17 +384,49 @@
     "filepath": "src/components/code/_code_block.tsx"
   },
   {
+    "token": "euiColorPickerSwatch.ariaLabel",
+    "defString": "Select {color} as the color",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 32,
+        "column": 20
+      },
+      "end": {
+        "line": 36,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/color_picker/color_picker_swatch.tsx"
+  },
+  {
+    "token": "euiColorPicker.popoverLabel",
+    "defString": "Color selection dialog",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 215,
+        "column": 6
+      },
+      "end": {
+        "line": 234,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/color_picker/color_picker.tsx"
+  },
+  {
     "token": "euiColorPicker.colorLabel",
     "defString": "Color value",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 442,
-        "column": 4
+        "line": 215,
+        "column": 6
       },
       "end": {
-        "line": 448,
-        "column": 71
+        "line": 234,
+        "column": 3
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -405,12 +437,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 442,
-        "column": 4
+        "line": 215,
+        "column": 6
       },
       "end": {
-        "line": 448,
-        "column": 71
+        "line": 234,
+        "column": 3
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -421,28 +453,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 442,
-        "column": 4
+        "line": 215,
+        "column": 6
       },
       "end": {
-        "line": 448,
-        "column": 71
-      }
-    },
-    "filepath": "src/components/color_picker/color_picker.tsx"
-  },
-  {
-    "token": "euiColorPicker.swatchAriaLabel",
-    "defString": "Select {swatch} as the color",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 513,
-        "column": 14
-      },
-      "end": {
-        "line": 516,
-        "column": 55
+        "line": 234,
+        "column": 3
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -453,12 +469,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 541,
-        "column": 10
+        "line": 215,
+        "column": 6
       },
       "end": {
-        "line": 543,
-        "column": 52
+        "line": 234,
+        "column": 3
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -469,12 +485,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 600,
-        "column": 10
+        "line": 215,
+        "column": 6
       },
       "end": {
-        "line": 610,
-        "column": 15
+        "line": 234,
+        "column": 3
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -485,44 +501,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 600,
-        "column": 10
+        "line": 215,
+        "column": 6
       },
       "end": {
-        "line": 610,
-        "column": 15
-      }
-    },
-    "filepath": "src/components/color_picker/color_picker.tsx"
-  },
-  {
-    "token": "euiColorPicker.transparent",
-    "defString": "Transparent",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 600,
-        "column": 10
-      },
-      "end": {
-        "line": 610,
-        "column": 15
-      }
-    },
-    "filepath": "src/components/color_picker/color_picker.tsx"
-  },
-  {
-    "token": "euiColorPicker.screenReaderAnnouncement",
-    "defString": "A popup with a range of selectable colors opened.\n                Tab forward to cycle through colors choices or press\n                escape to close this popup.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 662,
-        "column": 14
-      },
-      "end": {
-        "line": 667,
-        "column": 16
+        "line": 234,
+        "column": 3
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -656,33 +640,33 @@
     "filepath": "src/components/color_picker/hue.tsx"
   },
   {
-    "token": "euiSaturation.roleDescription",
-    "defString": "HSV color mode saturation and value selection",
+    "token": "euiSaturation.ariaLabel",
+    "defString": "HSV color mode saturation and value 2-axis slider",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 152,
-        "column": 6
+        "line": 60,
+        "column": 49
       },
       "end": {
-        "line": 154,
-        "column": 64
+        "line": 66,
+        "column": 5
       }
     },
     "filepath": "src/components/color_picker/saturation.tsx"
   },
   {
-    "token": "euiSaturation.screenReaderAnnouncement",
-    "defString": "Use the arrow keys to navigate the square color gradient. The coordinates resulting from each key press will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right decrease and increase (respectively) the 'saturation' value. Up and down decrease and increase (respectively) the 'value' value.",
+    "token": "euiSaturation.screenReaderInstructions",
+    "defString": "Arrow keys to navigate the square color gradient. Coordinates will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right to change the saturation. Up and down change the value.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 177,
-        "column": 16
+        "line": 60,
+        "column": 49
       },
       "end": {
-        "line": 180,
-        "column": 18
+        "line": 66,
+        "column": 5
       }
     },
     "filepath": "src/components/color_picker/saturation.tsx"
@@ -2949,11 +2933,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 747,
+        "line": 748,
         "column": 14
       },
       "end": {
-        "line": 750,
+        "line": 751,
         "column": 16
       }
     },
