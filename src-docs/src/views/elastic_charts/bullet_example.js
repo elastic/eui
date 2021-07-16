@@ -10,7 +10,7 @@ import {
 } from '../../../../src/themes/charts/themes';
 
 export const BulletExample = () => {
-  const id = htmlIdGenerator('bullet')();
+  const id = htmlIdGenerator()();
   const themeContext = useContext(ThemeContext);
   const isDarkTheme = themeContext.theme.includes('dark');
   const euiChartTheme = isDarkTheme
@@ -36,7 +36,7 @@ export const BulletExample = () => {
   return (
     <>
       <EuiTitle size="xs" className="eui-textCenter">
-        <h3 id={id}>Example bullet chart</h3>
+        <h3 id={`bullet--example--${id}`}>Example bullet chart</h3>
       </EuiTitle>
       <EuiSpacer />
       <Chart size={{ height: 200 }}>
