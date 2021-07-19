@@ -22,7 +22,7 @@ jobs:
       - name: Build
         run: yarn build
       - name: Publish
-        run: yarn release
+        run: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_PACKAGES_WRITE_TOKEN }}
           NPM_TOKEN: ${{ secrets.BOT_PACKAGES_WRITE_TOKEN }}
