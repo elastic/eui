@@ -7,9 +7,9 @@
  */
 
 import React, {
+  ElementType as ReactElementType,
   FunctionComponent,
   ReactNode,
-  HTMLAttributes,
   Ref,
   LabelHTMLAttributes,
 } from 'react';
@@ -179,8 +179,11 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     className
   );
 
-  let Element = href && !isDisabled ? 'a' : 'button';
+  let Element: keyof JSX.IntrinsicElements =
+    href && !isDisabled ? 'a' : 'button';
   if (checkable) Element = 'label';
+  type ElementType = ReactElementType<typeof Element>;
+
   const itemId = id || htmlIdGenerator()();
 
   const renderCheckableElement = () => {
@@ -266,12 +269,12 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   }
 
   return (
-    // @ts-ignore HELP!
     <Element
       className={classes}
-      {...(relObj as HTMLAttributes<HTMLElement>)}
-      {...(rest as HTMLAttributes<HTMLElement>)}
-      ref={buttonRef}>
+      {...(relObj as ElementType)}
+      {...(rest as ElementType)}
+      // Unable to get past `LegacyRef` conflicts
+      ref={buttonRef as Ref<any>}>
       {renderContent()}
     </Element>
   );
