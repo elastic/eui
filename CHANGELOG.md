@@ -8,12 +8,18 @@
 
 - Fixed render-blocking error when `EuiCodeBlock` is configured with an unsupported language ([#4943](https://github.com/elastic/eui/pull/4943))
 - Fixed initial alignment of `EuiDataGrid` cells and the expand button on multi-line cells ([#4955](https://github.com/elastic/eui/pull/4955))
-- Fixed background-color in `EuiCardSelect`'s button ([#4954](https://github.com/elastic/eui/pull/4954))
+- Fixed pass-through of `iconSize` prop on `EuiButtonEmpty` ([#4965](https://github.com/elastic/eui/pull/4965))
+- Fixed (reduced) size of spinner on small `isLoading` buttons ([#4965](https://github.com/elastic/eui/pull/4965))
 - Fixed click event subscription bug in `EuiOverlayMask` ([#4967](https://github.com/elastic/eui/pull/4967))
+- Fixed background-color in `EuiCard.selectable`'s button ([#4954](https://github.com/elastic/eui/pull/4954))
 
 **Theme: Amsterdam**
 
-- Fixed border-radius in `EuiCardSelect`'s button ([#4954](https://github.com/elastic/eui/pull/4954)
+- Fixed border-radius in `EuiCard.selectable`'s button ([#4954](https://github.com/elastic/eui/pull/4954)
+
+**Breaking changes**
+
+- Changed `EuiButtonEmpty` `size` of `l` to `m` to match other buttons ([#4965](https://github.com/elastic/eui/pull/4965))
 
 ## [`35.1.0`](https://github.com/elastic/eui/tree/v35.1.0)
 
