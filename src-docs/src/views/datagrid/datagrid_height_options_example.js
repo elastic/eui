@@ -17,20 +17,18 @@ import DataGridRowAutoHeight from './row_auto_height';
 const dataGridRowAutoHeightSource = require('!!raw-loader!./row_auto_height');
 const dataGridRowAutoHeightHtml = renderToHtml(DataGridRowAutoHeight);
 
-const rowHeightsSnippet = `
-  {
-    defaultHeight: {
-      lineCount: 2, // default every row to 2 lines of text. Also we can provide height in pixels
+const rowHeightsSnippet = `rowHeightsOptions = {
+  defaultHeight: {
+    lineCount: 2, // default every row to 2 lines of text. Also we can provide height in pixels
+  },
+  rowHeights: {
+    1: {
+      lineCount: 5, // for row which have index 1 we allow to show 5 lines after that we truncate
     },
-    rowHeights: {
-      1: {
-        lineCount: 5, // for row which have index 1 we allow to show 5 lines after that we truncate
-      },
-      4: 140, // for row which have index 4 we set 140 pixel
-      5: 80,
-    },
-  }
-`;
+    4: 140, // for row which have index 4 we set 140 pixel
+    5: 80,
+  },
+}`;
 
 const autoRowHeightsSnippet = `
   {

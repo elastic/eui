@@ -154,7 +154,8 @@ export class RowHeightUtils {
     rowIndex: number
   ): CSSProperties => {
     const styles: CSSProperties = {
-      wordBreak: 'break-all',
+      wordWrap: 'break-word',
+      wordBreak: 'break-word',
       flexGrow: 1,
     };
     let initialHeight =
