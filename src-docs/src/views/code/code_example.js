@@ -130,7 +130,7 @@ export const CodeExample = {
       ],
       text: (
         <p>
-          For large blocks of code, set <EuiCode>isVirtualized</EuiCode> to
+          For large blocks of code, add <EuiCode>isVirtualized</EuiCode> to
           reduce the number of rendered rows and improve load times. Note that{' '}
           <EuiCode>overflowHeight</EuiCode> is required when using this
           configuration.
