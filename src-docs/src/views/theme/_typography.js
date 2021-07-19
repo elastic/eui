@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
-import { useEuiTheme } from '../../../../src/services';
+import debounce from 'lodash/debounce';
+import { useEuiTheme, mergeDeep } from '../../../../src/services';
 
 import {
   EuiText,
@@ -33,6 +34,11 @@ const scaleKeys = Object.keys(fontScale);
 export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
   const font = euiTheme.font;
+  const [fontClone, setFontClone] = React.useState(euiTheme.font);
+
+  useEffect(() => {
+    setFontClone(font);
+  }, [font]);
 
   const baseProps = getPropsFromThemeKey(EuiThemeFontBase);
   const weightProps = getPropsFromThemeKey(EuiThemeFontWeight);
@@ -41,32 +47,72 @@ export default ({ onThemeUpdate }) => {
   const fontFamilies = font.family.split(',');
   const codeFontFamilies = font.familyCode.split(',');
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedUpdateFont = React.useCallback(
+    debounce((property, value) => {
+      onThemeUpdate({
+        font: {
+          [property]: value,
+        },
+      });
+    }, 300),
+    []
+  );
   const updateFont = (property, value) => {
-    onThemeUpdate({
-      font: {
+    setFontClone(
+      mergeDeep(fontClone, {
         [property]: value,
-      },
-    });
+      })
+    );
+    debouncedUpdateFont(property, value);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedUpdateScale = React.useCallback(
+    debounce((property, value) => {
+      onThemeUpdate({
+        font: {
+          scale: {
+            [property]: value,
+          },
+        },
+      });
+    }, 300),
+    []
+  );
   const updateScale = (property, value) => {
-    onThemeUpdate({
-      font: {
+    setFontClone(
+      mergeDeep(fontClone, {
         scale: {
           [property]: value,
         },
-      },
-    });
+      })
+    );
+    debouncedUpdateScale(property, value);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedUpdateWeight = React.useCallback(
+    debounce((property, value) => {
+      onThemeUpdate({
+        font: {
+          weight: {
+            [property]: value,
+          },
+        },
+      });
+    }, 300),
+    []
+  );
   const updateWeight = (property, value) => {
-    onThemeUpdate({
-      font: {
+    setFontClone(
+      mergeDeep(fontClone, {
         weight: {
           [property]: value,
         },
-      },
-    });
+      })
+    );
+    debouncedUpdateWeight(property, value);
   };
 
   return (
@@ -173,7 +219,7 @@ export default ({ onThemeUpdate }) => {
                           property={'font'}
                           type={baseProps.baseline}
                           name={'baseline'}
-                          value={font.baseline}
+                          value={fontClone.baseline}
                           onUpdate={(value) => updateFont('baseline', value)}
                         />
                       </EuiFlexItem>
@@ -218,9 +264,9 @@ export default ({ onThemeUpdate }) => {
                         property="font.weight"
                         type={weightProps[key]}
                         name={key}
-                        value={font.weight[key]}
+                        value={fontClone.weight[key]}
                         buttonStyle={css`
-                          font-weight: ${font.weight[key]};
+                          font-weight: ${fontClone.weight[key]};
                         `}
                         example={'Aa'}
                         groupProps={{ alignItems: 'center' }}
@@ -265,13 +311,13 @@ export default ({ onThemeUpdate }) => {
                         property="font.scale"
                         type={scaleProps[key]}
                         name={key}
-                        value={font.scale[key]}
+                        value={fontClone.scale[key]}
                         buttonStyle={css`
-                          font-size: ${font.scale[key] * euiTheme.base}px;
+                          font-size: ${fontClone.scale[key] * euiTheme.base}px;
                           min-width: calc(${euiTheme.size.xxl} * 3);
                           text-align: left;
                         `}
-                        example={`${font.scale[key] * euiTheme.base}px`}
+                        example={`${fontClone.scale[key] * euiTheme.base}px`}
                         onUpdate={(value) => updateScale(key, value)}
                         numberProps={{ step: 0.1, style: { width: '6em' } }}
                         groupProps={{ alignItems: 'center' }}

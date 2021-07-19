@@ -1,5 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/react';
+import debounce from 'lodash/debounce';
 import { useEuiTheme } from '../../../../src/services';
 
 import {
@@ -18,11 +19,25 @@ import { EuiFlexItem } from '../../../../src/components/flex';
 export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
   const sizes = euiTheme.size;
+  const base = euiTheme.base;
+  const [baseClone, setBaseClone] = React.useState(base);
 
+  React.useEffect(() => {
+    setBaseClone(base);
+  }, [base]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedUpdateBase = React.useCallback(
+    debounce((value) => {
+      onThemeUpdate({
+        base: value,
+      });
+    }, 200),
+    []
+  );
   const updateBase = (value) => {
-    onThemeUpdate({
-      base: value,
-    });
+    setBaseClone(value);
+    debouncedUpdateBase(value);
   };
 
   const themeProps = getPropsFromThemeKey(EuiTheme);
@@ -68,7 +83,7 @@ export default ({ onThemeUpdate }) => {
                         property=""
                         name="base"
                         type={themeProps.base}
-                        value={euiTheme.base}
+                        value={baseClone}
                         groupProps={{ alignItems: 'center' }}
                         buttonStyle={css`
                           width: ${euiTheme.base}px;
