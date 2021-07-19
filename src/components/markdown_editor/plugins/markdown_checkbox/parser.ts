@@ -6,21 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useContext } from 'react';
-import { EuiCheckbox } from '../../form/checkbox';
-import { EuiMarkdownContext } from '../markdown_context';
-import { htmlIdGenerator } from '../../../services/accessibility';
-import { EuiMarkdownAstNodePosition, RemarkTokenizer } from '../markdown_types';
 import { Plugin } from 'unified';
+import { RemarkTokenizer } from '../../markdown_types';
+import { CheckboxNodeDetails } from './types';
 
-interface CheckboxNodeDetails {
-  type: 'checkboxPlugin';
-  lead: string;
-  label: string;
-  isChecked: boolean;
-}
-
-const CheckboxParser: Plugin = function CheckboxParser() {
+export const CheckboxParser: Plugin = function CheckboxParser() {
   const Parser = this.Parser;
   const tokenizers = Parser.prototype.blockTokenizers;
   const methods = Parser.prototype.blockMethods;
@@ -64,23 +54,3 @@ const CheckboxParser: Plugin = function CheckboxParser() {
   tokenizers.checkbox = tokenizeCheckbox;
   methods.splice(methods.indexOf('list'), 0, 'checkbox'); // Run it just before default `list` plugin to inject our own idea of checkboxes.
 };
-
-const CheckboxMarkdownRenderer: FunctionComponent<
-  CheckboxNodeDetails & {
-    position: EuiMarkdownAstNodePosition;
-  }
-> = ({ position, lead, label, isChecked, children }) => {
-  const { replaceNode } = useContext(EuiMarkdownContext);
-  return (
-    <EuiCheckbox
-      id={htmlIdGenerator()()}
-      checked={isChecked}
-      label={children}
-      onChange={() => {
-        replaceNode(position, `${lead}[${isChecked ? ' ' : 'x'}]${label}`);
-      }}
-    />
-  );
-};
-
-export { CheckboxParser as parser, CheckboxMarkdownRenderer as renderer };

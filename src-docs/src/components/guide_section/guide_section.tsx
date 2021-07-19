@@ -77,6 +77,9 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
       source.push({
         ...GuideSectionCodeTypesMap.SNIPPET,
         snippets: snippet,
+        displayName: `${GuideSectionCodeTypesMap.SNIPPET.displayName}${
+          Array.isArray(snippet) ? 's' : ''
+        }`,
       });
     }
 
