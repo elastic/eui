@@ -865,6 +865,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     orderedVisibleColumns
   );
 
+  useEffect(() => {
+    rowHeightUtils.clearHeightsCache();
+  }, [orderedVisibleColumns]);
+
   const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
