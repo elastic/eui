@@ -248,6 +248,10 @@ export const ButtonExample = {
         <strong>EuiButton</strong>. For tertiary or low prominence actions, use{' '}
         <strong>EuiButtonEmpty</strong>.
       </p>
+      <p>
+        Be sure to read the full{' '}
+        <Link to="/guidelines/button">button usage guidelines</Link>.
+      </p>
     </EuiText>
   ),
   sections: [
@@ -294,7 +298,7 @@ export const ButtonExample = {
       ],
       text: (
         <p>
-          Use <strong>EuiButtonEmpty</strong> when you want to make reduce the
+          Use <strong>EuiButtonEmpty</strong> when you want to reduce the
           importance of the button, but still want to align it to the rest of
           the buttons. It is also the only button component that supports down
           to size <EuiCode>xs</EuiCode>.
