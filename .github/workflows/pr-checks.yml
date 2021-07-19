@@ -1,0 +1,23 @@
+name: PR checks
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  pr-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+      - name: Install dependencies
+        run: npm i -g yarn && yarn
+      - name: Run linter
+        run: yarn lint
+      - name: Build
+        run: yarn build

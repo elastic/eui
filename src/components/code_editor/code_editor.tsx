@@ -284,34 +284,36 @@ export class EuiCodeEditor extends Component<
         data-test-subj={dataTestSubj}>
         {prompt}
 
-        <AceEditor
-          // Setting a default, existing `mode` is necessary to properly initialize the editor
-          // prior to dynamically setting a custom mode (https://github.com/elastic/eui/pull/2616)
-          mode={this.isCustomMode() ? DEFAULT_MODE : (mode as string)} // https://github.com/securingsincity/react-ace/pull/771
-          name={this.state.name}
-          theme={theme}
-          ref={this.aceEditorRef}
-          width={width}
-          height={height}
-          onFocus={this.onFocusAce}
-          onBlur={this.onBlurAce}
-          setOptions={options}
-          editorProps={{
-            $blockScrolling: Infinity,
-          }}
-          cursorStart={filteredCursorStart}
-          commands={[
-            // Handles exiting edit mode in all cases except `isReadOnly`
-            // Runs before `onKeydownAce`.
-            {
-              name: 'stopEditingOnEsc',
-              bindKey: { win: 'Esc', mac: 'Esc' },
-              exec: this.onEscToExit,
-            },
-            ...commands,
-          ]}
-          {...rest}
-        />
+        {typeof window !== 'undefined' && (
+          <AceEditor
+            // Setting a default, existing `mode` is necessary to properly initialize the editor
+            // prior to dynamically setting a custom mode (https://github.com/elastic/eui/pull/2616)
+            mode={this.isCustomMode() ? DEFAULT_MODE : (mode as string)} // https://github.com/securingsincity/react-ace/pull/771
+            name={this.state.name}
+            theme={theme}
+            ref={this.aceEditorRef}
+            width={width}
+            height={height}
+            onFocus={this.onFocusAce}
+            onBlur={this.onBlurAce}
+            setOptions={options}
+            editorProps={{
+              $blockScrolling: Infinity,
+            }}
+            cursorStart={filteredCursorStart}
+            commands={[
+              // Handles exiting edit mode in all cases except `isReadOnly`
+              // Runs before `onKeydownAce`.
+              {
+                name: 'stopEditingOnEsc',
+                bindKey: { win: 'Esc', mac: 'Esc' },
+                exec: this.onEscToExit,
+              },
+              ...commands,
+            ]}
+            {...rest}
+          />
+        )}
       </div>
     );
   }

@@ -1,0 +1,32 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+      - name: Install dependencies
+        run: npm i -g yarn && yarn
+      - name: Run linter
+        run: yarn lint
+      - name: Build
+        run: yarn build
+      - name: Publish
+        run: yarn release
+        env:
+          GITHUB_TOKEN: ${{ secrets.BOT_PACKAGES_WRITE_TOKEN }}
+          NPM_TOKEN: ${{ secrets.BOT_PACKAGES_WRITE_TOKEN }}
+          GIT_AUTHOR_NAME: ${{ secrets.BOT_GITHUB_USERNAME }}
+          GIT_AUTHOR_EMAIL: ${{ secrets.BOT_GITHUB_EMAIL }}
+          GIT_COMMITTER_NAME: ${{ secrets.BOT_GITHUB_USERNAME }}
+          GIT_COMMITTER_EMAIL: ${{ secrets.BOT_GITHUB_EMAIL }}
