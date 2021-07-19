@@ -6,7 +6,6 @@ import {
   EuiSpacer,
   EuiText,
   EuiLink,
-  EuiTitle,
 } from '../../../../src/components';
 import { GuideSectionTypes } from '../../components';
 import { ExternalBadge } from './shared';
@@ -14,7 +13,6 @@ import { TextureMultiSeriesChart } from './texture';
 import { TexturedStylesProps } from './texture_props';
 import { Sunburst } from './sunburst';
 import { BulletExample } from './bullet_example';
-import { EuiFlexGrid, EuiFlexItem } from '../../../../src/components/flex';
 
 const TextureMultiSeriesChartSource = require('!!raw-loader!./texture');
 const BulletChartSource = require('!!raw-loader!./bullet_example');
@@ -197,19 +195,32 @@ export const ElasticChartsAccessibilityExample = {
           </EuiCallOut>
         </>
       ),
-      demo: (
-        <EuiFlexGrid columns={2}>
-          <EuiFlexItem>
-            {' '}
-            <Sunburst />{' '}
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiTitle className="eui-textCenter" size="xs">
-              <h3>Visually hidden content for chart</h3>
-            </EuiTitle>
-            <EuiSpacer />
-            <EuiCode language="jsx" inline={false}>
-              {`<p>There is a great variety of reported favorite fruit</p>
+      demo: <Sunburst />,
+      snippet: `<h3 id={randomId}>Students' favorite fruit</h3>
+<Chart>
+  <Settings
+    ariaLabelledBy={randomId}
+    ariaDescription="There is a great variety of reported favorite fruit"
+    ariaTableCaption="For the chart representation, after Clementine (22) individual results are not labelled as the segments become too small"
+  />
+  <Partition {...props} />
+</Chart>`,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: SunburstSource,
+        },
+      ],
+    },
+    {
+      text: (
+        <>
+          <p>
+            For the provided example, a visually hidden data table is rendered
+            with the caption we passed on <EuiCode>ariaTableCaption</EuiCode>.
+          </p>
+          <EuiCode language="jsx" inline={false}>
+            {`<p>There is a great variety of reported favorite fruit</p>
 
 <dl>
   <dt>Chart type:</dt>
@@ -241,25 +252,9 @@ export const ElasticChartsAccessibilityExample = {
     </tr>
   </tbody>
 </table>`}
-            </EuiCode>
-          </EuiFlexItem>
-        </EuiFlexGrid>
+          </EuiCode>
+        </>
       ),
-      snippet: `<h3 id={randomId}>Students' favorite fruit</h3>
-<Chart>
-  <Settings
-    ariaLabelledBy={randomId}
-    ariaDescription="There is a great variety of reported favorite fruit"
-    ariaTableCaption="For the chart representation, after Clementine (22) individual results are not labelled as the segments become too small"
-  />
-  <Partition {...props} />
-</Chart>`,
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: SunburstSource,
-        },
-      ],
     },
     {
       title: 'Texture fill',
@@ -317,6 +312,7 @@ export const ElasticChartsAccessibilityExample = {
             You can add meaning to your color segments by using the{' '}
             <EuiCode>{'bandLabels'}</EuiCode> prop.
           </p>
+
           <EuiCallOut
             title={
               <>
@@ -328,47 +324,7 @@ export const ElasticChartsAccessibilityExample = {
           />
         </>
       ),
-      demo: (
-        <EuiFlexGrid columns={2}>
-          <EuiFlexItem>
-            <BulletExample />
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiTitle size="xs" className="eui-textCenter">
-              <h3>Visually hidden content for chart</h3>
-            </EuiTitle>
-            <EuiSpacer />
-            <EuiCode language="jsx" inline={false}>
-              {`<p>Revenue 2020 YTD</p>
-<p>(thousand USD</p>
-<p>This goal chart has a target of 260.</p>
-<dl>
-<dt>Chart type:</dt>
-<dd>horizontalBullet chart</dd>
-<dt>Minimum:</dt>
-<dd>0</dd>
-<dt>Maximum:</dt>
-<dd>300</dd>
-<dt>Target:</dt>
-<dd>260</dd>
-<dd>Value:</dd>
-<dt>280</dt>
-</dl>
-...
-<dl class="echScreenReaderOnly echGoalDescription">
-<dt>0 - 100</dt>
-<dd>cold</dd>
-<dt>100 - 125</dt>
-<dd>brisk</dd>
-<dt>125 - 150</dt>
-<dd>warm</dd>
-<dt>150 - 250</dt>
-<dd>hot</dd>
-</dl>`}
-            </EuiCode>
-          </EuiFlexItem>
-        </EuiFlexGrid>
-      ),
+      demo: <BulletExample />,
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -383,6 +339,45 @@ export const ElasticChartsAccessibilityExample = {
     {...otherProps}
   />
 </Chart>`,
+    },
+    {
+      text: (
+        <>
+          <p>
+            For the provided example, a visually hidden content is rendered with
+            a goal description list generated from the{' '}
+            <EuiCode>bandLabels</EuiCode> prop.
+          </p>
+          <EuiCode language="jsx" inline={false}>
+            {`<p>Revenue 2020 YTD</p>
+<p>(thousand USD</p>
+<p>This goal chart has a target of 260.</p>
+<dl>
+  <dt>Chart type:</dt>
+  <dd>horizontalBullet chart</dd>
+  <dt>Minimum:</dt>
+  <dd>0</dd>
+  <dt>Maximum:</dt>
+  <dd>300</dd>
+  <dt>Target:</dt>
+  <dd>260</dd>
+  <dd>Value:</dd>
+  <dt>280</dt>
+</dl>
+...
+<dl class="echScreenReaderOnly echGoalDescription">
+  <dt>0 - 100</dt>
+  <dd>cold</dd>
+  <dt>100 - 125</dt>
+  <dd>brisk</dd>
+  <dt>125 - 150</dt>
+  <dd>warm</dd>
+  <dt>150 - 250</dt>
+  <dd>hot</dd>
+</dl>`}
+          </EuiCode>
+        </>
+      ),
     },
   ],
 };
