@@ -9,6 +9,7 @@
 - Fixed render-blocking error when `EuiCodeBlock` is configured with an unsupported language ([#4943](https://github.com/elastic/eui/pull/4943))
 - Fixed initial alignment of `EuiDataGrid` cells and the expand button on multi-line cells ([#4955](https://github.com/elastic/eui/pull/4955))
 - Fixed background-color in `EuiCardSelect`'s button ([#4954](https://github.com/elastic/eui/pull/4954))
+- Fixed click event subscription bug in `EuiOverlayMask` ([#4967](https://github.com/elastic/eui/pull/4967))
 
 **Theme: Amsterdam**
 
