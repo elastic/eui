@@ -11,7 +11,7 @@ import {
   EuiRange,
   EuiColorPicker,
   useColorPickerState,
-  EuiButtonEmpty,
+  EuiButton,
   EuiPopover,
 } from '../../../../src';
 
@@ -216,14 +216,9 @@ export default () => {
   const closePopover = () => setIsPopoverOpen(false);
 
   const button = (
-    <EuiButtonEmpty
-      onClick={onButtonClick}
-      iconType="controlsVertical"
-      aria-label="Open props customization"
-      color="text"
-      size="s">
+    <EuiButton onClick={onButtonClick} iconType="controlsVertical" size="s">
       Customize props
-    </EuiButtonEmpty>
+    </EuiButton>
   );
 
   return (
@@ -267,10 +262,10 @@ export default () => {
               <EuiRange
                 min={12}
                 max={24}
-                step={4}
                 value={fontSizeScale}
                 onChange={onChangeFontSizeScale}
                 showValue
+                showLabels
                 disabled={textSize !== 'relative'}
               />
             </EuiFormRow>
@@ -280,7 +275,7 @@ export default () => {
 
       <EuiSpacer size="s" />
 
-      <EuiPanel hasBorder={true} className={panelClasses}>
+      <EuiPanel hasBorder={false} hasShadow={false} className={panelClasses}>
         <EuiMarkdownFormat
           textSize={textSize}
           color={textColor === 'custom' ? color : textColor}

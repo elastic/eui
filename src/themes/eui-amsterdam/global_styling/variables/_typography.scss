@@ -28,7 +28,7 @@ $euiCodeFontWeightBold: 700;
 
 // Use 8px increments for base gridline
 @function lineHeightFromBaseline($multiplier: 3) {
-  @return convertToRem(($euiFontSize/2)*$multiplier);
+  @return convertToRem(($euiSize/2)*$multiplier);
 }
 
 $euiTitles: (

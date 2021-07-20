@@ -24,6 +24,9 @@ export type EuiMarkdownFormatProps = CommonProps &
     parsingPluginList?: PluggableList;
     /** array of unified plugins to convert the AST into a ReactNode */
     processingPluginList?: PluggableList;
+    /**
+     * Determines the text size. Choose `relative` to control the `font-size` based on the value of a parent container.
+     */
     textSize?: EuiTextProps['size'];
   };
 

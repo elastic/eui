@@ -62,16 +62,14 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
   // We're checking if is a custom color.
   // If it is a custom color we set the `color` of the `.euiTextColor` div to that custom color.
   // This way the children text elements can `inherit` that color and border and backgrounds can get that `currentColor`.
-  const isCustomColor = !COLORS.includes(color as TextColor);
-
-  const style = isCustomColor
+  const style = !isNamedColor
     ? {
         color: color,
       }
     : undefined;
 
   return (
-    <Component className={classes} {...rest} style={style}>
+    <Component className={classes} style={style} {...rest}>
       {children}
     </Component>
   );

@@ -1,16 +1,14 @@
 import React, { FunctionComponent } from 'react';
 import {
   EuiMarkdownFormat,
+  EuiMarkdownFormatProps,
   getDefaultEuiMarkdownProcessingPlugins,
 } from '../../../../src/components/markdown_editor';
 import { slugify } from '../../../../src/services';
 
-export type GuideMarkdownFormatProps = {
-  children: any;
-};
-
-export const GuideMarkdownFormat: FunctionComponent<GuideMarkdownFormatProps> = ({
+export const GuideMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   children,
+  ...rest
 }) => {
   const processingPlugins = getDefaultEuiMarkdownProcessingPlugins();
   const rehype2reactConfig = processingPlugins[1][1];
@@ -25,7 +23,8 @@ export const GuideMarkdownFormat: FunctionComponent<GuideMarkdownFormatProps> = 
     <EuiMarkdownFormat
       processingPluginList={processingPlugins}
       className="guideMarkdownFormat"
-      textSize="m">
+      textSize="m"
+      {...rest}>
       {children}
     </EuiMarkdownFormat>
   );

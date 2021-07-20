@@ -306,7 +306,7 @@ const createMarkdownExample = (example, title) => {
     name: title,
     component: () => (
       <GuidePage title={title}>
-        <GuideMarkdownFormat title={title}>
+        <GuideMarkdownFormat title={title} grow={false}>
           {example.default}
         </GuideMarkdownFormat>
       </GuidePage>

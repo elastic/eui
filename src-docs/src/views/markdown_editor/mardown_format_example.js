@@ -1,7 +1,4 @@
 import React, { Fragment } from 'react';
-
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -15,15 +12,12 @@ import { Link } from 'react-router-dom';
 
 import MarkdownFormat from './markdown_format';
 const markdownFormatSource = require('!!raw-loader!./markdown_format');
-const markdownFormatHtml = renderToHtml(MarkdownFormat);
 
 import MarkdownFormatStyles from './markdown_format_styles';
 const markdownFormatStylesSource = require('!!raw-loader!./markdown_format_styles');
-const markdownFormatStylesHtml = renderToHtml(MarkdownFormatStyles);
 
 import MarkdownFormatSink from './markdown_format_sink';
 const markdownFormatSinkSource = require('!!raw-loader!./markdown_format_sink');
-const markdownFormatSinkHtml = renderToHtml(MarkdownFormatSink);
 
 export const MarkdownFormatExample = {
   title: 'Markdown format',
@@ -49,10 +43,6 @@ export const MarkdownFormatExample = {
         {
           type: GuideSectionTypes.JS,
           code: markdownFormatSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: markdownFormatHtml,
         },
       ],
       title: 'Built in plugins',
@@ -81,15 +71,11 @@ export const MarkdownFormatExample = {
           type: GuideSectionTypes.JS,
           code: markdownFormatStylesSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: markdownFormatStylesHtml,
-        },
       ],
       title: 'Text sizing and coloring',
       text: (
         <p>
-          <strong>EuiMarkdownFormat</strong> uses the{' '}
+          <strong>EuiMarkdownFormat</strong> uses{' '}
           <Link to="/display/text/">EuiText</Link> as a wrapper to handle all
           the CSS styling when rendering the HTML. It also gives the ability to
           control the text size and color with the <EuiCode>textSize</EuiCode>{' '}
@@ -106,10 +92,6 @@ export const MarkdownFormatExample = {
         {
           type: GuideSectionTypes.JS,
           code: markdownFormatSinkSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: markdownFormatSinkHtml,
         },
       ],
       title: 'Kitchen sink',
