@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
@@ -35,7 +35,7 @@ export type EuiTextColorProps = CommonProps &
      * **`secondary` color is DEPRECATED, use `success` instead**
      * Any of our named colors or a `hex`, `rgb` or `rgba` value.
      */
-    color?: TextColor | string;
+    color?: TextColor | CSSProperties['color'];
     /**
      * Determines the root element
      */
