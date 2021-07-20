@@ -34,7 +34,7 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover euiPopover--anchorDownCenter"
+        class="euiPopover euiPopover--anchorDownCenter euiBreadcrumb__content"
       >
         <div
           class="euiPopover__anchor"
@@ -191,7 +191,7 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover euiPopover--anchorDownCenter"
+        class="euiPopover euiPopover--anchorDownCenter euiBreadcrumb__content"
       >
         <div
           class="euiPopover__anchor"
@@ -348,7 +348,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover euiPopover--anchorDownCenter"
+        class="euiPopover euiPopover--anchorDownCenter euiBreadcrumb__content"
       >
         <div
           class="euiPopover__anchor"
@@ -435,7 +435,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover euiPopover--anchorDownCenter"
+        class="euiPopover euiPopover--anchorDownCenter euiBreadcrumb__content"
       >
         <div
           class="euiPopover__anchor"
@@ -501,7 +501,7 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover euiPopover--anchorDownCenter"
+        class="euiPopover euiPopover--anchorDownCenter euiBreadcrumb__content"
       >
         <div
           class="euiPopover__anchor"
@@ -567,7 +567,7 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover euiPopover--anchorDownCenter"
+        class="euiPopover euiPopover--anchorDownCenter euiBreadcrumb__content"
       >
         <div
           class="euiPopover__anchor"

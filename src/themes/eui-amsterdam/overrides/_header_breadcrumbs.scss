@@ -1,7 +1,73 @@
 .euiHeaderBreadcrumbs {
+  line-height: $euiSize;
+  margin-left: $euiSizeS;
+  margin-right: $euiSizeS;
+
   .euiBreadcrumb {
+    .euiBreadcrumb__content {
+      font-size: $euiFontSizeXS;
+      clip-path: polygon(0 0, calc(100% - #{$euiSizeS}) 0, 100% 50%, calc(100% - #{$euiSizeS}) 100%, 0 100%, $euiSizeS 50%);
+    }
+
     &::after {
       display: none;
+    }
+
+    // In case the item is first AND last, aka only, just make it a fully rounded item
+    &:only-child {
+      .euiBreadcrumb__content {
+        clip-path: none;
+        padding-left: $euiSizeM;
+        padding-right: $euiSizeM;
+        border-radius: $euiBorderRadius;
+      }
+    }
+
+    &:not(.euiBreadcrumb--last) {
+      margin-right: -$euiSizeXS;
+    }
+
+    &:first-child {
+      .euiBreadcrumb__content {
+        padding-left: $euiSizeM;
+        border-radius: $euiBorderRadius 0 0 $euiBorderRadius;
+        clip-path: polygon(0 0, calc(100% - #{$euiSizeS}) 0, 100% 50%, calc(100% - #{$euiSizeS}) 100%, 0 100%);
+      }
+    }
+  }
+
+  .euiBreadcrumb--last {
+    .euiBreadcrumb__content {
+      border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
+      padding-right: $euiSizeM;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, #{$euiSizeS} 50%);
+    }
+  }
+
+  // Only the header breadcrumbs get the new Amsterdam style so that there can
+  // still be default text only breadcrumbs for places like EuiControlBar
+  .euiBreadcrumb__content {
+    @include euiButtonDefaultStyle($euiTextColor);
+    line-height: $euiSize;
+    font-weight: $euiFontWeightMedium;
+    padding: $euiSizeXS $euiSize;
+
+    &.euiLink,
+    &.euiPopover {
+      @include euiButtonDefaultStyle($euiColorPrimary);
+
+      &:hover,
+      &:focus {
+        @include euiFocusRing(null, 'inner');
+        color: $euiColorPrimary;
+
+        // sass-lint:disable nesting-depth
+        &:focus-visible {
+          // Turn radius and clip path off when in focus so the focus ring looks correct
+          border-radius: 0;
+          clip-path: none;
+        }
+      }
     }
   }
 }

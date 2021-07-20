@@ -25,6 +25,8 @@ import { EuiIcon } from '../icon';
 import { throttle } from '../../services';
 import { EuiBreakpointSize, getBreakpoint } from '../../services/breakpoint';
 
+const CONTENT_CLASSNAME = 'euiBreadcrumb__content';
+
 export type EuiBreadcrumbResponsiveMaxCount = {
   /**
    * Any of the following keys are allowed: `'xs' | 's' | 'm' | 'l' | 'xl'`
@@ -141,6 +143,7 @@ const limitBreadcrumbs = (
         <EuiPopover
           button={ellipsisButton}
           isOpen={isPopoverOpen}
+          className={CONTENT_CLASSNAME}
           closePopover={() => setIsPopoverOpen(false)}>
           <EuiBreadcrumbs
             className="euiBreadcrumbs__inPopover"
@@ -206,7 +209,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
       'euiBreadcrumb--truncate': truncate,
     });
     const linkProps = {
-      className: 'euiBreadcrumb__content',
+      className: CONTENT_CLASSNAME,
       'aria-current': isLastBreadcrumb ? 'page' : undefined,
     } as { className: string; 'aria-current': AriaAttributes['aria-current'] };
 
