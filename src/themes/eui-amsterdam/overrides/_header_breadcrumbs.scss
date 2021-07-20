@@ -1,0 +1,7 @@
+.euiHeaderBreadcrumbs {
+  .euiBreadcrumb {
+    &::after {
+      display: none;
+    }
+  }
+}
