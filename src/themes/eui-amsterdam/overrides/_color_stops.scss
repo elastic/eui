@@ -26,13 +26,27 @@
 }
 
 .euiColorStops:not(.euiColorStops-isDisabled) {
-  &:focus {
-    // prevents a flash of the outline in Safari
+  .euiRangeTrack::after {
+    transition-property: box-shadow;
+    // this `transition-delay` prevents Safari of adding the focus ring (box-shadow) every time we click the `EuiColorStops`
+    // the focus still appear when we drag a color stop in Safari
     transition-delay: $euiAnimSpeedExtraFast;
   }
 
-  &:focus:not(:focus-visible) {
+  &:focus {
     outline: none;
+
+    .euiRangeTrack::after {
+      // sass-lint:disable-block no-color-literals
+      box-shadow: 0 0 0 1px rgba($euiColorEmptyShade, .8),
+      0 0 0 3px $euiFocusRingColor;
+    }
+  }
+
+  &:focus:not(:focus-visible) {
+    .euiRangeTrack::after {
+      box-shadow: none;
+    }
   }
 }
 

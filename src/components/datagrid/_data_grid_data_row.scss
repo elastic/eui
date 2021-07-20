@@ -136,17 +136,36 @@
 }
 
 .euiDataGridRowCell__expandFlex {
+  position: relative; // for positioning expand button
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .euiDataGridRowCell__expandContent {
   flex-grow: 1;
 }
 
+.euiDataGridRowCell__contentByHeight {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.euiDataGridRowCell__alignBaseLine {
+  align-items: baseline;
+}
+
 .euiDataGridRowCell__expandButton {
   display: flex;
   flex-grow: 0;
+
+  .euiDataGridRowCell__contentByHeight + & {
+    background-color: $euiColorEmptyShade;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: $euiDataGridCellPaddingM 0;
+  }
 }
 
 .euiDataGridRowCell__expandButtonIcon {
@@ -216,10 +235,18 @@
   }
 }
 
+.euiDataGridRowCell--fontSizeSmall {
+  @include euiFontSizeXS;
+}
+
 @include euiDataGridStyles(fontSizeLarge) {
   @include euiDataGridRowCell {
     @include euiFontSize;
   }
+}
+
+.euiDataGridRowCell--fontSizeLarge {
+  @include euiFontSize;
 }
 
 // Padding alternates
@@ -234,6 +261,14 @@
   }
 }
 
+.euiDataGridRowCell--paddingSmall {
+  padding: $euiDataGridCellPaddingS;
+
+  .euiDataGridRowCell__contentByHeight + .euiDataGridRowCell__expandButton {
+    padding: 0;
+  }
+}
+
 @include euiDataGridStyles(paddingLarge) {
   @include euiDataGridRowCell {
     padding: $euiDataGridCellPaddingL;
@@ -242,6 +277,14 @@
       // Needed because the focus state adds a border, which needs to be subtracted from padding
       padding-left: $euiDataGridCellPaddingL - 1px;
     }
+  }
+}
+
+.euiDataGridRowCell--paddingLarge {
+  padding: $euiDataGridCellPaddingL;
+
+  .euiDataGridRowCell__contentByHeight + .euiDataGridRowCell__expandButton {
+    padding: $euiDataGridCellPaddingL 0;
   }
 }
 
