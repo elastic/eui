@@ -27,28 +27,12 @@ import {
 import { Options as Remark2RehypeOptions, Handler } from 'mdast-util-to-hast';
 import all from 'mdast-util-to-hast/lib/all';
 import rehype2react from 'rehype-react';
-import markdown from 'remark-parse';
-import emoji from 'remark-emoji';
 import remark2rehype from 'remark-rehype';
-import highlight from './remark/remark_prismjs';
-import * as MarkdownTooltip from './markdown_tooltip';
-import * as MarkdownCheckbox from './markdown_checkbox';
-import { markdownLinkValidator } from './markdown_link_validator';
-import { EuiMarkdownEditorUiPlugin } from './../markdown_types';
-import { EuiLink } from '../../link';
-import { EuiCodeBlock, EuiCode } from '../../code';
-import { EuiHorizontalRule } from '../../horizontal_rule';
-
-export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
-  [markdown, {}],
-  [highlight, {}],
-  [emoji, { emoticon: true }],
-  [MarkdownTooltip.parser, {}],
-  [MarkdownCheckbox.parser, {}],
-  [markdownLinkValidator, {}],
-];
-
-export const defaultParsingPlugins = getDefaultEuiMarkdownParsingPlugins();
+import * as MarkdownTooltip from '../markdown_tooltip';
+import * as MarkdownCheckbox from '../markdown_checkbox';
+import { EuiLink } from '../../../link';
+import { EuiCodeBlock, EuiCode } from '../../../code';
+import { EuiHorizontalRule } from '../../../horizontal_rule';
 
 const unknownHandler: Handler = (h, node) => {
   return h(node, node.type, node, all(h, node));
@@ -106,12 +90,3 @@ export const getDefaultEuiMarkdownProcessingPlugins = (): [
 ];
 
 export const defaultProcessingPlugins = getDefaultEuiMarkdownProcessingPlugins();
-
-export const getDefaultEuiMarkdownUiPlugins = (): EuiMarkdownEditorUiPlugin[] => {
-  const array = [MarkdownTooltip.plugin];
-  // @ts-ignore __originatedFromEui is a custom property
-  array.__originatedFromEui = true;
-  return array;
-};
-
-export const defaultUiPlugins = getDefaultEuiMarkdownUiPlugins();
