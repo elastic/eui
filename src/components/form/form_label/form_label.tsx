@@ -24,18 +24,22 @@ interface EuiFormLabelCommonProps {
   type?: 'label' | 'legend';
 }
 
-type LabelProps = {
+export type _EuiFormLabelProps = {
   type?: 'label';
 } & EuiFormLabelCommonProps &
+  CommonProps &
   LabelHTMLAttributes<HTMLLabelElement>;
 
-type LegendProps = {
+export type _EuiFormLegendProps = {
   type: 'legend';
 } & EuiFormLabelCommonProps &
+  CommonProps &
   HTMLAttributes<HTMLLegendElement>;
 
-export type EuiFormLabelProps = CommonProps &
-  ExclusiveUnion<LabelProps, LegendProps>;
+export type EuiFormLabelProps = ExclusiveUnion<
+  _EuiFormLabelProps,
+  _EuiFormLegendProps
+>;
 
 export const EuiFormLabel: FunctionComponent<EuiFormLabelProps> = ({
   type = 'label',
