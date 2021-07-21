@@ -30,6 +30,7 @@ import rehype2react from 'rehype-react';
 import remark2rehype from 'remark-rehype';
 import * as MarkdownTooltip from '../markdown_tooltip';
 import * as MarkdownCheckbox from '../markdown_checkbox';
+import { FENCED_CLASS } from '../remark/remark_prismjs';
 import { EuiLink } from '../../../link';
 import { EuiCodeBlock, EuiCode } from '../../../code';
 import { EuiHorizontalRule } from '../../../horizontal_rule';
@@ -64,7 +65,8 @@ export const getDefaultEuiMarkdownProcessingPlugins = (): [
         a: EuiLink,
         code: (props: any) =>
           // If there are linebreaks use codeblock, otherwise code
-          /\r|\n/.exec(props.children) ? (
+          /\r|\n/.exec(props.children) ||
+          (props.className && props.className.indexOf(FENCED_CLASS) > -1) ? (
             <EuiCodeBlock fontSize="m" paddingSize="s" {...props} />
           ) : (
             <EuiCode {...props} />
