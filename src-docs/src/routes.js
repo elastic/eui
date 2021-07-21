@@ -1,9 +1,12 @@
 import React, { createElement, Fragment } from 'react';
+import ReactDOMServer from 'react-dom/server';
 import { slugify } from '../../src/services';
 
 import { createHashHistory } from 'history';
 
 import { GuidePage, GuideSection } from './components';
+
+import { GuideGuidelines } from './components/guide_guidelines';
 
 import { EuiErrorBoundary } from '../../src/components';
 
@@ -18,7 +21,8 @@ import ColorGuidelines from './views/guidelines/colors';
 
 import { SassGuidelines } from './views/guidelines/sass';
 
-import WritingGuidelines from './views/guidelines/writing';
+import WritingGuidelines from './views/guidelines/writing_guidelines';
+import WritingExamples from './views/guidelines/writing_examples';
 
 // Services
 
@@ -293,6 +297,55 @@ const createExample = (example, customTitle) => {
   };
 };
 
+const createGuidelines = (title, guidelines, examples, isNew) => {
+  const component = () => (
+    <EuiErrorBoundary>
+      <GuideGuidelines
+        title={title}
+        guidelines={guidelines}
+        examples={examples}
+      />
+    </EuiErrorBoundary>
+  );
+
+  const createGuideLinesSections = (section) => {
+    const htmlString = ReactDOMServer.renderToStaticMarkup(section);
+
+    const headings = htmlString.match(/h2 id=\"(.*?)\"/g);
+
+    const guidelinesSections = headings.map((heading) => {
+      const id = heading.replace('h2 id="', '').slice(0, -1);
+
+      const title = id.replace(/-/g, ' ');
+
+      const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
+
+      return { id: id, name: capitalizedTitle };
+    });
+
+    return guidelinesSections;
+  };
+
+  return {
+    name: title,
+    component,
+    sections: [
+      {
+        id: 'guidelines',
+        title: 'Guidelines',
+        items: createGuideLinesSections(guidelines()),
+      },
+      {
+        id: 'examples',
+        title: 'Examples',
+        items: createGuideLinesSections(examples()),
+      },
+    ],
+    isNew,
+    isGuideLinePage: true,
+  };
+};
+
 // const createMarkdownExample = (example, title) => {
 //   const headings = example.default.match(/^(##) (.*)/gm);
 
@@ -330,7 +383,7 @@ const navigation = [
         name: 'Sass',
         component: SassGuidelines,
       },
-      createExample(WritingGuidelines, 'Writing'),
+      createGuidelines('Writing', WritingGuidelines, WritingExamples),
     ],
   },
   {
@@ -486,20 +539,37 @@ const navigation = [
 ].map(({ name, items, ...rest }) => ({
   name,
   type: slugify(name),
-  items: items.map(({ name: itemName, hasGuidelines, ...rest }) => {
-    const item = {
-      name: itemName,
-      path: `${slugify(name)}/${slugify(itemName)}`,
-      ...rest,
-    };
+  items: items.map(
+    ({ name: itemName, hasGuidelines, isGuideLinePage, sections, ...rest }) => {
+      let item;
 
-    if (hasGuidelines) {
-      item.from = `guidelines/${slugify(itemName)}`;
-      item.to = `${slugify(name)}/${slugify(itemName)}/guidelines`;
+      // when is as guidelinePage with multiple tabs the first nav item is the first of the list
+      if (isGuideLinePage) {
+        item = {
+          name: itemName,
+          path: `${slugify(name)}/${slugify(itemName)}/${slugify(
+            sections[0].id
+          )}`,
+          sections,
+          ...rest,
+        };
+      } else {
+        item = {
+          name: itemName,
+          path: `${slugify(name)}/${slugify(itemName)}`,
+          sections,
+          ...rest,
+        };
+      }
+
+      if (hasGuidelines) {
+        item.from = `guidelines/${slugify(itemName)}`;
+        item.to = `${slugify(name)}/${slugify(itemName)}/guidelines`;
+      }
+
+      return item;
     }
-
-    return item;
-  }),
+  ),
   ...rest,
 }));
 
