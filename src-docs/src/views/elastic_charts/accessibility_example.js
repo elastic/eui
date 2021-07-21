@@ -343,6 +343,17 @@ export const ElasticChartsAccessibilityExample = {
     {
       text: (
         <>
+          <EuiCallOut
+            title={
+              <>
+                <ExternalBadge /> does not have configuration options to set the
+                color of the labels.
+              </>
+            }
+            color="warning"
+            iconType="alert"
+          />
+          <EuiSpacer />
           <p>
             For the provided example, a visually hidden content is rendered with
             a goal description list generated from the{' '}
