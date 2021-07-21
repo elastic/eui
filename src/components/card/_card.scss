@@ -8,6 +8,7 @@
 // EuiCard inherits most from EuiPanel, these styles are for content or other states
 
 .euiCard {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 1px; /* 2 */
@@ -99,6 +100,10 @@
   }
 }
 
+.euiCard__content-container {
+  position: relative;
+}
+
 // This creates a bunch of sub selectors for the beta badge
 @include euiHasBetaBadge($selector: '.euiCard', $spacing: $euiCardSpacing);
 
@@ -136,6 +141,15 @@
     }
 
   }
+}
+
+.euiCard__hidden-bottom-link,
+.euiCard__hidden-top-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .euiCard__top {

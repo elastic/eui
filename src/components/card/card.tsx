@@ -11,6 +11,8 @@ import React, {
   ReactElement,
   ReactNode,
   isValidElement,
+  useRef,
+  MutableRefObject,
   HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
@@ -198,18 +200,44 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 }) => {
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
+  const renderAnchor = !isDisabled && href;
+  const link = useRef<HTMLAnchorElement | HTMLButtonElement>();
   const isClickable =
     !isDisabled && (onClick || href || (selectable && !selectable.isDisabled));
 
   /**
    * For a11y, we simulate the same click that's provided on the title when clicking the whole card
    * without having to make the whole card a button or anchor tag.
-   * *Card Accessibility: The redundant click event https://inclusive-components.design/cards/*
+   * *Card Accessibility: The redundant click event https://inclusive-components.design/cards/ *
    */
-  let link: HTMLAnchorElement | HTMLButtonElement | null = null;
-  const outerOnClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (link && link !== e.target) {
-      link.click();
+  const outerOnClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (link.current && link.current !== event.target) {
+      let newEvent;
+      if ('MouseEvent' in window && typeof MouseEvent === 'function') {
+        const {
+          button,
+          metaKey,
+          altKey,
+          ctrlKey,
+          shiftKey,
+          relatedTarget,
+        } = event;
+
+        newEvent = new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          button,
+          metaKey,
+          altKey,
+          ctrlKey,
+          shiftKey,
+          relatedTarget,
+        });
+      }
+
+      if (newEvent) {
+        link.current.dispatchEvent(newEvent);
+      }
     }
   };
 
@@ -277,6 +305,15 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       <div className="euiCard__top">
         {imageNode}
         {iconNode}
+        {/* eslint-disable jsx-a11y/anchor-has-content */}
+        {renderAnchor && (
+          <a
+            href={href}
+            aria-hidden="true"
+            tabIndex={-1}
+            className="euiCard__hidden-top-link"
+          />
+        )}
       </div>
     );
   }
@@ -323,9 +360,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       <EuiCardSelect
         aria-describedby={`${ariaId}Title ${ariaDesc}`}
         {...selectable}
-        buttonRef={(node) => {
-          link = node;
-        }}
+        buttonRef={(node) => (link.current = node || undefined)}
       />
     );
   }
@@ -336,7 +371,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
    */
 
   let theTitle;
-  if (!isDisabled && href) {
+  if (renderAnchor) {
     theTitle = (
       <a
         className="euiCard__titleAnchor"
@@ -345,9 +380,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         target={target}
         aria-describedby={ariaDesc}
         rel={getSecureRelForTarget({ href, target, rel })}
-        ref={(node) => {
-          link = node;
-        }}>
+        ref={link as MutableRefObject<HTMLAnchorElement>}>
         {title}
       </a>
     );
@@ -358,9 +391,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
         disabled={isDisabled}
         aria-describedby={`${optionalBetaBadgeID} ${ariaDesc}`}
-        ref={(node) => {
-          link = node;
-        }}>
+        ref={link as MutableRefObject<HTMLButtonElement>}>
         {title}
       </button>
     );
@@ -384,32 +415,42 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       hasBorder={display ? false : undefined}
       paddingSize={paddingSize}
       {...rest}>
-      {optionalCardTop}
-
-      <div className="euiCard__content">
-        <EuiTitle
-          id={`${ariaId}Title`}
-          className="euiCard__title"
-          size={titleSize}>
-          <TitleElement>{theTitle}</TitleElement>
-        </EuiTitle>
-
-        {description && (
-          <EuiText id={ariaDesc} size="s" className="euiCard__description">
-            <p>{description}</p>
-          </EuiText>
-        )}
-
-        {children && <div className="euiCard__children">{children}</div>}
-      </div>
-
-      {/* Beta badge should always be after the title/description but before any footer buttons */}
-      {optionalBetaBadge}
-
-      {layout === 'vertical' && footer && (
-        <div className="euiCard__footer">{footer}</div>
+      {renderAnchor && (
+        <a
+          href={href}
+          aria-hidden="true"
+          tabIndex={-1}
+          className="euiCard__hidden-bottom-link"
+        />
       )}
-      {optionalSelectButton}
+      <div className="euiCard__content-container">
+        {optionalCardTop}
+
+        <div className="euiCard__content">
+          <EuiTitle
+            id={`${ariaId}Title`}
+            className="euiCard__title"
+            size={titleSize}>
+            <TitleElement>{theTitle}</TitleElement>
+          </EuiTitle>
+
+          {description && (
+            <EuiText id={ariaDesc} size="s" className="euiCard__description">
+              <p>{description}</p>
+            </EuiText>
+          )}
+
+          {children && <div className="euiCard__children">{children}</div>}
+        </div>
+
+        {/* Beta badge should always be after the title/description but before any footer buttons */}
+        {optionalBetaBadge}
+
+        {layout === 'vertical' && footer && (
+          <div className="euiCard__footer">{footer}</div>
+        )}
+        {optionalSelectButton}
+      </div>
     </EuiPanel>
   );
 };
