@@ -37,10 +37,10 @@ export default () => {
     <div>
       <EuiThemeProvider modify={primaryOverrides}>
         <Box>
-          The <EuiCode>euiColorPrimary</EuiCode> color has been changed to{' '}
+          The <EuiCode>colors.primary</EuiCode> value has been changed to{' '}
           <EuiCode>#db1dde</EuiCode> (<EuiCode>#e378e4</EuiCode> for dark mode)
-          and so the calculated values of <EuiCode>euiColorPrimaryText</EuiCode>{' '}
-          and <EuiCode>euiFocusBackgroundColor</EuiCode> have also been updated.
+          and so the calculated value of <EuiCode>colors.primaryText</EuiCode>{' '}
+          has also been updated.
         </Box>
       </EuiThemeProvider>
     </div>

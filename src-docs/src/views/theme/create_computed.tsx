@@ -44,7 +44,6 @@ export default () => {
           (customColorPrimary) => tint(customColorPrimary, 0.8),
           'colors.customColorPrimary'
         ),
-        // Need a global contrast function
         customColorPrimaryText: computed(
           (customColorPrimary) => shade(customColorPrimary, 0.8),
           'colors.customColorPrimary'
@@ -56,7 +55,6 @@ export default () => {
           ([customColorPrimary]) => shade(customColorPrimary, 0.8),
           ['colors.customColorPrimary']
         ),
-        // Need a global contrast function
         customColorPrimaryText: computed(
           ([customColorPrimary]) => tint(customColorPrimary, 0.8),
           ['colors.customColorPrimary']
@@ -69,7 +67,7 @@ export default () => {
     <div>
       <EuiThemeProvider modify={primaryOverrides}>
         <Box>
-          A new key of <EuiCode>customColorPrimary</EuiCode> has been added as
+          A new key of <EuiCode>customColorPrimary</EuiCode> has been added as{' '}
           <EuiCode>rgb(29, 222, 204)</EuiCode>.
           <br />
           <br />

@@ -185,10 +185,11 @@ export const ThemeExample = {
       text: (
         <>
           <p>
-            While it is usually best to keep all components rendering in the
-            same light or dark color mode, some components benefit from an
-            exaggerated change in contrast from the current theme. For this you
-            can specify <strong>EuiThemeProvider</strong>&apos;s{' '}
+            While it is usually best to keep all consumptions of the global
+            variables rendering in the same light or dark color mode, some
+            instances benefit from an exaggerated change in contrast from the
+            current theme. For this you can specify{' '}
+            <strong>EuiThemeProvider</strong>&apos;s{' '}
             <EuiCode>colorMode</EuiCode> to always be{' '}
             <EuiCode>{'"light"'}</EuiCode>, <EuiCode>{'"dark"'}</EuiCode>, or{' '}
             <EuiCode>{'"inverse"'}</EuiCode> which sets it to the opposite of
@@ -247,8 +248,8 @@ export const ThemeExample = {
           </p>
           <p>
             For instance, we compute text variants of our base colors. So
-            locally overriding the <EuiCode>euiColorPrimary</EuiCode> color will
-            automatically cascade to the <EuiCode>euiColorPrimaryText</EuiCode>.
+            locally overriding the <EuiCode>colors.primary</EuiCode> color will
+            automatically cascade to the <EuiCode>colors.primaryText</EuiCode>.
             You can however, directly override computed values as well by
             passing a custom value to this theme variable.
           </p>
@@ -275,9 +276,6 @@ export const ThemeExample = {
             not be advisable to locally <strong>override</strong> any EUI
             specific theme variables. Instead, you should append custom keys to
             the theme.
-          </p>
-          <p>
-            <em>TODO: Indicate type support for custom keys.</em>
           </p>
         </>
       ),
