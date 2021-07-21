@@ -354,7 +354,25 @@ export const SassGuidelines = ({ selectedTheme }) => {
   const palette = getSassVars(selectedTheme);
 
   return (
-    <GuidePage title="Sass guidelines">
+    <GuidePage
+      title="Sass guidelines"
+      intro={
+        <EuiText grow={false}>
+          <p>
+            EUI is highly tokenized and highly recommends using the following
+            Sass variables when customizing on top of EUI. This way your
+            customizations stay up to date with EUI&apos;s theming.
+          </p>
+          <p>
+            For more information on how to consume these Sass variables in your
+            project, see the{' '}
+            <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/consuming.md#using-our-sass-variables-on-top-of-compiled-css">
+              Consuming wiki page
+            </EuiLink>
+            .
+          </p>
+        </EuiText>
+      }>
       <EuiTitle>
         <h2>Core variables</h2>
       </EuiTitle>

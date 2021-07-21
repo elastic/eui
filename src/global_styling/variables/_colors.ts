@@ -91,13 +91,16 @@ export type _EuiThemeShadeColors = {
    */
   mediumShade: ColorModeSwitch;
   /**
-   * ?
+   * Slightly subtle graphic color
    */
   darkShade: ColorModeSwitch;
   /**
    * Used as the text color and the background color for inverted components like tooltips and the control bar.
    */
   darkestShade: ColorModeSwitch;
+  /**
+   * The opposide of `emptyShade`
+   */
   fullShade: ColorModeSwitch;
 };
 

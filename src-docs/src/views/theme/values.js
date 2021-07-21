@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-
+import { Link } from 'react-router-dom';
 import {
   useEuiTheme,
   mergeDeep,
@@ -23,6 +23,10 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiCode,
+  EuiFlyout,
+  EuiFlyoutHeader,
+  EuiFlyoutBody,
+  EuiTitle,
 } from '../../../../src/components';
 import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
 import { EuiButton } from '../../../../src/components/button';
@@ -30,6 +34,7 @@ import { EuiCopy } from '../../../../src/components/copy';
 import { EuiCallOut } from '../../../../src/components/call_out';
 
 export default () => {
+  const [jsonFlyoutIsOpen, setJsonFlyoutIsOpen] = React.useState(false);
   const [overrides, setOverrides] = React.useState({});
   const { euiTheme } = useEuiTheme();
 
@@ -42,18 +47,20 @@ export default () => {
 
   return (
     <EuiThemeProvider modify={overrides}>
-      <GuidePage title="Global values">
-        <EuiCallOut color="warning">
-          <p>
-            The <EuiCode>euiTheme()</EuiCode> hook is only available for
-            consuming the values. Modifying or overriding the values will not
-            have any effect on the individual EUI components, yet. Instead, you
-            still need to use the Sass method.
-          </p>
-        </EuiCallOut>
-
-        <EuiSpacer />
-
+      <GuidePage
+        isBeta
+        title="Global values"
+        intro={
+          <EuiCallOut color="warning">
+            <p>
+              The <EuiCode>euiTheme()</EuiCode> hook is only available for
+              consuming the values. Modifying or overriding the values will not
+              have any effect on the individual EUI components, yet. Instead,
+              you still need to use the{' '}
+              <Link to="/guidelines/sass">Sass method</Link>.
+            </p>
+          </EuiCallOut>
+        }>
         <Colors onThemeUpdate={updateTheme} />
 
         <EuiHorizontalRule margin="xxl" />
@@ -68,10 +75,6 @@ export default () => {
 
         <Border onThemeUpdate={updateTheme} />
 
-        {/* <EuiHorizontalRule margin="xxl" />
-
-        <Focus onThemeUpdate={updateTheme} /> */}
-
         <EuiHorizontalRule margin="xxl" />
 
         <Animation onThemeUpdate={updateTheme} />
@@ -84,9 +87,11 @@ export default () => {
 
         <EuiSpacer />
 
-        {Object.keys(overrides).length > 0 && (
-          <EuiBottomBar position="sticky">
-            <EuiFlexGroup justifyContent="flexEnd">
+        <EuiBottomBar
+          style={{ marginLeft: -24, marginRight: -24, marginBottom: -24 }}
+          position="sticky">
+          <EuiFlexGroup responsive={false} justifyContent="flexEnd">
+            {Object.keys(overrides).length > 0 && (
               <EuiFlexItem grow={false}>
                 <EuiCopy textToCopy={JSON.stringify(overrides, null, 2)}>
                   {(copy) => (
@@ -96,11 +101,33 @@ export default () => {
                   )}
                 </EuiCopy>
               </EuiFlexItem>
-            </EuiFlexGroup>
-          </EuiBottomBar>
-        )}
+            )}
+            <EuiFlexItem grow={false}>
+              <span>
+                <EuiButton
+                  onClick={() => setJsonFlyoutIsOpen(true)}
+                  color="ghost">
+                  View theme JSON
+                </EuiButton>
+              </span>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiBottomBar>
 
-        <EuiCodeBlock>{JSON.stringify(euiTheme, null, 2)}</EuiCodeBlock>
+        {jsonFlyoutIsOpen && (
+          <EuiFlyout onClose={() => setJsonFlyoutIsOpen(false)}>
+            <EuiFlyoutHeader hasBorder aria-labelledby={'jsonFlyoutHeading'}>
+              <EuiTitle>
+                <h2 id={'jsonFlyoutHeading'}>Calculated EuiTheme JSON</h2>
+              </EuiTitle>
+            </EuiFlyoutHeader>
+            <EuiFlyoutBody>
+              <EuiCodeBlock language="json" isCopyable>
+                {JSON.stringify(euiTheme, null, 2)}
+              </EuiCodeBlock>
+            </EuiFlyoutBody>
+          </EuiFlyout>
+        )}
       </GuidePage>
     </EuiThemeProvider>
   );

@@ -503,8 +503,9 @@ const navigation = [
     items: [
       createExample(ThemeExample, 'Theme provider'),
       {
-        name: 'EuiTheme',
+        name: 'Global values',
         component: ThemeValues,
+        isNew: true,
       },
     ],
   },

@@ -66,12 +66,14 @@ export default ({ onThemeUpdate }) => {
             <p>
               The <EuiCode>colors</EuiCode> theme key is a mix of hard-coded hex
               values and computed colors. The <EuiCode>colorMode</EuiCode>{' '}
-              determines which values to return.
+              determines which values to return based on{' '}
+              <EuiCode>LIGHT</EuiCode> or <EuiCode>DARK</EuiCode> mode.
             </p>
             <p>
               When switching between light and dark color modes, the theme keys
               do not change, only their values do. This is why most keys are not
-              named for their <strong>evaluated</strong> value.
+              named for their <strong>evaluated</strong> value but by their{' '}
+              <strong>purpose</strong>.
             </p>
           </EuiText>
         </EuiFlexItem>
@@ -123,7 +125,7 @@ export default ({ onThemeUpdate }) => {
         code="_EuiThemeBrandColors"
         description={
           <p>
-            Elastic has two main brand colors the other three are used for
+            Elastic has two main brand colors. The other three are used for
             statefulness like indicating between successful and dangerous
             actions.
           </p>
@@ -149,7 +151,7 @@ export default ({ onThemeUpdate }) => {
         code="_EuiThemeBrandTextColors"
         description={
           <p>
-            Each color also has a corresponding text variant that has been
+            Each brand color also has a corresponding text variant that has been
             calculated for proper (4.5) contrast against{' '}
             <EuiCode>colors.body</EuiCode> and should be used specifically when
             coloring text. As is used in{' '}
