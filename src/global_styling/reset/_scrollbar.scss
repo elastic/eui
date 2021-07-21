@@ -1,8 +1,6 @@
-// Firefox's scrollbar coloring cascades throughout which is why it's set at the html level
-// However, the width sizing is not, but this has been added to the euiScrollBar mixin as well
+// Declaring the top level scrollbar colors to match the theme also requires setting the sizes on Chrome
+// so that it knows to use custom styles. Therefore, we just reuse the same scrollbar mixin with `thick` size.
 
 html {
-  // sass-lint:disable-block no-misspelled-properties
-  scrollbar-width: thin;
-  scrollbar-color: transparentize($euiColorDarkShade, .5) transparent; // Firefox support
+  @include euiScrollBar($euiColorDarkShade, shadeOrTint($euiPageBackgroundColor, 3%, 7%), 'thick');
 }

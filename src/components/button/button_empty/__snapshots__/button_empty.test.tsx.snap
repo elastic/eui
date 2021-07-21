@@ -353,9 +353,9 @@ exports[`EuiButtonEmpty props isSelected is rendered as true 1`] = `
 </button>
 `;
 
-exports[`EuiButtonEmpty props size l is rendered 1`] = `
+exports[`EuiButtonEmpty props size m is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--large"
+  class="euiButtonEmpty euiButtonEmpty--primary"
   type="button"
 >
   <span

@@ -106,7 +106,8 @@ export const getStylesForCell = (
       height: '100%',
       overflow: 'hidden',
       flexGrow: 1,
-      wordBreak: 'break-all',
+      wordWrap: 'break-word',
+      wordBreak: 'break-word',
     };
   }
 
@@ -114,6 +115,7 @@ export const getStylesForCell = (
     height: '100%',
     overflow: 'hidden',
     flexGrow: 1,
-    wordBreak: 'break-all',
+    wordWrap: 'break-word',
+    wordBreak: 'break-word',
   };
 };

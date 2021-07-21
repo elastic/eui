@@ -6,5 +6,6 @@ $euiFocusRingAnimStartSize: 2px;
 $euiFocusRingSize: 2px;
 
 // Transparency
-$euiFocusTransparency: lightOrDarkTheme(.9, .7);
+$euiFocusTransparency: lightOrDarkTheme(.9, .8);
+$euiFocusTransparencyPercent: lightOrDarkTheme(90%, 80%);
 $euiFocusBackgroundColor: transparentize($euiColorPrimary, $euiFocusTransparency);

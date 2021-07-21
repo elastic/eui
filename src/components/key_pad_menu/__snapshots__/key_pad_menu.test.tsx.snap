@@ -1,5 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiKeyPadMenu checkable is rendered as a fieldset when true 1`] = `
+<fieldset
+  class="euiKeyPadMenu"
+/>
+`;
+
+exports[`EuiKeyPadMenu checkable is rendered as with a legend 1`] = `
+<fieldset
+  class="euiKeyPadMenu"
+>
+  <legend
+    aria-label="aria-label"
+    class="euiFormLabel testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    Legend
+  </legend>
+</fieldset>
+`;
+
+exports[`EuiKeyPadMenu checkable is rendered as with an ariaLegend 1`] = `
+<fieldset
+  aria-label="Aria legend"
+  class="euiKeyPadMenu"
+/>
+`;
+
 exports[`EuiKeyPadMenu is rendered 1`] = `
 <ul
   aria-label="aria-label"

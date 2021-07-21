@@ -1,37 +1,66 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
   EuiButtonIcon,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiContextMenuPanel,
+  EuiContextMenuItem,
+  EuiPopover,
 } from '../../../../src/components';
 
-const colors = ['primary', 'text', 'accent', 'success', 'warning', 'danger'];
+export default () => {
+  const [isPopoverOpen, setPopover] = useState(false);
 
-export default () => (
-  <>
-    {colors.map((color) => (
-      <EuiFlexGroup
-        key={color}
-        responsive={false}
-        gutterSize="s"
-        alignItems="center">
+  const onButtonClick = () => {
+    setPopover(!isPopoverOpen);
+  };
+
+  const closePopover = () => {
+    setPopover(false);
+  };
+
+  const items = [
+    <EuiContextMenuItem key="copy" icon="copy" onClick={closePopover}>
+      Copy
+    </EuiContextMenuItem>,
+    <EuiContextMenuItem key="edit" icon="pencil" onClick={closePopover}>
+      Edit
+    </EuiContextMenuItem>,
+    <EuiContextMenuItem key="share" icon="share" onClick={closePopover}>
+      Share
+    </EuiContextMenuItem>,
+  ];
+
+  return (
+    <>
+      <EuiFlexGroup responsive={false} gutterSize="xs" alignItems="center">
         <EuiFlexItem grow={false}>
-          <EuiButton color={color} size="s" iconType="calendar">
+          <EuiButton size="s" iconType="calendar">
             Last 15 min
           </EuiButton>
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
-          <EuiButtonIcon
-            color={color}
-            display="base"
-            size="s"
-            iconType="boxesVertical"
-            aria-label="More"
-          />
+          <EuiPopover
+            id="splitButtonExamplePopover"
+            button={
+              <EuiButtonIcon
+                display="base"
+                size="s"
+                iconType="boxesVertical"
+                aria-label="More"
+                onClick={onButtonClick}
+              />
+            }
+            isOpen={isPopoverOpen}
+            closePopover={closePopover}
+            panelPaddingSize="none"
+            anchorPosition="downLeft">
+            <EuiContextMenuPanel size="s" items={items} />
+          </EuiPopover>
         </EuiFlexItem>
       </EuiFlexGroup>
-    ))}
-  </>
-);
+    </>
+  );
+};

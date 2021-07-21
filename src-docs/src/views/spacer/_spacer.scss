@@ -1,0 +1,10 @@
+.guideDemo__highlightSpacer {
+  .euiSpacer {
+    background: $guideDemoHighlightColor;
+  }
+
+  .euiCodeBlock {
+    align-self: flex-start;
+    margin-bottom: $euiSize;
+  }
+}

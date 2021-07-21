@@ -1,0 +1,30 @@
+
+.guideDemo__highlightLayout,
+.guideDemo__highlightLayout--playground,
+.guideDemo__highlightLayout--legacy {
+  border: 1px solid $guideDemoHighlightColor;
+  overflow: hidden;
+  height: 460px;
+  display: flex;
+
+  .euiPageSideBar--sticky {
+    top: 0;
+  }
+}
+
+.guideDemo__highlightLayout--playground > div:not(.euiPage) {
+  height: 100%;
+  width: 100%;
+  padding: 0 !important; // sass-lint:disable-line no-important
+
+  > .euiPage--grow {
+    height: 100%;
+  }
+}
+
+.guideDemo__highlightLayout--legacy {
+  > div,
+  > div > div {
+    background: $guideDemoHighlightColor;
+  }
+}

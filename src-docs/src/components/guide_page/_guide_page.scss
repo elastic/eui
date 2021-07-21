@@ -1,0 +1,84 @@
+@import '../../../../src/global_styling/mixins/helpers';
+
+$guideSideNavWidth: 240px;
+
+#guide { // sass-lint:disable-line no-ids
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .euiBody--headerIsFixed & {
+    min-height: calc(100vh - #{$euiHeaderHeightCompensation});
+  }
+}
+
+@include euiHeaderAffordForFixed;
+
+.euiBody--headerIsFixed--double {
+  @include euiHeaderAffordForFixed($euiHeaderHeightCompensation * 2);
+
+  #guide { // sass-lint:disable-line no-ids
+    min-height: calc(100vh - #{$euiHeaderHeightCompensation * 2});
+  }
+
+  .euiHeader:not(.euiHeader--fixed) {
+    // Force headers below the full screen.
+    // This shouldn't be necessary in consuming applications because headers should always be at the top of the page
+    z-index: 0;
+  }
+}
+
+.guideSideNav {
+  @include euiSideNavEmbellish;
+}
+
+.guideSideNav__content {
+  @include euiYScroll;
+  padding: 0 $euiSizeL $euiSizeL;
+}
+
+.guideSideNav__search {
+  flex-shrink: 0;
+  padding: $euiSizeS $euiSizeS $euiSize;
+}
+
+.guideSideNav__item {
+  // Hate to do this, but it's the only way to get the badge to display correctly
+  .euiSideNavItemButton__label {
+    // By using the `icon` display of EuiSideNavItem, it will continue to:
+    // a) truncate properly
+    // b) not underline the badge when selected
+    // But it shows to the left of the label instead of right, so we have to shift the order of the label
+    order: -1;
+  }
+
+  .guideSideNav__newBadge {
+    margin-left: $euiSizeXS;
+    margin-right: $euiSizeXS;
+  }
+
+  // Shift the margin on the badge when selected and the dropdown arrow no longer shows
+  .euiSideNavItemButton-isSelected .guideSideNav__newBadge {
+    margin-right: 0;
+  }
+}
+
+.guideSideNav__item--inSearch {
+  color: $euiColorDarkShade;
+}
+
+
+@include euiBreakpoint('xs', 's') {
+  .guideSideNav {
+    width: 100%;
+  }
+
+  .guideSideNav__content {
+    padding: 0;
+    border-top: $euiBorderThin;
+  }
+
+  .guideSideNav__search {
+    padding: $euiSizeS;
+  }
+}

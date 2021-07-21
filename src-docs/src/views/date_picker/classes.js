@@ -22,7 +22,7 @@ export default () => {
           selected={startDate}
           showTimeSelect
           onChange={handleChange}
-          className="dpTest__purpleInput"
+          className="guideDemo__datePickerPurpleInput"
         />
       </EuiFormRow>
 
@@ -33,7 +33,7 @@ export default () => {
           selected={startDate}
           showTimeSelect
           onChange={handleChange}
-          calendarClassName="dpTest__purpleCal"
+          calendarClassName="guideDemo__datePickerPurpleCal"
         />
       </EuiFormRow>
 
@@ -45,7 +45,9 @@ export default () => {
           showTimeSelect
           onChange={handleChange}
           dayClassName={(date) =>
-            date.date() < Math.random() * 31 ? 'dpTest__purpleDay' : undefined
+            date.date() < Math.random() * 31
+              ? 'guideDemo__datePickerPurpleDay'
+              : undefined
           }
         />
       </EuiFormRow>
@@ -57,7 +59,7 @@ export default () => {
           selected={startDate}
           showTimeSelect
           onChange={handleChange}
-          popperClassName="dpTest__purplePopper"
+          popperClassName="guideDemo__datePickerPurplePopper"
         />
       </EuiFormRow>
     </div>

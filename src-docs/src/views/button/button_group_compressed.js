@@ -1,9 +1,9 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButtonGroup,
   EuiSpacer,
-  EuiTitle,
+  EuiPanel,
 } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
@@ -79,40 +79,27 @@ export default () => {
   };
 
   return (
-    <Fragment>
-      <EuiTitle size="xxs">
-        <h3>
-          Compressed groups should always be fullWidth so they line up nicely in
-          their small container.
-        </h3>
-      </EuiTitle>
-      <EuiSpacer size="s" />
-      <div style={{ maxWidth: 300 }}>
-        <EuiButtonGroup
-          name="coarsness"
-          legend="This is a basic group"
-          options={toggleButtonsCompressed}
-          idSelected={toggleCompressedIdSelected}
-          onChange={(id) => onChangeCompressed(id)}
-          buttonSize="compressed"
-          isFullWidth
-        />
-        <EuiSpacer />
-        <EuiTitle size="xxxs">
-          <h3>Unless they are icon only</h3>
-        </EuiTitle>
-        <EuiSpacer size="s" />
-        <EuiButtonGroup
-          legend="Text style"
-          className="eui-displayInlineBlock"
-          options={toggleButtonsIconsMulti}
-          idToSelectedMap={toggleIconIdToSelectedMapIcon}
-          onChange={(id) => onChangeIconsMultiIcons(id)}
-          type="multi"
-          buttonSize="compressed"
-          isIconOnly
-        />
-      </div>
-    </Fragment>
+    <EuiPanel hasBorder style={{ maxWidth: 300 }}>
+      <EuiButtonGroup
+        name="coarsness"
+        legend="This is a basic group"
+        options={toggleButtonsCompressed}
+        idSelected={toggleCompressedIdSelected}
+        onChange={(id) => onChangeCompressed(id)}
+        buttonSize="compressed"
+        isFullWidth
+      />
+      <EuiSpacer />
+      <EuiButtonGroup
+        legend="Text style"
+        className="eui-displayInlineBlock"
+        options={toggleButtonsIconsMulti}
+        idToSelectedMap={toggleIconIdToSelectedMapIcon}
+        onChange={(id) => onChangeIconsMultiIcons(id)}
+        type="multi"
+        buttonSize="compressed"
+        isIconOnly
+      />
+    </EuiPanel>
   );
 };

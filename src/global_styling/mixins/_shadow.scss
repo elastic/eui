@@ -87,7 +87,7 @@
 }
 
 @mixin euiOverflowShadow($direction: 'y', $side: 'both') {
-  $hideHeight: $euiScrollBarCorner * 1.25;
+  $hideHeight: $euiScrollBarCornerThin * 1.25;
   $gradient: null;
   $gradientStart:
   transparentize(red, .9) 0%,

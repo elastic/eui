@@ -16,7 +16,7 @@ import React, {
   useState,
 } from 'react';
 import classNames from 'classnames';
-import { highlight, AST, RefractorNode } from 'refractor';
+import { highlight, AST, RefractorNode, listLanguages } from 'refractor';
 import { keys, useCombinedRefs } from '../../services';
 import { EuiButtonIcon } from '../button';
 import { keysOf } from '../common';
@@ -32,6 +32,9 @@ type ExtendedRefractorNode = RefractorNode & {
   lineStart?: number;
   lineEnd?: number;
 };
+
+const SUPPORTED_LANGUAGES = listLanguages();
+const DEFAULT_LANGUAGE = 'text';
 
 const isAstElement = (node: RefractorNode): node is AST.Element =>
   node.hasOwnProperty('type') && node.type === 'element';
@@ -198,13 +201,18 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   fontSize = 's',
   isCopyable = false,
   whiteSpace = 'pre-wrap',
-  language,
+  language: _language = DEFAULT_LANGUAGE,
   inline,
   children,
   className,
   overflowHeight,
   ...rest
 }) => {
+  const language: string = useMemo(
+    () =>
+      SUPPORTED_LANGUAGES.includes(_language) ? _language : DEFAULT_LANGUAGE,
+    [_language]
+  );
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [wrapperRef, setWrapperRef] = useState<Element | null>(null);
   const [innerTextRef, _innerText] = useInnerText('');
@@ -220,7 +228,7 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   const { width, height } = useResizeObserver(wrapperRef);
 
   const content = useMemo(() => {
-    if (!language || typeof children !== 'string') {
+    if (typeof children !== 'string') {
       return children;
     }
     const nodes = inline

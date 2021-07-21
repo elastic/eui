@@ -6,8 +6,8 @@
   // Create button modifiers based upon the map.
   @each $name, $color in $euiCardSelectButtonBackgrounds {
     &--#{$name}:enabled {
-      background-color: $color;
-
+      // Override EuiButtonEmpty's focus background
+      background-color: $color !important; // sass-lint:disable-line no-important
       // Custom success text color since it doesn't exist on EuiButtonEmpty
       @if ($name == 'success') {
         color: makeHighContrastColor($euiColorSuccess, $color);

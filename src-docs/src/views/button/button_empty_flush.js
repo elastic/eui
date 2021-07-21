@@ -7,7 +7,7 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <EuiFlexGroup gutterSize="s" alignItems="center">
+  <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
     <EuiFlexItem grow={false}>
       <EuiButtonEmpty flush="left">Flush left</EuiButtonEmpty>
     </EuiFlexItem>

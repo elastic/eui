@@ -46,7 +46,7 @@ export const COLORS = keysOf(colorToClassNameMap);
 const sizeToClassNameMap = {
   xs: 'euiButtonEmpty--xSmall',
   s: 'euiButtonEmpty--small',
-  l: 'euiButtonEmpty--large',
+  m: null,
 };
 
 export const SIZES = keysOf(sizeToClassNameMap);
@@ -115,8 +115,9 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   className,
   iconType,
   iconSide = 'left',
+  iconSize = 'm',
   color = 'primary',
-  size,
+  size = 'm',
   flush,
   isDisabled: _isDisabled,
   disabled: _disabled,
@@ -159,14 +160,12 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
     textProps && textProps.className
   );
 
-  const iconSize = size === 'xs' ? 's' : 'm';
-
   const innerNode = (
     <EuiButtonContent
       isLoading={isLoading}
       iconType={iconType}
       iconSide={iconSide}
-      iconSize={iconSize}
+      iconSize={size === 'xs' ? 's' : iconSize}
       textProps={{ ...textProps, className: textClassNames }}
       {...contentProps}
       // className has to come last to override contentProps.className

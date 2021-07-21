@@ -52,29 +52,27 @@ export default () => {
   );
 
   return (
-    <EuiPanel style={{ width: 400, paddingBottom: 4 }} paddingSize="none">
-      <div style={{ height: 300 }}>
-        <EuiDataGrid
-          aria-label="Container constrained data grid demo"
-          columns={columns}
-          columnVisibility={{
-            visibleColumns: visibleColumns,
-            setVisibleColumns: setVisibleColumns,
-          }}
-          rowCount={data.length}
-          gridStyle={{
-            border: 'horizontal',
-            header: 'underline',
-          }}
-          renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
-          pagination={{
-            ...pagination,
-            pageSizeOptions: [5, 10, 25],
-            onChangeItemsPerPage: setPageSize,
-            onChangePage: setPageIndex,
-          }}
-        />
-      </div>
+    <EuiPanel style={{ maxWidth: 400, height: 300 }} paddingSize="none">
+      <EuiDataGrid
+        aria-label="Container constrained data grid demo"
+        columns={columns}
+        columnVisibility={{
+          visibleColumns: visibleColumns,
+          setVisibleColumns: setVisibleColumns,
+        }}
+        rowCount={data.length}
+        gridStyle={{
+          border: 'horizontal',
+          header: 'underline',
+        }}
+        renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+        pagination={{
+          ...pagination,
+          pageSizeOptions: [5, 10, 25],
+          onChangeItemsPerPage: setPageSize,
+          onChangePage: setPageIndex,
+        }}
+      />
     </EuiPanel>
   );
 };

@@ -1,0 +1,78 @@
+.guideDemo__notificationEventCircleIndicator {
+  display: inline-block;
+  width: $euiSize;
+  height: $euiSize;
+  background: $euiColorPrimary;
+  color: $euiColorEmptyShade;
+  font-size: $euiSizeM;
+  line-height: $euiSize;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.guideDemo__notificationEventHighlight {
+  background: transparentize($euiColorPrimary, .9);
+  border-radius: $euiBorderRadiusSmall;
+  padding: $euiSizeXS;
+}
+
+.guideDemo__notificationEvent {
+  @include euiFontSizeS;
+  display: flex;
+  flex-direction: column;
+
+  > * {
+    display: flex;
+  }
+
+  .guideDemo__notificationEventCircleIndicator {
+    margin-right: $euiSizeXS;
+  }
+}
+
+.guideDemo__notificationEventTopRow {
+  display: flex;
+
+  > * {
+    position: relative;
+    margin-right: $euiSizeXS;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .guideDemo__notificationEventIcon {
+    margin: 0 $euiSizeXS;
+  }
+
+  .guideDemo__notificationEventCircleIndicator {
+    position: absolute;
+    top: -$euiSizeS;
+    left: 0;
+  }
+}
+
+.guideDemo__notificationEventMeta {
+  display: flex;
+  width: 100%;
+  margin: 0 $euiSizeS;
+
+  .euiNotificationEventMeta {
+    width: 100%;
+  }
+}
+
+.guideDemo__notificationEventSections {
+  margin-left: $euiSizeXL + $euiSizeXS;
+  display: flex;
+  flex-direction: column;
+
+  > * {
+    margin-top: $euiSizeS;
+  }
+}
+
+.guideDemo__notificationEventBadge {
+  flex: 1;
+}
