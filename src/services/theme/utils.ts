@@ -14,6 +14,8 @@ import {
   EuiThemeComputed,
 } from './types';
 
+export const AMSTERDAM_NAME_KEY = 'EUI_THEME_AMSTERDAM';
+export const DEFAULT_NAME_KEY = 'EUI_THEME_DEFAULT';
 export const COLOR_MODE_KEY = 'colors';
 export const DEFAULT_COLOR_MODE = 'light';
 
@@ -292,4 +294,8 @@ export const currentColorModeOnly = <T>(
   });
 
   return theme as EuiThemeComputed<T>;
+};
+
+export const isDefaultTheme = (name: string) => {
+  return name === DEFAULT_NAME_KEY;
 };

@@ -1,10 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiHighlight behavior loose matching matches strings with different casing 1`] = `
+.emotion-0 {
+  background-color: transparent;
+  font-weight: 700;
+  color: #343741;
+}
+
 <span>
   different 
   <mark
-    class="euiMark"
+    class="euiMark emotion-0"
   >
     case
   </mark>
@@ -13,21 +19,27 @@ exports[`EuiHighlight behavior loose matching matches strings with different cas
 `;
 
 exports[`EuiHighlight behavior matching applies to all matches 1`] = `
+.emotion-0 {
+  background-color: transparent;
+  font-weight: 700;
+  color: #343741;
+}
+
 <span>
   <mark
-    class="euiMark"
+    class="euiMark emotion-0"
   >
     match
   </mark>
    
   <mark
-    class="euiMark"
+    class="euiMark emotion-0"
   >
     match
   </mark>
    
   <mark
-    class="euiMark"
+    class="euiMark emotion-0"
   >
     match
   </mark>
@@ -35,9 +47,15 @@ exports[`EuiHighlight behavior matching applies to all matches 1`] = `
 `;
 
 exports[`EuiHighlight behavior matching only applies to first match 1`] = `
+.emotion-0 {
+  background-color: transparent;
+  font-weight: 700;
+  color: #343741;
+}
+
 <span>
   <mark
-    class="euiMark"
+    class="euiMark emotion-0"
   >
     match
   </mark>

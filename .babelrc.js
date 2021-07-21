@@ -16,7 +16,7 @@ module.exports = {
     [
       "@emotion/babel-preset-css-prop",
       {
-        "labelFormat": "[local]"
+        "labelFormat": "[filename]-[local]"
       },
     ],
   ],

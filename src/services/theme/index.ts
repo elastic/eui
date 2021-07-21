@@ -24,6 +24,7 @@ export {
   mergeDeep,
   setOn,
   Computed,
+  isDefaultTheme,
 } from './utils';
 export {
   EuiThemeColor,
