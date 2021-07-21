@@ -21,7 +21,7 @@ export const makeHighContrastColor = (_foreground: string, ratio = 4.5) => (
   themeOrBackground:
     | string
     | {
-        colors: { pageBackground: string };
+        colors: { body: string };
         [key: string]: any;
       }
 ) => {
@@ -30,7 +30,7 @@ export const makeHighContrastColor = (_foreground: string, ratio = 4.5) => (
     : _foreground) as string;
   const background =
     typeof themeOrBackground === 'object'
-      ? themeOrBackground.colors.pageBackground
+      ? themeOrBackground.colors.body
       : themeOrBackground;
   let contrast = chroma.contrast(foreground, background);
 
@@ -80,7 +80,7 @@ export const makeDisabledContrastColor = ($color: string) => (
   themeOrBackground:
     | string
     | {
-        colors: { pageBackground: string };
+        colors: { body: string };
         [key: string]: any;
       }
 ) => makeHighContrastColor($color, 2)(themeOrBackground);

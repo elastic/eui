@@ -263,10 +263,7 @@ export const dark_colors: _EuiThemeColors = {
  */
 
 export type EuiThemeColors = StrictColorModeSwitch<_EuiThemeColors> & {
-  /**
-   * Temporary. Want to remove in favor of `body`
-   */
-  pageBackground: ColorModeSwitch;
+  body: ColorModeSwitch;
   ghost: string;
   ink: string;
 };
@@ -275,7 +272,7 @@ export const colors: EuiThemeColors = {
   ghost: '#FFF',
   ink: '#000',
 
-  pageBackground: {
+  body: {
     LIGHT: computed(([lightestShade]) => tint(lightestShade, 0.5), [
       'colors.lightestShade',
     ]),

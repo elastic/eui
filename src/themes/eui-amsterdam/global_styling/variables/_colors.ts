@@ -93,7 +93,7 @@ export const colors_ams: EuiThemeColors = {
   ghost: '#FFF',
   ink: '#000',
 
-  pageBackground: {
+  body: {
     LIGHT: computed(([lightestShade]) => tint(lightestShade, 0.5), [
       'colors.lightestShade',
     ]),
