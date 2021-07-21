@@ -29,7 +29,7 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
-import { EuiButton } from '../../../../src/components/button';
+import { EuiButton, EuiButtonEmpty } from '../../../../src/components/button';
 import { EuiCopy } from '../../../../src/components/copy';
 import { EuiCallOut } from '../../../../src/components/call_out';
 
@@ -40,6 +40,10 @@ export default () => {
 
   const updateTheme = (newOverrides) => {
     setOverrides(mergeDeep(overrides, newOverrides));
+  };
+
+  const clearOverrides = () => {
+    setOverrides({});
   };
 
   return (
@@ -89,15 +93,25 @@ export default () => {
           position="sticky">
           <EuiFlexGroup responsive={false} justifyContent="flexEnd">
             {Object.keys(overrides).length > 0 && (
-              <EuiFlexItem grow={false}>
-                <EuiCopy textToCopy={JSON.stringify(overrides, null, 2)}>
-                  {(copy) => (
-                    <EuiButton onClick={copy} fill iconType="copyClipboard">
-                      Copy overrides
-                    </EuiButton>
-                  )}
-                </EuiCopy>
-              </EuiFlexItem>
+              <>
+                <EuiFlexItem grow={false}>
+                  <EuiButtonEmpty
+                    color="ghost"
+                    iconType="cross"
+                    onClick={clearOverrides}>
+                    Clear overrides
+                  </EuiButtonEmpty>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiCopy textToCopy={JSON.stringify(overrides, null, 2)}>
+                    {(copy) => (
+                      <EuiButton onClick={copy} fill iconType="copyClipboard">
+                        Copy overrides
+                      </EuiButton>
+                    )}
+                  </EuiCopy>
+                </EuiFlexItem>
+              </>
             )}
             <EuiFlexItem grow={false}>
               <span>
