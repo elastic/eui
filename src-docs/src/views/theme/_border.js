@@ -48,15 +48,10 @@ export default ({ onThemeUpdate }) => {
   return (
     <div>
       <EuiText>
-        <h2>
-          Border{' '}
-          <small>
-            <code>: EuiThemeBorder</code>
-          </small>
-        </h2>
+        <h2>Border</h2>
         <p>
           The <EuiCode>border</EuiCode> theme key contains both individual
-          border property values and full shorthand broder properties.
+          border property values and full shorthand border properties.
         </p>
       </EuiText>
       <EuiSpacer />

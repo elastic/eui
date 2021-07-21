@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useEuiTheme } from '../../../../src/services';
 
-import { EuiTitle, EuiSpacer, EuiFlexItem } from '../../../../src/components';
+import { EuiText, EuiSpacer, EuiFlexItem } from '../../../../src/components';
 
 import { ThemeSection } from './_theme_section';
 import { ThemeValue } from './_values';
@@ -23,10 +24,13 @@ export default ({ onThemeUpdate }) => {
 
   return (
     <div>
-      <EuiTitle>
+      <EuiText>
         <h2>Breakpoints</h2>
-      </EuiTitle>
-
+        <p>
+          It is not recommended to consume these values directly, but to use one
+          of our <Link to="/utilities/responsive">responsive components</Link>.
+        </p>
+      </EuiText>
       <EuiSpacer />
 
       <ThemeSection
