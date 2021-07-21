@@ -46,8 +46,3 @@ export const size: EuiThemeSize = {
   xxxl: computed(sizeToPixel(3)),
   xxxxl: computed(sizeToPixel(4)),
 };
-
-// $euiButtonMinWidth: $euiSize * 7 !default;
-
-// $euiScrollBar: $euiSize !default;
-// $euiScrollBarCorner: $euiSizeS * .75 !default;

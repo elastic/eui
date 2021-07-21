@@ -128,14 +128,7 @@ export const useScreenReaderOnly = () => `
   overflow: hidden;
 `;
 
-// // Specifically target IE11, but not Edge.
-// @mixin internetExplorerOnly {
-//   // sass-lint:disable-block no-vendor-prefixes
-//   @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
-//     @content;
-//   }
-// }
-
+// TODO: Figure out how to pass content
 // Doesn't have reduced motion turned on
 // export const useCanAnimate = `
 //   @media screen and (prefers-reduced-motion: no-preference) {
