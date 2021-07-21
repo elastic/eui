@@ -2,10 +2,7 @@ import React from 'react';
 import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
 // @ts-ignore importing from a JS file
 import { applyTheme } from '../../services';
-import {
-  EuiThemeProvider,
-  // EuiThemeAmsterdam,
-} from '../../../../src/services';
+import { EuiThemeProvider } from '../../../../src/services';
 import { EuiThemeAmsterdam } from '../../../../src/themes/eui-amsterdam/theme';
 import { EuiThemeDefault } from '../../../../src/themes/eui/theme';
 
