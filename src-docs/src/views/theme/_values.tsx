@@ -76,16 +76,13 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
         onUpdate && onUpdate(hex);
       }
     }, 100),
-    []
+    [onUpdate]
   );
 
-  const handleColorChange: EuiSetColorMethod = useCallback(
-    (text, { hex, isValid }) => {
-      setColor(text, { hex, isValid });
-      debouncedOnUpdate(hex, isValid);
-    },
-    [setColor, debouncedOnUpdate]
-  );
+  const handleColorChange: EuiSetColorMethod = (text, { hex, isValid }) => {
+    setColor(text, { hex, isValid });
+    debouncedOnUpdate(hex, isValid);
+  };
   let exampleRender;
   if (
     (property === 'colors' || name.toLowerCase().includes('color')) &&

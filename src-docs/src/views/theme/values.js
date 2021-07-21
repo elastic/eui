@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   useEuiTheme,
@@ -38,12 +38,9 @@ export default () => {
   const [overrides, setOverrides] = React.useState({});
   const { euiTheme } = useEuiTheme();
 
-  const updateTheme = useCallback(
-    (newOverrides) => {
-      setOverrides(mergeDeep(overrides, newOverrides));
-    },
-    [overrides]
-  );
+  const updateTheme = (newOverrides) => {
+    setOverrides(mergeDeep(overrides, newOverrides));
+  };
 
   return (
     <EuiThemeProvider modify={overrides}>
