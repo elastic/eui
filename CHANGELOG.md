@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `36.0.0`.
+- Fixed color of `html` scrollbar in dark mode ([#4969](https://github.com/elastic/eui/pull/4969))
 
 ## [`36.0.0`](https://github.com/elastic/eui/tree/v36.0.0)
 
