@@ -6,37 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
-import { EuiMarkdownAstNodePosition, RemarkTokenizer } from '../markdown_types';
-import { EuiToolTip } from '../../tool_tip';
-import { EuiIcon } from '../../icon';
-import { EuiCodeBlock } from '../../code';
 import { Plugin } from 'unified';
+import { RemarkTokenizer } from '../../markdown_types';
+import { TooltipNodeDetails } from './types';
 
-interface TooltipNodeDetails {
-  type: 'tooltipPlugin';
-  content: string;
-}
-
-const tooltipPlugin = {
-  name: 'tooltipPlugin',
-  button: {
-    label: 'Tooltip',
-    iconType: 'editorComment',
-  },
-  formatting: {
-    prefix: '!{tooltip[',
-    suffix: ']()}',
-    trimFirst: true,
-  },
-  helpText: (
-    <EuiCodeBlock language="md" paddingSize="s" fontSize="l">
-      {'!{tooltip[anchor text](helpful description)}'}
-    </EuiCodeBlock>
-  ),
-};
-
-const TooltipParser: Plugin = function TooltipParser() {
+export const TooltipParser: Plugin = function TooltipParser() {
   const Parser = this.Parser;
   const tokenizers = Parser.prototype.inlineTokenizers;
   const methods = Parser.prototype.inlineMethods;
@@ -119,30 +93,4 @@ const TooltipParser: Plugin = function TooltipParser() {
 
   tokenizers.tooltip = tokenizeTooltip;
   methods.splice(methods.indexOf('text'), 0, 'tooltip');
-};
-
-const tooltipMarkdownRenderer: FunctionComponent<
-  TooltipNodeDetails & {
-    position: EuiMarkdownAstNodePosition;
-  }
-> = ({ content, children }) => {
-  return (
-    <span>
-      <EuiToolTip content={content}>
-        <span>
-          <strong>{children}</strong>
-          <EuiIcon
-            type="questionInCircle"
-            className="euiMarkdownTooltip__icon"
-          />
-        </span>
-      </EuiToolTip>
-    </span>
-  );
-};
-
-export {
-  tooltipPlugin as plugin,
-  TooltipParser as parser,
-  tooltipMarkdownRenderer as renderer,
 };
