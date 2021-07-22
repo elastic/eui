@@ -34,14 +34,14 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover euiPopover--anchorDownCenter euiBreadcrumb__content"
+        class="euiPopover euiPopover--anchorDownCenter"
       >
         <div
           class="euiPopover__anchor"
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiLink--subdued euiBreadcrumb__collapsedLink"
+            class="euiLink euiLink--subdued euiBreadcrumb__content"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -191,14 +191,14 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover euiPopover--anchorDownCenter euiBreadcrumb__content"
+        class="euiPopover euiPopover--anchorDownCenter"
       >
         <div
           class="euiPopover__anchor"
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiLink--subdued euiBreadcrumb__collapsedLink"
+            class="euiLink euiLink--subdued euiBreadcrumb__content"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -348,14 +348,14 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover euiPopover--anchorDownCenter euiBreadcrumb__content"
+        class="euiPopover euiPopover--anchorDownCenter"
       >
         <div
           class="euiPopover__anchor"
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiLink--subdued euiBreadcrumb__collapsedLink"
+            class="euiLink euiLink--subdued euiBreadcrumb__content"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -435,14 +435,14 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover euiPopover--anchorDownCenter euiBreadcrumb__content"
+        class="euiPopover euiPopover--anchorDownCenter"
       >
         <div
           class="euiPopover__anchor"
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiLink--subdued euiBreadcrumb__collapsedLink"
+            class="euiLink euiLink--subdued euiBreadcrumb__content"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -501,14 +501,14 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover euiPopover--anchorDownCenter euiBreadcrumb__content"
+        class="euiPopover euiPopover--anchorDownCenter"
       >
         <div
           class="euiPopover__anchor"
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiLink--subdued euiBreadcrumb__collapsedLink"
+            class="euiLink euiLink--subdued euiBreadcrumb__content"
             title="See collapsed breadcrumbs"
             type="button"
           >
@@ -567,14 +567,14 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
       class="euiBreadcrumb euiBreadcrumb--collapsed"
     >
       <div
-        class="euiPopover euiPopover--anchorDownCenter euiBreadcrumb__content"
+        class="euiPopover euiPopover--anchorDownCenter"
       >
         <div
           class="euiPopover__anchor"
         >
           <button
             aria-label="See collapsed breadcrumbs"
-            class="euiLink euiLink--subdued euiBreadcrumb__collapsedLink"
+            class="euiLink euiLink--subdued euiBreadcrumb__content"
             title="See collapsed breadcrumbs"
             type="button"
           >

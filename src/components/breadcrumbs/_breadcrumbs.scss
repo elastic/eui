@@ -31,17 +31,17 @@
   }
 }
 
-.euiBreadcrumb--last {
-  font-weight: $euiFontWeightMedium;
-}
-
 .euiBreadcrumb--collapsed {
   flex-shrink: 0;
 }
 
-.euiBreadcrumbs__inPopover .euiBreadcrumb--last {
+.euiBreadcrumb--last {
+  font-weight: $euiFontWeightMedium;
+}
+
+.euiBreadcrumbs__inPopover .euiBreadcrumb--last .euiBreadcrumb__content {
   font-weight: $euiFontWeightRegular;
-  color: $euiColorDarkShade !important; // sass-lint:disable-line no-important
+  color: $euiColorDarkShade;
 }
 
 .euiBreadcrumbs--truncate {
@@ -67,13 +67,12 @@
   }
 }
 
-
 .euiBreadcrumbs--truncate,
 .euiBreadcrumb--truncate {
   .euiBreadcrumb__content {
     @include euiTextTruncate;
     max-width: $euiBreadcrumbTruncateWidth;
     text-align: center;
-    vertical-align: top; // overflow hidden causes misalignment of links and slashes, this fixes that
+    vertical-align: baseline;
   }
 }

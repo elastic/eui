@@ -129,7 +129,7 @@ const limitBreadcrumbs = (
 
     const ellipsisButton = (
       <EuiLink
-        className="euiBreadcrumb__collapsedLink"
+        className={CONTENT_CLASSNAME}
         color="subdued"
         aria-label={ariaLabel}
         title={ariaLabel}
@@ -143,7 +143,6 @@ const limitBreadcrumbs = (
         <EuiPopover
           button={ellipsisButton}
           isOpen={isPopoverOpen}
-          className={CONTENT_CLASSNAME}
           closePopover={() => setIsPopoverOpen(false)}>
           <EuiBreadcrumbs
             className="euiBreadcrumbs__inPopover"
