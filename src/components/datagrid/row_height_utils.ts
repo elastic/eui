@@ -42,17 +42,23 @@ export class RowHeightUtils {
     paddingTop: number;
     paddingBottom: number;
     lineHeight: number;
+    font: string;
   } = {
     paddingTop: 0,
     paddingBottom: 0,
     lineHeight: 1,
+    font: '',
   };
   private fakeCell = document.createElement('div');
   private heightsCache = new Map<number, number>();
   private timerId: any;
   private grid?: Grid;
 
-  setRowHeight(rowIndex: number, height: number) {
+  getFont() {
+    return this.styles.font;
+  }
+
+  setRowHeight(rowIndex: number, height: number = 32) {
     clearTimeout(this.timerId);
     const cachedHeight = this.heightsCache.get(rowIndex) || 0;
     const adaptedHeight =
@@ -60,11 +66,15 @@ export class RowHeightUtils {
     if (cachedHeight < adaptedHeight) {
       this.heightsCache.set(rowIndex, adaptedHeight);
     }
-    this.timerId = setTimeout(() => this.resetGrid(), 100);
+    this.timerId = setTimeout(() => this.resetGrid(), 0);
   }
 
   getRowHeight(rowIndex: number) {
     return this.heightsCache.get(rowIndex) || 0;
+  }
+
+  compareHeights(currentRowHeight: number, cachedRowHeight: number) {
+    return currentRowHeight === cachedRowHeight;
   }
 
   resetGrid() {
@@ -109,6 +119,7 @@ export class RowHeightUtils {
       paddingTop: getNumberFromPx(allStyles.paddingTop),
       paddingBottom: getNumberFromPx(allStyles.paddingBottom),
       lineHeight: getNumberFromPx(allStyles.lineHeight),
+      font: allStyles.font,
     };
     document.body.removeChild(this.fakeCell);
     // we need clear height cache so that recalculate heigths for new styles.
