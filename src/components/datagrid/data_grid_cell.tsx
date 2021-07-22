@@ -34,7 +34,7 @@ import { EuiFocusTrap } from '../focus_trap';
 import { keys } from '../../services';
 import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
 import { EuiDataGridCellPopover } from './data_grid_cell_popover';
-import { getStylesForCell } from './row_height_utils';
+import { RowHeightUtils } from './row_height_utils';
 
 export interface EuiDataGridCellValueElementProps {
   /**
@@ -85,6 +85,7 @@ export interface EuiDataGridCellProps {
   getRowHeight?: (rowIndex: number) => number;
   style?: React.CSSProperties;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
+  rowHeightUtils?: RowHeightUtils;
 }
 
 interface EuiDataGridCellState {
@@ -115,6 +116,7 @@ const EuiDataGridCellContent: FunctionComponent<
     rowHeightsOptions,
     rowIndex,
     colIndex,
+    rowHeightUtils,
     ...rest
   } = props;
 
@@ -143,7 +145,9 @@ const EuiDataGridCellContent: FunctionComponent<
     <div
       ref={setCellContentsRef}
       style={
-        rowHeightsOptions ? getStylesForCell(rowHeightsOptions, rowIndex) : {}
+        rowHeightsOptions && rowHeightUtils
+          ? rowHeightUtils.getStylesForCell(rowHeightsOptions, rowIndex)
+          : {}
       }
       className={!rowHeightsOptions ? 'euiDataGridRowCell__truncate' : ''}>
       <CellElement
@@ -248,6 +252,31 @@ export class EuiDataGridCell extends Component<
       [this.props.colIndex, this.props.visibleRowIndex],
       this.onFocusUpdate
     );
+
+    if (this.cellContentsRef?.offsetHeight && this.props.rowHeightsOptions) {
+      this.props.rowHeightUtils?.setRowHeight(
+        this.props.rowIndex,
+        this.cellContentsRef?.offsetHeight
+      );
+
+      const font = this.props.rowHeightUtils?.getFont();
+
+      if (this.cellContentsRef.innerText && font) {
+        // we should download needed fonts so that we can get a right height of text
+        if (
+          !(document as any).fonts.check(font, this.cellContentsRef.innerText)
+        ) {
+          (document as any).fonts
+            .load(font, this.cellContentsRef.innerText)
+            .then(() => {
+              this.props.rowHeightUtils?.setRowHeight(
+                this.props.rowIndex,
+                this.cellContentsRef?.offsetHeight
+              );
+            });
+        }
+      }
+    }
   }
 
   onFocusUpdate = (isFocused: boolean) => {
@@ -301,18 +330,39 @@ export class EuiDataGridCell extends Component<
       return true;
 
     // check if we should update cell because height was changed
-    if (this.cellRef.current && nextProps.getRowHeight) {
+    if (
+      this.cellRef.current &&
+      nextProps.getRowHeight &&
+      nextProps.rowHeightUtils
+    ) {
       if (
-        this.cellRef.current.offsetHeight &&
-        this.cellRef.current.offsetHeight !==
+        !nextProps.rowHeightUtils?.compareHeights(
+          this.cellRef.current.offsetHeight,
           nextProps.getRowHeight(nextProps.rowIndex)
+        )
       ) {
+        // we cann't use it in componentDidUpdate because we should set new height only in this case
+        nextProps.rowHeightUtils?.setRowHeight(
+          nextProps.rowIndex,
+          this.cellContentsRef?.offsetHeight
+        );
         return true;
       }
     }
 
     return false;
   }
+
+  // needed so that we calculate right height for cell if content is image
+  // because we can get right height only after image will loaded
+  onCellLoaded = () => {
+    if (this.props.rowHeightUtils) {
+      this.props.rowHeightUtils?.setRowHeight(
+        this.props.rowIndex,
+        this.cellContentsRef?.offsetHeight
+      );
+    }
+  };
 
   setCellProps = (cellProps: HTMLAttributes<HTMLDivElement>) => {
     this.setState({ cellProps });
@@ -481,6 +531,8 @@ export class EuiDataGridCell extends Component<
       isDetails: false,
       setCellContentsRef: this.setCellContentsRef,
       rowHeightsOptions: this.props.rowHeightsOptions,
+      rowHeightUtils: this.props.rowHeightUtils,
+      onCellLoaded: this.onCellLoaded,
     };
 
     const anchorClass = classNames('euiDataGridRowCell__expandFlex', {
