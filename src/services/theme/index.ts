@@ -26,16 +26,10 @@ export {
   Computed,
 } from './utils';
 export {
-  EuiThemeColor,
+  ComputedThemeShape,
   EuiThemeColorMode,
   EuiThemeComputed,
   EuiThemeModifications,
   EuiThemeShape,
   EuiThemeSystem,
 } from './types';
-export {
-  EuiThemeDefault,
-  euiThemeDefault,
-  EuiThemeAmsterdam,
-  euiThemeAmsterdam,
-} from './theme';

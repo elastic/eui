@@ -62,9 +62,19 @@ export {
   euiPaletteGray,
   HSV,
   getSteppedGradient,
+  transparentize,
+  tint,
+  shade,
+  saturate,
+  desaturate,
+  lightness,
 } from './color';
 
-export { useColorPickerState, useColorStopsState } from './color_picker';
+export {
+  useColorPickerState,
+  useColorStopsState,
+  EuiSetColorMethod,
+} from './color_picker';
 
 export { copyToClipboard } from './copy_to_clipboard';
 
@@ -136,11 +146,7 @@ export {
   mergeDeep,
   setOn,
   Computed,
-  euiThemeDefault,
-  EuiThemeDefault,
-  EuiThemeAmsterdam,
-  euiThemeAmsterdam,
-  EuiThemeColor,
+  ComputedThemeShape,
   EuiThemeColorMode,
   EuiThemeComputed,
   EuiThemeModifications,

@@ -39,3 +39,4 @@ export {
 } from './eui_palettes';
 export { rgbDef, HSV, RGB } from './color_types';
 export { getSteppedGradient } from './stepped_gradient';
+export * from './manipulation';

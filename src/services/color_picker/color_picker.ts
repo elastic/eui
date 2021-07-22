@@ -46,10 +46,16 @@ export const useColorStopsState = (
   return [colorStops, updateColorStops, addColor];
 };
 
-export const useColorPickerState = (initialColor = '') => {
+export type EuiSetColorMethod = (
+  text: string,
+  { hex, isValid }: { hex: string; isValid: boolean }
+) => void;
+export const useColorPickerState = (
+  initialColor = ''
+): [color: string, setColor: EuiSetColorMethod, errors: string[] | null] => {
   const [color, setColorValue] = useState(initialColor);
   const [isValid, setIsValid] = useState(true);
-  const setColor = (text: string, { isValid }: { isValid: boolean }) => {
+  const setColor: EuiSetColorMethod = (text, { isValid }) => {
     setColorValue(text);
     setIsValid(isValid);
   };

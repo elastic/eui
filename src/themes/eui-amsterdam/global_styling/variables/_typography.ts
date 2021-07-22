@@ -6,8 +6,12 @@
  * Side Public License, v 1.
  */
 
-export {
-  useColorPickerState,
-  useColorStopsState,
-  EuiSetColorMethod,
-} from './color_picker';
+import { font } from '../../../../global_styling/variables/_typography';
+
+/**
+ * Amsterdam theme just changes the main font from the beta Inter UI to Inter
+ */
+export const font_ams = {
+  ...font,
+  family: "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
+};

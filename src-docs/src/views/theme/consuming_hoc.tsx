@@ -9,9 +9,9 @@ class Block extends React.Component<WithEuiThemeProps> {
     const { theme } = this.props;
 
     const divStyle = css`
-      background: ${theme.euiTheme.colors.euiColorLightShade};
-      padding: ${theme.euiTheme.sizes.euiSizeXL};
-      border-radius: ${theme.euiTheme.borders.euiBorderRadius};
+      background: ${theme.euiTheme.colors.lightShade};
+      padding: ${theme.euiTheme.size.xl};
+      border-radius: ${theme.euiTheme.border.radius};
     `;
 
     return (

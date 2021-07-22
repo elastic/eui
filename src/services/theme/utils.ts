@@ -12,29 +12,32 @@ import {
   EuiThemeSystem,
   EuiThemeShape,
   EuiThemeComputed,
+  COLOR_MODES_STANDARD,
+  COLOR_MODES_INVERSE,
 } from './types';
 
-export const COLOR_MODE_KEY = 'colors';
-export const DEFAULT_COLOR_MODE = 'light';
+export const DEFAULT_COLOR_MODE = COLOR_MODES_STANDARD.light;
 
 const isObject = (obj: any) => obj && typeof obj === 'object';
 
 export const isInverseColorMode = (colorMode?: EuiThemeColorMode) => {
-  return colorMode === 'inverse';
+  return colorMode === COLOR_MODES_INVERSE;
 };
 
 export const getColorMode = (
   colorMode?: EuiThemeColorMode,
   parentColorMode?: EuiThemeColorMode
 ) => {
-  if (colorMode == null) {
+  const mode = colorMode?.toUpperCase();
+  if (mode == null) {
     return parentColorMode || DEFAULT_COLOR_MODE;
-  } else if (isInverseColorMode(colorMode)) {
-    return parentColorMode === 'dark' || parentColorMode === undefined
-      ? 'light'
-      : 'dark';
+  } else if (isInverseColorMode(mode)) {
+    return parentColorMode === COLOR_MODES_STANDARD.dark ||
+      parentColorMode === undefined
+      ? COLOR_MODES_STANDARD.light
+      : COLOR_MODES_STANDARD.dark;
   } else {
-    return colorMode;
+    return mode;
   }
 };
 
@@ -47,14 +50,20 @@ export const getOn = (
   let node = model;
   while (path.length) {
     const segment = path.shift()!;
+
     if (node.hasOwnProperty(segment) === false) {
-      return undefined;
-    }
-    if (colorMode && segment === COLOR_MODE_KEY) {
-      if (node[segment].hasOwnProperty(colorMode) === false) {
-        return undefined;
+      if (
+        colorMode &&
+        node.hasOwnProperty(colorMode) === true &&
+        node[colorMode].hasOwnProperty(segment) === true
+      ) {
+        if (node[colorMode][segment] instanceof Computed) {
+          node = node[colorMode][segment].getValue(null, null, node, colorMode);
+        } else {
+          node = node[colorMode][segment];
+        }
       } else {
-        node = node[segment][colorMode];
+        return undefined;
       }
     } else {
       if (node[segment] instanceof Computed) {
@@ -91,8 +100,8 @@ export const setOn = (
 
 export class Computed<T> {
   constructor(
-    public dependencies: string[],
-    public computer: (...values: any[]) => T
+    public computer: (...values: any[]) => T,
+    public dependencies: string | string[] = []
   ) {}
 
   getValue(
@@ -101,10 +110,20 @@ export class Computed<T> {
     working: EuiThemeComputed,
     colorMode: EuiThemeColorMode
   ) {
+    if (!this.dependencies.length) {
+      return this.computer(working);
+    }
+    if (!Array.isArray(this.dependencies)) {
+      return this.computer(
+        getOn(working, this.dependencies) ??
+          getOn(modifications, this.dependencies, colorMode) ??
+          getOn(base, this.dependencies, colorMode)
+      );
+    }
     return this.computer(
       this.dependencies.map((dependency) => {
         return (
-          getOn(working, dependency, colorMode) ??
+          getOn(working, dependency) ??
           getOn(modifications, dependency, colorMode) ??
           getOn(base, dependency, colorMode)
         );
@@ -113,12 +132,21 @@ export class Computed<T> {
   }
 }
 
-export const computed = <T>(
-  dependencies: string[],
-  computer: (values: any[]) => T
-) => {
-  return (new Computed(dependencies, computer) as unknown) as T;
-};
+export function computed<T>(computer: (value: EuiThemeComputed) => T): T;
+export function computed<T>(
+  computer: (value: any[]) => T,
+  dependencies: string[]
+): T;
+export function computed<T>(
+  computer: (value: any) => T,
+  dependencies: string
+): T;
+export function computed<T>(
+  comp: ((value: T) => T) | ((value: any) => T) | ((value: any[]) => T),
+  dep?: string | string[]
+) {
+  return new Computed<T>(comp, dep);
+}
 
 export const getComputed = <T = EuiThemeShape>(
   base: EuiThemeSystem<T>,
@@ -134,27 +162,31 @@ export const getComputed = <T = EuiThemeShape>(
     path?: string
   ) {
     Object.keys(base).forEach((key) => {
-      const arr = path?.split('.') || [];
-      const last = arr[arr.length - 1];
-      if (last === COLOR_MODE_KEY && key !== colorMode) {
-        // Intentional no-op
-      } else {
-        const newPath = path ? `${path}.${key}` : `${key}`;
-        const existing = checkExisting && getOn(output, newPath);
-        if (!existing || isObject(existing)) {
-          const baseValue =
-            base[key] instanceof Computed
-              ? base[key].getValue(base.root, over.root, output, colorMode)
-              : base[key];
-          const overValue =
-            over[key] instanceof Computed
-              ? over[key].getValue(base.root, over.root, output, colorMode)
-              : over[key];
-          if (isObject(baseValue)) {
-            loop(baseValue, overValue ?? {}, checkExisting, newPath);
-          } else {
-            setOn(output, newPath, overValue ?? baseValue);
-          }
+      let newPath = path ? `${path}.${key}` : `${key}`;
+      if ([...Object.values(COLOR_MODES_STANDARD), colorMode].includes(key)) {
+        if (key !== colorMode) {
+          return;
+        } else {
+          const colorModeSegment = new RegExp(
+            `(\\.${colorMode}\\b)|(\\b${colorMode}\\.)`
+          );
+          newPath = newPath.replace(colorModeSegment, '');
+        }
+      }
+      const existing = checkExisting && getOn(output, newPath);
+      if (!existing || isObject(existing)) {
+        const baseValue =
+          base[key] instanceof Computed
+            ? base[key].getValue(base.root, over.root, output, colorMode)
+            : base[key];
+        const overValue =
+          over[key] instanceof Computed
+            ? over[key].getValue(base.root, over.root, output, colorMode)
+            : over[key];
+        if (isObject(baseValue) && !Array.isArray(baseValue)) {
+          loop(baseValue, overValue ?? {}, checkExisting, newPath);
+        } else {
+          setOn(output, newPath, overValue ?? baseValue);
         }
       }
     });
@@ -163,7 +195,7 @@ export const getComputed = <T = EuiThemeShape>(
   loop(base, over);
   // Compute and apply extension values only
   loop(over, {}, true);
-  return currentColorModeOnly<T>(colorMode, (output as unknown) as T);
+  return output as EuiThemeComputed<T>;
 };
 
 export const buildTheme = <T extends {}>(model: T, key: string) => {
@@ -208,7 +240,7 @@ export const buildTheme = <T extends {}>(model: T, key: string) => {
       const target = property === 'root' ? _target : _target.model || _target;
       // @ts-ignore `string` index signature
       const value = target[property];
-      if (typeof value === 'object' && value !== null) {
+      if (isObject(value) && !Array.isArray(value)) {
         return new Proxy(
           {
             model: value,
@@ -269,27 +301,4 @@ export const mergeDeep = (
   });
 
   return target;
-};
-
-export const currentColorModeOnly = <T>(
-  colorMode: EuiThemeColorMode,
-  _theme: { [key: string]: any }
-): EuiThemeComputed<T> => {
-  const theme: { [key: string]: any } = {};
-
-  Object.keys(_theme).forEach((key) => {
-    if (key === COLOR_MODE_KEY) {
-      theme[key] = _theme[key][colorMode];
-    } else {
-      const themeValue = _theme[key];
-
-      if (isObject(themeValue)) {
-        theme[key] = currentColorModeOnly(colorMode, themeValue);
-      } else {
-        theme[key] = themeValue;
-      }
-    }
-  });
-
-  return theme as EuiThemeComputed<T>;
 };

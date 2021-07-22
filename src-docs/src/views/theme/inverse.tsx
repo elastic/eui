@@ -9,9 +9,9 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
   return (
     <div
       css={{
-        background: euiTheme.colors.euiColorLightShade,
-        padding: euiTheme.sizes.euiSizeXL,
-        color: euiTheme.colors.euiTextColor,
+        background: euiTheme.colors.lightShade,
+        padding: euiTheme.size.xl,
+        color: euiTheme.colors.text,
       }}>
       <p>{children}</p>
     </div>

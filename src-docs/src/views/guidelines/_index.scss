@@ -238,6 +238,7 @@
   height: $euiSize;
   margin-top: $euiSizeS;
   position: relative;
+  overflow: hidden;
 }
 
 .guideSass__animChild {
@@ -251,6 +252,7 @@
 .guideSass__animRow:hover .guideSass__animChild {
   transition-property: left;
   transition-timing-function: linear;
+  transition-duration: $euiAnimSpeedSlow;
   left: calc(100% - #{$euiSize});
 }
 

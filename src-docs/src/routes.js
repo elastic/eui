@@ -223,6 +223,7 @@ import { I18nTokens } from './views/package/i18n_tokens';
 import { SuperSelectExample } from './views/super_select/super_select_example';
 
 import { ThemeExample } from './views/theme/theme_example';
+import ThemeValues from './views/theme/values';
 
 /** Elastic Charts */
 
@@ -494,9 +495,19 @@ const navigation = [
       ResizeObserverExample,
       ResponsiveExample,
       TextDiffExample,
-      ThemeExample,
       WindowEventExample,
     ].map((example) => createExample(example)),
+  },
+  {
+    name: 'Theming',
+    items: [
+      createExample(ThemeExample, 'Theme provider'),
+      {
+        name: 'Global values',
+        component: ThemeValues,
+        isNew: true,
+      },
+    ],
   },
   {
     name: 'Package',
