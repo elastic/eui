@@ -11,12 +11,12 @@ import { GuideSectionTypes } from '../../components';
 import { ExternalBadge } from './shared';
 import { TextureMultiSeriesChart } from './texture';
 import { TexturedStylesProps } from './texture_props';
-import { Sunburst } from './sunburst';
-import { BulletExample } from './bullet_example';
+import { AccessibilitySunburst } from './accessibility_sunburst';
+import { AccessibilityBullet } from './accessibility_bullet';
 
 const TextureMultiSeriesChartSource = require('!!raw-loader!./texture');
-const BulletChartSource = require('!!raw-loader!./bullet_example');
-const SunburstSource = require('!!raw-loader!./sunburst');
+const BulletChartSource = require('!!raw-loader!./accessibility_bullet');
+const SunburstSource = require('!!raw-loader!./accessibility_sunburst');
 
 export const ElasticChartsAccessibilityExample = {
   title: 'Accessibility features',
@@ -195,7 +195,7 @@ export const ElasticChartsAccessibilityExample = {
           </EuiCallOut>
         </>
       ),
-      demo: <Sunburst />,
+      demo: <AccessibilitySunburst />,
       snippet: `<h3 id={randomId}>Students' favorite fruit</h3>
 <Chart>
   <Settings
@@ -324,7 +324,7 @@ export const ElasticChartsAccessibilityExample = {
           />
         </>
       ),
-      demo: <BulletExample />,
+      demo: <AccessibilityBullet />,
       source: [
         {
           type: GuideSectionTypes.JS,

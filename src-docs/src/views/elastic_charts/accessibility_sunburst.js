@@ -9,7 +9,7 @@ import {
 import { EuiTitle, EuiSpacer } from '../../../../src/components';
 import { htmlIdGenerator } from '../../../../src/services';
 
-export const Sunburst = () => {
+export const AccessibilitySunburst = () => {
   const themeContext = useContext(ThemeContext);
   const id = htmlIdGenerator()();
 
@@ -42,7 +42,39 @@ export const Sunburst = () => {
     { fruit: 'Lulo', count: 2 },
   ];
 
-  return (
+  const chart = isDarkTheme ? (
+    <>
+      <EuiTitle className="eui-textCenter" size="xs">
+        <h3 id={id}>Students&apos; favorite fruit</h3>
+      </EuiTitle>
+      <EuiSpacer />
+      <Chart size={{ height: 200 }}>
+        <Settings
+          ariaLabelledBy={id}
+          ariaDescription="There is a great variety of reported favorite fruit"
+          ariaTableCaption="For the chart representation, after Clementine (22) individual results are not labelled as the segments become too small"
+        />
+        <Partition
+          data={data}
+          valueAccessor={({ count }) => count}
+          layers={[
+            {
+              groupByRollup: ({ fruit }) => fruit,
+              shape: {
+                fillColor: ({ sortIndex }) =>
+                  vizColors[sortIndex % vizColors.length],
+              },
+            },
+          ]}
+          config={{
+            ...euiPartitionConfig,
+            clockwiseSectors: false,
+            partitionLayout: 'sunburst',
+          }}
+        />
+      </Chart>
+    </>
+  ) : (
     <>
       <EuiTitle className="eui-textCenter" size="xs">
         <h3 id={id}>Students&apos; favorite fruit</h3>
@@ -78,4 +110,6 @@ export const Sunburst = () => {
       </Chart>
     </>
   );
+
+  return chart;
 };
