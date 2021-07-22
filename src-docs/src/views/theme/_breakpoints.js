@@ -4,6 +4,8 @@ import { useEuiTheme } from '../../../../src/services';
 
 import { EuiText, EuiSpacer, EuiFlexItem } from '../../../../src/components';
 
+import { useDebouncedUpdate } from './hooks';
+
 import { ThemeSection } from './_theme_section';
 import { ThemeValue } from './_values';
 
@@ -12,15 +14,13 @@ import { getPropsFromThemeKey, EuiThemeBreakpoint } from './_props';
 export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
   const breakpoint = euiTheme.breakpoint;
-  const breakpointTypes = getPropsFromThemeKey(EuiThemeBreakpoint);
+  const [breakpointClone, updateBreakpoint] = useDebouncedUpdate({
+    property: 'breakpoint',
+    value: breakpoint,
+    onUpdate: onThemeUpdate,
+  });
 
-  const updateBreakpoint = (property, value) => {
-    onThemeUpdate({
-      breakpoint: {
-        [property]: value,
-      },
-    });
-  };
+  const breakpointTypes = getPropsFromThemeKey(EuiThemeBreakpoint);
 
   return (
     <div>
@@ -49,7 +49,7 @@ export default ({ onThemeUpdate }) => {
                 property="breakpoint"
                 type={breakpointTypes[prop]}
                 name={prop}
-                value={breakpoint[prop]}
+                value={breakpointClone[prop]}
                 onUpdate={(value) => updateBreakpoint(prop, value)}
                 groupProps={{
                   alignItems: 'center',

@@ -11,6 +11,8 @@ import {
   EuiCode,
 } from '../../../../src/components';
 
+import { useDebouncedUpdate } from './hooks';
+
 import { ThemeSection } from './_theme_section';
 import { ThemeValue } from './_values';
 
@@ -23,16 +25,15 @@ import {
 export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
   const animation = euiTheme.animation;
+  const [animationClone, updateAnimation] = useDebouncedUpdate({
+    property: 'animation',
+    value: animation,
+    onUpdate: onThemeUpdate,
+    time: 1000,
+  });
+
   const speedTypes = getPropsFromThemeKey(EuiThemeAnimationSpeed);
   const easingTypes = getPropsFromThemeKey(EuiThemeAnimationEasing);
-
-  const updateAnimation = (property, value) => {
-    onThemeUpdate({
-      animation: {
-        [property]: value,
-      },
-    });
-  };
 
   return (
     <div>
@@ -72,7 +73,7 @@ export default ({ onThemeUpdate }) => {
                           property="animation"
                           type={speedTypes[prop]}
                           name={prop}
-                          value={animation[prop]}
+                          value={animationClone[prop]}
                           onUpdate={(value) => updateAnimation(prop, value)}
                         />
                         <EuiSpacer size="xs" />
@@ -81,7 +82,7 @@ export default ({ onThemeUpdate }) => {
                             className="guideSass__animChild"
                             // Using inline style tag to override `:focus`
                             style={{
-                              transitionDuration: animation[prop],
+                              transitionDuration: animationClone[prop],
                             }}
                           />
                         </div>
@@ -106,7 +107,7 @@ export default ({ onThemeUpdate }) => {
                           property="animation"
                           type={easingTypes[prop]}
                           name={prop}
-                          value={animation[prop]}
+                          value={animationClone[prop]}
                           onUpdate={(value) => updateAnimation(prop, value)}
                         />
                         <EuiSpacer size="xs" />
@@ -115,7 +116,7 @@ export default ({ onThemeUpdate }) => {
                             className="guideSass__animChild"
                             // Using inline style tag to override `:focus`
                             style={{
-                              transitionTimingFunction: animation[prop],
+                              transitionTimingFunction: animationClone[prop],
                             }}
                           />
                         </div>

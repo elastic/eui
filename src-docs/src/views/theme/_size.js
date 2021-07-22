@@ -1,6 +1,5 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import debounce from 'lodash/debounce';
 import { useEuiTheme } from '../../../../src/services';
 
 import {
@@ -11,6 +10,7 @@ import {
   EuiTabbedContent,
 } from '../../../../src/components';
 
+import { useDebouncedUpdate } from './hooks';
 import { getPropsFromThemeKey, EuiTheme, _EuiThemeSize } from './_props';
 import { ThemeSection } from './_theme_section';
 import { ThemeValue } from './_values';
@@ -20,25 +20,11 @@ export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
   const sizes = euiTheme.size;
   const base = euiTheme.base;
-  const [baseClone, setBaseClone] = React.useState(base);
-
-  React.useEffect(() => {
-    setBaseClone(base);
-  }, [base]);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const debouncedUpdateBase = React.useCallback(
-    debounce((value) => {
-      onThemeUpdate({
-        base: value,
-      });
-    }, 200),
-    []
-  );
-  const updateBase = (value) => {
-    setBaseClone(value);
-    debouncedUpdateBase(value);
-  };
+  const [baseClone, updateBase] = useDebouncedUpdate({
+    base: 'base',
+    value: base,
+    onUpdate: onThemeUpdate,
+  });
 
   const themeProps = getPropsFromThemeKey(EuiTheme);
   const themeSizeProps = getPropsFromThemeKey(_EuiThemeSize);
@@ -94,7 +80,7 @@ export default ({ onThemeUpdate }) => {
                           );
                           background: ${euiTheme.colors.mediumShade};
                         `}
-                        onUpdate={(value) => updateBase(value)}
+                        onUpdate={(value) => updateBase('base', value)}
                       />
                     </EuiFlexItem>
                   }

@@ -82,7 +82,7 @@ export default () => {
 
         <EuiHorizontalRule margin="xxl" />
 
-        <Breakpoints />
+        <Breakpoints onThemeUpdate={updateTheme} />
 
         <EuiHorizontalRule margin="xxl" />
 

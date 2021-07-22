@@ -11,6 +11,8 @@ import {
   EuiTabbedContent,
 } from '../../../../src/components';
 
+import { useDebouncedUpdate } from './hooks';
+
 import { ThemeSection } from './_theme_section';
 import { ThemeValue } from './_values';
 
@@ -23,14 +25,12 @@ import {
 export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
   const border = euiTheme.border;
-
-  const updateBorder = (property, value) => {
-    onThemeUpdate({
-      border: {
-        [property]: value,
-      },
-    });
-  };
+  const [borderClone, updateBorder] = useDebouncedUpdate({
+    property: 'border',
+    value: border,
+    onUpdate: onThemeUpdate,
+    time: 1000,
+  });
 
   const valueProps = getPropsFromThemeKey(EuiThemeBorderValues);
   const typeProps = getPropsFromThemeKey(EuiThemeBorderTypes);
@@ -78,11 +78,11 @@ export default ({ onThemeUpdate }) => {
                         property="border"
                         type={valueProps[prop]}
                         name={prop}
-                        value={border[prop]}
+                        value={borderClone[prop]}
                         onUpdate={(value) => updateBorder(prop, value)}
                         example={
                           prop === 'color' ? (
-                            <EuiColorPickerSwatch color={border[prop]} />
+                            <EuiColorPickerSwatch color={borderClone[prop]} />
                           ) : undefined
                         }
                       />
@@ -106,13 +106,13 @@ export default ({ onThemeUpdate }) => {
                         property="border"
                         type={typeProps[prop]}
                         name={prop}
-                        value={border[prop]}
+                        value={borderClone[prop]}
                         onUpdate={(value) => updateBorder(prop, value)}
                         stringProps={{ style: { width: 160 } }}
                         buttonStyle={[
                           style,
                           css`
-                            border: ${border[prop]};
+                            border: ${borderClone[prop]};
                           `,
                         ]}
                       />
