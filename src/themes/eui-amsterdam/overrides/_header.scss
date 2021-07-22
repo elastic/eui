@@ -28,3 +28,93 @@
 .euiHeader--default + .euiHeader--default {
   border-top: $euiBorderThin;
 }
+
+// Breadcrumbs
+
+.euiHeaderBreadcrumbs {
+  line-height: $euiSize;
+  margin-left: $euiSizeS;
+  margin-right: $euiSizeS;
+
+  .euiBreadcrumb {
+    .euiBreadcrumb__content {
+      font-size: $euiFontSizeXS;
+      clip-path: polygon(0 0, calc(100% - #{$euiSizeS}) 0, 100% 50%, calc(100% - #{$euiSizeS}) 100%, 0 100%, $euiSizeS 50%);
+    }
+
+    &::after {
+      display: none;
+    }
+
+    // In case the item is first AND last, aka only, just make it a fully rounded item
+    &:only-child {
+      .euiBreadcrumb__content {
+        clip-path: none;
+        padding-left: $euiSizeM;
+        padding-right: $euiSizeM;
+        border-radius: $euiBorderRadius;
+      }
+    }
+
+    &:not(.euiBreadcrumb--last) {
+      margin-right: -$euiSizeXS;
+    }
+
+    &:first-child {
+      .euiBreadcrumb__content {
+        padding-left: $euiSizeM;
+        border-radius: $euiBorderRadius 0 0 $euiBorderRadius;
+        clip-path: polygon(0 0, calc(100% - #{$euiSizeS}) 0, 100% 50%, calc(100% - #{$euiSizeS}) 100%, 0 100%);
+      }
+    }
+  }
+
+  .euiBreadcrumb--last {
+    .euiBreadcrumb__content {
+      border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
+      padding-right: $euiSizeM;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, #{$euiSizeS} 50%);
+    }
+  }
+
+  // copy-pasted color math from euiButtonDefaultStyle() internals to set correct color on collapsed state
+  // can't use the mixin which would layer semi-transparent backgrounds on top of each other
+  .euiBreadcrumb__collapsedLink {
+    $backgroundColorSimulated: mix($euiPageBackgroundColor, $euiColorPrimary, $euiButtonDefaultTransparency * 100%);
+    color: makeHighContrastColor($euiColorPrimary, $backgroundColorSimulated);
+
+    &:hover,
+    &:focus {
+      @include euiFocusRing(null, 'outer');
+      color: $euiColorPrimary;
+    }
+  }
+
+  // Only the header breadcrumbs get the new Amsterdam style so that there can
+  // still be default text only breadcrumbs for places like EuiControlBar
+  .euiBreadcrumb__content {
+    @include euiButtonDefaultStyle($euiTextColor);
+    line-height: $euiSize;
+    font-weight: $euiFontWeightMedium;
+    padding: $euiSizeXS $euiSize;
+
+    &.euiLink,
+    &.euiPopover {
+      @include euiButtonDefaultStyle($euiColorPrimary);
+    }
+
+    &.euiLink {
+      &:hover,
+      &:focus {
+        @include euiFocusRing(null, 'inner');
+        color: $euiColorPrimary;
+      }
+    }
+
+    // Turn border-radius and clip path off when in focus so the focus ring looks correct
+    &:focus:focus-visible {
+      border-radius: 0;
+      clip-path: none;
+    }
+  }
+}
