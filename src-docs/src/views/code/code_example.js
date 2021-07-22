@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { renderToHtml } from '../../services';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -14,12 +13,10 @@ import { codeBlockConfig, codeConfig } from './playground';
 
 import Code from './code';
 const codeSource = require('!!raw-loader!./code');
-const codeHtml = renderToHtml(Code);
 const codeSnippet = '<EuiCode>Text to be formatted</EuiCode>';
 
 import CodeBlock from './code_block';
 const codeBlockSource = require('!!raw-loader!./code_block');
-const codeBlockHtml = renderToHtml(CodeBlock);
 const codeBlockSnippet = `<EuiCodeBlock language="html" paddingSize="s" isCopyable>
 { \`<h1>Title</h1>\` }
 </EuiCodeBlock>
@@ -27,15 +24,16 @@ const codeBlockSnippet = `<EuiCodeBlock language="html" paddingSize="s" isCopyab
 
 import CodeBlockVirtualized from './virtualized';
 const codeBlockVirtualizedSource = require('!!raw-loader!./virtualized');
-const codeBlockVirtualizedHtml = renderToHtml(CodeBlockVirtualized);
 const codeBlockVirtualizedSnippet = `<EuiCodeBlock language="json" isVirtualized overflowHeight={300}>
 { \`{}\` }
 </EuiCodeBlock>
 `;
 
+import CodeBlockVirtualizedFlyout from './virtualized_flyout';
+const codeBlockVirtualizedFlyoutSource = require('!!raw-loader!./virtualized_flyout');
+
 import CodeBlockPre from './code_block_pre';
 const codeBlockPreSource = require('!!raw-loader!./code_block_pre');
-const codeBlockPreHtml = renderToHtml(CodeBlockPre);
 
 export const CodeExample = {
   title: 'Code',
@@ -75,10 +73,6 @@ export const CodeExample = {
           type: GuideSectionTypes.JS,
           code: codeSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: codeHtml,
-        },
       ],
       text: (
         <p>
@@ -97,10 +91,6 @@ export const CodeExample = {
         {
           type: GuideSectionTypes.JS,
           code: codeBlockSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: codeBlockHtml,
         },
       ],
       text: (
@@ -123,10 +113,6 @@ export const CodeExample = {
           type: GuideSectionTypes.JS,
           code: codeBlockVirtualizedSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: codeBlockVirtualizedHtml,
-        },
       ],
       text: (
         <p>
@@ -141,15 +127,28 @@ export const CodeExample = {
       demo: <CodeBlockVirtualized />,
     },
     {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: codeBlockVirtualizedFlyoutSource,
+        },
+      ],
+      text: (
+        <p>
+          In places like <Link to="/layout/flyout">flyouts</Link>, you can use{' '}
+          <EuiCode language="tsx">{'overflowHeight="100%"'}</EuiCode> to stretch
+          the code block to fill the space. Just be sure that it&apos;s parent
+          container is also <EuiCode language="css">{'height: 100%'}</EuiCode>.
+        </p>
+      ),
+      demo: <CodeBlockVirtualizedFlyout />,
+    },
+    {
       title: 'Code block and white-space',
       source: [
         {
           type: GuideSectionTypes.JS,
           code: codeBlockPreSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: codeBlockPreHtml,
         },
       ],
       text: (
