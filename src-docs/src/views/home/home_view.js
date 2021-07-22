@@ -58,9 +58,9 @@ export const HomeView = () => (
               </p>
               <EuiFlexGroup gutterSize="xl" wrap responsive={false}>
                 <EuiFlexItem grow={false}>
-                  <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/consuming.md">
+                  <Link to="/guidelines/getting-started">
                     <strong>Getting started</strong>
-                  </EuiLink>
+                  </Link>
                 </EuiFlexItem>
                 <EuiFlexItem grow={false}>
                   <Link to="/package/changelog">

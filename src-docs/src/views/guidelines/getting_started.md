@@ -2,7 +2,7 @@
 
 To install the Elastic UI Framework into an existing project, use the `yarn` CLI (`npm` is not supported).
 
-```js
+```
 yarn add @elastic/eui
 ```
 
@@ -29,7 +29,7 @@ nvm install
 
 ### Documentation
 
-You can run the documentation locally at [http://localhost:8030/](http://localhost:8030/) by running the following.
+You can run the documentation locally at `http://localhost:8030/` by running the following.
 
 ```js
 yarn
