@@ -13,7 +13,6 @@ import {
   LineAnnotationStyle,
   PartitionConfig,
 } from '@elastic/charts';
-
 import { RecursivePartial } from '../../components/common';
 
 // @ts-ignore typescript doesn't understand the webpack loader
@@ -30,7 +29,9 @@ export interface EuiChartThemeType {
   partition: RecursivePartial<PartitionConfig>;
 }
 
-function createTheme(colors: any): EuiChartThemeType {
+function createTheme(colors: any, mode: string): EuiChartThemeType {
+  const isDarkMode = mode === 'dark';
+
   return {
     lineAnnotation: {
       line: {
@@ -58,11 +59,15 @@ function createTheme(colors: any): EuiChartThemeType {
       linkLabel: {
         maxCount: 5,
         fontSize: 11,
-        textColor: colors.euiColorDarkestShade.rgba,
+        textColor: isDarkMode
+          ? colors.euiColorDarkShade.rgba
+          : colors.euiColorFullShade.rgba,
       },
       outerSizeRatio: 1,
       circlePadding: 4,
-      sectorLineStroke: colors.euiColorEmptyShade.rgba,
+      sectorLineStroke: isDarkMode
+        ? colors.euiColorMediumShade.rgba
+        : colors.euiColorEmptyShade.rgba,
       sectorLineWidth: 1.5,
     },
     theme: {
@@ -178,9 +183,13 @@ function createTheme(colors: any): EuiChartThemeType {
 }
 
 export const EUI_CHARTS_THEME_LIGHT: EuiChartThemeType = createTheme(
-  lightColors
+  lightColors,
+  'light'
 );
-export const EUI_CHARTS_THEME_DARK: EuiChartThemeType = createTheme(darkColors);
+export const EUI_CHARTS_THEME_DARK: EuiChartThemeType = createTheme(
+  darkColors,
+  'dark'
+);
 
 export const EUI_SPARKLINE_THEME_PARTIAL: PartialTheme = {
   lineSeriesStyle: {
