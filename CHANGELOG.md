@@ -375,6 +375,12 @@
 
 - Removed letter-spacing from `euiFont` Sass mixin ([#4488](https://github.com/elastic/eui/pull/4488))
 
+**FEATURE: Emotion**
+
+*TODO*
+
+---
+
 ## [`31.7.0`](https://github.com/elastic/eui/tree/v31.7.0)
 
 - Added `whiteSpace` prop to `EuiCodeBlock` ([#4475](https://github.com/elastic/eui/pull/4475))

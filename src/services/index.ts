@@ -117,3 +117,33 @@ export {
 } from './hooks';
 
 export { throttle } from './throttle';
+
+export {
+  EuiSystemContext,
+  EuiThemeContext,
+  EuiModificationsContext,
+  EuiColorModeContext,
+  useEuiTheme,
+  withEuiTheme,
+  WithEuiThemeProps,
+  EuiThemeProvider,
+  buildTheme,
+  computed,
+  isInverseColorMode,
+  getColorMode,
+  getComputed,
+  getOn,
+  mergeDeep,
+  setOn,
+  Computed,
+  euiThemeDefault,
+  EuiThemeDefault,
+  EuiThemeAmsterdam,
+  euiThemeAmsterdam,
+  EuiThemeColor,
+  EuiThemeColorMode,
+  EuiThemeComputed,
+  EuiThemeModifications,
+  EuiThemeShape,
+  EuiThemeSystem,
+} from './theme';
