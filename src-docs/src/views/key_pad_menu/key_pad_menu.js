@@ -7,21 +7,31 @@ import {
 } from '../../../../src/components';
 
 export default () => (
-  <EuiKeyPadMenu>
-    <EuiKeyPadMenuItem label="Dashboard" href="#">
-      <EuiIcon type="dashboardApp" size="l" />
-    </EuiKeyPadMenuItem>
+  <nav aria-label="Nav title">
+    <EuiKeyPadMenu>
+      <EuiKeyPadMenuItem label="Dashboard">
+        <EuiIcon type="dashboardApp" size="l" />
+      </EuiKeyPadMenuItem>
 
-    <EuiKeyPadMenuItem label="Dashboard" href="#">
-      <EuiIcon type="dashboardApp" size="l" />
-    </EuiKeyPadMenuItem>
+      <EuiKeyPadMenuItem label="Canvas">
+        <EuiIcon type="canvasApp" size="l" />
+      </EuiKeyPadMenuItem>
 
-    <EuiKeyPadMenuItem label="Dashboard" href="#">
-      <EuiIcon type="dashboardApp" size="l" />
-    </EuiKeyPadMenuItem>
+      <EuiKeyPadMenuItem isSelected label="Lens">
+        <EuiIcon type="lensApp" size="l" />
+      </EuiKeyPadMenuItem>
 
-    <EuiKeyPadMenuItem isDisabled label="Dashboard" href="#">
-      <EuiIcon type="dashboardApp" size="l" />
-    </EuiKeyPadMenuItem>
-  </EuiKeyPadMenu>
+      <EuiKeyPadMenuItem isDisabled label="Visualize">
+        <EuiIcon type="visualizeApp" size="l" />
+      </EuiKeyPadMenuItem>
+
+      <EuiKeyPadMenuItem label="Graph">
+        <EuiIcon type="graphApp" size="l" />
+      </EuiKeyPadMenuItem>
+
+      <EuiKeyPadMenuItem label="Advanced Settings">
+        <EuiIcon type="advancedSettingsApp" size="l" />
+      </EuiKeyPadMenuItem>
+    </EuiKeyPadMenu>
+  </nav>
 );

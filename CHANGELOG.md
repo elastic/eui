@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Fixed color of `html` scrollbar in dark mode ([#4969](https://github.com/elastic/eui/pull/4969))
+
+## [`36.0.0`](https://github.com/elastic/eui/tree/v36.0.0)
+
 - Refactored `EuiFlyout` types ([#4940](https://github.com/elastic/eui/pull/4940))
 - Updated `pause` icon ([#4947](https://github.com/elastic/eui/pull/4947))
 - Updated `EuiMarkdownFormat` to use `EuiHorizontalRule` and better render tables, code blocks and blockquotes ([#4663](https://github.com/elastic/eui/pull/4947))
@@ -9,6 +13,7 @@
 - Added `markdownFormatProps` prop to `EuiMarkdownEditor`  to extend the props passed to the rendered `EuiMarkdownFormat` ([#4663](https://github.com/elastic/eui/pull/4947))
 - Changed multi-line `EuiDataGrid` cells to `break-word` instead of `break-all` ([#4955](https://github.com/elastic/eui/pull/4955))
 - Refactored `MarkdownEditor` plugins into separate files ([#4970](https://github.com/elastic/eui/pull/4970))
+- Added `checkable` options to `EuiKeyPadMenu` and `EuiKeyPadMenuItem` ([#4950](https://github.com/elastic/eui/pull/4950))
 
 **Bug fixes**
 
@@ -21,7 +26,8 @@
 
 **Theme: Amsterdam**
 
-- Fixed border-radius in `EuiCard.selectable`'s button ([#4954](https://github.com/elastic/eui/pull/4954)
+- Fixed border-radius in `EuiCard.selectable`'s button ([#4954](https://github.com/elastic/eui/pull/4954))
+- Updated styles for `EuiKeyPadMenuItem` ([#4950](https://github.com/elastic/eui/pull/4950))
 
 **Breaking changes**
 
