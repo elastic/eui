@@ -92,6 +92,9 @@ export default () => {
             });
           }
         }
+        return () => {
+          setCellProps({});
+        };
       }, [rowIndex, columnId, setCellProps]);
 
       return raw_data.hasOwnProperty(rowIndex)

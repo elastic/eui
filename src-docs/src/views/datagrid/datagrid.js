@@ -279,6 +279,9 @@ export default () => {
             });
           }
         }
+        return () => {
+          setCellProps({});
+        };
       }, [rowIndex, columnId, setCellProps, data]);
 
       function getFormatted() {
