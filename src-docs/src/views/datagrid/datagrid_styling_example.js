@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 import { renderToHtml } from '../../services';
 
@@ -13,6 +14,8 @@ import {
 import DataGridContainer from './container';
 const dataGridContainerSource = require('!!raw-loader!./container');
 const dataGridContainerHtml = renderToHtml(DataGridContainer);
+import DataGridFlex from './flex';
+const dataGridFlexSource = require('!!raw-loader!./flex');
 
 import DataGridStyling from './styling';
 const dataGridStylingSource = require('!!raw-loader!./styling');
@@ -203,9 +206,28 @@ export const DataGridStylingExample = {
           enables/disables grid controls based on available width.
         </p>
       ),
-      components: { DataGridContainer },
-
       demo: <DataGridContainer />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dataGridFlexSource,
+        },
+      ],
+      text: (
+        <p>
+          When placed within an{' '}
+          <Link to="/layout/flex">
+            <strong>EuiFlexGroup</strong> and <strong>EuiFlexItem</strong>
+          </Link>
+          , the data grid will have trouble shrinking to fit. To fix this, you
+          will need to manually add a style of{' '}
+          <EuiCode language="css">min-width: 0</EuiCode> to the{' '}
+          <strong>EuiFlexItem</strong>.
+        </p>
+      ),
+      demo: <DataGridFlex />,
     },
     {
       source: [
