@@ -65,9 +65,7 @@ function createTheme(colors: any, mode: string): EuiChartThemeType {
       },
       outerSizeRatio: 1,
       circlePadding: 4,
-      sectorLineStroke: isDarkMode
-        ? colors.euiColorMediumShade.rgba
-        : colors.euiColorEmptyShade.rgba,
+      sectorLineStroke: colors.euiColorEmptyShade.rgba,
       sectorLineWidth: 1.5,
     },
     theme: {

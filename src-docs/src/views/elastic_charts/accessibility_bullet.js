@@ -29,7 +29,7 @@ export const AccessibilityBullet = () => {
         hasShadow={false}
         hasBorder={false}
         style={{
-          backgroundColor: 'white',
+          backgroundColor: 'aliceblue',
         }}
         grow={false}>
         <Chart size={{ height: 200 }}>
