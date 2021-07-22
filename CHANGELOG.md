@@ -102,6 +102,7 @@
 ## [`34.4.0`](https://github.com/elastic/eui/tree/v34.4.0)
 
 - Added draggable highlight area to `EuiDualRange` ([#4776](https://github.com/elastic/eui/pull/4776))
+- Added `isEditable` prop to `EuiComboBox` enabling editing of selected options ([#4896](https://github.com/elastic/eui/pull/4846))
 
 **Bug fixes**
 
