@@ -1,6 +1,5 @@
-// Breadcrumb navigation included in the header.
-
 .euiHeaderBreadcrumbs {
+  @include euiTextTruncate;
   margin-left: $euiSizeM;
   margin-right: $euiSizeM;
   display: flex;

@@ -13,6 +13,7 @@
 - Updated `pause` icon ([#4947](https://github.com/elastic/eui/pull/4947))
 - Changed multi-line `EuiDataGrid` cells to `break-word` instead of `break-all` ([#4955](https://github.com/elastic/eui/pull/4955))
 - Refactored `MarkdownEditor` plugins into separate files ([#4970](https://github.com/elastic/eui/pull/4970))
+- Improved accessibility of `EuiBreadcrumbs` ([#4763](https://github.com/elastic/eui/pull/4763))
 - Added `checkable` options to `EuiKeyPadMenu` and `EuiKeyPadMenuItem` ([#4950](https://github.com/elastic/eui/pull/4950))
 
 **Bug fixes**
