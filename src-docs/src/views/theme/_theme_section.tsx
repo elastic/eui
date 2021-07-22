@@ -34,7 +34,7 @@ export const ThemeSection: FunctionComponent<ThemeSection> = ({
 
   return (
     <EuiFlexGroup>
-      <EuiFlexItem>
+      <EuiFlexItem style={{ flexShrink: 0 }}>
         <EuiText size="s">
           {code && (
             <h3>

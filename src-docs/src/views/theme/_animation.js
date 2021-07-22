@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { useEuiTheme } from '../../../../src/services';
+import { transparentize } from '../../../../src/services/color';
 
 import {
   EuiText,
@@ -18,7 +19,6 @@ import {
   EuiThemeAnimationSpeed,
   EuiThemeAnimationEasing,
 } from './_props';
-import { transparentize } from '../../../../src/services/color';
 
 export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();

@@ -140,6 +140,7 @@ export default ({ onThemeUpdate }) => {
               <>
                 <EuiSpacer />
                 <ThemeSection
+                  code="euiTheme.base"
                   description={
                     <p>
                       You can use calculations on top of the base value, just be
@@ -160,6 +161,7 @@ export default ({ onThemeUpdate }) => {
                 <EuiSpacer />
 
                 <ThemeSection
+                  code="euiTheme.size[size]"
                   description={
                     <p>Using the values as they are is straight foward.</p>
                   }
@@ -178,6 +180,7 @@ export default ({ onThemeUpdate }) => {
                 <EuiSpacer />
 
                 <ThemeSection
+                  code="calc()"
                   description={
                     <>
                       <p>

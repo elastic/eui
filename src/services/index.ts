@@ -62,6 +62,12 @@ export {
   euiPaletteGray,
   HSV,
   getSteppedGradient,
+  transparentize,
+  tint,
+  shade,
+  saturate,
+  desaturate,
+  lightness,
 } from './color';
 
 export {
