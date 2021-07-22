@@ -103,13 +103,13 @@ describe('EuiMarkdownEditor', () => {
     component.find('EuiButtonEmpty').simulate('click');
     expect(
       component
-        .find('.euiMarkdownFormat')
+        .find('EuiText.euiMarkdownFormat')
         .childAt(0)
         .childAt(0)
         .matchesElement(<h2>Hello world</h2>)
     );
     expect(
-      component.find('.euiMarkdownFormat').childAt(0).childAt(0).text()
+      component.find('EuiText.euiMarkdownFormat').childAt(0).childAt(0).text()
     ).toBe('Hello world');
   });
 

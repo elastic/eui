@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import { fake } from 'faker';
 
-import { EuiDataGrid, EuiText } from '../../../../src/components/';
+import { EuiDataGrid, EuiTitle, EuiSpacer } from '../../../../src/components/';
 
 const DataContext = createContext();
 
@@ -20,6 +20,15 @@ const columns = [
   },
   {
     id: 'text',
+    cellActions: [
+      ({ Component }) => {
+        return (
+          <Component iconType="heart" aria-label={'Heart'}>
+            Heart
+          </Component>
+        );
+      },
+    ],
   },
 ];
 
@@ -119,9 +128,10 @@ export default () => {
 
   return (
     <DataContext.Provider value={dataContext}>
-      <EuiText>
-        <p>There are {mountedCellCount} rendered cells</p>
-      </EuiText>
+      <EuiTitle size="xxs">
+        <h2>There are {mountedCellCount} rendered cells</h2>
+      </EuiTitle>
+      <EuiSpacer />
       {grid}
     </DataContext.Provider>
   );

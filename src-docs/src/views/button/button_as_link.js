@@ -10,42 +10,42 @@ import {
 
 export default () => (
   <Fragment>
-    <EuiFlexGroup gutterSize="s" alignItems="center">
+    <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButton href="http://www.elastic.co">Link to elastic.co</EuiButton>
+        <EuiButton href="/#/navigation/button">Link to elastic.co</EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButtonEmpty href="http://www.elastic.co">
+        <EuiButtonEmpty href="/#/navigation/button">
           Link to elastic.co
         </EuiButtonEmpty>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
         <EuiButtonIcon
-          href="http://www.elastic.co"
+          href="/#/navigation/button"
           iconType="link"
           aria-label="This is a link"
         />
       </EuiFlexItem>
     </EuiFlexGroup>
 
-    <EuiFlexGroup gutterSize="s" alignItems="center">
+    <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButton href="http://www.elastic.co" isDisabled>
+        <EuiButton href="/#/navigation/button" isDisabled>
           Disabled link
         </EuiButton>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
-        <EuiButtonEmpty href="http://www.elastic.co" isDisabled>
+        <EuiButtonEmpty href="/#/navigation/button" isDisabled>
           Disabled empty link
         </EuiButtonEmpty>
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>
         <EuiButtonIcon
-          href="http://www.elastic.co"
+          href="/#/navigation/button"
           iconType="link"
           aria-label="This is a link"
           isDisabled

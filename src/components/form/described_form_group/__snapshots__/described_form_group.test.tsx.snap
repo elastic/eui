@@ -52,6 +52,7 @@ exports[`EuiDescribedFormGroup is rendered 1`] = `
                 >
                   <div
                     className="euiTextColor euiTextColor--subdued"
+                    style={Object {}}
                   >
                     Test description
                   </div>
@@ -226,6 +227,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
                 >
                   <div
                     className="euiTextColor euiTextColor--subdued"
+                    style={Object {}}
                   >
                     Test description
                   </div>
@@ -324,6 +326,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
                 >
                   <div
                     className="euiTextColor euiTextColor--subdued"
+                    style={Object {}}
                   >
                     Test description
                   </div>
@@ -433,6 +436,7 @@ exports[`EuiDescribedFormGroup props props for the flex item containers are pass
                 >
                   <div
                     className="euiTextColor euiTextColor--subdued"
+                    style={Object {}}
                   >
                     Test description
                   </div>
@@ -532,6 +536,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
                 >
                   <div
                     className="euiTextColor euiTextColor--subdued"
+                    style={Object {}}
                   >
                     Test description
                   </div>
@@ -629,6 +634,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                 >
                   <div
                     className="euiTextColor euiTextColor--subdued"
+                    style={Object {}}
                   >
                     Test description
                   </div>
