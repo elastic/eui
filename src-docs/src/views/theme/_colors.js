@@ -346,7 +346,7 @@ export default ({ onThemeUpdate }) => {
             ),
           },
           {
-            id: 'themeAnimationTabUsage',
+            id: 'themeColorsTabUsage',
             name: 'Usage',
             content: (
               <>
