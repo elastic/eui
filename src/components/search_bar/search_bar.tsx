@@ -33,8 +33,10 @@ interface ArgsWithError {
   error: Error;
 }
 
+export type EuiSearchBarOnChangeArgs = ArgsWithQuery | ArgsWithError;
+
 export interface EuiSearchBarProps extends CommonProps {
-  onChange?: (args: ArgsWithQuery | ArgsWithError) => void | boolean;
+  onChange?: (args: EuiSearchBarOnChangeArgs) => void | boolean;
 
   /**
    The initial query the bar will hold when first mounted
