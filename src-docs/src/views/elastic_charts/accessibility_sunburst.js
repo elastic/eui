@@ -100,6 +100,9 @@ export const AccessibilitySunburst = () => {
           ]}
           config={{
             ...euiPartitionConfig,
+            ...(isDarkTheme
+              ? EUI_CHARTS_THEME_DARK.partition
+              : EUI_CHARTS_THEME_LIGHT.partition),
             clockwiseSectors: false,
             partitionLayout: 'sunburst',
           }}

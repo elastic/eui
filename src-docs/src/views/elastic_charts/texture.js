@@ -15,7 +15,7 @@ export const TextureMultiSeriesChart = () => {
 
   return (
     <Fragment>
-      <EuiTitle size="xs">
+      <EuiTitle className="eui-textCenter" size="xs">
         <h3 id={id}>Example chart with texture fills</h3>
       </EuiTitle>
 
