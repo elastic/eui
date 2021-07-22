@@ -10,10 +10,10 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
     class="euiBreadcrumbs__list"
   >
     <li
-      class="euiBreadcrumb customClass"
+      class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiLink--subdued euiBreadcrumb__content"
+        class="euiLink euiLink--subdued customClass"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"

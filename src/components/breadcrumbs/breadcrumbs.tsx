@@ -171,6 +171,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   max = 5,
   ...rest
 }) => {
+  const ariaLabel = useEuiI18n('euiBreadcrumbs.nav.ariaLabel', 'Breadcrumbs');
   const [currentBreakpoint, setCurrentBreakpoint] = useState(
     getBreakpoint(typeof window === 'undefined' ? -Infinity : window.innerWidth)
   );
@@ -193,17 +194,9 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   }, [responsive, functionToCallOnWindowResize]);
 
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
-    const {
-      text,
-      href,
-      onClick,
-      truncate,
-      className: breadcrumbClassName,
-      ...breadcrumbRest
-    } = breadcrumb;
-
+    const { text, href, onClick, truncate, ...breadcrumbRest } = breadcrumb;
     const isLastBreadcrumb = index === breadcrumbs.length - 1;
-    const className = classNames('euiBreadcrumb', breadcrumbClassName, {
+    const className = classNames('euiBreadcrumb', {
       'euiBreadcrumb--last': isLastBreadcrumb,
       'euiBreadcrumb--truncate': truncate,
     });
@@ -276,7 +269,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   });
 
   return (
-    <nav aria-label="Breadcrumbs" className={classes} {...rest}>
+    <nav aria-label={ariaLabel} className={classes} {...rest}>
       <ol className="euiBreadcrumbs__list">{limitedBreadcrumbs}</ol>
     </nav>
   );

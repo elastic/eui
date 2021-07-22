@@ -10,10 +10,10 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
     class="euiBreadcrumbs__list"
   >
     <li
-      class="euiBreadcrumb customClass"
+      class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiLink--subdued euiBreadcrumb__content"
+        class="euiLink euiLink--subdued customClass"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -97,10 +97,10 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     class="euiBreadcrumbs__list"
   >
     <li
-      class="euiBreadcrumb customClass"
+      class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiLink--subdued euiBreadcrumb__content"
+        class="euiLink euiLink--subdued customClass"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -233,10 +233,10 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     class="euiBreadcrumbs__list"
   >
     <li
-      class="euiBreadcrumb customClass"
+      class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiLink--subdued euiBreadcrumb__content"
+        class="euiLink euiLink--subdued customClass"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -324,10 +324,10 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
     class="euiBreadcrumbs__list"
   >
     <li
-      class="euiBreadcrumb customClass"
+      class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiLink--subdued euiBreadcrumb__content"
+        class="euiLink euiLink--subdued customClass"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -411,10 +411,10 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
     class="euiBreadcrumbs__list"
   >
     <li
-      class="euiBreadcrumb customClass"
+      class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiLink--subdued euiBreadcrumb__content"
+        class="euiLink euiLink--subdued customClass"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
@@ -543,10 +543,10 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
     class="euiBreadcrumbs__list"
   >
     <li
-      class="euiBreadcrumb customClass"
+      class="euiBreadcrumb"
     >
       <a
-        class="euiLink euiLink--subdued euiBreadcrumb__content"
+        class="euiLink euiLink--subdued customClass"
         data-test-subj="breadcrumbsAnimals"
         href="#"
         rel="noreferrer"
