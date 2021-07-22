@@ -20,6 +20,11 @@
     white-space: pre-wrap;
   }
 
+  // Necessary for virtualized code blocks to have appropriate padding
+  .euiCodeBlock__pre--isVirtualized {
+    position: relative;
+  }
+
   .euiCodeBlock__code {
     @include euiCodeFont;
     display: block;

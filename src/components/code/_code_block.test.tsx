@@ -87,5 +87,18 @@ describe('EuiCodeBlockImpl', () => {
       );
       expect(component).toMatchSnapshot();
     });
+
+    test('renders a virtualized code block', () => {
+      const component = render(
+        <EuiCodeBlockImpl
+          inline={false}
+          isVirtualized={true}
+          overflowHeight={300}
+          {...requiredProps}>
+          {code}
+        </EuiCodeBlockImpl>
+      );
+      expect(component).toMatchSnapshot();
+    });
   });
 });
