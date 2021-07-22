@@ -83,6 +83,10 @@ type EuiFormRowCommonProps = CommonProps & {
    *  Adds a single node/string or an array of nodes/strings below the input
    */
   helpText?: ReactNode | ReactNode[];
+  /**
+   *  Disables the field element so the user can't interact with it.
+   */
+  isDisabled?: boolean;
 };
 
 type LabelProps = {
@@ -162,6 +166,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       display,
       hasChildLabel,
       id: propsId,
+      isDisabled,
       ...rest
     } = this.props;
 
@@ -264,6 +269,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
 
     const field = cloneElement(Children.only(children), {
       id,
+      disabled: isDisabled,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       ...optionalProps,

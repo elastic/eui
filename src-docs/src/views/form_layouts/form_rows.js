@@ -60,6 +60,12 @@ export default () => {
       </EuiFormRow>
 
       <EuiFormRow
+        label="Disabled text field"
+        isDisabled>
+        <EuiFieldText name="last" />
+      </EuiFormRow>
+
+      <EuiFormRow
         label="Select (with no initial selection)"
         labelAppend={
           <EuiText size="xs">
