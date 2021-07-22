@@ -123,7 +123,7 @@ export default ({ onThemeUpdate }) => {
       <EuiTabbedContent
         tabs={[
           {
-            id: 'themeAnimationTabValues',
+            id: 'themeColorsTabValues',
             name: 'Values',
             content: (
               <>
