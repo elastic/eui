@@ -867,7 +867,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
   useEffect(() => {
     rowHeightUtils.clearHeightsCache();
-  }, [orderedVisibleColumns, rowHeightsOptions]);
+  }, [orderedVisibleColumns, rowHeightsOptions, rowHeightUtils]);
 
   const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
 
@@ -897,7 +897,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
       cellPadding: gridStyles.cellPadding,
       fontSize: gridStyles.fontSize,
     });
-  }, [gridStyles.cellPadding, gridStyles.fontSize]);
+  }, [gridStyles.cellPadding, gridStyles.fontSize, rowHeightUtils]);
 
   const classes = classNames(
     'euiDataGrid',

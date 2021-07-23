@@ -115,7 +115,7 @@ export default () => {
         1: {
           lineCount: 5,
         },
-        4: 140,
+        4: contentTypeSelected === 'images' ? 240 : 140,
       },
     }),
     [contentTypeSelected]
