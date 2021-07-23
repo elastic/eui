@@ -24,6 +24,18 @@ jest.mock('./row_height_utils', () => {
     RowHeightUtils: jest.fn().mockImplementation(() => {
       return {
         computeStylesForGridCell: () => {},
+        clearHeightsCache: () => {},
+        setGrid: () => {},
+        getStylesForCell: () => ({
+          wordWrap: 'break-word',
+          wordBreak: 'break-word',
+          flexGrow: 1,
+        }),
+        setRowHeight: () => {},
+        getRowHeight: () => 32,
+        getFont: () => null,
+        compareHeights: (currentRowHeight: number, cachedRowHeight: number) =>
+          currentRowHeight === cachedRowHeight,
         getCalculatedHeight: (
           heightOption: EuiDataGridRowHeightOption,
           defaultHeight: number
@@ -46,7 +58,6 @@ jest.mock('./row_height_utils', () => {
         },
       };
     }),
-    getStylesForCell: () => ({}),
   };
 });
 
