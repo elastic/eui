@@ -285,8 +285,10 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
     return <span {...wrapperProps}>{codeSnippet}</span>;
   }
 
-  const getCopyButton = (textToCopy?: string) => {
+  const getCopyButton = (_textToCopy?: string) => {
     let copyButton: JSX.Element | undefined;
+    // Fallback to `children` in the case of virtualized blocks.
+    const textToCopy = _textToCopy || `${children}`;
 
     if (isCopyable && textToCopy) {
       copyButton = (
