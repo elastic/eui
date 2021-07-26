@@ -1,0 +1,16 @@
+@mixin euiLink {
+  @include euiFocusRing(null, 'outer');
+  text-align: left;
+  font-weight: $euiButtonFontWeight;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    // sass-lint:disable-block no-misspelled-properties no-important
+    text-decoration-thickness: $euiBorderWidthThick !important;
+    background: transparent !important;
+  }
+}

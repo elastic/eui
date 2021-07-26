@@ -4,7 +4,7 @@
   @include euiFontSize;
   @include euiButtonFocus;
 
-  font-weight: $euiFontWeightMedium;
+  font-weight: $euiButtonFontWeight;
   text-decoration: none;
   transition: background-color $euiAnimSpeedNormal ease-in-out, border-color $euiAnimSpeedNormal ease-in-out;
   outline-offset: -1px;
