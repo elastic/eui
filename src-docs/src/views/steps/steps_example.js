@@ -258,7 +258,9 @@ export const StepsExample = {
           </p>
           <p>
             For horizontal steps, the <EuiCode language="tsx">status</EuiCode>{' '}
-            key defaults to <EuiCode>{'"incomplete"'}</EuiCode>.
+            key defaults to <EuiCode>{'"incomplete"'}</EuiCode> and the default
+            filled styling is reserved for indicating{' '}
+            <EuiCode>{'"current"'}</EuiCode> status.
           </p>
         </Fragment>
       ),
