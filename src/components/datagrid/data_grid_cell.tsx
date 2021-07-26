@@ -261,13 +261,13 @@ export class EuiDataGridCell extends Component<
 
       const font = this.props.rowHeightUtils?.getFont();
 
-      if (this.cellContentsRef.innerText && font) {
+      if (this.cellContentsRef.textContent && font) {
         // we should download needed fonts so that we can get a right height of text
         if (
-          !(document as any).fonts.check(font, this.cellContentsRef.innerText)
+          !(document as any).fonts.check(font, this.cellContentsRef.textContent)
         ) {
           (document as any).fonts
-            .load(font, this.cellContentsRef.innerText)
+            .load(font, this.cellContentsRef.textContent)
             .then(() => {
               this.props.rowHeightUtils?.setRowHeight(
                 this.props.rowIndex,
