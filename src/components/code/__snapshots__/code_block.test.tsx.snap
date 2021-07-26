@@ -1,5 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiCodeBlock dynamic content renders a virtualized code block 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls prismjs language-text testClass1 testClass2"
+  style="height:50%"
+>
+  <div
+    style="overflow:visible;height:0;width:0"
+  />
+  <div
+    class="euiCodeBlock__controls"
+  >
+    <button
+      aria-label="Expand"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="fullScreen"
+      />
+    </button>
+  </div>
+</div>
+`;
+
 exports[`EuiCodeBlock dynamic content updates DOM when input changes 1`] = `
 "<div>
   <div class=\\"euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-javascript\\">
