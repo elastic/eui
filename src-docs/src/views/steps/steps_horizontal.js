@@ -9,12 +9,13 @@ const horizontalSteps = [
     onClick: () => {},
   },
   {
-    title: 'Selected step 2',
+    title: 'Using deprecated isSelected',
     onClick: () => {},
+    isSelected: true,
   },
   {
-    title: 'Incomplete step 3 which will wrap to the next line',
-    status: 'incomplete',
+    title: 'Using status = current',
+    status: 'current',
     onClick: () => {},
   },
   {
