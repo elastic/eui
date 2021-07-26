@@ -51,6 +51,7 @@ const breadcrumbs = [
   },
   {
     text: 'Edit',
+    href: '#',
   },
 ];
 

@@ -77,12 +77,14 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
     <li
       class="euiBreadcrumb euiBreadcrumb--last"
     >
-      <span
+      <a
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiLink euiLink--text euiBreadcrumb__content"
+        href="#"
+        rel="noreferrer"
       >
         Edit
-      </span>
+      </a>
     </li>
   </ol>
 </nav>
@@ -139,6 +141,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       class="euiBreadcrumb"
     >
       <span
+        aria-current="false"
         class="euiBreadcrumb__content"
       >
         Tetrapods
@@ -158,6 +161,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       class="euiBreadcrumb euiBreadcrumb--truncate"
     >
       <a
+        aria-current="false"
         class="euiLink euiLink--subdued euiBreadcrumb__content"
         href="#"
         rel="noreferrer"
@@ -168,12 +172,14 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     <li
       class="euiBreadcrumb euiBreadcrumb--last"
     >
-      <span
+      <a
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiLink euiLink--text euiBreadcrumb__content"
+        href="#"
+        rel="noreferrer"
       >
         Edit
-      </span>
+      </a>
     </li>
   </ol>
 </nav>
@@ -213,12 +219,14 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
     <li
       class="euiBreadcrumb euiBreadcrumb--last"
     >
-      <span
+      <a
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiLink euiLink--text euiBreadcrumb__content"
+        href="#"
+        rel="noreferrer"
       >
         Edit
-      </span>
+      </a>
     </li>
   </ol>
 </nav>
@@ -275,6 +283,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       class="euiBreadcrumb"
     >
       <span
+        aria-current="false"
         class="euiBreadcrumb__content"
       >
         Tetrapods
@@ -294,6 +303,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       class="euiBreadcrumb euiBreadcrumb--truncate"
     >
       <a
+        aria-current="false"
         class="euiLink euiLink--subdued euiBreadcrumb__content"
         href="#"
         rel="noreferrer"
@@ -304,12 +314,14 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     <li
       class="euiBreadcrumb euiBreadcrumb--last"
     >
-      <span
+      <a
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiLink euiLink--text euiBreadcrumb__content"
+        href="#"
+        rel="noreferrer"
       >
         Edit
-      </span>
+      </a>
     </li>
   </ol>
 </nav>
@@ -391,12 +403,14 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
     <li
       class="euiBreadcrumb euiBreadcrumb--last"
     >
-      <span
+      <a
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiLink euiLink--text euiBreadcrumb__content"
+        href="#"
+        rel="noreferrer"
       >
         Edit
-      </span>
+      </a>
     </li>
   </ol>
 </nav>
@@ -478,12 +492,14 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
     <li
       class="euiBreadcrumb euiBreadcrumb--last"
     >
-      <span
+      <a
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiLink euiLink--text euiBreadcrumb__content"
+        href="#"
+        rel="noreferrer"
       >
         Edit
-      </span>
+      </a>
     </li>
   </ol>
 </nav>
@@ -523,12 +539,14 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
     <li
       class="euiBreadcrumb euiBreadcrumb--last"
     >
-      <span
+      <a
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiLink euiLink--text euiBreadcrumb__content"
+        href="#"
+        rel="noreferrer"
       >
         Edit
-      </span>
+      </a>
     </li>
   </ol>
 </nav>
@@ -600,6 +618,7 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
       class="euiBreadcrumb euiBreadcrumb--truncate"
     >
       <a
+        aria-current="false"
         class="euiLink euiLink--subdued euiBreadcrumb__content"
         href="#"
         rel="noreferrer"
@@ -610,12 +629,14 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
     <li
       class="euiBreadcrumb euiBreadcrumb--last"
     >
-      <span
+      <a
         aria-current="page"
-        class="euiBreadcrumb__content"
+        class="euiLink euiLink--text euiBreadcrumb__content"
+        href="#"
+        rel="noreferrer"
       >
         Edit
-      </span>
+      </a>
     </li>
   </ol>
 </nav>

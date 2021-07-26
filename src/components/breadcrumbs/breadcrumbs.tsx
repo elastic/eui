@@ -46,6 +46,10 @@ export type EuiBreadcrumb = CommonProps & {
    * Force a max-width on the breadcrumb text
    */
   truncate?: boolean;
+  /**
+   * Can be set on the last breadcrumb to override default value of page
+   */
+  'aria-current'?: AriaAttributes['aria-current'];
 };
 
 export type EuiBreadcrumbsProps = CommonProps & {
@@ -98,6 +102,11 @@ const limitBreadcrumbs = (
     start,
     start + breadcrumbs.length - limit
   );
+
+  if (overflowBreadcrumbs.length) {
+    overflowBreadcrumbs[overflowBreadcrumbs.length - 1]['aria-current'] =
+      'false';
+  }
 
   for (let i = 0; i < limit; i++) {
     // We'll alternate with displaying breadcrumbs at the end and at the start, but be biased
