@@ -194,14 +194,21 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
   }, [responsive, functionToCallOnWindowResize]);
 
   const breadcrumbElements = breadcrumbs.map((breadcrumb, index) => {
-    const { text, href, onClick, truncate, ...breadcrumbRest } = breadcrumb;
+    const {
+      text,
+      href,
+      onClick,
+      truncate,
+      className: breadcrumbClassName,
+      ...breadcrumbRest
+    } = breadcrumb;
     const isLastBreadcrumb = index === breadcrumbs.length - 1;
     const className = classNames('euiBreadcrumb', {
       'euiBreadcrumb--last': isLastBreadcrumb,
       'euiBreadcrumb--truncate': truncate,
     });
     const linkProps = {
-      className: CONTENT_CLASSNAME,
+      className: classNames(CONTENT_CLASSNAME, breadcrumbClassName),
       'aria-current': isLastBreadcrumb ? 'page' : undefined,
     } as { className: string; 'aria-current': AriaAttributes['aria-current'] };
 
