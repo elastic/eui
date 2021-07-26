@@ -33,6 +33,7 @@
 
 - Fixed border-radius in `EuiCard.selectable`'s button ([#4954](https://github.com/elastic/eui/pull/4954))
 - Updated styles for `EuiKeyPadMenuItem` ([#4950](https://github.com/elastic/eui/pull/4950))
+- Updated styles for `EuiLink` ([#4979](https://github.com/elastic/eui/pull/4979))
 
 **Breaking changes**
 
