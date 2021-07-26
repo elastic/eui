@@ -114,6 +114,7 @@ ChartTypeCard.propTypes = {
 export const MultiChartCard = (props) => {
   const [multi, setMulti] = useState(false);
   const [stacked, setStacked] = useState(false);
+  const [valueLabels, setValueLabels] = useState(false);
 
   const onMultiChange = (e) => {
     const isStacked = e.target.checked ? stacked : false;
@@ -124,14 +125,26 @@ export const MultiChartCard = (props) => {
     props.onChange({
       multi: e.target.checked,
       stacked,
+      valueLabels: valueLabels,
     });
   };
 
   const onStackedChange = (e) => {
     setStacked(e.target.checked);
 
-    props.onChange({ multi: multi, stacked: e.target.checked });
+    props.onChange({ multi, stacked: e.target.checked, valueLabels });
   };
+
+  const onValueLabelsChange = (e) => {
+    setValueLabels(e.target.checked);
+
+    props.onChange({
+      multi: multi,
+      stacked: stacked,
+      valueLabels: e.target.checked,
+    });
+  };
+
   return (
     <ChartCard
       textAlign="left"
@@ -142,7 +155,20 @@ export const MultiChartCard = (props) => {
         checked={multi}
         onChange={onMultiChange}
       />
+
+      {props.showValueLabels && (
+        <>
+          <EuiSpacer size="s" />
+          <EuiSwitch
+            label="Show value labels"
+            checked={valueLabels}
+            onChange={onValueLabelsChange}
+          />
+        </>
+      )}
+
       <EuiSpacer size="s" />
+
       <EuiSwitch
         label="Stacked"
         checked={stacked}
@@ -158,4 +184,5 @@ MultiChartCard.propTypes = {
    * Returns (multi:boolean, stacked:boolean)
    */
   onChange: PropTypes.func.isRequired,
+  showValueLabels: PropTypes.bool,
 };

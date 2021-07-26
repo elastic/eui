@@ -38,11 +38,13 @@ export const CategoryChart = () => {
   const [ordered, setOrdered] = useState(true);
   const [formatted, setFormatted] = useState(false);
   const [chartType, setChartType] = useState('BarSeries');
+  const [valueLabels, setValueLabels] = useState(false);
 
   const onMultiChange = (multiObject) => {
-    const { multi, stacked } = multiObject;
+    const { multi, stacked, valueLabels } = multiObject;
     setMulti(multi);
     setStacked(stacked);
+    setValueLabels(valueLabels);
   };
 
   const onRotatedChange = (e) => {
@@ -70,6 +72,30 @@ export const CategoryChart = () => {
 
   const DATASET = multi ? GITHUB_DATASET : SIMPLE_GITHUB_DATASET;
 
+  const displayValueSettings = {
+    showValueLabel: true,
+  };
+
+  const isHorizontalLayout = rotated;
+
+  const customTheme = {
+    ...theme,
+    barSeriesStyle: {
+      displayValue: {
+        ...theme.barSeriesStyle.displayValue,
+        offsetX: isHorizontalLayout ? 2 : 0,
+        offsetY: isHorizontalLayout ? 0 : -2,
+        alignment: isHorizontalLayout
+          ? {
+              vertical: 'middle',
+            }
+          : {
+              horizontal: 'center',
+            },
+      },
+    },
+  };
+
   return (
     <Fragment>
       <EuiTitle size="xxs">
@@ -83,7 +109,7 @@ export const CategoryChart = () => {
 
       <Chart size={{ height: 300 }}>
         <Settings
-          theme={theme}
+          theme={customTheme}
           showLegend={multi}
           legendPosition="right"
           rotation={rotated ? 90 : 0}
@@ -100,6 +126,7 @@ export const CategoryChart = () => {
           yAccessors={['count']}
           splitSeriesAccessors={multi ? ['issueType'] : undefined}
           stackAccessors={stacked ? ['issueType'] : undefined}
+          displayValueSettings={valueLabels && displayValueSettings}
         />
         <Axis
           id="bottom-axis"
@@ -166,7 +193,7 @@ export const CategoryChart = () => {
         </EuiFlexItem>
 
         <EuiFlexItem>
-          <MultiChartCard onChange={onMultiChange} />
+          <MultiChartCard onChange={onMultiChange} showValueLabels />
         </EuiFlexItem>
       </EuiFlexGrid>
 
