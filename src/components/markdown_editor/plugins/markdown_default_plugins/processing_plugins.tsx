@@ -30,8 +30,10 @@ import rehype2react from 'rehype-react';
 import remark2rehype from 'remark-rehype';
 import * as MarkdownTooltip from '../markdown_tooltip';
 import * as MarkdownCheckbox from '../markdown_checkbox';
+import { FENCED_CLASS } from '../remark/remark_prismjs';
 import { EuiLink } from '../../../link';
 import { EuiCodeBlock, EuiCode } from '../../../code';
+import { EuiHorizontalRule } from '../../../horizontal_rule';
 
 const unknownHandler: Handler = (h, node) => {
   return h(node, node.type, node, all(h, node));
@@ -63,11 +65,25 @@ export const getDefaultEuiMarkdownProcessingPlugins = (): [
         a: EuiLink,
         code: (props: any) =>
           // If there are linebreaks use codeblock, otherwise code
-          /\r|\n/.exec(props.children) ? (
+          /\r|\n/.exec(props.children) ||
+          (props.className && props.className.indexOf(FENCED_CLASS) > -1) ? (
             <EuiCodeBlock fontSize="m" paddingSize="s" {...props} />
           ) : (
             <EuiCode {...props} />
           ),
+        // When we use block code "fences" the code tag is replaced by the `EuiCodeBlock`.
+        // But there's a `pre` tag wrapping all the `EuiCodeBlock`.
+        // We want to replace this `pre` tag with a `div` because the `EuiCodeBlock` has its own children `pre` tag.
+        pre: (props) => (
+          <div {...props} className="euiMarkdownFormat__codeblockWrapper" />
+        ),
+        blockquote: (props) => (
+          <blockquote {...props} className="euiMarkdownFormat__blockquote" />
+        ),
+        table: (props) => (
+          <table className="euiMarkdownFormat__table" {...props} />
+        ),
+        hr: (props) => <EuiHorizontalRule {...props} />,
         tooltipPlugin: MarkdownTooltip.renderer,
         checkboxPlugin: MarkdownCheckbox.renderer,
       },

@@ -19,12 +19,16 @@ $euiBodyLineHeight: 1.142857143; // 16px from a 14px base font size to ensure it
 $euiCodeFontWeightRegular: 400;
 $euiCodeFontWeightBold: 700;
 
+
+// Normally functions are imported before variables in `_index.scss` files
+// But because they need to consume some typography variables they need to live here
+@function convertToRem($size) {
+  @return #{$size / $euiFontSize}rem;
+}
+
 // Use 8px increments for base gridline
 @function lineHeightFromBaseline($multiplier: 3) {
   @return convertToRem(($euiSize/2)*$multiplier);
-}
-@mixin lineHeightFromBaseline($multiplier: 3) {
-  line-height: lineHeightFromBaseline($multiplier);
 }
 
 $euiTitles: (
