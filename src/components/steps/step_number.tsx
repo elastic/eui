@@ -20,6 +20,7 @@ import {
   useI18nStep,
   useI18nWarningStep,
   useI18nLoadingStep,
+  useI18nCurrentStep,
 } from './step_strings';
 import { EuiLoadingSpinner } from '../loading';
 
@@ -30,6 +31,7 @@ const statusToClassNameMap = {
   warning: 'euiStepNumber--warning',
   danger: 'euiStepNumber--danger',
   complete: 'euiStepNumber--complete',
+  current: null, // Current displays the same as the default (undefined)
 };
 
 export const STATUS = keysOf(statusToClassNameMap);
@@ -69,6 +71,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   const incompleteAriaLabel = useI18nIncompleteStep({ number });
   const disabledAriaLabel = useI18nDisabledStep({ number });
   const loadingAriaLabel = useI18nLoadingStep({ number });
+  const currentAriaLabel = useI18nCurrentStep({ number });
 
   const classes = classNames(
     'euiStepNumber',
@@ -82,6 +85,7 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
   if (status === 'incomplete') screenReaderText = incompleteAriaLabel;
   else if (status === 'disabled') screenReaderText = disabledAriaLabel;
   else if (status === 'loading') screenReaderText = loadingAriaLabel;
+  else if (status === 'current') screenReaderText = currentAriaLabel;
 
   let numberOrIcon = (
     <>
