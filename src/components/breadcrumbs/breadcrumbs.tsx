@@ -215,13 +215,11 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
     const link = (
       <EuiInnerText>
         {(ref, innerText) => {
+          const title = innerText === '' ? undefined : innerText;
+
           if (!href && !onClick) {
             return (
-              <span
-                ref={ref}
-                title={innerText}
-                {...linkProps}
-                {...breadcrumbRest}>
+              <span ref={ref} title={title} {...linkProps} {...breadcrumbRest}>
                 {text}
               </span>
             );
@@ -233,7 +231,7 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
               color={isLastBreadcrumb ? 'text' : 'subdued'}
               onClick={onClick}
               href={href}
-              title={innerText}
+              title={title}
               {...linkProps}
               {...breadcrumbRest}>
               {text}
