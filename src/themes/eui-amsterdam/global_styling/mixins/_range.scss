@@ -3,7 +3,6 @@
 
 @mixin euiRangeTrackSize($compressed: false) {
   height: $euiRangeTrackHeight;
-  transition: all $euiAnimSpeedNormal ease-in;
   width: $euiRangeTrackWidth;
 
   @if ($compressed) {

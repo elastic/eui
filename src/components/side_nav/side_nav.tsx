@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { Component, ReactNode, MouseEventHandler } from 'react';
@@ -73,9 +62,10 @@ export type EuiSideNavProps<T = {}> = T &
      */
     mobileTitle?: ReactNode;
     /**
-     * Array of breakpoint names for when to show the mobile version
+     * Array of breakpoint names for when to show the mobile version.
+     * Set to `undefined` to remove responsive behavior
      */
-    mobileBreakpoints: EuiBreakpointSize[];
+    mobileBreakpoints?: EuiBreakpointSize[];
     /**
      *  An array of #EuiSideNavItem objects. Lists navigation menu items.
      */
@@ -188,7 +178,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     // We add a className for every breakpoint supported
     const contentClasses = classNames(
       'euiSideNav__content',
-      mobileBreakpoints.map(
+      mobileBreakpoints?.map(
         (breakpointName) => `euiSideNav__contentMobile-${breakpointName}`
       )
     );
@@ -205,7 +195,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
       ...titleProps
     } = headingProps!;
 
-    const hasMobileVersion = mobileBreakpoints.length > 0;
+    const hasMobileVersion = mobileBreakpoints && mobileBreakpoints.length > 0;
     const hasHeader = !!heading;
     let headingNode;
 
@@ -239,9 +229,10 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     }
 
     let mobileNode;
+    const breakpoints: EuiBreakpointSize[] | undefined = mobileBreakpoints;
     if (hasMobileVersion) {
       mobileNode = (
-        <EuiShowFor sizes={mobileBreakpoints}>
+        <EuiShowFor sizes={breakpoints || 'none'}>
           <nav
             aria-labelledby={sharedHeadingProps.id}
             className={classes}
@@ -270,7 +261,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     return (
       <>
         {mobileNode}
-        <EuiHideFor sizes={mobileBreakpoints}>
+        <EuiHideFor sizes={breakpoints || 'none'}>
           <nav
             aria-labelledby={headingNode ? sharedHeadingProps.id : undefined}
             className={classes}

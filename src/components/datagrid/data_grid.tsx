@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -55,6 +44,7 @@ import {
   EuiDataGridFocusedCell,
   EuiDataGridOnColumnResizeHandler,
   EuiDataGridStyleFooter,
+  EuiDataGridRowHeightsOptions,
 } from './data_grid_types';
 import { EuiDataGridCellProps } from './data_grid_cell';
 import { EuiButtonEmpty } from '../button';
@@ -78,6 +68,7 @@ import {
   DataGridSortingContext,
 } from './data_grid_context';
 import { useDataGridColumnSorting } from './column_sorting';
+import { RowHeightUtils } from './row_height_utils';
 
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
@@ -163,6 +154,10 @@ type CommonGridProps = CommonProps &
      * Sets the grid's width, forcing it to overflow in a scrollable container with cell virtualization
      */
     width?: CSSProperties['width'];
+    /**
+     * A #EuiDataGridRowHeightsOptions object that provides row heights options
+     */
+    rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   };
 
 // Force either aria-label or aria-labelledby to be defined
@@ -465,8 +460,10 @@ function useInMemoryValues(
   const onCellRender = useCallback((rowIndex, columnId, value) => {
     const nextInMemoryValues = _inMemoryValues.current;
     nextInMemoryValues[rowIndex] = nextInMemoryValues[rowIndex] || {};
-    nextInMemoryValues[rowIndex][columnId] = value;
-    setInMemoryValuesVersion((version) => version + 1);
+    if (nextInMemoryValues[rowIndex][columnId] !== value) {
+      nextInMemoryValues[rowIndex][columnId] = value;
+      setInMemoryValuesVersion((version) => version + 1);
+    }
   }, []);
 
   // if `inMemory.level` or `rowCount` changes reset the values
@@ -692,6 +689,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     minSizeForControls = MINIMUM_WIDTH_FOR_GRID_CONTROLS,
     height,
     width,
+    rowHeightsOptions,
     ...rest
   } = props;
 
@@ -887,6 +885,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
       }
     }
   }, [focusedCell, contentRef]);
+
+  const [rowHeightUtils] = useState(new RowHeightUtils());
+
+  useEffect(() => {
+    rowHeightUtils.computeStylesForGridCell(gridStyles);
+  }, [gridStyles, rowHeightUtils]);
 
   const classes = classNames(
     'euiDataGrid',
@@ -1128,6 +1132,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                         renderFooterCellValue={renderFooterCellValue}
                         rowCount={rowCount}
                         interactiveCellId={interactiveCellId}
+                        rowHeightsOptions={rowHeightsOptions}
+                        rowHeightUtils={rowHeightUtils}
+                        gridStyles={gridStyles}
                       />
                     </div>
                   </div>
