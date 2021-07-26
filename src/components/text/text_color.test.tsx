@@ -18,4 +18,28 @@ describe('EuiTextColor', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  describe('props', () => {
+    describe('color', () => {
+      test('is rendered with named color', () => {
+        const component = render(
+          <EuiTextColor color="warning">
+            <p>Content</p>
+          </EuiTextColor>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('is rendered with custom color', () => {
+        const component = render(
+          <EuiTextColor color="#ff0000">
+            <p>Content</p>
+          </EuiTextColor>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+  });
 });

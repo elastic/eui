@@ -1,5 +1,3 @@
-// Increase the medium (currently default) size of EuiText to original 16px
 .euiText--medium {
-  @include fontSize($euiFontSizeM);
-  @include euiScaleText($euiFontSizeM);
+  @include euiScaleText($euiFontSizeM, 'rem');
 }

@@ -18,4 +18,30 @@ describe('EuiKeyPadMenu', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  describe('checkable', () => {
+    test('is rendered as a fieldset when true', () => {
+      const component = render(<EuiKeyPadMenu checkable />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('is rendered as with a legend', () => {
+      const component = render(
+        <EuiKeyPadMenu
+          checkable={{ legend: 'Legend', legendProps: requiredProps }}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('is rendered as with an ariaLegend', () => {
+      const component = render(
+        <EuiKeyPadMenu checkable={{ ariaLegend: 'Aria legend' }} />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
 });
