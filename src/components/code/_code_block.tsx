@@ -8,18 +8,24 @@
 
 import React, {
   CSSProperties,
+  HTMLAttributes,
   FunctionComponent,
   KeyboardEvent,
+  ReactElement,
   ReactNode,
+  memo,
+  forwardRef,
   useEffect,
   useMemo,
   useState,
 } from 'react';
 import classNames from 'classnames';
-import { highlight, AST, RefractorNode, listLanguages } from 'refractor';
+import { highlight, RefractorNode, listLanguages } from 'refractor';
+import { FixedSizeList, ListChildComponentProps } from 'react-window';
+import AutoSizer from 'react-virtualized-auto-sizer';
 import { keys, useCombinedRefs } from '../../services';
 import { EuiButtonIcon } from '../button';
-import { keysOf } from '../common';
+import { keysOf, CommonProps, ExclusiveUnion } from '../common';
 import { EuiCopy } from '../copy';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n } from '../i18n';
@@ -27,117 +33,43 @@ import { useInnerText } from '../inner_text';
 import { useMutationObserver } from '../observer/mutation_observer';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiOverlayMask } from '../overlay_mask';
+import { highlightByLine, nodeToHtml } from './utils';
 
-type ExtendedRefractorNode = RefractorNode & {
-  lineStart?: number;
-  lineEnd?: number;
+// eslint-disable-next-line local/forward-ref
+const virtualizedOuterElement = ({
+  className,
+}: HTMLAttributes<HTMLPreElement>) =>
+  memo(
+    forwardRef<any, any>((props, ref) => (
+      <pre {...props} ref={ref} className={className} tabIndex={0} />
+    ))
+  );
+
+// eslint-disable-next-line local/forward-ref
+const virtualizedInnerElement = ({
+  className,
+  onKeyDown,
+}: HTMLAttributes<HTMLElement>) =>
+  memo(
+    forwardRef<any, any>((props, ref) => (
+      <code {...props} ref={ref} className={className} onKeyDown={onKeyDown} />
+    ))
+  );
+
+const ListRow = ({ data, index, style }: ListChildComponentProps) => {
+  const row = data[index];
+  row.properties.style = style;
+  return nodeToHtml(row, index, data, 0);
 };
 
 const SUPPORTED_LANGUAGES = listLanguages();
 const DEFAULT_LANGUAGE = 'text';
 
-const isAstElement = (node: RefractorNode): node is AST.Element =>
-  node.hasOwnProperty('type') && node.type === 'element';
-
-const nodeToHtml = (
-  node: RefractorNode,
-  idx: number,
-  nodes: RefractorNode[],
-  depth: number = 0
-): ReactNode => {
-  if (isAstElement(node)) {
-    const { properties, tagName, children } = node;
-
-    return React.createElement(
-      tagName,
-      {
-        ...properties,
-        key: `node-${depth}-${idx}`,
-        className: classNames(properties.className),
-      },
-      children && children.map((el, i) => nodeToHtml(el, i, nodes, depth + 1))
-    );
-  }
-
-  return node.value;
-};
-
-const addLineData = (
-  nodes: ExtendedRefractorNode[],
-  data = { lineNumber: 1 }
-): ExtendedRefractorNode[] => {
-  return nodes.reduce<ExtendedRefractorNode[]>((result, node) => {
-    const lineStart = data.lineNumber;
-    if (node.type === 'text') {
-      if (!node.value.match(/\r\n?|\n/)) {
-        node.lineStart = lineStart;
-        node.lineEnd = lineStart;
-        result.push(node);
-      } else {
-        const lines = node.value.split(/\r\n?|\n/);
-        lines.forEach((line, i) => {
-          const num = i === 0 ? data.lineNumber : ++data.lineNumber;
-          result.push({
-            type: 'text',
-            value: i === lines.length - 1 ? line : `${line}\n`,
-            lineStart: num,
-            lineEnd: num,
-          });
-        });
-      }
-      return result;
-    }
-
-    if (node.children && node.children.length) {
-      const children = addLineData(node.children, data);
-      const first = children[0];
-      const last = children[children.length - 1];
-      const start = first.lineStart ?? lineStart;
-      const end = last.lineEnd ?? lineStart;
-      if (start !== end) {
-        children.forEach((node) => {
-          result.push(node);
-        });
-      } else {
-        node.lineStart = start;
-        node.lineEnd = end;
-        node.children = children;
-        result.push(node);
-      }
-      return result;
-    }
-
-    result.push(node);
-    return result;
-  }, []);
-};
-
-function wrapLines(nodes: ExtendedRefractorNode[]) {
-  const grouped: ExtendedRefractorNode[][] = [];
-  nodes.forEach((node) => {
-    const lineStart = node.lineStart! - 1;
-    if (grouped[lineStart]) {
-      grouped[lineStart].push(node);
-    } else {
-      grouped[lineStart] = [node];
-    }
-  });
-  const wrapped: RefractorNode[] = [];
-  grouped.forEach((node) => {
-    wrapped.push({
-      type: 'element',
-      tagName: 'span',
-      properties: {
-        className: ['euiCodeBlock__line'],
-      },
-      children: node,
-    });
-  });
-  return wrapped;
-}
-
-const highlightByLine = (children: string, language: string) => {
-  return wrapLines(addLineData(highlight(children, language)));
+// Based on observed line height for non-virtualized code blocks
+const fontSizeToRowHeightMap = {
+  s: 16,
+  m: 19,
+  l: 21,
 };
 
 const fontSizeToClassNameMap = {
@@ -160,7 +92,29 @@ const paddingSizeToClassNameMap: { [paddingSize in PaddingSize]: string } = {
 
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
-export interface EuiCodeBlockImplProps {
+// overflowHeight is required when using virtualization
+type VirtualizedOptionProps = ExclusiveUnion<
+  {
+    /**
+     * Renders code block lines virtually.
+     * Useful for improving load times of large code blocks.
+     * `overflowHeight` is required when using this configuration.
+     */
+    isVirtualized: true;
+    /**
+     * Sets the maximum container height.
+     * Accepts a pixel value (`300`) or a percentage (`'100%'`)
+     * Ensure the container has calcuable height when using a percentage
+     */
+    overflowHeight: number | string;
+  },
+  {
+    isVirtualized?: boolean;
+    overflowHeight?: number | string;
+  }
+>;
+
+export type EuiCodeBlockImplProps = CommonProps & {
   className?: string;
   fontSize?: FontSize;
 
@@ -176,11 +130,10 @@ export interface EuiCodeBlockImplProps {
 
   /**
    * Sets the syntax highlighting for a specific language
-   * @see https://github.com/wooorm/refractor#syntaxes
+   * @see https://prismjs.com/#supported-languages
    * for options
    */
   language?: string;
-  overflowHeight?: number;
   paddingSize?: PaddingSize;
   transparentBackground?: boolean;
   /**
@@ -189,7 +142,7 @@ export interface EuiCodeBlockImplProps {
    * `pre-wrap` respects line breaks/white space but does force them to wrap the line when necessary.
    */
   whiteSpace?: 'pre' | 'pre-wrap';
-}
+} & VirtualizedOptionProps;
 
 /**
  * This is the base component extended by EuiCode and EuiCodeBlock.
@@ -206,6 +159,7 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   children,
   className,
   overflowHeight,
+  isVirtualized: _isVirtualized,
   ...rest
 }) => {
   const language: string = useMemo(
@@ -226,16 +180,30 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
     setWrapperRef,
   ]);
   const { width, height } = useResizeObserver(wrapperRef);
+  const rowHeight = useMemo(() => fontSizeToRowHeightMap[fontSize], [fontSize]);
 
-  const content = useMemo(() => {
+  // Used by `FixedSizeList` when `isVirtualized=true` or `children` is parsable (`isVirtualized=true`)
+  const data: RefractorNode[] = useMemo(() => {
     if (typeof children !== 'string') {
-      return children;
+      return [];
     }
-    const nodes = inline
+    return inline
       ? highlight(children, language)
       : highlightByLine(children, language);
-    return nodes.length === 0 ? children : nodes.map(nodeToHtml);
   }, [children, language, inline]);
+
+  const isVirtualized = useMemo(() => _isVirtualized && Array.isArray(data), [
+    _isVirtualized,
+    data,
+  ]);
+
+  // Used by `pre` when `isVirtualized=false` or `children` is not parsable (`isVirtualized=false`)
+  const content: ReactElement[] | ReactNode = useMemo(() => {
+    if (!Array.isArray(data) || data.length < 1) {
+      return children;
+    }
+    return data.map(nodeToHtml);
+  }, [data, children]);
 
   const doesOverflow = () => {
     if (!wrapperRef) return;
@@ -291,12 +259,15 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   const preClasses = classNames('euiCodeBlock__pre', {
     'euiCodeBlock__pre--whiteSpacePre': whiteSpace === 'pre',
     'euiCodeBlock__pre--whiteSpacePreWrap': whiteSpace === 'pre-wrap',
+    'euiCodeBlock__pre--isVirtualized': isVirtualized,
   });
 
   const optionalStyles: CSSProperties = {};
 
   if (overflowHeight) {
-    optionalStyles.maxHeight = overflowHeight;
+    const property =
+      typeof overflowHeight === 'string' ? 'height' : 'maxHeight';
+    optionalStyles[property] = overflowHeight;
   }
 
   const codeSnippet = (
@@ -314,8 +285,10 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
     return <span {...wrapperProps}>{codeSnippet}</span>;
   }
 
-  const getCopyButton = (textToCopy?: string) => {
+  const getCopyButton = (_textToCopy?: string) => {
     let copyButton: JSX.Element | undefined;
+    // Fallback to `children` in the case of virtualized blocks.
+    const textToCopy = _textToCopy || `${children}`;
 
     if (isCopyable && textToCopy) {
       copyButton = (
@@ -397,11 +370,33 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
         <EuiOverlayMask>
           <EuiFocusTrap clickOutsideDisables={true}>
             <div className={fullScreenClasses}>
-              <pre className={preClasses} tabIndex={0}>
-                <code className={codeClasses} onKeyDown={onKeyDown}>
-                  {content}
-                </code>
-              </pre>
+              {isVirtualized ? (
+                <AutoSizer>
+                  {({ height, width }) => (
+                    <FixedSizeList
+                      height={height}
+                      width={width}
+                      itemData={data}
+                      itemSize={rowHeight}
+                      itemCount={data.length}
+                      outerElementType={virtualizedOuterElement({
+                        className: preClasses,
+                      })}
+                      innerElementType={virtualizedInnerElement({
+                        className: preClasses,
+                        onKeyDown,
+                      })}>
+                      {ListRow}
+                    </FixedSizeList>
+                  )}
+                </AutoSizer>
+              ) : (
+                <pre className={preClasses} tabIndex={0}>
+                  <code className={codeClasses} onKeyDown={onKeyDown}>
+                    {content}
+                  </code>
+                </pre>
+              )}
 
               {codeBlockControls}
             </div>
@@ -416,13 +411,35 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   const codeBlockControls = getCodeBlockControls(innerText);
   return (
     <div {...wrapperProps}>
-      <pre
-        ref={combinedRef}
-        style={optionalStyles}
-        className={preClasses}
-        tabIndex={tabIndex}>
-        {codeSnippet}
-      </pre>
+      {isVirtualized ? (
+        <AutoSizer disableHeight={typeof overflowHeight === 'number'}>
+          {({ height, width }) => (
+            <FixedSizeList
+              height={height ?? overflowHeight}
+              width={width}
+              itemData={data}
+              itemSize={rowHeight}
+              itemCount={data.length}
+              outerElementType={virtualizedOuterElement({
+                className: preClasses,
+              })}
+              innerElementType={virtualizedInnerElement({
+                className: preClasses,
+                onKeyDown,
+              })}>
+              {ListRow}
+            </FixedSizeList>
+          )}
+        </AutoSizer>
+      ) : (
+        <pre
+          ref={combinedRef}
+          style={optionalStyles}
+          className={preClasses}
+          tabIndex={tabIndex}>
+          {codeSnippet}
+        </pre>
+      )}
       {/*
           If the below fullScreen code renders, it actually attaches to the body because of
           EuiOverlayMask's React portal usage.
