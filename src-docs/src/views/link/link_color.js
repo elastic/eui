@@ -2,30 +2,28 @@ import React from 'react';
 
 import { EuiLink, EuiText } from '../../../../src/components';
 
+const links = [
+  'primary',
+  'subdued',
+  'success',
+  'accent',
+  'warning',
+  'danger',
+  'text',
+];
+
 export default () => (
   <EuiText>
     <ul>
-      <li>
-        <EuiLink color="primary">Primary (default)</EuiLink>
-      </li>
-      <li>
-        <EuiLink color="subdued">Subdued</EuiLink>
-      </li>
-      <li>
-        <EuiLink color="success">Success</EuiLink>
-      </li>
-      <li>
-        <EuiLink color="accent">Accent</EuiLink>
-      </li>
-      <li>
-        <EuiLink color="danger">Danger</EuiLink>
-      </li>
-      <li>
-        <EuiLink color="warning">Warning</EuiLink>
-      </li>
-      <li>
-        <EuiLink color="text">Text</EuiLink>
-      </li>
+      {links.map((value) => (
+        <li key={value}>
+          <EuiLink
+            color={value !== 'disabled' ? value : undefined}
+            href="#/navigation/link">
+            {value.charAt(0).toUpperCase() + value.slice(1)}
+          </EuiLink>
+        </li>
+      ))}
       <li style={{ background: 'black' }}>
         <EuiLink color="ghost">Ghost</EuiLink>
       </li>

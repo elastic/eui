@@ -22,13 +22,18 @@
         text-decoration: underline;
       }
 
-      &:visited {
+      &:target {
         color: darken($color, 10%);
       }
 
       &:focus {
-        @include euiFocusBackground($color);
         @include euiFocusRing(null, 'outer');
+
+        @if ($name == 'ghost') {
+          background-color: shade($color, $euiFocusTransparencyPercent);
+        } @else {
+          @include euiFocusBackground($color);
+        }
       }
     }
   }
