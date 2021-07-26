@@ -109,8 +109,10 @@ function createTheme(colors: any, mode: string): EuiChartThemeType {
           fill: {
             textInvertible: true,
             textContrast: true,
-            textBorder: 0.5,
+            textBorder: 0,
           },
+          offsetX: 1,
+          offsetY: -1,
         },
       },
       scales: {
