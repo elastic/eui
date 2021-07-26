@@ -9,23 +9,34 @@
 import React, { FunctionComponent, useMemo } from 'react';
 import unified, { PluggableList } from 'unified';
 import { VFileContents } from 'vfile';
+import classNames from 'classnames';
+import { CommonProps } from '../common';
+import { EuiText, EuiTextProps } from '../text/text';
 import {
   defaultProcessingPlugins,
   defaultParsingPlugins,
 } from './plugins/markdown_default_plugins';
 
-export interface EuiMarkdownFormatProps {
-  children: string;
-  /** array of unified plugins to parse content into an AST */
-  parsingPluginList?: PluggableList;
-  /** array of unified plugins to convert the AST into a ReactNode */
-  processingPluginList?: PluggableList;
-}
+export type EuiMarkdownFormatProps = CommonProps &
+  Omit<EuiTextProps, 'size'> & {
+    children: string;
+    /** array of unified plugins to parse content into an AST */
+    parsingPluginList?: PluggableList;
+    /** array of unified plugins to convert the AST into a ReactNode */
+    processingPluginList?: PluggableList;
+    /**
+     * Determines the text size. Choose `relative` to control the `font-size` based on the value of a parent container.
+     */
+    textSize?: EuiTextProps['size'];
+  };
 
 export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   children,
+  className,
   parsingPluginList = defaultParsingPlugins,
   processingPluginList = defaultProcessingPlugins,
+  textSize = 'm',
+  ...rest
 }) => {
   const processor = useMemo(
     () => unified().use(parsingPluginList).use(processingPluginList),
@@ -41,5 +52,12 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
       return children;
     }
   }, [children, processor]);
-  return <div className="euiMarkdownFormat">{result}</div>;
+
+  const classes = classNames('euiMarkdownFormat', className);
+
+  return (
+    <EuiText size={textSize} className={classes} {...rest}>
+      {result}
+    </EuiText>
+  );
 };

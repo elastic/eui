@@ -1009,10 +1009,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@elastic/charts@^30.2.0":
-  version "30.2.0"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-30.2.0.tgz#95942317ac19a4b7cd81b78807059c82a565f3fb"
-  integrity sha512-DnCz8IXMB9X2LnmsT9MNI37iQoQOu0V2mP2a+SEQjpWEoIYrWIcJzSFC+H078FmZoRk4PHBo4yI9ynBmeeOZ+w==
+"@elastic/charts@^33.0.1":
+  version "33.0.1"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-33.0.1.tgz#33dc70ccbda7b74f78485d452fe8d59f53e13dd1"
+  integrity sha512-FGPIshr8+kBLiL3rY9Vxgmwshw9ZVxVjzmIkxpzfGAAK3ON+Ir7mBddW6REoiRZH0DYN1MffXS/MAOwU9ZxIcA==
   dependencies:
     "@popperjs/core" "^2.4.0"
     chroma-js "^2.1.0"
@@ -1031,7 +1031,7 @@
     redux "^4.0.4"
     reselect "^4.0.0"
     resize-observer-polyfill "^1.5.1"
-    ts-debounce "^1.0.0"
+    ts-debounce "^3.0.0"
     utility-types "^3.10.0"
     uuid "^3.3.2"
 
@@ -15853,10 +15853,10 @@ trough@^1.0.0:
   dependencies:
     glob "^6.0.4"
 
-ts-debounce@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ts-debounce/-/ts-debounce-1.0.0.tgz#e433301744ba75fe25466f7f23e1382c646aae6a"
-  integrity sha512-V+IzWj418IoqqxVJD6I0zjPtgIyvAJ8VyViqzcxZ0JRiJXsi5mCmy1yUKkWd2gUygT28a8JsVFCgqdrf2pLUHQ==
+ts-debounce@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ts-debounce/-/ts-debounce-3.0.0.tgz#9beedf59c04de3b5bef8ff28bd6885624df357be"
+  integrity sha512-7jiRWgN4/8IdvCxbIwnwg2W0bbYFBH6BxFqBjMKk442t7+liF2Z1H6AUCcl8e/pD93GjPru+axeiJwFmRww1WQ==
 
 tsconfig-paths@^3.9.0:
   version "3.9.0"

@@ -10,6 +10,8 @@ import refractor from 'refractor';
 import visit from 'unist-util-visit';
 import { Plugin } from 'unified';
 
+export const FENCED_CLASS = 'remark-prismjs--fenced';
+
 const attacher: Plugin = () => {
   return (ast) => visit(ast, 'code', visitor);
 
@@ -29,6 +31,7 @@ const attacher: Plugin = () => {
         'prismjs',
         ...(data.hProperties?.className || []),
         `language-${language}`,
+        FENCED_CLASS,
       ],
     };
   }

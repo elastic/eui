@@ -41,6 +41,9 @@ export default () => (
         <EuiTextColor color="danger">Danger text color</EuiTextColor>
       </p>
       <p>
+        <EuiTextColor color="#c561dc">Custom text color</EuiTextColor>
+      </p>
+      <p>
         <span style={{ background: '#222' }}>
           <EuiTextColor color="ghost">
             Ghost text color is always white regardless of theme.
