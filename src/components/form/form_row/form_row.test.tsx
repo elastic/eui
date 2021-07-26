@@ -187,6 +187,16 @@ describe('EuiFormRow', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('disabled is rendered', () => {
+      const component = render(
+        <EuiFormRow disabled>
+          <input />
+        </EuiFormRow>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     describe('display type', () => {
       DISPLAYS.forEach((display) => {
         test(`${display} is rendered`, () => {

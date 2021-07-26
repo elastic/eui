@@ -87,6 +87,10 @@ type EuiFormRowCommonProps = CommonProps & {
    *  Disables the field element so the user can't interact with it.
    */
   isDisabled?: boolean;
+  /**
+   *  Disables the field element so the user can't interact with it.
+   */
+  disabled?: boolean;
 };
 
 type LabelProps = {
@@ -167,6 +171,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       hasChildLabel,
       id: propsId,
       isDisabled,
+      disabled,
       ...rest
     } = this.props;
 
@@ -269,7 +274,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
 
     const field = cloneElement(Children.only(children), {
       id,
-      disabled: isDisabled,
+      disabled: disabled !== undefined ? disabled : isDisabled,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       ...optionalProps,

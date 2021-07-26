@@ -478,6 +478,22 @@ exports[`EuiFormRow props isDisabled is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiFormRow props disabled is rendered 1`] = `
+<div
+  class="euiFormRow"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      disabled=""
+      id="generated-id"
+    />
+  </div>
+</div>
+`;
+
 exports[`EuiFormRow props isInvalid is rendered 1`] = `
 <div
   class="euiFormRow"
