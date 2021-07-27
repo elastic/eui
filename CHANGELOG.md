@@ -11,6 +11,7 @@
 **Bug fixes**
 
 - Fixed filter count of 0 in `EuiSearchBar` ([#4977](https://github.com/elastic/eui/pull/4977))
+- Fixed edge case where EuiDataGrid cells could create an infinite loop of focus changes ([#4983](https://github.com/elastic/eui/pull/4983))
 
 ## [`36.0.0`](https://github.com/elastic/eui/tree/v36.0.0)
 
