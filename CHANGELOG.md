@@ -7,6 +7,7 @@
 - Updated `EuiText`s `blockquote` font-size/line-height to match the base font-size/line-height which is the same as paragraphs ([#4663](https://github.com/elastic/eui/pull/4663))
 - Added `markdownFormatProps` prop to `EuiMarkdownEditor` to extend the props passed to the rendered `EuiMarkdownFormat` ([#4663](https://github.com/elastic/eui/pull/4663))
 - Added optional virtualized line rendering to `EuiCodeBlock` ([#4952](https://github.com/elastic/eui/pull/4952))
+- Added a console warning for the deprecation of `EuiCodeEditor` ([#4984](https://github.com/elastic/eui/pull/4984))
 
 **Bug fixes**
 
