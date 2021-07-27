@@ -172,18 +172,7 @@
   // Style anchors that don't have a class. This prevents overwriting "buttons"
   // and other stylized elements passed in.
   a:not([class]) {
-    color: $euiLinkColor;
-
-    &:hover,
-    &:focus {
-      color: darken($euiLinkColor, 10%);
-      text-decoration: underline;
-    }
-
-    &:focus {
-      @include euiFocusBackground($euiLinkColor);
-      @include euiFocusRing;
-    }
+    @include euiLink;
   }
 
   img {
