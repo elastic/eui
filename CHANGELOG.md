@@ -7,6 +7,7 @@
 - Updated `EuiText`s `blockquote` font-size/line-height to match the base font-size/line-height which is the same as paragraphs ([#4663](https://github.com/elastic/eui/pull/4663))
 - Added `markdownFormatProps` prop to `EuiMarkdownEditor` to extend the props passed to the rendered `EuiMarkdownFormat` ([#4663](https://github.com/elastic/eui/pull/4663))
 - Added optional virtualized line rendering to `EuiCodeBlock` ([#4952](https://github.com/elastic/eui/pull/4952))
+- Added `current` as a `status` of `EuiHorizontalStep` ([#4911](https://github.com/elastic/eui/pull/4911))
 
 **Bug fixes**
 
@@ -42,7 +43,6 @@
 
 - Improved keyboard and screen reader experience for `EuiColorPicker` ([#4886](https://github.com/elastic/eui/pull/4886))
 - Changed `EuiImage` to use `ImgHTMLAttributes` type ([#4865](https://github.com/elastic/eui/pull/4865))
-- Added `current` as a `status` of `EuiHorizontalStep` ([#4911](https://github.com/elastic/eui/pull/4911))
 
 **Bug fixes**
 
