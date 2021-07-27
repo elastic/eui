@@ -1,7 +1,10 @@
+@import '../link/variables';
+
 /**
  * 1. Add vertical space between breadcrumbs,
  *    but make sure the whole breadcrumb set doesn't add space below itself
  */
+
 .euiBreadcrumbs__list {
   @include euiFontSizeS;
   display: flex;
@@ -41,7 +44,8 @@
 
 .euiBreadcrumbs__inPopover .euiBreadcrumb--last .euiBreadcrumb__content {
   font-weight: $euiFontWeightRegular;
-  color: $euiColorDarkShade;
+  // Match to subdued EuiLink color
+  color: map-get($euiLinkColors, 'subdued');
 }
 
 .euiBreadcrumbs--truncate {
