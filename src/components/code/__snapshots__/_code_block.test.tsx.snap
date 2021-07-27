@@ -17,7 +17,7 @@ exports[`EuiCodeBlockImpl block highlights javascript code, adding "js" class 1`
 
 exports[`EuiCodeBlockImpl block renders a pre block tag 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-none testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-text testClass1 testClass2"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -25,11 +25,20 @@ exports[`EuiCodeBlockImpl block renders a pre block tag 1`] = `
   >
     <code
       aria-label="aria-label"
-      class="euiCodeBlock__code"
+      class="euiCodeBlock__code text"
       data-test-subj="test subject string"
     >
-      var some = 'code';
-console.log(some);
+      <span
+        class="euiCodeBlock__line"
+      >
+        var some = 'code';
+
+      </span>
+      <span
+        class="euiCodeBlock__line"
+      >
+        console.log(some);
+      </span>
     </code>
   </pre>
 </div>
@@ -37,7 +46,7 @@ console.log(some);
 
 exports[`EuiCodeBlockImpl block renders a pre block tag with a css class modifier 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-none testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-text testClass1 testClass2"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePre"
@@ -45,27 +54,90 @@ exports[`EuiCodeBlockImpl block renders a pre block tag with a css class modifie
   >
     <code
       aria-label="aria-label"
-      class="euiCodeBlock__code"
+      class="euiCodeBlock__code text"
       data-test-subj="test subject string"
     >
-      var some = 'code';
-console.log(some);
+      <span
+        class="euiCodeBlock__line"
+      >
+        var some = 'code';
+
+      </span>
+      <span
+        class="euiCodeBlock__line"
+      >
+        console.log(some);
+      </span>
     </code>
   </pre>
 </div>
 `;
 
+exports[`EuiCodeBlockImpl block renders a virtualized code block 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls prismjs language-text testClass1 testClass2"
+  style="max-height:300px"
+>
+  <div
+    style="overflow:visible;width:0"
+  />
+  <div
+    class="euiCodeBlock__controls"
+  >
+    <button
+      aria-label="Expand"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="fullScreen"
+      />
+    </button>
+  </div>
+</div>
+`;
+
 exports[`EuiCodeBlockImpl block renders with transparent background 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground prismjs language-none"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground prismjs language-text"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code"
+      class="euiCodeBlock__code text"
     />
+  </pre>
+</div>
+`;
+
+exports[`EuiCodeBlockImpl inline gracefully falls back to \`text\` language 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-text"
+>
+  <pre
+    class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabindex="-1"
+  >
+    <code
+      class="euiCodeBlock__code text"
+    >
+      <span
+        class="euiCodeBlock__line"
+      >
+        var some = 'code';
+
+      </span>
+      <span
+        class="euiCodeBlock__line"
+      >
+        console.log(some);
+      </span>
+    </code>
   </pre>
 </div>
 `;
@@ -82,11 +154,11 @@ exports[`EuiCodeBlockImpl inline highlights javascript code, adding "js" class 1
 
 exports[`EuiCodeBlockImpl inline renders an inline code tag 1`] = `
 <span
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline prismjs language-none testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline prismjs language-text testClass1 testClass2"
 >
   <code
     aria-label="aria-label"
-    class="euiCodeBlock__code"
+    class="euiCodeBlock__code text"
     data-test-subj="test subject string"
   >
     var some = 'code';
@@ -97,10 +169,10 @@ console.log(some);
 
 exports[`EuiCodeBlockImpl inline renders with transparent background 1`] = `
 <span
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground euiCodeBlock--inline prismjs language-none"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground euiCodeBlock--inline prismjs language-text"
 >
   <code
-    class="euiCodeBlock__code"
+    class="euiCodeBlock__code text"
   />
 </span>
 `;

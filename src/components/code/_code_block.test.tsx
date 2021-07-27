@@ -42,6 +42,14 @@ describe('EuiCodeBlockImpl', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    test('gracefully falls back to `text` language', () => {
+      const component = render(
+        <EuiCodeBlockImpl language="nonsense">{code}</EuiCodeBlockImpl>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 
   describe('block', () => {
@@ -74,6 +82,19 @@ describe('EuiCodeBlockImpl', () => {
     test('renders a pre block tag with a css class modifier', () => {
       const component = render(
         <EuiCodeBlockImpl inline={false} whiteSpace="pre" {...requiredProps}>
+          {code}
+        </EuiCodeBlockImpl>
+      );
+      expect(component).toMatchSnapshot();
+    });
+
+    test('renders a virtualized code block', () => {
+      const component = render(
+        <EuiCodeBlockImpl
+          inline={false}
+          isVirtualized={true}
+          overflowHeight={300}
+          {...requiredProps}>
           {code}
         </EuiCodeBlockImpl>
       );

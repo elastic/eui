@@ -2,11 +2,11 @@
 
 To install the Elastic UI Framework into an existing project, use the `yarn` CLI (`npm` is not supported).
 
-```js
+```
 yarn add @elastic/eui
 ```
 
-Note that EUI has [several `peerDependencies` requirements](package.json) that will also need to be installed if starting with a blank project. You can read more about other ways to [consume EUI][consuming].
+Note that EUI has [several `peerDependencies` requirements](https://github.com/elastic/eui/package.json) that will also need to be installed if starting with a blank project. You can read more about other ways to [consume EUI](https://github.com/elastic/eui/blob/master/wiki/consuming.md).
 
 ```js
 yarn add @elastic/eui @elastic/datemath moment prop-types
@@ -17,7 +17,7 @@ yarn add @elastic/eui @elastic/datemath moment prop-types
 
 ### Node
 
-We depend upon the version of node defined in [.nvmrc](.nvmrc).
+We depend upon the version of node defined in [.nvmrc](https://github.com/elastic/eui/.nvmrc).
 
 You will probably want to install a node version manager. [nvm](https://github.com/creationix/nvm) is recommended.
 
@@ -29,7 +29,7 @@ nvm install
 
 ### Documentation
 
-You can run the documentation locally at [http://localhost:8030/](http://localhost:8030/) by running the following.
+You can run the documentation locally at `http://localhost:8030/` by running the following.
 
 ```js
 yarn

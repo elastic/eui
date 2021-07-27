@@ -6,10 +6,9 @@ exports[`FieldValueSelectionFilter active - field is global 1`] = `
   button={
     <EuiFilterButton
       grow={true}
-      hasActiveFilters={true}
+      hasActiveFilters={false}
       iconSide="right"
       iconType="arrowDown"
-      numActiveFilters={0}
       onClick={[Function]}
     >
       Tag
