@@ -14,6 +14,9 @@ import { keysOf } from '../common';
 import { htmlIdGenerator, keys } from '../../services';
 import { EuiI18n } from '../i18n';
 
+console.warn(`[EUI] - DEPRECATION: \`EuiCodeEditor\` is deprecated and will be removed in a future release.
+See https://ela.st/euicodeeditor for migration options.`);
+
 const DEFAULT_MODE = 'text';
 const DEFAULT_THEME = 'textmate';
 
