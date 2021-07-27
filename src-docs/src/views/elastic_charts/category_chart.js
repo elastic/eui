@@ -107,7 +107,7 @@ export const CategoryChart = () => {
 
       <EuiSpacer size="s" />
 
-      <Chart size={{ height: 300 }}>
+      <Chart size={{ height: 400 }}>
         <Settings
           theme={customTheme}
           showLegend={multi}
