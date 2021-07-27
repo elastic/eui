@@ -77,13 +77,100 @@ exports[`EuiBreadcrumbs is rendered 1`] = `
     <li
       class="euiBreadcrumb euiBreadcrumb--last"
     >
+      <span
+        aria-current="page"
+        class="euiBreadcrumb__content"
+      >
+        Edit
+      </span>
+    </li>
+  </ol>
+</nav>
+`;
+
+exports[`EuiBreadcrumbs is rendered with final item as link 1`] = `
+<nav
+  aria-label="aria-label"
+  class="euiBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate"
+  data-test-subj="test subject string"
+>
+  <ol
+    class="euiBreadcrumbs__list"
+  >
+    <li
+      class="euiBreadcrumb"
+    >
+      <a
+        class="euiLink euiLink--subdued euiBreadcrumb__content customClass"
+        data-test-subj="breadcrumbsAnimals"
+        href="#"
+        rel="noreferrer"
+      >
+        Animals
+      </a>
+    </li>
+    <li
+      class="euiBreadcrumb"
+    >
+      <span
+        class="euiBreadcrumb__content"
+      >
+        Metazoans
+      </span>
+    </li>
+    <li
+      class="euiBreadcrumb euiBreadcrumb--collapsed"
+    >
+      <div
+        class="euiPopover euiPopover--anchorDownCenter"
+      >
+        <div
+          class="euiPopover__anchor"
+        >
+          <button
+            aria-label="See collapsed breadcrumbs"
+            class="euiLink euiLink--subdued euiBreadcrumb__content"
+            title="See collapsed breadcrumbs"
+            type="button"
+          >
+            … 
+            <span
+              data-euiicon-type="arrowDown"
+            />
+          </button>
+        </div>
+      </div>
+    </li>
+    <li
+      class="euiBreadcrumb euiBreadcrumb--truncate"
+    >
+      <a
+        class="euiLink euiLink--subdued euiBreadcrumb__content"
+        href="#"
+        rel="noreferrer"
+      >
+        Boa constrictor
+      </a>
+    </li>
+    <li
+      class="euiBreadcrumb"
+    >
+      <span
+        class="euiBreadcrumb__content"
+      >
+        Edit
+      </span>
+    </li>
+    <li
+      class="euiBreadcrumb euiBreadcrumb--last"
+    >
       <a
         aria-current="page"
         class="euiLink euiLink--text euiBreadcrumb__content"
         href="#"
         rel="noreferrer"
       >
-        Edit
+        test
       </a>
     </li>
   </ol>
@@ -151,6 +238,7 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
       class="euiBreadcrumb"
     >
       <button
+        aria-current="false"
         class="euiLink euiLink--subdued euiBreadcrumb__content"
         type="button"
       >
@@ -172,14 +260,12 @@ exports[`EuiBreadcrumbs props max doesn't break when max exceeds the number of b
     <li
       class="euiBreadcrumb euiBreadcrumb--last"
     >
-      <a
+      <span
         aria-current="page"
-        class="euiLink euiLink--text euiBreadcrumb__content"
-        href="#"
-        rel="noreferrer"
+        class="euiBreadcrumb__content"
       >
         Edit
-      </a>
+      </span>
     </li>
   </ol>
 </nav>
@@ -219,14 +305,12 @@ exports[`EuiBreadcrumbs props max renders 1 item 1`] = `
     <li
       class="euiBreadcrumb euiBreadcrumb--last"
     >
-      <a
+      <span
         aria-current="page"
-        class="euiLink euiLink--text euiBreadcrumb__content"
-        href="#"
-        rel="noreferrer"
+        class="euiBreadcrumb__content"
       >
         Edit
-      </a>
+      </span>
     </li>
   </ol>
 </nav>
@@ -293,6 +377,7 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
       class="euiBreadcrumb"
     >
       <button
+        aria-current="false"
         class="euiLink euiLink--subdued euiBreadcrumb__content"
         type="button"
       >
@@ -314,14 +399,12 @@ exports[`EuiBreadcrumbs props max renders all items with null 1`] = `
     <li
       class="euiBreadcrumb euiBreadcrumb--last"
     >
-      <a
+      <span
         aria-current="page"
-        class="euiLink euiLink--text euiBreadcrumb__content"
-        href="#"
-        rel="noreferrer"
+        class="euiBreadcrumb__content"
       >
         Edit
-      </a>
+      </span>
     </li>
   </ol>
 </nav>
@@ -383,6 +466,7 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
       class="euiBreadcrumb"
     >
       <button
+        aria-current="false"
         class="euiLink euiLink--subdued euiBreadcrumb__content"
         type="button"
       >
@@ -403,14 +487,12 @@ exports[`EuiBreadcrumbs props responsive is rendered 1`] = `
     <li
       class="euiBreadcrumb euiBreadcrumb--last"
     >
-      <a
+      <span
         aria-current="page"
-        class="euiLink euiLink--text euiBreadcrumb__content"
-        href="#"
-        rel="noreferrer"
+        class="euiBreadcrumb__content"
       >
         Edit
-      </a>
+      </span>
     </li>
   </ol>
 </nav>
@@ -472,6 +554,7 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
       class="euiBreadcrumb"
     >
       <button
+        aria-current="false"
         class="euiLink euiLink--subdued euiBreadcrumb__content"
         type="button"
       >
@@ -492,14 +575,12 @@ exports[`EuiBreadcrumbs props responsive is rendered as false 1`] = `
     <li
       class="euiBreadcrumb euiBreadcrumb--last"
     >
-      <a
+      <span
         aria-current="page"
-        class="euiLink euiLink--text euiBreadcrumb__content"
-        href="#"
-        rel="noreferrer"
+        class="euiBreadcrumb__content"
       >
         Edit
-      </a>
+      </span>
     </li>
   </ol>
 </nav>
@@ -539,14 +620,12 @@ exports[`EuiBreadcrumbs props responsive is rendered with custom breakpoints 1`]
     <li
       class="euiBreadcrumb euiBreadcrumb--last"
     >
-      <a
+      <span
         aria-current="page"
-        class="euiLink euiLink--text euiBreadcrumb__content"
-        href="#"
-        rel="noreferrer"
+        class="euiBreadcrumb__content"
       >
         Edit
-      </a>
+      </span>
     </li>
   </ol>
 </nav>
@@ -608,6 +687,7 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
       class="euiBreadcrumb"
     >
       <button
+        aria-current="false"
         class="euiLink euiLink--subdued euiBreadcrumb__content"
         type="button"
       >
@@ -629,14 +709,12 @@ exports[`EuiBreadcrumbs props truncate as false is rendered 1`] = `
     <li
       class="euiBreadcrumb euiBreadcrumb--last"
     >
-      <a
+      <span
         aria-current="page"
-        class="euiLink euiLink--text euiBreadcrumb__content"
-        href="#"
-        rel="noreferrer"
+        class="euiBreadcrumb__content"
       >
         Edit
-      </a>
+      </span>
     </li>
   </ol>
 </nav>
