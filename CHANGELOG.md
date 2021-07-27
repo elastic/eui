@@ -12,6 +12,10 @@
 
 - Fixed filter count of 0 in `EuiSearchBar` ([#4977](https://github.com/elastic/eui/pull/4977))
 
+**Theme: Amsterdam**
+
+- Updated styles for `EuiLink` ([#4979](https://github.com/elastic/eui/pull/4979))
+
 ## [`36.0.0`](https://github.com/elastic/eui/tree/v36.0.0)
 
 - Refactored `EuiFlyout` types ([#4940](https://github.com/elastic/eui/pull/4940))
@@ -33,7 +37,6 @@
 
 - Fixed border-radius in `EuiCard.selectable`'s button ([#4954](https://github.com/elastic/eui/pull/4954))
 - Updated styles for `EuiKeyPadMenuItem` ([#4950](https://github.com/elastic/eui/pull/4950))
-- Updated styles for `EuiLink` ([#4979](https://github.com/elastic/eui/pull/4979))
 
 **Breaking changes**
 
