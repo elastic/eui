@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import { GuideSectionTypes } from '../../components';
 
 import {
+  EuiCallOut,
   EuiCode,
   EuiCodeBlock,
   EuiLink,
   EuiText,
+  EuiSpacer,
 } from '../../../../src/components';
 import { codeBlockConfig, codeConfig } from './playground';
 
@@ -39,6 +41,23 @@ export const CodeExample = {
   title: 'Code',
   intro: (
     <>
+      <EuiCallOut title="EUI provides support for static code">
+        <p>
+          <strong>EuiCode</strong> and <strong>EuiCodeBlock</strong> are
+          intended to render static lines or blocks of code in read-only
+          contexts.
+          <br />
+          If you need capabilities to edit, or want to print long code (e.g.,
+          printing JSON from an API), use{' '}
+          <EuiLink
+            external
+            href="https://github.com/elastic/kibana/tree/master/src/plugins/kibana_react/public/code_editor">
+            <strong>CodeEditor</strong> (within Kibana)
+          </EuiLink>
+          .
+        </p>
+      </EuiCallOut>
+      <EuiSpacer />
       <EuiText>
         <p>
           The <strong>EuiCode</strong> and <strong>EuiCodeBlock</strong>{' '}
