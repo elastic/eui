@@ -111,8 +111,10 @@ function createTheme(colors: any, mode: string): EuiChartThemeType {
             textContrast: true,
             textBorder: 0,
           },
-          offsetX: 1,
-          offsetY: -1,
+          alignment: {
+            horizontal: 'center',
+            vertical: 'middle',
+          },
         },
       },
       scales: {
