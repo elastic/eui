@@ -252,31 +252,6 @@ export class EuiDataGridCell extends Component<
       [this.props.colIndex, this.props.visibleRowIndex],
       this.onFocusUpdate
     );
-
-    if (this.cellContentsRef?.offsetHeight && this.props.rowHeightsOptions) {
-      this.props.rowHeightUtils?.setRowHeight(
-        this.props.rowIndex,
-        this.cellContentsRef?.offsetHeight
-      );
-
-      const font = this.props.rowHeightUtils?.getFont();
-
-      if (this.cellContentsRef.textContent && font) {
-        // we should download needed fonts so that we can get a right height of text
-        if (
-          !(document as any).fonts.check(font, this.cellContentsRef.textContent)
-        ) {
-          (document as any).fonts
-            .load(font, this.cellContentsRef.textContent)
-            .then(() => {
-              this.props.rowHeightUtils?.setRowHeight(
-                this.props.rowIndex,
-                this.cellContentsRef?.offsetHeight
-              );
-            });
-        }
-      }
-    }
   }
 
   onFocusUpdate = (isFocused: boolean) => {
@@ -291,6 +266,23 @@ export class EuiDataGridCell extends Component<
     window.clearTimeout(this.focusTimeout);
     if (this.unsubscribeCell) {
       this.unsubscribeCell();
+    }
+  }
+
+  componentDidUpdate() {
+    if (
+      this.cellRef.current &&
+      this.props.getRowHeight &&
+      this.props.rowHeightUtils &&
+      !this.props.rowHeightUtils?.compareHeights(
+        this.cellRef.current.offsetHeight,
+        this.props.getRowHeight(this.props.rowIndex)
+      )
+    ) {
+      this.props.rowHeightUtils?.setRowHeight(
+        this.props.rowIndex,
+        this.cellContentsRef?.offsetHeight
+      );
     }
   }
 
@@ -341,11 +333,6 @@ export class EuiDataGridCell extends Component<
           nextProps.getRowHeight(nextProps.rowIndex)
         )
       ) {
-        // we cann't use it in componentDidUpdate because we should set new height only in this case
-        nextProps.rowHeightUtils?.setRowHeight(
-          nextProps.rowIndex,
-          this.cellContentsRef?.offsetHeight
-        );
         return true;
       }
     }
@@ -353,23 +340,28 @@ export class EuiDataGridCell extends Component<
     return false;
   }
 
-  // needed so that we calculate right height for cell if content is image
-  // because we can get right height only after image will loaded
-  onCellLoaded = () => {
-    if (this.props.rowHeightUtils) {
-      this.props.rowHeightUtils?.setRowHeight(
-        this.props.rowIndex,
-        this.cellContentsRef?.offsetHeight
-      );
-    }
-  };
-
   setCellProps = (cellProps: HTMLAttributes<HTMLDivElement>) => {
     this.setState({ cellProps });
   };
 
   setCellContentsRef = (ref: HTMLDivElement | null) => {
     this.cellContentsRef = ref;
+    if (this.props.rowHeightUtils) {
+      if (ref && hasResizeObserver) {
+        this.observer = new (window as any).ResizeObserver(() => {
+          const rowHeight = this.cellContentsRef?.getBoundingClientRect()
+            .height;
+
+          this.props.rowHeightUtils?.setRowHeight(
+            this.props.rowIndex,
+            rowHeight
+          );
+        });
+        this.observer.observe(ref);
+      } else if (this.observer) {
+        this.observer.disconnect();
+      }
+    }
     this.preventTabbing();
   };
 
@@ -532,7 +524,6 @@ export class EuiDataGridCell extends Component<
       setCellContentsRef: this.setCellContentsRef,
       rowHeightsOptions: this.props.rowHeightsOptions,
       rowHeightUtils: this.props.rowHeightUtils,
-      onCellLoaded: this.onCellLoaded,
     };
 
     const anchorClass = classNames('euiDataGridRowCell__expandFlex', {

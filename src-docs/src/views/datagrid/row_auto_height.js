@@ -33,7 +33,7 @@ const columns = [
 // instead of loading up front, generate entries on the fly
 const raw_data = [];
 
-function RenderCellValue({ rowIndex, columnId, onCellLoaded }) {
+function RenderCellValue({ rowIndex, columnId }) {
   const { data, adjustMountedCellCount, contentTypeSelected } = useContext(
     DataContext
   );
@@ -57,7 +57,6 @@ function RenderCellValue({ rowIndex, columnId, onCellLoaded }) {
       size={'original'}
       alt="Fake img"
       url={`https://source.unsplash.com/${firstNumberSize}00x${firstNumberSize}00/?starwars`}
-      onLoad={onCellLoaded}
     />
   ) : (
     data[rowIndex][columnId]
