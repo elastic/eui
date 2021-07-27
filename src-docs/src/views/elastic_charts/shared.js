@@ -125,7 +125,7 @@ export const MultiChartCard = (props) => {
     props.onChange({
       multi: e.target.checked,
       stacked,
-      valueLabels: valueLabels,
+      valueLabels,
     });
   };
 
@@ -184,5 +184,8 @@ MultiChartCard.propTypes = {
    * Returns (multi:boolean, stacked:boolean)
    */
   onChange: PropTypes.func.isRequired,
+  /**
+   * Show a switch button to enable/disable value labels
+   */
   showValueLabels: PropTypes.bool,
 };
