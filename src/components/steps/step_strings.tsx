@@ -138,3 +138,22 @@ export const useI18nLoadingStep = ({ number, title }: Props): string => {
 
   return title ? string : simpleString;
 };
+
+export const useI18nCurrentStep = ({ number, title }: Props): string => {
+  const string = useEuiI18n(
+    'euiStepStrings.current',
+    'Current step {number}: {title}',
+    {
+      number,
+      title,
+    }
+  );
+
+  const simpleString = useEuiI18n(
+    'euiStepStrings.simpleCurrent',
+    'Current step is {number}',
+    { number }
+  );
+
+  return title ? string : simpleString;
+};
