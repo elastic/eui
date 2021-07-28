@@ -84,7 +84,7 @@ type EuiFormRowCommonProps = CommonProps & {
    */
   helpText?: ReactNode | ReactNode[];
   /**
-   *  Disables the field element so the user can't interact with it.
+   *  Passed along to the child field element
    */
   isDisabled?: boolean;
 };
