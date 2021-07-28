@@ -91,7 +91,6 @@
 - Added `DraggableProvidedDragHandleProps` interface from 'react-beautiful-dnd' ([#4903](https://github.com/elastic/eui/pull/4903))
 - Added `success` and `accent` `color` options to `EuiButton` ([#4874](https://github.com/elastic/eui/pull/4874))
 - Added `success` `color` option to `EuiLink` ([#4874](https://github.com/elastic/eui/pull/4874))
-- Added `isDisabled` prop to `EuiFormRow` ([#4908](https://github.com/elastic/eui/pull/4908))
 
 **Bug fixes**
 
