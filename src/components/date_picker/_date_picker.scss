@@ -61,56 +61,11 @@
 .react-datepicker {
   @include euiFont;
   font-size: $euiFontSizeXS;
-  color: $euiColorFullShade;
+  color: $euiTextColor;
   display: flex;
   position: relative;
   border-radius: $euiBorderRadius;
 }
-
-// When in time only mode we make the dropdown look more like the combo box styling.
-.react-datepicker--time-only {
-
-  .react-datepicker__time-container {
-
-    .react-datepicker__time {
-
-      .react-datepicker__time-box {
-        width: 100%;
-
-        .react-datepicker__time-list li.react-datepicker__time-list-item {
-          font-size: $euiFontSizeS;
-          text-align: left;
-          padding-left: $euiSizeXL + $euiSizeXS;
-          padding-right: $euiSizeXL + $euiSizeXS;
-          color: $euiTextColor;
-
-          &.react-datepicker__time-list-item--selected {
-            color: $euiColorGhost;
-          }
-
-          &.react-datepicker__time-list-item--disabled{
-            color: $euiColorDisabledText
-          }
-        }
-      }
-    }
-  }
-
-
-  .react-datepicker__time-container {
-    border-left: 0;
-  }
-
-  // .react-datepicker__triangle {
-  // }
-  // .react-datepicker__time {
-  // }
-  // .react-datepicker__time-box {
-  // }
-}
-
-// .react-datepicker__triangle {
-// }
 
 .euiDatePicker.euiDatePicker--shadow .react-datepicker-popper {
   z-index: $euiZContentMenu;
@@ -294,75 +249,7 @@
   border-radius: $euiBorderRadius;
 }
 
-.react-datepicker__time-container {
-  border-left: $euiBorderColor;
-  width: auto;
-  display: flex;
-  padding: $euiSize 0;
-  border-radius: 0 $euiBorderRadius $euiBorderRadius 0;
-  flex-grow: 1;
 
-  // &--with-today-button {
-  // }
-
-  .react-datepicker__time {
-    position: relative;
-    flex-grow: 1;
-    display: flex;
-    padding-left: $euiSizeXS;
-    flex-direction: column;
-
-    .react-datepicker__time-box {
-      width: auto;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-
-      ul.react-datepicker__time-list {
-        @include euiScrollBar;
-        height: 204px !important;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        overflow-y: auto;
-        align-items: center;
-
-        li.react-datepicker__time-list-item {
-          padding: $euiSizeXS $euiSizeS;
-          margin-bottom: $euiSizeXS;
-          text-align: right;
-          color: $euiColorDarkShade;
-          white-space: nowrap;
-          // IE needs this to fix collapsing flex
-          line-height: $euiSizeM;
-
-          &:hover,
-          &:focus {
-            cursor: pointer;
-            text-decoration: underline;
-          }
-          &--selected {
-            background-color: $euiColorPrimary;
-            color: white;
-            border-radius: $euiBorderRadius / 2;
-            &:hover {
-              background-color: $euiColorPrimary;
-            }
-          }
-          &--disabled {
-            color: $euiColorLightShade;
-
-            &:hover {
-              cursor: not-allowed;
-              text-decoration: none;
-              background-color: transparent;
-            }
-          }
-        }
-      }
-    }
-  }
-}
 
 .react-datepicker__week-number {
   color: $euiColorLightestShade;
@@ -517,15 +404,11 @@
   background: $euiColorPrimary;
 }
 
-.react-datepicker__time-list-item--preselected,
 .react-datepicker__year-option--preselected,
 .react-datepicker__month-option--preselected {
   background: darken($euiFocusBackgroundColor, 5%);
 }
 
-.react-datepicker__time-container--focus {
-  background: $euiFocusBackgroundColor;
-}
 
 .react-datepicker__month-read-view:focus,
 .react-datepicker__year-read-view:focus {

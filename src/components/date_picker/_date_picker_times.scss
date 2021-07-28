@@ -1,0 +1,97 @@
+/**
+ * LEGEND
+ * __time-list-item :
+ *       --preselected : closest current time but not selected
+ *       --selected
+ *       --disabled
+ *       --injected
+ */
+
+.react-datepicker__time-container {
+  display: flex;
+  padding: $euiSizeS;
+  flex-grow: 1;
+}
+
+.react-datepicker__time {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.react-datepicker__time-box {
+  background-color: $euiPageBackgroundColor;
+  padding: $euiSizeXS;
+  border-radius: $euiBorderRadius;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.react-datepicker__time-list {
+  @include euiScrollBar;
+  // Set the min-height with the following, but it should stretch to fit if the container is larger
+  height: 265px !important; // Overrides inline height
+  display: flex;
+  gap: $euiSizeXS;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+  align-items: center;
+}
+
+// Mainly a copy/paste of .euiEmptyButton
+.react-datepicker__time-list-item {
+  @include euiButton;
+  // sass-lint:disable-block no-important
+  transform: none !important; /* 1 */
+  animation: none !important; /* 1 */
+  transition-timing-function: ease-in; /* 2 */
+  transition-duration: $euiAnimSpeedFast; /* 2 */
+
+  padding: 0 $euiSizeS;
+  height: $euiButtonHeightXSmall;
+  line-height: $euiButtonHeightXSmall;
+  border-radius: $euiBorderRadiusSmall;
+  font-size: $euiFontSizeXS;
+
+  &--disabled,
+  &--disabled:hover {
+    text-decoration: none;
+    cursor: not-allowed;
+    color: $euiButtonColorDisabledText;
+    background-color: transparent;
+  }
+
+  &--selected,
+  &--selected:hover {
+    @include euiButtonDefaultStyle($euiColorPrimary, false, 0);
+  }
+
+  &--injected,
+  &--injected:hover {
+    @include euiButtonDefaultStyle($euiColorSuccess, false);
+  }
+
+  &--preselected {
+    background: $euiFocusBackgroundColor;
+  }
+}
+
+
+// When in time only mode we make the dropdown look more like the combo box styling.
+.react-datepicker--time-only {
+  .react-datepicker__time-container {
+    padding: 0;
+  }
+
+  .react-datepicker__time-box {
+    background-color: transparent;
+  }
+
+  .react-datepicker__time-list-item {
+    font-size: $euiFontSizeS;
+    min-width: $euiButtonMinWidth;
+    text-align: left;
+  }
+}
