@@ -9,10 +9,10 @@
 import { warnOnce } from './warn_once';
 
 describe('warnOnce', () => {
-  let warn;
+  let warn: jest.SpyInstance;
   beforeAll(() => {
     warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
-  })
+  });
   it('should warn only once per id', () => {
     warnOnce('1', 'message');
     warnOnce('1', 'message');
