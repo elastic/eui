@@ -380,114 +380,6 @@
   }
 }
 
-.react-datepicker__day-names,
-.react-datepicker__week {
-  white-space: nowrap;
-}
-
-.react-datepicker__day-name,
-.react-datepicker__day,
-.react-datepicker__time-name {
-  color: $euiColorFullShade;
-  display: inline-block;
-  width: $euiSizeXL;
-  line-height: $euiSizeXL - $euiSizeXS;
-  text-align: center;
-  margin: 0 $euiSizeXS / 2;
-}
-
-.react-datepicker__day-name {
-  color: $euiColorDarkShade;
-  text-transform: uppercase;
-}
-
-.react-datepicker__day {
-  cursor: pointer;
-  border: solid 2px transparent;
-  transition: transform $euiAnimSpeedExtraFast ease-in-out;
-
-  &:hover:not(&--disabled) {
-    text-decoration: underline;
-    font-weight: $euiFontWeightBold;
-    transform: scale(1.2);
-  }
-
-  &--today {
-    font-weight: bold;
-    color: $euiColorPrimary;
-  }
-  &--outside-month {
-    color: $euiColorDarkShade;
-  }
-
-  &--highlighted {
-    border-radius: $euiBorderRadius;
-    background-color: $euiColorSecondary;
-    color: $euiColorGhost;
-
-    &:hover {
-      background-color: darken($euiColorSecondary, 5%);
-    }
-  }
-
-  &--in-range {
-    background-color: transparentize($euiColorPrimary, .9);
-    color: $euiColorFullShade;
-    border-radius: 0;
-    border-top: solid 6px $euiColorEmptyShade;
-    border-bottom: solid 6px $euiColorEmptyShade;
-    border-right: none;
-    border-left: none;
-    line-height: $euiSizeL - $euiSizeXS;
-  }
-
-  &--selected,
-  &--in-selecting-range {
-    height: $euiSizeXL;
-    margin: 0 $euiSizeXS / 2;
-    border-radius: $euiBorderRadius;
-    background-color: $euiColorPrimary;
-    line-height: $euiSizeL + $euiSizeXS;
-    border: solid $euiSizeXS / 2 $euiColorPrimary;
-    color: $euiColorGhost;
-
-    &:hover {
-      background-color: darken($euiColorPrimary, 5%);
-    }
-  }
-
-  &--keyboard-selected {
-    border-radius: $euiBorderRadius;
-    border: solid $euiSizeXS / 2 $euiColorPrimary;
-    font-weight: $euiFontWeightBold;
-
-    &:hover {
-      background-color: darken($euiColorPrimary, 5%);
-      color: $euiColorGhost;
-    }
-  }
-
-  &--in-selecting-range:not(&--in-range) {
-    background-color: rgba($euiColorPrimary, 0.5);
-  }
-
-  &--in-range:not(&--in-selecting-range) {
-    .react-datepicker__month--selecting-range & {
-      background-color: $euiColorEmptyShade;
-      color: $euiColorFullShade;
-    }
-  }
-
-  &--disabled {
-    cursor: not-allowed;
-    color: $euiColorLightShade;
-
-    &:hover {
-      background-color: transparent;
-    }
-  }
-}
-
 .react-datepicker__input-container {
   position: relative;
 }
@@ -640,14 +532,6 @@
   text-decoration: underline;
 }
 
-.react-datepicker__month--accessible:focus {
-  background: $euiFocusBackgroundColor;
-
-  .react-datepicker__day--in-range:not(.react-datepicker__day--selected) {
-    border-top-color: $euiFocusBackgroundColor;
-    border-bottom-color: $euiFocusBackgroundColor;
-  }
-}
 .react-datepicker__navigation:focus {
   background-color: $euiFocusBackgroundColor;
 }

@@ -1,0 +1,127 @@
+/**
+ * LEGEND
+ * __day-name : Week headers like Su, Mo, etc
+ * __day : Number on the calendar
+ *       --highlighted
+ *       --disabled :               _this.isDisabled(),
+ *       --selected :               _this.isSameDay(_this.props.selected),
+    *       --range-start :            _this.isRangeStart(),
+    *       --range-end :              _this.isRangeEnd(),
+ *       --keyboard-selected :      _this.isKeyboardSelected(),
+ *       --in-range :               _this.isInRange(),
+    *       --in-selecting-range :     _this.isInSelectingRange(),
+    *       --selecting-range-start :  _this.isSelectingRangeStart(),
+    *       --selecting-range-end :    _this.isSelectingRangeEnd(),
+ *       --today :                  _this.isSameDay(now(_this.props.utcOffset)),
+ *       --weekend :                _this.isWeekend(),
+ *       --outside-month :          _this.isOutsideMonth()
+
+
+
+ * __time-list-item :
+ *       --preselected : closest current time but not selected
+ *       --selected
+ *       --disabled
+ */
+
+
+ @mixin reactDatePickerDisabled($transparency: .9) {
+    $percentConversion: $transparency * 100%;
+    $backgroundColorSimulated: mix($euiPageBackgroundColor, $euiButtonColorDisabled, 90%);
+    background-color: transparentize($euiButtonColorDisabled, .9);
+    color: makeDisabledContrastColor($euiButtonColorDisabled, $backgroundColorSimulated);
+ }
+
+ .react-datepicker__day-names,
+ .react-datepicker__week {
+   white-space: nowrap;
+ }
+
+.react-datepicker__day-name,
+.react-datepicker__day {
+  font-weight: $euiFontWeightMedium;
+  text-align: center;
+  color: $euiTitleColor;
+  display: inline-block;
+  width: $euiSizeXL;
+  line-height: $euiSizeXL;
+  border-radius: $euiBorderRadiusSmall;
+  margin: ($euiSizeXS / 2);
+}
+
+.react-datepicker__day-name {
+  color: $euiTextSubduedColor;
+}
+
+.react-datepicker__day {
+  cursor: pointer;
+  transition: transform $euiAnimSpeedExtraFast ease-in-out;
+
+  &:hover {
+    @include euiButtonDefaultStyle($euiColorPrimary, false);
+    text-decoration: underline;
+
+    @include euiCanAnimate {
+      // Setting the transform under can animate because its jarring
+      transform: scale(1.1);
+    }
+  }
+
+  &--today {
+    color: $euiColorPrimary;
+    font-weight: $euiFontWeightBold;
+  }
+
+  &--outside-month {
+    color: $euiTextSubduedColor;
+  }
+
+  &--highlighted,
+  &--highlighted:hover {
+    @include euiButtonDefaultStyle($euiColorSuccess, false);
+  }
+
+  &--in-range,
+  &--in-range:hover {
+    @include euiButtonDefaultStyle($euiColorPrimary, false);
+  }
+
+  &--selected,
+  &--in-selecting-range,
+  &--selected:hover,
+  &--in-selecting-range:hover {
+    @include euiButtonDefaultStyle($euiColorPrimary, false, 0);
+  }
+
+  // THis doesn't seem to mean keyboard focus
+  // &--keyboard-selected,
+  // &--keyboard-selected:hover {
+  //   @include euiButtonDefaultStyle($euiColorPrimary);
+  //   font-weight: $euiFontWeightBold;
+  //   outline: $euiFocusRingSize solid currentColor;
+  // }
+
+  &--in-selecting-range:not(&--in-range) {
+    background-color: rgba($euiColorDanger, 0.5); //todo
+  }
+
+  &--in-range:not(&--in-selecting-range) {
+    .react-datepicker__month--selecting-range & {
+      background-color: $euiColorEmptyShade;
+      color: $euiColorFullShade;
+    }
+  }
+
+  &--disabled,
+  &--disabled:hover {
+    @include euiButtonDefaultStyle($euiButtonColorDisabled);
+    cursor: not-allowed;
+    text-decoration: none;
+    transform: none;
+  }
+
+  &--disabled.react-datepicker__day--selected,
+  &--disabled.react-datepicker__day--selected:hover {
+    color: $euiTextColor;
+  }
+}
