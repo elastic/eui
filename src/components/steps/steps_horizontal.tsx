@@ -30,9 +30,10 @@ export const EuiStepsHorizontal: FunctionComponent<EuiStepsHorizontalProps> = ({
   return (
     <ol className={classes} {...rest}>
       {steps.map((stepProps, index) => {
-        const isCurrent = stepProps.isSelected
-          ? { 'aria-current': 'step' as const }
-          : {};
+        const isCurrent =
+          stepProps.isSelected || stepProps.status === 'current'
+            ? { 'aria-current': 'step' as const }
+            : {};
 
         return (
           <li key={index} className="euiStepHorizontal__item" {...isCurrent}>
