@@ -33,10 +33,27 @@ import { EuiButton, EuiButtonEmpty } from '../../../../src/components/button';
 import { EuiCopy } from '../../../../src/components/copy';
 import { EuiCallOut } from '../../../../src/components/call_out';
 
+const JsonFlyout = ({ setIsOpen }) => {
+  const { euiTheme } = useEuiTheme();
+  return (
+    <EuiFlyout onClose={() => setIsOpen(false)}>
+      <EuiFlyoutHeader hasBorder aria-labelledby={'jsonFlyoutHeading'}>
+        <EuiTitle>
+          <h2 id={'jsonFlyoutHeading'}>Calculated EuiTheme JSON</h2>
+        </EuiTitle>
+      </EuiFlyoutHeader>
+      <EuiFlyoutBody>
+        <EuiCodeBlock language="json" isCopyable>
+          {JSON.stringify(euiTheme, null, 2)}
+        </EuiCodeBlock>
+      </EuiFlyoutBody>
+    </EuiFlyout>
+  );
+};
+
 export default () => {
   const [jsonFlyoutIsOpen, setJsonFlyoutIsOpen] = React.useState(false);
   const [overrides, setOverrides] = React.useState({});
-  const { euiTheme } = useEuiTheme();
 
   const updateTheme = (newOverrides) => {
     setOverrides(mergeDeep(overrides, newOverrides));
@@ -125,20 +142,7 @@ export default () => {
           </EuiFlexGroup>
         </EuiBottomBar>
 
-        {jsonFlyoutIsOpen && (
-          <EuiFlyout onClose={() => setJsonFlyoutIsOpen(false)}>
-            <EuiFlyoutHeader hasBorder aria-labelledby={'jsonFlyoutHeading'}>
-              <EuiTitle>
-                <h2 id={'jsonFlyoutHeading'}>Calculated EuiTheme JSON</h2>
-              </EuiTitle>
-            </EuiFlyoutHeader>
-            <EuiFlyoutBody>
-              <EuiCodeBlock language="json" isCopyable>
-                {JSON.stringify(euiTheme, null, 2)}
-              </EuiCodeBlock>
-            </EuiFlyoutBody>
-          </EuiFlyout>
-        )}
+        {jsonFlyoutIsOpen && <JsonFlyout setIsOpen={setJsonFlyoutIsOpen} />}
       </GuidePage>
     </EuiThemeProvider>
   );
