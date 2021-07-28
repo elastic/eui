@@ -101,7 +101,7 @@ type LegendProps = {
    */
   labelType?: 'legend';
 } & EuiFormRowCommonProps &
-  HTMLAttributes<HTMLFieldSetElement>;
+  Omit<HTMLAttributes<HTMLFieldSetElement>, 'disabled'>;
 
 export type EuiFormRowProps = ExclusiveUnion<LabelProps, LegendProps>;
 
