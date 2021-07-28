@@ -11,11 +11,8 @@ import classNames from 'classnames';
 import AceEditor, { IAceEditorProps } from 'react-ace';
 
 import { keysOf } from '../common';
-import { htmlIdGenerator, keys } from '../../services';
+import { htmlIdGenerator, keys, warnOnce } from '../../services';
 import { EuiI18n } from '../i18n';
-
-console.warn(`[EUI] - DEPRECATION: \`EuiCodeEditor\` is deprecated and will be removed in a future release.
-See https://ela.st/euicodeeditor for migration options.`);
 
 const DEFAULT_MODE = 'text';
 const DEFAULT_THEME = 'textmate';
@@ -81,6 +78,15 @@ export class EuiCodeEditor extends Component<
     isEditing: false,
     name: htmlIdGenerator()(),
   };
+
+  constructor(props: EuiCodeEditorProps) {
+    super(props);
+    warnOnce(
+      'EuiCodeEditor',
+      `[EUI] - DEPRECATION: \`EuiCodeEditor\` is deprecated and will be removed in a future release.
+See https://ela.st/euicodeeditor for migration options.`
+    );
+  }
 
   idGenerator = htmlIdGenerator();
   aceEditor: AceEditor | null = null;
