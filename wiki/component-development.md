@@ -67,7 +67,7 @@ This will create a `.tgz` file with the changes in your EUI directory. At this p
 Point the `package.json` file in Kibana to that file: `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"`. Then run the following commands at Kibana's root folder:
 
 ```bash
-yarn kbn bootstrap --no-validate && cd packages/kbn-ui-shared-deps/ && yarn kbn:bootstrap && cd ../../ && FORCE_DLL_CREATION=true node scripts/kibana --dev
+yarn kbn bootstrap --no-validate && FORCE_DLL_CREATION=true node scripts/kibana --dev
 ```
 
 * The `--no-validate` flag is required when bootstrapping with a `.tgz`.
