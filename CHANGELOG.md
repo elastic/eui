@@ -10,6 +10,8 @@
 - Added `current` as a `status` of `EuiHorizontalStep` ([#4911](https://github.com/elastic/eui/pull/4911))
 - Improved accessibility of `EuiBreadcrumbs` ([#4763](https://github.com/elastic/eui/pull/4763))
 - Exported `onChange` type for `EuiSearchBar` ([#4968](https://github.com/elastic/eui/pull/4968))
+- Added `warnOnce` service ([#4984](https://github.com/elastic/eui/pull/4984))
+- Added a console warning for the deprecation of `EuiCodeEditor` ([#4984](https://github.com/elastic/eui/pull/4984))
 
 **Bug fixes**
 
