@@ -208,9 +208,10 @@ export const text_colors: _EuiThemeTextColors = {
 
 export const light_colors: _EuiThemeColors = {
   ...brand_colors,
-  ...brand_text_colors,
   ...shade_colors,
   ...special_colors,
+  // Need to come after special colors so they can react to `body`
+  ...brand_text_colors,
   ...text_colors,
 };
 
@@ -235,7 +236,6 @@ export const dark_colors: _EuiThemeColors = {
   success: '#7DE2D1',
   warning: '#FFCE7A',
   danger: '#F66',
-  ...brand_text_colors,
   ...dark_shades,
 
   // Special
@@ -250,6 +250,9 @@ export const dark_colors: _EuiThemeColors = {
   shadow: computed(({ colors }) =>
     shade(saturate(colors.mediumShade, 0.25), 0.5)
   ),
+
+  // Need to come after special colors so they can react to `body`
+  ...brand_text_colors,
 
   // Text
   text: '#DFE5EF',

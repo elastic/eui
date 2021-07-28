@@ -31,7 +31,6 @@ export const light_colors_ams: _EuiThemeColors = {
   success: '#00BFB3',
   warning: '#FEC514',
   danger: '#BD271E',
-  ...brand_text_colors,
 
   // Shades
   ...shade_colors,
@@ -45,6 +44,9 @@ export const light_colors_ams: _EuiThemeColors = {
   disabled: '#ABB4C4',
   disabledText: computed(makeDisabledContrastColor('colors.disabled')),
   shadow: computed(({ colors }) => colors.ink),
+
+  // Need to come after special colors so they can react to `body`
+  ...brand_text_colors,
 
   // Text
   text: computed(([darkestShade]) => darkestShade, ['colors.darkestShade']),
@@ -64,7 +66,6 @@ export const dark_colors_ams: _EuiThemeColors = {
   success: '#7DDED8',
   warning: '#F3D371',
   danger: '#F86B63',
-  ...brand_text_colors,
 
   // Shades
   ...dark_shades,
@@ -77,6 +78,9 @@ export const dark_colors_ams: _EuiThemeColors = {
   disabled: '#515761',
   disabledText: computed(makeDisabledContrastColor('colors.disabled')),
   shadow: computed(({ colors }) => colors.ink),
+
+  // Need to come after special colors so they can react to `body`
+  ...brand_text_colors,
 
   // Text
   text: '#DFE5EF',
