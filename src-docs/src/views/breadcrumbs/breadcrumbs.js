@@ -32,6 +32,10 @@ export default () => {
     },
     {
       text: 'Edit',
+      href: '#',
+      onClick: (e) => {
+        e.preventDefault();
+      },
     },
   ];
 
