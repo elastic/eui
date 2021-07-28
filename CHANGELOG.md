@@ -9,6 +9,7 @@
 - Added optional virtualized line rendering to `EuiCodeBlock` ([#4952](https://github.com/elastic/eui/pull/4952))
 - Added `current` as a `status` of `EuiHorizontalStep` ([#4911](https://github.com/elastic/eui/pull/4911))
 - Exported `onChange` type for `EuiSearchBar` ([#4968](https://github.com/elastic/eui/pull/4968))
+- Added `fleetApp` and `agentApp` icons ([#4989](https://github.com/elastic/eui/pull/4989))
 
 **Bug fixes**
 
