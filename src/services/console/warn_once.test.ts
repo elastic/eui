@@ -9,7 +9,10 @@
 import { warnOnce } from './warn_once';
 
 describe('warnOnce', () => {
-  const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+  let warn;
+  beforeAll(() => {
+    warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+  })
   it('should warn only once per id', () => {
     warnOnce('1', 'message');
     warnOnce('1', 'message');
@@ -21,5 +24,5 @@ describe('warnOnce', () => {
     warnOnce('1', 'message');
     expect(warn).toBeCalledTimes(2);
   });
-  warn.mockReset();
+  afterAll(() => warn.mockRestore());
 });
