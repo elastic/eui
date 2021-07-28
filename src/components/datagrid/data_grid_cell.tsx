@@ -170,6 +170,17 @@ export class EuiDataGridCell extends Component<
   EuiDataGridCellProps,
   EuiDataGridCellState
 > {
+  // focus tracking is split between the entire grid & individual cells,
+  // the parent grid owns which cell is focused,
+  // but individual cells need to react to changes and also report that
+  // they are focused in response to user actions like clicking on the cell
+  // to avoid focus trap fighting, cells wait a tick after being clicked to allow
+  // any existing traps to disconnect before the cell reports the new focus state to the parent grid
+  // but because of this small delay, multiple cells could queue up focus and
+  // create an infinite loop as the cells activate->deactivate->...
+  // so we track the last timeout id and clear that request if superseded
+  static activeFocusTimeoutId: number | undefined = undefined;
+
   cellRef = createRef() as MutableRefObject<HTMLDivElement | null>;
   observer!: any; // ResizeObserver
   popoverPanelRef: MutableRefObject<HTMLElement | null> = createRef();
@@ -333,15 +344,22 @@ export class EuiDataGridCell extends Component<
     if (this.cellRef.current === e.target) {
       const { colIndex, visibleRowIndex, isExpandable } = this.props;
       // focus in next tick to give potential focus capturing mechanisms time to release their traps
-      this.focusTimeout = window.setTimeout(() => {
-        this.context.setFocusedCell([colIndex, visibleRowIndex]);
+      // also clear any previous focus timeout that may still be queued
+      if (EuiDataGridCell.activeFocusTimeoutId) {
+        window.clearTimeout(EuiDataGridCell.activeFocusTimeoutId);
+      }
+      EuiDataGridCell.activeFocusTimeoutId = this.focusTimeout = window.setTimeout(
+        () => {
+          this.context.setFocusedCell([colIndex, visibleRowIndex]);
 
-        const interactables = this.getInteractables();
-        if (interactables.length === 1 && isExpandable === false) {
-          interactables[0].focus();
-          this.setState({ disableCellTabIndex: true });
-        }
-      }, 0);
+          const interactables = this.getInteractables();
+          if (interactables.length === 1 && isExpandable === false) {
+            interactables[0].focus();
+            this.setState({ disableCellTabIndex: true });
+          }
+        },
+        0
+      );
     }
   };
 
