@@ -84,7 +84,7 @@
     "text-diff": "^1.0.1",
     "unified": "^9.2.0",
     "unist-util-visit": "^2.0.3",
-    "url-parse": "^1.5.0",
+    "url-parse": "^1.5.3",
     "uuid": "^8.3.0",
     "vfile": "^4.2.0"
   },
