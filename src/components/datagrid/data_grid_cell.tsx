@@ -170,12 +170,27 @@ const hasResizeObserver =
   typeof window !== 'undefined' &&
   typeof (window as any).ResizeObserver !== 'undefined';
 
+function observeHeight(
+  component: HTMLDivElement | null,
+  setRowHeight?: (rowHeight: number) => void
+) {
+  const observer = new (window as any).ResizeObserver(() => {
+    const rowHeight = component!.getBoundingClientRect().height;
+    if (setRowHeight) {
+      setRowHeight(rowHeight);
+    }
+  });
+  observer.observe(component);
+  return observer;
+}
+
 export class EuiDataGridCell extends Component<
   EuiDataGridCellProps,
   EuiDataGridCellState
 > {
   cellRef = createRef() as MutableRefObject<HTMLDivElement | null>;
-  observer!: any; // ResizeObserver
+  observer!: any; // Cell ResizeObserver
+  contentObserver!: any; // Cell Content ResizeObserver
   popoverPanelRef: MutableRefObject<HTMLElement | null> = createRef();
   cellContentsRef: HTMLDivElement | null = null;
   state: EuiDataGridCellState = {
@@ -196,14 +211,7 @@ export class EuiDataGridCell extends Component<
     // watch the first cell for size changes and use that to re-compute row heights
     if (this.props.colIndex === 0 && this.props.visibleRowIndex === 0) {
       if (ref && hasResizeObserver) {
-        this.observer = new (window as any).ResizeObserver(() => {
-          const rowHeight = this.cellRef.current!.getBoundingClientRect()
-            .height;
-          if (this.props.setRowHeight) {
-            this.props.setRowHeight(rowHeight);
-          }
-        });
-        this.observer.observe(ref);
+        this.observer = observeHeight(ref, this.props.setRowHeight);
       } else if (this.observer) {
         this.observer.disconnect();
       }
@@ -348,18 +356,14 @@ export class EuiDataGridCell extends Component<
     this.cellContentsRef = ref;
     if (this.props.rowHeightUtils) {
       if (ref && hasResizeObserver) {
-        this.observer = new (window as any).ResizeObserver(() => {
-          const rowHeight = this.cellContentsRef?.getBoundingClientRect()
-            .height;
-
+        const setRowHeight = (rowHeight: number) =>
           this.props.rowHeightUtils?.setRowHeight(
             this.props.rowIndex,
             rowHeight
           );
-        });
-        this.observer.observe(ref);
-      } else if (this.observer) {
-        this.observer.disconnect();
+        this.contentObserver = observeHeight(ref, setRowHeight);
+      } else if (this.contentObserver) {
+        this.contentObserver.disconnect();
       }
     }
     this.preventTabbing();
