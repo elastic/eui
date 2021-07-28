@@ -59,7 +59,7 @@ export default () => {
         <EuiFieldText name="first" />
       </EuiFormRow>
 
-      <EuiFormRow label="Disabled text field" isDisabled>
+      <EuiFormRow label="Disabled through form row" isDisabled>
         <EuiFieldText name="last" />
       </EuiFormRow>
 

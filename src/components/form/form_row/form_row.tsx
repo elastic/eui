@@ -84,7 +84,7 @@ type EuiFormRowCommonProps = CommonProps & {
    */
   helpText?: ReactNode | ReactNode[];
   /**
-   *  Passed along to the child field element
+   *  Passed along to the child field element if `disabled` doesn't already exist on the child
    */
   isDisabled?: boolean;
 };
@@ -267,9 +267,11 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       optionalProps['aria-describedby'] = describingIds.join(' ');
     }
 
-    const field = cloneElement(Children.only(children), {
+    const child = Children.only(children);
+    const field = cloneElement(child, {
       id,
-      disabled: isDisabled,
+      // Allow the child's disabled prop to supercede the `isDisabled`
+      disabled: child.props.disabled ?? isDisabled,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       ...optionalProps,
