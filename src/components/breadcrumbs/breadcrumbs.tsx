@@ -47,7 +47,7 @@ export type EuiBreadcrumb = CommonProps & {
    */
   truncate?: boolean;
   /**
-   * Can be set on the last breadcrumb to override default value of page
+   * Override the existing `aria-current` which defaults to `page` for the last breadcrumb
    */
   'aria-current'?: AriaAttributes['aria-current'];
 };
