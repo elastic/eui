@@ -9,6 +9,7 @@
 export {
   EuiSearchBar,
   EuiSearchBarProps,
+  EuiSearchBarOnChangeArgs,
   QueryType,
   Query,
   Ast,

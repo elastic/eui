@@ -12,91 +12,41 @@ export default () => (
   <div>
     {buttons.map((value) => (
       <React.Fragment key={value}>
-        <EuiFlexGroup gutterSize="s" key={value} alignItems="center">
+        <EuiFlexGroup
+          key={value}
+          responsive={false}
+          gutterSize="s"
+          alignItems="center">
           <EuiFlexItem grow={false}>
             <EuiButtonEmpty
-              style={{
-                textTransform: 'capitalize',
-              }}
               isDisabled={value === 'disabled' ? true : false}
               color={value !== 'disabled' ? value : 'primary'}
               onClick={() => {}}>
-              {value}
+              {value.charAt(0).toUpperCase() + value.slice(1)}
             </EuiButtonEmpty>
           </EuiFlexItem>
 
           <EuiFlexItem grow={false}>
             <EuiButtonEmpty
-              isDisabled={value === 'disabled' ? true : false}
-              color={value !== 'disabled' ? value : 'primary'}
               size="s"
+              isDisabled={value === 'disabled' ? true : false}
+              color={value !== 'disabled' ? value : 'primary'}
               onClick={() => {}}>
-              small
+              Small
             </EuiButtonEmpty>
           </EuiFlexItem>
 
           <EuiFlexItem grow={false}>
             <EuiButtonEmpty
+              size="xs"
               isDisabled={value === 'disabled' ? true : false}
               color={value !== 'disabled' ? value : 'primary'}
-              size="xs"
               onClick={() => {}}>
-              extra small
+              Extra small
             </EuiButtonEmpty>
           </EuiFlexItem>
         </EuiFlexGroup>
       </React.Fragment>
     ))}
-
-    <EuiFlexGroup gutterSize="s" alignItems="center">
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty onClick={() => {}} iconType="arrowDown">
-          Primary with icon left
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty
-          onClick={() => {}}
-          iconType="arrowDown"
-          iconSide="right"
-          size="xs">
-          Extra small with icon right
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiFlexGroup gutterSize="s" alignItems="center">
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty color="text" onClick={() => {}} iconType="dashboardApp">
-          Text with app icon left
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty
-          color="text"
-          onClick={() => {}}
-          iconType="dashboardApp"
-          iconSide="right"
-          size="xs">
-          Extra small with app icon right
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiFlexGroup gutterSize="s" alignItems="center">
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty onClick={() => {}} isLoading>
-          Loading
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-
-      <EuiFlexItem grow={false}>
-        <EuiButtonEmpty onClick={() => {}} isLoading iconSide="right">
-          Loading
-        </EuiButtonEmpty>
-      </EuiFlexItem>
-    </EuiFlexGroup>
   </div>
 );

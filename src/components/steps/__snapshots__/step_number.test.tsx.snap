@@ -66,6 +66,24 @@ exports[`EuiStepNumber props status complete is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiStepNumber props status current is rendered 1`] = `
+<span
+  class="euiStepNumber"
+>
+  <span
+    class="euiScreenReaderOnly"
+  >
+    Current step is 1
+  </span>
+  <span
+    aria-hidden="true"
+    class="euiStepNumber__number"
+  >
+    1
+  </span>
+</span>
+`;
+
 exports[`EuiStepNumber props status danger is rendered 1`] = `
 <span
   class="euiStepNumber euiStepNumber--danger"

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
@@ -19,6 +19,7 @@ const colorsToClassNameMap = {
   danger: 'euiTextColor--danger',
   warning: 'euiTextColor--warning',
   ghost: 'euiTextColor--ghost',
+  inherit: 'euiTextColor--inherit',
 };
 
 export type TextColor = keyof typeof colorsToClassNameMap;
@@ -32,8 +33,9 @@ export type EuiTextColorProps = CommonProps &
   > & {
     /**
      * **`secondary` color is DEPRECATED, use `success` instead**
+     * Any of our named colors or a `hex`, `rgb` or `rgba` value.
      */
-    color?: TextColor;
+    color?: TextColor | CSSProperties['color'];
     /**
      * Determines the root element
      */
@@ -45,17 +47,31 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
   color = 'default',
   className,
   component = 'span',
+  style,
   ...rest
 }) => {
+  const isNamedColor = COLORS.includes(color as TextColor);
+
   const classes = classNames(
     'euiTextColor',
-    colorsToClassNameMap[color],
+    { 'euiTextColor--custom': !isNamedColor },
+    isNamedColor && colorsToClassNameMap[color as TextColor],
     className
   );
   const Component = component;
 
+  // We're checking if is a custom color.
+  // If it is a custom color we set the `color` of the `.euiTextColor` div to that custom color.
+  // This way the children text elements can `inherit` that color and border and backgrounds can get that `currentColor`.
+  const euiTextStyle = !isNamedColor
+    ? {
+        color: color,
+        ...style,
+      }
+    : { ...style };
+
   return (
-    <Component className={classes} {...rest}>
+    <Component className={classes} style={euiTextStyle} {...rest}>
       {children}
     </Component>
   );
