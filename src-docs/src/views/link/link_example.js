@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { renderToHtml } from '../../services';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -8,27 +7,20 @@ import { EuiCode, EuiLink } from '../../../../src/components';
 
 import linkConfig from './playground';
 
-import Link from './link';
-import { LinkDisable } from './link_disable';
-import { LinkValidation } from './link_validation';
-
+import LinkDemo from './link';
 const linkSource = require('!!raw-loader!./link');
-const linkHtml = renderToHtml(Link);
 
+import LinkExternal from './link_external';
+const linkExternalSource = require('!!raw-loader!./link_external');
+
+import LinkColor from './link_color';
+const linkColorSource = require('!!raw-loader!./link_color');
+
+import { LinkDisable } from './link_disable';
 const linkDisableSource = require('!!raw-loader!./link_disable');
-const linkDisableHtml = renderToHtml(LinkDisable);
 
+import { LinkValidation } from './link_validation';
 const linkValidationSource = require('!!raw-loader!./link_validation');
-const linkValidationHtml = renderToHtml(LinkValidation);
-
-const linkSnippet = [
-  `<EuiLink href="#"><!-- Link text --></EuiLink>
-`,
-  `<EuiLink href="#" color="success">
-  <!-- Colored link text -->
-</EuiLink>
-`,
-];
 
 export const LinkExample = {
   title: 'Link',
@@ -39,23 +31,69 @@ export const LinkExample = {
           type: GuideSectionTypes.JS,
           code: linkSource,
         },
+      ],
+      text: (
+        <p>
+          <strong>EuiLink</strong> is any anchor or button element that is
+          designed to display nicely within a block of text. It also provides
+          more anchor-specific styling onto links and makes sure they are
+          accessible.
+        </p>
+      ),
+      props: { EuiLink },
+      snippet: '<EuiLink href="#"><!-- Link text --></EuiLink>',
+      demo: <LinkDemo />,
+      playground: linkConfig,
+    },
+    {
+      title: 'External links',
+      source: [
         {
-          type: GuideSectionTypes.HTML,
-          code: linkHtml,
+          type: GuideSectionTypes.JS,
+          code: linkExternalSource,
         },
       ],
       text: (
         <p>
-          <strong>EuiLink</strong> will apply the correct styling onto links and
-          make sure they are accessible. Links can be passed a color. Note that
-          the <EuiCode>ghost</EuiCode> type should only be used on dark
-          backgrounds (regardless of theming). It will always create a white
-          link.
+          Setting <EuiCode language="tsx">{'target="_blank"'}</EuiCode> defaults
+          to <EuiCode language="tsx">{'external={true}'}</EuiCode>. This adds an
+          icon indicator instructing users that a new window will open. You can
+          also manually apply this icon in case you handle the target behavior
+          by other means.
         </p>
       ),
       props: { EuiLink },
-      snippet: linkSnippet,
-      demo: <Link />,
+      demo: <LinkExternal />,
+      snippet: [
+        `<EuiLink href="#" target="_blank">
+  <!-- Automatically external -->
+</EuiLink>`,
+        `<EuiLink href="#" external>
+  <!-- Manual external -->
+</EuiLink>`,
+      ],
+    },
+    {
+      title: 'Coloring links',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: linkColorSource,
+        },
+      ],
+      text: (
+        <p>
+          Like any other <Link to="/navigation/button">button component</Link>,
+          links can be passed a <EuiCode>color</EuiCode>. Note that the{' '}
+          <EuiCode>ghost</EuiCode> type should only be used on dark backgrounds
+          (regardless of theming) as it will always create a white link.
+        </p>
+      ),
+      props: { EuiLink },
+      demo: <LinkColor />,
+      snippet: `<EuiLink href="#" color="success">
+  <!-- Colored link text -->
+</EuiLink>`,
     },
     {
       title: 'Disabled links',
@@ -63,10 +101,6 @@ export const LinkExample = {
         {
           type: GuideSectionTypes.JS,
           code: linkDisableSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: linkDisableHtml,
         },
       ],
       text: (
@@ -80,6 +114,9 @@ export const LinkExample = {
       ),
       props: { EuiLink },
       demo: <LinkDisable />,
+      snippet: `<EuiLink onClick={function} disabled>
+  <!-- Disabled link text -->
+</EuiLink>`,
     },
     {
       title: 'Link validation',
@@ -87,10 +124,6 @@ export const LinkExample = {
         {
           type: GuideSectionTypes.JS,
           code: linkValidationSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: linkValidationHtml,
         },
       ],
       text: (
@@ -112,5 +145,4 @@ export const LinkExample = {
       demo: <LinkValidation />,
     },
   ],
-  playground: linkConfig,
 };
