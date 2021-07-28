@@ -237,10 +237,6 @@ import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparkline
 
 import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 
-/** ! Temporary ! */
-
-import Canopy from './views/emotion/canopy';
-
 const createExample = (example, customTitle) => {
   if (!example) {
     throw new Error(
@@ -323,18 +319,6 @@ const createExample = (example, customTitle) => {
 // };
 
 const navigation = [
-  {
-    name: 'Temporary',
-    items: [
-      createExample(
-        {
-          intro: <Canopy />,
-          sections: [],
-        },
-        'Canopy'
-      ),
-    ],
-  },
   {
     name: 'Guidelines',
     items: [
