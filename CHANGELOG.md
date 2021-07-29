@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `36.1.0`.
+- Added `fleetApp` and `agentApp` icons ([#4989](https://github.com/elastic/eui/pull/4989))
 
 ## [`36.1.0`](https://github.com/elastic/eui/tree/v36.1.0)
 
