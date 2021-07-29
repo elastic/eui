@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `fleetApp` and `agentApp` icons ([#4989](https://github.com/elastic/eui/pull/4989))
+- Added optional line numbers to `EuiCodeBlock` ([#4993](https://github.com/elastic/eui/pull/4993))
 
 ## [`36.1.0`](https://github.com/elastic/eui/tree/v36.1.0)
 
