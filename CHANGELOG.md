@@ -2,7 +2,7 @@
 
 **Breaking changes**
 
-- Removing `EuiKeyboardAccessible` ([#4991](https://github.com/elastic/eui/pull/4991))
+- Removed `EuiKeyboardAccessible` ([#4991](https://github.com/elastic/eui/pull/4991))
 
 ## [`36.1.0`](https://github.com/elastic/eui/tree/v36.1.0)
 
