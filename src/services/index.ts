@@ -76,6 +76,8 @@ export {
   EuiSetColorMethod,
 } from './color_picker';
 
+export * from './console';
+
 export { copyToClipboard } from './copy_to_clipboard';
 
 export {
