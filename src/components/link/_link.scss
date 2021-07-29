@@ -28,12 +28,6 @@
 
       &:focus {
         @include euiFocusRing(null, 'outer');
-
-        @if ($name == 'ghost') {
-          background-color: shade($color, $euiFocusTransparencyPercent);
-        } @else {
-          @include euiFocusBackground($color);
-        }
       }
     }
   }
