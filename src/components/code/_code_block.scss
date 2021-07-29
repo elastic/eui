@@ -29,6 +29,7 @@
 
   .euiCodeBlock__line {
     display: block;
+    user-select: none;
   }
 
   .euiCodeBlock__line__text,
@@ -38,6 +39,7 @@
 
   .euiCodeBlock__line__text {
     padding-left: $euiSize;
+    user-select: text;
   }
 
   .euiCodeBlock__line__number {
