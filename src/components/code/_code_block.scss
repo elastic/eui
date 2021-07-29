@@ -22,7 +22,33 @@
 
   // Necessary for virtualized code blocks to have appropriate padding
   .euiCodeBlock__pre--isVirtualized {
-    position: relative;
+    .euiCodeBlock__code {
+      position: relative;
+    }
+  }
+
+  .euiCodeBlock__line {
+    display: block;
+  }
+
+  .euiCodeBlock__line__text,
+  .euiCodeBlock__line__number {
+    display: inline-block;
+  }
+
+  .euiCodeBlock__line__text {
+    padding-left: $euiSize;
+  }
+
+  .euiCodeBlock__line__number {
+    user-select: none;
+
+    &:before {
+      content: attr(data-line-number);
+      color: $euiTextSubduedColor;
+      text-align: right;
+      display: block;
+    }
   }
 
   .euiCodeBlock__code {
@@ -41,10 +67,6 @@
 
   .euiCodeBlock__fullScreenButton + .euiCodeBlock__copyButton {
     margin-top: $euiSizeXS;
-  }
-
-  .euiCodeBlock__line {
-    display: block;
   }
 
   &.euiCodeBlock-isFullScreen {

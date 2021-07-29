@@ -15,6 +15,14 @@ type ExtendedRefractorNode = RefractorNode & {
   lineEnd?: number;
 };
 
+interface LineNumbersConfig {
+  start: number;
+  show: boolean;
+}
+
+// Approximate width of a single digit/character
+const CHAR_SIZE = 8;
+
 const isAstElement = (node: RefractorNode): node is AST.Element =>
   node.hasOwnProperty('type') && node.type === 'element';
 
@@ -68,7 +76,10 @@ const addLineData = (
   }, []);
 };
 
-function wrapLines(nodes: ExtendedRefractorNode[]) {
+function wrapLines(
+  nodes: ExtendedRefractorNode[],
+  options = { showLineNumbers: false }
+) {
   const grouped: ExtendedRefractorNode[][] = [];
   nodes.forEach((node) => {
     const lineStart = node.lineStart! - 1;
@@ -79,14 +90,37 @@ function wrapLines(nodes: ExtendedRefractorNode[]) {
     }
   });
   const wrapped: RefractorNode[] = [];
-  grouped.forEach((node) => {
+  const digits = grouped.length.toString().length;
+  grouped.forEach((node, i) => {
+    const children: RefractorNode[] = options.showLineNumbers
+      ? [
+          {
+            type: 'element',
+            tagName: 'span',
+            properties: {
+              style: { width: digits * CHAR_SIZE },
+              ['data-line-number']: i + 1,
+              className: ['euiCodeBlock__line__number'],
+            },
+            children: [],
+          },
+          {
+            type: 'element',
+            tagName: 'span',
+            properties: {
+              className: ['euiCodeBlock__line__text'],
+            },
+            children: node,
+          },
+        ]
+      : node;
     wrapped.push({
       type: 'element',
       tagName: 'span',
       properties: {
         className: ['euiCodeBlock__line'],
       },
-      children: node,
+      children,
     });
   });
   return wrapped;
@@ -117,6 +151,13 @@ export const nodeToHtml = (
   return <React.Fragment key={key}>{node.value}</React.Fragment>;
 };
 
-export const highlightByLine = (children: string, language: string) => {
-  return wrapLines(addLineData(highlight(children, language)));
+export const highlightByLine = (
+  children: string,
+  language: string,
+  data: LineNumbersConfig
+) => {
+  return wrapLines(
+    addLineData(highlight(children, language), { lineNumber: data.start }),
+    { showLineNumbers: data.show }
+  );
 };
