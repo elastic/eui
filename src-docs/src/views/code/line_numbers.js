@@ -25,6 +25,7 @@ export default () => (
       language="json"
       fontSize="m"
       paddingSize="m"
+      overflowHeight={300}
       isCopyable
       lineNumbers={{ start: 32 }}>
       {`"OriginLocation": [

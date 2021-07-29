@@ -119,6 +119,7 @@ exports[`EuiCodeBlockImpl block renders line numbers 1`] = `
         class="euiCodeBlock__line"
       >
         <span
+          aria-hidden="true"
           class="euiCodeBlock__line__number"
           data-line-number="1"
           style="width:8px"
@@ -134,6 +135,7 @@ exports[`EuiCodeBlockImpl block renders line numbers 1`] = `
         class="euiCodeBlock__line"
       >
         <span
+          aria-hidden="true"
           class="euiCodeBlock__line__number"
           data-line-number="2"
           style="width:8px"
@@ -184,6 +186,7 @@ exports[`EuiCodeBlockImpl block renders line numbers with a start value 1`] = `
         class="euiCodeBlock__line"
       >
         <span
+          aria-hidden="true"
           class="euiCodeBlock__line__number"
           data-line-number="10"
           style="width:16px"
@@ -199,6 +202,7 @@ exports[`EuiCodeBlockImpl block renders line numbers with a start value 1`] = `
         class="euiCodeBlock__line"
       >
         <span
+          aria-hidden="true"
           class="euiCodeBlock__line__number"
           data-line-number="11"
           style="width:16px"

@@ -100,6 +100,7 @@ function wrapLines(
             properties: {
               style: { width: digits * CHAR_SIZE },
               ['data-line-number']: i + 1,
+              ['aria-hidden']: true,
               className: ['euiCodeBlock__line__number'],
             },
             children: [],
