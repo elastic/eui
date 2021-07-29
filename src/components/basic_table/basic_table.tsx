@@ -48,10 +48,6 @@ import {
   EuiTableSortMobile,
 } from '../table';
 
-// TODO remove - this implementation is not actually accessible
-// https://github.com/elastic/eui/issues/4155
-import { EuiKeyboardAccessible } from './keyboard_accessible';
-
 import { CollapsedItemActions } from './collapsed_item_actions';
 import { ExpandedItemActions } from './expanded_item_actions';
 
@@ -1123,11 +1119,7 @@ export class EuiBasicTable<T = any> extends Component<
 
     return (
       <Fragment key={`row_${itemId}`}>
-        {(rowProps as any).onClick ? (
-          <EuiKeyboardAccessible>{row}</EuiKeyboardAccessible>
-        ) : (
-          row
-        )}
+        {row}
         {expandedRow}
       </Fragment>
     );
