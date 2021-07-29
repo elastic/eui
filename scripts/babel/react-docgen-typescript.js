@@ -41,7 +41,7 @@ if (isDevelopment && !bypassWatch) {
     .on('change', buildProgram);
 }
 
-module.exports = function({ types }) {
+module.exports = function ({ types }) {
   return {
     pre() {
       this.fileProcessed = false;
@@ -104,7 +104,7 @@ module.exports = function({ types }) {
           }
 
           if (docgenResults.length !== 0) {
-            docgenResults.forEach(function(docgenResult) {
+            docgenResults.forEach(function (docgenResult) {
               const exportName = docgenResult.displayName;
               docgenResult.extendedInterfaces = componentExtends;
               path.node.body.push(
@@ -125,11 +125,11 @@ module.exports = function({ types }) {
           // declarations in the exit stage
           if (!state.get('exportedTypes')) {
             let allExportedTypes = [];
-            program.getSourceFiles().forEach(source => {
+            program.getSourceFiles().forEach((source) => {
               const exportedTypes = source
                 .getChildAt(0)
                 .getChildren()
-                .filter(child => {
+                .filter((child) => {
                   if (
                     child.kind !== SyntaxKind.InterfaceDeclaration &&
                     child.kind !== SyntaxKind.TypeAliasDeclaration
@@ -146,7 +146,7 @@ module.exports = function({ types }) {
                     }, false);
                   return isExported;
                 })
-                .map(type => type.name.escapedText);
+                .map((type) => type.name.escapedText);
               allExportedTypes = [...allExportedTypes, ...exportedTypes];
             });
             state.set('exportedTypes', allExportedTypes);
@@ -156,11 +156,11 @@ module.exports = function({ types }) {
           // remove any exported identifiers that are TS types or interfaces
           // this prevents TS-only identifiers from leaking into ES code
           path.traverse({
-            ExportNamedDeclaration: nodePath => {
+            ExportNamedDeclaration: (nodePath) => {
               const specifiers = nodePath.get('specifiers');
               const typeDefinitions = state.get('exportedTypes');
               const source = nodePath.get('source');
-              specifiers.forEach(specifierPath => {
+              specifiers.forEach((specifierPath) => {
                 if (types.isExportSpecifier(specifierPath)) {
                   const {
                     node: { local },
@@ -242,9 +242,9 @@ function filterProp(
   // prop.type is key of HTMLElement then all the html attributes will be shown
   // in that case we could only show it as any HTML Elements
   if (prop.type.name === 'enum') {
-    const propValueArray = prop.type.value.map(type => type.value);
+    const propValueArray = prop.type.value.map((type) => type.value);
     const found = intrinsicValuesRaw.every(
-      value => propValueArray.indexOf(value) >= 0
+      (value) => propValueArray.indexOf(value) >= 0
     );
     if (found) {
       prop.type.name = 'any HTML Element';
@@ -260,6 +260,7 @@ function filterProp(
     if (prop.name.includes(whiteListedProps)) {
       return true;
     }
+    if (prop.parent.fileName.includes('@elastic/charts')) return true;
     return !prop.parent.fileName.includes('node_modules');
   }
   return true;
@@ -296,7 +297,7 @@ function getChildrenTypeFromPropTypes(
    * has to be updated
    */
   const componentToParse = components.filter(
-    component => component.escapedName === componentName
+    (component) => component.escapedName === componentName
   )[0];
 
   /**
@@ -361,14 +362,14 @@ function replaceProp(props, checker, initialProp) {
   const propTypes = propsType.getProperties();
   // filter to get the children prop
   const childrenProp = propTypes.filter(
-    prop => prop.getName() === 'children'
+    (prop) => prop.getName() === 'children'
   )[0];
   /**
    * get the first declaration of the props, skip if children prop is from DOMAttributes,
    * propsWithChildren declaration only occurs last
    */
   const prop = childrenProp.declarations.filter(
-    declarations => declarations.parent.symbol.name !== 'DOMAttributes'
+    (declarations) => declarations.parent.symbol.name !== 'DOMAttributes'
   )[0];
   if (prop) {
     prop.symbol.parent.members.forEach((value, key) => {

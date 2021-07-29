@@ -17,6 +17,7 @@ import { CommonProps } from '../common';
 import { EuiStepNumber, EuiStepStatus } from './step_number';
 import {
   useI18nCompleteStep,
+  useI18nCurrentStep,
   useI18nDisabledStep,
   useI18nIncompleteStep,
   useI18nStep,
@@ -27,12 +28,12 @@ export interface EuiStepHorizontalProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>,
     CommonProps {
   /**
-   * **DEPRECATED IN AMSTERDAM**
+   * **DEPRECATED: Use `status = 'current'` instead**
    * Adds to the line before the indicator for showing current progress
    */
   isSelected?: boolean;
   /**
-   * **DEPRECATED IN AMSTERDAM**
+   * **DEPRECATED: Use `status = 'complete'` instead**
    * Adds to the line after the indicator for showing current progress
    */
   isComplete?: boolean;
@@ -62,7 +63,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   isComplete,
   onClick,
   disabled,
-  status,
+  status = 'incomplete',
   ...rest
 }) => {
   const buttonTitle = useI18nStep({ number: step, title });
@@ -70,24 +71,25 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   const disabledTitle = useI18nDisabledStep({ number: step, title });
   const incompleteTitle = useI18nIncompleteStep({ number: step, title });
   const warningTitle = useI18nWarningStep({ number: step, title });
-
-  const classes = classNames('euiStepHorizontal', className, {
-    'euiStepHorizontal-isSelected': isSelected,
-    'euiStepHorizontal-isComplete': isComplete,
-    'euiStepHorizontal-isIncomplete': !isSelected && !isComplete,
-    'euiStepHorizontal-isDisabled': disabled,
-  });
+  const currentTitle = useI18nCurrentStep({ number: step, title });
 
   if (disabled) status = 'disabled';
   else if (isComplete) status = 'complete';
-  else if (isSelected) status = status;
-  else if (!status) status = 'incomplete';
+  else if (isSelected) status = 'current';
+
+  const classes = classNames('euiStepHorizontal', className, {
+    'euiStepHorizontal-isSelected': status === 'current',
+    'euiStepHorizontal-isComplete': status === 'complete',
+    'euiStepHorizontal-isIncomplete': status === 'incomplete',
+    'euiStepHorizontal-isDisabled': status === 'disabled',
+  });
 
   let stepTitle = buttonTitle;
   if (status === 'disabled') stepTitle = disabledTitle;
   if (status === 'complete') stepTitle = completeTitle;
   if (status === 'incomplete') stepTitle = incompleteTitle;
   if (status === 'warning') stepTitle = warningTitle;
+  if (status === 'current') stepTitle = currentTitle;
 
   const onStepClick = (
     event: ReactMouseEvent<HTMLButtonElement, MouseEvent>

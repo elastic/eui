@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "36.0.0",
+  "version": "36.1.0",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -84,7 +84,7 @@
     "text-diff": "^1.0.1",
     "unified": "^9.2.0",
     "unist-util-visit": "^2.0.3",
-    "url-parse": "^1.5.0",
+    "url-parse": "^1.5.3",
     "uuid": "^8.3.0",
     "vfile": "^4.2.0"
   },
@@ -100,7 +100,7 @@
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.12.1",
-    "@elastic/charts": "^30.2.0",
+    "@elastic/charts": "^33.0.1",
     "@elastic/datemath": "^5.0.3",
     "@elastic/eslint-config-kibana": "^0.15.0",
     "@emotion/babel-preset-css-prop": "^11.0.0",

@@ -3,14 +3,14 @@ import { slugify } from '../../src/services';
 
 import { createHashHistory } from 'history';
 
-import { GuidePage, GuideSection } from './components';
+import { GuidePage, GuideSection, GuideMarkdownFormat } from './components';
 
 import { EuiErrorBoundary } from '../../src/components';
 
 import { playgroundCreator } from './services/playground';
 
 // Guidelines
-// const GettingStarted = require('!!raw-loader!./views/guidelines/getting_started.md');
+const GettingStarted = require('!!raw-loader!./views/guidelines/getting_started.md');
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
 
@@ -236,6 +236,8 @@ import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparkline
 
 import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 
+import { ElasticChartsAccessibilityExample } from './views/elastic_charts/accessibility_example';
+
 /** ! Temporary ! */
 
 import Canopy from './views/emotion/canopy';
@@ -299,27 +301,27 @@ const createExample = (example, customTitle) => {
   };
 };
 
-// const createMarkdownExample = (example, title) => {
-//   const headings = example.default.match(/^(##) (.*)/gm);
+const createMarkdownExample = (example, title) => {
+  const headings = example.default.match(/^(##) (.*)/gm);
 
-//   const sections = headings.map((heading) => {
-//     const title = heading.replace('## ', '');
+  const sections = headings.map((heading) => {
+    const title = heading.replace('## ', '');
 
-//     return { id: slugify(title), title: title };
-//   });
+    return { id: slugify(title), title: title };
+  });
 
-//   return {
-//     name: title,
-//     component: () => (
-//       <GuidePage title={title}>
-//         <GuideMarkdownFormat title={title}>
-//           {example.default}
-//         </GuideMarkdownFormat>
-//       </GuidePage>
-//     ),
-//     sections: sections,
-//   };
-// };
+  return {
+    name: title,
+    component: () => (
+      <GuidePage title={title}>
+        <GuideMarkdownFormat title={title} grow={false}>
+          {example.default}
+        </GuideMarkdownFormat>
+      </GuidePage>
+    ),
+    sections: sections,
+  };
+};
 
 const navigation = [
   {
@@ -337,8 +339,7 @@ const navigation = [
   {
     name: 'Guidelines',
     items: [
-      // TODO uncomment when EuiMarkdownFormat has a better text formatting
-      // createMarkdownExample(GettingStarted, 'Getting started'),
+      createMarkdownExample(GettingStarted, 'Getting started'),
       createExample(AccessibilityGuidelines, 'Accessibility'),
       {
         name: 'Colors',
@@ -468,6 +469,7 @@ const navigation = [
       ElasticChartsTimeExample,
       ElasticChartsCategoryExample,
       ElasticChartsPieExample,
+      ElasticChartsAccessibilityExample,
     ].map((example) => createExample(example)),
   },
   {

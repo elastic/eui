@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../common';
 
@@ -18,6 +18,7 @@ const textSizeToClassNameMap = {
   xs: 'euiText--extraSmall',
   s: 'euiText--small',
   m: 'euiText--medium',
+  relative: 'euiText--relative',
 };
 
 export type TextSize = keyof typeof textSizeToClassNameMap;
@@ -27,11 +28,15 @@ export const TEXT_SIZES = keysOf(textSizeToClassNameMap);
 export type EuiTextProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
     textAlign?: TextAlignment;
+    /**
+     * Determines the text size. Choose `relative` to control the `font-size` based on the value of a parent container.
+     */
     size?: TextSize;
     /**
      * **`secondary` color is DEPRECATED, use `success` instead**
+     * Any of our named colors or a `hex`, `rgb` or `rgba` value.
      */
-    color?: TextColor;
+    color?: TextColor | CSSProperties['color'];
     grow?: boolean;
   };
 

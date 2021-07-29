@@ -73,6 +73,33 @@ exports[`EuiCodeBlockImpl block renders a pre block tag with a css class modifie
 </div>
 `;
 
+exports[`EuiCodeBlockImpl block renders a virtualized code block 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls prismjs language-text testClass1 testClass2"
+  style="max-height:300px"
+>
+  <div
+    style="overflow:visible;width:0"
+  />
+  <div
+    class="euiCodeBlock__controls"
+  >
+    <button
+      aria-label="Expand"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="fullScreen"
+      />
+    </button>
+  </div>
+</div>
+`;
+
 exports[`EuiCodeBlockImpl block renders with transparent background 1`] = `
 <div
   class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground prismjs language-text"
