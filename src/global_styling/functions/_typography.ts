@@ -9,7 +9,6 @@
 import { _EuiThemeFontBase } from '../variables/_typography';
 
 // Typography functions
-// TODO: Can we automatically get some of these values without needing them manually?
 
 // Calculates the line-height to the closest multiple of the baseline
 // EX: A proper line-height for text is 1.5 times the font-size.

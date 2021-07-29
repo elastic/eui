@@ -12,7 +12,6 @@ import Colors from './_colors';
 import Size from './_size';
 import Typography from './_typography';
 import Border from './_border';
-// import Focus from './_focus';
 import Animation from './_animation';
 import Breakpoints from './_breakpoints';
 

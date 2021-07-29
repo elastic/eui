@@ -21,7 +21,6 @@ export const ThemeSection: FunctionComponent<ThemeSection> = ({
   code,
   description,
   themeValues,
-  // property,
   example,
   snippet,
   customSnippet,

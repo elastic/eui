@@ -10,9 +10,6 @@ import chroma from 'chroma-js';
 import { useEuiTheme } from '../../services/theme/hooks';
 import { lightness, tint, transparentize } from '../../services/color';
 
-// This file uses RGBA literal values responsibly
-// This file uses off-pattern indentation to be more readable
-
 export const useSlightShadow = ({
   color,
   opacity,
