@@ -48,12 +48,16 @@ import {
   EuiTableSortMobile,
 } from '../table';
 
+// TODO remove - this implementation is not actually accessible
+// https://github.com/elastic/eui/issues/4155
+import { EuiKeyboardAccessible } from './keyboard_accessible';
+
 import { CollapsedItemActions } from './collapsed_item_actions';
 import { ExpandedItemActions } from './expanded_item_actions';
 
 import { Pagination, PaginationBar } from './pagination_bar';
 import { EuiIcon } from '../icon';
-import { EuiKeyboardAccessible, EuiScreenReaderOnly } from '../accessibility';
+import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import { EuiDelayRender } from '../delay_render';
 

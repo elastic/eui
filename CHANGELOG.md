@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `36.1.0`.
+**Breaking changes**
+
+- Removing `EuiKeyboardAccessible` ([#4991](https://github.com/elastic/eui/pull/4991))
 
 ## [`36.1.0`](https://github.com/elastic/eui/tree/v36.1.0)
 

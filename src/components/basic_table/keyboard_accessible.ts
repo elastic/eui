@@ -39,6 +39,8 @@ interface Props {
   children: ReactElement;
 }
 
+// TODO remove - this implementation is not actually accessible
+// https://github.com/elastic/eui/issues/4155
 export class EuiKeyboardAccessible extends Component<Props> {
   onKeyDown = (event: KeyboardEvent<any>) => {
     // Prevent a scroll from occurring if the user has hit space.
