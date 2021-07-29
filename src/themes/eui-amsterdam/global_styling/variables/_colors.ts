@@ -96,15 +96,6 @@ export const dark_colors_ams: _EuiThemeColors = {
 export const colors_ams: EuiThemeColors = {
   ghost: '#FFF',
   ink: '#000',
-
-  body: {
-    LIGHT: computed(([lightestShade]) => tint(lightestShade, 0.5), [
-      'colors.lightestShade',
-    ]),
-    DARK: computed(([lightestShade]) => shade(lightestShade, 0.3), [
-      'colors.lightestShade',
-    ]),
-  },
   LIGHT: light_colors_ams,
   DARK: dark_colors_ams,
 };

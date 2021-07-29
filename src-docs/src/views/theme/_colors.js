@@ -27,7 +27,11 @@ import {
 import { ThemeValue } from './_values';
 import { ThemeSection } from './_theme_section';
 
-import { getPropsFromThemeKey, EuiThemeColors } from './_props';
+import {
+  getPropsFromThemeKey,
+  EuiThemeColors,
+  EuiThemeConstantColors,
+} from './_props';
 import { makeHighContrastColor } from '../../../../src/global_styling/functions/_colors';
 
 const brandKeys = Object.keys(brand_colors);
@@ -40,6 +44,7 @@ export default ({ onThemeUpdate }) => {
   const { euiTheme, colorMode } = useEuiTheme();
   const colors = euiTheme.colors;
   const props = getPropsFromThemeKey(EuiThemeColors);
+  const constantProps = getPropsFromThemeKey(EuiThemeConstantColors);
 
   const updateColor = (property, value) => {
     onThemeUpdate({
@@ -54,7 +59,12 @@ export default ({ onThemeUpdate }) => {
   return (
     <div>
       <EuiTitle>
-        <h2>Colors</h2>
+        <h2>
+          Colors{' '}
+          <small>
+            <EuiCode>EuiThemeColors</EuiCode>
+          </small>
+        </h2>
       </EuiTitle>
 
       <EuiSpacer />
@@ -307,7 +317,7 @@ export default ({ onThemeUpdate }) => {
                 <EuiSpacer size="xxl" />
 
                 <ThemeSection
-                  code="Constants"
+                  code="_EuiThemeConstantColors"
                   description={
                     <p>These are constant no matter the theme or color mode.</p>
                   }
@@ -318,7 +328,7 @@ export default ({ onThemeUpdate }) => {
                         <ThemeValue
                           property="colors"
                           name={'ink'}
-                          type={props.ink}
+                          type={constantProps.ink}
                           value={colors.ink.toUpperCase()}
                           example={
                             <EuiColorPickerSwatch disabled color={colors.ink} />
@@ -329,7 +339,7 @@ export default ({ onThemeUpdate }) => {
                         <ThemeValue
                           property="colors"
                           name={'ghost'}
-                          type={props.ghost}
+                          type={constantProps.ghost}
                           value={colors.ghost.toUpperCase()}
                           example={
                             <EuiColorPickerSwatch

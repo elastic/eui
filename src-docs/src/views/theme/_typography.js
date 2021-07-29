@@ -62,7 +62,9 @@ export default ({ onThemeUpdate }) => {
   return (
     <div>
       <EuiText>
-        <h2>Typography</h2>
+        <h2>
+          Typography <EuiCode>EuiThemeFont</EuiCode>
+        </h2>
         <p>
           The typography specific theme keys start with the{' '}
           <EuiCode>font</EuiCode> key.

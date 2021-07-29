@@ -17,9 +17,15 @@ import { EuiThemeShape } from '../../../../src/services';
 
 export const EuiTheme: FunctionComponent<EuiThemeShape> = () => <div />;
 
-import { _EuiThemeColors } from '../../../../src/global_styling/variables/_colors';
+import {
+  _EuiThemeColors,
+  _EuiThemeConstantColors,
+} from '../../../../src/global_styling/variables/_colors';
 
 export const EuiThemeColors: FunctionComponent<_EuiThemeColors> = () => <div />;
+export const EuiThemeConstantColors: FunctionComponent<_EuiThemeConstantColors> = () => (
+  <div />
+);
 
 import { EuiThemeSize } from '../../../../src/global_styling/variables/_size';
 
@@ -69,8 +75,8 @@ export const EuiThemeAnimationEasing: FunctionComponent<_EuiThemeAnimationEasing
   <div />
 );
 
-import { _EuiThemeBreakpoint } from '../../../../src/global_styling/variables/_breakpoint';
+import { EuiThemeBreakpoint } from '../../../../src/global_styling/variables/_breakpoint';
 
-export const EuiThemeBreakpoint: FunctionComponent<_EuiThemeBreakpoint> = () => (
+export const _EuiThemeBreakpoint: FunctionComponent<EuiThemeBreakpoint> = () => (
   <div />
 );

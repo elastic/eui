@@ -9,7 +9,7 @@ import { useDebouncedUpdate } from './hooks';
 import { ThemeSection } from './_theme_section';
 import { ThemeValue } from './_values';
 
-import { getPropsFromThemeKey, EuiThemeBreakpoint } from './_props';
+import { getPropsFromThemeKey, _EuiThemeBreakpoint } from './_props';
 
 export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
@@ -20,7 +20,7 @@ export default ({ onThemeUpdate }) => {
     onUpdate: onThemeUpdate,
   });
 
-  const breakpointTypes = getPropsFromThemeKey(EuiThemeBreakpoint);
+  const breakpointTypes = getPropsFromThemeKey(_EuiThemeBreakpoint);
 
   return (
     <div>
@@ -34,7 +34,7 @@ export default ({ onThemeUpdate }) => {
       <EuiSpacer />
 
       <ThemeSection
-        code="_EuiThemeBreakpoint"
+        code="EuiThemeBreakpoint"
         description={
           <p>
             These original set of breakpoint keys specify the minimum window

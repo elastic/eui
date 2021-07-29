@@ -8,15 +8,15 @@
 
 import { RecursivePartial, ValueOf } from '../../components/common';
 import { EuiThemeAnimation } from '../../global_styling/variables/_animations';
-import { _EuiThemeBreakpoint } from '../../global_styling/variables/_breakpoint';
+import { EuiThemeBreakpoint } from '../../global_styling/variables/_breakpoint';
 import { EuiThemeBorder } from '../../global_styling/variables/_borders';
 import { EuiThemeColors } from '../../global_styling/variables/_colors';
 import {
   EuiThemeBase,
   EuiThemeSize,
 } from '../../global_styling/variables/_size';
-import { _EuiThemeFocus } from '../../global_styling/variables/_states';
 import { EuiThemeFont } from '../../global_styling/variables/_typography';
+import { _EuiThemeFocus } from '../../global_styling/variables/_states';
 
 export const COLOR_MODES_STANDARD = {
   light: 'LIGHT',
@@ -49,7 +49,7 @@ export type EuiThemeShape = {
   border: EuiThemeBorder;
   focus: _EuiThemeFocus;
   animation: EuiThemeAnimation;
-  breakpoint: _EuiThemeBreakpoint;
+  breakpoint: EuiThemeBreakpoint;
 };
 
 export type EuiThemeSystem<T = {}> = {

@@ -123,7 +123,6 @@ export type _EuiThemeTextColors = {
   link: ColorModeSwitch;
 };
 
-export type EUI_BODY_COLOR_KEY = 'body'; // TOOD, get this to work in `makeHighContrastColor`
 export type _EuiThemeSpecialColors = {
   /**
    * The background color for the whole window (body) and is a computed value of colors.lightestShade.
@@ -146,6 +145,17 @@ export type _EuiThemeSpecialColors = {
    * Base color for shadows that gets transparentized
    */
   shadow: ColorModeSwitch;
+};
+
+export type _EuiThemeConstantColors = {
+  /**
+   * Purest white
+   */
+  ghost: string;
+  /**
+   * Purest black
+   */
+  ink: string;
 };
 
 export type _EuiThemeColors = _EuiThemeBrandColors &
@@ -200,8 +210,11 @@ export const special_colors: _EuiThemeSpecialColors = {
 };
 
 export const text_colors: _EuiThemeTextColors = {
-  text: computed(([darkestShade]) => darkestShade, ['colors.darkestShade']),
-  title: computed(([text]) => shade(text, 0.5), ['colors.text']),
+  text: computed(makeHighContrastColor('colors.darkestShade')),
+  title: computed(
+    ([{ text, body }]) => makeHighContrastColor(shade(text, 0.5))(body),
+    ['colors']
+  ),
   subdued: computed(makeHighContrastColor('colors.mediumShade')),
   link: computed(([primaryText]) => primaryText, ['colors.primaryText']),
 };
@@ -265,24 +278,12 @@ export const dark_colors: _EuiThemeColors = {
  * FULL
  */
 
-export type EuiThemeColors = StrictColorModeSwitch<_EuiThemeColors> & {
-  body: ColorModeSwitch;
-  ghost: string;
-  ink: string;
-};
+export type EuiThemeColors = StrictColorModeSwitch<_EuiThemeColors> &
+  _EuiThemeConstantColors;
 
 export const colors: EuiThemeColors = {
   ghost: '#FFF',
   ink: '#000',
-
-  body: {
-    LIGHT: computed(([lightestShade]) => tint(lightestShade, 0.5), [
-      'colors.lightestShade',
-    ]),
-    DARK: computed(([lightestShade]) => shade(lightestShade, 0.45), [
-      'colors.lightestShade',
-    ]),
-  },
   LIGHT: light_colors,
   DARK: dark_colors,
 };

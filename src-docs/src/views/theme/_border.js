@@ -48,7 +48,9 @@ export default ({ onThemeUpdate }) => {
   return (
     <div>
       <EuiText>
-        <h2>Border</h2>
+        <h2>
+          Border <EuiCode>EuiThemeBorder</EuiCode>
+        </h2>
         <p>
           The <EuiCode>border</EuiCode> theme key contains both individual
           border property values and full shorthand border properties.

@@ -38,7 +38,9 @@ export default ({ onThemeUpdate }) => {
   return (
     <div>
       <EuiText>
-        <h2>Animation</h2>
+        <h2>
+          Animation <EuiCode>EuiThemeAnimation</EuiCode>
+        </h2>
         <p>
           The <EuiCode>animation</EuiCode> values provide some easy and
           consistent ways for adding transition and animation effects and
