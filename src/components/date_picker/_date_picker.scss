@@ -24,7 +24,6 @@
   &.euiDatePicker--shadow {
     .react-datepicker-popper {
       @include euiBottomShadowMedium;
-
       border: $euiBorderThin;
       background-color: $euiColorEmptyShade;
       border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
@@ -35,10 +34,14 @@
     &.euiDatePicker--inline {
       .react-datepicker {
         @include euiBottomShadowMedium;
-
         border: $euiBorderThin;
         background-color: $euiColorEmptyShade;
         border-radius: $euiBorderRadius;
+      }
+
+      .euiFormControlLayout {
+        display: inline-block;
+        width: auto;
       }
     }
   }
@@ -50,6 +53,7 @@
   display: flex;
   border-radius: $euiBorderRadius;
   padding: $euiDatePickerPadding;
+  justify-content: center;
 }
 
 .euiDatePicker.euiDatePicker--shadow .react-datepicker-popper {
@@ -82,217 +86,36 @@
 
 .react-datepicker__focusTrap {
   display: flex;
+  justify-content: center;
 }
-
-
 
 .react-datepicker__header {
-    display: flex;
-    flex-direction: column;
-    margin-top: 44px;
+  display: flex;
+  flex-direction: column;
+  margin-top: $euiSizeXL + $euiDatePickerGap;
 }
-
 
 .react-datepicker-time__header {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+  @include euiTextTruncate;
 }
-
-.react-datepicker__navigation {
-  &--next,
-  &--previous {
-    cursor: pointer;
-    position: absolute;
-    // Pixel pushing because these are icons against text
-    top: $euiSize + ($euiSizeXS / 2);
-    height: $euiSizeXL;
-    width: $euiSizeXL;
-    padding: 0;
-    z-index: 1;
-    text-indent: -999em;
-    overflow: hidden;
-    background-repeat: no-repeat;
-
-    &:hover {
-      background-color: $euiColorLightestShade;
-    }
-  }
-
-  &--previous {
-    @include datePicker__arrow;
-    right: $euiSizeXL;
-    transform: rotate(180deg);
-    // transition: transform $euiAnimSpeedExtraFast ease-in-out;
-
-    // &:hover, &:focus {
-    //   border-radius: $euiBorderRadius;
-    // }
-
-    // &:hover {
-    //   background-color: $euiColorLightestShade;
-    //   box-shadow: 0 0 0 ($euiSizeXS / 2) $euiColorLightestShade;
-    // }
-
-    // &:focus {
-    //   background-color: $euiFocusBackgroundColor;
-    //   box-shadow: 0 0 0 ($euiSizeXS / 2) $euiFocusBackgroundColor;
-    // }
-
-    // &--disabled,
-    // &--disabled:hover {
-    //   cursor: not-allowed ;
-    //   opacity: .2;
-    // }
-  }
-
-  &--next {
-    @include datePicker__arrow;
-    right: 0;
-
-    // &--with-time:not(&--with-today-button) {
-    //   // This a pixel value against the width of the cal. It needs
-    //   // to be left because the timepicker adds more width
-    //   left: 248px;
-    // }
-
-    // &:hover, &:focus {
-    //   border-radius: $euiBorderRadius;
-    // }
-
-    // &:hover {
-    //   background-color: $euiColorLightestShade;
-    //   box-shadow: 0 0 0 ($euiSizeXS / 2) $euiColorLightestShade;
-    // }
-
-    // &:focus {
-    //   background-color: $euiFocusBackgroundColor;
-    //   box-shadow: 0 0 0 ($euiSizeXS / 2) $euiFocusBackgroundColor;
-    // }
-
-    // &--disabled,
-    // &--disabled:hover {
-    //   cursor: not-allowed ;
-    //   opacity: .2;
-    // }
-  }
-
-  // &--years {
-  //   position: relative;
-  //   top: 0;
-  //   display: block;
-  //   margin-left: auto;
-  //   margin-right: auto;
-
-  //   &-previous {
-  //     top: $euiSizeXS;
-  //     border-top-color: $euiColorLightestShade;
-
-  //     &:hover {
-  //       border-top-color: darken($euiColorLightestShade, 10%);
-  //     }
-  //   }
-
-  //   &-upcoming {
-  //     top: -$euiSizeXS;
-  //     border-bottom-color: $euiColorLightestShade;
-
-  //     &:hover {
-  //       border-bottom-color: darken($euiColorLightestShade, 10%);
-  //     }
-  //   }
-  // }
-}
-
-// .react-datepicker__month-container {
-// }
 
 .react-datepicker__month {
-  // margin: 0 $euiSize $euiSize $euiSize;
   text-align: center;
   border-radius: $euiBorderRadius;
-}
-
-
-
-.react-datepicker__week-number {
-  color: $euiColorLightestShade;
-  display: inline-block;
-  width: $euiSizeXL;
-  line-height: $euiSizeXL - $euiSizeXS;
-  text-align: center;
-  margin: 0 $euiSizeXS;
-  &.react-datepicker__week-number--clickable {
-    cursor: pointer;
-    &:hover {
-      border-radius: $euiBorderRadius;
-      background-color: $euiColorEmptyShade;
-    }
-  }
 }
 
 .react-datepicker__input-container {
   position: relative;
 }
 
+// On small screens put the times at the bottom
+@include euiBreakpoint('xs') {
+  .react-datepicker__focusTrap,
+  .react-datepicker {
+    flex-direction: column;
+  }
 
-
-
-
-
-
-
-
-
-
-
-///@include
-
-.react-datepicker {
-    font-size: 12px;
-    color: #343741;
-    display: -webkit-flex;
-    display: flex;
-    border-radius: 6px;
-    padding: 4px;
-    justify-content: center;
-}
-
-.react-datepicker__navigation--previous {
-  background-position: center;
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHBhdGggZmlsbD0iIzM0Mzc0MSIgZD0iTTExLjY5MiA3SDMuNTU2QzMuMjQ5IDcgMyA3LjIyNCAzIDcuNXMuMjQ5LjUuNTU2LjVoOC4xMzZsLTQuMDk2IDQuMDk2YS41LjUgMCAwMC43MDcuNzA3bDQuMjQzLTQuMjQyYy4yNTgtLjI1OS40MDMtLjU4Ny40MzMtLjkyNWEuNDU0LjQ1NCAwIDAwMC0uMjcyIDEuNDk0IDEuNDk0IDAgMDAtLjQzMy0uOTI1TDguMzAzIDIuMTk3YS41LjUgMCAxMC0uNzA3LjcwN0wxMS42OTIgN3oiLz48L3N2Zz4=);
-  left: 8px;
-  -webkit-transform: rotate(
-180deg
-);
-  transform: rotate(
-180deg
-);
-}
-
-.react-datepicker__navigation--next, .react-datepicker__navigation--previous {
-  cursor: pointer;
-  position: absolute;
-  top: 8px;
-  height: 32px;
-  width: 32px;
-  padding: 0;
-  z-index: 1;
-  text-indent: -999em;
-  overflow: hidden;
-  background-repeat: no-repeat;
-  border-radius: 4px;
-}
-
-.react-datepicker__navigation--next {
-  background-position: center;
-  right: 8px;
-}
-
-.react-datepicker__navigation--next:hover {
-  background-color: #F5F7FA;
-  /* box-shadow: 0 0 0 2px #f5f7fa; */
-}
-.react-datepicker__navigation--next:hover, .react-datepicker__navigation--next:focus {
-  border-radius: 4px;
+  .react-datepicker__time-box {
+      margin-top: 0;
+  }
 }

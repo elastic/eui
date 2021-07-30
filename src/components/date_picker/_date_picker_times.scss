@@ -64,11 +64,6 @@
     background-color: transparent;
   }
 
-  &--selected,
-  &--selected:hover {
-    @include euiButtonDefaultStyle($euiColorPrimary, false, 0);
-  }
-
   &--injected,
   &--injected:hover {
     @include euiButtonDefaultStyle($euiColorSuccess, false);
@@ -77,6 +72,11 @@
   &--preselected,
   &--preselected:hover {
     background: $euiFocusBackgroundColor;
+  }
+
+  &--selected,
+  &--selected:hover {
+    @include euiButtonDefaultStyle($euiColorPrimary, false, 0);
   }
 }
 

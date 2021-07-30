@@ -21,7 +21,7 @@
 
 // Absolutely positioned across the *whole* top of the calendar
 .react-datepicker__header__dropdown {
-  padding: $euiSizeS;
+  padding: $euiDatePickerGap * 2;
   display: flex;
   gap: $euiDatePickerGap;
   position: absolute;
@@ -92,7 +92,6 @@
   .react-datepicker__year-dropdown {
     padding: $euiSizeXS;
     display: flex;
-    gap: $euiDatePickerGap;
     flex-direction: column-reverse;
     justify-content: flex-end;
   }
@@ -104,7 +103,6 @@
 
   .react-datepicker__month-dropdown {
     padding: $euiSizeXS;
-    margin: ($euiDatePickerGap / 2) 0;
     min-width: $euiDatePickerMaxControlWidth;
   }
 }
@@ -126,6 +124,7 @@
   line-height: $euiButtonHeightXSmall;
   border-radius: $euiBorderRadiusSmall;
   font-size: $euiFontSizeS;
+  margin:  $euiDatePickerGap 0;
   cursor: pointer;
 
   &:hover,
@@ -137,7 +136,6 @@
     display: none;
   }
 }
-
 
 .react-datepicker__year-option--preselected,
 .react-datepicker__month-option--preselected {
