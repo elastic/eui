@@ -15,13 +15,6 @@
  *       --today :                  _this.isSameDay(now(_this.props.utcOffset)),
  *       --weekend :                _this.isWeekend(),
  *       --outside-month :          _this.isOutsideMonth()
-
-
-
- * __time-list-item :
- *       --preselected : closest current time but not selected
- *       --selected
- *       --disabled
  */
 
 
@@ -86,6 +79,19 @@
     @include euiButtonDefaultStyle($euiColorPrimary, false);
   }
 
+  &--in-range:not(&--range-start):not(&--range-end):not(:hover) {
+    box-shadow: -2px 0 transparentize($euiColorPrimary, $euiButtonDefaultTransparency),
+                 2px 0 transparentize($euiColorPrimary, $euiButtonDefaultTransparency);
+    border-radius: 0;
+
+    &:first-of-type {
+      box-shadow: 2px 0 transparentize($euiColorPrimary, $euiButtonDefaultTransparency);
+    }
+    &:last-of-type {
+      box-shadow: -2px 0 transparentize($euiColorPrimary, $euiButtonDefaultTransparency);
+    }
+  }
+
   &--selected,
   &--in-selecting-range,
   &--selected:hover,
@@ -103,13 +109,6 @@
 
   &--in-selecting-range:not(&--in-range) {
     background-color: rgba($euiColorDanger, 0.5); //todo
-  }
-
-  &--in-range:not(&--in-selecting-range) {
-    .react-datepicker__month--selecting-range & {
-      background-color: $euiColorEmptyShade;
-      color: $euiColorFullShade;
-    }
   }
 
   &--disabled,
