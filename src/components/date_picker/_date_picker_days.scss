@@ -113,7 +113,9 @@
 
   &--disabled,
   &--disabled:hover {
-    @include euiButtonDefaultStyle($euiButtonColorDisabled);
+    $backgroundColorSimulated: mix($euiPageBackgroundColor, $euiButtonColorDisabled, 90%);
+    background-color: transparentize($euiButtonColorDisabled, .9);
+    color: makeDisabledContrastColor($euiButtonColorDisabled, $backgroundColorSimulated);
     cursor: not-allowed;
     text-decoration: none;
     transform: none;
