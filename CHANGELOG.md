@@ -7,6 +7,10 @@
 
 - Fixed incorrect date formatting on `EuiSuperDatePicker` button `title` ([#4998](https://github.com/elastic/eui/pull/4998))
 
+**Breaking changes**
+
+- Removed `EuiKeyboardAccessible` ([#4991](https://github.com/elastic/eui/pull/4991))
+
 ## [`36.1.0`](https://github.com/elastic/eui/tree/v36.1.0)
 
 - Fixed color of `html` scrollbar in dark mode ([#4969](https://github.com/elastic/eui/pull/4969))

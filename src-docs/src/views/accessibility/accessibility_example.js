@@ -5,25 +5,15 @@ import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import {
-  EuiBadge,
-  EuiSpacer,
   EuiCallOut,
   EuiCode,
   EuiLink,
-  EuiKeyboardAccessible,
   EuiSkipLink,
   EuiScreenReaderOnly,
 } from '../../../../src/components';
 
-import KeyboardAccessible from './keyboard_accessible';
 import ScreenReaderOnly from './screen_reader';
 import SkipLink from './skip_link';
-
-const keyboardAccessibleSource = require('!!raw-loader!./keyboard_accessible');
-const keyboardAccessibleHtml = renderToHtml(KeyboardAccessible);
-const keyboardAccessibleSnippet = `<EuiKeyboardAccessible>
-  <!-- interactive child element -->
-</EuiKeyboardAccessible>`;
 
 const screenReaderOnlyHtml = renderToHtml(ScreenReaderOnly);
 const screenReaderOnlySource = require('!!raw-loader!./screen_reader');
@@ -54,56 +44,6 @@ const skipLinkSnippet = [
 export const AccessibilityExample = {
   title: 'Accessibility',
   sections: [
-    {
-      title: 'Keyboard accessible',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: keyboardAccessibleSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: keyboardAccessibleHtml,
-        },
-      ],
-      text: (
-        <>
-          <EuiBadge
-            color="danger"
-            href="https://github.com/elastic/eui/issues/1469"
-            target="_blank"
-            iconSide="right"
-            iconType="popout">
-            Set for deprecation. See details.
-          </EuiBadge>
-
-          <EuiSpacer />
-
-          <EuiCallOut
-            color="warning"
-            iconType="accessibility"
-            title="Deprecated because it often causes problems for screen reader users">
-            <p>
-              Though this component solved some problems for keyboard-only users
-              it also frequently introduced problems for screen reader users. As
-              such, we don&apos;t recommend it&apos;s continued use.
-            </p>
-          </EuiCallOut>
-
-          <EuiSpacer />
-
-          <p>
-            You can make interactive elements keyboard-accessible with the{' '}
-            <strong>EuiKeyboardAccessible</strong> component. This is necessary
-            for non-button elements and <EuiCode>a</EuiCode> tags without{' '}
-            <EuiCode>href</EuiCode> attributes.
-          </p>
-        </>
-      ),
-      props: { EuiKeyboardAccessible },
-      snippet: keyboardAccessibleSnippet,
-      demo: <KeyboardAccessible />,
-    },
     {
       title: 'Screen reader only',
       source: [
