@@ -9,7 +9,7 @@
 
 .react-datepicker__time-container {
   display: flex;
-  padding: $euiSizeS;
+  padding: 8px 0 0 8px;
   flex-grow: 1;
 }
 
@@ -26,12 +26,13 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  margin-top: $euiSizeXXL;
 }
 
 .react-datepicker__time-list {
   @include euiScrollBar;
   // Set the min-height with the following, but it should stretch to fit if the container is larger
-  height: 265px !important; // Overrides inline height
+  height: 200px !important; // Overrides inline height
   display: flex;
   gap: $euiSizeXS;
   flex-direction: column;
@@ -57,7 +58,7 @@
 
   &--disabled,
   &--disabled:hover {
-    text-decoration: none;
+    text-decoration: none !important;
     cursor: not-allowed;
     color: $euiButtonColorDisabledText;
     background-color: transparent;
@@ -73,7 +74,8 @@
     @include euiButtonDefaultStyle($euiColorSuccess, false);
   }
 
-  &--preselected {
+  &--preselected,
+  &--preselected:hover {
     background: $euiFocusBackgroundColor;
   }
 }
@@ -87,6 +89,7 @@
 
   .react-datepicker__time-box {
     background-color: transparent;
+    margin-top: 0;
   }
 
   .react-datepicker__time-list-item {
