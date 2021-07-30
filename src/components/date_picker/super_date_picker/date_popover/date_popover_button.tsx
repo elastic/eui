@@ -12,7 +12,9 @@ import React, {
   MouseEventHandler,
 } from 'react';
 import classNames from 'classnames';
+import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
+import { useEuiI18n } from '../../../i18n';
 import { EuiPopover, EuiPopoverProps } from '../../../popover';
 
 import { formatTimeString } from '../pretty_duration';
@@ -20,7 +22,6 @@ import {
   EuiDatePopoverContent,
   EuiDatePopoverContentProps,
 } from './date_popover_content';
-import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
 export interface EuiDatePopoverButtonProps {
   className?: string;
@@ -74,11 +75,24 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
     },
   ]);
 
-  let title = value;
+  const formattedValue = formatTimeString(value, dateFormat, roundUp, locale);
+  let title = formattedValue;
+
+  const invalidTitle = useEuiI18n(
+    'euiDatePopoverButton.invalidTitle',
+    'Invalid date: {title}',
+    { title }
+  );
+  const outdatedTitle = useEuiI18n(
+    'euiDatePopoverButton.outdatedTitle',
+    'Update needed: {title}',
+    { title }
+  );
+
   if (isInvalid) {
-    title = `Invalid date: ${title}`;
+    title = invalidTitle;
   } else if (needsUpdating) {
-    title = `Update needed: ${title}`;
+    title = outdatedTitle;
   }
 
   const button = (
@@ -89,7 +103,7 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
       disabled={isDisabled}
       data-test-subj={`superDatePicker${position}DatePopoverButton`}
       {...buttonProps}>
-      {formatTimeString(value, dateFormat, roundUp, locale)}
+      {formattedValue}
     </button>
   );
 
