@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `fleetApp` and `agentApp` icons ([#4989](https://github.com/elastic/eui/pull/4989))
+
 **Breaking changes**
 
 - Removed `EuiKeyboardAccessible` ([#4991](https://github.com/elastic/eui/pull/4991))
