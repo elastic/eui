@@ -18,7 +18,16 @@
   .euiFieldText.euiDatePicker {
     box-shadow: none !important; // including all states
     text-align: center;
+  }
 
+  .euiDatePickerRange__start {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .euiDatePickerRange__end {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 
   .react-datepicker-popper .euiFieldText.euiDatePicker {

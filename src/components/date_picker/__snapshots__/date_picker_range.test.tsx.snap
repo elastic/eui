@@ -24,7 +24,7 @@ exports[`EuiDatePickerRange is rendered 1`] = `
             >
               <input
                 aria-label="Press the down key to open a popover containing a calendar."
-                class="euiDatePicker euiFieldText euiFieldText--withIcon"
+                class="euiDatePicker euiFieldText euiFieldText--withIcon euiDatePickerRange__start"
                 type="text"
                 value=""
               />
@@ -74,7 +74,7 @@ exports[`EuiDatePickerRange is rendered 1`] = `
             >
               <input
                 aria-label="Press the down key to open a popover containing a calendar."
-                class="euiDatePicker euiFieldText"
+                class="euiDatePicker euiFieldText euiDatePickerRange__end adjustDateOnChange dateFormat inputRef shadow shouldCloseOnSelect showIcon timeFormat popoverPlacement"
                 type="text"
                 value=""
               />
