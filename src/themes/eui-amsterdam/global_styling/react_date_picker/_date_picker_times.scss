@@ -32,9 +32,9 @@
 .react-datepicker__time-list {
   @include euiScrollBar;
   // Set the min-height with the following, but it should stretch to fit if the container is larger
-  height: 200px !important; // Overrides inline height
+  height: 200px !important; // sass-lint:disable-line no-important
   display: flex;
-  gap: $euiSizeXS;
+  gap: $euiSizeXS; // sass-lint:disable-line no-misspelled-properties
   flex-direction: column;
   flex-grow: 1;
   overflow-y: auto;

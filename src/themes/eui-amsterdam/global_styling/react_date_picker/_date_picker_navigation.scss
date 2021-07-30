@@ -1,6 +1,6 @@
 .react-datepicker__navigation--next,
 .react-datepicker__navigation--previous {
-  @include datePicker__arrow;
+  @include datePickerArrow;
   cursor: pointer;
   position: absolute;
   top: $euiDatePickerGap * 2;

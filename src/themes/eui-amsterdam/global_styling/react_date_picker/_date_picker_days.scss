@@ -18,17 +18,10 @@
  */
 
 
- @mixin reactDatePickerDisabled($transparency: .9) {
-    $percentConversion: $transparency * 100%;
-    $backgroundColorSimulated: mix($euiPageBackgroundColor, $euiButtonColorDisabled, 90%);
-    background-color: transparentize($euiButtonColorDisabled, .9);
-    color: makeDisabledContrastColor($euiButtonColorDisabled, $backgroundColorSimulated);
- }
-
- .react-datepicker__day-names,
- .react-datepicker__week {
-   white-space: nowrap;
- }
+.react-datepicker__day-names,
+.react-datepicker__week {
+  white-space: nowrap;
+}
 
 .react-datepicker__day-name,
 .react-datepicker__day {
@@ -80,6 +73,7 @@
   }
 
   &--in-range:not(&--range-start):not(&--range-end):not(:hover) {
+    // sass-lint:disable-block indentation
     box-shadow: -2px 0 transparentize($euiColorPrimary, $euiButtonDefaultTransparency),
                  2px 0 transparentize($euiColorPrimary, $euiButtonDefaultTransparency);
     border-radius: 0;
@@ -87,6 +81,7 @@
     &:first-of-type {
       box-shadow: 2px 0 transparentize($euiColorPrimary, $euiButtonDefaultTransparency);
     }
+
     &:last-of-type {
       box-shadow: -2px 0 transparentize($euiColorPrimary, $euiButtonDefaultTransparency);
     }
@@ -108,7 +103,7 @@
   // }
 
   &--in-selecting-range:not(&--in-range) {
-    background-color: rgba($euiColorDanger, 0.5); //todo
+    background-color: transparentize($euiColorDanger, .5); //todo
   }
 
   &--disabled,
