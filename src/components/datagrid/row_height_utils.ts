@@ -55,10 +55,15 @@ export class RowHeightUtils {
   private grid?: Grid;
 
   setRowHeight(rowIndex: number, colIndex: number, height: number = 32) {
-    clearTimeout(this.timerId);
     const rowHeights = this.heightsCache.get(rowIndex) || {};
     const adaptedHeight =
       height + this.styles.paddingTop + this.styles.paddingBottom;
+
+    if (rowHeights[colIndex] === adaptedHeight) {
+      return;
+    }
+
+    clearTimeout(this.timerId);
     rowHeights[colIndex] = adaptedHeight;
     this.heightsCache.set(rowIndex, rowHeights);
     this.timerId = setTimeout(() => this.resetGrid(), 1);
