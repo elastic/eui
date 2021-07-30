@@ -50,27 +50,29 @@ export class RowHeightUtils {
     font: '',
   };
   private fakeCell = document.createElement('div');
-  private heightsCache = new Map<number, number>();
+  private heightsCache = new Map<number, Record<number, number>>();
   private timerId: any;
   private grid?: Grid;
 
-  getFont() {
-    return this.styles.font;
-  }
-
-  setRowHeight(rowIndex: number, height: number = 32) {
+  setRowHeight(rowIndex: number, colIndex: number, height: number = 32) {
     clearTimeout(this.timerId);
-    const cachedHeight = this.heightsCache.get(rowIndex) || 0;
+    const rowHeights = this.heightsCache.get(rowIndex) || {};
     const adaptedHeight =
       height + this.styles.paddingTop + this.styles.paddingBottom;
-    if (cachedHeight < adaptedHeight) {
-      this.heightsCache.set(rowIndex, adaptedHeight);
-    }
-    this.timerId = setTimeout(() => this.resetGrid(), 0);
+    rowHeights[colIndex] = adaptedHeight;
+    this.heightsCache.set(rowIndex, rowHeights);
+    this.timerId = setTimeout(() => this.resetGrid(), 1);
   }
 
   getRowHeight(rowIndex: number) {
-    return this.heightsCache.get(rowIndex) || 0;
+    const rowHeights = this.heightsCache.get(rowIndex) || {};
+    const rowHeightValues = Object.values(rowHeights);
+
+    if (rowHeightValues.length) {
+      return Math.max(...rowHeightValues);
+    }
+
+    return 0;
   }
 
   compareHeights(currentRowHeight: number, cachedRowHeight: number) {
@@ -78,6 +80,7 @@ export class RowHeightUtils {
   }
 
   resetGrid() {
+    console.log('resetGrid');
     this.grid?.resetAfterRowIndex(0);
   }
 

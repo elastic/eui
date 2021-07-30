@@ -625,8 +625,11 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const rowCountToAffordFor = pagination
     ? pagination.pageSize
     : visibleRowIndices.length;
-  const unconstrainedHeight =
-    defaultHeight * rowCountToAffordFor + headerRowHeight + footerRowHeight;
+  const unconstrainedHeight = useMemo(
+    () =>
+      defaultHeight * rowCountToAffordFor + headerRowHeight + footerRowHeight,
+    [defaultHeight, rowCountToAffordFor, headerRowHeight, footerRowHeight]
+  );
 
   // unable to determine this until the container's size is known anyway
   const unconstrainedWidth = 0;
