@@ -128,10 +128,9 @@ export const useScreenReaderOnly = () => `
   overflow: hidden;
 `;
 
-// TODO: Figure out how to pass content
 // Doesn't have reduced motion turned on
-// export const useCanAnimate = `
-//   @media screen and (prefers-reduced-motion: no-preference) {
-//     @content;
-//   }
-// `
+export const useCanAnimate = (content: string) => `
+  @media screen and (prefers-reduced-motion: no-preference) {
+    ${content}
+  }
+`;
