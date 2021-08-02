@@ -1,20 +1,23 @@
 import React, { Fragment } from 'react';
-
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
-import { EuiMarkdownFormat, EuiText } from '../../../../src/components';
+import {
+  EuiLink,
+  EuiMarkdownFormat,
+  EuiText,
+  EuiCode,
+} from '../../../../src/components';
 
 import { Link } from 'react-router-dom';
 
 import MarkdownFormat from './markdown_format';
 const markdownFormatSource = require('!!raw-loader!./markdown_format');
-const markdownFormatHtml = renderToHtml(MarkdownFormat);
+
+import MarkdownFormatStyles from './markdown_format_styles';
+const markdownFormatStylesSource = require('!!raw-loader!./markdown_format_styles');
 
 import MarkdownFormatSink from './markdown_format_sink';
 const markdownFormatSinkSource = require('!!raw-loader!./markdown_format_sink');
-const markdownFormatSinkHtml = renderToHtml(MarkdownFormatSink);
 
 export const MarkdownFormatExample = {
   title: 'Markdown format',
@@ -41,20 +44,19 @@ export const MarkdownFormatExample = {
           type: GuideSectionTypes.JS,
           code: markdownFormatSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: markdownFormatHtml,
-        },
       ],
       title: 'Built in plugins',
       text: (
         <p>
           <strong>EuiMarkdownFormat</strong> is a wrapper that will render
           Markdown provided. EuiMarkdownFormat uses{' '}
-          <Link to="https://github.com/remarkjs/remark)">Remark</Link> by
-          default. The translation layer automatically substitutes raw HTML
-          output with their EUI equivalent. This means anchor and code blocks
-          will become <strong>EuiLink</strong> and <strong>EuiCodeBlock</strong>{' '}
+          <EuiLink target="_blank" href="https://github.com/remarkjs/remark">
+            Remark
+          </EuiLink>{' '}
+          by default. The translation layer automatically substitutes raw HTML
+          output with their EUI equivalent. This means anchor, code blocks and
+          horizontal rules will become <strong>EuiLink</strong>,{' '}
+          <strong>EuiCodeBlock</strong> and <strong>EuiHorizontalRule</strong>{' '}
           components respectively.
         </p>
       ),
@@ -67,11 +69,29 @@ export const MarkdownFormatExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: markdownFormatSinkSource,
+          code: markdownFormatStylesSource,
         },
+      ],
+      title: 'Text sizing and coloring',
+      text: (
+        <p>
+          <strong>EuiMarkdownFormat</strong> uses{' '}
+          <Link to="/display/text/">EuiText</Link> as a wrapper to handle all
+          the CSS styling when rendering the HTML. It also gives the ability to
+          control the text size and color with the <EuiCode>textSize</EuiCode>{' '}
+          and <EuiCode>color</EuiCode> props, respectively.
+        </p>
+      ),
+      props: {
+        EuiMarkdownFormat,
+      },
+      demo: <MarkdownFormatStyles />,
+    },
+    {
+      source: [
         {
-          type: GuideSectionTypes.HTML,
-          code: markdownFormatSinkHtml,
+          type: GuideSectionTypes.JS,
+          code: markdownFormatSinkSource,
         },
       ],
       title: 'Kitchen sink',

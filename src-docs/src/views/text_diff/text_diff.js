@@ -40,7 +40,7 @@ export default () => {
       </EuiText>
       <EuiSpacer />
       <EuiCode>
-        <EuiTextColor color="secondary"> {ins} </EuiTextColor> Insertions,
+        <EuiTextColor color="success"> {ins} </EuiTextColor> Insertions,
         <EuiTextColor color="danger"> {del} </EuiTextColor>
         Deletions
       </EuiCode>

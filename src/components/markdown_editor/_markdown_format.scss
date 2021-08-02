@@ -1,276 +1,81 @@
-// Default styles for Markdown Format
-// 1. Headings
-// 2. Images
-// 3. Blockquotes
-// 4. Horizontal rules
-// 5. Lists
-// 6. Tables
-// 7. Code
+// The Markdown Format uses by default a few EUI components.
+// It uses the EuiText to wrap all the content so all the styles related with scaling based on the font-size live inside `_text.scss`
 
-// The Markdown Format uses by default a few EUI components
-// to render elements: EuiLink and EuiCode.
+// This should only be used for .euiMarkdownFormat, therefore it's not included in a separate mixin file
+@mixin euiMarkdownAdjustBorderColors($color) {
+  .euiMarkdownFormat__blockquote {
+    border-left-color: $color;
+  }
 
-$browserDefaultFontSize: 16px;
+  .euiHorizontalRule {
+    background-color: $color;
+    color: $color; // ensure that firefox gets the `currentColor`
+  }
 
-// We're setting a function o transform px in em
-// because it's easier to think in px
-@function em($pixels, $context: $browserDefaultFontSize) {
-  @return #{$pixels/$context}em;
+  .euiMarkdownFormat__table {
+    border-left: 1px solid $color;
+  }
+
+  .euiMarkdownFormat__table th,
+  .euiMarkdownFormat__table td {
+    border-top: 1px solid $color;
+    border-bottom: 1px solid $color;
+
+    &:last-child {
+      border-right: 1px solid $color;
+    }
+  }
+
+  .euiMarkdownFormat__table tr {
+    border-top: 1px solid $color;
+  }
 }
 
 .euiMarkdownFormat {
-  @include euiFont;
-  @include euiText;
+  $euiMarkdownAlphaShade: rgba($euiColorFullShade, .15);
 
-  // We're using `em` values to support apps where consumers might adjust sizes
-  // and consequently the markdown needs to adjust to these changes
+  $euiMarkdownBorderColors: (
+    default: $euiMarkdownAlphaShade,
+    subdued: $euiTextSubduedColor,
+    secondary: $euiColorSecondary,
+    success: $euiColorSuccess,
+    accent: $euiColorAccent,
+    warning: $euiColorWarning,
+    danger: $euiColorDanger,
+    ghost: $euiColorGhost,
+    inherit: currentColor,
+    custom: currentColor,
+  );
 
-  // Font size variables
-  $euiMarkdownFontSizeXS: em(12px);
-  $euiMarkdownFontSizeS: em(14px);
-  $euiMarkdownFontSize: em(16px);
-  $euiMarkdownFontSizeM:  em(18px);
-  $euiMarkdownFontSizeL: em(20px);
-  $euiMarkdownFontSizeXL: em(28px);
-  $euiMarkdownFontSizeXXL: em(36px);
-
-  // Spacing variables
-  $euiMarkdownSizeXXS: em(4px);
-  $euiMarkdownSizeXS: em(8px);
-  $euiMarkdownSizeS: em(12px);
-  $euiMarkdownSize: em(16px);
-  $euiMarkdownSizeL: em(24px);
-
-  // We're using alpha values to support apps that
-  // display markdown on backgrounds of various colors
-
-  // Grayscale variables
-  $euiMarkdownAlphaLightestShade: rgba($euiColorFullShade, .05);
-  $euiMarkdownAlphaLightShade: rgba($euiColorFullShade, .15);
-  $euiMarkdownAlphaDarkShade: rgba($euiColorFullShade, .65);
-
-  // Reverse grayscale for opposite of theme
-  $euiMarkdownAlphaLightestShadeReversed: rgba($euiColorEmptyShade, .05);
-  $euiMarkdownAlphaLightShadeReversed: rgba($euiColorEmptyShade, .15);
-  $euiMarkdownAlphaDarkShadeReversed: rgba($euiColorEmptyShade, .65);
-
-  &--reversed {
-    color: $euiColorLightestShade;
+  // We're adjusting the borders of the elements by passing a color defined in $euiMarkdownBorderColors.
+  // For the `custom` and `inherit` colors we're assigning the `currentColor` so we can get the current or computed value of the `color` property
+  @each $name, $color in $euiMarkdownBorderColors {
+    .euiTextColor--#{$name} {
+      @include euiMarkdownAdjustBorderColors($color);
+    }
   }
 
-  > div > *:first-child {
-    // sass-lint:disable-block no-important
-    margin-top: 0 !important;
+  .euiMarkdownFormat__blockquote {
+    border-left-style: solid;
   }
 
-  > div > * {
-    margin-top: 0;
-    margin-bottom: $euiMarkdownSize;
-  }
-
-  > div > *:last-child,
   .euiCheckbox {
     // sass-lint:disable-block no-important
     margin-bottom: 0 !important;
   }
 
-  .euiCheckbox + *:not(.euiCheckbox) {
-    margin-top: $euiMarkdownSize;
+  // We're adjusting the position of the checkboxes so that when the text size is `relative` the checkboxes get better positioned
+  .euiCheckbox .euiCheckbox__input + .euiCheckbox__square  {
+    top: 50%;
+    transform: translateY(-50%);
   }
 
-  p,
-  blockquote,
-  ul,
-  ol,
-  dl,
-  pre,
-  table {
-    margin-top: 0;
-    margin-bottom: $euiMarkdownSize;
-    line-height: 1.5em;
-  }
-
-  strong {
-    font-weight: 600;
-  }
-
-  // 2. Headings
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin-top: 0;
-    margin-bottom: $euiMarkdownSizeXS;
-  }
-
-  h1 {
-    font-size: $euiMarkdownFontSizeXXL;
-    line-height: 1.333333em;
-    font-weight: 300;
-  }
-
-  h2 {
-    font-size: $euiMarkdownFontSizeXL;
-    line-height: 1.428571em;
-    font-weight: 300;
-  }
-
-  h3 {
-    font-size: $euiMarkdownFontSizeL;
-    line-height: 1.6em;
-    font-weight: 600;
-  }
-
-  h4 {
-    font-size: $euiMarkdownSize;
-    line-height: 1.5em;
-    font-weight: 600;
-  }
-
-  h5 {
-    font-size: $euiMarkdownFontSizeS;
-    line-height: 1.142857em;
-    font-weight: 700;
-  }
-
-  h6 {
-    font-size: $euiMarkdownFontSizeXS;
-    line-height: 1.333333em;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-
-  // 3. Images
-  img {
-    max-width: 100%;
-    box-sizing: content-box;
-    border-style: none;
-  }
-
-  // 4. Blockquotes
-  blockquote {
-    padding: 0 1em;
-    border-left: $euiMarkdownSizeXXS solid $euiMarkdownAlphaLightShade;
-  }
-
-  &--reversed blockquote {
-    border-left-color: $euiMarkdownAlphaLightShadeReversed;
-  }
-
-  // 5. Horizontal rules
-  hr {
-    border: none;
-    height: 1px;
-    background-color: $euiMarkdownAlphaLightShade;
-    margin: $euiMarkdownSizeL 0;
-  }
-
-  hr::before {
-    display: table;
-    content: '';
-  }
-
-  hr::after {
-    display: table;
-    clear: both;
-    content: '';
-  }
-
-  // 6. Lists
-  ul,
-  ol {
-    padding-left: $euiMarkdownSizeL;
-    margin-top: 0;
-    margin-bottom: $euiMarkdownSize;
-  }
-
-  ul {
-    list-style-type: disc;
-  }
-
-  ol {
-    list-style-type: decimal;
-  }
-
-  ul ul {
-    list-style-type: circle;
-  }
-
-  ol ol,
-  ul ol {
-    list-style-type: lower-roman;
-  }
-
-  ul ul ol,
-  ul ol ol,
-  ol ul ol,
-  ol ol ol {
-    list-style-type: lower-alpha;
-  }
-
-  dd {
-    margin-left: 0;
-  }
-
-  ul ul,
-  ul ol,
-  ol ol,
-  ol ul {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  li > p {
-    margin-bottom: $euiMarkdownSizeXS;
-  }
-
-  li + li {
-    margin-top: $euiMarkdownSizeXXS;
-  }
-
-  .task-list-item {
-    list-style-type: none;
-  }
-
-  .task-list-item + .task-list-item {
-    margin-top: $euiMarkdownSizeXXS;
-  }
-
-  .task-list-item input {
-    margin: 0 .2em .25em -1.6em;
-    vertical-align: middle;
-  }
-
-  // 7. Tables
-  table {
+  // Tables
+  .euiMarkdownFormat__table {
     display: block;
     width: 100%;
     overflow: auto;
-    border-left: 1px solid $euiMarkdownAlphaLightShade;
     border-spacing: 0;
     border-collapse: collapse;
-  }
-
-  td,
-  th {
-    padding: 0;
-  }
-
-  table th,
-  table td {
-    padding: $euiMarkdownSizeXXS $euiMarkdownSizeXS;
-    border-top: 1px solid $euiMarkdownAlphaLightShade;
-    border-bottom: 1px solid $euiMarkdownAlphaLightShade;
-
-    &:last-child {
-      border-right: 1px solid $euiMarkdownAlphaLightShade;
-    }
-  }
-
-  table tr {
-    background-color: transparent;
-    border-top: 1px solid $euiMarkdownAlphaLightShade;
   }
 }

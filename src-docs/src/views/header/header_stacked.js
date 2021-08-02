@@ -26,9 +26,6 @@ export default () => {
     },
   ];
 
-  /**
-   * Docs Note: This additional class is needed only for docs to override the usually single header
-   */
   useEffect(() => {
     if (isFixed) document.body.classList.add('euiBody--headerIsFixed--double');
 

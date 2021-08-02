@@ -1,7 +1,5 @@
 import React, { Fragment, useState } from 'react';
 
-import { GuideFullScreen } from '../../services';
-
 import {
   EuiButton,
   EuiButtonEmpty,
@@ -14,6 +12,7 @@ import {
   EuiTourStep,
   useEuiTour,
 } from '../../../../src/components';
+import { ExampleContext } from '../../services';
 
 const demoTourSteps = [
   {
@@ -163,42 +162,37 @@ export default () => {
   ];
 
   return (
-    <GuideFullScreen onOpen={onReset}>
-      {(setIsFullScreen) => (
-        <EuiPageTemplate
-          className="guideFullScreenOverlay guideFullScreenOverlay--withHeader"
-          style={{ zIndex: 9000 }}
-          pageHeader={{
-            pageTitle: 'My app',
-            rightSideItems: [
-              <EuiButton
-                fill
-                onClick={() => setIsFullScreen(false)}
-                iconType="exit">
-                Exit fullscreen demo
-              </EuiButton>,
-            ],
-            tabs: tabs.map((tab, index) => {
-              return {
-                key: index,
-                label: tab.name,
-                id: tab.id,
-                onClick: () => onTabClick(tab.id),
-                isSelected: tab.id === selectedTabId,
-              };
-            }),
-          }}>
-          {tabs.map((tab, index) => (
-            <Fragment key={index}>
-              {tab.id === selectedTabId && (
-                <div role="tabpanel" aria-labelledby={tab.id}>
-                  {tab.content}
-                </div>
-              )}
-            </Fragment>
-          ))}
-        </EuiPageTemplate>
-      )}
-    </GuideFullScreen>
+    <EuiPageTemplate
+      pageHeader={{
+        pageTitle: 'My app',
+        rightSideItems: [
+          <ExampleContext.Consumer>
+            {({ parentPath }) => (
+              <EuiButton fill href={`#${parentPath}`} iconType="exit">
+                Exit full screen demo
+              </EuiButton>
+            )}
+          </ExampleContext.Consumer>,
+        ],
+        tabs: tabs.map((tab, index) => {
+          return {
+            key: index,
+            label: tab.name,
+            id: tab.id,
+            onClick: () => onTabClick(tab.id),
+            isSelected: tab.id === selectedTabId,
+          };
+        }),
+      }}>
+      {tabs.map((tab, index) => (
+        <Fragment key={index}>
+          {tab.id === selectedTabId && (
+            <div role="tabpanel" aria-labelledby={tab.id}>
+              {tab.content}
+            </div>
+          )}
+        </Fragment>
+      ))}
+    </EuiPageTemplate>
   );
 };

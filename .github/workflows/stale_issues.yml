@@ -22,6 +22,7 @@ jobs:
           stale-pr-label: 'stale-pr'
           close-pr-label: 'stale-pr-closed'
           exempt-pr-labels: 'skip-stale-check,meta'
+          exempt-assignees: true
           operations-per-run: 1000
           remove-stale-when-updated: true
           enable-statistics: true

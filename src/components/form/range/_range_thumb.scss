@@ -7,6 +7,7 @@
   top: 50%;
   margin-top: -($euiRangeThumbHeight / 2);
   pointer-events: none;
+  z-index: 1; // higher than .euiRangeHighlight that is 0
 
   &:focus {
     @include euiCustomControlFocused;

@@ -75,7 +75,7 @@
 
 
 // Duplicating the above for EuiButtonIcon
-@each $name, $color in $euiButtonIconTypes {
+@each $name, $color in $euiButtonTypes {
   .euiButtonIcon--#{$name}:not(.euiButtonIcon--empty) {
     @include euiButtonDefaultStyle($color);
 

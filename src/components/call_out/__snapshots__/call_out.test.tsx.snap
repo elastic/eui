@@ -9,7 +9,11 @@ exports[`EuiCallOut is rendered 1`] = `
   <div
     class="euiText euiText--small"
   >
-    Content
+    <div
+      class="euiTextColor euiTextColor--default"
+    >
+      Content
+    </div>
   </div>
 </div>
 `;
@@ -102,7 +106,11 @@ exports[`EuiCallOut props title is rendered 1`] = `
   <div
     class="euiText euiText--small"
   >
-    Content
+    <div
+      class="euiTextColor euiTextColor--default"
+    >
+      Content
+    </div>
   </div>
 </div>
 `;

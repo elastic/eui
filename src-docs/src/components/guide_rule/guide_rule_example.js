@@ -65,7 +65,7 @@ export const GuideRuleExample = ({
             {children}
           </EuiSplitPanel.Inner>
           <EuiSplitPanel.Inner color="transparent">
-            <EuiText color={type === 'do' ? 'secondary' : 'danger'} size="s">
+            <EuiText color={type === 'do' ? 'success' : 'danger'} size="s">
               <p>
                 {doOrDont && <strong>{doOrDont}.</strong>} {text}
               </p>

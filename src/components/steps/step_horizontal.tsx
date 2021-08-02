@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import classNames from 'classnames';
@@ -28,6 +17,7 @@ import { CommonProps } from '../common';
 import { EuiStepNumber, EuiStepStatus } from './step_number';
 import {
   useI18nCompleteStep,
+  useI18nCurrentStep,
   useI18nDisabledStep,
   useI18nIncompleteStep,
   useI18nStep,
@@ -38,12 +28,12 @@ export interface EuiStepHorizontalProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>,
     CommonProps {
   /**
-   * **DEPRECATED IN AMSTERDAM**
+   * **DEPRECATED: Use `status = 'current'` instead**
    * Adds to the line before the indicator for showing current progress
    */
   isSelected?: boolean;
   /**
-   * **DEPRECATED IN AMSTERDAM**
+   * **DEPRECATED: Use `status = 'complete'` instead**
    * Adds to the line after the indicator for showing current progress
    */
   isComplete?: boolean;
@@ -73,7 +63,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   isComplete,
   onClick,
   disabled,
-  status,
+  status = 'incomplete',
   ...rest
 }) => {
   const buttonTitle = useI18nStep({ number: step, title });
@@ -81,24 +71,25 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   const disabledTitle = useI18nDisabledStep({ number: step, title });
   const incompleteTitle = useI18nIncompleteStep({ number: step, title });
   const warningTitle = useI18nWarningStep({ number: step, title });
-
-  const classes = classNames('euiStepHorizontal', className, {
-    'euiStepHorizontal-isSelected': isSelected,
-    'euiStepHorizontal-isComplete': isComplete,
-    'euiStepHorizontal-isIncomplete': !isSelected && !isComplete,
-    'euiStepHorizontal-isDisabled': disabled,
-  });
+  const currentTitle = useI18nCurrentStep({ number: step, title });
 
   if (disabled) status = 'disabled';
   else if (isComplete) status = 'complete';
-  else if (isSelected) status = status;
-  else if (!status) status = 'incomplete';
+  else if (isSelected) status = 'current';
+
+  const classes = classNames('euiStepHorizontal', className, {
+    'euiStepHorizontal-isSelected': status === 'current',
+    'euiStepHorizontal-isComplete': status === 'complete',
+    'euiStepHorizontal-isIncomplete': status === 'incomplete',
+    'euiStepHorizontal-isDisabled': status === 'disabled',
+  });
 
   let stepTitle = buttonTitle;
   if (status === 'disabled') stepTitle = disabledTitle;
   if (status === 'complete') stepTitle = completeTitle;
   if (status === 'incomplete') stepTitle = incompleteTitle;
   if (status === 'warning') stepTitle = warningTitle;
+  if (status === 'current') stepTitle = currentTitle;
 
   const onStepClick = (
     event: ReactMouseEvent<HTMLButtonElement, MouseEvent>

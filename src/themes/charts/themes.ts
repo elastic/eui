@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
@@ -24,7 +13,6 @@ import {
   LineAnnotationStyle,
   PartitionConfig,
 } from '@elastic/charts';
-
 import { RecursivePartial } from '../../components/common';
 
 // @ts-ignore typescript doesn't understand the webpack loader
@@ -41,7 +29,9 @@ export interface EuiChartThemeType {
   partition: RecursivePartial<PartitionConfig>;
 }
 
-function createTheme(colors: any): EuiChartThemeType {
+function createTheme(colors: any, mode: string): EuiChartThemeType {
+  const isDarkMode = mode === 'dark';
+
   return {
     lineAnnotation: {
       line: {
@@ -69,7 +59,9 @@ function createTheme(colors: any): EuiChartThemeType {
       linkLabel: {
         maxCount: 5,
         fontSize: 11,
-        textColor: colors.euiColorDarkestShade.rgba,
+        textColor: isDarkMode
+          ? colors.euiColorDarkShade.rgba
+          : colors.euiColorFullShade.rgba,
       },
       outerSizeRatio: 1,
       circlePadding: 4,
@@ -189,9 +181,13 @@ function createTheme(colors: any): EuiChartThemeType {
 }
 
 export const EUI_CHARTS_THEME_LIGHT: EuiChartThemeType = createTheme(
-  lightColors
+  lightColors,
+  'light'
 );
-export const EUI_CHARTS_THEME_DARK: EuiChartThemeType = createTheme(darkColors);
+export const EUI_CHARTS_THEME_DARK: EuiChartThemeType = createTheme(
+  darkColors,
+  'dark'
+);
 
 export const EUI_SPARKLINE_THEME_PARTIAL: PartialTheme = {
   lineSeriesStyle: {

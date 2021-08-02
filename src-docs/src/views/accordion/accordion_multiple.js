@@ -45,7 +45,7 @@ export default () => (
       paddingSize="m">
       <EuiText size="s">
         <p>
-          This content area will grow to accomodate when the accordion below
+          This content area will grow to accommodate when the accordion below
           opens
         </p>
       </EuiText>

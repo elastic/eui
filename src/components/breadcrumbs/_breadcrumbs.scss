@@ -1,68 +1,82 @@
+@import '../link/variables';
+
 /**
  * 1. Add vertical space between breadcrumbs,
  *    but make sure the whole breadcrumb set doesn't add space below itself
  */
 
-.euiBreadcrumbs {
+.euiBreadcrumbs__list {
   @include euiFontSizeS;
-  margin-bottom: -$euiSizeXS; /* 1 */
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   min-width: 0; // Ensure it shrinks if the window is narrow
+  margin-bottom: -$euiSizeXS; /* 1 */
 }
 
 .euiBreadcrumb {
-  display: inline-block;
   margin-bottom: $euiSizeXS; /* 1 */
+  display: flex;
+  align-items: center;
 
   &:not(.euiBreadcrumb--last) {
-    margin-right: $euiBreadcrumbSpacing;
     color: $euiTextSubduedColor;
-  }
-}
 
-.euiBreadcrumb--last {
-  font-weight: $euiFontWeightMedium;
+    &::after {
+      content: '';
+      margin: $euiSizeXS $euiBreadcrumbSpacing 0;
+      width: 1px;
+      height: $euiSize;
+      transform: translateY(-1px) rotate(15deg);
+      background: $euiColorLightShade;
+      flex-shrink: 0;
+    }
+  }
 }
 
 .euiBreadcrumb--collapsed {
   flex-shrink: 0;
 }
 
-.euiBreadcrumbSeparator {
-  flex-shrink: 0;
-  display: inline-block;
-  margin-right: $euiBreadcrumbSpacing;
-  width: 1px;
-  height: $euiSize;
-  transform: translateY(-1px) rotate(15deg);
-  background: $euiColorLightShade;
+.euiBreadcrumb--last {
+  font-weight: $euiFontWeightMedium;
 }
 
-.euiBreadcrumbs__inPopover .euiBreadcrumb--last {
+.euiBreadcrumbs__inPopover .euiBreadcrumb--last .euiBreadcrumb__content {
   font-weight: $euiFontWeightRegular;
-  color: $euiColorDarkShade !important; // sass-lint:disable-line no-important
+  // Match to subdued EuiLink color
+  color: map-get($euiLinkColors, 'subdued');
 }
 
 .euiBreadcrumbs--truncate {
-  white-space: nowrap;
-  flex-wrap: nowrap;
+  .euiBreadcrumbs__list {
+    white-space: nowrap;
+    flex-wrap: nowrap;
+  }
 
   .euiBreadcrumb:not(.euiBreadcrumb--collapsed) {
-    max-width: $euiBreadcrumbTruncateWidth;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    .euiBreadcrumb__content {
+      max-width: $euiBreadcrumbTruncateWidth;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-    &.euiBreadcrumb--last {
+    &.euiBreadcrumb--last .euiBreadcrumb__content {
       max-width: none;
     }
   }
+
+  .euiBreadcrumb {
+    overflow: hidden;
+  }
 }
 
+.euiBreadcrumbs--truncate,
 .euiBreadcrumb--truncate {
-  @include euiTextTruncate;
-  max-width: $euiBreadcrumbTruncateWidth;
-  text-align: center;
-  vertical-align: top; // overflow hidden causes misalignment of links and slashes, this fixes that
+  .euiBreadcrumb__content {
+    @include euiTextTruncate;
+    max-width: $euiBreadcrumbTruncateWidth;
+    text-align: center;
+    vertical-align: baseline;
+  }
 }

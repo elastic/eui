@@ -22,7 +22,10 @@ export default () => {
   let flyout;
   if (isFlyoutVisible) {
     flyout = (
-      <EuiFlyout onClose={closeFlyout} aria-labelledby={flyoutTitleId}>
+      <EuiFlyout
+        ownFocus={false}
+        onClose={closeFlyout}
+        aria-labelledby={flyoutTitleId}>
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="s">
             <h2 id={flyoutTitleId}>A flyout without ownFocus</h2>

@@ -112,11 +112,17 @@ exports[`EuiFilterButton props numActiveFilters and hasActiveFilters is rendered
     class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
   >
     <span
-      class="euiButtonEmpty__text"
+      class="euiButtonEmpty__text euiFilterButton__text-hasNotification"
     >
       <span
         class="euiFilterButton__textShift"
       />
+      <span
+        aria-label="5 active filters"
+        class="euiNotificationBadge euiNotificationBadge--medium euiFilterButton__notification"
+      >
+        5
+      </span>
     </span>
   </span>
 </button>
