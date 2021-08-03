@@ -17,89 +17,23 @@ import React, {
   memo,
   MutableRefObject,
   ReactChild,
-  ReactNode,
 } from 'react';
 import classNames from 'classnames';
 import tabbable from 'tabbable';
-import { CommonProps } from '../common';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
-import {
-  EuiDataGridColumn,
-  EuiDataGridPopoverContent,
-  EuiDataGridRowHeightsOptions,
-} from './data_grid_types';
 import { DataGridFocusContext } from './data_grid_context';
 import { EuiFocusTrap } from '../focus_trap';
 import { keys } from '../../services';
 import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
 import { EuiDataGridCellPopover } from './data_grid_cell_popover';
 import { getStylesForCell } from './row_height_utils';
-
-export interface EuiDataGridCellValueElementProps {
-  /**
-   * index of the row being rendered, 0 represents the first row. This index always includes
-   * pagination offset, meaning the first rowIndex in a grid is `pagination.pageIndex * pagination.pageSize`
-   * so take care if you need to adjust the rowIndex to fit your data
-   */
-  rowIndex: number;
-  /**
-   * id of the column being rendered, the value comes from the #EuiDataGridColumn `id`
-   */
-  columnId: string;
-  /**
-   * callback function to set custom props & attributes on the cell's wrapping `div` element;
-   * it's best to wrap calls to `setCellProps` in a `useEffect` hook
-   */
-  setCellProps: (props: CommonProps & HTMLAttributes<HTMLDivElement>) => void;
-  /**
-   * whether or not the cell is expandable, comes from the #EuiDataGridColumn `isExpandable` which defaults to `true`
-   */
-  isExpandable: boolean;
-  /**
-   * whether or not the cell is expanded
-   */
-  isExpanded: boolean;
-  /**
-   * when rendering the cell, `isDetails` is false; when the cell is expanded, `renderCellValue` is called again to render into the details popover and `isDetails` is true
-   */
-  isDetails: boolean;
-}
-
-export interface EuiDataGridCellProps {
-  rowIndex: number;
-  visibleRowIndex: number;
-  colIndex: number;
-  column?: EuiDataGridColumn;
-  columnId: string;
-  columnType?: string | null;
-  width?: number;
-  interactiveCellId: string;
-  isExpandable: boolean;
-  className?: string;
-  popoverContent: EuiDataGridPopoverContent;
-  renderCellValue:
-    | JSXElementConstructor<EuiDataGridCellValueElementProps>
-    | ((props: EuiDataGridCellValueElementProps) => ReactNode);
-  setRowHeight?: (height: number) => void;
-  getRowHeight?: (rowIndex: number) => number;
-  style?: React.CSSProperties;
-  rowHeightsOptions?: EuiDataGridRowHeightsOptions;
-}
-
-interface EuiDataGridCellState {
-  cellProps: CommonProps & HTMLAttributes<HTMLDivElement>;
-  popoverIsOpen: boolean; // is expansion popover open
-  isFocused: boolean; // tracks if this cell has focus or not, used to enable tabIndex on the cell
-  isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
-  enableInteractions: boolean; // cell got hovered at least once, so cell button and popover interactions are rendered
-  disableCellTabIndex: boolean; // disables tabIndex on the wrapping cell, used for focus management of a single interactive child
-}
-
-export type EuiDataGridCellValueProps = Omit<
+import {
+  EuiDataGridCellValueProps,
+  EuiDataGridCellValueElementProps,
   EuiDataGridCellProps,
-  'width' | 'interactiveCellId' | 'popoverContent'
->;
+  EuiDataGridCellState,
+} from './data_grid_types';
 
 const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
@@ -107,8 +41,8 @@ const EuiDataGridCellContent: FunctionComponent<
     isExpanded: boolean;
     setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
   }
-> = memo((props) => {
-  const {
+> = memo(
+  ({
     renderCellValue,
     column,
     setCellContentsRef,
@@ -116,46 +50,44 @@ const EuiDataGridCellContent: FunctionComponent<
     rowIndex,
     colIndex,
     ...rest
-  } = props;
+  }) => {
+    // React is more permissible than the TS types indicate
+    const CellElement = renderCellValue as JSXElementConstructor<
+      EuiDataGridCellValueElementProps
+    >;
 
-  // React is more permissible than the TS types indicate
-  const CellElement = renderCellValue as JSXElementConstructor<
-    EuiDataGridCellValueElementProps
-  >;
-
-  const screenReaderPosition = (
-    <EuiScreenReaderOnly>
-      <p>
+    const screenReaderPosition = (
+      <EuiScreenReaderOnly>
         <EuiI18n
           tokens={['euiDataGridCell.row', 'euiDataGridCell.column']}
           defaults={['Row', 'Column']}>
           {([row, column]: ReactChild[]) => (
-            <>
+            <p>
               {row}: {rowIndex + 1}, {column}: {colIndex + 1}:
-            </>
+            </p>
           )}
         </EuiI18n>
-      </p>
-    </EuiScreenReaderOnly>
-  );
+      </EuiScreenReaderOnly>
+    );
 
-  return (
-    <div
-      ref={setCellContentsRef}
-      style={
-        rowHeightsOptions ? getStylesForCell(rowHeightsOptions, rowIndex) : {}
-      }
-      className={!rowHeightsOptions ? 'euiDataGridRowCell__truncate' : ''}>
-      <CellElement
-        isDetails={false}
-        data-test-subj="cell-content"
-        rowIndex={rowIndex}
-        {...rest}
-      />
-      {screenReaderPosition}
-    </div>
-  );
-});
+    return (
+      <div
+        ref={setCellContentsRef}
+        style={
+          rowHeightsOptions ? getStylesForCell(rowHeightsOptions, rowIndex) : {}
+        }
+        className={!rowHeightsOptions ? 'euiDataGridRowCell__truncate' : ''}>
+        <CellElement
+          isDetails={false}
+          data-test-subj="cell-content"
+          rowIndex={rowIndex}
+          {...rest}
+        />
+        {screenReaderPosition}
+      </div>
+    );
+  }
+);
 
 // TODO: TypeScript has added types for ResizeObserver but not yet released
 // https://github.com/microsoft/TypeScript-DOM-lib-generator/pull/948

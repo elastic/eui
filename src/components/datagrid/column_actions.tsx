@@ -6,14 +6,15 @@
  * Side Public License, v 1.
  */
 import React from 'react';
-import { EuiDataGridColumn, EuiDataGridSorting } from './data_grid_types';
-import { EuiI18n } from '../i18n';
-import { EuiListGroupItemProps } from '../list_group';
 import {
+  EuiDataGridColumn,
   EuiDataGridSchema,
   EuiDataGridSchemaDetector,
-  getDetailsForSchema,
-} from './data_grid_schema';
+  EuiDataGridSorting,
+} from './data_grid_types';
+import { EuiI18n } from '../i18n';
+import { EuiListGroupItemProps } from '../list_group';
+import { getDetailsForSchema } from './data_grid_schema';
 import {
   defaultSortAscLabel,
   defaultSortDescLabel,

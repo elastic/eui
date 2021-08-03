@@ -6,165 +6,66 @@
  * Side Public License, v 1.
  */
 
+import classNames from 'classnames';
 import React, {
+  Fragment,
   FunctionComponent,
   HTMLAttributes,
   KeyboardEvent,
-  useCallback,
-  useState,
-  useEffect,
-  Fragment,
+  MutableRefObject,
   ReactChild,
+  useCallback,
+  useEffect,
   useMemo,
   useRef,
-  MutableRefObject,
-  CSSProperties,
+  useState,
 } from 'react';
-import classNames from 'classnames';
 import tabbable from 'tabbable';
+import { htmlIdGenerator, keys } from '../../services';
+import { EuiButtonEmpty } from '../button';
+import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n, useEuiI18n } from '../i18n';
-import { CommonProps, OneOf } from '../common';
+import { useResizeObserver } from '../observer/resize_observer';
+import { EuiTablePagination } from '../table/table_pagination';
+import { useDataGridColumnSelector } from './column_selector';
+import { useDataGridColumnSorting } from './column_sorting';
+import { EuiDataGridBody, VIRTUALIZED_CONTAINER_CLASS } from './data_grid_body';
 import {
+  DataGridFocusContext,
+  DataGridSortingContext,
+} from './data_grid_context';
+import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
+import {
+  schemaDetectors as providedSchemaDetectors,
+  useDetectSchema,
+  useMergedSchema,
+} from './data_grid_schema';
+import {
+  DataGridFocusContextShape,
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
-  EuiDataGridInMemory,
-  EuiDataGridPaginationProps,
-  EuiDataGridInMemoryValues,
   EuiDataGridControlColumn,
-  EuiDataGridSorting,
-  EuiDataGridStyle,
+  EuiDataGridFocusedCell,
+  EuiDataGridInMemory,
+  EuiDataGridInMemoryValues,
+  EuiDataGridOnColumnResizeHandler,
+  EuiDataGridProps,
   EuiDataGridStyleBorders,
   EuiDataGridStyleCellPaddings,
   EuiDataGridStyleFontSizes,
+  EuiDataGridStyleFooter,
   EuiDataGridStyleHeader,
   EuiDataGridStyleRowHover,
-  EuiDataGridPopoverContents,
-  EuiDataGridColumnVisibility,
   EuiDataGridToolBarVisibilityOptions,
-  EuiDataGridFocusedCell,
-  EuiDataGridOnColumnResizeHandler,
-  EuiDataGridStyleFooter,
-  EuiDataGridRowHeightsOptions,
 } from './data_grid_types';
-import { EuiDataGridCellProps } from './data_grid_cell';
-import { EuiButtonEmpty } from '../button';
-import { keys, htmlIdGenerator } from '../../services';
-import { EuiDataGridBody, VIRTUALIZED_CONTAINER_CLASS } from './data_grid_body';
-import { useDataGridColumnSelector } from './column_selector';
-import { useDataGridStyleSelector, startingStyles } from './style_selector';
-import { EuiTablePagination } from '../table/table_pagination';
-import { EuiFocusTrap } from '../focus_trap';
-import { useResizeObserver } from '../observer/resize_observer';
-import { EuiDataGridInMemoryRenderer } from './data_grid_inmemory_renderer';
-import {
-  useMergedSchema,
-  EuiDataGridSchemaDetector,
-  useDetectSchema,
-  schemaDetectors as providedSchemaDetectors,
-} from './data_grid_schema';
-import {
-  DataGridFocusContext,
-  DataGridFocusContextShape,
-  DataGridSortingContext,
-} from './data_grid_context';
-import { useDataGridColumnSorting } from './column_sorting';
 import { RowHeightUtils } from './row_height_utils';
+import { startingStyles, useDataGridStyleSelector } from './style_selector';
 
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
 
 // When below this number the grid only shows the full screen button
 const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
-
-type CommonGridProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
-    /**
-     * An array of #EuiDataGridControlColumn objects. Used to define ancillary columns on the left side of the data grid.
-     */
-    leadingControlColumns?: EuiDataGridControlColumn[];
-    /**
-     * An array of #EuiDataGridControlColumn objects. Used to define ancillary columns on the right side of the data grid.
-     */
-    trailingControlColumns?: EuiDataGridControlColumn[];
-    /**
-     * An array of #EuiDataGridColumn objects. Lists the columns available and the schema and settings tied to it.
-     */
-    columns: EuiDataGridColumn[];
-    /**
-     * An array of #EuiDataGridColumnVisibility objects. Defines which columns are visible in the grid and the order they are displayed.
-     */
-    columnVisibility: EuiDataGridColumnVisibility;
-    /**
-     * An array of custom #EuiDataGridSchemaDetector objects. You can inject custom schemas to the grid to define the classnames applied
-     */
-    schemaDetectors?: EuiDataGridSchemaDetector[];
-    /**
-     * An object mapping #EuiDataGridColumn `schema`s to a custom popover formatting component which receives #EuiDataGridPopoverContent props
-     */
-    popoverContents?: EuiDataGridPopoverContents;
-    /**
-     * The total number of rows in the dataset (used by e.g. pagination to know how many pages to list)
-     */
-    rowCount: number;
-    /**
-     * A function called to render a cell's value. Behind the scenes it is treated as a React component
-     * allowing hooks, context, and other React concepts to be used. The function receives a #CellValueElement
-     * as its only argument.
-     */
-    renderCellValue: EuiDataGridCellProps['renderCellValue'];
-    /**
-     * A function called to render a cell's value. Behind the scenes it is treated as a React component
-     * allowing hooks, context, and other React concepts to be used. The function receives a #CellValueElement
-     * as its only argument.
-     */
-    renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
-    /**
-     * Defines the look and feel for the grid. Accepts a partial #EuiDataGridStyle object. Settings provided may be overwritten or merged with user defined preferences if toolbarVisibility density controls are available.
-     */
-    gridStyle?: EuiDataGridStyle;
-    /**
-     * Accepts either a boolean or #EuiDataGridToolbarVisibilityOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar as well as add additional buttons.
-     */
-    toolbarVisibility?: boolean | EuiDataGridToolBarVisibilityOptions;
-    /**
-     * A #EuiDataGridInMemory object to definite the level of high order schema-detection and sorting logic to use on your data. *Try to set when possible*. When omitted, disables all enhancements and assumes content is flat strings.
-     */
-    inMemory?: EuiDataGridInMemory;
-    /**
-     * A #EuiDataGridPagination object. Omit to disable pagination completely.
-     */
-    pagination?: EuiDataGridPaginationProps;
-    /**
-     * A #EuiDataGridSorting object that provides the sorted columns along with their direction. Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarVisibility` prop.
-     */
-    sorting?: EuiDataGridSorting;
-    /**
-     * A callback for when a column's size changes. Callback receives `{ columnId: string, width: number }`.
-     */
-    onColumnResize?: EuiDataGridOnColumnResizeHandler;
-    /**
-     * Defines a minimum width for the grid to show all controls in its header.
-     */
-    minSizeForControls?: number;
-    /**
-     * Sets the grid's height, forcing it to overflow in a scrollable container with cell virtualization
-     */
-    height?: CSSProperties['height'];
-    /**
-     * Sets the grid's width, forcing it to overflow in a scrollable container with cell virtualization
-     */
-    width?: CSSProperties['width'];
-    /**
-     * A #EuiDataGridRowHeightsOptions object that provides row heights options
-     */
-    rowHeightsOptions?: EuiDataGridRowHeightsOptions;
-  };
-
-// Force either aria-label or aria-labelledby to be defined
-export type EuiDataGridProps = OneOf<
-  CommonGridProps,
-  'aria-label' | 'aria-labelledby'
->;
 
 // Each gridStyle object above sets a specific CSS select to .euiGrid
 const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
