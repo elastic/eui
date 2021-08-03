@@ -26,13 +26,13 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  margin-top: $euiSizeXXL;
+  margin-top: $euiSizeXL;
 }
 
 .react-datepicker__time-list {
   @include euiScrollBar;
   // Set the min-height with the following, but it should stretch to fit if the container is larger
-  height: 200px !important; // sass-lint:disable-line no-important
+  height: 100px !important; // sass-lint:disable-line no-important
   display: flex;
   gap: $euiSizeXS; // sass-lint:disable-line no-misspelled-properties
   flex-direction: column;
@@ -66,7 +66,7 @@
 
   &--injected,
   &--injected:hover {
-    @include euiButtonDefaultStyle($euiColorSuccess, false);
+    @include euiButtonDefaultStyle('success', false);
   }
 
   &--preselected,
@@ -76,7 +76,7 @@
 
   &--selected,
   &--selected:hover {
-    @include euiButtonDefaultStyle($euiColorPrimary, false, 0);
+    @include euiButtonFillStyle;
   }
 }
 

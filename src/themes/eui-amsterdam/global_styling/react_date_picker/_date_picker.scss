@@ -99,6 +99,10 @@
   @include euiTextTruncate;
 }
 
+.react-datepicker__month-container {
+  flex-grow: 1;
+}
+
 .react-datepicker__month {
   text-align: center;
   border-radius: $euiBorderRadius;

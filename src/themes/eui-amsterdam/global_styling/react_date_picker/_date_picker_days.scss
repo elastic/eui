@@ -21,6 +21,9 @@
 .react-datepicker__day-names,
 .react-datepicker__week {
   white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
 }
 
 .react-datepicker__day-name,
@@ -44,7 +47,7 @@
   transition: transform $euiAnimSpeedExtraFast ease-in-out;
 
   &:hover {
-    @include euiButtonDefaultStyle($euiColorPrimary, false);
+    @include euiButtonDefaultStyle('primary', false);
     text-decoration: underline;
 
     @include euiCanAnimate {
@@ -64,15 +67,17 @@
 
   &--highlighted,
   &--highlighted:hover {
-    @include euiButtonDefaultStyle($euiColorSuccess, false);
+    @include euiButtonDefaultStyle('success', false);
   }
 
   &--in-range,
   &--in-range:hover {
-    @include euiButtonDefaultStyle($euiColorPrimary, false);
+    @include euiButtonDefaultStyle('primary', false);
   }
 
-  &--in-range:not(&--range-start):not(&--range-end):not(:hover) {
+  // Ranges use 2 side box-shadows that are the same as the button style
+  // to create a solid blue highlight, only rounded at the ends
+  &--in-range:not(&--selected):not(:hover) {
     // sass-lint:disable-block indentation
     box-shadow: -2px 0 transparentize($euiColorPrimary, $euiButtonDefaultTransparency),
                  2px 0 transparentize($euiColorPrimary, $euiButtonDefaultTransparency);
@@ -87,11 +92,21 @@
     }
   }
 
+  &--in-range#{&}--range-start:not(&--selected) {
+    border-top-left-radius: $euiBorderRadiusSmall;
+    border-bottom-left-radius: $euiBorderRadiusSmall;
+  }
+
+  &--in-range#{&}--range-end:not(&--selected) {
+    border-top-right-radius: $euiBorderRadiusSmall;
+    border-bottom-right-radius: $euiBorderRadiusSmall;
+  }
+
   &--selected,
   &--in-selecting-range,
   &--selected:hover,
   &--in-selecting-range:hover {
-    @include euiButtonDefaultStyle($euiColorPrimary, false, 0);
+    @include euiButtonFillStyle;
   }
 
   // THis doesn't seem to mean keyboard focus

@@ -71,7 +71,7 @@
 .react-datepicker__month-dropdown-container {
   display: inline-block;
   flex-grow: 1;
-  max-width: $euiDatePickerMinControlWidth;
+  max-width: $euiFormMaxWidth;
 }
 
 // Using the unnamed div for the years dropdown because we want to be able to control the
@@ -100,7 +100,6 @@
 
 .react-datepicker__month-dropdown-container {
   flex-grow: 2;
-  max-width: $euiDatePickerMaxControlWidth;
 
   .react-datepicker__month-dropdown {
     padding: $euiSizeXS;
@@ -150,6 +149,6 @@
 .react-datepicker__month-option--selected_month {
   &,
   &:hover {
-    @include euiButtonDefaultStyle($euiColorPrimary, false, 0);
+    @include euiButtonFillStyle;
   }
 }
