@@ -108,10 +108,6 @@
   border-radius: $euiBorderRadius;
 }
 
-.react-datepicker__input-container {
-  position: relative;
-}
-
 // On small screens put the times at the bottom
 @include euiBreakpoint('xs') {
   .react-datepicker__focusTrap,
