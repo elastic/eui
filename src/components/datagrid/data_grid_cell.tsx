@@ -293,6 +293,11 @@ export class EuiDataGridCell extends Component<
       this.cellRef.current &&
       this.props.getRowHeight &&
       this.props.rowHeightUtils &&
+      this.props.rowHeightsOptions &&
+      this.props.rowHeightUtils.isAutoHeight(
+        this.props.rowIndex,
+        this.props.rowHeightsOptions
+      ) &&
       !this.props.rowHeightUtils?.compareHeights(
         this.cellRef.current.offsetHeight,
         this.props.getRowHeight(this.props.rowIndex)
@@ -366,7 +371,14 @@ export class EuiDataGridCell extends Component<
 
   setCellContentsRef = (ref: HTMLDivElement | null) => {
     this.cellContentsRef = ref;
-    if (this.props.rowHeightUtils) {
+    if (
+      this.props.rowHeightUtils &&
+      this.props.rowHeightsOptions &&
+      this.props.rowHeightUtils.isAutoHeight(
+        this.props.rowIndex,
+        this.props.rowHeightsOptions
+      )
+    ) {
       if (ref && hasResizeObserver) {
         const setRowHeight = (rowHeight: number) =>
           this.props.rowHeightUtils?.setRowHeight(
