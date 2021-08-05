@@ -462,6 +462,53 @@ exports[`EuiFormRow props id is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiFormRow props isDisabled allows a child to still be disabled manually 1`] = `
+<div
+  class="euiFormRow"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      disabled=""
+      id="generated-id"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiFormRow props isDisabled allows a child's disabled to override 1`] = `
+<div
+  class="euiFormRow"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiFormRow props isDisabled is passed as disabled to child 1`] = `
+<div
+  class="euiFormRow"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      disabled=""
+      id="generated-id"
+    />
+  </div>
+</div>
+`;
+
 exports[`EuiFormRow props isInvalid is rendered 1`] = `
 <div
   class="euiFormRow"
