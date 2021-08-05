@@ -3,7 +3,7 @@
 .euiResizableButton {
   position: relative;
   flex-shrink: 0;
-  z-index: $euiZLevel1;
+  z-index: 1;
 
   &:before,
   &:after {
