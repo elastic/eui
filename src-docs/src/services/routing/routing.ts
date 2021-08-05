@@ -6,5 +6,5 @@ export const ExampleContext = createContext<{ parentPath: string }>({
 
 export const useExitPath = () => {
   const { parentPath } = useContext(ExampleContext);
-  return `/#${parentPath}`;
+  return `#${parentPath}`;
 };
