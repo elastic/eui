@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `37.0.0`.
+
+## [`37.0.0`](https://github.com/elastic/eui/tree/v37.0.0)
+
 - Added `fleetApp` and `agentApp` icons ([#4989](https://github.com/elastic/eui/pull/4989))
 - Added i18n tokens for `EuiSuperDatePicker` button `title` ([#4998](https://github.com/elastic/eui/pull/4998))
 
