@@ -523,7 +523,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     [paginationOffset, rowMap]
   );
 
-  const gridRef = useRef<Grid>(null);
+  const gridRef = useRef<Grid | null>(null);
+
   useEffect(() => {
     if (gridRef.current) {
       gridRef.current.resetAfterColumnIndex(0);
@@ -557,13 +558,17 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     ]
   );
 
-  const [minRowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
+  const setGridRef = useCallback(
+    (ref: Grid | null) => {
+      gridRef.current = ref;
+      if (ref) {
+        rowHeightUtils.setGrid(ref);
+      }
+    },
+    [rowHeightUtils]
+  );
 
-  useEffect(() => {
-    if (gridRef.current) {
-      rowHeightUtils.setGrid(gridRef.current);
-    }
-  });
+  const [minRowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
 
   const defaultHeight = useMemo(
     () =>
@@ -614,7 +619,12 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     if (gridRef.current && rowHeightsOptions) {
       gridRef.current.resetAfterRowIndex(0);
     }
-  }, [pagination?.pageIndex, rowHeightsOptions, gridStyles]);
+  }, [
+    pagination?.pageIndex,
+    rowHeightsOptions,
+    gridStyles?.cellPadding,
+    gridStyles?.fontSize,
+  ]);
 
   useEffect(() => {
     if (gridRef.current) {
@@ -699,7 +709,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
             <DataGridWrapperRowsContext.Provider
               value={{ headerRowHeight, headerRow, footerRow }}>
               <Grid
-                ref={gridRef}
+                ref={setGridRef}
                 innerElementType={InnerElement}
                 className={VIRTUALIZED_CONTAINER_CLASS}
                 columnCount={
