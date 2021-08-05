@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import classNames from 'classnames';
 import React, {
   Component,
   createRef,
@@ -16,24 +17,22 @@ import React, {
   KeyboardEvent,
   memo,
   MutableRefObject,
-  ReactChild,
 } from 'react';
-import classNames from 'classnames';
 import tabbable from 'tabbable';
-import { EuiScreenReaderOnly } from '../accessibility';
-import { EuiI18n } from '../i18n';
-import { DataGridFocusContext } from './data_grid_context';
-import { EuiFocusTrap } from '../focus_trap';
-import { keys } from '../../services';
-import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
-import { EuiDataGridCellPopover } from './data_grid_cell_popover';
-import { getStylesForCell } from './row_height_utils';
+import { keys } from '../../../services';
+import { EuiScreenReaderOnly } from '../../accessibility';
+import { EuiFocusTrap } from '../../focus_trap';
+import { useEuiI18n } from '../../i18n';
+import { DataGridFocusContext } from '../data_grid_context';
 import {
-  EuiDataGridCellValueProps,
-  EuiDataGridCellValueElementProps,
   EuiDataGridCellProps,
   EuiDataGridCellState,
-} from './data_grid_types';
+  EuiDataGridCellValueElementProps,
+  EuiDataGridCellValueProps,
+} from '../data_grid_types';
+import { getStylesForCell } from '../row_height_utils';
+import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
+import { EuiDataGridCellPopover } from './data_grid_cell_popover';
 
 const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
@@ -56,18 +55,10 @@ const EuiDataGridCellContent: FunctionComponent<
       EuiDataGridCellValueElementProps
     >;
 
-    const screenReaderPosition = (
-      <EuiScreenReaderOnly>
-        <EuiI18n
-          tokens={['euiDataGridCell.row', 'euiDataGridCell.column']}
-          defaults={['Row', 'Column']}>
-          {([row, column]: ReactChild[]) => (
-            <p>
-              {row}: {rowIndex + 1}, {column}: {colIndex + 1}:
-            </p>
-          )}
-        </EuiI18n>
-      </EuiScreenReaderOnly>
+    const positionText = useEuiI18n(
+      'euiDataGridCell.position',
+      'Row: {row}; Column: {col}',
+      { row: rowIndex + 1, col: colIndex + 1 }
     );
 
     return (
@@ -83,7 +74,9 @@ const EuiDataGridCellContent: FunctionComponent<
           rowIndex={rowIndex}
           {...rest}
         />
-        {screenReaderPosition}
+        <EuiScreenReaderOnly>
+          <p>{positionText}</p>
+        </EuiScreenReaderOnly>
       </div>
     );
   }

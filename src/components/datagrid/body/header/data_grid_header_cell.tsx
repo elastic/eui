@@ -18,20 +18,20 @@ import React, {
   useState,
 } from 'react';
 import tabbable from 'tabbable';
-import { keys } from '../../services';
-import { htmlIdGenerator } from '../../services/accessibility';
-import { EuiScreenReaderOnly } from '../accessibility';
-import { useEuiI18n } from '../i18n';
-import { EuiIcon } from '../icon';
-import { EuiListGroup } from '../list_group';
-import { EuiPopover } from '../popover';
+import { keys } from '../../../../services';
+import { htmlIdGenerator } from '../../../../services/accessibility';
+import { EuiScreenReaderOnly } from '../../../accessibility';
+import { useEuiI18n } from '../../../i18n';
+import { EuiIcon } from '../../../icon';
+import { EuiListGroup } from '../../../list_group';
+import { EuiPopover } from '../../../popover';
 import { getColumnActions } from './column_actions';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import {
   DataGridFocusContext,
   DataGridSortingContext,
-} from './data_grid_context';
-import { EuiDataGridHeaderCellProps } from './data_grid_types';
+} from '../../data_grid_context';
+import { EuiDataGridHeaderCellProps } from '../../data_grid_types';
 
 export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps> = (
   props

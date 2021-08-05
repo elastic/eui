@@ -23,27 +23,27 @@ import {
   VariableSizeGridProps,
 } from 'react-window';
 import tabbable from 'tabbable';
-import { EuiCodeBlock } from '../code';
+import { EuiCodeBlock } from '../../code';
 import {
   EuiMutationObserver,
   useMutationObserver,
-} from '../observer/mutation_observer';
-import { useResizeObserver } from '../observer/resize_observer';
-import { EuiText } from '../text';
+} from '../../observer/mutation_observer';
+import { useResizeObserver } from '../../observer/resize_observer';
+import { EuiText } from '../../text';
 import { EuiDataGridCell } from './data_grid_cell';
 import {
   DataGridSortingContext,
   DataGridWrapperRowsContext,
-} from './data_grid_context';
+} from '../data_grid_context';
 import { EuiDataGridFooterRow } from './data_grid_footer_row';
-import { EuiDataGridHeaderRow } from './data_grid_header_row';
+import { EuiDataGridHeaderRow } from './header';
 import {
   EuiDataGridBodyProps,
   EuiDataGridInMemoryValues,
   EuiDataGridPopoverContent,
   EuiDataGridPopoverContents,
   EuiDataGridSchemaDetector,
-} from './data_grid_types';
+} from '../data_grid_types';
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
 

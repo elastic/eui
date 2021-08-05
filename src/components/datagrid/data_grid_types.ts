@@ -14,6 +14,9 @@ import {
   RefCallback,
   CSSProperties,
   ReactElement,
+  AriaAttributes,
+  Dispatch,
+  SetStateAction,
 } from 'react';
 import { EuiListGroupItemProps } from '../list_group';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
@@ -21,6 +24,26 @@ import { ExclusiveUnion, CommonProps, OneOf } from '../common';
 import { RowHeightUtils } from './row_height_utils';
 import { IconType } from '../icon';
 import { EuiTokenProps } from '../token';
+
+export interface EuiDataGridToolbarProps {
+  gridWidth: number;
+  minSizeForControls?: number;
+  toolbarVisibility: boolean | EuiDataGridToolBarVisibilityOptions;
+  styleSelector: ReactElement;
+  isFullScreen: boolean;
+  controlBtnClasses: string;
+  columnSelector: ReactElement;
+  columnSorting: ReactNode;
+  setRef: RefCallback<HTMLDivElement | null>;
+  setIsFullScreen: Dispatch<SetStateAction<boolean>>;
+}
+export interface EuiDataGridPaginationRendererProps
+  extends EuiDataGridPaginationProps {
+  rowCount: number;
+  controls: string;
+  'aria-label'?: AriaAttributes['aria-label'];
+  'aria-labelledby'?: AriaAttributes['aria-labelledby'];
+}
 
 export interface EuiDataGridInMemoryRendererProps {
   inMemory: EuiDataGridInMemory;

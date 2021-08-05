@@ -10,7 +10,7 @@ import classnames from 'classnames';
 import React, { forwardRef } from 'react';
 import { EuiDataGridControlHeaderCell } from './data_grid_control_header_cell';
 import { EuiDataGridHeaderCell } from './data_grid_header_cell';
-import { EuiDataGridHeaderRowProps } from './data_grid_types';
+import { EuiDataGridHeaderRowProps } from '../../data_grid_types';
 
 const EuiDataGridHeaderRow = forwardRef<
   HTMLDivElement,

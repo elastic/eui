@@ -11,14 +11,14 @@ import {
   EuiDataGridSchema,
   EuiDataGridSchemaDetector,
   EuiDataGridSorting,
-} from './data_grid_types';
-import { EuiI18n } from '../i18n';
-import { EuiListGroupItemProps } from '../list_group';
-import { getDetailsForSchema } from './data_grid_schema';
+} from '../../data_grid_types';
+import { EuiI18n } from '../../../i18n';
+import { EuiListGroupItemProps } from '../../../list_group';
+import { getDetailsForSchema } from '../../data_grid_schema';
 import {
   defaultSortAscLabel,
   defaultSortDescLabel,
-} from './column_sorting_draggable';
+} from '../../column_sorting_draggable';
 
 export function getColumnActions(
   column: EuiDataGridColumn,

@@ -15,9 +15,9 @@ import React, {
   useState,
 } from 'react';
 import tabbable from 'tabbable';
-import { keys } from '../../services';
-import { DataGridFocusContext } from './data_grid_context';
-import { EuiDataGridControlHeaderRowProps } from './data_grid_types';
+import { keys } from '../../../../services';
+import { DataGridFocusContext } from '../../data_grid_context';
+import { EuiDataGridControlHeaderRowProps } from '../../data_grid_types';
 
 export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlHeaderRowProps> = (
   props

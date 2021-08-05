@@ -8,12 +8,12 @@
 
 import classnames from 'classnames';
 import React, { forwardRef, memo } from 'react';
-import { EuiText } from '../text';
+import { EuiText } from '../../text';
 import { EuiDataGridCell } from './data_grid_cell';
 import {
   EuiDataGridFooterRowProps,
   EuiDataGridPopoverContent,
-} from './data_grid_types';
+} from '../data_grid_types';
 
 const DefaultColumnFormatter: EuiDataGridPopoverContent = ({ children }) => {
   return <EuiText>{children}</EuiText>;

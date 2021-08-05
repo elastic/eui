@@ -6,16 +6,16 @@
  * Side Public License, v 1.
  */
 import React, { JSXElementConstructor } from 'react';
-import { keys } from '../../services';
-import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button/button_empty';
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiPopover, EuiPopoverFooter } from '../popover';
+import { keys } from '../../../services';
+import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button/button_empty';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiPopover, EuiPopoverFooter } from '../../popover';
 import {
   EuiDataGridCellPopoverProps,
   EuiDataGridCellValueElementProps,
   EuiDataGridColumnCellAction,
   EuiDataGridColumnCellActionProps,
-} from './data_grid_types';
+} from '../data_grid_types';
 
 export function EuiDataGridCellPopover({
   anchorContent,

@@ -1003,7 +1003,7 @@ Array [
         </div>
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
-          data-test-subj="dataGridFullScrenButton"
+          data-test-subj="dataGridFullScreenButton"
           type="button"
         >
           <span
@@ -1145,8 +1145,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           0, A
-                          <p>
-                            Row: 1, Column: 1:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 1
                           </p>
                         </div>
                       </div>
@@ -1169,8 +1171,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           0, B
-                          <p>
-                            Row: 1, Column: 2:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 2
                           </p>
                         </div>
                       </div>
@@ -1193,8 +1197,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           1, A
-                          <p>
-                            Row: 2, Column: 1:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 1
                           </p>
                         </div>
                       </div>
@@ -1217,8 +1223,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           1, B
-                          <p>
-                            Row: 2, Column: 2:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 2
                           </p>
                         </div>
                       </div>
@@ -1241,8 +1249,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           2, A
-                          <p>
-                            Row: 3, Column: 1:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 1
                           </p>
                         </div>
                       </div>
@@ -1265,8 +1275,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           2, B
-                          <p>
-                            Row: 3, Column: 2:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 2
                           </p>
                         </div>
                       </div>
@@ -1381,7 +1393,7 @@ Array [
         </div>
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
-          data-test-subj="dataGridFullScrenButton"
+          data-test-subj="dataGridFullScreenButton"
           type="button"
         >
           <span
@@ -1566,8 +1578,10 @@ Array [
                             class="euiDataGridRowCell__truncate"
                           >
                             0
-                            <p>
-                              Row: 1, Column: 1:
+                            <p
+                              class="euiScreenReaderOnly"
+                            >
+                              Row: 1; Column: 1
                             </p>
                           </div>
                         </div>
@@ -1596,8 +1610,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           0, A
-                          <p>
-                            Row: 1, Column: 2:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 2
                           </p>
                         </div>
                       </div>
@@ -1620,8 +1636,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           0, B
-                          <p>
-                            Row: 1, Column: 3:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 3
                           </p>
                         </div>
                       </div>
@@ -1657,8 +1675,10 @@ Array [
                             class="euiDataGridRowCell__truncate"
                           >
                             0
-                            <p>
-                              Row: 1, Column: 4:
+                            <p
+                              class="euiScreenReaderOnly"
+                            >
+                              Row: 1; Column: 4
                             </p>
                           </div>
                         </div>
@@ -1700,8 +1720,10 @@ Array [
                             class="euiDataGridRowCell__truncate"
                           >
                             1
-                            <p>
-                              Row: 2, Column: 1:
+                            <p
+                              class="euiScreenReaderOnly"
+                            >
+                              Row: 2; Column: 1
                             </p>
                           </div>
                         </div>
@@ -1730,8 +1752,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           1, A
-                          <p>
-                            Row: 2, Column: 2:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 2
                           </p>
                         </div>
                       </div>
@@ -1754,8 +1778,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           1, B
-                          <p>
-                            Row: 2, Column: 3:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 3
                           </p>
                         </div>
                       </div>
@@ -1791,8 +1817,10 @@ Array [
                             class="euiDataGridRowCell__truncate"
                           >
                             1
-                            <p>
-                              Row: 2, Column: 4:
+                            <p
+                              class="euiScreenReaderOnly"
+                            >
+                              Row: 2; Column: 4
                             </p>
                           </div>
                         </div>
@@ -1834,8 +1862,10 @@ Array [
                             class="euiDataGridRowCell__truncate"
                           >
                             2
-                            <p>
-                              Row: 3, Column: 1:
+                            <p
+                              class="euiScreenReaderOnly"
+                            >
+                              Row: 3; Column: 1
                             </p>
                           </div>
                         </div>
@@ -1864,8 +1894,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           2, A
-                          <p>
-                            Row: 3, Column: 2:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 2
                           </p>
                         </div>
                       </div>
@@ -1888,8 +1920,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           2, B
-                          <p>
-                            Row: 3, Column: 3:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 3
                           </p>
                         </div>
                       </div>
@@ -1925,8 +1959,10 @@ Array [
                             class="euiDataGridRowCell__truncate"
                           >
                             2
-                            <p>
-                              Row: 3, Column: 4:
+                            <p
+                              class="euiScreenReaderOnly"
+                            >
+                              Row: 3; Column: 4
                             </p>
                           </div>
                         </div>
@@ -2044,7 +2080,7 @@ Array [
         </div>
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
-          data-test-subj="dataGridFullScrenButton"
+          data-test-subj="dataGridFullScreenButton"
           type="button"
         >
           <span
@@ -2188,8 +2224,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           0, A
-                          <p>
-                            Row: 1, Column: 1:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 1
                           </p>
                         </div>
                       </div>
@@ -2212,8 +2250,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           0, B
-                          <p>
-                            Row: 1, Column: 2:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 2
                           </p>
                         </div>
                       </div>
@@ -2236,8 +2276,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           1, A
-                          <p>
-                            Row: 2, Column: 1:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 1
                           </p>
                         </div>
                       </div>
@@ -2260,8 +2302,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           1, B
-                          <p>
-                            Row: 2, Column: 2:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 2
                           </p>
                         </div>
                       </div>
@@ -2284,8 +2328,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           2, A
-                          <p>
-                            Row: 3, Column: 1:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 1
                           </p>
                         </div>
                       </div>
@@ -2308,8 +2354,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           2, B
-                          <p>
-                            Row: 3, Column: 2:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 2
                           </p>
                         </div>
                       </div>
@@ -2421,7 +2469,7 @@ Array [
         </div>
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
-          data-test-subj="dataGridFullScrenButton"
+          data-test-subj="dataGridFullScreenButton"
           type="button"
         >
           <span
@@ -2563,8 +2611,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           0, A
-                          <p>
-                            Row: 1, Column: 1:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 1
                           </p>
                         </div>
                       </div>
@@ -2587,8 +2637,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           0, B
-                          <p>
-                            Row: 1, Column: 2:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 2
                           </p>
                         </div>
                       </div>
@@ -2611,8 +2663,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           1, A
-                          <p>
-                            Row: 2, Column: 1:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 1
                           </p>
                         </div>
                       </div>
@@ -2635,8 +2689,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           1, B
-                          <p>
-                            Row: 2, Column: 2:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 2
                           </p>
                         </div>
                       </div>
@@ -2659,8 +2715,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           2, A
-                          <p>
-                            Row: 3, Column: 1:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 1
                           </p>
                         </div>
                       </div>
@@ -2683,8 +2741,10 @@ Array [
                           class="euiDataGridRowCell__truncate"
                         >
                           2, B
-                          <p>
-                            Row: 3, Column: 2:
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 2
                           </p>
                         </div>
                       </div>
