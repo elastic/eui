@@ -155,6 +155,14 @@ type CommonGridProps = CommonProps &
      */
     width?: CSSProperties['width'];
     /**
+     * The number of rows to render outside of the visible area. 
+     */
+    overscanRowCount?: number;
+    /**
+     * The number of columns to render outside of the visible area.
+     */
+     overscanColumnCount?: number;
+    /**
      * A #EuiDataGridRowHeightsOptions object that provides row heights options
      */
     rowHeightsOptions?: EuiDataGridRowHeightsOptions;
@@ -690,6 +698,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     height,
     width,
     rowHeightsOptions,
+    overscanColumnCount,
+    overscanRowCount,
     ...rest
   } = props;
 
@@ -1141,6 +1151,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                         interactiveCellId={interactiveCellId}
                         rowHeightsOptions={rowHeightsOptions}
                         rowHeightUtils={rowHeightUtils}
+                        overscanColumnCount={overscanColumnCount}
+                        overscanRowCount={overscanRowCount}
                         gridStyles={gridStyles}
                       />
                     </div>

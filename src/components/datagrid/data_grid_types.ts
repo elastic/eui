@@ -321,7 +321,7 @@ export type EuiDataGridOnColumnResizeHandler = (
 
 export type EuiDataGridRowHeightOption =
   | number
-  | string
+  | 'auto'
   | ExclusiveUnion<{ lineCount: number }, { height: number }>;
 
 export interface EuiDataGridRowHeightsOptions {
@@ -333,4 +333,8 @@ export interface EuiDataGridRowHeightsOptions {
    * Defines the height for a specific row. It can be line count or just height.
    */
   rowHeights?: Record<number, EuiDataGridRowHeightOption>;
+  /**
+   * Average (or estimated) row height for unrendered rows.
+   */
+  estimatedRowHeight?: number;
 }

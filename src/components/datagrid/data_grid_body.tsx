@@ -83,6 +83,8 @@ export interface EuiDataGridBodyProps {
   toolbarHeight: number;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils: RowHeightUtils;
+  overscanColumnCount?: number;
+  overscanRowCount?: number;
   gridStyles?: EuiDataGridStyle;
 }
 
@@ -342,6 +344,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     toolbarHeight,
     rowHeightsOptions,
     rowHeightUtils,
+    overscanRowCount,
+    overscanColumnCount,
     gridStyles,
   } = props;
 
@@ -719,6 +723,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 }
                 width={finalWidth}
                 columnWidth={getWidth}
+                overscanRowCount={overscanRowCount || 1}
+                overscanColumnCount={overscanColumnCount || 1}
+                estimatedRowHeight={rowHeightsOptions?.estimatedRowHeight || defaultHeight}
                 height={finalHeight}
                 rowHeight={getRowHeight}
                 itemData={{
