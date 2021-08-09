@@ -725,7 +725,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 columnWidth={getWidth}
                 overscanRowCount={overscanRowCount || 1}
                 overscanColumnCount={overscanColumnCount || 1}
-                estimatedRowHeight={rowHeightsOptions?.estimatedRowHeight || defaultHeight}
+                estimatedRowHeight={
+                  rowHeightsOptions?.estimatedRowHeight || defaultHeight
+                }
                 height={finalHeight}
                 rowHeight={getRowHeight}
                 itemData={{

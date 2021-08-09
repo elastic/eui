@@ -155,13 +155,13 @@ type CommonGridProps = CommonProps &
      */
     width?: CSSProperties['width'];
     /**
-     * The number of rows to render outside of the visible area. 
+     * The number of rows to render outside of the visible area.
      */
     overscanRowCount?: number;
     /**
      * The number of columns to render outside of the visible area.
      */
-     overscanColumnCount?: number;
+    overscanColumnCount?: number;
     /**
      * A #EuiDataGridRowHeightsOptions object that provides row heights options
      */
