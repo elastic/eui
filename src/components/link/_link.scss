@@ -1,15 +1,3 @@
-$euiLinkColors: (
-  subdued: $euiTextSubduedColor,
-  primary: $euiColorPrimaryText,
-  secondary: $euiColorSecondaryText,
-  success: $euiColorSuccessText,
-  accent: $euiColorAccentText,
-  warning: $euiColorWarningText,
-  danger: $euiColorDangerText,
-  text: $euiTextColor,
-  ghost: $euiColorGhost,
-);
-
 .euiLink {
   @include euiLink;
 
@@ -18,6 +6,7 @@ $euiLinkColors: (
   }
 
   &.euiLink-disabled {
+    font-weight: inherit;
     text-decoration: none;
     cursor: default;
   }
@@ -28,14 +17,17 @@ $euiLinkColors: (
       color: $color;
 
       &:hover,
-      &:focus {
-        color: darken($color, 10%);
+      &:focus,
+      &:target {
         text-decoration: underline;
       }
 
+      &:target {
+        color: darken($color, 10%);
+      }
+
       &:focus {
-        @include euiFocusBackground($color);
-        @include euiFocusRing(null, 0);
+        @include euiFocusRing(null, 'outer');
       }
     }
   }

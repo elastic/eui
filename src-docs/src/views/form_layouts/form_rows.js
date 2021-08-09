@@ -59,6 +59,10 @@ export default () => {
         <EuiFieldText name="first" />
       </EuiFormRow>
 
+      <EuiFormRow label="Disabled through form row" isDisabled>
+        <EuiFieldText name="last" />
+      </EuiFormRow>
+
       <EuiFormRow
         label="Select (with no initial selection)"
         labelAppend={
@@ -68,6 +72,7 @@ export default () => {
         }>
         <EuiSelect
           hasNoInitialSelection
+          onChange={() => {}}
           options={[
             { value: 'option_one', text: 'Option one' },
             { value: 'option_two', text: 'Option two' },
@@ -84,17 +89,6 @@ export default () => {
         <EuiRange min={0} max={100} name="range" id="range" />
       </EuiFormRow>
 
-      <EuiFormRow
-        label="Use a switch instead of a single checkbox and set 'hasChildLabel' to false"
-        hasChildLabel={false}>
-        <EuiSwitch
-          name="switch"
-          label="Should we do this?"
-          checked={isSwitchChecked}
-          onChange={onSwitchChange}
-        />
-      </EuiFormRow>
-
       <EuiSpacer />
 
       <EuiCheckboxGroup
@@ -106,6 +100,19 @@ export default () => {
             'Checkbox groups should use the `legend` prop instead of form row',
         }}
       />
+
+      <EuiSpacer />
+
+      <EuiFormRow
+        label="Use a switch instead of a single checkbox"
+        hasChildLabel={false}>
+        <EuiSwitch
+          name="switch"
+          label="Should we do this?"
+          checked={isSwitchChecked}
+          onChange={onSwitchChange}
+        />
+      </EuiFormRow>
 
       <EuiSpacer />
 

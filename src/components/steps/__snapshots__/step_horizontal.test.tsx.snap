@@ -51,7 +51,7 @@ exports[`EuiStepHorizontal props isComplete 1`] = `
 exports[`EuiStepHorizontal props isSelected 1`] = `
 <button
   class="euiStepHorizontal euiStepHorizontal-isSelected"
-  title="Step 1"
+  title="Current step is 1"
 >
   <span
     class="euiStepNumber euiStepHorizontal__number"
@@ -59,7 +59,7 @@ exports[`EuiStepHorizontal props isSelected 1`] = `
     <span
       class="euiScreenReaderOnly"
     >
-      Step 1
+      Current step is 1
     </span>
     <span
       aria-hidden="true"
@@ -76,7 +76,7 @@ exports[`EuiStepHorizontal props isSelected 1`] = `
 
 exports[`EuiStepHorizontal props status complete is rendered 1`] = `
 <button
-  class="euiStepHorizontal euiStepHorizontal-isIncomplete"
+  class="euiStepHorizontal euiStepHorizontal-isComplete"
   title="Step 1 is complete"
 >
   <span
@@ -94,9 +94,35 @@ exports[`EuiStepHorizontal props status complete is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiStepHorizontal props status current is rendered 1`] = `
+<button
+  class="euiStepHorizontal euiStepHorizontal-isSelected"
+  title="Current step is 1"
+>
+  <span
+    class="euiStepNumber euiStepHorizontal__number"
+  >
+    <span
+      class="euiScreenReaderOnly"
+    >
+      Current step is 1
+    </span>
+    <span
+      aria-hidden="true"
+      class="euiStepNumber__number"
+    >
+      1
+    </span>
+  </span>
+  <span
+    class="euiStepHorizontal__title"
+  />
+</button>
+`;
+
 exports[`EuiStepHorizontal props status danger is rendered 1`] = `
 <button
-  class="euiStepHorizontal euiStepHorizontal-isIncomplete"
+  class="euiStepHorizontal"
   title="Step 1"
 >
   <span
@@ -116,7 +142,7 @@ exports[`EuiStepHorizontal props status danger is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status disabled is rendered 1`] = `
 <button
-  class="euiStepHorizontal euiStepHorizontal-isIncomplete"
+  class="euiStepHorizontal euiStepHorizontal-isDisabled"
   title="Step 1 is disabled"
 >
   <span
@@ -168,7 +194,7 @@ exports[`EuiStepHorizontal props status incomplete is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status loading is rendered 1`] = `
 <button
-  class="euiStepHorizontal euiStepHorizontal-isIncomplete"
+  class="euiStepHorizontal"
   title="Step 1"
 >
   <span
@@ -191,7 +217,7 @@ exports[`EuiStepHorizontal props status loading is rendered 1`] = `
 
 exports[`EuiStepHorizontal props status warning is rendered 1`] = `
 <button
-  class="euiStepHorizontal euiStepHorizontal-isIncomplete"
+  class="euiStepHorizontal"
   title="Step 1 has warnings"
 >
   <span

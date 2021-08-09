@@ -2,21 +2,23 @@ import React, { useState } from 'react';
 import {
   EuiLink,
   EuiSwitch,
-  EuiSpacer,
   EuiTextColor,
+  EuiHorizontalRule,
+  EuiText,
 } from '../../../../src/components';
 
 export const LinkDisable = () => {
   const [disableLink, setDisableLink] = useState(true);
 
   return (
-    <div>
+    <EuiText>
       <EuiSwitch
+        compressed
         label="Disable links"
         checked={disableLink}
         onChange={() => setDisableLink(!disableLink)}
       />
-      <EuiSpacer size="m" />
+      <EuiHorizontalRule margin="m" />
       <p>
         This{' '}
         <EuiLink color="accent" disabled={disableLink} onClick={() => {}}>
@@ -28,14 +30,15 @@ export const LinkDisable = () => {
         </EuiLink>{' '}
         in it.
       </p>
-      <EuiSpacer size="m" />
-      <EuiTextColor color="accent">
-        When links are disabled, they inherit the{' '}
-        <EuiLink color="success" disabled={disableLink} onClick={() => {}}>
-          color
-        </EuiLink>{' '}
-        of surrounding text.
-      </EuiTextColor>
-    </div>
+      <p>
+        <EuiTextColor color="accent">
+          When links are disabled, they inherit the{' '}
+          <EuiLink color="success" disabled={disableLink} onClick={() => {}}>
+            color
+          </EuiLink>{' '}
+          of surrounding text.
+        </EuiTextColor>
+      </p>
+    </EuiText>
   );
 };

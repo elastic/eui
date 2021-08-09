@@ -45,7 +45,7 @@ export default () => {
         className="euiFormRow__text">
         Utilize error text or{' '}
         <strong>
-          <a href="/#/forms/form-validation">EuiFormRow</a>
+          <a href="#/forms/form-validation">EuiFormRow</a>
         </strong>{' '}
         for more permanent error feedback
       </EuiFormErrorText>
