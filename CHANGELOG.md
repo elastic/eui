@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `37.1.0`.
+**Bug fixes**
+
+- Fixed usage of `outsideClickCloses` prop of `EuiFlyout` ([#4986](https://github.com/elastic/eui/pull/4986))
 
 ## [`37.1.0`](https://github.com/elastic/eui/tree/v37.1.0)
 
@@ -37,7 +39,7 @@ No public interface changes since `37.1.0`.
 **Bug fixes**
 
 - Fixed filter count of 0 in `EuiSearchBar` ([#4977](https://github.com/elastic/eui/pull/4977))
-- Fixed edge case where EuiDataGrid cells could create an infinite loop of focus changes ([#4983](https://github.com/elastic/eui/pull/4983))
+- Fixed edge case where `EuiDataGrid` cells could create an infinite loop of focus changes ([#4983](https://github.com/elastic/eui/pull/4983))
 
 **Theme: Amsterdam**
 
