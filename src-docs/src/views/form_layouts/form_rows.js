@@ -59,6 +59,10 @@ export default () => {
         <EuiFieldText name="first" />
       </EuiFormRow>
 
+      <EuiFormRow label="Disabled through form row" isDisabled>
+        <EuiFieldText name="last" />
+      </EuiFormRow>
+
       <EuiFormRow
         label="Select (with no initial selection)"
         labelAppend={
