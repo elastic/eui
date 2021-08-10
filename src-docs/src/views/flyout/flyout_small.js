@@ -23,7 +23,7 @@ export default () => {
   if (isFlyoutVisible) {
     flyout = (
       <EuiFlyout
-        outsideClickCloses={false}
+        ownFocus={false}
         onClose={closeFlyout}
         aria-labelledby={flyoutTitleId}>
         <EuiFlyoutHeader hasBorder>
