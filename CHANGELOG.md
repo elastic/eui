@@ -2,6 +2,10 @@
 
 - Added `isDisabled` prop to `EuiFormRow` that disables the child field element ([#4908](https://github.com/elastic/eui/pull/4908))
 
+**Bug fixes**
+
+- Fixed usage of `outsideClickCloses` prop of `EuiFlyout` ([#4986](https://github.com/elastic/eui/pull/4986))
+
 ## [`37.0.0`](https://github.com/elastic/eui/tree/v37.0.0)
 
 - Added `fleetApp` and `agentApp` icons ([#4989](https://github.com/elastic/eui/pull/4989))
@@ -34,7 +38,6 @@
 
 - Fixed filter count of 0 in `EuiSearchBar` ([#4977](https://github.com/elastic/eui/pull/4977))
 - Fixed edge case where `EuiDataGrid` cells could create an infinite loop of focus changes ([#4983](https://github.com/elastic/eui/pull/4983))
-- Fixed usage of `outsideClickCloses` prop of `EuiFlyout` ([#4986](https://github.com/elastic/eui/pull/4986))
 
 **Theme: Amsterdam**
 
