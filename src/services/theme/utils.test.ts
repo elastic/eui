@@ -16,36 +16,29 @@ import {
   getComputed,
   buildTheme,
   mergeDeep,
-  currentColorModeOnly,
 } from './utils';
 
 describe('isInverseColorMode', () => {
   it("true only if 'inverse'", () => {
-    expect(isInverseColorMode('light')).toBe(false);
-    expect(isInverseColorMode('dark')).toBe(false);
+    expect(isInverseColorMode('LIGHT')).toBe(false);
+    expect(isInverseColorMode('DARK')).toBe(false);
     expect(isInverseColorMode('custom')).toBe(false);
     expect(isInverseColorMode()).toBe(false);
-    expect(isInverseColorMode('inverse')).toBe(true);
+    expect(isInverseColorMode('INVERSE')).toBe(true);
   });
 });
 
 describe('getColorMode', () => {
-  it("defaults to 'light'", () => {
-    expect(getColorMode()).toEqual('light');
+  it("defaults to 'LIGHT'", () => {
+    expect(getColorMode()).toEqual('LIGHT');
   });
   it('uses `parentMode` as fallback', () => {
-    expect(getColorMode(undefined, 'dark')).toEqual('dark');
+    expect(getColorMode(undefined, 'DARK')).toEqual('DARK');
   });
-  it("understands 'inverse'", () => {
-    expect(getColorMode('inverse', 'dark')).toEqual('light');
-    expect(getColorMode('inverse', 'light')).toEqual('dark');
-    expect(getColorMode('inverse')).toEqual('light');
-  });
-  it('respects custom modes', () => {
-    expect(getColorMode('custom')).toEqual('custom');
-    expect(getColorMode('custom', 'light')).toEqual('custom');
-    expect(getColorMode(undefined, 'custom')).toEqual('custom');
-    expect(getColorMode('light', 'custom')).toEqual('light');
+  it("understands 'INVERSE'", () => {
+    expect(getColorMode('INVERSE', 'DARK')).toEqual('LIGHT');
+    expect(getColorMode('INVERSE', 'LIGHT')).toEqual('DARK');
+    expect(getColorMode('INVERSE')).toEqual('LIGHT');
   });
 });
 
@@ -63,9 +56,8 @@ describe('getOn', () => {
       },
     },
     colors: {
-      light: { primary: '#000' },
-      dark: { primary: '#FFF' },
-      custom: { primary: '#333' },
+      LIGHT: { primary: '#000' },
+      DARK: { primary: '#FFF' },
     },
   };
   it('gets values at the given path', () => {
@@ -80,10 +72,9 @@ describe('getOn', () => {
     expect(getOn(obj, 'other.thing.number', '')).toEqual(0);
     expect(getOn(obj, 'other.thing.func', '')).toBeInstanceOf(Function);
   });
-  it('does can shortcut color modes', () => {
-    expect(getOn(obj, 'colors.primary', 'light')).toEqual('#000');
-    expect(getOn(obj, 'colors.primary', 'dark')).toEqual('#FFF');
-    expect(getOn(obj, 'colors.primary', 'custom')).toEqual('#333');
+  it('can shortcut color modes', () => {
+    expect(getOn(obj, 'colors.primary', 'LIGHT')).toEqual('#000');
+    expect(getOn(obj, 'colors.primary', 'DARK')).toEqual('#FFF');
   });
   it('will not error', () => {
     expect(getOn(obj, 'nope', '')).toBe(undefined);
@@ -131,24 +122,34 @@ describe('setOn', () => {
 });
 
 describe('computed', () => {
-  it('should transform to Computed', () => {
-    const output = computed(['path.to'], ([path]) => path);
+  it('should transform to Computed with dependencies array', () => {
+    const output = computed(([path]) => path, ['path.to']);
     expect(output).toBeInstanceOf(Computed);
     expect(output.computer).toBeInstanceOf(Function);
     expect(output.dependencies).toEqual(['path.to']);
+  });
+  it('should transform to Computed with single dependency', () => {
+    const output = computed((path) => path, 'path.to');
+    expect(output).toBeInstanceOf(Computed);
+    expect(output.computer).toBeInstanceOf(Function);
+    expect(output.dependencies).toEqual('path.to');
+  });
+  it('should transform to Computed without dependencies array', () => {
+    const output = computed((path) => path);
+    expect(output).toBeInstanceOf(Computed);
   });
 });
 
 const theme = buildTheme(
   {
     colors: {
-      light: {
+      LIGHT: {
         primary: '#000',
-        secondary: computed(['colors.primary'], ([primary]) => `${primary}000`),
+        secondary: computed(([primary]) => `${primary}000`, ['colors.primary']),
       },
-      dark: {
+      DARK: {
         primary: '#FFF',
-        secondary: computed(['colors.primary'], ([primary]) => `${primary}FFF`),
+        secondary: computed((theme) => `${theme.colors.primary}FFF`),
       },
     },
     sizes: {
@@ -159,14 +160,14 @@ const theme = buildTheme(
 );
 describe('getComputed', () => {
   it('computes all values and returns only the current color mode', () => {
-    // @ts-ignore intentionally not using a full EUI theme definition
-    expect(getComputed(theme, {}, 'light')).toEqual({
+    // @ts-expect-error intentionally not using a full EUI theme definition
+    expect(getComputed(theme, {}, 'LIGHT')).toEqual({
       colors: { primary: '#000', secondary: '#000000' },
       sizes: { small: 8 },
       themeName: 'minimal',
     });
-    // @ts-ignore intentionally not using a full EUI theme definition
-    expect(getComputed(theme, {}, 'dark')).toEqual({
+    // @ts-expect-error intentionally not using a full EUI theme definition
+    expect(getComputed(theme, {}, 'DARK')).toEqual({
       colors: { primary: '#FFF', secondary: '#FFFFFF' },
       sizes: { small: 8 },
       themeName: 'minimal',
@@ -174,8 +175,8 @@ describe('getComputed', () => {
   });
   it('respects simple overrides', () => {
     expect(
-      // @ts-ignore intentionally not using a full EUI theme definition
-      getComputed(theme, buildTheme({ sizes: { small: 4 } }, ''), 'light')
+      // @ts-expect-error intentionally not using a full EUI theme definition
+      getComputed(theme, buildTheme({ sizes: { small: 4 } }, ''), 'LIGHT')
     ).toEqual({
       colors: { primary: '#000', secondary: '#000000' },
       sizes: { small: 4 },
@@ -185,10 +186,10 @@ describe('getComputed', () => {
   it('respects overrides in computation', () => {
     expect(
       getComputed(
-        // @ts-ignore intentionally not using a full EUI theme definition
+        // @ts-expect-error intentionally not using a full EUI theme definition
         theme,
-        buildTheme({ colors: { light: { primary: '#CCC' } } }, ''),
-        'light'
+        buildTheme({ colors: { LIGHT: { primary: '#CCC' } } }, ''),
+        'LIGHT'
       )
     ).toEqual({
       colors: { primary: '#CCC', secondary: '#CCC000' },
@@ -199,10 +200,10 @@ describe('getComputed', () => {
   it('respects property extensions', () => {
     expect(
       getComputed(
-        // @ts-ignore intentionally not using a full EUI theme definition
+        // @ts-expect-error intentionally not using a full EUI theme definition
         theme,
-        buildTheme({ colors: { light: { tertiary: '#333' } } }, ''),
-        'light'
+        buildTheme({ colors: { LIGHT: { tertiary: '#333' } } }, ''),
+        'LIGHT'
       )
     ).toEqual({
       colors: { primary: '#000', secondary: '#000000', tertiary: '#333' },
@@ -213,10 +214,10 @@ describe('getComputed', () => {
   it('respects section extensions', () => {
     expect(
       getComputed(
-        // @ts-ignore intentionally not using a full EUI theme definition
+        // @ts-expect-error intentionally not using a full EUI theme definition
         theme,
         buildTheme({ custom: { myProp: '#333' } }, ''),
-        'light'
+        'LIGHT'
       )
     ).toEqual({
       colors: { primary: '#000', secondary: '#000000' },
@@ -228,22 +229,21 @@ describe('getComputed', () => {
   it('respects extensions in computation', () => {
     expect(
       getComputed(
-        // @ts-ignore intentionally not using a full EUI theme definition
+        // @ts-expect-error intentionally not using a full EUI theme definition
         theme,
         buildTheme(
           {
             colors: {
-              light: {
-                tertiary: computed(
-                  ['colors.primary'],
-                  ([primary]) => `${primary}333`
-                ),
+              LIGHT: {
+                tertiary: computed(([primary]) => `${primary}333`, [
+                  'colors.primary',
+                ]),
               },
             },
           },
           ''
         ),
-        'light'
+        'LIGHT'
       )
     ).toEqual({
       colors: { primary: '#000', secondary: '#000000', tertiary: '#000333' },
@@ -274,31 +274,5 @@ describe('mergeDeep', () => {
     expect(
       mergeDeep({ a: 1, b: { c: { d: 3 } } }, { b: { c: { e: 5 } } })
     ).toEqual({ a: 1, b: { c: { d: 3, e: 5 } } });
-  });
-});
-
-describe('currentColorModeOnly', () => {
-  const theme = {
-    colors: {
-      light: {
-        primary: '#000',
-      },
-      dark: {
-        primary: '#FFF',
-      },
-    },
-    sizes: {
-      small: 8,
-    },
-  };
-  it('object with only the current color mode colors', () => {
-    expect(currentColorModeOnly('light', theme)).toEqual({
-      colors: { primary: '#000' },
-      sizes: { small: 8 },
-    });
-    expect(currentColorModeOnly('dark', theme)).toEqual({
-      colors: { primary: '#FFF' },
-      sizes: { small: 8 },
-    });
   });
 });

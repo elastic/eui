@@ -13,7 +13,7 @@ import {
   EuiThemeModifications,
   EuiThemeComputed,
 } from './types';
-import { EuiThemeDefault } from './theme';
+import { EuiThemeDefault } from '../../themes/eui/theme';
 import { DEFAULT_COLOR_MODE, getComputed } from './utils';
 
 export const EuiSystemContext = createContext<EuiThemeSystem>(EuiThemeDefault);

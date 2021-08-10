@@ -47,6 +47,13 @@ export function keysOf<T, K extends keyof T>(obj: T): K[] {
   return Object.keys(obj) as K[];
 }
 
+/**
+ * Like `keyof typeof`, but for getting values instead of keys
+ * ValueOf<typeof {key1: 'value1', key2: 'value2'}>
+ * Results in `'value1' | 'value2'`
+ */
+export type ValueOf<T> = T[keyof T];
+
 export type PropsOf<C> = C extends SFC<infer SFCProps>
   ? SFCProps
   : C extends FunctionComponent<infer FunctionProps>

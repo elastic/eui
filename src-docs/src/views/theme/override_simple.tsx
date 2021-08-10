@@ -8,8 +8,8 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
   return (
     <div
       css={{
-        background: euiTheme.colors.euiColorLightShade,
-        padding: euiTheme.sizes.euiSizeXL,
+        background: euiTheme.colors.lightShade,
+        padding: euiTheme.size.xl,
       }}>
       <p>{children}</p>
     </div>
@@ -19,8 +19,8 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
 export default () => {
   const overrides = {
     colors: {
-      light: { euiColorLightShade: '#d3e6df' },
-      dark: { euiColorLightShade: '#394c4b' },
+      LIGHT: { lightShade: '#d3e6df' },
+      DARK: { lightShade: '#394c4b' },
     },
   };
 
@@ -29,7 +29,7 @@ export default () => {
       <EuiThemeProvider modify={overrides}>
         <Box>
           The background of this box is using the locally overridden value of{' '}
-          <EuiCode>theme.colors.euiColorLightShade</EuiCode>
+          <EuiCode>euiTheme.colors.lightShade</EuiCode>
         </Box>
       </EuiThemeProvider>
     </div>

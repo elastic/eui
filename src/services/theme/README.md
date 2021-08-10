@@ -30,8 +30,16 @@ These properties specify that the value depends upon some other value in the the
 
 ```js
 computed(
+  ([size]) => size * 2 // predicate. What to do with the dependency values,
   ['sizes.euiSize'], // dependency array, referencing other properties in the theme object
-  ([size]) => size * 2 // predicate. What to do with the dependency values
+)
+```
+
+The dependency array is optional. Omitting the array gives access to the computed theme.
+
+```js
+computed(
+  (theme) => theme.sizes.euiSize * 2
 )
 ```
 

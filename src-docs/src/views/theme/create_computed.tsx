@@ -1,5 +1,4 @@
 import React, { FunctionComponent, ReactNode } from 'react';
-import { tint, shade } from '../../../../src/services/theme/theme';
 import { EuiIcon } from '../../../../src/components/icon';
 import { EuiCode } from '../../../../src/components/code';
 import { EuiText } from '../../../../src/components/text';
@@ -8,6 +7,7 @@ import {
   EuiThemeProvider,
   useEuiTheme,
 } from '../../../../src/services';
+import { shade, tint } from '../../../../src/services/color';
 
 interface ThemeExtensions {
   colors: {
@@ -24,7 +24,7 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
     <EuiText
       css={{
         background: euiTheme.colors.customColorPrimaryHighlight,
-        padding: euiTheme.sizes.euiSizeXL,
+        padding: euiTheme.size.xl,
         color: euiTheme.colors.customColorPrimaryText,
       }}>
       <p>
@@ -38,28 +38,26 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
 export default () => {
   const primaryOverrides = {
     colors: {
-      light: {
+      LIGHT: {
         customColorPrimary: 'rgb(29, 222, 204)',
         customColorPrimaryHighlight: computed(
-          ['colors.customColorPrimary'],
-          ([customColorPrimary]) => tint(customColorPrimary, 0.8)
+          (customColorPrimary) => tint(customColorPrimary, 0.8),
+          'colors.customColorPrimary'
         ),
-        // Need a global contrast function
         customColorPrimaryText: computed(
-          ['colors.customColorPrimary'],
-          ([customColorPrimary]) => shade(customColorPrimary, 0.8)
+          (customColorPrimary) => shade(customColorPrimary, 0.8),
+          'colors.customColorPrimary'
         ),
       },
-      dark: {
+      DARK: {
         customColorPrimary: 'rgb(29, 222, 204)',
         customColorPrimaryHighlight: computed(
-          ['colors.customColorPrimary'],
-          ([customColorPrimary]) => shade(customColorPrimary, 0.8)
+          ([customColorPrimary]) => shade(customColorPrimary, 0.8),
+          ['colors.customColorPrimary']
         ),
-        // Need a global contrast function
         customColorPrimaryText: computed(
-          ['colors.customColorPrimary'],
-          ([customColorPrimary]) => tint(customColorPrimary, 0.8)
+          ([customColorPrimary]) => tint(customColorPrimary, 0.8),
+          ['colors.customColorPrimary']
         ),
       },
     },
@@ -69,7 +67,7 @@ export default () => {
     <div>
       <EuiThemeProvider modify={primaryOverrides}>
         <Box>
-          A new key of <EuiCode>customColorPrimary</EuiCode> has been added as
+          A new key of <EuiCode>customColorPrimary</EuiCode> has been added as{' '}
           <EuiCode>rgb(29, 222, 204)</EuiCode>.
           <br />
           <br />

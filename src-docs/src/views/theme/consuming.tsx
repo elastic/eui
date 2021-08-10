@@ -12,15 +12,15 @@ export default () => {
         <EuiIcon
           type="stopFilled"
           size="xxl"
-          css={{ color: euiTheme.colors.euiColorPrimary }}
+          css={{ color: euiTheme.colors.primary }}
         />{' '}
         This primary color will adjust based on the light or dark theme value
       </p>
       <EuiSpacer />
       <div
         css={{
-          background: euiTheme.colors.euiColorLightShade,
-          padding: `calc(${euiTheme.sizes.euiSize} * 2)`,
+          background: euiTheme.colors.lightShade,
+          padding: `calc(${euiTheme.size.base} * 2)`,
         }}>
         <p>
           The padding of this box is created using <EuiCode>calc()</EuiCode>{' '}

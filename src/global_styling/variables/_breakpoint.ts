@@ -6,8 +6,19 @@
  * Side Public License, v 1.
  */
 
-export {
-  useColorPickerState,
-  useColorStopsState,
-  EuiSetColorMethod,
-} from './color_picker';
+export type _EuiBreakpointSize = 'xs' | 's' | 'm' | 'l' | 'xl';
+
+export type EuiThemeBreakpoint = {
+  /**
+   * Set the minimum window width at which to start to the breakpoint
+   */
+  [key in _EuiBreakpointSize]: number;
+};
+
+export const breakpoint: EuiThemeBreakpoint = {
+  xl: 1200,
+  l: 992,
+  m: 768,
+  s: 575,
+  xs: 0,
+};
