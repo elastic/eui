@@ -24,7 +24,6 @@ const paddingSizeToClassNameMap = {
   m: 'euiAccordion__padding--m',
   l: 'euiAccordion__padding--l',
   xl: 'euiAccordion__padding--xl',
-  xxxl: 'euiAccordion__padding--xxxl',
 };
 
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
