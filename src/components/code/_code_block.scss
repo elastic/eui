@@ -38,7 +38,9 @@
   }
 
   .euiCodeBlock__line__text {
-    padding-left: $euiSize;
+    padding-left: $euiSizeS;
+    margin-left: $euiSizeS;
+    border-left: $euiBorderThin;
     user-select: text;
   }
 
