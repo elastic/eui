@@ -84,7 +84,7 @@ type EuiFormRowCommonProps = CommonProps & {
    */
   helpText?: ReactNode | ReactNode[];
   /**
-   *  Passed along to the label element and the child field element when `disabled` doesn't already exist on the child field element.
+   *  Passed along to the label element; and to the child field element when `disabled` doesn't already exist on the child field element.
    */
   isDisabled?: boolean;
 };
