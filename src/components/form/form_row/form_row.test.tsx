@@ -177,6 +177,38 @@ describe('EuiFormRow', () => {
       expect(component).toMatchSnapshot();
     });
 
+    describe('isDisabled', () => {
+      test('is passed as disabled to child', () => {
+        const component = render(
+          <EuiFormRow isDisabled>
+            <input />
+          </EuiFormRow>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test("allows a child's disabled to override", () => {
+        const component = render(
+          <EuiFormRow isDisabled>
+            <input disabled={false} />
+          </EuiFormRow>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('allows a child to still be disabled manually', () => {
+        const component = render(
+          <EuiFormRow>
+            <input disabled />
+          </EuiFormRow>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('display type', () => {
       DISPLAYS.forEach((display) => {
         test(`${display} is rendered`, () => {

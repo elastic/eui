@@ -1,5 +1,45 @@
 [
   {
+    "version": "37.0.0",
+    "changes": [
+      {
+        "token": "euiDatePopoverButton.invalidTitle",
+        "changeType": "added",
+        "value": "Invalid date: {title}"
+      },
+      {
+        "token": "euiDatePopoverButton.outdatedTitle",
+        "changeType": "added",
+        "value": "Update needed: {title}"
+      }
+    ]
+  },
+  {
+    "version": "36.1.0",
+    "changes": [
+      {
+        "token": "euiBreadcrumbs.collapsedBadge.ariaLabel",
+        "changeType": "modified",
+        "value": "See collapsed breadcrumbs"
+      },
+      {
+        "token": "euiBreadcrumbs.nav.ariaLabel",
+        "changeType": "added",
+        "value": "Breadcrumbs"
+      },
+      {
+        "token": "euiStepStrings.current",
+        "changeType": "added",
+        "value": "Current step {number}: {title}"
+      },
+      {
+        "token": "euiStepStrings.simpleCurrent",
+        "changeType": "added",
+        "value": "Current step is {number}"
+      }
+    ]
+  },
+  {
     "version": "35.1.0",
     "changes": [
       {
