@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `37.1.0`.
+
+## [`37.1.0`](https://github.com/elastic/eui/tree/v37.1.0)
+
 - Added `isDisabled` prop to `EuiFormRow` that disables the child field element ([#4908](https://github.com/elastic/eui/pull/4908))
 
 ## [`37.0.0`](https://github.com/elastic/eui/tree/v37.0.0)
