@@ -2,6 +2,10 @@
 
 - Added `isDisabled` prop to `EuiFormRow` that disables the child field element ([#4908](https://github.com/elastic/eui/pull/4908))
 
+**Bug fixes**
+
+- Fixed content in `EuiFilterButton` when `numFilters` is not passed ([#5012](https://github.com/elastic/eui/pull/5012))
+
 ## [`37.0.0`](https://github.com/elastic/eui/tree/v37.0.0)
 
 - Added `fleetApp` and `agentApp` icons ([#4989](https://github.com/elastic/eui/pull/4989))
