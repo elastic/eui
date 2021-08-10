@@ -15,6 +15,8 @@ import { sizeToPixel } from '../../../../global_styling/variables/_size';
 
 export const border_ams: EuiThemeBorder = {
   ...border,
-  radius: computed(sizeToPixel(0.375)),
-  radiusSmall: computed(sizeToPixel(0.25)),
+  radius: {
+    medium: computed(sizeToPixel(0.375)),
+    small: computed(sizeToPixel(0.25)),
+  },
 };

@@ -48,11 +48,19 @@ export const EuiThemeFontScale: FunctionComponent<_EuiThemeFontScale> = () => (
 );
 
 import {
-  _EuiThemeBorderValues,
+  _EuiThemeBorderColorValues,
   _EuiThemeBorderTypes,
+  _EuiThemeBorderRadiusValues,
+  _EuiThemeBorderWidthValues,
 } from '../../../../src/global_styling/variables/_borders';
 
-export const EuiThemeBorderValues: FunctionComponent<_EuiThemeBorderValues> = () => (
+export const EuiThemeBorderRadiusValues: FunctionComponent<_EuiThemeBorderRadiusValues> = () => (
+  <div />
+);
+export const EuiThemeBorderWidthValues: FunctionComponent<_EuiThemeBorderWidthValues> = () => (
+  <div />
+);
+export const EuiThemeBorderColorValues: FunctionComponent<_EuiThemeBorderColorValues> = () => (
   <div />
 );
 export const EuiThemeBorderTypes: FunctionComponent<_EuiThemeBorderTypes> = () => (

@@ -76,7 +76,7 @@ export default ({ onThemeUpdate }) => {
                           height: ${euiTheme.base}px;
                           border-radius: min(
                             25%,
-                            ${euiTheme.border.radiusSmall}
+                            ${euiTheme.border.radius.small}
                           );
                           background: ${euiTheme.colors.mediumShade};
                         `}
@@ -108,7 +108,7 @@ export default ({ onThemeUpdate }) => {
                           height: ${sizes[size]};
                           border-radius: min(
                             25%,
-                            ${euiTheme.border.radiusSmall}
+                            ${euiTheme.border.radius.small}
                           );
                           background: ${euiTheme.colors.mediumShade};
                         `}

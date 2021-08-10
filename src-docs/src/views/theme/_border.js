@@ -19,7 +19,9 @@ import { ThemeValue } from './_values';
 import {
   getPropsFromThemeKey,
   EuiThemeBorderTypes,
-  EuiThemeBorderValues,
+  EuiThemeBorderColorValues,
+  EuiThemeBorderWidthValues,
+  EuiThemeBorderRadiusValues,
 } from './_props';
 
 export default ({ onThemeUpdate }) => {
@@ -31,14 +33,28 @@ export default ({ onThemeUpdate }) => {
     onUpdate: onThemeUpdate,
     time: 1000,
   });
+  const [radiusClone, updateRadius] = useDebouncedUpdate({
+    property: ['border', 'radius'],
+    value: border,
+    onUpdate: onThemeUpdate,
+    time: 1000,
+  });
+  const [widthClone, updateWidth] = useDebouncedUpdate({
+    property: ['border', 'weight'],
+    value: border,
+    onUpdate: onThemeUpdate,
+    time: 1000,
+  });
 
-  const valueProps = getPropsFromThemeKey(EuiThemeBorderValues);
+  const colorProps = getPropsFromThemeKey(EuiThemeBorderColorValues);
+  const widthProps = getPropsFromThemeKey(EuiThemeBorderWidthValues);
+  const radiusProps = getPropsFromThemeKey(EuiThemeBorderRadiusValues);
   const typeProps = getPropsFromThemeKey(EuiThemeBorderTypes);
 
   const style = css`
     width: ${euiTheme.size.xl};
     height: ${euiTheme.size.xl};
-    border-radius: ${euiTheme.border.radiusSmall};
+    border-radius: ${euiTheme.border.radius.small};
   `;
 
   const wrappingExampleStyle = {
@@ -67,26 +83,66 @@ export default ({ onThemeUpdate }) => {
               <>
                 <EuiSpacer />
                 <ThemeSection
-                  code="_EuiThemeBorderValues"
+                  code="_EuiThemeBorderColorValues"
                   description={
                     <p>
-                      These basic properties make up the thickness, color and
-                      corner radii which can be used individually.
+                      EUI only has one base color it uses for all borders (or
+                      calculated borders).
                     </p>
                   }
-                  themeValues={Object.keys(valueProps).map((prop) => (
+                  themeValues={Object.keys(colorProps).map((prop) => (
                     <EuiFlexItem key={prop}>
                       <ThemeValue
                         property="border"
-                        type={valueProps[prop]}
+                        type={colorProps[prop]}
                         name={prop}
                         value={borderClone[prop]}
                         onUpdate={(value) => updateBorder(prop, value)}
                         example={
-                          prop === 'color' ? (
-                            <EuiColorPickerSwatch color={borderClone[prop]} />
-                          ) : undefined
+                          <EuiColorPickerSwatch color={borderClone[prop]} />
                         }
+                      />
+                    </EuiFlexItem>
+                  ))}
+                />
+                <EuiSpacer size="xxl" />
+                <ThemeSection
+                  code="_EuiThemeBorderWidthValues"
+                  description={
+                    <p>
+                      These basic properties make up the border thickness which
+                      can be used individually.
+                    </p>
+                  }
+                  themeValues={Object.keys(widthProps).map((prop) => (
+                    <EuiFlexItem key={prop}>
+                      <ThemeValue
+                        property="border.width"
+                        type={widthProps[prop]}
+                        name={prop}
+                        value={widthClone.width[prop]}
+                        onUpdate={(value) => updateWidth(prop, value)}
+                      />
+                    </EuiFlexItem>
+                  ))}
+                />
+                <EuiSpacer size="xxl" />
+                <ThemeSection
+                  code="_EuiThemeBorderRadiusValues"
+                  description={
+                    <p>
+                      These basic properties make up the corner radii which can
+                      be used individually.
+                    </p>
+                  }
+                  themeValues={Object.keys(radiusProps).map((prop) => (
+                    <EuiFlexItem key={prop}>
+                      <ThemeValue
+                        property="border.radius"
+                        type={radiusProps[prop]}
+                        name={prop}
+                        value={radiusClone.radius[prop]}
+                        onUpdate={(value) => updateRadius(prop, value)}
                       />
                     </EuiFlexItem>
                   ))}
@@ -152,7 +208,7 @@ export default ({ onThemeUpdate }) => {
                 />
                 <EuiSpacer />
                 <ThemeSection
-                  code="euiTheme.border[value]"
+                  code="euiTheme.border[property][value]"
                   description={
                     <p>
                       You can also strictly use the border values within a
@@ -163,14 +219,14 @@ export default ({ onThemeUpdate }) => {
                     <div
                       style={wrappingExampleStyle}
                       css={css`
-                        border: ${euiTheme.border.widthThick} dashed
+                        border: ${euiTheme.border.width.thick} dashed
                           ${euiTheme.border.color};
                       `}>
-                      <strong>{`border: ${euiTheme.border.widthThick} dashed ${euiTheme.border.color}`}</strong>
+                      <strong>{`border: ${euiTheme.border.width.thick} dashed ${euiTheme.border.color}`}</strong>
                     </div>
                   }
                   snippet={
-                    'border: ${euiTheme.border.widthThick} dashed ${euiTheme.border.color};'
+                    'border: ${euiTheme.border.width.thick} dashed ${euiTheme.border.color};'
                   }
                 />
                 <EuiSpacer />
@@ -180,12 +236,12 @@ export default ({ onThemeUpdate }) => {
                       style={wrappingExampleStyle}
                       css={css`
                         border: ${euiTheme.border.thick};
-                        border-radius: ${euiTheme.border.radius};
+                        border-radius: ${euiTheme.border.radius.medium};
                       `}>
-                      <strong>{`border-radius: ${euiTheme.border.radius}`}</strong>
+                      <strong>{`border-radius: ${euiTheme.border.radius.medium}`}</strong>
                     </div>
                   }
-                  snippet={'border-radius: ${euiTheme.border.radius};'}
+                  snippet={'border-radius: ${euiTheme.border.radius.medium};'}
                 />
                 <EuiSpacer />
               </>

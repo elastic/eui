@@ -13,7 +13,6 @@ import {
 
 import {
   EuiText,
-  EuiTitle,
   EuiSpacer,
   EuiFlexGroup,
   EuiFlexItem,
@@ -58,14 +57,11 @@ export default ({ onThemeUpdate }) => {
 
   return (
     <div>
-      <EuiTitle>
+      <EuiText>
         <h2>
-          Colors{' '}
-          <small>
-            <EuiCode>EuiThemeColors</EuiCode>
-          </small>
+          Colors <EuiCode>EuiThemeColors</EuiCode>
         </h2>
-      </EuiTitle>
+      </EuiText>
 
       <EuiSpacer />
 

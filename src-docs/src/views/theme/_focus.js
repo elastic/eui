@@ -31,7 +31,7 @@ export default ({ onThemeUpdate }) => {
   const style = css`
     width: ${euiTheme.size.xl};
     height: ${euiTheme.size.xl};
-    border-radius: ${euiTheme.border.radiusSmall};
+    border-radius: ${euiTheme.border.radius.small};
   `;
 
   return (
