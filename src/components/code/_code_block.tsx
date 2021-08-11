@@ -245,7 +245,8 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
     {
       'euiCodeBlock--transparentBackground': transparentBackground,
       'euiCodeBlock--inline': inline,
-      'euiCodeBlock--hasControls': isCopyable || overflowHeight,
+      'euiCodeBlock--hasControl': isCopyable || overflowHeight,
+      'euiCodeBlock--hasBothControls': isCopyable && overflowHeight,
     },
     {
       prismjs: !className?.includes('prismjs'),
