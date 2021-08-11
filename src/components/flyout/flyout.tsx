@@ -185,7 +185,7 @@ const EuiFlyout = forwardRef(
       style,
       maskProps,
       type = 'overlay',
-      outsideClickCloses = false,
+      outsideClickCloses,
       role = 'dialog',
       pushMinBreakpoint = 'l',
       ...rest
@@ -363,7 +363,7 @@ const EuiFlyout = forwardRef(
       <EuiFocusTrap disabled={isPushed} clickOutsideDisables={!ownFocus}>
         {/* Outside click detector is needed if theres no overlay mask to auto-close when clicking on elements outside */}
         <EuiOutsideClickDetector
-          isDisabled={isPushed || !outsideClickCloses}
+          isDisabled={isPushed || outsideClickCloses === false}
           onOutsideClick={() => onClose()}>
           {flyoutContent}
         </EuiOutsideClickDetector>
@@ -374,7 +374,7 @@ const EuiFlyout = forwardRef(
     if (ownFocus && !isPushed) {
       flyout = (
         <EuiOverlayMask
-          onClick={onClose}
+          onClick={outsideClickCloses === false ? undefined : onClose}
           headerZindexLocation="below"
           {...maskProps}>
           {flyout}
