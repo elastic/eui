@@ -53,7 +53,7 @@ import { ExpandedItemActions } from './expanded_item_actions';
 
 import { Pagination, PaginationBar } from './pagination_bar';
 import { EuiIcon } from '../icon';
-import { EuiKeyboardAccessible, EuiScreenReaderOnly } from '../accessibility';
+import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import { EuiDelayRender } from '../delay_render';
 
@@ -1119,11 +1119,7 @@ export class EuiBasicTable<T = any> extends Component<
 
     return (
       <Fragment key={`row_${itemId}`}>
-        {(rowProps as any).onClick ? (
-          <EuiKeyboardAccessible>{row}</EuiKeyboardAccessible>
-        ) : (
-          row
-        )}
+        {row}
         {expandedRow}
       </Fragment>
     );

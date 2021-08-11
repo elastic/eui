@@ -83,6 +83,10 @@ type EuiFormRowCommonProps = CommonProps & {
    *  Adds a single node/string or an array of nodes/strings below the input
    */
   helpText?: ReactNode | ReactNode[];
+  /**
+   *  Passed along to the child field element if `disabled` doesn't already exist on the child
+   */
+  isDisabled?: boolean;
 };
 
 type LabelProps = {
@@ -97,7 +101,7 @@ type LegendProps = {
    */
   labelType?: 'legend';
 } & EuiFormRowCommonProps &
-  HTMLAttributes<HTMLFieldSetElement>;
+  Omit<HTMLAttributes<HTMLFieldSetElement>, 'disabled'>;
 
 export type EuiFormRowProps = ExclusiveUnion<LabelProps, LegendProps>;
 
@@ -162,6 +166,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       display,
       hasChildLabel,
       id: propsId,
+      isDisabled,
       ...rest
     } = this.props;
 
@@ -262,8 +267,11 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       optionalProps['aria-describedby'] = describingIds.join(' ');
     }
 
-    const field = cloneElement(Children.only(children), {
+    const child = Children.only(children);
+    const field = cloneElement(child, {
       id,
+      // Allow the child's disabled prop to supercede the `isDisabled`
+      disabled: child.props.disabled ?? isDisabled,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       ...optionalProps,

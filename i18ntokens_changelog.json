@@ -1,5 +1,20 @@
 [
   {
+    "version": "37.0.0",
+    "changes": [
+      {
+        "token": "euiDatePopoverButton.invalidTitle",
+        "changeType": "added",
+        "value": "Invalid date: {title}"
+      },
+      {
+        "token": "euiDatePopoverButton.outdatedTitle",
+        "changeType": "added",
+        "value": "Update needed: {title}"
+      }
+    ]
+  },
+  {
     "version": "36.1.0",
     "changes": [
       {
