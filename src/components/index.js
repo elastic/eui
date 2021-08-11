@@ -12,11 +12,7 @@ export { EuiAspectRatio } from './aspect_ratio';
 
 export { EuiAvatar } from './avatar';
 
-export {
-  EuiKeyboardAccessible,
-  EuiScreenReaderOnly,
-  EuiSkipLink,
-} from './accessibility';
+export { EuiScreenReaderOnly, EuiSkipLink } from './accessibility';
 
 export {
   EuiBadge,
