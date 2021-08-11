@@ -4,8 +4,17 @@
 
 
 .euiDatePicker {
+  display: block;
+
   .euiFormControlLayout {
     height: auto;
+  }
+
+  &.euiDatePicker--inline {
+    .euiFormControlLayout {
+      display: inline-block;
+      width: auto;
+    }
   }
 
   &.euiDatePicker--shadow {
@@ -24,11 +33,6 @@
         border: $euiBorderThin;
         background-color: $euiColorEmptyShade;
         border-radius: $euiBorderRadius;
-      }
-
-      .euiFormControlLayout {
-        display: inline-block;
-        width: auto;
       }
     }
   }
@@ -76,18 +80,18 @@
   justify-content: center;
 }
 
+.react-datepicker__month-container {
+  flex-grow: 1;
+  margin-top: $euiSizeXL + $euiDatePickerGap;
+}
+
 .react-datepicker__header {
   display: flex;
   flex-direction: column;
-  margin-top: $euiSizeXL + $euiDatePickerGap;
 }
 
 .react-datepicker-time__header {
   @include euiTextTruncate;
-}
-
-.react-datepicker__month-container {
-  flex-grow: 1;
 }
 
 .react-datepicker__month {
