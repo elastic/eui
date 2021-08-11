@@ -15,7 +15,7 @@ import { base, size } from '../../global_styling/variables/_size';
 import { focus } from '../../global_styling/variables/_states';
 import { font } from '../../global_styling/variables/_typography';
 import { border } from '../../global_styling/variables/_borders';
-import { fontSize } from '../../global_styling/variables/text';
+// import { fontSize } from '../../global_styling/variables/text';
 
 export const euiThemeDefault: EuiThemeShape = {
   colors,
@@ -23,7 +23,7 @@ export const euiThemeDefault: EuiThemeShape = {
   size,
   font: {
     ...font,
-    ...fontSize,
+    // ...fontSize,
   },
   border,
   focus,
