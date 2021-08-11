@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Changed `copy` icon to `copyClipboard` in `EuiCodeBlock` ([#5018](https://github.com/elastic/eui/pull/5018))
+
 **Bug fixes**
 
 - Fixed usage of `outsideClickCloses` prop of `EuiFlyout` ([#4986](https://github.com/elastic/eui/pull/4986))
