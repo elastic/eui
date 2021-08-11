@@ -228,7 +228,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       } else {
         labelProps = {
           htmlFor: hasChildLabel ? id : undefined,
-          isFocused: this.state.isFocused,
+          ...(!isDisabled && { isFocused: this.state.isFocused }), // If the row is disabled, don't pass the isFocused state.
           type: labelType,
         };
       }
