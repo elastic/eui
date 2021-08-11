@@ -1,21 +1,8 @@
 /* This file is a heavy retheme of react-datepicker's Sass as of v1.4.0
 ** https://github.com/Hacker0x01/react-datepicker
-**
-** In places where features were disabled, I've commented out the original Sass
-** selectors rather than removing it so we can better understand what's changed.
-** Commented out selectors that don't have properties indicate that we are not
-** using those dom elements for styling of any kind. For example, react-datepicker
-** has lots of pointer arrows attached to its popovers, but we choose not to render
-** then in any way.
-**
-** Similarly, you will also find several times where we use display: none to
-** completely remove extraneous UI (they had some overly obvious legends for example).
 */
 
 
-// The only "new" css in this component is a wrapper class for dealing with shadows.
-// This is mostly here so that we can provide an inline version that doesn't have the
-// shadows and depth.
 .euiDatePicker {
   .euiFormControlLayout {
     height: auto;

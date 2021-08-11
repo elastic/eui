@@ -45,7 +45,9 @@
   }
 }
 
-// Creates the Amsterdam style of button with a transparent background
+/*
+ * Creates the Amsterdam style of fill button
+ */
 @mixin euiButtonFillStyle($color: 'primary') {
   $backgroundColor: $color;
 

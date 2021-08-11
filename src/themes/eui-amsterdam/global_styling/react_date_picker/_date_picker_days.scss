@@ -109,14 +109,6 @@
     @include euiButtonFillStyle;
   }
 
-  // THis doesn't seem to mean keyboard focus
-  // &--keyboard-selected,
-  // &--keyboard-selected:hover {
-  //   @include euiButtonDefaultStyle($euiColorPrimary);
-  //   font-weight: $euiFontWeightBold;
-  //   outline: $euiFocusRingSize solid currentColor;
-  // }
-
   &--in-selecting-range:not(&--in-range) {
     background-color: transparentize($euiColorDanger, .5); //todo
   }
