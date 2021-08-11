@@ -15,16 +15,12 @@ import { colors_ams } from './global_styling/variables/_colors';
 import { font_ams } from './global_styling/variables/_typography';
 import { border_ams } from './global_styling/variables/_borders';
 import { focus_ams } from './global_styling/variables/_states';
-import { fontSize } from '../../global_styling/variables/text';
 
 export const euiThemeAmsterdam: EuiThemeShape = {
   colors: colors_ams,
   base,
   size,
-  font: {
-    ...font_ams,
-    ...fontSize,
-  },
+  font: font_ams,
   border: border_ams,
   focus: focus_ams,
   animation,

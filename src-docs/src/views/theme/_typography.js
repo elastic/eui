@@ -242,11 +242,12 @@ export default ({ onThemeUpdate }) => {
                         .
                       </p>
                       <p>
-                        You do not want to consume this scale directly. Instead,
-                        you will want to use the calculated font sizing keys
-                        such as <EuiCode>font.s</EuiCode> or{' '}
-                        <EuiCode>font.s.fontSize</EuiCode>. See the{' '}
-                        <strong>Usage</strong> tab for more details.
+                        For regular text sizing, we recommend using the{' '}
+                        <Link to="/display/text">
+                          <strong>EuiText</strong>
+                        </Link>{' '}
+                        component directly and sticking to the sizing props
+                        provided.
                       </p>
                     </>
                   }
@@ -290,14 +291,14 @@ export default ({ onThemeUpdate }) => {
                     </p>
                   }
                   example={
-                    <code
+                    <p
                       css={css`
-                        font-family: ${euiTheme.font.family};
+                        font-family: ${euiTheme.font.familyCode};
                       `}>
-                      {'I am a code element forced to default font family'}
-                    </code>
+                      {'I am a paragraph rendered using the code font family'}
+                    </p>
                   }
-                  snippet={'font-family: ${euiTheme.font.family};'}
+                  snippet={'font-family: ${euiTheme.font.familyCode};'}
                 />
                 <EuiSpacer />
                 <ThemeSection
@@ -320,67 +321,6 @@ export default ({ onThemeUpdate }) => {
                     </div>
                   }
                   snippet={'font-weight: ${euiTheme.font.weight.bold};'}
-                />
-                <EuiSpacer />
-                <ThemeSection
-                  code="euiTheme.font[size]"
-                  description={
-                    <>
-                      <p>
-                        To ensure proper baseline alignment and readable
-                        line-height, the theme&apos;s font sizing keys come with
-                        both font-size <strong>and</strong> line-height. Because
-                        of this, we recommend the array approach to applying
-                        with Emotion.
-                      </p>
-                      <p>
-                        While this works well, we still recommend using the{' '}
-                        <Link to="/display/text">
-                          <strong>EuiText</strong>
-                        </Link>{' '}
-                        component directly and sticking to the sizing props
-                        provided.
-                      </p>
-                    </>
-                  }
-                  example={
-                    <div css={[euiTheme.font.s]}>
-                      <p>
-                        Orbiting this at a distance of roughly ninety-two
-                        million miles is an utterly insignificant little blue
-                        green planet whose ape- descended life forms are so
-                        amazingly primitive that they still think digital
-                        watches are a pretty neat idea.
-                      </p>
-                    </div>
-                  }
-                  customSnippet={'css={[euiTheme.font.s]}'}
-                />
-                <EuiSpacer />
-                <ThemeSection
-                  code="euiTheme.font[size].fontSize"
-                  description={
-                    <>
-                      <p>
-                        You can still grab just the font-size value if need be.
-                      </p>
-                    </>
-                  }
-                  example={
-                    <div
-                      css={css`
-                        font-size: ${euiTheme.font.s.fontSize};
-                      `}>
-                      <p>
-                        Orbiting this at a distance of roughly ninety-two
-                        million miles is an utterly insignificant little blue
-                        green planet whose ape- descended life forms are so
-                        amazingly primitive that they still think digital
-                        watches are a pretty neat idea.
-                      </p>
-                    </div>
-                  }
-                  snippet={'font-size: ${euiTheme.font.s.fontSize};'}
                 />
                 <EuiSpacer />
               </>
