@@ -7,6 +7,7 @@
 ## [`37.1.0`](https://github.com/elastic/eui/tree/v37.1.0)
 
 - Added `isDisabled` prop to `EuiFormRow` that disables the child field element ([#4908](https://github.com/elastic/eui/pull/4908))
+- Added `isDisabled` prop to `EuiFormLabel` and passed it down from `EuiFormRow` ([#5009](https://github.com/elastic/eui/pull/#5009))
 
 ## [`37.0.0`](https://github.com/elastic/eui/tree/v37.0.0)
 
