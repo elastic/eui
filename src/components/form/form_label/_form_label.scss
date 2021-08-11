@@ -1,5 +1,6 @@
 /**
  * 1. Focused state overrides invalid state.
+ * 2. Disabled state overrides pointer.
  */
 .euiFormLabel {
   @include euiFormLabel;
@@ -13,8 +14,12 @@
   &.euiFormLabel-isFocused {
     color: $euiColorPrimary; /* 1 */
   }
-}
 
-.euiFormLabel[for] {
-  cursor: pointer;
+  &[for] {
+    cursor: pointer; /* 2 */
+  }
+
+  &[for].euiFormLabel-isDisabled {
+    cursor: default; /* 2 */
+  }
 }
