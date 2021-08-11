@@ -13,6 +13,7 @@ import {
 export default () => {
   const [files, setFiles] = useState({});
   const [large, setLarge] = useState(true);
+  const myRef = React.useRef();
 
   const onChange = (files) => {
     setFiles(files);
@@ -38,6 +39,9 @@ export default () => {
 
   return (
     <Fragment>
+      <button type="button" onClick={() => myRef.current.removeFiles()}>
+        Clear selection
+      </button>
       <EuiFlexGroup>
         <EuiFlexItem grow={2}>
           {/* DisplayToggles wrapper for Docs only */}
@@ -54,6 +58,7 @@ export default () => {
               />,
             ]}>
             <EuiFilePicker
+              ref={myRef}
               id="asdf2"
               multiple
               initialPromptText="Select or drag and drop multiple files"
