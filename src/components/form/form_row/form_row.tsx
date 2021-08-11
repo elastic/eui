@@ -84,7 +84,7 @@ type EuiFormRowCommonProps = CommonProps & {
    */
   helpText?: ReactNode | ReactNode[];
   /**
-   *  Passed along to the child field element if `disabled` doesn't already exist on the child
+   *  Passed along to the label element; and to the child field element when `disabled` doesn't already exist on the child field element.
    */
   isDisabled?: boolean;
 };
@@ -228,7 +228,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       } else {
         labelProps = {
           htmlFor: hasChildLabel ? id : undefined,
-          isFocused: this.state.isFocused,
+          ...(!isDisabled && { isFocused: this.state.isFocused }), // If the row is disabled, don't pass the isFocused state.
           type: labelType,
         };
       }
@@ -237,6 +237,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
           <EuiFormLabel
             className="euiFormRow__label"
             isInvalid={isInvalid}
+            isDisabled={isDisabled}
             aria-invalid={isInvalid}
             {...labelProps}>
             {label}
