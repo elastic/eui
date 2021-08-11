@@ -299,7 +299,7 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
                 {(copy) => (
                   <EuiButtonIcon
                     onClick={copy}
-                    iconType="copy"
+                    iconType="copyClipboard"
                     color="text"
                     aria-label={copyButton}
                   />

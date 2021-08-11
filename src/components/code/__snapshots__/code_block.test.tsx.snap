@@ -192,7 +192,7 @@ console.log(some);"
                   <EuiButtonIcon
                     aria-label="Copy"
                     color="text"
-                    iconType="copy"
+                    iconType="copyClipboard"
                     onBlur={[Function]}
                     onClick={[Function]}
                     onFocus={[Function]}
@@ -211,13 +211,13 @@ console.log(some);"
                         className="euiButtonIcon__icon"
                         color="inherit"
                         size="m"
-                        type="copy"
+                        type="copyClipboard"
                       >
                         <span
                           aria-hidden="true"
                           className="euiButtonIcon__icon"
                           color="inherit"
-                          data-euiicon-type="copy"
+                          data-euiicon-type="copyClipboard"
                           size="m"
                         />
                       </EuiIcon>
