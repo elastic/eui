@@ -40,7 +40,7 @@ export default ({ onThemeUpdate }) => {
     time: 1000,
   });
   const [widthClone, updateWidth] = useDebouncedUpdate({
-    property: ['border', 'weight'],
+    property: ['border', 'width'],
     value: border,
     onUpdate: onThemeUpdate,
     time: 1000,

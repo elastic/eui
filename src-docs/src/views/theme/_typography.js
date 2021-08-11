@@ -56,8 +56,8 @@ export default ({ onThemeUpdate }) => {
   const weightProps = getPropsFromThemeKey(EuiThemeFontWeight);
   const scaleProps = getPropsFromThemeKey(EuiThemeFontScale);
 
-  const fontFamilies = font.family.split(',');
-  const codeFontFamilies = font.familyCode.split(',');
+  const fontFamilies = fontClone.family.split(',');
+  const codeFontFamilies = fontClone.familyCode.split(',');
 
   return (
     <div>
@@ -108,8 +108,12 @@ export default ({ onThemeUpdate }) => {
                           property={'font'}
                           type={baseProps.family}
                           name={'family'}
-                          // value={fontFamilies[0]}
-                          // onUpdate={(value) => updateFont('family', value)}
+                          value={fontFamilies[0]}
+                          onUpdate={(value) => {
+                            const out = [...fontFamilies];
+                            out.splice(0, 1, value);
+                            updateFont('family', out.join(','));
+                          }}
                         />
                         <EuiSpacer size="s" />
                         {/* The loop below renders each font family applied to a span. */}
@@ -131,8 +135,12 @@ export default ({ onThemeUpdate }) => {
                           property={'font'}
                           type={baseProps.familyCode}
                           name={'familyCode'}
-                          // value={codeFontFamilies[0]}
-                          // onUpdate={(value) => updateFont('familyCode', value)}
+                          value={codeFontFamilies[0]}
+                          onUpdate={(value) => {
+                            const out = [...codeFontFamilies];
+                            out.splice(0, 1, value);
+                            updateFont('familyCode', out.join(','));
+                          }}
                         />
                         <EuiSpacer size="s" />
                         {/* The loop below renders each font family applied to a span. */}
