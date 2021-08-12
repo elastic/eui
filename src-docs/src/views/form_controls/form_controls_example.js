@@ -336,29 +336,19 @@ export const FormControlsExample = {
         },
       ],
       text: (
-        <>
-          <p>
-            <strong>EuiFilePicker</strong> is a stylized, but generic HTML{' '}
-            <EuiCode language="html">
-              &lt;input type=&quot;file&quot;&gt;
-            </EuiCode>{' '}
-            tag. It supports drag and drop as well as on click style selection
-            of files. The example below shows how to grab the files using the{' '}
-            <EuiLink
-              href="https://developer.mozilla.org/en-US/docs/Web/API/FileList"
-              target="_blank">
-              FileList API
-            </EuiLink>
-            . Like other form elements, you can wrap it in a{' '}
-            <strong>EuiFormRow</strong> to apply a label.
-          </p>
-          <p>
-            The current file selection can be cleared programmatically by
-            calling the <EuiCode>removeFiles</EuiCode> method, which can be
-            accessed on a component instance via React <EuiCode>ref</EuiCode>:{' '}
-            <EuiCode>filePickerRef.current.removeFiles()</EuiCode>.
-          </p>
-        </>
+        <p>
+          <strong>EuiFilePicker</strong> is a stylized, but generic HTML{' '}
+          <EuiCode language="html">&lt;input type=&quot;file&quot;&gt;</EuiCode>{' '}
+          tag. It supports drag and drop as well as on click style selection of
+          files. The example below shows how to grab the files using the{' '}
+          <EuiLink
+            href="https://developer.mozilla.org/en-US/docs/Web/API/FileList"
+            target="_blank">
+            FileList API
+          </EuiLink>
+          . Like other form elements, you can wrap it in a{' '}
+          <strong>EuiFormRow</strong> to apply a label.
+        </p>
       ),
       components: { EuiFilePicker },
       snippet: filePickerSnippet,
