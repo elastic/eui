@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiBreadcrumbs } from '../../../../src/components';
+import { EuiCode, EuiBreadcrumbs, EuiText } from '../../../../src/components';
 import { BreadcrumbResponsiveMaxCount, BreadcrumbProps } from './props';
 
 import { breadcrumbsConfig } from './playground';
@@ -22,6 +22,7 @@ import TruncateSingle from './truncate_single';
 const truncateSingleSource = require('!!raw-loader!./truncate_single');
 
 import Max from './max';
+import { EuiCallOut } from '../../../../src/components/call_out';
 const maxSource = require('!!raw-loader!./max');
 
 const breadcrumpProps = {
@@ -32,6 +33,22 @@ const breadcrumpProps = {
 
 export const BreadcrumbsExample = {
   title: 'Breadcrumbs',
+  intro: (
+    <EuiText grow={false}>
+      <p>
+        <strong>EuiBreadcrumbs</strong> let the user track their progress within
+        and back out of a UX flow and work well when used in combination with{' '}
+        <Link to="/layout/page-header">
+          <strong>EuiPageHeader</strong>
+        </Link>
+        . They are meant to be used at lower page level flows, while{' '}
+        <Link to="/layout/header">
+          <strong>EuiHeaderBreadcrumbs</strong>
+        </Link>{' '}
+        should be used for application-wide navigation.
+      </p>
+    </EuiText>
+  ),
   sections: [
     {
       source: [
@@ -41,22 +58,28 @@ export const BreadcrumbsExample = {
         },
       ],
       text: (
-        <p>
-          <strong>EuiBreadcrumbs</strong> let the user track their progress
-          within and back out of a UX flow. You can provide an{' '}
-          <EuiCode>href</EuiCode> prop on any breadcrumb item that you wish to
-          make clickable, including the last item, though we recommend the last
-          item represent the current page and therefore the link is unnecessary.
-          They work well within{' '}
-          <Link to="/layout/page">
-            <strong>EuiPageContentHeader</strong>
-          </Link>{' '}
-          but be careful not to use them within an app that also uses{' '}
-          <Link to="/layout/header">
-            <strong>EuiHeaderBreadcrumbs</strong>
-          </Link>
-          .
-        </p>
+        <>
+          <p>
+            <strong>EuiBreadcrumbs</strong> requires an array of{' '}
+            <strong>EuiBreadcrumb</strong> objects as{' '}
+            <EuiCode>breadcrumbs</EuiCode> and handles truncation, including
+            middle-truncation in the case of many items, and mobile
+            responsiveness. Each item accepts an <EuiCode>href</EuiCode> prop,
+            though we recommend the last item represent the current page and
+            therefore the link is unnecessary.
+          </p>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            title={
+              <>
+                For accessibility, it is highly recommended to provide a
+                descriptive <EuiCode>aria-label</EuiCode> for each set of
+                breadcrumbs.
+              </>
+            }
+          />
+        </>
       ),
       props: breadcrumpProps,
       playground: breadcrumbsConfig,
@@ -70,11 +93,15 @@ export const BreadcrumbsExample = {
       text: 'Breadcrumb 2',
       href: '#',
     },
+    {
+      text: 'Current',
+      href: '#',
+    },
   ]}
-  aria-label=""
 />
 `,
       demo: <Breadcrumbs />,
+      demoPanelProps: { color: 'subdued' },
     },
     {
       title: 'Limit the number of breadcrumbs',
@@ -98,7 +125,6 @@ export const BreadcrumbsExample = {
       snippet: `<EuiBreadcrumbs
   max={4}
   breadcrumbs={breadcrumbs}
-  aria-label=""
 />`,
       demo: <Max />,
     },
@@ -126,7 +152,6 @@ export const BreadcrumbsExample = {
         `<EuiBreadcrumbs
   truncate={true}
   breadcrumbs={breadcrumbs}
-  aria-label=""
 />`,
       ],
     },
@@ -139,11 +164,10 @@ export const BreadcrumbsExample = {
       ],
       text: (
         <>
-          <h3>Single item only</h3>
           <p>
-            You can also force truncation on single breadcrumb{' '}
+            Alternatively, you can force truncation on single breadcrumb{' '}
             <strong>item</strong> by adding{' '}
-            <EuiCode>{'truncate: true'}</EuiCode>.
+            <EuiCode>{'truncate: true'}</EuiCode> to the object.
           </p>
         </>
       ),
@@ -158,7 +182,6 @@ export const BreadcrumbsExample = {
       truncate: true,
     }
   ]}
-  aria-label=""
 />`,
       ],
     },
@@ -186,7 +209,6 @@ export const BreadcrumbsExample = {
   responsive={false}
   max={null}
   breadcrumbs={breadcrumbs}
-  aria-label=""
 />`,
       ],
       demo: <Responsive />,
@@ -200,7 +222,6 @@ export const BreadcrumbsExample = {
       ],
       text: (
         <>
-          <h3>Customizing number of items to display</h3>
           <p>
             Alternatively, you can change number of breadcrumbs that show per
             breakpoint by passing a custom responsive object.
@@ -216,7 +237,6 @@ export const BreadcrumbsExample = {
   }}
   max={null}
   breadcrumbs={breadcrumbs}
-  aria-label=""
 />`,
       ],
       demo: <ResponsiveCustom />,
