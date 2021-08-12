@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Fixed usage of `outsideClickCloses` prop of `EuiFlyout` ([#4986](https://github.com/elastic/eui/pull/4986))
+- [EuiSelectable] Fix logic to detect the blur event coming from child popover ([#5021](https://github.com/elastic/eui/pull/5021))
 
 ## [`37.1.0`](https://github.com/elastic/eui/tree/v37.1.0)
 
