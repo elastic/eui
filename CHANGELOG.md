@@ -3,7 +3,7 @@
 **Bug fixes**
 
 - Fixed content in `EuiFilterButton` when `numFilters` is not passed ([#5012](https://github.com/elastic/eui/pull/5012))
-- Fixed `EuiSelectable`'s logic to detect the blur event coming from child popover ([#5021](https://github.com/elastic/eui/pull/5021))
+- Fixed `EuiSelectable`'s double click bug ([#5021](https://github.com/elastic/eui/pull/5021))
 
 ## [`37.2.0`](https://github.com/elastic/eui/tree/v37.2.0)
 
