@@ -1,6 +1,15 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `isDisabled` prop to `EuiFormRow` that disables the child field element ([#4908](https://github.com/elastic/eui/pull/4908))
+- Added `isDisabled` prop to `EuiFormLabel` and passed it down from `EuiFormRow` ([#5009](https://github.com/elastic/eui/pull/#5009))
+
+**Bug fixes**
+
+- Fixed usage of `outsideClickCloses` prop of `EuiFlyout` ([#4986](https://github.com/elastic/eui/pull/4986))
+- Fixed `EuiFormRow` ignoring `isDisabled` prop on the child element. ([#5022](https://github.com/elastic/eui/pull/5022))
+
+## [`37.1.0`](https://github.com/elastic/eui/tree/v37.1.0)
+
+- Added `isDisabled` prop to `EuiFormRow` that disables the child field element ([#4908](https://github.com/elastic/eui/pull/4908
 
 **Bug fixes**
 
@@ -37,7 +46,7 @@
 **Bug fixes**
 
 - Fixed filter count of 0 in `EuiSearchBar` ([#4977](https://github.com/elastic/eui/pull/4977))
-- Fixed edge case where EuiDataGrid cells could create an infinite loop of focus changes ([#4983](https://github.com/elastic/eui/pull/4983))
+- Fixed edge case where `EuiDataGrid` cells could create an infinite loop of focus changes ([#4983](https://github.com/elastic/eui/pull/4983))
 
 **Theme: Amsterdam**
 
