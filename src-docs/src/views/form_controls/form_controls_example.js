@@ -116,6 +116,7 @@ const filePickerRemoveHtml = renderToHtml(FilePickerRemove);
 const filePickerRemoveSnippet = [
   `<EuiFilePicker
   id={filePickerId}
+  ref={filePickerRef}
   multiple
   initialPromptText="content that appears in the dropzone if no file is attached"
   onChange={onChange}
