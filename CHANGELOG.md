@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `isDisabled` prop to `EuiFormLabel` and passed it down from `EuiFormRow` ([#5009](https://github.com/elastic/eui/pull/#5009))
+- Updated `copyClipboard` glyph in `EuiIcon` to be centered ([5023](https://github.com/elastic/eui/pull/5023))
 
 **Bug fixes**
 
