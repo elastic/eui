@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Fixed usage of `outsideClickCloses` prop of `EuiFlyout` ([#4986](https://github.com/elastic/eui/pull/4986))
+- Fixed `EuiFormRow` ignoring `isDisabled` prop on the child element. ([#5022](https://github.com/elastic/eui/pull/5022))
 
 ## [`37.1.0`](https://github.com/elastic/eui/tree/v37.1.0)
 
