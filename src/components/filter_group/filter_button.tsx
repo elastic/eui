@@ -84,13 +84,17 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   );
 
   const buttonTextClassNames = classNames(
-    // 'euiFilterButton__textShift',
     {
       'euiFilterButton__text-hasNotification':
         numFiltersDefined || numActiveFilters,
     },
     textProps && textProps.className
   );
+
+  let activeFilters;
+  if (numActiveFilters && numActiveFilters > 0) {
+    activeFilters = true;
+  }
 
   let dataText;
   if (typeof children === 'string') {
@@ -108,7 +112,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
         {children}
       </span>
 
-      {(numFiltersDefined || numActiveFilters) && (
+      {(numFiltersDefined || activeFilters) && (
         <EuiI18n
           token="euiFilterButton.filterBadge"
           values={{
