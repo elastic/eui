@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `37.2.0`.
+
+## [`37.2.0`](https://github.com/elastic/eui/tree/v37.2.0)
+
 - Added `isDisabled` prop to `EuiFormLabel` and passed it down from `EuiFormRow` ([#5009](https://github.com/elastic/eui/pull/#5009))
 
 **Bug fixes**
