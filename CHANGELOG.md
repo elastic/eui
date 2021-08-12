@@ -10,6 +10,7 @@ No public interface changes since `37.2.0`.
 
 - Fixed usage of `outsideClickCloses` prop of `EuiFlyout` ([#4986](https://github.com/elastic/eui/pull/4986))
 - Fixed `EuiFormRow` ignoring `isDisabled` prop on the child element. ([#5022](https://github.com/elastic/eui/pull/5022))
+- Fixed content in `EuiFilterButton` when `numFilters` is not passed ([#5012](https://github.com/elastic/eui/pull/5012))
 
 ## [`37.1.0`](https://github.com/elastic/eui/tree/v37.1.0)
 
