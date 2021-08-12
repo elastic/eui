@@ -271,8 +271,8 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     const child = Children.only(children);
     const field = cloneElement(child, {
       id,
-      // Allow the child's disabled prop to supercede the `isDisabled`
-      disabled: child.props.disabled ?? isDisabled,
+      // Allow the child's disabled or isDisabled prop to supercede the `isDisabled`
+      disabled: child.props.disabled ?? child.props.isDisabled ?? isDisabled,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       ...optionalProps,
