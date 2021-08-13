@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -15,27 +13,21 @@ import { EuiThemeProvider } from '../../../../src/services';
 
 import Consuming from './consuming';
 const consumingSource = require('!!raw-loader!./consuming');
-const consumingHtml = renderToHtml(Consuming);
 
 import { ConsumingHOC } from './consuming_hoc';
 const consumingHOCSource = require('!!raw-loader!./consuming_hoc');
-const consumingHOCHtml = renderToHtml(ConsumingHOC);
 
 import Inverse from './inverse';
 const InverseSource = require('!!raw-loader!./inverse');
-const InverseHtml = renderToHtml(Inverse);
 
 import OverrideSimple from './override_simple';
 const overrideSimpleSource = require('!!raw-loader!./override_simple');
-const overrideSimpleHtml = renderToHtml(OverrideSimple);
 
 import Computed from './computed';
 const computedSource = require('!!raw-loader!./computed');
-const computedHtml = renderToHtml(Computed);
 
 import CreateComputed from './create_computed';
 const createComputedSource = require('!!raw-loader!./create_computed');
-const createComputedHtml = renderToHtml(CreateComputed);
 
 export const ThemeExample = {
   title: 'Theme provider',
@@ -109,10 +101,6 @@ export const ThemeExample = {
           type: GuideSectionTypes.JS,
           code: consumingSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: consumingHtml,
-        },
       ],
       text: (
         <>
@@ -155,10 +143,6 @@ export const ThemeExample = {
           type: GuideSectionTypes.JS,
           code: consumingHOCSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: consumingHOCHtml,
-        },
       ],
       text: (
         <>
@@ -176,10 +160,6 @@ export const ThemeExample = {
         {
           type: GuideSectionTypes.JS,
           code: InverseSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: InverseHtml,
         },
       ],
       text: (
@@ -206,10 +186,6 @@ export const ThemeExample = {
           type: GuideSectionTypes.JS,
           code: overrideSimpleSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: overrideSimpleHtml,
-        },
       ],
       text: (
         <>
@@ -231,10 +207,6 @@ export const ThemeExample = {
         {
           type: GuideSectionTypes.JS,
           code: computedSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: computedHtml,
         },
       ],
       text: (
@@ -263,10 +235,6 @@ export const ThemeExample = {
         {
           type: GuideSectionTypes.JS,
           code: createComputedSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: createComputedHtml,
         },
       ],
       text: (

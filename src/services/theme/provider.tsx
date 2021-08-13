@@ -59,7 +59,6 @@ export function EuiThemeProvider<T = {}>({
   );
   const prevColorMode = useRef(colorMode);
 
-  // TODO: Flip if return to using parent
   const isParentTheme = useRef(
     prevSystemKey.current === parentSystem.key &&
       colorMode === parentColorMode &&

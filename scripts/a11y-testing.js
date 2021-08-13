@@ -22,7 +22,6 @@ const docsPages = async (root, page) => {
     `${root}#/tabular-content/data-grid-footer-row`,
     `${root}#/tabular-content/data-grid-virtualization`,
     `${root}#/tabular-content/data-grid-row-height-options`,
-    `${root}#/temporary/canopy`,
   ];
 
   return [

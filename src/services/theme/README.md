@@ -9,7 +9,7 @@ The style system to replace Sass and Sass-based design tokens in EUI.
   * Override-able: all theme tokens/variables can be altered by consumers
 * Theme consumption via React hook and HOC methods
 * Color mode support as first-class consideration
-  * "Light" and "dark" mode (or defined through extensions/overrides) accounting
+  * "Light" and "dark" mode accounting
   * Theme consumption is scoped to the current color mode (set in the context provider)
 
 
@@ -68,14 +68,15 @@ Because the theme system (built theme) is immutable, modifications can only be m
 
 #### Color mode
 
-Think light and dark mode. A theme has built-in color mode support, using the `colors` property as a marker:
+Think light and dark mode. A theme has built-in color mode support, using the reserved `LIGHT` and `DARK` keys as a marker:
 
 ```js
 colors: {
-  light: {...}
-  dark : {...}
+  LIGHT: {...}
+  DARK : {...}
 }
 ```
+The reserved color mode keys can be used at any level and location in a theme.
 `getComputed` will only compute and return values in the specified current color mode.
 
 
@@ -101,7 +102,7 @@ All three props are optional. The default values for EUI will be used in the eve
 A custom React hook that returns the computed theme. This hook is little more than a wrapper around the `useContext` hook, accessing three of the top-level providers: computed theme, color mode, and modifications.
 
 ```js
-const {euiTheme, colorMode, modifications} = useEuiTheme();
+const { euiTheme, colorMode, modifications } = useEuiTheme();
 ```
 
 The `euiTheme` variable has TypeScript support, which will result in IDE autocomplete availability.
