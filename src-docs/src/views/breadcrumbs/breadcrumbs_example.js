@@ -34,7 +34,7 @@ const breadcrumpProps = {
 export const BreadcrumbsExample = {
   title: 'Breadcrumbs',
   intro: (
-    <EuiText grow={false}>
+    <EuiText>
       <p>
         <strong>EuiBreadcrumbs</strong> let the user track their progress within
         and back out of a UX flow and work well when used in combination with{' '}
