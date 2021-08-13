@@ -10,13 +10,26 @@ import { fake } from 'faker';
 
 import {
   EuiDataGrid,
-  EuiText,
-  EuiImage,
-  EuiButtonGroup,
-  EuiSpacer,
-} from '../../../../src/components/';
+  EuiDataGridProps,
+} from '../../../../src/components/datagrid';
+import { EuiText } from '../../../../src/components/text';
+import { EuiImage } from '../../../../src/components/image';
+import { EuiButtonGroup } from '../../../../src/components/button';
+import { EuiSpacer } from '../../../../src/components/spacer';
 
-const DataContext = createContext();
+interface DataShape {
+  name: string;
+  text: string;
+}
+
+type DataContextShape =
+  | undefined
+  | {
+      data: DataShape[];
+      contentTypeSelected: 'text' | 'images';
+      adjustMountedCellCount: (adjustment: number) => void;
+    };
+const DataContext = createContext<DataContextShape>(undefined);
 
 const columns = [
   {
@@ -27,16 +40,19 @@ const columns = [
   {
     id: 'text',
   },
-];
+] as EuiDataGridProps['columns'];
 
 // it is expensive to compute 10000 rows of fake data
 // instead of loading up front, generate entries on the fly
-const raw_data = [];
+const raw_data: DataShape[] = [];
 
-function RenderCellValue({ rowIndex, columnId }) {
+const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
+  rowIndex,
+  columnId,
+}) => {
   const { data, adjustMountedCellCount, contentTypeSelected } = useContext(
     DataContext
-  );
+  )!;
 
   useEffect(() => {
     adjustMountedCellCount(1);
@@ -59,9 +75,9 @@ function RenderCellValue({ rowIndex, columnId }) {
       url={`https://source.unsplash.com/${firstNumberSize}00x${firstNumberSize}00/?starwars`}
     />
   ) : (
-    data[rowIndex][columnId]
+    data[rowIndex][columnId as 'text' | 'name']
   );
-}
+};
 
 const contentTypeOptions = [
   {
@@ -77,7 +93,9 @@ const contentTypeOptions = [
 export default () => {
   // ** Pagination config
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
-  const [contentTypeSelected, setContentTypeSelected] = useState('text');
+  const [contentTypeSelected, setContentTypeSelected] = useState<
+    'text' | 'images'
+  >('text');
 
   const onChangeItemsPerPage = useCallback(
     (pageSize) =>
@@ -109,7 +127,7 @@ export default () => {
 
   const rowHeightsOptions = useMemo(
     () => ({
-      defaultHeight: 'auto',
+      defaultHeight: 'auto' as const,
       rowHeights: {
         1: {
           lineCount: 5,
@@ -120,11 +138,11 @@ export default () => {
     [contentTypeSelected]
   );
 
-  const dataContext = useMemo(
+  const dataContext = useMemo<DataContextShape>(
     () => ({
       data: raw_data,
       contentTypeSelected,
-      adjustMountedCellCount: (adjustment) =>
+      adjustMountedCellCount: (adjustment: number) =>
         setMountedCellCount(
           (mountedCellCount) => mountedCellCount + adjustment
         ),
