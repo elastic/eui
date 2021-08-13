@@ -1,7 +1,4 @@
-import {
-  EuiBreadcrumbs,
-  EuiBreadcrumb,
-} from '../../../../src/components/breadcrumbs';
+import { EuiBreadcrumbs } from '../../../../src/components/breadcrumbs';
 import {
   propUtilityForPlayground,
   generateCustomProps,
@@ -63,11 +60,10 @@ export const breadcrumbsConfig = () => {
       props: propsToUse,
       scope: {
         EuiBreadcrumbs,
-        EuiBreadcrumb,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiBreadcrumbs', 'EuiBreadcrumb'],
+          named: ['EuiBreadcrumbs'],
         },
       },
       customProps: generateCustomProps(['breadcrumbs']),
