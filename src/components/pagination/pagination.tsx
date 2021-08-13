@@ -51,7 +51,7 @@ type Props = CommonProps & HTMLAttributes<HTMLDivElement> & EuiPaginationProps;
 export const EuiPagination: FunctionComponent<Props> = ({
   className,
   pageCount = 1,
-  activePage = 1,
+  activePage = 0,
   onPageClick = () => {},
   compressed,
   'aria-controls': ariaControls,
