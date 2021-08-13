@@ -9,8 +9,8 @@ const EuiIconCopyClipboard = ({ title, titleId, ...props }) => (
     aria-labelledby={titleId}
     {...props}>
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M0 2.729V2a1 1 0 011-1h2v1H1v12h4v1H1a1 1 0 01-1-1V2.729zM12 5V2a1 1 0 00-1-1H9v1h2v3h1zm-1 1h2v9H6V6h5V5H6a1 1 0 00-1 1v9a1 1 0 001 1h7a1 1 0 001-1V6a1 1 0 00-1-1h-2v1z" />
-    <path d="M7 10h5V9H7zM7 8h5V7H7zM7 12h5v-1H7zM7 14h5v-1H7zM9 2V1a1 1 0 00-1-1H4a1 1 0 00-1 1v1h1V1h4v1h1zM3 3h6V2H3z" />
+    <path d="M2 2.729V2a1 1 0 011-1h2v1H3v12h4v1H3a1 1 0 01-1-1V2.729zM14 5V2a1 1 0 00-1-1h-2v1h2v3h1zm-1 1h2v9H8V6h5V5H8a1 1 0 00-1 1v9a1 1 0 001 1h7a1 1 0 001-1V6a1 1 0 00-1-1h-2v1z" />
+    <path d="M9 10h5V9H9v1zm0-2h5V7H9v1zm0 4h5v-1H9v1zm0 2h5v-1H9v1zm2-12V1a1 1 0 00-1-1H6a1 1 0 00-1 1v1h1V1h4v1h1zM5 3h6V2H5v1z" />
   </svg>
 );
 
