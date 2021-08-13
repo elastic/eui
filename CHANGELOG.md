@@ -15,6 +15,14 @@
 - Fixed usage of `outsideClickCloses` prop of `EuiFlyout` ([#4986](https://github.com/elastic/eui/pull/4986))
 - Fixed `EuiFormRow` ignoring `isDisabled` prop on the child element. ([#5022](https://github.com/elastic/eui/pull/5022))
 
+## [`37.1.1`](https://github.com/elastic/eui/tree/v37.1.1)
+
+**Note: this release is a backport containing changes originally made in `37.2.0`**
+
+**Bug fixes**
+
+- Fixed `EuiFormRow` ignoring `isDisabled` prop on the child element. ([#5022](https://github.com/elastic/eui/pull/5022))
+
 ## [`37.1.0`](https://github.com/elastic/eui/tree/v37.1.0)
 
 - Added `isDisabled` prop to `EuiFormRow` that disables the child field element ([#4908](https://github.com/elastic/eui/pull/4908
