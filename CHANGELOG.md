@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Updated `copyClipboard` glyph in `EuiIcon` to be centered ([#5023](https://github.com/elastic/eui/pull/5023))
+- Updated `EuiFilePicker` `removeFiles` method to enable programmatic selection clearing  ([#5017](https://github.com/elastic/eui/pull/5017))
 
 **Bug fixes**
 
