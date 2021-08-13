@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Updated `copyClipboard` glyph in `EuiIcon` to be centered ([#5023](https://github.com/elastic/eui/pull/5023))
+
 **Bug fixes**
 
 - Fixed content in `EuiFilterButton` when `numFilters` is not passed ([#5012](https://github.com/elastic/eui/pull/5012))
@@ -7,7 +9,6 @@
 ## [`37.2.0`](https://github.com/elastic/eui/tree/v37.2.0)
 
 - Added `isDisabled` prop to `EuiFormLabel` and passed it down from `EuiFormRow` ([#5009](https://github.com/elastic/eui/pull/#5009))
-- Updated `copyClipboard` glyph in `EuiIcon` to be centered ([5023](https://github.com/elastic/eui/pull/5023))
 
 **Bug fixes**
 
