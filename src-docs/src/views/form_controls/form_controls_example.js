@@ -112,7 +112,6 @@ const filePickerSnippet = [
 
 import FilePickerRemove from './file_picker_remove';
 const filePickerRemoveSource = require('!!raw-loader!./file_picker_remove');
-const filePickerRemoveHtml = renderToHtml(FilePickerRemove);
 const filePickerRemoveSnippet = [
   `<EuiFilePicker
   id={filePickerId}
@@ -374,14 +373,10 @@ export const FormControlsExample = {
           type: GuideSectionTypes.JS,
           code: filePickerRemoveSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: filePickerRemoveHtml,
-        },
       ],
       text: (
         <>
-          <h3>Remove files programmatically</h3>
+          <h3>Removing files programmatically</h3>
           <p>
             The current file selection can be cleared programmatically by
             calling the <EuiCode>removeFiles</EuiCode> method, which can be
@@ -390,7 +385,6 @@ export const FormControlsExample = {
           </p>
         </>
       ),
-      components: { EuiFilePicker },
       snippet: filePickerRemoveSnippet,
       demo: <FilePickerRemove />,
       props: { EuiFilePicker },

@@ -18,7 +18,7 @@ export default () => {
   return (
     <Fragment>
       <EuiFlexGroup>
-        <EuiFlexItem grow={2}>
+        <EuiFlexItem>
           <EuiFilePicker
             ref={filePickerRef}
             id="programmatic"
@@ -30,14 +30,15 @@ export default () => {
           />
         </EuiFlexItem>
         <EuiFlexItem>
-          {files.length > 0 && (
+          <div>
             <EuiButton
               color="danger"
               iconType="trash"
+              disabled={files.length > 0 ? false : true}
               onClick={() => filePickerRef.current.removeFiles()}>
               <h3>Remove files</h3>
             </EuiButton>
-          )}
+          </div>
         </EuiFlexItem>
       </EuiFlexGroup>
     </Fragment>
