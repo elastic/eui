@@ -364,10 +364,10 @@ const navigation = [
       KeyPadMenuExample,
       LinkExample,
       PaginationExample,
-      TreeViewExample,
       SideNavExample,
       StepsExample,
       TabsExample,
+      TreeViewExample,
     ].map((example) => createExample(example)),
   },
   {
