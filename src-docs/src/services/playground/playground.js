@@ -42,7 +42,7 @@ export default ({
     // TODO: Replace `html-format` with something better.
     // Notably, something more jsx-friendly
     try {
-      formatted = format(newCode.trim(), ' '.repeat(4));
+      formatted = format(newCode.trim(), '  '.repeat(1));
     } catch {
       formatted = newCode.trim();
     }
