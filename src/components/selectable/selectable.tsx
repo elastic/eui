@@ -330,7 +330,12 @@ export class EuiSelectable<T = {}> extends Component<
 
   onContainerBlur = (e: React.FocusEvent) => {
     // Ignore blur events when moving from search to option to avoid activeOptionIndex conflicts
-    if (this.containerRef.current!.contains(e.relatedTarget as Node)) return;
+    if (
+      ((e.relatedTarget as Node)?.firstChild as HTMLElement)?.id ===
+      this.rootId('listbox')
+    ) {
+      return;
+    }
 
     this.setState({
       activeOptionIndex: undefined,
