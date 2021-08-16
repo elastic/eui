@@ -4,12 +4,14 @@
 - Updated `EuiFilePicker` `removeFiles` method to enable programmatic selection clearing  ([#5017](https://github.com/elastic/eui/pull/5017))
 - Updated `EuiFlyout` testenv mock to pass-through `onKeyDown` prop ([#5029](https://github.com/elastic/eui/pull/5029))
 - Enabled `EuiCodeBlock` copy button  in `EuiMarkdownFormat` ([#5032](https://github.com/elastic/eui/pull/5032))
+- Changed `copy` icon to `copyClipboard` in `EuiCodeBlock` ([#5018](https://github.com/elastic/eui/pull/5018))
 
 **Bug fixes**
 
 - Fixed content in `EuiFilterButton` when `numFilters` is not passed ([#5012](https://github.com/elastic/eui/pull/5012))
 - Fixed default value of `outsideClickCloses` prop of `EuiFlyout` ([#5027](https://github.com/elastic/eui/pull/5027))
 - Fixed `EuiSelectable`'s double click bug ([#5021](https://github.com/elastic/eui/pull/5021))
+- Fixed overflowing controls when `EuiCodeBlock` is short in height ([#5018](https://github.com/elastic/eui/pull/5018))
 
 ## [`37.2.0`](https://github.com/elastic/eui/tree/v37.2.0)
 
