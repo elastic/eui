@@ -8,6 +8,7 @@
 
 - Fixed content in `EuiFilterButton` when `numFilters` is not passed ([#5012](https://github.com/elastic/eui/pull/5012))
 - Fixed default value of `outsideClickCloses` prop of `EuiFlyout` ([#5027](https://github.com/elastic/eui/pull/5027))
+- Fixed `EuiSelectable`'s double click bug ([#5021](https://github.com/elastic/eui/pull/5021))
 
 ## [`37.2.0`](https://github.com/elastic/eui/tree/v37.2.0)
 
