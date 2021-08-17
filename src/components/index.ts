@@ -6,328 +6,165 @@
  * Side Public License, v 1.
  */
 
-export { EuiAccordion } from './accordion';
+export * from './accordion';
 
-export { EuiAspectRatio } from './aspect_ratio';
+export * from './aspect_ratio';
 
-export { EuiAvatar } from './avatar';
+export * from './avatar';
 
-export { EuiScreenReaderOnly, EuiSkipLink } from './accessibility';
+export * from './accessibility';
 
-export {
-  EuiBadge,
-  EuiBetaBadge,
-  EuiNotificationBadge,
-  EuiBadgeGroup,
-} from './badge';
+export * from './badge';
 
-export { EuiBeacon } from './beacon';
+export * from './beacon';
 
-export { EuiBottomBar } from './bottom_bar';
+export * from './bottom_bar';
 
-export { EuiBreadcrumbs } from './breadcrumbs';
+export * from './breadcrumbs';
 
-export {
-  EuiButton,
-  EuiButtonEmpty,
-  EuiButtonIcon,
-  EuiButtonGroup,
-} from './button';
+export * from './button';
 
-export { EuiCallOut } from './call_out';
+export * from './call_out';
 
-export { EuiCard, EuiCheckableCard } from './card';
+export * from './card';
 
-export { EuiCode, EuiCodeBlock, EuiCodeBlockImpl } from './code';
+export * from './code';
 
-export { EuiCodeEditor } from './code_editor';
+export * from './code_editor';
 
-export { EuiCollapsibleNav, EuiCollapsibleNavGroup } from './collapsible_nav';
-
-export {
-  EuiColorPalettePicker,
-  EuiColorPaletteDisplay,
-  EuiColorPicker,
-  EuiColorPickerSwatch,
-  EuiColorStops,
-  EuiHue,
-  EuiSaturation,
-} from './color_picker';
-
-export { EuiComboBox } from './combo_box';
-
-export { EuiComment, EuiCommentList } from './comment_list';
-
-export { EuiContext, EuiI18nConsumer } from './context';
-
-export {
-  EuiContextMenu,
-  EuiContextMenuPanel,
-  EuiContextMenuItem,
-} from './context_menu';
-
-export { EuiControlBar } from './control_bar';
-
-export { EuiCopy } from './copy';
-
-export {
-  EuiDataGrid,
-  useDataGridColumnSelector,
-  useDataGridColumnSorting,
-  useDataGridStyleSelector,
-} from './datagrid';
-
-export {
-  EuiDatePicker,
-  EuiDatePickerRange,
-  EuiSuperDatePicker,
-  EuiSuperUpdateButton,
-  prettyDuration,
-  commonDurationRanges,
-} from './date_picker';
-
-export { EuiDelayHide } from './delay_hide';
-export { EuiDelayRender } from './delay_render';
-
-export {
-  EuiDescriptionList,
-  EuiDescriptionListTitle,
-  EuiDescriptionListDescription,
-} from './description_list';
-
-export {
-  EuiDragDropContext,
-  EuiDraggable,
-  EuiDroppable,
-  euiDragDropCopy,
-  euiDragDropMove,
-  euiDragDropReorder,
-} from './drag_and_drop';
-
-export { EuiEmptyPrompt } from './empty_prompt';
-
-export { EuiErrorBoundary } from './error_boundary';
-
-export { EuiExpression } from './expression';
-
-export {
-  EuiFilterButton,
-  EuiFilterGroup,
-  EuiFilterSelectItem,
-} from './filter_group';
-
-export { EuiFacetButton, EuiFacetGroup } from './facet';
-
-export { EuiFlexGroup, EuiFlexGrid, EuiFlexItem } from './flex';
-
-export {
-  EuiFlyout,
-  EuiFlyoutBody,
-  EuiFlyoutFooter,
-  EuiFlyoutHeader,
-} from './flyout';
-
-export { EuiFocusTrap } from './focus_trap';
-
-export {
-  EuiCheckbox,
-  EuiCheckboxGroup,
-  EuiDescribedFormGroup,
-  EuiDualRange,
-  EuiFieldNumber,
-  EuiFieldPassword,
-  EuiFieldSearch,
-  EuiFieldText,
-  EuiFilePicker,
-  EuiForm,
-  EuiFormControlLayout,
-  EuiFormControlLayoutDelimited,
-  EuiFormErrorText,
-  EuiFormFieldset,
-  EuiFormHelpText,
-  EuiFormLabel,
-  EuiFormLegend,
-  EuiFormRow,
-  EuiRadio,
-  EuiRadioGroup,
-  EuiRange,
-  EuiSelect,
-  EuiSuperSelect,
-  EuiSuperSelectControl,
-  EuiSwitch,
-  EuiTextArea,
-  EuiValidatableControl,
-} from './form';
-
-export {
-  EuiHeader,
-  EuiHeaderAlert,
-  EuiHeaderBreadcrumbs,
-  EuiHeaderLink,
-  EuiHeaderLinks,
-  EuiHeaderLogo,
-  EuiHeaderSection,
-  EuiHeaderSectionItem,
-  EuiHeaderSectionItemButton,
-} from './header';
-
-export { EuiHealth } from './health';
-
-export { EuiHighlight } from './highlight';
-
-export { EuiHorizontalRule } from './horizontal_rule';
-
-export { ICON_TYPES, EuiIcon } from './icon';
-
-export { EuiImage } from './image';
-
-export { useInnerText, EuiInnerText, useRenderToText } from './inner_text';
-
-export { EuiI18n, EuiI18nNumber, useEuiI18n } from './i18n';
-
-export {
-  EuiLoadingKibana,
-  EuiLoadingElastic,
-  EuiLoadingChart,
-  EuiLoadingContent,
-  EuiLoadingSpinner,
-  EuiLoadingLogo,
-} from './loading';
-
-export { EuiKeyPadMenu, EuiKeyPadMenuItem } from './key_pad_menu';
-
-export { EuiLink } from './link';
-
-export {
-  EuiListGroup,
-  EuiListGroupItem,
-  EuiPinnableListGroup,
-} from './list_group';
-
-export {
-  EuiMarkdownEditor,
-  EuiMarkdownContext,
-  EuiMarkdownFormat,
-  getDefaultEuiMarkdownParsingPlugins,
-  getDefaultEuiMarkdownProcessingPlugins,
-  getDefaultEuiMarkdownUiPlugins,
-} from './markdown_editor';
-export { EuiMark } from './mark';
-
-export {
-  EUI_MODAL_CANCEL_BUTTON,
-  EUI_MODAL_CONFIRM_BUTTON,
-  EuiConfirmModal,
-  EuiModal,
-  EuiModalBody,
-  EuiModalFooter,
-  EuiModalHeader,
-  EuiModalHeaderTitle,
-} from './modal';
-
-export { EuiMutationObserver } from './observer/mutation_observer';
-
-export { EuiNotificationEvent } from './notification';
-
-export { EuiOutsideClickDetector } from './outside_click_detector';
-
-export { EuiOverlayMask } from './overlay_mask';
-
-export {
-  EuiPage,
-  EuiPageBody,
-  EuiPageContent,
-  EuiPageContentBody,
-  EuiPageContentHeader,
-  EuiPageContentHeaderSection,
-  EuiPageHeader,
-  EuiPageHeaderContent,
-  EuiPageHeaderSection,
-  EuiPageSideBar,
-  EuiPageTemplate,
-} from './page';
-
-export { EuiPagination, EuiPaginationButton } from './pagination';
-
-export { EuiPanel, EuiSplitPanel } from './panel';
-
-export {
-  EuiInputPopover,
-  EuiPopover,
-  EuiPopoverTitle,
-  EuiPopoverFooter,
-  EuiWrappingPopover,
-} from './popover';
-
-export { EuiPortal } from './portal';
-
-export { EuiProgress } from './progress';
-
-export { EuiTreeView } from './tree_view';
-
-export {
-  EuiResizeObserver,
-  useResizeObserver,
-} from './observer/resize_observer';
-
-export { EuiSearchBar, Query, Ast } from './search_bar';
-
-export {
-  EuiSelectable,
-  EuiSelectableList,
-  EuiSelectableListItem,
-  EuiSelectableMessage,
-  EuiSelectableSearch,
-  EuiSelectableTemplateSitewide,
-  euiSelectableTemplateSitewideRenderOptions,
-} from './selectable';
-
-export { EuiSideNav } from './side_nav';
-
-export { EuiSpacer } from './spacer';
-
-export { EuiStat } from './stat';
-
-export { EuiStep, EuiSteps, EuiSubSteps, EuiStepsHorizontal } from './steps';
-
-export { EuiSuggestInput, EuiSuggestItem, EuiSuggest } from './suggest';
-
-export {
-  EuiTable,
-  EuiTableBody,
-  EuiTableFooter,
-  EuiTableFooterCell,
-  EuiTableHeader,
-  EuiTableHeaderButton,
-  EuiTableHeaderCell,
-  EuiTableHeaderCellCheckbox,
-  EuiTablePagination,
-  EuiTableRow,
-  EuiTableRowCell,
-  EuiTableRowCellCheckbox,
-  EuiTableHeaderMobile,
-  EuiTableSortMobile,
-  EuiTableSortMobileItem,
-} from './table';
-
-export { EuiToken } from './token';
-
-export { EuiTour, EuiTourStep, useEuiTour } from './tour';
-
-export { EuiBasicTable, EuiInMemoryTable } from './basic_table';
-
-export { EuiTab, EuiTabs, EuiTabbedContent } from './tabs';
-
-export { EuiText, EuiTextColor, EuiTextAlign } from './text';
-
-export { useEuiTextDiff } from './text_diff';
-
-export { EuiTitle } from './title';
-
-export { EuiGlobalToastList, EuiGlobalToastListItem, EuiToast } from './toast';
-
-export { EuiIconTip, EuiToolTip } from './tool_tip';
-
-export { EuiHideFor, EuiShowFor } from './responsive';
-
-export { EuiResizableContainer } from './resizable_container';
+export * from './collapsible_nav';
+
+export * from './color_picker';
+
+export * from './combo_box';
+
+export * from './comment_list';
+
+export * from './context';
+
+export * from './context_menu';
+
+export * from './control_bar';
+
+export * from './copy';
+
+export * from './datagrid';
+
+export * from './date_picker';
+
+export * from './delay_hide';
+export * from './delay_render';
+
+export * from './description_list';
+
+export * from './drag_and_drop';
+
+export * from './empty_prompt';
+
+export * from './error_boundary';
+
+export * from './expression';
+
+export * from './filter_group';
+
+export * from './facet';
+
+export * from './flex';
+
+export * from './flyout';
+
+export * from './focus_trap';
+
+export * from './form';
+
+export * from './header';
+
+export * from './health';
+
+export * from './highlight';
+
+export * from './horizontal_rule';
+
+export * from './icon';
+
+export * from './image';
+
+export * from './inner_text';
+
+export * from './i18n';
+
+export * from './loading';
+
+export * from './key_pad_menu';
+
+export * from './link';
+
+export * from './list_group';
+
+export * from './markdown_editor';
+
+export * from './mark';
+
+export * from './modal';
+
+export * from './observer/mutation_observer';
+
+export * from './notification';
+
+export * from './outside_click_detector';
+
+export * from './overlay_mask';
+
+export * from './page';
+
+export * from './pagination';
+
+export * from './panel';
+
+export * from './popover';
+
+export * from './portal';
+
+export * from './progress';
+
+export * from './tree_view';
+
+export * from './observer/resize_observer';
+
+export * from './search_bar';
+
+export * from './selectable';
+
+export * from './side_nav';
+
+export * from './spacer';
+
+export * from './stat';
+
+export * from './steps';
+
+export * from './suggest';
+
+export * from './table';
+
+export * from './token';
+
+export * from './tour';
+
+export * from './basic_table';
+
+export * from './tabs';
+
+export * from './text';
+
+export * from './text_diff';
+
+export * from './title';
+
+export * from './toast';
+
+export * from './tool_tip';
+
+export * from './responsive';
+
+export * from './resizable_container';
