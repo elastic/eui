@@ -37,7 +37,7 @@ You can do this using Yeoman, or you can do it manually if you prefer.
 
 `yarn run test-unit button` will run tests with "button" in the spec name.
 
-You can pass other [Jest CLI arguments](https://facebook.github.io/jest/docs/en/cli.html). To pass flags or other options, you'll need to follow the format of `yarn run test-unit -- [arguments]`. For example:
+You can pass other [Jest CLI arguments](https://jestjs.io/docs/cli). To pass flags or other options, you'll need to follow the format of `yarn run test-unit -- [arguments]`. For example:
 
 `yarn run test-unit -- -u` will update your snapshots. 
 Note: if you are experiencing failed builds in Jenkins related to snapshots, then try clearing the cache first `yarn run test-unit -- --clearCache`.
@@ -131,7 +131,7 @@ interface FooProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElem
 
 React's `forwardRef` should be used to provide access to the component's outermost element. We impose two additional requirements when using `forwardRef`:
 
-1. use `forwardRef` instead of `React.forwardRef`, otherwise [react-docgen-typescript](https://www.npmjs.com/package/react-docgen-typescript) does not understand it and the component's props will not be rendered in our documentation
+1. use `forwardRef` instead of `React.forwardRef`, otherwise [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript/) does not understand it and the component's props will not be rendered in our documentation
 2. the resulting component must have a `displayName`, this is useful when the component is included in a snapshot or when inspected in devtools. There is an eslint rule which checks for this.  
 
 #### Simple forward/pass-through
