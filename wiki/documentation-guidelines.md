@@ -223,6 +223,6 @@ Any updates to the `src/` folder require an entry in the [CHANGELOG.md](../CHANG
 * Avoid documenting internal implementation changes that don't affect the public interface
 * Write your entry in the **past tense**, starting with a verb (e.g. Added... , Fixed...)
 
-Documentation-only changes (e.g. changes to only `wiki/` or `src-docs/`) do not require a CHANGELOG entry. You may use the `skip-changelog` label on your PR to bypass CI checks.
+Documentation-only changes (e.g. changes to **only** `wiki/` or `src-docs/`) do not require a CHANGELOG entry. You may use the `skip-changelog` label on your PR to bypass CI checks.
 
 [docs]: https://elastic.github.io/eui/
