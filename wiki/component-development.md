@@ -35,12 +35,11 @@ You can do this using Yeoman, or you can do it manually if you prefer.
 
 `yarn run test-unit` runs the Jest unit tests once.
 
-`yarn run test-unit button` will run tests with "button" in the spec name. You can pass other
-[Jest CLI arguments](https://facebook.github.io/jest/docs/en/cli.html) by just adding them to the
-end of the command like this:
+`yarn run test-unit button` will run tests with "button" in the spec name.
 
-`yarn run test-unit -- -u` will update your snapshots. To pass flags or other options you'll need
-to follow the format of `yarn run test-unit -- [arguments]`.
+You can pass other [Jest CLI arguments](https://facebook.github.io/jest/docs/en/cli.html). To pass flags or other options, you'll need to follow the format of `yarn run test-unit -- [arguments]`. For example:
+
+`yarn run test-unit -- -u` will update your snapshots. 
 Note: if you are experiencing failed builds in Jenkins related to snapshots, then try clearing the cache first `yarn run test-unit -- --clearCache`.
 
 `yarn run test-unit -- --watch` watches for changes and runs the tests as you code.
