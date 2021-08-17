@@ -1,10 +1,10 @@
-# Component Development
+# Component development
 
 For information on how to design components, see the [component design docs][component-design].
 
 Before working with EUI components or creating new ones, you may want to run a local server for the [documentation site][docs]. This is where we demonstrate how the components in our design system work.
 
-## Launching the Documentation Server
+## Launching the documentation server
 
 To view interactive documentation, start the development server using the command below.
 
@@ -15,7 +15,7 @@ yarn start
 
 Once the server boots up, you can visit it on your browser at: [http://localhost:8030/](http://localhost:8030/). The development server watches for changes to the source code files and will automatically recompile the components for you when you make changes.
 
-## Creating Components
+## Creating components
 
 There are four steps to creating a new component:
 

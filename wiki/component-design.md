@@ -1,4 +1,4 @@
-# Component Design
+# Component design
 
 For information on how to develop components, see the [component development docs][component-development].
 
