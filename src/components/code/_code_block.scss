@@ -79,74 +79,53 @@
 
   // Storing for re-use the sizing of controls plus extra padding
   $controlsPadding: $euiSizeL + $euiSizeXS;
+  $bothControlsHeight: ($euiSizeL * 2) + $euiSizeXS;
 
-  &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
+  &.euiCodeBlock--hasControl {
+    min-height: $euiSizeL;
+  }
+
+  &.euiCodeBlock--hasBothControls {
+    min-height: $bothControlsHeight;
+  }
+
+  &.euiCodeBlock--hasControl .euiCodeBlock__pre--whiteSpacePreWrap {
     padding-right: $controlsPadding;
   }
 
-  &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePre {
+  &.euiCodeBlock--hasControl .euiCodeBlock__pre--whiteSpacePre {
     margin-right: $controlsPadding;
   }
 
-  // Small padding
-  &.euiCodeBlock--paddingSmall {
-    .euiCodeBlock__pre {
-      padding: $euiSizeS;
-    }
+  @each $modifier, $amount in $euiCodeBlockPaddingModifiers {
+    &.euiCodeBlock--#{$modifier} {
+      .euiCodeBlock__pre {
+        padding: $amount;
+      }
 
-    .euiCodeBlock__controls {
-      top: $euiSizeS;
-      right: $euiSizeS;
-    }
+      &.euiCodeBlock--hasControl {
+        min-height: $euiSizeL + ($amount * 2);
+      }
 
-    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
-      padding-right: $euiSizeS + $controlsPadding;
-    }
+      &.euiCodeBlock--hasBothControls {
+        min-height: $bothControlsHeight + ($amount * 2);
+      }
 
-    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePre {
-      margin-right: $euiSizeS + $controlsPadding;
+      .euiCodeBlock__controls {
+        top: $amount;
+        right: $amount;
+      }
+
+      &.euiCodeBlock--hasControl .euiCodeBlock__pre--whiteSpacePreWrap {
+        padding-right: $amount + $controlsPadding;
+      }
+
+      &.euiCodeBlock--hasControl .euiCodeBlock__pre--whiteSpacePre {
+        margin-right: $amount + $controlsPadding;
+      }
     }
   }
 
-  // Medium padding
-  &.euiCodeBlock--paddingMedium {
-    .euiCodeBlock__pre {
-      padding: $euiSize;
-    }
-
-    .euiCodeBlock__controls {
-      top: $euiSize;
-      right: $euiSize;
-    }
-
-    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
-      padding-right: $euiSize + $controlsPadding;
-    }
-
-    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePre {
-      margin-right: $euiSize + $controlsPadding;
-    }
-  }
-
-  // Large padding
-  &.euiCodeBlock--paddingLarge {
-    .euiCodeBlock__pre {
-      padding: $euiSizeL;
-    }
-
-    .euiCodeBlock__controls {
-      top: $euiSizeL;
-      right: $euiSizeL;
-    }
-
-    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePreWrap {
-      padding-right: $euiSizeL + $controlsPadding;
-    }
-
-    &.euiCodeBlock--hasControls .euiCodeBlock__pre--whiteSpacePre {
-      margin-right: $euiSizeL + $controlsPadding;
-    }
-  }
 
   /*
    * 1. Size the code against the text its embedded within.
