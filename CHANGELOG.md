@@ -13,6 +13,7 @@
 - Fixed `EuiSelectable`'s double click bug ([#5021](https://github.com/elastic/eui/pull/5021))
 - Fixed overflowing controls when `EuiCodeBlock` is short in height ([#5018](https://github.com/elastic/eui/pull/5018))
 - Fixed `EuiButtonGroup` firing `onChange` twice ([#5033](https://github.com/elastic/eui/pull/5033))
+- Fixed `EuiDataGrid` sort button text pluralization ([#5043](https://github.com/elastic/eui/pull/5043))
 
 ## [`37.2.0`](https://github.com/elastic/eui/tree/v37.2.0)
 
