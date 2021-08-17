@@ -9,4 +9,7 @@ eui.d.ts
 **/assets/**/*.js
 package.json
 src-docs/src/views/icon/icon_example.js
-packages/react-datepicker/examples
+docs
+packages
+scripts
+generator-eui
