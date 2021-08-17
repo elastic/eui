@@ -12,7 +12,7 @@ So, though it can't replace manual testing, it's a great baseline for all of our
 ## How to run the tests?
 
 * `start-test-server-and-a11y-test` runs the test suite against the entire docs site and manages it's own local server for it.
-* `test-a11y` can be used if you want to run it against your dev server (assumed to be `http://localhost:8030).
+* `test-a11y` can be used if you want to run it against your dev server (assumed to be `http://localhost:8030`).
 
 ### How to run it against 1 component?
 
