@@ -1,10 +1,10 @@
-# Component Development
+# Component development
 
 For information on how to design components, see the [component design docs][component-design].
 
 Before working with EUI components or creating new ones, you may want to run a local server for the [documentation site][docs]. This is where we demonstrate how the components in our design system work.
 
-## Launching the Documentation Server
+## Launching the documentation server
 
 To view interactive documentation, start the development server using the command below.
 
@@ -15,7 +15,7 @@ yarn start
 
 Once the server boots up, you can visit it on your browser at: [http://localhost:8030/](http://localhost:8030/). The development server watches for changes to the source code files and will automatically recompile the components for you when you make changes.
 
-## Creating Components
+## Creating components
 
 There are four steps to creating a new component:
 
@@ -133,7 +133,7 @@ React's `forwardRef` should be used to provide access to the component's outermo
 
 #### Simple forward/pass-through
 
-```ts
+```tsx
 import React, { forwardRef } from 'react';
 
 interface MyComponentProps {...}
@@ -161,7 +161,7 @@ MyComponent.displayName = 'MyComponent';
 
 Sometimes an element needs to have 2+ refs passed to it, for example a component interacts with the same element the forwarded ref needs to be given to. For this EUI provides a `useCombinedRefs` hook:
 
-```ts
+```tsx
 import React, { forwardRef, createRef } from 'react';
 import { useCombinedRefs } from '../../services';
 
@@ -192,7 +192,7 @@ MyComponent.displayName = 'MyComponent';
 
 Rarely, a component's ref needs to be something other than a DOM element, or provide additional information. In these cases, React's `useImperativeHandle` can be used to provide a custom object as the ref's value. For example, **EuiMarkdownEditor**'s ref includes both its textarea element and the `replaceNode` method to interact with the abstract syntax tree. https://github.com/elastic/eui/blob/v31.10.0/src/components/markdown_editor/markdown_editor.tsx#L331
 
-```ts
+```tsx
 import React, { useImperativeHandle } from 'react';
 
 export const EuiMarkdownEditor = forwardRef<
