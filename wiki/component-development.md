@@ -31,14 +31,15 @@ You can do this using Yeoman, or you can do it manually if you prefer.
 
 ## Testing the component
 
+### Running tests
+
 `yarn run test-unit` runs the Jest unit tests once.
 
-`yarn run test-unit button` will run tests with "button" in the spec name. You can pass other
-[Jest CLI arguments](https://facebook.github.io/jest/docs/en/cli.html) by just adding them to the
-end of the command like this:
+`yarn run test-unit button` will run tests with "button" in the spec name.
 
-`yarn run test-unit -- -u` will update your snapshots. To pass flags or other options you'll need
-to follow the format of `yarn run test-unit -- [arguments]`.
+You can pass other [Jest CLI arguments](https://jestjs.io/docs/cli). To pass flags or other options, you'll need to follow the format of `yarn run test-unit -- [arguments]`. For example:
+
+`yarn run test-unit -- -u` will update your snapshots. 
 Note: if you are experiencing failed builds in Jenkins related to snapshots, then try clearing the cache first `yarn run test-unit -- --clearCache`.
 
 `yarn run test-unit -- --watch` watches for changes and runs the tests as you code.
@@ -46,18 +47,20 @@ Note: if you are experiencing failed builds in Jenkins related to snapshots, the
 `yarn run test-unit -- --coverage` generates a code coverage report showing you how
 fully-tested the code is, located at `reports/jest-coverage`.
 
+### Writing tests
+
 Refer to the [testing guide](testing.md) for guidelines on writing and designing your tests.
 
 Refer to the [automated accessibility testing guide](automated-accessibility-testing.md) for info more info on those.
 
-### Testing the component with Kibana
+### Testing dev features in local Kibana
 
 Note that `yarn link` currently does not work with Kibana. You'll need to manually pack and insert it into Kibana to test locally.
 
 #### In EUI run:
 
 ```bash
-yarn build && npm pack
+yarn build && yarn pack
 ```
 
 This will create a `.tgz` file with the changes in your EUI directory. At this point you can move it anywhere.
@@ -67,13 +70,12 @@ This will create a `.tgz` file with the changes in your EUI directory. At this p
 Point the `package.json` file in Kibana to that file: `"@elastic/eui": "/path/to/elastic-eui-xx.x.x.tgz"`. Then run the following commands at Kibana's root folder:
 
 ```bash
-yarn kbn bootstrap --no-validate && node scripts/kibana --dev
+yarn kbn bootstrap --no-validate && yarn start
 ```
 
 * The `--no-validate` flag is required when bootstrapping with a `.tgz`.
-  * Change the name of the `.tgz` after subsequent `yarn build` and `npm pack` steps (e.g., `elastic-eui-xx.x.x-1.tgz`, `elastic-eui-xx.x.x-2.tgz`). This is required for `yarn` to recognize new changes to the package.
-* Running Kibana with `node scripts/kibana --dev` ensures it doesn't use a previously cached version of EUI.
-
+  * Change the name of the `.tgz` after subsequent `yarn build && yarn pack` steps (e.g., `elastic-eui-xx.x.x-1.tgz`, `elastic-eui-xx.x.x-2.tgz`). This is required for `yarn` to recognize new changes to the package.
+* Running Kibana with `yarn start` ensures it starts in dev mode and doesn't use a previously cached version of EUI.
 
 ## Principles
 
@@ -128,7 +130,7 @@ interface FooProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElem
 
 React's `forwardRef` should be used to provide access to the component's outermost element. We impose two additional requirements when using `forwardRef`:
 
-1. use `forwardRef` instead of `React.forwardRef`, otherwise [react-docgen-typescript](https://www.npmjs.com/package/react-docgen-typescript) does not understand it and the component's props will not be rendered in our documentation
+1. use `forwardRef` instead of `React.forwardRef`, otherwise [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript/) does not understand it and the component's props will not be rendered in our documentation
 2. the resulting component must have a `displayName`, this is useful when the component is included in a snapshot or when inspected in devtools. There is an eslint rule which checks for this.  
 
 #### Simple forward/pass-through
