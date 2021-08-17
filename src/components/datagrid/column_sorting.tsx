@@ -134,9 +134,17 @@ export const useDataGridColumnSorting = (
       panelClassName="euiDataGridColumnSortingPopover"
       button={
         <EuiI18n
-          tokens={['euiColumnSorting.button', 'euiColumnSorting.buttonActive']}
-          defaults={['Sort fields', 'fields sorted']}>
-          {([button, buttonActive]: ReactChild[]) => (
+          tokens={[
+            'euiColumnSorting.button',
+            'euiColumnSorting.buttonActiveSingular',
+            'euiColumnSorting.buttonActivePlural',
+          ]}
+          defaults={['Sort fields', 'field sorted', 'fields sorted']}>
+          {([
+            button,
+            buttonActiveSingular,
+            buttonActivePlural,
+          ]: ReactChild[]) => (
             <EuiButtonEmpty
               size="xs"
               iconType="sortable"
@@ -145,7 +153,11 @@ export const useDataGridColumnSorting = (
               data-test-subj="dataGridColumnSortingButton"
               onClick={() => setIsOpen(!isOpen)}>
               {numberOfSortedFields > 0
-                ? `${numberOfSortedFields} ${buttonActive}`
+                ? `${numberOfSortedFields} ${
+                    numberOfSortedFields > 1
+                      ? buttonActivePlural
+                      : buttonActiveSingular
+                  }`
                 : button}
             </EuiButtonEmpty>
           )}
