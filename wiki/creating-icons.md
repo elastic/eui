@@ -34,11 +34,11 @@ This is where things get more opinionated. To maintain a cohesive, high quality 
 
 ![Guides](https://user-images.githubusercontent.com/446285/63458958-5624f580-c419-11e9-89cf-45fa1b596329.png)
 
-#### _For Sketch users_
-_As a reference, you can download and view the `icons.sketch` file via the **Sketch libraries** link atop the [EUI documentation site][docs] site. The Symbols page within this file contains artboards for the vast majority of EUI glyphs._
+#### _For Figma users_
+_As a reference, you can view and duplicate our Figma library files via the **Figma icon** link atop the [EUI documentation site][docs] site. The "Icon" page within this file contains artboards for the vast majority of EUI glyphs._
 
-#### _For non-Sketch users_
-_While we use Sketch to maintain our internal design library, you can use any design tool to produce the SVG file._
+#### _For non-Figma users_
+_While we use Figma to maintain our internal design library, you can use any design tool to produce the SVG file._
 
 ## Add the icon to the EUI repo
 
