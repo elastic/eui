@@ -24,7 +24,7 @@ This will return the same* results to you while also giving you some convenience
 
 Not as nice of a experience though potentially more direct, in `scripts/a11y-testing.js` you can modify the list of component pages return from `docsPages()` to run only one file. But remember not to check in these changes!
 
-\* It might not actually be the same in a couple cases (e.g., we've disabled some rules or a recent update that was pushed to the addon but we haven't updated yet) but it will generally be more strict that we are so you should never see something in CI that you can't see in the addon.
+\* It might not actually be the same in a couple cases (e.g., we've disabled some rules or a recent update that was pushed to the addon but we haven't updated yet) but it will generally be more strict than we are, so you should never see something in CI that you can't see in the addon.
 
 ## Deconstructing an error message
 

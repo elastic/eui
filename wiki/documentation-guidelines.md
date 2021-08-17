@@ -1,6 +1,6 @@
 # Documentation guidelines
 
-Always remember to update [documentation site][docs] via the `src-docs` folder and the `CHANGELOG.md` in the same PR that contains functional changes. We do this in tandem to prevent our examples from going out of sync with the actual components. In this sense, treat documentation no differently than how you would treat tests.
+Always remember to update the [documentation site][docs] via the `src-docs` folder and the `CHANGELOG.md` in the same PR that contains functional changes. We do this in tandem to prevent our examples from going out of sync with the actual components. In this sense, treat documentation no differently than how you would treat tests.
 
 The complexity of the component should determine how many examples you need to create, and how complex they should be. In general, your examples should demonstrate:
 
