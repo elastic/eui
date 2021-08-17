@@ -91,4 +91,3 @@ _\** Run `yarn && yarn start` to view the EUI docs site locally._
 [icons]: https://elastic.github.io/eui/#/display/icons
 [docs]: https://elastic.github.io/eui/
 [svg-plugin]: https://www.figma.com/community/plugin/814345141907543603/SVG-Export
-[sketch-symbol-organizer-plugin]: [https://github.com/sonburn/symbol-organizer]
