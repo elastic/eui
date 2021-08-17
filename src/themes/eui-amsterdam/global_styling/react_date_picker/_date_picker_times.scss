@@ -1,7 +1,7 @@
 /**
  * LEGEND
  * __time-list-item :
- *       --preselected : closest current time but not selected
+ *       --preselected : closest current time but not selected (also applied when using arrow keys to indicate focus)
  *       --selected
  *       --disabled
  *       --injected
@@ -12,24 +12,23 @@
 }
 
 .react-datepicker__time-container {
-  @include euiYScroll;
-  height: auto;
-  overflow-x: hidden;
-  margin-top: $euiSizeXL + $euiDatePickerGap;
+  border-left: $euiBorderColor;
+  width: auto;
   display: flex;
+  margin-top: $euiSizeXL + ($euiDatePickerGap * 2);
+  margin-left: $euiSizeS;
   flex-grow: 1;
   background-color: $euiPageBackgroundColor;
-  padding: $euiSizeXS $euiSizeM;
   border-radius: $euiBorderRadius;
-  margin-left: $euiSizeS;
+
+  &--focus {
+    .react-datepicker__time-list-item--preselected {
+      text-decoration: underline;
+    }
+  }
 }
 
-.react-datepicker__time {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
+.react-datepicker__time,
 .react-datepicker__time-box {
   display: flex;
   flex-direction: column;
@@ -37,13 +36,15 @@
 }
 
 .react-datepicker__time-list {
+  @include euiYScroll;
+  padding: $euiSizeXS $euiSizeM;
   // Set the min-height with the following, but it should stretch to fit if the container is larger
   height: 100px !important; // sass-lint:disable-line no-important
   display: flex;
-  gap: $euiSizeXS; // sass-lint:disable-line no-misspelled-properties
   flex-direction: column;
   flex-grow: 1;
   align-items: center;
+  gap: $euiSizeXS; // sass-lint:disable-line no-misspelled-properties
 }
 
 // Mainly a copy/paste of .euiEmptyButton
@@ -88,18 +89,15 @@
 
 // When in time only mode we make the dropdown look more like the combo box styling.
 .react-datepicker--time-only {
-  @include euiYScroll;
-
-  .react-datepicker__time-list {
-    // sass-lint:disable-block no-important
-    height: 204px !important;
-  }
+  padding: 0 !important; // sass-lint:disable-line no-important
 
   .react-datepicker__time-container {
-    padding: 0 $euiSize 0 0;
-    overflow: initial;
     background-color: transparent;
     margin: 0;
+  }
+
+  .react-datepicker__time-list {
+    height: 204px !important; // sass-lint:disable-line no-important
   }
 
   .react-datepicker__time-list-item {
