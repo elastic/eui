@@ -214,7 +214,7 @@ import { ExampleContext } from '../../services';
 
 ## Changelog
 
-Any updates to the `src/` folder require an entry in the [CHANGELOG.md](../CHANGELOG.md) file. Documentation-only changes do not. Here are our guidelines for updating the file:
+Any updates to the `src/` folder require an entry in the [CHANGELOG.md](../CHANGELOG.md) file. Here are our guidelines for updating the file:
 
 * Append your changes to the `master` sub-heading of `CHANGELOG.md`.
 * Add a list item for each significant change in the PR: bugs that were fixed, new features, new components, or changes to the public API
@@ -222,5 +222,7 @@ Any updates to the `src/` folder require an entry in the [CHANGELOG.md](../CHANG
 * Add a summary of what has changed, making sure it's informative to consumers who might be unaware of implementation details
 * Avoid documenting internal implementation changes that don't affect the public interface
 * Write your entry in the **past tense**, starting with a verb (e.g. Added... , Fixed...)
+
+Documentation-only changes (e.g. changes to **only** `wiki/` or `src-docs/`) do not require a CHANGELOG entry. You may use the `skip-changelog` label on your PR to bypass CI checks.
 
 [docs]: https://elastic.github.io/eui/
