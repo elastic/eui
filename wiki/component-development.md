@@ -31,6 +31,8 @@ You can do this using Yeoman, or you can do it manually if you prefer.
 
 ## Testing the component
 
+### Running tests
+
 `yarn run test-unit` runs the Jest unit tests once.
 
 `yarn run test-unit button` will run tests with "button" in the spec name. You can pass other
@@ -45,6 +47,8 @@ Note: if you are experiencing failed builds in Jenkins related to snapshots, the
 
 `yarn run test-unit -- --coverage` generates a code coverage report showing you how
 fully-tested the code is, located at `reports/jest-coverage`.
+
+### Writing tests
 
 Refer to the [testing guide](testing.md) for guidelines on writing and designing your tests.
 
