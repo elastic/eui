@@ -13,12 +13,6 @@ module.exports = {
     }],
     ["@babel/typescript", { isTSX: true, allExtensions: true }],
     "@babel/react",
-    [
-      "@emotion/babel-preset-css-prop",
-      {
-        "labelFormat": "[local]"
-      },
-    ],
   ],
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",

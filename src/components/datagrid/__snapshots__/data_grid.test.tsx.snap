@@ -182,6 +182,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
     </li>
   </EuiListGroupItem>
   <EuiListGroupItem
+    className=""
     color="text"
     iconType="sortUp"
     isDisabled={false}
@@ -264,6 +265,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
     </li>
   </EuiListGroupItem>
   <EuiListGroupItem
+    className=""
     color="text"
     iconType="sortDown"
     isDisabled={false}
@@ -487,6 +489,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
   data-test-subj="dataGridHeaderCellActionGroup-D"
 >
   <EuiListGroupItem
+    className=""
     color="text"
     iconType="sortUp"
     isDisabled={false}
@@ -569,6 +572,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
     </li>
   </EuiListGroupItem>
   <EuiListGroupItem
+    className=""
     color="text"
     iconType="sortDown"
     isDisabled={false}
@@ -723,6 +727,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
     </li>
   </EuiListGroupItem>
   <EuiListGroupItem
+    className=""
     color="text"
     iconType="sortUp"
     isDisabled={false}
@@ -763,6 +768,7 @@ exports[`EuiDataGrid render column actions renders various column actions config
     </li>
   </EuiListGroupItem>
   <EuiListGroupItem
+    className=""
     color="text"
     iconType="sortDown"
     isDisabled={false}
