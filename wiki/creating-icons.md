@@ -53,7 +53,7 @@ EUI provides SVG icon formats only. After exporting your icon as an SVG from you
 - `fill: <value>`
 - `fill-rule: <value>` or `fillRule: <value>`
 
-_**Note**: Sketch users can use the [SVGO plugin][sketch-SVGO-plugin] to remove any extraneous code added by Sketch. Once installed, this plugin will run automatically any time an SVG is exported from Sketch._
+_**Note**: Figma users can use the [SVG Export plugin][svg-plugin] to optimize SVG sizes and code._
 
 ### Prepare the pull request
 
@@ -90,5 +90,5 @@ _\** Run `yarn && yarn start` to view the EUI docs site locally._
 
 [icons]: https://elastic.github.io/eui/#/display/icons
 [docs]: https://elastic.github.io/eui/
-[sketch-SVGO-plugin]: [https://www.sketch.com/extensions/plugins/svgo-compressor/]
+[svg-plugin]: https://www.figma.com/community/plugin/814345141907543603/SVG-Export
 [sketch-symbol-organizer-plugin]: [https://github.com/sonburn/symbol-organizer]
