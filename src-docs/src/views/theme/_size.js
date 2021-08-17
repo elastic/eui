@@ -58,7 +58,8 @@ export default ({ onThemeUpdate }) => {
                   code="EuiThemeBase"
                   description={
                     <p>
-                      This <EuiCode>base</EuiCode> integer sets the scale for the entire theme. Adjust cautiously.
+                      This <EuiCode>base</EuiCode> integer sets the scale for
+                      the entire theme. Adjust cautiously.
                     </p>
                   }
                   themeValues={
@@ -89,7 +90,8 @@ export default ({ onThemeUpdate }) => {
                   description={
                     <p>
                       It is not recommended to adjust the computed sizes but to
-                      only adjust the top level base value in order to keep proper proportions. 
+                      only adjust the top level base value in order to keep
+                      proper proportions.
                     </p>
                   }
                   property="size"
@@ -168,13 +170,13 @@ export default ({ onThemeUpdate }) => {
                   description={
                     <>
                       <p>
-                        When doing calculations on top of the named key values, you
-                        have to use the{' '}
+                        When doing calculations on top of the named key values,
+                        you have to use the{' '}
                         <EuiLink href="https://developer.mozilla.org/en-US/docs/Web/CSS/calc()">
                           CSS <EuiCode>calc()</EuiCode> method
                         </EuiLink>{' '}
-                        because the value that is returned is a string
-                        value with the appended unit.
+                        because the value that is returned is a string value
+                        with the appended unit.
                       </p>
                     </>
                   }

@@ -2,6 +2,7 @@ import React from 'react';
 import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiIcon } from '../../../../src/components/icon';
 import { EuiCode } from '../../../../src/components/code';
+import { EuiText } from '../../../../src/components/text';
 import { useEuiTheme } from '../../../../src/services';
 
 export default () => {

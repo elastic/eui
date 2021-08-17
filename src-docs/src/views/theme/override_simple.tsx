@@ -1,5 +1,6 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { EuiCode } from '../../../../src/components/code';
+import { EuiText } from '../../../../src/components/text';
 import { EuiThemeProvider, useEuiTheme } from '../../../../src/services';
 
 const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {

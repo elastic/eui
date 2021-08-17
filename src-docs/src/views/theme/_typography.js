@@ -293,7 +293,10 @@ export default ({ onThemeUpdate }) => {
                   code="euiTheme.font[]"
                   description={
                     <p>
-                      All of EUI defaults to the base <EuiCode>font.family</EuiCode>. However, you change certain instance to other available families like <EuiCode>font.familyCode</EuiCode>.
+                      All of EUI defaults to the base{' '}
+                      <EuiCode>font.family</EuiCode>. However, you change
+                      certain instance to other available families like{' '}
+                      <EuiCode>font.familyCode</EuiCode>.
                     </p>
                   }
                   example={
@@ -314,8 +317,9 @@ export default ({ onThemeUpdate }) => {
                       To maintain consistency, EUI establishes the font weight
                       patterns directly in the text and title components.
                       However, we recommend using the theme keys instead of
-                      <EuiCode language="css">font-weight: bold</EuiCode> in your css to ensure proper rendering
-                      with the imported font family.
+                      <EuiCode language="css">font-weight: bold</EuiCode> in
+                      your css to ensure proper rendering with the imported font
+                      family.
                     </p>
                   }
                   example={

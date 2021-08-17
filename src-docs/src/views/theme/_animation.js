@@ -43,8 +43,7 @@ export default ({ onThemeUpdate }) => {
         </h2>
         <p>
           The <EuiCode>animation</EuiCode> values provide some easy and
-          consistent ways for adding transition or animation effects and
-          timing.
+          consistent ways for adding transition or animation effects and timing.
         </p>
       </EuiText>
 
@@ -98,8 +97,9 @@ export default ({ onThemeUpdate }) => {
                   code="_EuiThemeAnimationEasing"
                   description={
                     <p>
-                      EUI utilizes the following easing constants to maintain a similar
-                      &apos;bounce&apos; or slight resistance to its animations.
+                      EUI utilizes the following easing constants to maintain a
+                      similar &apos;bounce&apos; or slight resistance to its
+                      animations.
                     </p>
                   }
                   themeValues={Object.keys(easingTypes).map((prop) => {

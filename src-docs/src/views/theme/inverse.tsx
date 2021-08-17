@@ -1,6 +1,7 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { EuiIcon } from '../../../../src/components/icon';
 import { EuiSpacer } from '../../../../src/components/spacer';
+import { EuiText } from '../../../../src/components/text';
 import { EuiThemeProvider, useEuiTheme } from '../../../../src/services';
 
 const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
@@ -14,7 +15,7 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
         color: euiTheme.colors.text,
       }}>
       <p>{children}</p>
-    </EuiText
+    </EuiText>
   );
 };
 

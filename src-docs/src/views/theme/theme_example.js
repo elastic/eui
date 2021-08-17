@@ -38,14 +38,13 @@ export const ThemeExample = {
       <EuiText>
         <p>
           EUI is in the progress of switching it&apos;s core styles processor
-          from Sass to <EuiLink to="https://emotion.sh">Emotion</EuiLink>. It requires that all consumer applications wrap
-          their core application with <strong>EuiThemeProvider</strong>.
+          from Sass to <EuiLink to="https://emotion.sh">Emotion</EuiLink>. It
+          requires that all consumer applications wrap their core application
+          with <strong>EuiThemeProvider</strong>.
         </p>
       </EuiText>
       <EuiSpacer size="m" />
-      <EuiCallOut
-        title="The following examples assume that you have wrapped your entire application with this provider."
-      />
+      <EuiCallOut title="The following examples assume that you have wrapped your entire application with this provider." />
     </>
   ),
   sections: [
@@ -55,8 +54,8 @@ export const ThemeExample = {
         <>
           <p>
             The context layer that enables theming (including the default theme
-            styles) comes from <EuiCode>EuiThemeProvider</EuiCode>. It
-            is a thin wrapper around and caching layer built onto{' '}
+            styles) comes from <EuiCode>EuiThemeProvider</EuiCode>. It is a thin
+            wrapper around and caching layer built onto{' '}
             <EuiCode>React.Context.Provider</EuiCode>.
           </p>
           <p>
