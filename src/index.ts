@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
-/* eslint-disable @typescript-eslint/triple-slash-reference */
-/// <reference path="./components/index.d.ts" />
-/// <reference path="./themes/index.d.ts" />
+export * from './components';
+export * from './services';
+export * from './utils';
+export * from './themes';
