@@ -7,7 +7,6 @@ types
 eui.d.ts
 src/components/icon/assets/**/*.js
 package.json
-src-docs/src/views/icon/icon_example.js
 docs
 packages
 scripts
