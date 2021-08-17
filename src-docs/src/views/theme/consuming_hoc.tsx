@@ -15,12 +15,12 @@ class Block extends React.Component<WithEuiThemeProps> {
     `;
 
     return (
-      <div css={divStyle}>
+      <EuiText css={divStyle}>
         <p>
           <EuiIcon type="faceHappy" /> This box has it&apos;s background,
           padding, and border-radius controlled by custom css
         </p>
-      </div>
+      </EuiText>
     );
   }
 }

@@ -7,7 +7,7 @@ import { useEuiTheme } from '../../../../src/services';
 export default () => {
   const { euiTheme } = useEuiTheme();
   return (
-    <div>
+    <EuiText>
       <p>
         <EuiIcon
           type="stopFilled"
@@ -28,6 +28,6 @@ export default () => {
           calculated off the theme&apos;s <EuiCode>base</EuiCode>
         </p>
       </div>
-    </div>
+    </EuiText>
   );
 };

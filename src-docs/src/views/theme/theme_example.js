@@ -37,14 +37,13 @@ export const ThemeExample = {
     <>
       <EuiText>
         <p>
-          EUI is in the procress of switching it&apos;s core styles procressor
-          from Sass to Emotion. It requires that all consumer applications wrap
+          EUI is in the progress of switching it&apos;s core styles processor
+          from Sass to <EuiLink to="https://emotion.sh">Emotion</EuiLink>. It requires that all consumer applications wrap
           their core application with <strong>EuiThemeProvider</strong>.
         </p>
       </EuiText>
       <EuiSpacer size="m" />
       <EuiCallOut
-        size="s"
         title="The following examples assume that you have wrapped your entire application with this provider."
       />
     </>
@@ -56,8 +55,8 @@ export const ThemeExample = {
         <>
           <p>
             The context layer that enables theming (including the default theme
-            styles) comes from <EuiCode>EuiThemeProvider</EuiCode>. Simply put,
-            this is a thin wrapper around and caching layer built onto{' '}
+            styles) comes from <EuiCode>EuiThemeProvider</EuiCode>. It
+            is a thin wrapper around and caching layer built onto{' '}
             <EuiCode>React.Context.Provider</EuiCode>.
           </p>
           <p>
@@ -95,7 +94,7 @@ export const ThemeExample = {
       props: { EuiThemeProvider },
     },
     {
-      title: 'Consuming with React hook',
+      title: 'Consuming with the React hook',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -137,7 +136,7 @@ export const ThemeExample = {
       demo: <Consuming />,
     },
     {
-      title: 'Consuming with React HOC',
+      title: 'Consuming with the React HOC',
       source: [
         {
           type: GuideSectionTypes.JS,

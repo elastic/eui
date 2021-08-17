@@ -92,7 +92,7 @@ export default ({ onThemeUpdate }) => {
                         <EuiCode>featureSettings</EuiCode>.
                       </p>
                       <p>
-                        The <EuiCode>lineHeightMultiplier</EuiCode> established
+                        The <EuiCode>lineHeightMultiplier</EuiCode> establishes
                         the line-height in percentages compared to the
                         font-size, but it is the <EuiCode>baseline</EuiCode>{' '}
                         integer that establishes the final pixel/rem value by
@@ -293,9 +293,7 @@ export default ({ onThemeUpdate }) => {
                   code="euiTheme.font[]"
                   description={
                     <p>
-                      All of EUI defaults to this base font family. However, you
-                      can use it to override a custom component that is not
-                      inheriting this family.
+                      All of EUI defaults to the base <EuiCode>font.family</EuiCode>. However, you change certain instance to other available families like <EuiCode>font.familyCode</EuiCode>.
                     </p>
                   }
                   example={
@@ -313,10 +311,10 @@ export default ({ onThemeUpdate }) => {
                   code="euiTheme.font.weight[]"
                   description={
                     <p>
-                      To maintain consistency, EUI established the font weight
+                      To maintain consistency, EUI establishes the font weight
                       patterns directly in the text and title components.
                       However, we recommend using the theme keys instead of
-                      `font-weight: bold` in your css to ensure proper alignment
+                      <EuiCode language="css">font-weight: bold</EuiCode> in your css to ensure proper rendering
                       with the imported font family.
                     </p>
                   }

@@ -359,8 +359,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
       intro={
         <EuiText grow={false}>
           <p>
-            EUI is highly tokenized and highly recommends using the following
-            Sass variables when customizing on top of EUI. This way your
+            EUI is highly tokenized and highly using the following
+            <EuiLink to="https://sass-lang.com/">Sass</EuiLink> variables when customizing on top of EUI. This way your
             customizations stay up to date with EUI&apos;s theming.
           </p>
           <p>

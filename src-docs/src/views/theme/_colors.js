@@ -460,7 +460,7 @@ export default ({ onThemeUpdate }) => {
                     </div>
                   }
                   snippet={`background: \${euiTheme.colors.darkShade};
-  color: \${makeHighContrastColor(euiTheme.colors.warning)(euiTheme.colors.darkShade);`}
+  color: \${makeHighContrastColor(euiTheme.colors.warning)(euiTheme.colors.darkShade)};`}
                 />
               </>
             ),

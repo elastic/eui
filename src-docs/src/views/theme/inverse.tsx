@@ -7,14 +7,14 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
   const { euiTheme } = useEuiTheme();
 
   return (
-    <div
+    <EuiText
       css={{
         background: euiTheme.colors.lightShade,
         padding: euiTheme.size.xl,
         color: euiTheme.colors.text,
       }}>
       <p>{children}</p>
-    </div>
+    </EuiText
   );
 };
 

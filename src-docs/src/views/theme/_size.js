@@ -39,7 +39,7 @@ export default ({ onThemeUpdate }) => {
       <EuiText>
         <h2>Sizing</h2>
         <p>
-          All sizing values. including font size, are calculated from a single{' '}
+          All sizing values, including font size, are calculated from a single{' '}
           <EuiCode>base</EuiCode> integer and converted to pixel or rem string
           values.
         </p>
@@ -58,9 +58,7 @@ export default ({ onThemeUpdate }) => {
                   code="EuiThemeBase"
                   description={
                     <p>
-                      All sizing values are calculated from a single{' '}
-                      <EuiCode>base</EuiCode> integer and converted to pixel
-                      string values.
+                      This <EuiCode>base</EuiCode> integer sets the scale for the entire theme. Adjust cautiously.
                     </p>
                   }
                   themeValues={
@@ -90,8 +88,8 @@ export default ({ onThemeUpdate }) => {
                   code="EuiThemeSize"
                   description={
                     <p>
-                      It is recommended not to adjust the computed sizes and
-                      only adjust the top level base value.
+                      It is not recommended to adjust the computed sizes but to
+                      only adjust the top level base value in order to keep proper proportions. 
                     </p>
                   }
                   property="size"
@@ -149,7 +147,7 @@ export default ({ onThemeUpdate }) => {
                 <ThemeSection
                   code="euiTheme.size[size]"
                   description={
-                    <p>Using the values as they are is straight foward.</p>
+                    <p>Using the named keys as values is straight forward.</p>
                   }
                   example={
                     <div
@@ -170,13 +168,13 @@ export default ({ onThemeUpdate }) => {
                   description={
                     <>
                       <p>
-                        When doing calculations on top of the size values, you
+                        When doing calculations on top of the named key values, you
                         have to use the{' '}
                         <EuiLink href="https://developer.mozilla.org/en-US/docs/Web/CSS/calc()">
                           CSS <EuiCode>calc()</EuiCode> method
                         </EuiLink>{' '}
-                        because the value that is returned is only a string
-                        value with the unit.
+                        because the value that is returned is a string
+                        value with the appended unit.
                       </p>
                     </>
                   }
