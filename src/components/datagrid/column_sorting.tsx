@@ -6,33 +6,34 @@
  * Side Public License, v 1.
  */
 
+import classNames from 'classnames';
 import React, {
   Fragment,
-  useState,
   ReactChild,
   ReactNode,
   useEffect,
+  useState,
 } from 'react';
-import classNames from 'classnames';
-import { EuiDataGridColumn, EuiDataGridSorting } from './data_grid_types';
-import { EuiPopover, EuiPopoverFooter } from '../popover';
-import { EuiI18n } from '../i18n';
-import { EuiText } from '../text';
+import { DropResult } from 'react-beautiful-dnd';
 import { EuiButtonEmpty } from '../button';
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import {
   EuiDragDropContext,
-  EuiDroppable,
   euiDragDropReorder,
+  EuiDroppable,
 } from '../drag_and_drop';
-import { DropResult } from 'react-beautiful-dnd';
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { EuiI18n } from '../i18n';
+import { EuiPopover, EuiPopoverFooter } from '../popover';
+import { EuiText } from '../text';
+import { EuiToken } from '../token';
 import { EuiDataGridColumnSortingDraggable } from './column_sorting_draggable';
+import { getDetailsForSchema } from './data_grid_schema';
 import {
+  EuiDataGridColumn,
   EuiDataGridSchema,
   EuiDataGridSchemaDetector,
-  getDetailsForSchema,
-} from './data_grid_schema';
-import { EuiToken } from '../token';
+  EuiDataGridSorting,
+} from './data_grid_types';
 
 export const useDataGridColumnSorting = (
   columns: EuiDataGridColumn[],
@@ -42,7 +43,7 @@ export const useDataGridColumnSorting = (
   displayValues: { [key: string]: string }
 ): ReactNode => {
   const [isOpen, setIsOpen] = useState(false);
-  const [avilableColumnsisOpen, setAvailableColumnsIsOpen] = useState(false);
+  const [availableColumnsIsOpen, setAvailableColumnsIsOpen] = useState(false);
   // prune any non-existent/hidden columns from sorting
   useEffect(() => {
     if (sorting) {
@@ -197,7 +198,7 @@ export const useDataGridColumnSorting = (
               {inactiveSortableColumns.length > 0 && (
                 <EuiPopover
                   data-test-subj="dataGridColumnSortingPopoverColumnSelection"
-                  isOpen={avilableColumnsisOpen}
+                  isOpen={availableColumnsIsOpen}
                   closePopover={() => setAvailableColumnsIsOpen(false)}
                   anchorPosition="downLeft"
                   panelPaddingSize="none"
@@ -208,7 +209,7 @@ export const useDataGridColumnSorting = (
                       iconType="arrowDown"
                       iconSide="right"
                       onClick={() =>
-                        setAvailableColumnsIsOpen(!avilableColumnsisOpen)
+                        setAvailableColumnsIsOpen(!availableColumnsIsOpen)
                       }>
                       <EuiI18n
                         token="euiColumnSorting.pickFields"

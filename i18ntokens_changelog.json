@@ -1,5 +1,74 @@
 [
   {
+    "version": "37.3.0",
+    "changes": [
+      {
+        "token": "euiColumnSortingDraggable.activeSortLabel",
+        "changeType": "modified",
+        "value": "{display} is sorting this data grid"
+      },
+      {
+        "token": "euiColumnSortingDraggable.removeSortLabel",
+        "changeType": "modified",
+        "value": "Remove {display} from data grid sort"
+      },
+      {
+        "token": "euiColumnSortingDraggable.toggleLegend",
+        "changeType": "modified",
+        "value": "Select sorting method for {display}"
+      },
+      {
+        "token": "euiDataGridCell.row",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridCell.column",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGrid.ariaLabelGridPagination",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGrid.ariaLabelledByGridPagination",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGrid.fullScreenButton",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGrid.fullScreenButtonActive",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridCell.position",
+        "changeType": "added",
+        "value": "Row: {row}; Column: {col}"
+      },
+      {
+        "token": "euiDataGridPagination.detailedPaginationLabel",
+        "changeType": "added",
+        "value": "Pagination for preceding grid: {label}"
+      },
+      {
+        "token": "euiDataGridPagination.paginationLabel",
+        "changeType": "added",
+        "value": "Pagination for preceding grid"
+      },
+      {
+        "token": "euiDataGridToolbar.fullScreenButton",
+        "changeType": "added",
+        "value": "Full screen"
+      },
+      {
+        "token": "euiDataGridToolbar.fullScreenButtonActive",
+        "changeType": "added",
+        "value": "Exit full screen"
+      }
+    ]
+  },
+  {
     "version": "37.0.0",
     "changes": [
       {
