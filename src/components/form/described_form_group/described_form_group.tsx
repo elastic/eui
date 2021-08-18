@@ -92,7 +92,8 @@ export const EuiDescribedFormGroup: FunctionComponent<EuiDescribedFormGroupProps
       <EuiText
         size="s"
         color="subdued"
-        className="euiDescribedFormGroup__description">
+        className="euiDescribedFormGroup__description"
+      >
         {description}
       </EuiText>
     );

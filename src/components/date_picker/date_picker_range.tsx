@@ -104,7 +104,8 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
           <EuiText
             className="euiDatePickerRange__delimeter"
             size="s"
-            color="subdued">
+            color="subdued"
+          >
             →
           </EuiText>
           {endControl}

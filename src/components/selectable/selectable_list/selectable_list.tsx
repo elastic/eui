@@ -206,7 +206,8 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
           className="euiSelectableList__groupLabel"
           style={style}
           // @ts-ignore complex
-          {...(optionRest as HTMLAttributes<HTMLLIElement>)}>
+          {...(optionRest as HTMLAttributes<HTMLLIElement>)}
+        >
           {prepend}
           {label}
           {append}
@@ -237,7 +238,8 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         onFocusBadge={this.props.onFocusBadge}
         allowExclusions={this.props.allowExclusions}
         showIcons={this.props.showIcons}
-        {...(optionRest as EuiSelectableListItemProps)}>
+        {...(optionRest as EuiSelectableListItemProps)}
+      >
         {this.props.renderOption ? (
           this.props.renderOption(option, this.props.searchValue)
         ) : (
@@ -322,7 +324,8 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
               itemSize={rowHeight}
               innerElementType="ul"
               innerRef={this.setListBoxRef}
-              {...windowProps}>
+              {...windowProps}
+            >
               {this.ListRow}
             </FixedSizeList>
           )}

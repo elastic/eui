@@ -103,7 +103,8 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
       title={stepTitle}
       onClick={onStepClick}
       disabled={disabled}
-      {...rest}>
+      {...rest}
+    >
       <EuiStepNumber
         className="euiStepHorizontal__number"
         status={status}

@@ -88,7 +88,8 @@ export const EuiPageBody = <T extends ComponentTypes>({
       borderRadius={borderRadius}
       paddingSize={paddingSize}
       {...panelProps}
-      {...rest}>
+      {...rest}
+    >
       {children}
     </EuiPanel>
   ) : (

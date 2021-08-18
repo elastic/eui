@@ -7,7 +7,8 @@ const EuiIconLogoRedis = ({ title, titleId, ...props }) => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <g transform="translate(0 3)" fill="none">
       <path

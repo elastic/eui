@@ -107,7 +107,8 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
         onClick={onClick}
         aria-label={showLabel ? undefined : (label as string)}
         aria-labelledby={showLabel ? labelId : undefined}
-        {...rest}>
+        {...rest}
+      >
         <span className="euiSwitch__body">
           <span className="euiSwitch__thumb" />
           <span className="euiSwitch__track">
@@ -134,7 +135,8 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
           {...labelProps}
           className={labelClasses}
           id={labelId}
-          onClick={onClick}>
+          onClick={onClick}
+        >
           {label}
         </span>
       )}

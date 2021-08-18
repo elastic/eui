@@ -64,7 +64,8 @@ export class EuiTableSortMobile extends Component<
         iconSide="right"
         onClick={this.onButtonClick.bind(this)}
         flush="right"
-        size="xs">
+        size="xs"
+      >
         <EuiI18n token="euiTableSortMobile.sorting" default="Sorting" />
       </EuiButtonEmpty>
     );
@@ -76,7 +77,8 @@ export class EuiTableSortMobile extends Component<
         closePopover={this.closePopover}
         anchorPosition={anchorPosition || 'downRight'}
         panelPaddingSize="none"
-        {...rest}>
+        {...rest}
+      >
         <EuiContextMenuPanel
           style={{ minWidth: 200 }}
           items={
@@ -87,7 +89,8 @@ export class EuiTableSortMobile extends Component<
                       key={item.key}
                       onSort={item.onSort}
                       isSorted={item.isSorted}
-                      isSortAscending={item.isSortAscending}>
+                      isSortAscending={item.isSortAscending}
+                    >
                       {item.name}
                     </EuiTableSortMobileItem>
                   );

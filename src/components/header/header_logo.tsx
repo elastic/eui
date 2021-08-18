@@ -50,7 +50,8 @@ export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
       rel={secureRel}
       target={target}
       className={classes}
-      {...rest}>
+      {...rest}
+    >
       <EuiIcon
         aria-label={iconTitle}
         className="euiHeaderLogo__icon"

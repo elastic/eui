@@ -452,7 +452,8 @@ export class EuiContextMenuPanel extends Component<Props, State> {
             ref={(node) => {
               this.backButton = node;
             }}
-            data-test-subj="contextMenuPanelTitleButton">
+            data-test-subj="contextMenuPanelTitleButton"
+          >
             <span className="euiContextMenu__itemLayout">
               <EuiIcon
                 type="arrowLeft"
@@ -507,7 +508,8 @@ export class EuiContextMenuPanel extends Component<Props, State> {
         onKeyDown={this.onKeyDown}
         tabIndex={-1}
         onAnimationEnd={this.onTransitionComplete}
-        {...rest}>
+        {...rest}
+      >
         {panelTitle}
 
         <div ref={this.contentRef}>

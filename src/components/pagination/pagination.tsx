@@ -127,11 +127,13 @@ export const EuiPagination: FunctionComponent<Props> = ({
     <EuiI18n
       token="euiPagination.previousPage"
       default="Previous page, {page}"
-      values={{ page: activePage }}>
+      values={{ page: activePage }}
+    >
       {(previousPage: string) => (
         <EuiI18n
           token="euiPagination.disabledPreviousPage"
-          default="Previous page">
+          default="Previous page"
+        >
           {(disabledPreviousPage: string) => (
             <EuiButtonIcon
               onClick={(e: MouseEvent) => safeClick(e, activePage - 1)}
@@ -160,11 +162,13 @@ export const EuiPagination: FunctionComponent<Props> = ({
           key="startingEllipses"
           token="euiPagination.firstRangeAriaLabel"
           default="Skipping pages 2 to {lastPage}"
-          values={{ lastPage: firstPageInRange }}>
+          values={{ lastPage: firstPageInRange }}
+        >
           {(firstRangeAriaLabel: string) => (
             <li
               aria-label={firstRangeAriaLabel}
-              className="euiPaginationButton-isPlaceholder euiPagination__item">
+              className="euiPaginationButton-isPlaceholder euiPagination__item"
+            >
               &hellip;
             </li>
           )}
@@ -188,11 +192,13 @@ export const EuiPagination: FunctionComponent<Props> = ({
           key="endingEllipses"
           token="euiPagination.lastRangeAriaLabel"
           default="Skipping pages {firstPage} to {lastPage}"
-          values={{ firstPage: lastPageInRange + 1, lastPage: pageCount - 1 }}>
+          values={{ firstPage: lastPageInRange + 1, lastPage: pageCount - 1 }}
+        >
           {(lastRangeAriaLabel: string) => (
             <li
               aria-label={lastRangeAriaLabel}
-              className="euiPaginationButton-isPlaceholder euiPagination__item">
+              className="euiPaginationButton-isPlaceholder euiPagination__item"
+            >
               &hellip;
             </li>
           )}
@@ -219,7 +225,8 @@ export const EuiPagination: FunctionComponent<Props> = ({
     <EuiI18n
       token="euiPagination.nextPage"
       default="Next page, {page}"
-      values={{ page: activePage + 2 }}>
+      values={{ page: activePage + 2 }}
+    >
       {(nextPage: string) => (
         <EuiI18n token="euiPagination.disabledNextPage" default="Next page">
           {(disabledNextPage: string) => (

@@ -38,7 +38,8 @@ export const _EuiSplitPanelInner: FunctionComponent<_EuiSplitPanelInnerProps> = 
       element="div"
       className={classes}
       {...panelProps}
-      {...(rest as _EuiPanelProps)}>
+      {...(rest as _EuiPanelProps)}
+    >
       {children}
     </EuiPanel>
   );
@@ -90,7 +91,8 @@ export const _EuiSplitPanelOuter: FunctionComponent<_EuiSplitPanelOuterProps> = 
       paddingSize="none"
       grow={false}
       className={classes}
-      {...(rest as _EuiPanelProps)}>
+      {...(rest as _EuiPanelProps)}
+    >
       {children}
     </EuiPanel>
   );

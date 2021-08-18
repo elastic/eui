@@ -117,7 +117,8 @@ const DefaultRenderItem = ({
         target={target}
         rel={secureRel}
         onClick={onClick}
-        {...rest}>
+        {...rest}
+      >
         {children}
       </a>
     );
@@ -130,7 +131,8 @@ const DefaultRenderItem = ({
         className={className}
         onClick={onClick}
         disabled={disabled}
-        {...rest}>
+        {...rest}
+      >
         {children}
       </button>
     );
@@ -232,7 +234,8 @@ export function EuiSideNavItem<
             title={truncate ? innerText : undefined}
             className={classNames('euiSideNavItemButton__label', {
               'euiSideNavItemButton__label--truncated': truncate,
-            })}>
+            })}
+          >
             {children}
           </span>
         )}
