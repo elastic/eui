@@ -86,7 +86,8 @@ export const ThemeExample = {
           <p>
             The concept for each prop is explained in subsequent sections. More
             information on the full shape of an EUI theme, see the{' '}
-            <EuiLink href="#/theming/theme">EuiTheme</EuiLink> page.
+            <EuiLink href="#/theming/global-values">Global Values</EuiLink>{' '}
+            page.
           </p>
         </>
       ),

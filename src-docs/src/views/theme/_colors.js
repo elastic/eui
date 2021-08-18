@@ -32,6 +32,7 @@ import {
   EuiThemeConstantColors,
 } from './_props';
 import { makeHighContrastColor } from '../../../../src/global_styling/functions/_colors';
+import { EuiCodeBlock } from '../../../../src/components/code';
 
 const brandKeys = Object.keys(brand_colors);
 const brandTextKeys = Object.keys(brand_text_colors);
@@ -120,6 +121,32 @@ export default ({ onThemeUpdate }) => {
                 </EuiText>
               </EuiFlexItem>
             </EuiFlexGroup>
+          </EuiPanel>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="xl" />
+      <EuiFlexGroup>
+        <EuiFlexItem grow={2}>
+          <EuiText>
+            <h3>
+              <EuiCode>ColorModeSwitch</EuiCode> type
+            </h3>
+            <p>
+              EUI created this custom type to indicate when a key can accept
+              either a singular <EuiCode>{'<string>'}</EuiCode> or separate
+              strings for each color mode.
+            </p>
+          </EuiText>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiPanel grow={false} paddingSize="l" color="subdued">
+            <EuiCodeBlock transparentBackground paddingSize="none">
+              {`key: {
+  LIGHT: <string>,
+  DARK: <string>,
+}`}
+            </EuiCodeBlock>
           </EuiPanel>
         </EuiFlexItem>
       </EuiFlexGroup>
