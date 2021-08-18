@@ -34,3 +34,4 @@ export {
   EuiThemeSystem,
 } from './types';
 export { lineHeightFromBaseline } from './typography';
+export { sizeToPixel } from './size';

@@ -6,12 +6,11 @@
  * Side Public License, v 1.
  */
 
-import { computed } from '../../../../services/theme/utils';
+import { computed, sizeToPixel } from '../../../../services/theme';
 import {
   border,
   EuiThemeBorder,
 } from '../../../../global_styling/variables/_borders';
-import { sizeToPixel } from '../../../../global_styling/variables/_size';
 
 export const border_ams: EuiThemeBorder = {
   ...border,
