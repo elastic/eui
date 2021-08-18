@@ -68,6 +68,8 @@ export {
   saturate,
   desaturate,
   lightness,
+  makeHighContrastColor,
+  makeDisabledContrastColor,
 } from './color';
 
 export {

@@ -15,7 +15,7 @@ import {
 import {
   makeDisabledContrastColor,
   makeHighContrastColor,
-} from '../functions/_colors';
+} from '../../services/color/contrast';
 
 /*
  * TYPES

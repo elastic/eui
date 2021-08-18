@@ -11,7 +11,7 @@ import { computed } from '../../../../services/theme/utils';
 import {
   makeHighContrastColor,
   makeDisabledContrastColor,
-} from '../../../../global_styling/functions/_colors';
+} from '../../../../services/color/contrast';
 import {
   _EuiThemeColors,
   brand_text_colors,

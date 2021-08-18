@@ -31,7 +31,7 @@ import {
   EuiThemeColors,
   EuiThemeConstantColors,
 } from './_props';
-import { makeHighContrastColor } from '../../../../src/global_styling/functions/_colors';
+import { makeHighContrastColor } from '../../../../src/services/color/contrast';
 import { EuiCodeBlock } from '../../../../src/components/code';
 
 const brandKeys = Object.keys(brand_colors);

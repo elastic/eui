@@ -24,7 +24,7 @@ import WritingGuidelines from './views/guidelines/writing';
 
 import { ColorPaletteExample } from './views/color_palette/color_palette_example';
 
-import { IsColorDarkExample } from './views/is_color_dark/is_color_dark_example';
+import { ColorExample } from './views/color/color_example';
 
 import { PrettyDurationExample } from './views/pretty_duration/pretty_duration_example';
 
@@ -462,7 +462,7 @@ const navigation = [
     items: [
       AccessibilityExample,
       BeaconExample,
-      IsColorDarkExample,
+      ColorExample,
       ColorPaletteExample,
       CopyExample,
       UtilityClassesExample,

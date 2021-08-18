@@ -7,8 +7,8 @@
  */
 
 import chroma from 'chroma-js';
-import { shade, tint, lightness as getLightness } from '../../services/color';
-import { getOn } from '../../services/theme/utils';
+import { shade, tint, lightness as getLightness } from './manipulation';
+import { getOn } from '../theme/utils';
 
 /**
  * Creates a new color that meets or exceeds WCAG level AA
