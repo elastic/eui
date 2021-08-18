@@ -10,7 +10,7 @@ const dataGridControlColumnsSource = require('!!raw-loader!./footer_row');
 const dataGridControlColumnsHtml = renderToHtml(DataGridFooterRow);
 
 import { EuiDataGridControlColumn } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
-import { EuiDataGridCellValueElementProps } from '!!prop-loader!../../../../src/components/datagrid/data_grid_cell';
+import { EuiDataGridCellValueElementProps } from '!!prop-loader!../../../../src/components/datagrid/body/data_grid_cell';
 
 const gridSnippet = `const footerCellValues = {
   // desired data

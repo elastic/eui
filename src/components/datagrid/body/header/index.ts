@@ -6,9 +6,4 @@
  * Side Public License, v 1.
  */
 
-export { EuiDataGrid } from './data_grid';
-export { useDataGridColumnSelector } from './column_selector';
-export { useDataGridColumnSorting } from './column_sorting';
-export { useDataGridStyleSelector } from './style_selector';
-
-export * from './data_grid_types';
+export { EuiDataGridHeaderRow } from './data_grid_header_row';

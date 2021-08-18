@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import classnames from 'classnames';
 import React, {
   AriaAttributes,
   FunctionComponent,
@@ -16,33 +17,21 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { htmlIdGenerator } from '../../services/accessibility';
-import classnames from 'classnames';
-import { EuiDataGridHeaderRowPropsSpecificProps } from './data_grid_header_row';
-import { keys } from '../../services';
-import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
-import { EuiPopover } from '../popover';
-import { EuiListGroup } from '../list_group';
-import { EuiScreenReaderOnly } from '../accessibility';
 import tabbable from 'tabbable';
-import { EuiDataGridColumn } from './data_grid_types';
+import { keys } from '../../../../services';
+import { htmlIdGenerator } from '../../../../services/accessibility';
+import { EuiScreenReaderOnly } from '../../../accessibility';
+import { useEuiI18n } from '../../../i18n';
+import { EuiIcon } from '../../../icon';
+import { EuiListGroup } from '../../../list_group';
+import { EuiPopover } from '../../../popover';
 import { getColumnActions } from './column_actions';
-import { useEuiI18n } from '../i18n';
-import { EuiIcon } from '../icon';
+import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import {
   DataGridFocusContext,
   DataGridSortingContext,
-} from './data_grid_context';
-
-export interface EuiDataGridHeaderCellProps
-  extends Omit<
-    EuiDataGridHeaderRowPropsSpecificProps,
-    'leadingControlColumns'
-  > {
-  column: EuiDataGridColumn;
-  index: number;
-  className?: string;
-}
+} from '../../data_grid_context';
+import { EuiDataGridHeaderCellProps } from '../../data_grid_types';
 
 export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps> = (
   props

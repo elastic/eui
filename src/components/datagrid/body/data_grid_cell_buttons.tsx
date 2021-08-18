@@ -10,10 +10,10 @@ import {
   EuiDataGridColumn,
   EuiDataGridColumnCellAction,
   EuiDataGridColumnCellActionProps,
-} from './data_grid_types';
+} from '../data_grid_types';
 import classNames from 'classnames';
-import { EuiI18n } from '../i18n';
-import { EuiButtonIcon, EuiButtonIconProps } from '../button/button_icon';
+import { EuiI18n } from '../../i18n';
+import { EuiButtonIcon, EuiButtonIconProps } from '../../button/button_icon';
 
 export const EuiDataGridCellButtons = ({
   popoverIsOpen,
