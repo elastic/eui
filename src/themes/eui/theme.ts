@@ -12,7 +12,6 @@ import { animation } from '../../global_styling/variables/_animations';
 import { breakpoint } from '../../global_styling/variables/_breakpoint';
 import { colors } from '../../global_styling/variables/_colors';
 import { base, size } from '../../global_styling/variables/_size';
-import { focus } from '../../global_styling/variables/_states';
 import { font } from '../../global_styling/variables/_typography';
 import { border } from '../../global_styling/variables/_borders';
 
@@ -22,7 +21,6 @@ export const euiThemeDefault: EuiThemeShape = {
   size,
   font,
   border,
-  focus,
   animation,
   breakpoint,
 };

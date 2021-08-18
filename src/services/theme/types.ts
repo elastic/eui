@@ -47,7 +47,7 @@ export type EuiThemeShape = {
   size: EuiThemeSize;
   font: EuiThemeFont;
   border: EuiThemeBorder;
-  focus: _EuiThemeFocus;
+  focus?: _EuiThemeFocus;
   animation: EuiThemeAnimation;
   breakpoint: EuiThemeBreakpoint;
 };
