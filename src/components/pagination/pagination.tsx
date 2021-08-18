@@ -20,6 +20,40 @@ const MAX_VISIBLE_PAGES = 5;
 const NUMBER_SURROUNDING_PAGES = Math.floor(MAX_VISIBLE_PAGES * 0.5);
 
 export type PageClickHandler = (pageIndex: number) => void;
+type SafeClickHandler = (e: MouseEvent, pageIndex: number) => void;
+
+const PaginationButton = ({
+  pageIndex,
+  inList = true,
+  activePage,
+  pageCount,
+  ariaControls,
+  safeClick,
+}: {
+  pageIndex: number;
+  inList?: boolean;
+  activePage: number;
+  pageCount: number;
+  ariaControls?: string;
+  safeClick: SafeClickHandler;
+}) => {
+  const button = (
+    <EuiPaginationButton
+      isActive={pageIndex === activePage}
+      totalPages={pageCount}
+      onClick={(e: MouseEvent) => safeClick(e, pageIndex)}
+      pageIndex={pageIndex}
+      {...{ 'aria-controls': ariaControls }}
+      hideOnMobile
+    />
+  );
+
+  if (inList) {
+    return <li className="euiPagination__item">{button}</li>;
+  }
+
+  return button;
+};
 
 export interface EuiPaginationProps {
   /**
@@ -57,7 +91,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
   'aria-controls': ariaControls,
   ...rest
 }) => {
-  const safeClick = (e: MouseEvent, pageIndex: number) => {
+  const safeClick: SafeClickHandler = (e, pageIndex) => {
     e.preventDefault();
 
     if (ariaControls) {
@@ -70,30 +104,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
 
     onPageClick(pageIndex);
   };
-  const PaginationButton = ({
-    pageIndex,
-    inList = true,
-  }: {
-    pageIndex: number;
-    inList?: boolean;
-  }) => {
-    const button = (
-      <EuiPaginationButton
-        isActive={pageIndex === activePage}
-        totalPages={pageCount}
-        onClick={(e: MouseEvent) => safeClick(e, pageIndex)}
-        pageIndex={pageIndex}
-        {...(hasControl && { 'aria-controls': ariaControls })}
-        hideOnMobile
-      />
-    );
 
-    if (inList) {
-      return <li className="euiPagination__item">{button}</li>;
-    }
-
-    return button;
-  };
   const classes = classNames('euiPagination', className);
   const hasControl = ariaControls !== undefined;
   const pages = [];
@@ -110,7 +121,16 @@ export const EuiPagination: FunctionComponent<Props> = ({
   );
 
   for (let i = firstPageInRange, index = 0; i < lastPageInRange; i++, index++) {
-    pages.push(<PaginationButton pageIndex={i} key={i} />);
+    pages.push(
+      <PaginationButton
+        pageIndex={i}
+        key={i}
+        activePage={activePage}
+        pageCount={pageCount}
+        ariaControls={ariaControls}
+        safeClick={safeClick}
+      />
+    );
   }
 
   let prevPageButtonProps = {};
@@ -152,7 +172,16 @@ export const EuiPagination: FunctionComponent<Props> = ({
   const firstPageButtons = [];
 
   if (firstPageInRange > 0) {
-    firstPageButtons.push(<PaginationButton pageIndex={0} key={0} />);
+    firstPageButtons.push(
+      <PaginationButton
+        pageIndex={0}
+        key={0}
+        activePage={activePage}
+        pageCount={pageCount}
+        ariaControls={ariaControls}
+        safeClick={safeClick}
+      />
+    );
 
     if (firstPageInRange > 1 && firstPageInRange !== 2) {
       firstPageButtons.push(
@@ -171,7 +200,16 @@ export const EuiPagination: FunctionComponent<Props> = ({
         </EuiI18n>
       );
     } else if (firstPageInRange === 2) {
-      firstPageButtons.push(<PaginationButton pageIndex={1} key={1} />);
+      firstPageButtons.push(
+        <PaginationButton
+          pageIndex={1}
+          key={1}
+          activePage={activePage}
+          pageCount={pageCount}
+          ariaControls={ariaControls}
+          safeClick={safeClick}
+        />
+      );
     }
   }
 
@@ -180,7 +218,14 @@ export const EuiPagination: FunctionComponent<Props> = ({
   if (lastPageInRange < pageCount) {
     if (lastPageInRange + 1 === pageCount - 1) {
       lastPageButtons.push(
-        <PaginationButton pageIndex={lastPageInRange} key={lastPageInRange} />
+        <PaginationButton
+          pageIndex={lastPageInRange}
+          key={lastPageInRange}
+          activePage={activePage}
+          pageCount={pageCount}
+          ariaControls={ariaControls}
+          safeClick={safeClick}
+        />
       );
     } else if (lastPageInRange < pageCount - 1) {
       lastPageButtons.push(
@@ -201,7 +246,14 @@ export const EuiPagination: FunctionComponent<Props> = ({
     }
 
     lastPageButtons.push(
-      <PaginationButton pageIndex={pageCount - 1} key={pageCount - 1} />
+      <PaginationButton
+        pageIndex={pageCount - 1}
+        key={pageCount - 1}
+        activePage={activePage}
+        pageCount={pageCount}
+        ariaControls={ariaControls}
+        safeClick={safeClick}
+      />
     );
   }
 
@@ -243,10 +295,24 @@ export const EuiPagination: FunctionComponent<Props> = ({
 
   if (compressed) {
     const firstPageButtonCompressed = (
-      <PaginationButton pageIndex={activePage} inList={false} />
+      <PaginationButton
+        pageIndex={activePage}
+        inList={false}
+        activePage={activePage}
+        pageCount={pageCount}
+        ariaControls={ariaControls}
+        safeClick={safeClick}
+      />
     );
     const lastPageButtonCompressed = (
-      <PaginationButton pageIndex={pageCount - 1} inList={false} />
+      <PaginationButton
+        pageIndex={pageCount - 1}
+        inList={false}
+        activePage={activePage}
+        pageCount={pageCount}
+        ariaControls={ariaControls}
+        safeClick={safeClick}
+      />
     );
 
     return (
