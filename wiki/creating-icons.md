@@ -35,7 +35,7 @@ This is where things get more opinionated. To maintain a cohesive, high quality 
 ![Guides](https://user-images.githubusercontent.com/446285/63458958-5624f580-c419-11e9-89cf-45fa1b596329.png)
 
 #### _For Figma users_
-_As a reference, you can view and duplicate our Figma library files via the **Figma icon** link atop the [EUI documentation site][docs] site. The "Icon" page within this file contains artboards for the vast majority of EUI glyphs._
+_As a reference, you can view and duplicate our [Figma Icon Template](https://www.figma.com/file/Alv38VIPHGd2cNZYKgtVEe/EUI-Utilities-Icon-Template?node-id=1%3A165). The "template" page within this project contains frames with helper grids, margins, and an example._
 
 #### _For non-Figma users_
 _While we use Figma to maintain our internal design library, you can use any design tool to produce the SVG file._
