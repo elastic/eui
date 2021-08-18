@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `37.3.0`.
+**Bug fixes**
+
+- Fixed rerender state issues in `PaginationButton` inside `EuiPagination` ([#5048](https://github.com/elastic/eui/pull/5048))
 
 ## [`37.3.0`](https://github.com/elastic/eui/tree/v37.3.0)
 
@@ -17,7 +19,6 @@ No public interface changes since `37.3.0`.
 - Fixed `EuiSelectable`'s double click bug ([#5021](https://github.com/elastic/eui/pull/5021))
 - Fixed overflowing controls when `EuiCodeBlock` is short in height ([#5018](https://github.com/elastic/eui/pull/5018))
 - Fixed `EuiButtonGroup` firing `onChange` twice ([#5033](https://github.com/elastic/eui/pull/5033))
-- Fixed rerender state issues in `PaginationButton` inside `EuiPagination` ([#5048](https://github.com/elastic/eui/pull/5048))
 
 ## [`37.2.0`](https://github.com/elastic/eui/tree/v37.2.0)
 
