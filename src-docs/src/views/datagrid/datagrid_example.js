@@ -32,10 +32,9 @@ import {
   EuiDataGridControlColumn,
   EuiDataGridToolBarVisibilityColumnSelectorOptions,
   EuiDataGridRowHeightsOptions,
+  EuiDataGridCellValueElementProps,
+  EuiDataGridSchemaDetector,
 } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
-
-import { EuiDataGridCellValueElementProps } from '!!prop-loader!../../../../src/components/datagrid/body/data_grid_cell';
-import { EuiDataGridSchemaDetector } from '!!prop-loader!../../../../src/components/datagrid/data_grid_schema';
 
 const gridSnippet = `
   <EuiDataGrid
