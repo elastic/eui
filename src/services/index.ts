@@ -156,4 +156,5 @@ export {
   EuiThemeModifications,
   EuiThemeShape,
   EuiThemeSystem,
+  lineHeightFromBaseline,
 } from './theme';

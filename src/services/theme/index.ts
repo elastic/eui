@@ -33,3 +33,4 @@ export {
   EuiThemeShape,
   EuiThemeSystem,
 } from './types';
+export { lineHeightFromBaseline } from './typography';

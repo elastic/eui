@@ -13,7 +13,7 @@ import { getOn } from '../theme/utils';
 /**
  * Creates a new color that meets or exceeds WCAG level AA
  * @param foreground - Color to manipulate
- * @param ratio - Amount to change in absolute terms. 0-1.
+ * @param ratio - Amount to change in absolute terms. 0-10.
  * *
  * @param themeOrBackground - Color to use as the contrast basis
  */
@@ -73,14 +73,15 @@ export const makeHighContrastColor = (_foreground: string, ratio = 4.5) => (
  * Creates a new color with increased contrast
  * Disabled content only needs a contrast of at least 2 because there is no interaction available
  * @param foreground - Color to manipulate
+ * @param ratio - Amount to change in absolute terms. 0-10.
  * *
  * @param themeOrBackground - Color to use as the contrast basis
  */
-export const makeDisabledContrastColor = ($color: string) => (
+export const makeDisabledContrastColor = (color: string, ratio = 2) => (
   themeOrBackground:
     | string
     | {
         colors: { body: string };
         [key: string]: any;
       }
-) => makeHighContrastColor($color, 2)(themeOrBackground);
+) => makeHighContrastColor(color, ratio)(themeOrBackground);
