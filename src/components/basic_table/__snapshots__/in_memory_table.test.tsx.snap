@@ -520,7 +520,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                         <ul
                           className="euiPagination__list"
                         >
-                          <PaginationButton
+                          <PaginationButtonWrapper
                             activePage={1}
                             ariaControls="__table_generated-id"
                             key="0"
@@ -604,8 +604,8 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 </EuiI18n>
                               </EuiPaginationButton>
                             </li>
-                          </PaginationButton>
-                          <PaginationButton
+                          </PaginationButtonWrapper>
+                          <PaginationButtonWrapper
                             activePage={1}
                             ariaControls="__table_generated-id"
                             key="1"
@@ -691,7 +691,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                 </EuiI18n>
                               </EuiPaginationButton>
                             </li>
-                          </PaginationButton>
+                          </PaginationButtonWrapper>
                         </ul>
                         <EuiI18n
                           default="Next page, {page}"
