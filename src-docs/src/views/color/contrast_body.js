@@ -9,8 +9,6 @@ import { useEuiTheme, makeHighContrastColor } from '../../../../src/services';
 export default () => {
   const { euiTheme } = useEuiTheme();
 
-  const BACKGROUND = ['#006837', 'rgb(165, 0, 38)', 'rgba(0, 0, 0, 1)', 'pink'];
-
   const FOREGROUND = [
     '#bfa180',
     'rgb(249, 133, 16)',
@@ -21,19 +19,19 @@ export default () => {
   return (
     <Fragment>
       <EuiFlexGrid>
-        {BACKGROUND.map((background, i) => {
-          const foreground = makeHighContrastColor(FOREGROUND[i])(background);
+        {FOREGROUND.map((foreground) => {
+          const color = makeHighContrastColor(foreground)(euiTheme.colors.body);
 
           return (
-            <EuiFlexItem key={background}>
+            <EuiFlexItem key={foreground}>
               <div
                 css={css`
                   padding: ${euiTheme.size.base};
-                  background: ${background};
-                  color: ${foreground};
+                  color: ${color};
                 `}>
                 <strong>
-                  Contrast: {chroma.contrast(background, foreground).toFixed(2)}
+                  Contrast:{' '}
+                  {chroma.contrast(color, euiTheme.colors.body).toFixed(2)}
                 </strong>
               </div>
             </EuiFlexItem>

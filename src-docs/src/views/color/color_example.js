@@ -9,6 +9,8 @@ const isColorDarkSource = require('!!raw-loader!./is_color_dark');
 
 import Contrast from './contrast';
 const ContrastSource = require('!!raw-loader!./contrast');
+import ContrastBody from './contrast_body';
+const ContrastBodySource = require('!!raw-loader!./contrast_body');
 
 export const ColorExample = {
   title: 'Color',
@@ -39,11 +41,26 @@ export const ColorExample = {
             makeHighContrastColor(foreground, ratio = 4.5)(background)
           </EuiCode>{' '}
           to calcuate the appropriate foreground color (usually text) based on a
-          background color. Or you can leave off the second parameter to get the
-          calculation based on the theme&apos;s <EuiCode>body</EuiCode> color.
+          background color.
         </p>
       ),
       demo: <Contrast />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: ContrastBodySource,
+        },
+      ],
+      text: (
+        <p>
+          If you want to use the same background color that the EUI theme uses
+          for all of its contrast calculations, you can pass in{' '}
+          <EuiCode>euiTheme.colors.body</EuiCode> as the background.
+        </p>
+      ),
+      demo: <ContrastBody />,
     },
     {
       title: 'Is color dark',
