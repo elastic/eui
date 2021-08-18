@@ -1003,7 +1003,7 @@ Array [
         </div>
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
-          data-test-subj="dataGridFullScrenButton"
+          data-test-subj="dataGridFullScreenButton"
           type="button"
         >
           <span
@@ -1148,7 +1148,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 1, Column: 1:
+                            Row: 1; Column: 1
                           </p>
                         </div>
                       </div>
@@ -1174,7 +1174,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 1, Column: 2:
+                            Row: 1; Column: 2
                           </p>
                         </div>
                       </div>
@@ -1200,7 +1200,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 2, Column: 1:
+                            Row: 2; Column: 1
                           </p>
                         </div>
                       </div>
@@ -1226,7 +1226,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 2, Column: 2:
+                            Row: 2; Column: 2
                           </p>
                         </div>
                       </div>
@@ -1252,7 +1252,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 3, Column: 1:
+                            Row: 3; Column: 1
                           </p>
                         </div>
                       </div>
@@ -1278,7 +1278,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 3, Column: 2:
+                            Row: 3; Column: 2
                           </p>
                         </div>
                       </div>
@@ -1393,7 +1393,7 @@ Array [
         </div>
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
-          data-test-subj="dataGridFullScrenButton"
+          data-test-subj="dataGridFullScreenButton"
           type="button"
         >
           <span
@@ -1581,7 +1581,7 @@ Array [
                             <p
                               class="euiScreenReaderOnly"
                             >
-                              Row: 1, Column: 1:
+                              Row: 1; Column: 1
                             </p>
                           </div>
                         </div>
@@ -1613,7 +1613,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 1, Column: 2:
+                            Row: 1; Column: 2
                           </p>
                         </div>
                       </div>
@@ -1639,7 +1639,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 1, Column: 3:
+                            Row: 1; Column: 3
                           </p>
                         </div>
                       </div>
@@ -1678,7 +1678,7 @@ Array [
                             <p
                               class="euiScreenReaderOnly"
                             >
-                              Row: 1, Column: 4:
+                              Row: 1; Column: 4
                             </p>
                           </div>
                         </div>
@@ -1723,7 +1723,7 @@ Array [
                             <p
                               class="euiScreenReaderOnly"
                             >
-                              Row: 2, Column: 1:
+                              Row: 2; Column: 1
                             </p>
                           </div>
                         </div>
@@ -1755,7 +1755,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 2, Column: 2:
+                            Row: 2; Column: 2
                           </p>
                         </div>
                       </div>
@@ -1781,7 +1781,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 2, Column: 3:
+                            Row: 2; Column: 3
                           </p>
                         </div>
                       </div>
@@ -1820,7 +1820,7 @@ Array [
                             <p
                               class="euiScreenReaderOnly"
                             >
-                              Row: 2, Column: 4:
+                              Row: 2; Column: 4
                             </p>
                           </div>
                         </div>
@@ -1865,7 +1865,7 @@ Array [
                             <p
                               class="euiScreenReaderOnly"
                             >
-                              Row: 3, Column: 1:
+                              Row: 3; Column: 1
                             </p>
                           </div>
                         </div>
@@ -1897,7 +1897,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 3, Column: 2:
+                            Row: 3; Column: 2
                           </p>
                         </div>
                       </div>
@@ -1923,7 +1923,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 3, Column: 3:
+                            Row: 3; Column: 3
                           </p>
                         </div>
                       </div>
@@ -1962,7 +1962,7 @@ Array [
                             <p
                               class="euiScreenReaderOnly"
                             >
-                              Row: 3, Column: 4:
+                              Row: 3; Column: 4
                             </p>
                           </div>
                         </div>
@@ -2080,7 +2080,7 @@ Array [
         </div>
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
-          data-test-subj="dataGridFullScrenButton"
+          data-test-subj="dataGridFullScreenButton"
           type="button"
         >
           <span
@@ -2227,7 +2227,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 1, Column: 1:
+                            Row: 1; Column: 1
                           </p>
                         </div>
                       </div>
@@ -2253,7 +2253,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 1, Column: 2:
+                            Row: 1; Column: 2
                           </p>
                         </div>
                       </div>
@@ -2279,7 +2279,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 2, Column: 1:
+                            Row: 2; Column: 1
                           </p>
                         </div>
                       </div>
@@ -2305,7 +2305,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 2, Column: 2:
+                            Row: 2; Column: 2
                           </p>
                         </div>
                       </div>
@@ -2331,7 +2331,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 3, Column: 1:
+                            Row: 3; Column: 1
                           </p>
                         </div>
                       </div>
@@ -2357,7 +2357,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 3, Column: 2:
+                            Row: 3; Column: 2
                           </p>
                         </div>
                       </div>
@@ -2469,7 +2469,7 @@ Array [
         </div>
         <button
           class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
-          data-test-subj="dataGridFullScrenButton"
+          data-test-subj="dataGridFullScreenButton"
           type="button"
         >
           <span
@@ -2614,7 +2614,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 1, Column: 1:
+                            Row: 1; Column: 1
                           </p>
                         </div>
                       </div>
@@ -2640,7 +2640,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 1, Column: 2:
+                            Row: 1; Column: 2
                           </p>
                         </div>
                       </div>
@@ -2666,7 +2666,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 2, Column: 1:
+                            Row: 2; Column: 1
                           </p>
                         </div>
                       </div>
@@ -2692,7 +2692,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 2, Column: 2:
+                            Row: 2; Column: 2
                           </p>
                         </div>
                       </div>
@@ -2718,7 +2718,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 3, Column: 1:
+                            Row: 3; Column: 1
                           </p>
                         </div>
                       </div>
@@ -2744,7 +2744,7 @@ Array [
                           <p
                             class="euiScreenReaderOnly"
                           >
-                            Row: 3, Column: 2:
+                            Row: 3; Column: 2
                           </p>
                         </div>
                       </div>
