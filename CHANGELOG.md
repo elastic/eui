@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `37.3.0`.
+**Bug fixes**
+
+- Fixed bug in `EuiDataGrid` where a custom `className` was also being passed to the full screen button ([#5050](https://github.com/elastic/eui/pull/5050))
 
 ## [`37.3.0`](https://github.com/elastic/eui/tree/v37.3.0)
 
