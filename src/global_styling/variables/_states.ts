@@ -6,11 +6,16 @@
  * Side Public License, v 1.
  */
 
-import { computed } from '../../services/theme/utils';
 import { ColorModeSwitch } from '../../services/theme/types';
+import { computed } from '../../services/theme/utils';
+import { sizeToPixel } from '../../services/theme/size';
 import { shade, tint, transparentize } from '../../services/color';
 import { CSSProperties } from 'react';
-import { sizeToPixel } from './_size';
+
+/**
+ * NOTE: These were quick conversions of their Sass counterparts.
+ *       They have yet to be used/tested.
+ */
 
 export interface _EuiThemeFocusOutline {
   /**

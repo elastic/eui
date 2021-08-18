@@ -10,6 +10,11 @@ import { CSSProperties } from 'react';
 import { computed, lineHeightFromBaseline } from '../../services/theme';
 import { _EuiThemeFontScale, SCALES } from './_typography';
 
+/**
+ * NOTE: These were quick conversions of their Sass counterparts.
+ *       They have yet to be used/tested.
+ */
+
 export type EuiThemeFontSize = {
   [mapType in _EuiThemeFontScale]: {
     fontSize: CSSProperties['fontSize'];

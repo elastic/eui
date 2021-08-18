@@ -11,7 +11,10 @@ import { useEuiTheme } from '../../services/theme/hooks';
 import { transparentize } from '../../services/color';
 import { useOverflowShadow } from './_shadow';
 
-// Helper mixins
+/**
+ * NOTE: These were quick conversions of their Sass counterparts.
+ *       They have yet to be used/tested.
+ */
 
 // Useful border shade when dealing with images of unknown color.
 export const useInnerBorder = ({

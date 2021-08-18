@@ -6,7 +6,10 @@
  * Side Public License, v 1.
  */
 
-// import { computed } from '../../services/theme/utils';
+/**
+ * NOTE: These were quick conversions of their Sass counterparts.
+ *       They have yet to be used/tested.
+ */
 
 // Z-Index
 

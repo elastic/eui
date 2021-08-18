@@ -6,7 +6,10 @@
  * Side Public License, v 1.
  */
 
-// Visualization colors
+/**
+ * NOTE: These were quick conversions of their Sass counterparts.
+ *       They have yet to be used/tested.
+ */
 
 // Maps allow for easier JSON usage
 // Use map_merge(euiColorVisColors, $yourMap) to change individual colors after importing ths file
