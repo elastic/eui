@@ -2,20 +2,9 @@ import React from 'react';
 
 import { EuiCodeBlock, EuiSpacer } from '../../../../src/components';
 
-const htmlCode = `<!--I'm an example of HTML -->
-<div>
-  <h1>My First Heading</h1>
-  <p>My first paragraph.</p>
-</div>`;
+const htmlCode = "<!--I'm an example of HTML -->";
 
-const jsCode = `import React from 'react';
-
-const MyComponent = () => (
-  <div className="myComponent">
-    <h1>Hello world!</h1>
-  </div>
-);
-`;
+const jsCode = "import React from 'react'";
 
 const sqlCode = `CREATE TABLE "topic" (
   "id" serial NOT NULL PRIMARY KEY,
@@ -32,7 +21,9 @@ values (2, 'D''artagnian');`;
 
 export default () => (
   <div>
-    <EuiCodeBlock language="html">{htmlCode}</EuiCodeBlock>
+    <EuiCodeBlock language="html" isCopyable paddingSize="s">
+      {htmlCode}
+    </EuiCodeBlock>
 
     <EuiSpacer />
 

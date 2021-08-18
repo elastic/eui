@@ -110,6 +110,18 @@ const filePickerSnippet = [
 />`,
 ];
 
+import FilePickerRemove from './file_picker_remove';
+const filePickerRemoveSource = require('!!raw-loader!./file_picker_remove');
+const filePickerRemoveSnippet = [
+  `<EuiFilePicker
+  id={filePickerId}
+  ref={filePickerRef}
+  multiple
+  initialPromptText="content that appears in the dropzone if no file is attached"
+  onChange={onChange}
+/>`,
+];
+
 import Select from './select';
 const selectSource = require('!!raw-loader!./select');
 const selectHtml = renderToHtml(Select);
@@ -353,6 +365,28 @@ export const FormControlsExample = {
       components: { EuiFilePicker },
       snippet: filePickerSnippet,
       demo: <FilePicker />,
+      props: { EuiFilePicker },
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: filePickerRemoveSource,
+        },
+      ],
+      text: (
+        <>
+          <h3>Removing files programmatically</h3>
+          <p>
+            The current file selection can be cleared programmatically by
+            calling the <EuiCode>removeFiles</EuiCode> method, which can be
+            accessed on a component instance via React <EuiCode>ref</EuiCode>:{' '}
+            <EuiCode>filePickerRef.current.removeFiles()</EuiCode>.
+          </p>
+        </>
+      ),
+      snippet: filePickerRemoveSnippet,
+      demo: <FilePickerRemove />,
       props: { EuiFilePicker },
     },
     {

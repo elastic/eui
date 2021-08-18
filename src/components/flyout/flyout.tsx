@@ -185,7 +185,7 @@ const EuiFlyout = forwardRef(
       style,
       maskProps,
       type = 'overlay',
-      outsideClickCloses = false,
+      outsideClickCloses,
       role = 'dialog',
       pushMinBreakpoint = 'l',
       ...rest
@@ -361,20 +361,29 @@ const EuiFlyout = forwardRef(
      */
     let flyout = (
       <EuiFocusTrap disabled={isPushed} clickOutsideDisables={!ownFocus}>
-        {/* Outside click detector is needed if theres no overlay mask to auto-close when clicking on elements outside */}
-        <EuiOutsideClickDetector
-          isDisabled={isPushed || !outsideClickCloses}
-          onOutsideClick={() => onClose()}>
-          {flyoutContent}
-        </EuiOutsideClickDetector>
+        {flyoutContent}
       </EuiFocusTrap>
     );
-
+    /**
+     * Unless outsideClickCloses = true, then add the outside click detector
+     */
+    if (ownFocus === false && outsideClickCloses === true) {
+      flyout = (
+        <EuiFocusTrap disabled={isPushed} clickOutsideDisables={!ownFocus}>
+          {/* Outside click detector is needed if theres no overlay mask to auto-close when clicking on elements outside */}
+          <EuiOutsideClickDetector
+            isDisabled={isPushed}
+            onOutsideClick={() => onClose()}>
+            {flyoutContent}
+          </EuiOutsideClickDetector>
+        </EuiFocusTrap>
+      );
+    }
     // If ownFocus is set, wrap with an overlay and allow the user to click it to close it.
     if (ownFocus && !isPushed) {
       flyout = (
         <EuiOverlayMask
-          onClick={onClose}
+          onClick={outsideClickCloses === false ? undefined : onClose}
           headerZindexLocation="below"
           {...maskProps}>
           {flyout}
