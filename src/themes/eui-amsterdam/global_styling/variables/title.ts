@@ -6,6 +6,11 @@
  * Side Public License, v 1.
  */
 
+/**
+ * NOTE: These were quick conversions of their Sass counterparts.
+ *       They have yet to be used/tested.
+ */
+
 import {
   title,
   EuiThemeTitle,

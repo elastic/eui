@@ -12,6 +12,11 @@ import { sizeToPixel } from '../../services/theme/size';
 import { shade, tint, transparentize } from '../../services/color';
 import { CSSProperties } from 'react';
 
+/**
+ * NOTE: These were quick conversions of their Sass counterparts.
+ *       They have yet to be used/tested.
+ */
+
 export interface _EuiThemeFocusOutline {
   /**
    * A single CSS property: value

@@ -10,6 +10,11 @@ import chroma from 'chroma-js';
 import { useEuiTheme } from '../../services/theme/hooks';
 import { lightness, tint, transparentize } from '../../services/color';
 
+/**
+ * NOTE: These were quick conversions of their Sass counterparts.
+ *       They have yet to be used/tested.
+ */
+
 export const useSlightShadow = ({
   color,
   opacity,
