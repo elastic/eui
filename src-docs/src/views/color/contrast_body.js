@@ -20,7 +20,7 @@ export default () => {
     <Fragment>
       <EuiFlexGrid>
         {FOREGROUND.map((foreground) => {
-          const color = makeHighContrastColor(foreground)(euiTheme.colors.body);
+          const color = makeHighContrastColor(foreground)(euiTheme);
 
           return (
             <EuiFlexItem key={foreground}>

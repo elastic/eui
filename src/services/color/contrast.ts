@@ -15,7 +15,7 @@ import { getOn } from '../theme/utils';
  * @param foreground - Color to manipulate
  * @param ratio - Amount to change in absolute terms. 0-10.
  * *
- * @param themeOrBackground - Color to use as the contrast basis
+ * @param themeOrBackground - Color to use as the contrast basis or just pass EuiTheme
  */
 export const makeHighContrastColor = (_foreground: string, ratio = 4.5) => (
   themeOrBackground:

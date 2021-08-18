@@ -45,6 +45,8 @@ export const ColorExample = {
         </p>
       ),
       demo: <Contrast />,
+      snippet:
+        'const textColor = makeHighContrastColor(foreground)(background);',
     },
     {
       source: [
@@ -56,11 +58,13 @@ export const ColorExample = {
       text: (
         <p>
           If you want to use the same background color that the EUI theme uses
-          for all of its contrast calculations, you can pass in{' '}
-          <EuiCode>euiTheme.colors.body</EuiCode> as the background.
+          for all of its contrast calculations, you can pass in the{' '}
+          <EuiCode>euiTheme</EuiCode> as the background.
         </p>
       ),
       demo: <ContrastBody />,
+      snippet: `const { euiTheme } = useEuiTheme();
+const textColor = makeHighContrastColor(foreground)(euiTheme);`,
     },
     {
       title: 'Is color dark',
