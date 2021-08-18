@@ -151,7 +151,8 @@ export const MarkdownPluginExample = {
         is used in combination with{' '}
         <EuiLink
           href="https://www.npmjs.com/package/remark-parse"
-          target="_blank">
+          target="_blank"
+        >
           Remark
         </EuiLink>{' '}
         to provide EUI&apos;s markdown components, which are separated into a{' '}
@@ -224,14 +225,16 @@ export const MarkdownPluginExample = {
               <p>
                 <a
                   href="https://www.npmjs.com/package/remark-parse"
-                  target="_blank">
+                  target="_blank"
+                >
                   Remark-parse
                 </a>{' '}
                 is used to parse the input text into markdown AST nodes. Its
                 documentation for{' '}
                 <a
                   href="https://www.npmjs.com/package/remark-parse#extending-the-parser"
-                  target="_blank">
+                  target="_blank"
+                >
                   writing parsers
                 </a>{' '}
                 is under the Extending the Parser section, but highlights are
@@ -271,7 +274,8 @@ export const MarkdownPluginExample = {
           <EuiSpacer />
           <EuiCodeBlock
             size="s"
-            language="javascript">{`// example plugin parser
+            language="javascript"
+          >{`// example plugin parser
 function EmojiMarkdownParser() {
   const Parser = this.Parser;
   const tokenizers = Parser.prototype.inlineTokenizers;
@@ -336,7 +340,8 @@ parsingList.push(EmojiMarkdownParser);`}</EuiCodeBlock>
           <EuiSpacer />
           <EuiCodeBlock
             size="s"
-            language="javascript">{`// example plugin processor
+            language="javascript"
+          >{`// example plugin processor
 
 // receives the configuration from the parser and renders
 const EmojiMarkdownRenderer = ({ emoji }) => {

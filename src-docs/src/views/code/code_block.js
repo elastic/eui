@@ -32,7 +32,8 @@ export default () => (
       fontSize="m"
       paddingSize="m"
       overflowHeight={300}
-      isCopyable>
+      isCopyable
+    >
       {jsCode}
     </EuiCodeBlock>
 
@@ -43,7 +44,8 @@ export default () => (
       fontSize="m"
       paddingSize="m"
       overflowHeight={300}
-      isCopyable>
+      isCopyable
+    >
       {sqlCode}
     </EuiCodeBlock>
   </div>

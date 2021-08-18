@@ -116,7 +116,8 @@ export default {
               type="do"
               text="Descend through headings as you work your way through the document."
               panelStyles={{ justifyContent: 'flex-start' }}
-              panelProps={{ color: 'subdued' }}>
+              panelProps={{ color: 'subdued' }}
+            >
               <EuiCodeBlock {...codeBlockProps} transparentBackground>
                 {`<EuiText>
   <h1>Discover your data</h1>
@@ -132,7 +133,8 @@ export default {
               type="dont"
               text="This heading hierarchy is confusing. Also EuiText is not a good solution when you need to change heading presentation."
               panelStyles={{ justifyContent: 'flex-start' }}
-              panelProps={{ color: 'subdued' }}>
+              panelProps={{ color: 'subdued' }}
+            >
               <EuiCodeBlock {...codeBlockProps} transparentBackground>
                 {`<EuiText>
   <EuiScreenReaderOnly>
@@ -154,7 +156,8 @@ export default {
               type="do"
               text="This is a good heading hierarchy. Though visible headings are certainly better, sometimes that is difficult to accommodate so hidden headings can give additional context."
               panelStyles={{ justifyContent: 'flex-start' }}
-              panelProps={{ color: 'subdued' }}>
+              panelProps={{ color: 'subdued' }}
+            >
               <EuiCodeBlock {...codeBlockProps} transparentBackground>
                 {`<EuiTitle size="s"><h1>Discover your data</h1></EuiTitle>
 <EuiScreenReaderOnly><h2>Drill into site metrics</h2></EuiScreenReaderOnly>
@@ -210,7 +213,8 @@ export default {
               type="do"
               text="Use HTML5 elements which convey semantic meaning about their purpose. Notice that all of the content is inside of semantic elements."
               panelStyles={{ justifyContent: 'flex-start' }}
-              panelProps={{ color: 'subdued' }}>
+              panelProps={{ color: 'subdued' }}
+            >
               <EuiCodeBlock {...codeBlockProps} transparentBackground>{`<body>
   <header className="appHeader">
     <!-- content -->
@@ -225,7 +229,8 @@ export default {
               type="dont"
               text="Classes provide no semantic meaning and not all elements provide semantic meaning either."
               panelStyles={{ justifyContent: 'flex-start' }}
-              panelProps={{ color: 'subdued' }}>
+              panelProps={{ color: 'subdued' }}
+            >
               <EuiCodeBlock {...codeBlockProps} transparentBackground>{`<body>
   <div className="appHeader"></div>
   <discover-app></discover-app>
@@ -243,10 +248,12 @@ export default {
               type="do"
               text="Use landmarks and headings together to build complex pages."
               panelStyles={{ justifyContent: 'flex-start' }}
-              panelProps={{ color: 'subdued' }}>
+              panelProps={{ color: 'subdued' }}
+            >
               <EuiCodeBlock
                 {...codeBlockProps}
-                transparentBackground>{`<header aria-labelledby="pageHeading">
+                transparentBackground
+              >{`<header aria-labelledby="pageHeading">
   <h1 id="pageHeading">Discover your data</h1>
   <form role="search" aria-label="Site search"> <!-- input + label go in here --> </form>
 <header>
@@ -323,7 +330,8 @@ export default {
             <GuideRuleExample
               type="do"
               minHeight={200}
-              text="These are good example of page titles.">
+              text="These are good example of page titles."
+            >
               <div>
                 <strong className="eui-textCenter eui-displayBlock">
                   Discover - Kibana
@@ -344,7 +352,8 @@ export default {
                     <strong>Use:</strong> Watchers - Management - Kibana
                   </EuiTextColor>
                 </>
-              }>
+              }
+            >
               <strong className="eui-textCenter eui-displayBlock">
                 Watchers
               </strong>
@@ -362,7 +371,8 @@ export default {
                     <strong>Use:</strong> Spaces - Management - Kibana
                   </EuiTextColor>
                 </>
-              }>
+              }
+            >
               <strong className="eui-textCenter eui-displayBlock">
                 Elastic Kibana - Spaces
               </strong>
@@ -380,7 +390,8 @@ export default {
                     <strong>Use:</strong> Reporting - Management - Kibana
                   </EuiTextColor>
                 </>
-              }>
+              }
+            >
               <strong className="eui-textCenter eui-displayBlock">
                 This is the Reporting page of the Management section of Kibana.
               </strong>
@@ -609,7 +620,8 @@ export default {
             <EuiCallOut
               iconType="bell"
               title="Give lists an accessible name to improve their discoverability!"
-              heading="p">
+              heading="p"
+            >
               <EuiCodeBlock language="html" paddingSize="m" fontSize="s">
                 {`<!-- Can be any heading level or even a paragraph -->
 <h1 id="a1b2c3">My favorite fruit</h1>

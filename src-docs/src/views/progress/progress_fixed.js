@@ -79,7 +79,8 @@ export default () => {
           </p>
         </EuiCallOut>
         <EuiHeader
-          style={{ position: 'fixed', top: 0, left: 0, width: '100%' }}>
+          style={{ position: 'fixed', top: 0, left: 0, width: '100%' }}
+        >
           <EuiHeaderSection grow={false}>
             <EuiHeaderSectionItem border="right">
               <EuiHeaderLogo

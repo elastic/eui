@@ -21,7 +21,8 @@ export default () => {
             <EuiCode>hasChildLabel = false</EuiCode> the name of this is
             &ldquo;Dark mode?&rdquo; instead of &ldquo;Settings&rdquo;.
           </>
-        }>
+        }
+      >
         <EuiSwitch
           name="switch"
           label="Dark mode?"
@@ -43,7 +44,8 @@ export default () => {
             <EuiCode>hasChildLabel = false</EuiCode> the name of this button is
             &ldquo;Download&rdquo; instead of &ldquo;Your cluster data&rdquo;.
           </>
-        }>
+        }
+      >
         <EuiButton>Download</EuiButton>
       </EuiFormRow>
     </EuiForm>

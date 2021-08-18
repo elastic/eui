@@ -17,7 +17,8 @@ export default () => {
       options={options}
       onChange={(newOptions) => setOptions(newOptions)}
       singleSelection={true}
-      listProps={{ bordered: true }}>
+      listProps={{ bordered: true }}
+    >
       {(list) => list}
     </EuiSelectable>
   );

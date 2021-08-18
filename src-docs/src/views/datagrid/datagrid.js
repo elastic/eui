@@ -65,7 +65,8 @@ const columns = [
           <Component
             onClick={() => alert(`Hi ${data[rowIndex][columnId].raw}`)}
             iconType="heart"
-            aria-label={`Say hi to ${data[rowIndex][columnId].raw}!`}>
+            aria-label={`Say hi to ${data[rowIndex][columnId].raw}!`}
+          >
             Say hi
           </Component>
         );
@@ -76,7 +77,8 @@ const columns = [
           <Component
             onClick={() => alert(`Bye ${data[rowIndex][columnId].raw}`)}
             iconType="moon"
-            aria-label={`Say bye to ${data[rowIndex][columnId].raw}!`}>
+            aria-label={`Say bye to ${data[rowIndex][columnId].raw}!`}
+          >
             Say bye
           </Component>
         );
@@ -94,7 +96,8 @@ const columns = [
           <Component
             onClick={() => alert(data[rowIndex][columnId].raw)}
             iconType="email"
-            aria-label={`Send email to ${data[rowIndex][columnId].raw}`}>
+            aria-label={`Send email to ${data[rowIndex][columnId].raw}`}
+          >
             Send email
           </Component>
         );
@@ -136,7 +139,8 @@ const columns = [
           <Component
             onClick={onClick}
             iconType="faceHappy"
-            aria-label={`Send money to ${data[rowIndex][columnId]}`}>
+            aria-label={`Send money to ${data[rowIndex][columnId]}`}
+          >
             Send money
           </Component>
         );
@@ -188,14 +192,16 @@ const trailingControlColumns = [
                 onClick={() => setIsPopoverOpen(!isPopoverOpen)}
               />
             }
-            closePopover={() => setIsPopoverOpen(false)}>
+            closePopover={() => setIsPopoverOpen(false)}
+          >
             <EuiPopoverTitle>Actions</EuiPopoverTitle>
             <div style={{ width: 150 }}>
               <button onClick={() => {}}>
                 <EuiFlexGroup
                   alignItems="center"
                   component="span"
-                  gutterSize="s">
+                  gutterSize="s"
+                >
                   <EuiFlexItem grow={false}>
                     <EuiButtonIcon
                       aria-label="Pin selected items"
@@ -211,7 +217,8 @@ const trailingControlColumns = [
                 <EuiFlexGroup
                   alignItems="center"
                   component="span"
-                  gutterSize="s">
+                  gutterSize="s"
+                >
                   <EuiFlexItem grow={false}>
                     <EuiButtonIcon
                       aria-label="Delete selected items"

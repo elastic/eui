@@ -94,10 +94,12 @@ export default {
           <GuideRule
             heading="Sentence case for almost all text"
             description="This includes buttons, menus, and titles. In sentence case, only the
-    first word and proper names are capped.">
+    first word and proper names are capped."
+          >
             <GuideRuleExample
               type="do"
-              text="Sentence case makes titles easier to read.">
+              text="Sentence case makes titles easier to read."
+            >
               <EuiTitle size="xs">
                 <span>Create index patterns</span>
               </EuiTitle>
@@ -105,7 +107,8 @@ export default {
 
             <GuideRuleExample
               type="dont"
-              text="Title case can feel more cluttered.">
+              text="Title case can feel more cluttered."
+            >
               <EuiTitle size="xs">
                 <span>Create Index Patterns</span>
               </EuiTitle>
@@ -115,7 +118,8 @@ export default {
           <GuideRule heading="" description="">
             <GuideRuleExample
               type="do"
-              text="Sentence case is friendlier in button labels.">
+              text="Sentence case is friendlier in button labels."
+            >
               <EuiButton fill color="text">
                 Set up index pattern
               </EuiButton>
@@ -129,10 +133,12 @@ export default {
 
           <GuideRule
             heading="Title case for feature titles"
-            description="Titles and tabs for specific features should capitalize all words in the name of the feature.">
+            description="Titles and tabs for specific features should capitalize all words in the name of the feature."
+          >
             <GuideRuleExample
               type="do"
-              text="Title case in tabs and titles for names of features.">
+              text="Title case in tabs and titles for names of features."
+            >
               <EuiTabs display="condensed">
                 <EuiTab>Inventory</EuiTab>
                 <EuiTab isSelected>Metrics Explorer</EuiTab>
@@ -140,7 +146,8 @@ export default {
             </GuideRuleExample>
             <GuideRuleExample
               type="dont"
-              text="Features are proper names, not sentences.">
+              text="Features are proper names, not sentences."
+            >
               <EuiTabs display="condensed">
                 <EuiTab>Inventory</EuiTab>
                 <EuiTab isSelected>Metrics explorer</EuiTab>
@@ -160,17 +167,20 @@ export default {
           <GuideRule
             heading="Write in active voice"
             description="Active voice puts the focus on who or what is performing the
-      action and makes the sentence easier to understand.">
+      action and makes the sentence easier to understand."
+          >
             <GuideRuleExample
               type="do"
-              text="Writing in active voice puts the subject first.">
+              text="Writing in active voice puts the subject first."
+            >
               <GuideRuleWriting>
                 The Elasticsearch Query DSL builds filters.
               </GuideRuleWriting>
             </GuideRuleExample>
             <GuideRuleExample
               type="dont"
-              text="With passive voice, it's harder to tell who's doing what.">
+              text="With passive voice, it's harder to tell who's doing what."
+            >
               <GuideRuleWriting>
                 Filters are built using the Elasticsearch Query DSL.
               </GuideRuleWriting>
@@ -181,7 +191,8 @@ export default {
             heading="Keep it short and snappy"
             description="Identify the most important information and say it concisely.
       Don't repeat what's already been said or state the obvious.
-      Omit common introductory phrases.">
+      Omit common introductory phrases."
+          >
             <GuideRuleExample type="do" text="Keep it short.">
               <EuiText>
                 <h4>Edit saved objects</h4>
@@ -190,7 +201,8 @@ export default {
 
             <GuideRuleExample
               type="dont"
-              text="Repeat what's already been said or state the obvious.">
+              text="Repeat what's already been said or state the obvious."
+            >
               <EuiText>
                 <h4>Edit saved objects</h4>
                 <p>
@@ -209,7 +221,8 @@ export default {
             </GuideRuleExample>
             <GuideRuleExample
               type="dont"
-              text="Use unnecessary introductory phrases.">
+              text="Use unnecessary introductory phrases."
+            >
               <GuideRuleWriting>
                 In order to use Kibana, you must configure at least one index
                 pattern.
@@ -220,14 +233,16 @@ export default {
           <GuideRule heading="" description="">
             <GuideRuleExample
               type="do"
-              text="Ensure all words contribute to meaning.">
+              text="Ensure all words contribute to meaning."
+            >
               <GuideRuleWriting>
                 No active shard records for this cluster.
               </GuideRuleWriting>
             </GuideRuleExample>
             <GuideRuleExample
               type="dont"
-              text='Start a sentence with "There are" or "There is."'>
+              text='Start a sentence with "There are" or "There is."'
+            >
               <GuideRuleWriting>
                 There are currently no active shard records for this cluster.
               </GuideRuleWriting>
@@ -237,12 +252,14 @@ export default {
           <GuideRule heading="" description="">
             <GuideRuleExample
               type="do"
-              text="Avoid unneeded words in button labels.">
+              text="Avoid unneeded words in button labels."
+            >
               <EuiButton fill>Create component template</EuiButton>
             </GuideRuleExample>
             <GuideRuleExample
               type="dont"
-              text='Use "create a new" or include articles in button labels.'>
+              text='Use "create a new" or include articles in button labels.'
+            >
               <EuiButton fill>Create a new component template</EuiButton>
             </GuideRuleExample>
           </GuideRule>
@@ -257,10 +274,12 @@ export default {
         <>
           <GuideRule
             heading='In most cases, address users as "you"'
-            description="It's friendly and engages the user directly.">
+            description="It's friendly and engages the user directly."
+          >
             <GuideRuleExample
               type="do"
-              text='Converse directly with the user using "you" and "your."'>
+              text='Converse directly with the user using "you" and "your."'
+            >
               <GuideRuleWriting>
                 You must configure TLS to apply a Platinum license.
               </GuideRuleWriting>
@@ -268,7 +287,8 @@ export default {
 
             <GuideRuleExample
               type="dont"
-              text='Avoid the user. It creates awkward phrasing such as "will be required."'>
+              text='Avoid the user. It creates awkward phrasing such as "will be required."'
+            >
               <GuideRuleWriting>
                 Configuring TLS will be required to apply a Platinum license.
               </GuideRuleWriting>
@@ -279,10 +299,12 @@ export default {
             heading='In some cases, "we" and "our" are appropriate'
             description="The use of &quot;we&quot; is appropriate for situations
       where you're taking an action for the user or making a suggestion.
-      It's best reserved for onboarding and empty states.">
+      It's best reserved for onboarding and empty states."
+          >
             <GuideRuleExample
               type="do"
-              text='Use "we" when taking an action on behalf of the user.'>
+              text='Use "we" when taking an action on behalf of the user.'
+            >
               <GuideRuleWriting>
                 We noticed that you don&apos;t have any data in your cluster.
                 Try our sample data and dashboards or jump in with your own
@@ -292,7 +314,8 @@ export default {
 
             <GuideRuleExample
               type="dont"
-              text='Overuse "us." It can become annoying.'>
+              text='Overuse "us." It can become annoying.'
+            >
               <GuideRuleWriting>Let&apos;s create a database</GuideRuleWriting>
               <GuideRuleWriting>
                 Let&apos;s create a visualization
@@ -303,10 +326,12 @@ export default {
 
           <GuideRule
             heading='Less common are "I" and "my"'
-            description="Use first person when you want to give the user ownership of an action.">
+            description="Use first person when you want to give the user ownership of an action."
+          >
             <GuideRuleExample
               type="do"
-              text='Use "my" in buttons and links to give users ownership.'>
+              text='Use "my" in buttons and links to give users ownership.'
+            >
               <GuideRuleWriting>Explore on my own</GuideRuleWriting>
             </GuideRuleExample>
 
@@ -330,14 +355,17 @@ export default {
             description="Although punctuation can help clarify meaning, it can also
       clutter the UI. Don't add a colon after a label, an ellipsis (...)
       at the end of an action, an (s) at the end of a noun, or add parentheses
-      ().">
+      ()."
+          >
             <GuideRuleExample
               panelDisplay="block"
               type="do"
-              text='Use an "s" or "es" to show plural.'>
+              text='Use an "s" or "es" to show plural.'
+            >
               <EuiFormRow
                 label="Airports"
-                helpText="Separate multiple names with a comma">
+                helpText="Separate multiple names with a comma"
+              >
                 <EuiFieldText />
               </EuiFormRow>
             </GuideRuleExample>
@@ -345,10 +373,12 @@ export default {
             <GuideRuleExample
               panelDisplay="block"
               type="dont"
-              text="Use (s), a colon after labels, or parenthetical statements.">
+              text="Use (s), a colon after labels, or parenthetical statements."
+            >
               <EuiFormRow
                 label="Airport(s):"
-                helpText="Separate multiple names with a comma (other characters are unsupported).">
+                helpText="Separate multiple names with a comma (other characters are unsupported)."
+              >
                 <EuiFieldText />
               </EuiFormRow>
             </GuideRuleExample>
@@ -358,7 +388,8 @@ export default {
             <GuideRuleExample
               panelDisplay="block"
               type="do"
-              text="Remove the ellipsis from Search fields.">
+              text="Remove the ellipsis from Search fields."
+            >
               <EuiFieldSearch
                 defaultValue="Search"
                 aria-label="Search example"
@@ -368,7 +399,8 @@ export default {
             <GuideRuleExample
               panelDisplay="block"
               type="do"
-              text="Use an ellipsis for truncated text or situations that require waiting.">
+              text="Use an ellipsis for truncated text or situations that require waiting."
+            >
               <EuiFieldSearch
                 defaultValue="Loading..."
                 aria-label="Search loading example"
@@ -380,18 +412,21 @@ export default {
             heading="Know when to use the ending period"
             description="Use periods at the end of help text and complete sentences
       in body text. These are typically supplemental explanations and
-      instructions. Avoid periods in titles and headings.">
+      instructions. Avoid periods in titles and headings."
+          >
             <GuideRuleExample
               panelDisplay="block"
               type="do"
-              text="Use periods at the end of help text.">
+              text="Use periods at the end of help text."
+            >
               <EuiFormRow
                 label="Number"
                 helpText={
                   <span>
                     Accepts 1–5. <EuiLink>Learn more.</EuiLink>
                   </span>
-                }>
+                }
+              >
                 <EuiFieldNumber min={1} max={5} step={1} />
               </EuiFormRow>
             </GuideRuleExample>
@@ -399,7 +434,8 @@ export default {
             <GuideRuleExample
               panelDisplay="block"
               type="dont"
-              text="Use a lead-in sentence without an ending period. It looks wrong.">
+              text="Use a lead-in sentence without an ending period. It looks wrong."
+            >
               <EuiTitle size="s">
                 <span>Index management</span>
               </EuiTitle>
@@ -413,17 +449,20 @@ export default {
             heading="Use contractions"
             description='Use contractions if they make your text flow more naturally,
       such as "didn&apos;t" instead of  "did not" and
-      "can&apos;t" instead of "cannot."'>
+      "can&apos;t" instead of "cannot."'
+          >
             <GuideRuleExample
               type="do"
-              text="Use contractions if they make the text easier to read.">
+              text="Use contractions if they make the text easier to read."
+            >
               <GuideRuleWriting>
                 Didn&apos;t find what you were looking for?
               </GuideRuleWriting>
             </GuideRuleExample>
             <GuideRuleExample
               type="dont"
-              text="Without the contraction, this text sounds stilted.">
+              text="Without the contraction, this text sounds stilted."
+            >
               <GuideRuleWriting>
                 Did not find what you were looking for?
               </GuideRuleWriting>
@@ -433,17 +472,20 @@ export default {
           <GuideRule
             heading="Limit the use of exclamation points"
             description="Showing excitement is best reserved for greetings and
-      encouraging messages. Don't use more than one exclamation point per page.">
+      encouraging messages. Don't use more than one exclamation point per page."
+          >
             <GuideRuleExample
               type="do"
-              text="Use exclamations for encouragement, but use sparingly.">
+              text="Use exclamations for encouragement, but use sparingly."
+            >
               <GuideRuleWriting>
                 This dashboard is empty. Fill it up!
               </GuideRuleWriting>
             </GuideRuleExample>
             <GuideRuleExample
               type="dont"
-              text="Use exclamation points in error messages.">
+              text="Use exclamation points in error messages."
+            >
               <GuideRuleWriting>
                 Couldn&apos;t find any Elasticsearch data!
               </GuideRuleWriting>
@@ -461,11 +503,13 @@ export default {
           <GuideRule
             heading="Summarize the message in the title"
             description="Don't start with the words error, warning, and confirm, or
-      jargon such as oops and uh-oh. A title-only message is ok.">
+      jargon such as oops and uh-oh. A title-only message is ok."
+          >
             <GuideRuleExample
               panelDisplay="block"
               type="do"
-              text="Provide a title that is meaningful to the user.">
+              text="Provide a title that is meaningful to the user."
+            >
               <EuiTitle size="xs">
                 <span>This dashboard is empty</span>
               </EuiTitle>
@@ -480,7 +524,8 @@ export default {
             <GuideRuleExample
               panelDisplay="block"
               type="dont"
-              text="Use uh-oh, oops, or other meaningless text in the title.">
+              text="Use uh-oh, oops, or other meaningless text in the title."
+            >
               <EuiTitle size="xs">
                 <span>Uh-oh!</span>
               </EuiTitle>
@@ -496,10 +541,12 @@ export default {
 
           <GuideRule
             heading="Include critical information first"
-            description="Tell the user the most important information first, and less critical information second.">
+            description="Tell the user the most important information first, and less critical information second."
+          >
             <GuideRuleExample
               type="do"
-              text="Prioritize the contents of the message.">
+              text="Prioritize the contents of the message."
+            >
               <GuideRuleWriting>
                 You need to increase your subscription limit. Please contact
                 support.
@@ -508,7 +555,8 @@ export default {
 
             <GuideRuleExample
               type="dont"
-              text="Hide important information at the end.">
+              text="Hide important information at the end."
+            >
               <GuideRuleWriting>
                 Contact support because you need to increase your subscription
                 limit.
@@ -519,7 +567,8 @@ export default {
           <GuideRule heading="" description="">
             <GuideRuleExample
               type="do"
-              text="State what went wrong, followed by a clear course of action.">
+              text="State what went wrong, followed by a clear course of action."
+            >
               <GuideRuleWriting>
                 No data sources. Go to Management to define an index pattern.
               </GuideRuleWriting>
@@ -527,17 +576,20 @@ export default {
 
             <GuideRuleExample
               type="dont"
-              text="Leave the user guessing about next steps.">
+              text="Leave the user guessing about next steps."
+            >
               <GuideRuleWriting>Oops, no data sources.</GuideRuleWriting>
             </GuideRuleExample>
           </GuideRule>
 
           <GuideRule
             heading='Avoid using "Are you sure"'
-            description="Your text is more direct without it.">
+            description="Your text is more direct without it."
+          >
             <GuideRuleExample
               type="do"
-              text="Keep titles as concise as possible.">
+              text="Keep titles as concise as possible."
+            >
               <EuiPanel style={{ transform: 'scale(.75)' }}>
                 <EuiTitle size="m">
                   <span>Delete this report?</span>
@@ -556,7 +608,8 @@ export default {
 
             <GuideRuleExample
               type="dont"
-              text="Pad the title with empty words&mdash;it increases reading time.">
+              text="Pad the title with empty words&mdash;it increases reading time."
+            >
               <EuiPanel style={{ transform: 'scale(.75)' }}>
                 <EuiTitle size="m">
                   <span>Are you sure you want to delete this report?</span>
@@ -578,17 +631,20 @@ export default {
             heading='Avoid using "please"'
             description='In most cases, "please" is unnecessary.
       Exceptions are situations where the user must wait or do something inconvenient.
-      Or, if the text sounds too abrupt without it.'>
+      Or, if the text sounds too abrupt without it.'
+          >
             <GuideRuleExample
               type="do"
-              text='Omit "please" in longer instructions.'>
+              text='Omit "please" in longer instructions.'
+            >
               <GuideRuleWriting>
                 Save your work before generating a report.
               </GuideRuleWriting>
             </GuideRuleExample>
             <GuideRuleExample
               type="dont"
-              text='Use "please" when a pleasantry is not needed.'>
+              text='Use "please" when a pleasantry is not needed.'
+            >
               <GuideRuleWriting>
                 Please save your work before generating a report.
               </GuideRuleWriting>
@@ -598,28 +654,33 @@ export default {
           <GuideRule heading="" description="">
             <GuideRuleExample
               type="do"
-              text='Use "please" only when it feels natural and makes short text less abrupt.'>
+              text='Use "please" only when it feels natural and makes short text less abrupt.'
+            >
               <GuideRuleWriting>
                 Your session has expired. Please log in again.
               </GuideRuleWriting>
             </GuideRuleExample>
             <GuideRuleExample
               type="do"
-              text='Use "please" when asking the user to wait. '>
+              text='Use "please" when asking the user to wait. '
+            >
               <GuideRuleWriting>Please wait.</GuideRuleWriting>
             </GuideRuleExample>
           </GuideRule>
 
           <GuideRule
             heading="Use 1 to 2 simple, short sentences"
-            description="Don&rsquo;t force the user to read long blocks of text. Write for scanning. Link to documentation.">
+            description="Don&rsquo;t force the user to read long blocks of text. Write for scanning. Link to documentation."
+          >
             <GuideRuleExample
               panelDisplay="block"
               type="do"
-              text="Write for scanning.">
+              text="Write for scanning."
+            >
               <EuiFormRow
                 label="Password"
-                helpText="Must be least 8 characters and include upper and lower case letters, numbers, and symbols such as !@#$%.">
+                helpText="Must be least 8 characters and include upper and lower case letters, numbers, and symbols such as !@#$%."
+              >
                 <EuiFieldPassword />
               </EuiFormRow>
             </GuideRuleExample>
@@ -627,13 +688,15 @@ export default {
             <GuideRuleExample
               panelDisplay="block"
               type="dont"
-              text="Write long blocks of text.">
+              text="Write long blocks of text."
+            >
               <EuiFormRow
                 label="Password"
                 helpText="Passwords must be at least 8 characters long. Good passwords
           contain either a combination of upper and lowercase letters or a
           combination of letters with one digit. Strong passwords contain either
-          a combination of letters and more than one digit or special characters.">
+          a combination of letters and more than one digit or special characters."
+              >
                 <EuiFieldPassword />
               </EuiFormRow>
             </GuideRuleExample>
@@ -641,14 +704,17 @@ export default {
 
           <GuideRule
             heading="Avoid the urge to explain everything"
-            description="Not every task requires an explanation nor does every field require placeholder text.">
+            description="Not every task requires an explanation nor does every field require placeholder text."
+          >
             <GuideRuleExample
               panelDisplay="block"
               type="do"
-              text=" Explain new or difficult concepts.">
+              text=" Explain new or difficult concepts."
+            >
               <EuiFormRow
                 label="Index template"
-                helpText="A template defines the settings, mappings, and aliases to apply when you create an index.">
+                helpText="A template defines the settings, mappings, and aliases to apply when you create an index."
+              >
                 <EuiFieldText />
               </EuiFormRow>
             </GuideRuleExample>
@@ -656,10 +722,12 @@ export default {
             <GuideRuleExample
               panelDisplay="block"
               type="dont"
-              text="Provide explanations for common actions.">
+              text="Provide explanations for common actions."
+            >
               <EuiFormRow
                 label="Email"
-                helpText="Please enter your email address.">
+                helpText="Please enter your email address."
+              >
                 <EuiFieldText />
               </EuiFormRow>
             </GuideRuleExample>
@@ -676,11 +744,13 @@ export default {
           <GuideRule
             heading="Convey the purpose of the component"
             description="Avoid long labels, but don't sacrifice clarity. If needed,
-      put additional information in help text and tooltips.">
+      put additional information in help text and tooltips."
+          >
             <GuideRuleExample
               panelDisplay="block"
               type="do"
-              text="Use labels that say what the component does.">
+              text="Use labels that say what the component does."
+            >
               <EuiFormRow>
                 <EuiCheckbox
                   onChange={() => {}}
@@ -695,7 +765,8 @@ export default {
             <GuideRuleExample
               panelDisplay="block"
               type="dont"
-              text="Use generic labels.">
+              text="Use generic labels."
+            >
               <EuiFormRow>
                 <EuiCheckbox
                   onChange={() => {}}
@@ -711,10 +782,12 @@ export default {
 
           <GuideRule
             heading="Label buttons with their action"
-            description="Don't use Yes or OK when you can use a verb phrase instead.">
+            description="Don't use Yes or OK when you can use a verb phrase instead."
+          >
             <GuideRuleExample
               type="do"
-              text="Use a verb + noun for a button label.">
+              text="Use a verb + noun for a button label."
+            >
               <EuiPanel style={{ transform: 'scale(.75)' }}>
                 <EuiTitle size="m">
                   <span>Remove this index pattern?</span>
@@ -732,7 +805,8 @@ export default {
             </GuideRuleExample>
             <GuideRuleExample
               type="dont"
-              text="Use vague labels, such as Yes and OK.">
+              text="Use vague labels, such as Yes and OK."
+            >
               <EuiPanel style={{ transform: 'scale(.75)' }}>
                 <EuiTitle size="m">
                   <span>Remove this index pattern?</span>
@@ -770,7 +844,8 @@ export default {
           <GuideRule heading="" description="">
             <GuideRuleExample
               type="do"
-              text="Make it fun only if it fits the experience.">
+              text="Make it fun only if it fits the experience."
+            >
               <GuideRuleWriting>
                 Odd, exciting, and scary trends and anomalies in your
                 Elasticsearch data
@@ -779,7 +854,8 @@ export default {
             <GuideRuleExample
               panelDisplay="block"
               type="dont"
-              text="Be clever with a serious message.">
+              text="Be clever with a serious message."
+            >
               <EuiTitle size="xs">
                 <span>
                   <EuiIcon type="faceSad" /> No results found

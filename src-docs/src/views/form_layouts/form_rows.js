@@ -69,7 +69,8 @@ export default () => {
           <EuiText size="xs">
             <EuiLink>Link to some help</EuiLink>
           </EuiText>
-        }>
+        }
+      >
         <EuiSelect
           hasNoInitialSelection
           onChange={() => {}}
@@ -105,7 +106,8 @@ export default () => {
 
       <EuiFormRow
         label="Use a switch instead of a single checkbox"
-        hasChildLabel={false}>
+        hasChildLabel={false}
+      >
         <EuiSwitch
           name="switch"
           label="Should we do this?"

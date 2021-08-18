@@ -57,7 +57,8 @@ export default () => {
         onClose={closeFlyout}
         paddingSize={paddingSize}
         id="flyoutMediumPadding"
-        aria-labelledby="flyoutMediumPaddingTitle">
+        aria-labelledby="flyoutMediumPaddingTitle"
+      >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
             <h2 id="flyoutMediumPaddingTitle">
@@ -89,7 +90,8 @@ export default () => {
               <EuiButtonEmpty
                 iconType="cross"
                 onClick={closeFlyout}
-                flush="left">
+                flush="left"
+              >
                 Close
               </EuiButtonEmpty>
             </EuiFlexItem>
@@ -110,7 +112,8 @@ export default () => {
         aria-controls="flyoutMediumPadding"
         aria-expanded={isFlyoutVisible}
         aria-haspopup="true"
-        aria-label="Show padding size flyout">
+        aria-label="Show padding size flyout"
+      >
         Show flyout to test padding sizes
       </EuiButton>
       {flyout}
