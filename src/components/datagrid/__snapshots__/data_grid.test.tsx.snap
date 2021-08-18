@@ -1002,7 +1002,7 @@ Array [
           </div>
         </div>
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
           data-test-subj="dataGridFullScreenButton"
           type="button"
         >
@@ -1392,7 +1392,7 @@ Array [
           </div>
         </div>
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
           data-test-subj="dataGridFullScreenButton"
           type="button"
         >
@@ -2079,7 +2079,7 @@ Array [
           </div>
         </div>
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
           data-test-subj="dataGridFullScreenButton"
           type="button"
         >
@@ -2468,7 +2468,7 @@ Array [
           </div>
         </div>
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
           data-test-subj="dataGridFullScreenButton"
           type="button"
         >
