@@ -58,25 +58,18 @@ export const useDataGridColumnSorting = (
     }
   }, [columns, sorting]);
 
-  const getSortingButtonText = (): string => {
-    if (!sorting) return 'Sort fields';
-    const numberOfSortedFields = sorting.columns.length;
-
-    switch (true) {
-      case numberOfSortedFields === 1:
-        return `${numberOfSortedFields} field sorted`;
-      case numberOfSortedFields > 1:
-        return `${numberOfSortedFields} fields sorted`;
-      default:
-        return 'Sort fields';
-    }
-  };
-
-  const columnSortingButtonText = useEuiI18n(
+  const sortingButtonText = useEuiI18n(
     'euiColumnSorting.button',
-    '{sortingButtonText}',
+    'Sort fields'
+  );
+
+  const sortingButtonTextActive = useEuiI18n(
+    'euiColumnSorting.buttonActive',
+    ({ numberOfSortedFields }) =>
+      `${numberOfSortedFields}
+      field${numberOfSortedFields === 1 ? '' : 's'} sorted`,
     {
-      sortingButtonText: getSortingButtonText(),
+      numberOfSortedFields: sorting !== undefined ? sorting.columns.length : 0,
     }
   );
 
@@ -155,7 +148,9 @@ export const useDataGridColumnSorting = (
           className={controlBtnClasses}
           data-test-subj="dataGridColumnSortingButton"
           onClick={() => setIsOpen(!isOpen)}>
-          {columnSortingButtonText}
+          {sorting.columns.length > 0
+            ? sortingButtonTextActive
+            : sortingButtonText}
         </EuiButtonEmpty>
       }>
       {sorting.columns.length > 0 ? (
