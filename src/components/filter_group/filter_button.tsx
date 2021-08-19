@@ -67,8 +67,8 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   textProps,
   ...rest
 }) => {
-  // != instead of !== to allow for null and undefined
-  const numFiltersDefined = numFilters != null;
+  const numFiltersDefined = numFilters != null; // != instead of !== to allow for null and undefined
+  const numActiveFiltersDefined = numActiveFilters && numActiveFilters > 0;
 
   const classes = classNames(
     'euiFilterButton',
@@ -91,10 +91,8 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     textProps && textProps.className
   );
 
-  let activeFilters;
-  if (numActiveFilters && numActiveFilters > 0) {
-    activeFilters = true;
-  }
+  const showBadge = numFiltersDefined || numActiveFiltersDefined;
+  const badgeCount = numActiveFilters || numFilters;
 
   let dataText;
   if (typeof children === 'string') {
@@ -112,11 +110,11 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
         {children}
       </span>
 
-      {(numFiltersDefined || activeFilters) && (
+      {showBadge && (
         <EuiI18n
           token="euiFilterButton.filterBadge"
           values={{
-            count: numActiveFilters || numFilters,
+            count: badgeCount,
             hasActiveFilters: hasActiveFilters ? 'active' : 'available',
           }}
           default="{count} {hasActiveFilters} filters">
@@ -127,7 +125,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
                 size="m"
                 aria-label={filterBadge}
                 color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}>
-                {numActiveFilters || numFilters}
+                {badgeCount}
               </EuiNotificationBadge>
             );
           }}
