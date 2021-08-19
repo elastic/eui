@@ -4,11 +4,10 @@ import React, {
   createContext,
   useContext,
   useMemo,
-  useEffect,
 } from 'react';
 import { fake } from 'faker';
 
-import { EuiDataGrid, EuiTitle, EuiSpacer } from '../../../../src/components/';
+import { EuiDataGrid } from '../../../../src/components/';
 
 const DataContext = createContext();
 
@@ -37,12 +36,7 @@ const columns = [
 const raw_data = [];
 
 function RenderCellValue({ rowIndex, columnId }) {
-  const { data, adjustMountedCellCount } = useContext(DataContext);
-
-  useEffect(() => {
-    adjustMountedCellCount(1);
-    return () => adjustMountedCellCount(-1);
-  }, [adjustMountedCellCount]);
+  const { data } = useContext(DataContext);
 
   if (data[rowIndex] == null) {
     data[rowIndex] = {
@@ -79,8 +73,6 @@ export default () => {
     columns.map(({ id }) => id)
   ); // initialize to the full set of columns
 
-  const [mountedCellCount, setMountedCellCount] = useState(0);
-
   const rowHeightsOptions = useMemo(
     () => ({
       defaultHeight: {
@@ -100,39 +92,27 @@ export default () => {
   const dataContext = useMemo(
     () => ({
       data: raw_data,
-      adjustMountedCellCount: (adjustment) =>
-        setMountedCellCount(
-          (mountedCellCount) => mountedCellCount + adjustment
-        ),
     }),
     []
   );
 
-  const grid = (
-    <EuiDataGrid
-      aria-label="Row height options demo"
-      columns={columns}
-      columnVisibility={{ visibleColumns, setVisibleColumns }}
-      rowCount={10000}
-      height={400}
-      renderCellValue={RenderCellValue}
-      rowHeightsOptions={rowHeightsOptions}
-      pagination={{
-        ...pagination,
-        pageSizeOptions: [50, 250, 1000],
-        onChangeItemsPerPage: onChangeItemsPerPage,
-        onChangePage: onChangePage,
-      }}
-    />
-  );
-
   return (
     <DataContext.Provider value={dataContext}>
-      <EuiTitle size="xxs">
-        <h2>There are {mountedCellCount} rendered cells</h2>
-      </EuiTitle>
-      <EuiSpacer />
-      {grid}
+      <EuiDataGrid
+        aria-label="Row height options demo"
+        columns={columns}
+        columnVisibility={{ visibleColumns, setVisibleColumns }}
+        rowCount={10000}
+        height={400}
+        renderCellValue={RenderCellValue}
+        rowHeightsOptions={rowHeightsOptions}
+        pagination={{
+          ...pagination,
+          pageSizeOptions: [50, 250, 1000],
+          onChangeItemsPerPage: onChangeItemsPerPage,
+          onChangePage: onChangePage,
+        }}
+      />
     </DataContext.Provider>
   );
 };

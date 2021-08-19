@@ -4,7 +4,6 @@ import React, {
   createContext,
   useContext,
   useMemo,
-  useEffect,
   ReactNode,
 } from 'react';
 // @ts-ignore not configured to import json
@@ -14,8 +13,6 @@ import {
   EuiDataGrid,
   EuiDataGridProps,
 } from '../../../../src/components/datagrid';
-import { EuiText } from '../../../../src/components/text';
-import { EuiSpacer } from '../../../../src/components/spacer';
 import { EuiLink } from '../../../../src/components/link';
 import { EuiIcon } from '../../../../src/components/icon';
 import { EuiToolTip } from '../../../../src/components/tool_tip';
@@ -48,7 +45,6 @@ type DataContextShape =
   | undefined
   | {
       data: DataShape[];
-      adjustMountedCellCount: (adjustment: number) => void;
     };
 const DataContext = createContext<DataContextShape>(undefined);
 
@@ -89,12 +85,7 @@ const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
   columnId,
   isDetails,
 }) => {
-  const { data, adjustMountedCellCount } = useContext(DataContext)!;
-
-  useEffect(() => {
-    adjustMountedCellCount(1);
-    return () => adjustMountedCellCount(-1);
-  }, [adjustMountedCellCount]);
+  const { data } = useContext(DataContext)!;
 
   const item = data[rowIndex];
   let content: ReactNode = '';
@@ -180,8 +171,6 @@ export default () => {
     columns.map(({ id }) => id)
   ); // initialize to the full set of columns
 
-  const [mountedCellCount, setMountedCellCount] = useState(0);
-
   const rowHeightsOptions = useMemo(
     () => ({
       defaultHeight: 'auto' as const,
@@ -192,41 +181,29 @@ export default () => {
   const dataContext = useMemo<DataContextShape>(
     () => ({
       data: raw_data,
-      adjustMountedCellCount: (adjustment: number) =>
-        setMountedCellCount(
-          (mountedCellCount) => mountedCellCount + adjustment
-        ),
     }),
     []
   );
 
-  const grid = (
-    <EuiDataGrid
-      aria-label="Row height options with auto demo"
-      columns={columns}
-      columnVisibility={{ visibleColumns, setVisibleColumns }}
-      rowCount={raw_data.length}
-      height={400}
-      renderCellValue={RenderCellValue}
-      inMemory={{ level: 'sorting' }}
-      sorting={{ columns: sortingColumns, onSort }}
-      rowHeightsOptions={rowHeightsOptions}
-      pagination={{
-        ...pagination,
-        pageSizeOptions: [50, 250, 1000],
-        onChangeItemsPerPage: onChangeItemsPerPage,
-        onChangePage: onChangePage,
-      }}
-    />
-  );
-
   return (
     <DataContext.Provider value={dataContext}>
-      <EuiText>
-        <p>There are {mountedCellCount} rendered cells</p>
-      </EuiText>
-      <EuiSpacer />
-      {grid}
+      <EuiDataGrid
+        aria-label="Row height options with auto demo"
+        columns={columns}
+        columnVisibility={{ visibleColumns, setVisibleColumns }}
+        rowCount={raw_data.length}
+        height={400}
+        renderCellValue={RenderCellValue}
+        inMemory={{ level: 'sorting' }}
+        sorting={{ columns: sortingColumns, onSort }}
+        rowHeightsOptions={rowHeightsOptions}
+        pagination={{
+          ...pagination,
+          pageSizeOptions: [50, 250, 1000],
+          onChangeItemsPerPage: onChangeItemsPerPage,
+          onChangePage: onChangePage,
+        }}
+      />
     </DataContext.Provider>
   );
 };
