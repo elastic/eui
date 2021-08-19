@@ -11,28 +11,31 @@ export default () => {
 
   const FOREGROUND = [
     '#bfa180',
-    'rgb(249, 133, 16)',
-    'rgba(0, 179, 164, 1)',
+    'rgb(249,133,16)',
+    'rgba(0,179,164,1)',
     'white',
   ];
 
   return (
     <Fragment>
-      <EuiFlexGrid>
+      <EuiFlexGrid columns={2}>
         {FOREGROUND.map((foreground) => {
           const color = makeHighContrastColor(foreground)(euiTheme);
 
           return (
-            <EuiFlexItem key={foreground}>
+            <EuiFlexItem style={{ flexGrow: 1 }} key={foreground}>
               <div
+                title={color}
                 css={css`
                   padding: ${euiTheme.size.base};
+                  border-radius: ${euiTheme.border.radius.small};
+                  border: ${euiTheme.border.thin};
                   color: ${color};
                 `}>
-                <strong>
-                  Contrast:{' '}
+                <code>
                   {chroma.contrast(color, euiTheme.colors.body).toFixed(2)}
-                </strong>
+                  {`: makeHighContrastColor(${foreground}, euiTheme)`}
+                </code>
               </div>
             </EuiFlexItem>
           );

@@ -22,7 +22,7 @@ export const transparentize = (color: string, alpha: number) =>
  * @param ratio - Mix weight. From 0-1. Larger value indicates more white.
  */
 export const tint = (color: string, ratio: number) =>
-  chroma.mix(color, '#fff', ratio, 'rgb').hex();
+  chroma.mix(color, '#fff', ratio, 'rgb').css();
 
 /**
  * Mixes a provided color with black.
@@ -30,7 +30,7 @@ export const tint = (color: string, ratio: number) =>
  * @param ratio - Mix weight. From 0-1. Larger value indicates more black.
  */
 export const shade = (color: string, ratio: number) =>
-  chroma.mix(color, '#000', ratio, 'rgb').hex();
+  chroma.mix(color, '#000', ratio, 'rgb').css();
 
 /**
  * Increases the saturation of a color by manipulating the hsl saturation.

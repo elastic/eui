@@ -17,7 +17,7 @@ import { getOn } from '../theme/utils';
  * *
  * @param themeOrBackground - Color to use as the contrast basis or just pass EuiTheme
  */
-export const makeHighContrastColor = (_foreground: string, ratio = 4.5) => (
+export const makeHighContrastColor = (_foreground: string, ratio = 4.55) => (
   themeOrBackground:
     | string
     | {
