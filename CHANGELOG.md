@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed bug in `EuiDataGrid` where a custom `className` was also being passed to the full screen button ([#5050](https://github.com/elastic/eui/pull/5050))
+- Fixed rerender state issues in `PaginationButton` inside `EuiPagination` ([#5048](https://github.com/elastic/eui/pull/5048))
 
 ## [`37.3.0`](https://github.com/elastic/eui/tree/v37.3.0)
 
