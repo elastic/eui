@@ -59,7 +59,7 @@ export const getColorMode = (
  * Returns a value at a given path on an object.
  * If `colorMode` is provided, will scope the value to the appropriate color mode key (LIGHT\DARK)
  * @param {object} model - Object
- * @param {string} _path - Dot notated string to a path on the object
+ * @param {string} _path - Dot-notated string to a path on the object
  * @param {string} colorMode - `light` or `dark`
  */
 export const getOn = (
@@ -101,7 +101,7 @@ export const getOn = (
 /**
  * Sets a value at a given path on an object.
  * @param {object} model - Object
- * @param {string} _path - Dot notated string to a path on the object
+ * @param {string} _path - Dot-notated string to a path on the object
  * @param {any} string -  The value to set
  */
 export const setOn = (
@@ -203,7 +203,7 @@ export function computed<T>(
  * are computed and returned.
  * @param {Proxy} base - Object to transform into Proxy
  * @param {Proxy | object} over - Unique identifier or name
- * @param {string} colorMode -  `light` or `dark`
+ * @param {string} colorMode - `light` or `dark`
  */
 export const getComputed = <T = EuiThemeShape>(
   base: EuiThemeSystem<T>,
