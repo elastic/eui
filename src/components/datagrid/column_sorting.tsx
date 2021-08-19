@@ -6,17 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  Fragment,
-  useState,
-  ReactChild,
-  ReactNode,
-  useEffect,
-} from 'react';
+import React, { Fragment, useState, ReactNode, useEffect } from 'react';
 import classNames from 'classnames';
 import { EuiDataGridColumn, EuiDataGridSorting } from './data_grid_types';
 import { EuiPopover, EuiPopoverFooter } from '../popover';
-import { EuiI18n } from '../i18n';
+import { EuiI18n, useEuiI18n } from '../i18n';
 import { EuiText } from '../text';
 import { EuiButtonEmpty } from '../button';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
@@ -63,6 +57,28 @@ export const useDataGridColumnSorting = (
     }
   }, [columns, sorting]);
 
+  const getSortingButtonText = (): string => {
+    if (!sorting) return 'Sort fields';
+    const numberOfSortedFields = sorting.columns.length;
+
+    switch (true) {
+      case numberOfSortedFields === 1:
+        return `${numberOfSortedFields} field sorted`;
+      case numberOfSortedFields > 1:
+        return `${numberOfSortedFields} fields sorted`;
+      default:
+        return 'Sort fields';
+    }
+  };
+
+  const columnSortingButtonText = useEuiI18n(
+    'euiColumnSorting.button',
+    '{sortingButtonText}',
+    {
+      sortingButtonText: getSortingButtonText(),
+    }
+  );
+
   if (sorting == null) return [null];
 
   const activeColumnIds = new Set(sorting.columns.map(({ id }) => id));
@@ -102,8 +118,6 @@ export const useDataGridColumnSorting = (
     'euiDataGrid__controlBtn--active': sorting.columns.length > 0,
   });
 
-  const numberOfSortedFields = sorting.columns.length;
-
   const schemaDetails = (id: string | number) =>
     schema.hasOwnProperty(id) && schema[id].columnType != null
       ? getDetailsForSchema(schemaDetectors, schema[id].columnType)
@@ -133,35 +147,15 @@ export const useDataGridColumnSorting = (
       panelPaddingSize="s"
       panelClassName="euiDataGridColumnSortingPopover"
       button={
-        <EuiI18n
-          tokens={[
-            'euiColumnSorting.button',
-            'euiColumnSorting.buttonActiveSingular',
-            'euiColumnSorting.buttonActivePlural',
-          ]}
-          defaults={['Sort fields', 'field sorted', 'fields sorted']}>
-          {([
-            button,
-            buttonActiveSingular,
-            buttonActivePlural,
-          ]: ReactChild[]) => (
-            <EuiButtonEmpty
-              size="xs"
-              iconType="sortable"
-              color="text"
-              className={controlBtnClasses}
-              data-test-subj="dataGridColumnSortingButton"
-              onClick={() => setIsOpen(!isOpen)}>
-              {numberOfSortedFields > 0
-                ? `${numberOfSortedFields} ${
-                    numberOfSortedFields > 1
-                      ? buttonActivePlural
-                      : buttonActiveSingular
-                  }`
-                : button}
-            </EuiButtonEmpty>
-          )}
-        </EuiI18n>
+        <EuiButtonEmpty
+          size="xs"
+          iconType="sortable"
+          color="text"
+          className={controlBtnClasses}
+          data-test-subj="dataGridColumnSortingButton"
+          onClick={() => setIsOpen(!isOpen)}>
+          {columnSortingButtonText}
+        </EuiButtonEmpty>
       }>
       {sorting.columns.length > 0 ? (
         <div
