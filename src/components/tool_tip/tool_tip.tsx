@@ -13,15 +13,14 @@ import React, {
   ReactElement,
   ReactNode,
   MouseEvent as ReactMouseEvent,
-  KeyboardEvent,
 } from 'react';
 import classNames from 'classnames';
 
 import { keysOf } from '../common';
 import { EuiPortal } from '../portal';
 import { EuiToolTipPopover } from './tool_tip_popover';
-import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
 import { enqueueStateChange } from '../../services/react';
+import { findPopoverPosition, htmlIdGenerator } from '../../services';
 
 import { EuiResizeObserver } from '../observer/resize_observer';
 
@@ -116,6 +115,7 @@ export interface EuiToolTipProps {
 
 interface State {
   visible: boolean;
+  hasFocus: boolean;
   calculatedPosition: ToolTipPositions;
   toolTipStyles: ToolTipStyles;
   arrowStyles: undefined | { left: number; top: number };
@@ -130,6 +130,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
 
   state: State = {
     visible: false,
+    hasFocus: false,
     calculatedPosition: this.props.position,
     toolTipStyles: DEFAULT_TOOLTIP_STYLES,
     arrowStyles: undefined,
@@ -154,7 +155,6 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   componentWillUnmount() {
     this.clearAnimationTimeout();
     this._isMounted = false;
-    window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
   }
 
   componentDidUpdate(prevProps: EuiToolTipProps, prevState: State) {
@@ -252,15 +252,18 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     });
   };
 
-  hasFocusMouseMoveListener = () => {
-    this.hideToolTip();
-    window.removeEventListener('mousemove', this.hasFocusMouseMoveListener);
+  onFocus = () => {
+    this.setState({
+      hasFocus: true,
+    });
+    this.showToolTip();
   };
 
-  onKeyUp = (event: KeyboardEvent<HTMLSpanElement>) => {
-    if (event.key === keys.TAB) {
-      window.addEventListener('mousemove', this.hasFocusMouseMoveListener);
-    }
+  onBlur = () => {
+    this.setState({
+      hasFocus: false,
+    });
+    this.hideToolTip();
   };
 
   onMouseOut = (event: ReactMouseEvent<HTMLSpanElement, MouseEvent>) => {
@@ -271,7 +274,9 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
       (this.anchor != null &&
         !this.anchor.contains(event.relatedTarget as Node))
     ) {
-      this.hideToolTip();
+      if (!this.state.hasFocus) {
+        this.hideToolTip();
+      }
     }
 
     if (this.props.onMouseOut) {
@@ -333,10 +338,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
         ref={(anchor) => (this.anchor = anchor)}
         className={anchorClasses}
         onMouseOver={this.showToolTip}
-        onMouseOut={this.onMouseOut}
-        onKeyUp={(event) => {
-          this.onKeyUp(event);
-        }}>
+        onMouseOut={this.onMouseOut}>
         {/**
          * Re: jsx-a11y/mouse-events-have-key-events
          * We apply onFocus, onBlur, etc to the children element because that's the element

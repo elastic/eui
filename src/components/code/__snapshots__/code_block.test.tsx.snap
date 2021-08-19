@@ -185,7 +185,6 @@ console.log(some);"
               >
                 <span
                   className="euiToolTipAnchor"
-                  onKeyUp={[Function]}
                   onMouseOut={[Function]}
                   onMouseOver={[Function]}
                 >
