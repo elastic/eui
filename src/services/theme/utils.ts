@@ -18,12 +18,26 @@ import {
 
 export const DEFAULT_COLOR_MODE = COLOR_MODES_STANDARD.light;
 
+/**
+ * Returns whether the parameter is an object
+ * @param {any} obj - Anything
+ */
 const isObject = (obj: any) => obj && typeof obj === 'object';
 
+/**
+ * Returns whether the provided color mode is `inverse`
+ * @param {string} colorMode - `light`, `dark`, or `inverse`
+ */
 export const isInverseColorMode = (colorMode?: EuiThemeColorMode) => {
   return colorMode === COLOR_MODES_INVERSE;
 };
 
+/**
+ * Returns the color mode configured in the current EuiThemeProvider.
+ * Returns the parent color mode if none is explicity set.
+ * @param {string} coloMode - `light`, `dark`, or `inverse`
+ * @param {string} parentColorMode - `light`, `dark`, or `inverse`; used as the fallback
+ */
 export const getColorMode = (
   colorMode?: EuiThemeColorMode,
   parentColorMode?: EuiThemeColorMode
@@ -41,6 +55,13 @@ export const getColorMode = (
   }
 };
 
+/**
+ * Returns a value at a given path on an object.
+ * If `colorMode` is provided, will scope the value to the appropriate color mode key (LIGHT\DARK)
+ * @param {object} model - Object
+ * @param {string} _path - Dot notated string to a path on the object
+ * @param {string} colorMode - `light` or `dark`
+ */
 export const getOn = (
   model: { [key: string]: any },
   _path: string,
@@ -77,6 +98,12 @@ export const getOn = (
   return node;
 };
 
+/**
+ * Sets a value at a given path on an object.
+ * @param {object} model - Object
+ * @param {string} _path - Dot notated string to a path on the object
+ * @param {any} string -  The value to set
+ */
 export const setOn = (
   model: { [key: string]: any },
   _path: string,
@@ -98,12 +125,27 @@ export const setOn = (
   return true;
 };
 
+/**
+ * Creates a class to store the `computer` method and its eventual parameters.
+ * Allows for on-demand computation with up-to-date parameters via `getValue` method.
+ * @constructor
+ * @param {function} computer - Function to be computed
+ * @param {string | array} dependencies - Dependencies passed to the `computer` as parameters
+ */
 export class Computed<T> {
   constructor(
     public computer: (...values: any[]) => T,
     public dependencies: string | string[] = []
   ) {}
 
+  /**
+   * Executes the `computer` method with the current state of the theme
+   * by taking into account previously computed values and modifications.
+   * @param {Proxy | object} base - Computed or uncomputed theme
+   * @param {Proxy | object} modifications - Theme value overrides
+   * @param {object} working - Partially computed theme
+   * @param {string} colorMode - `light` or `dark`
+   */
   getValue(
     base: EuiThemeSystem | EuiThemeShape,
     modifications: EuiThemeModifications = {},
@@ -132,6 +174,12 @@ export class Computed<T> {
   }
 }
 
+/**
+ * Returns a Class (`Computed`) that stores the arbitrary computer method
+ * and references to its optional dependecies.
+ * @param {function} computer - Arbitrary method to be called at compute time.
+ * @param {string | array} dependencies - Values that will be provided to `computer` at compute time.
+ */
 export function computed<T>(computer: (value: EuiThemeComputed) => T): T;
 export function computed<T>(
   computer: (value: any[]) => T,
@@ -148,6 +196,15 @@ export function computed<T>(
   return new Computed<T>(comp, dep);
 }
 
+/**
+ * Takes an uncomputed theme, and computes and returns all values taking
+ * into consideration value overrides and configured color mode.
+ * Overrides take precedence, and only values in the current color mode
+ * are computed and returned.
+ * @param {Proxy} base - Object to transform into Proxy
+ * @param {Proxy | object} over - Unique identifier or name
+ * @param {string} colorMode -  `light` or `dark`
+ */
 export const getComputed = <T = EuiThemeShape>(
   base: EuiThemeSystem<T>,
   over: Partial<EuiThemeSystem<T>>,
@@ -198,6 +255,12 @@ export const getComputed = <T = EuiThemeShape>(
   return output as EuiThemeComputed<T>;
 };
 
+/**
+ * Builds a Proxy with a custom `handler` designed to self-reference values
+ * and prevent arbitrary value overrides.
+ * @param {object} model - Object to transform into Proxy
+ * @param {string} key - Unique identifier or name
+ */
 export const buildTheme = <T extends {}>(model: T, key: string) => {
   const handler: ProxyHandler<EuiThemeSystem<T>> = {
     getPrototypeOf(target) {
@@ -279,6 +342,11 @@ export const buildTheme = <T extends {}>(model: T, key: string) => {
   return themeProxy;
 };
 
+/**
+ * Deeply merges two objects, using `source` values whenever possible.
+ * @param {object} _target - Object with fallback values
+ * @param {object} source - Object with desired values
+ */
 export const mergeDeep = (
   _target: { [key: string]: any },
   source: { [key: string]: any } = {}
