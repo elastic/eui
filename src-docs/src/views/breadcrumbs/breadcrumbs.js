@@ -47,6 +47,7 @@ export default () => {
       />
       <EuiSpacer size="xs" />
       <EuiPageHeader
+        role=""
         pageTitle="Boa constrictor"
         rightSideItems={[<EuiButton>Cancel</EuiButton>]}
       />
