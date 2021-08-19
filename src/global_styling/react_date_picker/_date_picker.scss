@@ -15,7 +15,7 @@
 
 // Because we don't have control over react-datepicker's dom we use SVG URIs for the navigation arrows.
 // There is one for light and dark.
-@mixin datePicker__arrow {
+@mixin datePickerArrow {
   background-position: center;
   @if (lightness($euiColorEmptyShade) > 50) {
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+ICA8ZGVmcz4gICAgPHBhdGggaWQ9ImFycm93X2Rvd24tYSIgZD0iTTEzLjA2ODg1MDgsNS4xNTcyNTAzOCBMOC4zODQyMzk3NSw5Ljc2ODI3NDI4IEM4LjE3MDU0NDE1LDkuOTc4NjEzMDggNy44Mjk5OTIxNCw5Ljk3OTE0MDk1IDcuNjE1NzYwMjUsOS43NjgyNzQyOCBMMi45MzExNDkxNSw1LjE1NzI1MDM4IEMyLjcxODEzNTksNC45NDc1ODMyMSAyLjM3Mjc3MzE5LDQuOTQ3NTgzMjEgMi4xNTk3NTk5NCw1LjE1NzI1MDM4IEMxLjk0Njc0NjY5LDUuMzY2OTE3NTYgMS45NDY3NDY2OSw1LjcwNjg1NTIyIDIuMTU5NzU5OTQsNS45MTY1MjI0IEw2Ljg0NDM3MTA0LDEwLjUyNzU0NjMgQzcuNDg1MTc0MjQsMTEuMTU4MjgzNiA4LjUxNjQ0OTc5LDExLjE1NjY4NTEgOS4xNTU2Mjg5NiwxMC41Mjc1NDYzIEwxMy44NDAyNDAxLDUuOTE2NTIyNCBDMTQuMDUzMjUzMyw1LjcwNjg1NTIyIDE0LjA1MzI1MzMsNS4zNjY5MTc1NiAxMy44NDAyNDAxLDUuMTU3MjUwMzggQzEzLjYyNzIyNjgsNC45NDc1ODMyMSAxMy4yODE4NjQxLDQuOTQ3NTgzMjEgMTMuMDY4ODUwOCw1LjE1NzI1MDM4IFoiLz4gIDwvZGVmcz4gIDxnIGZpbGwtcnVsZT0iZXZlbm9kZCI+ICAgIDx1c2UgZmlsbC1ydWxlPSJub256ZXJvIiB4bGluazpocmVmPSIjYXJyb3dfZG93bi1hIi8+ICA8L2c+PC9zdmc+);
@@ -193,7 +193,7 @@
   overflow: hidden;
 
   &--previous {
-    @include datePicker__arrow;
+    @include datePickerArrow;
     left: $euiSize + $euiSizeXS;
     height: $euiSize;
     width: $euiSize;
@@ -223,7 +223,7 @@
   }
 
   &--next {
-    @include datePicker__arrow;
+    @include datePickerArrow;
     // Pixel value because of some padding on the icon
     right: 20px;
     height: $euiSize;
