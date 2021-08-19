@@ -144,7 +144,7 @@ class MarkdownActions {
    * @param {string} pluginName
    * @memberof MarkdownActions
    */
-  do(pluginName: string) {
+  do(pluginName: string): true | EuiMarkdownEditorUiPlugin {
     const plugin = this.styles[pluginName];
     if (isPluginWithImmediateFormatting(plugin)) {
       this.applyStyle(plugin.formatting);

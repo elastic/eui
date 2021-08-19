@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
-/* eslint-disable @typescript-eslint/triple-slash-reference */
-/// <reference path="./components/index.d.ts" />
-/// <reference path="./themes/index.d.ts" />
+declare module '@elastic/eui' {
+  // @ts-ignore path only exists at build time
+  export * from '@elastic/eui/src/components/date_picker/react-datepicker'; // eslint-disable-line import/no-unresolved
+}
