@@ -6,46 +6,44 @@ exports[`EuiDatePickerRange is rendered 1`] = `
   class="euiDatePickerRange testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <span>
-    <span
-      class="euiDatePicker euiDatePicker--shadow"
+  <span
+    class="euiDatePicker euiDatePicker--shadow"
+  >
+    <div
+      class="euiFormControlLayout"
     >
       <div
-        class="euiFormControlLayout"
+        class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiFormControlLayout__childrenWrapper"
+          class="react-datepicker-wrapper"
         >
           <div
-            class="react-datepicker-wrapper"
+            class="react-datepicker__input-container"
           >
-            <div
-              class="react-datepicker__input-container"
-            >
-              <input
-                aria-label="Press the down key to open a popover containing a calendar."
-                class="euiDatePicker euiFieldText euiFieldText--withIcon"
-                type="text"
-                value=""
-              />
-            </div>
-          </div>
-          <div
-            class="euiFormControlLayoutIcons"
-          >
-            <span
-              class="euiFormControlLayoutCustomIcon"
-            >
-              <span
-                aria-hidden="true"
-                class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="calendar"
-              />
-            </span>
+            <input
+              aria-label="Press the down key to open a popover containing a calendar."
+              class="euiDatePicker euiFieldText euiFieldText--withIcon euiDatePickerRange__start"
+              type="text"
+              value=""
+            />
           </div>
         </div>
+        <div
+          class="euiFormControlLayoutIcons"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <span
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="calendar"
+            />
+          </span>
+        </div>
       </div>
-    </span>
+    </div>
   </span>
   <div
     class="euiText euiText--small euiDatePickerRange__delimeter"
@@ -56,33 +54,31 @@ exports[`EuiDatePickerRange is rendered 1`] = `
       →
     </div>
   </div>
-  <span>
-    <span
-      class="euiDatePicker euiDatePicker--shadow"
+  <span
+    class="euiDatePicker euiDatePicker--shadow"
+  >
+    <div
+      class="euiFormControlLayout"
     >
       <div
-        class="euiFormControlLayout"
+        class="euiFormControlLayout__childrenWrapper"
       >
         <div
-          class="euiFormControlLayout__childrenWrapper"
+          class="react-datepicker-wrapper"
         >
           <div
-            class="react-datepicker-wrapper"
+            class="react-datepicker__input-container"
           >
-            <div
-              class="react-datepicker__input-container"
-            >
-              <input
-                aria-label="Press the down key to open a popover containing a calendar."
-                class="euiDatePicker euiFieldText"
-                type="text"
-                value=""
-              />
-            </div>
+            <input
+              aria-label="Press the down key to open a popover containing a calendar."
+              class="euiDatePicker euiFieldText euiDatePickerRange__end"
+              type="text"
+              value=""
+            />
           </div>
         </div>
       </div>
-    </span>
+    </div>
   </span>
 </div>
 `;

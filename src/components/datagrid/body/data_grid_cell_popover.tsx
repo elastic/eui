@@ -5,33 +5,17 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-import React, { JSXElementConstructor, ReactNode, RefCallback } from 'react';
+import React, { JSXElementConstructor } from 'react';
+import { keys } from '../../../services';
+import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button/button_empty';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiPopover, EuiPopoverFooter } from '../../popover';
 import {
-  EuiDataGridColumn,
+  EuiDataGridCellPopoverProps,
+  EuiDataGridCellValueElementProps,
   EuiDataGridColumnCellAction,
   EuiDataGridColumnCellActionProps,
-  EuiDataGridPopoverContent,
-} from './data_grid_types';
-import { EuiPopover, EuiPopoverFooter } from '../popover';
-import { keys } from '../../services';
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button/button_empty';
-import { EuiDataGridCellValueElementProps } from './data_grid_cell';
-
-interface EuiDataGridCellPopoverProps {
-  anchorContent: NonNullable<ReactNode>;
-  cellContentProps: EuiDataGridCellValueElementProps;
-  cellContentsRef: HTMLDivElement | null;
-  closePopover: () => void;
-  column?: EuiDataGridColumn;
-  panelRefFn: RefCallback<HTMLElement | null>;
-  popoverIsOpen: boolean;
-  popoverContent: EuiDataGridPopoverContent;
-  renderCellValue:
-    | JSXElementConstructor<EuiDataGridCellValueElementProps>
-    | ((props: EuiDataGridCellValueElementProps) => ReactNode);
-  rowIndex: number;
-}
+} from '../data_grid_types';
 
 export function EuiDataGridCellPopover({
   anchorContent,

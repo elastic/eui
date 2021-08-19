@@ -6,35 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React, { forwardRef, HTMLAttributes, memo } from 'react';
 import classnames from 'classnames';
+import React, { forwardRef, memo } from 'react';
+import { EuiText } from '../../text';
+import { EuiDataGridCell } from './data_grid_cell';
 import {
-  EuiDataGridControlColumn,
-  EuiDataGridColumn,
-  EuiDataGridColumnWidths,
+  EuiDataGridFooterRowProps,
   EuiDataGridPopoverContent,
-  EuiDataGridPopoverContents,
-} from './data_grid_types';
-import { CommonProps } from '../common';
-
-import { EuiDataGridCell, EuiDataGridCellProps } from './data_grid_cell';
-import { EuiDataGridSchema } from './data_grid_schema';
-import { EuiText } from '../text';
-
-export type EuiDataGridFooterRowProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
-    rowIndex: number;
-    leadingControlColumns: EuiDataGridControlColumn[];
-    trailingControlColumns: EuiDataGridControlColumn[];
-    columns: EuiDataGridColumn[];
-    schema: EuiDataGridSchema;
-    popoverContents: EuiDataGridPopoverContents;
-    columnWidths: EuiDataGridColumnWidths;
-    defaultColumnWidth?: number | null;
-    renderCellValue: EuiDataGridCellProps['renderCellValue'];
-    interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
-    visibleRowIndex?: number;
-  };
+} from '../data_grid_types';
 
 const DefaultColumnFormatter: EuiDataGridPopoverContent = ({ children }) => {
   return <EuiText>{children}</EuiText>;

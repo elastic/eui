@@ -6,38 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, forwardRef } from 'react';
 import classnames from 'classnames';
-import {
-  EuiDataGridColumnWidths,
-  EuiDataGridColumn,
-  EuiDataGridControlColumn,
-} from './data_grid_types';
-import { CommonProps } from '../common';
-import {
-  EuiDataGridSchema,
-  EuiDataGridSchemaDetector,
-} from './data_grid_schema';
-import { EuiDataGridHeaderCell } from './data_grid_header_cell';
+import React, { forwardRef } from 'react';
 import { EuiDataGridControlHeaderCell } from './data_grid_control_header_cell';
-
-export interface EuiDataGridHeaderRowPropsSpecificProps {
-  leadingControlColumns?: EuiDataGridControlColumn[];
-  trailingControlColumns?: EuiDataGridControlColumn[];
-  columns: EuiDataGridColumn[];
-  columnWidths: EuiDataGridColumnWidths;
-  schema: EuiDataGridSchema;
-  schemaDetectors: EuiDataGridSchemaDetector[];
-  defaultColumnWidth?: number | null;
-  setColumnWidth: (columnId: string, width: number) => void;
-  setVisibleColumns: (columnId: string[]) => void;
-  switchColumnPos: (colFromId: string, colToId: string) => void;
-  headerIsInteractive: boolean;
-}
-
-export type EuiDataGridHeaderRowProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> &
-  EuiDataGridHeaderRowPropsSpecificProps;
+import { EuiDataGridHeaderCell } from './data_grid_header_cell';
+import { EuiDataGridHeaderRowProps } from '../../data_grid_types';
 
 const EuiDataGridHeaderRow = forwardRef<
   HTMLDivElement,

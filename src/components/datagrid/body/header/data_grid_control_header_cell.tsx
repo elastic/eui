@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import classnames from 'classnames';
 import React, {
   FunctionComponent,
   useContext,
@@ -13,18 +14,10 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import classnames from 'classnames';
-import { keys } from '../../services';
 import tabbable from 'tabbable';
-import { EuiDataGridControlColumn } from './data_grid_types';
-import { DataGridFocusContext } from './data_grid_context';
-
-export interface EuiDataGridControlHeaderRowProps {
-  index: number;
-  controlColumn: EuiDataGridControlColumn;
-  headerIsInteractive: boolean;
-  className?: string;
-}
+import { keys } from '../../../../services';
+import { DataGridFocusContext } from '../../data_grid_context';
+import { EuiDataGridControlHeaderRowProps } from '../../data_grid_types';
 
 export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlHeaderRowProps> = (
   props

@@ -14,11 +14,16 @@ export const EuiFlyout = ({
   closeButtonProps,
   hideCloseButton,
   onClose,
+  onKeyDown,
   'data-test-subj': dataTestSubj,
 }: any) => {
   const Element = as;
   return (
-    <Element data-eui="EuiFlyout" data-test-subj={dataTestSubj} role={role}>
+    <Element
+      data-eui="EuiFlyout"
+      data-test-subj={dataTestSubj}
+      role={role}
+      onKeyDown={onKeyDown}>
       {!hideCloseButton && (
         <button
           type="button"
