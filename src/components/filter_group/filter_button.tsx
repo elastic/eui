@@ -103,6 +103,15 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     '{count} available filters',
     { count: badgeCount }
   );
+  const badgeContent = showBadge && (
+    <EuiNotificationBadge
+      className="euiFilterButton__notification"
+      size="m"
+      aria-label={hasActiveFilters ? activeBadgeLabel : availableBadgeLabel}
+      color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}>
+      {badgeCount}
+    </EuiNotificationBadge>
+  );
 
   let dataText;
   if (typeof children === 'string') {
@@ -120,15 +129,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
         {children}
       </span>
 
-      {showBadge && (
-        <EuiNotificationBadge
-          className="euiFilterButton__notification"
-          size="m"
-          aria-label={hasActiveFilters ? activeBadgeLabel : availableBadgeLabel}
-          color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}>
-          {badgeCount}
-        </EuiNotificationBadge>
-      )}
+      {badgeContent}
     </Fragment>
   );
 
