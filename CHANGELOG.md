@@ -38,6 +38,10 @@
 
 - Fixed `EuiFormRow` ignoring `isDisabled` prop on the child element. ([#5022](https://github.com/elastic/eui/pull/5022))
 
+**Theme: Amsterdam**
+
+- Updated styles for `EuiDatePicker` ([#5000](https://github.com/elastic/eui/pull/5000))
+
 ## [`37.1.0`](https://github.com/elastic/eui/tree/v37.1.0)
 
 - Added `isDisabled` prop to `EuiFormRow` that disables the child field element ([#4908](https://github.com/elastic/eui/pull/4908
