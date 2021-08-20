@@ -80,6 +80,14 @@ export const IconExample = {
             use the default size of{' '}
             <EuiCode language="js">size=&quot;m&quot;</EuiCode>.
           </p>
+          <p>
+            If you would like to contribute to our growing list of glyphs, you
+            can follow{' '}
+            <EuiLink to="https://github.com/elastic/eui/blob/master/wiki/creating-icons.md">
+              these guidelines
+            </EuiLink>
+            .
+          </p>
         </>
       ),
       demo: <Icons />,
@@ -206,8 +214,8 @@ export const IconExample = {
               Two-tone icons, like our app style icons, will behave similarly to
               normal glyphs when provided a specific color by applying the color
               to <strong>all</strong> the shapes within. You can force the icon
-              to match the parent's text color by passing{' '}
-              <EuiCode>color="inherit"</EuiCode> to the icon.
+              to match the parent&apos;s text color by passing{' '}
+              <EuiCode>color=&#34;inherit&#34;</EuiCode> to the icon.
             </p>
           </EuiText>
         </>

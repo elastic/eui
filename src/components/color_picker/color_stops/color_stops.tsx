@@ -31,7 +31,7 @@ import {
   removeStop,
 } from './utils';
 
-import { EuiColorPickerProps } from '../';
+import { EuiColorPickerProps } from '../color_picker';
 import { getChromaColor } from '../utils';
 import { EuiI18n } from '../../i18n';
 import { EuiScreenReaderOnly } from '../../accessibility';

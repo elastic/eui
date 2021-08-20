@@ -60,7 +60,7 @@ Note that `yarn link` currently does not work with Kibana. You'll need to manual
 #### In EUI run:
 
 ```bash
-yarn build && yarn pack
+yarn build-pack
 ```
 
 This will create a `.tgz` file with the changes in your EUI directory. At this point you can move it anywhere.

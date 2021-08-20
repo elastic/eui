@@ -714,13 +714,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     className
   );
 
-  const controlBtnClasses = classNames(
-    'euiDataGrid__controlBtn',
-    {
-      'euiDataGrid__controlBtn--active': isFullScreen,
-    },
-    className
-  );
+  const controlBtnClasses = classNames('euiDataGrid__controlBtn', {
+    'euiDataGrid__controlBtn--active': isFullScreen,
+  });
 
   // By default the toolbar appears
   const showToolbar = !!toolbarVisibility;
