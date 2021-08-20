@@ -80,11 +80,12 @@ export const IconExample = {
             <EuiCode language="js">size=&quot;m&quot;</EuiCode>.
           </p>
           <p>
-            If you would like to contribute to our growing list of glyphs,
-            you can follow{' '}
+            If you would like to contribute to our growing list of glyphs, you
+            can follow{' '}
             <EuiLink to="https://github.com/elastic/eui/blob/master/wiki/creating-icons.md">
               these guidelines
-            </EuiLink>.
+            </EuiLink>
+            .
           </p>
         </>
       ),
