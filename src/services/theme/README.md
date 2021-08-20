@@ -11,13 +11,16 @@ The style system to replace Sass and Sass-based design tokens in EUI.
 * Color mode support as first-class consideration
   * "Light" and "dark" mode accounting
   * Theme consumption is scoped to the current color mode (set in the context provider)
+* Style adaptaion based on a smal set of base values
+  * Text colors are calculated with WCAG Level AA (4.5:1) in mind
+  * Scalable typographic and spacing rhythms 
 
 
 ## Layers of the theme system
 
 ### Unbuilt theme
 
-_See `euiThemeDefault`_
+_See [`euiThemeDefault`](../../themes/eui/theme.ts)_
 An unbuilt theme is a composed object of style values or `computed` functions.
 
 #### Style values
@@ -45,12 +48,12 @@ computed(
 
 ### Theme system (built theme)
 
-_See `EuiThemeDefault`_
+_See [`EuiThemeDefault`](../../themes/eui/theme.ts)_
 A built theme by way of `buildTheme`, which transforms the object containing static style values and `computed` functions into a JavaScript Proxy object with handler traps. In this state, the theme is essentially inaccessible and immutable, that is, it requires `getComputed` to correctly order and access values and dependencies, and `set()` is disabled.
 
 ### Computed theme
 
-_See `EuiThemeContext`_
+_See [`EuiThemeContext`](../../themes/eui/context.ts)_
 A consumable theme object in which all `computed` function values have been computed; all values are accessible and usable in an application environment.
 Returned from `getComputed`, in the shape of:
 
@@ -84,6 +87,7 @@ The reserved color mode keys can be used at any level and location in a theme.
 
 ### EuiThemeProvider
 
+_See [`EuiThemeProvider`](../../themes/eui/provider.ts)_
 Umbrella provider component that holds the various top-level theme configuration option providers: theme system, color mode, modifications; as well as the primary output provider: computed theme.
 The actual computation for computed theme values takes place at this level, where the three inputs are known (theme system, color mode, modifications) and the output (computed theme) can be cached for consumption. Input changes are captured and the output is recomputed.
 
@@ -99,6 +103,7 @@ All three props are optional. The default values for EUI will be used in the eve
 
 ### useEuiTheme
 
+_See [`useEuiTheme`](../../themes/eui/hooks.tsx)_
 A custom React hook that returns the computed theme. This hook is little more than a wrapper around the `useContext` hook, accessing three of the top-level providers: computed theme, color mode, and modifications.
 
 ```js
