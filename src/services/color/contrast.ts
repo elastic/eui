@@ -32,6 +32,16 @@ export const makeHighContrastColor = (_foreground: string, ratio = 4.55) => (
     typeof themeOrBackground === 'object'
       ? themeOrBackground.colors.body
       : themeOrBackground;
+
+  if (chroma(foreground).alpha() < 1 || chroma(background).alpha() < 1) {
+    console.warn(
+      `Contrast cannot be accurately calculated when colors have alpha channel opacity. Make sure the provided foreground and background colors have no transparency:
+
+Foreground: ${foreground}
+Background: ${background}`
+    );
+  }
+
   let contrast = chroma.contrast(foreground, background);
 
   // Determine the lightness factor of the background color first to
