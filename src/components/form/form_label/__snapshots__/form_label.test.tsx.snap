@@ -8,6 +8,19 @@ exports[`EuiFormLabel is rendered 1`] = `
 />
 `;
 
+exports[`EuiFormLabel props isDisabled is rendered 1`] = `
+<label
+  class="euiFormLabel euiFormLabel-isDisabled"
+/>
+`;
+
+exports[`EuiFormLabel props isDisabled is still disabled with for attribute 1`] = `
+<label
+  class="euiFormLabel euiFormLabel-isDisabled"
+  for=""
+/>
+`;
+
 exports[`EuiFormLabel props isFocused is rendered 1`] = `
 <label
   class="euiFormLabel euiFormLabel-isFocused"

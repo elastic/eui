@@ -73,7 +73,6 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     elementProps = {
       ...elementProps,
       htmlFor: newId,
-      onClick: () => onChange(id, value),
     };
     singleInput = (
       <input

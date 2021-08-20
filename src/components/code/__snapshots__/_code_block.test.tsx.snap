@@ -75,7 +75,7 @@ exports[`EuiCodeBlockImpl block renders a pre block tag with a css class modifie
 
 exports[`EuiCodeBlockImpl block renders a virtualized code block 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls prismjs language-text testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl prismjs language-text testClass1 testClass2"
   style="max-height:300px"
 >
   <div

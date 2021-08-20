@@ -14,7 +14,7 @@ import {
   requiredProps,
   takeMountedSnapshot,
 } from '../../test';
-import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
+import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer';
 import { EuiDataGridRowHeightOption } from './data_grid_types';
 import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';

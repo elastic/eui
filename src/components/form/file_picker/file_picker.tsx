@@ -92,9 +92,11 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
     }
   };
 
-  removeFiles = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    e.preventDefault();
+  removeFiles = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
 
     if (!this.fileInput) return;
 

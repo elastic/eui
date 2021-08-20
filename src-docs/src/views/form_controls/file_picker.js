@@ -15,7 +15,7 @@ export default () => {
   const [large, setLarge] = useState(true);
 
   const onChange = (files) => {
-    setFiles(files);
+    setFiles(files.length > 0 ? files : {});
   };
 
   const renderFiles = () => {

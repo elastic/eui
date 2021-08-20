@@ -101,8 +101,8 @@ export default () => {
             </EuiFilterSelectItem>
           ))}
           {/*
-              Use when loading items initially
-            */}
+                Use when loading items initially
+              */}
           <div className="euiFilterSelect__note">
             <div className="euiFilterSelect__noteContent">
               <EuiLoadingChart size="m" />
@@ -111,8 +111,8 @@ export default () => {
             </div>
           </div>
           {/*
-              Use when no results are returned
-            */}
+                Use when no results are returned
+              */}
           <div className="euiFilterSelect__note">
             <div className="euiFilterSelect__noteContent">
               <EuiIcon type="minusInCircle" />

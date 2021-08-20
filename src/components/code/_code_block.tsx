@@ -245,7 +245,8 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
     {
       'euiCodeBlock--transparentBackground': transparentBackground,
       'euiCodeBlock--inline': inline,
-      'euiCodeBlock--hasControls': isCopyable || overflowHeight,
+      'euiCodeBlock--hasControl': isCopyable || overflowHeight,
+      'euiCodeBlock--hasBothControls': isCopyable && overflowHeight,
     },
     {
       prismjs: !className?.includes('prismjs'),
@@ -299,7 +300,7 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
                 {(copy) => (
                   <EuiButtonIcon
                     onClick={copy}
-                    iconType="copy"
+                    iconType="copyClipboard"
                     color="text"
                     aria-label={copyButton}
                   />
