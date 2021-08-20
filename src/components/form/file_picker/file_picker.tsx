@@ -60,7 +60,12 @@ export interface EuiFilePickerProps
 
 export class EuiFilePicker extends Component<EuiFilePickerProps> {
   static defaultProps = {
-    initialPromptText: 'Select or drag and drop a file',
+    initialPromptText: (
+      <EuiI18n
+        token="euiFilePicker.promptText"
+        default="Select or drag and drop a file"
+      />
+    ),
     compressed: false,
     display: 'large',
   };
