@@ -12,8 +12,7 @@ Note that EUI has [several `peerDependencies` requirements](https://github.com/e
 yarn add @elastic/eui @elastic/datemath moment prop-types
 ```
 
-!{spacer{"size": "l"}}
-!{spacer{"size": "xl"}}
+!{spacer{"size": "xxl"}}
 
 ## Running Locally
 
@@ -44,8 +43,7 @@ If another process is already listening on port 8030, the next free port will be
 yarn start --port 9000
 ```
 
-!{spacer{"size": "l"}}
-!{spacer{"size": "xl"}}
+!{spacer{"size": "xxl"}}
 
 
 ## Wiki
