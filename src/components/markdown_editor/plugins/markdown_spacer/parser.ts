@@ -19,7 +19,6 @@ export const SpacerParser: Plugin = function SpacerParser() {
     value,
     silent
   ) {
-    // if (value.startsWith('!{spacer') === false) return false;
     if (value.startsWith('!{spacer') === false) return false;
 
     console.log('spacer', value, value.length, '!{spacer'.length);
@@ -34,8 +33,6 @@ export const SpacerParser: Plugin = function SpacerParser() {
 
     // is there a configuration?
     const hasConfiguration = nextChar === '{';
-
-    console.log('hasConfiguration?', hasConfiguration);
 
     let match = '!{spacer';
     let configuration = {};
