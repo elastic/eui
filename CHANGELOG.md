@@ -4,10 +4,12 @@
 
 - Fixed bug in `EuiDataGrid` where a custom `className` was also being passed to the full screen button ([#5050](https://github.com/elastic/eui/pull/5050))
 - Fixed rerender state issues in `PaginationButton` inside `EuiPagination` ([#5048](https://github.com/elastic/eui/pull/5048))
+- Fixed styles of `EuiButtonIcon` when passing `disabled` prop ([#5060](https://github.com/elastic/eui/pull/5060))
 
 **Theme: Amsterdam**
 
 - Updated styles for `EuiDatePicker` ([#5000](https://github.com/elastic/eui/pull/5000))
+- Fixed styles for `EuiSuperDatePicker` ([#5060](https://github.com/elastic/eui/pull/5060))
 
 ## [`37.3.0`](https://github.com/elastic/eui/tree/v37.3.0)
 
