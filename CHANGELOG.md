@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added a spacer plugin to `EuiMarkdownFormat` ([#5059](https://github.com/elastic/eui/pull/5059))
+
 **Bug fixes**
 
 - Fixed bug in `EuiDataGrid` where a custom `className` was also being passed to the full screen button ([#5050](https://github.com/elastic/eui/pull/5050))
