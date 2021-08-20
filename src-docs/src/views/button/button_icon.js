@@ -51,7 +51,7 @@ export default () => (
     <EuiSpacer size="s" />
     <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
-        <EuiButtonIcon iconType="arrowRight" isDisabled aria-label="Next" />
+        <EuiButtonIcon iconType="arrowRight" disabled aria-label="Next" />
       </EuiFlexItem>
       <EuiFlexItem grow={false}>
         <EuiButtonIcon
