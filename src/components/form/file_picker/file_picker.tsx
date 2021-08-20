@@ -77,12 +77,18 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
 
   fileInput: HTMLInputElement | null = null;
 
-  handleChange = (filesSelected?: string | null) => {
+  handleChange = () => {
     if (!this.fileInput) return;
 
     if (this.fileInput.files && this.fileInput.files.length > 1) {
       this.setState({
-        promptText: `${this.fileInput.files.length} ${filesSelected}`,
+        promptText: (
+          <EuiI18n
+            token="euiFilePicker.filesSelected"
+            default="{fileCount} files selected"
+            values={{ fileCount: this.fileInput.files.length }}
+          />
+        ),
       });
     } else if (this.fileInput.files && this.fileInput.files.length === 0) {
       this.setState({ promptText: null });
@@ -106,7 +112,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
     if (!this.fileInput) return;
 
     this.fileInput.value = '';
-    this.handleChange(null);
+    this.handleChange();
   };
 
   showDrop = () => {
@@ -122,12 +128,9 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
   render() {
     return (
       <EuiI18n
-        tokens={[
-          'euiFilePicker.clearSelectedFiles',
-          'euiFilePicker.filesSelected',
-        ]}
-        defaults={['Clear selected files', 'files selected']}>
-        {([clearSelectedFiles, filesSelected]: string[]) => {
+        token="euiFilePicker.clearSelectedFiles"
+        default="Clear selected files">
+        {(clearSelectedFiles: string) => {
           const {
             id,
             name,
@@ -215,7 +218,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
                     id={id}
                     name={name}
                     className="euiFilePicker__input"
-                    onChange={() => this.handleChange(filesSelected)}
+                    onChange={this.handleChange}
                     ref={(input) => {
                       this.fileInput = input;
                     }}
