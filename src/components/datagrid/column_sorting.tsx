@@ -66,8 +66,9 @@ export const useDataGridColumnSorting = (
   const sortingButtonTextActive = useEuiI18n(
     'euiColumnSorting.buttonActive',
     ({ numberOfSortedFields }) =>
-      `${numberOfSortedFields}
-      field${numberOfSortedFields === 1 ? '' : 's'} sorted`,
+      `${numberOfSortedFields} field${
+        numberOfSortedFields === 1 ? '' : 's'
+      } sorted`,
     {
       numberOfSortedFields: sorting !== undefined ? sorting.columns.length : 0,
     }
