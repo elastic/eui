@@ -1847,6 +1847,56 @@ describe('EuiDataGrid', () => {
       closeColumnSorterSelection(component);
       closeColumnSorter(component);
     });
+
+    it('"Sort fields" button text updates', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
+          sorting={{
+            onSort: () => {},
+            columns: [],
+          }}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+
+      // Get column sorting button
+      const sortColumn = component.find(
+        'EuiButtonEmpty[data-test-subj="dataGridColumnSortingButton"]'
+      );
+      const getButtonText = (): string =>
+        sortColumn.find('span[className="euiButtonEmpty__text"]').text();
+      expect(getButtonText()).toEqual('Sort fields');
+
+      // Update sorted columns
+      component.setProps({
+        sorting: {
+          columns: [{ id: 'A', direction: 'asc' }],
+          onSort: () => {},
+        },
+      });
+      expect(getButtonText()).toEqual('1 field sorted');
+
+      // Update sorted columns again
+      component.setProps({
+        sorting: {
+          columns: [
+            { id: 'A', direction: 'asc' },
+            { id: 'B', direction: 'asc' },
+          ],
+          onSort: () => {},
+        },
+      });
+      expect(getButtonText()).toEqual('2 fields sorted');
+    });
   });
 
   describe('render column actions', () => {
