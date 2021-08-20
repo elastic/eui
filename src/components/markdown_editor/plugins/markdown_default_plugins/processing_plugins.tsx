@@ -30,6 +30,7 @@ import rehype2react from 'rehype-react';
 import remark2rehype from 'remark-rehype';
 import * as MarkdownTooltip from '../markdown_tooltip';
 import * as MarkdownCheckbox from '../markdown_checkbox';
+import * as MarkdownSpacer from '../markdown_spacer';
 import { FENCED_CLASS } from '../remark/remark_prismjs';
 import { EuiLink } from '../../../link';
 import { EuiCodeBlock, EuiCode } from '../../../code';
@@ -86,6 +87,7 @@ export const getDefaultEuiMarkdownProcessingPlugins = (): [
         hr: (props) => <EuiHorizontalRule {...props} />,
         tooltipPlugin: MarkdownTooltip.renderer,
         checkboxPlugin: MarkdownCheckbox.renderer,
+        spacerPlugin: MarkdownSpacer.renderer,
       },
     },
   ],

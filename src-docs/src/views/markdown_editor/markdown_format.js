@@ -8,6 +8,10 @@ const markdownContent = `Beyond Remark's base syntax, **EuiMarkdownFormat** bund
 
 \`!{tooltip[anchor text](Tooltip content)}\` syntax can render !{tooltip[tooltips like this](I am Jack's helpful tooltip content)}
 
+\`!{spacer{"size": "xxl"}}\` will render a EuiSpacer below and the \`size\` is customizable:
+
+!{spacer{"size": "xxl"}}
+
 We also support checkboxes so that
 
 \`\`\`

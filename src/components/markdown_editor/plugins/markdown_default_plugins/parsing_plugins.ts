@@ -27,6 +27,7 @@ import emoji from 'remark-emoji';
 import highlight from '../remark/remark_prismjs';
 import * as MarkdownTooltip from '../markdown_tooltip';
 import * as MarkdownCheckbox from '../markdown_checkbox';
+import * as MarkdownSpacer from '../markdown_spacer';
 import { markdownLinkValidator } from '../markdown_link_validator';
 
 export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
@@ -36,6 +37,7 @@ export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
   [MarkdownTooltip.parser, {}],
   [MarkdownCheckbox.parser, {}],
   [markdownLinkValidator, {}],
+  [MarkdownSpacer.parser, {}],
 ];
 
 export const defaultParsingPlugins = getDefaultEuiMarkdownParsingPlugins();
