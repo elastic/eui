@@ -1,7 +1,5 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added examples of `EuiModal` and `EuiFlyout` being triggered from within an `EuiDataGrid` in order to ensure they are accounted for in future testing ([#5054](https://github.com/elastic/eui/pull/5054))
-
 **Bug fixes**
 
 - Fixed bug in `EuiDataGrid` where a custom `className` was also being passed to the full screen button ([#5050](https://github.com/elastic/eui/pull/5050))
