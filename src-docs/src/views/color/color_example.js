@@ -65,7 +65,7 @@ export const ColorExample = {
             <EuiCode language="js">
               makeHighContrastColor(foreground, ratio = 4.5)(background)
             </EuiCode>{' '}
-            to calcuate the appropriate foreground color (usually text) based on
+            to calculate the appropriate foreground color (usually text) based on
             a background color.
           </p>
           <EuiCallOut color="warning">
@@ -268,7 +268,7 @@ const color = makeHighContrastColor(foreground)(simulated);`,
         <>
           <p>
             When EUI simulates or calculates contrast, we typically mix the
-            background color with
+            background color with{' '}
             <EuiCode>euiTheme.colors.body</EuiCode> which is the darkest version
             of backgrounds we allow.
           </p>
@@ -280,7 +280,6 @@ const color = makeHighContrastColor(foreground)(simulated);`,
         </>
       ),
       demo: <ContrastSimulatedBody />,
-      // snippet: 'const saturated = saturate(color, 0.75);',
     },
   ],
 };
