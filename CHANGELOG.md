@@ -1,5 +1,12 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+### Feature: Emotion ([#4511](https://github.com/elastic/eui/pull/4511))
+
+- Added `EuiThemeProvider`, a React context provider for theme values and color mode selection
+- Added `useEuiTheme` React hook, and `withEuiTheme` React HOC for consuming the EuiTheme
+- Added global `EuiTheme` tokens for `colors`, `size`, `font`, `border`, `animation`, and `breakpoint`
+- Added color services for `makeHighContrastColor`, `makeDisabledContrastColor`, `shade`, `tint`, `transparentize`, `saturate`, `desaturate`, `lightness`
+
 **Bug fixes**
 
 - Fixed bug in `EuiDataGrid` where a custom `className` was also being passed to the full screen button ([#5050](https://github.com/elastic/eui/pull/5050))
@@ -451,10 +458,6 @@
 **Theme: Amsterdam**
 
 - Removed letter-spacing from `euiFont` Sass mixin ([#4488](https://github.com/elastic/eui/pull/4488))
-
-**FEATURE: Emotion**
-
-*TODO*
 
 ---
 
