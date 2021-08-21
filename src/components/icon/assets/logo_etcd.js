@@ -7,7 +7,8 @@ const EuiIconLogoEtcd = ({ title, titleId, ...props }) => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <g fill="#419EDA">
       <path d="M14.65 14.164c0 1.189-.933 2.15-2.083 2.15-1.152 0-2.082-.961-2.082-2.15 0-1.185.93-2.15 2.082-2.15 1.15 0 2.083.965 2.083 2.15zm2.693 0c0 1.189.934 2.15 2.084 2.15s2.083-.961 2.083-2.15c0-1.185-.933-2.15-2.083-2.15-1.15 0-2.084.965-2.084 2.15z" />

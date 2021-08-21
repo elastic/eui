@@ -152,7 +152,8 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       // Props dependent on internal docked status
       type={navIsDocked ? 'push' : 'overlay'}
       hideCloseButton={navIsDocked}
-      pushMinBreakpoint={dockedBreakpoint}>
+      pushMinBreakpoint={dockedBreakpoint}
+    >
       {children}
     </EuiFlyout>
   );

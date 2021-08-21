@@ -49,7 +49,8 @@ export default () => {
         forceState={trigger}
         onToggle={onToggle}
         buttonContent="I am a controlled accordion"
-        padding="l">
+        padding="l"
+      >
         <EuiPanel color="subdued">
           Any content inside of <strong>EuiAccordion</strong> will appear here.
         </EuiPanel>

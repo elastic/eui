@@ -16,12 +16,14 @@ export default () => (
           key={value}
           responsive={false}
           gutterSize="s"
-          alignItems="center">
+          alignItems="center"
+        >
           <EuiFlexItem grow={false}>
             <EuiButtonEmpty
               isDisabled={value === 'disabled' ? true : false}
               color={value !== 'disabled' ? value : 'primary'}
-              onClick={() => {}}>
+              onClick={() => {}}
+            >
               {value.charAt(0).toUpperCase() + value.slice(1)}
             </EuiButtonEmpty>
           </EuiFlexItem>
@@ -31,7 +33,8 @@ export default () => (
               size="s"
               isDisabled={value === 'disabled' ? true : false}
               color={value !== 'disabled' ? value : 'primary'}
-              onClick={() => {}}>
+              onClick={() => {}}
+            >
               Small
             </EuiButtonEmpty>
           </EuiFlexItem>
@@ -41,7 +44,8 @@ export default () => (
               size="xs"
               isDisabled={value === 'disabled' ? true : false}
               color={value !== 'disabled' ? value : 'primary'}
-              onClick={() => {}}>
+              onClick={() => {}}
+            >
               Extra small
             </EuiButtonEmpty>
           </EuiFlexItem>

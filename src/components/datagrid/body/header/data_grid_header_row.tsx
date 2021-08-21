@@ -42,7 +42,8 @@ const EuiDataGridHeaderRow = forwardRef<
       ref={ref}
       className={classes}
       data-test-subj={dataTestSubj}
-      {...rest}>
+      {...rest}
+    >
       {leadingControlColumns.map((controlColumn, index) => (
         <EuiDataGridControlHeaderCell
           key={controlColumn.id}

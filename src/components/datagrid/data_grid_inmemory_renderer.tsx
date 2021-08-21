@@ -67,7 +67,8 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryR
               <div
                 key={`${i}-${column.id}`}
                 data-dg-row={i}
-                data-dg-column={column.id}>
+                data-dg-column={column.id}
+              >
                 <CellElement
                   rowIndex={i}
                   columnId={column.id}
@@ -135,7 +136,8 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryR
         subtree: true,
         attributes: true,
         childList: true,
-      }}>
+      }}
+    >
       {(ref) => <div ref={ref}>{cells}</div>}
     </EuiMutationObserver>,
     (documentFragment as unknown) as Element

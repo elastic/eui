@@ -23,7 +23,8 @@ export const EuiFlyout = ({
       data-eui="EuiFlyout"
       data-test-subj={dataTestSubj}
       role={role}
-      onKeyDown={onKeyDown}>
+      onKeyDown={onKeyDown}
+    >
       {!hideCloseButton && (
         <button
           type="button"

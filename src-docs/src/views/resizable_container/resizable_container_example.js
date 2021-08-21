@@ -17,6 +17,7 @@ import {
 import { EuiResizablePanel } from '../../../../src/components/resizable_container/resizable_panel';
 import { EuiResizableButton } from '../../../../src/components/resizable_container/resizable_button';
 
+// prettier-ignore
 // eslint-disable-next-line
 import { ModeOptions, ToggleOptions } from '!!prop-loader!../../../../src/components/resizable_container/resizable_panel';
 import { PanelModeType } from '!!prop-loader!../../../../src/components/resizable_container/types';
@@ -189,7 +190,8 @@ export const ResizableContainerExample = {
         <strong>EuiResizableContainer</strong> uses the{' '}
         <EuiLink
           href="https://reactjs.org/docs/render-props.html#using-props-other-than-render"
-          external>
+          external
+        >
           React Render Props
         </EuiLink>{' '}
         technique to provide <strong>EuiResizablePanel</strong> and{' '}

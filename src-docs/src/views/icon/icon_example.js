@@ -61,7 +61,8 @@ export const IconExample = {
               descriptive <EuiCode>title</EuiCode> based on the icon use.
             </>
           }
-          color="warning">
+          color="warning"
+        >
           <p>
             If no title is provided the icon is going to be purely decorative
             and it will get by default an{' '}
@@ -191,7 +192,8 @@ export const IconExample = {
           which accepts a named color from our palette or a valid&nbsp;
           <EuiLink
             target="_blank"
-            href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value">
+            href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value"
+          >
             CSS color data type
           </EuiLink>
           &nbsp;which will be passed down through the inline-style{' '}

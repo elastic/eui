@@ -53,7 +53,8 @@ function renderSteps(
         title={title}
         titleSize={titleSize}
         status={status}
-        {...rest}>
+        {...rest}
+      >
         {children}
       </EuiStep>
     );

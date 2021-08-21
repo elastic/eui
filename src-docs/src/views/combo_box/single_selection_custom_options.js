@@ -53,7 +53,8 @@ export default () => {
   return (
     <EuiFormRow
       label="Your occupation"
-      helpText="Select an occupation from the list. If your occupation isn’t available, create a custom one.">
+      helpText="Select an occupation from the list. If your occupation isn’t available, create a custom one."
+    >
       <EuiComboBox
         placeholder="Select a single option"
         singleSelection={{ asPlainText: true }}

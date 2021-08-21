@@ -52,7 +52,8 @@ export default () => {
                   setLarge(e.target.checked);
                 }}
               />,
-            ]}>
+            ]}
+          >
             <EuiFilePicker
               id="asdf2"
               multiple

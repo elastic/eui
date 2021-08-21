@@ -25,7 +25,8 @@ export default () => (
         <EuiToolTip
           position="left"
           title="Tooltip titles are optional"
-          content="Here is some tooltip text. Lets add some more content to see how it wraps.">
+          content="Here is some tooltip text. Lets add some more content to see how it wraps."
+        >
           <EuiLink href="#">left</EuiLink>
         </EuiToolTip>{' '}
         and includes the optional title.
@@ -60,7 +61,8 @@ export default () => (
       <EuiToolTip
         position="top"
         content="Here is some tooltip text"
-        display="block">
+        display="block"
+      >
         <EuiButton fullWidth>
           I am a block level tooltip, applied to a button with fullWidth
         </EuiButton>
@@ -84,7 +86,8 @@ export default () => (
         <p>
           Works on any kind of element &mdash; buttons, inputs, you name it!
         </p>
-      }>
+      }
+    >
       <EuiButton onClick={() => {}}>Hover me</EuiButton>
     </EuiToolTip>
   </div>

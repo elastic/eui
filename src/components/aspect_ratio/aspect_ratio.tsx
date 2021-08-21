@@ -45,7 +45,8 @@ export const EuiAspectRatio: FunctionComponent<EuiAspectRatioProps> = ({
       style={{
         paddingBottom: paddingBottom,
         maxWidth: maxWidth ? maxWidth : 'auto',
-      }}>
+      }}
+    >
       {children}
     </div>
   );

@@ -41,7 +41,8 @@ export default () => {
         {DARK_COLORS.map((color) => (
           <EuiFlexItem
             style={{ backgroundColor: rgb(...color), ...SWATCH_STYLE }}
-            key={color.join('')}>
+            key={color.join('')}
+          >
             {isColorDark(...color) ? (
               <div style={{ color: 'white' }}>Dark</div>
             ) : (
@@ -55,7 +56,8 @@ export default () => {
         {LIGHT_COLORS.map((color) => (
           <EuiFlexItem
             style={{ backgroundColor: rgb(...color), ...SWATCH_STYLE }}
-            key={color.join('')}>
+            key={color.join('')}
+          >
             {isColorDark(...color) ? (
               <div style={{ color: 'white' }}>Dark</div>
             ) : (

@@ -37,7 +37,8 @@ export const ContrastSlider = ({
                 <EuiIcon type="cross" /> Contrast is less than 2. Do not use.
               </li>
             </ul>
-          }>
+          }
+        >
           {ratingAll}
         </EuiToolTip>
       ),
@@ -53,7 +54,8 @@ export const ContrastSlider = ({
               but only for graphics or if the text is at least 18px, or 14px and
               bold
             </p>
-          }>
+          }
+        >
           {ratingAA18}
         </EuiToolTip>
       ),
@@ -68,7 +70,8 @@ export const ContrastSlider = ({
               <EuiIcon type="checkInCircleFilled" /> Passes with a contrast of
               4.5+
             </p>
-          }>
+          }
+        >
           {ratingAA}
         </EuiToolTip>
       ),
@@ -83,7 +86,8 @@ export const ContrastSlider = ({
               <EuiIcon type="checkInCircleFilled" /> Passes with a contrast of
               7+
             </p>
-          }>
+          }
+        >
           {ratingAAA}
         </EuiToolTip>
       ),
@@ -94,13 +98,15 @@ export const ContrastSlider = ({
     <EuiFlexGroup
       className="guideSection__emptyBox guideColorsPage__stickySlider"
       justifyContent="center"
-      {...rest}>
+      {...rest}
+    >
       <EuiFlexItem>
         <EuiPanel paddingSize="l" color="subdued">
           <EuiFormRow
             id="ratingsRange"
             label="Minimum color contrast combinations to show"
-            fullWidth>
+            fullWidth
+          >
             <EuiRange
               min={0}
               max={7}
@@ -124,7 +130,8 @@ export const ContrastSlider = ({
           <EuiFormRow
             labelType="legend"
             label="Use text variant variables of core colors for better text contrast"
-            hasChildLabel={false}>
+            hasChildLabel={false}
+          >
             <div>
               <EuiSpacer size="s" />
               <EuiSwitch

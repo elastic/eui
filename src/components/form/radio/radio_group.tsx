@@ -92,7 +92,8 @@ export const EuiRadioGroup: FunctionComponent<EuiRadioGroupProps> = ({
       <EuiFormFieldset
         className={className}
         legend={legend}
-        {...(rest as EuiFormFieldsetProps)}>
+        {...(rest as EuiFormFieldsetProps)}
+      >
         {radios}
       </EuiFormFieldset>
     );

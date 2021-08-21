@@ -89,7 +89,8 @@ export const PageExample = {
       <EuiSpacer />
       <EuiCallOut
         iconType="document"
-        title="The following examples showcase the both the template and custom built usages of the page components.">
+        title="The following examples showcase the both the template and custom built usages of the page components."
+      >
         <p>
           You&apos;ll find the code for each in their own tab and if you go to
           full screen, you can see how they would behave in a typical

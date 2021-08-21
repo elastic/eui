@@ -66,7 +66,8 @@ export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
       aria-label={
         typeof checkable === 'object' ? checkable.ariaLegend : undefined
       }
-      {...rest}>
+      {...rest}
+    >
       {legend}
       {children}
     </fieldset>

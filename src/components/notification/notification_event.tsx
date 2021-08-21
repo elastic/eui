@@ -174,7 +174,8 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
               size="s"
               {...primaryActionProps}
               onClick={() => onClickPrimaryAction?.(id)}
-              data-test-subj={`${id}-notificationEventPrimaryAction`}>
+              data-test-subj={`${id}-notificationEventPrimaryAction`}
+            >
               {primaryAction}
             </EuiButtonEmpty>
           </div>

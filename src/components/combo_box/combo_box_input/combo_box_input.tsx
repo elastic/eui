@@ -175,7 +175,8 @@ export class EuiComboBoxInput<T> extends Component<
               onClick={onClick}
               onClickAriaLabel={onClick ? 'Change' : undefined}
               asPlainText={asPlainText}
-              {...rest}>
+              {...rest}
+            >
               {label}
             </EuiComboBoxPill>
           );
@@ -267,7 +268,8 @@ export class EuiComboBoxInput<T> extends Component<
         compressed={compressed}
         fullWidth={fullWidth}
         prepend={prepend}
-        append={append}>
+        append={append}
+      >
         <div
           className={wrapClasses}
           data-test-subj="comboBoxInput"

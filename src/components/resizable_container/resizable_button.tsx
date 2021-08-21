@@ -118,7 +118,8 @@ export const EuiResizableButton: FunctionComponent<EuiResizableButtonProps> = ({
       defaults={[
         'Press left or right to adjust panels size',
         'Press up or down to adjust panels size',
-      ]}>
+      ]}
+    >
       {([horizontalResizerAriaLabel, verticalResizerAriaLabel]: string[]) => (
         <button
           id={resizerId.current}

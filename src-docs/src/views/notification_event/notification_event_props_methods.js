@@ -34,7 +34,8 @@ export default () => {
             <CircleIndicator name="C" />
             <EuiBadge
               className="euiNotificationEventMeta__badge"
-              color="hollow">
+              color="hollow"
+            >
               type: severity
             </EuiBadge>
           </div>

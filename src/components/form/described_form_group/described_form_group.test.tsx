@@ -60,7 +60,8 @@ describe('EuiDescribedFormGroup', () => {
         <EuiDescribedFormGroup
           {...requiredProps}
           {...props}
-          {...describedFormGroupProps}>
+          {...describedFormGroupProps}
+        >
           <EuiFormRow fullWidth>
             <input />
           </EuiFormRow>
@@ -112,7 +113,8 @@ describe('EuiDescribedFormGroup', () => {
           {...requiredProps}
           {...props}
           descriptionFlexItemProps={{ grow: 2 }}
-          fieldFlexItemProps={{ component: 'section' }}>
+          fieldFlexItemProps={{ component: 'section' }}
+        >
           <EuiFormRow>
             <input />
           </EuiFormRow>
