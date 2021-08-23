@@ -41,7 +41,8 @@ export default () => {
       <EuiSkipLink
         destinationId="/utilities/accessibility"
         position={isFixed ? 'fixed' : 'static'}
-        data-test-subj="skip-link-demo-subj">
+        data-test-subj="skip-link-demo-subj"
+      >
         Skip to {isFixed && 'main '}content
       </EuiSkipLink>
       {isFixed && (

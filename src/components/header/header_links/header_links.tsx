@@ -105,7 +105,8 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
         <EuiHeaderSectionItemButton
           aria-label={openNavigationMenu}
           onClick={onMenuButtonClick}
-          {...popoverButtonRest}>
+          {...popoverButtonRest}
+        >
           <EuiIcon type={iconType} size="m" />
         </EuiHeaderSectionItemButton>
       )}
@@ -120,7 +121,8 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
             <div
               className={classNames('euiHeaderLinks__list', [
                 `euiHeaderLinks__list${gutterSizeToClassNameMap[gutterSize]}`,
-              ])}>
+              ])}
+            >
               {children}
             </div>
           </EuiHideFor>
@@ -132,11 +134,13 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
               anchorPosition="downRight"
               closePopover={closeMenu}
               panelPaddingSize="none"
-              {...popoverProps}>
+              {...popoverProps}
+            >
               <div
                 className={classNames('euiHeaderLinks__mobileList', [
                   `euiHeaderLinks__mobileList${gutterSizeToClassNameMap[gutterSize]}`,
-                ])}>
+                ])}
+              >
                 {children}
               </div>
             </EuiPopover>

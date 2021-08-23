@@ -33,7 +33,8 @@ export const PrefixSufix = () => {
       <EuiFlexGroup
         justifyContent="flexStart"
         gutterSize="m"
-        alignItems="center">
+        alignItems="center"
+      >
         <EuiFlexItem grow={false}>
           <EuiFormRow label="Prefix">
             <EuiFieldText

@@ -81,7 +81,8 @@ export class EuiCopy extends Component<EuiCopyProps, EuiCopyState> {
       <EuiToolTip
         content={this.state.tooltipText}
         onMouseOut={this.resetTooltipText}
-        {...rest}>
+        {...rest}
+      >
         {children(this.copy)}
       </EuiToolTip>
     );

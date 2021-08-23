@@ -269,11 +269,13 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
       <EuiTreeViewContext.Provider value={this.state.treeID}>
         <EuiText
           size={display === 'compressed' ? 's' : 'm'}
-          className="euiTreeView__wrapper">
+          className="euiTreeView__wrapper"
+        >
           {!this.isNested && (
             <EuiI18n
               token="euiTreeView.listNavigationInstructions"
-              default="You can quickly navigate this list using arrow keys.">
+              default="You can quickly navigate this list using arrow keys."
+            >
               {(listNavigationInstructions: string) => (
                 <EuiScreenReaderOnly>
                   <p id={instructionsId}>{listNavigationInstructions}</p>
@@ -285,7 +287,8 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
             className={classes}
             id={!this.isNested ? this.state.treeID : undefined}
             aria-describedby={!this.isNested ? instructionsId : undefined}
-            {...rest}>
+            {...rest}
+          >
             {items.map((node, index) => {
               const buttonId = node.id;
               const wrappingId = this.treeIdGenerator(buttonId);
@@ -293,7 +296,8 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
               return (
                 <EuiInnerText
                   key={node.id + index}
-                  fallback={typeof node.label === 'string' ? node.label : ''}>
+                  fallback={typeof node.label === 'string' ? node.label : ''}
+                >
                   {(ref, innerText) => (
                     <EuiI18n
                       key={node.id + index}
@@ -302,7 +306,8 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                       values={{
                         nodeLabel: innerText,
                         ariaLabel: hasAriaLabel(rest) ? rest['aria-label'] : '',
-                      }}>
+                      }}
+                    >
                       {(ariaLabel: string) => {
                         const label:
                           | { 'aria-label': string }
@@ -348,7 +353,8 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                                   this.onKeyDown(event, node)
                                 }
                                 onClick={() => this.handleNodeClick(node)}
-                                className={nodeButtonClasses}>
+                                className={nodeButtonClasses}
+                              >
                                 {showExpansionArrows && node.children ? (
                                   <EuiIcon
                                     className="euiTreeView__expansionArrow"
@@ -373,7 +379,8 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                                 ) : null}
                                 <span
                                   ref={ref}
-                                  className="euiTreeView__nodeLabel">
+                                  className="euiTreeView__nodeLabel"
+                                >
                                   {node.label}
                                 </span>
                               </button>
@@ -381,7 +388,8 @@ export class EuiTreeView extends Component<EuiTreeViewProps, EuiTreeViewState> {
                                 id={wrappingId}
                                 onKeyDown={(event: React.KeyboardEvent) =>
                                   this.onChildrenKeydown(event, index)
-                                }>
+                                }
+                              >
                                 {node.children && this.isNodeOpen(node) ? (
                                   <EuiTreeView
                                     items={node.children}

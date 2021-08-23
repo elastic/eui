@@ -43,14 +43,16 @@ export default () => (
           style={{
             height: 180,
             overflowY: 'hidden',
-          }}>
+          }}
+        >
           <EuiText
             tabIndex={0}
             role="region"
             aria-label="Example of eui-yScroll region"
             className="eui-yScrollWithShadows"
             size="s"
-            style={{ padding: 16 }}>
+            style={{ padding: 16 }}
+          >
             <p>
               Orbiting this at a distance of roughly ninety-two million miles is
               an utterly insignificant little blue green planet whose
@@ -160,7 +162,8 @@ export default () => (
           <EuiFlexGroup
             className="eui-fullHeight"
             gutterSize="s"
-            responsive={false}>
+            responsive={false}
+          >
             <EuiFlexItem>
               <EuiPanel
                 className="eui-yScroll"

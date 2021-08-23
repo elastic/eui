@@ -122,7 +122,8 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = ({
       readOnly={readOnly}
       prepend={prepend}
       append={append}
-      inputId={id}>
+      inputId={id}
+    >
       {control}
     </EuiFormControlLayout>
   );

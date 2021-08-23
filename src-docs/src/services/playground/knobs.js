@@ -154,7 +154,8 @@ const Knob = ({
             style={{
               fontSize: '14px',
               display: 'block',
-            }}>
+            }}
+          >
             React Ref documentation
           </a>
           {error && <div>error {error}</div>}
@@ -167,7 +168,8 @@ const Knob = ({
           isInvalid={error && error.length > 0}
           error={error}
           helpText={helpText}
-          fullWidth>
+          fullWidth
+        >
           <EuiFieldNumber
             placeholder={placeholder}
             value={val ? val : undefined}
@@ -220,7 +222,8 @@ const Knob = ({
                 </>
               )}
             </>
-          }>
+          }
+        >
           <EuiFieldText
             aria-label={name}
             placeholder={placeholder}
@@ -238,7 +241,8 @@ const Knob = ({
           fullWidth
           helpText={helpText}
           isInvalid={error && error.length > 0}
-          error={error}>
+          error={error}
+        >
           <EuiSwitch
             aria-label={name}
             id={name}
@@ -294,7 +298,8 @@ const Knob = ({
             isInvalid={error && error.length > 0}
             helpText={helpText}
             error={error}
-            fullWidth>
+            fullWidth
+          >
             <EuiSelect
               id={name}
               options={flattenedOptions}
@@ -463,7 +468,8 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
           mobileOptions={{
             header: false,
             fullWidth: true,
-          }}>
+          }}
+        >
           <div>
             <EuiTitle size="xxs">
               <span>{humanizedName}</span>
@@ -481,14 +487,16 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
         <EuiTableRowCell
           key={`type__${name}-${idx}`}
           header="Type"
-          textOnly={false}>
+          textOnly={false}
+        >
           <div>{typeMarkup}</div>
         </EuiTableRowCell>
         <EuiTableRowCell
           key={`modify__${name}-${idx}`}
           header={isPlayground ? 'Modify' : 'Default value'}
           textOnly={false}
-          className={isPlayground ? 'playgroundKnobs__rowCell' : undefined}>
+          className={isPlayground ? 'playgroundKnobs__rowCell' : undefined}
+        >
           {isPlayground ? (
             <Knob
               key={name}
@@ -543,7 +551,8 @@ const Knobs = ({ state, set, error, isPlayground = true }) => {
       color="transparent"
       paddingSize={isMobile ? 's' : 'none'}
       hasBorder={false}
-      hasShadow={false}>
+      hasShadow={false}
+    >
       <EuiTable style={{ background: 'transparent' }}>
         <EuiTableHeader>
           {columns.map(({ name, width }, id) => {

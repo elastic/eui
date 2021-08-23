@@ -178,7 +178,8 @@ export const EuiMarkdownEditorToolbar = forwardRef<
             iconType="editorCodeBlock"
             color="text"
             size="s"
-            onClick={onClickPreview}>
+            onClick={onClickPreview}
+          >
             <EuiI18n token="euiMarkdownEditorToolbar.editor" default="Editor" />
           </EuiButtonEmpty>
         ) : (
@@ -186,7 +187,8 @@ export const EuiMarkdownEditorToolbar = forwardRef<
             iconType="eye"
             color="text"
             size="s"
-            onClick={onClickPreview}>
+            onClick={onClickPreview}
+          >
             <EuiI18n
               token="euiMarkdownEditorToolbar.previewMarkdown"
               default="Preview"

@@ -465,7 +465,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     <EuiFormRow
       display="rowCompressed"
       isInvalid={isInvalid}
-      error={isInvalid ? colorErrorMessage : null}>
+      error={isInvalid ? colorErrorMessage : null}
+    >
       <EuiFormControlLayout
         clear={
           isClearable && color && !readOnly && !disabled
@@ -473,7 +474,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
             : undefined
         }
         readOnly={readOnly}
-        compressed={compressed}>
+        compressed={compressed}
+      >
         <EuiFieldText
           compressed={true}
           value={color ? color.toUpperCase() : HEX_FALLBACK}
@@ -590,12 +592,14 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
         compressed={compressed}
         onKeyDown={handleToggleOnKeyDown}
         prepend={prepend}
-        append={append}>
+        append={append}
+      >
         <div
           // Used to pass the chosen color through to form layout SVG using currentColor
           style={{
             color: colorStyle,
-          }}>
+          }}
+        >
           <EuiFieldText
             className={inputClasses}
             onClick={handleInputActivity}
@@ -638,7 +642,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       panelPaddingSize="s"
       tabIndex={-1}
       aria-label={popoverLabel}
-      focusTrapProps={inputRef ? { shards: [inputRef] } : undefined}>
+      focusTrapProps={inputRef ? { shards: [inputRef] } : undefined}
+    >
       <div className={classes} data-test-subj="euiColorPickerPopover">
         {composite}
       </div>

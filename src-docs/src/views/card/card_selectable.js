@@ -36,7 +36,8 @@ export default () => {
               iconType="iInCircle"
               size="xs"
               onClick={detailsClicked}
-              aria-label="See more details about Sketch">
+              aria-label="See more details about Sketch"
+            >
               More details
             </EuiButtonEmpty>
           }
@@ -56,7 +57,8 @@ export default () => {
               iconType="iInCircle"
               size="xs"
               onClick={detailsClicked}
-              aria-label="See more details about Google">
+              aria-label="See more details about Google"
+            >
               More details
             </EuiButtonEmpty>
           }
@@ -76,7 +78,8 @@ export default () => {
               iconType="iInCircle"
               size="xs"
               onClick={detailsClicked}
-              aria-label="See more details about Not Adobe">
+              aria-label="See more details about Not Adobe"
+            >
               More details
             </EuiButtonEmpty>
           }

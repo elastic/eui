@@ -130,7 +130,8 @@ export const ProgressExample = {
           </p>
           <EuiCallOut
             title="Note about progress bars over fixed headers"
-            iconType="iInCircle">
+            iconType="iInCircle"
+          >
             <p>
               Using <strong>EuiProgress</strong> with a <EuiCode>fixed</EuiCode>{' '}
               position may result in it being overlayed when its parent wrapper
@@ -195,7 +196,8 @@ export const ProgressExample = {
           <EuiCallOut
             title="Note about using custom colors"
             iconType="accessibility"
-            color="warning">
+            color="warning"
+          >
             <p>
               Usually, we calculate a high contrast color for{' '}
               <EuiCode>valueText</EuiCode> based on <EuiCode>color</EuiCode>.

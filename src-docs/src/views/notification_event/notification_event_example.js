@@ -133,7 +133,8 @@ export const NotificationEventExample = {
           <EuiSpacer size="xs" />
           <EuiAccordion
             id="propsSnippet"
-            buttonContent={<small>Code snippet</small>}>
+            buttonContent={<small>Code snippet</small>}
+          >
             <EuiSpacer size="xs" />
             <EuiCodeBlock language="ts" isCopyable paddingSize="s">
               {notificationEventSnippet}

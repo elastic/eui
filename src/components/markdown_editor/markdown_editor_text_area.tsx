@@ -49,7 +49,8 @@ export const EuiMarkdownEditorTextArea = forwardRef<
         rows={6}
         name={name}
         id={id}
-        placeholder={placeholder}>
+        placeholder={placeholder}
+      >
         {children}
       </textarea>
     );

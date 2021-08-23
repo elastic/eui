@@ -151,7 +151,8 @@ const chartDemoPlugin = {
                 block: true,
               })
             }
-            fill>
+            fill
+          >
             Save
           </EuiButton>
         </EuiModalFooter>
@@ -302,7 +303,8 @@ export default () => {
           size="s"
           iconType={isAstShowing ? 'eyeClosed' : 'eye'}
           onClick={() => setIsAstShowing(!isAstShowing)}
-          fill={isAstShowing}>
+          fill={isAstShowing}
+        >
           {isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
         </EuiButton>
       </div>
@@ -310,7 +312,8 @@ export default () => {
 
       <EuiMarkdownFormat
         parsingPluginList={exampleParsingList}
-        processingPluginList={exampleProcessingList}>
+        processingPluginList={exampleProcessingList}
+      >
         {value}
       </EuiMarkdownFormat>
     </>

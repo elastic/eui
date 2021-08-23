@@ -46,7 +46,8 @@ export class ThemeProvider extends React.Component<object, State> {
         value={{
           theme,
           changeTheme: this.changeTheme,
-        }}>
+        }}
+      >
         {children}
       </ThemeContext.Provider>
     );

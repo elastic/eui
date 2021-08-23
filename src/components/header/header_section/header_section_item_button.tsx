@@ -208,7 +208,8 @@ export const EuiHeaderSectionItemButton = forwardRef<
           <EuiHideFor sizes={['xs']}>
             <EuiNotificationBadge
               className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
-              color={notificationColor}>
+              color={notificationColor}
+            >
               {notification}
             </EuiNotificationBadge>
           </EuiHideFor>
@@ -222,7 +223,8 @@ export const EuiHeaderSectionItemButton = forwardRef<
         className={classes}
         color="text"
         buttonRef={buttonRef}
-        {...rest}>
+        {...rest}
+      >
         <span ref={animationTargetRef} className={animationClasses}>
           {children}
         </span>

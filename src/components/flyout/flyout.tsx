@@ -345,7 +345,8 @@ const EuiFlyout = forwardRef(
         className={classes}
         tabIndex={-1}
         style={newStyle || style}
-        ref={setRef}>
+        ref={setRef}
+      >
         {closeButton}
         {children}
       </Element>
@@ -373,7 +374,8 @@ const EuiFlyout = forwardRef(
           {/* Outside click detector is needed if theres no overlay mask to auto-close when clicking on elements outside */}
           <EuiOutsideClickDetector
             isDisabled={isPushed}
-            onOutsideClick={() => onClose()}>
+            onOutsideClick={() => onClose()}
+          >
             {flyoutContent}
           </EuiOutsideClickDetector>
         </EuiFocusTrap>
@@ -385,7 +387,8 @@ const EuiFlyout = forwardRef(
         <EuiOverlayMask
           onClick={outsideClickCloses === false ? undefined : onClose}
           headerZindexLocation="below"
-          {...maskProps}>
+          {...maskProps}
+        >
           {flyout}
         </EuiOverlayMask>
       );

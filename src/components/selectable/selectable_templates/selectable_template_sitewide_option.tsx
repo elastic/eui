@@ -98,7 +98,8 @@ export const euiSelectableTemplateSitewideRenderOptions = (
     <>
       <EuiHighlight
         className="euiSelectableTemplateSitewide__listItemTitle"
-        search={searchValue}>
+        search={searchValue}
+      >
         {option.label}
       </EuiHighlight>
       {renderOptionMeta(option.meta, searchValue)}
@@ -138,7 +139,8 @@ function renderOptionMeta(
           search={highlightSearchString ? searchValue : ''}
           className={metaClasses}
           key={text}
-          {...rest}>
+          {...rest}
+        >
           {text}
         </EuiHighlight>
       );

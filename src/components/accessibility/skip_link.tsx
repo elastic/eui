@@ -78,7 +78,8 @@ export const EuiSkipLink: FunctionComponent<EuiSkipLinkProps> = ({
         size="s"
         fill
         {...optionalProps}
-        {...rest}>
+        {...rest}
+      >
         {children}
       </EuiButton>
     </EuiScreenReaderOnly>

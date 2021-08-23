@@ -29,7 +29,8 @@ export const ElasticChartsAccessibilityExample = {
           {' '}
           <EuiLink
             href="https://elastic.github.io/elastic-charts"
-            target="_blank">
+            target="_blank"
+          >
             Elastic Charts
           </EuiLink>{' '}
           provides some accessibilty features for all users.
@@ -187,7 +188,8 @@ export const ElasticChartsAccessibilityExample = {
                 <strong>partition charts</strong>.
               </>
             }
-            iconType="visPie">
+            iconType="visPie"
+          >
             <p>
               Version <ExternalBadge />, partition charts include: sunburst,
               treemap, icicle, flame, and mosaic.
@@ -271,7 +273,8 @@ export const ElasticChartsAccessibilityExample = {
                 <strong>XY charts</strong>.
               </>
             }
-            iconType="visAreaStacked">
+            iconType="visAreaStacked"
+          >
             <p>
               At time of this writing, XY charts include: area, bar, bubble,
               histogram, line, and heatmap.

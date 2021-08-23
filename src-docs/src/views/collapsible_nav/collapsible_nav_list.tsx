@@ -59,7 +59,8 @@ export const DeploymentsGroup = (
     iconSize="xl"
     isCollapsible={true}
     initialIsOpen={false}
-    background="dark">
+    background="dark"
+  >
     <div role="group" className="kibanaNavDeployment__content">
       <EuiListGroup listItems={deploymentsList} flush />
       <EuiSpacer size="s" />
@@ -84,7 +85,8 @@ export const SecurityGroup = (
         title="Hide and never show again"
         iconType="cross"
       />
-    }>
+    }
+  >
     <EuiText size="s" color="subdued" style={{ padding: '0 8px 8px' }}>
       <p>
         Threat prevention, detection, and response with SIEM and endpoint
@@ -113,7 +115,8 @@ export default () => (
       title="Kibana"
       iconType="logoKibana"
       isCollapsible={true}
-      initialIsOpen={true}>
+      initialIsOpen={true}
+    >
       <EuiPinnableListGroup
         listItems={KibanaNavLinks}
         onPinClick={() => {}}

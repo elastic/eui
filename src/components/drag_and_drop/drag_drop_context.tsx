@@ -62,11 +62,13 @@ export const EuiDragDropContext: FunctionComponent<DragDropContextProps> = ({
       onDragStart={euiOnDragStart}
       onDragUpdate={onDragUpdate}
       onDragEnd={euiOnDragEnd}
-      {...rest}>
+      {...rest}
+    >
       <EuiDragDropContextContext.Provider
         value={{
           isDraggingType,
-        }}>
+        }}
+      >
         {children}
       </EuiDragDropContextContext.Provider>
     </DragDropContext>

@@ -71,7 +71,8 @@ export default ({
         example={
           <>
             <div
-              className={classNames('playgroundWrapper', playgroundClassName)}>
+              className={classNames('playgroundWrapper', playgroundClassName)}
+            >
               <Compiler
                 {...params.compilerProps}
                 minHeight={0}
@@ -84,7 +85,8 @@ export default ({
               language="jsx"
               fontSize="m"
               paddingSize="m"
-              isCopyable>
+              isCopyable
+            >
               {getSnippet(params.editorProps.code)}
             </EuiCodeBlock>
           </>

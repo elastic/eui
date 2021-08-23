@@ -180,7 +180,8 @@ export class EuiSelectableListItem extends Component<
               className
             )}
             {...defaultOnFocusBadgeProps}
-            {...(restBadgeProps as EuiBadgeProps)}>
+            {...(restBadgeProps as EuiBadgeProps)}
+          >
             {children}
           </EuiBadge>
         );
@@ -203,7 +204,8 @@ export class EuiSelectableListItem extends Component<
         aria-selected={!disabled && typeof checked === 'string'}
         className={classes}
         aria-disabled={disabled}
-        {...rest}>
+        {...rest}
+      >
         <span className="euiSelectableListItem__content">
           {optionIcon}
           {prependNode}

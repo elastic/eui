@@ -280,7 +280,8 @@ const createExample = (example, customTitle) => {
         intro={intro}
         isBeta={beta}
         playground={playgroundComponent}
-        guidelines={guidelines}>
+        guidelines={guidelines}
+      >
         {renderedSections}
       </GuidePage>
     </EuiErrorBoundary>

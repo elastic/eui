@@ -102,13 +102,15 @@ export default () => {
     return [
       <EuiContextMenuItem
         key="contextMenuItemA"
-        onClick={() => onRead(id, isRead)}>
+        onClick={() => onRead(id, isRead)}
+      >
         {isRead ? 'Mark as unread' : 'Mark as read'}
       </EuiContextMenuItem>,
 
       <EuiContextMenuItem
         key="contextMenuItemB"
-        onClick={() => onFilterByType(type)}>
+        onClick={() => onFilterByType(type)}
+      >
         View messages like this
       </EuiContextMenuItem>,
 
@@ -158,7 +160,8 @@ export default () => {
         role="feed"
         paddingSize="none"
         hasShadow={true}
-        style={{ maxWidth: '540px' }}>
+        style={{ maxWidth: '540px' }}
+      >
         {notificationEvents}
       </EuiPanel>
     </>

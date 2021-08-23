@@ -51,7 +51,8 @@ export class EuiWrappingPopover extends Component<EuiWrappingPopoverProps> {
     return (
       <EuiPortal
         portalRef={this.setPortalRef}
-        insert={{ sibling: this.props.button, position: 'after' }}>
+        insert={{ sibling: this.props.button, position: 'after' }}
+      >
         <EuiPopover
           {...rest}
           button={

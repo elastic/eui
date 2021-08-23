@@ -150,7 +150,8 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   const footer = (
     <EuiFlexGroup
       responsive={false}
-      justifyContent={stepsTotal > 1 ? 'spaceBetween' : 'flexEnd'}>
+      justifyContent={stepsTotal > 1 ? 'spaceBetween' : 'flexEnd'}
+    >
       {stepsTotal > 1 && (
         <EuiFlexItem grow={false}>
           <ul className="euiTourFooter__stepList">
@@ -179,7 +180,8 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
               'euiTourStep.skipTour',
               'euiTourStep.closeTour',
             ]}
-            defaults={['End tour', 'Skip tour', 'Close tour']}>
+            defaults={['End tour', 'Skip tour', 'Close tour']}
+          >
             {([endTour, skipTour, closeTour]: string[]) => {
               let content = closeTour;
               if (stepsTotal > 1) {
@@ -211,7 +213,8 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       offset={hasBeacon ? 10 : 0}
       aria-labelledby={titleId}
       arrowChildren={hasBeacon && <EuiBeacon className="euiTour__beacon" />}
-      {...rest}>
+      {...rest}
+    >
       <EuiPopoverTitle className="euiTourHeader" id={titleId}>
         <EuiTitle size="xxxs" className="euiTourHeader__subtitle">
           <h1>{subtitle}</h1>
