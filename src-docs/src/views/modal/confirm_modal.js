@@ -27,7 +27,8 @@ export default () => {
         onConfirm={closeModal}
         cancelButtonText="No, don't do it"
         confirmButtonText="Yes, do it"
-        defaultFocusedButton="confirm">
+        defaultFocusedButton="confirm"
+      >
         <p>You&rsquo;re about to do something.</p>
         <p>Are you sure you want to do this?</p>
       </EuiConfirmModal>
@@ -45,7 +46,8 @@ export default () => {
         cancelButtonText="No, don't do it"
         confirmButtonText="Yes, do it"
         buttonColor="danger"
-        defaultFocusedButton="confirm">
+        defaultFocusedButton="confirm"
+      >
         <p>You&rsquo;re about to destroy something.</p>
         <p>Are you sure you want to do this?</p>
       </EuiConfirmModal>

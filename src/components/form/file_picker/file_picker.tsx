@@ -129,7 +129,8 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
     return (
       <EuiI18n
         token="euiFilePicker.clearSelectedFiles"
-        default="Clear selected files">
+        default="Clear selected files"
+      >
         {(clearSelectedFiles: string) => {
           const {
             id,
@@ -183,7 +184,8 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
                   type="button"
                   aria-label={clearSelectedFiles}
                   className="euiFilePicker__clearButton"
-                  onClick={this.removeFiles}>
+                  onClick={this.removeFiles}
+                >
                   <EuiIcon className="euiFilePicker__clearIcon" type="cross" />
                 </button>
               );
@@ -193,7 +195,8 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
                   aria-label={clearSelectedFiles}
                   className="euiFilePicker__clearButton"
                   size="xs"
-                  onClick={this.removeFiles}>
+                  onClick={this.removeFiles}
+                >
                   <EuiI18n
                     token="euiFilePicker.removeSelected"
                     default="Remove"

@@ -64,7 +64,8 @@ export default () => {
     <EuiHeaderSectionItemButton
       disabled
       aria-label="Apps menu with 1 new app"
-      notification="1">
+      notification="1"
+    >
       <EuiIcon type="apps" size="m" />
     </EuiHeaderSectionItemButton>
   );

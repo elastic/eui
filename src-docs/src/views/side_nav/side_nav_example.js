@@ -248,7 +248,8 @@ export const SideNavExample = {
 
           <EuiCallOut
             iconType="mobile"
-            title="The responsive behavior converts the list into an accordion style component with a mobile only button.">
+            title="The responsive behavior converts the list into an accordion style component with a mobile only button."
+          >
             <p>
               You will need to pass a string to the prop{' '}
               <EuiCode>mobileTitle</EuiCode> to label the mobile button.

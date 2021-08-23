@@ -19,7 +19,8 @@ export default () => (
       <EuiSplitPanel.Inner
         className="eui-textCenter"
         grow={false}
-        style={{ minWidth: 96 }}>
+        style={{ minWidth: 96 }}
+      >
         <EuiIcon
           type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg"
           size="xl"
@@ -32,7 +33,8 @@ export default () => (
           language="html"
           isCopyable
           transparentBackground
-          paddingSize="m">
+          paddingSize="m"
+        >
           {
             '<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg" size="xl" title="My SVG logo" />'
           }
@@ -44,7 +46,8 @@ export default () => (
       <EuiSplitPanel.Inner
         className="eui-textCenter"
         grow={false}
-        style={{ minWidth: 96 }}>
+        style={{ minWidth: 96 }}
+      >
         <EuiIcon type={reactSvg} size="xl" title="Custom SVG icon" />
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="s" color="subdued">
@@ -52,7 +55,8 @@ export default () => (
           language="html"
           isCopyable
           transparentBackground
-          paddingSize="m">
+          paddingSize="m"
+        >
           {'<EuiIcon type={reactSvg} size="xl" title="Custom SVG icon" />'}
         </EuiCodeBlock>
       </EuiSplitPanel.Inner>
@@ -73,7 +77,8 @@ export default () => (
       <EuiFlexItem grow={false}>
         <EuiButton
           iconType="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg"
-          title="Another SVG Logo">
+          title="Another SVG Logo"
+        >
           http://some.svg
         </EuiButton>
       </EuiFlexItem>

@@ -58,7 +58,8 @@ export const EuiTableSortMobileItem: FunctionComponent<EuiTableSortMobileItemPro
       icon={sortIcon}
       onClick={onSort}
       aria-label={statefulAriaLabel}
-      {...rest}>
+      {...rest}
+    >
       {children}
     </EuiContextMenuItem>
   );

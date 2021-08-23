@@ -123,7 +123,8 @@ export class CollapsedItemActions<T> extends Component<
                     ? () => actionControlOnClick(item)
                     : undefined
                 )
-              }>
+              }
+            >
               {actionControl}
             </EuiContextMenuItem>
           );
@@ -153,7 +154,8 @@ export class CollapsedItemActions<T> extends Component<
               data-test-subj={dataTestSubj}
               onClick={() =>
                 this.onClickItem(onClick ? () => onClick(item) : undefined)
-              }>
+              }
+            >
               {buttonContent}
             </EuiContextMenuItem>
           );
@@ -199,7 +201,8 @@ export class CollapsedItemActions<T> extends Component<
         button={withTooltip || popoverButton}
         closePopover={this.closePopover}
         panelPaddingSize="none"
-        anchorPosition="leftCenter">
+        anchorPosition="leftCenter"
+      >
         <EuiContextMenuPanel items={controls} />
       </EuiPopover>
     );

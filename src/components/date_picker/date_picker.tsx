@@ -230,7 +230,8 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
           icon={optionalIcon}
           fullWidth={fullWidth}
           clear={selected && onClear ? { onClick: onClear } : undefined}
-          isLoading={isLoading}>
+          isLoading={isLoading}
+        >
           <EuiValidatableControl isInvalid={isInvalid}>
             <EuiI18nConsumer>
               {({ locale: contextLocale }) => {

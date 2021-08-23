@@ -98,7 +98,8 @@ export const DataGridFocusExample = {
           <EuiCallOut
             size="s"
             color="warning"
-            title="A caution about turning off cell expansion when the width of the column is unknown">
+            title="A caution about turning off cell expansion when the width of the column is unknown"
+          >
             In general, you should turn <EuiCode>isExpandible</EuiCode> to false
             only when you know the exact width and number of items that a cell
             will include. Control columns that contain row actions are a good

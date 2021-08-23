@@ -198,7 +198,8 @@ export class Sizes extends Component {
             style={{
               width: `${width}%`,
               overflow: 'hidden',
-            }}>
+            }}
+          >
             <EuiTitle size="xxs">
               <h2>Chart title {multi && ' by type'}</h2>
             </EuiTitle>
@@ -246,14 +247,16 @@ export class Sizes extends Component {
 
         <EuiFlexGrid
           columns={3}
-          className="euiGuide__chartsPageCrosshairSection">
+          className="euiGuide__chartsPageCrosshairSection"
+        >
           <EuiFlexItem>
             <MultiChartCard onChange={this.onMultiChange} />
           </EuiFlexItem>
           <EuiFlexItem>
             <ChartCard
               title="Width of panel"
-              description="Watch how the chart changes depending on how much room is in the panel.">
+              description="Watch how the chart changes depending on how much room is in the panel."
+            >
               <EuiFormRow helpText="These sizes are just for example and don't take mobile-responsiveness into account. Your chart configuration may be different based on different sizes.">
                 <EuiRange
                   min={20}
@@ -341,13 +344,15 @@ export class Sizes extends Component {
     position="left"
     style={${JSON.stringify(yAxisStyle)}}
   />
-</Chart>`}>
+</Chart>`}
+          >
             {(copy) => (
               <EuiButton
                 fill
                 onClick={copy}
                 iconType="copyClipboard"
-                disabled={false}>
+                disabled={false}
+              >
                 {false
                   ? "Bad chart, don't copy"
                   : 'Copy code of current configuration'}

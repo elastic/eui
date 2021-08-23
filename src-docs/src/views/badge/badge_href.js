@@ -25,7 +25,8 @@ export default () => (
         iconType="bolt"
         iconSide="right"
         iconOnClick={() => {}}
-        iconOnClickAriaLabel="Example of onClick event for icon within the anchor">
+        iconOnClickAriaLabel="Example of onClick event for icon within the anchor"
+      >
         anchor with an icon and iconOnClick
       </EuiBadge>
     </EuiFlexItem>

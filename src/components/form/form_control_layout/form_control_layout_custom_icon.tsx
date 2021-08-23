@@ -47,7 +47,8 @@ export const EuiFormControlLayoutCustomIcon: FunctionComponent<EuiFormControlLay
         onClick={onClick}
         className={classes}
         ref={iconRef}
-        {...rest}>
+        {...rest}
+      >
         <EuiIcon
           className="euiFormControlLayoutCustomIcon__icon"
           aria-hidden="true"

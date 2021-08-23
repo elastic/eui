@@ -53,7 +53,8 @@ export const GuideRuleExample = ({
         borderRadius="none"
         color="transparent"
         hasBorder={false}
-        {...rest}>
+        {...rest}
+      >
         <figure>
           <EuiSplitPanel.Inner
             className={classNames('guideRule__example__panel', {
@@ -61,7 +62,8 @@ export const GuideRuleExample = ({
             })}
             style={panelStyles}
             color={panelColor}
-            {...panelProps}>
+            {...panelProps}
+          >
             {children}
           </EuiSplitPanel.Inner>
           <EuiSplitPanel.Inner color="transparent">

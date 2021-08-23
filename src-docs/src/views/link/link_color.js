@@ -19,7 +19,8 @@ export default () => (
         <li key={value}>
           <EuiLink
             color={value !== 'disabled' ? value : undefined}
-            href="#/navigation/link">
+            href="#/navigation/link"
+          >
             {value.charAt(0).toUpperCase() + value.slice(1)}
           </EuiLink>
         </li>
