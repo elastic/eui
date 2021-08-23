@@ -140,6 +140,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   static defaultProps: Partial<EuiToolTipProps> = {
     position: 'top',
     delay: 'regular',
+    display: 'inlineBlock',
   };
 
   clearAnimationTimeout = () => {
@@ -292,7 +293,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
       content,
       title,
       delay,
-      display = 'inlineBlock',
+      display,
       ...rest
     } = this.props;
 

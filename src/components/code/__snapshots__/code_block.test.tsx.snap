@@ -180,6 +180,7 @@ console.log(some);"
             >
               <EuiToolTip
                 delay="regular"
+                display="inlineBlock"
                 onMouseOut={[Function]}
                 position="top"
               >
