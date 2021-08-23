@@ -7,7 +7,8 @@ export default () => (
     id="accordionExtraWithLeftArrow"
     buttonContent="Click to open"
     extraAction={<EuiButton size="s">Extra action!</EuiButton>}
-    paddingSize="l">
+    paddingSize="l"
+  >
     <strong>Opened content.</strong>
   </EuiAccordion>
 );

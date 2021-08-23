@@ -43,7 +43,8 @@ export default () => {
       isSelected={isPopoverOpen}
       numFilters={12}
       hasActiveFilters={true}
-      numActiveFilters={2}>
+      numActiveFilters={2}
+    >
       Composers
     </EuiFilterButton>
   );
@@ -53,20 +54,23 @@ export default () => {
       <EuiFilterButton
         grow={false}
         hasActiveFilters={isFilterOn}
-        onClick={toggleFilter}>
+        onClick={toggleFilter}
+      >
         Filter
       </EuiFilterButton>
       <EuiFilterButton
         withNext
         grow={false}
         hasActiveFilters={isOnFilterOn}
-        onClick={toggleOnFilter}>
+        onClick={toggleOnFilter}
+      >
         On
       </EuiFilterButton>
       <EuiFilterButton
         grow={false}
         hasActiveFilters={isOffFilterOn}
-        onClick={toggleOffFilter}>
+        onClick={toggleOffFilter}
+      >
         Off
       </EuiFilterButton>
       <EuiPopover
@@ -74,7 +78,8 @@ export default () => {
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}
-        panelPaddingSize="none">
+        panelPaddingSize="none"
+      >
         <div className="euiFilterSelect__note">
           <div className="euiFilterSelect__noteContent">
             <EuiIcon type="minusInCircle" />
@@ -86,7 +91,8 @@ export default () => {
       <EuiFilterButton
         numFilters={12}
         hasActiveFilters={isFilterOn}
-        onClick={toggleFilter}>
+        onClick={toggleFilter}
+      >
         Filter with a very long name
       </EuiFilterButton>
     </EuiFilterGroup>

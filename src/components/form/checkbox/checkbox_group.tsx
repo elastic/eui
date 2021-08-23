@@ -87,7 +87,8 @@ export const EuiCheckboxGroup: FunctionComponent<EuiCheckboxGroupProps> = ({
       <EuiFormFieldset
         className={className}
         legend={legend}
-        {...(rest as EuiFormFieldsetProps)}>
+        {...(rest as EuiFormFieldsetProps)}
+      >
         {checkboxes}
       </EuiFormFieldset>
     );

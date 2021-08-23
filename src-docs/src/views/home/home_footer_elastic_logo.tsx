@@ -8,7 +8,8 @@ export const HomeFooterElasticLogo = () => {
       width="60"
       height="19"
       fill="none"
-      viewBox="0 0 60 19">
+      viewBox="0 0 60 19"
+    >
       <path
         fill="#fff"
         fillRule="evenodd"

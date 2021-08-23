@@ -254,7 +254,8 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
       registry={{
         panels: reducerState.panels,
         resizers: reducerState.resizers,
-      }}>
+      }}
+    >
       <div
         className={classes}
         ref={containerRef}
@@ -263,7 +264,8 @@ export const EuiResizableContainer: FunctionComponent<EuiResizableContainerProps
         onMouseLeave={onMouseUp}
         onTouchMove={onMouseMove}
         onTouchEnd={onMouseUp}
-        {...rest}>
+        {...rest}
+      >
         {render()}
       </div>
     </EuiResizableContainerContextProvider>

@@ -45,7 +45,8 @@ export default () => {
         ownFocus
         onClose={closeFlyout}
         size={size}
-        aria-labelledby="flyoutLargeTitle">
+        aria-labelledby="flyoutLargeTitle"
+      >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
             <h2 id="flyoutLargeTitle">A {sizeName.toLowerCase()} flyout</h2>

@@ -93,7 +93,8 @@ export default () => {
                   Ok, got it.
                 </EuiButton>
               </div>
-            }>
+            }
+          >
             <EuiTextArea
               placeholder="Placeholder text"
               aria-label="Enter ES SQL query"
@@ -111,10 +112,12 @@ export default () => {
                 color="text"
                 flush="right"
                 size="xs"
-                onClick={actions.incrementStep}>
+                onClick={actions.incrementStep}
+              >
                 {"I don't have a favorite color"}
               </EuiButtonEmpty>
-            }>
+            }
+          >
             <EuiColorPicker
               onChange={onSelectColor}
               color={color}
@@ -151,7 +154,8 @@ export default () => {
                   Take me to the start.
                 </EuiButton>
               </div>
-            }>
+            }
+          >
             <div>
               <EuiStat title="22,123" description="Queries" />
             </div>
@@ -183,7 +187,8 @@ export default () => {
             isSelected: tab.id === selectedTabId,
           };
         }),
-      }}>
+      }}
+    >
       {tabs.map((tab, index) => (
         <Fragment key={index}>
           {tab.id === selectedTabId && (

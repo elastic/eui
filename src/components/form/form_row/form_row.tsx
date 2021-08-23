@@ -192,7 +192,8 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
           <EuiFormHelpText
             key={key}
             id={`${id}-help-${i}`}
-            className="euiFormRow__text">
+            className="euiFormRow__text"
+          >
             {helpText}
           </EuiFormHelpText>
         );
@@ -209,7 +210,8 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
           <EuiFormErrorText
             key={key}
             id={`${id}-error-${i}`}
-            className="euiFormRow__text">
+            className="euiFormRow__text"
+          >
             {error}
           </EuiFormErrorText>
         );
@@ -239,7 +241,8 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
             isInvalid={isInvalid}
             isDisabled={isDisabled}
             aria-invalid={isInvalid}
-            {...labelProps}>
+            {...labelProps}
+          >
             {label}
           </EuiFormLabel>
           {labelAppend && ' '}
@@ -305,7 +308,8 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     return labelType === 'legend' ? (
       <fieldset
         {...sharedProps}
-        {...(rest as HTMLAttributes<HTMLFieldSetElement>)}>
+        {...(rest as HTMLAttributes<HTMLFieldSetElement>)}
+      >
         {contents}
       </fieldset>
     ) : (

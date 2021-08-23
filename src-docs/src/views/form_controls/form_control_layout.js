@@ -82,7 +82,8 @@ export default () => (
 
     <EuiFormControlLayout
       clear={{ onClick: () => {} }}
-      icon={{ type: 'arrowDown', side: 'right' }}>
+      icon={{ type: 'arrowDown', side: 'right' }}
+    >
       <input
         type="text"
         className="euiFieldText"
@@ -105,7 +106,8 @@ export default () => (
     <EuiFormControlLayout
       isLoading
       clear={{ onClick: () => {} }}
-      icon={{ type: 'arrowDown', side: 'right' }}>
+      icon={{ type: 'arrowDown', side: 'right' }}
+    >
       <input
         type="text"
         className="euiFieldText"
@@ -126,7 +128,8 @@ export default () => (
     <EuiSpacer size="m" />
 
     <EuiFormControlLayout
-      prepend={<EuiFormLabel htmlFor="textField19">Label</EuiFormLabel>}>
+      prepend={<EuiFormLabel htmlFor="textField19">Label</EuiFormLabel>}
+    >
       <input
         type="text"
         className="euiFieldText euiFieldText--inGroup"
@@ -138,7 +141,8 @@ export default () => (
 
     <EuiFormControlLayout
       readOnly
-      prepend={<EuiFormLabel htmlFor="textField19a">Read only</EuiFormLabel>}>
+      prepend={<EuiFormLabel htmlFor="textField19a">Read only</EuiFormLabel>}
+    >
       <input
         type="text"
         className="euiFieldText euiFieldText--inGroup"
@@ -154,7 +158,8 @@ export default () => (
         <EuiText size="xs">
           <strong>%</strong>
         </EuiText>
-      }>
+      }
+    >
       <input
         type="number"
         className="euiFieldNumber euiFieldNumber--inGroup"
@@ -171,7 +176,8 @@ export default () => (
         <EuiButtonEmpty size="xs" iconType="arrowDown" iconSide="right">
           Button
         </EuiButtonEmpty>
-      }>
+      }
+    >
       <input
         type="text"
         className="euiFieldText euiFieldText--inGroup"

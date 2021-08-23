@@ -154,7 +154,8 @@ export const PanelExample = {
           </p>
           <EuiCallOut
             color="warning"
-            title="Certain allowed combinations of shadow, border, and color depend on the current theme.">
+            title="Certain allowed combinations of shadow, border, and color depend on the current theme."
+          >
             <p>
               For instance, only plain or transparent panels can have a border
               and/or shadow. The Amsterdam theme doesn&apos;t allow combining

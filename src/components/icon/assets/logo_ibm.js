@@ -7,7 +7,8 @@ const EuiIconLogoIbm = ({ title, titleId, ...props }) => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <defs>
       <linearGradient
@@ -15,7 +16,8 @@ const EuiIconLogoIbm = ({ title, titleId, ...props }) => (
         x1="8.005%"
         x2="53.33%"
         y1="79.323%"
-        y2="79.324%">
+        y2="79.324%"
+      >
         <stop offset="0%" stopColor="#3BDADE" stopOpacity={0} />
         <stop offset="30.476%" stopColor="#36CEE1" stopOpacity={0.383} />
         <stop offset="100%" stopColor="#21A2EF" />
@@ -25,7 +27,8 @@ const EuiIconLogoIbm = ({ title, titleId, ...props }) => (
         x1="19.496%"
         x2="71.309%"
         y1="83.344%"
-        y2="17.638%">
+        y2="17.638%"
+      >
         <stop offset="0%" stopColor="#207FFA" />
         <stop offset="100%" stopColor="#6EAFF1" stopOpacity={0} />
       </linearGradient>
@@ -34,7 +37,8 @@ const EuiIconLogoIbm = ({ title, titleId, ...props }) => (
         x1="21.909%"
         x2="21.909%"
         y1="96.314%"
-        y2="29.454%">
+        y2="29.454%"
+      >
         <stop offset="0%" stopColor="#42C1E6" stopOpacity={0} />
         <stop offset="57.076%" stopColor="#6FB9EF" />
         <stop offset="86.716%" stopColor="#60CBE7" />
@@ -45,7 +49,8 @@ const EuiIconLogoIbm = ({ title, titleId, ...props }) => (
         x1="96.205%"
         x2="-1.172%"
         y1="12.667%"
-        y2="-22.252%">
+        y2="-22.252%"
+      >
         <stop offset="0%" stopColor="#6FB9EF" stopOpacity={0} />
         <stop offset="22.427%" stopColor="#38D2E0" />
         <stop offset="91.203%" stopColor="#6ABFEC" />
@@ -56,7 +61,8 @@ const EuiIconLogoIbm = ({ title, titleId, ...props }) => (
         x1="9.408%"
         x2="80.589%"
         y1="87.764%"
-        y2="83.138%">
+        y2="83.138%"
+      >
         <stop offset="0%" stopColor="#126CFD" />
         <stop offset="100%" stopColor="#21A1EF" />
       </linearGradient>

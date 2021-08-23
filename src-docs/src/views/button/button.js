@@ -24,12 +24,14 @@ export default () => (
         gutterSize="s"
         alignItems="center"
         responsive={false}
-        wrap>
+        wrap
+      >
         <EuiFlexItem grow={false}>
           <EuiButton
             color={value !== 'disabled' ? value : undefined}
             isDisabled={value === 'disabled' ? true : false}
-            onClick={() => {}}>
+            onClick={() => {}}
+          >
             {value.charAt(0).toUpperCase() + value.slice(1)}
           </EuiButton>
         </EuiFlexItem>
@@ -39,7 +41,8 @@ export default () => (
             color={value !== 'disabled' ? value : undefined}
             isDisabled={value === 'disabled' ? true : false}
             fill
-            onClick={() => {}}>
+            onClick={() => {}}
+          >
             Filled
           </EuiButton>
         </EuiFlexItem>
@@ -49,7 +52,8 @@ export default () => (
             color={value !== 'disabled' ? value : undefined}
             isDisabled={value === 'disabled' ? true : false}
             size="s"
-            onClick={() => {}}>
+            onClick={() => {}}
+          >
             Small
           </EuiButton>
         </EuiFlexItem>
@@ -60,7 +64,8 @@ export default () => (
             isDisabled={value === 'disabled' ? true : false}
             size="s"
             fill
-            onClick={() => {}}>
+            onClick={() => {}}
+          >
             Small and filled
           </EuiButton>
         </EuiFlexItem>
@@ -70,7 +75,8 @@ export default () => (
             color={value !== 'disabled' ? value : undefined}
             isDisabled={value === 'disabled' ? true : false}
             fullWidth
-            onClick={() => {}}>
+            onClick={() => {}}
+          >
             Full width
           </EuiButton>
         </EuiFlexItem>

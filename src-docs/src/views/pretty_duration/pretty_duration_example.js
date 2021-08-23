@@ -52,7 +52,8 @@ export const PrettyDurationExample = {
 
           <EuiAccordion
             id="commonDurationRanges"
-            buttonContent="Show commonDurationRanges definition">
+            buttonContent="Show commonDurationRanges definition"
+          >
             <EuiCodeBlock>
               {JSON.stringify(commonDurationRanges, null, 2)}
             </EuiCodeBlock>

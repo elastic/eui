@@ -126,11 +126,13 @@ export class EuiRelativeTab extends Component<
                 'euiRelativeTab.numberInputError',
                 'euiRelativeTab.numberInputLabel',
               ]}
-              defaults={['Must be >= 0', 'Time span amount']}>
+              defaults={['Must be >= 0', 'Time span amount']}
+            >
               {([numberInputError, numberInputLabel]: string[]) => (
                 <EuiFormRow
                   isInvalid={isInvalid}
-                  error={isInvalid ? numberInputError : null}>
+                  error={isInvalid ? numberInputError : null}
+                >
                   <EuiFieldNumber
                     compressed
                     aria-label={numberInputLabel}
@@ -147,7 +149,8 @@ export class EuiRelativeTab extends Component<
           <EuiFlexItem>
             <EuiI18n
               token="euiRelativeTab.unitInputLabel"
-              default="Relative time span">
+              default="Relative time span"
+            >
               {(unitInputLabel: string) => (
                 <EuiSelect
                   compressed
@@ -167,7 +170,8 @@ export class EuiRelativeTab extends Component<
         <EuiI18n
           token="euiRelativeTab.roundingLabel"
           default="Round to the {unit}"
-          values={{ unit: timeUnits[unit.substring(0, 1) as TimeUnitId] }}>
+          values={{ unit: timeUnits[unit.substring(0, 1) as TimeUnitId] }}
+        >
           {(roundingLabel: string) => (
             <EuiSwitch
               data-test-subj={'superDatePickerRelativeDateRoundSwitch'}

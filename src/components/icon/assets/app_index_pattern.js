@@ -7,7 +7,8 @@ const EuiIconAppIndexPattern = ({ title, titleId, ...props }) => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <path d="M20 14h-8a3 3 0 01-3-3V3a3 3 0 013-3h8a3 3 0 013 3v8a3 3 0 01-3 3zM12 2a1 1 0 00-1 1v8a1 1 0 001 1h8a1 1 0 001-1V3a1 1 0 00-1-1h-8zM17 18v-2h-2v2H3v6h2v-4h10v4h2v-4h10v4h2v-6z" />
     <path

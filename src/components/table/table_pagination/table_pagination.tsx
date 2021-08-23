@@ -75,7 +75,8 @@ export class EuiTablePagination extends Component<
         iconType="arrowDown"
         iconSide="right"
         data-test-subj="tablePaginationPopoverButton"
-        onClick={this.onButtonClick}>
+        onClick={this.onButtonClick}
+      >
         <EuiI18n
           token="euiTablePagination.rowsPerPage"
           default="Rows per page"
@@ -92,7 +93,8 @@ export class EuiTablePagination extends Component<
           this.closePopover();
           onChangeItemsPerPage(itemsPerPageOption);
         }}
-        data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}>
+        data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}
+      >
         <EuiI18n
           token="euiTablePagination.rowsPerPageOption"
           values={{ rowsPerPage: itemsPerPageOption }}
@@ -107,7 +109,8 @@ export class EuiTablePagination extends Component<
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
         panelPaddingSize="none"
-        anchorPosition="upRight">
+        anchorPosition="upRight"
+      >
         <EuiContextMenuPanel items={items} />
       </EuiPopover>
     );
@@ -116,7 +119,8 @@ export class EuiTablePagination extends Component<
       <EuiFlexGroup
         justifyContent="spaceBetween"
         alignItems="center"
-        responsive={false}>
+        responsive={false}
+      >
         <EuiFlexItem grow={false}>
           {hidePerPageOptions ? null : itemsPerPagePopover}
         </EuiFlexItem>

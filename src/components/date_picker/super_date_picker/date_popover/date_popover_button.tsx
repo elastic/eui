@@ -102,7 +102,8 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
       title={title}
       disabled={isDisabled}
       data-test-subj={`superDatePicker${position}DatePopoverButton`}
-      {...buttonProps}>
+      {...buttonProps}
+    >
       {formattedValue}
     </button>
   );
@@ -115,7 +116,8 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
       anchorPosition={position === 'start' ? 'downLeft' : 'downRight'}
       display="block"
       panelPaddingSize="none"
-      {...rest}>
+      {...rest}
+    >
       <EuiDatePopoverContent
         value={value}
         roundUp={roundUp}

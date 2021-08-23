@@ -7,7 +7,8 @@ const EuiIconInputOutput = ({ title, titleId, ...props }) => (
     viewBox="0 0 16 16"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <path d="M10 13.999v-2.99h1V15H0V1h11v3.999h-1V2.001H1v11.998z" />
     <path d="M4.5 10V9H11v1zM13 9.5l3-3-3-3z" />

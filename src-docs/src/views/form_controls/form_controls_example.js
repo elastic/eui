@@ -355,7 +355,8 @@ export const FormControlsExample = {
           files. The example below shows how to grab the files using the{' '}
           <EuiLink
             href="https://developer.mozilla.org/en-US/docs/Web/API/FileList"
-            target="_blank">
+            target="_blank"
+          >
             FileList API
           </EuiLink>
           . Like other form elements, you can wrap it in a{' '}
@@ -530,7 +531,8 @@ export const FormControlsExample = {
                 description is needed.&quot;{' '}
                 <EuiLink
                   external
-                  href="https://www.w3.org/WAI/WCAG21/Techniques/html/H71">
+                  href="https://www.w3.org/WAI/WCAG21/Techniques/html/H71"
+                >
                   WCAG Spec
                 </EuiLink>
               </span>

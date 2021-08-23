@@ -65,7 +65,8 @@ export class FieldValueToggleFilter extends Component<
       <EuiFilterButton
         onClick={onClick}
         hasActiveFilters={hasActiveFilters}
-        aria-pressed={!!hasActiveFilters}>
+        aria-pressed={!!hasActiveFilters}
+      >
         {name}
       </EuiFilterButton>
     );

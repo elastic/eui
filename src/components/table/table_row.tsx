@@ -95,7 +95,8 @@ export const EuiTableRow: FunctionComponent<Props> = ({
       onKeyDown={onKeyDown}
       onKeyUp={onKeyUp}
       tabIndex={0}
-      {...rest}>
+      {...rest}
+    >
       {children}
     </tr>
   );

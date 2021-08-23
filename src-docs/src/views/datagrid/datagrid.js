@@ -78,7 +78,8 @@ const columns = [
           <Component
             onClick={() => alert(`Hi ${data[rowIndex][columnId].raw}`)}
             iconType="heart"
-            aria-label={`Say hi to ${data[rowIndex][columnId].raw}!`}>
+            aria-label={`Say hi to ${data[rowIndex][columnId].raw}!`}
+          >
             Say hi
           </Component>
         );
@@ -89,7 +90,8 @@ const columns = [
           <Component
             onClick={() => alert(`Bye ${data[rowIndex][columnId].raw}`)}
             iconType="moon"
-            aria-label={`Say bye to ${data[rowIndex][columnId].raw}!`}>
+            aria-label={`Say bye to ${data[rowIndex][columnId].raw}!`}
+          >
             Say bye
           </Component>
         );
@@ -107,7 +109,8 @@ const columns = [
           <Component
             onClick={() => alert(data[rowIndex][columnId].raw)}
             iconType="email"
-            aria-label={`Send email to ${data[rowIndex][columnId].raw}`}>
+            aria-label={`Send email to ${data[rowIndex][columnId].raw}`}
+          >
             Send email
           </Component>
         );
@@ -149,7 +152,8 @@ const columns = [
           <Component
             onClick={onClick}
             iconType="faceHappy"
-            aria-label={`Send money to ${data[rowIndex][columnId]}`}>
+            aria-label={`Send money to ${data[rowIndex][columnId]}`}
+          >
             Send money
           </Component>
         );
@@ -245,7 +249,8 @@ const trailingControlColumns = [
             aria-labelledby="flyoutTitle"
             onClose={closeFlyout}
             ownFocus
-            size="s">
+            size="s"
+          >
             <EuiFlyoutHeader hasBorder>
               <EuiTitle size="m">
                 <h2 id="flyoutTitle">A typical flyout</h2>
@@ -278,7 +283,8 @@ const trailingControlColumns = [
               <EuiButtonEmpty
                 flush="left"
                 iconType="cross"
-                onClick={closeFlyout}>
+                onClick={closeFlyout}
+              >
                 Close
               </EuiButtonEmpty>
             </EuiFlyoutFooter>
@@ -293,7 +299,8 @@ const trailingControlColumns = [
         <EuiContextMenuItem
           icon="tableOfContents"
           key="flyout"
-          onClick={showFlyout}>
+          onClick={showFlyout}
+        >
           Flyout example
         </EuiContextMenuItem>,
       ];
@@ -312,7 +319,8 @@ const trailingControlColumns = [
                 onClick={() => setIsPopoverVisible(!isPopoverVisible)}
               />
             }
-            closePopover={closePopover}>
+            closePopover={closePopover}
+          >
             <EuiContextMenuPanel items={actions} size="s" title="Actions" />
           </EuiPopover>
 
