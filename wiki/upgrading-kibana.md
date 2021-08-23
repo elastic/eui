@@ -5,8 +5,8 @@
 If the upgrade includes a large number of commits or has known breaking changes, consider performing a commit-less dry run prior to release using the process described below and a [pre-release build of EUI](https://github.com/elastic/eui/blob/master/wiki/component-development.md#testing-dev-features-in-local-kibana).
 
 1. Start a new branch in the Kibana repo
-2. Change the `@elastic/eui` entry in `package.json` to the target version
-3. Change the `@elastic/eui@` entry in `src/dev/license_checker/config.ts` to the target version
+2. Change the `@elastic/eui` entry in [`package.json`](https://github.com/elastic/kibana/blob/master/package.json) to the target version
+3. Change the `@elastic/eui@` entry in [`src/dev/license_checker/config.ts`](https://github.com/elastic/kibana/blob/master/src/dev/license_checker/config.ts) to the target version
 4. Run `yarn kbn bootstrap`
 5. Commit all changed files, including `yarn.lock`
 6. Update i18n tokens and translation files (see [i18n tokens](#i18n-tokens))
@@ -29,7 +29,7 @@ If a type change appears to be more substantial or breaks expected rendered outp
 
 ### Jest test errors
 
-It's likely that Jest test failures will be snapshot failures due to changing props or styles. Verify that the "actual" output is in line with changes mentioned in the changelog.
+It's likely that Jest test failures will be snapshot failures due to changing props or styles. Verify that the "actual" output is in line with changes mentioned in the changelog, and update snapshots using the `-u` flag.
 
 Other unit test failures will require narrowing the root cause to a commit in the changelog and triaging various DOM, style, or React possibilities.
 
@@ -54,7 +54,7 @@ Most other issues reported by CI (e.g., Check Doc API Changes) will contain reso
 
 For opaque or seemingly build-related problems, it's time to elevate the error to the Kibana Ops team on Slack (#kibana-operations).
 
-If no mitigation strategies exist, other options still exist (see [Snafu](#snafu))
+If no mitigation strategies are presented, other options still exist (see [Snafu](#snafu))
 
 ## Procedures
 
@@ -83,7 +83,7 @@ A change in EUI is having broader impact than expected or introduced a breaking 
 
 No layout is prescribed, but two inclusions are helpful to reviewers:
 
-* Callout changes made to accommodate test failures that might not be apparent from looking at the diff.
-* Copy-paste the full [changelog version range](https://github.com/elastic/eui/blob/master/CHANGELOG.md) for the upgrade
+* Call out changes made to accommodate test failures that might not be apparent from looking at the diff.
+* Copy-paste the full [changelog version range](https://github.com/elastic/eui/blob/master/CHANGELOG.md) for the upgrade.
 
 Of late, the typical EUI upgrade PR in Kibana looks something like [#109157](https://github.com/elastic/kibana/pull/109157).
