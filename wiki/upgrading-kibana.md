@@ -15,7 +15,9 @@ If the upgrade includes a large number of commits or has known breaking changes,
 	a. Run `yarn test:jest` locally
 	b. Open a draft PR and let CI report errors (suggested)
 9. Resolve and commit reported issues (see [Resolving errors](#resolving-errors))
-10. Open a PR (see [PR template](#pr-template))
+10. Open a PR or mark existing as "Ready for review" (see [PR template](#pr-template))
+    * Add the `EUI`, `auto-backport`, `release_note:skip`, and relevant version tags
+    * Mention/ping any teams that are waiting on features to be available
 
 ## Resolving errors
 
