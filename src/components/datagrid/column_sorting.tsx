@@ -7,13 +7,7 @@
  */
 
 import classNames from 'classnames';
-import React, {
-  Fragment,
-  ReactChild,
-  ReactNode,
-  useEffect,
-  useState,
-} from 'react';
+import React, { Fragment, ReactNode, useEffect, useState } from 'react';
 import { DropResult } from 'react-beautiful-dnd';
 import { EuiButtonEmpty } from '../button';
 import {
@@ -22,7 +16,7 @@ import {
   EuiDroppable,
 } from '../drag_and_drop';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiI18n } from '../i18n';
+import { EuiI18n, useEuiI18n } from '../i18n';
 import { EuiPopover, EuiPopoverFooter } from '../popover';
 import { EuiText } from '../text';
 import { EuiToken } from '../token';
@@ -64,6 +58,22 @@ export const useDataGridColumnSorting = (
     }
   }, [columns, sorting]);
 
+  const sortingButtonText = useEuiI18n(
+    'euiColumnSorting.button',
+    'Sort fields'
+  );
+
+  const sortingButtonTextActive = useEuiI18n(
+    'euiColumnSorting.buttonActive',
+    ({ numberOfSortedFields }) =>
+      `${numberOfSortedFields} field${
+        numberOfSortedFields === 1 ? '' : 's'
+      } sorted`,
+    {
+      numberOfSortedFields: sorting !== undefined ? sorting.columns.length : 0,
+    }
+  );
+
   if (sorting == null) return [null];
 
   const activeColumnIds = new Set(sorting.columns.map(({ id }) => id));
@@ -103,8 +113,6 @@ export const useDataGridColumnSorting = (
     'euiDataGrid__controlBtn--active': sorting.columns.length > 0,
   });
 
-  const numberOfSortedFields = sorting.columns.length;
-
   const schemaDetails = (id: string | number) =>
     schema.hasOwnProperty(id) && schema[id].columnType != null
       ? getDetailsForSchema(schemaDetectors, schema[id].columnType)
@@ -134,25 +142,18 @@ export const useDataGridColumnSorting = (
       panelPaddingSize="s"
       panelClassName="euiDataGridColumnSortingPopover"
       button={
-        <EuiI18n
-          tokens={['euiColumnSorting.button', 'euiColumnSorting.buttonActive']}
-          defaults={['Sort fields', 'fields sorted']}
+        <EuiButtonEmpty
+          size="xs"
+          iconType="sortable"
+          color="text"
+          className={controlBtnClasses}
+          data-test-subj="dataGridColumnSortingButton"
+          onClick={() => setIsOpen(!isOpen)}
         >
-          {([button, buttonActive]: ReactChild[]) => (
-            <EuiButtonEmpty
-              size="xs"
-              iconType="sortable"
-              color="text"
-              className={controlBtnClasses}
-              data-test-subj="dataGridColumnSortingButton"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              {numberOfSortedFields > 0
-                ? `${numberOfSortedFields} ${buttonActive}`
-                : button}
-            </EuiButtonEmpty>
-          )}
-        </EuiI18n>
+          {sorting.columns.length > 0
+            ? sortingButtonTextActive
+            : sortingButtonText}
+        </EuiButtonEmpty>
       }
     >
       {sorting.columns.length > 0 ? (
