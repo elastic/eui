@@ -9,6 +9,7 @@
 - Fixed `z-index` styles that were causing `EuiModal` and `EuiFlyout` components to appear behind `EuiDataGrid` when in full screen mode ([#5054](https://github.com/elastic/eui/pull/5054))
 - Fixed rerender state issues in `PaginationButton` inside `EuiPagination` ([#5048](https://github.com/elastic/eui/pull/5048))
 - Fixed default value of `EuiPagination`'s `activePage` to target first page ([#5053](https://github.com/elastic/eui/pull/5053))
+- Fixed untranslated i18n strings for `EuiFilterButton` - adds 2 new tokens and removes old `euiFilterButton.filterBadge` token ([#4750](https://github.com/elastic/eui/pull/5061))
 
 **Theme: Amsterdam**
 
