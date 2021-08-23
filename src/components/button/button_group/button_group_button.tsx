@@ -130,7 +130,8 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
         title: innerText,
       }}
       {...elementProps}
-      {...rest}>
+      {...rest}
+    >
       {singleInput}
       {label}
     </EuiButtonDisplay>

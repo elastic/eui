@@ -133,7 +133,8 @@ describe('EuiFocusTrap', () => {
         const component = mount(
           <div
             onMouseDown={triggerDocumentMouseDown}
-            onMouseUp={triggerDocumentMouseUp}>
+            onMouseUp={triggerDocumentMouseUp}
+          >
             <EuiFocusTrap>
               <div data-test-subj="container">
                 <input data-test-subj="input" />
@@ -163,7 +164,8 @@ describe('EuiFocusTrap', () => {
         const component = mount(
           <div
             onMouseDown={triggerDocumentMouseDown}
-            onMouseUp={triggerDocumentMouseUp}>
+            onMouseUp={triggerDocumentMouseUp}
+          >
             <EuiFocusTrap clickOutsideDisables>
               <div data-test-subj="container">
                 <input data-test-subj="input" />
@@ -189,7 +191,8 @@ describe('EuiFocusTrap', () => {
         const component = mount(
           <div
             onMouseDown={triggerDocumentMouseDown}
-            onMouseUp={triggerDocumentMouseUp}>
+            onMouseUp={triggerDocumentMouseUp}
+          >
             <EuiFocusTrap clickOutsideDisables>
               <div data-test-subj="container">
                 <input data-test-subj="input" />
@@ -218,7 +221,8 @@ describe('EuiFocusTrap', () => {
         const component = mount(
           <div
             onMouseDown={triggerDocumentMouseDown}
-            onMouseUp={triggerDocumentMouseUp}>
+            onMouseUp={triggerDocumentMouseUp}
+          >
             <EuiFocusTrap clickOutsideDisables>
               <div data-test-subj="container">
                 <input data-test-subj="input" />

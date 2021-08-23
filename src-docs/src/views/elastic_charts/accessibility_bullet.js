@@ -31,7 +31,8 @@ export const AccessibilityBullet = () => {
         style={{
           backgroundColor: 'aliceblue',
         }}
-        grow={false}>
+        grow={false}
+      >
         <Chart size={{ height: 200 }}>
           <Settings
             ariaLabelledBy={id}

@@ -181,13 +181,15 @@ export const TimeChart = () => {
     position="left"
     showGridLines
   />
-</Chart>`}>
+</Chart>`}
+        >
           {(copy) => (
             <EuiButton
               fill
               onClick={copy}
               iconType="copyClipboard"
-              disabled={isBadChart}>
+              disabled={isBadChart}
+            >
               {isBadChart
                 ? "Bad chart, don't copy"
                 : 'Copy code of current configuration'}

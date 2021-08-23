@@ -53,12 +53,14 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick2}>
+                onClick={onButtonClick2}
+              >
                 Small panel padding
               </EuiButton>
             }
             isOpen={isPopoverOpen2}
-            closePopover={closePopover2}>
+            closePopover={closePopover2}
+          >
             <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <EuiText size="s" style={{ width: 300 }}>
               <p>
@@ -81,12 +83,14 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick1}>
+                onClick={onButtonClick1}
+              >
                 No panel padding (none)
               </EuiButton>
             }
             isOpen={isPopoverOpen1}
-            closePopover={closePopover1}>
+            closePopover={closePopover1}
+          >
             <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <EuiText size="s" style={{ width: 300 }}>
               <p>
@@ -110,12 +114,14 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick4}>
+                onClick={onButtonClick4}
+              >
                 No title padding (none)
               </EuiButton>
             }
             isOpen={isPopoverOpen4}
-            closePopover={closePopover4}>
+            closePopover={closePopover4}
+          >
             <EuiPopoverTitle paddingSize="none">
               Hello, I&rsquo;m a popover title
             </EuiPopoverTitle>
@@ -141,12 +147,14 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick3}>
+                onClick={onButtonClick3}
+              >
                 No panel padding with small title padding
               </EuiButton>
             }
             isOpen={isPopoverOpen3}
-            closePopover={closePopover3}>
+            closePopover={closePopover3}
+          >
             <EuiPopoverTitle paddingSize="s">
               Hello, I&rsquo;m a popover title
             </EuiPopoverTitle>
@@ -172,12 +180,14 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick5}>
+                onClick={onButtonClick5}
+              >
                 No footer padding (none)
               </EuiButton>
             }
             isOpen={isPopoverOpen5}
-            closePopover={closePopover5}>
+            closePopover={closePopover5}
+          >
             <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
             <EuiText size="s" style={{ width: 300 }}>
               <p>
@@ -201,12 +211,14 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick6}>
+                onClick={onButtonClick6}
+              >
                 Set each padding individually
               </EuiButton>
             }
             isOpen={isPopoverOpen6}
-            closePopover={closePopover6}>
+            closePopover={closePopover6}
+          >
             <EuiPopoverTitle paddingSize="s">
               Hello, I&rsquo;m a popover title
             </EuiPopoverTitle>

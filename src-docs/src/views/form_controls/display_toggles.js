@@ -63,16 +63,19 @@ export const DisplayToggles = ({
             size="xs"
             onClick={() => {
               setIsPopoverOpen(!isPopoverOpen);
-            }}>
+            }}
+          >
             Display toggles
           </EuiButtonEmpty>
-        }>
+        }
+      >
         <div>
           <EuiFlexGroup
             wrap={true}
             direction="column"
             gutterSize="s"
-            responsive={false}>
+            responsive={false}
+          >
             {(canDisabled || canIsDisabled) && (
               <EuiFlexItem grow={false}>
                 <EuiSwitch

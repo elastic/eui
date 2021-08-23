@@ -21,7 +21,8 @@ const PopoverApp = (props) => {
     <EuiWrappingPopover
       button={props.anchor}
       isOpen={isPopoverOpen}
-      closePopover={closePopover}>
+      closePopover={closePopover}
+    >
       <div>Normal JSX content populates the popover.</div>
     </EuiWrappingPopover>
   );

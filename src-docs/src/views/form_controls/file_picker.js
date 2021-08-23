@@ -15,16 +15,16 @@ export default () => {
   const [large, setLarge] = useState(true);
 
   const onChange = (files) => {
-    setFiles(files.length > 0 ? files : {});
+    setFiles(files.length > 0 ? Array.from(files) : []);
   };
 
   const renderFiles = () => {
     if (files.length > 0) {
       return (
         <ul>
-          {Object.keys(files).map((item, i) => (
+          {files.map((file, i) => (
             <li key={i}>
-              <strong>{files[item].name}</strong> ({files[item].size} bytes)
+              <strong>{file.name}</strong> ({file.size} bytes)
             </li>
           ))}
         </ul>
@@ -52,14 +52,13 @@ export default () => {
                   setLarge(e.target.checked);
                 }}
               />,
-            ]}>
+            ]}
+          >
             <EuiFilePicker
               id="asdf2"
               multiple
               initialPromptText="Select or drag and drop multiple files"
-              onChange={(files) => {
-                onChange(files);
-              }}
+              onChange={onChange}
               display={large ? 'large' : 'default'}
               aria-label="Use aria labels when no actual label is in use"
             />

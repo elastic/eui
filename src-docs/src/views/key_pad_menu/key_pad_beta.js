@@ -15,7 +15,8 @@ export default () => (
     <EuiKeyPadMenuItem
       label="Single letter"
       betaBadgeLabel="Beta"
-      betaBadgeTooltipContent="This module is not GA. Please help us by reporting any bugs.">
+      betaBadgeTooltipContent="This module is not GA. Please help us by reporting any bugs."
+    >
       <EuiIcon type="editorBold" size="l" />
     </EuiKeyPadMenuItem>
 
@@ -23,7 +24,8 @@ export default () => (
       label="Icon"
       betaBadgeLabel="External"
       betaBadgeTooltipContent="This module is an external app."
-      betaBadgeIconType="popout">
+      betaBadgeIconType="popout"
+    >
       <EuiIcon type="editorCodeBlock" size="l" />
     </EuiKeyPadMenuItem>
   </EuiKeyPadMenu>

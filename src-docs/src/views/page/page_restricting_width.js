@@ -30,7 +30,8 @@ export default ({ button = <></>, content, sideNav }) => {
           hasShadow={false}
           paddingSize="none"
           color="transparent"
-          borderRadius="none">
+          borderRadius="none"
+        >
           <EuiPageContentBody restrictWidth={'75%'}>
             {content}
           </EuiPageContentBody>

@@ -72,7 +72,8 @@ export default () => {
             items: [
               <EuiHeaderSectionItemButton
                 aria-label="News feed: Updates available"
-                notification={true}>
+                notification={true}
+              >
                 <EuiIcon type="cheer" size="m" />
               </EuiHeaderSectionItemButton>,
             ],

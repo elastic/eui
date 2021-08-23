@@ -22,7 +22,8 @@ export default () => {
         onChange={(id) => {
           setSingleSelectedID(id);
         }}
-        isSelected={singleSelectedID === 'singleKeypadSelect1'}>
+        isSelected={singleSelectedID === 'singleKeypadSelect1'}
+      >
         <EuiIcon type="faceHappy" size="l" />
       </EuiKeyPadMenuItem>
       <EuiKeyPadMenuItem
@@ -33,7 +34,8 @@ export default () => {
         onChange={(id) => {
           setSingleSelectedID(id);
         }}
-        isSelected={singleSelectedID === 'singleKeypadSelect2'}>
+        isSelected={singleSelectedID === 'singleKeypadSelect2'}
+      >
         <EuiIcon type="faceNeutral" size="l" />
       </EuiKeyPadMenuItem>
       <EuiKeyPadMenuItem
@@ -41,7 +43,8 @@ export default () => {
         name={radioGroupName}
         id="singleKeypadSelect3"
         label="Disabled"
-        isDisabled>
+        isDisabled
+      >
         <EuiIcon type="faceSad" size="l" />
       </EuiKeyPadMenuItem>
     </EuiKeyPadMenu>

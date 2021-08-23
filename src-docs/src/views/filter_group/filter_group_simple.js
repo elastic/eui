@@ -29,12 +29,14 @@ export default () => {
       <EuiFilterButton
         withNext
         hasActiveFilters={isOnFilterOn}
-        onClick={toggleOnFilter}>
+        onClick={toggleOnFilter}
+      >
         On
       </EuiFilterButton>
       <EuiFilterButton
         hasActiveFilters={isOffFilterOn}
-        onClick={toggleOffFilter}>
+        onClick={toggleOffFilter}
+      >
         Off
       </EuiFilterButton>
     </EuiFilterGroup>

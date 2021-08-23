@@ -103,7 +103,8 @@ export default () => (
       example={
         <div
           style={{ background: wrappingDivExampleStyle.background }}
-          className="eui-showFor--xs eui-showFor--s eui-showFor--m--block eui-showFor--l--inlineBlock eui-showFor--xl--flex">
+          className="eui-showFor--xs eui-showFor--s eui-showFor--m--block eui-showFor--l--inlineBlock eui-showFor--xl--flex"
+        >
           <span style={wrappingDivExampleStyle}>span</span>
           <span style={wrappingDivExampleStyle}>span</span>
           <span style={wrappingDivExampleStyle}>span</span>

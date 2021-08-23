@@ -317,7 +317,8 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
             title={title}
             id={id}
             role="tooltip"
-            {...rest}>
+            {...rest}
+          >
             <div style={arrowStyles} className="euiToolTip__arrow" />
             <EuiResizeObserver onResize={this.positionToolTip}>
               {(resizeRef) => <div ref={resizeRef}>{content}</div>}
@@ -336,7 +337,8 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
         onMouseOut={this.onMouseOut}
         onKeyUp={(event) => {
           this.onKeyUp(event);
-        }}>
+        }}
+      >
         {/**
          * Re: jsx-a11y/mouse-events-have-key-events
          * We apply onFocus, onBlur, etc to the children element because that's the element

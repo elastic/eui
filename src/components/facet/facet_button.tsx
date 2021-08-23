@@ -86,7 +86,8 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
       <EuiNotificationBadge
         className="euiFacetButton__quantity"
         size="m"
-        color={!isSelected || isDisabled ? 'subdued' : 'accent'}>
+        color={!isSelected || isDisabled ? 'subdued' : 'accent'}
+      >
         {quantity}
       </EuiNotificationBadge>
     );
@@ -110,13 +111,15 @@ export const EuiFacetButton: FunctionComponent<EuiFacetButtonProps> = ({
           type="button"
           ref={buttonRef}
           title={rest['aria-label'] || innerText}
-          {...rest}>
+          {...rest}
+        >
           <span className="euiFacetButton__content">
             {buttonIcon}
             <span
               className="euiFacetButton__text"
               data-text={innerText}
-              ref={ref}>
+              ref={ref}
+            >
               {children}
             </span>
             {buttonQuantity}

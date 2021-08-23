@@ -108,7 +108,8 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       className="euiFilterButton__notification"
       size="m"
       aria-label={hasActiveFilters ? activeBadgeLabel : availableBadgeLabel}
-      color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}>
+      color={isDisabled || !hasActiveFilters ? 'subdued' : 'accent'}
+    >
       {badgeCount}
     </EuiNotificationBadge>
   );
@@ -125,7 +126,8 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
         ref={ref}
         className="euiFilterButton__textShift"
         data-text={dataText || innerText}
-        title={dataText || innerText}>
+        title={dataText || innerText}
+      >
         {children}
       </span>
 
@@ -142,7 +144,8 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       iconType={iconType}
       type={type}
       textProps={{ ...textProps, className: buttonTextClassNames }}
-      {...rest}>
+      {...rest}
+    >
       {buttonContents}
     </EuiButtonEmpty>
   );

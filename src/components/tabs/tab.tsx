@@ -66,7 +66,8 @@ export const EuiTab: FunctionComponent<Props> = ({
         href={href}
         target={target}
         rel={secureRel}
-        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
+      >
         <span className="euiTab__content">{children}</span>
       </a>
     );
@@ -79,7 +80,8 @@ export const EuiTab: FunctionComponent<Props> = ({
       type="button"
       className={classes}
       disabled={disabled}
-      {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
+      {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
+    >
       <span className="euiTab__content">{children}</span>
     </button>
   );

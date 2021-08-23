@@ -18,7 +18,8 @@ export default () => {
       <EuiFlyout
         ownFocus
         onClose={() => setIsFlyoutVisible(false)}
-        aria-labelledby="flyoutTitle">
+        aria-labelledby="flyoutTitle"
+      >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
             <h2 id="flyoutTitle">A flyout with just code</h2>
@@ -29,7 +30,8 @@ export default () => {
             language="json"
             overflowHeight={'100%'}
             isCopyable
-            isVirtualized>
+            isVirtualized
+          >
             {`{
   "id": "1",
   "rawResponse": {

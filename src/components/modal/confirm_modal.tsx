@@ -139,7 +139,8 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
         <EuiButtonEmpty
           data-test-subj="confirmModalCancelButton"
           onClick={onCancel}
-          buttonRef={cancelRef}>
+          buttonRef={cancelRef}
+        >
           {cancelButtonText}
         </EuiButtonEmpty>
 
@@ -150,7 +151,8 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
           fill
           buttonRef={confirmRef}
           color={buttonColor}
-          isDisabled={confirmButtonDisabled}>
+          isDisabled={confirmButtonDisabled}
+        >
           {confirmButtonText}
         </EuiButton>
       </EuiModalFooter>

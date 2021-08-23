@@ -52,7 +52,8 @@ export const DataGridVirtualizationExample = {
                 <EuiCode>undefined</EuiCode>.
               </>
             }
-            color="warning">
+            color="warning"
+          >
             <p>
               Similar to React&apos;s rule of not switching between a controlled
               and uncontrolled input, <EuiCode>EuiDataGrid</EuiCode> does not

@@ -44,11 +44,13 @@ const GuideSketchLinkComponent: React.FunctionComponent<GuideSketchLinkProps> = 
       title="(Outdated) Download Sketch zip"
       content="Import these sketch files into a new project as libraries.
         This will provide symbols that match against their EUI component
-        counterparts.">
+        counterparts."
+    >
       <EuiHeaderSectionItemButton
         aria-label={label}
         // @ts-ignore TODO: FIX
-        href={href}>
+        href={href}
+      >
         <EuiIcon type="logoSketch" aria-hidden="true" />
       </EuiHeaderSectionItemButton>
     </EuiToolTip>

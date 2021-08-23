@@ -88,7 +88,8 @@ export class EuiComboBoxOption<T> extends Component<EuiComboBoxOptionProps<T>> {
         role="option"
         title={label}
         type="button"
-        {...rest}>
+        {...rest}
+      >
         {children}
       </button>
     );
