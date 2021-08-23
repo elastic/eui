@@ -2213,7 +2213,7 @@ describe('EuiDataGrid', () => {
     });
   });
 
-  describe('rowHeighsOptions', () => {
+  describe('rowHeightsOptions', () => {
     it('all row heights options applied correctly', async () => {
       const component = mount(
         <EuiDataGrid
