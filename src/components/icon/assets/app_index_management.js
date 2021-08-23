@@ -7,7 +7,8 @@ const EuiIconAppIndexManagement = ({ title, titleId, ...props }) => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <path d="M17 18v-2h-2v2H3v6h2v-4h10v4h2v-4h10v4h2v-6z" />
     <path

@@ -99,7 +99,8 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
         <EuiText
           size="s"
           color="subdued"
-          className="euiDatePopoverContent__padded--large">
+          className="euiDatePopoverContent__padded--large"
+        >
           <p>
             Setting the time to &quot;now&quot; means that on every refresh this
             time will be set to the time of the refresh.
@@ -111,7 +112,8 @@ export const EuiDatePopoverContent: FunctionComponent<EuiDatePopoverContentProps
             }}
             fullWidth
             size="s"
-            fill>
+            fill
+          >
             Set {position} date and time to now
           </EuiButton>
         </EuiText>

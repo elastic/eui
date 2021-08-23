@@ -69,7 +69,8 @@ export const EuiFacetGroup: FunctionComponent<EuiFacetGroupProps> = ({
       direction={direction}
       wrap={wrap}
       gutterSize="none"
-      {...rest}>
+      {...rest}
+    >
       {children}
     </EuiFlexGroup>
   );

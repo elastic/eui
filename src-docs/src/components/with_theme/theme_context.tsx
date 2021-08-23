@@ -49,12 +49,14 @@ export class ThemeProvider extends React.Component<object, State> {
         value={{
           theme,
           changeTheme: this.changeTheme,
-        }}>
+        }}
+      >
         <EuiThemeProvider
           theme={
             theme.includes('amsterdam') ? EuiThemeAmsterdam : EuiThemeDefault
           }
-          colorMode={theme.includes('light') ? 'light' : 'dark'}>
+          colorMode={theme.includes('light') ? 'light' : 'dark'}
+        >
           {children}
         </EuiThemeProvider>
       </ThemeContext.Provider>

@@ -12,7 +12,8 @@ export default () => (
   <EuiToast
     title="Created report for dashboard 'Tuba Sales by Region'"
     color="success"
-    iconType="check">
+    iconType="check"
+  >
     <p>
       While the layout will adjust properly for wrapping titles, they do not
       look particularly good. Similarily, do not use a whole lot of text in your

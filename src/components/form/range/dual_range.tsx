@@ -611,7 +611,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
       <EuiRangeWrapper
         className={classes}
         fullWidth={fullWidth}
-        compressed={compressed}>
+        compressed={compressed}
+      >
         {showInput && !showInputOnly && (
           <>
             {minInput}
@@ -641,7 +642,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
           levels={levels}
           onChange={this.handleSliderChange}
           value={value}
-          aria-hidden={showInput === true}>
+          aria-hidden={showInput === true}
+        >
           <EuiRangeSlider
             className="euiDualRange__slider"
             ref={this.handleRangeSliderRefUpdate}
@@ -764,7 +766,8 @@ export class EuiDualRange extends Component<EuiDualRangeProps> {
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
         disableFocusTrap={true}
-        onPanelResize={this.onResize}>
+        onPanelResize={this.onResize}
+      >
         {theRange}
       </EuiInputPopover>
     ) : undefined;

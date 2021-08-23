@@ -150,7 +150,8 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
       className={classes}
       style={newStyle || style}
       aria-labelledby={ariaLabelledby}
-      {...rest}>
+      {...rest}
+    >
       {childrenOrListItems}
     </ul>
   );

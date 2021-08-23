@@ -110,7 +110,8 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = (
   const statusElement = (status === 'saved' || status === 'unsaved') && (
     <EuiToolTip
       position="left"
-      content={tooltipContent || statusMap[status].tooltip}>
+      content={tooltipContent || statusMap[status].tooltip}
+    >
       <EuiIcon
         className="euiSuggestInput__statusIcon"
         color={color}
@@ -143,7 +144,8 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = (
       isOpen={suggestions.length > 0 && isPopoverOpen}
       panelPaddingSize="none"
       fullWidth
-      closePopover={closePopover}>
+      closePopover={closePopover}
+    >
       {suggestions}
     </EuiInputPopover>
   );

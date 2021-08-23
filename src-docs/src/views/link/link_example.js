@@ -136,7 +136,8 @@ export const LinkExample = {
           React&apos;s{' '}
           <EuiLink
             href="https://github.com/facebook/react/blob/940f48b999a3131e77b2545bd7ae252ef27ae6d1/packages/react-dom/src/shared/sanitizeURL.js#L37"
-            target="_blank">
+            target="_blank"
+          >
             planned behavior
           </EuiLink>{' '}
           to prevent rendering of <EuiCode>javascript:</EuiCode> links.

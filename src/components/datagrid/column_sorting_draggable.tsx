@@ -67,12 +67,14 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
         <div
           className={`euiDataGridColumnSorting__item ${
             state.isDragging && 'euiDataGridColumnSorting__item-isDragging'
-          }`}>
+          }`}
+        >
           <EuiScreenReaderOnly>
             <EuiI18n
               token="euiColumnSortingDraggable.activeSortLabel"
               default="{display} is sorting this data grid"
-              values={{ display }}>
+              values={{ display }}
+            >
               {(activeSortLabel: string) => <p>{activeSortLabel}</p>}
             </EuiI18n>
           </EuiScreenReaderOnly>
@@ -80,12 +82,14 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
             gutterSize="xs"
             alignItems="center"
             responsive={false}
-            data-test-subj={`euiDataGridColumnSorting-sortColumn-${id}`}>
+            data-test-subj={`euiDataGridColumnSorting-sortColumn-${id}`}
+          >
             <EuiFlexItem grow={false}>
               <EuiI18n
                 token="euiColumnSortingDraggable.removeSortLabel"
                 default="Remove {display} from data grid sort"
-                values={{ display }}>
+                values={{ display }}
+              >
                 {(removeSortLabel: string) => (
                   <EuiButtonIcon
                     color="text"
@@ -122,7 +126,8 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
               <EuiI18n
                 token="euiColumnSortingDraggable.toggleLegend"
                 default="Select sorting method for {display}"
-                values={{ display }}>
+                values={{ display }}
+              >
                 {(toggleLegend: string) => (
                   <EuiButtonGroup
                     legend={toggleLegend}

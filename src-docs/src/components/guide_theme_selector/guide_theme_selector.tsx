@@ -63,7 +63,8 @@ const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorPro
         onClick={() => {
           closePopover();
           context.changeTheme(theme.value);
-        }}>
+        }}
+      >
         {theme.text}
       </EuiContextMenuItem>
     );
@@ -76,7 +77,8 @@ const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorPro
       iconSide="right"
       color="ghost"
       minWidth={0}
-      onClick={onButtonClick}>
+      onClick={onButtonClick}
+    >
       {isMobileSize ? 'Theme' : currentTheme.text}
     </EuiButton>
   );
@@ -89,7 +91,8 @@ const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorPro
       isOpen={isPopoverOpen}
       closePopover={closePopover}
       panelPaddingSize="none"
-      anchorPosition="downRight">
+      anchorPosition="downRight"
+    >
       <EuiContextMenuPanel size="s" items={items} />
       {location.host.includes('803') && (
         <>

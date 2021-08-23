@@ -118,14 +118,16 @@ export const EuiFlexGroup = forwardRef<
       <span
         className={classes}
         ref={ref as Ref<HTMLSpanElement>}
-        {...(rest as HTMLAttributes<HTMLSpanElement>)}>
+        {...(rest as HTMLAttributes<HTMLSpanElement>)}
+      >
         {children}
       </span>
     ) : (
       <div
         className={classes}
         ref={ref as Ref<HTMLDivElement>}
-        {...(rest as HTMLAttributes<HTMLDivElement>)}>
+        {...(rest as HTMLAttributes<HTMLDivElement>)}
+      >
         {children}
       </div>
     );

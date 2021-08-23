@@ -81,7 +81,8 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
         ref={ref}
         className={classes}
         {...(children && { role: 'tablist' })}
-        {...rest}>
+        {...rest}
+      >
         {children}
       </div>
     );

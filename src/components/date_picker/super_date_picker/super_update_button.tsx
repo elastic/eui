@@ -143,7 +143,8 @@ export class EuiSuperUpdateButton extends Component<EuiSuperUpdateButtonProps> {
         ref={this.setTootipRef}
         content={tooltipContent}
         position="bottom"
-        {...toolTipProps}>
+        {...toolTipProps}
+      >
         <EuiButton
           className={classes}
           color={needsUpdate || isLoading ? 'success' : 'primary'}
@@ -159,7 +160,8 @@ export class EuiSuperUpdateButton extends Component<EuiSuperUpdateButtonProps> {
           isDisabled={isDisabled}
           onClick={onClick}
           isLoading={isLoading}
-          {...rest}>
+          {...rest}
+        >
           {buttonText}
         </EuiButton>
       </EuiToolTip>

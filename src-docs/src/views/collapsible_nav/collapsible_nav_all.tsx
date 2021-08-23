@@ -149,11 +149,13 @@ const CollapsibleNavAll = () => {
       button={
         <EuiHeaderSectionItemButton
           aria-label="Toggle main navigation"
-          onClick={() => setNavIsOpen(!navIsOpen)}>
+          onClick={() => setNavIsOpen(!navIsOpen)}
+        >
           <EuiIcon type={'menu'} size="m" aria-hidden="true" />
         </EuiHeaderSectionItemButton>
       }
-      onClose={() => setNavIsOpen(false)}>
+      onClose={() => setNavIsOpen(false)}
+    >
       {/* Dark deployments section */}
       <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
         {DeploymentsGroup}
@@ -164,7 +166,8 @@ const CollapsibleNavAll = () => {
         <EuiCollapsibleNavGroup
           background="light"
           className="eui-yScroll"
-          style={{ maxHeight: '40vh' }}>
+          style={{ maxHeight: '40vh' }}
+        >
           <EuiPinnableListGroup
             aria-label="Pinned links" // A11y : Since this group doesn't have a visible `title` it should be provided an accessible description
             listItems={alterLinksWithCurrentState(TopLinks).concat(
@@ -190,7 +193,8 @@ const CollapsibleNavAll = () => {
           iconType="logoKibana"
           isCollapsible={true}
           initialIsOpen={openGroups.includes('Kibana')}
-          onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Kibana')}>
+          onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Kibana')}
+        >
           <EuiPinnableListGroup
             aria-label="Kibana" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
             listItems={alterLinksWithCurrentState(KibanaLinks)}
@@ -212,7 +216,8 @@ const CollapsibleNavAll = () => {
           iconType="training"
           isCollapsible={true}
           initialIsOpen={openGroups.includes('Learn')}
-          onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Learn')}>
+          onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Learn')}
+        >
           <EuiPinnableListGroup
             aria-label="Learn" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
             listItems={alterLinksWithCurrentState(LearnLinks)}

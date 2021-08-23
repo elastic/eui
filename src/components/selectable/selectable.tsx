@@ -577,7 +577,8 @@ export class EuiSelectable<T = {}> extends Component<
     const list = messageContent ? (
       <EuiSelectableMessage
         id={messageContentId}
-        bordered={listProps && listProps.bordered}>
+        bordered={listProps && listProps.bordered}
+      >
         {messageContent}
       </EuiSelectableMessage>
     ) : (
@@ -617,7 +618,8 @@ export class EuiSelectable<T = {}> extends Component<
         onKeyDown={this.onKeyDown}
         onBlur={this.onContainerBlur}
         onFocus={this.onFocus}
-        {...rest}>
+        {...rest}
+      >
         {children && children(list, search)}
       </div>
     );

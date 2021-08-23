@@ -7,7 +7,8 @@ const EuiIconTokenKeyword = ({ title, titleId, ...props }) => (
     viewBox="0 0 16 16"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <path d="M5.75 7.375a.25.25 0 00-.25.25v.75c0 .138.112.25.25.25h3.5a.25.25 0 00.25-.25v-.75a.25.25 0 00-.25-.25h-3.5z" />
     <path

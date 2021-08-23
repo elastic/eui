@@ -120,7 +120,8 @@ export class EuiAbsoluteTab extends Component<
         <EuiFormRow
           className="euiSuperDatePicker__absoluteDateFormRow"
           isInvalid={isTextInvalid}
-          error={isTextInvalid ? `Expected format ${dateFormat}` : undefined}>
+          error={isTextInvalid ? `Expected format ${dateFormat}` : undefined}
+        >
           <EuiFieldText
             compressed
             isInvalid={isTextInvalid}

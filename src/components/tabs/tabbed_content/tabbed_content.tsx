@@ -190,7 +190,8 @@ export class EuiTabbedContent extends Component<
           expand={expand}
           display={display}
           size={size}
-          onFocus={this.initializeFocus}>
+          onFocus={this.initializeFocus}
+        >
           {tabs.map((tab: EuiTabbedContentTab) => {
             const {
               id,
@@ -214,7 +215,8 @@ export class EuiTabbedContent extends Component<
         <div
           role="tabpanel"
           id={`${this.rootId}`}
-          aria-labelledby={selectedTabId}>
+          aria-labelledby={selectedTabId}
+        >
           {selectedTabContent}
         </div>
       </div>
