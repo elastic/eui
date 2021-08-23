@@ -7,7 +7,8 @@ const EuiIconTokenSearchType = ({ title, titleId, ...props }) => (
     viewBox="0 0 16 16"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <path d="M6.27 7.5a1 1 0 112 0 1 1 0 01-2 0zM8.77 7.5a1 1 0 112 0 1 1 0 01-2 0z" />
     <path

@@ -8,17 +8,30 @@ import React, {
   useContext,
   useRef,
 } from 'react';
+import { Link } from 'react-router-dom';
 import { fake } from 'faker';
 
 import {
-  EuiDataGrid,
-  EuiLink,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiPopover,
-  EuiPopoverTitle,
+  EuiButton,
+  EuiButtonEmpty,
   EuiButtonIcon,
-  EuiSpacer,
+  EuiCode,
+  EuiContextMenuItem,
+  EuiContextMenuPanel,
+  EuiDataGrid,
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiFlyoutFooter,
+  EuiFlyoutHeader,
+  EuiLink,
+  EuiModal,
+  EuiModalBody,
+  EuiModalFooter,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiPopover,
+  EuiText,
+  EuiTitle,
 } from '../../../../src/components/';
 const DataContext = createContext();
 
@@ -65,7 +78,8 @@ const columns = [
           <Component
             onClick={() => alert(`Hi ${data[rowIndex][columnId].raw}`)}
             iconType="heart"
-            aria-label={`Say hi to ${data[rowIndex][columnId].raw}!`}>
+            aria-label={`Say hi to ${data[rowIndex][columnId].raw}!`}
+          >
             Say hi
           </Component>
         );
@@ -76,7 +90,8 @@ const columns = [
           <Component
             onClick={() => alert(`Bye ${data[rowIndex][columnId].raw}`)}
             iconType="moon"
-            aria-label={`Say bye to ${data[rowIndex][columnId].raw}!`}>
+            aria-label={`Say bye to ${data[rowIndex][columnId].raw}!`}
+          >
             Say bye
           </Component>
         );
@@ -94,7 +109,8 @@ const columns = [
           <Component
             onClick={() => alert(data[rowIndex][columnId].raw)}
             iconType="email"
-            aria-label={`Send email to ${data[rowIndex][columnId].raw}`}>
+            aria-label={`Send email to ${data[rowIndex][columnId].raw}`}
+          >
             Send email
           </Component>
         );
@@ -136,7 +152,8 @@ const columns = [
           <Component
             onClick={onClick}
             iconType="faceHappy"
-            aria-label={`Send money to ${data[rowIndex][columnId]}`}>
+            aria-label={`Send money to ${data[rowIndex][columnId]}`}
+          >
             Send money
           </Component>
         );
@@ -173,58 +190,144 @@ const trailingControlColumns = [
     width: 40,
     headerCellRender: () => null,
     rowCellRender: function RowCellRender() {
-      const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+      const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+      const closePopover = () => setIsPopoverVisible(false);
+
+      const [isModalVisible, setIsModalVisible] = useState(false);
+      const closeModal = () => setIsModalVisible(false);
+      const showModal = () => {
+        closePopover();
+        setIsModalVisible(true);
+      };
+
+      let modal;
+
+      if (isModalVisible) {
+        modal = (
+          <EuiModal onClose={closeModal} style={{ width: 500 }}>
+            <EuiModalHeader>
+              <EuiModalHeaderTitle>
+                <h2>A typical modal</h2>
+              </EuiModalHeaderTitle>
+            </EuiModalHeader>
+
+            <EuiModalBody>
+              <EuiText>
+                <p>
+                  <Link to="/layout/modal">
+                    <strong>EuiModal</strong>
+                  </Link>{' '}
+                  components have a higher <EuiCode>z-index</EuiCode> than{' '}
+                  <strong>EuiDataGrid</strong> components, even in full screen
+                  mode. This ensures that modals will never appear behind the
+                  data grid.
+                </p>
+              </EuiText>
+            </EuiModalBody>
+
+            <EuiModalFooter>
+              <EuiButton onClick={closeModal} fill>
+                Close
+              </EuiButton>
+            </EuiModalFooter>
+          </EuiModal>
+        );
+      }
+
+      const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+      const closeFlyout = () => setIsFlyoutVisible(false);
+      const showFlyout = () => {
+        closePopover();
+        setIsFlyoutVisible(true);
+      };
+
+      let flyout;
+
+      if (isFlyoutVisible) {
+        flyout = (
+          <EuiFlyout
+            aria-labelledby="flyoutTitle"
+            onClose={closeFlyout}
+            ownFocus
+            size="s"
+          >
+            <EuiFlyoutHeader hasBorder>
+              <EuiTitle size="m">
+                <h2 id="flyoutTitle">A typical flyout</h2>
+              </EuiTitle>
+            </EuiFlyoutHeader>
+
+            <EuiFlyoutBody>
+              <EuiText>
+                <p>
+                  <Link to="/layout/flyout">
+                    <strong>EuiFlyout</strong>
+                  </Link>{' '}
+                  components have a higher <EuiCode>z-index</EuiCode> than{' '}
+                  <strong>EuiDataGrid</strong> components, even in full screen
+                  mode. This ensures that flyouts will never appear behind the
+                  data grid.
+                </p>
+
+                <p>
+                  Flyouts are also styled with a vertical offset that accounts
+                  for the presence of fixed headers. However, when the data grid
+                  is in full screen mode, these offset styles are ignored to
+                  allow the flyout to correctly appear at the top of the
+                  viewport.
+                </p>
+              </EuiText>
+            </EuiFlyoutBody>
+
+            <EuiFlyoutFooter>
+              <EuiButtonEmpty
+                flush="left"
+                iconType="cross"
+                onClick={closeFlyout}
+              >
+                Close
+              </EuiButtonEmpty>
+            </EuiFlyoutFooter>
+          </EuiFlyout>
+        );
+      }
+
+      const actions = [
+        <EuiContextMenuItem icon="apmTrace" key="modal" onClick={showModal}>
+          Modal example
+        </EuiContextMenuItem>,
+        <EuiContextMenuItem
+          icon="tableOfContents"
+          key="flyout"
+          onClick={showFlyout}
+        >
+          Flyout example
+        </EuiContextMenuItem>,
+      ];
+
       return (
-        <div>
+        <>
           <EuiPopover
-            isOpen={isPopoverOpen}
-            panelPaddingSize="s"
+            isOpen={isPopoverVisible}
+            panelPaddingSize="none"
             anchorPosition="upCenter"
             button={
               <EuiButtonIcon
-                aria-label="show actions"
+                aria-label="Show actions"
                 iconType="boxesHorizontal"
                 color="text"
-                onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                onClick={() => setIsPopoverVisible(!isPopoverVisible)}
               />
             }
-            closePopover={() => setIsPopoverOpen(false)}>
-            <EuiPopoverTitle>Actions</EuiPopoverTitle>
-            <div style={{ width: 150 }}>
-              <button onClick={() => {}}>
-                <EuiFlexGroup
-                  alignItems="center"
-                  component="span"
-                  gutterSize="s">
-                  <EuiFlexItem grow={false}>
-                    <EuiButtonIcon
-                      aria-label="Pin selected items"
-                      iconType="pin"
-                      color="text"
-                    />
-                  </EuiFlexItem>
-                  <EuiFlexItem>Pin</EuiFlexItem>
-                </EuiFlexGroup>
-              </button>
-              <EuiSpacer size="s" />
-              <button onClick={() => {}}>
-                <EuiFlexGroup
-                  alignItems="center"
-                  component="span"
-                  gutterSize="s">
-                  <EuiFlexItem grow={false}>
-                    <EuiButtonIcon
-                      aria-label="Delete selected items"
-                      iconType="trash"
-                      color="text"
-                    />
-                  </EuiFlexItem>
-                  <EuiFlexItem>Delete</EuiFlexItem>
-                </EuiFlexGroup>
-              </button>
-            </div>
+            closePopover={closePopover}
+          >
+            <EuiContextMenuPanel items={actions} size="s" title="Actions" />
           </EuiPopover>
-        </div>
+
+          {modal}
+
+          {flyout}
+        </>
       );
     },
   },

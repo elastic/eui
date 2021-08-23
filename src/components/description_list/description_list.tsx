@@ -108,7 +108,8 @@ export const EuiDescriptionList: FunctionComponent<
 
         <EuiDescriptionListDescription
           key={`description-${index}`}
-          {...descriptionProps}>
+          {...descriptionProps}
+        >
           {item.description}
         </EuiDescriptionListDescription>,
       ];

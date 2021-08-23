@@ -119,7 +119,8 @@ export const EuiMarkdownEditorFooter = forwardRef<
           iconType="paperClip"
           color="danger"
           aria-label={`${ariaLabels.unsupportedFileType}. ${ariaLabels.supportedFileTypes}. ${ariaLabels.uploadingFiles}`}
-          onClick={openFiles}>
+          onClick={openFiles}
+        >
           {ariaLabels.unsupportedFileType}
         </EuiButtonEmpty>
       </EuiToolTip>
@@ -145,14 +146,16 @@ export const EuiMarkdownEditorFooter = forwardRef<
             size="s"
             color="danger"
             aria-label={ariaLabels.showSyntaxErrors}
-            onClick={onButtonClick}>
+            onClick={onButtonClick}
+          >
             {errors.length}
           </EuiButtonEmpty>
         }
         isOpen={isPopoverOpen}
         closePopover={closePopover}
         panelPaddingSize="s"
-        anchorPosition="upCenter">
+        anchorPosition="upCenter"
+      >
         <div className="euiMarkdownEditorFooter__popover">
           <EuiPopoverTitle>
             <EuiI18n
@@ -206,7 +209,8 @@ export const EuiMarkdownEditorFooter = forwardRef<
                 defaults={[
                   'This editor uses',
                   'You can also utilize these additional syntax plugins to add rich content to your text.',
-                ]}>
+                ]}
+              >
                 {([descriptionPrefix, descriptionSuffix]: ReactChild[]) => (
                   <p>
                     {descriptionPrefix}{' '}

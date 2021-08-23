@@ -219,7 +219,8 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
                     title={innerText}
                     ref={ref}
                     {...labelProps}
-                    className={labelClasses}>
+                    className={labelClasses}
+                  >
                     {label}
                   </span>
                 )}
@@ -232,7 +233,8 @@ export const EuiProgress: FunctionComponent<ExclusiveUnion<
                     title={innerText}
                     ref={ref}
                     style={optionalCustomStyles}
-                    className="euiProgress__valueText">
+                    className="euiProgress__valueText"
+                  >
                     {valueRender}
                   </span>
                 )}

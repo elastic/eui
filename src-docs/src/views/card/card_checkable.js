@@ -39,7 +39,8 @@ export default () => {
               <span>Checkable card radio group with legend</span>
             </EuiTitle>
           ),
-        }}>
+        }}
+      >
         <EuiCheckableCard
           id={htmlIdGenerator()()}
           label="Option one"
@@ -57,7 +58,8 @@ export default () => {
           name={radioName}
           value="radio2"
           checked={radio === 'radio2'}
-          onChange={() => setRadio('radio2')}>
+          onChange={() => setRadio('radio2')}
+        >
           <EuiRadioGroup
             options={nestedRadios}
             idSelected={nestedRadio}

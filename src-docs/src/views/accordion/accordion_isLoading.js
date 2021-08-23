@@ -70,7 +70,8 @@ export default () => {
         buttonContent="Accordion is loading, click to toggle"
         extraAction={<EuiButton size="s">Extra action!</EuiButton>}
         isLoading
-        isLoadingMessage={isLoadingMessage}>
+        isLoadingMessage={isLoadingMessage}
+      >
         <EuiPanel color="subdued">Opened content.</EuiPanel>
       </EuiAccordion>
     </>

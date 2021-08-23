@@ -49,7 +49,8 @@ const HeaderUpdates = () => {
         <EuiLink
           target="_blank"
           external
-          href="https://www.elastic.co/blog/kibana-7-0-0-released">
+          href="https://www.elastic.co/blog/kibana-7-0-0-released"
+        >
           Read the blog
         </EuiLink>
       ),
@@ -71,7 +72,8 @@ const HeaderUpdates = () => {
         <EuiLink
           target="_blank"
           external
-          href="https://www.elastic.co/webinars/intro-to-canvas-a-new-way-to-tell-visual-stories-in-kibana">
+          href="https://www.elastic.co/webinars/intro-to-canvas-a-new-way-to-tell-visual-stories-in-kibana"
+        >
           Watch the webinar
         </EuiLink>
       ),
@@ -85,7 +87,8 @@ const HeaderUpdates = () => {
         <EuiLink
           target="_blank"
           external
-          href="https://www.elastic.co/guide/en/kibana/6.7/release-notes-6.7.0.html">
+          href="https://www.elastic.co/guide/en/kibana/6.7/release-notes-6.7.0.html"
+        >
           Check out the docs
         </EuiLink>
       ),
@@ -100,7 +103,8 @@ const HeaderUpdates = () => {
         <EuiLink
           target="_blank"
           external
-          href="https://www.elastic.co/blog/how-to-create-manage-and-visualize-elasticsearch-rollup-data-in-kibana">
+          href="https://www.elastic.co/blog/how-to-create-manage-and-visualize-elasticsearch-rollup-data-in-kibana"
+        >
           Read the blog
         </EuiLink>
       ),
@@ -132,7 +136,8 @@ const HeaderUpdates = () => {
       aria-haspopup="true"
       aria-label={'Alerts feed: Updates available'}
       onClick={() => showFlyout()}
-      notification={true}>
+      notification={true}
+    >
       <EuiIcon type="bell" />
     </EuiHeaderSectionItemButton>
   );
@@ -144,7 +149,8 @@ const HeaderUpdates = () => {
       aria-haspopup="true"
       aria-label={"News feed: Updates available'"}
       onClick={showPopover}
-      notification={6}>
+      notification={6}
+    >
       <EuiIcon type="cheer" />
     </EuiHeaderSectionItemButton>
   );
@@ -155,7 +161,8 @@ const HeaderUpdates = () => {
         onClose={closeFlyout}
         size="s"
         id="headerFlyoutNewsFeed"
-        aria-labelledby="flyoutSmallTitle">
+        aria-labelledby="flyoutSmallTitle"
+      >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="s">
             <h2 id="flyoutSmallTitle">What&apos;s new</h2>
@@ -179,7 +186,8 @@ const HeaderUpdates = () => {
               <EuiButtonEmpty
                 iconType="cross"
                 onClick={closeFlyout}
-                flush="left">
+                flush="left"
+              >
                 Close
               </EuiButtonEmpty>
             </EuiFlexItem>
@@ -202,7 +210,8 @@ const HeaderUpdates = () => {
       button={cheerButton}
       isOpen={isPopoverVisible}
       closePopover={closePopover}
-      panelPaddingSize="none">
+      panelPaddingSize="none"
+    >
       <EuiPopoverTitle paddingSize="s">What&apos;s new</EuiPopoverTitle>
       <div style={{ maxHeight: '40vh', overflowY: 'auto', padding: 4 }}>
         <EuiSpacer size="s" />
@@ -252,7 +261,8 @@ const HeaderUserMenu = () => {
       aria-expanded={isOpen}
       aria-haspopup="true"
       aria-label="Account menu"
-      onClick={onMenuButtonClick}>
+      onClick={onMenuButtonClick}
+    >
       <EuiAvatar name="John Username" size="s" />
     </EuiHeaderSectionItemButton>
   );
@@ -265,12 +275,14 @@ const HeaderUserMenu = () => {
       isOpen={isOpen}
       anchorPosition="downRight"
       closePopover={closeMenu}
-      panelPaddingSize="none">
+      panelPaddingSize="none"
+    >
       <div style={{ width: 320 }}>
         <EuiFlexGroup
           gutterSize="m"
           className="euiHeaderProfile"
-          responsive={false}>
+          responsive={false}
+        >
           <EuiFlexItem grow={false}>
             <EuiAvatar name="John Username" size="xl" />
           </EuiFlexItem>

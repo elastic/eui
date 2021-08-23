@@ -142,7 +142,8 @@ describe('EuiPageHeaderContent', () => {
           <EuiPageHeaderContent
             pageTitle="Page title"
             tabs={tabs}
-            rightSideItems={rightSideItems}>
+            rightSideItems={rightSideItems}
+          >
             Child
           </EuiPageHeaderContent>
         );

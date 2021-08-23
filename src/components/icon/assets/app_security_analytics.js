@@ -7,7 +7,8 @@ const EuiIconAppSecurityAnalytics = ({ title, titleId, ...props }) => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <path d="M3 10h4v2H5v7.928c0 1.299.808 2.795 2.88 4.48 1.83 1.489 4.524 3.02 8.12 4.584V26h2v5.992l-1.38-.567c-4.372-1.797-7.724-3.613-10-5.465C4.358 24.122 3 22.114 3 19.928V10z" />
     <path

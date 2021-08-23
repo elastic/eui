@@ -126,7 +126,8 @@ export const EuiSuperSelectControl: <T extends string>(
         isLoading={isLoading}
         compressed={compressed}
         prepend={prepend}
-        append={append}>
+        append={append}
+      >
         {/*
           This is read when the user tabs in. The comma is important,
           otherwise the screen reader often combines the text.
@@ -145,7 +146,8 @@ export const EuiSuperSelectControl: <T extends string>(
           className={classes}
           aria-haspopup="true"
           aria-labelledby={`${id} ${screenReaderId}`}
-          {...rest}>
+          {...rest}
+        >
           {selectedValue}
         </button>
       </EuiFormControlLayout>

@@ -68,7 +68,8 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
               name={name}
               onClick={() => onSelectedTabChanged(name)}
               isSelected={name === selectedTabId}
-              key={index}>
+              key={index}
+            >
               {tab.displayName}
             </EuiTab>
           );
@@ -121,7 +122,8 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
         responsive={false}
         wrap
         gutterSize="none"
-        alignItems="center">
+        alignItems="center"
+      >
         <EuiFlexItem>{renderTabs()}</EuiFlexItem>
         <EuiFlexItem grow={false}>{rightSideControl}</EuiFlexItem>
       </EuiFlexGroup>

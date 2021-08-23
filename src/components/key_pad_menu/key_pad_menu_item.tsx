@@ -274,7 +274,8 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
       {...(relObj as ElementType)}
       {...(rest as ElementType)}
       // Unable to get past `LegacyRef` conflicts
-      ref={buttonRef as Ref<any>}>
+      ref={buttonRef as Ref<any>}
+    >
       {renderContent()}
     </Element>
   );

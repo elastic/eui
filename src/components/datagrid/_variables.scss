@@ -1,3 +1,6 @@
+$euiZDataGrid: $euiZHeader - 1;
+$euiZHeaderBelowDataGrid: $euiZHeader - 2;
+
 $euiDataGridColumnResizerWidth: 3px; // Odd number because it straddles a border
 $euiDataGridPopoverMaxHeight: $euiSize * 25;
 

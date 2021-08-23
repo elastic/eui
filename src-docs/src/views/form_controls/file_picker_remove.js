@@ -35,7 +35,8 @@ export default () => {
               color="danger"
               iconType="trash"
               disabled={files.length > 0 ? false : true}
-              onClick={() => filePickerRef.current.removeFiles()}>
+              onClick={() => filePickerRef.current.removeFiles()}
+            >
               <h3>Remove files</h3>
             </EuiButton>
           </div>
