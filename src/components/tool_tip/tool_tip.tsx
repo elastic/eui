@@ -348,8 +348,8 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
          * element has focus.
          */}
         {cloneElement(children, {
-          onFocus: this.showToolTip,
-          onBlur: this.hideToolTip,
+          onFocus: this.onFocus,
+          onBlur: this.onBlur,
           ...(visible && { 'aria-describedby': this.state.id }),
         })}
       </span>
