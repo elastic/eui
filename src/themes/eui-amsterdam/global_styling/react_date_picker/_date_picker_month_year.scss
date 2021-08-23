@@ -109,15 +109,6 @@
   }
 }
 
-// Hide the first and last options which trigger adding one more year to the list
-// But container no text or any content so its inaccessible
-.react-datepicker__year-option {
-  &:first-of-type,
-  &:last-of-type {
-    display: none;
-  }
-}
-
 .react-datepicker__year-option,
 .react-datepicker__month-option,
 .react-datepicker__month-year-option {

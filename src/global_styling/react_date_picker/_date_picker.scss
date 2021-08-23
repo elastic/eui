@@ -560,13 +560,6 @@
   justify-content: flex-end;
 }
 
-.react-datepicker__year-option {
-  &:first-of-type,
-  &:last-of-type {
-    display: none;
-  }
-}
-
 .react-datepicker__year-option,
 .react-datepicker__month-option,
 .react-datepicker__month-year-option {
