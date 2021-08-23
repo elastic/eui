@@ -6,6 +6,9 @@
 - Fixed rerender state issues in `PaginationButton` inside `EuiPagination` ([#5048](https://github.com/elastic/eui/pull/5048))
 - Fixed bug in `euiHeaderAffordForFixed` mixin that was not accounting for situations where `EuiDataGrid` was in full screen mode ([#5054](https://github.com/elastic/eui/pull/5054))
 - Fixed `z-index` styles that were causing `EuiModal` and `EuiFlyout` components to appear behind `EuiDataGrid` when in full screen mode ([#5054](https://github.com/elastic/eui/pull/5054))
+- Fixed untranslated i18n strings for `EuiFilterButton` - adds 2 new tokens and removes old `euiFilterButton.filterBadge` token ([#4750](https://github.com/elastic/eui/pull/5061))
+- Fixed missing i18n token `EuiFilePicker`'s default prompt, and improved i18n string for `euiFilePicker.filesSelected` ([#5063](https://github.com/elastic/eui/pull/5063))
+- Fixed `EuiDataGrid` sort button text pluralization ([#5043](https://github.com/elastic/eui/pull/5043))
 - Fixed styles of `EuiButtonIcon` when passing `disabled` prop ([#5060](https://github.com/elastic/eui/pull/5060))
 
 **Theme: Amsterdam**
