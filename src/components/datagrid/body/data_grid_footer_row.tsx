@@ -53,7 +53,8 @@ const EuiDataGridFooterRow = memo(
           role="row"
           className={classes}
           data-test-subj={dataTestSubj}
-          {...rest}>
+          {...rest}
+        >
           {leadingControlColumns.map(({ id, width }, i) => (
             <EuiDataGridCell
               key={`${id}-${rowIndex}`}

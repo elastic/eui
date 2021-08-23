@@ -54,7 +54,8 @@ export const UtilityClassesExample = {
           <EuiCallOut
             color="warning"
             iconType="accessibility"
-            title="Scrollable regions must be focusable">
+            title="Scrollable regions must be focusable"
+          >
             <p>
               To ensure keyboard-only users have access to the scrollable
               regions, the optimal solution is to apply{' '}

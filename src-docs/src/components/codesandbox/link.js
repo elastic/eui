@@ -181,7 +181,8 @@ ${exampleClose}
       action="https://codesandbox.io/api/v1/sandboxes/define"
       method="POST"
       target="_blank"
-      className={className}>
+      className={className}
+    >
       {/* 6 */}
       <input type="hidden" name="parameters" value={params} />
       {childWithSubmit}

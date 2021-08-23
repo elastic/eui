@@ -39,7 +39,8 @@ describe('EuiAspectRatio', () => {
             height={16}
             width={9}
             maxWidth={500}
-            {...requiredProps}>
+            {...requiredProps}
+          >
             <iframe
               title="Elastic is a search company"
               width="560"

@@ -58,11 +58,13 @@ export default ({ theme }) => {
       button={
         <EuiHeaderSectionItemButton
           aria-label="Toggle main navigation"
-          onClick={() => setNavIsOpen(!navIsOpen)}>
+          onClick={() => setNavIsOpen(!navIsOpen)}
+        >
           <EuiIcon type={'menu'} size="m" aria-hidden="true" />
         </EuiHeaderSectionItemButton>
       }
-      onClose={() => setNavIsOpen(false)}>
+      onClose={() => setNavIsOpen(false)}
+    >
       <EuiFlexItem className="eui-yScroll">
         {/* Docs callout */}
         <EuiCollapsibleNavGroup background="none" title="EuiCollapsibleNav">
@@ -110,7 +112,8 @@ export default ({ theme }) => {
         onClose={() => setIsAlertFlyoutVisible(false)}
         size="s"
         id="guideHeaderAlertExample"
-        aria-labelledby="guideHeaderAlertExampleTitle">
+        aria-labelledby="guideHeaderAlertExampleTitle"
+      >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="s">
             <h2 id="guideHeaderAlertExampleTitle">EuiHeaderAlert</h2>
@@ -145,13 +148,15 @@ export default ({ theme }) => {
           aria-expanded={isUserMenuVisible}
           aria-haspopup="true"
           aria-label="User menu"
-          onClick={() => setIsUserMenuVisible(!isUserMenuVisible)}>
+          onClick={() => setIsUserMenuVisible(!isUserMenuVisible)}
+        >
           <EuiAvatar name="John Username" size="s" />
         </EuiHeaderSectionItemButton>
       }
       isOpen={isUserMenuVisible}
       anchorPosition="downRight"
-      closePopover={() => setIsUserMenuVisible(false)}>
+      closePopover={() => setIsUserMenuVisible(false)}
+    >
       <div style={{ width: 320 }}>
         <EuiText size="s" color="subdued">
           <p>
@@ -180,13 +185,15 @@ export default ({ theme }) => {
           aria-expanded={isSpacesMenuVisible}
           aria-haspopup="true"
           aria-label="Spaces menu"
-          onClick={() => setIsSpacesMenuVisible(!isSpacesMenuVisible)}>
+          onClick={() => setIsSpacesMenuVisible(!isSpacesMenuVisible)}
+        >
           <EuiAvatar type="space" name="Default Space" size="s" />
         </EuiHeaderSectionItemButton>
       }
       isOpen={isSpacesMenuVisible}
       anchorPosition="downRight"
-      closePopover={() => setIsSpacesMenuVisible(false)}>
+      closePopover={() => setIsSpacesMenuVisible(false)}
+    >
       <div style={{ width: 320 }}>
         <EuiText size="s" color="subdued">
           <p>
@@ -218,13 +225,15 @@ export default ({ theme }) => {
           aria-expanded={isDeploymentMenuVisible}
           aria-haspopup="true"
           onClickAriaLabel="Current deployment: Production logs. Click to open deployment menu."
-          onClick={() => setIsDeploymentMenuVisible(!isDeploymentMenuVisible)}>
+          onClick={() => setIsDeploymentMenuVisible(!isDeploymentMenuVisible)}
+        >
           Production logs
         </EuiBadge>
       }
       isOpen={isDeploymentMenuVisible}
       anchorPosition="downRight"
-      closePopover={() => setIsDeploymentMenuVisible(false)}>
+      closePopover={() => setIsDeploymentMenuVisible(false)}
+    >
       <EuiText size="s" color="subdued">
         <p>Deployment menu pattern TBD</p>
       </EuiText>
@@ -289,7 +298,8 @@ export default ({ theme }) => {
               <EuiHeaderSectionItemButton
                 notification={true}
                 aria-label="Notifications: Updates available"
-                onClick={() => setIsAlertFlyoutVisible(!isAlertFlyoutVisible)}>
+                onClick={() => setIsAlertFlyoutVisible(!isAlertFlyoutVisible)}
+              >
                 <EuiIcon type="cheer" size="m" />
               </EuiHeaderSectionItemButton>,
               userMenu,
@@ -319,7 +329,8 @@ export default ({ theme }) => {
               <EuiHeaderLinks
                 popoverProps={{
                   repositionOnScroll: true, // Necessary when placing search in a fixed component
-                }}>
+                }}
+              >
                 <EuiHeaderLink color="primary">Share</EuiHeaderLink>
                 <EuiHeaderLink color="primary">Clone</EuiHeaderLink>
                 <ExampleContext.Consumer>
@@ -329,7 +340,8 @@ export default ({ theme }) => {
                       style={{ minWidth: 80 }}
                       size="s"
                       color="primary"
-                      href={`#${parentPath}`}>
+                      href={`#${parentPath}`}
+                    >
                       Exit full screen
                     </EuiButton>
                   )}

@@ -82,7 +82,8 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
       paddingSize={panelPaddingSize ?? paddingSize}
       borderRadius={borderRadius}
       role={role}
-      {...rest}>
+      {...rest}
+    >
       {children}
     </EuiPanel>
   );

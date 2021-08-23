@@ -168,7 +168,8 @@ export const EuiBottomBar = forwardRef<
       <>
         <EuiI18n
           token="euiBottomBar.screenReaderHeading"
-          default="Page level controls">
+          default="Page level controls"
+        >
           {(screenReaderHeading: string) => (
             // Though it would be better to use aria-labelledby than aria-label and not repeat the same string twice
             // A bug in voiceover won't list some landmarks in the rotor without an aria-label
@@ -179,7 +180,8 @@ export const EuiBottomBar = forwardRef<
               className={classes}
               ref={setRef}
               style={newStyle}
-              {...rest}>
+              {...rest}
+            >
               <EuiScreenReaderOnly>
                 <h2>
                   {landmarkHeading ? landmarkHeading : screenReaderHeading}

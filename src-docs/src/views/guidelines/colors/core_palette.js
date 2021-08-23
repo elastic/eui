@@ -44,13 +44,15 @@ export const CorePalette = ({ theme, colors }) => {
             </small>
           }
           afterMessage={<small>Color name copied!</small>}
-          textToCopy={color}>
+          textToCopy={color}
+        >
           {(copy) => (
             <button
               className="eui-isFocusable"
               onClick={(e) => {
                 e.shiftKey ? scrollToSelector(`#${color}`) : copy();
-              }}>
+              }}
+            >
               <EuiIcon
                 className={iconClass}
                 size="xxl"

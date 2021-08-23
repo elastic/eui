@@ -26,7 +26,8 @@ export const HtmlIdGeneratorSuffix = () => {
       <EuiFlexGroup
         justifyContent="flexStart"
         gutterSize="m"
-        alignItems="center">
+        alignItems="center"
+      >
         <EuiFlexItem grow={false}>
           <EuiFormRow label="Suffix">
             <EuiFieldText

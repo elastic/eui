@@ -66,7 +66,8 @@ ReactDOM.render(
                       return (
                         <LinkWrapper>
                           <AppContainer
-                            currentRoute={{ name, path, sections, isNew }}>
+                            currentRoute={{ name, path, sections, isNew }}
+                          >
                             {createElement(component, {})}
                           </AppContainer>
                         </LinkWrapper>
@@ -86,7 +87,8 @@ ReactDOM.render(
                       path={`/${path}/${slug}`}
                       render={() => (
                         <ExampleContext.Provider
-                          value={{ parentPath: `/${path}#${id}` }}>
+                          value={{ parentPath: `/${path}#${id}` }}
+                        >
                           {demo}
                         </ExampleContext.Provider>
                       )}

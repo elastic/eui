@@ -773,7 +773,8 @@ export class EuiPopover extends Component<Props, State> {
             onEscapeKey={this.onEscapeKey}
             disabled={
               !ownFocus || !this.state.isOpenStable || this.state.isClosing
-            }>
+            }
+          >
             <EuiPanel
               {...(panelProps as EuiPanelProps)}
               panelRef={this.panelRef}
@@ -793,7 +794,8 @@ export class EuiPopover extends Component<Props, State> {
                 willChange: !this.state.isOpenStable
                   ? 'transform, opacity'
                   : undefined,
-              }}>
+              }}
+            >
               <div className={arrowClassNames} style={this.state.arrowStyles}>
                 {arrowChildren}
               </div>
@@ -805,7 +807,8 @@ export class EuiPopover extends Component<Props, State> {
                   characterData: true, // text changes
                   subtree: true, // watch all child elements
                 }}
-                onMutation={this.onMutation}>
+                onMutation={this.onMutation}
+              >
                 {(mutationRef) => <div ref={mutationRef}>{children}</div>}
               </EuiMutationObserver>
             </EuiPanel>
@@ -832,7 +835,8 @@ export class EuiPopover extends Component<Props, State> {
             className={classes}
             ref={popoverRef}
             onKeyDown={this.onKeyDown}
-            {...rest}>
+            {...rest}
+          >
             <div className={anchorClasses} ref={this.buttonRef}>
               {button instanceof HTMLElement ? null : button}
             </div>

@@ -85,7 +85,8 @@ export const EuiDataGridToolbar = ({
       color="text"
       className={controlBtnClasses}
       data-test-subj="dataGridFullScreenButton"
-      onClick={() => setIsFullScreen(!isFullScreen)}>
+      onClick={() => setIsFullScreen(!isFullScreen)}
+    >
       {isFullScreen ? fullScreenButtonActive : fullScreenButton}
     </EuiButtonEmpty>
   );
@@ -94,7 +95,8 @@ export const EuiDataGridToolbar = ({
     <div
       ref={setRef}
       className="euiDataGrid__controls"
-      data-test-sub="dataGridControls">
+      data-test-sub="dataGridControls"
+    >
       {hasRoomForGridControls && (
         <>
           {checkOrDefaultToolBarDisplayOptions(

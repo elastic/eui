@@ -389,7 +389,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       id={panelId.current}
       ref={divRef}
       style={styles}
-      className={classes}>
+      className={classes}
+    >
       {/* The toggle is displayed on either side for tab order */}
       {hasVisibleToggle && hasLeftToggle && theToggle}
       <EuiPanel
@@ -398,7 +399,8 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
         borderRadius={borderRadius}
         color={color}
         paddingSize={isCollapsed ? 'none' : paddingSize}
-        {...rest}>
+        {...rest}
+      >
         {children}
       </EuiPanel>
       {/* The toggle is displayed on either side for tab order */}

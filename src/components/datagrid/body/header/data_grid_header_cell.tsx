@@ -285,7 +285,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       tabIndex={isFocused && !isCellEntered ? 0 : -1}
       className={classes}
       data-test-subj={`dataGridHeaderCell-${id}`}
-      style={width != null ? { width: `${width}px` } : {}}>
+      style={width != null ? { width: `${width}px` } : {}}
+    >
       {column.isResizable !== false && width != null ? (
         <EuiDataGridColumnResizer
           columnId={id}
@@ -316,7 +317,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               className="euiDataGridHeaderCell__button"
               onClick={() =>
                 setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen)
-              }>
+              }
+            >
               {sortingArrow}
               <div className="euiDataGridHeaderCell__content">
                 {display || displayAsText || id}
@@ -332,7 +334,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             </button>
           }
           isOpen={isPopoverOpen}
-          closePopover={() => setIsPopoverOpen(false)}>
+          closePopover={() => setIsPopoverOpen(false)}
+        >
           <div>
             <EuiListGroup
               listItems={columnActions}

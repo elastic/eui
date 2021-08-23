@@ -4,6 +4,12 @@
 
 - Fixed bug in `EuiDataGrid` where a custom `className` was also being passed to the full screen button ([#5050](https://github.com/elastic/eui/pull/5050))
 - Fixed rerender state issues in `PaginationButton` inside `EuiPagination` ([#5048](https://github.com/elastic/eui/pull/5048))
+- Fixed bug in `euiHeaderAffordForFixed` mixin that was not accounting for situations where `EuiDataGrid` was in full screen mode ([#5054](https://github.com/elastic/eui/pull/5054))
+- Fixed `z-index` styles that were causing `EuiModal` and `EuiFlyout` components to appear behind `EuiDataGrid` when in full screen mode ([#5054](https://github.com/elastic/eui/pull/5054))
+
+**Theme: Amsterdam**
+
+- Updated styles for `EuiDatePicker` ([#5000](https://github.com/elastic/eui/pull/5000))
 
 ## [`37.3.0`](https://github.com/elastic/eui/tree/v37.3.0)
 
@@ -12,6 +18,7 @@
 - Updated `EuiFlyout` testenv mock to pass-through `onKeyDown` prop ([#5029](https://github.com/elastic/eui/pull/5029))
 - Enabled `EuiCodeBlock` copy button  in `EuiMarkdownFormat` ([#5032](https://github.com/elastic/eui/pull/5032))
 - Changed `copy` icon to `copyClipboard` in `EuiCodeBlock` ([#5018](https://github.com/elastic/eui/pull/5018))
+- Finished type conversion of source components to Typescript ([#5044](https://github.com/elastic/eui/pull/5044))
 
 **Bug fixes**
 
@@ -38,10 +45,6 @@
 **Bug fixes**
 
 - Fixed `EuiFormRow` ignoring `isDisabled` prop on the child element. ([#5022](https://github.com/elastic/eui/pull/5022))
-
-**Theme: Amsterdam**
-
-- Updated styles for `EuiDatePicker` ([#5000](https://github.com/elastic/eui/pull/5000))
 
 ## [`37.1.0`](https://github.com/elastic/eui/tree/v37.1.0)
 

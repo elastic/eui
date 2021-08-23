@@ -39,7 +39,8 @@ describe('EuiConfirmModal', () => {
         onConfirm={onConfirm}
         cancelButtonText="Cancel Button Text"
         confirmButtonText="Confirm Button Text"
-        {...requiredProps}>
+        {...requiredProps}
+      >
         This is a confirmation modal example
       </EuiConfirmModal>
     );

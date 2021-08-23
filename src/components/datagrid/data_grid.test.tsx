@@ -2108,7 +2108,8 @@ describe('EuiDataGrid', () => {
                       aria-label="test1 aria label"
                       data-test-subj={
                         isExpanded ? 'alertActionPopover' : 'alertAction'
-                      }>
+                      }
+                    >
                       test1
                     </Component>
                   );
@@ -2121,7 +2122,8 @@ describe('EuiDataGrid', () => {
                       aria-label="test2 aria label"
                       data-test-subj={
                         isExpanded ? 'happyActionPopover' : 'happyAction'
-                      }>
+                      }
+                    >
                       test2
                     </Component>
                   );

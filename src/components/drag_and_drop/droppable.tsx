@@ -80,7 +80,8 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
       droppableId={droppableId}
       direction={direction}
       type={type}
-      {...rest}>
+      {...rest}
+    >
       {(provided, snapshot) => {
         const classes = classNames(
           'euiDroppable',
@@ -108,11 +109,13 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
             ref={provided.innerRef}
             style={style}
             data-test-subj={dataTestSubj}
-            className={classes}>
+            className={classes}
+          >
             <EuiDroppableContext.Provider
               value={{
                 cloneItems: cloneDraggables,
-              }}>
+              }}
+            >
               {DroppableElement}
             </EuiDroppableContext.Provider>
             <div className={placeholderClasses}>{provided.placeholder}</div>

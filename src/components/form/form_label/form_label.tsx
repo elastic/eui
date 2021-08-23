@@ -64,7 +64,8 @@ export const EuiFormLabel: FunctionComponent<EuiFormLabelProps> = ({
     return (
       <legend
         className={classes}
-        {...(rest as HTMLAttributes<HTMLLegendElement>)}>
+        {...(rest as HTMLAttributes<HTMLLegendElement>)}
+      >
         {children}
       </legend>
     );
@@ -72,7 +73,8 @@ export const EuiFormLabel: FunctionComponent<EuiFormLabelProps> = ({
     return (
       <label
         className={classes}
-        {...(rest as LabelHTMLAttributes<HTMLLabelElement>)}>
+        {...(rest as LabelHTMLAttributes<HTMLLabelElement>)}
+      >
         {children}
       </label>
     );

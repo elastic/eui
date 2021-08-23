@@ -583,7 +583,8 @@ export class EuiBasicTable<T = any> extends Component<
         <EuiFlexGroup
           responsive={false}
           justifyContent="spaceBetween"
-          alignItems="baseline">
+          alignItems="baseline"
+        >
           <EuiFlexItem grow={false}>{this.renderSelectAll(true)}</EuiFlexItem>
           <EuiFlexItem grow={false}>{this.renderTableMobileSort()}</EuiFlexItem>
         </EuiFlexGroup>
@@ -600,7 +601,8 @@ export class EuiBasicTable<T = any> extends Component<
           id={this.tableId}
           tableLayout={tableLayout}
           responsive={responsive}
-          compressed={compressed}>
+          compressed={compressed}
+        >
           {caption}
           {head}
           {body}
@@ -813,7 +815,8 @@ export class EuiBasicTable<T = any> extends Component<
             align="right"
             width={width}
             description={description}
-            mobileOptions={mobileOptions}>
+            mobileOptions={mobileOptions}
+          >
             {name}
           </EuiTableHeaderCell>
         );
@@ -841,7 +844,8 @@ export class EuiBasicTable<T = any> extends Component<
             mobileOptions={mobileOptions}
             data-test-subj={`tableHeaderCell_${name}_${index}`}
             description={description}
-            {...sorting}>
+            {...sorting}
+          >
             {name}
           </EuiTableHeaderCell>
         );
@@ -884,7 +888,8 @@ export class EuiBasicTable<T = any> extends Component<
           mobileOptions={mobileOptions}
           data-test-subj={`tableHeaderCell_${field}_${index}`}
           description={description}
-          {...sorting}>
+          {...sorting}
+        >
           {name}
         </EuiTableHeaderCell>
       );
@@ -925,7 +930,8 @@ export class EuiBasicTable<T = any> extends Component<
         footers.push(
           <EuiTableFooterCell
             key={`footer_${field}_${footers.length - 1}`}
-            align={align}>
+            align={align}
+          >
             {footer}
           </EuiTableFooterCell>
         );
@@ -935,7 +941,8 @@ export class EuiBasicTable<T = any> extends Component<
         footers.push(
           <EuiTableFooterCell
             key={`footer_empty_${footers.length - 1}`}
-            align={align}>
+            align={align}
+          >
             {undefined}
           </EuiTableFooterCell>
         );
@@ -975,7 +982,8 @@ export class EuiBasicTable<T = any> extends Component<
           <EuiTableRowCell
             align="center"
             colSpan={colSpan}
-            isMobileFullWidth={true}>
+            isMobileFullWidth={true}
+          >
             <EuiIcon type="minusInCircle" color="danger" /> {error}
           </EuiTableRowCell>
         </EuiTableRow>
@@ -992,7 +1000,8 @@ export class EuiBasicTable<T = any> extends Component<
           <EuiTableRowCell
             align="center"
             colSpan={colSpan}
-            isMobileFullWidth={true}>
+            isMobileFullWidth={true}
+          >
             {noItemsMessage}
           </EuiTableRowCell>
         </EuiTableRow>
@@ -1094,7 +1103,8 @@ export class EuiBasicTable<T = any> extends Component<
       <EuiTableRow
         id={expandedRowId}
         isExpandedRow={true}
-        isSelectable={isSelectable}>
+        isSelectable={isSelectable}
+      >
         <EuiTableRowCell colSpan={expandedRowColSpan} textOnly={false}>
           {itemIdToExpandedRowMap[itemId]}
         </EuiTableRowCell>
@@ -1112,7 +1122,8 @@ export class EuiBasicTable<T = any> extends Component<
         isSelected={selected}
         hasActions={hasActions == null ? calculatedHasActions : hasActions}
         isExpandable={isExpandable}
-        {...rowProps}>
+        {...rowProps}
+      >
         {cells}
       </EuiTableRow>
     );
@@ -1223,7 +1234,8 @@ export class EuiBasicTable<T = any> extends Component<
         key={key}
         align="right"
         textOnly={false}
-        hasActions={true}>
+        hasActions={true}
+      >
         {tools}
       </EuiTableRowCell>
     );
@@ -1305,7 +1317,8 @@ export class EuiBasicTable<T = any> extends Component<
             mobileOptions && mobileOptions.header === false ? false : name,
         }}
         {...cellProps}
-        {...rest}>
+        {...rest}
+      >
         {content}
       </EuiTableRowCell>
     );

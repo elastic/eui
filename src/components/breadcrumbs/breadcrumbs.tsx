@@ -142,7 +142,8 @@ const limitBreadcrumbs = (
         color="subdued"
         aria-label={ariaLabel}
         title={ariaLabel}
-        onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+        onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+      >
         &hellip; <EuiIcon type="arrowDown" size="s" />
       </EuiLink>
     );
@@ -152,7 +153,8 @@ const limitBreadcrumbs = (
         <EuiPopover
           button={ellipsisButton}
           isOpen={isPopoverOpen}
-          closePopover={() => setIsPopoverOpen(false)}>
+          closePopover={() => setIsPopoverOpen(false)}
+        >
           <EuiBreadcrumbs
             className="euiBreadcrumbs__inPopover"
             breadcrumbs={overflowBreadcrumbs}
@@ -242,7 +244,8 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
               href={href}
               title={title}
               {...linkProps}
-              {...breadcrumbRest}>
+              {...breadcrumbRest}
+            >
               {text}
             </EuiLink>
           );

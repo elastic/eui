@@ -167,7 +167,8 @@ export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlH
       tabIndex={isFocused ? 0 : -1}
       className={classes}
       data-test-subj={`dataGridHeaderCell-${id}`}
-      style={width != null ? { width: `${width}px` } : {}}>
+      style={width != null ? { width: `${width}px` } : {}}
+    >
       <div className="euiDataGridHeaderCell__content">
         <HeaderCellRender />
       </div>

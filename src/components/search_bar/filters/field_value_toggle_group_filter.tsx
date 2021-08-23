@@ -83,7 +83,8 @@ export class FieldValueToggleGroupFilter extends Component<
           hasActiveFilters={active}
           noDivider={!isLastItem}
           aria-pressed={!!active}
-          withNext={!isLastItem}>
+          withNext={!isLastItem}
+        >
           {name}
         </EuiFilterButton>
       );

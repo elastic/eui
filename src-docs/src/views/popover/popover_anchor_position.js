@@ -90,13 +90,15 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick1}>
+                onClick={onButtonClick1}
+              >
                 downLeft
               </EuiButton>
             }
             isOpen={isPopoverOpen1}
             closePopover={closePopover1}
-            anchorPosition="downLeft">
+            anchorPosition="downLeft"
+          >
             Popover content
           </EuiPopover>
         </EuiFlexItem>
@@ -107,13 +109,15 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick2}>
+                onClick={onButtonClick2}
+              >
                 downCenter
               </EuiButton>
             }
             isOpen={isPopoverOpen2}
             closePopover={closePopover2}
-            anchorPosition="downCenter">
+            anchorPosition="downCenter"
+          >
             Popover content
           </EuiPopover>
         </EuiFlexItem>
@@ -124,13 +128,15 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick3}>
+                onClick={onButtonClick3}
+              >
                 downRight
               </EuiButton>
             }
             isOpen={isPopoverOpen3}
             closePopover={closePopover3}
-            anchorPosition="downRight">
+            anchorPosition="downRight"
+          >
             Popover content
           </EuiPopover>
         </EuiFlexItem>
@@ -145,13 +151,15 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick4}>
+                onClick={onButtonClick4}
+              >
                 upLeft
               </EuiButton>
             }
             isOpen={isPopoverOpen4}
             closePopover={closePopover4}
-            anchorPosition="upLeft">
+            anchorPosition="upLeft"
+          >
             Popover content
           </EuiPopover>
         </EuiFlexItem>
@@ -162,13 +170,15 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick5}>
+                onClick={onButtonClick5}
+              >
                 upCenter
               </EuiButton>
             }
             isOpen={isPopoverOpen5}
             closePopover={closePopover5}
-            anchorPosition="upCenter">
+            anchorPosition="upCenter"
+          >
             Popover content
           </EuiPopover>
         </EuiFlexItem>
@@ -179,13 +189,15 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick6}>
+                onClick={onButtonClick6}
+              >
                 upRight
               </EuiButton>
             }
             isOpen={isPopoverOpen6}
             closePopover={closePopover6}
-            anchorPosition="upRight">
+            anchorPosition="upRight"
+          >
             Popover content
           </EuiPopover>
         </EuiFlexItem>
@@ -200,13 +212,15 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick7}>
+                onClick={onButtonClick7}
+              >
                 leftUp
               </EuiButton>
             }
             isOpen={isPopoverOpen7}
             closePopover={closePopover7}
-            anchorPosition="leftUp">
+            anchorPosition="leftUp"
+          >
             {noteHeight}
           </EuiPopover>
         </EuiFlexItem>
@@ -217,13 +231,15 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick8}>
+                onClick={onButtonClick8}
+              >
                 leftCenter
               </EuiButton>
             }
             isOpen={isPopoverOpen8}
             closePopover={closePopover8}
-            anchorPosition="leftCenter">
+            anchorPosition="leftCenter"
+          >
             Popover content
           </EuiPopover>
         </EuiFlexItem>
@@ -234,13 +250,15 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick9}>
+                onClick={onButtonClick9}
+              >
                 leftDown
               </EuiButton>
             }
             isOpen={isPopoverOpen9}
             closePopover={closePopover9}
-            anchorPosition="leftDown">
+            anchorPosition="leftDown"
+          >
             {noteHeight}
           </EuiPopover>
         </EuiFlexItem>
@@ -255,13 +273,15 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick10}>
+                onClick={onButtonClick10}
+              >
                 rightUp
               </EuiButton>
             }
             isOpen={isPopoverOpen10}
             closePopover={closePopover10}
-            anchorPosition="rightUp">
+            anchorPosition="rightUp"
+          >
             {noteHeight}
           </EuiPopover>
         </EuiFlexItem>
@@ -272,13 +292,15 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick11}>
+                onClick={onButtonClick11}
+              >
                 rightCenter
               </EuiButton>
             }
             isOpen={isPopoverOpen11}
             closePopover={closePopover11}
-            anchorPosition="rightCenter">
+            anchorPosition="rightCenter"
+          >
             Popover content
           </EuiPopover>
         </EuiFlexItem>
@@ -289,13 +311,15 @@ export default () => {
               <EuiButton
                 iconType="arrowDown"
                 iconSide="right"
-                onClick={onButtonClick12}>
+                onClick={onButtonClick12}
+              >
                 rightDown
               </EuiButton>
             }
             isOpen={isPopoverOpen12}
             closePopover={closePopover12}
-            anchorPosition="rightDown">
+            anchorPosition="rightDown"
+          >
             {noteHeight}
           </EuiPopover>
         </EuiFlexItem>
