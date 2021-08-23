@@ -138,7 +138,8 @@ export default ({ onThemeUpdate }) => {
                       style={wrappingExampleStyle}
                       css={css`
                         padding: ${euiTheme.base * 2}px;
-                      `}>
+                      `}
+                    >
                       {`padding: ${euiTheme.base * 2}px`}
                     </div>
                   }
@@ -156,7 +157,8 @@ export default ({ onThemeUpdate }) => {
                       style={wrappingExampleStyle}
                       css={css`
                         padding: ${euiTheme.size.xl};
-                      `}>
+                      `}
+                    >
                       {`padding: ${euiTheme.size.xl}`}
                     </div>
                   }
@@ -185,7 +187,8 @@ export default ({ onThemeUpdate }) => {
                       style={wrappingExampleStyle}
                       css={css`
                         padding: calc(${euiTheme.size.base} * 2);
-                      `}>
+                      `}
+                    >
                       {`padding: calc(${euiTheme.size.base} * 2)`}
                     </div>
                   }

@@ -383,7 +383,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
             .
           </p>
         </EuiText>
-      }>
+      }
+    >
       <EuiTitle>
         <h2>Core variables</h2>
       </EuiTitle>

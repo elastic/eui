@@ -33,7 +33,8 @@ export default () => {
                   border-radius: ${euiTheme.border.radius.small};
                   background: ${background};
                   color: ${color};
-                `}>
+                `}
+              >
                 <code>
                   {chroma.contrast(color, background).toFixed(2)}
                   {`: makeHighContrastColor(${FOREGROUND[i]}, ${background})`}

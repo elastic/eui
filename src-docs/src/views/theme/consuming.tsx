@@ -22,7 +22,8 @@ export default () => {
         css={{
           background: euiTheme.colors.lightShade,
           padding: `calc(${euiTheme.size.base} * 2)`,
-        }}>
+        }}
+      >
         <p>
           The padding of this box is created using <EuiCode>calc()</EuiCode>{' '}
           because EUI&apos;s theme sizes are string pixel values that are

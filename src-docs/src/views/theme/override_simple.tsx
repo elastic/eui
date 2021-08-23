@@ -11,7 +11,8 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
       css={{
         background: euiTheme.colors.lightShade,
         padding: euiTheme.size.xl,
-      }}>
+      }}
+    >
       <p>{children}</p>
     </EuiText>
   );

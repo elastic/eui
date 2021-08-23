@@ -26,7 +26,8 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
         background: euiTheme.colors.customColorPrimaryHighlight,
         padding: euiTheme.size.xl,
         color: euiTheme.colors.customColorPrimaryText,
-      }}>
+      }}
+    >
       <p>
         <EuiIcon type="stopFilled" color={euiTheme.colors.customColorPrimary} />{' '}
         {children}

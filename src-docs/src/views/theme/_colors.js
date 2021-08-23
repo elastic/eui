@@ -217,7 +217,8 @@ export default ({ onThemeUpdate }) => {
                               color: ${colors[color]};
                               min-width: ${euiTheme.size.l};
                               min-height: ${euiTheme.size.l};
-                            `}>
+                            `}
+                          >
                             <strong>Aa</strong>
                           </button>
                         }
@@ -278,7 +279,8 @@ export default ({ onThemeUpdate }) => {
                               color: ${colors[color]};
                               min-width: ${euiTheme.size.l};
                               min-height: ${euiTheme.size.l};
-                            `}>
+                            `}
+                          >
                             <strong>Aa</strong>
                           </button>
                         }
@@ -310,7 +312,8 @@ export default ({ onThemeUpdate }) => {
                                   color: ${colors[color]};
                                   min-width: ${euiTheme.size.l};
                                   min-height: ${euiTheme.size.l};
-                                `}>
+                                `}
+                              >
                                 <strong>Aa</strong>
                               </button>
                             }
@@ -398,7 +401,8 @@ export default ({ onThemeUpdate }) => {
                         padding: ${euiTheme.size.s};
                         color: ${euiTheme.colors.ink};
                         background: ${euiTheme.colors.warning};
-                      `}>
+                      `}
+                    >
                       <strong>background: {euiTheme.colors.warning}</strong>
                     </div>
                   }
@@ -425,7 +429,8 @@ export default ({ onThemeUpdate }) => {
                           euiTheme.colors.warning,
                           0.25
                         )};
-                      `}>
+                      `}
+                    >
                       <strong>
                         background:{' '}
                         {transparentize(euiTheme.colors.warning, 0.25)}
@@ -449,7 +454,8 @@ export default ({ onThemeUpdate }) => {
                     <div
                       css={css`
                         color: ${euiTheme.colors.warningText};
-                      `}>
+                      `}
+                    >
                       <strong>color: {euiTheme.colors.warningText}</strong>
                     </div>
                   }
@@ -477,7 +483,8 @@ export default ({ onThemeUpdate }) => {
                         color: ${makeHighContrastColor(euiTheme.colors.warning)(
                           euiTheme.colors.darkShade
                         )};
-                      `}>
+                      `}
+                    >
                       <strong>
                         color:{' '}
                         {makeHighContrastColor(euiTheme.colors.warning)(

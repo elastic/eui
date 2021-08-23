@@ -41,7 +41,8 @@ export default () => {
                     : euiTheme.colors.ink};
                   background: ${rgb(...color)};
                 `,
-              ]}>
+              ]}
+            >
               {isColorDark(...color) ? 'Dark' : 'Light'}
             </div>
           </EuiFlexItem>

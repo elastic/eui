@@ -117,7 +117,8 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
         css={css`
           font-weight: ${euiTheme.font.weight.light};
           color: ${euiTheme.colors.subdued};
-        `}>
+        `}
+      >
         : {humanizeType(type.custom.origin.type)}
       </span>
     );
@@ -133,7 +134,8 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
           size="xs"
           css={css`
             padding: 0 ${euiTheme.size.s};
-          `}>
+          `}
+        >
           <i>{markup(type.description)}</i>
         </EuiText>
       </>
@@ -184,7 +186,8 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
         <EuiText size="s">
           <EuiCopy
             beforeMessage={`Click to copy euiTheme.${name}`}
-            textToCopy={`euiTheme.${name}`}>
+            textToCopy={`euiTheme.${name}`}
+          >
             {(copy) => (
               <button className="eui-textLeft" onClick={copy}>
                 <EuiCode
@@ -192,7 +195,8 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
                     padding: 0 !important;
                   `}
                   language="ts"
-                  transparentBackground>
+                  transparentBackground
+                >
                   {name}
                   {typeRender}
                 </EuiCode>

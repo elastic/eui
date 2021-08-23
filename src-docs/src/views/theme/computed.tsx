@@ -13,7 +13,8 @@ const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
         background: euiTheme.colors.highlight,
         padding: euiTheme.size.xl,
         color: euiTheme.colors.primaryText,
-      }}>
+      }}
+    >
       <p>
         <EuiIcon type="stopFilled" color={euiTheme.colors.primary} /> {children}
       </p>

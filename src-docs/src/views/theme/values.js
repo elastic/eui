@@ -77,7 +77,8 @@ export default () => {
               <Link to="/guidelines/sass">Sass method</Link>.
             </p>
           </EuiCallOut>
-        }>
+        }
+      >
         <Colors onThemeUpdate={updateTheme} />
 
         <EuiHorizontalRule margin="xxl" />
@@ -106,7 +107,8 @@ export default () => {
 
         <EuiBottomBar
           style={{ marginLeft: -24, marginRight: -24, marginBottom: -24 }}
-          position="sticky">
+          position="sticky"
+        >
           <EuiFlexGroup responsive={false} justifyContent="flexEnd">
             {Object.keys(overrides).length > 0 && (
               <>
@@ -114,7 +116,8 @@ export default () => {
                   <EuiButtonEmpty
                     color="ghost"
                     iconType="cross"
-                    onClick={clearOverrides}>
+                    onClick={clearOverrides}
+                  >
                     Clear overrides
                   </EuiButtonEmpty>
                 </EuiFlexItem>
@@ -133,7 +136,8 @@ export default () => {
               <span>
                 <EuiButton
                   onClick={() => setJsonFlyoutIsOpen(true)}
-                  color="ghost">
+                  color="ghost"
+                >
                   View theme JSON
                 </EuiButton>
               </span>

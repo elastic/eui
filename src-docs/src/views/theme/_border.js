@@ -200,7 +200,8 @@ export default ({ onThemeUpdate }) => {
                       style={wrappingExampleStyle}
                       css={css`
                         border: ${euiTheme.border.thick};
-                      `}>
+                      `}
+                    >
                       <strong>{`border: ${euiTheme.border.thick}`}</strong>
                     </div>
                   }
@@ -221,7 +222,8 @@ export default ({ onThemeUpdate }) => {
                       css={css`
                         border: ${euiTheme.border.width.thick} dashed
                           ${euiTheme.border.color};
-                      `}>
+                      `}
+                    >
                       <strong>{`border: ${euiTheme.border.width.thick} dashed ${euiTheme.border.color}`}</strong>
                     </div>
                   }
@@ -237,7 +239,8 @@ export default ({ onThemeUpdate }) => {
                       css={css`
                         border: ${euiTheme.border.thick};
                         border-radius: ${euiTheme.border.radius.medium};
-                      `}>
+                      `}
+                    >
                       <strong>{`border-radius: ${euiTheme.border.radius.medium}`}</strong>
                     </div>
                   }

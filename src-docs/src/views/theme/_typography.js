@@ -123,7 +123,8 @@ export default ({ onThemeUpdate }) => {
                               key={family}
                               css={css`
                                 font-family: ${family};
-                              `}>
+                              `}
+                            >
                               {family}
                               {i < fontFamilies.length - 1 ? ', ' : ''}
                             </span>
@@ -150,7 +151,8 @@ export default ({ onThemeUpdate }) => {
                               key={family}
                               css={css`
                                 font-family: ${family};
-                              `}>
+                              `}
+                            >
                               {family}
                               {i < codeFontFamilies.length - 1 ? ', ' : ''}
                             </span>
@@ -303,7 +305,8 @@ export default ({ onThemeUpdate }) => {
                     <p
                       css={css`
                         font-family: ${euiTheme.font.familyCode};
-                      `}>
+                      `}
+                    >
                       {'I am a paragraph rendered using the code font family'}
                     </p>
                   }
@@ -326,7 +329,8 @@ export default ({ onThemeUpdate }) => {
                     <div
                       css={css`
                         font-weight: ${euiTheme.font.weight.bold};
-                      `}>
+                      `}
+                    >
                       {'I am proper bold'}
                     </div>
                   }

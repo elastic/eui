@@ -35,7 +35,8 @@ export default () => {
                   border-radius: ${euiTheme.border.radius.small};
                   background: ${backgroundColor};
                   color: ${color};
-                `}>
+                `}
+              >
                 {chroma.contrast(color, simulated).toFixed(2)}: Roughly
               </div>
             </EuiFlexItem>

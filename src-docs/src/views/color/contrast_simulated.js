@@ -95,7 +95,8 @@ export default () => {
                   background: ${backgroundColor};
                   color: ${color};
                   text-transform: capitalize;
-                `}>
+                `}
+              >
                 <EuiIcon type={iconType} /> {contrastRatio}:{' '}
                 {contrastButtonSelected}
               </div>

@@ -26,7 +26,8 @@ export default () => {
                       colorMode === 'DARK'
                         ? euiTheme.colors.ghost
                         : euiTheme.colors.ink,
-                  }}>
+                  }}
+                >
                   {transparent}
                 </EuiBadge>
               </code>

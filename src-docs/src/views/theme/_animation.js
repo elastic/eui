@@ -153,7 +153,8 @@ export default ({ onThemeUpdate }) => {
                             0.25
                           )};
                         }
-                      `}>
+                      `}
+                    >
                       <strong>Hover me</strong>
                     </div>
                   }
@@ -179,7 +180,8 @@ export default ({ onThemeUpdate }) => {
                         :hover {
                           padding: ${euiTheme.size.xl};
                         }
-                      `}>
+                      `}
+                    >
                       <strong>Hover me</strong>
                     </div>
                   }

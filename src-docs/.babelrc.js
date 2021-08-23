@@ -3,9 +3,9 @@ const index = baseConfig.plugins.indexOf(
   './scripts/babel/proptypes-from-ts-props'
 );
 baseConfig.presets.push([
-  "@emotion/babel-preset-css-prop",
+  '@emotion/babel-preset-css-prop',
   {
-    "labelFormat": "[local]"
+    labelFormat: '[local]',
   },
 ]);
 baseConfig.plugins.splice(

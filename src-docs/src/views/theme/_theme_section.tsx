@@ -51,7 +51,8 @@ export const ThemeSection: FunctionComponent<ThemeSection> = ({
             className="eui-xScroll"
             grow={false}
             paddingSize="m"
-            color="subdued">
+            color="subdued"
+          >
             <EuiFlexGroup direction="column" gutterSize="m">
               {themeValues}
             </EuiFlexGroup>
@@ -68,7 +69,8 @@ export const ThemeSection: FunctionComponent<ThemeSection> = ({
                   isCopyable={true}
                   paddingSize="none"
                   transparentBackground={true}
-                  language="jsx">
+                  language="jsx"
+                >
                   {finalSnippet}
                 </EuiCodeBlock>
               )}
