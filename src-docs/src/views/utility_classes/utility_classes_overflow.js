@@ -113,7 +113,8 @@ export default () => (
             tabIndex={0}
             role="region"
             aria-label="Example of eui-xScroll region"
-            className="eui-xScrollWithShadows">
+            className="eui-xScrollWithShadows"
+          >
             <EuiText size="s" style={{ width: '150%', padding: 16 }}>
               <p>
                 Orbiting this at a distance of roughly ninety-two million miles
@@ -170,7 +171,8 @@ export default () => (
                 color="warning"
                 tabIndex="0"
                 role="region"
-                aria-label="Example 1 for full height region">
+                aria-label="Example 1 for full height region"
+              >
                 <EuiText size="s">
                   <p>
                     Orbiting this at a distance of roughly ninety-two million
@@ -188,7 +190,8 @@ export default () => (
                 color="warning"
                 tabIndex="0"
                 role="region"
-                aria-label="Example 2 for full height region">
+                aria-label="Example 2 for full height region"
+              >
                 <EuiText size="s">
                   <p>
                     Orbiting this at a distance of roughly ninety-two million
