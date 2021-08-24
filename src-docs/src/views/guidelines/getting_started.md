@@ -164,6 +164,13 @@ The Amsterdam theme uses the latest version of Inter that can be grabbed from Go
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 ```
 
+Or grab all weights between 400 and 700 as a variable font.
+
+```scss
+// index.scss
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300...700&family=Roboto+Mono:ital,wght@0,400...700;1,400...700&display=swap');
+```
+
 ### Reusing the variables in JavaScript
 
 The Sass variables are also made available for consumption as json files. This enables reuse of values in css-in-js systems like [styled-components](https://www.styled-components.com). As the following example shows, it can also make the downstream components theme-aware without much extra effort:

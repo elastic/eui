@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
+import { debounce } from 'lodash';
+
 import sizes from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_size.scss';
 import zindexs from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_z_index.scss';
 import animations from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_animations.scss';
 import breakpoints from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_responsive.scss';
-import { rgbToHex } from '../../../../src/services';
+import { htmlIdGenerator, rgbToHex } from '../../../../src/services';
+
+import fonts from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_font_weight.scss';
 
 import { Link } from 'react-router-dom';
 
@@ -23,6 +27,7 @@ import {
   EuiCodeBlock,
   EuiCallOut,
   EuiPanel,
+  EuiRange,
 } from '../../../../src/components';
 
 const euiColors = [...allowedColors, 'euiColorGhost', 'euiColorInk'];
@@ -46,6 +51,14 @@ const euiFontSizes = [
   'euiFontSize',
   'euiFontSizeL',
   'euiFontSizeXL',
+];
+
+const euiFontWeights = [
+  'euiFontWeightLight',
+  'euiFontWeightRegular',
+  'euiFontWeightMedium',
+  'euiFontWeightSemiBold',
+  'euiFontWeightBold',
 ];
 
 const euiShadows = [
@@ -362,6 +375,41 @@ const contrastExample = `// Make sure text passes a contrast check
 
 export const SassGuidelines = ({ selectedTheme }) => {
   const palette = getSassVars(selectedTheme);
+  const [fontWeight, setFontWeight] = useState('400');
+  // TODO
+  // const onFontWeightChange = useCallback(
+  //   debounce((e) => {
+  //     setFontWeight(e.target.value);
+  //   }),
+  //   [setFontWeight]
+  // );
+
+  function renderFontWeights(weight) {
+    const value = fonts[weight];
+    return (
+      <div key={value} className="guideSass__fontSizeExample">
+        <p style={{ fontWeight: value }}>The quick brown fox</p>
+        <EuiSpacer size="s" />
+        <EuiCode>${weight}</EuiCode>
+      </div>
+    );
+  }
+
+  const renderFontWeight = () => {
+    const weight = Object.keys(fonts).find(
+      (key) => fonts[key] === Number(fontWeight)
+    );
+    return (
+      <EuiText className="guideSass__fontSizeExample">
+        <p style={{ fontWeight: fontWeight }}>
+          The quick brown fox:{' '}
+          <EuiCode style={{ fontWeight: fontWeight }}>
+            {weight ? `$${weight}` : fontWeight}
+          </EuiCode>
+        </p>
+      </EuiText>
+    );
+  };
 
   return (
     <GuidePage title="Sass guidelines">
@@ -645,32 +693,32 @@ export const SassGuidelines = ({ selectedTheme }) => {
       <EuiSpacer />
       <EuiFlexGrid columns={2}>
         <EuiFlexItem>
-          <EuiTitle size="s">
+          <EuiText>
             <h3>Text sizes</h3>
-          </EuiTitle>
+          </EuiText>
 
           <EuiSpacer />
           {euiFontSizes.map(function (size, index) {
             return renderFontSize(size, index);
           })}
+
+          <EuiSpacer />
+
+          <EuiText>
+            <h3>Text colors</h3>
+          </EuiText>
+
+          <EuiSpacer />
+
+          {euiTextColors.map(function (color, index) {
+            return renderPaletteColor(palette, color, index);
+          })}
         </EuiFlexItem>
         <EuiFlexItem>
           <div>
-            <EuiTitle size="s">
-              <h3>Text colors</h3>
-            </EuiTitle>
-
-            <EuiSpacer />
-
-            {euiTextColors.map(function (color, index) {
-              return renderPaletteColor(palette, color, index);
-            })}
-
-            <EuiSpacer />
-
-            <EuiTitle>
+            <EuiText>
               <h3>Font families</h3>
-            </EuiTitle>
+            </EuiText>
 
             <EuiSpacer />
 
@@ -694,6 +742,108 @@ export const SassGuidelines = ({ selectedTheme }) => {
                 <EuiCode language="css">@include euiCodeFont;</EuiCode>
               </EuiFlexItem>
             </EuiFlexGroup>
+
+            <EuiSpacer />
+
+            <EuiText>
+              <h3>Font weights</h3>
+              <p>
+                <small>
+                  EUI establishes a set of 5 font-weights based on their numeric
+                  keywords values. When importing the font-family from your
+                  service of choice, ensure that you have all 5 weights
+                  contained in your import.{' '}
+                  {selectedTheme.includes('amsterdam') ? (
+                    <>
+                      The Amsterdam theme also supports variable font families
+                      which can be{' '}
+                      <EuiLink href="https://css-tricks.com/getting-the-most-out-of-variable-fonts-on-google-fonts/">
+                        imported from Google fonts using their new API
+                      </EuiLink>
+                      . Though we still recommend sticking to the Sass variable
+                      names.
+                    </>
+                  ) : (
+                    <>
+                      See the{' '}
+                      <Link to="/guidelines/getting-started">
+                        Getting Started page
+                      </Link>{' '}
+                      for details on static imports.
+                    </>
+                  )}
+                </small>
+              </p>
+            </EuiText>
+
+            <EuiSpacer />
+
+            {selectedTheme.includes('amsterdam') ? (
+              <>
+                <EuiRange
+                  id={htmlIdGenerator()()}
+                  min={300}
+                  max={700}
+                  step={1}
+                  value={fontWeight}
+                  onChange={(e) => setFontWeight(e.target.value)}
+                  showValue
+                  aria-label="Font weight"
+                  showTicks
+                  ticks={euiFontWeights.map(function (name) {
+                    return {
+                      label: name.split('euiFontWeight').pop(),
+                      value: fonts[name],
+                    };
+                  })}
+                />
+
+                <EuiSpacer />
+                {renderFontWeight()}
+
+                <EuiSpacer />
+
+                <EuiText>
+                  <h3>Number format</h3>
+                  <p>
+                    <small>
+                      EUI provides a Sass mixin for applying the{' '}
+                      <EuiCode>tnum</EuiCode> setting to text so that numbers
+                      align more properly in a column, especially when right
+                      aligned.
+                    </small>
+                  </p>
+                  <EuiCode>@include euiNumberFormat</EuiCode>
+                </EuiText>
+                <EuiSpacer />
+                <EuiText textAlign="right">
+                  <EuiFlexGrid columns={2}>
+                    <EuiFlexItem>
+                      <p>
+                        <strong>No mixin</strong>
+                        <br />
+                        1131711
+                        <br />
+                        0040900
+                      </p>
+                    </EuiFlexItem>
+                    <EuiFlexItem>
+                      <p className="guideSass__fontSettingsTnum">
+                        <strong>With mixin</strong>
+                        <br />
+                        1131711
+                        <br />
+                        0040900
+                      </p>
+                    </EuiFlexItem>
+                  </EuiFlexGrid>
+                </EuiText>
+              </>
+            ) : (
+              euiFontWeights.map(function (weight) {
+                return renderFontWeights(weight);
+              })
+            )}
           </div>
         </EuiFlexItem>
       </EuiFlexGrid>
