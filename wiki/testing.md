@@ -7,7 +7,7 @@ contains `{component name}.js`.
 
 ## Updating snapshots
 
-When you change a component in a way that affects the markup, you will need to update the snapshot in order for the tests to succeed. To do so, run `yarn run test-unit -u`. This will update all snapshots in the repo. You can also add any string to the end of the command to run the tests only on directories that contain that string. For example, `yarn run test-unit -u button` will only update the tests for directories that **contain** `button`.
+When you change a component in a way that affects the markup, you will need to update the snapshot in order for the tests to succeed. To do so, run `yarn test-unit -u`. This will update all snapshots in the repo. You can also add any string to the end of the command to run the tests only on directories that contain that string. For example, `yarn test-unit -u button` will only update the tests for directories that **contain** `button`.
 
 ## Test helpers
 
