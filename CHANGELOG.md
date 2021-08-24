@@ -153,6 +153,15 @@ No public interface changes since `37.3.1`.
 - Added `EuiTokensObject` type definition to allow enforcing i18n token coverage in consuming applications ([#4927](https://github.com/elastic/eui/issues/4927))
 - Added `rowHeightsOptions` to `EuiDataGrid` to allow configuring row heights ([#4853](https://github.com/elastic/eui/pull/4853))
 
+
+## [`34.5.3`](https://github.com/elastic/eui/tree/v34.5.3)
+
+**Note: this release is a backport containing changes originally made in `37.3.0`**
+
+**Bug fixes**
+
+- Fixed `EuiSelectable`'s double click bug ([#5021](https://github.com/elastic/eui/pull/5021))
+
 ## [`34.5.2`](https://github.com/elastic/eui/tree/v34.5.2)
 
 **Bug fixes**
