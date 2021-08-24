@@ -44,8 +44,7 @@ describe('YourComponent', () => {
       </YourComponent>
     );
 
-    expect(component)
-      .toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
@@ -55,8 +54,7 @@ describe('YourComponent', () => {
           <YourComponent color="blue" />
         );
 
-        expect(component)
-          .toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -68,7 +66,7 @@ describe('YourComponent', () => {
           <YourComponent onClick={onClickHandler} />
         );
 
-        sinon.assert.notCalled(onClickHandler);
+        expect(onClickHandler).not.toHaveBeenCalled();
       });
 
       test('is called when the button is clicked', () => {
@@ -81,7 +79,7 @@ describe('YourComponent', () => {
         // NOTE: This is the only way to find this button.
         component.find('button').simulate('click');
 
-        sinon.assert.calledOnce(onClickHandler);
+        expect(onClickHandler).toHaveBeenCalledTimes(1);
       });
     });
   });
