@@ -3,6 +3,8 @@
 - Updated `EuiToolTip` to remain showing tooltip while child element is in focus ([#5066](https://github.com/elastic/eui/pull/5066))
 - Removed `children` from TypeScript definition in `EuiIconTip` ([#5066](https://github.com/elastic/eui/pull/5066))
 
+## [`37.3.1`](https://github.com/elastic/eui/tree/v37.3.1)
+
 **Bug fixes**
 
 - Fixed bug in `EuiDataGrid` where a custom `className` was also being passed to the full screen button ([#5050](https://github.com/elastic/eui/pull/5050))
@@ -46,6 +48,16 @@
 
 - Fixed usage of `outsideClickCloses` prop of `EuiFlyout` ([#4986](https://github.com/elastic/eui/pull/4986))
 - Fixed `EuiFormRow` ignoring `isDisabled` prop on the child element. ([#5022](https://github.com/elastic/eui/pull/5022))
+
+## [`37.1.2`](https://github.com/elastic/eui/tree/v37.1.2)
+
+**Note: this release is a backport containing changes originally made in `37.3.0` and `37.3.1`**
+
+**Bug fixes**
+
+- Fixed `EuiSelectable`'s double click bug ([#5021](https://github.com/elastic/eui/pull/5021))
+- Fixed bug in `euiHeaderAffordForFixed` mixin that was not accounting for situations where `EuiDataGrid` was in full screen mode ([#5054](https://github.com/elastic/eui/pull/5054))
+- Fixed `z-index` styles that were causing `EuiModal` and `EuiFlyout` components to appear behind `EuiDataGrid` when in full screen mode ([#5054](https://github.com/elastic/eui/pull/5054))
 
 ## [`37.1.1`](https://github.com/elastic/eui/tree/v37.1.1)
 
