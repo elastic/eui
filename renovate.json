@@ -1,17 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base"
-  ],
-  "ignorePaths": [
-    "./.github/**"
-  ],
-  "enabledManagers": [
-    "npm"
-  ],
-  "baseBranches": [
-    "master"
-  ],
+  "extends": ["config:base"],
+  "ignorePaths": ["./.github/**"],
+  "enabledManagers": ["npm"],
+  "baseBranches": ["master"],
   "prConcurrentLimit": 0,
   "prHourlyLimit": 10,
   "separateMajorMinor": false,
@@ -26,26 +18,16 @@
     },
     "packageRules": [
       {
-        "packagePatterns": [
-          ".*"
-        ],
+        "packagePatterns": [".*"],
         "enabled": false
       },
       {
         "groupName": "@elastic/charts",
-        "packageNames": [
-          "@elastic/charts"
-        ],
+        "packageNames": ["@elastic/charts"],
         "matchUpdateTypes": ["major"],
-        "reviewers": [
-          "team:datavis"
-        ],
-        "matchBaseBranches": [
-          "master"
-        ],
-        "labels": [
-          "dependencies"
-        ],
+        "reviewers": ["team:datavis"],
+        "matchBaseBranches": ["master"],
+        "labels": ["dependencies"],
         "automerge": true,
         "enabled": true
       }
