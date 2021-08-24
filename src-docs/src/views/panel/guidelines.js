@@ -35,7 +35,8 @@ export default () => (
       color="subdued"
       paddingSize="l"
       hasShadow={false}
-      style={{ justifyContent: 'center', display: 'flex' }}>
+      style={{ justifyContent: 'center', display: 'flex' }}
+    >
       <EuiPanel hasShadow={true} hasBorder={false} style={{ maxWidth: 650 }}>
         <EuiTitle size="m">
           <span>Panel 1</span>
@@ -81,14 +82,17 @@ export default () => (
     <GuideRule
       heading="When nesting 3 or more panels, use different panel styles"
       description="If the same style panel is used between multiple nested panels, the hierarchy can be visually confusing and the benefit of panels breaks down. While there is no hard and fast rule in which sequence of panels styles should be used,
-                   varying the styles will help guide the user through the content relationship.">
+                   varying the styles will help guide the user through the content relationship."
+    >
       <GuideRuleExample
         type="do"
-        text="Break up stacked panel styles with different style combinations.">
+        text="Break up stacked panel styles with different style combinations."
+      >
         <EuiPanel
           hasShadow={true}
           hasBorder={false}
-          style={{ transform: 'scale(.9)' }}>
+          style={{ transform: 'scale(.9)' }}
+        >
           <EuiTitle size="s">
             <span>Panel 1</span>
           </EuiTitle>
@@ -101,7 +105,8 @@ export default () => (
             <EuiPanel
               hasShadow={false}
               hasBorder={true}
-              style={{ minHeight: 100 }}>
+              style={{ minHeight: 100 }}
+            >
               <EuiTitle size="xxs">
                 <span>Panel 3</span>
               </EuiTitle>
@@ -112,11 +117,13 @@ export default () => (
 
       <GuideRuleExample
         type="dont"
-        text="Too many of same panel style in a stack of panels (3+ deep) isn't helpful.">
+        text="Too many of same panel style in a stack of panels (3+ deep) isn't helpful."
+      >
         <EuiPanel
           hasShadow={false}
           hasBorder={true}
-          style={{ transform: 'scale(.9)' }}>
+          style={{ transform: 'scale(.9)' }}
+        >
           <EuiTitle size="s">
             <span>Panel 1</span>
           </EuiTitle>
@@ -129,7 +136,8 @@ export default () => (
             <EuiPanel
               hasShadow={false}
               hasBorder={true}
-              style={{ minHeight: 100 }}>
+              style={{ minHeight: 100 }}
+            >
               <EuiTitle size="xxs">
                 <span>Panel 3</span>
               </EuiTitle>
@@ -145,14 +153,17 @@ export default () => (
       heading="Limit the use of shadows within a stack of panels"
       description="Shadows are great for drawing focus to a single single layer of a page.
                    But if everything has a shadow it becomes too noisy.
-                   Use shadows sparingly and try to use them at either the top or bottom of the stack.">
+                   Use shadows sparingly and try to use them at either the top or bottom of the stack."
+    >
       <GuideRuleExample
         type="do"
-        text="Minimize shadows within a panel stack by removing the shadows from all but a single layer.">
+        text="Minimize shadows within a panel stack by removing the shadows from all but a single layer."
+      >
         <EuiPanel
           hasShadow={false}
           hasBorder={true}
-          style={{ transform: 'scale(.9)' }}>
+          style={{ transform: 'scale(.9)' }}
+        >
           <EuiTitle size="s">
             <span>Panel 1</span>
           </EuiTitle>
@@ -173,11 +184,13 @@ export default () => (
 
       <GuideRuleExample
         type="dont"
-        text="Stacking multiple shadowed panels is too noisy.">
+        text="Stacking multiple shadowed panels is too noisy."
+      >
         <EuiPanel
           hasShadow={true}
           hasBorder={false}
-          style={{ transform: 'scale(.9)' }}>
+          style={{ transform: 'scale(.9)' }}
+        >
           <EuiTitle size="s">
             <span>Panel 1</span>
           </EuiTitle>
@@ -190,7 +203,8 @@ export default () => (
             <EuiPanel
               hasShadow={true}
               hasBorder={false}
-              style={{ minHeight: 100 }}>
+              style={{ minHeight: 100 }}
+            >
               <EuiTitle size="xxs">
                 <span>Panel 3</span>
               </EuiTitle>
@@ -204,14 +218,17 @@ export default () => (
       heading="Don’t overuse panels"
       description={
         'It’s easy to fall into the thinking that everything needs a panel. Carefully consider why you need a panel and if too many elements are fighting for attention.'
-      }>
+      }
+    >
       <GuideRuleExample
         type="do"
-        text="Reserve panels for drawing attention to certain elements.">
+        text="Reserve panels for drawing attention to certain elements."
+      >
         <EuiPanel
           color="subdued"
           hasShadow={false}
-          style={{ transform: 'scale(.9)' }}>
+          style={{ transform: 'scale(.9)' }}
+        >
           <EuiTitle size="s">
             <span>Panel 1</span>
           </EuiTitle>
@@ -230,11 +247,13 @@ export default () => (
 
       <GuideRuleExample
         type="do"
-        text="Remove panel styles but keep the component purely for containment.">
+        text="Remove panel styles but keep the component purely for containment."
+      >
         <EuiPanel
           color="subdued"
           hasShadow={false}
-          style={{ transform: 'scale(.9)' }}>
+          style={{ transform: 'scale(.9)' }}
+        >
           <EuiTitle size="s">
             <span>Panel 1</span>
           </EuiTitle>
@@ -247,7 +266,8 @@ export default () => (
             <EuiPanel
               hasShadow={true}
               hasBorder={false}
-              style={{ minHeight: 100 }}>
+              style={{ minHeight: 100 }}
+            >
               <EuiTitle size="xxs">
                 <span>Panel 3</span>
               </EuiTitle>
@@ -261,14 +281,17 @@ export default () => (
       heading="Consider the relationship between sibling panels"
       description="When sibling panels have the same meaning and interaction, like cards, it is best to keep them all visually similar.
                     On the other hand you can use panels to separate main from aside content.
-                    In this case, you will want to ensure visual prominence of the main content.">
+                    In this case, you will want to ensure visual prominence of the main content."
+    >
       <GuideRuleExample
         type="do"
-        text="Use the same styles for cards in a row.">
+        text="Use the same styles for cards in a row."
+      >
         <EuiPanel
           hasShadow={false}
           hasBorder={true}
-          style={{ transform: 'scale(.9)' }}>
+          style={{ transform: 'scale(.9)' }}
+        >
           <EuiTitle size="s">
             <span>Panel 1</span>
           </EuiTitle>
@@ -304,7 +327,8 @@ export default () => (
         <EuiPanel
           color="subdued"
           hasShadow={false}
-          style={{ transform: 'scale(.9)' }}>
+          style={{ transform: 'scale(.9)' }}
+        >
           <EuiTitle size="s">
             <span>Panel 1</span>
           </EuiTitle>
@@ -314,7 +338,8 @@ export default () => (
               <EuiPanel
                 hasShadow={true}
                 hasBorder={false}
-                style={{ minHeight: 170 }}>
+                style={{ minHeight: 170 }}
+              >
                 <EuiTitle size="xs">
                   <span>Main panel</span>
                 </EuiTitle>
@@ -325,7 +350,8 @@ export default () => (
                 hasShadow={false}
                 hasBorder={true}
                 color="transparent"
-                style={{ minHeight: 170 }}>
+                style={{ minHeight: 170 }}
+              >
                 <EuiTitle size="xs">
                   <span>Aside panel</span>
                 </EuiTitle>

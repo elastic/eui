@@ -27,7 +27,8 @@ export default () => {
       <DisplayToggles
         canLoading={false}
         canInvalid={false}
-        canCompressed={false}>
+        canCompressed={false}
+      >
         <EuiColorStops
           label="Kitchen sink"
           colorStops={colorStops}

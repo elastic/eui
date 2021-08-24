@@ -55,7 +55,8 @@ export default () => (
       <EuiFlexItem
         className="guideDemo__icon"
         key={iconType}
-        style={{ width: '200px' }}>
+        style={{ width: '200px' }}
+      >
         <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`}>
           {(copy) => (
             <EuiPanel onClick={copy} className="eui-textCenter">

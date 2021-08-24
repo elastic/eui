@@ -8,7 +8,8 @@ export default () => (
     <EuiAccordion
       id={htmlIdGenerator()()}
       buttonContent="I am opened by default. Click me to toggle close / open"
-      initialIsOpen={true}>
+      initialIsOpen={true}
+    >
       <EuiPanel color="subdued">
         Any content inside of <strong>EuiAccordion</strong> will appear here.
       </EuiPanel>

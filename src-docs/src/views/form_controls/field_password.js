@@ -21,7 +21,8 @@ export default function () {
             setDual(e.target.checked);
           }}
         />,
-      ]}>
+      ]}
+    >
       <EuiFieldPassword
         placeholder="Placeholder text"
         type={dual ? 'dual' : undefined}

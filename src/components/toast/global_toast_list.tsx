@@ -260,12 +260,14 @@ export class EuiGlobalToastList extends Component<
       return (
         <EuiGlobalToastListItem
           key={toast.id}
-          isDismissed={this.state.toastIdToDismissedMap[toast.id]}>
+          isDismissed={this.state.toastIdToDismissedMap[toast.id]}
+        >
           <EuiToast
             onClose={this.dismissToast.bind(this, toast)}
             onFocus={this.onMouseEnter}
             onBlur={this.onMouseLeave}
-            {...rest}>
+            {...rest}
+          >
             {text}
           </EuiToast>
         </EuiGlobalToastListItem>
@@ -285,7 +287,8 @@ export class EuiGlobalToastList extends Component<
           this.listElement = element;
         }}
         className={classes}
-        {...rest}>
+        {...rest}
+      >
         {renderedToasts}
       </div>
     );

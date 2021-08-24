@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import AceEditor, { IAceEditorProps } from 'react-ace';
 
 import { keysOf } from '../common';
-import { htmlIdGenerator, keys } from '../../services';
+import { htmlIdGenerator, keys, warnOnce } from '../../services';
 import { EuiI18n } from '../i18n';
 
 const DEFAULT_MODE = 'text';
@@ -78,6 +78,15 @@ export class EuiCodeEditor extends Component<
     isEditing: false,
     name: htmlIdGenerator()(),
   };
+
+  constructor(props: EuiCodeEditorProps) {
+    super(props);
+    warnOnce(
+      'EuiCodeEditor',
+      `[EUI] - DEPRECATION: \`EuiCodeEditor\` is deprecated and will be removed in a future release.
+See https://ela.st/euicodeeditor for migration options.`
+    );
+  }
 
   idGenerator = htmlIdGenerator();
   aceEditor: AceEditor | null = null;
@@ -246,7 +255,8 @@ export class EuiCodeEditor extends Component<
           this.editorHint = hint;
         }}
         onClick={this.startEditing}
-        data-test-subj="codeEditorHint">
+        data-test-subj="codeEditorHint"
+      >
         <p className="euiText">
           {isReadOnly ? (
             <EuiI18n
@@ -281,7 +291,8 @@ export class EuiCodeEditor extends Component<
       <div
         className={classes}
         style={{ width, height }}
-        data-test-subj={dataTestSubj}>
+        data-test-subj={dataTestSubj}
+      >
         {prompt}
 
         <AceEditor

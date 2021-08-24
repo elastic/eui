@@ -112,7 +112,8 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
         {type && (
           <EuiBadge
             className="euiNotificationEventMeta__badge"
-            color={badgeColor}>
+            color={badgeColor}
+          >
             {severity ? `${type}: ${severity}` : type}
           </EuiBadge>
         )}
@@ -137,7 +138,8 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
                 default="Menu for {eventName}"
                 values={{
                   eventName,
-                }}>
+                }}
+              >
                 {(contextMenuButton: string) => (
                   <EuiButtonIcon
                     aria-label={contextMenuButton}
@@ -152,7 +154,8 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
                 )}
               </EuiI18n>
             }
-            closePopover={() => setIsPopoverOpen(false)}>
+            closePopover={() => setIsPopoverOpen(false)}
+          >
             {/* The EuiContextMenu is wrapped with a div so it closes after an item is clicked */}
             <div onClick={() => setIsPopoverOpen(false)}>
               <EuiContextMenuPanel items={contextMenuItems} />

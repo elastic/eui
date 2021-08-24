@@ -342,7 +342,8 @@ export class FieldValueSelectionFilter extends Component<
       ? this.state.options.all.some((item) => this.isActiveField(item.field))
       : false;
 
-    const active = activeTop || activeItem;
+    const activeItemsCount = this.state.activeItems.length;
+    const active = (activeTop || activeItem) && activeItemsCount > 0;
 
     const button = (
       <EuiFilterButton
@@ -350,8 +351,9 @@ export class FieldValueSelectionFilter extends Component<
         iconSide="right"
         onClick={this.onButtonClick.bind(this)}
         hasActiveFilters={active}
-        numActiveFilters={active ? this.state.activeItems.length : undefined}
-        grow>
+        numActiveFilters={active ? activeItemsCount : undefined}
+        grow
+      >
         {config.name}
       </EuiFilterButton>
     );
@@ -372,7 +374,8 @@ export class FieldValueSelectionFilter extends Component<
         closePopover={this.closePopover.bind(this)}
         panelPaddingSize="none"
         anchorPosition="downCenter"
-        panelClassName="euiFilterGroup__popoverPanel">
+        panelClassName="euiFilterGroup__popoverPanel"
+      >
         {searchBox}
         {content}
       </EuiPopover>
@@ -447,7 +450,8 @@ export class FieldValueSelectionFilter extends Component<
           checked={checked}
           onClick={onClick}
           ref={(ref) => (this.selectItems[index] = ref!)}
-          onKeyDown={this.onKeyDown.bind(this, index)}>
+          onKeyDown={this.onKeyDown.bind(this, index)}
+        >
           {option.view ? option.view : this.resolveOptionName(option)}
         </EuiFilterSelectItem>
       );

@@ -69,7 +69,8 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
         <EuiI18n
           token="euiComboBoxPill.removeSelection"
           default="Remove {children} from selection in this group"
-          values={{ children }}>
+          values={{ children }}
+        >
           {(removeSelection: string) => (
             <EuiBadge
               className={classes}
@@ -81,7 +82,8 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
               iconType="cross"
               title={children}
               {...onClickProps}
-              {...rest}>
+              {...rest}
+            >
               {children}
             </EuiBadge>
           )}
@@ -103,7 +105,8 @@ export class EuiComboBoxPill<T> extends Component<EuiComboBoxPillProps<T>> {
         color={color}
         title={children}
         {...rest}
-        {...onClickProps}>
+        {...onClickProps}
+      >
         {children}
       </EuiBadge>
     );

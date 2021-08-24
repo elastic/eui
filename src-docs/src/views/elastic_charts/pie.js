@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../../components';
-import { Chart, Partition } from '@elastic/charts';
+import { Chart, Partition, Settings } from '@elastic/charts';
 
 import {
   EUI_CHARTS_THEME_DARK,
@@ -12,9 +12,13 @@ import {
   EuiTitle,
   EuiSpacer,
 } from '../../../../src/components';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
   const themeContext = useContext(ThemeContext);
+  const htmlId = htmlIdGenerator();
+  const exampleOne = htmlId();
+  const exampleTwo = htmlId();
 
   /**
    * Setup theme based on current light/dark theme
@@ -30,10 +34,11 @@ export default () => {
       <EuiFlexGrid columns={2}>
         <EuiFlexItem>
           <EuiTitle className="eui-textCenter" size="xs">
-            <h3>Year to date PR count by status</h3>
+            <h3 id={exampleOne}>Year to date PR count by status</h3>
           </EuiTitle>
           <EuiSpacer />
           <Chart size={{ height: 200 }}>
+            <Settings ariaLabelledBy={exampleOne} />
             <Partition
               id="pieByPR"
               data={[
@@ -65,10 +70,11 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiTitle className="eui-textCenter" size="xs">
-            <h3>Code languages</h3>
+            <h3 id={exampleTwo}>Code languages</h3>
           </EuiTitle>
           <EuiSpacer />
           <Chart size={{ height: 200 }}>
+            <Settings ariaLabelledBy={exampleTwo} />
             <Partition
               id="donutByLanguage"
               data={[

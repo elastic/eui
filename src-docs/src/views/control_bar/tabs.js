@@ -84,7 +84,8 @@ export default () => {
         controls={controls}
         size="m"
         showContent={contentIsVisible}
-        showOnMobile>
+        showOnMobile
+      >
         {tabContent !== '' && (
           <div style={{ padding: '1rem' }}>
             <EuiText>{tabContent}</EuiText>

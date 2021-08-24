@@ -128,7 +128,8 @@ export const CategoryChart = () => {
         <EuiFlexItem>
           <ChartCard
             title="Order and rotation"
-            description="Categorical data is often easier to compare when sorted by sequence. Use a horizontal layout when you need more space for the category labels.">
+            description="Categorical data is often easier to compare when sorted by sequence. Use a horizontal layout when you need more space for the category labels."
+          >
             <EuiSwitch
               label="Order by count descending"
               checked={ordered}
@@ -146,7 +147,8 @@ export const CategoryChart = () => {
         <EuiFlexItem>
           <ChartCard
             title="Tick marks"
-            description="Tick marks should be spaced out properly and number values formatted. For example, if the number is in the thousands, remove a few numerals and add the `k` symbol.">
+            description="Tick marks should be spaced out properly and number values formatted. For example, if the number is in the thousands, remove a few numerals and add the `k` symbol."
+          >
             <EuiCode>1000 ⇢ 1k</EuiCode> &nbsp; <EuiCode>20000 ⇢ 20k</EuiCode>
             <EuiSpacer size="s" />
             <EuiSwitch
@@ -204,7 +206,8 @@ export const CategoryChart = () => {
     position={${rotated ? 'bottom' : 'left'}}
     ${formatted ? 'tickFormat={d => `${round(Number(d) / 1000, 2)}k`}' : ''}
   />
-</Chart>`}>
+</Chart>`}
+        >
           {(copy) => (
             <EuiButton fill onClick={copy} iconType="copyClipboard">
               Copy code of current configuration

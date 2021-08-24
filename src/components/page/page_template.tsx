@@ -107,13 +107,15 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
         className="eui-fullHeight"
         gutterSize="none"
         direction="column"
-        responsive={false}>
+        responsive={false}
+      >
         <EuiFlexItem
           className={classNames({
             'eui-yScroll': fullHeight === true,
             'eui-fullHeight': fullHeight === 'noscroll',
           })}
-          grow={true}>
+          grow={true}
+        >
           {children}
         </EuiFlexItem>
       </EuiFlexGroup>
@@ -153,7 +155,8 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
       paddingSize="none"
       grow={grow}
       {...rest}
-      style={pageStyle}>
+      style={pageStyle}
+    >
       {sideBarNode}
 
       <EuiPageBody
@@ -165,7 +168,8 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
         pageHeader={pageHeader}
         pageContentProps={pageContentProps}
         pageContentBodyProps={pageContentBodyProps}
-        bottomBar={bottomBar}>
+        bottomBar={bottomBar}
+      >
         {children}
       </EuiPageBody>
     </EuiPage>

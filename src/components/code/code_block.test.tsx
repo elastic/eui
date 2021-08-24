@@ -154,5 +154,18 @@ describe('EuiCodeBlock', () => {
         'const value = "hello"'
       );
     });
+
+    test('renders a virtualized code block', () => {
+      const component = render(
+        <EuiCodeBlock
+          isVirtualized={true}
+          overflowHeight="50%"
+          {...requiredProps}
+        >
+          {code}
+        </EuiCodeBlock>
+      );
+      expect(component).toMatchSnapshot();
+    });
   });
 });

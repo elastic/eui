@@ -63,6 +63,15 @@ describe('EuiBreadcrumbs', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('is rendered with final item as link', () => {
+    const customBreadcrumbs = [...breadcrumbs, { text: 'test', href: '#' }];
+    const component = render(
+      <EuiBreadcrumbs {...requiredProps} breadcrumbs={customBreadcrumbs} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('props', () => {
     describe('responsive', () => {
       test('is rendered', () => {

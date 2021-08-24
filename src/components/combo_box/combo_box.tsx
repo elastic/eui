@@ -1018,7 +1018,8 @@ export class EuiComboBox<T> extends Component<
         data-test-subj={dataTestSubj}
         onKeyDown={this.onKeyDown}
         ref={this.comboBoxRefCallback}
-        role="combobox">
+        role="combobox"
+      >
         <EuiComboBoxInput
           autoSizeInputRef={this.autoSizeInputRefCallback}
           compressed={compressed}

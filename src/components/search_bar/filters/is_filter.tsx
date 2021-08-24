@@ -60,7 +60,8 @@ export class IsFilter extends Component<IsFilterProps> {
       <EuiFilterButton
         onClick={onClick}
         hasActiveFilters={hasActiveFilters}
-        aria-pressed={!!hasActiveFilters}>
+        aria-pressed={!!hasActiveFilters}
+      >
         {name}
       </EuiFilterButton>
     );

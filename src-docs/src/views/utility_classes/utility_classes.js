@@ -57,7 +57,8 @@ export default () => (
       example={
         <EuiMark
           style={wrappingExampleStyle}
-          className="eui-displayInlineBlock">
+          className="eui-displayInlineBlock"
+        >
           Displaying inline block
         </EuiMark>
       }

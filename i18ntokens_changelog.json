@@ -1,5 +1,155 @@
 [
   {
+    "version": "37.3.0",
+    "changes": [
+      {
+        "token": "euiColumnSortingDraggable.activeSortLabel",
+        "changeType": "modified",
+        "value": "{display} is sorting this data grid"
+      },
+      {
+        "token": "euiColumnSortingDraggable.removeSortLabel",
+        "changeType": "modified",
+        "value": "Remove {display} from data grid sort"
+      },
+      {
+        "token": "euiColumnSortingDraggable.toggleLegend",
+        "changeType": "modified",
+        "value": "Select sorting method for {display}"
+      },
+      {
+        "token": "euiDataGridCell.row",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridCell.column",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGrid.ariaLabelGridPagination",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGrid.ariaLabelledByGridPagination",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGrid.fullScreenButton",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGrid.fullScreenButtonActive",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridCell.position",
+        "changeType": "added",
+        "value": "Row: {row}; Column: {col}"
+      },
+      {
+        "token": "euiDataGridPagination.detailedPaginationLabel",
+        "changeType": "added",
+        "value": "Pagination for preceding grid: {label}"
+      },
+      {
+        "token": "euiDataGridPagination.paginationLabel",
+        "changeType": "added",
+        "value": "Pagination for preceding grid"
+      },
+      {
+        "token": "euiDataGridToolbar.fullScreenButton",
+        "changeType": "added",
+        "value": "Full screen"
+      },
+      {
+        "token": "euiDataGridToolbar.fullScreenButtonActive",
+        "changeType": "added",
+        "value": "Exit full screen"
+      }
+    ]
+  },
+  {
+    "version": "37.0.0",
+    "changes": [
+      {
+        "token": "euiDatePopoverButton.invalidTitle",
+        "changeType": "added",
+        "value": "Invalid date: {title}"
+      },
+      {
+        "token": "euiDatePopoverButton.outdatedTitle",
+        "changeType": "added",
+        "value": "Update needed: {title}"
+      }
+    ]
+  },
+  {
+    "version": "36.1.0",
+    "changes": [
+      {
+        "token": "euiBreadcrumbs.collapsedBadge.ariaLabel",
+        "changeType": "modified",
+        "value": "See collapsed breadcrumbs"
+      },
+      {
+        "token": "euiBreadcrumbs.nav.ariaLabel",
+        "changeType": "added",
+        "value": "Breadcrumbs"
+      },
+      {
+        "token": "euiStepStrings.current",
+        "changeType": "added",
+        "value": "Current step {number}: {title}"
+      },
+      {
+        "token": "euiStepStrings.simpleCurrent",
+        "changeType": "added",
+        "value": "Current step is {number}"
+      }
+    ]
+  },
+  {
+    "version": "35.1.0",
+    "changes": [
+      {
+        "token": "euiColorPicker.swatchAriaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorPicker.screenReaderAnnouncement",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSaturation.roleDescription",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiSaturation.screenReaderAnnouncement",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiColorPickerSwatch.ariaLabel",
+        "changeType": "added",
+        "value": "Select {color} as the color"
+      },
+      {
+        "token": "euiColorPicker.popoverLabel",
+        "changeType": "added",
+        "value": "Color selection dialog"
+      },
+      {
+        "token": "euiSaturation.ariaLabel",
+        "changeType": "added",
+        "value": "HSV color mode saturation and value 2-axis slider"
+      },
+      {
+        "token": "euiSaturation.screenReaderInstructions",
+        "changeType": "added",
+        "value": "Arrow keys to navigate the square color gradient. Coordinates will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right to change the saturation. Up and down change the value."
+      }
+    ]
+  },
+  {
     "version": "34.5.0",
     "changes": [
       {

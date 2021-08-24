@@ -1195,75 +1195,69 @@ exports[`EuiBasicTable rowProps renders rows with custom props from a callback 1
       <EuiTableBody
         bodyRef={[Function]}
       >
-        <EuiKeyboardAccessible>
-          <EuiTableRow
-            className="customRowClass"
-            data-test-subj="row-1"
-            isSelected={false}
-            onClick={[Function]}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_0_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+        <EuiTableRow
+          className="customRowClass"
+          data-test-subj="row-1"
+          isSelected={false}
+          onClick={[Function]}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              setScopeRow={false}
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </EuiKeyboardAccessible>
-        <EuiKeyboardAccessible>
-          <EuiTableRow
-            className="customRowClass"
-            data-test-subj="row-2"
-            isSelected={false}
-            onClick={[Function]}
+            }
+            setScopeRow={false}
+            textOnly={true}
           >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          className="customRowClass"
+          data-test-subj="row-2"
+          isSelected={false}
+          onClick={[Function]}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              setScopeRow={false}
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </EuiKeyboardAccessible>
-        <EuiKeyboardAccessible>
-          <EuiTableRow
-            className="customRowClass"
-            data-test-subj="row-3"
-            isSelected={false}
-            onClick={[Function]}
+            }
+            setScopeRow={false}
+            textOnly={true}
           >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          className="customRowClass"
+          data-test-subj="row-3"
+          isSelected={false}
+          onClick={[Function]}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              setScopeRow={false}
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </EuiKeyboardAccessible>
+            }
+            setScopeRow={false}
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>
@@ -1326,75 +1320,69 @@ exports[`EuiBasicTable rowProps renders rows with custom props from an object 1`
       <EuiTableBody
         bodyRef={[Function]}
       >
-        <EuiKeyboardAccessible>
-          <EuiTableRow
-            className="customClass"
-            data-test-subj="row"
-            isSelected={false}
-            onClick={[Function]}
-          >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_0_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+        <EuiTableRow
+          className="customClass"
+          data-test-subj="row"
+          isSelected={false}
+          onClick={[Function]}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_0_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              setScopeRow={false}
-              textOnly={true}
-            >
-              name1
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </EuiKeyboardAccessible>
-        <EuiKeyboardAccessible>
-          <EuiTableRow
-            className="customClass"
-            data-test-subj="row"
-            isSelected={false}
-            onClick={[Function]}
+            }
+            setScopeRow={false}
+            textOnly={true}
           >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_1_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+            name1
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          className="customClass"
+          data-test-subj="row"
+          isSelected={false}
+          onClick={[Function]}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_1_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              setScopeRow={false}
-              textOnly={true}
-            >
-              name2
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </EuiKeyboardAccessible>
-        <EuiKeyboardAccessible>
-          <EuiTableRow
-            className="customClass"
-            data-test-subj="row"
-            isSelected={false}
-            onClick={[Function]}
+            }
+            setScopeRow={false}
+            textOnly={true}
           >
-            <EuiTableRowCell
-              align="left"
-              key="_data_column_name_2_0"
-              mobileOptions={
-                Object {
-                  "header": "Name",
-                  "render": undefined,
-                }
+            name2
+          </EuiTableRowCell>
+        </EuiTableRow>
+        <EuiTableRow
+          className="customClass"
+          data-test-subj="row"
+          isSelected={false}
+          onClick={[Function]}
+        >
+          <EuiTableRowCell
+            align="left"
+            key="_data_column_name_2_0"
+            mobileOptions={
+              Object {
+                "header": "Name",
+                "render": undefined,
               }
-              setScopeRow={false}
-              textOnly={true}
-            >
-              name3
-            </EuiTableRowCell>
-          </EuiTableRow>
-        </EuiKeyboardAccessible>
+            }
+            setScopeRow={false}
+            textOnly={true}
+          >
+            name3
+          </EuiTableRowCell>
+        </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
   </div>

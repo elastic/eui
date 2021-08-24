@@ -252,7 +252,8 @@ export class EuiFieldSearch extends Component<
         }
         compressed={compressed}
         append={append}
-        prepend={prepend}>
+        prepend={prepend}
+      >
         <EuiValidatableControl isInvalid={isInvalid}>
           <input
             type="search"

@@ -110,7 +110,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
       </ul>
       <button
         aria-label="Next page"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+        class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
         data-test-subj="pagination-button-next"
         disabled=""
         type="button"
@@ -1002,8 +1002,8 @@ Array [
           </div>
         </div>
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
-          data-test-subj="dataGridFullScrenButton"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+          data-test-subj="dataGridFullScreenButton"
           type="button"
         >
           <span
@@ -1136,17 +1136,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        0, A
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 1, Column: 1:
-                        </p>
+                          0, A
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 1
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1158,17 +1162,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        0, B
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 1, Column: 2:
-                        </p>
+                          0, B
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 2
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1180,17 +1188,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        1, A
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 2, Column: 1:
-                        </p>
+                          1, A
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 1
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1202,17 +1214,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        1, B
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 2, Column: 2:
-                        </p>
+                          1, B
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 2
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1224,17 +1240,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        2, A
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 3, Column: 1:
-                        </p>
+                          2, A
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 1
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1246,17 +1266,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        2, B
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 3, Column: 2:
-                        </p>
+                          2, B
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 2
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1368,8 +1392,8 @@ Array [
           </div>
         </div>
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
-          data-test-subj="dataGridFullScrenButton"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+          data-test-subj="dataGridFullScreenButton"
           type="button"
         >
           <span
@@ -1545,7 +1569,7 @@ Array [
                       data-focus-lock-disabled="disabled"
                     >
                       <div
-                        class="euiDataGridRowCell__expandFlex "
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
                           class="euiDataGridRowCell__expandContent"
@@ -1557,7 +1581,7 @@ Array [
                             <p
                               class="euiScreenReaderOnly"
                             >
-                              Row: 1, Column: 1:
+                              Row: 1; Column: 1
                             </p>
                           </div>
                         </div>
@@ -1577,17 +1601,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        0, A
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 1, Column: 2:
-                        </p>
+                          0, A
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 2
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1599,17 +1627,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        0, B
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 1, Column: 3:
-                        </p>
+                          0, B
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 3
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1634,7 +1666,7 @@ Array [
                       data-focus-lock-disabled="disabled"
                     >
                       <div
-                        class="euiDataGridRowCell__expandFlex "
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
                           class="euiDataGridRowCell__expandContent"
@@ -1646,7 +1678,7 @@ Array [
                             <p
                               class="euiScreenReaderOnly"
                             >
-                              Row: 1, Column: 4:
+                              Row: 1; Column: 4
                             </p>
                           </div>
                         </div>
@@ -1679,7 +1711,7 @@ Array [
                       data-focus-lock-disabled="disabled"
                     >
                       <div
-                        class="euiDataGridRowCell__expandFlex "
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
                           class="euiDataGridRowCell__expandContent"
@@ -1691,7 +1723,7 @@ Array [
                             <p
                               class="euiScreenReaderOnly"
                             >
-                              Row: 2, Column: 1:
+                              Row: 2; Column: 1
                             </p>
                           </div>
                         </div>
@@ -1711,17 +1743,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        1, A
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 2, Column: 2:
-                        </p>
+                          1, A
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 2
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1733,17 +1769,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        1, B
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 2, Column: 3:
-                        </p>
+                          1, B
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 3
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1768,7 +1808,7 @@ Array [
                       data-focus-lock-disabled="disabled"
                     >
                       <div
-                        class="euiDataGridRowCell__expandFlex "
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
                           class="euiDataGridRowCell__expandContent"
@@ -1780,7 +1820,7 @@ Array [
                             <p
                               class="euiScreenReaderOnly"
                             >
-                              Row: 2, Column: 4:
+                              Row: 2; Column: 4
                             </p>
                           </div>
                         </div>
@@ -1813,7 +1853,7 @@ Array [
                       data-focus-lock-disabled="disabled"
                     >
                       <div
-                        class="euiDataGridRowCell__expandFlex "
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
                           class="euiDataGridRowCell__expandContent"
@@ -1825,7 +1865,7 @@ Array [
                             <p
                               class="euiScreenReaderOnly"
                             >
-                              Row: 3, Column: 1:
+                              Row: 3; Column: 1
                             </p>
                           </div>
                         </div>
@@ -1845,17 +1885,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        2, A
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 3, Column: 2:
-                        </p>
+                          2, A
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 2
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1867,17 +1911,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        2, B
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 3, Column: 3:
-                        </p>
+                          2, B
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 3
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1902,7 +1950,7 @@ Array [
                       data-focus-lock-disabled="disabled"
                     >
                       <div
-                        class="euiDataGridRowCell__expandFlex "
+                        class="euiDataGridRowCell__expandFlex"
                       >
                         <div
                           class="euiDataGridRowCell__expandContent"
@@ -1914,7 +1962,7 @@ Array [
                             <p
                               class="euiScreenReaderOnly"
                             >
-                              Row: 3, Column: 4:
+                              Row: 3; Column: 4
                             </p>
                           </div>
                         </div>
@@ -2031,8 +2079,8 @@ Array [
           </div>
         </div>
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
-          data-test-subj="dataGridFullScrenButton"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+          data-test-subj="dataGridFullScreenButton"
           type="button"
         >
           <span
@@ -2167,17 +2215,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        0, A
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 1, Column: 1:
-                        </p>
+                          0, A
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 1
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2189,17 +2241,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        0, B
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 1, Column: 2:
-                        </p>
+                          0, B
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 2
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2211,17 +2267,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        1, A
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 2, Column: 1:
-                        </p>
+                          1, A
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 1
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2233,17 +2293,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        1, B
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 2, Column: 2:
-                        </p>
+                          1, B
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 2
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2255,17 +2319,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        2, A
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 3, Column: 1:
-                        </p>
+                          2, A
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 1
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2277,17 +2345,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        2, B
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 3, Column: 2:
-                        </p>
+                          2, B
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 2
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2396,8 +2468,8 @@ Array [
           </div>
         </div>
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
-          data-test-subj="dataGridFullScrenButton"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+          data-test-subj="dataGridFullScreenButton"
           type="button"
         >
           <span
@@ -2530,17 +2602,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        0, A
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 1, Column: 1:
-                        </p>
+                          0, A
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 1
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2552,17 +2628,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        0, B
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 1, Column: 2:
-                        </p>
+                          0, B
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 2
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2574,17 +2654,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        1, A
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 2, Column: 1:
-                        </p>
+                          1, A
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 1
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2596,17 +2680,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        1, B
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 2, Column: 2:
-                        </p>
+                          1, B
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 2
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2618,17 +2706,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        2, A
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 3, Column: 1:
-                        </p>
+                          2, A
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 1
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2640,17 +2732,21 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__expandFlex "
+                      class="euiDataGridRowCell__expandFlex"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        2, B
-                        <p
-                          class="euiScreenReaderOnly"
+                        <div
+                          class="euiDataGridRowCell__truncate"
                         >
-                          Row: 3, Column: 2:
-                        </p>
+                          2, B
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 2
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>

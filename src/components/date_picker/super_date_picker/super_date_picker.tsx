@@ -375,7 +375,8 @@ export class EuiSuperDatePicker extends Component<
           isCustom
           startDateControl={<div />}
           endDateControl={<div />}
-          readOnly>
+          readOnly
+        >
           <span className="euiSuperDatePicker__prettyFormat">
             {prettyInterval(Boolean(isPaused), refreshInterval)}
           </span>
@@ -394,14 +395,16 @@ export class EuiSuperDatePicker extends Component<
           iconType={false}
           isCustom
           startDateControl={<div />}
-          endDateControl={<div />}>
+          endDateControl={<div />}
+        >
           <button
             className={classNames('euiSuperDatePicker__prettyFormat', {
               'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
             })}
             data-test-subj="superDatePickerShowDatesButton"
             disabled={isDisabled}
-            onClick={this.hidePrettyDuration}>
+            onClick={this.hidePrettyDuration}
+          >
             {prettyDuration(start, end, commonlyUsedRanges, dateFormat)}
             <span className="euiSuperDatePicker__prettyFormatLink">
               <EuiI18n
@@ -539,12 +542,14 @@ export class EuiSuperDatePicker extends Component<
       <EuiFlexGroup
         gutterSize="s"
         responsive={false}
-        className={flexWrapperClasses}>
+        className={flexWrapperClasses}
+      >
         <EuiFlexItem>
           <EuiFormControlLayout
             className="euiSuperDatePicker"
             isDisabled={isDisabled}
-            prepend={quickSelect}>
+            prepend={quickSelect}
+          >
             {this.renderDatePickerRange()}
           </EuiFormControlLayout>
         </EuiFlexItem>

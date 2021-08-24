@@ -289,7 +289,8 @@ export class EuiSuperSelect<T extends string> extends Component<
           role="option"
           id={value}
           aria-selected={valueOfSelected === value}
-          {...optionRest}>
+          {...optionRest}
+        >
           {dropdownDisplay || inputDisplay}
         </EuiContextMenuItem>
       );
@@ -302,7 +303,8 @@ export class EuiSuperSelect<T extends string> extends Component<
         isOpen={isOpen || this.state.isPopoverOpen}
         closePopover={this.closePopover}
         panelPaddingSize="none"
-        fullWidth={fullWidth}>
+        fullWidth={fullWidth}
+      >
         <EuiScreenReaderOnly>
           <p role="alert">
             <EuiI18n
@@ -317,7 +319,8 @@ export class EuiSuperSelect<T extends string> extends Component<
           className="euiSuperSelect__listbox"
           role="listbox"
           aria-activedescendant={valueOfSelected}
-          tabIndex={0}>
+          tabIndex={0}
+        >
           {items}
         </div>
       </EuiInputPopover>

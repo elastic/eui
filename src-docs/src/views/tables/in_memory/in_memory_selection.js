@@ -55,7 +55,8 @@ export const Table = () => {
           key="loadUsers"
           onClick={() => {
             loadUsers();
-          }}>
+          }}
+        >
           Load Users
         </EuiButton>
       }
@@ -117,7 +118,8 @@ export const Table = () => {
         onClick={() => {
           loadUsers();
         }}
-        isDisabled={loading}>
+        isDisabled={loading}
+      >
         Load Users
       </EuiButton>,
       <EuiButton
@@ -125,7 +127,8 @@ export const Table = () => {
         onClick={() => {
           loadUsersWithError();
         }}
-        isDisabled={loading}>
+        isDisabled={loading}
+      >
         Load Users (Error)
       </EuiButton>,
     ];

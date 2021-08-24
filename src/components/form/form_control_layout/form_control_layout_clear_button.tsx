@@ -40,14 +40,16 @@ export const EuiFormControlLayoutClearButton: FunctionComponent<EuiFormControlLa
   return (
     <EuiI18n
       token="euiFormControlLayoutClearButton.label"
-      default="Clear input">
+      default="Clear input"
+    >
       {(label: string) => (
         <button
           type="button"
           className={classes}
           onClick={onClick}
           aria-label={label}
-          {...rest}>
+          {...rest}
+        >
           <EuiIcon
             className="euiFormControlLayoutClearButton__icon"
             type="cross"

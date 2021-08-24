@@ -98,12 +98,14 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
       hasShadow={hasShadow}
       hasBorder={hasBorder}
       direction="row"
-      className={classes}>
+      className={classes}
+    >
       <EuiSplitPanel.Inner
         // Bubbles up the change event when clicking on the whole div for extra affordance
         onClick={disabled ? undefined : onChangeAffordance}
         color={checked ? 'primary' : 'subdued'}
-        grow={false}>
+        grow={false}
+      >
         {checkableElement}
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner>
@@ -111,7 +113,8 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
           ref={labelEl}
           className={labelClasses}
           htmlFor={id}
-          aria-describedby={children ? `${id}-details` : undefined}>
+          aria-describedby={children ? `${id}-details` : undefined}
+        >
           {label}
         </label>
         {children && (

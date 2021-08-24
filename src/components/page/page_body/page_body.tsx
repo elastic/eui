@@ -153,7 +153,8 @@ export const EuiPageBody = <T extends ComponentTypes>({
       {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}
       <EuiPageContentBody
         paddingSize={paddingSize}
-        restrictWidth={restrictWidth}>
+        restrictWidth={restrictWidth}
+      >
         {bottomBar}
       </EuiPageContentBody>
     </EuiBottomBar>
@@ -181,14 +182,16 @@ export const EuiPageBody = <T extends ComponentTypes>({
         <EuiPageContent
           template={template}
           color={panelled ? 'subdued' : 'plain'}
-          {...pageContentProps}>
+          {...pageContentProps}
+        >
           {pageHeaderNode}
           <EuiPageContentBody
             template={template}
             paddingSize={contentPaddingSize}
             restrictWidth={restrictWidth}
             hasBorder={contentHasBorder}
-            {...pageContentBodyProps}>
+            {...pageContentBodyProps}
+          >
             {children}
           </EuiPageContentBody>
         </EuiPageContent>
@@ -206,12 +209,14 @@ export const EuiPageBody = <T extends ComponentTypes>({
           <EuiPageContent
             template={template}
             hasBorder={contentHasBorder}
-            {...pageContentProps}>
+            {...pageContentProps}
+          >
             <EuiPageContentBody
               template={template}
               paddingSize={contentPaddingSize}
               restrictWidth={restrictWidth}
-              {...pageContentBodyProps}>
+              {...pageContentBodyProps}
+            >
               {children}
             </EuiPageContentBody>
           </EuiPageContent>
@@ -228,7 +233,8 @@ export const EuiPageBody = <T extends ComponentTypes>({
       borderRadius="none"
       {...panelProps}
       // Needs the same top class name for flex layout
-      className={classNames('euiPageBody', panelProps?.className)}>
+      className={classNames('euiPageBody', panelProps?.className)}
+    >
       {pageContent}
     </EuiPanel>
   ) : (

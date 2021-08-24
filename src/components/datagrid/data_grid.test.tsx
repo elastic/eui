@@ -14,7 +14,7 @@ import {
   requiredProps,
   takeMountedSnapshot,
 } from '../../test';
-import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
+import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer';
 import { EuiDataGridRowHeightOption } from './data_grid_types';
 import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';
@@ -1847,6 +1847,56 @@ describe('EuiDataGrid', () => {
       closeColumnSorterSelection(component);
       closeColumnSorter(component);
     });
+
+    it('"Sort fields" button text updates', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
+          sorting={{
+            onSort: () => {},
+            columns: [],
+          }}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+
+      // Get column sorting button
+      const sortColumn = component.find(
+        'EuiButtonEmpty[data-test-subj="dataGridColumnSortingButton"]'
+      );
+      const getButtonText = (): string =>
+        sortColumn.find('span[className="euiButtonEmpty__text"]').text();
+      expect(getButtonText()).toEqual('Sort fields');
+
+      // Update sorted columns
+      component.setProps({
+        sorting: {
+          columns: [{ id: 'A', direction: 'asc' }],
+          onSort: () => {},
+        },
+      });
+      expect(getButtonText()).toEqual('1 field sorted');
+
+      // Update sorted columns again
+      component.setProps({
+        sorting: {
+          columns: [
+            { id: 'A', direction: 'asc' },
+            { id: 'B', direction: 'asc' },
+          ],
+          onSort: () => {},
+        },
+      });
+      expect(getButtonText()).toEqual('2 fields sorted');
+    });
   });
 
   describe('render column actions', () => {
@@ -2058,7 +2108,8 @@ describe('EuiDataGrid', () => {
                       aria-label="test1 aria label"
                       data-test-subj={
                         isExpanded ? 'alertActionPopover' : 'alertAction'
-                      }>
+                      }
+                    >
                       test1
                     </Component>
                   );
@@ -2071,7 +2122,8 @@ describe('EuiDataGrid', () => {
                       aria-label="test2 aria label"
                       data-test-subj={
                         isExpanded ? 'happyActionPopover' : 'happyAction'
-                      }>
+                      }
+                    >
                       test2
                     </Component>
                   );

@@ -7,7 +7,8 @@ const EuiIconSwatchInput = ({ title, titleId, ...props }) => (
     viewBox="0 0 16 16"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <rect x={2} y={2} width={12} height={12} rx={3} />
     <rect

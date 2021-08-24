@@ -21,7 +21,8 @@ export default () => {
       <EuiFlexGroup
         justifyContent="flexStart"
         gutterSize="m"
-        alignItems="center">
+        alignItems="center"
+      >
         <EuiFlexItem grow={false}>
           <EuiCode>{value}</EuiCode>
         </EuiFlexItem>

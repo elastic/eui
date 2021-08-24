@@ -18,7 +18,8 @@ export default () => {
       iconType="arrowDown"
       iconSide="right"
       onClick={onButtonClick}
-      fill>
+      fill
+    >
       Show fixed popover
     </EuiButton>
   );
@@ -32,7 +33,8 @@ export default () => {
           isOpen={isPopoverOpen}
           closePopover={closePopover}
           style={{ position: 'fixed', bottom: 50, right: 50, zIndex: 10 }}
-          repositionOnScroll={true}>
+          repositionOnScroll={true}
+        >
           <div>This popover scrolls with the button element!</div>
         </EuiPopover>
       )}

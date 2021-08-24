@@ -271,7 +271,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
           defaults={[
             'Press the Enter key to modify this stop. Press Escape to focus the group',
             'Click to edit, drag to reposition',
-          ]}>
+          ]}
+        >
           {([buttonAriaLabel, buttonTitle]: ReactChild[]) => {
             const ariaLabel = buttonAriaLabel as string;
             const title = buttonTitle as string;
@@ -303,7 +304,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
             );
           }}
         </EuiI18n>
-      }>
+      }
+    >
       <div className="euiColorStop" data-test-subj="euiColorStopPopover">
         <EuiScreenReaderOnly>
           <p aria-live="polite">
@@ -322,13 +324,15 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                 'euiColorStopThumb.stopLabel',
                 'euiColorStopThumb.stopErrorMessage',
               ]}
-              defaults={['Stop value', 'Value is out of range']}>
+              defaults={['Stop value', 'Value is out of range']}
+            >
               {([stopLabel, stopErrorMessage]: React.ReactChild[]) => (
                 <EuiFormRow
                   label={stopLabel}
                   display="rowCompressed"
                   isInvalid={stopIsInvalid}
-                  error={stopIsInvalid ? stopErrorMessage : null}>
+                  error={stopIsInvalid ? stopErrorMessage : null}
+                >
                   <EuiFieldNumber
                     {...valueInputProps}
                     inputRef={setNumberInputRef}
@@ -349,7 +353,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
               <EuiFormRow display="rowCompressed" hasEmptyLabelSpace={true}>
                 <EuiI18n
                   token="euiColorStopThumb.removeLabel"
-                  default="Remove this stop">
+                  default="Remove this stop"
+                >
                   {(removeLabel: string) => (
                     <EuiButtonIcon
                       iconType="trash"

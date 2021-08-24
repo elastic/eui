@@ -51,7 +51,8 @@ export default () => {
         onClose={closeFlyout}
         aria-labelledby="flyoutMaxWidthTitle"
         size={flyoutSize}
-        maxWidth={flyoutMaxWidth}>
+        maxWidth={flyoutMaxWidth}
+      >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
             <h2 id="flyoutMaxWidthTitle">{maxWidthTitle} maxWidth</h2>
@@ -71,7 +72,8 @@ export default () => {
           <EuiForm component="form">
             <EuiFormRow
               label="Text field"
-              helpText="I am some friendly help text.">
+              helpText="I am some friendly help text."
+            >
               <EuiFieldText name="first" />
             </EuiFormRow>
 

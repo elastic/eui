@@ -198,7 +198,8 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
         className={classes}
         title={typeof label === 'string' ? label : title}
         {...(relObj as HTMLAttributes<HTMLElement>)}
-        {...(rest as HTMLAttributes<HTMLElement>)}>
+        {...(rest as HTMLAttributes<HTMLElement>)}
+      >
         {icon || label}
       </Element>
     );
@@ -207,7 +208,8 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
         <EuiToolTip
           position={tooltipPosition}
           content={tooltipContent}
-          title={title || label}>
+          title={title || label}
+        >
           <Fragment>{content}</Fragment>
         </EuiToolTip>
       );
@@ -220,7 +222,8 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
         <EuiToolTip
           position={tooltipPosition}
           content={tooltipContent}
-          title={title || label}>
+          title={title || label}
+        >
           <span tabIndex={0} className={classes} {...rest}>
             {icon || label}
           </span>

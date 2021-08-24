@@ -87,7 +87,8 @@ const GuidePageComponent = ({
         ),
         tabs: renderTabs(),
         children: intro,
-      }}>
+      }}
+    >
       <Switch>
         {playground && (
           <Route path={`${match.path}/playground`}>{playground}</Route>
