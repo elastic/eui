@@ -31,6 +31,14 @@ describe('EuiButtonIcon', () => {
         expect(component).toMatchSnapshot();
       });
 
+      it('or disabled is rendered', () => {
+        const component = render(
+          <EuiButtonIcon iconType="user" aria-label="button" disabled />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
       it('renders a button even when href is defined', () => {
         const component = render(
           <EuiButtonIcon
