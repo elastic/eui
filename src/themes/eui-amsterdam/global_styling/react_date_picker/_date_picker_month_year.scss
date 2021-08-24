@@ -81,7 +81,8 @@
 .react-datepicker__month-dropdown {
   @include euiYScroll;
   @include euiBottomShadowSmall;
-  height: 250px; // Set an explicit height, something at least smaller than the overall height
+  height: auto;
+  max-height: 250px; // Set an explicit height, something at least smaller than the overall height
   background-color: $euiColorEmptyShade;
   position: absolute;
   z-index: 1;
