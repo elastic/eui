@@ -1,7 +1,11 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Updated `EuiToolTip` to remain showing tooltip while child element is in focus ([#5066](https://github.com/elastic/eui/pull/5066))
+- Removed `children` from TypeScript definition in `EuiIconTip` ([#5066](https://github.com/elastic/eui/pull/5066))
+
 **Bug fixes**
 
+- Fixed location of default value of `EuiToolTip`'s `display` prop ([#5066](https://github.com/elastic/eui/pull/5066))
 - Fixed `EuiDatePicker` year dropdown when configured with `minDate` and/or `maxDate ([#5069](https://github.com/elastic/eui/pull/5069))
 
 ## [`37.3.1`](https://github.com/elastic/eui/tree/v37.3.1)
