@@ -1,0 +1,10 @@
+// sass-lint:disable no-important
+.guideDemo__textLines {
+  background-image: linear-gradient($euiFocusBackgroundColor 1px, transparent 1px) !important;
+  background-size: 100% 4px !important;
+  background-position-y: -1px;
+
+  > * {
+    background-color: $euiColorHighlight;
+  }
+}

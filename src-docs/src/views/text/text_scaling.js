@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiText,
   EuiFlexGroup,
-  EuiPageContent,
-  EuiPageContentBody,
   EuiFlexItem,
+  EuiHorizontalRule,
+  EuiButtonGroup,
 } from '../../../../src/components';
 
 const text = [
@@ -15,6 +15,10 @@ const text = [
     Far out in the uncharted backwaters of the unfashionable end of the western
     spiral arm of the Galaxy lies a small unregarded yellow sun.
   </p>,
+
+  <pre>
+    <code>const completelyUnexpected = &quot;the audacity!&quot;;</code>
+  </pre>,
 
   <h2 key={0.5}>This is Heading Two</h2>,
 
@@ -78,31 +82,72 @@ const text = [
   <h6 key={13}>This is Heading Six</h6>,
 ];
 
-export default () => (
-  <EuiFlexGroup>
-    <EuiFlexItem>
-      <EuiPageContent
-        role={null}
-        className="guideDemo__textLines"
-        style={{ padding: 32 }}
-      >
-        <EuiPageContentBody>
-          <EuiText grow={false}>{text}</EuiText>
-        </EuiPageContentBody>
-      </EuiPageContent>
-    </EuiFlexItem>
-    <EuiFlexItem>
-      <EuiPageContent
-        role={null}
-        className="guideDemo__textLines--s"
-        style={{ padding: 32 }}
-      >
-        <EuiPageContentBody>
-          <EuiText grow={false} size="s">
+export default () => {
+  const textSizeArray = ['xs', 's', 'm'];
+  const textSizeNamesArray = ['Extra small', 'Small', 'Medium'];
+
+  const textSizeOptions = textSizeArray.map((name, i) => {
+    return {
+      value: name,
+      label: textSizeNamesArray[i],
+    };
+  });
+
+  const firstOptions = textSizeOptions.map((option) => {
+    return {
+      id: `first${option.value}`,
+      ...option,
+    };
+  });
+
+  const secondOptions = textSizeOptions.map((option) => {
+    return {
+      id: `second${option.value}`,
+      ...option,
+    };
+  });
+
+  const [firstIdSelected, setFirstIdSelected] = useState('firsts');
+  const [secondIdSelected, setSecondIdSelected] = useState('secondxs');
+
+  return (
+    <>
+      <EuiFlexGroup>
+        <EuiFlexItem>
+          <EuiButtonGroup
+            isFullWidth
+            legend={'First text size'}
+            name={'first'}
+            idSelected={firstIdSelected}
+            onChange={(optionId) => setFirstIdSelected(optionId)}
+            options={firstOptions}
+          />
+          <EuiHorizontalRule />
+          <EuiText
+            className="guideDemo__textLines"
+            size={firstOptions.find(({ id }) => id === firstIdSelected).value}
+          >
             {text}
           </EuiText>
-        </EuiPageContentBody>
-      </EuiPageContent>
-    </EuiFlexItem>
-  </EuiFlexGroup>
-);
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiButtonGroup
+            isFullWidth
+            legend={'Second text size'}
+            name={'second'}
+            idSelected={secondIdSelected}
+            onChange={(optionId) => setSecondIdSelected(optionId)}
+            options={secondOptions}
+          />
+          <EuiHorizontalRule />
+          <EuiText
+            className="guideDemo__textLines"
+            size={secondOptions.find(({ id }) => id === secondIdSelected).value}
+          >
+            {text}
+          </EuiText>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+};
