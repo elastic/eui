@@ -1,5 +1,39 @@
 [
   {
+    "version": "37.3.1",
+    "changes": [
+      {
+        "token": "euiColumnSorting.buttonActive",
+        "changeType": "modified",
+        "value": "({\n  numberOfSortedFields\n}) => `${numberOfSortedFields} field${numberOfSortedFields === 1 ? '' : 's'} sorted`;"
+      },
+      {
+        "token": "euiFilterButton.filterBadge",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiFilePicker.filesSelected",
+        "changeType": "modified",
+        "value": "{fileCount} files selected"
+      },
+      {
+        "token": "euiFilterButton.filterBadgeActiveAriaLabel",
+        "changeType": "added",
+        "value": "{count} active filters"
+      },
+      {
+        "token": "euiFilterButton.filterBadgeAvailableAriaLabel",
+        "changeType": "added",
+        "value": "{count} available filters"
+      },
+      {
+        "token": "euiFilePicker.promptText",
+        "changeType": "added",
+        "value": "Select or drag and drop a file"
+      }
+    ]
+  },
+  {
     "version": "37.3.0",
     "changes": [
       {

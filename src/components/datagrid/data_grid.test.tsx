@@ -1467,6 +1467,48 @@ describe('EuiDataGrid', () => {
         ['1-ColumnB', '1-ColumnA'],
       ]);
     });
+
+    it('resets cell props on column reorder', () => {
+      const columnVisibility = {
+        visibleColumns: ['ColumnA', 'ColumnB'],
+        setVisibleColumns: (visibleColumns: string[]) => {
+          columnVisibility.visibleColumns = visibleColumns;
+          component.setProps({ columnVisibility });
+        },
+      };
+
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          columns={[{ id: 'ColumnA' }, { id: 'ColumnB' }]}
+          columnVisibility={columnVisibility}
+          rowCount={1}
+          renderCellValue={({ rowIndex, columnId, setCellProps }) => {
+            useEffect(() => {
+              if (columnId === 'ColumnB') {
+                setCellProps({ style: { color: 'blue' } });
+              }
+            }, [columnId, rowIndex, setCellProps]);
+
+            return `${rowIndex}-${columnId}`;
+          }}
+        />
+      );
+
+      const getCellColorAt = (index: number) =>
+        component
+          .find('[data-test-subj="dataGridRowCell"]')
+          .at(index)
+          .prop('style')?.color;
+
+      expect(getCellColorAt(0)).toEqual(undefined);
+      expect(getCellColorAt(1)).toEqual('blue');
+
+      moveColumnToIndex(component, 'B', 0);
+
+      expect(getCellColorAt(0)).toEqual('blue');
+      expect(getCellColorAt(1)).toEqual(undefined);
+    });
   });
 
   describe('column sorting', () => {
@@ -2171,7 +2213,7 @@ describe('EuiDataGrid', () => {
     });
   });
 
-  describe('rowHeighsOptions', () => {
+  describe('rowHeightsOptions', () => {
     it('all row heights options applied correctly', async () => {
       const component = mount(
         <EuiDataGrid
