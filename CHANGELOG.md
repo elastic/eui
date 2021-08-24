@@ -18,7 +18,6 @@
 - Fixed untranslated i18n strings for `EuiFilterButton` - adds 2 new tokens and removes old `euiFilterButton.filterBadge` token ([#4750](https://github.com/elastic/eui/pull/5061))
 - Fixed missing i18n token `EuiFilePicker`'s default prompt, and improved i18n string for `euiFilePicker.filesSelected` ([#5063](https://github.com/elastic/eui/pull/5063))
 - Fixed `EuiDataGrid` sort button text pluralization ([#5043](https://github.com/elastic/eui/pull/5043))
-- Fixed location of default value of `EuiToolTip`'s `display` prop ([#5066](https://github.com/elastic/eui/pull/5066))
 - Fixed styles of `EuiButtonIcon` when passing `disabled` prop ([#5060](https://github.com/elastic/eui/pull/5060))
 - Fixed `EuiDataGrid` not clearing cell styles when column position changes ([#5068](https://github.com/elastic/eui/issues/5068))
 
