@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `37.1.2`.
+
+## [`37.1.2`](https://github.com/elastic/eui/tree/v37.1.2)
+
 **Bug fixes**
 
 - Fixed `EuiSelectable`'s double click bug ([#5021](https://github.com/elastic/eui/pull/5021))
