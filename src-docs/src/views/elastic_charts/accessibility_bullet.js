@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Chart, Settings, Goal } from '@elastic/charts';
-import { EuiSpacer, EuiTitle, EuiPanel } from '../../../../src/components';
+import { EuiSpacer, EuiTitle } from '../../../../src/components';
 import { htmlIdGenerator, euiPalettePositive } from '../../../../src/services';
+import { ThemeContext } from '../../components';
+import {
+  EUI_CHARTS_THEME_DARK,
+  EUI_CHARTS_THEME_LIGHT,
+} from '../../../../src/themes/charts/themes';
 
 export const AccessibilityBullet = () => {
+  const themeContext = useContext(ThemeContext);
   const id = htmlIdGenerator()();
+
+  /**
+   * Setup theme based on current light/dark theme
+   */
+  const isDarkTheme = themeContext.theme.includes('dark');
+  const euiChartTheme = isDarkTheme
+    ? EUI_CHARTS_THEME_DARK
+    : EUI_CHARTS_THEME_LIGHT;
 
   const bandLabels = ['freezing', 'cold', 'brisk', 'warm', 'hot'];
   const bands = [0, 100, 125, 150, 250];
@@ -25,38 +39,30 @@ export const AccessibilityBullet = () => {
         <h3 id={`bullet--example--${id}`}>Example bullet chart</h3>
       </EuiTitle>
       <EuiSpacer />
-      <EuiPanel
-        hasShadow={false}
-        hasBorder={false}
-        style={{
-          backgroundColor: 'aliceblue',
-        }}
-        grow={false}
-      >
-        <Chart size={{ height: 200 }}>
-          <Settings
-            ariaLabelledBy={id}
-            ariaDescription="This goal chart has a target of 260."
-            ariaUseDefaultSummary={false}
-          />
-          <Goal
-            id="spec_1"
-            subtype="horizontalBullet"
-            base={0}
-            target={260}
-            actual={280}
-            bands={bands}
-            ticks={[0, 50, 100, 150, 200, 250, 300]}
-            tickValueFormatter={({ value }) => String(value)}
-            bandFillColor={({ value }) => bandFillColor(value)}
-            labelMajor="Revenue 2020 YTD  "
-            labelMinor="(thousand USD)  "
-            centralMajor="280"
-            centralMinor="target: 260"
-            bandLabels={bandLabels}
-          />
-        </Chart>
-      </EuiPanel>
+      <Chart size={{ height: 200 }}>
+        <Settings
+          theme={euiChartTheme}
+          ariaLabelledBy={id}
+          ariaDescription="This goal chart has a target of 260."
+          ariaUseDefaultSummary={false}
+        />
+        <Goal
+          id="spec_1"
+          subtype="horizontalBullet"
+          base={0}
+          target={260}
+          actual={280}
+          bands={bands}
+          ticks={[0, 50, 100, 150, 200, 250, 300]}
+          tickValueFormatter={({ value }) => String(value)}
+          bandFillColor={({ value }) => bandFillColor(value)}
+          labelMajor="Revenue 2020 YTD  "
+          labelMinor="(thousand USD)  "
+          centralMajor="280"
+          centralMinor="target: 260"
+          bandLabels={bandLabels}
+        />
+      </Chart>
     </>
   );
 };

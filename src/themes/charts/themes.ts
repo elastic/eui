@@ -20,7 +20,7 @@ import lightColors from '!!sass-vars-to-js-loader!../../global_styling/variables
 // @ts-ignore typescript doesn't understand the webpack loader
 import darkColors from '!!sass-vars-to-js-loader!../../themes/eui/eui_colors_dark.scss';
 
-const fontFamily = `'Inter UI', -apple-system, BlinkMacSystemFont,
+const fontFamily = `'Inter', -apple-system, BlinkMacSystemFont,
   'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`;
 
 export interface EuiChartThemeType {
@@ -174,6 +174,37 @@ function createTheme(colors: any, mode: string): EuiChartThemeType {
           stroke: colors.euiColorDarkShade.rgba,
           strokeWidth: 1,
           dash: [4, 4],
+        },
+      },
+      goal: {
+        tickLabel: {
+          fontFamily: fontFamily,
+          fill: colors.euiColorDarkShade.rgba,
+        },
+        majorLabel: {
+          fontFamily: fontFamily,
+          fill: colors.euiColorDarkShade.rgba,
+        },
+        minorLabel: {
+          fontFamily: fontFamily,
+          fill: colors.euiColorDarkShade.rgba,
+        },
+        majorCenterLabel: {
+          fontFamily: fontFamily,
+          fill: colors.euiColorDarkShade.rgba,
+        },
+        minorCenterLabel: {
+          fontFamily: fontFamily,
+          fill: colors.euiColorDarkShade.rgba,
+        },
+        targetLine: {
+          stroke: colors.euiColorDarkestShade.rgba,
+        },
+        tickLine: {
+          stroke: colors.euiColorDarkShade.rgba,
+        },
+        progressLine: {
+          stroke: colors.euiColorDarkestShade.rgba,
         },
       },
     },
