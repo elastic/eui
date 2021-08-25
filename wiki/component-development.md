@@ -33,18 +33,18 @@ You can do this using Yeoman, or you can do it manually if you prefer.
 
 ### Running tests
 
-`yarn run test-unit` runs the Jest unit tests once.
+`yarn test-unit` runs the Jest unit tests once.
 
-`yarn run test-unit button` will run tests with "button" in the spec name.
+`yarn test-unit button` will run tests with "button" in the spec name.
 
-You can pass other [Jest CLI arguments](https://jestjs.io/docs/cli). To pass flags or other options, you'll need to follow the format of `yarn run test-unit -- [arguments]`. For example:
+You can pass other [Jest CLI arguments](https://jestjs.io/docs/cli). For example:
 
-`yarn run test-unit -- -u` will update your snapshots. 
-Note: if you are experiencing failed builds in Jenkins related to snapshots, then try clearing the cache first `yarn run test-unit -- --clearCache`.
+`yarn test-unit -u` will update your snapshots. 
+Note: if you are experiencing failed builds in Jenkins related to snapshots, then try clearing the cache first `yarn test-unit --clearCache`.
 
-`yarn run test-unit -- --watch` watches for changes and runs the tests as you code.
+`yarn test-unit --watch` watches for changes and runs the tests as you code.
 
-`yarn run test-unit -- --coverage` generates a code coverage report showing you how
+`yarn test-unit --coverage` generates a code coverage report showing you how
 fully-tested the code is, located at `reports/jest-coverage`.
 
 ### Writing tests
