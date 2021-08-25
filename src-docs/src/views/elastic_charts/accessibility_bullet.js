@@ -28,19 +28,18 @@ export const AccessibilityBullet = () => {
   const bandLabels = ['freezing', 'cold', 'brisk', 'warm', 'hot'];
   const bands = [0, 100, 125, 150, 250];
 
-  const spectrum = euiPalettePositive(5);
+  let spectrum = euiPalettePositive(5);
   // For dark theme, start with the brightest positive color and create a palette that goes to dark gray instead of light
-  const spectrumDark = colorPalette(
-    [spectrum[4], euiPaletteGray(5)[4]],
-    5
-  ).reverse();
+  if (isDarkTheme) {
+    spectrum = colorPalette([spectrum[4], euiPaletteGray(5)[4]], 5).reverse();
+  }
 
   const colorMap = {
-    '0': isDarkTheme ? spectrumDark[0] : spectrum[0],
-    '100': isDarkTheme ? spectrumDark[1] : spectrum[1],
-    '125': isDarkTheme ? spectrumDark[2] : spectrum[2],
-    '150': isDarkTheme ? spectrumDark[3] : spectrum[3],
-    '250': isDarkTheme ? spectrumDark[4] : spectrum[4],
+    '0': spectrum[0],
+    '100': spectrum[1],
+    '125': spectrum[2],
+    '150': spectrum[3],
+    '250': spectrum[4],
   };
   const bandFillColor = (x) => colorMap[x];
   return (
