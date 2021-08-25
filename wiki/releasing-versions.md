@@ -4,7 +4,7 @@ _**Before you get started**_
 
 - npm
   - requires membership in the @elastic organization
-  - npm requires a Publish [access token configured](https://docs.npmjs.com/about-access-tokens) which can be added to your local `.npmrc`. See [npm docs](https://docs.npmjs.com/using-private-packages-in-a-ci-cd-workflow) for a full explanation of creating and setting npm tokens. 
+  - npm requires a Publish [access token configured](https://docs.npmjs.com/about-access-tokens) which can be generated and added to your [`${HOME}/.npmrc`](https://docs.npmjs.com/cli/v7/configuring-npm/npmrc#per-user-config-file) by running `npm login` from the command line. 
   - the release script will ask for your npm one-time passcode
 - git/github
   - the release script assumes your origin for the [EUI root repo](https://github.com/elastic/eui) is labelled `upstream`
@@ -23,8 +23,6 @@ This command runs all tests and then builds the `lib` and `dist` distributions f
 ![bumping a version](https://camo.githubusercontent.com/439b41058aa56f167867c4e118ef5e80c02c962f/68747470733a2f2f642e70722f692f51624b36614a2e676966)
 
 After the version is bumped, the release script automatically updates `CHANGELOG.md` to note that the recent changes are now part of a release. The updates are committed to git and tagged, then pushed to your `upstream` branch.
-
-The command will prompt you for your git credentials. If you are using 2FA for git (which you should be) then your git password must be a [one time token](https://github.com/settings/tokens).
 
 The latest changes have now been pushed to GitHub, a new `git` tag now exists on GitHub, the new release can be installed from `npm`, and the [documentation site][docs] will update momentarily<sup>\*</sup>.
 
