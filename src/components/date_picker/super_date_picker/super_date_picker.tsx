@@ -549,6 +549,7 @@ export class EuiSuperDatePicker extends Component<
             className="euiSuperDatePicker"
             isDisabled={isDisabled}
             prepend={quickSelect}
+            data-test-subj="superDatePickerRange"
           >
             {this.renderDatePickerRange()}
           </EuiFormControlLayout>
