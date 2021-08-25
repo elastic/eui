@@ -337,7 +337,12 @@ export const Categorical = () => {
             position="bottom"
             showGridLines={chartType !== 'BarSeries'}
           />
-          <Axis id="left-axis" position="left" showGridLines />
+          <Axis
+            id="left-axis"
+            position="left"
+            showGridLines
+            tickFormat={(d) => Number(d).toFixed(2)}
+          />
         </Chart>
       </div>
 
@@ -441,6 +446,7 @@ export const Categorical = () => {
     id="left-axis"
     position="left"
     showGridLines
+    tickFormat={(d) => Number(d).toFixed(2)}
   />
 </Chart>`}
         >

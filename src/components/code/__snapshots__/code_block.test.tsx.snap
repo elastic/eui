@@ -180,12 +180,12 @@ console.log(some);"
             >
               <EuiToolTip
                 delay="regular"
+                display="inlineBlock"
                 onMouseOut={[Function]}
                 position="top"
               >
                 <span
                   className="euiToolTipAnchor"
-                  onKeyUp={[Function]}
                   onMouseOut={[Function]}
                   onMouseOver={[Function]}
                 >

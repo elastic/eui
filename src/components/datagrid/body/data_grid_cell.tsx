@@ -251,6 +251,12 @@ export class EuiDataGridCell extends Component<
     return false;
   }
 
+  componentDidUpdate(prevProps: EuiDataGridCellProps) {
+    if (this.props.columnId !== prevProps.columnId) {
+      this.setCellProps({});
+    }
+  }
+
   setCellProps = (cellProps: HTMLAttributes<HTMLDivElement>) => {
     this.setState({ cellProps });
   };
