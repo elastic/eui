@@ -9,10 +9,8 @@ export default () => {
       href: '#',
     },
     {
-      text:
-        'Metazoans is a real mouthful, especially for creatures without mouths',
+      text: 'Metazoans',
       href: '#',
-      truncate: true,
     },
     {
       text: 'Chordates',
@@ -35,16 +33,21 @@ export default () => {
       href: '#',
     },
     {
-      text:
-        'Nebulosa subspecies is also a real mouthful, especially for creatures without mouths',
+      text: 'Nebulosa subspecies',
     },
   ];
 
   return (
     <EuiBreadcrumbs
-      truncate={true}
+      responsive={{
+        xs: 1,
+        s: 3,
+        m: 5,
+        xl: 6,
+      }}
       breadcrumbs={breadcrumbs}
-      aria-label="An example of EuiBreadcrumbs with truncate prop"
+      max={null}
+      aria-label="An example of custom responsive EuiBreadcrumbs"
     />
   );
 };

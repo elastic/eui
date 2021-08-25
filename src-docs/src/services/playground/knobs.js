@@ -448,7 +448,7 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
       const defaultValue = state[name].custom.origin.defaultValue;
       defaultValueMarkup = (
         <EuiText size="xs">
-          {isPlayground && 'Default: '}
+          {isPlayground && defaultValue.value && 'Default: '}
           <EuiCode>{defaultValue.value}</EuiCode>
           {defaultValue.comment && (
             <>
