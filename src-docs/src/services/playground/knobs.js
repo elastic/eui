@@ -24,9 +24,15 @@ import {
   EuiLink,
   EuiText,
   EuiPanel,
+  EuiMarkdownFormat,
 } from '../../../../src/components/';
 
 export const markup = (text) => {
+  return (
+    <EuiMarkdownFormat textSize="xs" color="subdued">
+      {text}
+    </EuiMarkdownFormat>
+  );
   const regex = /(\B#[a-zA-Z]+)|(`[^`]+`)/g;
   return text.split('\n').map((token) => {
     const values = token.split(regex).map((token, index) => {
@@ -477,9 +483,8 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
             {state[name].description && (
               <>
                 <EuiSpacer size="xs" />
-                <EuiText color="subdued" size="xs">
-                  <p>{markup(state[name].description)}</p>
-                </EuiText>
+
+                {markup(state[name].description)}
               </>
             )}
           </div>
