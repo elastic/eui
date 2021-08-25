@@ -4,20 +4,20 @@ import format from 'html-format';
 
 import { useView, Compiler, Placeholder } from 'react-view';
 import {
-  EuiSpacer,
   EuiCodeBlock,
   EuiErrorBoundary,
   EuiTitle,
+  EuiFlyoutBody,
+  EuiFlyoutHeader,
+  EuiPanel,
 } from '../../../../src/components';
 import Knobs from './knobs';
-import { GuideSectionExample } from '../../components/guide_section/guide_section_parts/guide_section_example';
 
 export default ({
   config,
   setGhostBackground,
   playgroundClassName,
   description,
-  tabs,
 }) => {
   const getSnippet = (code) => {
     let regex = /return \(([\S\s]*?)(;)$/gm;
@@ -66,37 +66,31 @@ export default ({
     }, [params.knobProps]);
 
     return (
-      <GuideSectionExample
-        ghostBackground={isGhost}
-        example={
+      <>
+        <EuiFlyoutHeader hasBorder aria-label={config.componentName}>
+          <EuiPanel
+            color="transparent"
+            borderRadius="none"
+            className={classNames('playgroundWrapper', playgroundClassName, {
+              guideDemo__ghostBackground: isGhost,
+            })}
+          >
+            <Compiler
+              {...params.compilerProps}
+              minHeight={0}
+              placeholder={Placeholder}
+              className={playgroundClassName}
+            />
+          </EuiPanel>
+        </EuiFlyoutHeader>
+        <EuiFlyoutHeader hasBorder>
+          <EuiCodeBlock language="jsx" fontSize="m" paddingSize="m" isCopyable>
+            {getSnippet(params.editorProps.code)}
+          </EuiCodeBlock>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody className="playgroundTableWrapper">
           <>
-            <div
-              className={classNames('playgroundWrapper', playgroundClassName)}
-            >
-              <Compiler
-                {...params.compilerProps}
-                minHeight={0}
-                placeholder={Placeholder}
-                className={playgroundClassName}
-              />
-            </div>
-            <EuiSpacer />
-            <EuiCodeBlock
-              language="jsx"
-              fontSize="m"
-              paddingSize="m"
-              isCopyable
-            >
-              {getSnippet(params.editorProps.code)}
-            </EuiCodeBlock>
-          </>
-        }
-        tabs={tabs}
-        tabContent={
-          <>
-            {description ? (
-              description
-            ) : (
+            {description || (
               <div className="guideSection__propsTableIntro">
                 <EuiTitle size="s">
                   <h2>{config.componentName}</h2>
@@ -107,8 +101,8 @@ export default ({
               <Knobs {...params.knobProps} />
             </EuiErrorBoundary>
           </>
-        }
-      />
+        </EuiFlyoutBody>
+      </>
     );
   };
 

@@ -3,3 +3,8 @@
     display: block !important; // sass-lint:disable-line no-important
   }
 }
+
+.playgroundTableWrapper {
+  padding: 0 $euiSizeS $euiSizeS;
+  background-color: map-get($euiPanelBackgroundColorModifiers, 'subdued');
+}
