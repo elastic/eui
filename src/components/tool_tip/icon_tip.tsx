@@ -14,6 +14,10 @@ import { EuiToolTip, EuiToolTipProps } from './tool_tip';
 
 export interface EuiIconTipProps {
   /**
+   * Children are not allowed as they are built using the icon props
+   */
+  children?: never;
+  /**
    * The icon color.
    */
   color?: string;
