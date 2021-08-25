@@ -20,7 +20,8 @@ export default () => (
     <br />
     <EuiFacetButton
       quantity={6}
-      icon={<EuiAvatar size="s" name="Avatar Jones" />}>
+      icon={<EuiAvatar size="s" name="Avatar Jones" />}
+    >
       Avatar as icon
     </EuiFacetButton>
     <br />

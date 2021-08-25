@@ -25,7 +25,8 @@ export const HtmlIdGeneratorPrefix = () => {
       <EuiFlexGroup
         justifyContent="flexStart"
         gutterSize="m"
-        alignItems="center">
+        alignItems="center"
+      >
         <EuiFlexItem grow={false}>
           <EuiFieldText
             label="Prefix"

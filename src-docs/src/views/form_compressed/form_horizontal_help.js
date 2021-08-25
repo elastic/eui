@@ -26,7 +26,8 @@ export default () => (
           </span>
         </EuiToolTip>
       }
-      display="columnCompressed">
+      display="columnCompressed"
+    >
       <EuiSelect
         options={[
           { value: 'option_one', text: 'Option one' },

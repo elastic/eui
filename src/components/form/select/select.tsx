@@ -131,7 +131,8 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
       compressed={compressed}
       prepend={prepend}
       append={append}
-      inputId={id}>
+      inputId={id}
+    >
       <EuiValidatableControl isInvalid={isInvalid}>
         <select
           id={id}
@@ -141,7 +142,8 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
           defaultValue={selectDefaultValue}
           value={value}
           onMouseUp={handleMouseUp}
-          {...rest}>
+          {...rest}
+        >
           {emptyOptionNode}
           {options.map((option, index) => {
             const { text, ...rest } = option;

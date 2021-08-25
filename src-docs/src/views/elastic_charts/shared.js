@@ -12,7 +12,7 @@ import {
 import { BarSeries, LineSeries, AreaSeries } from '@elastic/charts';
 import { devDependencies } from '../../../../package';
 
-const chartsVersion = devDependencies['@elastic/charts'].match(
+export const chartsVersion = devDependencies['@elastic/charts'].match(
   /\d+\.\d+\.\d+/
 )[0];
 
@@ -32,7 +32,8 @@ export const ExternalBadge = () => {
         window.open(
           `https://github.com/elastic/elastic-charts/tree/v${chartsVersion}`
         )
-      }>
+      }
+    >
       External library: @elastic/charts v{chartsVersion}
     </EuiBadge>
   );
@@ -93,7 +94,8 @@ export const ChartTypeCard = (props) => {
   return (
     <ChartCard
       title="Chart types"
-      description={`${props.type} charts can be displayed as any x/y series type.`}>
+      description={`${props.type} charts can be displayed as any x/y series type.`}
+    >
       <EuiRadioGroup
         compressed
         options={toggleButtonsIcons}
@@ -136,7 +138,8 @@ export const MultiChartCard = (props) => {
     <ChartCard
       textAlign="left"
       title="Single vs multiple series"
-      description="Legends are only necessary when there are multiple series. Stacked series indicates accumulation but can hide subtle differences. Do not stack line charts.">
+      description="Legends are only necessary when there are multiple series. Stacked series indicates accumulation but can hide subtle differences. Do not stack line charts."
+    >
       <EuiSwitch
         label="Show multi-series"
         checked={multi}

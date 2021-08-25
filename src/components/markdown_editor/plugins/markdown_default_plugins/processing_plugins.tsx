@@ -67,7 +67,7 @@ export const getDefaultEuiMarkdownProcessingPlugins = (): [
           // If there are linebreaks use codeblock, otherwise code
           /\r|\n/.exec(props.children) ||
           (props.className && props.className.indexOf(FENCED_CLASS) > -1) ? (
-            <EuiCodeBlock fontSize="m" paddingSize="s" {...props} />
+            <EuiCodeBlock fontSize="m" paddingSize="s" isCopyable {...props} />
           ) : (
             <EuiCode {...props} />
           ),

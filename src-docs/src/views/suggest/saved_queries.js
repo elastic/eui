@@ -115,7 +115,8 @@ export default () => {
     <div className="savedQueriesInput">
       <EuiFlexGroup
         gutterSize="s"
-        className={hideDatepicker ? 'savedQueriesInput__hideDatepicker' : ''}>
+        className={hideDatepicker ? 'savedQueriesInput__hideDatepicker' : ''}
+      >
         <EuiFlexItem>
           <EuiSuggest
             status={status}
@@ -137,7 +138,8 @@ export default () => {
         className="globalFilterGroup"
         gutterSize="none"
         alignItems="flexStart"
-        responsive={false}>
+        responsive={false}
+      >
         <EuiFlexItem className="globalFilterGroup__branch" grow={false}>
           <GlobalFilterOptions />
         </EuiFlexItem>

@@ -83,7 +83,8 @@ export default () => {
             size="xs"
             iconType="arrowDown"
             iconSide="right"
-            aria-label="Calendar dropdown">
+            aria-label="Calendar dropdown"
+          >
             <EuiIcon type="calendar" />
           </EuiButtonEmpty>
         }

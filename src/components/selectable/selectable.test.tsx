@@ -36,6 +36,31 @@ describe('EuiSelectable', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('should not reset the activeOptionIndex nor isFocused when EuiSelectable is blurred in favour of its popover', () => {
+    const component = mount(
+      <EuiSelectable options={options} searchable>
+        {(list, search) => (
+          <>
+            {list}
+            {search}
+          </>
+        )}
+      </EuiSelectable>
+    );
+
+    component.setState({
+      activeOptionIndex: 0,
+      isFocused: true,
+    });
+    expect(component.state()).toMatchSnapshot();
+
+    component.find('.euiSelectable').simulate('blur', {
+      relatedTarget: { firstChild: { id: 'generated-id_listbox' } },
+    });
+    component.update();
+    expect(component.state()).toMatchSnapshot();
+  });
+
   describe('props', () => {
     test('searchable', () => {
       const component = render(<EuiSelectable options={options} searchable />);

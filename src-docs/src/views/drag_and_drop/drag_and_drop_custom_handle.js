@@ -35,14 +35,16 @@ export default () => {
       <EuiDroppable
         droppableId="CUSTOM_HANDLE_DROPPABLE_AREA"
         spacing="m"
-        withPanel>
+        withPanel
+      >
         {list.map(({ content, id }, idx) => (
           <EuiDraggable
             spacing="m"
             key={id}
             index={idx}
             draggableId={id}
-            customDragHandle={true}>
+            customDragHandle={true}
+          >
             {(provided) => (
               <EuiPanel className="custom" paddingSize="m">
                 <EuiFlexGroup>

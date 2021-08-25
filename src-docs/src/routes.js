@@ -280,7 +280,8 @@ const createExample = (example, customTitle) => {
         intro={intro}
         isBeta={beta}
         playground={playgroundComponent}
-        guidelines={guidelines}>
+        guidelines={guidelines}
+      >
         {renderedSections}
       </GuidePage>
     </EuiErrorBoundary>
@@ -364,10 +365,10 @@ const navigation = [
       KeyPadMenuExample,
       LinkExample,
       PaginationExample,
-      TreeViewExample,
       SideNavExample,
       StepsExample,
       TabsExample,
+      TreeViewExample,
     ].map((example) => createExample(example)),
   },
   {

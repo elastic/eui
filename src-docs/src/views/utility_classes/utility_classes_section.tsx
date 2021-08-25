@@ -48,7 +48,8 @@ export const UtilityClassesSection: FunctionComponent<UtilityClassesSection> = (
                 isCopyable={true}
                 paddingSize="none"
                 transparentBackground={true}
-                language="html">
+                language="html"
+              >
                 {snippet}
               </EuiCodeBlock>
             )}

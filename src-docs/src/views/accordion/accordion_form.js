@@ -27,7 +27,8 @@ const repeatableForm = (
       <EuiFlexItem>
         <EuiFormRow
           label="Password"
-          helpText="Must include one number and one symbol">
+          helpText="Must include one number and one symbol"
+        >
           <EuiFieldPassword icon="lock" />
         </EuiFormRow>
       </EuiFlexItem>
@@ -82,7 +83,8 @@ export default () => (
       buttonClassName="euiAccordionForm__button"
       buttonContent={buttonContent}
       extraAction={extraAction}
-      paddingSize="l">
+      paddingSize="l"
+    >
       {repeatableForm}
     </EuiAccordion>
 
@@ -92,7 +94,8 @@ export default () => (
       buttonClassName="euiAccordionForm__button"
       buttonContent={buttonContent}
       extraAction={extraAction}
-      paddingSize="l">
+      paddingSize="l"
+    >
       {repeatableForm}
     </EuiAccordion>
   </div>

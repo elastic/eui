@@ -71,7 +71,8 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
       draggableId={draggableId}
       index={index}
       isDragDisabled={isDragDisabled}
-      {...rest}>
+      {...rest}
+    >
       {(provided, snapshot, rubric) => {
         const classes = classNames(
           'euiDraggable',
@@ -102,7 +103,8 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
               ref={provided.innerRef}
               data-test-subj={dataTestSubj}
               className={classes}
-              style={{ ...style, ...provided.draggableProps.style }}>
+              style={{ ...style, ...provided.draggableProps.style }}
+            >
               {cloneElement(DraggableElement, {
                 className: classNames(
                   DraggableElement.props.className,

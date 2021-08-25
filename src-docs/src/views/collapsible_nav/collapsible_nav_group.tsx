@@ -14,7 +14,8 @@ export default () => (
     <EuiCollapsibleNavGroup
       data-test-subj="TEST"
       title="Nav group"
-      iconType="logoElastic">
+      iconType="logoElastic"
+    >
       <EuiText size="s" color="subdued">
         <p>
           This is a nice group with a heading supplied via{' '}
@@ -28,7 +29,8 @@ export default () => (
       title="Nav group"
       isCollapsible={true}
       iconType="logoElastic"
-      initialIsOpen={true}>
+      initialIsOpen={true}
+    >
       <EuiText size="s" color="subdued">
         <p>
           This group is <EuiCode>collapsible</EuiCode> and set with{' '}
@@ -45,7 +47,8 @@ export default () => (
       titleSize="s"
       isCollapsible={true}
       initialIsOpen={false}
-      background="dark">
+      background="dark"
+    >
       <EuiText size="s">
         <p>
           This is a <EuiCode>dark</EuiCode> <EuiCode>collapsible</EuiCode> group

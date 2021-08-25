@@ -75,13 +75,15 @@ export default () => (
           <EuiCopy
             display="block"
             textToCopy={token}
-            afterMessage={`${token} copied`}>
+            afterMessage={`${token} copied`}
+          >
             {(copy) => (
               <EuiPanel
                 hasShadow={false}
                 hasBorder={false}
                 onClick={copy}
-                paddingSize="s">
+                paddingSize="s"
+              >
                 <EuiToken className="eui-alignMiddle" iconType={token} /> &emsp;{' '}
                 <small>{token}</small>
               </EuiPanel>

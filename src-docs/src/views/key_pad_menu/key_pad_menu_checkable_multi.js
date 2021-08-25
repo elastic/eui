@@ -18,7 +18,8 @@ export default () => {
         label="Check one"
         onChange={() => {
           setmultiSelect1isSelected((selected) => !selected);
-        }}>
+        }}
+      >
         <EuiIcon type="faceHappy" size="l" />
       </EuiKeyPadMenuItem>
       <EuiKeyPadMenuItem
@@ -28,14 +29,16 @@ export default () => {
         label="Check two"
         onChange={() => {
           setmultiSelect2isSelected((selected) => !selected);
-        }}>
+        }}
+      >
         <EuiIcon type="faceNeutral" size="l" />
       </EuiKeyPadMenuItem>
       <EuiKeyPadMenuItem
         checkable="multi"
         id="multiKeypadSelect3a"
         label="Disabled"
-        isDisabled>
+        isDisabled
+      >
         <EuiIcon type="faceSad" size="l" />
       </EuiKeyPadMenuItem>
     </EuiKeyPadMenu>

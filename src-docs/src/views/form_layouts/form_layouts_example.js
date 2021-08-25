@@ -153,7 +153,8 @@ export const FormLayoutsExample = {
             The best way to provide an{' '}
             <EuiLink
               href="https://www.tpgi.com/what-is-an-accessible-name/"
-              external>
+              external
+            >
               accessible name
             </EuiLink>{' '}
             to form elements is to use the <EuiCode>label</EuiCode> prop

@@ -93,7 +93,8 @@ export default ({ selectedTheme }) => {
         <ColorSection
           color={'euiColorPrimary'}
           minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}>
+          showTextVariants={showTextVariants}
+        >
           <p>
             Main brand color and used for most call to actions like{' '}
             <Link to="/navigation/button">buttons</Link> and{' '}
@@ -108,7 +109,8 @@ export default ({ selectedTheme }) => {
         <ColorSection
           color={'euiColorAccent'}
           minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}>
+          showTextVariants={showTextVariants}
+        >
           <p>
             Pulls attention to key indicators like{' '}
             <Link to="/display/badge">notifications</Link> or{' '}
@@ -123,7 +125,8 @@ export default ({ selectedTheme }) => {
         <ColorSection
           color={'euiColorSuccess'}
           minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}>
+          showTextVariants={showTextVariants}
+        >
           <p>
             Also known as <EuiCode>euiColorSecondary</EuiCode>. Use this for
             success graphics and <strong>additive</strong> actions.
@@ -136,7 +139,8 @@ export default ({ selectedTheme }) => {
         <ColorSection
           color={'euiColorWarning'}
           minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}>
+          showTextVariants={showTextVariants}
+        >
           <p>
             Use this for warnings and actions that have a{' '}
             <strong>potential</strong> to be destructive.
@@ -149,7 +153,8 @@ export default ({ selectedTheme }) => {
         <ColorSection
           color={'euiColorDanger'}
           minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}>
+          showTextVariants={showTextVariants}
+        >
           <p>
             Use this for negative graphics like errors and{' '}
             <strong>destructive</strong> actions.
@@ -162,7 +167,8 @@ export default ({ selectedTheme }) => {
         <ColorSection
           color={'euiColorEmptyShade'}
           minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}>
+          showTextVariants={showTextVariants}
+        >
           <p>
             Used as the background color of primary{' '}
             <Link to="/layout/page">page content</Link> and{' '}
@@ -193,7 +199,8 @@ export default ({ selectedTheme }) => {
         <ColorSection
           color={'euiColorLightestShade'}
           minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}>
+          showTextVariants={showTextVariants}
+        >
           <p>
             Used to lightly shade areas that contain secondary content or{' '}
             <strong>contain</strong> panel-like components. Proper contrast of
@@ -207,7 +214,8 @@ export default ({ selectedTheme }) => {
         <ColorSection
           color={'euiPageBackgroundColor'}
           minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}>
+          showTextVariants={showTextVariants}
+        >
           <p>
             The background color for the whole window (body) is a slightly
             altered version of <EuiCode>euiColorLightestShade</EuiCode> that{' '}
@@ -222,7 +230,8 @@ export default ({ selectedTheme }) => {
         <ColorSection
           color={'euiColorLightShade'}
           minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}>
+          showTextVariants={showTextVariants}
+        >
           <p>
             Used for most borders and dividers (
             <Link to="/layout/horizontal-rule">horizontal rules</Link>).
@@ -235,7 +244,8 @@ export default ({ selectedTheme }) => {
         <ColorSection
           color={'euiColorMediumShade'}
           minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}>
+          showTextVariants={showTextVariants}
+        >
           <p>
             The middle gray for all themes; this is the base for{' '}
             <EuiCode>euiTextSubduedColor</EuiCode>. Use subdued text for hint or
@@ -249,7 +259,8 @@ export default ({ selectedTheme }) => {
         <ColorSection
           color={'euiColorDarkShade'}
           minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}>
+          showTextVariants={showTextVariants}
+        >
           <p>
             A slightly less subtle shade for text, yet more subtle than the
             default text color.
@@ -262,7 +273,8 @@ export default ({ selectedTheme }) => {
         <ColorSection
           color={'euiColorDarkestShade'}
           minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}>
+          showTextVariants={showTextVariants}
+        >
           <p>
             The default <Link to="/display/text">text</Link> color and the
             background color for inverted backgrounds like{' '}
@@ -285,7 +297,8 @@ export default ({ selectedTheme }) => {
       <ColorSection
         color={'euiColorFullShade'}
         minimumContrast={contrastValue}
-        showTextVariants={showTextVariants}>
+        showTextVariants={showTextVariants}
+      >
         <p>
           The opposite of <EuiCode>euiColorEmptyShade</EuiCode>.
         </p>

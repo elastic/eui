@@ -113,6 +113,10 @@ export type EuiFormRowCommonProps = CommonProps & {
    * in case the form row has no label
    */
   hasEmptyLabelSpace?: boolean;
+  /**
+   *  Passed along to the label element; and to the child field element when `disabled` doesn't already exist on the child field element.
+   */
+  isDisabled?: boolean;
 };
 
 type LabelProps = {
@@ -127,7 +131,7 @@ type LegendProps = {
    */
   labelType?: 'legend';
 } & EuiFormRowCommonProps &
-  HTMLAttributes<HTMLFieldSetElement>;
+  Omit<HTMLAttributes<HTMLFieldSetElement>, 'disabled'>;
 
 export type EuiFormRowProps = ExclusiveUnion<LabelProps, LegendProps>;
 
@@ -194,6 +198,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       hasChildLabel,
       id: propsId,
       inputId,
+      isDisabled,
       ...rest
     } = this.props;
 
@@ -219,7 +224,8 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
           <EuiFormHelpText
             key={key}
             id={`${id}-help-${i}`}
-            className="euiFormRow__text">
+            className="euiFormRow__text"
+          >
             {helpText}
           </EuiFormHelpText>
         );
@@ -236,7 +242,8 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
           <EuiFormErrorText
             key={key}
             id={`${id}-error-${i}`}
-            className="euiFormRow__text">
+            className="euiFormRow__text"
+          >
             {error}
           </EuiFormErrorText>
         );
@@ -258,6 +265,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
           ..._labelProps,
           htmlFor: hasChildLabel ? inputId || id : undefined,
           isFocused: this.state.isFocused,
+          ...(!isDisabled && { isFocused: this.state.isFocused }), // If the row is disabled, don't pass the isFocused state.
           type: labelType,
         };
       }
@@ -266,8 +274,10 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
           <EuiFormLabel
             className="euiFormRow__label"
             isInvalid={isInvalid}
+            isDisabled={isDisabled}
             aria-invalid={isInvalid}
-            {...labelProps}>
+            {...labelProps}
+          >
             {label}
           </EuiFormLabel>
           {labelAppend && ' '}
@@ -298,6 +308,8 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
 
     const field = cloneElement(Children.only(children), {
       id: inputId ? undefined : id,
+      disabled: isDisabled,
+      // Allow the child's disabled or isDisabled prop to supercede the ones before
       ...children.props,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
@@ -331,7 +343,8 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     return labelType === 'legend' ? (
       <fieldset
         {...sharedProps}
-        {...(rest as HTMLAttributes<HTMLFieldSetElement>)}>
+        {...(rest as HTMLAttributes<HTMLFieldSetElement>)}
+      >
         {contents}
       </fieldset>
     ) : (

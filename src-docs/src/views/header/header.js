@@ -153,7 +153,8 @@ const HeaderUserMenu = () => {
       aria-expanded={isOpen}
       aria-haspopup="true"
       aria-label="Account menu"
-      onClick={onMenuButtonClick}>
+      onClick={onMenuButtonClick}
+    >
       <EuiAvatar name="John Username" size="s" />
     </EuiHeaderSectionItemButton>
   );
@@ -165,12 +166,14 @@ const HeaderUserMenu = () => {
       isOpen={isOpen}
       anchorPosition="downRight"
       closePopover={closeMenu}
-      panelPaddingSize="none">
+      panelPaddingSize="none"
+    >
       <div style={{ width: 320 }}>
         <EuiFlexGroup
           gutterSize="m"
           className="euiHeaderProfile"
-          responsive={false}>
+          responsive={false}
+        >
           <EuiFlexItem grow={false}>
             <EuiAvatar name="John Username" size="xl" />
           </EuiFlexItem>
@@ -277,7 +280,8 @@ const HeaderSpacesMenu = () => {
       aria-expanded={isOpen}
       aria-haspopup="true"
       aria-label="Spaces menu"
-      onClick={onMenuButtonClick}>
+      onClick={onMenuButtonClick}
+    >
       {selectedSpace.prepend}
     </EuiHeaderSectionItemButton>
   );
@@ -289,7 +293,8 @@ const HeaderSpacesMenu = () => {
       isOpen={isOpen}
       anchorPosition="downLeft"
       closePopover={closePopover}
-      panelPaddingSize="none">
+      panelPaddingSize="none"
+    >
       <EuiSelectable
         searchable={isListExtended()}
         searchProps={{
@@ -303,7 +308,8 @@ const HeaderSpacesMenu = () => {
         listProps={{
           rowHeight: 40,
           showIcons: false,
-        }}>
+        }}
+      >
         {(list, search) => (
           <>
             <EuiPopoverTitle paddingSize="s">
@@ -315,7 +321,8 @@ const HeaderSpacesMenu = () => {
                 size="s"
                 fullWidth
                 onClick={addMoreSpaces}
-                disabled={isListExtended()}>
+                disabled={isListExtended()}
+              >
                 Add more spaces
               </EuiButton>
             </EuiPopoverFooter>
@@ -348,7 +355,8 @@ const HeaderAppMenu = () => {
       aria-haspopup="true"
       aria-label="Apps menu with 1 new app"
       notification="1"
-      onClick={onMenuButtonClick}>
+      onClick={onMenuButtonClick}
+    >
       <EuiIcon type="apps" size="m" />
     </EuiHeaderSectionItemButton>
   );
@@ -359,7 +367,8 @@ const HeaderAppMenu = () => {
       button={button}
       isOpen={isOpen}
       anchorPosition="downRight"
-      closePopover={closeMenu}>
+      closePopover={closeMenu}
+    >
       <EuiKeyPadMenu id={keypadId} style={{ width: 288 }}>
         <EuiKeyPadMenuItem label="Discover">
           <EuiIcon type="discoverApp" size="l" />

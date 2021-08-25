@@ -5,9 +5,7 @@ import {
   EuiToolTip,
   EuiLink,
   EuiText,
-  EuiFieldText,
-  EuiSpacer,
-  EuiButton,
+  EuiCode,
 } from '../../../../src/components';
 
 export default () => (
@@ -18,6 +16,7 @@ export default () => (
         <EuiToolTip position="top" content="Here is some tooltip text">
           <EuiLink href="#">top</EuiLink>
         </EuiToolTip>
+        .
       </p>
 
       <p>
@@ -25,7 +24,8 @@ export default () => (
         <EuiToolTip
           position="left"
           title="Tooltip titles are optional"
-          content="Here is some tooltip text. Lets add some more content to see how it wraps.">
+          content="Here is some tooltip text. Lets add some more content to see how it wraps."
+        >
           <EuiLink href="#">left</EuiLink>
         </EuiToolTip>{' '}
         and includes the optional title.
@@ -36,14 +36,16 @@ export default () => (
         <EuiToolTip position="right" content="Here is some tooltip text">
           <EuiLink href="#">right</EuiLink>
         </EuiToolTip>
+        .
       </p>
 
       <p>
-        This tooltip has a long delay because it might be in a repeatable
-        component{' '}
+        This tooltip has a long <EuiCode>delay</EuiCode> because it might be in
+        a repeatable component{' '}
         <EuiToolTip delay="long" content="Here is some tooltip text">
           <EuiLink href="#">wink</EuiLink>
         </EuiToolTip>
+        .
       </p>
 
       <p>
@@ -53,39 +55,5 @@ export default () => (
         </EuiToolTip>
       </p>
     </EuiText>
-
-    <EuiSpacer />
-
-    <p>
-      <EuiToolTip
-        position="top"
-        content="Here is some tooltip text"
-        display="block">
-        <EuiButton fullWidth>
-          I am a block level tooltip, applied to a button with fullWidth
-        </EuiButton>
-      </EuiToolTip>
-    </p>
-
-    <EuiSpacer />
-
-    <EuiToolTip position="right" content="Works on anything">
-      <EuiFieldText
-        placeholder="Hover over me"
-        aria-label="ToolTip appears on hover"
-      />
-    </EuiToolTip>
-
-    <EuiSpacer />
-
-    <EuiToolTip
-      position="top"
-      content={
-        <p>
-          Works on any kind of element &mdash; buttons, inputs, you name it!
-        </p>
-      }>
-      <EuiButton onClick={() => {}}>Hover me</EuiButton>
-    </EuiToolTip>
   </div>
 );

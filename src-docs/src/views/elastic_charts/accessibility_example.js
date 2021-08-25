@@ -8,7 +8,7 @@ import {
   EuiLink,
 } from '../../../../src/components';
 import { GuideSectionTypes } from '../../components';
-import { ExternalBadge } from './shared';
+import { chartsVersion, ExternalBadge } from './shared';
 import { TextureMultiSeriesChart } from './texture';
 import { TexturedStylesProps } from './texture_props';
 import { AccessibilitySunburst } from './accessibility_sunburst';
@@ -29,7 +29,8 @@ export const ElasticChartsAccessibilityExample = {
           {' '}
           <EuiLink
             href="https://elastic.github.io/elastic-charts"
-            target="_blank">
+            target="_blank"
+          >
             Elastic Charts
           </EuiLink>{' '}
           provides some accessibilty features for all users.
@@ -183,14 +184,15 @@ export const ElasticChartsAccessibilityExample = {
           <EuiCallOut
             title={
               <>
-                Currently, data tables are only available for{' '}
+                In version {chartsVersion}, data tables are only available for{' '}
                 <strong>partition charts</strong>.
               </>
             }
-            iconType="visPie">
+            iconType="visPie"
+          >
             <p>
-              Version <ExternalBadge />, partition charts include: sunburst,
-              treemap, icicle, flame, and mosaic.
+              Partition charts include: sunburst, treemap, icicle, flame, and
+              mosaic.
             </p>
           </EuiCallOut>
         </>
@@ -267,14 +269,15 @@ export const ElasticChartsAccessibilityExample = {
           <EuiCallOut
             title={
               <>
-                Currently, texture fills are only available for{' '}
+                In version {chartsVersion}, texture fills are only available for{' '}
                 <strong>XY charts</strong>.
               </>
             }
-            iconType="visAreaStacked">
+            iconType="visAreaStacked"
+          >
             <p>
-              At time of this writing, XY charts include: area, bar, bubble,
-              histogram, line, and heatmap.
+              XY charts include: area, bar, bubble, histogram, line, and
+              heatmap.
             </p>
           </EuiCallOut>
         </>
@@ -316,8 +319,8 @@ export const ElasticChartsAccessibilityExample = {
           <EuiCallOut
             title={
               <>
-                Currently, semantic groupings are only available for{' '}
-                <strong>goal and gauge charts</strong>.
+                In version {chartsVersion}, semantic groupings are only
+                available for <strong>goal and gauge charts</strong>.
               </>
             }
             iconType="visGoal"
@@ -343,23 +346,12 @@ export const ElasticChartsAccessibilityExample = {
     {
       text: (
         <>
-          <EuiCallOut
-            title={
-              <>
-                <ExternalBadge /> does not have configuration options to set the
-                color of the labels.
-              </>
-            }
-            color="warning"
-            iconType="alert"
-          />
-          <EuiSpacer />
           <p>
-            For the provided example, a visually hidden content is rendered with
-            a goal description list generated from the{' '}
+            For the provided example, visually hidden content is rendered with a
+            goal description list generated from the{' '}
             <EuiCode>bandLabels</EuiCode> prop.
           </p>
-          <EuiCode language="jsx" inline={false}>
+          <EuiCodeBlock language="jsx">
             {`<p>Revenue 2020 YTD</p>
 <p>(thousand USD</p>
 <p>This goal chart has a target of 260.</p>
@@ -386,7 +378,7 @@ export const ElasticChartsAccessibilityExample = {
   <dt>150 - 250</dt>
   <dd>hot</dd>
 </dl>`}
-          </EuiCode>
+          </EuiCodeBlock>
         </>
       ),
     },

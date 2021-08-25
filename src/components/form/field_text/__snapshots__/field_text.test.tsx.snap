@@ -23,7 +23,7 @@ exports[`EuiFieldText form row props are rendered 1`] = `
     class="euiFormRow__fieldWrapper"
   >
     <div
-      aria-describedby="generated-id-help generated-id-error-0"
+      aria-describedby="generated-id-help-0 generated-id-error-0"
       class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--compressed"
     >
       <div
@@ -49,7 +49,7 @@ exports[`EuiFieldText form row props are rendered 1`] = `
     </div>
     <div
       class="euiFormHelpText euiFormRow__text"
-      id="generated-id-help"
+      id="generated-id-help-0"
     >
       helpText
     </div>

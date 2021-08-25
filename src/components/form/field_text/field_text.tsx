@@ -159,7 +159,8 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
       readOnly={readOnly}
       prepend={prependNodes}
       append={appendNodes}
-      inputId={id}>
+      inputId={id}
+    >
       {control}
     </EuiFormControlLayoutUpdated>
   );

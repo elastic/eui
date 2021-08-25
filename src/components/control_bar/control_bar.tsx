@@ -316,7 +316,8 @@ export class EuiControlBar extends Component<
               className={classNames('euiControlBar__button', className)}
               color={color}
               {...rest}
-              size="s">
+              size="s"
+            >
               {label}
             </EuiButton>
           );
@@ -372,7 +373,8 @@ export class EuiControlBar extends Component<
             <div
               key={id}
               className={classNames('euiControlBar__text', className)}
-              {...rest}>
+              {...rest}
+            >
               {text}
             </div>
           );
@@ -401,7 +403,8 @@ export class EuiControlBar extends Component<
               key={id + index}
               className={tabClasses}
               onClick={(event) => handleTabClick(control, event)}
-              {...rest}>
+              {...rest}
+            >
               {label}
             </button>
           );
@@ -422,7 +425,8 @@ export class EuiControlBar extends Component<
     const controlBar = (
       <EuiI18n
         token="euiControlBar.screenReaderHeading"
-        default="Page level controls">
+        default="Page level controls"
+      >
         {(screenReaderHeading: string) => (
           // Though it would be better to use aria-labelledby than aria-label and not repeat the same string twice
           // A bug in voiceover won't list some landmarks in the rotor without an aria-label
@@ -430,7 +434,8 @@ export class EuiControlBar extends Component<
             className={classes}
             aria-label={landmarkHeading ? landmarkHeading : screenReaderHeading}
             {...rest}
-            style={styles}>
+            style={styles}
+          >
             <EuiScreenReaderOnly>
               <h2>{landmarkHeading ? landmarkHeading : screenReaderHeading}</h2>
             </EuiScreenReaderOnly>
@@ -438,7 +443,8 @@ export class EuiControlBar extends Component<
               className="euiControlBar__controls"
               ref={(node) => {
                 this.bar = node;
-              }}>
+              }}
+            >
               {controls.map((control, index) => controlItem(control, index))}
             </div>
             {this.props.showContent ? (

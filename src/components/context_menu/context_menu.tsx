@@ -344,7 +344,8 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
           hasPanel={Boolean(panel)}
           toolTipTitle={toolTipTitle}
           toolTipContent={toolTipContent}
-          {...rest}>
+          {...rest}
+        >
           {name}
         </EuiContextMenuItem>
       );
@@ -400,7 +401,8 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
         }
         onUseKeyboardToNavigate={this.onUseKeyboardToNavigate}
         showNextPanel={this.showNextPanel}
-        showPreviousPanel={this.showPreviousPanel}>
+        showPreviousPanel={this.showPreviousPanel}
+      >
         {panel.content}
       </EuiContextMenuPanel>
     );
@@ -432,7 +434,8 @@ export class EuiContextMenu extends Component<EuiContextMenuProps, State> {
       <div
         className={classes}
         style={{ height: this.state.height, width: width }}
-        {...rest}>
+        {...rest}
+      >
         {outgoingPanel}
         {incomingPanel}
       </div>

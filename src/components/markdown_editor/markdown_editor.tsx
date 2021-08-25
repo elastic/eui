@@ -417,11 +417,13 @@ export const EuiMarkdownEditor = forwardRef<
             <div
               ref={previewRef}
               className="euiMarkdownEditorPreview"
-              style={{ height: previewHeight }}>
+              style={{ height: previewHeight }}
+            >
               <EuiMarkdownFormat
                 parsingPluginList={parsingPluginList}
                 processingPluginList={processingPluginList}
-                {...markdownFormatProps}>
+                {...markdownFormatProps}
+              >
                 {value}
               </EuiMarkdownFormat>
             </div>
@@ -431,7 +433,8 @@ export const EuiMarkdownEditor = forwardRef<
             className="euiMarkdownEditor__toggleContainer"
             style={{
               height: editorToggleContainerHeight,
-            }}>
+            }}
+          >
             <EuiMarkdownEditorDropZone
               setEditorFooterHeight={setEditorFooterHeight}
               isEditing={isEditing}
@@ -457,7 +460,8 @@ export const EuiMarkdownEditor = forwardRef<
               uiPlugins={toolbarPlugins}
               errors={errors}
               hasUnacceptedItems={hasUnacceptedItems}
-              setHasUnacceptedItems={setHasUnacceptedItems}>
+              setHasUnacceptedItems={setHasUnacceptedItems}
+            >
               <EuiResizeObserver onResize={onResize}>
                 {(resizeRef) => {
                   return (

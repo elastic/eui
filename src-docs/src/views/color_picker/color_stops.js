@@ -59,7 +59,8 @@ export default () => {
       iconType="controlsVertical"
       aria-label="Open settings"
       color="text"
-      size="xs">
+      size="xs"
+    >
       Steps
     </EuiButtonEmpty>
   );
@@ -133,7 +134,8 @@ export default () => {
               panelStyle={{ minWidth: 380 }}
               button={button}
               isOpen={isPopoverOpen}
-              closePopover={closePopover}>
+              closePopover={closePopover}
+            >
               <EuiFormRow label="Number of steps" display="columnCompressed">
                 <EuiRange
                   value={value}

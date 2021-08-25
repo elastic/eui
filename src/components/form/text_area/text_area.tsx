@@ -77,7 +77,8 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
         name={name}
         id={id}
         ref={inputRef}
-        placeholder={placeholder}>
+        placeholder={placeholder}
+      >
         {children}
       </textarea>
     </EuiValidatableControl>

@@ -104,6 +104,18 @@ const filePickerSnippet = [
 />`,
 ];
 
+import FilePickerRemove from './file_picker_remove';
+const filePickerRemoveSource = require('!!raw-loader!./file_picker_remove');
+const filePickerRemoveSnippet = [
+  `<EuiFilePicker
+  id={filePickerId}
+  ref={filePickerRef}
+  multiple
+  initialPromptText="content that appears in the dropzone if no file is attached"
+  onChange={onChange}
+/>`,
+];
+
 import Select from './select';
 const selectSource = require('!!raw-loader!./select');
 const selectSnippet = [
@@ -195,11 +207,12 @@ export const FormControlsExample = {
                 </Link>{' '}
                 props directly. For instance, when providing the{' '}
                 <EuiCode>label</EuiCode> prop, it will automically wrap itself
-                in a <strong>EuiFormRow</strong>. Other examples of promoted props include{' '}
-                <EuiCode>helpText</EuiCode>, <EuiCode>error</EuiCode> , and{' '}
-                <EuiCode>display</EuiCode>. Providing form row props at this
-                level also decreases the need for duplicate props like{' '}
-                <EuiCode>isInvalid</EuiCode> and <EuiCode>fullWidth</EuiCode>.
+                in a <strong>EuiFormRow</strong>. Other examples of promoted
+                props include <EuiCode>helpText</EuiCode>,{' '}
+                <EuiCode>error</EuiCode> , and <EuiCode>display</EuiCode>.
+                Providing form row props at this level also decreases the need
+                for duplicate props like <EuiCode>isInvalid</EuiCode> and{' '}
+                <EuiCode>fullWidth</EuiCode>.
               </p>
             </EuiText>
           </EuiCallOut>
@@ -325,7 +338,8 @@ export const FormControlsExample = {
           files. The example below shows how to grab the files using the{' '}
           <EuiLink
             href="https://developer.mozilla.org/en-US/docs/Web/API/FileList"
-            target="_blank">
+            target="_blank"
+          >
             FileList API
           </EuiLink>
           . Like other form elements, you can wrap it in a{' '}
@@ -335,6 +349,28 @@ export const FormControlsExample = {
       components: { EuiFilePicker },
       snippet: filePickerSnippet,
       demo: <FilePicker />,
+      props: { EuiFilePicker },
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: filePickerRemoveSource,
+        },
+      ],
+      text: (
+        <>
+          <h3>Removing files programmatically</h3>
+          <p>
+            The current file selection can be cleared programmatically by
+            calling the <EuiCode>removeFiles</EuiCode> method, which can be
+            accessed on a component instance via React <EuiCode>ref</EuiCode>:{' '}
+            <EuiCode>filePickerRef.current.removeFiles()</EuiCode>.
+          </p>
+        </>
+      ),
+      snippet: filePickerRemoveSnippet,
+      demo: <FilePickerRemove />,
       props: { EuiFilePicker },
     },
     {
@@ -454,7 +490,8 @@ export const FormControlsExample = {
                 description is needed.&quot;{' '}
                 <EuiLink
                   external
-                  href="https://www.w3.org/WAI/WCAG21/Techniques/html/H71">
+                  href="https://www.w3.org/WAI/WCAG21/Techniques/html/H71"
+                >
                   WCAG Spec
                 </EuiLink>
               </span>

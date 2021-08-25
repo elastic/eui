@@ -48,7 +48,8 @@ export default () => {
     <EuiPopover
       button={button}
       isOpen={isPopoverOpen}
-      closePopover={closePopover}>
+      closePopover={closePopover}
+    >
       <div style={{ width: 300 }}>
         <EuiFormRow label="Button group" display="columnCompressed">
           <EuiButtonGroup

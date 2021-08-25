@@ -76,7 +76,7 @@ describe('EuiFormRow', () => {
 
     // Input is described by help and error text.
     expect(tree.find('EuiFormHelpText').prop('id')).toEqual(
-      'generated-id-help'
+      'generated-id-help-0'
     );
     expect(tree.find('EuiFormErrorText').at(0).prop('id')).toEqual(
       'generated-id-error-0'
@@ -85,7 +85,7 @@ describe('EuiFormRow', () => {
       'generated-id-error-1'
     );
     expect(tree.find('input').prop('aria-describedby')).toEqual(
-      'generated-id-help generated-id-error-0 generated-id-error-1'
+      'generated-id-help-0 generated-id-error-0 generated-id-error-1'
     );
   });
 
@@ -218,6 +218,38 @@ describe('EuiFormRow', () => {
       );
 
       expect(component).toMatchSnapshot();
+    });
+
+    describe('isDisabled', () => {
+      test('is passed as disabled to child', () => {
+        const component = render(
+          <EuiFormRow isDisabled>
+            <input />
+          </EuiFormRow>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test("allows a child's disabled to override", () => {
+        const component = render(
+          <EuiFormRow isDisabled>
+            <input disabled={false} />
+          </EuiFormRow>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('allows a child to still be disabled manually', () => {
+        const component = render(
+          <EuiFormRow>
+            <input disabled />
+          </EuiFormRow>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('display type', () => {

@@ -33,7 +33,8 @@ export default () => {
             </EuiLink>{' '}
             or any other type of content.
           </Fragment>
-        }>
+        }
+      >
         <EuiFieldText label="Text field" name="first" aria-label="Example" />
       </EuiDescribedFormGroup>
       <EuiDescribedFormGroup title={<h3>No description</h3>}>
@@ -41,10 +42,12 @@ export default () => {
       </EuiDescribedFormGroup>
       <EuiDescribedFormGroup
         title={<h3>Multiple fields</h3>}
-        description="Here are three form rows. The first form row does not have a title.">
+        description="Here are three form rows. The first form row does not have a title."
+      >
         <EuiFormRow
           hasEmptyLabelSpace
-          helpText={<span>This is a help text</span>}>
+          helpText={<span>This is a help text</span>}
+        >
           <EuiSelect
             hasNoInitialSelection
             onChange={() => {}}
@@ -76,11 +79,13 @@ export default () => {
             row components to expand to their container.
           </Fragment>
         }
-        fullWidth>
+        fullWidth
+      >
         <EuiFormRow
           label="Use a switch instead of a single checkbox"
           hasChildLabel={false}
-          fullWidth>
+          fullWidth
+        >
           <EuiSwitch
             name="switch"
             label="Should we do this?"

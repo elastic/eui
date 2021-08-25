@@ -43,7 +43,8 @@ export default () => {
         onClick={() => onSelectedTabChanged(tab.id)}
         isSelected={tab.id === selectedTabId}
         disabled={tab.disabled}
-        key={index}>
+        key={index}
+      >
         {tab.name}
       </EuiTab>
     ));

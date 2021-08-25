@@ -241,7 +241,8 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
           className={classNames(
             'euiPageHeaderContent__rightSideItems',
             rightSideGroupProps?.className
-          )}>
+          )}
+        >
           {wrapWithFlex()}
         </EuiFlexGroup>
       </EuiFlexItem>
@@ -254,7 +255,8 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
         responsive={!!responsive}
         className="euiPageHeaderContent__top"
         alignItems="flexStart"
-        gutterSize="l">
+        gutterSize="l"
+      >
         {isResponsiveBreakpoint && responsive === 'reverse' ? (
           <>
             {rightSideFlexItem}
@@ -275,7 +277,8 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
         responsive={!!responsive}
         className="euiPageHeaderContent__top"
         alignItems={alignItems === 'bottom' ? 'flexEnd' : alignItems}
-        gutterSize="l">
+        gutterSize="l"
+      >
         <EuiFlexItem>
           {leftSideOrder}
           {bottomContentNode}

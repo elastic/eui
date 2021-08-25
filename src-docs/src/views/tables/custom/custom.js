@@ -486,7 +486,8 @@ export default class extends Component {
             isSortAscending={this.sortableProperties.isAscendingByName(
               column.id
             )}
-            mobileOptions={column.mobileOptions}>
+            mobileOptions={column.mobileOptions}
+          >
             {column.label}
           </EuiTableHeaderCell>
         );
@@ -522,7 +523,8 @@ export default class extends Component {
               header={column.label}
               textOnly={false}
               hasActions={true}
-              align="right">
+              align="right"
+            >
               <EuiPopover
                 id={`${item.id}-actions`}
                 button={
@@ -537,7 +539,8 @@ export default class extends Component {
                 isOpen={this.isPopoverOpen(item.id)}
                 closePopover={() => this.closePopover(item.id)}
                 panelPaddingSize="none"
-                anchorPosition="leftCenter">
+                anchorPosition="leftCenter"
+              >
                 <EuiContextMenuPanel
                   items={[
                     <EuiContextMenuItem
@@ -545,7 +548,8 @@ export default class extends Component {
                       icon="pencil"
                       onClick={() => {
                         this.closePopover(item.id);
-                      }}>
+                      }}
+                    >
                       Edit
                     </EuiContextMenuItem>,
                     <EuiContextMenuItem
@@ -553,7 +557,8 @@ export default class extends Component {
                       icon="share"
                       onClick={() => {
                         this.closePopover(item.id);
-                      }}>
+                      }}
+                    >
                       Share
                     </EuiContextMenuItem>,
                     <EuiContextMenuItem
@@ -561,7 +566,8 @@ export default class extends Component {
                       icon="trash"
                       onClick={() => {
                         this.closePopover(item.id);
-                      }}>
+                      }}
+                    >
                       Delete
                     </EuiContextMenuItem>,
                   ]}
@@ -600,7 +606,8 @@ export default class extends Component {
             mobileOptions={{
               header: column.label,
               ...column.mobileOptions,
-            }}>
+            }}
+          >
             {child}
           </EuiTableRowCell>
         );
@@ -611,7 +618,8 @@ export default class extends Component {
           key={item.id}
           isSelected={this.isItemSelected(item.id)}
           isSelectable={true}
-          hasActions={true}>
+          hasActions={true}
+        >
           {cells}
         </EuiTableRow>
       );
@@ -651,7 +659,8 @@ export default class extends Component {
         footers.push(
           <EuiTableFooterCell
             key={`footer_${column.id}`}
-            align={column.alignment}>
+            align={column.alignment}
+          >
             {footer}
           </EuiTableFooterCell>
         );
@@ -659,7 +668,8 @@ export default class extends Component {
         footers.push(
           <EuiTableFooterCell
             key={`footer_empty_${footers.length - 1}`}
-            align={column.alignment}>
+            align={column.alignment}
+          >
             {undefined}
           </EuiTableFooterCell>
         );
@@ -711,7 +721,8 @@ export default class extends Component {
           <EuiFlexGroup
             responsive={false}
             justifyContent="spaceBetween"
-            alignItems="baseline">
+            alignItems="baseline"
+          >
             <EuiFlexItem grow={false}>{this.renderSelectAll(true)}</EuiFlexItem>
             <EuiFlexItem grow={false}>
               <EuiTableSortMobile items={this.getTableMobileSortItems()} />

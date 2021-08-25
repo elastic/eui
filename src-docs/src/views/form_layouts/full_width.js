@@ -31,7 +31,8 @@ export default () => (
     <EuiFormRow
       label="Works on form rows too"
       fullWidth
-      helpText="Note that the fullWidth prop is not passed to the form row's child">
+      helpText="Note that the fullWidth prop is not passed to the form row's child"
+    >
       <EuiRange fullWidth min={0} max={100} name="range" />
     </EuiFormRow>
 

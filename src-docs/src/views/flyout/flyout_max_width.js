@@ -51,7 +51,8 @@ export default () => {
         onClose={closeFlyout}
         aria-labelledby="flyoutMaxWidthTitle"
         size={flyoutSize}
-        maxWidth={flyoutMaxWidth}>
+        maxWidth={flyoutMaxWidth}
+      >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
             <h2 id="flyoutMaxWidthTitle">{maxWidthTitle} maxWidth</h2>

@@ -123,7 +123,8 @@ export const EuiPinnableListGroup: FunctionComponent<EuiPinnableListGroupProps> 
         'euiPinnableListGroup.pinExtraActionLabel',
         'euiPinnableListGroup.pinnedExtraActionLabel',
       ]}
-      defaults={['Pin item', 'Unpin item']}>
+      defaults={['Pin item', 'Unpin item']}
+    >
       {([pinExtraActionLabel, pinnedExtraActionLabel]: string[]) => {
         const newListItems = getNewListItems(
           pinExtraActionLabel,

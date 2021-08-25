@@ -73,7 +73,8 @@ export default () => (
           iconSide="right"
           fill
           iconType="arrowDown"
-          onClick={() => {}}>
+          onClick={() => {}}
+        >
           Filled
         </EuiButton>
       </EuiFlexItem>
@@ -83,7 +84,8 @@ export default () => (
           iconSide="right"
           iconType="arrowDown"
           size="s"
-          onClick={() => {}}>
+          onClick={() => {}}
+        >
           Small
         </EuiButton>
       </EuiFlexItem>
@@ -94,7 +96,8 @@ export default () => (
           iconType="arrowDown"
           size="s"
           fill
-          onClick={() => {}}>
+          onClick={() => {}}
+        >
           Small and filled
         </EuiButton>
       </EuiFlexItem>
@@ -104,7 +107,8 @@ export default () => (
           fullWidth
           iconSide="right"
           iconType="arrowDown"
-          onClick={() => {}}>
+          onClick={() => {}}
+        >
           Full width
         </EuiButton>
       </EuiFlexItem>
@@ -115,7 +119,8 @@ export default () => (
         <EuiButtonEmpty
           iconSide="right"
           onClick={() => {}}
-          iconType="arrowDown">
+          iconType="arrowDown"
+        >
           Icon right
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -125,7 +130,8 @@ export default () => (
           iconSide="right"
           onClick={() => {}}
           iconType="arrowDown"
-          size="s">
+          size="s"
+        >
           Small empty
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -135,7 +141,8 @@ export default () => (
           iconSide="right"
           onClick={() => {}}
           iconType="arrowDown"
-          size="xs">
+          size="xs"
+        >
           Extra small empty
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -166,7 +173,8 @@ export default () => (
           size="s"
           fill
           onClick={() => {}}
-          isDisabled>
+          isDisabled
+        >
           Small and filled
         </EuiButton>
       </EuiFlexItem>
@@ -184,7 +192,8 @@ export default () => (
           isDisabled
           color="text"
           onClick={() => {}}
-          iconType="dashboardApp">
+          iconType="dashboardApp"
+        >
           Disabled app icon
         </EuiButtonEmpty>
       </EuiFlexItem>
@@ -196,7 +205,8 @@ export default () => (
           onClick={() => {}}
           iconType="arrowDown"
           iconSide="right"
-          size="xs">
+          size="xs"
+        >
           Disabled icon right
         </EuiButtonEmpty>
       </EuiFlexItem>

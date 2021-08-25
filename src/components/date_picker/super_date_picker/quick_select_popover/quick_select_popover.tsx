@@ -164,7 +164,8 @@ export class EuiQuickSelectPopover extends Component<
         iconType="arrowDown"
         iconSide="right"
         isDisabled={isDisabled}
-        data-test-subj="superDatePickerToggleQuickMenuButton">
+        data-test-subj="superDatePickerToggleQuickMenuButton"
+      >
         <EuiIcon type={!isAutoRefreshOnly && isPaused ? 'calendar' : 'clock'} />
       </EuiButtonEmpty>
     );
@@ -175,10 +176,12 @@ export class EuiQuickSelectPopover extends Component<
         isOpen={isOpen}
         closePopover={this.closePopover}
         anchorPosition="downLeft"
-        anchorClassName="euiQuickSelectPopover__anchor">
+        anchorClassName="euiQuickSelectPopover__anchor"
+      >
         <div
           className="euiQuickSelectPopover__content"
-          data-test-subj="superDatePickerQuickMenu">
+          data-test-subj="superDatePickerQuickMenu"
+        >
           {this.renderDateTimeSections()}
           <EuiRefreshInterval
             applyRefreshInterval={applyRefreshInterval}

@@ -44,12 +44,14 @@ const GuideFigmaLinkComponent: React.FunctionComponent<GuideFigmaLinkProps> = ({
   ) : (
     <EuiToolTip
       title={label}
-      content="The Figma Elastic UI framework (EUI) is a design library in use at Elastic to build internal products that need to share our aesthetics.">
+      content="The Figma Elastic UI framework (EUI) is a design library in use at Elastic to build internal products that need to share our aesthetics."
+    >
       <EuiHeaderSectionItemButton
         notificationColor="subdued"
         aria-label={label}
         // @ts-ignore TODO: FIX
-        href={href}>
+        href={href}
+      >
         <EuiIcon type={logoFigma} aria-hidden="true" />
       </EuiHeaderSectionItemButton>
     </EuiToolTip>

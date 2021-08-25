@@ -24,7 +24,8 @@ export default () => (
     rightSideItems={[
       <EuiButton fill>Add something</EuiButton>,
       <EuiButton>Do something</EuiButton>,
-    ]}>
+    ]}
+  >
     <EuiText>
       <p>
         This custom content (children), on the other hand, exists below the
