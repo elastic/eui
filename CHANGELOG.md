@@ -6,6 +6,7 @@
 **Bug fixes**
 
 - Fixed location of default value of `EuiToolTip`'s `display` prop ([#5066](https://github.com/elastic/eui/pull/5066))
+- Fixed screen reader text from displaying in some `EuiDataGrid` cell popovers ([#5087](https://github.com/elastic/eui/pull/5087))
 
 ## [`37.3.1`](https://github.com/elastic/eui/tree/v37.3.1)
 
