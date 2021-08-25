@@ -111,7 +111,12 @@ export const TimeChart = () => {
           showGridLines={chartType !== 'BarSeries'}
           tickPadding={0}
         />
-        <Axis id="left-axis" position="left" showGridLines />
+        <Axis
+          id="left-axis"
+          position="left"
+          showGridLines
+          tickFormat={(d) => Number(d).toFixed(2)}
+        />
       </Chart>
 
       <EuiSpacer />
@@ -180,6 +185,7 @@ export const TimeChart = () => {
     id="left-axis"
     position="left"
     showGridLines
+    tickFormat={(d) => Number(d).toFixed(2)}
   />
 </Chart>`}
         >
