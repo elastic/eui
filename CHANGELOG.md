@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `37.1.2`.
+**Bug fixes**
+
+- Fixed instance of  `EuiScreenReader` text being exposed in `EuiDataGrid` sorting menu ([#5084](https://github.com/elastic/eui/pull/5084))
 
 ## [`37.1.2`](https://github.com/elastic/eui/tree/v37.1.2)
 
@@ -1919,7 +1921,7 @@ No public interface changes since `37.1.2`.
 
 - Re-enabled `width` property for `EuiTable` cell components ([#2452](https://github.com/elastic/eui/pull/2452))
 - Fixed `EuiNavDrawer` collapse/expand button height issue
- ([#2463](https://github.com/elastic/eui/pull/2463))
+  ([#2463](https://github.com/elastic/eui/pull/2463))
 
 ## [`14.6.0`](https://github.com/elastic/eui/tree/v14.6.0)
 
@@ -1990,7 +1992,7 @@ No public interface changes since `37.1.2`.
 
 - Added `compressed` option to `buttonSize` prop of EuiButtonGroup ([#2343](https://github.com/elastic/eui/pull/2343))
 - Added disabled states to `EuiCard`, `EuiKeyPadMenuItem` and `EuiKeyPadMenuItemButton`
- ([#2333](https://github.com/elastic/eui/pull/2340))
+  ([#2333](https://github.com/elastic/eui/pull/2340))
 - Added missing `compressed` TS definitions to `EuiComboBox`, `EuiCheckboxGroup`, `EuiCheckbox`, `EuiFieldSearch`, `EuiRadioGroup`, `EuiSwitch` ([#2338](https://github.com/elastic/eui/pull/2338))
 - Added auto-margin between `EuiFormRow` and `EuiButton` ([#2338](https://github.com/elastic/eui/pull/2338))
 - Added border to `[readOnly]` inputs ([#2338](https://github.com/elastic/eui/pull/2338))
@@ -3151,7 +3153,7 @@ No public interface changes since `37.1.2`.
 
 - Added `email` icon to `EuiIcon` ([#1331](https://github.com/elastic/eui/pull/1331))
 - Added IBM logo in colour and mono
-([#1321](https://github.com/elastic/eui/pull/1321))
+  ([#1321](https://github.com/elastic/eui/pull/1321))
 - Added support for nodes as "Action" column headers in `EuiBasicTable`, which was overlooked in the original change in `4.5.0` ([#1312](https://github.com/elastic/eui/pull/1312))
 - Updated `GlobalDatePicker` example to include all Kibana features ([#1219](https://github.com/elastic/eui/pull/1219))
 - Adjusted `EuiDatePickerRange` to allow for deeper customization ([#1219](https://github.com/elastic/eui/pull/1219))
@@ -3403,7 +3405,7 @@ No public interface changes since `37.1.2`.
 **Bug fixes**
 
 - `EuiWrappingPopover` only re-attach anchor element on unmount if anchor element is still attached to DOM
-([#1114](https://github.com/elastic/eui/pull/1114))
+  ([#1114](https://github.com/elastic/eui/pull/1114))
 
 - Fixed `EuiSeriesChart` overrides `react-vis` classes ([#1123](https://github.com/elastic/eui/pull/1123))
 
@@ -3452,7 +3454,7 @@ No public interface changes since `37.1.2`.
 
 **Experimental breaking change**
 
- - Renamed `EuiXYChart` to `EuiSeriesChart`, `EuiXYChartUtils` to `EuiSeriesChartUtils`, `EuiXYChartAxisUtils` to `EuiSeriesChartAxisUtils`, and  `EuiXYChartTextUtils` to `EuiSeriesChartTextUtils` ([#1066](https://github.com/elastic/eui/pull/1066))
+- Renamed `EuiXYChart` to `EuiSeriesChart`, `EuiXYChartUtils` to `EuiSeriesChartUtils`, `EuiXYChartAxisUtils` to `EuiSeriesChartAxisUtils`, and  `EuiXYChartTextUtils` to `EuiSeriesChartTextUtils` ([#1066](https://github.com/elastic/eui/pull/1066))
 
 ## [`3.2.1`](https://github.com/elastic/eui/tree/v3.2.1)
 
@@ -3835,9 +3837,9 @@ No public interface changes since `37.1.2`.
 - `EuiInMemoryTable` pagination state is now reset automatically when a search is executed ([#686](https://github.com/elastic/eui/pull/686))
 - Fixed slow performance of `EuiComboBox` when there are hundreds or thousands of options by virtualizing `EuiComboBoxOptionsList` ([#670](https://github.com/elastic/eui/pull/670))
 - Fixed some text styles ([#683](https://github.com/elastic/eui/pull/683))
-    - Fixed font-family of input, textarea, select, and buttons
-    - Fixed style of code, pre, and dl’s inside `EuiText`
-    - Fixed ghost text color which was being set to a dark gray
+  - Fixed font-family of input, textarea, select, and buttons
+  - Fixed style of code, pre, and dl’s inside `EuiText`
+  - Fixed ghost text color which was being set to a dark gray
 
 **Breaking changes**
 
@@ -4004,7 +4006,7 @@ No public interface changes since `37.1.2`.
 - `EuiInMemoryTable` pass items to BasicTable when message is provided ([#517](https://github.com/elastic/eui/pull/517)).
 - `EuiSearchBox` now passes unused props through to `EuiFieldSearch` ([#514](https://github.com/elastic/eui/pull/514))
 - Change `EuiBasicTable` `noItemsMessage` and `EuiInMemoryTable` `message` propType to node
-instead of just string ([#516](https://github.com/elastic/eui/pull/516))
+  instead of just string ([#516](https://github.com/elastic/eui/pull/516))
 
 ## [`0.0.27`](https://github.com/elastic/eui/tree/v0.0.27)
 
