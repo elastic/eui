@@ -62,14 +62,15 @@ const EuiDataGridCellContent: FunctionComponent<
     );
 
     return (
-      <div
-        style={
-          rowHeightsOptions ? getStylesForCell(rowHeightsOptions, rowIndex) : {}
-        }
-      >
+      <>
         <div
           ref={setCellContentsRef}
           className={!rowHeightsOptions ? 'euiDataGridRowCell__truncate' : ''}
+          style={
+            rowHeightsOptions
+              ? getStylesForCell(rowHeightsOptions, rowIndex)
+              : {}
+          }
         >
           <CellElement
             isDetails={false}
@@ -81,7 +82,7 @@ const EuiDataGridCellContent: FunctionComponent<
         <EuiScreenReaderOnly>
           <p>{positionText}</p>
         </EuiScreenReaderOnly>
-      </div>
+      </>
     );
   }
 );
