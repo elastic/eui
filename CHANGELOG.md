@@ -6,6 +6,7 @@
 **Bug fixes**
 
 - Fixed location of default value of `EuiToolTip`'s `display` prop ([#5066](https://github.com/elastic/eui/pull/5066))
+- Fixed instance of  `EuiScreenReader` text being exposed in `EuiDataGrid` sorting menu ([#5084](https://github.com/elastic/eui/pull/5084))
 
 ## [`37.3.1`](https://github.com/elastic/eui/tree/v37.3.1)
 
