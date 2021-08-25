@@ -4,7 +4,6 @@ const { AxePuppeteer } = require('@axe-core/puppeteer');
 
 const docsPages = async (root, page) => {
   const pagesToSkip = [
-    `${root}#/package/changelog`,
     `${root}#/layout/page`, // Has duplicate `<main>` element
     `${root}#/layout/page-header`, // Has duplicate `<header>` element
     `${root}#/tabular-content/tables`,
