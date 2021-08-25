@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-### Feature: Emotion ([#4511](https://github.com/elastic/eui/pull/4511))
+## Feature: Emotion ([#4511](https://github.com/elastic/eui/pull/4511))
 
 - Added `EuiThemeProvider`, a React context provider for theme values and color mode selection
 - Added `useEuiTheme` React hook, and `withEuiTheme` React HOC for consuming the EuiTheme
