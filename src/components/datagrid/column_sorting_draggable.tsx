@@ -76,7 +76,7 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
                 default="{display} is sorting this data grid"
                 values={{ display }}
               >
-                {(activeSortLabel: string) => <>{activeSortLabel}</>}
+                {(activeSortLabel: string) => activeSortLabel}
               </EuiI18n>
             </p>
           </EuiScreenReaderOnly>
