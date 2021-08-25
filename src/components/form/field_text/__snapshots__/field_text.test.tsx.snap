@@ -3,7 +3,7 @@
 exports[`EuiFieldText form row props are rendered 1`] = `
 <div
   class="euiFormRow euiFormRow--hasEmptyLabelSpace euiFormRow--fullWidth euiFormRow--compressed euiFormRow--horizontal"
-  id="generated-id-row"
+  id="euiFieldText_generated-id-row"
 >
   <div
     class="euiFormRow__labelWrapper"
@@ -11,7 +11,7 @@ exports[`EuiFieldText form row props are rendered 1`] = `
     <label
       aria-invalid="true"
       aria-label="aria-label"
-      class="euiFormLabel testClass1 testClass2 euiFormLabel-isInvalid"
+      class="euiFormLabel testClass1 testClass2 euiFormLabel-isInvalid euiFormLabel-isDisabled"
       data-test-subj="test subject string"
       for="euiFieldText_generated-id"
     >
@@ -23,7 +23,6 @@ exports[`EuiFieldText form row props are rendered 1`] = `
     class="euiFormRow__fieldWrapper"
   >
     <div
-      aria-describedby="generated-id-help-0 generated-id-error-0"
       class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--compressed"
     >
       <div
@@ -34,6 +33,7 @@ exports[`EuiFieldText form row props are rendered 1`] = `
         >
           <input
             class="euiFieldText euiFieldText--fullWidth euiFieldText--compressed"
+            disabled=""
             id="euiFieldText_generated-id"
             type="text"
           />
@@ -43,13 +43,13 @@ exports[`EuiFieldText form row props are rendered 1`] = `
     <div
       aria-live="polite"
       class="euiFormErrorText euiFormRow__text"
-      id="generated-id-error-0"
+      id="euiFieldText_generated-id-error-0"
     >
       error
     </div>
     <div
       class="euiFormHelpText euiFormRow__text"
-      id="generated-id-help-0"
+      id="euiFieldText_generated-id-help-0"
     >
       helpText
     </div>
@@ -130,6 +130,25 @@ exports[`EuiFieldText props controlOnly is rendered 1`] = `
     type="text"
   />
 </eui-validatable-control>
+`;
+
+exports[`EuiFieldText props disabled is rendered 1`] = `
+<div
+  class="euiFormControlLayout"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <eui-validatable-control>
+      <input
+        class="euiFieldText"
+        disabled=""
+        id="euiFieldText_generated-id"
+        type="text"
+      />
+    </eui-validatable-control>
+  </div>
+</div>
 `;
 
 exports[`EuiFieldText props fullWidth is rendered 1`] = `

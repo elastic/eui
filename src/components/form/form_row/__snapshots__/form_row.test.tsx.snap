@@ -13,6 +13,7 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
     </span>
   }
   labelType="label"
+  passThrough={true}
 >
   <div
     className="euiFormRow"
@@ -63,6 +64,7 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
     </span>
   }
   labelType="label"
+  passThrough={true}
 >
   <div
     className="euiFormRow"
@@ -113,6 +115,7 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
     </span>
   }
   labelType="label"
+  passThrough={true}
 >
   <div
     className="euiFormRow"
@@ -163,6 +166,7 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
     </span>
   }
   labelType="label"
+  passThrough={true}
 >
   <div
     className="euiFormRow"
@@ -649,6 +653,19 @@ exports[`EuiFormRow props label with labelProps rendered 1`] = `
       onBlur={[Function]}
       onFocus={[Function]}
     />
+  </div>
+</div>
+`;
+
+exports[`EuiFormRow props passThrough does not pass props to cloned child when false 1`] = `
+<div
+  class="euiFormRow"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input />
   </div>
 </div>
 `;

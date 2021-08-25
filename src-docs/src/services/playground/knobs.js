@@ -55,7 +55,7 @@ export const markup = (text) => {
       }
       return token;
     });
-    return [...values, <br key="lineBreak" />];
+    return [...values, ' '];
   });
 };
 

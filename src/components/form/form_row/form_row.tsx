@@ -89,15 +89,15 @@ export type EuiFormRowCommonProps = CommonProps & {
    */
   labelAppend?: ReactNode;
   /**
-   * Used to generate the wrapper `id`s and will be passed plainly to the child (input) if `inputId` is not supplied.
+   * Used to generate the wrapper `id`s and will be passed plainly
+   * to the child (input) if `inputId` is not supplied.
+   *
    * If not provided, one will be generated
    */
   id?: string;
   /**
-   * Specific `id` passed to the label as the `htmlFor` attribute.
-   * If not provided, one will be generated
+   * Shows `error` list and passed to label element
    */
-  inputId?: string;
   isInvalid?: boolean;
   /**
    * Error nodes will only show when `isInvalid` is true;
@@ -114,7 +114,8 @@ export type EuiFormRowCommonProps = CommonProps & {
    */
   hasEmptyLabelSpace?: boolean;
   /**
-   *  Passed along to the label element; and to the child field element when `disabled` doesn't already exist on the child field element.
+   * Passed along to the label element; and to the child field element
+   * when `disabled` doesn't already exist on the child field element.
    */
   isDisabled?: boolean;
 };
@@ -133,7 +134,14 @@ type LegendProps = {
 } & EuiFormRowCommonProps &
   Omit<HTMLAttributes<HTMLFieldSetElement>, 'disabled'>;
 
-export type EuiFormRowProps = ExclusiveUnion<LabelProps, LegendProps>;
+export type EuiFormRowProps = ExclusiveUnion<LabelProps, LegendProps> & {
+  /**
+   * **INTERNAL**
+   * Whether to pass clone and pass through certain props to the child.
+   * Set to `false` when used within a form control itself.
+   */
+  passThrough?: boolean;
+};
 
 export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
   static defaultProps = {
@@ -143,6 +151,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     describedByIds: [],
     labelType: 'label',
     hasChildLabel: true,
+    passThrough: true,
   };
 
   state: EuiFormRowState = {
@@ -197,8 +206,8 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       display,
       hasChildLabel,
       id: propsId,
-      inputId,
       isDisabled,
+      passThrough,
       ...rest
     } = this.props;
 
@@ -263,7 +272,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       } else {
         labelProps = {
           ..._labelProps,
-          htmlFor: hasChildLabel ? inputId || id : undefined,
+          htmlFor: hasChildLabel ? id : undefined,
           isFocused: this.state.isFocused,
           ...(!isDisabled && { isFocused: this.state.isFocused }), // If the row is disabled, don't pass the isFocused state.
           type: labelType,
@@ -306,15 +315,19 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       optionalProps['aria-describedby'] = describingIds.join(' ');
     }
 
-    const field = cloneElement(Children.only(children), {
-      id: inputId ? undefined : id,
-      disabled: isDisabled,
-      // Allow the child's disabled or isDisabled prop to supercede the ones before
-      ...children.props,
-      onFocus: this.onFocus,
-      onBlur: this.onBlur,
-      ...optionalProps,
-    });
+    const child = Children.only(children);
+    // Only clone the element and pass through props when not used directly within a form control
+    const field = passThrough
+      ? cloneElement(child, {
+          id,
+          // Allow the child's disabled or isDisabled prop to supercede the `isDisabled`
+          disabled:
+            child.props.disabled ?? child.props.isDisabled ?? isDisabled,
+          onFocus: this.onFocus,
+          onBlur: this.onBlur,
+          ...optionalProps,
+        })
+      : child;
 
     const fieldWrapperClasses = classNames('euiFormRow__fieldWrapper', {
       euiFormRow__fieldWrapperDisplayOnly:

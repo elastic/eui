@@ -91,6 +91,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
   append,
   readOnly,
   controlOnly,
+  disabled,
   // FormRowProps
   helpText,
   error,
@@ -100,8 +101,12 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
   hasEmptyLabelSpace,
   display = 'row',
   'aria-describedby': ariaDescribedBy,
+  isDisabled: _isDisabled,
   ...rest
 }) => {
+  // Set a final disabled
+  const isDisabled = _isDisabled || disabled;
+
   // Force an id if one was not passed
   id = id || htmlIdGenerator('euiFieldText')();
 
@@ -115,8 +120,6 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
     id,
     append
   );
-
-  // console.log(prependIDs);
 
   // Force compressed if `display` is compressed
   compressed = euiFormRowDisplayIsCompressed(display) || compressed;
@@ -140,6 +143,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
         value={value}
         ref={inputRef}
         readOnly={readOnly}
+        disabled={isDisabled}
         aria-describedby={
           classNames(ariaDescribedBy, prependIDs, appendIDs) || undefined
         }
@@ -169,7 +173,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
     return formControlLayout;
 
   const formRowProps = {
-    inputId: id,
+    id,
     helpText,
     error,
     label,
@@ -179,6 +183,8 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
     display,
     fullWidth,
     isInvalid,
+    isDisabled,
+    passThrough: false,
   };
 
   return <EuiFormRow {...formRowProps}>{formControlLayout}</EuiFormRow>;

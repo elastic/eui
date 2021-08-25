@@ -63,6 +63,12 @@ describe('EuiFieldText', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('disabled is rendered', () => {
+      const component = render(<EuiFieldText disabled />);
+
+      expect(component).toMatchSnapshot();
+    });
+
     test('compressed is rendered', () => {
       const component = render(<EuiFieldText compressed />);
 
@@ -107,6 +113,7 @@ describe('EuiFieldText', () => {
           display="columnCompressed"
           fullWidth={true}
           isInvalid={true}
+          isDisabled={true}
         />
       );
 

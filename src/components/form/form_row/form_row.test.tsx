@@ -65,7 +65,7 @@ describe('EuiFormRow', () => {
     };
 
     const tree = shallow(
-      <EuiFormRow inputId="inputId" {...requiredProps} {...props}>
+      <EuiFormRow id="inputId" {...requiredProps} {...props}>
         <input id="inputId" />
       </EuiFormRow>
     );
@@ -75,17 +75,15 @@ describe('EuiFormRow', () => {
     expect(tree.find('EuiFormLabel').prop('htmlFor')).toEqual('inputId');
 
     // Input is described by help and error text.
-    expect(tree.find('EuiFormHelpText').prop('id')).toEqual(
-      'generated-id-help-0'
-    );
+    expect(tree.find('EuiFormHelpText').prop('id')).toEqual('inputId-help-0');
     expect(tree.find('EuiFormErrorText').at(0).prop('id')).toEqual(
-      'generated-id-error-0'
+      'inputId-error-0'
     );
     expect(tree.find('EuiFormErrorText').at(1).prop('id')).toEqual(
-      'generated-id-error-1'
+      'inputId-error-1'
     );
     expect(tree.find('input').prop('aria-describedby')).toEqual(
-      'generated-id-help-0 generated-id-error-0 generated-id-error-1'
+      'inputId-help-0 inputId-error-0 inputId-error-1'
     );
   });
 
@@ -250,6 +248,16 @@ describe('EuiFormRow', () => {
 
         expect(component).toMatchSnapshot();
       });
+    });
+
+    test('passThrough does not pass props to cloned child when false', () => {
+      const component = render(
+        <EuiFormRow passThrough={false} isDisabled>
+          <input />
+        </EuiFormRow>
+      );
+
+      expect(component).toMatchSnapshot();
     });
 
     describe('display type', () => {
