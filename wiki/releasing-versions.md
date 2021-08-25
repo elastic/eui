@@ -1,5 +1,17 @@
 # Release process
 
+_**Before you get started**_
+
+- npm
+  - requires membership in the @elastic organization
+  - npm requires a Publish [access token configured](https://docs.npmjs.com/about-access-tokens) which can be added to your local `.npmrc`. See [npm docs](https://docs.npmjs.com/using-private-packages-in-a-ci-cd-workflow) for a full explanation of creating and setting npm tokens. 
+  - the release script will ask for your npm one-time passcode
+- git/github
+  - the release script assumes your origin for the [EUI root repo](https://github.com/elastic/eui) is labelled `upstream`
+  - if you have 2FA enabled, you may be prompted for an [OTP or other token](https://github.com/settings/tokens)
+
+### Releasing `@elastic/eui`
+
 The release process is started by running the following command.
 
 ```shell
@@ -14,9 +26,13 @@ After the version is bumped, the release script automatically updates `CHANGELOG
 
 The command will prompt you for your git credentials. If you are using 2FA for git (which you should be) then your git password must be a [one time token](https://github.com/settings/tokens).
 
-That's it. The latest changes were published to GitHub, a new `git` tag now exists on GitHub, the new release can be installed from `npm`, and the [documentation site][docs] will update momentarily<sup>\*</sup>.
+The latest changes have now been pushed to GitHub, a new `git` tag now exists on GitHub, the new release can be installed from `npm`, and the [documentation site][docs] will update momentarily<sup>\*</sup>.
 
 <sup>_\* GitHub Pages sites are cached aggressively and can sometimes take a couple of minutes to update._</sup>
+
+### Tag the release in GitHub
+
+We also update the [release's tag in github](https://github.com/elastic/eui/tags) by _creating a release_ for the version and copying over its _CHANGELOG.md_ entries. (TODO: screencast this next time to include a GIF here)
 
 ## `@elastic/eslint-plugin-eui`
 
