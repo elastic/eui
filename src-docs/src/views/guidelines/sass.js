@@ -28,11 +28,12 @@ import {
   EuiCallOut,
   EuiPanel,
   EuiRange,
+  EuiBasicTable,
 } from '../../../../src/components';
 
 const euiColors = [...allowedColors, 'euiColorGhost', 'euiColorInk'];
 
-const euiTextColors = ['euiTextColor', 'euiColorDarkShade', 'euiLinkColor'];
+const euiTextColors = ['euiTextColor', 'euiTextSubduedColor', 'euiLinkColor'];
 
 const euiSizes = [
   'euiSizeXS',
@@ -47,8 +48,8 @@ const euiSizes = [
 const euiFontSizes = [
   'euiFontSizeXS',
   'euiFontSizeS',
-  'euiFontSizeM',
   'euiFontSize',
+  'euiFontSizeM',
   'euiFontSizeL',
   'euiFontSizeXL',
 ];
@@ -74,12 +75,12 @@ const euiBorders = ['euiBorderThin', 'euiBorderThick', 'euiBorderEditable'];
 
 const euiLevels = [
   'euiZToastList',
-  'euiZComboBox',
   'euiZModal',
   'euiZMask',
   'euiZNavigation',
   'euiZContentMenu',
   'euiZHeader',
+  'euiZFlyout',
   'euiZContent',
 ];
 
@@ -151,17 +152,6 @@ function renderSize(size) {
         <EuiText size="s">{sizes[size]}px</EuiText>
       </EuiFlexItem>
     </EuiFlexGroup>
-  );
-}
-
-function renderFontSize(size) {
-  return (
-    <div key={size} className="guideSass__fontSizeExample">
-      <div className={`guideSass__fontSize guideSass__fontSize--${size}`}>
-        The quick brown fox
-      </div>
-      <EuiCode>${size}</EuiCode>
-    </div>
   );
 }
 
@@ -333,15 +323,33 @@ const borderRadiusSmallExample = `border: $euiBorderThin;
 border-radius: $euiBorderRadiusSmall;
 `;
 
-const importKibanaExample = `// In Kibana you can add this to the top of your Sass file
-@import 'ui/public/styles/styling_constants';
-`;
+const importOutsideExample = (theme) => {
+  switch (theme) {
+    case 'light':
+      return `@import '@elastic/eui/src/themes/eui/eui_colors_light.scss';
+@import '@elastic/eui/src/themes/eui/eui_globals.scss';`;
+    case 'dark':
+      return `@import '@elastic/eui/src/themes/eui/eui_colors_dark.scss';
+@import '@elastic/eui/src/themes/eui/eui_globals.scss';`;
+    case 'amsterdam-dark':
+      return `@import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_colors_dark.scss';
+@import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_globals.scss';`;
+    default:
+      return `@import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
+@import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_globals.scss';`;
+  }
+};
 
-const importOutsideExample = `// In an outside project, import the core variables like so
-@import '@elastic/eui/src/global_styling/functions/index';
-@import '@elastic/eui/src/global_styling/variables/index';
-@import '@elastic/eui/src/global_styling/mixins/index';
-`;
+const importFontFamily = (theme) => {
+  switch (theme) {
+    case 'light':
+    case 'dark':
+      return `@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
+@import url('https://rsms.me/inter/inter-ui.css');`;
+    default:
+      return "@import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10,300..700;0,300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap');";
+  }
+};
 
 const tintOrShadeExample = `// tintOrShade(color, tint_percent, shade_percent)
 // will tint the color by % in light themes
@@ -384,28 +392,22 @@ export const SassGuidelines = ({ selectedTheme }) => {
   //   [setFontWeight]
   // );
 
-  function renderFontWeights(weight) {
-    const value = fonts[weight];
-    return (
-      <div key={value} className="guideSass__fontSizeExample">
-        <p style={{ fontWeight: value }}>The quick brown fox</p>
-        <EuiSpacer size="s" />
-        <EuiCode>${weight}</EuiCode>
-      </div>
-    );
-  }
-
   const renderFontWeight = () => {
     const weight = Object.keys(fonts).find(
       (key) => fonts[key] === Number(fontWeight)
     );
     return (
       <EuiText className="guideSass__fontSizeExample">
-        <p style={{ fontWeight: fontWeight }}>
-          The quick brown fox:{' '}
+        <p>
           <EuiCode style={{ fontWeight: fontWeight }}>
-            {weight ? `$${weight}` : fontWeight}
+            font-weight: {weight ? `$${weight}` : fontWeight}
           </EuiCode>
+        </p>
+        <p
+          style={{ fontWeight: fontWeight }}
+          className="guideSass__fontSize--euiFontSizeL"
+        >
+          The quick brown fox
         </p>
       </EuiText>
     );
@@ -413,9 +415,88 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
   return (
     <GuidePage title="Sass guidelines">
-      <EuiTitle>
-        <h2>Core variables</h2>
-      </EuiTitle>
+      <EuiText>
+        <h2>Using EUI global Sass</h2>
+
+        <p>
+          If you want to construct your own import, you would just need to
+          import the following core files into a fresh Sass project.
+        </p>
+
+        <EuiCodeBlock language="scss" paddingSize="m" fontSize="m" isCopyable>
+          {importOutsideExample(selectedTheme)}
+        </EuiCodeBlock>
+
+        <p>
+          For more detail see the{' '}
+          <Link to="/guidelines/getting-started">Getting Started page</Link>.
+        </p>
+      </EuiText>
+
+      <EuiSpacer size="xl" />
+
+      <EuiFlexGrid columns={2}>
+        <EuiFlexItem>
+          <EuiText>
+            <h3>Component based naming</h3>
+            <p>
+              EUI is written in a{' '}
+              <EuiLink href="http://getbem.com/introduction/">BEM</EuiLink>ish
+              style with the addition of verb states (ex:{' '}
+              <EuiCode>*-isLoading</EuiCode>). Below is an example of proper
+              formatting.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <EuiCodeBlock language="scss" paddingSize="s">
+            {bemExample}
+          </EuiCodeBlock>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiText grow={false}>
+            <h3>Writing Sass the EUI way</h3>
+            <p>
+              In general, when writing new SCSS in a project that installs EUI
+              as a dependency try to follow these best practices:
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <EuiText grow={false}>
+            <ul>
+              <li>
+                Utilize color variables and functions rather than hard-coded
+                values
+              </li>
+              <li>Utilize the sizing variables for padding and margins</li>
+              <li>
+                Utilize the animation variables for animations when possible
+              </li>
+              <li>
+                Utilize the responsive mixins for all screen width calculations
+              </li>
+              <li>
+                Utilize the typography mixins and variables for all font family,
+                weight, and sizing
+              </li>
+              <li>
+                Utilize the shadow mixins and z-index variables to manage depth
+              </li>
+              <li>
+                Utilize the border and border-radius variable to handle border
+                usage
+              </li>
+              <li>
+                Minimize your overwrites and try to make new Sass additive in
+                nature
+              </li>
+            </ul>
+          </EuiText>
+        </EuiFlexItem>
+      </EuiFlexGrid>
+
+      <EuiSpacer size="xl" />
+
+      <GuideRuleTitle>Core variables</GuideRuleTitle>
 
       <EuiSpacer size="xxl" />
 
@@ -660,7 +741,17 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
       <GuideRuleTitle>Typography</GuideRuleTitle>
 
-      <EuiText grow={false}>
+      <EuiText>
+        <p>
+          EUI uses Inter as it&apos;s main font-family and Roboto for monospace.
+          You&apos;ll need to import these from your desired location. Our
+          recommendations are:
+        </p>
+
+        <EuiCodeBlock language="scss" paddingSize="m" fontSize="m" isCopyable>
+          {importFontFamily(selectedTheme)}
+        </EuiCodeBlock>
+
         <p>
           View the{' '}
           <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_typography.scss">
@@ -678,31 +769,56 @@ export const SassGuidelines = ({ selectedTheme }) => {
       </EuiText>
 
       <EuiSpacer />
-      <EuiCallOut
-        size="s"
-        color="warning"
-        title={
-          <span>
-            It is more common to use these as a mixin (e.g.{' '}
-            <EuiCode language="css">@include euiFontSizeS;</EuiCode>) to
-            automatically apply line-height as well as size.
-          </span>
-        }
-      />
+      <EuiText>
+        <h3>Text sizes</h3>
+        <EuiCallOut
+          color="warning"
+          title={
+            <span>
+              It is more common to use these as a mixin (e.g.{' '}
+              <EuiCode language="css">@include euiFontSizeS;</EuiCode>) to
+              automatically apply line-height as well as size.
+            </span>
+          }
+        />
+        <EuiSpacer />
 
+        <EuiBasicTable
+          items={euiFontSizes.map(function (size) {
+            return {
+              id: size,
+              variable: `$${size}`,
+              mixin: `@include ${size}`,
+            };
+          })}
+          rowHeader="firstName"
+          columns={[
+            {
+              field: 'variable',
+              name: 'Variable',
+              render: (variable) => <EuiCode>{variable}</EuiCode>,
+            },
+            {
+              field: 'mixin',
+              name: 'Mixin',
+              render: (mixin) => <EuiCode language="css">{mixin}</EuiCode>,
+            },
+            {
+              field: 'sample',
+              name: 'Sample',
+              render: (sample, item) => (
+                <div className={`guideSass__fontSize--${item.id}`}>
+                  The quick brown fox
+                </div>
+              ),
+            },
+          ]}
+        />
+      </EuiText>
       <EuiSpacer />
       <EuiFlexGrid columns={2}>
         <EuiFlexItem>
           <EuiText>
-            <h3>Text sizes</h3>
-
-            <EuiSpacer />
-            {euiFontSizes.map(function (size, index) {
-              return renderFontSize(size, index);
-            })}
-
-            <EuiSpacer />
-
             <EuiText>
               <h3>Text colors</h3>
             </EuiText>
@@ -712,13 +828,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
             {euiTextColors.map(function (color, index) {
               return renderPaletteColor(palette, color, index);
             })}
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <div>
-            <EuiText>
-              <h3>Font families</h3>
-            </EuiText>
+
+            <h3>Font families</h3>
 
             <EuiSpacer />
 
@@ -742,9 +853,10 @@ export const SassGuidelines = ({ selectedTheme }) => {
                 <EuiCode language="css">@include euiCodeFont;</EuiCode>
               </EuiFlexItem>
             </EuiFlexGroup>
-
-            <EuiSpacer />
-
+          </EuiText>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <div>
             <EuiText>
               <h3>Font weights</h3>
               <p>
@@ -800,12 +912,35 @@ export const SassGuidelines = ({ selectedTheme }) => {
                 />
 
                 <EuiSpacer />
-                {renderFontWeight()}
+                <EuiPanel color="subdued">{renderFontWeight()}</EuiPanel>
               </>
             ) : (
-              euiFontWeights.map(function (weight) {
-                return renderFontWeights(weight);
-              })
+              <EuiBasicTable
+                items={euiFontWeights.map(function (weight) {
+                  return {
+                    id: weight,
+                    variable: `$${weight}`,
+                    weight: fonts[weight],
+                  };
+                })}
+                rowHeader="firstName"
+                columns={[
+                  {
+                    field: 'variable',
+                    name: 'Variable',
+                    render: (variable) => <EuiCode>{variable}</EuiCode>,
+                  },
+                  {
+                    field: 'sample',
+                    name: 'Sample',
+                    render: (sample, item) => (
+                      <p style={{ fontWeight: item.weight }}>
+                        The quick brown fox
+                      </p>
+                    ),
+                  },
+                ]}
+              />
             )}
           </div>
         </EuiFlexItem>
@@ -1140,116 +1275,6 @@ export const SassGuidelines = ({ selectedTheme }) => {
           {euiAnimationTimings.map(function (speed, index) {
             return renderAnimationTiming(speed, index);
           })}
-        </EuiFlexItem>
-      </EuiFlexGrid>
-
-      <EuiSpacer size="xl" />
-
-      <GuideRuleTitle>Sass best practices</GuideRuleTitle>
-
-      <EuiSpacer size="xl" />
-
-      <EuiFlexGrid columns={2}>
-        <EuiFlexItem>
-          <EuiText>
-            <h3>Component based naming</h3>
-            <p>
-              EUI is written in a{' '}
-              <EuiLink href="http://getbem.com/introduction/">BEM</EuiLink>ish
-              style with the addition of verb states (ex:{' '}
-              <EuiCode>*-isLoading</EuiCode>). Below is an example of proper
-              formatting.
-            </p>
-          </EuiText>
-          <EuiSpacer />
-          <EuiCodeBlock
-            language="scss"
-            transparentBackground
-            paddingSize="none"
-          >
-            {bemExample}
-          </EuiCodeBlock>
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <EuiText grow={false}>
-            <h3>Writing Sass the EUI way</h3>
-            <p>
-              In general, when writing new SCSS in a project that installs EUI
-              as a dependency try to follow these best practices:
-            </p>
-          </EuiText>
-          <EuiSpacer />
-          <EuiText size="s" grow={false}>
-            <ul>
-              <li>
-                Utilize color variables and functions rather than hard-coded
-                values
-              </li>
-              <li>Utilize the sizing variables for padding and margins</li>
-              <li>
-                Utilize the animation variables for animations when possible
-              </li>
-              <li>
-                Utilize the responsive mixins for all screen width calculations
-              </li>
-              <li>
-                Utilize the typography mixins and variables for all font family,
-                weight, and sizing
-              </li>
-              <li>
-                Utilize the shadow mixins and z-index variables to manage depth
-              </li>
-              <li>
-                Utilize the border and border-radius variable to handle border
-                usage
-              </li>
-              <li>
-                Minimize your overwrites and try to make new Sass additive in
-                nature
-              </li>
-            </ul>
-          </EuiText>
-
-          <EuiSpacer />
-
-          <EuiTitle size="s">
-            <h3>Importing EUI global Sass</h3>
-          </EuiTitle>
-
-          <EuiSpacer />
-
-          <EuiText grow={false}>
-            <p>
-              Most EUI based projects should already import the EUI global
-              scope. For example, Kibana has its own liner that will give you
-              everything on this page.
-            </p>
-          </EuiText>
-          <EuiSpacer />
-          <EuiCodeBlock
-            language="scss"
-            transparentBackground
-            paddingSize="none"
-          >
-            {importKibanaExample}
-          </EuiCodeBlock>
-          <EuiSpacer />
-          <EuiText grow={false}>
-            <p>
-              If you want to construct your own import, you would just need to
-              import the following core files into a fresh Sass project.
-            </p>
-          </EuiText>
-
-          <EuiSpacer />
-
-          <EuiCodeBlock
-            language="scss"
-            transparentBackground
-            paddingSize="none"
-          >
-            {importOutsideExample}
-          </EuiCodeBlock>
         </EuiFlexItem>
       </EuiFlexGrid>
     </GuidePage>
