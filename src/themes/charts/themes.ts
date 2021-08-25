@@ -20,7 +20,7 @@ import lightColors from '!!sass-vars-to-js-loader!../../global_styling/variables
 // @ts-ignore typescript doesn't understand the webpack loader
 import darkColors from '!!sass-vars-to-js-loader!../../themes/eui/eui_colors_dark.scss';
 
-const fontFamily = `'Inter', -apple-system, BlinkMacSystemFont,
+const fontFamily = `'Inter', 'Inter UI', -apple-system, BlinkMacSystemFont,
   'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`;
 
 export interface EuiChartThemeType {
