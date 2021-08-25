@@ -695,24 +695,24 @@ export const SassGuidelines = ({ selectedTheme }) => {
         <EuiFlexItem>
           <EuiText>
             <h3>Text sizes</h3>
+
+            <EuiSpacer />
+            {euiFontSizes.map(function (size, index) {
+              return renderFontSize(size, index);
+            })}
+
+            <EuiSpacer />
+
+            <EuiText>
+              <h3>Text colors</h3>
+            </EuiText>
+
+            <EuiSpacer />
+
+            {euiTextColors.map(function (color, index) {
+              return renderPaletteColor(palette, color, index);
+            })}
           </EuiText>
-
-          <EuiSpacer />
-          {euiFontSizes.map(function (size, index) {
-            return renderFontSize(size, index);
-          })}
-
-          <EuiSpacer />
-
-          <EuiText>
-            <h3>Text colors</h3>
-          </EuiText>
-
-          <EuiSpacer />
-
-          {euiTextColors.map(function (color, index) {
-            return renderPaletteColor(palette, color, index);
-          })}
         </EuiFlexItem>
         <EuiFlexItem>
           <div>
@@ -781,6 +781,7 @@ export const SassGuidelines = ({ selectedTheme }) => {
             {selectedTheme.includes('amsterdam') ? (
               <>
                 <EuiRange
+                  fullWidth
                   id={htmlIdGenerator()()}
                   min={300}
                   max={700}
@@ -800,44 +801,6 @@ export const SassGuidelines = ({ selectedTheme }) => {
 
                 <EuiSpacer />
                 {renderFontWeight()}
-
-                <EuiSpacer />
-
-                <EuiText>
-                  <h3>Number format</h3>
-                  <p>
-                    <small>
-                      EUI provides a Sass mixin for applying the{' '}
-                      <EuiCode>tnum</EuiCode> setting to text so that numbers
-                      align more properly in a column, especially when right
-                      aligned.
-                    </small>
-                  </p>
-                  <EuiCode>@include euiNumberFormat</EuiCode>
-                </EuiText>
-                <EuiSpacer />
-                <EuiText textAlign="right">
-                  <EuiFlexGrid columns={2}>
-                    <EuiFlexItem>
-                      <p>
-                        <strong>No mixin</strong>
-                        <br />
-                        1131711
-                        <br />
-                        0040900
-                      </p>
-                    </EuiFlexItem>
-                    <EuiFlexItem>
-                      <p className="guideSass__fontSettingsTnum">
-                        <strong>With mixin</strong>
-                        <br />
-                        1131711
-                        <br />
-                        0040900
-                      </p>
-                    </EuiFlexItem>
-                  </EuiFlexGrid>
-                </EuiText>
               </>
             ) : (
               euiFontWeights.map(function (weight) {

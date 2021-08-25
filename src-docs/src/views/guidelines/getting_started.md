@@ -164,11 +164,11 @@ The Amsterdam theme uses the latest version of Inter that can be grabbed from Go
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 ```
 
-Or grab all weights between 400 and 700 as a variable font.
+Or grab all weights, including italics, between 400 and 700 as a variable font.
 
 ```scss
 // index.scss
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300...700&family=Roboto+Mono:ital,wght@0,400...700;1,400...700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10,300..700;0,300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap');
 ```
 
 ### Reusing the variables in JavaScript
