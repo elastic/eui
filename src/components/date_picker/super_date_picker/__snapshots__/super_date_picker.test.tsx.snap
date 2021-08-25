@@ -1,5 +1,99 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiSuperDatePicker EuiFormControlLayout contain data-test-subj as prop 1`] = `
+<div
+  class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--directionRow euiSuperDatePicker__flexWrapper"
+>
+  <div
+    class="euiFlexItem"
+  >
+    <div
+      class="euiFormControlLayout euiFormControlLayout--group euiSuperDatePicker"
+      data-test-subj="superDatePickerDateRange"
+    >
+      <div
+        class="euiPopover euiPopover--anchorDownLeft"
+      >
+        <div
+          class="euiPopover__anchor euiQuickSelectPopover__anchor"
+        >
+          <button
+            aria-label="Date quick select"
+            class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--xSmall euiFormControlLayout__prepend"
+            data-test-subj="superDatePickerToggleQuickMenuButton"
+            type="button"
+          >
+            <span
+              class="euiButtonContent euiButtonContent--iconRight euiButtonEmpty__content"
+            >
+              <span
+                class="euiButtonContent__icon"
+                color="inherit"
+                data-euiicon-type="arrowDown"
+              />
+              <span
+                class="euiButtonEmpty__text euiQuickSelectPopover__buttonText"
+              >
+                <span
+                  data-euiicon-type="calendar"
+                />
+              </span>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <div
+          class="euiDatePickerRange euiDatePickerRange--inGroup"
+        >
+          <button
+            class="euiSuperDatePicker__prettyFormat"
+            data-test-subj="superDatePickerShowDatesButton"
+          >
+            Last 15 minutes
+            <span
+              class="euiSuperDatePicker__prettyFormatLink"
+            >
+              Show dates
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiFlexItem euiFlexItem--flexGrowZero"
+  >
+    <span
+      class="euiToolTipAnchor"
+    >
+      <button
+        class="euiButton euiButton--primary euiButton--fill euiSuperUpdateButton"
+        data-test-subj="superDatePickerApplyTimeButton"
+        type="button"
+      >
+        <span
+          class="euiButtonContent euiButton__content"
+        >
+          <span
+            class="euiButtonContent__icon"
+            color="inherit"
+            data-euiicon-type="refresh"
+          />
+          <span
+            class="euiButton__text euiSuperUpdateButton__text"
+          >
+            Refresh
+          </span>
+        </span>
+      </button>
+    </span>
+  </div>
+</div>
+`;
+
 exports[`EuiSuperDatePicker is rendered 1`] = `
 <EuiFlexGroup
   className="euiSuperDatePicker__flexWrapper"
@@ -9,6 +103,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
   <EuiFlexItem>
     <EuiFormControlLayout
       className="euiSuperDatePicker"
+      data-test-subj="superDatePicker"
       isDisabled={false}
       prepend={
         <EuiQuickSelectPopover
@@ -77,7 +172,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
       >
         <button
           className="euiSuperDatePicker__prettyFormat"
-          data-test-subj="superDatePickerShowDatesButton"
+          data-test-subj="superDatePicker"
           disabled={false}
           onClick={[Function]}
         >
@@ -98,7 +193,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
     grow={false}
   >
     <EuiSuperUpdateButton
-      data-test-subj="superDatePickerApplyTimeButton"
+      data-test-subj="superDatePicker"
       isDisabled={false}
       isLoading={false}
       needsUpdate={false}

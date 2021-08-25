@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount, shallow, render } from 'enzyme';
 
 import {
   EuiSuperDatePicker,
@@ -133,5 +133,21 @@ describe('EuiSuperDatePicker', () => {
       />
     );
     expect(component.find(EuiButton).props()).toMatchObject(updateButtonProps);
+  });
+
+  test('EuiFormControlLayout contain data-test-subj as prop', () => {
+    const dataTestSubj: EuiSuperDatePickerProps['dataTestSubj'] = {
+      showDates: 'ShowDatesButton',
+      applyTime: 'ApplyTimeButton',
+      dateRange: 'DateRange'
+    };
+
+    const component = render(
+      <EuiSuperDatePicker
+        onTimeChange={noop}
+        dataTestSubj={dataTestSubj}
+      />
+    );
+    expect(component).toMatchSnapshot();
   });
 });

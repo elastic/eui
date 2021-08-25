@@ -80,3 +80,9 @@ export interface QuickSelectPanel {
   title: string;
   content: ReactElement;
 }
+
+export interface SuperDatePickerDataTestSubj {
+  showDates?: string;
+  applyTime?: string;
+  dateRange?: string;
+}
