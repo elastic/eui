@@ -1,28 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiBreadcrumbs } from '../../../../src/components';
+import { EuiCode, EuiBreadcrumbs, EuiText } from '../../../../src/components';
 import { BreadcrumbResponsiveMaxCount, BreadcrumbProps } from './props';
+
+import { breadcrumbsConfig } from './playground';
 
 import Breadcrumbs from './breadcrumbs';
 const breadcrumbsSource = require('!!raw-loader!./breadcrumbs');
-const breadcrumbsHtml = renderToHtml(Breadcrumbs);
 
 import Responsive from './responsive';
 const responsiveSource = require('!!raw-loader!./responsive');
-const responsiveHtml = renderToHtml(Responsive);
+import ResponsiveCustom from './responsive_custom';
+const responsiveCustomSource = require('!!raw-loader!./responsive_custom');
 
 import Truncate from './truncate';
 const truncateSource = require('!!raw-loader!./truncate');
-const truncateHtml = renderToHtml(Truncate);
+import TruncateSingle from './truncate_single';
+const truncateSingleSource = require('!!raw-loader!./truncate_single');
 
 import Max from './max';
+import { EuiCallOut } from '../../../../src/components/call_out';
 const maxSource = require('!!raw-loader!./max');
-const maxHtml = renderToHtml(Max);
 
 const breadcrumpProps = {
   EuiBreadcrumbs,
@@ -32,6 +33,22 @@ const breadcrumpProps = {
 
 export const BreadcrumbsExample = {
   title: 'Breadcrumbs',
+  intro: (
+    <EuiText>
+      <p>
+        <strong>EuiBreadcrumbs</strong> let the user track their progress within
+        and back out of a UX flow and work well when used in combination with{' '}
+        <Link to="/layout/page-header">
+          <strong>EuiPageHeader</strong>
+        </Link>
+        . They are meant to be used at lower page level flows, while{' '}
+        <Link to="/layout/header">
+          <strong>EuiHeaderBreadcrumbs</strong>
+        </Link>{' '}
+        should be used for application-wide navigation.
+      </p>
+    </EuiText>
+  ),
   sections: [
     {
       source: [
@@ -39,30 +56,33 @@ export const BreadcrumbsExample = {
           type: GuideSectionTypes.JS,
           code: breadcrumbsSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: breadcrumbsHtml,
-        },
       ],
       text: (
-        <p>
-          <strong>EuiBreadcrumbs</strong> let the user track their progress
-          within and back out of a UX flow. You can provide an{' '}
-          <EuiCode>href</EuiCode> prop on any breadcrumb item that you wish to
-          make clickable, including the last item, though we recommend the last
-          item represent the current page and therefore the link is unnecessary.
-          They work well within{' '}
-          <Link to="/layout/page">
-            <strong>EuiPageContentHeader</strong>
-          </Link>{' '}
-          but be careful not to use them within an app that also uses{' '}
-          <Link to="/layout/header">
-            <strong>EuiHeaderBreadcrumbs</strong>
-          </Link>
-          .
-        </p>
+        <>
+          <p>
+            <strong>EuiBreadcrumbs</strong> requires an array of{' '}
+            <strong>EuiBreadcrumb</strong> objects as{' '}
+            <EuiCode>breadcrumbs</EuiCode> and handles truncation, including
+            middle-truncation in the case of many items, and mobile
+            responsiveness. Each item accepts an <EuiCode>href</EuiCode> prop,
+            though we recommend the last item represent the current page and
+            therefore the link is unnecessary.
+          </p>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            title={
+              <>
+                For accessibility, it is highly recommended to provide a
+                descriptive <EuiCode>aria-label</EuiCode> for each set of
+                breadcrumbs.
+              </>
+            }
+          />
+        </>
       ),
       props: breadcrumpProps,
+      playground: breadcrumbsConfig,
       snippet: `<EuiBreadcrumbs
   breadcrumbs={[
     {
@@ -73,11 +93,15 @@ export const BreadcrumbsExample = {
       text: 'Breadcrumb 2',
       href: '#',
     },
+    {
+      text: 'Current',
+      href: '#',
+    },
   ]}
-  aria-label=""
 />
 `,
       demo: <Breadcrumbs />,
+      demoPanelProps: { color: 'subdued' },
     },
     {
       title: 'Limit the number of breadcrumbs',
@@ -85,10 +109,6 @@ export const BreadcrumbsExample = {
         {
           type: GuideSectionTypes.JS,
           code: maxSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: maxHtml,
         },
       ],
       text: (
@@ -105,7 +125,6 @@ export const BreadcrumbsExample = {
       snippet: `<EuiBreadcrumbs
   max={4}
   breadcrumbs={breadcrumbs}
-  aria-label=""
 />`,
       demo: <Max />,
     },
@@ -116,10 +135,6 @@ export const BreadcrumbsExample = {
           type: GuideSectionTypes.JS,
           code: truncateSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: truncateHtml,
-        },
       ],
       text: (
         <>
@@ -127,9 +142,7 @@ export const BreadcrumbsExample = {
             <strong>EuiBreadcrumbs</strong> will truncate the full set by
             default, forcing it to a single line and setting a max width on all
             items except for the last. You can turn this off by setting{' '}
-            <EuiCode language="ts">{'truncate={false}'}</EuiCode>. You can also
-            force truncation on single breadcrumb <strong>item</strong> by
-            adding <EuiCode>{'truncate: true'}</EuiCode>.
+            <EuiCode language="ts">{'truncate={false}'}</EuiCode>.
           </p>
         </>
       ),
@@ -139,8 +152,28 @@ export const BreadcrumbsExample = {
         `<EuiBreadcrumbs
   truncate={true}
   breadcrumbs={breadcrumbs}
-  aria-label=""
 />`,
+      ],
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: truncateSingleSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Alternatively, you can force truncation on single breadcrumb{' '}
+            <strong>item</strong> by adding{' '}
+            <EuiCode>{'truncate: true'}</EuiCode> to the object.
+          </p>
+        </>
+      ),
+      props: breadcrumpProps,
+      demo: <TruncateSingle />,
+      snippet: [
         `<EuiBreadcrumbs
   truncate={false}
   breadcrumbs={[
@@ -149,7 +182,6 @@ export const BreadcrumbsExample = {
       truncate: true,
     }
   ]}
-  aria-label=""
 />`,
       ],
     },
@@ -160,10 +192,6 @@ export const BreadcrumbsExample = {
           type: GuideSectionTypes.JS,
           code: responsiveSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: responsiveHtml,
-        },
       ],
       text: (
         <>
@@ -173,6 +201,27 @@ export const BreadcrumbsExample = {
             <EuiCode language="ts">{'responsive={false}'}</EuiCode> will keep
             all breadcrumbs visible at all screens sizes.
           </p>
+        </>
+      ),
+      props: breadcrumpProps,
+      snippet: [
+        `<EuiBreadcrumbs
+  responsive={false}
+  max={null}
+  breadcrumbs={breadcrumbs}
+/>`,
+      ],
+      demo: <Responsive />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: responsiveCustomSource,
+        },
+      ],
+      text: (
+        <>
           <p>
             Alternatively, you can change number of breadcrumbs that show per
             breakpoint by passing a custom responsive object.
@@ -182,22 +231,15 @@ export const BreadcrumbsExample = {
       props: breadcrumpProps,
       snippet: [
         `<EuiBreadcrumbs
-  responsive={false}
-  max={null}
-  breadcrumbs={breadcrumbs}
-  aria-label=""
-/>`,
-        `<EuiBreadcrumbs
   responsive={{
     xs: 2,
     s: 5,
   }}
   max={null}
   breadcrumbs={breadcrumbs}
-  aria-label=""
 />`,
       ],
-      demo: <Responsive />,
+      demo: <ResponsiveCustom />,
     },
   ],
 };
