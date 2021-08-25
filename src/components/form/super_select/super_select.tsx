@@ -136,6 +136,8 @@ export class EuiSuperSelect<T extends string> extends Component<
           } else {
             focusSelected();
           }
+        } else {
+          this.focusItemAt(0);
         }
       });
     };
