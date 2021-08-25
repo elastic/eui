@@ -134,35 +134,6 @@ const rangeSnippet = `<EuiDatePickerRange
   }
 />`;
 
-const rangeRestrictedSnippet = `<EuiDatePickerRange
-  startDateControl={
-    <EuiDatePicker
-      selected={startDate}
-      onChange={setStartDate}
-      startDate={startDate}
-      endDate={endDate}
-      minDate={minDate}
-      maxDate={endDate}
-      isInvalid={isInvalid}
-      aria-label="Start date"
-      showTimeSelect
-    />
-  }
-  endDateControl={
-    <EuiDatePicker
-      selected={endDate}
-      onChange={setEndDate}
-      startDate={startDate}
-      endDate={endDate}
-      minDate={startDate}
-      maxDate={maxDate}
-      isInvalid={isInvalid}
-      aria-label="End date"
-      showTimeSelect
-    />
-  }
-/>`;
-
 const minMaxSnippet = [
   `<EuiDatePicker
   showTimeSelect
@@ -371,7 +342,6 @@ export const DatePickerExample = {
         </p>
       ),
       demo: <RangeRestricted />,
-      snippet: rangeRestrictedSnippet,
       props: { EuiDatePickerRange },
     },
     {
