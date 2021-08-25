@@ -41,7 +41,7 @@ export const AccessibilityBullet = () => {
       <EuiSpacer />
       <Chart size={{ height: 200 }}>
         <Settings
-          theme={euiChartTheme}
+          theme={euiChartTheme.theme}
           ariaLabelledBy={id}
           ariaDescription="This goal chart has a target of 260."
           ariaUseDefaultSummary={false}
