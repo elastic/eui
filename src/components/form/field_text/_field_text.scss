@@ -14,3 +14,7 @@
 .euiFieldText--withIcon.euiFieldText--compressed {
   @include euiFormControlWithIcon($isIconOptional: false, $side: 'left', $compressed: true);
 }
+
+.euiFieldText--withClear {
+  @include euiFormControlWithIcon($isIconOptional: false, $side: 'right', $compressed: false);
+}
