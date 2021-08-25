@@ -83,6 +83,10 @@ interface EuiTreeViewState {
 
 export type CommonTreeProps = CommonProps &
   HTMLAttributes<HTMLUListElement> & {
+    /**
+     * Never accepts children directly, only through the `items` prop
+     */
+    children?: never;
     /** An array of EuiTreeViewNodes
      */
     items: Node[];
