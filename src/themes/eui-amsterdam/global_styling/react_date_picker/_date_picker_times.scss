@@ -26,6 +26,10 @@
       text-decoration: underline;
     }
   }
+
+  @include euiBreakpoint('xs') {
+    margin-top: 0;
+  }
 }
 
 .react-datepicker__time,
