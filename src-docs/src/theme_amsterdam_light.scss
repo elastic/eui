@@ -1,8 +1,9 @@
 // sass-lint:disable no-url-domains, no-url-protocols
-@import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10,300..700;0,300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10,300..700;0,300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap');
 
 // Uncomment the import below to test with local fonts
-// @import './Inter/inter.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap');
+@import './Inter/inter.css';
 
 @import '../../src/theme_amsterdam_light';
 @import './components/index';
