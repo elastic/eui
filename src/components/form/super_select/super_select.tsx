@@ -137,7 +137,10 @@ export class EuiSuperSelect<T extends string> extends Component<
             focusSelected();
           }
         } else {
-          this.focusItemAt(0);
+          const firstFocusableOption = this.props.options.findIndex(
+            ({ disabled }) => disabled !== true
+          );
+          this.focusItemAt(firstFocusableOption);
         }
       });
     };
