@@ -90,8 +90,7 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
               <EuiI18n
                 token="euiColumnSortingDraggable.activeSortLabel"
                 default="{display} is sorting this data grid"
-                values={{ display }}
-              >
+                values={{ display }}>
                 {(activeSortLabel: string) => activeSortLabel}
               </EuiI18n>
             </p>

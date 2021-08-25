@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed instance of  `EuiScreenReader` text being exposed in `EuiDataGrid` sorting menu ([#5084](https://github.com/elastic/eui/pull/5084))
+- Fixed screen reader text from displaying in some `EuiDataGrid` cell popovers ([#5087](https://github.com/elastic/eui/pull/5087))
 
 ## [`37.1.2`](https://github.com/elastic/eui/tree/v37.1.2)
 
