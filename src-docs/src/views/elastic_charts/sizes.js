@@ -238,7 +238,12 @@ export class Sizes extends Component {
                 showGridLines={false}
                 style={xAxisStyle}
               />
-              <Axis id="left-axis" position="left" style={yAxisStyle} />
+              <Axis
+                id="left-axis"
+                position="left"
+                style={yAxisStyle}
+                tickFormat={(d) => Number(d).toFixed(2)}
+              />
             </Chart>
           </EuiPageContent>
         </EuiPage>
@@ -343,6 +348,7 @@ export class Sizes extends Component {
     id="left-axis"
     position="left"
     style={${JSON.stringify(yAxisStyle)}}
+    tickFormat={(d) => Number(d).toFixed(2)}
   />
 </Chart>`}
           >
