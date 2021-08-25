@@ -2,10 +2,17 @@
 
 - Updated `EuiToolTip` to remain showing tooltip while child element is in focus ([#5066](https://github.com/elastic/eui/pull/5066))
 - Removed `children` from TypeScript definition in `EuiIconTip` ([#5066](https://github.com/elastic/eui/pull/5066))
+- Removed `children` as a possible prop on `EuiTreeView` ([#5053](https://github.com/elastic/eui/pull/5053))
 
 **Bug fixes**
 
 - Fixed location of default value of `EuiToolTip`'s `display` prop ([#5066](https://github.com/elastic/eui/pull/5066))
+- Fixed default value of `EuiPagination`'s `activePage` to target first page ([#5053](https://github.com/elastic/eui/pull/5053))
+
+**Theme: Amsterdam**
+
+- Reduced `EuiNotificationBadge` border-radius to `small` ([#5053](https://github.com/elastic/eui/pull/5053))
+- Fixed hover and focus states of `EuiFacet` to match established pattern ([#5053](https://github.com/elastic/eui/pull/5053))
 
 ## [`37.3.1`](https://github.com/elastic/eui/tree/v37.3.1)
 
