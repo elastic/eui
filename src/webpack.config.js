@@ -61,10 +61,10 @@ module.exports = {
 
   // Specify where these libraries should be found
   externals: {
-    // moment: 'window.moment',
-    // 'prop-types': 'window.PropTypes',
-    // react: 'window.React',
-    // 'react-dom': 'window.ReactDOM',
+    moment: 'window.moment',
+    'prop-types': 'window.PropTypes',
+    react: 'window.React',
+    'react-dom': 'window.ReactDOM',
   },
 
   module: {

@@ -6,11 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, { EventHandler } from 'react';
+import React from 'react';
 import { mount } from '@cypress/react';
 import { EuiFocusTrap } from './focus_trap';
-import { findTestSubject } from '../../test';
-import { EuiEvent } from '../outside_click_detector/outside_click_detector';
 import { EuiPortal } from '../portal';
 
 describe('EuiFocusTrap', () => {
@@ -72,23 +70,6 @@ describe('EuiFocusTrap', () => {
     });
 
     describe('clickOutsideDisables', () => {
-      // const triggerDocumentMouseDown = (
-      //   e
-      // ) => {
-      //   const event = new Event('mousedown');
-      //   event.euiGeneratedBy = e.nativeEvent.euiGeneratedBy;
-      //   document.dispatchEvent(event);
-      //   console.log('here');
-      // };
-      //
-      // const triggerDocumentMouseUp = (
-      //   e
-      // ) => {
-      //   const event = new Event('mousedown');
-      //   event.euiGeneratedBy = e.nativeEvent.euiGeneratedBy;
-      //   document.dispatchEvent(event);
-      // };
-
       it('trap remains enabled when false', () => {
         mount(
           <div>

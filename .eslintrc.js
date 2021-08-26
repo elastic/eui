@@ -123,5 +123,14 @@ module.exports = {
         'react/prefer-stateless-function': 'off',
       },
     },
+    {
+      globals: {
+        cy: true,
+      },
+      files: ['*.spec.js'],
+      rules: {
+        'react/no-multi-comp': 'off',
+      },
+    },
   ],
 };
