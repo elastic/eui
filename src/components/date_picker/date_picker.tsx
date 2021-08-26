@@ -163,7 +163,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
         'euiFieldText--fullWidth': fullWidth,
         'euiFieldText-isLoading': isLoading,
         'euiFieldText--withIcon': !inline && showIcon,
-        'euiFieldText--withClear': !inline && selected && onClear,
+        'euiFieldText--isClearable': !inline && selected && onClear,
         'euiFieldText-isInvalid': isInvalid,
       },
       className

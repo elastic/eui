@@ -15,6 +15,10 @@
   @include euiFormControlWithIcon($isIconOptional: false, $side: 'left', $compressed: true);
 }
 
-.euiFieldText--withClear {
+.euiFieldText--isClearable {
   @include euiFormControlWithIcon($isIconOptional: false, $side: 'right', $compressed: false);
+}
+
+.euiFieldText--isClearable.euiFieldText--compressed {
+  @include euiFormControlWithIcon($isIconOptional: false, $side: 'right', $compressed: true);
 }
