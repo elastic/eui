@@ -70,13 +70,15 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
           }`}
         >
           <EuiScreenReaderOnly>
-            <EuiI18n
-              token="euiColumnSortingDraggable.activeSortLabel"
-              default="{display} is sorting this data grid"
-              values={{ display }}
-            >
-              {(activeSortLabel: string) => <p>{activeSortLabel}</p>}
-            </EuiI18n>
+            <p>
+              <EuiI18n
+                token="euiColumnSortingDraggable.activeSortLabel"
+                default="{display} is sorting this data grid"
+                values={{ display }}
+              >
+                {(activeSortLabel: string) => activeSortLabel}
+              </EuiI18n>
+            </p>
           </EuiScreenReaderOnly>
           <EuiFlexGroup
             gutterSize="xs"

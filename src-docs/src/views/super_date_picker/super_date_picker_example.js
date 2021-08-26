@@ -78,7 +78,7 @@ export const SuperDatePickerExample = {
             </EuiLink>{' '}
             to convert start and end strings into moment objects.
           </p>
-          <EuiCodeBlock language="js" paddingSize="none" isCopyable>
+          <EuiCodeBlock language="js" isCopyable>
             {`import dateMath from '@elastic/datemath';
 
 const startMoment = dateMath.parse(start);
