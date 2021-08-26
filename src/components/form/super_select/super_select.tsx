@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component } from 'react';
+import React, { Component, FocusEvent } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -33,7 +33,7 @@ enum ShiftDirection {
 export type EuiSuperSelectProps<T extends string> = CommonProps &
   Omit<
     EuiSuperSelectControlProps<T>,
-    'onChange' | 'onClick' | 'options' | 'value'
+    'onChange' | 'onClick' | 'onFocus' | 'onBlur' | 'options' | 'value'
   > & {
     /**
      * Pass an array of options that must at least include:
@@ -54,8 +54,8 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
      * You must pass an `onChange` function to handle the update of the value
      */
     onChange?: (value: T) => void;
-    onFocus?: () => void;
-    onBlur?: () => void;
+    onFocus?: (event?: FocusEvent) => void;
+    onBlur?: (event?: FocusEvent) => void;
 
     /**
      * Change to `true` if you want horizontal lines between options.
