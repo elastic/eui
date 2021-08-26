@@ -3,7 +3,7 @@
 - Updated `EuiToolTip` to remain showing tooltip while child element is in focus ([#5066](https://github.com/elastic/eui/pull/5066))
 - Removed `children` from TypeScript definition in `EuiIconTip` ([#5066](https://github.com/elastic/eui/pull/5066))
 - Removed `children` as a possible prop on `EuiTreeView` ([#5053](https://github.com/elastic/eui/pull/5053))
-- Updated `elast-charts` theme with better text colors, font stack and `goal` styles ([#5077](https://github.com/elastic/eui/pull/5077))
+- Updated `elastic-charts` theme with better text colors, font stack and `goal` styles ([#5077](https://github.com/elastic/eui/pull/5077))
 
 **Bug fixes**
 
