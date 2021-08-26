@@ -151,7 +151,7 @@ const buttonGroupSnippet = [
   options={[
     {
       id,
-      label'
+      label
     }
   ]}
 />`,
@@ -163,7 +163,7 @@ const buttonGroupSnippet = [
   options={[
     {
       id,
-      label'
+      label
     }
   ]}
 />`,

@@ -37,7 +37,7 @@ module.exports = {
     'prettier/standard',
     'plugin:prettier/recommended',
   ],
-  plugins: ['jsx-a11y', 'prettier', 'local', 'react-hooks'],
+  plugins: ['jsx-a11y', 'prettier', 'local', 'react-hooks', '@emotion'],
   rules: {
     'prefer-template': 'error',
     'local/i18n': 'error',
