@@ -128,9 +128,6 @@ module.exports = {
         cy: true,
       },
       files: ['*.spec.js'],
-      rules: {
-        'react/no-multi-comp': 'off',
-      },
     },
   ],
 };

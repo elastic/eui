@@ -11,6 +11,11 @@ import { mount } from '@cypress/react';
 import { EuiFocusTrap } from './focus_trap';
 import { EuiPortal } from '../portal';
 
+function add(a: number, b: number) {
+  return a + b;
+}
+add('3', 5);
+
 describe('EuiFocusTrap', () => {
   describe('behavior', () => {
     describe('focus', () => {

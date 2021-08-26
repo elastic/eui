@@ -56,5 +56,5 @@
     "./src/**/*",
     "./src-docs/**/*"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "**/*/*.spec.tsx"]
 }
