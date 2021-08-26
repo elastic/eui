@@ -81,7 +81,8 @@
 .react-datepicker__month-dropdown {
   @include euiYScroll;
   @include euiBottomShadowSmall;
-  height: 250px; // Set an explicit height, something at least smaller than the overall height
+  height: auto;
+  max-height: 250px; // Set an explicit height, something at least smaller than the overall height
   background-color: $euiColorEmptyShade;
   position: absolute;
   z-index: 1;
@@ -106,15 +107,6 @@
   .react-datepicker__month-dropdown {
     padding: $euiSizeXS;
     min-width: $euiDatePickerMaxControlWidth;
-  }
-}
-
-// Hide the first and last options which trigger adding one more year to the list
-// But container no text or any content so its inaccessible
-.react-datepicker__year-option {
-  &:first-of-type,
-  &:last-of-type {
-    display: none;
   }
 }
 
