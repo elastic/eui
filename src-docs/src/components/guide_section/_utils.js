@@ -1,12 +1,10 @@
 import { cleanEuiImports } from '../../services';
 
 export const renderJsSourceCode = (code) => {
-  let renderedCode = code.default
-    .replace(
-      /(from )'(..\/)+src\/services(\/?';)/g,
-      "from '@elastic/eui/lib/services';"
-    )
-    .replace(/(from )'(..\/)+src\/components\/.*?';/g, "from '@elastic/eui';");
+  let renderedCode = code.default.replace(
+    /(from )'(..\/)+src\/.*?';/g,
+    "from '@elastic/eui';"
+  );
   renderedCode = renderedCode.split('\n');
   const linesWithImport = [];
   // eslint-disable-next-line guard-for-in
