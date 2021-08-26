@@ -7,14 +7,26 @@
 - Added global `EuiTheme` tokens for `colors`, `size`, `font`, `border`, `animation`, and `breakpoint`
 - Added color services for `makeHighContrastColor`, `makeDisabledContrastColor`, `shade`, `tint`, `transparentize`, `saturate`, `desaturate`, `lightness`
 
----
+## [`37.4.0`](https://github.com/elastic/eui/tree/v37.4.0)
 
 - Updated `EuiToolTip` to remain showing tooltip while child element is in focus ([#5066](https://github.com/elastic/eui/pull/5066))
 - Removed `children` from TypeScript definition in `EuiIconTip` ([#5066](https://github.com/elastic/eui/pull/5066))
+- Removed `children` as a possible prop on `EuiTreeView` ([#5053](https://github.com/elastic/eui/pull/5053))
+- Updated `elastic-charts` theme with better text colors, font stack and `goal` styles ([#5077](https://github.com/elastic/eui/pull/5077))
 
 **Bug fixes**
 
 - Fixed location of default value of `EuiToolTip`'s `display` prop ([#5066](https://github.com/elastic/eui/pull/5066))
+- Fixed instance of  `EuiScreenReader` text being exposed in `EuiDataGrid` sorting menu ([#5084](https://github.com/elastic/eui/pull/5084))
+- Fixed default value of `EuiPagination`'s `activePage` to target first page ([#5053](https://github.com/elastic/eui/pull/5053))
+- Fixed screen reader text from displaying in some `EuiDataGrid` cell popovers ([#5087](https://github.com/elastic/eui/pull/5087))
+- Fixed `EuiDatePicker` year dropdown when configured with `minDate` and/or `maxDate` ([#5069](https://github.com/elastic/eui/pull/5069))
+- Fixed `EuiDatePicker`'s clear icon overlaying date text ([#5095](https://github.com/elastic/eui/pull/5095))
+
+**Theme: Amsterdam**
+
+- Reduced `EuiNotificationBadge` border-radius to `small` ([#5053](https://github.com/elastic/eui/pull/5053))
+- Fixed hover and focus states of `EuiFacet` to match established pattern ([#5053](https://github.com/elastic/eui/pull/5053))
 
 ## [`37.3.1`](https://github.com/elastic/eui/tree/v37.3.1)
 
@@ -34,6 +46,7 @@
 
 - Updated styles for `EuiDatePicker` ([#5000](https://github.com/elastic/eui/pull/5000))
 - Fixed styles for `EuiSuperDatePicker` ([#5060](https://github.com/elastic/eui/pull/5060))
+- Fixed styles for `compressed` + `prepend/append` + `readOnly` input backgrounds ([#5073](https://github.com/elastic/eui/pull/5073))
 
 ## [`37.3.0`](https://github.com/elastic/eui/tree/v37.3.0)
 

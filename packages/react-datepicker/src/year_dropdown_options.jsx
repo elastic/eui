@@ -108,31 +108,35 @@ export default class YearDropdownOptions extends React.Component {
     const minYear = this.props.minDate ? this.props.minDate.year() : null;
     const maxYear = this.props.maxDate ? this.props.maxDate.year() : null;
 
-    if (!maxYear || !this.state.yearsList.find(year => year === maxYear)) {
-      options.unshift(
-        <div
-          className="react-datepicker__year-option"
-          ref={"upcoming"}
-          key={"upcoming"}
-          onClick={this.incrementYears}
-        >
-          <a className="react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-upcoming" />
-        </div>
-      );
-    }
+    // These elements were hidden with `display: none;` by custom EUI styles,
+    // which caused problems when `minDate` or `maxDate` were configured: https://github.com/elastic/eui/issues/5058
+    // Keeping a reference for now, but we may opt for removing these 
+    // elements entirely during https://github.com/elastic/eui/issues/3901
+    // if (!maxYear || !this.state.yearsList.find(year => year === maxYear)) {
+    //   options.unshift(
+    //     <div
+    //       className="react-datepicker__year-option"
+    //       ref={"upcoming"}
+    //       key={"upcoming"}
+    //       onClick={this.incrementYears}
+    //     >
+    //       <a className="react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-upcoming" />
+    //     </div>
+    //   );
+    // }
 
-    if (!minYear || !this.state.yearsList.find(year => year === minYear)) {
-      options.push(
-        <div
-          className="react-datepicker__year-option"
-          ref={"previous"}
-          key={"previous"}
-          onClick={this.decrementYears}
-        >
-          <a className="react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-previous" />
-        </div>
-      );
-    }
+    // if (!minYear || !this.state.yearsList.find(year => year === minYear)) {
+    //   options.push(
+    //     <div
+    //       className="react-datepicker__year-option"
+    //       ref={"previous"}
+    //       key={"previous"}
+    //       onClick={this.decrementYears}
+    //     >
+    //       <a className="react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-previous" />
+    //     </div>
+    //   );
+    // }
 
     return options;
   };

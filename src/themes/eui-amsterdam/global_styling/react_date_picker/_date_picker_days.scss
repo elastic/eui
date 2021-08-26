@@ -77,29 +77,23 @@
 
   // Ranges use 2 side box-shadows that are the same as the button style
   // to create a solid blue highlight, only rounded at the ends
-  &--in-range:not(&--selected):not(:hover) {
+  &--in-range:not(&--selected):not(:hover),
+  &--in-range#{&}--disabled:not(.react-datepicker__day--selected),
+  &--in-range#{&}--disabled:not(.react-datepicker__day--selected):hover {
+    $backgroundColor: transparentize($euiColorPrimary, $euiButtonDefaultTransparency);
+
     // sass-lint:disable-block indentation
-    box-shadow: -2px 0 transparentize($euiColorPrimary, $euiButtonDefaultTransparency),
-                 2px 0 transparentize($euiColorPrimary, $euiButtonDefaultTransparency);
+    box-shadow: -2px 0 $backgroundColor,
+                 2px 0 $backgroundColor;
     border-radius: 0;
 
     &:first-of-type {
-      box-shadow: 2px 0 transparentize($euiColorPrimary, $euiButtonDefaultTransparency);
+      box-shadow: 2px 0 $backgroundColor;
     }
 
     &:last-of-type {
-      box-shadow: -2px 0 transparentize($euiColorPrimary, $euiButtonDefaultTransparency);
+      box-shadow: -2px 0 $backgroundColor;
     }
-  }
-
-  &--in-range#{&}--range-start:not(&--selected) {
-    border-top-left-radius: $euiBorderRadiusSmall;
-    border-bottom-left-radius: $euiBorderRadiusSmall;
-  }
-
-  &--in-range#{&}--range-end:not(&--selected) {
-    border-top-right-radius: $euiBorderRadiusSmall;
-    border-bottom-right-radius: $euiBorderRadiusSmall;
   }
 
   &--selected,
@@ -121,10 +115,19 @@
     cursor: not-allowed;
     text-decoration: none;
     transform: none;
+
+    &.react-datepicker__day--in-range:not(.react-datepicker__day--selected),
+    &.react-datepicker__day--in-range:not(.react-datepicker__day--selected):hover {
+      $backgroundColorSimulated: mix($euiPageBackgroundColor, $euiColorPrimary, 80%);
+      color: makeDisabledContrastColor($backgroundColorSimulated, $backgroundColorSimulated);
+      background-color: transparentize($euiColorPrimary, $euiButtonDefaultTransparency);
+    }
   }
 
   &--disabled.react-datepicker__day--selected,
   &--disabled.react-datepicker__day--selected:hover {
-    color: $euiTextColor;
+    $backgroundColorSimulated: mix($euiPageBackgroundColor, $euiColorDanger, 80%);
+    color: makeDisabledContrastColor($euiColorDanger, $backgroundColorSimulated);
+    background-color: transparentize($euiColorDanger, $euiButtonDefaultTransparency);
   }
 }

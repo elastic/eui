@@ -20,7 +20,7 @@ import lightColors from '!!sass-vars-to-js-loader!../../global_styling/variables
 // @ts-ignore typescript doesn't understand the webpack loader
 import darkColors from '!!sass-vars-to-js-loader!../../themes/eui/eui_colors_dark.scss';
 
-const fontFamily = `'Inter UI', -apple-system, BlinkMacSystemFont,
+const fontFamily = `'Inter', 'Inter UI', -apple-system, BlinkMacSystemFont,
   'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`;
 
 export interface EuiChartThemeType {
@@ -29,9 +29,7 @@ export interface EuiChartThemeType {
   partition: RecursivePartial<PartitionConfig>;
 }
 
-function createTheme(colors: any, mode: string): EuiChartThemeType {
-  const isDarkMode = mode === 'dark';
-
+function createTheme(colors: any): EuiChartThemeType {
   return {
     lineAnnotation: {
       line: {
@@ -42,7 +40,7 @@ function createTheme(colors: any, mode: string): EuiChartThemeType {
       details: {
         fontSize: 10,
         fontFamily: fontFamily,
-        fill: colors.euiColorDarkShade.rgba,
+        fill: colors.euiTextColor.rgba,
         padding: 0,
       },
     },
@@ -59,9 +57,7 @@ function createTheme(colors: any, mode: string): EuiChartThemeType {
       linkLabel: {
         maxCount: 5,
         fontSize: 11,
-        textColor: isDarkMode
-          ? colors.euiColorDarkShade.rgba
-          : colors.euiColorFullShade.rgba,
+        textColor: colors.euiTextColor.rgba,
       },
       outerSizeRatio: 1,
       circlePadding: 4,
@@ -106,7 +102,7 @@ function createTheme(colors: any, mode: string): EuiChartThemeType {
         displayValue: {
           fontSize: 8,
           fontFamily: fontFamily,
-          fill: colors.euiColorDarkShade.rgba,
+          fill: colors.euiTextSubduedColor.rgba,
         },
       },
       scales: {
@@ -117,7 +113,7 @@ function createTheme(colors: any, mode: string): EuiChartThemeType {
         axisTitle: {
           fontSize: 12,
           fontFamily: fontFamily,
-          fill: colors.euiColorDarkestShade.rgba,
+          fill: colors.euiTextColor.rgba,
           padding: {
             inner: 10,
             outer: 0,
@@ -129,7 +125,7 @@ function createTheme(colors: any, mode: string): EuiChartThemeType {
         tickLabel: {
           fontSize: 10,
           fontFamily: fontFamily,
-          fill: colors.euiColorDarkShade.rgba,
+          fill: colors.euiTextSubduedColor.rgba,
           padding: {
             outer: 8,
             inner: 10,
@@ -176,18 +172,45 @@ function createTheme(colors: any, mode: string): EuiChartThemeType {
           dash: [4, 4],
         },
       },
+      goal: {
+        tickLabel: {
+          fontFamily: fontFamily,
+          fill: colors.euiTextSubduedColor.rgba,
+        },
+        majorLabel: {
+          fontFamily: fontFamily,
+          fill: colors.euiTextColor.rgba,
+        },
+        minorLabel: {
+          fontFamily: fontFamily,
+          fill: colors.euiTextSubduedColor.rgba,
+        },
+        majorCenterLabel: {
+          fontFamily: fontFamily,
+          fill: colors.euiTextColor.rgba,
+        },
+        minorCenterLabel: {
+          fontFamily: fontFamily,
+          fill: colors.euiTextSubduedColor.rgba,
+        },
+        targetLine: {
+          stroke: colors.euiColorDarkestShade.rgba,
+        },
+        tickLine: {
+          stroke: colors.euiColorMediumShade.rgba,
+        },
+        progressLine: {
+          stroke: colors.euiColorDarkestShade.rgba,
+        },
+      },
     },
   };
 }
 
 export const EUI_CHARTS_THEME_LIGHT: EuiChartThemeType = createTheme(
-  lightColors,
-  'light'
+  lightColors
 );
-export const EUI_CHARTS_THEME_DARK: EuiChartThemeType = createTheme(
-  darkColors,
-  'dark'
-);
+export const EUI_CHARTS_THEME_DARK: EuiChartThemeType = createTheme(darkColors);
 
 export const EUI_SPARKLINE_THEME_PARTIAL: PartialTheme = {
   lineSeriesStyle: {

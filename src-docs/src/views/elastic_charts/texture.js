@@ -5,6 +5,8 @@ import {
   BarSeries,
   AreaSeries,
   Settings,
+  Axis,
+  Position,
 } from '@elastic/charts';
 import { EuiSpacer, EuiTitle } from '../../../../src/components';
 import { SAMPLE_SMALL_DATA, SAMPLE_SMALL_DATA_2 } from './data';
@@ -66,6 +68,11 @@ export const TextureMultiSeriesChart = () => {
             },
           }}
           data={SAMPLE_SMALL_DATA_2}
+        />
+        <Axis
+          hide
+          position={Position.left}
+          tickFormat={(d) => Number(d).toFixed(2)}
         />
       </Chart>
     </Fragment>

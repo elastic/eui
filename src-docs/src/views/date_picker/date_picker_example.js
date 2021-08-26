@@ -35,6 +35,9 @@ import Range from './range';
 const rangeSource = require('!!raw-loader!./range');
 const rangeHtml = renderToHtml(Range);
 
+import RangeRestricted from './range_restricted';
+const rangeRestrictedSource = require('!!raw-loader!./range_restricted');
+
 import MinMax from './min_max';
 const minMaxSource = require('!!raw-loader!./min_max');
 const minMaxHtml = renderToHtml(MinMax);
@@ -318,6 +321,27 @@ export const DatePickerExample = {
       ),
       demo: <Range />,
       snippet: rangeSnippet,
+      props: { EuiDatePickerRange },
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: rangeRestrictedSource,
+        },
+      ],
+      text: (
+        <p>
+          <h3>
+            Dynamic <EuiCode>minDate</EuiCode> and <EuiCode>maxDate</EuiCode>
+          </h3>
+          By using <EuiCode>minDate</EuiCode> and <EuiCode>maxDate</EuiCode>,
+          and updating the values based on <EuiCode>startDate</EuiCode> and{' '}
+          <EuiCode>endDate</EuiCode>, users get immediate feedback on what range
+          values are allowed.
+        </p>
+      ),
+      demo: <RangeRestricted />,
       props: { EuiDatePickerRange },
     },
     {
