@@ -58,6 +58,8 @@ import InputPopover from './input_popover';
 const inputPopoverSource = require('!!raw-loader!./input_popover');
 const inputPopoverHtml = renderToHtml(PopoverBlock);
 
+import { ElasticChartsColorPickerStoryExample } from './elastic_charts_wrapping_example';
+
 const popOverSnippet = `<EuiPopover
   button={button}
   isOpen={isPopoverOpen}
@@ -461,6 +463,12 @@ export const PopoverExample = {
         </p>
       ),
       demo: <PopoverHTMLElementAnchor />,
+    },
+    {
+      title: 'Eui Wrapping Popover color picker within elastic charts',
+      text:
+        'Please help me. I must be missing something potentially really obvious. Thank you in advance.',
+      demo: <ElasticChartsColorPickerStoryExample />,
     },
   ],
 };

@@ -7,7 +7,11 @@
  */
 
 import React, { Component } from 'react';
-import { EuiPopover, Props as EuiPopoverProps } from './popover';
+import {
+  EuiPopover,
+  // getElementFromInitialFocus,
+  Props as EuiPopoverProps,
+} from './popover';
 import { EuiPortal } from '../portal';
 
 export interface EuiWrappingPopoverProps extends EuiPopoverProps {
@@ -35,6 +39,7 @@ export class EuiWrappingPopover extends Component<EuiWrappingPopoverProps> {
         this.portal.insertAdjacentElement('beforebegin', this.props.button);
       }
     }
+    // this.updateFocus();
   }
 
   setPortalRef = (node: HTMLElement | null) => {
@@ -45,6 +50,21 @@ export class EuiWrappingPopover extends Component<EuiWrappingPopoverProps> {
     this.anchor = node;
   };
 
+  // updateFocus = () => {
+  //   if (
+  //     this.hasSetInitialFocus &&
+  //     this.panel.contains(document.activeElement)
+  //   ) {
+  //     return;
+  //   }
+  //   let focusTarget;
+
+  //   if (this.props.initialFocus != null) {
+  //     focusTarget = getElementFromInitialFocus(this.props.initialFocus);
+  //   }
+  //   focusTarget.focus();
+  // };
+
   render() {
     const { button, ...rest } = this.props;
 
@@ -53,6 +73,7 @@ export class EuiWrappingPopover extends Component<EuiWrappingPopoverProps> {
         portalRef={this.setPortalRef}
         insert={{ sibling: this.props.button, position: 'after' }}>
         <EuiPopover
+          ownFocus
           {...rest}
           button={
             <div

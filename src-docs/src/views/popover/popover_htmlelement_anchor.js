@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 
 import { EuiWrappingPopover } from '../../../../src/components';
+import { EuiButton } from '../../../../src/components/button';
 
 const PopoverApp = (props) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -23,6 +24,7 @@ const PopoverApp = (props) => {
       isOpen={isPopoverOpen}
       closePopover={closePopover}>
       <div>Normal JSX content populates the popover.</div>
+      <EuiButton onClick={closePopover}>Done</EuiButton>
     </EuiWrappingPopover>
   );
 };

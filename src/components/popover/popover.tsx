@@ -262,7 +262,7 @@ const DEFAULT_POPOVER_STYLES = {
   left: 50,
 };
 
-function getElementFromInitialFocus(
+export function getElementFromInitialFocus(
   initialFocus?: FocusTarget
 ): HTMLElement | null {
   const initialFocusType = typeof initialFocus;
