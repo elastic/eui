@@ -4,7 +4,7 @@ No public interface changes since `37.5.0`.
 
 ## [`37.5.0`](https://github.com/elastic/eui/tree/v37.5.0)
 
-## Feature: Emotion ([#4511](https://github.com/elastic/eui/pull/4511))
+### Feature: Emotion ([#4511](https://github.com/elastic/eui/pull/4511))
 
 - Added `EuiThemeProvider`, a React context provider for theme values and color mode selection
 - Added `useEuiTheme` React hook, and `withEuiTheme` React HOC for consuming the EuiTheme
