@@ -54,6 +54,8 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
      * You must pass an `onChange` function to handle the update of the value
      */
     onChange?: (value: T) => void;
+    onFocus?: () => void;
+    onBlur?: () => void;
 
     /**
      * Change to `true` if you want horizontal lines between options.
@@ -142,6 +144,10 @@ export class EuiSuperSelect<T extends string> extends Component<
           );
           this.focusItemAt(firstFocusableOption);
         }
+
+        if (this.props.onFocus) {
+          this.props.onFocus();
+        }
       });
     };
 
@@ -152,12 +158,15 @@ export class EuiSuperSelect<T extends string> extends Component<
     this.setState({
       isPopoverOpen: false,
     });
+
+    if (this.props.onBlur) {
+      this.props.onBlur();
+    }
   };
 
   itemClicked = (value: T) => {
-    this.setState({
-      isPopoverOpen: false,
-    });
+    this.closePopover();
+
     if (this.props.onChange) {
       this.props.onChange(value);
     }
