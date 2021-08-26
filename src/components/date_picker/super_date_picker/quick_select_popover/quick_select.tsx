@@ -171,7 +171,8 @@ export class EuiQuickSelect extends Component<
       <fieldset>
         <EuiI18n
           token="euiQuickSelect.legendText"
-          default="Quick select a time range">
+          default="Quick select a time range"
+        >
           {(legendText: string) => (
             // Legend needs to be the first thing in a fieldset, but we want the visible title within the flex.
             // So we hide it, but allow screen readers to see it
@@ -186,11 +187,13 @@ export class EuiQuickSelect extends Component<
           responsive={false}
           alignItems="center"
           justifyContent="spaceBetween"
-          gutterSize="s">
+          gutterSize="s"
+        >
           <EuiFlexItem grow={false}>
             <EuiI18n
               token="euiQuickSelect.quickSelectTitle"
-              default="Quick select">
+              default="Quick select"
+            >
               {(quickSelectTitle: string) => (
                 <div aria-hidden className="euiFormLabel">
                   {quickSelectTitle}
@@ -203,7 +206,8 @@ export class EuiQuickSelect extends Component<
               <EuiFlexItem grow={false}>
                 <EuiI18n
                   token="euiQuickSelect.previousLabel"
-                  default="Previous time window">
+                  default="Previous time window"
+                >
                   {(previousLabel: string) => (
                     <EuiToolTip content={previousLabel}>
                       <EuiButtonIcon
@@ -218,7 +222,8 @@ export class EuiQuickSelect extends Component<
               <EuiFlexItem grow={false}>
                 <EuiI18n
                   token="euiQuickSelect.nextLabel"
-                  default="Next time window">
+                  default="Next time window"
+                >
                   {(nextLabel: string) => (
                     <EuiToolTip content={nextLabel}>
                       <EuiButtonIcon
@@ -285,7 +290,8 @@ export class EuiQuickSelect extends Component<
               className="euiQuickSelect__applyButton"
               size="s"
               onClick={this.applyQuickSelect}
-              disabled={timeValue <= 0}>
+              disabled={timeValue <= 0}
+            >
               <EuiI18n token="euiQuickSelect.applyButton" default="Apply" />
             </EuiButton>
           </EuiFlexItem>

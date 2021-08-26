@@ -54,7 +54,8 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<EuiFormControlLayo
       <EuiText
         className="euiFormControlLayoutDelimited__delimeter"
         size="s"
-        color="subdued">
+        color="subdued"
+      >
         {delimiter}
       </EuiText>
       {addClassesToControl(endControl)}

@@ -24,7 +24,8 @@ export default () => {
             <strong>EuiDescribedFormGroup</strong> components tend to use this
             pattern as the title and label are usually the same.
           </>
-        }>
+        }
+      >
         <EuiFormRow
           helpText={
             <>
@@ -33,7 +34,8 @@ export default () => {
               <strong>EuiDescribedFormGroup</strong> title <EuiCode>id</EuiCode>
               .
             </>
-          }>
+          }
+        >
           <EuiFieldText aria-labelledby={randomId} />
         </EuiFormRow>
         <EuiFormRow
@@ -43,7 +45,8 @@ export default () => {
               text into a <EuiCode>aria-label</EuiCode> on{' '}
               <strong>EuiFilePicker</strong>.
             </>
-          }>
+          }
+        >
           <EuiFilePicker aria-label={titleText} />
         </EuiFormRow>
       </EuiDescribedFormGroup>

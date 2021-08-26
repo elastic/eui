@@ -73,7 +73,6 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     elementProps = {
       ...elementProps,
       htmlFor: newId,
-      onClick: () => onChange(id, value),
     };
     singleInput = (
       <input
@@ -131,7 +130,8 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
         title: innerText,
       }}
       {...elementProps}
-      {...rest}>
+      {...rest}
+    >
       {singleInput}
       {label}
     </EuiButtonDisplay>

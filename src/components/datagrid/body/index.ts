@@ -6,6 +6,4 @@
  * Side Public License, v 1.
  */
 
-/* eslint-disable @typescript-eslint/triple-slash-reference */
-/// <reference path="./components/index.d.ts" />
-/// <reference path="./themes/index.d.ts" />
+export { EuiDataGridBody, VIRTUALIZED_CONTAINER_CLASS } from './data_grid_body';

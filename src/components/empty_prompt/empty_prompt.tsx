@@ -113,7 +113,8 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
           gutterSize="m"
           alignItems="center"
           justifyContent="center"
-          direction="column">
+          direction="column"
+        >
           {actions.map((action, index) => (
             <EuiFlexItem key={index} grow={false}>
               {action}

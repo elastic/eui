@@ -110,7 +110,8 @@ export class GuidePageChrome extends Component {
         name = (
           <EuiHighlight
             className="guideSideNav__item--inSearch"
-            search={searchTerm}>
+            search={searchTerm}
+          >
             {title}
           </EuiHighlight>
         );
@@ -170,7 +171,8 @@ export class GuidePageChrome extends Component {
           visibleName = (
             <EuiHighlight
               className="guideSideNav__item--inSearch"
-              search={searchTerm}>
+              search={searchTerm}
+            >
               {name}
             </EuiHighlight>
           );
@@ -231,11 +233,13 @@ export class GuidePageChrome extends Component {
           style={{ height: '100%' }}
           direction="column"
           responsive={false}
-          gutterSize="none">
+          gutterSize="none"
+        >
           <EuiFlexItem
             role="search"
             grow={false}
-            className="guideSideNav__search">
+            className="guideSideNav__search"
+          >
             <EuiFieldSearch
               fullWidth
               placeholder="Search"

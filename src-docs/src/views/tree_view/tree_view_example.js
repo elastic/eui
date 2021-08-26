@@ -1,20 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiTreeView } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiTreeView,
+  EuiText,
+  EuiCallOut,
+} from '../../../../src/components';
 import { EuiTreeViewNode } from './tree_view_props';
 import TreeView from './tree_view';
 import TreeViewCompressed from './compressed';
+import { TreeViewConfig } from './playground';
 
 const treeViewSource = require('!!raw-loader!./tree_view');
-const treeViewHtml = renderToHtml(TreeView);
 
 const treeViewCompressedSource = require('!!raw-loader!./compressed');
-const treeViewCompressedHtml = renderToHtml(TreeViewCompressed);
 
 const treeViewSnippet = [
   `<EuiTreeView
@@ -49,6 +51,19 @@ const treeViewSnippet = [
 
 export const TreeViewExample = {
   title: 'Tree view',
+  intro: (
+    <EuiText>
+      <p>
+        <strong>EuiTreeView</strong> allows you to render recursive objects,
+        such as a file directory. It is not meant to be used as primary
+        navigation, for that we recommend using{' '}
+        <Link to="/navigation/side-nav">
+          <strong>EuiSideNav</strong>
+        </Link>
+        .
+      </p>
+    </EuiText>
+  ),
   sections: [
     {
       source: [
@@ -56,34 +71,41 @@ export const TreeViewExample = {
           type: GuideSectionTypes.JS,
           code: treeViewSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: treeViewHtml,
-        },
       ],
       text: (
         <div>
           <p>
-            <strong>EuiTreeView</strong> allows you to render recursive objects,
-            such as a file directory. The <EuiCode>children</EuiCode> prop takes
-            an array of <EuiCode>nodes</EuiCode>.
+            <strong>EuiTreeView</strong> does not accept{' '}
+            <EuiCode>children</EuiCode> directly but requires an array of{' '}
+            <EuiCode>EuiTreeViewNode</EuiCode>s through its{' '}
+            <EuiCode>items</EuiCode> prop.
           </p>
           <p>
-            Keyboard navigation allows users to navigate and interact with the
-            tree using the arrow keys, spacebar, and return.
+            Each node requires a <EuiCode>label</EuiCode> and a unique{' '}
+            <EuiCode>id</EuiCode>. The <EuiCode>icon</EuiCode> prop accepts any{' '}
+            <Link to="/display/icons">icon or token</Link>. You can also specify
+            a different icon for the open state with the{' '}
+            <EuiCode>iconWhenExpanded</EuiCode> prop. Use the nodes&apos;{' '}
+            <EuiCode>children</EuiCode> prop to nest more nodes.
           </p>
-          <p>
-            The <EuiCode>icon</EuiCode> prop accepts any{' '}
-            <Link to="/display/icons">icon or token</Link>. You can also
-            specifiy a different icon for the open state with the{' '}
-            <EuiCode>iconWhenExpanded</EuiCode> prop.
-          </p>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            title={
+              <>
+                For accessibility, it is required to provide a descriptive{' '}
+                <EuiCode>aria-label</EuiCode> for each tree view. This component
+                also builds in keyboard navigation allowing users to traverse
+                the tree using the arrow keys, spacebar, and return.
+              </>
+            }
+          />
         </div>
       ),
-      components: { EuiTreeView },
       demo: <TreeView />,
       snippet: treeViewSnippet,
       props: { EuiTreeView, EuiTreeViewNode },
+      playground: TreeViewConfig,
     },
     {
       title: 'Optional styling',
@@ -91,10 +113,6 @@ export const TreeViewExample = {
         {
           type: GuideSectionTypes.JS,
           code: treeViewCompressedSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: treeViewCompressedHtml,
         },
       ],
       text: (

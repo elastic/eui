@@ -367,7 +367,8 @@ const DataGrid = () => {
       iconType="gear"
       iconSide="right"
       size="s"
-      onClick={onPopoverButtonClick}>
+      onClick={onPopoverButtonClick}
+    >
       gridStyle options
     </EuiButton>
   );
@@ -377,7 +378,8 @@ const DataGrid = () => {
       iconType="gear"
       iconSide="right"
       size="s"
-      onClick={onToolbarPopoverButtonClick}>
+      onClick={onToolbarPopoverButtonClick}
+    >
       toolbarVisibility options
     </EuiButton>
   );
@@ -416,7 +418,8 @@ const DataGrid = () => {
             button={styleButton}
             isOpen={isPopoverOpen}
             anchorPosition="rightUp"
-            closePopover={closePopover}>
+            closePopover={closePopover}
+          >
             <div style={{ width: 380 }}>
               <EuiFormRow label="Border" display="columnCompressed">
                 <EuiButtonGroup
@@ -503,11 +506,13 @@ const DataGrid = () => {
             button={toolbarButton}
             isOpen={isToolbarPopoverOpen}
             anchorPosition="rightUp"
-            closePopover={closeToolbarPopover}>
+            closePopover={closeToolbarPopover}
+          >
             <div style={{ width: 400 }}>
               <EuiFormRow
                 display="columnCompressed"
-                label="toolbarVisibility prop">
+                label="toolbarVisibility prop"
+              >
                 <EuiButtonGroup
                   isFullWidth
                   buttonSize="compressed"
@@ -521,7 +526,8 @@ const DataGrid = () => {
                 <Fragment>
                   <EuiFormRow
                     display="columnCompressed"
-                    label="Show style selector">
+                    label="Show style selector"
+                  >
                     <EuiButtonGroup
                       isFullWidth
                       buttonSize="compressed"
@@ -534,7 +540,8 @@ const DataGrid = () => {
 
                   <EuiFormRow
                     display="columnCompressed"
-                    label="Show sort selector">
+                    label="Show sort selector"
+                  >
                     <EuiButtonGroup
                       isFullWidth
                       buttonSize="compressed"
@@ -547,7 +554,8 @@ const DataGrid = () => {
 
                   <EuiFormRow
                     display="columnCompressed"
-                    label="Show full screen selector">
+                    label="Show full screen selector"
+                  >
                     <EuiButtonGroup
                       isFullWidth
                       buttonSize="compressed"
@@ -560,7 +568,8 @@ const DataGrid = () => {
 
                   <EuiFormRow
                     display="columnCompressed"
-                    label="Show column selector">
+                    label="Show column selector"
+                  >
                     <EuiButtonGroup
                       isFullWidth
                       buttonSize="compressed"
@@ -575,7 +584,8 @@ const DataGrid = () => {
                       <EuiFormRow
                         display="columnCompressed"
                         label="Allow hiding columns"
-                        style={{ marginLeft: 32 }}>
+                        style={{ marginLeft: 32 }}
+                      >
                         <EuiButtonGroup
                           isFullWidth
                           buttonSize="compressed"
@@ -588,7 +598,8 @@ const DataGrid = () => {
                       <EuiFormRow
                         display="columnCompressed"
                         label="Allow ordering columns"
-                        style={{ marginLeft: 32 }}>
+                        style={{ marginLeft: 32 }}
+                      >
                         <EuiButtonGroup
                           isFullWidth
                           buttonSize="compressed"

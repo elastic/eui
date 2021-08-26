@@ -22,7 +22,8 @@ export default () => {
             to give a name to <strong>EuiSelectable</strong> that screen readers
             can use too.
           </>
-        }>
+        }
+      >
         <EuiSelectable
           searchable
           aria-label={labelText}
@@ -33,7 +34,8 @@ export default () => {
             { label: 'White' },
             { label: 'Herbal' },
           ]}
-          onChange={() => {}}>
+          onChange={() => {}}
+        >
           {(list, search) => (
             <>
               {search}

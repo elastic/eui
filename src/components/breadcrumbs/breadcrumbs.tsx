@@ -56,7 +56,6 @@ export type EuiBreadcrumbsProps = CommonProps & {
   /**
    * Hides extra (above the max) breadcrumbs under a collapsed item as the window gets smaller.
    * Pass a custom #EuiBreadcrumbResponsiveMaxCount object to change the number of breadcrumbs to show at the particular breakpoints.
-   * Omitting or passing a `0` value will show all breadcrumbs.
    *
    * Pass `false` to turn this behavior off.
    *
@@ -73,7 +72,8 @@ export type EuiBreadcrumbsProps = CommonProps & {
 
   /**
    * Collapses the inner items past the maximum set here
-   * into a single ellipses item
+   * into a single ellipses item.
+   * Omitting or passing a `0` value will show all breadcrumbs.
    */
   max?: number | null;
 
@@ -142,7 +142,8 @@ const limitBreadcrumbs = (
         color="subdued"
         aria-label={ariaLabel}
         title={ariaLabel}
-        onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+        onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+      >
         &hellip; <EuiIcon type="arrowDown" size="s" />
       </EuiLink>
     );
@@ -152,7 +153,8 @@ const limitBreadcrumbs = (
         <EuiPopover
           button={ellipsisButton}
           isOpen={isPopoverOpen}
-          closePopover={() => setIsPopoverOpen(false)}>
+          closePopover={() => setIsPopoverOpen(false)}
+        >
           <EuiBreadcrumbs
             className="euiBreadcrumbs__inPopover"
             breadcrumbs={overflowBreadcrumbs}
@@ -242,7 +244,8 @@ export const EuiBreadcrumbs: FunctionComponent<EuiBreadcrumbsProps> = ({
               href={href}
               title={title}
               {...linkProps}
-              {...breadcrumbRest}>
+              {...breadcrumbRest}
+            >
               {text}
             </EuiLink>
           );

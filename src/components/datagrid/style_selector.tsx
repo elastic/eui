@@ -77,10 +77,12 @@ export const useDataGridStyleSelector = (
           className="euiDataGrid__controlBtn"
           color="text"
           data-test-subj="dataGridStyleSelectorButton"
-          onClick={() => setIsOpen(!isOpen)}>
+          onClick={() => setIsOpen(!isOpen)}
+        >
           <EuiI18n token="euiStyleSelector.buttonText" default="Density" />
         </EuiButtonEmpty>
-      }>
+      }
+    >
       <EuiI18n
         tokens={[
           'euiStyleSelector.buttonLegend',
@@ -93,7 +95,8 @@ export const useDataGridStyleSelector = (
           'Expanded density',
           'Normal density',
           'Compact density',
-        ]}>
+        ]}
+      >
         {([
           buttonLegend,
           labelExpanded,

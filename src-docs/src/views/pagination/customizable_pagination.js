@@ -33,7 +33,8 @@ export default () => {
       color="text"
       iconType="arrowDown"
       iconSide="right"
-      onClick={onButtonClick}>
+      onClick={onButtonClick}
+    >
       Rows per page: {rowSize}
     </EuiButtonEmpty>
   );
@@ -45,7 +46,8 @@ export default () => {
       onClick={() => {
         closePopover();
         setRowSize(10);
-      }}>
+      }}
+    >
       10 rows
     </EuiContextMenuItem>,
     <EuiContextMenuItem
@@ -54,7 +56,8 @@ export default () => {
       onClick={() => {
         closePopover();
         setRowSize(20);
-      }}>
+      }}
+    >
       20 rows
     </EuiContextMenuItem>,
     <EuiContextMenuItem
@@ -63,7 +66,8 @@ export default () => {
       onClick={() => {
         closePopover();
         setRowSize(50);
-      }}>
+      }}
+    >
       50 rows
     </EuiContextMenuItem>,
     <EuiContextMenuItem
@@ -72,7 +76,8 @@ export default () => {
       onClick={() => {
         closePopover();
         setRowSize(100);
-      }}>
+      }}
+    >
       100 rows
     </EuiContextMenuItem>,
   ];
@@ -84,7 +89,8 @@ export default () => {
           button={button}
           isOpen={isPopoverOpen}
           closePopover={closePopover}
-          panelPaddingSize="none">
+          panelPaddingSize="none"
+        >
           <EuiContextMenuPanel items={items} />
         </EuiPopover>
       </EuiFlexItem>

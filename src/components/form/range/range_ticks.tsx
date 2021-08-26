@@ -114,7 +114,8 @@ const EuiTickValue: FunctionComponent<
       style={tickStyle}
       tabIndex={-1}
       ref={ref}
-      title={typeof label === 'string' ? label : innerText}>
+      title={typeof label === 'string' ? label : innerText}
+    >
       {pseudoTick && (
         <span
           className="euiRangeTick__pseudo"

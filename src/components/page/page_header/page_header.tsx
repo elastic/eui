@@ -104,7 +104,8 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
         tabsProps={tabsProps}
         description={description}
         rightSideItems={rightSideItems}
-        rightSideGroupProps={rightSideGroupProps}>
+        rightSideGroupProps={rightSideGroupProps}
+      >
         {children}
       </EuiPageHeaderContent>
     </header>

@@ -229,7 +229,8 @@ export default () => {
             panelStyle={{ minWidth: 380 }}
             button={button}
             isOpen={isPopoverOpen}
-            closePopover={closePopover}>
+            closePopover={closePopover}
+          >
             <EuiFormRow label="Color">
               <EuiSelect
                 options={textColorsOptions}
@@ -241,7 +242,8 @@ export default () => {
             <EuiFormRow
               label="Custom color"
               isInvalid={!!colorErrors}
-              error={colorErrors}>
+              error={colorErrors}
+            >
               <EuiColorPicker
                 onChange={setColor}
                 color={color}
@@ -281,7 +283,8 @@ export default () => {
           color={textColor === 'custom' ? color : textColor}
           style={{
             fontSize: textSize === 'relative' && `${fontSizeScale}px`,
-          }}>
+          }}
+        >
           {markdownContent}
         </EuiMarkdownFormat>
       </EuiPanel>

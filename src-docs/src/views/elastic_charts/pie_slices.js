@@ -210,13 +210,15 @@ export default () => {
         <EuiFlexItem>
           <ChartCard
             title="Number of series"
-            description="Do not use too many colors in a single chart as this will hinder understanding.">
+            description="Do not use too many colors in a single chart as this will hinder understanding."
+          >
             <EuiFormRow
               helpText={
                 <span id="levelsHelp3">
                   Recommended number of series is 5 or less.
                 </span>
-              }>
+              }
+            >
               <EuiRange
                 min={1}
                 max={10}
@@ -253,7 +255,8 @@ export default () => {
                 </EuiCode>
                 .
               </>
-            }>
+            }
+          >
             <EuiRadioGroup
               compressed
               options={sliceOrderRadios}
@@ -306,13 +309,15 @@ export default () => {
       ${sliceOrderConfigText}
     }}
   />
-</Chart>`}>
+</Chart>`}
+        >
           {(copy) => (
             <EuiButton
               fill
               onClick={copy}
               iconType="copyClipboard"
-              disabled={isBadChart || isComplicatedChart}>
+              disabled={isBadChart || isComplicatedChart}
+            >
               {isBadChart || isComplicatedChart
                 ? isComplicatedChart
                   ? "It's complicated"

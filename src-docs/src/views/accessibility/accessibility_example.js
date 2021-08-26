@@ -68,7 +68,8 @@ export const AccessibilityExample = {
           <EuiCallOut
             color="warning"
             iconType="accessibility"
-            title="WebAIM recommendation for screen reader-only content">
+            title="WebAIM recommendation for screen reader-only content"
+          >
             <p>
               &quot;In most cases, if content (particularly content that
               provides functionality or interactivity) is important enough to
@@ -76,7 +77,8 @@ export const AccessibilityExample = {
               available to all users.&quot;{' '}
               <EuiLink
                 href="http://webaim.org/techniques/css/invisiblecontent/"
-                external>
+                external
+              >
                 Learn more about invisible content
               </EuiLink>
             </p>

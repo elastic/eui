@@ -29,7 +29,8 @@ export default () => {
       <EuiFormRow
         label="Text field"
         helpText="I am some friendly help text."
-        display="columnCompressed">
+        display="columnCompressed"
+      >
         <EuiFieldText name="first" isLoading compressed />
       </EuiFormRow>
 

@@ -8,7 +8,8 @@ const EuiIconLogoGolang = ({ title, titleId, ...props }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       d="M4.315 17.301c.045.946 1 .5 1.416.21.415-.29.5-.045.56-.6a9.07 9.07 0 00.045-1.09 2.676 2.676 0 00-1.786.455c-.26.19-.745.79-.24 1"

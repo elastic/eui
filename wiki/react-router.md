@@ -198,7 +198,7 @@ ReactDOM.render(
 You can create a `routing.js` service to surface the `registerRouter` method as well as your
 conversion function (called `getRouterLinkProps` here).
 
-```js
+```jsx
 // routing.js
 
 import { createLocation } from 'history';
@@ -254,7 +254,7 @@ The React Context handling has changed in in 5.0 and we can't rely on it anymore
 an `extractRouter` HOC that will intercept the router and send it to your custom handler.
 
 
-```js
+```jsx
 // extractRouter.hoc.js
 import { withRouter } from 'react-router-dom';
 

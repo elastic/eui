@@ -157,10 +157,12 @@ export const useDataGridColumnSelector = (
           color="text"
           className={controlBtnClasses}
           data-test-subj="dataGridColumnSelectorButton"
-          onClick={() => setIsOpen(!isOpen)}>
+          onClick={() => setIsOpen(!isOpen)}
+        >
           {buttonText}
         </EuiButtonEmpty>
-      }>
+      }
+    >
       <div>
         {allowColumnHiding && (
           <EuiPopoverTitle>
@@ -169,7 +171,8 @@ export const useDataGridColumnSelector = (
                 'euiColumnSelector.search',
                 'euiColumnSelector.searchcolumns',
               ]}
-              defaults={['Search', 'Search columns']}>
+              defaults={['Search', 'Search columns']}
+            >
               {([search, searchcolumns]: string[]) => (
                 <EuiFieldText
                   compressed
@@ -188,24 +191,28 @@ export const useDataGridColumnSelector = (
           <EuiDragDropContext onDragEnd={onDragEnd}>
             <EuiDroppable
               droppableId="columnOrder"
-              isDropDisabled={!isDragEnabled}>
+              isDropDisabled={!isDragEnabled}
+            >
               <Fragment>
                 {filteredColumns.map((id, index) => (
                   <EuiDraggable
                     key={id}
                     draggableId={id}
                     index={index}
-                    isDragDisabled={!isDragEnabled}>
+                    isDragDisabled={!isDragEnabled}
+                  >
                     {(provided, state) => (
                       <div
                         className={`euiDataGridColumnSelector__item ${
                           state.isDragging &&
                           'euiDataGridColumnSelector__item-isDragging'
-                        }`}>
+                        }`}
+                      >
                         <EuiFlexGroup
                           responsive={false}
                           gutterSize="m"
-                          alignItems="center">
+                          alignItems="center"
+                        >
                           <EuiFlexItem>
                             {allowColumnHiding ? (
                               <EuiSwitch
@@ -255,12 +262,14 @@ export const useDataGridColumnSelector = (
           <EuiFlexGroup
             gutterSize="s"
             responsive={false}
-            justifyContent="spaceBetween">
+            justifyContent="spaceBetween"
+          >
             <EuiFlexItem grow={false}>
               <EuiButtonEmpty
                 size="xs"
                 flush="left"
-                onClick={() => setVisibleColumns(sortedColumns)}>
+                onClick={() => setVisibleColumns(sortedColumns)}
+              >
                 <EuiI18n
                   token="euiColumnSelector.selectAll"
                   default="Show all"
@@ -271,7 +280,8 @@ export const useDataGridColumnSelector = (
               <EuiButtonEmpty
                 size="xs"
                 flush="right"
-                onClick={() => setVisibleColumns([])}>
+                onClick={() => setVisibleColumns([])}
+              >
                 <EuiI18n token="euiColumnSelector.hideAll" default="Hide all" />
               </EuiButtonEmpty>
             </EuiFlexItem>

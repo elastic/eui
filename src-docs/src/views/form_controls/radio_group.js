@@ -36,7 +36,8 @@ export default () => {
       canLoading={false}
       canReadOnly={false}
       canInvalid={false}
-      canFullWidth={false}>
+      canFullWidth={false}
+    >
       <EuiRadioGroup
         options={radios}
         idSelected={radioIdSelected}

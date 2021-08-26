@@ -84,7 +84,8 @@ export default () => (
       <EuiPageContent
         role={null}
         className="guideDemo__textLines"
-        style={{ padding: 32 }}>
+        style={{ padding: 32 }}
+      >
         <EuiPageContentBody>
           <EuiText grow={false}>{text}</EuiText>
         </EuiPageContentBody>
@@ -94,7 +95,8 @@ export default () => (
       <EuiPageContent
         role={null}
         className="guideDemo__textLines--s"
-        style={{ padding: 32 }}>
+        style={{ padding: 32 }}
+      >
         <EuiPageContentBody>
           <EuiText grow={false} size="s">
             {text}

@@ -30,7 +30,8 @@ export default () => {
             Toggle nav
           </EuiButton>
         }
-        onClose={() => setNavIsOpen(false)}>
+        onClose={() => setNavIsOpen(false)}
+      >
         <div style={{ padding: 16 }}>
           <EuiTitle>
             <h2>I am some nav</h2>
@@ -50,7 +51,8 @@ export default () => {
                 'euiCollapsibleNavExample--isDocked',
                 JSON.stringify(!navIsDocked)
               );
-            }}>
+            }}
+          >
             Docked: {navIsDocked ? 'on' : 'off'}
           </EuiButton>
         </div>

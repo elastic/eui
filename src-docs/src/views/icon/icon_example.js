@@ -61,7 +61,8 @@ export const IconExample = {
               descriptive <EuiCode>title</EuiCode> based on the icon use.
             </>
           }
-          color="warning">
+          color="warning"
+        >
           <p>
             If no title is provided the icon is going to be purely decorative
             and it will get by default an{' '}
@@ -78,6 +79,14 @@ export const IconExample = {
             Glyphs are small, monochromatic icons that typically should always
             use the default size of{' '}
             <EuiCode language="js">size=&quot;m&quot;</EuiCode>.
+          </p>
+          <p>
+            If you would like to contribute to our growing list of glyphs, you
+            can follow{' '}
+            <EuiLink to="https://github.com/elastic/eui/blob/master/wiki/creating-icons.md">
+              these guidelines
+            </EuiLink>
+            .
           </p>
         </>
       ),
@@ -183,7 +192,8 @@ export const IconExample = {
           which accepts a named color from our palette or a valid&nbsp;
           <EuiLink
             target="_blank"
-            href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value">
+            href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value"
+          >
             CSS color data type
           </EuiLink>
           &nbsp;which will be passed down through the inline-style{' '}
@@ -204,8 +214,8 @@ export const IconExample = {
               Two-tone icons, like our app style icons, will behave similarly to
               normal glyphs when provided a specific color by applying the color
               to <strong>all</strong> the shapes within. You can force the icon
-              to match the parent's text color by passing{' '}
-              <EuiCode>color="inherit"</EuiCode> to the icon.
+              to match the parent&apos;s text color by passing{' '}
+              <EuiCode>color=&#34;inherit&#34;</EuiCode> to the icon.
             </p>
           </EuiText>
         </>

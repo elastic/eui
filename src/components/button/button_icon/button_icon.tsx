@@ -136,6 +136,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   iconSize = 'm',
   color = 'primary',
   isDisabled: _isDisabled,
+  disabled,
   href,
   type = 'button',
   display = 'empty',
@@ -147,7 +148,7 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   ...rest
 }) => {
   const isHrefValid = !href || validateHref(href);
-  const isDisabled = _isDisabled || !isHrefValid;
+  const isDisabled = _isDisabled || disabled || !isHrefValid;
 
   const ariaHidden = rest['aria-hidden'];
   const isAriaHidden = ariaHidden === 'true' || ariaHidden === true;
@@ -197,7 +198,8 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
         target={target}
         rel={secureRel}
         ref={buttonRef as Ref<HTMLAnchorElement>}
-        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
+      >
         {buttonIcon}
       </a>
     );
@@ -212,7 +214,8 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
       aria-pressed={isSelected}
       type={type as typeof buttonType}
       ref={buttonRef as Ref<HTMLButtonElement>}
-      {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
+      {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
+    >
       {buttonIcon}
     </button>
   );

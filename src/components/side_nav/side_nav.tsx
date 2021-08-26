@@ -147,7 +147,8 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
           renderItem={renderItem}
           truncate={truncate}
           childrenOnly={childrenOnly}
-          {...rest}>
+          {...rest}
+        >
           {name}
         </EuiSideNavItem>
       );
@@ -221,7 +222,8 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
             className={classNames(
               'euiSideNav__heading',
               headingProps?.className
-            )}>
+            )}
+          >
             <HeadingElement {...sharedHeadingProps}>{heading}</HeadingElement>
           </EuiTitle>
         );
@@ -236,7 +238,8 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
           <nav
             aria-labelledby={sharedHeadingProps.id}
             className={classes}
-            {...rest}>
+            {...rest}
+          >
             <HeadingElement {...sharedHeadingProps}>
               <EuiButtonEmpty
                 className="euiSideNav__mobileToggle"
@@ -248,7 +251,8 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
                 iconType="apps"
                 iconSide="right"
                 aria-controls={sideNavContentId}
-                aria-expanded={isOpenOnMobile}>
+                aria-expanded={isOpenOnMobile}
+              >
                 {mobileTitle || heading}
               </EuiButtonEmpty>
             </HeadingElement>
@@ -265,7 +269,8 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
           <nav
             aria-labelledby={headingNode ? sharedHeadingProps.id : undefined}
             className={classes}
-            {...rest}>
+            {...rest}
+          >
             {headingNode}
             {navContent}
           </nav>

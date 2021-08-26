@@ -7,19 +7,12 @@
  */
 
 import React, { Component } from 'react';
+import {
+  EuiDataGridColumnResizerProps,
+  EuiDataGridColumnResizerState,
+} from '../../data_grid_types';
 
 const MINIMUM_COLUMN_WIDTH = 40;
-
-export interface EuiDataGridColumnResizerProps {
-  columnId: string;
-  columnWidth: number;
-  setColumnWidth: (columnId: string, width: number) => void;
-}
-
-interface EuiDataGridColumnResizerState {
-  initialX: number;
-  offset: number;
-}
 
 export class EuiDataGridColumnResizer extends Component<
   EuiDataGridColumnResizerProps,

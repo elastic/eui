@@ -160,7 +160,8 @@ describe('EuiCodeBlock', () => {
         <EuiCodeBlock
           isVirtualized={true}
           overflowHeight="50%"
-          {...requiredProps}>
+          {...requiredProps}
+        >
           {code}
         </EuiCodeBlock>
       );

@@ -191,7 +191,8 @@ const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
         textProps={{ ...textProps, className: textClassNames }}
         {...contentProps}
         // className has to come last to override contentProps.className
-        className={contentClassNames}>
+        className={contentClassNames}
+      >
         {children}
       </EuiButtonContent>
     );

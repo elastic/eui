@@ -44,7 +44,8 @@ export default () => {
       canLoading={false}
       canReadOnly={false}
       canInvalid={false}
-      canFullWidth={false}>
+      canFullWidth={false}
+    >
       <EuiCheckboxGroup
         options={checkboxes}
         idToSelectedMap={checkboxIdToSelectedMap}

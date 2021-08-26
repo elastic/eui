@@ -156,7 +156,8 @@ export const EuiExpression: FunctionComponent<ExclusiveUnion<
       <span
         className="euiExpression__description"
         style={customWidth}
-        {...descriptionProps}>
+        {...descriptionProps}
+      >
         {description}
       </span>{' '}
       {value && (
