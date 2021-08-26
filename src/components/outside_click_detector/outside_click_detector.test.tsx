@@ -54,7 +54,8 @@ describe('EuiOutsideClickDetector', () => {
       const component = mount(
         <div
           onMouseDown={triggerDocumentMouseDown}
-          onMouseUp={triggerDocumentMouseUp}>
+          onMouseUp={triggerDocumentMouseUp}
+        >
           <div>
             <EuiOutsideClickDetector onOutsideClick={parentDetector}>
               <div>

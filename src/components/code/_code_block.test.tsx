@@ -94,7 +94,8 @@ describe('EuiCodeBlockImpl', () => {
           inline={false}
           isVirtualized={true}
           overflowHeight={300}
-          {...requiredProps}>
+          {...requiredProps}
+        >
           {code}
         </EuiCodeBlockImpl>
       );

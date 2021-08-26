@@ -14,7 +14,8 @@ export default () => {
         iconType={toggle2On ? 'starFilledSpace' : 'starPlusEmpty'}
         onClick={() => {
           setToggle2On((isOn) => !isOn);
-        }}>
+        }}
+      >
         Toggle me
       </EuiButton>
       &emsp;

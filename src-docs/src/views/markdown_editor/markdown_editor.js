@@ -63,7 +63,8 @@ export default () => {
           size="s"
           iconType={isAstShowing ? 'eyeClosed' : 'eye'}
           onClick={() => setIsAstShowing(!isAstShowing)}
-          fill={isAstShowing}>
+          fill={isAstShowing}
+        >
           {isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
         </EuiButton>
       </div>

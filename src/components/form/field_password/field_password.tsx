@@ -154,7 +154,8 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
       isLoading={isLoading}
       compressed={compressed}
       prepend={prepend}
-      append={finalAppend}>
+      append={finalAppend}
+    >
       <EuiValidatableControl isInvalid={isInvalid}>
         <input
           type={inputType}

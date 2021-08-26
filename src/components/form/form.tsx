@@ -71,7 +71,8 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
     optionalErrorAlert = (
       <EuiI18n
         token="euiForm.addressFormErrors"
-        default="Please address the highlighted errors.">
+        default="Please address the highlighted errors."
+      >
         {(addressFormErrors: string) => (
           <EuiCallOut
             tabIndex={-1}
@@ -80,7 +81,8 @@ export const EuiForm: FunctionComponent<EuiFormProps> = ({
             title={addressFormErrors}
             color="danger"
             role="alert"
-            aria-live="assertive">
+            aria-live="assertive"
+          >
             {optionalErrors}
           </EuiCallOut>
         )}

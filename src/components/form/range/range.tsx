@@ -232,7 +232,8 @@ export class EuiRange extends Component<EuiRangeProps> {
       <EuiRangeWrapper
         className={classes}
         fullWidth={fullWidth}
-        compressed={compressed}>
+        compressed={compressed}
+      >
         {showLabels && (
           <EuiRangeLabel side="min" disabled={disabled}>
             {min}
@@ -250,7 +251,8 @@ export class EuiRange extends Component<EuiRangeProps> {
           levels={levels}
           onChange={this.handleOnChange}
           value={value}
-          aria-hidden={showInput === true}>
+          aria-hidden={showInput === true}
+        >
           <EuiRangeSlider
             id={showInput ? undefined : id} // Attach id only to the input if there is one
             name={name}
@@ -327,7 +329,8 @@ export class EuiRange extends Component<EuiRangeProps> {
         fullWidth={fullWidth}
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
-        disableFocusTrap={true}>
+        disableFocusTrap={true}
+      >
         {theRange}
       </EuiInputPopover>
     ) : undefined;

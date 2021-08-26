@@ -32,6 +32,20 @@ describe('EuiFormLabel', () => {
       expect(component).toMatchSnapshot();
     });
 
+    describe('isDisabled', () => {
+      test('is rendered', () => {
+        const component = render(<EuiFormLabel isDisabled />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('is still disabled with for attribute', () => {
+        const component = render(<EuiFormLabel isDisabled htmlFor="" />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     test('type can be changed to legend', () => {
       const component = render(<EuiFormLabel type="legend" />);
 

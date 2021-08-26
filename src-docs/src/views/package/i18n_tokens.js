@@ -25,7 +25,8 @@ const columns = [
           <EuiLink
             target="_blank"
             color="subdued"
-            href={`https://github.com/elastic/eui/blob/master/${filepath}#L${loc.start.line}`}>
+            href={`https://github.com/elastic/eui/blob/master/${filepath}#L${loc.start.line}`}
+          >
             {filepath}:{loc.start.line}:{loc.start.column}
           </EuiLink>
         </div>
@@ -40,7 +41,8 @@ const columns = [
           language={highlighting === 'code' ? 'javascript' : undefined}
           paddingSize="none"
           transparentBackground
-          fontSize="s">
+          fontSize="s"
+        >
           {defString}
         </EuiCodeBlock>
       );
@@ -76,7 +78,8 @@ export const I18nTokens = {
         <EuiAccordion
           key={version}
           id={version}
-          buttonContent={<span>{version}</span>}>
+          buttonContent={<span>{version}</span>}
+        >
           <EuiInMemoryTable
             items={changes}
             columns={[

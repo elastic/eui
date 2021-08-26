@@ -251,7 +251,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
         showIcons={singleSelection ? true : false}
         id={rootId(`_option-${index}`)}
         title={label}
-        {...rest}>
+        {...rest}
+      >
         <span className="euiComboBoxOption__contentWrapper">
           {renderOption ? (
             <span className={OPTION_CONTENT_CLASSNAME}>
@@ -264,7 +265,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
           ) : (
             <EuiHighlight
               search={searchValue}
-              className={OPTION_CONTENT_CLASSNAME}>
+              className={OPTION_CONTENT_CLASSNAME}
+            >
               {label}
             </EuiHighlight>
           )}
@@ -450,7 +452,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
         itemData={matchingOptions}
         ref={this.setListRef}
         innerRef={this.setListBoxRef}
-        width={width}>
+        width={width}
+      >
         {this.ListRow}
       </FixedSizeList>
     );
@@ -476,7 +479,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
         panelRef={this.listRefCallback}
         data-test-subj={`comboBoxOptionsList ${dataTestSubj}`}
         style={{ ...style, zIndex: zIndex }}
-        {...rest}>
+        {...rest}
+      >
         <div className="euiComboBoxOptionsList__rowWrap">
           {emptyState || optionsList}
         </div>

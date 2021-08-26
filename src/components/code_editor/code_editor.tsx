@@ -255,7 +255,8 @@ See https://ela.st/euicodeeditor for migration options.`
           this.editorHint = hint;
         }}
         onClick={this.startEditing}
-        data-test-subj="codeEditorHint">
+        data-test-subj="codeEditorHint"
+      >
         <p className="euiText">
           {isReadOnly ? (
             <EuiI18n
@@ -290,7 +291,8 @@ See https://ela.st/euicodeeditor for migration options.`
       <div
         className={classes}
         style={{ width, height }}
-        data-test-subj={dataTestSubj}>
+        data-test-subj={dataTestSubj}
+      >
         {prompt}
 
         <AceEditor

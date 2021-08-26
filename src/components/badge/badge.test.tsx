@@ -34,7 +34,8 @@ describe('EuiBadge', () => {
       <EuiBadge
         {...requiredProps}
         onClick={jest.fn()}
-        onClickAriaLabel="Example of onclick event for the button">
+        onClickAriaLabel="Example of onclick event for the button"
+      >
         Content
       </EuiBadge>
     );
@@ -57,7 +58,8 @@ describe('EuiBadge', () => {
       <EuiBadge
         {...requiredProps}
         iconOnClick={jest.fn()}
-        iconOnClickAriaLabel="Example of onclick event for icon within the button">
+        iconOnClickAriaLabel="Example of onclick event for icon within the button"
+      >
         Content
       </EuiBadge>
     );
@@ -72,7 +74,8 @@ describe('EuiBadge', () => {
         iconOnClick={jest.fn()}
         iconOnClickAriaLabel="Example of onclick event for icon within the button"
         onClick={jest.fn()}
-        onClickAriaLabel="Example of onclick event for the button">
+        onClickAriaLabel="Example of onclick event for the button"
+      >
         Content
       </EuiBadge>
     );
@@ -86,7 +89,8 @@ describe('EuiBadge', () => {
         {...requiredProps}
         iconOnClick={jest.fn()}
         iconOnClickAriaLabel="Example of onclick event for icon within the anchor"
-        href="/#/">
+        href="/#/"
+      >
         Content
       </EuiBadge>
     );
@@ -101,7 +105,8 @@ describe('EuiBadge', () => {
         iconOnClick={jest.fn()}
         iconOnClickAriaLabel="Example of onclick event for icon within the anchor"
         href="/#/"
-        rel="noopener">
+        rel="noopener"
+      >
         Content
       </EuiBadge>
     );

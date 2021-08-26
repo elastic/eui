@@ -1,5 +1,108 @@
 [
   {
+    "version": "37.3.1",
+    "changes": [
+      {
+        "token": "euiColumnSorting.buttonActive",
+        "changeType": "modified",
+        "value": "({\n  numberOfSortedFields\n}) => `${numberOfSortedFields} field${numberOfSortedFields === 1 ? '' : 's'} sorted`;"
+      },
+      {
+        "token": "euiFilterButton.filterBadge",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiFilePicker.filesSelected",
+        "changeType": "modified",
+        "value": "{fileCount} files selected"
+      },
+      {
+        "token": "euiFilterButton.filterBadgeActiveAriaLabel",
+        "changeType": "added",
+        "value": "{count} active filters"
+      },
+      {
+        "token": "euiFilterButton.filterBadgeAvailableAriaLabel",
+        "changeType": "added",
+        "value": "{count} available filters"
+      },
+      {
+        "token": "euiFilePicker.promptText",
+        "changeType": "added",
+        "value": "Select or drag and drop a file"
+      }
+    ]
+  },
+  {
+    "version": "37.3.0",
+    "changes": [
+      {
+        "token": "euiColumnSortingDraggable.activeSortLabel",
+        "changeType": "modified",
+        "value": "{display} is sorting this data grid"
+      },
+      {
+        "token": "euiColumnSortingDraggable.removeSortLabel",
+        "changeType": "modified",
+        "value": "Remove {display} from data grid sort"
+      },
+      {
+        "token": "euiColumnSortingDraggable.toggleLegend",
+        "changeType": "modified",
+        "value": "Select sorting method for {display}"
+      },
+      {
+        "token": "euiDataGridCell.row",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridCell.column",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGrid.ariaLabelGridPagination",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGrid.ariaLabelledByGridPagination",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGrid.fullScreenButton",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGrid.fullScreenButtonActive",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridCell.position",
+        "changeType": "added",
+        "value": "Row: {row}; Column: {col}"
+      },
+      {
+        "token": "euiDataGridPagination.detailedPaginationLabel",
+        "changeType": "added",
+        "value": "Pagination for preceding grid: {label}"
+      },
+      {
+        "token": "euiDataGridPagination.paginationLabel",
+        "changeType": "added",
+        "value": "Pagination for preceding grid"
+      },
+      {
+        "token": "euiDataGridToolbar.fullScreenButton",
+        "changeType": "added",
+        "value": "Full screen"
+      },
+      {
+        "token": "euiDataGridToolbar.fullScreenButtonActive",
+        "changeType": "added",
+        "value": "Exit full screen"
+      }
+    ]
+  },
+  {
     "version": "37.0.0",
     "changes": [
       {

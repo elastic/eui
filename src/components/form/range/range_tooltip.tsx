@@ -70,7 +70,8 @@ export const EuiRangeTooltip: FunctionComponent<EuiRangeTooltipProps> = ({
       <output
         className={valueClasses}
         htmlFor={name}
-        style={valuePositionStyle}>
+        style={valuePositionStyle}
+      >
         {valuePrepend}
         {value}
         {valueAppend}

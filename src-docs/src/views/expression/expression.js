@@ -144,7 +144,8 @@ export default () => {
           isOpen={example1.isOpen}
           closePopover={closeExample1}
           panelPaddingSize="s"
-          anchorPosition="downLeft">
+          anchorPosition="downLeft"
+        >
           {renderPopover1()}
         </EuiPopover>
       </EuiFlexItem>
@@ -163,7 +164,8 @@ export default () => {
           }
           isOpen={example2.isOpen}
           closePopover={closeExample2}
-          anchorPosition="downLeft">
+          anchorPosition="downLeft"
+        >
           {renderPopover2()}
         </EuiPopover>
       </EuiFlexItem>

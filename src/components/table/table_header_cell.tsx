@@ -92,12 +92,14 @@ const CellContents = ({
           <EuiI18n
             token="euiTableHeaderCell.titleTextWithDesc"
             default="{innerText}; {description}"
-            values={{ innerText, description }}>
+            values={{ innerText, description }}
+          >
             {(titleTextWithDesc: string) => (
               <span
                 title={description ? titleTextWithDesc : innerText}
                 ref={ref}
-                className="euiTableCellContent__text">
+                className="euiTableCellContent__text"
+              >
                 {children}
               </span>
             )}
@@ -183,13 +185,15 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
         aria-sort={ariaSortValue}
         aria-live="polite"
         style={styleObj}
-        {...rest}>
+        {...rest}
+      >
         {onSort && !readOnly ? (
           <button
             type="button"
             className={buttonClasses}
             onClick={onSort}
-            data-test-subj="tableHeaderSortButton">
+            data-test-subj="tableHeaderSortButton"
+          >
             {cellContents}
           </button>
         ) : (
@@ -205,7 +209,8 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
       scope={scope}
       role="columnheader"
       style={styleObj}
-      {...rest}>
+      {...rest}
+    >
       <CellContents
         className={contentClasses}
         description={description}

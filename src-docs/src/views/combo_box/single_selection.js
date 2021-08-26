@@ -53,7 +53,8 @@ export default () => {
       canLoading={false}
       canPrepend={false}
       canIsDisabled
-      canAppend>
+      canAppend
+    >
       <EuiComboBox
         placeholder="Select a single option"
         singleSelection={{ asPlainText: true }}

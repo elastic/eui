@@ -43,7 +43,8 @@ describe('EuiTourStep', () => {
         {...config}
         {...steps[0]}
         isStepOpen={false}
-        {...requiredProps}>
+        {...requiredProps}
+      >
         <span>Test</span>
       </EuiTourStep>
     );
@@ -67,7 +68,8 @@ describe('EuiTourStep', () => {
         {...config}
         {...steps[0]}
         footerAction={<button onClick={() => {}}>Test</button>}
-        {...requiredProps}>
+        {...requiredProps}
+      >
         <span>Test</span>
       </EuiTourStep>
     );
@@ -81,7 +83,8 @@ describe('EuiTourStep', () => {
         {...config}
         {...steps[0]}
         decoration="none"
-        {...requiredProps}>
+        {...requiredProps}
+      >
         <span>Test</span>
       </EuiTourStep>
     );

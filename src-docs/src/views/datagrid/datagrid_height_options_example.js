@@ -59,7 +59,8 @@ export const DataGridRowHeightOptionsExample = {
           </ul>
           <EuiCallOut
             color="warning"
-            title="Rows have minimum height requirements">
+            title="Rows have minimum height requirements"
+          >
             <p>
               Rows must be at least <strong>34 pixels</strong> tall so they can
               render at least one line of text. If you provide a smaller height
