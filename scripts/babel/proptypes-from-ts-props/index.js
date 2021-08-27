@@ -770,7 +770,7 @@ function getPropTypesForNode(node, optional, state) {
           types.arrayExpression(
             node.properties.map(property =>
               types.stringLiteral(
-                property.key.name || property.key.name || property.key.value
+                property.key ? property.key.name || property.key.value : property.argument.name
               )
             )
           ),

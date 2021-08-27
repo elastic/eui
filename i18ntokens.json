@@ -1141,12 +1141,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 73,
-        "column": 12
+        "line": 74,
+        "column": 14
       },
       "end": {
-        "line": 77,
-        "column": 13
+        "line": 78,
+        "column": 15
       }
     },
     "filepath": "src/components/datagrid/column_sorting_draggable.tsx"
@@ -1157,11 +1157,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 88,
+        "line": 90,
         "column": 14
       },
       "end": {
-        "line": 92,
+        "line": 94,
         "column": 15
       }
     },
@@ -1173,11 +1173,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 126,
+        "line": 128,
         "column": 14
       },
       "end": {
-        "line": 130,
+        "line": 132,
         "column": 15
       }
     },
@@ -3781,11 +3781,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 271,
+        "line": 275,
         "column": 12
       },
       "end": {
-        "line": 274,
+        "line": 278,
         "column": 13
       }
     },
@@ -3797,11 +3797,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 298,
+        "line": 302,
         "column": 20
       },
       "end": {
-        "line": 306,
+        "line": 310,
         "column": 21
       }
     },

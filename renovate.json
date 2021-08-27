@@ -8,6 +8,7 @@
   "rangeStrategy": "bump",
   "semanticCommits": "disabled",
   "assignAutomerge": true,
+  "major": true,
   "vulnerabilityAlerts": {
     "enabled": false
   },
