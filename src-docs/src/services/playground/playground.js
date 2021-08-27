@@ -6,19 +6,14 @@ import { useView, Compiler, Placeholder } from 'react-view';
 import {
   EuiCodeBlock,
   EuiErrorBoundary,
-  EuiTitle,
   EuiFlyoutBody,
   EuiFlyoutHeader,
   EuiPanel,
 } from '../../../../src/components';
 import Knobs from './knobs';
+import { GuideSectionPropsDescription } from '../../components/guide_section/guide_section_parts/guide_section_props_description';
 
-export default ({
-  config,
-  setGhostBackground,
-  playgroundClassName,
-  description,
-}) => {
+export default ({ config, setGhostBackground, playgroundClassName }) => {
   const getSnippet = (code) => {
     let regex = /return \(([\S\s]*?)(;)$/gm;
     let newCode = code.match(regex);
@@ -67,7 +62,14 @@ export default ({
 
     return (
       <>
-        <EuiFlyoutHeader hasBorder aria-label={config.componentName}>
+        <EuiFlyoutHeader hasBorder>
+          <GuideSectionPropsDescription
+            className="playgroundTitle"
+            componentName={config.componentName}
+            component={config.scope[config.componentName]}
+          />
+        </EuiFlyoutHeader>
+        <EuiFlyoutHeader hasBorder>
           <EuiPanel
             color="transparent"
             borderRadius="none"
@@ -84,23 +86,20 @@ export default ({
           </EuiPanel>
         </EuiFlyoutHeader>
         <EuiFlyoutHeader hasBorder>
-          <EuiCodeBlock language="jsx" fontSize="m" paddingSize="m" isCopyable>
+          <EuiCodeBlock
+            style={{ maxHeight: '25vh' }}
+            language="jsx"
+            fontSize="m"
+            paddingSize="m"
+            isCopyable
+          >
             {getSnippet(params.editorProps.code)}
           </EuiCodeBlock>
         </EuiFlyoutHeader>
         <EuiFlyoutBody className="playgroundTableWrapper">
-          <>
-            {description || (
-              <div className="guideSection__propsTableIntro">
-                <EuiTitle size="s">
-                  <h2>{config.componentName}</h2>
-                </EuiTitle>
-              </div>
-            )}
-            <EuiErrorBoundary>
-              <Knobs {...params.knobProps} />
-            </EuiErrorBoundary>
-          </>
+          <EuiErrorBoundary>
+            <Knobs {...params.knobProps} />
+          </EuiErrorBoundary>
         </EuiFlyoutBody>
       </>
     );

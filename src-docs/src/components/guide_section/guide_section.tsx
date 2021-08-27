@@ -16,7 +16,6 @@ import {
   GuideSectionExampleTabs,
   GuideSectionExampleTabsProps,
 } from './guide_section_parts/guide_section_tabs';
-import { GuideSectionPropsDescription } from './guide_section_parts/guide_section_props_description';
 
 export interface GuideSection {
   id?: string;
@@ -148,20 +147,12 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   const renderPlayground = () => {
     const { config, setGhostBackground, playgroundClassName } = playground();
 
-    const description = (
-      <GuideSectionPropsDescription
-        componentName={config.componentName}
-        component={config.scope[config.componentName]}
-      />
-    );
-
     return playgroundService({
       config,
       setGhostBackground,
       playgroundClassName,
       playgroundToggle: renderPlaygroundToggle(),
       tabs: renderTabs(),
-      description,
     });
   };
 
