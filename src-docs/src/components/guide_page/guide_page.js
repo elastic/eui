@@ -79,15 +79,19 @@ const GuidePageComponent = ({
       panelled
       restrictWidth
       paddingSize="l"
-      pageHeader={{
-        pageTitle: (
-          <>
-            {title} {betaBadge}
-          </>
-        ),
-        tabs: renderTabs(),
-        children: intro,
-      }}
+      pageHeader={
+        title
+          ? {
+              pageTitle: (
+                <>
+                  {title} {betaBadge}
+                </>
+              ),
+              tabs: renderTabs(),
+              children: intro,
+            }
+          : undefined
+      }
     >
       <Switch>
         {playground && (

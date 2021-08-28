@@ -65,7 +65,8 @@ export const EuiPageContentBody: FunctionComponent<EuiPageContentBodyProps> = ({
       className={classes}
       style={newStyle || style}
       {...panelProps}
-      {...rest}>
+      {...rest}
+    >
       {children}
     </EuiPanel>
   );
