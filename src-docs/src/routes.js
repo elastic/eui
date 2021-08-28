@@ -24,7 +24,7 @@ import WritingGuidelines from './views/guidelines/writing';
 
 import { ColorPaletteExample } from './views/color_palette/color_palette_example';
 
-import { IsColorDarkExample } from './views/is_color_dark/is_color_dark_example';
+import { ColorExample } from './views/color/color_example';
 
 import { PrettyDurationExample } from './views/pretty_duration/pretty_duration_example';
 
@@ -221,6 +221,9 @@ import { Changelog } from './views/package/changelog';
 import { I18nTokens } from './views/package/i18n_tokens';
 
 import { SuperSelectExample } from './views/super_select/super_select_example';
+
+import { ThemeExample } from './views/theme/theme_example';
+import ThemeValues from './views/theme/values';
 
 /** Elastic Charts */
 
@@ -460,7 +463,7 @@ const navigation = [
     items: [
       AccessibilityExample,
       BeaconExample,
-      IsColorDarkExample,
+      ColorExample,
       ColorPaletteExample,
       CopyExample,
       UtilityClassesExample,
@@ -481,6 +484,17 @@ const navigation = [
       TextDiffExample,
       WindowEventExample,
     ].map((example) => createExample(example)),
+  },
+  {
+    name: 'Theming',
+    items: [
+      createExample(ThemeExample, 'Theme provider'),
+      {
+        name: 'Global values',
+        component: ThemeValues,
+        isNew: true,
+      },
+    ],
   },
   {
     name: 'Package',
