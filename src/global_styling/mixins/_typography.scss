@@ -61,6 +61,12 @@
   @include euiTextBreakWord;
   color: $euiTitleColor;
 
+  // REMOVE ME
+  &::after {
+    content: 'This_is_a_really_long_word_to_test_what_happens_to_every_use_of_euiTitle()_mixin_that_exists_in_any_component';
+  }
+  // FOR TESTING ONLY
+
   @if (map-has-key($euiTitles, $size)) {
     @each $property, $value in map-get($euiTitles, $size) {
       @if ($property == 'font-size') {
