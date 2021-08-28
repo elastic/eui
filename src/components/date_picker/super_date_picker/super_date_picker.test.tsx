@@ -136,11 +136,7 @@ describe('EuiSuperDatePicker', () => {
   });
 
   test('EuiFormControlLayout contain data-test-subj as prop', () => {
-    const dataTestSubj: EuiSuperDatePickerProps['dataTestSubj'] = {
-      showDates: 'ShowDatesButton',
-      applyTime: 'ApplyTimeButton',
-      dateRange: 'DateRange'
-    };
+    const dataTestSubj: EuiSuperDatePickerProps['dataTestSubj'] = "mySuperDatePicker";
 
     const component = render(
       <EuiSuperDatePicker

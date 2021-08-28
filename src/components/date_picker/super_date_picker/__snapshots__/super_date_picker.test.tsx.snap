@@ -9,7 +9,7 @@ exports[`EuiSuperDatePicker EuiFormControlLayout contain data-test-subj as prop 
   >
     <div
       class="euiFormControlLayout euiFormControlLayout--group euiSuperDatePicker"
-      data-test-subj="superDatePickerDateRange"
+      data-test-subj="mySuperDatePicker"
     >
       <div
         class="euiPopover euiPopover--anchorDownLeft"
@@ -103,7 +103,6 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
   <EuiFlexItem>
     <EuiFormControlLayout
       className="euiSuperDatePicker"
-      data-test-subj="superDatePicker"
       isDisabled={false}
       prepend={
         <EuiQuickSelectPopover
@@ -172,7 +171,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
       >
         <button
           className="euiSuperDatePicker__prettyFormat"
-          data-test-subj="superDatePicker"
+          data-test-subj="superDatePickerShowDatesButton"
           disabled={false}
           onClick={[Function]}
         >
@@ -193,7 +192,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
     grow={false}
   >
     <EuiSuperUpdateButton
-      data-test-subj="superDatePicker"
+      data-test-subj="superDatePickerApplyTimeButton"
       isDisabled={false}
       isLoading={false}
       needsUpdate={false}

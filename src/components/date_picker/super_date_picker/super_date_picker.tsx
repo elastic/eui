@@ -38,7 +38,6 @@ import {
   ApplyTime,
   ApplyRefreshInterval,
   QuickSelectPanel,
-  SuperDatePickerDataTestSubj
 } from '../types';
 import { EuiDatePopoverContentProps } from './date_popover/date_popover_content';
 import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
@@ -127,7 +126,7 @@ export type EuiSuperDatePickerProps = CommonProps & {
   /**
    * Props passed to tag element for testing
    */
-  dataTestSubj?: SuperDatePickerDataTestSubj;
+  dataTestSubj?: string;
 };
 
 interface EuiSuperDatePickerState {
@@ -371,7 +370,6 @@ export class EuiSuperDatePicker extends Component<
       refreshInterval,
       timeFormat,
       utcOffset,
-      dataTestSubj,
     } = this.props;
 
     if (isAutoRefreshOnly) {
@@ -408,7 +406,7 @@ export class EuiSuperDatePicker extends Component<
             className={classNames('euiSuperDatePicker__prettyFormat', {
               'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
             })}
-            data-test-subj={`superDatePicker${dataTestSubj?.showDates || ''}`}
+            data-test-subj="superDatePickerShowDatesButton"
             disabled={isDisabled}
             onClick={this.hidePrettyDuration}
           >
@@ -483,7 +481,7 @@ export class EuiSuperDatePicker extends Component<
   };
 
   renderUpdateButton = () => {
-    const { showUpdateButton, isAutoRefreshOnly, isLoading, isDisabled, dataTestSubj, updateButtonProps } = this.props;
+    const { showUpdateButton, isAutoRefreshOnly, isLoading, isDisabled, updateButtonProps } = this.props;
     if (!showUpdateButton || isAutoRefreshOnly) {
       return;
     }
@@ -499,7 +497,7 @@ export class EuiSuperDatePicker extends Component<
           isLoading={isLoading}
           isDisabled={isDisabled || this.state.isInvalid}
           onClick={this.handleClickUpdateButton}
-          data-test-subj={`superDatePicker${dataTestSubj?.applyTime || ''}`}
+          data-test-subj="superDatePickerApplyTimeButton"
           {...updateButtonProps}
         />
       </EuiFlexItem>
@@ -558,7 +556,7 @@ export class EuiSuperDatePicker extends Component<
             className="euiSuperDatePicker"
             isDisabled={isDisabled}
             prepend={quickSelect}
-            data-test-subj={`superDatePicker${dataTestSubj?.dateRange || ''}`}
+            data-test-subj={dataTestSubj}
           >
             {this.renderDatePickerRange()}
           </EuiFormControlLayout>
