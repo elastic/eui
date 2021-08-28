@@ -19,7 +19,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { useEuiI18n } from '../i18n';
 import { EuiInnerText } from '../inner_text';
-import { EuiLink } from '../link';
+import { EuiLink, EuiLinkColor } from '../link';
 import { EuiPopover } from '../popover';
 import { EuiIcon } from '../icon';
 import { throttle } from '../../services';
@@ -36,16 +36,17 @@ export type EuiBreadcrumbResponsiveMaxCount = {
 };
 
 export type EuiBreadcrumb = CommonProps & {
+  href?: string;
+  onClick?: MouseEventHandler<HTMLAnchorElement>;
   /**
    * Visible label of the breadcrumb
    */
   text: ReactNode;
-  href?: string;
-  onClick?: MouseEventHandler<HTMLAnchorElement>;
   /**
    * Force a max-width on the breadcrumb text
    */
   truncate?: boolean;
+  color?: EuiLinkColor;
   /**
    * Override the existing `aria-current` which defaults to `page` for the last breadcrumb
    */

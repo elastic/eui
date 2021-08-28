@@ -61,6 +61,8 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   iconProps,
   tabs,
   tabsProps,
+  breadcrumbs,
+  breadcrumbProps,
   description,
   rightSideItems,
   rightSideGroupProps,
@@ -109,6 +111,8 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
         description={description}
         rightSideItems={rightSideItems}
         rightSideGroupProps={rightSideGroupProps}
+        breadcrumbs={breadcrumbs}
+        breadcrumbProps={breadcrumbProps}
       >
         {children}
       </EuiPageHeaderContent>

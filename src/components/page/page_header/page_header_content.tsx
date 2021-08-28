@@ -18,6 +18,7 @@ import { EuiTitle, EuiTitleProps } from '../../title';
 import { EuiText } from '../../text';
 import { useIsWithinBreakpoints } from '../../../services/hooks';
 import { EuiScreenReaderOnly } from '../../accessibility';
+import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../../breadcrumbs';
 
 export const ALIGN_ITEMS = ['top', 'bottom', 'center', 'stretch'] as const;
 
@@ -47,6 +48,14 @@ export type EuiPageHeaderContentTitle = {
    * Additional EuiIcon props to apply to the optional icon
    */
   iconProps?: Partial<Omit<EuiIconProps, 'type'>>;
+  /**
+   * Optional breadcrumbs
+   */
+  breadcrumbs?: EuiBreadcrumbsProps['breadcrumbs'];
+  /**
+   * Adjust the props of EuiBreadcrumbs
+   */
+  breadcrumbProps?: EuiBreadcrumbsProps;
 };
 
 export type EuiPageHeaderContentTabs = {
@@ -114,6 +123,8 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
   tabs,
   tabsProps,
   description,
+  breadcrumbs,
+  breadcrumbProps,
   alignItems = 'top',
   responsive = true,
   rightSideItems,
@@ -139,6 +150,14 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
       </>
     );
   }
+
+  const optionalBreadcrumbs =
+    breadcrumbs || breadcrumbProps ? (
+      <>
+        <EuiBreadcrumbs breadcrumbs={breadcrumbs!} {...breadcrumbProps} />
+        <EuiSpacer size="s" />
+      </>
+    ) : undefined;
 
   let pageTitleNode;
   if (pageTitle) {
@@ -277,6 +296,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
 
   return alignItems === 'top' || isResponsiveBreakpoint ? (
     <div className={classes} {...rest}>
+      {optionalBreadcrumbs}
       <EuiFlexGroup
         responsive={!!responsive}
         className="euiPageHeaderContent__top"

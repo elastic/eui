@@ -7,6 +7,7 @@ import {
   EuiCode,
   EuiPageHeader,
   EuiPageHeaderSection,
+  EuiText,
 } from '../../../../src/components';
 
 import { pageHeaderConfig } from './playground';
@@ -20,8 +21,12 @@ import PageHeaderTabsTitle from './page_header_tabs_title';
 const pageHeaderTabsTitleSource = require('!!raw-loader!./page_header_tabs_title');
 
 import PageHeaderCustom from './page_header_custom';
-import { EuiText } from '../../../../src/components/text';
 const pageHeaderCustomSource = require('!!raw-loader!./page_header_custom');
+
+import PageBreadcrumbs from './page_header_breadcrumbs';
+const pageBreadcrumbsSource = require('!!raw-loader!./page_header_breadcrumbs');
+import PageBreadcrumbsReturn from './page_header_breadcrumbs_return';
+const pageBreadcrumbsReturnSource = require('!!raw-loader!./page_header_breadcrumbs_return');
 
 export const PageHeaderExample = {
   title: 'Page header',
@@ -149,6 +154,42 @@ export const PageHeaderExample = {
     { label:"Tab 2" }
   ]}
   bottomBorder
+  description="Example of a description."
+/>`,
+    },
+    {
+      title: 'Breadcrumbs in the page header',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageBreadcrumbsSource,
+        },
+      ],
+      text: <></>,
+      demo: <PageBreadcrumbs />,
+      props: { EuiPageHeader },
+      snippet: `<EuiPageHeader
+  pageTitle="Page title"
+  description="Example of a description."
+/>`,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageBreadcrumbsReturnSource,
+        },
+      ],
+      text: (
+        <p>
+          A common pattern is to use a single breadcrumb to return the user to a
+          listing page from which the current page was navigated to.
+        </p>
+      ),
+      demo: <PageBreadcrumbsReturn />,
+      props: { EuiPageHeader },
+      snippet: `<EuiPageHeader
+  pageTitle="Page title"
   description="Example of a description."
 />`,
     },
