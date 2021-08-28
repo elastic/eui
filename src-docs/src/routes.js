@@ -30,6 +30,10 @@ import { PrettyDurationExample } from './views/pretty_duration/pretty_duration_e
 
 import { UtilityClassesExample } from './views/utility_classes/utility_classes_example';
 
+// Templates
+
+import { PageTemplateExample } from './views/page/page_template_example';
+
 // Component examples
 
 import { AccessibilityExample } from './views/accessibility/accessibility_example';
@@ -337,6 +341,12 @@ const navigation = [
       },
       createExample(WritingGuidelines, 'Writing'),
     ],
+  },
+  {
+    name: 'Templates',
+    items: [PageTemplateExample, SuperDatePickerExample].map((example) =>
+      createExample(example)
+    ),
   },
   {
     name: 'Layout',
