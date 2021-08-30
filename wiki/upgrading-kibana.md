@@ -87,3 +87,10 @@ No layout is prescribed, but two inclusions are helpful to reviewers:
 * Copy-paste the full [changelog version range](https://github.com/elastic/eui/blob/master/CHANGELOG.md) for the upgrade.
 
 Of late, the typical EUI upgrade PR in Kibana looks something like [#109157](https://github.com/elastic/kibana/pull/109157).
+
+
+## PR Approvals
+
+Upgrades that result in significant changes to tests and/or snapshots can often require require codeowner approval from several teams. When possible, head-off questions and small change requests by leaving review comments explaining changes and adhering code styles typical of the plugin.
+
+Team sizes and priorities vary, so allow each team 1-2 days before escalating the review notification. After the waiting period, ping all teams with outstanding reviews on Slack, letting them know that the review is for an EUI upgrade PR. If review(s) remain outstanding, either re-post the Slack message or merge the PR without review provided that the review(s) are _only for snapshot updates with an expected diff_.
