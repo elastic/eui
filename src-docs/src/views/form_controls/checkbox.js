@@ -8,6 +8,11 @@ export default () => {
   const [checked, setChecked] = useState(false);
   const [indeterminate, setindeterminate] = useState(true);
 
+  const checkboxID__1 = htmlIdGenerator('checkbox')();
+  const checkboxID__2 = htmlIdGenerator('checkbox')();
+  const checkboxID__3 = htmlIdGenerator('checkbox')();
+  const checkboxID__4 = htmlIdGenerator('checkbox')();
+
   const onChange = (e) => {
     setChecked(e.target.checked);
   };
@@ -19,7 +24,7 @@ export default () => {
   return (
     <Fragment>
       <EuiCheckbox
-        id={htmlIdGenerator()()}
+        id={checkboxID__1}
         label="I am a checkbox"
         checked={checked}
         onChange={(e) => onChange(e)}
@@ -28,7 +33,7 @@ export default () => {
       <EuiSpacer size="m" />
 
       <EuiCheckbox
-        id={htmlIdGenerator()()}
+        id={checkboxID__2}
         label="I am an indeterminate checkbox"
         indeterminate={indeterminate}
         onChange={() => onChangeIndeterminate()}
@@ -37,7 +42,7 @@ export default () => {
       <EuiSpacer size="m" />
 
       <EuiCheckbox
-        id={htmlIdGenerator()()}
+        id={checkboxID__3}
         label="I am a disabled checkbox"
         checked={checked}
         onChange={(e) => onChange(e)}
@@ -47,7 +52,7 @@ export default () => {
       <EuiSpacer size="m" />
 
       <EuiCheckbox
-        id={htmlIdGenerator()()}
+        id={checkboxID__4}
         label="I am a compressed checkbox"
         checked={checked}
         onChange={(e) => onChange(e)}

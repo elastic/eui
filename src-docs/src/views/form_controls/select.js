@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { EuiSelect } from '../../../../src/components';
 import { DisplayToggles } from './display_toggles';
+import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
   const options = [
@@ -11,6 +12,7 @@ export default () => {
   ];
 
   const [value, setValue] = useState(options[1].value);
+  const selectID = htmlIdGenerator('select')();
 
   const onChange = (e) => {
     setValue(e.target.value);
@@ -20,7 +22,7 @@ export default () => {
     /* DisplayToggles wrapper for Docs only */
     <DisplayToggles canPrepend canAppend canReadOnly={false}>
       <EuiSelect
-        id="selectDocExample"
+        id={selectID}
         options={options}
         value={value}
         onChange={(e) => onChange(e)}

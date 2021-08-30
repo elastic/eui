@@ -7,9 +7,13 @@ import {
   EuiFlexItem,
 } from '../../../../src/components';
 
+import { htmlIdGenerator } from '../../../../src/services';
+
 export default () => {
   const [files, setFiles] = useState({});
   const filePickerRef = useRef();
+
+  const filePickerID = htmlIdGenerator('filepicker')();
 
   const onChange = (files) => {
     setFiles(files.length > 0 ? files : {});
@@ -21,7 +25,7 @@ export default () => {
         <EuiFlexItem>
           <EuiFilePicker
             ref={filePickerRef}
-            id="programmatic"
+            id={filePickerID}
             multiple
             initialPromptText="Select or drag and drop multiple files"
             onChange={onChange}
