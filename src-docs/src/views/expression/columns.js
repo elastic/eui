@@ -10,6 +10,8 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
+import { htmlIdGenerator } from '../../../../src/services';
+
 export default () => {
   const [example1, setExample1] = useState({
     isOpen: false,
@@ -25,6 +27,9 @@ export default () => {
     isOpen: false,
     value: 'count()',
   });
+
+  const popoverID__1 = htmlIdGenerator('popover')();
+  const popoverID__2 = htmlIdGenerator('popover')();
 
   const options = [
     {
@@ -140,7 +145,7 @@ export default () => {
   return (
     <div style={{ maxWidth: 500 }}>
       <EuiPopover
-        id="columnsPopover1"
+        id={popoverID__1}
         button={
           <EuiExpression
             description="indices"
@@ -162,7 +167,7 @@ export default () => {
       </EuiPopover>
 
       <EuiPopover
-        id="columnsPopover2"
+        id={popoverID__2}
         panelPaddingSize="s"
         button={
           <EuiExpression
