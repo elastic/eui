@@ -123,9 +123,6 @@ export type EuiSuperDatePickerProps = CommonProps & {
     >
   >;
 
-  /**
-   * Props passed to tag element for testing
-   */
   dataTestSubj?: string;
 };
 

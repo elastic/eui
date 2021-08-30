@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { mount, shallow, render } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
 import {
   EuiSuperDatePicker,
@@ -136,12 +136,10 @@ describe('EuiSuperDatePicker', () => {
   });
 
   test('EuiFormControlLayout contain data-test-subj as prop', () => {
-    const dataTestSubj: EuiSuperDatePickerProps['dataTestSubj'] = "mySuperDatePicker";
-
-    const component = render(
+    const component = shallow(
       <EuiSuperDatePicker
         onTimeChange={noop}
-        dataTestSubj={dataTestSubj}
+        dataTestSubj="mySuperDatePicker"
       />
     );
     expect(component).toMatchSnapshot();
