@@ -17,6 +17,7 @@ import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
   const idPrefix = htmlIdGenerator()();
+  const rangeID = htmlIdGenerator('range')();
 
   const [checkboxes] = useState([
     {
@@ -102,7 +103,7 @@ export default () => {
           min={0}
           max={100}
           name="range"
-          id="range"
+          id={rangeID}
           showInput
           compressed
           value={value}

@@ -86,6 +86,12 @@ export default () => {
     setGranularityToggleButtonsIdSelected,
   ] = useState(`${idPrefix}4`);
 
+  const rangeID__1 = htmlIdGenerator('range')();
+  const rangeID__2 = htmlIdGenerator('range')();
+  const selectID__1 = htmlIdGenerator('select')();
+  const selectID__2 = htmlIdGenerator('select')();
+  const selectToolTipID = htmlIdGenerator('select-tooltip')();
+
   const onPopoverSliderValueChange = (e) => {
     setPopoverSliderValues(e.target.value);
   };
@@ -144,7 +150,7 @@ export default () => {
           min={0}
           max={100}
           name="range"
-          id="range"
+          id={rangeID__1}
           showInput
           compressed
           value={opacityValue}
@@ -156,7 +162,7 @@ export default () => {
       <EuiSpacer size="s" />
 
       <EuiScreenReaderOnly>
-        <span id="docsExampleSelectTooltipContent">{selectTooltipContent}</span>
+        <span id={selectToolTipID}>{selectTooltipContent}</span>
       </EuiScreenReaderOnly>
       <EuiFormRow
         label={
@@ -261,7 +267,7 @@ export default () => {
       <EuiFormRow label="Label" display="columnCompressed">
         <div>
           <EuiSelect
-            id="docsExampleLabelFont"
+            id={selectID__1}
             options={[
               { value: 'inter', text: 'Inter UI' },
               { value: 'roboto', text: 'Roboto' },
@@ -312,7 +318,7 @@ export default () => {
       <EuiFlexGroup gutterSize="s" responsive={false} wrap>
         <EuiFlexItem style={{ flexBasis: 72 }}>
           <EuiRange
-            id="docsExampleBorderSize"
+            id={rangeID__2}
             showInput="inputWithPopover"
             min={0}
             max={32}
@@ -324,7 +330,7 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem grow={4} style={{ minWidth: 160 }}>
           <EuiSelect
-            id="docsExampleBorderStyle"
+            id={selectID__2}
             options={[
               { value: 'dashed', text: 'Dashed' },
               { value: 'dotted', text: 'Dotted' },
