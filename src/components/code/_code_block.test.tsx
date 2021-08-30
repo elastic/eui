@@ -108,7 +108,8 @@ describe('EuiCodeBlockImpl', () => {
           inline={false}
           lineNumbers
           overflowHeight={300}
-          {...requiredProps}>
+          {...requiredProps}
+        >
           {code}
         </EuiCodeBlockImpl>
       );
@@ -121,7 +122,8 @@ describe('EuiCodeBlockImpl', () => {
           inline={false}
           lineNumbers={{ start: 10 }}
           overflowHeight={300}
-          {...requiredProps}>
+          {...requiredProps}
+        >
           {code}
         </EuiCodeBlockImpl>
       );

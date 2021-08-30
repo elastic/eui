@@ -91,6 +91,7 @@ function wrapLines(
   });
   const wrapped: RefractorNode[] = [];
   const digits = grouped.length.toString().length;
+  const width = digits * CHAR_SIZE;
   grouped.forEach((node, i) => {
     const children: RefractorNode[] = options.showLineNumbers
       ? [
@@ -98,7 +99,7 @@ function wrapLines(
             type: 'element',
             tagName: 'span',
             properties: {
-              style: { width: digits * CHAR_SIZE },
+              style: { width },
               ['data-line-number']: i + 1,
               ['aria-hidden']: true,
               className: ['euiCodeBlock__line__number'],
@@ -109,6 +110,7 @@ function wrapLines(
             type: 'element',
             tagName: 'span',
             properties: {
+              style: { marginLeft: width + 8 }, // 8px is $euiSizeS
               className: ['euiCodeBlock__line__text'],
             },
             children: node,

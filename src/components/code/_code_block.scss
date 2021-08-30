@@ -45,6 +45,7 @@
   }
 
   .euiCodeBlock__line__number {
+    position: absolute;
     user-select: none;
 
     &:before {
