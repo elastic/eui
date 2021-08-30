@@ -61,14 +61,23 @@ const EuiDataGridCellContent: FunctionComponent<
       { row: rowIndex + 1, col: colIndex + 1 }
     );
 
+    const isDefinedHeight =
+      rowHeightUtils &&
+      rowHeightsOptions &&
+      rowHeightUtils.isDefinedHeight(rowIndex, rowHeightsOptions);
+
     return (
       <>
         <div
           ref={setCellContentsRef}
-          className={!rowHeightsOptions ? 'euiDataGridRowCell__truncate' : ''}
+          className={
+            !isDefinedHeight
+              ? 'euiDataGridRowCell__truncate'
+              : 'euiDataGridRowCell__definedHeight'
+          }
           style={
-            rowHeightsOptions
-              ? getStylesForCell(rowHeightsOptions, rowIndex)
+            isDefinedHeight
+              ? rowHeightUtils?.getStylesForCell(rowHeightsOptions!, rowIndex)
               : {}
           }
         >
@@ -214,7 +223,7 @@ export class EuiDataGridCell extends Component<
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps: EuiDataGridCellProps) {
     if (
       this.cellRef.current &&
       this.props.getRowHeight &&
@@ -234,6 +243,9 @@ export class EuiDataGridCell extends Component<
         this.props.colIndex,
         this.cellContentsRef?.offsetHeight
       );
+    }
+    if (this.props.columnId !== prevProps.columnId) {
+      this.setCellProps({});
     }
   }
 
@@ -289,12 +301,6 @@ export class EuiDataGridCell extends Component<
     }
 
     return false;
-  }
-
-  componentDidUpdate(prevProps: EuiDataGridCellProps) {
-    if (this.props.columnId !== prevProps.columnId) {
-      this.setCellProps({});
-    }
   }
 
   setCellProps = (cellProps: HTMLAttributes<HTMLDivElement>) => {

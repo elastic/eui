@@ -42,12 +42,10 @@ export class RowHeightUtils {
     paddingTop: number;
     paddingBottom: number;
     lineHeight: number;
-    font: string;
   } = {
     paddingTop: 0,
     paddingBottom: 0,
     lineHeight: 1,
-    font: '',
   };
   private fakeCell = document.createElement('div');
   private heightsCache = new Map<number, Record<number, number>>();
@@ -66,7 +64,7 @@ export class RowHeightUtils {
     clearTimeout(this.timerId);
     rowHeights[colIndex] = adaptedHeight;
     this.heightsCache.set(rowIndex, rowHeights);
-    this.timerId = setTimeout(() => this.resetGrid(), 1);
+    this.timerId = setTimeout(() => this.resetGrid(), 0);
   }
 
   getRowHeight(rowIndex: number) {
@@ -85,7 +83,6 @@ export class RowHeightUtils {
   }
 
   resetGrid() {
-    console.log('resetGrid');
     this.grid?.resetAfterRowIndex(0);
   }
 
@@ -95,6 +92,7 @@ export class RowHeightUtils {
 
   clearHeightsCache() {
     this.heightsCache.clear();
+    this.resetGrid();
   }
 
   isAutoHeight(
@@ -115,6 +113,21 @@ export class RowHeightUtils {
     return false;
   }
 
+  isDefinedHeight(
+    rowIndex: number,
+    rowHeightsOptions: EuiDataGridRowHeightsOptions
+  ) {
+    if (
+      (rowHeightsOptions.rowHeights &&
+        rowHeightsOptions.rowHeights[rowIndex]) ||
+      rowHeightsOptions.defaultHeight
+    ) {
+      return true;
+    }
+
+    return false;
+  }
+
   computeStylesForGridCell(gridStyles: EuiDataGridStyle) {
     this.fakeCell.className = `
       euiDataGridRowCell
@@ -127,7 +140,6 @@ export class RowHeightUtils {
       paddingTop: getNumberFromPx(allStyles.paddingTop),
       paddingBottom: getNumberFromPx(allStyles.paddingBottom),
       lineHeight: getNumberFromPx(allStyles.lineHeight),
-      font: allStyles.font,
     };
     document.body.removeChild(this.fakeCell);
     // we need clear height cache so that recalculate heigths for new styles.
@@ -172,16 +184,11 @@ export class RowHeightUtils {
     rowHeightsOptions: EuiDataGridRowHeightsOptions,
     rowIndex: number
   ): CSSProperties => {
-    const styles: CSSProperties = {
-      wordWrap: 'break-word',
-      wordBreak: 'break-word',
-      flexGrow: 1,
-    };
     let initialHeight =
       rowHeightsOptions.rowHeights && rowHeightsOptions.rowHeights[rowIndex];
 
     if (this.isAutoHeight(rowIndex, rowHeightsOptions)) {
-      return styles;
+      return {};
     }
 
     if (!initialHeight) {
@@ -195,14 +202,12 @@ export class RowHeightUtils {
         WebkitBoxOrient: 'vertical',
         height: '100%',
         overflow: 'hidden',
-        ...styles,
       };
     }
 
     return {
       height: '100%',
       overflow: 'hidden',
-      ...styles,
     };
   };
 }

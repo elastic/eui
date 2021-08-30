@@ -31,6 +31,7 @@ jest.mock('./row_height_utils', () => {
           wordBreak: 'break-word',
           flexGrow: 1,
         }),
+        isDefinedHeight: () => true,
         isAutoHeight: () => false,
         setRowHeight: () => {},
         getRowHeight: () => 32,

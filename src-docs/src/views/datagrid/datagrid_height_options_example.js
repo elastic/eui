@@ -89,32 +89,6 @@ export const DataGridRowHeightOptionsExample = {
       title: 'Fixed heights for rows',
       text: (
         <Fragment>
-          <p>
-            Row height options can be passed down to the grid through the{' '}
-            <EuiCode>rowHeightsOptions</EuiCode> prop. It accepts an object
-            configuring the default height and/or specific row heights:
-          </p>
-          <ul>
-            <li>
-              <EuiCode>defaultHeight</EuiCode> - defines the default size for
-              all rows
-            </li>
-            <li>
-              <EuiCode>rowHeights</EuiCode> - overrides the height for a
-              specific row
-            </li>
-          </ul>
-          <EuiCallOut
-            color="warning"
-            title="Rows have minimum height requirements"
-          >
-            <p>
-              Rows must be at least <strong>34 pixels</strong> tall so they can
-              render at least one line of text. If you provide a smaller height
-              the row will default to 34 pixels.
-            </p>
-          </EuiCallOut>
-          <EuiSpacer />
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {rowHeightsSnippet}
           </EuiCodeBlock>
