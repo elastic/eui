@@ -1,4 +1,3 @@
-
 # Cypress testing
 
 ## Running tests
