@@ -33,6 +33,10 @@ const HeaderUpdates = () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
 
+  const flyoutID = htmlIdGenerator('flyout')();
+  const flyoutID__title = htmlIdGenerator('flyout')();
+  const popoverID = htmlIdGenerator('popoverID')();
+
   const alerts = [
     {
       title: 'Control access to features',
@@ -127,7 +131,7 @@ const HeaderUpdates = () => {
 
   const bellButton = (
     <EuiHeaderSectionItemButton
-      aria-controls="headerFlyoutNewsFeed"
+      aria-controls={flyoutID}
       aria-expanded={isFlyoutVisible}
       aria-haspopup="true"
       aria-label={'Alerts feed: Updates available'}
@@ -139,7 +143,7 @@ const HeaderUpdates = () => {
 
   const cheerButton = (
     <EuiHeaderSectionItemButton
-      aria-controls="headerPopoverNewsFeed"
+      aria-controls={popoverID}
       aria-expanded={isPopoverVisible}
       aria-haspopup="true"
       aria-label={"News feed: Updates available'"}
@@ -154,11 +158,11 @@ const HeaderUpdates = () => {
       <EuiFlyout
         onClose={closeFlyout}
         size="s"
-        id="headerFlyoutNewsFeed"
-        aria-labelledby="flyoutSmallTitle">
+        id={flyoutID}
+        aria-labelledby={flyoutID__title}>
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="s">
-            <h2 id="flyoutSmallTitle">What&apos;s new</h2>
+            <h2 id={flyoutID__title}>What&apos;s new</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>
@@ -196,7 +200,7 @@ const HeaderUpdates = () => {
 
   const popover = (
     <EuiPopover
-      id="headerPopoverNewsFeed"
+      id={popoverID}
       ownFocus
       repositionOnScroll
       button={cheerButton}
