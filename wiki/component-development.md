@@ -51,6 +51,8 @@ fully-tested the code is, located at `reports/jest-coverage`.
 
 Refer to the [testing guide](testing.md) for guidelines on writing and designing your tests.
 
+Refer to the [Cypress testing guide](cypress-testing.md) for guidelines on when and how to write Cypress tests.
+
 Refer to the [automated accessibility testing guide](automated-accessibility-testing.md) for info more info on those.
 
 ### Testing dev features in local Kibana
