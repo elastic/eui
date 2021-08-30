@@ -10,8 +10,11 @@ import {
   EuiFlyoutFooter,
 } from '../../../../src/components';
 
+import { htmlIdGenerator } from '../../../../src/services';
+
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const flyoutID__title = htmlIdGenerator('flyout')();
 
   let flyout;
 
@@ -21,10 +24,10 @@ export default () => {
         type="push"
         size="s"
         onClose={() => setIsFlyoutVisible(false)}
-        aria-labelledby="pushedFlyoutTitle">
+        aria-labelledby={flyoutID__title}>
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id="pushedFlyoutTitle">A pushed flyout</h2>
+            <h2 id={flyoutID__title}>A pushed flyout</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>

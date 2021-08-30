@@ -23,12 +23,15 @@ import {
   EuiSuperSelect,
 } from '../../../../src/components';
 
+import { htmlIdGenerator } from '../../../../src/services';
+
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [selectedTabId, setSelectedTabId] = useState('1');
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [superSelectvalue, setSuperSelectValue] = useState('option_one');
   const [isExpressionOpen, setIsExpressionOpen] = useState(false);
+  const flyoutID__title = htmlIdGenerator('flyout')();
 
   const tabs = [
     {
@@ -182,10 +185,10 @@ export default () => {
         ownFocus
         onClose={closeFlyout}
         hideCloseButton
-        aria-labelledby="flyoutComplicatedTitle">
+        aria-labelledby={flyoutID__title}>
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id="flyoutComplicatedTitle">Flyout header</h2>
+            <h2 id={flyoutID__title}>Flyout header</h2>
           </EuiTitle>
           <EuiSpacer size="s" />
           <EuiText color="subdued">

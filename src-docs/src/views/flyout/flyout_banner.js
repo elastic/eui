@@ -11,8 +11,11 @@ import {
   EuiTitle,
 } from '../../../../src/components';
 
+import { htmlIdGenerator } from '../../../../src/services';
+
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const flyoutID__title = htmlIdGenerator('flyout')();
 
   const closeFlyout = () => setIsFlyoutVisible(false);
 
@@ -34,10 +37,10 @@ export default () => {
       <EuiFlyout
         ownFocus
         onClose={closeFlyout}
-        aria-labelledby="flyoutWithBannerTitle">
+        aria-labelledby={flyoutID__title}>
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id="flyoutWithBannerTitle">A flyout with a banner</h2>
+            <h2 id={flyoutID__title}>A flyout with a banner</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody banner={callOut}>

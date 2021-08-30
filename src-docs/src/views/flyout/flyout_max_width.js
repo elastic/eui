@@ -16,10 +16,13 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
+import { htmlIdGenerator } from '../../../../src/services';
+
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [flyoutSize, setFlyoutSize] = useState('m');
   const [flyoutMaxWidth, setFlyoutMaxWidth] = useState(false);
+  const flyoutID__title = htmlIdGenerator('flyout')();
 
   const closeFlyout = () => setIsFlyoutVisible(false);
 
@@ -49,12 +52,12 @@ export default () => {
       <EuiFlyout
         ownFocus
         onClose={closeFlyout}
-        aria-labelledby="flyoutMaxWidthTitle"
+        aria-labelledby={flyoutID__title}
         size={flyoutSize}
         maxWidth={flyoutMaxWidth}>
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id="flyoutMaxWidthTitle">{maxWidthTitle} maxWidth</h2>
+            <h2 id={flyoutID__title}>{maxWidthTitle} maxWidth</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>

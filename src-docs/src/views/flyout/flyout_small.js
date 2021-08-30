@@ -8,6 +8,7 @@ import {
   EuiText,
   EuiTitle,
 } from '../../../../src/components';
+
 import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
@@ -17,7 +18,7 @@ export default () => {
 
   const toggleFlyout = () => setIsFlyoutVisible((isVisible) => !isVisible);
 
-  const flyoutTitleId = htmlIdGenerator('flyout')();
+  const flyoutID__title = htmlIdGenerator('flyout')();
 
   let flyout;
   if (isFlyoutVisible) {
@@ -25,10 +26,10 @@ export default () => {
       <EuiFlyout
         ownFocus={false}
         onClose={closeFlyout}
-        aria-labelledby={flyoutTitleId}>
+        aria-labelledby={flyoutID__title}>
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="s">
-            <h2 id={flyoutTitleId}>A flyout without ownFocus</h2>
+            <h2 id={flyoutID__title}>A flyout without ownFocus</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>

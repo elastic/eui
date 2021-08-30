@@ -10,10 +10,13 @@ import {
   EuiButtonGroup,
 } from '../../../../src/components';
 
+import { htmlIdGenerator } from '../../../../src/services';
+
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [size, setSize] = useState('l');
   const [sizeName, setSizeName] = useState('large');
+  const flyoutID__title = htmlIdGenerator('flyout')();
 
   const sizes = [
     {
@@ -45,10 +48,10 @@ export default () => {
         ownFocus
         onClose={closeFlyout}
         size={size}
-        aria-labelledby="flyoutLargeTitle">
+        aria-labelledby={flyoutID__title}>
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id="flyoutLargeTitle">A {sizeName.toLowerCase()} flyout</h2>
+            <h2 id={flyoutID__title}>A {sizeName.toLowerCase()} flyout</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>
