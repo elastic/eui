@@ -9,7 +9,7 @@ export default () => (
 "id": "1",
 "rawResponse": {
   "took": 19,
-  "timed_out": false,
+  "timed_out": false and a longer sentence so the line will break,
   "_shards": {
     "total": 1,
     "successful": 1,
@@ -27,7 +27,8 @@ export default () => (
       paddingSize="m"
       overflowHeight={300}
       isCopyable
-      lineNumbers={{ start: 32 }}>
+      lineNumbers={{ start: 32 }}
+    >
       {`"OriginLocation": [
   {
     "coordinates": [

@@ -4,7 +4,13 @@ import { EuiCodeBlock } from '../../../../src/components';
 
 export default () => (
   <div>
-    <EuiCodeBlock language="json" overflowHeight={300} isCopyable isVirtualized>
+    <EuiCodeBlock
+      language="json"
+      overflowHeight={300}
+      isCopyable
+      isVirtualized
+      lineNumbers
+    >
       {`{
   "id": "1",
   "rawResponse": {
