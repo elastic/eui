@@ -13,6 +13,11 @@ export default () => {
   const [value, setValue] = useState('20');
   const [dualValue, setDualValue] = useState([20, 100]);
 
+  const rangeID__1 = htmlIdGenerator('range')();
+  const rangeID__2 = htmlIdGenerator('range')();
+  const rangeID__3 = htmlIdGenerator('range')();
+  const rangeID__4 = htmlIdGenerator('range')();
+
   const onChange = (e) => {
     setValue(e.target.value);
   };
@@ -24,7 +29,7 @@ export default () => {
   return (
     <Fragment>
       <EuiRange
-        id={htmlIdGenerator()()}
+        id={rangeID__1}
         step={10}
         value={value}
         onChange={onChange}
@@ -41,7 +46,7 @@ export default () => {
       <EuiSpacer size="l" />
 
       <EuiRange
-        id={htmlIdGenerator()()}
+        id={rangeID__2}
         value={value}
         onChange={onChange}
         showInput
@@ -60,7 +65,7 @@ export default () => {
       <EuiSpacer size="l" />
 
       <EuiDualRange
-        id={htmlIdGenerator()()}
+        id={rangeID__3}
         value={dualValue}
         onChange={onDualChange}
         showTicks
@@ -81,7 +86,7 @@ export default () => {
       <EuiSpacer size="l" />
 
       <EuiDualRange
-        id={htmlIdGenerator()()}
+        id={rangeID__4}
         value={dualValue}
         onChange={onDualChange}
         showTicks

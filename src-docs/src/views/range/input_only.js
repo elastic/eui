@@ -9,6 +9,9 @@ export default () => {
   const [value, setValue] = useState('20');
   const [dualValue, setDualValue] = useState([20, 100]);
 
+  const rangeID__1 = htmlIdGenerator('range')();
+  const rangeID__2 = htmlIdGenerator('range')();
+
   const onChange = (e) => {
     setValue(e.target.value);
   };
@@ -34,7 +37,7 @@ export default () => {
     <Fragment>
       <DisplayToggles canAppend canPrepend>
         <EuiRange
-          id={htmlIdGenerator()()}
+          id={rangeID__1}
           value={value}
           onChange={onChange}
           showInput="inputWithPopover"
@@ -47,7 +50,7 @@ export default () => {
 
       <DisplayToggles canAppend canPrepend canLoading={false}>
         <EuiDualRange
-          id={htmlIdGenerator()()}
+          id={rangeID__2}
           value={dualValue}
           onChange={onDualChange}
           showInput="inputWithPopover"

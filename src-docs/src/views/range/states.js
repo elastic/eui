@@ -8,6 +8,10 @@ import { htmlIdGenerator } from '../../../../src/services';
 export default () => {
   const [value, setValue] = useState('20');
   const [dualValue, setDualValue] = useState([20, 100]);
+
+  const rangeID__1 = htmlIdGenerator('range')();
+  const rangeID__2 = htmlIdGenerator('range')();
+
   const levels = [
     {
       min: 0,
@@ -33,7 +37,7 @@ export default () => {
     <Fragment>
       <DisplayToggles canAppend canPrepend canLoading={false}>
         <EuiRange
-          id={htmlIdGenerator()()}
+          id={rangeID__1}
           value={value}
           onChange={onChange}
           showTicks
@@ -51,7 +55,7 @@ export default () => {
 
       <DisplayToggles canLoading={false}>
         <EuiDualRange
-          id={htmlIdGenerator()()}
+          id={rangeID__2}
           value={dualValue}
           onChange={onDualChange}
           showLabels

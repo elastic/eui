@@ -13,6 +13,9 @@ export default () => {
   const [value, setvalue] = useState('20');
   const [dualValue, setDualValue] = useState([20, 100]);
 
+  const rangeID__1 = htmlIdGenerator('range')();
+  const rangeID__2 = htmlIdGenerator('range')();
+
   const levels = [
     {
       min: 0,
@@ -37,7 +40,7 @@ export default () => {
   return (
     <Fragment>
       <EuiRange
-        id={htmlIdGenerator()()}
+        id={rangeID__1}
         value={value}
         onChange={(e) => onChange(e)}
         showTicks
@@ -52,7 +55,7 @@ export default () => {
 
       <EuiSpacer size="xl" />
       <EuiDualRange
-        id={htmlIdGenerator()()}
+        id={rangeID__2}
         value={dualValue}
         onChange={(value) => onDualChange(value)}
         showTicks
