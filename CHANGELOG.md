@@ -1,10 +1,26 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added optional line numbers to `EuiCodeBlock` ([#4993](https://github.com/elastic/eui/pull/4993))
+
+**Bug fixes**
+
+- Fixed `EuiSuperSelect`'s focus keyboard behavior when no initial value is passed, and focus label behavior ([#5097](https://github.com/elastic/eui/pull/5097))
+
+## [`37.5.0`](https://github.com/elastic/eui/tree/v37.5.0)
+
+### Feature: Emotion ([#4511](https://github.com/elastic/eui/pull/4511))
+
+- Added `EuiThemeProvider`, a React context provider for theme values and color mode selection
+- Added `useEuiTheme` React hook, and `withEuiTheme` React HOC for consuming the EuiTheme
+- Added global `EuiTheme` tokens for `colors`, `size`, `font`, `border`, `animation`, and `breakpoint`
+- Added color services for `makeHighContrastColor`, `makeDisabledContrastColor`, `shade`, `tint`, `transparentize`, `saturate`, `desaturate`, `lightness`
+
+## [`37.4.0`](https://github.com/elastic/eui/tree/v37.4.0)
+
 - Updated `EuiToolTip` to remain showing tooltip while child element is in focus ([#5066](https://github.com/elastic/eui/pull/5066))
 - Removed `children` from TypeScript definition in `EuiIconTip` ([#5066](https://github.com/elastic/eui/pull/5066))
 - Removed `children` as a possible prop on `EuiTreeView` ([#5053](https://github.com/elastic/eui/pull/5053))
-- Updated `elast-charts` theme with better text colors, font stack and `goal` styles ([#5077](https://github.com/elastic/eui/pull/5077))
-- Added optional line numbers to `EuiCodeBlock` ([#4993](https://github.com/elastic/eui/pull/4993))
+- Updated `elastic-charts` theme with better text colors, font stack and `goal` styles ([#5077](https://github.com/elastic/eui/pull/5077))
 
 **Bug fixes**
 
@@ -13,6 +29,7 @@
 - Fixed default value of `EuiPagination`'s `activePage` to target first page ([#5053](https://github.com/elastic/eui/pull/5053))
 - Fixed screen reader text from displaying in some `EuiDataGrid` cell popovers ([#5087](https://github.com/elastic/eui/pull/5087))
 - Fixed `EuiDatePicker` year dropdown when configured with `minDate` and/or `maxDate` ([#5069](https://github.com/elastic/eui/pull/5069))
+- Fixed `EuiDatePicker`'s clear icon overlaying date text ([#5095](https://github.com/elastic/eui/pull/5095))
 
 **Theme: Amsterdam**
 
