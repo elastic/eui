@@ -56,6 +56,10 @@
     border-radius: $euiFormControlCompressedBorderRadius;
     background-color: $euiFormInputGroupLabelBackground;
 
+    &.euiFormControlLayout--readOnly input {
+      background-color: $euiFormBackgroundReadOnlyColor;
+    }
+
     .euiFormControlLayout__prepend:first-child {
       @include euiFormControlSideBorderRadius($euiFormControlCompressedBorderRadius, $side: 'left', $internal: true);
 
