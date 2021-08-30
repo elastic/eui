@@ -10,8 +10,11 @@ import {
   EuiPopover,
 } from '../../../../src/components';
 
+import { htmlIdGenerator } from '../../../../src/services';
+
 export default () => {
   const [isPopoverOpen, setPopover] = useState(false);
+  const buttonID = htmlIdGenerator('button')();
 
   const onButtonClick = () => {
     setPopover(!isPopoverOpen);
@@ -43,7 +46,7 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
           <EuiPopover
-            id="splitButtonExamplePopover"
+            id={buttonID}
             button={
               <EuiButtonIcon
                 display="base"
