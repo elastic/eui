@@ -12,7 +12,7 @@ import {
 import { BarSeries, LineSeries, AreaSeries } from '@elastic/charts';
 import { devDependencies } from '../../../../package';
 
-const chartsVersion = devDependencies['@elastic/charts'].match(
+export const chartsVersion = devDependencies['@elastic/charts'].match(
   /\d+\.\d+\.\d+/
 )[0];
 

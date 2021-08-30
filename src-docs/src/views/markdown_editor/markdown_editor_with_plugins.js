@@ -252,7 +252,12 @@ const ChartMarkdownRenderer = ({ palette, categories }) => {
         stackAccessors={['g']}
       />
       <Axis id="bottom-axis" position="bottom" showGridLines />
-      <Axis id="left-axis" position="left" showGridLines />
+      <Axis
+        id="left-axis"
+        position="left"
+        showGridLines
+        tickFormat={(d) => Number(d).toFixed(2)}
+      />
     </Chart>
   );
 };

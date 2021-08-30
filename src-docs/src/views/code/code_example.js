@@ -68,9 +68,7 @@ export const CodeExample = {
           <EuiLink external href="https://prismjs.com/">
             library
           </EuiLink>
-          .
-          <br />
-          The <EuiCode>language</EuiCode> prop can also be omitted to simply
+          . The <EuiCode>language</EuiCode> prop can also be omitted to simply
           render formatted but unhighlighted code.
         </p>
         <p>

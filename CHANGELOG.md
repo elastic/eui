@@ -2,6 +2,42 @@
 
 **Bug fixes**
 
+- Fixed `EuiSuperSelect`'s focus keyboard behavior when no initial value is passed, and focus label behavior ([#5097](https://github.com/elastic/eui/pull/5097))
+
+## [`37.5.0`](https://github.com/elastic/eui/tree/v37.5.0)
+
+### Feature: Emotion ([#4511](https://github.com/elastic/eui/pull/4511))
+
+- Added `EuiThemeProvider`, a React context provider for theme values and color mode selection
+- Added `useEuiTheme` React hook, and `withEuiTheme` React HOC for consuming the EuiTheme
+- Added global `EuiTheme` tokens for `colors`, `size`, `font`, `border`, `animation`, and `breakpoint`
+- Added color services for `makeHighContrastColor`, `makeDisabledContrastColor`, `shade`, `tint`, `transparentize`, `saturate`, `desaturate`, `lightness`
+
+## [`37.4.0`](https://github.com/elastic/eui/tree/v37.4.0)
+
+- Updated `EuiToolTip` to remain showing tooltip while child element is in focus ([#5066](https://github.com/elastic/eui/pull/5066))
+- Removed `children` from TypeScript definition in `EuiIconTip` ([#5066](https://github.com/elastic/eui/pull/5066))
+- Removed `children` as a possible prop on `EuiTreeView` ([#5053](https://github.com/elastic/eui/pull/5053))
+- Updated `elastic-charts` theme with better text colors, font stack and `goal` styles ([#5077](https://github.com/elastic/eui/pull/5077))
+
+**Bug fixes**
+
+- Fixed location of default value of `EuiToolTip`'s `display` prop ([#5066](https://github.com/elastic/eui/pull/5066))
+- Fixed instance of  `EuiScreenReader` text being exposed in `EuiDataGrid` sorting menu ([#5084](https://github.com/elastic/eui/pull/5084))
+- Fixed default value of `EuiPagination`'s `activePage` to target first page ([#5053](https://github.com/elastic/eui/pull/5053))
+- Fixed screen reader text from displaying in some `EuiDataGrid` cell popovers ([#5087](https://github.com/elastic/eui/pull/5087))
+- Fixed `EuiDatePicker` year dropdown when configured with `minDate` and/or `maxDate` ([#5069](https://github.com/elastic/eui/pull/5069))
+- Fixed `EuiDatePicker`'s clear icon overlaying date text ([#5095](https://github.com/elastic/eui/pull/5095))
+
+**Theme: Amsterdam**
+
+- Reduced `EuiNotificationBadge` border-radius to `small` ([#5053](https://github.com/elastic/eui/pull/5053))
+- Fixed hover and focus states of `EuiFacet` to match established pattern ([#5053](https://github.com/elastic/eui/pull/5053))
+
+## [`37.3.1`](https://github.com/elastic/eui/tree/v37.3.1)
+
+**Bug fixes**
+
 - Fixed bug in `EuiDataGrid` where a custom `className` was also being passed to the full screen button ([#5050](https://github.com/elastic/eui/pull/5050))
 - Fixed rerender state issues in `PaginationButton` inside `EuiPagination` ([#5048](https://github.com/elastic/eui/pull/5048))
 - Fixed bug in `euiHeaderAffordForFixed` mixin that was not accounting for situations where `EuiDataGrid` was in full screen mode ([#5054](https://github.com/elastic/eui/pull/5054))
@@ -16,6 +52,7 @@
 
 - Updated styles for `EuiDatePicker` ([#5000](https://github.com/elastic/eui/pull/5000))
 - Fixed styles for `EuiSuperDatePicker` ([#5060](https://github.com/elastic/eui/pull/5060))
+- Fixed styles for `compressed` + `prepend/append` + `readOnly` input backgrounds ([#5073](https://github.com/elastic/eui/pull/5073))
 
 ## [`37.3.0`](https://github.com/elastic/eui/tree/v37.3.0)
 
@@ -42,6 +79,16 @@
 
 - Fixed usage of `outsideClickCloses` prop of `EuiFlyout` ([#4986](https://github.com/elastic/eui/pull/4986))
 - Fixed `EuiFormRow` ignoring `isDisabled` prop on the child element. ([#5022](https://github.com/elastic/eui/pull/5022))
+
+## [`37.1.2`](https://github.com/elastic/eui/tree/v37.1.2)
+
+**Note: this release is a backport containing changes originally made in `37.3.0` and `37.3.1`**
+
+**Bug fixes**
+
+- Fixed `EuiSelectable`'s double click bug ([#5021](https://github.com/elastic/eui/pull/5021))
+- Fixed bug in `euiHeaderAffordForFixed` mixin that was not accounting for situations where `EuiDataGrid` was in full screen mode ([#5054](https://github.com/elastic/eui/pull/5054))
+- Fixed `z-index` styles that were causing `EuiModal` and `EuiFlyout` components to appear behind `EuiDataGrid` when in full screen mode ([#5054](https://github.com/elastic/eui/pull/5054))
 
 ## [`37.1.1`](https://github.com/elastic/eui/tree/v37.1.1)
 
@@ -138,6 +185,15 @@
 - Updated `EuiContextMenuPanelDescriptor`'s `title` prop type from `string` to `ReactNode` ([#4933](https://github.com/elastic/eui/pull/4933))
 - Added `EuiTokensObject` type definition to allow enforcing i18n token coverage in consuming applications ([#4927](https://github.com/elastic/eui/issues/4927))
 - Added `rowHeightsOptions` to `EuiDataGrid` to allow configuring row heights ([#4853](https://github.com/elastic/eui/pull/4853))
+
+
+## [`34.5.3`](https://github.com/elastic/eui/tree/v34.5.3)
+
+**Note: this release is a backport containing changes originally made in `37.3.0`**
+
+**Bug fixes**
+
+- Fixed `EuiSelectable`'s double click bug ([#5021](https://github.com/elastic/eui/pull/5021))
 
 ## [`34.5.2`](https://github.com/elastic/eui/tree/v34.5.2)
 

@@ -1,58 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
   EuiCode,
   EuiPagination,
   EuiPaginationButton,
+  EuiText,
+  EuiCallOut,
 } from '../../../../src/components';
 
 import { paginationConfig } from './playground';
 
 import ManyPages from './many_pages';
 const manyPagesSource = require('!!raw-loader!./many_pages');
-const manyPagesHtml = renderToHtml(ManyPages);
 const manyPagesSnippet = `<EuiPagination
-  aria-label="my pagination"
+  aria-label={paginationLabel}
   pageCount={higherThan5Number}
   activePage={activePage}
-  onPageClick={goToPage}
-/>
-`;
+  onPageClick={(activePage) => goToPage(activePage)}
+/>`;
 
 import FewPages from './few_pages';
 const fewPagesSource = require('!!raw-loader!./few_pages');
-const fewPagesHtml = renderToHtml(FewPages);
 const fewPagesSnippet = `<EuiPagination
-  aria-label="my pagination"
+  aria-label={paginationLabel}
   pageCount={lowerThan5Number}
   activePage={activePage}
-  onPageClick={goToPage}
-/>
-`;
+  onPageClick={(activePage) => goToPage(activePage)}
+/>`;
 
 import CenteredPagination from './centered_pagination';
 const centeredPaginationSource = require('!!raw-loader!./centered_pagination');
-const centeredPaginationHtml = renderToHtml(CenteredPagination);
 const centeredPaginationSnippet = `<EuiFlexGroup justifyContent="spaceAround">
   <EuiFlexItem grow={false}>
     <EuiPagination
-      aria-label="my pagination"
+      aria-label={paginationLabel}
       pageCount={pageCount}
       activePage={activePage}
-      onPageClick={goToPage}
+      onPageClick={(activePage) => goToPage(activePage)}
     />
   </EuiFlexItem>
-</EuiFlexGroup>
-`;
+</EuiFlexGroup>`;
 
 import CustomizablePagination from './customizable_pagination';
 const customizablePaginationSource = require('!!raw-loader!./customizable_pagination');
-const customizablePaginationHtml = renderToHtml(CustomizablePagination);
 const customizablePaginationSnippet = `<EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
   <EuiFlexItem grow={false}>
     <EuiPopover
@@ -65,51 +58,74 @@ const customizablePaginationSnippet = `<EuiFlexGroup justifyContent="spaceBetwee
 
   <EuiFlexItem grow={false}>
     <EuiPagination
-      aria-label="my pagination"
+      aria-label={paginationLabel}
       pageCount={pageCount}
       activePage={activePage}
-      onPageClick={goToPage}
+      onPageClick={(activePage) => goToPage(activePage)}
     />
   </EuiFlexItem>
-</EuiFlexGroup>
-`;
+</EuiFlexGroup>`;
 
 import Compressed from './compressed';
 const compressedSource = require('!!raw-loader!./compressed');
-const compressedHtml = renderToHtml(Compressed);
 const compressedSnippet = `<EuiPagination
-  aria-label="my pagination"
+  aria-label={paginationLabel}
   pageCount={pageCount}
   activePage={activePage}
-  onPageClick={goToPage}
+  onPageClick={(activePage) => goToPage(activePage)}
   compressed
-/>
-`;
+/>`;
 
 export const PaginationExample = {
   title: 'Pagination',
+  intro: (
+    <EuiText>
+      <p>
+        Some EUI components have pagination built-in, like{' '}
+        <Link to="/tabular-content/tables">
+          <strong>EuiBasicTable</strong>
+        </Link>
+        , but for custom built paginated interfaces you can use{' '}
+        <strong>EuiPagination</strong> manually.
+      </p>
+    </EuiText>
+  ),
   sections: [
     {
-      title: 'Many pages',
+      title: 'Basic usage with many pages',
       source: [
         {
           type: GuideSectionTypes.JS,
           code: manyPagesSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: manyPagesHtml,
-        },
       ],
       text: (
-        <p>
-          We only show at most 5 consecutive pages, with shortcuts to the first
-          and/or last page.
-        </p>
+        <>
+          <p>
+            <strong>EuiPagination</strong> accepts a total{' '}
+            <EuiCode>pageCount</EuiCode> and only shows up to 5 consecutive
+            pages, with shortcuts to the first and/or last page. It also
+            requires the parent component to maintain the current{' '}
+            <EuiCode>activePage</EuiCode> and handle the{' '}
+            <EuiCode>onPageClick</EuiCode>.
+          </p>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            title={
+              <>
+                For accessibility, it is highly recommended to provide a
+                descriptive <EuiCode>aria-label</EuiCode> for each pagination
+                set.
+              </>
+            }
+          />
+        </>
       ),
       props: { EuiPagination, EuiPaginationButton },
       snippet: manyPagesSnippet,
       demo: <ManyPages />,
+      playground: paginationConfig,
     },
     {
       title: 'Few pages',
@@ -117,10 +133,6 @@ export const PaginationExample = {
         {
           type: GuideSectionTypes.JS,
           code: fewPagesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fewPagesHtml,
         },
       ],
       text: (
@@ -138,10 +150,6 @@ export const PaginationExample = {
         {
           type: GuideSectionTypes.JS,
           code: centeredPaginationSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: centeredPaginationHtml,
         },
       ],
       text: (
@@ -163,10 +171,6 @@ export const PaginationExample = {
           type: GuideSectionTypes.JS,
           code: compressedSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: compressedHtml,
-        },
       ],
       text: (
         <p>
@@ -184,16 +188,16 @@ export const PaginationExample = {
           type: GuideSectionTypes.JS,
           code: customizablePaginationSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: customizablePaginationHtml,
-        },
       ],
       text: (
         <p>
           You can use{' '}
           <Link to="/layout/flex">
             <strong>EuiFlexGroup</strong>
+          </Link>{' '}
+          and{' '}
+          <Link to="/navigation/context-menu#with-single-panel">
+            <strong>EuiContextMenu</strong>
           </Link>{' '}
           to set up this pagination layout, commonly used with{' '}
           <Link to="/tabular-content/tables">tables</Link>.
@@ -203,5 +207,4 @@ export const PaginationExample = {
       demo: <CustomizablePagination />,
     },
   ],
-  playground: paginationConfig,
 };

@@ -1,5 +1,4 @@
-import React, { useState, useCallback } from 'react';
-import { debounce } from 'lodash';
+import React, { useState } from 'react';
 
 import sizes from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_size.scss';
 import zindexs from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_z_index.scss';
@@ -414,7 +413,27 @@ export const SassGuidelines = ({ selectedTheme }) => {
   };
 
   return (
-    <GuidePage title="Sass guidelines">
+    <GuidePage
+      title="Sass guidelines"
+      intro={
+        <EuiText grow={false}>
+          <p>
+            EUI is highly tokenized and highly using the following
+            <EuiLink to="https://sass-lang.com/">Sass</EuiLink> variables when
+            customizing on top of EUI. This way your customizations stay up to
+            date with EUI&apos;s theming.
+          </p>
+          <p>
+            For more information on how to consume these Sass variables in your
+            project, see the{' '}
+            <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/consuming.md#using-our-sass-variables-on-top-of-compiled-css">
+              Consuming wiki page
+            </EuiLink>
+            .
+          </p>
+        </EuiText>
+      }
+    >
       <EuiText>
         <h2>Using EUI global Sass</h2>
 
