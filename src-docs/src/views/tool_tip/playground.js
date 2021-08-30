@@ -1,12 +1,13 @@
 import { PropTypes } from 'react-view';
-import { EuiToolTip } from '../../../../src/components/';
+import { EuiToolTip, EuiIconTip } from '../../../../src/components';
 import {
   propUtilityForPlayground,
   dummyFunction,
   simulateFunction,
+  iconValidator,
 } from '../../services/playground';
 
-export default () => {
+export const toolTipConfig = () => {
   const docgenInfo = Array.isArray(EuiToolTip.__docgenInfo)
     ? EuiToolTip.__docgenInfo[0]
     : EuiToolTip.__docgenInfo;
@@ -43,6 +44,47 @@ export default () => {
       imports: {
         '@elastic/eui': {
           named: ['EuiToolTip'],
+        },
+      },
+      customProps: {
+        onMouseOut: dummyFunction,
+      },
+    },
+  };
+};
+
+export const iconTipConfig = () => {
+  const docgenInfo = Array.isArray(EuiIconTip.__docgenInfo)
+    ? EuiIconTip.__docgenInfo[0]
+    : EuiIconTip.__docgenInfo;
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
+
+  propsToUse.type = iconValidator(propsToUse.type);
+
+  propsToUse.title = {
+    ...propsToUse.title,
+    type: PropTypes.String,
+    value: 'Title',
+  };
+
+  propsToUse.content = {
+    ...propsToUse.content,
+    type: PropTypes.String,
+    value: 'Content',
+  };
+
+  propsToUse.onMouseOut = simulateFunction(propsToUse.onMouseOut);
+
+  return {
+    config: {
+      componentName: 'EuiIconTip',
+      props: propsToUse,
+      scope: {
+        EuiIconTip,
+      },
+      imports: {
+        '@elastic/eui': {
+          named: ['EuiIconTip'],
         },
       },
       customProps: {

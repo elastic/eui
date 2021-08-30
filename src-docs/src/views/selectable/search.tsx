@@ -105,7 +105,8 @@ export default () => {
             alignItems="center"
             gutterSize="s"
             responsive={false}
-            wrap>
+            wrap
+          >
             <EuiFlexItem grow={false}>
               {searchValueExists && <EuiLink>View more results</EuiLink>}
             </EuiFlexItem>

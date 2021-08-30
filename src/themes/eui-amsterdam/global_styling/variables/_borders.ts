@@ -6,9 +6,16 @@
  * Side Public License, v 1.
  */
 
-declare module '@elastic/eui' {
-  // @ts-ignore path only exists at build time
-  export * from '@elastic/eui/src/components/common'; // eslint-disable-line import/no-unresolved
-  // @ts-ignore path only exists at build time
-  export * from '@elastic/eui/src/components/date_picker/react-datepicker'; // eslint-disable-line import/no-unresolved
-}
+import { computed, sizeToPixel } from '../../../../services/theme';
+import {
+  border,
+  EuiThemeBorder,
+} from '../../../../global_styling/variables/_borders';
+
+export const border_ams: EuiThemeBorder = {
+  ...border,
+  radius: {
+    medium: computed(sizeToPixel(0.375)),
+    small: computed(sizeToPixel(0.25)),
+  },
+};

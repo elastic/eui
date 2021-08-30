@@ -31,7 +31,8 @@ export const ElasticChartsThemingExample = {
           EUI provides utilities and documentation for working with{' '}
           <EuiLink
             href="https://elastic.github.io/elastic-charts"
-            target="_blank">
+            target="_blank"
+          >
             Elastic Charts
           </EuiLink>
           , an open source charting library also created and maintained by
@@ -74,7 +75,8 @@ const euiTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LI
               from this{' '}
               <EuiLink
                 href="https://github.com/elastic/kibana/tree/master/src/plugins/charts"
-                target="_blank">
+                target="_blank"
+              >
                 readme
               </EuiLink>
               .

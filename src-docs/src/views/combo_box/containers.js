@@ -137,7 +137,8 @@ export default () => {
     <Fragment>
       <EuiFormRow
         label="Combo box"
-        helpText="This combo box is inside of a form row">
+        helpText="This combo box is inside of a form row"
+      >
         {comboBox}
       </EuiFormRow>
 
@@ -147,7 +148,8 @@ export default () => {
         id="popover"
         button={button}
         isOpen={isPopoverOpen}
-        closePopover={closePopover}>
+        closePopover={closePopover}
+      >
         <div style={{ width: '300px' }}>{comboBox}</div>
       </EuiPopover>
 

@@ -46,7 +46,8 @@ export default () => {
       iconSide="right"
       fill
       iconType="arrowDown"
-      onClick={onButtonClick}>
+      onClick={onButtonClick}
+    >
       Inline form in a popover
     </EuiButton>
   );
@@ -78,7 +79,8 @@ export default () => {
       iconSide="right"
       fill
       iconType="arrowDown"
-      onClick={onButton2Click}>
+      onClick={onButton2Click}
+    >
       Vertical form in a popover
     </EuiButton>
   );
@@ -114,7 +116,8 @@ export default () => {
         id="inlineFormPopover"
         button={button}
         isOpen={isPopoverOpen}
-        closePopover={closePopover}>
+        closePopover={closePopover}
+      >
         <div style={{ width: 500 }}>{formSample}</div>
       </EuiPopover>
       &emsp;
@@ -123,7 +126,8 @@ export default () => {
         button={button2}
         isOpen={isPopover2Open}
         closePopover={closePopover2}
-        initialFocus="[name='popfirst']">
+        initialFocus="[name='popfirst']"
+      >
         <div style={{ width: '300px' }}>{formSample2}</div>
       </EuiPopover>
     </div>

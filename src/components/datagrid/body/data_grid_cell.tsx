@@ -62,24 +62,27 @@ const EuiDataGridCellContent: FunctionComponent<
     );
 
     return (
-      <div
-        ref={setCellContentsRef}
-        style={
-          rowHeightsOptions && rowHeightUtils
-            ? rowHeightUtils.getStylesForCell(rowHeightsOptions, rowIndex)
-            : {}
-        }
-        className={!rowHeightsOptions ? 'euiDataGridRowCell__truncate' : ''}>
-        <CellElement
-          isDetails={false}
-          data-test-subj="cell-content"
-          rowIndex={rowIndex}
-          {...rest}
-        />
+      <>
+        <div
+          ref={setCellContentsRef}
+          className={!rowHeightsOptions ? 'euiDataGridRowCell__truncate' : ''}
+          style={
+            rowHeightsOptions
+              ? getStylesForCell(rowHeightsOptions, rowIndex)
+              : {}
+          }
+        >
+          <CellElement
+            isDetails={false}
+            data-test-subj="cell-content"
+            rowIndex={rowIndex}
+            {...rest}
+          />
+        </div>
         <EuiScreenReaderOnly>
           <p>{positionText}</p>
         </EuiScreenReaderOnly>
-      </div>
+      </>
     );
   }
 );
@@ -286,6 +289,12 @@ export class EuiDataGridCell extends Component<
     }
 
     return false;
+  }
+
+  componentDidUpdate(prevProps: EuiDataGridCellProps) {
+    if (this.props.columnId !== prevProps.columnId) {
+      this.setCellProps({});
+    }
   }
 
   setCellProps = (cellProps: HTMLAttributes<HTMLDivElement>) => {
@@ -500,7 +509,8 @@ export class EuiDataGridCell extends Component<
           this.setState({ isEntered: false }, this.preventTabbing);
         }}
         style={this.props.rowHeightsOptions ? { height: '100%' } : {}}
-        clickOutsideDisables={true}>
+        clickOutsideDisables={true}
+      >
         <div className={anchorClass}>
           <div className={expandClass}>
             <EuiDataGridCellContent {...cellContentProps} />
@@ -549,7 +559,8 @@ export class EuiDataGridCell extends Component<
               this.props.rowHeightsOptions
                 ? 'euiDataGridRowCell__contentByHeight'
                 : 'euiDataGridRowCell__content'
-            }>
+            }
+          >
             <EuiDataGridCellPopover
               anchorContent={anchorContent}
               cellContentProps={cellContentProps}
@@ -583,7 +594,8 @@ export class EuiDataGridCell extends Component<
         onMouseEnter={() => {
           this.setState({ enableInteractions: true });
         }}
-        onBlur={this.onBlur}>
+        onBlur={this.onBlur}
+      >
         {innerContent}
       </div>
     );

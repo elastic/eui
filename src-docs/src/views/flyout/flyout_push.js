@@ -21,7 +21,8 @@ export default () => {
         type="push"
         size="s"
         onClose={() => setIsFlyoutVisible(false)}
-        aria-labelledby="pushedFlyoutTitle">
+        aria-labelledby="pushedFlyoutTitle"
+      >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
             <h2 id="pushedFlyoutTitle">A pushed flyout</h2>

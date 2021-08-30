@@ -135,7 +135,8 @@ export class EuiFormControlLayout extends Component<EuiFormControlLayoutProps> {
     return (
       <EuiFormLabel
         htmlFor={inputId}
-        className={`euiFormControlLayout__${side}`}>
+        className={`euiFormControlLayout__${side}`}
+      >
         {string}
       </EuiFormLabel>
     );

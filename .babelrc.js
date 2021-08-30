@@ -12,7 +12,7 @@ module.exports = {
       "modules": process.env.BABEL_MODULES ? process.env.BABEL_MODULES === 'false' ? false : process.env.BABEL_MODULES : "commonjs" // babel's default is commonjs
     }],
     ["@babel/typescript", { isTSX: true, allExtensions: true }],
-    "@babel/react"
+    "@babel/react",
   ],
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",

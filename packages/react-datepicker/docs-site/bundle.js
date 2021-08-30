@@ -29622,35 +29622,35 @@
 	      var minYear = _this.props.minDate ? _this.props.minDate.year() : null;
 	      var maxYear = _this.props.maxDate ? _this.props.maxDate.year() : null;
 
-	      if (!maxYear || !_this.state.yearsList.find(function (year) {
-	        return year === maxYear;
-	      })) {
-	        options.unshift(_react2.default.createElement(
-	          "div",
-	          {
-	            className: "react-datepicker__year-option",
-	            ref: "upcoming",
-	            key: "upcoming",
-	            onClick: _this.incrementYears
-	          },
-	          _react2.default.createElement("a", { className: "react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-upcoming" })
-	        ));
-	      }
+	      // These elements were hidden with `display: none;` by custom EUI styles,
+	      // which caused problems when `minDate` or `maxDate` were configured: https://github.com/elastic/eui/issues/5058
+	      // Keeping a reference for now, but we may opt for removing these 
+	      // elements entirely during https://github.com/elastic/eui/issues/3901
+	      // if (!maxYear || !this.state.yearsList.find(year => year === maxYear)) {
+	      //   options.unshift(
+	      //     <div
+	      //       className="react-datepicker__year-option"
+	      //       ref={"upcoming"}
+	      //       key={"upcoming"}
+	      //       onClick={this.incrementYears}
+	      //     >
+	      //       <a className="react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-upcoming" />
+	      //     </div>
+	      //   );
+	      // }
 
-	      if (!minYear || !_this.state.yearsList.find(function (year) {
-	        return year === minYear;
-	      })) {
-	        options.push(_react2.default.createElement(
-	          "div",
-	          {
-	            className: "react-datepicker__year-option",
-	            ref: "previous",
-	            key: "previous",
-	            onClick: _this.decrementYears
-	          },
-	          _react2.default.createElement("a", { className: "react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-previous" })
-	        ));
-	      }
+	      // if (!minYear || !this.state.yearsList.find(year => year === minYear)) {
+	      //   options.push(
+	      //     <div
+	      //       className="react-datepicker__year-option"
+	      //       ref={"previous"}
+	      //       key={"previous"}
+	      //       onClick={this.decrementYears}
+	      //     >
+	      //       <a className="react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-previous" />
+	      //     </div>
+	      //   );
+	      // }
 
 	      return options;
 	    };

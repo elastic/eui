@@ -181,7 +181,8 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
       style={avatarStyle}
       aria-label={name}
       title={name}
-      {...rest}>
+      {...rest}
+    >
       {content}
     </div>
   );

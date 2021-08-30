@@ -32,7 +32,8 @@ export default () => {
         listProps={{ bordered: true }}
         isLoading={isLoading}
         loadingMessage={useCustomMessage ? loadingMessage : undefined}
-        emptyMessage={useCustomMessage ? emptyMessage : undefined}>
+        emptyMessage={useCustomMessage ? emptyMessage : undefined}
+      >
         {(list) => list}
       </EuiSelectable>
     </Fragment>

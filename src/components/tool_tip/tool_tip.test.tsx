@@ -47,7 +47,8 @@ describe('EuiToolTip', () => {
         id="id"
         content="content"
         {...requiredProps}
-        display="block">
+        display="block"
+      >
         <button>Trigger</button>
       </EuiToolTip>
     );

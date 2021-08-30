@@ -221,14 +221,16 @@ const GlobalFilterForm = (props) => {
           <EuiButton
             isDisabled={selectedValues.length < 1 && customLabel.length === 0}
             fill
-            onClick={onAdd}>
+            onClick={onAdd}
+          >
             Add
           </EuiButton>
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
           <EuiButtonEmpty
             flush="right"
-            onClick={selectedObject ? onCancel : resetForm}>
+            onClick={selectedObject ? onCancel : resetForm}
+          >
             {selectedObject ? 'Cancel' : 'Reset form'}
           </EuiButtonEmpty>
         </EuiFlexItem>

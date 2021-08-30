@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component } from 'react';
+import React, { Component, FocusEvent } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
@@ -33,7 +33,7 @@ enum ShiftDirection {
 export type EuiSuperSelectProps<T extends string> = CommonProps &
   Omit<
     EuiSuperSelectControlProps<T>,
-    'onChange' | 'onClick' | 'options' | 'value'
+    'onChange' | 'onClick' | 'onFocus' | 'onBlur' | 'options' | 'value'
   > & {
     /**
      * Pass an array of options that must at least include:
@@ -54,6 +54,8 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
      * You must pass an `onChange` function to handle the update of the value
      */
     onChange?: (value: T) => void;
+    onFocus?: (event?: FocusEvent) => void;
+    onBlur?: (event?: FocusEvent) => void;
 
     /**
      * Change to `true` if you want horizontal lines between options.
@@ -136,6 +138,15 @@ export class EuiSuperSelect<T extends string> extends Component<
           } else {
             focusSelected();
           }
+        } else {
+          const firstFocusableOption = this.props.options.findIndex(
+            ({ disabled }) => disabled !== true
+          );
+          this.focusItemAt(firstFocusableOption);
+        }
+
+        if (this.props.onFocus) {
+          this.props.onFocus();
         }
       });
     };
@@ -147,12 +158,15 @@ export class EuiSuperSelect<T extends string> extends Component<
     this.setState({
       isPopoverOpen: false,
     });
+
+    if (this.props.onBlur) {
+      this.props.onBlur();
+    }
   };
 
   itemClicked = (value: T) => {
-    this.setState({
-      isPopoverOpen: false,
-    });
+    this.closePopover();
+
     if (this.props.onChange) {
       this.props.onChange(value);
     }
@@ -289,7 +303,8 @@ export class EuiSuperSelect<T extends string> extends Component<
           role="option"
           id={value}
           aria-selected={valueOfSelected === value}
-          {...optionRest}>
+          {...optionRest}
+        >
           {dropdownDisplay || inputDisplay}
         </EuiContextMenuItem>
       );
@@ -302,7 +317,8 @@ export class EuiSuperSelect<T extends string> extends Component<
         isOpen={isOpen || this.state.isPopoverOpen}
         closePopover={this.closePopover}
         panelPaddingSize="none"
-        fullWidth={fullWidth}>
+        fullWidth={fullWidth}
+      >
         <EuiScreenReaderOnly>
           <p role="alert">
             <EuiI18n
@@ -317,7 +333,8 @@ export class EuiSuperSelect<T extends string> extends Component<
           className="euiSuperSelect__listbox"
           role="listbox"
           aria-activedescendant={valueOfSelected}
-          tabIndex={0}>
+          tabIndex={0}
+        >
           {items}
         </div>
       </EuiInputPopover>

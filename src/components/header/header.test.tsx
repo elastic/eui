@@ -102,7 +102,8 @@ describe('EuiHeader', () => {
             {
               items: ['Item 1', 'Item 2'],
             },
-          ]}>
+          ]}
+        >
           Child
         </EuiHeader>
       );

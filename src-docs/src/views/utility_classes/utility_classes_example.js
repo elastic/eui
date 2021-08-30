@@ -54,11 +54,15 @@ export const UtilityClassesExample = {
           <EuiCallOut
             color="warning"
             iconType="accessibility"
-            title="Scrollable regions must be focusable">
+            title="Scrollable regions must be focusable, promoted to region and with the right aria-label"
+          >
             <p>
               To ensure keyboard-only users have access to the scrollable
               regions, the optimal solution is to apply{' '}
-              <EuiCode>{'tabIndex="0"'}</EuiCode> to the region.{' '}
+              <EuiCode>{'tabIndex="0"'}</EuiCode> to the region. Add{' '}
+              <EuiCode language="html">{'role="region"'}</EuiCode> and supply an
+              accessible name by using{' '}
+              <EuiCode language="html">aria-label</EuiCode> or another method.
               <EuiLink href="https://dequeuniversity.com/rules/axe/4.1/scrollable-region-focusable">
                 Learn more about the{' '}
                 <EuiCode>scrollable-region-focusable</EuiCode> rule at Deque.

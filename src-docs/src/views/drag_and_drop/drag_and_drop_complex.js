@@ -67,7 +67,8 @@ export default () => {
         direction="horizontal"
         withPanel
         spacing="l"
-        style={{ display: 'flex' }}>
+        style={{ display: 'flex' }}
+      >
         {list.map((did, didx) => (
           <EuiDraggable
             key={did}
@@ -88,14 +89,16 @@ export default () => {
                   droppableId={`COMPLEX_DROPPABLE_AREA_${did}`}
                   type="MICRO"
                   spacing="m"
-                  style={{ flex: '1 0 50%' }}>
+                  style={{ flex: '1 0 50%' }}
+                >
                   {lists[`COMPLEX_DROPPABLE_AREA_${did}`].map(
                     ({ content, id }, idx) => (
                       <EuiDraggable
                         key={id}
                         index={idx}
                         draggableId={id}
-                        spacing="m">
+                        spacing="m"
+                      >
                         <EuiPanel>{content}</EuiPanel>
                       </EuiDraggable>
                     )

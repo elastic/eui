@@ -7,7 +7,8 @@ const EuiIconLogoLogstash = ({ title, titleId, ...props }) => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <path fill="#3EBEB0" d="M19 32h11V20H19z" />
     <path fill="#FEC514" d="M4 0H3v20h13v-8C16 5.373 10.627 0 4 0" />

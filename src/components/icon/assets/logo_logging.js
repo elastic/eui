@@ -7,7 +7,8 @@ const EuiIconLogoLogging = ({ title, titleId, ...props }) => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <path fill="#0080D5" d="M2 10v13a9 9 0 019 9h13c0-12.15-9.85-22-22-22" />
     <path

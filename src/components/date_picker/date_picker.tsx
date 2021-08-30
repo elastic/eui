@@ -163,6 +163,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
         'euiFieldText--fullWidth': fullWidth,
         'euiFieldText-isLoading': isLoading,
         'euiFieldText--withIcon': !inline && showIcon,
+        'euiFieldText--isClearable': !inline && selected && onClear,
         'euiFieldText-isInvalid': isInvalid,
       },
       className
@@ -213,7 +214,9 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
       // This is easy enough to do. It can conflict with isLoading state
       this.props.isClearable ||
       // There is no reason to launch the datepicker in its own modal. Can always build these ourselves
-      this.props.withPortal
+      this.props.withPortal ||
+      // Causes Error: Cannot read property 'clone' of undefined
+      this.props.showMonthYearDropdown
     ) {
       return (
         <EuiErrorBoundary>
@@ -223,60 +226,57 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
     }
 
     return (
-      <span>
-        <span className={classes}>
-          <EuiFormControlLayout
-            icon={optionalIcon}
-            fullWidth={fullWidth}
-            clear={selected && onClear ? { onClick: onClear } : undefined}
-            isLoading={isLoading}>
-            <EuiValidatableControl isInvalid={isInvalid}>
-              <EuiI18nConsumer>
-                {({ locale: contextLocale }) => {
-                  return (
-                    <DatePicker
-                      adjustDateOnChange={adjustDateOnChange}
-                      calendarClassName={calendarClassName}
-                      className={datePickerClasses}
-                      customInput={customInput}
-                      dateFormat={fullDateFormat}
-                      dayClassName={dayClassName}
-                      disabled={disabled}
-                      excludeDates={excludeDates}
-                      filterDate={filterDate}
-                      injectTimes={injectTimes}
-                      inline={inline}
-                      locale={locale || contextLocale}
-                      maxDate={maxDate}
-                      maxTime={maxTime}
-                      minDate={minDate}
-                      minTime={minTime}
-                      onChange={onChange}
-                      openToDate={openToDate}
-                      placeholderText={placeholder}
-                      popperClassName={popperClassName}
-                      ref={inputRef}
-                      selected={selected}
-                      shouldCloseOnSelect={shouldCloseOnSelect}
-                      showMonthDropdown
-                      showTimeSelect={
-                        showTimeSelectOnly ? true : showTimeSelect
-                      }
-                      showTimeSelectOnly={showTimeSelectOnly}
-                      showYearDropdown
-                      timeFormat={timeFormat}
-                      utcOffset={utcOffset}
-                      yearDropdownItemNumber={7}
-                      accessibleMode
-                      popperPlacement={popoverPlacement}
-                      {...rest}
-                    />
-                  );
-                }}
-              </EuiI18nConsumer>
-            </EuiValidatableControl>
-          </EuiFormControlLayout>
-        </span>
+      <span className={classes}>
+        <EuiFormControlLayout
+          icon={optionalIcon}
+          fullWidth={fullWidth}
+          clear={selected && onClear ? { onClick: onClear } : undefined}
+          isLoading={isLoading}
+        >
+          <EuiValidatableControl isInvalid={isInvalid}>
+            <EuiI18nConsumer>
+              {({ locale: contextLocale }) => {
+                return (
+                  <DatePicker
+                    adjustDateOnChange={adjustDateOnChange}
+                    calendarClassName={calendarClassName}
+                    className={datePickerClasses}
+                    customInput={customInput}
+                    dateFormat={fullDateFormat}
+                    dayClassName={dayClassName}
+                    disabled={disabled}
+                    excludeDates={excludeDates}
+                    filterDate={filterDate}
+                    injectTimes={injectTimes}
+                    inline={inline}
+                    locale={locale || contextLocale}
+                    maxDate={maxDate}
+                    maxTime={maxTime}
+                    minDate={minDate}
+                    minTime={minTime}
+                    onChange={onChange}
+                    openToDate={openToDate}
+                    placeholderText={placeholder}
+                    popperClassName={popperClassName}
+                    ref={inputRef}
+                    selected={selected}
+                    shouldCloseOnSelect={shouldCloseOnSelect}
+                    showMonthDropdown
+                    showTimeSelect={showTimeSelectOnly ? true : showTimeSelect}
+                    showTimeSelectOnly={showTimeSelectOnly}
+                    showYearDropdown
+                    timeFormat={timeFormat}
+                    utcOffset={utcOffset}
+                    yearDropdownItemNumber={7}
+                    accessibleMode
+                    popperPlacement={popoverPlacement}
+                    {...rest}
+                  />
+                );
+              }}
+            </EuiI18nConsumer>
+          </EuiValidatableControl>
+        </EuiFormControlLayout>
       </span>
     );
   }

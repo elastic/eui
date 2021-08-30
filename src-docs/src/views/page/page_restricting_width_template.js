@@ -12,7 +12,8 @@ export default ({ button = <></>, content, sideNav }) => {
         pageTitle: 'Page title',
         rightSideItems: [button],
         description: 'Restricting the width to 75%.',
-      }}>
+      }}
+    >
       {content}
     </EuiPageTemplate>
   );

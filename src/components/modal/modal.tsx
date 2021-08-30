@@ -83,10 +83,12 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
           onKeyDown={onKeyDown}
           tabIndex={0}
           style={newStyle || style}
-          {...rest}>
+          {...rest}
+        >
           <EuiI18n
             token="euiModal.closeModal"
-            default="Closes this modal window">
+            default="Closes this modal window"
+          >
             {(closeModal: string) => (
               <EuiButtonIcon
                 iconType="cross"

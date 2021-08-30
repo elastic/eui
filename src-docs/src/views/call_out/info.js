@@ -6,7 +6,8 @@ export default () => (
   <div>
     <EuiCallOut
       title="Check it out, here's a really long title that will wrap within a narrower browser"
-      iconType="search">
+      iconType="search"
+    >
       <p>
         Here&rsquo;s some stuff that you need to know. We can make this text
         really long so that, when viewed within a browser that&rsquo;s fairly

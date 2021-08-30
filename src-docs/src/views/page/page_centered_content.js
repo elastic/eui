@@ -28,7 +28,8 @@ export default ({ button = <></>, content, sideNav }) => (
         horizontalPosition="center"
         paddingSize="none"
         color="subdued"
-        hasShadow={false}>
+        hasShadow={false}
+      >
         <EuiEmptyPrompt title={<span>No spice</span>} body={content} />
       </EuiPageContent>
     </EuiPageBody>

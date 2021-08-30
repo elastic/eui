@@ -131,7 +131,8 @@ color: $${foreground};`;
         }
         beforeMessage={beforeMessage}
         afterMessage={<small>Copied!</small>}
-        textToCopy={textToCopy}>
+        textToCopy={textToCopy}
+      >
         {(copy) => (
           <EuiBadge
             className="guideColorSection__button"
@@ -142,7 +143,8 @@ color: $${foreground};`;
             style={{
               backgroundColor: palette[background].rgba,
               color: palette[foreground].rgba,
-            }}>
+            }}
+          >
             {foreground}
           </EuiBadge>
         )}

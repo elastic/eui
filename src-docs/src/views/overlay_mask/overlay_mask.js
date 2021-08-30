@@ -16,7 +16,8 @@ export default () => {
       <EuiOverlayMask
         onClick={() => {
           changeMask(false);
-        }}>
+        }}
+      >
         <EuiTitle>
           <h2> Click anywhere to close overlay. </h2>
         </EuiTitle>
@@ -29,7 +30,8 @@ export default () => {
       <EuiButton
         onClick={() => {
           changeMaskWithClick(false);
-        }}>
+        }}
+      >
         Click this button to close
       </EuiButton>
     </EuiOverlayMask>
@@ -40,7 +42,8 @@ export default () => {
       <EuiButton
         onClick={() => {
           changeMask(true);
-        }}>
+        }}
+      >
         Overlay with onClick
       </EuiButton>
       <EuiSpacer size="xxl" />

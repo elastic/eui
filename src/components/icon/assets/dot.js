@@ -7,7 +7,8 @@ const EuiIconDot = ({ title, titleId, ...props }) => (
     viewBox="0 0 16 16"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <circle cx={8} cy={8} r={4} />
   </svg>

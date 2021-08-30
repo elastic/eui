@@ -76,7 +76,8 @@ export const Sparklines = () => {
               title=""
               description="Increase over time"
               titleColor="success"
-              textAlign="right">
+              textAlign="right"
+            >
               <EuiSpacer size="s" />
               <Chart size={{ height: 48 }}>
                 <Settings theme={theme} showLegend={false} tooltip="none" />
@@ -109,7 +110,8 @@ export const Sparklines = () => {
               }
               description="Major decrease over time"
               titleColor="danger"
-              textAlign="right">
+              textAlign="right"
+            >
               <EuiSpacer size="s" />
               <Chart size={{ height: 16 }}>
                 <Settings theme={theme} showLegend={false} tooltip="none" />
@@ -134,7 +136,8 @@ export const Sparklines = () => {
               title=""
               description="Subtle decrease"
               titleColor="danger"
-              textAlign="right">
+              textAlign="right"
+            >
               <EuiSpacer size="s" />
               <Chart size={{ height: 48 }}>
                 <Settings theme={theme} showLegend={false} tooltip="none" />

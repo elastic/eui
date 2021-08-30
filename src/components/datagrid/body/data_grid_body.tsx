@@ -70,7 +70,8 @@ const providedPopoverContents: EuiDataGridPopoverContents = {
         isCopyable
         transparentBackground
         paddingSize="none"
-        language="json">
+        language="json"
+      >
         {formattedText}
       </EuiCodeBlock>
     );
@@ -261,7 +262,8 @@ const InnerElement: VariableSizeGridProps['innerElementType'] = forwardRef<
           ...style,
           height: style.height + headerRowHeight,
         }}
-        {...rest}>
+        {...rest}
+      >
         {headerRow}
         {children}
       </div>
@@ -659,17 +661,20 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   return (
     <EuiMutationObserver
       observerOptions={{ subtree: true, childList: true }}
-      onMutation={preventTabbing}>
+      onMutation={preventTabbing}
+    >
       {(mutationRef) => (
         <div
           style={{ width: '100%', height: '100%', overflow: 'hidden' }}
           ref={(el) => {
             wrapperRef.current = el;
             mutationRef(el);
-          }}>
+          }}
+        >
           {(IS_JEST_ENVIRONMENT || finalWidth > 0) && (
             <DataGridWrapperRowsContext.Provider
-              value={{ headerRowHeight, headerRow, footerRow }}>
+              value={{ headerRowHeight, headerRow, footerRow }}
+            >
               <Grid
                 ref={setGridRef}
                 innerElementType={InnerElement}
@@ -713,7 +718,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                   IS_JEST_ENVIRONMENT || headerRowHeight > 0
                     ? visibleRowIndices.length
                     : 0
-                }>
+                }
+              >
                 {Cell}
               </Grid>
             </DataGridWrapperRowsContext.Provider>

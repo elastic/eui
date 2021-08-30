@@ -723,13 +723,9 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     className
   );
 
-  const controlBtnClasses = classNames(
-    'euiDataGrid__controlBtn',
-    {
-      'euiDataGrid__controlBtn--active': isFullScreen,
-    },
-    className
-  );
+  const controlBtnClasses = classNames('euiDataGrid__controlBtn', {
+    'euiDataGrid__controlBtn--active': isFullScreen,
+  });
 
   // By default the toolbar appears
   const showToolbar = !!toolbarVisibility;
@@ -799,13 +795,15 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
       <DataGridSortingContext.Provider value={sorting}>
         <EuiFocusTrap
           disabled={!isFullScreen}
-          className="euiDataGrid__focusWrap">
+          className="euiDataGrid__focusWrap"
+        >
           <div
             className={classes}
             onKeyDown={handleGridKeyDown}
             style={isFullScreen ? undefined : { width, height }}
             ref={setResizeRef}
-            {...rest}>
+            {...rest}
+          >
             {(IS_JEST_ENVIRONMENT || defaultColumnWidth) && (
               <>
                 {showToolbar && (
@@ -833,7 +831,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                     headerIsInteractive,
                     setFocusedCell
                   )}
-                  className="euiDataGrid__verticalScroll">
+                  className="euiDataGrid__verticalScroll"
+                >
                   <div className="euiDataGrid__overflow">
                     {inMemory ? (
                       <EuiDataGridInMemoryRenderer
@@ -857,7 +856,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                       role="grid"
                       id={gridId}
                       {...wrappingDivFocusProps}
-                      {...gridAriaProps}>
+                      {...gridAriaProps}
+                    >
                       <EuiDataGridBody
                         isFullScreen={isFullScreen}
                         columns={orderedVisibleColumns}

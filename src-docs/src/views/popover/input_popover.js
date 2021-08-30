@@ -42,7 +42,8 @@ export default () => {
         isOpen={isPopoverOpen}
         closePopover={() => {
           toggleIsPopoverOpen(false);
-        }}>
+        }}
+      >
         Popover content
       </EuiInputPopover>
 
@@ -54,7 +55,8 @@ export default () => {
         closePopover={() => {
           toggleIsPopoverOpenTwo(false);
           setInputWidth(200);
-        }}>
+        }}
+      >
         Popover will adjust in size as the input does
       </EuiInputPopover>
     </React.Fragment>

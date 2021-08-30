@@ -1479,6 +1479,48 @@ describe('EuiDataGrid', () => {
         ['1-ColumnB', '1-ColumnA'],
       ]);
     });
+
+    it('resets cell props on column reorder', () => {
+      const columnVisibility = {
+        visibleColumns: ['ColumnA', 'ColumnB'],
+        setVisibleColumns: (visibleColumns: string[]) => {
+          columnVisibility.visibleColumns = visibleColumns;
+          component.setProps({ columnVisibility });
+        },
+      };
+
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          columns={[{ id: 'ColumnA' }, { id: 'ColumnB' }]}
+          columnVisibility={columnVisibility}
+          rowCount={1}
+          renderCellValue={({ rowIndex, columnId, setCellProps }) => {
+            useEffect(() => {
+              if (columnId === 'ColumnB') {
+                setCellProps({ style: { color: 'blue' } });
+              }
+            }, [columnId, rowIndex, setCellProps]);
+
+            return `${rowIndex}-${columnId}`;
+          }}
+        />
+      );
+
+      const getCellColorAt = (index: number) =>
+        component
+          .find('[data-test-subj="dataGridRowCell"]')
+          .at(index)
+          .prop('style')?.color;
+
+      expect(getCellColorAt(0)).toEqual(undefined);
+      expect(getCellColorAt(1)).toEqual('blue');
+
+      moveColumnToIndex(component, 'B', 0);
+
+      expect(getCellColorAt(0)).toEqual('blue');
+      expect(getCellColorAt(1)).toEqual(undefined);
+    });
   });
 
   describe('column sorting', () => {
@@ -1859,6 +1901,56 @@ describe('EuiDataGrid', () => {
       closeColumnSorterSelection(component);
       closeColumnSorter(component);
     });
+
+    it('"Sort fields" button text updates', () => {
+      const component = mount(
+        <EuiDataGrid
+          aria-labelledby="#test"
+          columns={[{ id: 'A' }, { id: 'B' }]}
+          columnVisibility={{
+            visibleColumns: ['A', 'B'],
+            setVisibleColumns: () => {},
+          }}
+          sorting={{
+            onSort: () => {},
+            columns: [],
+          }}
+          rowCount={2}
+          renderCellValue={({ rowIndex, columnId }) =>
+            `${rowIndex}-${columnId}`
+          }
+        />
+      );
+
+      // Get column sorting button
+      const sortColumn = component.find(
+        'EuiButtonEmpty[data-test-subj="dataGridColumnSortingButton"]'
+      );
+      const getButtonText = (): string =>
+        sortColumn.find('span[className="euiButtonEmpty__text"]').text();
+      expect(getButtonText()).toEqual('Sort fields');
+
+      // Update sorted columns
+      component.setProps({
+        sorting: {
+          columns: [{ id: 'A', direction: 'asc' }],
+          onSort: () => {},
+        },
+      });
+      expect(getButtonText()).toEqual('1 field sorted');
+
+      // Update sorted columns again
+      component.setProps({
+        sorting: {
+          columns: [
+            { id: 'A', direction: 'asc' },
+            { id: 'B', direction: 'asc' },
+          ],
+          onSort: () => {},
+        },
+      });
+      expect(getButtonText()).toEqual('2 fields sorted');
+    });
   });
 
   describe('render column actions', () => {
@@ -2070,7 +2162,8 @@ describe('EuiDataGrid', () => {
                       aria-label="test1 aria label"
                       data-test-subj={
                         isExpanded ? 'alertActionPopover' : 'alertAction'
-                      }>
+                      }
+                    >
                       test1
                     </Component>
                   );
@@ -2083,7 +2176,8 @@ describe('EuiDataGrid', () => {
                       aria-label="test2 aria label"
                       data-test-subj={
                         isExpanded ? 'happyActionPopover' : 'happyAction'
-                      }>
+                      }
+                    >
                       test2
                     </Component>
                   );
@@ -2131,7 +2225,7 @@ describe('EuiDataGrid', () => {
     });
   });
 
-  describe('rowHeighsOptions', () => {
+  describe('rowHeightsOptions', () => {
     it('all row heights options applied correctly', async () => {
       const component = mount(
         <EuiDataGrid

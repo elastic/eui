@@ -16,7 +16,8 @@ export default () => (
       Here is an example of a{' '}
       <EuiLink
         href="https://github.com/elastic/eui/blob/master/wiki/react-router.md#how-react-router-works"
-        onClick={() => {}}>
+        onClick={() => {}}
+      >
         link
       </EuiLink>{' '}
       with both an <EuiCode>href</EuiCode> and an <EuiCode>onClick</EuiCode>{' '}

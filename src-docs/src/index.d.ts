@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+// TODO: Delete this file when the @emotion reference is added to `src/index.d.ts`
+
 /* eslint-disable @typescript-eslint/triple-slash-reference */
-/// <reference path="./components/index.d.ts" />
-/// <reference path="./themes/index.d.ts" />
+/// <reference types="@emotion/react/types/css-prop" />

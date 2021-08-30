@@ -15,13 +15,15 @@ export default () => {
         <EuiButton
           iconType="arrowDown"
           iconSide="right"
-          onClick={onButtonClick}>
+          onClick={onButtonClick}
+        >
           Text scaling
         </EuiButton>
       }
       isOpen={isPopoverOpen}
       closePopover={closePopover}
-      panelClassName="guideDemo__textLines">
+      panelClassName="guideDemo__textLines"
+    >
       <EuiText style={{ width: 100 }}>
         <p>This has a custom class that applies some grid lines.</p>
       </EuiText>
