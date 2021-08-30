@@ -21,6 +21,10 @@ export default () => {
   const [isPopover2Open, setIsPopover2Open] = useState(false);
   const [isSwitchChecked, setIsSwitchChecked] = useState(true);
 
+  const switchID = htmlIdGenerator('switch')();
+  const popoverID__1 = htmlIdGenerator('popover')();
+  const popoverID__2 = htmlIdGenerator('popover')();
+
   const onButtonClick = () => {
     setIsPopoverOpen(!isPopoverOpen);
   };
@@ -87,7 +91,7 @@ export default () => {
     <EuiForm component="form">
       <EuiFormRow>
         <EuiSwitch
-          id={htmlIdGenerator()()}
+          id={switchID}
           name="popswitch"
           label="Isn't this popover form cool?"
           checked={isSwitchChecked}
@@ -111,7 +115,7 @@ export default () => {
   return (
     <div>
       <EuiPopover
-        id="inlineFormPopover"
+        id={popoverID__1}
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}>
@@ -119,7 +123,7 @@ export default () => {
       </EuiPopover>
       &emsp;
       <EuiPopover
-        id="formPopover"
+        id={popoverID__2}
         button={button2}
         isOpen={isPopover2Open}
         closePopover={closePopover2}
