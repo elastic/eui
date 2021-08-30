@@ -48,6 +48,7 @@ const ImportFontFamily = () => {
     case 'dark':
       importString = `@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
 @import url('https://rsms.me/inter/inter-ui.css');`;
+      break;
     default:
       importString =
         "@import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10,300..700;0,300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap');";
@@ -58,6 +59,40 @@ const ImportFontFamily = () => {
       {importString}
     </EuiCodeBlock>
   );
+};
+
+const VariableLink = () => {
+  const themeContext = useContext(ThemeContext);
+  let url;
+  switch (themeContext.theme) {
+    case 'light':
+    case 'dark':
+      url =
+        'https://github.com/elastic/eui/blob/master/src/global_styling/variables/_typography.scss';
+      break;
+    default:
+      url =
+        'https://github.com/elastic/eui/blob/master/src/themes/eui-amsterdam/global_styling/variables/_typography.scss';
+  }
+
+  return <EuiLink href={url}>variables</EuiLink>;
+};
+
+const MixinLink = () => {
+  const themeContext = useContext(ThemeContext);
+  let url;
+  switch (themeContext.theme) {
+    case 'light':
+    case 'dark':
+      url =
+        'https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_typography.scss';
+      break;
+    default:
+      url =
+        'https://github.com/elastic/eui/blob/master/src/themes/eui-amsterdam/global_styling/mixins/_typography.scss';
+  }
+
+  return <EuiLink href={url}>mixins</EuiLink>;
 };
 
 export const Typography = ({}) => {
@@ -105,16 +140,9 @@ export const Typography = ({}) => {
         <ImportFontFamily />
 
         <p>
-          View the{' '}
-          <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/variables/_typography.scss">
-            variable
-          </EuiLink>{' '}
-          and{' '}
-          <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_typography.scss">
-            mixins
-          </EuiLink>{' '}
-          Sass code for typography. For most of your components we recommend
-          using <Link to="/display/text">EuiText</Link> or{' '}
+          View the <VariableLink /> and <MixinLink /> Sass code for typography.
+          For most of your components we recommend using{' '}
+          <Link to="/display/text">EuiText</Link> or{' '}
           <Link to="/display/title">EuiTitle</Link> instead of these Sass
           variables.
         </p>
@@ -182,7 +210,7 @@ export const Typography = ({}) => {
             <EuiSpacer />
 
             {euiTextColors.map((color) => (
-              <RenderPaletteColor color={color} />
+              <RenderPaletteColor key={color} color={color} />
             ))}
 
             <h3>Font families</h3>

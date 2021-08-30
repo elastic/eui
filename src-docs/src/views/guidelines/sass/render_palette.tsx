@@ -25,7 +25,6 @@ export const RenderPaletteColor = ({ color }: { color: string }) => {
       alignItems="center"
       gutterSize="s"
       className="guideSass__swatchItem"
-      key={color}
     >
       <EuiFlexItem grow={false}>
         <div
