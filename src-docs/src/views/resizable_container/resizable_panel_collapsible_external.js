@@ -10,6 +10,7 @@ import {
   EuiFlexItem,
   EuiText,
 } from '../../../../src/components';
+import { htmlIdGenerator } from '../../../../src/services';
 
 const toggleButtons = [
   {
@@ -26,6 +27,9 @@ export default () => {
   const collapseFn = useRef(() => {});
 
   const [toggleIdToSelectedMap, setToggleIdToSelectedMap] = useState({});
+  const panelID__1 = htmlIdGenerator('panel')();
+  const panelID__2 = htmlIdGenerator('panel')();
+  const panelID__3 = htmlIdGenerator('panel')();
 
   const onCollapse = (optionId) => {
     const newToggleIdToSelectedMap = {
@@ -61,7 +65,7 @@ export default () => {
             togglePanel(id, { direction });
           return (
             <>
-              <EuiResizablePanel id="panel1" initialSize={30} minSize="10%">
+              <EuiResizablePanel id={panelID__1} initialSize={30} minSize="10%">
                 <EuiPanel paddingSize="l" style={{ height: '100%' }}>
                   <EuiTitle>
                     <p>Panel 1</p>
@@ -71,7 +75,10 @@ export default () => {
 
               <EuiResizableButton />
 
-              <EuiResizablePanel id="panel2" initialSize={35} minSize="50px">
+              <EuiResizablePanel
+                id={panelID__2}
+                initialSize={35}
+                minSize="50px">
                 <EuiPanel paddingSize="l" style={{ height: '100%' }}>
                   <EuiTitle>
                     <p>Panel 2</p>
@@ -83,7 +90,7 @@ export default () => {
 
               <EuiResizablePanel
                 mode={['custom', { position: 'top' }]}
-                id="panel3"
+                id={panelID__3}
                 initialSize={35}
                 minSize="10%">
                 <EuiPanel paddingSize="l" style={{ height: '100%' }}>

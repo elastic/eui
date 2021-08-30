@@ -9,6 +9,7 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 import { fake } from 'faker';
+import { htmlIdGenerator } from '../../../../src/services';
 
 const text = (
   <>
@@ -18,13 +19,15 @@ const text = (
   </>
 );
 
-const firstPanelId = 'resizable-panel__1';
-const secondPanelId = 'resizable-panel__2';
+//const firstPanelId = 'resizable-panel__1';
+//const secondPanelId = 'resizable-panel__2';
+const panelID__1 = htmlIdGenerator('panel')();
+const panelID__2 = htmlIdGenerator('panel')();
 const stored = localStorage.getItem('resizableContainer');
 const storedSizes = stored && JSON.parse(stored);
 const defaultSizes = storedSizes || {
-  [firstPanelId]: 50,
-  [secondPanelId]: 50,
+  [panelID__1]: 50,
+  [panelID__2]: 50,
 };
 
 export default () => {
@@ -40,16 +43,16 @@ export default () => {
   const onClick30x70 = useCallback(
     () =>
       setSizes({
-        [firstPanelId]: 30,
-        [secondPanelId]: 70,
+        [panelID__1]: 30,
+        [panelID__2]: 70,
       }),
     []
   );
   const onClick80x20 = useCallback(
     () =>
       setSizes({
-        [firstPanelId]: 80,
-        [secondPanelId]: 20,
+        [panelID__1]: 80,
+        [panelID__2]: 20,
       }),
     []
   );
@@ -88,8 +91,8 @@ export default () => {
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
             <EuiResizablePanel
-              id={firstPanelId}
-              size={sizes[firstPanelId]}
+              id={panelID__1}
+              size={sizes[panelID__1]}
               minSize="30%">
               <EuiText>
                 <div>{text}</div>
@@ -99,8 +102,8 @@ export default () => {
             <EuiResizableButton />
 
             <EuiResizablePanel
-              id={secondPanelId}
-              size={sizes[secondPanelId]}
+              id={panelID__2}
+              size={sizes[panelID__2]}
               minSize="200px">
               <EuiText>
                 <div>{text}</div>
