@@ -35,6 +35,8 @@ export default () => {
     setID(`${idPrefix}--${newState}`);
   };
 
+  const accordionID = htmlIdGenerator('accordion')();
+
   return (
     <div>
       <EuiButtonGroup
@@ -45,7 +47,7 @@ export default () => {
       />
       <EuiSpacer />
       <EuiAccordion
-        id={htmlIdGenerator()()}
+        id={accordionID}
         forceState={trigger}
         onToggle={onToggle}
         buttonContent="I am a controlled accordion"

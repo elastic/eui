@@ -16,6 +16,7 @@ import {
   EuiTitle,
   EuiButtonIcon,
 } from '../../../../src/components';
+import { htmlIdGenerator } from '../../../../src/services';
 
 const repeatableForm = (
   <EuiForm component="form">
@@ -76,26 +77,31 @@ const extraAction = (
   />
 );
 
-export default () => (
-  <div>
-    <EuiAccordion
-      id="accordionForm1"
-      className="euiAccordionForm"
-      buttonClassName="euiAccordionForm__button"
-      buttonContent={buttonContent}
-      extraAction={extraAction}
-      paddingSize="l">
-      {repeatableForm}
-    </EuiAccordion>
+export default () => {
+  const accordionID__1 = htmlIdGenerator('accordion')();
+  const accordionID__2 = htmlIdGenerator('accordion')();
 
-    <EuiAccordion
-      id="accordionForm2"
-      className="euiAccordionForm"
-      buttonClassName="euiAccordionForm__button"
-      buttonContent={buttonContent}
-      extraAction={extraAction}
-      paddingSize="l">
-      {repeatableForm}
-    </EuiAccordion>
-  </div>
-);
+  return (
+    <div>
+      <EuiAccordion
+        id={accordionID__1}
+        className="euiAccordionForm"
+        buttonClassName="euiAccordionForm__button"
+        buttonContent={buttonContent}
+        extraAction={extraAction}
+        paddingSize="l">
+        {repeatableForm}
+      </EuiAccordion>
+
+      <EuiAccordion
+        id={accordionID__2}
+        className="euiAccordionForm"
+        buttonClassName="euiAccordionForm__button"
+        buttonContent={buttonContent}
+        extraAction={extraAction}
+        paddingSize="l">
+        {repeatableForm}
+      </EuiAccordion>
+    </div>
+  );
+};

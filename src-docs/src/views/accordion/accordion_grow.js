@@ -18,6 +18,7 @@ const Rows = () => {
   }
   const growingAccordianDescriptionId = htmlIdGenerator()();
   const listId = htmlIdGenerator()();
+
   return (
     <EuiText size="s">
       <EuiScreenReaderOnly>
@@ -50,14 +51,18 @@ const Rows = () => {
   );
 };
 
-export default () => (
-  <EuiAccordion
-    id={htmlIdGenerator()()}
-    buttonContent="Click me to toggle close / open"
-    initialIsOpen={true}
-    paddingSize="s">
-    <EuiPanel color="subdued">
-      <Rows />
-    </EuiPanel>
-  </EuiAccordion>
-);
+export default () => {
+  const accordionID = htmlIdGenerator('accordion')();
+
+  return (
+    <EuiAccordion
+      id={accordionID}
+      buttonContent="Click me to toggle close / open"
+      initialIsOpen={true}
+      paddingSize="s">
+      <EuiPanel color="subdued">
+        <Rows />
+      </EuiPanel>
+    </EuiAccordion>
+  );
+};
