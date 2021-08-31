@@ -126,11 +126,12 @@ const WritingExamples = () => {
             iconType="importAction"
             title={<h2>Register your first repository</h2>}
             body={<p>Create a place where your snapshots will live.</p>}
+            actions={
+              <EuiButton color="primary" fill>
+                Register a repository
+              </EuiButton>
+            }
           />
-          <EuiButton color="primary" fill>
-            Register a repository
-          </EuiButton>
-          <EuiSpacer />
         </GuideRuleExample>
         <GuideRuleExample
           panelDisplay="block"
@@ -163,11 +164,12 @@ const WritingExamples = () => {
                 filtering tools.
               </p>
             }
+            actions={
+              <EuiButton color="primary" fill>
+                Go to Discover
+              </EuiButton>
+            }
           />
-          <EuiButton color="primary" fill>
-            Go to Discover
-          </EuiButton>
-          <EuiSpacer />
         </GuideRuleExample>
         <GuideRuleExample
           panelDisplay="block"
@@ -178,9 +180,8 @@ const WritingExamples = () => {
             title={<h2>We couldn&apos;t log you in</h2>}
             body={
               <p>
-                We hit an authentication error. Check your credentials and try
-                again. If you still can&apos;t log in, contact your system
-                administrator.
+                Check your credentials and try again. If you still can&apos;t
+                log in, contact your system administrator.
               </p>
             }
           />
