@@ -123,7 +123,8 @@ const WritingExamples = () => {
           <EuiCallOut
             size="s"
             title="Your index can match two sources."
-            iconType="search"></EuiCallOut>
+            iconType="search"
+          />
         </GuideRuleExample>
       </GuideRule>
 
@@ -287,23 +288,24 @@ const WritingExamples = () => {
         <GuideRuleExample
           panelDisplay="block"
           type="do"
-          text="Use an inline link in explanatory text.">
+          text="Use inline links to point to a specific page that is stable.">
           <EuiEmptyPrompt
             title={<h2>Extend your trial</h2>}
             body={
               <p>
-                To use advanced security and our other awesome
+                To use advanced security and our other awesome&nbsp;
                 <EuiLink href="http://www.elastic.co" external>
                   subscription features,
                 </EuiLink>
-                request an extension now.
+                &nbsp;request an extension now.
               </p>
             }
+            actions={
+              <EuiButton color="primary" fill>
+                Extend trial
+              </EuiButton>
+            }
           />
-          <EuiButton color="primary" fill>
-            Extend trial
-          </EuiButton>
-          <EuiSpacer />
         </GuideRuleExample>
       </GuideRule>
 
