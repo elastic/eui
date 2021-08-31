@@ -7,8 +7,11 @@ import {
   EuiPopover,
 } from '../../../../src/components';
 
+import { htmlIdGenerator } from '../../../../src/services';
+
 export default () => {
   const [isPopoverOpen, setPopover] = useState(false);
+  const popoverID = htmlIdGenerator('popover')();
 
   const onButtonClick = () => {
     setPopover(!isPopoverOpen);
@@ -38,7 +41,7 @@ export default () => {
 
   return (
     <EuiPopover
-      id="smallContextMenuExample"
+      id={popoverID}
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}

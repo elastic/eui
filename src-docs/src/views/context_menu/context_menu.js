@@ -10,8 +10,13 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
+import { htmlIdGenerator } from '../../../../src/services';
+
 export default () => {
   const [isPopoverOpen, setPopover] = useState(false);
+  const switchID__1 = htmlIdGenerator('switch')();
+  const switchID__2 = htmlIdGenerator('switch')();
+  const popoverID = htmlIdGenerator('popover')();
 
   const onButtonClick = () => {
     setPopover(!isPopoverOpen);
@@ -108,7 +113,7 @@ export default () => {
           <EuiFormRow label="Generate a public snapshot?" hasChildLabel={false}>
             <EuiSwitch
               name="switch"
-              id="asdf"
+              id={switchID__1}
               label="Snapshot data"
               checked={true}
               onChange={() => {}}
@@ -119,7 +124,7 @@ export default () => {
             hasChildLabel={false}>
             <EuiSwitch
               name="switch"
-              id="asdf2"
+              id={switchID__2}
               label="Current time range"
               checked={true}
               onChange={() => {}}
@@ -140,7 +145,7 @@ export default () => {
 
   return (
     <EuiPopover
-      id="contextMenuExample"
+      id={popoverID}
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}
