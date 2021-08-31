@@ -304,8 +304,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     toolbarHeight,
     rowHeightsOptions,
     rowHeightUtils,
-    overscanRowCount,
-    overscanColumnCount,
+    virtualizationOptions,
     gridStyles,
   } = props;
 
@@ -673,6 +672,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
               value={{ headerRowHeight, headerRow, footerRow }}
             >
               <Grid
+                {...virtualizationOptions}
                 ref={setGridRef}
                 innerElementType={InnerElement}
                 className={VIRTUALIZED_CONTAINER_CLASS}
@@ -683,8 +683,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 }
                 width={finalWidth}
                 columnWidth={getWidth}
-                overscanRowCount={overscanRowCount || 1}
-                overscanColumnCount={overscanColumnCount || 1}
                 estimatedRowHeight={
                   rowHeightsOptions?.estimatedRowHeight || defaultHeight
                 }

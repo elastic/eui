@@ -490,8 +490,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     height,
     width,
     rowHeightsOptions,
-    overscanColumnCount,
-    overscanRowCount,
+    virtualizationOptions,
     ...rest
   } = props;
 
@@ -883,8 +882,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                         interactiveCellId={interactiveCellId}
                         rowHeightsOptions={rowHeightsOptions}
                         rowHeightUtils={rowHeightUtils}
-                        overscanColumnCount={overscanColumnCount}
-                        overscanRowCount={overscanRowCount}
+                        virtualizationOptions={virtualizationOptions || {}}
                         gridStyles={gridStyles}
                       />
                     </div>

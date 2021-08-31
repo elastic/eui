@@ -18,6 +18,7 @@ import {
   Dispatch,
   SetStateAction,
 } from 'react';
+import { VariableSizeGridProps } from 'react-window';
 import { EuiListGroupItemProps } from '../list_group';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { ExclusiveUnion, CommonProps, OneOf } from '../common';
@@ -246,13 +247,9 @@ export type CommonGridProps = CommonProps &
      */
     width?: CSSProperties['width'];
     /**
-     * The number of rows to render outside of the visible area.
+     * Defines a react-window props.
      */
-    overscanRowCount?: number;
-    /**
-     * The number of columns to render outside of the visible area.
-     */
-    overscanColumnCount?: number;
+    virtualizationOptions?: Partial<VariableSizeGridProps>;
     /**
      * A #EuiDataGridRowHeightsOptions object that provides row heights options
      */
@@ -325,8 +322,7 @@ export interface EuiDataGridBodyProps {
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
   toolbarHeight: number;
-  overscanColumnCount?: number;
-  overscanRowCount?: number;
+  virtualizationOptions?: Partial<VariableSizeGridProps>;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils: RowHeightUtils;
   gridStyles?: EuiDataGridStyle;
