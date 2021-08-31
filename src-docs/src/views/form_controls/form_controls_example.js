@@ -177,12 +177,26 @@ const radioGroupHtml = renderToHtml(RadioGroup);
 
 import Switch from './switch';
 const switchSource = require('!!raw-loader!./switch');
-const switchHtml = renderToHtml(Switch);
-const switchSnippet = [
-  `<EuiSwitch
-  label="I am a switch"
+const switchSnippet = `<EuiSwitch
+  label="Enable"
   checked={checked}
   onChange={onChange}
+/>`;
+import SwitchLabel from './switch_label';
+const switchLabelSource = require('!!raw-loader!./switch_label');
+const switchLabelSnippet = [
+  `<EuiSwitch
+  showLabel={false}
+  label="Enable"
+  checked={checked}
+  onChange={onChange}
+  compressed
+/>`,
+  `<EuiSwitch
+  label={checked ? 'on' : 'off'}
+  checked={checked}
+  onChange={onChange}
+  compressed
 />`,
 ];
 
@@ -488,14 +502,17 @@ export const FormControlsExample = {
     },
     {
       title: 'Switch',
+      text: (
+        <p>
+          A switch can be substituted for a checkbox when the semantics of the
+          label dictate a true on/off state. The label should be{' '}
+          <strong>static</strong> and describe the feature or question.
+        </p>
+      ),
       source: [
         {
           type: GuideSectionTypes.JS,
           code: switchSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: switchHtml,
         },
       ],
       snippet: switchSnippet,
@@ -504,6 +521,30 @@ export const FormControlsExample = {
       },
       demo: <Switch />,
       playground: SwitchConfig,
+    },
+    {
+      text: (
+        <p>
+          If the switch is described in some other manner, like when using an{' '}
+          <Link to="/forms/form-layouts#form-and-form-rows">
+            <strong>EuiFormRow</strong>
+          </Link>
+          , you can eliminate the visible label with{' '}
+          <EuiCode language="tsx">{'showLabel={false}'}</EuiCode> or use it to
+          further describe the state.
+        </p>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: switchLabelSource,
+        },
+      ],
+      snippet: switchLabelSnippet,
+      props: {
+        EuiSwitch,
+      },
+      demo: <SwitchLabel />,
     },
     {
       title: 'Fieldset and legend',
@@ -522,7 +563,6 @@ export const FormControlsExample = {
           <EuiCallOut
             color="warning"
             iconType="accessibility"
-            size="s"
             title={
               <span>
                 &quot;[Use a fieldset and legend] for groups of related controls
