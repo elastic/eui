@@ -45,7 +45,7 @@ const WritingExamples = () => {
       <GuideRule heading=" " description=" ">
         <GuideRuleExample
           type="do"
-          text="Uses a verb + noun for a button label.">
+          text="Use a verb + noun for a button label.">
           <EuiPanel
             paddingSize="none"
             style={{ maxWidth: 400, transform: 'scale(.75)' }}>
@@ -633,6 +633,19 @@ const WritingExamples = () => {
           </EuiFlexGroup>
         </GuideRuleExample>
       </GuideRule>
+
+      <EuiHorizontalRule />
+
+      <EuiSpacer size="m" />
+
+      <EuiText>
+        <h2 id="popovers">Popovers</h2>
+
+        <p>
+          Use a popover to provide longer explanations associated with a
+          clickable element.
+        </p>
+      </EuiText>
 
       <EuiHorizontalRule />
     </>
