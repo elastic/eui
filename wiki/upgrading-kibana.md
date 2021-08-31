@@ -4,7 +4,7 @@
 
 If the upgrade includes a large number of commits or has known breaking changes, consider performing a commit-less dry run prior to release using the process described below and a [pre-release build of EUI](https://github.com/elastic/eui/blob/master/wiki/component-development.md#testing-dev-features-in-local-kibana).
 
-1. Start a new branch in the Kibana repo
+1. Start a new branch off the `master` branch in the Kibana repo
 2. Change the `@elastic/eui` entry in [`package.json`](https://github.com/elastic/kibana/blob/master/package.json) to the target version
 3. Change the `@elastic/eui@` entry in [`src/dev/license_checker/config.ts`](https://github.com/elastic/kibana/blob/master/src/dev/license_checker/config.ts) to the target version
 4. Run `yarn kbn bootstrap`
@@ -20,6 +20,8 @@ If the upgrade includes a large number of commits or has known breaking changes,
     * Mention/ping any teams that are waiting on features to be available
 
 ## Resolving errors
+
+It is likely that resulting errors are truly caused by a change in EUI and not coincidence. Therefore, before reaching out to plugin owners for help, timebox an investigation period to resolve the issues.
 
 ### Type errors during `kbn bootstrap`
 
@@ -81,12 +83,10 @@ A change in EUI is having broader impact than expected or introduced a breaking 
 
 ## PR Template
 
-No layout is prescribed, but two inclusions are helpful to reviewers:
+The typical EUI upgrade PR in Kibana looks something like [#109157](https://github.com/elastic/kibana/pull/109157), and reviewers have begun to expect the consistency. There are two important inclusions:
 
 * Call out changes made to accommodate test failures that might not be apparent from looking at the diff.
 * Copy-paste the full [changelog version range](https://github.com/elastic/eui/blob/master/CHANGELOG.md) for the upgrade.
-
-Of late, the typical EUI upgrade PR in Kibana looks something like [#109157](https://github.com/elastic/kibana/pull/109157).
 
 
 ## PR Approvals
