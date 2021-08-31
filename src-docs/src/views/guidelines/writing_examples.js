@@ -70,7 +70,7 @@ const WritingExamples = () => {
           text="Use the same verb + noun as in the title.">
           <EuiPanel style={{ transform: 'scale(.75)' }}>
             <EuiTitle size="m">
-              <span>Remove this index pattern?</span>
+              <span>Delete this index?</span>
             </EuiTitle>
             <EuiSpacer />
             <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
@@ -78,7 +78,7 @@ const WritingExamples = () => {
                 Cancel
               </EuiButtonEmpty>
               <EuiButton color="danger" size="s">
-                Remove index pattern
+                Delete index
               </EuiButton>
             </EuiFlexGroup>
           </EuiPanel>
@@ -102,6 +102,31 @@ const WritingExamples = () => {
           message related to the content on the page.
         </p>
       </EuiText>
+      <GuideRule heading=" " description=" ">
+        <GuideRuleExample
+          type="do"
+          text="Ensure the description provides information in addition to the title.">
+          <EuiCallOut
+            size="s"
+            title="Index privileges missing"
+            iconType="alert"
+            color="danger">
+            <p>
+              You must have the &apos;create_index&apos; privilege to write data
+              to this index.
+            </p>
+          </EuiCallOut>
+        </GuideRuleExample>
+        <GuideRuleExample
+          type="do"
+          text="If a single sentence, end with a period.">
+          <EuiCallOut
+            size="s"
+            title="Your index can match two sources."
+            iconType="search"
+          />
+        </GuideRuleExample>
+      </GuideRule>
 
       <EuiHorizontalRule />
 
@@ -111,7 +136,7 @@ const WritingExamples = () => {
         <h2 id="empty-prompts">Empty prompts</h2>
 
         <p>
-          The best empty state lets users know what’s happening, why it’s
+          The best empty state lets users know what is happening, why it is
           happening, and what to do about it. Here are four types of frequently
           used empty states.
         </p>
@@ -174,7 +199,7 @@ const WritingExamples = () => {
         <GuideRuleExample
           panelDisplay="block"
           type="do"
-          text="If using for an error, explain next steps.">
+          text="If using an empty for an error, explain next steps.">
           <EuiEmptyPrompt
             iconType="importAction"
             title={<h2>We couldn&apos;t log you in</h2>}
@@ -249,7 +274,7 @@ const WritingExamples = () => {
         <GuideRuleExample
           panelDisplay="block"
           type="do"
-          text="Place Learn more after a text that briefly introduces a topic or feature.">
+          text="Place a Learn more after a text that briefly introduces a topic or feature.">
           <EuiCallOut size="m" title="Building a dashboard?" iconType="gear">
             <p>
               Create content directly from our Dashboard app using our new
@@ -261,7 +286,28 @@ const WritingExamples = () => {
           </EuiCallOut>
           <EuiSpacer />
         </GuideRuleExample>
-        <GuideRuleExample panelDisplay="block" type="" text="" />
+        <GuideRuleExample
+          panelDisplay="block"
+          type="do"
+          text="Use inline links to point to a specific page that is stable.">
+          <EuiEmptyPrompt
+            title={<h2>Extend your trial</h2>}
+            body={
+              <p>
+                To use advanced security and our other awesome&nbsp;
+                <EuiLink href="http://www.elastic.co" external>
+                  subscription features,
+                </EuiLink>
+                &nbsp;request an extension now.
+              </p>
+            }
+            actions={
+              <EuiButton color="primary" fill>
+                Extend trial
+              </EuiButton>
+            }
+          />
+        </GuideRuleExample>
       </GuideRule>
 
       <EuiHorizontalRule />
@@ -303,9 +349,7 @@ const WritingExamples = () => {
           </EuiPanel>
         </GuideRuleExample>
 
-        <GuideRuleExample
-          type="do"
-          text="Three buttons are ok in some cases, but keep it to a minimum.">
+        <GuideRuleExample type="do" text="Some cases requrie three buttons.">
           <EuiPanel
             paddingSize="none"
             style={{ maxWidth: 400, transform: 'scale(.75)' }}>
@@ -337,7 +381,7 @@ const WritingExamples = () => {
         description="Use the same action verbs in the header and button text. ">
         <GuideRuleExample
           type="do"
-          text='"Don&apos;t use a vague header such as "Are you sure?" or the button labels "Yes" and "No."'>
+          text="Use the same action verbs in the header and button text.">
           <EuiPanel
             paddingSize="none"
             style={{ maxWidth: 400, transform: 'scale(.75)' }}>
@@ -550,7 +594,7 @@ const WritingExamples = () => {
       <EuiText>
         <h2 id="toasts">Toasts</h2>
 
-        <p>The most common use of toasts is as a success message.</p>
+        <p>A common use of toasts is as a success message.</p>
       </EuiText>
 
       <GuideRule description=" ">
