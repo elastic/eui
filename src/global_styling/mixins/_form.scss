@@ -1,6 +1,7 @@
 // Labels
 @mixin euiFormLabel {
   @include euiFontSizeXS;
+  @include euiTextBreakWord;
   color: $euiTitleColor;
   font-weight: $euiFontWeightSemiBold;
 }

@@ -122,6 +122,8 @@ export type EuiSuperDatePickerProps = CommonProps & {
       'needsUpdate' | 'showTooltip' | 'isLoading' | 'isDisabled' | 'onClick'
     >
   >;
+
+  dataTestSubj?: string;
 };
 
 interface EuiSuperDatePickerState {
@@ -476,7 +478,14 @@ export class EuiSuperDatePicker extends Component<
   };
 
   renderUpdateButton = () => {
-    if (!this.props.showUpdateButton || this.props.isAutoRefreshOnly) {
+    const {
+      showUpdateButton,
+      isAutoRefreshOnly,
+      isLoading,
+      isDisabled,
+      updateButtonProps,
+    } = this.props;
+    if (!showUpdateButton || isAutoRefreshOnly) {
       return;
     }
 
@@ -488,11 +497,11 @@ export class EuiSuperDatePicker extends Component<
             !this.state.isStartDatePopoverOpen &&
             !this.state.isEndDatePopoverOpen
           }
-          isLoading={this.props.isLoading}
-          isDisabled={this.props.isDisabled || this.state.isInvalid}
+          isLoading={isLoading}
+          isDisabled={isDisabled || this.state.isInvalid}
           onClick={this.handleClickUpdateButton}
           data-test-subj="superDatePickerApplyTimeButton"
-          {...this.props.updateButtonProps}
+          {...updateButtonProps}
         />
       </EuiFlexItem>
     );
@@ -512,6 +521,7 @@ export class EuiSuperDatePicker extends Component<
       refreshInterval,
       showUpdateButton,
       start,
+      dataTestSubj,
     } = this.props;
 
     const quickSelect = (
@@ -549,6 +559,7 @@ export class EuiSuperDatePicker extends Component<
             className="euiSuperDatePicker"
             isDisabled={isDisabled}
             prepend={quickSelect}
+            data-test-subj={dataTestSubj}
           >
             {this.renderDatePickerRange()}
           </EuiFormControlLayout>
