@@ -118,14 +118,6 @@ export const PageHeaderExample = {
       ),
       demo: <PageHeaderTabsTitle />,
       props: { EuiPageHeader },
-      snippet: `<EuiPageHeader
-  pageTitle="Page title"
-  tabs={[
-    { label:"Tab 1", isSelected: true },
-    { label:"Tab 2" }
-  ]}
-  bottomBorder
-/>`,
     },
     {
       source: [
