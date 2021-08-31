@@ -478,7 +478,13 @@ export class EuiSuperDatePicker extends Component<
   };
 
   renderUpdateButton = () => {
-    const { showUpdateButton, isAutoRefreshOnly, isLoading, isDisabled, updateButtonProps } = this.props;
+    const {
+      showUpdateButton,
+      isAutoRefreshOnly,
+      isLoading,
+      isDisabled,
+      updateButtonProps,
+    } = this.props;
     if (!showUpdateButton || isAutoRefreshOnly) {
       return;
     }
@@ -515,7 +521,7 @@ export class EuiSuperDatePicker extends Component<
       refreshInterval,
       showUpdateButton,
       start,
-      dataTestSubj
+      dataTestSubj,
     } = this.props;
 
     const quickSelect = (

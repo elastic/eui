@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiSuperDatePicker EuiFormControlLayout contain data-test-subj as prop 1`] = `
+exports[`EuiSuperDatePicker accepts data-test-subj and passes to EuiFormControlLayout 1`] = `
 <EuiFlexGroup
   className="euiSuperDatePicker__flexWrapper"
   gutterSize="s"

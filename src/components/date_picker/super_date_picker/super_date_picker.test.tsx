@@ -135,7 +135,7 @@ describe('EuiSuperDatePicker', () => {
     expect(component.find(EuiButton).props()).toMatchObject(updateButtonProps);
   });
 
-  test('EuiFormControlLayout contain data-test-subj as prop', () => {
+  test('accepts data-test-subj and passes to EuiFormControlLayout', () => {
     const component = shallow(
       <EuiSuperDatePicker
         onTimeChange={noop}
