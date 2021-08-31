@@ -97,3 +97,41 @@ $fractions: (
     column-count: 1 !important;
   }
 }
+
+// Justify the grid
+.euiFlexGrid--justifyContentSpaceEvenly {
+  justify-content: space-evenly;
+}
+
+.euiFlexGrid--justifyContentSpaceBetween {
+  justify-content: space-between;
+}
+
+.euiFlexGrid--justifyContentSpaceAround {
+  justify-content: space-around;
+}
+
+.euiFlexGrid--justifyContentCenter {
+  justify-content: center;
+}
+
+.euiFlexGrid--justifyContentFlexEnd {
+  justify-content: flex-end;
+}
+
+// Align Items
+.euiFlexGrid--alignItemsFlexStart {
+  align-items: flex-start;
+}
+
+.euiFlexGrid--alignItemsCenter {
+  align-items: center;
+}
+
+.euiFlexGrid--alignItemsFlexEnd {
+  align-items: flex-end;
+}
+
+.euiFlexGrid--alignItemsBaseline {
+  align-items: baseline;
+}

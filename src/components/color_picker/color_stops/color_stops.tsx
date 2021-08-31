@@ -85,6 +85,7 @@ export interface EuiColorStopsProps extends CommonProps {
       | 'value'
       | 'isInvalid'
       | 'onChange'
+      | 'step'
     >
   >;
 }

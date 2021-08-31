@@ -27,17 +27,18 @@ export default () => {
 </EuiFlyout>
 `;
 
-  if (isFlyoutVisible) {
-    flyout = (
-      <EuiFlyout
-        ownFocus
-        onClose={() => setIsFlyoutVisible(false)}
-        aria-labelledby="flyoutTitle"
-      >
-        <EuiFlyoutHeader hasBorder>
-          <EuiTitle size="m">
-            <h2 id="flyoutTitle">A typical flyout</h2>
-          </EuiTitle>
+const titleId = htmlIdGenerator('flyoutTitle')();
+
+if (isFlyoutVisible) {
+  flyout = (
+    <EuiFlyout
+      ownFocus
+      onClose={() => setIsFlyoutVisible(false)}
+      aria-labelledby={titleId}>
+      <EuiFlyoutHeader hasBorder>
+        <EuiTitle size="m">
+          <h2 id={titleId}>A typical flyout</h2>
+        </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>
           <EuiText>

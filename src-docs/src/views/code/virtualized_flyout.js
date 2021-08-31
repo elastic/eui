@@ -13,16 +13,17 @@ export default () => {
 
   let flyout;
 
+  const titleId = htmlIdGenerator('flyoutTitle')();
+
   if (isFlyoutVisible) {
     flyout = (
       <EuiFlyout
         ownFocus
         onClose={() => setIsFlyoutVisible(false)}
-        aria-labelledby="flyoutTitle"
-      >
+        aria-labelledby={titleId}>
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id="flyoutTitle">A flyout with just code</h2>
+            <h2 id={titleId}>A typical flyout</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <div style={{ height: '100%' }}>

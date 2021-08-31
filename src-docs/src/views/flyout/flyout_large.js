@@ -39,17 +39,18 @@ export default () => {
   const showFlyout = () => setIsFlyoutVisible(true);
 
   let flyout;
+  const titleId = htmlIdGenerator('flyoutLargeTitle')();
   if (isFlyoutVisible) {
     flyout = (
       <EuiFlyout
         ownFocus
         onClose={closeFlyout}
         size={size}
-        aria-labelledby="flyoutLargeTitle"
+        aria-labelledby={titleId}
       >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id="flyoutLargeTitle">A {sizeName.toLowerCase()} flyout</h2>
+            <h2 id={titleId}>A {sizeName.toLowerCase()} flyout</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>

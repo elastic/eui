@@ -33,6 +33,7 @@ import {
   EuiText,
   EuiTitle,
 } from '../../../../src/components/';
+
 const DataContext = createContext();
 
 const raw_data = [];
@@ -242,18 +243,19 @@ const trailingControlColumns = [
       };
 
       let flyout;
+      const titleId = htmlIdGenerator('flyoutTitle')();
 
       if (isFlyoutVisible) {
         flyout = (
           <EuiFlyout
-            aria-labelledby="flyoutTitle"
+            aria-labelledby={titleId}
             onClose={closeFlyout}
             ownFocus
             size="s"
           >
             <EuiFlyoutHeader hasBorder>
               <EuiTitle size="m">
-                <h2 id="flyoutTitle">A typical flyout</h2>
+                <h2 id={titleId}>A typical flyout</h2>
               </EuiTitle>
             </EuiFlyoutHeader>
 

@@ -210,7 +210,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       ownFocus={false}
       panelClassName={classes}
       panelStyle={newStyle || style}
-      offset={hasBeacon ? 10 : 0}
+      offset={hasBeacon ? 5 : 0}
       aria-labelledby={titleId}
       arrowChildren={hasBeacon && <EuiBeacon className="euiTour__beacon" />}
       {...rest}
