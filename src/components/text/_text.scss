@@ -12,9 +12,7 @@
   blockquote,
   img,
   pre {
-    &:not(:last-child) {
-      margin-bottom: marginToRemOrEm(($baseLineHeightMultiplier * 3), $baseFontSize, $sizingMethod);
-    }
+    margin-bottom: marginToRemOrEm(($baseLineHeightMultiplier * 3), $baseFontSize, $sizingMethod);
   }
 
   ul,
