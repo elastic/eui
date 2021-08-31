@@ -229,10 +229,6 @@
   }
 }
 
-.guideSass__fontSettingsTnum {
-  @include euiNumberFormat;
-}
-
 .guideSass__animRow + .guideSass__animRow {
   margin-top: $euiSizeL;
 }

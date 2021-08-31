@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from '../../components/with_theme';
 
 import {
   EuiText,
@@ -16,7 +17,7 @@ const text = [
     spiral arm of the Galaxy lies a small unregarded yellow sun.
   </p>,
 
-  <pre>
+  <pre key={0.25}>
     <code>const completelyUnexpected = &quot;the audacity!&quot;;</code>
   </pre>,
 
@@ -83,6 +84,7 @@ const text = [
 ];
 
 export default () => {
+  const themeContext = useContext(ThemeContext);
   const textSizeArray = ['xs', 's', 'm'];
   const textSizeNamesArray = ['Extra small', 'Small', 'Medium'];
 
@@ -109,6 +111,8 @@ export default () => {
 
   const [firstIdSelected, setFirstIdSelected] = useState('firsts');
   const [secondIdSelected, setSecondIdSelected] = useState('secondxs');
+  const [firstSize, setFirstSize] = useState('s');
+  const [secondSize, setSecondSize] = useState('xs');
 
   return (
     <>
@@ -119,13 +123,18 @@ export default () => {
             legend={'First text size'}
             name={'first'}
             idSelected={firstIdSelected}
-            onChange={(optionId) => setFirstIdSelected(optionId)}
+            onChange={(optionId) => {
+              setFirstIdSelected(optionId);
+              setFirstSize(
+                firstOptions.find(({ id }) => id === optionId).value
+              );
+            }}
             options={firstOptions}
           />
           <EuiHorizontalRule />
           <EuiText
-            className="guideDemo__textLines"
-            size={firstOptions.find(({ id }) => id === firstIdSelected).value}
+            className={`guideDemo__textLines guideDemo__textLines--${themeContext.theme}`}
+            size={firstSize}
           >
             {text}
           </EuiText>
@@ -136,13 +145,18 @@ export default () => {
             legend={'Second text size'}
             name={'second'}
             idSelected={secondIdSelected}
-            onChange={(optionId) => setSecondIdSelected(optionId)}
+            onChange={(optionId) => {
+              setSecondIdSelected(optionId);
+              setSecondSize(
+                secondOptions.find(({ id }) => id === optionId).value
+              );
+            }}
             options={secondOptions}
           />
           <EuiHorizontalRule />
           <EuiText
-            className="guideDemo__textLines"
-            size={secondOptions.find(({ id }) => id === secondIdSelected).value}
+            className={`guideDemo__textLines guideDemo__textLines--${themeContext.theme}`}
+            size={secondSize}
           >
             {text}
           </EuiText>
