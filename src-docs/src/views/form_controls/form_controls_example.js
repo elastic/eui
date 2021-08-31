@@ -194,6 +194,7 @@ const switchLabelSnippet = [
 />`,
   `<EuiSwitch
   label={checked ? 'on' : 'off'}
+  aria-describedby={labelId}
   checked={checked}
   onChange={onChange}
   compressed
@@ -524,15 +525,22 @@ export const FormControlsExample = {
     },
     {
       text: (
-        <p>
-          If the switch is described in some other manner, like when using an{' '}
-          <Link to="/forms/form-layouts#form-and-form-rows">
-            <strong>EuiFormRow</strong>
-          </Link>
-          , you can eliminate the visible label with{' '}
-          <EuiCode language="tsx">{'showLabel={false}'}</EuiCode> or use it to
-          further describe the state.
-        </p>
+        <>
+          <p>
+            If the switch is described in some other manner, like when using an{' '}
+            <Link to="/forms/form-layouts#form-and-form-rows">
+              <strong>EuiFormRow</strong>
+            </Link>
+            , you can eliminate the visible label with{' '}
+            <EuiCode language="tsx">{'showLabel={false}'}</EuiCode> or use it to
+            further describe the state.
+          </p>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            title="When providing the state as the label, you'll need to provide an aria-describedby with the label's id to associate it with the swtich."
+          />
+        </>
       ),
       source: [
         {
