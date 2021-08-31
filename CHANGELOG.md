@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `.eui-textNumber` utility class to apply `tnum` font-feature setting ([#5078](https://github.com/elastic/eui/pull/5078))
+
 **Bug fixes**
 
 - Fixed `EuiSuperSelect`'s focus keyboard behavior when no initial value is passed, and focus label behavior ([#5097](https://github.com/elastic/eui/pull/5097))
