@@ -28,7 +28,7 @@ export interface DefaultItemActionBase<T> {
   /**
    * A handler function to execute the action
    */
-  onClick?: (item: T) => void;
+  onClick?: (item: T, e) => void;
   href?: string;
   target?: string;
   /**

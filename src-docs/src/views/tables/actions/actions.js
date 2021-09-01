@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { formatDate } from '../../../../../src/services/format';
 import { createDataStore } from '../data_store';
 
@@ -43,8 +43,30 @@ export const Table = () => {
   const [sortField, setSortField] = useState('firstName');
   const [sortDirection, setSortDirection] = useState('asc');
   const [selectedItems, setSelectedItems] = useState([]);
-  const [multiAction, setMultiAction] = useState(false);
+  const [multiAction, setMultiAction] = useState(true);
   const [customAction, setCustomAction] = useState(false);
+  const [ctrlIsPressed, setCtrlIsPressed] = useState(false);
+
+  const ctrlHandler = (e) => {
+    if (e && e.metaKey) {
+      setCtrlIsPressed(true);
+    } else {
+      setCtrlIsPressed(false);
+    }
+  };
+
+  // Add window resize handlers
+  useEffect(() => {
+    window.addEventListener('keydown', ctrlHandler);
+    window.addEventListener('keypress', ctrlHandler);
+    window.addEventListener('keyup', ctrlHandler);
+
+    return () => {
+      window.removeEventListener('keydown', ctrlHandler);
+      window.removeEventListener('keypress', ctrlHandler);
+      window.removeEventListener('keyup', ctrlHandler);
+    };
+  }, [ctrlHandler]);
 
   const onTableChange = ({ page = {}, sort = {} }) => {
     const { index: pageIndex, size: pageSize } = page;
@@ -89,9 +111,25 @@ export const Table = () => {
     setCustomAction(!customAction);
   };
 
-  const deleteUser = (user) => {
-    store.deleteUsers(user.id);
-    setSelectedItems([]);
+  const primaryAction = (user) => {
+    // store.deleteUsers(user.id);
+    // setSelectedItems([]);
+    window.alert(`Goes somewhere for "${user.firstName}"`);
+  };
+
+  const filter = (user, e) => {
+    if (e && e.metaKey) {
+      filterOut(user);
+      return;
+    }
+
+    window.alert(`Filter IN for "${user.firstName}"`);
+    return;
+  };
+
+  const filterOut = (user) => {
+    window.alert(`Filter OUT for "${user.firstName}"`);
+    return;
   };
 
   const cloneUser = (user) => {
@@ -125,7 +163,7 @@ export const Table = () => {
           {
             render: (item) => {
               return (
-                <EuiLink color="danger" onClick={() => deleteUser(item)}>
+                <EuiLink color="danger" onClick={() => primaryAction(item)}>
                   Delete
                 </EuiLink>
               );
@@ -134,31 +172,28 @@ export const Table = () => {
         ]
       : [
           {
-            name: <span>Clone</span>,
-            description: 'Clone this user',
-            icon: 'copy',
-            onClick: cloneUser,
-            'data-test-subj': 'action-clone',
+            name: 'Primary action',
+            isPrimary: true,
+            description: 'Primary action',
+            icon: 'timeline',
+            type: 'icon',
+            onClick: primaryAction,
           },
           {
-            name: (item) => (item.id ? 'Delete' : 'Remove'),
-            description: 'Delete this user',
-            icon: 'trash',
-            color: 'danger',
-            type: 'icon',
-            onClick: deleteUser,
+            name: (item) => (item.id ? 'Filter in' : 'Filter'),
             isPrimary: true,
-            'data-test-subj': 'action-delete',
+            description: ctrlIsPressed
+              ? 'Filter out, release ctrl to filter in'
+              : 'Filter in, or ctrl+click to filter out',
+            icon: ctrlIsPressed ? 'minusInCircle' : 'plusInCircle',
+            type: 'icon',
+            onClick: filter,
           },
           {
-            name: 'Edit',
-            isPrimary: true,
-            available: ({ online }) => !online,
-            description: 'Edit this user',
-            icon: 'pencil',
-            type: 'icon',
-            onClick: () => {},
-            'data-test-subj': 'action-edit',
+            name: 'Filter out',
+            // description: 'Clone this user',
+            icon: 'minusInCircle',
+            onClick: filterOut,
           },
           {
             name: 'Share',
@@ -185,7 +220,7 @@ export const Table = () => {
           {
             render: (item) => {
               return (
-                <EuiLink onClick={() => deleteUser(item)} color="danger">
+                <EuiLink onClick={() => primaryAction(item)} color="danger">
                   Delete
                 </EuiLink>
               );
