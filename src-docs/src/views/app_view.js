@@ -12,6 +12,7 @@ import {
 } from '../../../src/components';
 
 import { keys } from '../../../src/services';
+import { EuiGlobalReset } from '../../../src/global_styling/reset/global_reset';
 import { GuidePageHeader } from '../components/guide_page/guide_page_header';
 
 import favicon16Prod from '../images/favicon/prod/favicon-16x16.png';
@@ -75,6 +76,7 @@ export class AppView extends Component {
             sizes="96x96"
           />
         </Helmet>
+        <EuiGlobalReset />
         <GuidePageHeader
           onToggleLocale={toggleLocale}
           selectedLocale={locale}
