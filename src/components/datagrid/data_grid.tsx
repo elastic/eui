@@ -117,6 +117,22 @@ function computeVisibleRows(
   return endRow - startRow;
 }
 
+function getParentCellContent(_element: Node | HTMLElement) {
+  let element: HTMLElement | null =
+    _element.nodeType === document.ELEMENT_NODE
+      ? (_element as HTMLElement)
+      : _element.parentElement;
+
+  while (
+    element &&
+    element.nodeName !== 'div' &&
+    element.classList.contains('euiDataGridRowCell__expandContent') === false
+  ) {
+    element = element.parentElement;
+  }
+  return element;
+}
+
 /**
  * Returns the size of the cell container minus the scroll bar width.
  * To do so, this hook is listening for size changes of the container itself,
@@ -731,6 +747,41 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     },
     []
   );
+
+  const preventTabbing = useCallback((records: MutationRecord[]) => {
+    for (let i = 0; i < records.length; i++) {
+      const record = records[i];
+      // find the cell content owning this mutation
+      const cell = getParentCellContent(record.target);
+      if (cell) {
+        const tabbables = tabbable(cell);
+        for (let i = 0; i < tabbables.length; i++) {
+          const element = tabbables[i];
+          if (
+            element.getAttribute('role') !== 'gridcell' &&
+            !element.dataset['euigrid-tab-managed']
+          ) {
+            console.log(element);
+            element.setAttribute('tabIndex', '-1');
+            element.setAttribute('data-datagrid-interactable', 'true');
+          }
+        }
+      }
+    }
+  }, []);
+
+  const { current: mutationObserver } = useRef(
+    new MutationObserver(preventTabbing)
+  );
+  useEffect(() => {
+    if (contentRef) {
+      mutationObserver.observe(contentRef, { childList: true, subtree: true });
+      return () => {
+        mutationObserver.disconnect();
+      };
+    }
+  }, [contentRef, mutationObserver]);
+
   const datagridFocusContext = useMemo<DataGridFocusContextShape>(() => {
     return {
       setFocusedCell,
