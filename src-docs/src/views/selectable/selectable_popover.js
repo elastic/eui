@@ -12,7 +12,7 @@ import {
   EuiSpacer,
   EuiTitle,
 } from '../../../../src/components';
-import { Comparators } from '../../../../src/services/sort';
+// import { Comparators } from '../../../../src/services/sort';
 
 import { Options } from './data';
 import { createDataStore } from '../tables/data_store';
@@ -32,7 +32,7 @@ export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
 
   const onButtonClick = () => {
-    setOptions(options.slice().sort(Comparators.property('checked')));
+    // setOptions(options.slice().sort(Comparators.property('checked')));
     setIsPopoverOpen(!isPopoverOpen);
   };
 
@@ -72,11 +72,12 @@ export default () => {
         closePopover={closePopover}
       >
         <EuiSelectable
-          searchable
-          searchProps={{
-            placeholder: 'Filter list',
-            compressed: true,
-          }}
+          // searchable
+          singleSelection={true}
+          // searchProps={{
+          //   placeholder: 'Filter list',
+          //   compressed: true,
+          // }}
           options={options}
           onChange={onChange}
         >
