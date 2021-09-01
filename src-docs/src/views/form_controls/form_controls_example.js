@@ -504,11 +504,19 @@ export const FormControlsExample = {
     {
       title: 'Switch',
       text: (
-        <p>
-          A switch can be substituted for a checkbox when the semantics of the
-          label dictate a true on/off state. The label should be{' '}
-          <strong>static</strong> and describe the feature or question.
-        </p>
+        <>
+          <p>
+            A switch can be substituted for a checkbox when the semantics of the
+            label dictate a true on/off state. The label should be{' '}
+            <strong>static</strong>, action-oriented, and describe the feature
+            or present a question. Use past tense only when labelling a list of
+            previously created items, like in a{' '}
+            <EuiLink href="https://github.com/elastic/eui/pull/5119#discussion_r699717319">
+              table header
+            </EuiLink>
+            .
+          </p>
+        </>
       ),
       source: [
         {
