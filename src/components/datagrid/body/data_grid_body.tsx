@@ -33,6 +33,7 @@ import {
   DataGridSortingContext,
   DataGridWrapperRowsContext,
 } from '../data_grid_context';
+import { defaultComparator } from '../data_grid_schema';
 import { EuiDataGridFooterRow } from './data_grid_footer_row';
 import { EuiDataGridHeaderRow } from './header';
 import {
@@ -46,14 +47,6 @@ import {
 } from '../data_grid_types';
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
-
-const defaultComparator: NonNullable<
-  EuiDataGridSchemaDetector['comparator']
-> = (a, b, direction) => {
-  if (a < b) return direction === 'asc' ? -1 : 1;
-  if (a > b) return direction === 'asc' ? 1 : -1;
-  return 0;
-};
 
 const Cell: FunctionComponent<GridChildComponentProps> = ({
   columnIndex,
