@@ -17,6 +17,8 @@ import {
 } from './types';
 
 export const DEFAULT_COLOR_MODE = COLOR_MODES_STANDARD.light;
+export const AMSTERDAM_NAME_KEY = 'EUI_THEME_AMSTERDAM';
+export const DEFAULT_NAME_KEY = 'EUI_THEME_DEFAULT';
 
 /**
  * Returns whether the parameter is an object
@@ -369,4 +371,8 @@ export const mergeDeep = (
   });
 
   return target;
+};
+
+export const isDefaultTheme = (name: string) => {
+  return name === DEFAULT_NAME_KEY;
 };

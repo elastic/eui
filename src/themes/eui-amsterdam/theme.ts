@@ -6,7 +6,11 @@
  * Side Public License, v 1.
  */
 
-import { buildTheme, EuiThemeShape } from '../../services/theme';
+import {
+  buildTheme,
+  EuiThemeShape,
+  AMSTERDAM_NAME_KEY,
+} from '../../services/theme';
 import { animation } from '../../global_styling/variables/_animations';
 import { breakpoint } from '../../global_styling/variables/_breakpoint';
 import { base, size } from '../../global_styling/variables/_size';
@@ -27,5 +31,5 @@ export const euiThemeAmsterdam: EuiThemeShape = {
 
 export const EuiThemeAmsterdam = buildTheme(
   euiThemeAmsterdam,
-  'EUI_THEME_AMSTERDAM'
+  AMSTERDAM_NAME_KEY
 );

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { buildTheme } from '../../services/theme/utils';
+import { buildTheme, DEFAULT_NAME_KEY } from '../../services/theme/utils';
 import { EuiThemeShape } from '../../services/theme/types';
 import { animation } from '../../global_styling/variables/_animations';
 import { breakpoint } from '../../global_styling/variables/_breakpoint';
@@ -25,4 +25,4 @@ export const euiThemeDefault: EuiThemeShape = {
   breakpoint,
 };
 
-export const EuiThemeDefault = buildTheme(euiThemeDefault, 'EUI_THEME_DEFAULT');
+export const EuiThemeDefault = buildTheme(euiThemeDefault, DEFAULT_NAME_KEY);

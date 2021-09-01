@@ -24,6 +24,9 @@ export {
   mergeDeep,
   setOn,
   Computed,
+  isDefaultTheme,
+  DEFAULT_NAME_KEY,
+  AMSTERDAM_NAME_KEY,
 } from './utils';
 export {
   ComputedThemeShape,

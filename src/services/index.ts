@@ -149,6 +149,7 @@ export {
   getOn,
   mergeDeep,
   setOn,
+  isDefaultTheme,
   Computed,
   ComputedThemeShape,
   EuiThemeColorMode,
