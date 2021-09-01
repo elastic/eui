@@ -271,6 +271,22 @@ InnerElement.displayName = 'EuiDataGridInnerElement';
 const INITIAL_ROW_HEIGHT = 34;
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
 
+function getParentCell(_element: Node | HTMLElement) {
+  let element: HTMLElement | null =
+    _element.nodeType === document.ELEMENT_NODE
+      ? (_element as HTMLElement)
+      : _element.parentElement;
+
+  while (
+    element &&
+    element.nodeName !== 'div' &&
+    element.getAttribute('role') !== 'gridcell'
+  ) {
+    element = element.parentElement;
+  }
+  return element;
+}
+
 export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   props
 ) => {
@@ -598,21 +614,29 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     }
   }, [unconstrainedHeight, wrapperDimensions, isFullScreen]);
 
-  const preventTabbing = useCallback(() => {
-    if (wrapperRef.current) {
-      const tabbables = tabbable(wrapperRef.current);
-      for (let i = 0; i < tabbables.length; i++) {
-        const element = tabbables[i];
-        if (
-          element.getAttribute('role') !== 'gridcell' &&
-          !element.dataset['euigrid-tab-managed']
-        ) {
-          element.setAttribute('tabIndex', '-1');
-          element.setAttribute('data-datagrid-interactable', 'true');
+  const preventTabbing = useCallback(
+    (records: MutationRecord[]) => {
+      for (let i = 0; i < records.length; i++) {
+        const record = records[i];
+        // find the cell owning this mutation
+        const cell = getParentCell(record.target);
+        if (cell) {
+          const tabbables = tabbable(cell);
+          for (let i = 0; i < tabbables.length; i++) {
+            const element = tabbables[i];
+            if (
+              element.getAttribute('role') !== 'gridcell' &&
+              !element.dataset['euigrid-tab-managed']
+            ) {
+              element.setAttribute('tabIndex', '-1');
+              element.setAttribute('data-datagrid-interactable', 'true');
+            }
+          }
         }
       }
-    }
-  }, [wrapperRef]);
+    },
+    [wrapperRef]
+  );
 
   let finalHeight = IS_JEST_ENVIRONMENT
     ? Number.MAX_SAFE_INTEGER
