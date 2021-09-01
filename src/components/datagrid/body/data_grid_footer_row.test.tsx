@@ -151,20 +151,4 @@ describe('EuiDataGridFooterRow', () => {
       .prop('renderCellValue');
     expect(renderCellValue()).toEqual(null);
   });
-
-  describe('DefaultColumnFormatter', () => {
-    it('wraps content with EuiText', () => {
-      const component = shallow(<EuiDataGridFooterRow {...requiredProps} />);
-      const popoverContent: Function = component
-        .find('EuiDataGridCell')
-        .first()
-        .prop('popoverContent');
-
-      expect(popoverContent({ children: 'test' })).toMatchInlineSnapshot(`
-        <EuiText>
-          test
-        </EuiText>
-      `);
-    });
-  });
 });
