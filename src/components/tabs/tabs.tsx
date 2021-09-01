@@ -41,7 +41,8 @@ export type EuiTabsProps = CommonProps &
      */
     children?: ReactNode;
     /**
-     * Choose `default` or alternative `condensed` display styles
+     * **DEPRECATED IN AMSTERDAM**
+     * Choose `default` or alternative `condensed` display styles.
      */
     display?: EuiTabsDisplaySizes;
     /**
@@ -49,6 +50,14 @@ export type EuiTabsProps = CommonProps &
      * horizontal space
      */
     expand?: boolean;
+    /**
+     * Adds a bottom border to separate it from the content after
+     */
+    bottomBorder?: boolean;
+    /**
+     * Sizes affect both font size and overall size.
+     * Only use the `xl` size when displayed as page titles.
+     */
     size?: EuiTabsSizes;
   };
 
@@ -60,18 +69,24 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
       children,
       className,
       display = 'default',
+      bottomBorder = true,
       expand = false,
       size = 'm',
       ...rest
     }: PropsWithChildren<EuiTabsProps>,
     ref
   ) => {
+    /**
+     * Temporary force of bottom border based on `display`
+     */
+    bottomBorder = display === 'condensed' ? false : bottomBorder;
+
     const classes = classNames(
       'euiTabs',
-      displayToClassNameMap[display],
       sizeToClassNameMap[size],
       {
         'euiTabs--expand': expand,
+        'euiTabs--bottomBorder': bottomBorder,
       },
       className
     );

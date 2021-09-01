@@ -7,20 +7,14 @@
   position: relative;
   flex-shrink: 0; // don't ever let this shrink in height if direct descendent of flex
 
+  &--bottomBorder {
+    box-shadow: inset 0 ($euiBorderWidthThin * -1) 0 $euiBorderColor;
+  }
+
   // Changing height of scrollbar so it sits flush with border
   // sass-lint:disable no-vendor-prefixes
   &::-webkit-scrollbar {
-    height: 3px;
-  }
-
-  &:not(.euiTabs--condensed)::before {
-    background-color: $euiColorLightShade;
-    bottom: 0;
-    content: '';
-    height: 1px;
-    left: 0;
-    position: absolute;
-    right: 0;
+    height: 2px;
   }
 }
 
@@ -32,9 +26,8 @@
   line-height: $euiLineHeight;
   padding: $euiSizeM $euiSize;
   position: relative;
-  transition: color $euiAnimSpeedNormal $euiAnimSlightResistance, background-color $euiAnimSpeedNormal $euiAnimSlightResistance;
 
-  &:hover:not(.euiTab-isSelected) {
+  &:hover {
     text-decoration: underline;
   }
 
@@ -42,45 +35,23 @@
     background-color: $euiFocusBackgroundColor;
     text-decoration: underline;
     outline-offset: -$euiFocusRingSize;
-
-    &::before {
-      background-color: $euiColorLightShade;
-      bottom: 0;
-      content: '';
-      height: 1px;
-      left: 0;
-      position: absolute;
-      right: 0;
-    }
   }
 
   &.euiTab-isSelected {
-    color: $euiColorPrimary;
-    cursor: default;
-
-    &::after {
-      animation: euiTab $euiAnimSpeedFast $euiAnimSlightResistance;
-      background-color: $euiColorPrimary;
-      bottom: 0;
-      content: ' ';
-      height: $euiBorderWidthThick;
-      left: 0;
-      position: absolute;
-      width: 100%;
-    }
+    color: $euiColorPrimaryText;
+    box-shadow: inset 0 ($euiBorderWidthThick * -1) 0 $euiColorPrimaryText;
   }
 
   &.euiTab-isDisabled {
-    color: $euiColorDisabledText;
+    color: $euiColorDisabledText !important; // sass-lint:disable-line no-important
 
     &:hover {
-      color: $euiColorDisabledText;
       cursor: not-allowed;
       text-decoration: none;
     }
 
-    &::after {
-      background-color: $euiColorDisabledText;
+    &.euiTab-isSelected {
+      box-shadow: inset 0 ($euiBorderWidthThick * -1) 0 $euiColorDisabledText;
     }
   }
 
@@ -96,13 +67,10 @@
   .euiTabs--condensed & {
     font-weight: $euiFontWeightSemiBold;
     padding: $euiSizeS $euiSizeXS;
+    box-shadow: none;
 
     &:focus {
       background-color: $euiFocusBackgroundColor;
-
-      &::before {
-        display: none;
-      }
     }
 
     &-isSelected {
