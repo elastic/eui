@@ -1,8 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiMark is rendered 1`] = `
+.emotion-0 {
+  background-color: transparent;
+  font-weight: 700;
+  color: #343741;
+}
+
 <mark
-  class="euiMark"
+  class="euiMark emotion-0"
 >
   Marked
 </mark>
