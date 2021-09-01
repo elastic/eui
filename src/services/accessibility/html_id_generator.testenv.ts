@@ -14,3 +14,14 @@ export function htmlIdGenerator(idPrefix: string = '') {
     return `${prefix}${staticUuid}${suffix}`;
   };
 }
+
+export const useGeneratedHtmlId = ({
+  prefix,
+  suffix,
+}: {
+  prefix?: string;
+  suffix?: string;
+} = {}) => {
+  // Skip useMemo in test environments - it's not necessary since the uuid is static/mocked
+  return htmlIdGenerator(prefix)(suffix);
+};
