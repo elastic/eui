@@ -152,9 +152,10 @@ export class CollapsedItemActions<T> extends Component<
               target={target}
               icon={icon}
               data-test-subj={dataTestSubj}
-              onClick={() =>
-                this.onClickItem(onClick ? () => onClick(item) : undefined)
-              }
+              onClick={() => {
+                this.closePopover();
+                onClick ? (e: any) => onClick(item, e) : undefined;
+              }}
             >
               {buttonContent}
             </EuiContextMenuItem>

@@ -40,7 +40,9 @@ export const DefaultItemAction = <T extends {}>({
       or 'href' string. If you want to provide a custom action control, make sure to define the 'render' callback`);
   }
 
-  const onClick = action.onClick ? (e) => action.onClick!(item, e) : undefined;
+  const onClick = action.onClick
+    ? (e: any) => action.onClick!(item, e)
+    : undefined;
 
   const buttonColor = action.color;
   let color: EuiButtonIconColor = 'primary';

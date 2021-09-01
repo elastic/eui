@@ -47,6 +47,7 @@ export const Table = () => {
   const [customAction, setCustomAction] = useState(false);
   const [ctrlIsPressed, setCtrlIsPressed] = useState(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const ctrlHandler = (e) => {
     if (e && e.metaKey) {
       setCtrlIsPressed(true);
