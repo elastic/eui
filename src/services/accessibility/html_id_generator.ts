@@ -7,6 +7,7 @@
  */
 
 import { v1 as uuidv1 } from 'uuid';
+import { useMemo } from 'react';
 
 /**
  * This function returns a function to generate ids.
@@ -23,3 +24,20 @@ export function htmlIdGenerator(idPrefix: string = '') {
     return `${prefix}${suffix ? staticUuid : uuidv1()}${suffix}`;
   };
 }
+
+/**
+ * Generates an ID within a static ref object that remains static
+ * until the component using it is unmounted. This prevents IDs from
+ * being re-randomized on every component update.
+ */
+export const useGeneratedHtmlId = ({
+  prefix,
+  suffix,
+}: {
+  prefix?: string;
+  suffix?: string;
+} = {}) => {
+  return useMemo<string>(() => {
+    return htmlIdGenerator(prefix)(suffix);
+  }, [prefix, suffix]);
+};
