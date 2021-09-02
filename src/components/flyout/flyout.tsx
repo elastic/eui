@@ -10,10 +10,12 @@ import React, {
   useEffect,
   useState,
   forwardRef,
+  ComponentPropsWithRef,
   CSSProperties,
+  ElementType,
   Fragment,
   FunctionComponent,
-  ComponentPropsWithRef,
+  MouseEvent,
   MutableRefObject,
 } from 'react';
 import classnames from 'classnames';
@@ -79,7 +81,7 @@ const paddingSizeToClassNameMap = {
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 type _EuiFlyoutPaddingSize = typeof PADDING_SIZES[number];
 
-type _EuiFlyoutProps = {
+interface _EuiFlyoutProps {
   onClose: () => void;
   /**
    * Defines the width of the panel.
@@ -149,12 +151,12 @@ type _EuiFlyoutProps = {
    * Named breakpoint or pixel value for customizing the minimum window width to enable the `push` type
    */
   pushMinBreakpoint?: EuiBreakpointSize | number;
-  style?: React.CSSProperties;
-};
+  style?: CSSProperties;
+}
 
 const defaultElement = 'div';
 
-type Props<T extends React.ElementType> = CommonProps & {
+type Props<T extends ElementType> = CommonProps & {
   /**
    * Sets the HTML element for `EuiFlyout`
    */
@@ -163,11 +165,11 @@ type Props<T extends React.ElementType> = CommonProps & {
   Omit<PropsOfElement<T>, keyof _EuiFlyoutProps>;
 
 export type EuiFlyoutProps<
-  T extends React.ElementType = typeof defaultElement
+  T extends ElementType = typeof defaultElement
 > = Props<T> & Omit<ComponentPropsWithRef<T>, keyof Props<T>>;
 
-const EuiFlyout = forwardRef(
-  <T extends React.ElementType = typeof defaultElement>(
+export const EuiFlyout = forwardRef(
+  <T extends ElementType = typeof defaultElement>(
     {
       className,
       children,
@@ -230,8 +232,8 @@ const EuiFlyout = forwardRef(
       null
     );
     const setRef = useCombinedRefs([setResizeRef, ref]);
-    // TODO: Allow this hooke to be conditional
-    const dimensions = useResizeObserver(resizeRef as Element);
+    // TODO: Allow this hook to be conditional
+    const dimensions = useResizeObserver(resizeRef);
 
     useEffect(() => {
       // This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
@@ -328,7 +330,7 @@ const EuiFlyout = forwardRef(
               data-test-subj="euiFlyoutCloseButton"
               {...closeButtonProps}
               className={closeButtonClasses}
-              onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+              onClick={(e: MouseEvent<HTMLButtonElement>) => {
                 onClose();
                 closeButtonProps?.onClick && closeButtonProps.onClick(e);
               }}
@@ -407,10 +409,8 @@ const EuiFlyout = forwardRef(
   // React.forwardRef interferes with the inferred element type
   // Casting to ensure correct element prop type checking for `as`
   // e.g., `href` is not on a `div`
-) as <E extends React.ElementType = typeof defaultElement>(
-  props: EuiFlyoutProps<E>
+) as <T extends ElementType = typeof defaultElement>(
+  props: EuiFlyoutProps<T>
 ) => JSX.Element;
 // Recast to allow `displayName`
 (EuiFlyout as FunctionComponent).displayName = 'EuiFlyout';
-
-export { EuiFlyout };
