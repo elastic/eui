@@ -566,6 +566,7 @@ describe('EuiDataGrid', () => {
             "onFocus": [Function],
             "onKeyDown": [Function],
             "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "red",
@@ -584,6 +585,7 @@ describe('EuiDataGrid', () => {
             "onFocus": [Function],
             "onKeyDown": [Function],
             "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "blue",
@@ -602,6 +604,7 @@ describe('EuiDataGrid', () => {
             "onFocus": [Function],
             "onKeyDown": [Function],
             "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "red",
@@ -620,6 +623,7 @@ describe('EuiDataGrid', () => {
             "onFocus": [Function],
             "onKeyDown": [Function],
             "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "blue",
