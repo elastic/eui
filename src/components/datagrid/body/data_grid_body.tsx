@@ -23,63 +23,30 @@ import {
   VariableSizeGridProps,
 } from 'react-window';
 import tabbable from 'tabbable';
-import { EuiCodeBlock } from '../../code';
 import {
   EuiMutationObserver,
   useMutationObserver,
 } from '../../observer/mutation_observer';
 import { useResizeObserver } from '../../observer/resize_observer';
-import { EuiText } from '../../text';
 import { EuiDataGridCell } from './data_grid_cell';
 import {
   DataGridSortingContext,
   DataGridWrapperRowsContext,
 } from '../data_grid_context';
+import { defaultComparator } from '../data_grid_schema';
 import { EuiDataGridFooterRow } from './data_grid_footer_row';
 import { EuiDataGridHeaderRow } from './header';
 import {
+  DefaultColumnFormatter,
+  providedPopoverContents,
+} from './popover_utils';
+import {
   EuiDataGridBodyProps,
   EuiDataGridInMemoryValues,
-  EuiDataGridPopoverContent,
-  EuiDataGridPopoverContents,
   EuiDataGridSchemaDetector,
 } from '../data_grid_types';
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
-
-const defaultComparator: NonNullable<
-  EuiDataGridSchemaDetector['comparator']
-> = (a, b, direction) => {
-  if (a < b) return direction === 'asc' ? -1 : 1;
-  if (a > b) return direction === 'asc' ? 1 : -1;
-  return 0;
-};
-
-const providedPopoverContents: EuiDataGridPopoverContents = {
-  json: ({ cellContentsElement }) => {
-    let formattedText = cellContentsElement.innerText;
-
-    // attempt to pretty-print the json
-    try {
-      formattedText = JSON.stringify(JSON.parse(formattedText), null, 2);
-    } catch (e) {} // eslint-disable-line no-empty
-
-    return (
-      <EuiCodeBlock
-        isCopyable
-        transparentBackground
-        paddingSize="none"
-        language="json"
-      >
-        {formattedText}
-      </EuiCodeBlock>
-    );
-  },
-};
-
-const DefaultColumnFormatter: EuiDataGridPopoverContent = ({ children }) => {
-  return <EuiText>{children}</EuiText>;
-};
 
 const Cell: FunctionComponent<GridChildComponentProps> = ({
   columnIndex,

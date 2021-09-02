@@ -17,8 +17,9 @@ export interface EuiResizeObserverProps {
   onResize: (dimensions: { height: number; width: number }) => void;
 }
 
-const hasResizeObserver =
+export const hasResizeObserver =
   typeof window !== 'undefined' && typeof window.ResizeObserver !== 'undefined';
+
 export class EuiResizeObserver extends EuiObserver<EuiResizeObserverProps> {
   name = 'EuiResizeObserver';
 
