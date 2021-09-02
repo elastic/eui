@@ -281,7 +281,7 @@ function getParentCellContent(_element: Node | HTMLElement) {
     element &&
     element.nodeName !== 'div' &&
     element.classList.contains('euiDataGridRowCell__expandContent') === false
-    ) {
+  ) {
     element = element.parentElement;
   }
   return element;

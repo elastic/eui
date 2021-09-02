@@ -405,7 +405,7 @@ export default () => {
           }, 5000);
 
           return () => clearInterval(interval);
-        }, []);
+        }, []); // eslint-disable-line react-hooks/exhaustive-deps
       }
 
       return content;
