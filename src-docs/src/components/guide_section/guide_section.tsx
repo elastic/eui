@@ -107,7 +107,6 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
             ? slugify(source.displayName)
             : // @ts-ignore Complicated
               GuideSectionCodeTypesMap[source.type].name,
-          disabled: renderingPlayground,
           ...source,
         });
       });
