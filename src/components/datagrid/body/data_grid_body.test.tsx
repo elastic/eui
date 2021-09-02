@@ -76,7 +76,7 @@ describe('EuiDataGridBody', () => {
   });
 
   // TODO: This is likely better handled/asserted by Cypress.
-  // I'm leaving it in for now to provide example of props/inMemoryValues
+  // I'm leaving it in for now to provide an example of props/inMemoryValues
   it('handles in-memory sorting and pagination', () => {
     mount(
       <DataGridSortingContext.Provider

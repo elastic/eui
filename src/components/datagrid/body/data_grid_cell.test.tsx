@@ -214,10 +214,12 @@ describe('EuiDataGridCell', () => {
       });
     });
 
-    it('mouse event', () => {
+    it('mouse events', () => {
       const component = mountEuiDataGridCellWithContext();
       component.simulate('mouseEnter');
       expect(component.state('enableInteractions')).toEqual(true);
+      component.simulate('mouseLeave');
+      expect(component.state('enableInteractions')).toEqual(false);
     });
 
     it('focus/blur events', () => {

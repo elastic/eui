@@ -18,6 +18,7 @@ exports[`EuiDataGridCell renders 1`] = `
     onFocus={[Function]}
     onKeyDown={[Function]}
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
     role="gridcell"
     style={
       Object {
