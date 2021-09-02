@@ -13,7 +13,12 @@ import {
 import Knobs from './knobs';
 import { GuideSectionPropsDescription } from '../../components/guide_section/guide_section_parts/guide_section_props_description';
 
-export default ({ config, setGhostBackground, playgroundClassName }) => {
+export default ({
+  config,
+  setGhostBackground,
+  playgroundClassName,
+  playgroundPanelProps,
+}) => {
   const getSnippet = (code) => {
     let regex = /return \(([\S\s]*?)(;)$/gm;
     let newCode = code.match(regex);
@@ -64,30 +69,30 @@ export default ({ config, setGhostBackground, playgroundClassName }) => {
       <>
         <EuiFlyoutHeader hasBorder>
           <GuideSectionPropsDescription
-            className="playgroundTitle"
+            className="playground__title"
             componentName={config.componentName}
             component={config.scope[config.componentName]}
           />
         </EuiFlyoutHeader>
-        <EuiFlyoutHeader hasBorder>
+        <EuiFlyoutHeader className="playground__demoWrapper" hasBorder>
           <EuiPanel
             color="transparent"
             borderRadius="none"
-            className={classNames('playgroundWrapper', playgroundClassName, {
+            className={classNames('playground__panel', {
               guideDemo__ghostBackground: isGhost,
             })}
+            {...playgroundPanelProps}
           >
             <Compiler
               {...params.compilerProps}
-              minHeight={0}
               placeholder={Placeholder}
-              className={playgroundClassName}
+              className={classNames('playground__demo', playgroundClassName)}
             />
           </EuiPanel>
         </EuiFlyoutHeader>
-        <EuiFlyoutHeader hasBorder>
+        <EuiFlyoutHeader className="playground__codeWrapper" hasBorder>
           <EuiCodeBlock
-            style={{ maxHeight: '25vh' }}
+            overflowHeight={'100%'}
             language="jsx"
             fontSize="m"
             paddingSize="m"
@@ -96,7 +101,7 @@ export default ({ config, setGhostBackground, playgroundClassName }) => {
             {getSnippet(params.editorProps.code)}
           </EuiCodeBlock>
         </EuiFlyoutHeader>
-        <EuiFlyoutBody className="playgroundTableWrapper">
+        <EuiFlyoutBody className="playground__tableWrapper">
           <EuiErrorBoundary>
             <Knobs {...params.knobProps} />
           </EuiErrorBoundary>

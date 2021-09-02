@@ -145,12 +145,18 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   };
 
   const renderPlayground = () => {
-    const { config, setGhostBackground, playgroundClassName } = playground();
+    const {
+      config,
+      setGhostBackground,
+      playgroundClassName,
+      playgroundPanelProps,
+    } = playground();
 
     return playgroundService({
       config,
       setGhostBackground,
       playgroundClassName,
+      playgroundPanelProps,
       playgroundToggle: renderPlaygroundToggle(),
       tabs: renderTabs(),
     });
