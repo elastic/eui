@@ -280,7 +280,7 @@ function getParentCellContent(_element: Node | HTMLElement) {
   while (
     element &&
     element.nodeName !== 'div' &&
-    element.classList.contains('euiDataGridRowCell__expandContent') === false
+    element.hasAttribute('data-datagrid-cellcontent')
   ) {
     element = element.parentElement;
   }
@@ -627,7 +627,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
             element.getAttribute('role') !== 'gridcell' &&
             !element.dataset['euigrid-tab-managed']
           ) {
-            console.log(element);
             element.setAttribute('tabIndex', '-1');
             element.setAttribute('data-datagrid-interactable', 'true');
           }
