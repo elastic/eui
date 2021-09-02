@@ -17,6 +17,7 @@ import { EuiSpacer } from '../../spacer';
 import { EuiTitle } from '../../title';
 import { EuiText } from '../../text';
 import { useIsWithinBreakpoints } from '../../../services/hooks';
+import { EuiScreenReaderOnly } from '../../accessibility';
 
 export const ALIGN_ITEMS = ['top', 'bottom', 'center', 'stretch'] as const;
 
@@ -173,9 +174,23 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
       });
     };
 
+    // When tabs exist without a pageTitle, we need to recreate an h1 based on the currently selected tab and visually hide it
+    const screenReaderPageTitle = !pageTitle && (
+      <EuiScreenReaderOnly>
+        <h1>
+          {
+            tabs.find((obj) => {
+              return obj.isSelected === true;
+            })?.label
+          }
+        </h1>
+      </EuiScreenReaderOnly>
+    );
+
     tabsNode = (
       <>
         {pageTitleNode && <EuiSpacer />}
+        {screenReaderPageTitle}
         <EuiTabs
           {...tabsProps}
           display="condensed"

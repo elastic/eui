@@ -516,6 +516,11 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
     <div
       class="euiFlexItem"
     >
+      <h1
+        class="euiScreenReaderOnly"
+      >
+        Tab 1
+      </h1>
       <div
         class="euiTabs euiTabs--xlarge euiTabs--condensed"
         role="tablist"
@@ -560,6 +565,11 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
     <div
       class="euiFlexItem"
     >
+      <h1
+        class="euiScreenReaderOnly"
+      >
+        Tab 1
+      </h1>
       <div
         aria-label="aria-label"
         class="euiTabs euiTabs--xlarge euiTabs--condensed testClass1 testClass2"
