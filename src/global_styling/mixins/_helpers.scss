@@ -106,6 +106,9 @@
 }
 
 // Hiding elements offscreen to only be read by screen reader
+// NOTE: Hidden absolute positioning can cause issues with scrolling/overflow.
+// `clip` and `left` (for Chromium browsers) are needed to prevent these issues -
+// @see https://github.com/elastic/eui/pull/5130 for more info
 @mixin euiScreenReaderOnly {
   position: absolute;
   left: -10000px;
