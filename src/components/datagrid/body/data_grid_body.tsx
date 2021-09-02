@@ -271,6 +271,16 @@ InnerElement.displayName = 'EuiDataGridInnerElement';
 const INITIAL_ROW_HEIGHT = 34;
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
 
+/**
+ * getParentCellContent is called by the grid body's mutation observer,
+ * which exists to pick up DOM changes in cells and remove interactive elemnts
+ * from the page's tab index, as we want to move between cells via arrow keys
+ * instead of tabbing.
+ *
+ * So we start with a Node or HTMLElement returned by a mutation record
+ * and search its ancestors for a div[data-datagrid-cellcontent], if any
+ * which is a valid target for disabling tabbing within
+ */
 function getParentCellContent(_element: Node | HTMLElement) {
   let element: HTMLElement | null =
     _element.nodeType === document.ELEMENT_NODE
@@ -619,7 +629,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       const record = records[i];
       // find the cell content owning this mutation
       const cell = getParentCellContent(record.target);
+
       if (cell) {
+        // if we found it, disable tabbable elements
         const tabbables = tabbable(cell);
         for (let i = 0; i < tabbables.length; i++) {
           const element = tabbables[i];
