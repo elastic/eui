@@ -21,48 +21,23 @@ import {
   EuiTextColor,
   EuiTextArea,
   EuiFormRow,
-  EuiLink,
   EuiText,
   EuiPanel,
   EuiMarkdownFormat,
 } from '../../../../src/components/';
+import { parsingPluginList, processingPluginList } from './markdown_format';
 
 export const markup = (text) => {
   return (
-    <EuiMarkdownFormat textSize="xs" color="subdued">
+    <EuiMarkdownFormat
+      textSize="xs"
+      color="subdued"
+      parsingPluginList={parsingPluginList}
+      processingPluginList={processingPluginList}
+    >
       {text}
     </EuiMarkdownFormat>
   );
-  const regex = /(\B#[a-zA-Z]+)|(`[^`]+`)/g;
-  return text.split('\n').map((token) => {
-    const values = token.split(regex).map((token, index) => {
-      if (!token) {
-        return '';
-      }
-      if (token.startsWith('#')) {
-        const id = token.substring(1);
-        const onClick = () => {
-          document.getElementById(id).scrollIntoView();
-        };
-        return (
-          <EuiLink key={`markup-${index}`} onClick={onClick}>
-            {id}
-          </EuiLink>
-        );
-      }
-      if (token.startsWith('`')) {
-        const code = token.substring(1, token.length - 1);
-        return <EuiCode key={`markup-${index}`}>{code}</EuiCode>;
-      }
-      if (token.includes('\n')) {
-        return token
-          .split('\n')
-          .map((item) => [item, <br key={`markup-${index}`} />]);
-      }
-      return token;
-    });
-    return [...values, <br key="lineBreak" />];
-  });
 };
 
 export const humanizeType = (type) => {
