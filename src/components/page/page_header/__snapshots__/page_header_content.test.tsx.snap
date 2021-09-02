@@ -404,6 +404,28 @@ exports[`EuiPageHeaderContent props pageTitle is rendered with icon and iconProp
 </div>
 `;
 
+exports[`EuiPageHeaderContent props pageTitle is rendered with pageTitleProps 1`] = `
+<div
+  class="euiPageHeaderContent"
+>
+  <div
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+  >
+    <div
+      class="euiFlexItem"
+    >
+      <h1
+        aria-label="aria-label"
+        class="euiTitle euiTitle--large testClass1 testClass2"
+        data-test-subj="test subject string"
+      >
+        Page title
+      </h1>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiPageHeaderContent props responsive is rendered as false 1`] = `
 <div
   class="euiPageHeaderContent"

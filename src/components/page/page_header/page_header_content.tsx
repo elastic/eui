@@ -14,7 +14,7 @@ import { EuiTab, EuiTabs, EuiTabsProps } from '../../tabs';
 import { Props as EuiTabProps } from '../../tabs/tab';
 import { EuiFlexGroup, EuiFlexItem, EuiFlexGroupProps } from '../../flex';
 import { EuiSpacer } from '../../spacer';
-import { EuiTitle } from '../../title';
+import { EuiTitle, EuiTitleProps } from '../../title';
 import { EuiText } from '../../text';
 import { useIsWithinBreakpoints } from '../../../services/hooks';
 import { EuiScreenReaderOnly } from '../../accessibility';
@@ -35,6 +35,10 @@ export type EuiPageHeaderContentTitle = {
    * A simple string is best
    */
   pageTitle?: ReactNode;
+  /**
+   * Additional props to pass to the EuiTitle
+   */
+  pageTitleProps?: Omit<EuiTitleProps, 'children' | 'size'>;
   /**
    * Optional icon to place to the left of the title
    */
@@ -104,6 +108,7 @@ export type EuiPageHeaderContentProps = CommonProps &
 export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> = ({
   className,
   pageTitle,
+  pageTitleProps,
   iconType,
   iconProps,
   tabs,
@@ -150,7 +155,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     ) : undefined;
 
     pageTitleNode = (
-      <EuiTitle size="l">
+      <EuiTitle {...pageTitleProps} size="l">
         <h1>
           {icon}
           {pageTitle}

@@ -208,7 +208,9 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle euiTitle--large"
+          aria-label="aria-label"
+          class="euiTitle euiTitle--large testClass1 testClass2"
+          data-test-subj="test subject string"
         >
           <span
             aria-label="aria-label"
