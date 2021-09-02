@@ -1,6 +1,7 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
-import { EuiSwitch, EuiSpacer } from '../../../../src/components';
+import { EuiSwitch } from '../../../../src/components';
+import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [checked, setChecked] = useState(false);
@@ -10,59 +11,18 @@ export default () => {
   };
 
   return (
-    <Fragment>
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles
+      canReadOnly={false}
+      canLoading={false}
+      canInvalid={false}
+      canFullWidth={false}
+    >
       <EuiSwitch
-        label="I am a switch"
+        label="Enable"
         checked={checked}
         onChange={(e) => onChange(e)}
       />
-
-      <EuiSpacer size="m" />
-
-      <EuiSwitch
-        label="I am a disabled switch"
-        checked={checked}
-        onChange={(e) => onChange(e)}
-        disabled
-      />
-
-      <EuiSpacer size="m" />
-
-      <EuiSwitch
-        showLabel={false}
-        label="I am a switch without a visible label"
-        checked={checked}
-        onChange={(e) => onChange(e)}
-      />
-
-      <EuiSpacer size="m" />
-
-      <EuiSwitch
-        label="I am a compressed switch"
-        checked={checked}
-        onChange={(e) => onChange(e)}
-        compressed
-      />
-
-      <EuiSpacer size="m" />
-
-      <EuiSwitch
-        label="I am a compressed, disabled switch"
-        checked={checked}
-        onChange={(e) => onChange(e)}
-        compressed
-        disabled
-      />
-
-      <EuiSpacer size="m" />
-
-      <EuiSwitch
-        showLabel={false}
-        label="I am a compressed switch without a visible label"
-        checked={checked}
-        onChange={(e) => onChange(e)}
-        compressed
-      />
-    </Fragment>
+    </DisplayToggles>
   );
 };
