@@ -18,10 +18,12 @@ export function htmlIdGenerator(idPrefix: string = '') {
 export const useGeneratedHtmlId = ({
   prefix,
   suffix,
+  idFromProps,
 }: {
   prefix?: string;
   suffix?: string;
+  idFromProps?: string;
 } = {}) => {
   // Skip useMemo in test environments - it's not necessary since the uuid is static/mocked
-  return htmlIdGenerator(prefix)(suffix);
+  return idFromProps || htmlIdGenerator(prefix)(suffix);
 };

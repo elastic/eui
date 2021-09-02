@@ -79,4 +79,18 @@ describe('useGeneratedHtmlId', () => {
     expect(id!.startsWith('hello')).toBeTruthy();
     expect(id!.endsWith('world')).toBeTruthy();
   });
+
+  it('allows overriding generated IDs with custom IDs from props', () => {
+    const MockComponent: React.FC<{ id?: string }> = ({ id, ...props }) => (
+      <div id={useGeneratedHtmlId({ idFromProps: id })} {...props} />
+    );
+    const component = shallow(<MockComponent id="hello" />);
+    expect(component.find('div').prop('id')).toEqual('hello');
+
+    component.setProps({ id: 'world' });
+    expect(component.find('div').prop('id')).toEqual('world');
+
+    component.setProps({ id: undefined });
+    expect(component.find('div').prop('id')).toBeTruthy(); // Should fall back to a generated ID
+  });
 });
