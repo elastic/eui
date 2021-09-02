@@ -28,6 +28,7 @@ const sizeToClassNameMap = {
   s: 'euiTabs--small',
   m: null,
   l: 'euiTabs--large',
+  // xl: 'euiTabs--xlarge',
 };
 
 export const SIZES = keysOf(sizeToClassNameMap);
