@@ -31,9 +31,14 @@
       // We want to add some extra separation between it and the content body
       border-bottom: $euiBorderThin;
 
-      &:not(.euiPageHeader--tabsAtBottom) {
+      &:not(.euiPageHeader--tabsAtBottom):not(.euiPageHeader--onlyTabs) {
         padding-bottom: $amount;
       }
+    }
+
+    // When only tabs, remove all padding
+    & > .euiPageHeader.euiPageHeader--onlyTabs {
+      padding-top: 0;
     }
   }
 }
