@@ -28,7 +28,7 @@ const sizeToClassNameMap = {
   s: 'euiTabs--small',
   m: null,
   l: 'euiTabs--large',
-  // xl: 'euiTabs--xlarge',
+  xl: 'euiTabs--xlarge',
 };
 
 export const SIZES = keysOf(sizeToClassNameMap);
@@ -85,6 +85,7 @@ export const EuiTabs = forwardRef<EuiTabRef, PropsWithChildren<EuiTabsProps>>(
     const classes = classNames(
       'euiTabs',
       sizeToClassNameMap[size],
+      displayToClassNameMap[display],
       {
         'euiTabs--expand': expand,
         'euiTabs--bottomBorder': bottomBorder,

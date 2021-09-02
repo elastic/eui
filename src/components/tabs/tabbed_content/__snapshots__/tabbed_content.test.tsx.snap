@@ -308,7 +308,7 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
 exports[`EuiTabbedContent props display can be condensed 1`] = `
 <div>
   <div
-    class="euiTabs"
+    class="euiTabs euiTabs--condensed"
     role="tablist"
   >
     <button

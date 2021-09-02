@@ -19,13 +19,11 @@
 }
 
 .euiTab {
-  @include fontSize($euiTabFontSize);
+  @include euiFontSize;
   color: $euiTextColor;
-  background-color: transparent;
-  cursor: pointer;
   line-height: $euiLineHeight;
   padding: $euiSizeM $euiSize;
-  position: relative;
+  cursor: pointer;
 
   &:hover {
     text-decoration: underline;
@@ -55,65 +53,65 @@
     }
   }
 
-  // Small Tabs Group Modifier
-
-  .euiTabs--small & {
-    @include fontSize($euiTabFontSizeS);
-    padding: $euiSizeS;
-  }
-
-  // Condensed Tabs Group Modifier
-
-  .euiTabs--condensed & {
-    font-weight: $euiFontWeightSemiBold;
-    padding: $euiSizeS $euiSizeXS;
-    box-shadow: none;
-
-    &:focus {
-      background-color: $euiFocusBackgroundColor;
-    }
-
-    &-isSelected {
-      text-decoration: none;
-    }
-
-    & + .euiTab {
-      margin-left: $euiSize;
-    }
-  }
-
-  .euiTabs--small.euiTabs--condensed & {
-    padding-top: ($euiSizeM / 2);
-    padding-bottom: ($euiSizeM / 2);
-  }
-
-  .euiTabs--large.euiTabs--condensed & + .euiTab {
-    margin-left: $euiSizeL;
-  }
-
   // Expand Tabs Group Modifier
 
   .euiTabs--expand & {
     flex-basis: 0%;
     flex-grow: 1;
   }
+
+  // Sizes
+
+  .euiTabs--small & {
+    @include euiFontSizeS;
+    padding: $euiSizeS;
+  }
+
+  .euiTabs--large & {
+    padding: $euiSizeM $euiSize;
+  }
+
+  .euiTabs--xlarge & {
+    @include euiFontSizeL;
+    padding: $euiSizeS $euiSizeL;
+  }
 }
 
 .euiTab__content {
+  @include euiTextTruncate;
   display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transform: translateY(0);
-  transition: transform $euiAnimSpeedFast $euiAnimSlightBounce;
-  white-space: nowrap;
 }
 
-@keyframes euiTab {
-  0% {
-    transform: scaleX(0);
+// Condensed Tabs Group Modifier
+
+.euiTabs--condensed {
+  .euiTab {
+    @include euiFontSize;
+    padding: $euiSizeS $euiSizeXS;
+    font-weight: $euiFontWeightSemiBold;
+
+    + .euiTab {
+      margin-left: $euiSize;
+    }
   }
 
-  100% {
-    transform: scaleX(1);
+  &.euiTabs--small .euiTab {
+    @include euiFontSizeS;
+    padding: ($euiSizeM / 2) $euiSizeXS;
+  }
+
+  &.euiTabs--large .euiTab {
+    + .euiTab {
+      margin-left: $euiSizeL;
+    }
+  }
+
+  &.euiTabs--xlarge .euiTab {
+    @include euiFontSizeL;
+    padding: $euiSizeM $euiSizeXS;
+
+    + .euiTab {
+      margin-left: $euiSizeL;
+    }
   }
 }

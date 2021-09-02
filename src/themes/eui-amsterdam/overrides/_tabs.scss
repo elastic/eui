@@ -1,7 +1,8 @@
 // Fixed heights ensure proper alignment with pixel grid
 
 // MEDIUM
-.euiTab {
+.euiTab,
+.euiTabs--condensed .euiTab {
   @include euiTitle('xxs');
   line-height: $euiSizeXXL;
   padding: 0 $euiSizeXS;
@@ -15,22 +16,37 @@
   }
 }
 
-.euiTabs {
+.euiTabs,
+.euiTabs--condensed.euiTabs {
   // SMALL
   &--small .euiTab {
     @include euiTitle('xxxs');
     line-height: $euiSizeXL;
     padding: 0 $euiSizeXS;
+
+    & + .euiTab {
+      margin-left: $euiSizeM;
+    }
   }
 
   // LARGE
   &--large .euiTab {
-    @include euiTitle('xxs');
+    @include euiTitle('xs');
     line-height: $euiSizeXXL + $euiSizeS;
     padding: 0 $euiSizeXS;
 
     & + .euiTab {
       margin-left: $euiSizeL;
+    }
+  }
+
+  &--xlarge .euiTab {
+    @include fontSize($euiSize + $euiSizeXS);
+    line-height: $euiSizeXXL + $euiSizeS;
+    padding: 0 $euiSizeXS;
+
+    & + .euiTab {
+      margin-left: $euiSizeXL;
     }
   }
 
