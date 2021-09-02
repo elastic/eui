@@ -116,7 +116,8 @@ export default () => {
           </EuiFormRow>
           <EuiFormRow
             label="Include the following in the embed"
-            hasChildLabel={false}>
+            hasChildLabel={false}
+          >
             <EuiSwitch
               name="switch"
               id="asdf2"
@@ -145,7 +146,8 @@ export default () => {
       isOpen={isPopoverOpen}
       closePopover={closePopover}
       panelPaddingSize="none"
-      anchorPosition="downLeft">
+      anchorPosition="downLeft"
+    >
       <EuiContextMenu initialPanelId={0} panels={panels} />
     </EuiPopover>
   );

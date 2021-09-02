@@ -13,7 +13,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: $euiZModal;
+  z-index: $euiZDataGrid;
   background: $euiColorEmptyShade;
 
   .euiDataGrid__pagination {
@@ -101,6 +101,10 @@
 .euiDataGrid__restrictBody {
   height: 100vh;
   overflow: hidden;
+
+  .euiHeader {
+    z-index: $euiZHeaderBelowDataGrid;
+  }
 }
 
 

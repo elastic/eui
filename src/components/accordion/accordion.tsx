@@ -219,7 +219,8 @@ export class EuiAccordion extends Component<
           aria-labelledby={buttonId}
           tabIndex={-1}
           className={iconWrapperClasses}
-          onClick={this.onToggle}>
+          onClick={this.onToggle}
+        >
           {baseIcon}
         </button>
       );
@@ -269,13 +270,12 @@ export class EuiAccordion extends Component<
             aria-expanded={isOpen}
             onClick={this.onToggle}
             className={buttonClasses}
-            type="button">
+            type="button"
+          >
             {icon}
             <span
-              className={classNames(
-                'euiIEFlexWrapFix',
-                buttonContentClassName
-              )}>
+              className={classNames('euiIEFlexWrapFix', buttonContentClassName)}
+            >
               {buttonContent}
             </span>
           </button>
@@ -291,14 +291,16 @@ export class EuiAccordion extends Component<
           tabIndex={-1}
           role="region"
           aria-labelledby={buttonId}
-          id={id}>
+          id={id}
+        >
           <EuiResizeObserver onResize={this.setChildContentHeight}>
             {(resizeRef) => (
               <div
                 ref={(ref) => {
                   this.setChildContentRef(ref);
                   resizeRef(ref);
-                }}>
+                }}
+              >
                 <div className={childrenClasses}>{childrenContent}</div>
               </div>
             )}

@@ -32,13 +32,15 @@ export const HomeView = () => (
     hasBorder={false}
     paddingSize="none"
     color="transparent"
-    borderRadius="none">
+    borderRadius="none"
+  >
     <EuiPageContentBody restrictWidth>
       <EuiPanel color="subdued" hasShadow={false} paddingSize="none">
         <EuiFlexGroup
           alignItems="center"
           gutterSize="none"
-          className="guideHome__hero">
+          className="guideHome__hero"
+        >
           <EuiFlexItem>
             <EuiTitle size="l">
               <h1>Elastic UI</h1>
@@ -119,7 +121,8 @@ export const HomeView = () => (
         gutterSize="l"
         wrap
         responsive={false}
-        justifyContent="spaceBetween">
+        justifyContent="spaceBetween"
+      >
         <EuiFlexItem grow={false} className="guideHomePage__blockformCard">
           <EuiCard
             hasBorder
@@ -228,7 +231,8 @@ export const HomeView = () => (
             <span
               role="img"
               aria-label="love"
-              className="guideHome__footerHeart">
+              className="guideHome__footerHeart"
+            >
               ❤️
             </span>{' '}
             by{' '}

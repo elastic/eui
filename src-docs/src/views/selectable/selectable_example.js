@@ -108,7 +108,8 @@ export const SelectableExample = {
           </p>
           <EuiCallOut
             iconType="check"
-            title="Selected options are based on the checked = on property">
+            title="Selected options are based on the checked = on property"
+          >
             <p>
               <strong>EuiSelectable</strong> offers the ability to{' '}
               <strong>exclude</strong> selections. Therefore, the{' '}
@@ -477,7 +478,8 @@ export const SelectableExample = {
           <EuiSpacer size="xs" />
           <EuiAccordion
             id="optionSnippet"
-            buttonContent={<small>Code snippet</small>}>
+            buttonContent={<small>Code snippet</small>}
+          >
             <EuiSpacer size="xs" />
             <EuiCodeBlock language="ts" isCopyable paddingSize="s">
               {`const options: EuiSelectableTemplateSitewideOption[] = [

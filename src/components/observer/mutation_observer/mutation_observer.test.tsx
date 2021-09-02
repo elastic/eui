@@ -25,7 +25,8 @@ describe('EuiMutationObserver', () => {
       return (
         <EuiMutationObserver
           observerOptions={{ attributes: true }}
-          onMutation={onMutation}>
+          onMutation={onMutation}
+        >
           {(mutationRef) => (
             <div ref={mutationRef} data-test-ref={value}>
               Hello World

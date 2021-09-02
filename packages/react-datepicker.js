@@ -212,11 +212,6 @@ UntouchabilityChecker.prototype.isUntouchable = function isUntouchable(node) {
 
 var tabbable_1 = tabbable;
 
-var tabbable$1 = /*#__PURE__*/Object.freeze({
-  default: tabbable_1,
-  __moduleExports: tabbable_1
-});
-
 var immutable = extend;
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -241,8 +236,6 @@ var immutable$1 = /*#__PURE__*/Object.freeze({
   default: immutable,
   __moduleExports: immutable
 });
-
-var tabbable$2 = ( tabbable$1 && tabbable_1 ) || tabbable$1;
 
 var xtend = ( immutable$1 && immutable ) || immutable$1;
 
@@ -425,7 +418,7 @@ function focusTrap(element, userOptions) {
     if (container.contains(e.target)) return;
     if (config.clickOutsideDeactivates) {
       deactivate({
-        returnFocus: !tabbable$2.isFocusable(e.target)
+        returnFocus: !tabbable_1.isFocusable(e.target)
       });
     } else {
       e.preventDefault();
@@ -480,7 +473,7 @@ function focusTrap(element, userOptions) {
   }
 
   function updateTabbableNodes() {
-    var tabbableNodes = tabbable$2(container);
+    var tabbableNodes = tabbable_1(container);
     state.firstTabbableNode = tabbableNodes[0] || getInitialFocusNode();
     state.lastTabbableNode =
       tabbableNodes[tabbableNodes.length - 1] || getInitialFocusNode();
@@ -789,35 +782,35 @@ var YearDropdownOptions = function (_React$Component) {
       var minYear = _this.props.minDate ? _this.props.minDate.year() : null;
       var maxYear = _this.props.maxDate ? _this.props.maxDate.year() : null;
 
-      if (!maxYear || !_this.state.yearsList.find(function (year) {
-        return year === maxYear;
-      })) {
-        options.unshift(React__default.createElement(
-          "div",
-          {
-            className: "react-datepicker__year-option",
-            ref: "upcoming",
-            key: "upcoming",
-            onClick: _this.incrementYears
-          },
-          React__default.createElement("a", { className: "react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-upcoming" })
-        ));
-      }
+      // These elements were hidden with `display: none;` by custom EUI styles,
+      // which caused problems when `minDate` or `maxDate` were configured: https://github.com/elastic/eui/issues/5058
+      // Keeping a reference for now, but we may opt for removing these 
+      // elements entirely during https://github.com/elastic/eui/issues/3901
+      // if (!maxYear || !this.state.yearsList.find(year => year === maxYear)) {
+      //   options.unshift(
+      //     <div
+      //       className="react-datepicker__year-option"
+      //       ref={"upcoming"}
+      //       key={"upcoming"}
+      //       onClick={this.incrementYears}
+      //     >
+      //       <a className="react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-upcoming" />
+      //     </div>
+      //   );
+      // }
 
-      if (!minYear || !_this.state.yearsList.find(function (year) {
-        return year === minYear;
-      })) {
-        options.push(React__default.createElement(
-          "div",
-          {
-            className: "react-datepicker__year-option",
-            ref: "previous",
-            key: "previous",
-            onClick: _this.decrementYears
-          },
-          React__default.createElement("a", { className: "react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-previous" })
-        ));
-      }
+      // if (!minYear || !this.state.yearsList.find(year => year === minYear)) {
+      //   options.push(
+      //     <div
+      //       className="react-datepicker__year-option"
+      //       ref={"previous"}
+      //       key={"previous"}
+      //       onClick={this.decrementYears}
+      //     >
+      //       <a className="react-datepicker__navigation react-datepicker__navigation--years react-datepicker__navigation--years-previous" />
+      //     </div>
+      //   );
+      // }
 
       return options;
     };
@@ -4554,18 +4547,11 @@ if (!Object.keys) {
 }
 var implementation = keysShim;
 
-var implementation$1 = /*#__PURE__*/Object.freeze({
-  default: implementation,
-  __moduleExports: implementation
-});
-
-var require$$0 = ( implementation$1 && implementation ) || implementation$1;
-
 var slice = Array.prototype.slice;
 
 
 var origKeys = Object.keys;
-var keysShim$1 = origKeys ? function keys(o) { return origKeys(o); } : require$$0;
+var keysShim$1 = origKeys ? function keys(o) { return origKeys(o); } : implementation;
 
 var originalKeys = Object.keys;
 
@@ -4633,6 +4619,13 @@ var shams = function hasSymbols() {
 	return true;
 };
 
+var shams$1 = /*#__PURE__*/Object.freeze({
+  default: shams,
+  __moduleExports: shams
+});
+
+var hasSymbolSham = ( shams$1 && shams ) || shams$1;
+
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
 
 
@@ -4642,8 +4635,13 @@ var hasSymbols = function hasNativeSymbols() {
 	if (typeof origSymbol('foo') !== 'symbol') { return false; }
 	if (typeof Symbol('bar') !== 'symbol') { return false; }
 
-	return shams();
+	return hasSymbolSham();
 };
+
+var hasSymbols$1 = /*#__PURE__*/Object.freeze({
+  default: hasSymbols,
+  __moduleExports: hasSymbols
+});
 
 /* eslint no-invalid-this: 1 */
 
@@ -4652,7 +4650,7 @@ var slice$1 = Array.prototype.slice;
 var toStr$2 = Object.prototype.toString;
 var funcType = '[object Function]';
 
-var implementation$2 = function bind(that) {
+var implementation$1 = function bind(that) {
     var target = this;
     if (typeof target !== 'function' || toStr$2.call(target) !== funcType) {
         throw new TypeError(ERROR_MESSAGE + target);
@@ -4696,9 +4694,18 @@ var implementation$2 = function bind(that) {
     return bound;
 };
 
-var functionBind = Function.prototype.bind || implementation$2;
+var implementation$2 = /*#__PURE__*/Object.freeze({
+  default: implementation$1,
+  __moduleExports: implementation$1
+});
+
+var implementation$3 = ( implementation$2 && implementation$1 ) || implementation$2;
+
+var functionBind = Function.prototype.bind || implementation$3;
 
 var src = functionBind.call(Function.call, Object.prototype.hasOwnProperty);
+
+var require$$0 = ( hasSymbols$1 && hasSymbols ) || hasSymbols$1;
 
 var undefined$1;
 
@@ -4740,7 +4747,7 @@ var ThrowTypeError = $gOPD
 	}())
 	: throwTypeError;
 
-var hasSymbols$1 = hasSymbols();
+var hasSymbols$2 = require$$0();
 
 var getProto = Object.getPrototypeOf || function (x) { return x.__proto__; }; // eslint-disable-line no-proto
 
@@ -4752,7 +4759,7 @@ var INTRINSICS = {
 	'%AggregateError%': typeof AggregateError === 'undefined' ? undefined$1 : AggregateError,
 	'%Array%': Array,
 	'%ArrayBuffer%': typeof ArrayBuffer === 'undefined' ? undefined$1 : ArrayBuffer,
-	'%ArrayIteratorPrototype%': hasSymbols$1 ? getProto([][Symbol.iterator]()) : undefined$1,
+	'%ArrayIteratorPrototype%': hasSymbols$2 ? getProto([][Symbol.iterator]()) : undefined$1,
 	'%AsyncFromSyncIteratorPrototype%': undefined$1,
 	'%AsyncFunction%': needsEval,
 	'%AsyncGenerator%': needsEval,
@@ -4780,10 +4787,10 @@ var INTRINSICS = {
 	'%Int32Array%': typeof Int32Array === 'undefined' ? undefined$1 : Int32Array,
 	'%isFinite%': isFinite,
 	'%isNaN%': isNaN,
-	'%IteratorPrototype%': hasSymbols$1 ? getProto(getProto([][Symbol.iterator]())) : undefined$1,
+	'%IteratorPrototype%': hasSymbols$2 ? getProto(getProto([][Symbol.iterator]())) : undefined$1,
 	'%JSON%': typeof JSON === 'object' ? JSON : undefined$1,
 	'%Map%': typeof Map === 'undefined' ? undefined$1 : Map,
-	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols$1 ? undefined$1 : getProto(new Map()[Symbol.iterator]()),
+	'%MapIteratorPrototype%': typeof Map === 'undefined' || !hasSymbols$2 ? undefined$1 : getProto(new Map()[Symbol.iterator]()),
 	'%Math%': Math,
 	'%Number%': Number,
 	'%Object%': Object,
@@ -4796,11 +4803,11 @@ var INTRINSICS = {
 	'%Reflect%': typeof Reflect === 'undefined' ? undefined$1 : Reflect,
 	'%RegExp%': RegExp,
 	'%Set%': typeof Set === 'undefined' ? undefined$1 : Set,
-	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols$1 ? undefined$1 : getProto(new Set()[Symbol.iterator]()),
+	'%SetIteratorPrototype%': typeof Set === 'undefined' || !hasSymbols$2 ? undefined$1 : getProto(new Set()[Symbol.iterator]()),
 	'%SharedArrayBuffer%': typeof SharedArrayBuffer === 'undefined' ? undefined$1 : SharedArrayBuffer,
 	'%String%': String,
-	'%StringIteratorPrototype%': hasSymbols$1 ? getProto(''[Symbol.iterator]()) : undefined$1,
-	'%Symbol%': hasSymbols$1 ? Symbol : undefined$1,
+	'%StringIteratorPrototype%': hasSymbols$2 ? getProto(''[Symbol.iterator]()) : undefined$1,
+	'%Symbol%': hasSymbols$2 ? Symbol : undefined$1,
 	'%SyntaxError%': $SyntaxError,
 	'%ThrowTypeError%': ThrowTypeError,
 	'%TypedArray%': TypedArray,
@@ -5095,10 +5102,17 @@ var callBound = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
+var callBound$1 = /*#__PURE__*/Object.freeze({
+  default: callBound,
+  __moduleExports: callBound
+});
+
+var callBound$2 = ( callBound$1 && callBound ) || callBound$1;
+
 var hasToStringTag = typeof Symbol === 'function' && typeof Symbol.toStringTag === 'symbol';
 
 
-var $toString = callBound('Object.prototype.toString');
+var $toString = callBound$2('Object.prototype.toString');
 
 var isStandardArguments = function isArguments(value) {
 	if (hasToStringTag && value && typeof value === 'object' && Symbol.toStringTag in value) {
@@ -5144,19 +5158,7 @@ var objectIs = function is(a, b) {
 	return false;
 };
 
-var objectIs$1 = /*#__PURE__*/Object.freeze({
-  default: objectIs,
-  __moduleExports: objectIs
-});
-
 var src$1 = functionBind.call(Function.call, Object.prototype.hasOwnProperty);
-
-var src$2 = /*#__PURE__*/Object.freeze({
-  default: src$1,
-  __moduleExports: src$1
-});
-
-var has$1 = ( src$2 && src$1 ) || src$2;
 
 var regexExec = RegExp.prototype.exec;
 var gOPD = Object.getOwnPropertyDescriptor;
@@ -5187,7 +5189,7 @@ var isRegex = function isRegex(value) {
 	}
 
 	var descriptor = gOPD(value, 'lastIndex');
-	var hasLastIndexDataProperty = descriptor && has$1(descriptor, 'value');
+	var hasLastIndexDataProperty = descriptor && src$1(descriptor, 'value');
 	if (!hasLastIndexDataProperty) {
 		return false;
 	}
@@ -5195,7 +5197,7 @@ var isRegex = function isRegex(value) {
 	return tryRegexExecCall(value);
 };
 
-var hasSymbols$2 = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbol';
+var hasSymbols$3 = typeof Symbol === 'function' && typeof Symbol('foo') === 'symbol';
 
 var toStr$4 = Object.prototype.toString;
 var concat = Array.prototype.concat;
@@ -5239,7 +5241,7 @@ var defineProperty$2 = function (object, name, value, predicate) {
 var defineProperties = function (object, map) {
 	var predicates = arguments.length > 2 ? arguments[2] : {};
 	var props = objectKeys(map);
-	if (hasSymbols$2) {
+	if (hasSymbols$3) {
 		props = concat.call(props, Object.getOwnPropertySymbols(map));
 	}
 	for (var i = 0; i < props.length; i += 1) {
@@ -5254,7 +5256,7 @@ var defineProperties_1 = defineProperties;
 var $Object = Object;
 var $TypeError$1 = TypeError;
 
-var implementation$3 = function flags() {
+var implementation$4 = function flags() {
 	if (this != null && this !== $Object(this)) {
 		throw new $TypeError$1('RegExp.prototype.flags getter called on non-object');
 	}
@@ -5294,7 +5296,7 @@ var polyfill = function getPolyfill() {
 			return descriptor.get;
 		}
 	}
-	return implementation$3;
+	return implementation$4;
 };
 
 var supportsDescriptors$2 = defineProperties_1.supportsDescriptors;
@@ -5322,11 +5324,11 @@ var shim = function shimFlags() {
 	return polyfill$$1;
 };
 
-var flagsBound = callBind$2(implementation$3);
+var flagsBound = callBind$2(implementation$4);
 
 defineProperties_1(flagsBound, {
 	getPolyfill: polyfill,
-	implementation: implementation$3,
+	implementation: implementation$4,
 	shim: shim
 });
 
@@ -5351,21 +5353,19 @@ var isDateObject = function isDateObject(value) {
 	return hasToStringTag$2 ? tryDateObject(value) : toStr$5.call(value) === dateClass;
 };
 
-var is = ( objectIs$1 && objectIs ) || objectIs$1;
-
 var getTime = Date.prototype.getTime;
 
 function deepEqual(actual, expected, options) {
   var opts = options || {};
 
   // 7.1. All identical values are equivalent, as determined by ===.
-  if (opts.strict ? is(actual, expected) : actual === expected) {
+  if (opts.strict ? objectIs(actual, expected) : actual === expected) {
     return true;
   }
 
   // 7.3. Other pairs that do not both pass typeof value == 'object', equivalence is determined by ==.
   if (!actual || !expected || (typeof actual !== 'object' && typeof expected !== 'object')) {
-    return opts.strict ? is(actual, expected) : actual == expected;
+    return opts.strict ? objectIs(actual, expected) : actual == expected;
   }
 
   /*
@@ -8140,7 +8140,7 @@ if (__DEV__) {
 
 var warning_1 = warning;
 
-var implementation$4 = createCommonjsModule(function (module, exports) {
+var implementation$5 = createCommonjsModule(function (module, exports) {
 
 exports.__esModule = true;
 
@@ -8338,14 +8338,14 @@ exports.default = createReactContext;
 module.exports = exports['default'];
 });
 
-var implementation$5 = unwrapExports(implementation$4);
+var implementation$6 = unwrapExports(implementation$5);
 
-var implementation$6 = /*#__PURE__*/Object.freeze({
-  default: implementation$5,
-  __moduleExports: implementation$4
+var implementation$7 = /*#__PURE__*/Object.freeze({
+  default: implementation$6,
+  __moduleExports: implementation$5
 });
 
-var _implementation = ( implementation$6 && implementation$5 ) || implementation$6;
+var _implementation = ( implementation$7 && implementation$6 ) || implementation$7;
 
 var lib = createCommonjsModule(function (module, exports) {
 

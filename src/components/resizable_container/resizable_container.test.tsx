@@ -155,7 +155,8 @@ describe('EuiResizableContainer', () => {
                   position: 'top',
                 },
               ]}
-              initialSize={20}>
+              initialSize={20}
+            >
               Sidebar
             </EuiResizablePanel>
             <EuiResizableButton />

@@ -21,13 +21,15 @@ export default ({ button = <></>, content }) => (
       <EuiPageContent
         borderRadius="none"
         hasShadow={false}
-        style={{ display: 'flex' }}>
+        style={{ display: 'flex' }}
+      >
         <EuiPageContent
           verticalPosition="center"
           horizontalPosition="center"
           paddingSize="none"
           color="subdued"
-          hasShadow={false}>
+          hasShadow={false}
+        >
           <EuiEmptyPrompt title={<span>No spice</span>} body={content} />
         </EuiPageContent>
       </EuiPageContent>

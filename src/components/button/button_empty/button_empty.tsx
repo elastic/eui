@@ -169,7 +169,8 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
       textProps={{ ...textProps, className: textClassNames }}
       {...contentProps}
       // className has to come last to override contentProps.className
-      className={contentClassNames}>
+      className={contentClassNames}
+    >
       {children}
     </EuiButtonContent>
   );
@@ -186,7 +187,8 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
         target={target}
         rel={secureRel}
         ref={buttonRef as Ref<HTMLAnchorElement>}
-        {...(rest as EuiButtonEmptyPropsForAnchor)}>
+        {...(rest as EuiButtonEmptyPropsForAnchor)}
+      >
         {innerNode}
       </a>
     );
@@ -199,7 +201,8 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
       type={type}
       ref={buttonRef as Ref<HTMLButtonElement>}
       aria-pressed={isSelected}
-      {...(rest as EuiButtonEmptyPropsForButton)}>
+      {...(rest as EuiButtonEmptyPropsForButton)}
+    >
       {innerNode}
     </button>
   );

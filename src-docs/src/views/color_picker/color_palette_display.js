@@ -101,7 +101,8 @@ export default () => {
       iconType="controlsVertical"
       aria-label="Open settings"
       color="text"
-      size="xs">
+      size="xs"
+    >
       Customize
     </EuiButtonEmpty>
   );
@@ -152,7 +153,8 @@ export default () => {
             panelStyle={{ minWidth: 380 }}
             button={button}
             isOpen={isPopoverOpen}
-            closePopover={closePopover}>
+            closePopover={closePopover}
+          >
             <EuiFormRow label="Color palette" display="columnCompressed">
               <EuiColorPalettePicker
                 palettes={palettes}
@@ -186,7 +188,8 @@ export default () => {
                   Display <EuiCode>fixed</EuiCode>
                 </span>
               }
-              display="columnCompressedSwitch">
+              display="columnCompressedSwitch"
+            >
               <EuiSwitch
                 checked={selectionType}
                 onChange={() => setSelectionType(!selectionType)}

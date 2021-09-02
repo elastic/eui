@@ -166,7 +166,8 @@ export default () => {
             </span>
           </EuiToolTip>
         }
-        display="columnCompressed">
+        display="columnCompressed"
+      >
         <EuiSelect
           options={[
             { value: 'option_one', text: 'Option one' },
@@ -276,7 +277,8 @@ export default () => {
             gutterSize="s"
             responsive={false}
             wrap
-            justifyContent="flexEnd">
+            justifyContent="flexEnd"
+          >
             <EuiFlexItem>
               <EuiRange
                 showInput="inputWithPopover"

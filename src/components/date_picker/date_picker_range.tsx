@@ -29,7 +29,7 @@ export type EuiDatePickerRangeProps = CommonProps & {
   /**
    * The end date `EuiDatePicker` element
    */
-  endDateControl: ReactNode;
+  endDateControl: ReactElement;
   fullWidth?: boolean;
 
   /**
@@ -46,7 +46,7 @@ export type EuiDatePickerRangeProps = CommonProps & {
   /**
    * The start date `EuiDatePicker` element
    */
-  startDateControl: ReactNode;
+  startDateControl: ReactElement;
 };
 
 export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
@@ -80,6 +80,10 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         readOnly: readOnly,
         iconType: typeof iconType === 'boolean' ? undefined : iconType,
         showIcon: !!iconType,
+        className: classNames(
+          'euiDatePickerRange__start',
+          startDateControl.props.className
+        ),
       }
     );
 
@@ -90,6 +94,10 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         fullWidth: fullWidth,
         readOnly: readOnly,
         popoverPlacement: 'bottom-end',
+        className: classNames(
+          'euiDatePickerRange__end',
+          startDateControl.props.className
+        ),
       }
     );
   }
@@ -104,7 +112,8 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
           <EuiText
             className="euiDatePickerRange__delimeter"
             size="s"
-            color="subdued">
+            color="subdued"
+          >
             →
           </EuiText>
           {endControl}

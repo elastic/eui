@@ -256,7 +256,8 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
       noMatchesMessage={emptyMessage}
       {...rest}
       className={classes}
-      searchable>
+      searchable
+    >
       {(list, search) => (
         <EuiPopover
           panelPaddingSize="none"
@@ -266,7 +267,8 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
           {...popoverRest}
           panelRef={setPanelRef}
           button={popoverTrigger ? popoverTrigger : search}
-          closePopover={closePopover}>
+          closePopover={closePopover}
+        >
           <div style={{ width: popoverWidth, maxWidth: '100%' }}>
             {popoverTitle || popoverTrigger ? (
               <EuiPopoverTitle paddingSize="s">

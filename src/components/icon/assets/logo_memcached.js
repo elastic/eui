@@ -7,7 +7,8 @@ const EuiIconLogoMemcached = ({ title, titleId, ...props }) => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <defs>
       <radialGradient
@@ -16,7 +17,8 @@ const EuiIconLogoMemcached = ({ title, titleId, ...props }) => (
         cy="42.708%"
         r="0%"
         fx="41.406%"
-        fy="42.708%">
+        fy="42.708%"
+      >
         <stop offset="0%" stopColor="#DB7C7C" />
         <stop offset="100%" stopColor="#C83737" />
       </radialGradient>
@@ -26,7 +28,8 @@ const EuiIconLogoMemcached = ({ title, titleId, ...props }) => (
         cy="42.708%"
         r="0%"
         fx="44.271%"
-        fy="42.708%">
+        fy="42.708%"
+      >
         <stop offset="0%" stopColor="#DB7C7C" />
         <stop offset="100%" stopColor="#C83737" />
       </radialGradient>
@@ -39,7 +42,8 @@ const EuiIconLogoMemcached = ({ title, titleId, ...props }) => (
         x1="88.778%"
         x2="30.149%"
         y1="98.342%"
-        y2="-8.68%">
+        y2="-8.68%"
+      >
         <stop offset="0%" stopColor="#268D83" />
         <stop offset="100%" stopColor="#2EA19E" />
       </linearGradient>

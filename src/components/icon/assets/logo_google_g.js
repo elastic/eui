@@ -7,7 +7,8 @@ const EuiIconLogoGoogleG = ({ title, titleId, ...props }) => (
     height={32}
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <defs>
       <path

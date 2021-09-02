@@ -9,27 +9,18 @@
 import React, {
   FunctionComponent,
   JSXElementConstructor,
-  useEffect,
   useCallback,
+  useEffect,
   useMemo,
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
-import {
-  EuiDataGridCellValueElementProps,
-  EuiDataGridCellProps,
-} from './data_grid_cell';
-import { EuiDataGridColumn, EuiDataGridInMemory } from './data_grid_types';
 import { enqueueStateChange } from '../../services/react';
 import { EuiMutationObserver } from '../observer/mutation_observer';
-
-export interface EuiDataGridInMemoryRendererProps {
-  inMemory: EuiDataGridInMemory;
-  columns: EuiDataGridColumn[];
-  rowCount: number;
-  renderCellValue: EuiDataGridCellProps['renderCellValue'];
-  onCellRender: (rowIndex: number, columnId: string, value: string) => void;
-}
+import {
+  EuiDataGridCellValueElementProps,
+  EuiDataGridInMemoryRendererProps,
+} from './data_grid_types';
 
 function noop() {}
 
@@ -76,7 +67,8 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryR
               <div
                 key={`${i}-${column.id}`}
                 data-dg-row={i}
-                data-dg-column={column.id}>
+                data-dg-column={column.id}
+              >
                 <CellElement
                   rowIndex={i}
                   columnId={column.id}
@@ -144,7 +136,8 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryR
         subtree: true,
         attributes: true,
         childList: true,
-      }}>
+      }}
+    >
       {(ref) => <div ref={ref}>{cells}</div>}
     </EuiMutationObserver>,
     (documentFragment as unknown) as Element

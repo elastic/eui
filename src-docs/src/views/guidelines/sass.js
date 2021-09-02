@@ -98,7 +98,8 @@ function renderPaletteColor(palette, color) {
       alignItems="center"
       gutterSize="s"
       className="guideSass__swatchItem"
-      key={color}>
+      key={color}
+    >
       <EuiFlexItem grow={false}>
         <div
           className="guideSass__swatch"
@@ -120,7 +121,8 @@ function renderSize(size) {
       alignItems="center"
       gutterSize="s"
       key={size}
-      className="guideSass__sizeRow">
+      className="guideSass__sizeRow"
+    >
       <EuiFlexItem grow={false} className="guideSass__sizeItem">
         <div
           className="guideSass__size"
@@ -157,7 +159,8 @@ function renderLevel(level, index) {
       alignItems="center"
       gutterSize="s"
       key={level}
-      className="guideSass__levelRow">
+      className="guideSass__levelRow"
+    >
       <EuiFlexItem grow={false}>
         <div
           className="guideSass__level"
@@ -180,7 +183,8 @@ function renderShadow(shadow) {
   return (
     <div
       key={shadow}
-      className={`guideSass__shadow guideSass__shadow--${shadow}`}>
+      className={`guideSass__shadow guideSass__shadow--${shadow}`}
+    >
       <EuiCodeBlock language="scss" paddingSize="none" transparentBackground>
         @include {shadow};
       </EuiCodeBlock>
@@ -192,7 +196,8 @@ function renderBorder(border) {
   return (
     <EuiFlexItem
       key={border}
-      className={`guideSass__border guideSass__border--${border}`}>
+      className={`guideSass__border guideSass__border--${border}`}
+    >
       <EuiCodeBlock language="scss" paddingSize="none" transparentBackground>
         border: ${border}
       </EuiCodeBlock>
@@ -204,7 +209,8 @@ function renderAnimationSpeed(speed) {
   return (
     <div
       key={speed}
-      className={`guideSass__animRow guideSass__animRow--${speed}`}>
+      className={`guideSass__animRow guideSass__animRow--${speed}`}
+    >
       <EuiFlexGroup alignItems="center" gutterSize="s">
         <EuiFlexItem grow={false}>
           {animations[speed]}ms
@@ -212,7 +218,8 @@ function renderAnimationSpeed(speed) {
           <EuiCodeBlock
             transparentBackground
             paddingSize="none"
-            language="scss">
+            language="scss"
+          >
             animation-duration: ${speed}
           </EuiCodeBlock>
           <EuiSpacer size="s" />
@@ -229,7 +236,8 @@ function renderAnimationTiming(speed) {
   return (
     <div
       key={speed}
-      className={`guideSass__animRow guideSass__animRow--${speed}`}>
+      className={`guideSass__animRow guideSass__animRow--${speed}`}
+    >
       <EuiFlexGroup alignItems="center" gutterSize="s">
         <EuiFlexItem grow={false}>
           {animations[speed]}
@@ -237,7 +245,8 @@ function renderAnimationTiming(speed) {
           <EuiCodeBlock
             transparentBackground
             paddingSize="none"
-            language="scss">
+            language="scss"
+          >
             animation-timing-function: ${speed}
           </EuiCodeBlock>
           <EuiSpacer size="s" />
@@ -256,7 +265,8 @@ export function renderBreakpoint(size, breakpoints) {
       responsive={false}
       alignItems="center"
       gutterSize="s"
-      key={size}>
+      key={size}
+    >
       <EuiFlexItem grow={false}>
         <EuiText size="s" className="eui-textRight" style={{ minWidth: 50 }}>
           <EuiCode>{size}</EuiCode>
@@ -354,7 +364,27 @@ export const SassGuidelines = ({ selectedTheme }) => {
   const palette = getSassVars(selectedTheme);
 
   return (
-    <GuidePage title="Sass guidelines">
+    <GuidePage
+      title="Sass guidelines"
+      intro={
+        <EuiText grow={false}>
+          <p>
+            EUI is highly tokenized and highly using the following
+            <EuiLink to="https://sass-lang.com/">Sass</EuiLink> variables when
+            customizing on top of EUI. This way your customizations stay up to
+            date with EUI&apos;s theming.
+          </p>
+          <p>
+            For more information on how to consume these Sass variables in your
+            project, see the{' '}
+            <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/consuming.md#using-our-sass-variables-on-top-of-compiled-css">
+              Consuming wiki page
+            </EuiLink>
+            .
+          </p>
+        </EuiText>
+      }
+    >
       <EuiTitle>
         <h2>Core variables</h2>
       </EuiTitle>
@@ -466,7 +496,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
           <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
             <EuiFlexItem
               grow={false}
-              style={{ background: '#FFF', padding: 8 }}>
+              style={{ background: '#FFF', padding: 8 }}
+            >
               <div className="guideSass__swatch guideSass__swatch--primaryLight" />
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
@@ -482,7 +513,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
           <EuiFlexGroup alignItems="center" responsive={false} gutterSize="s">
             <EuiFlexItem
               grow={false}
-              style={{ background: '#222', padding: 8 }}>
+              style={{ background: '#222', padding: 8 }}
+            >
               <div className="guideSass__swatch guideSass__swatch--primaryDark" />
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
@@ -509,7 +541,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
           <EuiCodeBlock
             language="scss"
             transparentBackground
-            paddingSize="none">
+            paddingSize="none"
+          >
             {tintOrShadeExample}
           </EuiCodeBlock>
 
@@ -550,7 +583,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
           <EuiCodeBlock
             language="scss"
             transparentBackground
-            paddingSize="none">
+            paddingSize="none"
+          >
             {contrastExample}
           </EuiCodeBlock>
 
@@ -562,7 +596,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
-              viewBox="0 0 16 16">
+              viewBox="0 0 16 16"
+            >
               <rect
                 width="12"
                 height="12"
@@ -671,7 +706,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
             <EuiFlexGroup responsive={false} alignItems="center">
               <EuiFlexItem
                 grow={false}
-                className="guideSass__fontFamily guideSass__fontFamily--code">
+                className="guideSass__fontFamily guideSass__fontFamily--code"
+              >
                 Abc
               </EuiFlexItem>
               <EuiFlexItem grow={false}>
@@ -718,7 +754,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
           <EuiCodeBlock
             language="scss"
             transparentBackground
-            paddingSize="none">
+            paddingSize="none"
+          >
             {borderRadiusExample}
           </EuiCodeBlock>
         </EuiFlexItem>
@@ -726,7 +763,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
           <EuiCodeBlock
             language="scss"
             transparentBackground
-            paddingSize="none">
+            paddingSize="none"
+          >
             {borderRadiusSmallExample}
           </EuiCodeBlock>
         </EuiFlexItem>
@@ -771,7 +809,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
             <EuiCodeBlock
               language="scss"
               paddingSize="none"
-              transparentBackground>
+              transparentBackground
+            >
               @include euiBottomShadowLarge(desaturate($euiColorPrimary, 30%));
             </EuiCodeBlock>
           </div>
@@ -1033,7 +1072,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
           <EuiCodeBlock
             language="scss"
             transparentBackground
-            paddingSize="none">
+            paddingSize="none"
+          >
             {bemExample}
           </EuiCodeBlock>
         </EuiFlexItem>
@@ -1096,7 +1136,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
           <EuiCodeBlock
             language="scss"
             transparentBackground
-            paddingSize="none">
+            paddingSize="none"
+          >
             {importKibanaExample}
           </EuiCodeBlock>
           <EuiSpacer />
@@ -1112,7 +1153,8 @@ export const SassGuidelines = ({ selectedTheme }) => {
           <EuiCodeBlock
             language="scss"
             transparentBackground
-            paddingSize="none">
+            paddingSize="none"
+          >
             {importOutsideExample}
           </EuiCodeBlock>
         </EuiFlexItem>

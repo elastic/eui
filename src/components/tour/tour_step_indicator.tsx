@@ -90,7 +90,8 @@ export const EuiTourStepIndicator: FunctionComponent<EuiTourStepIndicatorProps> 
     <EuiI18n
       token="euiTourStepIndicator.ariaLabel"
       default="Step {number} {status}"
-      values={{ status, number }}>
+      values={{ status, number }}
+    >
       {(ariaLabel: string) => (
         <li className={classes} aria-label={ariaLabel} {...rest}>
           {indicatorIcon}

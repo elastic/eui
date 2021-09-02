@@ -94,7 +94,8 @@ export const DefaultItemAction = <T extends {}>({
         href={action.href}
         target={action.target}
         data-test-subj={action['data-test-subj']}
-        flush="right">
+        flush="right"
+      >
         {actionContent}
       </EuiButtonEmpty>
     );

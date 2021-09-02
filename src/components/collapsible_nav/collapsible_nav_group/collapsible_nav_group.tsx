@@ -169,7 +169,8 @@ export const EuiCollapsibleNavGroup: FunctionComponent<EuiCollapsibleNavGroupPro
         buttonContent={titleContent}
         initialIsOpen={true}
         arrowDisplay="right"
-        {...rest}>
+        {...rest}
+      >
         {content}
       </EuiAccordion>
     );

@@ -43,7 +43,8 @@ const ContextConsumer = () => {
 
       <Fragment>
         <EuiFormRow
-          label={useEuiI18n('euiContext.question', 'What is your name?')}>
+          label={useEuiI18n('euiContext.question', 'What is your name?')}
+        >
           <EuiFieldText
             placeholder={useEuiI18n('euiContext.placeholder', 'John Doe')}
           />

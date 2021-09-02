@@ -19,16 +19,19 @@ export default ({ button = <></>, content }) => (
         borderRadius="none"
         hasShadow={false}
         paddingSize="none"
-        className="eui-fullHeight">
+        className="eui-fullHeight"
+      >
         <EuiPageContentBody
           restrictWidth
           paddingSize="l"
-          className="eui-fullHeight">
+          className="eui-fullHeight"
+        >
           <EuiFlexGroup
             className="eui-fullHeight"
             gutterSize="none"
             direction="column"
-            responsive={false}>
+            responsive={false}
+          >
             <EuiFlexItem grow={false}>
               <EuiPanel color="danger" />
             </EuiFlexItem>
@@ -39,7 +42,8 @@ export default ({ button = <></>, content }) => (
                   <EuiPanel
                     tabIndex={0}
                     className="eui-yScroll"
-                    hasShadow={false}>
+                    hasShadow={false}
+                  >
                     {content}
                   </EuiPanel>
                 </EuiFlexItem>

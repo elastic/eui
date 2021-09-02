@@ -31,7 +31,7 @@ import {
   removeStop,
 } from './utils';
 
-import { EuiColorPickerProps } from '../';
+import { EuiColorPickerProps } from '../color_picker';
 import { getChromaColor } from '../utils';
 import { EuiI18n } from '../../i18n';
 import { EuiScreenReaderOnly } from '../../accessibility';
@@ -504,7 +504,8 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
       onMouseLeave={enableHover}
       onKeyDown={handleKeyDown}
       onFocus={setWrapperHasFocus}
-      onBlur={removeWrapperFocus}>
+      onBlur={removeWrapperFocus}
+    >
       <EuiScreenReaderOnly>
         <p aria-live="polite">
           <EuiI18n
@@ -523,7 +524,8 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
         max={max || rangeMax}
         compressed={compressed}
         disabled={disabled}
-        step={1}>
+        step={1}
+      >
         <EuiRangeHighlight
           className="euiColorStops__highlight"
           min={min || rangeMin}
@@ -540,7 +542,8 @@ export const EuiColorStops: FunctionComponent<EuiColorStopsProps> = ({
               isHoverDisabled || disabled || readOnly,
           })}
           onClick={handleAddClick}
-          onMouseMove={handleAddHover}>
+          onMouseMove={handleAddHover}
+        >
           <div
             className="euiColorStops__addTarget"
             style={{

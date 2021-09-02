@@ -157,7 +157,8 @@ export const SearchBarExample = {
                 absolute (parsed by Moment.js&apos;s&nbsp;
                 <EuiLink
                   href="https://momentjs.com/docs/#/parsing/utc/"
-                  target="_blank">
+                  target="_blank"
+                >
                   `utc` method
                 </EuiLink>
                 )

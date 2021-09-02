@@ -73,7 +73,8 @@ export const EuiNotificationEventMessages: FunctionComponent<EuiNotificationEven
             className="euiNotificationEventMessages__accordion"
             buttonContent={buttonContentText}
             buttonClassName="euiNotificationEventMessages__accordionButton"
-            arrowDisplay="none">
+            arrowDisplay="none"
+          >
             <div className="euiNotificationEventMessages__accordionContent">
               {messages
                 .map((notification, index) => (

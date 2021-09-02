@@ -11,7 +11,8 @@ export default () => {
       aria-label="Basic example"
       options={options}
       listProps={{ bordered: true }}
-      onChange={(newOptions) => setOptions(newOptions)}>
+      onChange={(newOptions) => setOptions(newOptions)}
+    >
       {(list) => list}
     </EuiSelectable>
   );

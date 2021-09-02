@@ -7,7 +7,8 @@ const EuiIconLogoApache = ({ title, titleId, ...props }) => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <defs>
       <linearGradient
@@ -15,7 +16,8 @@ const EuiIconLogoApache = ({ title, titleId, ...props }) => (
         x1="21.902%"
         x2="141.879%"
         y1="63.905%"
-        y2="20.213%">
+        y2="20.213%"
+      >
         <stop offset="0%" stopColor="#F69923" />
         <stop offset="31.23%" stopColor="#F79A23" />
         <stop offset="83.83%" stopColor="#E97826" />
@@ -25,7 +27,8 @@ const EuiIconLogoApache = ({ title, titleId, ...props }) => (
         x1="-217.651%"
         x2="74.743%"
         y1="177.127%"
-        y2="36.665%">
+        y2="36.665%"
+      >
         <stop offset="32.33%" stopColor="#9E2064" />
         <stop offset="63.02%" stopColor="#C92037" />
         <stop offset="75.14%" stopColor="#CD2335" />
@@ -36,7 +39,8 @@ const EuiIconLogoApache = ({ title, titleId, ...props }) => (
         x1="-80.044%"
         x2="146.24%"
         y1="73.574%"
-        y2="31.539%">
+        y2="31.539%"
+      >
         <stop offset="32.33%" stopColor="#9E2064" />
         <stop offset="63.02%" stopColor="#C92037" />
         <stop offset="75.14%" stopColor="#CD2335" />
@@ -47,7 +51,8 @@ const EuiIconLogoApache = ({ title, titleId, ...props }) => (
         x1="-18.316%"
         x2="165.002%"
         y1="52.497%"
-        y2="41.656%">
+        y2="41.656%"
+      >
         <stop offset="0%" stopColor="#282662" />
         <stop offset="9.548%" stopColor="#662E8D" />
         <stop offset="78.82%" stopColor="#9F2064" />
@@ -58,7 +63,8 @@ const EuiIconLogoApache = ({ title, titleId, ...props }) => (
         x1="-109.701%"
         x2="64.617%"
         y1="463.715%"
-        y2="17.19%">
+        y2="17.19%"
+      >
         <stop offset="32.33%" stopColor="#9E2064" />
         <stop offset="63.02%" stopColor="#C92037" />
         <stop offset="75.14%" stopColor="#CD2335" />
@@ -69,7 +75,8 @@ const EuiIconLogoApache = ({ title, titleId, ...props }) => (
         x1="-34.88%"
         x2="110.599%"
         y1="130.522%"
-        y2="-9.118%">
+        y2="-9.118%"
+      >
         <stop offset="32.33%" stopColor="#9E2064" />
         <stop offset="63.02%" stopColor="#C92037" />
         <stop offset="75.14%" stopColor="#CD2335" />
@@ -80,7 +87,8 @@ const EuiIconLogoApache = ({ title, titleId, ...props }) => (
         x1="-13.673%"
         x2="117.858%"
         y1="192.564%"
-        y2="-136.906%">
+        y2="-136.906%"
+      >
         <stop offset="0%" stopColor="#282662" />
         <stop offset="9.548%" stopColor="#662E8D" />
         <stop offset="78.82%" stopColor="#9F2064" />

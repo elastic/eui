@@ -52,7 +52,8 @@ export const section = {
       </p>
       <EuiCallOut
         title="EuiMemoryTable relies on referential equality of a column's name"
-        color="warning">
+        color="warning"
+      >
         <p>
           <strong>EuiMemoryTable</strong> relies on referential equality of a
           column&apos;s <EuiCode>name</EuiCode> field when sorting by that

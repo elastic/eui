@@ -88,7 +88,8 @@ describe('EuiKeyPadMenuItem', () => {
           <EuiKeyPadMenuItem
             betaBadgeLabel="Beta"
             betaBadgeIconType="bolt"
-            label="Label">
+            label="Label"
+          >
             Icon
           </EuiKeyPadMenuItem>
         );
@@ -101,7 +102,8 @@ describe('EuiKeyPadMenuItem', () => {
           <EuiKeyPadMenuItem
             betaBadgeLabel="Beta"
             betaBadgeTooltipContent="Content"
-            label="Label">
+            label="Label"
+          >
             Icon
           </EuiKeyPadMenuItem>
         );
@@ -176,7 +178,8 @@ describe('EuiKeyPadMenuItem', () => {
           onChange={() => {}}
           name="single"
           checkable="single"
-          label="Label">
+          label="Label"
+        >
           Icon
         </EuiKeyPadMenuItem>
       );

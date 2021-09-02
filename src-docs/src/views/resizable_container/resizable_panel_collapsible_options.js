@@ -65,7 +65,8 @@ export default () => {
                 },
               ]}
               initialSize={20}
-              minSize="10%">
+              minSize="10%"
+            >
               <EuiListGroup flush>{itemElements}</EuiListGroup>
             </EuiResizablePanel>
 
@@ -93,7 +94,8 @@ export default () => {
                 },
               ]}
               initialSize={20}
-              minSize="10%">
+              minSize="10%"
+            >
               <EuiListGroup flush>{itemElements}</EuiListGroup>
             </EuiResizablePanel>
           </>

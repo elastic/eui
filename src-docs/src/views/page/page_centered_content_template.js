@@ -11,7 +11,8 @@ export default ({ button = <></>, content, sideNav }) => (
       iconType: 'logoElastic',
       pageTitle: 'Page title',
       rightSideItems: [button],
-    }}>
+    }}
+  >
     <EuiEmptyPrompt title={<span>No spice</span>} body={content} />
   </EuiPageTemplate>
 );

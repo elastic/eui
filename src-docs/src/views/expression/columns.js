@@ -157,7 +157,8 @@ export default () => {
         closePopover={closeExample1}
         display="block"
         panelPaddingSize="s"
-        anchorPosition="downLeft">
+        anchorPosition="downLeft"
+      >
         {renderPopover1()}
       </EuiPopover>
 
@@ -176,7 +177,8 @@ export default () => {
         isOpen={example2.isOpen}
         closePopover={closeExample2}
         display="block"
-        anchorPosition="downLeft">
+        anchorPosition="downLeft"
+      >
         {renderPopover2()}
       </EuiPopover>
       <EuiExpression

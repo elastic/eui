@@ -87,7 +87,8 @@ const GuidePageComponent = ({
             {title} {betaBadge}
           </>
         }
-        tabs={renderTabs()}>
+        tabs={renderTabs()}
+      >
         {intro}
       </EuiPageHeader>
 
@@ -97,7 +98,8 @@ const GuidePageComponent = ({
         paddingSize="none"
         color="transparent"
         hasBorder={false}
-        borderRadius="none">
+        borderRadius="none"
+      >
         <EuiPageContentBody restrictWidth>
           <Switch>
             {playground && (
