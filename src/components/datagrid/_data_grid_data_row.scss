@@ -235,8 +235,18 @@
   }
 }
 
+@include euiDataGridStyles(fontSizeSmall, lineHeightExtra) {
+  @include euiDataGridRowCell {
+    line-height: $euiLineHeight * 1.2;
+  }
+}
+
 .euiDataGridRowCell--fontSizeSmall {
   @include euiFontSizeXS;
+
+  &.euiDataGridRowCell--lineHeightExtra {
+    line-height: $euiLineHeight * 1.2;
+  }
 }
 
 @include euiDataGridStyles(fontSizeLarge) {

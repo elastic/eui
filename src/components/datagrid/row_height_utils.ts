@@ -14,6 +14,7 @@ import {
   EuiDataGridStyle,
   EuiDataGridRowHeightOption,
   EuiDataGridRowHeightsOptions,
+  EuiDataGridStyleLineHeights,
 } from './data_grid_types';
 
 const cellPaddingsToClassMap: Record<EuiDataGridStyleCellPaddings, string> = {
@@ -26,6 +27,11 @@ const fontSizesToClassMap: Record<EuiDataGridStyleFontSizes, string> = {
   s: 'euiDataGridRowCell--fontSizeSmall',
   m: '',
   l: 'euiDataGridRowCell--fontSizeLarge',
+};
+
+const lineHeightSizesToClassMap: Record<EuiDataGridStyleLineHeights, string> = {
+  regular: '',
+  extra: 'euiDataGridRowCell--lineHeightExtra',
 };
 
 function getNumberFromPx(style?: string) {
@@ -47,6 +53,7 @@ export class RowHeightUtils {
       euiDataGridRowCell
       ${cellPaddingsToClassMap[gridStyles.cellPadding!]}
       ${fontSizesToClassMap[gridStyles.fontSize!]}
+      ${lineHeightSizesToClassMap[gridStyles.lineHeight!]}
     `;
     document.body.appendChild(this.fakeCell);
     const allStyles = getComputedStyle(this.fakeCell);
