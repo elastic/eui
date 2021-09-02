@@ -22,8 +22,10 @@ import {
   VariableSizeGrid as Grid,
   VariableSizeGridProps,
 } from 'react-window';
+import tabbable from 'tabbable';
 import { EuiCodeBlock } from '../../code';
 import {
+  EuiMutationObserver,
   useMutationObserver,
 } from '../../observer/mutation_observer';
 import { useResizeObserver } from '../../observer/resize_observer';
@@ -268,6 +270,22 @@ InnerElement.displayName = 'EuiDataGridInnerElement';
 
 const INITIAL_ROW_HEIGHT = 34;
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
+
+function getParentCellContent(_element: Node | HTMLElement) {
+  let element: HTMLElement | null =
+    _element.nodeType === document.ELEMENT_NODE
+      ? (_element as HTMLElement)
+      : _element.parentElement;
+
+  while (
+    element &&
+    element.nodeName !== 'div' &&
+    element.classList.contains('euiDataGridRowCell__expandContent') === false
+    ) {
+    element = element.parentElement;
+  }
+  return element;
+}
 
 export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   props
@@ -596,6 +614,28 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     }
   }, [unconstrainedHeight, wrapperDimensions, isFullScreen]);
 
+  const preventTabbing = useCallback((records: MutationRecord[]) => {
+    for (let i = 0; i < records.length; i++) {
+      const record = records[i];
+      // find the cell content owning this mutation
+      const cell = getParentCellContent(record.target);
+      if (cell) {
+        const tabbables = tabbable(cell);
+        for (let i = 0; i < tabbables.length; i++) {
+          const element = tabbables[i];
+          if (
+            element.getAttribute('role') !== 'gridcell' &&
+            !element.dataset['euigrid-tab-managed']
+          ) {
+            console.log(element);
+            element.setAttribute('tabIndex', '-1');
+            element.setAttribute('data-datagrid-interactable', 'true');
+          }
+        }
+      }
+    }
+  }, []);
+
   let finalHeight = IS_JEST_ENVIRONMENT
     ? Number.MAX_SAFE_INTEGER
     : height || unconstrainedHeight;
@@ -609,57 +649,67 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   }
 
   return (
-    <div
-      style={{ width: '100%', height: '100%', overflow: 'hidden' }}
-      ref={wrapperRef}
+    <EuiMutationObserver
+      observerOptions={{ subtree: true, childList: true }}
+      onMutation={preventTabbing}
     >
-      {(IS_JEST_ENVIRONMENT || finalWidth > 0) && (
-        <DataGridWrapperRowsContext.Provider
-          value={{ headerRowHeight, headerRow, footerRow }}
+      {(mutationRef) => (
+        <div
+          style={{ width: '100%', height: '100%', overflow: 'hidden' }}
+          ref={(el) => {
+            wrapperRef.current = el;
+            mutationRef(el);
+          }}
         >
-          <Grid
-            ref={gridRef}
-            innerElementType={InnerElement}
-            className={VIRTUALIZED_CONTAINER_CLASS}
-            columnCount={
-              leadingControlColumns.length +
-              columns.length +
-              trailingControlColumns.length
-            }
-            width={finalWidth}
-            columnWidth={getWidth}
-            height={finalHeight}
-            rowHeight={getRowHeight}
-            itemData={{
-              schemaDetectors,
-              setRowHeight,
-              getRowHeight,
-              getCorrectRowIndex,
-              rowMap,
-              rowOffset: pagination
-                ? pagination.pageIndex * pagination.pageSize
-                : 0,
-              leadingControlColumns,
-              trailingControlColumns,
-              columns,
-              schema,
-              popoverContents: mergedPopoverContents,
-              columnWidths,
-              defaultColumnWidth,
-              renderCellValue,
-              interactiveCellId,
-              rowHeightsOptions,
-            }}
-            rowCount={
-              IS_JEST_ENVIRONMENT || headerRowHeight > 0
-                ? visibleRowIndices.length
-                : 0
-            }
-          >
-            {Cell}
-          </Grid>
-        </DataGridWrapperRowsContext.Provider>
+          {(IS_JEST_ENVIRONMENT || finalWidth > 0) && (
+            <DataGridWrapperRowsContext.Provider
+              value={{ headerRowHeight, headerRow, footerRow }}
+            >
+              <Grid
+                ref={gridRef}
+                innerElementType={InnerElement}
+                className={VIRTUALIZED_CONTAINER_CLASS}
+                columnCount={
+                  leadingControlColumns.length +
+                  columns.length +
+                  trailingControlColumns.length
+                }
+                width={finalWidth}
+                columnWidth={getWidth}
+                height={finalHeight}
+                rowHeight={getRowHeight}
+                itemData={{
+                  schemaDetectors,
+                  setRowHeight,
+                  getRowHeight,
+                  getCorrectRowIndex,
+                  rowMap,
+                  rowOffset: pagination
+                    ? pagination.pageIndex * pagination.pageSize
+                    : 0,
+                  leadingControlColumns,
+                  trailingControlColumns,
+                  columns,
+                  schema,
+                  popoverContents: mergedPopoverContents,
+                  columnWidths,
+                  defaultColumnWidth,
+                  renderCellValue,
+                  interactiveCellId,
+                  rowHeightsOptions,
+                }}
+                rowCount={
+                  IS_JEST_ENVIRONMENT || headerRowHeight > 0
+                    ? visibleRowIndices.length
+                    : 0
+                }
+              >
+                {Cell}
+              </Grid>
+            </DataGridWrapperRowsContext.Provider>
+          )}
+        </div>
       )}
-    </div>
+    </EuiMutationObserver>
   );
 };
