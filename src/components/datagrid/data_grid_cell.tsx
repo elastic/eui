@@ -601,6 +601,9 @@ export class EuiDataGridCell extends Component<
         onMouseEnter={() => {
           this.setState({ enableInteractions: true });
         }}
+        onMouseLeave={() => {
+          this.setState({ enableInteractions: false });
+        }}
         onBlur={this.onBlur}>
         {innerContent}
       </div>
