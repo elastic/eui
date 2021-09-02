@@ -48,7 +48,6 @@ export type EuiPageHeaderContentTabs = {
   /**
    * In-app navigation presented as large borderless tabs.
    * Accepts an array of `EuiTab` objects;
-   * HELP: This is evaluating to `any[]` in the props table
    */
   tabs?: Tab[];
   /**
@@ -161,6 +160,8 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
 
   let tabsNode;
   if (tabs) {
+    const tabsSize: EuiTabsProps['size'] = pageTitle ? 'l' : 'xl';
+
     const renderTabs = () => {
       return tabs.map((tab, index) => {
         const { label, ...tabRest } = tab;
@@ -175,7 +176,12 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     tabsNode = (
       <>
         {pageTitleNode && <EuiSpacer />}
-        <EuiTabs {...tabsProps} display="condensed" size="l">
+        <EuiTabs
+          {...tabsProps}
+          display="condensed"
+          bottomBorder={false}
+          size={tabsSize}
+        >
           {renderTabs()}
         </EuiTabs>
       </>
@@ -254,7 +260,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
       <EuiFlexGroup
         responsive={!!responsive}
         className="euiPageHeaderContent__top"
-        alignItems="flexStart"
+        alignItems={pageTitle ? 'flexStart' : 'baseline'}
         gutterSize="l"
       >
         {isResponsiveBreakpoint && responsive === 'reverse' ? (

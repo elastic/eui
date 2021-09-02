@@ -16,9 +16,19 @@
 .euiPageHeader--bottomBorder {
   border-bottom: $euiBorderThin;
 
-  &:not(.euiPageHeader--tabsAtBottom) {
+  &:not(.euiPageHeader--tabsAtBottom):not(.euiPageHeader--onlyTabs) {
     // Default padding to separate contents (unless there's tabs)
     padding-bottom: map-get($euiPanelPaddingModifiers, 'paddingLarge');
+  }
+}
+
+// When there's only tabs, make them and take up the "whole" vertical space
+.euiPageHeader--onlyTabs {
+  padding-top: $euiSizeS;
+
+  .euiTabs--xlarge .euiTab {
+    line-height: $euiSize * 4.5;
+    height: $euiSize * 4.5;
   }
 }
 
@@ -28,11 +38,18 @@
     padding: $amount;
 
     // Use margin if there are tabs to keep border close to tabs
-    &.euiPageHeader--tabsAtBottom {
+    &.euiPageHeader--tabsAtBottom,
+    &.euiPageHeader--onlyTabs {
       padding-bottom: 0;
     }
 
-    &.euiPageHeader--tabsAtBottom.euiPageHeader--bottomBorder {
+    // When only tabs, use the same padding top for all padding sizes
+    &.euiPageHeader--onlyTabs {
+      padding-top: $euiSizeS;
+    }
+
+    &.euiPageHeader--tabsAtBottom.euiPageHeader--bottomBorder,
+    &.euiPageHeader--onlyTabs.euiPageHeader--bottomBorder {
       margin-bottom: $amount;
     }
   }

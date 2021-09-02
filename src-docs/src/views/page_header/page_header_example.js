@@ -16,6 +16,8 @@ const pageHeaderSource = require('!!raw-loader!./page_header');
 
 import PageHeaderTabs from './page_header_tabs';
 const pageHeaderTabsSource = require('!!raw-loader!./page_header_tabs');
+import PageHeaderTabsTitle from './page_header_tabs_title';
+const pageHeaderTabsTitleSource = require('!!raw-loader!./page_header_tabs_title');
 
 import PageHeaderCustom from './page_header_custom';
 import { EuiText } from '../../../../src/components/text';
@@ -76,10 +78,6 @@ export const PageHeaderExample = {
       props: { EuiPageHeader },
       snippet: `<EuiPageHeader
   pageTitle="Page title"
-  tabs={[
-    { label:"Tab 1", isSelected: true },
-    { label:"Tab 2" }
-  ]}
   description="Example of a description."
   rightSideItems={[
     <EuiButton fill>Button 1</EuiButton>,
@@ -89,6 +87,36 @@ export const PageHeaderExample = {
     },
     {
       title: 'Tabs in the page header',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageHeaderTabsTitleSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            When supplying <EuiCode>tabs</EuiCode> without a{' '}
+            <EuiCode>pageTitle</EuiCode>, <strong>EuiPageHeader</strong> will
+            promote those tabs as if they are the page title. This means that
+            any <EuiCode>description</EuiCode> or <EuiCode>children</EuiCode>{' '}
+            will sit <strong>below</strong> the tabs and should be describing
+            the currently selected tab.
+          </p>
+        </>
+      ),
+      demo: <PageHeaderTabsTitle />,
+      props: { EuiPageHeader },
+      snippet: `<EuiPageHeader
+  pageTitle="Page title"
+  tabs={[
+    { label:"Tab 1", isSelected: true },
+    { label:"Tab 2" }
+  ]}
+  description="Example of a description."
+/>`,
+    },
+    {
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -102,7 +130,8 @@ export const PageHeaderExample = {
             <EuiCode>pageTitle</EuiCode>, <strong>EuiPageHeader</strong> will
             promote those tabs as if they are the page title. This means that
             any <EuiCode>description</EuiCode> or <EuiCode>children</EuiCode>{' '}
-            will sit <strong>below</strong> the tabs.
+            will sit <strong>below</strong> the tabs and should be describing
+            the currently selected tab.
           </p>
         </>
       ),

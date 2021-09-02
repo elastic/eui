@@ -74,11 +74,13 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
     'euiPageHeader',
     paddingSizeToClassNameMap[paddingSize],
     {
+      [`euiPageHeader--${widthClassName}`]: widthClassName,
       'euiPageHeader--bottomBorder': bottomBorder,
       'euiPageHeader--responsive': responsive === true,
       'euiPageHeader--responsiveReverse': responsive === 'reverse',
       'euiPageHeader--tabsAtBottom': pageTitle && tabs,
-      [`euiPage--${widthClassName}`]: widthClassName,
+      'euiPageHeader--onlyTabs':
+        tabs && !pageTitle && !rightSideItems && !description && !children,
     },
     `euiPageHeader--${alignItems ?? 'center'}`,
     className

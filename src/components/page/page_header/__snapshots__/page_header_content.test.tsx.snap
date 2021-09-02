@@ -7,7 +7,7 @@ exports[`EuiPageHeaderContent is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
   >
     <div
       class="euiFlexItem"
@@ -189,7 +189,7 @@ exports[`EuiPageHeaderContent props children is rendered 1`] = `
   class="euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
   >
     <div
       class="euiFlexItem"
@@ -213,7 +213,7 @@ exports[`EuiPageHeaderContent props children is rendered 2`] = `
   class="euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
   >
     <div
       class="euiFlexItem"
@@ -317,7 +317,7 @@ exports[`EuiPageHeaderContent props description is rendered 1`] = `
   class="euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
   >
     <div
       class="euiFlexItem"
@@ -409,7 +409,7 @@ exports[`EuiPageHeaderContent props responsive is rendered as false 1`] = `
   class="euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiPageHeaderContent__top"
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiPageHeaderContent__top"
   >
     <div
       class="euiFlexItem"
@@ -423,7 +423,7 @@ exports[`EuiPageHeaderContent props responsive is rendered as reverse 1`] = `
   class="euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
   >
     <div
       class="euiFlexItem"
@@ -437,7 +437,7 @@ exports[`EuiPageHeaderContent props rightSideItems is rendered 1`] = `
   class="euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
   >
     <div
       class="euiFlexItem"
@@ -473,7 +473,7 @@ exports[`EuiPageHeaderContent props rightSideItems is rendered with rightSideGro
   class="euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
   >
     <div
       class="euiFlexItem"
@@ -511,13 +511,13 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
   class="euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
   >
     <div
       class="euiFlexItem"
     >
       <div
-        class="euiTabs euiTabs--large euiTabs--condensed"
+        class="euiTabs euiTabs--xlarge euiTabs--condensed"
         role="tablist"
       >
         <button
@@ -555,14 +555,14 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
   class="euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsFlexStart euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+    class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
   >
     <div
       class="euiFlexItem"
     >
       <div
         aria-label="aria-label"
-        class="euiTabs euiTabs--large euiTabs--condensed testClass1 testClass2"
+        class="euiTabs euiTabs--xlarge euiTabs--condensed testClass1 testClass2"
         data-test-subj="test subject string"
         role="tablist"
       >
