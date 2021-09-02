@@ -134,4 +134,14 @@ describe('EuiSuperDatePicker', () => {
     );
     expect(component.find(EuiButton).props()).toMatchObject(updateButtonProps);
   });
+
+  test('accepts data-test-subj and passes to EuiFormControlLayout', () => {
+    const component = shallow(
+      <EuiSuperDatePicker
+        onTimeChange={noop}
+        dataTestSubj="mySuperDatePicker"
+      />
+    );
+    expect(component).toMatchSnapshot();
+  });
 });

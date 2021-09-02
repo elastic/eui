@@ -145,7 +145,6 @@
  * 1. Vertically align all children.
  * 2. The padding on this div allows the ellipsis to show if the content is truncated. If
  *    the padding was on the cell, the ellipsis would be cropped.
- * 3. Support wrapping.
  * 4. Prevent very long single words (e.g. the name of a field in a document) from overflowing
  *    the cell.
  */
@@ -175,7 +174,7 @@
 .euiTableHeaderCell,
 .euiTableFooterCell,
 .euiTableCellContent--truncateText {
-  white-space: nowrap; /* 3 */
+  @include euiTextTruncate;
 
   .euiTableCellContent__text {
     overflow: hidden;
