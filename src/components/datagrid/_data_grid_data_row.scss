@@ -146,6 +146,22 @@
   flex-grow: 1;
 }
 
+@include euiDataGridStyles(fontSizeSmall, lineHeightExtra) {
+  @include euiDataGridRowCell {
+    .euiDataGridRowCell__contentByHeight {
+      @include lineHeightFromBaseline(2.5) ;
+    }
+  }
+}
+
+@include euiDataGridStyles(fontSizeLarge, lineHeightExtra) {
+  @include euiDataGridRowCell {
+    .euiDataGridRowCell__contentByHeight {
+      @include lineHeightFromBaseline(3.5);
+    }
+  }
+}
+
 .euiDataGridRowCell__contentByHeight {
   flex-grow: 1;
   height: 100%;
@@ -235,17 +251,11 @@
   }
 }
 
-@include euiDataGridStyles(fontSizeSmall, lineHeightExtra) {
-  @include euiDataGridRowCell {
-    line-height: $euiLineHeight * 1.2;
-  }
-}
-
 .euiDataGridRowCell--fontSizeSmall {
   @include euiFontSizeXS;
 
   &.euiDataGridRowCell--lineHeightExtra {
-    line-height: $euiLineHeight * 1.2;
+    @include lineHeightFromBaseline(2.5);
   }
 }
 
@@ -257,6 +267,10 @@
 
 .euiDataGridRowCell--fontSizeLarge {
   @include euiFontSize;
+
+  &.euiDataGridRowCell--lineHeightExtra {
+    @include lineHeightFromBaseline(3.5);
+  }
 }
 
 // Padding alternates

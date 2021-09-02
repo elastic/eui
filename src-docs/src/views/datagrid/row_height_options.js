@@ -128,7 +128,7 @@ export default () => {
       },
       rowHeights: {
         1: {
-          lineCount: 5,
+          lineCount: 3,
         },
         4: 140,
         5: 80,
