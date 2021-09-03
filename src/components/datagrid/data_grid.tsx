@@ -54,7 +54,7 @@ import {
   EuiDataGridStyleBorders,
   EuiDataGridStyleCellPaddings,
   EuiDataGridStyleFontSizes,
-  EuiDataGridStyleLineHeights,
+  EuiDataGridRowLineHeights,
   EuiDataGridStyleFooter,
   EuiDataGridStyleHeader,
   EuiDataGridStyleRowHover,
@@ -73,7 +73,7 @@ const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
 };
 
 const lineHeightsToClassMap: {
-  [size in EuiDataGridStyleLineHeights]: string;
+  [size in EuiDataGridRowLineHeights]: string;
 } = {
   regular: '',
   extra: 'euiDataGrid--lineHeightExtra',
@@ -497,7 +497,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     minSizeForControls,
     height,
     width,
-    rowHeightsOptions,
+    rowHeightsOptions = { lineHeight: 'regular' },
     ...rest
   } = props;
 
@@ -696,13 +696,13 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const [rowHeightUtils] = useState(new RowHeightUtils());
 
   useEffect(() => {
-    rowHeightUtils.computeStylesForGridCell(gridStyles);
-  }, [gridStyles, rowHeightUtils]);
+    rowHeightUtils.computeStylesForGridCell(gridStyles, rowHeightsOptions);
+  }, [gridStyles, rowHeightsOptions, rowHeightUtils]);
 
   const classes = classNames(
     'euiDataGrid',
     fontSizesToClassMap[gridStyles.fontSize!],
-    lineHeightsToClassMap[gridStyles.lineHeight!],
+    lineHeightsToClassMap[rowHeightsOptions.lineHeight!],
     bordersToClassMap[gridStyles.border!],
     headerToClassMap[gridStyles.header!],
     footerToClassMap[gridStyles.footer!],

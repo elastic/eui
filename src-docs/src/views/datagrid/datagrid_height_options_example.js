@@ -15,13 +15,13 @@ const dataGridRowHeightOptionsHtml = renderToHtml(DataGridRowHeightOptions);
 
 const rowHeightsSnippet = `rowHeightsOptions = {
   defaultHeight: {
-    lineCount: 2, // default every row to 2 lines of text. Also we can provide height in pixels
+    lineCount: 2, // default every row to 2 lines of text. We can also provide height in pixels
   },
   rowHeights: {
     1: {
-      lineCount: 5, // for row which have index 1 we allow to show 5 lines after that we truncate
+      lineCount: 5, // for the row with index 1 we show 5 lines, after that we truncate
     },
-    4: 140, // for row which have index 4 we set 140 pixel
+    4: 140, // for the row with index 4 we set height to 140 pixels
     5: 80,
   },
 }`;
@@ -45,7 +45,8 @@ export const DataGridRowHeightOptionsExample = {
           <p>
             Row height options can be passed down to the grid through the{' '}
             <EuiCode>rowHeightsOptions</EuiCode> prop. It accepts an object
-            configuring the default height and/or specific row heights:
+            configuring the default height, specific row heights and line
+            height:
           </p>
           <ul>
             <li>
@@ -56,12 +57,11 @@ export const DataGridRowHeightOptionsExample = {
               <EuiCode>rowHeights</EuiCode> - overrides the height for a
               specific row
             </li>
+            <li>
+              <EuiCode>lineHeight</EuiCode> - increases the default line-height
+              when set to <EuiCode>extra</EuiCode>
+            </li>
           </ul>
-          <p>
-            The default line-height can be increased by setting{' '}
-            <EuiCode>lineHeight</EuiCode> to extra in{' '}
-            <EuiCode>gridStyle</EuiCode>.
-          </p>
           <EuiCallOut
             color="warning"
             title="Rows have minimum height requirements"

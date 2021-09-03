@@ -14,7 +14,7 @@ import {
   EuiDataGridStyle,
   EuiDataGridRowHeightOption,
   EuiDataGridRowHeightsOptions,
-  EuiDataGridStyleLineHeights,
+  EuiDataGridRowLineHeights,
 } from './data_grid_types';
 
 const cellPaddingsToClassMap: Record<EuiDataGridStyleCellPaddings, string> = {
@@ -29,7 +29,7 @@ const fontSizesToClassMap: Record<EuiDataGridStyleFontSizes, string> = {
   l: 'euiDataGridRowCell--fontSizeLarge',
 };
 
-const lineHeightSizesToClassMap: Record<EuiDataGridStyleLineHeights, string> = {
+const lineHeightSizesToClassMap: Record<EuiDataGridRowLineHeights, string> = {
   regular: '',
   extra: 'euiDataGridRowCell--lineHeightExtra',
 };
@@ -48,13 +48,18 @@ export class RowHeightUtils {
   } = {};
   private fakeCell = document.createElement('div');
 
-  computeStylesForGridCell(gridStyles: EuiDataGridStyle) {
+  computeStylesForGridCell(
+    gridStyles: EuiDataGridStyle,
+    rowHeightsOptions: EuiDataGridRowHeightsOptions
+  ) {
+    let initialHeight = rowHeightsOptions && rowHeightsOptions.lineHeight;
     this.fakeCell.className = `
       euiDataGridRowCell
       ${cellPaddingsToClassMap[gridStyles.cellPadding!]}
       ${fontSizesToClassMap[gridStyles.fontSize!]}
-      ${lineHeightSizesToClassMap[gridStyles.lineHeight!]}
     `;
+    if (initialHeight === 'extra')
+      this.fakeCell.classList.add(lineHeightSizesToClassMap[initialHeight]);
     document.body.appendChild(this.fakeCell);
     const allStyles = getComputedStyle(this.fakeCell);
     this.styles = {

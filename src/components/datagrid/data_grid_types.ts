@@ -528,7 +528,6 @@ export type EuiDataGridStyleHeader = 'shade' | 'underline';
 export type EuiDataGridStyleFooter = 'shade' | 'overline' | 'striped';
 export type EuiDataGridStyleRowHover = 'highlight' | 'none';
 export type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
-export type EuiDataGridStyleLineHeights = 'regular' | 'extra';
 
 export interface EuiDataGridStyle {
   /**
@@ -563,10 +562,6 @@ export interface EuiDataGridStyle {
    * If set to true, the footer row will be sticky
    */
   stickyFooter?: boolean;
-  /**
-   * Adds extra line-height to cells that have multiple lines
-   */
-  lineHeight?: EuiDataGridStyleLineHeights;
 }
 
 export interface EuiDataGridToolBarVisibilityColumnSelectorOptions {
@@ -701,6 +696,8 @@ export type EuiDataGridRowHeightOption =
   | number
   | ExclusiveUnion<{ lineCount: number }, { height: number }>;
 
+export type EuiDataGridRowLineHeights = 'regular' | 'extra';
+
 export interface EuiDataGridRowHeightsOptions {
   /**
    * Defines the default size for all rows. It can be line count or just height.
@@ -710,4 +707,8 @@ export interface EuiDataGridRowHeightsOptions {
    * Defines the height for a specific row. It can be line count or just height.
    */
   rowHeights?: Record<number, EuiDataGridRowHeightOption>;
+  /**
+   * Adds extra line-height to cells that have multiple lines
+   */
+  lineHeight?: EuiDataGridRowLineHeights;
 }
