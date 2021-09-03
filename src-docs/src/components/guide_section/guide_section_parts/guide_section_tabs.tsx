@@ -105,6 +105,7 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
 
       return components.map((component) => (
         <EuiErrorBoundary key={component}>
+          <EuiHorizontalRule margin="none" />
           <GuideSectionPropsTable
             key={component}
             componentName={component}

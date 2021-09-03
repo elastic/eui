@@ -1,5 +1,20 @@
-.playgroundWrapper {
-  > div {
-    display: block !important; // sass-lint:disable-line no-important
-  }
+.playground__demoWrapper {
+  @include euiYScroll;
+  height: auto;
+  max-height: 40%;
+  flex-shrink: 0;
+}
+
+.playground__codeWrapper {
+  overflow: hidden;
+  max-height: 20%;
+  flex-shrink: 0;
+}
+
+.playground__tableWrapper {
+  background-color: map-get($euiPanelBackgroundColorModifiers, 'subdued');
+}
+
+.playground__title {
+  padding: $euiSizeS $euiSize;
 }

@@ -12,16 +12,6 @@
   }
 }
 
-.guideDemo__highlightLayout--playground > div:not(.euiPage) {
-  height: 100%;
-  width: 100%;
-  padding: 0 !important; // sass-lint:disable-line no-important
-
-  > .euiPage--grow {
-    height: 100%;
-  }
-}
-
 .guideDemo__highlightLayout--legacy {
   > div,
   > div > div {

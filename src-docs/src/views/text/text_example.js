@@ -82,6 +82,7 @@ export const TextExample = {
       props: { EuiText },
       snippet: textSnippet,
       demo: <Text />,
+      playground: textConfig,
     },
     {
       title: 'Text can come in various sizes',
@@ -128,6 +129,7 @@ export const TextExample = {
       props: { EuiTextColor },
       snippet: textColorSnippet,
       demo: <TextColor />,
+      playground: textColorConfig,
     },
     {
       title: 'Alignment',
@@ -156,5 +158,4 @@ export const TextExample = {
     },
   ],
   guidelines: <Guidelines />,
-  playground: [textConfig, textColorConfig],
 };
