@@ -278,7 +278,7 @@ const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
  * instead of tabbing.
  *
  * So we start with a Node or HTMLElement returned by a mutation record
- * and search its ancestors for a div[data-datagrid-cellcontent], if any
+ * and search its ancestors for a div[data-datagrid-cellcontent], if any,
  * which is a valid target for disabling tabbing within
  */
 function getParentCellContent(_element: Node | HTMLElement) {
