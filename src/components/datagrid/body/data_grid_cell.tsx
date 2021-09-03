@@ -23,6 +23,7 @@ import { keys } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiFocusTrap } from '../../focus_trap';
 import { useEuiI18n } from '../../i18n';
+import { hasResizeObserver } from '../../observer/resize_observer/resize_observer';
 import { DataGridFocusContext } from '../data_grid_context';
 import {
   EuiDataGridCellProps,
@@ -95,15 +96,6 @@ const EuiDataGridCellContent: FunctionComponent<
     );
   }
 );
-
-// TODO: TypeScript has added types for ResizeObserver but not yet released
-// https://github.com/microsoft/TypeScript-DOM-lib-generator/pull/948
-// for now, marking ResizeObserver usage as `any`
-// and when EUI upgrades to a version of TS with ResizeObserver
-// the anys can be removed
-const hasResizeObserver =
-  typeof window !== 'undefined' &&
-  typeof (window as any).ResizeObserver !== 'undefined';
 
 function observeHeight(
   component: HTMLDivElement | null,
@@ -601,6 +593,9 @@ export class EuiDataGridCell extends Component<
         onFocus={this.onFocus}
         onMouseEnter={() => {
           this.setState({ enableInteractions: true });
+        }}
+        onMouseLeave={() => {
+          this.setState({ enableInteractions: false });
         }}
         onBlur={this.onBlur}
       >

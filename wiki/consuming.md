@@ -26,15 +26,6 @@ import {
 } from '@elastic/eui';
 ```
 
-### Services
-
-Most services are published from the `lib/services` directory. Some are published from their module directories in this directory.
-
-```js
-import { keys } from '@elastic/eui/lib/services';
-import { Timer } from '@elastic/eui/lib/services/time';
-```
-
 ### Test
 
 Test utilities are published from the `lib/test` directory.

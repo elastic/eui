@@ -58,6 +58,7 @@
 }
 
 @mixin euiTitle($size: 'm') {
+  @include euiTextBreakWord;
   color: $euiTitleColor;
 
   @if (map-has-key($euiTitles, $size)) {
