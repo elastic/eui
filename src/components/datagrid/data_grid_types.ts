@@ -708,7 +708,7 @@ export interface EuiDataGridRowHeightsOptions {
    */
   rowHeights?: Record<number, EuiDataGridRowHeightOption>;
   /**
-   * Adds extra line-height to cells that have multiple lines
+   * Adds extra line-height to cells
    */
   lineHeight?: EuiDataGridRowLineHeights;
 }

@@ -52,14 +52,14 @@ export class RowHeightUtils {
     gridStyles: EuiDataGridStyle,
     rowHeightsOptions: EuiDataGridRowHeightsOptions
   ) {
-    let initialHeight = rowHeightsOptions && rowHeightsOptions.lineHeight;
+    let lineHeight = rowHeightsOptions && rowHeightsOptions.lineHeight;
     this.fakeCell.className = `
       euiDataGridRowCell
       ${cellPaddingsToClassMap[gridStyles.cellPadding!]}
       ${fontSizesToClassMap[gridStyles.fontSize!]}
     `;
-    if (initialHeight === 'extra')
-      this.fakeCell.classList.add(lineHeightSizesToClassMap[initialHeight]);
+    if (lineHeight === 'extra')
+      this.fakeCell.classList.add(lineHeightSizesToClassMap[lineHeight]);
     document.body.appendChild(this.fakeCell);
     const allStyles = getComputedStyle(this.fakeCell);
     this.styles = {
