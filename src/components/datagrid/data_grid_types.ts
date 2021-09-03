@@ -563,6 +563,9 @@ export interface EuiDataGridStyle {
    * If set to true, the footer row will be sticky
    */
   stickyFooter?: boolean;
+  /**
+   * Adds extra line-height to cells that have multiple lines
+   */
   lineHeight?: EuiDataGridStyleLineHeights;
 }
 

@@ -154,6 +154,14 @@
   }
 }
 
+@include euiDataGridStyles(lineHeightExtra) {
+  @include euiDataGridRowCell {
+    .euiDataGridRowCell__contentByHeight {
+      @include lineHeightFromBaseline(3.5);
+    }
+  }
+}
+
 @include euiDataGridStyles(fontSizeLarge, lineHeightExtra) {
   @include euiDataGridRowCell {
     .euiDataGridRowCell__contentByHeight {
@@ -257,6 +265,10 @@
   &.euiDataGridRowCell--lineHeightExtra {
     @include lineHeightFromBaseline(2.5);
   }
+}
+
+.euiDataGridRowCell--lineHeightExtra {
+  @include lineHeightFromBaseline(3.5);
 }
 
 @include euiDataGridStyles(fontSizeLarge) {
