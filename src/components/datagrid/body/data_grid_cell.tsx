@@ -66,6 +66,7 @@ const EuiDataGridCellContent: FunctionComponent<
       <>
         <div
           ref={setCellContentsRef}
+          data-datagrid-cellcontent
           className={!rowHeightsOptions ? 'euiDataGridRowCell__truncate' : ''}
           style={
             rowHeightsOptions
