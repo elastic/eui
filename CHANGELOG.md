@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `37.6.1`.
+- Added `lineHeight` to `gridStyle` in `EuiDatGrid` ([#5140](https://github.com/elastic/eui/pull/5140))
 
 ## [`37.6.1`](https://github.com/elastic/eui/tree/v37.6.1)
 
