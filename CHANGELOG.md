@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `37.1.3`.
+
+## [`37.1.3`](https://github.com/elastic/eui/tree/v37.1.3)
+
 **Bug fixes**
 
 - Fixed instance of  `EuiScreenReader` text being exposed in `EuiDataGrid` sorting menu ([#5084](https://github.com/elastic/eui/pull/5084))
