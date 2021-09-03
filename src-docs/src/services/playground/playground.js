@@ -76,6 +76,7 @@ export default ({
         </EuiFlyoutHeader>
         <EuiFlyoutHeader className="playground__demoWrapper" hasBorder>
           <EuiPanel
+            hasBorder={false}
             color="transparent"
             borderRadius="none"
             className={classNames('playground__panel', {
