@@ -47,6 +47,7 @@ exports[`EuiDataGridCell renders 1`] = `
         >
           <div
             className="euiDataGridRowCell__truncate"
+            data-datagrid-cellcontent={true}
             style={Object {}}
           >
             <renderCellValue

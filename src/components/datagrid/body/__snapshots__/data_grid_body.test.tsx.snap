@@ -1031,6 +1031,7 @@ exports[`EuiDataGridBody renders 1`] = `
                         >
                           <div
                             className="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent={true}
                             style={Object {}}
                           >
                             <renderCellValue
@@ -1264,6 +1265,7 @@ exports[`EuiDataGridBody renders 1`] = `
                         >
                           <div
                             className="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent={true}
                             style={Object {}}
                           >
                             <renderCellValue
