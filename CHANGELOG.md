@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `37.6.1`.
+
+## [`37.6.1`](https://github.com/elastic/eui/tree/v37.6.1)
+
 **Bug fixes**
 
 - Fixed `EuiScreenReaderOnly` positioning issues within scrolling containers ([#5130](https://github.com/elastic/eui/pull/5130))
