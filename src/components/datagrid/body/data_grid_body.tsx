@@ -273,7 +273,7 @@ const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
 
 /**
  * getParentCellContent is called by the grid body's mutation observer,
- * which exists to pick up DOM changes in cells and remove interactive elemnts
+ * which exists to pick up DOM changes in cells and remove interactive elements
  * from the page's tab index, as we want to move between cells via arrow keys
  * instead of tabbing.
  *
