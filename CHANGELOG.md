@@ -97,6 +97,17 @@ No public interface changes since `37.6.1`.
 - Fixed usage of `outsideClickCloses` prop of `EuiFlyout` ([#4986](https://github.com/elastic/eui/pull/4986))
 - Fixed `EuiFormRow` ignoring `isDisabled` prop on the child element. ([#5022](https://github.com/elastic/eui/pull/5022))
 
+## [`37.1.3`](https://github.com/elastic/eui/tree/v37.1.3)
+
+**Note: this release is a backport containing changes originally made in `37.4.0` and `37.6.1`**
+
+**Bug fixes**
+
+- Fixed instance of  `EuiScreenReader` text being exposed in `EuiDataGrid` sorting menu ([#5084](https://github.com/elastic/eui/pull/5084))
+- Fixed screen reader text from displaying in some `EuiDataGrid` cell popovers ([#5087](https://github.com/elastic/eui/pull/5087))
+- Fixed `EuiDataGrid` cell actions not unmounting from the DOM after mouse interaction ([#5120](https://github.com/elastic/eui/pull/5120))
+- Optimized `EuiDataGrid` cell interactions' performance  ([#5136](https://github.com/elastic/eui/pull/5136))
+
 ## [`37.1.2`](https://github.com/elastic/eui/tree/v37.1.2)
 
 **Note: this release is a backport containing changes originally made in `37.3.0` and `37.3.1`**
