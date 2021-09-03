@@ -590,7 +590,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   ]);
 
   useEffect(() => {
-    if (gridRef.current && pagination) {
+    if (gridRef.current && pagination?.pageIndex !== undefined) {
       gridRef.current.scrollToItem({
         rowIndex: 0,
       });
