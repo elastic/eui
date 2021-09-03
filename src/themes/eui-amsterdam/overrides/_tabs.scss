@@ -3,9 +3,12 @@
 // MEDIUM
 .euiTab,
 .euiTabs--condensed .euiTab {
-  @include euiTitle('xxs');
-  line-height: $euiSizeXXL;
   padding: 0 $euiSizeXS;
+
+  .euiTab__content {
+    @include euiTitle('xxs');
+    line-height: $euiSizeXXL;
+  }
 
   & + .euiTab {
     margin-left: $euiSize;
@@ -20,9 +23,12 @@
 .euiTabs--condensed.euiTabs {
   // SMALL
   &--small .euiTab {
-    @include euiTitle('xxxs');
-    line-height: $euiSizeXL;
     padding: 0 $euiSizeXS;
+
+    .euiTab__content {
+      @include euiTitle('xxxs');
+      line-height: $euiSizeXL;
+    }
 
     & + .euiTab {
       margin-left: $euiSizeM;
@@ -31,19 +37,26 @@
 
   // LARGE
   &--large .euiTab {
-    @include euiTitle('xs');
-    line-height: $euiSizeXXL + $euiSizeS;
     padding: 0 $euiSizeXS;
+
+    .euiTab__content {
+      @include euiTitle('xs');
+      line-height: $euiSizeXXL + $euiSizeS;
+    }
 
     & + .euiTab {
       margin-left: $euiSizeL;
     }
   }
 
+  // X-LARGE
   &--xlarge .euiTab {
-    @include fontSize($euiSize + $euiSizeXS);
-    line-height: $euiSizeXXL + $euiSizeS;
     padding: 0 $euiSizeXS;
+
+    .euiTab__content {
+      @include fontSize($euiSize + $euiSizeXS);
+      line-height: $euiSizeXXL + $euiSizeS;
+    }
 
     & + .euiTab {
       margin-left: $euiSizeXL;

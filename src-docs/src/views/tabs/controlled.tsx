@@ -45,12 +45,8 @@ const tabs = [
   },
   {
     id: 'hydrogen',
-    name: (
-      <span>
-        <EuiIcon type="heatmap" />
-        &nbsp;Hydrogen
-      </span>
-    ),
+    name: 'Hydrogen',
+    prepend: <EuiIcon type="heatmap" />,
     content: (
       <Fragment>
         <EuiSpacer />

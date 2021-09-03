@@ -29,12 +29,6 @@ const tabbedContentSource = require('!!raw-loader!./tabbed_content');
 
 import Controlled from './controlled';
 const controlledSource = require('!!raw-loader!./controlled');
-const controlledSnippet = `<EuiTabbedContent
-  tabs={tabs}
-  selectedTab={selectedTab}
-  onTabClick={onTabClick}
-/>
-`;
 
 export const TabsExample = {
   title: 'Tabs',
@@ -60,12 +54,18 @@ export const TabsExample = {
         },
       ],
       text: (
-        <p>
-          <strong>EuiTabs</strong> is a wrapping component that requires{' '}
-          <strong>EuiTab</strong> components as direct children. You control the
-          displayed contents and current state through props on EuiTab like{' '}
-          <EuiCode>isSelected</EuiCode> and <EuiCode>onClick</EuiCode>.
-        </p>
+        <>
+          <p>
+            <strong>EuiTabs</strong> is a wrapping component that requires{' '}
+            <strong>EuiTab</strong> components as direct children. You control
+            the displayed contents and current state through props on EuiTab
+            like <EuiCode>isSelected</EuiCode> and <EuiCode>onClick</EuiCode>.
+          </p>
+          <p>
+            Use the <EuiCode>prepend</EuiCode> and <EuiCode>append</EuiCode> tab
+            props to add content before and after the tab label respectively.
+          </p>
+        </>
       ),
       props: {
         EuiTabs,
@@ -75,7 +75,7 @@ export const TabsExample = {
       snippet: [
         `<EuiTabs>
   <EuiTab onClick={onClick}>Example 1</EuiTab>
-  <EuiTab onClick={onClick}>Example 2</EuiTab>
+  <EuiTab onClick={onClick} preped={icon}>Example 2</EuiTab>
 </EuiTabs>`,
       ],
       playground: tabsConfig,
@@ -89,24 +89,30 @@ export const TabsExample = {
         },
       ],
       text: (
-        <p>
-          <strong>EuiTabs</strong> allow a <EuiCode>size</EuiCode> prop. In
-          general you should always use the default (medium) size. The small
-          size is best for when placing inside popovers or other small
-          containers. Reserve using the large size for when using as primary
-          page navigation, like inside of{' '}
-          <Link to="/layout/page">
-            <strong>EuiPageHeader</strong>
-          </Link>
-          .
-        </p>
+        <>
+          <p>
+            <strong>EuiTabs</strong> allow a <EuiCode>size</EuiCode> prop. In
+            general you should always use the default (medium) size. The small
+            size is best for when placing inside popovers or other small
+            containers. Reserve using the large size for when using as primary
+            page navigation, like inside of{' '}
+            <Link to="/layout/page">
+              <strong>EuiPageHeader</strong>
+            </Link>
+            .
+          </p>
+          <p>
+            You an also use the <EuiCode>expand</EuiCode> prop to evenly stretch
+            each tab horizontally.
+          </p>
+        </>
       ),
       props: {
         EuiTabs,
         EuiTab,
       },
       demo: <TabsSmall />,
-      snippet: `<EuiTabs size="s>
+      snippet: `<EuiTabs size="s" expand>
   <EuiTab onClick={onClick}>Example 1</EuiTab>
   <EuiTab onClick={onClick}>Example 2</EuiTab>
 </EuiTabs>`,
@@ -191,7 +197,11 @@ export const TabsExample = {
       props: {
         EuiTabbedContent,
       },
-      snippet: controlledSnippet,
+      snippet: `<EuiTabbedContent
+  tabs={tabs}
+  selectedTab={selectedTab}
+  onTabClick={onTabClick}
+/>`,
       demo: <Controlled />,
     },
   ],

@@ -22,12 +22,8 @@ const tabs = [
   },
   {
     id: 'hydrogen',
-    name: (
-      <span>
-        <EuiIcon type="heatmap" />
-        &nbsp;Hydrogen
-      </span>
-    ),
+    name: 'Hydrogen',
+    prepend: <EuiIcon type="heatmap" size="s" />,
     disabled: true,
   },
 ];
@@ -43,10 +39,11 @@ export default () => {
   const renderTabs = () => {
     return tabs.map((tab, index) => (
       <EuiTab
+        key={index}
         onClick={() => onSelectedTabChanged(tab.id)}
         isSelected={tab.id === selectedTabId}
         disabled={tab.disabled}
-        key={index}
+        prepend={tab.prepend}
       >
         {tab.name}
       </EuiTab>
@@ -76,7 +73,9 @@ export default () => {
       anchorPosition="downLeft"
     >
       <div style={{ width: 300 }}>
-        <EuiTabs size="s">{renderTabs()}</EuiTabs>
+        <EuiTabs size="s" expand>
+          {renderTabs()}
+        </EuiTabs>
         <EuiSpacer size="m" /> A spacer is usually needed between the tabs and
         the content. Try to use the same size as the surrounding padding.
       </div>

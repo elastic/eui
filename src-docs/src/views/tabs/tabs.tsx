@@ -6,6 +6,7 @@ import {
   EuiTab,
   EuiSpacer,
   EuiText,
+  EuiNotificationBadge,
 } from '../../../../src/components';
 
 const tabs = [
@@ -46,12 +47,8 @@ const tabs = [
   {
     id: 'hydrogen--id',
     disabled: true,
-    name: (
-      <span>
-        <EuiIcon type="heatmap" />
-        &nbsp;Hydrogen
-      </span>
-    ),
+    name: 'Hydrogen',
+    prepend: <EuiIcon type="heatmap" />,
     content: (
       <Fragment>
         <EuiSpacer />
@@ -68,6 +65,11 @@ const tabs = [
   {
     id: 'monosodium_glutammate--id',
     name: 'Monosodium Glutamate',
+    append: (
+      <EuiNotificationBadge className="eui-alignCenter" size="s">
+        10
+      </EuiNotificationBadge>
+    ),
     href: '#/navigation/tabs#monosodium',
     content: (
       <Fragment>
@@ -105,11 +107,13 @@ export default () => {
   const renderTabs = () => {
     return tabs.map((tab, index) => (
       <EuiTab
+        key={index}
         href={tab.href}
         onClick={() => onSelectedTabChanged(tab.id)}
         isSelected={tab.id === selectedTabId}
         disabled={tab.disabled}
-        key={index}
+        prepend={tab.prepend}
+        append={tab.append}
       >
         {tab.name}
       </EuiTab>
