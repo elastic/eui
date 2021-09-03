@@ -390,25 +390,9 @@ export default () => {
           : data[rowIndex][columnId];
       }
 
-      const _data = data.hasOwnProperty(rowIndex)
+      return data.hasOwnProperty(rowIndex)
         ? getFormatted(rowIndex, columnId)
         : null;
-      const [content, setContent] = useState(_data);
-
-      if (columnId === 'account') {
-        useEffect(() => {
-          let swap = 0;
-          const interval = setInterval(() => {
-            setContent(swap === 0 ? <button>Test button!</button> : _data);
-
-            swap = swap === 0 ? 1 : 0;
-          }, 5000);
-
-          return () => clearInterval(interval);
-        }, []); // eslint-disable-line react-hooks/exhaustive-deps
-      }
-
-      return content;
     };
   }, []);
 
