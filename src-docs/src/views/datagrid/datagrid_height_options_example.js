@@ -57,6 +57,11 @@ export const DataGridRowHeightOptionsExample = {
               specific row
             </li>
           </ul>
+          <p>
+            The default line-height can be increased by setting{' '}
+            <EuiCode>lineHeight</EuiCode> to extra in{' '}
+            <EuiCode>gridStyle</EuiCode>.
+          </p>
           <EuiCallOut
             color="warning"
             title="Rows have minimum height requirements"
