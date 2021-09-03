@@ -1089,7 +1089,7 @@
   },
   {
     "token": "euiColumnSortingDraggable.activeSortLabel",
-    "defString": "is sorting this data grid",
+    "defString": "{display} is sorting this data grid",
     "highlighting": "string",
     "loc": {
       "start": {
@@ -1097,8 +1097,8 @@
         "column": 14
       },
       "end": {
-        "line": 92,
-        "column": 52
+        "line": 93,
+        "column": 37
       }
     },
     "filepath": "src/components/datagrid/column_sorting_draggable.tsx"
@@ -1109,11 +1109,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 107,
+        "line": 104,
         "column": 14
       },
       "end": {
-        "line": 109,
+        "line": 106,
         "column": 54
       }
     },
@@ -1125,11 +1125,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 143,
+        "line": 140,
         "column": 14
       },
       "end": {
-        "line": 145,
+        "line": 142,
         "column": 60
       }
     },

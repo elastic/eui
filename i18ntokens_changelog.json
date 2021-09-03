@@ -1,5 +1,15 @@
 [
   {
+    "version": "37.1.3",
+    "changes": [
+      {
+        "token": "euiColumnSortingDraggable.activeSortLabel",
+        "changeType": "modified",
+        "value": "{display} is sorting this data grid"
+      }
+    ]
+  },
+  {
     "version": "37.0.0",
     "changes": [
       {
