@@ -9,6 +9,7 @@ import IdGenerator from './html_id_generator';
 import { HtmlIdGeneratorPrefix } from './html_id_generator_prefix';
 import { HtmlIdGeneratorSuffix } from './html_id_generator_suffix';
 import { PrefixSufix } from './bothPrefixSuffix';
+import { UseGeneratedHtmlId } from './use_generated_html_id';
 
 const htmlIdGeneratorSource = require('!!raw-loader!./html_id_generator');
 const htmlIdGeneratorHtml = renderToHtml(IdGenerator);
@@ -25,6 +26,11 @@ const suffixSnippet = " htmlIdGenerator()('suffix')";
 const PrefixSufixSource = require('!!raw-loader!./bothPrefixSuffix');
 const PrefixSufixHtml = renderToHtml(PrefixSufix);
 const prefixSuffixSnippet = " htmlIdGenerator('prefix')('suffix')";
+
+const UseGeneratedHtmlIdSource = require('!!raw-loader!./use_generated_html_id');
+const UseGeneratedHtmlIdHtml = renderToHtml(UseGeneratedHtmlId);
+const useGeneratedHtmlIdSnippet =
+  "useGeneratedHtmlId({ prefix: 'Some', suffix: 'id', idFromProps: id })";
 
 export const HtmlIdGeneratorExample = {
   title: 'HTML ID generator',
@@ -115,6 +121,39 @@ export const HtmlIdGeneratorExample = {
       ),
       snippet: prefixSuffixSnippet,
       demo: <PrefixSufix />,
+    },
+    {
+      title: 'Memoized hook for component use',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: UseGeneratedHtmlIdSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: UseGeneratedHtmlIdHtml,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <EuiCode>useGeneratedHtmlId</EuiCode> is a custom React hook that
+            automatically memoizes the randomly generated ID, preventing the ID
+            from regenerating on every component rerender. The ID will only
+            change if the component fully unmounts/mounts, or if you dynamically
+            pass in new hook arguments.
+          </p>
+          <p>
+            <EuiCode>useGeneratedHtmlId</EuiCode> optionally takes{' '}
+            <EuiCode>suffix</EuiCode> and <EuiCode>prefix</EuiCode> parameters
+            with the same behavior as above, as well as an{' '}
+            <EuiCode>idFromProps</EuiCode> option for components that allow
+            end-users to set their own custom IDs.
+          </p>
+        </>
+      ),
+      snippet: useGeneratedHtmlIdSnippet,
+      demo: <UseGeneratedHtmlId />,
     },
   ],
 };
