@@ -51,8 +51,14 @@ export class RowHeightUtils {
   private heightsCache = new Map<number, Record<number, number>>();
   private timerId: any;
   private grid?: Grid;
+  private lastUpdatedRow: number | null = null;
 
-  setRowHeight(rowIndex: number, colIndex: number, height: number = 32) {
+  setRowHeight(
+    rowIndex: number,
+    colIndex: number,
+    height: number = 32,
+    visibleRowIndex: number
+  ) {
     const rowHeights = this.heightsCache.get(rowIndex) || {};
     const adaptedHeight =
       height + this.styles.paddingTop + this.styles.paddingBottom;
@@ -64,6 +70,12 @@ export class RowHeightUtils {
     clearTimeout(this.timerId);
     rowHeights[colIndex] = adaptedHeight;
     this.heightsCache.set(rowIndex, rowHeights);
+    // save the first row index of batch.
+    // Reassign it only if one of the visible row index less than lastUpdatedRow
+    this.lastUpdatedRow =
+      this.lastUpdatedRow !== null && visibleRowIndex > this.lastUpdatedRow
+        ? this.lastUpdatedRow
+        : visibleRowIndex;
     this.timerId = setTimeout(() => this.resetGrid(), 0);
   }
 
@@ -83,7 +95,8 @@ export class RowHeightUtils {
   }
 
   resetGrid() {
-    this.grid?.resetAfterRowIndex(0);
+    this.grid?.resetAfterRowIndex(this.lastUpdatedRow as number);
+    this.lastUpdatedRow = null;
   }
 
   setGrid(grid: Grid) {
@@ -92,7 +105,7 @@ export class RowHeightUtils {
 
   clearHeightsCache() {
     this.heightsCache.clear();
-    this.resetGrid();
+    this.lastUpdatedRow = 0;
   }
 
   isAutoHeight(

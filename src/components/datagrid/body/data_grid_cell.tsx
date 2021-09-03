@@ -241,7 +241,8 @@ export class EuiDataGridCell extends Component<
       this.props.rowHeightUtils?.setRowHeight(
         this.props.rowIndex,
         this.props.colIndex,
-        this.cellContentsRef?.offsetHeight
+        this.cellContentsRef?.offsetHeight,
+        this.props.visibleRowIndex
       );
     }
     if (this.props.columnId !== prevProps.columnId) {
@@ -322,7 +323,8 @@ export class EuiDataGridCell extends Component<
           this.props.rowHeightUtils?.setRowHeight(
             this.props.rowIndex,
             this.props.colIndex,
-            rowHeight
+            rowHeight,
+            this.props.visibleRowIndex
           );
         this.contentObserver = observeHeight(ref, setRowHeight);
       } else if (this.contentObserver) {

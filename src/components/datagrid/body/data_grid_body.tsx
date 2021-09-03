@@ -563,7 +563,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
         }
 
         if (!height && rowHeightsOptions.defaultHeight === AUTO_HEIGHT) {
-          return rowHeightUtils.getRowHeight(correctRowIndex);
+          return rowHeightUtils.getRowHeight(correctRowIndex) || defaultHeight;
         }
       }
 
@@ -588,6 +588,14 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     gridStyles?.cellPadding,
     gridStyles?.fontSize,
   ]);
+
+  useEffect(() => {
+    if (gridRef.current && pagination) {
+      gridRef.current.scrollToItem({
+        rowIndex: 0,
+      });
+    }
+  }, [pagination?.pageIndex]);
 
   useEffect(() => {
     if (gridRef.current) {
