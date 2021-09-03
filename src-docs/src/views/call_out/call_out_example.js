@@ -111,6 +111,7 @@ export const CallOutExample = {
       props: { EuiCallOut },
       snippet: infoSnippet,
       demo: <Info />,
+      playground: callOutConfig,
     },
     {
       title: 'Success',
@@ -173,5 +174,4 @@ export const CallOutExample = {
       demo: <Danger />,
     },
   ],
-  playground: callOutConfig,
 };

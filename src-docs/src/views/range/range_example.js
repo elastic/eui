@@ -116,6 +116,7 @@ export const RangeControlExample = {
         EuiRange,
       },
       demo: <RangeExample />,
+      playground: rangeConfig,
       snippet: [
         `<EuiRange
   min={100}
@@ -193,6 +194,7 @@ export const RangeControlExample = {
         EuiDualRange,
       },
       demo: <DualRangeExample />,
+      playground: dualRangeConfig,
       snippet: [
         `<EuiDualRange
   min={100}
@@ -434,5 +436,4 @@ export const RangeControlExample = {
       ],
     },
   ],
-  playground: [rangeConfig, dualRangeConfig],
 };
