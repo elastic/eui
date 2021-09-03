@@ -10,7 +10,7 @@
 
 **Theme: Amsterdam**
 
-- Deprecated `display` prop of `EuiTabs` in favor of unified styles and `bottomBorder` ([#48513535](https://github.com/elastic/eui/pull/5135))
+- Deprecated `display` prop of `EuiTabs` in favor of unified styles and `bottomBorder` ([#5135](https://github.com/elastic/eui/pull/5135))
 
 ## [`37.6.1`](https://github.com/elastic/eui/tree/v37.6.1)
 
