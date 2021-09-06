@@ -34,8 +34,9 @@
   }
 }
 
-.euiMarkdownEditorFooter__help {
+.euiMarkdownEditorFooter__helpButton {
   justify-self: flex-end;
+  min-width: $euiSizeXL;
 
   // overrides the default button icon width size
   > svg {

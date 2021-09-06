@@ -62,6 +62,20 @@ const markdownEditorHeightSnippet = [
 />`,
 ];
 
+import MarkdownEditorNoPlugins from './markdown_editor_no_plugins';
+const markdownEditorNoPluginsSource = require('!!raw-loader!./markdown_editor_no_plugins');
+const markdownEditorNoPluginsHtml = renderToHtml(MarkdownEditor);
+const markdownEditorNoPluginsSnippet = `
+  const plugins = getDefaultEuiMarkdownUiPlugins();
+  plugins.splice(0, plugins.length);
+
+  <EuiMarkdownEditor
+    value={value}
+    onChange={setValue}
+    uiPlugins={plugins}
+  />
+`;
+
 export const MarkdownEditorExample = {
   title: 'Markdown editor',
   beta: true,
@@ -108,6 +122,34 @@ export const MarkdownEditorExample = {
       snippet: markdownEditorSnippet,
       demo: <MarkdownEditor />,
     },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: markdownEditorNoPluginsSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: markdownEditorNoPluginsHtml,
+        },
+      ],
+      title: 'Unregistering plugins',
+      text: (
+        <p>
+          Most of the built in plugins use the GitHub flavored markdown syntax.
+          Other plugins like the tooltip don&apos;t follow this syntax, and they
+          might be unfamiliar or unnecessary in some contexts. For this reason,
+          you can unregister the plugin, and consequently, no button and help
+          syntax will be rendered.
+        </p>
+      ),
+      props: {
+        EuiMarkdownEditor,
+      },
+      snippet: markdownEditorNoPluginsSnippet,
+      demo: <MarkdownEditorNoPlugins />,
+    },
+
     {
       source: [
         {
