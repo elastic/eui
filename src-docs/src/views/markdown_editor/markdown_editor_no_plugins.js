@@ -8,7 +8,7 @@ import {
   getDefaultEuiMarkdownUiPlugins,
 } from '../../../../src/components';
 
-const initialContent = `## Just GitHub flavored plugins :smile:
+const initialContent = `## This is how we do it :smile:
 
 In this example, we unregistered the built in tooltip plugin. So you can't see the button in the toolbar and the help syntax when you click the markdown button in the footer. 
 `;
@@ -48,7 +48,7 @@ export default () => {
   return (
     <>
       <EuiMarkdownEditor
-        aria-label="EUI markdown editor demo"
+        aria-label="EUI markdown editor with no default plugins demo"
         value={value}
         onChange={setValue}
         height={400}
