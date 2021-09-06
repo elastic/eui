@@ -71,6 +71,7 @@ const EuiDataGridCellContent: FunctionComponent<
       <>
         <div
           ref={setCellContentsRef}
+          data-datagrid-cellcontent
           className={
             !isDefinedHeight
               ? 'euiDataGridRowCell__truncate'

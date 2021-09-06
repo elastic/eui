@@ -34,7 +34,7 @@ const progressSizesSource = require('!!raw-loader!./progress_sizes');
 const progressSizesHtml = renderToHtml(ProgressSizes);
 const progressSizesSnippet = `<EuiProgress
   value={20}
-  max={100} 
+  max={100}
   size="s"
 />`;
 
@@ -43,18 +43,18 @@ const progressColorsSource = require('!!raw-loader!./progress_colors');
 const progressColorsHtml = renderToHtml(ProgressColors);
 const progressColorsSnippet = `<EuiProgress
   value={20}
-  max={100} 
+  max={100}
   color="vis4"
 />`;
 
 import ProgressChart from './progress_chart';
 const progressChartSource = require('!!raw-loader!./progress_chart');
 const progressChartHtml = renderToHtml(ProgressChart);
-const progressChartSnippet = `<EuiProgress 
+const progressChartSnippet = `<EuiProgress
   value={20}
   valueText={true}
   label={label}
-  max={100} 
+  max={100}
 />`;
 
 export const ProgressExample = {
@@ -83,6 +83,7 @@ export const ProgressExample = {
       snippet: progressSnippet,
       props: { EuiProgress },
       demo: <Progress />,
+      playground: progressConfig,
     },
     {
       title: 'Progress with values',
@@ -243,5 +244,4 @@ export const ProgressExample = {
       snippet: progressChartSnippet,
     },
   ],
-  playground: progressConfig,
 };

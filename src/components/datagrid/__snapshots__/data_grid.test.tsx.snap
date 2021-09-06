@@ -1143,6 +1143,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           0, A
                         </div>
@@ -1169,6 +1170,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           0, B
                         </div>
@@ -1195,6 +1197,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           1, A
                         </div>
@@ -1221,6 +1224,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           1, B
                         </div>
@@ -1247,6 +1251,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           2, A
                         </div>
@@ -1273,6 +1278,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           2, B
                         </div>
@@ -1576,6 +1582,7 @@ Array [
                         >
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             0
                           </div>
@@ -1608,6 +1615,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           0, A
                         </div>
@@ -1634,6 +1642,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           0, B
                         </div>
@@ -1673,6 +1682,7 @@ Array [
                         >
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             0
                           </div>
@@ -1718,6 +1728,7 @@ Array [
                         >
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             1
                           </div>
@@ -1750,6 +1761,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           1, A
                         </div>
@@ -1776,6 +1788,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           1, B
                         </div>
@@ -1815,6 +1828,7 @@ Array [
                         >
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             1
                           </div>
@@ -1860,6 +1874,7 @@ Array [
                         >
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             2
                           </div>
@@ -1892,6 +1907,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           2, A
                         </div>
@@ -1918,6 +1934,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           2, B
                         </div>
@@ -1957,6 +1974,7 @@ Array [
                         >
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             2
                           </div>
@@ -2222,6 +2240,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           0, A
                         </div>
@@ -2248,6 +2267,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           0, B
                         </div>
@@ -2274,6 +2294,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           1, A
                         </div>
@@ -2300,6 +2321,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           1, B
                         </div>
@@ -2326,6 +2348,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           2, A
                         </div>
@@ -2352,6 +2375,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           2, B
                         </div>
@@ -2609,6 +2633,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           0, A
                         </div>
@@ -2635,6 +2660,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           0, B
                         </div>
@@ -2661,6 +2687,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           1, A
                         </div>
@@ -2687,6 +2714,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           1, B
                         </div>
@@ -2713,6 +2741,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           2, A
                         </div>
@@ -2739,6 +2768,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           2, B
                         </div>
