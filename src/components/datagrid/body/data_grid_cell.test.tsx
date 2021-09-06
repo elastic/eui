@@ -157,7 +157,7 @@ describe('EuiDataGridCell', () => {
           isAutoHeight: () => true,
           compareHeights: (savedHeight: number, newHeight: number) =>
             savedHeight === newHeight,
-        }
+        };
 
         component.setProps({ rowHeightUtils, getRowHeight });
       });
