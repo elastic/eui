@@ -110,8 +110,7 @@
   }
 
   .euiDataGridRowCell__definedHeight {
-    word-wrap: break-word;
-    word-break: break-word;
+    @include euiTextBreakWord;
     flex-grow: 1;
   }
 

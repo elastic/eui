@@ -153,8 +153,13 @@ describe('EuiDataGridCell', () => {
           value: 10,
         });
         const getRowHeight = jest.fn(() => 20);
+        const rowHeightUtils = {
+          isAutoHeight: () => true,
+          compareHeights: (savedHeight: number, newHeight: number) =>
+            savedHeight === newHeight,
+        }
 
-        component.setProps({ getRowHeight });
+        component.setProps({ rowHeightUtils, getRowHeight });
       });
     });
 
