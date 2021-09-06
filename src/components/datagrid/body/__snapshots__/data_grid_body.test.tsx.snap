@@ -32,9 +32,14 @@ exports[`EuiDataGridBody renders 1`] = `
   renderCellValue={[Function]}
   rowCount={1}
   rowHeightUtils={
-    RowHeightUtils {
-      "fakeCell": <div />,
-      "styles": Object {},
+    Object {
+      "compareHeights": [Function],
+      "getCalculatedHeight": [Function],
+      "getRowHeight": [Function],
+      "isAutoHeight": [Function],
+      "isDefinedHeight": [Function],
+      "setGrid": [Function],
+      "setRowHeight": [Function],
     }
   }
   schema={
@@ -149,6 +154,7 @@ exports[`EuiDataGridBody renders 1`] = `
         columnCount={2}
         columnWidth={[Function]}
         direction="ltr"
+        estimatedRowHeight={34}
         height={9007199254740991}
         innerElementType={
           Object {
@@ -184,6 +190,15 @@ exports[`EuiDataGridBody renders 1`] = `
               "json": [Function],
             },
             "renderCellValue": [Function],
+            "rowHeightUtils": Object {
+              "compareHeights": [Function],
+              "getCalculatedHeight": [Function],
+              "getRowHeight": [Function],
+              "isAutoHeight": [Function],
+              "isDefinedHeight": [Function],
+              "setGrid": [Function],
+              "setRowHeight": [Function],
+            },
             "rowHeightsOptions": undefined,
             "rowMap": Object {},
             "rowOffset": 0,
@@ -855,6 +870,15 @@ exports[`EuiDataGridBody renders 1`] = `
                       "json": [Function],
                     },
                     "renderCellValue": [Function],
+                    "rowHeightUtils": Object {
+                      "compareHeights": [Function],
+                      "getCalculatedHeight": [Function],
+                      "getRowHeight": [Function],
+                      "isAutoHeight": [Function],
+                      "isDefinedHeight": [Function],
+                      "setGrid": [Function],
+                      "setRowHeight": [Function],
+                    },
                     "rowHeightsOptions": undefined,
                     "rowMap": Object {},
                     "rowOffset": 0,
@@ -970,6 +994,17 @@ exports[`EuiDataGridBody renders 1`] = `
                   isExpandable={true}
                   popoverContent={[Function]}
                   renderCellValue={[Function]}
+                  rowHeightUtils={
+                    Object {
+                      "compareHeights": [Function],
+                      "getCalculatedHeight": [Function],
+                      "getRowHeight": [Function],
+                      "isAutoHeight": [Function],
+                      "isDefinedHeight": [Function],
+                      "setGrid": [Function],
+                      "setRowHeight": [Function],
+                    }
+                  }
                   rowIndex={0}
                   style={
                     Object {
@@ -1024,6 +1059,17 @@ exports[`EuiDataGridBody renders 1`] = `
                           isExpandable={true}
                           isExpanded={false}
                           renderCellValue={[Function]}
+                          rowHeightUtils={
+                            Object {
+                              "compareHeights": [Function],
+                              "getCalculatedHeight": [Function],
+                              "getRowHeight": [Function],
+                              "isAutoHeight": [Function],
+                              "isDefinedHeight": [Function],
+                              "setGrid": [Function],
+                              "setRowHeight": [Function],
+                            }
+                          }
                           rowIndex={0}
                           setCellContentsRef={[Function]}
                           setCellProps={[Function]}
@@ -1090,6 +1136,15 @@ exports[`EuiDataGridBody renders 1`] = `
                       "json": [Function],
                     },
                     "renderCellValue": [Function],
+                    "rowHeightUtils": Object {
+                      "compareHeights": [Function],
+                      "getCalculatedHeight": [Function],
+                      "getRowHeight": [Function],
+                      "isAutoHeight": [Function],
+                      "isDefinedHeight": [Function],
+                      "setGrid": [Function],
+                      "setRowHeight": [Function],
+                    },
                     "rowHeightsOptions": undefined,
                     "rowMap": Object {},
                     "rowOffset": 0,
@@ -1205,6 +1260,17 @@ exports[`EuiDataGridBody renders 1`] = `
                   isExpandable={true}
                   popoverContent={[Function]}
                   renderCellValue={[Function]}
+                  rowHeightUtils={
+                    Object {
+                      "compareHeights": [Function],
+                      "getCalculatedHeight": [Function],
+                      "getRowHeight": [Function],
+                      "isAutoHeight": [Function],
+                      "isDefinedHeight": [Function],
+                      "setGrid": [Function],
+                      "setRowHeight": [Function],
+                    }
+                  }
                   rowIndex={0}
                   style={
                     Object {
@@ -1258,6 +1324,17 @@ exports[`EuiDataGridBody renders 1`] = `
                           isExpandable={true}
                           isExpanded={false}
                           renderCellValue={[Function]}
+                          rowHeightUtils={
+                            Object {
+                              "compareHeights": [Function],
+                              "getCalculatedHeight": [Function],
+                              "getRowHeight": [Function],
+                              "isAutoHeight": [Function],
+                              "isDefinedHeight": [Function],
+                              "setGrid": [Function],
+                              "setRowHeight": [Function],
+                            }
+                          }
                           rowIndex={0}
                           setCellContentsRef={[Function]}
                           setCellProps={[Function]}

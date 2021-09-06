@@ -39,8 +39,24 @@ describe('EuiDataGridBody', () => {
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
     schemaDetectors,
-    rowHeightUtils: new RowHeightUtils(),
+    rowHeightUtils: ({
+      isDefinedHeight: () => false,
+      isAutoHeight: () => false,
+      setRowHeight: () => {},
+      getRowHeight: () => 34,
+      setGrid: () => {},
+      compareHeights: (currentRowHeight: number, cachedRowHeight: number) =>
+        currentRowHeight === cachedRowHeight,
+      getCalculatedHeight: () => 34,
+    } as any) as RowHeightUtils,
   };
+
+  beforeAll(() => {
+    Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
+      configurable: true,
+      value: 34,
+    });
+  });
 
   it('renders', () => {
     const component = mount(<EuiDataGridBody {...requiredProps} />);

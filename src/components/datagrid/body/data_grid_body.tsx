@@ -680,7 +680,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
               value={{ headerRowHeight, headerRow, footerRow }}
             >
               <Grid
-                {...virtualizationOptions}
+                {...(virtualizationOptions ? virtualizationOptions : {})}
                 ref={setGridRef}
                 innerElementType={InnerElement}
                 className={VIRTUALIZED_CONTAINER_CLASS}
