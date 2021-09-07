@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `37.6.2`.
+**Breaking changes**
+
+- Added `clip` property to `EuiScreenReaderOnly`, to fix positioning issues within scrolling containers ([#5152](https://github.com/elastic/eui/pull/5152))
 
 ## [`37.6.2`](https://github.com/elastic/eui/tree/v37.6.2)
 
