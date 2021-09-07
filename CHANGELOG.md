@@ -1,12 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `37.6.1`.
+**Reverts**
+
+- Reverted `EuiScreenReaderOnly` clip property ([#5150](https://github.com/elastic/eui/pull/5150))
 
 ## [`37.6.1`](https://github.com/elastic/eui/tree/v37.6.1)
 
 **Bug fixes**
 
-- Fixed `EuiScreenReaderOnly` positioning issues within scrolling containers ([#5130](https://github.com/elastic/eui/pull/5130))
+- **[REVERTED in 37.6.2]** Fixed `EuiScreenReaderOnly` positioning issues within scrolling containers ([#5130](https://github.com/elastic/eui/pull/5130))
 - Fixed `EuiDataGrid` cell actions not unmounting from the DOM after mouse interaction ([#5120](https://github.com/elastic/eui/pull/5120))
 - Optimized `EuiDataGrid` cell interactions' performance  ([#5136](https://github.com/elastic/eui/pull/5136))
 
