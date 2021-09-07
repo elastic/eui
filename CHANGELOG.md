@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `37.6.2`.
+
+## [`37.6.2`](https://github.com/elastic/eui/tree/v37.6.2)
+
 **Reverts**
 
 - Reverted `EuiScreenReaderOnly` clip property ([#5150](https://github.com/elastic/eui/pull/5150))
