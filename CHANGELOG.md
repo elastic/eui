@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `37.6.1`.
+**Bug fixes**
+
+- Fixed `EuiCheckbox`s and `EuiRadio`s without labels not being clickable ([#5149](https://github.com/elastic/eui/pull/5149))
 
 ## [`37.6.1`](https://github.com/elastic/eui/tree/v37.6.1)
 
