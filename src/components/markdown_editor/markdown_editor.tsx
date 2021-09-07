@@ -55,7 +55,7 @@ import { EuiResizeObserver } from '../observer/resize_observer';
 
 type CommonMarkdownEditorProps = Omit<
   HTMLAttributes<HTMLDivElement>,
-  'onChange'
+  'onChange' | 'placeholder'
 > &
   CommonProps & {
     /** aria-label OR aria-labelledby must be set */
