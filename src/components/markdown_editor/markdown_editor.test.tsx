@@ -18,7 +18,7 @@ describe('EuiMarkdownEditor', () => {
     const component = render(
       <EuiMarkdownEditor
         editorId="editorId"
-        placeholder="Placeholder"
+        placeholder="placeholder"
         value=""
         onChange={() => null}
         {...requiredProps}
