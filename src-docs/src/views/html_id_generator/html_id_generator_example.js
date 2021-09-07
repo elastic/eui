@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 import { EuiCode } from '../../../../src/components';
 
@@ -12,25 +10,20 @@ import { PrefixSufix } from './bothPrefixSuffix';
 import { UseGeneratedHtmlId } from './use_generated_html_id';
 
 const htmlIdGeneratorSource = require('!!raw-loader!./html_id_generator');
-const htmlIdGeneratorHtml = renderToHtml(IdGenerator);
 const htmlIdGeneratorSnippet = ' htmlIdGenerator()()';
 
 const htmlIdGeneratorPrefixSource = require('!!raw-loader!./html_id_generator_prefix');
-const htmlIdGeneratorPrefixHtml = renderToHtml(HtmlIdGeneratorPrefix);
 const htmlIdGeneratorPrefixSnippet = " htmlIdGenerator('prefix')()";
 
 const HtmlIdGeneratorSuffixSource = require('!!raw-loader!./html_id_generator_suffix');
-const HtmlIdGeneratorSuffixHtml = renderToHtml(HtmlIdGeneratorSuffix);
 const suffixSnippet = " htmlIdGenerator()('suffix')";
 
 const PrefixSufixSource = require('!!raw-loader!./bothPrefixSuffix');
-const PrefixSufixHtml = renderToHtml(PrefixSufix);
 const prefixSuffixSnippet = " htmlIdGenerator('prefix')('suffix')";
 
 const UseGeneratedHtmlIdSource = require('!!raw-loader!./use_generated_html_id');
-const UseGeneratedHtmlIdHtml = renderToHtml(UseGeneratedHtmlId);
 const useGeneratedHtmlIdSnippet =
-  "useGeneratedHtmlId({ prefix: 'Some', suffix: 'id', idFromProps: id })";
+  'useGeneratedHtmlId({ prefix, suffix, idFromProps: id })';
 
 export const HtmlIdGeneratorExample = {
   title: 'HTML ID generator',
@@ -40,10 +33,6 @@ export const HtmlIdGeneratorExample = {
         {
           type: GuideSectionTypes.JS,
           code: htmlIdGeneratorSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: htmlIdGeneratorHtml,
         },
       ],
       text: (
@@ -66,10 +55,6 @@ export const HtmlIdGeneratorExample = {
           type: GuideSectionTypes.JS,
           code: htmlIdGeneratorPrefixSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: htmlIdGeneratorPrefixHtml,
-        },
       ],
       text: (
         <p>
@@ -86,10 +71,6 @@ export const HtmlIdGeneratorExample = {
         {
           type: GuideSectionTypes.JS,
           code: HtmlIdGeneratorSuffixSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: HtmlIdGeneratorSuffixHtml,
         },
       ],
       text: (
@@ -108,10 +89,6 @@ export const HtmlIdGeneratorExample = {
           type: GuideSectionTypes.JS,
           code: PrefixSufixSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PrefixSufixHtml,
-        },
       ],
       text: (
         <p>
@@ -129,10 +106,6 @@ export const HtmlIdGeneratorExample = {
           type: GuideSectionTypes.JS,
           code: UseGeneratedHtmlIdSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: UseGeneratedHtmlIdHtml,
-        },
       ],
       text: (
         <>
@@ -146,9 +119,9 @@ export const HtmlIdGeneratorExample = {
           <p>
             <EuiCode>useGeneratedHtmlId</EuiCode> optionally takes{' '}
             <EuiCode>suffix</EuiCode> and <EuiCode>prefix</EuiCode> parameters
-            with the same behavior as above, as well as an{' '}
-            <EuiCode>idFromProps</EuiCode> option for components that allow
-            end-users to set their own custom IDs.
+            producing similar results as <EuiCode>htmlIdGenerator</EuiCode>, as
+            well as an <EuiCode>idFromProps</EuiCode> option for components that
+            allow end-users to set their own custom IDs.
           </p>
         </>
       ),
