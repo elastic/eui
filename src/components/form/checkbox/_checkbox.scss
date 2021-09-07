@@ -1,9 +1,11 @@
 .euiCheckbox {
   position: relative;
 
-  .euiCheckbox__input {
+  &:not(.euiCheckbox--noLabel) .euiCheckbox__input {
     @include euiScreenReaderOnly;
+  }
 
+  .euiCheckbox__input {
     ~ .euiCheckbox__label {
       display: inline-block;
       padding-left: ($euiCheckBoxSize * 1.5);

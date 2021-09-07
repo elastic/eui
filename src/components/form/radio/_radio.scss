@@ -1,9 +1,11 @@
 .euiRadio {
   position: relative;
 
-  .euiRadio__input {
+  &:not(.euiRadio--noLabel) .euiRadio__input {
     @include euiScreenReaderOnly;
+  }
 
+  .euiRadio__input {
     ~ .euiRadio__label {
       display: inline-block;
       padding-left: ($euiRadioSize * 1.5);
