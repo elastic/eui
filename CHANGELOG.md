@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `37.6.1`.
+**Bug fixes**
+
+- Adds a popover in `EuiMarkdownEditor` instead of a modal to display help syntax text when no default plugins are available ([#5147](https://github.com/elastic/eui/pull/5147))
 
 ## [`37.6.1`](https://github.com/elastic/eui/tree/v37.6.1)
 

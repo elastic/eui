@@ -8,6 +8,7 @@ import {
   EuiMarkdownEditor,
   EuiText,
   EuiCode,
+  EuiLink,
 } from '../../../../src/components';
 
 import { Link } from 'react-router-dom';
@@ -136,11 +137,14 @@ export const MarkdownEditorExample = {
       title: 'Unregistering plugins',
       text: (
         <p>
-          Most of the built in plugins use the GitHub flavored markdown syntax.
-          Other plugins like the tooltip don&apos;t follow this syntax, and they
-          might be unfamiliar or unnecessary in some contexts. For this reason,
-          you can unregister the plugin, and consequently, no button and help
-          syntax will be rendered.
+          Most of the built in plugins use the{' '}
+          <EuiLink href="https://github.github.com/gfm/" target="_blank">
+            GitHub flavored markdown syntax
+          </EuiLink>
+          . Other plugins like the tooltip don&apos;t follow this syntax, and
+          they might be unfamiliar or unnecessary in some contexts. For this
+          reason, you can unregister the plugin, and consequently, no button and
+          help syntax will be rendered.
         </p>
       ),
       props: {
