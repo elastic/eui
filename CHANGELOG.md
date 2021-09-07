@@ -2,6 +2,8 @@
 
 - Added `useGeneratedHtmlId` utility, which memoizes the randomly generated ID on mount and prevents regenerated IDs on component rerender ([#5133](https://github.com/elastic/eui/pull/5133))
 
+## [`37.6.2`](https://github.com/elastic/eui/tree/v37.6.2)
+
 **Reverts**
 
 - Reverted `EuiScreenReaderOnly` clip property ([#5150](https://github.com/elastic/eui/pull/5150))
