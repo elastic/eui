@@ -221,6 +221,7 @@ export default () => {
                 valueOfSelected={superSelectvalue}
                 onChange={(value) => onSuperSelectChange(value)}
                 itemLayoutAlign="top"
+                repositionOnScroll={true}
                 hasDividers
               />
             </EuiFormRow>
