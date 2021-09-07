@@ -66,7 +66,7 @@ const tabs = [
     id: 'monosodium_glutammate--id',
     name: 'Monosodium Glutamate',
     append: (
-      <EuiNotificationBadge className="eui-alignCenter" size="s">
+      <EuiNotificationBadge className="eui-alignCenter" size="m">
         10
       </EuiNotificationBadge>
     ),
@@ -92,7 +92,7 @@ export default () => {
   const [selectedTabContent, setSelectedTabContent] = useState(
     tabs.find((obj) => {
       return obj.id === 'cobalt--id';
-    })!.content
+    })?.content
   );
 
   const onSelectedTabChanged = (id: string) => {
@@ -100,7 +100,7 @@ export default () => {
     setSelectedTabContent(
       tabs.find((obj) => {
         return obj.id === id;
-      })!.content
+      })?.content
     );
   };
 

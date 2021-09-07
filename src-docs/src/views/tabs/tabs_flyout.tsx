@@ -19,8 +19,6 @@ import {
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [selectedTabId, setSelectedTabId] = useState('1');
-  const [] = useState('option_one');
-  const [] = useState(false);
 
   const tabs = [
     {
