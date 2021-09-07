@@ -35,6 +35,11 @@ export const pageTemplateConfig = () => {
     type: PropTypes.String,
   };
 
+  propsToUse.direction = {
+    ...propsToUse.direction,
+    value: 'row',
+  };
+
   propsToUse.pageSideBar = {
     ...propsToUse.pageSideBar,
     value: 'Side bar',

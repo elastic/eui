@@ -21,7 +21,7 @@ import {
 
 import { ColorStop } from '!!prop-loader!../../../../src/components/color_picker/color_stops/color_stop_thumb';
 
-import playgrounds from './playground';
+import { colorPickerConfig } from './playground';
 
 import ColorPicker from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');
@@ -368,6 +368,7 @@ export const ColorPickerExample = {
       props: { EuiColorPicker },
       snippet: colorPickerSnippet,
       demo: <ColorPicker />,
+      playground: colorPickerConfig,
     },
     {
       title: 'Color palette picker',
@@ -743,5 +744,4 @@ export const ColorPickerExample = {
       demo: <KitchenSink />,
     },
   ],
-  playground: playgrounds,
 };

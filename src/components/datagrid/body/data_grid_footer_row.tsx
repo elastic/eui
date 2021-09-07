@@ -8,16 +8,9 @@
 
 import classnames from 'classnames';
 import React, { forwardRef, memo } from 'react';
-import { EuiText } from '../../text';
 import { EuiDataGridCell } from './data_grid_cell';
-import {
-  EuiDataGridFooterRowProps,
-  EuiDataGridPopoverContent,
-} from '../data_grid_types';
-
-const DefaultColumnFormatter: EuiDataGridPopoverContent = ({ children }) => {
-  return <EuiText>{children}</EuiText>;
-};
+import { DefaultColumnFormatter } from './popover_utils';
+import { EuiDataGridFooterRowProps } from '../data_grid_types';
 
 const EuiDataGridFooterRow = memo(
   forwardRef<HTMLDivElement, EuiDataGridFooterRowProps>(
