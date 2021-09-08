@@ -14,7 +14,10 @@ import { EuiFieldText, EuiFieldTextProps } from '../form';
 import { EuiToolTip } from '../tool_tip';
 import { EuiIcon } from '../icon';
 import { EuiInputPopover } from '../popover';
-import { EuiSuggestItemProps } from './suggest_item';
+
+export const ALL_STATUS = ['unsaved', 'saved', 'unchanged', 'loading'] as const;
+type StatusTuple = typeof ALL_STATUS;
+export type EuiSuggestStatus = StatusTuple[number];
 
 export type EuiSuggestInputProps = CommonProps &
   EuiFieldTextProps & {
@@ -23,7 +26,7 @@ export type EuiSuggestInputProps = CommonProps &
     /**
      * Status of the current query 'unsaved', 'saved', 'unchanged' or 'loading'.
      */
-    status?: 'unsaved' | 'saved' | 'unchanged' | 'loading';
+    status?: EuiSuggestStatus;
 
     /**
      * Element to be appended to the input bar.
@@ -31,11 +34,14 @@ export type EuiSuggestInputProps = CommonProps &
     append?: JSX.Element;
 
     /**
-     * List of suggestions to display using 'suggestItem'.
+     * List element to show when open.
      */
-    suggestions: JSX.Element[] | EuiSuggestItemProps[];
+    suggestions: JSX.Element;
 
-    sendValue?: Function;
+    /**
+     * Callback function called when the input changes.
+     */
+    sendValue?: (value: string) => void;
   };
 
 interface Status {
@@ -69,21 +75,17 @@ const statusMap: StatusMap = {
   loading: {},
 };
 
-export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = (
-  props
-) => {
+export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
+  className,
+  status = 'unchanged',
+  append,
+  tooltipContent,
+  suggestions,
+  sendValue,
+  ...rest
+}) => {
   const [value, setValue] = useState<string>('');
   const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
-
-  const {
-    className,
-    status = 'unchanged',
-    append,
-    tooltipContent,
-    suggestions,
-    sendValue,
-    ...rest
-  } = props;
 
   const onFieldChange = (e: any) => {
     setValue(e.target.value);
@@ -141,7 +143,7 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = (
     <EuiInputPopover
       className={classes}
       input={customInput}
-      isOpen={suggestions.length > 0 && isPopoverOpen}
+      isOpen={isPopoverOpen}
       panelPaddingSize="none"
       fullWidth
       closePopover={closePopover}

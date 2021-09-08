@@ -7,34 +7,78 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiSuggestInput } from './suggest_input';
-
-const sampleItems = [
-  {
-    type: { iconType: 'kqlField', color: 'tint4' },
-    label: 'Field sample',
-    description: 'Description',
-  },
-  {
-    type: { iconType: 'kqlValue', color: 'tint0' },
-    label: 'Value sample',
-    description: 'Description',
-  },
-];
+import { EuiSuggestInput, ALL_STATUS } from './suggest_input';
 
 describe('EuiSuggestInput', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiSuggestInput
-        status="unsaved"
-        suggestions={sampleItems}
-        {...requiredProps}
-      />
+      <EuiSuggestInput suggestions={<div />} {...requiredProps} />
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('props', () => {
+    describe('status', () => {
+      ALL_STATUS.forEach((status) => {
+        test(`status: ${status} is rendered`, () => {
+          const component = render(
+            <EuiSuggestInput
+              {...requiredProps}
+              suggestions={<div />}
+              status={status}
+            />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    test('append', () => {
+      const component = render(
+        <EuiSuggestInput
+          {...requiredProps}
+          suggestions={<div />}
+          append={<span>Appended</span>}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    describe('tooltipContent', () => {
+      ALL_STATUS.forEach((status) => {
+        test(`tooltipContent for status: ${status} is rendered`, () => {
+          const component = render(
+            <EuiSuggestInput
+              {...requiredProps}
+              suggestions={<div />}
+              status={status}
+              tooltipContent={status}
+            />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
+    });
+
+    test('sendValue', () => {
+      const handler = jest.fn();
+      const component = mount(
+        <EuiSuggestInput
+          {...requiredProps}
+          suggestions={<div />}
+          sendValue={handler}
+        />
+      );
+
+      component.find('input').simulate('change', { value: 'a' });
+      expect(handler).toBeCalled();
+    });
   });
 });

@@ -21,7 +21,7 @@ interface Type {
   color: string | keyof typeof colorToClassNameMap;
 }
 
-interface EuiSuggestItemPropsBase {
+export interface _EuiSuggestItemPropsBase {
   /**
    * Takes 'iconType' for EuiIcon and 'color'. 'color' can be tint1 through tint9.
    */
@@ -59,11 +59,11 @@ type PropsForButton = Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
   'onClick' | 'type'
 > & {
-  onClick: MouseEventHandler<HTMLButtonElement> | undefined;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 export type EuiSuggestItemProps = CommonProps &
-  EuiSuggestItemPropsBase &
+  _EuiSuggestItemPropsBase &
   ExclusiveUnion<PropsForDiv, PropsForButton>;
 
 interface ColorToClassMap {
@@ -81,7 +81,23 @@ interface ColorToClassMap {
   [key: string]: string;
 }
 
-type LabelWidthSize = '20' | '30' | '40' | '50' | '60' | '70' | '80' | '90';
+type LabelWidthSize =
+  | '20'
+  | '30'
+  | '40'
+  | '50'
+  | '60'
+  | '70'
+  | '80'
+  | '90'
+  | 20
+  | 30
+  | 40
+  | 50
+  | 60
+  | 70
+  | 80
+  | 90;
 
 const colorToClassNameMap: ColorToClassMap = {
   tint0: 'euiSuggestItem__type--tint0',
