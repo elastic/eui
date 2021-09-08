@@ -111,7 +111,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<EuiCollapsibleNavGroupPro
   iconProps,
   ...rest
 }) => {
-  const groupID = useGeneratedHtmlId({ idFromProps: id });
+  const groupID = useGeneratedHtmlId({ conditionalId: id });
   const titleID = `${groupID}__title`;
 
   const classes = classNames(

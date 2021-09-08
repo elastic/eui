@@ -74,7 +74,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   ...rest
 }) => {
   const flyoutID = useGeneratedHtmlId({
-    idFromProps: id,
+    conditionalId: id,
     suffix: 'euiCollapsibleNav',
   });
 

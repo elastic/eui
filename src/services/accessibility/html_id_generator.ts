@@ -31,15 +31,15 @@ export function htmlIdGenerator(idPrefix: string = '') {
  * being re-randomized on every component update.
  */
 export const useGeneratedHtmlId = ({
-  idFromProps,
+  conditionalId,
   prefix,
   suffix,
 }: {
-  idFromProps?: string;
+  conditionalId?: string;
   prefix?: string;
   suffix?: string;
 } = {}) => {
   return useMemo<string>(() => {
-    return idFromProps || htmlIdGenerator(prefix)(suffix);
-  }, [idFromProps, prefix, suffix]);
+    return conditionalId || htmlIdGenerator(prefix)(suffix);
+  }, [conditionalId, prefix, suffix]);
 };

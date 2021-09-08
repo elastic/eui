@@ -23,7 +23,7 @@ const prefixSuffixSnippet = " htmlIdGenerator('prefix')('suffix')";
 
 const UseGeneratedHtmlIdSource = require('!!raw-loader!./use_generated_html_id');
 const useGeneratedHtmlIdSnippet =
-  'useGeneratedHtmlId({ prefix, suffix, idFromProps: id })';
+  'useGeneratedHtmlId({ prefix, suffix, conditionalId })';
 
 export const HtmlIdGeneratorExample = {
   title: 'HTML ID generator',
@@ -120,8 +120,8 @@ export const HtmlIdGeneratorExample = {
             <EuiCode>useGeneratedHtmlId</EuiCode> optionally takes{' '}
             <EuiCode>suffix</EuiCode> and <EuiCode>prefix</EuiCode> parameters
             producing similar results as <EuiCode>htmlIdGenerator</EuiCode>, as
-            well as an <EuiCode>idFromProps</EuiCode> option for components that
-            allow end-users to set their own custom IDs.
+            well as an <EuiCode>conditionalId</EuiCode> option for components
+            that allow end-users to set their own custom IDs.
           </p>
         </>
       ),
