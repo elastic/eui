@@ -101,11 +101,13 @@ export const PageHeaderExample = {
             <Link to="/navigation/tabs">
               <strong>EuiTab</strong>
             </Link>{' '}
-            objects using the label key for the tab content. When displaying
-            tabs it is recommended to also apply the{' '}
-            <EuiCode>bottomBorder</EuiCode> prop to create separation of the
-            header and content. You&apos;ll still need to manage the page
-            content and selected tab in your own instance.
+            objects using the <EuiCode>label</EuiCode> key for the tab content.
+            When displaying tabs it is recommended to also apply the{' '}
+            <EuiCode>bottomBorder</EuiCode> prop (on the{' '}
+            <strong>EuiPageHeader</strong> component not through{' '}
+            <EuiCode>tabsProps</EuiCode>) to create separation of the header and
+            content. You&apos;ll still need to manage the page content and
+            selected tab in your own instance.
           </p>
         </>
       ),
@@ -117,6 +119,7 @@ export const PageHeaderExample = {
     { label:"Tab 1", isSelected: true },
     { label:"Tab 2" }
   ]}
+  bottomBorder
 />`,
     },
     {
@@ -145,6 +148,7 @@ export const PageHeaderExample = {
     { label:"Tab 1", isSelected: true },
     { label:"Tab 2" }
   ]}
+  bottomBorder
   description="Example of a description."
 />`,
     },
