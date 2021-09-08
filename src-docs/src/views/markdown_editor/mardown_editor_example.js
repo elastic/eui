@@ -78,7 +78,7 @@ const {
     onChange={setValue}
     parsingPluginList={parsingPlugins}
     processingPluginList={processingPlugins}
-    uiPlugins={plugins}
+    uiPlugins={uiPlugins}
   />
 `;
 
