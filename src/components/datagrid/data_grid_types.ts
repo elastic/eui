@@ -663,7 +663,7 @@ export interface EuiDataGridInMemory {
 export type EuiDataGridFocusedCell = [number, number];
 
 export interface EuiDataGridInMemoryValues {
-  [key: string]: { [key: string]: string };
+  [rowIndex: string]: { [columnId: string]: string };
 }
 
 export interface EuiDataGridPopoverContentProps {

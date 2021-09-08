@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiDataGridCell renders 1`] = `
+<EuiDataGridCell
+  colIndex={0}
+  columnId="someColumn"
+  interactiveCellId="someId"
+  isExpandable={true}
+  popoverContent={[Function]}
+  renderCellValue={[Function]}
+  rowIndex={0}
+  visibleRowIndex={0}
+>
+  <div
+    className="euiDataGridRowCell"
+    data-test-subj="dataGridRowCell"
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    role="gridcell"
+    style={
+      Object {
+        "width": undefined,
+      }
+    }
+    tabIndex={-1}
+  >
+    <div
+      className="euiDataGridRowCell__expandFlex"
+    >
+      <div
+        className="euiDataGridRowCell__expandContent"
+      >
+        <Memo()
+          colIndex={0}
+          columnId="someColumn"
+          isDetails={false}
+          isExpandable={true}
+          isExpanded={false}
+          renderCellValue={[Function]}
+          rowIndex={0}
+          setCellContentsRef={[Function]}
+          setCellProps={[Function]}
+          visibleRowIndex={0}
+        >
+          <div
+            className="euiDataGridRowCell__truncate"
+            data-datagrid-cellcontent={true}
+            style={Object {}}
+          >
+            <renderCellValue
+              columnId="someColumn"
+              data-test-subj="cell-content"
+              isDetails={false}
+              isExpandable={true}
+              isExpanded={false}
+              rowIndex={0}
+              setCellProps={[Function]}
+              visibleRowIndex={0}
+            >
+              <div>
+                <button
+                  data-datagrid-interactable="true"
+                >
+                  hello
+                </button>
+                <button
+                  data-datagrid-interactable="true"
+                >
+                  world
+                </button>
+              </div>
+            </renderCellValue>
+          </div>
+          <EuiScreenReaderOnly>
+            <p
+              className="euiScreenReaderOnly"
+            >
+              Row: 1; Column: 1
+            </p>
+          </EuiScreenReaderOnly>
+        </Memo()>
+      </div>
+    </div>
+  </div>
+</EuiDataGridCell>
+`;
