@@ -1,5 +1,5 @@
 import React from 'react';
-import { getSassVars } from '../_get_sass_vars';
+import { useSassVars } from '../_get_sass_vars';
 
 import {
   EuiFlexGroup,
@@ -13,8 +13,8 @@ import {
 import { rgbToHex } from '../../../../../src/services';
 
 export const VisPalette = ({ variant }) => {
-  const visColors = getSassVars('light').euiPaletteColorBlind;
-  const visColorKeys = Object.keys(getSassVars('light').euiPaletteColorBlind);
+  const visColors = useSassVars().euiPaletteColorBlind;
+  const visColorKeys = Object.keys(useSassVars().euiPaletteColorBlind);
 
   function renderPaletteColor(palette, color, index, key) {
     const hex = key ? palette[color][key] : palette[color];
