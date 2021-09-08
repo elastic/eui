@@ -73,19 +73,21 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
         tooltipContent={tooltipContent}
         append={append}
         suggestions={
-          <EuiSelectable<EuiSuggestionProps>
-            singleSelection={true}
-            options={suggestionList}
-            listProps={{
-              bordered: true,
-              showIcons: false,
-              onFocusBadge: false,
-              paddingSize: 'none',
-            }}
-            renderOption={renderOption}
-          >
-            {(list) => list}
-          </EuiSelectable>
+          suggestionList.length > 0 ? (
+            <EuiSelectable<EuiSuggestionProps>
+              singleSelection={true}
+              options={suggestionList}
+              listProps={{
+                bordered: true,
+                showIcons: false,
+                onFocusBadge: false,
+                paddingSize: 'none',
+              }}
+              renderOption={renderOption}
+            >
+              {(list) => list}
+            </EuiSelectable>
+          ) : undefined
         }
         {...rest}
       />

@@ -36,7 +36,7 @@ export type EuiSuggestInputProps = CommonProps &
     /**
      * List element to show when open.
      */
-    suggestions: JSX.Element;
+    suggestions?: JSX.Element;
 
     /**
      * Callback function called when the input changes.
@@ -143,7 +143,7 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
     <EuiInputPopover
       className={classes}
       input={customInput}
-      isOpen={isPopoverOpen}
+      isOpen={suggestions && isPopoverOpen}
       panelPaddingSize="none"
       fullWidth
       closePopover={closePopover}
