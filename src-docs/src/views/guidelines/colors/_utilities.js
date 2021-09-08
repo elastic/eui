@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../../../components';
+import React from 'react';
 import { calculateContrast, rgbToHex } from '../../../../../src/services';
-import { getSassVars } from '../_get_sass_vars';
+import { useSassVars } from '../_get_sass_vars';
 
 import { EuiBadge, EuiCopy, EuiFlexItem } from '../../../../../src/components';
 import { EuiIcon } from '../../../../../src/components/icon';
@@ -94,8 +93,7 @@ export const ColorsContrastItem = ({
   background,
   minimumContrast,
 }) => {
-  const themeContext = useContext(ThemeContext);
-  const palette = getSassVars(themeContext.theme);
+  const palette = useSassVars();
   const contrastRatings = getContrastRatings(background, foreground, palette);
 
   if (!contrastRatings || contrastRatings.contrast < minimumContrast) {

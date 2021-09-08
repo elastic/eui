@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Replaced the `EuiMarkdownEditor` help syntax modal with a popover when no custom plugins are available ([#5147](https://github.com/elastic/eui/pull/5147))
+- Added `.eui-textNumber` utility class to apply `tnum` font-feature setting ([#5078](https://github.com/elastic/eui/pull/5078))
 
 ## [`37.6.2`](https://github.com/elastic/eui/tree/v37.6.2)
 
