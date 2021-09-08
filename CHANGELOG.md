@@ -2,6 +2,8 @@
 
 - Added `placeholder` prop to `EuiMarkdownEditor` ([#5151](https://github.com/elastic/eui/pull/5151))
 
+## [`37.6.2`](https://github.com/elastic/eui/tree/v37.6.2)
+
 **Reverts**
 
 - Reverted `EuiScreenReaderOnly` clip property ([#5150](https://github.com/elastic/eui/pull/5150))
