@@ -59,7 +59,15 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
     return (
       <EuiTabs size="s" display="condensed">
         {tabs.map((tab, index) => {
-          const { displayName, code, name, props, snippets, ...rest } = tab;
+          const {
+            displayName,
+            code,
+            type,
+            name,
+            props,
+            snippets,
+            ...rest
+          } = tab;
 
           return (
             <EuiTab
