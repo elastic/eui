@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `.eui-textNumber` utility class to apply `tnum` font-feature setting ([#5078](https://github.com/elastic/eui/pull/5078))
 - Changed `EuiPageHeader`'s tab implementation to use size `xl` when only content ([#5135](https://github.com/elastic/eui/pull/5135))
 - Added `pageTitleProps` prop to `EuiPageHeader` to pass through props to the `EuiTitle` ([#5135](https://github.com/elastic/eui/pull/5135))
 - Added screen-reader only `<h1>` to `EuiPageHeader` when tabs exist without a `pageTitle` ([#5135](https://github.com/elastic/eui/pull/5135))
@@ -12,11 +13,17 @@
 
 - Deprecated `display` prop of `EuiTabs` in favor of unified styles and `bottomBorder` ([#5135](https://github.com/elastic/eui/pull/5135))
 
+## [`37.6.2`](https://github.com/elastic/eui/tree/v37.6.2)
+
+**Reverts**
+
+- Reverted `EuiScreenReaderOnly` clip property ([#5150](https://github.com/elastic/eui/pull/5150))
+
 ## [`37.6.1`](https://github.com/elastic/eui/tree/v37.6.1)
 
 **Bug fixes**
 
-- Fixed `EuiScreenReaderOnly` positioning issues within scrolling containers ([#5130](https://github.com/elastic/eui/pull/5130))
+- **[REVERTED in 37.6.2]** Fixed `EuiScreenReaderOnly` positioning issues within scrolling containers ([#5130](https://github.com/elastic/eui/pull/5130))
 - Fixed `EuiDataGrid` cell actions not unmounting from the DOM after mouse interaction ([#5120](https://github.com/elastic/eui/pull/5120))
 - Optimized `EuiDataGrid` cell interactions' performance  ([#5136](https://github.com/elastic/eui/pull/5136))
 
