@@ -40,6 +40,10 @@ export const GuideSectionCodeTypesMap = {
     name: 'demoJS',
     displayName: 'Demo JS',
   },
+  TSX: {
+    name: 'demoTSX',
+    displayName: 'Demo JS',
+  },
   SNIPPET: {
     name: 'snippet',
     displayName: 'Snippet',
