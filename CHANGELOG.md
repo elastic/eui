@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added a configuration parameter to the `EuiMarkdownEditor` plugin functions to exclude custom plugins ([#5147](https://github.com/elastic/eui/pull/5147))
+
 **Bug fixes**
 
 - Replaced the `EuiMarkdownEditor` help syntax modal with a popover when no default plugins are available ([#5147](https://github.com/elastic/eui/pull/5147))
