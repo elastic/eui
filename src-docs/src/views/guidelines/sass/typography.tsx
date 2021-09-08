@@ -19,6 +19,7 @@ import {
   EuiLink,
   EuiRange,
   htmlIdGenerator,
+  throttle,
 } from '../../../../../src';
 
 const euiFontSizes = [
@@ -95,38 +96,35 @@ const MixinLink = () => {
   return <EuiLink href={url}>mixins</EuiLink>;
 };
 
+const FontWeight = ({ fontWeight }: { fontWeight: number }) => {
+  const weight = Object.keys(fonts).find(
+    (key) => fonts[key] === Number(fontWeight)
+  );
+  return (
+    <EuiText className="guideSass__fontSizeExample">
+      <p>
+        <EuiCode style={{ fontWeight: fontWeight }}>
+          font-weight: {weight ? `$${weight}` : fontWeight}
+        </EuiCode>
+      </p>
+      <p
+        style={{ fontWeight: fontWeight }}
+        className="guideSass__fontSize--euiFontSizeL"
+      >
+        The quick brown fox
+      </p>
+    </EuiText>
+  );
+};
+
 export const Typography = ({}) => {
   const themeContext = useContext(ThemeContext);
   const selectedTheme = themeContext.theme;
   const [fontWeight, setFontWeight] = useState(400);
-  // HELP!
-  // const onFontWeightChange = useCallback(
-  //   debounce((e) => {
-  //     setFontWeight(e.target.value);
-  //   }),
-  //   [setFontWeight]
-  // );
 
-  const renderFontWeight = () => {
-    const weight = Object.keys(fonts).find(
-      (key) => fonts[key] === Number(fontWeight)
-    );
-    return (
-      <EuiText className="guideSass__fontSizeExample">
-        <p>
-          <EuiCode style={{ fontWeight: fontWeight }}>
-            font-weight: {weight ? `$${weight}` : fontWeight}
-          </EuiCode>
-        </p>
-        <p
-          style={{ fontWeight: fontWeight }}
-          className="guideSass__fontSize--euiFontSizeL"
-        >
-          The quick brown fox
-        </p>
-      </EuiText>
-    );
-  };
+  const onFontWeightChange = throttle((e) => {
+    setFontWeight(e.target.value);
+  }, 25);
 
   return (
     <>
@@ -283,7 +281,7 @@ export const Typography = ({}) => {
                   max={700}
                   step={1}
                   value={fontWeight}
-                  onChange={(e) => setFontWeight(Number(e.currentTarget.value))}
+                  onChange={onFontWeightChange}
                   showValue
                   aria-label="Font weight"
                   showTicks
@@ -296,7 +294,9 @@ export const Typography = ({}) => {
                 />
 
                 <EuiSpacer />
-                <EuiPanel color="subdued">{renderFontWeight()}</EuiPanel>
+                <EuiPanel color="subdued">
+                  <FontWeight fontWeight={fontWeight} />
+                </EuiPanel>
               </>
             ) : (
               <EuiBasicTable
