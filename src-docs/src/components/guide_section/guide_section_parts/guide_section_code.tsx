@@ -8,10 +8,12 @@ import { renderJsSourceCode } from '../_utils';
 
 export type GuideSectionExampleCode = {
   code: any;
+  type?: string;
 };
 
 export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode> = ({
   code,
+  type,
 }) => {
   const [codeToRender, setCodeToRender] = useState();
 
@@ -26,6 +28,7 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
     <CodeSandboxLink
       className="guideSectionExampleCode__link"
       content={code.default}
+      type={type}
     >
       <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
         Try out this demo on Code Sandbox

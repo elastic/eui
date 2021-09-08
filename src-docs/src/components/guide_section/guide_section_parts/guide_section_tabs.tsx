@@ -96,7 +96,10 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
       return (
         <EuiErrorBoundary>
           <EuiHorizontalRule margin="none" />
-          <GuideSectionExampleCode code={selectedTab.code} />
+          <GuideSectionExampleCode
+            code={selectedTab.code}
+            type={selectedTab.type}
+          />
         </EuiErrorBoundary>
       );
       // PROPS TABLE
