@@ -8,7 +8,7 @@
 
 import classNames from 'classnames';
 import React, { Component, LiHTMLAttributes } from 'react';
-import { CommonProps } from '../../common';
+import { CommonProps, keysOf } from '../../common';
 import { EuiI18n } from '../../i18n';
 import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiSelectableOptionCheckedType } from '../selectable_option';
@@ -25,6 +25,13 @@ function resolveIconAndColor(
     ? { icon: 'check', color: 'text' }
     : { icon: 'cross', color: 'text' };
 }
+
+const paddingSizeToClassNameMap = {
+  none: null,
+  s: 'euiSelectableListItem--paddingSmall',
+};
+export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
+export type EuiSelectablePaddingSize = typeof PADDING_SIZES[number];
 
 export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
   CommonProps & {
@@ -51,6 +58,10 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
      * The default content when `true` is `↩ to select/deselect/include/exclude`
      */
     onFocusBadge?: boolean | EuiBadgeProps;
+    /**
+     * Padding for the list items.
+     */
+    paddingSize?: EuiSelectablePaddingSize;
   };
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -78,6 +89,7 @@ export class EuiSelectableListItem extends Component<
       append,
       allowExclusions,
       onFocusBadge,
+      paddingSize = 's',
       ...rest
     } = this.props;
 
@@ -86,6 +98,7 @@ export class EuiSelectableListItem extends Component<
       {
         'euiSelectableListItem-isFocused': isFocused,
       },
+      paddingSizeToClassNameMap[paddingSize],
       className
     );
 

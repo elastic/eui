@@ -66,6 +66,28 @@ exports[`EuiSelectableListItem props height is full 1`] = `
 </div>
 `;
 
+exports[`EuiSelectableListItem props paddingSize none is rendered 1`] = `
+<div
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    style="overflow:visible;width:0"
+  />
+</div>
+`;
+
+exports[`EuiSelectableListItem props paddingSize s is rendered 1`] = `
+<div
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    style="overflow:visible;width:0"
+  />
+</div>
+`;
+
 exports[`EuiSelectableListItem props renderOption 1`] = `
 <div
   class="euiSelectableList testClass1 testClass2"

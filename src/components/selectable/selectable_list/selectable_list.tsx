@@ -61,6 +61,7 @@ export type EuiSelectableOptionsListProps = CommonProps &
      * The default content when `true` is `↩ to select/deselect/include/exclude`
      */
     onFocusBadge?: EuiSelectableListItemProps['onFocusBadge'];
+    paddingSize?: EuiSelectableListItemProps['paddingSize'];
   };
 
 export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
@@ -199,6 +200,18 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       ...optionRest
     } = option;
 
+    const {
+      activeOptionIndex,
+      allowExclusions,
+      onFocusBadge,
+      paddingSize,
+      searchValue,
+      showIcons,
+      makeOptionId,
+      renderOption,
+      setActiveOptionIndex,
+    } = this.props;
+
     if (isGroupLabel) {
       return (
         <li
@@ -219,15 +232,15 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
 
     return (
       <EuiSelectableListItem
-        id={this.props.makeOptionId(index)}
+        id={makeOptionId(index)}
         style={style}
         key={key || label.toLowerCase()}
         onMouseDown={() => {
-          this.props.setActiveOptionIndex(index);
+          setActiveOptionIndex(index);
         }}
         onClick={() => this.onAddOrRemoveOption(option)}
         ref={ref ? ref.bind(null, index) : undefined}
-        isFocused={this.props.activeOptionIndex === index}
+        isFocused={activeOptionIndex === index}
         title={searchableLabel || label}
         checked={checked}
         disabled={disabled}
@@ -235,15 +248,16 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         append={append}
         aria-posinset={index + 1 - labelCount}
         aria-setsize={data.length - labelCount}
-        onFocusBadge={this.props.onFocusBadge}
-        allowExclusions={this.props.allowExclusions}
-        showIcons={this.props.showIcons}
+        onFocusBadge={onFocusBadge}
+        allowExclusions={allowExclusions}
+        showIcons={showIcons}
+        paddingSize={paddingSize}
         {...(optionRest as EuiSelectableListItemProps)}
       >
-        {this.props.renderOption ? (
-          this.props.renderOption(option, this.props.searchValue)
+        {renderOption ? (
+          renderOption(option, searchValue)
         ) : (
-          <EuiHighlight search={this.props.searchValue}>{label}</EuiHighlight>
+          <EuiHighlight search={searchValue}>{label}</EuiHighlight>
         )}
       </EuiSelectableListItem>
     );
@@ -266,6 +280,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       visibleOptions,
       allowExclusions,
       bordered,
+      paddingSize,
       searchable,
       onFocusBadge,
       listId,

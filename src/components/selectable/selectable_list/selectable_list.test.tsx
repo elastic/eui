@@ -11,6 +11,7 @@ import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableList } from './selectable_list';
+import { PADDING_SIZES } from './selectable_list_item';
 import { EuiSelectableOption } from '../selectable_option';
 
 const options: EuiSelectableOption[] = [
@@ -213,6 +214,22 @@ describe('EuiSelectableListItem', () => {
       );
 
       expect(component).toMatchSnapshot();
+    });
+
+    describe('paddingSize', () => {
+      PADDING_SIZES.forEach((size) => {
+        test(`${size} is rendered`, () => {
+          const component = render(
+            <EuiSelectableList
+              options={options}
+              paddingSize={size}
+              {...selectableListRequiredProps}
+            />
+          );
+
+          expect(component).toMatchSnapshot();
+        });
+      });
     });
   });
 });

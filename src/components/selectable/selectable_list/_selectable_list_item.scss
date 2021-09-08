@@ -24,10 +24,15 @@
     color: $euiColorMediumShade;
     cursor: not-allowed;
   }
+
+  &--paddingSmall {
+    .euiSelectableListItem__content {
+      padding: $euiSelectableListItemPadding;
+    }
+  }
 }
 
 .euiSelectableListItem__content {
-  padding: $euiSelectableListItemPadding;
   width: 100%;
   display: flex;
   align-items: center;
