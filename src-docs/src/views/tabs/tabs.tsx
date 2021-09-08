@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useMemo } from 'react';
 
 import {
   EuiIcon,
@@ -89,19 +89,12 @@ const tabs = [
 
 export default () => {
   const [selectedTabId, setSelectedTabId] = useState('cobalt--id');
-  const [selectedTabContent, setSelectedTabContent] = useState(
-    tabs.find((obj) => {
-      return obj.id === 'cobalt--id';
-    })?.content
-  );
+  const selectedTabContent = useMemo(() => {
+    return tabs.find((obj) => obj.id === selectedTabId)?.content;
+  }, [selectedTabId]);
 
   const onSelectedTabChanged = (id: string) => {
     setSelectedTabId(id);
-    setSelectedTabContent(
-      tabs.find((obj) => {
-        return obj.id === id;
-      })?.content
-    );
   };
 
   const renderTabs = () => {
