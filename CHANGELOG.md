@@ -4,7 +4,7 @@
 
 **Bug fixes**
 
-- Replaced the `EuiMarkdownEditor` help syntax modal with a popover when no default plugins are available ([#5147](https://github.com/elastic/eui/pull/5147))
+- Replaced the `EuiMarkdownEditor` help syntax modal with a popover when no custom plugins are available ([#5147](https://github.com/elastic/eui/pull/5147))
 
 ## [`37.6.2`](https://github.com/elastic/eui/tree/v37.6.2)
 
