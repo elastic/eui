@@ -67,12 +67,17 @@ import MarkdownEditorNoPlugins from './markdown_editor_no_plugins';
 const markdownEditorNoPluginsSource = require('!!raw-loader!./markdown_editor_no_plugins');
 const markdownEditorNoPluginsHtml = renderToHtml(MarkdownEditor);
 const markdownEditorNoPluginsSnippet = `
-  const plugins = getDefaultEuiMarkdownUiPlugins();
-  plugins.splice(0, plugins.length);
+const {
+  parsingPlugins,
+  processingPlugins,
+  uiPlugins,
+} = getDefaultEuiMarkdownPlugins({ exclude: ['tooltip'] });
 
   <EuiMarkdownEditor
     value={value}
     onChange={setValue}
+    parsingPluginList={parsingPlugins}
+    processingPluginList={processingPlugins}
     uiPlugins={plugins}
   />
 `;

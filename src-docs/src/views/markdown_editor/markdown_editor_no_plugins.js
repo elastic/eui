@@ -5,12 +5,12 @@ import {
   EuiSpacer,
   EuiCodeBlock,
   EuiButton,
-  getDefaultEuiMarkdownUiPlugins,
+  getDefaultEuiMarkdownPlugins,
 } from '../../../../src/components';
 
 const initialContent = `## This is how we do it :smile:
 
-In this example, we unregistered the built in tooltip plugin. So you can't see the button in the toolbar and the help syntax when you click the markdown button in the footer. 
+In this example, we unregistered the built in tooltip plugin. So you can't see the button in the toolbar and the help syntax when you click the markdown button in the footer.
 `;
 
 const dropHandlers = [
@@ -32,6 +32,12 @@ const dropHandlers = [
   },
 ];
 
+const {
+  parsingPlugins,
+  processingPlugins,
+  uiPlugins,
+} = getDefaultEuiMarkdownPlugins({ exclude: ['tooltip'] });
+
 export default () => {
   const [value, setValue] = useState(initialContent);
   const [messages, setMessages] = useState([]);
@@ -41,9 +47,6 @@ export default () => {
     setMessages(err ? [err] : messages);
     setAst(JSON.stringify(ast, null, 2));
   }, []);
-
-  const plugins = getDefaultEuiMarkdownUiPlugins();
-  plugins.splice(0, plugins.length);
 
   return (
     <>
@@ -55,7 +58,9 @@ export default () => {
         onParse={onParse}
         errors={messages}
         dropHandlers={dropHandlers}
-        uiPlugins={plugins}
+        parsingPluginList={parsingPlugins}
+        processingPluginList={processingPlugins}
+        uiPlugins={uiPlugins}
       />
       <EuiSpacer size="s" />
       <div className="eui-textRight">
