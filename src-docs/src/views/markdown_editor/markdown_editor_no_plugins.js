@@ -10,9 +10,9 @@ import {
 
 const initialContent = `## This is how we do it :smile:
 
-In this example, we unregistered the built in tooltip plugin. So you can't see the button in the toolbar and the help syntax when you click the markdown button in the footer.
+In this example, we unregistered the built in **tooltip** plugin. So the button in the toolbar and the help syntax won't be displayed.
 
-And the following syntax no longer works :sad
+And the following syntax no longer works.
 
 !{tooltip[anchor text](Tooltip content)}
 `;

@@ -152,8 +152,8 @@ export const MarkdownEditorExample = {
           <EuiCode>parsingPlugins</EuiCode>,{' '}
           <EuiCode>processingPlugins</EuiCode> and <EuiCode>uiPlugins</EuiCode>{' '}
           list. This way, you make sure the syntax won&apos;t be identified and
-          consequently rendered, and no additional UI will be displayed like the
-          button and help syntax.
+          consequently rendered. No additional UI, like the button and help
+          syntax, will be displayed.
         </p>
       ),
       props: {
