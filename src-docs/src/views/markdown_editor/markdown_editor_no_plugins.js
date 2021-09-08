@@ -11,6 +11,10 @@ import {
 const initialContent = `## This is how we do it :smile:
 
 In this example, we unregistered the built in tooltip plugin. So you can't see the button in the toolbar and the help syntax when you click the markdown button in the footer.
+
+And the following syntax no longer works :sad
+
+!{tooltip[anchor text](Tooltip content)}
 `;
 
 const dropHandlers = [

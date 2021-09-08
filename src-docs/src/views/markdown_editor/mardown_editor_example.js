@@ -148,8 +148,12 @@ export const MarkdownEditorExample = {
           </EuiLink>
           . Other plugins like the tooltip don&apos;t follow this syntax, and
           they might be unfamiliar or unnecessary in some contexts. For this
-          reason, you can unregister the plugin, and consequently, no button and
-          help syntax will be rendered.
+          reason, you can unregister the plugin by excluding it from the
+          <EuiCode>parsingPlugins</EuiCode>,{' '}
+          <EuiCode>processingPlugins</EuiCode> and <EuiCode>uiPlugins</EuiCode>{' '}
+          list. This way, you make sure the syntax won&apos;t be identified and
+          consequently rendered, and no additional UI will be displayed like the
+          button and help syntax.
         </p>
       ),
       props: {
