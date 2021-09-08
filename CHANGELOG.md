@@ -8,6 +8,7 @@
 - Added `prepend` and `append` props to `EuiTab` ([#5135](https://github.com/elastic/eui/pull/5135))
 - Refactored styles of `EuiTabs` ([#5135](https://github.com/elastic/eui/pull/5135))
 - Removed Sass variables for `EuiTabs` font size (`$euiTabFontSize, $euiTabFontSizeS, $euiTabFontSizeL`) ([#5135](https://github.com/elastic/eui/pull/5135))
+- Extended all `EuiTabProps` for each `EuiTabbedContentTab` ([#5135](https://github.com/elastic/eui/pull/5135))
 
 **Theme: Amsterdam**
 

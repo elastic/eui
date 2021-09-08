@@ -102,8 +102,8 @@ export const TabsExample = {
             .
           </p>
           <p>
-            You can also use the <EuiCode>expand</EuiCode> prop to evenly stretch
-            each tab horizontally.
+            You can also use the <EuiCode>expand</EuiCode> prop to evenly
+            stretch each tab horizontally.
           </p>
         </>
       ),

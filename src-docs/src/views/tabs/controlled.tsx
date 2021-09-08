@@ -6,9 +6,11 @@ import {
   EuiTabbedContent,
   EuiText,
   EuiSpacer,
+  EuiTabbedContentProps,
+  EuiTabbedContentTab,
 } from '../../../../src/components';
 
-const tabs = [
+const tabs: EuiTabbedContentProps['tabs'] = [
   {
     id: 'cobalt',
     name: 'Cobalt',
@@ -82,7 +84,7 @@ const tabs = [
 export default () => {
   const [selectedTab, setSelectedTab] = useState(tabs[1]);
 
-  const onTabClick = (selectedTab: any) => {
+  const onTabClick = (selectedTab: EuiTabbedContentTab) => {
     setSelectedTab(selectedTab);
   };
 
