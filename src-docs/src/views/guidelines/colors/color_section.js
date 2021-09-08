@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../../../components';
-import { getSassVars } from '../_get_sass_vars';
+import React from 'react';
+import { useSassVars } from '../_get_sass_vars';
 
 import {
   EuiIcon,
@@ -26,8 +25,7 @@ export const ColorSection = ({
   showTextVariants,
   children,
 }) => {
-  const theme = useContext(ThemeContext).theme;
-  const palette = getSassVars(theme);
+  const palette = useSassVars();
   const colorsForContrast = showTextVariants ? textVariants : allowedColors;
   const hex = getHexValueFromColorName(palette, color);
   const iconClass =

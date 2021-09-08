@@ -24,12 +24,13 @@ export interface EuiSuggestionProps
 export type EuiSuggestProps = CommonProps &
   Omit<EuiSuggestInputProps, 'suggestions'> & {
     /**
-     * List of suggestions to display using 'suggestItem'.
+     * List of suggestions to display using EuiSuggestItem.
+     * Accepts props from #EuiSuggestItemProps
      */
     suggestions: EuiSuggestionProps[];
 
     /**
-     * Handler for click on a suggestItem.
+     * Handler for click on an EuiSuggestItem.
      */
     onItemClick?: (item: EuiSuggestionProps) => void;
 
@@ -67,7 +68,13 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   };
 
   return (
-    <div onChange={onChange}>
+    <div
+      onChange={onChange}
+      role="combobox"
+      aria-expanded
+      aria-controls=""
+      aria-haspopup="listbox"
+    >
       <EuiSuggestInput
         status={status}
         tooltipContent={tooltipContent}
