@@ -35,8 +35,8 @@ export const TabsExample = {
   intro: (
     <EuiText>
       <p>
-        Use tabs to organize <strong>in-page</strong> navigation; to segment
-        mutually-exclusive content under single organizational principle. For
+        Use tabs to organize <strong>in-page</strong> navigation, segmenting
+        mutually-exclusive content under a single organizational principle. For
         more guideline usage see{' '}
         <EuiLink href="https://www.nngroup.com/articles/tabs-used-right/">
           NNG&apos;s article &quot;Tabs, Used Right&quot;
@@ -75,7 +75,7 @@ export const TabsExample = {
       snippet: [
         `<EuiTabs>
   <EuiTab onClick={onClick}>Example 1</EuiTab>
-  <EuiTab onClick={onClick} preped={icon}>Example 2</EuiTab>
+  <EuiTab onClick={onClick} prepend={icon}>Example 2</EuiTab>
 </EuiTabs>`,
       ],
       playground: tabsConfig,
@@ -102,7 +102,7 @@ export const TabsExample = {
             .
           </p>
           <p>
-            You an also use the <EuiCode>expand</EuiCode> prop to evenly stretch
+            You can also use the <EuiCode>expand</EuiCode> prop to evenly stretch
             each tab horizontally.
           </p>
         </>
@@ -127,7 +127,7 @@ export const TabsExample = {
       ],
       text: (
         <p>
-          The <EuiCode>bottomBorder</EuiCode> helps to seperate the tab group
+          The <EuiCode>bottomBorder</EuiCode> helps to separate the tab group
           from the content below and is on by default. However, some components
           like <Link to="/layout/flyout">flyouts</Link> already provide borders
           which can act as the divider. In this case you can turn the border off

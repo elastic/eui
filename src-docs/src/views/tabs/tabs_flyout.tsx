@@ -74,7 +74,7 @@ export default () => {
         </EuiFlyoutHeader>
         <EuiFlyoutBody>
           <EuiText>
-            <p>{`Tab ${selectedTabId} content`}</p>
+            <p>Tab {selectedTabId} content</p>
           </EuiText>
         </EuiFlyoutBody>
         <EuiFlyoutFooter>
