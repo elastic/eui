@@ -524,7 +524,6 @@ export class EuiPopover extends Component<Props, State> {
     // update scroll listener
     if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
       if (this.props.repositionOnScroll) {
-        console.log('running');
         window.addEventListener('scroll', this.positionPopoverFixed, true);
       } else {
         window.removeEventListener('scroll', this.positionPopoverFixed, true);
