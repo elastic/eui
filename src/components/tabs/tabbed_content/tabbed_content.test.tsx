@@ -22,7 +22,10 @@ const kibanaTab = {
   id: 'kibana',
   name: <strong>Kibana</strong>,
   'data-test-subj': 'kibanaTab',
+  className: 'kibanaTab',
   content: <p>Kibana content</p>,
+  prepend: 'prepend',
+  append: 'append',
 };
 
 const tabs = [elasticsearchTab, kibanaTab];
