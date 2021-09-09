@@ -95,6 +95,7 @@ export const StatExample = {
       props: { EuiStat },
       demo: <Stat />,
       snippet: statSnippet,
+      playground: statConfig,
     },
     {
       title: 'Applying color',
@@ -236,5 +237,4 @@ export const StatExample = {
       demo: <StatCombos />,
     },
   ],
-  playground: statConfig,
 };

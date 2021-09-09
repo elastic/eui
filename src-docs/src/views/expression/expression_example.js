@@ -23,10 +23,10 @@ const expressionSnippet = `<EuiExpression
 import Colors from './colors';
 const colorSource = require('!!raw-loader!./colors');
 const colorHtml = renderToHtml(Colors);
-const colorSnippet = `<EuiExpression 
-  description={description} 
+const colorSnippet = `<EuiExpression
+  description={description}
   value={value}
-  color="primary" 
+  color="primary"
 />`;
 
 import Stringing from './stringing';
@@ -99,6 +99,7 @@ export const ExpressionExample = {
       props: { EuiExpression },
       snippet: expressionSnippet,
       demo: <Expression />,
+      playground: expressionConfig,
     },
     {
       title: 'Colors',
@@ -228,5 +229,4 @@ export const ExpressionExample = {
       demo: <Truncate />,
     },
   ],
-  playground: expressionConfig,
 };

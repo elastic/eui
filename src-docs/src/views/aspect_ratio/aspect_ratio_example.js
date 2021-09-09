@@ -57,7 +57,7 @@ export const AspectRatioExample = {
       props: { EuiAspectRatio },
       demo: <AspectRatio />,
       snippet: aspectRatioSnippet,
+      playground: aspectRatioConfig,
     },
   ],
-  playground: aspectRatioConfig,
 };

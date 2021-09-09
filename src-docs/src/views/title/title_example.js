@@ -44,7 +44,7 @@ export const TitleExample = {
       snippet: titleSnippet,
       props: { EuiTitle },
       demo: <Title />,
+      playground: titleConfig,
     },
   ],
-  playground: titleConfig,
 };

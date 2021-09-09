@@ -9,8 +9,10 @@
 import {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
+  ComponentProps,
   Component,
   FunctionComponent,
+  JSXElementConstructor,
   MouseEventHandler,
   SFC,
 } from 'react';
@@ -64,8 +66,8 @@ export type PropsOf<C> = C extends SFC<infer SFCProps>
 
 // Returns the props of a given HTML element
 export type PropsOfElement<
-  C extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>
-> = JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>;
+  C extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>
+> = JSX.LibraryManagedAttributes<C, ComponentProps<C>>;
 
 // Utility methods for ApplyClassComponentDefaults
 type ExtractDefaultProps<T> = T extends { defaultProps: infer D } ? D : never;
