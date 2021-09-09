@@ -10,7 +10,7 @@ import React from 'react';
 import { Global, css } from '@emotion/react';
 import { useScrollBar } from '../mixins/_helpers';
 import { useEuiFont } from '../mixins/_typography';
-import { shade, tint } from '../../services/color';
+import { shade, tint, transparentize } from '../../services/color';
 import { useEuiTheme, isDefaultTheme } from '../../services/theme';
 
 export const EuiGlobalReset = () => {
@@ -207,6 +207,8 @@ export const EuiGlobalReset = () => {
       line-height: ${defaultTheme ? '1' : '1.142857143'};
     }
 
+    ${defaultTheme
+      ? `
     *:focus {
       outline: none;
 
@@ -218,7 +220,40 @@ export const EuiGlobalReset = () => {
       &:-moz-focusring {
         outline: none;
       }
+    }`
+      : `
+    *:focus {
+      // 👉 Safari and Firefox innately respect only showing the outline with keyboard only
+      // 💔 But they don't allow coloring of the 'auto'/default outline, so contrast is no good in dark mode.
+      // 👉 For these browsers we use the solid type in order to match with \`currentColor\`.
+      // 😦 Which does means the outline will be square
+      // outline: $euiFocusRingSize solid currentColor;
+      outline: 2px solid currentColor;
+      // outline-offset: -($euiFocusRingSize / 2);
+      outline-offset: calc((2px / 2) * -1);
+
+      // 👀 Chrome respects :focus-visible and allows coloring the \`auto\` style
+      &:focus-visible {
+        outline-style: auto;
+      }
+
+      //🙅‍♀️ But Chrome also needs to have the outline forcefully removed from regular \`:focus\` state
+      &:not(:focus-visible) {
+        outline: none;
+      }
+    }`}
+
+    ${!defaultTheme &&
+    `
+    // Dark mode's highlighted doesn't work well so lets just set it the same as our focus background
+    ::selection {
+      // background: $euiFocusBackgroundColor;
+      background: ${transparentize(
+        colors.primary,
+        colorMode === 'LIGHT' ? 0.9 : 0.8
+      )}
     }
+    `}
 
     a {
       text-decoration: none;
@@ -230,7 +265,7 @@ export const EuiGlobalReset = () => {
 
       &:focus {
         text-decoration: none;
-        outline: none;
+        ${defaultTheme && 'outline: none;'}
       }
     }
 
@@ -254,7 +289,7 @@ export const EuiGlobalReset = () => {
       border: none;
       padding: 0;
       margin: 0;
-      outline: none;
+      ${defaultTheme && 'outline: none;'}
       font-size: inherit;
       color: inherit;
       border-radius: 0;
