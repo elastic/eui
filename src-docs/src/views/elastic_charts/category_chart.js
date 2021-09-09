@@ -130,8 +130,23 @@ const customTheme = {
       offsetX: ${rotated ? '2' : '0'},
       offsetY: ${rotated ? '0' : '-2'},
       ${multi && stacked ? defaultAlignmentToCopy : alignmentRotatedToCopy},
+    },
   },
 };`;
+
+  const multiConfigData = `[
+      { vizType: "Data Table", count: 6, issueType: "Bug" },
+      { vizType: "Data Table", count: 24, issueType: "Other" },
+      { vizType: "Heatmap", count: 12, issueType: "Bug" },
+      { vizType: "Heatmap", count: 20, issueType: "Other" }
+    ]
+`;
+
+  const singleConfigData = `[
+      {vizType: 'Data Table', count: 24, issueType: 'Bug'},
+      {vizType: 'Heatmap',count: 12, issueType: 'Other'}
+    ]
+`;
 
   const chartConfigurationToCopy = `<Chart size={{height: 300}}>
   <Settings
@@ -143,11 +158,9 @@ const customTheme = {
   <${chartType}
     id="issues"
     name="Issues"
-    data={${
-      ordered
-        ? "orderBy([{vizType: 'Data Table', count: 24, issueType: 'Bug'},{vizType: 'Heatmap',count: 12, issueType: 'Other'}], ['count'], ['desc'])"
-        : "orderBy([{vizType: 'Data Table', count: 24, issueType: 'Bug'},{vizType: 'Heatmap',count: 12, issueType: 'Other'}], ['vizType'], ['asc'])"
-    }}
+    data={
+      ${multi ? multiConfigData : singleConfigData}
+    }
     xAccessor="vizType"
     yAccessors={['count']}
     ${multi ? "splitSeriesAccessors={['issueType']}" : ''}
@@ -156,12 +169,12 @@ const customTheme = {
   />
   <Axis
     id="bottom-axis"
-    position={${rotated ? 'left' : 'bottom'}}
+    position={${rotated ? '"left"' : '"bottom"'}}
     showGridLines={false}
   />
   <Axis
     id="left-axis"
-    position={${rotated ? 'bottom' : 'left'}}
+    position={${rotated ? '"bottom"' : '"left"'}}
     ${formatted ? 'tickFormat={d => `${round(Number(d) / 1000, 2)}k`}' : ''}
   />
 </Chart>`;
