@@ -293,6 +293,7 @@ export default () => {
     <>
       <EuiMarkdownEditor
         aria-label="EUI markdown editor with plugins demo"
+        placeholder="Your markdown here..."
         value={value}
         onChange={setValue}
         height={400}

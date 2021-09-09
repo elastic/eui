@@ -196,6 +196,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
         aria-label="aria-label"
         class="euiMarkdownEditorTextArea"
         id="editorId"
+        placeholder="placeholder"
         rows="6"
         style="height:calc(250px);max-height:500px"
       />
