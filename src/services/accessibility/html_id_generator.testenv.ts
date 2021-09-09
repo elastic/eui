@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+import { UseGeneratedHtmlIdOptions } from './html_id_generator';
+
 export function htmlIdGenerator(idPrefix: string = '') {
   const staticUuid = 'generated-id';
   return (idSuffix: string = '') => {
@@ -19,11 +21,7 @@ export const useGeneratedHtmlId = ({
   prefix,
   suffix,
   conditionalId,
-}: {
-  prefix?: string;
-  suffix?: string;
-  conditionalId?: string;
-} = {}) => {
+}: UseGeneratedHtmlIdOptions = {}) => {
   // Skip useMemo in test environments - it's not necessary since the uuid is static/mocked
   return conditionalId || htmlIdGenerator(prefix)(suffix);
 };

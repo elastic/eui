@@ -30,15 +30,27 @@ export function htmlIdGenerator(idPrefix: string = '') {
  * until the component using it is unmounted. This prevents IDs from
  * being re-randomized on every component update.
  */
+
+export type UseGeneratedHtmlIdOptions = {
+  /**
+   * Optional prefix to prepend to the generated ID
+   */
+  prefix?: string;
+  /**
+   * Optional suffix to append to the generated ID
+   */
+  suffix?: string;
+  /**
+   * Optional conditional ID to use instead of a randomly generated ID.
+   * Typically used by EUI components where IDs can be passed in as custom props
+   */
+  conditionalId?: string;
+};
 export const useGeneratedHtmlId = ({
-  conditionalId,
   prefix,
   suffix,
-}: {
-  conditionalId?: string;
-  prefix?: string;
-  suffix?: string;
-} = {}) => {
+  conditionalId,
+}: UseGeneratedHtmlIdOptions = {}) => {
   return useMemo<string>(() => {
     return conditionalId || htmlIdGenerator(prefix)(suffix);
   }, [conditionalId, prefix, suffix]);

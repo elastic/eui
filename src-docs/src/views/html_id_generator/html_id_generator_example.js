@@ -8,6 +8,7 @@ import { HtmlIdGeneratorPrefix } from './html_id_generator_prefix';
 import { HtmlIdGeneratorSuffix } from './html_id_generator_suffix';
 import { PrefixSufix } from './bothPrefixSuffix';
 import { UseGeneratedHtmlId } from './use_generated_html_id';
+import { UseGeneratedHtmlIdProps } from './use_generated_html_id_props';
 
 const htmlIdGeneratorSource = require('!!raw-loader!./html_id_generator');
 const htmlIdGeneratorSnippet = ' htmlIdGenerator()()';
@@ -116,17 +117,11 @@ export const HtmlIdGeneratorExample = {
             change if the component fully unmounts/mounts, or if you dynamically
             pass in new hook arguments.
           </p>
-          <p>
-            <EuiCode>useGeneratedHtmlId</EuiCode> optionally takes{' '}
-            <EuiCode>suffix</EuiCode> and <EuiCode>prefix</EuiCode> parameters
-            producing similar results as <EuiCode>htmlIdGenerator</EuiCode>, as
-            well as an <EuiCode>conditionalId</EuiCode> option for components
-            that allow end-users to set their own custom IDs.
-          </p>
         </>
       ),
       snippet: useGeneratedHtmlIdSnippet,
       demo: <UseGeneratedHtmlId />,
+      props: { useGeneratedHtmlId: UseGeneratedHtmlIdProps },
     },
   ],
 };
