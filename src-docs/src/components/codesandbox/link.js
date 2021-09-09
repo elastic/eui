@@ -156,7 +156,7 @@ ${exampleClose}
         },
       },
       /* 3 */
-      [`index.${type.toLowerCase()}`]: {
+      [`index.${type}`]: {
         content: indexContent,
       },
     },

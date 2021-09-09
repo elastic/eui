@@ -5,6 +5,7 @@ import { EuiButtonEmpty } from '../../../../../src/components/button';
 import { CodeSandboxLink } from '../../codesandbox';
 // @ts-ignore Not TS
 import { renderJsSourceCode } from '../_utils';
+import { GuideSectionTypes } from '../guide_section_types';
 
 export type GuideSectionExampleCode = {
   code: any;
@@ -13,7 +14,7 @@ export type GuideSectionExampleCode = {
 
 export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode> = ({
   code,
-  type,
+  type = GuideSectionTypes.JS,
 }) => {
   const [codeToRender, setCodeToRender] = useState();
 
@@ -28,7 +29,7 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
     <CodeSandboxLink
       className="guideSectionExampleCode__link"
       content={code.default}
-      type={type}
+      type={type.toLowerCase()}
     >
       <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
         Try out this demo on Code Sandbox
@@ -38,7 +39,11 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
 
   return (
     <>
-      <EuiCodeBlock language="jsx" overflowHeight={400} isCopyable>
+      <EuiCodeBlock
+        language={type === GuideSectionTypes.JS ? 'jsx' : type.toLowerCase()}
+        overflowHeight={400}
+        isCopyable
+      >
         {codeToRender}
       </EuiCodeBlock>
       {codeSandboxLink}
