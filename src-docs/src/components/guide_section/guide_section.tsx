@@ -16,6 +16,7 @@ import {
   GuideSectionExampleTabs,
   GuideSectionExampleTabsProps,
 } from './guide_section_parts/guide_section_tabs';
+import { GuideSectionTypes } from './guide_section_types';
 
 export interface GuideSection {
   id?: string;
@@ -102,7 +103,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
     if (source) {
       source.map((source) => {
         // Forever skipping the HTML tab
-        if (source.type === 'HTML') return;
+        if (source.type === GuideSectionTypes.HTML) return;
         tabs.push({
           // @ts-ignore Complicated
           ...GuideSectionCodeTypesMap[source.type],
