@@ -26,7 +26,7 @@ export function htmlIdGenerator(idPrefix: string = '') {
 }
 
 /**
- * Generates a memozied ID that remains static until component unmount.
+ * Generates a memoized ID that remains static until component unmount.
  * This prevents IDs from being re-randomized on every component update.
  */
 export type UseGeneratedHtmlIdOptions = {
