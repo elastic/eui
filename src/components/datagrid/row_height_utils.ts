@@ -51,7 +51,7 @@ export class RowHeightUtils {
   private heightsCache = new Map<number, Record<number, number>>();
   private timerId: any;
   private grid?: Grid;
-  private lastUpdatedRow: number | null = null;
+  private lastUpdatedRow: number = Infinity;
 
   setRowHeight(
     rowIndex: number,
@@ -67,15 +67,12 @@ export class RowHeightUtils {
       return;
     }
 
-    clearTimeout(this.timerId);
     rowHeights[colIndex] = adaptedHeight;
     this.heightsCache.set(rowIndex, rowHeights);
-    // save the first row index of batch.
-    // Reassign it only if one of the visible row index less than lastUpdatedRow
-    this.lastUpdatedRow =
-      this.lastUpdatedRow !== null && visibleRowIndex > this.lastUpdatedRow
-        ? this.lastUpdatedRow
-        : visibleRowIndex;
+    // save the first row index of batch, reassigning it only
+    // if this visible row index less than lastUpdatedRow
+    this.lastUpdatedRow = Math.min(this.lastUpdatedRow, visibleRowIndex);
+    clearTimeout(this.timerId);
     this.timerId = setTimeout(() => this.resetGrid(), 0);
   }
 
@@ -95,8 +92,8 @@ export class RowHeightUtils {
   }
 
   resetGrid() {
-    this.grid?.resetAfterRowIndex(this.lastUpdatedRow as number);
-    this.lastUpdatedRow = null;
+    this.grid?.resetAfterRowIndex(this.lastUpdatedRow);
+    this.lastUpdatedRow = Infinity;
   }
 
   setGrid(grid: Grid) {
@@ -104,8 +101,8 @@ export class RowHeightUtils {
   }
 
   clearHeightsCache() {
-    this.heightsCache.clear();
     this.lastUpdatedRow = 0;
+    this.heightsCache.clear();
   }
 
   isAutoHeight(
