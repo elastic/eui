@@ -248,7 +248,7 @@ const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
  * and search its ancestors for a div[data-datagrid-cellcontent], if any,
  * which is a valid target for disabling tabbing within
  */
-function getParentCellContent(_element: Node | HTMLElement) {
+export function getParentCellContent(_element: Node | HTMLElement) {
   let element: HTMLElement | null =
     _element.nodeType === document.ELEMENT_NODE
       ? (_element as HTMLElement)
