@@ -1,0 +1,22 @@
+// sass-lint:disable no-important
+.guideDemo__textLines {
+  background-image: linear-gradient($euiFocusBackgroundColor 1px, transparent 1px);
+  background-size: 100% $euiFontSize / 2;
+  background-position-y: -1px;
+
+  > * {
+    background-color: $euiColorHighlight;
+  }
+
+  &[class*='--small'] {
+    background-size: 100% $euiFontSizeS / 2;
+  }
+
+  &[class*='--extraSmall'] {
+    background-size: 100% $euiFontSizeXS / 2;
+  }
+
+  &[class*='amsterdam'] {
+    background-size: 100% 4px;
+  }
+}
