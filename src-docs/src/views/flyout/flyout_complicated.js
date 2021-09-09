@@ -3,6 +3,7 @@ import React, { useState, Fragment } from 'react';
 import {
   EuiButton,
   EuiButtonEmpty,
+  EuiCode,
   EuiCodeBlock,
   EuiComboBox,
   EuiExpression,
@@ -207,10 +208,15 @@ export default () => {
               </EuiButton>
             }
             isOpen={isPopoverOpen}
+            repositionOnScroll={true}
           >
             <p>
               This is the popover content, notice how it can overflow the
               flyout!
+            </p>
+            <p>
+              When placed in a flyout, the <EuiCode>repositionOnScroll</EuiCode>{' '}
+              prop ensures that the popover scrolls with body of the flyout.
             </p>
           </EuiPopover>
           <EuiSpacer size="m" />

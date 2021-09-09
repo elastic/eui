@@ -151,7 +151,8 @@ export interface EuiPopoverProps {
   popoverRef?: Ref<HTMLDivElement>;
   /**
    * When `true`, the popover's position is re-calculated when the user
-   * scrolls, this supports having fixed-position popover anchors
+   * scrolls, this supports having fixed-position popover anchors. When nesting
+   * an `EuiPopover` in a scrollable container, `repositionOnScroll` should be `true`
    */
   repositionOnScroll?: boolean;
   /**
