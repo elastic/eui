@@ -134,18 +134,14 @@ const customTheme = {
   },
 };`;
 
-  const multiConfigData = `[
-      { vizType: "Data Table", count: 6, issueType: "Bug" },
+  const multiConfigData = `[{ vizType: "Data Table", count: 6, issueType: "Bug" },
       { vizType: "Data Table", count: 24, issueType: "Other" },
       { vizType: "Heatmap", count: 12, issueType: "Bug" },
-      { vizType: "Heatmap", count: 20, issueType: "Other" }
-    ]
+      { vizType: "Heatmap", count: 20, issueType: "Other" }]
 `;
 
-  const singleConfigData = `[
-      {vizType: 'Data Table', count: 24, issueType: 'Bug'},
-      {vizType: 'Heatmap',count: 12, issueType: 'Other'}
-    ]
+  const singleConfigData = `[{vizType: 'Data Table', count: 24, issueType: 'Bug'},
+      {vizType: 'Heatmap',count: 12, issueType: 'Other'}]
 `;
 
   const chartConfigurationToCopy = `<Chart size={{height: 300}}>
