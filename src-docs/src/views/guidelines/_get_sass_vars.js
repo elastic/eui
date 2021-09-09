@@ -2,10 +2,13 @@ import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling
 import darkColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui/eui_colors_dark.scss';
 import lightAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
 import darkAmsterdamColors from '!!sass-vars-to-js-loader!../../../../src/themes/eui-amsterdam/eui_amsterdam_colors_dark.scss';
+import { useContext } from 'react';
+import { ThemeContext } from '../../components';
 
-export const getSassVars = (theme) => {
+export const useSassVars = () => {
+  const themeContext = useContext(ThemeContext);
   let palette;
-  switch (theme) {
+  switch (themeContext.theme) {
     case 'amsterdam-dark':
       palette = { ...darkColors, ...darkAmsterdamColors };
       break;

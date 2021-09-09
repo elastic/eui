@@ -147,6 +147,7 @@ export const BadgeExample = {
       props: { EuiBadge },
       snippet: badgeSnippet,
       demo: <Badge />,
+      playground: badgeConfig,
     },
     {
       title: 'Badge with Icon',
@@ -327,6 +328,7 @@ export const BadgeExample = {
       props: { EuiBetaBadge },
       snippet: betaBadgeSnippet,
       demo: <BetaBadge />,
+      playground: betaBadgeConfig,
     },
     {
       title: 'Notification badge type',
@@ -357,7 +359,7 @@ export const BadgeExample = {
       props: { EuiNotificationBadge },
       snippet: notificationBadgeSnippet,
       demo: <NotificationBadge />,
+      playground: notificationBadgeConfig,
     },
   ],
-  playground: [badgeConfig, betaBadgeConfig, notificationBadgeConfig],
 };

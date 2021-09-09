@@ -10,8 +10,7 @@
 }
 
 .guideSection__propsTableIntro {
-  padding-left: $euiSizeS;
-  padding-right: $euiSizeS;
+  padding: $euiSizeM $euiSizeS 0;
 }
 
 .guideSectionExampleCode__link {
@@ -28,7 +27,7 @@
   }
 }
 
-.guideSectionTabs__tab {
+.guideSectionTabs__tab > * {
   font-weight: $euiFontWeightMedium !important; // sass-lint:disable-line no-important
 }
 
