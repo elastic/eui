@@ -4,11 +4,11 @@ import { GuideSectionTypes } from '../../components';
 import { EuiCode } from '../../../../src/components';
 
 import IdGenerator from './html_id_generator';
-import { HtmlIdGeneratorPrefix } from './html_id_generator_prefix';
-import { HtmlIdGeneratorSuffix } from './html_id_generator_suffix';
-import { PrefixSufix } from './bothPrefixSuffix';
-import { HtmlIdGeneratorReuse } from './html_id_generator_reuse';
-import { UseGeneratedHtmlId } from './use_generated_html_id';
+import HtmlIdGeneratorPrefix from './html_id_generator_prefix';
+import HtmlIdGeneratorSuffix from './html_id_generator_suffix';
+import HtmlIdGeneratorPrefixSuffix from './html_id_generator_prefix_suffix';
+import HtmlIdGeneratorReuse from './html_id_generator_reuse';
+import UseGeneratedHtmlId from './use_generated_html_id';
 import { UseGeneratedHtmlIdProps } from './use_generated_html_id_props';
 
 const htmlIdGeneratorSource = require('!!raw-loader!./html_id_generator');
@@ -17,18 +17,19 @@ const htmlIdGeneratorSnippet = ' htmlIdGenerator()()';
 const htmlIdGeneratorPrefixSource = require('!!raw-loader!./html_id_generator_prefix');
 const htmlIdGeneratorPrefixSnippet = " htmlIdGenerator('prefix')()";
 
-const HtmlIdGeneratorSuffixSource = require('!!raw-loader!./html_id_generator_suffix');
-const suffixSnippet = " htmlIdGenerator()('suffix')";
+const htmlIdGeneratorSuffixSource = require('!!raw-loader!./html_id_generator_suffix');
+const htmlIdGeneratorSuffixSnippet = " htmlIdGenerator()('suffix')";
 
-const PrefixSufixSource = require('!!raw-loader!./bothPrefixSuffix');
-const prefixSuffixSnippet = " htmlIdGenerator('prefix')('suffix')";
+const htmlIdGeneratorPrefixSuffixSource = require('!!raw-loader!./html_id_generator_prefix_suffix');
+const htmlIdGeneratorPrefixSuffixSnippet =
+  " htmlIdGenerator('prefix')('suffix')";
 
 const htmlIdGeneratorReuseSource = require('!!raw-loader!./html_id_generator_reuse');
 const htmlIdGeneratorReuseSnippet = `  const generateId = htmlIdGenerator('prefix');
   generateId();
   generateId('suffix');`;
 
-const UseGeneratedHtmlIdSource = require('!!raw-loader!./use_generated_html_id');
+const useGeneratedHtmlIdSource = require('!!raw-loader!./use_generated_html_id');
 const useGeneratedHtmlIdSnippet =
   'useGeneratedHtmlId({ prefix, suffix, conditionalId })';
 
@@ -77,7 +78,7 @@ export const HtmlIdGeneratorExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: HtmlIdGeneratorSuffixSource,
+          code: htmlIdGeneratorSuffixSource,
         },
       ],
       text: (
@@ -86,7 +87,7 @@ export const HtmlIdGeneratorExample = {
           starts with the specified suffix.
         </p>
       ),
-      snippet: suffixSnippet,
+      snippet: htmlIdGeneratorSuffixSnippet,
       demo: <HtmlIdGeneratorSuffix />,
     },
     {
@@ -94,7 +95,7 @@ export const HtmlIdGeneratorExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: PrefixSufixSource,
+          code: htmlIdGeneratorPrefixSuffixSource,
         },
       ],
       text: (
@@ -103,8 +104,8 @@ export const HtmlIdGeneratorExample = {
           with both a specified prefix <strong>and</strong> suffix.
         </p>
       ),
-      snippet: prefixSuffixSnippet,
-      demo: <PrefixSufix />,
+      snippet: htmlIdGeneratorPrefixSuffixSnippet,
+      demo: <HtmlIdGeneratorPrefixSuffix />,
     },
     {
       title: 'Reusing the generator for multiple IDs',
@@ -133,7 +134,7 @@ export const HtmlIdGeneratorExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: UseGeneratedHtmlIdSource,
+          code: useGeneratedHtmlIdSource,
         },
       ],
       text: (

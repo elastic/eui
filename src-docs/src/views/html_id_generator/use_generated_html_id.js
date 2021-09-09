@@ -4,7 +4,7 @@ import { EuiSwitch, EuiSpacer, EuiCode } from '../../../../src/components';
 
 import { useGeneratedHtmlId } from '../../../../src/services';
 
-export const UseGeneratedHtmlId = () => {
+export default () => {
   const generatedId = useGeneratedHtmlId({ prefix: 'Some', suffix: 'id' });
 
   const [isChecked, setIsChecked] = useState(false);

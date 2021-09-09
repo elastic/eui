@@ -6,7 +6,7 @@ import { htmlIdGenerator } from '../../../../src/services';
 
 const generateId = htmlIdGenerator('test');
 
-export const HtmlIdGeneratorReuse = () => {
+export default () => {
   return (
     <>
       <EuiCode>{generateId()}</EuiCode>
