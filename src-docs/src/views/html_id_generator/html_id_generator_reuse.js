@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EuiFlexGroup, EuiCode } from '../../../../src/components';
+import { EuiCode } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
 
@@ -8,12 +8,16 @@ const generateId = htmlIdGenerator('test');
 
 export const HtmlIdGeneratorReuse = () => {
   return (
-    <EuiFlexGroup gutterSize="none" alignItems="flexStart" direction="column">
+    <>
       <EuiCode>{generateId()}</EuiCode>
+      <br />
       <EuiCode>{generateId()}</EuiCode>
+      <br />
       <EuiCode>{generateId()}</EuiCode>
+      <br />
       <EuiCode>{generateId('hello')}</EuiCode>
+      <br />
       <EuiCode>{generateId('world')}</EuiCode>
-    </EuiFlexGroup>
+    </>
   );
 };

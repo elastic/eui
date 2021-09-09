@@ -26,11 +26,9 @@ export function htmlIdGenerator(idPrefix: string = '') {
 }
 
 /**
- * Generates an ID within a static ref object that remains static
- * until the component using it is unmounted. This prevents IDs from
- * being re-randomized on every component update.
+ * Generates a memozied ID that remains static until component unmount.
+ * This prevents IDs from being re-randomized on every component update.
  */
-
 export type UseGeneratedHtmlIdOptions = {
   /**
    * Optional prefix to prepend to the generated ID
