@@ -39,8 +39,6 @@ export const CategoryChart = () => {
   const [formatted, setFormatted] = useState(false);
   const [chartType, setChartType] = useState('BarSeries');
   const [valueLabels, setValueLabels] = useState(false);
-  const [valueLabelsCenter, setValueLabelsCenter] = useState(false);
-
   const onMultiChange = (multiObject) => {
     const { multi, stacked } = multiObject;
     setMulti(multi);
@@ -67,10 +65,6 @@ export const CategoryChart = () => {
     setValueLabels(e.target.checked);
   };
 
-  const onValueLabelsCenterChange = (e) => {
-    setValueLabelsCenter(e.target.checked);
-  };
-
   const isDarkTheme = themeContext.theme.includes('dark');
   const theme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK.theme
@@ -91,7 +85,7 @@ export const CategoryChart = () => {
         ...theme.barSeriesStyle.displayValue,
         offsetX: rotated ? 2 : 0,
         offsetY: rotated ? 0 : -2,
-        ...(valueLabelsCenter
+        ...(multi && stacked
           ? {
               alignment: {
                 vertical: 'middle',
@@ -135,7 +129,7 @@ const customTheme = {
       ...theme.barSeriesStyle.displayValue,
       offsetX: ${rotated ? '2' : '0'},
       offsetY: ${rotated ? '0' : '-2'},
-      ${valueLabelsCenter ? defaultAlignmentToCopy : alignmentRotatedToCopy},
+      ${multi && stacked ? defaultAlignmentToCopy : alignmentRotatedToCopy},
   },
 };`;
 
@@ -291,13 +285,6 @@ ${removeEmptyLines(chartConfigurationToCopy)}
               label="Show value labels"
               checked={valueLabels}
               onChange={onValueLabelsChange}
-            />
-            <EuiSpacer size="s" />
-            <EuiSwitch
-              label="Center value labels"
-              checked={valueLabelsCenter}
-              onChange={onValueLabelsCenterChange}
-              disabled={!valueLabels}
             />
           </ChartCard>
         </EuiFlexItem>
