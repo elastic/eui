@@ -7,6 +7,7 @@ import IdGenerator from './html_id_generator';
 import { HtmlIdGeneratorPrefix } from './html_id_generator_prefix';
 import { HtmlIdGeneratorSuffix } from './html_id_generator_suffix';
 import { PrefixSufix } from './bothPrefixSuffix';
+import { HtmlIdGeneratorReuse } from './html_id_generator_reuse';
 import { UseGeneratedHtmlId } from './use_generated_html_id';
 import { UseGeneratedHtmlIdProps } from './use_generated_html_id_props';
 
@@ -21,6 +22,11 @@ const suffixSnippet = " htmlIdGenerator()('suffix')";
 
 const PrefixSufixSource = require('!!raw-loader!./bothPrefixSuffix');
 const prefixSuffixSnippet = " htmlIdGenerator('prefix')('suffix')";
+
+const htmlIdGeneratorReuseSource = require('!!raw-loader!./html_id_generator_reuse');
+const htmlIdGeneratorReuseSnippet = `  const generateId = htmlIdGenerator('prefix');
+  generateId();
+  generateId('suffix');`;
 
 const UseGeneratedHtmlIdSource = require('!!raw-loader!./use_generated_html_id');
 const useGeneratedHtmlIdSnippet =
@@ -101,6 +107,28 @@ export const HtmlIdGeneratorExample = {
       demo: <PrefixSufix />,
     },
     {
+      title: 'Reusing the generator for multiple IDs',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: htmlIdGeneratorReuseSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            As you may have noticed, <EuiCode>htmlIdGenerator</EuiCode> is a
+            curried function. This means you can reuse the original{' '}
+            <EuiCode>htmlIdGenerator()</EuiCode> call to generate multiple IDs.
+            Additionally, if you pass in suffixes to your second call, the
+            generated ID(s) will share the same unique ID.
+          </p>
+        </>
+      ),
+      snippet: htmlIdGeneratorReuseSnippet,
+      demo: <HtmlIdGeneratorReuse />,
+    },
+    {
       title: 'Memoized hook for component use',
       source: [
         {
@@ -112,10 +140,17 @@ export const HtmlIdGeneratorExample = {
         <>
           <p>
             <EuiCode>useGeneratedHtmlId</EuiCode> is a custom React hook that
-            automatically memoizes the randomly generated ID, preventing the ID
+            automatically memoizes a randomly generated ID, preventing the ID
             from regenerating on every component rerender. The ID will only
             change if the component fully unmounts/mounts, or if you dynamically
             pass in new hook arguments.
+          </p>
+          <p>
+            Please note that unlike <EuiCode>htmlIdGenerator</EuiCode>,{' '}
+            <EuiCode>useGeneratedHtmlId</EuiCode> is a single function and does
+            not support generating multiple IDs that share the same unique ID.
+            It is instead best used for simple one-off IDs, rather than groups
+            of them.
           </p>
         </>
       ),
