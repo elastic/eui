@@ -29,7 +29,13 @@
 
   .euiCodeBlock__line {
     display: block;
-    user-select: none;
+  }
+
+  &--hasLineNumbers {
+    .euiCodeBlock__line {
+      position: relative;
+      user-select: none;
+    }
   }
 
   .euiCodeBlock__line__text,

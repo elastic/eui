@@ -12,12 +12,16 @@ const sqlCode = `CREATE TABLE "topic" (
   "subject" varchar(255) NOT NULL
 );
 ALTER TABLE "topic"
-ADD CONSTRAINT forum_id FOREIGN KEY ("forum_id")
+ADD CONSTRAINT forum_id FOREIGN KEY ("forum_id_f71c3a6d-a16f-4214-b8f6-b2d1ae10bd19-785f32d5-06fb-4c79-9133-ea8c71944ef7-f71c3a6d-a16f-4214-b8f6-b2d1ae10bd19-785f32d5-06fb-4c79-9133-ea8c71944ef7")
 REFERENCES "forum" ("id");
 
 -- Initials
-insert into "topic" ("forum_id", "subject")
-values (2, 'D''artagnian');`;
+insert into "topic" ("forum_id_f71c3a6d-a16f-4214-b8f6-b2d1ae10bd19-785f32d5-06fb-4c79-9133-ea8c71944ef7-f71c3a6d-a16f-4214-b8f6-b2d1ae10bd19-785f32d5-06fb-4c79-9133-ea8c71944ef7", "subject")
+values (2, 'D''artagnian');
+
+insert into "something" ("forum_id_f71c3a6d-a16f-4214-b8f6-b2d1ae10bd19-785f32d5-06fb-4c79-9133-ea8c71944ef7-f71c3a6d-a16f-4214-b8f6-b2d1ae10bd19-785f32d5-06fb-4c79-9133-ea8c71944ef7", "subject")
+values (2, 'D''artagnian');
+`;
 
 export default () => (
   <div>
@@ -33,6 +37,7 @@ export default () => (
       paddingSize="m"
       overflowHeight={300}
       isCopyable
+      lineNumbers
     >
       {jsCode}
     </EuiCodeBlock>
@@ -45,6 +50,7 @@ export default () => (
       paddingSize="m"
       overflowHeight={300}
       isCopyable
+      lineNumbers
     >
       {sqlCode}
     </EuiCodeBlock>
