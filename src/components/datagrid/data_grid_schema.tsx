@@ -210,6 +210,14 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
   },
 ];
 
+export const defaultComparator: NonNullable<
+  EuiDataGridSchemaDetector['comparator']
+> = (a, b, direction) => {
+  if (a < b) return direction === 'asc' ? -1 : 1;
+  if (a > b) return direction === 'asc' ? 1 : -1;
+  return 0;
+};
+
 function scoreValueBySchemaType(
   value: string,
   schemaDetectors: EuiDataGridSchemaDetector[] = []

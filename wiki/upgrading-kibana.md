@@ -12,8 +12,8 @@ If the upgrade includes a large number of commits or has known breaking changes,
 6. Update i18n tokens and translation files (see [i18n tokens](#i18n-tokens))
 7. Make and commit any other known, required changes based on the EUI changelog version range
 8. Check for unknown/unintended issues, such as failing unit or functional tests. Options:
-	a. Open a draft PR and let CI report errors (suggested)
-	b. Or run `yarn test:jest` locally
+	  * Open a draft PR and let CI report errors (suggested)
+	  * Or run `yarn test:jest` locally
 9. Resolve and commit reported issues (see [Resolving errors](#resolving-errors))
 10. Open a PR or mark existing as "Ready for review" (see [PR template](#pr-template))
     * Add the `EUI`, `auto-backport`, `release_note:skip`, and relevant version tags

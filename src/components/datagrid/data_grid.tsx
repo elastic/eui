@@ -19,7 +19,7 @@ import React, {
   useState,
 } from 'react';
 import tabbable from 'tabbable';
-import { htmlIdGenerator, keys } from '../../services';
+import { useGeneratedHtmlId, keys } from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n, useEuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
@@ -496,7 +496,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [gridWidth, setGridWidth] = useState(0);
 
-  const [interactiveCellId] = useState(htmlIdGenerator()());
+  const interactiveCellId = useGeneratedHtmlId();
   const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
 
   const cellsUpdateFocus = useRef<Map<string, Function>>(new Map());
@@ -738,9 +738,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     };
   }, [setFocusedCell, onFocusUpdate]);
 
-  const gridIds = htmlIdGenerator();
-  const gridId = gridIds();
-  const ariaLabelledById = gridIds();
+  const gridId = useGeneratedHtmlId();
+  const ariaLabelledById = useGeneratedHtmlId();
 
   const ariaLabel = useEuiI18n(
     'euiDataGrid.ariaLabel',

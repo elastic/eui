@@ -19,12 +19,6 @@ export const panelConfig = () => {
     hidden: false,
   };
 
-  propsToUse.betaBadgeTooltipContent = {
-    ...propsToUse.betaBadgeTooltipContent,
-    type: PropTypes.String,
-    hidden: false,
-  };
-
   propsToUse.onClick = {
     ...propsToUse.onClick,
     type: PropTypes.Custom,

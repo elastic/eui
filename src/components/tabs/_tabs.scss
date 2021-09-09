@@ -7,120 +7,87 @@
   position: relative;
   flex-shrink: 0; // don't ever let this shrink in height if direct descendent of flex
 
+  &--bottomBorder {
+    box-shadow: inset 0 ($euiBorderWidthThin * -1) 0 $euiBorderColor;
+  }
+
   // Changing height of scrollbar so it sits flush with border
   // sass-lint:disable no-vendor-prefixes
   &::-webkit-scrollbar {
-    height: 3px;
-  }
-
-  &:not(.euiTabs--condensed)::before {
-    background-color: $euiColorLightShade;
-    bottom: 0;
-    content: '';
-    height: 1px;
-    left: 0;
-    position: absolute;
-    right: 0;
+    height: 2px;
   }
 }
 
 .euiTab {
-  @include fontSize($euiTabFontSize);
   color: $euiTextColor;
-  background-color: transparent;
-  cursor: pointer;
-  line-height: $euiLineHeight;
   padding: $euiSizeM $euiSize;
-  position: relative;
-  transition: color $euiAnimSpeedNormal $euiAnimSlightResistance, background-color $euiAnimSpeedNormal $euiAnimSlightResistance;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
-  &:hover:not(.euiTab-isSelected) {
+  .euiTab__content {
+    @include euiTextTruncate;
+    @include euiFontSize;
+    color: $euiTextColor;
+    line-height: $euiLineHeight;
+    display: block;
+  }
+
+  &:not(.euiTab-isDisabled):hover .euiTab__content,
+  &:not(.euiTab-isDisabled):focus .euiTab__content {
     text-decoration: underline;
   }
 
   &:focus {
     background-color: $euiFocusBackgroundColor;
-    text-decoration: underline;
     outline-offset: -$euiFocusRingSize;
-
-    &::before {
-      background-color: $euiColorLightShade;
-      bottom: 0;
-      content: '';
-      height: 1px;
-      left: 0;
-      position: absolute;
-      right: 0;
-    }
   }
 
   &.euiTab-isSelected {
-    color: $euiColorPrimary;
-    cursor: default;
+    box-shadow: inset 0 ($euiBorderWidthThick * -1) 0 $euiColorPrimaryText;
 
-    &::after {
-      animation: euiTab $euiAnimSpeedFast $euiAnimSlightResistance;
-      background-color: $euiColorPrimary;
-      bottom: 0;
-      content: ' ';
-      height: $euiBorderWidthThick;
-      left: 0;
-      position: absolute;
-      width: 100%;
+    &,
+    .euiTab__content {
+      color: $euiColorPrimaryText !important; // sass-lint:disable-line no-important
     }
   }
 
   &.euiTab-isDisabled {
-    color: $euiColorDisabledText;
+    &,
+    .euiTab__content {
+      color: $euiColorDisabledText !important; // sass-lint:disable-line no-important
+    }
 
     &:hover {
-      color: $euiColorDisabledText;
       cursor: not-allowed;
-      text-decoration: none;
     }
 
-    &::after {
-      background-color: $euiColorDisabledText;
+    &.euiTab-isSelected {
+      box-shadow: inset 0 ($euiBorderWidthThick * -1) 0 $euiColorDisabledText;
     }
   }
 
-  // Small Tabs Group Modifier
+  // Sizes
 
   .euiTabs--small & {
-    @include fontSize($euiTabFontSizeS);
     padding: $euiSizeS;
-  }
 
-  // Condensed Tabs Group Modifier
-
-  .euiTabs--condensed & {
-    font-weight: $euiFontWeightSemiBold;
-    padding: $euiSizeS $euiSizeXS;
-
-    &:focus {
-      background-color: $euiFocusBackgroundColor;
-
-      &::before {
-        display: none;
-      }
-    }
-
-    &-isSelected {
-      text-decoration: none;
-    }
-
-    & + .euiTab {
-      margin-left: $euiSize;
+    .euiTab__content {
+      @include euiFontSizeS;
     }
   }
 
-  .euiTabs--small.euiTabs--condensed & {
-    padding-top: ($euiSizeM / 2);
-    padding-bottom: ($euiSizeM / 2);
+  .euiTabs--large & {
+    padding: $euiSizeM $euiSize;
   }
 
-  .euiTabs--large.euiTabs--condensed & + .euiTab {
-    margin-left: $euiSizeL;
+  .euiTabs--xlarge & {
+    padding: $euiSizeS $euiSizeL;
+
+    .euiTab__content {
+      @include euiFontSizeL;
+    }
   }
 
   // Expand Tabs Group Modifier
@@ -128,24 +95,57 @@
   .euiTabs--expand & {
     flex-basis: 0%;
     flex-grow: 1;
+    justify-content: center;
   }
 }
 
-.euiTab__content {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transform: translateY(0);
-  transition: transform $euiAnimSpeedFast $euiAnimSlightBounce;
-  white-space: nowrap;
+.euiTab__prepend {
+  margin-right: $euiSizeS;
 }
 
-@keyframes euiTab {
-  0% {
-    transform: scaleX(0);
+.euiTab__append {
+  margin-left: $euiSizeS;
+}
+
+// Condensed Tabs Group Modifier
+
+.euiTabs--condensed {
+  .euiTab {
+    padding: $euiSizeS $euiSizeXS;
+
+    .euiTab__content {
+      @include euiFontSize;
+      font-weight: $euiFontWeightSemiBold;
+    }
+
+    + .euiTab {
+      margin-left: $euiSize;
+    }
   }
 
-  100% {
-    transform: scaleX(1);
+  &.euiTabs--small .euiTab {
+    padding: ($euiSizeM / 2) $euiSizeXS;
+
+    .euiTab__content {
+      @include euiFontSizeS;
+    }
+  }
+
+  &.euiTabs--large .euiTab {
+    + .euiTab {
+      margin-left: $euiSizeL;
+    }
+  }
+
+  &.euiTabs--xlarge .euiTab {
+    padding: $euiSizeM $euiSizeXS;
+
+    .euiTab__content {
+      @include euiFontSizeL;
+    }
+
+    + .euiTab {
+      margin-left: $euiSizeL;
+    }
   }
 }

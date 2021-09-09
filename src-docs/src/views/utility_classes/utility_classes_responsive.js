@@ -2,7 +2,7 @@ import React from 'react';
 
 import { EuiCode, EuiSpacer, EuiText } from '../../../../src/components';
 import { UtilityClassesSection } from './utility_classes_section';
-import { renderBreakpoint } from '../guidelines/sass';
+import { renderBreakpoint } from '../guidelines/sass/breakpoints';
 import breakpoints from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../src/global_styling/variables/_responsive.scss';
 
 const euiBreakPoints = Object.getOwnPropertyNames(breakpoints.euiBreakpoints);

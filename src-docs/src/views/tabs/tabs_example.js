@@ -1,7 +1,6 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -10,33 +9,42 @@ import {
   EuiTabs,
   EuiTab,
   EuiTabbedContent,
+  EuiText,
+  EuiLink,
 } from '../../../../src/components';
-import { tabConfig, tabsConfig } from './playground';
+
+import { tabsConfig } from './playground';
 
 import Tabs from './tabs';
 const tabsSource = require('!!raw-loader!./tabs');
-const tabsHtml = renderToHtml(Tabs);
 
-import TabsCondensed from './tabs_condensed';
-const tabsCondensedSource = require('!!raw-loader!./tabs_condensed');
-const tabsCondensedHtml = renderToHtml(TabsCondensed);
+import TabsSmall from './tabs_small';
+const tabsSmallSource = require('!!raw-loader!./tabs_small');
+
+import TabsFlyout from './tabs_flyout';
+const tabsFlyoutSource = require('!!raw-loader!./tabs_flyout');
 
 import TabbedContent from './tabbed_content';
 const tabbedContentSource = require('!!raw-loader!./tabbed_content');
-const tabbedContentHtml = renderToHtml(TabbedContent);
 
 import Controlled from './controlled';
 const controlledSource = require('!!raw-loader!./controlled');
-const controlledHtml = renderToHtml(Controlled);
-const controlledSnippet = `<EuiTabbedContent
-  tabs={tabs}
-  selectedTab={selectedTab}
-  onTabClick={onTabClick}
-/>
-`;
 
 export const TabsExample = {
   title: 'Tabs',
+  intro: (
+    <EuiText>
+      <p>
+        Use tabs to organize <strong>in-page</strong> navigation, segmenting
+        mutually-exclusive content under a single organizational principle. For
+        more guideline usage see{' '}
+        <EuiLink href="https://www.nngroup.com/articles/tabs-used-right/">
+          NNG&apos;s article &quot;Tabs, Used Right&quot;
+        </EuiLink>
+        .
+      </p>
+    </EuiText>
+  ),
   sections: [
     {
       source: [
@@ -44,23 +52,20 @@ export const TabsExample = {
           type: GuideSectionTypes.JS,
           code: tabsSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: tabsHtml,
-        },
       ],
       text: (
-        <p>
-          <strong>EuiTabs</strong> allow a <EuiCode>size</EuiCode> prop. In
-          general you should always use the default (medium) size. The small
-          size is best for when placing inside popovers or other small
-          containers. Reserve using the large size for when using as primary
-          page navigation, like inside of{' '}
-          <Link to="/layout/page">
-            <strong>EuiPageHeader</strong>
-          </Link>
-          .
-        </p>
+        <>
+          <p>
+            <strong>EuiTabs</strong> is a wrapping component that requires{' '}
+            <strong>EuiTab</strong> components as direct children. You control
+            the displayed contents and current state through props on EuiTab
+            like <EuiCode>isSelected</EuiCode> and <EuiCode>onClick</EuiCode>.
+          </p>
+          <p>
+            Use the <EuiCode>prepend</EuiCode> and <EuiCode>append</EuiCode> tab
+            props to add content before and after the tab label respectively.
+          </p>
+        </>
       ),
       props: {
         EuiTabs,
@@ -70,41 +75,70 @@ export const TabsExample = {
       snippet: [
         `<EuiTabs>
   <EuiTab onClick={onClick}>Example 1</EuiTab>
-  <EuiTab onClick={onClick}>Example 2</EuiTab>
-</EuiTabs>`,
-        `<EuiTabs size="s>
-  <EuiTab onClick={onClick}>Example 1</EuiTab>
-  <EuiTab onClick={onClick}>Example 2</EuiTab>
+  <EuiTab onClick={onClick} prepend={icon}>Example 2</EuiTab>
 </EuiTabs>`,
       ],
+      playground: tabsConfig,
     },
     {
-      title: 'Condensed tabs',
+      title: 'Tab sizes',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: tabsCondensedSource,
+          code: tabsSmallSource,
         },
+      ],
+      text: (
+        <>
+          <p>
+            <strong>EuiTabs</strong> allow a <EuiCode>size</EuiCode> prop. In
+            general you should always use the default (medium) size. The small
+            size is best for when placing inside popovers or other small
+            containers. Reserve using the large size for when using as primary
+            page navigation, like inside of{' '}
+            <Link to="/layout/page">
+              <strong>EuiPageHeader</strong>
+            </Link>
+            .
+          </p>
+          <p>
+            You can also use the <EuiCode>expand</EuiCode> prop to evenly
+            stretch each tab horizontally.
+          </p>
+        </>
+      ),
+      props: {
+        EuiTabs,
+        EuiTab,
+      },
+      demo: <TabsSmall />,
+      snippet: `<EuiTabs size="s" expand>
+  <EuiTab onClick={onClick}>Example 1</EuiTab>
+  <EuiTab onClick={onClick}>Example 2</EuiTab>
+</EuiTabs>`,
+    },
+    {
+      title: 'Bottom border',
+      source: [
         {
-          type: GuideSectionTypes.HTML,
-          code: tabsCondensedHtml,
+          type: GuideSectionTypes.JS,
+          code: tabsFlyoutSource,
         },
       ],
       text: (
         <p>
-          <strong>EuiTabs</strong> allow a <EuiCode>display</EuiCode> prop. In
-          general you should always use the default display. However, it is
-          acceptable to use the alternative <EuiCode>condensed</EuiCode> display
-          in situations where it is desirable to display a bolder, more compact
-          and borderless tab interface (for use as primary navigation within
-          your application or to establish a higher level hierarchy of tabs).
+          The <EuiCode>bottomBorder</EuiCode> helps to separate the tab group
+          from the content below and is on by default. However, some components
+          like <Link to="/layout/flyout">flyouts</Link> already provide borders
+          which can act as the divider. In this case you can turn the border off
+          with <EuiCode language="tsx">{'bottomBorder={false}'}</EuiCode>.
         </p>
       ),
       props: {
         EuiTabs,
       },
-      demo: <TabsCondensed />,
-      snippet: `<EuiTabs display="condensed">
+      demo: <TabsFlyout />,
+      snippet: `<EuiTabs bottomBorder={false}>
   <EuiTab onClick={onClick}>Example 1</EuiTab>
   <EuiTab onClick={onClick}>Example 2</EuiTab>
 </EuiTabs>`,
@@ -115,10 +149,6 @@ export const TabsExample = {
         {
           type: GuideSectionTypes.JS,
           code: tabbedContentSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: tabbedContentHtml,
         },
       ],
       text: (
@@ -155,10 +185,6 @@ export const TabsExample = {
           type: GuideSectionTypes.JS,
           code: controlledSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: controlledHtml,
-        },
       ],
       text: (
         <p>
@@ -171,9 +197,12 @@ export const TabsExample = {
       props: {
         EuiTabbedContent,
       },
-      snippet: controlledSnippet,
+      snippet: `<EuiTabbedContent
+  tabs={tabs}
+  selectedTab={selectedTab}
+  onTabClick={onTabClick}
+/>`,
       demo: <Controlled />,
     },
   ],
-  playground: [tabConfig, tabsConfig],
 };

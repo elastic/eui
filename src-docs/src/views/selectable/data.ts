@@ -11,7 +11,7 @@ export const Options: EuiSelectableOption[] = [
   },
   {
     label: 'Mimas',
-    // checked: 'on',
+    checked: 'on',
   },
   {
     label: 'Dione',
