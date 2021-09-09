@@ -51,7 +51,8 @@ export const EuiComment: FunctionComponent<EuiCommentProps> = ({
         actions={actions}
         event={event}
         timestamp={timestamp}
-        type={type}>
+        type={type}
+      >
         {children}
       </EuiCommentEvent>
     </div>

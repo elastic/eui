@@ -2,7 +2,7 @@
 
 exports[`EuiCodeBlock dynamic content renders a virtualized code block 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls prismjs language-text testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl prismjs language-text testClass1 testClass2"
   style="height:50%"
 >
   <div
@@ -137,7 +137,7 @@ exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
     isCopyable={true}
   >
     <div
-      className="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls prismjs language-text"
+      className="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl prismjs language-text"
       style={Object {}}
     >
       <pre
@@ -180,19 +180,19 @@ console.log(some);"
             >
               <EuiToolTip
                 delay="regular"
+                display="inlineBlock"
                 onMouseOut={[Function]}
                 position="top"
               >
                 <span
                   className="euiToolTipAnchor"
-                  onKeyUp={[Function]}
                   onMouseOut={[Function]}
                   onMouseOver={[Function]}
                 >
                   <EuiButtonIcon
                     aria-label="Copy"
                     color="text"
-                    iconType="copy"
+                    iconType="copyClipboard"
                     onBlur={[Function]}
                     onClick={[Function]}
                     onFocus={[Function]}
@@ -211,13 +211,13 @@ console.log(some);"
                         className="euiButtonIcon__icon"
                         color="inherit"
                         size="m"
-                        type="copy"
+                        type="copyClipboard"
                       >
                         <span
                           aria-hidden="true"
                           className="euiButtonIcon__icon"
                           color="inherit"
-                          data-euiicon-type="copy"
+                          data-euiicon-type="copyClipboard"
                           size="m"
                         />
                       </EuiIcon>
@@ -263,7 +263,7 @@ exports[`EuiCodeBlock props language is rendered 1`] = `
 
 exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControls prismjs language-text"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl prismjs language-text"
   style="max-height:200px"
 >
   <pre

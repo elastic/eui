@@ -32,6 +32,7 @@ export default () => {
       <EuiMarkdownEditor
         aria-label="EUI markdown editor demo"
         aria-describedby={errorElementId.current}
+        placeholder="Your markdown here..."
         value={value}
         onChange={setValue}
         height={400}
@@ -42,7 +43,8 @@ export default () => {
 
       <EuiFormErrorText
         id={errorElementId.current}
-        className="euiFormRow__text">
+        className="euiFormRow__text"
+      >
         Utilize error text or{' '}
         <strong>
           <a href="#/forms/form-validation">EuiFormRow</a>
@@ -55,7 +57,8 @@ export default () => {
           size="s"
           iconType={isAstShowing ? 'eyeClosed' : 'eye'}
           onClick={() => setIsAstShowing(!isAstShowing)}
-          fill={isAstShowing}>
+          fill={isAstShowing}
+        >
           {isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
         </EuiButton>
       </div>

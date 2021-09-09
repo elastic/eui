@@ -32,10 +32,9 @@ import {
   EuiDataGridControlColumn,
   EuiDataGridToolBarVisibilityColumnSelectorOptions,
   EuiDataGridRowHeightsOptions,
+  EuiDataGridCellValueElementProps,
+  EuiDataGridSchemaDetector,
 } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
-
-import { EuiDataGridCellValueElementProps } from '!!prop-loader!../../../../src/components/datagrid/data_grid_cell';
-import { EuiDataGridSchemaDetector } from '!!prop-loader!../../../../src/components/datagrid/data_grid_schema';
 
 const gridSnippet = `
   <EuiDataGrid
@@ -417,7 +416,8 @@ export const DataGridExample = {
               types are defined in the{' '}
               <a
                 href="https://github.com/elastic/eui/tree/master/src/components/datagrid/data_grid_types.ts"
-                target="_blank">
+                target="_blank"
+              >
                 /datagrid/data_grid_types.ts
               </a>{' '}
               file.

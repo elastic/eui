@@ -69,7 +69,8 @@ export default () => {
         panelPaddingSize="none"
         button={button}
         isOpen={isPopoverOpen}
-        closePopover={closePopover}>
+        closePopover={closePopover}
+      >
         <EuiSelectable
           searchable
           searchProps={{
@@ -77,7 +78,8 @@ export default () => {
             compressed: true,
           }}
           options={options}
-          onChange={onChange}>
+          onChange={onChange}
+        >
           {(list, search) => (
             <div style={{ width: 240 }}>
               <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
@@ -103,7 +105,8 @@ export default () => {
             searchable
             options={countries}
             onChange={onFlyoutChange}
-            height="full">
+            height="full"
+          >
             {(list, search) => (
               <Fragment>
                 <EuiFlyoutHeader hasBorder>
@@ -140,7 +143,8 @@ export default () => {
         options={options}
         onChange={() => {}}
         style={{ width: 300 }}
-        listProps={{ bordered: true }}>
+        listProps={{ bordered: true }}
+      >
         {(list) => list}
       </EuiSelectable>
     </Fragment>

@@ -1,4 +1,5 @@
 @import 'avatar';
+@import 'breadcrumbs';
 @import 'button';
 @import 'button_empty';
 @import 'button_group';
@@ -8,10 +9,13 @@
 @import 'color_stops';
 @import 'comment';
 @import 'date_picker';
+@import 'date_popover_button';
+@import 'facet';
 @import 'filter_group';
 @import 'form_control_layout';
 @import 'form_control_layout_delimited';
 @import 'form_controls';
+@import 'header_breadcrumbs';
 @import 'header';
 @import 'hue';
 @import 'list_group_item';
@@ -20,6 +24,7 @@
 @import 'mark';
 @import 'markdown_editor';
 @import 'modal';
+@import 'notification_badge';
 @import 'overlay_mask';
 @import 'popover';
 @import 'progress';

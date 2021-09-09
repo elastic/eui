@@ -6,6 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiKeyboardAccessible } from './keyboard_accessible';
 export { EuiScreenReaderOnly } from './screen_reader';
 export { EuiSkipLink, EuiSkipLinkProps } from './skip_link';

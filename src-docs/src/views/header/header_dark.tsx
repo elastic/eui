@@ -36,12 +36,14 @@ export default ({ theme }: { theme: any }) => (
           <EuiBadge
             color={theme.euiColorDarkestShade.rgba}
             iconType="arrowDown"
-            iconSide="right">
+            iconSide="right"
+          >
             Production logs
           </EuiBadge>,
           <EuiHeaderSectionItemButton
             aria-label="2 Notifications"
-            notification={'2'}>
+            notification={'2'}
+          >
             <EuiIcon type="cheer" size="m" />
           </EuiHeaderSectionItemButton>,
           <EuiHeaderSectionItemButton aria-label="Account menu">

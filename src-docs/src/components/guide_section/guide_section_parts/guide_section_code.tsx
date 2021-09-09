@@ -25,7 +25,8 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
   const codeSandboxLink = (
     <CodeSandboxLink
       className="guideSectionExampleCode__link"
-      content={code.default}>
+      content={code.default}
+    >
       <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
         Try out this demo on Code Sandbox
       </EuiButtonEmpty>

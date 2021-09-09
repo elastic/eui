@@ -171,7 +171,8 @@ export class EuiContextMenuItem extends Component<Props> {
           target={target}
           rel={secureRel}
           ref={buttonRef as Ref<HTMLAnchorElement>}
-          {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+          {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
+        >
           {buttonInner}
         </a>
       );
@@ -182,7 +183,8 @@ export class EuiContextMenuItem extends Component<Props> {
           className={classes}
           type="button"
           ref={buttonRef}
-          {...rest}>
+          {...rest}
+        >
           {buttonInner}
         </button>
       );
@@ -194,7 +196,8 @@ export class EuiContextMenuItem extends Component<Props> {
           title={toolTipTitle ? toolTipTitle : null}
           content={toolTipContent}
           anchorClassName="eui-displayBlock"
-          position={toolTipPosition}>
+          position={toolTipPosition}
+        >
           {button}
         </EuiToolTip>
       );

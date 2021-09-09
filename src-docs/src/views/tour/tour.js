@@ -112,7 +112,8 @@ export default () => {
             stepsTotal={demoTourSteps.length}
             subtitle={state.tourSubtitle}
             title={demoTourSteps[0].title}
-            anchorPosition="rightUp">
+            anchorPosition="rightUp"
+          >
             <EuiTextArea
               placeholder="Placeholder text"
               aria-label="Enter ES SQL query"
@@ -134,7 +135,8 @@ export default () => {
           step={2}
           stepsTotal={demoTourSteps.length}
           subtitle={state.tourSubtitle}
-          title={demoTourSteps[1].title}>
+          title={demoTourSteps[1].title}
+        >
           <EuiButton onClick={handleClick}>Save query</EuiButton>
         </EuiTourStep>
       </EuiForm>

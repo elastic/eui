@@ -65,7 +65,7 @@ export default () => (
         <EuiButtonIcon
           iconType="arrowRight"
           display="fill"
-          isDisabled
+          disabled
           aria-label="Next"
         />
       </EuiFlexItem>

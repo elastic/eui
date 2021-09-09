@@ -133,6 +133,7 @@ export const CommentListExample = {
       props: { EuiComment },
       snippet: commentSnippet,
       demo: <Comment />,
+      playground: commentConfig,
     },
     {
       title: 'Comment types',
@@ -252,5 +253,4 @@ export const CommentListExample = {
       demo: <CommentActions />,
     },
   ],
-  playground: commentConfig,
 };

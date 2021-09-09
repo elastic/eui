@@ -81,7 +81,8 @@ export default () => {
         searchable
         options={options}
         onChange={onChange}
-        {...customProps}>
+        {...customProps}
+      >
         {(list, search) => (
           <>
             {search}

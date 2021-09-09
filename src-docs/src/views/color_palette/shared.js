@@ -14,7 +14,8 @@ export const ColorPaletteFlexItem = ({ hexCode, className, ...rest }) => {
       key={hexCode}
       grow={false}
       className={classNames('guideColorPalette__swatch', className)}
-      {...rest}>
+      {...rest}
+    >
       <span title={hexCode} style={{ backgroundColor: hexCode }} />
     </EuiFlexItem>
   );
@@ -25,7 +26,8 @@ export const ColorPaletteCopyCode = ({ textToCopy, code }) => {
     <span>
       <EuiCopy
         beforeMessage="Click to copy palette config"
-        textToCopy={textToCopy || code}>
+        textToCopy={textToCopy || code}
+      >
         {(copy) => (
           <EuiLink onClick={copy}>
             <EuiCode>{code}</EuiCode>

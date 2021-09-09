@@ -59,13 +59,18 @@ export default () => {
         <EuiFieldText name="first" />
       </EuiFormRow>
 
+      <EuiFormRow label="Disabled through form row" isDisabled>
+        <EuiFieldText name="last" />
+      </EuiFormRow>
+
       <EuiFormRow
         label="Select (with no initial selection)"
         labelAppend={
           <EuiText size="xs">
             <EuiLink>Link to some help</EuiLink>
           </EuiText>
-        }>
+        }
+      >
         <EuiSelect
           hasNoInitialSelection
           onChange={() => {}}
@@ -101,7 +106,8 @@ export default () => {
 
       <EuiFormRow
         label="Use a switch instead of a single checkbox"
-        hasChildLabel={false}>
+        hasChildLabel={false}
+      >
         <EuiSwitch
           name="switch"
           label="Should we do this?"

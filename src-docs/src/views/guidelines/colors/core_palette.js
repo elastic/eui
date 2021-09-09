@@ -1,5 +1,5 @@
 import React from 'react';
-import { getSassVars } from '../_get_sass_vars';
+import { useSassVars } from '../_get_sass_vars';
 
 import {
   EuiFlexGroup,
@@ -21,8 +21,8 @@ export function scrollToSelector(selector, attempts = 5) {
   }
 }
 
-export const CorePalette = ({ theme, colors }) => {
-  const palette = getSassVars(theme);
+export const CorePalette = ({ colors }) => {
+  const palette = useSassVars();
 
   function renderPaletteColor(palette, color, index) {
     const hex = palette[color];
@@ -44,13 +44,15 @@ export const CorePalette = ({ theme, colors }) => {
             </small>
           }
           afterMessage={<small>Color name copied!</small>}
-          textToCopy={color}>
+          textToCopy={color}
+        >
           {(copy) => (
             <button
               className="eui-isFocusable"
               onClick={(e) => {
                 e.shiftKey ? scrollToSelector(`#${color}`) : copy();
-              }}>
+              }}
+            >
               <EuiIcon
                 className={iconClass}
                 size="xxl"

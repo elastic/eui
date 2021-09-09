@@ -43,13 +43,15 @@ describe('EuiPageHeader', () => {
         const component = render(
           <EuiPageHeader
             pageTitle="Page title"
+            pageTitleProps={requiredProps}
             iconType="logoKibana"
             iconProps={requiredProps}
             tabs={tabs}
             tabsProps={requiredProps}
             description="Description"
             rightSideItems={rightSideItems}
-            rightSideGroupProps={{ responsive: true, ...requiredProps }}>
+            rightSideGroupProps={{ responsive: true, ...requiredProps }}
+          >
             <p>Anything</p>
           </EuiPageHeader>
         );

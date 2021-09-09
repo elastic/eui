@@ -56,6 +56,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
 
   // Page header content only props:
   pageTitle,
+  pageTitleProps,
   iconType,
   iconProps,
   tabs,
@@ -74,11 +75,13 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
     'euiPageHeader',
     paddingSizeToClassNameMap[paddingSize],
     {
+      [`euiPageHeader--${widthClassName}`]: widthClassName,
       'euiPageHeader--bottomBorder': bottomBorder,
       'euiPageHeader--responsive': responsive === true,
       'euiPageHeader--responsiveReverse': responsive === 'reverse',
       'euiPageHeader--tabsAtBottom': pageTitle && tabs,
-      [`euiPage--${widthClassName}`]: widthClassName,
+      'euiPageHeader--onlyTabs':
+        tabs && !pageTitle && !rightSideItems && !description && !children,
     },
     `euiPageHeader--${alignItems ?? 'center'}`,
     className
@@ -98,13 +101,15 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
         alignItems={alignItems}
         responsive={responsive}
         pageTitle={pageTitle}
+        pageTitleProps={pageTitleProps}
         iconType={iconType}
         iconProps={iconProps}
         tabs={tabs}
         tabsProps={tabsProps}
         description={description}
         rightSideItems={rightSideItems}
-        rightSideGroupProps={rightSideGroupProps}>
+        rightSideGroupProps={rightSideGroupProps}
+      >
         {children}
       </EuiPageHeaderContent>
     </header>

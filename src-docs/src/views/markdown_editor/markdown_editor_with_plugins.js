@@ -151,7 +151,8 @@ const chartDemoPlugin = {
                 block: true,
               })
             }
-            fill>
+            fill
+          >
             Save
           </EuiButton>
         </EuiModalFooter>
@@ -251,7 +252,12 @@ const ChartMarkdownRenderer = ({ palette, categories }) => {
         stackAccessors={['g']}
       />
       <Axis id="bottom-axis" position="bottom" showGridLines />
-      <Axis id="left-axis" position="left" showGridLines />
+      <Axis
+        id="left-axis"
+        position="left"
+        showGridLines
+        tickFormat={(d) => Number(d).toFixed(2)}
+      />
     </Chart>
   );
 };
@@ -287,6 +293,7 @@ export default () => {
     <>
       <EuiMarkdownEditor
         aria-label="EUI markdown editor with plugins demo"
+        placeholder="Your markdown here..."
         value={value}
         onChange={setValue}
         height={400}
@@ -302,7 +309,8 @@ export default () => {
           size="s"
           iconType={isAstShowing ? 'eyeClosed' : 'eye'}
           onClick={() => setIsAstShowing(!isAstShowing)}
-          fill={isAstShowing}>
+          fill={isAstShowing}
+        >
           {isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
         </EuiButton>
       </div>
@@ -310,7 +318,8 @@ export default () => {
 
       <EuiMarkdownFormat
         parsingPluginList={exampleParsingList}
-        processingPluginList={exampleProcessingList}>
+        processingPluginList={exampleProcessingList}
+      >
         {value}
       </EuiMarkdownFormat>
     </>

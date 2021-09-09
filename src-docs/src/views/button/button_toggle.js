@@ -11,7 +11,8 @@ export default () => {
       <EuiButton
         onClick={() => {
           setToggle0On((isOn) => !isOn);
-        }}>
+        }}
+      >
         {toggle0On ? 'Hey there good lookin' : 'Toggle me'}
       </EuiButton>
       &emsp;

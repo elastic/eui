@@ -48,6 +48,17 @@ describe('EuiPageHeaderContent', () => {
         expect(component).toMatchSnapshot();
       });
 
+      test('is rendered with pageTitleProps', () => {
+        const component = render(
+          <EuiPageHeaderContent
+            pageTitle="Page title"
+            pageTitleProps={requiredProps}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
       test('is rendered with icon', () => {
         const component = render(
           <EuiPageHeaderContent pageTitle="Page title" iconType="logoKibana" />
@@ -142,7 +153,8 @@ describe('EuiPageHeaderContent', () => {
           <EuiPageHeaderContent
             pageTitle="Page title"
             tabs={tabs}
-            rightSideItems={rightSideItems}>
+            rightSideItems={rightSideItems}
+          >
             Child
           </EuiPageHeaderContent>
         );

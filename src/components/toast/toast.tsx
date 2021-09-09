@@ -84,7 +84,8 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
             className="euiToast__closeButton"
             aria-label={dismissToast}
             onClick={onClose}
-            data-test-subj="toastCloseButton">
+            data-test-subj="toastCloseButton"
+          >
             <EuiIcon type="cross" size="m" aria-hidden="true" />
           </button>
         )}
@@ -118,7 +119,8 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
           <div
             className={headerClasses}
             aria-label={notification}
-            data-test-subj="euiToastHeader">
+            data-test-subj="euiToastHeader"
+          >
             {headerIcon}
 
             <span className="euiToastHeader__title">{title}</span>

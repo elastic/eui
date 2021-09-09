@@ -246,7 +246,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
           aria-label={iconOnClickAriaLabel}
           disabled={isDisabled}
           title={iconOnClickAriaLabel}
-          onClick={iconOnClick}>
+          onClick={iconOnClick}
+        >
           <EuiIcon
             type={iconType}
             size="s"
@@ -294,7 +295,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
                 ref={ref}
                 title={innerText}
                 {...(relObj as HTMLAttributes<HTMLElement>)}
-                {...(rest as HTMLAttributes<HTMLElement>)}>
+                {...(rest as HTMLAttributes<HTMLElement>)}
+              >
                 {children}
               </Element>
             )}
@@ -310,7 +312,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             style={optionalCustomStyles}
             ref={ref}
             title={innerText}
-            {...rest}>
+            {...rest}
+          >
             {content}
           </span>
         )}
@@ -328,7 +331,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             ref={ref as Ref<HTMLButtonElement & HTMLAnchorElement>}
             title={innerText}
             {...(relObj as HTMLAttributes<HTMLElement>)}
-            {...(rest as HTMLAttributes<HTMLElement>)}>
+            {...(rest as HTMLAttributes<HTMLElement>)}
+          >
             {content}
           </Element>
         )}
@@ -343,7 +347,8 @@ export const EuiBadge: FunctionComponent<EuiBadgeProps> = ({
             style={optionalCustomStyles}
             ref={ref}
             title={innerText}
-            {...rest}>
+            {...rest}
+          >
             {content}
           </span>
         )}

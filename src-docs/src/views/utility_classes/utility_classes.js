@@ -5,7 +5,7 @@ import { EuiMark } from '../../../../src/components/mark';
 import { UtilityClassesSection } from './utility_classes_section';
 
 const wrappingExampleStyle = {
-  background: 'rgba(254, 228, 181, 0.5)',
+  background: 'rgba(254, 228, 181, 0.25)',
 };
 
 export default () => (
@@ -57,7 +57,8 @@ export default () => (
       example={
         <EuiMark
           style={wrappingExampleStyle}
-          className="eui-displayInlineBlock">
+          className="eui-displayInlineBlock"
+        >
           Displaying inline block
         </EuiMark>
       }

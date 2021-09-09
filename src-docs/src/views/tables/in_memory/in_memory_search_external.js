@@ -189,7 +189,8 @@ export const Table = () => {
                   key={facet.id}
                   id={facet.id}
                   isSelected={facet.isSelected}
-                  onClick={facet.onClick}>
+                  onClick={facet.onClick}
+                >
                   {facet.label}
                 </EuiFacetButton>
               );

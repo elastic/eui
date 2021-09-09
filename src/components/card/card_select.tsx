@@ -50,7 +50,8 @@ export const EuiCardSelect: FunctionComponent<EuiCardSelectProps> = ({
       iconType={isSelected ? 'check' : undefined}
       role="switch"
       aria-checked={isSelected}
-      {...rest}>
+      {...rest}
+    >
       {child}
     </EuiButtonEmpty>
   );

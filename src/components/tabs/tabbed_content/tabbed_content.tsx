@@ -11,7 +11,7 @@ import React, { Component, createRef, HTMLAttributes, ReactNode } from 'react';
 import { htmlIdGenerator } from '../../../services';
 
 import { EuiTabs, EuiTabsDisplaySizes, EuiTabsSizes } from '../tabs';
-import { EuiTab } from '../tab';
+import { EuiTab, EuiTabProps } from '../tab';
 import { CommonProps } from '../../common';
 
 /**
@@ -19,7 +19,7 @@ import { CommonProps } from '../../common';
  */
 export const AUTOFOCUS = ['initial', 'selected'] as const;
 
-export interface EuiTabbedContentTab {
+export interface EuiTabbedContentTab extends EuiTabProps {
   id: string;
   name: ReactNode;
   content: ReactNode;
@@ -190,7 +190,8 @@ export class EuiTabbedContent extends Component<
           expand={expand}
           display={display}
           size={size}
-          onFocus={this.initializeFocus}>
+          onFocus={this.initializeFocus}
+        >
           {tabs.map((tab: EuiTabbedContentTab) => {
             const {
               id,
@@ -214,7 +215,8 @@ export class EuiTabbedContent extends Component<
         <div
           role="tabpanel"
           id={`${this.rootId}`}
-          aria-labelledby={selectedTabId}>
+          aria-labelledby={selectedTabId}
+        >
           {selectedTabContent}
         </div>
       </div>

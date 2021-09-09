@@ -90,7 +90,8 @@ export const GlobalFilterItem = (props) => {
         // Also, we may want to add a `DEL` keyboard press functionality
         tabIndex: '-1',
       }}
-      {...rest}>
+      {...rest}
+    >
       {prefix}
       <span>{field}: </span>
       <span>&quot;{value}&quot;</span>
@@ -163,7 +164,8 @@ export const GlobalFilterItem = (props) => {
         button={button}
         anchorPosition="downCenter"
         panelPaddingSize="none"
-        display="block">
+        display="block"
+      >
         <EuiContextMenu
           initialPanelId={0}
           panels={flattenPanelTree(panelTree)}

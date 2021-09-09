@@ -42,7 +42,8 @@ export default () => {
         button={
           <EuiBadge
             color={selectedColor ? selectedColor : 'hollow'}
-            onClickAriaLabel="Select a new color">
+            onClickAriaLabel="Select a new color"
+          >
             Color this badge
           </EuiBadge>
         }

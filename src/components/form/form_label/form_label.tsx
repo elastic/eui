@@ -18,6 +18,10 @@ interface EuiFormLabelCommonProps {
   isFocused?: boolean;
   isInvalid?: boolean;
   /**
+   * Changes `cursor` to `default`.
+   */
+  isDisabled?: boolean;
+  /**
    * Default type is a `label` but can be changed to a `legend`
    * if using inside a `fieldset`.
    */
@@ -45,6 +49,7 @@ export const EuiFormLabel: FunctionComponent<EuiFormLabelProps> = ({
   type = 'label',
   isFocused,
   isInvalid,
+  isDisabled,
   children,
   className,
   ...rest
@@ -52,13 +57,15 @@ export const EuiFormLabel: FunctionComponent<EuiFormLabelProps> = ({
   const classes = classNames('euiFormLabel', className, {
     'euiFormLabel-isFocused': isFocused,
     'euiFormLabel-isInvalid': isInvalid,
+    'euiFormLabel-isDisabled': isDisabled,
   });
 
   if (type === 'legend') {
     return (
       <legend
         className={classes}
-        {...(rest as HTMLAttributes<HTMLLegendElement>)}>
+        {...(rest as HTMLAttributes<HTMLLegendElement>)}
+      >
         {children}
       </legend>
     );
@@ -66,7 +73,8 @@ export const EuiFormLabel: FunctionComponent<EuiFormLabelProps> = ({
     return (
       <label
         className={classes}
-        {...(rest as LabelHTMLAttributes<HTMLLabelElement>)}>
+        {...(rest as LabelHTMLAttributes<HTMLLabelElement>)}
+      >
         {children}
       </label>
     );

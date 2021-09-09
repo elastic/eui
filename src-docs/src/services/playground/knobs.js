@@ -21,42 +21,23 @@ import {
   EuiTextColor,
   EuiTextArea,
   EuiFormRow,
-  EuiLink,
   EuiText,
   EuiPanel,
+  EuiMarkdownFormat,
 } from '../../../../src/components/';
+import { parsingPluginList, processingPluginList } from './markdown_format';
 
 export const markup = (text) => {
-  const regex = /(\B#[a-zA-Z]+)|(`[^`]+`)/g;
-  return text.split('\n').map((token) => {
-    const values = token.split(regex).map((token, index) => {
-      if (!token) {
-        return '';
-      }
-      if (token.startsWith('#')) {
-        const id = token.substring(1);
-        const onClick = () => {
-          document.getElementById(id).scrollIntoView();
-        };
-        return (
-          <EuiLink key={`markup-${index}`} onClick={onClick}>
-            {id}
-          </EuiLink>
-        );
-      }
-      if (token.startsWith('`')) {
-        const code = token.substring(1, token.length - 1);
-        return <EuiCode key={`markup-${index}`}>{code}</EuiCode>;
-      }
-      if (token.includes('\n')) {
-        return token
-          .split('\n')
-          .map((item) => [item, <br key={`markup-${index}`} />]);
-      }
-      return token;
-    });
-    return [...values, <br key="lineBreak" />];
-  });
+  return (
+    <EuiMarkdownFormat
+      textSize="xs"
+      color="subdued"
+      parsingPluginList={parsingPluginList}
+      processingPluginList={processingPluginList}
+    >
+      {text}
+    </EuiMarkdownFormat>
+  );
 };
 
 export const humanizeType = (type) => {
@@ -96,7 +77,38 @@ export const humanizeType = (type) => {
       humanizedType = type.name;
   }
 
-  return humanizedType;
+  let typeMarkup;
+
+  if (humanizedType) {
+    typeMarkup = humanizedType;
+
+    const functionMatches = [
+      ...humanizedType.matchAll(/\([^=]*\) =>\s\w*\)*/g),
+    ];
+
+    const types = humanizedType.split(/\([^=]*\) =>\s\w*\)*/);
+
+    if (functionMatches.length > 0) {
+      let elements = '';
+      let j = 0;
+      for (let i = 0; i < types.length; i++) {
+        if (functionMatches[j]) {
+          elements =
+            `${elements}` +
+            `${types[i]}` +
+            '\n' +
+            `${functionMatches[j][0]}` +
+            '\n';
+          j++;
+        } else {
+          elements = `${elements}` + `${types[i]}` + '\n';
+        }
+      }
+      typeMarkup = elements;
+    }
+  }
+
+  return typeMarkup || humanizedType;
 };
 
 const getTooltip = (description, type, name) => (
@@ -154,7 +166,8 @@ const Knob = ({
             style={{
               fontSize: '14px',
               display: 'block',
-            }}>
+            }}
+          >
             React Ref documentation
           </a>
           {error && <div>error {error}</div>}
@@ -167,7 +180,8 @@ const Knob = ({
           isInvalid={error && error.length > 0}
           error={error}
           helpText={helpText}
-          fullWidth>
+          fullWidth
+        >
           <EuiFieldNumber
             placeholder={placeholder}
             value={val ? val : undefined}
@@ -220,7 +234,8 @@ const Knob = ({
                 </>
               )}
             </>
-          }>
+          }
+        >
           <EuiFieldText
             aria-label={name}
             placeholder={placeholder}
@@ -238,7 +253,8 @@ const Knob = ({
           fullWidth
           helpText={helpText}
           isInvalid={error && error.length > 0}
-          error={error}>
+          error={error}
+        >
           <EuiSwitch
             aria-label={name}
             id={name}
@@ -294,7 +310,8 @@ const Knob = ({
             isInvalid={error && error.length > 0}
             helpText={helpText}
             error={error}
-            fullWidth>
+            fullWidth
+          >
             <EuiSelect
               id={name}
               options={flattenedOptions}
@@ -359,70 +376,19 @@ const Knob = ({
 };
 
 const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
+  const codeBlockProps = {
+    className: 'guideSection__tableCodeBlock',
+    paddingSize: 'none',
+    language: 'ts',
+  };
+
   return knobNames.map((name, idx) => {
-    const codeBlockProps = {
-      className: 'guideSection__tableCodeBlock',
-      paddingSize: 'none',
-      language: 'ts',
-    };
-
-    /**
-     * TS Type
-     */
-    let humanizedType;
-
-    if (
-      state[name].custom &&
-      state[name].custom.origin &&
-      state[name].custom.origin.type
-    )
-      humanizedType = humanizeType(state[name].custom.origin.type);
-
-    let typeMarkup;
-
-    if (humanizedType) {
-      typeMarkup = humanizedType && (
-        <EuiCodeBlock {...codeBlockProps}>{humanizedType}</EuiCodeBlock>
-      );
-
-      const functionMatches = [
-        ...humanizedType.matchAll(/\([^=]*\) =>\s\w*\)*/g),
-      ];
-
-      const types = humanizedType.split(/\([^=]*\) =>\s\w*\)*/);
-
-      if (functionMatches.length > 0) {
-        let elements = '';
-        let j = 0;
-        for (let i = 0; i < types.length; i++) {
-          if (functionMatches[j]) {
-            elements =
-              `${elements}` +
-              `${types[i]}` +
-              '\n' +
-              `${functionMatches[j][0]}` +
-              '\n';
-            j++;
-          } else {
-            elements = `${elements}` + `${types[i]}` + '\n';
-          }
-        }
-        typeMarkup = (
-          <EuiCodeBlock {...codeBlockProps}>{elements}</EuiCodeBlock>
-        );
-      }
-    }
-
     /**
      * Prop name
      */
     let humanizedName = <strong className="eui-textBreakNormal">{name}</strong>;
 
-    if (
-      state[name].custom &&
-      state[name].custom.origin &&
-      state[name].custom.origin.required
-    ) {
+    if (state[name].custom?.origin?.required) {
       humanizedName = (
         <>
           {humanizedName} <EuiTextColor color="danger">(required)</EuiTextColor>
@@ -431,19 +397,29 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
     }
 
     /**
+     * TS Type
+     */
+    let typeMarkup;
+
+    if (state[name].custom?.origin?.type) {
+      const humanizedType = humanizeType(state[name].custom.origin.type);
+
+      if (humanizedType) {
+        typeMarkup = (
+          <EuiCodeBlock {...codeBlockProps}>{humanizedType}</EuiCodeBlock>
+        );
+      }
+    }
+
+    /**
      * Default value
      */
     let defaultValueMarkup;
-    if (
-      // !isPlayground &&
-      state[name].custom &&
-      state[name].custom.origin &&
-      state[name].custom.origin.defaultValue
-    ) {
+    if (state[name].custom?.origin?.defaultValue) {
       const defaultValue = state[name].custom.origin.defaultValue;
       defaultValueMarkup = (
         <EuiText size="xs">
-          {isPlayground && 'Default: '}
+          {isPlayground && defaultValue.value && 'Default: '}
           <EuiCode>{defaultValue.value}</EuiCode>
           {defaultValue.comment && (
             <>
@@ -463,7 +439,8 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
           mobileOptions={{
             header: false,
             fullWidth: true,
-          }}>
+          }}
+        >
           <div>
             <EuiTitle size="xxs">
               <span>{humanizedName}</span>
@@ -471,9 +448,8 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
             {state[name].description && (
               <>
                 <EuiSpacer size="xs" />
-                <EuiText color="subdued" size="xs">
-                  <p>{markup(state[name].description)}</p>
-                </EuiText>
+
+                {markup(state[name].description)}
               </>
             )}
           </div>
@@ -481,14 +457,16 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
         <EuiTableRowCell
           key={`type__${name}-${idx}`}
           header="Type"
-          textOnly={false}>
+          textOnly={false}
+        >
           <div>{typeMarkup}</div>
         </EuiTableRowCell>
         <EuiTableRowCell
           key={`modify__${name}-${idx}`}
           header={isPlayground ? 'Modify' : 'Default value'}
           textOnly={false}
-          className={isPlayground ? 'playgroundKnobs__rowCell' : undefined}>
+          className={isPlayground ? 'playgroundKnobs__rowCell' : undefined}
+        >
           {isPlayground ? (
             <Knob
               key={name}
@@ -543,7 +521,8 @@ const Knobs = ({ state, set, error, isPlayground = true }) => {
       color="transparent"
       paddingSize={isMobile ? 's' : 'none'}
       hasBorder={false}
-      hasShadow={false}>
+      hasShadow={false}
+    >
       <EuiTable style={{ background: 'transparent' }}>
         <EuiTableHeader>
           {columns.map(({ name, width }, id) => {

@@ -62,9 +62,23 @@ export {
   euiPaletteGray,
   HSV,
   getSteppedGradient,
+  transparentize,
+  tint,
+  shade,
+  saturate,
+  desaturate,
+  lightness,
+  makeHighContrastColor,
+  makeDisabledContrastColor,
 } from './color';
 
-export { useColorPickerState, useColorStopsState } from './color_picker';
+export {
+  useColorPickerState,
+  useColorStopsState,
+  EuiSetColorMethod,
+} from './color_picker';
+
+export * from './console';
 
 export { copyToClipboard } from './copy_to_clipboard';
 
@@ -117,3 +131,29 @@ export {
 } from './hooks';
 
 export { throttle } from './throttle';
+
+export {
+  EuiSystemContext,
+  EuiThemeContext,
+  EuiModificationsContext,
+  EuiColorModeContext,
+  useEuiTheme,
+  withEuiTheme,
+  WithEuiThemeProps,
+  EuiThemeProvider,
+  buildTheme,
+  computed,
+  isInverseColorMode,
+  getColorMode,
+  getComputed,
+  getOn,
+  mergeDeep,
+  setOn,
+  Computed,
+  ComputedThemeShape,
+  EuiThemeColorMode,
+  EuiThemeComputed,
+  EuiThemeModifications,
+  EuiThemeShape,
+  EuiThemeSystem,
+} from './theme';

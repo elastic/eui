@@ -2,9 +2,8 @@ import React, { FunctionComponent, ReactNode, useState } from 'react';
 import { useRouteMatch } from 'react-router';
 
 import { EuiErrorBoundary } from '../../../../src/components/error_boundary';
-import { EuiText } from '../../../../src/components/text';
-import { EuiSwitch } from '../../../../src/components/form';
-import { EuiButton } from '../../../../src/components/button';
+import { EuiButton, EuiButtonEmpty } from '../../../../src/components/button';
+import { EuiFlyout } from '../../../../src/components/flyout';
 
 import { slugify } from '../../../../src/services/string/slugify';
 
@@ -17,7 +16,6 @@ import {
   GuideSectionExampleTabs,
   GuideSectionExampleTabsProps,
 } from './guide_section_parts/guide_section_tabs';
-import { GuideSectionPropsDescription } from './guide_section_parts/guide_section_props_description';
 
 export interface GuideSection {
   id?: string;
@@ -109,7 +107,6 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
             ? slugify(source.displayName)
             : // @ts-ignore Complicated
               GuideSectionCodeTypesMap[source.type].name,
-          disabled: renderingPlayground,
           ...source,
         });
       });
@@ -133,39 +130,34 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
 
     if (!isPlaygroundUnsupported && !!playground) {
       return (
-        <EuiSwitch
-          onChange={() => {
+        <EuiButtonEmpty
+          size="xs"
+          iconType="controlsHorizontal"
+          onClick={() => {
             setRenderingPlayground((rendering) => !rendering);
           }}
-          checked={renderingPlayground}
-          compressed
-          label={
-            <EuiText size="xs">
-              <strong>Playground</strong>
-            </EuiText>
-          }
-        />
+        >
+          Playground
+        </EuiButtonEmpty>
       );
     }
   };
 
   const renderPlayground = () => {
-    const { config, setGhostBackground, playgroundClassName } = playground();
-
-    const description = (
-      <GuideSectionPropsDescription
-        componentName={config.componentName}
-        component={config.scope[config.componentName]}
-      />
-    );
+    const {
+      config,
+      setGhostBackground,
+      playgroundClassName,
+      playgroundPanelProps,
+    } = playground();
 
     return playgroundService({
       config,
       setGhostBackground,
       playgroundClassName,
+      playgroundPanelProps,
       playgroundToggle: renderPlaygroundToggle(),
       tabs: renderTabs(),
-      description,
     });
   };
 
@@ -175,8 +167,17 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
         {text}
       </GuideSectionExampleText>
 
-      {renderingPlayground && renderPlayground()}
-      {!renderingPlayground && (demo || fullScreen) && (
+      {renderingPlayground && (
+        <EuiFlyout
+          onClose={() => setRenderingPlayground(false)}
+          size="l"
+          paddingSize="none"
+          closeButtonPosition="outside"
+        >
+          {renderPlayground()}
+        </EuiFlyout>
+      )}
+      {(demo || fullScreen) && (
         <GuideSectionExample
           example={
             <EuiErrorBoundary>
@@ -187,7 +188,8 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
                 <EuiButton
                   fill
                   iconType="fullScreen"
-                  href={`#${path}/${fullScreen.slug}`}>
+                  href={`#${path}/${fullScreen.slug}`}
+                >
                   Full screen demo
                 </EuiButton>
               ) : (

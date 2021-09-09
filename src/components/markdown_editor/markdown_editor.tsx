@@ -25,7 +25,10 @@ import classNames from 'classnames';
 import { CommonProps, OneOf } from '../common';
 import MarkdownActions, { insertText } from './markdown_actions';
 import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
-import { EuiMarkdownEditorTextArea } from './markdown_editor_text_area';
+import {
+  EuiMarkdownEditorTextArea,
+  EuiMarkdownEditorTextAreaProps,
+} from './markdown_editor_text_area';
 import { EuiMarkdownFormat, EuiMarkdownFormatProps } from './markdown_format';
 import { EuiMarkdownEditorDropZone } from './markdown_editor_drop_zone';
 import { htmlIdGenerator } from '../../services/';
@@ -52,7 +55,7 @@ import { EuiResizeObserver } from '../observer/resize_observer';
 
 type CommonMarkdownEditorProps = Omit<
   HTMLAttributes<HTMLDivElement>,
-  'onChange'
+  'onChange' | 'placeholder'
 > &
   CommonProps & {
     /** aria-label OR aria-labelledby must be set */
@@ -118,6 +121,11 @@ type CommonMarkdownEditorProps = Omit<
 
     /** array defining any drag&drop handlers */
     dropHandlers?: EuiMarkdownDropHandler[];
+
+    /**
+     * Sets the placeholder of the textarea
+     */
+    placeholder?: EuiMarkdownEditorTextAreaProps['placeholder'];
 
     /**
      * Further extend the props applied to EuiMarkdownFormat
@@ -200,6 +208,7 @@ export const EuiMarkdownEditor = forwardRef<
       initialViewMode = MODE_EDITING,
       dropHandlers = [],
       markdownFormatProps,
+      placeholder,
       ...rest
     },
     ref
@@ -417,11 +426,13 @@ export const EuiMarkdownEditor = forwardRef<
             <div
               ref={previewRef}
               className="euiMarkdownEditorPreview"
-              style={{ height: previewHeight }}>
+              style={{ height: previewHeight }}
+            >
               <EuiMarkdownFormat
                 parsingPluginList={parsingPluginList}
                 processingPluginList={processingPluginList}
-                {...markdownFormatProps}>
+                {...markdownFormatProps}
+              >
                 {value}
               </EuiMarkdownFormat>
             </div>
@@ -431,7 +442,8 @@ export const EuiMarkdownEditor = forwardRef<
             className="euiMarkdownEditor__toggleContainer"
             style={{
               height: editorToggleContainerHeight,
-            }}>
+            }}
+          >
             <EuiMarkdownEditorDropZone
               setEditorFooterHeight={setEditorFooterHeight}
               isEditing={isEditing}
@@ -457,7 +469,8 @@ export const EuiMarkdownEditor = forwardRef<
               uiPlugins={toolbarPlugins}
               errors={errors}
               hasUnacceptedItems={hasUnacceptedItems}
-              setHasUnacceptedItems={setHasUnacceptedItems}>
+              setHasUnacceptedItems={setHasUnacceptedItems}
+            >
               <EuiResizeObserver onResize={onResize}>
                 {(resizeRef) => {
                   return (
@@ -469,6 +482,7 @@ export const EuiMarkdownEditor = forwardRef<
                       onChange={(e) => onChange(e.target.value)}
                       value={value}
                       onFocus={() => setHasUnacceptedItems(false)}
+                      placeholder={placeholder}
                       {...{
                         'aria-label': ariaLabel,
                         'aria-labelledby': ariaLabelledBy,

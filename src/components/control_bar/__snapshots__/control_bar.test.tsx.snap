@@ -16,26 +16,34 @@ exports[`EuiControlBar is rendered 1`] = `
     class="euiControlBar__controls"
   >
     <nav
-      aria-label="breadcrumb"
+      aria-label="Breadcrumbs"
       class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
     >
-      <span
-        aria-current="false"
-        class="euiBreadcrumb"
-        title="src"
+      <ol
+        class="euiBreadcrumbs__list"
       >
-        src
-      </span>
-      <div
-        class="euiBreadcrumbSeparator"
-      />
-      <span
-        aria-current="page"
-        class="euiBreadcrumb euiBreadcrumb--last"
-        title="components"
-      >
-        components
-      </span>
+        <li
+          class="euiBreadcrumb"
+        >
+          <span
+            class="euiBreadcrumb__content"
+            title="src"
+          >
+            src
+          </span>
+        </li>
+        <li
+          class="euiBreadcrumb euiBreadcrumb--last"
+        >
+          <span
+            aria-current="page"
+            class="euiBreadcrumb__content"
+            title="components"
+          >
+            components
+          </span>
+        </li>
+      </ol>
     </nav>
     <button
       class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
@@ -153,26 +161,34 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
               class="euiControlBar__controls"
             >
               <nav
-                aria-label="breadcrumb"
+                aria-label="Breadcrumbs"
                 class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
-                <span
-                  aria-current="false"
-                  class="euiBreadcrumb"
-                  title="src"
+                <ol
+                  class="euiBreadcrumbs__list"
                 >
-                  src
-                </span>
-                <div
-                  class="euiBreadcrumbSeparator"
-                />
-                <span
-                  aria-current="page"
-                  class="euiBreadcrumb euiBreadcrumb--last"
-                  title="components"
-                >
-                  components
-                </span>
+                  <li
+                    class="euiBreadcrumb"
+                  >
+                    <span
+                      class="euiBreadcrumb__content"
+                      title="src"
+                    >
+                      src
+                    </span>
+                  </li>
+                  <li
+                    class="euiBreadcrumb euiBreadcrumb--last"
+                  >
+                    <span
+                      aria-current="page"
+                      class="euiBreadcrumb__content"
+                      title="components"
+                    >
+                      components
+                    </span>
+                  </li>
+                </ol>
               </nav>
               <button
                 class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
@@ -263,32 +279,40 @@ exports[`EuiControlBar props leftOffset is rendered 1`] = `
               responsive={false}
             >
               <nav
-                aria-label="breadcrumb"
+                aria-label="Breadcrumbs"
                 className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
-                <EuiInnerText>
-                  <span
-                    aria-current="false"
+                <ol
+                  className="euiBreadcrumbs__list"
+                >
+                  <li
                     className="euiBreadcrumb"
-                    title="src"
+                    key="0"
                   >
-                    src
-                  </span>
-                </EuiInnerText>
-                <EuiBreadcrumbSeparator>
-                  <div
-                    className="euiBreadcrumbSeparator"
-                  />
-                </EuiBreadcrumbSeparator>
-                <EuiInnerText>
-                  <span
-                    aria-current="page"
+                    <EuiInnerText>
+                      <span
+                        className="euiBreadcrumb__content"
+                        title="src"
+                      >
+                        src
+                      </span>
+                    </EuiInnerText>
+                  </li>
+                  <li
                     className="euiBreadcrumb euiBreadcrumb--last"
-                    title="components"
+                    key="1"
                   >
-                    components
-                  </span>
-                </EuiInnerText>
+                    <EuiInnerText>
+                      <span
+                        aria-current="page"
+                        className="euiBreadcrumb__content"
+                        title="components"
+                      >
+                        components
+                      </span>
+                    </EuiInnerText>
+                  </li>
+                </ol>
               </nav>
             </EuiBreadcrumbs>
             <EuiButton
@@ -477,26 +501,34 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
               class="euiControlBar__controls"
             >
               <nav
-                aria-label="breadcrumb"
+                aria-label="Breadcrumbs"
                 class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
-                <span
-                  aria-current="false"
-                  class="euiBreadcrumb"
-                  title="src"
+                <ol
+                  class="euiBreadcrumbs__list"
                 >
-                  src
-                </span>
-                <div
-                  class="euiBreadcrumbSeparator"
-                />
-                <span
-                  aria-current="page"
-                  class="euiBreadcrumb euiBreadcrumb--last"
-                  title="components"
-                >
-                  components
-                </span>
+                  <li
+                    class="euiBreadcrumb"
+                  >
+                    <span
+                      class="euiBreadcrumb__content"
+                      title="src"
+                    >
+                      src
+                    </span>
+                  </li>
+                  <li
+                    class="euiBreadcrumb euiBreadcrumb--last"
+                  >
+                    <span
+                      aria-current="page"
+                      class="euiBreadcrumb__content"
+                      title="components"
+                    >
+                      components
+                    </span>
+                  </li>
+                </ol>
               </nav>
               <button
                 class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
@@ -587,32 +619,40 @@ exports[`EuiControlBar props maxHeight is rendered 1`] = `
               responsive={false}
             >
               <nav
-                aria-label="breadcrumb"
+                aria-label="Breadcrumbs"
                 className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
-                <EuiInnerText>
-                  <span
-                    aria-current="false"
+                <ol
+                  className="euiBreadcrumbs__list"
+                >
+                  <li
                     className="euiBreadcrumb"
-                    title="src"
+                    key="0"
                   >
-                    src
-                  </span>
-                </EuiInnerText>
-                <EuiBreadcrumbSeparator>
-                  <div
-                    className="euiBreadcrumbSeparator"
-                  />
-                </EuiBreadcrumbSeparator>
-                <EuiInnerText>
-                  <span
-                    aria-current="page"
+                    <EuiInnerText>
+                      <span
+                        className="euiBreadcrumb__content"
+                        title="src"
+                      >
+                        src
+                      </span>
+                    </EuiInnerText>
+                  </li>
+                  <li
                     className="euiBreadcrumb euiBreadcrumb--last"
-                    title="components"
+                    key="1"
                   >
-                    components
-                  </span>
-                </EuiInnerText>
+                    <EuiInnerText>
+                      <span
+                        aria-current="page"
+                        className="euiBreadcrumb__content"
+                        title="components"
+                      >
+                        components
+                      </span>
+                    </EuiInnerText>
+                  </li>
+                </ol>
               </nav>
             </EuiBreadcrumbs>
             <EuiButton
@@ -800,26 +840,34 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
               class="euiControlBar__controls"
             >
               <nav
-                aria-label="breadcrumb"
+                aria-label="Breadcrumbs"
                 class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
-                <span
-                  aria-current="false"
-                  class="euiBreadcrumb"
-                  title="src"
+                <ol
+                  class="euiBreadcrumbs__list"
                 >
-                  src
-                </span>
-                <div
-                  class="euiBreadcrumbSeparator"
-                />
-                <span
-                  aria-current="page"
-                  class="euiBreadcrumb euiBreadcrumb--last"
-                  title="components"
-                >
-                  components
-                </span>
+                  <li
+                    class="euiBreadcrumb"
+                  >
+                    <span
+                      class="euiBreadcrumb__content"
+                      title="src"
+                    >
+                      src
+                    </span>
+                  </li>
+                  <li
+                    class="euiBreadcrumb euiBreadcrumb--last"
+                  >
+                    <span
+                      aria-current="page"
+                      class="euiBreadcrumb__content"
+                      title="components"
+                    >
+                      components
+                    </span>
+                  </li>
+                </ol>
               </nav>
               <button
                 class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
@@ -910,32 +958,40 @@ exports[`EuiControlBar props mobile is rendered 1`] = `
               responsive={false}
             >
               <nav
-                aria-label="breadcrumb"
+                aria-label="Breadcrumbs"
                 className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
-                <EuiInnerText>
-                  <span
-                    aria-current="false"
+                <ol
+                  className="euiBreadcrumbs__list"
+                >
+                  <li
                     className="euiBreadcrumb"
-                    title="src"
+                    key="0"
                   >
-                    src
-                  </span>
-                </EuiInnerText>
-                <EuiBreadcrumbSeparator>
-                  <div
-                    className="euiBreadcrumbSeparator"
-                  />
-                </EuiBreadcrumbSeparator>
-                <EuiInnerText>
-                  <span
-                    aria-current="page"
+                    <EuiInnerText>
+                      <span
+                        className="euiBreadcrumb__content"
+                        title="src"
+                      >
+                        src
+                      </span>
+                    </EuiInnerText>
+                  </li>
+                  <li
                     className="euiBreadcrumb euiBreadcrumb--last"
-                    title="components"
+                    key="1"
                   >
-                    components
-                  </span>
-                </EuiInnerText>
+                    <EuiInnerText>
+                      <span
+                        aria-current="page"
+                        className="euiBreadcrumb__content"
+                        title="components"
+                      >
+                        components
+                      </span>
+                    </EuiInnerText>
+                  </li>
+                </ol>
               </nav>
             </EuiBreadcrumbs>
             <EuiButton
@@ -1146,32 +1202,40 @@ exports[`EuiControlBar props position is rendered 1`] = `
           responsive={false}
         >
           <nav
-            aria-label="breadcrumb"
+            aria-label="Breadcrumbs"
             className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
           >
-            <EuiInnerText>
-              <span
-                aria-current="false"
+            <ol
+              className="euiBreadcrumbs__list"
+            >
+              <li
                 className="euiBreadcrumb"
-                title="src"
+                key="0"
               >
-                src
-              </span>
-            </EuiInnerText>
-            <EuiBreadcrumbSeparator>
-              <div
-                className="euiBreadcrumbSeparator"
-              />
-            </EuiBreadcrumbSeparator>
-            <EuiInnerText>
-              <span
-                aria-current="page"
+                <EuiInnerText>
+                  <span
+                    className="euiBreadcrumb__content"
+                    title="src"
+                  >
+                    src
+                  </span>
+                </EuiInnerText>
+              </li>
+              <li
                 className="euiBreadcrumb euiBreadcrumb--last"
-                title="components"
+                key="1"
               >
-                components
-              </span>
-            </EuiInnerText>
+                <EuiInnerText>
+                  <span
+                    aria-current="page"
+                    className="euiBreadcrumb__content"
+                    title="components"
+                  >
+                    components
+                  </span>
+                </EuiInnerText>
+              </li>
+            </ol>
           </nav>
         </EuiBreadcrumbs>
         <EuiButton
@@ -1344,26 +1408,34 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
               class="euiControlBar__controls"
             >
               <nav
-                aria-label="breadcrumb"
+                aria-label="Breadcrumbs"
                 class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
-                <span
-                  aria-current="false"
-                  class="euiBreadcrumb"
-                  title="src"
+                <ol
+                  class="euiBreadcrumbs__list"
                 >
-                  src
-                </span>
-                <div
-                  class="euiBreadcrumbSeparator"
-                />
-                <span
-                  aria-current="page"
-                  class="euiBreadcrumb euiBreadcrumb--last"
-                  title="components"
-                >
-                  components
-                </span>
+                  <li
+                    class="euiBreadcrumb"
+                  >
+                    <span
+                      class="euiBreadcrumb__content"
+                      title="src"
+                    >
+                      src
+                    </span>
+                  </li>
+                  <li
+                    class="euiBreadcrumb euiBreadcrumb--last"
+                  >
+                    <span
+                      aria-current="page"
+                      class="euiBreadcrumb__content"
+                      title="components"
+                    >
+                      components
+                    </span>
+                  </li>
+                </ol>
               </nav>
               <button
                 class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
@@ -1454,32 +1526,40 @@ exports[`EuiControlBar props rightOffset is rendered 1`] = `
               responsive={false}
             >
               <nav
-                aria-label="breadcrumb"
+                aria-label="Breadcrumbs"
                 className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
-                <EuiInnerText>
-                  <span
-                    aria-current="false"
+                <ol
+                  className="euiBreadcrumbs__list"
+                >
+                  <li
                     className="euiBreadcrumb"
-                    title="src"
+                    key="0"
                   >
-                    src
-                  </span>
-                </EuiInnerText>
-                <EuiBreadcrumbSeparator>
-                  <div
-                    className="euiBreadcrumbSeparator"
-                  />
-                </EuiBreadcrumbSeparator>
-                <EuiInnerText>
-                  <span
-                    aria-current="page"
+                    <EuiInnerText>
+                      <span
+                        className="euiBreadcrumb__content"
+                        title="src"
+                      >
+                        src
+                      </span>
+                    </EuiInnerText>
+                  </li>
+                  <li
                     className="euiBreadcrumb euiBreadcrumb--last"
-                    title="components"
+                    key="1"
                   >
-                    components
-                  </span>
-                </EuiInnerText>
+                    <EuiInnerText>
+                      <span
+                        aria-current="page"
+                        className="euiBreadcrumb__content"
+                        title="components"
+                      >
+                        components
+                      </span>
+                    </EuiInnerText>
+                  </li>
+                </ol>
               </nav>
             </EuiBreadcrumbs>
             <EuiButton
@@ -1667,26 +1747,34 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
               class="euiControlBar__controls"
             >
               <nav
-                aria-label="breadcrumb"
+                aria-label="Breadcrumbs"
                 class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
-                <span
-                  aria-current="false"
-                  class="euiBreadcrumb"
-                  title="src"
+                <ol
+                  class="euiBreadcrumbs__list"
                 >
-                  src
-                </span>
-                <div
-                  class="euiBreadcrumbSeparator"
-                />
-                <span
-                  aria-current="page"
-                  class="euiBreadcrumb euiBreadcrumb--last"
-                  title="components"
-                >
-                  components
-                </span>
+                  <li
+                    class="euiBreadcrumb"
+                  >
+                    <span
+                      class="euiBreadcrumb__content"
+                      title="src"
+                    >
+                      src
+                    </span>
+                  </li>
+                  <li
+                    class="euiBreadcrumb euiBreadcrumb--last"
+                  >
+                    <span
+                      aria-current="page"
+                      class="euiBreadcrumb__content"
+                      title="components"
+                    >
+                      components
+                    </span>
+                  </li>
+                </ol>
               </nav>
               <button
                 class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
@@ -1782,32 +1870,40 @@ exports[`EuiControlBar props showContent is rendered 1`] = `
               responsive={false}
             >
               <nav
-                aria-label="breadcrumb"
+                aria-label="Breadcrumbs"
                 className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
-                <EuiInnerText>
-                  <span
-                    aria-current="false"
+                <ol
+                  className="euiBreadcrumbs__list"
+                >
+                  <li
                     className="euiBreadcrumb"
-                    title="src"
+                    key="0"
                   >
-                    src
-                  </span>
-                </EuiInnerText>
-                <EuiBreadcrumbSeparator>
-                  <div
-                    className="euiBreadcrumbSeparator"
-                  />
-                </EuiBreadcrumbSeparator>
-                <EuiInnerText>
-                  <span
-                    aria-current="page"
+                    <EuiInnerText>
+                      <span
+                        className="euiBreadcrumb__content"
+                        title="src"
+                      >
+                        src
+                      </span>
+                    </EuiInnerText>
+                  </li>
+                  <li
                     className="euiBreadcrumb euiBreadcrumb--last"
-                    title="components"
+                    key="1"
                   >
-                    components
-                  </span>
-                </EuiInnerText>
+                    <EuiInnerText>
+                      <span
+                        aria-current="page"
+                        className="euiBreadcrumb__content"
+                        title="components"
+                      >
+                        components
+                      </span>
+                    </EuiInnerText>
+                  </li>
+                </ol>
               </nav>
             </EuiBreadcrumbs>
             <EuiButton
@@ -2000,26 +2096,34 @@ exports[`EuiControlBar props size is rendered 1`] = `
               class="euiControlBar__controls"
             >
               <nav
-                aria-label="breadcrumb"
+                aria-label="Breadcrumbs"
                 class="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
-                <span
-                  aria-current="false"
-                  class="euiBreadcrumb"
-                  title="src"
+                <ol
+                  class="euiBreadcrumbs__list"
                 >
-                  src
-                </span>
-                <div
-                  class="euiBreadcrumbSeparator"
-                />
-                <span
-                  aria-current="page"
-                  class="euiBreadcrumb euiBreadcrumb--last"
-                  title="components"
-                >
-                  components
-                </span>
+                  <li
+                    class="euiBreadcrumb"
+                  >
+                    <span
+                      class="euiBreadcrumb__content"
+                      title="src"
+                    >
+                      src
+                    </span>
+                  </li>
+                  <li
+                    class="euiBreadcrumb euiBreadcrumb--last"
+                  >
+                    <span
+                      aria-current="page"
+                      class="euiBreadcrumb__content"
+                      title="components"
+                    >
+                      components
+                    </span>
+                  </li>
+                </ol>
               </nav>
               <button
                 class="euiButton euiButton--ghost euiButton--small euiControlBar__button"
@@ -2110,32 +2214,40 @@ exports[`EuiControlBar props size is rendered 1`] = `
               responsive={false}
             >
               <nav
-                aria-label="breadcrumb"
+                aria-label="Breadcrumbs"
                 className="euiBreadcrumbs euiControlBar__breadcrumbs euiBreadcrumbs--truncate"
               >
-                <EuiInnerText>
-                  <span
-                    aria-current="false"
+                <ol
+                  className="euiBreadcrumbs__list"
+                >
+                  <li
                     className="euiBreadcrumb"
-                    title="src"
+                    key="0"
                   >
-                    src
-                  </span>
-                </EuiInnerText>
-                <EuiBreadcrumbSeparator>
-                  <div
-                    className="euiBreadcrumbSeparator"
-                  />
-                </EuiBreadcrumbSeparator>
-                <EuiInnerText>
-                  <span
-                    aria-current="page"
+                    <EuiInnerText>
+                      <span
+                        className="euiBreadcrumb__content"
+                        title="src"
+                      >
+                        src
+                      </span>
+                    </EuiInnerText>
+                  </li>
+                  <li
                     className="euiBreadcrumb euiBreadcrumb--last"
-                    title="components"
+                    key="1"
                   >
-                    components
-                  </span>
-                </EuiInnerText>
+                    <EuiInnerText>
+                      <span
+                        aria-current="page"
+                        className="euiBreadcrumb__content"
+                        title="components"
+                      >
+                        components
+                      </span>
+                    </EuiInnerText>
+                  </li>
+                </ol>
               </nav>
             </EuiBreadcrumbs>
             <EuiButton

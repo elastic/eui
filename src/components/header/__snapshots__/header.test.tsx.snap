@@ -39,15 +39,23 @@ exports[`EuiHeader sections render breadcrumbs and props 1`] = `
   class="euiHeader euiHeader--default euiHeader--static"
 >
   <nav
-    aria-label="breadcrumb"
+    aria-label="Breadcrumbs"
     class="euiBreadcrumbs euiHeaderBreadcrumbs euiBreadcrumbs--truncate"
   >
-    <span
-      aria-current="page"
-      class="euiBreadcrumb euiBreadcrumb--last"
+    <ol
+      class="euiBreadcrumbs__list"
     >
-      Breadcrumb
-    </span>
+      <li
+        class="euiBreadcrumb euiBreadcrumb--last"
+      >
+        <span
+          aria-current="page"
+          class="euiBreadcrumb__content"
+        >
+          Breadcrumb
+        </span>
+      </li>
+    </ol>
   </nav>
 </div>
 `;

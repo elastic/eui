@@ -66,7 +66,8 @@ export default () => {
         <EuiFlexItem>
           <EuiPanel color="primary">
             <EuiMarkdownEditor
-              aria-label="EUI markdown editor demo"
+              aria-label="EUI markdown editor with fixed height"
+              placeholder="Your markdown here..."
               initialViewMode="viewing"
               value={value1}
               onChange={setValue1}
@@ -77,7 +78,7 @@ export default () => {
         <EuiFlexItem style={{ height: '600px' }}>
           <EuiPanel color="primary">
             <EuiMarkdownEditor
-              aria-label="EUI markdown editor demo"
+              aria-label="EUI markdown editor with full height "
               initialViewMode="viewing"
               value={value2}
               onChange={setValue2}
@@ -93,7 +94,8 @@ export default () => {
         <EuiFlexItem>
           <EuiPanel color="primary">
             <EuiMarkdownEditor
-              aria-label="EUI markdown editor demo"
+              aria-label="EUI markdown editor with no auto expand"
+              placeholder="Your markdown here..."
               initialViewMode="viewing"
               value={value3}
               onChange={setValue3}
@@ -105,7 +107,8 @@ export default () => {
         <EuiFlexItem>
           <EuiPanel color="primary">
             <EuiMarkdownEditor
-              aria-label="EUI markdown editor demo"
+              aria-label="EUI markdown editor with fixed and max height"
+              placeholder="Your markdown here..."
               initialViewMode="viewing"
               value={value4}
               onChange={setValue4}

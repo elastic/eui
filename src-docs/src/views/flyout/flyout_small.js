@@ -25,7 +25,8 @@ export default () => {
       <EuiFlyout
         ownFocus={false}
         onClose={closeFlyout}
-        aria-labelledby={flyoutTitleId}>
+        aria-labelledby={flyoutTitleId}
+      >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="s">
             <h2 id={flyoutTitleId}>A flyout without ownFocus</h2>

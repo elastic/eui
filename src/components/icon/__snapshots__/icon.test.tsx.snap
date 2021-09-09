@@ -547,6 +547,27 @@ exports[`EuiIcon props type advancedSettingsApp is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type agentApp is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  focusable="false"
+  height="32"
+  role="img"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M2.996 18.636L0 20.434v6.132l6 3.6 5-3 5 3 5-3 5 3 6-3.6v-6.132l-5-3v-5l-5-3v-5l-6-3.6-6 3.6v2.832l2 .033V5.566l4-2.4 4 2.4v3.868l-1.996 1.197 1 1.733L21 11.166l4 2.4v3.868l-4 2.4-2.257-1.354-.971 1.75L20 21.565v3.868l-4 2.4-4-2.4v-1.7l-2-.033v1.733l-4 2.4-4-2.4v-3.868l1.996-1.197-1-1.733zM22 25.434v-3.868l4-2.4 4 2.4v3.868l-4 2.4-4-2.4z"
+  />
+  <path
+    class="euiIcon__fillSecondary"
+    d="M11 22.166l-6-3.6v-6.132l6-3.6 6 3.6v6.132l-6 3.6zm4-4.732v-3.868l-4-2.4-4 2.4v3.868l4 2.4 4-2.4z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type aggregate is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -1415,10 +1436,10 @@ exports[`EuiIcon props type copyClipboard is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M0 2.729V2a1 1 0 011-1h2v1H1v12h4v1H1a1 1 0 01-1-1V2.729zM12 5V2a1 1 0 00-1-1H9v1h2v3h1zm-1 1h2v9H6V6h5V5H6a1 1 0 00-1 1v9a1 1 0 001 1h7a1 1 0 001-1V6a1 1 0 00-1-1h-2v1z"
+    d="M2 2.729V2a1 1 0 011-1h2v1H3v12h4v1H3a1 1 0 01-1-1V2.729zM14 5V2a1 1 0 00-1-1h-2v1h2v3h1zm-1 1h2v9H8V6h5V5H8a1 1 0 00-1 1v9a1 1 0 001 1h7a1 1 0 001-1V6a1 1 0 00-1-1h-2v1z"
   />
   <path
-    d="M7 10h5V9H7zM7 8h5V7H7zM7 12h5v-1H7zM7 14h5v-1H7zM9 2V1a1 1 0 00-1-1H4a1 1 0 00-1 1v1h1V1h4v1h1zM3 3h6V2H3z"
+    d="M9 10h5V9H9v1zm0-2h5V7H9v1zm0 4h5v-1H9v1zm0 2h5v-1H9v1zm2-12V1a1 1 0 00-1-1H6a1 1 0 00-1 1v1h1V1h4v1h1zM5 3h6V2H5v1z"
   />
 </svg>
 `;
@@ -2612,6 +2633,37 @@ exports[`EuiIcon props type flag is rendered 1`] = `
 >
   <path
     d="M7.686 8.464c1.547-.619 3.08-.619 4.628 0A.5.5 0 0013 8V2a.5.5 0 00-.276-.447C11.259.82 9.458.82 7.342 1.526c-1.884.628-3.417.628-4.618.027A.5.5 0 002 2v12.5a.5.5 0 101 0V8.553c1.411.627 2.983.592 4.686-.089zM3 2.741c1.322.42 2.878.327 4.658-.267C9.4 1.894 10.843 1.85 12 2.322v4.975c-1.56-.464-3.128-.384-4.686.239-1.54.616-2.892.616-4.09.017A.498.498 0 003 7.5V2.74z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type fleetApp is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  focusable="false"
+  height="32"
+  role="img"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    class="euiIcon__fillSecondary"
+    d="M21 2.82L16 .038 11 2.82v2.289l5-2.782 5 2.782v-2.29z"
+  />
+  <path
+    class="euiIcon__fillSecondary"
+    d="M21 7.282L16 4.5l-5 2.782V9.57l5-2.781 5 2.781V7.282z"
+  />
+  <path
+    d="M7 5.045L2 7.827v15.577l14 7.788 14-7.788V7.827l-5-2.782v2.289l3 1.669v13.225l-12 6.676-12-6.676V9.003l3-1.669V5.045z"
+  />
+  <path
+    class="euiIcon__fillSecondary"
+    clip-rule="evenodd"
+    d="M22 12.5L16 9l-6 3.5v7l6 3.5 6-3.5v-7zm-9.974 1.205L16 11.387l3.974 2.318v4.59L16 20.613l-3.974-2.318v-4.59z"
+    fill-rule="evenodd"
   />
 </svg>
 `;
