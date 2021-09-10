@@ -236,6 +236,7 @@ export default () => {
           <EuiPopover
             isOpen={isExpressionOpen}
             closePopover={() => setIsExpressionOpen(false)}
+            repositionOnScroll={true}
             button={
               <EuiExpression
                 description="expression"

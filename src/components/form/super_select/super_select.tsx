@@ -81,7 +81,8 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
     /**
      * When `true`, the popover's position is re-calculated when the user
      * scrolls, this supports having fixed-position popover anchors. This value is passed
-     * to the EuiInputPopover component
+     * to the EuiInputPopover component. When nesting an `EuiSuperSelect` in a scrollable container,
+     * `repositionOnScroll` should be `true`
      */
     repositionOnScroll?: boolean;
   };
