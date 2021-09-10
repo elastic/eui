@@ -123,26 +123,34 @@ describe('EuiDataGridBody', () => {
 });
 
 describe('getParentCellContent', () => {
-  it("locates the provided element's cell", () => {
-    const doc = document.createDocumentFragment();
+  const doc = document.createDocumentFragment();
 
-    const body = document.createElement('body');
-    doc.appendChild(body);
+  const body = document.createElement('body');
+  doc.appendChild(body);
 
-    const cell = document.createElement('div');
-    cell.setAttribute('data-datagrid-cellcontent', 'true');
-    body.appendChild(cell);
+  const cell = document.createElement('div');
+  cell.setAttribute('data-datagrid-cellcontent', 'true');
+  body.appendChild(cell);
 
-    const span = document.createElement('span');
-    span.textContent = 'Here comes the text';
-    cell.appendChild(span);
+  const span = document.createElement('span');
+  span.textContent = 'Here comes the text';
+  cell.appendChild(span);
 
-    const text = span.childNodes[0];
+  const text = span.childNodes[0];
 
+  it('locates the cell element when starting with the cell itself', () => {
     expect(getParentCellContent(cell)).toBe(cell);
+  });
+
+  it('locates the cell element when starting with an element inside the cell', () => {
     expect(getParentCellContent(span!)).toBe(cell);
-    expect(getParentCellContent(text)).toBe(cell);
-    expect(getParentCellContent(text)).toBe(cell);
+  });
+
+  it('locates the cell element when starting with a text node inside the cell', () => {
+    expect(getParentCellContent(text!)).toBe(cell);
+  });
+
+  it('does not locate the cell element when starting outside the cell', () => {
     expect(getParentCellContent(body)).toBeNull();
   });
 });
