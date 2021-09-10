@@ -44,16 +44,18 @@ export interface Rehype2ReactOptions {
   [key: string]: any;
 }
 
+export type DefaultEuiMarkdownProcessingPlugins = [
+  [Plugin, Remark2RehypeOptions], // first is well known
+  [typeof rehype2react, Rehype2ReactOptions], // second is well known
+  ...PluggableList // any additional are generic
+];
+
 export const getDefaultEuiMarkdownProcessingPlugins = ({
   exclude,
 }: { exclude?: Array<'tooltip'> } = {}) => {
   const excludeSet = new Set(exclude);
 
-  const plugins: [
-    [Plugin, Remark2RehypeOptions], // first is well known
-    [typeof rehype2react, Rehype2ReactOptions], // second is well known
-    ...PluggableList // any additional are generic
-  ] = [
+  const plugins: DefaultEuiMarkdownProcessingPlugins = [
     [
       remark2rehype,
       {

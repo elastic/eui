@@ -29,9 +29,11 @@ import * as MarkdownTooltip from '../markdown_tooltip';
 import * as MarkdownCheckbox from '../markdown_checkbox';
 import { markdownLinkValidator } from '../markdown_link_validator';
 
+export type DefaultEuiMarkdownParsingPlugins = PluggableList;
+
 export const getDefaultEuiMarkdownParsingPlugins = ({
   exclude,
-}: { exclude?: Array<'tooltip'> } = {}): PluggableList => {
+}: { exclude?: Array<'tooltip'> } = {}): DefaultEuiMarkdownParsingPlugins => {
   const excludeSet = new Set(exclude);
   const parsingPlugins: PluggableList = [
     [markdown, {}],
