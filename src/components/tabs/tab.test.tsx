@@ -13,50 +13,66 @@ import { requiredProps } from '../../test/required_props';
 import { EuiTab } from './tab';
 
 describe('EuiTab', () => {
-  test('renders button', () => {
-    const component = (
-      <EuiTab onClick={() => {}} {...requiredProps}>
-        children
-      </EuiTab>
-    );
-    expect(render(component)).toMatchSnapshot();
-  });
-
-  test('renders anchor', () => {
-    const component = (
-      <EuiTab href="/baz/bing" {...requiredProps}>
-        children
-      </EuiTab>
-    );
-    expect(render(component)).toMatchSnapshot();
-  });
-
-  test('renders isSelected', () => {
-    const component = (
-      <EuiTab onClick={() => {}} isSelected {...requiredProps}>
-        children
-      </EuiTab>
-    );
-    expect(render(component)).toMatchSnapshot();
-  });
-
-  describe('Props', () => {
+  describe('props', () => {
     describe('onClick', () => {
+      test('renders button', () => {
+        const component = (
+          <EuiTab onClick={() => {}} {...requiredProps}>
+            children
+          </EuiTab>
+        );
+        expect(render(component)).toMatchSnapshot();
+      });
+
       test('is called when the button is clicked', () => {
         const onClickHandler = jest.fn();
-
         const $button = shallow(<EuiTab onClick={onClickHandler} />);
 
         $button.simulate('click');
-
         expect(onClickHandler).toBeCalled();
       });
     });
 
-    test('is disabled', () => {
+    test('href renders anchor', () => {
+      const component = (
+        <EuiTab href="/baz/bing" {...requiredProps}>
+          children
+        </EuiTab>
+      );
+      expect(render(component)).toMatchSnapshot();
+    });
+
+    test('disabled is rendered', () => {
       const component = render(<EuiTab disabled>Click Me</EuiTab>);
 
       expect(component).toMatchSnapshot();
+    });
+
+    test('isSelected is rendered', () => {
+      const component = (
+        <EuiTab onClick={() => {}} isSelected>
+          children
+        </EuiTab>
+      );
+      expect(render(component)).toMatchSnapshot();
+    });
+
+    test('prepend is rendered', () => {
+      const component = (
+        <EuiTab onClick={() => {}} prepend="Prepend">
+          children
+        </EuiTab>
+      );
+      expect(render(component)).toMatchSnapshot();
+    });
+
+    test('append is rendered', () => {
+      const component = (
+        <EuiTab onClick={() => {}} prepend="Append">
+          children
+        </EuiTab>
+      );
+      expect(render(component)).toMatchSnapshot();
     });
   });
 });
