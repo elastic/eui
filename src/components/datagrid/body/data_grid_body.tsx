@@ -248,16 +248,16 @@ const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
  * and search its ancestors for a div[data-datagrid-cellcontent], if any,
  * which is a valid target for disabling tabbing within
  */
-function getParentCellContent(_element: Node | HTMLElement) {
+export function getParentCellContent(_element: Node | HTMLElement) {
   let element: HTMLElement | null =
     _element.nodeType === document.ELEMENT_NODE
       ? (_element as HTMLElement)
       : _element.parentElement;
 
   while (
-    element &&
-    element.nodeName !== 'div' &&
-    element.hasAttribute('data-datagrid-cellcontent')
+    element && // we haven't walked off the document yet
+    element.nodeName !== 'div' && // looking for a div
+    !element.hasAttribute('data-datagrid-cellcontent') // that has data-datagrid-cellcontent
   ) {
     element = element.parentElement;
   }
@@ -592,10 +592,16 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   }, [unconstrainedHeight, wrapperDimensions, isFullScreen]);
 
   const preventTabbing = useCallback((records: MutationRecord[]) => {
+    // multiple mutation records can implicate the same cell
+    // so be sure to only check each cell once
+    const processedCells = new Set();
+
     for (let i = 0; i < records.length; i++) {
       const record = records[i];
       // find the cell content owning this mutation
       const cell = getParentCellContent(record.target);
+      if (processedCells.has(cell)) continue;
+      processedCells.add(cell);
 
       if (cell) {
         // if we found it, disable tabbable elements
