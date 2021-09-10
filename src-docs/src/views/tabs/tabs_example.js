@@ -182,7 +182,7 @@ export const TabsExample = {
       title: 'Controlled tabbed content',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: controlledSource,
         },
       ],
