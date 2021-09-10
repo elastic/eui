@@ -23,8 +23,7 @@ export const useEuiFont = () => {
     font-family: ${font.family};
     font-weight: ${font.weight.regular};
     letter-spacing: ${defaultTheme ? '-.005em' : 'normal'};
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     font-kerning: normal;
   `;
 };
