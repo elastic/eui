@@ -13,12 +13,10 @@ import {
 
 import ScreenReaderOnly from './screen_reader';
 import ScreenReaderFocus from './screen_reader_focus';
-import ScreenReaderButton from './screen_reader_button';
 import SkipLink from './skip_link';
 
 const screenReaderOnlySource = require('!!raw-loader!./screen_reader');
 const screenReaderFocusSource = require('!!raw-loader!./screen_reader_focus');
-const screenReaderButtonSource = require('!!raw-loader!./screen_reader_button');
 
 const skipLinkSource = require('!!raw-loader!./skip_link');
 const skipLinkSnippet = [
@@ -82,42 +80,6 @@ export const AccessibilityExample = {
   <!-- visually hidden content -->
 </EuiScreenReaderOnly>`,
       demo: <ScreenReaderOnly />,
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: screenReaderButtonSource,
-        },
-      ],
-      text: (
-        <>
-          <h3>Within a button</h3>
-          <p>
-            If the screen reader content is <strong>contained within</strong> a
-            focusable element, you should consider adding{' '}
-            <EuiCode language="scss">{'position: relative;'}</EuiCode> to the
-            focusable element. This will fix any screen reader focus rings to
-            stay within the bounds of the focusable element.
-          </p>
-          <p>
-            <em>
-              Using a screen reader, tab through the following example with your
-              keyboard to verify the focus outline and screen reader text.
-            </em>
-          </p>
-        </>
-      ),
-      props: {
-        EuiScreenReaderOnly,
-      },
-      snippet: `<button style={{ position: 'relative' }}>
-  Button text
-  <EuiScreenReaderOnly>
-    <!-- visually hidden content -->
-  </EuiScreenReaderOnly>
-</button>`,
-      demo: <ScreenReaderButton />,
     },
     {
       source: [
