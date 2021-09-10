@@ -18,7 +18,7 @@ export type EuiDescriptionListType = keyof typeof typesToClassNameMap;
 export type EuiDescriptionListAlignment = keyof typeof alignmentsToClassNameMap;
 export type EuiDescriptionListTextStyle = keyof typeof textStylesToClassNameMap;
 
-export interface EuiDescriptionListProps {
+export interface EuiDescriptionListProps extends CommonProps {
   listItems?: Array<{
     title: NonNullable<ReactNode>;
     description: NonNullable<ReactNode>;
