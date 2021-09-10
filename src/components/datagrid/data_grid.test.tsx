@@ -18,7 +18,6 @@ import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer
 import { EuiDataGridRowHeightOption } from './data_grid_types';
 import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';
-import { getParentCellContent } from './body/data_grid_body';
 
 jest.mock('./row_height_utils', () => {
   return {
@@ -2748,41 +2747,5 @@ describe('EuiDataGrid', () => {
       expect(focusableCell.text()).toEqual('0, B'); // grid navigation is enabled again, check that we can move
       expect(takeMountedSnapshot(component)).toMatchSnapshot();
     });
-  });
-});
-
-describe('getParentCellContent', () => {
-  it("locates the provided element's cell", () => {
-    const component = mount(
-      <EuiDataGrid
-        {...requiredProps}
-        columns={[{ id: 'A' }, { id: 'B' }, { id: 'C' }]}
-        columnVisibility={{
-          visibleColumns: ['A', 'B', 'C'],
-          setVisibleColumns: () => {},
-        }}
-        rowCount={10}
-        renderCellValue={() => (
-          <div>
-            <span>This is in a cell</span>
-          </div>
-        )}
-      />
-    );
-    const cell = component
-      .find('[data-datagrid-cellcontent]')
-      .first()
-      .getDOMNode();
-    expect(cell).not.toBeNull();
-
-    const span = cell.querySelector('span');
-    expect(span).not.toBeNull();
-
-    const text = span!.childNodes[0];
-    expect(text).not.toBeNull();
-
-    expect(getParentCellContent(cell)).toBe(cell);
-    expect(getParentCellContent(span!)).toBe(cell);
-    expect(getParentCellContent(text)).toBe(cell);
   });
 });

@@ -13,7 +13,7 @@ import { DataGridSortingContext } from '../data_grid_context';
 import { schemaDetectors } from '../data_grid_schema';
 import { RowHeightUtils } from '../row_height_utils';
 
-import { EuiDataGridBody } from './data_grid_body';
+import { EuiDataGridBody, getParentCellContent } from './data_grid_body';
 
 describe('EuiDataGridBody', () => {
   const requiredProps = {
@@ -118,4 +118,31 @@ describe('EuiDataGridBody', () => {
   });
 
   // TODO: Test tabbing in Cypress
+
+  // TODO: Test column resizing in Cypress
+});
+
+describe('getParentCellContent', () => {
+  it("locates the provided element's cell", () => {
+    const doc = document.createDocumentFragment();
+
+    const body = document.createElement('body');
+    doc.appendChild(body);
+
+    const cell = document.createElement('div');
+    cell.setAttribute('data-datagrid-cellcontent', 'true');
+    body.appendChild(cell);
+
+    const span = document.createElement('span');
+    span.textContent = 'Here comes the text';
+    cell.appendChild(span);
+
+    const text = span.childNodes[0];
+
+    expect(getParentCellContent(cell)).toBe(cell);
+    expect(getParentCellContent(span!)).toBe(cell);
+    expect(getParentCellContent(text)).toBe(cell);
+    expect(getParentCellContent(text)).toBe(cell);
+    expect(getParentCellContent(body)).toBeNull();
+  });
 });
