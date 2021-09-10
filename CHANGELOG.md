@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `37.1.4`.
+
+## [`37.1.4`](https://github.com/elastic/eui/tree/v37.1.4)
+
 **Bug fixes**
 
 - Fixed [de]optimization bug in `EuiDataGrid` when cells are removed from the DOM via virtualization ([#5163](https://github.com/elastic/eui/pull/5163))
