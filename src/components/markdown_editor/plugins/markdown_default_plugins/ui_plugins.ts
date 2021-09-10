@@ -9,9 +9,11 @@
 import * as MarkdownTooltip from '../markdown_tooltip';
 import { EuiMarkdownEditorUiPlugin } from './../../markdown_types';
 
+export type DefaultEuiMarkdownUiPlugins = EuiMarkdownEditorUiPlugin[];
+
 export const getDefaultEuiMarkdownUiPlugins = ({
   exclude,
-}: { exclude?: Array<'tooltip'> } = {}): EuiMarkdownEditorUiPlugin[] => {
+}: { exclude?: Array<'tooltip'> } = {}): DefaultEuiMarkdownUiPlugins => {
   const excludeSet = new Set(exclude);
   const uiPlugins = [];
 
