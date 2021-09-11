@@ -18,7 +18,7 @@ export type EuiDescriptionListType = keyof typeof typesToClassNameMap;
 export type EuiDescriptionListAlignment = keyof typeof alignmentsToClassNameMap;
 export type EuiDescriptionListTextStyle = keyof typeof textStylesToClassNameMap;
 
-export interface EuiDescriptionListProps extends CommonProps {
+export interface EuiDescriptionListProps {
   listItems?: Array<{
     title: NonNullable<ReactNode>;
     description: NonNullable<ReactNode>;
@@ -43,11 +43,11 @@ export interface EuiDescriptionListProps extends CommonProps {
   /**
    * Props object to be passed to `EuiDescriptionListTitle`
    */
-  titleProps?: HTMLAttributes<HTMLElement>;
+  titleProps?: CommonProps;
   /**
    * Props object to be passed to `EuiDescriptionListDescription`
    */
-  descriptionProps?: HTMLAttributes<HTMLElement>;
+  descriptionProps?: CommonProps;
 }
 
 const typesToClassNameMap = {
