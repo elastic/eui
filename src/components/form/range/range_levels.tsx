@@ -73,9 +73,10 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
 
         const isHexColor = isValidHex(level.color);
 
-        const styles = isHexColor
-          ? { width: `${width}%`, backgroundColor: level.color }
-          : { width: `${width}%` };
+        const styles = {
+          width: `${width}%`,
+          backgroundColor: isHexColor ? level.color : undefined,
+        };
 
         const isNamedColor = LEVEL_COLORS.includes(
           level.color as EuiRangeLevelColor
