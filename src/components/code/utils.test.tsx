@@ -13,27 +13,41 @@ const jsonCode = `{
 }`;
 
 describe('highlightByLine', () => {
-  it('without line numbers', () => {
-    const highlight = highlightByLine(jsonCode, 'json', {
-      show: false,
-      start: 1,
+  describe('without line numbers', () => {
+    it('renders a single .euiCodeBlock__line element per line', () => {
+      const highlight = highlightByLine(jsonCode, 'json', {
+        show: false,
+        start: 1,
+      });
+      expect(highlight).toMatchSnapshot();
+      // @ts-expect-error RefractorNode
+      expect(highlight[0].children[0].children.length).toBe(1);
     });
-    expect(highlight).toMatchSnapshot();
   });
 
-  it('with line numbers', () => {
-    const highlight = highlightByLine(jsonCode, 'json', {
-      show: true,
-      start: 1,
+  describe('with line numbers', () => {
+    it('renders two elements per line: .euiCodeBlock__lineNumber and .euiCodeBlock__lineText', () => {
+      const highlight = highlightByLine(jsonCode, 'json', {
+        show: true,
+        start: 1,
+      });
+      expect(highlight).toMatchSnapshot();
+      // @ts-expect-error RefractorNode
+      expect(highlight[0].children.length).toBe(2);
     });
-    expect(highlight).toMatchSnapshot();
-  });
 
-  it('with line numbers and custom starting number', () => {
-    const highlight = highlightByLine(jsonCode, 'json', {
-      show: true,
-      start: 10,
+    describe('with a custom starting number', () => {
+      it('adds the starting lineNumber to each node', () => {
+        const highlight = highlightByLine(jsonCode, 'json', {
+          show: true,
+          start: 10,
+        });
+        expect(highlight).toMatchSnapshot();
+        expect(
+          // @ts-expect-error RefractorNode
+          highlight[0].children[0].properties['data-line-number']
+        ).toBe(10);
+      });
     });
-    expect(highlight).toMatchSnapshot();
   });
 });

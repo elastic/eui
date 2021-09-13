@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`highlightByLine with line numbers 1`] = `
+exports[`highlightByLine with line numbers renders two elements per line: .euiCodeBlock__lineNumber and .euiCodeBlock__lineText 1`] = `
 Array [
   Object {
     "children": Array [
@@ -277,7 +277,7 @@ Array [
 ]
 `;
 
-exports[`highlightByLine with line numbers and custom starting number 1`] = `
+exports[`highlightByLine with line numbers with a custom starting number adds the starting lineNumber to each node 1`] = `
 Array [
   Object {
     "children": Array [
@@ -554,7 +554,7 @@ Array [
 ]
 `;
 
-exports[`highlightByLine without line numbers 1`] = `
+exports[`highlightByLine without line numbers renders a single .euiCodeBlock__line element per line 1`] = `
 Array [
   Object {
     "children": Array [
