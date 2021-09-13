@@ -82,13 +82,10 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
           level.color as EuiRangeLevelColor
         );
 
-        const levelClasses = classNames(
-          'euiRangeLevel',
-          {
-            'euiRangeLevel--customColor': isHexColor,
-            [`euiRangeLevel--${level.color}`]: isNamedColor,
-          },
-        );
+        const levelClasses = classNames('euiRangeLevel', {
+          'euiRangeLevel--customColor': isHexColor,
+          [`euiRangeLevel--${level.color}`]: isNamedColor,
+        });
 
         return <span key={index} style={styles} className={levelClasses} />;
       })}
