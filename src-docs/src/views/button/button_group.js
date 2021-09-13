@@ -4,7 +4,6 @@ import {
   EuiButtonGroup,
   EuiSpacer,
   EuiTitle,
-  EuiButton,
 } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
@@ -95,11 +94,6 @@ export default () => {
         <h3>Primary &amp; multi select</h3>
       </EuiTitle>
       <EuiSpacer size="s" />
-
-      <EuiButton size="s" color="primary">
-        Option 1
-      </EuiButton>
-      <br />
       <EuiButtonGroup
         legend="This is a primary group"
         options={toggleButtonsMulti}
