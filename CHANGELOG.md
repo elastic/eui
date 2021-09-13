@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Updated `EuiRangeLevel` `color` property to accept hex values ([#0000](https://github.com/elastic/eui/pull/0000))
+- Updated `EuiRangeLevel` `color` property to accept hex values ([#5171](https://github.com/elastic/eui/pull/5171))
 
 ## [`37.7.0`](https://github.com/elastic/eui/tree/v37.7.0)
 

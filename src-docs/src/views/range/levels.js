@@ -97,7 +97,7 @@ export default () => {
       />
 
       <EuiFormHelpText id="levelsHelp3">
-        Levels accept custom colors.
+        Levels accept custom hex colors.
       </EuiFormHelpText>
 
       <EuiSpacer size="xl" />
