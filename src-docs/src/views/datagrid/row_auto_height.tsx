@@ -118,7 +118,9 @@ const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
     content = (
       <>
         {item.labels.map(({ name, color }) => (
-          <EuiBadge key={name} color={`#${color}`}>{name}</EuiBadge>
+          <EuiBadge key={name} color={`#${color}`}>
+            {name}
+          </EuiBadge>
         ))}
       </>
     );
