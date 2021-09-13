@@ -13,7 +13,7 @@ import { requiredProps } from '../../../test/required_props';
 import { EuiRangeLevels } from './range_levels';
 
 describe('EuiRangeLevels', () => {
-  test('is rendered', () => {
+  test('is rendered with named and custom color', () => {
     const component = render(
       <EuiRangeLevels
         min={0}
@@ -28,7 +28,7 @@ describe('EuiRangeLevels', () => {
           {
             min: 20,
             max: 100,
-            color: 'success',
+            color: '#ff0000',
           },
         ]}
         {...requiredProps}

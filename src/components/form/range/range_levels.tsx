@@ -25,7 +25,7 @@ export interface EuiRangeLevel {
   /**
    * Accepts one of `["primary", "success", "warning", "danger"]` or a hex value (e.g. `#FFFFFF`, `#000`).
    */
-  color: EuiRangeLevelColor;
+  color: EuiRangeLevelColor | string;
 }
 
 export interface EuiRangeLevelsProps {
@@ -77,17 +77,15 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
           ? { width: `${width}%`, backgroundColor: level.color }
           : { width: `${width}%` };
 
+        const isNamedColor = LEVEL_COLORS.includes(level.color);
+
         const levelClasses = classNames(
           'euiRangeLevel',
           {
             'euiRangeLevel--customColor': isHexColor,
           },
-          !isHexColor ? `euiRangeLevel--${level.color}` : null
+          isNamedColor && `euiRangeLevel--${level.color}`
         );
-
-        console.log('isHexColor', isHexColor);
-
-        console.log('levelClasses', levelClasses);
 
         return <span key={index} style={styles} className={levelClasses} />;
       })}
