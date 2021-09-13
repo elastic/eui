@@ -77,7 +77,9 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
           ? { width: `${width}%`, backgroundColor: level.color }
           : { width: `${width}%` };
 
-        const isNamedColor = LEVEL_COLORS.includes(level.color);
+        const isNamedColor = LEVEL_COLORS.includes(
+          level.color as EuiRangeLevelColor
+        );
 
         const levelClasses = classNames(
           'euiRangeLevel',
