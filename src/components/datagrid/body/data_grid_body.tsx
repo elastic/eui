@@ -48,7 +48,7 @@ import {
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
 
-const Cell: FunctionComponent<GridChildComponentProps> = ({
+export const Cell: FunctionComponent<GridChildComponentProps> = ({
   columnIndex,
   rowIndex: visibleRowIndex,
   style,
