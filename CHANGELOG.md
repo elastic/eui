@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `37.7.0`.
+- Updated `EuiRangeLevel` `color` property to accept hex values ([#0000](https://github.com/elastic/eui/pull/0000))
 
 ## [`37.7.0`](https://github.com/elastic/eui/tree/v37.7.0)
 

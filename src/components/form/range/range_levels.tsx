@@ -8,6 +8,7 @@
 
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
+import { isValidHex } from '../../../services/color/is_valid_hex';
 
 export type EuiRangeLevelColor = 'primary' | 'success' | 'warning' | 'danger';
 
@@ -21,10 +22,16 @@ export const LEVEL_COLORS: EuiRangeLevelColor[] = [
 export interface EuiRangeLevel {
   min: number;
   max: number;
+  /**
+   * Accepts one of `["primary", "success", "warning", "danger"]` or a hex value (e.g. `#FFFFFF`, `#000`).
+   */
   color: EuiRangeLevelColor;
 }
 
 export interface EuiRangeLevelsProps {
+  /**
+   * An array of #EuiRangeLevel objects
+   */
   levels?: EuiRangeLevel[];
   max: number;
   min: number;
@@ -64,13 +71,25 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
         const range = level.max - level.min;
         const width = (range / (max - min)) * 100;
 
-        return (
-          <span
-            key={index}
-            style={{ width: `${width}%` }}
-            className={`euiRangeLevel euiRangeLevel--${level.color}`}
-          />
+        const isHexColor = isValidHex(level.color);
+
+        const styles = isHexColor
+          ? { width: `${width}%`, backgroundColor: level.color }
+          : { width: `${width}%` };
+
+        const levelClasses = classNames(
+          'euiRangeLevel',
+          {
+            'euiRangeLevel--customColor': isHexColor,
+          },
+          !isHexColor ? `euiRangeLevel--${level.color}` : null
         );
+
+        console.log('isHexColor', isHexColor);
+
+        console.log('levelClasses', levelClasses);
+
+        return <span key={index} style={styles} className={levelClasses} />;
       })}
     </div>
   );
