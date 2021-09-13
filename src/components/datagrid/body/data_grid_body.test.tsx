@@ -13,7 +13,7 @@ import { DataGridSortingContext } from '../data_grid_context';
 import { schemaDetectors } from '../data_grid_schema';
 import { RowHeightUtils } from '../row_height_utils';
 
-import { EuiDataGridBody } from './data_grid_body';
+import { EuiDataGridBody, getParentCellContent } from './data_grid_body';
 
 describe('EuiDataGridBody', () => {
   const requiredProps = {
@@ -118,4 +118,39 @@ describe('EuiDataGridBody', () => {
   });
 
   // TODO: Test tabbing in Cypress
+
+  // TODO: Test column resizing in Cypress
+});
+
+describe('getParentCellContent', () => {
+  const doc = document.createDocumentFragment();
+
+  const body = document.createElement('body');
+  doc.appendChild(body);
+
+  const cell = document.createElement('div');
+  cell.setAttribute('data-datagrid-cellcontent', 'true');
+  body.appendChild(cell);
+
+  const span = document.createElement('span');
+  span.textContent = 'Here comes the text';
+  cell.appendChild(span);
+
+  const text = span.childNodes[0];
+
+  it('locates the cell element when starting with the cell itself', () => {
+    expect(getParentCellContent(cell)).toBe(cell);
+  });
+
+  it('locates the cell element when starting with an element inside the cell', () => {
+    expect(getParentCellContent(span!)).toBe(cell);
+  });
+
+  it('locates the cell element when starting with a text node inside the cell', () => {
+    expect(getParentCellContent(text!)).toBe(cell);
+  });
+
+  it('does not locate the cell element when starting outside the cell', () => {
+    expect(getParentCellContent(body)).toBeNull();
+  });
 });

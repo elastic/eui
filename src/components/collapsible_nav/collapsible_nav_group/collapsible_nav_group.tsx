@@ -6,15 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  ReactNode,
-  useState,
-  HTMLAttributes,
-} from 'react';
+import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../../common';
-import { htmlIdGenerator } from '../../../services';
+import { useGeneratedHtmlId } from '../../../services';
 
 import { EuiAccordion, EuiAccordionProps } from '../../accordion';
 import { EuiIcon, IconType, IconSize, EuiIconProps } from '../../icon';
@@ -116,7 +111,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<EuiCollapsibleNavGroupPro
   iconProps,
   ...rest
 }) => {
-  const [groupID] = useState(id || htmlIdGenerator()());
+  const groupID = useGeneratedHtmlId({ conditionalId: id });
   const titleID = `${groupID}__title`;
 
   const classes = classNames(

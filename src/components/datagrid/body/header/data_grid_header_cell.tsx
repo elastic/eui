@@ -19,7 +19,7 @@ import React, {
 } from 'react';
 import tabbable from 'tabbable';
 import { keys } from '../../../../services';
-import { htmlIdGenerator } from '../../../../services/accessibility';
+import { useGeneratedHtmlId } from '../../../../services/accessibility';
 import { EuiScreenReaderOnly } from '../../../accessibility';
 import { useEuiI18n } from '../../../i18n';
 import { EuiIcon } from '../../../icon';
@@ -59,7 +59,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     'aria-describedby'?: AriaAttributes['aria-describedby'];
   } = {};
 
-  const screenReaderId = htmlIdGenerator()();
+  const screenReaderId = useGeneratedHtmlId();
   let sortString;
   const actionButtonAriaLabel = useEuiI18n(
     'euiDataGridHeaderCell.headerActions',
