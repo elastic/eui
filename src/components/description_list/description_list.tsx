@@ -43,11 +43,11 @@ export interface EuiDescriptionListProps {
   /**
    * Props object to be passed to `EuiDescriptionListTitle`
    */
-  titleProps?: CommonProps;
+  titleProps?: HTMLAttributes<HTMLElement> & CommonProps;
   /**
    * Props object to be passed to `EuiDescriptionListDescription`
    */
-  descriptionProps?: CommonProps;
+  descriptionProps?: HTMLAttributes<HTMLElement> & CommonProps;
 }
 
 const typesToClassNameMap = {
