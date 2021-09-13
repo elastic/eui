@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `37.7.0`.
+- Added optional line numbers to `EuiCodeBlock` ([#4993](https://github.com/elastic/eui/pull/4993))
 
 ## [`37.7.0`](https://github.com/elastic/eui/tree/v37.7.0)
 

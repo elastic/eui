@@ -1,0 +1,745 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`highlightByLine with line numbers renders two elements per line: .euiCodeBlock__lineNumber and .euiCodeBlock__lineText 1`] = `
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [],
+        "properties": Object {
+          "aria-hidden": true,
+          "className": Array [
+            "euiCodeBlock__lineNumber",
+          ],
+          "data-line-number": 1,
+          "style": Object {
+            "width": 8,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 1,
+                "lineStart": 1,
+                "type": "text",
+                "value": "{",
+              },
+            ],
+            "lineEnd": 1,
+            "lineStart": 1,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "punctuation",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "lineEnd": 1,
+            "lineStart": 1,
+            "type": "text",
+            "value": "
+",
+          },
+        ],
+        "properties": Object {
+          "className": Array [
+            "euiCodeBlock__lineText",
+          ],
+          "style": Object {
+            "marginLeft": 16,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "euiCodeBlock__line",
+      ],
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [],
+        "properties": Object {
+          "aria-hidden": true,
+          "className": Array [
+            "euiCodeBlock__lineNumber",
+          ],
+          "data-line-number": 2,
+          "style": Object {
+            "width": 8,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "lineEnd": 2,
+            "lineStart": 2,
+            "type": "text",
+            "value": "  ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 2,
+                "lineStart": 2,
+                "type": "text",
+                "value": "\\"id\\"",
+              },
+            ],
+            "lineEnd": 2,
+            "lineStart": 2,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "property",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 2,
+                "lineStart": 2,
+                "type": "text",
+                "value": ":",
+              },
+            ],
+            "lineEnd": 2,
+            "lineStart": 2,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "operator",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "lineEnd": 2,
+            "lineStart": 2,
+            "type": "text",
+            "value": " ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 2,
+                "lineStart": 2,
+                "type": "text",
+                "value": "\\"1\\"",
+              },
+            ],
+            "lineEnd": 2,
+            "lineStart": 2,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "string",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 2,
+                "lineStart": 2,
+                "type": "text",
+                "value": ",",
+              },
+            ],
+            "lineEnd": 2,
+            "lineStart": 2,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "punctuation",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "lineEnd": 2,
+            "lineStart": 2,
+            "type": "text",
+            "value": "
+",
+          },
+        ],
+        "properties": Object {
+          "className": Array [
+            "euiCodeBlock__lineText",
+          ],
+          "style": Object {
+            "marginLeft": 16,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "euiCodeBlock__line",
+      ],
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [],
+        "properties": Object {
+          "aria-hidden": true,
+          "className": Array [
+            "euiCodeBlock__lineNumber",
+          ],
+          "data-line-number": 3,
+          "style": Object {
+            "width": 8,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "lineEnd": 3,
+            "lineStart": 3,
+            "type": "text",
+            "value": "",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 3,
+                "lineStart": 3,
+                "type": "text",
+                "value": "}",
+              },
+            ],
+            "lineEnd": 3,
+            "lineStart": 3,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "punctuation",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+        ],
+        "properties": Object {
+          "className": Array [
+            "euiCodeBlock__lineText",
+          ],
+          "style": Object {
+            "marginLeft": 16,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "euiCodeBlock__line",
+      ],
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+]
+`;
+
+exports[`highlightByLine with line numbers with a custom starting number adds the starting lineNumber to each node 1`] = `
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [],
+        "properties": Object {
+          "aria-hidden": true,
+          "className": Array [
+            "euiCodeBlock__lineNumber",
+          ],
+          "data-line-number": 10,
+          "style": Object {
+            "width": 16,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 10,
+                "lineStart": 10,
+                "type": "text",
+                "value": "{",
+              },
+            ],
+            "lineEnd": 10,
+            "lineStart": 10,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "punctuation",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "lineEnd": 10,
+            "lineStart": 10,
+            "type": "text",
+            "value": "
+",
+          },
+        ],
+        "properties": Object {
+          "className": Array [
+            "euiCodeBlock__lineText",
+          ],
+          "style": Object {
+            "marginLeft": 24,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "euiCodeBlock__line",
+      ],
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [],
+        "properties": Object {
+          "aria-hidden": true,
+          "className": Array [
+            "euiCodeBlock__lineNumber",
+          ],
+          "data-line-number": 11,
+          "style": Object {
+            "width": 16,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "lineEnd": 11,
+            "lineStart": 11,
+            "type": "text",
+            "value": "  ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 11,
+                "lineStart": 11,
+                "type": "text",
+                "value": "\\"id\\"",
+              },
+            ],
+            "lineEnd": 11,
+            "lineStart": 11,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "property",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 11,
+                "lineStart": 11,
+                "type": "text",
+                "value": ":",
+              },
+            ],
+            "lineEnd": 11,
+            "lineStart": 11,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "operator",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "lineEnd": 11,
+            "lineStart": 11,
+            "type": "text",
+            "value": " ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 11,
+                "lineStart": 11,
+                "type": "text",
+                "value": "\\"1\\"",
+              },
+            ],
+            "lineEnd": 11,
+            "lineStart": 11,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "string",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 11,
+                "lineStart": 11,
+                "type": "text",
+                "value": ",",
+              },
+            ],
+            "lineEnd": 11,
+            "lineStart": 11,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "punctuation",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "lineEnd": 11,
+            "lineStart": 11,
+            "type": "text",
+            "value": "
+",
+          },
+        ],
+        "properties": Object {
+          "className": Array [
+            "euiCodeBlock__lineText",
+          ],
+          "style": Object {
+            "marginLeft": 24,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "euiCodeBlock__line",
+      ],
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [],
+        "properties": Object {
+          "aria-hidden": true,
+          "className": Array [
+            "euiCodeBlock__lineNumber",
+          ],
+          "data-line-number": 12,
+          "style": Object {
+            "width": 16,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "lineEnd": 12,
+            "lineStart": 12,
+            "type": "text",
+            "value": "",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 12,
+                "lineStart": 12,
+                "type": "text",
+                "value": "}",
+              },
+            ],
+            "lineEnd": 12,
+            "lineStart": 12,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "punctuation",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+        ],
+        "properties": Object {
+          "className": Array [
+            "euiCodeBlock__lineText",
+          ],
+          "style": Object {
+            "marginLeft": 24,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "euiCodeBlock__line",
+      ],
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+]
+`;
+
+exports[`highlightByLine without line numbers renders a single .euiCodeBlock__line element per line 1`] = `
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [
+          Object {
+            "lineEnd": 1,
+            "lineStart": 1,
+            "type": "text",
+            "value": "{",
+          },
+        ],
+        "lineEnd": 1,
+        "lineStart": 1,
+        "properties": Object {
+          "className": Array [
+            "token",
+            "punctuation",
+          ],
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "lineEnd": 1,
+        "lineStart": 1,
+        "type": "text",
+        "value": "
+",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "euiCodeBlock__line",
+      ],
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "lineEnd": 2,
+        "lineStart": 2,
+        "type": "text",
+        "value": "  ",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "lineEnd": 2,
+            "lineStart": 2,
+            "type": "text",
+            "value": "\\"id\\"",
+          },
+        ],
+        "lineEnd": 2,
+        "lineStart": 2,
+        "properties": Object {
+          "className": Array [
+            "token",
+            "property",
+          ],
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "lineEnd": 2,
+            "lineStart": 2,
+            "type": "text",
+            "value": ":",
+          },
+        ],
+        "lineEnd": 2,
+        "lineStart": 2,
+        "properties": Object {
+          "className": Array [
+            "token",
+            "operator",
+          ],
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "lineEnd": 2,
+        "lineStart": 2,
+        "type": "text",
+        "value": " ",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "lineEnd": 2,
+            "lineStart": 2,
+            "type": "text",
+            "value": "\\"1\\"",
+          },
+        ],
+        "lineEnd": 2,
+        "lineStart": 2,
+        "properties": Object {
+          "className": Array [
+            "token",
+            "string",
+          ],
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "lineEnd": 2,
+            "lineStart": 2,
+            "type": "text",
+            "value": ",",
+          },
+        ],
+        "lineEnd": 2,
+        "lineStart": 2,
+        "properties": Object {
+          "className": Array [
+            "token",
+            "punctuation",
+          ],
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "lineEnd": 2,
+        "lineStart": 2,
+        "type": "text",
+        "value": "
+",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "euiCodeBlock__line",
+      ],
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "lineEnd": 3,
+        "lineStart": 3,
+        "type": "text",
+        "value": "",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "lineEnd": 3,
+            "lineStart": 3,
+            "type": "text",
+            "value": "}",
+          },
+        ],
+        "lineEnd": 3,
+        "lineStart": 3,
+        "properties": Object {
+          "className": Array [
+            "token",
+            "punctuation",
+          ],
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "euiCodeBlock__line",
+      ],
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+]
+`;
