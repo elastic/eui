@@ -38,19 +38,19 @@
     }
   }
 
-  .euiCodeBlock__line__text,
-  .euiCodeBlock__line__number {
+  .euiCodeBlock__lineText,
+  .euiCodeBlock__lineNumber {
     display: inline-block;
   }
 
-  .euiCodeBlock__line__text {
+  .euiCodeBlock__lineText {
     padding-left: $euiSizeS;
     margin-left: $euiSizeS;
     border-left: $euiBorderThin;
     user-select: text;
   }
 
-  .euiCodeBlock__line__number {
+  .euiCodeBlock__lineNumber {
     position: absolute;
     user-select: none;
 

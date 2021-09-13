@@ -22,13 +22,14 @@ interface LineNumbersConfig {
 
 // Approximate width of a single digit/character
 const CHAR_SIZE = 8;
+const $euiSizeS = 8;
 
 const isAstElement = (node: RefractorNode): node is AST.Element =>
   node.hasOwnProperty('type') && node.type === 'element';
 
 const addLineData = (
   nodes: ExtendedRefractorNode[],
-  data = { lineNumber: 1 }
+  data: { lineNumber: number }
 ): ExtendedRefractorNode[] => {
   return nodes.reduce<ExtendedRefractorNode[]>((result, node) => {
     const lineStart = data.lineNumber;
@@ -78,7 +79,7 @@ const addLineData = (
 
 function wrapLines(
   nodes: ExtendedRefractorNode[],
-  options = { showLineNumbers: false }
+  options: { showLineNumbers: boolean }
 ) {
   const grouped: ExtendedRefractorNode[][] = [];
   nodes.forEach((node) => {
@@ -102,7 +103,7 @@ function wrapLines(
               style: { width },
               ['data-line-number']: i + 1,
               ['aria-hidden']: true,
-              className: ['euiCodeBlock__line__number'],
+              className: ['euiCodeBlock__lineNumber'],
             },
             children: [],
           },
@@ -110,8 +111,8 @@ function wrapLines(
             type: 'element',
             tagName: 'span',
             properties: {
-              style: { marginLeft: width + 8 }, // 8px is $euiSizeS
-              className: ['euiCodeBlock__line__text'],
+              style: { marginLeft: width + $euiSizeS },
+              className: ['euiCodeBlock__lineText'],
             },
             children: node,
           },
