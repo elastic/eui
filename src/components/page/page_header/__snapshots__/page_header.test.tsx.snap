@@ -208,7 +208,9 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
         class="euiFlexItem"
       >
         <h1
-          class="euiTitle euiTitle--large"
+          aria-label="aria-label"
+          class="euiTitle euiTitle--large testClass1 testClass2"
+          data-test-subj="test subject string"
         >
           <span
             aria-label="aria-label"
@@ -268,7 +270,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       />
       <div
         aria-label="aria-label"
-        class="euiTabs euiTabs--condensed euiTabs--large testClass1 testClass2"
+        class="euiTabs euiTabs--large euiTabs--condensed testClass1 testClass2"
         data-test-subj="test subject string"
         role="tablist"
       >
@@ -316,13 +318,13 @@ exports[`EuiPageHeader props responsive is rendered as reverse 1`] = `
 
 exports[`EuiPageHeader props restrictWidth is rendered as custom 1`] = `
 <header
-  class="euiPageHeader euiPageHeader--responsive euiPage--restrictWidth-custom euiPageHeader--center"
+  class="euiPageHeader euiPageHeader--restrictWidth-custom euiPageHeader--responsive euiPageHeader--center"
   style="max-width:100px"
 />
 `;
 
 exports[`EuiPageHeader props restrictWidth is rendered as true 1`] = `
 <header
-  class="euiPageHeader euiPageHeader--responsive euiPage--restrictWidth-default euiPageHeader--center"
+  class="euiPageHeader euiPageHeader--restrictWidth-default euiPageHeader--responsive euiPageHeader--center"
 />
 `;

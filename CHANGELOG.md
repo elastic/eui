@@ -2,11 +2,40 @@
 
 - Added `auto` as value for `defaultHeight` in prop `rowHeightsOptions` in `EuiDataGrid` that allows to content auto-fit to row ([#4958](https://github.com/elastic/eui/pull/4958))
 
+## [`37.7.0`](https://github.com/elastic/eui/tree/v37.7.0)
+
+- Added `placeholder` prop to `EuiMarkdownEditor` ([#5151](https://github.com/elastic/eui/pull/5151))
+- Added `.eui-textNumber` utility class to apply `tnum` font-feature setting ([#5078](https://github.com/elastic/eui/pull/5078))
+- Changed `EuiPageHeader`'s tab implementation to use size `xl` when only content ([#5135](https://github.com/elastic/eui/pull/5135))
+- Added `pageTitleProps` prop to `EuiPageHeader` to pass through props to the `EuiTitle` ([#5135](https://github.com/elastic/eui/pull/5135))
+- Added screen-reader only `<h1>` to `EuiPageHeader` when tabs exist without a `pageTitle` ([#5135](https://github.com/elastic/eui/pull/5135))
+- Added `bottomBorder` prop and `xl` `size` to `EuiTabs` ([#5135](https://github.com/elastic/eui/pull/5135))
+- Added `prepend` and `append` props to `EuiTab` ([#5135](https://github.com/elastic/eui/pull/5135))
+- Refactored styles of `EuiTabs` ([#5135](https://github.com/elastic/eui/pull/5135))
+- Removed Sass variables for `EuiTabs` font size (`$euiTabFontSize, $euiTabFontSizeS, $euiTabFontSizeL`) ([#5135](https://github.com/elastic/eui/pull/5135))
+- Extended all `EuiTabProps` for each `EuiTabbedContentTab` ([#5135](https://github.com/elastic/eui/pull/5135))
+- Added `useGeneratedHtmlId` utility, which memoizes the randomly generated ID on mount and prevents regenerated IDs on component rerender ([#5133](https://github.com/elastic/eui/pull/5133))
+- Fixed `z-index` styles that were causing parts of `EuiResizableContainer` to overlap `EuiHeader` ([#5164](https://github.com/elastic/eui/pull/5164))
+
+**Bug fixes**
+
+- Fixed [de]optimization bug in `EuiDataGrid` when cells are removed from the DOM via virtualization ([#5163](https://github.com/elastic/eui/pull/5163))
+
+**Theme: Amsterdam**
+
+- Deprecated `display` prop of `EuiTabs` in favor of unified styles and `bottomBorder` ([#5135](https://github.com/elastic/eui/pull/5135))
+
+## [`37.6.2`](https://github.com/elastic/eui/tree/v37.6.2)
+
+**Reverts**
+
+- Reverted `EuiScreenReaderOnly` clip property ([#5150](https://github.com/elastic/eui/pull/5150))
+
 ## [`37.6.1`](https://github.com/elastic/eui/tree/v37.6.1)
 
 **Bug fixes**
 
-- Fixed `EuiScreenReaderOnly` positioning issues within scrolling containers ([#5130](https://github.com/elastic/eui/pull/5130))
+- **[REVERTED in 37.6.2]** Fixed `EuiScreenReaderOnly` positioning issues within scrolling containers ([#5130](https://github.com/elastic/eui/pull/5130))
 - Fixed `EuiDataGrid` cell actions not unmounting from the DOM after mouse interaction ([#5120](https://github.com/elastic/eui/pull/5120))
 - Optimized `EuiDataGrid` cell interactions' performance  ([#5136](https://github.com/elastic/eui/pull/5136))
 
@@ -96,6 +125,14 @@
 
 - Fixed usage of `outsideClickCloses` prop of `EuiFlyout` ([#4986](https://github.com/elastic/eui/pull/4986))
 - Fixed `EuiFormRow` ignoring `isDisabled` prop on the child element. ([#5022](https://github.com/elastic/eui/pull/5022))
+
+## [`37.1.4`](https://github.com/elastic/eui/tree/v37.1.4)
+
+**Note: this release is a backport containing changes originally made in `37.7.0`**
+
+**Bug fixes**
+
+- Fixed [de]optimization bug in `EuiDataGrid` when cells are removed from the DOM via virtualization ([#5163](https://github.com/elastic/eui/pull/5163))
 
 ## [`37.1.3`](https://github.com/elastic/eui/tree/v37.1.3)
 

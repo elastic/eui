@@ -43,6 +43,7 @@ describe('EuiPageHeader', () => {
         const component = render(
           <EuiPageHeader
             pageTitle="Page title"
+            pageTitleProps={requiredProps}
             iconType="logoKibana"
             iconProps={requiredProps}
             tabs={tabs}
