@@ -1,21 +1,15 @@
 import React, { Fragment } from 'react';
-
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
-
 import {
   EuiMarkdownEditor,
   EuiText,
   EuiCode,
   EuiLink,
 } from '../../../../src/components';
-
 import { Link } from 'react-router-dom';
 
 import MarkdownEditor from './markdown_editor';
 const markdownEditorSource = require('!!raw-loader!./markdown_editor');
-const markdownEditorHtml = renderToHtml(MarkdownEditor);
 const markdownEditorSnippet = `<EuiMarkdownEditor
   value={value}
   onChange={setValue}
@@ -23,7 +17,6 @@ const markdownEditorSnippet = `<EuiMarkdownEditor
 
 import MarkdownEditorErrors from './markdown_editor_errors';
 const markdownEditorErrorsSource = require('!!raw-loader!./markdown_editor_errors');
-const markdownEditorErrorsHtml = renderToHtml(MarkdownEditorErrors);
 const markdownEditorErrorsSnippet = `<EuiMarkdownEditor
   value={value}
   onChange={setValue}
@@ -33,7 +26,6 @@ const markdownEditorErrorsSnippet = `<EuiMarkdownEditor
 
 import MarkdownEditorHeight from './markdown_editor_height';
 const markdownEditorHeightSource = require('!!raw-loader!./markdown_editor_height');
-const markdownEditorHeightHtml = renderToHtml(MarkdownEditorHeight);
 const markdownEditorHeightSnippet = [
   `// Custom height with auto-expanding preview
 <EuiMarkdownEditor
@@ -65,9 +57,7 @@ const markdownEditorHeightSnippet = [
 
 import MarkdownEditorNoPlugins from './markdown_editor_no_plugins';
 const markdownEditorNoPluginsSource = require('!!raw-loader!./markdown_editor_no_plugins');
-const markdownEditorNoPluginsHtml = renderToHtml(MarkdownEditor);
-const markdownEditorNoPluginsSnippet = `
-const {
+const markdownEditorNoPluginsSnippet = `const {
   parsingPlugins,
   processingPlugins,
   uiPlugins,
@@ -110,10 +100,6 @@ export const MarkdownEditorExample = {
           type: GuideSectionTypes.JS,
           code: markdownEditorSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: markdownEditorHtml,
-        },
       ],
       title: 'Base editor',
       text: (
@@ -133,10 +119,6 @@ export const MarkdownEditorExample = {
         {
           type: GuideSectionTypes.JS,
           code: markdownEditorNoPluginsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: markdownEditorNoPluginsHtml,
         },
       ],
       title: 'Unregistering plugins',
@@ -169,10 +151,6 @@ export const MarkdownEditorExample = {
           type: GuideSectionTypes.JS,
           code: markdownEditorErrorsSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: markdownEditorErrorsHtml,
-        },
       ],
       title: 'Error handling and feedback',
       text: (
@@ -196,10 +174,6 @@ export const MarkdownEditorExample = {
         {
           type: GuideSectionTypes.JS,
           code: markdownEditorHeightSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: markdownEditorHeightHtml,
         },
       ],
       title: 'Controlling the height',
