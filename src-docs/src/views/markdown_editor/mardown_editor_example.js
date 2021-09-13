@@ -145,10 +145,10 @@ export const MarkdownEditorExample = {
           The <strong>EuiMarkdownEditor</strong> comes with a default plugin
           for <EuiCode>tooltip</EuiCode> support. However, this may be unfamiliar
           or unnecessary in some contexts,
-          reason, you can unregister the plugin by excluding it from the
+          and you can unregister this plugin by excluding it from the
           <EuiCode>parsingPlugins</EuiCode>,{' '}
           <EuiCode>processingPlugins</EuiCode> and <EuiCode>uiPlugins</EuiCode>{' '}
-          list. This way, you make sure the syntax won&apos;t be identified and
+          options with a single <EuiCode>exclude</EuiCode> parameter passed to <EuiCode>getDefaultEuiMarkdownPlugins()<EuiCode>. This will ensure the syntax won&apos;t be identified or
           consequently rendered. No additional UI, like the button and help
           syntax, will be displayed.
         </p>
