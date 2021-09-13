@@ -142,12 +142,9 @@ export const MarkdownEditorExample = {
       title: 'Unregistering plugins',
       text: (
         <p>
-          Most of the built in plugins use the{' '}
-          <EuiLink href="https://github.github.com/gfm/" target="_blank">
-            GitHub flavored markdown syntax
-          </EuiLink>
-          . Other plugins like the tooltip don&apos;t follow this syntax, and
-          they might be unfamiliar or unnecessary in some contexts. For this
+          The <strong>EuiMarkdownEditor</strong> comes with a default plugin
+          for <EuiCode>tooltip</EuiCode> support. However, this may be unfamiliar
+          or unnecessary in some contexts,
           reason, you can unregister the plugin by excluding it from the
           <EuiCode>parsingPlugins</EuiCode>,{' '}
           <EuiCode>processingPlugins</EuiCode> and <EuiCode>uiPlugins</EuiCode>{' '}
