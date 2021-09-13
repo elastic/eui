@@ -2,6 +2,10 @@
 
 - Added optional line numbers to `EuiCodeBlock` ([#4993](https://github.com/elastic/eui/pull/4993))
 
+**Bug fixes**
+
+- Fixed `EuiDataGrid` stripes not alternating as expected on sort/pagination ([#5070](https://github.com/elastic/eui/pull/5070))
+
 ## [`37.7.0`](https://github.com/elastic/eui/tree/v37.7.0)
 
 - Added `placeholder` prop to `EuiMarkdownEditor` ([#5151](https://github.com/elastic/eui/pull/5151))
