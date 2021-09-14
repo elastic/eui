@@ -14,7 +14,7 @@ import { useEuiTheme, isLegacyTheme } from '../../services/theme';
 
 export const EuiGlobalReset = () => {
   const {
-    euiTheme: { base, colors, font, size, themeName },
+    euiTheme: { base, colors, font, themeName },
     colorMode,
   } = useEuiTheme();
   const legacyTheme = isLegacyTheme(themeName);
@@ -33,14 +33,14 @@ export const EuiGlobalReset = () => {
 
   /**
    * This font reset sets all our base font/typography related properties
-   * that are needed to override browser-specifici settings.
+   * that are needed to override browser-specific element settings.
    */
   const fontReset = `
     font-family: ${font.family};
-    font-weight: ${font.weight.regular};
-    letter-spacing: ${legacyTheme ? '-.005em' : 'normal'};
-    text-size-adjust: 100%;
-    font-kerning: normal;
+    font-size: ${`${font.scale[font.body.scale] * base}px`};
+    line-height: ${base / (font.scale[font.body.scale] * base)};
+    font-weight: ${font.weight[font.body.weight]};
+    ${font.body.letterSpacing && `letter-spacing: ${font.body.letterSpacing};`}
   `;
 
   /**
@@ -230,7 +230,7 @@ export const EuiGlobalReset = () => {
       font-weight: ${font.weight.bold};
     }
 
-    /* HTML5 display-role reset for older browsers */
+    // HTML5 display-role reset for older browsers
     article,
     aside,
     details,
@@ -247,16 +247,11 @@ export const EuiGlobalReset = () => {
 
     html {
       ${fontReset}
-      // font-size: $euiFontSize;
-      font-size: ${legacyTheme ? size.base : `${base - 2}px`};
-      color: ${colors.text};
+      text-size-adjust: 100%;
+      font-kerning: normal;
       height: 100%;
       background-color: ${colors.body};
-    }
-
-    body {
-      // TODO: $euiBodyLineHeight;
-      line-height: ${legacyTheme ? '1' : '1.142857143'};
+      color: ${colors.text};
     }
 
     ${focusReset()}
