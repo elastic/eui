@@ -14,13 +14,20 @@ import { schemaDetectors } from '../../data_grid_schema';
 import { getColumnActions } from './column_actions';
 
 describe('getColumnActions', () => {
-  const column = { id: 'B' };
-  const columns = [{ id: 'A' }, { id: 'B' }, { id: 'C' }];
-  const schema = {};
   const setVisibleColumns = jest.fn();
   const setIsPopoverOpen = jest.fn();
-  const sorting = undefined;
   const switchColumnPos = jest.fn();
+
+  const testArgs = {
+    column: { id: 'B' },
+    columns: [{ id: 'A' }, { id: 'B' }, { id: 'C' }],
+    schema: {},
+    schemaDetectors,
+    setVisibleColumns,
+    setIsPopoverOpen,
+    sorting: undefined,
+    switchColumnPos,
+  };
 
   // DRY test helper
   const callActionOnClick = (action: EuiListGroupItemProps) => {
@@ -32,50 +39,32 @@ describe('getColumnActions', () => {
   });
 
   it('returns an array of EuiListGroup items', () => {
-    const items = getColumnActions(
-      column,
-      columns,
-      schema,
-      schemaDetectors,
-      setVisibleColumns,
-      setIsPopoverOpen,
-      sorting,
-      switchColumnPos
-    );
+    const items = getColumnActions(testArgs);
     expect(items).toBeInstanceOf(Array); // We'll assert the actual contents below
     expect(items.length).toEqual(3);
   });
 
   it('returns an empty array when column.actions is set to false', () => {
-    const items = getColumnActions(
-      { ...column, actions: false },
-      columns,
-      schema,
-      schemaDetectors,
-      setVisibleColumns,
-      setIsPopoverOpen,
-      sorting,
-      switchColumnPos
-    );
+    const items = getColumnActions({
+      ...testArgs,
+      column: {
+        ...testArgs.column,
+        actions: false,
+      },
+    });
     expect(items.length).toEqual(0);
   });
 
   it('appends additional custom columns to the end of the array', () => {
-    const items = getColumnActions(
-      {
-        ...column,
+    const items = getColumnActions({
+      ...testArgs,
+      column: {
+        ...testArgs.column,
         actions: {
           additional: [{ label: 'Hi world!', iconType: 'alert' }],
         },
       },
-      columns,
-      schema,
-      schemaDetectors,
-      setVisibleColumns,
-      setIsPopoverOpen,
-      sorting,
-      switchColumnPos
-    );
+    });
     expect(items.length).toEqual(4);
 
     const customAction = items[3];
@@ -93,16 +82,7 @@ describe('getColumnActions', () => {
 
   describe('hiding', () => {
     describe('default behavior', () => {
-      const items = getColumnActions(
-        column,
-        columns,
-        schema,
-        schemaDetectors,
-        setVisibleColumns,
-        setIsPopoverOpen,
-        sorting,
-        switchColumnPos
-      );
+      const items = getColumnActions(testArgs);
       const hideColumn = items[0];
 
       it('renders a "Hide column" item first', () => {
@@ -128,44 +108,32 @@ describe('getColumnActions', () => {
 
     describe('custom column behavior', () => {
       it('accepts column action overrides', () => {
-        const items = getColumnActions(
-          {
-            ...column,
+        const items = getColumnActions({
+          ...testArgs,
+          column: {
+            ...testArgs.column,
             actions: {
               showHide: {
                 label: 'hello world',
               },
             },
           },
-          columns,
-          schema,
-          schemaDetectors,
-          setVisibleColumns,
-          setIsPopoverOpen,
-          sorting,
-          switchColumnPos
-        );
+        });
         const hideColumn = items[0];
 
         expect(hideColumn.label).toEqual('hello world');
       });
 
       it('allows disabling the hide action', () => {
-        const items = getColumnActions(
-          {
-            ...column,
+        const items = getColumnActions({
+          ...testArgs,
+          column: {
+            ...testArgs.column,
             actions: {
               showHide: false,
             },
           },
-          columns,
-          schema,
-          schemaDetectors,
-          setVisibleColumns,
-          setIsPopoverOpen,
-          sorting,
-          switchColumnPos
-        );
+        });
 
         expect(items.length).toEqual(2);
       });
@@ -174,16 +142,7 @@ describe('getColumnActions', () => {
 
   describe('column reordering', () => {
     describe('default enabled behavior', () => {
-      const items = getColumnActions(
-        column,
-        columns,
-        schema,
-        schemaDetectors,
-        setVisibleColumns,
-        setIsPopoverOpen,
-        sorting,
-        switchColumnPos
-      );
+      const items = getColumnActions(testArgs);
       const moveLeft = items[1];
       const moveRight = items[2];
 
@@ -230,16 +189,10 @@ describe('getColumnActions', () => {
 
     describe('disabled behavior', () => {
       it('renders "Move left" as disabled if already on the first/left-most column', () => {
-        const items = getColumnActions(
-          { id: 'A' },
-          columns,
-          schema,
-          schemaDetectors,
-          setVisibleColumns,
-          setIsPopoverOpen,
-          sorting,
-          switchColumnPos
-        );
+        const items = getColumnActions({
+          ...testArgs,
+          column: { id: 'A' },
+        });
         const moveLeft = items[1];
         expect(moveLeft.isDisabled).toEqual(true);
 
@@ -249,16 +202,10 @@ describe('getColumnActions', () => {
       });
 
       it('renders "Move left" as disabled if already on the last/right-most column', () => {
-        const items = getColumnActions(
-          { id: 'C' },
-          columns,
-          schema,
-          schemaDetectors,
-          setVisibleColumns,
-          setIsPopoverOpen,
-          sorting,
-          switchColumnPos
-        );
+        const items = getColumnActions({
+          ...testArgs,
+          column: { id: 'C' },
+        });
         const moveRight = items[2];
         expect(moveRight.isDisabled).toEqual(true);
 
@@ -270,9 +217,10 @@ describe('getColumnActions', () => {
 
     describe('custom column behavior', () => {
       it('accepts column action overrides', () => {
-        const items = getColumnActions(
-          {
-            ...column,
+        const items = getColumnActions({
+          ...testArgs,
+          column: {
+            ...testArgs.column,
             actions: {
               showMoveLeft: {
                 label: 'hello',
@@ -282,14 +230,7 @@ describe('getColumnActions', () => {
               },
             },
           },
-          columns,
-          schema,
-          schemaDetectors,
-          setVisibleColumns,
-          setIsPopoverOpen,
-          sorting,
-          switchColumnPos
-        );
+        });
         const moveLeft = items[1];
         const moveRight = items[2];
 
@@ -298,22 +239,16 @@ describe('getColumnActions', () => {
       });
 
       it('allows disabling show actions', () => {
-        const items = getColumnActions(
-          {
-            ...column,
+        const items = getColumnActions({
+          ...testArgs,
+          column: {
+            ...testArgs.column,
             actions: {
               showMoveLeft: false,
               showMoveRight: false,
             },
           },
-          columns,
-          schema,
-          schemaDetectors,
-          setVisibleColumns,
-          setIsPopoverOpen,
-          sorting,
-          switchColumnPos
-        );
+        });
 
         expect(items.length).toEqual(1);
       });
@@ -324,16 +259,10 @@ describe('getColumnActions', () => {
     const onSort = jest.fn();
 
     describe('default behavior (no active sorts present)', () => {
-      const items = getColumnActions(
-        column,
-        columns,
-        schema,
-        schemaDetectors,
-        setVisibleColumns,
-        setIsPopoverOpen,
-        { onSort, columns: [] },
-        switchColumnPos
-      );
+      const items = getColumnActions({
+        ...testArgs,
+        sorting: { onSort, columns: [] },
+      });
       const sortAsc = items[1];
       const sortDesc = items[2];
 
@@ -402,16 +331,10 @@ describe('getColumnActions', () => {
 
     describe('when active sorts are present', () => {
       describe('when current column is sorting by asc', () => {
-        const items = getColumnActions(
-          column,
-          columns,
-          schema,
-          schemaDetectors,
-          setVisibleColumns,
-          setIsPopoverOpen,
-          { onSort, columns: [{ id: 'B', direction: 'asc' }] },
-          switchColumnPos
-        );
+        const items = getColumnActions({
+          ...testArgs,
+          sorting: { onSort, columns: [{ id: 'B', direction: 'asc' }] },
+        });
         const sortAsc = items[1];
 
         it('renders sortAsc as selected', () => {
@@ -427,16 +350,10 @@ describe('getColumnActions', () => {
       });
 
       describe('when current column is sorting by desc', () => {
-        const items = getColumnActions(
-          column,
-          columns,
-          schema,
-          schemaDetectors,
-          setVisibleColumns,
-          setIsPopoverOpen,
-          { onSort, columns: [{ id: 'B', direction: 'desc' }] },
-          switchColumnPos
-        );
+        const items = getColumnActions({
+          ...testArgs,
+          sorting: { onSort, columns: [{ id: 'B', direction: 'desc' }] },
+        });
         const sortAsc = items[1];
         const sortDesc = items[2];
 
@@ -455,16 +372,12 @@ describe('getColumnActions', () => {
 
     describe('modifies the sort label based on schema', () => {
       it('renders low-high instead of A-Z for number schema', () => {
-        const items = getColumnActions(
-          { id: 'A' },
-          columns,
-          { A: { columnType: 'numeric' } },
-          schemaDetectors,
-          setVisibleColumns,
-          setIsPopoverOpen,
-          { onSort, columns: [{ id: 'A', direction: 'desc' }] },
-          switchColumnPos
-        );
+        const items = getColumnActions({
+          ...testArgs,
+          column: { id: 'A' },
+          schema: { A: { columnType: 'numeric' } },
+          sorting: { onSort, columns: [{ id: 'A', direction: 'desc' }] },
+        });
         const sortAscLabel = items[1].label as ReactElement;
         const sortDescLabel = items[2].label as ReactElement;
 
@@ -479,9 +392,10 @@ describe('getColumnActions', () => {
 
     describe('custom column behavior', () => {
       it('accepts column action overrides', () => {
-        const items = getColumnActions(
-          {
-            ...column,
+        const items = getColumnActions({
+          ...testArgs,
+          column: {
+            ...testArgs.column,
             actions: {
               showSortAsc: {
                 label: 'upsies',
@@ -491,14 +405,8 @@ describe('getColumnActions', () => {
               },
             },
           },
-          columns,
-          schema,
-          schemaDetectors,
-          setVisibleColumns,
-          setIsPopoverOpen,
-          { onSort, columns: [] },
-          switchColumnPos
-        );
+          sorting: { onSort, columns: [] },
+        });
         const sortAsc = items[1];
         const sortDesc = items[2];
 
@@ -507,22 +415,17 @@ describe('getColumnActions', () => {
       });
 
       it('allows disabling sort actions', () => {
-        const items = getColumnActions(
-          {
-            ...column,
+        const items = getColumnActions({
+          ...testArgs,
+          column: {
+            ...testArgs.column,
             actions: {
               showSortAsc: false,
               showSortDesc: false,
             },
           },
-          columns,
-          schema,
-          schemaDetectors,
-          setVisibleColumns,
-          setIsPopoverOpen,
-          { onSort, columns: [] },
-          switchColumnPos
-        );
+          sorting: { onSort, columns: [] },
+        });
         expect(items.length).toEqual(3);
       });
     });

@@ -21,16 +21,27 @@ import {
   defaultSortDescLabel,
 } from '../../column_sorting_draggable';
 
-export function getColumnActions(
-  column: EuiDataGridColumn,
-  columns: EuiDataGridColumn[],
-  schema: EuiDataGridSchema,
-  schemaDetectors: EuiDataGridSchemaDetector[],
-  setVisibleColumns: (columnId: string[]) => void,
-  setIsPopoverOpen: (value: boolean) => void,
-  sorting: EuiDataGridSorting | undefined,
-  switchColumnPos: (colFromId: string, colToId: string) => void
-) {
+interface GetColumnActions {
+  column: EuiDataGridColumn;
+  columns: EuiDataGridColumn[];
+  schema: EuiDataGridSchema;
+  schemaDetectors: EuiDataGridSchemaDetector[];
+  setVisibleColumns: (columnId: string[]) => void;
+  setIsPopoverOpen: (value: boolean) => void;
+  sorting: EuiDataGridSorting | undefined;
+  switchColumnPos: (colFromId: string, colToId: string) => void;
+}
+
+export const getColumnActions = ({
+  column,
+  columns,
+  schema,
+  schemaDetectors,
+  setVisibleColumns,
+  setIsPopoverOpen,
+  sorting,
+  switchColumnPos,
+}: GetColumnActions) => {
   if (column.actions === false) {
     return [];
   }
