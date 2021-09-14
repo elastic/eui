@@ -26,11 +26,11 @@ export const EuiGlobalReset = () => {
    * so that it knows to use custom styles. Therefore, we just reuse the same scrollbar mixin with thick size.
    */
   const scrollbarStyles = useScrollBar({
-    trackBackgroundColor:
+    trackColor:
       colorMode === 'LIGHT'
         ? shade(colors.body, 0.03)
         : tint(colors.body, 0.07),
-    width: 'thick',
+    width: 'auto',
   });
 
   /**
