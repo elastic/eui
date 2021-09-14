@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { useEuiTheme, isDefaultTheme } from '../../services/theme';
+import { useEuiTheme, isLegacyTheme } from '../../services/theme';
 
 // Some mixins that help us deal with browser scaling of text more consistently.
 // Essentially, fonts across eui should scale against the root html element, not
@@ -18,11 +18,11 @@ export const useEuiFont = () => {
   const {
     euiTheme: { font, themeName },
   } = useEuiTheme();
-  const defaultTheme = isDefaultTheme(themeName);
+  const legacyTheme = isLegacyTheme(themeName);
   return `
     font-family: ${font.family};
     font-weight: ${font.weight.regular};
-    letter-spacing: ${defaultTheme ? '-.005em' : 'normal'};
+    letter-spacing: ${legacyTheme ? '-.005em' : 'normal'};
     text-size-adjust: 100%;
     font-kerning: normal;
   `;

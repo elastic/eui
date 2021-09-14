@@ -150,7 +150,7 @@ export {
   getOn,
   mergeDeep,
   setOn,
-  isDefaultTheme,
+  isLegacyTheme,
   Computed,
   ComputedThemeShape,
   EuiThemeColorMode,
