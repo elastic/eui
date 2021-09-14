@@ -21,14 +21,10 @@ export const EuiGlobalReset = () => {
   const legacyTheme = isLegacyTheme(themeName);
   const euiFont = useEuiFont();
 
-  const hacks = css`
-    // Chrome has an issue around RTL languages in SVGs when letter-spacing is negative
-    // https://bugs.chromium.org/p/chromium/issues/detail?id=966480
-    svg text {
-      letter-spacing: normal !important; // sass-lint:disable-line no-important
-    }
-  `;
-
+  /**
+   * Declaring the top level scrollbar colors to match the theme also requires setting the sizes on Chrome
+   * so that it knows to use custom styles. Therefore, we just reuse the same scrollbar mixin with thick size.
+   */
   const scrollbarStyles = useScrollBar({
     trackBackgroundColor:
       colorMode === 'LIGHT'
@@ -36,13 +32,6 @@ export const EuiGlobalReset = () => {
         : tint(colors.body, 0.07),
     width: 'thick',
   });
-  const scrollbar = css`
-    // Declaring the top level scrollbar colors to match the theme also requires setting the sizes on Chrome
-    // so that it knows to use custom styles. Therefore, we just reuse the same scrollbar mixin with thick size.
-    html {
-      ${scrollbarStyles}
-    }
-  `;
 
   /**
    * Outline/Focus state resets
@@ -70,7 +59,7 @@ export const EuiGlobalReset = () => {
     // 💔 But they don't allow coloring of the 'auto'/default outline, so contrast is no good in dark mode.
     // 👉 For these browsers we use the solid type in order to match with \`currentColor\`.
     // 😦 Which does means the outline will be square
-    // TODO: $euiFocusRingSize
+    // TODO: $euiFocusRingSize & $euiFocusBackgroundColor
     return `*:focus {
       outline: 2px solid currentColor;
       outline-offset: calc((2px / 2) * -1);
@@ -84,6 +73,14 @@ export const EuiGlobalReset = () => {
       &:not(:focus-visible) {
         outline: none;
       }
+    }
+
+    // Dark mode's highlighted doesn't work well so lets just set it the same as our focus background
+    ::selection {
+      background: ${transparentize(
+        colors.primary,
+        colorMode === 'LIGHT' ? 0.1 : 0.2
+      )}
     }`;
   };
 
@@ -96,6 +93,10 @@ export const EuiGlobalReset = () => {
     *:before,
     *:after {
       box-sizing: border-box;
+    }
+
+    html {
+      ${scrollbarStyles}
     }
 
     html,
@@ -245,39 +246,23 @@ export const EuiGlobalReset = () => {
     }
 
     body {
-      // line-height: $euiBodyLineHeight;
+      // TODO: $euiBodyLineHeight;
       line-height: ${legacyTheme ? '1' : '1.142857143'};
     }
 
     ${focusReset()}
 
-    ${!legacyTheme &&
-    `
-    // Dark mode's highlighted doesn't work well so lets just set it the same as our focus background
-    ::selection {
-      // background: $euiFocusBackgroundColor;
-      background: ${transparentize(
-        colors.primary,
-        colorMode === 'LIGHT' ? 0.1 : 0.2
-      )}
-    }
-    `}
-
     a {
-      text-decoration: none;
-      color: ${colors.primary};
+      color: ${colors.primaryText};
 
-      &:hover {
-        text-decoration: none;
-      }
-
+      &,
+      &:hover,
       &:focus {
         text-decoration: none;
-        ${legacyTheme && 'outline: none;'}
       }
     }
 
-    a:hover,
+    a[href],
     button,
     [role='button'] {
       cursor: pointer;
@@ -297,7 +282,6 @@ export const EuiGlobalReset = () => {
       border: none;
       padding: 0;
       margin: 0;
-      ${legacyTheme && 'outline: none;'}
       font-size: inherit;
       color: inherit;
       border-radius: 0;
@@ -322,7 +306,6 @@ export const EuiGlobalReset = () => {
     q:before,
     q:after {
       content: '';
-      content: none;
     }
 
     table {
@@ -337,6 +320,13 @@ export const EuiGlobalReset = () => {
     fieldset {
       min-inline-size: auto;
     }
+
+    // Chrome has an issue around RTL languages in SVGs when letter-spacing is negative
+    // https://bugs.chromium.org/p/chromium/issues/detail?id=966480
+    svg text {
+      letter-spacing: normal !important; // sass-lint:disable-line no-important
+    }
   `;
-  return <Global styles={[reset, hacks, scrollbar]} />;
+
+  return <Global styles={reset} />;
 };
