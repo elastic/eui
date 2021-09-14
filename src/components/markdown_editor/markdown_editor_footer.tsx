@@ -303,7 +303,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
         {uploadButton}
         {errorsButton}
       </div>
-      <EuiToolTip content={syntaxTitle}>{helpSyntaxButton}</EuiToolTip>
+      {helpSyntaxButton}
     </div>
   );
 });
