@@ -5,6 +5,7 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
+
 import React from 'react';
 import {
   EuiDataGridColumn,
@@ -218,20 +219,15 @@ export function getColumnActions(
     ? [...result, ...column.actions?.additional]
     : result;
 
-  //wrap EuiListGroupItem onClick function to close the popover and prevet bubbling up
-
-  return allActions.map((action) => {
-    return {
-      ...action,
-      ...{
-        onClick: (ev: React.MouseEvent<HTMLButtonElement>) => {
-          ev.stopPropagation();
-          setIsPopoverOpen(false);
-          if (action && action.onClick) {
-            action.onClick(ev);
-          }
-        },
-      },
-    };
-  }) as EuiListGroupItemProps[];
+  return allActions.map((action) => ({
+    ...action,
+    // Wrap EuiListGroupItem onClick function to close the popover and prevent bubbling up
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+      setIsPopoverOpen(false);
+      if (action?.onClick) {
+        action.onClick(e);
+      }
+    },
+  })) as EuiListGroupItemProps[];
 }
