@@ -101,5 +101,33 @@ describe('EuiCodeBlockImpl', () => {
       );
       expect(component).toMatchSnapshot();
     });
+
+    test('renders line numbers', () => {
+      const component = render(
+        <EuiCodeBlockImpl
+          inline={false}
+          lineNumbers
+          overflowHeight={300}
+          {...requiredProps}
+        >
+          {code}
+        </EuiCodeBlockImpl>
+      );
+      expect(component).toMatchSnapshot();
+    });
+
+    test('renders line numbers with a start value', () => {
+      const component = render(
+        <EuiCodeBlockImpl
+          inline={false}
+          lineNumbers={{ start: 10 }}
+          overflowHeight={300}
+          {...requiredProps}
+        >
+          {code}
+        </EuiCodeBlockImpl>
+      );
+      expect(component).toMatchSnapshot();
+    });
   });
 });
