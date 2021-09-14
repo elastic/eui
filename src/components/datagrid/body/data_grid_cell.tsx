@@ -311,21 +311,21 @@ export class EuiDataGridCell extends Component<
 
   setCellContentsRef = (ref: HTMLDivElement | null) => {
     this.cellContentsRef = ref;
+    const { rowHeightUtils, rowHeightsOptions, rowIndex } = this.props;
     if (
-      this.props.rowHeightUtils &&
-      this.props.rowHeightsOptions &&
-      this.props.rowHeightUtils.isAutoHeight(
-        this.props.rowIndex,
-        this.props.rowHeightsOptions
-      )
+      rowHeightUtils &&
+      rowHeightsOptions &&
+      rowHeightUtils.isAutoHeight(rowIndex, rowHeightsOptions)
     ) {
       if (ref && hasResizeObserver) {
+        const { colIndex, visibleRowIndex } = this.props;
+
         const setRowHeight = (rowHeight: number) =>
-          this.props.rowHeightUtils?.setRowHeight(
-            this.props.rowIndex,
-            this.props.colIndex,
+          rowHeightUtils.setRowHeight(
+            rowIndex,
+            colIndex,
             rowHeight,
-            this.props.visibleRowIndex
+            visibleRowIndex
           );
         this.contentObserver = observeHeight(ref, setRowHeight);
       } else if (this.contentObserver) {
