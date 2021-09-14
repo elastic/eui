@@ -250,7 +250,7 @@ export const EuiGlobalReset = () => {
       // background: $euiFocusBackgroundColor;
       background: ${transparentize(
         colors.primary,
-        colorMode === 'LIGHT' ? 0.9 : 0.8
+        colorMode === 'LIGHT' ? 0.1 : 0.2
       )}
     }
     `}
