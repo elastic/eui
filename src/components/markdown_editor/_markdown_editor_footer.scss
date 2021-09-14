@@ -40,10 +40,3 @@
     width: 26px;
   }
 }
-
-.euiMarkdownEditorFooter__errors {
-  // overrides the default button icon color
-  > svg {
-    color: $euiTextSubduedColor;
-  }
-}
