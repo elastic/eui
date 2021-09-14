@@ -35,9 +35,6 @@
 }
 
 .euiMarkdownEditorFooter__helpButton {
-  justify-self: flex-end;
-  min-width: $euiSizeXL;
-
   // overrides the default button icon width size
   > svg {
     width: 26px;
@@ -45,7 +42,7 @@
 }
 
 .euiMarkdownEditorFooter__errors {
-  // overrides the default button icon width size
+  // overrides the default button icon color
   > svg {
     color: $euiTextSubduedColor;
   }

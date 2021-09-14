@@ -31,10 +31,11 @@ import {
 import { EuiPopover, EuiPopoverTitle } from '../popover';
 import { EuiText } from '../text';
 import { EuiSpacer } from '../spacer';
+import { EuiToolTip } from '../tool_tip';
 // @ts-ignore a react svg
 import MarkdownLogo from './icons/markdown_logo';
 import { EuiHorizontalRule } from '../horizontal_rule';
-import { EuiToolTip } from '../tool_tip';
+
 import { EuiLink } from '../link';
 
 interface EuiMarkdownEditorFooterProps {
@@ -104,9 +105,15 @@ export const EuiMarkdownEditorFooter = forwardRef<
     ),
   };
 
+  const syntaxTitle = useEuiI18n(
+    'euiMarkdownEditorFooter.syntaxTitle',
+    'Syntax help'
+  );
+
   if (isUploadingFiles) {
     uploadButton = (
       <EuiButtonIcon
+        size="s"
         iconType={EuiLoadingSpinner}
         aria-label={ariaLabels.uploadingFiles}
       />
@@ -117,7 +124,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
         <EuiButtonEmpty
           className="euiMarkdownEditorFooter__uploadError"
           autoFocus
-          size="xs"
+          size="s"
           iconType="paperClip"
           color="danger"
           aria-label={`${ariaLabels.unsupportedFileType}. ${ariaLabels.supportedFileTypes}. ${ariaLabels.uploadingFiles}`}
@@ -130,6 +137,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
   } else if (dropHandlers.length > 0) {
     uploadButton = (
       <EuiButtonIcon
+        size="s"
         iconType="paperClip"
         color="text"
         aria-label={ariaLabels.openUploadModal}
@@ -178,7 +186,10 @@ export const EuiMarkdownEditorFooter = forwardRef<
   const hasUiPlugins = uiPlugins.length > 0;
   const githubSyntaxLink = (
     <EuiLink href="https://github.github.com/gfm/" target="_blank">
-      GitHub flavored markdown
+      <EuiI18n
+        token="euiMarkdownEditorFooter.githubSyntaxLink"
+        default="GitHub flavored markdown"
+      />
     </EuiLink>
   );
 
@@ -188,6 +199,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
     helpSyntaxButton = (
       <>
         <EuiButtonIcon
+          size="s"
           className="euiMarkdownEditorFooter__helpButton"
           iconType={MarkdownLogo}
           color="text"
@@ -198,12 +210,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
           <EuiModal onClose={() => setIsShowingHelpModal(false)}>
             <EuiModalHeader>
               <EuiTitle>
-                <h3>
-                  <EuiI18n
-                    token="euiMarkdownEditorFooter.syntaxTitle"
-                    default="Syntax help"
-                  />
-                </h3>
+                <h1>{syntaxTitle}</h1>
               </EuiTitle>
             </EuiModalHeader>
             <EuiModalBody>
@@ -263,6 +270,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
       <EuiPopover
         button={
           <EuiButtonIcon
+            size="s"
             className="euiMarkdownEditorFooter__helpButton"
             iconType={MarkdownLogo}
             color="text"
@@ -295,8 +303,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
         {uploadButton}
         {errorsButton}
       </div>
-
-      {helpSyntaxButton}
+      <EuiToolTip content={syntaxTitle}>{helpSyntaxButton}</EuiToolTip>
     </div>
   );
 });
