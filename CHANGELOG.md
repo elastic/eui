@@ -6,7 +6,7 @@
 **Bug fixes**
 
 - Fixed `EuiDataGrid` stripes not alternating as expected on sort/pagination ([#5070](https://github.com/elastic/eui/pull/5070))
-- Replaced the `EuiMarkdownEditor` help syntax modal with a popover when no custom plugins are available ([#5147](https://github.com/elastic/eui/pull/5147))
+- Replaced the `EuiMarkdownEditor` help syntax modal with a tooltip when no custom plugins are available ([#5147](https://github.com/elastic/eui/pull/5147))
 
 ## [`37.7.0`](https://github.com/elastic/eui/tree/v37.7.0)
 
