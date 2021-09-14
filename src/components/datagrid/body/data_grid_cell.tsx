@@ -194,6 +194,33 @@ export class EuiDataGridCell extends Component<
     }
   };
 
+  recalculateRowHeight() {
+    const cellRef = this.cellRef.current;
+    const { getRowHeight, rowHeightUtils, rowHeightsOptions } = this.props;
+
+    if (cellRef && getRowHeight && rowHeightUtils && rowHeightsOptions) {
+      const { rowIndex, colIndex, visibleRowIndex } = this.props;
+
+      const isAutoHeight = rowHeightUtils.isAutoHeight(
+        rowIndex,
+        rowHeightsOptions
+      );
+      const isHeightSame = rowHeightUtils.compareHeights(
+        cellRef.offsetHeight,
+        getRowHeight(rowIndex)
+      );
+
+      if (isAutoHeight && !isHeightSame) {
+        rowHeightUtils.setRowHeight(
+          rowIndex,
+          colIndex,
+          this.cellContentsRef?.offsetHeight,
+          visibleRowIndex
+        );
+      }
+    }
+  }
+
   componentDidMount() {
     this.unsubscribeCell = this.context.onFocusUpdate(
       [this.props.colIndex, this.props.visibleRowIndex],
@@ -217,27 +244,8 @@ export class EuiDataGridCell extends Component<
   }
 
   componentDidUpdate(prevProps: EuiDataGridCellProps) {
-    if (
-      this.cellRef.current &&
-      this.props.getRowHeight &&
-      this.props.rowHeightUtils &&
-      this.props.rowHeightsOptions &&
-      this.props.rowHeightUtils.isAutoHeight(
-        this.props.rowIndex,
-        this.props.rowHeightsOptions
-      ) &&
-      !this.props.rowHeightUtils?.compareHeights(
-        this.cellRef.current.offsetHeight,
-        this.props.getRowHeight(this.props.rowIndex)
-      )
-    ) {
-      this.props.rowHeightUtils?.setRowHeight(
-        this.props.rowIndex,
-        this.props.colIndex,
-        this.cellContentsRef?.offsetHeight,
-        this.props.visibleRowIndex
-      );
-    }
+    this.recalculateRowHeight();
+
     if (this.props.columnId !== prevProps.columnId) {
       this.setCellProps({});
     }

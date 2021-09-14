@@ -167,6 +167,21 @@ describe('EuiDataGridCell', () => {
   });
 
   describe('componentDidUpdate', () => {
+    it('recalculates row height on every update', () => {
+      const { isAutoHeight, setRowHeight } = mockRowHeightUtils;
+      (isAutoHeight as jest.Mock).mockImplementation(() => true);
+
+      const component = mountEuiDataGridCellWithContext({
+        rowHeightsOptions: { defaultHeight: 'auto' },
+        getRowHeight: jest.fn(() => 50),
+      });
+
+      component.setProps({ rowIndex: 2 }); // Trigger any update
+      expect(setRowHeight).toHaveBeenCalled();
+
+      (isAutoHeight as jest.Mock).mockRestore();
+    });
+
     it('resets cell props when the cell columnId changes', () => {
       const setState = jest.spyOn(EuiDataGridCell.prototype, 'setState');
       const component = mountEuiDataGridCellWithContext();
