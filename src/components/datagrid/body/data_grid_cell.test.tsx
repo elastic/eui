@@ -10,6 +10,7 @@ import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { keys } from '../../../services';
 
+import { mockRowHeightUtils } from '../__mocks__/row_height_utils';
 import { EuiDataGridCell } from './data_grid_cell';
 
 describe('EuiDataGridCell', () => {
@@ -27,6 +28,7 @@ describe('EuiDataGridCell', () => {
       </div>
     ),
     popoverContent: () => <div>popover</div>,
+    rowHeightUtils: mockRowHeightUtils,
   };
 
   const mountEuiDataGridCellWithContext = ({ ...props } = {}) => {
@@ -153,13 +155,8 @@ describe('EuiDataGridCell', () => {
           value: 10,
         });
         const getRowHeight = jest.fn(() => 20);
-        const rowHeightUtils = {
-          isAutoHeight: () => true,
-          compareHeights: (savedHeight: number, newHeight: number) =>
-            savedHeight === newHeight,
-        };
 
-        component.setProps({ rowHeightUtils, getRowHeight });
+        component.setProps({ getRowHeight });
       });
     });
 
