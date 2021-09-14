@@ -6,8 +6,25 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
+
+import { calculateThumbPosition, EUI_THUMB_SIZE } from './utils';
+
+const calculateOffset = (position: number, value: number, bound: number) => {
+  const threshold = 30;
+  let offset = value === bound ? 0 : EUI_THUMB_SIZE / 2;
+  if (offset !== 0) {
+    // Estimating offset by eye. Trying to account for range scaling at both ends.
+    offset =
+      position <= threshold ? offset + (1 / position) * threshold : offset;
+    offset =
+      position >= 100 - threshold
+        ? offset - (1 / (100 - position)) * threshold
+        : offset;
+  }
+  return offset;
+};
 
 export type EuiRangeLevelColor = 'primary' | 'success' | 'warning' | 'danger';
 
@@ -39,6 +56,10 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   showTicks,
   compressed,
 }) => {
+  const [trackWidth, setTrackWidth] = useState(0);
+  const handleRef = (node: HTMLDivElement | null) => {
+    setTrackWidth(node?.clientWidth ?? 0);
+  };
   const validateLevelIsInRange = (level: EuiRangeLevel) => {
     if (level.min < min) {
       throw new Error(
@@ -58,20 +79,33 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   });
 
   return (
-    <div className={classes}>
-      {levels.map((level, index) => {
-        validateLevelIsInRange(level);
-        const range = level.max - level.min;
-        const width = (range / (max - min)) * 100;
+    <div className={classes} ref={handleRef}>
+      {trackWidth > 0 &&
+        levels.map((level, index) => {
+          validateLevelIsInRange(level);
 
-        return (
-          <span
-            key={index}
-            style={{ width: `${width}%` }}
-            className={`euiRangeLevel euiRangeLevel--${level.color}`}
-          />
-        );
-      })}
+          const left =
+            level.min === min
+              ? 0
+              : calculateThumbPosition(level.min, min, max, trackWidth);
+          const leftOffset = calculateOffset(left, level.min, min);
+          const right =
+            level.max === max
+              ? 100
+              : calculateThumbPosition(level.max, min, max, trackWidth);
+          const rightOffset = calculateOffset(right, level.max, max);
+
+          return (
+            <span
+              key={index}
+              style={{
+                left: `calc(${left}% + ${leftOffset}px)`,
+                right: `calc(${100 - right}% - ${rightOffset}px)`,
+              }}
+              className={`euiRangeLevel euiRangeLevel--${level.color}`}
+            />
+          );
+        })}
     </div>
   );
 };

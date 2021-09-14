@@ -288,16 +288,7 @@ exports[`EuiRange props levels should render 1`] = `
   >
     <div
       class="euiRangeLevels"
-    >
-      <span
-        class="euiRangeLevel euiRangeLevel--danger"
-        style="width:20%"
-      />
-      <span
-        class="euiRangeLevel euiRangeLevel--success"
-        style="width:80%"
-      />
-    </div>
+    />
     <input
       aria-hidden="false"
       class="euiRangeSlider"
