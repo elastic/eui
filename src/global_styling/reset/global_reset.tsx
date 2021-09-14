@@ -11,14 +11,14 @@ import { Global, css } from '@emotion/react';
 import { useScrollBar } from '../mixins/_helpers';
 import { useEuiFont } from '../mixins/_typography';
 import { shade, tint, transparentize } from '../../services/color';
-import { useEuiTheme, isDefaultTheme } from '../../services/theme';
+import { useEuiTheme, isLegacyTheme } from '../../services/theme';
 
 export const EuiGlobalReset = () => {
   const {
     euiTheme: { base, colors, font, size, themeName },
     colorMode,
   } = useEuiTheme();
-  const defaultTheme = isDefaultTheme(themeName);
+  const legacyTheme = isLegacyTheme(themeName);
   const euiFont = useEuiFont();
 
   const hacks = css`
@@ -44,12 +44,54 @@ export const EuiGlobalReset = () => {
     }
   `;
 
-  const reset = css`
-    /**
-     * Adapted from Eric Meyer's reset (http://meyerweb.com/eric/tools/css/reset/, v2.0 | 20110126).
-     *
-     */
+  /**
+   * Outline/Focus state resets
+   */
+  const focusReset = () => {
+    if (legacyTheme) {
+      // The legacy theme simply turns off all outlines in favor of component-specific handling using box-shadow
+      return `*:focus {
+        outline: none;
 
+        // Disables border that shows up when tabbing in Firefox.
+        &::-moz-focus-inner {
+          border: none;
+        }
+
+        &:-moz-focusring {
+          outline: none;
+        }
+      }`;
+    }
+
+    // The latest theme utilizes `focus-visible` to turn on focus outlines.
+    // But this is browser-dependend:
+    // 👉 Safari and Firefox innately respect only showing the outline with keyboard only
+    // 💔 But they don't allow coloring of the 'auto'/default outline, so contrast is no good in dark mode.
+    // 👉 For these browsers we use the solid type in order to match with \`currentColor\`.
+    // 😦 Which does means the outline will be square
+    // TODO: $euiFocusRingSize
+    return `*:focus {
+      outline: 2px solid currentColor;
+      outline-offset: calc((2px / 2) * -1);
+
+      // 👀 Chrome respects :focus-visible and allows coloring the \`auto\` style
+      &:focus-visible {
+        outline-style: auto;
+      }
+
+      //🙅‍♀️ But Chrome also needs to have the outline forcefully removed from regular \`:focus\` state
+      &:not(:focus-visible) {
+        outline: none;
+      }
+    }`;
+  };
+
+  /**
+   * Final reset
+   * Adapted from Eric Meyer's reset (http://meyerweb.com/eric/tools/css/reset/, v2.0 | 20110126)
+   */
+  const reset = css`
     *,
     *:before,
     *:after {
@@ -196,7 +238,7 @@ export const EuiGlobalReset = () => {
       // @include euiFont;
       ${euiFont}
       // font-size: $euiFontSize;
-      font-size: ${defaultTheme ? size.base : `${base - 2}px`};
+      font-size: ${legacyTheme ? size.base : `${base - 2}px`};
       color: ${colors.text};
       height: 100%;
       background-color: ${colors.body};
@@ -204,46 +246,12 @@ export const EuiGlobalReset = () => {
 
     body {
       // line-height: $euiBodyLineHeight;
-      line-height: ${defaultTheme ? '1' : '1.142857143'};
+      line-height: ${legacyTheme ? '1' : '1.142857143'};
     }
 
-    ${defaultTheme
-      ? `
-    *:focus {
-      outline: none;
+    ${focusReset()}
 
-      // Disables border that shows up when tabbing in Firefox.
-      &::-moz-focus-inner {
-        border: none;
-      }
-
-      &:-moz-focusring {
-        outline: none;
-      }
-    }`
-      : `
-    *:focus {
-      // 👉 Safari and Firefox innately respect only showing the outline with keyboard only
-      // 💔 But they don't allow coloring of the 'auto'/default outline, so contrast is no good in dark mode.
-      // 👉 For these browsers we use the solid type in order to match with \`currentColor\`.
-      // 😦 Which does means the outline will be square
-      // outline: $euiFocusRingSize solid currentColor;
-      outline: 2px solid currentColor;
-      // outline-offset: -($euiFocusRingSize / 2);
-      outline-offset: calc((2px / 2) * -1);
-
-      // 👀 Chrome respects :focus-visible and allows coloring the \`auto\` style
-      &:focus-visible {
-        outline-style: auto;
-      }
-
-      //🙅‍♀️ But Chrome also needs to have the outline forcefully removed from regular \`:focus\` state
-      &:not(:focus-visible) {
-        outline: none;
-      }
-    }`}
-
-    ${!defaultTheme &&
+    ${!legacyTheme &&
     `
     // Dark mode's highlighted doesn't work well so lets just set it the same as our focus background
     ::selection {
@@ -265,7 +273,7 @@ export const EuiGlobalReset = () => {
 
       &:focus {
         text-decoration: none;
-        ${defaultTheme && 'outline: none;'}
+        ${legacyTheme && 'outline: none;'}
       }
     }
 
@@ -289,7 +297,7 @@ export const EuiGlobalReset = () => {
       border: none;
       padding: 0;
       margin: 0;
-      ${defaultTheme && 'outline: none;'}
+      ${legacyTheme && 'outline: none;'}
       font-size: inherit;
       color: inherit;
       border-radius: 0;

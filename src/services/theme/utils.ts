@@ -373,6 +373,6 @@ export const mergeDeep = (
   return target;
 };
 
-export const isDefaultTheme = (name: string) => {
+export const isLegacyTheme = (name: string) => {
   return name === DEFAULT_NAME_KEY;
 };
