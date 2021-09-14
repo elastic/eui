@@ -9,7 +9,6 @@
 import React from 'react';
 import { Global, css } from '@emotion/react';
 import { useScrollBar } from '../mixins/_helpers';
-import { useEuiFont } from '../mixins/_typography';
 import { shade, tint, transparentize } from '../../services/color';
 import { useEuiTheme, isLegacyTheme } from '../../services/theme';
 
@@ -19,7 +18,6 @@ export const EuiGlobalReset = () => {
     colorMode,
   } = useEuiTheme();
   const legacyTheme = isLegacyTheme(themeName);
-  const euiFont = useEuiFont();
 
   /**
    * Declaring the top level scrollbar colors to match the theme also requires setting the sizes on Chrome
@@ -32,6 +30,18 @@ export const EuiGlobalReset = () => {
         : tint(colors.body, 0.07),
     width: 'auto',
   });
+
+  /**
+   * This font reset sets all our base font/typography related properties
+   * that are needed to override browser-specifici settings.
+   */
+  const fontReset = `
+    font-family: ${font.family};
+    font-weight: ${font.weight.regular};
+    letter-spacing: ${legacyTheme ? '-.005em' : 'normal'};
+    text-size-adjust: 100%;
+    font-kerning: normal;
+  `;
 
   /**
    * Outline/Focus state resets
@@ -209,7 +219,7 @@ export const EuiGlobalReset = () => {
     textarea,
     select,
     button {
-      font-family: ${font.family};
+      ${fontReset}
     }
 
     em {
@@ -236,8 +246,7 @@ export const EuiGlobalReset = () => {
     }
 
     html {
-      // @include euiFont;
-      ${euiFont}
+      ${fontReset}
       // font-size: $euiFontSize;
       font-size: ${legacyTheme ? size.base : `${base - 2}px`};
       color: ${colors.text};
@@ -268,15 +277,6 @@ export const EuiGlobalReset = () => {
       cursor: pointer;
     }
 
-    input {
-      margin: 0;
-      padding: 0;
-
-      &:disabled {
-        opacity: 1; /* required on iOS */
-      }
-    }
-
     button {
       background: none;
       border: none;
@@ -288,6 +288,15 @@ export const EuiGlobalReset = () => {
 
       &:hover {
         cursor: pointer;
+      }
+    }
+
+    input {
+      margin: 0;
+      padding: 0;
+
+      &:disabled {
+        opacity: 1; /* required on iOS */
       }
     }
 
