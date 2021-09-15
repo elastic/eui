@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `38.0.0`.
+
+## [`38.0.0`](https://github.com/elastic/eui/tree/v38.0.0)
+
 - Added optional line numbers to `EuiCodeBlock` ([#4993](https://github.com/elastic/eui/pull/4993))
 - Removed `emoticon` support and removed rendered `<div>` from `EuiMarkdownFormat` ([#5176](https://github.com/elastic/eui/pull/5176))
 
