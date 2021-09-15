@@ -60,17 +60,17 @@ rowHeightsOptions = {
   defaultHeight: 'auto', // all rows will automatically adjust the height except rows defined in 'rowHeights'
   rowHeights: {
     1: {
-      lineCount: 5, // row with index 1 will show 5 lines
+      lineCount: 5, // row at index 1 will show 5 lines
     },
-    4: 140, // row with index 4 will adjust the height to 140px
+    4: 140, // row at index 4 will adjust the height to 140px
   },
 }
 
 // you can also automatically adjust the height for a specific row
 rowHeightsOptions = {
   rowHeights: {
-    1: 'auto', // row with index 1 will automatically adjust the height
-    4: 140, // row with index 4 will adjust the height to 140px
+    1: 'auto', // row at index 1 will automatically adjust the height
+    4: 140, // row at index 4 will adjust the height to 140px
   }
 }
 `;
@@ -123,6 +123,11 @@ export const DataGridRowHeightOptionsExample = {
             row
           </li>
         </ul>
+        <p>
+          Each of these can be configured with an exact pixel height, a line
+          count, or <EuiCode>&quot;auto&quot;</EuiCode> to fit all of the
+          content. See the examples below for more details.
+        </p>
       </EuiText>
       <EuiSpacer />
       <EuiCallOut color="warning" title="Rows have minimum height requirements">
@@ -147,15 +152,14 @@ export const DataGridRowHeightOptionsExample = {
       text: (
         <Fragment>
           <p>
-            You can change the default height for all rows by passing to the{' '}
-            <EuiCode>defaultHeight</EuiCode> property a line count or a height
-            in pixels. This will ensure the rows will adjust the height to match
-            that configuration.
+            You can change the default height for all rows by passing a line
+            count or pixel value to the <EuiCode>defaultHeight</EuiCode>{' '}
+            property.
           </p>
           <p>
-            You can also override the height of a specific row by passing an
-            object to the <EuiCode>rowHeights</EuiCode> property with the index
-            number, line count or a height in pixels.
+            You can also override the height of a specific row by passing a
+            <EuiCode>rowHeights</EuiCode> object associating the row&apos;s
+            index with a specific height configuration.
           </p>
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {rowHeightsSnippet}
@@ -181,14 +185,14 @@ export const DataGridRowHeightOptionsExample = {
       text: (
         <Fragment>
           <p>
-            You can change the default height for all rows by setting{' '}
-            <EuiCode>defaultHeight=&quot;auto&quot;</EuiCode>. This will ensure
-            the rows will automatically adjust the height to fit the contents.
+            To enable automatically fitting rows to their content you can set{' '}
+            <EuiCode>defaultHeight=&quot;auto&quot;</EuiCode>. This ensures
+            every row automatically adjusts its height to fit the contents.
           </p>
           <p>
-            You can also override the height of a specific row by passing an
-            object to the <EuiCode>rowHeights</EuiCode> property with the index
-            number and <EuiCode>&quot;auto&quot;</EuiCode>.
+            You can also override the height of a specific row by passing a
+            <EuiCode>rowHeights</EuiCode> object associating the row&apos;s
+            index with an <EuiCode>&quot;auto&quot;</EuiCode> value.
           </p>
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {autoRowHeightsSnippet}
