@@ -28,7 +28,7 @@ exports[`EuiDescriptionList props compressed is rendered 1`] = `
 />
 `;
 
-exports[`EuiDescriptionList props listItems is rendered as strings and elements 1`] = `
+exports[`EuiDescriptionList props listItems descriptionProps is rendered 1`] = `
 <dl
   class="euiDescriptionList euiDescriptionList--row"
 >
@@ -38,12 +38,63 @@ exports[`EuiDescriptionList props listItems is rendered as strings and elements 
     Title 1
   </dt>
   <dd
-    class="euiDescriptionList__description"
+    aria-label="aria-label"
+    class="euiDescriptionList__description testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     Description 1
   </dd>
   <dt
     class="euiDescriptionList__title"
+  >
+    <em>
+      Title 2
+    </em>
+  </dt>
+  <dd
+    aria-label="aria-label"
+    class="euiDescriptionList__description testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <code>
+      Description 2
+    </code>
+  </dd>
+  <dt
+    class="euiDescriptionList__title"
+  >
+    Title 3
+  </dt>
+  <dd
+    aria-label="aria-label"
+    class="euiDescriptionList__description testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    Description 3
+  </dd>
+</dl>
+`;
+
+exports[`EuiDescriptionList props listItems titleProps is rendered 1`] = `
+<dl
+  class="euiDescriptionList euiDescriptionList--row"
+>
+  <dt
+    aria-label="aria-label"
+    class="euiDescriptionList__title testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    Title 1
+  </dt>
+  <dd
+    class="euiDescriptionList__description"
+  >
+    Description 1
+  </dd>
+  <dt
+    aria-label="aria-label"
+    class="euiDescriptionList__title testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     <em>
       Title 2
@@ -57,7 +108,9 @@ exports[`EuiDescriptionList props listItems is rendered as strings and elements 
     </code>
   </dd>
   <dt
-    class="euiDescriptionList__title"
+    aria-label="aria-label"
+    class="euiDescriptionList__title testClass1 testClass2"
+    data-test-subj="test subject string"
   >
     Title 3
   </dt>
