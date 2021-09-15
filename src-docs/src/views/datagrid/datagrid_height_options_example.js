@@ -27,20 +27,86 @@ const rowHeightsSnippet = `rowHeightsOptions = {
   },
 }`;
 
-const autoRowHeightsSnippet = `
-  {
-    defaultHeight: 'auto', // each row auto fit to content except rows which was defined in 'rowHeights'
+const rowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
+  () => ({
+    defaultHeight: {
+      lineCount: 2, // default every row to 2 lines of text. Also we can provide height in pixels
+    },
     rowHeights: {
       1: {
         lineCount: 5, // for row which have index 1 we allow to show 5 lines after that we truncate
       },
       4: 140, // for row which have index 4 we set 140 pixel
+      5: 80,
     },
-  }
+  }),
+  []
+);
+
+<EuiDataGrid
+  aria-label="Data grid with fixed height for rows"
+  columns={columns}
+  columnVisibility={{ visibleColumns, setVisibleColumns }}
+  rowCount={rowCount}
+  height={400}
+  renderCellValue={RenderCellValue}
+  inMemory={{ level: 'sorting' }}
+  sorting={{ columns: sortingColumns, onSort }}
+  rowHeightsOptions={rowHeightsOptions}
+  pagination={{
+    ...pagination,
+    pageSizeOptions: [50, 250, 1000],
+    onChangeItemsPerPage: onChangeItemsPerPage,
+    onChangePage: onChangePage,
+  }}
+/>
+`;
+
+const autoRowHeightsSnippet = `rowHeightsOptions = {
+  defaultHeight: 'auto', // each row auto fit to content except rows which was defined in 'rowHeights'
+  rowHeights: {
+    1: {
+      lineCount: 5, // for row which have index 1 we allow to show 5 lines after that we truncate
+    },
+    4: 140, // for row which have index 4 we set 140 pixel
+  },
+}
+`;
+
+const autoRowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
+  () => ({
+    defaultHeight: 'auto',
+    rowHeights: {
+      1: {
+        lineCount: 5,
+      },
+      4: 140,
+    },
+  }),
+  []
+);
+
+<EuiDataGrid
+  aria-label="Data grid with auto height for rows"
+  columns={columns}
+  columnVisibility={{ visibleColumns, setVisibleColumns }}
+  rowCount={rowCount}
+  height={400}
+  renderCellValue={RenderCellValue}
+  inMemory={{ level: 'sorting' }}
+  sorting={{ columns: sortingColumns, onSort }}
+  rowHeightsOptions={rowHeightsOptions}
+  pagination={{
+    ...pagination,
+    pageSizeOptions: [50, 250, 1000],
+    onChangeItemsPerPage: onChangeItemsPerPage,
+    onChangePage: onChangePage,
+  }}
+/>
 `;
 
 export const DataGridRowHeightOptionsExample = {
-  title: 'Data grid row height options',
+  title: 'Data grid row heights options',
   intro: (
     <Fragment>
       <EuiText>
@@ -89,6 +155,7 @@ export const DataGridRowHeightOptionsExample = {
       ),
       components: { DataGridRowHeightOptions },
       demo: <DataGridRowHeightOptions />,
+      snippet: rowHeightsFullSnippet,
     },
     {
       source: [
@@ -97,7 +164,7 @@ export const DataGridRowHeightOptionsExample = {
           code: dataGridRowAutoHeightSource,
         },
       ],
-      title: 'Auto-fit row to content',
+      title: 'Auto heights for rows',
       text: (
         <Fragment>
           <p>
@@ -114,6 +181,7 @@ export const DataGridRowHeightOptionsExample = {
       ),
       components: { DataGridRowAutoHeight },
       demo: <DataGridRowAutoHeight />,
+      snippet: autoRowHeightsFullSnippet,
     },
   ],
 };
