@@ -11,6 +11,7 @@ import { htmlIdGenerator } from '../../../../src/services';
 const idPrefix = htmlIdGenerator()();
 
 export default () => {
+  const forcedStateAccordionId = htmlIdGenerator('accordion')();
   const [trigger, setTrigger] = useState('closed');
   const [toggleIdSelected, setID] = useState(`${idPrefix}--closed`);
   const toggleButtons = [
@@ -45,7 +46,7 @@ export default () => {
       />
       <EuiSpacer />
       <EuiAccordion
-        id={htmlIdGenerator()()}
+        id={forcedStateAccordionId}
         forceState={trigger}
         onToggle={onToggle}
         buttonContent="I am a controlled accordion"

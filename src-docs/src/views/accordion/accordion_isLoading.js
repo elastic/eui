@@ -31,6 +31,7 @@ const toggleButtons = [
 export default () => {
   const [label, setLabel] = useState('False');
   const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}0`);
+  const isLoadingAccordionId = htmlIdGenerator('accordion')();
 
   const onChange = (optionId) => {
     setToggleIdSelected(optionId);
@@ -64,7 +65,7 @@ export default () => {
       </EuiFormRow>
       <EuiSpacer size="m" />
       <EuiAccordion
-        id={htmlIdGenerator()()}
+        id={isLoadingAccordionId}
         initialIsOpen={true}
         paddingSize={isLoadingMessage ? 'm' : 'none'}
         buttonContent="Accordion is loading, click to toggle"
