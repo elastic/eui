@@ -100,7 +100,7 @@ export const DataGridRowHeightOptionsExample = {
       <EuiText>
         <p>
           By default, the rows get a fixed height of <strong>34 pixels</strong>,
-          but there are scenarios where you might want to expand the height to
+          but there are scenarios where you might want to adjust the height to
           fit more content. To do that, you can pass an object to the{' '}
           <EuiCode>rowHeightsOptions</EuiCode> prop. This object accepts two
           properties:
@@ -142,9 +142,10 @@ export const DataGridRowHeightOptionsExample = {
             You can change the default height for all rows by passing to the
             <EuiCode>defaultHeight</EuiCode> property a{' '}
             <EuiCode>lineCount</EuiCode> or <EuiCode>height</EuiCode>. This will
-            ensure the rows will expand to match that configuration. You can
-            also override the height of a specific row by passing an object to
-            the <EuiCode>rowHeights</EuiCode> property with the index number and
+            ensure the rows will adjust the height to match that configuration.
+            You can also override the height of a specific row by passing an
+            object to the <EuiCode>rowHeights</EuiCode> property with the index
+            number and
             <EuiCode>lineCount</EuiCode> or <EuiCode>height</EuiCode>.
           </p>
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
@@ -173,10 +174,10 @@ export const DataGridRowHeightOptionsExample = {
           <p>
             You can change the default height for all rows by setting{' '}
             <EuiCode>defaultHeight=&quot;auto&quot;</EuiCode>. This will ensure
-            the rows will auto expand to fit the content. You can also override
-            the height of a specific row by passing an object to the{' '}
-            <EuiCode>rowHeights</EuiCode> property with the index number and{' '}
-            <EuiCode>&quot;auto&quot;</EuiCode>.
+            the rows will automatically adjust the height to fit the contents.
+            You can also override the height of a specific row by passing an
+            object to the <EuiCode>rowHeights</EuiCode> property with the index
+            number and <EuiCode>&quot;auto&quot;</EuiCode>.
           </p>
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {autoRowHeightsSnippet}
