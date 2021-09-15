@@ -49,7 +49,7 @@ import {
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
 
-const Cell: FunctionComponent<GridChildComponentProps> = ({
+export const Cell: FunctionComponent<GridChildComponentProps> = ({
   columnIndex,
   rowIndex: visibleRowIndex,
   style,
@@ -91,7 +91,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
       leadingControlColumns.length +
       trailingControlColumns.length -
       1;
-  const isStripableRow = rowIndex % 2 !== 0;
+  const isStripableRow = visibleRowIndex % 2 !== 0;
 
   const isLeadingControlColumn = columnIndex < leadingControlColumns.length;
   const isTrailingControlColumn =
