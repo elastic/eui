@@ -9,16 +9,19 @@ import React, {
 // @ts-ignore not configured to import json
 import githubData from './row_auto_height_data.json';
 
+import { formatDate } from '../../../../src/services';
+
 import {
   EuiDataGrid,
   EuiDataGridProps,
 } from '../../../../src/components/datagrid';
 import { EuiLink } from '../../../../src/components/link';
-import { EuiIcon } from '../../../../src/components/icon';
-import { EuiToolTip } from '../../../../src/components/tool_tip';
 import { EuiAvatar } from '../../../../src/components/avatar';
 import { EuiBadge } from '../../../../src/components/badge';
 import { EuiMarkdownFormat } from '../../../../src/components/markdown_editor';
+import { EuiText } from '../../../../src/components/text';
+import { EuiTitle } from '../../../../src/components/title';
+import { EuiSpacer } from '../../../../src/components/spacer';
 
 interface DataShape {
   html_url: string;
@@ -50,29 +53,19 @@ const DataContext = createContext<DataContextShape>(undefined);
 
 const columns = [
   {
-    id: 'created',
-    displayAsText: 'Created',
-    schema: 'datetime',
+    id: 'index',
+    displayAsText: 'Index',
     isExpandable: false,
+    initialWidth: 80,
   },
   {
-    id: 'title',
-    displayAsText: 'Title',
-    isExpandable: false,
-  },
-  {
-    id: 'user',
-    displayAsText: 'User',
+    id: 'issue',
+    displayAsText: 'Issue',
     isExpandable: false,
   },
   {
     id: 'body',
     displayAsText: 'Description',
-  },
-  {
-    id: 'labels',
-    displayAsText: 'Labels',
-    isExpandable: false,
   },
 ];
 
@@ -90,49 +83,58 @@ const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
   const item = data[rowIndex];
   let content: ReactNode = '';
 
-  if (columnId === 'title') {
+  if (columnId === 'index') {
+    content = <>{rowIndex}</>;
+  } else if (columnId === 'issue') {
     content = (
       <>
+        <EuiTitle size="xs">
+          <h2>
+            <EuiLink color="text" href={item.html_url} target="blank" external>
+              {item.title}
+            </EuiLink>{' '}
+            {item.labels.map(({ name, color }) => (
+              <EuiBadge key={name} color={`#${color}`}>
+                {name}
+              </EuiBadge>
+            ))}
+          </h2>
+        </EuiTitle>
+
+        <EuiSpacer size="s" />
+
+        <EuiText color="subdued" size="xs">
+          <span>
+            Opened by{' '}
+            <EuiAvatar
+              name={item.user.login}
+              imageUrl={item.user.avatar_url}
+              size="s"
+            />{' '}
+            {item.user.login} on {formatDate(item.created_at, 'dobLong')}
+          </span>
+        </EuiText>
+
+        <EuiSpacer size="s" />
+
         {item.comments >= 1 && (
-          <EuiToolTip content={`${item.comments} comments`}>
-            <EuiIcon type="editorComment" />
-          </EuiToolTip>
-        )}
-        <EuiLink href={item.html_url} target="blank" external>
-          {item.title}
-        </EuiLink>
-      </>
-    );
-  } else if (columnId === 'user') {
-    content = (
-      <>
-        <EuiAvatar
-          name={item.user.login}
-          imageUrl={item.user.avatar_url}
-          size="l"
-        />
-        &nbsp;{item.user.login}
-      </>
-    );
-  } else if (columnId === 'labels') {
-    content = (
-      <>
-        {item.labels.map(({ name, color }) => (
-          <EuiBadge key={name} color={`#${color}`}>
-            {name}
+          <EuiBadge iconType="editorComment" iconSide="left">
+            {`${item.comments} comments`}
           </EuiBadge>
-        ))}
+        )}
       </>
     );
-  } else if (columnId === 'created') {
-    content = item.created_at.toString();
   } else if (columnId === 'body') {
     if (isDetails) {
       // expanded in a popover
       content = <EuiMarkdownFormat>{item.body ?? ''}</EuiMarkdownFormat>;
     } else {
       // a full issue description is a *lot* to shove into a cell
-      content = (item.body ?? '').slice(0, 300);
+      content = content = (
+        <EuiMarkdownFormat textSize="s">
+          {(item.body ?? '').slice(0, 300)}
+        </EuiMarkdownFormat>
+      );
     }
   }
 
@@ -173,9 +175,16 @@ export default () => {
     columns.map(({ id }) => id)
   ); // initialize to the full set of columns
 
+  // matches the example snippet
   const rowHeightsOptions = useMemo(
     () => ({
       defaultHeight: 'auto' as const,
+      rowHeights: {
+        1: {
+          lineCount: 5,
+        },
+        4: 140,
+      },
     }),
     []
   );
