@@ -34,6 +34,7 @@ function getNumberFromPx(style?: string) {
 }
 
 export const AUTO_HEIGHT = 'auto';
+const DEFAULT_HEIGHT = 32;
 
 // So that we use lineCount options we should know exactly row height which allow to show defined line count.
 // For this we should know paddings and line height. Because of this we should compute styles for cell with grid styles
@@ -56,7 +57,7 @@ export class RowHeightUtils {
   setRowHeight(
     rowIndex: number,
     colIndex: number,
-    height: number = 32,
+    height: number = DEFAULT_HEIGHT,
     visibleRowIndex: number
   ) {
     const rowHeights = this.heightsCache.get(rowIndex) || {};
@@ -109,15 +110,12 @@ export class RowHeightUtils {
     rowIndex: number,
     rowHeightsOptions: EuiDataGridRowHeightsOptions
   ) {
-    if (
-      rowHeightsOptions.rowHeights &&
-      rowHeightsOptions.rowHeights[rowIndex]
-    ) {
-      return rowHeightsOptions.rowHeights[rowIndex] === AUTO_HEIGHT;
+    if (rowHeightsOptions.rowHeights?.[rowIndex] === AUTO_HEIGHT) {
+      return true;
     }
 
-    if (rowHeightsOptions.defaultHeight) {
-      return rowHeightsOptions.defaultHeight === AUTO_HEIGHT;
+    if (rowHeightsOptions.defaultHeight === AUTO_HEIGHT) {
+      return true;
     }
 
     return false;
@@ -128,8 +126,7 @@ export class RowHeightUtils {
     rowHeightsOptions: EuiDataGridRowHeightsOptions
   ) {
     if (
-      (rowHeightsOptions.rowHeights &&
-        rowHeightsOptions.rowHeights[rowIndex]) ||
+      rowHeightsOptions.rowHeights?.[rowIndex] ||
       rowHeightsOptions.defaultHeight
     ) {
       return true;
@@ -152,7 +149,7 @@ export class RowHeightUtils {
       lineHeight: getNumberFromPx(allStyles.lineHeight),
     };
     document.body.removeChild(this.fakeCell);
-    // we need clear height cache so that recalculate heigths for new styles.
+    // we need clear the height cache so that it recalculates heights for new styles
     this.clearHeightsCache();
   }
 
@@ -183,7 +180,7 @@ export class RowHeightUtils {
       return Math.max(heightOption, defaultHeight);
     }
 
-    if (heightOption && heightOption === AUTO_HEIGHT && rowIndex) {
+    if (heightOption === AUTO_HEIGHT && rowIndex) {
       return this.getRowHeight(rowIndex);
     }
 
@@ -194,12 +191,12 @@ export class RowHeightUtils {
     rowHeightsOptions: EuiDataGridRowHeightsOptions,
     rowIndex: number
   ): CSSProperties => {
-    let initialHeight =
-      rowHeightsOptions.rowHeights && rowHeightsOptions.rowHeights[rowIndex];
-
     if (this.isAutoHeight(rowIndex, rowHeightsOptions)) {
       return {};
     }
+
+    let initialHeight =
+      rowHeightsOptions.rowHeights && rowHeightsOptions.rowHeights[rowIndex];
 
     if (!initialHeight) {
       initialHeight = rowHeightsOptions.defaultHeight;
