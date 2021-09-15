@@ -2,12 +2,15 @@ import React, { Fragment } from 'react';
 
 import { GuideSectionTypes } from '../../components';
 import {
+  EuiDataGrid,
   EuiCallOut,
   EuiCode,
   EuiCodeBlock,
   EuiSpacer,
   EuiText,
 } from '../../../../src/components';
+
+import { EuiDataGridRowHeightsOptions } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 
 import DataGridRowHeightOptions from './row_height_options';
 const dataGridRowHeightOptionsSource = require('!!raw-loader!./row_height_options');
@@ -31,13 +34,6 @@ const rowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   () => ({
     defaultHeight: {
       lineCount: 2, // default every row to 2 lines of text. Also we can provide height in pixels
-    },
-    rowHeights: {
-      1: {
-        lineCount: 5, // for row which have index 1 we allow to show 5 lines after that we truncate
-      },
-      4: 140, // for row which have index 4 we set 140 pixel
-      5: 80,
     },
   }),
   []
@@ -75,13 +71,7 @@ const autoRowHeightsSnippet = `rowHeightsOptions = {
 
 const autoRowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   () => ({
-    defaultHeight: 'auto',
-    rowHeights: {
-      1: {
-        lineCount: 5,
-      },
-      4: 140,
-    },
+    defaultHeight: 'auto'
   }),
   []
 );
@@ -111,9 +101,11 @@ export const DataGridRowHeightOptionsExample = {
     <Fragment>
       <EuiText>
         <p>
-          Row height options can be passed down to the grid through the{' '}
-          <EuiCode>rowHeightsOptions</EuiCode> prop. It accepts an object
-          configuring the default height and/or specific row heights:
+          By default, the rows get a fixed height of <strong>34 pixels</strong>,
+          but there are scenarios where you might want to expand the height to
+          fit more content. To do that, you can pass an object to the{' '}
+          <EuiCode>rowHeightsOptions</EuiCode> prop. This object accepts two
+          properties:
         </p>
         <ul>
           <li>
@@ -148,12 +140,21 @@ export const DataGridRowHeightOptionsExample = {
       title: 'Fixed heights for rows',
       text: (
         <Fragment>
+          <p>
+            You can change the default height to any size bigger than that by
+            specifying the line count or the height in pixels for all rows or
+            just for a specific row.
+          </p>
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {rowHeightsSnippet}
           </EuiCodeBlock>
         </Fragment>
       ),
       components: { DataGridRowHeightOptions },
+      props: {
+        EuiDataGrid,
+        EuiDataGridRowHeightsOptions,
+      },
       demo: <DataGridRowHeightOptions />,
       snippet: rowHeightsFullSnippet,
     },
@@ -168,18 +169,23 @@ export const DataGridRowHeightOptionsExample = {
       text: (
         <Fragment>
           <p>
-            Row height options also supports to set value so that rows auto fit
-            to content. Just provide <EuiCode>auto</EuiCode> as value for{' '}
-            <EuiCode>defaultHeight</EuiCode> or for one of the rows in{' '}
-            <EuiCode>rowHeights</EuiCode>
+            You can change the default height for all rows by setting{' '}
+            <EuiCode>defaultHeight=&quot;auto&quot;</EuiCode>. This will ensure
+            the rows will auto expand to fit the content. You can also override
+            the height of a specific row by passing an object to the{' '}
+            <EuiCode>rowHeights</EuiCode> property with the index number and{' '}
+            <EuiCode>&quot;auto&quot;</EuiCode>.
           </p>
-          <EuiSpacer />
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {autoRowHeightsSnippet}
           </EuiCodeBlock>
         </Fragment>
       ),
       components: { DataGridRowAutoHeight },
+      props: {
+        EuiDataGrid,
+        EuiDataGridRowHeightsOptions,
+      },
       demo: <DataGridRowAutoHeight />,
       snippet: autoRowHeightsFullSnippet,
     },
