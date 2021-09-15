@@ -117,12 +117,12 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
           } else if (headerRef.current) {
             // this cell already had the grid's focus, so re-enable interactives
             enableInteractives();
-            setIsCellEntered(true);
 
             // if there is only one interactive element shift focus to the interactive element
             const tabbables = tabbable(headerRef.current);
             if (tabbables.length === 1) {
               tabbables[0].focus();
+              setIsCellEntered(true);
             }
           }
         }
