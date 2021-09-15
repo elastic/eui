@@ -11,7 +11,7 @@ import {
 
 import { htmlIdGenerator } from '../../../../src/services';
 
-export const PrefixSufix = () => {
+export default () => {
   const [prefix, setPrefix] = useState('Some');
   const [suffix, setSuffix] = useState('Id');
   const [customId, setCustomId] = useState(htmlIdGenerator('Some')('Id'));

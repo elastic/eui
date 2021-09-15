@@ -15,6 +15,7 @@ export {
   cascadingMenuKeys,
   comboBoxKeys,
   htmlIdGenerator,
+  useGeneratedHtmlId,
 } from './accessibility';
 
 export {
