@@ -220,12 +220,34 @@ describe('EuiDataGridHeaderCellWrapper', () => {
           });
         });
 
-        it('sets isCellEntered to false when cell or cell children lose focus', () => {
-          const headerCell = mountWithContext({}, false).getDOMNode();
-          act(() => {
-            headerCell.dispatchEvent(new FocusEvent('focusout'));
+        describe('focus out', () => {
+          it('waits for the cell/children to lose focus first', () => {
+            const headerCell = mountWithContext({}, true).getDOMNode();
+            act(() => {
+              headerCell.dispatchEvent(new FocusEvent('focusin'));
+            });
+            expectCellChildrenFocused(headerCell);
+
+            act(() => {
+              headerCell.dispatchEvent(new FocusEvent('focusout'));
+            });
+            // Focus hasn't moved away yet
+            expectCellChildrenFocused(headerCell);
           });
-          expectCellNotFocused(headerCell);
+
+          it('sets isCellEntered to false once the cell/children are no longer focused', () => {
+            const headerCell = mountWithContext({}, false).getDOMNode();
+
+            // Slightly cheating the test setup here; headerCell starts out not focused
+            expectCellNotFocused(headerCell);
+            act(() => {
+              headerCell.dispatchEvent(new FocusEvent('focusout'));
+            });
+
+            // Focus is lost & isCellCentered false should set children to tabIndex -1
+            expect(headerCell.querySelector('[tabIndex="-1"]')).not.toBeNull();
+            expect(headerCell.querySelector('[tabIndex="0"]')).toBeNull();
+          });
         });
       });
     });
