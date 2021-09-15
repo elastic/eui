@@ -12,20 +12,18 @@ import {
 
 import { EuiDataGridRowHeightsOptions } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 
-import DataGridRowHeightOptions from './row_height_options';
-const dataGridRowHeightOptionsSource = require('!!raw-loader!./row_height_options');
-import DataGridRowAutoHeight from './row_auto_height';
-const dataGridRowAutoHeightSource = require('!!raw-loader!./row_auto_height');
+import DataGridRowHeightOptions from './row_height_fixed';
+const dataGridRowHeightOptionsSource = require('!!raw-loader!./row_height_fixed');
+import DataGridRowAutoHeight from './row_height_auto';
+const dataGridRowAutoHeightSource = require('!!raw-loader!./row_height_auto');
 
 const rowHeightsSnippet = `rowHeightsOptions = {
-  defaultHeight: {
-    lineCount: 2, // default every row to 2 lines of text. Also we can provide height in pixels
-  },
+  defaultHeight: 140,
   rowHeights: {
     1: {
       lineCount: 5, // for row which have index 1 we allow to show 5 lines after that we truncate
     },
-    4: 140, // for row which have index 4 we set 140 pixel
+    4: 200, // for row which have index 4 we set 140 pixel
     5: 80,
   },
 }`;
@@ -141,9 +139,13 @@ export const DataGridRowHeightOptionsExample = {
       text: (
         <Fragment>
           <p>
-            You can change the default height to any size bigger than that by
-            specifying the line count or the height in pixels for all rows or
-            just for a specific row.
+            You can change the default height for all rows by passing to the
+            <EuiCode>defaultHeight</EuiCode> property a{' '}
+            <EuiCode>lineCount</EuiCode> or <EuiCode>height</EuiCode>. This will
+            ensure the rows will expand to match that configuration. You can
+            also override the height of a specific row by passing an object to
+            the <EuiCode>rowHeights</EuiCode> property with the index number and
+            <EuiCode>lineCount</EuiCode> or <EuiCode>height</EuiCode>.
           </p>
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {rowHeightsSnippet}

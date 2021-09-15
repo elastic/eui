@@ -182,15 +182,16 @@ export default () => {
     columns.map(({ id }) => id)
   ); // initialize to the full set of columns
 
-  // matches the example snippet
+  // matches the snippet example
   const rowHeightsOptions = useMemo(
     () => ({
-      defaultHeight: 'auto' as const,
+      defaultHeight: 140,
       rowHeights: {
         1: {
           lineCount: 5,
         },
-        4: 140,
+        4: 200,
+        5: 80,
       },
     }),
     []
