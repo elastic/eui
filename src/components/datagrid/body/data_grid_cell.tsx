@@ -313,11 +313,12 @@ export class EuiDataGridCell extends Component<
     this.cellContentsRef = ref;
     const { rowHeightUtils, rowHeightsOptions, rowIndex } = this.props;
     if (
+      hasResizeObserver &&
       rowHeightUtils &&
       rowHeightsOptions &&
       rowHeightUtils.isAutoHeight(rowIndex, rowHeightsOptions)
     ) {
-      if (ref && hasResizeObserver) {
+      if (ref) {
         const { colIndex, visibleRowIndex } = this.props;
 
         const setRowHeight = (rowHeight: number) =>
