@@ -114,6 +114,10 @@ type VirtualizedOptionProps = ExclusiveUnion<
   }
 >;
 
+interface LineNumbersConfig {
+  start?: number;
+}
+
 export type EuiCodeBlockImplProps = CommonProps & {
   className?: string;
   fontSize?: FontSize;
@@ -136,12 +140,20 @@ export type EuiCodeBlockImplProps = CommonProps & {
   language?: string;
   paddingSize?: PaddingSize;
   transparentBackground?: boolean;
+
   /**
    * Specify how `white-space` inside the element is handled.
    * `pre` respects line breaks/white space but doesn't force them to wrap the line
    * `pre-wrap` respects line breaks/white space but does force them to wrap the line when necessary.
    */
   whiteSpace?: 'pre' | 'pre-wrap';
+
+  /**
+   * Displays line numbers.
+   * Optionally accepts a configuration object for setting the starting number:
+   * `{start: 100}`
+   */
+  lineNumbers?: boolean | LineNumbersConfig;
 } & VirtualizedOptionProps;
 
 /**
@@ -160,6 +172,7 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   className,
   overflowHeight,
   isVirtualized: _isVirtualized,
+  lineNumbers = false,
   ...rest
 }) => {
   const language: string = useMemo(
@@ -181,6 +194,12 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   ]);
   const { width, height } = useResizeObserver(wrapperRef);
   const rowHeight = useMemo(() => fontSizeToRowHeightMap[fontSize], [fontSize]);
+  const lineNumbersConfig = useMemo(() => {
+    const config = typeof lineNumbers === 'object' ? lineNumbers : {};
+    return lineNumbers
+      ? { start: 1, show: true, ...config }
+      : { start: 1, show: false };
+  }, [lineNumbers]);
 
   // Used by `FixedSizeList` when `isVirtualized=true` or `children` is parsable (`isVirtualized=true`)
   const data: RefractorNode[] = useMemo(() => {
@@ -189,8 +208,8 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
     }
     return inline
       ? highlight(children, language)
-      : highlightByLine(children, language);
-  }, [children, language, inline]);
+      : highlightByLine(children, language, lineNumbersConfig);
+  }, [children, language, inline, lineNumbersConfig]);
 
   const isVirtualized = useMemo(() => _isVirtualized && Array.isArray(data), [
     _isVirtualized,
@@ -247,6 +266,7 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
       'euiCodeBlock--inline': inline,
       'euiCodeBlock--hasControl': isCopyable || overflowHeight,
       'euiCodeBlock--hasBothControls': isCopyable && overflowHeight,
+      'euiCodeBlock--hasLineNumbers': lineNumbersConfig.show,
     },
     {
       prismjs: !className?.includes('prismjs'),
@@ -385,7 +405,7 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
                         className: preClasses,
                       })}
                       innerElementType={virtualizedInnerElement({
-                        className: preClasses,
+                        className: codeClasses,
                         onKeyDown,
                       })}
                     >
@@ -427,7 +447,7 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
                 className: preClasses,
               })}
               innerElementType={virtualizedInnerElement({
-                className: preClasses,
+                className: codeClasses,
                 onKeyDown,
               })}
             >

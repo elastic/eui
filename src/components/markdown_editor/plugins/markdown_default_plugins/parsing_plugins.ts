@@ -32,7 +32,7 @@ import { markdownLinkValidator } from '../markdown_link_validator';
 export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
   [markdown, {}],
   [highlight, {}],
-  [emoji, { emoticon: true }],
+  [emoji, { emoticon: false }],
   [MarkdownTooltip.parser, {}],
   [MarkdownCheckbox.parser, {}],
   [markdownLinkValidator, {}],

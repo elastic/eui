@@ -21,7 +21,7 @@ const getVersion = (packageName) => {
  *
  * 1. A `content` prop is passed containing the src-doc example code we need to manipulate for CS.
  * 2. If no content exists (like the homepage link), we'll make a hello world file bundled with EUI and call it a day.
- * 3. If content exists, we build an `index.js` file with a <Demo> component based on the original content.
+ * 3. If content exists, we build an `index.js/tsx` (depending on the passed source type) file with a <Demo> component based on the original content.
  * 4. If content contains `DisplayToggles`, we also generate a `display_toggles.js` file alongside the `index.js` file to import.
  * 5. Through regex we read the dependencies of both `content` and `display_toggles` and pass that to CS.
  * 6. We pass the files and dependencies as params to CS through a POST call.
@@ -44,6 +44,7 @@ export const CodeSandboxLinkComponent = ({
   children,
   className,
   content,
+  type = 'js',
   context,
 }) => {
   let cssFile;
@@ -155,7 +156,7 @@ ${exampleClose}
         },
       },
       /* 3 */
-      'index.js': {
+      [`index.${type}`]: {
         content: indexContent,
       },
     },
