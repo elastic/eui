@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { createElement } from 'react';
+import React, { Fragment, createElement } from 'react';
 // Importing seemingly unused types from `unified` because the definitions
 // are exported for two versions of TypeScript (3.4, 4.0) and implicit
 // imports during eui.d.ts generation default to the incorrect version (3.4).
@@ -60,7 +60,8 @@ export const getDefaultEuiMarkdownProcessingPlugins = (): [
   [
     rehype2react,
     {
-      createElement: createElement,
+      createElement,
+      Fragment,
       components: {
         a: EuiLink,
         code: (props: any) =>
