@@ -216,6 +216,11 @@ export default () => {
         inMemory={{ level: 'sorting' }}
         sorting={{ columns: sortingColumns, onSort }}
         rowHeightsOptions={rowHeightsOptions}
+        virtualizationOptions={{
+          // rough average of the cell heights in the example
+          // accurately setting this smooths out the scrolling experience
+          estimatedRowHeight: 210,
+        }}
         pagination={{
           ...pagination,
           pageSizeOptions: [50, 250, 1000],
