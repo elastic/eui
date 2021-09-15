@@ -62,23 +62,25 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   let sortString;
   if (sorting) {
     const sortedColumnIds = new Set(sorting.columns.map(({ id }) => id));
+    if (sortedColumnIds.has(id)) {
+      if (sorting.columns.length === 1) {
+        const sortDirection = sorting.columns[0].direction;
 
-    if (sorting.columns.length === 1 && sortedColumnIds.has(id)) {
-      const sortDirection = sorting.columns[0].direction;
+        let sortValue: HTMLAttributes<HTMLDivElement>['aria-sort'] = 'other';
+        if (sortDirection === 'asc') {
+          sortValue = 'ascending';
+        }
+        if (sortDirection === 'desc') {
+          sortValue = 'descending';
+        }
 
-      let sortValue: HTMLAttributes<HTMLDivElement>['aria-sort'] = 'other';
-      if (sortDirection === 'asc') {
-        sortValue = 'ascending';
-      } else if (sortDirection === 'desc') {
-        sortValue = 'descending';
+        ariaProps['aria-sort'] = sortValue;
+      } else {
+        sortString = sorting.columns
+          .map((col) => `Sorted by ${col.id} ${col.direction}`)
+          .join(' then ');
+        ariaProps['aria-describedby'] = screenReaderId;
       }
-
-      ariaProps['aria-sort'] = sortValue;
-    } else if (sorting.columns.length >= 2 && sortedColumnIds.has(id)) {
-      sortString = sorting.columns
-        .map((col) => `Sorted by ${col.id} ${col.direction}`)
-        .join(' then ');
-      ariaProps['aria-describedby'] = screenReaderId;
     }
   }
 
@@ -123,7 +125,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         />
       ) : null}
 
-      {sorting && sorting.columns.length >= 2 && (
+      {sortString && (
         <EuiScreenReaderOnly>
           <div id={screenReaderId}>{sortString}</div>
         </EuiScreenReaderOnly>
