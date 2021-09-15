@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 import {
   EuiCallOut,
@@ -12,10 +11,8 @@ import {
 
 import DataGridRowHeightOptions from './row_height_options';
 const dataGridRowHeightOptionsSource = require('!!raw-loader!./row_height_options');
-const dataGridRowHeightOptionsHtml = renderToHtml(DataGridRowHeightOptions);
 import DataGridRowAutoHeight from './row_auto_height';
 const dataGridRowAutoHeightSource = require('!!raw-loader!./row_auto_height');
-const dataGridRowAutoHeightHtml = renderToHtml(DataGridRowAutoHeight);
 
 const rowHeightsSnippet = `rowHeightsOptions = {
   defaultHeight: {
@@ -68,7 +65,7 @@ export const DataGridRowHeightOptionsExample = {
         <p>
           Rows must be at least <strong>34 pixels</strong> tall so they can
           render at least one line of text. If you provide a smaller height the
-          row will default to 34 pixels.
+          row will default to <strong>34 pixels</strong>.
         </p>
       </EuiCallOut>
       <EuiSpacer />
@@ -80,10 +77,6 @@ export const DataGridRowHeightOptionsExample = {
         {
           type: GuideSectionTypes.JS,
           code: dataGridRowHeightOptionsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridRowHeightOptionsHtml,
         },
       ],
       title: 'Fixed heights for rows',
@@ -102,10 +95,6 @@ export const DataGridRowHeightOptionsExample = {
         {
           type: GuideSectionTypes.JS,
           code: dataGridRowAutoHeightSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridRowAutoHeightHtml,
         },
       ],
       title: 'Auto-fit row to content',
