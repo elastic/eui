@@ -11,7 +11,11 @@ import { ReactElement } from 'react';
 import { EuiListGroupItemProps } from '../../../list_group';
 import { schemaDetectors } from '../../data_grid_schema';
 
-import { getColumnActions } from './column_actions';
+import {
+  getColumnActions,
+  isColumnActionEnabled,
+  getColumnActionConfig,
+} from './column_actions';
 
 describe('getColumnActions', () => {
   const setVisibleColumns = jest.fn();
@@ -427,6 +431,65 @@ describe('getColumnActions', () => {
           sorting: { onSort, columns: [] },
         });
         expect(items.length).toEqual(3);
+      });
+    });
+  });
+});
+
+describe('utility helpers', () => {
+  describe('isColumnActionEnabled', () => {
+    it('returns false if all actions are disabled', () => {
+      expect(isColumnActionEnabled('showHide', false)).toEqual(false);
+    });
+
+    it('returns false if the specified column action is disabled', () => {
+      expect(isColumnActionEnabled('showHide', { showHide: false })).toEqual(
+        false
+      );
+    });
+
+    it('returns true if column actions are not configured', () => {
+      expect(isColumnActionEnabled('showHide', undefined)).toEqual(true);
+    });
+
+    it('returns true if the specified column action is not configured', () => {
+      expect(isColumnActionEnabled('showHide', {})).toEqual(true);
+    });
+
+    it('returns true if the specified column action is configured', () => {
+      expect(
+        isColumnActionEnabled('showHide', { showHide: { label: 'test' } })
+      ).toEqual(true);
+    });
+  });
+
+  describe('getColumnActionConfig', () => {
+    it('appends/overrides custom action configuration to the existing action', () => {
+      expect(
+        getColumnActionConfig({ label: 'hello world' }, 'showHide', {
+          showHide: {
+            label: 'world',
+            isDisabled: true,
+          },
+        })
+      ).toEqual({
+        label: 'world',
+        isDisabled: true,
+      });
+    });
+
+    it('returns the the existing action as-is if no configuration is passed', () => {
+      expect(
+        getColumnActionConfig({ label: 'hello' }, 'showHide', false)
+      ).toEqual({
+        label: 'hello',
+      });
+      expect(
+        getColumnActionConfig({ label: 'world' }, 'showHide', {
+          showHide: false,
+        })
+      ).toEqual({
+        label: 'world',
       });
     });
   });
