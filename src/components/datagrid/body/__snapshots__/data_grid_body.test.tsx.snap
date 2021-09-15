@@ -1,1308 +1,151 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiDataGridBody renders 1`] = `
-<EuiDataGridBody
-  columnWidths={
-    Object {
-      "columnA": 20,
-    }
-  }
-  columns={
-    Array [
-      Object {
-        "id": "columnA",
-        "schema": "boolean",
-      },
-      Object {
-        "id": "columnB",
-        "isExpandable": true,
-      },
-    ]
-  }
-  handleHeaderMutation={[MockFunction]}
-  headerIsInteractive={true}
-  inMemory={
-    Object {
-      "level": "enhancements",
-    }
-  }
-  inMemoryValues={Object {}}
-  interactiveCellId="someId"
-  isFullScreen={false}
-  renderCellValue={[Function]}
-  rowCount={1}
-  rowHeightUtils={
-    RowHeightUtils {
-      "fakeCell": <div />,
-      "styles": Object {},
-    }
-  }
-  schema={
-    Object {
-      "columnA": Object {
-        "columnType": "boolean",
-      },
-      "columnB": Object {
-        "columnType": "string",
-      },
-    }
-  }
-  schemaDetectors={
-    Array [
-      Object {
-        "comparator": [Function],
-        "detector": [Function],
-        "icon": "tokenBoolean",
-        "sortTextAsc": <EuiI18n
-          default="False-True"
-          token="euiDataGridSchema.booleanSortTextAsc"
-        />,
-        "sortTextDesc": <EuiI18n
-          default="True-False"
-          token="euiDataGridSchema.booleanSortTextDesc"
-        />,
-        "type": "boolean",
-      },
-      Object {
-        "color": "euiColorVis0",
-        "comparator": [Function],
-        "detector": [Function],
-        "icon": "currency",
-        "sortTextAsc": <EuiI18n
-          default="Low-High"
-          token="euiDataGridSchema.currencySortTextAsc"
-        />,
-        "sortTextDesc": <EuiI18n
-          default="High-Low"
-          token="euiDataGridSchema.currencySortTextDesc"
-        />,
-        "type": "currency",
-      },
-      Object {
-        "detector": [Function],
-        "icon": "tokenDate",
-        "sortTextAsc": <EuiI18n
-          default="Old-New"
-          token="euiDataGridSchema.dateSortTextAsc"
-        />,
-        "sortTextDesc": <EuiI18n
-          default="New-Old"
-          token="euiDataGridSchema.dateSortTextDesc"
-        />,
-        "type": "datetime",
-      },
-      Object {
-        "comparator": [Function],
-        "detector": [Function],
-        "icon": "tokenNumber",
-        "sortTextAsc": <EuiI18n
-          default="Low-High"
-          token="euiDataGridSchema.numberSortTextAsc"
-        />,
-        "sortTextDesc": <EuiI18n
-          default="High-Low"
-          token="euiDataGridSchema.numberSortTextDesc"
-        />,
-        "type": "numeric",
-      },
-      Object {
-        "comparator": [Function],
-        "detector": [Function],
-        "icon": "tokenObject",
-        "sortTextAsc": <EuiI18n
-          default="Small-Large"
-          token="euiDataGridSchema.jsonSortTextAsc"
-        />,
-        "sortTextDesc": <EuiI18n
-          default="Large-Small"
-          token="euiDataGridSchema.jsonSortTextDesc"
-        />,
-        "type": "json",
-      },
-    ]
-  }
-  setColumnWidth={[MockFunction]}
-  setVisibleColumns={[MockFunction]}
-  switchColumnPos={[MockFunction]}
-  toolbarHeight={10}
+<div
+  style="width:100%;height:100%;overflow:hidden"
 >
-  <EuiMutationObserver
-    observerOptions={
-      Object {
-        "childList": true,
-        "subtree": true,
-      }
-    }
-    onMutation={[Function]}
+  <div
+    class="euiDataGrid__virtualized"
+    style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
   >
     <div
-      style={
-        Object {
-          "height": "100%",
-          "overflow": "hidden",
-          "width": "100%",
-        }
-      }
+      style="height:34px;width:120px"
     >
-      <Grid
-        className="euiDataGrid__virtualized"
-        columnCount={2}
-        columnWidth={[Function]}
-        direction="ltr"
-        height={9007199254740991}
-        innerElementType={
-          Object {
-            "$$typeof": Symbol(react.forward_ref),
-            "displayName": "EuiDataGridInnerElement",
-            "propTypes": Object {
-              "style": [Function],
-            },
-            "render": [Function],
-          }
-        }
-        itemData={
-          Object {
-            "columnWidths": Object {
-              "columnA": 20,
-            },
-            "columns": Array [
-              Object {
-                "id": "columnA",
-                "schema": "boolean",
-              },
-              Object {
-                "id": "columnB",
-                "isExpandable": true,
-              },
-            ],
-            "defaultColumnWidth": undefined,
-            "getCorrectRowIndex": [Function],
-            "getRowHeight": [Function],
-            "interactiveCellId": "someId",
-            "leadingControlColumns": Array [],
-            "popoverContents": Object {
-              "json": [Function],
-            },
-            "renderCellValue": [Function],
-            "rowHeightsOptions": undefined,
-            "rowMap": Object {},
-            "rowOffset": 0,
-            "schema": Object {
-              "columnA": Object {
-                "columnType": "boolean",
-              },
-              "columnB": Object {
-                "columnType": "string",
-              },
-            },
-            "schemaDetectors": Array [
-              Object {
-                "comparator": [Function],
-                "detector": [Function],
-                "icon": "tokenBoolean",
-                "sortTextAsc": <EuiI18n
-                  default="False-True"
-                  token="euiDataGridSchema.booleanSortTextAsc"
-                />,
-                "sortTextDesc": <EuiI18n
-                  default="True-False"
-                  token="euiDataGridSchema.booleanSortTextDesc"
-                />,
-                "type": "boolean",
-              },
-              Object {
-                "color": "euiColorVis0",
-                "comparator": [Function],
-                "detector": [Function],
-                "icon": "currency",
-                "sortTextAsc": <EuiI18n
-                  default="Low-High"
-                  token="euiDataGridSchema.currencySortTextAsc"
-                />,
-                "sortTextDesc": <EuiI18n
-                  default="High-Low"
-                  token="euiDataGridSchema.currencySortTextDesc"
-                />,
-                "type": "currency",
-              },
-              Object {
-                "detector": [Function],
-                "icon": "tokenDate",
-                "sortTextAsc": <EuiI18n
-                  default="Old-New"
-                  token="euiDataGridSchema.dateSortTextAsc"
-                />,
-                "sortTextDesc": <EuiI18n
-                  default="New-Old"
-                  token="euiDataGridSchema.dateSortTextDesc"
-                />,
-                "type": "datetime",
-              },
-              Object {
-                "comparator": [Function],
-                "detector": [Function],
-                "icon": "tokenNumber",
-                "sortTextAsc": <EuiI18n
-                  default="Low-High"
-                  token="euiDataGridSchema.numberSortTextAsc"
-                />,
-                "sortTextDesc": <EuiI18n
-                  default="High-Low"
-                  token="euiDataGridSchema.numberSortTextDesc"
-                />,
-                "type": "numeric",
-              },
-              Object {
-                "comparator": [Function],
-                "detector": [Function],
-                "icon": "tokenObject",
-                "sortTextAsc": <EuiI18n
-                  default="Small-Large"
-                  token="euiDataGridSchema.jsonSortTextAsc"
-                />,
-                "sortTextDesc": <EuiI18n
-                  default="Large-Small"
-                  token="euiDataGridSchema.jsonSortTextDesc"
-                />,
-                "type": "json",
-              },
-            ],
-            "setRowHeight": [Function],
-            "trailingControlColumns": Array [],
-          }
-        }
-        rowCount={1}
-        rowHeight={[Function]}
-        useIsScrolling={false}
-        width={9007199254740991}
+      <div
+        class="euiDataGridHeader"
+        data-test-subj="dataGridHeader"
+        role="row"
       >
         <div
-          className="euiDataGrid__virtualized"
-          onScroll={[Function]}
-          style={
-            Object {
-              "WebkitOverflowScrolling": "touch",
-              "direction": "ltr",
-              "height": 9007199254740991,
-              "overflow": "auto",
-              "position": "relative",
-              "width": 9007199254740991,
-              "willChange": "transform",
-            }
-          }
+          class="euiDataGridHeaderCell euiDataGridHeaderCell--boolean"
+          data-test-subj="dataGridHeaderCell-columnA"
+          role="columnheader"
+          style="width:20px"
+          tabindex="-1"
         >
-          <EuiDataGridInnerElement
-            style={
-              Object {
-                "height": 34,
-                "pointerEvents": undefined,
-                "width": 120,
-              }
-            }
+          <div
+            class="euiDataGridColumnResizer"
+            data-test-subj="dataGridColumnResizer"
+            style="margin-right:0px"
+          />
+          <div
+            class="euiPopover euiPopover--anchorDownCenter"
+            offset="7"
           >
             <div
-              style={
-                Object {
-                  "height": 34,
-                  "pointerEvents": undefined,
-                  "width": 120,
-                }
-              }
+              class="euiPopover__anchor euiDataGridHeaderCell__anchor"
             >
-              <EuiDataGridHeaderRow
-                columnWidths={
-                  Object {
-                    "columnA": 20,
-                  }
-                }
-                columns={
-                  Array [
-                    Object {
-                      "id": "columnA",
-                      "schema": "boolean",
-                    },
-                    Object {
-                      "id": "columnB",
-                      "isExpandable": true,
-                    },
-                  ]
-                }
-                headerIsInteractive={true}
-                leadingControlColumns={Array []}
-                schema={
-                  Object {
-                    "columnA": Object {
-                      "columnType": "boolean",
-                    },
-                    "columnB": Object {
-                      "columnType": "string",
-                    },
-                  }
-                }
-                schemaDetectors={
-                  Array [
-                    Object {
-                      "comparator": [Function],
-                      "detector": [Function],
-                      "icon": "tokenBoolean",
-                      "sortTextAsc": <EuiI18n
-                        default="False-True"
-                        token="euiDataGridSchema.booleanSortTextAsc"
-                      />,
-                      "sortTextDesc": <EuiI18n
-                        default="True-False"
-                        token="euiDataGridSchema.booleanSortTextDesc"
-                      />,
-                      "type": "boolean",
-                    },
-                    Object {
-                      "color": "euiColorVis0",
-                      "comparator": [Function],
-                      "detector": [Function],
-                      "icon": "currency",
-                      "sortTextAsc": <EuiI18n
-                        default="Low-High"
-                        token="euiDataGridSchema.currencySortTextAsc"
-                      />,
-                      "sortTextDesc": <EuiI18n
-                        default="High-Low"
-                        token="euiDataGridSchema.currencySortTextDesc"
-                      />,
-                      "type": "currency",
-                    },
-                    Object {
-                      "detector": [Function],
-                      "icon": "tokenDate",
-                      "sortTextAsc": <EuiI18n
-                        default="Old-New"
-                        token="euiDataGridSchema.dateSortTextAsc"
-                      />,
-                      "sortTextDesc": <EuiI18n
-                        default="New-Old"
-                        token="euiDataGridSchema.dateSortTextDesc"
-                      />,
-                      "type": "datetime",
-                    },
-                    Object {
-                      "comparator": [Function],
-                      "detector": [Function],
-                      "icon": "tokenNumber",
-                      "sortTextAsc": <EuiI18n
-                        default="Low-High"
-                        token="euiDataGridSchema.numberSortTextAsc"
-                      />,
-                      "sortTextDesc": <EuiI18n
-                        default="High-Low"
-                        token="euiDataGridSchema.numberSortTextDesc"
-                      />,
-                      "type": "numeric",
-                    },
-                    Object {
-                      "comparator": [Function],
-                      "detector": [Function],
-                      "icon": "tokenObject",
-                      "sortTextAsc": <EuiI18n
-                        default="Small-Large"
-                        token="euiDataGridSchema.jsonSortTextAsc"
-                      />,
-                      "sortTextDesc": <EuiI18n
-                        default="Large-Small"
-                        token="euiDataGridSchema.jsonSortTextDesc"
-                      />,
-                      "type": "json",
-                    },
-                  ]
-                }
-                setColumnWidth={[MockFunction]}
-                setVisibleColumns={[MockFunction]}
-                switchColumnPos={[MockFunction]}
-                trailingControlColumns={Array []}
+              <button
+                class="euiDataGridHeaderCell__button"
               >
                 <div
-                  className="euiDataGridHeader"
-                  data-test-subj="dataGridHeader"
-                  role="row"
+                  class="euiDataGridHeaderCell__content"
                 >
-                  <EuiDataGridHeaderCell
-                    column={
-                      Object {
-                        "id": "columnA",
-                        "schema": "boolean",
-                      }
-                    }
-                    columnWidths={
-                      Object {
-                        "columnA": 20,
-                      }
-                    }
-                    columns={
-                      Array [
-                        Object {
-                          "id": "columnA",
-                          "schema": "boolean",
-                        },
-                        Object {
-                          "id": "columnB",
-                          "isExpandable": true,
-                        },
-                      ]
-                    }
-                    headerIsInteractive={true}
-                    index={0}
-                    key="columnA"
-                    schema={
-                      Object {
-                        "columnA": Object {
-                          "columnType": "boolean",
-                        },
-                        "columnB": Object {
-                          "columnType": "string",
-                        },
-                      }
-                    }
-                    schemaDetectors={
-                      Array [
-                        Object {
-                          "comparator": [Function],
-                          "detector": [Function],
-                          "icon": "tokenBoolean",
-                          "sortTextAsc": <EuiI18n
-                            default="False-True"
-                            token="euiDataGridSchema.booleanSortTextAsc"
-                          />,
-                          "sortTextDesc": <EuiI18n
-                            default="True-False"
-                            token="euiDataGridSchema.booleanSortTextDesc"
-                          />,
-                          "type": "boolean",
-                        },
-                        Object {
-                          "color": "euiColorVis0",
-                          "comparator": [Function],
-                          "detector": [Function],
-                          "icon": "currency",
-                          "sortTextAsc": <EuiI18n
-                            default="Low-High"
-                            token="euiDataGridSchema.currencySortTextAsc"
-                          />,
-                          "sortTextDesc": <EuiI18n
-                            default="High-Low"
-                            token="euiDataGridSchema.currencySortTextDesc"
-                          />,
-                          "type": "currency",
-                        },
-                        Object {
-                          "detector": [Function],
-                          "icon": "tokenDate",
-                          "sortTextAsc": <EuiI18n
-                            default="Old-New"
-                            token="euiDataGridSchema.dateSortTextAsc"
-                          />,
-                          "sortTextDesc": <EuiI18n
-                            default="New-Old"
-                            token="euiDataGridSchema.dateSortTextDesc"
-                          />,
-                          "type": "datetime",
-                        },
-                        Object {
-                          "comparator": [Function],
-                          "detector": [Function],
-                          "icon": "tokenNumber",
-                          "sortTextAsc": <EuiI18n
-                            default="Low-High"
-                            token="euiDataGridSchema.numberSortTextAsc"
-                          />,
-                          "sortTextDesc": <EuiI18n
-                            default="High-Low"
-                            token="euiDataGridSchema.numberSortTextDesc"
-                          />,
-                          "type": "numeric",
-                        },
-                        Object {
-                          "comparator": [Function],
-                          "detector": [Function],
-                          "icon": "tokenObject",
-                          "sortTextAsc": <EuiI18n
-                            default="Small-Large"
-                            token="euiDataGridSchema.jsonSortTextAsc"
-                          />,
-                          "sortTextDesc": <EuiI18n
-                            default="Large-Small"
-                            token="euiDataGridSchema.jsonSortTextDesc"
-                          />,
-                          "type": "json",
-                        },
-                      ]
-                    }
-                    setColumnWidth={[MockFunction]}
-                    setVisibleColumns={[MockFunction]}
-                    switchColumnPos={[MockFunction]}
-                  >
-                    <div
-                      className="euiDataGridHeaderCell euiDataGridHeaderCell--boolean"
-                      data-test-subj="dataGridHeaderCell-columnA"
-                      role="columnheader"
-                      style={
-                        Object {
-                          "width": "20px",
-                        }
-                      }
-                      tabIndex={-1}
-                    >
-                      <EuiDataGridColumnResizer
-                        columnId="columnA"
-                        columnWidth={20}
-                        setColumnWidth={[MockFunction]}
-                      >
-                        <div
-                          className="euiDataGridColumnResizer"
-                          data-test-subj="dataGridColumnResizer"
-                          onMouseDown={[Function]}
-                          style={
-                            Object {
-                              "marginRight": "0px",
-                            }
-                          }
-                        />
-                      </EuiDataGridColumnResizer>
-                      <EuiPopover
-                        anchorClassName="euiDataGridHeaderCell__anchor"
-                        anchorPosition="downCenter"
-                        button={
-                          <button
-                            className="euiDataGridHeaderCell__button"
-                            onClick={[Function]}
-                          >
-                            <div
-                              className="euiDataGridHeaderCell__content"
-                            >
-                              columnA
-                            </div>
-                            <EuiIcon
-                              aria-label="Header actions"
-                              className="euiDataGridHeaderCell__icon"
-                              color="text"
-                              data-test-subj="dataGridHeaderCellActionButton-columnA"
-                              size="s"
-                              type="arrowDown"
-                            />
-                          </button>
-                        }
-                        closePopover={[Function]}
-                        display="inlineBlock"
-                        hasArrow={true}
-                        isOpen={false}
-                        offset={7}
-                        ownFocus={true}
-                        panelPaddingSize="none"
-                      >
-                        <div
-                          className="euiPopover euiPopover--anchorDownCenter"
-                          offset={7}
-                        >
-                          <div
-                            className="euiPopover__anchor euiDataGridHeaderCell__anchor"
-                          >
-                            <button
-                              className="euiDataGridHeaderCell__button"
-                              onClick={[Function]}
-                            >
-                              <div
-                                className="euiDataGridHeaderCell__content"
-                              >
-                                columnA
-                              </div>
-                              <EuiIcon
-                                aria-label="Header actions"
-                                className="euiDataGridHeaderCell__icon"
-                                color="text"
-                                data-test-subj="dataGridHeaderCellActionButton-columnA"
-                                size="s"
-                                type="arrowDown"
-                              >
-                                <span
-                                  aria-label="Header actions"
-                                  className="euiDataGridHeaderCell__icon"
-                                  color="text"
-                                  data-euiicon-type="arrowDown"
-                                  data-test-subj="dataGridHeaderCellActionButton-columnA"
-                                  size="s"
-                                />
-                              </EuiIcon>
-                            </button>
-                          </div>
-                        </div>
-                      </EuiPopover>
-                    </div>
-                  </EuiDataGridHeaderCell>
-                  <EuiDataGridHeaderCell
-                    column={
-                      Object {
-                        "id": "columnB",
-                        "isExpandable": true,
-                      }
-                    }
-                    columnWidths={
-                      Object {
-                        "columnA": 20,
-                      }
-                    }
-                    columns={
-                      Array [
-                        Object {
-                          "id": "columnA",
-                          "schema": "boolean",
-                        },
-                        Object {
-                          "id": "columnB",
-                          "isExpandable": true,
-                        },
-                      ]
-                    }
-                    headerIsInteractive={true}
-                    index={1}
-                    key="columnB"
-                    schema={
-                      Object {
-                        "columnA": Object {
-                          "columnType": "boolean",
-                        },
-                        "columnB": Object {
-                          "columnType": "string",
-                        },
-                      }
-                    }
-                    schemaDetectors={
-                      Array [
-                        Object {
-                          "comparator": [Function],
-                          "detector": [Function],
-                          "icon": "tokenBoolean",
-                          "sortTextAsc": <EuiI18n
-                            default="False-True"
-                            token="euiDataGridSchema.booleanSortTextAsc"
-                          />,
-                          "sortTextDesc": <EuiI18n
-                            default="True-False"
-                            token="euiDataGridSchema.booleanSortTextDesc"
-                          />,
-                          "type": "boolean",
-                        },
-                        Object {
-                          "color": "euiColorVis0",
-                          "comparator": [Function],
-                          "detector": [Function],
-                          "icon": "currency",
-                          "sortTextAsc": <EuiI18n
-                            default="Low-High"
-                            token="euiDataGridSchema.currencySortTextAsc"
-                          />,
-                          "sortTextDesc": <EuiI18n
-                            default="High-Low"
-                            token="euiDataGridSchema.currencySortTextDesc"
-                          />,
-                          "type": "currency",
-                        },
-                        Object {
-                          "detector": [Function],
-                          "icon": "tokenDate",
-                          "sortTextAsc": <EuiI18n
-                            default="Old-New"
-                            token="euiDataGridSchema.dateSortTextAsc"
-                          />,
-                          "sortTextDesc": <EuiI18n
-                            default="New-Old"
-                            token="euiDataGridSchema.dateSortTextDesc"
-                          />,
-                          "type": "datetime",
-                        },
-                        Object {
-                          "comparator": [Function],
-                          "detector": [Function],
-                          "icon": "tokenNumber",
-                          "sortTextAsc": <EuiI18n
-                            default="Low-High"
-                            token="euiDataGridSchema.numberSortTextAsc"
-                          />,
-                          "sortTextDesc": <EuiI18n
-                            default="High-Low"
-                            token="euiDataGridSchema.numberSortTextDesc"
-                          />,
-                          "type": "numeric",
-                        },
-                        Object {
-                          "comparator": [Function],
-                          "detector": [Function],
-                          "icon": "tokenObject",
-                          "sortTextAsc": <EuiI18n
-                            default="Small-Large"
-                            token="euiDataGridSchema.jsonSortTextAsc"
-                          />,
-                          "sortTextDesc": <EuiI18n
-                            default="Large-Small"
-                            token="euiDataGridSchema.jsonSortTextDesc"
-                          />,
-                          "type": "json",
-                        },
-                      ]
-                    }
-                    setColumnWidth={[MockFunction]}
-                    setVisibleColumns={[MockFunction]}
-                    switchColumnPos={[MockFunction]}
-                  >
-                    <div
-                      className="euiDataGridHeaderCell euiDataGridHeaderCell--string"
-                      data-test-subj="dataGridHeaderCell-columnB"
-                      role="columnheader"
-                      style={Object {}}
-                      tabIndex={-1}
-                    >
-                      <EuiPopover
-                        anchorClassName="euiDataGridHeaderCell__anchor"
-                        anchorPosition="downCenter"
-                        button={
-                          <button
-                            className="euiDataGridHeaderCell__button"
-                            onClick={[Function]}
-                          >
-                            <div
-                              className="euiDataGridHeaderCell__content"
-                            >
-                              columnB
-                            </div>
-                            <EuiIcon
-                              aria-label="Header actions"
-                              className="euiDataGridHeaderCell__icon"
-                              color="text"
-                              data-test-subj="dataGridHeaderCellActionButton-columnB"
-                              size="s"
-                              type="arrowDown"
-                            />
-                          </button>
-                        }
-                        closePopover={[Function]}
-                        display="inlineBlock"
-                        hasArrow={true}
-                        isOpen={false}
-                        offset={7}
-                        ownFocus={true}
-                        panelPaddingSize="none"
-                      >
-                        <div
-                          className="euiPopover euiPopover--anchorDownCenter"
-                          offset={7}
-                        >
-                          <div
-                            className="euiPopover__anchor euiDataGridHeaderCell__anchor"
-                          >
-                            <button
-                              className="euiDataGridHeaderCell__button"
-                              onClick={[Function]}
-                            >
-                              <div
-                                className="euiDataGridHeaderCell__content"
-                              >
-                                columnB
-                              </div>
-                              <EuiIcon
-                                aria-label="Header actions"
-                                className="euiDataGridHeaderCell__icon"
-                                color="text"
-                                data-test-subj="dataGridHeaderCellActionButton-columnB"
-                                size="s"
-                                type="arrowDown"
-                              >
-                                <span
-                                  aria-label="Header actions"
-                                  className="euiDataGridHeaderCell__icon"
-                                  color="text"
-                                  data-euiicon-type="arrowDown"
-                                  data-test-subj="dataGridHeaderCellActionButton-columnB"
-                                  size="s"
-                                />
-                              </EuiIcon>
-                            </button>
-                          </div>
-                        </div>
-                      </EuiPopover>
-                    </div>
-                  </EuiDataGridHeaderCell>
+                  columnA
                 </div>
-              </EuiDataGridHeaderRow>
-              <Cell
-                columnIndex={0}
-                data={
-                  Object {
-                    "columnWidths": Object {
-                      "columnA": 20,
-                    },
-                    "columns": Array [
-                      Object {
-                        "id": "columnA",
-                        "schema": "boolean",
-                      },
-                      Object {
-                        "id": "columnB",
-                        "isExpandable": true,
-                      },
-                    ],
-                    "defaultColumnWidth": undefined,
-                    "getCorrectRowIndex": [Function],
-                    "getRowHeight": [Function],
-                    "interactiveCellId": "someId",
-                    "leadingControlColumns": Array [],
-                    "popoverContents": Object {
-                      "json": [Function],
-                    },
-                    "renderCellValue": [Function],
-                    "rowHeightsOptions": undefined,
-                    "rowMap": Object {},
-                    "rowOffset": 0,
-                    "schema": Object {
-                      "columnA": Object {
-                        "columnType": "boolean",
-                      },
-                      "columnB": Object {
-                        "columnType": "string",
-                      },
-                    },
-                    "schemaDetectors": Array [
-                      Object {
-                        "comparator": [Function],
-                        "detector": [Function],
-                        "icon": "tokenBoolean",
-                        "sortTextAsc": <EuiI18n
-                          default="False-True"
-                          token="euiDataGridSchema.booleanSortTextAsc"
-                        />,
-                        "sortTextDesc": <EuiI18n
-                          default="True-False"
-                          token="euiDataGridSchema.booleanSortTextDesc"
-                        />,
-                        "type": "boolean",
-                      },
-                      Object {
-                        "color": "euiColorVis0",
-                        "comparator": [Function],
-                        "detector": [Function],
-                        "icon": "currency",
-                        "sortTextAsc": <EuiI18n
-                          default="Low-High"
-                          token="euiDataGridSchema.currencySortTextAsc"
-                        />,
-                        "sortTextDesc": <EuiI18n
-                          default="High-Low"
-                          token="euiDataGridSchema.currencySortTextDesc"
-                        />,
-                        "type": "currency",
-                      },
-                      Object {
-                        "detector": [Function],
-                        "icon": "tokenDate",
-                        "sortTextAsc": <EuiI18n
-                          default="Old-New"
-                          token="euiDataGridSchema.dateSortTextAsc"
-                        />,
-                        "sortTextDesc": <EuiI18n
-                          default="New-Old"
-                          token="euiDataGridSchema.dateSortTextDesc"
-                        />,
-                        "type": "datetime",
-                      },
-                      Object {
-                        "comparator": [Function],
-                        "detector": [Function],
-                        "icon": "tokenNumber",
-                        "sortTextAsc": <EuiI18n
-                          default="Low-High"
-                          token="euiDataGridSchema.numberSortTextAsc"
-                        />,
-                        "sortTextDesc": <EuiI18n
-                          default="High-Low"
-                          token="euiDataGridSchema.numberSortTextDesc"
-                        />,
-                        "type": "numeric",
-                      },
-                      Object {
-                        "comparator": [Function],
-                        "detector": [Function],
-                        "icon": "tokenObject",
-                        "sortTextAsc": <EuiI18n
-                          default="Small-Large"
-                          token="euiDataGridSchema.jsonSortTextAsc"
-                        />,
-                        "sortTextDesc": <EuiI18n
-                          default="Large-Small"
-                          token="euiDataGridSchema.jsonSortTextDesc"
-                        />,
-                        "type": "json",
-                      },
-                    ],
-                    "setRowHeight": [Function],
-                    "trailingControlColumns": Array [],
-                  }
-                }
-                key="0:0"
-                rowIndex={0}
-                style={
-                  Object {
-                    "height": 34,
-                    "left": 0,
-                    "position": "absolute",
-                    "top": 0,
-                    "width": 20,
-                  }
-                }
-              >
-                <EuiDataGridCell
-                  className="euiDataGridRowCell--firstColumn"
-                  colIndex={0}
-                  column={
-                    Object {
-                      "id": "columnA",
-                      "schema": "boolean",
-                    }
-                  }
-                  columnId="columnA"
-                  columnType="boolean"
-                  getRowHeight={[Function]}
-                  interactiveCellId="someId"
-                  isExpandable={true}
-                  popoverContent={[Function]}
-                  renderCellValue={[Function]}
-                  rowIndex={0}
-                  style={
-                    Object {
-                      "height": 34,
-                      "left": 0,
-                      "position": "absolute",
-                      "top": "0px",
-                      "width": 20,
-                    }
-                  }
-                  visibleRowIndex={0}
-                  width={20}
-                >
-                  <div
-                    className="euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell--firstColumn"
-                    data-test-subj="dataGridRowCell"
-                    onBlur={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    onMouseEnter={[Function]}
-                    onMouseLeave={[Function]}
-                    role="gridcell"
-                    style={
-                      Object {
-                        "height": 34,
-                        "left": 0,
-                        "position": "absolute",
-                        "top": "0px",
-                        "width": 20,
-                      }
-                    }
-                    tabIndex={-1}
-                  >
-                    <div
-                      className="euiDataGridRowCell__expandFlex"
-                    >
-                      <div
-                        className="euiDataGridRowCell__expandContent"
-                      >
-                        <Memo()
-                          colIndex={0}
-                          column={
-                            Object {
-                              "id": "columnA",
-                              "schema": "boolean",
-                            }
-                          }
-                          columnId="columnA"
-                          columnType="boolean"
-                          getRowHeight={[Function]}
-                          isDetails={false}
-                          isExpandable={true}
-                          isExpanded={false}
-                          renderCellValue={[Function]}
-                          rowIndex={0}
-                          setCellContentsRef={[Function]}
-                          setCellProps={[Function]}
-                          visibleRowIndex={0}
-                        >
-                          <div
-                            className="euiDataGridRowCell__truncate"
-                            data-datagrid-cellcontent={true}
-                            style={Object {}}
-                          >
-                            <renderCellValue
-                              columnId="columnA"
-                              columnType="boolean"
-                              data-test-subj="cell-content"
-                              getRowHeight={[Function]}
-                              isDetails={false}
-                              isExpandable={true}
-                              isExpanded={false}
-                              rowIndex={0}
-                              setCellProps={[Function]}
-                              visibleRowIndex={0}
-                            >
-                              <span>
-                                cell content
-                              </span>
-                            </renderCellValue>
-                          </div>
-                          <EuiScreenReaderOnly>
-                            <p
-                              className="euiScreenReaderOnly"
-                            >
-                              Row: 1; Column: 1
-                            </p>
-                          </EuiScreenReaderOnly>
-                        </Memo()>
-                      </div>
-                    </div>
-                  </div>
-                </EuiDataGridCell>
-              </Cell>
-              <Cell
-                columnIndex={1}
-                data={
-                  Object {
-                    "columnWidths": Object {
-                      "columnA": 20,
-                    },
-                    "columns": Array [
-                      Object {
-                        "id": "columnA",
-                        "schema": "boolean",
-                      },
-                      Object {
-                        "id": "columnB",
-                        "isExpandable": true,
-                      },
-                    ],
-                    "defaultColumnWidth": undefined,
-                    "getCorrectRowIndex": [Function],
-                    "getRowHeight": [Function],
-                    "interactiveCellId": "someId",
-                    "leadingControlColumns": Array [],
-                    "popoverContents": Object {
-                      "json": [Function],
-                    },
-                    "renderCellValue": [Function],
-                    "rowHeightsOptions": undefined,
-                    "rowMap": Object {},
-                    "rowOffset": 0,
-                    "schema": Object {
-                      "columnA": Object {
-                        "columnType": "boolean",
-                      },
-                      "columnB": Object {
-                        "columnType": "string",
-                      },
-                    },
-                    "schemaDetectors": Array [
-                      Object {
-                        "comparator": [Function],
-                        "detector": [Function],
-                        "icon": "tokenBoolean",
-                        "sortTextAsc": <EuiI18n
-                          default="False-True"
-                          token="euiDataGridSchema.booleanSortTextAsc"
-                        />,
-                        "sortTextDesc": <EuiI18n
-                          default="True-False"
-                          token="euiDataGridSchema.booleanSortTextDesc"
-                        />,
-                        "type": "boolean",
-                      },
-                      Object {
-                        "color": "euiColorVis0",
-                        "comparator": [Function],
-                        "detector": [Function],
-                        "icon": "currency",
-                        "sortTextAsc": <EuiI18n
-                          default="Low-High"
-                          token="euiDataGridSchema.currencySortTextAsc"
-                        />,
-                        "sortTextDesc": <EuiI18n
-                          default="High-Low"
-                          token="euiDataGridSchema.currencySortTextDesc"
-                        />,
-                        "type": "currency",
-                      },
-                      Object {
-                        "detector": [Function],
-                        "icon": "tokenDate",
-                        "sortTextAsc": <EuiI18n
-                          default="Old-New"
-                          token="euiDataGridSchema.dateSortTextAsc"
-                        />,
-                        "sortTextDesc": <EuiI18n
-                          default="New-Old"
-                          token="euiDataGridSchema.dateSortTextDesc"
-                        />,
-                        "type": "datetime",
-                      },
-                      Object {
-                        "comparator": [Function],
-                        "detector": [Function],
-                        "icon": "tokenNumber",
-                        "sortTextAsc": <EuiI18n
-                          default="Low-High"
-                          token="euiDataGridSchema.numberSortTextAsc"
-                        />,
-                        "sortTextDesc": <EuiI18n
-                          default="High-Low"
-                          token="euiDataGridSchema.numberSortTextDesc"
-                        />,
-                        "type": "numeric",
-                      },
-                      Object {
-                        "comparator": [Function],
-                        "detector": [Function],
-                        "icon": "tokenObject",
-                        "sortTextAsc": <EuiI18n
-                          default="Small-Large"
-                          token="euiDataGridSchema.jsonSortTextAsc"
-                        />,
-                        "sortTextDesc": <EuiI18n
-                          default="Large-Small"
-                          token="euiDataGridSchema.jsonSortTextDesc"
-                        />,
-                        "type": "json",
-                      },
-                    ],
-                    "setRowHeight": [Function],
-                    "trailingControlColumns": Array [],
-                  }
-                }
-                key="0:1"
-                rowIndex={0}
-                style={
-                  Object {
-                    "height": 34,
-                    "left": 20,
-                    "position": "absolute",
-                    "top": 0,
-                    "width": 100,
-                  }
-                }
-              >
-                <EuiDataGridCell
-                  className="euiDataGridRowCell--lastColumn"
-                  colIndex={1}
-                  column={
-                    Object {
-                      "id": "columnB",
-                      "isExpandable": true,
-                    }
-                  }
-                  columnId="columnB"
-                  columnType="string"
-                  getRowHeight={[Function]}
-                  interactiveCellId="someId"
-                  isExpandable={true}
-                  popoverContent={[Function]}
-                  renderCellValue={[Function]}
-                  rowIndex={0}
-                  style={
-                    Object {
-                      "height": 34,
-                      "left": 20,
-                      "position": "absolute",
-                      "top": "0px",
-                      "width": 100,
-                    }
-                  }
-                  visibleRowIndex={0}
-                >
-                  <div
-                    className="euiDataGridRowCell euiDataGridRowCell--string euiDataGridRowCell--lastColumn"
-                    data-test-subj="dataGridRowCell"
-                    onBlur={[Function]}
-                    onFocus={[Function]}
-                    onKeyDown={[Function]}
-                    onMouseEnter={[Function]}
-                    onMouseLeave={[Function]}
-                    role="gridcell"
-                    style={
-                      Object {
-                        "height": 34,
-                        "left": 20,
-                        "position": "absolute",
-                        "top": "0px",
-                        "width": undefined,
-                      }
-                    }
-                    tabIndex={-1}
-                  >
-                    <div
-                      className="euiDataGridRowCell__expandFlex"
-                    >
-                      <div
-                        className="euiDataGridRowCell__expandContent"
-                      >
-                        <Memo()
-                          colIndex={1}
-                          column={
-                            Object {
-                              "id": "columnB",
-                              "isExpandable": true,
-                            }
-                          }
-                          columnId="columnB"
-                          columnType="string"
-                          getRowHeight={[Function]}
-                          isDetails={false}
-                          isExpandable={true}
-                          isExpanded={false}
-                          renderCellValue={[Function]}
-                          rowIndex={0}
-                          setCellContentsRef={[Function]}
-                          setCellProps={[Function]}
-                          visibleRowIndex={0}
-                        >
-                          <div
-                            className="euiDataGridRowCell__truncate"
-                            data-datagrid-cellcontent={true}
-                            style={Object {}}
-                          >
-                            <renderCellValue
-                              columnId="columnB"
-                              columnType="string"
-                              data-test-subj="cell-content"
-                              getRowHeight={[Function]}
-                              isDetails={false}
-                              isExpandable={true}
-                              isExpanded={false}
-                              rowIndex={0}
-                              setCellProps={[Function]}
-                              visibleRowIndex={0}
-                            >
-                              <span>
-                                cell content
-                              </span>
-                            </renderCellValue>
-                          </div>
-                          <EuiScreenReaderOnly>
-                            <p
-                              className="euiScreenReaderOnly"
-                            >
-                              Row: 1; Column: 2
-                            </p>
-                          </EuiScreenReaderOnly>
-                        </Memo()>
-                      </div>
-                    </div>
-                  </div>
-                </EuiDataGridCell>
-              </Cell>
+                <span
+                  aria-label="Header actions"
+                  class="euiDataGridHeaderCell__icon"
+                  color="text"
+                  data-euiicon-type="arrowDown"
+                  data-test-subj="dataGridHeaderCellActionButton-columnA"
+                />
+              </button>
             </div>
-          </EuiDataGridInnerElement>
+          </div>
         </div>
-      </Grid>
+        <div
+          class="euiDataGridHeaderCell euiDataGridHeaderCell--string"
+          data-test-subj="dataGridHeaderCell-columnB"
+          role="columnheader"
+          tabindex="-1"
+        >
+          <div
+            class="euiPopover euiPopover--anchorDownCenter"
+            offset="7"
+          >
+            <div
+              class="euiPopover__anchor euiDataGridHeaderCell__anchor"
+            >
+              <button
+                class="euiDataGridHeaderCell__button"
+              >
+                <div
+                  class="euiDataGridHeaderCell__content"
+                >
+                  columnB
+                </div>
+                <span
+                  aria-label="Header actions"
+                  class="euiDataGridHeaderCell__icon"
+                  color="text"
+                  data-euiicon-type="arrowDown"
+                  data-test-subj="dataGridHeaderCellActionButton-columnB"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell--firstColumn"
+        data-test-subj="dataGridRowCell"
+        role="gridcell"
+        style="position:absolute;left:0;top:0px;height:34px;width:20px"
+        tabindex="-1"
+      >
+        <div
+          class="euiDataGridRowCell__expandFlex"
+        >
+          <div
+            class="euiDataGridRowCell__expandContent"
+          >
+            <div
+              class="euiDataGridRowCell__truncate"
+              data-datagrid-cellcontent="true"
+            >
+              <span>
+                cell content
+              </span>
+            </div>
+            <p
+              class="euiScreenReaderOnly"
+            >
+              Row: 1; Column: 1
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridRowCell--lastColumn"
+        data-test-subj="dataGridRowCell"
+        role="gridcell"
+        style="position:absolute;left:20px;top:0px;height:34px"
+        tabindex="-1"
+      >
+        <div
+          class="euiDataGridRowCell__expandFlex"
+        >
+          <div
+            class="euiDataGridRowCell__expandContent"
+          >
+            <div
+              class="euiDataGridRowCell__truncate"
+              data-datagrid-cellcontent="true"
+            >
+              <span>
+                cell content
+              </span>
+            </div>
+            <p
+              class="euiScreenReaderOnly"
+            >
+              Row: 1; Column: 2
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-  </EuiMutationObserver>
-</EuiDataGridBody>
+  </div>
+</div>
 `;
