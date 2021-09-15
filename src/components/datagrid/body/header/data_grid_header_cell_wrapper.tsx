@@ -47,6 +47,14 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
   const headerRef = useRef<HTMLDivElement>(null);
   const [isCellEntered, setIsCellEntered] = useState(false);
 
+  const focusInteractives = useCallback((headerNode: Element) => {
+    const tabbables = tabbable(headerNode);
+    if (tabbables.length === 1) {
+      tabbables[0].focus();
+      setIsCellEntered(true);
+    }
+  }, []);
+
   const enableInteractives = useCallback((headerNode: Element) => {
     const interactiveElements = headerNode.querySelectorAll(
       '[data-euigrid-tab-managed]'
@@ -75,14 +83,16 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
 
     if (isCellEntered) {
       enableInteractives(headerNode);
-      const tabbables = tabbable(headerNode);
-      if (tabbables.length > 0) {
-        tabbables[0].focus();
-      }
+      focusInteractives(headerNode);
     } else {
       disableInteractives(headerNode);
     }
-  }, [disableInteractives, enableInteractives, isCellEntered]);
+  }, [
+    disableInteractives,
+    enableInteractives,
+    focusInteractives,
+    isCellEntered,
+  ]);
 
   useEffect(() => {
     const headerNode = headerRef.current!;
@@ -114,13 +124,8 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
         } else {
           // this cell already had the grid's focus, so re-enable interactives
           enableInteractives(headerNode);
-
-          // if there is only one interactive element shift focus to the interactive element
-          const tabbables = tabbable(headerNode);
-          if (tabbables.length === 1) {
-            tabbables[0].focus();
-            setIsCellEntered(true);
-          }
+          // shift focus to the interactive element
+          focusInteractives(headerNode);
         }
       }
     }
@@ -176,6 +181,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
     };
   }, [
     enableInteractives,
+    focusInteractives,
     headerIsInteractive,
     isFocused,
     setIsCellEntered,
