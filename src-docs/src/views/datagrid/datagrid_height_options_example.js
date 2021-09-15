@@ -18,7 +18,7 @@ import DataGridRowAutoHeight from './row_height_auto';
 const dataGridRowAutoHeightSource = require('!!raw-loader!./row_height_auto');
 
 const rowHeightsSnippet = `rowHeightsOptions = {
-  defaultHeight: 140,
+  defaultHeight: 140, // default every row to 140px
   rowHeights: {
     1: {
       lineCount: 5, // for row which have index 1 we allow to show 5 lines after that we truncate
@@ -31,8 +31,7 @@ const rowHeightsSnippet = `rowHeightsOptions = {
 const rowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   () => ({
     defaultHeight: {
-      lineCount: 2, // default every row to 2 lines of text. Also we can provide height in pixels
-    },
+      lineCount: 2,
   }),
   []
 );
@@ -43,7 +42,7 @@ const rowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   columnVisibility={{ visibleColumns, setVisibleColumns }}
   rowCount={rowCount}
   height={400}
-  renderCellValue={RenderCellValue}
+  renderCellValue={renderCellValue}
   inMemory={{ level: 'sorting' }}
   sorting={{ columns: sortingColumns, onSort }}
   rowHeightsOptions={rowHeightsOptions}
@@ -56,14 +55,23 @@ const rowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
 />
 `;
 
-const autoRowHeightsSnippet = `rowHeightsOptions = {
-  defaultHeight: 'auto', // each row auto fit to content except rows which was defined in 'rowHeights'
+const autoRowHeightsSnippet = `// the demo below matches this snippet
+rowHeightsOptions = {
+  defaultHeight: 'auto', // all rows will automatically adjust the height except rows defined in 'rowHeights'
   rowHeights: {
     1: {
-      lineCount: 5, // for row which have index 1 we allow to show 5 lines after that we truncate
+      lineCount: 5, // row with index 1 will show 5 lines
     },
-    4: 140, // for row which have index 4 we set 140 pixel
+    4: 140, // row with index 4 will adjust the height to 140px
   },
+}
+
+// you can also automatically adjust the height for a specific row
+rowHeightsOptions = {
+  rowHeights: {
+    1: 'auto', // row with index 1 will automatically adjust the height
+    4: 140, // row with index 4 will adjust the height to 140px
+  }
 }
 `;
 
@@ -80,7 +88,7 @@ const autoRowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   columnVisibility={{ visibleColumns, setVisibleColumns }}
   rowCount={rowCount}
   height={400}
-  renderCellValue={RenderCellValue}
+  renderCellValue={renderCellValue}
   inMemory={{ level: 'sorting' }}
   sorting={{ columns: sortingColumns, onSort }}
   rowHeightsOptions={rowHeightsOptions}
@@ -99,9 +107,9 @@ export const DataGridRowHeightOptionsExample = {
     <Fragment>
       <EuiText>
         <p>
-          By default, the rows get a fixed height of <strong>34 pixels</strong>,
-          but there are scenarios where you might want to adjust the height to
-          fit more content. To do that, you can pass an object to the{' '}
+          By default, all rows get a height of <strong>34 pixels</strong>, but
+          there are scenarios where you might want to adjust the height to fit
+          more content. To do that, you can pass an object to the{' '}
           <EuiCode>rowHeightsOptions</EuiCode> prop. This object accepts two
           properties:
         </p>
@@ -139,14 +147,15 @@ export const DataGridRowHeightOptionsExample = {
       text: (
         <Fragment>
           <p>
-            You can change the default height for all rows by passing to the
-            <EuiCode>defaultHeight</EuiCode> property a{' '}
-            <EuiCode>lineCount</EuiCode> or <EuiCode>height</EuiCode>. This will
-            ensure the rows will adjust the height to match that configuration.
+            You can change the default height for all rows by passing to the{' '}
+            <EuiCode>defaultHeight</EuiCode> property a line count or a height
+            in pixels. This will ensure the rows will adjust the height to match
+            that configuration.
+          </p>
+          <p>
             You can also override the height of a specific row by passing an
             object to the <EuiCode>rowHeights</EuiCode> property with the index
-            number and
-            <EuiCode>lineCount</EuiCode> or <EuiCode>height</EuiCode>.
+            number, line count or a height in pixels.
           </p>
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {rowHeightsSnippet}
@@ -175,6 +184,8 @@ export const DataGridRowHeightOptionsExample = {
             You can change the default height for all rows by setting{' '}
             <EuiCode>defaultHeight=&quot;auto&quot;</EuiCode>. This will ensure
             the rows will automatically adjust the height to fit the contents.
+          </p>
+          <p>
             You can also override the height of a specific row by passing an
             object to the <EuiCode>rowHeights</EuiCode> property with the index
             number and <EuiCode>&quot;auto&quot;</EuiCode>.
