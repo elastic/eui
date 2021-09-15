@@ -12,7 +12,10 @@ import { useScrollBar } from '../mixins/_helpers';
 import { shade, tint, transparentize } from '../../services/color';
 import { useEuiTheme, isLegacyTheme } from '../../services/theme';
 
-export const EuiGlobalReset = () => {
+// The following import contains the static reset styles
+import './_reset.scss';
+
+export const EuiGlobalStyles = () => {
   const {
     euiTheme: { base, border, colors, font, themeName },
     colorMode,
@@ -98,16 +101,9 @@ export const EuiGlobalReset = () => {
   };
 
   /**
-   * Final reset
-   * Adapted from Eric Meyer's reset (http://meyerweb.com/eric/tools/css/reset/, v2.0 | 20110126)
+   * Final styles
    */
-  const reset = css`
-    *,
-    *:before,
-    *:after {
-      box-sizing: border-box;
-    }
-
+  const styles = css`
     html {
       ${scrollbarStyles}
       ${fontReset}
@@ -118,110 +114,11 @@ export const EuiGlobalReset = () => {
       color: ${colors.text};
     }
 
-    html,
-    body,
-    div,
-    span,
-    applet,
-    object,
-    iframe,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p,
-    blockquote,
-    pre,
-    a,
-    abbr,
-    acronym,
-    address,
-    big,
-    cite,
-    code,
-    del,
-    dfn,
-    em,
-    img,
-    ins,
-    kbd,
-    q,
-    s,
-    samp,
-    small,
-    strike,
-    strong,
-    sub,
-    sup,
-    tt,
-    var,
-    b,
-    u,
-    i,
-    center,
-    dl,
-    dt,
-    dd,
-    ol,
-    ul,
-    li,
-    fieldset,
-    form,
-    label,
-    legend,
-    table,
-    caption,
-    tbody,
-    tfoot,
-    thead,
-    tr,
-    th,
-    td,
-    article,
-    aside,
-    canvas,
-    details,
-    embed,
-    figure,
-    figcaption,
-    footer,
-    header,
-    hgroup,
-    menu,
-    nav,
-    output,
-    ruby,
-    section,
-    summary,
-    time,
-    mark,
-    audio,
-    video {
-      margin: 0;
-      padding: 0;
-      border: none;
-      vertical-align: baseline;
-    }
-
     code,
     pre,
     kbd,
     samp {
       font-family: ${font.familyCode};
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p {
-      font-family: inherit;
-      font-weight: inherit;
-      font-size: inherit;
     }
 
     input,
@@ -239,21 +136,6 @@ export const EuiGlobalReset = () => {
       font-weight: ${font.weight.bold};
     }
 
-    // HTML5 display-role reset for older browsers
-    article,
-    aside,
-    details,
-    figcaption,
-    figure,
-    footer,
-    header,
-    hgroup,
-    menu,
-    nav,
-    section {
-      display: block;
-    }
-
     ${focusReset()}
 
     a {
@@ -265,67 +147,7 @@ export const EuiGlobalReset = () => {
         text-decoration: none;
       }
     }
-
-    a[href],
-    button,
-    [role='button'] {
-      cursor: pointer;
-    }
-
-    button {
-      background: none;
-      border: none;
-      padding: 0;
-      margin: 0;
-      color: inherit;
-      border-radius: 0;
-    }
-
-    input {
-      margin: 0;
-      padding: 0;
-
-      &:disabled {
-        opacity: 1; /* required on iOS */
-      }
-    }
-
-    ol,
-    ul {
-      list-style: none;
-    }
-
-    blockquote,
-    q {
-      quotes: none;
-    }
-
-    blockquote:before,
-    blockquote:after,
-    q:before,
-    q:after {
-      content: '';
-    }
-
-    table {
-      border-collapse: collapse;
-      border-spacing: 0;
-    }
-
-    hr {
-      margin: 0;
-    }
-
-    fieldset {
-      min-inline-size: auto;
-    }
-
-    // Chrome has an issue around RTL languages in SVGs when letter-spacing is negative
-    // https://bugs.chromium.org/p/chromium/issues/detail?id=966480
-    svg text {
-      letter-spacing: normal !important; // sass-lint:disable-line no-important
-    }
   `;
 
-  return <Global styles={reset} />;
+  return <Global styles={styles} />;
 };

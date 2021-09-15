@@ -1,10 +1,6 @@
+// Adapted from Eric Meyer's reset (http://meyerweb.com/eric/tools/css/reset/, v2.0 | 20110126).
 // This file allows multi-line selectors to make it more readable
 // sass-lint:disable single-line-per-selector
-
-/**
- * Adapted from Eric Meyer's reset (http://meyerweb.com/eric/tools/css/reset/, v2.0 | 20110126).
- *
- */
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -29,76 +25,31 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-code, pre, kbd, samp {
-  font-family: $euiCodeFontFamily;
-}
-
 h1, h2, h3, h4, h5, h6, p {
   font-family: inherit;
   font-weight: inherit;
   font-size: inherit;
 }
 
-input, textarea, select, button {
-  font-family: $euiFontFamily;
-}
-
-em {
-  font-style: italic;
-}
-
-strong {
-  font-weight: $euiFontWeightBold;
-}
-
-/* HTML5 display-role reset for older browsers */
+// HTML5 display-role reset for older browsers
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
-html {
-  @include euiFont;
-  font-size: $euiFontSize;
-  color: $euiTextColor;
-  height: 100%;
-  background-color: $euiPageBackgroundColor;
-}
-
-body {
-  line-height: $euiBodyLineHeight;
-}
-
-*:focus {
-  outline: none;
-
-  // sass-lint:disable no-vendor-prefixes
-  // Disables border that shows up when tabbing in Firefox.
-  &::-moz-focus-inner {
-    border: none;
-  }
-
-  &:-moz-focusring {
-    outline: none;
-  }
-}
-
-a {
-  text-decoration: none;
-  color: $euiColorPrimary;
-
-  &:hover {
-    text-decoration: none;
-  }
-
-  &:focus {
-    text-decoration: none;
-    outline: none;
-  }
-}
-
-a:hover, button, [role='button'] {
+a[href],
+button,
+[role='button'] {
   cursor: pointer;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  border-radius: 0;
 }
 
 input {
@@ -110,33 +61,21 @@ input {
   }
 }
 
-button {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  outline: none;
-  font-size: inherit;
-  color: inherit;
-  border-radius: 0;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
   content: '';
-  content: none; // sass-lint:disable-line no-duplicate-properties
 }
 
 table {
@@ -150,4 +89,10 @@ hr {
 
 fieldset {
   min-inline-size: auto;
+}
+
+// Chrome has an issue around RTL languages in SVGs when letter-spacing is negative
+// https://bugs.chromium.org/p/chromium/issues/detail?id=966480
+svg text {
+  letter-spacing: normal !important; // sass-lint:disable-line no-important
 }
