@@ -37,6 +37,14 @@ describe('EuiDescriptionList', () => {
   ];
   describe('props', () => {
     describe('listItems', () => {
+      const component = render(
+        <EuiDescriptionList listItems={listItems}>
+          listItems will render instead of this content
+        </EuiDescriptionList>
+      );
+
+      expect(component).toMatchSnapshot();
+
       describe('titleProps', () => {
         test('is rendered', () => {
           const component = render(
