@@ -35,6 +35,11 @@
 **Theme: Amsterdam**
 
 - Deprecated `display` prop of `EuiTabs` in favor of unified styles and `bottomBorder` ([#5135](https://github.com/elastic/eui/pull/5135))
+- Moved `EuiCheckbox` and `EuIRadio` inputs to always float inline on top of the faux inputs ([#5152](https://github.com/elastic/eui/pull/5152))
+
+**Breaking changes**
+
+- Added `clip` property to `EuiScreenReaderOnly`, to fix positioning issues within scrolling containers ([#5152](https://github.com/elastic/eui/pull/5152))
 
 ## [`37.6.2`](https://github.com/elastic/eui/tree/v37.6.2)
 
