@@ -92,7 +92,8 @@ const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
           <h2>
             <EuiLink color="text" href={item.html_url} target="blank" external>
               {item.title}
-            </EuiLink>{' '}
+            </EuiLink>
+            {'  '}
             {item.labels.map(({ name, color }) => (
               <EuiBadge key={name} color={`#${color}`}>
                 {name}
@@ -117,8 +118,14 @@ const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
 
         <EuiSpacer size="s" />
 
-        {item.comments >= 1 && (
-          <EuiBadge iconType="editorComment" iconSide="left">
+        {item.comments === 1 && (
+          <EuiBadge iconType="editorComment" iconSide="left" color="hollow">
+            {`${item.comments} comment`}
+          </EuiBadge>
+        )}
+
+        {item.comments >= 2 && (
+          <EuiBadge iconType="editorComment" iconSide="left" color="hollow">
             {`${item.comments} comments`}
           </EuiBadge>
         )}
