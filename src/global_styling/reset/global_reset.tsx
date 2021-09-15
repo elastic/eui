@@ -14,7 +14,7 @@ import { useEuiTheme, isLegacyTheme } from '../../services/theme';
 
 export const EuiGlobalReset = () => {
   const {
-    euiTheme: { base, colors, font, themeName },
+    euiTheme: { base, border, colors, font, themeName },
     colorMode,
   } = useEuiTheme();
   const legacyTheme = isLegacyTheme(themeName);
@@ -40,7 +40,11 @@ export const EuiGlobalReset = () => {
     font-size: ${`${font.scale[font.body.scale] * base}px`};
     line-height: ${base / (font.scale[font.body.scale] * base)};
     font-weight: ${font.weight[font.body.weight]};
-    ${font.body.letterSpacing && `letter-spacing: ${font.body.letterSpacing};`}
+    ${
+      font.body.letterSpacing
+        ? `letter-spacing: ${font.body.letterSpacing};`
+        : ''
+    }
   `;
 
   /**
@@ -69,10 +73,9 @@ export const EuiGlobalReset = () => {
     // 💔 But they don't allow coloring of the 'auto'/default outline, so contrast is no good in dark mode.
     // 👉 For these browsers we use the solid type in order to match with \`currentColor\`.
     // 😦 Which does means the outline will be square
-    // TODO: $euiFocusRingSize & $euiFocusBackgroundColor
     return `*:focus {
-      outline: 2px solid currentColor;
-      outline-offset: calc((2px / 2) * -1);
+      outline: currentColor solid ${border.width.thick};
+      outline-offset: calc(-(${border.width.thick} / 2) * -1);
 
       // 👀 Chrome respects :focus-visible and allows coloring the \`auto\` style
       &:focus-visible {
@@ -107,6 +110,12 @@ export const EuiGlobalReset = () => {
 
     html {
       ${scrollbarStyles}
+      ${fontReset}
+      text-size-adjust: 100%;
+      font-kerning: normal;
+      height: 100%;
+      background-color: ${colors.body};
+      color: ${colors.text};
     }
 
     html,
@@ -245,15 +254,6 @@ export const EuiGlobalReset = () => {
       display: block;
     }
 
-    html {
-      ${fontReset}
-      text-size-adjust: 100%;
-      font-kerning: normal;
-      height: 100%;
-      background-color: ${colors.body};
-      color: ${colors.text};
-    }
-
     ${focusReset()}
 
     a {
@@ -277,13 +277,8 @@ export const EuiGlobalReset = () => {
       border: none;
       padding: 0;
       margin: 0;
-      font-size: inherit;
       color: inherit;
       border-radius: 0;
-
-      &:hover {
-        cursor: pointer;
-      }
     }
 
     input {
