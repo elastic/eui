@@ -556,7 +556,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
         }
 
         if (!height && rowHeightsOptions.defaultHeight === AUTO_HEIGHT) {
-          return rowHeightUtils.getRowHeight(correctRowIndex) || defaultHeight;
+          height = rowHeightUtils.getRowHeight(correctRowIndex);
         }
       }
 
@@ -697,9 +697,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 }
                 width={finalWidth}
                 columnWidth={getWidth}
-                estimatedRowHeight={
-                  rowHeightsOptions?.estimatedRowHeight || defaultHeight
-                }
                 height={finalHeight}
                 rowHeight={getRowHeight}
                 itemData={{

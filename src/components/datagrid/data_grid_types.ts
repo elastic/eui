@@ -247,7 +247,7 @@ export type CommonGridProps = CommonProps &
      */
     width?: CSSProperties['width'];
     /**
-     * Defines a react-window props.
+     * Allows customizing the underlying [react-window grid](https://react-window.vercel.app/#/api/VariableSizeGrid) props.
      */
     virtualizationOptions?: Partial<VariableSizeGridProps>;
     /**
@@ -713,8 +713,4 @@ export interface EuiDataGridRowHeightsOptions {
    * Defines the height for a specific row. It can be line count or just height.
    */
   rowHeights?: Record<number, EuiDataGridRowHeightOption>;
-  /**
-   * Average (or estimated) row height for unrendered rows.
-   */
-  estimatedRowHeight?: number;
 }
