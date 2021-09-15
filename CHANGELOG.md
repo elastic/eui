@@ -10,6 +10,7 @@
 **Breaking changes**
 
 - Upgraded TypeScript version to ~4.1.3 ([#5182](https://github.com/elastic/eui/pull/5182))
+- Added `clip` property to `EuiScreenReaderOnly`, to fix positioning issues within scrolling containers ([#5152](https://github.com/elastic/eui/pull/5152))
 
 ## [`37.7.0`](https://github.com/elastic/eui/tree/v37.7.0)
 
@@ -36,10 +37,6 @@
 
 - Deprecated `display` prop of `EuiTabs` in favor of unified styles and `bottomBorder` ([#5135](https://github.com/elastic/eui/pull/5135))
 - Moved `EuiCheckbox` and `EuIRadio` inputs to always float inline on top of the faux inputs ([#5152](https://github.com/elastic/eui/pull/5152))
-
-**Breaking changes**
-
-- Added `clip` property to `EuiScreenReaderOnly`, to fix positioning issues within scrolling containers ([#5152](https://github.com/elastic/eui/pull/5152))
 
 ## [`37.6.2`](https://github.com/elastic/eui/tree/v37.6.2)
 
