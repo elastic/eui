@@ -9,6 +9,7 @@
 import React from 'react';
 import {
   EuiDataGridColumn,
+  EuiDataGridColumnActions,
   EuiDataGridSchema,
   EuiDataGridSchemaDetector,
   EuiDataGridSorting,
@@ -41,28 +42,172 @@ export const getColumnActions = ({
   setIsPopoverOpen,
   sorting,
   switchColumnPos,
-}: GetColumnActions) => {
+}: GetColumnActions): EuiListGroupItemProps[] => {
   if (column.actions === false) {
     return [];
   }
+
+  const actions = [
+    ...getHideColumnAction({
+      column,
+      columns,
+      setVisibleColumns,
+    }),
+    ...getSortColumnActions({
+      column,
+      sorting,
+      schema,
+      schemaDetectors,
+    }),
+    ...getMoveColumnActions({
+      column,
+      columns,
+      switchColumnPos,
+    }),
+    ...(column.actions?.additional || []),
+  ];
+
+  return actions.map((action) => ({
+    ...action,
+    // Wrap EuiListGroupItem onClick function to close the popover and prevent bubbling up
+    onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.stopPropagation();
+      setIsPopoverOpen(false);
+      if (action?.onClick) {
+        action.onClick(e);
+      }
+    },
+  }));
+};
+
+/**
+ * Hide column action
+ */
+type HideColumnAction = Pick<
+  GetColumnActions,
+  'column' | 'columns' | 'setVisibleColumns'
+>;
+
+export const getHideColumnAction = ({
+  column,
+  columns,
+  setVisibleColumns,
+}: HideColumnAction): EuiListGroupItemProps[] => {
+  const items = [];
+
+  const onClickHideColumn = () =>
+    setVisibleColumns(
+      columns.filter((col) => col.id !== column.id).map((col) => col.id)
+    );
+
+  const action = {
+    label: (
+      <EuiI18n token="euiColumnActions.hideColumn" default="Hide column" />
+    ),
+    onClick: onClickHideColumn,
+    iconType: 'eyeClosed',
+    size: 'xs',
+    color: 'text',
+  } as EuiListGroupItemProps;
+
+  if (isColumnActionEnabled('showHide', column.actions)) {
+    items.push(getColumnActionConfig(action, 'showHide', column.actions));
+  }
+
+  return items;
+};
+
+/**
+ * Move column actions
+ */
+type MoveColumnActions = Pick<
+  GetColumnActions,
+  'column' | 'columns' | 'switchColumnPos'
+>;
+
+const getMoveColumnActions = ({
+  column,
+  columns,
+  switchColumnPos,
+}: MoveColumnActions): EuiListGroupItemProps[] => {
+  const items = [];
+
   const colIdx = columns.findIndex((col) => col.id === column.id);
 
-  const sortingIdx = sorting
-    ? sorting.columns.findIndex((col) => col.id === column.id)
-    : -1;
-  const sortBy = (direction: 'asc' | 'desc' = 'asc') => {
-    if (!sorting) {
-      return;
-    }
+  if (isColumnActionEnabled('showMoveLeft', column.actions)) {
+    const onClickMoveLeft = () => {
+      const targetCol = columns[colIdx - 1];
+      if (targetCol) {
+        switchColumnPos(column.id, targetCol.id);
+      }
+    };
+    const action = {
+      label: <EuiI18n token="euiColumnActions.moveLeft" default="Move left" />,
+      iconType: 'sortLeft',
+      size: 'xs',
+      color: 'text',
+      onClick: onClickMoveLeft,
+      isDisabled: colIdx === 0,
+    } as EuiListGroupItemProps;
 
+    items.push(getColumnActionConfig(action, 'showMoveLeft', column.actions));
+  }
+
+  if (isColumnActionEnabled('showMoveRight', column.actions)) {
+    const onClickMoveRight = () => {
+      const targetCol = columns[colIdx + 1];
+      if (targetCol) {
+        switchColumnPos(column.id, targetCol.id);
+      }
+    };
+    const action = {
+      label: (
+        <EuiI18n token="euiColumnActions.moveRight" default="Move right" />
+      ),
+      iconType: 'sortRight',
+      size: 'xs',
+      color: 'text',
+      onClick: onClickMoveRight,
+      isDisabled: colIdx === columns.length - 1,
+    } as EuiListGroupItemProps;
+
+    items.push(getColumnActionConfig(action, 'showMoveRight', column.actions));
+  }
+
+  return items;
+};
+
+/**
+ * Sort column actions
+ */
+type SortColumnActions = Pick<
+  GetColumnActions,
+  'column' | 'sorting' | 'schema' | 'schemaDetectors'
+>;
+
+export const getSortColumnActions = ({
+  column,
+  sorting,
+  schema,
+  schemaDetectors,
+}: SortColumnActions): EuiListGroupItemProps[] => {
+  if (!sorting) return [];
+  const items = [];
+
+  const sortingIdx = sorting.columns.findIndex((col) => col.id === column.id);
+
+  const schemaDetails =
+    schema.hasOwnProperty(column.id) && schema[column.id].columnType != null
+      ? getDetailsForSchema(schemaDetectors, schema[column.id].columnType)
+      : null;
+
+  const sortBy = (direction: 'asc' | 'desc') => {
     if (
       sortingIdx >= 0 &&
       sorting.columns[sortingIdx]?.direction === direction
     ) {
       // unsort if the same current and new direction are same
-      const newColumns = sorting.columns.filter(
-        (val, idx) => idx !== sortingIdx
-      );
+      const newColumns = sorting.columns.filter((_, idx) => idx !== sortingIdx);
       sorting.onSort(newColumns);
     } else if (sortingIdx >= 0) {
       // replace existing sort
@@ -86,60 +231,17 @@ export const getColumnActions = ({
       sorting.onSort(newColumns as EuiDataGridSorting['columns']);
     }
   };
-  const onClickHideColumn = () =>
-    setVisibleColumns(
-      columns.filter((col) => col.id !== column.id).map((col) => col.id)
-    );
 
-  const onClickSortAsc = () => {
-    sortBy('asc');
-  };
-
-  const onClickSortDesc = () => {
-    sortBy('desc');
-  };
-
-  const onClickMoveLeft = () => {
-    const targetCol = columns[colIdx - 1];
-    if (targetCol) {
-      switchColumnPos(column.id, targetCol.id);
-    }
-  };
-
-  const onClickMoveRight = () => {
-    const targetCol = columns[colIdx + 1];
-    if (targetCol) {
-      switchColumnPos(column.id, targetCol.id);
-    }
-  };
-
-  const result: EuiListGroupItemProps[] = [];
-  if (column.actions?.showHide !== false) {
-    const option = {
-      label: (
-        <EuiI18n token="euiColumnActions.hideColumn" default="Hide column" />
-      ),
-      onClick: onClickHideColumn,
-      iconType: 'eyeClosed',
-      size: 'xs',
-      color: 'text',
-    } as EuiListGroupItemProps;
-    if (typeof column.actions?.showHide === 'object') {
-      result.push({ ...option, ...column.actions.showHide });
-    } else {
-      result.push(option);
-    }
-  }
-
-  const schemaDetails =
-    schema.hasOwnProperty(column.id) && schema[column.id].columnType != null
-      ? getDetailsForSchema(schemaDetectors, schema[column.id].columnType)
-      : null;
-  if (column.actions?.showSortAsc !== false && sorting) {
+  if (isColumnActionEnabled('showSortAsc', column.actions)) {
     const label = schemaDetails
       ? schemaDetails.sortTextAsc
       : defaultSortAscLabel;
-    const option = {
+
+    const onClickSortAsc = () => {
+      sortBy('asc');
+    };
+
+    const action = {
       label: (
         <EuiI18n
           token="euiColumnActions.sort"
@@ -157,18 +259,20 @@ export const getColumnActions = ({
       size: 'xs',
       color: 'text',
     } as EuiListGroupItemProps;
-    if (typeof column.actions?.showSortAsc === 'object') {
-      result.push({ ...option, ...column.actions.showSortAsc });
-    } else {
-      result.push(option);
-    }
+
+    items.push(getColumnActionConfig(action, 'showSortAsc', column.actions));
   }
 
-  if (column.actions?.showSortDesc !== false && sorting) {
+  if (isColumnActionEnabled('showSortDesc', column.actions)) {
     const label = schemaDetails
       ? schemaDetails.sortTextDesc
       : defaultSortDescLabel;
-    const option = {
+
+    const onClickSortDesc = () => {
+      sortBy('desc');
+    };
+
+    const action = {
       label: (
         <EuiI18n
           token="euiColumnActions.sort"
@@ -186,59 +290,37 @@ export const getColumnActions = ({
       size: 'xs',
       color: 'text',
     } as EuiListGroupItemProps;
-    if (typeof column.actions?.showSortDesc === 'object') {
-      result.push({ ...option, ...column.actions.showSortDesc });
-    } else {
-      result.push(option);
-    }
+
+    items.push(getColumnActionConfig(action, 'showSortDesc', column.actions));
   }
 
-  if (column.actions?.showMoveLeft !== false) {
-    const option = {
-      label: <EuiI18n token="euiColumnActions.moveLeft" default="Move left" />,
-      iconType: 'sortLeft',
-      size: 'xs',
-      color: 'text',
-      onClick: onClickMoveLeft,
-      isDisabled: colIdx === 0,
-    } as EuiListGroupItemProps;
-    if (typeof column.actions?.showMoveLeft === 'object') {
-      result.push({ ...option, ...column.actions.showMoveLeft });
-    } else {
-      result.push(option);
-    }
-  }
+  return items;
+};
 
-  if (column.actions?.showMoveRight !== false) {
-    const option = {
-      label: (
-        <EuiI18n token="euiColumnActions.moveRight" default="Move right" />
-      ),
-      iconType: 'sortRight',
-      size: 'xs',
-      color: 'text',
-      onClick: onClickMoveRight,
-      isDisabled: colIdx === columns.length - 1,
-    } as EuiListGroupItemProps;
-    if (typeof column.actions?.showMoveRight === 'object') {
-      result.push({ ...option, ...column.actions.showMoveRight });
-    } else {
-      result.push(option);
-    }
-  }
-  const allActions = column.actions?.additional
-    ? [...result, ...column.actions?.additional]
-    : result;
+/**
+ * Column action utility helpers - mostly syntactical sugar for adding an extra
+ * actions !== false checks, which we make an early return for in the main fn,
+ * but that the individual utils don't know about and Typescript complains about
+ */
 
-  return allActions.map((action) => ({
-    ...action,
-    // Wrap EuiListGroupItem onClick function to close the popover and prevent bubbling up
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.stopPropagation();
-      setIsPopoverOpen(false);
-      if (action?.onClick) {
-        action.onClick(e);
-      }
-    },
-  })) as EuiListGroupItemProps[];
-}
+// Check whether an action is enabled/should be appended to the actions array
+export const isColumnActionEnabled = (
+  actionKey: keyof EuiDataGridColumnActions,
+  actions: EuiDataGridColumn['actions']
+) => {
+  if (actions === false) return false;
+  if (actions?.[actionKey] === false) return false;
+  return true;
+};
+
+// Utility helper for appending any custom EuiDataGridColumnActions configuration to its action
+export const getColumnActionConfig = (
+  action: EuiListGroupItemProps,
+  actionKey: keyof EuiDataGridColumnActions,
+  actions: EuiDataGridColumn['actions']
+) => {
+  const configuration = actions !== false && actions?.[actionKey];
+  return typeof configuration === 'object'
+    ? { ...action, ...configuration }
+    : action;
+};
