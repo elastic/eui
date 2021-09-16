@@ -16,7 +16,7 @@ import {
   EuiTitle,
   EuiButtonIcon,
 } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 const repeatableForm = (
   <EuiForm component="form">
@@ -79,8 +79,14 @@ const extraAction = (
 );
 
 export default () => {
-  const formAccordionId__1 = htmlIdGenerator('accordion')('first');
-  const formAccordionId__2 = htmlIdGenerator('accordion')('second');
+  const formAccordionId__1 = useGeneratedHtmlId({
+    prefix: 'accordion',
+    suffix: 'first',
+  });
+  const formAccordionId__2 = useGeneratedHtmlId({
+    prefix: 'accordion',
+    suffix: 'second',
+  });
 
   return (
     <div>

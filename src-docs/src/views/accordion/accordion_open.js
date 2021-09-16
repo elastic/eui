@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { EuiAccordion, EuiPanel } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const openAccordionId = htmlIdGenerator('accordion')();
+  const openAccordionId = useGeneratedHtmlId({ prefix: 'accordion' });
 
   return (
     <div>

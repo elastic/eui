@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { EuiAccordion, EuiButton } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const extraActionAccordionId = htmlIdGenerator('accordion')();
+  const extraActionAccordionId = useGeneratedHtmlId({ prefix: 'accordion' });
 
   return (
     <EuiAccordion

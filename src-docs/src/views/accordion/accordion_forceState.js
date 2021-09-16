@@ -6,12 +6,12 @@ import {
   EuiButtonGroup,
   EuiSpacer,
 } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services';
+import { htmlIdGenerator, useGeneratedHtmlId } from '../../../../src/services';
 
 const idPrefix = htmlIdGenerator()();
 
 export default () => {
-  const forcedStateAccordionId = htmlIdGenerator('accordion')();
+  const forcedStateAccordionId = useGeneratedHtmlId({ prefix: 'accordion' });
   const [trigger, setTrigger] = useState('closed');
   const [toggleIdSelected, setID] = useState(`${idPrefix}--closed`);
   const toggleButtons = [

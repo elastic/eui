@@ -6,13 +6,25 @@ import {
   EuiSpacer,
   EuiPanel,
 } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const multipleAccordionsId__1 = htmlIdGenerator('accordion')('first');
-  const multipleAccordionsId__2 = htmlIdGenerator('accordion')('second');
-  const multipleAccordionsId__3 = htmlIdGenerator('accordion')('third');
-  const multipleAccordionsId__4 = htmlIdGenerator('accordion')('fourth');
+  const multipleAccordionsId__1 = useGeneratedHtmlId({
+    prefix: 'accordion',
+    suffix: 'first',
+  });
+  const multipleAccordionsId__2 = useGeneratedHtmlId({
+    prefix: 'accordion',
+    suffix: 'second',
+  });
+  const multipleAccordionsId__3 = useGeneratedHtmlId({
+    prefix: 'accordion',
+    suffix: 'third',
+  });
+  const multipleAccordionsId__4 = useGeneratedHtmlId({
+    prefix: 'accordion',
+    suffix: 'fourth',
+  });
 
   return (
     <div>

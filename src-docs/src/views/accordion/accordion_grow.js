@@ -8,7 +8,7 @@ import {
   EuiScreenReaderOnly,
 } from '../../../../src/components';
 import { EuiPanel } from '../../../../src/components/panel';
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 const Rows = () => {
   const [counter, setCounter] = useState(1);
@@ -16,8 +16,8 @@ const Rows = () => {
   for (let i = 1; i <= counter; i++) {
     rows.push(<li key={i}>Row {i}</li>);
   }
-  const growingAccordianDescriptionId = htmlIdGenerator('p')();
-  const listId = htmlIdGenerator('ul')();
+  const growingAccordianDescriptionId = useGeneratedHtmlId({ prefix: 'p' });
+  const listId = useGeneratedHtmlId({ prefix: 'ul' });
   return (
     <EuiText size="s">
       <EuiScreenReaderOnly>
@@ -53,7 +53,7 @@ const Rows = () => {
 };
 
 export default () => {
-  const dynamicAccordionId = htmlIdGenerator('accordion')();
+  const dynamicAccordionId = useGeneratedHtmlId({ prefix: 'accordion' });
 
   return (
     <EuiAccordion

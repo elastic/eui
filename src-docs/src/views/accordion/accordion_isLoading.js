@@ -9,7 +9,7 @@ import {
 } from '../../../../src/components';
 import { EuiFormRow } from '../../../../src/components/form';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { htmlIdGenerator, useGeneratedHtmlId } from '../../../../src/services';
 
 const idPrefix = htmlIdGenerator()();
 
@@ -31,7 +31,7 @@ const toggleButtons = [
 export default () => {
   const [label, setLabel] = useState('False');
   const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}0`);
-  const isLoadingAccordionId = htmlIdGenerator('accordion')();
+  const isLoadingAccordionId = useGeneratedHtmlId({ prefix: 'accordion' });
 
   const onChange = (optionId) => {
     setToggleIdSelected(optionId);
