@@ -30,7 +30,6 @@
 
   &:focus {
     @include euiDataGridCellFocus;
-    margin-top: -1px;
   }
 
   // Only add the transition effect on hover, so that it is instantaneous on focus
@@ -82,11 +81,6 @@
     .euiDataGridRowCell__actionButtonIcon {
       display: none;
     }
-  }
-
-  &:focus:not(:first-of-type) {
-    // Needed because the focus state adds a border, which needs to be subtracted from padding
-    padding-left: $euiDataGridCellPaddingM - 1px;
   }
 
   &.euiDataGridRowCell--numeric {
