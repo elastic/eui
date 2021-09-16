@@ -83,8 +83,8 @@ export const CategoryChart = () => {
     barSeriesStyle: {
       displayValue: {
         ...theme.barSeriesStyle.displayValue,
-        offsetX: rotated ? 2 : 0,
-        offsetY: rotated ? 0 : -2,
+        offsetX: rotated ? 4 : 0,
+        offsetY: rotated ? 0 : -4,
         ...(multi && stacked
           ? {
               alignment: {
@@ -118,7 +118,7 @@ export const CategoryChart = () => {
         horizontal: 'center',
       }`;
 
-  const chartVariablesToCopy = `const theme = isDarkTheme
+  const chartVariablesForValueLabels = `const theme = isDarkTheme
   ? EUI_CHARTS_THEME_DARK.theme
   : EUI_CHARTS_THEME_LIGHT.theme;
 
@@ -127,8 +127,8 @@ const customTheme = {
   barSeriesStyle: {
     displayValue: {
       ...theme.barSeriesStyle.displayValue,
-      offsetX: ${rotated ? '2' : '0'},
-      offsetY: ${rotated ? '0' : '-2'},
+      offsetX: ${rotated ? '4' : '0'},
+      offsetY: ${rotated ? '0' : '-4'},
       ${multi && stacked ? defaultAlignmentToCopy : alignmentRotatedToCopy},
     },
   },
@@ -146,7 +146,7 @@ const customTheme = {
 
   const chartConfigurationToCopy = `<Chart size={{height: 300}}>
   <Settings
-    theme={customTheme}
+    theme={${valueLabels ? 'customTheme' : 'theme'}}
     rotation={${rotated ? 90 : 0}}
     showLegend={${multi}}
     ${multi ? 'legendPosition="right"' : ''}
@@ -177,10 +177,11 @@ const customTheme = {
 
   const removeEmptyLines = (string) => string.replace(/(^[ \t]*\n)/gm, '');
 
-  const textToCopy = `${chartVariablesToCopy}
+  const textToCopy = valueLabels
+    ? `${chartVariablesForValueLabels}
 
-${removeEmptyLines(chartConfigurationToCopy)}
-  `;
+${removeEmptyLines(chartConfigurationToCopy)}`
+    : `${removeEmptyLines(chartConfigurationToCopy)}`;
 
   return (
     <Fragment>
