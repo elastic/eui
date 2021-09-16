@@ -10,8 +10,11 @@ import {
   EuiCodeBlock,
 } from '../../../../src/components';
 
+import { useGeneratedHtmlId } from '../../../../src/services';
+
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const simpleFlyoutTitle = useGeneratedHtmlId({ prefix: 'flyout' });
 
   let flyout;
 
@@ -32,11 +35,11 @@ export default () => {
       <EuiFlyout
         ownFocus
         onClose={() => setIsFlyoutVisible(false)}
-        aria-labelledby="flyoutTitle"
+        aria-labelledby={simpleFlyoutTitle}
       >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id="flyoutTitle">A typical flyout</h2>
+            <h2 id={simpleFlyoutTitle}>A typical flyout</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>
