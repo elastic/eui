@@ -27,11 +27,14 @@ import {
   EuiText,
   EuiTitle,
 } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 const HeaderUpdates = () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+  const newsFeedFlyoutId = useGeneratedHtmlId({ prefix: 'flyout' });
+  const newsFeedFlyoutTitleId = useGeneratedHtmlId({ prefix: 'flyout' });
+  const newsFeedPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
 
   const alerts = [
     {
@@ -160,12 +163,12 @@ const HeaderUpdates = () => {
       <EuiFlyout
         onClose={closeFlyout}
         size="s"
-        id="headerFlyoutNewsFeed"
-        aria-labelledby="flyoutSmallTitle"
+        id={newsFeedFlyoutId}
+        aria-labelledby={newsFeedFlyoutTitleId}
       >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="s">
-            <h2 id="flyoutSmallTitle">What&apos;s new</h2>
+            <h2 id={newsFeedFlyoutTitleId}>What&apos;s new</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>
@@ -204,7 +207,7 @@ const HeaderUpdates = () => {
 
   const popover = (
     <EuiPopover
-      id="headerPopoverNewsFeed"
+      id={newsFeedPopoverId}
       ownFocus
       repositionOnScroll
       button={cheerButton}
@@ -244,7 +247,7 @@ const HeaderUpdates = () => {
 };
 
 const HeaderUserMenu = () => {
-  const id = htmlIdGenerator()();
+  const userPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
   const [isOpen, setIsOpen] = useState(false);
 
   const onMenuButtonClick = () => {
@@ -257,7 +260,7 @@ const HeaderUserMenu = () => {
 
   const button = (
     <EuiHeaderSectionItemButton
-      aria-controls={id}
+      aria-controls={userPopoverId}
       aria-expanded={isOpen}
       aria-haspopup="true"
       aria-label="Account menu"
@@ -269,7 +272,7 @@ const HeaderUserMenu = () => {
 
   return (
     <EuiPopover
-      id={id}
+      id={userPopoverId}
       repositionOnScroll
       button={button}
       isOpen={isOpen}
