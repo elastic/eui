@@ -14,7 +14,7 @@ import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
-  const simpleFlyoutTitle = useGeneratedHtmlId({ prefix: 'flyout' });
+  const simpleFlyoutTitleId = useGeneratedHtmlId({ prefix: 'flyout' });
 
   let flyout;
 
@@ -35,11 +35,11 @@ export default () => {
       <EuiFlyout
         ownFocus
         onClose={() => setIsFlyoutVisible(false)}
-        aria-labelledby={simpleFlyoutTitle}
+        aria-labelledby={simpleFlyoutTitleId}
       >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id={simpleFlyoutTitle}>A typical flyout</h2>
+            <h2 id={simpleFlyoutTitleId}>A typical flyout</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>

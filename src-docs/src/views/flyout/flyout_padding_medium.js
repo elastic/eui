@@ -21,8 +21,8 @@ export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [paddingSize, setPaddingSize] = useState('l');
   const [paddingSizeName, setPaddingSizeName] = useState('large');
-  const mediumPaddingFlyoutTitle = useGeneratedHtmlId({ prefix: 'flyout' });
-  const mediumPaddingFlyout = useGeneratedHtmlId({ prefix: 'flyout' });
+  const mediumPaddingFlyoutTitleId = useGeneratedHtmlId({ prefix: 'flyout' });
+  const mediumPaddingFlyoutId = useGeneratedHtmlId({ prefix: 'flyout' });
 
   const sizes = [
     {
@@ -60,12 +60,12 @@ export default () => {
         ownFocus
         onClose={closeFlyout}
         paddingSize={paddingSize}
-        id={mediumPaddingFlyout}
-        aria-labelledby={mediumPaddingFlyoutTitle}
+        id={mediumPaddingFlyoutId}
+        aria-labelledby={mediumPaddingFlyoutTitleId}
       >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id={mediumPaddingFlyoutTitle}>
+            <h2 id={mediumPaddingFlyoutTitleId}>
               A flyout with a {paddingSizeName} padding
             </h2>
           </EuiTitle>

@@ -32,7 +32,7 @@ export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [superSelectvalue, setSuperSelectValue] = useState('option_one');
   const [isExpressionOpen, setIsExpressionOpen] = useState(false);
-  const complicatedFlyoutTitle = useGeneratedHtmlId({ prefix: 'flyout' });
+  const complicatedFlyoutTitleId = useGeneratedHtmlId({ prefix: 'flyout' });
 
   const tabs = [
     {
@@ -187,11 +187,11 @@ export default () => {
         ownFocus
         onClose={closeFlyout}
         hideCloseButton
-        aria-labelledby={complicatedFlyoutTitle}
+        aria-labelledby={complicatedFlyoutTitleId}
       >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id={complicatedFlyoutTitle}>Flyout header</h2>
+            <h2 id={complicatedFlyoutTitleId}>Flyout header</h2>
           </EuiTitle>
           <EuiSpacer size="s" />
           <EuiText color="subdued">

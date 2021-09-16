@@ -21,8 +21,8 @@ export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [flyoutSize, setFlyoutSize] = useState('m');
   const [flyoutMaxWidth, setFlyoutMaxWidth] = useState(false);
-  const maxWidthFlyoutTitle = useGeneratedHtmlId({ prefix: 'flyout' });
-  const maxWidthFlyoutRange = useGeneratedHtmlId({ prefix: 'range' });
+  const maxWidthFlyoutTitleId = useGeneratedHtmlId({ prefix: 'flyout' });
+  const maxWidthFlyoutRangeId = useGeneratedHtmlId({ prefix: 'range' });
 
   const closeFlyout = () => setIsFlyoutVisible(false);
 
@@ -52,13 +52,13 @@ export default () => {
       <EuiFlyout
         ownFocus
         onClose={closeFlyout}
-        aria-labelledby={maxWidthFlyoutTitle}
+        aria-labelledby={maxWidthFlyoutTitleId}
         size={flyoutSize}
         maxWidth={flyoutMaxWidth}
       >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id={maxWidthFlyoutTitle}>{maxWidthTitle} maxWidth</h2>
+            <h2 id={maxWidthFlyoutTitleId}>{maxWidthTitle} maxWidth</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>
@@ -100,7 +100,7 @@ export default () => {
                 min={0}
                 max={100}
                 name="range"
-                id={maxWidthFlyoutRange}
+                id={maxWidthFlyoutRangeId}
               />
             </EuiFormRow>
           </EuiForm>

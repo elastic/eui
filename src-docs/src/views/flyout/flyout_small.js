@@ -17,7 +17,7 @@ export default () => {
 
   const toggleFlyout = () => setIsFlyoutVisible((isVisible) => !isVisible);
 
-  const withoutFocusFlyoutTitle = useGeneratedHtmlId({ prefix: 'flyout' });
+  const withoutFocusFlyoutTitleId = useGeneratedHtmlId({ prefix: 'flyout' });
 
   let flyout;
   if (isFlyoutVisible) {
@@ -25,11 +25,11 @@ export default () => {
       <EuiFlyout
         ownFocus={false}
         onClose={closeFlyout}
-        aria-labelledby={withoutFocusFlyoutTitle}
+        aria-labelledby={withoutFocusFlyoutTitleId}
       >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="s">
-            <h2 id={withoutFocusFlyoutTitle}>A flyout without ownFocus</h2>
+            <h2 id={withoutFocusFlyoutTitleId}>A flyout without ownFocus</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>
