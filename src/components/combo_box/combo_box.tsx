@@ -936,6 +936,11 @@ export class EuiComboBox<T> extends Component<
       matchingOptions,
     } = this.state;
 
+    // We don't require an ID, which causes the label / input relationship to be broken
+    // when users add a prepended or appended label.
+    const inputId =
+      id === undefined || id === null ? this.rootId('_eui-combobox-id') : id;
+
     // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input.
     // When custom options are disabled and the user leaves the combo box after entering text that does not match any
     // options, this tells the user that they've entered invalid input.
@@ -1030,7 +1035,7 @@ export class EuiComboBox<T> extends Component<
           }
           fullWidth={fullWidth}
           hasSelectedOptions={selectedOptions.length > 0}
-          id={id}
+          id={inputId}
           inputRef={this.searchInputRefCallback}
           isDisabled={isDisabled}
           isListOpen={isListOpen}
