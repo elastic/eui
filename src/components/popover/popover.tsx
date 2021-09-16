@@ -151,7 +151,8 @@ export interface EuiPopoverProps {
   popoverRef?: Ref<HTMLDivElement>;
   /**
    * When `true`, the popover's position is re-calculated when the user
-   * scrolls, this supports having fixed-position popover anchors
+   * scrolls, this supports having fixed-position popover anchors. When nesting
+   * an `EuiPopover` in a scrollable container, `repositionOnScroll` should be `true`
    */
   repositionOnScroll?: boolean;
   /**
@@ -510,7 +511,7 @@ export class EuiPopover extends Component<Props, State> {
     }
 
     if (this.props.repositionOnScroll) {
-      window.addEventListener('scroll', this.positionPopoverFixed);
+      window.addEventListener('scroll', this.positionPopoverFixed, true);
     }
   }
 
@@ -523,9 +524,9 @@ export class EuiPopover extends Component<Props, State> {
     // update scroll listener
     if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
       if (this.props.repositionOnScroll) {
-        window.addEventListener('scroll', this.positionPopoverFixed);
+        window.addEventListener('scroll', this.positionPopoverFixed, true);
       } else {
-        window.removeEventListener('scroll', this.positionPopoverFixed);
+        window.removeEventListener('scroll', this.positionPopoverFixed, true);
       }
     }
 
