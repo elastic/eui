@@ -62,8 +62,9 @@ export class RowHeightUtils {
     visibleRowIndex: number
   ) {
     const rowHeights = this.heightsCache.get(rowIndex) || {};
-    const adaptedHeight =
-      Math.ceil(height + this.styles.paddingTop + this.styles.paddingBottom);
+    const adaptedHeight = Math.ceil(
+      height + this.styles.paddingTop + this.styles.paddingBottom
+    );
 
     if (rowHeights[colIndex] === adaptedHeight) {
       return;
@@ -96,7 +97,6 @@ export class RowHeightUtils {
 
   resetGrid() {
     this.gridReseted = true;
-    console.log('resetGrid')
     this.grid?.resetAfterRowIndex(this.lastUpdatedRow);
     this.lastUpdatedRow = Infinity;
   }
