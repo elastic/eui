@@ -108,13 +108,14 @@ export const EuiSuperSelectControl: <T extends string>(
     side: 'right',
   };
 
+  const inputId = useGeneratedHtmlId({ conditionalId: id });
   const screenReaderId = useGeneratedHtmlId();
 
   return (
     <Fragment>
       <input
         type="hidden"
-        id={id}
+        id={inputId}
         name={name}
         defaultValue={selectDefaultValue}
         value={value}
@@ -145,7 +146,7 @@ export const EuiSuperSelectControl: <T extends string>(
           type="button"
           className={classes}
           aria-haspopup="true"
-          aria-labelledby={`${id} ${screenReaderId}`}
+          aria-labelledby={`${inputId} ${screenReaderId}`}
           {...rest}
         >
           {selectedValue}
