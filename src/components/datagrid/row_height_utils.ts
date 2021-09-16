@@ -53,7 +53,6 @@ export class RowHeightUtils {
   private timerId: any;
   private grid?: Grid;
   private lastUpdatedRow: number = Infinity;
-  private gridReseted: boolean = false;
 
   setRowHeight(
     rowIndex: number,
@@ -70,7 +69,6 @@ export class RowHeightUtils {
       return;
     }
 
-    this.gridReseted = false;
     rowHeights[colIndex] = adaptedHeight;
     this.heightsCache.set(rowIndex, rowHeights);
     // save the first row index of batch, reassigning it only
@@ -96,13 +94,8 @@ export class RowHeightUtils {
   }
 
   resetGrid() {
-    this.gridReseted = true;
     this.grid?.resetAfterRowIndex(this.lastUpdatedRow);
     this.lastUpdatedRow = Infinity;
-  }
-
-  isGridReseted() {
-    return this.gridReseted;
   }
 
   setGrid(grid: Grid) {

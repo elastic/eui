@@ -25,7 +25,6 @@ export const mockRowHeightUtils = ({
   getRowHeight: jest.fn(() => 32),
   getFont: jest.fn(() => null),
   getComputedCellStyles: jest.fn(() => {}),
-  isGridReseted: jest.fn(() => true),
   compareHeights: jest.fn(
     (currentRowHeight: number, cachedRowHeight: number) =>
       currentRowHeight === cachedRowHeight

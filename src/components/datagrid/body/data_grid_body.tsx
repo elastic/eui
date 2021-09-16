@@ -119,11 +119,6 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     [`euiDataGridRowCell--${textTransform}`]: textTransform,
   });
 
-  const isHideCell =
-    rowHeightsOptions &&
-    rowHeightUtils?.isAutoHeight(rowIndex, rowHeightsOptions) &&
-    !rowHeightUtils?.isGridReseted();
-
   if (isLeadingControlColumn) {
     const leadingColumn = leadingControlColumns[columnIndex];
     const { id, rowCellRender } = leadingColumn;
@@ -147,7 +142,6 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
-          visibility: isHideCell ? 'hidden' : 'visible',
         }}
       />
     );
@@ -175,7 +169,6 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
-          visibility: isHideCell ? 'hidden' : 'visible',
         }}
       />
     );
@@ -213,7 +206,6 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
-          visibility: isHideCell ? 'hidden' : 'visible',
         }}
       />
     );
