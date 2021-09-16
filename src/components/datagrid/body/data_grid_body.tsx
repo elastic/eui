@@ -119,6 +119,11 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     [`euiDataGridRowCell--${textTransform}`]: textTransform,
   });
 
+  const isHideCell =
+    rowHeightsOptions &&
+    rowHeightUtils?.isAutoHeight(rowIndex, rowHeightsOptions) &&
+    !rowHeightUtils?.isGridReseted();
+
   if (isLeadingControlColumn) {
     const leadingColumn = leadingControlColumns[columnIndex];
     const { id, rowCellRender } = leadingColumn;
@@ -142,6 +147,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
+          visibility: isHideCell ? 'hidden' : 'visible',
         }}
       />
     );
@@ -169,6 +175,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
+          visibility: isHideCell ? 'hidden' : 'visible',
         }}
       />
     );
@@ -206,6 +213,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
+          visibility: isHideCell ? 'hidden' : 'visible',
         }}
       />
     );
@@ -526,6 +534,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 
   const [minRowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
 
+  const computedCellStyles = rowHeightUtils.getComputedCellStyles();
+
   // it depends on getComputedCellStyles because we use cell styles for calculating defaultHeight
   const defaultHeight = useMemo(
     () =>
@@ -539,7 +549,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       rowHeightsOptions,
       minRowHeight,
       rowHeightUtils,
-      rowHeightUtils.getComputedCellStyles(),
+      computedCellStyles,
     ]
   );
 
