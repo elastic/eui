@@ -169,12 +169,10 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
       }
     }
 
-    // @ts-ignore-next line TS doesn't have focusin
     headerNode.addEventListener('focusin', onFocusIn);
     headerNode.addEventListener('focusout', onFocusOut);
     headerNode.addEventListener('keyup', onKeyUp);
     return () => {
-      // @ts-ignore-next line TS doesn't have focusin
       headerNode.removeEventListener('focusin', onFocusIn);
       headerNode.removeEventListener('focusout', onFocusOut);
       headerNode.removeEventListener('keyup', onKeyUp);

@@ -43,7 +43,7 @@ describe('EuiDataGridBody', () => {
   };
 
   it('renders', () => {
-    // EuiDataGridBody should be `render`ed hereover `mount` due to large
+    // EuiDataGridBody should be `render`ed here over `mount` due to large
     // snapshot memory issues
     const component = render(<EuiDataGridBody {...requiredProps} />);
     expect(component).toMatchSnapshot();
