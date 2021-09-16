@@ -50,8 +50,8 @@ describe('EuiDataGridBody', () => {
   });
 
   it('renders', () => {
-    // EuiDataGridBody has to be `render`ed here - if you try to `mount`,
-    // it fails to update the snapshot because it's so large it causes memory issues
+    // EuiDataGridBody should be `render`ed here over `mount` due to large
+    // snapshot memory issues
     const component = render(<EuiDataGridBody {...requiredProps} />);
     expect(component).toMatchSnapshot();
     expect(component.find('[data-test-subj="dataGridRowCell"]')).toHaveLength(
