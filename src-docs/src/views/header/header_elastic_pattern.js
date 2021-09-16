@@ -30,8 +30,20 @@ import {
   EuiSelectableMessage,
 } from '../../../../src/components';
 import { ExampleContext } from '../../services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default ({ theme }) => {
+  const guideHeaderCollapsibleNavId = useGeneratedHtmlId({ prefix: 'nav' });
+  const guideHeaderAlertFlyoutId = useGeneratedHtmlId({ prefix: 'flyout' });
+  const guideHeaderAlertFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'flyout',
+  });
+  const guideHeaderUserPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
+  const guideHeaderSpacesPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
+  const guideHeaderDeploymentPopoverId = useGeneratedHtmlId({
+    prefix: 'popover',
+  });
+
   useEffect(() => {
     document.body.classList.add('euiBody--headerIsFixed--double');
 
@@ -51,7 +63,7 @@ export default ({ theme }) => {
   );
   const collapsibleNav = (
     <EuiCollapsibleNav
-      id="guideHeaderCollapsibleNavExample"
+      id={guideHeaderCollapsibleNavId}
       aria-label="Main navigation"
       isOpen={navIsOpen}
       isDocked={navIsDocked}
@@ -111,12 +123,12 @@ export default ({ theme }) => {
       <EuiFlyout
         onClose={() => setIsAlertFlyoutVisible(false)}
         size="s"
-        id="guideHeaderAlertExample"
-        aria-labelledby="guideHeaderAlertExampleTitle"
+        id={guideHeaderAlertFlyoutId}
+        aria-labelledby={guideHeaderAlertFlyoutTitleId}
       >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="s">
-            <h2 id="guideHeaderAlertExampleTitle">EuiHeaderAlert</h2>
+            <h2 id={guideHeaderAlertFlyoutTitleId}>EuiHeaderAlert</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>
@@ -140,11 +152,11 @@ export default ({ theme }) => {
   const [isUserMenuVisible, setIsUserMenuVisible] = useState(false);
   const userMenu = (
     <EuiPopover
-      id="guideHeaderUserMenuExample"
+      id={guideHeaderUserPopoverId}
       repositionOnScroll
       button={
         <EuiHeaderSectionItemButton
-          aria-controls="guideHeaderUserMenuExample"
+          aria-controls={guideHeaderUserPopoverId}
           aria-expanded={isUserMenuVisible}
           aria-haspopup="true"
           aria-label="User menu"
@@ -177,11 +189,11 @@ export default ({ theme }) => {
   const [isSpacesMenuVisible, setIsSpacesMenuVisible] = useState(false);
   const spacesMenu = (
     <EuiPopover
-      id="guideHeaderSpacesMenuExample"
+      id={guideHeaderSpacesPopoverId}
       repositionOnScroll
       button={
         <EuiHeaderSectionItemButton
-          aria-controls="guideHeaderSpacesMenuExample"
+          aria-controls={guideHeaderSpacesPopoverId}
           aria-expanded={isSpacesMenuVisible}
           aria-haspopup="true"
           aria-label="Spaces menu"
@@ -214,14 +226,14 @@ export default ({ theme }) => {
   const [isDeploymentMenuVisible, setIsDeploymentMenuVisible] = useState(false);
   const deploymentMenu = (
     <EuiPopover
-      id="guideHeaderDeploymentMenuExample"
+      id={guideHeaderDeploymentPopoverId}
       repositionOnScroll
       button={
         <EuiBadge
           color={theme.euiColorDarkestShade.rgba}
           iconType="arrowDown"
           iconSide="right"
-          aria-controls="guideHeaderDeploymentMenuExample"
+          aria-controls={guideHeaderDeploymentPopoverId}
           aria-expanded={isDeploymentMenuVisible}
           aria-haspopup="true"
           onClickAriaLabel="Current deployment: Production logs. Click to open deployment menu."
