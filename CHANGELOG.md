@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Updated `barSeriesStyle.displayValue` of the elastic-charts `Theme` for better default styles ([#4845](https://github.com/elastic/eui/pull/4845))
+- Updated `titleProps` and `descriptionProps` on `EuiDescriptionList` to extend `CommonProps` ([#5166](https://github.com/elastic/eui/pull/5166))
 
 **Bug fixes**
 
@@ -39,7 +40,6 @@
 - Added the `repositionOnScroll` prop to `EuiSuperSelect` ([#5155](https://github.com/elastic/eui/pull/5155)) 
 - Added `useGeneratedHtmlId` utility, which memoizes the randomly generated ID on mount and prevents regenerated IDs on component rerender ([#5133](https://github.com/elastic/eui/pull/5133))
 - Fixed `z-index` styles that were causing parts of `EuiResizableContainer` to overlap `EuiHeader` ([#5164](https://github.com/elastic/eui/pull/5164))
-- Updated `titleProps` and `descriptionProps` on `EuiDescriptionList` to extend `CommonProps` ([#5166](https://github.com/elastic/eui/pull/5166))
 
 **Bug fixes**
 
