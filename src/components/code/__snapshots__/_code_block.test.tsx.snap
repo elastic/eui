@@ -100,6 +100,144 @@ exports[`EuiCodeBlockImpl block renders a virtualized code block 1`] = `
 </div>
 `;
 
+exports[`EuiCodeBlockImpl block renders line numbers 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl euiCodeBlock--hasLineNumbers prismjs language-text testClass1 testClass2"
+  style="max-height:300px"
+>
+  <pre
+    class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    style="max-height:300px"
+    tabindex="-1"
+  >
+    <code
+      aria-label="aria-label"
+      class="euiCodeBlock__code text"
+      data-test-subj="test subject string"
+    >
+      <span
+        class="euiCodeBlock__line"
+      >
+        <span
+          aria-hidden="true"
+          class="euiCodeBlock__lineNumber"
+          data-line-number="1"
+          style="width:8px"
+        />
+        <span
+          class="euiCodeBlock__lineText"
+          style="margin-left:16px"
+        >
+          var some = 'code';
+
+        </span>
+      </span>
+      <span
+        class="euiCodeBlock__line"
+      >
+        <span
+          aria-hidden="true"
+          class="euiCodeBlock__lineNumber"
+          data-line-number="2"
+          style="width:8px"
+        />
+        <span
+          class="euiCodeBlock__lineText"
+          style="margin-left:16px"
+        >
+          console.log(some);
+        </span>
+      </span>
+    </code>
+  </pre>
+  <div
+    class="euiCodeBlock__controls"
+  >
+    <button
+      aria-label="Expand"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="fullScreen"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`EuiCodeBlockImpl block renders line numbers with a start value 1`] = `
+<div
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl euiCodeBlock--hasLineNumbers prismjs language-text testClass1 testClass2"
+  style="max-height:300px"
+>
+  <pre
+    class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    style="max-height:300px"
+    tabindex="-1"
+  >
+    <code
+      aria-label="aria-label"
+      class="euiCodeBlock__code text"
+      data-test-subj="test subject string"
+    >
+      <span
+        class="euiCodeBlock__line"
+      >
+        <span
+          aria-hidden="true"
+          class="euiCodeBlock__lineNumber"
+          data-line-number="10"
+          style="width:16px"
+        />
+        <span
+          class="euiCodeBlock__lineText"
+          style="margin-left:24px"
+        >
+          var some = 'code';
+
+        </span>
+      </span>
+      <span
+        class="euiCodeBlock__line"
+      >
+        <span
+          aria-hidden="true"
+          class="euiCodeBlock__lineNumber"
+          data-line-number="11"
+          style="width:16px"
+        />
+        <span
+          class="euiCodeBlock__lineText"
+          style="margin-left:24px"
+        >
+          console.log(some);
+        </span>
+      </span>
+    </code>
+  </pre>
+  <div
+    class="euiCodeBlock__controls"
+  >
+    <button
+      aria-label="Expand"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="fullScreen"
+      />
+    </button>
+  </div>
+</div>
+`;
+
 exports[`EuiCodeBlockImpl block renders with transparent background 1`] = `
 <div
   class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground prismjs language-text"

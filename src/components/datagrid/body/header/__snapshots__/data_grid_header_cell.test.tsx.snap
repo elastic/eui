@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiDataGridHeaderCell renders 1`] = `
+<EuiDataGridHeaderCellWrapper
+  className="euiDataGridHeaderCell--numeric"
+  headerIsInteractive={false}
+  id="someColumn"
+  index={0}
+  width={50}
+>
+  <EuiDataGridColumnResizer
+    columnId="someColumn"
+    columnWidth={50}
+    setColumnWidth={[MockFunction]}
+  />
+  <EuiPopover
+    anchorClassName="euiDataGridHeaderCell__anchor"
+    anchorPosition="downCenter"
+    button={
+      <button
+        className="euiDataGridHeaderCell__button"
+        onClick={[Function]}
+      >
+        <div
+          className="euiDataGridHeaderCell__content"
+        >
+          someColumn
+        </div>
+        <EuiIcon
+          aria-label="Header actions"
+          className="euiDataGridHeaderCell__icon"
+          color="text"
+          data-test-subj="dataGridHeaderCellActionButton-someColumn"
+          size="s"
+          type="arrowDown"
+        />
+      </button>
+    }
+    closePopover={[Function]}
+    display="inlineBlock"
+    hasArrow={true}
+    isOpen={false}
+    offset={7}
+    ownFocus={true}
+    panelPaddingSize="none"
+  >
+    <div>
+      <EuiListGroup
+        data-test-subj="dataGridHeaderCellActionGroup-someColumn"
+        gutterSize="none"
+        listItems={
+          Array [
+            Object {
+              "color": "text",
+              "iconType": "eyeClosed",
+              "label": <EuiI18n
+                default="Hide column"
+                token="euiColumnActions.hideColumn"
+              />,
+              "onClick": [Function],
+              "size": "xs",
+            },
+            Object {
+              "color": "text",
+              "iconType": "sortLeft",
+              "isDisabled": false,
+              "label": <EuiI18n
+                default="Move left"
+                token="euiColumnActions.moveLeft"
+              />,
+              "onClick": [Function],
+              "size": "xs",
+            },
+            Object {
+              "color": "text",
+              "iconType": "sortRight",
+              "isDisabled": true,
+              "label": <EuiI18n
+                default="Move right"
+                token="euiColumnActions.moveRight"
+              />,
+              "onClick": [Function],
+              "size": "xs",
+            },
+          ]
+        }
+      />
+    </div>
+  </EuiPopover>
+</EuiDataGridHeaderCellWrapper>
+`;

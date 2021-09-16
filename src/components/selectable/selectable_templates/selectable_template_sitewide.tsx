@@ -230,7 +230,8 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
       searchProps={{
         placeholder: searchPlaceholder,
         isClearable: true,
-        ...searchProps,
+        // TS is mad that searchProps.className may be `undefined`, but we overwrite it below
+        ...(searchProps as Omit<typeof searchProps, 'className'>),
         onFocus: searchOnFocus,
         onBlur: searchOnBlur,
         onInput: onSearchInput,

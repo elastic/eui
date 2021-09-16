@@ -24,10 +24,17 @@ const codeBlockSnippet = `<EuiCodeBlock language="html" paddingSize="s" isCopyab
 </EuiCodeBlock>
 `;
 
+import CodeBlockLines from './line_numbers';
+const codeBlockLinesSource = require('!!raw-loader!./line_numbers');
+const codeBlockLinesSnippet = `<EuiCodeBlock language="json" lineNumbers>
+{}
+</EuiCodeBlock>
+`;
+
 import CodeBlockVirtualized from './virtualized';
 const codeBlockVirtualizedSource = require('!!raw-loader!./virtualized');
 const codeBlockVirtualizedSnippet = `<EuiCodeBlock language="json" isVirtualized overflowHeight={300}>
-{ \`{}\` }
+{}
 </EuiCodeBlock>
 `;
 
@@ -120,6 +127,25 @@ export const CodeExample = {
       props: { EuiCodeBlock },
       demo: <CodeBlock />,
       playground: codeBlockConfig,
+    },
+    {
+      title: 'Line numbers',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: codeBlockLinesSource,
+        },
+      ],
+      text: (
+        <p>
+          To render line numbers, add <EuiCode>lineNumbers</EuiCode>, and
+          optionally change the starting number by passing a configuration
+          object: <EuiCode>{'lineNumbers={{ start: 32 }}'}</EuiCode>
+        </p>
+      ),
+      props: { EuiCodeBlock },
+      snippet: codeBlockLinesSnippet,
+      demo: <CodeBlockLines />,
     },
     {
       title: 'Code block virtualization',
