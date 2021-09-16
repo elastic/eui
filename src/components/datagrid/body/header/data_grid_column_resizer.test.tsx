@@ -63,7 +63,7 @@ describe('EuiDataGridHeaderResizer', () => {
 
   describe('on mouse up', () => {
     it('calls setColumnWidth, reset offset, and removes event listeners', () => {
-      const removeEventListenerSpy = jest.spyOn(window, 'addEventListener');
+      const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
       componentMethods.onMouseUp();
 
       expect(props.setColumnWidth).toHaveBeenCalledWith('someColumn', 150);
