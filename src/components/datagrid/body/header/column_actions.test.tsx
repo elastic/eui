@@ -388,7 +388,7 @@ describe('getColumnActions', () => {
         expect(sortAscLabel.props.values.schemaLabel.props.default).toEqual(
           'Low-High'
         );
-        expect(sortDescLabel.props.values.schemaLabel.props.default).toContain(
+        expect(sortDescLabel.props.values.schemaLabel.props.default).toEqual(
           'High-Low'
         );
       });
