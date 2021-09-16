@@ -112,7 +112,6 @@ describe('EuiDataGridHeaderRow', () => {
         role="row"
       >
         <EuiDataGridControlHeaderCell
-          className="euiDataGridHeaderCell--controlColumn"
           controlColumn={
             Object {
               "headerCellRender": [Function],
@@ -152,7 +151,6 @@ describe('EuiDataGridHeaderRow', () => {
         role="row"
       >
         <EuiDataGridControlHeaderCell
-          className="euiDataGridHeaderCell--controlColumn"
           controlColumn={
             Object {
               "headerCellRender": [Function],
