@@ -526,6 +526,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 
   const [minRowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
 
+  // it depends on getComputedCellStyles because we use cell styles for calculating defaultHeight
   const defaultHeight = useMemo(
     () =>
       rowHeightsOptions?.defaultHeight
@@ -534,7 +535,12 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
             minRowHeight
           )
         : minRowHeight,
-    [rowHeightsOptions, minRowHeight, rowHeightUtils]
+    [
+      rowHeightsOptions,
+      minRowHeight,
+      rowHeightUtils,
+      rowHeightUtils.getComputedCellStyles(),
+    ]
   );
 
   const getRowHeight = useCallback(

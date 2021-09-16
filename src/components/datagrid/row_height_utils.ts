@@ -153,6 +153,10 @@ export class RowHeightUtils {
     this.clearHeightsCache();
   }
 
+  getComputedCellStyles() {
+    return this.styles;
+  }
+
   calculateHeightForLineCount(lineCount: number) {
     return Math.ceil(
       lineCount * this.styles.lineHeight +
