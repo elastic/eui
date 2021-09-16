@@ -13,6 +13,7 @@
   position: relative;
   align-items: center;
   display: flex;
+  overflow: hidden;
 
   // Hack to allow for all the focus guard stuff
   > * {
@@ -247,11 +248,6 @@
 @include euiDataGridStyles(paddingSmall) {
   @include euiDataGridRowCell {
     padding: $euiDataGridCellPaddingS;
-
-    &:focus:not(:first-of-type) {
-      // Needed because the focus state adds a border, which needs to be subtracted from padding
-      padding-left: $euiDataGridCellPaddingS - 1px;
-    }
   }
 }
 
@@ -266,11 +262,6 @@
 @include euiDataGridStyles(paddingLarge) {
   @include euiDataGridRowCell {
     padding: $euiDataGridCellPaddingL;
-
-    &:focus:not(:first-of-type) {
-      // Needed because the focus state adds a border, which needs to be subtracted from padding
-      padding-left: $euiDataGridCellPaddingL - 1px;
-    }
   }
 }
 

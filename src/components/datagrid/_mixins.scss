@@ -52,7 +52,6 @@ $euiDataGridStyles: (
 
 @mixin euiDataGridCellFocus {
   outline: none; // Remove outline as we're handling it manually
-  overflow: hidden;
 
   // We don't want to use a border on the focused cell directly because we want to maintain the light gray borders
   // We can't use a box shadow or outline because it would be contained outside the cell and it would be cut by other surrounding cells
