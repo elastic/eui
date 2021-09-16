@@ -13,7 +13,7 @@ import { shade, tint, transparentize } from '../../services/color';
 import { useEuiTheme, isLegacyTheme } from '../../services/theme';
 
 // The following import contains the static reset styles
-import './_reset.scss';
+import './reset.css';
 
 export const EuiGlobalStyles = () => {
   const {
@@ -104,6 +104,12 @@ export const EuiGlobalStyles = () => {
    * Final styles
    */
   const styles = css`
+    *,
+    *:before,
+    *:after {
+      box-sizing: border-box;
+    }
+
     html {
       ${scrollbarStyles}
       ${fontReset}

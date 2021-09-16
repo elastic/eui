@@ -1,10 +1,13 @@
-// Adapted from Eric Meyer's reset (http://meyerweb.com/eric/tools/css/reset/, v2.0 | 20110126).
-// This file allows multi-line selectors to make it more readable
-// sass-lint:disable single-line-per-selector
+/* // Adapted from Eric Meyer's reset (http://meyerweb.com/eric/tools/css/reset/, v2.0 | 20110126).
+
+/* These `*` selectors are causing problems when imported by JS
+ * So they've temporarily moved directly to global_styles
 
 *, *:before, *:after {
   box-sizing: border-box;
 }
+
+*/
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -31,7 +34,7 @@ h1, h2, h3, h4, h5, h6, p {
   font-size: inherit;
 }
 
-// HTML5 display-role reset for older browsers
+/* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
@@ -55,10 +58,10 @@ button {
 input {
   margin: 0;
   padding: 0;
+}
 
-  &:disabled {
-    opacity: 1; /* required on iOS */
-  }
+input:disabled {
+  opacity: 1; /* required on iOS */
 }
 
 ol,
@@ -91,8 +94,9 @@ fieldset {
   min-inline-size: auto;
 }
 
-// Chrome has an issue around RTL languages in SVGs when letter-spacing is negative
-// https://bugs.chromium.org/p/chromium/issues/detail?id=966480
+/* Chrome has an issue around RTL languages in SVGs when letter-spacing is negative
+ * https://bugs.chromium.org/p/chromium/issues/detail?id=966480
+ */
 svg text {
-  letter-spacing: normal !important; // sass-lint:disable-line no-important
+  letter-spacing: normal !important;
 }
