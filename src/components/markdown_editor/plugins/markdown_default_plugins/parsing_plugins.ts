@@ -38,7 +38,7 @@ export const getDefaultEuiMarkdownParsingPlugins = ({
   const parsingPlugins: PluggableList = [
     [markdown, {}],
     [highlight, {}],
-    [emoji, { emoticon: true }],
+    [emoji, { emoticon: false }],
     [markdownLinkValidator, {}],
     [MarkdownCheckbox.parser, {}],
   ];

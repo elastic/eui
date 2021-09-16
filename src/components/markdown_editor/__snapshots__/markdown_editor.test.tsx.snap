@@ -20,7 +20,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
       Array [
         [Function],
         Object {
-          "emoticon": true,
+          "emoticon": false,
         },
       ],
       Array [
@@ -46,6 +46,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
       Array [
         [Function],
         Object {
+          "Fragment": Symbol(react.fragment),
           "components": Object {
             "a": Object {
               "$$typeof": Symbol(react.forward_ref),

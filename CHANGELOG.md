@@ -1,12 +1,28 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added optional line numbers to `EuiCodeBlock` ([#4993](https://github.com/elastic/eui/pull/4993))
+- Updated `barSeriesStyle.displayValue` of the elastic-charts `Theme` for better default styles ([#4845](https://github.com/elastic/eui/pull/4845))
 - Added a configuration parameter to the `EuiMarkdownEditor` plugin functions to exclude custom plugins ([#5147](https://github.com/elastic/eui/pull/5147))
 
 **Bug fixes**
 
-- Fixed `EuiDataGrid` stripes not alternating as expected on sort/pagination ([#5070](https://github.com/elastic/eui/pull/5070))
+- Fixed `EuiDataGrid` focus ring to be contained in the cell ([#5194](https://github.com/elastic/eui/pull/5194))
+- Fixed `EuiDataGrid` cells when focused getting a higher `z-index` which was causing long content to overlap surrounding cells ([#5194](https://github.com/elastic/eui/pull/5194))
 - Replaced the `EuiMarkdownEditor` help syntax modal with a tooltip when no custom plugins are available ([#5147](https://github.com/elastic/eui/pull/5147))
+
+## [`38.0.0`](https://github.com/elastic/eui/tree/v38.0.0)
+
+- Added optional line numbers to `EuiCodeBlock` ([#4993](https://github.com/elastic/eui/pull/4993))
+- Removed `emoticon` support and removed rendered `<div>` from `EuiMarkdownFormat` ([#5176](https://github.com/elastic/eui/pull/5176))
+- Moved `EuiCheckbox` and `EuiRadio` inputs to always float inline on top of the faux inputs ([#5152](https://github.com/elastic/eui/pull/5152))
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid` stripes not alternating as expected on sort/pagination ([#5070](https://github.com/elastic/eui/pull/5070))
+
+**Breaking changes**
+
+- Upgraded TypeScript version to ~4.1.3 ([#5182](https://github.com/elastic/eui/pull/5182))
+- Added `clip` property to `EuiScreenReaderOnly`, to fix positioning issues within scrolling containers ([#5152](https://github.com/elastic/eui/pull/5152))
 
 ## [`37.7.0`](https://github.com/elastic/eui/tree/v37.7.0)
 
