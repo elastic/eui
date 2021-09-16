@@ -86,7 +86,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
-  const columnActions = getColumnActions(
+  const columnActions = getColumnActions({
     column,
     columns,
     schema,
@@ -94,8 +94,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     setVisibleColumns,
     setIsPopoverOpen,
     sorting,
-    switchColumnPos
-  );
+    switchColumnPos,
+  });
 
   const showColumnActions = columnActions && columnActions.length > 0;
   const sortedColumn = sorting?.columns.find((col) => col.id === id);
