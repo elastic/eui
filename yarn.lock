@@ -1051,10 +1051,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@elastic/charts@^35.0.0":
-  version "35.0.0"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-35.0.0.tgz#0f8dff09c656a29221b2c6ac1f10b5c60331b7cb"
-  integrity sha512-xi8VInnMqpGxjF+SgZtd7gfx7JGORzTR2/sDwCopJvuyhTa1ORJ4KK1LUUgA5jjsxVaxOj4G5UR+Hh3+AbRhFQ==
+"@elastic/charts@^36.0.0":
+  version "36.0.0"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-36.0.0.tgz#dcb9c0edd5e3a031ce90e1d94f2c3fd42325a882"
+  integrity sha512-IR3jBBis8tuW6BIgGe7lIL8UerRMe81EOMVdfKybtxTuyLSK/XfjYf5cd7kIQHjHLIvrBkkoc2LGlGuIKBxr7A==
   dependencies:
     "@popperjs/core" "^2.4.0"
     chroma-js "^2.1.0"
