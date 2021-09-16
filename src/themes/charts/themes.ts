@@ -100,9 +100,17 @@ function createTheme(colors: any): EuiChartThemeType {
       },
       barSeriesStyle: {
         displayValue: {
-          fontSize: 8,
+          fontSize: 10,
           fontFamily: fontFamily,
-          fill: colors.euiTextSubduedColor.rgba,
+          fill: {
+            textInvertible: true,
+            textContrast: true,
+            textBorder: 0,
+          },
+          alignment: {
+            horizontal: 'center',
+            vertical: 'middle',
+          },
         },
       },
       scales: {

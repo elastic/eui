@@ -50,7 +50,6 @@ const EuiDataGridHeaderRow = forwardRef<
           index={index}
           controlColumn={controlColumn}
           headerIsInteractive={headerIsInteractive}
-          className="euiDataGridHeaderCell--controlColumn"
         />
       ))}
       {columns.map((column, index) => (
@@ -75,7 +74,6 @@ const EuiDataGridHeaderRow = forwardRef<
           index={index + leadingControlColumns.length + columns.length}
           controlColumn={controlColumn}
           headerIsInteractive={headerIsInteractive}
-          className="euiDataGridHeaderCell--controlColumn"
         />
       ))}
     </div>

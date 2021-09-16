@@ -1,6 +1,11 @@
 .euiLink {
   @include euiLink;
 
+  &[target='_blank'] {
+    // Make the screen reader only text positioned relatively against the link itself
+    position: relative;
+  }
+
   .euiLink__externalIcon {
     margin-left: $euiSizeXS;
   }
