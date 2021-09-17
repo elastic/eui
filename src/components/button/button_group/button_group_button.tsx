@@ -129,6 +129,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
         'data-text': innerText,
         title: innerText,
       }}
+      title={isIconOnly ? label?.toString() : undefined}
       {...elementProps}
       {...rest}
     >
