@@ -127,9 +127,8 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
           : 'euiButtonGroupButton__textShift',
         ref: buttonTextRef,
         'data-text': innerText,
-        title: innerText,
       }}
-      title={isIconOnly ? label?.toString() : undefined}
+      title={innerText}
       {...elementProps}
       {...rest}
     >
