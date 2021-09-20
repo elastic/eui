@@ -20,7 +20,6 @@ import { EuiAvatar } from '../../../../src/components/avatar';
 import { EuiBadge } from '../../../../src/components/badge';
 import { EuiMarkdownFormat } from '../../../../src/components/markdown_editor';
 import { EuiText } from '../../../../src/components/text';
-import { EuiTitle } from '../../../../src/components/title';
 import { EuiSpacer } from '../../../../src/components/spacer';
 
 interface DataShape {
@@ -88,8 +87,8 @@ const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
   } else if (columnId === 'issue') {
     content = (
       <>
-        <EuiTitle size="xs">
-          <h2>
+        <EuiText size="relative">
+          <h3>
             <EuiLink color="text" href={item.html_url} target="blank" external>
               {item.title}
             </EuiLink>
@@ -99,12 +98,12 @@ const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
                 {name}
               </EuiBadge>
             ))}
-          </h2>
-        </EuiTitle>
+          </h3>
+        </EuiText>
 
         <EuiSpacer size="s" />
 
-        <EuiText color="subdued" size="xs">
+        <EuiText color="subdued" size="relative">
           <span>
             Opened by{' '}
             <EuiAvatar
@@ -138,7 +137,7 @@ const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
     } else {
       // a full issue description is a *lot* to shove into a cell
       content = content = (
-        <EuiMarkdownFormat textSize="s">
+        <EuiMarkdownFormat textSize="relative">
           {(item.body ?? '').slice(0, 300)}
         </EuiMarkdownFormat>
       );
