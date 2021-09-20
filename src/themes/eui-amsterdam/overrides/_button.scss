@@ -45,7 +45,7 @@
       $backgroundColorSimulated: mix($euiColorInk, $color, 70%);
       color: makeHighContrastColor($color, $backgroundColorSimulated);
     } @else if ($name == 'text') {
-      // The default color is lighter than the normal text color, make the it the text color
+      // The default color is lighter than the normal text color, make it the text color
       color: $euiTextColor;
     } @else {
       &.euiButton--fill:focus {
@@ -87,7 +87,7 @@
       $backgroundColorSimulated: mix($euiColorInk, $color, 70%);
       color: makeHighContrastColor($color, $backgroundColorSimulated);
     } @else if ($name == 'text') {
-      // The default color is lighter than the normal text color, make the it the text color
+      // The default color is lighter than the normal text color, make it the text color
       color: $euiTextColor;
     } @else {
       &.euiButtonIcon--fill:focus {
