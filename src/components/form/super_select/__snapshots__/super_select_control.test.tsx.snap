@@ -3,7 +3,6 @@
 exports[`EuiSuperSelectControl is rendered 1`] = `
 Array [
   <input
-    id="generated-id"
     type="hidden"
     value=""
   />,
@@ -22,7 +21,7 @@ Array [
       <button
         aria-haspopup="true"
         aria-label="aria-label"
-        aria-labelledby="generated-id generated-id"
+        aria-labelledby="generated-id"
         class="euiSuperSelectControl testClass1 testClass2"
         data-test-subj="test subject string"
         type="button"
@@ -48,7 +47,6 @@ Array [
 exports[`EuiSuperSelectControl props compressed is rendered 1`] = `
 Array [
   <input
-    id="generated-id"
     type="hidden"
     value=""
   />,
@@ -66,7 +64,7 @@ Array [
       </span>
       <button
         aria-haspopup="true"
-        aria-labelledby="generated-id generated-id"
+        aria-labelledby="generated-id"
         class="euiSuperSelectControl euiSuperSelectControl--compressed"
         type="button"
       />
@@ -91,7 +89,6 @@ Array [
 exports[`EuiSuperSelectControl props disabled options are rendered 1`] = `
 Array [
   <input
-    id="generated-id"
     type="hidden"
     value=""
   />,
@@ -109,7 +106,7 @@ Array [
       </span>
       <button
         aria-haspopup="true"
-        aria-labelledby="generated-id generated-id"
+        aria-labelledby="generated-id"
         class="euiSuperSelectControl"
         type="button"
       />
@@ -134,7 +131,6 @@ Array [
 exports[`EuiSuperSelectControl props empty value option is rendered 1`] = `
 Array [
   <input
-    id="generated-id"
     type="hidden"
     value=""
   />,
@@ -152,7 +148,7 @@ Array [
       </span>
       <button
         aria-haspopup="true"
-        aria-labelledby="generated-id generated-id"
+        aria-labelledby="generated-id"
         class="euiSuperSelectControl"
         type="button"
       />
@@ -177,7 +173,6 @@ Array [
 exports[`EuiSuperSelectControl props fullWidth is rendered 1`] = `
 Array [
   <input
-    id="generated-id"
     type="hidden"
     value=""
   />,
@@ -195,7 +190,7 @@ Array [
       </span>
       <button
         aria-haspopup="true"
-        aria-labelledby="generated-id generated-id"
+        aria-labelledby="generated-id"
         class="euiSuperSelectControl euiSuperSelectControl--fullWidth"
         type="button"
       />
@@ -220,7 +215,6 @@ Array [
 exports[`EuiSuperSelectControl props isInvalid is rendered 1`] = `
 Array [
   <input
-    id="generated-id"
     type="hidden"
     value=""
   />,
@@ -238,7 +232,7 @@ Array [
       </span>
       <button
         aria-haspopup="true"
-        aria-labelledby="generated-id generated-id"
+        aria-labelledby="generated-id"
         class="euiSuperSelectControl euiSuperSelectControl-isInvalid"
         type="button"
       />
@@ -263,7 +257,6 @@ Array [
 exports[`EuiSuperSelectControl props isLoading is rendered 1`] = `
 Array [
   <input
-    id="generated-id"
     type="hidden"
     value=""
   />,
@@ -281,7 +274,7 @@ Array [
       </span>
       <button
         aria-haspopup="true"
-        aria-labelledby="generated-id generated-id"
+        aria-labelledby="generated-id"
         class="euiSuperSelectControl euiSuperSelectControl-isLoading"
         type="button"
       />
@@ -309,7 +302,6 @@ Array [
 exports[`EuiSuperSelectControl props value option is rendered 1`] = `
 Array [
   <input
-    id="generated-id"
     type="hidden"
     value="1"
   />,
@@ -327,7 +319,7 @@ Array [
       </span>
       <button
         aria-haspopup="true"
-        aria-labelledby="generated-id generated-id"
+        aria-labelledby="generated-id"
         class="euiSuperSelectControl"
         type="button"
       >
