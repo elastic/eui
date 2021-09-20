@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Moved `title` prop out of `textprops` to `EuiButtonDisplay` ([#5199](https://github.com/elastic/eui/pull/5199))
+- Fixed the `title` prop `EuiButtonGroup` to automatically display the `label` provided ([#5199](https://github.com/elastic/eui/pull/5199))
 - Updated `barSeriesStyle.displayValue` of the elastic-charts `Theme` for better default styles ([#4845](https://github.com/elastic/eui/pull/4845))
 - Updated `titleProps` and `descriptionProps` on `EuiDescriptionList` to extend `CommonProps` ([#5166](https://github.com/elastic/eui/pull/5166))
 - Added the ability to return `visibleOptions` from `EuiSelectable` by using `onSearch` ([#5178](https://github.com/elastic/eui/pull/5178))
