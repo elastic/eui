@@ -6,9 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { createElement, ReactElement } from 'react';
-import { highlight, AST, RefractorNode } from 'refractor';
+import React, { createElement, Fragment, ReactElement } from 'react';
+import { refractor } from 'refractor';
+import type { RefractorElement, RefractorRoot, Text } from 'refractor';
 import classNames from 'classnames';
+
+export type RefractorNode = RefractorElement | Text;
 
 type ExtendedRefractorNode = RefractorNode & {
   lineStart?: number;
@@ -24,16 +27,23 @@ interface LineNumbersConfig {
 const CHAR_SIZE = 8;
 const $euiSizeS = 8;
 
-const isAstElement = (node: RefractorNode): node is AST.Element =>
+const isAstText = (node: any): node is Text =>
+  node.hasOwnProperty('type') && node.type === 'text';
+
+const isAstElement = (node: any): node is RefractorElement =>
   node.hasOwnProperty('type') && node.type === 'element';
 
+const isAstRoot = (node: any): node is RefractorRoot =>
+  node.hasOwnProperty('type') && node.type === 'root';
+
 const addLineData = (
-  nodes: ExtendedRefractorNode[],
+  nodes: RefractorRoot | ExtendedRefractorNode[],
   data: { lineNumber: number }
 ): ExtendedRefractorNode[] => {
-  return nodes.reduce<ExtendedRefractorNode[]>((result, node) => {
+  const children: RefractorNode[] = isAstRoot(nodes) ? nodes.children : nodes;
+  return children.reduce<ExtendedRefractorNode[]>((result, node) => {
     const lineStart = data.lineNumber;
-    if (node.type === 'text') {
+    if (isAstText(node)) {
       if (!node.value.match(/\r\n?|\n/)) {
         node.lineStart = lineStart;
         node.lineEnd = lineStart;
@@ -139,20 +149,33 @@ export const nodeToHtml = (
   const key = `node-${depth}-${idx}`;
 
   if (isAstElement(node)) {
-    const { properties, tagName, children } = node;
+    const { properties, tagName: TagName, children } = node;
 
-    return createElement(
-      tagName,
-      {
-        ...properties,
-        key,
-        className: classNames(properties.className),
-      },
-      children && children.map((el, i) => nodeToHtml(el, i, nodes, depth + 1))
+    return (
+      <TagName
+        key={key}
+        {...properties}
+        className={classNames((properties as { className: string }).className)}
+      >
+        {children &&
+          children.map((el, i) => nodeToHtml(el, i, nodes, depth + 1))}
+      </TagName>
     );
+
+    // return createElement(
+    //   tagName as string,
+    //   {
+    //     ...(properties as {}),
+    //     key,
+    //     className: classNames((properties as { className: string }).className),
+    //   },
+    //   children && children.map((el, i) => nodeToHtml(el, i, nodes, depth + 1))
+    // );
   }
 
-  return <React.Fragment key={key}>{node.value}</React.Fragment>;
+  // console.log(node.value);
+
+  return <Fragment key={key}>{node.value}</Fragment>;
 };
 
 export const highlightByLine = (
@@ -161,7 +184,9 @@ export const highlightByLine = (
   data: LineNumbersConfig
 ) => {
   return wrapLines(
-    addLineData(highlight(children, language), { lineNumber: data.start }),
+    addLineData(refractor.highlight(children, language), {
+      lineNumber: data.start,
+    }),
     { showLineNumbers: data.show }
   );
 };

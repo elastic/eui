@@ -20,7 +20,8 @@ import React, {
   useState,
 } from 'react';
 import classNames from 'classnames';
-import { highlight, RefractorNode, listLanguages } from 'refractor';
+import { refractor } from 'refractor';
+import type { RefractorRoot } from 'refractor';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { keys, useCombinedRefs } from '../../services';
@@ -33,7 +34,7 @@ import { useInnerText } from '../inner_text';
 import { useMutationObserver } from '../observer/mutation_observer';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiOverlayMask } from '../overlay_mask';
-import { highlightByLine, nodeToHtml } from './utils';
+import { highlightByLine, nodeToHtml, RefractorNode } from './utils';
 
 // eslint-disable-next-line local/forward-ref
 const virtualizedOuterElement = ({
@@ -62,7 +63,7 @@ const ListRow = ({ data, index, style }: ListChildComponentProps) => {
   return nodeToHtml(row, index, data, 0);
 };
 
-const SUPPORTED_LANGUAGES = listLanguages();
+const SUPPORTED_LANGUAGES = refractor.listLanguages();
 const DEFAULT_LANGUAGE = 'text';
 
 // Based on observed line height for non-virtualized code blocks
@@ -192,7 +193,7 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
     innerTextRef,
     setWrapperRef,
   ]);
-  const { width, height } = useResizeObserver(wrapperRef);
+  // const { width, height } = useResizeObserver(wrapperRef);
   const rowHeight = useMemo(() => fontSizeToRowHeightMap[fontSize], [fontSize]);
   const lineNumbersConfig = useMemo(() => {
     const config = typeof lineNumbers === 'object' ? lineNumbers : {};
@@ -202,12 +203,12 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   }, [lineNumbers]);
 
   // Used by `FixedSizeList` when `isVirtualized=true` or `children` is parsable (`isVirtualized=true`)
-  const data: RefractorNode[] = useMemo(() => {
+  const data: RefractorRoot | RefractorNode[] = useMemo(() => {
     if (typeof children !== 'string') {
       return [];
     }
     return inline
-      ? highlight(children, language)
+      ? refractor.highlight(children, language).children
       : highlightByLine(children, language, lineNumbersConfig);
   }, [children, language, inline, lineNumbersConfig]);
 
@@ -219,27 +220,30 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   // Used by `pre` when `isVirtualized=false` or `children` is not parsable (`isVirtualized=false`)
   const content: ReactElement[] | ReactNode = useMemo(() => {
     if (!Array.isArray(data) || data.length < 1) {
+      console.log(children);
       return children;
     }
-    return data.map(nodeToHtml);
+    const html = data.map(nodeToHtml);
+    console.log(html);
+    return html;
   }, [data, children]);
 
-  const doesOverflow = () => {
-    if (!wrapperRef) return;
+  // const doesOverflow = () => {
+  //   if (!wrapperRef || inline) return;
 
-    const { clientWidth, clientHeight, scrollWidth, scrollHeight } = wrapperRef;
-    const doesOverflow =
-      scrollHeight > clientHeight || scrollWidth > clientWidth;
+  //   const { clientWidth, clientHeight, scrollWidth, scrollHeight } = wrapperRef;
+  //   const doesOverflow =
+  //     scrollHeight > clientHeight || scrollWidth > clientWidth;
 
-    setTabIndex(doesOverflow ? 0 : -1);
-  };
+  //   setTabIndex(doesOverflow ? 0 : -1);
+  // };
 
-  useMutationObserver(wrapperRef, doesOverflow, {
-    subtree: true,
-    childList: true,
-  });
+  // useMutationObserver(wrapperRef, doesOverflow, {
+  //   subtree: true,
+  //   childList: true,
+  // });
 
-  useEffect(doesOverflow, [width, height, wrapperRef]);
+  // useEffect(doesOverflow, [width, height, wrapperRef, inline]);
 
   const onKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === keys.ESCAPE) {
