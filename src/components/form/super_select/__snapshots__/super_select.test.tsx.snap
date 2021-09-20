@@ -27,7 +27,7 @@ exports[`EuiSuperSelect is rendered 1`] = `
           <button
             aria-haspopup="true"
             aria-label="aria-label"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl testClass1 testClass2"
             data-test-subj="test subject string"
             type="button"
@@ -79,7 +79,7 @@ exports[`EuiSuperSelect props compressed is rendered 1`] = `
           <button
             aria-haspopup="true"
             aria-label="aria-label"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl euiSuperSelectControl--compressed testClass1 testClass2"
             data-test-subj="test subject string"
             type="button"
@@ -130,7 +130,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
           </span>
           <button
             aria-haspopup="true"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl euiSuperSelect--isOpen__button"
             data-test-subj="superSelect"
             type="button"
@@ -291,7 +291,7 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
           <button
             aria-haspopup="true"
             aria-label="aria-label"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl euiSuperSelectControl--fullWidth testClass1 testClass2"
             data-test-subj="test subject string"
             type="button"
@@ -348,7 +348,7 @@ exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
           <button
             aria-haspopup="true"
             aria-label="aria-label"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl euiSuperSelectControl--inGroup testClass1 testClass2"
             data-test-subj="test subject string"
             type="button"
@@ -404,7 +404,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
           </span>
           <button
             aria-haspopup="true"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl euiSuperSelect--isOpen__button"
             data-test-subj="superSelect"
             type="button"
@@ -569,7 +569,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
           </span>
           <button
             aria-haspopup="true"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl euiSuperSelect--isOpen__button"
             data-test-subj="superSelect"
             type="button"
@@ -729,7 +729,7 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
           </span>
           <button
             aria-haspopup="true"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl"
             type="button"
           />
@@ -779,7 +779,7 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
           </span>
           <button
             aria-haspopup="true"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl"
             type="button"
           >
