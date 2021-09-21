@@ -151,8 +151,8 @@ export type EuiCodeBlockImplProps = CommonProps & {
 
   /**
    * Displays line numbers.
-   * Optionally accepts a configuration object for setting the starting number:
-   * `{start: 100}`
+   * Optionally accepts a configuration object for setting the starting number and visual highlighting ranges:
+   * `{ start: 100, highlight: '1, 5-10, 20-30, 40' }`
    */
   lineNumbers?: boolean | LineNumbersConfig;
 } & VirtualizedOptionProps;
