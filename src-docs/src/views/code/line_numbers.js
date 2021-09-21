@@ -24,7 +24,7 @@ export default () => (
 
     <EuiCodeBlock
       language="json"
-      fontSize="l"
+      fontSize="m"
       paddingSize="m"
       lineNumbers={{ start: 32, highlight: '32, 34-37, 40' }}
     >
