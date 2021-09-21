@@ -50,8 +50,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
     const headerNode = headerRef.current!;
 
     if (isCellEntered) {
-      enableInteractives(headerNode);
-      focusInteractives(headerNode);
+      enableAndFocusInteractives(headerNode);
     } else {
       disableInteractives(headerNode);
     }
@@ -172,19 +171,14 @@ const disableInteractives = (headerNode: Element) => {
   });
 };
 
-const enableInteractives = (headerNode: Element) => {
+const enableAndFocusInteractives = (headerNode: Element) => {
   const interactiveElements = headerNode.querySelectorAll(
     '[data-euigrid-tab-managed]'
   );
-  interactiveElements.forEach((element) => {
+  interactiveElements.forEach((element, i) => {
     element.setAttribute('tabIndex', '0');
+    if (i === 0) {
+      (element as HTMLElement).focus();
+    }
   });
-};
-
-const focusInteractives = (headerNode: Element) => {
-  const tabbables = tabbable(headerNode);
-
-  if (tabbables.length === 1) {
-    tabbables[0].focus();
-  }
 };
