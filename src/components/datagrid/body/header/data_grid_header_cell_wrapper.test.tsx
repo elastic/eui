@@ -113,23 +113,50 @@ describe('EuiDataGridHeaderCellWrapper', () => {
       );
     });
 
-    describe('events', () => {
-      // Reusable assertions for DRYness
-      const expectCellFocused = (headerCell: Element) => {
-        expect(document.activeElement).toEqual(headerCell);
-        expect(headerCell.getAttribute('tabIndex')).toEqual('0');
-      };
-      const expectCellChildrenFocused = (headerCell: Element) => {
-        expect(document.activeElement).toEqual(
-          headerCell.querySelector('[data-euigrid-tab-managed]')
-        );
-        expect(headerCell.getAttribute('tabIndex')).toEqual('-1');
-      };
-      const expectCellNotFocused = (headerCell: Element) => {
-        expect(document.activeElement).toBeInstanceOf(HTMLBodyElement);
-        expect(headerCell.getAttribute('tabIndex')).toEqual('-1');
-      };
+    // Reusable assertions for DRYness
+    const expectCellFocused = (headerCell: Element) => {
+      expect(document.activeElement).toEqual(headerCell);
+      expect(headerCell.getAttribute('tabIndex')).toEqual('0');
+    };
+    const expectCellChildrenFocused = (headerCell: Element) => {
+      expect(document.activeElement).toEqual(
+        headerCell.querySelector('[data-euigrid-tab-managed]')
+      );
+      expect(headerCell.getAttribute('tabIndex')).toEqual('-1');
+    };
+    const expectCellNotFocused = (headerCell: Element) => {
+      expect(document.activeElement).toBeInstanceOf(HTMLBodyElement);
+      expect(headerCell.getAttribute('tabIndex')).toEqual('-1');
+    };
 
+    describe('isFocused context', () => {
+      describe('when true', () => {
+        it('focuses the interactive cell children when present', () => {
+          const isFocused = true;
+          const headerCell = mountWithContext({}, isFocused).getDOMNode();
+          expectCellChildrenFocused(headerCell);
+        });
+
+        it('focuses the cell when no interactive children are present', () => {
+          const isFocused = true;
+          const headerCell = mountWithContext(
+            { children: <div /> },
+            isFocused
+          ).getDOMNode();
+          expectCellFocused(headerCell);
+        });
+      });
+
+      describe('when false', () => {
+        it('sets isCellEntered to false and disables interactives', () => {
+          const isFocused = false;
+          const headerCell = mountWithContext({}, isFocused).getDOMNode();
+          expectCellNotFocused(headerCell);
+        });
+      });
+    });
+
+    describe('events', () => {
       describe('keyup', () => {
         test('enter key sets isCellEntered to true (which focuses the first interactive child in the header cell)', () => {
           const headerCell = mountWithContext().getDOMNode();
@@ -179,44 +206,36 @@ describe('EuiDataGridHeaderCellWrapper', () => {
           jest.restoreAllMocks();
         });
 
-        describe('when header is not interactive', () => {
-          it('does not focus in on the cell', () => {
-            const headerCell = mountWithContext(
-              { headerIsInteractive: false },
-              false
-            ).getDOMNode();
-            act(() => {
-              headerCell.dispatchEvent(new FocusEvent('focusin'));
+        describe('focusin', () => {
+          describe('when header is not interactive', () => {
+            it('does not focus in on the cell', () => {
+              const headerCell = mountWithContext(
+                { headerIsInteractive: false },
+                false
+              ).getDOMNode();
+              act(() => {
+                headerCell.dispatchEvent(new FocusEvent('focusin'));
+              });
+              expectCellNotFocused(headerCell);
             });
-            expectCellNotFocused(headerCell);
-          });
-        });
-
-        describe('when header is interactive', () => {
-          it('calls setFocusedCell when not already focused', () => {
-            const headerCell = mountWithContext({}, false).getDOMNode();
-            act(() => {
-              headerCell.dispatchEvent(new FocusEvent('focusin'));
-            });
-            expect(focusContext.setFocusedCell).toHaveBeenCalled();
           });
 
-          it('focuses the interactive cell children when present', () => {
-            const headerCell = mountWithContext().getDOMNode();
-            act(() => {
-              headerCell.dispatchEvent(new FocusEvent('focusin'));
+          describe('when header is interactive', () => {
+            it('calls setFocusedCell when not already focused', () => {
+              const headerCell = mountWithContext({}, false).getDOMNode();
+              act(() => {
+                headerCell.dispatchEvent(new FocusEvent('focusin'));
+              });
+              expect(focusContext.setFocusedCell).toHaveBeenCalled();
             });
-            expectCellChildrenFocused(headerCell);
-          });
 
-          it('focuses the cell when no interactive children are present', () => {
-            const headerCell = mountWithContext({
-              children: <div />,
-            }).getDOMNode();
-            act(() => {
-              headerCell.dispatchEvent(new FocusEvent('focusin'));
+            it('re-enables and focuses cell interactives when already focused', () => {
+              const headerCell = mountWithContext({}, true).getDOMNode();
+              act(() => {
+                headerCell.dispatchEvent(new FocusEvent('focusin'));
+              });
+              expectCellChildrenFocused(headerCell);
             });
-            expectCellFocused(headerCell);
           });
         });
 
