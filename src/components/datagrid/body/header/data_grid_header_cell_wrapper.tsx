@@ -13,7 +13,6 @@ import React, {
   useEffect,
   useRef,
   useState,
-  useCallback,
 } from 'react';
 import tabbable from 'tabbable';
 import { keys } from '../../../../services';
@@ -47,37 +46,6 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
   const headerRef = useRef<HTMLDivElement>(null);
   const [isCellEntered, setIsCellEntered] = useState(false);
 
-  const focusInteractives = useCallback((headerNode: Element) => {
-    const tabbables = tabbable(headerNode);
-    if (tabbables.length === 1) {
-      tabbables[0].focus();
-      setIsCellEntered(true);
-    }
-  }, []);
-
-  const enableInteractives = useCallback((headerNode: Element) => {
-    const interactiveElements = headerNode.querySelectorAll(
-      '[data-euigrid-tab-managed]'
-    );
-    for (let i = 0; i < interactiveElements.length; i++) {
-      interactiveElements[i].setAttribute('tabIndex', '0');
-    }
-  }, []);
-
-  const disableInteractives = useCallback((headerNode: Element) => {
-    const tababbles = tabbable(headerNode);
-    if (tababbles.length > 1) {
-      console.warn(
-        `EuiDataGridHeaderCell expects at most 1 tabbable element, ${tababbles.length} found instead`
-      );
-    }
-    for (let i = 0; i < tababbles.length; i++) {
-      const element = tababbles[i];
-      element.setAttribute('data-euigrid-tab-managed', 'true');
-      element.setAttribute('tabIndex', '-1');
-    }
-  }, []);
-
   useEffect(() => {
     const headerNode = headerRef.current!;
 
@@ -87,12 +55,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
     } else {
       disableInteractives(headerNode);
     }
-  }, [
-    disableInteractives,
-    enableInteractives,
-    focusInteractives,
-    isCellEntered,
-  ]);
+  }, [isCellEntered]);
 
   useEffect(() => {
     const headerNode = headerRef.current!;
@@ -190,4 +153,38 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
       {children}
     </div>
   );
+};
+
+/**
+ * Utility fns for managing child interactive tabIndex state
+ */
+
+const disableInteractives = (headerNode: Element) => {
+  const tabbables = tabbable(headerNode);
+  if (tabbables.length > 1) {
+    console.warn(
+      `EuiDataGridHeaderCell expects at most 1 tabbable element, ${tabbables.length} found instead`
+    );
+  }
+  tabbables.forEach((element) => {
+    element.setAttribute('data-euigrid-tab-managed', 'true');
+    element.setAttribute('tabIndex', '-1');
+  });
+};
+
+const enableInteractives = (headerNode: Element) => {
+  const interactiveElements = headerNode.querySelectorAll(
+    '[data-euigrid-tab-managed]'
+  );
+  interactiveElements.forEach((element) => {
+    element.setAttribute('tabIndex', '0');
+  });
+};
+
+const focusInteractives = (headerNode: Element) => {
+  const tabbables = tabbable(headerNode);
+
+  if (tabbables.length === 1) {
+    tabbables[0].focus();
+  }
 };
