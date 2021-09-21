@@ -308,7 +308,9 @@ export const RangeControlExample = {
             <EuiCode language="js">
               {JSON.stringify(LEVEL_COLORS, null, 2)}
             </EuiCode>{' '}
-            or a hex value (e.g. <EuiCode>#ff0000</EuiCode>).
+            or a valid CSS color value (e.g.{' '}
+            <EuiCode>&quot;#ff0000&quot;</EuiCode>,{' '}
+            <EuiCode>&quot;red&quot;</EuiCode>).
           </p>
           <p>
             Be sure to then add an <EuiCode>aria-describedby</EuiCode> and match

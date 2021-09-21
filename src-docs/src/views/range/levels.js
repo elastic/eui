@@ -11,7 +11,7 @@ import { htmlIdGenerator } from '../../../../src/services';
 
 export default () => {
   const [value, setvalue] = useState('20');
-  const [customColorsValue, setCustomColorsValue] = useState('25');
+  const [customColorsValue, setCustomColorsValue] = useState('15');
   const [dualValue, setDualValue] = useState([20, 100]);
 
   const levels = [
@@ -27,26 +27,39 @@ export default () => {
     },
   ];
 
+  const customTicks = [
+    { label: 'low', value: 0 },
+    { label: 'intermediate', value: 15 },
+    { label: 'moderate', value: 35 },
+    { label: 'high', value: 65 },
+    { label: 'severe', value: 85 },
+  ];
+
   const customColorsLevels = [
     {
       min: 0,
-      max: 25,
-      color: '#95cced',
+      max: 15,
+      color: '#8fc998',
     },
     {
-      min: 25,
-      max: 50,
+      min: 15,
+      max: 35,
+      color: '#a1cbea',
+    },
+    {
+      min: 35,
+      max: 65,
       color: '#f2cc8f',
     },
     {
-      min: 50,
-      max: 75,
+      min: 65,
+      max: 85,
       color: '#e07a5f',
     },
     {
-      min: 75,
+      min: 85,
       max: 100,
-      color: '#975786',
+      color: '#7a2621',
     },
   ];
 
@@ -85,19 +98,14 @@ export default () => {
         value={customColorsValue}
         onChange={(e) => onCustomColorsChange(e)}
         showTicks
-        ticks={[
-          { label: 'warning', value: 0 },
-          { label: 'minor', value: 25 },
-          { label: 'major', value: 50 },
-          { label: 'critical', value: 75 },
-        ]}
+        ticks={customTicks}
         levels={customColorsLevels}
         aria-label="An example of EuiRange with custom colored indicators"
         aria-describedby="levelsHelp3"
       />
 
       <EuiFormHelpText id="levelsHelp3">
-        Levels accept custom hex colors.
+        Recommended levels are below {customTicks[3].label}.
       </EuiFormHelpText>
 
       <EuiSpacer size="xl" />
