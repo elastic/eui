@@ -40,7 +40,7 @@ export default () => {
     {
       min: 0,
       max: 15,
-      color: '#8fc998',
+      color: '#a2cb9f',
       'data-test-subj': 'customColorLevel',
     },
     {
