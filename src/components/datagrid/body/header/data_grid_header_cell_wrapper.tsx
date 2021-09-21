@@ -122,10 +122,8 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
         if (isFocused === false) {
           setFocusedCell([index, -1]);
         } else {
-          // this cell already had the grid's focus, so re-enable interactives
-          enableInteractives(headerNode);
-          // shift focus to the interactive element
-          focusInteractives(headerNode);
+          // this cell already had the grid's focus, so re-enable and focus interactives
+          setIsCellEntered(true);
         }
       }
     }
