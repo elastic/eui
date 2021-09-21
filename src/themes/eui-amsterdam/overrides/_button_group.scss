@@ -9,6 +9,8 @@
 .euiButtonGroup--small {
   .euiButtonGroupButton {
     border: none !important; // sass-lint:disable-line no-important
+    border-radius: 0 !important; // sass-lint:disable-line no-important
+    font-weight: $euiButtonFontWeight;
 
     // Complicated set of focus states depending on whether it's a button and can receive :focus,
     // or an input and uses focus-within, and browser support for :focus-visible

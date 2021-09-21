@@ -134,6 +134,19 @@ export interface EuiDataGridHeaderCellProps
   > {
   column: EuiDataGridColumn;
   index: number;
+}
+
+export interface EuiDataGridControlHeaderCellProps {
+  index: number;
+  controlColumn: EuiDataGridControlColumn;
+  headerIsInteractive: boolean;
+}
+
+export interface EuiDataGridHeaderCellWrapperProps {
+  id: string;
+  index: number;
+  headerIsInteractive: boolean;
+  width?: number | null;
   className?: string;
 }
 
@@ -151,13 +164,6 @@ export type EuiDataGridFooterRowProps = CommonProps &
     interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
     visibleRowIndex?: number;
   };
-
-export interface EuiDataGridControlHeaderRowProps {
-  index: number;
-  controlColumn: EuiDataGridControlColumn;
-  headerIsInteractive: boolean;
-  className?: string;
-}
 
 export interface DataGridFocusContextShape {
   setFocusedCell: (cell: EuiDataGridFocusedCell) => void;

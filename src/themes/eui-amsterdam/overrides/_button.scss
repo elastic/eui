@@ -44,6 +44,9 @@
       // Ghost is unique and ALWAYS sits against a dark background.
       $backgroundColorSimulated: mix($euiColorInk, $color, 70%);
       color: makeHighContrastColor($color, $backgroundColorSimulated);
+    } @else if ($name == 'text') {
+      // The default color is lighter than the normal text color, make it the text color
+      color: $euiTextColor;
     } @else {
       &.euiButton--fill:focus {
         outline-color: lightOrDarkTheme($euiColorInk, $euiColorGhost);
@@ -83,6 +86,9 @@
       // Ghost is unique and ALWAYS sits against a dark background.
       $backgroundColorSimulated: mix($euiColorInk, $color, 70%);
       color: makeHighContrastColor($color, $backgroundColorSimulated);
+    } @else if ($name == 'text') {
+      // The default color is lighter than the normal text color, make it the text color
+      color: $euiTextColor;
     } @else {
       &.euiButtonIcon--fill:focus {
         outline-color: lightOrDarkTheme($euiColorInk, $euiColorGhost);

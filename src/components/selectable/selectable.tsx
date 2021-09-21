@@ -51,9 +51,19 @@ type EuiSelectableSearchableProps<T> = ExclusiveUnion<
      */
     searchable: true;
     /**
-     * Passes props down to the `EuiFieldSearch`
+     * Passes props down to the `EuiFieldSearch`.
+     * See #EuiSelectableSearchProps
      */
-    searchProps?: Partial<EuiSelectableSearchProps<T>>;
+    searchProps?: EuiSelectableSearchableSearchProps<T>;
+  }
+>;
+
+export type EuiSelectableSearchableSearchProps<T> = Partial<
+  Omit<EuiSelectableSearchProps<T>, 'onSearch'> & {
+    onSearch: (
+      searchValue: string,
+      matchingOptions: Array<EuiSelectableOption<T>>
+    ) => void;
   }
 >;
 
@@ -337,7 +347,7 @@ export class EuiSelectable<T = {}> extends Component<
       }
     );
     if (this.props.searchProps && this.props.searchProps.onSearch) {
-      this.props.searchProps.onSearch(searchValue);
+      this.props.searchProps.onSearch(searchValue, visibleOptions);
     }
   };
 
@@ -524,7 +534,7 @@ export class EuiSelectable<T = {}> extends Component<
      */
     const getAccessibleName = (
       props:
-        | Partial<EuiSelectableSearchProps<T>>
+        | EuiSelectableSearchableSearchProps<T>
         | EuiSelectableOptionsListPropsWithDefaults
         | undefined,
       messageContentId?: string

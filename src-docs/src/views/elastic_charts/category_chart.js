@@ -38,7 +38,7 @@ export const CategoryChart = () => {
   const [ordered, setOrdered] = useState(true);
   const [formatted, setFormatted] = useState(false);
   const [chartType, setChartType] = useState('BarSeries');
-
+  const [valueLabels, setValueLabels] = useState(false);
   const onMultiChange = (multiObject) => {
     const { multi, stacked } = multiObject;
     setMulti(multi);
@@ -61,6 +61,10 @@ export const CategoryChart = () => {
     setChartType(chartType);
   };
 
+  const onValueLabelsChange = (e) => {
+    setValueLabels(e.target.checked);
+  };
+
   const isDarkTheme = themeContext.theme.includes('dark');
   const theme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK.theme
@@ -69,6 +73,115 @@ export const CategoryChart = () => {
   const ChartType = CHART_COMPONENTS[chartType];
 
   const DATASET = multi ? GITHUB_DATASET : SIMPLE_GITHUB_DATASET;
+
+  const displayValueSettings = {
+    showValueLabel: true,
+  };
+
+  const customTheme = {
+    ...theme,
+    barSeriesStyle: {
+      displayValue: {
+        ...theme.barSeriesStyle.displayValue,
+        offsetX: rotated ? 4 : 0,
+        offsetY: rotated ? 0 : -4,
+        ...(multi && stacked
+          ? {
+              alignment: {
+                vertical: 'middle',
+                horizontal: 'center',
+              },
+            }
+          : {
+              alignment: rotated
+                ? {
+                    vertical: 'middle',
+                  }
+                : {
+                    horizontal: 'center',
+                  },
+            }),
+      },
+    },
+  };
+
+  const defaultAlignmentToCopy = `alignment: {
+        vertical: 'middle',
+        horizontal: 'center',
+      }`;
+
+  const alignmentRotatedToCopy = rotated
+    ? `alignment: {
+        vertical: 'middle',
+      }`
+    : `alignment: {
+        horizontal: 'center',
+      }`;
+
+  const chartVariablesForValueLabels = `const theme = isDarkTheme
+  ? EUI_CHARTS_THEME_DARK.theme
+  : EUI_CHARTS_THEME_LIGHT.theme;
+
+const customTheme = {
+  ...theme,
+  barSeriesStyle: {
+    displayValue: {
+      ...theme.barSeriesStyle.displayValue,
+      offsetX: ${rotated ? '4' : '0'},
+      offsetY: ${rotated ? '0' : '-4'},
+      ${multi && stacked ? defaultAlignmentToCopy : alignmentRotatedToCopy},
+    },
+  },
+};`;
+
+  const multiConfigData = `[{ vizType: "Data Table", count: 6, issueType: "Bug" },
+      { vizType: "Data Table", count: 24, issueType: "Other" },
+      { vizType: "Heatmap", count: 12, issueType: "Bug" },
+      { vizType: "Heatmap", count: 20, issueType: "Other" }]
+`;
+
+  const singleConfigData = `[{vizType: 'Data Table', count: 24, issueType: 'Bug'},
+      {vizType: 'Heatmap',count: 12, issueType: 'Other'}]
+`;
+
+  const chartConfigurationToCopy = `<Chart size={{height: 300}}>
+  <Settings
+    theme={${valueLabels ? 'customTheme' : 'theme'}}
+    rotation={${rotated ? 90 : 0}}
+    showLegend={${multi}}
+    ${multi ? 'legendPosition="right"' : ''}
+  />
+  <${chartType}
+    id="issues"
+    name="Issues"
+    data={
+      ${multi ? multiConfigData : singleConfigData}
+    }
+    xAccessor="vizType"
+    yAccessors={['count']}
+    ${multi ? "splitSeriesAccessors={['issueType']}" : ''}
+    ${stacked ? "stackAccessors={['issueType']}" : ''}
+    ${valueLabels ? 'displayValueSettings={{showValueLabel: true}}' : ''}
+  />
+  <Axis
+    id="bottom-axis"
+    position={${rotated ? '"left"' : '"bottom"'}}
+    showGridLines={false}
+  />
+  <Axis
+    id="left-axis"
+    position={${rotated ? '"bottom"' : '"left"'}}
+    ${formatted ? 'tickFormat={d => `${round(Number(d) / 1000, 2)}k`}' : ''}
+  />
+</Chart>`;
+
+  const removeEmptyLines = (string) => string.replace(/(^[ \t]*\n)/gm, '');
+
+  const textToCopy = valueLabels
+    ? `${chartVariablesForValueLabels}
+
+${removeEmptyLines(chartConfigurationToCopy)}`
+    : `${removeEmptyLines(chartConfigurationToCopy)}`;
 
   return (
     <Fragment>
@@ -81,9 +194,9 @@ export const CategoryChart = () => {
 
       <EuiSpacer size="s" />
 
-      <Chart size={{ height: 300 }}>
+      <Chart size={{ height: 400 }}>
         <Settings
-          theme={theme}
+          theme={customTheme}
           showLegend={multi}
           legendPosition="right"
           rotation={rotated ? 90 : 0}
@@ -100,6 +213,7 @@ export const CategoryChart = () => {
           yAccessors={['count']}
           splitSeriesAccessors={multi ? ['issueType'] : undefined}
           stackAccessors={stacked ? ['issueType'] : undefined}
+          displayValueSettings={valueLabels && displayValueSettings}
         />
         <Axis
           id="bottom-axis"
@@ -170,44 +284,26 @@ export const CategoryChart = () => {
         <EuiFlexItem>
           <MultiChartCard onChange={onMultiChange} />
         </EuiFlexItem>
+
+        <EuiFlexItem>
+          <ChartCard
+            title="Value labels"
+            description="Value labels can add too much detail and make categorical charts more difficult to interpret. Consider showing them only when the values are of extreme importance."
+          >
+            <EuiSpacer size="s" />
+            <EuiSwitch
+              label="Show value labels"
+              checked={valueLabels}
+              onChange={onValueLabelsChange}
+            />
+          </ChartCard>
+        </EuiFlexItem>
       </EuiFlexGrid>
 
       <EuiSpacer />
 
       <div className="eui-textCenter">
-        <EuiCopy
-          textToCopy={`<Chart size={{height: 300}}>
-  <Settings
-    theme={isDarkTheme ? EUI_CHARTS_THEME_DARK.theme : EUI_CHARTS_THEME_LIGHT.theme}
-    rotation={${rotated ? 90 : 0}}
-    showLegend={${multi}}
-    ${multi ? 'legendPosition="right"' : ''}
-  />
-  <${chartType}
-    id="issues"
-    name="Issues"
-    data={${
-      ordered
-        ? "orderBy([{vizType: 'Data Table', count: 24, issueType: 'Bug'},{vizType: 'Heatmap',count: 12, issueType: 'Other'}], ['count'], ['desc'])"
-        : "orderBy([{vizType: 'Data Table', count: 24, issueType: 'Bug'},{vizType: 'Heatmap',count: 12, issueType: 'Other'}], ['vizType'], ['asc'])"
-    }}
-    xAccessor="vizType"
-    yAccessors={['count']}
-    ${multi ? "splitSeriesAccessors={['issueType']}" : ''}
-    ${stacked ? "stackAccessors={['issueType']}" : ''}
-  />
-  <Axis
-    id="bottom-axis"
-    position={${rotated ? 'left' : 'bottom'}}
-    showGridLines={false}
-  />
-  <Axis
-    id="left-axis"
-    position={${rotated ? 'bottom' : 'left'}}
-    ${formatted ? 'tickFormat={d => `${round(Number(d) / 1000, 2)}k`}' : ''}
-  />
-</Chart>`}
-        >
+        <EuiCopy textToCopy={textToCopy}>
           {(copy) => (
             <EuiButton fill onClick={copy} iconType="copyClipboard">
               Copy code of current configuration
