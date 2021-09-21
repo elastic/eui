@@ -6,9 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, CSSProperties } from 'react';
 import classNames from 'classnames';
-import { isValidHex } from '../../../services/color/is_valid_hex';
 
 export type EuiRangeLevelColor = 'primary' | 'success' | 'warning' | 'danger';
 
@@ -23,9 +22,9 @@ export interface EuiRangeLevel {
   min: number;
   max: number;
   /**
-   * Accepts one of `["primary", "success", "warning", "danger"]` or a hex value (e.g. `#FFFFFF`, `#000`).
+   * Accepts one of `["primary", "success", "warning", "danger"]` or a valid CSS color value.
    */
-  color: EuiRangeLevelColor | string;
+  color: EuiRangeLevelColor | CSSProperties['color'];
 }
 
 export interface EuiRangeLevelsProps {
@@ -71,19 +70,17 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
         const range = level.max - level.min;
         const width = (range / (max - min)) * 100;
 
-        const isHexColor = isValidHex(level.color);
-
-        const styles = {
-          width: `${width}%`,
-          backgroundColor: isHexColor ? level.color : undefined,
-        };
-
         const isNamedColor = LEVEL_COLORS.includes(
           level.color as EuiRangeLevelColor
         );
 
+        const styles = {
+          width: `${width}%`,
+          backgroundColor: !isNamedColor ? level.color : undefined,
+        };
+
         const levelClasses = classNames('euiRangeLevel', {
-          'euiRangeLevel--customColor': isHexColor,
+          'euiRangeLevel--customColor': !isNamedColor,
           [`euiRangeLevel--${level.color}`]: isNamedColor,
         });
 
