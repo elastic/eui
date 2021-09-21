@@ -24,6 +24,8 @@ describe('EuiRangeLevels', () => {
             min: 0,
             max: 20,
             color: 'danger',
+            'data-test-subj': 'firstLevel',
+            className: 'customClass',
           },
           {
             min: 20,

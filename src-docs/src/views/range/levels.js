@@ -19,6 +19,7 @@ export default () => {
       min: 0,
       max: 20,
       color: 'danger',
+      'data-test-subj': 'dangerColorLevel',
     },
     {
       min: 20,
@@ -40,6 +41,7 @@ export default () => {
       min: 0,
       max: 15,
       color: '#8fc998',
+      'data-test-subj': 'customColorLevel',
     },
     {
       min: 15,

@@ -8,6 +8,7 @@
 
 import React, { FunctionComponent, CSSProperties } from 'react';
 import classNames from 'classnames';
+import { CommonProps } from '../../common';
 
 export type EuiRangeLevelColor = 'primary' | 'success' | 'warning' | 'danger';
 
@@ -18,7 +19,7 @@ export const LEVEL_COLORS: EuiRangeLevelColor[] = [
   'danger',
 ];
 
-export interface EuiRangeLevel {
+export interface EuiRangeLevel extends CommonProps {
   min: number;
   max: number;
   /**
@@ -67,24 +68,37 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
     <div className={classes}>
       {levels.map((level, index) => {
         validateLevelIsInRange(level);
+
         const range = level.max - level.min;
         const width = (range / (max - min)) * 100;
 
-        const isNamedColor = LEVEL_COLORS.includes(
-          level.color as EuiRangeLevelColor
-        );
+        const { color, className, ...rest } = level;
+
+        const isNamedColor = LEVEL_COLORS.includes(color as EuiRangeLevelColor);
 
         const styles = {
           width: `${width}%`,
-          backgroundColor: !isNamedColor ? level.color : undefined,
+          backgroundColor: !isNamedColor ? color : undefined,
         };
 
-        const levelClasses = classNames('euiRangeLevel', {
-          'euiRangeLevel--customColor': !isNamedColor,
-          [`euiRangeLevel--${level.color}`]: isNamedColor,
-        });
+        const levelClasses = classNames(
+          'euiRangeLevel',
+          {
+            'euiRangeLevel--customColor': !isNamedColor,
+            [`euiRangeLevel--${color}`]: isNamedColor,
+          },
+          className
+        );
 
-        return <span key={index} style={styles} className={levelClasses} />;
+        return (
+          <span
+            key={index}
+            style={styles}
+            className={levelClasses}
+            aria-label={rest['aria-label']}
+            data-test-subj={rest['data-test-subj']}
+          />
+        );
       })}
     </div>
   );
