@@ -67,8 +67,8 @@ const DEFAULT_LANGUAGE = 'text';
 
 // Based on observed line height for non-virtualized code blocks
 const fontSizeToRowHeightMap = {
-  s: 16,
-  m: 19,
+  s: 18,
+  m: 21,
   l: 21,
 };
 
@@ -116,6 +116,7 @@ type VirtualizedOptionProps = ExclusiveUnion<
 
 interface LineNumbersConfig {
   start?: number;
+  highlight?: string;
 }
 
 export type EuiCodeBlockImplProps = CommonProps & {
