@@ -114,18 +114,6 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
           headerNode.focus();
           break;
         }
-        case keys.F2: {
-          event.preventDefault();
-          if (document.activeElement === headerNode) {
-            // move focus into cell's interactives
-            setIsCellEntered(true);
-          } else {
-            // move focus to cell
-            setIsCellEntered(false);
-            headerNode.focus();
-          }
-          break;
-        }
       }
     };
 

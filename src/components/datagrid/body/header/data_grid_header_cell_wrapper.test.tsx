@@ -153,22 +153,6 @@ describe('EuiDataGridHeaderCellWrapper', () => {
           });
           expectCellFocused(headerCell);
         });
-
-        test('F2 key toggles between cell child focus and cell focus', () => {
-          const headerCell = mountWithContext().getDOMNode();
-          act(() => {
-            headerCell.dispatchEvent(
-              new KeyboardEvent('keyup', { key: keys.F2 })
-            );
-          });
-          expectCellFocused(headerCell);
-          act(() => {
-            headerCell.dispatchEvent(
-              new KeyboardEvent('keyup', { key: keys.F2 })
-            );
-          });
-          expectCellChildrenFocused(headerCell);
-        });
       });
 
       describe('focus', () => {
