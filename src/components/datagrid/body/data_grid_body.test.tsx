@@ -9,9 +9,9 @@
 import React from 'react';
 import { mount, render, shallow } from 'enzyme';
 
+import { mockRowHeightUtils } from '../__mocks__/row_height_utils';
 import { DataGridSortingContext } from '../data_grid_context';
 import { schemaDetectors } from '../data_grid_schema';
-import { RowHeightUtils } from '../row_height_utils';
 
 import { EuiDataGridBody, Cell, getParentCellContent } from './data_grid_body';
 
@@ -39,8 +39,15 @@ describe('EuiDataGridBody', () => {
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
     schemaDetectors,
-    rowHeightUtils: new RowHeightUtils(),
+    rowHeightUtils: mockRowHeightUtils,
   };
+
+  beforeAll(() => {
+    Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
+      configurable: true,
+      value: 34,
+    });
+  });
 
   it('renders', () => {
     // EuiDataGridBody should be `render`ed here over `mount` due to large
