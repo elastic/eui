@@ -49,5 +49,22 @@ describe('highlightByLine', () => {
         ).toBe(10);
       });
     });
+
+    describe('with highlighted lines', () => {
+      it('adds a class to the specified lines', () => {
+        const highlight = highlightByLine(jsonCode, 'json', {
+          show: true,
+          start: 1,
+          highlight: '1-2',
+        });
+        expect(highlight).toMatchSnapshot();
+        expect(
+          // @ts-expect-error RefractorNode
+          highlight[0].properties.className[0].includes(
+            'euiCodeBlock__line--isHighlighted'
+          )
+        ).toBe(true);
+      });
+    });
   });
 });
