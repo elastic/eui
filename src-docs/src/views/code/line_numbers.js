@@ -24,9 +24,9 @@ export default () => (
 
     <EuiCodeBlock
       language="json"
-      fontSize="m"
+      fontSize="l"
       paddingSize="m"
-      lineNumbers={{ start: 32 }}
+      lineNumbers={{ start: 32, highlight: '32, 34-37, 40' }}
     >
       {`"OriginLocation": [
   {
