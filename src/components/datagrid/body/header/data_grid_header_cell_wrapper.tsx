@@ -175,15 +175,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
       headerNode.removeEventListener('focusout', onFocusOut);
       headerNode.removeEventListener('keyup', onKeyUp);
     };
-  }, [
-    enableInteractives,
-    focusInteractives,
-    headerIsInteractive,
-    isFocused,
-    setIsCellEntered,
-    index,
-    setFocusedCell,
-  ]);
+  }, [headerIsInteractive, isFocused, index, setFocusedCell]);
 
   return (
     <div
