@@ -7,11 +7,11 @@
  */
 
 import classNames from 'classnames';
-import React, { FunctionComponent, useRef } from 'react';
+import React, { FunctionComponent } from 'react';
 import { EuiButtonDisplay } from '../button';
 import { EuiButtonGroupOptionProps, EuiButtonGroupProps } from './button_group';
 import { useInnerText } from '../../inner_text';
-import { htmlIdGenerator } from '../../../services';
+import { useGeneratedHtmlId } from '../../../services';
 
 type Props = EuiButtonGroupOptionProps & {
   /**
@@ -65,7 +65,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
 }) => {
   // Force element to be a button if disabled
   const el = isDisabled ? 'button' : element;
-  const newId = useRef(htmlIdGenerator()()).current;
+  const newId = useGeneratedHtmlId();
 
   let elementProps = {};
   let singleInput;
