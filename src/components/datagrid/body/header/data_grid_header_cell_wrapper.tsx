@@ -73,7 +73,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
     }
 
     // focusin bubbles while focus does not, and this needs to react to children gaining focus
-    function onFocusIn(e: FocusEvent) {
+    const onFocusIn = (e: FocusEvent) => {
       if (!headerIsInteractive) {
         // header is not interactive, avoid focusing
         requestAnimationFrame(() => headerNode.blur());
@@ -88,19 +88,19 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
           setIsCellEntered(true);
         }
       }
-    }
+    };
 
     // focusout bubbles while blur does not, and this needs to react to the children losing focus
-    function onFocusOut() {
+    const onFocusOut = () => {
       // wait for the next element to receive focus, then update interactives' state
       requestAnimationFrame(() => {
         if (!headerNode.contains(document.activeElement)) {
           setIsCellEntered(false);
         }
       });
-    }
+    };
 
-    function onKeyUp(event: KeyboardEvent) {
+    const onKeyUp = (event: KeyboardEvent) => {
       switch (event.key) {
         case keys.ENTER: {
           event.preventDefault();
@@ -116,7 +116,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
         }
         case keys.F2: {
           event.preventDefault();
-          if (document.activeElement === headerRef.current) {
+          if (document.activeElement === headerNode) {
             // move focus into cell's interactives
             setIsCellEntered(true);
           } else {
@@ -127,7 +127,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
           break;
         }
       }
-    }
+    };
 
     headerNode.addEventListener('focusin', onFocusIn);
     headerNode.addEventListener('focusout', onFocusOut);
