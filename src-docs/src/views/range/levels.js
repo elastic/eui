@@ -61,7 +61,7 @@ export default () => {
     {
       min: 85,
       max: 100,
-      color: '#7a2621',
+      color: '#b1130a',
     },
   ];
 
