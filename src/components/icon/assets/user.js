@@ -4,10 +4,10 @@ import * as React from 'react';
 
 const EuiIconUser = ({ title, titleId, ...props }) => (
   <svg
+    xmlns="http://www.w3.org/2000/svg"
     width={18}
     height={18}
     viewBox="0 0 18 18"
-    xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
     {...props}
   >
