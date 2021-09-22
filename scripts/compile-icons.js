@@ -17,12 +17,14 @@ const iconFiles = glob.sync('**/*.svg', { cwd: iconsDir, realpath: true });
 
 iconFiles.forEach(async (filePath) => {
   const svgSource = fs.readFileSync(filePath);
+  const svgString = svgSource.toString();
 
   try {
-    const viewBoxPosition = svgSource.toString().indexOf('viewBox');
-    if (viewBoxPosition === -1) {
+    if (!svgString.includes('viewBox')) {
       throw new Error(`${filePath} is missing a 'viewBox' attribute`);
     }
+
+    const hasIds = svgString.includes('id="');
 
     const jsxSource = await svgr(
       svgSource,
