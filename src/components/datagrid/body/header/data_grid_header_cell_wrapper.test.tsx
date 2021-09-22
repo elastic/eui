@@ -20,7 +20,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
     id: 'someColumn',
     index: 0,
     headerIsInteractive: true,
-    children: <button data-euigrid-tab-managed="true" />,
+    children: <button />,
   };
 
   const focusContext = {
@@ -57,9 +57,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
           style={Object {}}
           tabIndex={-1}
         >
-          <button
-            data-euigrid-tab-managed="true"
-          />
+          <button />
         </div>
       </EuiDataGridHeaderCellWrapper>
     `);
@@ -85,34 +83,12 @@ describe('EuiDataGridHeaderCellWrapper', () => {
         }
         tabIndex={-1}
       >
-        <button
-          data-euigrid-tab-managed="true"
-        />
+        <button />
       </div>
     `);
   });
 
   describe('focus behavior', () => {
-    it('warns when a header cell contains multiple interactive children', () => {
-      const consoleWarnSpy = jest
-        .spyOn(console, 'warn')
-        .mockImplementationOnce(() => {}); // Silence expected warning
-
-      mountWithContext({
-        children: (
-          <div>
-            <button data-euigrid-tab-managed="true" />
-            <button data-euigrid-tab-managed="true" />
-            <button data-euigrid-tab-managed="true" />
-          </div>
-        ),
-      });
-
-      expect(consoleWarnSpy).toHaveBeenCalledWith(
-        'EuiDataGridHeaderCell expects at most 1 tabbable element, 3 found instead'
-      );
-    });
-
     // Reusable assertions for DRYness
     const expectCellFocused = (headerCell: Element) => {
       expect(document.activeElement).toEqual(headerCell);
@@ -268,6 +244,44 @@ describe('EuiDataGridHeaderCellWrapper', () => {
             expect(headerCell.querySelector('[tabIndex="0"]')).toBeNull();
           });
         });
+      });
+    });
+
+    describe('multiple interactive children', () => {
+      const children = (
+        <div>
+          <button />
+          <button />
+          <button />
+        </div>
+      );
+
+      let consoleWarnSpy: jest.SpyInstance;
+
+      beforeEach(() => {
+        consoleWarnSpy = jest
+          .spyOn(console, 'warn')
+          .mockImplementation(() => {}); // Silence expected warning
+      });
+      afterEach(() => {
+        consoleWarnSpy.mockRestore();
+      });
+
+      it('emits a console warning', () => {
+        mountWithContext({ children });
+        expect(consoleWarnSpy).toHaveBeenCalledWith(
+          'EuiDataGridHeaderCell expects at most 1 tabbable element, 3 found instead'
+        );
+      });
+
+      it('will still focus in to the first interactable element on cell enter', () => {
+        const headerCell = mountWithContext({ children }).getDOMNode();
+        act(() => {
+          headerCell.dispatchEvent(
+            new KeyboardEvent('keyup', { key: keys.ENTER })
+          );
+        });
+        expectCellChildrenFocused(headerCell);
       });
     });
   });
