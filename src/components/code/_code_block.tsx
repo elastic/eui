@@ -20,7 +20,7 @@ import React, {
   useState,
 } from 'react';
 import classNames from 'classnames';
-import { refractor } from 'refractor';
+import { refractor } from 'refractor/lib/all';
 import type { RefractorRoot } from 'refractor';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
@@ -193,7 +193,7 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
     innerTextRef,
     setWrapperRef,
   ]);
-  // const { width, height } = useResizeObserver(wrapperRef);
+  const { width, height } = useResizeObserver(wrapperRef);
   const rowHeight = useMemo(() => fontSizeToRowHeightMap[fontSize], [fontSize]);
   const lineNumbersConfig = useMemo(() => {
     const config = typeof lineNumbers === 'object' ? lineNumbers : {};
@@ -223,27 +223,25 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
       console.log(children);
       return children;
     }
-    const html = data.map(nodeToHtml);
-    console.log(html);
-    return html;
+    return data.map(nodeToHtml);
   }, [data, children]);
 
-  // const doesOverflow = () => {
-  //   if (!wrapperRef || inline) return;
+  const doesOverflow = () => {
+    if (!wrapperRef || inline) return;
 
-  //   const { clientWidth, clientHeight, scrollWidth, scrollHeight } = wrapperRef;
-  //   const doesOverflow =
-  //     scrollHeight > clientHeight || scrollWidth > clientWidth;
+    const { clientWidth, clientHeight, scrollWidth, scrollHeight } = wrapperRef;
+    const doesOverflow =
+      scrollHeight > clientHeight || scrollWidth > clientWidth;
 
-  //   setTabIndex(doesOverflow ? 0 : -1);
-  // };
+    setTabIndex(doesOverflow ? 0 : -1);
+  };
 
-  // useMutationObserver(wrapperRef, doesOverflow, {
-  //   subtree: true,
-  //   childList: true,
-  // });
+  useMutationObserver(wrapperRef, doesOverflow, {
+    subtree: true,
+    childList: true,
+  });
 
-  // useEffect(doesOverflow, [width, height, wrapperRef, inline]);
+  useEffect(doesOverflow, [width, height, wrapperRef, inline]);
 
   const onKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (event.key === keys.ESCAPE) {

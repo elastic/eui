@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { refractor } from 'refractor';
+import { refractor } from 'refractor/lib/all';
 import visit from 'unist-util-visit';
 import { Plugin } from 'unified';
 

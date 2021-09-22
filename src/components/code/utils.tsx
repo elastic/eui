@@ -7,7 +7,7 @@
  */
 
 import React, { createElement, Fragment, ReactElement } from 'react';
-import { refractor } from 'refractor';
+import { refractor } from 'refractor/lib/all';
 import type { RefractorElement, RefractorRoot, Text } from 'refractor';
 import classNames from 'classnames';
 
@@ -149,31 +149,22 @@ export const nodeToHtml = (
   const key = `node-${depth}-${idx}`;
 
   if (isAstElement(node)) {
-    const { properties, tagName: TagName, children } = node;
+    // `Element` type from `hast` not correctly propagated
+    const { children, properties, tagName } = node as RefractorElement & {
+      properties: { className: string[] };
+      tagName: string;
+    };
 
-    return (
-      <TagName
-        key={key}
-        {...properties}
-        className={classNames((properties as { className: string }).className)}
-      >
-        {children &&
-          children.map((el, i) => nodeToHtml(el, i, nodes, depth + 1))}
-      </TagName>
+    return createElement(
+      tagName,
+      {
+        ...properties,
+        key,
+        className: classNames(properties.className),
+      },
+      children && children.map((el, i) => nodeToHtml(el, i, nodes, depth + 1))
     );
-
-    // return createElement(
-    //   tagName as string,
-    //   {
-    //     ...(properties as {}),
-    //     key,
-    //     className: classNames((properties as { className: string }).className),
-    //   },
-    //   children && children.map((el, i) => nodeToHtml(el, i, nodes, depth + 1))
-    // );
   }
-
-  // console.log(node.value);
 
   return <Fragment key={key}>{node.value}</Fragment>;
 };
