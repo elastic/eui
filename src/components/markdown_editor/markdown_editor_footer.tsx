@@ -60,6 +60,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
     dropHandlers,
   } = props;
   const [isShowingHelpModal, setIsShowingHelpModal] = useState(false);
+  const [isShowingHelpPopover, setIsShowingHelpPopover] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const onButtonClick = () =>
     setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
@@ -107,11 +108,6 @@ export const EuiMarkdownEditorFooter = forwardRef<
   const syntaxTitle = useEuiI18n(
     'euiMarkdownEditorFooter.syntaxTitle',
     'Syntax help'
-  );
-
-  const noPluginsSyntaxHelp = useEuiI18n(
-    'euiMarkdownEditorFooter.noPluginsSyntaxHelp',
-    'This editor uses GitHub flavored markdown'
   );
 
   if (isUploadingFiles) {
@@ -189,12 +185,12 @@ export const EuiMarkdownEditorFooter = forwardRef<
 
   const hasUiPlugins = uiPlugins.length > 0;
 
-  const githubSyntaxHref = 'https://github.github.com/gfm/';
+  const mdSyntaxHref = 'https://guides.github.com/features/mastering-markdown/';
 
-  const githubSyntaxLink = (
-    <EuiLink href={githubSyntaxHref} target="_blank">
+  const mdSyntaxLink = (
+    <EuiLink href={mdSyntaxHref} target="_blank">
       <EuiI18n
-        token="euiMarkdownEditorFooter.githubSyntaxLink"
+        token="euiMarkdownEditorFooter.mdSyntaxLink"
         default="GitHub flavored markdown"
       />
     </EuiLink>
@@ -240,7 +236,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
                     syntaxModalDescriptionSuffix,
                   ]: ReactChild[]) => (
                     <p>
-                      {syntaxModalDescriptionPrefix} {githubSyntaxLink}.{' '}
+                      {syntaxModalDescriptionPrefix} {mdSyntaxLink}.{' '}
                       {syntaxModalDescriptionSuffix}
                     </p>
                   )}
@@ -277,17 +273,34 @@ export const EuiMarkdownEditorFooter = forwardRef<
     );
   } else {
     helpSyntaxButton = (
-      <EuiToolTip content={noPluginsSyntaxHelp}>
-        <EuiButtonIcon
-          size="s"
-          className="euiMarkdownEditorFooter__helpButton"
-          iconType={MarkdownLogo}
-          color="text"
-          aria-label={ariaLabels.showMarkdownHelp}
-          href={githubSyntaxHref}
-          target="_blank"
-        />
-      </EuiToolTip>
+      <EuiPopover
+        button={
+          <EuiButtonIcon
+            title={syntaxTitle}
+            size="s"
+            className="euiMarkdownEditorFooter__helpButton"
+            iconType={MarkdownLogo}
+            color="text"
+            aria-label={ariaLabels.showMarkdownHelp}
+            onClick={() => setIsShowingHelpPopover(!isShowingHelpPopover)}
+          />
+        }
+        isOpen={isShowingHelpPopover}
+        closePopover={() => setIsShowingHelpPopover(false)}
+        panelPaddingSize="s"
+        anchorPosition="upCenter"
+      >
+        <EuiI18n
+          tokens={['euiMarkdownEditorFooter.syntaxPopoverDescription']}
+          defaults={['This editor uses']}
+        >
+          {([syntaxPopoverDescription]: ReactChild[]) => (
+            <p>
+              {syntaxPopoverDescription} {mdSyntaxLink}.
+            </p>
+          )}
+        </EuiI18n>
+      </EuiPopover>
     );
   }
 
