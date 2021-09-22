@@ -33,7 +33,7 @@ iconFiles.forEach(async (filePath) => {
         plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
         svgoConfig: {
           plugins: [
-            { cleanupIDs: false },
+            { cleanupIDs: true },
             { prefixIds: false },
             { removeViewBox: false },
           ],
