@@ -27,7 +27,7 @@ iconFiles.forEach(async (filePath) => {
 
     const hasIds = svgString.includes('id="');
 
-    const jsxSource = await svgr(
+    let jsxSource = await svgr(
       svgSource,
       {
         plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
@@ -69,6 +69,14 @@ export const icon = ${componentName};
         componentName: `EuiIcon${pascalCase(fileName)}`,
       }
     );
+
+    // Replace static SVGs IDs with dynamic JSX that uses the htmlIdGenerator
+    if (hasIds) {
+      jsxSource = jsxSource
+        .replace(/id="(\S+)"/gi, "id={generateId('$1')}")
+        .replace(/"url\(#(\S+)\)"/gi, "{`url(#${generateId('$1')})`}")
+        .replace(/xlinkHref="#(\S+)"/gi, "xlinkHref={`#${generateId('$1')}`}");
+    }
 
     const outputFilePath = filePath.replace(/\.svg$/, '.js');
     const comment = '// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY\n\n';
