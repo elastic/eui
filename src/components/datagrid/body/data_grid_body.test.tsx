@@ -7,11 +7,11 @@
  */
 
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount, render, shallow } from 'enzyme';
 
+import { mockRowHeightUtils } from '../__mocks__/row_height_utils';
 import { DataGridSortingContext } from '../data_grid_context';
 import { schemaDetectors } from '../data_grid_schema';
-import { RowHeightUtils } from '../row_height_utils';
 
 import { EuiDataGridBody, Cell, getParentCellContent } from './data_grid_body';
 
@@ -39,13 +39,24 @@ describe('EuiDataGridBody', () => {
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
     schemaDetectors,
-    rowHeightUtils: new RowHeightUtils(),
+    rowHeightUtils: mockRowHeightUtils,
   };
 
+  beforeAll(() => {
+    Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
+      configurable: true,
+      value: 34,
+    });
+  });
+
   it('renders', () => {
-    const component = mount(<EuiDataGridBody {...requiredProps} />);
+    // EuiDataGridBody should be `render`ed here over `mount` due to large
+    // snapshot memory issues
+    const component = render(<EuiDataGridBody {...requiredProps} />);
     expect(component).toMatchSnapshot();
-    expect(component.find('Cell')).toHaveLength(2);
+    expect(component.find('[data-test-subj="dataGridRowCell"]')).toHaveLength(
+      2
+    );
   });
 
   it('renders leading columns, trailing columns, and footer rows', () => {

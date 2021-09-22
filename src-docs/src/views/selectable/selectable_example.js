@@ -19,6 +19,7 @@ import {
 import {
   EuiSelectableOptionProps,
   EuiSelectableOptionsList,
+  EuiSelectableSearchProps,
   Options,
   MetaData,
 } from './props';
@@ -153,7 +154,9 @@ export const SelectableExample = {
             To add a search component to the list, simply add the{' '}
             <EuiCode>searchable</EuiCode> prop. You can optionally pass in a{' '}
             <EuiCode>searchProps</EuiCode> object which will get passed down to
-            the actual <strong>EuiFieldSearch</strong> used.
+            the actual <strong>EuiFieldSearch</strong> used. In this example,
+            <EuiCode>onSearch</EuiCode> will return a second parameter, enabling
+            you to access the list of filtered items
           </p>
           <EuiCallOut
             iconType="search"
@@ -171,6 +174,7 @@ export const SelectableExample = {
         EuiSelectable,
         EuiSelectableOptionProps,
         EuiSelectableOptionsList,
+        EuiSelectableSearchProps,
       },
       demo: <SelectableSearch />,
       snippet: `<EuiSelectable

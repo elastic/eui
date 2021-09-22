@@ -23,7 +23,7 @@ import {
   EuiContextMenuPanel,
 } from '../context_menu';
 import { EuiI18n } from '../i18n';
-import { htmlIdGenerator } from '../../services';
+import { useGeneratedHtmlId } from '../../services';
 
 export type EuiNotificationEventMetaProps = {
   id: string;
@@ -85,7 +85,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
     ReturnType<NonNullable<typeof onOpenContextMenu>>
   >([]);
 
-  const randomPopoverId = htmlIdGenerator()();
+  const randomPopoverId = useGeneratedHtmlId();
 
   const ariaAttribute = iconAriaLabel
     ? { 'aria-label': iconAriaLabel }

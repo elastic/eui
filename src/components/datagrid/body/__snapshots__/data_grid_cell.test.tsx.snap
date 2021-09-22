@@ -8,6 +8,22 @@ exports[`EuiDataGridCell renders 1`] = `
   isExpandable={true}
   popoverContent={[Function]}
   renderCellValue={[Function]}
+  rowHeightUtils={
+    Object {
+      "clearHeightsCache": [MockFunction],
+      "compareHeights": [MockFunction],
+      "computeStylesForGridCell": [MockFunction],
+      "getCalculatedHeight": [MockFunction],
+      "getComputedCellStyles": [MockFunction],
+      "getFont": [MockFunction],
+      "getRowHeight": [MockFunction],
+      "getStylesForCell": [MockFunction],
+      "isAutoHeight": [MockFunction],
+      "isDefinedHeight": [MockFunction],
+      "setGrid": [MockFunction],
+      "setRowHeight": [MockFunction],
+    }
+  }
   rowIndex={0}
   visibleRowIndex={0}
 >
@@ -40,6 +56,22 @@ exports[`EuiDataGridCell renders 1`] = `
           isExpandable={true}
           isExpanded={false}
           renderCellValue={[Function]}
+          rowHeightUtils={
+            Object {
+              "clearHeightsCache": [MockFunction],
+              "compareHeights": [MockFunction],
+              "computeStylesForGridCell": [MockFunction],
+              "getCalculatedHeight": [MockFunction],
+              "getComputedCellStyles": [MockFunction],
+              "getFont": [MockFunction],
+              "getRowHeight": [MockFunction],
+              "getStylesForCell": [MockFunction],
+              "isAutoHeight": [MockFunction],
+              "isDefinedHeight": [MockFunction],
+              "setGrid": [MockFunction],
+              "setRowHeight": [MockFunction],
+            }
+          }
           rowIndex={0}
           setCellContentsRef={[Function]}
           setCellProps={[Function]}
