@@ -9,8 +9,10 @@
 import {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
+  ComponentProps,
   Component,
   FunctionComponent,
+  JSXElementConstructor,
   MouseEventHandler,
   SFC,
 } from 'react';
@@ -47,6 +49,13 @@ export function keysOf<T, K extends keyof T>(obj: T): K[] {
   return Object.keys(obj) as K[];
 }
 
+/**
+ * Like `keyof typeof`, but for getting values instead of keys
+ * ValueOf<typeof {key1: 'value1', key2: 'value2'}>
+ * Results in `'value1' | 'value2'`
+ */
+export type ValueOf<T> = T[keyof T];
+
 export type PropsOf<C> = C extends SFC<infer SFCProps>
   ? SFCProps
   : C extends FunctionComponent<infer FunctionProps>
@@ -57,8 +66,8 @@ export type PropsOf<C> = C extends SFC<infer SFCProps>
 
 // Returns the props of a given HTML element
 export type PropsOfElement<
-  C extends keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>
-> = JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>;
+  C extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>
+> = JSX.LibraryManagedAttributes<C, ComponentProps<C>>;
 
 // Utility methods for ApplyClassComponentDefaults
 type ExtractDefaultProps<T> = T extends { defaultProps: infer D } ? D : never;
@@ -97,6 +106,15 @@ export type DistributivePick<T, K extends UnionKeys<T>> = T extends any
 export type DistributiveOmit<T, K extends UnionKeys<T>> = T extends any
   ? Omit<T, Extract<keyof T, K>>
   : never;
+type RecursiveDistributiveOmit<T, K extends PropertyKey> = T extends any
+  ? T extends object
+    ? RecursiveOmit<T, K>
+    : T
+  : never;
+export type RecursiveOmit<T, K extends PropertyKey> = Omit<
+  { [P in keyof T]: RecursiveDistributiveOmit<T[P], K> },
+  K
+>;
 
 /*
 TypeScript's discriminated unions are overly permissive: as long as one type of the union is satisfied
@@ -215,8 +233,8 @@ export type RecursivePartial<T> = {
     ? T[P]
     : T[P] extends Array<infer U>
     ? Array<RecursivePartial<U>>
-    : T[P] extends ReadonlyArray<infer U> // eslint-disable-line @typescript-eslint/array-type
-    ? ReadonlyArray<RecursivePartial<U>> // eslint-disable-line @typescript-eslint/array-type
+    : T[P] extends ReadonlyArray<infer U>
+    ? ReadonlyArray<RecursivePartial<U>>
     : T[P] extends Set<infer V> // checks for Sets
     ? Set<RecursivePartial<V>>
     : T[P] extends Map<infer K, infer V> // checks for Maps

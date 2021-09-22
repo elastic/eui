@@ -59,7 +59,7 @@ export class EuiRelativeTab extends Component<
     sentenceCasedPosition: toSentenceCase(this.props.position),
   };
 
-  generateId = htmlIdGenerator();
+  relativeDateInputNumberDescriptionId = htmlIdGenerator()();
 
   onCountChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const sanitizedValue = parseInt(event.target.value, 10);
@@ -106,7 +106,6 @@ export class EuiRelativeTab extends Component<
 
   render() {
     const { count, unit } = this.state;
-    const relativeDateInputNumberDescriptionId = this.generateId();
     const isInvalid = count === undefined || count < 0;
     const parsedValue = dateMath.parse(this.props.value, {
       roundUp: this.props.roundUp,
@@ -136,7 +135,7 @@ export class EuiRelativeTab extends Component<
                   <EuiFieldNumber
                     compressed
                     aria-label={numberInputLabel}
-                    aria-describedby={relativeDateInputNumberDescriptionId}
+                    aria-describedby={this.relativeDateInputNumberDescriptionId}
                     data-test-subj={'superDatePickerRelativeDateInputNumber'}
                     value={count}
                     onChange={this.onCountChange}
@@ -198,7 +197,7 @@ export class EuiRelativeTab extends Component<
           }
         />
         <EuiScreenReaderOnly>
-          <p id={relativeDateInputNumberDescriptionId}>
+          <p id={this.relativeDateInputNumberDescriptionId}>
             <EuiI18n
               token="euiRelativeTab.fullDescription"
               default="The unit is changeable. Currently set to {unit}."

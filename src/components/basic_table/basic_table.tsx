@@ -528,6 +528,7 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   tableId = htmlIdGenerator('__table')();
+  selectAllCheckboxId = htmlIdGenerator('_selection_column-checkbox')();
 
   render() {
     const {
@@ -762,7 +763,7 @@ export class EuiBasicTable<T = any> extends Component<
       <EuiI18n token="euiBasicTable.selectAllRows" default="Select all rows">
         {(selectAllRows: string) => (
           <EuiCheckbox
-            id={`_selection_column-checkbox_${htmlIdGenerator()()}`}
+            id={this.selectAllCheckboxId}
             type={isMobile ? undefined : 'inList'}
             checked={checked}
             disabled={disabled}

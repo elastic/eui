@@ -87,6 +87,7 @@ export const AvatarExample = {
       props: { EuiAvatar },
       snippet: avatarSnippet,
       demo: <Avatar />,
+      playground: avatarConfig,
     },
     {
       title: 'Initials',
@@ -206,5 +207,4 @@ export const AvatarExample = {
       props: { EuiAvatar },
     },
   ],
-  playground: avatarConfig,
 };

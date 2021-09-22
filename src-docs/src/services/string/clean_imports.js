@@ -3,12 +3,7 @@ export const hasDisplayToggles = (code) => {
 };
 
 export const cleanEuiImports = (code) => {
-  return code
-    .replace(/(from )'(..\/)+src\/components(\/?';)/, "from '@elastic/eui';")
-    .replace(
-      /(from )'(..\/)+src\/services(\/?';)/,
-      "from '@elastic/eui/lib/services';"
-    );
+  return code.replace(/(from )'(..\/)+src(\/.*)?';/g, "from '@elastic/eui';");
 };
 
 export const listExtraDeps = (code) => {

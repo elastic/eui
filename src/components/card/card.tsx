@@ -26,7 +26,7 @@ import {
   EuiCardSelectProps,
   euiCardSelectableColor,
 } from './card_select';
-import { htmlIdGenerator } from '../../services/accessibility';
+import { useGeneratedHtmlId } from '../../services/accessibility';
 import { validateHref } from '../../services/security/href_validator';
 import { EuiPanel, EuiPanelProps } from '../panel';
 
@@ -244,7 +244,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     className
   );
 
-  const ariaId = htmlIdGenerator()();
+  const ariaId = useGeneratedHtmlId();
   const ariaDesc = description ? `${ariaId}Description` : '';
 
   /**

@@ -21,42 +21,23 @@ import {
   EuiTextColor,
   EuiTextArea,
   EuiFormRow,
-  EuiLink,
   EuiText,
   EuiPanel,
+  EuiMarkdownFormat,
 } from '../../../../src/components/';
+import { parsingPluginList, processingPluginList } from './markdown_format';
 
 export const markup = (text) => {
-  const regex = /(\B#[a-zA-Z]+)|(`[^`]+`)/g;
-  return text.split('\n').map((token) => {
-    const values = token.split(regex).map((token, index) => {
-      if (!token) {
-        return '';
-      }
-      if (token.startsWith('#')) {
-        const id = token.substring(1);
-        const onClick = () => {
-          document.getElementById(id).scrollIntoView();
-        };
-        return (
-          <EuiLink key={`markup-${index}`} onClick={onClick}>
-            {id}
-          </EuiLink>
-        );
-      }
-      if (token.startsWith('`')) {
-        const code = token.substring(1, token.length - 1);
-        return <EuiCode key={`markup-${index}`}>{code}</EuiCode>;
-      }
-      if (token.includes('\n')) {
-        return token
-          .split('\n')
-          .map((item) => [item, <br key={`markup-${index}`} />]);
-      }
-      return token;
-    });
-    return [...values, <br key="lineBreak" />];
-  });
+  return (
+    <EuiMarkdownFormat
+      textSize="xs"
+      color="subdued"
+      parsingPluginList={parsingPluginList}
+      processingPluginList={processingPluginList}
+    >
+      {text}
+    </EuiMarkdownFormat>
+  );
 };
 
 export const humanizeType = (type) => {
@@ -96,7 +77,38 @@ export const humanizeType = (type) => {
       humanizedType = type.name;
   }
 
-  return humanizedType;
+  let typeMarkup;
+
+  if (humanizedType) {
+    typeMarkup = humanizedType;
+
+    const functionMatches = [
+      ...humanizedType.matchAll(/\([^=]*\) =>\s\w*\)*/g),
+    ];
+
+    const types = humanizedType.split(/\([^=]*\) =>\s\w*\)*/);
+
+    if (functionMatches.length > 0) {
+      let elements = '';
+      let j = 0;
+      for (let i = 0; i < types.length; i++) {
+        if (functionMatches[j]) {
+          elements =
+            `${elements}` +
+            `${types[i]}` +
+            '\n' +
+            `${functionMatches[j][0]}` +
+            '\n';
+          j++;
+        } else {
+          elements = `${elements}` + `${types[i]}` + '\n';
+        }
+      }
+      typeMarkup = elements;
+    }
+  }
+
+  return typeMarkup || humanizedType;
 };
 
 const getTooltip = (description, type, name) => (
@@ -364,70 +376,19 @@ const Knob = ({
 };
 
 const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
+  const codeBlockProps = {
+    className: 'guideSection__tableCodeBlock',
+    paddingSize: 'none',
+    language: 'ts',
+  };
+
   return knobNames.map((name, idx) => {
-    const codeBlockProps = {
-      className: 'guideSection__tableCodeBlock',
-      paddingSize: 'none',
-      language: 'ts',
-    };
-
-    /**
-     * TS Type
-     */
-    let humanizedType;
-
-    if (
-      state[name].custom &&
-      state[name].custom.origin &&
-      state[name].custom.origin.type
-    )
-      humanizedType = humanizeType(state[name].custom.origin.type);
-
-    let typeMarkup;
-
-    if (humanizedType) {
-      typeMarkup = humanizedType && (
-        <EuiCodeBlock {...codeBlockProps}>{humanizedType}</EuiCodeBlock>
-      );
-
-      const functionMatches = [
-        ...humanizedType.matchAll(/\([^=]*\) =>\s\w*\)*/g),
-      ];
-
-      const types = humanizedType.split(/\([^=]*\) =>\s\w*\)*/);
-
-      if (functionMatches.length > 0) {
-        let elements = '';
-        let j = 0;
-        for (let i = 0; i < types.length; i++) {
-          if (functionMatches[j]) {
-            elements =
-              `${elements}` +
-              `${types[i]}` +
-              '\n' +
-              `${functionMatches[j][0]}` +
-              '\n';
-            j++;
-          } else {
-            elements = `${elements}` + `${types[i]}` + '\n';
-          }
-        }
-        typeMarkup = (
-          <EuiCodeBlock {...codeBlockProps}>{elements}</EuiCodeBlock>
-        );
-      }
-    }
-
     /**
      * Prop name
      */
     let humanizedName = <strong className="eui-textBreakNormal">{name}</strong>;
 
-    if (
-      state[name].custom &&
-      state[name].custom.origin &&
-      state[name].custom.origin.required
-    ) {
+    if (state[name].custom?.origin?.required) {
       humanizedName = (
         <>
           {humanizedName} <EuiTextColor color="danger">(required)</EuiTextColor>
@@ -436,15 +397,25 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
     }
 
     /**
+     * TS Type
+     */
+    let typeMarkup;
+
+    if (state[name].custom?.origin?.type) {
+      const humanizedType = humanizeType(state[name].custom.origin.type);
+
+      if (humanizedType) {
+        typeMarkup = (
+          <EuiCodeBlock {...codeBlockProps}>{humanizedType}</EuiCodeBlock>
+        );
+      }
+    }
+
+    /**
      * Default value
      */
     let defaultValueMarkup;
-    if (
-      // !isPlayground &&
-      state[name].custom &&
-      state[name].custom.origin &&
-      state[name].custom.origin.defaultValue
-    ) {
+    if (state[name].custom?.origin?.defaultValue) {
       const defaultValue = state[name].custom.origin.defaultValue;
       defaultValueMarkup = (
         <EuiText size="xs">
@@ -477,9 +448,8 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
             {state[name].description && (
               <>
                 <EuiSpacer size="xs" />
-                <EuiText color="subdued" size="xs">
-                  <p>{markup(state[name].description)}</p>
-                </EuiText>
+
+                {markup(state[name].description)}
               </>
             )}
           </div>

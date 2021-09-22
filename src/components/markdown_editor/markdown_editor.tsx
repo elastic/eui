@@ -25,10 +25,13 @@ import classNames from 'classnames';
 import { CommonProps, OneOf } from '../common';
 import MarkdownActions, { insertText } from './markdown_actions';
 import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
-import { EuiMarkdownEditorTextArea } from './markdown_editor_text_area';
+import {
+  EuiMarkdownEditorTextArea,
+  EuiMarkdownEditorTextAreaProps,
+} from './markdown_editor_text_area';
 import { EuiMarkdownFormat, EuiMarkdownFormatProps } from './markdown_format';
 import { EuiMarkdownEditorDropZone } from './markdown_editor_drop_zone';
-import { htmlIdGenerator } from '../../services/';
+import { useGeneratedHtmlId } from '../../services/';
 
 import { MARKDOWN_MODE, MODE_EDITING, MODE_VIEWING } from './markdown_modes';
 import {
@@ -52,7 +55,7 @@ import { EuiResizeObserver } from '../observer/resize_observer';
 
 type CommonMarkdownEditorProps = Omit<
   HTMLAttributes<HTMLDivElement>,
-  'onChange'
+  'onChange' | 'placeholder'
 > &
   CommonProps & {
     /** aria-label OR aria-labelledby must be set */
@@ -118,6 +121,11 @@ type CommonMarkdownEditorProps = Omit<
 
     /** array defining any drag&drop handlers */
     dropHandlers?: EuiMarkdownDropHandler[];
+
+    /**
+     * Sets the placeholder of the textarea
+     */
+    placeholder?: EuiMarkdownEditorTextAreaProps['placeholder'];
 
     /**
      * Further extend the props applied to EuiMarkdownFormat
@@ -200,14 +208,13 @@ export const EuiMarkdownEditor = forwardRef<
       initialViewMode = MODE_EDITING,
       dropHandlers = [],
       markdownFormatProps,
+      placeholder,
       ...rest
     },
     ref
   ) => {
     const [viewMode, setViewMode] = useState<MARKDOWN_MODE>(initialViewMode);
-    const editorId = useMemo(() => _editorId || htmlIdGenerator()(), [
-      _editorId,
-    ]);
+    const editorId = useGeneratedHtmlId({ conditionalId: _editorId });
 
     const [pluginEditorPlugin, setPluginEditorPlugin] = useState<
       EuiMarkdownEditorUiPlugin | undefined
@@ -473,6 +480,7 @@ export const EuiMarkdownEditor = forwardRef<
                       onChange={(e) => onChange(e.target.value)}
                       value={value}
                       onFocus={() => setHasUnacceptedItems(false)}
+                      placeholder={placeholder}
                       {...{
                         'aria-label': ariaLabel,
                         'aria-labelledby': ariaLabelledBy,

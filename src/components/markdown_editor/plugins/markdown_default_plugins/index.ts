@@ -9,3 +9,4 @@
 export * from './ui_plugins';
 export * from './parsing_plugins';
 export * from './processing_plugins';
+export * from './plugins';

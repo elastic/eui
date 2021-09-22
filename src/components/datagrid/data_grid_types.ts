@@ -18,6 +18,7 @@ import {
   Dispatch,
   SetStateAction,
 } from 'react';
+import { VariableSizeGridProps } from 'react-window';
 import { EuiListGroupItemProps } from '../list_group';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { ExclusiveUnion, CommonProps, OneOf } from '../common';
@@ -134,6 +135,19 @@ export interface EuiDataGridHeaderCellProps
   > {
   column: EuiDataGridColumn;
   index: number;
+}
+
+export interface EuiDataGridControlHeaderCellProps {
+  index: number;
+  controlColumn: EuiDataGridControlColumn;
+  headerIsInteractive: boolean;
+}
+
+export interface EuiDataGridHeaderCellWrapperProps {
+  id: string;
+  index: number;
+  headerIsInteractive: boolean;
+  width?: number | null;
   className?: string;
 }
 
@@ -151,13 +165,6 @@ export type EuiDataGridFooterRowProps = CommonProps &
     interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
     visibleRowIndex?: number;
   };
-
-export interface EuiDataGridControlHeaderRowProps {
-  index: number;
-  controlColumn: EuiDataGridControlColumn;
-  headerIsInteractive: boolean;
-  className?: string;
-}
 
 export interface DataGridFocusContextShape {
   setFocusedCell: (cell: EuiDataGridFocusedCell) => void;
@@ -246,6 +253,10 @@ export type CommonGridProps = CommonProps &
      */
     width?: CSSProperties['width'];
     /**
+     * Allows customizing the underlying [react-window grid](https://react-window.vercel.app/#/api/VariableSizeGrid) props.
+     */
+    virtualizationOptions?: Partial<VariableSizeGridProps>;
+    /**
      * A #EuiDataGridRowHeightsOptions object that provides row heights options
      */
     rowHeightsOptions?: EuiDataGridRowHeightsOptions;
@@ -317,6 +328,7 @@ export interface EuiDataGridBodyProps {
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
   toolbarHeight: number;
+  virtualizationOptions?: Partial<VariableSizeGridProps>;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils: RowHeightUtils;
   gridStyles?: EuiDataGridStyle;
@@ -370,6 +382,7 @@ export interface EuiDataGridCellProps {
   getRowHeight?: (rowIndex: number) => number;
   style?: React.CSSProperties;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
+  rowHeightUtils?: RowHeightUtils;
 }
 
 export interface EuiDataGridCellState {
@@ -663,7 +676,7 @@ export interface EuiDataGridInMemory {
 export type EuiDataGridFocusedCell = [number, number];
 
 export interface EuiDataGridInMemoryValues {
-  [key: string]: { [key: string]: string };
+  [rowIndex: string]: { [columnId: string]: string };
 }
 
 export interface EuiDataGridPopoverContentProps {
@@ -694,6 +707,7 @@ export type EuiDataGridOnColumnResizeHandler = (
 
 export type EuiDataGridRowHeightOption =
   | number
+  | 'auto'
   | ExclusiveUnion<{ lineCount: number }, { height: number }>;
 
 export interface EuiDataGridRowHeightsOptions {

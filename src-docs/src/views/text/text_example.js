@@ -1,6 +1,5 @@
-import React from 'react';
-
-import { renderToHtml } from '../../services';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../../components/with_theme';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -10,26 +9,22 @@ import {
   EuiTextColor,
   EuiTextAlign,
 } from '../../../../src/components';
-import Guidelines from '../text_scaling/text_scaling_sandbox';
 import { textConfig, textColorConfig } from './playground';
 
 import Text from './text';
 const textSource = require('!!raw-loader!./text');
-const textHtml = renderToHtml(Text);
 const textSnippet = `<EuiText grow={false}><!-- Raw HTML content --></EuiText>
 `;
 
-import TextSmall from './text_small';
-const textSmallSource = require('!!raw-loader!./text_small');
-const textSmallHtml = renderToHtml(TextSmall);
-const textSmallSnippet = [
+import TextScaling from './text_scaling';
+const textScalingSource = require('!!raw-loader!./text_scaling');
+const textScalingSnippet = [
   `<EuiText size="s"><!-- Raw HTML content --></EuiText>
 `,
 ];
 
 import TextColor from './text_color';
 const textColorSource = require('!!raw-loader!./text_color');
-const textColorHtml = renderToHtml(TextColor);
 const textColorSnippet = [
   `<EuiText color="danger"><!-- Raw HTML content --></EuiText>
 `,
@@ -39,13 +34,32 @@ const textColorSnippet = [
 
 import TextAlign from './text_align';
 const textAlignSource = require('!!raw-loader!./text_align');
-const textAlignHtml = renderToHtml(TextAlign);
 const textAlignSnippet = [
   `<EuiText textAlign="center"><!-- Raw HTML content --></EuiText>
 `,
   `<EuiTextAlign textAlign="center"><!-- Raw HTML content --></EuiTextAlign>
 `,
 ];
+
+const LineHeightText = () => {
+  const themeContext = useContext(ThemeContext);
+  let text;
+  switch (themeContext.theme) {
+    case 'light':
+    case 'dark':
+      text = '';
+      break;
+    default:
+      text = (
+        <>
+          The goal is that the every line-height lands on the{' '}
+          <EuiCode>4px</EuiCode> baseline grid.
+        </>
+      );
+  }
+
+  return text;
+};
 
 export const TextExample = {
   title: 'Text',
@@ -56,13 +70,9 @@ export const TextExample = {
           type: GuideSectionTypes.JS,
           code: textSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: textHtml,
-        },
       ],
       text: (
-        <div>
+        <>
           <p>
             <strong>EuiText</strong> is a generic catchall wrapper that will
             apply our standard typography styling and spacing to naked HTML.
@@ -77,32 +87,30 @@ export const TextExample = {
             component. To add the max-width setting, set{' '}
             <EuiCode language="js">grow=false</EuiCode>.
           </p>
-        </div>
+        </>
       ),
       props: { EuiText },
       snippet: textSnippet,
       demo: <Text />,
+      playground: textConfig,
     },
     {
       title: 'Text can come in various sizes',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: textSmallSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: textSmallHtml,
+          code: textScalingSource,
         },
       ],
       text: (
         <p>
           Using the <EuiCode>size</EuiCode> prop on <strong>EuiText</strong> you
-          can get smaller sizes of text than the default.
+          can get smaller sizes of text than the default. This demo compares the
+          scaling for all sizes. <LineHeightText />
         </p>
       ),
-      snippet: textSmallSnippet,
-      demo: <TextSmall />,
+      snippet: textScalingSnippet,
+      demo: <TextScaling />,
     },
     {
       title: 'Coloring text',
@@ -110,10 +118,6 @@ export const TextExample = {
         {
           type: GuideSectionTypes.JS,
           code: textColorSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: textColorHtml,
         },
       ],
       text: (
@@ -128,6 +132,7 @@ export const TextExample = {
       props: { EuiTextColor },
       snippet: textColorSnippet,
       demo: <TextColor />,
+      playground: textColorConfig,
     },
     {
       title: 'Alignment',
@@ -135,10 +140,6 @@ export const TextExample = {
         {
           type: GuideSectionTypes.JS,
           code: textAlignSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: textAlignHtml,
         },
       ],
       text: (
@@ -155,6 +156,4 @@ export const TextExample = {
       demo: <TextAlign />,
     },
   ],
-  guidelines: <Guidelines />,
-  playground: [textConfig, textColorConfig],
 };

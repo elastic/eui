@@ -144,7 +144,8 @@ Here is an example setup.
 // mytheme.scss
 $euiColorPrimary: #7B61FF;
 
-@import '@elastic/eui/src/theme_light.scss';
+@import '@elastic/eui/src/themes/eui/eui_colors_light.scss';
+@import '@elastic/eui/src/themes/eui/eui_globals.scss';
 ```
 
 ### Fonts
@@ -152,7 +153,6 @@ $euiColorPrimary: #7B61FF;
 By default, EUI ships with a font stack that includes some outside, open source fonts. If your system is internet available you can include these by adding the following imports to your SCSS/CSS files, otherwise you'll need to bundle the physical fonts in your build. EUI will drop to System Fonts (which you may prefer) in their absence.
 
 ```scss
-// index.scss
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
 @import url('https://rsms.me/inter/inter-ui.css');
 ```
@@ -160,8 +160,27 @@ By default, EUI ships with a font stack that includes some outside, open source 
 The Amsterdam theme uses the latest version of Inter that can be grabbed from Google Fonts as well.
 
 ```scss
-// index.scss
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+```
+
+Or grab all weights, including italics, between 400 and 700 as a variable font.
+
+```scss
+@import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10,300..700;0,300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap');
+```
+
+#### Embedding with `@font-face`
+
+If your application doesn't allow grabbing the font assets from a CDN, you'll need to download and locally provide the font files. You should download the files directly from their source site [rsms.me/inter/](https://rsms.me/inter/). Then follow the instructions in the provided CSS file for importing. We recommend using the single variable font file and importing with the following settings:
+
+```scss
+@font-face {
+  font-family: 'Inter';
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: oblique 0deg 10deg;
+  src: url("Inter.var.woff2") format("woff2");
+}
 ```
 
 ### Reusing the variables in JavaScript
