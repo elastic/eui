@@ -220,7 +220,6 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   // Used by `pre` when `isVirtualized=false` or `children` is not parsable (`isVirtualized=false`)
   const content: ReactElement[] | ReactNode = useMemo(() => {
     if (!Array.isArray(data) || data.length < 1) {
-      console.log(children);
       return children;
     }
     return data.map(nodeToHtml);
