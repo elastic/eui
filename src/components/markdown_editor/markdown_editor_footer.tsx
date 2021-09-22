@@ -183,7 +183,9 @@ export const EuiMarkdownEditorFooter = forwardRef<
     );
   }
 
-  const hasUiPlugins = uiPlugins.length > 0;
+  const uiPluginsWithHelpText = uiPlugins.filter(({ helpText }) => !!helpText);
+
+  const hasUiPluginsWithHelpText = uiPluginsWithHelpText.length > 0;
 
   const mdSyntaxHref = 'https://guides.github.com/features/mastering-markdown/';
 
@@ -198,7 +200,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
 
   let helpSyntaxButton;
 
-  if (hasUiPlugins) {
+  if (hasUiPluginsWithHelpText) {
     helpSyntaxButton = (
       <>
         <EuiToolTip content={syntaxTitle}>
@@ -243,20 +245,18 @@ export const EuiMarkdownEditorFooter = forwardRef<
                 </EuiI18n>
               </EuiText>
               <EuiHorizontalRule />
-              {uiPlugins
-                .filter(({ helpText }) => !!helpText)
-                .map(({ name, helpText }) => (
-                  <Fragment key={name}>
-                    <EuiTitle size="xxs">
-                      <p>
-                        <strong>{name}</strong>
-                      </p>
-                    </EuiTitle>
-                    <EuiSpacer size="s" />
-                    {helpText}
-                    <EuiSpacer size="l" />
-                  </Fragment>
-                ))}
+              {uiPluginsWithHelpText.map(({ name, helpText }) => (
+                <Fragment key={name}>
+                  <EuiTitle size="xxs">
+                    <p>
+                      <strong>{name}</strong>
+                    </p>
+                  </EuiTitle>
+                  <EuiSpacer size="s" />
+                  {helpText}
+                  <EuiSpacer size="l" />
+                </Fragment>
+              ))}
               <EuiHorizontalRule />
             </EuiModalBody>
             <EuiModalFooter>
