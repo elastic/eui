@@ -13722,10 +13722,10 @@ reflect.ownkeys@^0.2.0:
   resolved "https://registry.yarnpkg.com/reflect.ownkeys/-/reflect.ownkeys-0.2.0.tgz#749aceec7f3fdf8b63f927a04809e90c5c0b3460"
   integrity sha1-dJrO7H8/34tj+SegSAnpDFwLNGA=
 
-refractor@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/refractor/-/refractor-4.2.0.tgz#59e12002776d4fbc873045e21f485715383085d8"
-  integrity sha512-buRZLI62WEbuLqFizFo/yhc9X9MT7GwKp6fWUtM0cL42aFgkIDB63WmoVTjaVNbDyPGwDEP0XL9+jS0U8RtoQw==
+refractor@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/refractor/-/refractor-4.2.1.tgz#3ea2810b0090d2ef95b101f0cd9c07769c8f553f"
+  integrity sha512-UhtiILJUJiKquZZPtPokJZAKu2a35cT6gPBXyv2FJj+3T+AC8fyUzVUvA0lyiiYNl9m2ShCW/SSDC9us/FsuvQ==
   dependencies:
     "@types/hast" "^2.0.0"
     "@types/prismjs" "^1.0.0"
