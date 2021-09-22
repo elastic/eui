@@ -11,13 +11,12 @@ import React, {
   HTMLAttributes,
   FunctionComponent,
   ReactNode,
-  useState,
   useCallback,
 } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
-import { htmlIdGenerator } from '../../../services/accessibility';
+import { useGeneratedHtmlId } from '../../../services/accessibility';
 import { EuiIcon } from '../../icon';
 
 export type EuiSwitchEvent = React.BaseSyntheticEvent<
@@ -65,8 +64,8 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
   labelProps,
   ...rest
 }) => {
-  const [switchId] = useState(id || htmlIdGenerator()());
-  const [labelId] = useState(labelProps?.id || htmlIdGenerator()());
+  const switchId = useGeneratedHtmlId({ conditionalId: id });
+  const labelId = useGeneratedHtmlId({ conditionalId: labelProps?.id });
 
   const onClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement | HTMLParagraphElement>) => {

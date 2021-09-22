@@ -81,6 +81,8 @@ export type EuiSideNavProps<T = {}> = T &
   };
 
 export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
+  generateId = htmlIdGenerator('euiSideNav');
+
   static defaultProps = {
     items: [],
     mobileBreakpoints: ['xs', 's'],
@@ -183,7 +185,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
         (breakpointName) => `euiSideNav__contentMobile-${breakpointName}`
       )
     );
-    const sideNavContentId = htmlIdGenerator('euiSideNavContent')();
+    const sideNavContentId = this.generateId('content');
     const navContent = (
       <div id={sideNavContentId} className={contentClasses}>
         {this.renderTree(items)}
@@ -201,7 +203,7 @@ export class EuiSideNav<T> extends Component<EuiSideNavProps<T>> {
     let headingNode;
 
     const sharedHeadingProps = {
-      id: headingProps?.id || htmlIdGenerator('euiSideNavHeading')(),
+      id: headingProps?.id || this.generateId('heading'),
       className: headingProps?.className,
       'data-test-subj': headingProps?.['data-test-subj'],
       'aria-label': headingProps?.['aria-label'],

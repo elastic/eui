@@ -61,8 +61,6 @@ export type PopoverAnchorPosition =
   | 'rightUp'
   | 'rightDown';
 
-const generateId = htmlIdGenerator();
-
 export interface EuiPopoverProps {
   /**
    * Class name passed to the direct parent of the button
@@ -351,6 +349,7 @@ export class EuiPopover extends Component<Props, State> {
   private button: HTMLElement | null = null;
   private panel: HTMLElement | null = null;
   private hasSetInitialFocus: boolean = false;
+  private descriptionId: string = htmlIdGenerator()();
 
   constructor(props: Props) {
     super(props);
@@ -699,8 +698,6 @@ export class EuiPopover extends Component<Props, State> {
       ...rest
     } = this.props;
 
-    const descriptionId = generateId();
-
     const classes = classNames(
       'euiPopover',
       anchorPosition ? anchorPositionToClassNameMap[anchorPosition] : null,
@@ -742,10 +739,10 @@ export class EuiPopover extends Component<Props, State> {
 
       let focusTrapScreenReaderText;
       if (ownFocus) {
-        ariaDescribedby = descriptionId;
+        ariaDescribedby = this.descriptionId;
         focusTrapScreenReaderText = (
           <EuiScreenReaderOnly>
-            <p id={descriptionId}>
+            <p id={this.descriptionId}>
               <EuiI18n
                 token="euiPopover.screenReaderAnnouncement"
                 default="You are in a dialog. To close this dialog, hit escape."

@@ -13,7 +13,7 @@ import { EuiButtonGroupButton } from './button_group_button';
 import { colorToClassNameMap, ButtonColor } from '../button';
 import { EuiButtonContentProps } from '../button_content';
 import { CommonProps } from '../../common';
-import { htmlIdGenerator } from '../../../services';
+import { useGeneratedHtmlId } from '../../../services';
 
 export interface EuiButtonGroupOptionProps
   extends EuiButtonContentProps,
@@ -156,7 +156,7 @@ export const EuiButtonGroup: FunctionComponent<Props> = ({
   );
 
   const typeIsSingle = type === 'single';
-  const nameIfSingle = name || htmlIdGenerator()();
+  const nameIfSingle = useGeneratedHtmlId({ conditionalId: name });
 
   return (
     <fieldset className={classes} {...rest} disabled={isDisabled}>
