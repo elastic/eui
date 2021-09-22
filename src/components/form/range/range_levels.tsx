@@ -69,10 +69,16 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
       {levels.map((level, index) => {
         validateLevelIsInRange(level);
 
-        const range = level.max - level.min;
-        const width = (range / (max - min)) * 100;
+        const {
+          color,
+          className,
+          min: levelMin,
+          max: levelMax,
+          ...rest
+        } = level;
 
-        const { color, className, ...rest } = level;
+        const range = levelMax - levelMin;
+        const width = (range / (max - min)) * 100;
 
         const isNamedColor = LEVEL_COLORS.includes(color as EuiRangeLevelColor);
 
@@ -91,13 +97,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
         );
 
         return (
-          <span
-            key={index}
-            style={styles}
-            className={levelClasses}
-            aria-label={rest['aria-label']}
-            data-test-subj={rest['data-test-subj']}
-          />
+          <span key={index} style={styles} className={levelClasses} {...rest} />
         );
       })}
     </div>
