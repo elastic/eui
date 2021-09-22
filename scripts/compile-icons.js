@@ -16,6 +16,7 @@ function pascalCase(x) {
 const iconFiles = glob.sync('**/*.svg', { cwd: iconsDir, realpath: true });
 
 iconFiles.forEach(async (filePath) => {
+  const fileName = path.basename(filePath, '.svg');
   const svgSource = fs.readFileSync(filePath);
   const svgString = svgSource.toString();
 
@@ -45,14 +46,27 @@ iconFiles.forEach(async (filePath) => {
           { template },
           opts,
           { imports, componentName, props, jsx }
-        ) => template.ast`
+        ) =>
+          hasIds
+            ? template.ast`
+${imports}
+import { htmlIdGenerator } from '../../../services';
+const ${componentName} = (${props}) => {
+  const generateId = htmlIdGenerator('${fileName}');
+  return (
+    ${jsx}
+  );
+};
+export const icon = ${componentName};
+`
+            : template.ast`
 ${imports}
 const ${componentName} = (${props}) => ${jsx}
 export const icon = ${componentName};
-        `,
+`,
       },
       {
-        componentName: `EuiIcon${pascalCase(path.basename(filePath, '.svg'))}`,
+        componentName: `EuiIcon${pascalCase(fileName)}`,
       }
     );
 
