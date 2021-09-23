@@ -74,6 +74,11 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
     popoverClassName?: string;
 
     /**
+     * Applied to the popover panel
+     */
+    popoverPanelClassName?: string;
+
+    /**
      * Controls whether the options are shown. Default: false
      */
     isOpen?: boolean;
@@ -259,6 +264,7 @@ export class EuiSuperSelect<T extends string> extends Component<
       itemLayoutAlign,
       fullWidth,
       popoverClassName,
+      popoverPanelClassName,
       compressed,
       repositionOnScroll,
       ...rest
@@ -322,6 +328,7 @@ export class EuiSuperSelect<T extends string> extends Component<
     return (
       <EuiInputPopover
         className={popoverClasses}
+        panelClassName={popoverPanelClassName}
         input={button}
         isOpen={isOpen || this.state.isPopoverOpen}
         closePopover={this.closePopover}
