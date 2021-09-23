@@ -2,6 +2,9 @@ const glob = require('glob');
 const svgr = require('@svgr/core').default;
 const path = require('path');
 const fs = require('fs');
+const license = require('../.eslintrc.js').rules[
+  'local/require-license-header'
+][1].license;
 
 const rootDir = path.resolve(__dirname, '..');
 const srcDir = path.resolve(rootDir, 'src');
@@ -82,8 +85,8 @@ export const icon = ${componentName};
     }
 
     const outputFilePath = filePath.replace(/\.svg$/, '.tsx');
-    const comment = '// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY\n\n';
-    fs.writeFileSync(outputFilePath, comment + jsxSource);
+    const comment = '\n// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY\n\n';
+    fs.writeFileSync(outputFilePath, license + comment + jsxSource);
   } catch (e) {
     console.error(`Error processing ${filePath}`);
     console.error(e);
