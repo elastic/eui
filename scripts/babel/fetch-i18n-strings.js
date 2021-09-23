@@ -1,5 +1,5 @@
 const babel = require('@babel/core');
-const babelOptions = require('../../.babelrc');
+const babelOptions = require('../../babel.config.js');
 const fs = require('fs');
 const { promisify } = require('util');
 const { basename, join, relative } = require('path');

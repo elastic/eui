@@ -44,6 +44,7 @@
   "transform": {
     "^.+\\.(js|tsx?)$": "babel-jest"
   },
+  "transformIgnorePatterns": ["<rootDir>/node_modules/(?!refractor|hastscript|hast-util-parse-selector)"],
   "snapshotSerializers": [
     "<rootDir>/node_modules/enzyme-to-json/serializer"
   ]

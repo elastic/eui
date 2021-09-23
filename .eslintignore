@@ -11,3 +11,4 @@ docs
 packages
 scripts
 generator-eui
+babel.config.js

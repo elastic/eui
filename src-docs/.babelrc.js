@@ -1,4 +1,4 @@
-const baseConfig = require('../.babelrc.js');
+const baseConfig = require('../babel.config.js');
 const index = baseConfig.plugins.indexOf(
   './scripts/babel/proptypes-from-ts-props'
 );

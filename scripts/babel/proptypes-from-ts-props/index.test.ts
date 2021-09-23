@@ -4,6 +4,7 @@ const path = require('path');
 const core = require('@babel/core');
 const babelOptions = {
   babelrc: false,
+  configFile: false,
   presets: ['@babel/typescript'],
   plugins: ['./scripts/babel/proptypes-from-ts-props'],
   filename: 'somefile.tsx',

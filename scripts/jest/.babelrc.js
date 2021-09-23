@@ -1,5 +1,5 @@
 module.exports = {
-  "extends": "../../.babelrc.js",
+  "extends": "../../babel.config.js",
   "presets": [
     ["@babel/env", {
       "targets": { "node": "current" }

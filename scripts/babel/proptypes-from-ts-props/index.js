@@ -13,6 +13,7 @@ function stripTypeScript(filename, ast) {
   return babelCore.transform(babelCore.transformFromAst(ast).code, {
     filename: filename,
     babelrc: false,
+    configFile: false,
     presets: ['@babel/typescript'],
     plugins: ['@babel/plugin-syntax-dynamic-import'],
   }).code;
