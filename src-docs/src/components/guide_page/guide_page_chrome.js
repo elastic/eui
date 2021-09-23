@@ -117,26 +117,24 @@ export class GuidePageChrome extends Component {
         );
       }
 
-      // nested pages
+      // tabbed pages (nested pages in the nav)
       if (items) {
+        const pageHref = `${href}/${id}`;
+
         const subSectionsItems = items.map((item) => {
           return {
-            id: item.id,
+            id: `nestedSubSection-${item.id}`,
             name: item.name,
-            href: href.concat(`#${item.id}`),
+            href: `${pageHref}#${item.id}`,
           };
         });
-
-        const firstSubSectionId = subSections[0].id;
-
-        const hrefToConcat = firstSubSectionId === id ? '' : `/${id}`;
 
         return {
           id: `subSection-${id}`,
           name,
-          href: href.concat(hrefToConcat),
+          href: pageHref,
           items: subSectionsItems,
-          isSelected: href.concat(hrefToConcat) === window.location.hash,
+          isSelected: pageHref === window.location.hash,
           // forceOpen: !!(searchTerm && hasMatchingSubItem),
           className: 'guideSideNav__item',
         };

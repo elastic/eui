@@ -25,6 +25,7 @@ import WritingGuidelinesPage from './views/guidelines/writing';
 
 import WritingGuidelines from './views/guidelines/writing_guidelines';
 import WritingExamples from './views/guidelines/writing_examples';
+import AnotherPage from './views/guidelines/another_page';
 
 // Services
 
@@ -305,23 +306,19 @@ const createExample = (example, customTitle) => {
   };
 };
 
-const createGuidelines = (title, guidelines, examples, isNew) => {
+const createTabbedPage = (title, pages, isNew) => {
   const component = () => (
     <EuiErrorBoundary>
-      <GuideGuidelines
-        title={title}
-        guidelines={guidelines}
-        examples={examples}
-      />
+      <GuideGuidelines title={title} pages={pages} />
     </EuiErrorBoundary>
   );
 
-  const createGuideLinesSections = (section) => {
+  const createSections = (section) => {
     const htmlString = ReactDOMServer.renderToStaticMarkup(section);
 
     const headings = htmlString.match(/h2 id=\"(.*?)\"/g);
 
-    const guidelinesSections = headings.map((heading) => {
+    const sections = headings.map((heading) => {
       const id = heading.replace('h2 id="', '').slice(0, -1);
 
       const title = id.replace(/-/g, ' ');
@@ -331,26 +328,23 @@ const createGuidelines = (title, guidelines, examples, isNew) => {
       return { id: id, name: capitalizedTitle };
     });
 
-    return guidelinesSections;
+    return sections;
   };
+
+  const pagesSections = pages.map((page, index) => {
+    return {
+      id: page.id,
+      title: page.title,
+      items: createSections(pages[index].page()),
+    };
+  });
 
   return {
     name: title,
     component,
-    sections: [
-      {
-        id: 'guidelines',
-        title: 'Guidelines',
-        items: createGuideLinesSections(guidelines()),
-      },
-      {
-        id: 'examples',
-        title: 'Examples',
-        items: createGuideLinesSections(examples()),
-      },
-    ],
+    sections: pagesSections,
     isNew,
-    isGuideLinePage: true,
+    isTabbedPagePage: true,
   };
 };
 
@@ -387,7 +381,15 @@ const navigation = [
         component: ColorGuidelines,
       },
       createExample(SassGuidelines, 'Sass'),
-      createGuidelines('Writing with Tabs', WritingGuidelines, WritingExamples),
+      createTabbedPage('Writing with Tabs', [
+        {
+          id: 'guidelines',
+          title: 'Guidelines',
+          page: WritingGuidelines,
+        },
+        { id: 'examples', title: 'Examples', page: WritingExamples },
+        { id: 'another-tab', title: 'Just another tab', page: AnotherPage },
+      ]),
       createExample(WritingGuidelinesPage, 'Writing'),
     ],
   },
@@ -557,7 +559,14 @@ const navigation = [
   name,
   type: slugify(name),
   items: items.map(
-    ({ name: itemName, hasGuidelines, isGuideLinePage, sections, ...rest }) => {
+    ({
+      name: itemName,
+      hasGuidelines,
+      isGuideLinePage,
+      isTabbedPagePage,
+      sections,
+      ...rest
+    }) => {
       let item;
 
       // when is as guidelinePage with multiple tabs the first nav item is the first of the list

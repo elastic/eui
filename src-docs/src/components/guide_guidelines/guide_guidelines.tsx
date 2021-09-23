@@ -9,6 +9,7 @@ import {
 export type GuideGuidelinesProps = {
   examples: any;
   guidelines: any;
+  pages: any;
   title: string;
   match: any;
   history: any;
@@ -17,32 +18,20 @@ export type GuideGuidelinesProps = {
 
 const GuideGuidelinesComponent: FunctionComponent<GuideGuidelinesProps> = ({
   title,
-  guidelines,
   location,
   match,
   history,
-  examples,
+  pages,
 }) => {
-  const tabs: any[] = [];
-
-  tabs.push(
-    {
-      id: 'guidelines',
-      name: 'Guidelines',
+  const tabs: any[] = pages.map((page: any) => {
+    return {
+      id: page.id,
+      name: page.title,
       handleClick: () => {
-        history.push(`${match.path}`);
+        history.push(`${match.path}/${page.id}`);
       },
-    },
-    {
-      id: 'examples',
-      name: 'Examples',
-      handleClick: () => {
-        history.push(`${match.path}/examples`);
-      },
-    }
-  );
-
-  const isExamplesView = location.pathname.includes('examples');
+    };
+  });
 
   const renderTabs = () => {
     if (tabs.length < 2) {
@@ -50,13 +39,9 @@ const GuideGuidelinesComponent: FunctionComponent<GuideGuidelinesProps> = ({
     }
 
     return tabs.map(({ id, handleClick, name }, index) => {
-      let isSelected = false;
+      const pathname = location.pathname;
 
-      if (id === 'examples') {
-        isSelected = isExamplesView;
-      } else if (id === 'guidelines') {
-        isSelected = !isExamplesView;
-      }
+      const isSelected = pathname === `${match.path}/${id}`;
 
       return {
         onClick: () => {
@@ -68,6 +53,10 @@ const GuideGuidelinesComponent: FunctionComponent<GuideGuidelinesProps> = ({
       };
     });
   };
+
+  const pagesRoutes: any[] = pages.map((page: any) => {
+    return <Route path={`${match.path}/${page.id}`}>{page.page}</Route>;
+  });
 
   return (
     <>
@@ -86,12 +75,7 @@ const GuideGuidelinesComponent: FunctionComponent<GuideGuidelinesProps> = ({
         borderRadius="none"
       >
         <EuiPageContentBody restrictWidth>
-          <Switch>
-            {examples && (
-              <Route path={`${match.path}/examples`}>{examples}</Route>
-            )}
-            <Route path="">{guidelines}</Route>
-          </Switch>
+          <Switch>{pagesRoutes}</Switch>
         </EuiPageContentBody>
       </EuiPageContent>
     </>
