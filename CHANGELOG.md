@@ -1,5 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `popoverPanelClassName` prop to `EuiSuperSelect` ([#5214](https://github.com/elastic/eui/pull/5214))
+
 **Bug fixes**
 
 - Fixed logo icons with static SVG IDs causing accessibility errors when multiples of the same logo were present ([#5204](https://github.com/elastic/eui/pull/5204))
