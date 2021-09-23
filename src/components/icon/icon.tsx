@@ -16,11 +16,7 @@ import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
 
-// @ts-ignore not generating typescript files or definitions for the generated JS components
-// because we'd need to dynamically know if we're importing the
-// TS file (dev/docs) or the JS file (distributed), and it's more effort than worth
-// to generate & git track a TS module definition for each icon component
-import { icon as empty } from './assets/empty.js';
+import { icon as empty } from './assets/empty';
 import { enqueueStateChange } from '../../services/react';
 
 import { htmlIdGenerator } from '../../services';
@@ -718,7 +714,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       className
     );
 
-    const icon = this.state.icon || (empty as ComponentType);
+    const icon = this.state.icon || empty;
 
     // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
     // focusable="false".
