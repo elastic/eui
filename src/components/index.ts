@@ -127,6 +127,8 @@ export * from './portal';
 
 export * from './progress';
 
+export * from './provider';
+
 export * from './tree_view';
 
 export * from './observer/resize_observer';

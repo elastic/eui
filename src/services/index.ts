@@ -142,6 +142,7 @@ export {
   withEuiTheme,
   WithEuiThemeProps,
   EuiThemeProvider,
+  EuiThemeProviderProps,
   buildTheme,
   computed,
   isInverseColorMode,

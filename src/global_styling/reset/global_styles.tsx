@@ -11,11 +11,15 @@ import { Global, css } from '@emotion/react';
 import { useScrollBar } from '../mixins/_helpers';
 import { shade, tint, transparentize } from '../../services/color';
 import { useEuiTheme, isLegacyTheme } from '../../services/theme';
+import { resetStyles as reset } from './reset';
 
-// The following import contains the static reset styles
-import './reset.css';
+export interface EuiGlobalStylesProps {
+  resetStyles?: boolean;
+}
 
-export const EuiGlobalStyles = () => {
+export const EuiGlobalStyles = ({
+  resetStyles = false,
+}: EuiGlobalStylesProps) => {
   const {
     euiTheme: { base, border, colors, font, themeName },
     colorMode,
@@ -104,11 +108,7 @@ export const EuiGlobalStyles = () => {
    * Final styles
    */
   const styles = css`
-    *,
-    *:before,
-    *:after {
-      box-sizing: border-box;
-    }
+    ${resetStyles ? reset : ''}
 
     html {
       ${scrollbarStyles}
