@@ -46,12 +46,13 @@ iconFiles.forEach((filePath) => {
         template: (
           { template },
           opts,
-          { imports, componentName, props, jsx }
+          { imports, interfaces, componentName, props, jsx }
         ) =>
           hasIds
             ? template.ast`
 ${imports}
 import { htmlIdGenerator } from '../../../services';
+${interfaces}
 const ${componentName} = (${props}) => {
   const generateId = htmlIdGenerator('${fileName}');
   return (
@@ -62,6 +63,7 @@ export const icon = ${componentName};
 `
             : template.ast`
 ${imports}
+${interfaces}
 const ${componentName} = (${props}) => ${jsx}
 export const icon = ${componentName};
 `,
