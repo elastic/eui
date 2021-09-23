@@ -8,7 +8,16 @@
 
 import React from 'react';
 
-const MarkdownLogo = ({ title, titleId, ...props }) => (
+interface SVGRProps {
+  title?: string;
+  titleId?: string;
+}
+
+const MarkdownLogo = ({
+  title,
+  titleId,
+  ...props
+}: React.SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="26"
