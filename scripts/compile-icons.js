@@ -42,6 +42,7 @@ iconFiles.forEach((filePath) => {
           xmlns: 'http://www.w3.org/2000/svg',
         },
         titleProp: true,
+        typescript: true,
         template: (
           { template },
           opts,
@@ -78,7 +79,7 @@ export const icon = ${componentName};
         .replace(/xlinkHref="#(\S+)"/gi, "xlinkHref={`#${generateId('$1')}`}");
     }
 
-    const outputFilePath = filePath.replace(/\.svg$/, '.js');
+    const outputFilePath = filePath.replace(/\.svg$/, '.tsx');
     const comment = '// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY\n\n';
     fs.writeFileSync(outputFilePath, comment + jsxSource);
   } catch (e) {
