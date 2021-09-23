@@ -85,7 +85,7 @@ export const icon = ${componentName};
     }
 
     const outputFilePath = filePath.replace(/\.svg$/, '.tsx');
-    const comment = '\n// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY\n\n';
+    const comment = `\n// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js\n\n`;
     fs.writeFileSync(outputFilePath, license + comment + jsxSource);
   } catch (e) {
     console.error(`Error processing ${filePath}`);
