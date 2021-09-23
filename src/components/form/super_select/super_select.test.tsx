@@ -161,5 +161,19 @@ describe('EuiSuperSelect', () => {
 
       expect(takeMountedSnapshot(component)).toMatchSnapshot();
     });
+
+    test('popoverClassName and popoverPanelClassName render', () => {
+      const component = mount(
+        <EuiSuperSelect
+          options={options}
+          valueOfSelected="2"
+          onChange={() => {}}
+          popoverClassName="goes-on-outermost-wrapper"
+          popoverPanelClassName="goes-on-popover-panel"
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });
