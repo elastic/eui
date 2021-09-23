@@ -19,7 +19,7 @@
             CI=true
             HOME=$JENKINS_HOME
     concurrent: true
-    node: linux && !oraclelinux
+    node: debian-10 # only requirement is something with a supported node version
     scm:
       - git:
           name: origin
