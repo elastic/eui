@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `38.1.0`.
+**Bug fixes**
+
+- Fixed logo icons with static SVG IDs causing accessibility errors when multiples of the same logo were present ([#5204](https://github.com/elastic/eui/pull/5204))
 
 ## [`38.1.0`](https://github.com/elastic/eui/tree/v38.1.0)
 
@@ -17,7 +19,6 @@ No public interface changes since `38.1.0`.
 - Fixed `EuiDataGrid` cells when focused getting a higher `z-index` which was causing long content to overlap surrounding cells ([#5194](https://github.com/elastic/eui/pull/5194))
 - Replaced the `EuiMarkdownEditor` help syntax modal with a popover when no custom plugins are available ([#5147](https://github.com/elastic/eui/pull/5147))
 - Fixed multiple components unnecessarily rerendering generated IDs on every update ([#5195](https://github.com/elastic/eui/pull/5195), [#5196](https://github.com/elastic/eui/pull/5196), [#5197](https://github.com/elastic/eui/pull/5197), [#5200](https://github.com/elastic/eui/pull/#5200), [#5201](https://github.com/elastic/eui/pull/#5201))
-- Fixed logo icons with static SVG IDs causing accessibility errors when multiples of the same logo were present ([#5204](https://github.com/elastic/eui/pull/5204))
 
 **Theme: Amsterdam**
 
