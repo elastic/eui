@@ -6,41 +6,52 @@ exports[`EuiHeaderBreadcrumbs is rendered 1`] = `
   class="euiBreadcrumbs euiHeaderBreadcrumbs testClass1 testClass2 euiBreadcrumbs--truncate"
   data-test-subj="test subject string"
 >
-  <a
-    class="euiLink euiLink--subdued euiBreadcrumb customClass"
-    data-test-subj="breadcrumbsAnimals"
-    href="#"
-    rel="noreferrer"
+  <ol
+    class="euiBreadcrumbs__list"
   >
-    Animals
-  </a>
-  <div
-    class="euiBreadcrumbSeparator"
-  />
-  <button
-    class="euiLink euiLink--subdued euiBreadcrumb"
-    type="button"
-  >
-    Reptiles
-  </button>
-  <div
-    class="euiBreadcrumbSeparator"
-  />
-  <a
-    class="euiLink euiLink--subdued euiBreadcrumb"
-    href="#"
-    rel="noreferrer"
-  >
-    Boa constrictor
-  </a>
-  <div
-    class="euiBreadcrumbSeparator"
-  />
-  <span
-    aria-current="page"
-    class="euiBreadcrumb euiBreadcrumb--last"
-  >
-    Edit
-  </span>
+    <li
+      class="euiBreadcrumb"
+    >
+      <a
+        class="euiLink euiLink--subdued euiBreadcrumb__content customClass"
+        data-test-subj="breadcrumbsAnimals"
+        href="#"
+        rel="noreferrer"
+      >
+        Animals
+      </a>
+    </li>
+    <li
+      class="euiBreadcrumb"
+    >
+      <button
+        class="euiLink euiLink--subdued euiBreadcrumb__content"
+        type="button"
+      >
+        Reptiles
+      </button>
+    </li>
+    <li
+      class="euiBreadcrumb"
+    >
+      <a
+        class="euiLink euiLink--subdued euiBreadcrumb__content"
+        href="#"
+        rel="noreferrer"
+      >
+        Boa constrictor
+      </a>
+    </li>
+    <li
+      class="euiBreadcrumb euiBreadcrumb--last"
+    >
+      <span
+        aria-current="page"
+        class="euiBreadcrumb__content"
+      >
+        Edit
+      </span>
+    </li>
+  </ol>
 </nav>
 `;

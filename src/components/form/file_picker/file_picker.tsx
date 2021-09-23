@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { Component, InputHTMLAttributes, ReactNode } from 'react';
@@ -71,7 +60,12 @@ export interface EuiFilePickerProps
 
 export class EuiFilePicker extends Component<EuiFilePickerProps> {
   static defaultProps = {
-    initialPromptText: 'Select or drag and drop a file',
+    initialPromptText: (
+      <EuiI18n
+        token="euiFilePicker.promptText"
+        default="Select or drag and drop a file"
+      />
+    ),
     compressed: false,
     display: 'large',
   };
@@ -83,12 +77,20 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
 
   fileInput: HTMLInputElement | null = null;
 
-  handleChange = (filesSelected?: string | null) => {
+  generatedId: string = htmlIdGenerator()();
+
+  handleChange = () => {
     if (!this.fileInput) return;
 
     if (this.fileInput.files && this.fileInput.files.length > 1) {
       this.setState({
-        promptText: `${this.fileInput.files.length} ${filesSelected}`,
+        promptText: (
+          <EuiI18n
+            token="euiFilePicker.filesSelected"
+            default="{fileCount} files selected"
+            values={{ fileCount: this.fileInput.files.length }}
+          />
+        ),
       });
     } else if (this.fileInput.files && this.fileInput.files.length === 0) {
       this.setState({ promptText: null });
@@ -103,14 +105,16 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
     }
   };
 
-  removeFiles = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    e.preventDefault();
+  removeFiles = (e?: React.MouseEvent<HTMLButtonElement>) => {
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
 
     if (!this.fileInput) return;
 
     this.fileInput.value = '';
-    this.handleChange(null);
+    this.handleChange();
   };
 
   showDrop = () => {
@@ -126,12 +130,10 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
   render() {
     return (
       <EuiI18n
-        tokens={[
-          'euiFilePicker.clearSelectedFiles',
-          'euiFilePicker.filesSelected',
-        ]}
-        defaults={['Clear selected files', 'files selected']}>
-        {([clearSelectedFiles, filesSelected]: string[]) => {
+        token="euiFilePicker.clearSelectedFiles"
+        default="Clear selected files"
+      >
+        {(clearSelectedFiles: string) => {
           const {
             id,
             name,
@@ -147,11 +149,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
             ...rest
           } = this.props;
 
-          let promptId: string = htmlIdGenerator()();
-
-          if (id) {
-            promptId = `${id}-filePicker__prompt`;
-          }
+          const promptId = `${id || this.generatedId}-filePicker__prompt`;
 
           const isOverridingInitialPrompt = this.state.promptText != null;
 
@@ -184,7 +182,8 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
                   type="button"
                   aria-label={clearSelectedFiles}
                   className="euiFilePicker__clearButton"
-                  onClick={this.removeFiles}>
+                  onClick={this.removeFiles}
+                >
                   <EuiIcon className="euiFilePicker__clearIcon" type="cross" />
                 </button>
               );
@@ -194,8 +193,12 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
                   aria-label={clearSelectedFiles}
                   className="euiFilePicker__clearButton"
                   size="xs"
-                  onClick={this.removeFiles}>
-                  Remove
+                  onClick={this.removeFiles}
+                >
+                  <EuiI18n
+                    token="euiFilePicker.removeSelected"
+                    default="Remove"
+                  />
                 </EuiButtonEmpty>
               );
             }
@@ -216,7 +219,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
                     id={id}
                     name={name}
                     className="euiFilePicker__input"
-                    onChange={() => this.handleChange(filesSelected)}
+                    onChange={this.handleChange}
                     ref={(input) => {
                       this.fileInput = input;
                     }}

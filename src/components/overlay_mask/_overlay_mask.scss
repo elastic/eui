@@ -29,5 +29,5 @@
 }
 
 .euiOverlayMask--belowHeader {
-  z-index: $euiZHeader - 1;
+  z-index: $euiZMaskBelowHeader;
 }

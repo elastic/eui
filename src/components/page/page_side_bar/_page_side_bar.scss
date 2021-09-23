@@ -7,6 +7,12 @@
   flex: 0 1 0%; /* 1 */
 }
 
+@each $modifier, $amount in $euiPanelPaddingModifiers {
+  .euiPageSideBar--#{$modifier} {
+    padding: $amount;
+  }
+}
+
 @include euiBreakpoint('xs', 's') {
   .euiPageSideBar {
     width: 100%;

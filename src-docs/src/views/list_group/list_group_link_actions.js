@@ -6,6 +6,7 @@ export default () => {
   const [favorite1, setFavorite1] = useState(undefined);
   const [favorite2, setFavorite2] = useState('link2');
   const [favorite3, setFavorite3] = useState(undefined);
+  const [favorite4, setFavorite4] = useState(undefined);
 
   const link1Clicked = () => {
     setFavorite1(favorite1 === 'link1' ? undefined : 'link1');
@@ -23,6 +24,13 @@ export default () => {
 
   const link3Clicked = () => {
     setFavorite3(favorite3 === 'link3' ? undefined : 'link3');
+    if (favorite3 === undefined) {
+      document.activeElement.blur();
+    }
+  };
+
+  const link4Clicked = () => {
+    setFavorite4(favorite4 === 'link4' ? undefined : 'link4');
     if (favorite3 === undefined) {
       document.activeElement.blur();
     }
@@ -48,7 +56,7 @@ export default () => {
 
       <EuiListGroupItem
         id="link2"
-        iconType="beaker"
+        iconType="visualizeApp"
         onClick={() => {}}
         label="EUI button link"
         extraAction={{
@@ -63,8 +71,9 @@ export default () => {
 
       <EuiListGroupItem
         id="link3"
+        iconType="lensApp"
+        iconProps={{ color: 'default' }}
         onClick={() => {}}
-        iconType="broom"
         label="EUI button link"
         extraAction={{
           color: 'subdued',
@@ -73,12 +82,27 @@ export default () => {
           iconSize: 's',
           'aria-label': 'Favorite link3',
           alwaysShow: favorite3 === 'link3',
-          isDisabled: true,
         }}
       />
 
       <EuiListGroupItem
         id="link4"
+        onClick={() => {}}
+        iconType="broom"
+        label="EUI button link"
+        extraAction={{
+          color: 'subdued',
+          onClick: link4Clicked,
+          iconType: favorite4 === 'link4' ? 'starFilled' : 'starEmpty',
+          iconSize: 's',
+          'aria-label': 'Favorite link4',
+          alwaysShow: favorite3 === 'link4',
+          isDisabled: true,
+        }}
+      />
+
+      <EuiListGroupItem
+        id="link5"
         iconType="brush"
         isDisabled
         label="EUI button link"

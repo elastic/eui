@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -28,7 +17,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { EuiScreenReaderOnly } from '../../accessibility';
-import { htmlIdGenerator } from '../../../services/accessibility';
+import { useGeneratedHtmlId } from '../../../services/accessibility';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
@@ -119,7 +108,7 @@ export const EuiSuperSelectControl: <T extends string>(
     side: 'right',
   };
 
-  const screenReaderId = htmlIdGenerator()();
+  const screenReaderId = useGeneratedHtmlId();
 
   return (
     <Fragment>
@@ -137,7 +126,8 @@ export const EuiSuperSelectControl: <T extends string>(
         isLoading={isLoading}
         compressed={compressed}
         prepend={prepend}
-        append={append}>
+        append={append}
+      >
         {/*
           This is read when the user tabs in. The comma is important,
           otherwise the screen reader often combines the text.
@@ -155,8 +145,9 @@ export const EuiSuperSelectControl: <T extends string>(
           type="button"
           className={classes}
           aria-haspopup="true"
-          aria-labelledby={`${id} ${screenReaderId}`}
-          {...rest}>
+          aria-labelledby={screenReaderId}
+          {...rest}
+        >
           {selectedValue}
         </button>
       </EuiFormControlLayout>

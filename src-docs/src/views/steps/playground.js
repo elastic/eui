@@ -47,8 +47,6 @@ export const stepHorizontalConfig = () => {
 
   propsToUse.title.value = 'Horizontal step';
 
-  propsToUse.status = createOptionalEnum(propsToUse.status);
-
   propsToUse.onClick = simulateFunction(propsToUse.onClick, true);
 
   return {

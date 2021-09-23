@@ -23,6 +23,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
           >
             <span
               class="euiButtonContent__icon"
+              color="inherit"
               data-euiicon-type="arrowDown"
             />
             <span
@@ -53,6 +54,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
         <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
+          color="inherit"
           data-euiicon-type="arrowLeft"
         />
       </a>
@@ -108,7 +110,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
       </ul>
       <button
         aria-label="Next page"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+        class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
         data-test-subj="pagination-button-next"
         disabled=""
         type="button"
@@ -116,6 +118,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
         <span
           aria-hidden="true"
           class="euiButtonIcon__icon"
+          color="inherit"
           data-euiicon-type="arrowRight"
         />
       </button>
@@ -155,10 +158,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="eyeClosed"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="eyeClosed"
           />
         </EuiIcon>
@@ -212,10 +217,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortUp"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortUp"
           />
         </EuiIcon>
@@ -293,10 +300,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortDown"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortDown"
           />
         </EuiIcon>
@@ -365,10 +374,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortLeft"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortLeft"
           />
         </EuiIcon>
@@ -413,10 +424,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortRight"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortRight"
           />
         </EuiIcon>
@@ -511,10 +524,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortUp"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortUp"
           />
         </EuiIcon>
@@ -592,10 +607,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortDown"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortDown"
           />
         </EuiIcon>
@@ -691,10 +708,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="eyeClosed"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="eyeClosed"
           />
         </EuiIcon>
@@ -730,10 +749,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortUp"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortUp"
           />
         </EuiIcon>
@@ -769,10 +790,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortDown"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortDown"
           />
         </EuiIcon>
@@ -807,10 +830,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortLeft"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortLeft"
           />
         </EuiIcon>
@@ -845,10 +870,12 @@ exports[`EuiDataGrid render column actions renders various column actions config
       >
         <EuiIcon
           className="euiListGroupItem__icon"
+          color="inherit"
           type="sortRight"
         >
           <span
             className="euiListGroupItem__icon"
+            color="inherit"
             data-euiicon-type="sortRight"
           />
         </EuiIcon>
@@ -933,6 +960,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -961,6 +989,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -973,8 +1002,8 @@ Array [
           </div>
         </div>
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
-          data-test-subj="dataGridFullScrenButton"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+          data-test-subj="dataGridFullScreenButton"
           type="button"
         >
           <span
@@ -982,6 +1011,7 @@ Array [
           >
             <span
               class="euiButtonContent__icon"
+              color="inherit"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -1033,29 +1063,31 @@ Array [
                         data-test-subj="dataGridColumnResizer"
                         style="margin-right:0px"
                       />
-                      <button
-                        class="euiDataGridHeaderCell__button"
+                      <div
+                        class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
-                          class="euiDataGridHeaderCell__content"
+                          class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                         >
-                          A
-                        </div>
-                        <div
-                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                        >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            class="euiDataGridHeaderCell__button"
                           >
+                            <div
+                              class="euiDataGridHeaderCell__content"
+                            >
+                              A
+                            </div>
                             <span
                               aria-label="Header actions"
+                              class="euiDataGridHeaderCell__icon"
                               color="text"
                               data-euiicon-type="arrowDown"
                               data-test-subj="dataGridHeaderCellActionButton-A"
                             />
-                          </div>
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     </div>
                     <div
                       class="euiDataGridHeaderCell"
@@ -1069,29 +1101,31 @@ Array [
                         data-test-subj="dataGridColumnResizer"
                         style="margin-right:0px"
                       />
-                      <button
-                        class="euiDataGridHeaderCell__button"
+                      <div
+                        class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
-                          class="euiDataGridHeaderCell__content"
+                          class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                         >
-                          B
-                        </div>
-                        <div
-                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                        >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            class="euiDataGridHeaderCell__button"
                           >
+                            <div
+                              class="euiDataGridHeaderCell__content"
+                            >
+                              B
+                            </div>
                             <span
                               aria-label="Header actions"
+                              class="euiDataGridHeaderCell__icon"
                               color="text"
                               data-euiicon-type="arrowDown"
                               data-test-subj="dataGridHeaderCellActionButton-B"
                             />
-                          </div>
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -1102,14 +1136,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      0, A
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 1, Column: 1:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          0, A
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 1; Column: 1
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -1120,14 +1163,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      0, B
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 1, Column: 2:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          0, B
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 1; Column: 2
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -1138,14 +1190,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      1, A
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 2, Column: 1:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          1, A
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 2; Column: 1
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -1156,14 +1217,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      1, B
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 2, Column: 2:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          1, B
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 2; Column: 2
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -1174,14 +1244,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      2, A
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 3, Column: 1:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          2, A
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 3; Column: 1
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -1192,14 +1271,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      2, B
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 3, Column: 2:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          2, B
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 3; Column: 2
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1268,6 +1356,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -1296,6 +1385,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -1308,8 +1398,8 @@ Array [
           </div>
         </div>
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
-          data-test-subj="dataGridFullScrenButton"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+          data-test-subj="dataGridFullScreenButton"
           type="button"
         >
           <span
@@ -1317,6 +1407,7 @@ Array [
           >
             <span
               class="euiButtonContent__icon"
+              color="inherit"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -1383,29 +1474,31 @@ Array [
                         data-test-subj="dataGridColumnResizer"
                         style="margin-right:0px"
                       />
-                      <button
-                        class="euiDataGridHeaderCell__button"
+                      <div
+                        class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
-                          class="euiDataGridHeaderCell__content"
+                          class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                         >
-                          A
-                        </div>
-                        <div
-                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                        >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            class="euiDataGridHeaderCell__button"
                           >
+                            <div
+                              class="euiDataGridHeaderCell__content"
+                            >
+                              A
+                            </div>
                             <span
                               aria-label="Header actions"
+                              class="euiDataGridHeaderCell__icon"
                               color="text"
                               data-euiicon-type="arrowDown"
                               data-test-subj="dataGridHeaderCellActionButton-A"
                             />
-                          </div>
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     </div>
                     <div
                       class="euiDataGridHeaderCell"
@@ -1419,29 +1512,31 @@ Array [
                         data-test-subj="dataGridColumnResizer"
                         style="margin-right:0px"
                       />
-                      <button
-                        class="euiDataGridHeaderCell__button"
+                      <div
+                        class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
-                          class="euiDataGridHeaderCell__content"
+                          class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                         >
-                          B
-                        </div>
-                        <div
-                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                        >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            class="euiDataGridHeaderCell__button"
                           >
+                            <div
+                              class="euiDataGridHeaderCell__content"
+                            >
+                              B
+                            </div>
                             <span
                               aria-label="Header actions"
+                              class="euiDataGridHeaderCell__icon"
                               color="text"
                               data-euiicon-type="arrowDown"
                               data-test-subj="dataGridHeaderCellActionButton-B"
                             />
-                          </div>
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     </div>
                     <div
                       class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
@@ -1485,16 +1580,17 @@ Array [
                         <div
                           class="euiDataGridRowCell__expandContent"
                         >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            Row: 1, Column: 1:
-                          </p>
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             0
                           </div>
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 1
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -1512,14 +1608,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      0, A
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 1, Column: 2:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          0, A
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 1; Column: 2
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -1530,14 +1635,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      0, B
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 1, Column: 3:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          0, B
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 1; Column: 3
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -1566,16 +1680,17 @@ Array [
                         <div
                           class="euiDataGridRowCell__expandContent"
                         >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            Row: 1, Column: 4:
-                          </p>
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             0
                           </div>
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 1; Column: 4
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -1611,16 +1726,17 @@ Array [
                         <div
                           class="euiDataGridRowCell__expandContent"
                         >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            Row: 2, Column: 1:
-                          </p>
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             1
                           </div>
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 1
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -1638,14 +1754,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      1, A
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 2, Column: 2:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          1, A
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 2; Column: 2
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -1656,14 +1781,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      1, B
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 2, Column: 3:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          1, B
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 2; Column: 3
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -1692,16 +1826,17 @@ Array [
                         <div
                           class="euiDataGridRowCell__expandContent"
                         >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            Row: 2, Column: 4:
-                          </p>
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             1
                           </div>
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 2; Column: 4
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -1737,16 +1872,17 @@ Array [
                         <div
                           class="euiDataGridRowCell__expandContent"
                         >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            Row: 3, Column: 1:
-                          </p>
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             2
                           </div>
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 1
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -1764,14 +1900,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      2, A
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 3, Column: 2:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          2, A
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 3; Column: 2
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -1782,14 +1927,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      2, B
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 3, Column: 3:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          2, B
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 3; Column: 3
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -1818,16 +1972,17 @@ Array [
                         <div
                           class="euiDataGridRowCell__expandContent"
                         >
-                          <p
-                            class="euiScreenReaderOnly"
-                          >
-                            Row: 3, Column: 4:
-                          </p>
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             2
                           </div>
+                          <p
+                            class="euiScreenReaderOnly"
+                          >
+                            Row: 3; Column: 4
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -1900,6 +2055,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -1928,6 +2084,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -1940,8 +2097,8 @@ Array [
           </div>
         </div>
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
-          data-test-subj="dataGridFullScrenButton"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+          data-test-subj="dataGridFullScreenButton"
           type="button"
         >
           <span
@@ -1949,6 +2106,7 @@ Array [
           >
             <span
               class="euiButtonContent__icon"
+              color="inherit"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -2000,29 +2158,31 @@ Array [
                         data-test-subj="dataGridColumnResizer"
                         style="margin-right:0px"
                       />
-                      <button
-                        class="euiDataGridHeaderCell__button"
+                      <div
+                        class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
-                          class="euiDataGridHeaderCell__content"
+                          class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                         >
-                          Column A
-                        </div>
-                        <div
-                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                        >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            class="euiDataGridHeaderCell__button"
                           >
+                            <div
+                              class="euiDataGridHeaderCell__content"
+                            >
+                              Column A
+                            </div>
                             <span
                               aria-label="Header actions"
+                              class="euiDataGridHeaderCell__icon"
                               color="text"
                               data-euiicon-type="arrowDown"
                               data-test-subj="dataGridHeaderCellActionButton-A"
                             />
-                          </div>
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     </div>
                     <div
                       class="euiDataGridHeaderCell"
@@ -2036,31 +2196,33 @@ Array [
                         data-test-subj="dataGridColumnResizer"
                         style="margin-right:0px"
                       />
-                      <button
-                        class="euiDataGridHeaderCell__button"
+                      <div
+                        class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
-                          class="euiDataGridHeaderCell__content"
+                          class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                         >
-                          <div>
-                            More Elements
-                          </div>
-                        </div>
-                        <div
-                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                        >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            class="euiDataGridHeaderCell__button"
                           >
+                            <div
+                              class="euiDataGridHeaderCell__content"
+                            >
+                              <div>
+                                More Elements
+                              </div>
+                            </div>
                             <span
                               aria-label="Header actions"
+                              class="euiDataGridHeaderCell__icon"
                               color="text"
                               data-euiicon-type="arrowDown"
                               data-test-subj="dataGridHeaderCellActionButton-B"
                             />
-                          </div>
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -2071,14 +2233,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      0, A
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 1, Column: 1:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          0, A
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 1; Column: 1
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -2089,14 +2260,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      0, B
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 1, Column: 2:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          0, B
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 1; Column: 2
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -2107,14 +2287,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      1, A
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 2, Column: 1:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          1, A
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 2; Column: 1
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -2125,14 +2314,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      1, B
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 2, Column: 2:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          1, B
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 2; Column: 2
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -2143,14 +2341,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      2, A
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 3, Column: 1:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          2, A
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 3; Column: 1
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -2161,14 +2368,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      2, B
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 3, Column: 2:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          2, B
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 3; Column: 2
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -2234,6 +2450,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="listAdd"
                 />
                 <span
@@ -2262,6 +2479,7 @@ Array [
               >
                 <span
                   class="euiButtonContent__icon"
+                  color="inherit"
                   data-euiicon-type="tableDensityExpanded"
                 />
                 <span
@@ -2274,8 +2492,8 @@ Array [
           </div>
         </div>
         <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn testClass1 testClass2"
-          data-test-subj="dataGridFullScrenButton"
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+          data-test-subj="dataGridFullScreenButton"
           type="button"
         >
           <span
@@ -2283,6 +2501,7 @@ Array [
           >
             <span
               class="euiButtonContent__icon"
+              color="inherit"
               data-euiicon-type="fullScreen"
             />
             <span
@@ -2334,29 +2553,31 @@ Array [
                         data-test-subj="dataGridColumnResizer"
                         style="margin-right:0px"
                       />
-                      <button
-                        class="euiDataGridHeaderCell__button"
+                      <div
+                        class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
-                          class="euiDataGridHeaderCell__content"
+                          class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                         >
-                          A
-                        </div>
-                        <div
-                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                        >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            class="euiDataGridHeaderCell__button"
                           >
+                            <div
+                              class="euiDataGridHeaderCell__content"
+                            >
+                              A
+                            </div>
                             <span
                               aria-label="Header actions"
+                              class="euiDataGridHeaderCell__icon"
                               color="text"
                               data-euiicon-type="arrowDown"
                               data-test-subj="dataGridHeaderCellActionButton-A"
                             />
-                          </div>
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     </div>
                     <div
                       class="euiDataGridHeaderCell"
@@ -2370,29 +2591,31 @@ Array [
                         data-test-subj="dataGridColumnResizer"
                         style="margin-right:0px"
                       />
-                      <button
-                        class="euiDataGridHeaderCell__button"
+                      <div
+                        class="euiPopover euiPopover--anchorDownCenter"
+                        offset="7"
                       >
                         <div
-                          class="euiDataGridHeaderCell__content"
+                          class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                         >
-                          B
-                        </div>
-                        <div
-                          class="euiPopover euiPopover--anchorDownRight euiDataGridHeaderCell__popover"
-                        >
-                          <div
-                            class="euiPopover__anchor"
+                          <button
+                            class="euiDataGridHeaderCell__button"
                           >
+                            <div
+                              class="euiDataGridHeaderCell__content"
+                            >
+                              B
+                            </div>
                             <span
                               aria-label="Header actions"
+                              class="euiDataGridHeaderCell__icon"
                               color="text"
                               data-euiicon-type="arrowDown"
                               data-test-subj="dataGridHeaderCellActionButton-B"
                             />
-                          </div>
+                          </button>
                         </div>
-                      </button>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -2403,14 +2626,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      0, A
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 1, Column: 1:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          0, A
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 1; Column: 1
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -2421,14 +2653,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      0, B
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 1, Column: 2:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          0, B
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 1; Column: 2
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -2439,14 +2680,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      1, A
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 2, Column: 1:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          1, A
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 2; Column: 1
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -2457,14 +2707,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      1, B
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 2, Column: 2:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          1, B
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 2; Column: 2
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -2475,14 +2734,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      2, A
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 3, Column: 1:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          2, A
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 3; Column: 1
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div
@@ -2493,14 +2761,23 @@ Array [
                     tabindex="-1"
                   >
                     <div
-                      class="euiDataGridRowCell__truncate"
+                      class="euiDataGridRowCell__expandFlex"
                     >
-                      2, B
-                      <p
-                        class="euiScreenReaderOnly"
+                      <div
+                        class="euiDataGridRowCell__expandContent"
                       >
-                        Row: 3, Column: 2:
-                      </p>
+                        <div
+                          class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
+                        >
+                          2, B
+                        </div>
+                        <p
+                          class="euiScreenReaderOnly"
+                        >
+                          Row: 3; Column: 2
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>

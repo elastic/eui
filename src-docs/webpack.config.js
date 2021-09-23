@@ -106,7 +106,6 @@ const webpackConfig = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
-      favicon: 'favicon.ico',
       inject: 'body',
       cache: true,
       showErrors: true,

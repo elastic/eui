@@ -1,3 +1,5 @@
+// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY
+
 import * as React from 'react';
 
 const EuiIconLogoPhp = ({ title, titleId, ...props }) => (
@@ -7,7 +9,8 @@ const EuiIconLogoPhp = ({ title, titleId, ...props }) => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <defs>
       <path
@@ -23,7 +26,8 @@ const EuiIconLogoPhp = ({ title, titleId, ...props }) => (
         r="124.814%"
         fx="30.02%"
         fy="82.422%"
-        gradientTransform="matrix(.52604 0 0 1 .142 0)">
+        gradientTransform="matrix(.52604 0 0 1 .142 0)"
+      >
         <stop offset="0%" stopColor="#AEB2D5" />
         <stop offset="30%" stopColor="#AEB2D5" />
         <stop offset="75%" stopColor="#484C89" />

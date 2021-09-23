@@ -95,6 +95,7 @@ const dangerToastSnippet = [
 
 export const ToastExample = {
   title: 'Toast',
+  guidelines: <Guidelines />,
   intro: (
     <EuiText>
       <p>
@@ -162,6 +163,7 @@ export const ToastExample = {
         </div>
       ),
       snippet: defaultToastSnippet,
+      playground: toastConfig,
     },
     {
       title: 'Info',
@@ -260,6 +262,4 @@ export const ToastExample = {
       snippet: dangerToastSnippet,
     },
   ],
-  guidelines: <Guidelines />,
-  playground: toastConfig,
 };

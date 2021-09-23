@@ -107,7 +107,19 @@
 
   &.euiComboBox-isDisabled {
     .euiComboBox__inputWrap {
+      // sass-lint:disable-block no-vendor-prefixes
       @include euiFormControlDisabledStyle;
+      -webkit-text-fill-color: unset; // overrides $euiFormControlDisabledColor because the color doesn't work with multiple background colors 
+    }
+
+    .euiComboBoxPlaceholder,
+    .euiComboBoxPill--plainText {
+      @include euiFormControlDisabledTextStyle;
+    }
+
+    // overrides the `cursor: text;` that displays on hover for combo boxes that allow multiple pills
+    .euiComboBox__inputWrap:not(.euiComboBox__inputWrap--noWrap):hover {
+      cursor: not-allowed;
     }
   }
 

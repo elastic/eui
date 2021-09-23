@@ -83,7 +83,8 @@ const GuideGuidelinesComponent: FunctionComponent<GuideGuidelinesProps> = ({
         paddingSize="none"
         color="transparent"
         hasBorder={false}
-        borderRadius="none">
+        borderRadius="none"
+      >
         <EuiPageContentBody restrictWidth>
           <Switch>
             {examples && (

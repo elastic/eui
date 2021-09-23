@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -101,6 +90,8 @@ export class EuiRefreshInterval extends Component<
   state: EuiRefreshIntervalState = fromMilliseconds(this.props.refreshInterval);
 
   generateId = htmlIdGenerator();
+  legendId = this.generateId();
+  refreshSelectionId = this.generateId();
 
   onValueChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const sanitizedValue = parseFloat(event.target.value);
@@ -173,8 +164,6 @@ export class EuiRefreshInterval extends Component<
   render() {
     const { applyRefreshInterval, isPaused } = this.props;
     const { value, units } = this.state;
-    const legendId = this.generateId();
-    const refreshSelectionId = this.generateId();
 
     if (!applyRefreshInterval) {
       return null;
@@ -186,7 +175,7 @@ export class EuiRefreshInterval extends Component<
     return (
       <fieldset>
         <EuiTitle size="xxxs">
-          <legend id={legendId}>
+          <legend id={this.legendId}>
             <EuiI18n
               token="euiRefreshInterval.legend"
               default="Refresh every"
@@ -202,7 +191,7 @@ export class EuiRefreshInterval extends Component<
               onChange={this.onValueChange}
               onKeyDown={this.handleKeyDown}
               aria-label="Refresh interval value"
-              aria-describedby={`${refreshSelectionId} ${legendId}`}
+              aria-describedby={`${this.refreshSelectionId} ${this.legendId}`}
               data-test-subj="superDatePickerRefreshIntervalInput"
             />
           </EuiFlexItem>
@@ -210,7 +199,7 @@ export class EuiRefreshInterval extends Component<
             <EuiSelect
               compressed
               aria-label="Refresh interval units"
-              aria-describedby={`${refreshSelectionId} ${legendId}`}
+              aria-describedby={`${this.refreshSelectionId} ${this.legendId}`}
               value={units}
               options={refreshUnitsOptions}
               onChange={this.onUnitsChange}
@@ -226,7 +215,8 @@ export class EuiRefreshInterval extends Component<
               onClick={this.toggleRefresh}
               disabled={value === '' || value <= 0}
               data-test-subj="superDatePickerToggleRefreshButton"
-              aria-describedby={refreshSelectionId}>
+              aria-describedby={this.refreshSelectionId}
+            >
               {isPaused ? (
                 <EuiI18n token="euiRefreshInterval.start" default="Start" />
               ) : (
@@ -236,7 +226,7 @@ export class EuiRefreshInterval extends Component<
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiScreenReaderOnly>
-          <p id={refreshSelectionId}>
+          <p id={this.refreshSelectionId}>
             <EuiI18n
               token="euiRefreshInterval.fullDescription"
               default="Refresh interval currently set to {optionValue} {optionText}."

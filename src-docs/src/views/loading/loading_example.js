@@ -1,12 +1,12 @@
 import React from 'react';
-
-import { renderToHtml } from '../../services';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
 import {
   EuiCode,
-  EuiLoadingKibana,
+  EuiText,
+  EuiLoadingLogo,
   EuiLoadingElastic,
   EuiLoadingSpinner,
   EuiLoadingChart,
@@ -15,33 +15,39 @@ import {
 import {
   loadingElasticConfig,
   loadingChartConfig,
-  loadingKibanaConfig,
+  loadingLogoConfig,
   loadingSpinnerConfig,
   loadingContentConfig,
 } from './playground';
 
-import LoadingKibana from './loading_kibana';
-const loadingKibanaSource = require('!!raw-loader!./loading_kibana');
-const loadingKibanaHtml = renderToHtml(LoadingKibana);
+import LoadingLogo from './loading_kibana';
+const loadingLogoSource = require('!!raw-loader!./loading_kibana');
 
 import LoadingElastic from './loading_elastic';
 const loadingElasticSource = require('!!raw-loader!./loading_elastic');
-const loadingElasticHtml = renderToHtml(LoadingElastic);
 
 import LoadingChart from './loading_chart';
 const loadingChartSource = require('!!raw-loader!./loading_chart');
-const loadingChartHtml = renderToHtml(LoadingChart);
 
 import LoadingSpinner from './loading_spinner';
 const loadingSpinnerSource = require('!!raw-loader!./loading_spinner');
-const loadingSpinnerHtml = renderToHtml(LoadingSpinner);
 
 import LoadingContent from './loading_content';
 const loadingContentSource = require('!!raw-loader!./loading_content');
-const loadingContentHtml = renderToHtml(LoadingContent);
 
 export const LoadingExample = {
   title: 'Loading',
+  intro: (
+    <EuiText>
+      <p>
+        Use loading indicators sparingly and opt for showing actual{' '}
+        <Link to="/display/progress#progress-with-values">progress</Link> over
+        infinite spinners. It is ok to use multiple loaders on a page if each
+        section is progressively loaded. However, if the entire page is loaded
+        at once, use a single, larger loading indicator.
+      </p>
+    </EuiText>
+  ),
   sections: [
     {
       title: 'Elastic',
@@ -50,42 +56,40 @@ export const LoadingExample = {
           type: GuideSectionTypes.JS,
           code: loadingElasticSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: loadingElasticHtml,
-        },
       ],
       text: (
         <p>
-          Elastic logo based load. Should only be used in very large panels,
-          like bootup screens.
+          The <strong>EuiLoadingElastic</strong> loader is great for full page
+          or Elastic product loading screens.
         </p>
       ),
       props: { EuiLoadingElastic },
       demo: <LoadingElastic />,
       snippet: '<EuiLoadingElastic size="m" />',
+      playground: loadingElasticConfig,
     },
     {
-      title: 'Kibana',
+      title: 'Logos',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: loadingKibanaSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: loadingKibanaHtml,
+          code: loadingLogoSource,
         },
       ],
       text: (
         <p>
-          Logo based loader. Should only be used in very large panels, like
-          bootup screens.
+          <strong>EuiLoadingLogo</strong> accepts any of our{' '}
+          <Link to="/display/icons#elastic-logos">
+            <strong>EuiIcon</strong>
+          </Link>{' '}
+          logos. It should only be used in very large panels, like full screen
+          pages.
         </p>
       ),
-      props: { EuiLoadingKibana },
-      demo: <LoadingKibana />,
-      snippet: '<EuiLoadingKibana size="m" />',
+      props: { EuiLoadingLogo },
+      demo: <LoadingLogo />,
+      snippet: '<EuiLoadingLogo size="m" />',
+      playground: loadingLogoConfig,
     },
     {
       title: 'Chart',
@@ -94,22 +98,19 @@ export const LoadingExample = {
           type: GuideSectionTypes.JS,
           code: loadingChartSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: loadingChartHtml,
-        },
       ],
       text: (
         <p>
-          Loader for the loading of chart or dashboard and visualization
-          elements. The colored versions should be used sparingly, only when a
-          single large visualization is loaded. When loading smaller groups of
-          panels, the smaller, mono versions should be used.
+          To indicate that a visualization is loading, use{' '}
+          <strong>EuiLoadingChart</strong>. The multi-color version should be
+          used sparingly, and only when a single large visualization is being
+          loaded.
         </p>
       ),
       props: { EuiLoadingChart },
       demo: <LoadingChart />,
       snippet: '<EuiLoadingChart size="m" />',
+      playground: loadingChartConfig,
     },
     {
       title: 'Spinner',
@@ -118,15 +119,17 @@ export const LoadingExample = {
           type: GuideSectionTypes.JS,
           code: loadingSpinnerSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: loadingSpinnerHtml,
-        },
       ],
-      text: <p>A simple spinner for most loading applications.</p>,
+      text: (
+        <p>
+          <strong>EuiLoadingSpinner</strong> is a simple spinner for most
+          loading contexts.
+        </p>
+      ),
       props: { EuiLoadingSpinner },
       demo: <LoadingSpinner />,
       snippet: '<EuiLoadingSpinner size="m" />',
+      playground: loadingSpinnerConfig,
     },
     {
       title: 'Text content',
@@ -135,27 +138,18 @@ export const LoadingExample = {
           type: GuideSectionTypes.JS,
           code: loadingContentSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: loadingContentHtml,
-        },
       ],
       text: (
         <p>
-          A simple loading animation for displaying placeholder text content.
-          You can pass in a number of <EuiCode>lines</EuiCode> between 1 and 10.
+          <strong>EuiLoadingContent</strong> is a simple loading animation for
+          displaying placeholder text content. You can pass in a number of{' '}
+          <EuiCode>lines</EuiCode> between 1 and 10.
         </p>
       ),
       props: { EuiLoadingContent },
       demo: <LoadingContent />,
       snippet: '<EuiLoadingContent lines={3} />',
+      playground: loadingContentConfig,
     },
-  ],
-  playground: [
-    loadingElasticConfig,
-    loadingChartConfig,
-    loadingKibanaConfig,
-    loadingSpinnerConfig,
-    loadingContentConfig,
   ],
 };

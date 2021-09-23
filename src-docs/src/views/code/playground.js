@@ -2,9 +2,11 @@ import { PropTypes } from 'react-view';
 import { EuiCodeBlock, EuiCode } from '../../../../src/components/';
 import { propUtilityForPlayground } from '../../services/playground';
 
-const codeDemo = `\n{\`${
-  require('!!raw-loader!./code_examples/example.html').default
-}\`}\n`;
+const codeDemo = `\n{\`<!--I'm an example of HTML -->
+<div>
+  <h1>My First Heading</h1>
+  <p>My first paragraph.</p>
+</div>\`}\n`;
 
 export const codeBlockConfig = () => {
   const docgenInfo = Array.isArray(EuiCodeBlock.__docgenInfo)
@@ -18,12 +20,6 @@ export const codeBlockConfig = () => {
     type: PropTypes.ReactNode,
     value: codeDemo,
     hidden: false,
-  };
-
-  propsToUse.inline = {
-    ...propsToUse.inline,
-    type: PropTypes.Boolean,
-    value: false,
   };
 
   return {
@@ -54,12 +50,6 @@ export const codeConfig = () => {
     type: PropTypes.ReactNode,
     value: codeDemo,
     hidden: false,
-  };
-
-  propsToUse.inline = {
-    ...propsToUse.inline,
-    type: PropTypes.Boolean,
-    value: false,
   };
 
   return {

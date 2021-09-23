@@ -23,7 +23,8 @@ export default () => {
               This text field&apos;s placeholder reads from{' '}
               <EuiCode>euiI18nAttribute.placeholderName</EuiCode>
             </>
-          }>
+          }
+        >
           <EuiFieldText
             placeholder={useEuiI18n(
               'euiI18nAttribute.placeholderName',
@@ -46,7 +47,8 @@ export default () => {
                 This text field&apos;s placeholder reads from{' '}
                 <EuiCode>euiI18nAttribute.placeholderName</EuiCode>
               </>
-            }>
+            }
+          >
             <EuiFieldText placeholder={placeholderName} />
           </EuiFormRow>
         )}

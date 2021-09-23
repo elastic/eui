@@ -14,6 +14,7 @@ import {
 
 const iconColors = [
   'default',
+  'inherit',
   'primary',
   'success',
   'accent',
@@ -22,7 +23,6 @@ const iconColors = [
   'text',
   'subdued',
   'ghost',
-  '#490',
   '#DA8B45',
   '#DDDDDD',
 ];
@@ -45,7 +45,8 @@ export default () => (
                 className={classNames({
                   guideDemo__ghostBackground: iconColor === 'ghost',
                 })}
-                paddingSize="s">
+                paddingSize="s"
+              >
                 <EuiIcon type="brush" color={iconColor} />
                 &emsp; <small>{iconColor}</small>
               </EuiPanel>

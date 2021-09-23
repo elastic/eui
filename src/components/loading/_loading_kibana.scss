@@ -1,36 +1,46 @@
+.euiLoadingLogo,
 .euiLoadingKibana {
   position: relative;
   display: inline-block;
 
-  &:before,
-  &:after {
-    position: absolute;
-    content: '';
-    width: 90%;
-    left: 5%;
-    border-radius: 50%;
-    opacity: .2;
-    z-index: 1;
+  // sass-lint:disable-block mixins-before-declarations
+  @include euiCanAnimate {
+    &:before,
+    &:after {
+      position: absolute;
+      content: '';
+      width: 90%;
+      left: 5%;
+      border-radius: 50%;
+      opacity: .2;
+      z-index: 1;
+    }
+
+    &:before {
+      box-shadow: 0 0 8px $euiColorFullShade;
+      animation: 1s euiLoadingKibanaPulsateAndFade $euiAnimSlightResistance infinite;
+    }
+
+    &:after {
+      background-color: $euiColorFullShade;
+      animation: 1s euiLoadingKibanaPulsate $euiAnimSlightResistance infinite;
+    }
   }
 
-  &:before {
-    box-shadow: 0 0 8px $euiColorFullShade;
-    animation: 1s euiLoadingKibanaPulsateAndFade $euiAnimSlightResistance infinite;
-  }
-
-  &:after {
-    background-color: $euiColorFullShade;
-    animation: 1s euiLoadingKibanaPulsate $euiAnimSlightResistance infinite;
-  }
-
+  .euiLoadingLogo__icon,
   .euiLoadingKibana__icon {
     display: block;
+
+    @include euiCanAnimate {
+      animation: 1s euiLoadingKibanaBounceMedium $euiAnimSlightResistance infinite;
+    }
   }
 }
 
 /**
  * 1. Requires pixel math for animation.
  */
+.euiLoadingLogo--medium,
 .euiLoadingKibana--medium {
   width: $euiSize;
 
@@ -40,15 +50,14 @@
     bottom: -$euiSizeXS;
   }
 
+  .euiLoadingLogo__icon,
   .euiLoadingKibana__icon {
     z-index: 999;
-    animation: 1s euiLoadingKibanaBounceMedium $euiAnimSlightResistance infinite;
+    animation-name: euiLoadingKibanaBounceMedium;
   }
 }
 
-/**
- * 1. Requires pixel math for animation.
- */
+.euiLoadingLogo--large,
 .euiLoadingKibana--large {
   width: $euiSizeL;
 
@@ -58,11 +67,13 @@
     bottom: -$euiSizeS;
   }
 
+  .euiLoadingLogo__icon,
   .euiLoadingKibana__icon {
-    animation: 1s euiLoadingKibanaBounceLarge $euiAnimSlightResistance infinite;
+    animation-name: euiLoadingKibanaBounceLarge;
   }
 }
 
+.euiLoadingLogo--xLarge,
 .euiLoadingKibana--xLarge {
   width: $euiSizeXL;
 
@@ -72,8 +83,9 @@
     bottom: -$euiSizeM;
   }
 
+  .euiLoadingLogo__icon,
   .euiLoadingKibana__icon {
-    animation: 1s euiLoadingKibanaBounceXLarge $euiAnimSlightResistance infinite;
+    animation-name: euiLoadingKibanaBounceXLarge;
   }
 }
 

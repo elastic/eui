@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { FunctionComponent, ReactNode, useRef } from 'react';
@@ -109,12 +98,14 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
       hasShadow={hasShadow}
       hasBorder={hasBorder}
       direction="row"
-      className={classes}>
+      className={classes}
+    >
       <EuiSplitPanel.Inner
         // Bubbles up the change event when clicking on the whole div for extra affordance
         onClick={disabled ? undefined : onChangeAffordance}
         color={checked ? 'primary' : 'subdued'}
-        grow={false}>
+        grow={false}
+      >
         {checkableElement}
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner>
@@ -122,7 +113,8 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
           ref={labelEl}
           className={labelClasses}
           htmlFor={id}
-          aria-describedby={children ? `${id}-details` : undefined}>
+          aria-describedby={children ? `${id}-details` : undefined}
+        >
           {label}
         </label>
         {children && (

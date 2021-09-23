@@ -59,7 +59,15 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
     return (
       <EuiTabs size="s" display="condensed">
         {tabs.map((tab, index) => {
-          const { displayName, code, name, props, snippets, ...rest } = tab;
+          const {
+            displayName,
+            code,
+            type,
+            name,
+            props,
+            snippets,
+            ...rest
+          } = tab;
 
           return (
             <EuiTab
@@ -68,7 +76,8 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
               name={name}
               onClick={() => onSelectedTabChanged(name)}
               isSelected={name === selectedTabId}
-              key={index}>
+              key={index}
+            >
               {tab.displayName}
             </EuiTab>
           );
@@ -95,7 +104,10 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
       return (
         <EuiErrorBoundary>
           <EuiHorizontalRule margin="none" />
-          <GuideSectionExampleCode code={selectedTab.code} />
+          <GuideSectionExampleCode
+            code={selectedTab.code}
+            type={selectedTab.type}
+          />
         </EuiErrorBoundary>
       );
       // PROPS TABLE
@@ -104,6 +116,7 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
 
       return components.map((component) => (
         <EuiErrorBoundary key={component}>
+          <EuiHorizontalRule margin="none" />
           <GuideSectionPropsTable
             key={component}
             componentName={component}
@@ -121,7 +134,8 @@ export const GuideSectionExampleTabs: FunctionComponent<GuideSectionExampleTabsP
         responsive={false}
         wrap
         gutterSize="none"
-        alignItems="center">
+        alignItems="center"
+      >
         <EuiFlexItem>{renderTabs()}</EuiFlexItem>
         <EuiFlexItem grow={false}>{rightSideControl}</EuiFlexItem>
       </EuiFlexGroup>

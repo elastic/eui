@@ -6,7 +6,11 @@
   border-radius: 50%;
   border: solid $euiSizeXS / 2 $euiColorLightShade;
   border-color: euiLoadingSpinnerBorderColors();
-  animation: euiLoadingSpinner .6s infinite linear;
+
+  // sass-lint:disable-block mixins-before-declarations
+  @include euiCanAnimate {
+    animation: euiLoadingSpinner .6s infinite linear;
+  }
 }
 
 .euiLoadingSpinner--small {

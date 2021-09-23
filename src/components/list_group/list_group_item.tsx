@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -30,7 +19,7 @@ import React, {
 import classNames from 'classnames';
 
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
-import { EuiIcon, IconType } from '../icon';
+import { EuiIcon, IconType, EuiIconProps } from '../icon';
 import { EuiToolTip } from '../tool_tip';
 import { useInnerText } from '../inner_text';
 import { ExclusiveUnion, CommonProps } from '../common';
@@ -109,8 +98,13 @@ export type EuiListGroupItemProps = CommonProps &
     iconType?: IconType;
 
     /**
+     * Further extend the props applied to EuiIcon
+     */
+    iconProps?: Omit<EuiIconProps, 'type'>;
+
+    /**
      * Custom node to pass as the icon. Cannot be used in conjunction
-     * with `iconType`.
+     * with `iconType` and `iconProps`.
      */
     icon?: ReactElement;
 
@@ -155,6 +149,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   className,
   iconType,
   icon,
+  iconProps,
   extraAction,
   onClick,
   size = 'm',
@@ -184,7 +179,14 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   let iconNode;
 
   if (iconType) {
-    iconNode = <EuiIcon className="euiListGroupItem__icon" type={iconType} />;
+    iconNode = (
+      <EuiIcon
+        color="inherit" // forces the icon to inherit its parent color
+        {...iconProps}
+        type={iconType}
+        className={classNames('euiListGroupItem__icon', iconProps?.className)}
+      />
+    );
 
     if (icon) {
       console.warn(
@@ -234,7 +236,8 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     <span
       ref={ref}
       className="euiListGroupItem__label"
-      title={typeof label === 'string' ? label : innerText}>
+      title={typeof label === 'string' ? label : innerText}
+    >
       {label}
     </span>
   ) : (
@@ -254,7 +257,8 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
         target={target}
         rel={secureRel}
         onClick={onClick as AnchorHTMLAttributes<HTMLAnchorElement>['onClick']}
-        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
+      >
         {iconNode}
         {labelContent}
       </a>
@@ -267,7 +271,8 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
         disabled={isDisabled}
         onClick={onClick}
         ref={buttonRef}
-        {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
+        {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
+      >
         {iconNode}
         {labelContent}
       </button>
@@ -288,7 +293,8 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
           anchorClassName="euiListGroupItem__tooltip"
           content={label}
           position="right"
-          delay="long">
+          delay="long"
+        >
           {itemContent}
         </EuiToolTip>
       </li>

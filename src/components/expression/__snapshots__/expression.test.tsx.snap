@@ -100,6 +100,26 @@ exports[`EuiExpression props color subdued is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiExpression props color success is rendered 1`] = `
+<span
+  aria-label="aria-label"
+  class="euiExpression testClass1 testClass2 euiExpression-isUppercase euiExpression--success"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiExpression__description"
+  >
+    the answer is
+  </span>
+   
+  <span
+    class="euiExpression__value"
+  >
+    42
+  </span>
+</span>
+`;
+
 exports[`EuiExpression props color warning is rendered 1`] = `
 <span
   aria-label="aria-label"
@@ -146,7 +166,7 @@ exports[`EuiExpression props descriptionWidth changes the description&apos;s wid
 
 exports[`EuiExpression props display can be columns 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression--columns euiExpression--secondary"
+  class="euiExpression euiExpression-isUppercase euiExpression--columns euiExpression--success"
 >
   <span
     class="euiExpression__description"
@@ -165,7 +185,7 @@ exports[`EuiExpression props display can be columns 1`] = `
 
 exports[`EuiExpression props isActive false renders inactive 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression--secondary"
+  class="euiExpression euiExpression-isUppercase euiExpression--success"
 >
   <span
     class="euiExpression__description"
@@ -183,7 +203,7 @@ exports[`EuiExpression props isActive false renders inactive 1`] = `
 
 exports[`EuiExpression props isActive true renders active 1`] = `
 <span
-  class="euiExpression euiExpression-isActive euiExpression-isUppercase euiExpression--secondary"
+  class="euiExpression euiExpression-isActive euiExpression-isUppercase euiExpression--success"
 >
   <span
     class="euiExpression__description"
@@ -224,7 +244,7 @@ exports[`EuiExpression props isInvalid renders error state 1`] = `
 
 exports[`EuiExpression props textWrap can truncate text 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression--secondary euiExpression--truncate"
+  class="euiExpression euiExpression-isUppercase euiExpression--success euiExpression--truncate"
 >
   <span
     class="euiExpression__description"
@@ -242,7 +262,7 @@ exports[`EuiExpression props textWrap can truncate text 1`] = `
 
 exports[`EuiExpression props uppercase false renders inherited case 1`] = `
 <span
-  class="euiExpression euiExpression--secondary"
+  class="euiExpression euiExpression--success"
 >
   <span
     class="euiExpression__description"
@@ -260,7 +280,7 @@ exports[`EuiExpression props uppercase false renders inherited case 1`] = `
 
 exports[`EuiExpression props uppercase true renders uppercase 1`] = `
 <span
-  class="euiExpression euiExpression-isUppercase euiExpression--secondary"
+  class="euiExpression euiExpression-isUppercase euiExpression--success"
 >
   <span
     class="euiExpression__description"
@@ -279,7 +299,7 @@ exports[`EuiExpression props uppercase true renders uppercase 1`] = `
 exports[`EuiExpression render with only description 1`] = `
 <button
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isClickable euiExpression-isUppercase euiExpression--secondary"
+  class="euiExpression testClass1 testClass2 euiExpression-isClickable euiExpression-isUppercase euiExpression--success"
   data-test-subj="test subject string"
 >
   <span
@@ -294,7 +314,7 @@ exports[`EuiExpression render with only description 1`] = `
 exports[`EuiExpression renders 1`] = `
 <button
   aria-label="aria-label"
-  class="euiExpression testClass1 testClass2 euiExpression-isClickable euiExpression-isUppercase euiExpression--secondary"
+  class="euiExpression testClass1 testClass2 euiExpression-isClickable euiExpression-isUppercase euiExpression--success"
   data-test-subj="test subject string"
 >
   <span

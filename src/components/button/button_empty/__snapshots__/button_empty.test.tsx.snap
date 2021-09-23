@@ -200,6 +200,7 @@ exports[`EuiButtonEmpty props iconSide left is rendered 1`] = `
   >
     <span
       class="euiButtonContent__icon"
+      color="inherit"
       data-euiicon-type="user"
     />
     <span
@@ -221,6 +222,7 @@ exports[`EuiButtonEmpty props iconSide right is rendered 1`] = `
   >
     <span
       class="euiButtonContent__icon"
+      color="inherit"
       data-euiicon-type="user"
     />
     <span
@@ -242,6 +244,7 @@ exports[`EuiButtonEmpty props iconType is rendered 1`] = `
   >
     <span
       class="euiButtonContent__icon"
+      color="inherit"
       data-euiicon-type="user"
     />
     <span
@@ -350,9 +353,9 @@ exports[`EuiButtonEmpty props isSelected is rendered as true 1`] = `
 </button>
 `;
 
-exports[`EuiButtonEmpty props size l is rendered 1`] = `
+exports[`EuiButtonEmpty props size m is rendered 1`] = `
 <button
-  class="euiButtonEmpty euiButtonEmpty--primary euiButtonEmpty--large"
+  class="euiButtonEmpty euiButtonEmpty--primary"
   type="button"
 >
   <span

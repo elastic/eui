@@ -31,7 +31,8 @@ const columns = [
               closePopover();
             }}
             iconType="heart"
-            aria-label={`Send love to ${row}, column "${columnId}" `}>
+            aria-label={`Send love to ${row}, column "${columnId}" `}
+          >
             Send love
           </Component>
         );
@@ -52,7 +53,8 @@ const columns = [
           <Component
             onClick={() => alert(message)}
             iconType="cheer"
-            aria-label={message}>
+            aria-label={message}
+          >
             Cheer
           </Component>
         );
@@ -71,7 +73,8 @@ const columns = [
               alert(`Love sent from row ${row}, column "${columnId}"`)
             }
             iconType="heart"
-            aria-label={label}>
+            aria-label={label}
+          >
             Love this city
           </Component>
         );
@@ -85,7 +88,8 @@ const columns = [
               alert(`Paint sent from row ${row}, column "${columnId}"`)
             }
             iconType="brush"
-            aria-label={label}>
+            aria-label={label}
+          >
             Paint this city
           </Component>
         );

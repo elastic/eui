@@ -52,7 +52,7 @@ export default () => {
       title: 'View options',
       items: [
         {
-          name: 'Show fullscreen',
+          name: 'Show full screen',
           icon: <EuiIcon type="search" size="m" />,
           onClick: () => {
             closePopover();
@@ -103,7 +103,8 @@ export default () => {
     <EuiButton
       iconType="arrowDown"
       iconSide="right"
-      onClick={onDynamicButtonClick}>
+      onClick={onDynamicButtonClick}
+    >
       Click me to load dynamic mixed content menu
     </EuiButton>
   );
@@ -116,7 +117,8 @@ export default () => {
         isOpen={isPopoverOpen}
         closePopover={closePopover}
         panelPaddingSize="none"
-        anchorPosition="upLeft">
+        anchorPosition="upLeft"
+      >
         <EuiContextMenu initialPanelId={0} panels={panels} />
       </EuiPopover>
 
@@ -128,7 +130,8 @@ export default () => {
         isOpen={isDynamicPopoverOpen}
         closePopover={closeDynamicPopover}
         panelPaddingSize="none"
-        anchorPosition="upLeft">
+        anchorPosition="upLeft"
+      >
         <EuiContextMenu initialPanelId={0} panels={dynamicPanels} />
       </EuiPopover>
     </React.Fragment>

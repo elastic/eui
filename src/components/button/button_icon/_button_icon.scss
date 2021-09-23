@@ -63,7 +63,7 @@
 }
 
 // Create button modifiers based upon the map.
-@each $name, $color in $euiButtonIconTypes {
+@each $name, $color in $euiButtonTypes {
   .euiButtonIcon--#{$name} {
     @if ($name == 'ghost') {
       // Ghost is unique and ALWAYS sits against a dark background.

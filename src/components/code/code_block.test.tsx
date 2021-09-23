@@ -1,25 +1,14 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { mount, ReactWrapper } from 'enzyme';
+import { mount, render } from 'enzyme';
 import html from 'html';
 import { act } from 'react-dom/test-utils';
 import { requiredProps } from '../../test/required_props';
@@ -27,34 +16,26 @@ import { requiredProps } from '../../test/required_props';
 import { EuiCodeBlock } from './code_block';
 import { FONT_SIZES, PADDING_SIZES } from './_code_block';
 
-function snapshotCodeBlock(component: ReactWrapper) {
-  // Get the Portal's sibling and return its html
-  const renderedHtml = component.find('Portal + *').html();
-  const container = document.createElement('div');
-  container.innerHTML = renderedHtml;
-  return container.firstChild;
-}
-
 const code = `var some = 'code';
 console.log(some);`;
 
 describe('EuiCodeBlock', () => {
   test('renders a code block', () => {
-    const component = mount(
+    const component = render(
       <EuiCodeBlock {...requiredProps}>{code}</EuiCodeBlock>
     );
 
-    expect(snapshotCodeBlock(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   describe('props', () => {
     describe('transparentBackground', () => {
       it('is rendered', () => {
-        const component = mount(
+        const component = render(
           <EuiCodeBlock transparentBackground>{code}</EuiCodeBlock>
         );
 
-        expect(snapshotCodeBlock(component)).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
@@ -62,38 +43,38 @@ describe('EuiCodeBlock', () => {
       it('is rendered', () => {
         const component = mount(<EuiCodeBlock isCopyable>{code}</EuiCodeBlock>);
 
-        expect(snapshotCodeBlock(component)).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('overflowHeight', () => {
       it('is rendered', () => {
-        const component = mount(
+        const component = render(
           <EuiCodeBlock overflowHeight={200}>{code}</EuiCodeBlock>
         );
 
-        expect(snapshotCodeBlock(component)).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('language', () => {
       it('is rendered', () => {
-        const component = mount(
+        const component = render(
           <EuiCodeBlock language="html">{code}</EuiCodeBlock>
         );
 
-        expect(snapshotCodeBlock(component)).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
       });
     });
 
     describe('fontSize', () => {
       FONT_SIZES.forEach((fontSize) => {
         test(`${fontSize} is rendered`, () => {
-          const component = mount(
+          const component = render(
             <EuiCodeBlock fontSize={fontSize}>{code}</EuiCodeBlock>
           );
 
-          expect(snapshotCodeBlock(component)).toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -101,11 +82,11 @@ describe('EuiCodeBlock', () => {
     describe('paddingSize', () => {
       PADDING_SIZES.forEach((paddingSize) => {
         test(`${paddingSize} is rendered`, () => {
-          const component = mount(
+          const component = render(
             <EuiCodeBlock paddingSize={paddingSize}>{code}</EuiCodeBlock>
           );
 
-          expect(snapshotCodeBlock(component)).toMatchSnapshot();
+          expect(component).toMatchSnapshot();
         });
       });
     });
@@ -131,7 +112,7 @@ describe('EuiCodeBlock', () => {
         const [value, setValue] = useState('State 1');
 
         useEffect(() => {
-          // Wait a tick for EuiCodeBlock internal state to update on mount
+          // Wait a tick for EuiCodeBlock internal state to update on render
           setTimeout(() => {
             takeSnapshot();
             act(() => {
@@ -172,6 +153,19 @@ describe('EuiCodeBlock', () => {
       expect(component.find('.euiCodeBlock-isFullScreen').text()).toBe(
         'const value = "hello"'
       );
+    });
+
+    test('renders a virtualized code block', () => {
+      const component = render(
+        <EuiCodeBlock
+          isVirtualized={true}
+          overflowHeight="50%"
+          {...requiredProps}
+        >
+          {code}
+        </EuiCodeBlock>
+      );
+      expect(component).toMatchSnapshot();
     });
   });
 });

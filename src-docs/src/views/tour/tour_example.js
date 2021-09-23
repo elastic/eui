@@ -165,7 +165,7 @@ export const TourExample = {
       demo: <Managed />,
     },
     {
-      title: 'Fullscreen demo',
+      title: 'Full screen demo',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -182,7 +182,10 @@ export const TourExample = {
           <EuiCode>localStorage</EuiCode> to persist state.
         </p>
       ),
-      demo: <FullScreen />,
+      fullScreen: {
+        slug: 'full-screen',
+        demo: <FullScreen />,
+      },
     },
   ],
 };

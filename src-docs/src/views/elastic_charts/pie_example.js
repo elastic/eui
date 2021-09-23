@@ -130,7 +130,8 @@ export const ElasticChartsPieExample = {
                 <EuiFlexGroup
                   gutterSize="s"
                   responsive={false}
-                  alignItems="center">
+                  alignItems="center"
+                >
                   <EuiFlexItem grow={false}>
                     <EuiIcon type={card.iconType} color={card.iconColor} />
                   </EuiFlexItem>
@@ -185,7 +186,8 @@ export const ElasticChartsPieExample = {
                   <br />
                   Click the link to read more on the study.
                 </>
-              }>
+              }
+            >
               <EuiLink href="http://kosara.net/publications/Skau-EuroVis-2016.html">
                 donut charts
               </EuiLink>
@@ -212,7 +214,8 @@ export const ElasticChartsPieExample = {
                 </EuiLink>{' '}
                 through the <EuiCode>{'<Settings />'}</EuiCode> component.
               </>
-            }>
+            }
+          >
             <p>
               {' '}
               EUI provides a separate key for use with

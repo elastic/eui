@@ -15,7 +15,7 @@ function pascalCase(x) {
 
 const iconFiles = glob.sync('**/*.svg', { cwd: iconsDir, realpath: true });
 
-iconFiles.forEach(async filePath => {
+iconFiles.forEach(async (filePath) => {
   const svgSource = fs.readFileSync(filePath);
 
   try {
@@ -55,7 +55,8 @@ export const icon = ${componentName};
     );
 
     const outputFilePath = filePath.replace(/\.svg$/, '.js');
-    fs.writeFileSync(outputFilePath, jsxSource);
+    const comment = '// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY\n\n';
+    fs.writeFileSync(outputFilePath, comment + jsxSource);
   } catch (e) {
     console.error(`Error processing ${filePath}`);
     console.error(e);

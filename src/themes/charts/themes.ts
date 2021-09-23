@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
@@ -24,7 +13,6 @@ import {
   LineAnnotationStyle,
   PartitionConfig,
 } from '@elastic/charts';
-
 import { RecursivePartial } from '../../components/common';
 
 // @ts-ignore typescript doesn't understand the webpack loader
@@ -32,7 +20,7 @@ import lightColors from '!!sass-vars-to-js-loader!../../global_styling/variables
 // @ts-ignore typescript doesn't understand the webpack loader
 import darkColors from '!!sass-vars-to-js-loader!../../themes/eui/eui_colors_dark.scss';
 
-const fontFamily = `'Inter UI', -apple-system, BlinkMacSystemFont,
+const fontFamily = `'Inter', 'Inter UI', -apple-system, BlinkMacSystemFont,
   'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`;
 
 export interface EuiChartThemeType {
@@ -52,7 +40,7 @@ function createTheme(colors: any): EuiChartThemeType {
       details: {
         fontSize: 10,
         fontFamily: fontFamily,
-        fill: colors.euiColorDarkShade.rgba,
+        fill: colors.euiTextColor.rgba,
         padding: 0,
       },
     },
@@ -69,7 +57,7 @@ function createTheme(colors: any): EuiChartThemeType {
       linkLabel: {
         maxCount: 5,
         fontSize: 11,
-        textColor: colors.euiColorDarkestShade.rgba,
+        textColor: colors.euiTextColor.rgba,
       },
       outerSizeRatio: 1,
       circlePadding: 4,
@@ -112,9 +100,17 @@ function createTheme(colors: any): EuiChartThemeType {
       },
       barSeriesStyle: {
         displayValue: {
-          fontSize: 8,
+          fontSize: 10,
           fontFamily: fontFamily,
-          fill: colors.euiColorDarkShade.rgba,
+          fill: {
+            textInvertible: true,
+            textContrast: true,
+            textBorder: 0,
+          },
+          alignment: {
+            horizontal: 'center',
+            vertical: 'middle',
+          },
         },
       },
       scales: {
@@ -125,7 +121,7 @@ function createTheme(colors: any): EuiChartThemeType {
         axisTitle: {
           fontSize: 12,
           fontFamily: fontFamily,
-          fill: colors.euiColorDarkestShade.rgba,
+          fill: colors.euiTextColor.rgba,
           padding: {
             inner: 10,
             outer: 0,
@@ -137,7 +133,7 @@ function createTheme(colors: any): EuiChartThemeType {
         tickLabel: {
           fontSize: 10,
           fontFamily: fontFamily,
-          fill: colors.euiColorDarkShade.rgba,
+          fill: colors.euiTextSubduedColor.rgba,
           padding: {
             outer: 8,
             inner: 10,
@@ -182,6 +178,37 @@ function createTheme(colors: any): EuiChartThemeType {
           stroke: colors.euiColorDarkShade.rgba,
           strokeWidth: 1,
           dash: [4, 4],
+        },
+      },
+      goal: {
+        tickLabel: {
+          fontFamily: fontFamily,
+          fill: colors.euiTextSubduedColor.rgba,
+        },
+        majorLabel: {
+          fontFamily: fontFamily,
+          fill: colors.euiTextColor.rgba,
+        },
+        minorLabel: {
+          fontFamily: fontFamily,
+          fill: colors.euiTextSubduedColor.rgba,
+        },
+        majorCenterLabel: {
+          fontFamily: fontFamily,
+          fill: colors.euiTextColor.rgba,
+        },
+        minorCenterLabel: {
+          fontFamily: fontFamily,
+          fill: colors.euiTextSubduedColor.rgba,
+        },
+        targetLine: {
+          stroke: colors.euiColorDarkestShade.rgba,
+        },
+        tickLine: {
+          stroke: colors.euiColorMediumShade.rgba,
+        },
+        progressLine: {
+          stroke: colors.euiColorDarkestShade.rgba,
         },
       },
     },

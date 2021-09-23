@@ -21,12 +21,16 @@
   width: 220%;
   height: 100%;
   background: linear-gradient(
-    to right,
+    137deg,
     $euiGradientStartStop 45%,
     $euiGradientMiddle 50%,
     $euiGradientStartStop 55%,
     );
-  animation: euiLoadingContentGradientLoad 1.5s $euiAnimSlightResistance infinite;
+
+  // sass-lint:disable-block mixins-before-declarations
+  @include euiCanAnimate {
+    animation: euiLoadingContentGradientLoad 1.5s $euiAnimSlightResistance infinite;
+  }
 }
 
 @keyframes euiLoadingContentGradientLoad {

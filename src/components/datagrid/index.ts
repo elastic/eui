@@ -1,40 +1,12 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
-export { EuiDataGridColumnSortingDraggableProps } from './column_sorting_draggable';
-export { EuiDataGrid, EuiDataGridProps } from './data_grid';
-export { EuiDataGridBodyProps } from './data_grid_body';
-export {
-  EuiDataGridCellProps,
-  EuiDataGridCellValueProps,
-  EuiDataGridCellValueElementProps,
-} from './data_grid_cell';
-export { EuiDataGridColumnResizerProps } from './data_grid_column_resizer';
-export { EuiDataGridHeaderRowProps } from './data_grid_header_row';
-export { EuiDataGridHeaderCellProps } from './data_grid_header_cell';
-export { EuiDataGridControlHeaderRowProps } from './data_grid_control_header_cell';
-export { EuiDataGridInMemoryRendererProps } from './data_grid_inmemory_renderer';
-export {
-  EuiDataGridSchema,
-  EuiDataGridSchemaDetector,
-  SchemaTypeScore,
-} from './data_grid_schema';
+export { EuiDataGrid } from './data_grid';
 export { useDataGridColumnSelector } from './column_selector';
 export { useDataGridColumnSorting } from './column_sorting';
 export { useDataGridStyleSelector } from './style_selector';

@@ -28,6 +28,10 @@ export default () => {
       id: 'l',
       label: 'Large',
     },
+    {
+      id: '400px',
+      label: 'Fixed (400)',
+    },
   ];
 
   const closeFlyout = () => setIsFlyoutVisible(false);
@@ -41,7 +45,8 @@ export default () => {
         ownFocus
         onClose={closeFlyout}
         size={size}
-        aria-labelledby="flyoutLargeTitle">
+        aria-labelledby="flyoutLargeTitle"
+      >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
             <h2 id="flyoutLargeTitle">A {sizeName.toLowerCase()} flyout</h2>

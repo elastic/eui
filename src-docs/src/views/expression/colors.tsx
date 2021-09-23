@@ -5,7 +5,7 @@ import { EuiSpacer } from '../../../../src/components/spacer';
 
 export default () => (
   <div>
-    <EuiExpression description="Secondary" value="isDefault()" />
+    <EuiExpression description="Success" value="isDefault()" />
     <EuiSpacer size="s" />
     <EuiExpression description="Primary" value="color()" color="primary" />
     <EuiSpacer size="s" />

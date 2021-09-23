@@ -77,7 +77,7 @@ export default () => {
   ];
 
   const formSample = (
-    <EuiForm id="modalFormId">
+    <EuiForm id="modalFormId" component="form">
       <EuiFormRow>
         <EuiSwitch
           id={htmlIdGenerator()()}

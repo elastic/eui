@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { ReactElement } from 'react';
@@ -27,7 +16,7 @@ import {
 } from '../button';
 import { EuiToolTip } from '../tool_tip';
 import { DefaultItemAction as Action } from './action_types';
-import { htmlIdGenerator } from '../../services/accessibility';
+import { useGeneratedHtmlId } from '../../services/accessibility';
 import { EuiScreenReaderOnly } from '../accessibility';
 
 export interface DefaultItemActionProps<T> {
@@ -68,12 +57,12 @@ export const DefaultItemAction = <T extends {}>({
   let button;
   const actionContent =
     typeof action.name === 'function' ? action.name(item) : action.name;
+  const ariaLabelId = useGeneratedHtmlId();
   if (action.type === 'icon') {
     if (!icon) {
       throw new Error(`Cannot render item action [${action.name}]. It is configured to render as an icon but no
       icon is provided. Make sure to set the 'icon' property of the action`);
     }
-    const ariaLabelId = htmlIdGenerator()();
     button = (
       <>
         <EuiButtonIcon
@@ -105,7 +94,8 @@ export const DefaultItemAction = <T extends {}>({
         href={action.href}
         target={action.target}
         data-test-subj={action['data-test-subj']}
-        flush="right">
+        flush="right"
+      >
         {actionContent}
       </EuiButtonEmpty>
     );

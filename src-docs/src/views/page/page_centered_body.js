@@ -11,13 +11,16 @@ import {
 export default ({ button = <></>, content, sideNav }) => {
   return (
     <EuiPage paddingSize="none">
-      <EuiPageSideBar sticky>{sideNav}</EuiPageSideBar>
+      <EuiPageSideBar paddingSize="l" sticky>
+        {sideNav}
+      </EuiPageSideBar>
 
       <EuiPageBody paddingSize="l">
         <EuiPageContent
           verticalPosition="center"
           horizontalPosition="center"
-          paddingSize="none">
+          paddingSize="none"
+        >
           <EuiEmptyPrompt
             title={<span>No spice</span>}
             body={content}

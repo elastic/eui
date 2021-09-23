@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -22,6 +11,8 @@ import React, {
   ReactNode,
   ReactElement,
   MouseEventHandler,
+  useState,
+  useEffect,
 } from 'react';
 import classNames from 'classnames';
 
@@ -87,6 +78,7 @@ export interface _EuiSideNavItemProps {
   isOpen?: boolean;
   isParent?: boolean;
   depth?: number;
+  childrenOnly?: boolean;
 }
 
 type ExcludeEuiSideNavItemProps<T> = Pick<
@@ -125,7 +117,8 @@ const DefaultRenderItem = ({
         target={target}
         rel={secureRel}
         onClick={onClick}
-        {...rest}>
+        {...rest}
+      >
         {children}
       </a>
     );
@@ -138,7 +131,8 @@ const DefaultRenderItem = ({
         className={className}
         onClick={onClick}
         disabled={disabled}
-        {...rest}>
+        {...rest}
+      >
         {children}
       </button>
     );
@@ -171,18 +165,29 @@ export function EuiSideNavItem<
   truncate = true,
   emphasize,
   buttonClassName,
+  childrenOnly,
   ...rest
 }: EuiSideNavItemProps<T>) {
   const isHrefValid = !_href || validateHref(_href);
   const href = isHrefValid ? _href : '';
-  let childItems;
+  const isClickable = onClick || href;
 
-  if (items && isOpen) {
+  // Forcing accordion style item if not linked, but has children
+  const [itemIsOpen, setItemIsOpen] = useState(isOpen);
+  useEffect(() => {
+    setItemIsOpen(isOpen);
+  }, [isOpen]);
+
+  const toggleItemOpen = () => {
+    setItemIsOpen((isOpen) => !isOpen);
+  };
+
+  let childItems;
+  if (items && itemIsOpen) {
     childItems = <div className="euiSideNavItem__items">{items}</div>;
   }
 
   let buttonIcon;
-
   if (icon) {
     buttonIcon = cloneElement(icon, {
       className: classNames('euiSideNavItemButton__icon', icon.props.className),
@@ -205,8 +210,8 @@ export function EuiSideNavItem<
   const buttonClasses = classNames(
     'euiSideNavItemButton',
     {
-      'euiSideNavItemButton--isClickable': onClick || href,
-      'euiSideNavItemButton-isOpen': depth > 0 && isOpen && !isSelected,
+      'euiSideNavItemButton--isClickable': isClickable,
+      'euiSideNavItemButton-isOpen': depth > 0 && itemIsOpen && !isSelected,
       'euiSideNavItemButton-isSelected': isSelected,
     },
     buttonClassName
@@ -214,8 +219,8 @@ export function EuiSideNavItem<
 
   let caret;
 
-  if (depth > 0 && isParent && !isOpen && !isSelected) {
-    caret = <EuiIcon type="arrowDown" color="subdued" size="s" />;
+  if (depth > 0 && childrenOnly) {
+    caret = <EuiIcon type={itemIsOpen ? 'arrowDown' : 'arrowRight'} size="s" />;
   }
 
   const buttonContent = (
@@ -229,7 +234,8 @@ export function EuiSideNavItem<
             title={truncate ? innerText : undefined}
             className={classNames('euiSideNavItemButton__label', {
               'euiSideNavItemButton__label--truncated': truncate,
-            })}>
+            })}
+          >
             {children}
           </span>
         )}
@@ -243,7 +249,7 @@ export function EuiSideNavItem<
     href,
     rel,
     target,
-    onClick,
+    onClick: childrenOnly ? toggleItemOpen : onClick,
     className: buttonClasses,
     children: buttonContent,
   };

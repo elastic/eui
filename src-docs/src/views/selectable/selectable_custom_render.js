@@ -19,6 +19,7 @@ export default () => {
       searchableLabel: `${country.name} ${'I am secondary content, I am!'}`,
       prepend: country.flag,
       append: <EuiBadge>{country.code}</EuiBadge>,
+      showIcons: false,
     };
   });
 
@@ -80,7 +81,8 @@ export default () => {
         searchable
         options={options}
         onChange={onChange}
-        {...customProps}>
+        {...customProps}
+      >
         {(list, search) => (
           <>
             {search}

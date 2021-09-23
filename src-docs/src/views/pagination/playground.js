@@ -1,4 +1,4 @@
-import { EuiPagination, EuiText } from '../../../../src/components/';
+import { EuiPagination } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   dummyFunction,
@@ -12,17 +12,22 @@ export const paginationConfig = () => {
   const propsToUse = propUtilityForPlayground(docgenInfo.props);
 
   propsToUse.onPageClick = simulateFunction(propsToUse.onPageClick);
+
+  propsToUse.pageCount = {
+    ...propsToUse.pageCount,
+    value: 22,
+  };
+
   return {
     config: {
       componentName: 'EuiPagination',
       props: propsToUse,
       scope: {
         EuiPagination,
-        EuiText,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiPagination', 'EuiText'],
+          named: ['EuiPagination'],
         },
       },
       customProps: {

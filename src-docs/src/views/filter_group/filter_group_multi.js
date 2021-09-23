@@ -75,7 +75,8 @@ export default () => {
       isSelected={isPopoverOpen}
       numFilters={items.length}
       hasActiveFilters={!!items.find((item) => item.checked === 'on')}
-      numActiveFilters={items.filter((item) => item.checked === 'on').length}>
+      numActiveFilters={items.filter((item) => item.checked === 'on').length}
+    >
       Composers
     </EuiFilterButton>
   );
@@ -87,7 +88,8 @@ export default () => {
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}
-        panelPaddingSize="none">
+        panelPaddingSize="none"
+      >
         <EuiPopoverTitle paddingSize="s">
           <EuiFieldSearch compressed />
         </EuiPopoverTitle>
@@ -96,13 +98,14 @@ export default () => {
             <EuiFilterSelectItem
               checked={item.checked}
               key={index}
-              onClick={() => updateItem(index)}>
+              onClick={() => updateItem(index)}
+            >
               {item.name}
             </EuiFilterSelectItem>
           ))}
           {/*
-              Use when loading items initially
-            */}
+                Use when loading items initially
+              */}
           <div className="euiFilterSelect__note">
             <div className="euiFilterSelect__noteContent">
               <EuiLoadingChart size="m" />
@@ -111,8 +114,8 @@ export default () => {
             </div>
           </div>
           {/*
-              Use when no results are returned
-            */}
+                Use when no results are returned
+              */}
           <div className="euiFilterSelect__note">
             <div className="euiFilterSelect__noteContent">
               <EuiIcon type="minusInCircle" />

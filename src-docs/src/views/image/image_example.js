@@ -76,6 +76,7 @@ export const ImageExample = {
       props: { EuiImage },
       demo: <Image />,
       snippet: imageSnippet,
+      playground: imageConfig,
     },
     {
       title: 'Click an image for a full screen version',
@@ -163,5 +164,4 @@ export const ImageExample = {
       snippet: imageFloatSnippet,
     },
   ],
-  playground: imageConfig,
 };

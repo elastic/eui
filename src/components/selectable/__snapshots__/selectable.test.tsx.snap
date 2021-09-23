@@ -54,3 +54,43 @@ exports[`EuiSelectable props singleSelection 1`] = `
   class="euiSelectable"
 />
 `;
+
+exports[`EuiSelectable should not reset the activeOptionIndex nor isFocused when EuiSelectable is blurred in favour of its popover 1`] = `
+Object {
+  "activeOptionIndex": 0,
+  "isFocused": true,
+  "searchValue": "",
+  "visibleOptions": Array [
+    Object {
+      "data-test-subj": "titanOption",
+      "label": "Titan",
+    },
+    Object {
+      "label": "Enceladus",
+    },
+    Object {
+      "label": "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    },
+  ],
+}
+`;
+
+exports[`EuiSelectable should not reset the activeOptionIndex nor isFocused when EuiSelectable is blurred in favour of its popover 2`] = `
+Object {
+  "activeOptionIndex": 0,
+  "isFocused": true,
+  "searchValue": "",
+  "visibleOptions": Array [
+    Object {
+      "data-test-subj": "titanOption",
+      "label": "Titan",
+    },
+    Object {
+      "label": "Enceladus",
+    },
+    Object {
+      "label": "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    },
+  ],
+}
+`;

@@ -33,14 +33,16 @@ export default () => {
         droppableId="DROPPABLE_AREA"
         spacing="m"
         withPanel
-        grow={false}>
+        grow={false}
+      >
         {list.map(({ content, id }, idx) => (
           <EuiDraggable
             spacing="m"
             key={id}
             index={idx}
             draggableId={id}
-            disableInteractiveElementBlocking>
+            disableInteractiveElementBlocking
+          >
             <EuiButton fullWidth onClick={() => {}}>
               {content}
             </EuiButton>

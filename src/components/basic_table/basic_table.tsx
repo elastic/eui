@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -64,7 +53,7 @@ import { ExpandedItemActions } from './expanded_item_actions';
 
 import { Pagination, PaginationBar } from './pagination_bar';
 import { EuiIcon } from '../icon';
-import { EuiKeyboardAccessible, EuiScreenReaderOnly } from '../accessibility';
+import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import { EuiDelayRender } from '../delay_render';
 
@@ -539,6 +528,7 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   tableId = htmlIdGenerator('__table')();
+  selectAllCheckboxId = htmlIdGenerator('_selection_column-checkbox')();
 
   render() {
     const {
@@ -594,7 +584,8 @@ export class EuiBasicTable<T = any> extends Component<
         <EuiFlexGroup
           responsive={false}
           justifyContent="spaceBetween"
-          alignItems="baseline">
+          alignItems="baseline"
+        >
           <EuiFlexItem grow={false}>{this.renderSelectAll(true)}</EuiFlexItem>
           <EuiFlexItem grow={false}>{this.renderTableMobileSort()}</EuiFlexItem>
         </EuiFlexGroup>
@@ -611,7 +602,8 @@ export class EuiBasicTable<T = any> extends Component<
           id={this.tableId}
           tableLayout={tableLayout}
           responsive={responsive}
-          compressed={compressed}>
+          compressed={compressed}
+        >
           {caption}
           {head}
           {body}
@@ -771,7 +763,7 @@ export class EuiBasicTable<T = any> extends Component<
       <EuiI18n token="euiBasicTable.selectAllRows" default="Select all rows">
         {(selectAllRows: string) => (
           <EuiCheckbox
-            id={`_selection_column-checkbox_${htmlIdGenerator()()}`}
+            id={this.selectAllCheckboxId}
             type={isMobile ? undefined : 'inList'}
             checked={checked}
             disabled={disabled}
@@ -811,6 +803,7 @@ export class EuiBasicTable<T = any> extends Component<
         isMobileHeader,
         hideForMobile,
         readOnly,
+        description,
       } = column as EuiTableFieldDataColumnType<T>;
 
       const columnAlign = align || this.getAlignForDataType(dataType);
@@ -822,7 +815,9 @@ export class EuiBasicTable<T = any> extends Component<
             key={`_actions_h_${index}`}
             align="right"
             width={width}
-            mobileOptions={mobileOptions}>
+            description={description}
+            mobileOptions={mobileOptions}
+          >
             {name}
           </EuiTableHeaderCell>
         );
@@ -840,7 +835,6 @@ export class EuiBasicTable<T = any> extends Component<
             ? SortDirection.isAsc(sortDirection)
             : undefined;
           sorting.onSort = this.resolveColumnOnSort(column);
-          sorting.allowNeutralSort = this.props.sorting.allowNeutralSort;
           sorting.readOnly = this.props.sorting.readOnly || readOnly;
         }
         headers.push(
@@ -850,7 +844,9 @@ export class EuiBasicTable<T = any> extends Component<
             width={width}
             mobileOptions={mobileOptions}
             data-test-subj={`tableHeaderCell_${name}_${index}`}
-            {...sorting}>
+            description={description}
+            {...sorting}
+          >
             {name}
           </EuiTableHeaderCell>
         );
@@ -880,7 +876,6 @@ export class EuiBasicTable<T = any> extends Component<
             ? SortDirection.isAsc(sortDirection)
             : undefined;
           sorting.onSort = this.resolveColumnOnSort(column);
-          sorting.allowNeutralSort = this.props.sorting.allowNeutralSort;
           sorting.readOnly = this.props.sorting.readOnly || readOnly;
         }
       }
@@ -893,7 +888,9 @@ export class EuiBasicTable<T = any> extends Component<
           hideForMobile={hideForMobile}
           mobileOptions={mobileOptions}
           data-test-subj={`tableHeaderCell_${field}_${index}`}
-          {...sorting}>
+          description={description}
+          {...sorting}
+        >
           {name}
         </EuiTableHeaderCell>
       );
@@ -934,7 +931,8 @@ export class EuiBasicTable<T = any> extends Component<
         footers.push(
           <EuiTableFooterCell
             key={`footer_${field}_${footers.length - 1}`}
-            align={align}>
+            align={align}
+          >
             {footer}
           </EuiTableFooterCell>
         );
@@ -944,7 +942,8 @@ export class EuiBasicTable<T = any> extends Component<
         footers.push(
           <EuiTableFooterCell
             key={`footer_empty_${footers.length - 1}`}
-            align={align}>
+            align={align}
+          >
             {undefined}
           </EuiTableFooterCell>
         );
@@ -984,7 +983,8 @@ export class EuiBasicTable<T = any> extends Component<
           <EuiTableRowCell
             align="center"
             colSpan={colSpan}
-            isMobileFullWidth={true}>
+            isMobileFullWidth={true}
+          >
             <EuiIcon type="minusInCircle" color="danger" /> {error}
           </EuiTableRowCell>
         </EuiTableRow>
@@ -1001,7 +1001,8 @@ export class EuiBasicTable<T = any> extends Component<
           <EuiTableRowCell
             align="center"
             colSpan={colSpan}
-            isMobileFullWidth={true}>
+            isMobileFullWidth={true}
+          >
             {noItemsMessage}
           </EuiTableRowCell>
         </EuiTableRow>
@@ -1103,7 +1104,8 @@ export class EuiBasicTable<T = any> extends Component<
       <EuiTableRow
         id={expandedRowId}
         isExpandedRow={true}
-        isSelectable={isSelectable}>
+        isSelectable={isSelectable}
+      >
         <EuiTableRowCell colSpan={expandedRowColSpan} textOnly={false}>
           {itemIdToExpandedRowMap[itemId]}
         </EuiTableRowCell>
@@ -1121,18 +1123,15 @@ export class EuiBasicTable<T = any> extends Component<
         isSelected={selected}
         hasActions={hasActions == null ? calculatedHasActions : hasActions}
         isExpandable={isExpandable}
-        {...rowProps}>
+        {...rowProps}
+      >
         {cells}
       </EuiTableRow>
     );
 
     return (
       <Fragment key={`row_${itemId}`}>
-        {(rowProps as any).onClick ? (
-          <EuiKeyboardAccessible>{row}</EuiKeyboardAccessible>
-        ) : (
-          row
-        )}
+        {row}
         {expandedRow}
       </Fragment>
     );
@@ -1236,7 +1235,8 @@ export class EuiBasicTable<T = any> extends Component<
         key={key}
         align="right"
         textOnly={false}
-        hasActions={true}>
+        hasActions={true}
+      >
         {tools}
       </EuiTableRowCell>
     );
@@ -1318,7 +1318,8 @@ export class EuiBasicTable<T = any> extends Component<
             mobileOptions && mobileOptions.header === false ? false : name,
         }}
         {...cellProps}
-        {...rest}>
+        {...rest}
+      >
         {content}
       </EuiTableRowCell>
     );

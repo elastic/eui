@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -22,6 +11,7 @@ import React, {
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
   FunctionComponent,
+  ReactNode,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
@@ -31,6 +21,16 @@ import { validateHref } from '../../services/security/href_validator';
 export interface EuiTabProps extends CommonProps {
   isSelected?: boolean;
   disabled?: boolean;
+  /**
+   * Places content before the tab content/children.
+   * Will be excluded from interactive effects.
+   */
+  prepend?: ReactNode;
+  /**
+   * Places content after the tab content/children.
+   * Will be excluded from interactive effects.
+   */
+  append?: ReactNode;
 }
 
 type EuiTabPropsForAnchor = EuiTabProps &
@@ -54,6 +54,8 @@ export const EuiTab: FunctionComponent<Props> = ({
   href,
   target,
   rel,
+  prepend,
+  append,
   ...rest
 }) => {
   const isHrefValid = !href || validateHref(href);
@@ -63,6 +65,11 @@ export const EuiTab: FunctionComponent<Props> = ({
     'euiTab-isSelected': isSelected,
     'euiTab-isDisabled': disabled,
   });
+
+  const prependNode = prepend && (
+    <span className="euiTab__prepend">{prepend}</span>
+  );
+  const appendNode = append && <span className="euiTab__append">{append}</span>;
 
   //  <a> elements don't respect the `disabled` attribute. So if we're disabled, we'll just pretend
   //  this is a button and piggyback off its disabled styles.
@@ -77,8 +84,11 @@ export const EuiTab: FunctionComponent<Props> = ({
         href={href}
         target={target}
         rel={secureRel}
-        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+        {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}
+      >
+        {prependNode}
         <span className="euiTab__content">{children}</span>
+        {appendNode}
       </a>
     );
   }
@@ -90,8 +100,11 @@ export const EuiTab: FunctionComponent<Props> = ({
       type="button"
       className={classes}
       disabled={disabled}
-      {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}>
+      {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
+    >
+      {prependNode}
       <span className="euiTab__content">{children}</span>
+      {appendNode}
     </button>
   );
 };

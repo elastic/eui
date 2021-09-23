@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -90,7 +79,14 @@ type EuiFormRowCommonProps = CommonProps & {
   id?: string;
   isInvalid?: boolean;
   error?: ReactNode | ReactNode[];
-  helpText?: ReactNode;
+  /**
+   *  Adds a single node/string or an array of nodes/strings below the input
+   */
+  helpText?: ReactNode | ReactNode[];
+  /**
+   *  Passed along to the label element; and to the child field element when `disabled` doesn't already exist on the child field element.
+   */
+  isDisabled?: boolean;
 };
 
 type LabelProps = {
@@ -105,7 +101,7 @@ type LegendProps = {
    */
   labelType?: 'legend';
 } & EuiFormRowCommonProps &
-  HTMLAttributes<HTMLFieldSetElement>;
+  Omit<HTMLAttributes<HTMLFieldSetElement>, 'disabled'>;
 
 export type EuiFormRowProps = ExclusiveUnion<LabelProps, LegendProps>;
 
@@ -170,6 +166,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       display,
       hasChildLabel,
       id: propsId,
+      isDisabled,
       ...rest
     } = this.props;
 
@@ -185,14 +182,22 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       className
     );
 
-    let optionalHelpText;
+    let optionalHelpTexts;
 
     if (helpText) {
-      optionalHelpText = (
-        <EuiFormHelpText id={`${id}-help`} className="euiFormRow__text">
-          {helpText}
-        </EuiFormHelpText>
-      );
+      const helpTexts = Array.isArray(helpText) ? helpText : [helpText];
+      optionalHelpTexts = helpTexts.map((helpText, i) => {
+        const key = typeof helpText === 'string' ? helpText : i;
+        return (
+          <EuiFormHelpText
+            key={key}
+            id={`${id}-help-${i}`}
+            className="euiFormRow__text"
+          >
+            {helpText}
+          </EuiFormHelpText>
+        );
+      });
     }
 
     let optionalErrors;
@@ -205,7 +210,8 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
           <EuiFormErrorText
             key={key}
             id={`${id}-error-${i}`}
-            className="euiFormRow__text">
+            className="euiFormRow__text"
+          >
             {error}
           </EuiFormErrorText>
         );
@@ -224,7 +230,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       } else {
         labelProps = {
           htmlFor: hasChildLabel ? id : undefined,
-          isFocused: this.state.isFocused,
+          ...(!isDisabled && { isFocused: this.state.isFocused }), // If the row is disabled, don't pass the isFocused state.
           type: labelType,
         };
       }
@@ -233,8 +239,10 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
           <EuiFormLabel
             className="euiFormRow__label"
             isInvalid={isInvalid}
+            isDisabled={isDisabled}
             aria-invalid={isInvalid}
-            {...labelProps}>
+            {...labelProps}
+          >
             {label}
           </EuiFormLabel>
           {labelAppend && ' '}
@@ -249,8 +257,10 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
      */
     const describingIds = [...describedByIds!];
 
-    if (optionalHelpText) {
-      describingIds.push(optionalHelpText.props.id);
+    if (optionalHelpTexts) {
+      optionalHelpTexts.forEach((optionalHelpText) =>
+        describingIds.push(optionalHelpText.props.id)
+      );
     }
 
     if (optionalErrors) {
@@ -261,8 +271,11 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       optionalProps['aria-describedby'] = describingIds.join(' ');
     }
 
-    const field = cloneElement(Children.only(children), {
+    const child = Children.only(children);
+    const field = cloneElement(child, {
       id,
+      // Allow the child's disabled or isDisabled prop to supercede the `isDisabled`
+      disabled: child.props.disabled ?? child.props.isDisabled ?? isDisabled,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       ...optionalProps,
@@ -287,7 +300,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
         <div className={fieldWrapperClasses}>
           {field}
           {optionalErrors}
-          {optionalHelpText}
+          {optionalHelpTexts}
         </div>
       </React.Fragment>
     );
@@ -295,7 +308,8 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     return labelType === 'legend' ? (
       <fieldset
         {...sharedProps}
-        {...(rest as HTMLAttributes<HTMLFieldSetElement>)}>
+        {...(rest as HTMLAttributes<HTMLFieldSetElement>)}
+      >
         {contents}
       </fieldset>
     ) : (

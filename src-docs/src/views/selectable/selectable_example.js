@@ -19,6 +19,7 @@ import {
 import {
   EuiSelectableOptionProps,
   EuiSelectableOptionsList,
+  EuiSelectableSearchProps,
   Options,
   MetaData,
 } from './props';
@@ -108,7 +109,8 @@ export const SelectableExample = {
           </p>
           <EuiCallOut
             iconType="check"
-            title="Selected options are based on the checked = on property">
+            title="Selected options are based on the checked = on property"
+          >
             <p>
               <strong>EuiSelectable</strong> offers the ability to{' '}
               <strong>exclude</strong> selections. Therefore, the{' '}
@@ -152,7 +154,9 @@ export const SelectableExample = {
             To add a search component to the list, simply add the{' '}
             <EuiCode>searchable</EuiCode> prop. You can optionally pass in a{' '}
             <EuiCode>searchProps</EuiCode> object which will get passed down to
-            the actual <strong>EuiFieldSearch</strong> used.
+            the actual <strong>EuiFieldSearch</strong> used. In this example,
+            <EuiCode>onSearch</EuiCode> will return a second parameter, enabling
+            you to access the list of filtered items
           </p>
           <EuiCallOut
             iconType="search"
@@ -170,6 +174,7 @@ export const SelectableExample = {
         EuiSelectable,
         EuiSelectableOptionProps,
         EuiSelectableOptionsList,
+        EuiSelectableSearchProps,
       },
       demo: <SelectableSearch />,
       snippet: `<EuiSelectable
@@ -477,7 +482,8 @@ export const SelectableExample = {
           <EuiSpacer size="xs" />
           <EuiAccordion
             id="optionSnippet"
-            buttonContent={<small>Code snippet</small>}>
+            buttonContent={<small>Code snippet</small>}
+          >
             <EuiSpacer size="xs" />
             <EuiCodeBlock language="ts" isCopyable paddingSize="s">
               {`const options: EuiSelectableTemplateSitewideOption[] = [

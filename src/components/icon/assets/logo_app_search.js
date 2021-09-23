@@ -1,3 +1,5 @@
+// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY
+
 import * as React from 'react';
 
 const EuiIconLogoAppSearch = ({ title, titleId, ...props }) => (
@@ -7,7 +9,8 @@ const EuiIconLogoAppSearch = ({ title, titleId, ...props }) => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       fill="#0080D5"

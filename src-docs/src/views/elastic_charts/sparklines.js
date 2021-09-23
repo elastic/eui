@@ -75,8 +75,9 @@ export const Sparklines = () => {
             <EuiStat
               title=""
               description="Increase over time"
-              titleColor="secondary"
-              textAlign="right">
+              titleColor="success"
+              textAlign="right"
+            >
               <EuiSpacer size="s" />
               <Chart size={{ height: 48 }}>
                 <Settings theme={theme} showLegend={false} tooltip="none" />
@@ -93,7 +94,7 @@ export const Sparklines = () => {
                 />
               </Chart>
               <EuiSpacer size="s" />
-              <EuiText size="xs" color="secondary">
+              <EuiText size="xs" color="success">
                 <EuiIcon type="sortUp" /> <strong>15%</strong>
               </EuiText>
             </EuiStat>
@@ -109,7 +110,8 @@ export const Sparklines = () => {
               }
               description="Major decrease over time"
               titleColor="danger"
-              textAlign="right">
+              textAlign="right"
+            >
               <EuiSpacer size="s" />
               <Chart size={{ height: 16 }}>
                 <Settings theme={theme} showLegend={false} tooltip="none" />
@@ -134,7 +136,8 @@ export const Sparklines = () => {
               title=""
               description="Subtle decrease"
               titleColor="danger"
-              textAlign="right">
+              textAlign="right"
+            >
               <EuiSpacer size="s" />
               <Chart size={{ height: 48 }}>
                 <Settings theme={theme} showLegend={false} tooltip="none" />

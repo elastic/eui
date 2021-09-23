@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { FunctionComponent, Ref } from 'react';
@@ -57,7 +46,7 @@ export const COLORS = keysOf(colorToClassNameMap);
 const sizeToClassNameMap = {
   xs: 'euiButtonEmpty--xSmall',
   s: 'euiButtonEmpty--small',
-  l: 'euiButtonEmpty--large',
+  m: null,
 };
 
 export const SIZES = keysOf(sizeToClassNameMap);
@@ -126,8 +115,9 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
   className,
   iconType,
   iconSide = 'left',
+  iconSize = 'm',
   color = 'primary',
-  size,
+  size = 'm',
   flush,
   isDisabled: _isDisabled,
   disabled: _disabled,
@@ -175,10 +165,12 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
       isLoading={isLoading}
       iconType={iconType}
       iconSide={iconSide}
+      iconSize={size === 'xs' ? 's' : iconSize}
       textProps={{ ...textProps, className: textClassNames }}
       {...contentProps}
       // className has to come last to override contentProps.className
-      className={contentClassNames}>
+      className={contentClassNames}
+    >
       {children}
     </EuiButtonContent>
   );
@@ -195,7 +187,8 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
         target={target}
         rel={secureRel}
         ref={buttonRef as Ref<HTMLAnchorElement>}
-        {...(rest as EuiButtonEmptyPropsForAnchor)}>
+        {...(rest as EuiButtonEmptyPropsForAnchor)}
+      >
         {innerNode}
       </a>
     );
@@ -208,7 +201,8 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
       type={type}
       ref={buttonRef as Ref<HTMLButtonElement>}
       aria-pressed={isSelected}
-      {...(rest as EuiButtonEmptyPropsForButton)}>
+      {...(rest as EuiButtonEmptyPropsForButton)}
+    >
       {innerNode}
     </button>
   );

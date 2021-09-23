@@ -432,12 +432,12 @@ exports[`EuiFormRow props helpText is rendered 1`] = `
     class="euiFormRow__fieldWrapper"
   >
     <input
-      aria-describedby="generated-id-help"
+      aria-describedby="generated-id-help-0"
       id="generated-id"
     />
     <div
       class="euiFormHelpText euiFormRow__text"
-      id="generated-id-help"
+      id="generated-id-help-0"
     >
       <span>
         This is help text.
@@ -457,6 +457,53 @@ exports[`EuiFormRow props id is rendered 1`] = `
   >
     <input
       id="id"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiFormRow props isDisabled allows a child to still be disabled manually 1`] = `
+<div
+  class="euiFormRow"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      disabled=""
+      id="generated-id"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiFormRow props isDisabled allows a child's disabled to override 1`] = `
+<div
+  class="euiFormRow"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      id="generated-id"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiFormRow props isDisabled is passed as disabled to child 1`] = `
+<div
+  class="euiFormRow"
+  id="generated-id-row"
+>
+  <div
+    class="euiFormRow__fieldWrapper"
+  >
+    <input
+      disabled=""
+      id="generated-id"
     />
   </div>
 </div>

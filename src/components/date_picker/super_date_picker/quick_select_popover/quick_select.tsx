@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -88,6 +77,8 @@ export class EuiQuickSelect extends Component<
   }
 
   generateId = htmlIdGenerator();
+  timeSelectionId = this.generateId();
+  legendId = this.generateId();
 
   onTimeTenseChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
     this.setState({
@@ -171,8 +162,6 @@ export class EuiQuickSelect extends Component<
 
   render() {
     const { timeTense, timeValue, timeUnits } = this.state;
-    const timeSelectionId = this.generateId();
-    const legendId = this.generateId();
     const matchedTimeUnit = timeUnitsOptions.find(
       ({ value }) => value === timeUnits
     );
@@ -182,12 +171,13 @@ export class EuiQuickSelect extends Component<
       <fieldset>
         <EuiI18n
           token="euiQuickSelect.legendText"
-          default="Quick select a time range">
+          default="Quick select a time range"
+        >
           {(legendText: string) => (
             // Legend needs to be the first thing in a fieldset, but we want the visible title within the flex.
             // So we hide it, but allow screen readers to see it
             <EuiScreenReaderOnly>
-              <legend id={legendId} className="euiFormLabel">
+              <legend id={this.legendId} className="euiFormLabel">
                 {legendText}
               </legend>
             </EuiScreenReaderOnly>
@@ -197,11 +187,13 @@ export class EuiQuickSelect extends Component<
           responsive={false}
           alignItems="center"
           justifyContent="spaceBetween"
-          gutterSize="s">
+          gutterSize="s"
+        >
           <EuiFlexItem grow={false}>
             <EuiI18n
               token="euiQuickSelect.quickSelectTitle"
-              default="Quick select">
+              default="Quick select"
+            >
               {(quickSelectTitle: string) => (
                 <div aria-hidden className="euiFormLabel">
                   {quickSelectTitle}
@@ -214,7 +206,8 @@ export class EuiQuickSelect extends Component<
               <EuiFlexItem grow={false}>
                 <EuiI18n
                   token="euiQuickSelect.previousLabel"
-                  default="Previous time window">
+                  default="Previous time window"
+                >
                   {(previousLabel: string) => (
                     <EuiToolTip content={previousLabel}>
                       <EuiButtonIcon
@@ -229,7 +222,8 @@ export class EuiQuickSelect extends Component<
               <EuiFlexItem grow={false}>
                 <EuiI18n
                   token="euiQuickSelect.nextLabel"
-                  default="Next time window">
+                  default="Next time window"
+                >
                   {(nextLabel: string) => (
                     <EuiToolTip content={nextLabel}>
                       <EuiButtonIcon
@@ -253,7 +247,7 @@ export class EuiQuickSelect extends Component<
                   compressed
                   onKeyDown={this.handleKeyDown}
                   aria-label={tenseLabel}
-                  aria-describedby={`${timeSelectionId} ${legendId}`}
+                  aria-describedby={`${this.timeSelectionId} ${this.legendId}`}
                   value={timeTense}
                   options={timeTenseOptions}
                   onChange={this.onTimeTenseChange}
@@ -267,7 +261,7 @@ export class EuiQuickSelect extends Component<
                 <EuiFieldNumber
                   compressed
                   onKeyDown={this.handleKeyDown}
-                  aria-describedby={`${timeSelectionId} ${legendId}`}
+                  aria-describedby={`${this.timeSelectionId} ${this.legendId}`}
                   aria-label={valueLabel}
                   value={timeValue}
                   onChange={this.onTimeValueChange}
@@ -282,7 +276,7 @@ export class EuiQuickSelect extends Component<
                   compressed
                   onKeyDown={this.handleKeyDown}
                   aria-label={unitLabel}
-                  aria-describedby={`${timeSelectionId} ${legendId}`}
+                  aria-describedby={`${this.timeSelectionId} ${this.legendId}`}
                   value={timeUnits}
                   options={timeUnitsOptions}
                   onChange={this.onTimeUnitsChange}
@@ -292,18 +286,19 @@ export class EuiQuickSelect extends Component<
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiButton
-              aria-describedby={`${timeSelectionId} ${legendId}`}
+              aria-describedby={`${this.timeSelectionId} ${this.legendId}`}
               className="euiQuickSelect__applyButton"
               size="s"
               onClick={this.applyQuickSelect}
-              disabled={timeValue <= 0}>
+              disabled={timeValue <= 0}
+            >
               <EuiI18n token="euiQuickSelect.applyButton" default="Apply" />
             </EuiButton>
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiHorizontalRule margin="s" />
         <EuiScreenReaderOnly>
-          <p id={timeSelectionId}>
+          <p id={this.timeSelectionId}>
             <EuiI18n
               token="euiQuickSelect.fullDescription"
               default="Currently set to {timeTense} {timeValue} {timeUnit}."

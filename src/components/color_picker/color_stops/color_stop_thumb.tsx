@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -34,8 +23,8 @@ import {
   isColorInvalid,
   isStopInvalid,
 } from './utils';
-import { useMouseMove, getChromaColor } from '../utils';
-import { keys } from '../../../services';
+import { getChromaColor } from '../utils';
+import { keys, useMouseMove } from '../../../services';
 
 import { EuiButtonIcon } from '../../button';
 import { EuiColorPicker, EuiColorPickerProps } from '../color_picker';
@@ -282,7 +271,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
           defaults={[
             'Press the Enter key to modify this stop. Press Escape to focus the group',
             'Click to edit, drag to reposition',
-          ]}>
+          ]}
+        >
           {([buttonAriaLabel, buttonTitle]: ReactChild[]) => {
             const ariaLabel = buttonAriaLabel as string;
             const title = buttonTitle as string;
@@ -314,7 +304,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
             );
           }}
         </EuiI18n>
-      }>
+      }
+    >
       <div className="euiColorStop" data-test-subj="euiColorStopPopover">
         <EuiScreenReaderOnly>
           <p aria-live="polite">
@@ -333,13 +324,15 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
                 'euiColorStopThumb.stopLabel',
                 'euiColorStopThumb.stopErrorMessage',
               ]}
-              defaults={['Stop value', 'Value is out of range']}>
+              defaults={['Stop value', 'Value is out of range']}
+            >
               {([stopLabel, stopErrorMessage]: React.ReactChild[]) => (
                 <EuiFormRow
                   label={stopLabel}
                   display="rowCompressed"
                   isInvalid={stopIsInvalid}
-                  error={stopIsInvalid ? stopErrorMessage : null}>
+                  error={stopIsInvalid ? stopErrorMessage : null}
+                >
                   <EuiFieldNumber
                     {...valueInputProps}
                     inputRef={setNumberInputRef}
@@ -360,7 +353,8 @@ export const EuiColorStopThumb: FunctionComponent<EuiColorStopThumbProps> = ({
               <EuiFormRow display="rowCompressed" hasEmptyLabelSpace={true}>
                 <EuiI18n
                   token="euiColorStopThumb.removeLabel"
-                  default="Remove this stop">
+                  default="Remove this stop"
+                >
                   {(removeLabel: string) => (
                     <EuiButtonIcon
                       iconType="trash"
