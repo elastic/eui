@@ -5,6 +5,11 @@ exports[`EuiDataGridBody renders 1`] = `
   style="width:100%;height:100%;overflow:hidden"
 >
   <div
+    aria-owns="datagrid-grid-cell--1,-1"
+    id="datagrid-grid-row--1}"
+    role="row"
+  />
+  <div
     class="euiDataGrid__virtualized"
     style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
   >
@@ -90,6 +95,7 @@ exports[`EuiDataGridBody renders 1`] = `
       <div
         class="euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell--firstColumn"
         data-test-subj="dataGridRowCell"
+        id="datagrid-grid-cell-0,0"
         role="gridcell"
         style="position:absolute;left:0;top:0px;height:34px;width:20px"
         tabindex="-1"
@@ -119,6 +125,7 @@ exports[`EuiDataGridBody renders 1`] = `
       <div
         class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridRowCell--lastColumn"
         data-test-subj="dataGridRowCell"
+        id="datagrid-grid-cell-0,1"
         role="gridcell"
         style="position:absolute;left:20px;top:0px;height:34px"
         tabindex="-1"

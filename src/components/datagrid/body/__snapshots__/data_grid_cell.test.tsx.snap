@@ -4,6 +4,7 @@ exports[`EuiDataGridCell renders 1`] = `
 <EuiDataGridCell
   colIndex={0}
   columnId="someColumn"
+  id="cell"
   interactiveCellId="someId"
   isExpandable={true}
   popoverContent={[Function]}
@@ -30,6 +31,7 @@ exports[`EuiDataGridCell renders 1`] = `
   <div
     className="euiDataGridRowCell"
     data-test-subj="dataGridRowCell"
+    id="cell"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}

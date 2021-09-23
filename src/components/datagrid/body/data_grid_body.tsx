@@ -10,6 +10,7 @@ import classNames from 'classnames';
 import React, {
   forwardRef,
   FunctionComponent,
+  ReactElement,
   useCallback,
   useContext,
   useEffect,
@@ -72,6 +73,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     rowHeightsOptions,
     getRowHeight,
     rowHeightUtils,
+    gridId,
   } = data;
 
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
@@ -119,12 +121,15 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     [`euiDataGridRowCell--${textTransform}`]: textTransform,
   });
 
+  const cellId = `datagrid-${gridId}-cell-${rowIndex},${columnIndex}`;
+
   if (isLeadingControlColumn) {
     const leadingColumn = leadingControlColumns[columnIndex];
     const { id, rowCellRender } = leadingColumn;
 
     cellContent = (
       <EuiDataGridCell
+        id={cellId}
         rowIndex={rowIndex}
         visibleRowIndex={visibleRowIndex}
         colIndex={columnIndex}
@@ -153,6 +158,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
 
     cellContent = (
       <EuiDataGridCell
+        id={cellId}
         rowIndex={rowIndex}
         visibleRowIndex={visibleRowIndex}
         colIndex={columnIndex}
@@ -188,6 +194,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
 
     cellContent = (
       <EuiDataGridCell
+        id={cellId}
         rowIndex={rowIndex}
         visibleRowIndex={visibleRowIndex}
         colIndex={columnIndex}
@@ -299,6 +306,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     rowHeightUtils,
     virtualizationOptions,
     gridStyles,
+    gridId,
   } = props;
 
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
@@ -673,6 +681,57 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     finalWidth = window.innerWidth;
   }
 
+  const [
+    {
+      renderedRowsStartIndex,
+      renderedRowsStopIndex,
+      renderedColumnsStartIndex,
+      renderedColumnsStopIndex,
+    },
+    setRenderedRowIndices,
+  ] = useState({
+    renderedRowsStartIndex: -1,
+    renderedRowsStopIndex: -1,
+    renderedColumnsStartIndex: -1,
+    renderedColumnsStopIndex: -1,
+  });
+
+  const onItemsRendered = useCallback<
+    Required<VariableSizeGridProps>['onItemsRendered']
+  >(
+    ({
+      overscanRowStartIndex,
+      overscanRowStopIndex,
+      overscanColumnStartIndex,
+      overscanColumnStopIndex,
+    }) => {
+      setRenderedRowIndices({
+        renderedRowsStartIndex: overscanRowStartIndex,
+        renderedRowsStopIndex: overscanRowStopIndex,
+        renderedColumnsStartIndex: overscanColumnStartIndex,
+        renderedColumnsStopIndex: overscanColumnStopIndex,
+      });
+    },
+    [setRenderedRowIndices]
+  );
+
+  const accessibilityRows: ReactElement[] = [];
+  for (let i = renderedRowsStartIndex; i <= renderedRowsStopIndex; i++) {
+    const rowId = `datagrid-${gridId}-row-${i}}`;
+    const ownedCells: string[] = [];
+    for (
+      let j = renderedColumnsStartIndex;
+      j <= renderedColumnsStopIndex;
+      j++
+    ) {
+      ownedCells.push(`datagrid-${gridId}-cell-${i},${j}`);
+    }
+
+    accessibilityRows.push(
+      <div key={rowId} id={rowId} role="row" aria-owns={ownedCells.join(' ')} />
+    );
+  }
+
   return (
     <EuiMutationObserver
       observerOptions={{ subtree: true, childList: true }}
@@ -686,12 +745,14 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
             mutationRef(el);
           }}
         >
+          {accessibilityRows}
           {(IS_JEST_ENVIRONMENT || finalWidth > 0) && (
             <DataGridWrapperRowsContext.Provider
               value={{ headerRowHeight, headerRow, footerRow }}
             >
               <Grid
                 {...(virtualizationOptions ? virtualizationOptions : {})}
+                onItemsRendered={onItemsRendered}
                 ref={setGridRef}
                 innerElementType={InnerElement}
                 className={VIRTUALIZED_CONTAINER_CLASS}
@@ -724,6 +785,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                   interactiveCellId,
                   rowHeightsOptions,
                   rowHeightUtils,
+                  gridId,
                 }}
                 rowCount={
                   IS_JEST_ENVIRONMENT || headerRowHeight > 0
