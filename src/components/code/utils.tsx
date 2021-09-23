@@ -28,22 +28,22 @@ const $euiSizeS = 8;
 const isAstElement = (node: RefractorNode): node is AST.Element =>
   node.hasOwnProperty('type') && node.type === 'element';
 
-// Creates an arroy of numbers from comma-separeated
+// Creates an array of numbers from comma-separeated
 // string of numbers or number ranges using `-`
 // (e.g., "1, 3-10, 15")
-const parseLineRanges = (ranges: string) => {
+export const parseLineRanges = (ranges: string) => {
   const highlights: number[] = [];
   ranges
-    .replace(/ /g, '')
+    .replace(/\s/g, '')
     .split(',')
-    .forEach((el: string) => {
-      if (el.indexOf('-') > -1) {
-        const range = el.split('-').map(Number);
+    .forEach((line: string) => {
+      if (line.includes('-')) {
+        const range = line.split('-').map(Number);
         for (let i = range[0]; i <= range[1]; i++) {
           highlights.push(i);
         }
       } else {
-        highlights.push(Number(el));
+        highlights.push(Number(line));
       }
     });
   return highlights;

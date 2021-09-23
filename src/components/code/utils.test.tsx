@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { highlightByLine } from './utils';
+import { highlightByLine, parseLineRanges } from './utils';
 
 const jsonCode = `{
   "id": "1",
@@ -65,6 +65,27 @@ describe('highlightByLine', () => {
           )
         ).toBe(true);
       });
+    });
+  });
+});
+
+describe('parseLineRanges', () => {
+  describe('given a comma-separated string of numbers', () => {
+    it('outputs an array of numbers', () => {
+      const array = parseLineRanges('1, 3, 5, 9');
+      expect(array).toEqual([1, 3, 5, 9]);
+    });
+  });
+  describe('given a comma-separated string of ranges', () => {
+    it('outputs an array of numbers', () => {
+      const array = parseLineRanges('1-5');
+      expect(array).toEqual([1, 2, 3, 4, 5]);
+    });
+  });
+  describe('given a comma-separated string of numbers and ranges', () => {
+    it('outputs an array of numbers', () => {
+      const array = parseLineRanges('1, 3-10, 15');
+      expect(array).toEqual([1, 3, 4, 5, 6, 7, 8, 9, 10, 15]);
     });
   });
 });
