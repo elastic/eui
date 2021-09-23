@@ -17,6 +17,7 @@ import { EuiDataGridBody, Cell, getParentCellContent } from './data_grid_body';
 
 describe('EuiDataGridBody', () => {
   const requiredProps = {
+    gridId: 'grid',
     isFullScreen: false,
     headerIsInteractive: true,
     rowCount: 1,
