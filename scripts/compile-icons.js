@@ -15,7 +15,7 @@ function pascalCase(x) {
 
 const iconFiles = glob.sync('**/*.svg', { cwd: iconsDir, realpath: true });
 
-iconFiles.forEach(async (filePath) => {
+iconFiles.forEach((filePath) => {
   const fileName = path.basename(filePath, '.svg');
   const svgSource = fs.readFileSync(filePath);
   const svgString = svgSource.toString();
@@ -27,7 +27,7 @@ iconFiles.forEach(async (filePath) => {
 
     const hasIds = svgString.includes('id="');
 
-    let jsxSource = await svgr(
+    let jsxSource = svgr.sync(
       svgSource,
       {
         plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
