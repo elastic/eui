@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `38.1.0`.
+**Bug fixes**
+
+- Fixed logo icons with static SVG IDs causing accessibility errors when multiples of the same logo were present ([#5204](https://github.com/elastic/eui/pull/5204))
 
 ## [`38.1.0`](https://github.com/elastic/eui/tree/v38.1.0)
 
