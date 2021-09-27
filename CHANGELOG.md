@@ -6,6 +6,10 @@
 
 - Fixed logo icons with static SVG IDs causing accessibility errors when multiples of the same logo were present ([#5204](https://github.com/elastic/eui/pull/5204))
 
+**Reverts**
+
+- Reverted `EuiScreenReaderOnly` left positioning change due to Selenium issues ([#5215](https://github.com/elastic/eui/pull/5215))
+
 ## [`38.1.0`](https://github.com/elastic/eui/tree/v38.1.0)
 
 - Fixed the `title` prop `EuiButtonGroup` to automatically display the `label` provided ([#5199](https://github.com/elastic/eui/pull/5199))
