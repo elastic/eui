@@ -277,7 +277,7 @@ export class EuiSuperSelect<T extends string> extends Component<
 
     const popoverClasses = classNames(
       'euiSuperSelect',
-      popoverProps?.panelClassName ?? popoverClassName
+      popoverProps?.className ?? popoverClassName
     );
 
     const buttonClasses = classNames(

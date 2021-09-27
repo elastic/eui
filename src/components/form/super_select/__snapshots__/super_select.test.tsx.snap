@@ -736,7 +736,7 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
   <EuiInputPopover
     anchorPosition="downLeft"
     attachToAnchor={true}
-    className="euiSuperSelect goes-on-popover-panel"
+    className="euiSuperSelect goes-on-outermost-wrapper"
     closePopover={[Function]}
     display="block"
     fullWidth={false}
@@ -780,7 +780,7 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
         </EuiResizeObserver>
       }
       buttonRef={[Function]}
-      className="euiInputPopover euiSuperSelect goes-on-popover-panel"
+      className="euiInputPopover euiSuperSelect goes-on-outermost-wrapper"
       closePopover={[Function]}
       display="block"
       hasArrow={true}
@@ -795,7 +795,7 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
         onOutsideClick={[Function]}
       >
         <div
-          className="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuperSelect goes-on-popover-panel"
+          className="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuperSelect goes-on-outermost-wrapper"
           onKeyDown={[Function]}
           onMouseDown={[Function]}
           onMouseUp={[Function]}
