@@ -1,3 +1,5 @@
+// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY
+
 import * as React from 'react';
 
 const EuiIconBellSlash = ({ title, titleId, ...props }) => (
