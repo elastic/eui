@@ -307,12 +307,6 @@ const createExample = (example, customTitle) => {
 };
 
 const createTabbedPage = (title, pages, isNew) => {
-  const component = () => (
-    <EuiErrorBoundary>
-      <GuideTabbedPage title={title} pages={pages} />
-    </EuiErrorBoundary>
-  );
-
   const createSections = (section) => {
     const htmlString = ReactDOMServer.renderToStaticMarkup(section);
 
@@ -338,6 +332,12 @@ const createTabbedPage = (title, pages, isNew) => {
       items: createSections(pages[index].page()),
     };
   });
+
+  const component = () => (
+    <EuiErrorBoundary>
+      <GuideTabbedPage title={title} pages={pages} />
+    </EuiErrorBoundary>
+  );
 
   return {
     name: title,

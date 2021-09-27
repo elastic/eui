@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import {
   EuiPageHeader,
   EuiPageContent,
@@ -55,10 +55,16 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   };
 
   const pagesRoutes: any[] = pages.map((page: any) => {
-    console.log('match.path', match.path);
-    console.log('match', match);
+    const pathname = location.pathname;
 
-    return <Route path={`${match.path}/${page.id}`}>{page.page}</Route>;
+    // first nav level redirects to first tab
+    if (match.path === pathname) {
+      return (
+        <Redirect from={`${match.path}`} to={`${match.path}/${pages[0].id}`} />
+      );
+    } else {
+      return <Route path={`${match.path}/${page.id}`}>{page.page}</Route>;
+    }
   });
 
   return (
