@@ -112,8 +112,8 @@
   position: absolute;
   // Keep it vertically inline
   top: auto;
-  // Chrome requires a left value
-  left: 0;
+  // Chrome requires a left value, and Selenium (used by Kibana's FTR) requires an off-screen position for its .getVisibleText() to not register SR-only text
+  left: -10000px;
   // The element must have a size (for some screen readers)
   width: 1px;
   height: 1px;
