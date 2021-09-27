@@ -64,27 +64,29 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
     hasDividers?: boolean;
 
     /**
-     * Props to pass to the underlying EuiPopover. Allows fine-grained control
-     * of the popover dropdown menu, including `isOpen` state, `repositionOnScroll`
-     * for EuiSuperSelects used within scrollable containers, and customizing
-     * popover panel styling.
-     */
-    popoverProps?: Partial<CommonProps & EuiPopoverProps>;
-
-    /**
      * Change `EuiContextMenuItem` layout position of icon
      */
     itemLayoutAlign?: EuiContextMenuItemLayoutAlignment;
 
     /**
+     * Props to pass to the underlying [EuiPopover](/#/layout/popover). Allows
+     * fine-grained control of the popover dropdown menu, including `isOpen` state,
+     * `repositionOnScroll` for EuiSuperSelects used within scrollable containers,
+     * and customizing popover panel styling.
+     */
+    popoverProps?: Partial<CommonProps & EuiPopoverProps>;
+
+    /**
      * Applied to the outermost wrapper (popover)
-     * **DEPRECATED: Use `popoverProps.className` instead. `popoverProps.className` will take precedence over `popoverClassName` if set.**
+     *
+     * **DEPRECATED: Use `popoverProps.className` instead (will take precedence over this prop if set).**
      */
     popoverClassName?: string;
 
     /**
      * Controls whether the options are shown. Default: false
-     * **DEPRECATED: Use `popoverProps.isOpen` instead. `popoverProps.isOpen` will take precedence over `isOpen` if set.**
+     *
+     * **DEPRECATED: Use `popoverProps.isOpen` instead (will take precedence over this prop if set).**
      */
     isOpen?: boolean;
 
@@ -92,7 +94,8 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
      * When `true`, the popover's position is re-calculated when the user
      * scrolls. When nesting an `EuiSuperSelect` in a scrollable container,
      * `repositionOnScroll` should be `true`
-     * **DEPRECATED: Use `popoverProps.repositionOnScroll` instead. `popoverProps.repositionOnScroll` will take precedence over `repositionOnScroll` if set.**
+     *
+     * **DEPRECATED: Use `popoverProps.repositionOnScroll` instead (will take precedence over this prop if set).**
      */
     repositionOnScroll?: boolean;
   };
