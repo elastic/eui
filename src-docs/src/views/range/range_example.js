@@ -16,7 +16,10 @@ import { rangeConfig, dualRangeConfig } from './playground';
 import {
   EuiRangeLevels,
   LEVEL_COLORS,
-} from '../../../../src/components/form/range/range_levels';
+} from '../../../../src/components/form/range/range_levels'; // eslint-disable-line
+
+// eslint-disable-next-line
+import { EuiRangeLevel } from '!!prop-loader!../../../../src/components/form/range/range_levels';
 
 import { EuiRangeTicks } from '../../../../src/components/form/range/range_ticks';
 
@@ -304,8 +307,10 @@ export const RangeControlExample = {
             are{' '}
             <EuiCode language="js">
               {JSON.stringify(LEVEL_COLORS, null, 2)}
-            </EuiCode>
-            .
+            </EuiCode>{' '}
+            or a valid CSS color value (e.g.{' '}
+            <EuiCode>&quot;#ff0000&quot;</EuiCode>,{' '}
+            <EuiCode>&quot;red&quot;</EuiCode>).
           </p>
           <p>
             Be sure to then add an <EuiCode>aria-describedby</EuiCode> and match
@@ -324,7 +329,7 @@ export const RangeControlExample = {
         },
       ],
       demo: <LevelsExample />,
-      props: { EuiRangeLevels },
+      props: { EuiRangeLevels, EuiRangeLevel },
       snippet: [
         `<EuiRange
   levels={[
