@@ -55,26 +55,12 @@ export default () => {
   };
 
   return (
-    <>
-      <style>
-        {`.wrapper {
-          width: 150px;
-        }
-        .dropdown {
-          width: 450px !important;
-        }`}
-      </style>
-      <EuiSuperSelect
-        options={options}
-        valueOfSelected={value}
-        onChange={(value) => onChange(value)}
-        itemLayoutAlign="top"
-        hasDividers
-        popoverProps={{
-          className: 'wrapper',
-          panelClassName: 'dropdown',
-        }}
-      />
-    </>
+    <EuiSuperSelect
+      options={options}
+      valueOfSelected={value}
+      onChange={(value) => onChange(value)}
+      itemLayoutAlign="top"
+      hasDividers
+    />
   );
 };
