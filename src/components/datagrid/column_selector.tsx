@@ -94,13 +94,15 @@ export const useDataGridColumnSelector = (
     source: { index: sourceIndex },
     destination,
   }: DropResult) {
-    const destinationIndex = destination!.index;
-    const nextSortedColumns = euiDragDropReorder(
-      sortedColumns,
-      sourceIndex,
-      destinationIndex
-    );
-    setColumns(nextSortedColumns);
+    if (destination) {
+      const destinationIndex = destination.index;
+      const nextSortedColumns = euiDragDropReorder(
+        sortedColumns,
+        sourceIndex,
+        destinationIndex
+      );
+      setColumns(nextSortedColumns);
+    }
   }
 
   const numberOfHiddenFields = availableColumns.length - visibleColumns.length;
