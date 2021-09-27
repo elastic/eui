@@ -77,6 +77,8 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
 
   fileInput: HTMLInputElement | null = null;
 
+  generatedId: string = htmlIdGenerator()();
+
   handleChange = () => {
     if (!this.fileInput) return;
 
@@ -147,11 +149,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
             ...rest
           } = this.props;
 
-          let promptId: string = htmlIdGenerator()();
-
-          if (id) {
-            promptId = `${id}-filePicker__prompt`;
-          }
+          const promptId = `${id || this.generatedId}-filePicker__prompt`;
 
           const isOverridingInitialPrompt = this.state.promptText != null;
 

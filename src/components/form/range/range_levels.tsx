@@ -6,8 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, CSSProperties } from 'react';
 import classNames from 'classnames';
+import { CommonProps } from '../../common';
 
 export type EuiRangeLevelColor = 'primary' | 'success' | 'warning' | 'danger';
 
@@ -18,13 +19,19 @@ export const LEVEL_COLORS: EuiRangeLevelColor[] = [
   'danger',
 ];
 
-export interface EuiRangeLevel {
+export interface EuiRangeLevel extends CommonProps {
   min: number;
   max: number;
-  color: EuiRangeLevelColor;
+  /**
+   * Accepts one of `["primary", "success", "warning", "danger"]` or a valid CSS color value.
+   */
+  color: EuiRangeLevelColor | CSSProperties['color'];
 }
 
 export interface EuiRangeLevelsProps {
+  /**
+   * An array of #EuiRangeLevel objects
+   */
   levels?: EuiRangeLevel[];
   max: number;
   min: number;
@@ -61,15 +68,36 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
     <div className={classes}>
       {levels.map((level, index) => {
         validateLevelIsInRange(level);
-        const range = level.max - level.min;
+
+        const {
+          color,
+          className,
+          min: levelMin,
+          max: levelMax,
+          ...rest
+        } = level;
+
+        const range = levelMax - levelMin;
         const width = (range / (max - min)) * 100;
 
+        const isNamedColor = LEVEL_COLORS.includes(color as EuiRangeLevelColor);
+
+        const styles = {
+          width: `${width}%`,
+          backgroundColor: !isNamedColor ? color : undefined,
+        };
+
+        const levelClasses = classNames(
+          'euiRangeLevel',
+          {
+            'euiRangeLevel--customColor': !isNamedColor,
+            [`euiRangeLevel--${color}`]: isNamedColor,
+          },
+          className
+        );
+
         return (
-          <span
-            key={index}
-            style={{ width: `${width}%` }}
-            className={`euiRangeLevel euiRangeLevel--${level.color}`}
-          />
+          <span key={index} style={styles} className={levelClasses} {...rest} />
         );
       })}
     </div>
