@@ -55,6 +55,7 @@ Array [
           ],
           "style": Object {
             "marginLeft": 16,
+            "width": "calc(100% - 8px)",
           },
         },
         "tagName": "span",
@@ -194,6 +195,7 @@ Array [
           ],
           "style": Object {
             "marginLeft": 16,
+            "width": "calc(100% - 8px)",
           },
         },
         "tagName": "span",
@@ -260,6 +262,7 @@ Array [
           ],
           "style": Object {
             "marginLeft": 16,
+            "width": "calc(100% - 8px)",
           },
         },
         "tagName": "span",
@@ -332,6 +335,7 @@ Array [
           ],
           "style": Object {
             "marginLeft": 24,
+            "width": "calc(100% - 16px)",
           },
         },
         "tagName": "span",
@@ -471,6 +475,7 @@ Array [
           ],
           "style": Object {
             "marginLeft": 24,
+            "width": "calc(100% - 16px)",
           },
         },
         "tagName": "span",
@@ -537,6 +542,7 @@ Array [
           ],
           "style": Object {
             "marginLeft": 24,
+            "width": "calc(100% - 16px)",
           },
         },
         "tagName": "span",
@@ -609,6 +615,7 @@ Array [
           ],
           "style": Object {
             "marginLeft": 16,
+            "width": "calc(100% - 8px)",
           },
         },
         "tagName": "span",
@@ -748,6 +755,7 @@ Array [
           ],
           "style": Object {
             "marginLeft": 16,
+            "width": "calc(100% - 8px)",
           },
         },
         "tagName": "span",
@@ -814,6 +822,7 @@ Array [
           ],
           "style": Object {
             "marginLeft": 16,
+            "width": "calc(100% - 8px)",
           },
         },
         "tagName": "span",

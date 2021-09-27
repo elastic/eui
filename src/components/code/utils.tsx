@@ -140,7 +140,10 @@ function wrapLines(
             type: 'element',
             tagName: 'span',
             properties: {
-              style: { marginLeft: width + $euiSizeS },
+              style: {
+                marginLeft: width + $euiSizeS,
+                width: `calc(100% - ${width}px)`,
+              },
               className: ['euiCodeBlock__lineText'],
             },
             children: node,
