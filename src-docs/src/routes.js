@@ -6,7 +6,7 @@ import { createHashHistory } from 'history';
 
 import { GuidePage, GuideSection, GuideMarkdownFormat } from './components';
 
-import { GuideGuidelines } from './components/guide_guidelines';
+import { GuideTabbedPage } from './components/guide_tabbedPage';
 
 import { EuiErrorBoundary } from '../../src/components';
 
@@ -309,7 +309,7 @@ const createExample = (example, customTitle) => {
 const createTabbedPage = (title, pages, isNew) => {
   const component = () => (
     <EuiErrorBoundary>
-      <GuideGuidelines title={title} pages={pages} />
+      <GuideTabbedPage title={title} pages={pages} />
     </EuiErrorBoundary>
   );
 
@@ -344,7 +344,7 @@ const createTabbedPage = (title, pages, isNew) => {
     component,
     sections: pagesSections,
     isNew,
-    isTabbedPagePage: true,
+    isTabbedPage: true,
   };
 };
 
@@ -559,34 +559,13 @@ const navigation = [
   name,
   type: slugify(name),
   items: items.map(
-    ({
-      name: itemName,
-      hasGuidelines,
-      isGuideLinePage,
-      isTabbedPagePage,
-      sections,
-      ...rest
-    }) => {
-      let item;
-
-      // when is as guidelinePage with multiple tabs the first nav item is the first of the list
-      if (isGuideLinePage) {
-        item = {
-          name: itemName,
-          path: `${slugify(name)}/${slugify(itemName)}/${slugify(
-            sections[0].id
-          )}`,
-          sections,
-          ...rest,
-        };
-      } else {
-        item = {
-          name: itemName,
-          path: `${slugify(name)}/${slugify(itemName)}`,
-          sections,
-          ...rest,
-        };
-      }
+    ({ name: itemName, hasGuidelines, isTabbedPage, sections, ...rest }) => {
+      const item = {
+        name: itemName,
+        path: `${slugify(name)}/${slugify(itemName)}`,
+        sections,
+        ...rest,
+      };
 
       if (hasGuidelines) {
         item.from = `guidelines/${slugify(itemName)}`;

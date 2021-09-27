@@ -6,7 +6,7 @@ import {
   EuiPageContentBody,
 } from '../../../../src/components/page';
 
-export type GuideGuidelinesProps = {
+export type GuideTabbedPageProps = {
   examples: any;
   guidelines: any;
   pages: any;
@@ -16,7 +16,7 @@ export type GuideGuidelinesProps = {
   location: any;
 };
 
-const GuideGuidelinesComponent: FunctionComponent<GuideGuidelinesProps> = ({
+const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   title,
   location,
   match,
@@ -55,6 +55,9 @@ const GuideGuidelinesComponent: FunctionComponent<GuideGuidelinesProps> = ({
   };
 
   const pagesRoutes: any[] = pages.map((page: any) => {
+    console.log('match.path', match.path);
+    console.log('match', match);
+
     return <Route path={`${match.path}/${page.id}`}>{page.page}</Route>;
   });
 
@@ -82,4 +85,4 @@ const GuideGuidelinesComponent: FunctionComponent<GuideGuidelinesProps> = ({
   );
 };
 
-export const GuideGuidelines = withRouter(GuideGuidelinesComponent);
+export const GuideTabbedPage = withRouter(GuideTabbedPageComponent);
