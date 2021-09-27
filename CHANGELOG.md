@@ -31,6 +31,10 @@
 - Fixed `border-radius` and increased `font-weight` for `EuiButtonGroup` ([#4993](https://github.com/elastic/eui/pull/4993))
 - Increased contrast of text `color` for `text` colored `EuiButton` and `EuiButtonIcon` ([#5177](https://github.com/elastic/eui/pull/5177))
 
+## [`38.0.1`](https://github.com/elastic/eui/tree/v38.0.1)
+
+- Reverted `EuiScreenReaderOnly` left positioning change due to Selenium issues ([#5215](https://github.com/elastic/eui/pull/5215))
+
 ## [`38.0.0`](https://github.com/elastic/eui/tree/v38.0.0)
 
 - Added optional line numbers to `EuiCodeBlock` ([#4993](https://github.com/elastic/eui/pull/4993))
