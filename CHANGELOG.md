@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `38.0.1`.
+
+## [`38.0.1`](https://github.com/elastic/eui/tree/v38.0.1)
+
 - Reverted `EuiScreenReaderOnly` left positioning change due to Selenium issues ([#5215](https://github.com/elastic/eui/pull/5215))
 
 ## [`38.0.0`](https://github.com/elastic/eui/tree/v38.0.0)
