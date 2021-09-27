@@ -78,7 +78,7 @@ This provides a walkthrough of the patching & backport release process; examples
   * Push the version commit & tag to upstream - `git push upstream --tags`
   * Publish the new version to npm
     * Get your npm One Time Password (OTP) from Google Authenticator, Authy, etc
-    * Publish with your OPT and the new version as the tag - `npm publish --tag=22.3.1 --otp=your-one-time-password`
+    * Publish with your OPT and the new version as the tag - `npm publish --tag=backport --otp=your-one-time-password`
 * Update `master`'s changelog to include this release
   * On the branch you used to build & release, copy the relevant changelog section - e.g. contents of `## [`22.3.1`](https://github.com/elastic/eui/tree/v22.3.1)`
   * Checkout `master` - `git checkout master`
