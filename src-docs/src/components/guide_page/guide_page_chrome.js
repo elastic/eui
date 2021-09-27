@@ -129,6 +129,8 @@ export class GuidePageChrome extends Component {
           };
         });
 
+        // if
+
         return {
           id: `subSection-${id}`,
           name,
