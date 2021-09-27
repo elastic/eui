@@ -70,8 +70,10 @@ export default () => {
         onChange={(value) => onChange(value)}
         itemLayoutAlign="top"
         hasDividers
-        popoverClassName="wrapper"
-        popoverPanelClassName="dropdown"
+        popoverProps={{
+          className: 'wrapper',
+          panelClassName: 'dropdown',
+        }}
       />
     </>
   );
