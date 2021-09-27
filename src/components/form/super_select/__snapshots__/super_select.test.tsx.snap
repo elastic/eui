@@ -726,7 +726,6 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
   popoverProps={
     Object {
       "className": "goes-on-outermost-wrapper",
-      "isOpen": false,
       "panelClassName": "goes-on-popover-panel",
       "repositionOnScroll": true,
     }

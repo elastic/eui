@@ -69,12 +69,20 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
     itemLayoutAlign?: EuiContextMenuItemLayoutAlignment;
 
     /**
-     * Props to pass to the underlying [EuiPopover](/#/layout/popover). Allows
-     * fine-grained control of the popover dropdown menu, including `isOpen` state,
+     * Controls whether the options are shown. Default: false
+     */
+    isOpen?: boolean;
+
+    /**
+     * Optional props to pass to the underlying [EuiPopover](/#/layout/popover).
+     *  Allows fine-grained control of the popover dropdown menu, including
      * `repositionOnScroll` for EuiSuperSelects used within scrollable containers,
      * and customizing popover panel styling.
+     *
+     * Does not accept a nested `popoverProps.isOpen` property - use the top level
+     * `isOpen` API instead.
      */
-    popoverProps?: Partial<CommonProps & EuiPopoverProps>;
+    popoverProps?: Partial<CommonProps & Omit<EuiPopoverProps, 'isOpen'>>;
 
     /**
      * Applied to the outermost wrapper (popover)
@@ -82,13 +90,6 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
      * **DEPRECATED: Use `popoverProps.className` instead (will take precedence over this prop if set).**
      */
     popoverClassName?: string;
-
-    /**
-     * Controls whether the options are shown. Default: false
-     *
-     * **DEPRECATED: Use `popoverProps.isOpen` instead (will take precedence over this prop if set).**
-     */
-    isOpen?: boolean;
 
     /**
      * When `true`, the popover's position is re-calculated when the user
@@ -338,12 +339,12 @@ export class EuiSuperSelect<T extends string> extends Component<
 
     return (
       <EuiInputPopover
-        isOpen={isOpen || this.state.isPopoverOpen}
         closePopover={this.closePopover}
         panelPaddingSize="none"
         repositionOnScroll={repositionOnScroll}
         {...popoverProps}
         className={popoverClasses}
+        isOpen={isOpen || this.state.isPopoverOpen}
         input={button}
         fullWidth={fullWidth}
       >

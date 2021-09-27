@@ -172,7 +172,6 @@ describe('EuiSuperSelect', () => {
             className: 'goes-on-outermost-wrapper',
             panelClassName: 'goes-on-popover-panel',
             repositionOnScroll: true,
-            isOpen: false,
           }}
         />
       );
