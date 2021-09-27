@@ -1,7 +1,20 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Updated `EuiRangeLevel` `color` property to accept CSS color values ([#5171](https://github.com/elastic/eui/pull/5171))
+
+**Bug fixes**
+
+- Fixed logo icons with static SVG IDs causing accessibility errors when multiples of the same logo were present ([#5204](https://github.com/elastic/eui/pull/5204))
+
+**Reverts**
+
+- Reverted `EuiScreenReaderOnly` left positioning change due to Selenium issues ([#5215](https://github.com/elastic/eui/pull/5215))
+
+## [`38.1.0`](https://github.com/elastic/eui/tree/v38.1.0)
+
 - Fixed the `title` prop `EuiButtonGroup` to automatically display the `label` provided ([#5199](https://github.com/elastic/eui/pull/5199))
 - Updated `barSeriesStyle.displayValue` of the elastic-charts `Theme` for better default styles ([#4845](https://github.com/elastic/eui/pull/4845))
+- Added a configuration parameter to the `EuiMarkdownEditor` plugin functions to exclude custom plugins ([#5147](https://github.com/elastic/eui/pull/5147))
 - Added `auto` as value for `defaultHeight` in prop `rowHeightsOptions` in `EuiDataGrid` that allows to content auto-fit to row ([#4958](https://github.com/elastic/eui/pull/4958))
 - Updated `titleProps` and `descriptionProps` on `EuiDescriptionList` to extend `CommonProps` ([#5166](https://github.com/elastic/eui/pull/5166))
 - Added the ability to return `visibleOptions` from `EuiSelectable` by using `onSearch` ([#5178](https://github.com/elastic/eui/pull/5178))
@@ -10,6 +23,7 @@
 
 - Fixed `EuiDataGrid` focus ring to be contained in the cell ([#5194](https://github.com/elastic/eui/pull/5194))
 - Fixed `EuiDataGrid` cells when focused getting a higher `z-index` which was causing long content to overlap surrounding cells ([#5194](https://github.com/elastic/eui/pull/5194))
+- Replaced the `EuiMarkdownEditor` help syntax modal with a popover when no custom plugins are available ([#5147](https://github.com/elastic/eui/pull/5147))
 - Fixed multiple components unnecessarily rerendering generated IDs on every update ([#5195](https://github.com/elastic/eui/pull/5195), [#5196](https://github.com/elastic/eui/pull/5196), [#5197](https://github.com/elastic/eui/pull/5197), [#5200](https://github.com/elastic/eui/pull/#5200), [#5201](https://github.com/elastic/eui/pull/#5201))
 - Fixed several `EuiDataGrid` console errors that occur on column drag/drop reorder ([#5209](https://github.com/elastic/eui/pull/5209))
 
@@ -17,6 +31,10 @@
 
 - Fixed `border-radius` and increased `font-weight` for `EuiButtonGroup` ([#4993](https://github.com/elastic/eui/pull/4993))
 - Increased contrast of text `color` for `text` colored `EuiButton` and `EuiButtonIcon` ([#5177](https://github.com/elastic/eui/pull/5177))
+
+## [`38.0.1`](https://github.com/elastic/eui/tree/v38.0.1)
+
+- Reverted `EuiScreenReaderOnly` left positioning change due to Selenium issues ([#5215](https://github.com/elastic/eui/pull/5215))
 
 ## [`38.0.0`](https://github.com/elastic/eui/tree/v38.0.0)
 

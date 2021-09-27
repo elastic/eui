@@ -3761,7 +3761,7 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
 >
   <defs>
     <linearGradient
-      id="logo_apache-a"
+      id="logo_apache_generated-id_a"
       x1="21.902%"
       x2="141.879%"
       y1="63.905%"
@@ -3781,7 +3781,7 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
       />
     </linearGradient>
     <linearGradient
-      id="logo_apache-b"
+      id="logo_apache_generated-id_b"
       x1="-217.651%"
       x2="74.743%"
       y1="177.127%"
@@ -3805,7 +3805,7 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
       />
     </linearGradient>
     <linearGradient
-      id="logo_apache-c"
+      id="logo_apache_generated-id_c"
       x1="-80.044%"
       x2="146.24%"
       y1="73.574%"
@@ -3829,7 +3829,7 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
       />
     </linearGradient>
     <linearGradient
-      id="logo_apache-d"
+      id="logo_apache_generated-id_d"
       x1="-18.316%"
       x2="165.002%"
       y1="52.497%"
@@ -3853,7 +3853,7 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
       />
     </linearGradient>
     <linearGradient
-      id="logo_apache-e"
+      id="logo_apache_generated-id_e"
       x1="-109.701%"
       x2="64.617%"
       y1="463.715%"
@@ -3877,7 +3877,7 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
       />
     </linearGradient>
     <linearGradient
-      id="logo_apache-f"
+      id="logo_apache_generated-id_f"
       x1="-34.88%"
       x2="110.599%"
       y1="130.522%"
@@ -3901,7 +3901,7 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
       />
     </linearGradient>
     <linearGradient
-      id="logo_apache-g"
+      id="logo_apache_generated-id_g"
       x1="-13.673%"
       x2="117.858%"
       y1="192.564%"
@@ -3930,37 +3930,37 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
   >
     <path
       d="M13.628.18c-.498.293-1.332 1.134-2.328 2.348v.074l.871 1.613.044.03c.641-.914 1.289-1.742 1.948-2.446.05-.056.075-.08.075-.08-.025.024-.05.055-.075.08-.211.237-.859.984-1.83 2.478l.112.025s2.273-.224 3.368-.41l.062-.057c.35-1.955-.342-2.851-.342-2.851S14.661-.423 13.628.18z"
-      fill="url(#logo_apache-a)"
+      fill="url(#logo_apache_generated-id_a)"
       transform="translate(8)"
     />
     <path
       d="M9.525 8.697c.28-.516.56-1.027.84-1.519.293-.51.592-1.008.897-1.488a.397.397 0 00.05-.087c.299-.473.598-.921.903-1.357L11.3 2.52c-.069.081-.137.168-.206.256-.261.33-.535.678-.815 1.052a51.783 51.783 0 00-1.893 2.708c-.261.405-.53.816-.79 1.245l-.032.05V7.9l1.14 2.26.05.019c.255-.498.51-.996.771-1.482z"
-      fill="url(#logo_apache-b)"
+      fill="url(#logo_apache_generated-id_b)"
       transform="translate(8)"
     />
     <path
       d="M4.563 19.76c.206-.535.424-1.077.642-1.625.211-.523.423-1.052.647-1.58.218-.53.448-1.06.679-1.595.236-.541.473-1.083.716-1.618.242-.53.485-1.059.734-1.582.087-.186.18-.38.274-.566.156-.324.318-.648.473-.965.007-.019.02-.031.025-.05L7.564 7.832l-.056.093c-.274.455-.554.915-.822 1.389a54.535 54.535 0 00-1.45 2.714c-.044.087-.081.168-.125.255a32.15 32.15 0 00-.703 1.544c-.237.56-.448 1.096-.635 1.606-.125.337-.23.654-.336.965-.081.262-.162.53-.237.791-.18.623-.33 1.239-.454 1.862l.018.074 1.14 2.266.037.02c.155-.424.317-.848.485-1.283.044-.125.094-.243.137-.368z"
-      fill="url(#logo_apache-c)"
+      fill="url(#logo_apache_generated-id_c)"
       transform="translate(8)"
     />
     <path
       d="M2.733 19.132a18.84 18.84 0 00-.311 2.253c0 .025-.006.05-.006.081-.374-.598-1.37-1.177-1.37-1.177.716 1.034 1.258 2.061 1.338 3.07-.38.08-.902-.038-1.512-.255.628.578 1.102.74 1.288.784-.579.037-1.183.436-1.793.89.89-.36 1.607-.504 2.123-.392-.815 2.31-1.63 4.862-2.453 7.564.25-.075.399-.243.486-.473.143-.492 1.114-3.704 2.627-7.931.044-.119.087-.243.13-.362.013-.03.026-.068.038-.1.162-.441.324-.896.498-1.356.038-.106.081-.212.119-.318v-.006l-1.19-2.353c0 .03-.006.056-.012.08z"
-      fill="url(#logo_apache-d)"
+      fill="url(#logo_apache_generated-id_d)"
       transform="translate(8)"
     />
     <path
       d="M12.333 4.283c-.268.411-.56.878-.878 1.407-.018.025-.03.056-.05.081a62.538 62.538 0 00-1.687 3.05c-.249.48-.504.984-.765 1.526l.056.025 2.895-.311.068-.05c.878-.405 1.27-.772 1.65-1.301.1-.143.205-.3.305-.455.311-.485.616-1.015.884-1.544.261-.51.492-1.02.672-1.475a6.56 6.56 0 00.398-1.395c-1.17.206-2.608.399-3.548.442z"
-      fill="url(#logo_apache-e)"
+      fill="url(#logo_apache_generated-id_e)"
       transform="translate(8)"
     />
     <path
       d="M8.84 10.59c-.1.212-.205.43-.31.647-.113.237-.231.486-.343.735-.056.124-.119.255-.175.38-.18.386-.354.784-.541 1.195a107.035 107.035 0 00-1.357 3.194c-.218.529-.436 1.077-.654 1.637-.2.504-.399 1.015-.598 1.55-.012.025-.018.05-.03.075-.2.53-.394 1.068-.6 1.622-.006.012-.017.045-.023.057l.043.01.866-.094.048-.02c-.018-.006-.03-.03-.048-.037 1.145-.143 2.67-1.002 3.66-2.06.455-.486.866-1.065 1.252-1.738.286-.504.547-1.058.803-1.675.224-.535.435-1.12.64-1.749a3.457 3.457 0 01-.896.311 8.977 8.977 0 01-.18.038c-.062.012-.125.018-.18.03 1.07-.41 1.743-1.207 2.234-2.178-.28.193-.74.442-1.288.566a2.52 2.52 0 01-.23.044c-.02 0-.038.006-.057.006.374-.155.685-.33.959-.535.056-.044.112-.087.168-.137.081-.075.162-.15.237-.224.05-.05.093-.1.143-.156.106-.124.205-.261.299-.41.03-.044.056-.094.087-.138.037-.068.068-.137.1-.205.149-.3.267-.567.36-.803.05-.119.088-.224.125-.33.013-.038.025-.081.044-.119.037-.112.068-.211.093-.305.037-.13.056-.236.069-.311a1.077 1.077 0 01-.125.087c-.324.193-.878.368-1.326.448l.884-.1-.884.1c-.062.013-.106.02-.156.032.004-.005-.994.101-2.995.316a2.313 2.313 0 00-.118.244z"
-      fill="url(#logo_apache-f)"
+      fill="url(#logo_apache_generated-id_f)"
       transform="translate(8)"
     />
     <path
       d="M4.115 21.914c-.155.43-.317.872-.473 1.32 0 .006-.006.013-.006.019-.025.062-.044.124-.069.193-.106.305-.199.573-.41 1.195.348.162.628.58.896 1.059a1.876 1.876 0 00-.623-1.314c1.725.075 3.213-.361 3.979-1.619.068-.112.13-.23.186-.355-.348.442-.784.63-1.593.586h-.007.007c1.201-.536 1.799-1.052 2.334-1.905.125-.206.25-.424.374-.667-1.052 1.078-2.266 1.383-3.543 1.152l-.958.106c-.032.069-.063.15-.094.23z"
-      fill="url(#logo_apache-g)"
+      fill="url(#logo_apache_generated-id_g)"
       transform="translate(8)"
     />
   </g>
@@ -4255,11 +4255,11 @@ exports[`EuiIcon props type logoDropwizard is rendered 1`] = `
 >
   <path
     d="M8 29.61s9.55 4.74 16.856-.893c-1.905-5.114-5.25-19.867-7.226-26.383-.422-1.389-.49-1.527-.663-1.909-.964-2.134-1.978 4.142-3.628 10.459C12.749 13.148 8 29.61 8 29.61"
-    fill="url(#paint0_linear)"
+    fill="url(#logo_dropwizard_generated-id_a)"
   />
   <path
     d="M9.926 28.563s8.17 4.794 14.93.154c-.18-.807-.642-2.103-.955-3.311-1.664-6.416-4.676-17.248-6.144-22.626-1.59-5.822-2.105.986-3.961 8.23-.564 2.204-3.87 17.553-3.87 17.553"
-    fill="url(#paint1_linear)"
+    fill="url(#logo_dropwizard_generated-id_b)"
   />
   <path
     d="M12.14 24.41l.85-1.466.793 1.544-.908 1.99-.735-2.069zm6.934-5.545l.85-1.465.793 1.543-.908 1.99-.735-2.068zm-4.747-5.851l.85-1.465.792 1.543-.908 1.99-.734-2.068"
@@ -4276,7 +4276,7 @@ exports[`EuiIcon props type logoDropwizard is rendered 1`] = `
   <defs>
     <linearGradient
       gradientUnits="userSpaceOnUse"
-      id="paint0_linear"
+      id="logo_dropwizard_generated-id_a"
       x1="33.473"
       x2="7.751"
       y1="7.674"
@@ -4300,7 +4300,7 @@ exports[`EuiIcon props type logoDropwizard is rendered 1`] = `
     </linearGradient>
     <linearGradient
       gradientUnits="userSpaceOnUse"
-      id="paint1_linear"
+      id="logo_dropwizard_generated-id_b"
       x1="21.028"
       x2="6.017"
       y1="14.928"
@@ -4505,7 +4505,7 @@ exports[`EuiIcon props type logoGCP is rendered 1`] = `
   <defs>
     <path
       d="M.085.1h4.549v6.291H.085z"
-      id="logogcp-a"
+      id="logo_gcp_generated-id_a"
     />
   </defs>
   <g
@@ -4538,16 +4538,16 @@ exports[`EuiIcon props type logoGCP is rendered 1`] = `
     >
       <mask
         fill="#fff"
-        id="logogcp-b"
+        id="logo_gcp_generated-id_b"
       >
         <use
-          href="#logogcp-a"
+          href="#logo_gcp_generated-id_a"
         />
       </mask>
       <path
         d="M.275 1.498L3.15 6.391l1.485-2.527L.275.1c-.263.448-.245.98 0 1.398"
         fill="#000"
-        mask="url(#logogcp-b)"
+        mask="url(#logo_gcp_generated-id_b)"
       />
     </g>
     <path
@@ -4803,19 +4803,19 @@ exports[`EuiIcon props type logoGoogleG is rendered 1`] = `
   <defs>
     <path
       d="M15.319 3.278c0-1.131-.102-2.22-.29-3.264H0v6.172h8.587c-.37 1.995-1.494 3.685-3.184 4.816v4.004h5.157c3.017-2.778 4.758-6.869 4.758-11.728z"
-      id="a"
+      id="logo_google_g_generated-id_a"
     />
     <path
       d="M14.343 12.956c4.308 0 7.92-1.43 10.56-3.866l-5.157-4.004c-1.429.958-3.256 1.523-5.403 1.523-4.156 0-7.674-2.806-8.928-6.578H.084v4.134c2.625 5.215 8.021 8.79 14.259 8.79z"
-      id="c"
+      id="logo_google_g_generated-id_c"
     />
     <path
       d="M7.028 10.25a9.59 9.59 0 01-.5-3.032 9.59 9.59 0 01.5-3.032V.052h-5.33A15.95 15.95 0 000 7.218c0 2.575.617 5.012 1.697 7.166l5.331-4.134z"
-      id="e"
+      id="logo_google_g_generated-id_e"
     />
     <path
       d="M14.343 6.392c2.342 0 4.446.805 6.1 2.386l4.576-4.576C22.256 1.627 18.644.046 14.343.046 8.105.046 2.709 3.622.083 8.836l5.332 4.134c1.254-3.77 4.772-6.578 8.928-6.578z"
-      id="g"
+      id="logo_google_g_generated-id_g"
     />
   </defs>
   <g
@@ -4827,17 +4827,17 @@ exports[`EuiIcon props type logoGoogleG is rendered 1`] = `
     >
       <mask
         fill="#fff"
-        id="b"
+        id="logo_google_g_generated-id_b"
       >
         <use
-          href="#a"
+          href="#logo_google_g_generated-id_a"
         />
       </mask>
       <path
         d="M.001 15.006h15.318V.014H.001z"
         fill="#4285F4"
         fill-rule="nonzero"
-        mask="url(#b)"
+        mask="url(#logo_google_g_generated-id_b)"
       />
     </g>
     <g
@@ -4845,17 +4845,17 @@ exports[`EuiIcon props type logoGoogleG is rendered 1`] = `
     >
       <mask
         fill="#fff"
-        id="d"
+        id="logo_google_g_generated-id_d"
       >
         <use
-          href="#c"
+          href="#logo_google_g_generated-id_c"
         />
       </mask>
       <path
         d="M.084 12.956h24.819V.031H.084z"
         fill="#34A853"
         fill-rule="nonzero"
-        mask="url(#d)"
+        mask="url(#logo_google_g_generated-id_d)"
       />
     </g>
     <g
@@ -4863,17 +4863,17 @@ exports[`EuiIcon props type logoGoogleG is rendered 1`] = `
     >
       <mask
         fill="#fff"
-        id="f"
+        id="logo_google_g_generated-id_f"
       >
         <use
-          href="#e"
+          href="#logo_google_g_generated-id_e"
         />
       </mask>
       <path
         d="M0 14.384h7.028V.052H0z"
         fill="#FBBC04"
         fill-rule="nonzero"
-        mask="url(#f)"
+        mask="url(#logo_google_g_generated-id_f)"
       />
     </g>
     <g
@@ -4881,17 +4881,17 @@ exports[`EuiIcon props type logoGoogleG is rendered 1`] = `
     >
       <mask
         fill="#fff"
-        id="h"
+        id="logo_google_g_generated-id_h"
       >
         <use
-          href="#g"
+          href="#logo_google_g_generated-id_g"
         />
       </mask>
       <path
         d="M.084 12.97h24.935V.046H.084z"
         fill="#EA4335"
         fill-rule="nonzero"
-        mask="url(#h)"
+        mask="url(#logo_google_g_generated-id_h)"
       />
     </g>
   </g>
@@ -4911,7 +4911,7 @@ exports[`EuiIcon props type logoHAproxy is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <g
-    clip-path="url(#clip0)"
+    clip-path="url(#logo_haproxy_generated-id_clip0)"
   >
     <path
       d="M16.05 13.237l-3.11-3.612"
@@ -4974,7 +4974,7 @@ exports[`EuiIcon props type logoHAproxy is rendered 1`] = `
   </g>
   <defs>
     <clipPath
-      id="clip0"
+      id="logo_haproxy_generated-id_clip0"
     >
       <path
         d="M0 0h32v32H0V0z"
@@ -4998,7 +4998,7 @@ exports[`EuiIcon props type logoIBM is rendered 1`] = `
 >
   <defs>
     <linearGradient
-      id="logo_ibm-a"
+      id="logo_ibm_generated-id_a"
       x1="8.005%"
       x2="53.33%"
       y1="79.323%"
@@ -5020,7 +5020,7 @@ exports[`EuiIcon props type logoIBM is rendered 1`] = `
       />
     </linearGradient>
     <linearGradient
-      id="logo_ibm-b"
+      id="logo_ibm_generated-id_b"
       x1="19.496%"
       x2="71.309%"
       y1="83.344%"
@@ -5037,7 +5037,7 @@ exports[`EuiIcon props type logoIBM is rendered 1`] = `
       />
     </linearGradient>
     <linearGradient
-      id="logo_ibm-c"
+      id="logo_ibm_generated-id_c"
       x1="21.909%"
       x2="21.909%"
       y1="96.314%"
@@ -5063,7 +5063,7 @@ exports[`EuiIcon props type logoIBM is rendered 1`] = `
       />
     </linearGradient>
     <linearGradient
-      id="logo_ibm-d"
+      id="logo_ibm_generated-id_d"
       x1="96.205%"
       x2="-1.172%"
       y1="12.667%"
@@ -5089,7 +5089,7 @@ exports[`EuiIcon props type logoIBM is rendered 1`] = `
       />
     </linearGradient>
     <linearGradient
-      id="logo_ibm-e"
+      id="logo_ibm_generated-id_e"
       x1="9.408%"
       x2="80.589%"
       y1="87.764%"
@@ -5115,27 +5115,27 @@ exports[`EuiIcon props type logoIBM is rendered 1`] = `
     />
     <path
       d="M16.536 19.645l-1.204-.009c.026-3.377 2.146-6.391 5.337-7.585a8.308 8.308 0 019.068 2.197l-.897.795a7.097 7.097 0 00-7.745-1.876c-2.726 1.019-4.537 3.593-4.559 6.478z"
-      fill="url(#logo_ibm-a)"
+      fill="url(#logo_ibm_generated-id_a)"
       transform="translate(0 2)"
     />
     <path
       d="M.029 20.909c.022-3.354 2.475-6.208 5.815-6.764l.201 1.176c-2.764.46-4.794 2.82-4.812 5.596L.029 20.91z"
-      fill="url(#logo_ibm-b)"
+      fill="url(#logo_ibm_generated-id_b)"
       transform="translate(0 2)"
     />
     <path
       d="M8.246 24.737a10.625 10.625 0 010-15.131c4.219-4.178 11.06-4.178 15.279 0a10.89 10.89 0 011.384 1.678l-1.004.657a9.517 9.517 0 00-1.231-1.492c-3.75-3.713-9.828-3.713-13.577 0a9.442 9.442 0 000 13.445l-.851.843z"
-      fill="url(#logo_ibm-c)"
+      fill="url(#logo_ibm_generated-id_c)"
       transform="translate(0 2)"
     />
     <path
       d="M5.836 13.234c.404-1.332 1.33-2.56 2.41-3.628 4.219-4.178 11.06-4.178 15.279 0a10.89 10.89 0 011.384 1.678l-1.004.657a9.517 9.517 0 00-1.231-1.492c-3.75-3.713-9.828-3.713-13.577 0a9.474 9.474 0 00-2.074 3.06c-1.452 3.45-2.358 3.593-1.187-.275z"
-      fill="url(#logo_ibm-d)"
+      fill="url(#logo_ibm_generated-id_d)"
       transform="translate(0 2)"
     />
     <path
       d="M23.524 27.87H6.96a7.012 7.012 0 01-4.922-2.059A6.876 6.876 0 01.029 20.91l1.204.009a5.69 5.69 0 001.66 4.055 5.802 5.802 0 004.071 1.705h16.618c2.78.002 5.302-1.616 6.438-4.13a6.929 6.929 0 00-1.18-7.505l.897-.795a8.112 8.112 0 011.384 8.785c-1.329 2.943-4.279 4.837-7.534 4.838h-.063z"
-      fill="url(#logo_ibm-e)"
+      fill="url(#logo_ibm_generated-id_e)"
       transform="translate(0 2)"
     />
   </g>
@@ -5321,7 +5321,7 @@ exports[`EuiIcon props type logoMemcached is rendered 1`] = `
       cy="42.708%"
       fx="41.406%"
       fy="42.708%"
-      id="logo_memcached-c"
+      id="logo_memcached_generated-id_c"
       r="0%"
     >
       <stop
@@ -5338,7 +5338,7 @@ exports[`EuiIcon props type logoMemcached is rendered 1`] = `
       cy="42.708%"
       fx="44.271%"
       fy="42.708%"
-      id="logo_memcached-d"
+      id="logo_memcached_generated-id_d"
       r="0%"
     >
       <stop
@@ -5351,7 +5351,7 @@ exports[`EuiIcon props type logoMemcached is rendered 1`] = `
       />
     </radialGradient>
     <linearGradient
-      id="logo_memcached-a"
+      id="logo_memcached_generated-id_a"
       x1="50%"
       x2="50%"
       y1="100%"
@@ -5367,7 +5367,7 @@ exports[`EuiIcon props type logoMemcached is rendered 1`] = `
       />
     </linearGradient>
     <linearGradient
-      id="logo_memcached-b"
+      id="logo_memcached_generated-id_b"
       x1="88.778%"
       x2="30.149%"
       y1="98.342%"
@@ -5388,19 +5388,19 @@ exports[`EuiIcon props type logoMemcached is rendered 1`] = `
   >
     <path
       d="M0 21.567V10.352C0 1.294 1.293 0 10.342 0h11.236c9.049 0 10.341 1.294 10.341 10.352v11.215c0 9.059-1.292 10.352-10.341 10.352H10.342C1.292 31.92 0 30.626 0 21.567z"
-      fill="url(#logo_memcached-a)"
+      fill="url(#logo_memcached_generated-id_a)"
     />
     <path
       d="M6.889 6.016C5.32 15.96 6.14 25.27 6.14 25.27h4.904c-.466-2.483-2.14-13.824-.748-13.861.746.118 4.156 9.621 4.156 9.621s.751-.093 1.507-.093c.755 0 1.506.093 1.506.093s3.41-9.503 4.157-9.621c1.392.037-.282 11.378-.748 13.86h4.904s.82-9.31-.748-19.253h-4.54c-.865.01-4.153 5.777-4.531 5.777-.378 0-3.666-5.767-4.53-5.777H6.889z"
-      fill="url(#logo_memcached-b)"
+      fill="url(#logo_memcached_generated-id_b)"
     />
     <path
       d="M14.993 24.109a1.16 1.16 0 11-2.322 0 1.16 1.16 0 012.322 0z"
-      fill="url(#logo_memcached-c)"
+      fill="url(#logo_memcached_generated-id_c)"
     />
     <path
       d="M19.249 24.109a1.16 1.16 0 11-2.322 0 1.16 1.16 0 012.322 0z"
-      fill="url(#logo_memcached-d)"
+      fill="url(#logo_memcached_generated-id_d)"
     />
     <path
       d="M24.8 6.345c.707 4.79.873 9.388.86 12.813-.013 3.503-.214 5.78-.214 5.78h-4.128l-.443.332h4.904s.82-9.31-.748-19.254l-.232.329zm-12.996-.121c1.288 1.433 3.516 5.237 3.823 5.237-.817-1.045-2.823-4.378-3.823-5.237zm-1.84 4.852c-1.392.038.282 11.379.749 13.861H6.43l-.29.333h4.904c-.464-2.47-2.123-13.71-.769-13.861-.126-.19-.235-.32-.311-.333zm11.326 0c-.746.119-4.156 9.622-4.156 9.622s-.751-.094-1.507-.094c-.447 0-.832.028-1.092.052l-.082.374s.751-.093 1.507-.093c.755 0 1.506.093 1.506.093s3.385-9.44 4.146-9.621c-.082-.208-.183-.33-.322-.333z"
@@ -5631,15 +5631,15 @@ exports[`EuiIcon props type logoPhp is rendered 1`] = `
   <defs>
     <path
       d="M.028 7.854C.028 3.534 6.688.03 14.902.03s14.874 3.503 14.874 7.824c0 4.322-6.66 7.825-14.874 7.825-8.215 0-14.874-3.503-14.874-7.825"
-      id="logo_php-a"
+      id="logo_php_generated-id_a"
     />
     <path
       d="M0 17.43h30.987V0H0z"
-      id="logo_php-d"
+      id="logo_php_generated-id_d"
     />
     <path
       d="M0 17.43h30.987V0H0z"
-      id="logo_php-f"
+      id="logo_php_generated-id_f"
     />
     <radialGradient
       cx="30.02%"
@@ -5647,7 +5647,7 @@ exports[`EuiIcon props type logoPhp is rendered 1`] = `
       fx="30.02%"
       fy="82.422%"
       gradientTransform="matrix(.52604 0 0 1 .142 0)"
-      id="logo_php-c"
+      id="logo_php_generated-id_b"
       r="124.814%"
     >
       <stop
@@ -5678,16 +5678,16 @@ exports[`EuiIcon props type logoPhp is rendered 1`] = `
     >
       <mask
         fill="#fff"
-        id="logo_php-b"
+        id="logo_php_generated-id_c"
       >
         <use
-          href="#logo_php-a"
+          href="#logo_php_generated-id_a"
         />
       </mask>
       <g
-        fill="url(#logo_php-c)"
+        fill="url(#logo_php_generated-id_b)"
         fill-rule="nonzero"
-        mask="url(#logo_php-b)"
+        mask="url(#logo_php_generated-id_c)"
       >
         <path
           d="M.028 7.854C.028 3.534 6.688.03 14.902.03s14.874 3.503 14.874 7.824c0 4.322-6.66 7.825-14.874 7.825-8.215 0-14.874-3.503-14.874-7.825"
@@ -5696,14 +5696,14 @@ exports[`EuiIcon props type logoPhp is rendered 1`] = `
     </g>
     <mask
       fill="#fff"
-      id="logo_php-e"
+      id="logo_php_generated-id_e"
     >
       <use
-        href="#logo_php-d"
+        href="#logo_php_generated-id_d"
       />
     </mask>
     <g
-      mask="url(#logo_php-e)"
+      mask="url(#logo_php_generated-id_e)"
     >
       <path
         d="M15.494 1.472c7.894 0 14.293 3.243 14.293 7.243s-6.4 7.244-14.293 7.244c-7.894 0-14.293-3.243-14.293-7.244 0-4 6.4-7.243 14.293-7.243"
@@ -5713,15 +5713,15 @@ exports[`EuiIcon props type logoPhp is rendered 1`] = `
     </g>
     <mask
       fill="#fff"
-      id="logo_php-g"
+      id="logo_php_generated-id_g"
     >
       <use
-        href="#logo_php-f"
+        href="#logo_php_generated-id_f"
       />
     </mask>
     <g
       fill-rule="nonzero"
-      mask="url(#logo_php-g)"
+      mask="url(#logo_php_generated-id_g)"
     >
       <path
         d="M8.701 7.817c.65 0 1.134.12 1.44.356.304.233.513.638.623 1.202.103.528.064.896-.116 1.095-.183.203-.58.306-1.177.306H8.433l-.575-2.959h.843zM5.31 4.172a.161.161 0 00-.159.193l1.524 7.84c.015.076.082.131.159.131h3.284c1.033 0 1.801-.28 2.284-.833.485-.556.635-1.333.446-2.309a3.686 3.686 0 00-.395-1.098 3.676 3.676 0 00-.727-.91 3.189 3.189 0 00-1.197-.718c-.43-.14-.983-.21-1.643-.21h-1.33l-.38-1.955a.161.161 0 00-.158-.13H5.309z"
@@ -7867,7 +7867,6 @@ exports[`EuiIcon props type stopSlash is rendered 1`] = `
 >
   <path
     d="M12.259 3.034A1.001 1.001 0 0012 3H4a1 1 0 00-1 1v8c0 .09.012.176.034.259l9.225-9.225zm.707.707l-9.225 9.225c.083.022.17.034.259.034h8a1 1 0 001-1V4c0-.09-.012-.176-.034-.259zM4 2h8a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2z"
-    id="stop_slash-a"
   />
 </svg>
 `;
