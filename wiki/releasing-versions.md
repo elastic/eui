@@ -57,6 +57,7 @@ This provides a walkthrough of the patching & backport release process; examples
   * in the EUI git repo, checkout the release tag the patch is intended for - `git checkout v22.3.0`
   * create a new branch from the versioned tag, the name is unimportant but I use the target version without a leading `v` - `git checkout -b 22.3.1`
 * Run `yarn` to ensure you have the correct dependencies for that point in time installed
+  * If you run into an error about `nodegit.node` being compiled against a different version of Node.js, try running `rm -rf node_modules && yarn`
 * Apply the commit(s) with the desired changes
   * GitHub issue references #3369, #3378, #3330, and #3398
   * We always use squash merges, so each PR has a single commit hash to include
