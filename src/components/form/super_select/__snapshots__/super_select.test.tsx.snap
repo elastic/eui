@@ -703,7 +703,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
 </div>
 `;
 
-exports[`EuiSuperSelect props popoverClassName and popoverPanelClassName render 1`] = `
+exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 1`] = `
 <EuiSuperSelect
   compressed={false}
   fullWidth={false}
@@ -723,14 +723,20 @@ exports[`EuiSuperSelect props popoverClassName and popoverPanelClassName render 
       },
     ]
   }
-  popoverClassName="goes-on-outermost-wrapper"
-  popoverPanelClassName="goes-on-popover-panel"
+  popoverProps={
+    Object {
+      "className": "goes-on-outermost-wrapper",
+      "isOpen": false,
+      "panelClassName": "goes-on-popover-panel",
+      "repositionOnScroll": true,
+    }
+  }
   valueOfSelected="2"
 >
   <EuiInputPopover
     anchorPosition="downLeft"
     attachToAnchor={true}
-    className="euiSuperSelect goes-on-outermost-wrapper"
+    className="euiSuperSelect goes-on-popover-panel"
     closePopover={[Function]}
     display="block"
     fullWidth={false}
@@ -761,6 +767,7 @@ exports[`EuiSuperSelect props popoverClassName and popoverPanelClassName render 
     isOpen={false}
     panelClassName="goes-on-popover-panel"
     panelPaddingSize="none"
+    repositionOnScroll={true}
   >
     <EuiPopover
       anchorPosition="downLeft"
@@ -773,7 +780,7 @@ exports[`EuiSuperSelect props popoverClassName and popoverPanelClassName render 
         </EuiResizeObserver>
       }
       buttonRef={[Function]}
-      className="euiInputPopover euiSuperSelect goes-on-outermost-wrapper"
+      className="euiInputPopover euiSuperSelect goes-on-popover-panel"
       closePopover={[Function]}
       display="block"
       hasArrow={true}
@@ -782,12 +789,13 @@ exports[`EuiSuperSelect props popoverClassName and popoverPanelClassName render 
       panelClassName="goes-on-popover-panel"
       panelPaddingSize="none"
       panelRef={[Function]}
+      repositionOnScroll={true}
     >
       <EuiOutsideClickDetector
         onOutsideClick={[Function]}
       >
         <div
-          className="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuperSelect goes-on-outermost-wrapper"
+          className="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuperSelect goes-on-popover-panel"
           onKeyDown={[Function]}
           onMouseDown={[Function]}
           onMouseUp={[Function]}

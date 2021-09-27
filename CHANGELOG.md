@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added `popoverPanelClassName` prop to `EuiSuperSelect` ([#5214](https://github.com/elastic/eui/pull/5214))
+- Deprecated  `EuiSuperSelect`'s `popoverClassName`, `isOpen`, & `repositionOnScroll` props in favor of a single `popoverProps` configuration object ([#5214](https://github.com/elastic/eui/pull/5214))
 
 **Bug fixes**
 

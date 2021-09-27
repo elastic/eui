@@ -17,7 +17,7 @@ import {
   EuiSuperSelectControlProps,
   EuiSuperSelectOption,
 } from './super_select_control';
-import { EuiInputPopover } from '../../popover';
+import { EuiInputPopover, EuiPopoverProps } from '../../popover';
 import {
   EuiContextMenuItem,
   EuiContextMenuItemLayoutAlignment,
@@ -64,30 +64,35 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
     hasDividers?: boolean;
 
     /**
+     * Props to pass to the underlying EuiPopover. Allows fine-grained control
+     * of the popover dropdown menu, including `isOpen` state, `repositionOnScroll`
+     * for EuiSuperSelects used within scrollable containers, and customizing
+     * popover panel styling.
+     */
+    popoverProps?: Partial<CommonProps & EuiPopoverProps>;
+
+    /**
      * Change `EuiContextMenuItem` layout position of icon
      */
     itemLayoutAlign?: EuiContextMenuItemLayoutAlignment;
 
     /**
      * Applied to the outermost wrapper (popover)
+     * **DEPRECATED: Use `popoverProps.className` instead. `popoverProps.className` will take precedence over `popoverClassName` if set.**
      */
     popoverClassName?: string;
 
     /**
-     * Applied to the popover panel
-     */
-    popoverPanelClassName?: string;
-
-    /**
      * Controls whether the options are shown. Default: false
+     * **DEPRECATED: Use `popoverProps.isOpen` instead. `popoverProps.isOpen` will take precedence over `isOpen` if set.**
      */
     isOpen?: boolean;
 
     /**
      * When `true`, the popover's position is re-calculated when the user
-     * scrolls, this supports having fixed-position popover anchors. This value is passed
-     * to the EuiInputPopover component. When nesting an `EuiSuperSelect` in a scrollable container,
+     * scrolls. When nesting an `EuiSuperSelect` in a scrollable container,
      * `repositionOnScroll` should be `true`
+     * **DEPRECATED: Use `popoverProps.repositionOnScroll` instead. `popoverProps.repositionOnScroll` will take precedence over `repositionOnScroll` if set.**
      */
     repositionOnScroll?: boolean;
   };
@@ -264,13 +269,16 @@ export class EuiSuperSelect<T extends string> extends Component<
       itemLayoutAlign,
       fullWidth,
       popoverClassName,
-      popoverPanelClassName,
+      popoverProps,
       compressed,
       repositionOnScroll,
       ...rest
     } = this.props;
 
-    const popoverClasses = classNames('euiSuperSelect', popoverClassName);
+    const popoverClasses = classNames(
+      'euiSuperSelect',
+      popoverProps?.panelClassName ?? popoverClassName
+    );
 
     const buttonClasses = classNames(
       {
@@ -327,14 +335,14 @@ export class EuiSuperSelect<T extends string> extends Component<
 
     return (
       <EuiInputPopover
-        className={popoverClasses}
-        panelClassName={popoverPanelClassName}
-        input={button}
         isOpen={isOpen || this.state.isPopoverOpen}
         closePopover={this.closePopover}
         panelPaddingSize="none"
-        fullWidth={fullWidth}
         repositionOnScroll={repositionOnScroll}
+        {...popoverProps}
+        className={popoverClasses}
+        input={button}
+        fullWidth={fullWidth}
       >
         <EuiScreenReaderOnly>
           <p role="alert">

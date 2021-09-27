@@ -162,14 +162,18 @@ describe('EuiSuperSelect', () => {
       expect(takeMountedSnapshot(component)).toMatchSnapshot();
     });
 
-    test('popoverClassName and popoverPanelClassName render', () => {
+    test('renders popoverProps on the underlying EuiPopover', () => {
       const component = mount(
         <EuiSuperSelect
           options={options}
           valueOfSelected="2"
           onChange={() => {}}
-          popoverClassName="goes-on-outermost-wrapper"
-          popoverPanelClassName="goes-on-popover-panel"
+          popoverProps={{
+            className: 'goes-on-outermost-wrapper',
+            panelClassName: 'goes-on-popover-panel',
+            repositionOnScroll: true,
+            isOpen: false,
+          }}
         />
       );
 
