@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Updated `EuiRangeLevel` `color` property to accept CSS color values ([#5171](https://github.com/elastic/eui/pull/5171))
+- Added optional visual line highlighting to `EuiCodeBlock` ([#5207](https://github.com/elastic/eui/pull/5207))
 
 **Bug fixes**
 
