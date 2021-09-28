@@ -9,9 +9,13 @@ import {
 import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const basicButtonGroupPrefix = useGeneratedHtmlId({prefix: 'button-group'});
-  const multiSelectButtonGroupPrefix = useGeneratedHtmlId({prefix: 'button-group'});
-  const disabledButtonGroupPrefix = useGeneratedHtmlId({prefix: 'button-group'});
+  const basicButtonGroupPrefix = useGeneratedHtmlId({ prefix: 'button-group' });
+  const multiSelectButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'button-group',
+  });
+  const disabledButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'button-group',
+  });
 
   const toggleButtons = [
     {
@@ -58,8 +62,12 @@ export default () => {
     },
   ];
 
-  const [toggleIdSelected, setToggleIdSelected] = useState(`${basicButtonGroupPrefix}__1`);
-  const [toggleIdDisabled, setToggleIdDisabled] = useState(`${disabledButtonGroupPrefix}__1`);
+  const [toggleIdSelected, setToggleIdSelected] = useState(
+    `${basicButtonGroupPrefix}__1`
+  );
+  const [toggleIdDisabled, setToggleIdDisabled] = useState(
+    `${disabledButtonGroupPrefix}__1`
+  );
   const [toggleIdToSelectedMap, setToggleIdToSelectedMap] = useState({
     [`${multiSelectButtonGroupPrefix}__1`]: true,
   });

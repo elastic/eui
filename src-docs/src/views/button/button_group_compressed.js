@@ -6,14 +6,15 @@ import {
   EuiPanel,
 } from '../../../../src/components';
 
-import { htmlIdGenerator, useGeneratedHtmlId } from '../../../../src/services';
-
-const idPrefix2 = htmlIdGenerator()();
-const idPrefix3 = htmlIdGenerator()();
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const compressedToggleButtonGroupPrefix = useGeneratedHtmlId({ prefix: 'button-group'});
-  const multiSelectButtonGroupPrefix = useGeneratedHtmlId({ prefix: 'button-group'});
+  const compressedToggleButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'button-group',
+  });
+  const multiSelectButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'button-group',
+  });
 
   const toggleButtonsCompressed = [
     {
