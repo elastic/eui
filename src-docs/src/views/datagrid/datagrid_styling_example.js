@@ -170,7 +170,10 @@ export const DataGridStylingExample = {
             With the default settings, the <EuiCode>showStyleSelector</EuiCode>{' '}
             setting in <EuiCode>toolbarVisibility</EuiCode> means the user has
             the ability to override the padding and font size passed into{' '}
-            <EuiCode>gridStyle</EuiCode> by the engineer.
+            <EuiCode>gridStyle</EuiCode> by the engineer. The font size
+            overriding only works with text or elements that can inherit the
+            parent font size or elements that use units relative to the parent
+            container.
           </p>
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {gridSnippet}

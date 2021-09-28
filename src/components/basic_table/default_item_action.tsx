@@ -16,7 +16,7 @@ import {
 } from '../button';
 import { EuiToolTip } from '../tool_tip';
 import { DefaultItemAction as Action } from './action_types';
-import { htmlIdGenerator } from '../../services/accessibility';
+import { useGeneratedHtmlId } from '../../services/accessibility';
 import { EuiScreenReaderOnly } from '../accessibility';
 
 export interface DefaultItemActionProps<T> {
@@ -57,12 +57,12 @@ export const DefaultItemAction = <T extends {}>({
   let button;
   const actionContent =
     typeof action.name === 'function' ? action.name(item) : action.name;
+  const ariaLabelId = useGeneratedHtmlId();
   if (action.type === 'icon') {
     if (!icon) {
       throw new Error(`Cannot render item action [${action.name}]. It is configured to render as an icon but no
       icon is provided. Make sure to set the 'icon' property of the action`);
     }
-    const ariaLabelId = htmlIdGenerator()();
     button = (
       <>
         <EuiButtonIcon

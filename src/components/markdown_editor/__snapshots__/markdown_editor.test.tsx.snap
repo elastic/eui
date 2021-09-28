@@ -1,5 +1,1155 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1`] = `
+<EuiMarkdownEditor
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  data-test-subj="test subject string"
+  editorId="editorId"
+  onChange={[Function]}
+  parsingPluginList={
+    Array [
+      Array [
+        [Function],
+        Object {},
+      ],
+      Array [
+        [Function],
+        Object {},
+      ],
+      Array [
+        [Function],
+        Object {
+          "emoticon": false,
+        },
+      ],
+      Array [
+        [Function],
+        Object {},
+      ],
+      Array [
+        [Function],
+        Object {},
+      ],
+    ]
+  }
+  processingPluginList={
+    Array [
+      Array [
+        [Function],
+        Object {
+          "allowDangerousHtml": true,
+          "handlers": Object {},
+          "unknownHandler": [Function],
+        },
+      ],
+      Array [
+        [Function],
+        Object {
+          "Fragment": Symbol(react.fragment),
+          "components": Object {
+            "a": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "displayName": "EuiLink",
+              "propTypes": Object {
+                "aria-label": [Function],
+                "className": [Function],
+                "color": [Function],
+                "data-test-subj": [Function],
+                "external": [Function],
+                "onClick": [Function],
+                "type": [Function],
+              },
+              "render": [Function],
+            },
+            "blockquote": [Function],
+            "checkboxPlugin": [Function],
+            "code": [Function],
+            "hr": [Function],
+            "pre": [Function],
+            "table": [Function],
+          },
+          "createElement": [Function],
+        },
+      ],
+    ]
+  }
+  uiPlugins={Array []}
+  value=""
+>
+  <div
+    className="euiMarkdownEditor testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <EuiMarkdownEditorToolbar
+      markdownActions={
+        MarkdownActions {
+          "editorID": "editorId",
+          "styles": Object {
+            "mdBold": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "prefix": "**",
+                "suffix": "**",
+                "trimFirst": true,
+              },
+              "name": "mdBold",
+            },
+            "mdCode": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "blockPrefix": "\`\`\`",
+                "blockSuffix": "\`\`\`",
+                "prefix": "\`",
+                "suffix": "\`",
+              },
+              "name": "mdCode",
+            },
+            "mdItalic": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "prefix": "_",
+                "suffix": "_",
+                "trimFirst": true,
+              },
+              "name": "mdItalic",
+            },
+            "mdLink": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "prefix": "[",
+                "replaceNext": "url",
+                "scanFor": "https?://",
+                "suffix": "](url)",
+              },
+              "name": "mdLink",
+            },
+            "mdOl": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "multiline": true,
+                "orderedList": true,
+                "prefix": "1. ",
+              },
+              "name": "mdOl",
+            },
+            "mdQuote": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "multiline": true,
+                "prefix": "> ",
+                "surroundWithNewlines": true,
+              },
+              "name": "mdQuote",
+            },
+            "mdTl": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "multiline": true,
+                "prefix": "- [ ] ",
+                "surroundWithNewlines": true,
+              },
+              "name": "mdTl",
+            },
+            "mdUl": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "multiline": true,
+                "prefix": "- ",
+                "surroundWithNewlines": true,
+              },
+              "name": "mdUl",
+            },
+          },
+        }
+      }
+      onClickPreview={[Function]}
+      uiPlugins={Array []}
+      viewMode="editing"
+    >
+      <div
+        className="euiMarkdownEditorToolbar"
+      >
+        <div
+          className="euiMarkdownEditorToolbar__buttons"
+        >
+          <EuiToolTip
+            content="Bold"
+            delay="long"
+            display="inlineBlock"
+            key="mdBold"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Bold"
+                color="text"
+                iconType="editorBold"
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Bold"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type="editorBold"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="editorBold"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+          <EuiToolTip
+            content="Italic"
+            delay="long"
+            display="inlineBlock"
+            key="mdItalic"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Italic"
+                color="text"
+                iconType="editorItalic"
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Italic"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type="editorItalic"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="editorItalic"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+          <span
+            className="euiMarkdownEditorToolbar__divider"
+          />
+          <EuiToolTip
+            content="Unordered list"
+            delay="long"
+            display="inlineBlock"
+            key="mdUl"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Unordered list"
+                color="text"
+                iconType="editorUnorderedList"
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Unordered list"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type="editorUnorderedList"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="editorUnorderedList"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+          <EuiToolTip
+            content="Ordered list"
+            delay="long"
+            display="inlineBlock"
+            key="mdOl"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Ordered list"
+                color="text"
+                iconType="editorOrderedList"
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Ordered list"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type="editorOrderedList"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="editorOrderedList"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+          <EuiToolTip
+            content="Task list"
+            delay="long"
+            display="inlineBlock"
+            key="mdTl"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Task list"
+                color="text"
+                iconType={[Function]}
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Task list"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type={[Function]}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="MarkdownCheckmark"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+          <span
+            className="euiMarkdownEditorToolbar__divider"
+          />
+          <EuiToolTip
+            content="Quote"
+            delay="long"
+            display="inlineBlock"
+            key="mdQuote"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Quote"
+                color="text"
+                iconType="quote"
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Quote"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type="quote"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="quote"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+          <EuiToolTip
+            content="Code"
+            delay="long"
+            display="inlineBlock"
+            key="mdCode"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Code"
+                color="text"
+                iconType="editorCodeBlock"
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Code"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type="editorCodeBlock"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="editorCodeBlock"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+          <EuiToolTip
+            content="Link"
+            delay="long"
+            display="inlineBlock"
+            key="mdLink"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Link"
+                color="text"
+                iconType="editorLink"
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Link"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type="editorLink"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="editorLink"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+        </div>
+        <EuiButtonEmpty
+          color="text"
+          iconType="eye"
+          onClick={[Function]}
+          size="s"
+        >
+          <button
+            className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            <EuiButtonContent
+              className="euiButtonEmpty__content"
+              iconSide="left"
+              iconSize="m"
+              iconType="eye"
+              textProps={
+                Object {
+                  "className": "euiButtonEmpty__text",
+                }
+              }
+            >
+              <span
+                className="euiButtonContent euiButtonEmpty__content"
+              >
+                <EuiIcon
+                  className="euiButtonContent__icon"
+                  color="inherit"
+                  size="m"
+                  type="eye"
+                >
+                  <span
+                    className="euiButtonContent__icon"
+                    color="inherit"
+                    data-euiicon-type="eye"
+                    size="m"
+                  />
+                </EuiIcon>
+                <span
+                  className="euiButtonEmpty__text"
+                >
+                  <EuiI18n
+                    default="Preview"
+                    token="euiMarkdownEditorToolbar.previewMarkdown"
+                  >
+                    Preview
+                  </EuiI18n>
+                </span>
+              </span>
+            </EuiButtonContent>
+          </button>
+        </EuiButtonEmpty>
+      </div>
+    </EuiMarkdownEditorToolbar>
+    <div
+      className="euiMarkdownEditor__toggleContainer"
+      style={
+        Object {
+          "height": "calc(100% - 0px)",
+        }
+      }
+    >
+      <EuiMarkdownEditorDropZone
+        dropHandlers={Array []}
+        errors={Array []}
+        hasUnacceptedItems={false}
+        insertText={[Function]}
+        isEditing={true}
+        setEditorFooterHeight={[Function]}
+        setHasUnacceptedItems={[Function]}
+        uiPlugins={Array []}
+      >
+        <div
+          className="euiMarkdownEditorDropZone"
+          onBlur={null}
+          onClick={null}
+          onDragEnter={null}
+          onDragLeave={null}
+          onDragOver={null}
+          onDrop={null}
+          onFocus={null}
+          onKeyDown={null}
+        >
+          <EuiResizeObserver
+            onResize={[Function]}
+          >
+            <EuiMarkdownEditorTextArea
+              aria-label="aria-label"
+              height="calc(250px)"
+              id="editorId"
+              maxHeight="500px"
+              onChange={[Function]}
+              onFocus={[Function]}
+              value=""
+            >
+              <textarea
+                aria-label="aria-label"
+                className="euiMarkdownEditorTextArea"
+                id="editorId"
+                onChange={[Function]}
+                onFocus={[Function]}
+                rows={6}
+                style={
+                  Object {
+                    "height": "calc(250px)",
+                    "maxHeight": "500px",
+                  }
+                }
+                value=""
+              />
+            </EuiMarkdownEditorTextArea>
+          </EuiResizeObserver>
+          <EuiMarkdownEditorFooter
+            dropHandlers={Array []}
+            errors={Array []}
+            hasUnacceptedItems={false}
+            isUploadingFiles={false}
+            openFiles={[Function]}
+            uiPlugins={Array []}
+          >
+            <div
+              className="euiMarkdownEditorFooter"
+            >
+              <div
+                className="euiMarkdownEditorFooter__actions"
+              />
+              <EuiPopover
+                anchorPosition="upCenter"
+                button={
+                  <EuiButtonIcon
+                    aria-label="Show markdown help"
+                    className="euiMarkdownEditorFooter__helpButton"
+                    color="text"
+                    iconType={[Function]}
+                    onClick={[Function]}
+                    size="s"
+                    title="Syntax help"
+                  />
+                }
+                closePopover={[Function]}
+                display="inlineBlock"
+                hasArrow={true}
+                isOpen={true}
+                ownFocus={true}
+                panelPaddingSize="s"
+              >
+                <div
+                  className="euiPopover euiPopover--anchorUpCenter"
+                >
+                  <div
+                    className="euiPopover__anchor"
+                  >
+                    <EuiButtonIcon
+                      aria-label="Show markdown help"
+                      className="euiMarkdownEditorFooter__helpButton"
+                      color="text"
+                      iconType={[Function]}
+                      onClick={[Function]}
+                      size="s"
+                      title="Syntax help"
+                    >
+                      <button
+                        aria-label="Show markdown help"
+                        className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton"
+                        disabled={false}
+                        onClick={[Function]}
+                        title="Syntax help"
+                        type="button"
+                      >
+                        <EuiIcon
+                          aria-hidden="true"
+                          className="euiButtonIcon__icon"
+                          color="inherit"
+                          size="m"
+                          type={[Function]}
+                        >
+                          <span
+                            aria-hidden="true"
+                            className="euiButtonIcon__icon"
+                            color="inherit"
+                            data-euiicon-type="MarkdownLogo"
+                            size="m"
+                          />
+                        </EuiIcon>
+                      </button>
+                    </EuiButtonIcon>
+                  </div>
+                  <EuiPortal>
+                    <Portal
+                      containerInfo={
+                        <div>
+                          <div
+                            data-focus-guard="true"
+                            style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                            tabindex="-1"
+                          />
+                          <div
+                            data-focus-guard="true"
+                            style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                            tabindex="-1"
+                          />
+                          <div
+                            data-focus-lock-disabled="disabled"
+                          >
+                            <div
+                              aria-describedby="generated-id"
+                              aria-live="off"
+                              aria-modal="true"
+                              class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--top"
+                              data-autofocus="true"
+                              role="dialog"
+                              style="top: -16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+                              tabindex="0"
+                            >
+                              <div
+                                class="euiPopover__panelArrow euiPopover__panelArrow--top"
+                                style="left: 10px; top: 0px;"
+                              />
+                              <p
+                                class="euiScreenReaderOnly"
+                                id="generated-id"
+                              >
+                                You are in a dialog. To close this dialog, hit escape.
+                              </p>
+                              <div>
+                                <p>
+                                  This editor uses
+                                   
+                                  <a
+                                    class="euiLink euiLink--primary"
+                                    href="https://guides.github.com/features/mastering-markdown/"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                  >
+                                    GitHub flavored markdown
+                                    <span
+                                      aria-label="External link"
+                                      class="euiLink__externalIcon"
+                                      data-euiicon-type="popout"
+                                    />
+                                    <span
+                                      class="euiScreenReaderOnly"
+                                    >
+                                      (opens in a new tab or window)
+                                    </span>
+                                  </a>
+                                  .
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            data-focus-guard="true"
+                            style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                            tabindex="-1"
+                          />
+                        </div>
+                      }
+                    >
+                      <EuiFocusTrap
+                        clickOutsideDisables={true}
+                        disabled={true}
+                        initialFocus={[Function]}
+                        noIsolation={true}
+                        onClickOutside={[Function]}
+                        onEscapeKey={[Function]}
+                        returnFocus={false}
+                        scrollLock={false}
+                      >
+                        <ForwardRef
+                          enabled={false}
+                          initialFocus={[Function]}
+                          noIsolation={true}
+                          onClickOutside={[Function]}
+                          onEscapeKey={[Function]}
+                          returnFocus={false}
+                          scrollLock={false}
+                        >
+                          <ForwardRef
+                            enabled={false}
+                            initialFocus={[Function]}
+                            noIsolation={true}
+                            onClickOutside={[Function]}
+                            onEscapeKey={[Function]}
+                            returnFocus={false}
+                            scrollLock={false}
+                            sideCar={[Function]}
+                          >
+                            <ForwardRef
+                              as={
+                                Object {
+                                  "$$typeof": Symbol(react.forward_ref),
+                                  "classNames": Object {
+                                    "fullWidth": "width-before-scroll-bar",
+                                    "zeroRight": "right-scroll-bar-position",
+                                  },
+                                  "defaultProps": Object {
+                                    "enabled": true,
+                                    "inert": false,
+                                    "removeScrollBar": true,
+                                  },
+                                  "render": [Function],
+                                }
+                              }
+                              autoFocus={true}
+                              crossFrame={true}
+                              disabled={true}
+                              lockProps={
+                                Object {
+                                  "allowPinchZoom": undefined,
+                                  "as": undefined,
+                                  "enabled": false,
+                                  "inert": undefined,
+                                  "shards": undefined,
+                                  "sideCar": [Function],
+                                  "style": undefined,
+                                }
+                              }
+                              noFocusGuards={false}
+                              persistentFocus={false}
+                              returnFocus={false}
+                              sideCar={[Function]}
+                            >
+                              <div
+                                data-focus-guard={true}
+                                key="guard-first"
+                                style={
+                                  Object {
+                                    "height": "0px",
+                                    "left": "1px",
+                                    "overflow": "hidden",
+                                    "padding": 0,
+                                    "position": "fixed",
+                                    "top": "1px",
+                                    "width": "1px",
+                                  }
+                                }
+                                tabIndex={-1}
+                              />
+                              <div
+                                data-focus-guard={true}
+                                key="guard-nearest"
+                                style={
+                                  Object {
+                                    "height": "0px",
+                                    "left": "1px",
+                                    "overflow": "hidden",
+                                    "padding": 0,
+                                    "position": "fixed",
+                                    "top": "1px",
+                                    "width": "1px",
+                                  }
+                                }
+                                tabIndex={-1}
+                              />
+                              <ForwardRef
+                                data-focus-lock-disabled="disabled"
+                                enabled={false}
+                                inert={false}
+                                onBlur={[Function]}
+                                onFocus={[Function]}
+                                removeScrollBar={true}
+                                sideCar={[Function]}
+                              >
+                                <div
+                                  data-focus-lock-disabled="disabled"
+                                  onBlur={[Function]}
+                                  onFocus={[Function]}
+                                  onScrollCapture={[Function]}
+                                  onTouchMoveCapture={[Function]}
+                                  onWheelCapture={[Function]}
+                                >
+                                  <EuiPanel
+                                    aria-describedby="generated-id"
+                                    aria-live="off"
+                                    aria-modal="true"
+                                    className="euiPopover__panel euiPopover__panel--top"
+                                    hasShadow={false}
+                                    paddingSize="s"
+                                    panelRef={[Function]}
+                                    role="dialog"
+                                    style={
+                                      Object {
+                                        "left": -22,
+                                        "top": -16,
+                                        "willChange": "transform, opacity",
+                                        "zIndex": 2000,
+                                      }
+                                    }
+                                    tabIndex={0}
+                                  >
+                                    <div
+                                      aria-describedby="generated-id"
+                                      aria-live="off"
+                                      aria-modal="true"
+                                      className="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--top"
+                                      role="dialog"
+                                      style={
+                                        Object {
+                                          "left": -22,
+                                          "top": -16,
+                                          "willChange": "transform, opacity",
+                                          "zIndex": 2000,
+                                        }
+                                      }
+                                      tabIndex={0}
+                                    >
+                                      <div
+                                        className="euiPopover__panelArrow euiPopover__panelArrow--top"
+                                        style={
+                                          Object {
+                                            "left": 10,
+                                            "top": 0,
+                                          }
+                                        }
+                                      />
+                                      <EuiScreenReaderOnly>
+                                        <p
+                                          className="euiScreenReaderOnly"
+                                          id="generated-id"
+                                        >
+                                          <EuiI18n
+                                            default="You are in a dialog. To close this dialog, hit escape."
+                                            token="euiPopover.screenReaderAnnouncement"
+                                          >
+                                            You are in a dialog. To close this dialog, hit escape.
+                                          </EuiI18n>
+                                        </p>
+                                      </EuiScreenReaderOnly>
+                                      <EuiMutationObserver
+                                        observerOptions={
+                                          Object {
+                                            "attributes": true,
+                                            "characterData": true,
+                                            "childList": true,
+                                            "subtree": true,
+                                          }
+                                        }
+                                        onMutation={[Function]}
+                                      >
+                                        <div>
+                                          <EuiI18n
+                                            defaults={
+                                              Array [
+                                                "This editor uses",
+                                              ]
+                                            }
+                                            tokens={
+                                              Array [
+                                                "euiMarkdownEditorFooter.syntaxPopoverDescription",
+                                              ]
+                                            }
+                                          >
+                                            <p>
+                                              This editor uses
+                                               
+                                              <EuiLink
+                                                href="https://guides.github.com/features/mastering-markdown/"
+                                                target="_blank"
+                                              >
+                                                <a
+                                                  className="euiLink euiLink--primary"
+                                                  href="https://guides.github.com/features/mastering-markdown/"
+                                                  rel="noopener noreferrer"
+                                                  target="_blank"
+                                                >
+                                                  <EuiI18n
+                                                    default="GitHub flavored markdown"
+                                                    token="euiMarkdownEditorFooter.mdSyntaxLink"
+                                                  >
+                                                    GitHub flavored markdown
+                                                  </EuiI18n>
+                                                  <EuiIcon
+                                                    aria-label="External link"
+                                                    className="euiLink__externalIcon"
+                                                    size="s"
+                                                    type="popout"
+                                                  >
+                                                    <span
+                                                      aria-label="External link"
+                                                      className="euiLink__externalIcon"
+                                                      data-euiicon-type="popout"
+                                                      size="s"
+                                                    />
+                                                  </EuiIcon>
+                                                  <EuiScreenReaderOnly>
+                                                    <span
+                                                      className="euiScreenReaderOnly"
+                                                    >
+                                                      <EuiI18n
+                                                        default="(opens in a new tab or window)"
+                                                        token="euiLink.newTarget.screenReaderOnlyText"
+                                                      >
+                                                        (opens in a new tab or window)
+                                                      </EuiI18n>
+                                                    </span>
+                                                  </EuiScreenReaderOnly>
+                                                </a>
+                                              </EuiLink>
+                                              .
+                                            </p>
+                                          </EuiI18n>
+                                        </div>
+                                      </EuiMutationObserver>
+                                    </div>
+                                  </EuiPanel>
+                                </div>
+                              </ForwardRef>
+                              <div
+                                data-focus-guard={true}
+                                style={
+                                  Object {
+                                    "height": "0px",
+                                    "left": "1px",
+                                    "overflow": "hidden",
+                                    "padding": 0,
+                                    "position": "fixed",
+                                    "top": "1px",
+                                    "width": "1px",
+                                  }
+                                }
+                                tabIndex={-1}
+                              />
+                            </ForwardRef>
+                          </ForwardRef>
+                        </ForwardRef>
+                      </EuiFocusTrap>
+                    </Portal>
+                  </EuiPortal>
+                </div>
+              </EuiPopover>
+            </div>
+          </EuiMarkdownEditorFooter>
+          <input
+            autoComplete="off"
+            multiple={true}
+            onChange={null}
+            onClick={null}
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+            tabIndex={-1}
+            type="file"
+          />
+        </div>
+      </EuiMarkdownEditorDropZone>
+    </div>
+  </div>
+</EuiMarkdownEditor>
+`;
+
 exports[`EuiMarkdownEditor is rendered 1`] = `
 <div
   class="euiMarkdownEditor testClass1 testClass2"
@@ -206,18 +1356,22 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
         <div
           class="euiMarkdownEditorFooter__actions"
         />
-        <button
-          aria-label="Show markdown help"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiMarkdownEditorFooter__help"
-          type="button"
+        <span
+          class="euiToolTipAnchor"
         >
-          <span
-            aria-hidden="true"
-            class="euiButtonIcon__icon"
-            color="inherit"
-            data-euiicon-type="MarkdownLogo"
-          />
-        </button>
+          <button
+            aria-label="Show markdown help"
+            class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="MarkdownLogo"
+            />
+          </button>
+        </span>
       </div>
       <input
         autocomplete="off"
@@ -229,6 +1383,2066 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
     </div>
   </div>
 </div>
+`;
+
+exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
+<EuiMarkdownEditor
+  aria-label="aria-label"
+  className="testClass1 testClass2"
+  data-test-subj="test subject string"
+  editorId="editorId"
+  onChange={[Function]}
+  value=""
+>
+  <div
+    className="euiMarkdownEditor testClass1 testClass2"
+    data-test-subj="test subject string"
+  >
+    <EuiMarkdownEditorToolbar
+      markdownActions={
+        MarkdownActions {
+          "editorID": "editorId",
+          "styles": Object {
+            "mdBold": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "prefix": "**",
+                "suffix": "**",
+                "trimFirst": true,
+              },
+              "name": "mdBold",
+            },
+            "mdCode": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "blockPrefix": "\`\`\`",
+                "blockSuffix": "\`\`\`",
+                "prefix": "\`",
+                "suffix": "\`",
+              },
+              "name": "mdCode",
+            },
+            "mdItalic": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "prefix": "_",
+                "suffix": "_",
+                "trimFirst": true,
+              },
+              "name": "mdItalic",
+            },
+            "mdLink": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "prefix": "[",
+                "replaceNext": "url",
+                "scanFor": "https?://",
+                "suffix": "](url)",
+              },
+              "name": "mdLink",
+            },
+            "mdOl": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "multiline": true,
+                "orderedList": true,
+                "prefix": "1. ",
+              },
+              "name": "mdOl",
+            },
+            "mdQuote": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "multiline": true,
+                "prefix": "> ",
+                "surroundWithNewlines": true,
+              },
+              "name": "mdQuote",
+            },
+            "mdTl": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "multiline": true,
+                "prefix": "- [ ] ",
+                "surroundWithNewlines": true,
+              },
+              "name": "mdTl",
+            },
+            "mdUl": Object {
+              "button": Object {
+                "iconType": "",
+                "label": "",
+              },
+              "formatting": Object {
+                "multiline": true,
+                "prefix": "- ",
+                "surroundWithNewlines": true,
+              },
+              "name": "mdUl",
+            },
+            "tooltipPlugin": Object {
+              "button": Object {
+                "iconType": "editorComment",
+                "label": "Tooltip",
+              },
+              "formatting": Object {
+                "prefix": "!{tooltip[",
+                "suffix": "]()}",
+                "trimFirst": true,
+              },
+              "helpText": <EuiCodeBlock
+                fontSize="l"
+                language="md"
+                paddingSize="s"
+              >
+                !{tooltip[anchor text](helpful description)}
+              </EuiCodeBlock>,
+              "name": "tooltipPlugin",
+            },
+          },
+        }
+      }
+      onClickPreview={[Function]}
+      uiPlugins={
+        Array [
+          Object {
+            "button": Object {
+              "iconType": "editorComment",
+              "label": "Tooltip",
+            },
+            "formatting": Object {
+              "prefix": "!{tooltip[",
+              "suffix": "]()}",
+              "trimFirst": true,
+            },
+            "helpText": <EuiCodeBlock
+              fontSize="l"
+              language="md"
+              paddingSize="s"
+            >
+              !{tooltip[anchor text](helpful description)}
+            </EuiCodeBlock>,
+            "name": "tooltipPlugin",
+          },
+        ]
+      }
+      viewMode="editing"
+    >
+      <div
+        className="euiMarkdownEditorToolbar"
+      >
+        <div
+          className="euiMarkdownEditorToolbar__buttons"
+        >
+          <EuiToolTip
+            content="Bold"
+            delay="long"
+            display="inlineBlock"
+            key="mdBold"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Bold"
+                color="text"
+                iconType="editorBold"
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Bold"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type="editorBold"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="editorBold"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+          <EuiToolTip
+            content="Italic"
+            delay="long"
+            display="inlineBlock"
+            key="mdItalic"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Italic"
+                color="text"
+                iconType="editorItalic"
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Italic"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type="editorItalic"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="editorItalic"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+          <span
+            className="euiMarkdownEditorToolbar__divider"
+          />
+          <EuiToolTip
+            content="Unordered list"
+            delay="long"
+            display="inlineBlock"
+            key="mdUl"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Unordered list"
+                color="text"
+                iconType="editorUnorderedList"
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Unordered list"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type="editorUnorderedList"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="editorUnorderedList"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+          <EuiToolTip
+            content="Ordered list"
+            delay="long"
+            display="inlineBlock"
+            key="mdOl"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Ordered list"
+                color="text"
+                iconType="editorOrderedList"
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Ordered list"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type="editorOrderedList"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="editorOrderedList"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+          <EuiToolTip
+            content="Task list"
+            delay="long"
+            display="inlineBlock"
+            key="mdTl"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Task list"
+                color="text"
+                iconType={[Function]}
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Task list"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type={[Function]}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="MarkdownCheckmark"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+          <span
+            className="euiMarkdownEditorToolbar__divider"
+          />
+          <EuiToolTip
+            content="Quote"
+            delay="long"
+            display="inlineBlock"
+            key="mdQuote"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Quote"
+                color="text"
+                iconType="quote"
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Quote"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type="quote"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="quote"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+          <EuiToolTip
+            content="Code"
+            delay="long"
+            display="inlineBlock"
+            key="mdCode"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Code"
+                color="text"
+                iconType="editorCodeBlock"
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Code"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type="editorCodeBlock"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="editorCodeBlock"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+          <EuiToolTip
+            content="Link"
+            delay="long"
+            display="inlineBlock"
+            key="mdLink"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Link"
+                color="text"
+                iconType="editorLink"
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Link"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type="editorLink"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="editorLink"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+          <span
+            className="euiMarkdownEditorToolbar__divider"
+          />
+          <EuiToolTip
+            content="Tooltip"
+            delay="long"
+            display="inlineBlock"
+            key="tooltipPlugin"
+            position="top"
+          >
+            <span
+              className="euiToolTipAnchor"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <EuiButtonIcon
+                aria-label="Tooltip"
+                color="text"
+                iconType="editorComment"
+                isDisabled={false}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+              >
+                <button
+                  aria-label="Tooltip"
+                  className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                  disabled={false}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  type="button"
+                >
+                  <EuiIcon
+                    aria-hidden="true"
+                    className="euiButtonIcon__icon"
+                    color="inherit"
+                    size="m"
+                    type="editorComment"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="euiButtonIcon__icon"
+                      color="inherit"
+                      data-euiicon-type="editorComment"
+                      size="m"
+                    />
+                  </EuiIcon>
+                </button>
+              </EuiButtonIcon>
+            </span>
+          </EuiToolTip>
+        </div>
+        <EuiButtonEmpty
+          color="text"
+          iconType="eye"
+          onClick={[Function]}
+          size="s"
+        >
+          <button
+            className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+          >
+            <EuiButtonContent
+              className="euiButtonEmpty__content"
+              iconSide="left"
+              iconSize="m"
+              iconType="eye"
+              textProps={
+                Object {
+                  "className": "euiButtonEmpty__text",
+                }
+              }
+            >
+              <span
+                className="euiButtonContent euiButtonEmpty__content"
+              >
+                <EuiIcon
+                  className="euiButtonContent__icon"
+                  color="inherit"
+                  size="m"
+                  type="eye"
+                >
+                  <span
+                    className="euiButtonContent__icon"
+                    color="inherit"
+                    data-euiicon-type="eye"
+                    size="m"
+                  />
+                </EuiIcon>
+                <span
+                  className="euiButtonEmpty__text"
+                >
+                  <EuiI18n
+                    default="Preview"
+                    token="euiMarkdownEditorToolbar.previewMarkdown"
+                  >
+                    Preview
+                  </EuiI18n>
+                </span>
+              </span>
+            </EuiButtonContent>
+          </button>
+        </EuiButtonEmpty>
+      </div>
+    </EuiMarkdownEditorToolbar>
+    <div
+      className="euiMarkdownEditor__toggleContainer"
+      style={
+        Object {
+          "height": "calc(100% - 0px)",
+        }
+      }
+    >
+      <EuiMarkdownEditorDropZone
+        dropHandlers={Array []}
+        errors={Array []}
+        hasUnacceptedItems={false}
+        insertText={[Function]}
+        isEditing={true}
+        setEditorFooterHeight={[Function]}
+        setHasUnacceptedItems={[Function]}
+        uiPlugins={
+          Array [
+            Object {
+              "button": Object {
+                "iconType": "editorComment",
+                "label": "Tooltip",
+              },
+              "formatting": Object {
+                "prefix": "!{tooltip[",
+                "suffix": "]()}",
+                "trimFirst": true,
+              },
+              "helpText": <EuiCodeBlock
+                fontSize="l"
+                language="md"
+                paddingSize="s"
+              >
+                !{tooltip[anchor text](helpful description)}
+              </EuiCodeBlock>,
+              "name": "tooltipPlugin",
+            },
+          ]
+        }
+      >
+        <div
+          className="euiMarkdownEditorDropZone"
+          onBlur={null}
+          onClick={null}
+          onDragEnter={null}
+          onDragLeave={null}
+          onDragOver={null}
+          onDrop={null}
+          onFocus={null}
+          onKeyDown={null}
+        >
+          <EuiResizeObserver
+            onResize={[Function]}
+          >
+            <EuiMarkdownEditorTextArea
+              aria-label="aria-label"
+              height="calc(250px)"
+              id="editorId"
+              maxHeight="500px"
+              onChange={[Function]}
+              onFocus={[Function]}
+              value=""
+            >
+              <textarea
+                aria-label="aria-label"
+                className="euiMarkdownEditorTextArea"
+                id="editorId"
+                onChange={[Function]}
+                onFocus={[Function]}
+                rows={6}
+                style={
+                  Object {
+                    "height": "calc(250px)",
+                    "maxHeight": "500px",
+                  }
+                }
+                value=""
+              />
+            </EuiMarkdownEditorTextArea>
+          </EuiResizeObserver>
+          <EuiMarkdownEditorFooter
+            dropHandlers={Array []}
+            errors={Array []}
+            hasUnacceptedItems={false}
+            isUploadingFiles={false}
+            openFiles={[Function]}
+            uiPlugins={
+              Array [
+                Object {
+                  "button": Object {
+                    "iconType": "editorComment",
+                    "label": "Tooltip",
+                  },
+                  "formatting": Object {
+                    "prefix": "!{tooltip[",
+                    "suffix": "]()}",
+                    "trimFirst": true,
+                  },
+                  "helpText": <EuiCodeBlock
+                    fontSize="l"
+                    language="md"
+                    paddingSize="s"
+                  >
+                    !{tooltip[anchor text](helpful description)}
+                  </EuiCodeBlock>,
+                  "name": "tooltipPlugin",
+                },
+              ]
+            }
+          >
+            <div
+              className="euiMarkdownEditorFooter"
+            >
+              <div
+                className="euiMarkdownEditorFooter__actions"
+              />
+              <EuiToolTip
+                content="Syntax help"
+                delay="regular"
+                display="inlineBlock"
+                position="top"
+              >
+                <span
+                  className="euiToolTipAnchor"
+                  onMouseOut={[Function]}
+                  onMouseOver={[Function]}
+                >
+                  <EuiButtonIcon
+                    aria-label="Show markdown help"
+                    className="euiMarkdownEditorFooter__helpButton"
+                    color="text"
+                    iconType={[Function]}
+                    onBlur={[Function]}
+                    onClick={[Function]}
+                    onFocus={[Function]}
+                    size="s"
+                  >
+                    <button
+                      aria-label="Show markdown help"
+                      className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      type="button"
+                    >
+                      <EuiIcon
+                        aria-hidden="true"
+                        className="euiButtonIcon__icon"
+                        color="inherit"
+                        size="m"
+                        type={[Function]}
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="euiButtonIcon__icon"
+                          color="inherit"
+                          data-euiicon-type="MarkdownLogo"
+                          size="m"
+                        />
+                      </EuiIcon>
+                    </button>
+                  </EuiButtonIcon>
+                </span>
+              </EuiToolTip>
+              <EuiModal
+                onClose={[Function]}
+              >
+                <EuiOverlayMask>
+                  <Portal
+                    containerInfo={
+                      <div
+                        class="euiOverlayMask euiOverlayMask--aboveHeader"
+                      >
+                        <div
+                          aria-hidden="true"
+                          data-aria-hidden="true"
+                          data-focus-guard="true"
+                          style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                          tabindex="0"
+                        />
+                        <div
+                          aria-hidden="true"
+                          data-aria-hidden="true"
+                          data-focus-guard="true"
+                          style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                          tabindex="1"
+                        />
+                        <div
+                          data-focus-lock-disabled="false"
+                        >
+                          <div
+                            class="euiModal euiModal--maxWidth-default"
+                            tabindex="0"
+                          >
+                            <button
+                              aria-label="Closes this modal window"
+                              class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiModal__closeIcon"
+                              type="button"
+                            >
+                              <span
+                                aria-hidden="true"
+                                class="euiButtonIcon__icon"
+                                color="inherit"
+                                data-euiicon-type="cross"
+                              />
+                            </button>
+                            <div
+                              class="euiModal__flex"
+                            >
+                              <div
+                                class="euiModalHeader"
+                              >
+                                <h1
+                                  class="euiTitle euiTitle--medium"
+                                >
+                                  Syntax help
+                                </h1>
+                              </div>
+                              <div
+                                class="euiModalBody"
+                              >
+                                <div
+                                  class="euiModalBody__overflow"
+                                >
+                                  <div
+                                    class="euiText euiText--medium"
+                                  >
+                                    <p>
+                                      This editor uses
+                                       
+                                      <a
+                                        class="euiLink euiLink--primary"
+                                        href="https://guides.github.com/features/mastering-markdown/"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                      >
+                                        GitHub flavored markdown
+                                        <span
+                                          aria-label="External link"
+                                          class="euiLink__externalIcon"
+                                          data-euiicon-type="popout"
+                                        />
+                                        <span
+                                          class="euiScreenReaderOnly"
+                                        >
+                                          (opens in a new tab or window)
+                                        </span>
+                                      </a>
+                                      .
+                                       
+                                      You can also utilize these additional syntax plugins to add rich content to your text.
+                                    </p>
+                                  </div>
+                                  <hr
+                                    class="euiHorizontalRule euiHorizontalRule--full euiHorizontalRule--marginLarge"
+                                  />
+                                  <p
+                                    class="euiTitle euiTitle--xxsmall"
+                                  >
+                                    <strong>
+                                      tooltipPlugin
+                                    </strong>
+                                  </p>
+                                  <div
+                                    class="euiSpacer euiSpacer--s"
+                                  />
+                                  <div
+                                    class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall prismjs language-md"
+                                  >
+                                    <pre
+                                      class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+                                      tabindex="-1"
+                                    >
+                                      <code
+                                        class="euiCodeBlock__code md"
+                                      >
+                                        <span
+                                          class="euiCodeBlock__line"
+                                        >
+                                          !{tooltip[anchor text](helpful description)}
+                                        </span>
+                                      </code>
+                                    </pre>
+                                  </div>
+                                  <div
+                                    class="euiSpacer euiSpacer--l"
+                                  />
+                                  <hr
+                                    class="euiHorizontalRule euiHorizontalRule--full euiHorizontalRule--marginLarge"
+                                  />
+                                </div>
+                              </div>
+                              <div
+                                class="euiModalFooter"
+                              >
+                                <button
+                                  class="euiButton euiButton--primary euiButton--fill"
+                                  type="button"
+                                >
+                                  <span
+                                    class="euiButtonContent euiButton__content"
+                                  >
+                                    <span
+                                      class="euiButton__text"
+                                    >
+                                      Close
+                                    </span>
+                                  </span>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          aria-hidden="true"
+                          data-aria-hidden="true"
+                          data-focus-guard="true"
+                          style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+                          tabindex="0"
+                        />
+                      </div>
+                    }
+                  >
+                    <EuiFocusTrap
+                      clickOutsideDisables={false}
+                      disabled={false}
+                      noIsolation={true}
+                      returnFocus={true}
+                      scrollLock={false}
+                    >
+                      <ForwardRef
+                        enabled={true}
+                        noIsolation={true}
+                        onClickOutside={[Function]}
+                        returnFocus={true}
+                        scrollLock={false}
+                      >
+                        <ForwardRef
+                          enabled={true}
+                          noIsolation={true}
+                          onClickOutside={[Function]}
+                          returnFocus={true}
+                          scrollLock={false}
+                          sideCar={[Function]}
+                        >
+                          <ForwardRef
+                            as={
+                              Object {
+                                "$$typeof": Symbol(react.forward_ref),
+                                "classNames": Object {
+                                  "fullWidth": "width-before-scroll-bar",
+                                  "zeroRight": "right-scroll-bar-position",
+                                },
+                                "defaultProps": Object {
+                                  "enabled": true,
+                                  "inert": false,
+                                  "removeScrollBar": true,
+                                },
+                                "render": [Function],
+                              }
+                            }
+                            autoFocus={true}
+                            crossFrame={true}
+                            disabled={false}
+                            lockProps={
+                              Object {
+                                "allowPinchZoom": undefined,
+                                "as": undefined,
+                                "enabled": false,
+                                "inert": undefined,
+                                "onMouseDown": [Function],
+                                "onTouchStart": [Function],
+                                "shards": undefined,
+                                "sideCar": [Function],
+                                "style": undefined,
+                              }
+                            }
+                            noFocusGuards={false}
+                            onActivation={[Function]}
+                            onDeactivation={[Function]}
+                            persistentFocus={false}
+                            returnFocus={true}
+                            sideCar={[Function]}
+                          >
+                            <div
+                              data-focus-guard={true}
+                              key="guard-first"
+                              style={
+                                Object {
+                                  "height": "0px",
+                                  "left": "1px",
+                                  "overflow": "hidden",
+                                  "padding": 0,
+                                  "position": "fixed",
+                                  "top": "1px",
+                                  "width": "1px",
+                                }
+                              }
+                              tabIndex={0}
+                            />
+                            <div
+                              data-focus-guard={true}
+                              key="guard-nearest"
+                              style={
+                                Object {
+                                  "height": "0px",
+                                  "left": "1px",
+                                  "overflow": "hidden",
+                                  "padding": 0,
+                                  "position": "fixed",
+                                  "top": "1px",
+                                  "width": "1px",
+                                }
+                              }
+                              tabIndex={1}
+                            />
+                            <RequireSideCar
+                              autoFocus={true}
+                              crossFrame={true}
+                              disabled={false}
+                              id={Object {}}
+                              observed={
+                                <div
+                                  data-focus-lock-disabled="false"
+                                >
+                                  <div
+                                    class="euiModal euiModal--maxWidth-default"
+                                    tabindex="0"
+                                  >
+                                    <button
+                                      aria-label="Closes this modal window"
+                                      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiModal__closeIcon"
+                                      type="button"
+                                    >
+                                      <span
+                                        aria-hidden="true"
+                                        class="euiButtonIcon__icon"
+                                        color="inherit"
+                                        data-euiicon-type="cross"
+                                      />
+                                    </button>
+                                    <div
+                                      class="euiModal__flex"
+                                    >
+                                      <div
+                                        class="euiModalHeader"
+                                      >
+                                        <h1
+                                          class="euiTitle euiTitle--medium"
+                                        >
+                                          Syntax help
+                                        </h1>
+                                      </div>
+                                      <div
+                                        class="euiModalBody"
+                                      >
+                                        <div
+                                          class="euiModalBody__overflow"
+                                        >
+                                          <div
+                                            class="euiText euiText--medium"
+                                          >
+                                            <p>
+                                              This editor uses
+                                               
+                                              <a
+                                                class="euiLink euiLink--primary"
+                                                href="https://guides.github.com/features/mastering-markdown/"
+                                                rel="noopener noreferrer"
+                                                target="_blank"
+                                              >
+                                                GitHub flavored markdown
+                                                <span
+                                                  aria-label="External link"
+                                                  class="euiLink__externalIcon"
+                                                  data-euiicon-type="popout"
+                                                />
+                                                <span
+                                                  class="euiScreenReaderOnly"
+                                                >
+                                                  (opens in a new tab or window)
+                                                </span>
+                                              </a>
+                                              .
+                                               
+                                              You can also utilize these additional syntax plugins to add rich content to your text.
+                                            </p>
+                                          </div>
+                                          <hr
+                                            class="euiHorizontalRule euiHorizontalRule--full euiHorizontalRule--marginLarge"
+                                          />
+                                          <p
+                                            class="euiTitle euiTitle--xxsmall"
+                                          >
+                                            <strong>
+                                              tooltipPlugin
+                                            </strong>
+                                          </p>
+                                          <div
+                                            class="euiSpacer euiSpacer--s"
+                                          />
+                                          <div
+                                            class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall prismjs language-md"
+                                          >
+                                            <pre
+                                              class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+                                              tabindex="-1"
+                                            >
+                                              <code
+                                                class="euiCodeBlock__code md"
+                                              >
+                                                <span
+                                                  class="euiCodeBlock__line"
+                                                >
+                                                  !{tooltip[anchor text](helpful description)}
+                                                </span>
+                                              </code>
+                                            </pre>
+                                          </div>
+                                          <div
+                                            class="euiSpacer euiSpacer--l"
+                                          />
+                                          <hr
+                                            class="euiHorizontalRule euiHorizontalRule--full euiHorizontalRule--marginLarge"
+                                          />
+                                        </div>
+                                      </div>
+                                      <div
+                                        class="euiModalFooter"
+                                      >
+                                        <button
+                                          class="euiButton euiButton--primary euiButton--fill"
+                                          type="button"
+                                        >
+                                          <span
+                                            class="euiButtonContent euiButton__content"
+                                          >
+                                            <span
+                                              class="euiButton__text"
+                                            >
+                                              Close
+                                            </span>
+                                          </span>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              }
+                              onActivation={[Function]}
+                              onDeactivation={[Function]}
+                              persistentFocus={false}
+                              returnFocus={[Function]}
+                              shards={Array []}
+                              sideCar={
+                                Object {
+                                  "assignMedium": [Function],
+                                  "assignSyncMedium": [Function],
+                                  "options": Object {
+                                    "async": true,
+                                    "ssr": false,
+                                  },
+                                  "read": [Function],
+                                  "useMedium": [Function],
+                                }
+                              }
+                            >
+                              <SideCar
+                                autoFocus={true}
+                                crossFrame={true}
+                                disabled={false}
+                                id={Object {}}
+                                observed={
+                                  <div
+                                    data-focus-lock-disabled="false"
+                                  >
+                                    <div
+                                      class="euiModal euiModal--maxWidth-default"
+                                      tabindex="0"
+                                    >
+                                      <button
+                                        aria-label="Closes this modal window"
+                                        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiModal__closeIcon"
+                                        type="button"
+                                      >
+                                        <span
+                                          aria-hidden="true"
+                                          class="euiButtonIcon__icon"
+                                          color="inherit"
+                                          data-euiicon-type="cross"
+                                        />
+                                      </button>
+                                      <div
+                                        class="euiModal__flex"
+                                      >
+                                        <div
+                                          class="euiModalHeader"
+                                        >
+                                          <h1
+                                            class="euiTitle euiTitle--medium"
+                                          >
+                                            Syntax help
+                                          </h1>
+                                        </div>
+                                        <div
+                                          class="euiModalBody"
+                                        >
+                                          <div
+                                            class="euiModalBody__overflow"
+                                          >
+                                            <div
+                                              class="euiText euiText--medium"
+                                            >
+                                              <p>
+                                                This editor uses
+                                                 
+                                                <a
+                                                  class="euiLink euiLink--primary"
+                                                  href="https://guides.github.com/features/mastering-markdown/"
+                                                  rel="noopener noreferrer"
+                                                  target="_blank"
+                                                >
+                                                  GitHub flavored markdown
+                                                  <span
+                                                    aria-label="External link"
+                                                    class="euiLink__externalIcon"
+                                                    data-euiicon-type="popout"
+                                                  />
+                                                  <span
+                                                    class="euiScreenReaderOnly"
+                                                  >
+                                                    (opens in a new tab or window)
+                                                  </span>
+                                                </a>
+                                                .
+                                                 
+                                                You can also utilize these additional syntax plugins to add rich content to your text.
+                                              </p>
+                                            </div>
+                                            <hr
+                                              class="euiHorizontalRule euiHorizontalRule--full euiHorizontalRule--marginLarge"
+                                            />
+                                            <p
+                                              class="euiTitle euiTitle--xxsmall"
+                                            >
+                                              <strong>
+                                                tooltipPlugin
+                                              </strong>
+                                            </p>
+                                            <div
+                                              class="euiSpacer euiSpacer--s"
+                                            />
+                                            <div
+                                              class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall prismjs language-md"
+                                            >
+                                              <pre
+                                                class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+                                                tabindex="-1"
+                                              >
+                                                <code
+                                                  class="euiCodeBlock__code md"
+                                                >
+                                                  <span
+                                                    class="euiCodeBlock__line"
+                                                  >
+                                                    !{tooltip[anchor text](helpful description)}
+                                                  </span>
+                                                </code>
+                                              </pre>
+                                            </div>
+                                            <div
+                                              class="euiSpacer euiSpacer--l"
+                                            />
+                                            <hr
+                                              class="euiHorizontalRule euiHorizontalRule--full euiHorizontalRule--marginLarge"
+                                            />
+                                          </div>
+                                        </div>
+                                        <div
+                                          class="euiModalFooter"
+                                        >
+                                          <button
+                                            class="euiButton euiButton--primary euiButton--fill"
+                                            type="button"
+                                          >
+                                            <span
+                                              class="euiButtonContent euiButton__content"
+                                            >
+                                              <span
+                                                class="euiButton__text"
+                                              >
+                                                Close
+                                              </span>
+                                            </span>
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                }
+                                onActivation={[Function]}
+                                onDeactivation={[Function]}
+                                persistentFocus={false}
+                                returnFocus={[Function]}
+                                shards={Array []}
+                                sideCar={
+                                  Object {
+                                    "assignMedium": [Function],
+                                    "assignSyncMedium": [Function],
+                                    "options": Object {
+                                      "async": true,
+                                      "ssr": false,
+                                    },
+                                    "read": [Function],
+                                    "useMedium": [Function],
+                                  }
+                                }
+                              >
+                                <SideEffect(FocusWatcher)
+                                  autoFocus={true}
+                                  crossFrame={true}
+                                  disabled={false}
+                                  id={Object {}}
+                                  observed={
+                                    <div
+                                      data-focus-lock-disabled="false"
+                                    >
+                                      <div
+                                        class="euiModal euiModal--maxWidth-default"
+                                        tabindex="0"
+                                      >
+                                        <button
+                                          aria-label="Closes this modal window"
+                                          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiModal__closeIcon"
+                                          type="button"
+                                        >
+                                          <span
+                                            aria-hidden="true"
+                                            class="euiButtonIcon__icon"
+                                            color="inherit"
+                                            data-euiicon-type="cross"
+                                          />
+                                        </button>
+                                        <div
+                                          class="euiModal__flex"
+                                        >
+                                          <div
+                                            class="euiModalHeader"
+                                          >
+                                            <h1
+                                              class="euiTitle euiTitle--medium"
+                                            >
+                                              Syntax help
+                                            </h1>
+                                          </div>
+                                          <div
+                                            class="euiModalBody"
+                                          >
+                                            <div
+                                              class="euiModalBody__overflow"
+                                            >
+                                              <div
+                                                class="euiText euiText--medium"
+                                              >
+                                                <p>
+                                                  This editor uses
+                                                   
+                                                  <a
+                                                    class="euiLink euiLink--primary"
+                                                    href="https://guides.github.com/features/mastering-markdown/"
+                                                    rel="noopener noreferrer"
+                                                    target="_blank"
+                                                  >
+                                                    GitHub flavored markdown
+                                                    <span
+                                                      aria-label="External link"
+                                                      class="euiLink__externalIcon"
+                                                      data-euiicon-type="popout"
+                                                    />
+                                                    <span
+                                                      class="euiScreenReaderOnly"
+                                                    >
+                                                      (opens in a new tab or window)
+                                                    </span>
+                                                  </a>
+                                                  .
+                                                   
+                                                  You can also utilize these additional syntax plugins to add rich content to your text.
+                                                </p>
+                                              </div>
+                                              <hr
+                                                class="euiHorizontalRule euiHorizontalRule--full euiHorizontalRule--marginLarge"
+                                              />
+                                              <p
+                                                class="euiTitle euiTitle--xxsmall"
+                                              >
+                                                <strong>
+                                                  tooltipPlugin
+                                                </strong>
+                                              </p>
+                                              <div
+                                                class="euiSpacer euiSpacer--s"
+                                              />
+                                              <div
+                                                class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall prismjs language-md"
+                                              >
+                                                <pre
+                                                  class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+                                                  tabindex="-1"
+                                                >
+                                                  <code
+                                                    class="euiCodeBlock__code md"
+                                                  >
+                                                    <span
+                                                      class="euiCodeBlock__line"
+                                                    >
+                                                      !{tooltip[anchor text](helpful description)}
+                                                    </span>
+                                                  </code>
+                                                </pre>
+                                              </div>
+                                              <div
+                                                class="euiSpacer euiSpacer--l"
+                                              />
+                                              <hr
+                                                class="euiHorizontalRule euiHorizontalRule--full euiHorizontalRule--marginLarge"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div
+                                            class="euiModalFooter"
+                                          >
+                                            <button
+                                              class="euiButton euiButton--primary euiButton--fill"
+                                              type="button"
+                                            >
+                                              <span
+                                                class="euiButtonContent euiButton__content"
+                                              >
+                                                <span
+                                                  class="euiButton__text"
+                                                >
+                                                  Close
+                                                </span>
+                                              </span>
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  }
+                                  onActivation={[Function]}
+                                  onDeactivation={[Function]}
+                                  persistentFocus={false}
+                                  returnFocus={[Function]}
+                                  shards={Array []}
+                                >
+                                  <FocusWatcher
+                                    autoFocus={true}
+                                    crossFrame={true}
+                                    disabled={false}
+                                    id={Object {}}
+                                    observed={
+                                      <div
+                                        data-focus-lock-disabled="false"
+                                      >
+                                        <div
+                                          class="euiModal euiModal--maxWidth-default"
+                                          tabindex="0"
+                                        >
+                                          <button
+                                            aria-label="Closes this modal window"
+                                            class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiModal__closeIcon"
+                                            type="button"
+                                          >
+                                            <span
+                                              aria-hidden="true"
+                                              class="euiButtonIcon__icon"
+                                              color="inherit"
+                                              data-euiicon-type="cross"
+                                            />
+                                          </button>
+                                          <div
+                                            class="euiModal__flex"
+                                          >
+                                            <div
+                                              class="euiModalHeader"
+                                            >
+                                              <h1
+                                                class="euiTitle euiTitle--medium"
+                                              >
+                                                Syntax help
+                                              </h1>
+                                            </div>
+                                            <div
+                                              class="euiModalBody"
+                                            >
+                                              <div
+                                                class="euiModalBody__overflow"
+                                              >
+                                                <div
+                                                  class="euiText euiText--medium"
+                                                >
+                                                  <p>
+                                                    This editor uses
+                                                     
+                                                    <a
+                                                      class="euiLink euiLink--primary"
+                                                      href="https://guides.github.com/features/mastering-markdown/"
+                                                      rel="noopener noreferrer"
+                                                      target="_blank"
+                                                    >
+                                                      GitHub flavored markdown
+                                                      <span
+                                                        aria-label="External link"
+                                                        class="euiLink__externalIcon"
+                                                        data-euiicon-type="popout"
+                                                      />
+                                                      <span
+                                                        class="euiScreenReaderOnly"
+                                                      >
+                                                        (opens in a new tab or window)
+                                                      </span>
+                                                    </a>
+                                                    .
+                                                     
+                                                    You can also utilize these additional syntax plugins to add rich content to your text.
+                                                  </p>
+                                                </div>
+                                                <hr
+                                                  class="euiHorizontalRule euiHorizontalRule--full euiHorizontalRule--marginLarge"
+                                                />
+                                                <p
+                                                  class="euiTitle euiTitle--xxsmall"
+                                                >
+                                                  <strong>
+                                                    tooltipPlugin
+                                                  </strong>
+                                                </p>
+                                                <div
+                                                  class="euiSpacer euiSpacer--s"
+                                                />
+                                                <div
+                                                  class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall prismjs language-md"
+                                                >
+                                                  <pre
+                                                    class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+                                                    tabindex="-1"
+                                                  >
+                                                    <code
+                                                      class="euiCodeBlock__code md"
+                                                    >
+                                                      <span
+                                                        class="euiCodeBlock__line"
+                                                      >
+                                                        !{tooltip[anchor text](helpful description)}
+                                                      </span>
+                                                    </code>
+                                                  </pre>
+                                                </div>
+                                                <div
+                                                  class="euiSpacer euiSpacer--l"
+                                                />
+                                                <hr
+                                                  class="euiHorizontalRule euiHorizontalRule--full euiHorizontalRule--marginLarge"
+                                                />
+                                              </div>
+                                            </div>
+                                            <div
+                                              class="euiModalFooter"
+                                            >
+                                              <button
+                                                class="euiButton euiButton--primary euiButton--fill"
+                                                type="button"
+                                              >
+                                                <span
+                                                  class="euiButtonContent euiButton__content"
+                                                >
+                                                  <span
+                                                    class="euiButton__text"
+                                                  >
+                                                    Close
+                                                  </span>
+                                                </span>
+                                              </button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    }
+                                    onActivation={[Function]}
+                                    onDeactivation={[Function]}
+                                    persistentFocus={false}
+                                    returnFocus={[Function]}
+                                    shards={Array []}
+                                  />
+                                </SideEffect(FocusWatcher)>
+                              </SideCar>
+                            </RequireSideCar>
+                            <ForwardRef
+                              data-focus-lock-disabled={false}
+                              enabled={false}
+                              inert={false}
+                              onBlur={[Function]}
+                              onFocus={[Function]}
+                              onMouseDown={[Function]}
+                              onTouchStart={[Function]}
+                              removeScrollBar={true}
+                              sideCar={[Function]}
+                            >
+                              <div
+                                data-focus-lock-disabled={false}
+                                onBlur={[Function]}
+                                onFocus={[Function]}
+                                onMouseDown={[Function]}
+                                onScrollCapture={[Function]}
+                                onTouchMoveCapture={[Function]}
+                                onTouchStart={[Function]}
+                                onWheelCapture={[Function]}
+                              >
+                                <div
+                                  className="euiModal euiModal--maxWidth-default"
+                                  onKeyDown={[Function]}
+                                  tabIndex={0}
+                                >
+                                  <EuiI18n
+                                    default="Closes this modal window"
+                                    token="euiModal.closeModal"
+                                  >
+                                    <EuiButtonIcon
+                                      aria-label="Closes this modal window"
+                                      className="euiModal__closeIcon"
+                                      color="text"
+                                      iconType="cross"
+                                      onClick={[Function]}
+                                    >
+                                      <button
+                                        aria-label="Closes this modal window"
+                                        className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiModal__closeIcon"
+                                        disabled={false}
+                                        onClick={[Function]}
+                                        type="button"
+                                      >
+                                        <EuiIcon
+                                          aria-hidden="true"
+                                          className="euiButtonIcon__icon"
+                                          color="inherit"
+                                          size="m"
+                                          type="cross"
+                                        >
+                                          <span
+                                            aria-hidden="true"
+                                            className="euiButtonIcon__icon"
+                                            color="inherit"
+                                            data-euiicon-type="cross"
+                                            size="m"
+                                          />
+                                        </EuiIcon>
+                                      </button>
+                                    </EuiButtonIcon>
+                                  </EuiI18n>
+                                  <div
+                                    className="euiModal__flex"
+                                  >
+                                    <EuiModalHeader>
+                                      <div
+                                        className="euiModalHeader"
+                                      >
+                                        <EuiTitle>
+                                          <h1
+                                            className="euiTitle euiTitle--medium"
+                                          >
+                                            Syntax help
+                                          </h1>
+                                        </EuiTitle>
+                                      </div>
+                                    </EuiModalHeader>
+                                    <EuiModalBody>
+                                      <div
+                                        className="euiModalBody"
+                                      >
+                                        <div
+                                          className="euiModalBody__overflow"
+                                        >
+                                          <EuiText>
+                                            <div
+                                              className="euiText euiText--medium"
+                                            >
+                                              <EuiI18n
+                                                defaults={
+                                                  Array [
+                                                    "This editor uses",
+                                                    "You can also utilize these additional syntax plugins to add rich content to your text.",
+                                                  ]
+                                                }
+                                                tokens={
+                                                  Array [
+                                                    "euiMarkdownEditorFooter.syntaxModalDescriptionPrefix",
+                                                    "euiMarkdownEditorFooter.syntaxModalDescriptionSuffix",
+                                                  ]
+                                                }
+                                              >
+                                                <p>
+                                                  This editor uses
+                                                   
+                                                  <EuiLink
+                                                    href="https://guides.github.com/features/mastering-markdown/"
+                                                    target="_blank"
+                                                  >
+                                                    <a
+                                                      className="euiLink euiLink--primary"
+                                                      href="https://guides.github.com/features/mastering-markdown/"
+                                                      rel="noopener noreferrer"
+                                                      target="_blank"
+                                                    >
+                                                      <EuiI18n
+                                                        default="GitHub flavored markdown"
+                                                        token="euiMarkdownEditorFooter.mdSyntaxLink"
+                                                      >
+                                                        GitHub flavored markdown
+                                                      </EuiI18n>
+                                                      <EuiIcon
+                                                        aria-label="External link"
+                                                        className="euiLink__externalIcon"
+                                                        size="s"
+                                                        type="popout"
+                                                      >
+                                                        <span
+                                                          aria-label="External link"
+                                                          className="euiLink__externalIcon"
+                                                          data-euiicon-type="popout"
+                                                          size="s"
+                                                        />
+                                                      </EuiIcon>
+                                                      <EuiScreenReaderOnly>
+                                                        <span
+                                                          className="euiScreenReaderOnly"
+                                                        >
+                                                          <EuiI18n
+                                                            default="(opens in a new tab or window)"
+                                                            token="euiLink.newTarget.screenReaderOnlyText"
+                                                          >
+                                                            (opens in a new tab or window)
+                                                          </EuiI18n>
+                                                        </span>
+                                                      </EuiScreenReaderOnly>
+                                                    </a>
+                                                  </EuiLink>
+                                                  .
+                                                   
+                                                  You can also utilize these additional syntax plugins to add rich content to your text.
+                                                </p>
+                                              </EuiI18n>
+                                            </div>
+                                          </EuiText>
+                                          <EuiHorizontalRule>
+                                            <hr
+                                              className="euiHorizontalRule euiHorizontalRule--full euiHorizontalRule--marginLarge"
+                                            />
+                                          </EuiHorizontalRule>
+                                          <EuiTitle
+                                            size="xxs"
+                                          >
+                                            <p
+                                              className="euiTitle euiTitle--xxsmall"
+                                            >
+                                              <strong>
+                                                tooltipPlugin
+                                              </strong>
+                                            </p>
+                                          </EuiTitle>
+                                          <EuiSpacer
+                                            size="s"
+                                          >
+                                            <div
+                                              className="euiSpacer euiSpacer--s"
+                                            />
+                                          </EuiSpacer>
+                                          <EuiCodeBlock
+                                            fontSize="l"
+                                            language="md"
+                                            paddingSize="s"
+                                          >
+                                            <EuiCodeBlockImpl
+                                              fontSize="l"
+                                              inline={false}
+                                              language="md"
+                                              paddingSize="s"
+                                            >
+                                              <div
+                                                className="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall prismjs language-md"
+                                                style={Object {}}
+                                              >
+                                                <pre
+                                                  className="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+                                                  style={Object {}}
+                                                  tabIndex={-1}
+                                                >
+                                                  <code
+                                                    className="euiCodeBlock__code md"
+                                                  >
+                                                    <span
+                                                      className="euiCodeBlock__line"
+                                                      key="node-0-0"
+                                                    >
+                                                      !{tooltip[anchor text](helpful description)}
+                                                    </span>
+                                                  </code>
+                                                </pre>
+                                              </div>
+                                            </EuiCodeBlockImpl>
+                                          </EuiCodeBlock>
+                                          <EuiSpacer
+                                            size="l"
+                                          >
+                                            <div
+                                              className="euiSpacer euiSpacer--l"
+                                            />
+                                          </EuiSpacer>
+                                          <EuiHorizontalRule>
+                                            <hr
+                                              className="euiHorizontalRule euiHorizontalRule--full euiHorizontalRule--marginLarge"
+                                            />
+                                          </EuiHorizontalRule>
+                                        </div>
+                                      </div>
+                                    </EuiModalBody>
+                                    <EuiModalFooter>
+                                      <div
+                                        className="euiModalFooter"
+                                      >
+                                        <EuiButton
+                                          fill={true}
+                                          onClick={[Function]}
+                                        >
+                                          <EuiButtonDisplay
+                                            baseClassName="euiButton"
+                                            disabled={false}
+                                            element="button"
+                                            fill={true}
+                                            isDisabled={false}
+                                            onClick={[Function]}
+                                            type="button"
+                                          >
+                                            <button
+                                              className="euiButton euiButton--primary euiButton--fill"
+                                              disabled={false}
+                                              onClick={[Function]}
+                                              style={
+                                                Object {
+                                                  "minWidth": undefined,
+                                                }
+                                              }
+                                              type="button"
+                                            >
+                                              <EuiButtonContent
+                                                className="euiButton__content"
+                                                iconSide="left"
+                                                textProps={
+                                                  Object {
+                                                    "className": "euiButton__text",
+                                                  }
+                                                }
+                                              >
+                                                <span
+                                                  className="euiButtonContent euiButton__content"
+                                                >
+                                                  <span
+                                                    className="euiButton__text"
+                                                  >
+                                                    <EuiI18n
+                                                      default="Close"
+                                                      token="euiMarkdownEditorFooter.closeButton"
+                                                    >
+                                                      Close
+                                                    </EuiI18n>
+                                                  </span>
+                                                </span>
+                                              </EuiButtonContent>
+                                            </button>
+                                          </EuiButtonDisplay>
+                                        </EuiButton>
+                                      </div>
+                                    </EuiModalFooter>
+                                  </div>
+                                </div>
+                              </div>
+                            </ForwardRef>
+                            <div
+                              data-focus-guard={true}
+                              style={
+                                Object {
+                                  "height": "0px",
+                                  "left": "1px",
+                                  "overflow": "hidden",
+                                  "padding": 0,
+                                  "position": "fixed",
+                                  "top": "1px",
+                                  "width": "1px",
+                                }
+                              }
+                              tabIndex={0}
+                            />
+                          </ForwardRef>
+                          <RequireSideCar
+                            noIsolation={true}
+                            onClickOutside={[Function]}
+                            setLockProps={[Function]}
+                            sideCar={
+                              Object {
+                                "assignMedium": [Function],
+                                "assignSyncMedium": [Function],
+                                "options": Object {
+                                  "async": true,
+                                  "ssr": false,
+                                },
+                                "read": [Function],
+                                "useMedium": [Function],
+                              }
+                            }
+                          >
+                            <SideCar
+                              noIsolation={true}
+                              onClickOutside={[Function]}
+                              setLockProps={[Function]}
+                              sideCar={
+                                Object {
+                                  "assignMedium": [Function],
+                                  "assignSyncMedium": [Function],
+                                  "options": Object {
+                                    "async": true,
+                                    "ssr": false,
+                                  },
+                                  "read": [Function],
+                                  "useMedium": [Function],
+                                }
+                              }
+                            >
+                              <Effect
+                                noIsolation={true}
+                                onClickOutside={[Function]}
+                                setLockProps={[Function]}
+                              >
+                                <Component>
+                                  <Sheet
+                                    styles="
+ [data-focus-on-hidden] {
+   pointer-events: none !important;
+ }
+"
+                                  />
+                                </Component>
+                              </Effect>
+                            </SideCar>
+                          </RequireSideCar>
+                        </ForwardRef>
+                      </ForwardRef>
+                    </EuiFocusTrap>
+                  </Portal>
+                </EuiOverlayMask>
+              </EuiModal>
+            </div>
+          </EuiMarkdownEditorFooter>
+          <input
+            autoComplete="off"
+            multiple={true}
+            onChange={null}
+            onClick={null}
+            style={
+              Object {
+                "display": "none",
+              }
+            }
+            tabIndex={-1}
+            type="file"
+          />
+        </div>
+      </EuiMarkdownEditorDropZone>
+    </div>
+  </div>
+</EuiMarkdownEditor>
 `;
 
 exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = `
@@ -436,18 +3650,22 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
         <div
           class="euiMarkdownEditorFooter__actions"
         />
-        <button
-          aria-label="Show markdown help"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiMarkdownEditorFooter__help"
-          type="button"
+        <span
+          class="euiToolTipAnchor"
         >
-          <span
-            aria-hidden="true"
-            class="euiButtonIcon__icon"
-            color="inherit"
-            data-euiicon-type="MarkdownLogo"
-          />
-        </button>
+          <button
+            aria-label="Show markdown help"
+            class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="MarkdownLogo"
+            />
+          </button>
+        </span>
       </div>
       <input
         autocomplete="off"
@@ -666,18 +3884,22 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
         <div
           class="euiMarkdownEditorFooter__actions"
         />
-        <button
-          aria-label="Show markdown help"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiMarkdownEditorFooter__help"
-          type="button"
+        <span
+          class="euiToolTipAnchor"
         >
-          <span
-            aria-hidden="true"
-            class="euiButtonIcon__icon"
-            color="inherit"
-            data-euiicon-type="MarkdownLogo"
-          />
-        </button>
+          <button
+            aria-label="Show markdown help"
+            class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="MarkdownLogo"
+            />
+          </button>
+        </span>
       </div>
       <input
         autocomplete="off"
@@ -896,18 +4118,22 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
         <div
           class="euiMarkdownEditorFooter__actions"
         />
-        <button
-          aria-label="Show markdown help"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiMarkdownEditorFooter__help"
-          type="button"
+        <span
+          class="euiToolTipAnchor"
         >
-          <span
-            aria-hidden="true"
-            class="euiButtonIcon__icon"
-            color="inherit"
-            data-euiicon-type="MarkdownLogo"
-          />
-        </button>
+          <button
+            aria-label="Show markdown help"
+            class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="MarkdownLogo"
+            />
+          </button>
+        </span>
       </div>
       <input
         autocomplete="off"
@@ -1126,18 +4352,22 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
         <div
           class="euiMarkdownEditorFooter__actions"
         />
-        <button
-          aria-label="Show markdown help"
-          class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiMarkdownEditorFooter__help"
-          type="button"
+        <span
+          class="euiToolTipAnchor"
         >
-          <span
-            aria-hidden="true"
-            class="euiButtonIcon__icon"
-            color="inherit"
-            data-euiicon-type="MarkdownLogo"
-          />
-        </button>
+          <button
+            aria-label="Show markdown help"
+            class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--small euiMarkdownEditorFooter__helpButton"
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+              class="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="MarkdownLogo"
+            />
+          </button>
+        </span>
       </div>
       <input
         autocomplete="off"

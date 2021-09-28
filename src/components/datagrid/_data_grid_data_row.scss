@@ -104,6 +104,11 @@
     text-transform: capitalize;
   }
 
+  .euiDataGridRowCell__definedHeight {
+    @include euiTextBreakWord;
+    flex-grow: 1;
+  }
+
   // We only truncate if the cell is not a control column.
   &:not(.euiDataGridRowCell--controlColumn) {
     .euiDataGridRowCell__content,

@@ -90,6 +90,8 @@ export class EuiRefreshInterval extends Component<
   state: EuiRefreshIntervalState = fromMilliseconds(this.props.refreshInterval);
 
   generateId = htmlIdGenerator();
+  legendId = this.generateId();
+  refreshSelectionId = this.generateId();
 
   onValueChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const sanitizedValue = parseFloat(event.target.value);
@@ -162,8 +164,6 @@ export class EuiRefreshInterval extends Component<
   render() {
     const { applyRefreshInterval, isPaused } = this.props;
     const { value, units } = this.state;
-    const legendId = this.generateId();
-    const refreshSelectionId = this.generateId();
 
     if (!applyRefreshInterval) {
       return null;
@@ -175,7 +175,7 @@ export class EuiRefreshInterval extends Component<
     return (
       <fieldset>
         <EuiTitle size="xxxs">
-          <legend id={legendId}>
+          <legend id={this.legendId}>
             <EuiI18n
               token="euiRefreshInterval.legend"
               default="Refresh every"
@@ -191,7 +191,7 @@ export class EuiRefreshInterval extends Component<
               onChange={this.onValueChange}
               onKeyDown={this.handleKeyDown}
               aria-label="Refresh interval value"
-              aria-describedby={`${refreshSelectionId} ${legendId}`}
+              aria-describedby={`${this.refreshSelectionId} ${this.legendId}`}
               data-test-subj="superDatePickerRefreshIntervalInput"
             />
           </EuiFlexItem>
@@ -199,7 +199,7 @@ export class EuiRefreshInterval extends Component<
             <EuiSelect
               compressed
               aria-label="Refresh interval units"
-              aria-describedby={`${refreshSelectionId} ${legendId}`}
+              aria-describedby={`${this.refreshSelectionId} ${this.legendId}`}
               value={units}
               options={refreshUnitsOptions}
               onChange={this.onUnitsChange}
@@ -215,7 +215,7 @@ export class EuiRefreshInterval extends Component<
               onClick={this.toggleRefresh}
               disabled={value === '' || value <= 0}
               data-test-subj="superDatePickerToggleRefreshButton"
-              aria-describedby={refreshSelectionId}
+              aria-describedby={this.refreshSelectionId}
             >
               {isPaused ? (
                 <EuiI18n token="euiRefreshInterval.start" default="Start" />
@@ -226,7 +226,7 @@ export class EuiRefreshInterval extends Component<
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiScreenReaderOnly>
-          <p id={refreshSelectionId}>
+          <p id={this.refreshSelectionId}>
             <EuiI18n
               token="euiRefreshInterval.fullDescription"
               default="Refresh interval currently set to {optionValue} {optionText}."
