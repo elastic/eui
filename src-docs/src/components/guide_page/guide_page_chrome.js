@@ -129,8 +129,6 @@ export class GuidePageChrome extends Component {
           };
         });
 
-        // if
-
         return {
           id: `subSection-${id}`,
           name,
@@ -138,7 +136,7 @@ export class GuidePageChrome extends Component {
           items: subSectionsItems,
           isSelected: pageHref === window.location.hash,
           // forceOpen: !!(searchTerm && hasMatchingSubItem),
-          className: 'guideSideNav__item',
+          className: 'guideSideNav__item aaaa',
         };
       } else {
         return {

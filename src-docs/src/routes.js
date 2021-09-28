@@ -6,7 +6,7 @@ import { createHashHistory } from 'history';
 
 import { GuidePage, GuideSection, GuideMarkdownFormat } from './components';
 
-import { GuideTabbedPage } from './components/guide_tabbedPage';
+import { GuideTabbedPage } from './components/guide_tabbed_page';
 
 import { EuiErrorBoundary } from '../../src/components';
 
