@@ -51,17 +51,16 @@ const rowHeightsSnippet = `rowHeightsOptions = {
   defaultHeight: 140, // default every row to 140px
   rowHeights: {
     1: {
-      lineCount: 5, // for row which have index 1 we allow to show 5 lines after that we truncate
+      lineCount: 5, // row at index 1 will show 5 lines
     },
-    4: 200, // for row which have index 4 we set 140 pixel
+    4: 200, // row at index 4 will adjust the height to 200px
     5: 80,
   },
 }`;
 
 const rowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   () => ({
-    defaultHeight: {
-      lineCount: 2,
+    defaultHeight: 140,
   }),
   []
 );
