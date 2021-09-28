@@ -9,6 +9,7 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 import { fake } from 'faker';
+
 import { htmlIdGenerator } from '../../../../src/services';
 
 const text = (
