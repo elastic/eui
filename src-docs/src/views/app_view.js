@@ -14,7 +14,6 @@ import {
 } from '../../../src/components';
 
 import { EuiThemeAmsterdam } from '../../../src/themes/eui-amsterdam/theme';
-import { EuiThemeDefault } from '../../../src/themes/eui/theme';
 
 import { keys } from '../../../src/services';
 
@@ -67,9 +66,7 @@ export class AppView extends Component {
           <EuiProvider
             cache={emotionCache}
             resetStyles={true}
-            theme={
-              theme.includes('amsterdam') ? EuiThemeAmsterdam : EuiThemeDefault
-            }
+            theme={theme.includes('amsterdam') ? EuiThemeAmsterdam : null}
             colorMode={theme.includes('light') ? 'light' : 'dark'}
           >
             <Helmet>

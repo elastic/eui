@@ -70,36 +70,30 @@ body {
 }
 
 *:focus {
-  // 👉 Safari and Firefox innately respect only showing the outline with keyboard only
-  // 💔 But they don't allow coloring of the 'auto'/default outline, so contrast is no good in dark mode.
-  // 👉 For these browsers we use the solid type in order to match with `currentColor`.
-  // 😦 Which does means the outline will be square
-  outline: $euiFocusRingSize solid currentColor;
-  outline-offset: -($euiFocusRingSize / 2);
+  outline: none;
 
-  // 👀 Chrome respects :focus-visible and allows coloring the `auto` style
-  &:focus-visible {
-    outline-style: auto;
+  // sass-lint:disable no-vendor-prefixes
+  // Disables border that shows up when tabbing in Firefox.
+  &::-moz-focus-inner {
+    border: none;
   }
 
-  //🙅‍♀️ But Chrome also needs to have the outline forcefully removed from regular `:focus` state
-  &:not(:focus-visible) {
+  &:-moz-focusring {
     outline: none;
   }
-}
-
-// Dark mode's highlighted doesn't work well so lets just set it the same as our focus background
-::selection {
-  background: $euiFocusBackgroundColor;
 }
 
 a {
   text-decoration: none;
   color: $euiColorPrimary;
 
-  &:hover,
+  &:hover {
+    text-decoration: none;
+  }
+
   &:focus {
     text-decoration: none;
+    outline: none;
   }
 }
 
@@ -121,6 +115,7 @@ button {
   border: none;
   padding: 0;
   margin: 0;
+  outline: none;
   font-size: inherit;
   color: inherit;
   border-radius: 0;
@@ -155,4 +150,11 @@ hr {
 
 fieldset {
   min-inline-size: auto;
+}
+
+/* Chrome has an issue around RTL languages in SVGs when letter-spacing is negative
+ * https://bugs.chromium.org/p/chromium/issues/detail?id=966480
+ */
+svg text {
+  letter-spacing: normal !important; // sass-lint:disable-line no-important
 }

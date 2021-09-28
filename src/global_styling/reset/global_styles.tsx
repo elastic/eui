@@ -10,21 +10,16 @@ import React from 'react';
 import { Global, css } from '@emotion/react';
 import { useScrollBar } from '../mixins/_helpers';
 import { shade, tint, transparentize } from '../../services/color';
-import { useEuiTheme, isLegacyTheme } from '../../services/theme';
+import { useEuiTheme } from '../../services/theme';
 import { resetStyles as reset } from './reset';
 
-export interface EuiGlobalStylesProps {
-  resetStyles?: boolean;
-}
+export interface EuiGlobalStylesProps {}
 
-export const EuiGlobalStyles = ({
-  resetStyles = false,
-}: EuiGlobalStylesProps) => {
+export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
   const {
-    euiTheme: { base, border, colors, font, themeName },
+    euiTheme: { base, border, colors, font },
     colorMode,
   } = useEuiTheme();
-  const legacyTheme = isLegacyTheme(themeName);
 
   /**
    * Declaring the top level scrollbar colors to match the theme also requires setting the sizes on Chrome
@@ -58,22 +53,6 @@ export const EuiGlobalStyles = ({
    * Outline/Focus state resets
    */
   const focusReset = () => {
-    if (legacyTheme) {
-      // The legacy theme simply turns off all outlines in favor of component-specific handling using box-shadow
-      return `*:focus {
-        outline: none;
-
-        // Disables border that shows up when tabbing in Firefox.
-        &::-moz-focus-inner {
-          border: none;
-        }
-
-        &:-moz-focusring {
-          outline: none;
-        }
-      }`;
-    }
-
     // The latest theme utilizes `focus-visible` to turn on focus outlines.
     // But this is browser-dependend:
     // 👉 Safari and Firefox innately respect only showing the outline with keyboard only
@@ -108,7 +87,7 @@ export const EuiGlobalStyles = ({
    * Final styles
    */
   const styles = css`
-    ${resetStyles ? reset : ''}
+    ${reset}
 
     html {
       ${scrollbarStyles}

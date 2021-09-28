@@ -16,8 +16,13 @@ import {
 import { EuiThemeProvider, EuiThemeProviderProps } from '../../services';
 
 export interface EuiProviderProps<T>
-  extends Omit<EuiThemeProviderProps<T>, 'children'>,
+  extends Omit<EuiThemeProviderProps<T>, 'children' | 'theme'>,
     EuiGlobalStylesProps {
+  /**
+   * Provide a specific EuiTheme; Defaults to EuiThemeDefault;
+   * Pass `null` to remove all theming including global reset and `colorMode`.
+   */
+  theme?: EuiThemeProviderProps<T>['theme'] | null;
   cache?: EmotionCache;
 }
 
@@ -26,19 +31,20 @@ export function EuiProvider<T = {}>({
   theme,
   colorMode,
   modify,
-  resetStyles,
   children,
 }: PropsWithChildren<EuiProviderProps<T>>) {
-  return (
+  return theme !== null ? (
     <EuiThemeProvider theme={theme} colorMode={colorMode} modify={modify}>
       {cache ? (
         <CacheProvider value={cache}>
-          <EuiGlobalStyles resetStyles={resetStyles} />
+          <EuiGlobalStyles />
         </CacheProvider>
       ) : (
-        <EuiGlobalStyles resetStyles={resetStyles} />
+        <EuiGlobalStyles />
       )}
       {children}
     </EuiThemeProvider>
+  ) : (
+    children
   );
 }
