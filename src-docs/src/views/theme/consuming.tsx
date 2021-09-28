@@ -18,6 +18,7 @@ export default () => {
         css={{
           background: euiTheme.colors.lightShade,
           padding: `calc(${euiTheme.size.base} * 2)`,
+          color: euiTheme.colors.text,
         }}
       >
         The padding of this box is created using <EuiCode>calc()</EuiCode>{' '}

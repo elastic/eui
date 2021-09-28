@@ -13,6 +13,7 @@ class Block extends React.Component<WithEuiThemeProps> {
       background: ${theme.euiTheme.colors.lightShade};
       padding: ${theme.euiTheme.size.xl};
       border-radius: ${theme.euiTheme.border.radius.medium};
+      color: ${theme.euiTheme.colors.text};
     `;
 
     return (
