@@ -6,10 +6,13 @@ import {
   EuiContextMenuItem,
   EuiPopover,
 } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isPopoverOpen, setPopover] = useState(false);
   const [rowSize, setRowSize] = useState(50);
+
+  const singleContextMenuPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
 
   const onButtonClick = () => {
     setPopover(!isPopoverOpen);
@@ -79,7 +82,7 @@ export default () => {
 
   return (
     <EuiPopover
-      id="singlePanel"
+      id={singleContextMenuPopoverId}
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}

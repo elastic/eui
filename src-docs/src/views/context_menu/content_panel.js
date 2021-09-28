@@ -6,8 +6,11 @@ import {
   EuiPopover,
 } from '../../../../src/components';
 
+import { useGeneratedHtmlId } from '../../../../src/services';
+
 export default () => {
   const [isPopoverOpen, setPopover] = useState(false);
+  const customContextMenuPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
 
   const onButtonClick = () => {
     setPopover(!isPopoverOpen);
@@ -30,7 +33,7 @@ export default () => {
 
   return (
     <EuiPopover
-      id="contentPanel"
+      id={customContextMenuPopoverId}
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}
