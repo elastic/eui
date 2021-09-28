@@ -10,6 +10,7 @@ import {
   buildTheme,
   EuiThemeShape,
   AMSTERDAM_NAME_KEY,
+  EuiThemeSystem,
 } from '../../services/theme';
 import { animation } from '../../global_styling/variables/_animations';
 import { breakpoint } from '../../global_styling/variables/_breakpoint';
@@ -29,7 +30,7 @@ export const euiThemeAmsterdam: EuiThemeShape = {
   breakpoint,
 };
 
-export const EuiThemeAmsterdam = buildTheme(
+export const EuiThemeAmsterdam: EuiThemeSystem = buildTheme(
   euiThemeAmsterdam,
   AMSTERDAM_NAME_KEY
 );

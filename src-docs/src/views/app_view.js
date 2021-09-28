@@ -65,7 +65,6 @@ export class AppView extends Component {
         {({ theme }) => (
           <EuiProvider
             cache={emotionCache}
-            resetStyles={true}
             theme={theme.includes('amsterdam') ? EuiThemeAmsterdam : null}
             colorMode={theme.includes('light') ? 'light' : 'dark'}
           >

@@ -13,22 +13,27 @@ import {
   EuiGlobalStyles,
   EuiGlobalStylesProps,
 } from '../../global_styling/reset/global_styles';
-import { EuiThemeProvider, EuiThemeProviderProps } from '../../services';
+import {
+  EuiThemeProvider,
+  EuiThemeProviderProps,
+  EuiThemeSystem,
+} from '../../services';
+import { EuiThemeAmsterdam } from '../../themes/eui-amsterdam/theme';
 
 export interface EuiProviderProps<T>
   extends Omit<EuiThemeProviderProps<T>, 'children' | 'theme'>,
     EuiGlobalStylesProps {
   /**
    * Provide a specific EuiTheme; Defaults to EuiThemeDefault;
-   * Pass `null` to remove all theming including global reset and `colorMode`.
+   * Pass `null` to remove all theming including global reset
    */
-  theme?: EuiThemeProviderProps<T>['theme'] | null;
+  theme?: EuiThemeSystem | null;
   cache?: EmotionCache;
 }
 
 export function EuiProvider<T = {}>({
   cache,
-  theme,
+  theme = EuiThemeAmsterdam,
   colorMode,
   modify,
   children,
@@ -45,6 +50,6 @@ export function EuiProvider<T = {}>({
       {children}
     </EuiThemeProvider>
   ) : (
-    children
+    <EuiThemeProvider colorMode={colorMode}>{children}</EuiThemeProvider>
   );
 }
