@@ -9,6 +9,7 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 import { fake } from 'faker';
+import { htmlIdGenerator } from '../../../../src/services';
 
 const text = (
   <>
@@ -18,8 +19,8 @@ const text = (
   </>
 );
 
-const firstPanelId = 'resizable-panel__1';
-const secondPanelId = 'resizable-panel__2';
+const firstPanelId = htmlIdGenerator('panel')('first');
+const secondPanelId = htmlIdGenerator('panel')('second');
 const stored = localStorage.getItem('resizableContainer');
 const storedSizes = stored && JSON.parse(stored);
 const defaultSizes = storedSizes || {
