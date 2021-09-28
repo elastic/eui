@@ -161,5 +161,22 @@ describe('EuiSuperSelect', () => {
 
       expect(takeMountedSnapshot(component)).toMatchSnapshot();
     });
+
+    test('renders popoverProps on the underlying EuiPopover', () => {
+      const component = mount(
+        <EuiSuperSelect
+          options={options}
+          valueOfSelected="2"
+          onChange={() => {}}
+          popoverProps={{
+            className: 'goes-on-outermost-wrapper',
+            panelClassName: 'goes-on-popover-panel',
+            repositionOnScroll: true,
+          }}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });
