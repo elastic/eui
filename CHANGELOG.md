@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `38.2.0`.
+
+## [`38.2.0`](https://github.com/elastic/eui/tree/v38.2.0)
+
 - Updated `EuiRangeLevel` `color` property to accept CSS color values ([#5171](https://github.com/elastic/eui/pull/5171))
 - Added optional visual line highlighting to `EuiCodeBlock` ([#5207](https://github.com/elastic/eui/pull/5207))
 - Added `popoverProps` to `EuiSuperSelect` and deprecated `popoverClassName` & `repositionOnScroll` ([#5214](https://github.com/elastic/eui/pull/5214))
