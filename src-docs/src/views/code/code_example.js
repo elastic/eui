@@ -139,8 +139,11 @@ export const CodeExample = {
       text: (
         <p>
           To render line numbers, add <EuiCode>lineNumbers</EuiCode>, and
-          optionally change the starting number by passing a configuration
-          object: <EuiCode>{'lineNumbers={{ start: 32 }}'}</EuiCode>
+          optionally change the starting number and/or visually highlight
+          certain lines by passing a configuration object:{' '}
+          <EuiCode>
+            {'lineNumbers={{ start: 32, highlight: "32, 34-37, 40" }}'}
+          </EuiCode>
         </p>
       ),
       props: { EuiCodeBlock },

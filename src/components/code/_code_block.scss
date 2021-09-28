@@ -45,20 +45,30 @@
 
   .euiCodeBlock__lineText {
     padding-left: $euiSizeS;
-    margin-left: $euiSizeS;
     border-left: $euiBorderThin;
     user-select: text;
   }
 
   .euiCodeBlock__lineNumber {
     position: absolute;
+    height: 100%;
     user-select: none;
+    padding-right: $euiSizeS;
+    // Width is calculated in JS and padding needs to be added on to that value.
+    box-sizing: content-box;
 
     &:before {
       content: attr(data-line-number);
       color: $euiTextSubduedColor;
       text-align: right;
       display: block;
+    }
+  }
+
+  .euiCodeBlock__line--isHighlighted {
+    .euiCodeBlock__lineText {
+      background: $euiFocusBackgroundColor;
+      border-left: $euiBorderWidthThick solid $euiFocusRingColor;
     }
   }
 
