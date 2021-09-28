@@ -20,7 +20,7 @@
 
 ### Component props
 
-- Add prop documentation with `DEPRECATED` in bold, including instructions on what alternative (if any) to use. For example, [see this deprecation comment](https://github.com/elastic/eui/blob/79960490cd27e9f97c05a2bf58d33056d2c66a62/src/components/card/card.tsx#L127).
+- Add prop documentation with `**DEPRECATED**` in bold, including instructions on what alternative (if any) to use. For example, [see this deprecation comment](https://github.com/elastic/eui/blob/79960490cd27e9f97c05a2bf58d33056d2c66a62/src/components/card/card.tsx#L127).
 
 ### Entire components
 
@@ -31,6 +31,6 @@
 When it comes to actually removing features:
 
 - If your component, prop, or utility, is being used internally in EUI, ensure you've removed cases of it where possible prior to the actual deletion date.
-- Optionally check for Kibana's usage of the deprecated functionality and contact the appropriate teams to let them know they should look into removing its usage as well as offering alternatives (if any).
+- Optionally check for known consumer usages of the deprecated functionality and contact the appropriate teams to let them know they should look into removing its usage as well as offering alternatives (if any).
 
 Ideally, when the final deprecation date listed in the schedule comes up, there should be little to no friction involved in simply deleting the entire feature from the codebase as both EUI and Kibana will already have moved off the deprecated feature.
