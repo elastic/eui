@@ -86,7 +86,7 @@ export interface EuiTourStepProps
   /**
    * Smaller title text that appears atop each step in the tour. The subtitle gets wrapped in the appropriate heading level.
    */
-  subtitle: ReactNode;
+  subtitle?: ReactNode;
 
   /**
    * Larger title text specific to this step. The title gets wrapped in the appropriate heading level.
@@ -215,9 +215,11 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       {...rest}
     >
       <EuiPopoverTitle className="euiTourHeader" id={titleId}>
-        <EuiTitle size="xxxs" className="euiTourHeader__subtitle">
-          <h1>{subtitle}</h1>
-        </EuiTitle>
+        {subtitle && (
+          <EuiTitle size="xxxs" className="euiTourHeader__subtitle">
+            <h1>{subtitle}</h1>
+          </EuiTitle>
+        )}
         <EuiTitle size="xxs" className="euiTourHeader__title">
           <h2>{title}</h2>
         </EuiTitle>

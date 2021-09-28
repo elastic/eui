@@ -6,7 +6,15 @@
  * Side Public License, v 1.
  */
 
-export { EUI_THEMES, EUI_THEME } from './themes';
+import {
+  EuiThemeFont,
+  font,
+} from '../../../../global_styling/variables/_typography';
 
-export { AMSTERDAM_NAME_KEY, EuiThemeAmsterdam } from './amsterdam/theme';
-export { LEGACY_NAME_KEY, EuiThemeLegacy } from './legacy/theme';
+/**
+ * Amsterdam theme just changes the main font from the beta Inter UI to Inter
+ */
+export const font_ams: EuiThemeFont = {
+  ...font,
+  family: "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
+};

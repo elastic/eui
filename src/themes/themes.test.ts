@@ -6,12 +6,12 @@
  * Side Public License, v 1.
  */
 
-import { font } from '../../../../global_styling/variables/_typography';
+import { isLegacyTheme } from './themes';
 
-/**
- * Amsterdam theme just changes the main font from the beta Inter UI to Inter
- */
-export const font_ams = {
-  ...font,
-  family: "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
-};
+describe('isLegacyTheme', () => {
+  it('returns true for the default name', () => {
+    expect(isLegacyTheme('EUI_THEME_LEGACY')).toBe(true);
+    expect(isLegacyTheme('EUI_THEME_AMSTERDAM')).toBe(false);
+    expect(isLegacyTheme('CUSTOM_DEFAULT')).toBe(false);
+  });
+});

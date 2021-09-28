@@ -6,21 +6,15 @@
   border-bottom: none;
   // Overriding default `EuiPopoverTitle` styles
   margin-bottom: $euiSizeS !important; // sass-lint:disable-line no-important
-
-
-  .euiTourHeader__title { // nested for additional specificity to override EuiTitle styles
-    margin-top: 0;
-  }
 }
 
 .euiTourHeader__subtitle {
-  color: $euiColorDarkShade;
+  color: $euiTextSubduedColor;
 }
 
 .euiTourFooter {
-  background-color: $euiColorLightestShade;
-  // Overriding default `EuiPopoverFooter` styles
-  margin-top: $euiSizeL !important; // sass-lint:disable-line no-important
+  background-color: $euiPageBackgroundColor;
+  border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
 }
 
 .euiTour {
