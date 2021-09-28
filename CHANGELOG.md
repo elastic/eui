@@ -1,7 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Updated `EuiRangeLevel` `color` property to accept CSS color values ([#5171](https://github.com/elastic/eui/pull/5171))
-- Deprecated  `EuiSuperSelect`'s `popoverClassName` & `repositionOnScroll` props in favor of a single `popoverProps` configuration object ([#5214](https://github.com/elastic/eui/pull/5214))
+- Added `popoverProps` to `EuiSuperSelect` and deprecated `popoverClassName` & `repositionOnScroll` ([#5214](https://github.com/elastic/eui/pull/5214))
 
 **Bug fixes**
 
