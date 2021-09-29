@@ -54,7 +54,6 @@ export default () => {
             id: size,
             token: `breakpoint.${size}`,
             type: breakpointTypes[size],
-            // @ts-ignore TODO
             value: breakpoint[size as EuiBreakpointSize],
           };
         })}

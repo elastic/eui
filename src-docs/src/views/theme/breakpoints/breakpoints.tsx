@@ -9,7 +9,6 @@ import { ThemeContext } from '../../../components/with_theme';
 
 import { ThemeNotice } from '../_components/_theme_notice';
 
-// @ts-ignore Importing JS
 import JSValues from './_breakpoints_js';
 import SassValues from './_breakpoints_sass';
 
