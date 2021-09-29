@@ -212,11 +212,11 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       <EuiPopoverTitle className="euiTourHeader" id={titleId}>
         {subtitle && (
           <EuiTitle size="xxxs" className="euiTourHeader__subtitle">
-            <h1>{subtitle}</h1>
+            <h2>{subtitle}</h2>
           </EuiTitle>
         )}
         <EuiTitle size="xxs" className="euiTourHeader__title">
-          <h2>{title}</h2>
+          <h3>{title}</h3>
         </EuiTitle>
       </EuiPopoverTitle>
       <div className="euiTour__content">{content}</div>
