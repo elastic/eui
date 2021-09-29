@@ -19,29 +19,23 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
   const [codeToRender, setCodeToRender] = useState();
 
   useEffect(() => {
-    if (type === GuideSectionTypes.JS) {
-      setCodeToRender(renderJsSourceCode(code));
-    } else {
-      setCodeToRender(code);
-    }
-
+    setCodeToRender(renderJsSourceCode(code));
     return () => {
       setCodeToRender(undefined);
     };
-  }, [code, type]);
+  }, [code]);
 
-  const codeSandboxLink =
-    type === GuideSectionTypes.JS ? (
-      <CodeSandboxLink
-        className="guideSectionExampleCode__link"
-        content={code.default}
-        type={type.toLowerCase()}
-      >
-        <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
-          Try out this demo on Code Sandbox
-        </EuiButtonEmpty>
-      </CodeSandboxLink>
-    ) : undefined;
+  const codeSandboxLink = (
+    <CodeSandboxLink
+      className="guideSectionExampleCode__link"
+      content={code.default}
+      type={type.toLowerCase()}
+    >
+      <EuiButtonEmpty size="xs" iconType="logoCodesandbox">
+        Try out this demo on Code Sandbox
+      </EuiButtonEmpty>
+    </CodeSandboxLink>
+  );
 
   return (
     <>
