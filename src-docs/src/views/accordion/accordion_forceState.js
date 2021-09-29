@@ -11,7 +11,9 @@ import { htmlIdGenerator, useGeneratedHtmlId } from '../../../../src/services';
 const idPrefix = htmlIdGenerator()();
 
 export default () => {
-  const forcedStateAccordionId = useGeneratedHtmlId({ prefix: 'accordion' });
+  const forcedStateAccordionId = useGeneratedHtmlId({
+    prefix: 'forcedStateAccordion',
+  });
   const [trigger, setTrigger] = useState('closed');
   const [toggleIdSelected, setID] = useState(`${idPrefix}--closed`);
   const toggleButtons = [

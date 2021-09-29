@@ -4,7 +4,7 @@ import { EuiAccordion, EuiPanel } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const simpleAccordionId = useGeneratedHtmlId({ prefix: 'accordion' });
+  const simpleAccordionId = useGeneratedHtmlId({ prefix: 'simpleAccordion' });
 
   return (
     <div>

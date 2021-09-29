@@ -16,8 +16,10 @@ const Rows = () => {
   for (let i = 1; i <= counter; i++) {
     rows.push(<li key={i}>Row {i}</li>);
   }
-  const growingAccordianDescriptionId = useGeneratedHtmlId({ prefix: 'p' });
-  const listId = useGeneratedHtmlId({ prefix: 'ul' });
+  const growingAccordianDescriptionId = useGeneratedHtmlId({
+    prefix: 'growingAccordianDescription',
+  });
+  const listId = useGeneratedHtmlId({ prefix: 'list' });
   return (
     <EuiText size="s">
       <EuiScreenReaderOnly>
@@ -53,7 +55,7 @@ const Rows = () => {
 };
 
 export default () => {
-  const dynamicAccordionId = useGeneratedHtmlId({ prefix: 'accordion' });
+  const dynamicAccordionId = useGeneratedHtmlId({ prefix: 'dynamicAccordion' });
 
   return (
     <EuiAccordion

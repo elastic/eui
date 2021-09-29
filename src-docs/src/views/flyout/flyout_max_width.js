@@ -21,8 +21,12 @@ export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [flyoutSize, setFlyoutSize] = useState('m');
   const [flyoutMaxWidth, setFlyoutMaxWidth] = useState(false);
-  const maxWidthFlyoutTitleId = useGeneratedHtmlId({ prefix: 'flyout' });
-  const maxWidthFlyoutRangeId = useGeneratedHtmlId({ prefix: 'range' });
+  const maxWidthFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'maxWidthFlyoutTitle',
+  });
+  const maxWidthFlyoutRangeId = useGeneratedHtmlId({
+    prefix: 'maxWidthFlyoutRange',
+  });
 
   const closeFlyout = () => setIsFlyoutVisible(false);
 

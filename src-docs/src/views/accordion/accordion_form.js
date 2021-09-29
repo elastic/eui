@@ -80,11 +80,11 @@ const extraAction = (
 
 export default () => {
   const formAccordionId__1 = useGeneratedHtmlId({
-    prefix: 'accordion',
+    prefix: 'formAccordion',
     suffix: 'first',
   });
   const formAccordionId__2 = useGeneratedHtmlId({
-    prefix: 'accordion',
+    prefix: 'formAccordion',
     suffix: 'second',
   });
 
