@@ -641,7 +641,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       // It's important that we don't use a template string here, it
       // stops webpack from building a dynamic require context.
       // eslint-disable-next-line prefer-template
-      './assets/' + typeToPathMap[iconType] + '.tsx'
+      './assets/' + typeToPathMap[iconType]
     ).then(({ icon }) => {
       iconComponentCache[iconType] = icon;
       enqueueStateChange(() => {
