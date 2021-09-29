@@ -288,6 +288,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
       'aria-describedby': ariaDescribedby,
+      role,
       ...rest
     } = this.props;
 

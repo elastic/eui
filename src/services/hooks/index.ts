@@ -7,6 +7,7 @@
  */
 
 export * from './useCombinedRefs';
+export * from './useCombobox';
 export * from './useDependentState';
 export * from './useIsWithinBreakpoints';
 export * from './useMouseMove';

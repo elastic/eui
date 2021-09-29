@@ -42,6 +42,7 @@ export type EuiSuggestInputProps = CommonProps &
      * Callback function called when the input changes.
      */
     sendValue?: (value: string) => void;
+    onListOpen?: (isOpen: boolean) => void;
   };
 
 interface Status {
@@ -82,6 +83,7 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
   tooltipContent,
   suggestions,
   sendValue,
+  onListOpen,
   ...rest
 }) => {
   const [value, setValue] = useState<string>('');
@@ -89,12 +91,18 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
 
   const onFieldChange = (e: any) => {
     setValue(e.target.value);
-    setIsPopoverOpen(e.target.value !== '' ? true : false);
+    e.target.value !== '' ? openPopover() : closePopover();
     if (sendValue) sendValue(e.target.value);
+  };
+
+  const openPopover = () => {
+    setIsPopoverOpen(true);
+    onListOpen && onListOpen(true);
   };
 
   const closePopover = () => {
     setIsPopoverOpen(false);
+    onListOpen && onListOpen(false);
   };
 
   let icon = '';
@@ -147,6 +155,7 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
       panelPaddingSize="none"
       fullWidth
       closePopover={closePopover}
+      title="gkgkgk"
     >
       {suggestions}
     </EuiInputPopover>

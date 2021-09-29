@@ -220,18 +220,21 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
 
     let optionalLabel;
     const isLegend = label && labelType === 'legend' ? true : false;
+    const labelId = `${id}_label`;
 
     if (label || labelAppend) {
       let labelProps = {};
       if (isLegend) {
         labelProps = {
           type: labelType,
+          id: labelId,
         };
       } else {
         labelProps = {
           htmlFor: hasChildLabel ? id : undefined,
           ...(!isDisabled && { isFocused: this.state.isFocused }), // If the row is disabled, don't pass the isFocused state.
           type: labelType,
+          id: labelId,
         };
       }
       optionalLabel = (

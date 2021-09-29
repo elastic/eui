@@ -8,8 +8,11 @@
 
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
+import { CommonProps, ExclusiveUnion } from '../common';
 
+import { useCombobox } from '../../services';
+
+import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiSelectable, EuiSelectableListItemProps } from '../selectable';
 
 import { EuiSuggestItem, _EuiSuggestItemPropsBase } from './suggest_item';
@@ -21,7 +24,7 @@ export interface EuiSuggestionProps
   onClick?: EuiSelectableListItemProps['onClick'];
 }
 
-export type EuiSuggestProps = CommonProps &
+type _EuiSuggestProps = CommonProps &
   Omit<EuiSuggestInputProps, 'suggestions'> & {
     /**
      * List of suggestions to display using EuiSuggestItem.
@@ -37,6 +40,18 @@ export type EuiSuggestProps = CommonProps &
     onInputChange?: (target: EventTarget) => void;
   };
 
+export type EuiSuggestProps = _EuiSuggestProps &
+  ExclusiveUnion<
+    {
+      'aria-label': string;
+      'aria-labelledby'?: string;
+    },
+    {
+      'aria-label'?: string;
+      'aria-labelledby': string;
+    }
+  >;
+
 export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   onItemClick,
   onInputChange,
@@ -44,8 +59,25 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   append,
   tooltipContent,
   suggestions,
+  id,
+  'aria-label': ariaLabel,
+  'aria-labelledby': labelId,
   ...rest
 }) => {
+  const {
+    containerAttributes,
+    inputAttributes,
+    listAttributes: { id: listAttrsId, ...listAttrs },
+    infoAttributes,
+    instructionsAttributes,
+    methods: { optionIdGenerator, setFocusedOptionIndex, setListBoxOpen },
+    state: { isListBoxOpen },
+  } = useCombobox({
+    id,
+    ariaLabel,
+    labelId,
+  });
+
   const onChange = (e: React.FormEvent<HTMLDivElement>) => {
     onInputChange ? onInputChange(e.target) : null;
   };
@@ -68,36 +100,49 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   };
 
   return (
-    <div
-      onChange={onChange}
-      role="combobox"
-      aria-expanded
-      aria-controls=""
-      aria-haspopup="listbox"
-    >
-      <EuiSuggestInput
-        status={status}
-        tooltipContent={tooltipContent}
-        append={append}
-        suggestions={
-          suggestionList.length > 0 ? (
-            <EuiSelectable<EuiSuggestionProps>
-              singleSelection={true}
-              options={suggestionList}
-              listProps={{
-                bordered: true,
-                showIcons: false,
-                onFocusBadge: false,
-                paddingSize: 'none',
-              }}
-              renderOption={renderOption}
-            >
-              {(list) => list}
-            </EuiSelectable>
-          ) : undefined
-        }
-        {...rest}
-      />
-    </div>
+    <>
+      <div onChange={onChange} {...containerAttributes}>
+        <EuiSuggestInput
+          status={status}
+          tooltipContent={tooltipContent}
+          append={append}
+          onListOpen={setListBoxOpen}
+          suggestions={
+            suggestionList.length > 0 ? (
+              <EuiSelectable<EuiSuggestionProps>
+                id={listAttrsId}
+                singleSelection={true}
+                options={suggestionList}
+                listProps={{
+                  bordered: true,
+                  showIcons: false,
+                  onFocusBadge: false,
+                  paddingSize: 'none',
+                  ...listAttrs,
+                }}
+                renderOption={renderOption}
+                optionIdGenerator={optionIdGenerator}
+                onActiveOptionIndexChange={setFocusedOptionIndex}
+              >
+                {(list) => list}
+              </EuiSelectable>
+            ) : undefined
+          }
+          {...rest}
+          {...inputAttributes}
+        />
+      </div>
+      <EuiScreenReaderOnly>
+        <div>
+          <p {...infoAttributes}>
+            State: {isListBoxOpen ? 'list exanded' : 'list collapsed'}.
+          </p>
+          <p {...instructionsAttributes}>
+            Use up and down arrows to move focus over options. Enter to select.
+            Escape to collapse options.
+          </p>
+        </div>
+      </EuiScreenReaderOnly>
+    </>
   );
 };

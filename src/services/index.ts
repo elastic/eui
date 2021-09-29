@@ -123,13 +123,7 @@ export {
 
 export { EuiWindowEvent } from './window_event';
 
-export {
-  useCombinedRefs,
-  useDependentState,
-  useIsWithinBreakpoints,
-  useMouseMove,
-  isMouseEvent,
-} from './hooks';
+export * from './hooks';
 
 export { throttle } from './throttle';
 
