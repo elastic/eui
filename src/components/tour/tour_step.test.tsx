@@ -15,7 +15,6 @@ import { EuiTourStep } from './tour_step';
 const steps = [
   {
     step: 1,
-    subtitle: 'Step 1',
     content: 'You are here',
   },
 ];
@@ -30,6 +29,22 @@ describe('EuiTourStep', () => {
   test('is rendered', () => {
     const component = render(
       <EuiTourStep {...config} {...steps[0]} {...requiredProps}>
+        <span>Test</span>
+      </EuiTourStep>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('can have subtitle', () => {
+    const component = render(
+      <EuiTourStep
+        {...config}
+        {...steps[0]}
+        subtitle="Subtitle"
+        isStepOpen={false}
+        {...requiredProps}
+      >
         <span>Test</span>
       </EuiTourStep>
     );

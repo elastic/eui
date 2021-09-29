@@ -16,6 +16,22 @@ exports[`EuiTourStep can be closed 1`] = `
 </div>
 `;
 
+exports[`EuiTourStep can have subtitle 1`] = `
+<div
+  class="euiPopover euiPopover--anchorLeftUp"
+  data-test-subj="test subject string"
+  offset="10"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <span>
+      Test
+    </span>
+  </div>
+</div>
+`;
+
 exports[`EuiTourStep can override the footer action 1`] = `
 <div
   class="euiPopover euiPopover--anchorLeftUp"
