@@ -6,7 +6,10 @@ import {
   EuiPageHeader,
   EuiPageContent,
   EuiPageContentBody,
+  EuiSpacer,
 } from '../../../../src/components';
+
+import { LanguageSelector } from '../with_theme';
 
 const GuidePageComponent = ({
   children,
@@ -18,6 +21,11 @@ const GuidePageComponent = ({
   location,
   match,
   history,
+  description,
+  rightSideItems: _rightSideItems,
+  tabs: _tabs,
+  notice,
+  showThemeLanguageToggle,
 }) => {
   const betaBadge = isBeta ? (
     <EuiBetaBadge
@@ -78,8 +86,27 @@ const GuidePageComponent = ({
     });
   };
 
+  const renderNotice = () => {
+    if (notice) {
+      return (
+        <>
+          <EuiPageContentBody role="region" aria-label="Notice" restrictWidth>
+            {notice}
+          </EuiPageContentBody>
+          <EuiSpacer size="l" />
+        </>
+      );
+    }
+  };
+
+  const rightSideItems = _rightSideItems || [];
+  if (showThemeLanguageToggle) {
+    rightSideItems.push(<LanguageSelector />);
+  }
+
   return (
     <>
+      {renderNotice()}
       <EuiPageHeader
         restrictWidth
         pageTitle={
@@ -87,7 +114,9 @@ const GuidePageComponent = ({
             {title} {betaBadge}
           </>
         }
-        tabs={renderTabs()}
+        tabs={renderTabs() || _tabs}
+        description={description}
+        rightSideItems={rightSideItems}
       >
         {intro}
       </EuiPageHeader>
@@ -127,6 +156,11 @@ GuidePageComponent.propTypes = {
   location: PropTypes.object,
   match: PropTypes.object,
   history: PropTypes.object,
+  description: PropTypes.node,
+  notice: PropTypes.node,
+  tabs: PropTypes.arrayOf(PropTypes.object),
+  rightSideItems: PropTypes.arrayOf(PropTypes.node),
+  showThemeLanguageToggle: PropTypes.bool,
 };
 
 export const GuidePage = withRouter(GuidePageComponent);
