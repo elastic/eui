@@ -16,7 +16,7 @@ export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [size, setSize] = useState('l');
   const [sizeName, setSizeName] = useState('large');
-  const largeFlyoutTitleId = useGeneratedHtmlId({ prefix: 'flyout' });
+  const largeFlyoutTitleId = useGeneratedHtmlId({ prefix: 'largeFlyoutTitle' });
 
   const sizes = [
     {

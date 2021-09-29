@@ -21,8 +21,12 @@ export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [paddingSize, setPaddingSize] = useState('l');
   const [paddingSizeName, setPaddingSizeName] = useState('large');
-  const mediumPaddingFlyoutTitleId = useGeneratedHtmlId({ prefix: 'flyout' });
-  const mediumPaddingFlyoutId = useGeneratedHtmlId({ prefix: 'flyout' });
+  const mediumPaddingFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'mediumPaddingFlyoutTitle',
+  });
+  const mediumPaddingFlyoutId = useGeneratedHtmlId({
+    prefix: 'mediumPaddingFlyout',
+  });
 
   const sizes = [
     {

@@ -33,15 +33,23 @@ import { ExampleContext } from '../../services';
 import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default ({ theme }) => {
-  const guideHeaderCollapsibleNavId = useGeneratedHtmlId({ prefix: 'nav' });
-  const guideHeaderAlertFlyoutId = useGeneratedHtmlId({ prefix: 'flyout' });
-  const guideHeaderAlertFlyoutTitleId = useGeneratedHtmlId({
-    prefix: 'flyout',
+  const guideHeaderCollapsibleNavId = useGeneratedHtmlId({
+    prefix: 'guideHeaderCollapsibleNav',
   });
-  const guideHeaderUserPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
-  const guideHeaderSpacesPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
+  const guideHeaderAlertFlyoutId = useGeneratedHtmlId({
+    prefix: 'guideHeaderAlertFlyout',
+  });
+  const guideHeaderAlertFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'guideHeaderAlertFlyoutTitle',
+  });
+  const guideHeaderUserPopoverId = useGeneratedHtmlId({
+    prefix: 'guideHeaderUserPopover',
+  });
+  const guideHeaderSpacesPopoverId = useGeneratedHtmlId({
+    prefix: 'guideHeaderSpacesPopover',
+  });
   const guideHeaderDeploymentPopoverId = useGeneratedHtmlId({
-    prefix: 'popover',
+    prefix: 'guideHeaderDeploymentPopover',
   });
 
   useEffect(() => {

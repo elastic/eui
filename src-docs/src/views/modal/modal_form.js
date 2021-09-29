@@ -24,8 +24,8 @@ export default () => {
   const [isSwitchChecked, setIsSwitchChecked] = useState(true);
   const [superSelectvalue, setSuperSelectValue] = useState('option_one');
 
-  const modalFormId = useGeneratedHtmlId({ prefix: 'form' });
-  const modalFormSwitchId = useGeneratedHtmlId({ prefix: 'switch' });
+  const modalFormId = useGeneratedHtmlId({ prefix: 'modalForm' });
+  const modalFormSwitchId = useGeneratedHtmlId({ prefix: 'modalFormSwitch' });
 
   const onSwitchChange = () =>
     setIsSwitchChecked((isSwitchChecked) => !isSwitchChecked);

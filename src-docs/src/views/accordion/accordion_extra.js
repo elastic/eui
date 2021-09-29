@@ -4,7 +4,9 @@ import { EuiAccordion, EuiButton } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const extraActionAccordionId = useGeneratedHtmlId({ prefix: 'accordion' });
+  const extraActionAccordionId = useGeneratedHtmlId({
+    prefix: 'extraActionAccordion',
+  });
 
   return (
     <EuiAccordion

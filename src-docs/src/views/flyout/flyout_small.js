@@ -17,7 +17,9 @@ export default () => {
 
   const toggleFlyout = () => setIsFlyoutVisible((isVisible) => !isVisible);
 
-  const withoutFocusFlyoutTitleId = useGeneratedHtmlId({ prefix: 'flyout' });
+  const withoutFocusFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'withoutFocusFlyoutTitle',
+  });
 
   let flyout;
   if (isFlyoutVisible) {

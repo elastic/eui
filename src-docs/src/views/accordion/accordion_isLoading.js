@@ -31,7 +31,9 @@ const toggleButtons = [
 export default () => {
   const [label, setLabel] = useState('False');
   const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}0`);
-  const isLoadingAccordionId = useGeneratedHtmlId({ prefix: 'accordion' });
+  const isLoadingAccordionId = useGeneratedHtmlId({
+    prefix: 'isLoadingAccordion',
+  });
 
   const onChange = (optionId) => {
     setToggleIdSelected(optionId);

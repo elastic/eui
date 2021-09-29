@@ -10,19 +10,19 @@ import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const multipleAccordionsId__1 = useGeneratedHtmlId({
-    prefix: 'accordion',
+    prefix: 'multipleAccordions',
     suffix: 'first',
   });
   const multipleAccordionsId__2 = useGeneratedHtmlId({
-    prefix: 'accordion',
+    prefix: 'multipleAccordions',
     suffix: 'second',
   });
   const multipleAccordionsId__3 = useGeneratedHtmlId({
-    prefix: 'accordion',
+    prefix: 'multipleAccordions',
     suffix: 'third',
   });
   const multipleAccordionsId__4 = useGeneratedHtmlId({
-    prefix: 'accordion',
+    prefix: 'multipleAccordions',
     suffix: 'fourth',
   });
 

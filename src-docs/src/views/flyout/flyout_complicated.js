@@ -32,7 +32,9 @@ export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [superSelectvalue, setSuperSelectValue] = useState('option_one');
   const [isExpressionOpen, setIsExpressionOpen] = useState(false);
-  const complicatedFlyoutTitleId = useGeneratedHtmlId({ prefix: 'flyout' });
+  const complicatedFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'complicatedFlyoutTitle',
+  });
 
   const tabs = [
     {

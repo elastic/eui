@@ -14,11 +14,11 @@ export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const trapFocusFormRowId__1 = useGeneratedHtmlId({
-    prefix: 'popover',
+    prefix: 'trapFocusFormRow',
     suffix: 'first',
   });
   const trapFocusFormRowId__2 = useGeneratedHtmlId({
-    prefix: 'popover',
+    prefix: 'trapFocusFormRow',
     suffix: 'second',
   });
 

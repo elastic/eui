@@ -20,8 +20,8 @@ const text = (
   </>
 );
 
-const firstPanelId = htmlIdGenerator('panel')('first');
-const secondPanelId = htmlIdGenerator('panel')('second');
+const firstPanelId = htmlIdGenerator('firstPanel')('first');
+const secondPanelId = htmlIdGenerator('secondPanel')('second');
 const stored = localStorage.getItem('resizableContainer');
 const storedSizes = stored && JSON.parse(stored);
 const defaultSizes = storedSizes || {

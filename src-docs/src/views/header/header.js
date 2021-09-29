@@ -136,7 +136,9 @@ export default () => {
 };
 
 const HeaderUserMenu = () => {
-  const headerUserPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
+  const headerUserPopoverId = useGeneratedHtmlId({
+    prefix: 'headerUserPopover',
+  });
   const [isOpen, setIsOpen] = useState(false);
 
   const onMenuButtonClick = () => {
@@ -206,7 +208,9 @@ const HeaderUserMenu = () => {
 };
 
 const HeaderSpacesMenu = () => {
-  const headerSpacesPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
+  const headerSpacesPopoverId = useGeneratedHtmlId({
+    prefix: 'headerSpacesPopover',
+  });
   const spacesValues = [
     {
       label: 'Sales team',
@@ -334,8 +338,10 @@ const HeaderSpacesMenu = () => {
 };
 
 const HeaderAppMenu = () => {
-  const headerAppPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
-  const headerAppKeyPadMenuId = useGeneratedHtmlId({ prefix: 'popover' });
+  const headerAppPopoverId = useGeneratedHtmlId({ prefix: 'headerAppPopover' });
+  const headerAppKeyPadMenuId = useGeneratedHtmlId({
+    prefix: 'headerAppKeyPadMenu',
+  });
 
   const [isOpen, setIsOpen] = useState(false);
 

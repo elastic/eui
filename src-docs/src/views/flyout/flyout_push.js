@@ -13,7 +13,9 @@ import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
-  const pushedFlyoutTitleId = useGeneratedHtmlId({ prefix: 'flyout' });
+  const pushedFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'pushedFlyoutTitle',
+  });
   let flyout;
 
   if (isFlyoutVisible) {

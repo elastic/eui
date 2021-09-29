@@ -32,9 +32,11 @@ import { useGeneratedHtmlId } from '../../../../src/services';
 const HeaderUpdates = () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [isPopoverVisible, setIsPopoverVisible] = useState(false);
-  const newsFeedFlyoutId = useGeneratedHtmlId({ prefix: 'flyout' });
-  const newsFeedFlyoutTitleId = useGeneratedHtmlId({ prefix: 'flyout' });
-  const newsFeedPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
+  const newsFeedFlyoutId = useGeneratedHtmlId({ prefix: 'newsFeedFlyout' });
+  const newsFeedFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'newsFeedFlyoutTitle',
+  });
+  const newsFeedPopoverId = useGeneratedHtmlId({ prefix: 'newsFeedPopover' });
 
   const alerts = [
     {
@@ -247,7 +249,7 @@ const HeaderUpdates = () => {
 };
 
 const HeaderUserMenu = () => {
-  const userPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
+  const userPopoverId = useGeneratedHtmlId({ prefix: 'userPopover' });
   const [isOpen, setIsOpen] = useState(false);
 
   const onMenuButtonClick = () => {
