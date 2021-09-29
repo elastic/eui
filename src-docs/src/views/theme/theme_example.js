@@ -27,6 +27,7 @@ import Computed from './computed';
 const computedSource = require('!!raw-loader!./computed');
 
 import CreateComputed from './create_computed';
+import { ThemeNotice } from './_components/_theme_notice';
 const createComputedSource = require('!!raw-loader!./create_computed');
 
 export const ThemeExample = {
@@ -44,7 +45,7 @@ export const ThemeExample = {
         </p>
       </EuiText>
       <EuiSpacer size="m" />
-      <EuiCallOut title="The following examples assume that you have wrapped your entire application with this provider." />
+      <ThemeNotice type="support" />
     </>
   ),
   sections: [

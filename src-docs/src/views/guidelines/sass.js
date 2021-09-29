@@ -204,11 +204,6 @@ export const SassGuidelines = {
       text: <Shadow />,
     },
     {
-      title: 'Media queries and breakpoints',
-      wrapText: false,
-      text: <Breakpoints />,
-    },
-    {
       title: 'Animation',
       wrapText: false,
       text: <Animation />,

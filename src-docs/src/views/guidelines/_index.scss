@@ -331,6 +331,16 @@
 
 @import 'colors/color_section';
 
+@each $key, $size in $euiBreakpoints {
+  .guideSass__breakpoint--#{$key} {
+    display: none;
+
+    @include euiBreakpoint($key) {
+      display: block;
+    }
+  }
+}
+
 @include euiBreakpoint('xl') {
   .guideSass__breakpointExample {
     background: $euiColorPrimary;
