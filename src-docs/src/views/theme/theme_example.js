@@ -5,7 +5,6 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiText,
   EuiSpacer,
-  EuiCallOut,
   EuiCode,
   EuiLink,
 } from '../../../../src/components';

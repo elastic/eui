@@ -330,6 +330,7 @@ const navigation = [
     items: [
       createMarkdownExample(GettingStarted, 'Getting started'),
       createExample(AccessibilityGuidelines, 'Accessibility'),
+      createExample(WritingGuidelines, 'Colors'),
       createExample(WritingGuidelines, 'Writing'),
     ],
   },
@@ -337,7 +338,6 @@ const navigation = [
     name: 'Theming',
     items: [
       createExample(ThemeExample, 'Theme provider'),
-      createExample(ColorModeExample),
       {
         name: 'Breakpoints',
         component: Breakpoints,
@@ -345,6 +345,7 @@ const navigation = [
       {
         name: 'Colors',
         component: ColorGuidelines,
+      },
       {
         name: 'Customizing themes',
         component: ThemeValues,

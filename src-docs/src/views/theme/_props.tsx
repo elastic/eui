@@ -28,9 +28,11 @@ import {
   _EuiThemeConstantColors,
 } from '../../../../src/global_styling/variables/_colors';
 
-export const EuiThemeColors: FunctionComponent<
-  _EuiThemeColors & _EuiThemeConstantColors
-> = () => <div />;
+export const EuiThemeColors: FunctionComponent<_EuiThemeColors> = () => <div />;
+
+export const EuiThemeConstantColors: FunctionComponent<_EuiThemeConstantColors> = () => (
+  <div />
+);
 
 import { EuiThemeSize } from '../../../../src/global_styling/variables/_size';
 

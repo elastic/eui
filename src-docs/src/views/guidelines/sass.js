@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../components';
 import { Typography } from './sass/typography';
 import { Animation } from './sass/animation';
-import { Breakpoints } from './sass/breakpoints';
 import { Shadow } from './sass/shadow';
 import { Border } from './sass/border';
 import { Color } from './sass/color';
