@@ -55,13 +55,14 @@ export interface EuiTourStepProps
   isStepOpen?: boolean;
 
   /**
-   * Sets the min-width of the tour popover,
-   * set to `true` to use the default size,
-   * set to `false` to not restrict the width,
-   * set to a number for a custom width in px,
-   * set to a string for a custom width in custom measurement.
+   * Change the default max width of the popover panel
    */
-  minWidth?: boolean | number | string;
+  minWidth?: CSSProperties['maxWidth'];
+
+  /**
+   * Change the default max width of the popover panel
+   */
+  maxWidth?: CSSProperties['maxWidth'];
 
   /**
    * Function to call for 'Skip tour' and 'End tour' actions
@@ -111,7 +112,8 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   closePopover = () => {},
   content,
   isStepOpen = false,
-  minWidth = true,
+  minWidth = 300,
+  maxWidth = 600,
   onFinish,
   step = 1,
   stepsTotal,
@@ -128,17 +130,10 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       'EuiTourStep `step` should 1-based indexing. Please update to eliminate 0 indexes.'
     );
   }
-  let newStyle;
 
-  let widthClassName;
-  if (minWidth === true) {
-    widthClassName = 'euiTour--minWidth-default';
-  } else if (minWidth !== false) {
-    const value = typeof minWidth === 'number' ? `${minWidth}px` : minWidth;
-    newStyle = { ...style, minWidth: value };
-  }
+  const newStyle: CSSProperties = { ...style, maxWidth, minWidth };
 
-  const classes = classNames('euiTour', widthClassName, className);
+  const classes = classNames('euiTour', className);
 
   const finishButtonProps: EuiButtonEmptyProps = {
     color: 'text',
@@ -208,7 +203,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
       isOpen={isStepOpen}
       ownFocus={false}
       panelClassName={classes}
-      panelStyle={newStyle || style}
+      panelStyle={newStyle}
       offset={hasBeacon ? 10 : 0}
       aria-labelledby={titleId}
       arrowChildren={hasBeacon && <EuiBeacon className="euiTour__beacon" />}
