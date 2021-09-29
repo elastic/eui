@@ -55,7 +55,7 @@ export interface EuiTourStepProps
   isStepOpen?: boolean;
 
   /**
-   * Change the default max width of the popover panel
+   * Change the default min width of the popover panel
    */
   minWidth?: CSSProperties['maxWidth'];
 

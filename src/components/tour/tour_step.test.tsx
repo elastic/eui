@@ -67,9 +67,15 @@ describe('EuiTourStep', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('can set a minWidth', () => {
+  test('can set a minWidth and maxWidth', () => {
     const component = render(
-      <EuiTourStep {...config} {...steps[0]} minWidth={240} {...requiredProps}>
+      <EuiTourStep
+        {...config}
+        {...steps[0]}
+        minWidth={240}
+        maxWidth={420}
+        {...requiredProps}
+      >
         <span>Test</span>
       </EuiTourStep>
     );
