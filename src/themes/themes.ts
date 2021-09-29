@@ -6,13 +6,14 @@
  * Side Public License, v 1.
  */
 
+import { EuiThemeSystem } from '../services';
 import { EuiThemeAmsterdam, AMSTERDAM_NAME_KEY } from './amsterdam/theme';
 import { EuiThemeLegacy, LEGACY_NAME_KEY } from './legacy/theme';
 
 export interface EUI_THEME {
   text: string;
   value: string;
-  provider?: any;
+  provider?: EuiThemeSystem;
 }
 
 export const EUI_THEMES: EUI_THEME[] = [

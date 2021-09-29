@@ -6,12 +6,20 @@
  * Side Public License, v 1.
  */
 
-import { isLegacyTheme } from './themes';
+import { isLegacyTheme, isDefaultTheme } from './themes';
 
 describe('isLegacyTheme', () => {
-  it('returns true for the default name', () => {
+  it('returns true for the legacy name', () => {
     expect(isLegacyTheme('EUI_THEME_LEGACY')).toBe(true);
     expect(isLegacyTheme('EUI_THEME_AMSTERDAM')).toBe(false);
     expect(isLegacyTheme('CUSTOM_DEFAULT')).toBe(false);
+  });
+});
+
+describe('isDefaultTheme', () => {
+  it('returns true for the default name', () => {
+    expect(isDefaultTheme('EUI_THEME_LEGACY')).toBe(false);
+    expect(isDefaultTheme('EUI_THEME_AMSTERDAM')).toBe(true);
+    expect(isDefaultTheme('CUSTOM_DEFAULT')).toBe(false);
   });
 });
