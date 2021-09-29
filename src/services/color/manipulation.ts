@@ -22,7 +22,7 @@ export const transparentize = (color: string, alpha: number) =>
  * @param ratio - Mix weight. From 0-1. Larger value indicates more white.
  */
 export const tint = (color: string, ratio: number) =>
-  chroma.mix(color, '#fff', ratio, 'rgb').hex();
+  chroma.mix(color, '#fff', ratio, 'rgb').css();
 
 /**
  * Mixes a provided color with black.
@@ -30,7 +30,7 @@ export const tint = (color: string, ratio: number) =>
  * @param ratio - Mix weight. From 0-1. Larger value indicates more black.
  */
 export const shade = (color: string, ratio: number) =>
-  chroma.mix(color, '#000', ratio, 'rgb').hex();
+  chroma.mix(color, '#000', ratio, 'rgb').css();
 
 /**
  * Increases the saturation of a color by manipulating the hsl saturation.
@@ -38,7 +38,7 @@ export const shade = (color: string, ratio: number) =>
  * @param amount - Amount to change in absolute terms. 0-1.
  */
 export const saturate = (color: string, amount: number) =>
-  chroma(color).set('hsl.s', `+${amount}`).hex();
+  chroma(color).set('hsl.s', `+${amount}`).css();
 
 /**
  * Decreases the saturation of a color by manipulating the hsl saturation.
@@ -46,7 +46,7 @@ export const saturate = (color: string, amount: number) =>
  * @param amount - Amount to change in absolute terms. 0-1.
  */
 export const desaturate = (color: string, amount: number) =>
-  chroma(color).set('hsl.s', `-${amount}`).hex();
+  chroma(color).set('hsl.s', `-${amount}`).css();
 
 /**
  * Returns the lightness value of a color. 0-100
