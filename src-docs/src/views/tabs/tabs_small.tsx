@@ -8,6 +8,7 @@ import {
   EuiPopover,
   EuiSpacer,
 } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 const tabs = [
   {
@@ -31,6 +32,7 @@ const tabs = [
 export default () => {
   const [isPopoverOpen, setPopover] = useState(false);
   const [selectedTabId, setSelectedTabId] = useState('cobalt');
+  const contentPopoverId = useGeneratedHtmlId({ prefix: 'contentPopover' });
 
   const onSelectedTabChanged = (id: string) => {
     setSelectedTabId(id);
@@ -66,7 +68,7 @@ export default () => {
 
   return (
     <EuiPopover
-      id="contentPanel"
+      id={contentPopoverId}
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}

@@ -10,7 +10,9 @@ import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isPopoverOpen, setPopover] = useState(false);
-  const customContextMenuPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
+  const customContextMenuPopoverId = useGeneratedHtmlId({
+    prefix: 'customContextMenuPopover',
+  });
 
   const onButtonClick = () => {
     setPopover(!isPopoverOpen);

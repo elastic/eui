@@ -141,7 +141,7 @@ const CollapsibleNavAll = () => {
     return `Unpin ${listItem.label}`;
   }
 
-  const collapsibleNavId = useGeneratedHtmlId({ prefix: 'collapsible-nav' });
+  const collapsibleNavId = useGeneratedHtmlId({ prefix: 'collapsibleNav' });
 
   const collapsibleNav = () => {
     return (

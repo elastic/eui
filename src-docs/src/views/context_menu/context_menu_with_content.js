@@ -31,8 +31,12 @@ export default () => {
   const [isPopoverOpen, setPopover] = useState(false);
   const [isDynamicPopoverOpen, setDynamicPopover] = useState(false);
 
-  const normalContextMenuPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
-  const dynamicContextMenuPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
+  const normalContextMenuPopoverId = useGeneratedHtmlId({
+    prefix: 'normalContextMenuPopover',
+  });
+  const dynamicContextMenuPopoverId = useGeneratedHtmlId({
+    prefix: 'dynamicContextMenuPopover',
+  });
 
   const onButtonClick = () => {
     setPopover(!isPopoverOpen);

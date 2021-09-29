@@ -10,10 +10,10 @@ import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const compressedToggleButtonGroupPrefix = useGeneratedHtmlId({
-    prefix: 'button-group',
+    prefix: 'compressedToggleButtonGroup',
   });
   const multiSelectButtonGroupPrefix = useGeneratedHtmlId({
-    prefix: 'button-group',
+    prefix: 'multiSelectButtonGroup',
   });
 
   const toggleButtonsCompressed = [

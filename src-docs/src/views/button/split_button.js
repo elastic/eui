@@ -13,7 +13,9 @@ import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isPopoverOpen, setPopover] = useState(false);
-  const splitButtonPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
+  const splitButtonPopoverId = useGeneratedHtmlId({
+    prefix: 'splitButtonPopover',
+  });
 
   const onButtonClick = () => {
     setPopover(!isPopoverOpen);

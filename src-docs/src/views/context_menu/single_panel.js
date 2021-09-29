@@ -12,7 +12,9 @@ export default () => {
   const [isPopoverOpen, setPopover] = useState(false);
   const [rowSize, setRowSize] = useState(50);
 
-  const singleContextMenuPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
+  const singleContextMenuPopoverId = useGeneratedHtmlId({
+    prefix: 'singleContextMenuPopover',
+  });
 
   const onButtonClick = () => {
     setPopover(!isPopoverOpen);

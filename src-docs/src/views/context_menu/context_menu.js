@@ -16,14 +16,16 @@ export default () => {
   const [isPopoverOpen, setPopover] = useState(false);
 
   const embeddedCodeSwitchId__1 = useGeneratedHtmlId({
-    prefix: 'switch',
+    prefix: 'embeddedCodeSwitch',
     suffix: 'first',
   });
   const embeddedCodeSwitchId__2 = useGeneratedHtmlId({
-    prefix: 'switch',
+    prefix: 'embeddedCodeSwitch',
     suffix: 'second',
   });
-  const contextMenuPopoverId = useGeneratedHtmlId({ prefix: 'popover' });
+  const contextMenuPopoverId = useGeneratedHtmlId({
+    prefix: 'contextMenuPopover',
+  });
 
   const onButtonClick = () => {
     setPopover(!isPopoverOpen);

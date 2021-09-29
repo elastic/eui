@@ -9,12 +9,14 @@ import {
 import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const basicButtonGroupPrefix = useGeneratedHtmlId({ prefix: 'button-group' });
+  const basicButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'basicButtonGroup',
+  });
   const multiSelectButtonGroupPrefix = useGeneratedHtmlId({
-    prefix: 'button-group',
+    prefix: 'multiSelectButtonGroup',
   });
   const disabledButtonGroupPrefix = useGeneratedHtmlId({
-    prefix: 'button-group',
+    prefix: 'disabledButtonGroup',
   });
 
   const toggleButtons = [
