@@ -4,6 +4,7 @@ import {
   EuiRadioGroup,
   EuiSuggest,
   EuiSpacer,
+  EuiFormRow,
 } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
@@ -70,7 +71,19 @@ export default () => {
         onChange={(id) => onChange(id)}
       />
       <EuiSpacer size="xl" />
+      <EuiFormRow label="Suggest" id="test">
+        <EuiSuggest
+          aria-labelledby="test_label"
+          status={status}
+          onInputChange={() => {}}
+          onItemClick={onItemClick}
+          placeholder="Enter query to display suggestions"
+          suggestions={sampleItems}
+        />
+      </EuiFormRow>
+      <EuiSpacer size="xl" />
       <EuiSuggest
+        aria-label="Suggest"
         status={status}
         onInputChange={() => {}}
         onItemClick={onItemClick}
