@@ -97,10 +97,17 @@
         @include euiFormControlFocusStyle($borderOnly: true);
       }
     }
+
+    .euiFormControlLayout__prepend:first-child,
+    .euiFormControlLayout__append:last-child {
+      @include euiFormLabelInlineFocusStyle;
+    }
   }
 
   &.euiComboBox-isInvalid {
-    .euiComboBox__inputWrap {
+    .euiComboBox__inputWrap,
+    .euiFormControlLayout__prepend:first-child,
+    .euiFormControlLayout__append:last-child {
       @include euiFormControlInvalidStyle;
     }
   }

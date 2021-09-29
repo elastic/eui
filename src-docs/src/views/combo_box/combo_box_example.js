@@ -75,10 +75,19 @@ const groupsSnippet = `<EuiComboBox
 />`;
 
 import SingleSelection from './single_selection';
+import SingleSelectionPrepend from './single_selection_prepend';
 const singleSelectionSource = require('!!raw-loader!./single_selection');
 const singleSelectionHtml = renderToHtml(SingleSelection);
+const singleSelectionPrependSource = require('!!raw-loader!./single_selection_prepend');
 const singleSelectionSnippet = `<EuiComboBox
   placeholder="Select a single option"
+  singleSelection={{ asPlainText: true }}
+  options={options}
+  selectedOptions={selectedOptions}
+  onChange={onChange}
+/>`;
+const singleSelectionPrependSnippet = `<EuiComboBox
+  prepend="Prepend"
   singleSelection={{ asPlainText: true }}
   options={options}
   selectedOptions={selectedOptions}
@@ -406,7 +415,7 @@ export const ComboBoxExample = {
             <strong>Note:</strong> <EuiCode>append</EuiCode> and{' '}
             <EuiCode>prepend</EuiCode> props only work if
             <EuiCode>singleSelection</EuiCode> prop is not set to{' '}
-            <EuiCode>false</EuiCode> to avoid multilines that makes combobox
+            <EuiCode>false</EuiCode> to avoid multi-lines that makes combobox
             height greater than that of <EuiCode>append</EuiCode> and{' '}
             <EuiCode>prepend</EuiCode>.
           </p>
@@ -415,6 +424,34 @@ export const ComboBoxExample = {
       props: { EuiComboBox, EuiComboBoxOptionOption },
       snippet: singleSelectionSnippet,
       demo: <SingleSelection />,
+    },
+    {
+      title: 'Single selection with prepended label',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: singleSelectionPrependSource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: singleSelectionHtml,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            <EuiCode>append</EuiCode> and <EuiCode>prepend</EuiCode> props only
+            work if
+            <EuiCode>singleSelection</EuiCode> prop is not set to{' '}
+            <EuiCode>false</EuiCode> to avoid multi-lines that makes combobox
+            height greater than that of <EuiCode>append</EuiCode> and{' '}
+            <EuiCode>prepend</EuiCode>.
+          </p>
+        </Fragment>
+      ),
+      props: { EuiComboBox, EuiComboBoxOptionOption },
+      snippet: singleSelectionPrependSnippet,
+      demo: <SingleSelectionPrepend />,
     },
     {
       title: 'Single selection with custom options',
