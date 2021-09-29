@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `38.2.0`.
+- Converted generated icon files to Typescript, eliminating the last `.js` files in our source files ([#5212](https://github.com/elastic/eui/pull/5212))
 
 ## [`38.2.0`](https://github.com/elastic/eui/tree/v38.2.0)
 
