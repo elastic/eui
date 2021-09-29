@@ -703,6 +703,233 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
 </div>
 `;
 
+exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 1`] = `
+<EuiSuperSelect
+  compressed={false}
+  fullWidth={false}
+  hasDividers={false}
+  isInvalid={false}
+  isLoading={false}
+  onChange={[Function]}
+  options={
+    Array [
+      Object {
+        "inputDisplay": "Option #1",
+        "value": "1",
+      },
+      Object {
+        "inputDisplay": "Option #2",
+        "value": "2",
+      },
+    ]
+  }
+  popoverProps={
+    Object {
+      "className": "goes-on-outermost-wrapper",
+      "panelClassName": "goes-on-popover-panel",
+      "repositionOnScroll": true,
+    }
+  }
+  valueOfSelected="2"
+>
+  <EuiInputPopover
+    anchorPosition="downLeft"
+    attachToAnchor={true}
+    className="euiSuperSelect goes-on-outermost-wrapper"
+    closePopover={[Function]}
+    display="block"
+    fullWidth={false}
+    input={
+      <EuiSuperSelectControl
+        className=""
+        compressed={false}
+        fullWidth={false}
+        isInvalid={false}
+        isLoading={false}
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        options={
+          Array [
+            Object {
+              "inputDisplay": "Option #1",
+              "value": "1",
+            },
+            Object {
+              "inputDisplay": "Option #2",
+              "value": "2",
+            },
+          ]
+        }
+        value="2"
+      />
+    }
+    isOpen={false}
+    panelClassName="goes-on-popover-panel"
+    panelPaddingSize="none"
+    repositionOnScroll={true}
+  >
+    <EuiPopover
+      anchorPosition="downLeft"
+      attachToAnchor={true}
+      button={
+        <EuiResizeObserver
+          onResize={[Function]}
+        >
+          [Function]
+        </EuiResizeObserver>
+      }
+      buttonRef={[Function]}
+      className="euiInputPopover euiSuperSelect goes-on-outermost-wrapper"
+      closePopover={[Function]}
+      display="block"
+      hasArrow={true}
+      isOpen={false}
+      ownFocus={false}
+      panelClassName="goes-on-popover-panel"
+      panelPaddingSize="none"
+      panelRef={[Function]}
+      repositionOnScroll={true}
+    >
+      <EuiOutsideClickDetector
+        onOutsideClick={[Function]}
+      >
+        <div
+          className="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuperSelect goes-on-outermost-wrapper"
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchStart={[Function]}
+        >
+          <div
+            className="euiPopover__anchor"
+          >
+            <EuiResizeObserver
+              onResize={[Function]}
+            >
+              <div>
+                <EuiSuperSelectControl
+                  className=""
+                  compressed={false}
+                  fullWidth={false}
+                  isInvalid={false}
+                  isLoading={false}
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  options={
+                    Array [
+                      Object {
+                        "inputDisplay": "Option #1",
+                        "value": "1",
+                      },
+                      Object {
+                        "inputDisplay": "Option #2",
+                        "value": "2",
+                      },
+                    ]
+                  }
+                  value="2"
+                >
+                  <input
+                    type="hidden"
+                    value="2"
+                  />
+                  <EuiFormControlLayout
+                    compressed={false}
+                    fullWidth={false}
+                    icon={
+                      Object {
+                        "side": "right",
+                        "type": "arrowDown",
+                      }
+                    }
+                    isLoading={false}
+                  >
+                    <div
+                      className="euiFormControlLayout"
+                    >
+                      <div
+                        className="euiFormControlLayout__childrenWrapper"
+                      >
+                        <EuiScreenReaderOnly>
+                          <span
+                            className="euiScreenReaderOnly"
+                            id="generated-id"
+                          >
+                            <EuiI18n
+                              default="Select an option: {selectedValue}, is selected"
+                              token="euiSuperSelectControl.selectAnOption"
+                              values={
+                                Object {
+                                  "selectedValue": "Option #2",
+                                }
+                              }
+                            >
+                              Select an option: Option #2, is selected
+                            </EuiI18n>
+                          </span>
+                        </EuiScreenReaderOnly>
+                        <button
+                          aria-haspopup="true"
+                          aria-labelledby="generated-id"
+                          className="euiSuperSelectControl"
+                          onClick={[Function]}
+                          onKeyDown={[Function]}
+                          type="button"
+                        >
+                          Option #2
+                        </button>
+                        <EuiFormControlLayoutIcons
+                          compressed={false}
+                          icon={
+                            Object {
+                              "side": "right",
+                              "type": "arrowDown",
+                            }
+                          }
+                          isLoading={false}
+                        >
+                          <div
+                            className="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+                          >
+                            <EuiFormControlLayoutCustomIcon
+                              size="m"
+                              type="arrowDown"
+                            >
+                              <span
+                                className="euiFormControlLayoutCustomIcon"
+                              >
+                                <EuiIcon
+                                  aria-hidden="true"
+                                  className="euiFormControlLayoutCustomIcon__icon"
+                                  size="m"
+                                  type="arrowDown"
+                                >
+                                  <span
+                                    aria-hidden="true"
+                                    className="euiFormControlLayoutCustomIcon__icon"
+                                    data-euiicon-type="arrowDown"
+                                    size="m"
+                                  />
+                                </EuiIcon>
+                              </span>
+                            </EuiFormControlLayoutCustomIcon>
+                          </div>
+                        </EuiFormControlLayoutIcons>
+                      </div>
+                    </div>
+                  </EuiFormControlLayout>
+                </EuiSuperSelectControl>
+              </div>
+            </EuiResizeObserver>
+          </div>
+        </div>
+      </EuiOutsideClickDetector>
+    </EuiPopover>
+  </EuiInputPopover>
+</EuiSuperSelect>
+`;
+
 exports[`EuiSuperSelect props select component is rendered 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuperSelect"

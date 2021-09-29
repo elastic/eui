@@ -18,6 +18,7 @@ type ExtendedRefractorNode = RefractorNode & {
 interface LineNumbersConfig {
   start: number;
   show: boolean;
+  highlight?: string;
 }
 
 // Approximate width of a single digit/character
@@ -26,6 +27,27 @@ const $euiSizeS = 8;
 
 const isAstElement = (node: RefractorNode): node is AST.Element =>
   node.hasOwnProperty('type') && node.type === 'element';
+
+// Creates an array of numbers from comma-separeated
+// string of numbers or number ranges using `-`
+// (e.g., "1, 3-10, 15")
+export const parseLineRanges = (ranges: string) => {
+  const highlights: number[] = [];
+  ranges
+    .replace(/\s/g, '')
+    .split(',')
+    .forEach((line: string) => {
+      if (line.includes('-')) {
+        const range = line.split('-').map(Number);
+        for (let i = range[0]; i <= range[1]; i++) {
+          highlights.push(i);
+        }
+      } else {
+        highlights.push(Number(line));
+      }
+    });
+  return highlights;
+};
 
 const addLineData = (
   nodes: ExtendedRefractorNode[],
@@ -79,8 +101,11 @@ const addLineData = (
 
 function wrapLines(
   nodes: ExtendedRefractorNode[],
-  options: { showLineNumbers: boolean }
+  options: { showLineNumbers: boolean; highlight?: string }
 ) {
+  const highlights = options.highlight
+    ? parseLineRanges(options.highlight)
+    : [];
   const grouped: ExtendedRefractorNode[][] = [];
   nodes.forEach((node) => {
     const lineStart = node.lineStart! - 1;
@@ -94,6 +119,10 @@ function wrapLines(
   const digits = grouped.length.toString().length;
   const width = digits * CHAR_SIZE;
   grouped.forEach((node, i) => {
+    const lineNumber = i + 1;
+    const classes = classNames('euiCodeBlock__line', {
+      'euiCodeBlock__line--isHighlighted': highlights.includes(lineNumber),
+    });
     const children: RefractorNode[] = options.showLineNumbers
       ? [
           {
@@ -101,7 +130,7 @@ function wrapLines(
             tagName: 'span',
             properties: {
               style: { width },
-              ['data-line-number']: i + 1,
+              ['data-line-number']: lineNumber,
               ['aria-hidden']: true,
               className: ['euiCodeBlock__lineNumber'],
             },
@@ -111,7 +140,10 @@ function wrapLines(
             type: 'element',
             tagName: 'span',
             properties: {
-              style: { marginLeft: width + $euiSizeS },
+              style: {
+                marginLeft: width + $euiSizeS,
+                width: `calc(100% - ${width}px)`,
+              },
               className: ['euiCodeBlock__lineText'],
             },
             children: node,
@@ -122,7 +154,7 @@ function wrapLines(
       type: 'element',
       tagName: 'span',
       properties: {
-        className: ['euiCodeBlock__line'],
+        className: [classes],
       },
       children,
     });
@@ -162,6 +194,6 @@ export const highlightByLine = (
 ) => {
   return wrapLines(
     addLineData(highlight(children, language), { lineNumber: data.start }),
-    { showLineNumbers: data.show }
+    { showLineNumbers: data.show, highlight: data.highlight }
   );
 };
