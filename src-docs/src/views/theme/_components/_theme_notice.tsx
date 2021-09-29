@@ -25,7 +25,7 @@ export const ThemeNotice: FunctionComponent<ThemeNotice> = ({
         available for <strong>consuming</strong> the values. Modifying or
         overriding the values will not have any effect on the individual EUI
         components, yet. Instead, you will need to use the{' '}
-        <Link to="/guidelines/sass">Sass method</Link>.
+        <Link to="/theming/sass">Sass method</Link>.
       </p>
     </EuiCallOut>
   );

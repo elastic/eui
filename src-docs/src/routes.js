@@ -330,7 +330,10 @@ const navigation = [
     items: [
       createMarkdownExample(GettingStarted, 'Getting started'),
       createExample(AccessibilityGuidelines, 'Accessibility'),
-      createExample(WritingGuidelines, 'Colors'),
+      {
+        name: 'Colors',
+        component: ColorGuidelines,
+      },
       createExample(WritingGuidelines, 'Writing'),
     ],
   },
@@ -339,16 +342,13 @@ const navigation = [
     items: [
       createExample(ThemeExample, 'Theme provider'),
       {
+        name: 'Global values',
+        component: ThemeValues,
+        isNew: true,
+      },
+      {
         name: 'Breakpoints',
         component: Breakpoints,
-      },
-      {
-        name: 'Colors',
-        component: ColorGuidelines,
-      },
-      {
-        name: 'Customizing themes',
-        component: ThemeValues,
       },
       createExample(SassGuidelines, 'Sass'),
     ],

@@ -2,12 +2,7 @@ import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
-import {
-  EuiText,
-  EuiSpacer,
-  EuiCode,
-  EuiLink,
-} from '../../../../src/components';
+import { EuiText, EuiCode, EuiLink } from '../../../../src/components';
 import { EuiThemeProvider } from '../../../../src/services';
 
 import Consuming from './consuming';
@@ -33,6 +28,7 @@ export const ThemeExample = {
   title: 'Theme provider',
   isNew: true,
   beta: true,
+  notice: <ThemeNotice type="support" />,
   intro: (
     <>
       <EuiText>
@@ -43,8 +39,6 @@ export const ThemeExample = {
           with <strong>EuiThemeProvider</strong>.
         </p>
       </EuiText>
-      <EuiSpacer size="m" />
-      <ThemeNotice type="support" />
     </>
   ),
   sections: [
