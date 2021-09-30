@@ -57,7 +57,7 @@ export interface EuiTourStepProps
   /**
    * Change the default min width of the popover panel
    */
-  minWidth?: CSSProperties['maxWidth'];
+  minWidth?: CSSProperties['minWidth'];
 
   /**
    * Change the default max width of the popover panel
@@ -216,7 +216,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
           </EuiTitle>
         )}
         <EuiTitle size="xxs" className="euiTourHeader__title">
-          <h3>{title}</h3>
+          {subtitle ? <h3>{title}</h3> : <h2>{title}</h2>}
         </EuiTitle>
       </EuiPopoverTitle>
       <div className="euiTour__content">{content}</div>

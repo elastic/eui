@@ -7,10 +7,14 @@
  */
 
 import React from 'react';
-import { render } from 'enzyme';
+import { mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiTourStep } from './tour_step';
+
+jest.mock('../portal', () => ({
+  EuiPortal: ({ children }: any) => children,
+}));
 
 const steps = [
   {
@@ -27,33 +31,33 @@ const config = {
 
 describe('EuiTourStep', () => {
   test('is rendered', () => {
-    const component = render(
-      <EuiTourStep {...config} {...steps[0]} {...requiredProps}>
+    const component = mount(
+      <EuiTourStep {...config} {...steps[0]} isStepOpen {...requiredProps}>
         <span>Test</span>
       </EuiTourStep>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component.render()).toMatchSnapshot();
   });
 
   test('can have subtitle', () => {
-    const component = render(
+    const component = mount(
       <EuiTourStep
         {...config}
         {...steps[0]}
+        isStepOpen
         subtitle="Subtitle"
-        isStepOpen={false}
         {...requiredProps}
       >
         <span>Test</span>
       </EuiTourStep>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component.render()).toMatchSnapshot();
   });
 
   test('can be closed', () => {
-    const component = render(
+    const component = mount(
       <EuiTourStep
         {...config}
         {...steps[0]}
@@ -64,30 +68,32 @@ describe('EuiTourStep', () => {
       </EuiTourStep>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component.render()).toMatchSnapshot();
   });
 
-  test('can set a minWidth and maxWidth', () => {
-    const component = render(
+  test('can change the minWidth and maxWidth', () => {
+    const component = mount(
       <EuiTourStep
         {...config}
         {...steps[0]}
         minWidth={240}
         maxWidth={420}
+        isStepOpen
         {...requiredProps}
       >
         <span>Test</span>
       </EuiTourStep>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component.render()).toMatchSnapshot();
   });
 
   test('can override the footer action', () => {
-    const component = render(
+    const component = mount(
       <EuiTourStep
         {...config}
         {...steps[0]}
+        isStepOpen
         footerAction={<button onClick={() => {}}>Test</button>}
         {...requiredProps}
       >
@@ -95,14 +101,15 @@ describe('EuiTourStep', () => {
       </EuiTourStep>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component.render()).toMatchSnapshot();
   });
 
   test('can turn off the beacon', () => {
-    const component = render(
+    const component = mount(
       <EuiTourStep
         {...config}
         {...steps[0]}
+        isStepOpen
         decoration="none"
         {...requiredProps}
       >
@@ -110,6 +117,6 @@ describe('EuiTourStep', () => {
       </EuiTourStep>
     );
 
-    expect(component).toMatchSnapshot();
+    expect(component.render()).toMatchSnapshot();
   });
 });
