@@ -1,8 +1,10 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `38.2.1`.
+- Added `maxWidth` prop to `EuiTour`, made `subtitle` optional, and fixed heading levels and footer background ([#5225](https://github.com/elastic/eui/pull/5225))
 
-## [`38.2.1`](https://github.com/elastic/eui/tree/v38.2.1)
+**Breaking changes**
+
+- Removed `boolean` from `EuiTour`'s `minWidth` type ([#5225](https://github.com/elastic/eui/pull/5225))
 
 **Bug fixes**
 
