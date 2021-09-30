@@ -20,23 +20,18 @@ const EuiIconFaceNeutral = ({
   ...props
 }: React.SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={16}
     viewBox="0 0 16 16"
+    xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <g fill="#13252D" fillRule="evenodd">
-      <circle cx={5} cy={5} r={1} />
-      <circle cx={10} cy={5} r={1} />
-      <path
-        fillRule="nonzero"
-        d="M7.5 14a6.5 6.5 0 100-13 6.5 6.5 0 000 13zm0 1a7.5 7.5 0 110-15 7.5 7.5 0 010 15z"
-      />
-      <path fillRule="nonzero" d="M3 10h9a.5.5 0 100-1H3a.5.5 0 000 1z" />
-    </g>
+    <path
+      d="M8 16A8 8 0 118 0a8 8 0 010 16zm0-1.067A6.933 6.933 0 108 1.067a6.933 6.933 0 000 13.866zM5.333 6.4a1.067 1.067 0 110-2.133 1.067 1.067 0 010 2.133zm5.334 0a1.067 1.067 0 110-2.133 1.067 1.067 0 010 2.133zM3.2 10.667a.533.533 0 010-1.067h9.6a.533.533 0 110 1.067H3.2z"
+      fillRule="evenodd"
+    />
   </svg>
 );
 

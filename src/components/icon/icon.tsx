@@ -135,7 +135,7 @@ const typeToPathMap = {
   eye: 'eye',
   eyeClosed: 'eye_closed',
   faceHappy: 'face_happy',
-  faceNeutral: 'faceNeutral',
+  faceNeutral: 'face_neutral',
   faceSad: 'face_sad',
   filebeatApp: 'app_filebeat',
   filter: 'filter',
