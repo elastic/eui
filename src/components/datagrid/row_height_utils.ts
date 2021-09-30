@@ -136,12 +136,19 @@ export class RowHeightUtils {
     return false;
   }
 
-  computeStylesForGridCell(gridStyles: EuiDataGridStyle) {
+  computeStylesForGridCell(
+    gridStyles: EuiDataGridStyle,
+    lineHeight: string | undefined
+  ) {
     this.fakeCell.className = `
       euiDataGridRowCell
       ${cellPaddingsToClassMap[gridStyles.cellPadding!]}
       ${fontSizesToClassMap[gridStyles.fontSize!]}
     `;
+
+    // @ts-ignore it is valid to set `lineHeight` to undefined
+    this.fakeCell.style.lineHeight = lineHeight;
+
     document.body.appendChild(this.fakeCell);
     const allStyles = getComputedStyle(this.fakeCell);
     this.styles = {
