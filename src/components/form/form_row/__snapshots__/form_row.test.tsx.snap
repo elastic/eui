@@ -24,12 +24,14 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
       <EuiFormLabel
         className="euiFormRow__label"
         htmlFor="generated-id"
+        id="generated-id_label"
         isFocused={false}
         type="label"
       >
         <label
           className="euiFormLabel euiFormRow__label"
           htmlFor="generated-id"
+          id="generated-id_label"
         >
           <span>
             Label
@@ -74,12 +76,14 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
       <EuiFormLabel
         className="euiFormRow__label"
         htmlFor="generated-id"
+        id="generated-id_label"
         isFocused={false}
         type="label"
       >
         <label
           className="euiFormLabel euiFormRow__label"
           htmlFor="generated-id"
+          id="generated-id_label"
         >
           <span>
             Label
@@ -124,12 +128,14 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
       <EuiFormLabel
         className="euiFormRow__label"
         htmlFor="generated-id"
+        id="generated-id_label"
         isFocused={true}
         type="label"
       >
         <label
           className="euiFormLabel euiFormRow__label euiFormLabel-isFocused"
           htmlFor="generated-id"
+          id="generated-id_label"
         >
           <span>
             Label
@@ -174,12 +180,14 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
       <EuiFormLabel
         className="euiFormRow__label"
         htmlFor="generated-id"
+        id="generated-id_label"
         isFocused={true}
         type="label"
       >
         <label
           className="euiFormLabel euiFormRow__label euiFormLabel-isFocused"
           htmlFor="generated-id"
+          id="generated-id_label"
         >
           <span>
             Label
@@ -521,6 +529,7 @@ exports[`EuiFormRow props isInvalid is rendered 1`] = `
       aria-invalid="true"
       class="euiFormLabel euiFormRow__label euiFormLabel-isInvalid"
       for="generated-id"
+      id="generated-id_label"
     >
       label
     </label>
@@ -546,6 +555,7 @@ exports[`EuiFormRow props label append is rendered 1`] = `
     <EuiFormLabel
       className="euiFormRow__label"
       htmlFor="generated-id"
+      id="generated-id_label"
       isFocused={false}
       type="label"
     >
@@ -577,6 +587,7 @@ exports[`EuiFormRow props label is rendered 1`] = `
     <EuiFormLabel
       className="euiFormRow__label"
       htmlFor="generated-id"
+      id="generated-id_label"
       isFocused={false}
       type="label"
     >
@@ -605,6 +616,7 @@ exports[`EuiFormRow props label renders as a legend and subsquently a fieldset w
   >
     <EuiFormLabel
       className="euiFormRow__label"
+      id="generated-id_label"
       type="legend"
     >
       label

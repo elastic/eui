@@ -155,7 +155,6 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
       panelPaddingSize="none"
       fullWidth
       closePopover={closePopover}
-      title="gkgkgk"
     >
       {suggestions}
     </EuiInputPopover>

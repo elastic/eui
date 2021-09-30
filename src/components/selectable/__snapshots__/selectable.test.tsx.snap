@@ -77,8 +77,8 @@ Object {
 
 exports[`EuiSelectable should not reset the activeOptionIndex nor isFocused when EuiSelectable is blurred in favour of its popover 2`] = `
 Object {
-  "activeOptionIndex": 0,
-  "isFocused": true,
+  "activeOptionIndex": undefined,
+  "isFocused": false,
   "searchValue": "",
   "visibleOptions": Array [
     Object {

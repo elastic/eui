@@ -1,416 +1,716 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiSuggest is rendered 1`] = `
-<div>
+Array [
   <div
-    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+    aria-expanded="false"
+    role="combobox"
   >
     <div
-      class="euiPopover__anchor"
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
     >
-      <div>
-        <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
-        >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
-            <input
-              aria-label="aria-label"
-              class="euiFieldText euiFieldText--fullWidth"
-              data-test-subj="test subject string"
-              type="text"
-              value=""
-            />
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-autocomplete="list"
+                aria-describedby="generated-id_info generated-id_instructions"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--fullWidth"
+                data-test-subj="test subject string"
+                id="generated-id"
+                role="textbox"
+                type="text"
+                value=""
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id_info"
+    >
+      State: list collapsed.
+    </p>
+    <p
+      id="generated-id_instructions"
+    >
+      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
+    </p>
+  </div>,
+]
 `;
 
 exports[`EuiSuggest options common 1`] = `
-<div>
+Array [
   <div
-    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+    aria-expanded="false"
+    role="combobox"
   >
     <div
-      class="euiPopover__anchor"
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
     >
-      <div>
-        <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
-        >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
-            <input
-              aria-label="aria-label"
-              class="euiFieldText euiFieldText--fullWidth"
-              data-test-subj="test subject string"
-              type="text"
-              value=""
-            />
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-autocomplete="list"
+                aria-describedby="generated-id_info generated-id_instructions"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--fullWidth"
+                data-test-subj="test subject string"
+                id="generated-id"
+                role="textbox"
+                type="text"
+                value=""
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id_info"
+    >
+      State: list collapsed.
+    </p>
+    <p
+      id="generated-id_instructions"
+    >
+      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
+    </p>
+  </div>,
+]
 `;
 
 exports[`EuiSuggest options standard 1`] = `
-<div>
+Array [
   <div
-    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+    aria-expanded="false"
+    role="combobox"
   >
     <div
-      class="euiPopover__anchor"
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
     >
-      <div>
-        <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
-        >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
-            <input
-              aria-label="aria-label"
-              class="euiFieldText euiFieldText--fullWidth"
-              data-test-subj="test subject string"
-              type="text"
-              value=""
-            />
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-autocomplete="list"
+                aria-describedby="generated-id_info generated-id_instructions"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--fullWidth"
+                data-test-subj="test subject string"
+                id="generated-id"
+                role="textbox"
+                type="text"
+                value=""
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id_info"
+    >
+      State: list collapsed.
+    </p>
+    <p
+      id="generated-id_instructions"
+    >
+      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
+    </p>
+  </div>,
+]
 `;
 
 exports[`EuiSuggest props append 1`] = `
-<div>
+Array [
   <div
-    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+    aria-expanded="false"
+    role="combobox"
   >
     <div
-      class="euiPopover__anchor"
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
     >
-      <div>
-        <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
-        >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
           >
-            <input
-              aria-label="aria-label"
-              class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-              data-test-subj="test subject string"
-              type="text"
-              value=""
-            />
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-autocomplete="list"
+                aria-describedby="generated-id_info generated-id_instructions"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+                data-test-subj="test subject string"
+                id="generated-id"
+                role="textbox"
+                type="text"
+                value=""
+              />
+            </div>
+            <span
+              class="euiFormControlLayout__append"
+            >
+              Appended
+            </span>
           </div>
-          <span
-            class="euiFormControlLayout__append"
-          >
-            Appended
-          </span>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id_info"
+    >
+      State: list collapsed.
+    </p>
+    <p
+      id="generated-id_instructions"
+    >
+      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
+    </p>
+  </div>,
+]
 `;
 
 exports[`EuiSuggest props status status: loading is rendered 1`] = `
-<div>
+Array [
   <div
-    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+    aria-expanded="false"
+    role="combobox"
   >
     <div
-      class="euiPopover__anchor"
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
     >
-      <div>
-        <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
-        >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
-            <input
-              aria-label="aria-label"
-              class="euiFieldText euiFieldText--fullWidth euiFieldText-isLoading"
-              data-test-subj="test subject string"
-              type="text"
-              value=""
-            />
             <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+              class="euiFormControlLayout__childrenWrapper"
             >
-              <span
-                class="euiLoadingSpinner euiLoadingSpinner--medium"
+              <input
+                aria-activedescendant=""
+                aria-autocomplete="list"
+                aria-describedby="generated-id_info generated-id_instructions"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--fullWidth euiFieldText-isLoading"
+                data-test-subj="test subject string"
+                id="generated-id"
+                role="textbox"
+                type="text"
+                value=""
               />
+              <div
+                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+              >
+                <span
+                  class="euiLoadingSpinner euiLoadingSpinner--medium"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id_info"
+    >
+      State: list collapsed.
+    </p>
+    <p
+      id="generated-id_instructions"
+    >
+      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
+    </p>
+  </div>,
+]
 `;
 
 exports[`EuiSuggest props status status: saved is rendered 1`] = `
-<div>
+Array [
   <div
-    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+    aria-expanded="false"
+    role="combobox"
   >
     <div
-      class="euiPopover__anchor"
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
     >
-      <div>
-        <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
-        >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
           >
-            <input
-              aria-label="aria-label"
-              class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-              data-test-subj="test subject string"
-              type="text"
-              value=""
-            />
-          </div>
-          <span
-            class="euiToolTipAnchor"
-          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-autocomplete="list"
+                aria-describedby="generated-id_info generated-id_instructions"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+                data-test-subj="test subject string"
+                id="generated-id"
+                role="textbox"
+                type="text"
+                value=""
+              />
+            </div>
             <span
-              class="euiSuggestInput__statusIcon"
-              color="success"
-              data-euiicon-type="checkInCircleFilled"
-            />
-          </span>
+              class="euiToolTipAnchor"
+            >
+              <span
+                class="euiSuggestInput__statusIcon"
+                color="success"
+                data-euiicon-type="checkInCircleFilled"
+              />
+            </span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id_info"
+    >
+      State: list collapsed.
+    </p>
+    <p
+      id="generated-id_instructions"
+    >
+      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
+    </p>
+  </div>,
+]
 `;
 
 exports[`EuiSuggest props status status: unchanged is rendered 1`] = `
-<div>
+Array [
   <div
-    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+    aria-expanded="false"
+    role="combobox"
   >
     <div
-      class="euiPopover__anchor"
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
     >
-      <div>
-        <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
-        >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
-            <input
-              aria-label="aria-label"
-              class="euiFieldText euiFieldText--fullWidth"
-              data-test-subj="test subject string"
-              type="text"
-              value=""
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiSuggest props status status: unsaved is rendered 1`] = `
-<div>
-  <div
-    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
-  >
-    <div
-      class="euiPopover__anchor"
-    >
-      <div>
-        <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
-        >
-          <div
-            class="euiFormControlLayout__childrenWrapper"
-          >
-            <input
-              aria-label="aria-label"
-              class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-              data-test-subj="test subject string"
-              type="text"
-              value=""
-            />
-          </div>
-          <span
-            class="euiToolTipAnchor"
-          >
-            <span
-              class="euiSuggestInput__statusIcon"
-              color="accent"
-              data-euiicon-type="dot"
-            />
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EuiSuggest props tooltipContent tooltipContent for status: loading is rendered 1`] = `
-<div>
-  <div
-    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
-  >
-    <div
-      class="euiPopover__anchor"
-    >
-      <div>
-        <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
-        >
-          <div
-            class="euiFormControlLayout__childrenWrapper"
-          >
-            <input
-              aria-label="aria-label"
-              class="euiFieldText euiFieldText--fullWidth euiFieldText-isLoading"
-              data-test-subj="test subject string"
-              type="text"
-              value=""
-            />
             <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+              class="euiFormControlLayout__childrenWrapper"
             >
-              <span
-                class="euiLoadingSpinner euiLoadingSpinner--medium"
+              <input
+                aria-activedescendant=""
+                aria-autocomplete="list"
+                aria-describedby="generated-id_info generated-id_instructions"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--fullWidth"
+                data-test-subj="test subject string"
+                id="generated-id"
+                role="textbox"
+                type="text"
+                value=""
               />
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id_info"
+    >
+      State: list collapsed.
+    </p>
+    <p
+      id="generated-id_instructions"
+    >
+      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
+    </p>
+  </div>,
+]
+`;
+
+exports[`EuiSuggest props status status: unsaved is rendered 1`] = `
+Array [
+  <div
+    aria-expanded="false"
+    role="combobox"
+  >
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-autocomplete="list"
+                aria-describedby="generated-id_info generated-id_instructions"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+                data-test-subj="test subject string"
+                id="generated-id"
+                role="textbox"
+                type="text"
+                value=""
+              />
+            </div>
+            <span
+              class="euiToolTipAnchor"
+            >
+              <span
+                class="euiSuggestInput__statusIcon"
+                color="accent"
+                data-euiicon-type="dot"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id_info"
+    >
+      State: list collapsed.
+    </p>
+    <p
+      id="generated-id_instructions"
+    >
+      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
+    </p>
+  </div>,
+]
+`;
+
+exports[`EuiSuggest props tooltipContent tooltipContent for status: loading is rendered 1`] = `
+Array [
+  <div
+    aria-expanded="false"
+    role="combobox"
+  >
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+    >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-autocomplete="list"
+                aria-describedby="generated-id_info generated-id_instructions"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--fullWidth euiFieldText-isLoading"
+                data-test-subj="test subject string"
+                id="generated-id"
+                role="textbox"
+                type="text"
+                value=""
+              />
+              <div
+                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+              >
+                <span
+                  class="euiLoadingSpinner euiLoadingSpinner--medium"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id_info"
+    >
+      State: list collapsed.
+    </p>
+    <p
+      id="generated-id_instructions"
+    >
+      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
+    </p>
+  </div>,
+]
 `;
 
 exports[`EuiSuggest props tooltipContent tooltipContent for status: saved is rendered 1`] = `
-<div>
+Array [
   <div
-    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+    aria-expanded="false"
+    role="combobox"
   >
     <div
-      class="euiPopover__anchor"
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
     >
-      <div>
-        <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
-        >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
           >
-            <input
-              aria-label="aria-label"
-              class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-              data-test-subj="test subject string"
-              type="text"
-              value=""
-            />
-          </div>
-          <span
-            class="euiToolTipAnchor"
-          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-autocomplete="list"
+                aria-describedby="generated-id_info generated-id_instructions"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+                data-test-subj="test subject string"
+                id="generated-id"
+                role="textbox"
+                type="text"
+                value=""
+              />
+            </div>
             <span
-              class="euiSuggestInput__statusIcon"
-              color="success"
-              data-euiicon-type="checkInCircleFilled"
-            />
-          </span>
+              class="euiToolTipAnchor"
+            >
+              <span
+                class="euiSuggestInput__statusIcon"
+                color="success"
+                data-euiicon-type="checkInCircleFilled"
+              />
+            </span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id_info"
+    >
+      State: list collapsed.
+    </p>
+    <p
+      id="generated-id_instructions"
+    >
+      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
+    </p>
+  </div>,
+]
 `;
 
 exports[`EuiSuggest props tooltipContent tooltipContent for status: unchanged is rendered 1`] = `
-<div>
+Array [
   <div
-    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+    aria-expanded="false"
+    role="combobox"
   >
     <div
-      class="euiPopover__anchor"
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
     >
-      <div>
-        <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
-        >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
-            <input
-              aria-label="aria-label"
-              class="euiFieldText euiFieldText--fullWidth"
-              data-test-subj="test subject string"
-              type="text"
-              value=""
-            />
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-autocomplete="list"
+                aria-describedby="generated-id_info generated-id_instructions"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--fullWidth"
+                data-test-subj="test subject string"
+                id="generated-id"
+                role="textbox"
+                type="text"
+                value=""
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id_info"
+    >
+      State: list collapsed.
+    </p>
+    <p
+      id="generated-id_instructions"
+    >
+      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
+    </p>
+  </div>,
+]
 `;
 
 exports[`EuiSuggest props tooltipContent tooltipContent for status: unsaved is rendered 1`] = `
-<div>
+Array [
   <div
-    class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+    aria-expanded="false"
+    role="combobox"
   >
     <div
-      class="euiPopover__anchor"
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
     >
-      <div>
-        <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
-        >
+      <div
+        class="euiPopover__anchor"
+      >
+        <div>
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
           >
-            <input
-              aria-label="aria-label"
-              class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-              data-test-subj="test subject string"
-              type="text"
-              value=""
-            />
-          </div>
-          <span
-            class="euiToolTipAnchor"
-          >
+            <div
+              class="euiFormControlLayout__childrenWrapper"
+            >
+              <input
+                aria-activedescendant=""
+                aria-autocomplete="list"
+                aria-describedby="generated-id_info generated-id_instructions"
+                aria-label="aria-label"
+                autocomplete="off"
+                class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+                data-test-subj="test subject string"
+                id="generated-id"
+                role="textbox"
+                type="text"
+                value=""
+              />
+            </div>
             <span
-              class="euiSuggestInput__statusIcon"
-              color="accent"
-              data-euiicon-type="dot"
-            />
-          </span>
+              class="euiToolTipAnchor"
+            >
+              <span
+                class="euiSuggestInput__statusIcon"
+                color="accent"
+                data-euiicon-type="dot"
+              />
+            </span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id_info"
+    >
+      State: list collapsed.
+    </p>
+    <p
+      id="generated-id_instructions"
+    >
+      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
+    </p>
+  </div>,
+]
 `;
