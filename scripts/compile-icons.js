@@ -8,8 +8,8 @@ const license = require('../.eslintrc.js').rules[
 
 const rootDir = path.resolve(__dirname, '..');
 const srcDir = path.resolve(rootDir, 'src');
-const iconsDir = path.resolve(srcDir, 'components', 'icon', 'assets');
-const outputDir = path.resolve(srcDir, 'components', 'icon', 'generated');
+const iconsDir = path.resolve(srcDir, 'components', 'icon', 'svgs');
+const outputDir = path.resolve(srcDir, 'components', 'icon', 'assets');
 
 function pascalCase(x) {
   return x.replace(/^(.)|[^a-zA-Z]([a-zA-Z])/g, (match, char1, char2) =>

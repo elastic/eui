@@ -65,7 +65,7 @@ function compileLib() {
 
   // Also copy over SVGs. Babel has a --copy-files option but that brings over
   // all kinds of things we don't want into the lib folder.
-  shell.mkdir('-p', 'lib/components/icon/assets', 'lib/components/icon/assets/tokens');
+  shell.mkdir('-p', 'lib/components/icon/svgs', 'lib/components/icon/svgs/tokens');
 
   glob('./src/components/**/*.svg', undefined, (error, files) => {
     files.forEach(file => {
