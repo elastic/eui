@@ -936,8 +936,7 @@ export class EuiComboBox<T> extends Component<
       matchingOptions,
     } = this.state;
 
-    // We don't require an ID, which causes the label / input relationship to be broken
-    // when users add a prepended or appended label.
+    // Make sure we have a valid ID if users don't pass one as a prop
     const inputId =
       id === undefined || id === null ? this.rootId('_eui-combobox-id') : id;
 
