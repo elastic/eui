@@ -1,6 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `38.2.0`.
+No public interface changes since `38.2.1`.
+
+## [`38.2.1`](https://github.com/elastic/eui/tree/v38.2.1)
+
+**Bug fixes**
+
+- Fixed missing ID bug for `EuiCombobox` when the `prepend` or `append` prop is passed.
+  - The ID is needed to associate the label with the input box. ([#5183](https://github.com/elastic/eui/issues/5183))
+  - ID is generated automatically if users do not pass their own unique ID
 
 ## [`38.2.0`](https://github.com/elastic/eui/tree/v38.2.0)
 
