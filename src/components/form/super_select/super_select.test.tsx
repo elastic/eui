@@ -173,10 +173,13 @@ describe('EuiSuperSelect', () => {
             panelClassName: 'goes-on-popover-panel',
             repositionOnScroll: true,
           }}
+          data-test-subj="superSelect"
         />
       );
 
-      expect(component).toMatchSnapshot();
+      component.find('button[data-test-subj="superSelect"]').simulate('click');
+
+      expect(takeMountedSnapshot(component)).toMatchSnapshot();
     });
   });
 });
