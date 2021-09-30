@@ -38,6 +38,7 @@ exports[`EuiDataGridCell renders 1`] = `
     role="gridcell"
     style={
       Object {
+        "lineHeight": undefined,
         "width": undefined,
       }
     }

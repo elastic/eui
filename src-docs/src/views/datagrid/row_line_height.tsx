@@ -15,12 +15,6 @@ import {
   EuiDataGrid,
   EuiDataGridProps,
 } from '../../../../src/components/datagrid';
-import { EuiLink } from '../../../../src/components/link';
-import { EuiAvatar } from '../../../../src/components/avatar';
-import { EuiBadge } from '../../../../src/components/badge';
-import { EuiMarkdownFormat } from '../../../../src/components/markdown_editor';
-import { EuiText } from '../../../../src/components/text';
-import { EuiSpacer } from '../../../../src/components/spacer';
 
 interface DataShape {
   html_url: string;
@@ -87,60 +81,20 @@ const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
   } else if (columnId === 'issue') {
     content = (
       <>
-        <EuiText size="relative">
-          <h3>
-            <EuiLink color="text" href={item.html_url} target="blank" external>
-              {item.title}
-            </EuiLink>
-            {'  '}
-            {item.labels.map(({ name, color }) => (
-              <EuiBadge key={name} color={`#${color}`}>
-                {name}
-              </EuiBadge>
-            ))}
-          </h3>
-        </EuiText>
-
-        <EuiSpacer size="s" />
-
-        <EuiText color="subdued" size="relative">
-          <span>
-            Opened by{' '}
-            <EuiAvatar
-              name={item.user.login}
-              imageUrl={item.user.avatar_url}
-              size="s"
-            />{' '}
-            {item.user.login} on {formatDate(item.created_at, 'dobLong')}
-          </span>
-        </EuiText>
-
-        <EuiSpacer size="s" />
-
-        {item.comments === 1 && (
-          <EuiBadge iconType="editorComment" iconSide="left" color="hollow">
-            {`${item.comments} comment`}
-          </EuiBadge>
-        )}
-
-        {item.comments >= 2 && (
-          <EuiBadge iconType="editorComment" iconSide="left" color="hollow">
-            {`${item.comments} comments`}
-          </EuiBadge>
-        )}
+        <strong>{item.title}</strong>
+        <br />
+        Opened by {item.user.login} on {formatDate(item.created_at, 'dobLong')}
+        <br />
+        {item.comments} comment{item.comments !== 1 ? 's' : ''}
       </>
     );
   } else if (columnId === 'body') {
     if (isDetails) {
       // expanded in a popover
-      content = <EuiMarkdownFormat>{item.body ?? ''}</EuiMarkdownFormat>;
+      content = item.body;
     } else {
       // a full issue description is a *lot* to shove into a cell
-      content = (
-        <EuiMarkdownFormat textSize="relative">
-          {(item.body ?? '').slice(0, 300)}
-        </EuiMarkdownFormat>
-      );
+      content = (item.body ?? '').slice(0, 300);
     }
   }
 
@@ -184,13 +138,10 @@ export default () => {
   // matches the snippet example
   const rowHeightsOptions = useMemo(
     () => ({
-      defaultHeight: 'auto' as const,
-      rowHeights: {
-        1: {
-          lineCount: 5,
-        },
-        4: 140,
+      defaultHeight: {
+        lineCount: 3,
       },
+      lineHeight: '2em',
     }),
     []
   );
@@ -217,7 +168,7 @@ export default () => {
         virtualizationOptions={{
           // rough average of the cell heights in the example
           // accurately setting this smooths out the scrolling experience
-          estimatedRowHeight: 210,
+          estimatedRowHeight: 96,
         }}
         pagination={{
           ...pagination,

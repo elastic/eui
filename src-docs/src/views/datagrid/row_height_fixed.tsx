@@ -136,7 +136,7 @@ const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
       content = <EuiMarkdownFormat>{item.body ?? ''}</EuiMarkdownFormat>;
     } else {
       // a full issue description is a *lot* to shove into a cell
-      content = content = (
+      content = (
         <EuiMarkdownFormat textSize="relative">
           {(item.body ?? '').slice(0, 300)}
         </EuiMarkdownFormat>

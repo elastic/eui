@@ -406,7 +406,7 @@ export class EuiDataGridCell extends Component<
       style,
       ...rest
     } = this.props;
-    const { rowIndex } = rest;
+    const { rowIndex, rowHeightsOptions } = rest;
 
     const showCellButtons =
       this.state.isFocused ||
@@ -432,7 +432,12 @@ export class EuiDataGridCell extends Component<
       className: classNames(cellClasses, this.state.cellProps.className),
     };
 
-    cellProps.style = { ...style, width, ...cellProps.style };
+    cellProps.style = {
+      ...style, // from react-window
+      width, // column width, can be undefined
+      lineHeight: rowHeightsOptions?.lineHeight ?? undefined, // lineHeight configuration
+      ...cellProps.style, // apply anything from setCellProps({style})
+    };
 
     const handleCellKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       if (isExpandable) {
