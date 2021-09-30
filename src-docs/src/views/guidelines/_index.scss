@@ -102,6 +102,21 @@
   display: inline-block;
 }
 
+.guideSass__euiSize {
+  padding: $euiSize;
+  background-color: $euiColorHighlight;
+}
+
+.guideSass__euiSizeXS2 {
+  padding: $euiSizeXS / 2;
+  background-color: $euiColorHighlight;
+
+  &::after {
+    content: 'padding: #{$euiSizeXS / 2}';
+    font-weight: $euiFontWeightBold;
+  }
+}
+
 .guideSass__sizeItem {
   width: $euiSizeXXL;
   text-align: right;
