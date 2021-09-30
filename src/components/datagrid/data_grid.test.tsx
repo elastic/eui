@@ -15,40 +15,13 @@ import {
   takeMountedSnapshot,
 } from '../../test';
 import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer';
-import { EuiDataGridRowHeightOption } from './data_grid_types';
 import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';
 
-jest.mock('./row_height_utils', () => {
-  return {
-    RowHeightUtils: jest.fn().mockImplementation(() => {
-      return {
-        computeStylesForGridCell: () => {},
-        getCalculatedHeight: (
-          heightOption: EuiDataGridRowHeightOption,
-          defaultHeight: number
-        ) => {
-          if (typeof heightOption === 'object') {
-            if (heightOption.lineCount) {
-              return heightOption.lineCount;
-            }
-
-            if (heightOption.height) {
-              return heightOption.height;
-            }
-          }
-
-          if (heightOption) {
-            return heightOption;
-          }
-
-          return defaultHeight;
-        },
-      };
-    }),
-    getStylesForCell: () => ({}),
-  };
-});
+import { mockRowHeightUtils } from './__mocks__/row_height_utils';
+jest.mock('./row_height_utils', () => ({
+  RowHeightUtils: jest.fn(() => mockRowHeightUtils),
+}));
 
 function getFocusableCell(component: ReactWrapper) {
   return findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');

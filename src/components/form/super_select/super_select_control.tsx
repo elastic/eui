@@ -17,7 +17,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { EuiScreenReaderOnly } from '../../accessibility';
-import { htmlIdGenerator } from '../../../services/accessibility';
+import { useGeneratedHtmlId } from '../../../services/accessibility';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
@@ -108,7 +108,7 @@ export const EuiSuperSelectControl: <T extends string>(
     side: 'right',
   };
 
-  const screenReaderId = htmlIdGenerator()();
+  const screenReaderId = useGeneratedHtmlId();
 
   return (
     <Fragment>
@@ -145,7 +145,7 @@ export const EuiSuperSelectControl: <T extends string>(
           type="button"
           className={classes}
           aria-haspopup="true"
-          aria-labelledby={`${id} ${screenReaderId}`}
+          aria-labelledby={screenReaderId}
           {...rest}
         >
           {selectedValue}

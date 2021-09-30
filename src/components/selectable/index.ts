@@ -6,7 +6,11 @@
  * Side Public License, v 1.
  */
 
-export { EuiSelectable, EuiSelectableProps } from './selectable';
+export {
+  EuiSelectable,
+  EuiSelectableProps,
+  EuiSelectableSearchableSearchProps,
+} from './selectable';
 export {
   EuiSelectableList,
   EuiSelectableListProps,

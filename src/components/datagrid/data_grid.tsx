@@ -490,6 +490,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     height,
     width,
     rowHeightsOptions,
+    virtualizationOptions,
     ...rest
   } = props;
 
@@ -662,6 +663,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     orderedVisibleColumns
   );
 
+  const rowHeightUtils = useMemo(() => new RowHeightUtils(), []);
+
+  useEffect(() => {
+    rowHeightUtils.clearHeightsCache();
+  }, [orderedVisibleColumns, rowHeightsOptions, rowHeightUtils]);
+
   const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -685,11 +692,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     }
   }, [focusedCell, contentRef]);
 
-  const [rowHeightUtils] = useState(new RowHeightUtils());
-
   useEffect(() => {
-    rowHeightUtils.computeStylesForGridCell(gridStyles);
-  }, [gridStyles, rowHeightUtils]);
+    rowHeightUtils.computeStylesForGridCell({
+      cellPadding: gridStyles.cellPadding,
+      fontSize: gridStyles.fontSize,
+    });
+  }, [gridStyles.cellPadding, gridStyles.fontSize, rowHeightUtils]);
 
   const classes = classNames(
     'euiDataGrid',
@@ -873,6 +881,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                         interactiveCellId={interactiveCellId}
                         rowHeightsOptions={rowHeightsOptions}
                         rowHeightUtils={rowHeightUtils}
+                        virtualizationOptions={virtualizationOptions || {}}
                         gridStyles={gridStyles}
                       />
                     </div>

@@ -2,14 +2,10 @@ import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
-import {
-  EuiText,
-  EuiSpacer,
-  EuiCallOut,
-  EuiCode,
-  EuiLink,
-} from '../../../../src/components';
+import { EuiText, EuiCode, EuiLink } from '../../../../src/components';
 import { EuiThemeProvider } from '../../../../src/services';
+
+import Provider from './provider';
 
 import Consuming from './consuming';
 const consumingSource = require('!!raw-loader!./consuming');
@@ -38,13 +34,11 @@ export const ThemeExample = {
       <EuiText>
         <p>
           EUI is in the progress of switching it&apos;s core styles processor
-          from Sass to <EuiLink to="https://emotion.sh">Emotion</EuiLink>. It
-          requires that all consumer applications wrap their core application
+          from Sass to <EuiLink href="https://emotion.sh">Emotion</EuiLink>. To
+          take full advantage of this context layer, wrap your core application
           with <strong>EuiThemeProvider</strong>.
         </p>
       </EuiText>
-      <EuiSpacer size="m" />
-      <EuiCallOut title="The following examples assume that you have wrapped your entire application with this provider." />
     </>
   ),
   sections: [
@@ -91,6 +85,7 @@ export const ThemeExample = {
           </p>
         </>
       ),
+      demo: <Provider />,
       props: { EuiThemeProvider },
     },
     {

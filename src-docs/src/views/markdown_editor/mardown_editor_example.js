@@ -1,20 +1,14 @@
 import React, { Fragment } from 'react';
-
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
-
 import {
   EuiMarkdownEditor,
   EuiText,
   EuiCode,
 } from '../../../../src/components';
-
 import { Link } from 'react-router-dom';
 
 import MarkdownEditor from './markdown_editor';
 const markdownEditorSource = require('!!raw-loader!./markdown_editor');
-const markdownEditorHtml = renderToHtml(MarkdownEditor);
 const markdownEditorSnippet = `<EuiMarkdownEditor
   value={value}
   onChange={setValue}
@@ -22,7 +16,6 @@ const markdownEditorSnippet = `<EuiMarkdownEditor
 
 import MarkdownEditorErrors from './markdown_editor_errors';
 const markdownEditorErrorsSource = require('!!raw-loader!./markdown_editor_errors');
-const markdownEditorErrorsHtml = renderToHtml(MarkdownEditorErrors);
 const markdownEditorErrorsSnippet = `<EuiMarkdownEditor
   value={value}
   onChange={setValue}
@@ -32,7 +25,6 @@ const markdownEditorErrorsSnippet = `<EuiMarkdownEditor
 
 import MarkdownEditorHeight from './markdown_editor_height';
 const markdownEditorHeightSource = require('!!raw-loader!./markdown_editor_height');
-const markdownEditorHeightHtml = renderToHtml(MarkdownEditorHeight);
 const markdownEditorHeightSnippet = [
   `// Custom height with auto-expanding preview
 <EuiMarkdownEditor
@@ -62,6 +54,23 @@ const markdownEditorHeightSnippet = [
 />`,
 ];
 
+import MarkdownEditorNoPlugins from './markdown_editor_no_plugins';
+const markdownEditorNoPluginsSource = require('!!raw-loader!./markdown_editor_no_plugins');
+const markdownEditorNoPluginsSnippet = `const {
+  parsingPlugins,
+  processingPlugins,
+  uiPlugins,
+} = getDefaultEuiMarkdownPlugins({ exclude: ['tooltip'] });
+
+  <EuiMarkdownEditor
+    value={value}
+    onChange={setValue}
+    parsingPluginList={parsingPlugins}
+    processingPluginList={processingPlugins}
+    uiPlugins={uiPlugins}
+  />
+`;
+
 export const MarkdownEditorExample = {
   title: 'Markdown editor',
   beta: true,
@@ -90,10 +99,6 @@ export const MarkdownEditorExample = {
           type: GuideSectionTypes.JS,
           code: markdownEditorSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: markdownEditorHtml,
-        },
       ],
       title: 'Base editor',
       text: (
@@ -112,11 +117,36 @@ export const MarkdownEditorExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: markdownEditorErrorsSource,
+          code: markdownEditorNoPluginsSource,
         },
+      ],
+      title: 'Unregistering plugins',
+      text: (
+        <p>
+          The <strong>EuiMarkdownEditor</strong> comes with a default plugin for{' '}
+          <EuiCode>tooltip</EuiCode> support. However, this may be unfamiliar or
+          unnecessary in some contexts, and you can unregister this plugin by
+          excluding it from the
+          <EuiCode>parsingPlugins</EuiCode>,{' '}
+          <EuiCode>processingPlugins</EuiCode> and <EuiCode>uiPlugins</EuiCode>{' '}
+          options with a single <EuiCode>exclude</EuiCode> parameter passed to{' '}
+          <EuiCode>getDefaultEuiMarkdownPlugins()</EuiCode>. This will ensure
+          the syntax won&apos;t be identified or rendered and no additional UI,
+          like the button and help syntax, will be displayed.
+        </p>
+      ),
+      props: {
+        EuiMarkdownEditor,
+      },
+      snippet: markdownEditorNoPluginsSnippet,
+      demo: <MarkdownEditorNoPlugins />,
+    },
+
+    {
+      source: [
         {
-          type: GuideSectionTypes.HTML,
-          code: markdownEditorErrorsHtml,
+          type: GuideSectionTypes.JS,
+          code: markdownEditorErrorsSource,
         },
       ],
       title: 'Error handling and feedback',
@@ -141,10 +171,6 @@ export const MarkdownEditorExample = {
         {
           type: GuideSectionTypes.JS,
           code: markdownEditorHeightSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: markdownEditorHeightHtml,
         },
       ],
       title: 'Controlling the height',
