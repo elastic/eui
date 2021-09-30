@@ -28,6 +28,7 @@ export default () => {
                 title={color}
                 css={css`
                   padding: ${euiTheme.size.base};
+                  background: ${euiTheme.colors.body};
                   border-radius: ${euiTheme.border.radius.small};
                   border: ${euiTheme.border.thin};
                   color: ${color};
