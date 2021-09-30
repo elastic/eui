@@ -40,7 +40,6 @@ export const LanguageSelector = ({
   };
 
   return (
-    // @ts-ignore Fixes for tour in another PR
     <EuiTourStep
       content={
         <EuiText style={{ maxWidth: 320 }}>

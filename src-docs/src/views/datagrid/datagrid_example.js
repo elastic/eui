@@ -9,6 +9,7 @@ import {
   EuiDescriptionList,
   EuiCodeBlock,
   EuiText,
+  EuiLink,
   EuiSpacer,
 } from '../../../../src/components';
 
@@ -106,6 +107,14 @@ const gridSnippet = `
       stripes: true,
       rowHover: 'highlight',
       header: 'shade',
+    }}
+    // Optional. Allows configuring the heights of grid rows
+    rowHeightsOptions={{
+      defaultHeight: 34,
+      rowHeights: {
+        0: auto
+      },
+      lineHeight: '1em',
     }}
     // Optional. Provide additional schemas to use in the grid.
     // This schema 'franchise' essentially acts like a boolean, looking for Star Wars or Star Trek in a column.
@@ -221,6 +230,20 @@ const gridConcepts = [
     title: 'rowCount',
     description:
       'The total number of rows in the dataset (used by e.g. pagination to know how many pages to list).',
+  },
+  {
+    title: 'rowHeightsOptions',
+    description: (
+      <span>
+        Allows configuring both default and specific heights of grid rows.
+        Accepts a partial <strong>EuiDataGridRowHeightsOptions</strong> object.
+        See{' '}
+        <EuiLink href="/#/tabular-content/data-grid-row-heights-options">
+          Data grid row heights options
+        </EuiLink>{' '}
+        for more details and examples.
+      </span>
+    ),
   },
   {
     title: 'gridStyle',

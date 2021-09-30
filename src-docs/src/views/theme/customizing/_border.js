@@ -12,7 +12,7 @@ import {
 
 import { useDebouncedUpdate } from '../hooks';
 
-import { ThemeValue } from '../_values';
+import { ThemeValue } from './_values';
 
 import {
   getPropsFromThemeKey,
@@ -72,7 +72,7 @@ export default ({ onThemeUpdate }) => {
           <ThemeValue
             key={prop}
             property="border"
-            // type={colorProps[prop]}
+            type={colorProps[prop]}
             name={prop}
             value={borderClone[prop]}
             onUpdate={(value) => updateBorder(prop, value)}
@@ -84,7 +84,7 @@ export default ({ onThemeUpdate }) => {
           <ThemeValue
             key={prop}
             property="border.width"
-            // type={widthProps[prop]}
+            type={widthProps[prop]}
             name={prop}
             value={widthClone.width[prop]}
             onUpdate={(value) => updateWidth(prop, value)}
@@ -138,11 +138,10 @@ export default ({ onThemeUpdate }) => {
         <ThemeValue
           key={prop}
           property="border"
-          // type={typeProps[prop]}
+          type={typeProps[prop]}
           name={prop}
           value={borderClone[prop]}
           groupProps={{ alignItems: 'center' }}
-          // onUpdate={(value) => updateBorder(prop, value)}
           stringProps={{ style: { width: 200 } }}
           buttonStyle={[
             style,
