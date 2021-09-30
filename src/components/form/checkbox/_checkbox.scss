@@ -1,8 +1,21 @@
+/**
+  * 1. Float above the visual radio and match its dimension, so that when users try to click it
+  *    they actually click this input.
+  */
+
 .euiCheckbox {
   position: relative;
 
+  // Set a top offset for the real input and faux input to align better with the text
+  $topOffset: (($euiSizeL - $euiCheckBoxSize) / 2) - 1px;
+
   .euiCheckbox__input {
-    @include euiScreenReaderOnly;
+    @include size($euiCheckBoxSize);
+    top: $topOffset;
+    cursor: pointer;
+    position: absolute; /* 1 */
+    opacity: 0; /* 1 */
+    z-index: 1; /* 1 */
 
     ~ .euiCheckbox__label {
       display: inline-block;
@@ -16,11 +29,10 @@
 
     + .euiCheckbox__square {
       @include euiCustomControl($type: 'square', $size: $euiCheckBoxSize);
-
       display: inline-block;
       position: absolute;
       left: 0;
-      top: (($euiSizeL - $euiCheckBoxSize) / 2) - 1px;
+      top: $topOffset;
     }
 
     &:checked {
@@ -61,37 +73,25 @@
       }
     }
 
-    &:focus,
-    &:active:not(:disabled) {
+    &:focus {
       + .euiCheckbox__square {
         @include euiCustomControlFocused;
       }
     }
   }
 
-  /**
-   * 1. Float above the visual radio and match its dimension, so that when users try to click it
-   *    they actually click this input.
-   */
-
   &.euiCheckbox--inList,
   &.euiCheckbox--noLabel {
     min-height: $euiCheckBoxSize;
     min-width: $euiCheckBoxSize;
 
+    .euiCheckbox__input,
     .euiCheckbox__square {
       top: 0;
     }
 
     .euiCheckbox__input {
-      @include size($euiCheckBoxSize); /* 1 */
-
-      position: absolute; /* 1 */
-      opacity: 0; /* 1 */
-      z-index: 1; /* 1 */
-      margin: 0; /* 1 */
-      left: 0; /* 1 */
-      cursor: pointer;
+      margin: 0;
     }
   }
 }

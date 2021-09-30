@@ -24,11 +24,38 @@ describe('EuiRangeLevels', () => {
             min: 0,
             max: 20,
             color: 'danger',
+            'data-test-subj': 'firstLevel',
+            className: 'customClass',
           },
           {
             min: 20,
             max: 100,
             color: 'success',
+          },
+        ]}
+        {...requiredProps}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('is rendered with named and custom color', () => {
+    const component = render(
+      <EuiRangeLevels
+        min={0}
+        max={100}
+        showTicks
+        levels={[
+          {
+            min: 0,
+            max: 20,
+            color: 'danger',
+          },
+          {
+            min: 20,
+            max: 100,
+            color: '#ff0000',
           },
         ]}
         {...requiredProps}

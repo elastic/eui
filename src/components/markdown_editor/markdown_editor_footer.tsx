@@ -31,10 +31,12 @@ import {
 import { EuiPopover, EuiPopoverTitle } from '../popover';
 import { EuiText } from '../text';
 import { EuiSpacer } from '../spacer';
+import { EuiToolTip } from '../tool_tip';
 // @ts-ignore a react svg
 import MarkdownLogo from './icons/markdown_logo';
 import { EuiHorizontalRule } from '../horizontal_rule';
-import { EuiToolTip } from '../tool_tip';
+
+import { EuiLink } from '../link';
 
 interface EuiMarkdownEditorFooterProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
@@ -57,7 +59,8 @@ export const EuiMarkdownEditorFooter = forwardRef<
     hasUnacceptedItems,
     dropHandlers,
   } = props;
-  const [isShowingHelp, setIsShowingHelp] = useState(false);
+  const [isShowingHelpModal, setIsShowingHelpModal] = useState(false);
+  const [isShowingHelpPopover, setIsShowingHelpPopover] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const onButtonClick = () =>
     setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
@@ -102,9 +105,15 @@ export const EuiMarkdownEditorFooter = forwardRef<
     ),
   };
 
+  const syntaxTitle = useEuiI18n(
+    'euiMarkdownEditorFooter.syntaxTitle',
+    'Syntax help'
+  );
+
   if (isUploadingFiles) {
     uploadButton = (
       <EuiButtonIcon
+        size="s"
         iconType={EuiLoadingSpinner}
         aria-label={ariaLabels.uploadingFiles}
       />
@@ -115,7 +124,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
         <EuiButtonEmpty
           className="euiMarkdownEditorFooter__uploadError"
           autoFocus
-          size="xs"
+          size="s"
           iconType="paperClip"
           color="danger"
           aria-label={`${ariaLabels.unsupportedFileType}. ${ariaLabels.supportedFileTypes}. ${ariaLabels.uploadingFiles}`}
@@ -128,6 +137,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
   } else if (dropHandlers.length > 0) {
     uploadButton = (
       <EuiButtonIcon
+        size="s"
         iconType="paperClip"
         color="text"
         aria-label={ariaLabels.openUploadModal}
@@ -173,59 +183,69 @@ export const EuiMarkdownEditorFooter = forwardRef<
     );
   }
 
-  return (
-    <div ref={ref} className="euiMarkdownEditorFooter">
-      <div className="euiMarkdownEditorFooter__actions">
-        {uploadButton}
-        {errorsButton}
-      </div>
+  const uiPluginsWithHelpText = uiPlugins.filter(({ helpText }) => !!helpText);
 
-      <EuiButtonIcon
-        className="euiMarkdownEditorFooter__help"
-        iconType={MarkdownLogo}
-        color="text"
-        aria-label={ariaLabels.showMarkdownHelp}
-        onClick={() => setIsShowingHelp(!isShowingHelp)}
+  const hasUiPluginsWithHelpText = uiPluginsWithHelpText.length > 0;
+
+  const mdSyntaxHref = 'https://guides.github.com/features/mastering-markdown/';
+
+  const mdSyntaxLink = (
+    <EuiLink href={mdSyntaxHref} target="_blank">
+      <EuiI18n
+        token="euiMarkdownEditorFooter.mdSyntaxLink"
+        default="GitHub flavored markdown"
       />
-      {isShowingHelp && (
-        <EuiModal onClose={() => setIsShowingHelp(false)}>
-          <EuiModalHeader>
-            <EuiTitle>
-              <h3>
+    </EuiLink>
+  );
+
+  let helpSyntaxButton;
+
+  if (hasUiPluginsWithHelpText) {
+    helpSyntaxButton = (
+      <>
+        <EuiToolTip content={syntaxTitle}>
+          <EuiButtonIcon
+            size="s"
+            className="euiMarkdownEditorFooter__helpButton"
+            iconType={MarkdownLogo}
+            color="text"
+            aria-label={ariaLabels.showMarkdownHelp}
+            onClick={() => setIsShowingHelpModal(!isShowingHelpModal)}
+          />
+        </EuiToolTip>
+
+        {isShowingHelpModal && (
+          <EuiModal onClose={() => setIsShowingHelpModal(false)}>
+            <EuiModalHeader>
+              <EuiTitle>
+                <h1>{syntaxTitle}</h1>
+              </EuiTitle>
+            </EuiModalHeader>
+            <EuiModalBody>
+              <EuiText>
                 <EuiI18n
-                  token="euiMarkdownEditorFooter.syntaxTitle"
-                  default="Syntax help"
-                />
-              </h3>
-            </EuiTitle>
-          </EuiModalHeader>
-          <EuiModalBody>
-            <EuiText>
-              <EuiI18n
-                tokens={[
-                  'euiMarkdownEditorFooter.descriptionPrefix',
-                  'euiMarkdownEditorFooter.descriptionSuffix',
-                ]}
-                defaults={[
-                  'This editor uses',
-                  'You can also utilize these additional syntax plugins to add rich content to your text.',
-                ]}
-              >
-                {([descriptionPrefix, descriptionSuffix]: ReactChild[]) => (
-                  <p>
-                    {descriptionPrefix}{' '}
-                    <a href="https://github.github.com/gfm/" target="_blank">
-                      Github flavored markdown
-                    </a>
-                    . {descriptionSuffix}
-                  </p>
-                )}
-              </EuiI18n>
-            </EuiText>
-            <EuiHorizontalRule />
-            {uiPlugins
-              .filter(({ helpText }) => !!helpText)
-              .map(({ name, helpText }) => (
+                  tokens={[
+                    'euiMarkdownEditorFooter.syntaxModalDescriptionPrefix',
+                    'euiMarkdownEditorFooter.syntaxModalDescriptionSuffix',
+                  ]}
+                  defaults={[
+                    'This editor uses',
+                    'You can also utilize these additional syntax plugins to add rich content to your text.',
+                  ]}
+                >
+                  {([
+                    syntaxModalDescriptionPrefix,
+                    syntaxModalDescriptionSuffix,
+                  ]: ReactChild[]) => (
+                    <p>
+                      {syntaxModalDescriptionPrefix} {mdSyntaxLink}.{' '}
+                      {syntaxModalDescriptionSuffix}
+                    </p>
+                  )}
+                </EuiI18n>
+              </EuiText>
+              <EuiHorizontalRule />
+              {uiPluginsWithHelpText.map(({ name, helpText }) => (
                 <Fragment key={name}>
                   <EuiTitle size="xxs">
                     <p>
@@ -237,18 +257,60 @@ export const EuiMarkdownEditorFooter = forwardRef<
                   <EuiSpacer size="l" />
                 </Fragment>
               ))}
-            <EuiHorizontalRule />
-          </EuiModalBody>
-          <EuiModalFooter>
-            <EuiButton onClick={() => setIsShowingHelp(false)} fill>
-              <EuiI18n
-                token="euiMarkdownEditorFooter.closeButton"
-                default="Close"
-              />
-            </EuiButton>
-          </EuiModalFooter>
-        </EuiModal>
-      )}
+              <EuiHorizontalRule />
+            </EuiModalBody>
+            <EuiModalFooter>
+              <EuiButton onClick={() => setIsShowingHelpModal(false)} fill>
+                <EuiI18n
+                  token="euiMarkdownEditorFooter.closeButton"
+                  default="Close"
+                />
+              </EuiButton>
+            </EuiModalFooter>
+          </EuiModal>
+        )}
+      </>
+    );
+  } else {
+    helpSyntaxButton = (
+      <EuiPopover
+        button={
+          <EuiButtonIcon
+            title={syntaxTitle}
+            size="s"
+            className="euiMarkdownEditorFooter__helpButton"
+            iconType={MarkdownLogo}
+            color="text"
+            aria-label={ariaLabels.showMarkdownHelp}
+            onClick={() => setIsShowingHelpPopover(!isShowingHelpPopover)}
+          />
+        }
+        isOpen={isShowingHelpPopover}
+        closePopover={() => setIsShowingHelpPopover(false)}
+        panelPaddingSize="s"
+        anchorPosition="upCenter"
+      >
+        <EuiI18n
+          tokens={['euiMarkdownEditorFooter.syntaxPopoverDescription']}
+          defaults={['This editor uses']}
+        >
+          {([syntaxPopoverDescription]: ReactChild[]) => (
+            <p>
+              {syntaxPopoverDescription} {mdSyntaxLink}.
+            </p>
+          )}
+        </EuiI18n>
+      </EuiPopover>
+    );
+  }
+
+  return (
+    <div ref={ref} className="euiMarkdownEditorFooter">
+      <div className="euiMarkdownEditorFooter__actions">
+        {uploadButton}
+        {errorsButton}
+      </div>
+      {helpSyntaxButton}
     </div>
   );
 });

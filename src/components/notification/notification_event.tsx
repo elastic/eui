@@ -23,7 +23,7 @@ import {
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button';
 import { EuiLink } from '../link';
 import { EuiContextMenuItem, EuiContextMenuItemProps } from '../context_menu';
-import { htmlIdGenerator } from '../../services';
+import { useGeneratedHtmlId } from '../../services';
 import { EuiNotificationEventReadIcon } from './notification_event_read_icon';
 
 export type EuiNotificationHeadingLevel = 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
@@ -113,7 +113,7 @@ export const EuiNotificationEvent: FunctionComponent<EuiNotificationEventProps> 
     'euiNotificationEvent__title--isRead': isRead,
   });
 
-  const randomHeadingId = htmlIdGenerator()();
+  const randomHeadingId = useGeneratedHtmlId();
 
   const titleProps = {
     id: randomHeadingId,

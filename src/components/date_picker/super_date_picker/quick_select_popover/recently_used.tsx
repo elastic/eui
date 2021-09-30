@@ -10,13 +10,11 @@ import React, { FunctionComponent } from 'react';
 import { prettyDuration } from '../pretty_duration';
 
 import { EuiI18n } from '../../../i18n';
-import { htmlIdGenerator } from '../../../../services';
+import { useGeneratedHtmlId } from '../../../../services';
 import { EuiTitle } from '../../../title';
 import { EuiLink } from '../../../link';
 import { EuiHorizontalRule } from '../../../horizontal_rule';
 import { DurationRange, ApplyTime } from '../../types';
-
-const generateId = htmlIdGenerator();
 
 export interface EuiRecentlyUsedProps {
   applyTime: ApplyTime;
@@ -31,7 +29,7 @@ export const EuiRecentlyUsed: FunctionComponent<EuiRecentlyUsedProps> = ({
   dateFormat,
   recentlyUsedRanges = [],
 }) => {
-  const legendId = generateId();
+  const legendId = useGeneratedHtmlId();
 
   if (recentlyUsedRanges.length === 0) {
     return null;

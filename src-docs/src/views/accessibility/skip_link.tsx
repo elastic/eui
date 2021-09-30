@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import {
   EuiSkipLink,
   EuiCallOut,
-  EuiText,
   EuiSpacer,
   EuiSwitch,
 } from '../../../../src/components';
@@ -13,25 +12,6 @@ export default () => {
 
   return (
     <>
-      <EuiText>
-        {isFixed ? (
-          <p>
-            <em>
-              Tab through this section and a fixed{' '}
-              <strong>Skip to main content </strong> link will appear atop this
-              page.
-            </em>
-          </p>
-        ) : (
-          <p>
-            <em>
-              Tab through this section and a <strong>Skip to content</strong>{' '}
-              link will appear below.
-            </em>
-          </p>
-        )}
-      </EuiText>
-      <EuiSpacer />
       <EuiSwitch
         label="Fix link to top of screen"
         checked={isFixed}

@@ -51,7 +51,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
         aria-label={`Version ${pkg.version}, View changelog`}
         color={isLocalDev ? 'accent' : 'default'}
       >
-        {isLocalDev ? 'Local' : `v.${pkg.version}`}
+        {isLocalDev ? 'Local' : `v${pkg.version}`}
       </EuiBadge>
     );
   }

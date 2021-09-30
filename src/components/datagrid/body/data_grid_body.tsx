@@ -28,6 +28,7 @@ import {
   useMutationObserver,
 } from '../../observer/mutation_observer';
 import { useResizeObserver } from '../../observer/resize_observer';
+import { AUTO_HEIGHT } from '../row_height_utils';
 import { EuiDataGridCell } from './data_grid_cell';
 import {
   DataGridSortingContext,
@@ -48,7 +49,7 @@ import {
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
 
-const Cell: FunctionComponent<GridChildComponentProps> = ({
+export const Cell: FunctionComponent<GridChildComponentProps> = ({
   columnIndex,
   rowIndex: visibleRowIndex,
   style,
@@ -70,6 +71,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
     schemaDetectors,
     rowHeightsOptions,
     getRowHeight,
+    rowHeightUtils,
   } = data;
 
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
@@ -89,7 +91,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
       leadingControlColumns.length +
       trailingControlColumns.length -
       1;
-  const isStripableRow = rowIndex % 2 !== 0;
+  const isStripableRow = visibleRowIndex % 2 !== 0;
 
   const isLeadingControlColumn = columnIndex < leadingControlColumns.length;
   const isTrailingControlColumn =
@@ -136,6 +138,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         setRowHeight={setRowHeight}
         getRowHeight={getRowHeight}
         rowHeightsOptions={rowHeightsOptions}
+        rowHeightUtils={rowHeightUtils}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -162,6 +165,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         className={classes}
         rowHeightsOptions={rowHeightsOptions}
         getRowHeight={getRowHeight}
+        rowHeightUtils={rowHeightUtils}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -198,6 +202,7 @@ const Cell: FunctionComponent<GridChildComponentProps> = ({
         className={classes}
         rowHeightsOptions={rowHeightsOptions}
         getRowHeight={getRowHeight}
+        rowHeightUtils={rowHeightUtils}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -248,16 +253,16 @@ const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
  * and search its ancestors for a div[data-datagrid-cellcontent], if any,
  * which is a valid target for disabling tabbing within
  */
-function getParentCellContent(_element: Node | HTMLElement) {
+export function getParentCellContent(_element: Node | HTMLElement) {
   let element: HTMLElement | null =
     _element.nodeType === document.ELEMENT_NODE
       ? (_element as HTMLElement)
       : _element.parentElement;
 
   while (
-    element &&
-    element.nodeName !== 'div' &&
-    element.hasAttribute('data-datagrid-cellcontent')
+    element && // we haven't walked off the document yet
+    element.nodeName !== 'div' && // looking for a div
+    !element.hasAttribute('data-datagrid-cellcontent') // that has data-datagrid-cellcontent
   ) {
     element = element.parentElement;
   }
@@ -292,6 +297,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     toolbarHeight,
     rowHeightsOptions,
     rowHeightUtils,
+    virtualizationOptions,
     gridStyles,
   } = props;
 
@@ -460,7 +466,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     (rowIndex: number) => {
       let rowIndexWithOffset = rowIndex;
 
-      if (rowIndex - paginationOffset <= 0) {
+      if (rowIndex - paginationOffset < 0) {
         rowIndexWithOffset = rowIndex + paginationOffset;
       }
 
@@ -473,7 +479,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     [paginationOffset, rowMap]
   );
 
-  const gridRef = useRef<Grid>(null);
+  const gridRef = useRef<Grid | null>(null);
+
   useEffect(() => {
     if (gridRef.current) {
       gridRef.current.resetAfterColumnIndex(0);
@@ -507,22 +514,38 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     ]
   );
 
-  const [minRowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
-  const defaultHeight = useMemo(
-    () =>
-      rowHeightsOptions?.defaultHeight
-        ? rowHeightUtils.getCalculatedHeight(
-            rowHeightsOptions.defaultHeight,
-            minRowHeight
-          )
-        : minRowHeight,
-    [rowHeightsOptions, minRowHeight, rowHeightUtils]
+  const setGridRef = useCallback(
+    (ref: Grid | null) => {
+      gridRef.current = ref;
+      if (ref) {
+        rowHeightUtils.setGrid(ref);
+      }
+    },
+    [rowHeightUtils]
   );
+
+  const [minRowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
+
+  const computedCellStyles = rowHeightUtils.getComputedCellStyles();
+
+  const defaultHeight = useMemo(() => {
+    // @ts-ignore we need to re-run this when computedCellStyles changes,
+    // but it isn't used directly; so let's make the hooks lint rule see
+    // that it is used, but we need to tell eslint to ignore
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const _computedCellStyles = computedCellStyles;
+    return rowHeightsOptions?.defaultHeight
+      ? rowHeightUtils.getCalculatedHeight(
+          rowHeightsOptions.defaultHeight,
+          minRowHeight
+        )
+      : minRowHeight;
+  }, [rowHeightsOptions, minRowHeight, rowHeightUtils, computedCellStyles]);
 
   const getRowHeight = useCallback(
     (rowIndex) => {
       const correctRowIndex = getCorrectRowIndex(rowIndex);
-      let height = defaultHeight;
+      let height;
 
       if (rowHeightsOptions) {
         if (rowHeightsOptions.rowHeights) {
@@ -531,13 +554,18 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
           if (initialHeight) {
             height = rowHeightUtils.getCalculatedHeight(
               initialHeight,
-              minRowHeight
+              minRowHeight,
+              correctRowIndex
             );
           }
         }
+
+        if (!height && rowHeightsOptions.defaultHeight === AUTO_HEIGHT) {
+          height = rowHeightUtils.getRowHeight(correctRowIndex);
+        }
       }
 
-      return height;
+      return height || defaultHeight;
     },
     [
       minRowHeight,
@@ -552,7 +580,20 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     if (gridRef.current && rowHeightsOptions) {
       gridRef.current.resetAfterRowIndex(0);
     }
-  }, [pagination?.pageIndex, rowHeightsOptions, gridStyles]);
+  }, [
+    pagination?.pageIndex,
+    rowHeightsOptions,
+    gridStyles?.cellPadding,
+    gridStyles?.fontSize,
+  ]);
+
+  useEffect(() => {
+    if (gridRef.current && pagination?.pageIndex !== undefined) {
+      gridRef.current.scrollToItem({
+        rowIndex: 0,
+      });
+    }
+  }, [pagination?.pageIndex]);
 
   useEffect(() => {
     if (gridRef.current) {
@@ -592,10 +633,16 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   }, [unconstrainedHeight, wrapperDimensions, isFullScreen]);
 
   const preventTabbing = useCallback((records: MutationRecord[]) => {
+    // multiple mutation records can implicate the same cell
+    // so be sure to only check each cell once
+    const processedCells = new Set();
+
     for (let i = 0; i < records.length; i++) {
       const record = records[i];
       // find the cell content owning this mutation
       const cell = getParentCellContent(record.target);
+      if (processedCells.has(cell)) continue;
+      processedCells.add(cell);
 
       if (cell) {
         // if we found it, disable tabbable elements
@@ -644,7 +691,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
               value={{ headerRowHeight, headerRow, footerRow }}
             >
               <Grid
-                ref={gridRef}
+                {...(virtualizationOptions ? virtualizationOptions : {})}
+                ref={setGridRef}
                 innerElementType={InnerElement}
                 className={VIRTUALIZED_CONTAINER_CLASS}
                 columnCount={
@@ -675,6 +723,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                   renderCellValue,
                   interactiveCellId,
                   rowHeightsOptions,
+                  rowHeightUtils,
                 }}
                 rowCount={
                   IS_JEST_ENVIRONMENT || headerRowHeight > 0
