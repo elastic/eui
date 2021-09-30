@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `38.2.0`.
+**Bug fixes**
+
+- Fixed tick and level alignment in `Eui[Dual]Range` ([#5181](https://github.com/elastic/eui/pull/5181))
 
 ## [`38.2.0`](https://github.com/elastic/eui/tree/v38.2.0)
 
