@@ -27,7 +27,7 @@ exports[`EuiSuperSelect is rendered 1`] = `
           <button
             aria-haspopup="true"
             aria-label="aria-label"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl testClass1 testClass2"
             data-test-subj="test subject string"
             type="button"
@@ -79,7 +79,7 @@ exports[`EuiSuperSelect props compressed is rendered 1`] = `
           <button
             aria-haspopup="true"
             aria-label="aria-label"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl euiSuperSelectControl--compressed testClass1 testClass2"
             data-test-subj="test subject string"
             type="button"
@@ -130,7 +130,7 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
           </span>
           <button
             aria-haspopup="true"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl euiSuperSelect--isOpen__button"
             data-test-subj="superSelect"
             type="button"
@@ -291,7 +291,7 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
           <button
             aria-haspopup="true"
             aria-label="aria-label"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl euiSuperSelectControl--fullWidth testClass1 testClass2"
             data-test-subj="test subject string"
             type="button"
@@ -348,7 +348,7 @@ exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
           <button
             aria-haspopup="true"
             aria-label="aria-label"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl euiSuperSelectControl--inGroup testClass1 testClass2"
             data-test-subj="test subject string"
             type="button"
@@ -404,7 +404,7 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
           </span>
           <button
             aria-haspopup="true"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl euiSuperSelect--isOpen__button"
             data-test-subj="superSelect"
             type="button"
@@ -569,7 +569,7 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
           </span>
           <button
             aria-haspopup="true"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl euiSuperSelect--isOpen__button"
             data-test-subj="superSelect"
             type="button"
@@ -703,6 +703,169 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
 </div>
 `;
 
+exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuperSelect goes-on-outermost-wrapper"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <div>
+      <input
+        type="hidden"
+        value="2"
+      />
+      <div
+        class="euiFormControlLayout"
+      >
+        <div
+          class="euiFormControlLayout__childrenWrapper"
+        >
+          <span
+            class="euiScreenReaderOnly"
+            id="generated-id"
+          >
+            Select an option: Option #2, is selected
+          </span>
+          <button
+            aria-haspopup="true"
+            aria-labelledby="generated-id"
+            class="euiSuperSelectControl euiSuperSelect--isOpen__button"
+            data-test-subj="superSelect"
+            type="button"
+          >
+            Option #2
+          </button>
+          <div
+            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+          >
+            <span
+              class="euiFormControlLayoutCustomIcon"
+            >
+              <span
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="arrowDown"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="-1"
+  />
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="-1"
+  />
+  <div
+    data-focus-lock-disabled="disabled"
+  >
+    <div
+      aria-live="assertive"
+      aria-modal="true"
+      class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiPopover__panel-noArrow euiPopover__panel-isAttached goes-on-popover-panel"
+      role="dialog"
+      style="top: 8px; left: 0px; will-change: transform, opacity; z-index: 2000;"
+    >
+      <div
+        class="euiPopover__panelArrow euiPopover__panelArrow--bottom"
+      />
+      <div>
+        <div
+          data-focus-guard="true"
+          style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+          tabindex="0"
+        />
+        <div
+          data-focus-guard="true"
+          style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+          tabindex="1"
+        />
+        <div
+          data-focus-lock-disabled="false"
+        >
+          <div>
+            <p
+              class="euiScreenReaderOnly"
+              role="alert"
+            >
+              You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+            </p>
+            <div
+              aria-activedescendant="2"
+              class="euiSuperSelect__listbox"
+              role="listbox"
+              tabindex="0"
+            >
+              <button
+                aria-selected="false"
+                class="euiContextMenuItem euiSuperSelect__item"
+                id="1"
+                role="option"
+                type="button"
+              >
+                <span
+                  class="euiContextMenu__itemLayout"
+                >
+                  <span
+                    class="euiContextMenu__icon"
+                    color="inherit"
+                    data-euiicon-type="empty"
+                  />
+                  <span
+                    class="euiContextMenuItem__text"
+                  >
+                    Option #1
+                  </span>
+                </span>
+              </button>
+              <button
+                aria-selected="true"
+                class="euiContextMenuItem euiSuperSelect__item"
+                id="2"
+                role="option"
+                type="button"
+              >
+                <span
+                  class="euiContextMenu__itemLayout"
+                >
+                  <span
+                    class="euiContextMenu__icon"
+                    color="inherit"
+                    data-euiicon-type="check"
+                  />
+                  <span
+                    class="euiContextMenuItem__text"
+                  >
+                    Option #2
+                  </span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          data-focus-guard="true"
+          style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+          tabindex="0"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    data-focus-guard="true"
+    style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+    tabindex="-1"
+  />
+</div>
+`;
+
 exports[`EuiSuperSelect props select component is rendered 1`] = `
 <div
   class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuperSelect"
@@ -729,7 +892,7 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
           </span>
           <button
             aria-haspopup="true"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl"
             type="button"
           />
@@ -779,7 +942,7 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
           </span>
           <button
             aria-haspopup="true"
-            aria-labelledby="undefined generated-id"
+            aria-labelledby="generated-id"
             class="euiSuperSelectControl"
             type="button"
           >

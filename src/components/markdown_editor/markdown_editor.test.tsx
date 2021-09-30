@@ -12,6 +12,7 @@ import { requiredProps } from '../../test/required_props';
 import { EuiMarkdownEditor } from './markdown_editor';
 import * as MarkdownTooltip from './plugins/markdown_tooltip';
 import MarkdownActions from './markdown_actions';
+import { getDefaultEuiMarkdownPlugins } from './plugins/markdown_default_plugins';
 
 describe('EuiMarkdownEditor', () => {
   test('is rendered', () => {
@@ -112,6 +113,47 @@ describe('EuiMarkdownEditor', () => {
     expect(
       component.find('EuiText.euiMarkdownFormat').childAt(0).childAt(0).text()
     ).toBe('Hello world');
+  });
+
+  test('modal with help syntax is rendered', () => {
+    const component = mount(
+      <EuiMarkdownEditor
+        editorId="editorId"
+        value=""
+        onChange={() => null}
+        {...requiredProps}
+      />
+    );
+    component
+      .find('EuiButtonIcon.euiMarkdownEditorFooter__helpButton')
+      .simulate('click');
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('custom plugins are excluded and popover is rendered', () => {
+    const {
+      parsingPlugins,
+      processingPlugins,
+      uiPlugins,
+    } = getDefaultEuiMarkdownPlugins({ exclude: ['tooltip'] });
+
+    const component = mount(
+      <EuiMarkdownEditor
+        editorId="editorId"
+        value=""
+        onChange={() => null}
+        parsingPluginList={parsingPlugins}
+        processingPluginList={processingPlugins}
+        uiPlugins={uiPlugins}
+        {...requiredProps}
+      />
+    );
+    component
+      .find('EuiButtonIcon.euiMarkdownEditorFooter__helpButton')
+      .simulate('click');
+
+    expect(component).toMatchSnapshot();
   });
 
   test('fires onChange on text area change', () => {

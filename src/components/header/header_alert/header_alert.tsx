@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { htmlIdGenerator } from '../../../services';
+import { useGeneratedHtmlId } from '../../../services';
 
 export type EuiHeaderAlertProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
@@ -40,7 +40,7 @@ export const EuiHeaderAlert: FunctionComponent<EuiHeaderAlertProps> = ({
 }) => {
   const classes = classNames('euiHeaderAlert', className);
 
-  const ariaId = htmlIdGenerator()();
+  const ariaId = useGeneratedHtmlId();
 
   return (
     <article aria-labelledby={`${ariaId}-title`} className={classes} {...rest}>

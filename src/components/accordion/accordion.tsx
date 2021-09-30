@@ -148,6 +148,8 @@ export class EuiAccordion extends Component<
     this.childContent = node;
   };
 
+  generatedId = htmlIdGenerator()();
+
   render() {
     const {
       children,
@@ -209,7 +211,7 @@ export class EuiAccordion extends Component<
 
     let icon;
     let iconButton;
-    const buttonId = buttonProps?.id ?? htmlIdGenerator()();
+    const buttonId = buttonProps?.id ?? this.generatedId;
     if (extraAction && arrowDisplay === 'right') {
       iconButton = (
         <button

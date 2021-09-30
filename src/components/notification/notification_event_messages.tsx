@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent, useState } from 'react';
 import { EuiAccordion } from '../accordion';
-import { htmlIdGenerator } from '../../services';
+import { useGeneratedHtmlId } from '../../services';
 import { useEuiI18n } from '../i18n';
 import { EuiText } from '../text';
 
@@ -29,6 +29,10 @@ export const EuiNotificationEventMessages: FunctionComponent<EuiNotificationEven
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const messagesLength = messages.length;
+
+  const accordionId = useGeneratedHtmlId({
+    prefix: 'euiNotificationEventMessagesAccordion',
+  });
 
   const accordionButtonText = useEuiI18n(
     'euiNotificationEventMessages.accordionButtonText',
@@ -69,7 +73,7 @@ export const EuiNotificationEventMessages: FunctionComponent<EuiNotificationEven
           <EuiAccordion
             onToggle={setIsOpen}
             buttonProps={{ 'aria-label': accordionAriaLabelButtonText }}
-            id={htmlIdGenerator('euiNotificationEventMessagesAccordion')()}
+            id={accordionId}
             className="euiNotificationEventMessages__accordion"
             buttonContent={buttonContentText}
             buttonClassName="euiNotificationEventMessages__accordionButton"

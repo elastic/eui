@@ -9,7 +9,7 @@ import {
 
 const initialContent = `## Hello world!
 
-Basic "github flavored" markdown will work as you'd expect.
+Basic "GitHub flavored" markdown will work as you'd expect.
 
 The editor also ships with some built in plugins. For example it can handle checkboxes. Notice how they toggle state even in the preview mode.
 

@@ -8,7 +8,7 @@ exports[`EuiSideNav is rendered 1`] = `
 >
   <div
     class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
-    id="euiSideNavContent_generated-id"
+    id="euiSideNav_generated-id_content"
   />
 </nav>
 `;
@@ -28,43 +28,43 @@ exports[`EuiSideNav props heading accepts more headingProps 1`] = `
   </h3>
   <div
     class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
-    id="euiSideNavContent_generated-id"
+    id="euiSideNav_generated-id_content"
   />
 </nav>
 `;
 
 exports[`EuiSideNav props heading is hidden with screenReaderOnly 1`] = `
 <nav
-  aria-labelledby="euiSideNavHeading_generated-id"
+  aria-labelledby="euiSideNav_generated-id_heading"
   class="euiSideNav"
 >
   <h2
     class="euiScreenReaderOnly"
-    id="euiSideNavHeading_generated-id"
+    id="euiSideNav_generated-id_heading"
   >
     Side Nav Heading
   </h2>
   <div
     class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
-    id="euiSideNavContent_generated-id"
+    id="euiSideNav_generated-id_content"
   />
 </nav>
 `;
 
 exports[`EuiSideNav props heading is rendered 1`] = `
 <nav
-  aria-labelledby="euiSideNavHeading_generated-id"
+  aria-labelledby="euiSideNav_generated-id_heading"
   class="euiSideNav"
 >
   <h2
     class="euiTitle euiTitle--xsmall euiSideNav__heading"
-    id="euiSideNavHeading_generated-id"
+    id="euiSideNav_generated-id_heading"
   >
     Side Nav Heading
   </h2>
   <div
     class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
-    id="euiSideNavContent_generated-id"
+    id="euiSideNav_generated-id_content"
   />
 </nav>
 `;
@@ -75,7 +75,7 @@ exports[`EuiSideNav props isOpenOnMobile defaults to false 1`] = `
 >
   <div
     class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
-    id="euiSideNavContent_generated-id"
+    id="euiSideNav_generated-id_content"
   />
 </nav>
 `;
@@ -86,7 +86,7 @@ exports[`EuiSideNav props isOpenOnMobile is rendered when specified as true 1`] 
 >
   <div
     class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
-    id="euiSideNavContent_generated-id"
+    id="euiSideNav_generated-id_content"
   />
 </nav>
 `;
@@ -97,7 +97,7 @@ exports[`EuiSideNav props items is rendered 1`] = `
 >
   <div
     class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
-    id="euiSideNavContent_generated-id"
+    id="euiSideNav_generated-id_content"
   >
     <div
       class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
@@ -170,7 +170,7 @@ exports[`EuiSideNav props items renders items having { forceOpen: true } in open
 >
   <div
     class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
-    id="euiSideNavContent_generated-id"
+    id="euiSideNav_generated-id_content"
   >
     <div
       class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
@@ -287,7 +287,7 @@ exports[`EuiSideNav props items renders items using a specified callback 1`] = `
 >
   <div
     class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
-    id="euiSideNavContent_generated-id"
+    id="euiSideNav_generated-id_content"
   >
     <div
       class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
@@ -340,7 +340,7 @@ exports[`EuiSideNav props items renders items which are links 1`] = `
 >
   <div
     class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
-    id="euiSideNavContent_generated-id"
+    id="euiSideNav_generated-id_content"
   >
     <div
       class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
@@ -413,7 +413,7 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
 >
   <div
     class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
-    id="euiSideNavContent_generated-id"
+    id="euiSideNav_generated-id_content"
   >
     <div
       class="euiSideNavItem euiSideNavItem--root euiSideNavItem--hasChildItems"
@@ -518,14 +518,14 @@ exports[`EuiSideNav props items renders selected item and automatically opens pa
 
 exports[`EuiSideNav props mobileBreakpoints can be adjusted is rendered 1`] = `
 <nav
-  aria-labelledby="euiSideNavHeading_generated-id"
+  aria-labelledby="euiSideNav_generated-id_heading"
   class="euiSideNav"
 >
   <h2
-    id="euiSideNavHeading_generated-id"
+    id="euiSideNav_generated-id_heading"
   >
     <button
-      aria-controls="euiSideNavContent_generated-id"
+      aria-controls="euiSideNav_generated-id_content"
       class="euiButtonEmpty euiButtonEmpty--primary euiSideNav__mobileToggle"
       type="button"
     >
@@ -545,7 +545,7 @@ exports[`EuiSideNav props mobileBreakpoints can be adjusted is rendered 1`] = `
   </h2>
   <div
     class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s euiSideNav__contentMobile-m euiSideNav__contentMobile-l euiSideNav__contentMobile-xl"
-    id="euiSideNavContent_generated-id"
+    id="euiSideNav_generated-id_content"
   />
 </nav>
 `;
@@ -556,7 +556,7 @@ exports[`EuiSideNav props mobileBreakpoints can be adjusted null is rendered 1`]
 >
   <div
     class="euiSideNav__content euiSideNav__contentMobile-xs euiSideNav__contentMobile-s"
-    id="euiSideNavContent_generated-id"
+    id="euiSideNav_generated-id_content"
   />
 </nav>
 `;

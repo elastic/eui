@@ -10,6 +10,7 @@ import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { keys } from '../../../services';
 
+import { mockRowHeightUtils } from '../__mocks__/row_height_utils';
 import { EuiDataGridCell } from './data_grid_cell';
 
 describe('EuiDataGridCell', () => {
@@ -27,6 +28,7 @@ describe('EuiDataGridCell', () => {
       </div>
     ),
     popoverContent: () => <div>popover</div>,
+    rowHeightUtils: mockRowHeightUtils,
   };
 
   const mountEuiDataGridCellWithContext = ({ ...props } = {}) => {
@@ -165,6 +167,21 @@ describe('EuiDataGridCell', () => {
   });
 
   describe('componentDidUpdate', () => {
+    it('recalculates row height on every update', () => {
+      const { isAutoHeight, setRowHeight } = mockRowHeightUtils;
+      (isAutoHeight as jest.Mock).mockImplementation(() => true);
+
+      const component = mountEuiDataGridCellWithContext({
+        rowHeightsOptions: { defaultHeight: 'auto' },
+        getRowHeight: jest.fn(() => 50),
+      });
+
+      component.setProps({ rowIndex: 2 }); // Trigger any update
+      expect(setRowHeight).toHaveBeenCalled();
+
+      (isAutoHeight as jest.Mock).mockRestore();
+    });
+
     it('resets cell props when the cell columnId changes', () => {
       const setState = jest.spyOn(EuiDataGridCell.prototype, 'setState');
       const component = mountEuiDataGridCellWithContext();

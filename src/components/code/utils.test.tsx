@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { highlightByLine } from './utils';
+import { highlightByLine, parseLineRanges } from './utils';
 
 const jsonCode = `{
   "id": "1",
@@ -48,6 +48,44 @@ describe('highlightByLine', () => {
           highlight[0].children[0].properties['data-line-number']
         ).toBe(10);
       });
+    });
+
+    describe('with highlighted lines', () => {
+      it('adds a class to the specified lines', () => {
+        const highlight = highlightByLine(jsonCode, 'json', {
+          show: true,
+          start: 1,
+          highlight: '1-2',
+        });
+        expect(highlight).toMatchSnapshot();
+        expect(
+          // @ts-expect-error RefractorNode
+          highlight[0].properties.className[0].includes(
+            'euiCodeBlock__line--isHighlighted'
+          )
+        ).toBe(true);
+      });
+    });
+  });
+});
+
+describe('parseLineRanges', () => {
+  describe('given a comma-separated string of numbers', () => {
+    it('outputs an array of numbers', () => {
+      const array = parseLineRanges('1, 3, 5, 9');
+      expect(array).toEqual([1, 3, 5, 9]);
+    });
+  });
+  describe('given a comma-separated string of ranges', () => {
+    it('outputs an array of numbers', () => {
+      const array = parseLineRanges('1-5');
+      expect(array).toEqual([1, 2, 3, 4, 5]);
+    });
+  });
+  describe('given a comma-separated string of numbers and ranges', () => {
+    it('outputs an array of numbers', () => {
+      const array = parseLineRanges('1, 3-10, 15');
+      expect(array).toEqual([1, 3, 4, 5, 6, 7, 8, 9, 10, 15]);
     });
   });
 });
