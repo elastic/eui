@@ -190,11 +190,6 @@
   }
 }
 
-@mixin euiFormLabelInlineFocusStyle {
-  background-image: euiFormControlGradient();
-  background-size: 100%;
-}
-
 @mixin euiFormControlInvalidStyle {
   background-image: euiFormControlGradient($euiColorDanger);
   background-size: 100%;
