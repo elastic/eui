@@ -227,7 +227,7 @@ import ThemeValues from './views/theme/values';
 import Typography, {
   typographySections,
 } from './views/theme/typography/typography';
-import Sizing from './views/theme/sizing/sizing';
+import Sizing, { sizingSections } from './views/theme/sizing/sizing';
 import Breakpoints from './views/theme/breakpoints/breakpoints';
 import Borders, { bordersSections } from './views/theme/borders/borders';
 
@@ -363,6 +363,7 @@ const navigation = [
       {
         name: 'Sizing',
         component: Sizing,
+        sections: sizingSections,
       },
       {
         name: 'Typography',

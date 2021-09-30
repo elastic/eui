@@ -12,7 +12,7 @@ import {
 
 import { useDebouncedUpdate } from '../hooks';
 import { getPropsFromThemeKey, EuiTheme, _EuiThemeSize } from '../_props';
-import { ThemeValue } from '../_values';
+import { ThemeValue } from './_values';
 
 export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
