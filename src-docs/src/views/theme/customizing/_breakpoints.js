@@ -10,7 +10,7 @@ import {
 
 import { useDebouncedUpdate } from '../hooks';
 
-import { ThemeValue } from '../_values';
+import { ThemeValue } from './_values';
 
 import { getPropsFromThemeKey, _EuiThemeBreakpoint } from '../_props';
 
