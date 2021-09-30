@@ -9,6 +9,7 @@ const license = require('../.eslintrc.js').rules[
 const rootDir = path.resolve(__dirname, '..');
 const srcDir = path.resolve(rootDir, 'src');
 const iconsDir = path.resolve(srcDir, 'components', 'icon', 'assets');
+const outputDir = path.resolve(srcDir, 'components', 'icon', 'generated');
 
 function pascalCase(x) {
   return x.replace(/^(.)|[^a-zA-Z]([a-zA-Z])/g, (match, char1, char2) =>
@@ -84,7 +85,7 @@ export const icon = ${componentName};
         .replace(/xlinkHref="#(\S+)"/gi, "xlinkHref={`#${generateId('$1')}`}");
     }
 
-    const outputFilePath = filePath.replace(/\.svg$/, '.tsx');
+    const outputFilePath = `${outputDir}/${fileName}.tsx`;
     const comment = `\n// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY. @see scripts/compile-icons.js\n\n`;
     fs.writeFileSync(outputFilePath, license + comment + jsxSource);
   } catch (e) {
