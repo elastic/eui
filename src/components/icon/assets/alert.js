@@ -1,3 +1,5 @@
+// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY
+
 import * as React from 'react';
 
 const EuiIconAlert = ({ title, titleId, ...props }) => (

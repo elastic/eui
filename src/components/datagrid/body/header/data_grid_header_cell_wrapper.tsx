@@ -13,7 +13,6 @@ import React, {
   useEffect,
   useRef,
   useState,
-  useCallback,
 } from 'react';
 import tabbable from 'tabbable';
 import { keys } from '../../../../services';
@@ -47,52 +46,15 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
   const headerRef = useRef<HTMLDivElement>(null);
   const [isCellEntered, setIsCellEntered] = useState(false);
 
-  const focusInteractives = useCallback((headerNode: Element) => {
-    const tabbables = tabbable(headerNode);
-    if (tabbables.length === 1) {
-      tabbables[0].focus();
-      setIsCellEntered(true);
-    }
-  }, []);
-
-  const enableInteractives = useCallback((headerNode: Element) => {
-    const interactiveElements = headerNode.querySelectorAll(
-      '[data-euigrid-tab-managed]'
-    );
-    for (let i = 0; i < interactiveElements.length; i++) {
-      interactiveElements[i].setAttribute('tabIndex', '0');
-    }
-  }, []);
-
-  const disableInteractives = useCallback((headerNode: Element) => {
-    const tababbles = tabbable(headerNode);
-    if (tababbles.length > 1) {
-      console.warn(
-        `EuiDataGridHeaderCell expects at most 1 tabbable element, ${tababbles.length} found instead`
-      );
-    }
-    for (let i = 0; i < tababbles.length; i++) {
-      const element = tababbles[i];
-      element.setAttribute('data-euigrid-tab-managed', 'true');
-      element.setAttribute('tabIndex', '-1');
-    }
-  }, []);
-
   useEffect(() => {
     const headerNode = headerRef.current!;
 
     if (isCellEntered) {
-      enableInteractives(headerNode);
-      focusInteractives(headerNode);
+      enableAndFocusInteractives(headerNode);
     } else {
       disableInteractives(headerNode);
     }
-  }, [
-    disableInteractives,
-    enableInteractives,
-    focusInteractives,
-    isCellEntered,
-  ]);
+  }, [isCellEntered]);
 
   useEffect(() => {
     const headerNode = headerRef.current!;
@@ -111,7 +73,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
     }
 
     // focusin bubbles while focus does not, and this needs to react to children gaining focus
-    function onFocusIn(e: FocusEvent) {
+    const onFocusIn = (e: FocusEvent) => {
       if (!headerIsInteractive) {
         // header is not interactive, avoid focusing
         requestAnimationFrame(() => headerNode.blur());
@@ -122,25 +84,23 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
         if (isFocused === false) {
           setFocusedCell([index, -1]);
         } else {
-          // this cell already had the grid's focus, so re-enable interactives
-          enableInteractives(headerNode);
-          // shift focus to the interactive element
-          focusInteractives(headerNode);
+          // this cell already had the grid's focus, so re-enable and focus interactives
+          setIsCellEntered(true);
         }
       }
-    }
+    };
 
     // focusout bubbles while blur does not, and this needs to react to the children losing focus
-    function onFocusOut() {
+    const onFocusOut = () => {
       // wait for the next element to receive focus, then update interactives' state
       requestAnimationFrame(() => {
         if (!headerNode.contains(document.activeElement)) {
           setIsCellEntered(false);
         }
       });
-    }
+    };
 
-    function onKeyUp(event: KeyboardEvent) {
+    const onKeyUp = (event: KeyboardEvent) => {
       switch (event.key) {
         case keys.ENTER: {
           event.preventDefault();
@@ -154,20 +114,8 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
           headerNode.focus();
           break;
         }
-        case keys.F2: {
-          event.preventDefault();
-          if (document.activeElement === headerRef.current) {
-            // move focus into cell's interactives
-            setIsCellEntered(true);
-          } else {
-            // move focus to cell
-            setIsCellEntered(false);
-            headerNode.focus();
-          }
-          break;
-        }
       }
-    }
+    };
 
     headerNode.addEventListener('focusin', onFocusIn);
     headerNode.addEventListener('focusout', onFocusOut);
@@ -177,15 +125,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
       headerNode.removeEventListener('focusout', onFocusOut);
       headerNode.removeEventListener('keyup', onKeyUp);
     };
-  }, [
-    enableInteractives,
-    focusInteractives,
-    headerIsInteractive,
-    isFocused,
-    setIsCellEntered,
-    index,
-    setFocusedCell,
-  ]);
+  }, [headerIsInteractive, isFocused, index, setFocusedCell]);
 
   return (
     <div
@@ -200,4 +140,33 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
       {children}
     </div>
   );
+};
+
+/**
+ * Utility fns for managing child interactive tabIndex state
+ */
+
+const disableInteractives = (headerNode: Element) => {
+  const tabbables = tabbable(headerNode);
+  if (tabbables.length > 1) {
+    console.warn(
+      `EuiDataGridHeaderCell expects at most 1 tabbable element, ${tabbables.length} found instead`
+    );
+  }
+  tabbables.forEach((element) => {
+    element.setAttribute('data-euigrid-tab-managed', 'true');
+    element.setAttribute('tabIndex', '-1');
+  });
+};
+
+const enableAndFocusInteractives = (headerNode: Element) => {
+  const interactiveElements = headerNode.querySelectorAll(
+    '[data-euigrid-tab-managed]'
+  );
+  interactiveElements.forEach((element, i) => {
+    element.setAttribute('tabIndex', '0');
+    if (i === 0) {
+      (element as HTMLElement).focus();
+    }
+  });
 };

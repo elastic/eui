@@ -11,6 +11,7 @@ export {
   getDefaultEuiMarkdownParsingPlugins,
   getDefaultEuiMarkdownProcessingPlugins,
   getDefaultEuiMarkdownUiPlugins,
+  getDefaultEuiMarkdownPlugins,
 } from './plugins/markdown_default_plugins';
 export { EuiMarkdownContext } from './markdown_context';
 export { EuiMarkdownFormat, EuiMarkdownFormatProps } from './markdown_format';

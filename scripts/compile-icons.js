@@ -15,22 +15,25 @@ function pascalCase(x) {
 
 const iconFiles = glob.sync('**/*.svg', { cwd: iconsDir, realpath: true });
 
-iconFiles.forEach(async filePath => {
+iconFiles.forEach(async (filePath) => {
+  const fileName = path.basename(filePath, '.svg');
   const svgSource = fs.readFileSync(filePath);
+  const svgString = svgSource.toString();
 
   try {
-    const viewBoxPosition = svgSource.toString().indexOf('viewBox');
-    if (viewBoxPosition === -1) {
+    if (!svgString.includes('viewBox')) {
       throw new Error(`${filePath} is missing a 'viewBox' attribute`);
     }
 
-    const jsxSource = await svgr(
+    const hasIds = svgString.includes('id="');
+
+    let jsxSource = await svgr(
       svgSource,
       {
         plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
         svgoConfig: {
           plugins: [
-            { cleanupIDs: false },
+            { cleanupIDs: true },
             { prefixIds: false },
             { removeViewBox: false },
           ],
@@ -43,19 +46,41 @@ iconFiles.forEach(async filePath => {
           { template },
           opts,
           { imports, componentName, props, jsx }
-        ) => template.ast`
+        ) =>
+          hasIds
+            ? template.ast`
+${imports}
+import { htmlIdGenerator } from '../../../services';
+const ${componentName} = (${props}) => {
+  const generateId = htmlIdGenerator('${fileName}');
+  return (
+    ${jsx}
+  );
+};
+export const icon = ${componentName};
+`
+            : template.ast`
 ${imports}
 const ${componentName} = (${props}) => ${jsx}
 export const icon = ${componentName};
-        `,
+`,
       },
       {
-        componentName: `EuiIcon${pascalCase(path.basename(filePath, '.svg'))}`,
+        componentName: `EuiIcon${pascalCase(fileName)}`,
       }
     );
 
+    // Replace static SVGs IDs with dynamic JSX that uses the htmlIdGenerator
+    if (hasIds) {
+      jsxSource = jsxSource
+        .replace(/id="(\S+)"/gi, "id={generateId('$1')}")
+        .replace(/"url\(#(\S+)\)"/gi, "{`url(#${generateId('$1')})`}")
+        .replace(/xlinkHref="#(\S+)"/gi, "xlinkHref={`#${generateId('$1')}`}");
+    }
+
     const outputFilePath = filePath.replace(/\.svg$/, '.js');
-    fs.writeFileSync(outputFilePath, jsxSource);
+    const comment = '// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY\n\n';
+    fs.writeFileSync(outputFilePath, comment + jsxSource);
   } catch (e) {
     console.error(`Error processing ${filePath}`);
     console.error(e);
