@@ -29,7 +29,7 @@ import {
 import { EuiTitle } from '../title';
 
 import { EuiTourStepIndicator, EuiTourStepStatus } from './tour_step_indicator';
-import { htmlIdGenerator } from '../../services';
+import { useGeneratedHtmlId } from '../../services';
 
 type PopoverOverrides = 'button' | 'closePopover';
 
@@ -122,8 +122,7 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
   footerAction,
   ...rest
 }) => {
-  const generatedId = htmlIdGenerator();
-  const titleId = generatedId();
+  const titleId = useGeneratedHtmlId();
   if (step === 0) {
     console.warn(
       'EuiTourStep `step` should 1-based indexing. Please update to eliminate 0 indexes.'

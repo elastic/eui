@@ -7,13 +7,13 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, render, shallow } from 'enzyme';
 
+import { mockRowHeightUtils } from '../__mocks__/row_height_utils';
 import { DataGridSortingContext } from '../data_grid_context';
 import { schemaDetectors } from '../data_grid_schema';
-import { RowHeightUtils } from '../row_height_utils';
 
-import { EuiDataGridBody, getParentCellContent } from './data_grid_body';
+import { EuiDataGridBody, Cell, getParentCellContent } from './data_grid_body';
 
 describe('EuiDataGridBody', () => {
   const requiredProps = {
@@ -39,13 +39,24 @@ describe('EuiDataGridBody', () => {
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
     schemaDetectors,
-    rowHeightUtils: new RowHeightUtils(),
+    rowHeightUtils: mockRowHeightUtils,
   };
 
+  beforeAll(() => {
+    Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
+      configurable: true,
+      value: 34,
+    });
+  });
+
   it('renders', () => {
-    const component = mount(<EuiDataGridBody {...requiredProps} />);
+    // EuiDataGridBody should be `render`ed here over `mount` due to large
+    // snapshot memory issues
+    const component = render(<EuiDataGridBody {...requiredProps} />);
     expect(component).toMatchSnapshot();
-    expect(component.find('Cell')).toHaveLength(2);
+    expect(component.find('[data-test-subj="dataGridRowCell"]')).toHaveLength(
+      2
+    );
   });
 
   it('renders leading columns, trailing columns, and footer rows', () => {
@@ -120,6 +131,56 @@ describe('EuiDataGridBody', () => {
   // TODO: Test tabbing in Cypress
 
   // TODO: Test column resizing in Cypress
+});
+
+describe('Cell', () => {
+  const requiredProps = {
+    columnIndex: 0,
+    rowIndex: 0,
+    style: {},
+    data: {
+      rowMap: {},
+      rowOffset: 0,
+      leadingControlColumns: [],
+      trailingControlColumns: [],
+      columns: [{ id: 'C' }],
+      columnWidths: {},
+      defaultColumnWidth: 30,
+      schema: {},
+      schemaDetectors,
+      popoverContents: {},
+      interactiveCellId: '',
+      renderCellValue: jest.fn(),
+    },
+  };
+
+  it('is a light wrapper around EuiDataGridCell', () => {
+    const component = shallow(<Cell {...requiredProps} />);
+    expect(component.find('EuiDataGridCell').exists()).toBe(true);
+  });
+
+  describe('stripes', () => {
+    it('renders odd rows with .euiDataGridRowCell--stripe', () => {
+      const component = shallow(<Cell {...requiredProps} rowIndex={3} />);
+      expect(component.hasClass('euiDataGridRowCell--stripe')).toBe(true);
+
+      component.setProps({ rowIndex: 4 });
+      expect(component.hasClass('euiDataGridRowCell--stripe')).toBe(false);
+    });
+
+    it('renders striping based on the visible rowIndex, and not from the row offset that accounts for pagination', () => {
+      const component = shallow(
+        <Cell
+          {...requiredProps}
+          rowIndex={3}
+          data={{ ...requiredProps.data, rowOffset: 15 }}
+        />
+      );
+      expect(component.prop('rowIndex')).toBe(18);
+      expect(component.prop('visibleRowIndex')).toBe(3);
+      expect(component.hasClass('euiDataGridRowCell--stripe')).toBe(true);
+    });
+  });
 });
 
 describe('getParentCellContent', () => {

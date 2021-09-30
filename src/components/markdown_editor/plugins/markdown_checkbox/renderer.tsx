@@ -9,7 +9,7 @@
 import React, { FunctionComponent, useContext } from 'react';
 import { EuiCheckbox } from '../../../form/checkbox';
 import { EuiMarkdownContext } from '../../markdown_context';
-import { htmlIdGenerator } from '../../../../services/accessibility';
+import { useGeneratedHtmlId } from '../../../../services/accessibility';
 import { EuiMarkdownAstNodePosition } from '../../markdown_types';
 import { CheckboxNodeDetails } from './types';
 
@@ -21,7 +21,7 @@ export const CheckboxMarkdownRenderer: FunctionComponent<
   const { replaceNode } = useContext(EuiMarkdownContext);
   return (
     <EuiCheckbox
-      id={htmlIdGenerator()()}
+      id={useGeneratedHtmlId()}
       checked={isChecked}
       label={children}
       onChange={() => {

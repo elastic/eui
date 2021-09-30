@@ -467,7 +467,16 @@ exports[`EuiDualRange props levels should render 1`] = `
   >
     <div
       class="euiRangeLevels"
-    />
+    >
+      <span
+        class="euiRangeLevel euiRangeLevel--danger"
+        style="left:calc(0% + 0px);right:calc(100% - 0px)"
+      />
+      <span
+        class="euiRangeLevel euiRangeLevel--success"
+        style="left:calc(0% + 0px);right:calc(100% - 0px)"
+      />
+    </div>
     <input
       aria-hidden="true"
       class="euiRangeSlider euiRangeSlider--hasRange euiDualRange__slider"

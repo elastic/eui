@@ -1,5 +1,38 @@
 [
   {
+    "version": "38.1.0",
+    "changes": [
+      {
+        "token": "euiMarkdownEditorFooter.descriptionPrefix",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.descriptionSuffix",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.mdSyntaxLink",
+        "changeType": "added",
+        "value": "GitHub flavored markdown"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.syntaxModalDescriptionPrefix",
+        "changeType": "added",
+        "value": "This editor uses"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.syntaxModalDescriptionSuffix",
+        "changeType": "added",
+        "value": "You can also utilize these additional syntax plugins to add rich content to your text."
+      },
+      {
+        "token": "euiMarkdownEditorFooter.syntaxPopoverDescription",
+        "changeType": "added",
+        "value": "This editor uses"
+      }
+    ]
+  },
+  {
     "version": "37.3.1",
     "changes": [
       {

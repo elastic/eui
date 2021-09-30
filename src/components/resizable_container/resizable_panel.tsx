@@ -19,7 +19,7 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { useEuiResizableContainerContext } from './context';
-import { htmlIdGenerator } from '../../services';
+import { useGeneratedHtmlId } from '../../services';
 import { EuiPanel } from '../panel';
 import {
   PanelPaddingSize,
@@ -153,8 +153,6 @@ const getPosition = (ref: HTMLDivElement) => {
   return position;
 };
 
-const generatePanelId = htmlIdGenerator('resizable-panel');
-
 export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   children,
   className,
@@ -184,32 +182,31 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     },
   } = useEuiResizableContainerContext();
   const divRef = useRef<HTMLDivElement>(null);
-  const panelId = useRef(id || generatePanelId());
+  const panelId = useGeneratedHtmlId({
+    prefix: 'resizable-panel',
+    conditionalId: id,
+  });
   const resizerIds = useRef<string[]>([]);
   const modeType = useMemo(() => getModeType(mode), [mode]);
   const toggleOpts = useMemo(() => getToggleOptions(mode), [mode]);
   const innerSize = useMemo(
-    () =>
-      (panels[panelId.current] && panels[panelId.current].size) ??
-      (initialSize || 0),
-    [panels, initialSize]
+    () => (panels[panelId] && panels[panelId].size) ?? (initialSize || 0),
+    [panels, panelId, initialSize]
   );
   const isCollapsed = useMemo(
-    () =>
-      (panels[panelId.current] && panels[panelId.current].isCollapsed) || false,
-    [panels]
+    () => (panels[panelId] && panels[panelId].isCollapsed) || false,
+    [panels, panelId]
   );
   const position = useMemo(
-    () =>
-      (panels[panelId.current] && panels[panelId.current].position) || 'middle',
-    [panels]
+    () => (panels[panelId] && panels[panelId].position) || 'middle',
+    [panels, panelId]
   );
   const isCollapsible = useMemo(() => modeType === 'collapsible', [modeType]);
   const direction = useMemo(() => {
     let direction = null;
     if (position === 'middle' && (isCollapsible || isCollapsed)) {
       const ids = Object.keys(panels);
-      const index = ids.indexOf(panelId.current);
+      const index = ids.indexOf(panelId);
       const prevPanel = panels[ids[index - 1]];
       const nextPanel = panels[ids[index + 1]];
       const prevPanelMode = prevPanel ? getModeType(prevPanel.mode) : null;
@@ -232,7 +229,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       }
     }
     return direction;
-  }, [isCollapsed, isCollapsible, position, panels]);
+  }, [isCollapsed, isCollapsible, position, panels, panelId]);
 
   const padding = useMemo(() => {
     return `${panelPaddingValues[paddingSize] * 2}px`;
@@ -278,7 +275,6 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
 
   useEffect(() => {
     if (!registration) return;
-    const id = panelId.current;
     const initSize = size ?? (initialSize || 0);
     resizerIds.current = [
       divRef.current!.previousElementSibling
@@ -289,7 +285,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
         : '',
     ];
     registration.register({
-      id,
+      id: panelId,
       size: initSize,
       prevSize: initSize,
       getSizePx() {
@@ -303,7 +299,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
       position: getPosition(divRef.current!),
     });
     return () => {
-      registration.deregister(id);
+      registration.deregister(panelId);
     };
   }, [
     initialSize,
@@ -313,12 +309,12 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
     registration,
     modeType,
     padding,
+    panelId,
   ]);
 
   const onClickCollapse = (options: ActionToggleOptions) => {
-    onToggleCollapsedInternal &&
-      onToggleCollapsedInternal(panelId.current, options);
-    onToggleCollapsed && onToggleCollapsed(panelId.current, options);
+    onToggleCollapsedInternal && onToggleCollapsedInternal(panelId, options);
+    onToggleCollapsed && onToggleCollapsed(panelId, options);
   };
 
   const collapseRight = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -386,7 +382,7 @@ export const EuiResizablePanel: FunctionComponent<EuiResizablePanelProps> = ({
   return (
     <div
       {...wrapperProps}
-      id={panelId.current}
+      id={panelId}
       ref={divRef}
       style={styles}
       className={classes}
