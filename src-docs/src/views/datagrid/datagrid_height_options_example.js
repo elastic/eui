@@ -214,11 +214,11 @@ export const DataGridRowHeightOptionsExample = {
             title="Make sure your line heights match!"
           >
             <p>
-              NOTE: If you wrap your cell content with CSS that overrides/sets
+              If you wrap your cell content with CSS that overrides/sets
               line-height (e.g. in an <EuiCode>EuiText</EuiCode>), your row
-              heights will not be calculated correctly! Make sure to match the
-              passed <EuiCode>lineHeight</EuiCode> property to the actual cell
-              content line height.
+              heights will not be calculated correctly! Make sure to match or inherit 
+              the passed <EuiCode>lineHeight</EuiCode> property to the actual 
+              cell content line height.
             </p>
           </EuiCallOut>
         </Fragment>
