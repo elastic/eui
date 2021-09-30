@@ -146,9 +146,9 @@ export const DataGridRowHeightOptionsExample = {
           <li>
             <EuiCode>defaultHeight</EuiCode>
             <ul>
-              <li>defines the default size for all rows</li>
+              <li>Defines the default size for all rows</li>
               <li>
-                can be configured with an exact pixel height, a line count, or{' '}
+                Can be configured with an exact pixel height, a line count, or{' '}
                 <EuiCode>&quot;auto&quot;</EuiCode> to fit all content
               </li>
             </ul>
@@ -156,9 +156,9 @@ export const DataGridRowHeightOptionsExample = {
           <li>
             <EuiCode>rowHeights</EuiCode>
             <ul>
-              <li>overrides the height for a specific row</li>
+              <li>Overrides the height for a specific row</li>
               <li>
-                can be configured with an exact pixel height, a line count, or{' '}
+                Can be configured with an exact pixel height, a line count, or{' '}
                 <EuiCode>&quot;auto&quot;</EuiCode> to fit all content
               </li>
             </ul>
@@ -167,11 +167,11 @@ export const DataGridRowHeightOptionsExample = {
             <EuiCode>lineHeight</EuiCode>
             <ul>
               <li>
-                sets a default line height for all cells, which is used to
+                Sets a default line height for all cells, which is used to
                 calculate row height
               </li>
               <li>
-                accepts any value that the <EuiCode>line-height</EuiCode> CSS
+                Accepts any value that the <EuiCode>line-height</EuiCode> CSS
                 property normally takes (e.g. px, ems, rems, or unitless)
               </li>
             </ul>
@@ -214,11 +214,11 @@ export const DataGridRowHeightOptionsExample = {
             title="Make sure your line heights match!"
           >
             <p>
-              NOTE: If you wrap your cell content with CSS that overrides/sets
+              If you wrap your cell content with CSS that overrides/sets
               line-height (e.g. in an <EuiCode>EuiText</EuiCode>), your row
-              heights will not be calculated correctly! Make sure to match the
-              passed <EuiCode>lineHeight</EuiCode> property to the actual cell
-              content line height.
+              heights will not be calculated correctly! Make sure to match or
+              inherit the passed <EuiCode>lineHeight</EuiCode> property to the
+              actual cell content line height.
             </p>
           </EuiCallOut>
         </Fragment>
