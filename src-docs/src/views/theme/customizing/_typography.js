@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { css } from '@emotion/react';
 
@@ -16,7 +15,7 @@ import {
   fontScale,
 } from '../../../../../src/global_styling/variables/_typography';
 
-import { ThemeValue } from '../_values';
+import { ThemeValue } from './_values';
 
 import {
   getPropsFromThemeKey,
@@ -87,7 +86,7 @@ export default ({ onThemeUpdate }) => {
 
         <ThemeValue
           property={'font'}
-          // type={baseProps.family}
+          type={baseProps.family}
           name={'family'}
           value={fontFamilies[0]}
           onUpdate={(value) => {
@@ -104,7 +103,7 @@ export default ({ onThemeUpdate }) => {
 
         <ThemeValue
           property={'font'}
-          // type={baseProps.familyCode}
+          type={baseProps.familyCode}
           name={'familyCode'}
           value={codeFontFamilies[0]}
           onUpdate={(value) => {
@@ -121,7 +120,7 @@ export default ({ onThemeUpdate }) => {
 
         <ThemeValue
           property={'font'}
-          // type={baseProps.featureSettings}
+          type={baseProps.featureSettings}
           value={font.featureSettings}
           name={'featureSettings'}
           onUpdate={(value) => updateFont('featureSettings', value)}
@@ -134,7 +133,7 @@ export default ({ onThemeUpdate }) => {
 
         <ThemeValue
           property={'font'}
-          // type={baseProps.baseline}
+          type={baseProps.baseline}
           name={'baseline'}
           value={fontClone.baseline}
           onUpdate={(value) => updateFont('baseline', value)}
@@ -144,7 +143,7 @@ export default ({ onThemeUpdate }) => {
 
         <ThemeValue
           property={'font'}
-          // type={baseProps.lineHeightMultiplier}
+          type={baseProps.lineHeightMultiplier}
           name={'lineHeightMultiplier'}
           value={font.lineHeightMultiplier}
           onUpdate={(value) => updateFont('lineHeightMultiplier', value)}
@@ -175,7 +174,7 @@ export default ({ onThemeUpdate }) => {
           <ThemeValue
             key={key}
             property="font.weight"
-            // type={weightProps[key]}
+            type={weightProps[key]}
             name={key}
             value={weightClone.weight[key]}
             buttonStyle={css`
@@ -212,7 +211,7 @@ export default ({ onThemeUpdate }) => {
           <ThemeValue
             key={key}
             property="font.scale"
-            // type={scaleProps[key]}
+            type={scaleProps[key]}
             name={key}
             value={scaleClone.scale[key]}
             buttonStyle={css`
