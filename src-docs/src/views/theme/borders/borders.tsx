@@ -11,6 +11,14 @@ import { ThemeNotice } from '../_components/_theme_notice';
 import { ColorJS, RadiusJS, TypesJS, WidthJS } from './_border_js';
 import { ColorSass, TypesSass, WidthSass, RadiusSass } from './_border_sass';
 
+// This array is used inside routes.js to create the sidenav sub-sections
+export const bordersSections = [
+  { title: 'Types', id: 'types' },
+  { title: 'Color', id: 'color' },
+  { title: 'Width', id: 'width' },
+  { title: 'Radius', id: 'radius' },
+];
+
 export default () => {
   const themeContext = useContext(ThemeContext);
   const currentLanguage = themeContext.themeLanguage;
@@ -72,7 +80,7 @@ export default () => {
       <EuiSpacer size="xl" />
 
       <EuiText>
-        <h2>Types</h2>
+        <h2 id={`${bordersSections[0].id}`}>{`${bordersSections[0].title}`}</h2>
       </EuiText>
 
       <EuiSpacer size="xl" />
@@ -82,7 +90,7 @@ export default () => {
       <EuiSpacer size="xl" />
 
       <EuiText grow={false}>
-        <h2>Color</h2>
+        <h2 id={`${bordersSections[1].id}`}>{`${bordersSections[1].title}`}</h2>
         <p>
           EUI only has one base color it uses for all borders (or calculated
           borders).
@@ -96,7 +104,7 @@ export default () => {
       <EuiSpacer size="xl" />
 
       <EuiText grow={false}>
-        <h2>Width</h2>
+        <h2 id={`${bordersSections[2].id}`}>{`${bordersSections[2].title}`}</h2>
       </EuiText>
 
       <EuiSpacer size="xl" />
@@ -106,7 +114,7 @@ export default () => {
       <EuiSpacer size="xl" />
 
       <EuiText grow={false}>
-        <h2>Radius</h2>
+        <h2 id={`${bordersSections[3].id}`}>{`${bordersSections[3].title}`}</h2>
       </EuiText>
 
       <EuiSpacer size="xl" />
