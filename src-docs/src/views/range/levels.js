@@ -16,31 +16,14 @@ export default () => {
   const levels = [
     {
       min: 0,
-      max: 25,
-      color: 'primary',
-    },
-    {
-      min: 25,
-      max: 50,
-      color: 'success',
-    },
-    {
-      min: 50,
-      max: 90,
-      color: 'warning',
-    },
-    {
-      min: 90,
-      max: 100,
+      max: 20,
       color: 'danger',
     },
-  ];
-
-  const ticks = [
-    { label: 'warning', value: 0 },
-    { label: 'minor', value: 25 },
-    { label: 'major', value: 50 },
-    { label: 'critical', value: 90 },
+    {
+      min: 20,
+      max: 100,
+      color: 'success',
+    },
   ];
 
   const onChange = (e) => {
@@ -60,7 +43,6 @@ export default () => {
         showTicks
         tickInterval={20}
         levels={levels}
-        ticks={ticks}
         aria-label="An example of EuiRange with levels prop"
         aria-describedby="levelsHelp2"
       />
@@ -75,8 +57,8 @@ export default () => {
         onChange={(value) => onDualChange(value)}
         showTicks
         ticks={[
-          { label: '25kb', value: 25 },
-          { label: '90kb', value: 90 },
+          { label: '20kb', value: 20 },
+          { label: '100kb', value: 100 },
         ]}
         showInput
         levels={levels}
