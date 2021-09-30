@@ -30,6 +30,13 @@ import {
 import { ThemeNotice } from '../_components/_theme_notice';
 import { ThemeContext } from '../../../components/with_theme';
 
+// This array is used inside routes.js to create the sidenav sub-sections
+export const typographySections = [
+  { title: 'Font settings', id: 'font-settings' },
+  { title: 'Font weight', id: 'font-weight' },
+  { title: 'Font scale', id: 'font-scale' },
+];
+
 export default () => {
   const { euiTheme } = useEuiTheme();
   const legacyTheme = !euiTheme.themeName.includes('amsterdam');
@@ -53,7 +60,9 @@ export default () => {
         <>
           <EuiSpacer size="xl" />
           <EuiText grow={false}>
-            <h2>Font scale</h2>
+            <h2
+              id={`${typographySections[2].id}`}
+            >{`${typographySections[2].title}`}</h2>
             <p>
               The typographic scale is loosely based on the{' '}
               <EuiLink href="https://type-scale.com/?size=16&scale=1.250&text=A%20Visual%20Type%20Scale&font=Inter&fontweight=400&bodyfont=body_font_default&bodyfontweight=400&lineheight=1.75&backgroundcolor=%23ffffff&fontcolor=%23000000&preview=false">
@@ -105,7 +114,9 @@ export default () => {
       <EuiSpacer size="xl" />
 
       <EuiText grow={false}>
-        <h2>Font settings</h2>
+        <h2
+          id={`${typographySections[0].id}`}
+        >{`${typographySections[0].title}`}</h2>
       </EuiText>
 
       <EuiSpacer size="xl" />
@@ -115,7 +126,9 @@ export default () => {
       <EuiSpacer size="xl" />
 
       <EuiText grow={false}>
-        <h2>Font weight</h2>
+        <h2
+          id={`${typographySections[1].id}`}
+        >{`${typographySections[1].title}`}</h2>
         <p>
           EUI establishes a set of 5 font-weights based on their numeric
           keywords values. When importing the font-family from your service of

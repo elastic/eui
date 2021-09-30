@@ -224,7 +224,9 @@ import { SuperSelectExample } from './views/super_select/super_select_example';
 
 import { ThemeExample } from './views/theme/theme_example';
 import ThemeValues from './views/theme/values';
-import Typography from './views/theme/typography/typography';
+import Typography, {
+  typographySections,
+} from './views/theme/typography/typography';
 import Breakpoints from './views/theme/breakpoints/breakpoints';
 import Borders, { bordersSections } from './views/theme/borders/borders';
 
@@ -360,6 +362,7 @@ const navigation = [
       {
         name: 'Typography',
         component: Typography,
+        sections: typographySections,
       },
       createExample(SassGuidelines, 'Sass'),
     ],
