@@ -5,6 +5,9 @@ import {
   hasDisplayToggles,
   listExtraDeps,
 } from '../../services';
+import { LEGACY_NAME_KEY } from '../../../../src/themes';
+
+import { ThemeContext } from '../with_theme';
 
 const pkg = require('../../../../package.json');
 
@@ -26,7 +29,6 @@ const getVersion = (packageName) => {
  * 5. Through regex we read the dependencies of both `content` and `display_toggles` and pass that to CS.
  * 6. We pass the files and dependencies as params to CS through a POST call.
  * */
-import { ThemeContext } from '../with_theme';
 
 const displayTogglesRawCode = require('!!raw-loader!../../views/form_controls/display_toggles')
   .default;
@@ -49,11 +51,11 @@ export const CodeSandboxLinkComponent = ({
 }) => {
   let cssFile;
   switch (context.theme) {
-    case 'amsterdam-light':
-      cssFile = '@elastic/eui/dist/eui_theme_amsterdam_light.css';
+    case `${LEGACY_NAME_KEY}_light`:
+      cssFile = '@elastic/eui/dist/eui_legacy_light.css';
       break;
-    case 'amsterdam-dark':
-      cssFile = '@elastic/eui/dist/eui_theme_amsterdam_dark.css';
+    case `${LEGACY_NAME_KEY}_dark`:
+      cssFile = '@elastic/eui/dist/eui_legacy_dark.css';
       break;
     case 'dark':
       cssFile = '@elastic/eui/dist/eui_theme_dark.css';

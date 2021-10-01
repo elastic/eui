@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
+import { LEGACY_NAME_KEY } from '../../../../src';
+
 import { ThemeContext } from '../../components';
 import { Typography } from './sass/typography';
 import { Animation } from './sass/animation';
@@ -56,18 +58,18 @@ const bemExample = `// Use camelCase naming
 const ImportOutsideExample = () => {
   const themeContext = useContext(ThemeContext);
   switch (themeContext.theme) {
-    case 'light':
-      return `@import '@elastic/eui/src/themes/eui/eui_colors_light.scss';
-@import '@elastic/eui/src/themes/eui/eui_globals.scss';`;
+    case `${LEGACY_NAME_KEY}_light`:
+      return `@import '@elastic/eui/src/themes/legacy/_colors_light.scss';
+@import '@elastic/eui/src/themes/legacy/_globals.scss';`;
+    case `${LEGACY_NAME_KEY}_dark`:
+      return `@import '@elastic/eui/src/themes/legacy/_colors_dark.scss';
+@import '@elastic/eui/src/themes/legacy/_globals.scss';`;
     case 'dark':
-      return `@import '@elastic/eui/src/themes/eui/eui_colors_dark.scss';
-@import '@elastic/eui/src/themes/eui/eui_globals.scss';`;
-    case 'amsterdam-dark':
-      return `@import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_colors_dark.scss';
-@import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_globals.scss';`;
+      return `@import '@elastic/eui/src/themes/amsterdam/_colors_dark.scss';
+@import '@elastic/eui/src/themes/amsterdam/_globals.scss';`;
     default:
-      return `@import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
-@import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_globals.scss';`;
+      return `@import '@elastic/eui/src/themes/amsterdam/_colors_light.scss';
+@import '@elastic/eui/src/themes/amsterdam/_globals.scss';`;
   }
 };
 
