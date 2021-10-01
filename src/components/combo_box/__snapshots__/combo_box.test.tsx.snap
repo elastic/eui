@@ -102,6 +102,50 @@ exports[`props autoFocus is rendered 1`] = `
 </div>
 `;
 
+exports[`props custom ID is rendered 1`] = `
+<div
+  aria-expanded={false}
+  aria-haspopup="listbox"
+  className="euiComboBox"
+  onKeyDown={[Function]}
+  role="combobox"
+>
+  <EuiComboBoxInput
+    autoSizeInputRef={[Function]}
+    compressed={false}
+    fullWidth={false}
+    hasSelectedOptions={true}
+    id="test-id-1"
+    inputRef={[Function]}
+    isListOpen={false}
+    noIcon={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    rootId={[Function]}
+    searchValue=""
+    selectedOptions={
+      Array [
+        Object {
+          "label": "Mimas",
+        },
+        Object {
+          "label": "Iapetus",
+        },
+      ]
+    }
+    singleSelection={false}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value="Mimas, Iapetus"
+  />
+</div>
+`;
+
 exports[`props delimiter is rendered 1`] = `
 <div
   aria-expanded={false}
@@ -716,7 +760,7 @@ exports[`props singleSelection prepend and append is rendered 1`] = `
 <div
   aria-expanded={true}
   aria-haspopup="listbox"
-  className="euiComboBox euiComboBox-isOpen"
+  className="euiComboBox euiComboBox--prepended euiComboBox--appended euiComboBox-isOpen"
   onKeyDown={[Function]}
   role="combobox"
 >

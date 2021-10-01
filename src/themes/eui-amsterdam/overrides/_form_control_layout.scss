@@ -1,14 +1,22 @@
+.euiComboBox {
+  // Round the left border when we append a label
+  &--appended {
+    .euiFormControlLayout__childrenWrapper {
+      border-radius: $euiFormControlBorderRadius 0 0 $euiFormControlBorderRadius;
+    }
+  }
+
+  // Round the right border when we prepend a label
+  &--prepended {
+    .euiFormControlLayout__childrenWrapper {
+      border-radius: 0 $euiFormControlBorderRadius $euiFormControlBorderRadius 0;
+    }
+  }
+}
+
 .euiFormControlLayout--group {
   border-radius: $euiFormControlBorderRadius;
   background-color: $euiFormInputGroupLabelBackground;
-
-  /**
-   * 1. Round the right border when we prepend a label
-   */
-
-  .euiFormControlLayout__prepend + .euiFormControlLayout__childrenWrapper {
-    border-radius: 0 $euiFormControlBorderRadius $euiFormControlBorderRadius 0;
-  }
 
   .euiFormControlLayout__prepend:first-child {
     @include euiFormControlSideBorderRadius($euiFormControlBorderRadius, $side: 'left', $internal: true);
