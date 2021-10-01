@@ -96,17 +96,11 @@ Most of the time, you just need the compiled CSS, which provides the styling for
 import '@elastic/eui/dist/eui_theme_light.css';
 ```
 
-Other compiled themes include:
+For the dark theme, you can import
+
 ```js
 import '@elastic/eui/dist/eui_theme_dark.css';
 ```
-```js
-import '@elastic/eui/dist/eui_theme_amsterdam_light.css';
-```
-```js
-import '@elastic/eui/dist/eui_theme_amsterdam_dark.css';
-```
-
 ### Using our Sass variables on top of compiled CSS
 
 If you want to build **on top** of the EUI theme by accessing the Sass variables, functions, and mixins, you'll need to import the Sass globals in addition to the compiled CSS mentioned above. This will require `style`, `css`, `postcss`, and `sass` loaders.
@@ -114,22 +108,15 @@ If you want to build **on top** of the EUI theme by accessing the Sass variables
 First import the correct colors file, followed by the globals file.
 
 ```scss
-@import '@elastic/eui/src/themes/eui/eui_colors_light.scss';
-@import '@elastic/eui/src/themes/eui/eui_globals.scss';
+@import '@elastic/eui/src/themes/amsterdam/_colors_light.scss';
+@import '@elastic/eui/src/themes/amsterdam/_globals.scss';
 ```
 
 For the dark theme, swap the first import for the dark colors file.
 
 ```scss
-@import '@elastic/eui/src/themes/eui/eui_colors_dark.scss';
-@import '@elastic/eui/src/themes/eui/eui_globals.scss';
-```
-
-If you want to use the new, but in progress Amsterdam theme, you can import it similarly.
-
-```scss
-@import '@elastic/eui/src/themes/amsterdam/eui_amsterdam_colors_light.scss';
-@import '@elastic/eui/src/themes/amsterdam/eui_amsterdam_globals.scss';
+@import '@elastic/eui/src/themes/amsterdam/_colors_dark.scss';
+@import '@elastic/eui/src/themes/amsterdam/_globals.scss';
 ```
 
 ### Using Sass to customize EUI
@@ -144,20 +131,12 @@ Here is an example setup.
 // mytheme.scss
 $euiColorPrimary: #7B61FF;
 
-@import '@elastic/eui/src/themes/eui/eui_colors_light.scss';
-@import '@elastic/eui/src/themes/eui/eui_globals.scss';
+@import '@elastic/eui/src/themes/amsterdam/theme_light.scss';
 ```
 
 ### Fonts
 
 By default, EUI ships with a font stack that includes some outside, open source fonts. If your system is internet available you can include these by adding the following imports to your SCSS/CSS files, otherwise you'll need to bundle the physical fonts in your build. EUI will drop to System Fonts (which you may prefer) in their absence.
-
-```scss
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
-@import url('https://rsms.me/inter/inter-ui.css');
-```
-
-The Amsterdam theme uses the latest version of Inter that can be grabbed from Google Fonts as well.
 
 ```scss
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
