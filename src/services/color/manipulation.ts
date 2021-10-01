@@ -6,8 +6,12 @@
  * Side Public License, v 1.
  */
 
-import chroma from 'chroma-js';
+import chroma, { Color } from 'chroma-js';
 import { isValidHex } from './is_valid_hex';
+
+const inOriginalFormat = (originalColor: string, newColor: Color) => {
+  return isValidHex(originalColor) ? newColor.hex() : newColor.css();
+};
 
 /**
  * Makes a color more transparent.
@@ -23,9 +27,8 @@ export const transparentize = (color: string, alpha: number) =>
  * @param ratio - Mix weight. From 0-1. Larger value indicates more white.
  */
 export const tint = (color: string, ratio: number) => {
-  const isHex = isValidHex(color);
   const tint = chroma.mix(color, '#fff', ratio, 'rgb');
-  return isHex ? tint.hex() : tint.css();
+  return inOriginalFormat(color, tint);
 };
 
 /**
@@ -34,9 +37,8 @@ export const tint = (color: string, ratio: number) => {
  * @param ratio - Mix weight. From 0-1. Larger value indicates more black.
  */
 export const shade = (color: string, ratio: number) => {
-  const isHex = isValidHex(color);
   const shade = chroma.mix(color, '#000', ratio, 'rgb');
-  return isHex ? shade.hex() : shade.css();
+  return inOriginalFormat(color, shade);
 };
 
 /**
@@ -45,9 +47,8 @@ export const shade = (color: string, ratio: number) => {
  * @param amount - Amount to change in absolute terms. 0-1.
  */
 export const saturate = (color: string, amount: number) => {
-  const isHex = isValidHex(color);
   const saturate = chroma(color).set('hsl.s', `+${amount}`);
-  return isHex ? saturate.hex() : saturate.css();
+  return inOriginalFormat(color, saturate);
 };
 
 /**
@@ -56,9 +57,8 @@ export const saturate = (color: string, amount: number) => {
  * @param amount - Amount to change in absolute terms. 0-1.
  */
 export const desaturate = (color: string, amount: number) => {
-  const isHex = isValidHex(color);
   const desaturate = chroma(color).set('hsl.s', `-${amount}`);
-  return isHex ? desaturate.hex() : desaturate.css();
+  return inOriginalFormat(color, desaturate);
 };
 
 /**
