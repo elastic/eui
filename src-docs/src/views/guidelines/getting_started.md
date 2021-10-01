@@ -128,8 +128,8 @@ For the dark theme, swap the first import for the dark colors file.
 If you want to use the new, but in progress Amsterdam theme, you can import it similarly.
 
 ```scss
-@import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_colors_light.scss';
-@import '@elastic/eui/src/themes/eui-amsterdam/eui_amsterdam_globals.scss';
+@import '@elastic/eui/src/themes/amsterdam/eui_amsterdam_colors_light.scss';
+@import '@elastic/eui/src/themes/amsterdam/eui_amsterdam_globals.scss';
 ```
 
 ### Using Sass to customize EUI
