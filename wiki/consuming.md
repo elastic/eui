@@ -50,12 +50,6 @@ Other compiled themes include:
 ```js
 import '@elastic/eui/dist/eui_theme_dark.css';
 ```
-```js
-import '@elastic/eui/dist/eui_theme_amsterdam_light.css';
-```
-```js
-import '@elastic/eui/dist/eui_theme_amsterdam_dark.css';
-```
 
 ### Using our Sass variables on top of compiled CSS
 
@@ -64,22 +58,15 @@ If you want to build **on top** of the EUI theme by accessing the Sass variables
 First import the correct colors file, followed by the globals file.
 
 ```scss
-@import '@elastic/eui/src/themes/eui/eui_colors_light.scss';
-@import '@elastic/eui/src/themes/eui/eui_globals.scss';
+@import '@elastic/eui/src/themes/amsterdam/_colors_light.scss';
+@import '@elastic/eui/src/themes/amsterdam/_globals.scss';
 ```
 
 For the dark theme, swap the first import for the dark colors file.
 
 ```scss
-@import '@elastic/eui/src/themes/eui/eui_colors_dark.scss';
-@import '@elastic/eui/src/themes/eui/eui_globals.scss';
-```
-
-If you want to use the new, but in progress Amsterdam theme, you can import it similarly.
-
-```scss
-@import '@elastic/eui/src/themes/amsterdam/eui_amsterdam_colors_light.scss';
-@import '@elastic/eui/src/themes/amsterdam/eui_amsterdam_globals.scss';
+@import '@elastic/eui/src/themes/amsterdam/_colors_dark.scss';
+@import '@elastic/eui/src/themes/amsterdam/_globals.scss';
 ```
 
 ### Using Sass to customize EUI
@@ -100,14 +87,6 @@ $euiColorPrimary: #7B61FF;
 ### Fonts
 
 By default, EUI ships with a font stack that includes some outside, open source fonts. If your system is internet available you can include these by adding the following imports to your SCSS/CSS files, otherwise you'll need to bundle the physical fonts in your build. EUI will drop to System Fonts (which you may prefer) in their absence.
-
-```scss
-// index.scss
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
-@import url('https://rsms.me/inter/inter-ui.css');
-```
-
-The Amsterdam theme uses the latest version of Inter that can be grabbed from Google Fonts as well.
 
 ```scss
 // index.scss
