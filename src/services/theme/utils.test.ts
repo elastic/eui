@@ -16,7 +16,6 @@ import {
   getComputed,
   buildTheme,
   mergeDeep,
-  isLegacyTheme,
 } from './utils';
 
 describe('isInverseColorMode', () => {
@@ -275,13 +274,5 @@ describe('mergeDeep', () => {
     expect(
       mergeDeep({ a: 1, b: { c: { d: 3 } } }, { b: { c: { e: 5 } } })
     ).toEqual({ a: 1, b: { c: { d: 3, e: 5 } } });
-  });
-});
-
-describe('isLegacyTheme', () => {
-  it('returns true for the default name', () => {
-    expect(isLegacyTheme('EUI_THEME_DEFAULT')).toBe(true);
-    expect(isLegacyTheme('EUI_THEME_AMSTERDAM')).toBe(false);
-    expect(isLegacyTheme('CUSTOM_DEFAULT')).toBe(false);
   });
 });

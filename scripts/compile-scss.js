@@ -26,7 +26,7 @@ const postcssConfigurationWithMinification = {
 async function compileScssFiles(
   sourcePattern,
   destinationDirectory,
-  packageName
+  packageName,
 ) {
   try {
     await mkdir(destinationDirectory);
@@ -134,5 +134,6 @@ if (require.main === module) {
     process.exit(1);
   }
 
-  compileScssFiles(path.join('src', 'theme_*.scss'), 'dist', euiPackageName);
+  compileScssFiles(path.join('src/themes/legacy', 'legacy_*.scss'), 'dist', euiPackageName);
+  compileScssFiles(path.join('src/themes/amsterdam', 'theme_*.scss'), 'dist', euiPackageName);
 }
