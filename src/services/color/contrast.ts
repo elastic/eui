@@ -76,7 +76,7 @@ Background: ${background}`
     }
   }
 
-  return highContrastTextColor;
+  return chroma(highContrastTextColor).hex();
 };
 
 /**
