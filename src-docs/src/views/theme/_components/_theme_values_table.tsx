@@ -92,7 +92,7 @@ export const ThemeValuesTable = ({
     });
   }
 
-  if (items[0].value) {
+  if (items[0].value != null) {
     columns.push({
       field: 'value',
       name: valueColumnTitle,
