@@ -262,14 +262,14 @@ export class EuiComboBoxInput<T> extends Component<
 
     return (
       <EuiFormControlLayout
-        append={append}
         icon={icon}
+        {...clickProps}
         inputId={id}
         isLoading={isLoading}
         compressed={compressed}
         fullWidth={fullWidth}
         prepend={prepend}
-        {...clickProps}
+        append={append}
       >
         <div
           className={wrapClasses}
