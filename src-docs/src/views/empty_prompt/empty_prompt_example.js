@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiEmptyPrompt } from '../../../../src/components';
+import { EuiCode, EuiEmptyPrompt, EuiText } from '../../../../src/components';
+
+import Guidelines from './guidelines';
 
 import emptyPromptConfig from './playground';
 
@@ -53,6 +55,21 @@ const statesSource = require('!!raw-loader!./empty_prompt_states');
 
 export const EmptyPromptExample = {
   title: 'Empty prompt',
+  intro: (
+    <EuiText>
+      <p>
+        The <strong>EuiEmptyPrompt</strong> is the building block to create an
+        empty state. You can use it as a placeholder for any type of empty
+        content. They are especially helpful for replacing entire pages or parts
+        of a product that contain no content.
+      </p>
+      <p>
+        Be sure to read the full{' '}
+        <Link to="/guidelines/empty-prompt">empty prompt usage guidelines</Link>
+        .
+      </p>
+    </EuiText>
+  ),
   sections: [
     {
       source: [
@@ -62,11 +79,20 @@ export const EmptyPromptExample = {
         },
       ],
       text: (
-        <p>
-          Use the <strong>EuiEmptyPrompt</strong> as a placeholder for any type
-          of empty content. They are especially helpful for replacing entire
-          pages that contain no content.
-        </p>
+        <>
+          <p>
+            Use the <strong>EuiEmptyPrompt</strong> as a placeholder for any
+            type of empty content. They are especially helpful for replacing
+            entire pages that contain no content.
+          </p>
+          <p>
+            Be sure to read the full{' '}
+            <Link to="/guidelines/empty-prompt">
+              empty prompt usage guidelines
+            </Link>
+            .
+          </p>
+        </>
       ),
       props: { EuiEmptyPrompt },
       demo: <EmptyPrompt />,
@@ -193,4 +219,5 @@ export const EmptyPromptExample = {
       ),
     },
   ],
+  guidelines: <Guidelines />,
 };
