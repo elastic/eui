@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import { EuiSpacer } from '../../../../../src/components';
+import { EuiSpacer, EuiScreenReaderOnly } from '../../../../../src';
 
 // @ts-ignore Importing from JS
 import { GuidePage } from '../../../components/guide_page';
@@ -37,6 +37,10 @@ export default () => {
       }
     >
       <EuiSpacer size="xl" />
+
+      <EuiScreenReaderOnly>
+        <h2>Values</h2>
+      </EuiScreenReaderOnly>
 
       {baseContent}
     </GuidePage>
