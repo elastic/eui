@@ -7,7 +7,7 @@
 **Bug fixes**
 
 - Fixed tick and level alignment in `Eui[Dual]Range` ([#5181](https://github.com/elastic/eui/pull/5181))
-- Fixed duplicate IDs on mobile/desktop select all checkboxes in `EuiBasicTable` ([#5237](https://github.com/elastic/eui/pull/5237))
+- Fixed multiple accessibility issues in `EuiBasicTable` and `EuiInMemoryTable` ([#5237](https://github.com/elastic/eui/pull/5237), [#5241](https://github.com/elastic/eui/pull/5241))
 
 **Breaking changes**
 
