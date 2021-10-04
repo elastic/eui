@@ -1166,7 +1166,7 @@ export class EuiBasicTable<T = any> extends Component<
         <EuiI18n token="euiBasicTable.selectThisRow" default="Select this row">
           {(selectThisRow: string) => (
             <EuiCheckbox
-              id={`${key}-checkbox`}
+              id={`${this.tableId}${key}-checkbox`}
               type="inList"
               disabled={disabled}
               checked={checked}
