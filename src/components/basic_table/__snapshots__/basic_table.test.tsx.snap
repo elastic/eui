@@ -1463,7 +1463,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                       checked={false}
                       compressed={false}
                       disabled={false}
-                      id="_selection_column-checkbox_generated-id"
+                      id="_selection_column-checkbox_generated-id_mobile"
                       indeterminate={false}
                       label="Select all rows"
                       onChange={[Function]}
@@ -1476,7 +1476,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                           checked={false}
                           className="euiCheckbox__input"
                           disabled={false}
-                          id="_selection_column-checkbox_generated-id"
+                          id="_selection_column-checkbox_generated-id_mobile"
                           onChange={[Function]}
                           type="checkbox"
                         />
@@ -1485,7 +1485,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                         />
                         <label
                           className="euiCheckbox__label"
-                          htmlFor="_selection_column-checkbox_generated-id"
+                          htmlFor="_selection_column-checkbox_generated-id_mobile"
                         >
                           Select all rows
                         </label>
@@ -1552,7 +1552,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                           compressed={false}
                           data-test-subj="checkboxSelectAll"
                           disabled={false}
-                          id="_selection_column-checkbox_generated-id"
+                          id="_selection_column-checkbox_generated-id_desktop"
                           indeterminate={false}
                           label={null}
                           onChange={[Function]}
@@ -1567,7 +1567,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                               className="euiCheckbox__input"
                               data-test-subj="checkboxSelectAll"
                               disabled={false}
-                              id="_selection_column-checkbox_generated-id"
+                              id="_selection_column-checkbox_generated-id_desktop"
                               onChange={[Function]}
                               type="checkbox"
                             />
