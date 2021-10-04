@@ -440,8 +440,10 @@ export default class extends Component {
   renderSelectAll = (mobile) => {
     return (
       <EuiCheckbox
-        id="selectAllCheckbox"
-        label={mobile ? 'Select all' : null}
+        id={mobile ? 'selectAllCheckboxMobile' : 'selectAllCheckboxDesktop'}
+        label={mobile ? 'Select all rows' : null}
+        aria-label="Select all rows"
+        title="Select all rows"
         checked={this.areAllItemsSelected()}
         onChange={this.toggleAll.bind(this)}
         type={mobile ? null : 'inList'}
@@ -522,6 +524,8 @@ export default class extends Component {
                 checked={this.isItemSelected(item.id)}
                 onChange={this.toggleItem.bind(this, item.id)}
                 type="inList"
+                title="Select this row"
+                aria-label="Select this row"
               />
             </EuiTableRowCellCheckbox>
           );
