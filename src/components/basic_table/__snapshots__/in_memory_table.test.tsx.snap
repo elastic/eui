@@ -71,7 +71,12 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
         },
       ]
     }
-    noItemsMessage="No items found"
+    noItemsMessage={
+      <EuiI18n
+        default="No items found"
+        token="euiBasicTable.noItemsMessage"
+      />
+    }
     onChange={[Function]}
     pagination={
       Object {
@@ -770,7 +775,12 @@ exports[`EuiInMemoryTable empty array 1`] = `
   }
   data-test-subj="test subject string"
   items={Array []}
-  noItemsMessage="No items found"
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
+    />
+  }
   onChange={[Function]}
   responsive={true}
   tableLayout="fixed"
@@ -792,7 +802,12 @@ exports[`EuiInMemoryTable with executeQueryOptions 1`] = `
   }
   data-test-subj="test subject string"
   items={Array []}
-  noItemsMessage="No items found"
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
+    />
+  }
   onChange={[Function]}
   responsive={true}
   tableLayout="fixed"
@@ -874,7 +889,12 @@ exports[`EuiInMemoryTable with initial selection 1`] = `
         },
       ]
     }
-    noItemsMessage="No items found"
+    noItemsMessage={
+      <EuiI18n
+        default="No items found"
+        token="euiBasicTable.noItemsMessage"
+      />
+    }
     onChange={[Function]}
     responsive={true}
     selection={
@@ -1422,7 +1442,12 @@ exports[`EuiInMemoryTable with initial sorting 1`] = `
       },
     ]
   }
-  noItemsMessage="No items found"
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
+    />
+  }
   onChange={[Function]}
   responsive={true}
   sorting={
@@ -1468,7 +1493,12 @@ exports[`EuiInMemoryTable with items 1`] = `
       },
     ]
   }
-  noItemsMessage="No items found"
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
+    />
+  }
   onChange={[Function]}
   responsive={true}
   tableLayout="fixed"
@@ -1513,7 +1543,12 @@ exports[`EuiInMemoryTable with items and expanded item 1`] = `
       },
     ]
   }
-  noItemsMessage="No items found"
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
+    />
+  }
   onChange={[Function]}
   responsive={true}
   tableLayout="fixed"
@@ -1628,7 +1663,12 @@ exports[`EuiInMemoryTable with pagination 1`] = `
       },
     ]
   }
-  noItemsMessage="No items found"
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
+    />
+  }
   onChange={[Function]}
   pagination={
     Object {
@@ -1670,7 +1710,12 @@ exports[`EuiInMemoryTable with pagination and default page size and index 1`] = 
       },
     ]
   }
-  noItemsMessage="No items found"
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
+    />
+  }
   onChange={[Function]}
   pagination={
     Object {
@@ -1721,7 +1766,12 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
       },
     ]
   }
-  noItemsMessage="No items found"
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
+    />
+  }
   onChange={[Function]}
   pagination={
     Object {
@@ -1769,7 +1819,12 @@ exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
       },
     ]
   }
-  noItemsMessage="No items found"
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
+    />
+  }
   onChange={[Function]}
   pagination={
     Object {
@@ -1819,7 +1874,12 @@ exports[`EuiInMemoryTable with pagination, hiding the per page options 1`] = `
       },
     ]
   }
-  noItemsMessage="No items found"
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
+    />
+  }
   onChange={[Function]}
   pagination={
     Object {
@@ -1871,7 +1931,12 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
       },
     ]
   }
-  noItemsMessage="No items found"
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
+    />
+  }
   onChange={[Function]}
   pagination={
     Object {
@@ -1951,7 +2016,12 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
         },
       ]
     }
-    noItemsMessage="No items found"
+    noItemsMessage={
+      <EuiI18n
+        default="No items found"
+        token="euiBasicTable.noItemsMessage"
+      />
+    }
     onChange={[Function]}
     pagination={
       Object {
@@ -2025,7 +2095,12 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
       },
     ]
   }
-  noItemsMessage="No items found"
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
+    />
+  }
   onChange={[Function]}
   pagination={
     Object {
@@ -2085,7 +2160,12 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
       },
     ]
   }
-  noItemsMessage="No items found"
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
+    />
+  }
   onChange={[Function]}
   pagination={
     Object {
@@ -2174,7 +2254,12 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
         },
       ]
     }
-    noItemsMessage="No items found"
+    noItemsMessage={
+      <EuiI18n
+        default="No items found"
+        token="euiBasicTable.noItemsMessage"
+      />
+    }
     onChange={[Function]}
     pagination={
       Object {
@@ -2258,7 +2343,12 @@ exports[`EuiInMemoryTable with search and component between search and table 1`]
         },
       ]
     }
-    noItemsMessage="No items found"
+    noItemsMessage={
+      <EuiI18n
+        default="No items found"
+        token="euiBasicTable.noItemsMessage"
+      />
+    }
     onChange={[Function]}
     responsive={true}
     tableLayout="fixed"
