@@ -28,6 +28,7 @@ import {
   EuiTableRowCellCheckbox,
   EuiTableSortMobile,
   EuiTableHeaderMobile,
+  EuiScreenReaderOnly,
 } from '../../../../../src/components';
 
 import {
@@ -248,7 +249,8 @@ export default class extends Component {
       },
       {
         id: 'type',
-        label: '',
+        label: 'Type',
+        isVisuallyHiddenLabel: true,
         alignment: LEFT_ALIGNMENT,
         width: '24px',
         cellProvider: (cell) => <EuiIcon type={cell} size="m" />,
@@ -320,7 +322,8 @@ export default class extends Component {
       },
       {
         id: 'actions',
-        label: '',
+        label: 'Actions',
+        isVisuallyHiddenLabel: true,
         alignment: RIGHT_ALIGNMENT,
         isActionsPopover: true,
         width: '32px',
@@ -472,6 +475,14 @@ export default class extends Component {
           <EuiTableHeaderCellCheckbox key={column.id} width={column.width}>
             {this.renderSelectAll()}
           </EuiTableHeaderCellCheckbox>
+        );
+      } else if (column.isVisuallyHiddenLabel) {
+        headers.push(
+          <EuiTableHeaderCell key={column.id} width={column.width}>
+            <EuiScreenReaderOnly>
+              <span>{column.label}</span>
+            </EuiScreenReaderOnly>
+          </EuiTableHeaderCell>
         );
       } else {
         headers.push(

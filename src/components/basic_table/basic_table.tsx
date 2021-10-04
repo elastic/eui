@@ -838,7 +838,9 @@ export class EuiBasicTable<T = any> extends Component<
             align={columnAlign}
             width={width}
             mobileOptions={mobileOptions}
-            data-test-subj={`tableHeaderCell_${name}_${index}`}
+            data-test-subj={`tableHeaderCell_${
+              typeof name === 'string' ? name : ''
+            }_${index}`}
             description={description}
             {...sorting}
           >
