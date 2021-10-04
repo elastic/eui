@@ -199,6 +199,7 @@ export const Table = () => {
       />
       <EuiSpacer size="m" />
       <EuiBasicTable
+        tableCaption="Demo of EuiBasicTable's table layout options"
         items={items}
         columns={layout === 'custom' ? customColumns : columns}
         tableLayout={layout === 'auto' ? 'auto' : 'fixed'}

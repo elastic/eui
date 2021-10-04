@@ -195,6 +195,7 @@ export const Table = () => {
     <Fragment>
       {deleteButton}
       <EuiBasicTable
+        tableCaption="Demo of EuiBasicTable with expanding rows"
         items={pageOfItems}
         itemId="id"
         itemIdToExpandedRowMap={itemIdToExpandedRowMap}
