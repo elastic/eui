@@ -1,8 +1,34 @@
 @import '../text/_variables';
 
 .euiEmptyPrompt {
-  max-width: $euiTextConstrainedMaxWidth;
-  text-align: center;
-  padding: $euiSizeL;
   margin: auto;
+}
+
+.euiEmptyPrompt--verticalLayout {
+  text-align: center;
+  max-width: fit-content;
+
+  .euiEmptyPrompt__main {
+    max-width: $euiTextConstrainedMaxWidth;
+  }
+}
+
+.euiEmptyPrompt--horizontalLayout {
+  .euiEmptyPrompt__illustration {
+    margin: auto;
+  }
+
+  .euiEmptyPrompt__content {
+    max-width: $euiTextConstrainedMaxWidth;
+    padding: $euiSizeL 0;
+  }
+
+  // Footer background colors
+  @each $modifier, $color in $euiPanelBackgroundColorModifiers {
+    .euiPanel--#{$modifier} {
+      .euiEmptyPrompt__footer {
+        border-top: lightOrDarkTheme(darken($color, 10%), lighten($color, 10%));
+      }
+    }
+  }
 }

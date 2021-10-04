@@ -20,6 +20,7 @@ import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
 import { EuiIcon, IconColor, IconType } from '../icon';
 import { EuiText, EuiTextColor } from '../text';
+import { EuiPanel, _EuiPanelProps } from '../panel/panel';
 
 export type EuiEmptyPromptProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
@@ -54,6 +55,16 @@ export type EuiEmptyPromptProps = CommonProps &
      * Recommendation is to pass the primary action first and secondary actions as empty buttons
      */
     actions?: ReactNode;
+
+    footer?: ReactNode;
+
+    layout?: 'vertical' | 'horizontal';
+
+    hasPanel?: boolean;
+
+    color?: _EuiPanelProps['color'];
+
+    panelProps?: _EuiPanelProps;
   };
 
 export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
@@ -65,10 +76,12 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   body,
   actions,
   className,
-  ...rest
+  layout = 'vertical',
+  hasPanel = false,
+  panelProps,
+  color,
+  footer,
 }) => {
-  const classes = classNames('euiEmptyPrompt', className);
-
   let iconNode;
   if (icon) {
     iconNode = (
@@ -134,12 +147,63 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
     );
   }
 
-  return (
-    <div className={classes} {...rest}>
-      {iconNode}
+  const contentNodes = (
+    <>
       {titleNode}
       {bodyNode}
       {actionsNode}
-    </div>
+    </>
   );
+
+  const isVerticalLayout = layout === 'vertical';
+
+  const classes = classNames(
+    'euiEmptyPrompt',
+    { 'euiEmptyPrompt--verticalLayout': isVerticalLayout },
+    { 'euiEmptyPrompt--horizontalLayout': !isVerticalLayout },
+    className
+  );
+
+  let panelColor: _EuiPanelProps['color'];
+
+  if (hasPanel && !color) {
+    panelColor = 'plain';
+  } else if (hasPanel && color) {
+    panelColor = color;
+  } else {
+    panelColor = 'transparent';
+  }
+
+  const customPanelProps = {
+    ...panelProps,
+    className: classes,
+    color: panelColor,
+  };
+
+  const verticalLayout = (
+    <EuiPanel {...customPanelProps}>
+      <div className="euiEmptyPrompt__main">
+        {iconNode}
+        {contentNodes}
+      </div>
+      <div className="euiEmptyPrompt__footer">{footer}</div>
+    </EuiPanel>
+  );
+
+  const horizontalLayout = (
+    <EuiPanel {...customPanelProps}>
+      <EuiFlexGroup className="euiEmptyPrompt__main">
+        <EuiFlexItem>
+          <div className="euiEmptyPrompt__content">{contentNodes}</div>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <div className="euiEmptyPrompt__illustration">{iconNode}</div>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <div className="euiEmptyPrompt__footer">{footer}</div>
+    </EuiPanel>
+  );
+
+  return isVerticalLayout ? verticalLayout : horizontalLayout;
 };

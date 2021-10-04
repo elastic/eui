@@ -5,6 +5,8 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiEmptyPrompt, EuiText } from '../../../../src/components';
 
+import { COLORS } from '../../../../src/components/panel/panel';
+
 import Guidelines from './guidelines';
 
 import emptyPromptConfig from './playground';
@@ -16,6 +18,31 @@ const emptyPromptSnippet = `<EuiEmptyPrompt
   title={<h2>You have no spice</h2>}
   body={bodyContent}
   actions={actions}
+  footer={footer}
+/>`;
+
+import Layout from './empty_prompt_layout';
+const layoutSource = require('!!raw-loader!./empty_prompt_layout');
+const layoutSnippet = `<EuiEmptyPrompt
+  iconType="editorStrike"
+  layout="horizontal"
+  title={<h2>You have no spice</h2>}
+  titleSize="xs"
+  body={bodyContent}
+  actions={actions}
+  footer={footer}
+/>`;
+
+import Panel from './empty_prompt_panel';
+const panelSource = require('!!raw-loader!./empty_prompt_panel');
+const panelSnippet = `<EuiEmptyPrompt
+  iconType="editorStrike"
+  hasPanel
+  title={<h2>You have no spice</h2>}
+  titleSize="xs"
+  body={bodyContent}
+  actions={actions}
+  footer={footer}
 />`;
 
 import Custom from './custom';
@@ -52,6 +79,9 @@ const errorSnippet = `<EuiEmptyPrompt
 
 import States from './empty_prompt_states';
 const statesSource = require('!!raw-loader!./empty_prompt_states');
+
+import Sink from './empty_prompt_sink';
+const sinkSource = require('!!raw-loader!./empty_prompt_sink');
 
 export const EmptyPromptExample = {
   title: 'Empty prompt',
@@ -98,6 +128,48 @@ export const EmptyPromptExample = {
       demo: <EmptyPrompt />,
       snippet: emptyPromptSnippet,
       playground: emptyPromptConfig,
+    },
+    {
+      title: 'Layout',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: layoutSource,
+        },
+      ],
+      text: (
+        <p>
+          You can supply a layout of either <EuiCode>horizontal</EuiCode> or{' '}
+          <EuiCode>vertical</EuiCode> with the default being{' '}
+          <EuiCode>vertical</EuiCode>. Use the <EuiCode>vertical</EuiCode>{' '}
+          layout when the content is minimal. Use the{' '}
+          <EuiCode>horizontal</EuiCode> for longer content and make sure to give
+          it a <EuiCode>max-width</EuiCode> or contain it in a component.
+        </p>
+      ),
+      props: { EuiEmptyPrompt },
+      demo: <Layout />,
+      snippet: layoutSnippet,
+    },
+    {
+      title: 'Panel',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: panelSource,
+        },
+      ],
+      text: (
+        <p>
+          You can enable a panel by setting to <EuiCode>true</EuiCode> the{' '}
+          <EuiCode>hasPanel</EuiCode> prop. You can also customize the panel
+          color by passing one of the color options:{' '}
+          <EuiCode language="js">{JSON.stringify(COLORS, null, 2)}</EuiCode>.
+        </p>
+      ),
+      props: { EuiEmptyPrompt },
+      demo: <Panel />,
+      snippet: panelSnippet,
     },
     {
       title: 'Custom sizes and colors',
@@ -217,6 +289,25 @@ export const EmptyPromptExample = {
           <States />
         </div>
       ),
+    },
+    {
+      title: 'Kitchen sink',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: sinkSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            This example shows of all the styling and markup possibilities. It
+            is mostly used for testing.
+          </p>
+        </>
+      ),
+      props: { EuiEmptyPrompt },
+      demo: <Sink />,
     },
   ],
   guidelines: <Guidelines />,
