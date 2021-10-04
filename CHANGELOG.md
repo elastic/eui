@@ -1,14 +1,22 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added `maxWidth` prop to `EuiTour`, made `subtitle` optional, and fixed heading levels and footer background ([#5225](https://github.com/elastic/eui/pull/5225))
+- Updated `tint`, `shade`, `saturate`, `desaturate`, and `makeHighContrastColor` utility functions to maintain color format supplied ([#5230](https://github.com/elastic/eui/pull/5230))
+
 **Bug fixes**
 
 - Fixed tick and level alignment in `Eui[Dual]Range` ([#5181](https://github.com/elastic/eui/pull/5181))
+
+**Breaking changes**
+
+- Removed `boolean` from `EuiTour`'s `minWidth` type ([#5225](https://github.com/elastic/eui/pull/5225))
 
 ## [`38.2.0`](https://github.com/elastic/eui/tree/v38.2.0)
 
 - Updated `EuiRangeLevel` `color` property to accept CSS color values ([#5171](https://github.com/elastic/eui/pull/5171))
 - Added optional visual line highlighting to `EuiCodeBlock` ([#5207](https://github.com/elastic/eui/pull/5207))
 - Added `popoverProps` to `EuiSuperSelect` and deprecated `popoverClassName` & `repositionOnScroll` ([#5214](https://github.com/elastic/eui/pull/5214))
+- Added `lineHeight` configuration to `rowHeightsOptions` in `EuiDataGrid` ([#5221](https://github.com/elastic/eui/pull/5221))
 
 **Bug fixes**
 
