@@ -26,6 +26,7 @@ export interface I18nShape {
     [key: string]: Renderable<object>;
   };
   mappingFunc?: (value: string) => string;
+  render?: (children: any[]) => FunctionComponent<any>;
   formatNumber?: (x: number) => string;
   formatDateTime?: (x: Date) => string;
   locale?: string;

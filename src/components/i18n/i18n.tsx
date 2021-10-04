@@ -38,7 +38,8 @@ function lookupToken<
   i18nMapping: I18nShape['mapping'],
   valueDefault: DEFAULT,
   i18nMappingFunc?: (token: string) => string,
-  values?: I18nTokenShape<T, DEFAULT>['values']
+  values?: I18nTokenShape<T, DEFAULT>['values'],
+  render?: (children: any[]) => FunctionComponent<any>
 ): RESOLVED {
   let renderable = (i18nMapping && i18nMapping[token]) || valueDefault;
 
@@ -64,9 +65,11 @@ function lookupToken<
     return children as RESOLVED;
   }
 
-  const Component: FunctionComponent<any> = () => {
-    return <Fragment>{children}</Fragment>;
-  };
+  const Component: FunctionComponent<any> = render
+    ? render(children)
+    : () => {
+        return <Fragment>{children}</Fragment>;
+      };
 
   // same reasons as above, we can't promise the transforms match the default's type
   return React.createElement(Component, values) as RESOLVED;
@@ -111,11 +114,19 @@ const EuiI18n = <
 ) => (
   <EuiI18nConsumer>
     {(i18nConfig) => {
-      const { mapping, mappingFunc } = i18nConfig;
+      const { mapping, mappingFunc, render } = i18nConfig;
+
       if (isI18nTokensShape(props)) {
         return props.children(
           props.tokens.map((token, idx) =>
-            lookupToken(token, mapping, props.defaults[idx], mappingFunc)
+            lookupToken(
+              token,
+              mapping,
+              props.defaults[idx],
+              mappingFunc,
+              undefined,
+              render
+            )
           )
         );
       }
@@ -125,7 +136,8 @@ const EuiI18n = <
         mapping,
         props.default,
         mappingFunc,
-        props.values
+        props.values,
+        render
       );
       if (props.children) {
         return props.children(tokenValue);
@@ -159,15 +171,29 @@ function useEuiI18n<DEFAULTS extends Array<string | ReactElement>>(
 ): Array<DefaultsRenderType<DEFAULTS>>;
 function useEuiI18n(...props: any[]) {
   const i18nConfig = useContext(I18nContext);
-  const { mapping, mappingFunc } = i18nConfig;
+  const { mapping, mappingFunc, render } = i18nConfig;
 
   if (typeof props[0] === 'string') {
     const [token, defaultValue, values] = props;
-    return lookupToken(token, mapping, defaultValue, mappingFunc, values);
+    return lookupToken(
+      token,
+      mapping,
+      defaultValue,
+      mappingFunc,
+      values,
+      render
+    );
   } else {
     const [tokens, defaultValues] = props as [string[], string[]];
     return tokens.map((token, idx) =>
-      lookupToken(token, mapping, defaultValues[idx], mappingFunc)
+      lookupToken(
+        token,
+        mapping,
+        defaultValues[idx],
+        mappingFunc,
+        undefined,
+        render
+      )
     );
   }
 }
