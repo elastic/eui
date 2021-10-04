@@ -994,18 +994,17 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
       </EuiTableFooter>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for preceding table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -2338,18 +2337,17 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for preceding table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 1,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -2469,18 +2467,17 @@ exports[`EuiBasicTable with pagination 1`] = `
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for preceding table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -2727,18 +2724,17 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for preceding table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -2858,19 +2854,17 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for preceding table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "hidePerPageOptions": true,
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -3057,18 +3051,17 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for preceding table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -3348,18 +3341,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for preceding table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -3546,18 +3538,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for preceding table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -3744,18 +3735,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for preceding table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -4053,18 +4043,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for preceding table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -4251,18 +4240,17 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for preceding table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
