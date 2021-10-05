@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { render, mount, shallow } from 'enzyme';
 
 import { EuiValidatableControl } from './validatable_control';
@@ -189,6 +190,35 @@ describe('EuiValidatableControl', () => {
 
       // Ensure that the child element has changed
       expect(ref.current).not.toBe(prevRef);
+    });
+  });
+
+  describe('required after blur', () => {
+    it('does not set the required attribute on initial page load', () => {
+      const component = mount(
+        <EuiValidatableControl isRequired>
+          <input />
+        </EuiValidatableControl>
+      );
+
+      expect(component.find('input').prop('required')).toBeFalsy();
+    });
+
+    it('sets the required attribute after the first blur event', () => {
+      const component = mount(
+        <EuiValidatableControl isRequired>
+          <input />
+        </EuiValidatableControl>
+      );
+      component.setProps({}); // required to force component state to update
+
+      act(() => {
+        const inputEl = component.find('input').getDOMNode();
+        inputEl.dispatchEvent(new FocusEvent('blur'));
+      });
+      component.setProps({}); // force state update
+
+      expect(component.find('input').prop('required')).toBeTruthy();
     });
   });
 });

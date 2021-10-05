@@ -16,6 +16,7 @@ import {
   useRef,
   useEffect,
   useCallback,
+  useState,
 } from 'react';
 import { CommonProps } from '../../common';
 
@@ -35,6 +36,7 @@ function isMutableRef(
 
 export interface EuiValidatableControlProps {
   isInvalid?: boolean;
+  isRequired?: boolean;
   /**
    * ReactNode to render as this component's content
    */
@@ -43,7 +45,7 @@ export interface EuiValidatableControlProps {
 
 export const EuiValidatableControl: FunctionComponent<
   CommonProps & EuiValidatableControlProps
-> = ({ isInvalid, children }) => {
+> = ({ isInvalid, isRequired, children }) => {
   const control = useRef<HTMLConstraintValidityElement | null>(null);
 
   const child = Children.only(children);
@@ -73,7 +75,34 @@ export const EuiValidatableControl: FunctionComponent<
     }
   });
 
+  const requiredProps = useIsRequired({
+    isRequired,
+    controlEl: control.current,
+  });
+
   return cloneElement(child, {
     ref: replacedRef,
+    ...requiredProps,
   });
+};
+
+export const useIsRequired = ({
+  controlEl,
+  isRequired,
+}: {
+  controlEl: HTMLConstraintValidityElement | null;
+  isRequired?: boolean;
+}) => {
+  const [hasBlurred, setHasBlurred] = useState(false);
+  const listenForBlur = useCallback(() => setHasBlurred(true), []);
+
+  useEffect(() => {
+    if (isRequired && controlEl && !hasBlurred) {
+      controlEl.addEventListener('blur', listenForBlur, { once: true });
+    }
+  }, [isRequired, controlEl, hasBlurred, listenForBlur]);
+
+  return isRequired != null
+    ? { required: isRequired && hasBlurred, 'aria-required': true }
+    : {};
 };
