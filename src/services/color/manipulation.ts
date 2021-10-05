@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import chroma from 'chroma-js';
+import chroma, { Color } from 'chroma-js';
+import { isValidHex } from './is_valid_hex';
+
+const inOriginalFormat = (originalColor: string, newColor: Color) => {
+  return isValidHex(originalColor) ? newColor.hex() : newColor.css();
+};
 
 /**
  * Makes a color more transparent.
@@ -21,32 +26,40 @@ export const transparentize = (color: string, alpha: number) =>
  * @param color - Color to mix with white
  * @param ratio - Mix weight. From 0-1. Larger value indicates more white.
  */
-export const tint = (color: string, ratio: number) =>
-  chroma.mix(color, '#fff', ratio, 'rgb').css();
+export const tint = (color: string, ratio: number) => {
+  const tint = chroma.mix(color, '#fff', ratio, 'rgb');
+  return inOriginalFormat(color, tint);
+};
 
 /**
  * Mixes a provided color with black.
  * @param color - Color to mix with black
  * @param ratio - Mix weight. From 0-1. Larger value indicates more black.
  */
-export const shade = (color: string, ratio: number) =>
-  chroma.mix(color, '#000', ratio, 'rgb').css();
+export const shade = (color: string, ratio: number) => {
+  const shade = chroma.mix(color, '#000', ratio, 'rgb');
+  return inOriginalFormat(color, shade);
+};
 
 /**
  * Increases the saturation of a color by manipulating the hsl saturation.
  * @param color - Color to manipulate
  * @param amount - Amount to change in absolute terms. 0-1.
  */
-export const saturate = (color: string, amount: number) =>
-  chroma(color).set('hsl.s', `+${amount}`).css();
+export const saturate = (color: string, amount: number) => {
+  const saturate = chroma(color).set('hsl.s', `+${amount}`);
+  return inOriginalFormat(color, saturate);
+};
 
 /**
  * Decreases the saturation of a color by manipulating the hsl saturation.
  * @param color - Color to manipulate
  * @param amount - Amount to change in absolute terms. 0-1.
  */
-export const desaturate = (color: string, amount: number) =>
-  chroma(color).set('hsl.s', `-${amount}`).css();
+export const desaturate = (color: string, amount: number) => {
+  const desaturate = chroma(color).set('hsl.s', `-${amount}`);
+  return inOriginalFormat(color, desaturate);
+};
 
 /**
  * Returns the lightness value of a color. 0-100

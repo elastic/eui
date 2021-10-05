@@ -311,7 +311,9 @@ export class EuiBasicTable<T = any> extends Component<
   static defaultProps = {
     responsive: true,
     tableLayout: 'fixed',
-    noItemsMessage: 'No items found',
+    noItemsMessage: (
+      <EuiI18n token="euiBasicTable.noItemsMessage" default="No items found" />
+    ),
   };
 
   static getDerivedStateFromProps<T>(
@@ -528,7 +530,6 @@ export class EuiBasicTable<T = any> extends Component<
   }
 
   tableId = htmlIdGenerator('__table')();
-  selectAllCheckboxId = htmlIdGenerator('_selection_column-checkbox')();
 
   render() {
     const {
@@ -733,6 +734,8 @@ export class EuiBasicTable<T = any> extends Component<
     );
   }
 
+  selectAllIdGenerator = htmlIdGenerator('_selection_column-checkbox');
+
   renderSelectAll = (isMobile: boolean) => {
     const { items, selection } = this.props;
 
@@ -763,7 +766,7 @@ export class EuiBasicTable<T = any> extends Component<
       <EuiI18n token="euiBasicTable.selectAllRows" default="Select all rows">
         {(selectAllRows: string) => (
           <EuiCheckbox
-            id={this.selectAllCheckboxId}
+            id={this.selectAllIdGenerator(isMobile ? 'mobile' : 'desktop')}
             type={isMobile ? undefined : 'inList'}
             checked={checked}
             disabled={disabled}

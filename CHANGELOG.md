@@ -1,6 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added `maxWidth` prop to `EuiTour`, made `subtitle` optional, and fixed heading levels and footer background ([#5225](https://github.com/elastic/eui/pull/5225))
+- Updated `tint`, `shade`, `saturate`, `desaturate`, and `makeHighContrastColor` utility functions to maintain color format supplied ([#5230](https://github.com/elastic/eui/pull/5230))
+- Converted generated icon files to Typescript, eliminating the last `.js` files in our source files ([#5212](https://github.com/elastic/eui/pull/5212))
+
+**Bug fixes**
+
+- Fixed tick and level alignment in `Eui[Dual]Range` ([#5181](https://github.com/elastic/eui/pull/5181))
+- Fixed duplicate IDs on mobile/desktop select all checkboxes in `EuiBasicTable` ([#5237](https://github.com/elastic/eui/pull/5237))
+- Fixed missing i18n token in `EuiBasicTable`'s no items message ([#5242](https://github.com/elastic/eui/pull/5242))
 
 **Breaking changes**
 
