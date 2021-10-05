@@ -88,6 +88,20 @@ import { findTestSubject } from '@elastic/eui/lib/test';
 
 You can consume EUI in standalone projects, such as plugins and prototypes.
 
+### Using the global provider
+
+For EUI to work correctly, set up `EuiProvider` at the root of your application.
+
+```js
+import { EuiProvider } from '@elastic/eui'
+
+const App = ({ Component }) => (
+  <EuiProvider>
+    <Component />
+  </EuiProvider>
+);
+```
+
 ### Importing compiled CSS
 
 Most of the time, you just need the compiled CSS, which provides the styling for the React components.
