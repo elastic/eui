@@ -189,15 +189,13 @@ export class EuiAccordion extends Component<
 
     const buttonClasses = classNames(
       'euiAccordion__button',
-      {
-        euiAccordion__buttonReverse: !extraAction && arrowDisplay === 'right',
-      },
       buttonClassName,
       buttonProps?.className
     );
 
     const iconButtonClasses = classNames('euiAccordion__iconButton', {
       'euiAccordion__iconButton-isOpen': isOpen,
+      'euiAccordion__iconButton--right': arrowDisplay === 'right',
     });
 
     let iconButton;
@@ -205,7 +203,6 @@ export class EuiAccordion extends Component<
     if (arrowDisplay !== 'none') {
       iconButton = (
         <EuiButtonIcon
-          // className={iconClasses}
           className={iconButtonClasses}
           aria-controls={id}
           aria-expanded={isOpen}
