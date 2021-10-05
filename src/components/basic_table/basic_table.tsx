@@ -1381,7 +1381,7 @@ export class EuiBasicTable<T = any> extends Component<
       return (
         <EuiI18n
           token="euiBasicTable.tablePagination"
-          default="Pagination for preceding table: {tableCaption}"
+          default="Pagination for table: {tableCaption}"
           values={{ tableCaption }}
         >
           {(tablePagination: string) => (

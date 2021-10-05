@@ -303,7 +303,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
         </EuiTable>
       </div>
       <EuiI18n
-        default="Pagination for preceding table: {tableCaption}"
+        default="Pagination for table: {tableCaption}"
         token="euiBasicTable.tablePagination"
         values={
           Object {
@@ -313,7 +313,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
       >
         <PaginationBar
           aria-controls="__table_generated-id"
-          aria-label="Pagination for preceding table: "
+          aria-label="Pagination for table: "
           onPageChange={[Function]}
           onPageSizeChange={[Function]}
           pagination={
@@ -341,7 +341,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
             <EuiTablePagination
               activePage={1}
               aria-controls="__table_generated-id"
-              aria-label="Pagination for preceding table: "
+              aria-label="Pagination for table: "
               itemsPerPage={2}
               itemsPerPageOptions={
                 Array [
@@ -472,12 +472,12 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                       <EuiPagination
                         activePage={1}
                         aria-controls="__table_generated-id"
-                        aria-label="Pagination for preceding table: "
+                        aria-label="Pagination for table: "
                         onPageClick={[Function]}
                         pageCount={2}
                       >
                         <nav
-                          aria-label="Pagination for preceding table: "
+                          aria-label="Pagination for table: "
                           className="euiPagination"
                         >
                           <EuiI18n
@@ -531,7 +531,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                             </EuiI18n>
                           </EuiI18n>
                           <ul
-                            aria-label="Pagination for preceding table: "
+                            aria-label="Pagination for table: "
                             className="euiPagination__list"
                           >
                             <PaginationButtonWrapper
