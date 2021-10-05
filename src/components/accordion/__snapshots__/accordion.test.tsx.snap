@@ -140,18 +140,25 @@ exports[`EuiAccordion is rendered 1`] = `
     <button
       aria-controls="0"
       aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="0"
+      aria-expanded="false"
       class="euiAccordion__button"
       id="generated-id"
       type="button"
     >
-      <span
-        class="euiAccordion__iconWrapper"
-      >
-        <span
-          class="euiAccordion__icon"
-          data-euiicon-type="arrowRight"
-        />
-      </span>
       <span
         class="euiIEFlexWrapFix"
       />
@@ -227,15 +234,22 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
       type="button"
     >
       <span
-        class="euiAccordion__iconWrapper"
-      >
-        <span
-          class="euiAccordion__icon"
-          data-euiicon-type="arrowRight"
-        />
-      </span>
-      <span
         class="euiIEFlexWrapFix"
+      />
+    </button>
+    <button
+      aria-controls="6"
+      aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
       />
     </button>
   </div>
@@ -269,18 +283,25 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
     <button
       aria-controls="2"
       aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="2"
+      aria-expanded="false"
       class="euiAccordion__button"
       id="generated-id"
       type="button"
     >
-      <span
-        class="euiAccordion__iconWrapper"
-      >
-        <span
-          class="euiAccordion__icon"
-          data-euiicon-type="arrowRight"
-        />
-      </span>
       <span
         class="euiIEFlexWrapFix"
       >
@@ -316,18 +337,25 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
     <button
       aria-controls="1"
       aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="1"
+      aria-expanded="false"
       class="euiAccordion__button"
       id="generated-id"
       type="button"
     >
-      <span
-        class="euiAccordion__iconWrapper"
-      >
-        <span
-          class="euiAccordion__icon"
-          data-euiicon-type="arrowRight"
-        />
-      </span>
       <span
         class="euiIEFlexWrapFix button content class name"
       />
@@ -359,20 +387,27 @@ exports[`EuiAccordion props buttonProps is rendered 1`] = `
     <button
       aria-controls="3"
       aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="3"
+      aria-expanded="false"
       aria-label="aria-label"
       class="euiAccordion__button testClass1 testClass2"
       data-test-subj="test subject string"
       id="generated-id"
       type="button"
     >
-      <span
-        class="euiAccordion__iconWrapper"
-      >
-        <span
-          class="euiAccordion__icon"
-          data-euiicon-type="arrowRight"
-        />
-      </span>
       <span
         class="euiIEFlexWrapFix"
       />
@@ -404,18 +439,25 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
     <button
       aria-controls="4"
       aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="4"
+      aria-expanded="false"
       class="euiAccordion__button"
       id="generated-id"
       type="button"
     >
-      <span
-        class="euiAccordion__iconWrapper"
-      >
-        <span
-          class="euiAccordion__icon"
-          data-euiicon-type="arrowRight"
-        />
-      </span>
       <span
         class="euiIEFlexWrapFix"
       />
@@ -454,18 +496,25 @@ exports[`EuiAccordion props forceState is rendered 1`] = `
     <button
       aria-controls="8"
       aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="8"
+      aria-expanded="false"
       class="euiAccordion__button"
       id="generated-id"
       type="button"
     >
-      <span
-        class="euiAccordion__iconWrapper"
-      >
-        <span
-          class="euiAccordion__icon"
-          data-euiicon-type="arrowRight"
-        />
-      </span>
       <span
         class="euiIEFlexWrapFix"
       />
@@ -501,18 +550,25 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
     <button
       aria-controls="5"
       aria-expanded="true"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton-isOpen"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="5"
+      aria-expanded="true"
       class="euiAccordion__button"
       id="generated-id"
       type="button"
     >
-      <span
-        class="euiAccordion__iconWrapper"
-      >
-        <span
-          class="euiAccordion__icon euiAccordion__icon-isOpen"
-          data-euiicon-type="arrowRight"
-        />
-      </span>
       <span
         class="euiIEFlexWrapFix"
       />
@@ -548,29 +604,29 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
     <button
       aria-controls="10"
       aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="10"
+      aria-expanded="false"
       class="euiAccordion__button"
       id="generated-id"
       type="button"
     >
       <span
-        class="euiAccordion__iconWrapper"
-      >
-        <span
-          class="euiAccordion__icon"
-          data-euiicon-type="arrowRight"
-        />
-      </span>
-      <span
         class="euiIEFlexWrapFix"
       />
     </button>
-    <div
-      class="euiAccordion__optionalAction"
-    >
-      <span
-        class="euiLoadingSpinner euiLoadingSpinner--medium"
-      />
-    </div>
   </div>
   <div
     aria-labelledby="generated-id"
@@ -602,29 +658,29 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
     <button
       aria-controls="11"
       aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
+    </button>
+    <button
+      aria-controls="11"
+      aria-expanded="false"
       class="euiAccordion__button"
       id="generated-id"
       type="button"
     >
       <span
-        class="euiAccordion__iconWrapper"
-      >
-        <span
-          class="euiAccordion__icon"
-          data-euiicon-type="arrowRight"
-        />
-      </span>
-      <span
         class="euiIEFlexWrapFix"
       />
     </button>
-    <div
-      class="euiAccordion__optionalAction"
-    >
-      <span
-        class="euiLoadingSpinner euiLoadingSpinner--medium"
-      />
-    </div>
   </div>
   <div
     aria-labelledby="generated-id"

@@ -11,11 +11,11 @@ import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
 
-import { EuiIcon } from '../icon';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiI18n } from '../i18n';
 import { htmlIdGenerator } from '../../services';
+import { EuiButtonIcon } from '../button';
 
 const paddingSizeToClassNameMap = {
   none: '',
@@ -196,49 +196,34 @@ export class EuiAccordion extends Component<
       buttonProps?.className
     );
 
-    const iconClasses = classNames('euiAccordion__icon', {
-      'euiAccordion__icon-isOpen': isOpen,
+    const iconButtonClasses = classNames('euiAccordion__iconButton', {
+      'euiAccordion__iconButton-isOpen': isOpen,
     });
 
-    const iconWrapperClasses = classNames('euiAccordion__iconWrapper', {
-      euiAccordion__iconButton: extraAction && arrowDisplay === 'right',
-    });
-
-    let baseIcon;
-    if (arrowDisplay !== 'none') {
-      baseIcon = <EuiIcon className={iconClasses} type="arrowRight" size="m" />;
-    }
-
-    let icon;
     let iconButton;
     const buttonId = buttonProps?.id ?? this.generatedId;
-    if (extraAction && arrowDisplay === 'right') {
+    if (arrowDisplay !== 'none') {
       iconButton = (
-        <button
+        <EuiButtonIcon
+          // className={iconClasses}
+          className={iconButtonClasses}
           aria-controls={id}
           aria-expanded={isOpen}
           aria-labelledby={buttonId}
           tabIndex={-1}
-          className={iconWrapperClasses}
           onClick={this.onToggle}
-        >
-          {baseIcon}
-        </button>
+          iconType="arrowRight"
+          color="text"
+        />
       );
-    } else if (arrowDisplay !== 'none') {
-      icon = <span className={iconWrapperClasses}>{baseIcon}</span>;
     }
 
     let optionalAction = null;
 
-    if (extraAction && !isLoading) {
-      optionalAction = (
-        <div className="euiAccordion__optionalAction">{extraAction}</div>
-      );
-    } else if (isLoading) {
+    if (extraAction) {
       optionalAction = (
         <div className="euiAccordion__optionalAction">
-          <EuiLoadingSpinner />
+          {isLoading ? <EuiLoadingSpinner /> : extraAction}
         </div>
       );
     }
@@ -264,6 +249,7 @@ export class EuiAccordion extends Component<
     return (
       <div className={classes} {...rest}>
         <div className="euiAccordion__triggerWrapper">
+          {arrowDisplay === 'left' && iconButton}
           <button
             {...buttonProps}
             id={buttonId}
@@ -273,7 +259,6 @@ export class EuiAccordion extends Component<
             className={buttonClasses}
             type="button"
           >
-            {icon}
             <span
               className={classNames('euiIEFlexWrapFix', buttonContentClassName)}
             >
@@ -281,7 +266,7 @@ export class EuiAccordion extends Component<
             </span>
           </button>
           {optionalAction}
-          {iconButton}
+          {arrowDisplay === 'right' && iconButton}
         </div>
 
         <div
