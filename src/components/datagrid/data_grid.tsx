@@ -892,7 +892,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                         rowHeightUtils={rowHeightUtils}
                         virtualizationOptions={virtualizationOptions || {}}
                         gridStyles={gridStyles}
-                        gridId={gridId}
                       />
                     </div>
                   </div>

@@ -396,7 +396,6 @@ export class EuiDataGridCell extends Component<
 
   render() {
     const {
-      id,
       width,
       isExpandable,
       popoverContent: PopoverContent,
@@ -604,7 +603,6 @@ export class EuiDataGridCell extends Component<
         }
         ref={this.setCellRef}
         {...cellProps}
-        id={id}
         data-test-subj="dataGridRowCell"
         onKeyDown={handleCellKeyDown}
         onFocus={this.onFocus}

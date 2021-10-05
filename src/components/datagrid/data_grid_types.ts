@@ -332,7 +332,6 @@ export interface EuiDataGridBodyProps {
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils: RowHeightUtils;
   gridStyles?: EuiDataGridStyle;
-  gridId: string;
 }
 export interface EuiDataGridCellValueElementProps {
   /**
@@ -365,10 +364,6 @@ export interface EuiDataGridCellValueElementProps {
 }
 
 export interface EuiDataGridCellProps {
-  /**
-   * required when used outside of a role="row" element, so a row can own this cell
-   */
-  id?: string;
   rowIndex: number;
   visibleRowIndex: number;
   colIndex: number;
@@ -401,7 +396,7 @@ export interface EuiDataGridCellState {
 
 export type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
-  'id' | 'width' | 'interactiveCellId' | 'popoverContent'
+  'width' | 'interactiveCellId' | 'popoverContent'
 >;
 export interface EuiDataGridControlColumn {
   /**
