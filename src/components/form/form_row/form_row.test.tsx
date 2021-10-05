@@ -292,5 +292,52 @@ describe('EuiFormRow', () => {
         expect(component).toMatchSnapshot();
       });
     });
+
+    describe('required', () => {
+      it('checks for whether required fields are empty on blur and sets invalid state + an error message', () => {
+        const component = mount(
+          <EuiFormRow label={<span>Label</span>} isRequired>
+            <input />
+          </EuiFormRow>
+        );
+        const input = component.find('input');
+        input.simulate('blur');
+
+        expect(component.state('isRequiredAndEmpty')).toEqual(true);
+        expect(component.find('EuiFormLabel').prop('isInvalid')).toEqual(true);
+        expect(
+          component.find('#generated-id-error-required').last().text()
+        ).toEqual('This field is required.');
+      });
+
+      it('clears the error/invalid state when the field is required and not empty', () => {
+        const component = mount(
+          <EuiFormRow label={<span>Label</span>} isRequired>
+            <input />
+          </EuiFormRow>
+        );
+        const input = component.find('input');
+        input.simulate('blur');
+
+        (input.getDOMNode() as HTMLInputElement).value = 'test';
+        input.simulate('blur');
+
+        expect(component.state('isRequiredAndEmpty')).toEqual(false);
+        expect(component.find('EuiFormLabel').prop('isInvalid')).toEqual(false);
+        expect(component.find('#generated-id-error-required')).toHaveLength(0);
+      });
+
+      it('clears the empty error/invalid state when isRequired changes', () => {
+        const component = mount(
+          <EuiFormRow label={<span>Label</span>} isRequired>
+            <input />
+          </EuiFormRow>
+        );
+        component.setState({ isRequiredAndEmpty: true });
+        component.setProps({ isRequired: false });
+
+        expect(component.state('isRequiredAndEmpty')).toEqual(false);
+      });
+    });
   });
 });

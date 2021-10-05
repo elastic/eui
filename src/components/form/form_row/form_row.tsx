@@ -18,6 +18,7 @@ import classNames from 'classnames';
 import { ExclusiveUnion, CommonProps, keysOf } from '../../common';
 
 import { get } from '../../../services/objects';
+import { EuiI18n } from '../../i18n';
 
 import { EuiFormHelpText } from '../form_help_text';
 import { EuiFormErrorText } from '../form_error_text';
@@ -41,6 +42,7 @@ export type EuiFormRowDisplayKeys = keyof typeof displayToClassNameMap;
 
 interface EuiFormRowState {
   isFocused: boolean;
+  isRequiredAndEmpty: boolean;
   id: string;
 }
 
@@ -87,6 +89,11 @@ type EuiFormRowCommonProps = CommonProps & {
    *  Passed along to the label element; and to the child field element when `disabled` doesn't already exist on the child field element.
    */
   isDisabled?: boolean;
+  /**
+   * Flags the child field element as required only after the field has been interacted with for the first time.
+   * Fields will be marked as invalid if left empty, and an automatic error text will appear under the field.
+   */
+  isRequired?: boolean;
 };
 
 type LabelProps = {
@@ -117,6 +124,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
 
   state: EuiFormRowState = {
     isFocused: false,
+    isRequiredAndEmpty: false,
     id: this.props.id || htmlIdGenerator()(),
   };
 
@@ -148,13 +156,34 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
     this.setState({
       isFocused: false,
     });
+
+    this.checkForRequiredAndEmpty(args[0]?.target);
   };
+
+  checkForRequiredAndEmpty = (inputEl?: HTMLInputElement) => {
+    if (!inputEl || !this.props.isRequired) return;
+    if (!inputEl.value) {
+      this.setState({ isRequiredAndEmpty: true });
+    } else {
+      this.resetRequiredAndEmpty();
+    }
+  };
+  resetRequiredAndEmpty = () => {
+    this.setState({ isRequiredAndEmpty: false });
+  };
+
+  componentDidUpdate(prevProps: EuiFormRowProps) {
+    if (this.props.isRequired !== prevProps.isRequired) {
+      this.resetRequiredAndEmpty();
+    }
+  }
 
   render() {
     const {
       children,
       helpText,
       isInvalid,
+      isRequired,
       error,
       label,
       labelType,
@@ -217,6 +246,22 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
         );
       });
     }
+    const { isRequiredAndEmpty } = this.state;
+    if (isRequired && isRequiredAndEmpty) {
+      optionalErrors = [
+        <EuiFormErrorText
+          key="error-required"
+          id={`${id}-error-required`}
+          className="euiFormRow__text"
+        >
+          <EuiI18n
+            token="euiFormRow.requiredMessage"
+            default="This field is required."
+          />
+        </EuiFormErrorText>,
+        ...(optionalErrors || []),
+      ];
+    }
 
     let optionalLabel;
     const isLegend = label && labelType === 'legend' ? true : false;
@@ -238,7 +283,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
         <div className="euiFormRow__labelWrapper">
           <EuiFormLabel
             className="euiFormRow__label"
-            isInvalid={isInvalid}
+            isInvalid={isInvalid || isRequiredAndEmpty}
             isDisabled={isDisabled}
             aria-invalid={isInvalid}
             {...labelProps}

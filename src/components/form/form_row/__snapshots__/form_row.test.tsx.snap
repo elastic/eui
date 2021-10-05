@@ -25,6 +25,7 @@ exports[`EuiFormRow behavior onBlur is called in child 1`] = `
         className="euiFormRow__label"
         htmlFor="generated-id"
         isFocused={false}
+        isInvalid={false}
         type="label"
       >
         <label
@@ -75,6 +76,7 @@ exports[`EuiFormRow behavior onBlur works in parent even if not in child 1`] = `
         className="euiFormRow__label"
         htmlFor="generated-id"
         isFocused={false}
+        isInvalid={false}
         type="label"
       >
         <label
@@ -125,6 +127,7 @@ exports[`EuiFormRow behavior onFocus is called in child 1`] = `
         className="euiFormRow__label"
         htmlFor="generated-id"
         isFocused={true}
+        isInvalid={false}
         type="label"
       >
         <label
@@ -175,6 +178,7 @@ exports[`EuiFormRow behavior onFocus works in parent even if not in child 1`] = 
         className="euiFormRow__label"
         htmlFor="generated-id"
         isFocused={true}
+        isInvalid={false}
         type="label"
       >
         <label
@@ -547,6 +551,7 @@ exports[`EuiFormRow props label append is rendered 1`] = `
       className="euiFormRow__label"
       htmlFor="generated-id"
       isFocused={false}
+      isInvalid={false}
       type="label"
     >
       label
@@ -578,6 +583,7 @@ exports[`EuiFormRow props label is rendered 1`] = `
       className="euiFormRow__label"
       htmlFor="generated-id"
       isFocused={false}
+      isInvalid={false}
       type="label"
     >
       label
@@ -605,6 +611,7 @@ exports[`EuiFormRow props label renders as a legend and subsquently a fieldset w
   >
     <EuiFormLabel
       className="euiFormRow__label"
+      isInvalid={false}
       type="legend"
     >
       label
