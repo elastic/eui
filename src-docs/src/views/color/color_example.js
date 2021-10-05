@@ -45,7 +45,8 @@ export const ColorExample = {
         <EuiLink to="https://gka.github.io/chroma.js">chroma.js</EuiLink> for
         calculations. This means that most functions accept most Chroma{' '}
         <EuiLink to="https://gka.github.io/chroma.js/#chroma">Color</EuiLink>{' '}
-        types.
+        types. They will all attempt to maintain the color format that was
+        passed in.
       </p>
     </EuiText>
   ),

@@ -693,11 +693,19 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   }, [focusedCell, contentRef]);
 
   useEffect(() => {
-    rowHeightUtils.computeStylesForGridCell({
-      cellPadding: gridStyles.cellPadding,
-      fontSize: gridStyles.fontSize,
-    });
-  }, [gridStyles.cellPadding, gridStyles.fontSize, rowHeightUtils]);
+    rowHeightUtils.computeStylesForGridCell(
+      {
+        cellPadding: gridStyles.cellPadding,
+        fontSize: gridStyles.fontSize,
+      },
+      rowHeightsOptions?.lineHeight
+    );
+  }, [
+    gridStyles.cellPadding,
+    gridStyles.fontSize,
+    rowHeightsOptions?.lineHeight,
+    rowHeightUtils,
+  ]);
 
   const classes = classNames(
     'euiDataGrid',

@@ -55,6 +55,7 @@ Array [
           ],
           "style": Object {
             "marginLeft": 16,
+            "width": "calc(100% - 8px)",
           },
         },
         "tagName": "span",
@@ -194,6 +195,7 @@ Array [
           ],
           "style": Object {
             "marginLeft": 16,
+            "width": "calc(100% - 8px)",
           },
         },
         "tagName": "span",
@@ -260,6 +262,7 @@ Array [
           ],
           "style": Object {
             "marginLeft": 16,
+            "width": "calc(100% - 8px)",
           },
         },
         "tagName": "span",
@@ -332,6 +335,7 @@ Array [
           ],
           "style": Object {
             "marginLeft": 24,
+            "width": "calc(100% - 16px)",
           },
         },
         "tagName": "span",
@@ -471,6 +475,7 @@ Array [
           ],
           "style": Object {
             "marginLeft": 24,
+            "width": "calc(100% - 16px)",
           },
         },
         "tagName": "span",
@@ -537,6 +542,287 @@ Array [
           ],
           "style": Object {
             "marginLeft": 24,
+            "width": "calc(100% - 16px)",
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "euiCodeBlock__line",
+      ],
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+]
+`;
+
+exports[`highlightByLine with line numbers with highlighted lines adds a class to the specified lines 1`] = `
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [],
+        "properties": Object {
+          "aria-hidden": true,
+          "className": Array [
+            "euiCodeBlock__lineNumber",
+          ],
+          "data-line-number": 1,
+          "style": Object {
+            "width": 8,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 1,
+                "lineStart": 1,
+                "type": "text",
+                "value": "{",
+              },
+            ],
+            "lineEnd": 1,
+            "lineStart": 1,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "punctuation",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "lineEnd": 1,
+            "lineStart": 1,
+            "type": "text",
+            "value": "
+",
+          },
+        ],
+        "properties": Object {
+          "className": Array [
+            "euiCodeBlock__lineText",
+          ],
+          "style": Object {
+            "marginLeft": 16,
+            "width": "calc(100% - 8px)",
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "euiCodeBlock__line euiCodeBlock__line--isHighlighted",
+      ],
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [],
+        "properties": Object {
+          "aria-hidden": true,
+          "className": Array [
+            "euiCodeBlock__lineNumber",
+          ],
+          "data-line-number": 2,
+          "style": Object {
+            "width": 8,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "lineEnd": 2,
+            "lineStart": 2,
+            "type": "text",
+            "value": "  ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 2,
+                "lineStart": 2,
+                "type": "text",
+                "value": "\\"id\\"",
+              },
+            ],
+            "lineEnd": 2,
+            "lineStart": 2,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "property",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 2,
+                "lineStart": 2,
+                "type": "text",
+                "value": ":",
+              },
+            ],
+            "lineEnd": 2,
+            "lineStart": 2,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "operator",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "lineEnd": 2,
+            "lineStart": 2,
+            "type": "text",
+            "value": " ",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 2,
+                "lineStart": 2,
+                "type": "text",
+                "value": "\\"1\\"",
+              },
+            ],
+            "lineEnd": 2,
+            "lineStart": 2,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "string",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 2,
+                "lineStart": 2,
+                "type": "text",
+                "value": ",",
+              },
+            ],
+            "lineEnd": 2,
+            "lineStart": 2,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "punctuation",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+          Object {
+            "lineEnd": 2,
+            "lineStart": 2,
+            "type": "text",
+            "value": "
+",
+          },
+        ],
+        "properties": Object {
+          "className": Array [
+            "euiCodeBlock__lineText",
+          ],
+          "style": Object {
+            "marginLeft": 16,
+            "width": "calc(100% - 8px)",
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+    ],
+    "properties": Object {
+      "className": Array [
+        "euiCodeBlock__line euiCodeBlock__line--isHighlighted",
+      ],
+    },
+    "tagName": "span",
+    "type": "element",
+  },
+  Object {
+    "children": Array [
+      Object {
+        "children": Array [],
+        "properties": Object {
+          "aria-hidden": true,
+          "className": Array [
+            "euiCodeBlock__lineNumber",
+          ],
+          "data-line-number": 3,
+          "style": Object {
+            "width": 8,
+          },
+        },
+        "tagName": "span",
+        "type": "element",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "lineEnd": 3,
+            "lineStart": 3,
+            "type": "text",
+            "value": "",
+          },
+          Object {
+            "children": Array [
+              Object {
+                "lineEnd": 3,
+                "lineStart": 3,
+                "type": "text",
+                "value": "}",
+              },
+            ],
+            "lineEnd": 3,
+            "lineStart": 3,
+            "properties": Object {
+              "className": Array [
+                "token",
+                "punctuation",
+              ],
+            },
+            "tagName": "span",
+            "type": "element",
+          },
+        ],
+        "properties": Object {
+          "className": Array [
+            "euiCodeBlock__lineText",
+          ],
+          "style": Object {
+            "marginLeft": 16,
+            "width": "calc(100% - 8px)",
           },
         },
         "tagName": "span",
