@@ -40,15 +40,8 @@
   }
 }
 
-// Really force all paths to white when the color is ghost (specifically for logos)
-.euiIcon--ghost:not([data-type='logoElastic']) {
-  > *,
-  > * > *,
-  > * > * > * {
-    fill: currentColor !important; // sass-lint:disable-line no-important
-  }
-}
-
+// Really force all paths to inherit when the color is ghost/text (specifically for logos)
+.euiIcon--ghost:not([data-type='logoElastic']),
 .euiIcon--text:not([data-type='logoElastic']) {
   > *,
   > * > *,
