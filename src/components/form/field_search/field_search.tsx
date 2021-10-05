@@ -27,6 +27,10 @@ export interface EuiFieldSearchProps
   placeholder?: string;
   value?: string;
   isInvalid?: boolean;
+  /**
+   * Required fields will be marked as invalid if left empty after the user has interacted with it at least once.
+   */
+  isRequired?: boolean;
   fullWidth?: boolean;
   isLoading?: boolean;
   /**
@@ -213,6 +217,7 @@ export class EuiFieldSearch extends Component<
       name,
       placeholder,
       isInvalid,
+      isRequired,
       fullWidth,
       isLoading,
       inputRef,
@@ -254,7 +259,7 @@ export class EuiFieldSearch extends Component<
         append={append}
         prepend={prepend}
       >
-        <EuiValidatableControl isInvalid={isInvalid}>
+        <EuiValidatableControl isInvalid={isInvalid} isRequired={isRequired}>
           <input
             type="search"
             id={id}

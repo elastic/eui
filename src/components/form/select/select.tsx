@@ -32,6 +32,10 @@ export type EuiSelectProps = Omit<
 > &
   CommonProps & {
     options?: EuiSelectOption[];
+    /**
+     * Required fields will be marked as invalid if left empty after the user has interacted with it at least once.
+     */
+    isRequired?: boolean;
     isInvalid?: boolean;
     fullWidth?: boolean;
     isLoading?: boolean;
@@ -66,6 +70,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
   id,
   name,
   inputRef,
+  isRequired,
   isInvalid,
   fullWidth = false,
   isLoading = false,
@@ -133,7 +138,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = ({
       append={append}
       inputId={id}
     >
-      <EuiValidatableControl isInvalid={isInvalid}>
+      <EuiValidatableControl isInvalid={isInvalid} isRequired={isRequired}>
         <select
           id={id}
           name={name}

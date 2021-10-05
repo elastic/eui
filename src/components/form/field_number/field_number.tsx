@@ -26,6 +26,10 @@ export type EuiFieldNumberProps = Omit<
   CommonProps & {
     icon?: IconType;
     isInvalid?: boolean;
+    /**
+     * Required inputs will be marked as invalid if left empty after the user has interacted with it at least once.
+     */
+    isRequired?: boolean;
     fullWidth?: boolean;
     isLoading?: boolean;
     readOnly?: boolean;
@@ -73,6 +77,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = ({
   max,
   value,
   isInvalid,
+  isRequired,
   fullWidth = false,
   isLoading = false,
   compressed = false,
@@ -92,7 +97,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = ({
   });
 
   const control = (
-    <EuiValidatableControl isInvalid={isInvalid}>
+    <EuiValidatableControl isInvalid={isInvalid} isRequired={isRequired}>
       <input
         type="number"
         id={id}

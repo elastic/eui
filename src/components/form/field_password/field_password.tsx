@@ -31,6 +31,10 @@ export type EuiFieldPasswordProps = Omit<
 > &
   CommonProps & {
     isInvalid?: boolean;
+    /**
+     * Required fields will be marked as invalid if left empty after the user has interacted with it at least once.
+     */
+    isRequired?: boolean;
     fullWidth?: boolean;
     isLoading?: boolean;
     compressed?: boolean;
@@ -69,6 +73,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
   placeholder,
   value,
   isInvalid,
+  isRequired,
   fullWidth,
   isLoading,
   compressed,
@@ -156,7 +161,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = ({
       prepend={prepend}
       append={finalAppend}
     >
-      <EuiValidatableControl isInvalid={isInvalid}>
+      <EuiValidatableControl isInvalid={isInvalid} isRequired={isRequired}>
         <input
           type={inputType}
           id={id}

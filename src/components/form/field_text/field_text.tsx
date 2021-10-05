@@ -21,6 +21,10 @@ export type EuiFieldTextProps = InputHTMLAttributes<HTMLInputElement> &
   CommonProps & {
     icon?: EuiFormControlLayoutProps['icon'];
     isInvalid?: boolean;
+    /**
+     * Required fields will be marked as invalid if left empty after the user has interacted with it at least once.
+     */
+    isRequired?: boolean;
     fullWidth?: boolean;
     isLoading?: boolean;
     readOnly?: boolean;
@@ -58,6 +62,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
   className,
   icon,
   isInvalid,
+  isRequired,
   inputRef,
   fullWidth = false,
   isLoading,
@@ -77,7 +82,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = ({
   });
 
   const control = (
-    <EuiValidatableControl isInvalid={isInvalid}>
+    <EuiValidatableControl isInvalid={isInvalid} isRequired={isRequired}>
       <input
         type="text"
         id={id}

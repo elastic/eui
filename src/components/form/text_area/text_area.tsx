@@ -13,6 +13,10 @@ import { EuiValidatableControl } from '../validatable_control';
 
 export type EuiTextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
   CommonProps & {
+    /**
+     * Required fields will be marked as invalid if left empty after the user has interacted with it at least once.
+     */
+    isRequired?: boolean;
     isInvalid?: boolean;
     fullWidth?: boolean;
     compressed?: boolean;
@@ -41,6 +45,7 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
   fullWidth = false,
   id,
   inputRef,
+  isRequired,
   isInvalid,
   name,
   placeholder,
@@ -69,7 +74,7 @@ export const EuiTextArea: FunctionComponent<EuiTextAreaProps> = ({
   }
 
   return (
-    <EuiValidatableControl isInvalid={isInvalid}>
+    <EuiValidatableControl isInvalid={isInvalid} isRequired={isRequired}>
       <textarea
         className={classes}
         {...rest}
