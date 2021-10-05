@@ -44,12 +44,13 @@ export default () => {
           helpText="I am some friendly help text."
           isInvalid={showErrors}
           error={errors}
+          isRequired
         >
-          <EuiFieldText name="text" isInvalid={showErrors} />
+          <EuiFieldText name="text" isInvalid={showErrors} isRequired />
         </EuiFormRow>
 
-        <EuiFormRow label="Text area" isInvalid={showErrors}>
-          <EuiTextArea name="area" isInvalid={showErrors} />
+        <EuiFormRow label="Text area" isInvalid={showErrors} isRequired>
+          <EuiTextArea name="area" isInvalid={showErrors} isRequired />
         </EuiFormRow>
 
         <EuiFormRow label="Select" isInvalid={showErrors}>

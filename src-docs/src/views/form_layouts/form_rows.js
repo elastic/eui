@@ -55,12 +55,16 @@ export default () => {
 
   return (
     <EuiForm component="form">
-      <EuiFormRow label="Text field" helpText="I am some friendly help text.">
-        <EuiFieldText name="first" />
+      <EuiFormRow
+        label="Text field"
+        helpText="I am some friendly help text."
+        isRequired
+      >
+        <EuiFieldText name="first" isRequired />
       </EuiFormRow>
 
-      <EuiFormRow label="Disabled through form row" isDisabled>
-        <EuiFieldText name="last" />
+      <EuiFormRow label="Disabled through form row" isDisabled isRequired>
+        <EuiFieldText name="last" isRequired />
       </EuiFormRow>
 
       <EuiFormRow
@@ -70,8 +74,10 @@ export default () => {
             <EuiLink>Link to some help</EuiLink>
           </EuiText>
         }
+        isRequired
       >
         <EuiSelect
+          isRequired
           hasNoInitialSelection
           onChange={() => {}}
           options={[
