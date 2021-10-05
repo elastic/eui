@@ -4,6 +4,10 @@
   &[target='_blank'] {
     // Make the screen reader only text positioned relatively against the link itself
     position: relative;
+
+    .euiScreenReaderOnly {
+      left: 0;
+    }
   }
 
   .euiLink__externalIcon {

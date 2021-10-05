@@ -7,12 +7,7 @@ const fs = require('fs');
 const dtsGenerator = require('dts-generator').default;
 
 function compileLib() {
-  shell.mkdir(
-    '-p',
-    'lib/components/icon/assets/tokens',
-    'lib/services',
-    'lib/test'
-  );
+  shell.mkdir('-p', 'lib/services', 'lib/test');
 
   console.log('Compiling src/ to es/, lib/, and test-env/');
 
@@ -70,7 +65,7 @@ function compileLib() {
 
   // Also copy over SVGs. Babel has a --copy-files option but that brings over
   // all kinds of things we don't want into the lib folder.
-  shell.mkdir('-p', 'lib/components/icon/assets');
+  shell.mkdir('-p', 'lib/components/icon/svgs', 'lib/components/icon/svgs/tokens');
 
   glob('./src/components/**/*.svg', undefined, (error, files) => {
     files.forEach(file => {
