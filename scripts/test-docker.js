@@ -12,7 +12,7 @@ execSync("docker run \
   bash -c 'npm config set spin false \
     && /opt/yarn*/bin/yarn \
     && yarn cypress install \
-    && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test \
+    && NODE_OPTIONS=\"--max-old-space-size=2048\" npm run test-ci \
     && npm run start-test-server-and-a11y-test \
     && npm run build'", {
   stdio: 'inherit',

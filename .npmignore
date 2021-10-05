@@ -9,6 +9,7 @@ src-docs/
 packages/react-datepicker
 packages/eslint-plugin
 .nvmrc
+cypress
 
 # typescript output
 types/
