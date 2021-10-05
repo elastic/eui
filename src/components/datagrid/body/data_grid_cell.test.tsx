@@ -15,7 +15,6 @@ import { EuiDataGridCell } from './data_grid_cell';
 
 describe('EuiDataGridCell', () => {
   const requiredProps = {
-    id: 'cell',
     rowIndex: 0,
     visibleRowIndex: 0,
     colIndex: 0,
