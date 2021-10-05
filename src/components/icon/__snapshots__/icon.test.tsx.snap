@@ -4330,6 +4330,7 @@ exports[`EuiIcon props type logoElastic is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-type="logoElastic"
   fill="none"
   focusable="false"
   height="32"
