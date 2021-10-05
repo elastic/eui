@@ -470,11 +470,11 @@ exports[`EuiDualRange props levels should render 1`] = `
     >
       <span
         class="euiRangeLevel euiRangeLevel--danger"
-        style="width:20%"
+        style="left:calc(0% + 0px);right:calc(100% - 0px)"
       />
       <span
         class="euiRangeLevel euiRangeLevel--success"
-        style="width:80%"
+        style="left:calc(0% + 0px);right:calc(100% - 0px)"
       />
     </div>
     <input
