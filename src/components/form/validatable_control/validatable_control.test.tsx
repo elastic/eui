@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { render, mount } from 'enzyme';
+import { render, mount, shallow } from 'enzyme';
 
 import { EuiValidatableControl } from './validatable_control';
 
@@ -20,6 +20,44 @@ describe('EuiValidatableControl', () => {
     );
 
     expect(component).toMatchSnapshot();
+  });
+
+  describe('custom validity', () => {
+    const customValiditySpy = jest.spyOn(
+      HTMLInputElement.prototype,
+      'setCustomValidity'
+    );
+
+    beforeEach(() => jest.clearAllMocks());
+
+    it("sets the child input's custom validity based on isInvalid", () => {
+      const component = mount(
+        <EuiValidatableControl isInvalid>
+          <input />
+        </EuiValidatableControl>
+      );
+
+      component.setProps({ isInvalid: true });
+      expect(customValiditySpy).toHaveBeenLastCalledWith('Invalid');
+
+      component.setProps({ isInvalid: false });
+      expect(customValiditySpy).toHaveBeenLastCalledWith('');
+    });
+
+    it('does nothing when refs are null', () => {
+      const useEffectSpy = jest
+        .spyOn(React, 'useEffect')
+        .mockImplementation((f) => f());
+
+      shallow(
+        <EuiValidatableControl isInvalid>
+          <input />
+        </EuiValidatableControl>
+      );
+      expect(customValiditySpy).not.toHaveBeenCalled();
+
+      useEffectSpy.mockRestore();
+    });
   });
 
   describe('ref management', () => {

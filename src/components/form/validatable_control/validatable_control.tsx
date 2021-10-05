@@ -64,12 +64,7 @@ export const EuiValidatableControl: FunctionComponent<
   );
 
   useEffect(() => {
-    if (
-      control.current === null ||
-      typeof control.current.setCustomValidity !== 'function'
-    ) {
-      return; // jsdom doesn't polyfill this for the server-side
-    }
+    if (control.current === null) return;
 
     if (isInvalid) {
       control.current.setCustomValidity('Invalid');
