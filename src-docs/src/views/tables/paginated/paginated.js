@@ -148,6 +148,7 @@ export const Table = () => {
       />
       <EuiSpacer size="xl" />
       <EuiBasicTable
+        tableCaption="Demo for EuiBasicTable with pagination"
         items={pageOfItems}
         columns={columns}
         pagination={pagination}
