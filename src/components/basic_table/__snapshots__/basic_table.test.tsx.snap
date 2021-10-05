@@ -312,7 +312,10 @@ exports[`EuiBasicTable empty is rendered 1`] = `
             colSpan={1}
             isMobileFullWidth={true}
           >
-            No items found
+            <EuiI18n
+              default="No items found"
+              token="euiBasicTable.noItemsMessage"
+            />
           </EuiTableRowCell>
         </EuiTableRow>
       </EuiTableBody>
@@ -1417,7 +1420,12 @@ exports[`EuiBasicTable with initial selection 1`] = `
       },
     ]
   }
-  noItemsMessage="No items found"
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
+    />
+  }
   responsive={true}
   selection={
     Object {

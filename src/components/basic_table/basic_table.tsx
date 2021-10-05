@@ -311,7 +311,9 @@ export class EuiBasicTable<T = any> extends Component<
   static defaultProps = {
     responsive: true,
     tableLayout: 'fixed',
-    noItemsMessage: 'No items found',
+    noItemsMessage: (
+      <EuiI18n token="euiBasicTable.noItemsMessage" default="No items found" />
+    ),
   };
 
   static getDerivedStateFromProps<T>(
