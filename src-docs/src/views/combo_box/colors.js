@@ -88,7 +88,12 @@ export default () => {
 
   return (
     /* DisplayToggles wrapper for Docs only */
-    <DisplayToggles canDisabled={false} canReadOnly={false} canIsDisabled>
+    <DisplayToggles
+      canIsDisabled
+      canDisabled={false}
+      canReadOnly={false}
+      canIsRequired={false}
+    >
       <EuiComboBox
         placeholder="Select or create options"
         options={options}

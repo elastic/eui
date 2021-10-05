@@ -22,6 +22,7 @@ export const DisplayToggles = ({
   canPrepend,
   canAppend,
   canInvalid,
+  canIsRequired,
   children,
   extras,
   spacerSize,
@@ -35,6 +36,7 @@ export const DisplayToggles = ({
   const [append, setAppend] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [invalid, setInvalid] = useState(false);
+  const [isRequired, setIsRequired] = useState(false);
 
   const canProps = {};
   if (canDisabled) canProps.disabled = disabled;
@@ -46,6 +48,7 @@ export const DisplayToggles = ({
   if (canPrepend && prepend) canProps.prepend = 'Prepend';
   if (canAppend && append) canProps.append = 'Append';
   if (canInvalid) canProps.isInvalid = invalid;
+  if (canIsRequired) canProps.isRequired = isRequired;
 
   return (
     <Fragment>
@@ -113,6 +116,16 @@ export const DisplayToggles = ({
                   label={'invalid'}
                   checked={invalid}
                   onChange={(e) => setInvalid(e.target.checked)}
+                />
+              </EuiFlexItem>
+            )}
+            {canIsRequired && (
+              <EuiFlexItem grow={false}>
+                <EuiSwitch
+                  compressed
+                  label={'isRequired'}
+                  checked={isRequired}
+                  onChange={(e) => setIsRequired(e.target.checked)}
                 />
               </EuiFlexItem>
             )}
@@ -203,6 +216,7 @@ DisplayToggles.defaultProps = {
   canCompressed: true,
   canFullWidth: true,
   canInvalid: true,
+  canIsRequired: true,
   canPrepend: false,
   canAppend: false,
   spacerSize: 'l',

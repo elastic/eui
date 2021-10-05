@@ -31,7 +31,12 @@ export default () => {
 
   return (
     <Fragment>
-      <DisplayToggles canAppend canPrepend canLoading={false}>
+      <DisplayToggles
+        canAppend
+        canPrepend
+        canLoading={false}
+        canIsRequired={false}
+      >
         <EuiRange
           id={htmlIdGenerator()()}
           value={value}
@@ -49,7 +54,7 @@ export default () => {
 
       <EuiSpacer size="xl" />
 
-      <DisplayToggles canLoading={false}>
+      <DisplayToggles canLoading={false} canIsRequired={false}>
         <EuiDualRange
           id={htmlIdGenerator()()}
           value={dualValue}

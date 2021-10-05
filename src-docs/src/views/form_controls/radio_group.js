@@ -36,6 +36,7 @@ export default () => {
       canLoading={false}
       canReadOnly={false}
       canInvalid={false}
+      canIsRequired={false}
       canFullWidth={false}
     >
       <EuiRadioGroup

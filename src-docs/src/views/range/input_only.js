@@ -32,7 +32,7 @@ export default () => {
 
   return (
     <Fragment>
-      <DisplayToggles canAppend canPrepend>
+      <DisplayToggles canAppend canPrepend canIsRequired={false}>
         <EuiRange
           id={htmlIdGenerator()()}
           value={value}

@@ -43,6 +43,7 @@ export default () => {
           {/* DisplayToggles wrapper for Docs only */}
           <DisplayToggles
             canReadOnly={false}
+            canIsRequired={false}
             extras={[
               <EuiSwitch
                 compressed

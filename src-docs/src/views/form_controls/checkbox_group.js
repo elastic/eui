@@ -45,6 +45,7 @@ export default () => {
       canReadOnly={false}
       canInvalid={false}
       canFullWidth={false}
+      canIsRequired={false}
     >
       <EuiCheckboxGroup
         options={checkboxes}

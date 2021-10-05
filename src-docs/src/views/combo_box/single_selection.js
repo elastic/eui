@@ -48,11 +48,12 @@ export default () => {
 
   return (
     <DisplayToggles
+      canIsDisabled
       canDisabled={false}
       canReadOnly={false}
       canLoading={false}
       canPrepend={false}
-      canIsDisabled
+      canIsRequired={false}
       canAppend
     >
       <EuiComboBox

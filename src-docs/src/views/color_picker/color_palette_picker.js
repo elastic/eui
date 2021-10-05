@@ -102,7 +102,12 @@ export default () => {
         onChange={() => setSelectionDisplay(!selectionDisplay)}
       />
       <EuiSpacer />
-      <DisplayToggles canPrepend={true} canAppend={true} canReadOnly={false}>
+      <DisplayToggles
+        canPrepend={true}
+        canAppend={true}
+        canReadOnly={false}
+        canIsRequired={false}
+      >
         <EuiColorPalettePicker
           palettes={palettes}
           onChange={setPallette}

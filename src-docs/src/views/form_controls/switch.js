@@ -16,6 +16,7 @@ export default () => {
       canReadOnly={false}
       canLoading={false}
       canInvalid={false}
+      canIsRequired={false}
       canFullWidth={false}
     >
       <EuiSwitch

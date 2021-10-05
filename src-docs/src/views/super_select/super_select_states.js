@@ -32,7 +32,7 @@ export default () => {
 
   return (
     /* DisplayToggles wrapper for Docs only */
-    <DisplayToggles canPrepend={true} canAppend={true}>
+    <DisplayToggles canPrepend={true} canAppend={true} canIsRequired={false}>
       <EuiSuperSelect
         options={options}
         valueOfSelected={value}
