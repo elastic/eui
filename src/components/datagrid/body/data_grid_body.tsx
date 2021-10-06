@@ -44,8 +44,10 @@ import {
 import {
   EuiDataGridBodyProps,
   EuiDataGridInMemoryValues,
+  EuiDataGridRowManager,
   EuiDataGridSchemaDetector,
 } from '../data_grid_types';
+import { makeRowManager } from './data_grid_row_manager';
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
 
@@ -72,6 +74,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     rowHeightsOptions,
     getRowHeight,
     rowHeightUtils,
+    rowManager,
   } = data;
 
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
@@ -139,6 +142,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
         getRowHeight={getRowHeight}
         rowHeightsOptions={rowHeightsOptions}
         rowHeightUtils={rowHeightUtils}
+        rowManager={rowManager}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -166,6 +170,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
         rowHeightsOptions={rowHeightsOptions}
         getRowHeight={getRowHeight}
         rowHeightUtils={rowHeightUtils}
+        rowManager={rowManager}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -203,6 +208,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
         rowHeightsOptions={rowHeightsOptions}
         getRowHeight={getRowHeight}
         rowHeightUtils={rowHeightUtils}
+        rowManager={rowManager}
         style={{
           ...style,
           top: `${parseFloat(style.top as string) + headerRowHeight}px`,
@@ -300,6 +306,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     virtualizationOptions,
     gridStyles,
   } = props;
+
+  const [rowManager] = useState<EuiDataGridRowManager>(makeRowManager);
 
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
   const [footerRowRef, setFooterRowRef] = useState<HTMLDivElement | null>(null);
@@ -724,6 +732,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                   interactiveCellId,
                   rowHeightsOptions,
                   rowHeightUtils,
+                  rowManager,
                 }}
                 rowCount={
                   IS_JEST_ENVIRONMENT || headerRowHeight > 0
