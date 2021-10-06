@@ -48,8 +48,8 @@ export default () => {
     <EuiSplitPanel.Outer hasBorder>
       <EuiSplitPanel.Inner color="subdued">
         <EuiButtonGroup
-          legend={'Logo color'}
-          name={'logoColor'}
+          legend="Logo color"
+          name="logoColor"
           idSelected={iconColor}
           onChange={(optionId) => {
             setIconColor(optionId);
