@@ -17,4 +17,8 @@ import {
 export const font_ams: EuiThemeFont = {
   ...font,
   family: "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
+  body: {
+    scale: 's',
+    weight: 'regular',
+  },
 };
