@@ -4,6 +4,8 @@ test/spec/screenshots/baseline/**/*.png
 test/spec/screenshots/diff/**/*.png
 test/spec/screenshots/screen/**/*.png
 test/failure-screenshots/**/*.png
+cypress/screenshots
+cypress/videos
 
 coverage/
 reports/
