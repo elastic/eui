@@ -17,7 +17,7 @@ const App = ({ Component }) => (
 );
 ```
 
-[See **EuiThemeProvider**](#/theming/theme-provider) for full documentation as all relevant props will pass through. For instance, it's likely that you will want to implement color mode switching at this level:
+See [**EuiThemeProvider**](/#/theming/theme-provider) for full documentation as all relevant props will pass through. For instance, it's likely that you will want to implement color mode switching at this level:
 
 ```jsx
 <EuiProvider colorMode={isDark ? 'dark' : 'light'} />
@@ -28,7 +28,7 @@ const App = ({ Component }) => (
 
 #### Global styles
 
-A reset stylesheet and global EUI styles will by default be applied via CSS-in-JS. To prevent loading these styles from loading, pass `theme={false}` to the provider. 
+A reset stylesheet and global EUI styles will by default be applied via CSS-in-JS. To prevent loading these styles from loading, pass `theme={null}` to the provider. 
 
 
 #### `@emotion/cache` and style injection location 
