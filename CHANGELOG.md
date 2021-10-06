@@ -1,6 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `39.0.0`.
+- Added support for `ghost` and `text` `EuiIcon` colors on Elastic logos ([#5245](https://github.com/elastic/eui/pull/5245))
 
 ## [`39.0.0`](https://github.com/elastic/eui/tree/v39.0.0)
 
