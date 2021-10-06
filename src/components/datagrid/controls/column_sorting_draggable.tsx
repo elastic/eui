@@ -7,16 +7,16 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import { EuiScreenReaderOnly } from '../accessibility';
-import { EuiButtonGroup, EuiButtonIcon } from '../button';
-import { EuiDraggable } from '../drag_and_drop';
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiI18n } from '../i18n';
-import { EuiIcon } from '../icon';
-import { EuiText } from '../text';
-import { EuiToken } from '../token';
-import { getDetailsForSchema } from './data_grid_schema';
-import { EuiDataGridColumnSortingDraggableProps } from './data_grid_types';
+import { EuiScreenReaderOnly } from '../../accessibility';
+import { EuiButtonGroup, EuiButtonIcon } from '../../button';
+import { EuiDraggable } from '../../drag_and_drop';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiI18n } from '../../i18n';
+import { EuiIcon } from '../../icon';
+import { EuiText } from '../../text';
+import { EuiToken } from '../../token';
+import { getDetailsForSchema } from '../data_grid_schema';
+import { EuiDataGridColumnSortingDraggableProps } from '../data_grid_types';
 
 export const defaultSortAscLabel = (
   <EuiI18n token="euiColumnSortingDraggable.defaultSortAsc" default="A-Z" />
