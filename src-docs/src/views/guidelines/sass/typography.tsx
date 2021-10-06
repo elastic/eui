@@ -47,12 +47,12 @@ const ImportFontFamily = () => {
   switch (themeContext.theme) {
     case 'light':
     case 'dark':
-      importString = `@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
-@import url('https://rsms.me/inter/inter-ui.css');`;
-      break;
-    default:
       importString =
         "@import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10,300..700;0,300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap');";
+      break;
+    default:
+      importString = `@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
+@import url('https://rsms.me/inter/inter-ui.css');`;
   }
 
   return (
@@ -69,11 +69,11 @@ const VariableLink = () => {
     case 'light':
     case 'dark':
       url =
-        'https://github.com/elastic/eui/blob/master/src/global_styling/variables/_typography.scss';
+        'https://github.com/elastic/eui/blob/master/src/themes/amsterdam/global_styling/variables/_typography.scss';
       break;
     default:
       url =
-        'https://github.com/elastic/eui/blob/master/src/themes/eui-amsterdam/global_styling/variables/_typography.scss';
+        'https://github.com/elastic/eui/blob/master/src/global_styling/variables/_typography.scss';
   }
 
   return <EuiLink href={url}>variables</EuiLink>;
@@ -86,11 +86,11 @@ const MixinLink = () => {
     case 'light':
     case 'dark':
       url =
-        'https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_typography.scss';
+        'https://github.com/elastic/eui/blob/master/src/themes/amsterdam/global_styling/mixins/_typography.scss';
       break;
     default:
       url =
-        'https://github.com/elastic/eui/blob/master/src/themes/eui-amsterdam/global_styling/mixins/_typography.scss';
+        'https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_typography.scss';
   }
 
   return <EuiLink href={url}>mixins</EuiLink>;
@@ -247,7 +247,7 @@ export const Typography = ({}) => {
                   keywords values. When importing the font-family from your
                   service of choice, ensure that you have all 5 weights
                   contained in your import.{' '}
-                  {selectedTheme.includes('amsterdam') ? (
+                  {!selectedTheme.includes('legacy') ? (
                     <>
                       The Amsterdam theme also supports variable font families
                       which can be{' '}
@@ -272,7 +272,7 @@ export const Typography = ({}) => {
 
             <EuiSpacer />
 
-            {selectedTheme.includes('amsterdam') ? (
+            {!selectedTheme.includes('legacy') ? (
               <>
                 <EuiRange
                   fullWidth

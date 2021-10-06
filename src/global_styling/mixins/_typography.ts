@@ -6,12 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { font } from '../../../../global_styling/variables/_typography';
+// import { useEuiTheme, isLegacyTheme } from '../../services/theme';
 
-/**
- * Amsterdam theme just changes the main font from the beta Inter UI to Inter
- */
-export const font_ams = {
-  ...font,
-  family: "'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif",
-};
+// Some functions that help us deal with browser scaling of text more consistently.
+// Essentially, fonts across eui should scale against the root html element, not
+// against parent inheritance.

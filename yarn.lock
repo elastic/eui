@@ -1339,6 +1339,17 @@
     "@emotion/weak-memoize" "^0.2.5"
     stylis "^4.0.3"
 
+"@emotion/cache@^11.4.0":
+  version "11.4.0"
+  resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-11.4.0.tgz#293fc9d9a7a38b9aad8e9337e5014366c3b09ac0"
+  integrity sha512-Zx70bjE7LErRO9OaZrhf22Qye1y4F7iDl+ITjet0J+i+B88PrAOBkKvaAWhxsZf72tDLajwCgfCjJ2dvH77C3g==
+  dependencies:
+    "@emotion/memoize" "^0.7.4"
+    "@emotion/sheet" "^1.0.0"
+    "@emotion/utils" "^1.0.0"
+    "@emotion/weak-memoize" "^0.2.5"
+    stylis "^4.0.3"
+
 "@emotion/css-prettifier@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@emotion/css-prettifier/-/css-prettifier-1.0.0.tgz#3ed4240d93c9798c001cedf27dd0aa960bdddd1a"

@@ -13,7 +13,7 @@ export {
   EuiColorModeContext,
 } from './context';
 export { useEuiTheme, withEuiTheme, WithEuiThemeProps } from './hooks';
-export { EuiThemeProvider } from './provider';
+export { EuiThemeProvider, EuiThemeProviderProps } from './provider';
 export {
   buildTheme,
   computed,
@@ -24,9 +24,6 @@ export {
   mergeDeep,
   setOn,
   Computed,
-  isDefaultTheme,
-  DEFAULT_NAME_KEY,
-  AMSTERDAM_NAME_KEY,
 } from './utils';
 export {
   ComputedThemeShape,

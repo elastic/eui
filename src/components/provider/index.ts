@@ -6,7 +6,4 @@
  * Side Public License, v 1.
  */
 
-export { EUI_THEMES, EUI_THEME } from './themes';
-
-export { AMSTERDAM_NAME_KEY, EuiThemeAmsterdam } from './amsterdam/theme';
-export { LEGACY_NAME_KEY, EuiThemeLegacy } from './legacy/theme';
+export { EuiProvider, EuiProviderProps } from './provider';

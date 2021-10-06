@@ -170,6 +170,8 @@ import { PortalExample } from './views/portal/portal_example';
 
 import { ProgressExample } from './views/progress/progress_example';
 
+import { ProviderExample } from './views/provider/provider_example';
+
 import { RangeControlExample } from './views/range/range_example';
 
 import { TreeViewExample } from './views/tree_view/tree_view_example';
@@ -476,6 +478,7 @@ const navigation = [
       OverlayMaskExample,
       PortalExample,
       PrettyDurationExample,
+      ProviderExample,
       ResizeObserverExample,
       ResponsiveExample,
       TextDiffExample,

@@ -105,6 +105,7 @@
     "@elastic/datemath": "^5.0.3",
     "@elastic/eslint-config-kibana": "^0.15.0",
     "@emotion/babel-preset-css-prop": "^11.0.0",
+    "@emotion/cache": "^11.4.0",
     "@emotion/eslint-plugin": "^11.0.0",
     "@emotion/jest": "^11.1.0",
     "@emotion/react": "^11.1.1",
