@@ -59,6 +59,10 @@ export type EuiAccordionProps = CommonProps &
      */
     buttonElement?: 'div' | 'legend' | 'button';
     /**
+     * Extra props to pass to the EuiButtonIcon containing the arrow.
+     */
+    arrowProps?: Partial<EuiButtonIconProps>;
+    /**
      * Will appear right aligned against the button. Useful for separate actions like deletions.
      */
     extraAction?: ReactNode;
@@ -178,6 +182,7 @@ export class EuiAccordion extends Component<
       isLoadingMessage,
       buttonProps,
       buttonElement: _ButtonElement = 'button',
+      arrowProps,
       ...rest
     } = this.props;
 
@@ -237,6 +242,7 @@ export class EuiAccordion extends Component<
           tabIndex={buttonElementIsFocusable ? -1 : 0}
           onClick={this.onToggle}
           color="text"
+          {...arrowProps}
           iconType="arrowRight"
         />
       );
