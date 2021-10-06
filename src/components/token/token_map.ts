@@ -53,6 +53,7 @@ export type EuiTokenMapType =
   | 'tokenRankFeature'
   | 'tokenRankFeatures'
   | 'tokenKeyword'
+  | 'tokenKeywordType'
   | 'tokenCompletionSuggester'
   | 'tokenDenseVector'
   | 'tokenText'
@@ -247,6 +248,10 @@ export const TOKEN_MAP: {
   tokenKeyword: {
     shape: 'square',
     color: 'euiColorVis9',
+  },
+  tokenKeywordType: {
+    shape: 'square',
+    color: 'euiColorVis1',
   },
   tokenCompletionSuggester: {
     shape: 'square',
