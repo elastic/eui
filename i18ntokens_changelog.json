@@ -1,5 +1,15 @@
 [
   {
+    "version": "39.0.0",
+    "changes": [
+      {
+        "token": "euiBasicTable.noItemsMessage",
+        "changeType": "added",
+        "value": "No items found"
+      }
+    ]
+  },
+  {
     "version": "38.1.0",
     "changes": [
       {

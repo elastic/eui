@@ -107,6 +107,7 @@ export const Table = () => {
 
   return (
     <EuiInMemoryTable
+      tableCaption="Demo of EuiInMemoryTable with controlled pagination"
       onTableChange={({ page: { index } }) =>
         setPagination({ pageIndex: index })
       }
