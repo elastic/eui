@@ -358,12 +358,22 @@ export const AccordionExample = {
               hide it until hover or focus
             </li>
           </ul>
+          <p>
+            We also recommend creating a fieldset/legend combination for better
+            accessibility and DOM structure by passing{' '}
+            <EuiCode language="tsx">{'element="fieldset"'}</EuiCode>. This will
+            set the entire accordion as a{' '}
+            <EuiCode language="html">{'<fieldset>'}</EuiCode> and automatically
+            change the <EuiCode>{'buttonElement'}</EuiCode> to a{' '}
+            <EuiCode language="html">{'<legend>'}</EuiCode>.
+          </p>
         </>
       ),
       demo: <AccordionForm />,
       snippet: `<EuiAccordion
   id={accordionId}
   className="euiAccordionForm"
+  element="fieldset"
   buttonClassName="euiAccordionForm__button"
   buttonContent={buttonContent}
   extraAction={<EuiButtonIcon

@@ -82,6 +82,7 @@ export default () => (
     <EuiAccordion
       id="accordionForm1"
       className="euiAccordionForm"
+      element="fieldset"
       buttonClassName="euiAccordionForm__button"
       buttonContent={buttonContent}
       extraAction={extraAction}
@@ -93,6 +94,7 @@ export default () => (
     <EuiAccordion
       id="accordionForm2"
       className="euiAccordionForm"
+      element="fieldset"
       buttonClassName="euiAccordionForm__button"
       buttonContent={buttonContent}
       extraAction={extraAction}
