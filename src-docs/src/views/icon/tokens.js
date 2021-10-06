@@ -55,6 +55,7 @@ const tokens = [
   'tokenRankFeature',
   'tokenRankFeatures',
   'tokenKeyword',
+  'tokenKeywordType',
   'tokenCompletionSuggester',
   'tokenDenseVector',
   'tokenText',
