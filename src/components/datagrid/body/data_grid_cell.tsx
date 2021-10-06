@@ -145,6 +145,19 @@ export class EuiDataGridCell extends Component<
   };
 
   setCellRef = (ref: HTMLDivElement | null) => {
+    // create a div[role=row], or remove one, if necessary
+    if (ref != null) {
+      // mounting
+      this.props.rowManager.addToRow(this.props.visibleRowIndex, ref);
+    } else if (this.cellRef.current) {
+      // unmounting
+      this.props.rowManager.removeFromRow(
+        this.props.visibleRowIndex,
+        this.cellRef.current
+      );
+    }
+
+    // save the reference
     this.cellRef.current = ref;
 
     // watch the first cell for size changes and use that to re-compute row heights
@@ -404,6 +417,7 @@ export class EuiDataGridCell extends Component<
       className,
       column,
       style,
+      rowManager,
       ...rest
     } = this.props;
     const { rowIndex, rowHeightsOptions } = rest;
