@@ -6,13 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  Component,
-  Fragment,
-  HTMLAttributes,
-  ReactNode,
-  ReactElement,
-} from 'react';
+import React, { Component, Fragment, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 import moment from 'moment';
 import {
@@ -846,7 +840,9 @@ export class EuiBasicTable<T = any> extends Component<
             align={columnAlign}
             width={width}
             mobileOptions={mobileOptions}
-            data-test-subj={`tableHeaderCell_${name}_${index}`}
+            data-test-subj={`tableHeaderCell_${
+              typeof name === 'string' ? name : ''
+            }_${index}`}
             description={description}
             {...sorting}
           >
@@ -1168,7 +1164,7 @@ export class EuiBasicTable<T = any> extends Component<
         <EuiI18n token="euiBasicTable.selectThisRow" default="Select this row">
           {(selectThisRow: string) => (
             <EuiCheckbox
-              id={`${key}-checkbox`}
+              id={`${this.tableId}${key}-checkbox`}
               type="inList"
               disabled={disabled}
               checked={checked}
@@ -1384,26 +1380,22 @@ export class EuiBasicTable<T = any> extends Component<
         not configured. This callback must be implemented to handle pagination changes`);
       }
 
-      let ariaLabel: ReactElement | undefined = undefined;
-
-      if (tableCaption) {
-        ariaLabel = (
-          <EuiI18n
-            token="euiBasicTable.tablePagination"
-            default="Pagination for preceding table: {tableCaption}"
-            values={{ tableCaption }}
-          />
-        );
-      }
-
       return (
-        <PaginationBar
-          aria-controls={this.tableId}
-          pagination={pagination}
-          onPageSizeChange={this.onPageSizeChange.bind(this)}
-          onPageChange={this.onPageChange.bind(this)}
-          aria-label={ariaLabel}
-        />
+        <EuiI18n
+          token="euiBasicTable.tablePagination"
+          default="Pagination for table: {tableCaption}"
+          values={{ tableCaption }}
+        >
+          {(tablePagination: string) => (
+            <PaginationBar
+              pagination={pagination}
+              onPageSizeChange={this.onPageSizeChange.bind(this)}
+              onPageChange={this.onPageChange.bind(this)}
+              aria-controls={this.tableId}
+              aria-label={tablePagination}
+            />
+          )}
+        </EuiI18n>
       );
     }
   }

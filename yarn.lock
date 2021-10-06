@@ -1256,9 +1256,9 @@
   integrity sha512-Fn3fdTiyayHoy8Ol0RSu4MlBH2maQ2ZEXeEVKl/zHHXEQpld5HX3vdNLhK5YLij8cLynA4DxOT/nO9iEnIiOXw==
 
 "@cypress/react@^5.9.4":
-  version "5.10.0"
-  resolved "https://registry.yarnpkg.com/@cypress/react/-/react-5.10.0.tgz#0b7ff42681a47a75e91c34e82ef3fb2858cfd2ff"
-  integrity sha512-OglTE8C7iHplyg8frKxy5yJkAF0+eR7qxtCbYZSnhhxeEn97NEBeHjqzpMLgtQoTE12jEYZkXiq6HDxZBc5rQg==
+  version "5.10.1"
+  resolved "https://registry.yarnpkg.com/@cypress/react/-/react-5.10.1.tgz#3ce539d4f14660cd51caebc1b3c97e1b5dc5b8fb"
+  integrity sha512-/q9dJTAGRQv68PxK6ab0xTKICMA/ulLNB+1lrghavScOwhVdk4v/GAVRRAdBg7eFuFp3ZhPOJME9INudxBnjqg==
   dependencies:
     "@cypress/mount-utils" "1.0.2"
     debug "4.3.2"
@@ -1307,10 +1307,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@elastic/charts@^36.0.0":
-  version "36.0.0"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-36.0.0.tgz#dcb9c0edd5e3a031ce90e1d94f2c3fd42325a882"
-  integrity sha512-IR3jBBis8tuW6BIgGe7lIL8UerRMe81EOMVdfKybtxTuyLSK/XfjYf5cd7kIQHjHLIvrBkkoc2LGlGuIKBxr7A==
+"@elastic/charts@^37.0.0":
+  version "37.0.0"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-37.0.0.tgz#a94526461c404b449953cca4fe34f8bf3620413e"
+  integrity sha512-Pfm58/voERWVPJlxy13DphwgRoBGYhnSyz65kdsPg6lYGxN5ngWvuTuJ3477fyApYV01Pz4Ckt9yj1BSQue80Q==
   dependencies:
     "@popperjs/core" "^2.4.0"
     chroma-js "^2.1.0"
@@ -1318,7 +1318,6 @@
     d3-array "^1.2.4"
     d3-cloud "^1.2.5"
     d3-collection "^1.0.7"
-    d3-color "^1.4.0"
     d3-interpolate "^1.4.0"
     d3-scale "^1.0.7"
     d3-shape "^1.3.4"
@@ -2115,9 +2114,9 @@
   integrity sha512-5SCfvCxV74kzR3uWgTYiGxrd69TbT1I6+cMx1A5kEly/IVveJBimtAMlXiEyVFn5DvUFewQWxOOiJhlxeQwxgA==
 
 "@types/node@^14.14.31":
-  version "14.17.18"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.17.18.tgz#0198489a751005f71217744aa966cd1f29447c81"
-  integrity sha512-haYyibw4pbteEhkSg0xdDLAI3679L75EJ799ymVrPxOA922bPx3ML59SoDsQ//rHlvqpu+e36kcbR3XRQtFblA==
+  version "14.17.21"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.17.21.tgz#6359d8cf73481e312a43886fa50afc70ce5592c6"
+  integrity sha512-zv8ukKci1mrILYiQOwGSV4FpkZhyxQtuFWGya2GujWg+zVAeRQ4qbaMmWp9vb9889CFA8JECH7lkwCL6Ygg8kA==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -5276,9 +5275,9 @@ cyclist@~0.2.2:
   integrity sha1-GzN5LhHpFKL9bW7WRHRkRE5fpkA=
 
 cypress@^8.3.0:
-  version "8.4.1"
-  resolved "https://registry.yarnpkg.com/cypress/-/cypress-8.4.1.tgz#8b5898bf49359cadc28f02ba05d51f63b8e3a717"
-  integrity sha512-itJXq0Vx3sXCUrDyBi2IUrkxVu/gTTp1VhjB5tzGgkeCR8Ae+/T8WV63rsZ7fS8Tpq7LPPXiyoM/sEdOX7cR6A==
+  version "8.5.0"
+  resolved "https://registry.yarnpkg.com/cypress/-/cypress-8.5.0.tgz#5712ca170913f8344bf167301205c4217c1eb9bd"
+  integrity sha512-MMkXIS+Ro2KETn4gAlG3tIc/7FiljuuCZP0zpd9QsRG6MZSyZW/l1J3D4iQM6WHsVxuX4rFChn5jPFlC2tNSvQ==
   dependencies:
     "@cypress/request" "^2.88.6"
     "@cypress/xvfb" "^1.2.4"
@@ -5314,6 +5313,7 @@ cypress@^8.3.0:
     minimist "^1.2.5"
     ospath "^1.2.2"
     pretty-bytes "^5.6.0"
+    proxy-from-env "1.0.0"
     ramda "~0.27.1"
     request-progress "^3.0.0"
     supports-color "^8.1.1"
@@ -5339,7 +5339,7 @@ d3-collection@1, d3-collection@^1.0.7:
   resolved "https://registry.yarnpkg.com/d3-collection/-/d3-collection-1.0.7.tgz#349bd2aa9977db071091c13144d5e4f16b5b310e"
   integrity sha512-ii0/r5f4sjKNTfh84Di+DpztYwqKhEyUlKoPrzUFfeSkWxjW49xU2QzO9qrPrNkpdI0XJkfzvmTu8V2Zylln6A==
 
-d3-color@1, d3-color@^1.4.0:
+d3-color@1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/d3-color/-/d3-color-1.4.1.tgz#c52002bf8846ada4424d55d97982fef26eb3bc8a"
   integrity sha512-p2sTHSLCJI2QKunbGb7ocOh7DgTAn8IrLx21QRc/BSnodXM4sv6aLQlnfpvehFMLZEfBc6g9pH9SWQccFYfJ9Q==
@@ -6694,9 +6694,9 @@ event-stream@=3.3.4:
     through "~2.3.1"
 
 eventemitter2@^6.4.3:
-  version "6.4.4"
-  resolved "https://registry.yarnpkg.com/eventemitter2/-/eventemitter2-6.4.4.tgz#aa96e8275c4dbeb017a5d0e03780c65612a1202b"
-  integrity sha512-HLU3NDY6wARrLCEwyGKRBvuWYyvW6mHYv72SJJAH3iJN3a6eVUvkjFkcxah1bcTgGVBBrFdIopBJPhCQFMLyXw==
+  version "6.4.5"
+  resolved "https://registry.yarnpkg.com/eventemitter2/-/eventemitter2-6.4.5.tgz#97380f758ae24ac15df8353e0cc27f8b95644655"
+  integrity sha512-bXE7Dyc1i6oQElDG0jMRZJrRAn9QR2xyyFGmBdZleNmyQX0FqGYmhZIrIrpPfm/w//LTo4tVQGOGQcGCb5q9uw==
 
 eventemitter3@^4.0.0:
   version "4.0.5"
@@ -10521,9 +10521,9 @@ linguist-languages@7.5.1:
   integrity sha512-kZBOK2+xcub7UIVxzpWZoWQhfJ6zrpimo+/FXn3XuLCbvdwNJ3A/GVz5AFVFVSbYRoRCGD9f9qIf7cUHDklLkA==
 
 listr2@^3.8.3:
-  version "3.12.1"
-  resolved "https://registry.yarnpkg.com/listr2/-/listr2-3.12.1.tgz#75e515b86c66b60baf253542cc0dced6b60fedaf"
-  integrity sha512-oB1DlXlCzGPbvWhqYBZUQEPJKqsmebQWofXG6Mpbe3uIvoNl8mctBEojyF13ZyqwQ91clCWXpwsWp+t98K4FOQ==
+  version "3.12.2"
+  resolved "https://registry.yarnpkg.com/listr2/-/listr2-3.12.2.tgz#2d55cc627111603ad4768a9e87c9c7bb9b49997e"
+  integrity sha512-64xC2CJ/As/xgVI3wbhlPWVPx0wfTqbUAkpb7bjDi0thSWMqrf07UFhrfsGoo8YSXmF049Rp9C0cjLC8rZxK9A==
   dependencies:
     cli-truncate "^2.1.0"
     colorette "^1.4.0"
@@ -13576,7 +13576,7 @@ proxy-addr@~2.0.5:
     forwarded "~0.1.2"
     ipaddr.js "1.9.1"
 
-proxy-from-env@^1.0.0:
+proxy-from-env@1.0.0, proxy-from-env@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.0.0.tgz#33c50398f70ea7eb96d21f7b817630a55791c7ee"
   integrity sha1-M8UDmPcOp+uW0h97gXYwpVeRx+4=
