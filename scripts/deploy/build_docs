@@ -2,7 +2,7 @@
 
 set -e
 
-NODE_IMG="node:10"
+NODE_IMG="docker.elastic.co/eui/ci:1.0"
 
 # Compile using node image
 echo "Building docs using ${NODE_IMG} Docker image"

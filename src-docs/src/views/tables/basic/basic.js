@@ -120,6 +120,7 @@ export const Table = () => {
 
   return (
     <EuiBasicTable
+      tableCaption="Demo of EuiBasicTable"
       items={items}
       rowHeader="firstName"
       columns={columns}

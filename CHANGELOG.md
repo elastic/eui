@@ -1,5 +1,6 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+- Added support for `ghost` and `text` `EuiIcon` colors on Elastic logos ([#5245](https://github.com/elastic/eui/pull/5245))
 - Added a default `data-test-subj` to `EuiErrorBoundary` ([#5232](https://github.com/elastic/eui/pull/5232))
 
 ## [`39.0.0`](https://github.com/elastic/eui/tree/v39.0.0)
@@ -11,7 +12,7 @@
 **Bug fixes**
 
 - Fixed tick and level alignment in `Eui[Dual]Range` ([#5181](https://github.com/elastic/eui/pull/5181))
-- Fixed duplicate IDs on mobile/desktop select all checkboxes in `EuiBasicTable` ([#5237](https://github.com/elastic/eui/pull/5237))
+- Fixed multiple accessibility issues in `EuiBasicTable` and `EuiInMemoryTable` ([#5237](https://github.com/elastic/eui/pull/5237), [#5241](https://github.com/elastic/eui/pull/5241))
 - Fixed missing i18n token in `EuiBasicTable`'s no items message ([#5242](https://github.com/elastic/eui/pull/5242))
 
 **Breaking changes**
