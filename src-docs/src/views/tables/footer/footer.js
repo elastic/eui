@@ -195,6 +195,7 @@ export const Table = () => {
     <Fragment>
       {deleteButton}
       <EuiBasicTable
+        tableCaption="Demo of EuiBasicTable with footer"
         items={pageOfItems}
         itemId="id"
         columns={columns}

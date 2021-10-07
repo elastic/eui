@@ -16,11 +16,7 @@ import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
 
-// @ts-ignore not generating typescript files or definitions for the generated JS components
-// because we'd need to dynamically know if we're importing the
-// TS file (dev/docs) or the JS file (distributed), and it's more effort than worth
-// to generate & git track a TS module definition for each icon component
-import { icon as empty } from './assets/empty.js';
+import { icon as empty } from './assets/empty';
 import { enqueueStateChange } from '../../services/react';
 
 import { htmlIdGenerator } from '../../services';
@@ -139,7 +135,7 @@ const typeToPathMap = {
   eye: 'eye',
   eyeClosed: 'eye_closed',
   faceHappy: 'face_happy',
-  faceNeutral: 'faceNeutral',
+  faceNeutral: 'face_neutral',
   faceSad: 'face_sad',
   filebeatApp: 'app_filebeat',
   filter: 'filter',
@@ -402,56 +398,56 @@ const typeToPathMap = {
   workplaceSearchApp: 'app_workplace_search',
   wrench: 'wrench',
   // Token Icon Imports
-  tokenClass: 'tokens/tokenClass',
-  tokenProperty: 'tokens/tokenProperty',
-  tokenEnum: 'tokens/tokenEnum',
-  tokenVariable: 'tokens/tokenVariable',
-  tokenMethod: 'tokens/tokenMethod',
-  tokenAnnotation: 'tokens/tokenAnnotation',
-  tokenException: 'tokens/tokenException',
-  tokenInterface: 'tokens/tokenInterface',
-  tokenParameter: 'tokens/tokenParameter',
-  tokenField: 'tokens/tokenField',
-  tokenElement: 'tokens/tokenElement',
-  tokenFunction: 'tokens/tokenFunction',
-  tokenBoolean: 'tokens/tokenBoolean',
-  tokenString: 'tokens/tokenString',
-  tokenArray: 'tokens/tokenArray',
-  tokenNumber: 'tokens/tokenNumber',
-  tokenConstant: 'tokens/tokenConstant',
-  tokenObject: 'tokens/tokenObject',
-  tokenEvent: 'tokens/tokenEvent',
-  tokenKey: 'tokens/tokenKey',
-  tokenNull: 'tokens/tokenNull',
-  tokenStruct: 'tokens/tokenStruct',
-  tokenPackage: 'tokens/tokenPackage',
-  tokenOperator: 'tokens/tokenOperator',
-  tokenEnumMember: 'tokens/tokenEnumMember',
-  tokenRepo: 'tokens/tokenRepo',
-  tokenSymbol: 'tokens/tokenSymbol',
-  tokenFile: 'tokens/tokenFile',
-  tokenModule: 'tokens/tokenModule',
-  tokenNamespace: 'tokens/tokenNamespace',
-  tokenDate: 'tokens/tokenDate',
-  tokenIP: 'tokens/tokenIP',
-  tokenNested: 'tokens/tokenNested',
-  tokenAlias: 'tokens/tokenAlias',
-  tokenShape: 'tokens/tokenShape',
-  tokenGeo: 'tokens/tokenGeo',
-  tokenRange: 'tokens/tokenRange',
-  tokenBinary: 'tokens/tokenBinary',
-  tokenJoin: 'tokens/tokenJoin',
-  tokenPercolator: 'tokens/tokenPercolator',
-  tokenFlattened: 'tokens/tokenFlattened',
-  tokenRankFeature: 'tokens/tokenRankFeature',
-  tokenRankFeatures: 'tokens/tokenRankFeatures',
-  tokenKeyword: 'tokens/tokenKeyword',
-  tokenCompletionSuggester: 'tokens/tokenCompletionSuggester',
-  tokenDenseVector: 'tokens/tokenDenseVector',
-  tokenText: 'tokens/tokenText',
-  tokenTokenCount: 'tokens/tokenTokenCount',
-  tokenSearchType: 'tokens/tokenSearchType',
-  tokenHistogram: 'tokens/tokenHistogram',
+  tokenClass: 'tokenClass',
+  tokenProperty: 'tokenProperty',
+  tokenEnum: 'tokenEnum',
+  tokenVariable: 'tokenVariable',
+  tokenMethod: 'tokenMethod',
+  tokenAnnotation: 'tokenAnnotation',
+  tokenException: 'tokenException',
+  tokenInterface: 'tokenInterface',
+  tokenParameter: 'tokenParameter',
+  tokenField: 'tokenField',
+  tokenElement: 'tokenElement',
+  tokenFunction: 'tokenFunction',
+  tokenBoolean: 'tokenBoolean',
+  tokenString: 'tokenString',
+  tokenArray: 'tokenArray',
+  tokenNumber: 'tokenNumber',
+  tokenConstant: 'tokenConstant',
+  tokenObject: 'tokenObject',
+  tokenEvent: 'tokenEvent',
+  tokenKey: 'tokenKey',
+  tokenNull: 'tokenNull',
+  tokenStruct: 'tokenStruct',
+  tokenPackage: 'tokenPackage',
+  tokenOperator: 'tokenOperator',
+  tokenEnumMember: 'tokenEnumMember',
+  tokenRepo: 'tokenRepo',
+  tokenSymbol: 'tokenSymbol',
+  tokenFile: 'tokenFile',
+  tokenModule: 'tokenModule',
+  tokenNamespace: 'tokenNamespace',
+  tokenDate: 'tokenDate',
+  tokenIP: 'tokenIP',
+  tokenNested: 'tokenNested',
+  tokenAlias: 'tokenAlias',
+  tokenShape: 'tokenShape',
+  tokenGeo: 'tokenGeo',
+  tokenRange: 'tokenRange',
+  tokenBinary: 'tokenBinary',
+  tokenJoin: 'tokenJoin',
+  tokenPercolator: 'tokenPercolator',
+  tokenFlattened: 'tokenFlattened',
+  tokenRankFeature: 'tokenRankFeature',
+  tokenRankFeatures: 'tokenRankFeatures',
+  tokenKeyword: 'tokenKeyword',
+  tokenCompletionSuggester: 'tokenCompletionSuggester',
+  tokenDenseVector: 'tokenDenseVector',
+  tokenText: 'tokenText',
+  tokenTokenCount: 'tokenTokenCount',
+  tokenSearchType: 'tokenSearchType',
+  tokenHistogram: 'tokenHistogram',
 };
 
 export const TYPES = keysOf(typeToPathMap);
@@ -645,7 +641,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       // It's important that we don't use a template string here, it
       // stops webpack from building a dynamic require context.
       // eslint-disable-next-line prefer-template
-      './assets/' + typeToPathMap[iconType] + '.js'
+      './assets/' + typeToPathMap[iconType]
     ).then(({ icon }) => {
       iconComponentCache[iconType] = icon;
       enqueueStateChange(() => {
@@ -718,7 +714,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       className
     );
 
-    const icon = this.state.icon || (empty as ComponentType);
+    const icon = this.state.icon || empty;
 
     // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
     // focusable="false".

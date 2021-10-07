@@ -8,6 +8,7 @@ import {
   EuiHealth,
   EuiButton,
   EuiDescriptionList,
+  EuiScreenReaderOnly,
 } from '../../../../../src/components';
 
 import { RIGHT_ALIGNMENT } from '../../../../../src/services';
@@ -160,6 +161,11 @@ export const Table = () => {
       align: RIGHT_ALIGNMENT,
       width: '40px',
       isExpander: true,
+      name: (
+        <EuiScreenReaderOnly>
+          <span>Expand rows</span>
+        </EuiScreenReaderOnly>
+      ),
       render: (item) => (
         <EuiButtonIcon
           onClick={() => toggleDetails(item)}
@@ -195,6 +201,7 @@ export const Table = () => {
     <Fragment>
       {deleteButton}
       <EuiBasicTable
+        tableCaption="Demo of EuiBasicTable with expanding rows"
         items={pageOfItems}
         itemId="id"
         itemIdToExpandedRowMap={itemIdToExpandedRowMap}
