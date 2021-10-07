@@ -214,6 +214,7 @@ export const useDataGridColumnSorting = (
                       flush="left"
                       iconType="arrowDown"
                       iconSide="right"
+                      data-test-subj="dataGridColumnSortingSelectionButton"
                       onClick={() =>
                         setAvailableColumnsIsOpen(!availableColumnsIsOpen)
                       }
@@ -306,6 +307,7 @@ export const useDataGridColumnSorting = (
                   size="xs"
                   flush="right"
                   onClick={() => sorting.onSort([])}
+                  data-test-subj="dataGridColumnSortingClearButton"
                 >
                   <EuiI18n
                     token="euiColumnSorting.clearAll"
