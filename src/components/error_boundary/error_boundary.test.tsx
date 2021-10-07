@@ -23,7 +23,7 @@ const BadComponent = () => {
 
 describe('EuiErrorBoundary', () => {
   describe('without an error thrown', () => {
-    it('UI is not rendered', () => {
+    it('does not render the UI', () => {
       const component = takeMountedSnapshot(
         mount(
           <EuiErrorBoundary {...requiredProps}>
@@ -37,10 +37,7 @@ describe('EuiErrorBoundary', () => {
   });
 
   describe('with an error thrown', () => {
-    it('UI is rendered', () => {
-      // Prevent the React boundary error from appearing in the terminal.
-      spyOn(console, 'error');
-
+    it('renders UI', () => {
       // Because the error contains the stack trace, it's non-deterministic. So we'll just check that
       // it contains our error message.
       const errorText = mount(
@@ -52,10 +49,7 @@ describe('EuiErrorBoundary', () => {
       expect(errorText).toContain(errorMessage);
     });
 
-    it('data-test-subj is rendered', () => {
-      // Prevent the React boundary error from appearing in the terminal.
-      spyOn(console, 'error');
-
+    it('renders data-test-subj', () => {
       const errorHtml = mount(
         <EuiErrorBoundary {...requiredProps}>
           <BadComponent />
