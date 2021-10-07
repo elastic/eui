@@ -331,7 +331,7 @@ export const AccordionExample = {
       demo: <AccordionGrow />,
     },
     {
-      title: 'Interactable content in the trigger',
+      title: 'Interactive content in the trigger',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -341,11 +341,16 @@ export const AccordionExample = {
       text: (
         <>
           <p>
-            When passing interactable content like links, other buttons or form
-            elements as the <EuiCode>buttonContent</EuiCode>, this will cause
-            issues with the wrapping button element. To fix, you can change this
+            When passing interactive content like links, buttons, or form
+            elements as the <EuiCode>buttonContent</EuiCode>, will cause issues
+            with the wrapping button element. To fix, you can change this
             wrapping element to a div using{' '}
             <EuiCode>{'buttonElement="div"'}</EuiCode>.
+          </p>
+          <p>
+            If you don&apos;t want the interactive content to trigger the
+            accordion expansion, use{' '}
+            <EuiCode language="js">e.stopPropagation()</EuiCode>.
           </p>
           <EuiCallOut
             iconType="accessibility"

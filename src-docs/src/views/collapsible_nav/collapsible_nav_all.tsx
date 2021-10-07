@@ -17,13 +17,10 @@ import {
   EuiFlexItem,
   EuiHorizontalRule,
   EuiImage,
+  EuiListGroup,
 } from '../../../../src';
 
-import {
-  DeploymentsGroup,
-  KibanaNavLinks,
-  SecurityGroup,
-} from './collapsible_nav_list';
+import { KibanaNavLinks, SecurityGroup } from './collapsible_nav_list';
 
 import contentSvg from '../../images/content.svg';
 import { useExitPath } from '../../services/routing/routing';
@@ -150,7 +147,21 @@ const CollapsibleNavAll = () => {
     >
       {/* Dark deployments section */}
       <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
-        {DeploymentsGroup}
+        <EuiCollapsibleNavGroup isCollapsible={false} background="dark">
+          <EuiListGroup
+            color="ghost"
+            maxWidth="none"
+            gutterSize="none"
+            size="s"
+            listItems={[
+              {
+                label: 'Manage deployment',
+                href: '#',
+                iconType: 'logoCloud',
+              },
+            ]}
+          />
+        </EuiCollapsibleNavGroup>
       </EuiFlexItem>
 
       {/* Shaded pinned section always with a home item */}
@@ -181,7 +192,16 @@ const CollapsibleNavAll = () => {
       <EuiFlexItem className="eui-yScroll">
         {/* Kibana section */}
         <EuiCollapsibleNavGroup
-          title={<a href="#/navigation/collapsible-nav">Kibana</a>}
+          title={
+            <a
+              className="eui-textInheritColor"
+              href="#/navigation/collapsible-nav"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Kibana
+            </a>
+          }
+          buttonElement="div"
           iconType="logoKibana"
           isCollapsible={true}
           initialIsOpen={openGroups.includes('Kibana')}
@@ -206,8 +226,9 @@ const CollapsibleNavAll = () => {
         <EuiCollapsibleNavGroup
           title={
             <a
+              className="eui-textInheritColor"
               href="#/navigation/collapsible-nav"
-              onClick={(e) => e.stopPropagation}
+              onClick={(e) => e.stopPropagation()}
             >
               Training
             </a>
