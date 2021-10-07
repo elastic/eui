@@ -70,11 +70,11 @@ export const useDataGridColumnSorting = (
         numberOfSortedFields === 1 ? '' : 's'
       } sorted`,
     {
-      numberOfSortedFields: sorting !== undefined ? sorting.columns.length : 0,
+      numberOfSortedFields: sorting != null ? sorting.columns.length : 0,
     }
   );
 
-  if (sorting == null) return [null];
+  if (sorting == null) return null;
 
   const activeColumnIds = new Set(sorting.columns.map(({ id }) => id));
   const { inactiveColumns } = columns.reduce<{
@@ -95,19 +95,20 @@ export const useDataGridColumnSorting = (
     }
   );
 
-  function onDragEnd({
+  const onDragEnd = ({
     source: { index: sourceIndex },
     destination,
-  }: DropResult) {
-    const destinationIndex = destination!.index;
-    const nextColumns = euiDragDropReorder(
-      sorting!.columns,
-      sourceIndex,
-      destinationIndex
-    );
-
-    sorting!.onSort(nextColumns);
-  }
+  }: DropResult) => {
+    if (destination) {
+      const destinationIndex = destination.index;
+      const nextColumns = euiDragDropReorder(
+        sorting!.columns,
+        sourceIndex,
+        destinationIndex
+      );
+      sorting!.onSort(nextColumns);
+    }
+  };
 
   const controlBtnClasses = classNames('euiDataGrid__controlBtn', {
     'euiDataGrid__controlBtn--active': sorting.columns.length > 0,
@@ -251,9 +252,7 @@ export const useDataGridColumnSorting = (
                                     id,
                                     direction:
                                       defaultSortDirection ||
-                                      (schemaDetails(id) &&
-                                        schemaDetails(id)!
-                                          .defaultSortDirection) ||
+                                      schemaDetails(id)?.defaultSortDirection ||
                                       'asc',
                                   });
                                   sorting.onSort(nextColumns);
