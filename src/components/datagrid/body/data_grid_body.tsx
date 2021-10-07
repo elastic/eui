@@ -307,8 +307,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     gridStyles,
   } = props;
 
-  const [rowManager] = useState<EuiDataGridRowManager>(makeRowManager);
-
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
   const [footerRowRef, setFooterRowRef] = useState<HTMLDivElement | null>(null);
 
@@ -624,6 +622,11 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const wrapperDimensions = useResizeObserver(wrapperRef.current);
 
+  const innerGridRef = useRef<HTMLDivElement | null>(null);
+  const [rowManager] = useState<EuiDataGridRowManager>(() =>
+    makeRowManager(innerGridRef)
+  );
+
   // reset height constraint when rowCount changes
   useEffect(() => {
     setHeight(wrapperRef.current!.getBoundingClientRect().height);
@@ -702,6 +705,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 {...(virtualizationOptions ? virtualizationOptions : {})}
                 ref={setGridRef}
                 innerElementType={InnerElement}
+                innerRef={innerGridRef}
                 className={VIRTUALIZED_CONTAINER_CLASS}
                 columnCount={
                   leadingControlColumns.length +
