@@ -90,20 +90,20 @@ export const useDataGridColumnSelector = (
     [setSortedColumns, setVisibleColumns, visibleColumnIds]
   );
 
-  function onDragEnd({
-    source: { index: sourceIndex },
-    destination,
-  }: DropResult) {
-    if (destination) {
-      const destinationIndex = destination.index;
-      const nextSortedColumns = euiDragDropReorder(
-        sortedColumns,
-        sourceIndex,
-        destinationIndex
-      );
-      setColumns(nextSortedColumns);
-    }
-  }
+  const onDragEnd = useCallback(
+    ({ source: { index: sourceIndex }, destination }: DropResult) => {
+      if (destination) {
+        const destinationIndex = destination.index;
+        const nextSortedColumns = euiDragDropReorder(
+          sortedColumns,
+          sourceIndex,
+          destinationIndex
+        );
+        setColumns(nextSortedColumns);
+      }
+    },
+    [sortedColumns, setColumns]
+  );
 
   const numberOfHiddenFields = availableColumns.length - visibleColumns.length;
 
@@ -113,11 +113,15 @@ export const useDataGridColumnSelector = (
     'euiDataGrid__controlBtn--active': numberOfHiddenFields > 0,
   });
 
-  const filteredColumns = sortedColumns.filter(
-    (id) =>
-      (displayValues[id] || id)
-        .toLowerCase()
-        .indexOf(columnSearchText.toLowerCase()) !== -1
+  const filteredColumns = useMemo(
+    () =>
+      sortedColumns.filter(
+        (id) =>
+          (displayValues[id] || id)
+            .toLowerCase()
+            .indexOf(columnSearchText.toLowerCase()) !== -1
+      ),
+    [sortedColumns, columnSearchText, displayValues]
   );
 
   const isDragEnabled = allowColumnReorder && columnSearchText.length === 0; // only allow drag-and-drop when not filtering columns
