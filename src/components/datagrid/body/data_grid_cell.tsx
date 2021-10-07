@@ -18,6 +18,7 @@ import React, {
   memo,
   MutableRefObject,
 } from 'react';
+import { createPortal } from 'react-dom';
 import tabbable from 'tabbable';
 import { keys } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
@@ -145,18 +146,6 @@ export class EuiDataGridCell extends Component<
   };
 
   setCellRef = (ref: HTMLDivElement | null) => {
-    // create a div[role=row], or remove one, if necessary
-    if (ref != null) {
-      // mounting
-      this.props.rowManager.addToRow(this.props.visibleRowIndex, ref);
-    } else if (this.cellRef.current) {
-      // unmounting
-      this.props.rowManager.removeFromRow(
-        this.props.visibleRowIndex,
-        this.cellRef.current
-      );
-    }
-
     // save the reference
     this.cellRef.current = ref;
 
@@ -417,10 +406,11 @@ export class EuiDataGridCell extends Component<
       className,
       column,
       style,
+      rowHeightsOptions,
       rowManager,
       ...rest
     } = this.props;
-    const { rowIndex, rowHeightsOptions } = rest;
+    const { rowIndex } = rest;
 
     const showCellButtons =
       this.state.isFocused ||
@@ -609,7 +599,7 @@ export class EuiDataGridCell extends Component<
       }
     }
 
-    return (
+    return createPortal(
       <div
         role="gridcell"
         tabIndex={
@@ -629,7 +619,8 @@ export class EuiDataGridCell extends Component<
         onBlur={this.onBlur}
       >
         {innerContent}
-      </div>
+      </div>,
+      rowManager.getRow(rowIndex)
     );
   }
 }

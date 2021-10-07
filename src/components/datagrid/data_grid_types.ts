@@ -727,6 +727,5 @@ export interface EuiDataGridRowHeightsOptions {
 }
 
 export interface EuiDataGridRowManager {
-  addToRow(rowId: number, cellElement: HTMLElement): void;
-  removeFromRow(rowId: number, cellElement: HTMLElement): void;
+  getRow(rowId: number): HTMLDivElement;
 }
