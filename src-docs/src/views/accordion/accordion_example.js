@@ -86,6 +86,9 @@ const accordionIsLoadingSnippet = [
 </EuiAccordion>`,
 ];
 
+import AccordionButtonElement from './accordion_buttonElement';
+const accordionButtonElementSource = require('!!raw-loader!./accordion_buttonElement');
+
 export const AccordionExample = {
   title: 'Accordion',
   intro: (
@@ -326,6 +329,32 @@ export const AccordionExample = {
         </p>
       ),
       demo: <AccordionGrow />,
+    },
+    {
+      title: 'Interactable content in the trigger',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: accordionButtonElementSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            When passing interactable content like links, other buttons or form
+            elements as the <EuiCode>buttonContent</EuiCode>, this will cause
+            issues with the wrapping button element. To fix, you can change this
+            wrapping element to a div using{' '}
+            <EuiCode>{'buttonElement="div"'}</EuiCode>.
+          </p>
+          <EuiCallOut
+            iconType="accessibility"
+            color="warning"
+            title="Accordions need a focusable button for accessibility, so change this element to anything other than a button will enforce the display of the arrow."
+          />
+        </>
+      ),
+      demo: <AccordionButtonElement />,
     },
     {
       title: 'Styled for forms',
