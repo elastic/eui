@@ -334,7 +334,7 @@ export class FieldValueSelectionFilter extends Component<
   }
 
   render() {
-    const { index, query, config } = this.props;
+    const { query, config } = this.props;
     const multiSelect = this.resolveMultiSelect();
 
     const activeTop = this.isActiveField(config.field);
@@ -368,7 +368,6 @@ export class FieldValueSelectionFilter extends Component<
 
     return (
       <EuiPopover
-        id={`${config.type}_${index}`}
         button={button}
         isOpen={this.state.popoverOpen}
         closePopover={this.closePopover.bind(this)}

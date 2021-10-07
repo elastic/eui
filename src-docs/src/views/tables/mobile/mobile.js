@@ -216,6 +216,7 @@ export const Table = () => {
       <EuiSpacer size="l" />
 
       <EuiBasicTable
+        tableCaption="Demo for responsive EuiBasicTable with mobile options"
         items={pageOfItems}
         itemId="id"
         columns={columns}

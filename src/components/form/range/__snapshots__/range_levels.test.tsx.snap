@@ -7,11 +7,11 @@ exports[`EuiRangeLevels is rendered 1`] = `
   <span
     class="euiRangeLevel euiRangeLevel--danger customClass"
     data-test-subj="firstLevel"
-    style="width:20%"
+    style="left:calc(0% + 0px);right:calc(100% - 0px)"
   />
   <span
     class="euiRangeLevel euiRangeLevel--success"
-    style="width:80%"
+    style="left:calc(0% + 0px);right:calc(100% - 0px)"
   />
 </div>
 `;
@@ -22,11 +22,11 @@ exports[`EuiRangeLevels is rendered with named and custom color 1`] = `
 >
   <span
     class="euiRangeLevel euiRangeLevel--danger"
-    style="width:20%"
+    style="left:calc(0% + 0px);right:calc(100% - 0px)"
   />
   <span
     class="euiRangeLevel euiRangeLevel--customColor"
-    style="width:80%;background-color:#ff0000"
+    style="left:calc(0% + 0px);right:calc(100% - 0px);background-color:#ff0000"
   />
 </div>
 `;

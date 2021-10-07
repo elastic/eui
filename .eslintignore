@@ -5,7 +5,6 @@ lib
 test-env
 types
 eui.d.ts
-src/components/icon/assets/**/*.js
 package.json
 docs
 packages
