@@ -184,6 +184,7 @@ export const useDataGridColumnSelector = (
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setColumnSearchText(e.currentTarget.value)
                   }
+                  data-test-subj="dataGridColumnSelectorSearch"
                 />
               )}
             </EuiI18n>
@@ -209,6 +210,7 @@ export const useDataGridColumnSelector = (
                           state.isDragging &&
                           'euiDataGridColumnSelector__item-isDragging'
                         }`}
+                        data-test-subj={`dataGridColumnSelectorColumnItem-${id}`}
                       >
                         <EuiFlexGroup
                           responsive={false}
@@ -237,6 +239,7 @@ export const useDataGridColumnSelector = (
                                   );
                                   setVisibleColumns(nextVisibleColumns);
                                 }}
+                                data-test-subj={`dataGridColumnSelectorToggleColumnVisibility-${id}`}
                               />
                             ) : (
                               <span className="euiDataGridColumnSelector__itemLabel">
@@ -271,6 +274,7 @@ export const useDataGridColumnSelector = (
                 size="xs"
                 flush="left"
                 onClick={() => setVisibleColumns(sortedColumns)}
+                data-test-subj="dataGridColumnSelectorShowAllButton"
               >
                 <EuiI18n
                   token="euiColumnSelector.selectAll"
@@ -283,6 +287,7 @@ export const useDataGridColumnSelector = (
                 size="xs"
                 flush="right"
                 onClick={() => setVisibleColumns([])}
+                data-test-subj="dataGridColumnSelectorHideAllButton"
               >
                 <EuiI18n token="euiColumnSelector.hideAll" default="Hide all" />
               </EuiButtonEmpty>
