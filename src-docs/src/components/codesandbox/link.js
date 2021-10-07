@@ -83,9 +83,9 @@ export const CodeSandboxLinkComponent = ({
 
   // Renders the new Demo component generically into the code sandbox page
   const exampleClose = `ReactDOM.render(
-    <EuiThemeProvider ${providerProps}>
-      <Demo />
-    </EuiThemeProvider>,
+  <EuiThemeProvider ${providerProps}>
+    <Demo />
+  </EuiThemeProvider>,
   document.getElementById('root')
 );`;
 
