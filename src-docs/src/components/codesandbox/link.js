@@ -65,6 +65,30 @@ export const CodeSandboxLinkComponent = ({
       break;
   }
 
+  const providerPropsObject = {};
+  // Only add configuration if it isn't the default
+  if (context.theme.includes('dark')) {
+    providerPropsObject.colorMode = 'dark';
+  }
+  if (context.theme.includes(LEGACY_NAME_KEY)) {
+    providerPropsObject.theme = null;
+  }
+  // Can't spread an object inside of a string literal
+  const providerProps = Object.keys(providerPropsObject)
+    .map((prop) => {
+      const value = providerPropsObject[prop];
+      return value !== null ? `${prop}="${value}"` : `${prop}={${value}}`;
+    })
+    .join(' ');
+
+  // Renders the new Demo component generically into the code sandbox page
+  const exampleClose = `ReactDOM.render(
+    <EuiThemeProvider ${providerProps}>
+      <Demo />
+    </EuiThemeProvider>,
+  document.getElementById('root')
+);`;
+
   let indexContent;
 
   if (!content) {
@@ -75,26 +99,42 @@ import React from 'react';
 
 import {
   EuiButton,
+  EuiThemeProvider,
 } from '@elastic/eui';
 
 const Demo = () => (<EuiButton>Hello world!</EuiButton>);
 
-ReactDOM.render(
-  <Demo />,
-  document.getElementById('root')
-);
+${exampleClose}
 `;
   } else {
     /** This cleans the Demo JS example for Code Sanbox.
     - Replaces relative imports with pure @elastic/eui ones
+    - Adds provider import, if necessary
     - Changes the JS example from a default export to a component const named Demo
     **/
-    const exampleCleaned = cleanEuiImports(content)
+    let exampleCleaned = cleanEuiImports(content)
       .replace('export default', 'const Demo =')
       .replace(
         /(from )'(..\/)+display_toggles(\/?';)/,
         "from './display_toggles';"
       );
+
+    if (!exampleCleaned.includes('EuiThemeProvider')) {
+      if (exampleCleaned.includes(" } from '@elastic/eui';")) {
+        // Single line import statement
+        exampleCleaned = exampleCleaned.replace(
+          " } from '@elastic/eui';",
+          ", EuiThemeProvider } from '@elastic/eui';"
+        );
+      } else {
+        // Multi line import statement
+        exampleCleaned = exampleCleaned.replace(
+          "} from '@elastic/eui';",
+          `  EuiThemeProvider,
+} from '@elastic/eui';`
+        );
+      }
+    }
 
     // If the code example still has local doc imports after the above cleaning it's
     // too complicated for code sandbox so we don't provide a link
@@ -104,11 +144,6 @@ ReactDOM.render(
       return null;
     }
 
-    // Renders the new Demo component generically into the code sandbox page
-    const exampleClose = `ReactDOM.render(
-    <Demo />,
-    document.getElementById('root')
-  );`;
     // The Code Sanbbox demo needs to import CSS at the top of the document. CS has trouble
     // with our dynamic imports so we need to warn the user for now
     const exampleStart = `import ReactDOM from 'react-dom';
@@ -118,7 +153,7 @@ import '${cssFile}';`;
     const cleanedContent = `${exampleStart}
 ${exampleCleaned}
 ${exampleClose}
-      `;
+`;
     indexContent = cleanedContent.replace(
       /(from )'.+display_toggles';/,
       "from './display_toggles';"
