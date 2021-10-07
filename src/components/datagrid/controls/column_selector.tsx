@@ -20,21 +20,21 @@ import {
   EuiDataGridColumnVisibility,
   EuiDataGridToolBarVisibilityColumnSelectorOptions,
   EuiDataGridToolBarVisibilityOptions,
-} from './data_grid_types';
-import { EuiPopover, EuiPopoverFooter, EuiPopoverTitle } from '../popover';
-import { EuiI18n } from '../i18n';
-import { EuiButtonEmpty } from '../button';
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiSwitch, EuiFieldText } from '../form';
+} from '../data_grid_types';
+import { EuiPopover, EuiPopoverFooter, EuiPopoverTitle } from '../../popover';
+import { EuiI18n } from '../../i18n';
+import { EuiButtonEmpty } from '../../button';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiSwitch, EuiFieldText } from '../../form';
 import {
   EuiDragDropContext,
   EuiDraggable,
   EuiDroppable,
   euiDragDropReorder,
-} from '../drag_and_drop';
+} from '../../drag_and_drop';
 import { DropResult } from 'react-beautiful-dnd';
-import { EuiIcon } from '../icon';
-import { useDependentState } from '../../services';
+import { EuiIcon } from '../../icon';
+import { useDependentState } from '../../../services';
 
 const getShowColumnSelectorValue = (
   showColumnSelector: EuiDataGridToolBarVisibilityOptions['showColumnSelector'],
