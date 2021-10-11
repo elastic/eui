@@ -18,14 +18,14 @@ const accordionArrowRightSource = require('!!raw-loader!./accordion_arrow_right'
 import AccordionMultiple from './accordion_multiple';
 const accordionMultipleSource = require('!!raw-loader!./accordion_multiple');
 const accordionMultipleSnippet = `<EuiAccordion
-  id={accordionId}
+  id={accordionId1}
   buttonContent="Clickable title for first item"
   paddingSize="l">
     <!-- Content to show when expanded -->
 </EuiAccordion>
 <EuiSpacer />
 <EuiAccordion
-  id={accordionId}
+  id={accordionId2}
   buttonContent="Clickable title for second item"
   paddingSize="l">
     <!-- Content to show when expanded -->
@@ -73,13 +73,13 @@ import AccordionIsLoading from './accordion_isLoading';
 const accordionIsLoadingSource = require('!!raw-loader!./accordion_isLoading');
 const accordionIsLoadingSnippet = [
   `<EuiAccordion
-  id={accordionId}
+  id={accordionId1}
   isLoading>
     <!-- Content to show when expanded -->
 </EuiAccordion>
 `,
   `<EuiAccordion
-  id={accordionId}
+  id={accordionId2}
   isLoading
   isLoadingMessage={customMessage}>
   <!-- Content that will be replaced by isLoadingMessage -->
@@ -135,7 +135,7 @@ export const AccordionExample = {
       playground: accordionConfig,
       props: { EuiAccordion },
       snippet: `<EuiAccordion
-  id={accordionId}
+  id={accordionId1}
   buttonContent="Clickable title"
   >
     <!-- Content to show when expanded -->
@@ -163,7 +163,7 @@ export const AccordionExample = {
       ],
       demo: <AccordionArrowRight />,
       snippet: `<EuiAccordion
-  id={accordionId}
+  id={accordionId2}
   buttonContent="Clickable title"
   arrowDisplay="right"
   >
@@ -180,7 +180,7 @@ export const AccordionExample = {
       ],
       demo: <AccordionArrow />,
       snippet: `<EuiAccordion
-  id={accordionId}
+  id={accordionId3}
   buttonContent="Clickable title"
   arrowDisplay="none"
   >
@@ -362,7 +362,7 @@ export const AccordionExample = {
       ),
       demo: <AccordionForm />,
       snippet: `<EuiAccordion
-  id={accordionId}
+  id={accordionId4}
   className="euiAccordionForm"
   buttonClassName="euiAccordionForm__button"
   buttonContent={buttonContent}
