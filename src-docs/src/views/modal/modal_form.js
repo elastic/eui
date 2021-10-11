@@ -17,12 +17,15 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isSwitchChecked, setIsSwitchChecked] = useState(true);
   const [superSelectvalue, setSuperSelectValue] = useState('option_one');
+
+  const modalFormId = useGeneratedHtmlId({ prefix: 'modalForm' });
+  const modalFormSwitchId = useGeneratedHtmlId({ prefix: 'modalFormSwitch' });
 
   const onSwitchChange = () =>
     setIsSwitchChecked((isSwitchChecked) => !isSwitchChecked);
@@ -77,10 +80,10 @@ export default () => {
   ];
 
   const formSample = (
-    <EuiForm id="modalFormId" component="form">
+    <EuiForm id={modalFormId} component="form">
       <EuiFormRow>
         <EuiSwitch
-          id={htmlIdGenerator()()}
+          id={modalFormSwitchId}
           name="popswitch"
           label="Isn't this modal form cool?"
           checked={isSwitchChecked}
@@ -128,7 +131,7 @@ export default () => {
         <EuiModalFooter>
           <EuiButtonEmpty onClick={closeModal}>Cancel</EuiButtonEmpty>
 
-          <EuiButton type="submit" form="modalFormId" onClick={closeModal} fill>
+          <EuiButton type="submit" form={modalFormId} onClick={closeModal} fill>
             Save
           </EuiButton>
         </EuiModalFooter>
