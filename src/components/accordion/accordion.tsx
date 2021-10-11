@@ -61,7 +61,9 @@ export type EuiAccordionProps = CommonProps &
     /**
      * Extra props to pass to the EuiButtonIcon containing the arrow.
      */
-    arrowProps?: Partial<EuiButtonIconProps>;
+    arrowProps?: Partial<
+      Omit<EuiButtonIconProps, 'iconType' | 'onClick' | 'aria-labelledby'>
+    >;
     /**
      * Will appear right aligned against the button. Useful for separate actions like deletions.
      */
@@ -106,6 +108,8 @@ export class EuiAccordion extends Component<
     arrowDisplay: 'left',
     isLoading: false,
     isLoadingMessage: false,
+    element: 'div',
+    buttonElement: 'button',
   };
 
   childContent: HTMLDivElement | null = null;
@@ -225,25 +229,29 @@ export class EuiAccordion extends Component<
       buttonContentClassName
     );
 
-    const iconButtonClasses = classNames('euiAccordion__iconButton', {
-      'euiAccordion__iconButton-isOpen': isOpen,
-      'euiAccordion__iconButton--right': _arrowDisplay === 'right',
-    });
+    const iconButtonClasses = classNames(
+      'euiAccordion__iconButton',
+      {
+        'euiAccordion__iconButton-isOpen': isOpen,
+        'euiAccordion__iconButton--right': _arrowDisplay === 'right',
+      },
+      arrowProps?.className
+    );
 
     let iconButton;
     const buttonId = buttonProps?.id ?? this.generatedId;
     if (_arrowDisplay !== 'none') {
       iconButton = (
         <EuiButtonIcon
+          color="text"
+          {...arrowProps}
           className={iconButtonClasses}
+          iconType="arrowRight"
+          onClick={this.onToggle}
           aria-controls={id}
           aria-expanded={isOpen}
           aria-labelledby={buttonId}
           tabIndex={buttonElementIsFocusable ? -1 : 0}
-          onClick={this.onToggle}
-          color="text"
-          {...arrowProps}
-          iconType="arrowRight"
         />
       );
     }

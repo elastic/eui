@@ -341,21 +341,21 @@ export const AccordionExample = {
       text: (
         <>
           <p>
-            When passing interactive content like links, buttons, or form
-            elements as the <EuiCode>buttonContent</EuiCode>, will cause issues
-            with the wrapping button element. To fix, you can change this
-            wrapping element to a div using{' '}
-            <EuiCode>{'buttonElement="div"'}</EuiCode>.
+            Passing interactive content like links, buttons, or form elements as
+            the <EuiCode>buttonContent</EuiCode>, will cause issues with the
+            wrapping button element. To fix this, you can change this wrapping
+            element to a div using <EuiCode>{'buttonElement="div"'}</EuiCode>.
           </p>
           <p>
             If you don&apos;t want the interactive content to trigger the
-            accordion expansion, use{' '}
-            <EuiCode language="js">e.stopPropagation()</EuiCode>.
+            accordion expansion, you will have to apply{' '}
+            <EuiCode language="js">e.stopPropagation()</EuiCode> to your element
+            manually.
           </p>
           <EuiCallOut
             iconType="accessibility"
             color="warning"
-            title="Accordions need a focusable button for accessibility, so change this element to anything other than a button will enforce the display of the arrow."
+            title="Accordions need a focusable button for accessibility, so changing the element to anything other than a button will enforce the display of the arrow."
           />
         </>
       ),

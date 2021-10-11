@@ -158,6 +158,9 @@ const CollapsibleNavAll = () => {
                 label: 'Manage deployment',
                 href: '#',
                 iconType: 'logoCloud',
+                iconProps: {
+                  color: 'ghost',
+                },
               },
             ]}
           />
