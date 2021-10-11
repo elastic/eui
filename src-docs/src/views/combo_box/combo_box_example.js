@@ -411,14 +411,6 @@ export const ComboBoxExample = {
               {'singleSelection={{ asPlainText: true }}'}
             </EuiCode>
           </p>
-          <p>
-            <strong>Note:</strong> <EuiCode>append</EuiCode> and{' '}
-            <EuiCode>prepend</EuiCode> props only work if
-            <EuiCode>singleSelection</EuiCode> prop is not set to{' '}
-            <EuiCode>false</EuiCode> to avoid multi-lines that makes combobox
-            height greater than that of <EuiCode>append</EuiCode> and{' '}
-            <EuiCode>prepend</EuiCode>.
-          </p>
         </Fragment>
       ),
       props: { EuiComboBox, EuiComboBoxOptionOption },

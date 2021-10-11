@@ -8,7 +8,7 @@
 
 **Bug fixes**
 
-Fixed missing `id` for `EuiCombobox` by generating one if `prepend` or `append` exists ([#5229](https://github.com/elastic/eui/pull/5229))
+- Fixed missing `id` for `EuiCombobox` by generating one if `prepend` or `append` exists ([#5229](https://github.com/elastic/eui/pull/5229))
 
 ## [`38.2.0`](https://github.com/elastic/eui/tree/v38.2.0)
 

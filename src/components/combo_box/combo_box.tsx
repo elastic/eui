@@ -937,7 +937,7 @@ export class EuiComboBox<T> extends Component<
     } = this.state;
 
     // Make sure we have a valid ID if users don't pass one as a prop
-    const inputId = id == null ? this.rootId('_eui-combobox-id') : id;
+    const inputId = id ?? this.rootId('_eui-combobox-id');
 
     // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input.
     // When custom options are disabled and the user leaves the combo box after entering text that does not match any
