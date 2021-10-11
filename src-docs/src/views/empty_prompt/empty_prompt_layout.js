@@ -17,20 +17,22 @@ import illustrationLightMode from '../../images/emptyPrompt__illustration.svg';
 export default () => {
   const layoutOptions = [
     {
-      id: 'horizontal',
-      label: 'Horizontal',
-    },
-    {
       id: 'vertical',
       label: 'Vertical',
     },
+    {
+      id: 'horizontal',
+      label: 'Horizontal',
+    },
   ];
 
-  const [layout, setLayout] = useState('horizontal');
+  const [layout, setLayout] = useState('vertical');
 
   const onChangeLayout = (optionId) => {
     setLayout(optionId);
   };
+
+  const isVerticalLayout = layout === 'vertical';
 
   return (
     <>
@@ -45,7 +47,12 @@ export default () => {
       <EuiSpacer size="m" />
 
       <EuiEmptyPrompt
-        icon={<EuiImage size="fullWidth" src={illustrationLightMode} />}
+        icon={
+          !isVerticalLayout && (
+            <EuiImage size="fullWidth" src={illustrationLightMode} />
+          )
+        }
+        iconType={isVerticalLayout && 'visArea'}
         title={<h2>You have no spice</h2>}
         layout={layout}
         body={

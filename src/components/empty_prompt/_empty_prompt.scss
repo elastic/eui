@@ -2,6 +2,26 @@
 
 .euiEmptyPrompt {
   margin: auto;
+
+  // Footer background colors
+  @each $modifier, $color in $euiPanelBackgroundColorModifiers {
+    @if ($modifier == 'transparent') {
+      &.euiPanel--#{$modifier} .euiEmptyPrompt__footer {
+        border-radius: $euiBorderRadius;
+        background-color: $euiPageBackgroundColor;
+      }
+    } @else if ($modifier == 'plain') {
+      &.euiPanel--#{$modifier} .euiEmptyPrompt__footer {
+        background-color: $euiPageBackgroundColor;
+        border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
+      }
+    } @else {
+      &.euiPanel--#{$modifier} .euiEmptyPrompt__footer {
+        background-color: lightOrDarkTheme(darken($color, 2%), lighten($color, 2%));
+        border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
+      }
+    }
+  }
 }
 
 .euiEmptyPrompt--verticalLayout {
@@ -11,24 +31,52 @@
   .euiEmptyPrompt__main {
     max-width: $euiTextConstrainedMaxWidth;
   }
-}
 
-.euiEmptyPrompt--horizontalLayout {
   .euiEmptyPrompt__illustration {
-    margin: auto;
+    margin-bottom: $euiSize;
   }
 
   .euiEmptyPrompt__content {
-    max-width: $euiTextConstrainedMaxWidth;
-    padding: $euiSizeL 0;
+    padding-top: $euiSizeL;
   }
 
-  // Footer background colors
-  @each $modifier, $color in $euiPanelBackgroundColorModifiers {
-    .euiPanel--#{$modifier} {
-      .euiEmptyPrompt__footer {
-        border-top: lightOrDarkTheme(darken($color, 10%), lighten($color, 10%));
-      }
+  .euiEmptyPrompt__footer {
+    margin-top: $euiSizeL;
+  }
+}
+
+.euiEmptyPrompt--horizontalLayout {
+  .euiEmptyPrompt__main {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .euiEmptyPrompt__content,
+  .euiEmptyPrompt__illustration {
+    flex: 50%;
+  }
+
+  .euiEmptyPrompt__contentInner {
+    max-width: $euiTextConstrainedMaxWidth;
+  }
+
+  .euiEmptyPrompt__illustration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .euiEmptyPrompt__content {
+    padding: $euiSizeL 0;
+  }
+}
+
+// Padding
+@each $modifier, $amount in $euiPanelPaddingModifiers {
+  .euiEmptyPrompt--#{$modifier} {
+    .euiEmptyPrompt__main,
+    .euiEmptyPrompt__footer {
+      padding: $amount;
     }
   }
 }

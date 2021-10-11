@@ -9,56 +9,31 @@ import {
   EuiImage,
   EuiLink,
   EuiSpacer,
-  EuiButtonGroup,
   EuiSelect,
 } from '../../../../src/components';
 
-import illustrationLightMode from '../../images/emptyPrompt__illustration.svg';
+import illustration from '../../images/emptyPrompt__illustration.svg';
 
 export default () => {
-  const layoutOptions = [
-    {
-      id: 'horizontal',
-      label: 'Horizontal',
-    },
-    {
-      id: 'vertical',
-      label: 'Vertical',
-    },
-  ];
-
   const panelColorsArray = [
-    'none',
+    'plain',
     'primary',
     'success',
     'accent',
     'warning',
     'danger',
     'subdued',
-    'plain',
     'transparent',
   ];
 
   const panelColorsOptions = panelColorsArray.map((name) => {
-    if (name === 'none') {
-      return {
-        value: name,
-        text: 'No color override',
-      };
-    } else {
-      return {
-        value: name,
-        text: name,
-      };
-    }
+    return {
+      value: name,
+      text: name,
+    };
   });
 
   const [panelColor, setPanelColor] = useState(panelColorsOptions[0].value);
-  const [layout, setLayout] = useState('horizontal');
-
-  const onChangeLayout = (optionId) => {
-    setLayout(optionId);
-  };
 
   const onChangePanelColor = (e) => {
     setPanelColor(e.target.value);
@@ -66,30 +41,20 @@ export default () => {
 
   return (
     <>
-      <EuiButtonGroup
-        color="primary"
-        legend="Change the layout"
-        options={layoutOptions}
-        idSelected={layout}
-        onChange={(id) => onChangeLayout(id)}
-      />
-
       <EuiSelect
+        prepend="Color"
         options={panelColorsOptions}
         value={panelColor}
         onChange={(e) => onChangePanelColor(e)}
+        compressed
       />
 
-      <EuiSpacer size="m" />
+      <EuiSpacer size="l" />
 
       <EuiEmptyPrompt
-        icon={<EuiImage size="fullWidth" src={illustrationLightMode} />}
+        icon={<EuiImage size="fullWidth" src={illustration} />}
+        layout="horizontal"
         title={<h2>You have no spice</h2>}
-        layout={layout}
-        hasPanel
-        panelProps={{
-          className: 'hellooooo',
-        }}
         color={panelColor}
         body={
           <Fragment>

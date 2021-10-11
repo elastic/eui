@@ -32,7 +32,7 @@ export default () => (
 
     {/* content section */}
 
-    <GuideRuleTitle>Structure</GuideRuleTitle>
+    <GuideRuleTitle>Anatomy</GuideRuleTitle>
 
     <EuiSpacer size="xl" />
 
@@ -89,7 +89,7 @@ export default () => (
     {/* End of Content section */}
 
     {/* Usage section */}
-    <GuideRuleTitle>Types of empty states and usage</GuideRuleTitle>
+    <GuideRuleTitle>Types of empty states and goals</GuideRuleTitle>
 
     <EuiSpacer size="xl" />
 
@@ -97,26 +97,35 @@ export default () => (
       <EuiTableHeader>
         <EuiTableHeaderCell>Type</EuiTableHeaderCell>
         <EuiTableHeaderCell>Description</EuiTableHeaderCell>
-        <EuiTableHeaderCell>Usage</EuiTableHeaderCell>
+        <EuiTableHeaderCell>Goal</EuiTableHeaderCell>
       </EuiTableHeader>
 
       <EuiTableBody>
         <EuiTableRow>
           <EuiTableRowCell isMobileFullWidth>First use</EuiTableRowCell>
 
-          <EuiTableRowCell>First use description</EuiTableRowCell>
+          <EuiTableRowCell>
+            No content on screen because it is the first time users are
+            interacting with that screen.
+          </EuiTableRowCell>
 
-          <EuiTableRowCell>Try to...</EuiTableRowCell>
+          <EuiTableRowCell>
+            Users understand there’s no data because it is the first time they
+            interact with the app. They can clearly understand how to add data.
+          </EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
           <EuiTableRowCell isMobileFullWidth>No data</EuiTableRowCell>
 
           <EuiTableRowCell>
-            No data or the data doesn’t match the filter.
+            No data is available, or the data doesn’t match the filter.
           </EuiTableRowCell>
 
-          <EuiTableRowCell>Try to...</EuiTableRowCell>
+          <EuiTableRowCell>
+            Users understand why there is no data displayed and what actions
+            they can perform to make it available.
+          </EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
@@ -126,43 +135,56 @@ export default () => (
             No permission to access the content.
           </EuiTableRowCell>
 
-          <EuiTableRowCell>Try to...</EuiTableRowCell>
+          <EuiTableRowCell>
+            Users understand why they don’t have permission to access the
+            content and what actions they need to perform to get access.
+          </EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
           <EuiTableRowCell isMobileFullWidth>No results</EuiTableRowCell>
 
-          <EuiTableRowCell>No results matching the search.</EuiTableRowCell>
+          <EuiTableRowCell>No results matched the search.</EuiTableRowCell>
 
-          <EuiTableRowCell>Try to...</EuiTableRowCell>
+          <EuiTableRowCell>
+            Users understand why the search didn’t match any results and what
+            they can do to have better results.
+          </EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
           <EuiTableRowCell isMobileFullWidth>Error</EuiTableRowCell>
 
-          <EuiTableRowCell>No results matching the search.</EuiTableRowCell>
+          <EuiTableRowCell>An error happened.</EuiTableRowCell>
 
-          <EuiTableRowCell>Try to...</EuiTableRowCell>
+          <EuiTableRowCell>
+            Users understand why they’re facing an error and what they can do to
+            solve the error.
+          </EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
           <EuiTableRowCell isMobileFullWidth>Completed tasks</EuiTableRowCell>
 
           <EuiTableRowCell>
-            All actions/tasks are completed and there is nothing to display
+            All actions/tasks are completed, and there is nothing to display.
           </EuiTableRowCell>
 
-          <EuiTableRowCell>Try to...</EuiTableRowCell>
+          <EuiTableRowCell>
+            Users understand that there are no more actions to complete.
+          </EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
           <EuiTableRowCell isMobileFullWidth>License upgrade</EuiTableRowCell>
 
-          <EuiTableRowCell>
-            All actions/tasks are completed and there is nothing to display
-          </EuiTableRowCell>
+          <EuiTableRowCell>No license to use a feature.</EuiTableRowCell>
 
-          <EuiTableRowCell>Try to...</EuiTableRowCell>
+          <EuiTableRowCell>
+            Users understand that they don’t have the required license to access
+            a feature and what actions they need to perform to upgrade the
+            license.
+          </EuiTableRowCell>
         </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
@@ -177,16 +199,16 @@ export default () => (
     </EuiText>
 
     <GuideRule
-      heading="Vertical vs Horizontal"
-      description="The content you have will dictate the layout you should use."
+      heading="Vertical vs. Horizontal"
+      description="Most of the time, you just need a vertical layout. The vertical layout is perfect to use with just an icon or no icons at all. Use the horizontal layout only when you have an illustration."
     >
       <GuideRuleExample
         type="do"
-        text="Use the vertical layout when you have a small description, less than three lines."
+        text="Use the horizontal layout when you have an illustration."
       >
         <div style={{ textAlign: 'center' }}>
           <EuiImage
-            alt="button placement in an input modal"
+            alt="Horizontal layout with an illustration"
             url={imgLayoutVertical}
             height="252"
           />
@@ -194,12 +216,12 @@ export default () => (
       </GuideRuleExample>
 
       <GuideRuleExample
-        type="do"
-        text="User the horizontal layout when your description has more than three lines."
+        type="dont"
+        text="Never use an icon for a horizontal layout."
       >
         <div style={{ textAlign: 'center' }}>
           <EuiImage
-            alt="button placement in popovers"
+            alt="Icon in a horizontal layout"
             url={imgLayoutHorizontal}
             height="252"
           />

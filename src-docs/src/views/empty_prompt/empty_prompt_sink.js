@@ -8,45 +8,16 @@ import {
   EuiText,
   EuiImage,
   EuiLink,
-  EuiPopover,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiFormRow,
-  EuiSelect,
   EuiSpacer,
   EuiButtonGroup,
-  EuiSwitch,
+  EuiSelect,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
 
-import illustrationLightMode from '../../images/emptyPrompt__illustration.svg';
+import illustration from '../../images/emptyPrompt__illustration.svg';
 
 export default () => {
-  const panelColorsArray = [
-    'none',
-    'primary',
-    'success',
-    'accent',
-    'warning',
-    'danger',
-    'subdued',
-    'plain',
-    'transparent',
-  ];
-
-  const panelColorsOptions = panelColorsArray.map((name) => {
-    if (name === 'none') {
-      return {
-        value: name,
-        text: 'No color override',
-      };
-    } else {
-      return {
-        value: name,
-        text: name,
-      };
-    }
-  });
-
   const layoutOptions = [
     {
       id: 'horizontal',
@@ -58,101 +29,109 @@ export default () => {
     },
   ];
 
-  const [panelColor, setPanelColor] = useState(panelColorsOptions[0].value);
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const onButtonClick = () =>
-    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
-  const closePopover = () => setIsPopoverOpen(false);
-  const [layout, setLayout] = useState('horizontal');
-  const [hasPanel, setHasPanel] = useState(true);
-  const [hasBorder, setHasBorder] = useState(false);
+  const colorsArray = [
+    'plain',
+    'primary',
+    'success',
+    'accent',
+    'warning',
+    'danger',
+    'subdued',
+    'transparent',
+  ];
 
-  const onChangePanelColor = (e) => {
-    setPanelColor(e.target.value);
-  };
+  const colorsOptions = colorsArray.map((name) => {
+    return {
+      value: name,
+      text: name,
+    };
+  });
+
+  const paddingOptions = [
+    {
+      value: 'none',
+      text: 'none',
+    },
+    {
+      value: 's',
+      text: 'small',
+    },
+    {
+      value: 'm',
+      text: 'medium',
+    },
+    {
+      value: 'l',
+      text: 'large',
+    },
+  ];
+
+  const [color, setColor] = useState(colorsOptions[0].value);
+  const [padding, setPadding] = useState(paddingOptions[3].value);
+  const [layout, setLayout] = useState('horizontal');
 
   const onChangeLayout = (optionId) => {
     setLayout(optionId);
   };
 
-  const onChangeHasPanel = (e) => {
-    setHasPanel(e.target.checked);
+  const onChangeColor = (e) => {
+    setColor(e.target.value);
   };
 
-  const onChangeHasBorder = (e) => {
-    setHasBorder(e.target.checked);
+  const onChangePadding = (e) => {
+    setPadding(e.target.value);
   };
 
-  const button = (
-    <EuiButton onClick={onButtonClick} iconType="controlsVertical" size="s">
-      Customize props
-    </EuiButton>
-  );
-
-  const panelProps = {
-    color: hasPanel && panelColor === 'none' ? undefined : panelColor,
-    hasBorder: hasPanel ? hasBorder : undefined,
-  };
+  const isVerticalLayout = layout === 'vertical';
 
   return (
     <>
       <EuiFlexGroup>
         <EuiFlexItem grow={false}>
-          <EuiPopover
-            panelStyle={{ minWidth: 380 }}
-            button={button}
-            isOpen={isPopoverOpen}
-            closePopover={closePopover}
-          >
-            <EuiFormRow label="Layout">
-              <EuiButtonGroup
-                color="primary"
-                legend="Change the layout"
-                options={layoutOptions}
-                idSelected={layout}
-                onChange={(id) => onChangeLayout(id)}
-              />
-            </EuiFormRow>
-            <EuiFormRow label="Panel">
-              <EuiSwitch
-                label="Enable panel"
-                checked={hasPanel}
-                onChange={(e) => onChangeHasPanel(e)}
-              />
-            </EuiFormRow>
+          <EuiButtonGroup
+            color="primary"
+            legend="Change the layout"
+            options={layoutOptions}
+            idSelected={layout}
+            onChange={(id) => onChangeLayout(id)}
+          />
+        </EuiFlexItem>
 
-            <EuiSpacer size="m" />
+        <EuiFlexItem grow={false}>
+          <EuiSelect
+            prepend="Color"
+            options={colorsOptions}
+            value={color}
+            onChange={(e) => onChangeColor(e)}
+            compressed
+          />
+        </EuiFlexItem>
 
-            <EuiTitle size="xxs">
-              <h2>Panel props </h2>
-            </EuiTitle>
-            <EuiFormRow label="Color">
-              <EuiSelect
-                options={panelColorsOptions}
-                value={panelColor}
-                onChange={(e) => onChangePanelColor(e)}
-                disabled={!hasPanel}
-              />
-            </EuiFormRow>
-            <EuiFormRow label="Border">
-              <EuiSwitch
-                label="Enable border"
-                checked={hasBorder}
-                onChange={(e) => onChangeHasBorder(e)}
-              />
-            </EuiFormRow>
-          </EuiPopover>
+        <EuiFlexItem grow={false}>
+          <EuiSelect
+            prepend="Padding size"
+            options={paddingOptions}
+            value={padding}
+            onChange={(e) => onChangePadding(e)}
+            compressed
+          />
         </EuiFlexItem>
       </EuiFlexGroup>
 
-      <EuiSpacer size="m" />
+      <EuiSpacer size="l" />
 
       <EuiEmptyPrompt
-        icon={<EuiImage size="fullWidth" src={illustrationLightMode} />}
+        icon={
+          !isVerticalLayout && <EuiImage size="fullWidth" src={illustration} />
+        }
+        iconType={isVerticalLayout && 'visArea'}
         title={<h2>You have no spice</h2>}
         layout={layout}
-        hasPanel={hasPanel}
-        panelProps={panelProps}
+        paddingSize={padding}
+        panelProps={{
+          className: 'myCustomClass',
+        }}
+        color={color}
         body={
           <Fragment>
             <p>

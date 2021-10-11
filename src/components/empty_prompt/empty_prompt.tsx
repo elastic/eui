@@ -22,6 +22,13 @@ import { EuiIcon, IconColor, IconType } from '../icon';
 import { EuiText, EuiTextColor } from '../text';
 import { EuiPanel, _EuiPanelProps } from '../panel/panel';
 
+const paddingSizeToClassNameMap = {
+  none: null,
+  s: 'euiEmptyPrompt--paddingSmall',
+  m: 'euiEmptyPrompt--paddingMedium',
+  l: 'euiEmptyPrompt--paddingLarge',
+};
+
 export type EuiEmptyPromptProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
     /*
@@ -55,15 +62,27 @@ export type EuiEmptyPromptProps = CommonProps &
      * Recommendation is to pass the primary action first and secondary actions as empty buttons
      */
     actions?: ReactNode;
-
+    /**
+     * Optionally provide a footer. Accepts any combination of elements.
+     */
     footer?: ReactNode;
-
+    /**
+     * Sets the layout. When `horizontal` the icon/illustration goes to the right column.
+     */
     layout?: 'vertical' | 'horizontal';
 
-    hasPanel?: boolean;
-
+    /**
+     * Color applied to the the empty prompt panel
+     */
     color?: _EuiPanelProps['color'];
 
+    /**
+     * Padding applied around the content of the empty prompt
+     */
+    paddingSize?: _EuiPanelProps['paddingSize'];
+    /**
+     * Props passed to the EuiPanel
+     */
     panelProps?: _EuiPanelProps;
   };
 
@@ -73,30 +92,20 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   iconColor = 'subdued',
   title,
   titleSize = 'm',
+  paddingSize = 'l',
   body,
   actions,
   className,
   layout = 'vertical',
-  hasPanel = false,
   panelProps,
-  color,
+  color = 'transparent',
   footer,
 }) => {
   let iconNode;
   if (icon) {
-    iconNode = (
-      <>
-        {icon}
-        <EuiSpacer size="m" />
-      </>
-    );
+    iconNode = icon;
   } else if (iconType) {
-    iconNode = (
-      <>
-        <EuiIcon type={iconType} size="xxl" color={iconColor} />
-        <EuiSpacer size="m" />
-      </>
-    );
+    iconNode = <EuiIcon type={iconType} size="xxl" color={iconColor} />;
   }
 
   let titleNode;
@@ -161,49 +170,26 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
     'euiEmptyPrompt',
     { 'euiEmptyPrompt--verticalLayout': isVerticalLayout },
     { 'euiEmptyPrompt--horizontalLayout': !isVerticalLayout },
+    paddingSizeToClassNameMap[paddingSize],
     className
   );
 
-  let panelColor: _EuiPanelProps['color'];
-
-  if (hasPanel && !color) {
-    panelColor = 'plain';
-  } else if (hasPanel && color) {
-    panelColor = color;
-  } else {
-    panelColor = 'transparent';
-  }
-
-  const customPanelProps = {
+  const customPanelProps: _EuiPanelProps = {
     ...panelProps,
     className: classes,
-    color: panelColor,
+    color: color,
+    paddingSize: 'none',
   };
 
-  const verticalLayout = (
+  return (
     <EuiPanel {...customPanelProps}>
       <div className="euiEmptyPrompt__main">
-        {iconNode}
-        {contentNodes}
+        <div className="euiEmptyPrompt__illustration">{iconNode}</div>
+        <div className="euiEmptyPrompt__content">
+          <div className="euiEmptyPrompt__contentInner">{contentNodes}</div>
+        </div>
       </div>
-      <div className="euiEmptyPrompt__footer">{footer}</div>
+      {footer && <div className="euiEmptyPrompt__footer">{footer}</div>}
     </EuiPanel>
   );
-
-  const horizontalLayout = (
-    <EuiPanel {...customPanelProps}>
-      <EuiFlexGroup className="euiEmptyPrompt__main">
-        <EuiFlexItem>
-          <div className="euiEmptyPrompt__content">{contentNodes}</div>
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <div className="euiEmptyPrompt__illustration">{iconNode}</div>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-
-      <div className="euiEmptyPrompt__footer">{footer}</div>
-    </EuiPanel>
-  );
-
-  return isVerticalLayout ? verticalLayout : horizontalLayout;
 };

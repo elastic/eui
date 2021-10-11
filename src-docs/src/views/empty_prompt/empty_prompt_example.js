@@ -108,68 +108,10 @@ export const EmptyPromptExample = {
           code: emptyPromptSource,
         },
       ],
-      text: (
-        <>
-          <p>
-            Use the <strong>EuiEmptyPrompt</strong> as a placeholder for any
-            type of empty content. They are especially helpful for replacing
-            entire pages that contain no content.
-          </p>
-          <p>
-            Be sure to read the full{' '}
-            <Link to="/guidelines/empty-prompt">
-              empty prompt usage guidelines
-            </Link>
-            .
-          </p>
-        </>
-      ),
       props: { EuiEmptyPrompt },
       demo: <EmptyPrompt />,
       snippet: emptyPromptSnippet,
       playground: emptyPromptConfig,
-    },
-    {
-      title: 'Layout',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: layoutSource,
-        },
-      ],
-      text: (
-        <p>
-          You can supply a layout of either <EuiCode>horizontal</EuiCode> or{' '}
-          <EuiCode>vertical</EuiCode> with the default being{' '}
-          <EuiCode>vertical</EuiCode>. Use the <EuiCode>vertical</EuiCode>{' '}
-          layout when the content is minimal. Use the{' '}
-          <EuiCode>horizontal</EuiCode> for longer content and make sure to give
-          it a <EuiCode>max-width</EuiCode> or contain it in a component.
-        </p>
-      ),
-      props: { EuiEmptyPrompt },
-      demo: <Layout />,
-      snippet: layoutSnippet,
-    },
-    {
-      title: 'Panel',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: panelSource,
-        },
-      ],
-      text: (
-        <p>
-          You can enable a panel by setting to <EuiCode>true</EuiCode> the{' '}
-          <EuiCode>hasPanel</EuiCode> prop. You can also customize the panel
-          color by passing one of the color options:{' '}
-          <EuiCode language="js">{JSON.stringify(COLORS, null, 2)}</EuiCode>.
-        </p>
-      ),
-      props: { EuiEmptyPrompt },
-      demo: <Panel />,
-      snippet: panelSnippet,
     },
     {
       title: 'Custom sizes and colors',
@@ -210,6 +152,51 @@ export const EmptyPromptExample = {
       props: { EuiEmptyPrompt },
       demo: <Simple />,
       snippet: simpleSnippet,
+    },
+    {
+      title: 'Layout',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: layoutSource,
+        },
+      ],
+      text: (
+        <p>
+          You can supply a layout of either <EuiCode>horizontal</EuiCode> or{' '}
+          <EuiCode>vertical</EuiCode> with the default being{' '}
+          <EuiCode>vertical</EuiCode>. Only use the{' '}
+          <EuiCode>horizontal</EuiCode> layout when you can provide an
+          illustration and make sure to give it a max-width or contain it in a
+          component.
+        </p>
+      ),
+      props: { EuiEmptyPrompt },
+      demo: <Layout />,
+      snippet: layoutSnippet,
+    },
+    {
+      title: 'Panel colors',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: panelSource,
+        },
+      ],
+      text: (
+        <p>
+          The <strong>EuiEmptyPrompt</strong> is built on top of{' '}
+          <Link to="/layout/panel">
+            <strong>EuiPanel</strong>
+          </Link>
+          . By default, the panel color is set to transparent but you can
+          customize the panel color by passing one of the color options:{' '}
+          <EuiCode language="js">{JSON.stringify(COLORS, null, 2)}</EuiCode>.
+        </p>
+      ),
+      props: { EuiEmptyPrompt },
+      demo: <Panel />,
+      snippet: panelSnippet,
     },
     {
       title: 'Loading and error prompts',
@@ -301,8 +288,9 @@ export const EmptyPromptExample = {
       text: (
         <>
           <p>
-            This example shows of all the styling and markup possibilities. It
-            is mostly used for testing.
+            This example shows the <EuiCode>layout</EuiCode>,{' '}
+            <EuiCode>color</EuiCode> and <EuiCode>paddingSize</EuiCode> props
+            usage.
           </p>
         </>
       ),
