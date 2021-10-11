@@ -31,8 +31,8 @@
     "test-unit": "cross-env NODE_ENV=test jest --config ./scripts/jest/config.json",
     "test-a11y": "node ./scripts/a11y-testing",
     "test-staged": "yarn lint && node scripts/test-staged.js",
-    "test-cypress": "cypress run-ct",
-    "test-cypress-dev": "cypress open-ct",
+    "test-cypress": "cross-env NODE_ENV=cypress_test cypress run-ct",
+    "test-cypress-dev": "cross-env NODE_ENV=cypress_test cypress open-ct",
     "start-test-server": "BABEL_MODULES=false NODE_ENV=puppeteer NODE_OPTIONS=--max-old-space-size=4096 webpack-dev-server --config src-docs/webpack.config.js --port 9999",
     "yo-component": "yo ./generator-eui/app/component.js",
     "update-token-changelog": "node ./scripts/update-token-changelog.js",
@@ -41,6 +41,13 @@
     "release": "node ./scripts/release.js",
     "postinstall": "node ./scripts/postinstall.js",
     "version": "node ./scripts/update-changelog-version.js"
+  },
+  "nyc": {
+    "report-dir": "reports/cypress-coverage",
+    "reporter": [
+      "json",
+      "html"
+    ]
   },
   "repository": {
     "type": "git",

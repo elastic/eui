@@ -37,6 +37,9 @@ module.exports = {
         test: /\.(js|tsx?)$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
+        options: {
+          plugins: ['istanbul'],
+        },
       },
       {
         test: /\.scss$/,
