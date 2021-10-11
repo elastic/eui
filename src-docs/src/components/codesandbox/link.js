@@ -83,9 +83,9 @@ export const CodeSandboxLinkComponent = ({
 
   // Renders the new Demo component generically into the code sandbox page
   const exampleClose = `ReactDOM.render(
-  <EuiThemeProvider ${providerProps}>
+  <EuiProvider ${providerProps}>
     <Demo />
-  </EuiThemeProvider>,
+  </EuiProvider>,
   document.getElementById('root')
 );`;
 
@@ -99,7 +99,7 @@ import React from 'react';
 
 import {
   EuiButton,
-  EuiThemeProvider,
+  EuiProvider,
 } from '@elastic/eui';
 
 const Demo = () => (<EuiButton>Hello world!</EuiButton>);
@@ -119,18 +119,18 @@ ${exampleClose}
         "from './display_toggles';"
       );
 
-    if (!exampleCleaned.includes('EuiThemeProvider')) {
+    if (!exampleCleaned.includes('EuiProvider')) {
       if (exampleCleaned.includes(" } from '@elastic/eui';")) {
         // Single line import statement
         exampleCleaned = exampleCleaned.replace(
           " } from '@elastic/eui';",
-          ", EuiThemeProvider } from '@elastic/eui';"
+          ", EuiProvider } from '@elastic/eui';"
         );
       } else {
         // Multi line import statement
         exampleCleaned = exampleCleaned.replace(
           "} from '@elastic/eui';",
-          `  EuiThemeProvider,
+          `  EuiProvider,
 } from '@elastic/eui';`
         );
       }
