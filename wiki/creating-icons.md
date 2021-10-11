@@ -60,7 +60,7 @@ _**Note**: Figma users can use the [SVG Export plugin][svg-plugin] to optimize S
 Create a new feature branch against this repo and make the following changes:
 
 _1. Add your glyph to the `EuiIcon` component_
-- Add your SVG file to the `/src/components/icon/assets` folder
+- Add your SVG file to the `/src/components/icon/svgs` folder
 - Add a reference in the `/src/components/icon/icon.tsx` file (in alphabetical order)
 
 _2. Display the icon in the docs_
