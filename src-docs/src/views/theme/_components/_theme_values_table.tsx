@@ -63,8 +63,8 @@ export const ThemeValuesTable = ({
       render: (sample: undefined, item) => render(item),
       mobileOptions: {
         header: false, // Won't show inline header in mobile view
-        // width: '100%', // Applies a specific width
-        // enlarge: true, // Increase text size compared to rest of cells
+        width: '100%', // Applies a specific width
+        enlarge: true, // Increase text size compared to rest of cells
       },
     },
     {
