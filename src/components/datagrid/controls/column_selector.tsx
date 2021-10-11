@@ -90,20 +90,20 @@ export const useDataGridColumnSelector = (
     [setSortedColumns, setVisibleColumns, visibleColumnIds]
   );
 
-  function onDragEnd({
-    source: { index: sourceIndex },
-    destination,
-  }: DropResult) {
-    if (destination) {
-      const destinationIndex = destination.index;
-      const nextSortedColumns = euiDragDropReorder(
-        sortedColumns,
-        sourceIndex,
-        destinationIndex
-      );
-      setColumns(nextSortedColumns);
-    }
-  }
+  const onDragEnd = useCallback(
+    ({ source: { index: sourceIndex }, destination }: DropResult) => {
+      if (destination) {
+        const destinationIndex = destination.index;
+        const nextSortedColumns = euiDragDropReorder(
+          sortedColumns,
+          sourceIndex,
+          destinationIndex
+        );
+        setColumns(nextSortedColumns);
+      }
+    },
+    [sortedColumns, setColumns]
+  );
 
   const numberOfHiddenFields = availableColumns.length - visibleColumns.length;
 
@@ -113,11 +113,15 @@ export const useDataGridColumnSelector = (
     'euiDataGrid__controlBtn--active': numberOfHiddenFields > 0,
   });
 
-  const filteredColumns = sortedColumns.filter(
-    (id) =>
-      (displayValues[id] || id)
-        .toLowerCase()
-        .indexOf(columnSearchText.toLowerCase()) !== -1
+  const filteredColumns = useMemo(
+    () =>
+      sortedColumns.filter(
+        (id) =>
+          (displayValues[id] || id)
+            .toLowerCase()
+            .indexOf(columnSearchText.toLowerCase()) !== -1
+      ),
+    [sortedColumns, columnSearchText, displayValues]
   );
 
   const isDragEnabled = allowColumnReorder && columnSearchText.length === 0; // only allow drag-and-drop when not filtering columns
@@ -184,6 +188,7 @@ export const useDataGridColumnSelector = (
                   onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setColumnSearchText(e.currentTarget.value)
                   }
+                  data-test-subj="dataGridColumnSelectorSearch"
                 />
               )}
             </EuiI18n>
@@ -209,6 +214,7 @@ export const useDataGridColumnSelector = (
                           state.isDragging &&
                           'euiDataGridColumnSelector__item-isDragging'
                         }`}
+                        data-test-subj={`dataGridColumnSelectorColumnItem-${id}`}
                       >
                         <EuiFlexGroup
                           responsive={false}
@@ -237,6 +243,7 @@ export const useDataGridColumnSelector = (
                                   );
                                   setVisibleColumns(nextVisibleColumns);
                                 }}
+                                data-test-subj={`dataGridColumnSelectorToggleColumnVisibility-${id}`}
                               />
                             ) : (
                               <span className="euiDataGridColumnSelector__itemLabel">
@@ -271,6 +278,7 @@ export const useDataGridColumnSelector = (
                 size="xs"
                 flush="left"
                 onClick={() => setVisibleColumns(sortedColumns)}
+                data-test-subj="dataGridColumnSelectorShowAllButton"
               >
                 <EuiI18n
                   token="euiColumnSelector.selectAll"
@@ -283,6 +291,7 @@ export const useDataGridColumnSelector = (
                 size="xs"
                 flush="right"
                 onClick={() => setVisibleColumns([])}
+                data-test-subj="dataGridColumnSelectorHideAllButton"
               >
                 <EuiI18n token="euiColumnSelector.hideAll" default="Hide all" />
               </EuiButtonEmpty>
