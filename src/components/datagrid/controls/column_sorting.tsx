@@ -9,25 +9,25 @@
 import classNames from 'classnames';
 import React, { Fragment, ReactNode, useEffect, useState } from 'react';
 import { DropResult } from 'react-beautiful-dnd';
-import { EuiButtonEmpty } from '../button';
+import { EuiButtonEmpty } from '../../button';
 import {
   EuiDragDropContext,
   euiDragDropReorder,
   EuiDroppable,
-} from '../drag_and_drop';
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiI18n, useEuiI18n } from '../i18n';
-import { EuiPopover, EuiPopoverFooter } from '../popover';
-import { EuiText } from '../text';
-import { EuiToken } from '../token';
+} from '../../drag_and_drop';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiI18n, useEuiI18n } from '../../i18n';
+import { EuiPopover, EuiPopoverFooter } from '../../popover';
+import { EuiText } from '../../text';
+import { EuiToken } from '../../token';
 import { EuiDataGridColumnSortingDraggable } from './column_sorting_draggable';
-import { getDetailsForSchema } from './data_grid_schema';
+import { getDetailsForSchema } from '../data_grid_schema';
 import {
   EuiDataGridColumn,
   EuiDataGridSchema,
   EuiDataGridSchemaDetector,
   EuiDataGridSorting,
-} from './data_grid_types';
+} from '../data_grid_types';
 
 export const useDataGridColumnSorting = (
   columns: EuiDataGridColumn[],

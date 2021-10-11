@@ -24,8 +24,14 @@ import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n, useEuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiDataGridBody, VIRTUALIZED_CONTAINER_CLASS } from './body';
-import { useDataGridColumnSelector } from './column_selector';
-import { useDataGridColumnSorting } from './column_sorting';
+import {
+  useDataGridColumnSelector,
+  useDataGridColumnSorting,
+  useDataGridStyleSelector,
+  startingStyles,
+  checkOrDefaultToolBarDisplayOptions,
+  EuiDataGridToolbar,
+} from './controls';
 import {
   DataGridFocusContext,
   DataGridSortingContext,
@@ -37,10 +43,6 @@ import {
   useDetectSchema,
   useMergedSchema,
 } from './data_grid_schema';
-import {
-  checkOrDefaultToolBarDisplayOptions,
-  EuiDataGridToolbar,
-} from './data_grid_toolbar';
 import {
   DataGridFocusContextShape,
   EuiDataGridColumn,
@@ -59,7 +61,6 @@ import {
   EuiDataGridStyleRowHover,
 } from './data_grid_types';
 import { RowHeightUtils } from './row_height_utils';
-import { startingStyles, useDataGridStyleSelector } from './style_selector';
 
 // Used to short-circuit some async browser behaviour that is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');

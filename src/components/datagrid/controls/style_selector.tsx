@@ -7,10 +7,10 @@
  */
 
 import React, { ReactElement, useState } from 'react';
-import { EuiDataGridStyle } from './data_grid_types';
-import { EuiI18n } from '../i18n';
-import { EuiPopover } from '../popover';
-import { EuiButtonEmpty, EuiButtonGroup } from '../button';
+import { EuiDataGridStyle } from '../data_grid_types';
+import { EuiI18n } from '../../i18n';
+import { EuiPopover } from '../../popover';
+import { EuiButtonEmpty, EuiButtonGroup } from '../../button';
 
 export const startingStyles: EuiDataGridStyle = {
   cellPadding: 'm',
