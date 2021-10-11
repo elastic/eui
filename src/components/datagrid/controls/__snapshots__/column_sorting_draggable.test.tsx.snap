@@ -4,7 +4,6 @@ exports[`EuiDataGridColumnSortingDraggable button group schema renders default A
 <EuiButtonGroup
   buttonSize="compressed"
   className="euiDataGridColumnSorting__order"
-  data-test-subj="-asc"
   idSelected="columnAAsc"
   isFullWidth={true}
   legend="Select sorting method for Column A"
@@ -39,7 +38,6 @@ exports[`EuiDataGridColumnSortingDraggable button group schema renders different
 <EuiButtonGroup
   buttonSize="compressed"
   className="euiDataGridColumnSorting__order"
-  data-test-subj="-desc"
   idSelected="columnADesc"
   isFullWidth={true}
   legend="Select sorting method for Column A"

@@ -201,7 +201,6 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                               >
                                 <fieldset
                                   class="euiButtonGroup euiButtonGroup--compressed euiButtonGroup--text euiButtonGroup--fullWidth euiDataGridColumnSorting__order"
-                                  data-test-subj="-asc"
                                 >
                                   <legend
                                     class="euiScreenReaderOnly"
@@ -970,7 +969,6 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                                                                             <EuiButtonGroup
                                                                               buttonSize="compressed"
                                                                               className="euiDataGridColumnSorting__order"
-                                                                              data-test-subj="-asc"
                                                                               idSelected="columnAAsc"
                                                                               isFullWidth={true}
                                                                               legend="Select sorting method for Column A"
@@ -1001,7 +999,6 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                                                                             >
                                                                               <fieldset
                                                                                 className="euiButtonGroup euiButtonGroup--compressed euiButtonGroup--text euiButtonGroup--fullWidth euiDataGridColumnSorting__order"
-                                                                                data-test-subj="-asc"
                                                                                 disabled={false}
                                                                               >
                                                                                 <EuiScreenReaderOnly>
