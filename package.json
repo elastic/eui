@@ -77,7 +77,7 @@
     "react-is": "~16.3.0",
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "^1.8.5",
-    "refractor": "^3.4.0",
+    "refractor": "^3.5.0",
     "rehype-raw": "^5.0.0",
     "rehype-react": "^6.0.0",
     "rehype-stringify": "^8.0.0",
