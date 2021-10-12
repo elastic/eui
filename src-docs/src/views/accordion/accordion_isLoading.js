@@ -9,7 +9,7 @@ import {
 } from '../../../../src/components';
 import { EuiFormRow } from '../../../../src/components/form';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { htmlIdGenerator, useGeneratedHtmlId } from '../../../../src/services';
 
 const idPrefix = htmlIdGenerator()();
 
@@ -31,6 +31,9 @@ const toggleButtons = [
 export default () => {
   const [label, setLabel] = useState('False');
   const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}0`);
+  const isLoadingAccordionId = useGeneratedHtmlId({
+    prefix: 'isLoadingAccordion',
+  });
 
   const onChange = (optionId) => {
     setToggleIdSelected(optionId);
@@ -64,7 +67,7 @@ export default () => {
       </EuiFormRow>
       <EuiSpacer size="m" />
       <EuiAccordion
-        id={htmlIdGenerator()()}
+        id={isLoadingAccordionId}
         initialIsOpen={true}
         paddingSize={isLoadingMessage ? 'm' : 'none'}
         buttonContent="Accordion is loading, click to toggle"
