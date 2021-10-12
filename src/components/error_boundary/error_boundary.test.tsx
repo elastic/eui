@@ -22,30 +22,42 @@ const BadComponent = () => {
 };
 
 describe('EuiErrorBoundary', () => {
-  test('is rendered without an error', () => {
-    const component = takeMountedSnapshot(
-      mount(
-        <EuiErrorBoundary {...requiredProps}>
-          <GoodComponent />
-        </EuiErrorBoundary>
-      )
-    );
+  describe('without an error thrown', () => {
+    it('does not render the UI', () => {
+      const component = takeMountedSnapshot(
+        mount(
+          <EuiErrorBoundary {...requiredProps}>
+            <GoodComponent />
+          </EuiErrorBoundary>
+        )
+      );
 
-    expect(component).toMatchSnapshot();
+      expect(component).toMatchSnapshot();
+    });
   });
 
-  test('is rendered with an error', () => {
-    // Prevent the React boundary error from appearing in the terminal.
-    spyOn(console, 'error'); // eslint-disable-line no-undef
+  describe('with an error thrown', () => {
+    it('renders UI', () => {
+      // Because the error contains the stack trace, it's non-deterministic. So we'll just check that
+      // it contains our error message.
+      const errorText = mount(
+        <EuiErrorBoundary {...requiredProps}>
+          <BadComponent />
+        </EuiErrorBoundary>
+      ).text();
 
-    // Because the error contains the stack trace, it's non-deterministic. So we'll just check that
-    // it contains our error message.
-    const errorText = mount(
-      <EuiErrorBoundary {...requiredProps}>
-        <BadComponent />
-      </EuiErrorBoundary>
-    ).text();
+      expect(errorText).toContain(errorMessage);
+    });
 
-    expect(errorText).toContain(errorMessage);
+    it('renders data-test-subj', () => {
+      const errorHtml = mount(
+        <EuiErrorBoundary {...requiredProps}>
+          <BadComponent />
+        </EuiErrorBoundary>
+      ).html();
+
+      expect(errorHtml).toContain('euiErrorBoundary');
+      expect(errorHtml).toContain('test subject string');
+    });
   });
 });

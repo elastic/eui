@@ -1,5 +1,7 @@
 # Testing
 
+> This wiki doc applies to Jest unit tests. For Cypress integration tests, see [cypress-testing.md](cypress-testing.md).
+
 ## Naming your test files
 
 Create test files with the name pattern of `{component name}.test.js` in the same directory which

@@ -129,5 +129,19 @@ describe('EuiCodeBlockImpl', () => {
       );
       expect(component).toMatchSnapshot();
     });
+
+    test('renders highlighted line numbers', () => {
+      const component = render(
+        <EuiCodeBlockImpl
+          inline={false}
+          lineNumbers={{ highlight: '1' }}
+          overflowHeight={300}
+          {...requiredProps}
+        >
+          {code}
+        </EuiCodeBlockImpl>
+      );
+      expect(component).toMatchSnapshot();
+    });
   });
 });
