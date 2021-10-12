@@ -3,6 +3,10 @@
 - Added support for `ghost` and `text` `EuiIcon` colors on Elastic logos ([#5245](https://github.com/elastic/eui/pull/5245))
 - Added a default `data-test-subj` to `EuiErrorBoundary` ([#5232](https://github.com/elastic/eui/pull/5232))
 
+**Bug fixes**
+
+- Fixed content in `EuiPopover` from being inaccessable during the opening animation ([#5249](https://github.com/elastic/eui/pull/5249))
+
 ## [`39.0.0`](https://github.com/elastic/eui/tree/v39.0.0)
 
 - Added `maxWidth` prop to `EuiTour`, made `subtitle` optional, and fixed heading levels and footer background ([#5225](https://github.com/elastic/eui/pull/5225))
