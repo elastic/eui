@@ -65,13 +65,12 @@ export const CodeSandboxLinkComponent = ({
       break;
   }
 
+  const isLegacyTheme = context.theme.includes(LEGACY_NAME_KEY);
+
   const providerPropsObject = {};
   // Only add configuration if it isn't the default
   if (context.theme.includes('dark')) {
     providerPropsObject.colorMode = 'dark';
-  }
-  if (context.theme.includes(LEGACY_NAME_KEY)) {
-    providerPropsObject.theme = null;
   }
   // Can't spread an object inside of a string literal
   const providerProps = Object.keys(providerPropsObject)
@@ -83,9 +82,13 @@ export const CodeSandboxLinkComponent = ({
 
   // Renders the new Demo component generically into the code sandbox page
   const exampleClose = `ReactDOM.render(
-  <EuiProvider ${providerProps}>
+  ${
+    isLegacyTheme
+      ? '<Demo />'
+      : `<EuiProvider ${providerProps}>
     <Demo />
-  </EuiProvider>,
+  </EuiProvider>`
+  },
   document.getElementById('root')
 );`;
 
@@ -98,8 +101,12 @@ import '${cssFile}';
 import React from 'react';
 
 import {
-  EuiButton,
-  EuiProvider,
+  ${
+    isLegacyTheme
+      ? 'EuiButton,'
+      : `EuiButton,
+  EuiProvider,`
+  }
 } from '@elastic/eui';
 
 const Demo = () => (<EuiButton>Hello world!</EuiButton>);
@@ -119,7 +126,7 @@ ${exampleClose}
         "from './display_toggles';"
       );
 
-    if (!exampleCleaned.includes('EuiProvider')) {
+    if (!isLegacyTheme && !exampleCleaned.includes('EuiProvider')) {
       if (exampleCleaned.includes(" } from '@elastic/eui';")) {
         // Single line import statement
         exampleCleaned = exampleCleaned.replace(
