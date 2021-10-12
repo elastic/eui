@@ -205,6 +205,7 @@ export const Table = () => {
       <EuiSpacer size="l" />
 
       <EuiBasicTable
+        tableCaption="Demo for EuiBasicTable with selection"
         ref={tableRef}
         items={pageOfItems}
         itemId="id"

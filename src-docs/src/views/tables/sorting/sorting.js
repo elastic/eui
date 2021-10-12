@@ -211,6 +211,7 @@ export const Table = () => {
       </EuiFlexGroup>
       <EuiSpacer />
       <EuiBasicTable
+        tableCaption="Demo for EuiBasicTable with sorting"
         items={pageOfItems}
         columns={columns}
         pagination={pagination}
