@@ -24,9 +24,9 @@ export default () => {
   };
 
   const [items, setItems] = useState([
-    { name: 'Johann Sebastian Bach', checked: 'on' },
-    { name: 'Wolfgang Amadeus Mozart', checked: 'on' },
-    { name: 'Antonín Dvořák', checked: 'off' },
+    // { name: 'Johann Sebastian Bach', checked: 'on' },
+    // { name: 'Wolfgang Amadeus Mozart', checked: 'on' },
+    // { name: 'Antonín Dvořák', checked: 'off' },
     { name: 'Dmitri Shostakovich' },
     { name: 'Felix Mendelssohn-Bartholdy' },
     { name: 'Franz Liszt' },
@@ -73,11 +73,11 @@ export default () => {
       iconType="arrowDown"
       onClick={onButtonClick}
       isSelected={isPopoverOpen}
-      numFilters={items.length}
+      // numFilters={items.length}
       hasActiveFilters={!!items.find((item) => item.checked === 'on')}
       numActiveFilters={items.filter((item) => item.checked === 'on').length}
     >
-      Composers
+      Compossers
     </EuiFilterButton>
   );
 

@@ -442,7 +442,7 @@ const typeToPathMap = {
   tokenRankFeature: 'tokenRankFeature',
   tokenRankFeatures: 'tokenRankFeatures',
   tokenKeyword: 'tokenKeyword',
-  tokenKeywordType: 'tokenKeywordType',
+  tokenTag: 'tokenTag',
   tokenCompletionSuggester: 'tokenCompletionSuggester',
   tokenDenseVector: 'tokenDenseVector',
   tokenText: 'tokenText',

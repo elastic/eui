@@ -53,7 +53,7 @@ export type EuiTokenMapType =
   | 'tokenRankFeature'
   | 'tokenRankFeatures'
   | 'tokenKeyword'
-  | 'tokenKeywordType'
+  | 'tokenTag'
   | 'tokenCompletionSuggester'
   | 'tokenDenseVector'
   | 'tokenText'
