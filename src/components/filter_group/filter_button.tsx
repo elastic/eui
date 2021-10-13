@@ -68,7 +68,8 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   ...rest
 }) => {
   const numFiltersDefined = numFilters != null; // != instead of !== to allow for null and undefined
-  const numActiveFiltersDefined = numActiveFilters && numActiveFilters > 0;
+  const numActiveFiltersDefined =
+    numActiveFilters != null && numActiveFilters > 0;
 
   const classes = classNames(
     'euiFilterButton',
