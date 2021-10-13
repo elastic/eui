@@ -245,11 +245,11 @@ export const TOKEN_MAP: {
     shape: 'square',
     color: 'euiColorVis3',
   },
-  tokenKeyword: {
+  tokenTag: {
     shape: 'square',
     color: 'euiColorVis9',
   },
-  tokenKeywordType: {
+  tokenKeyword: {
     shape: 'square',
     color: 'euiColorVis1',
   },

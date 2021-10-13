@@ -73,11 +73,11 @@ export default () => {
       iconType="arrowDown"
       onClick={onButtonClick}
       isSelected={isPopoverOpen}
-      // numFilters={items.length}
+      numFilters={items.length}
       hasActiveFilters={!!items.find((item) => item.checked === 'on')}
       numActiveFilters={items.filter((item) => item.checked === 'on').length}
     >
-      Compossers
+      Composers
     </EuiFilterButton>
   );
 
