@@ -1,11 +1,16 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `39.1.0`.
+
+## [`39.1.0`](https://github.com/elastic/eui/tree/v39.1.0)
+
 - Added support for `ghost` and `text` `EuiIcon` colors on Elastic logos ([#5245](https://github.com/elastic/eui/pull/5245))
 - Added a default `data-test-subj` to `EuiErrorBoundary` ([#5232](https://github.com/elastic/eui/pull/5232))
 
 **Bug fixes**
 
 - Fixed `SuperDatePicker` from crashing due to invalid time input ([#5263](https://github.com/elastic/eui/pull/5263))
+- Fixed content in `EuiPopover` from being inaccessible during the opening animation ([#5249](https://github.com/elastic/eui/pull/5249))
 
 ## [`39.0.0`](https://github.com/elastic/eui/tree/v39.0.0)
 

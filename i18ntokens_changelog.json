@@ -1,5 +1,15 @@
 [
   {
+    "version": "39.1.0",
+    "changes": [
+      {
+        "token": "euiBasicTable.tablePagination",
+        "changeType": "modified",
+        "value": "Pagination for table: {tableCaption}"
+      }
+    ]
+  },
+  {
     "version": "39.0.0",
     "changes": [
       {
