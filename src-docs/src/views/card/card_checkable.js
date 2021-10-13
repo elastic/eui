@@ -8,7 +8,7 @@ import {
   EuiFormFieldset,
 } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { htmlIdGenerator, useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const radioName = htmlIdGenerator()();
@@ -30,6 +30,19 @@ export default () => {
     },
   ];
 
+  const checkableCardId__1 = useGeneratedHtmlId({
+    prefix: 'checkableCard',
+    suffix: 'first',
+  });
+  const checkableCardId__2 = useGeneratedHtmlId({
+    prefix: 'checkableCard',
+    suffix: 'second',
+  });
+  const checkableCardId__3 = useGeneratedHtmlId({
+    prefix: 'checkableCard',
+    suffix: 'third',
+  });
+
   return (
     <Fragment>
       <EuiFormFieldset
@@ -42,7 +55,7 @@ export default () => {
         }}
       >
         <EuiCheckableCard
-          id={htmlIdGenerator()()}
+          id={checkableCardId__1}
           label="Option one"
           name={radioName}
           value="radio1"
@@ -53,7 +66,7 @@ export default () => {
         <EuiSpacer size="m" />
 
         <EuiCheckableCard
-          id={htmlIdGenerator()()}
+          id={checkableCardId__2}
           label="Option two"
           name={radioName}
           value="radio2"
@@ -71,7 +84,7 @@ export default () => {
         <EuiSpacer size="m" />
 
         <EuiCheckableCard
-          id={htmlIdGenerator()()}
+          id={checkableCardId__3}
           label="Option three (disabled)"
           name={radioName}
           value="radio3"
