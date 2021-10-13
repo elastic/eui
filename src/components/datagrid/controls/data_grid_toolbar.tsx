@@ -7,13 +7,13 @@
  */
 
 import React from 'react';
-import { EuiButtonEmpty } from '../button';
-import { useEuiI18n } from '../i18n';
+import { EuiButtonEmpty } from '../../button';
+import { useEuiI18n } from '../../i18n';
 import {
   EuiDataGridProps,
   EuiDataGridToolbarProps,
   EuiDataGridToolBarVisibilityOptions,
-} from './data_grid_types';
+} from '../data_grid_types';
 
 // Used to simplify some sizing logic which is difficult to account for in tests
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');

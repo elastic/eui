@@ -8,8 +8,19 @@ import {
   EuiSwitch,
 } from '../../../../src/components';
 
+import { useGeneratedHtmlId } from '../../../../src/services';
+
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  const trapFocusFormRowId__1 = useGeneratedHtmlId({
+    prefix: 'trapFocusFormRow',
+    suffix: 'first',
+  });
+  const trapFocusFormRowId__2 = useGeneratedHtmlId({
+    prefix: 'trapFocusFormRow',
+    suffix: 'second',
+  });
 
   const onButtonClick = () =>
     setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
@@ -27,11 +38,11 @@ export default () => {
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}
-      initialFocus="[id=asdf2]"
+      initialFocus={`[id=${trapFocusFormRowId__1}]`}
     >
       <EuiFormRow
         label="Generate a public snapshot?"
-        id="asdf"
+        id={trapFocusFormRowId__1}
         hasChildLabel={false}
       >
         <EuiSwitch
@@ -42,7 +53,10 @@ export default () => {
         />
       </EuiFormRow>
 
-      <EuiFormRow label="Include the following in the embed" id="asdf2">
+      <EuiFormRow
+        label="Include the following in the embed"
+        id={trapFocusFormRowId__2}
+      >
         <EuiSwitch
           name="switch"
           label="Current time range"

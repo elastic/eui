@@ -1,8 +1,8 @@
 # Derived from the zenato/puppeteer Docker image
 # https://github.com/zenato/docker-puppeteer/blob/master/Dockerfile
 
-# >=10.18 required
-FROM node:10.22.1
+# >=12.0 required (for cypress), but latest right now is 14.17.6
+FROM node:14.17.6
 
 # See https://crbug.com/795759
 RUN apt-get update && apt-get install -yq libgconf-2-4
@@ -12,7 +12,7 @@ ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 # Install latest chrome package.
 # Note: this installs the necessary libs to make the bundled version of Chromium that Pupppeteer
 # installs, work.
-RUN apt-get update && apt-get install -y wget --no-install-recommends \
+RUN apt-get update && apt-get install -y wget xvfb --no-install-recommends \
     && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
     && apt-get update \
@@ -27,8 +27,9 @@ RUN apt-get update && apt-get install -y wget --no-install-recommends \
 #     browser.launch({executablePath: 'google-chrome-unstable'})
 # ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
-# Install puppeteer so it's available in the container.
+# Install puppeteer & cypress so they are available in the container.
 RUN yarn add puppeteer
+RUN yarn global add cypress
 
 # Add puppeteer user (pptruser).
 RUN groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser \
