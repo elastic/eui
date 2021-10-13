@@ -1685,11 +1685,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 141,
+        "line": 123,
         "column": 12
       },
       "end": {
-        "line": 152,
+        "line": 129,
         "column": 13
       }
     },
@@ -1701,27 +1701,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 141,
+        "line": 123,
         "column": 12
       },
       "end": {
-        "line": 152,
-        "column": 13
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
-  },
-  {
-    "token": "euiRelativeTab.dateInputError",
-    "defString": "Must be a valid range",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 141,
-        "column": 12
-      },
-      "end": {
-        "line": 152,
+        "line": 129,
         "column": 13
       }
     },
@@ -1733,11 +1717,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 176,
+        "line": 149,
         "column": 12
       },
       "end": {
-        "line": 179,
+        "line": 152,
         "column": 13
       }
     },
@@ -1749,11 +1733,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 196,
+        "line": 169,
         "column": 8
       },
       "end": {
-        "line": 200,
+        "line": 173,
         "column": 9
       }
     },
@@ -1765,11 +1749,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 218,
+        "line": 191,
         "column": 14
       },
       "end": {
-        "line": 222,
+        "line": 195,
         "column": 16
       }
     },
@@ -1781,11 +1765,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 228,
+        "line": 201,
         "column": 12
       },
       "end": {
-        "line": 232,
+        "line": 205,
         "column": 14
       }
     },
@@ -2037,11 +2021,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 410,
+        "line": 412,
         "column": 14
       },
       "end": {
-        "line": 413,
+        "line": 415,
         "column": 16
       }
     },

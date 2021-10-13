@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `39.1.0`.
+**Bug fixes**
+
+- Fixed `SuperDatePicker` from crashing due to invalid time input ([#5263](https://github.com/elastic/eui/pull/5263))
 
 ## [`39.1.0`](https://github.com/elastic/eui/tree/v39.1.0)
 
@@ -9,7 +11,6 @@ No public interface changes since `39.1.0`.
 
 **Bug fixes**
 
-- Fixed `SuperDatePicker` from crashing due to invalid time input ([#5263](https://github.com/elastic/eui/pull/5263))
 - Fixed content in `EuiPopover` from being inaccessible during the opening animation ([#5249](https://github.com/elastic/eui/pull/5249))
 
 ## [`39.0.0`](https://github.com/elastic/eui/tree/v39.0.0)
