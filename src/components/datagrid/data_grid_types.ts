@@ -97,15 +97,15 @@ export interface EuiDataGridSchemaDetector {
    */
   sortTextDesc: ReactNode;
   /**
-   * Whether this column is sortable (defaults to true)
+   * Whether columns with this schema are sortable (defaults to true). Can be overridden at the individual #EuiDataGridColumn level
    */
   isSortable?: boolean;
   /**
-   *  This property controls the capitalization of text
+   * This property controls the capitalization of text
    */
   textTransform?: 'uppercase' | 'lowercase' | 'capitalize';
   /**
-   * Default sort direction of the column
+   * Default sort direction of columns with this schema. Can be overridden at the individual #EuiDataGridColumn level
    */
   defaultSortDirection?: 'asc' | 'desc';
 }
