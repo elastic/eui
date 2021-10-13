@@ -13,6 +13,7 @@ import { CommonProps, ExclusiveUnion } from '../common';
 import { useCombobox } from '../../services';
 
 import { EuiScreenReaderOnly } from '../accessibility';
+import { useEuiI18n } from '../i18n';
 import { EuiSelectable, EuiSelectableListItemProps } from '../selectable';
 
 import { EuiSuggestItem, _EuiSuggestItemPropsBase } from './suggest_item';
@@ -99,6 +100,11 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     return <EuiSuggestItem {...props} />;
   };
 
+  const [stateExpanded, stateCollapsed] = useEuiI18n(
+    ['euiSuggest.comboboxStateExpanded', 'euiSuggest.comboboxStateCollpased'],
+    ['State: list expanded', 'State: list collapsed']
+  );
+
   return (
     <>
       <div onChange={onChange} {...containerAttributes}>
@@ -134,7 +140,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
       <EuiScreenReaderOnly>
         <div>
           <p {...infoAttributes}>
-            State: {isListBoxOpen ? 'list exanded' : 'list collapsed'}.
+            {isListBoxOpen ? stateExpanded : stateCollapsed}.
           </p>
           <p {...instructionsAttributes}>
             Use up and down arrows to move focus over options. Enter to select.
