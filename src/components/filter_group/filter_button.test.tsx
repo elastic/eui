@@ -21,7 +21,15 @@ describe('EuiFilterButton', () => {
 
   test('renders zero properly', () => {
     const component = render(
-      <EuiFilterButton {...requiredProps} numFilters={0} />
+      <EuiFilterButton {...requiredProps} numFilters={0} numActiveFilters={0} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('does not render a badge or count if numFilters is not passed', () => {
+    const component = render(
+      <EuiFilterButton {...requiredProps} numActiveFilters={0} />
     );
 
     expect(component).toMatchSnapshot();
