@@ -18,7 +18,6 @@
 **Breaking changes**
 
 - Renamed `tokenKeyword` icon to `tokenTag` in `EuiToken` ([#5251](https://github.com/elastic/eui/pull/5251))
-- Added a default `data-test-subj` to `EuiErrorBoundary` ([#5232](https://github.com/elastic/eui/pull/5232))
 
 ## [`39.0.0`](https://github.com/elastic/eui/tree/v39.0.0)
 
