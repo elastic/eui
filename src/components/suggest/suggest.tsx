@@ -19,6 +19,15 @@ import { EuiSelectable, EuiSelectableListItemProps } from '../selectable';
 import { EuiSuggestItem, _EuiSuggestItemPropsBase } from './suggest_item';
 import { EuiSuggestInput, EuiSuggestInputProps } from './suggest_input';
 
+// keys of _EuiSuggestItemPropsBase
+const suggestItemPropsKeys = [
+  'label',
+  'type',
+  'description',
+  'labelDisplay',
+  'labelWidth',
+  'descriptionDisplay',
+];
 export interface EuiSuggestionProps
   extends CommonProps,
     _EuiSuggestItemPropsBase {
@@ -88,8 +97,23 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     if (onItemClick) {
       props.onClick = () => onItemClick(item);
     }
+
+    // Omit props destined for the EuiSuggestItem so that they don't
+    // cause warnings or render in the DOM of the EuiSelectableItem
+    const labelProps = {};
+    const liProps = { label: props.label };
+    Object.keys(props).forEach((key) => {
+      if (suggestItemPropsKeys.includes(key)) {
+        // @ts-ignore string index type
+        labelProps[key] = props[key];
+      } else {
+        // @ts-ignore string index type
+        liProps[key] = props[key];
+      }
+    });
     return {
-      ...props,
+      ...(liProps as typeof props),
+      labelProps,
       className: classNames(className, 'euiSuggestItemOption'),
     };
   });

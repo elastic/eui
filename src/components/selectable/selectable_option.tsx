@@ -53,6 +53,7 @@ export type EuiSelectableOptionBase = CommonProps & {
    * Option item `id`s are coordinated at a higher level for a11y reasons.
    */
   id?: never;
+  labelProps?: { [key: string]: any };
 };
 
 type _EuiSelectableGroupLabelOption = Omit<
