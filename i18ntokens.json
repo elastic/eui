@@ -21,11 +21,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 315,
+        "line": 309,
         "column": 6
       },
       "end": {
-        "line": 315,
+        "line": 309,
         "column": 79
       }
     },
@@ -37,11 +37,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 669,
+        "line": 663,
         "column": 10
       },
       "end": {
-        "line": 679,
+        "line": 673,
         "column": 12
       }
     },
@@ -53,11 +53,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 688,
+        "line": 682,
         "column": 12
       },
       "end": {
-        "line": 699,
+        "line": 693,
         "column": 14
       }
     },
@@ -69,11 +69,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 703,
+        "line": 697,
         "column": 12
       },
       "end": {
-        "line": 713,
+        "line": 707,
         "column": 14
       }
     },
@@ -85,11 +85,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 718,
+        "line": 712,
         "column": 10
       },
       "end": {
-        "line": 724,
+        "line": 718,
         "column": 12
       }
     },
@@ -101,11 +101,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 766,
+        "line": 760,
         "column": 6
       },
       "end": {
-        "line": 766,
+        "line": 760,
         "column": 77
       }
     },
@@ -117,11 +117,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1168,
+        "line": 1164,
         "column": 8
       },
       "end": {
-        "line": 1168,
+        "line": 1164,
         "column": 79
       }
     },
@@ -129,16 +129,16 @@
   },
   {
     "token": "euiBasicTable.tablePagination",
-    "defString": "Pagination for preceding table: {tableCaption}",
+    "defString": "Pagination for table: {tableCaption}",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1391,
-        "column": 10
+        "line": 1384,
+        "column": 8
       },
       "end": {
-        "line": 1395,
-        "column": 12
+        "line": 1388,
+        "column": 9
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -1013,15 +1013,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 126,
+        "line": 130,
         "column": 4
       },
       "end": {
-        "line": 126,
+        "line": 130,
         "column": 66
       }
     },
-    "filepath": "src/components/datagrid/column_selector.tsx"
+    "filepath": "src/components/datagrid/controls/column_selector.tsx"
   },
   {
     "token": "euiColumnSelector.buttonActiveSingular",
@@ -1029,15 +1029,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 131,
+        "line": 135,
         "column": 6
       },
       "end": {
-        "line": 135,
+        "line": 139,
         "column": 8
       }
     },
-    "filepath": "src/components/datagrid/column_selector.tsx"
+    "filepath": "src/components/datagrid/controls/column_selector.tsx"
   },
   {
     "token": "euiColumnSelector.buttonActivePlural",
@@ -1045,15 +1045,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 139,
+        "line": 143,
         "column": 6
       },
       "end": {
-        "line": 143,
+        "line": 147,
         "column": 8
       }
     },
-    "filepath": "src/components/datagrid/column_selector.tsx"
+    "filepath": "src/components/datagrid/controls/column_selector.tsx"
   },
   {
     "token": "euiColumnSelector.search",
@@ -1061,15 +1061,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 171,
+        "line": 175,
         "column": 12
       },
       "end": {
-        "line": 177,
+        "line": 181,
         "column": 13
       }
     },
-    "filepath": "src/components/datagrid/column_selector.tsx"
+    "filepath": "src/components/datagrid/controls/column_selector.tsx"
   },
   {
     "token": "euiColumnSelector.searchcolumns",
@@ -1077,15 +1077,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 171,
+        "line": 175,
         "column": 12
       },
       "end": {
-        "line": 177,
+        "line": 181,
         "column": 13
       }
     },
-    "filepath": "src/components/datagrid/column_selector.tsx"
+    "filepath": "src/components/datagrid/controls/column_selector.tsx"
   },
   {
     "token": "euiColumnSelector.selectAll",
@@ -1093,15 +1093,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 275,
+        "line": 283,
         "column": 16
       },
       "end": {
-        "line": 278,
+        "line": 286,
         "column": 18
       }
     },
-    "filepath": "src/components/datagrid/column_selector.tsx"
+    "filepath": "src/components/datagrid/controls/column_selector.tsx"
   },
   {
     "token": "euiColumnSelector.hideAll",
@@ -1109,15 +1109,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 287,
+        "line": 296,
         "column": 16
       },
       "end": {
-        "line": 287,
+        "line": 296,
         "column": 80
       }
     },
-    "filepath": "src/components/datagrid/column_selector.tsx"
+    "filepath": "src/components/datagrid/controls/column_selector.tsx"
   },
   {
     "token": "euiColumnSortingDraggable.defaultSortAsc",
@@ -1133,7 +1133,7 @@
         "column": 76
       }
     },
-    "filepath": "src/components/datagrid/column_sorting_draggable.tsx"
+    "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
   },
   {
     "token": "euiColumnSortingDraggable.defaultSortDesc",
@@ -1149,7 +1149,7 @@
         "column": 77
       }
     },
-    "filepath": "src/components/datagrid/column_sorting_draggable.tsx"
+    "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
   },
   {
     "token": "euiColumnSortingDraggable.activeSortLabel",
@@ -1165,7 +1165,7 @@
         "column": 15
       }
     },
-    "filepath": "src/components/datagrid/column_sorting_draggable.tsx"
+    "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
   },
   {
     "token": "euiColumnSortingDraggable.removeSortLabel",
@@ -1181,7 +1181,7 @@
         "column": 15
       }
     },
-    "filepath": "src/components/datagrid/column_sorting_draggable.tsx"
+    "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
   },
   {
     "token": "euiColumnSortingDraggable.toggleLegend",
@@ -1197,7 +1197,7 @@
         "column": 15
       }
     },
-    "filepath": "src/components/datagrid/column_sorting_draggable.tsx"
+    "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
   },
   {
     "token": "euiColumnSorting.button",
@@ -1213,7 +1213,7 @@
         "column": 3
       }
     },
-    "filepath": "src/components/datagrid/column_sorting.tsx"
+    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
   },
   {
     "token": "euiColumnSorting.buttonActive",
@@ -1229,7 +1229,7 @@
         "column": 3
       }
     },
-    "filepath": "src/components/datagrid/column_sorting.tsx"
+    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
   },
   {
     "token": "euiColumnSorting.emptySorting",
@@ -1237,15 +1237,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 189,
+        "line": 190,
         "column": 12
       },
       "end": {
-        "line": 192,
+        "line": 193,
         "column": 14
       }
     },
-    "filepath": "src/components/datagrid/column_sorting.tsx"
+    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
   },
   {
     "token": "euiColumnSorting.pickFields",
@@ -1253,15 +1253,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 221,
+        "line": 223,
         "column": 22
       },
       "end": {
-        "line": 224,
+        "line": 226,
         "column": 24
       }
     },
-    "filepath": "src/components/datagrid/column_sorting.tsx"
+    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
   },
   {
     "token": "euiColumnSorting.sortFieldAriaLabel",
@@ -1269,15 +1269,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 228,
+        "line": 230,
         "column": 18
       },
       "end": {
-        "line": 231,
+        "line": 233,
         "column": 19
       }
     },
-    "filepath": "src/components/datagrid/column_sorting.tsx"
+    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
   },
   {
     "token": "euiColumnSorting.clearAll",
@@ -1285,15 +1285,127 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 310,
+        "line": 311,
         "column": 18
       },
       "end": {
-        "line": 313,
+        "line": 314,
         "column": 20
       }
     },
-    "filepath": "src/components/datagrid/column_sorting.tsx"
+    "filepath": "src/components/datagrid/controls/column_sorting.tsx"
+  },
+  {
+    "token": "euiDataGridToolbar.fullScreenButton",
+    "defString": "Full screen",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 64,
+        "column": 53
+      },
+      "end": {
+        "line": 70,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/datagrid/controls/data_grid_toolbar.tsx"
+  },
+  {
+    "token": "euiDataGridToolbar.fullScreenButtonActive",
+    "defString": "Exit full screen",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 64,
+        "column": 53
+      },
+      "end": {
+        "line": 70,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/datagrid/controls/data_grid_toolbar.tsx"
+  },
+  {
+    "token": "euiStyleSelector.buttonText",
+    "defString": "Density",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 82,
+        "column": 10
+      },
+      "end": {
+        "line": 82,
+        "column": 75
+      }
+    },
+    "filepath": "src/components/datagrid/controls/style_selector.tsx"
+  },
+  {
+    "token": "euiStyleSelector.buttonLegend",
+    "defString": "Select the display density for the data grid",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 86,
+        "column": 6
+      },
+      "end": {
+        "line": 99,
+        "column": 7
+      }
+    },
+    "filepath": "src/components/datagrid/controls/style_selector.tsx"
+  },
+  {
+    "token": "euiStyleSelector.labelExpanded",
+    "defString": "Expanded density",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 86,
+        "column": 6
+      },
+      "end": {
+        "line": 99,
+        "column": 7
+      }
+    },
+    "filepath": "src/components/datagrid/controls/style_selector.tsx"
+  },
+  {
+    "token": "euiStyleSelector.labelNormal",
+    "defString": "Normal density",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 86,
+        "column": 6
+      },
+      "end": {
+        "line": 99,
+        "column": 7
+      }
+    },
+    "filepath": "src/components/datagrid/controls/style_selector.tsx"
+  },
+  {
+    "token": "euiStyleSelector.labelCompact",
+    "defString": "Compact density",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 86,
+        "column": 6
+      },
+      "end": {
+        "line": 99,
+        "column": 7
+      }
+    },
+    "filepath": "src/components/datagrid/controls/style_selector.tsx"
   },
   {
     "token": "euiDataGridPagination.detailedPaginationLabel",
@@ -1488,48 +1600,16 @@
     "filepath": "src/components/datagrid/data_grid_schema.tsx"
   },
   {
-    "token": "euiDataGridToolbar.fullScreenButton",
-    "defString": "Full screen",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 64,
-        "column": 53
-      },
-      "end": {
-        "line": 70,
-        "column": 3
-      }
-    },
-    "filepath": "src/components/datagrid/data_grid_toolbar.tsx"
-  },
-  {
-    "token": "euiDataGridToolbar.fullScreenButtonActive",
-    "defString": "Exit full screen",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 64,
-        "column": 53
-      },
-      "end": {
-        "line": 70,
-        "column": 3
-      }
-    },
-    "filepath": "src/components/datagrid/data_grid_toolbar.tsx"
-  },
-  {
     "token": "euiDataGrid.ariaLabel",
     "defString": "{label}; Page {page} of {pageCount}.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 760,
+        "line": 761,
         "column": 20
       },
       "end": {
-        "line": 770,
+        "line": 771,
         "column": 3
       }
     },
@@ -1541,11 +1621,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 772,
+        "line": 773,
         "column": 25
       },
       "end": {
-        "line": 781,
+        "line": 782,
         "column": 3
       }
     },
@@ -1557,95 +1637,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 912,
+        "line": 913,
         "column": 18
       },
       "end": {
-        "line": 915,
+        "line": 916,
         "column": 20
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
-  },
-  {
-    "token": "euiStyleSelector.buttonText",
-    "defString": "Density",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 82,
-        "column": 10
-      },
-      "end": {
-        "line": 82,
-        "column": 75
-      }
-    },
-    "filepath": "src/components/datagrid/style_selector.tsx"
-  },
-  {
-    "token": "euiStyleSelector.buttonLegend",
-    "defString": "Select the display density for the data grid",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 86,
-        "column": 6
-      },
-      "end": {
-        "line": 99,
-        "column": 7
-      }
-    },
-    "filepath": "src/components/datagrid/style_selector.tsx"
-  },
-  {
-    "token": "euiStyleSelector.labelExpanded",
-    "defString": "Expanded density",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 86,
-        "column": 6
-      },
-      "end": {
-        "line": 99,
-        "column": 7
-      }
-    },
-    "filepath": "src/components/datagrid/style_selector.tsx"
-  },
-  {
-    "token": "euiStyleSelector.labelNormal",
-    "defString": "Normal density",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 86,
-        "column": 6
-      },
-      "end": {
-        "line": 99,
-        "column": 7
-      }
-    },
-    "filepath": "src/components/datagrid/style_selector.tsx"
-  },
-  {
-    "token": "euiStyleSelector.labelCompact",
-    "defString": "Compact density",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 86,
-        "column": 6
-      },
-      "end": {
-        "line": 99,
-        "column": 7
-      }
-    },
-    "filepath": "src/components/datagrid/style_selector.tsx"
   },
   {
     "token": "euiDatePopoverButton.invalidTitle",
@@ -3637,11 +3637,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 80,
+        "line": 81,
         "column": 8
       },
       "end": {
-        "line": 83,
+        "line": 84,
         "column": 10
       }
     },
@@ -3653,11 +3653,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 98,
+        "line": 99,
         "column": 8
       },
       "end": {
-        "line": 102,
+        "line": 103,
         "column": 10
       }
     },
