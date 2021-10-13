@@ -17,7 +17,7 @@ export type THEME_LANGUAGES = {
 export const theme_languages: THEME_LANGUAGES[] = [
   {
     id: 'language--js',
-    label: 'JS',
+    label: 'CSS-in-JS',
     title: 'Language selector: CSS-in-JS',
   },
   {

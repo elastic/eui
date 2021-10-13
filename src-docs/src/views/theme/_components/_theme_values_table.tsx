@@ -22,7 +22,7 @@ interface BasicItem {
   description?: string;
 }
 
-type ThemValuesTable = {
+type ThemeValuesTableProps = {
   items: EuiBasicTableProps<BasicItem>['items'];
   render: (item: BasicItem) => ReactNode;
   sampleColumnTitle?: string;
@@ -38,7 +38,7 @@ export const ThemeValuesTable = ({
   sampleColumnWidth = '60px',
   valueColumnTitle = 'Value',
   valueColumnWidth,
-}: ThemValuesTable) => {
+}: ThemeValuesTableProps) => {
   const { euiTheme } = useEuiTheme();
 
   const renderDescription = (item: BasicItem) => {
