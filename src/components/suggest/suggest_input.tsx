@@ -6,10 +6,10 @@
  * Side Public License, v 1.
  */
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState, FunctionComponent } from 'react';
+import React, { useState, FunctionComponent, KeyboardEvent } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
+import { keys } from '../../services';
 import { EuiFieldText, EuiFieldTextProps } from '../form';
 import { EuiToolTip } from '../tool_tip';
 import { EuiIcon } from '../icon';
@@ -95,6 +95,14 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
     if (sendValue) sendValue(e.target.value);
   };
 
+  const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    switch (e.key) {
+      case keys.ARROW_DOWN:
+        openPopover();
+        break;
+    }
+  };
+
   const openPopover = () => {
     setIsPopoverOpen(true);
     onListOpen && onListOpen(true);
@@ -144,6 +152,7 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
       isLoading={status === 'loading' ? true : false}
       onChange={onFieldChange}
       {...rest}
+      onKeyDown={onKeyDown}
     />
   );
 

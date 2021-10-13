@@ -7,31 +7,35 @@ Array [
     role="combobox"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+      class="euiSelectable"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
       >
-        <div>
-          <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth"
-          >
+        <div
+          class="euiPopover__anchor"
+        >
+          <div>
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout euiFormControlLayout--fullWidth"
             >
-              <input
-                aria-activedescendant=""
-                aria-autocomplete="list"
-                aria-describedby="generated-id_info generated-id_instructions"
-                aria-label="aria-label"
-                autocomplete="off"
-                class="euiFieldText euiFieldText--fullWidth"
-                data-test-subj="test subject string"
-                id="generated-id"
-                role="textbox"
-                type="text"
-                value=""
-              />
+              <div
+                class="euiFormControlLayout__childrenWrapper"
+              >
+                <input
+                  aria-activedescendant=""
+                  aria-autocomplete="list"
+                  aria-describedby="generated-id_info generated-id_instructions"
+                  aria-label="aria-label"
+                  autocomplete="off"
+                  class="euiFieldText euiFieldText--fullWidth"
+                  data-test-subj="test subject string"
+                  id="generated-id"
+                  role="textbox"
+                  type="text"
+                  value=""
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -62,31 +66,35 @@ Array [
     role="combobox"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+      class="euiSelectable"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
       >
-        <div>
-          <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth"
-          >
+        <div
+          class="euiPopover__anchor"
+        >
+          <div>
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout euiFormControlLayout--fullWidth"
             >
-              <input
-                aria-activedescendant=""
-                aria-autocomplete="list"
-                aria-describedby="generated-id_info generated-id_instructions"
-                aria-label="aria-label"
-                autocomplete="off"
-                class="euiFieldText euiFieldText--fullWidth"
-                data-test-subj="test subject string"
-                id="generated-id"
-                role="textbox"
-                type="text"
-                value=""
-              />
+              <div
+                class="euiFormControlLayout__childrenWrapper"
+              >
+                <input
+                  aria-activedescendant=""
+                  aria-autocomplete="list"
+                  aria-describedby="generated-id_info generated-id_instructions"
+                  aria-label="aria-label"
+                  autocomplete="off"
+                  class="euiFieldText euiFieldText--fullWidth"
+                  data-test-subj="test subject string"
+                  id="generated-id"
+                  role="textbox"
+                  type="text"
+                  value=""
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -117,31 +125,35 @@ Array [
     role="combobox"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+      class="euiSelectable"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
       >
-        <div>
-          <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth"
-          >
+        <div
+          class="euiPopover__anchor"
+        >
+          <div>
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout euiFormControlLayout--fullWidth"
             >
-              <input
-                aria-activedescendant=""
-                aria-autocomplete="list"
-                aria-describedby="generated-id_info generated-id_instructions"
-                aria-label="aria-label"
-                autocomplete="off"
-                class="euiFieldText euiFieldText--fullWidth"
-                data-test-subj="test subject string"
-                id="generated-id"
-                role="textbox"
-                type="text"
-                value=""
-              />
+              <div
+                class="euiFormControlLayout__childrenWrapper"
+              >
+                <input
+                  aria-activedescendant=""
+                  aria-autocomplete="list"
+                  aria-describedby="generated-id_info generated-id_instructions"
+                  aria-label="aria-label"
+                  autocomplete="off"
+                  class="euiFieldText euiFieldText--fullWidth"
+                  data-test-subj="test subject string"
+                  id="generated-id"
+                  role="textbox"
+                  type="text"
+                  value=""
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -172,37 +184,41 @@ Array [
     role="combobox"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+      class="euiSelectable"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
       >
-        <div>
-          <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
-          >
+        <div
+          class="euiPopover__anchor"
+        >
+          <div>
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
             >
-              <input
-                aria-activedescendant=""
-                aria-autocomplete="list"
-                aria-describedby="generated-id_info generated-id_instructions"
-                aria-label="aria-label"
-                autocomplete="off"
-                class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-                data-test-subj="test subject string"
-                id="generated-id"
-                role="textbox"
-                type="text"
-                value=""
-              />
+              <div
+                class="euiFormControlLayout__childrenWrapper"
+              >
+                <input
+                  aria-activedescendant=""
+                  aria-autocomplete="list"
+                  aria-describedby="generated-id_info generated-id_instructions"
+                  aria-label="aria-label"
+                  autocomplete="off"
+                  class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+                  data-test-subj="test subject string"
+                  id="generated-id"
+                  role="textbox"
+                  type="text"
+                  value=""
+                />
+              </div>
+              <span
+                class="euiFormControlLayout__append"
+              >
+                Appended
+              </span>
             </div>
-            <span
-              class="euiFormControlLayout__append"
-            >
-              Appended
-            </span>
           </div>
         </div>
       </div>
@@ -232,37 +248,41 @@ Array [
     role="combobox"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+      class="euiSelectable"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
       >
-        <div>
-          <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth"
-          >
+        <div
+          class="euiPopover__anchor"
+        >
+          <div>
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout euiFormControlLayout--fullWidth"
             >
-              <input
-                aria-activedescendant=""
-                aria-autocomplete="list"
-                aria-describedby="generated-id_info generated-id_instructions"
-                aria-label="aria-label"
-                autocomplete="off"
-                class="euiFieldText euiFieldText--fullWidth euiFieldText-isLoading"
-                data-test-subj="test subject string"
-                id="generated-id"
-                role="textbox"
-                type="text"
-                value=""
-              />
               <div
-                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+                class="euiFormControlLayout__childrenWrapper"
               >
-                <span
-                  class="euiLoadingSpinner euiLoadingSpinner--medium"
+                <input
+                  aria-activedescendant=""
+                  aria-autocomplete="list"
+                  aria-describedby="generated-id_info generated-id_instructions"
+                  aria-label="aria-label"
+                  autocomplete="off"
+                  class="euiFieldText euiFieldText--fullWidth euiFieldText-isLoading"
+                  data-test-subj="test subject string"
+                  id="generated-id"
+                  role="textbox"
+                  type="text"
+                  value=""
                 />
+                <div
+                  class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+                >
+                  <span
+                    class="euiLoadingSpinner euiLoadingSpinner--medium"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -294,41 +314,45 @@ Array [
     role="combobox"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+      class="euiSelectable"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
       >
-        <div>
-          <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
-          >
+        <div
+          class="euiPopover__anchor"
+        >
+          <div>
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
             >
-              <input
-                aria-activedescendant=""
-                aria-autocomplete="list"
-                aria-describedby="generated-id_info generated-id_instructions"
-                aria-label="aria-label"
-                autocomplete="off"
-                class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-                data-test-subj="test subject string"
-                id="generated-id"
-                role="textbox"
-                type="text"
-                value=""
-              />
-            </div>
-            <span
-              class="euiToolTipAnchor"
-            >
+              <div
+                class="euiFormControlLayout__childrenWrapper"
+              >
+                <input
+                  aria-activedescendant=""
+                  aria-autocomplete="list"
+                  aria-describedby="generated-id_info generated-id_instructions"
+                  aria-label="aria-label"
+                  autocomplete="off"
+                  class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+                  data-test-subj="test subject string"
+                  id="generated-id"
+                  role="textbox"
+                  type="text"
+                  value=""
+                />
+              </div>
               <span
-                class="euiSuggestInput__statusIcon"
-                color="success"
-                data-euiicon-type="checkInCircleFilled"
-              />
-            </span>
+                class="euiToolTipAnchor"
+              >
+                <span
+                  class="euiSuggestInput__statusIcon"
+                  color="success"
+                  data-euiicon-type="checkInCircleFilled"
+                />
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -358,31 +382,35 @@ Array [
     role="combobox"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+      class="euiSelectable"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
       >
-        <div>
-          <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth"
-          >
+        <div
+          class="euiPopover__anchor"
+        >
+          <div>
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout euiFormControlLayout--fullWidth"
             >
-              <input
-                aria-activedescendant=""
-                aria-autocomplete="list"
-                aria-describedby="generated-id_info generated-id_instructions"
-                aria-label="aria-label"
-                autocomplete="off"
-                class="euiFieldText euiFieldText--fullWidth"
-                data-test-subj="test subject string"
-                id="generated-id"
-                role="textbox"
-                type="text"
-                value=""
-              />
+              <div
+                class="euiFormControlLayout__childrenWrapper"
+              >
+                <input
+                  aria-activedescendant=""
+                  aria-autocomplete="list"
+                  aria-describedby="generated-id_info generated-id_instructions"
+                  aria-label="aria-label"
+                  autocomplete="off"
+                  class="euiFieldText euiFieldText--fullWidth"
+                  data-test-subj="test subject string"
+                  id="generated-id"
+                  role="textbox"
+                  type="text"
+                  value=""
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -413,41 +441,45 @@ Array [
     role="combobox"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+      class="euiSelectable"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
       >
-        <div>
-          <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
-          >
+        <div
+          class="euiPopover__anchor"
+        >
+          <div>
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
             >
-              <input
-                aria-activedescendant=""
-                aria-autocomplete="list"
-                aria-describedby="generated-id_info generated-id_instructions"
-                aria-label="aria-label"
-                autocomplete="off"
-                class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-                data-test-subj="test subject string"
-                id="generated-id"
-                role="textbox"
-                type="text"
-                value=""
-              />
-            </div>
-            <span
-              class="euiToolTipAnchor"
-            >
+              <div
+                class="euiFormControlLayout__childrenWrapper"
+              >
+                <input
+                  aria-activedescendant=""
+                  aria-autocomplete="list"
+                  aria-describedby="generated-id_info generated-id_instructions"
+                  aria-label="aria-label"
+                  autocomplete="off"
+                  class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+                  data-test-subj="test subject string"
+                  id="generated-id"
+                  role="textbox"
+                  type="text"
+                  value=""
+                />
+              </div>
               <span
-                class="euiSuggestInput__statusIcon"
-                color="accent"
-                data-euiicon-type="dot"
-              />
-            </span>
+                class="euiToolTipAnchor"
+              >
+                <span
+                  class="euiSuggestInput__statusIcon"
+                  color="accent"
+                  data-euiicon-type="dot"
+                />
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -477,37 +509,41 @@ Array [
     role="combobox"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+      class="euiSelectable"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
       >
-        <div>
-          <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth"
-          >
+        <div
+          class="euiPopover__anchor"
+        >
+          <div>
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout euiFormControlLayout--fullWidth"
             >
-              <input
-                aria-activedescendant=""
-                aria-autocomplete="list"
-                aria-describedby="generated-id_info generated-id_instructions"
-                aria-label="aria-label"
-                autocomplete="off"
-                class="euiFieldText euiFieldText--fullWidth euiFieldText-isLoading"
-                data-test-subj="test subject string"
-                id="generated-id"
-                role="textbox"
-                type="text"
-                value=""
-              />
               <div
-                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+                class="euiFormControlLayout__childrenWrapper"
               >
-                <span
-                  class="euiLoadingSpinner euiLoadingSpinner--medium"
+                <input
+                  aria-activedescendant=""
+                  aria-autocomplete="list"
+                  aria-describedby="generated-id_info generated-id_instructions"
+                  aria-label="aria-label"
+                  autocomplete="off"
+                  class="euiFieldText euiFieldText--fullWidth euiFieldText-isLoading"
+                  data-test-subj="test subject string"
+                  id="generated-id"
+                  role="textbox"
+                  type="text"
+                  value=""
                 />
+                <div
+                  class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+                >
+                  <span
+                    class="euiLoadingSpinner euiLoadingSpinner--medium"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -539,41 +575,45 @@ Array [
     role="combobox"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+      class="euiSelectable"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
       >
-        <div>
-          <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
-          >
+        <div
+          class="euiPopover__anchor"
+        >
+          <div>
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
             >
-              <input
-                aria-activedescendant=""
-                aria-autocomplete="list"
-                aria-describedby="generated-id_info generated-id_instructions"
-                aria-label="aria-label"
-                autocomplete="off"
-                class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-                data-test-subj="test subject string"
-                id="generated-id"
-                role="textbox"
-                type="text"
-                value=""
-              />
-            </div>
-            <span
-              class="euiToolTipAnchor"
-            >
+              <div
+                class="euiFormControlLayout__childrenWrapper"
+              >
+                <input
+                  aria-activedescendant=""
+                  aria-autocomplete="list"
+                  aria-describedby="generated-id_info generated-id_instructions"
+                  aria-label="aria-label"
+                  autocomplete="off"
+                  class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+                  data-test-subj="test subject string"
+                  id="generated-id"
+                  role="textbox"
+                  type="text"
+                  value=""
+                />
+              </div>
               <span
-                class="euiSuggestInput__statusIcon"
-                color="success"
-                data-euiicon-type="checkInCircleFilled"
-              />
-            </span>
+                class="euiToolTipAnchor"
+              >
+                <span
+                  class="euiSuggestInput__statusIcon"
+                  color="success"
+                  data-euiicon-type="checkInCircleFilled"
+                />
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -603,31 +643,35 @@ Array [
     role="combobox"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+      class="euiSelectable"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
       >
-        <div>
-          <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth"
-          >
+        <div
+          class="euiPopover__anchor"
+        >
+          <div>
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout euiFormControlLayout--fullWidth"
             >
-              <input
-                aria-activedescendant=""
-                aria-autocomplete="list"
-                aria-describedby="generated-id_info generated-id_instructions"
-                aria-label="aria-label"
-                autocomplete="off"
-                class="euiFieldText euiFieldText--fullWidth"
-                data-test-subj="test subject string"
-                id="generated-id"
-                role="textbox"
-                type="text"
-                value=""
-              />
+              <div
+                class="euiFormControlLayout__childrenWrapper"
+              >
+                <input
+                  aria-activedescendant=""
+                  aria-autocomplete="list"
+                  aria-describedby="generated-id_info generated-id_instructions"
+                  aria-label="aria-label"
+                  autocomplete="off"
+                  class="euiFieldText euiFieldText--fullWidth"
+                  data-test-subj="test subject string"
+                  id="generated-id"
+                  role="textbox"
+                  type="text"
+                  value=""
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -658,41 +702,45 @@ Array [
     role="combobox"
   >
     <div
-      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+      class="euiSelectable"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
       >
-        <div>
-          <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
-          >
+        <div
+          class="euiPopover__anchor"
+        >
+          <div>
             <div
-              class="euiFormControlLayout__childrenWrapper"
+              class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
             >
-              <input
-                aria-activedescendant=""
-                aria-autocomplete="list"
-                aria-describedby="generated-id_info generated-id_instructions"
-                aria-label="aria-label"
-                autocomplete="off"
-                class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-                data-test-subj="test subject string"
-                id="generated-id"
-                role="textbox"
-                type="text"
-                value=""
-              />
-            </div>
-            <span
-              class="euiToolTipAnchor"
-            >
+              <div
+                class="euiFormControlLayout__childrenWrapper"
+              >
+                <input
+                  aria-activedescendant=""
+                  aria-autocomplete="list"
+                  aria-describedby="generated-id_info generated-id_instructions"
+                  aria-label="aria-label"
+                  autocomplete="off"
+                  class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+                  data-test-subj="test subject string"
+                  id="generated-id"
+                  role="textbox"
+                  type="text"
+                  value=""
+                />
+              </div>
               <span
-                class="euiSuggestInput__statusIcon"
-                color="accent"
-                data-euiicon-type="dot"
-              />
-            </span>
+                class="euiToolTipAnchor"
+              >
+                <span
+                  class="euiSuggestInput__statusIcon"
+                  color="accent"
+                  data-euiicon-type="dot"
+                />
+              </span>
+            </div>
           </div>
         </div>
       </div>

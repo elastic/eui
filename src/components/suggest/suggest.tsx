@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FormEvent, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
 
@@ -78,7 +78,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     labelId,
   });
 
-  const onChange = (e: React.FormEvent<HTMLDivElement>) => {
+  const onChange = (e: FormEvent<HTMLDivElement>) => {
     onInputChange ? onInputChange(e.target) : null;
   };
 
@@ -102,35 +102,34 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   return (
     <>
       <div onChange={onChange} {...containerAttributes}>
-        <EuiSuggestInput
-          status={status}
-          tooltipContent={tooltipContent}
-          append={append}
-          onListOpen={setListBoxOpen}
-          suggestions={
-            suggestionList.length > 0 ? (
-              <EuiSelectable<EuiSuggestionProps>
-                id={listAttrsId}
-                singleSelection={true}
-                options={suggestionList}
-                listProps={{
-                  bordered: true,
-                  showIcons: false,
-                  onFocusBadge: false,
-                  paddingSize: 'none',
-                  ...listAttrs,
-                }}
-                renderOption={renderOption}
-                optionIdGenerator={optionIdGenerator}
-                onActiveOptionIndexChange={setFocusedOptionIndex}
-              >
-                {(list) => list}
-              </EuiSelectable>
-            ) : undefined
-          }
-          {...rest}
-          {...inputAttributes}
-        />
+        <EuiSelectable<EuiSuggestionProps>
+          id={listAttrsId}
+          singleSelection={true}
+          options={suggestionList}
+          listProps={{
+            bordered: true,
+            showIcons: false,
+            onFocusBadge: false,
+            paddingSize: 'none',
+            ...listAttrs,
+          }}
+          renderOption={renderOption}
+          optionIdGenerator={optionIdGenerator}
+          onActiveOptionIndexChange={setFocusedOptionIndex}
+          searchable
+        >
+          {(list) => (
+            <EuiSuggestInput
+              status={status}
+              tooltipContent={tooltipContent}
+              append={append}
+              onListOpen={setListBoxOpen}
+              suggestions={suggestionList.length > 0 ? list : undefined}
+              {...rest}
+              {...inputAttributes}
+            />
+          )}
+        </EuiSelectable>
       </div>
       <EuiScreenReaderOnly>
         <div>
