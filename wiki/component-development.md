@@ -39,7 +39,7 @@ You can do this using Yeoman, or you can do it manually if you prefer.
 
 You can pass other [Jest CLI arguments](https://jestjs.io/docs/cli). For example:
 
-`yarn test-unit -u` will update your snapshots. 
+`yarn test-unit -u` will update your snapshots.
 Note: if you are experiencing failed builds in Jenkins related to snapshots, then try clearing the cache first `yarn test-unit --clearCache`.
 
 `yarn test-unit --watch` watches for changes and runs the tests as you code.
@@ -93,7 +93,7 @@ Refer to the [SASS page][sass] of our documentation site for a guide to writing 
 [docs]: https://elastic.github.io/eui/
 [docs-yeoman]: creating-components-yeoman.md
 [docs-manual]: creating-components-manually.md
-[sass]: https://elastic.github.io/eui/#/guidelines/sass
+[sass]: https://elastic.github.io/eui/#/theming/sass
 
 ## TypeScript definitions
 
@@ -133,7 +133,7 @@ interface FooProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElem
 React's `forwardRef` should be used to provide access to the component's outermost element. We impose two additional requirements when using `forwardRef`:
 
 1. use `forwardRef` instead of `React.forwardRef`, otherwise [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript/) does not understand it and the component's props will not be rendered in our documentation
-2. the resulting component must have a `displayName`, this is useful when the component is included in a snapshot or when inspected in devtools. There is an eslint rule which checks for this.  
+2. the resulting component must have a `displayName`, this is useful when the component is included in a snapshot or when inspected in devtools. There is an eslint rule which checks for this.
 
 #### Simple forward/pass-through
 
@@ -192,7 +192,7 @@ export const MyComponent = forwardRef<
 MyComponent.displayName = 'MyComponent';
 ```
 
-#### Providing custom or additional data 
+#### Providing custom or additional data
 
 Rarely, a component's ref needs to be something other than a DOM element, or provide additional information. In these cases, React's `useImperativeHandle` can be used to provide a custom object as the ref's value. For example, **EuiMarkdownEditor**'s ref includes both its textarea element and the `replaceNode` method to interact with the abstract syntax tree. https://github.com/elastic/eui/blob/v31.10.0/src/components/markdown_editor/markdown_editor.tsx#L331
 
