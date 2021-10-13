@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `39.1.1`.
+
+## [`39.1.1`](https://github.com/elastic/eui/tree/v39.1.1)
+
 **Bug fixes**
 
 - Fixed `SuperDatePicker` from crashing due to invalid time input ([#5263](https://github.com/elastic/eui/pull/5263))
