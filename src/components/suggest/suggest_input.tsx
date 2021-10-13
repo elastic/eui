@@ -90,9 +90,10 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
   const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
 
   const onFieldChange = (e: any) => {
-    setValue(e.target.value);
-    e.target.value !== '' ? openPopover() : closePopover();
-    if (sendValue) sendValue(e.target.value);
+    const value = e.target.value;
+    setValue(value);
+    if (sendValue) sendValue(value);
+    if (value !== '' && !isPopoverOpen) openPopover();
   };
 
   const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -153,6 +154,7 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
       onChange={onFieldChange}
       {...rest}
       onKeyDown={onKeyDown}
+      onClick={openPopover}
     />
   );
 
