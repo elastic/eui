@@ -30,6 +30,7 @@ export interface EuiTablePaginationProps {
    * id of the table being controlled
    */
   'aria-controls'?: string;
+  'aria-label'?: string;
 }
 
 interface State {

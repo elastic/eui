@@ -70,7 +70,7 @@ if [[ "$1" != "nodocker" ]]; then
     --rm -i \
     --volume $PWD:/app \
     --workdir /app \
-    node:10 \
+    node:14.17.6 \
     bash -c 'git tag | xargs npx semver' | tail -n 1)
 
   # Run this script from inside the docker container, using google/cloud-sdk image

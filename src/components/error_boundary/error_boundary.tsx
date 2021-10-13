@@ -8,7 +8,7 @@
 
 import React, { Component, HTMLAttributes, ReactNode } from 'react';
 import { CommonProps } from '../common';
-import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import { EuiText } from '../text';
 
@@ -29,10 +29,6 @@ export class EuiErrorBoundary extends Component<
   EuiErrorBoundaryProps,
   EuiErrorBoundaryState
 > {
-  static propTypes = {
-    children: PropTypes.node,
-  };
-
   constructor(props: EuiErrorBoundaryProps) {
     super(props);
 
@@ -59,12 +55,17 @@ ${stackStr}`;
   }
 
   render() {
-    const { children, ...rest } = this.props;
+    const { children, 'data-test-subj': _dataTestSubj, ...rest } = this.props;
+    const dataTestSubj = classNames('euiErrorBoundary', _dataTestSubj);
 
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (
-        <div className="euiErrorBoundary" {...rest}>
+        <div
+          className="euiErrorBoundary"
+          data-test-subj={dataTestSubj}
+          {...rest}
+        >
           <div className="euiErrorBoundary__text">
             <EuiText size="xs">
               <h1>Error</h1>

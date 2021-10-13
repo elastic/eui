@@ -28,6 +28,7 @@ import {
   EuiTableRowCellCheckbox,
   EuiTableSortMobile,
   EuiTableHeaderMobile,
+  EuiScreenReaderOnly,
 } from '../../../../../src/components';
 
 import {
@@ -248,7 +249,8 @@ export default class extends Component {
       },
       {
         id: 'type',
-        label: '',
+        label: 'Type',
+        isVisuallyHiddenLabel: true,
         alignment: LEFT_ALIGNMENT,
         width: '24px',
         cellProvider: (cell) => <EuiIcon type={cell} size="m" />,
@@ -320,7 +322,8 @@ export default class extends Component {
       },
       {
         id: 'actions',
-        label: '',
+        label: 'Actions',
+        isVisuallyHiddenLabel: true,
         alignment: RIGHT_ALIGNMENT,
         isActionsPopover: true,
         width: '32px',
@@ -437,8 +440,10 @@ export default class extends Component {
   renderSelectAll = (mobile) => {
     return (
       <EuiCheckbox
-        id="selectAllCheckbox"
-        label={mobile ? 'Select all' : null}
+        id={mobile ? 'selectAllCheckboxMobile' : 'selectAllCheckboxDesktop'}
+        label={mobile ? 'Select all rows' : null}
+        aria-label="Select all rows"
+        title="Select all rows"
         checked={this.areAllItemsSelected()}
         onChange={this.toggleAll.bind(this)}
         type={mobile ? null : 'inList'}
@@ -472,6 +477,14 @@ export default class extends Component {
           <EuiTableHeaderCellCheckbox key={column.id} width={column.width}>
             {this.renderSelectAll()}
           </EuiTableHeaderCellCheckbox>
+        );
+      } else if (column.isVisuallyHiddenLabel) {
+        headers.push(
+          <EuiTableHeaderCell key={column.id} width={column.width}>
+            <EuiScreenReaderOnly>
+              <span>{column.label}</span>
+            </EuiScreenReaderOnly>
+          </EuiTableHeaderCell>
         );
       } else {
         headers.push(
@@ -511,6 +524,8 @@ export default class extends Component {
                 checked={this.isItemSelected(item.id)}
                 onChange={this.toggleItem.bind(this, item.id)}
                 type="inList"
+                title="Select this row"
+                aria-label="Select this row"
               />
             </EuiTableRowCellCheckbox>
           );
@@ -741,6 +756,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiTablePagination
+          tableCaption="Custom EuiTable demo"
           aria-controls={exampleId}
           activePage={this.pager.getCurrentPageIndex()}
           itemsPerPage={this.state.itemsPerPage}

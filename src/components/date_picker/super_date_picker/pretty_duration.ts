@@ -47,7 +47,7 @@ export function formatTimeString(
   dateFormat: string,
   roundUp = false,
   locale: LocaleSpecifier = 'en'
-) {
+): string {
   const timeAsMoment = moment(timeString, ISO_FORMAT, true);
   if (timeAsMoment.isValid()) {
     return timeAsMoment.locale(locale).format(dateFormat);
@@ -58,6 +58,10 @@ export function formatTimeString(
   }
 
   const tryParse = dateMath.parse(timeString, { roundUp: roundUp });
+  if (!moment(tryParse).isValid()) {
+    return 'Invalid Date';
+  }
+
   if (moment.isMoment(tryParse)) {
     return `~ ${tryParse.locale(locale).fromNow()}`;
   }
