@@ -1685,11 +1685,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 123,
+        "line": 141,
         "column": 12
       },
       "end": {
-        "line": 129,
+        "line": 152,
         "column": 13
       }
     },
@@ -1701,11 +1701,27 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 123,
+        "line": 141,
         "column": 12
       },
       "end": {
-        "line": 129,
+        "line": 152,
+        "column": 13
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
+  },
+  {
+    "token": "euiRelativeTab.dateInputError",
+    "defString": "Must be a valid range",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 141,
+        "column": 12
+      },
+      "end": {
+        "line": 152,
         "column": 13
       }
     },
@@ -1717,11 +1733,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 149,
+        "line": 176,
         "column": 12
       },
       "end": {
-        "line": 152,
+        "line": 179,
         "column": 13
       }
     },
@@ -1733,11 +1749,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 169,
+        "line": 196,
         "column": 8
       },
       "end": {
-        "line": 173,
+        "line": 200,
         "column": 9
       }
     },
@@ -1749,11 +1765,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 191,
+        "line": 218,
         "column": 14
       },
       "end": {
-        "line": 195,
+        "line": 222,
         "column": 16
       }
     },
@@ -1765,11 +1781,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 201,
+        "line": 228,
         "column": 12
       },
       "end": {
-        "line": 205,
+        "line": 232,
         "column": 14
       }
     },
@@ -2021,11 +2037,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 412,
+        "line": 410,
         "column": 14
       },
       "end": {
-        "line": 415,
+        "line": 413,
         "column": 16
       }
     },
@@ -2117,11 +2133,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 96,
+        "line": 97,
         "column": 27
       },
       "end": {
-        "line": 100,
+        "line": 101,
         "column": 3
       }
     },
@@ -2133,11 +2149,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 101,
+        "line": 102,
         "column": 30
       },
       "end": {
-        "line": 105,
+        "line": 106,
         "column": 3
       }
     },
