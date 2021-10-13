@@ -8,10 +8,10 @@ import {
   EuiFormFieldset,
 } from '../../../../src/components';
 
-import { htmlIdGenerator, useGeneratedHtmlId } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const radioName = htmlIdGenerator()();
+  const radioGroupId = useGeneratedHtmlId({ prefix: 'radioGroup' });
   const [radio, setRadio] = useState('radio2');
   const [nestedRadio, setNestedRadio] = useState('nestedRadio1');
 
@@ -57,7 +57,7 @@ export default () => {
         <EuiCheckableCard
           id={checkableCardId__1}
           label="Option one"
-          name={radioName}
+          name={radioGroupId}
           value="radio1"
           checked={radio === 'radio1'}
           onChange={() => setRadio('radio1')}
@@ -68,7 +68,7 @@ export default () => {
         <EuiCheckableCard
           id={checkableCardId__2}
           label="Option two"
-          name={radioName}
+          name={radioGroupId}
           value="radio2"
           checked={radio === 'radio2'}
           onChange={() => setRadio('radio2')}
@@ -86,7 +86,7 @@ export default () => {
         <EuiCheckableCard
           id={checkableCardId__3}
           label="Option three (disabled)"
-          name={radioName}
+          name={radioGroupId}
           value="radio3"
           checked={radio === 'radio3'}
           onChange={() => setRadio('radio3')}
