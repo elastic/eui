@@ -7,7 +7,8 @@
  */
 
 import { css } from '@emotion/react';
-import { useEuiTheme, isDefaultTheme } from '../../services';
+import { useEuiTheme } from '../../services';
+import { isDefaultTheme } from '../../themes/themes';
 
 export const useEuiMarkStyles = () => {
   const { euiTheme } = useEuiTheme();
