@@ -48,7 +48,7 @@ Array [
     <p
       id="generated-id_info"
     >
-      State: list collapsed.
+      State: unchanged.
     </p>
     <p
       id="generated-id_instructions"
@@ -107,7 +107,7 @@ Array [
     <p
       id="generated-id_info"
     >
-      State: list collapsed.
+      State: unchanged.
     </p>
     <p
       id="generated-id_instructions"
@@ -166,7 +166,7 @@ Array [
     <p
       id="generated-id_info"
     >
-      State: list collapsed.
+      State: unchanged.
     </p>
     <p
       id="generated-id_instructions"
@@ -230,7 +230,7 @@ Array [
     <p
       id="generated-id_info"
     >
-      State: list collapsed.
+      State: unchanged.
     </p>
     <p
       id="generated-id_instructions"
@@ -296,7 +296,7 @@ Array [
     <p
       id="generated-id_info"
     >
-      State: list collapsed.
+      State: loading.
     </p>
     <p
       id="generated-id_instructions"
@@ -364,7 +364,7 @@ Array [
     <p
       id="generated-id_info"
     >
-      State: list collapsed.
+      State: saved.
     </p>
     <p
       id="generated-id_instructions"
@@ -423,7 +423,7 @@ Array [
     <p
       id="generated-id_info"
     >
-      State: list collapsed.
+      State: unchanged.
     </p>
     <p
       id="generated-id_instructions"
@@ -491,7 +491,7 @@ Array [
     <p
       id="generated-id_info"
     >
-      State: list collapsed.
+      State: unsaved.
     </p>
     <p
       id="generated-id_instructions"
@@ -557,7 +557,7 @@ Array [
     <p
       id="generated-id_info"
     >
-      State: list collapsed.
+      State: loading.
     </p>
     <p
       id="generated-id_instructions"
@@ -625,7 +625,7 @@ Array [
     <p
       id="generated-id_info"
     >
-      State: list collapsed.
+      State: saved.
     </p>
     <p
       id="generated-id_instructions"
@@ -684,7 +684,7 @@ Array [
     <p
       id="generated-id_info"
     >
-      State: list collapsed.
+      State: unchanged.
     </p>
     <p
       id="generated-id_instructions"
@@ -752,7 +752,7 @@ Array [
     <p
       id="generated-id_info"
     >
-      State: list collapsed.
+      State: unsaved.
     </p>
     <p
       id="generated-id_instructions"

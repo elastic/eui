@@ -12,6 +12,7 @@ import classNames from 'classnames';
 import { keys } from '../../services';
 import { EuiFieldText, EuiFieldTextProps } from '../form';
 import { EuiToolTip } from '../tool_tip';
+import { useEuiI18n } from '../i18n';
 import { EuiIcon } from '../icon';
 import { EuiInputPopover } from '../popover';
 
@@ -62,12 +63,10 @@ const statusMap: StatusMap = {
   unsaved: {
     icon: 'dot',
     color: 'accent',
-    tooltip: 'Changes have not been saved.',
   },
   saved: {
     icon: 'checkInCircleFilled',
     color: 'success',
-    tooltip: 'Saved.',
   },
   unchanged: {
     icon: '',
@@ -125,6 +124,16 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
 
   // EuiFieldText's append accepts an array of elements so start by creating an empty array
   const appendArray = [];
+
+  const [stateSaved, stateUnsaved] = useEuiI18n(
+    [
+      'euiSuggestInput.stateSavedTooltip',
+      'euiSuggestInput.stateUnsavedTooltip',
+    ],
+    ['Saved.', 'Changes have not been saved.']
+  );
+  statusMap.saved.tooltip = stateSaved;
+  statusMap.unsaved.tooltip = stateUnsaved;
 
   const statusElement = (status === 'saved' || status === 'unsaved') && (
     <EuiToolTip

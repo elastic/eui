@@ -81,7 +81,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     infoAttributes,
     instructionsAttributes,
     methods: { optionIdGenerator, setFocusedOptionIndex, setListBoxOpen },
-    state: { isListBoxOpen },
   } = useCombobox({
     id,
     ariaLabel,
@@ -124,9 +123,19 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     return <EuiSuggestItem {...props} />;
   };
 
-  const [stateExpanded, stateCollapsed] = useEuiI18n(
-    ['euiSuggest.comboboxStateExpanded', 'euiSuggest.comboboxStateCollpased'],
-    ['State: list expanded', 'State: list collapsed']
+  const [stateLoading, stateSaved, stateUnsaved, stateUnchanged] = useEuiI18n(
+    [
+      'euiSuggest.stateLoading',
+      'euiSuggest.stateSaved',
+      'euiSuggest.stateUnsaved',
+      'euiSuggest.stateUnchanged',
+    ],
+    ['State: loading', 'State: saved', 'State: unsaved', 'State: unchanged']
+  );
+
+  const screenReaderInstructions = useEuiI18n(
+    'euiSuggest.screenReaderInstructions',
+    'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
   );
 
   return (
@@ -164,12 +173,21 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
       <EuiScreenReaderOnly>
         <div>
           <p {...infoAttributes}>
-            {isListBoxOpen ? stateExpanded : stateCollapsed}.
+            {(() => {
+              switch (status) {
+                case 'loading':
+                  return stateLoading;
+                case 'saved':
+                  return stateSaved;
+                case 'unsaved':
+                  return stateUnsaved;
+                case 'unchanged':
+                  return stateUnchanged;
+              }
+            })()}
+            .
           </p>
-          <p {...instructionsAttributes}>
-            Use up and down arrows to move focus over options. Enter to select.
-            Escape to collapse options.
-          </p>
+          <p {...instructionsAttributes}>{screenReaderInstructions}</p>
         </div>
       </EuiScreenReaderOnly>
     </>
