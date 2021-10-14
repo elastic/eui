@@ -91,7 +91,6 @@
     "url-parse": "^1.5.3",
     "uuid": "^8.3.0",
     "vfile": "^4.2.0",
-    "yarn": "^1.22.11"
   },
   "devDependencies": {
     "@axe-core/puppeteer": "^4.1.1",
