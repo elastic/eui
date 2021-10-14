@@ -2,14 +2,16 @@
 
 - Updated `tokenKeyword` to match the definition of keyword field type ([#5251](https://github.com/elastic/eui/pull/5251))
 
-**Bug fixes**
-
-- Fixed `SuperDatePicker` from crashing due to invalid time input ([#5263](https://github.com/elastic/eui/pull/5263))
-- Fixed content in `EuiFilterButton` again when `numFilters` is undefined ([#5268](https://github.com/elastic/eui/pull/5268))
-
 **Breaking changes**
 
 - Renamed `tokenKeyword` icon to `tokenTag` in `EuiToken` ([#5251](https://github.com/elastic/eui/pull/5251))
+
+## [`39.1.1`](https://github.com/elastic/eui/tree/v39.1.1)
+
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` from crashing due to invalid time input ([#5263](https://github.com/elastic/eui/pull/5263))
+- Fixed content in `EuiFilterButton` again when `numFilters` is undefined ([#5268](https://github.com/elastic/eui/pull/5268))
 
 ## [`39.1.0`](https://github.com/elastic/eui/tree/v39.1.0)
 
