@@ -14,12 +14,22 @@ import {
   EuiSwitch,
 } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [isPopover2Open, setIsPopover2Open] = useState(false);
   const [isSwitchChecked, setIsSwitchChecked] = useState(true);
+
+  const inlineFormPopoverId = useGeneratedHtmlId({
+    prefix: 'inlineFormPopover',
+  });
+  const verticalFormPopoverId = useGeneratedHtmlId({
+    prefix: 'verticalFormPopover',
+  });
+  const verticalFormSwitchId = useGeneratedHtmlId({
+    prefix: 'verticalFormSwitch',
+  });
 
   const onButtonClick = () => {
     setIsPopoverOpen(!isPopoverOpen);
@@ -89,7 +99,7 @@ export default () => {
     <EuiForm component="form">
       <EuiFormRow>
         <EuiSwitch
-          id={htmlIdGenerator()()}
+          id={verticalFormSwitchId}
           name="popswitch"
           label="Isn't this popover form cool?"
           checked={isSwitchChecked}
@@ -113,7 +123,7 @@ export default () => {
   return (
     <div>
       <EuiPopover
-        id="inlineFormPopover"
+        id={inlineFormPopoverId}
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}
@@ -122,7 +132,7 @@ export default () => {
       </EuiPopover>
       &emsp;
       <EuiPopover
-        id="formPopover"
+        id={verticalFormPopoverId}
         button={button2}
         isOpen={isPopover2Open}
         closePopover={closePopover2}
