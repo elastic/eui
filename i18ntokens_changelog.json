@@ -1,5 +1,15 @@
 [
   {
+    "version": "39.1.1",
+    "changes": [
+      {
+        "token": "euiRelativeTab.dateInputError",
+        "changeType": "added",
+        "value": "Must be a valid range"
+      }
+    ]
+  },
+  {
     "version": "39.1.0",
     "changes": [
       {

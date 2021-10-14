@@ -1,12 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useEuiTheme } from '../../../../src/services';
 
-import { EuiText, EuiSpacer, EuiFlexItem } from '../../../../src/components';
+import {
+  EuiText,
+  EuiSpacer,
+  useEuiTheme,
+  EuiPanel,
+  EuiTitle,
+} from '../../../../src';
 
 import { useDebouncedUpdate } from './hooks';
 
-import { ThemeSection } from './_theme_section';
 import { ThemeValue } from './_values';
 
 import { getPropsFromThemeKey, _EuiThemeBreakpoint } from './_props';
@@ -26,39 +29,41 @@ export default ({ onThemeUpdate }) => {
     <div>
       <EuiText>
         <h2>Breakpoints</h2>
-        <p>
-          It is not recommended to consume these values directly, but to use one
-          of our <Link to="/utilities/responsive">responsive components</Link>.
-        </p>
       </EuiText>
-      <EuiSpacer />
-
-      <ThemeSection
-        code="EuiThemeBreakpoint"
-        description={
+      <EuiSpacer size="xl" />
+      <EuiPanel color="subdued">
+        <EuiTitle size="xs">
+          <h3>
+            <code>EuiThemeBreakpoint</code>
+          </h3>
+        </EuiTitle>
+        <EuiSpacer size="s" />
+        <EuiText size="s" grow={false}>
           <p>
-            These original set of breakpoint keys specify the minimum window
-            size and are required. However, you can adjust and/or add more keys
-            as needed.
+            This default set of breakpoint tokens specify the{' '}
+            <strong>minimum</strong> window size and are used throughout EUI.
+            You can always customize or add more keys as needed.
           </p>
-        }
-        themeValues={Object.keys(breakpointTypes).map((prop) => {
+        </EuiText>
+
+        <EuiSpacer />
+
+        {Object.keys(breakpointTypes).map((prop) => {
           return (
-            <EuiFlexItem key={prop} className={'guideSass__animRow'}>
-              <ThemeValue
-                property="breakpoint"
-                type={breakpointTypes[prop]}
-                name={prop}
-                value={breakpointClone[prop]}
-                onUpdate={(value) => updateBreakpoint(prop, value)}
-                groupProps={{
-                  alignItems: 'center',
-                }}
-              />
-            </EuiFlexItem>
+            <ThemeValue
+              key={prop}
+              property="breakpoint"
+              type={breakpointTypes[prop]}
+              name={prop}
+              value={breakpointClone[prop]}
+              onUpdate={(value) => updateBreakpoint(prop, value)}
+              groupProps={{
+                alignItems: 'center',
+              }}
+            />
           );
         })}
-      />
+      </EuiPanel>
     </div>
   );
 };
