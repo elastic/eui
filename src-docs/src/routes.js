@@ -224,6 +224,7 @@ import { SuperSelectExample } from './views/super_select/super_select_example';
 
 import { ThemeExample } from './views/theme/theme_example';
 import ThemeValues from './views/theme/values';
+import Breakpoints from './views/theme/breakpoints/breakpoints';
 
 /** Elastic Charts */
 
@@ -248,18 +249,20 @@ const createExample = (example, customTitle) => {
 
   const {
     title,
-    intro,
     sections,
     beta,
     isNew,
     playground,
     guidelines,
+    ...rest
   } = example;
-  sections.forEach((section) => {
+  const filteredSections = sections.filter((section) => section !== undefined);
+
+  filteredSections.forEach((section) => {
     section.id = section.title ? slugify(section.title) : undefined;
   });
 
-  const renderedSections = sections.map((section, index) =>
+  const renderedSections = filteredSections.map((section, index) =>
     createElement(GuideSection, {
       // Using index as the key because not all require a `title`
       key: index,
@@ -280,10 +283,10 @@ const createExample = (example, customTitle) => {
     <EuiErrorBoundary>
       <GuidePage
         title={title}
-        intro={intro}
         isBeta={beta}
         playground={playgroundComponent}
         guidelines={guidelines}
+        {...rest}
       >
         {renderedSections}
       </GuidePage>
@@ -293,7 +296,7 @@ const createExample = (example, customTitle) => {
   return {
     name: customTitle || title,
     component,
-    sections,
+    sections: filteredSections,
     isNew,
     hasGuidelines: typeof guidelines !== 'undefined',
   };
@@ -331,8 +334,23 @@ const navigation = [
         name: 'Colors',
         component: ColorGuidelines,
       },
-      createExample(SassGuidelines, 'Sass'),
       createExample(WritingGuidelines, 'Writing'),
+    ],
+  },
+  {
+    name: 'Theming',
+    items: [
+      createExample(ThemeExample, 'Theme provider'),
+      {
+        name: 'Global values',
+        component: ThemeValues,
+        isNew: true,
+      },
+      {
+        name: 'Breakpoints',
+        component: Breakpoints,
+      },
+      createExample(SassGuidelines, 'Sass'),
     ],
   },
   {
@@ -481,17 +499,6 @@ const navigation = [
       TextDiffExample,
       WindowEventExample,
     ].map((example) => createExample(example)),
-  },
-  {
-    name: 'Theming',
-    items: [
-      createExample(ThemeExample, 'Theme provider'),
-      {
-        name: 'Global values',
-        component: ThemeValues,
-        isNew: true,
-      },
-    ],
   },
   {
     name: 'Package',

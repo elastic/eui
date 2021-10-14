@@ -62,7 +62,7 @@ If no mitigation strategies are presented, other options still exist (see [Snafu
 
 ### i18n tokens
 
-Check whether the target version upgrade range [contains i18n token changes](https://elastic.github.io/eui/#/package/changelog).
+Check whether the target version upgrade range [contains i18n token changes](https://github.com/elastic/eui/blob/master/i18ntokens_changelog.json).
 
 If changes exist:
 
