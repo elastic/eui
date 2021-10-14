@@ -173,7 +173,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
       <EuiScreenReaderOnly>
         <div>
           <p {...infoAttributes}>
-            {(() => {
+            {`${(() => {
               switch (status) {
                 case 'loading':
                   return stateLoading;
@@ -184,8 +184,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
                 case 'unchanged':
                   return stateUnchanged;
               }
-            })()}
-            .
+            })()}.`}
           </p>
           <p {...instructionsAttributes}>{screenReaderInstructions}</p>
         </div>

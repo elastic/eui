@@ -86,7 +86,6 @@ export const useCombobox = ({
       'aria-label': !labelId ? ariaLabel : undefined,
       'aria-labelledby': labelId,
     },
-    //
     labelAttributes: {
       id: labelId,
       htmlFor: inputId,
@@ -97,11 +96,13 @@ export const useCombobox = ({
     instructionsAttributes: {
       id: instructionsId,
     },
+
     methods: {
       optionIdGenerator,
       setListBoxOpen,
       setFocusedOptionIndex,
     },
+
     state: {
       isListBoxOpen,
       focusedOptionIndex,
