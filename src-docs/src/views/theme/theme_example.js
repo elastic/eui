@@ -23,12 +23,14 @@ import Computed from './computed';
 const computedSource = require('!!raw-loader!./computed');
 
 import CreateComputed from './create_computed';
+import { ThemeNotice } from './_components/_theme_notice';
 const createComputedSource = require('!!raw-loader!./create_computed');
 
 export const ThemeExample = {
   title: 'Theme provider',
   isNew: true,
   beta: true,
+  notice: <ThemeNotice type="support" />,
   intro: (
     <>
       <EuiText>

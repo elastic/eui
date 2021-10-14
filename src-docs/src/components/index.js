@@ -13,4 +13,4 @@ export { GuideSectionContainer as GuideSection } from './guide_section/guide_sec
 
 export { GuideSectionTypes } from './guide_section/guide_section_types';
 
-export { ThemeProvider, ThemeContext } from './with_theme';
+export { ThemeProvider, ThemeContext, LanguageSelector } from './with_theme';

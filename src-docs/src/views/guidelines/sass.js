@@ -6,7 +6,6 @@ import { LEGACY_NAME_KEY } from '../../../../src';
 import { ThemeContext } from '../../components';
 import { Typography } from './sass/typography';
 import { Animation } from './sass/animation';
-import { Breakpoints } from './sass/breakpoints';
 import { Shadow } from './sass/shadow';
 import { Border } from './sass/border';
 import { Color } from './sass/color';
@@ -204,11 +203,6 @@ export const SassGuidelines = {
       title: 'Shadow and Depth',
       wrapText: false,
       text: <Shadow />,
-    },
-    {
-      title: 'Media queries and breakpoints',
-      wrapText: false,
-      text: <Breakpoints />,
     },
     {
       title: 'Animation',

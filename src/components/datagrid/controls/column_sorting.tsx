@@ -9,25 +9,25 @@
 import classNames from 'classnames';
 import React, { Fragment, ReactNode, useEffect, useState } from 'react';
 import { DropResult } from 'react-beautiful-dnd';
-import { EuiButtonEmpty } from '../button';
+import { EuiButtonEmpty } from '../../button';
 import {
   EuiDragDropContext,
   euiDragDropReorder,
   EuiDroppable,
-} from '../drag_and_drop';
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
-import { EuiI18n, useEuiI18n } from '../i18n';
-import { EuiPopover, EuiPopoverFooter } from '../popover';
-import { EuiText } from '../text';
-import { EuiToken } from '../token';
+} from '../../drag_and_drop';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiI18n, useEuiI18n } from '../../i18n';
+import { EuiPopover, EuiPopoverFooter } from '../../popover';
+import { EuiText } from '../../text';
+import { EuiToken } from '../../token';
 import { EuiDataGridColumnSortingDraggable } from './column_sorting_draggable';
-import { getDetailsForSchema } from './data_grid_schema';
+import { getDetailsForSchema } from '../data_grid_schema';
 import {
   EuiDataGridColumn,
   EuiDataGridSchema,
   EuiDataGridSchemaDetector,
   EuiDataGridSorting,
-} from './data_grid_types';
+} from '../data_grid_types';
 
 export const useDataGridColumnSorting = (
   columns: EuiDataGridColumn[],
@@ -70,11 +70,11 @@ export const useDataGridColumnSorting = (
         numberOfSortedFields === 1 ? '' : 's'
       } sorted`,
     {
-      numberOfSortedFields: sorting !== undefined ? sorting.columns.length : 0,
+      numberOfSortedFields: sorting != null ? sorting.columns.length : 0,
     }
   );
 
-  if (sorting == null) return [null];
+  if (sorting == null) return null;
 
   const activeColumnIds = new Set(sorting.columns.map(({ id }) => id));
   const { inactiveColumns } = columns.reduce<{
@@ -95,19 +95,20 @@ export const useDataGridColumnSorting = (
     }
   );
 
-  function onDragEnd({
+  const onDragEnd = ({
     source: { index: sourceIndex },
     destination,
-  }: DropResult) {
-    const destinationIndex = destination!.index;
-    const nextColumns = euiDragDropReorder(
-      sorting!.columns,
-      sourceIndex,
-      destinationIndex
-    );
-
-    sorting!.onSort(nextColumns);
-  }
+  }: DropResult) => {
+    if (destination) {
+      const destinationIndex = destination.index;
+      const nextColumns = euiDragDropReorder(
+        sorting!.columns,
+        sourceIndex,
+        destinationIndex
+      );
+      sorting!.onSort(nextColumns);
+    }
+  };
 
   const controlBtnClasses = classNames('euiDataGrid__controlBtn', {
     'euiDataGrid__controlBtn--active': sorting.columns.length > 0,
@@ -214,6 +215,7 @@ export const useDataGridColumnSorting = (
                       flush="left"
                       iconType="arrowDown"
                       iconSide="right"
+                      data-test-subj="dataGridColumnSortingSelectionButton"
                       onClick={() =>
                         setAvailableColumnsIsOpen(!availableColumnsIsOpen)
                       }
@@ -250,9 +252,7 @@ export const useDataGridColumnSorting = (
                                     id,
                                     direction:
                                       defaultSortDirection ||
-                                      (schemaDetails(id) &&
-                                        schemaDetails(id)!
-                                          .defaultSortDirection) ||
+                                      schemaDetails(id)?.defaultSortDirection ||
                                       'asc',
                                   });
                                   sorting.onSort(nextColumns);
@@ -306,6 +306,7 @@ export const useDataGridColumnSorting = (
                   size="xs"
                   flush="right"
                   onClick={() => sorting.onSort([])}
+                  data-test-subj="dataGridColumnSortingClearButton"
                 >
                   <EuiI18n
                     token="euiColumnSorting.clearAll"
