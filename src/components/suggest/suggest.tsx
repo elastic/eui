@@ -163,7 +163,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
               tooltipContent={tooltipContent}
               append={append}
               onListOpen={setListBoxOpen}
-              suggestions={suggestionList.length > 0 ? list : undefined}
+              suggestions={list}
               {...rest}
               {...inputAttributes}
             />

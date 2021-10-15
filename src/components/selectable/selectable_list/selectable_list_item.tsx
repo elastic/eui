@@ -214,7 +214,8 @@ export class EuiSelectableListItem extends Component<
       <li
         // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
         role="option"
-        aria-selected={!disabled && typeof checked === 'string'}
+        aria-checked={!disabled && typeof checked === 'string'}
+        aria-selected={!disabled && isFocused}
         className={classes}
         aria-disabled={disabled}
         {...rest}
