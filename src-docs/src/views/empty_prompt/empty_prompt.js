@@ -1,25 +1,42 @@
 import React, { Fragment } from 'react';
 
-import { EuiEmptyPrompt, EuiButton } from '../../../../src/components';
+import {
+  EuiEmptyPrompt,
+  EuiButton,
+  EuiText,
+  EuiIcon,
+  EuiLink,
+  EuiTitle,
+} from '../../../../src/components';
 
 export default () => (
   <EuiEmptyPrompt
-    iconType="editorStrike"
-    title={<h2>You have no spice</h2>}
+    iconType="logoSecurity"
+    title={<h2>No cases</h2>}
     body={
       <Fragment>
         <p>
-          Navigators use massive amounts of spice to gain a limited form of
-          prescience. This allows them to safely navigate interstellar space,
-          enabling trade and travel throughout the galaxy.
+          There are no cases to display. Please create a new case or change your
+          filter settings.
         </p>
-        <p>You&rsquo;ll need spice to rule Arrakis, young Atreides.</p>
       </Fragment>
     }
     actions={
       <EuiButton color="primary" fill>
-        Harvest spice
+        Add new case
       </EuiButton>
+    }
+    footer={
+      <>
+        <EuiTitle size="xxs">
+          <h3>Want to learn more?</h3>
+        </EuiTitle>
+        <EuiText size="s">
+          <EuiLink href="#" color="subdued">
+            <EuiIcon type="documentation" /> Read documentation
+          </EuiLink>
+        </EuiText>
+      </>
     }
   />
 );

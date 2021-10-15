@@ -8,7 +8,7 @@ exports[`EuiEmptyPrompt is rendered 1`] = `
     class="euiEmptyPrompt__main"
   >
     <div
-      class="euiEmptyPrompt__illustration"
+      class="euiEmptyPrompt__icon"
     >
       <span
         color="subdued"
@@ -60,7 +60,7 @@ exports[`EuiEmptyPrompt props actions renders alone 1`] = `
     class="euiEmptyPrompt__main"
   >
     <div
-      class="euiEmptyPrompt__illustration"
+      class="euiEmptyPrompt__icon"
     />
     <div
       class="euiEmptyPrompt__content"
@@ -86,7 +86,7 @@ exports[`EuiEmptyPrompt props actions renders an array 1`] = `
     class="euiEmptyPrompt__main"
   >
     <div
-      class="euiEmptyPrompt__illustration"
+      class="euiEmptyPrompt__icon"
     />
     <div
       class="euiEmptyPrompt__content"
@@ -125,7 +125,7 @@ exports[`EuiEmptyPrompt props body renders alone 1`] = `
     class="euiEmptyPrompt__main"
   >
     <div
-      class="euiEmptyPrompt__illustration"
+      class="euiEmptyPrompt__icon"
     />
     <div
       class="euiEmptyPrompt__content"
@@ -156,7 +156,7 @@ exports[`EuiEmptyPrompt props icon renders alone 1`] = `
     class="euiEmptyPrompt__main"
   >
     <div
-      class="euiEmptyPrompt__illustration"
+      class="euiEmptyPrompt__icon"
     >
       <span>
         Custom icon
@@ -181,7 +181,7 @@ exports[`EuiEmptyPrompt props iconType renders alone 1`] = `
     class="euiEmptyPrompt__main"
   >
     <div
-      class="euiEmptyPrompt__illustration"
+      class="euiEmptyPrompt__icon"
     >
       <span
         color="subdued"
@@ -207,7 +207,7 @@ exports[`EuiEmptyPrompt props iconType renders with iconColor 1`] = `
     class="euiEmptyPrompt__main"
   >
     <div
-      class="euiEmptyPrompt__illustration"
+      class="euiEmptyPrompt__icon"
     >
       <span
         color="danger"
@@ -233,7 +233,7 @@ exports[`EuiEmptyPrompt props title renders alone 1`] = `
     class="euiEmptyPrompt__main"
   >
     <div
-      class="euiEmptyPrompt__illustration"
+      class="euiEmptyPrompt__icon"
     />
     <div
       class="euiEmptyPrompt__content"

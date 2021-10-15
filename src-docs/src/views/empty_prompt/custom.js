@@ -4,23 +4,21 @@ import { EuiEmptyPrompt, EuiButton } from '../../../../src/components';
 
 export default () => (
   <EuiEmptyPrompt
-    iconType="dataVisualizer"
+    iconType="securityAnalyticsApp"
     iconColor="default"
-    title={<h2>You have no spice</h2>}
+    title={<h2>No cases</h2>}
     titleSize="xs"
     body={
       <Fragment>
         <p>
-          Navigators use massive amounts of spice to gain a limited form of
-          prescience. This allows them to safely navigate interstellar space,
-          enabling trade and travel throughout the galaxy.
+          There are no cases to display. Please create a new case or change your
+          filter settings.
         </p>
-        <p>You&rsquo;ll need spice to rule Arrakis, young Atreides.</p>
       </Fragment>
     }
     actions={
       <EuiButton size="s" color="primary" fill>
-        Harvest spice
+        Add new case
       </EuiButton>
     }
   />

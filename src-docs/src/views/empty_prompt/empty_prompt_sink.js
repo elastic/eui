@@ -121,16 +121,11 @@ export default () => {
       <EuiSpacer size="l" />
 
       <EuiEmptyPrompt
-        icon={
-          !isVerticalLayout && <EuiImage size="fullWidth" src={illustration} />
-        }
+        icon={!isVerticalLayout && <EuiImage size="l" src={illustration} />}
         iconType={isVerticalLayout && 'visArea'}
         title={<h2>You have no spice</h2>}
         layout={layout}
         paddingSize={padding}
-        panelProps={{
-          className: 'myCustomClass',
-        }}
         color={color}
         body={
           <Fragment>

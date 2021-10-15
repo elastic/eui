@@ -81,6 +81,12 @@ export type EuiEmptyPromptProps = CommonProps &
      */
     paddingSize?: _EuiPanelProps['paddingSize'];
     /**
+     * Adds a slight 1px border on all edges.
+     * Only works when `color="plain | transparent"`
+     * Default is `undefined` and will default to that theme's panel style
+     */
+    hasBorder?: _EuiPanelProps['hasBorder'];
+    /**
      * Props passed to the EuiPanel
      */
     panelProps?: _EuiPanelProps;
@@ -97,6 +103,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   actions,
   className,
   layout = 'vertical',
+  hasBorder,
   panelProps,
   color = 'transparent',
   footer,
@@ -179,12 +186,13 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
     className: classes,
     color: color,
     paddingSize: 'none',
+    hasBorder: hasBorder,
   };
 
   return (
     <EuiPanel {...customPanelProps}>
       <div className="euiEmptyPrompt__main">
-        <div className="euiEmptyPrompt__illustration">{iconNode}</div>
+        <div className="euiEmptyPrompt__icon">{iconNode}</div>
         <div className="euiEmptyPrompt__content">
           <div className="euiEmptyPrompt__contentInner">{contentNodes}</div>
         </div>

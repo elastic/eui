@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiEmptyPrompt,
@@ -52,23 +52,25 @@ export default () => {
       <EuiSpacer size="l" />
 
       <EuiEmptyPrompt
-        icon={<EuiImage size="fullWidth" src={illustration} />}
+        icon={<EuiImage size="l" src={illustration} />}
         layout="horizontal"
-        title={<h2>You have no spice</h2>}
+        title={<h2>Create your first data visualization</h2>}
         color={panelColor}
         body={
-          <Fragment>
+          <>
             <p>
-              Navigators use massive amounts of spice to gain a limited form of
-              prescience. This allows them to safely navigate interstellar
-              space, enabling trade and travel throughout the galaxy.
+              There are no visualizations to display. This tool allows you to
+              create a wide range of charts, graphs, maps, and other graphics.
             </p>
-            <p>You&rsquo;ll need spice to rule Arrakis, young Atreides.</p>
-          </Fragment>
+            <p>
+              The visualizations you create can be easily shared with your
+              peers.
+            </p>
+          </>
         }
         actions={
           <EuiButton color="primary" fill>
-            Harvest spice
+            Create visualization
           </EuiButton>
         }
         footer={

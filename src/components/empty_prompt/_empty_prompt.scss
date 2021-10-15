@@ -2,6 +2,7 @@
 
 .euiEmptyPrompt {
   margin: auto;
+  max-width: max-content;
 
   // Footer background colors
   @each $modifier, $color in $euiPanelBackgroundColorModifiers {
@@ -17,7 +18,7 @@
       }
     } @else {
       &.euiPanel--#{$modifier} .euiEmptyPrompt__footer {
-        background-color: lightOrDarkTheme(darken($color, 2%), lighten($color, 2%));
+        border-top: $euiBorderThin;
         border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
       }
     }
@@ -26,22 +27,18 @@
 
 .euiEmptyPrompt--verticalLayout {
   text-align: center;
-  max-width: fit-content;
+  max-width: max-content;
 
   .euiEmptyPrompt__main {
     max-width: $euiTextConstrainedMaxWidth;
+
+    > * + * {
+      margin-bottom: $euiSize;
+    }
   }
 
-  .euiEmptyPrompt__illustration {
+  .euiEmptyPrompt__icon {
     margin-bottom: $euiSize;
-  }
-
-  .euiEmptyPrompt__content {
-    padding-top: $euiSizeL;
-  }
-
-  .euiEmptyPrompt__footer {
-    margin-top: $euiSizeL;
   }
 }
 
@@ -52,7 +49,7 @@
   }
 
   .euiEmptyPrompt__content,
-  .euiEmptyPrompt__illustration {
+  .euiEmptyPrompt__icon {
     flex: 50%;
   }
 
@@ -60,7 +57,7 @@
     max-width: $euiTextConstrainedMaxWidth;
   }
 
-  .euiEmptyPrompt__illustration {
+  .euiEmptyPrompt__icon {
     display: flex;
     align-items: center;
     justify-content: center;

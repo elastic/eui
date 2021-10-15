@@ -11,6 +11,8 @@ import Guidelines from './guidelines';
 
 import emptyPromptConfig from './playground';
 
+import { PageDemo } from './_page_demo';
+
 import EmptyPrompt from './empty_prompt';
 const emptyPromptSource = require('!!raw-loader!./empty_prompt');
 const emptyPromptSnippet = `<EuiEmptyPrompt
@@ -79,6 +81,9 @@ const errorSnippet = `<EuiEmptyPrompt
 
 import States from './empty_prompt_states';
 const statesSource = require('!!raw-loader!./empty_prompt_states');
+
+import PageTemplate from './empty_prompt_page_template';
+const pageTemplateSource = require('!!raw-loader!./empty_prompt_page_template');
 
 import Sink from './empty_prompt_sink';
 const sinkSource = require('!!raw-loader!./empty_prompt_sink');
@@ -162,14 +167,23 @@ export const EmptyPromptExample = {
         },
       ],
       text: (
-        <p>
-          You can supply a layout of either <EuiCode>horizontal</EuiCode> or{' '}
-          <EuiCode>vertical</EuiCode> with the default being{' '}
-          <EuiCode>vertical</EuiCode>. Only use the{' '}
-          <EuiCode>horizontal</EuiCode> layout when you can provide an
-          illustration and make sure to give it a max-width or contain it in a
-          component.
-        </p>
+        <>
+          <p>
+            You can supply a layout of either <EuiCode>horizontal</EuiCode> or{' '}
+            <EuiCode>vertical</EuiCode> with the default being{' '}
+            <EuiCode>vertical</EuiCode>. Only use the{' '}
+            <EuiCode>horizontal</EuiCode> layout when you can provide an
+            illustration. When you want to provide an icon or no icon at all,
+            use the <EuiCode>vertical</EuiCode> layout.
+          </p>
+          <p>
+            We recommend when using a custom illustration to use it with a{' '}
+            <Link to="/display/image">
+              <strong>EuiImage</strong>
+            </Link>{' '}
+            with the size set to large.
+          </p>
+        </>
       ),
       props: { EuiEmptyPrompt },
       demo: <Layout />,
@@ -197,6 +211,31 @@ export const EmptyPromptExample = {
       props: { EuiEmptyPrompt },
       demo: <Panel />,
       snippet: panelSnippet,
+    },
+    {
+      title: 'Usage in page template',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageTemplateSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            This example shows how to use the <strong>EuiEmptyPrompt</strong> in
+            a page template. We recommend to set the color to{' '}
+            <EuiCode>{'"plain"'}</EuiCode> and the <EuiCode>hasBorder</EuiCode>{' '}
+            prop to <EuiCode>true</EuiCode>.
+          </p>
+        </>
+      ),
+      props: { EuiEmptyPrompt },
+      demo: <PageDemo slug="full-page" template={PageTemplate} />,
+      fullScreen: {
+        slug: 'full-page',
+        demo: <PageDemo slug="full-page" template={PageTemplate} fullscreen />,
+      },
     },
     {
       title: 'Loading and error prompts',
@@ -236,11 +275,7 @@ export const EmptyPromptExample = {
           <p>
             For <strong>error</strong> states, you can simply set the{' '}
             <EuiCode>iconColor</EuiCode> to <EuiCode>danger</EuiCode> and/or
-            wrap the whole prompt in a <EuiCode>danger</EuiCode> colored{' '}
-            <Link to="/display/panel">
-              <strong>EuiPanel</strong>
-            </Link>
-            .
+            pass <EuiCode>danger</EuiCode> to the <EuiCode>color</EuiCode> prop.
           </p>
         </>
       ),
@@ -264,9 +299,7 @@ export const EmptyPromptExample = {
             <Link to="/layout/page#simple-layout-with-centered-content">
               <strong>EuiPageTemplate</strong>
             </Link>{' '}
-            using <EuiCode>{'template="centeredContent"'}</EuiCode> and passing{' '}
-            <EuiCode>{'color="danger"'}</EuiCode> to the{' '}
-            <EuiCode>pageContentProps</EuiCode> for the error state.
+            using <EuiCode>{'template="centeredContent"'}</EuiCode>.
           </p>
         </>
       ),

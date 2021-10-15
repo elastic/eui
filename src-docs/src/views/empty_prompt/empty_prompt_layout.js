@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React from 'react';
 
 import {
   EuiEmptyPrompt,
@@ -8,66 +8,33 @@ import {
   EuiText,
   EuiImage,
   EuiLink,
-  EuiSpacer,
-  EuiButtonGroup,
 } from '../../../../src/components';
 
-import illustrationLightMode from '../../images/emptyPrompt__illustration.svg';
+import illustration from '../../images/emptyPrompt__illustration.svg';
 
 export default () => {
-  const layoutOptions = [
-    {
-      id: 'vertical',
-      label: 'Vertical',
-    },
-    {
-      id: 'horizontal',
-      label: 'Horizontal',
-    },
-  ];
-
-  const [layout, setLayout] = useState('vertical');
-
-  const onChangeLayout = (optionId) => {
-    setLayout(optionId);
-  };
-
-  const isVerticalLayout = layout === 'vertical';
-
   return (
     <>
-      <EuiButtonGroup
-        color="primary"
-        legend="Change the layout"
-        options={layoutOptions}
-        idSelected={layout}
-        onChange={(id) => onChangeLayout(id)}
-      />
-
-      <EuiSpacer size="m" />
-
       <EuiEmptyPrompt
-        icon={
-          !isVerticalLayout && (
-            <EuiImage size="fullWidth" src={illustrationLightMode} />
-          )
-        }
-        iconType={isVerticalLayout && 'visArea'}
-        title={<h2>You have no spice</h2>}
-        layout={layout}
+        icon={<EuiImage size="l" src={illustration} />}
+        title={<h2>Create your first data visualization</h2>}
+        layout="horizontal"
+        color="plain"
         body={
-          <Fragment>
+          <>
             <p>
-              Navigators use massive amounts of spice to gain a limited form of
-              prescience. This allows them to safely navigate interstellar
-              space, enabling trade and travel throughout the galaxy.
+              There are no visualizations to display. This tool allows you to
+              create a wide range of charts, graphs, maps, and other graphics.
             </p>
-            <p>You&rsquo;ll need spice to rule Arrakis, young Atreides.</p>
-          </Fragment>
+            <p>
+              The visualizations you create can be easily shared with your
+              peers.
+            </p>
+          </>
         }
         actions={
           <EuiButton color="primary" fill>
-            Harvest spice
+            Create visualization
           </EuiButton>
         }
         footer={
