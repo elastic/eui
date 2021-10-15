@@ -23,11 +23,12 @@ const postcssConfigurationWithMinification = {
   ],
 };
 
-async function compileScssFiles(
+async function compileScssFiles({
   sourcePattern,
   destinationDirectory,
+  docsVariablesDirectory,
   packageName
-) {
+}) {
   try {
     await mkdir(destinationDirectory);
   } catch (err) {
@@ -44,13 +45,14 @@ async function compileScssFiles(
 
       try {
         const { name } = path.parse(inputFilename);
-        const outputFilenames = await compileScssFile(
+        const outputFilenames = await compileScssFile({
           inputFilename,
-          path.join(destinationDirectory, `eui_${name}.css`),
-          path.join(destinationDirectory, `eui_${name}.json`),
-          path.join(destinationDirectory, `eui_${name}.json.d.ts`),
+          outputCssFilename: path.join(destinationDirectory, `eui_${name}.css`),
+          outputVarsFilename: path.join(destinationDirectory, `eui_${name}.json`),
+          outputVarTypesFilename: path.join(destinationDirectory, `eui_${name}.json.d.ts`),
+          outputDocsVarsFilename: path.join(docsVariablesDirectory, `eui_${name}.json`),
           packageName
-        );
+        });
 
         console.log(
           chalk`{green ✔} Finished compiling {gray ${inputFilename}} to ${outputFilenames
@@ -68,13 +70,14 @@ async function compileScssFiles(
   );
 }
 
-async function compileScssFile(
+async function compileScssFile({
   inputFilename,
   outputCssFilename,
   outputVarsFilename,
   outputVarTypesFilename,
+  outputDocsVarsFilename,
   packageName
-) {
+}) {
   const outputCssMinifiedFilename = outputCssFilename.replace(
     /\.css$/,
     '.min.css'
@@ -111,11 +114,14 @@ async function compileScssFile(
     to: outputCssMinifiedFilename,
   });
 
+  const jsonVars = JSON.stringify(extractedVars, undefined, 2)
+
   await Promise.all([
     writeFile(outputCssFilename, postprocessedCss),
     writeFile(outputCssMinifiedFilename, postprocessedMinifiedCss),
-    writeFile(outputVarsFilename, JSON.stringify(extractedVars, undefined, 2)),
+    writeFile(outputVarsFilename, jsonVars),
     writeFile(outputVarTypesFilename, extractedVarTypes),
+    writeFile(outputDocsVarsFilename, jsonVars),
   ]);
 
   return [
@@ -123,6 +129,7 @@ async function compileScssFile(
     outputCssMinifiedFilename,
     outputVarsFilename,
     outputVarTypesFilename,
+    outputDocsVarsFilename
   ];
 }
 
@@ -134,5 +141,10 @@ if (require.main === module) {
     process.exit(1);
   }
 
-  compileScssFiles(path.join('src', 'theme_*.scss'), 'dist', euiPackageName);
+  compileScssFiles({
+    sourcePattern: path.join('src', 'theme_*.scss'), 
+    destinationDirectory: 'dist',
+    docsVariablesDirectory: 'src-docs/src/views/theme/_json',
+    packageName: euiPackageName
+  });
 }

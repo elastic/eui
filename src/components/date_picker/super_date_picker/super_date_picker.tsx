@@ -40,7 +40,7 @@ import {
   QuickSelectPanel,
 } from '../types';
 import { EuiDatePopoverContentProps } from './date_popover/date_popover_content';
-import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
+import moment, { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
 export { prettyDuration, commonDurationRanges };
 
@@ -147,19 +147,17 @@ function isRangeInvalid(start: ShortDate, end: ShortDate) {
 
   const startMoment = dateMath.parse(start);
   const endMoment = dateMath.parse(end, { roundUp: true });
-  if (
+
+  const isInvalid =
     !startMoment ||
     !endMoment ||
     !startMoment.isValid() ||
-    !endMoment.isValid()
-  ) {
-    return true;
-  }
-  if (startMoment.isAfter(endMoment)) {
-    return true;
-  }
+    !endMoment.isValid() ||
+    !moment(startMoment).isValid() ||
+    !moment(endMoment).isValid() ||
+    startMoment.isAfter(endMoment);
 
-  return false;
+  return isInvalid;
 }
 
 export class EuiSuperDatePicker extends Component<

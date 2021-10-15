@@ -10,6 +10,7 @@ import {
 } from '../../../../src/components';
 
 import EuiTabsExample from '../tabs/tabbed_content';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 function flattenPanelTree(tree, array = []) {
   array.push(tree);
@@ -29,6 +30,13 @@ function flattenPanelTree(tree, array = []) {
 export default () => {
   const [isPopoverOpen, setPopover] = useState(false);
   const [isDynamicPopoverOpen, setDynamicPopover] = useState(false);
+
+  const normalContextMenuPopoverId = useGeneratedHtmlId({
+    prefix: 'normalContextMenuPopover',
+  });
+  const dynamicContextMenuPopoverId = useGeneratedHtmlId({
+    prefix: 'dynamicContextMenuPopover',
+  });
 
   const onButtonClick = () => {
     setPopover(!isPopoverOpen);
@@ -112,7 +120,7 @@ export default () => {
   return (
     <React.Fragment>
       <EuiPopover
-        id="contextMenuNormal"
+        id={normalContextMenuPopoverId}
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}
@@ -125,7 +133,7 @@ export default () => {
       <EuiSpacer size="l" />
 
       <EuiPopover
-        id="contextMenuDynamic"
+        id={dynamicContextMenuPopoverId}
         button={dynamicButton}
         isOpen={isDynamicPopoverOpen}
         closePopover={closeDynamicPopover}

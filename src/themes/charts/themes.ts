@@ -49,7 +49,6 @@ function createTheme(colors: any): EuiChartThemeType {
       minFontSize: 8,
       maxFontSize: 16,
       fillLabel: {
-        textInvertible: false,
         valueFont: {
           fontWeight: 700,
         },
@@ -103,8 +102,6 @@ function createTheme(colors: any): EuiChartThemeType {
           fontSize: 10,
           fontFamily: fontFamily,
           fill: {
-            textInvertible: true,
-            textContrast: true,
             textBorder: 0,
           },
           alignment: {

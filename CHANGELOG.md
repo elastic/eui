@@ -1,12 +1,50 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `38.2.0`.
+- Updated `tokenKeyword` to match the definition of keyword field type ([#5251](https://github.com/elastic/eui/pull/5251))
+
+**Breaking changes**
+
+- Renamed `tokenKeyword` icon to `tokenTag` in `EuiToken` ([#5251](https://github.com/elastic/eui/pull/5251))
+
+## [`39.1.1`](https://github.com/elastic/eui/tree/v39.1.1)
+
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` from crashing due to invalid time input ([#5263](https://github.com/elastic/eui/pull/5263))
+- Fixed content in `EuiFilterButton` again when `numFilters` is undefined ([#5268](https://github.com/elastic/eui/pull/5268))
+
+## [`39.1.0`](https://github.com/elastic/eui/tree/v39.1.0)
+
+- Added support for `ghost` and `text` `EuiIcon` colors on Elastic logos ([#5245](https://github.com/elastic/eui/pull/5245))
+- Added a default `data-test-subj` to `EuiErrorBoundary` ([#5232](https://github.com/elastic/eui/pull/5232))
+
+**Bug fixes**
+
+- Fixed content in `EuiPopover` from being inaccessible during the opening animation ([#5249](https://github.com/elastic/eui/pull/5249))
+- Fixed multiple accessibility issues in `EuiBasicTable` and `EuiInMemoryTable` ([#5241](https://github.com/elastic/eui/pull/5241))
+
+## [`39.0.0`](https://github.com/elastic/eui/tree/v39.0.0)
+
+- Added `maxWidth` prop to `EuiTour`, made `subtitle` optional, and fixed heading levels and footer background ([#5225](https://github.com/elastic/eui/pull/5225))
+- Updated `tint`, `shade`, `saturate`, `desaturate`, and `makeHighContrastColor` utility functions to maintain color format supplied ([#5230](https://github.com/elastic/eui/pull/5230))
+- Converted generated icon files to Typescript, eliminating the last `.js` files in our source files ([#5212](https://github.com/elastic/eui/pull/5212))
+
+**Bug fixes**
+
+- Fixed tick and level alignment in `Eui[Dual]Range` ([#5181](https://github.com/elastic/eui/pull/5181))
+- Fixed duplicate IDs on mobile/desktop select all checkboxes in EuiBasicTable ([#5237](https://github.com/elastic/eui/pull/5237))
+- Fixed missing i18n token in `EuiBasicTable`'s no items message ([#5242](https://github.com/elastic/eui/pull/5242))
+
+**Breaking changes**
+
+- Removed `boolean` from `EuiTour`'s `minWidth` type ([#5225](https://github.com/elastic/eui/pull/5225))
 
 ## [`38.2.0`](https://github.com/elastic/eui/tree/v38.2.0)
 
 - Updated `EuiRangeLevel` `color` property to accept CSS color values ([#5171](https://github.com/elastic/eui/pull/5171))
 - Added optional visual line highlighting to `EuiCodeBlock` ([#5207](https://github.com/elastic/eui/pull/5207))
 - Added `popoverProps` to `EuiSuperSelect` and deprecated `popoverClassName` & `repositionOnScroll` ([#5214](https://github.com/elastic/eui/pull/5214))
+- Added `lineHeight` configuration to `rowHeightsOptions` in `EuiDataGrid` ([#5221](https://github.com/elastic/eui/pull/5221))
 
 **Bug fixes**
 

@@ -17,6 +17,7 @@ import {
   NowDateMode,
   ShortDate,
 } from '../types';
+import moment from 'moment';
 
 export const DATE_MODES: {
   ABSOLUTE: AbsoluteDateMode;
@@ -27,6 +28,8 @@ export const DATE_MODES: {
   RELATIVE: 'relative',
   NOW: 'now',
 };
+
+export const INVALID_DATE = 'invalid_date';
 
 export function getDateMode(value: ShortDate) {
   if (value === 'now') {
@@ -44,6 +47,9 @@ export function toAbsoluteString(value: string, roundUp: boolean = false) {
   const valueAsMoment = dateMath.parse(value, { roundUp });
   if (!valueAsMoment) {
     return value;
+  }
+  if (!moment(valueAsMoment).isValid()) {
+    return INVALID_DATE;
   }
   return valueAsMoment.toISOString();
 }
