@@ -90,6 +90,7 @@ export class EuiSelectableListItem extends Component<
       allowExclusions,
       onFocusBadge,
       paddingSize = 's',
+      role = 'option',
       ...rest
     } = this.props;
 
@@ -212,9 +213,12 @@ export class EuiSelectableListItem extends Component<
 
     return (
       <li
-        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
-        role="option"
-        aria-checked={!disabled && typeof checked === 'string'}
+        role={role}
+        aria-checked={
+          role === 'option'
+            ? !disabled && typeof checked === 'string'
+            : undefined
+        }
         aria-selected={!disabled && isFocused}
         className={classes}
         aria-disabled={disabled}
