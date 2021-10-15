@@ -2,10 +2,18 @@ import React, { useState, Fragment } from 'react';
 
 import { EuiRange, EuiSpacer } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [value, setValue] = useState('120');
+
+  const basicRangeId = useGeneratedHtmlId({ prefix: 'basicRange' });
+  const rangeWithShowValueId = useGeneratedHtmlId({
+    prefix: 'rangeWithShowValue',
+  });
+  const rangeWithValuePrependId = useGeneratedHtmlId({
+    prefix: 'rangeWithValuePrepend',
+  });
 
   const onChange = (e) => {
     setValue(e.target.value);
@@ -14,7 +22,7 @@ export default () => {
   return (
     <Fragment>
       <EuiRange
-        id={htmlIdGenerator()()}
+        id={basicRangeId}
         min={100}
         max={200}
         step={0.05}
@@ -27,7 +35,7 @@ export default () => {
       <EuiSpacer size="xl" />
 
       <EuiRange
-        id={htmlIdGenerator()()}
+        id={rangeWithShowValueId}
         min={100}
         max={200}
         value={value}
@@ -40,7 +48,7 @@ export default () => {
       <EuiSpacer size="xl" />
 
       <EuiRange
-        id={htmlIdGenerator()()}
+        id={rangeWithValuePrependId}
         min={100}
         max={200}
         value={value}

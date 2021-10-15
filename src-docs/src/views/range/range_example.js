@@ -375,13 +375,13 @@ export const RangeControlExample = {
       demo: <InputOnlyExample />,
       snippet: [
         `<EuiRange
-  id={rangeId}
+  id={rangeId__1}
   value={value}
   onChange={handleChange}
   showInput="inputWithPopover"
 />`,
         `<EuiDualRange
-  id={rangeId}
+  id={rangeId__2}
   value={value}
   onChange={handleChange}
   showInput="inputWithPopover"
@@ -411,7 +411,7 @@ export const RangeControlExample = {
       demo: <StatesExample />,
       snippet: [
         `<EuiRange
-  id={rangeId}
+  id={rangeId__1}
   value={value}
   onChange={handleChange}
   fullWidth
@@ -426,7 +426,7 @@ export const RangeControlExample = {
   aria-describedBy={replaceWithID}
 />`,
         `<EuiDualRange
-  id={rangeId}
+  id={rangeId__2}
   value={value}
   onChange={handleChange}
   fullWidth
