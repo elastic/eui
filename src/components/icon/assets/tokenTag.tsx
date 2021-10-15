@@ -14,22 +14,27 @@ interface SVGRProps {
   titleId?: string;
 }
 
-const EuiIconTokenKeyword = ({
+const EuiIconTokenTag = ({
   title,
   titleId,
   ...props
 }: React.SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={16}
     viewBox="0 0 16 16"
+    xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M10.33 10.28c-.12.04-.29.07-.42.07-.23 0-.43-.08-.53-.3l-.63-1.34 2.32-2.81H9.3L7.76 7.93h-.09L8.22 4H6.59l-1.05 7.5h1.63l.27-1.94h.1l.43 1.12c.27.71.74.92 1.33.92.23 0 .6-.04.86-.11l.17-1.21z" />
+    <path d="M5.75 7.375a.25.25 0 00-.25.25v.75c0 .138.112.25.25.25h3.5a.25.25 0 00.25-.25v-.75a.25.25 0 00-.25-.25h-3.5z" />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M3 5a1 1 0 011-1h5.989a1 1 0 01.825.436l2.05 3a1 1 0 010 1.128l-2.05 3A1 1 0 019.99 12H4a1 1 0 01-1-1V5zm1.25.75a.5.5 0 01.5-.5h4.745a.5.5 0 01.405.206l1.636 2.25a.5.5 0 010 .588L9.9 10.544a.5.5 0 01-.405.206H4.75a.5.5 0 01-.5-.5v-4.5z"
+    />
   </svg>
 );
 
-export const icon = EuiIconTokenKeyword;
+export const icon = EuiIconTokenTag;
