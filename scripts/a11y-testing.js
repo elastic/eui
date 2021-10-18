@@ -1,6 +1,7 @@
 const chalk = require('chalk');
 const puppeteer = require('puppeteer');
 const { AxePuppeteer } = require('@axe-core/puppeteer');
+const { isConstructorDeclaration } = require('typescript');
 
 const docsPages = async (root, page) => {
   const pagesToSkip = [
@@ -28,11 +29,22 @@ const docsPages = async (root, page) => {
   ].filter((link) => !pagesToSkip.includes(link));
 };
 
-const printResult = (result) =>
-  console.log(`[${result.id}]: ${result.description}
-  Help: ${chalk.blue(result.helpUrl)}
-  Elements:
-    - ${result.nodes.map((node) => node.target).join('\n    - ')}`);
+// const printResult = (result) => console.table(result);
+  // console.log(`[${result.id}]: ${result.description}
+  // Help: ${chalk.blue(result.helpUrl)}
+  // Elements:
+  //   - ${result.nodes.map((node) => node.target).join('\n    - ')}`);
+
+const printResult = (violations) => {
+  const violationData = violations.map(
+    ({ id, impact, description, nodes }) => ({
+      id,
+      impact,
+      description,
+      nodes: nodes.length
+    }));
+  console.table(violationData);
+}
 
 (async () => {
   let totalViolationsCount = 0;
@@ -73,18 +85,25 @@ const printResult = (result) =>
 
     const { violations } = await new AxePuppeteer(page)
       .configure({
+        // rules: [
+        //   { id: 'color-contrast', enabled: false },
+        //   {
+        //     id: 'scrollable-region-focusable',
+        //     selector: '[data-skip-axe="scrollable-region-focusable"]',
+        //   },
+        //   {
+        //     // can remove after https://github.com/dequelabs/axe-core/issues/2690 is resolved
+        //     id: 'region',
+        //     selector: 'iframe, #player,',
+        //   },
+        // ],
         rules: [
           { id: 'color-contrast', enabled: false },
-          {
-            id: 'scrollable-region-focusable',
-            selector: '[data-skip-axe="scrollable-region-focusable"]',
-          },
-          {
-            // can remove after https://github.com/dequelabs/axe-core/issues/2690 is resolved
-            id: 'region',
-            selector: 'iframe, #player,',
-          },
         ],
+        runOnly: {
+          type: 'tag',
+          values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']
+        },
       })
       .analyze();
 
@@ -93,11 +112,23 @@ const printResult = (result) =>
 
       const pageName = link.length > 24 ? link.substr(2) : 'the home page';
       console.log(chalk.red(`Errors on ${pageName}`));
+      printResult(violations);
     }
 
-    violations.forEach((result) => {
-      printResult(result);
-    });
+    // violations.forEach((result) => {
+    //   printResult(result);
+    // });
+
+    // const violationData = violations.map(
+    //   ({ id, impact, description, nodes }) => ({
+    //     id,
+    //     impact,
+    //     description,
+    //     nodes: nodes.length
+    //   })
+    // );
+
+    // console.table(violationData);
   }
 
   await page.close();
