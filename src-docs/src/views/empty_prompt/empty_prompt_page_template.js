@@ -26,7 +26,7 @@ export default ({ button = <></>, sideNav }) => (
     }}
   >
     <EuiEmptyPrompt
-      title={<h2>Create your first data visualization</h2>}
+      title={<h2>Create your first visualization</h2>}
       icon={<EuiImage size="l" src={illustration} />}
       color="plain"
       hasBorder={true}

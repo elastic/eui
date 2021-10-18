@@ -11,6 +11,7 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   Ref,
+  CSSProperties,
 } from 'react';
 import classNames from 'classnames';
 
@@ -84,6 +85,14 @@ export interface _EuiPanelProps extends CommonProps {
    * Usually a lightened form of the brand colors
    */
   color?: PanelColor;
+  /**
+   * Sets a min width
+   */
+  minWidth?: CSSProperties['minWidth'];
+  /**
+   * Sets a max width
+   */
+  maxWidth?: CSSProperties['maxWidth'];
 }
 
 export interface _EuiPanelDivlike
@@ -114,6 +123,9 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   grow = true,
   panelRef,
   element,
+  style,
+  minWidth,
+  maxWidth,
   ...rest
 }) => {
   // Shadows are only allowed when there's a white background (plain)
@@ -138,6 +150,15 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     className
   );
 
+  const maxWidthStyles = maxWidth && { maxWidth };
+  const minWidthStyles = minWidth && { minWidth };
+
+  const panelStyle: CSSProperties = {
+    ...style,
+    ...maxWidthStyles,
+    ...minWidthStyles,
+  };
+
   if (rest.onClick && element !== 'div') {
     return (
       <button
@@ -154,6 +175,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     <div
       ref={panelRef as Ref<HTMLDivElement>}
       className={classes}
+      style={panelStyle}
       {...(rest as HTMLAttributes<HTMLDivElement>)}
     >
       {children}

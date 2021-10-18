@@ -54,7 +54,7 @@ export default () => {
       <EuiEmptyPrompt
         icon={<EuiImage size="l" src={illustration} />}
         layout="horizontal"
-        title={<h2>Create your first data visualization</h2>}
+        title={<h2>Create your first visualization</h2>}
         color={panelColor}
         body={
           <>

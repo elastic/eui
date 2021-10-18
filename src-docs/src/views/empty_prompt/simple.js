@@ -8,23 +8,12 @@ import {
 
 export default () => (
   <EuiEmptyPrompt
-    title={
-      <h2>
-        Ready to try Kibana?
-        <br />
-        First you need data.
-      </h2>
-    }
+    title={<h2>Upgrade your license to use Machine Learning</h2>}
     actions={[
-      <EuiButton color="primary" fill iconType="database">
-        Add integration
+      <EuiButton color="primary" fill>
+        Upgrade
       </EuiButton>,
-      <EuiButtonEmpty color="text" iconType="document">
-        Upload a file
-      </EuiButtonEmpty>,
-      <EuiButtonEmpty color="text" iconType="heatmap">
-        Add sample data
-      </EuiButtonEmpty>,
+      <EuiButtonEmpty color="primary">Start a trial</EuiButtonEmpty>,
     ]}
   />
 );

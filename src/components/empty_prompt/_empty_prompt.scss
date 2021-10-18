@@ -2,7 +2,7 @@
 
 .euiEmptyPrompt {
   margin: auto;
-  max-width: max-content;
+  max-width: max-content; // the width becomes as wide as necessary to contain all of its contents
 
   // Footer background colors
   @each $modifier, $color in $euiPanelBackgroundColorModifiers {
@@ -27,14 +27,21 @@
 
 .euiEmptyPrompt--verticalLayout {
   text-align: center;
-  max-width: max-content;
 
   .euiEmptyPrompt__main {
-    max-width: $euiTextConstrainedMaxWidth;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: $euiSizeXXL * 6;
 
     > * + * {
       margin-bottom: $euiSize;
     }
+  }
+
+  .euiEmptyPrompt__main,
+  .euiEmptyPrompt__footer {
+    max-width: $euiTextConstrainedMaxWidth;
   }
 
   .euiEmptyPrompt__icon {

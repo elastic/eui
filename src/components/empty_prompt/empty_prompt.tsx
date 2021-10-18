@@ -30,7 +30,8 @@ const paddingSizeToClassNameMap = {
 };
 
 export type EuiEmptyPromptProps = CommonProps &
-  Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
+  Omit<HTMLAttributes<HTMLDivElement>, 'title'> &
+  Omit<_EuiPanelProps, 'borderRadius' | 'grow' | 'panelRef' | 'paddingSize'> & {
     /*
      * Accepts any `EuiIcon.type` or pass a custom node
      */
@@ -72,24 +73,9 @@ export type EuiEmptyPromptProps = CommonProps &
     layout?: 'vertical' | 'horizontal';
 
     /**
-     * Color applied to the the empty prompt panel
-     */
-    color?: _EuiPanelProps['color'];
-
-    /**
-     * Padding applied around the content of the empty prompt
+     * Padding applied around the content and footer.
      */
     paddingSize?: _EuiPanelProps['paddingSize'];
-    /**
-     * Adds a slight 1px border on all edges.
-     * Only works when `color="plain | transparent"`
-     * Default is `undefined` and will default to that theme's panel style
-     */
-    hasBorder?: _EuiPanelProps['hasBorder'];
-    /**
-     * Props passed to the EuiPanel
-     */
-    panelProps?: _EuiPanelProps;
   };
 
 export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
@@ -104,9 +90,9 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   className,
   layout = 'vertical',
   hasBorder,
-  panelProps,
   color = 'transparent',
   footer,
+  ...rest
 }) => {
   let iconNode;
   if (icon) {
@@ -181,16 +167,16 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
     className
   );
 
-  const customPanelProps: _EuiPanelProps = {
-    ...panelProps,
+  const panelProps: _EuiPanelProps = {
     className: classes,
     color: color,
     paddingSize: 'none',
     hasBorder: hasBorder,
+    ...rest,
   };
 
   return (
-    <EuiPanel {...customPanelProps}>
+    <EuiPanel {...panelProps}>
       <div className="euiEmptyPrompt__main">
         <div className="euiEmptyPrompt__icon">{iconNode}</div>
         <div className="euiEmptyPrompt__content">

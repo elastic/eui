@@ -2,7 +2,9 @@
 
 exports[`EuiEmptyPrompt is rendered 1`] = `
 <div
+  aria-label="aria-label"
   class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--verticalLayout euiEmptyPrompt--paddingLarge testClass1 testClass2"
+  data-test-subj="test subject string"
 >
   <div
     class="euiEmptyPrompt__main"
