@@ -138,9 +138,7 @@ export default () => {
   // matches the snippet example
   const rowHeightsOptions = useMemo(
     () => ({
-      defaultHeight: {
-        lineCount: 3,
-      },
+      defaultHeight: 'auto' as any,
       lineHeight: '2em',
     }),
     []
