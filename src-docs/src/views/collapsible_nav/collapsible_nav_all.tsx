@@ -18,6 +18,7 @@ import {
   EuiHorizontalRule,
   EuiImage,
   EuiListGroup,
+  useGeneratedHtmlId,
 } from '../../../../src';
 
 import { KibanaNavLinks, SecurityGroup } from './collapsible_nav_list';
@@ -130,9 +131,11 @@ const CollapsibleNavAll = () => {
     return `Unpin ${listItem.label}`;
   }
 
+  const collapsibleNavId = useGeneratedHtmlId({ prefix: 'collapsibleNav' });
+
   const collapsibleNav = (
     <EuiCollapsibleNav
-      id="guideCollapsibleNavAllExampleNav"
+      id={collapsibleNavId}
       aria-label="Main navigation"
       isOpen={navIsOpen}
       button={

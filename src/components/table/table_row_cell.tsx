@@ -50,7 +50,7 @@ interface EuiTableRowCellSharedPropsShape {
   width?: string | number;
 }
 
-interface EuiTableRowCellMobileOptionsShape {
+export interface EuiTableRowCellMobileOptionsShape {
   /**
    * If false, will not render the cell at all for mobile
    */

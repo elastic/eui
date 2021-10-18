@@ -6,10 +6,26 @@ import {
   EuiKeyPadMenuItem,
 } from '../../../../src/components';
 
+import { useGeneratedHtmlId } from '../../../../src/services';
+
 export default () => {
-  const radioGroupName = 'singleKeypadSelect';
+  const radioGroupName = useGeneratedHtmlId({ prefix: 'radioGroup' });
+
+  const keypadRadioButtonId__1 = useGeneratedHtmlId({
+    prefix: 'keypadRadioButton',
+    suffix: 'first',
+  });
+  const keypadRadioButtonId__2 = useGeneratedHtmlId({
+    prefix: 'keypadRadioButton',
+    suffix: 'second',
+  });
+  const keypadRadioButtonId__3 = useGeneratedHtmlId({
+    prefix: 'keypadRadioButton',
+    suffix: 'third',
+  });
+
   const [singleSelectedID, setSingleSelectedID] = useState(
-    'singleKeypadSelect1'
+    keypadRadioButtonId__1
   );
 
   return (
@@ -17,31 +33,31 @@ export default () => {
       <EuiKeyPadMenuItem
         checkable="single"
         name={radioGroupName}
-        id="singleKeypadSelect1"
+        id={keypadRadioButtonId__1}
         label="Radio one"
         onChange={(id) => {
           setSingleSelectedID(id);
         }}
-        isSelected={singleSelectedID === 'singleKeypadSelect1'}
+        isSelected={singleSelectedID === keypadRadioButtonId__1}
       >
         <EuiIcon type="faceHappy" size="l" />
       </EuiKeyPadMenuItem>
       <EuiKeyPadMenuItem
         checkable="single"
         name={radioGroupName}
-        id="singleKeypadSelect2"
+        id={keypadRadioButtonId__2}
         label="Radio two"
         onChange={(id) => {
           setSingleSelectedID(id);
         }}
-        isSelected={singleSelectedID === 'singleKeypadSelect2'}
+        isSelected={singleSelectedID === keypadRadioButtonId__2}
       >
         <EuiIcon type="faceNeutral" size="l" />
       </EuiKeyPadMenuItem>
       <EuiKeyPadMenuItem
         checkable="single"
         name={radioGroupName}
-        id="singleKeypadSelect3"
+        id={keypadRadioButtonId__3}
         label="Disabled"
         isDisabled
       >

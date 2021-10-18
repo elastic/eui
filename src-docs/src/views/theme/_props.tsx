@@ -1,7 +1,13 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import { useView } from 'react-view';
 // @ts-ignore NOT TS
 import { propUtilityForPlayground } from '../../services/playground';
+// @ts-ignore NOT TS yet
+import { humanizeType } from '../../services/playground/knobs';
+
+export type ThemeRowType = {
+  description?: React.ReactNode;
+};
 
 export function getPropsFromThemeKey(component: any) {
   const docgenInfo = Array.isArray(component.__docgenInfo)
@@ -13,7 +19,7 @@ export function getPropsFromThemeKey(component: any) {
   return params.knobProps.state;
 }
 
-import { EuiThemeShape } from '../../../../src/services';
+import { EuiThemeComputed, EuiThemeShape } from '../../../../src/services';
 
 export const EuiTheme: FunctionComponent<EuiThemeShape> = () => <div />;
 
@@ -23,6 +29,7 @@ import {
 } from '../../../../src/global_styling/variables/_colors';
 
 export const EuiThemeColors: FunctionComponent<_EuiThemeColors> = () => <div />;
+
 export const EuiThemeConstantColors: FunctionComponent<_EuiThemeConstantColors> = () => (
   <div />
 );
@@ -84,7 +91,25 @@ export const EuiThemeAnimationEasing: FunctionComponent<_EuiThemeAnimationEasing
 );
 
 import { EuiThemeBreakpoint } from '../../../../src/global_styling/variables/_breakpoint';
+import { css } from '@emotion/react';
 
 export const _EuiThemeBreakpoint: FunctionComponent<EuiThemeBreakpoint> = () => (
   <div />
 );
+
+export function getType(type: any, euiTheme: EuiThemeComputed<{}>) {
+  let typeRender: ReactNode;
+  if (type?.custom?.origin?.type) {
+    typeRender = (
+      <span
+        css={css`
+          font-weight: ${euiTheme.font.weight.light};
+          color: ${euiTheme.colors.subdued};
+        `}
+      >
+        {humanizeType(type.custom.origin.type)}
+      </span>
+    );
+  }
+  return typeRender;
+}

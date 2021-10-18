@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
   useEuiTheme,
   mergeDeep,
@@ -21,7 +20,6 @@ import {
   EuiBottomBar,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiCode,
   EuiFlyout,
   EuiFlyoutHeader,
   EuiFlyoutBody,
@@ -30,7 +28,7 @@ import {
 import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
 import { EuiButton, EuiButtonEmpty } from '../../../../src/components/button';
 import { EuiCopy } from '../../../../src/components/copy';
-import { EuiCallOut } from '../../../../src/components/call_out';
+import { ThemeNotice } from './_components/_theme_notice';
 
 const JsonFlyout = ({ setIsOpen }) => {
   const { euiTheme } = useEuiTheme();
@@ -67,17 +65,7 @@ export default () => {
       <GuidePage
         isBeta
         title="Global values"
-        intro={
-          <EuiCallOut color="warning">
-            <p>
-              The <EuiCode>euiTheme()</EuiCode> hook is only available for
-              consuming the values. Modifying or overriding the values will not
-              have any effect on the individual EUI components, yet. Instead,
-              you still need to use the{' '}
-              <Link to="/guidelines/sass">Sass method</Link>.
-            </p>
-          </EuiCallOut>
-        }
+        notice={<ThemeNotice type="support" />}
       >
         <Colors onThemeUpdate={updateTheme} />
 
