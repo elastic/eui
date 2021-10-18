@@ -27,16 +27,11 @@
 
   &-isOpen {
     transform: rotate(90deg) !important;
-    transition: transform $euiAnimSpeedNormal $euiAnimSlightResistance, background $euiAnimSpeedNormal ease-in-out !important;
   }
 
   &--right {
     margin-right: 0;
     margin-left: $euiSizeXS;
-  }
-
-  @include euiCanAnimate {
-    transition: transform $euiAnimSpeedNormal $euiAnimSlightResistance, background $euiAnimSpeedNormal ease-in-out !important;
   }
 }
 
