@@ -34,7 +34,7 @@ export type EuiAccordionProps = CommonProps &
     id: string;
     /**
      * Applied to the entire .euiAccordion wrapper.
-     * When using `fieldset`, be sure to pass `buttonElement = legend` as well.
+     * When using `fieldset`, it will enforce `buttonElement = legend` as well.
      */
     element?: 'div' | 'fieldset';
     /**
