@@ -16,7 +16,7 @@ import {
   EuiTableRowCell,
 } from '../../../../src/components';
 
-import imgContent from '../../images/emptyPrompt__content.svg';
+import imgAnatomy from '../../images/emptyPrompt_anatomy.svg';
 
 export default () => (
   <>
@@ -38,7 +38,7 @@ export default () => (
     <EuiFlexGroup>
       <EuiFlexItem>
         <div style={{ textAlign: 'center' }}>
-          <EuiImage alt="button placement in an input modal" url={imgContent} />
+          <EuiImage alt="button placement in an input modal" url={imgAnatomy} />
         </div>
       </EuiFlexItem>
       <EuiFlexItem>
