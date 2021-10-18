@@ -106,7 +106,7 @@ export default () => {
         }
         actions={
           <EuiButton color="primary" fill>
-            Harvest spice
+            Create visualization
           </EuiButton>
         }
         footer={

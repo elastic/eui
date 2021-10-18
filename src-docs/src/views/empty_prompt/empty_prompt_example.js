@@ -177,7 +177,7 @@ export const EmptyPromptExample = {
             use the <EuiCode>vertical</EuiCode> layout.
           </p>
           <p>
-            We recommend when using a custom illustration to use it with a{' '}
+            We recommend when adding a custom illustration to use it with a{' '}
             <Link to="/display/image">
               <strong>EuiImage</strong>
             </Link>{' '}
@@ -198,15 +198,23 @@ export const EmptyPromptExample = {
         },
       ],
       text: (
-        <p>
-          The <strong>EuiEmptyPrompt</strong> is built on top of{' '}
-          <Link to="/layout/panel">
-            <strong>EuiPanel</strong>
-          </Link>
-          . By default, the panel color is set to transparent but you can
-          customize the panel color by passing one of the color options:{' '}
-          <EuiCode language="js">{JSON.stringify(COLORS, null, 2)}</EuiCode>.
-        </p>
+        <>
+          <p>
+            The <strong>EuiEmptyPrompt</strong> is built on top of{' '}
+            <Link to="/layout/panel">
+              <strong>EuiPanel</strong>
+            </Link>
+            . By default, the panel color is set to transparent but you can
+            customize the panel color by passing one of the color options:{' '}
+            <EuiCode language="js">{JSON.stringify(COLORS, null, 2)}</EuiCode>.
+          </p>
+          <p>
+            Make sure to read the{' '}
+            <Link to="/guidelines/empty-prompt">usage guidelines</Link> to
+            better understand what scenarios you should stick to the transparent
+            color or use any other colors.
+          </p>
+        </>
       ),
       props: { EuiEmptyPrompt },
       demo: <Panel />,
@@ -221,14 +229,12 @@ export const EmptyPromptExample = {
         },
       ],
       text: (
-        <>
-          <p>
-            This example shows how to use the <strong>EuiEmptyPrompt</strong> in
-            a page template. We recommend to set the color to{' '}
-            <EuiCode>{'"plain"'}</EuiCode> and the <EuiCode>hasBorder</EuiCode>{' '}
-            prop to <EuiCode>true</EuiCode>.
-          </p>
-        </>
+        <p>
+          This example shows how to use the <strong>EuiEmptyPrompt</strong> in a
+          page template. We recommend to set the color to{' '}
+          <EuiCode>{'"plain"'}</EuiCode> and the <EuiCode>hasBorder</EuiCode>{' '}
+          prop to <EuiCode>true</EuiCode>.
+        </p>
       ),
       props: { EuiEmptyPrompt },
       demo: <PageDemo slug="full-page" template={PageTemplate} />,
@@ -321,9 +327,8 @@ export const EmptyPromptExample = {
       text: (
         <>
           <p>
-            This example shows the <EuiCode>layout</EuiCode>,{' '}
-            <EuiCode>color</EuiCode> and <EuiCode>paddingSize</EuiCode> props
-            usage.
+            This example shows the <EuiCode>layout</EuiCode> and{' '}
+            <EuiCode>color</EuiCode> props usage.
           </p>
         </>
       ),

@@ -75,15 +75,16 @@ export default () => (
     {/* End of Content section */}
     {/* Usage section */}
     <GuideRuleTitle>Types of empty states and goals</GuideRuleTitle>
-
     <EuiSpacer size="xl" />
+
     <EuiText>
       <p>
         But how do you know when you should create an empty state? These are the
-        scenarios we recommend the usage of an empty state: To make the empty
-        state clear, follow this pattern:
+        scenarios we recommend the usage of an empty state:
       </p>
     </EuiText>
+    <EuiSpacer size="xl" />
+
     <EuiTable>
       <EuiTableHeader>
         <EuiTableHeaderCell>Type</EuiTableHeaderCell>
