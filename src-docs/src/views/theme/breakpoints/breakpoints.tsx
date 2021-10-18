@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import { EuiSpacer } from '../../../../../src/components';
+import { EuiSpacer, EuiText } from '../../../../../src';
 
 // @ts-ignore Importing from JS
 import { GuidePage } from '../../../components/guide_page';
@@ -36,6 +36,18 @@ export default () => {
         </>
       }
     >
+      <EuiSpacer size="xl" />
+
+      <EuiText grow={false}>
+        <h2>Default values</h2>
+        <p>
+          If you want to align your custom responsive styles with EUI&apos;s
+          breakpoints, or when using components that accept our named
+          breakpoints, you&apos;ll want to utilize the following default values
+          and provided {showSass ? 'mixins' : 'hooks'}.
+        </p>
+      </EuiText>
+
       <EuiSpacer size="xl" />
 
       {baseContent}

@@ -7,8 +7,10 @@
  */
 
 export { EuiDataGrid } from './data_grid';
-export { useDataGridColumnSelector } from './column_selector';
-export { useDataGridColumnSorting } from './column_sorting';
-export { useDataGridStyleSelector } from './style_selector';
+export {
+  useDataGridColumnSelector,
+  useDataGridColumnSorting,
+  useDataGridStyleSelector,
+} from './controls';
 
 export * from './data_grid_types';

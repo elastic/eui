@@ -22,7 +22,7 @@ interface BasicItem {
   description?: string;
 }
 
-type ThemValuesTable = {
+type ThemeValuesTableProps = {
   items: EuiBasicTableProps<BasicItem>['items'];
   render: (item: BasicItem) => ReactNode;
   sampleColumnTitle?: string;
@@ -38,7 +38,7 @@ export const ThemeValuesTable = ({
   sampleColumnWidth = '60px',
   valueColumnTitle = 'Value',
   valueColumnWidth,
-}: ThemValuesTable) => {
+}: ThemeValuesTableProps) => {
   const { euiTheme } = useEuiTheme();
 
   const renderDescription = (item: BasicItem) => {
@@ -63,8 +63,8 @@ export const ThemeValuesTable = ({
       render: (sample: undefined, item) => render(item),
       mobileOptions: {
         header: false, // Won't show inline header in mobile view
-        // width: '100%', // Applies a specific width
-        // enlarge: true, // Increase text size compared to rest of cells
+        width: '100%', // Applies a specific width
+        enlarge: true, // Increase text size compared to rest of cells
       },
     },
     {
@@ -92,7 +92,7 @@ export const ThemeValuesTable = ({
     });
   }
 
-  if (items[0].value) {
+  if (items[0].value != null) {
     columns.push({
       field: 'value',
       name: valueColumnTitle,

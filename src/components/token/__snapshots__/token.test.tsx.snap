@@ -415,7 +415,7 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenKey is rendered 1`] = `
 
 exports[`EuiToken props iconType as EuiTokenMapType tokenKeyword is rendered 1`] = `
 <span
-  class="euiToken euiToken--euiColorVis9 euiToken--square euiToken--light euiToken--small"
+  class="euiToken euiToken--euiColorVis1 euiToken--square euiToken--light euiToken--small"
 >
   <span
     data-euiicon-type="tokenKeyword"
@@ -629,6 +629,16 @@ exports[`EuiToken props iconType as EuiTokenMapType tokenSymbol is rendered 1`] 
 >
   <span
     data-euiicon-type="tokenSymbol"
+  />
+</span>
+`;
+
+exports[`EuiToken props iconType as EuiTokenMapType tokenTag is rendered 1`] = `
+<span
+  class="euiToken euiToken--euiColorVis9 euiToken--square euiToken--light euiToken--small"
+>
+  <span
+    data-euiicon-type="tokenTag"
   />
 </span>
 `;
