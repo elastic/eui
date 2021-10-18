@@ -155,6 +155,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   isMobileFullWidth,
   style,
   width,
+  valign = 'middle',
   ...rest
 }) => {
   const cellClasses = classNames('euiTableRowCell', {
@@ -165,6 +166,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
       mobileOptions.enlarge || isMobileHeader,
     'euiTableRowCell--isMobileFullWidth':
       mobileOptions.fullWidth || isMobileFullWidth || isMobileHeader,
+    [`euiTableRowCell--${valign}`]: valign,
   });
 
   const contentClasses = classNames('euiTableCellContent', className, {

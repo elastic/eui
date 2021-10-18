@@ -59,6 +59,7 @@ export const ThemeValuesTable = ({
       field: 'sample',
       name: sampleColumnTitle,
       align: 'center',
+      valign: 'top',
       width: sampleColumnWidth,
       render: (sample: undefined, item) => render(item),
       mobileOptions: {
@@ -70,6 +71,7 @@ export const ThemeValuesTable = ({
     {
       field: 'token',
       name: 'Token',
+      valign: 'top',
       render: (token: ReactNode, item) => (
         <div>
           <EuiCode language="tsx">{token}</EuiCode>
@@ -84,6 +86,7 @@ export const ThemeValuesTable = ({
     columns.push({
       field: 'type',
       name: 'Type',
+      valign: 'top',
       render: (type: ReactNode) => (
         <small>
           <code>{getType(type, euiTheme)}</code>
@@ -97,6 +100,7 @@ export const ThemeValuesTable = ({
       field: 'value',
       name: valueColumnTitle,
       align: 'right',
+      valign: 'top',
       width: valueColumnWidth,
       render: (value: ReactNode) => (
         <small>

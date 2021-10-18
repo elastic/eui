@@ -158,13 +158,42 @@ const toggleButtons = [
   },
 ];
 
+const vAlignButtons = [
+  {
+    id: `${idPrefix}4`,
+    label: 'Top',
+    value: 'top',
+  },
+  {
+    id: `${idPrefix}3`,
+    label: 'Middle',
+    value: 'middle',
+  },
+  {
+    id: `${idPrefix}5`,
+    label: 'Bottom',
+    value: 'bottom',
+  },
+];
+
 export const Table = () => {
   const [layout, setLayout] = useState('fixed');
   const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}0`);
+  const [vAlignButtonsIdSelected, setVAlignButtonsIdSelected] = useState(
+    `${idPrefix}3`
+  );
 
   const onChange = (optionId) => {
     setToggleIdSelected(optionId);
     setLayout(toggleButtons.find((x) => x.id === optionId).value);
+  };
+
+  const onVAlignChange = (optionId) => {
+    setVAlignButtonsIdSelected(optionId);
+    const alignment = vAlignButtons.find((x) => x.id === optionId).value;
+
+    columns.forEach((column) => (column.valign = alignment));
+    customColumns.forEach((column) => (column.valign = alignment));
   };
 
   let callOutText;
@@ -186,11 +215,19 @@ export const Table = () => {
   return (
     <div>
       <EuiButtonGroup
-        legend="Table layout group"
+        legend="Table layout options"
         options={toggleButtons}
         idSelected={toggleIdSelected}
         onChange={onChange}
       />
+      &emsp;
+      <EuiButtonGroup
+        legend="Vertical align options"
+        options={vAlignButtons}
+        idSelected={vAlignButtonsIdSelected}
+        onChange={onVAlignChange}
+      />
+      &emsp;
       <EuiSpacer size="m" />
       <EuiCallOut
         size="s"
