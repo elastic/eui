@@ -161,6 +161,30 @@ export class EuiSelectableListItem extends Component<
       );
     }
 
+    const isChecked = !disabled && typeof checked === 'string';
+    if (!allowExclusions && isChecked) {
+      state = (
+        <EuiScreenReaderOnly>
+          <span>
+            <EuiI18n
+              token="euiSelectableListItem.includedOption"
+              default="Checked option."
+            />
+          </span>
+        </EuiScreenReaderOnly>
+      );
+      instruction = (
+        <EuiScreenReaderOnly>
+          <span>
+            <EuiI18n
+              token="euiSelectableListItem.includedOptionInstructions"
+              default="To uncheck this option, press enter."
+            />
+          </span>
+        </EuiScreenReaderOnly>
+      );
+    }
+
     let prependNode: React.ReactNode;
     if (prepend) {
       prependNode = (
@@ -214,11 +238,7 @@ export class EuiSelectableListItem extends Component<
     return (
       <li
         role={role}
-        aria-checked={
-          role === 'option'
-            ? !disabled && typeof checked === 'string'
-            : undefined
-        }
+        aria-checked={role === 'option' ? isChecked : undefined}
         aria-selected={!disabled && isFocused}
         className={classes}
         aria-disabled={disabled}
