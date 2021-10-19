@@ -34,6 +34,7 @@ import {
 } from '../data_grid_types';
 import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
 import { EuiDataGridCellPopover } from './data_grid_cell_popover';
+import { IS_JEST_ENVIRONMENT } from '../../../test';
 
 const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
@@ -599,7 +600,7 @@ export class EuiDataGridCell extends Component<
       }
     }
 
-    return createPortal(
+    const content = (
       <div
         role="gridcell"
         tabIndex={
@@ -619,8 +620,11 @@ export class EuiDataGridCell extends Component<
         onBlur={this.onBlur}
       >
         {innerContent}
-      </div>,
-      rowManager.getRow(rowIndex)
+      </div>
     );
+
+    return rowManager && !IS_JEST_ENVIRONMENT
+      ? createPortal(content, rowManager.getRow(rowIndex))
+      : content;
   }
 }

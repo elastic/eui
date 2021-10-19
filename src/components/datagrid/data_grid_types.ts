@@ -383,7 +383,7 @@ export interface EuiDataGridCellProps {
   style?: React.CSSProperties;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils?: RowHeightUtils;
-  rowManager: EuiDataGridRowManager;
+  rowManager?: EuiDataGridRowManager;
 }
 
 export interface EuiDataGridCellState {
@@ -727,5 +727,6 @@ export interface EuiDataGridRowHeightsOptions {
 }
 
 export interface EuiDataGridRowManager {
+  reset(): void;
   getRow(rowId: number): HTMLDivElement;
 }

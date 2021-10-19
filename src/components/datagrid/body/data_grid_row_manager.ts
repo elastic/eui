@@ -15,6 +15,9 @@ export const makeRowManager = (
   const rowIdToElements = new Map<number, HTMLDivElement>();
 
   return {
+    reset() {
+      rowIdToElements.clear();
+    },
     getRow(rowId) {
       let rowElement = rowIdToElements.get(rowId);
 
@@ -25,7 +28,7 @@ export const makeRowManager = (
         rowIdToElements.set(rowId, rowElement);
 
         // add the element to the wrapping container
-        containerRef.current!.appendChild(rowElement);
+        containerRef.current?.appendChild(rowElement);
 
         // watch the row's children, if they all disappear then remove this row
         const observer = new MutationObserver((records) => {
