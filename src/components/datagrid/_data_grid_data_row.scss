@@ -1,3 +1,8 @@
+.euiDataGridRow {
+  // needed for footer cells to correctly position
+  display: flex;
+}
+
 @include euiDataGridRowCell {
   @include euiFontSizeS;
 
