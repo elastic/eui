@@ -100,12 +100,13 @@ const printResult = (violations) => {
         // ],
         runOnly: {
           type: 'tag',
-          values: ['wcag2a', 'wcag2aa']
-        }
-        // runOnly: {
-        //   type: 'tag',
-        //   values: ['wcag2a', 'wcag2aa']
-        // },
+          values: ['section508', 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']
+        },
+        rules: {
+          'color-contrast': { enabled: false },
+          'scrollable-region-focusable': { selector: ':not([data-skip-axe="scrollable-region-focusable"])' },
+          'region': { selector: ':not(iframe, #player)' },
+        },
       })
       .analyze();
 
