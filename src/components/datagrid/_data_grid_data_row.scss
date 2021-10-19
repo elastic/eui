@@ -1,7 +1,3 @@
-.euiDataGridRow {
-  display: flex;
-}
-
 @include euiDataGridRowCell {
   @include euiFontSizeS;
 
