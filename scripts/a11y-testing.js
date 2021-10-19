@@ -5,7 +5,7 @@ const { isConstructorDeclaration } = require('typescript');
 
 const docsPages = async (root, page) => {
   const pagesToSkip = [
-    `${root}#/layout/page`, // Has duplicate `<main>` element
+    // `${root}#/layout/page`, // Has duplicate `<main>` element
     `${root}#/layout/page-header`, // Has duplicate `<header>` element
     `${root}#/display/aspect-ratio`,
     `${root}#/forms/combo-box`,
@@ -37,8 +37,9 @@ const docsPages = async (root, page) => {
 
 const printResult = (violations) => {
   const violationData = violations.map(
-    ({ id, impact, description, nodes }) => ({
+    ({ id, tags, impact, description, nodes }) => ({
       id,
+      tags,
       impact,
       description,
       nodes: nodes.length
@@ -84,7 +85,7 @@ const printResult = (violations) => {
     await page.goto(link);
 
     const { violations } = await new AxePuppeteer(page)
-      .configure({
+      .options({
         // rules: [
         //   { id: 'color-contrast', enabled: false },
         //   {
@@ -97,13 +98,14 @@ const printResult = (violations) => {
         //     selector: 'iframe, #player,',
         //   },
         // ],
-        rules: [
-          { id: 'color-contrast', enabled: false },
-        ],
         runOnly: {
           type: 'tag',
-          values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']
-        },
+          values: ['wcag2a', 'wcag2aa']
+        }
+        // runOnly: {
+        //   type: 'tag',
+        //   values: ['wcag2a', 'wcag2aa']
+        // },
       })
       .analyze();
 
