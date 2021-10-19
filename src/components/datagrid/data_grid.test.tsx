@@ -535,7 +535,6 @@ describe('EuiDataGrid', () => {
           Object {
             "className": "euiDataGridRowCell euiDataGridRowCell--firstColumn customClass",
             "data-test-subj": "dataGridRowCell",
-            "id": "datagrid-generated-id-cell-0,0",
             "onBlur": [Function],
             "onFocus": [Function],
             "onKeyDown": [Function],
@@ -556,7 +555,6 @@ describe('EuiDataGrid', () => {
           Object {
             "className": "euiDataGridRowCell euiDataGridRowCell--lastColumn customClass",
             "data-test-subj": "dataGridRowCell",
-            "id": "datagrid-generated-id-cell-0,1",
             "onBlur": [Function],
             "onFocus": [Function],
             "onKeyDown": [Function],
@@ -577,7 +575,6 @@ describe('EuiDataGrid', () => {
           Object {
             "className": "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn customClass",
             "data-test-subj": "dataGridRowCell",
-            "id": "datagrid-generated-id-cell-1,0",
             "onBlur": [Function],
             "onFocus": [Function],
             "onKeyDown": [Function],
@@ -598,7 +595,6 @@ describe('EuiDataGrid', () => {
           Object {
             "className": "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn customClass",
             "data-test-subj": "dataGridRowCell",
-            "id": "datagrid-generated-id-cell-1,1",
             "onBlur": [Function],
             "onFocus": [Function],
             "onKeyDown": [Function],

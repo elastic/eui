@@ -31,7 +31,6 @@ exports[`EuiDataGridCell renders 1`] = `
   <div
     className="euiDataGridRowCell"
     data-test-subj="dataGridRowCell"
-    id="cell"
     onBlur={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
@@ -55,6 +54,7 @@ exports[`EuiDataGridCell renders 1`] = `
         <Memo()
           colIndex={0}
           columnId="someColumn"
+          id="cell"
           isDetails={false}
           isExpandable={true}
           isExpanded={false}
@@ -88,6 +88,7 @@ exports[`EuiDataGridCell renders 1`] = `
             <renderCellValue
               columnId="someColumn"
               data-test-subj="cell-content"
+              id="cell"
               isDetails={false}
               isExpandable={true}
               isExpanded={false}
