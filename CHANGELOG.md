@@ -2,6 +2,7 @@
 
 - Updated `tokenKeyword` to match the definition of keyword field type ([#5251](https://github.com/elastic/eui/pull/5251))
 - Added `element`, `buttonElement`, and `arrowProps` props to further customize `EuiAccordion` ([#5258](https://github.com/elastic/eui/pull/5258))
+- Fixed missing `id` for `EuiCombobox` by generating one if `prepend` or `append` exists ([#5229](https://github.com/elastic/eui/pull/5229))
 
 **Breaking changes**
 
