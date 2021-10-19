@@ -1,10 +1,20 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Updated `tokenKeyword` to match the definition of keyword field type ([#5251](https://github.com/elastic/eui/pull/5251))
+- Added styling support for `valign` prop on `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
+
+**Bug fixes**
+
+- Fixed default text alignment in `EuiTableRowCell` on Safari ([#5283](https://github.com/elastic/eui/pull/5283))
+- Fixed `mobileOptions.truncateText` from getting overridden by `truncateText` in `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
 
 **Breaking changes**
 
 - Renamed `tokenKeyword` icon to `tokenTag` in `EuiToken` ([#5251](https://github.com/elastic/eui/pull/5251))
+
+**Theme: Amsterdam**
+
+- Fixed `mobileOptions.enlarge` styling in `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
 
 ## [`39.1.1`](https://github.com/elastic/eui/tree/v39.1.1)
 
