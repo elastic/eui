@@ -21,7 +21,12 @@ const layoutSnippet = [
       { field: 'column1', name: 'Column 1', truncateText: true, width: '20%' },
       { field: 'column2', name: 'Column 2' }
     ]}
-    tableLayout="fixed"
+/>`,
+  `<EuiBasicTable
+    columns={[
+      { field: 'column1', name: 'Column 1', valign: 'top' },
+      { field: 'column2', name: 'Column 2' }
+    ]}
 />`,
 ];
 
