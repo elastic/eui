@@ -6,12 +6,12 @@ const { isConstructorDeclaration } = require('typescript');
 const docsPages = async (root, page) => {
   const pagesToSkip = [
     // `${root}#/layout/page`, // Has duplicate `<main>` element
-    `${root}#/layout/page-header`, // Has duplicate `<header>` element
+    // `${root}#/layout/page-header`, // Has duplicate `<header>` element
     `${root}#/display/aspect-ratio`,
     `${root}#/forms/combo-box`,
-    `${root}#/forms/color-selection`,
+    // `${root}#/forms/color-selection`,
     `${root}#/forms/date-picker`,
-    `${root}#/forms/super-date-picker`,
+    // `${root}#/forms/super-date-picker`,
     `${root}#/tabular-content/data-grid`,
     `${root}#/tabular-content/data-grid-in-memory-settings`,
     `${root}#/tabular-content/data-grid-schemas-and-popovers`,
@@ -29,17 +29,10 @@ const docsPages = async (root, page) => {
   ].filter((link) => !pagesToSkip.includes(link));
 };
 
-// const printResult = (result) => console.table(result);
-  // console.log(`[${result.id}]: ${result.description}
-  // Help: ${chalk.blue(result.helpUrl)}
-  // Elements:
-  //   - ${result.nodes.map((node) => node.target).join('\n    - ')}`);
-
 const printResult = (violations) => {
   const violationData = violations.map(
-    ({ id, tags, impact, description, nodes }) => ({
+    ({ id, impact, description, nodes }) => ({
       id,
-      tags,
       impact,
       description,
       nodes: nodes.length
@@ -86,18 +79,6 @@ const printResult = (violations) => {
 
     const { violations } = await new AxePuppeteer(page)
       .options({
-        // rules: [
-        //   { id: 'color-contrast', enabled: false },
-        //   {
-        //     id: 'scrollable-region-focusable',
-        //     selector: '[data-skip-axe="scrollable-region-focusable"]',
-        //   },
-        //   {
-        //     // can remove after https://github.com/dequelabs/axe-core/issues/2690 is resolved
-        //     id: 'region',
-        //     selector: 'iframe, #player,',
-        //   },
-        // ],
         runOnly: {
           type: 'tag',
           values: ['section508', 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']
@@ -117,21 +98,6 @@ const printResult = (violations) => {
       console.log(chalk.red(`Errors on ${pageName}`));
       printResult(violations);
     }
-
-    // violations.forEach((result) => {
-    //   printResult(result);
-    // });
-
-    // const violationData = violations.map(
-    //   ({ id, impact, description, nodes }) => ({
-    //     id,
-    //     impact,
-    //     description,
-    //     nodes: nodes.length
-    //   })
-    // );
-
-    // console.table(violationData);
   }
 
   await page.close();
