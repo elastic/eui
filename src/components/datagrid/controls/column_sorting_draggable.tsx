@@ -136,7 +136,6 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<EuiDataGridCol
                     name={id}
                     isFullWidth
                     options={toggleOptions}
-                    data-test-subj={`-${direction}`}
                     buttonSize="compressed"
                     className="euiDataGridColumnSorting__order"
                     idSelected={direction === 'asc' ? `${id}Asc` : `${id}Desc`}
