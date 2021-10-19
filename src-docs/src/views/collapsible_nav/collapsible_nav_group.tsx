@@ -1,8 +1,6 @@
 import React from 'react';
 
-import { EuiCollapsibleNavGroup } from '../../../../src/components/collapsible_nav';
-import { EuiText } from '../../../../src/components/text';
-import { EuiCode } from '../../../../src/components/code';
+import { EuiCollapsibleNavGroup, EuiText, EuiCode } from '../../../../src';
 
 export default () => (
   <>
@@ -11,11 +9,7 @@ export default () => (
         <p>This is a basic group without any modifications</p>
       </EuiText>
     </EuiCollapsibleNavGroup>
-    <EuiCollapsibleNavGroup
-      data-test-subj="TEST"
-      title="Nav group"
-      iconType="logoElastic"
-    >
+    <EuiCollapsibleNavGroup title="Nav group" iconType="logoElastic">
       <EuiText size="s" color="subdued">
         <p>
           This is a nice group with a heading supplied via{' '}
@@ -24,7 +18,6 @@ export default () => (
       </EuiText>
     </EuiCollapsibleNavGroup>
     <EuiCollapsibleNavGroup
-      data-test-subj="TEST"
       background="light"
       title="Nav group"
       isCollapsible={true}

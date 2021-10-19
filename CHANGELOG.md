@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Updated `tokenKeyword` to match the definition of keyword field type ([#5251](https://github.com/elastic/eui/pull/5251))
+- Added `element`, `buttonElement`, and `arrowProps` props to further customize `EuiAccordion` ([#5258](https://github.com/elastic/eui/pull/5258))
 
 **Breaking changes**
 
