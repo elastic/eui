@@ -51,9 +51,9 @@ export default () => {
       canDisabled={false}
       canReadOnly={false}
       canLoading={false}
-      canPrepend={false}
       canIsDisabled
       canAppend
+      canPrepend
     >
       <EuiComboBox
         placeholder="Select a single option"

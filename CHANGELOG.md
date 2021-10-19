@@ -1,9 +1,14 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Updated `tokenKeyword` to match the definition of keyword field type ([#5251](https://github.com/elastic/eui/pull/5251))
 - Added `useCombobox` hook for creating custom combobox components ([#5157](https://github.com/elastic/eui/pull/5157))
 - Added `paddingSize` prop to `EuiSelectableList` ([#5157](https://github.com/elastic/eui/pull/5157))
 - Refactored `EuiSuggest` to use `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
+
+## [`40.0.0`](https://github.com/elastic/eui/tree/v40.0.0)
+
+- Updated `tokenKeyword` to match the definition of keyword field type ([#5251](https://github.com/elastic/eui/pull/5251))
+- Added `element`, `buttonElement`, and `arrowProps` props to further customize `EuiAccordion` ([#5258](https://github.com/elastic/eui/pull/5258))
+- Fixed missing `id` for `EuiCombobox` by generating one if `prepend` or `append` exists ([#5229](https://github.com/elastic/eui/pull/5229))
 
 **Breaking changes**
 
