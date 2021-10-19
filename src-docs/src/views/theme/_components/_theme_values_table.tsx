@@ -63,6 +63,12 @@ export const ThemeValuesTable = ({
       width: sampleColumnWidth,
       render: (sample: undefined, item) => render(item),
       mobileOptions: {
+        render: (item) => (
+          <>
+            {render(item)}&nbsp;
+            <EuiCode language="tsx">{item.token}</EuiCode>
+          </>
+        ),
         header: false, // Won't show inline header in mobile view
         width: '100%', // Applies a specific width
         enlarge: true, // Increase text size compared to rest of cells
@@ -79,6 +85,13 @@ export const ThemeValuesTable = ({
         </div>
       ),
       width: '50%',
+      mobileOptions: {
+        // Evaluates just the first item as to whether they all have descriptions, may not be the best approach but works for now
+        show: Boolean(renderDescription(items[0])),
+        render: (item) => renderDescription(item),
+        header: false, // Won't show inline header in mobile view
+        width: '100%', // Applies a specific width
+      },
     },
   ];
 
