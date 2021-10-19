@@ -3,6 +3,10 @@
 - Updated `tokenKeyword` to match the definition of keyword field type ([#5251](https://github.com/elastic/eui/pull/5251))
 - Added `element`, `buttonElement`, and `arrowProps` props to further customize `EuiAccordion` ([#5258](https://github.com/elastic/eui/pull/5258))
 
+**Bug fixes**
+
+- Fixed an accessibility issue where `EuiDataGrid` cells weren't owned by `role=row` elements ([#5213](https://github.com/elastic/eui/pull/5213))
+
 **Breaking changes**
 
 - Renamed `tokenKeyword` icon to `tokenTag` in `EuiToken` ([#5251](https://github.com/elastic/eui/pull/5251))
@@ -51,7 +55,6 @@
 
 - Fixed logo icons with static SVG IDs causing accessibility errors when multiples of the same logo were present ([#5204](https://github.com/elastic/eui/pull/5204))
 - Fixed several `EuiDataGrid` console errors that occur on column drag/drop reorder ([#5209](https://github.com/elastic/eui/pull/5209))
-- Fixed an accessibility issue where `EuiDataGrid` cells weren't owned by `role=row` elements ([#5213](https://github.com/elastic/eui/pull/5213))
 
 **Reverts**
 
