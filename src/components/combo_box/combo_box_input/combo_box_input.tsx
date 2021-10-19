@@ -264,6 +264,7 @@ export class EuiComboBoxInput<T> extends Component<
       <EuiFormControlLayout
         icon={icon}
         {...clickProps}
+        inputId={id}
         isLoading={isLoading}
         compressed={compressed}
         fullWidth={fullWidth}
