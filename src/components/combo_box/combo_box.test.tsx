@@ -92,6 +92,18 @@ describe('props', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('custom ID is rendered', () => {
+    const component = shallow(
+      <EuiComboBox
+        id="test-id-1"
+        options={options}
+        selectedOptions={[options[2], options[4]]}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('isClearable=false disallows user from clearing input', () => {
     test('when no options are selected', () => {
       const component = shallow(

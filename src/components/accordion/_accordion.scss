@@ -16,47 +16,22 @@
     text-decoration: underline;
     cursor: pointer;
   }
-
-  &:focus {
-    .euiAccordion__iconWrapper {
-      @include euiAccordionIconFocus;
-      outline: none; // The `outline` gets applied to the whole button, we don't need a second one on the icon
-    }
-  }
-}
-
-.euiAccordion__buttonReverse {
-  // Puts the arrow on the right
-  flex-direction: row-reverse;
-  justify-content: space-between;
-
-  .euiAccordion__iconWrapper {
-    @include euiAccordionIconMargin(right);
-  }
-}
-
-.euiAccordion__iconWrapper {
-  @include size($euiSize);
-  @include euiAccordionIconMargin;
-  border-radius: $euiBorderRadius;
-  flex-shrink: 0;
-
-  // Nested to override EuiIcon
-  .euiAccordion__icon {
-    vertical-align: top;
-    transition: transform $euiAnimSpeedNormal $euiAnimSlightResistance;
-  }
-
-  .euiAccordion__icon-isOpen {
-    transform: rotate(90deg);
-  }
 }
 
 .euiAccordion__iconButton {
-  @include euiAccordionIconMargin(right);
+  margin-right: $euiSizeXS;
+  flex-shrink: 0;
+  // sass-lint:disable-block no-important
+  // Needed to override transform from EuiButtonIcon
+  transform: rotate(0deg) !important;
 
-  &:focus {
-    @include euiAccordionIconFocus;
+  &-isOpen {
+    transform: rotate(90deg) !important;
+  }
+
+  &--right {
+    margin-right: 0;
+    margin-left: $euiSizeXS;
   }
 }
 
