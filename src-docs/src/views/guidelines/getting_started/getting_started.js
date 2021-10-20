@@ -89,9 +89,9 @@ export const GettingStarted = {
               To build your custom components using EUI theme variables,
               functions, and mixins, you will need to consume them through one
               of the <a href="/#/theming/sass">Sass</a>,{' '}
-              <a href="/#/theming/theme-provider">React context</a>, or{' '}
+              <a href="/#/theming/theme-provider">Emotion</a>, or{' '}
               <a href="https://github.com/elastic/eui/blob/master/wiki/consuming.md#reusing-the-variables-in-javascript">
-                JSON
+                JSON import
               </a>{' '}
               methods.
             </p>

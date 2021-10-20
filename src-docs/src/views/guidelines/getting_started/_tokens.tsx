@@ -1,17 +1,20 @@
 import React, { FunctionComponent, useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   EuiCodeBlock,
-  // useEuiTheme,
-  // isLegacyTheme,
   LEGACY_NAME_KEY,
   EuiSplitPanel,
   EuiFlexGroup,
   EuiFlexItem,
   EuiText,
+  EuiHorizontalRule,
+  EuiCode,
 } from '../../../../../src';
 
+import { GuideSectionExampleCode } from '../../../components/guide_section/guide_section_parts/guide_section_code';
 import { LanguageSelector, ThemeContext } from '../../../components/with_theme';
+const consumingSource = require('!!raw-loader!../../theme/consuming');
 
 const ImportOutsideExample = () => {
   const themeContext = useContext(ThemeContext);
@@ -47,17 +50,10 @@ ${files}
   );
 };
 
-type Tokens = {};
-
-export const Tokens: FunctionComponent<Tokens> = ({}) => {
+export const Tokens: FunctionComponent = () => {
   const themeContext = useContext(ThemeContext);
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
-
-  // const {
-  //   euiTheme: { themeName },
-  // } = useEuiTheme();
-  // const legacyTheme = isLegacyTheme(themeName);
 
   return (
     <EuiSplitPanel.Outer hasBorder>
@@ -68,7 +64,7 @@ export const Tokens: FunctionComponent<Tokens> = ({}) => {
               <p>
                 <em>
                   Keep an eye out for this language selector that will allow you
-                  to view the syntax for either the Sass and CSS-in-JS (Emotion)
+                  to view the syntax for either the Sass or CSS-in-JS (Emotion)
                   theming mechanisms.
                 </em>
               </p>
@@ -79,9 +75,31 @@ export const Tokens: FunctionComponent<Tokens> = ({}) => {
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiSplitPanel.Inner>
-      <EuiSplitPanel.Inner paddingSize="none">
-        {showSass ? <ImportOutsideExample /> : 'JS!'}
-      </EuiSplitPanel.Inner>
+      <EuiHorizontalRule margin="none" />
+      {showSass ? (
+        <EuiSplitPanel.Inner paddingSize="none">
+          <ImportOutsideExample />
+        </EuiSplitPanel.Inner>
+      ) : (
+        <>
+          <EuiSplitPanel.Inner>
+            <EuiText>
+              <p>
+                As long as you have wrapped your application with{' '}
+                <Link to="/guidelines/getting-started#setting-up-your-application">
+                  <strong>EuiProvider</strong>
+                </Link>
+                , you have access to the JS theme tokens via{' '}
+                <EuiCode>useEuiTheme()</EuiCode> and Emotion&apos;s{' '}
+                <EuiCode>css</EuiCode> prop.
+              </p>
+            </EuiText>
+          </EuiSplitPanel.Inner>
+          <EuiSplitPanel.Inner paddingSize="none">
+            <GuideSectionExampleCode code={consumingSource} />
+          </EuiSplitPanel.Inner>
+        </>
+      )}
     </EuiSplitPanel.Outer>
   );
 };
