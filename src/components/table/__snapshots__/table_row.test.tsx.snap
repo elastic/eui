@@ -5,7 +5,7 @@ exports[`isSelected renders true when specified 1`] = `
   class="euiTableRow euiTableRow-isSelected"
 >
   <td
-    class="euiTableRowCell"
+    class="euiTableRowCell euiTableRowCell--middle"
   >
     <div
       class="euiTableCellContent"
@@ -25,7 +25,7 @@ exports[`renders EuiTableRow 1`] = `
   data-test-subj="test subject string"
 >
   <td
-    class="euiTableRowCell"
+    class="euiTableRowCell euiTableRowCell--middle"
   >
     <div
       class="euiTableCellContent"

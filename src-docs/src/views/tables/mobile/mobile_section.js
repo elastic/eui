@@ -3,11 +3,11 @@ import { GuideSectionTypes } from '../../../components';
 import { renderToHtml } from '../../../services';
 
 import { Table } from './mobile';
-import { propsInfo } from './props_info';
 import { EuiTextColor } from '../../../../../src/components/text';
 import { EuiCode, EuiCodeBlock } from '../../../../../src/components/code';
 const source = require('!!raw-loader!./mobile');
 const html = renderToHtml(Table);
+import { EuiTableRowCellMobileOptionsShape } from '../props/props';
 
 const exampleItem = `{
   field: 'firstName',
@@ -77,6 +77,6 @@ export const section = {
       </p>
     </div>
   ),
-  props: propsInfo,
+  props: { EuiTableRowCellMobileOptionsShape },
   demo: <Table />,
 };

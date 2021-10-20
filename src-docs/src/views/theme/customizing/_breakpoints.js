@@ -6,13 +6,13 @@ import {
   useEuiTheme,
   EuiPanel,
   EuiTitle,
-} from '../../../../src';
+} from '../../../../../src';
 
-import { useDebouncedUpdate } from './hooks';
+import { useDebouncedUpdate } from '../hooks';
 
 import { ThemeValue } from './_values';
 
-import { getPropsFromThemeKey, _EuiThemeBreakpoint } from './_props';
+import { getPropsFromThemeKey, _EuiThemeBreakpoint } from '../_props';
 
 export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
