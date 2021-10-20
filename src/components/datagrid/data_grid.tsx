@@ -667,7 +667,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const rowHeightUtils = useMemo(() => new RowHeightUtils(), []);
 
   // we should check that colums actually changes
-  const orderedVisibleColumnsIds = orderedVisibleColumns.map(column => column.id).sort().join();
+  const orderedVisibleColumnsIds = orderedVisibleColumns
+    .map((column) => column.id)
+    .sort()
+    .join();
 
   useEffect(() => {
     rowHeightUtils.clearHeightsCache();
