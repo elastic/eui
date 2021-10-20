@@ -22,7 +22,7 @@ interface BasicItem {
   description?: string;
 }
 
-type ThemValuesTable = {
+type ThemeValuesTableProps = {
   items: EuiBasicTableProps<BasicItem>['items'];
   render: (item: BasicItem) => ReactNode;
   sampleColumnTitle?: string;
@@ -38,7 +38,7 @@ export const ThemeValuesTable = ({
   sampleColumnWidth = '60px',
   valueColumnTitle = 'Value',
   valueColumnWidth,
-}: ThemValuesTable) => {
+}: ThemeValuesTableProps) => {
   const { euiTheme } = useEuiTheme();
 
   const renderDescription = (item: BasicItem) => {
@@ -59,17 +59,25 @@ export const ThemeValuesTable = ({
       field: 'sample',
       name: sampleColumnTitle,
       align: 'center',
+      valign: 'top',
       width: sampleColumnWidth,
       render: (sample: undefined, item) => render(item),
       mobileOptions: {
+        render: (item) => (
+          <>
+            {render(item)}&nbsp;
+            <EuiCode language="tsx">{item.token}</EuiCode>
+          </>
+        ),
         header: false, // Won't show inline header in mobile view
-        // width: '100%', // Applies a specific width
-        // enlarge: true, // Increase text size compared to rest of cells
+        width: '100%', // Applies a specific width
+        enlarge: true, // Increase text size compared to rest of cells
       },
     },
     {
       field: 'token',
       name: 'Token',
+      valign: 'top',
       render: (token: ReactNode, item) => (
         <div>
           <EuiCode language="tsx">{token}</EuiCode>
@@ -77,6 +85,13 @@ export const ThemeValuesTable = ({
         </div>
       ),
       width: '50%',
+      mobileOptions: {
+        // Evaluates just the first item as to whether they all have descriptions, may not be the best approach but works for now
+        show: Boolean(renderDescription(items[0])),
+        render: (item) => renderDescription(item),
+        header: false, // Won't show inline header in mobile view
+        width: '100%', // Applies a specific width
+      },
     },
   ];
 
@@ -84,6 +99,7 @@ export const ThemeValuesTable = ({
     columns.push({
       field: 'type',
       name: 'Type',
+      valign: 'top',
       render: (type: ReactNode) => (
         <small>
           <code>{getType(type, euiTheme)}</code>
@@ -92,11 +108,12 @@ export const ThemeValuesTable = ({
     });
   }
 
-  if (items[0].value) {
+  if (items[0].value != null) {
     columns.push({
       field: 'value',
       name: valueColumnTitle,
       align: 'right',
+      valign: 'top',
       width: valueColumnWidth,
       render: (value: ReactNode) => (
         <small>

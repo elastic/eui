@@ -40,9 +40,9 @@ export default ({ onThemeUpdate }) => {
         <EuiSpacer size="s" />
         <EuiText size="s" grow={false}>
           <p>
-            This set of breakpoint keys specify the minimum window size (in
-            pixels) and each of the following are required. You can adjust
-            and/or add more keys as needed.
+            This default set of breakpoint tokens specify the{' '}
+            <strong>minimum</strong> window size and are used throughout EUI.
+            You can always customize or add more keys as needed.
           </p>
         </EuiText>
 

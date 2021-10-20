@@ -20,7 +20,7 @@ import { getDetailsForSchema } from '../../data_grid_schema';
 import {
   defaultSortAscLabel,
   defaultSortDescLabel,
-} from '../../column_sorting_draggable';
+} from '../../controls/column_sorting_draggable';
 
 interface GetColumnActions {
   column: EuiDataGridColumn;

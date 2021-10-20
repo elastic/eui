@@ -23,6 +23,16 @@ describe('EuiAccordion', () => {
   });
 
   describe('props', () => {
+    describe('element', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiAccordion id={getId()} element="fieldset" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('buttonContentClassName', () => {
       it('is rendered', () => {
         const component = render(
@@ -59,6 +69,16 @@ describe('EuiAccordion', () => {
       });
     });
 
+    describe('buttonElement', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiAccordion id={getId()} buttonElement="div" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     describe('extraAction', () => {
       it('is rendered', () => {
         const component = render(
@@ -87,9 +107,7 @@ describe('EuiAccordion', () => {
     describe('arrowDisplay', () => {
       it('right is rendered', () => {
         const component = render(
-          <EuiAccordion id={getId()} arrowDisplay="right">
-            <p>You can see me.</p>
-          </EuiAccordion>
+          <EuiAccordion id={getId()} arrowDisplay="right" />
         );
 
         expect(component).toMatchSnapshot();
@@ -97,9 +115,17 @@ describe('EuiAccordion', () => {
 
       it('none is rendered', () => {
         const component = render(
-          <EuiAccordion id={getId()} arrowDisplay="none">
-            <p>You can see me.</p>
-          </EuiAccordion>
+          <EuiAccordion id={getId()} arrowDisplay="none" />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('arrowProps', () => {
+      it('is rendered', () => {
+        const component = render(
+          <EuiAccordion id={getId()} arrowProps={requiredProps} />
         );
 
         expect(component).toMatchSnapshot();
@@ -107,10 +133,20 @@ describe('EuiAccordion', () => {
     });
 
     describe('forceState', () => {
-      it('is rendered', () => {
+      it('closed is rendered', () => {
         const component = render(
           <EuiAccordion id={getId()} forceState="closed">
             <p>You can not see me</p>
+          </EuiAccordion>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+
+      it('open is rendered', () => {
+        const component = render(
+          <EuiAccordion id={getId()} forceState="open">
+            <p>You can see me</p>
           </EuiAccordion>
         );
 
@@ -127,7 +163,7 @@ describe('EuiAccordion', () => {
           />
         );
 
-        component.find('button').simulate('click');
+        component.find('button').at(0).simulate('click');
         expect(onToggleHandler).toBeCalled();
         expect(onToggleHandler).toBeCalledWith(true);
       });
@@ -135,11 +171,7 @@ describe('EuiAccordion', () => {
 
     describe('isLoading', () => {
       it('is rendered', () => {
-        const component = render(
-          <EuiAccordion id={getId()} isLoading>
-            <p>You can see me.</p>
-          </EuiAccordion>
-        );
+        const component = render(<EuiAccordion id={getId()} isLoading />);
 
         expect(component).toMatchSnapshot();
       });
@@ -148,9 +180,7 @@ describe('EuiAccordion', () => {
     describe('isLoadingMessage', () => {
       it('is rendered', () => {
         const component = render(
-          <EuiAccordion id={getId()} isLoadingMessage="Please wait" isLoading>
-            <p>You can&apos;t see me.</p>
-          </EuiAccordion>
+          <EuiAccordion id={getId()} isLoadingMessage="Please wait" isLoading />
         );
 
         expect(component).toMatchSnapshot();
@@ -160,18 +190,38 @@ describe('EuiAccordion', () => {
 
   describe('behavior', () => {
     it('opens when clicked once', () => {
-      const component = mount(<EuiAccordion id={getId()} />);
+      const component = mount(
+        <EuiAccordion id={getId()}>
+          <p>You can see me.</p>
+        </EuiAccordion>
+      );
 
-      component.find('button').simulate('click');
+      component.find('button').at(0).simulate('click');
+
+      expect(component).toMatchSnapshot();
+    });
+
+    it('opens when div is clicked if element is a div', () => {
+      const component = mount(
+        <EuiAccordion id={getId()} element="div">
+          <p>You can see me.</p>
+        </EuiAccordion>
+      );
+
+      component.find('.euiAccordion__button').simulate('click');
 
       expect(component).toMatchSnapshot();
     });
 
     it('closes when clicked twice', () => {
-      const component = mount(<EuiAccordion id={getId()} />);
+      const component = mount(
+        <EuiAccordion id={getId()}>
+          <p>You can not see me.</p>
+        </EuiAccordion>
+      );
 
-      component.find('button').simulate('click');
-      component.find('button').simulate('click');
+      component.find('button').at(0).simulate('click');
+      component.find('button').at(0).simulate('click');
 
       expect(component).toMatchSnapshot();
     });
@@ -182,11 +232,11 @@ describe('EuiAccordion', () => {
         <EuiAccordion id={getId()} onToggle={onToggleHandler} />
       );
 
-      component.find('button').simulate('click');
+      component.find('button').at(0).simulate('click');
       expect(onToggleHandler).toBeCalled();
       expect(onToggleHandler).toBeCalledWith(true);
 
-      component.find('button').simulate('click');
+      component.find('button').at(0).simulate('click');
       expect(onToggleHandler).toBeCalled();
       expect(onToggleHandler).toBeCalledWith(false);
     });
@@ -200,7 +250,7 @@ describe('EuiAccordion', () => {
       expect(childWrapper).not.toBe(document.activeElement);
 
       // click button
-      component.find('button').simulate('click');
+      component.find('button').at(0).simulate('click');
 
       expect(childWrapper).toBe(document.activeElement);
     });

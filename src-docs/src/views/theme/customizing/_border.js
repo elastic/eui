@@ -102,7 +102,7 @@ export default ({ onThemeUpdate }) => {
           <ThemeValue
             key={prop}
             property="border.radius"
-            // type={radiusProps[prop]}
+            type={radiusProps[prop]}
             name={prop}
             value={radiusClone.radius[prop]}
             onUpdate={(value) => updateRadius(prop, value)}
