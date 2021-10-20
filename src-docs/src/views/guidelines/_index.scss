@@ -255,6 +255,10 @@
   &--euiTitle {
     @include euiTitle('s')
   }
+
+  &--fontSize {
+    @include fontSize(19px)
+  }
 }
 
 .guideSass__fontSizeL {

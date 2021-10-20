@@ -35,6 +35,13 @@ export const euiFontMixins = {
     description:
       "Accepts a `$size` parameter of `'xxxs'` to `'l'` and sets appropriate font-size, weight, color, and line-height. It also ensures long words wrap lines.",
   },
+  'fontSize($size)': {
+    description:
+      'Accepts a `$size` parameter of a pixel value and returns the appropriate `font-size` property in `rem` units.',
+    sample: (
+      <div className={'guideSass__mixin--fontSize'}>The quick brown fox</div>
+    ),
+  },
 };
 
 export const FontSass = () => {
@@ -54,7 +61,11 @@ export const FontSass = () => {
       <ThemeExample
         title={<code>$euiCodeFontFamily</code>}
         description={getDescription(baseProps.familyCode)}
-        example={values.euiCodeFontFamily}
+        example={
+          <p className="guideSass__fontFamily--code">
+            {values.euiCodeFontFamily}
+          </p>
+        }
         snippet={'font-family: $euiCodeFontFamily;'}
         snippetLanguage="scss"
       />
@@ -82,7 +93,9 @@ export const FontSass = () => {
         items={Object.keys(euiFontMixins).map(function (mixin) {
           return {
             id: mixin,
-            mixin: `@mixin ${mixin}`,
+            mixin: `@include ${mixin}`,
+            // @ts-ignore Help
+            sample: euiFontMixins[mixin].sample,
           };
         })}
         columns={[
@@ -93,7 +106,7 @@ export const FontSass = () => {
               <div>
                 <EuiCode>{mixin}</EuiCode>
                 <EuiSpacer size="s" />
-                {/* @ts-ignore TODO */}
+                {/* @ts-ignore Help */}
                 {getDescriptionSmall(euiFontMixins[item.id])}
               </div>
             ),
@@ -101,15 +114,16 @@ export const FontSass = () => {
           {
             field: 'sample',
             name: 'Sample',
-            render: (sample, item) => (
-              <div
-                className={`guideSass__mixin--${
-                  item.id === 'euiTitle($size)' ? 'euiTitle' : item.id
-                }`}
-              >
-                The quick brown fox
-              </div>
-            ),
+            render: (sample, item) =>
+              sample || (
+                <div
+                  className={`guideSass__mixin--${
+                    item.id === 'euiTitle($size)' ? 'euiTitle' : item.id
+                  }`}
+                >
+                  The quick brown fox
+                </div>
+              ),
           },
         ]}
       />
