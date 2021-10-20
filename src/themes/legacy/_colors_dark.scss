@@ -1,52 +1,53 @@
+// This extra import allows any variables that are created via functions to work when loaded into JS
 @import '../../global_styling/functions/index';
 
 // These colors stay the same no matter the theme
-$euiColorGhost: #FFF;
-$euiColorInk: #000;
+$euiColorGhost: #FFF !default;
+$euiColorInk: #000 !default;
 
 // Core
-$euiColorPrimary: #1BA9F5;
-$euiColorSecondary: #7DE2D1;
-$euiColorAccent: #F990C0;
+$euiColorPrimary: #1BA9F5 !default;
+$euiColorSecondary: #7DE2D1 !default;
+$euiColorAccent: #F990C0 !default;
 
 // Status
-$euiColorSuccess: $euiColorSecondary;
-$euiColorWarning: #FFCE7A;
-$euiColorDanger: #F66;
+$euiColorSuccess: $euiColorSecondary !default;
+$euiColorWarning: #FFCE7A !default;
+$euiColorDanger: #F66 !default;
 
 // Grays
-$euiColorEmptyShade: #1D1E24;
-$euiColorLightestShade: #25262E;
-$euiColorLightShade: #343741;
-$euiColorMediumShade: #535966;
-$euiColorDarkShade: #98A2B3;
-$euiColorDarkestShade: #D4DAE5;
-$euiColorFullShade: #FFF;
+$euiColorEmptyShade: #1D1E24 !default;
+$euiColorLightestShade: #25262E !default;
+$euiColorLightShade: #343741 !default;
+$euiColorMediumShade: #535966 !default;
+$euiColorDarkShade: #98A2B3 !default;
+$euiColorDarkestShade: #D4DAE5 !default;
+$euiColorFullShade: #FFF !default;
 
 // Backgrounds
-$euiPageBackgroundColor: shade($euiColorLightestShade, 45%);
-$euiColorHighlight: #2E2D25;
+$euiPageBackgroundColor: shade($euiColorLightestShade, 45%) !default;
+$euiColorHighlight: #2E2D25 !default;
 
 // Variations from core
-$euiTextColor: #DFE5EF;
-$euiTitleColor: $euiTextColor;
-$euiTextSubduedColor: makeHighContrastColor($euiColorMediumShade);
-$euiColorDisabled: shade($euiTextColor, 70%);
+$euiTextColor: #DFE5EF !default;
+$euiTitleColor: $euiTextColor !default;
+$euiTextSubduedColor: makeHighContrastColor($euiColorMediumShade) !default;
+$euiColorDisabled: shade($euiTextColor, 70%) !default;
 
 // Contrasty text variants
-$euiColorPrimaryText: makeHighContrastColor($euiColorPrimary);
-$euiColorSecondaryText: makeHighContrastColor($euiColorSecondary);
-$euiColorAccentText: makeHighContrastColor($euiColorAccent);
-$euiColorWarningText: makeHighContrastColor($euiColorWarning);
-$euiColorDangerText: makeHighContrastColor($euiColorDanger);
-$euiColorDisabledText: makeDisabledContrastColor($euiColorDisabled);
-$euiColorSuccessText: $euiColorSecondaryText;
-$euiLinkColor: $euiColorPrimaryText;
+$euiColorPrimaryText: makeHighContrastColor($euiColorPrimary) !default;
+$euiColorSecondaryText: makeHighContrastColor($euiColorSecondary) !default;
+$euiColorAccentText: makeHighContrastColor($euiColorAccent) !default;
+$euiColorWarningText: makeHighContrastColor($euiColorWarning) !default;
+$euiColorDangerText: makeHighContrastColor($euiColorDanger) !default;
+$euiColorDisabledText: makeDisabledContrastColor($euiColorDisabled) !default;
+$euiColorSuccessText: $euiColorSecondaryText !default;
+$euiLinkColor: $euiColorPrimaryText !default;
 
 // Charts
-$euiColorChartLines: $euiColorLightShade;
-$euiColorChartBand: tint($euiColorLightestShade, 2.5%);
+$euiColorChartLines: $euiColorLightShade !default;
+$euiColorChartBand: tint($euiColorLightestShade, 2.5%) !default;
 
 // Shadows
-$euiShadowColor: #000;
-$euiShadowColorLarge: #000;
+$euiShadowColor: #000 !default;
+$euiShadowColorLarge: #000 !default;

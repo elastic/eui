@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// Uncomment to use in consuming apps or CodeSandbox
-// import theme from '@elastic/eui/dist/eui_theme_light.json';
 
 import {
   EuiAvatar,
@@ -28,11 +26,14 @@ import {
   EuiTitle,
   EuiSelectableTemplateSitewide,
   EuiSelectableMessage,
-} from '../../../../src/components';
-import { ExampleContext } from '../../services';
-import { useGeneratedHtmlId } from '../../../../src/services';
+  useEuiTheme,
+  useGeneratedHtmlId,
+} from '../../../../src';
 
-export default ({ theme }) => {
+import { ExampleContext } from '../../services';
+
+export default () => {
+  const { euiTheme } = useEuiTheme();
   const guideHeaderCollapsibleNavId = useGeneratedHtmlId({
     prefix: 'guideHeaderCollapsibleNav',
   });
@@ -238,7 +239,7 @@ export default ({ theme }) => {
       repositionOnScroll
       button={
         <EuiBadge
-          color={theme.euiColorDarkestShade.rgba}
+          color={euiTheme.colors.darkestShade}
           iconType="arrowDown"
           iconSide="right"
           aria-controls={guideHeaderDeploymentPopoverId}
