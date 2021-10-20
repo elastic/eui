@@ -15774,6 +15774,13 @@ relateurl@^0.2.7:
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
 
+remark-breaks@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/remark-breaks/-/remark-breaks-2.0.2.tgz#55fdec6c7da84f659aa7fdb1aa95b632870cee8d"
+  integrity sha512-LsQnPPQ7Fzp9RTjj4IwdEmjPOr9bxe9zYKWhs9ZQOg9hMg8rOfeeqQ410cvVdIK87Famqza1CKRxNkepp2EvUA==
+  dependencies:
+    unist-util-visit "^2.0.0"
+
 release-zalgo@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/release-zalgo/-/release-zalgo-1.0.0.tgz#09700b7e5074329739330e535c5a90fb67851730"
