@@ -39,8 +39,8 @@ export const typographySections = [
 
 export default () => {
   const { euiTheme } = useEuiTheme();
-  const legacyTheme = !euiTheme.themeName.includes('amsterdam');
   const themeContext = useContext(ThemeContext);
+  const legacyTheme = !themeContext.theme.includes('amsterdam');
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
 
