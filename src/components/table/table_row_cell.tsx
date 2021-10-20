@@ -88,6 +88,10 @@ export interface EuiTableRowCellMobileOptionsShape
 
 export interface EuiTableRowCellProps extends EuiTableRowCellSharedPropsShape {
   /**
+   * Vertical alignment of the content in the cell
+   */
+  valign?: TdHTMLAttributes<HTMLTableCellElement>['valign'];
+  /**
    * Indicates whether the cell should be marked as the heading for its row
    */
   setScopeRow?: boolean;
@@ -124,7 +128,8 @@ export interface EuiTableRowCellProps extends EuiTableRowCellSharedPropsShape {
 }
 
 type Props = CommonProps &
-  TdHTMLAttributes<HTMLTableCellElement> &
+  // Omitting valign and re-adding in EuiTableRowCellProps so it shows up in the props table
+  Omit<TdHTMLAttributes<HTMLTableCellElement>, 'valign'> &
   EuiTableRowCellProps;
 
 export const EuiTableRowCell: FunctionComponent<Props> = ({
