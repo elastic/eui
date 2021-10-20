@@ -110,6 +110,10 @@ export const FontSass = () => {
                 {getDescriptionSmall(euiFontMixins[item.id])}
               </div>
             ),
+            mobileOptions: {
+              header: false,
+              width: '100%',
+            },
           },
           {
             field: 'sample',
@@ -175,6 +179,10 @@ export const FontWeightSass: FunctionComponent<ThemeRowType> = ({
             render: (variable: React.ReactNode) => (
               <EuiCode>{variable}</EuiCode>
             ),
+            mobileOptions: {
+              header: false,
+              width: '100%',
+            },
           },
           {
             field: 'sample',
@@ -261,6 +269,9 @@ export const FontScaleSass = () => {
                 The quick brown fox
               </div>
             ),
+            mobileOptions: {
+              width: '50%',
+            },
           },
           {
             field: 'value',
