@@ -2,25 +2,9 @@
 
 # Elastic UI Framework
 
-> The Elastic UI Framework is a collection of React UI components for quickly building user interfaces
-> at Elastic. Not using React? No problem! You can still use the CSS behind each component.
+> The Elastic UI Framework is a collection of React UI components for quickly building user interfaces at Elastic.
 
-You should check out our [living style guide][docs], which contains many examples of components in the EUI framework aesthetic, and how to use them in your products. We also have a [FAQ][faq] that covers common usage questions.
-
-## Installation
-
-To install the Elastic UI Framework into an existing project, use the `yarn` CLI (`npm` is not supported).
-
-```
-yarn add @elastic/eui
-```
-
-Note that EUI has [several `peerDependencies` requirements](package.json) that will also need to be installed if starting with a blank project. You can read more about other ways to [consume EUI][consuming].
-
-```
-yarn add @elastic/eui @elastic/datemath moment prop-types
-```
-
+You should check out our [living style guide][docs], which contains many examples of components in the EUI framework aesthetic, and how to use them in your products. We also have a [FAQ][faq] that covers common usage questions. You can read more about the ways to [consume EUI][consuming].
 
 ## Running Locally
 
@@ -32,7 +16,7 @@ You will probably want to install a node version manager. [nvm](https://github.c
 
 To install and use the correct node version with `nvm`:
 
-```
+```bash
 nvm install
 ```
 
@@ -40,14 +24,14 @@ nvm install
 
 You can run the documentation locally at [http://localhost:8030/](http://localhost:8030/) by running the following.
 
-```
+```bash
 yarn
 yarn start
 ```
 
 If another process is already listening on port 8030, the next free port will be used. Alternatively, you can specify a port:
 
-```
+```bash
 yarn start --port 9000
 ```
 

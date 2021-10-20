@@ -241,5 +241,30 @@ import { Timer } from '@elastic/eui/lib/services/time';`}
         </EuiText>
       ),
     },
+    {
+      title: 'Customizing with classes',
+      wrapText: false,
+      text: (
+        <EuiText grow={false}>
+          <p>
+            We do not recommend customizing EUI components by applying styles
+            directly to EUI classes, eg. <EuiCode>.euiButton</EuiCode>. All
+            components allow you to pass a custom <EuiCode>className</EuiCode>{' '}
+            prop directly to the component which will then append this to the
+            class list. Utilizing the cascade feature of CSS, you can then
+            customize by overriding styles so long as your styles are imported{' '}
+            <strong>after</strong> the EUI import.
+          </p>
+          <EuiCodeBlock language="jsx" isCopyable fontSize="m">
+            {'<EuiButton className="myCustomClass__button" />'}
+          </EuiCodeBlock>
+          <EuiSpacer />
+          <p>Renders as:</p>
+          <EuiCodeBlock language="html" isCopyable fontSize="m">
+            {'<button class="euiButton myCustomClass__button" />'}
+          </EuiCodeBlock>
+        </EuiText>
+      ),
+    },
   ],
 };

@@ -77,9 +77,16 @@ export const Tokens: FunctionComponent = () => {
       </EuiSplitPanel.Inner>
       <EuiHorizontalRule margin="none" />
       {showSass ? (
-        <EuiSplitPanel.Inner paddingSize="none">
-          <ImportOutsideExample />
-        </EuiSplitPanel.Inner>
+        <>
+          <EuiSplitPanel.Inner>
+            <EuiText>
+              <p>This will require style, css, postcss, and sass loaders.</p>
+            </EuiText>
+          </EuiSplitPanel.Inner>
+          <EuiSplitPanel.Inner paddingSize="none">
+            <ImportOutsideExample />
+          </EuiSplitPanel.Inner>
+        </>
       ) : (
         <>
           <EuiSplitPanel.Inner>
