@@ -44,13 +44,6 @@
     "postinstall": "node ./scripts/postinstall.js",
     "version": "node ./scripts/update-changelog-version.js"
   },
-  "nyc": {
-    "report-dir": "reports/cypress-coverage",
-    "reporter": [
-      "json",
-      "html"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/elastic/eui.git"
