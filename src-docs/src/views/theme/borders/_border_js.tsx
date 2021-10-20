@@ -5,6 +5,13 @@ import { useEuiTheme } from '../../../../../src/services';
 import { EuiCode, EuiColorPickerSwatch } from '../../../../../src';
 
 import {
+  _EuiThemeBorderColorValues,
+  _EuiThemeBorderTypes,
+  _EuiThemeBorderRadiusValues,
+  _EuiThemeBorderWidthValues,
+} from '../../../../../src/global_styling/variables/_borders';
+
+import {
   EuiThemeBorderColorValues,
   EuiThemeBorderRadiusValues,
   EuiThemeBorderTypes,
@@ -20,8 +27,7 @@ import { getDescription } from '../_components/_theme_values_descriptions';
 export const TypesJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
   const typeProps = getPropsFromThemeKey(EuiThemeBorderTypes);
-  const types = Object.keys(typeProps);
-
+  const types = Object.keys(typeProps) as Array<keyof _EuiThemeBorderTypes>;
   return (
     <>
       <ThemeExample
@@ -46,7 +52,6 @@ export const TypesJS: FunctionComponent<ThemeRowType> = ({ description }) => {
             id: type,
             token: `border.${type}`,
             type: typeProps[type],
-            // @ts-ignore TODO
             value: euiTheme.border[type],
           };
         })}
@@ -69,7 +74,9 @@ export const TypesJS: FunctionComponent<ThemeRowType> = ({ description }) => {
 export const ColorJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
   const colorProps = getPropsFromThemeKey(EuiThemeBorderColorValues);
-  const types = Object.keys(colorProps);
+  const types = Object.keys(colorProps) as Array<
+    keyof _EuiThemeBorderColorValues
+  >;
 
   return (
     <>
@@ -102,7 +109,6 @@ export const ColorJS: FunctionComponent<ThemeRowType> = ({ description }) => {
             id: type,
             token: `border.${type}`,
             type: colorProps[type],
-            // @ts-ignore TODO
             value: euiTheme.border[type],
           };
         })}
@@ -115,7 +121,9 @@ export const ColorJS: FunctionComponent<ThemeRowType> = ({ description }) => {
 export const WidthJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
   const widthProps = getPropsFromThemeKey(EuiThemeBorderWidthValues);
-  const widths = Object.keys(widthProps);
+  const widths = Object.keys(widthProps) as Array<
+    keyof _EuiThemeBorderWidthValues
+  >;
 
   const wrappingExampleStyle = {
     padding: euiTheme.size.s,
@@ -153,7 +161,6 @@ export const WidthJS: FunctionComponent<ThemeRowType> = ({ description }) => {
             id: type,
             token: `border.width.${type}`,
             type: widthProps[type],
-            // @ts-ignore TODO
             value: euiTheme.border.width[type],
           };
         })}
@@ -175,7 +182,9 @@ export const WidthJS: FunctionComponent<ThemeRowType> = ({ description }) => {
 export const RadiusJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
   const radiusProps = getPropsFromThemeKey(EuiThemeBorderRadiusValues);
-  const radii = Object.keys(radiusProps);
+  const radii = Object.keys(radiusProps) as Array<
+    keyof _EuiThemeBorderRadiusValues
+  >;
 
   return (
     <>
@@ -202,7 +211,6 @@ export const RadiusJS: FunctionComponent<ThemeRowType> = ({ description }) => {
             id: type,
             token: `border.radius.${type}`,
             type: radiusProps[type],
-            // @ts-ignore TODO
             value: euiTheme.border.radius[type],
           };
         })}
