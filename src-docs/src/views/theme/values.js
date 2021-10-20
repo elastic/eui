@@ -10,9 +10,9 @@ import { GuidePage } from '../../components';
 import Colors from './_colors';
 import Size from './_size';
 import Typography from './_typography';
-import Border from './_border';
+import Border from './customizing/_border';
 import Animation from './_animation';
-import Breakpoints from './_breakpoints';
+import Breakpoints from './customizing/_breakpoints';
 
 import {
   EuiSpacer,

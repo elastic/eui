@@ -7,7 +7,6 @@ import { ThemeContext } from '../../components';
 import { Typography } from './sass/typography';
 import { Animation } from './sass/animation';
 import { Shadow } from './sass/shadow';
-import { Border } from './sass/border';
 import { Color } from './sass/color';
 import { Core } from './sass/core';
 
@@ -193,11 +192,6 @@ export const SassGuidelines = {
       title: 'Typography',
       wrapText: false,
       text: <Typography />,
-    },
-    {
-      title: 'Borders',
-      wrapText: false,
-      text: <Border />,
     },
     {
       title: 'Shadow and Depth',

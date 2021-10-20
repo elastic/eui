@@ -31,6 +31,10 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
         [Function],
         Object {},
       ],
+      Array [
+        [Function],
+        Object {},
+      ],
     ]
   }
   processingPluginList={

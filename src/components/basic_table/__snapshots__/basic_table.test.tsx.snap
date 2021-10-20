@@ -1717,7 +1717,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                     textOnly={true}
                   >
                     <td
-                      className="euiTableRowCell"
+                      className="euiTableRowCell euiTableRowCell--middle"
                       style={
                         Object {
                           "width": undefined,
@@ -1810,7 +1810,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                     textOnly={true}
                   >
                     <td
-                      className="euiTableRowCell"
+                      className="euiTableRowCell euiTableRowCell--middle"
                       style={
                         Object {
                           "width": undefined,
@@ -1903,7 +1903,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                     textOnly={true}
                   >
                     <td
-                      className="euiTableRowCell"
+                      className="euiTableRowCell euiTableRowCell--middle"
                       style={
                         Object {
                           "width": undefined,
