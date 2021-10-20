@@ -24,6 +24,7 @@ import {
 } from 'unified';
 import markdown from 'remark-parse';
 import emoji from 'remark-emoji';
+import breaks from 'remark-breaks';
 import highlight from '../remark/remark_prismjs';
 import * as MarkdownTooltip from '../markdown_tooltip';
 import * as MarkdownCheckbox from '../markdown_checkbox';
@@ -39,6 +40,7 @@ export const getDefaultEuiMarkdownParsingPlugins = ({
     [markdown, {}],
     [highlight, {}],
     [emoji, { emoticon: false }],
+    [breaks, {}],
     [markdownLinkValidator, {}],
     [MarkdownCheckbox.parser, {}],
   ];

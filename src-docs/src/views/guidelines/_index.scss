@@ -193,26 +193,32 @@
   padding: $euiSize;
 }
 
-.guideSass__border--radius {
+.guideSass__border--euiBorderRadius {
   border: $euiBorderThin;
   border-radius: $euiBorderRadius;
 }
 
-.guideSass__border--radiusSmall {
+.guideSass__border--euiBorderRadiusSmall {
   border: $euiBorderThin;
   border-radius: $euiBorderRadiusSmall;
 }
 
+.guideSass__border--euiBorderWidthThin,
 .guideSass__border--euiBorderThin {
   border: $euiBorderThin;
 }
 
+.guideSass__border--euiBorderWidthThick,
 .guideSass__border--euiBorderThick {
   border: $euiBorderThick;
 }
 
 .guideSass__border--euiBorderEditable {
   border: $euiBorderEditable;
+}
+
+.guideSass__border--thickDashed {
+  border: $euiBorderWidthThick dashed $euiBorderColor;
 }
 
 .guideSass__fontFamily {
