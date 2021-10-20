@@ -9,6 +9,7 @@ cypress/videos
 
 coverage/
 reports/
+.nyc_output/
 tmp/
 dist/
 lib/

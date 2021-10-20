@@ -11,9 +11,6 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const SRC_DIR = path.resolve(__dirname, '..', 'src');
-const DIST_DIR = path.resolve(__dirname, '..', 'dist');
-
 const plugins = [
   // Force EuiIcon's dynamic imports to be included in the single eui.js build,
   // instead of being split out into multiple files
@@ -37,6 +34,9 @@ module.exports = {
         test: /\.(js|tsx?)$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
+        options: {
+          plugins: ['istanbul'],
+        },
       },
       {
         test: /\.scss$/,
