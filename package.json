@@ -34,7 +34,7 @@
     "test-staged": "yarn lint && node scripts/test-staged.js",
     "test-cypress": "cross-env NODE_ENV=cypress_test cypress run-ct",
     "test-cypress-dev": "cross-env NODE_ENV=cypress_test cypress open-ct",
-    "combine-test-coverage": "node ./scripts/combine-coverage.js",
+    "combine-test-coverage": "sh ./scripts/combine-coverage.sh",
     "start-test-server": "BABEL_MODULES=false NODE_ENV=puppeteer NODE_OPTIONS=--max-old-space-size=4096 webpack-dev-server --config src-docs/webpack.config.js --port 9999",
     "yo-component": "yo ./generator-eui/app/component.js",
     "update-token-changelog": "node ./scripts/update-token-changelog.js",
