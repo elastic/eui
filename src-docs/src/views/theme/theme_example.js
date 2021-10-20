@@ -2,13 +2,7 @@ import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
-import {
-  EuiText,
-  EuiSpacer,
-  EuiCallOut,
-  EuiCode,
-  EuiLink,
-} from '../../../../src/components';
+import { EuiText, EuiCode, EuiLink } from '../../../../src/components';
 import { EuiThemeProvider } from '../../../../src/services';
 
 import Consuming from './consuming';
@@ -27,12 +21,14 @@ import Computed from './computed';
 const computedSource = require('!!raw-loader!./computed');
 
 import CreateComputed from './create_computed';
+import { ThemeNotice } from './_components/_theme_notice';
 const createComputedSource = require('!!raw-loader!./create_computed');
 
 export const ThemeExample = {
   title: 'Theme provider',
   isNew: true,
   beta: true,
+  notice: <ThemeNotice type="support" />,
   intro: (
     <>
       <EuiText>
@@ -43,8 +39,6 @@ export const ThemeExample = {
           with <strong>EuiThemeProvider</strong>.
         </p>
       </EuiText>
-      <EuiSpacer size="m" />
-      <EuiCallOut title="The following examples assume that you have wrapped your entire application with this provider." />
     </>
   ),
   sections: [
