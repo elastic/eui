@@ -6,49 +6,53 @@ import {
   EuiPanel,
 } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
-
-const idPrefix2 = htmlIdGenerator()();
-const idPrefix3 = htmlIdGenerator()();
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
+  const compressedToggleButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'compressedToggleButtonGroup',
+  });
+  const multiSelectButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'multiSelectButtonGroup',
+  });
+
   const toggleButtonsCompressed = [
     {
-      id: `${idPrefix2}3`,
+      id: `${compressedToggleButtonGroupPrefix}__0`,
       label: 'fine',
     },
     {
-      id: `${idPrefix2}4`,
+      id: `${compressedToggleButtonGroupPrefix}__1`,
       label: 'rough',
     },
     {
-      id: `${idPrefix2}5`,
+      id: `${compressedToggleButtonGroupPrefix}__2`,
       label: 'coarse',
     },
   ];
 
   const toggleButtonsIconsMulti = [
     {
-      id: `${idPrefix3}3`,
+      id: `${multiSelectButtonGroupPrefix}__0`,
       label: 'Bold',
       name: 'bold',
       iconType: 'editorBold',
     },
     {
-      id: `${idPrefix3}4`,
+      id: `${multiSelectButtonGroupPrefix}__1`,
       label: 'Italic',
       name: 'italic',
       iconType: 'editorItalic',
       isDisabled: true,
     },
     {
-      id: `${idPrefix3}5`,
+      id: `${multiSelectButtonGroupPrefix}__2`,
       label: 'Underline',
       name: 'underline',
       iconType: 'editorUnderline',
     },
     {
-      id: `${idPrefix3}6`,
+      id: `${multiSelectButtonGroupPrefix}__3`,
       label: 'Strikethrough',
       name: 'strikethrough',
       iconType: 'editorStrike',
@@ -60,7 +64,7 @@ export default () => {
     setToggleIconIdToSelectedMapIcon,
   ] = useState({});
   const [toggleCompressedIdSelected, setToggleCompressedIdSelected] = useState(
-    `${idPrefix2}4`
+    `${compressedToggleButtonGroupPrefix}__1`
   );
 
   const onChangeCompressed = (optionId) => {

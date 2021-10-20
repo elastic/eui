@@ -27,6 +27,7 @@ exports[`EuiComboBox is rendered 1`] = `
           <input
             aria-controls=""
             data-test-subj="comboBoxSearchInput"
+            id="generated-id__eui-combobox-id"
             role="textbox"
             style="box-sizing:content-box;width:1px"
             value=""
@@ -70,6 +71,7 @@ exports[`props autoFocus is rendered 1`] = `
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={true}
+    id="generated-id__eui-combobox-id"
     inputRef={[Function]}
     isListOpen={false}
     noIcon={false}
@@ -100,6 +102,50 @@ exports[`props autoFocus is rendered 1`] = `
 </div>
 `;
 
+exports[`props custom ID is rendered 1`] = `
+<div
+  aria-expanded={false}
+  aria-haspopup="listbox"
+  className="euiComboBox"
+  onKeyDown={[Function]}
+  role="combobox"
+>
+  <EuiComboBoxInput
+    autoSizeInputRef={[Function]}
+    compressed={false}
+    fullWidth={false}
+    hasSelectedOptions={true}
+    id="test-id-1"
+    inputRef={[Function]}
+    isListOpen={false}
+    noIcon={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    rootId={[Function]}
+    searchValue=""
+    selectedOptions={
+      Array [
+        Object {
+          "label": "Mimas",
+        },
+        Object {
+          "label": "Iapetus",
+        },
+      ]
+    }
+    singleSelection={false}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value="Mimas, Iapetus"
+  />
+</div>
+`;
+
 exports[`props delimiter is rendered 1`] = `
 <div
   aria-expanded={false}
@@ -113,6 +159,7 @@ exports[`props delimiter is rendered 1`] = `
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={true}
+    id="generated-id__eui-combobox-id"
     inputRef={[Function]}
     isListOpen={false}
     noIcon={false}
@@ -156,6 +203,7 @@ exports[`props full width is rendered 1`] = `
     compressed={false}
     fullWidth={true}
     hasSelectedOptions={true}
+    id="generated-id__eui-combobox-id"
     inputRef={[Function]}
     isListOpen={false}
     noIcon={false}
@@ -196,6 +244,7 @@ exports[`props isClearable=false disallows user from clearing input when no opti
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={false}
+    id="generated-id__eui-combobox-id"
     inputRef={[Function]}
     isListOpen={false}
     noIcon={false}
@@ -229,6 +278,7 @@ exports[`props isClearable=false disallows user from clearing input when options
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={true}
+    id="generated-id__eui-combobox-id"
     inputRef={[Function]}
     isListOpen={false}
     noIcon={false}
@@ -271,6 +321,7 @@ exports[`props isDisabled is rendered 1`] = `
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={true}
+    id="generated-id__eui-combobox-id"
     inputRef={[Function]}
     isDisabled={true}
     isListOpen={false}
@@ -324,6 +375,7 @@ exports[`props options list is rendered 1`] = `
           <input
             aria-controls="generated-id_listbox"
             data-test-subj="comboBoxSearchInput"
+            id="generated-id__eui-combobox-id"
             role="textbox"
             style="box-sizing: content-box; width: 2px;"
             value=""
@@ -632,6 +684,7 @@ exports[`props selectedOptions are rendered 1`] = `
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={true}
+    id="generated-id__eui-combobox-id"
     inputRef={[Function]}
     isListOpen={false}
     noIcon={false}
@@ -675,6 +728,7 @@ exports[`props singleSelection is rendered 1`] = `
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={true}
+    id="generated-id__eui-combobox-id"
     inputRef={[Function]}
     isListOpen={false}
     noIcon={false}
@@ -706,7 +760,7 @@ exports[`props singleSelection prepend and append is rendered 1`] = `
 <div
   aria-expanded={true}
   aria-haspopup="listbox"
-  className="euiComboBox euiComboBox-isOpen"
+  className="euiComboBox euiComboBox--prepended euiComboBox--appended euiComboBox-isOpen"
   onKeyDown={[Function]}
   role="combobox"
 >
@@ -716,6 +770,7 @@ exports[`props singleSelection prepend and append is rendered 1`] = `
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={false}
+    id="generated-id__eui-combobox-id"
     inputRef={[Function]}
     isListOpen={true}
     noIcon={false}
@@ -845,6 +900,7 @@ exports[`props singleSelection selects existing option when opened 1`] = `
     compressed={false}
     fullWidth={false}
     hasSelectedOptions={true}
+    id="generated-id__eui-combobox-id"
     inputRef={[Function]}
     isListOpen={true}
     noIcon={false}
