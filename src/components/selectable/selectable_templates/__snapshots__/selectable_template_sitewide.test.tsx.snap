@@ -6,6 +6,22 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
+    class="euiScreenReaderOnly"
+  >
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      id="generated-id__status--A"
+      role="status"
+    />
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      id="generated-id__status--B"
+      role="status"
+    />
+  </div>
+  <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
   >
     <div
@@ -51,6 +67,22 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is not rendered with 
 <div
   class="euiSelectable euiSelectableTemplateSitewide"
 >
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      id="generated-id__status--A"
+      role="status"
+    />
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      id="generated-id__status--B"
+      role="status"
+    />
+  </div>
   <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
   >
@@ -98,6 +130,22 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is rendered 1`] = `
   class="euiSelectable euiSelectableTemplateSitewide"
 >
   <div
+    class="euiScreenReaderOnly"
+  >
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      id="generated-id__status--A"
+      role="status"
+    />
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      id="generated-id__status--B"
+      role="status"
+    />
+  </div>
+  <div
     class="euiPopover euiPopover--anchorDownCenter"
   >
     <div
@@ -116,6 +164,22 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is rendered with popo
   class="euiSelectable euiSelectableTemplateSitewide"
 >
   <div
+    class="euiScreenReaderOnly"
+  >
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      id="generated-id__status--A"
+      role="status"
+    />
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      id="generated-id__status--B"
+      role="status"
+    />
+  </div>
+  <div
     class="euiPopover euiPopover--anchorDownCenter"
   >
     <div
@@ -133,6 +197,22 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
 <div
   class="euiSelectable euiSelectableTemplateSitewide"
 >
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      id="generated-id__status--A"
+      role="status"
+    />
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      id="generated-id__status--B"
+      role="status"
+    />
+  </div>
   <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
   >
@@ -180,6 +260,22 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
   class="euiSelectable euiSelectableTemplateSitewide"
 >
   <div
+    class="euiScreenReaderOnly"
+  >
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      id="generated-id__status--A"
+      role="status"
+    />
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      id="generated-id__status--B"
+      role="status"
+    />
+  </div>
+  <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock customPopoverClass"
   >
     <div
@@ -225,6 +321,22 @@ exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
 <div
   class="euiSelectable euiSelectableTemplateSitewide"
 >
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      id="generated-id__status--A"
+      role="status"
+    />
+    <div
+      aria-atomic="true"
+      aria-live="polite"
+      id="generated-id__status--B"
+      role="status"
+    />
+  </div>
   <div
     class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
   >

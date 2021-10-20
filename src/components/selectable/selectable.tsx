@@ -13,6 +13,8 @@ import React, {
   createRef,
   ReactElement,
   KeyboardEvent,
+  useEffect,
+  useState,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
@@ -23,11 +25,84 @@ import { EuiLoadingSpinner } from '../loading';
 import { EuiSpacer } from '../spacer';
 import { getMatchingOptions } from './matching_options';
 import { keys, htmlIdGenerator } from '../../services';
+import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import { EuiSelectableOption } from './selectable_option';
 import { EuiSelectableOptionsListProps } from './selectable_list/selectable_list';
 import { EuiSelectableSearchProps } from './selectable_search/selectable_search';
 import { Align } from 'react-window';
+
+const debounce = (fn: (...args: any[]) => void, wait: number = 50) => {
+  let timeoutId: number;
+  return (...args: any[]) => {
+    window.clearTimeout(timeoutId);
+    timeoutId = window.setTimeout(() => {
+      fn(...args);
+    }, wait);
+  };
+};
+
+const EuiScreenReaderStatus = ({
+  listId,
+  isActive,
+  resultsLength,
+  queryLength,
+}: {
+  listId: string;
+  isActive: boolean;
+  resultsLength: number;
+  queryLength: number;
+}) => {
+  const [toggle, setToggle] = useState(false);
+  const [debounced, setDebounced] = useState(false);
+  const [active, setActive] = useState(false);
+
+  const debounceStatusUpdate = debounce(() => {
+    if (!debounced) {
+      setToggle((toggle) => !toggle);
+      setDebounced(true);
+      setActive(isActive);
+    }
+  }, 1400);
+
+  useEffect(() => {
+    setDebounced(false);
+  }, [queryLength, isActive]);
+
+  useEffect(() => {
+    debounceStatusUpdate();
+  }, [debounced]); // eslint-disable-line
+
+  let content = null;
+  if (resultsLength === 0) {
+    content = 'No search results';
+  } else {
+    content = `${resultsLength} results available`;
+  }
+
+  return (
+    <EuiScreenReaderOnly>
+      <div>
+        <div
+          id={`${listId}__status--A`}
+          role="status"
+          aria-atomic="true"
+          aria-live="polite"
+        >
+          {active && debounced && toggle ? content : ''}
+        </div>
+        <div
+          id={`${listId}__status--B`}
+          role="status"
+          aria-atomic="true"
+          aria-live="polite"
+        >
+          {active && debounced && !toggle ? content : ''}
+        </div>
+      </div>
+    </EuiScreenReaderOnly>
+  );
+};
 
 type RequiredEuiSelectableOptionsListProps = Omit<
   EuiSelectableOptionsListProps,
@@ -667,6 +742,14 @@ export class EuiSelectable<T = {}> extends Component<
         onMouseDown={this.onMouseDown}
         {...rest}
       >
+        {searchable && (
+          <EuiScreenReaderStatus
+            listId={this.listId}
+            isActive={activeOptionIndex != null}
+            resultsLength={visibleOptions.length}
+            queryLength={searchValue.length}
+          />
+        )}
         {children && children(list, search)}
       </div>
     );
