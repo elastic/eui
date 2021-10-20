@@ -55,48 +55,7 @@ const columns = [
       header: false,
       truncateText: false,
       enlarge: true,
-      fullWidth: true,
-    },
-  },
-  {
-    field: 'lastName',
-    name: 'Last Name',
-    render: (name) => (
-      <EuiLink href="#" target="_blank">
-        {name}
-      </EuiLink>
-    ),
-    mobileOptions: {
-      show: false,
-    },
-  },
-  {
-    field: 'github',
-    name: 'Github',
-  },
-];
-
-const customColumns = [
-  {
-    field: 'firstName',
-    name: 'First Name',
-    sortable: true,
-    truncateText: true,
-    'data-test-subj': 'firstNameCell',
-    width: '20%',
-    mobileOptions: {
-      render: (item) => (
-        <span>
-          {item.firstName}{' '}
-          <EuiLink href="#" target="_blank">
-            {item.lastName}
-          </EuiLink>
-        </span>
-      ),
-      header: false,
-      truncateText: false,
-      enlarge: true,
-      fullWidth: true,
+      width: '100%',
     },
   },
   {
@@ -119,25 +78,6 @@ const customColumns = [
 
 const items = store.users.filter((user, index) => index < 10);
 
-const getRowProps = (item) => {
-  const { id } = item;
-  return {
-    'data-test-subj': `row-${id}`,
-    className: 'customRowClass',
-    onClick: () => {},
-  };
-};
-
-const getCellProps = (item, column) => {
-  const { id } = item;
-  const { field } = column;
-  return {
-    className: 'customCellClass',
-    'data-test-subj': `cell-${id}-${field}`,
-    textOnly: true,
-  };
-};
-
 const idPrefix = htmlIdGenerator()();
 
 const toggleButtons = [
@@ -158,13 +98,44 @@ const toggleButtons = [
   },
 ];
 
+const vAlignButtons = [
+  {
+    id: `${idPrefix}4`,
+    label: 'Top',
+    value: 'top',
+  },
+  {
+    id: `${idPrefix}3`,
+    label: 'Middle',
+    value: 'middle',
+  },
+  {
+    id: `${idPrefix}5`,
+    label: 'Bottom',
+    value: 'bottom',
+  },
+];
+
 export const Table = () => {
   const [layout, setLayout] = useState('fixed');
   const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}0`);
+  const [vAlignButtonsIdSelected, setVAlignButtonsIdSelected] = useState(
+    `${idPrefix}3`
+  );
 
   const onChange = (optionId) => {
+    const alignment = toggleButtons.find((x) => x.id === optionId).value;
+    columns[0].width = alignment === 'custom' ? '20%' : undefined;
+
     setToggleIdSelected(optionId);
-    setLayout(toggleButtons.find((x) => x.id === optionId).value);
+    setLayout(alignment);
+  };
+
+  const onVAlignChange = (optionId) => {
+    setVAlignButtonsIdSelected(optionId);
+    const alignment = vAlignButtons.find((x) => x.id === optionId).value;
+
+    columns.forEach((column) => (column.valign = alignment));
   };
 
   let callOutText;
@@ -186,11 +157,19 @@ export const Table = () => {
   return (
     <div>
       <EuiButtonGroup
-        legend="Table layout group"
+        legend="Table layout options"
         options={toggleButtons}
         idSelected={toggleIdSelected}
         onChange={onChange}
       />
+      &emsp;
+      <EuiButtonGroup
+        legend="Vertical align options"
+        options={vAlignButtons}
+        idSelected={vAlignButtonsIdSelected}
+        onChange={onVAlignChange}
+      />
+      &emsp;
       <EuiSpacer size="m" />
       <EuiCallOut
         size="s"
@@ -201,10 +180,8 @@ export const Table = () => {
       <EuiBasicTable
         tableCaption="Demo of EuiBasicTable's table layout options"
         items={items}
-        columns={layout === 'custom' ? customColumns : columns}
+        columns={columns}
         tableLayout={layout === 'auto' ? 'auto' : 'fixed'}
-        rowProps={getRowProps}
-        cellProps={getCellProps}
       />
     </div>
   );

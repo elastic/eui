@@ -74,18 +74,6 @@ export class GuidePageChrome extends Component {
     }, 250);
   };
 
-  onButtonClick() {
-    this.setState({
-      isPopoverOpen: !this.state.isPopoverOpen,
-    });
-  }
-
-  closePopover() {
-    this.setState({
-      isPopoverOpen: false,
-    });
-  }
-
   renderSubSections = (href, subSections = [], searchTerm = '') => {
     const subSectionsWithTitles = subSections.filter((item) => {
       if (!item.title) {

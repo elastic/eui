@@ -225,6 +225,7 @@ import { SuperSelectExample } from './views/super_select/super_select_example';
 import { ThemeExample } from './views/theme/theme_example';
 import ThemeValues from './views/theme/values';
 import Breakpoints from './views/theme/breakpoints/breakpoints';
+import Borders, { bordersSections } from './views/theme/borders/borders';
 
 /** Elastic Charts */
 
@@ -349,6 +350,11 @@ const navigation = [
       {
         name: 'Breakpoints',
         component: Breakpoints,
+      },
+      {
+        name: 'Borders',
+        component: Borders,
+        sections: bordersSections,
       },
       createExample(SassGuidelines, 'Sass'),
     ],
