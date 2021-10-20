@@ -76,7 +76,6 @@ directly in the code. And unit test coverage for the UI components allows us to 
   * [Creating components manually](wiki/creating-components-manually.md)
   * [Creating components with Yeoman](wiki/creating-components-yeoman.md)
 * [Creating icons](wiki/creating-icons.md)
-* [Theming](wiki/theming.md)
 * [Testing](wiki/testing.md)
   * [Accessibility Testing](wiki/automated-accessibility-testing.md)
 * [Documentation](wiki/documentation-guidelines.md)
