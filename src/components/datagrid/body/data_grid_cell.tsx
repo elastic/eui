@@ -282,22 +282,6 @@ export class EuiDataGridCell extends Component<
     if (nextState.disableCellTabIndex !== this.state.disableCellTabIndex)
       return true;
 
-    // check if we should update cell because height was changed
-    if (
-      this.cellRef.current &&
-      nextProps.getRowHeight &&
-      nextProps.rowHeightUtils
-    ) {
-      if (
-        !nextProps.rowHeightUtils?.compareHeights(
-          this.cellRef.current.offsetHeight,
-          nextProps.getRowHeight(nextProps.rowIndex)
-        )
-      ) {
-        return true;
-      }
-    }
-
     return false;
   }
 

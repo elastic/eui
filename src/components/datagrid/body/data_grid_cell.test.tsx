@@ -148,16 +148,6 @@ describe('EuiDataGridCell', () => {
           component.setState({ disableCellTabIndex: true });
         });
       });
-
-      it('when cell height changes', () => {
-        Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
-          configurable: true,
-          value: 10,
-        });
-        const getRowHeight = jest.fn(() => 20);
-
-        component.setProps({ getRowHeight });
-      });
     });
 
     it('should not update for prop/state changes not specified above', () => {
