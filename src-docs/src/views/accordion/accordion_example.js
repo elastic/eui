@@ -86,6 +86,9 @@ const accordionIsLoadingSnippet = [
 </EuiAccordion>`,
 ];
 
+import AccordionButtonElement from './accordion_buttonElement';
+const accordionButtonElementSource = require('!!raw-loader!./accordion_buttonElement');
+
 export const AccordionExample = {
   title: 'Accordion',
   intro: (
@@ -328,6 +331,37 @@ export const AccordionExample = {
       demo: <AccordionGrow />,
     },
     {
+      title: 'Interactive content in the trigger',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: accordionButtonElementSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Passing interactive content like links, buttons, or form elements as
+            the <EuiCode>buttonContent</EuiCode>, will cause issues with the
+            wrapping button element. To fix this, you can change this wrapping
+            element to a div using <EuiCode>{'buttonElement="div"'}</EuiCode>.
+          </p>
+          <p>
+            If you don&apos;t want the interactive content to trigger the
+            accordion expansion, you will have to apply{' '}
+            <EuiCode language="js">e.stopPropagation()</EuiCode> to your element
+            manually.
+          </p>
+          <EuiCallOut
+            iconType="accessibility"
+            color="warning"
+            title="Accordions need a focusable button for accessibility, so changing the element to anything other than a button will enforce the display of the arrow."
+          />
+        </>
+      ),
+      demo: <AccordionButtonElement />,
+    },
+    {
       title: 'Styled for forms',
       source: [
         {
@@ -358,12 +392,22 @@ export const AccordionExample = {
               hide it until hover or focus
             </li>
           </ul>
+          <p>
+            We also recommend creating a fieldset/legend combination for better
+            accessibility and DOM structure by passing{' '}
+            <EuiCode language="tsx">{'element="fieldset"'}</EuiCode>. This will
+            set the entire accordion as a{' '}
+            <EuiCode language="html">{'<fieldset>'}</EuiCode> and automatically
+            change the <EuiCode>{'buttonElement'}</EuiCode> to a{' '}
+            <EuiCode language="html">{'<legend>'}</EuiCode>.
+          </p>
         </>
       ),
       demo: <AccordionForm />,
       snippet: `<EuiAccordion
   id={accordionId4}
   className="euiAccordionForm"
+  element="fieldset"
   buttonClassName="euiAccordionForm__button"
   buttonContent={buttonContent}
   extraAction={<EuiButtonIcon

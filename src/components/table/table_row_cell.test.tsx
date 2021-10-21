@@ -43,6 +43,26 @@ describe('align', () => {
   });
 });
 
+describe('valign', () => {
+  test('defaults to middle', () => {
+    const component = <EuiTableRowCell />;
+
+    expect(render(component)).toMatchSnapshot();
+  });
+
+  test('renders top when specified', () => {
+    const component = <EuiTableRowCell valign="top" />;
+
+    expect(render(component)).toMatchSnapshot();
+  });
+
+  test('renders bottom when specified', () => {
+    const component = <EuiTableRowCell valign="bottom" />;
+
+    expect(render(component)).toMatchSnapshot();
+  });
+});
+
 describe('textOnly', () => {
   test('defaults to true', () => {
     const component = <EuiTableRowCell />;
