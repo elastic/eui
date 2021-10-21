@@ -111,11 +111,11 @@ export class RowHeightUtils {
     rowIndex: number,
     rowHeightsOptions?: EuiDataGridRowHeightsOptions
   ) {
-    if (rowHeightsOptions?.rowHeights?.[rowIndex] === AUTO_HEIGHT) {
-      return true;
-    }
-
-    if (rowHeightsOptions?.defaultHeight === AUTO_HEIGHT) {
+    if (rowHeightsOptions?.rowHeights?.[rowIndex] != null) {
+      if (rowHeightsOptions.rowHeights[rowIndex] === AUTO_HEIGHT) {
+        return true;
+      }
+    } else if (rowHeightsOptions?.defaultHeight === AUTO_HEIGHT) {
       return true;
     }
 
