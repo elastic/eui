@@ -5,13 +5,6 @@ const { isConstructorDeclaration } = require('typescript');
 
 const docsPages = async (root, page) => {
   const pagesToSkip = [
-    // `${root}#/layout/page`, // Has duplicate `<main>` element
-    // `${root}#/layout/page-header`, // Has duplicate `<header>` element
-    `${root}#/display/aspect-ratio`,
-    `${root}#/forms/combo-box`,
-    // `${root}#/forms/color-selection`,
-    `${root}#/forms/date-picker`,
-    // `${root}#/forms/super-date-picker`,
     `${root}#/tabular-content/data-grid`,
     `${root}#/tabular-content/data-grid-in-memory-settings`,
     `${root}#/tabular-content/data-grid-schemas-and-popovers`,
@@ -85,8 +78,15 @@ const printResult = (violations) => {
         },
         rules: {
           'color-contrast': { enabled: false },
-          'scrollable-region-focusable': { selector: ':not([data-skip-axe="scrollable-region-focusable"])' },
-          'region': { selector: ':not(iframe, #player)' },
+          'aria-allowed-attr': { enabled: false },
+          'nested-interactive': { enabled: false },
+          'aria-required-attr': { enabled: false },
+          'aria-roles': { enabled: false },
+          'label': { enabled: false },
+          'aria-input-field-name': { enabled: false },
+          'aria-required-children': { enabled: false },
+          'duplicate-id': { enabled: false },
+          'scrollable-region-focusable': { enabled: false },
         },
       })
       .analyze();

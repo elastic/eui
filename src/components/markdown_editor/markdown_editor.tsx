@@ -425,7 +425,6 @@ export const EuiMarkdownEditor = forwardRef<
               ref={previewRef}
               className="euiMarkdownEditorPreview"
               style={{ height: previewHeight }}
-              tabIndex={0}
             >
               <EuiMarkdownFormat
                 parsingPluginList={parsingPluginList}
