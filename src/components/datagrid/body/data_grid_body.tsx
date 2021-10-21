@@ -28,7 +28,7 @@ import {
   useMutationObserver,
 } from '../../observer/mutation_observer';
 import { useResizeObserver } from '../../observer/resize_observer';
-import { AUTO_HEIGHT } from '../row_height_utils';
+import { DEFAULT_ROW_HEIGHT, AUTO_HEIGHT } from '../row_height_utils';
 import { EuiDataGridCell } from './data_grid_cell';
 import {
   DataGridSortingContext,
@@ -240,7 +240,6 @@ const InnerElement: VariableSizeGridProps['innerElementType'] = forwardRef<
 });
 InnerElement.displayName = 'EuiDataGridInnerElement';
 
-const INITIAL_ROW_HEIGHT = 34;
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
 
 /**
@@ -524,7 +523,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     [rowHeightUtils]
   );
 
-  const [minRowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
+  const [minRowHeight, setRowHeight] = useState(DEFAULT_ROW_HEIGHT);
 
   const computedCellStyles = rowHeightUtils.getComputedCellStyles();
 

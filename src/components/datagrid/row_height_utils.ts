@@ -40,7 +40,7 @@ function getNumberFromPx(style?: string) {
 }
 
 export const AUTO_HEIGHT = 'auto';
-const DEFAULT_HEIGHT = 32;
+export const DEFAULT_ROW_HEIGHT = 34;
 
 // So that we use lineCount options we should know exactly row height which allow to show defined line count.
 // For this we should know paddings and line height. Because of this we should compute styles for cell with grid styles
@@ -62,7 +62,7 @@ export class RowHeightUtils {
   setRowHeight(
     rowIndex: number,
     colId: string,
-    height: number = DEFAULT_HEIGHT,
+    height: number = DEFAULT_ROW_HEIGHT,
     visibleRowIndex: number
   ) {
     const rowHeights =
@@ -209,7 +209,7 @@ export class RowHeightUtils {
       return Math.max(heightOption, defaultHeight);
     }
 
-    if (heightOption === AUTO_HEIGHT && rowIndex) {
+    if (heightOption === AUTO_HEIGHT && rowIndex != null) {
       return this.getRowHeight(rowIndex);
     }
 
