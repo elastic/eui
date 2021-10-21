@@ -205,12 +205,8 @@ export class EuiDataGridCell extends Component<
         rowIndex,
         rowHeightsOptions
       );
-      const isHeightSame = rowHeightUtils.compareHeights(
-        cellRef.offsetHeight,
-        getRowHeight(rowIndex)
-      );
 
-      if (isAutoHeight && !isHeightSame) {
+      if (isAutoHeight) {
         rowHeightUtils.setRowHeight(
           rowIndex,
           colIndex,
