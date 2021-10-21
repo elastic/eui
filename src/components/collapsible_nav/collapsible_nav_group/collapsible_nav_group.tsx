@@ -164,6 +164,7 @@ export const EuiCollapsibleNavGroup: FunctionComponent<EuiCollapsibleNavGroupPro
         buttonContent={titleContent}
         initialIsOpen={true}
         arrowDisplay="right"
+        arrowProps={{ color: background === 'dark' ? 'ghost' : 'text' }}
         {...rest}
       >
         {content}

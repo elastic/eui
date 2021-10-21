@@ -5,33 +5,26 @@ import findIndex from 'lodash/findIndex';
 import {
   EuiCollapsibleNav,
   EuiCollapsibleNavGroup,
-} from '../../../../src/components/collapsible_nav';
-import {
   EuiHeaderSectionItemButton,
   EuiHeaderLogo,
   EuiHeader,
-} from '../../../../src/components/header';
-import { EuiIcon } from '../../../../src/components/icon';
-import { EuiButtonEmpty } from '../../../../src/components/button';
-import { EuiPageTemplate } from '../../../../src/components/page';
-import {
+  EuiIcon,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiPageTemplate,
   EuiPinnableListGroup,
-  EuiListGroupItem,
   EuiPinnableListGroupItemProps,
-} from '../../../../src/components/list_group';
-import { EuiFlexItem } from '../../../../src/components/flex';
-import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
+  EuiFlexItem,
+  EuiHorizontalRule,
+  EuiImage,
+  EuiListGroup,
+  useGeneratedHtmlId,
+} from '../../../../src';
 
-import {
-  DeploymentsGroup,
-  KibanaNavLinks,
-  SecurityGroup,
-} from './collapsible_nav_list';
-import { EuiShowFor } from '../../../../src/components/responsive';
-import { EuiImage } from '../../../../src/components/image';
+import { KibanaNavLinks, SecurityGroup } from './collapsible_nav_list';
+
 import contentSvg from '../../images/content.svg';
 import { useExitPath } from '../../services/routing/routing';
-import { useGeneratedHtmlId } from '../../../../src/services';
 
 const TopLinks: EuiPinnableListGroupItemProps[] = [
   {
@@ -61,9 +54,6 @@ const LearnLinks: EuiPinnableListGroupItemProps[] = [
 const CollapsibleNavAll = () => {
   const exitPath = useExitPath();
   const [navIsOpen, setNavIsOpen] = useState(true);
-  const [navIsDocked, setNavIsDocked] = useState(
-    JSON.parse(String(localStorage.getItem('nav2IsDocked'))) || false
-  );
 
   /**
    * Accordion toggling
@@ -143,119 +133,142 @@ const CollapsibleNavAll = () => {
 
   const collapsibleNavId = useGeneratedHtmlId({ prefix: 'collapsibleNav' });
 
-  const collapsibleNav = () => {
-    return (
-      <EuiCollapsibleNav
-        id={collapsibleNavId}
-        aria-label="Main navigation"
-        isOpen={navIsOpen}
-        isDocked={navIsDocked}
-        button={
-          <EuiHeaderSectionItemButton
-            aria-label="Toggle main navigation"
-            onClick={() => setNavIsOpen(!navIsOpen)}
-          >
-            <EuiIcon type={'menu'} size="m" aria-hidden="true" />
-          </EuiHeaderSectionItemButton>
-        }
-        onClose={() => setNavIsOpen(false)}
-      >
-        {/* Dark deployments section */}
-        <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
-          {DeploymentsGroup}
-        </EuiFlexItem>
+  const collapsibleNav = (
+    <EuiCollapsibleNav
+      id={collapsibleNavId}
+      aria-label="Main navigation"
+      isOpen={navIsOpen}
+      button={
+        <EuiHeaderSectionItemButton
+          aria-label="Toggle main navigation"
+          onClick={() => setNavIsOpen(!navIsOpen)}
+        >
+          <EuiIcon type={'menu'} size="m" aria-hidden="true" />
+        </EuiHeaderSectionItemButton>
+      }
+      onClose={() => setNavIsOpen(false)}
+    >
+      {/* Dark deployments section */}
+      <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
+        <EuiCollapsibleNavGroup isCollapsible={false} background="dark">
+          <EuiListGroup
+            color="ghost"
+            maxWidth="none"
+            gutterSize="none"
+            size="s"
+            listItems={[
+              {
+                label: 'Manage deployment',
+                href: '#',
+                iconType: 'logoCloud',
+                iconProps: {
+                  color: 'ghost',
+                },
+              },
+            ]}
+          />
+        </EuiCollapsibleNavGroup>
+      </EuiFlexItem>
 
-        {/* Shaded pinned section always with a home item */}
-        <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
-          <EuiCollapsibleNavGroup
-            background="light"
-            className="eui-yScroll"
-            style={{ maxHeight: '40vh' }}
-          >
-            <EuiPinnableListGroup
-              aria-label="Pinned links" // A11y : Since this group doesn't have a visible `title` it should be provided an accessible description
-              listItems={alterLinksWithCurrentState(TopLinks).concat(
-                alterLinksWithCurrentState(pinnedItems, true)
-              )}
-              unpinTitle={addLinkNameToUnpinTitle}
-              onPinClick={removePin}
-              maxWidth="none"
-              color="text"
-              gutterSize="none"
-              size="s"
-            />
-          </EuiCollapsibleNavGroup>
-        </EuiFlexItem>
+      {/* Shaded pinned section always with a home item */}
+      <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
+        <EuiCollapsibleNavGroup
+          background="light"
+          className="eui-yScroll"
+          style={{ maxHeight: '40vh' }}
+        >
+          <EuiPinnableListGroup
+            aria-label="Pinned links" // A11y : Since this group doesn't have a visible `title` it should be provided an accessible description
+            listItems={alterLinksWithCurrentState(TopLinks).concat(
+              alterLinksWithCurrentState(pinnedItems, true)
+            )}
+            unpinTitle={addLinkNameToUnpinTitle}
+            onPinClick={removePin}
+            maxWidth="none"
+            color="text"
+            gutterSize="none"
+            size="s"
+          />
+        </EuiCollapsibleNavGroup>
+      </EuiFlexItem>
 
-        <EuiHorizontalRule margin="none" />
+      <EuiHorizontalRule margin="none" />
 
-        {/* BOTTOM */}
-        <EuiFlexItem className="eui-yScroll">
-          {/* Kibana section */}
-          <EuiCollapsibleNavGroup
-            title="Kibana"
-            iconType="logoKibana"
-            isCollapsible={true}
-            initialIsOpen={openGroups.includes('Kibana')}
-            onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Kibana')}
-          >
-            <EuiPinnableListGroup
-              aria-label="Kibana" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
-              listItems={alterLinksWithCurrentState(KibanaLinks)}
-              pinTitle={addLinkNameToPinTitle}
-              onPinClick={addPin}
-              maxWidth="none"
-              color="subdued"
-              gutterSize="none"
-              size="s"
-            />
-          </EuiCollapsibleNavGroup>
+      {/* BOTTOM */}
+      <EuiFlexItem className="eui-yScroll">
+        {/* Kibana section */}
+        <EuiCollapsibleNavGroup
+          title={
+            <a
+              className="eui-textInheritColor"
+              href="#/navigation/collapsible-nav"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Kibana
+            </a>
+          }
+          buttonElement="div"
+          iconType="logoKibana"
+          isCollapsible={true}
+          initialIsOpen={openGroups.includes('Kibana')}
+          onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Kibana')}
+        >
+          <EuiPinnableListGroup
+            aria-label="Kibana" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
+            listItems={alterLinksWithCurrentState(KibanaLinks)}
+            pinTitle={addLinkNameToPinTitle}
+            onPinClick={addPin}
+            maxWidth="none"
+            color="subdued"
+            gutterSize="none"
+            size="s"
+          />
+        </EuiCollapsibleNavGroup>
 
-          {/* Security callout */}
-          {SecurityGroup}
+        {/* Security callout */}
+        {SecurityGroup}
 
-          {/* Learn section */}
-          <EuiCollapsibleNavGroup
-            title="Learn"
-            iconType="training"
-            isCollapsible={true}
-            initialIsOpen={openGroups.includes('Learn')}
-            onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Learn')}
-          >
-            <EuiPinnableListGroup
-              aria-label="Learn" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
-              listItems={alterLinksWithCurrentState(LearnLinks)}
-              pinTitle={addLinkNameToPinTitle}
-              onPinClick={addPin}
-              maxWidth="none"
-              color="subdued"
-              gutterSize="none"
-              size="s"
-            />
-          </EuiCollapsibleNavGroup>
+        {/* Learn section */}
+        <EuiCollapsibleNavGroup
+          title={
+            <a
+              className="eui-textInheritColor"
+              href="#/navigation/collapsible-nav"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Training
+            </a>
+          }
+          buttonElement="div"
+          iconType="training"
+          isCollapsible={true}
+          initialIsOpen={openGroups.includes('Learn')}
+          onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Learn')}
+        >
+          <EuiPinnableListGroup
+            aria-label="Learn" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
+            listItems={alterLinksWithCurrentState(LearnLinks)}
+            pinTitle={addLinkNameToPinTitle}
+            onPinClick={addPin}
+            maxWidth="none"
+            color="subdued"
+            gutterSize="none"
+            size="s"
+          />
+        </EuiCollapsibleNavGroup>
+      </EuiFlexItem>
 
-          {/* Docking button only for larger screens that can support it*/}
-          <EuiShowFor sizes={['l', 'xl']}>
-            <EuiCollapsibleNavGroup>
-              <EuiListGroupItem
-                size="xs"
-                color="subdued"
-                label={`${navIsDocked ? 'Undock' : 'Dock'} navigation`}
-                onClick={() => {
-                  setNavIsDocked(!navIsDocked);
-                  localStorage.setItem(
-                    'nav2IsDocked',
-                    JSON.stringify(!navIsDocked)
-                  );
-                }}
-                iconType={navIsDocked ? 'lock' : 'lockOpen'}
-              />
-            </EuiCollapsibleNavGroup>
-          </EuiShowFor>
-        </EuiFlexItem>
-      </EuiCollapsibleNav>
-    );
-  };
+      <EuiFlexItem grow={false}>
+        {/* Span fakes the nav group into not being the first item and therefore adding a top border */}
+        <span />
+        <EuiCollapsibleNavGroup>
+          <EuiButton fill fullWidth iconType="plusInCircleFilled">
+            Add data
+          </EuiButton>
+        </EuiCollapsibleNavGroup>
+      </EuiFlexItem>
+    </EuiCollapsibleNav>
+  );
 
   const leftSectionItems = [
     collapsibleNav,

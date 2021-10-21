@@ -34,7 +34,7 @@ interface EuiTableRowCellSharedPropsShape {
    */
   align?: HorizontalAlignment;
   /**
-   * Don't allow line breaks within cells
+   * _Should only be used for action cells_
    */
   showOnHover?: boolean;
   /**
@@ -44,13 +44,14 @@ interface EuiTableRowCellSharedPropsShape {
    */
   textOnly?: boolean;
   /**
-   * _Should only be used for action cells_
+   * Don't allow line breaks within cells
    */
   truncateText?: boolean;
-  width?: string | number;
+  width?: CSSProperties['width'];
 }
 
-export interface EuiTableRowCellMobileOptionsShape {
+export interface EuiTableRowCellMobileOptionsShape
+  extends EuiTableRowCellSharedPropsShape {
   /**
    * If false, will not render the cell at all for mobile
    */
@@ -74,6 +75,7 @@ export interface EuiTableRowCellMobileOptionsShape {
    */
   enlarge?: boolean;
   /**
+   * _DEPRECATED: use `mobileOptions.width = '100%'`_
    * Allocates 100% of the width of the container in mobile view
    * (typically cells are contained to 50%)
    */
@@ -84,55 +86,50 @@ export interface EuiTableRowCellMobileOptionsShape {
   width?: CSSProperties['width'];
 }
 
-export interface EuiTableRowCellProps {
+export interface EuiTableRowCellProps extends EuiTableRowCellSharedPropsShape {
+  /**
+   * Vertical alignment of the content in the cell
+   */
+  valign?: TdHTMLAttributes<HTMLTableCellElement>['valign'];
+  /**
+   * Indicates whether the cell should be marked as the heading for its row
+   */
+  setScopeRow?: boolean;
   /**
    * Indicates if the column is dedicated to icon-only actions (currently
    * affects mobile only)
    */
   hasActions?: boolean;
   /**
-   * _DEPRECATED: use `mobileOptions.header`_
-   * The column's header title for use in mobile view (will be added as a
-   * data-attr)
-   */
-  header?: string;
-  /**
-   * _DEPRECATED: use `mobileOptions.show = false`_
-   * Indicates if the column should not show for mobile users (typically
-   * hidden because a custom mobile header utilizes the column's contents)
-   */
-  hideForMobile?: boolean;
-  /**
    * Indicates if the column is dedicated as the expandable row toggle
    */
   isExpander?: boolean;
   /**
+   * Mobile options for displaying differently at small screens;
+   * See #EuiTableRowCellMobileOptionsShape
+   */
+  mobileOptions?: EuiTableRowCellMobileOptionsShape;
+  /**
+   * _DEPRECATED: use `mobileOptions.header`_
+   */
+  header?: string;
+  /**
+   * _DEPRECATED: use `mobileOptions.show = false`_
+   */
+  hideForMobile?: boolean;
+  /**
    * _DEPRECATED: use `mobileOptions.fullWidth`_
-   * Allocates 100% of the width of the container in mobile view
-   * (typically cells are contained to 50%)
    */
   isMobileFullWidth?: boolean;
   /**
    * _DEPRECATED: use `mobileOptions.only = true & mobileOptions.header = * false`_
-   * Indicates if the column was created to be the row's heading in mobile
-   * view.  It won't display column's header inline and it the column will
-   * be hidden at larger screens)
    */
   isMobileHeader?: boolean;
-  /**
-   * Mobile options for displaying differently at small screens
-   */
-  mobileOptions?: EuiTableRowCellMobileOptionsShape &
-    EuiTableRowCellSharedPropsShape;
-  /**
-   * Indicates whether the cell should be marked as the heading for its row
-   */
-  setScopeRow?: boolean;
 }
 
 type Props = CommonProps &
-  TdHTMLAttributes<HTMLTableCellElement> &
-  EuiTableRowCellSharedPropsShape &
+  // Omitting valign and re-adding in EuiTableRowCellProps so it shows up in the props table
+  Omit<TdHTMLAttributes<HTMLTableCellElement>, 'valign'> &
   EuiTableRowCellProps;
 
 export const EuiTableRowCell: FunctionComponent<Props> = ({
@@ -145,6 +142,9 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   textOnly = true,
   hasActions,
   isExpander,
+  style,
+  width,
+  valign = 'middle',
   mobileOptions = {
     show: true,
   },
@@ -153,8 +153,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   hideForMobile,
   isMobileHeader,
   isMobileFullWidth,
-  style,
-  width,
   ...rest
 }) => {
   const cellClasses = classNames('euiTableRowCell', {
@@ -165,6 +163,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
       mobileOptions.enlarge || isMobileHeader,
     'euiTableRowCell--isMobileFullWidth':
       mobileOptions.fullWidth || isMobileFullWidth || isMobileHeader,
+    [`euiTableRowCell--${valign}`]: valign,
   });
 
   const contentClasses = classNames('euiTableCellContent', className, {
@@ -183,9 +182,9 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     'euiTableCellContent--alignCenter':
       mobileOptions.align === CENTER_ALIGNMENT || align === RIGHT_ALIGNMENT,
     'euiTableCellContent--showOnHover':
-      mobileOptions.showOnHover || showOnHover,
+      mobileOptions.showOnHover ?? showOnHover,
     'euiTableCellContent--truncateText':
-      mobileOptions.truncateText || truncateText,
+      mobileOptions.truncateText ?? truncateText,
     // We're doing this rigamarole instead of creating `euiTableCellContent--textOnly` for BWC
     // purposes for the time-being.
     'euiTableCellContent--overflowingContent':

@@ -84,7 +84,7 @@ export const Table = () => {
         header: false,
         only: true,
         enlarge: true,
-        fullWidth: true,
+        width: '100%',
       },
       render: (name, item) => (
         <EuiFlexGroup responsive={false} alignItems="center">
