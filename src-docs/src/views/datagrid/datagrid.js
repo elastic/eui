@@ -400,6 +400,8 @@ export default () => {
     console.log(eventData);
   });
 
+  const [rowCount, setRowCount] = useState(5);
+
   return (
     <DataContext.Provider value={raw_data}>
       <EuiDataGrid
@@ -407,18 +409,24 @@ export default () => {
         columns={columns}
         columnVisibility={{ visibleColumns, setVisibleColumns }}
         trailingControlColumns={trailingControlColumns}
-        rowCount={raw_data.length}
+        rowCount={rowCount}
         renderCellValue={renderCellValue}
-        inMemory={{ level: 'sorting' }}
-        sorting={{ columns: sortingColumns, onSort }}
-        pagination={{
-          ...pagination,
-          pageSizeOptions: [10, 50, 100],
-          onChangeItemsPerPage: onChangeItemsPerPage,
-          onChangePage: onChangePage,
-        }}
+        // inMemory={{ level: 'sorting' }}
+        // sorting={{ columns: sortingColumns, onSort }}
+        // pagination={{
+        //   ...pagination,
+        //   pageSizeOptions: [10, 50, 100],
+        //   onChangeItemsPerPage: onChangeItemsPerPage,
+        //   onChangePage: onChangePage,
+        // }}
         onColumnResize={onColumnResize.current}
       />
+      <EuiButton onClick={() => setRowCount((rowCount) => rowCount + 5)}>
+        +5
+      </EuiButton>
+      <EuiButton onClick={() => setRowCount((rowCount) => rowCount - 5)}>
+        -5
+      </EuiButton>
     </DataContext.Provider>
   );
 };
