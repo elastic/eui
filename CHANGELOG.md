@@ -1,6 +1,7 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added styling support for `valign` prop on `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
+- Fixed an issue with `EuiSuggest` global filter bar buttons having focusable child elements ([#5311]https://github.com/elastic/eui/pull/5311)
 
 **Bug fixes**
 
