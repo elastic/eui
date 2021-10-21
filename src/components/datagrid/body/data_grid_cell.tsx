@@ -194,28 +194,24 @@ export class EuiDataGridCell extends Component<
     }
   };
 
-  recalculateRowHeight() {
-    const cellRef = this.cellRef.current;
-    const { getRowHeight, rowHeightUtils, rowHeightsOptions } = this.props;
+  setAutoRowHeight = () => {
+    const { rowHeightUtils, rowHeightsOptions, rowIndex } = this.props;
+    if (
+      this.cellContentsRef &&
+      rowHeightUtils &&
+      rowHeightUtils.isAutoHeight(rowIndex, rowHeightsOptions)
+    ) {
+      const { colIndex, visibleRowIndex } = this.props;
+      const rowHeight = this.cellContentsRef.offsetHeight;
 
-    if (cellRef && getRowHeight && rowHeightUtils && rowHeightsOptions) {
-      const { rowIndex, colIndex, visibleRowIndex } = this.props;
-
-      const isAutoHeight = rowHeightUtils.isAutoHeight(
+      rowHeightUtils.setRowHeight(
         rowIndex,
-        rowHeightsOptions
+        colIndex,
+        rowHeight,
+        visibleRowIndex
       );
-
-      if (isAutoHeight) {
-        rowHeightUtils.setRowHeight(
-          rowIndex,
-          colIndex,
-          this.cellContentsRef?.offsetHeight,
-          visibleRowIndex
-        );
-      }
     }
-  }
+  };
 
   componentDidMount() {
     this.unsubscribeCell = this.context.onFocusUpdate(
@@ -240,7 +236,7 @@ export class EuiDataGridCell extends Component<
   }
 
   componentDidUpdate(prevProps: EuiDataGridCellProps) {
-    this.recalculateRowHeight();
+    this.setAutoRowHeight();
 
     if (this.props.columnId !== prevProps.columnId) {
       this.setCellProps({});
@@ -291,27 +287,10 @@ export class EuiDataGridCell extends Component<
 
   setCellContentsRef = (ref: HTMLDivElement | null) => {
     this.cellContentsRef = ref;
-    const { rowHeightUtils, rowHeightsOptions, rowIndex } = this.props;
-    if (
-      hasResizeObserver &&
-      rowHeightUtils &&
-      rowHeightsOptions &&
-      rowHeightUtils.isAutoHeight(rowIndex, rowHeightsOptions)
-    ) {
-      if (ref) {
-        const { colIndex, visibleRowIndex } = this.props;
-
-        const setRowHeight = (rowHeight: number) =>
-          rowHeightUtils.setRowHeight(
-            rowIndex,
-            colIndex,
-            rowHeight,
-            visibleRowIndex
-          );
-        this.contentObserver = this.observeHeight(ref, setRowHeight);
-      } else if (this.contentObserver) {
-        this.contentObserver.disconnect();
-      }
+    if (ref && hasResizeObserver) {
+      this.contentObserver = this.observeHeight(ref, this.setAutoRowHeight);
+    } else if (this.contentObserver) {
+      this.contentObserver.disconnect();
     }
     this.preventTabbing();
   };

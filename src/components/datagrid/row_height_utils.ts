@@ -109,13 +109,13 @@ export class RowHeightUtils {
 
   isAutoHeight(
     rowIndex: number,
-    rowHeightsOptions: EuiDataGridRowHeightsOptions
+    rowHeightsOptions?: EuiDataGridRowHeightsOptions
   ) {
-    if (rowHeightsOptions.rowHeights?.[rowIndex] === AUTO_HEIGHT) {
+    if (rowHeightsOptions?.rowHeights?.[rowIndex] === AUTO_HEIGHT) {
       return true;
     }
 
-    if (rowHeightsOptions.defaultHeight === AUTO_HEIGHT) {
+    if (rowHeightsOptions?.defaultHeight === AUTO_HEIGHT) {
       return true;
     }
 
