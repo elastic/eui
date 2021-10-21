@@ -18,16 +18,21 @@ import {
   EuiDataGridColumn,
 } from './data_grid_types';
 
-const cellPaddingsToClassMap: Record<EuiDataGridStyleCellPaddings, string> = {
-  s: 'euiDataGridRowCell--paddingSmall',
-  m: '',
-  l: 'euiDataGridRowCell--paddingLarge',
+// TODO: Once JS variables are available, use them here instead of hard-coded maps
+const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, string> = {
+  s: '4px',
+  m: '6px',
+  l: '8px',
 };
-
-const fontSizesToClassMap: Record<EuiDataGridStyleFontSizes, string> = {
-  s: 'euiDataGridRowCell--fontSizeSmall',
-  m: '',
-  l: 'euiDataGridRowCell--fontSizeLarge',
+const fontSizesMap: Record<EuiDataGridStyleFontSizes, string> = {
+  s: '12px',
+  m: '14px',
+  l: '16px',
+};
+const lineHeightsMap: Record<EuiDataGridStyleFontSizes, string> = {
+  s: '1.14286rem',
+  m: '1.71429rem',
+  l: '1.71429rem',
 };
 
 function getNumberFromPx(style?: string) {
@@ -49,7 +54,6 @@ export class RowHeightUtils {
     paddingBottom: 0,
     lineHeight: 1,
   };
-  private fakeCell = document.createElement('div');
   private heightsCache = new Map<number, Map<string, number>>();
   private timerId: any;
   private grid?: Grid;
@@ -158,23 +162,20 @@ export class RowHeightUtils {
     gridStyles: EuiDataGridStyle,
     lineHeight: string | undefined
   ) {
-    this.fakeCell.className = `
-      euiDataGridRowCell
-      ${cellPaddingsToClassMap[gridStyles.cellPadding!]}
-      ${fontSizesToClassMap[gridStyles.fontSize!]}
-    `;
+    const fakeCell = document.createElement('div');
+    fakeCell.style.padding = cellPaddingsMap[gridStyles.cellPadding!];
+    fakeCell.style.fontSize = fontSizesMap[gridStyles.fontSize!];
+    fakeCell.style.lineHeight =
+      lineHeight || lineHeightsMap[gridStyles.fontSize!];
 
-    // @ts-ignore it is valid to set `lineHeight` to undefined
-    this.fakeCell.style.lineHeight = lineHeight;
-
-    document.body.appendChild(this.fakeCell);
-    const allStyles = getComputedStyle(this.fakeCell);
+    document.body.appendChild(fakeCell);
+    const allStyles = getComputedStyle(fakeCell);
     this.styles = {
       paddingTop: getNumberFromPx(allStyles.paddingTop),
       paddingBottom: getNumberFromPx(allStyles.paddingBottom),
       lineHeight: getNumberFromPx(allStyles.lineHeight),
     };
-    document.body.removeChild(this.fakeCell);
+    document.body.removeChild(fakeCell);
   }
 
   getComputedCellStyles() {
