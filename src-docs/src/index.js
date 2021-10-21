@@ -6,8 +6,8 @@ import { Helmet } from 'react-helmet';
 
 import configureStore, { history } from './store/configure_store';
 
-import { AppContainer } from './views/app_container';
 import { AppContext } from './views/app_context';
+import { AppView } from './views/app_view';
 import { HomeView } from './views/home/home_view';
 import { NotFoundView } from './views/not_found/not_found_view';
 import { registerTheme, ExampleContext } from './services';
@@ -72,14 +72,19 @@ ReactDOM.render(
                         return <Redirect push to={url} />;
                       } else {
                         return (
-                          <AppContainer
+                          <AppView
                             currentRoute={{ name, path, sections, isNew }}
                           >
-                            <>
-                              {meta}
-                              {createElement(component, {})}
-                            </>
-                          </AppContainer>
+                            {({ theme }) => (
+                              <>
+                                {meta}
+                                {createElement(component, {
+                                  selectedTheme: theme,
+                                  title: name,
+                                })}
+                              </>
+                            )}
+                          </AppView>
                         );
                       }
                     }}

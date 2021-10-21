@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleLocale as _toggleLocale } from '../actions';
 import { GuidePageChrome, ThemeContext, GuidePageHeader } from '../components';
+import { getLocale, getRoutes } from '../store';
 
 import {
   EuiErrorBoundary,
@@ -12,57 +15,16 @@ import { keys } from '../../../src/services';
 
 import { LinkWrapper } from './link_wrapper';
 
-export class AppView extends Component {
-  componentDidUpdate(prevProps) {
-    if (prevProps.currentRoute.path !== this.props.currentRoute.path) {
-      window.scrollTo(0, 0);
-    }
-  }
+export const AppView = ({ children, currentRoute }) => {
+  const dispatch = useDispatch();
+  const toggleLocale = (locale) => dispatch(_toggleLocale(locale));
+  const locale = useSelector((state) => getLocale(state));
+  const routes = useSelector((state) => getRoutes(state));
+  const { theme } = useContext(ThemeContext);
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.onKeydown);
-  }
+  const prevPath = useRef(currentRoute.path);
 
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.onKeydown);
-  }
-
-  render() {
-    const { children, currentRoute, toggleLocale, locale, routes } = this.props;
-    const { navigation } = routes;
-
-    return (
-      <ThemeContext.Consumer>
-        {({ theme }) => (
-          <LinkWrapper>
-            <GuidePageHeader
-              onToggleLocale={toggleLocale}
-              selectedLocale={locale}
-            />
-            <EuiPage paddingSize="none">
-              <EuiErrorBoundary>
-                <GuidePageChrome
-                  currentRoute={currentRoute}
-                  navigation={navigation}
-                  onToggleLocale={toggleLocale}
-                  selectedLocale={locale}
-                />
-              </EuiErrorBoundary>
-
-              <EuiPageBody panelled>
-                {React.cloneElement(children, {
-                  selectedTheme: theme,
-                  title: currentRoute.name,
-                })}
-              </EuiPageBody>
-            </EuiPage>
-          </LinkWrapper>
-        )}
-      </ThemeContext.Consumer>
-    );
-  }
-
-  onKeydown = (event) => {
+  const onKeydown = (event) => {
     if (event.target !== document.body) {
       return;
     }
@@ -70,8 +32,6 @@ export class AppView extends Component {
     if (event.metaKey) {
       return;
     }
-
-    const { routes, currentRoute } = this.props;
 
     if (event.key === keys.ARROW_LEFT) {
       pushRoute(routes.getPreviousRoute);
@@ -90,14 +50,44 @@ export class AppView extends Component {
       }
     }
   };
-}
+
+  useEffect(() => {
+    document.addEventListener('keydown', onKeydown);
+
+    return () => {
+      document.removeEventListener('keydown', onKeydown);
+    };
+  }, []); // eslint-disable-line
+
+  useEffect(() => {
+    if (prevPath.current !== currentRoute.path) {
+      window.scrollTo(0, 0);
+      prevPath.current = currentRoute.path;
+    }
+  }, [currentRoute.path]);
+
+  return (
+    <LinkWrapper>
+      <GuidePageHeader onToggleLocale={toggleLocale} selectedLocale={locale} />
+      <EuiPage paddingSize="none">
+        <EuiErrorBoundary>
+          <GuidePageChrome
+            currentRoute={currentRoute}
+            navigation={routes.navigation}
+            onToggleLocale={toggleLocale}
+            selectedLocale={locale}
+          />
+        </EuiErrorBoundary>
+
+        <EuiPageBody panelled>{children({ theme })}</EuiPageBody>
+      </EuiPage>
+    </LinkWrapper>
+  );
+};
 
 AppView.propTypes = {
   children: PropTypes.any,
   currentRoute: PropTypes.object.isRequired,
-  locale: PropTypes.string.isRequired,
-  toggleLocale: PropTypes.func.isRequired,
-  routes: PropTypes.object.isRequired,
 };
 
 AppView.defaultProps = {
