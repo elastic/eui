@@ -177,7 +177,7 @@ export class EuiSelectableListItem extends Component<
         <EuiScreenReaderOnly>
           <span>
             <EuiI18n
-              token="euiSelectableListItem.includedOptionInstructions"
+              token="euiSelectableListItem.checkedOptionInstructions"
               default="To uncheck this option, press enter."
             />
           </span>
