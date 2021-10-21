@@ -4,7 +4,6 @@ import {
   EuiEmptyPrompt,
   EuiButton,
   EuiText,
-  EuiIcon,
   EuiLink,
   EuiTitle,
 } from '../../../../src/components';
@@ -32,8 +31,8 @@ export default () => (
           <h3>Want to learn more?</h3>
         </EuiTitle>
         <EuiText size="s">
-          <EuiLink href="#" color="subdued">
-            <EuiIcon type="documentation" /> Read documentation
+          <EuiLink href="#" target="_blank">
+            Read documentation
           </EuiLink>
         </EuiText>
       </>

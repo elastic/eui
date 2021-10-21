@@ -3,11 +3,9 @@ import React from 'react';
 import {
   EuiEmptyPrompt,
   EuiButton,
-  EuiIcon,
   EuiTitle,
-  EuiText,
-  EuiImage,
   EuiLink,
+  EuiImage,
 } from '../../../../src/components';
 
 import illustration from '../../images/emptyPrompt_illustration.svg';
@@ -40,13 +38,11 @@ export default () => {
         footer={
           <>
             <EuiTitle size="xxs">
-              <h3>Want to learn more?</h3>
-            </EuiTitle>
-            <EuiText size="s">
-              <EuiLink href="#" color="subdued">
-                <EuiIcon type="documentation" /> Read documentation
-              </EuiLink>
-            </EuiText>
+              <span>Want to learn more?</span>
+            </EuiTitle>{' '}
+            <EuiLink href="#" target="_blank">
+              Read documentation
+            </EuiLink>
           </>
         }
       />

@@ -38,7 +38,7 @@ export default () => (
     <EuiFlexGroup>
       <EuiFlexItem>
         <div style={{ textAlign: 'center' }}>
-          <EuiImage alt="button placement in an input modal" url={imgAnatomy} />
+          <EuiImage alt="Anatomy of an empty state" url={imgAnatomy} />
         </div>
       </EuiFlexItem>
       <EuiFlexItem>

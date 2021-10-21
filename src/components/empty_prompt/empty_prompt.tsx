@@ -94,6 +94,8 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   footer,
   ...rest
 }) => {
+  const isVerticalLayout = layout === 'vertical';
+
   let iconNode;
   if (icon) {
     iconNode = icon;
@@ -126,9 +128,9 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
       actionsRow = (
         <EuiFlexGroup
           gutterSize="m"
-          alignItems="center"
-          justifyContent="center"
-          direction="column"
+          alignItems={isVerticalLayout ? 'center' : 'flexStart'}
+          justifyContent={isVerticalLayout ? 'center' : 'flexStart'}
+          direction={isVerticalLayout ? 'column' : 'row'}
         >
           {actions.map((action, index) => (
             <EuiFlexItem key={index} grow={false}>
@@ -156,8 +158,6 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
       {actionsNode}
     </>
   );
-
-  const isVerticalLayout = layout === 'vertical';
 
   const classes = classNames(
     'euiEmptyPrompt',

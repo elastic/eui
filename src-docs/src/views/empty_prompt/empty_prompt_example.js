@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiEmptyPrompt, EuiText } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiEmptyPrompt,
+  EuiText,
+  EuiSpacer,
+} from '../../../../src/components';
 
 import { COLORS } from '../../../../src/components/panel/panel';
 
@@ -12,6 +17,7 @@ import Guidelines from './guidelines';
 import emptyPromptConfig from './playground';
 
 import { PageDemo } from './_page_demo';
+import PageBackgroundColors from './_page_backround_colors';
 
 import EmptyPrompt from './empty_prompt';
 const emptyPromptSource = require('!!raw-loader!./empty_prompt');
@@ -85,8 +91,8 @@ const statesSource = require('!!raw-loader!./empty_prompt_states');
 import PageTemplate from './empty_prompt_page_template';
 const pageTemplateSource = require('!!raw-loader!./empty_prompt_page_template');
 
-import Sink from './empty_prompt_sink';
-const sinkSource = require('!!raw-loader!./empty_prompt_sink');
+import MultipleTypes from './empty_prompt_multiple_types';
+const multipleTypesSource = require('!!raw-loader!./empty_prompt_multiple_types');
 
 export const EmptyPromptExample = {
   title: 'Empty prompt',
@@ -171,13 +177,17 @@ export const EmptyPromptExample = {
           <p>
             You can supply a layout of either <EuiCode>horizontal</EuiCode> or{' '}
             <EuiCode>vertical</EuiCode> with the default being{' '}
-            <EuiCode>vertical</EuiCode>. Only use the{' '}
-            <EuiCode>horizontal</EuiCode> layout when you can provide an
-            illustration. When you want to provide an icon or no icon at all,
-            use the <EuiCode>vertical</EuiCode> layout.
+            <EuiCode>vertical</EuiCode>. When creating empty states we want the
+            content to be short and straight to the point. So most of the time,
+            the <EuiCode>vertical</EuiCode> layout is enough. All the content
+            will be center aligned and this type of text alignment only works
+            with small content.
           </p>
           <p>
-            We recommend when adding a custom illustration to use it with a{' '}
+            When you have longer texts or multiple call to actions, you can opt
+            out to use the <EuiCode>horizontal</EuiCode> layout. However this
+            layout only works when you can provide an illustration. When adding
+            a custom illustration, we recommend using it with a{' '}
             <Link to="/display/image">
               <strong>EuiImage</strong>
             </Link>{' '}
@@ -229,12 +239,22 @@ export const EmptyPromptExample = {
         },
       ],
       text: (
-        <p>
-          This example shows how to use the <strong>EuiEmptyPrompt</strong> in a
-          page template. We recommend to set the color to{' '}
-          <EuiCode>{'"plain"'}</EuiCode> and the <EuiCode>hasBorder</EuiCode>{' '}
-          prop to <EuiCode>true</EuiCode>.
-        </p>
+        <>
+          <p>
+            When using a <strong>EuiEmptyPrompt</strong> in page template pay
+            attention to the background color of the page. This color will
+            determine which <EuiCode>color</EuiCode> prop you should use to
+            ensure consistency across our Elastic products.
+          </p>
+          <PageBackgroundColors />
+
+          <EuiSpacer size="xl" />
+          <p>
+            The following example shows the usage of a{' '}
+            <strong>EuiEmptyPrompt</strong> in a page template where the
+            background is <EuiCode>euiColorEmptyShade</EuiCode>.
+          </p>
+        </>
       ),
       props: { EuiEmptyPrompt },
       demo: <PageDemo slug="full-page" template={PageTemplate} />,
@@ -317,23 +337,25 @@ export const EmptyPromptExample = {
       ),
     },
     {
-      title: 'Kitchen sink',
+      title: 'For multiple types of empty states',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: sinkSource,
+          code: multipleTypesSource,
         },
       ],
       text: (
         <>
           <p>
-            This example shows the <EuiCode>layout</EuiCode> and{' '}
-            <EuiCode>color</EuiCode> props usage.
+            The following example showcases different types of empty states that
+            you can create with the <strong>EuiEmptyPrompt</strong>. For a full
+            list of types of empty states see the{' '}
+            <Link to="/guidelines/empty-prompt">usage guidelines</Link>.
           </p>
         </>
       ),
       props: { EuiEmptyPrompt },
-      demo: <Sink />,
+      demo: <MultipleTypes />,
     },
   ],
   guidelines: <Guidelines />,
