@@ -157,19 +157,40 @@ describe('EuiDataGridCell', () => {
   });
 
   describe('componentDidUpdate', () => {
-    it('recalculates row height on every update', () => {
-      const { isAutoHeight, setRowHeight } = mockRowHeightUtils;
-      (isAutoHeight as jest.Mock).mockImplementation(() => true);
-
-      const component = mountEuiDataGridCellWithContext({
-        rowHeightsOptions: { defaultHeight: 'auto' },
-        getRowHeight: jest.fn(() => 50),
+    describe('setAutoRowHeight', () => {
+      beforeEach(() => {
+        (mockRowHeightUtils.setRowHeight as jest.Mock).mockClear();
+      });
+      afterEach(() => {
+        (mockRowHeightUtils.isAutoHeight as jest.Mock).mockRestore();
       });
 
-      component.setProps({ rowIndex: 2 }); // Trigger any update
-      expect(setRowHeight).toHaveBeenCalled();
+      const triggerUpdate = (component: ReactWrapper) =>
+        component.setProps({ rowIndex: 2 });
 
-      (isAutoHeight as jest.Mock).mockRestore();
+      it('sets the auto row height cache with cell heights on update', () => {
+        (mockRowHeightUtils.isAutoHeight as jest.Mock).mockReturnValue(true);
+
+        const component = mountEuiDataGridCellWithContext({
+          rowHeightsOptions: { defaultHeight: 'auto' },
+          getRowHeight: jest.fn(() => 50),
+        });
+
+        triggerUpdate(component);
+        expect(mockRowHeightUtils.setRowHeight).toHaveBeenCalled();
+      });
+
+      it('does not update the cache if cell height is not auto', () => {
+        (mockRowHeightUtils.isAutoHeight as jest.Mock).mockReturnValue(false);
+
+        const component = mountEuiDataGridCellWithContext({
+          rowHeightsOptions: { defaultHeight: 34 },
+          getRowHeight: jest.fn(() => 50),
+        });
+
+        triggerUpdate(component);
+        expect(mockRowHeightUtils.setRowHeight).not.toHaveBeenCalled();
+      });
     });
 
     it('resets cell props when the cell columnId changes', () => {
