@@ -10,6 +10,8 @@ import {
 
 import { keys } from '../../../src/services';
 
+import { LinkWrapper } from './link_wrapper';
+
 export class AppView extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.currentRoute.path !== this.props.currentRoute.path) {
@@ -32,7 +34,7 @@ export class AppView extends Component {
     return (
       <ThemeContext.Consumer>
         {({ theme }) => (
-          <>
+          <LinkWrapper>
             <GuidePageHeader
               onToggleLocale={toggleLocale}
               selectedLocale={locale}
@@ -54,7 +56,7 @@ export class AppView extends Component {
                 })}
               </EuiPageBody>
             </EuiPage>
-          </>
+          </LinkWrapper>
         )}
       </ThemeContext.Consumer>
     );

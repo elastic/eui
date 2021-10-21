@@ -10,8 +10,6 @@ import { getLocale } from '../store';
 import { EuiContext, EuiProvider } from '../../../src/components';
 import { EUI_THEMES } from '../../../src/themes';
 
-import { LinkWrapper } from './link_wrapper';
-
 import favicon16Prod from '../images/favicon/prod/favicon-16x16.png';
 import favicon32Prod from '../images/favicon/prod/favicon-32x32.png';
 import favicon96Prod from '../images/favicon/prod/favicon-96x96.png';
@@ -24,7 +22,7 @@ const emotionCache = createCache({
   container: document.querySelector('#emotion-global-insert'),
 });
 
-export const AppContext = ({ children, currentRoute }) => {
+export const AppContext = ({ children }) => {
   const { theme } = useContext(ThemeContext);
   const locale = useSelector((state) => getLocale(state));
 
@@ -47,7 +45,6 @@ export const AppContext = ({ children, currentRoute }) => {
       colorMode={theme.includes('light') ? 'light' : 'dark'}
     >
       <Helmet>
-        <title>{`${currentRoute.name} - Elastic UI Framework`}</title>
         <link
           rel="icon"
           type="image/png"
@@ -67,9 +64,7 @@ export const AppContext = ({ children, currentRoute }) => {
           sizes="96x96"
         />
       </Helmet>
-      <EuiContext i18n={i18n}>
-        <LinkWrapper>{children}</LinkWrapper>
-      </EuiContext>
+      <EuiContext i18n={i18n}>{children}</EuiContext>
     </EuiProvider>
   );
 };

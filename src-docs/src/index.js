@@ -2,6 +2,7 @@ import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Switch, Route, Redirect } from 'react-router';
+import { Helmet } from 'react-helmet';
 
 import configureStore, { history } from './store/configure_store';
 
@@ -48,74 +49,81 @@ const routes = [
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider>
-      <Router history={history}>
-        <ScrollToHash />
-        <Switch>
-          {routes.map(
-            ({ name, path, sections, isNew, component, from, to }) => {
-              const mainComponent = (
-                <Route
-                  key={path}
-                  path={`/${path}`}
-                  render={(props) => {
-                    const { location } = props;
-                    // prevents encoded urls with a section id to fail
-                    if (location.pathname.includes('%23')) {
-                      const url = decodeURIComponent(location.pathname);
-                      return <Redirect push to={url} />;
-                    } else {
-                      const currentRoute = { name, path, sections, isNew };
-                      return (
-                        <AppContext currentRoute={currentRoute}>
-                          <AppContainer currentRoute={currentRoute}>
-                            {createElement(component, {})}
+      <AppContext>
+        <Router history={history}>
+          <ScrollToHash />
+          <Switch>
+            {routes.map(
+              ({ name, path, sections, isNew, component, from, to }) => {
+                const meta = (
+                  <Helmet>
+                    <title>{`${name} - Elastic UI Framework`}</title>
+                  </Helmet>
+                );
+                const mainComponent = (
+                  <Route
+                    key={path}
+                    path={`/${path}`}
+                    render={(props) => {
+                      const { location } = props;
+                      // prevents encoded urls with a section id to fail
+                      if (location.pathname.includes('%23')) {
+                        const url = decodeURIComponent(location.pathname);
+                        return <Redirect push to={url} />;
+                      } else {
+                        return (
+                          <AppContainer
+                            currentRoute={{ name, path, sections, isNew }}
+                          >
+                            <>
+                              {meta}
+                              {createElement(component, {})}
+                            </>
                           </AppContainer>
-                        </AppContext>
-                      );
-                    }
-                  }}
-                />
-              );
+                        );
+                      }
+                    }}
+                  />
+                );
 
-              const standaloneSections = (sections || [])
-                .map(({ id, fullScreen }) => {
-                  if (!fullScreen) return undefined;
-                  const { slug, demo } = fullScreen;
-                  const currentRoute = { name, path, sections, isNew };
-                  return (
-                    <Route
-                      key={`/${path}/${slug}`}
-                      path={`/${path}/${slug}`}
-                      render={() => (
-                        <AppContext currentRoute={currentRoute}>
+                const standaloneSections = (sections || [])
+                  .map(({ id, fullScreen }) => {
+                    if (!fullScreen) return undefined;
+                    const { slug, demo } = fullScreen;
+                    return (
+                      <Route
+                        key={`/${path}/${slug}`}
+                        path={`/${path}/${slug}`}
+                        render={() => (
                           <ExampleContext.Provider
                             value={{ parentPath: `/${path}#${id}` }}
                           >
+                            {meta}
                             {demo}
                           </ExampleContext.Provider>
-                        </AppContext>
-                      )}
-                    />
-                  );
-                })
-                .filter((x) => !!x);
+                        )}
+                      />
+                    );
+                  })
+                  .filter((x) => !!x);
 
-              // place standaloneSections before mainComponent so their routes take precedent
-              const routes = [...standaloneSections, mainComponent];
+                // place standaloneSections before mainComponent so their routes take precedent
+                const routes = [...standaloneSections, mainComponent];
 
-              if (from)
-                return [
-                  ...routes,
-                  <Route exact path={`/${from}`}>
-                    <Redirect to={`/${to}`} />
-                  </Route>,
-                ];
-              else if (component) return routes;
-              return null;
-            }
-          )}
-        </Switch>
-      </Router>
+                if (from)
+                  return [
+                    ...routes,
+                    <Route exact path={`/${from}`}>
+                      <Redirect to={`/${to}`} />
+                    </Route>,
+                  ];
+                else if (component) return routes;
+                return null;
+              }
+            )}
+          </Switch>
+        </Router>
+      </AppContext>
     </ThemeProvider>
   </Provider>,
   document.getElementById('guide')
