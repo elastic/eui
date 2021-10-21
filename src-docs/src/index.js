@@ -6,6 +6,7 @@ import { Router, Switch, Route, Redirect } from 'react-router';
 import configureStore, { history } from './store/configure_store';
 
 import { AppContainer } from './views/app_container';
+import { AppContext } from './views/app_context';
 import { HomeView } from './views/home/home_view';
 import { NotFoundView } from './views/not_found/not_found_view';
 import { registerTheme, ExampleContext } from './services';
@@ -17,7 +18,6 @@ import themeAmsterdamLight from './theme_light.scss';
 import themeAmsterdamDark from './theme_dark.scss';
 import { ThemeProvider } from './components/with_theme/theme_context';
 import ScrollToHash from './components/scroll_to_hash';
-import { LinkWrapper } from './views/link_wrapper';
 import { LEGACY_NAME_KEY } from '../../src/themes';
 
 registerTheme('light', [themeAmsterdamLight]);
@@ -64,14 +64,13 @@ ReactDOM.render(
                       const url = decodeURIComponent(location.pathname);
                       return <Redirect push to={url} />;
                     } else {
+                      const currentRoute = { name, path, sections, isNew };
                       return (
-                        <LinkWrapper>
-                          <AppContainer
-                            currentRoute={{ name, path, sections, isNew }}
-                          >
+                        <AppContext currentRoute={currentRoute}>
+                          <AppContainer currentRoute={currentRoute}>
                             {createElement(component, {})}
                           </AppContainer>
-                        </LinkWrapper>
+                        </AppContext>
                       );
                     }
                   }}
@@ -82,16 +81,19 @@ ReactDOM.render(
                 .map(({ id, fullScreen }) => {
                   if (!fullScreen) return undefined;
                   const { slug, demo } = fullScreen;
+                  const currentRoute = { name, path, sections, isNew };
                   return (
                     <Route
                       key={`/${path}/${slug}`}
                       path={`/${path}/${slug}`}
                       render={() => (
-                        <ExampleContext.Provider
-                          value={{ parentPath: `/${path}#${id}` }}
-                        >
-                          {demo}
-                        </ExampleContext.Provider>
+                        <AppContext currentRoute={currentRoute}>
+                          <ExampleContext.Provider
+                            value={{ parentPath: `/${path}#${id}` }}
+                          >
+                            {demo}
+                          </ExampleContext.Provider>
+                        </AppContext>
                       )}
                     />
                   );
