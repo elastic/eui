@@ -167,7 +167,7 @@ export class EuiSelectableListItem extends Component<
         <EuiScreenReaderOnly>
           <span>
             <EuiI18n
-              token="euiSelectableListItem.includedOption"
+              token="euiSelectableListItem.checkedOption"
               default="Checked option."
             />
           </span>
