@@ -1,41 +1,16 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
-import {
-  EuiEmptyPrompt,
-  EuiButton,
-  EuiText,
-  EuiLink,
-  EuiTitle,
-} from '../../../../src/components';
+import { EuiEmptyPrompt, EuiButton } from '../../../../src/components';
 
 export default () => (
   <EuiEmptyPrompt
-    iconType="logoSecurity"
-    title={<h2>No cases</h2>}
-    body={
-      <Fragment>
-        <p>
-          There are no cases to display. Please create a new case or change your
-          filter settings.
-        </p>
-      </Fragment>
-    }
+    iconType="lock"
+    title={<h2>Contact your administrator for access</h2>}
+    body={<p>To view cases in this space, you need additional privileges.</p>}
     actions={
       <EuiButton color="primary" fill>
-        Add new case
+        Go home
       </EuiButton>
-    }
-    footer={
-      <>
-        <EuiTitle size="xxs">
-          <h3>Want to learn more?</h3>
-        </EuiTitle>
-        <EuiText size="s">
-          <EuiLink href="#" target="_blank">
-            Read documentation
-          </EuiLink>
-        </EuiText>
-      </>
     }
   />
 );

@@ -3,14 +3,12 @@ import React, { useState } from 'react';
 import {
   EuiEmptyPrompt,
   EuiButton,
-  EuiTitle,
-  EuiImage,
-  EuiLink,
   EuiSpacer,
   EuiSelect,
+  EuiTitle,
+  EuiText,
+  EuiLink,
 } from '../../../../src/components';
-
-import illustration from '../../images/emptyPrompt_illustration.svg';
 
 export default () => {
   const panelColorsArray = [
@@ -45,40 +43,35 @@ export default () => {
         value={panelColor}
         onChange={(e) => onChangePanelColor(e)}
         compressed
+        aria-label="Empty prompt panel colors"
       />
 
       <EuiSpacer size="l" />
-
       <EuiEmptyPrompt
-        icon={<EuiImage size="l" src={illustration} />}
-        layout="horizontal"
-        title={<h2>Create your first visualization</h2>}
+        iconType="logoSecurity"
+        title={<h2>No cases</h2>}
         color={panelColor}
         body={
-          <>
-            <p>
-              There are no visualizations to display. This tool allows you to
-              create a wide range of charts, graphs, maps, and other graphics.
-            </p>
-            <p>
-              The visualizations you create can be easily shared with your
-              peers.
-            </p>
-          </>
+          <p>
+            There are no cases to display. Please create a new case or change
+            your filter settings.
+          </p>
         }
         actions={
           <EuiButton color="primary" fill>
-            Create visualization
+            Add new case
           </EuiButton>
         }
         footer={
           <>
             <EuiTitle size="xxs">
-              <span>Want to learn more?</span>
-            </EuiTitle>{' '}
-            <EuiLink href="#" target="_blank">
-              Read documentation
-            </EuiLink>
+              <h3>Want to learn more?</h3>
+            </EuiTitle>
+            <EuiText size="s">
+              <EuiLink href="#" target="_blank">
+                Read documentation
+              </EuiLink>
+            </EuiText>
           </>
         }
       />

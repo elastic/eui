@@ -16,8 +16,7 @@ import Guidelines from './guidelines';
 
 import emptyPromptConfig from './playground';
 
-import { PageDemo } from './_page_demo';
-import PageBackgroundColors from './_page_backround_colors';
+import PageBackgroundColors from './_page_background_colors';
 
 import EmptyPrompt from './empty_prompt';
 const emptyPromptSource = require('!!raw-loader!./empty_prompt');
@@ -153,10 +152,10 @@ export const EmptyPromptExample = {
       ],
       text: (
         <Fragment>
-          <p>You can remove parts of the prompt to simplify it.</p>
           <p>
-            You can also provide an array of multiple actions. Be sure to list
-            primary actions first and secondary actions as empty buttons.
+            You can remove parts of the prompt to simplify it. You can also
+            provide an array of multiple actions. Be sure to list primary
+            actions first and secondary actions as empty buttons.
           </p>
         </Fragment>
       ),
@@ -184,10 +183,10 @@ export const EmptyPromptExample = {
             with small content.
           </p>
           <p>
-            When you have longer texts or multiple call to actions, you can opt
-            out to use the <EuiCode>horizontal</EuiCode> layout. However this
-            layout only works when you can provide an illustration. When adding
-            a custom illustration, we recommend using it with a{' '}
+            When you have longer texts or multiple calls to action, you can use
+            the <EuiCode>horizontal</EuiCode> layout. However, this layout only
+            works when you can provide an illustration. For consistency, we
+            recommend using the illustration with a{' '}
             <Link to="/display/image">
               <strong>EuiImage</strong>
             </Link>{' '}
@@ -219,10 +218,9 @@ export const EmptyPromptExample = {
             <EuiCode language="js">{JSON.stringify(COLORS, null, 2)}</EuiCode>.
           </p>
           <p>
-            Make sure to read the{' '}
-            <Link to="/guidelines/empty-prompt">usage guidelines</Link> to
-            better understand what scenarios you should stick to the transparent
-            color or use any other colors.
+            Read the <Link to="/guidelines/empty-prompt">usage guidelines</Link>{' '}
+            to understand better what scenarios you should stick to the
+            transparent color or use any other colors.
           </p>
         </>
       ),
@@ -231,7 +229,7 @@ export const EmptyPromptExample = {
       snippet: panelSnippet,
     },
     {
-      title: 'Usage in page template',
+      title: 'Usage in a page template',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -252,16 +250,12 @@ export const EmptyPromptExample = {
           <p>
             The following example shows the usage of a{' '}
             <strong>EuiEmptyPrompt</strong> in a page template where the
-            background is <EuiCode>euiColorEmptyShade</EuiCode>.
+            background is <EuiCode>euiPageBackgroundColor</EuiCode>.
           </p>
         </>
       ),
       props: { EuiEmptyPrompt },
-      demo: <PageDemo slug="full-page" template={PageTemplate} />,
-      fullScreen: {
-        slug: 'full-page',
-        demo: <PageDemo slug="full-page" template={PageTemplate} fullscreen />,
-      },
+      demo: <PageTemplate />,
     },
     {
       title: 'Loading and error prompts',
@@ -349,7 +343,7 @@ export const EmptyPromptExample = {
           <p>
             The following example showcases different types of empty states that
             you can create with the <strong>EuiEmptyPrompt</strong>. For a full
-            list of types of empty states see the{' '}
+            list see the{' '}
             <Link to="/guidelines/empty-prompt">usage guidelines</Link>.
           </p>
         </>

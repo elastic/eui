@@ -16,18 +16,9 @@ import {
 import illustration from '../../images/emptyPrompt_illustration.svg';
 
 export default () => {
-  const noPermission = (
-    <EuiEmptyPrompt
-      iconType="lock"
-      title={<h2>Permission required</h2>}
-      layout="vertical"
-      body={<p>Contact your administrator for access.</p>}
-    />
-  );
-
   const pageError = (
     <EuiEmptyPrompt
-      icon={<EuiImage size="l" src={illustration} />}
+      icon={<EuiImage size="l" src={illustration} alt="" />}
       title={<h2>Page not found</h2>}
       layout="vertical"
       body={
@@ -79,7 +70,7 @@ export default () => {
 
   const noData = (
     <EuiEmptyPrompt
-      icon={<EuiImage size="l" src={illustration} />}
+      icon={<EuiImage size="l" src={illustration} alt="" />}
       title={<h2>Get started by adding your data</h2>}
       layout="horizontal"
       color="plain"
@@ -143,11 +134,6 @@ export default () => {
 
   const options = [
     {
-      value: 'noPermission',
-      text: 'No permission',
-      component: noPermission,
-    },
-    {
       value: 'pageError',
       text: 'Page error',
       component: pageError,
@@ -164,8 +150,8 @@ export default () => {
     },
   ];
 
-  const [value, setValue] = useState(options[3].value);
-  const [emptyState, setEmptyState] = useState(options[3].component);
+  const [value, setValue] = useState(options[0].value);
+  const [emptyState, setEmptyState] = useState(options[0].component);
 
   const onChange = (e) => {
     setValue(e.target.value);
@@ -182,6 +168,7 @@ export default () => {
         options={options}
         value={value}
         onChange={(e) => onChange(e)}
+        aria-label="Empty prompt examples"
       />
 
       <EuiSpacer size="l" />

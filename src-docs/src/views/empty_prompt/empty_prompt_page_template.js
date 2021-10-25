@@ -5,31 +5,27 @@ import {
   EuiEmptyPrompt,
   EuiButton,
   EuiTitle,
-  EuiText,
   EuiLink,
-  EuiIcon,
   EuiImage,
 } from '../../../../src/components';
-
+import sideNavSvg from '../../images/side_nav.svg';
 import illustration from '../../images/emptyPrompt_illustration.svg';
 
-export default ({ button = <></>, sideNav }) => (
+export default () => (
   <EuiPageTemplate
-    restrictWidth={false}
-    template="centeredContent"
-    pageContentProps={{ paddingSize: 'none' }}
-    pageSideBar={sideNav}
-    pageHeader={{
-      iconType: 'logoElastic',
-      pageTitle: 'Page title',
-      rightSideItems: [button],
+    template="centeredBody"
+    pageContentProps={{
+      paddingSize: 'none',
+      role: null, // For passing a11y tests in EUI docs only
     }}
+    pageSideBar={
+      <EuiImage size={'fullWidth'} alt="Fake side nav list" url={sideNavSvg} />
+    }
   >
     <EuiEmptyPrompt
       title={<h2>Create your first visualization</h2>}
-      icon={<EuiImage size="l" src={illustration} />}
+      icon={<EuiImage size="l" src={illustration} alt="" />}
       color="plain"
-      hasBorder={true}
       layout="horizontal"
       body={
         <>
@@ -50,13 +46,11 @@ export default ({ button = <></>, sideNav }) => (
       footer={
         <>
           <EuiTitle size="xxs">
-            <h3>Want to learn more?</h3>
-          </EuiTitle>
-          <EuiText size="s">
-            <EuiLink href="#" color="subdued">
-              <EuiIcon type="documentation" /> Read documentation
-            </EuiLink>
-          </EuiText>
+            <span>Want to learn more?</span>
+          </EuiTitle>{' '}
+          <EuiLink href="#" target="_blank">
+            Read documentation
+          </EuiLink>
         </>
       }
     />
