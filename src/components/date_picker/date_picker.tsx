@@ -14,8 +14,6 @@ import { Moment } from 'moment'; // eslint-disable-line import/named
 import { EuiFormControlLayout, EuiValidatableControl } from '../form';
 import { EuiFormControlLayoutIconsProps } from '../form/form_control_layout/form_control_layout_icons';
 
-import { EuiErrorBoundary } from '../error_boundary';
-
 import { EuiI18nConsumer } from '../context';
 import { ApplyClassComponentDefaults, CommonProps } from '../common';
 
@@ -28,7 +26,38 @@ export const euiDatePickerDefaultTimeFormat = 'hh:mm A';
 
 const DatePicker = _ReactDatePicker as typeof ReactDatePicker;
 
-interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
+// EuiDatePicker only supports a subset of props from react-datepicker.
+const unsupportedProps = [
+  // We don't want to show multiple months next to each other
+  'monthsShown',
+  // There is no need to show week numbers
+  'showWeekNumbers',
+  // Our css adapts to height, no need to fix it
+  'fixedHeight',
+  // We force the month / year selection UI. No need to configure it
+  'dropdownMode',
+  // Short month is unnecessary. Our UI has plenty of room for full months
+  'useShortMonthInDropdown',
+  // The today button is not needed. This should always be external to the calendar
+  'todayButton',
+  // We hide the time caption, so there is no need to overwrite its text
+  'timeCaption',
+  // We always want keyboard accessibility on
+  'disabledKeyboardNavigation',
+  // This is easy enough to do. It can conflict with isLoading state
+  'isClearable',
+  // There is no reason to launch the datepicker in its own modal. Can always build these ourselves
+  'withPortal',
+  // Causes Error: Cannot read property 'clone' of undefined
+  'showMonthYearDropdown',
+  // We overridde this with `popoverPlacement`
+  'popperPlacement',
+] as const;
+
+type UnsupportedProps = typeof unsupportedProps[number];
+
+interface EuiExtendedDatePickerProps
+  extends Omit<ReactDatePickerProps, UnsupportedProps> {
   /**
    * Applies classes to the numbered days provided. Check docs for example.
    */
@@ -85,7 +114,7 @@ interface EuiExtendedDatePickerProps extends ReactDatePickerProps {
   iconType?: EuiFormControlLayoutIconsProps['icon'];
 
   /**
-   * Sets the placement of the popover. It accepts: `"bottom"`, `"bottom-end"`, `"bottom-start"`, `"left"`, `"left-end"`, `"left-start"`, `"right"`, `"right-end"`, `"right-start"`, `"top"`, `"top-end"`, `"top-start"`
+   * Sets the placement of the popover
    */
   popoverPlacement?: ReactDatePickerProps['popperPlacement'];
 }
@@ -185,44 +214,6 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
     let fullDateFormat = dateFormat;
     if (showTimeSelect && dateFormat === euiDatePickerDefaultDateFormat) {
       fullDateFormat = `${dateFormat} ${timeFormat}`;
-    }
-
-    // EuiDatePicker only supports a subset of props from react-datepicker. Using any of
-    // the unsupported props below will spit out an error.
-    const PropNotSupported = () => {
-      throw new Error(`You are using a prop from react-datepicker that EuiDatePicker
-        does not support. Please check the EUI documentation for more information.`);
-    };
-
-    if (
-      // We don't want to show multiple months next to each other
-      this.props.monthsShown ||
-      // There is no need to show week numbers
-      this.props.showWeekNumbers ||
-      // Our css adapts to height, no need to fix it
-      this.props.fixedHeight ||
-      // We force the month / year selection UI. No need to configure it
-      this.props.dropdownMode ||
-      // Short month is unnecessary. Our UI has plenty of room for full months
-      this.props.useShortMonthInDropdown ||
-      // The today button is not needed. This should always be external to the calendar
-      this.props.todayButton ||
-      // We hide the time caption, so there is no need to overwrite its text
-      this.props.timeCaption ||
-      // We always want keyboard accessibility on
-      this.props.disabledKeyboardNavigation ||
-      // This is easy enough to do. It can conflict with isLoading state
-      this.props.isClearable ||
-      // There is no reason to launch the datepicker in its own modal. Can always build these ourselves
-      this.props.withPortal ||
-      // Causes Error: Cannot read property 'clone' of undefined
-      this.props.showMonthYearDropdown
-    ) {
-      return (
-        <EuiErrorBoundary>
-          <PropNotSupported />
-        </EuiErrorBoundary>
-      );
     }
 
     return (
