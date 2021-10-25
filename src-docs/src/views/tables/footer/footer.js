@@ -166,7 +166,7 @@ export const Table = () => {
       dataType: 'boolean',
       render: (online) => renderStatus(online),
       sortable: true,
-      hideForMobile: true,
+      mobileOptions: { show: false },
     },
   ];
 

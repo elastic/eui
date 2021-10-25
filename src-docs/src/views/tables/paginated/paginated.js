@@ -64,7 +64,6 @@ export const Table = () => {
       field: 'firstName',
       name: 'First Name',
       truncateText: true,
-      hideForMobile: true,
       mobileOptions: {
         show: false,
       },
