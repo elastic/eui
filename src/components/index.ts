@@ -30,8 +30,6 @@ export * from './card';
 
 export * from './code';
 
-export * from './code_editor';
-
 export * from './collapsible_nav';
 
 export * from './color_picker';

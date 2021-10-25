@@ -71,7 +71,6 @@
     "mdast-util-to-hast": "^10.0.0",
     "numeral": "^2.0.6",
     "prop-types": "^15.6.0",
-    "react-ace": "^7.0.5",
     "react-beautiful-dnd": "^13.0.0",
     "react-dropzone": "^11.2.0",
     "react-focus-on": "^3.5.0",
