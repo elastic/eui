@@ -108,6 +108,9 @@ describe('EuiDataGridCell', () => {
         it('width', () => {
           component.setProps({ width: 30 });
         });
+        it('rowHeightsOptions', () => {
+          component.setProps({ rowHeightsOptions: { defaultHeight: 'auto' } });
+        });
         it('renderCellValue', () => {
           component.setProps({ renderCellValue: () => <div>test</div> });
         });
