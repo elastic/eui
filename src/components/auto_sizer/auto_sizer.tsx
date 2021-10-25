@@ -6,14 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
 import AutoSizer, { AutoSizerProps } from 'react-virtualized-auto-sizer';
 
 export interface EuiAutoSizerProps extends AutoSizerProps {}
 
-export const EuiAutoSizer: FunctionComponent<EuiAutoSizerProps> = ({
-  children,
-  ...rest
-}) => {
-  return <AutoSizer {...rest}>{children}</AutoSizer>;
-};
+export class EuiAutoSizer extends AutoSizer {}
