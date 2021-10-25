@@ -37,7 +37,6 @@ import { validateHref } from '../../services/security/href_validator';
 export type ButtonColor =
   | 'primary'
   | 'accent'
-  | 'secondary'
   | 'success'
   | 'warning'
   | 'danger'
@@ -49,7 +48,6 @@ export type ButtonSize = 's' | 'm';
 export const colorToClassNameMap: { [color in ButtonColor]: string } = {
   primary: '--primary',
   accent: '--accent',
-  secondary: '--secondary',
   success: '--success',
   warning: '--warning',
   danger: '--danger',
@@ -78,7 +76,6 @@ export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
   fill?: boolean;
   /**
    * Any of our named colors.
-   * **`secondary` color is DEPRECATED, use `success` instead**
    */
   color?: ButtonColor;
   /**

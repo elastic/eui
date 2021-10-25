@@ -74,7 +74,6 @@ export type EuiBadgeProps = {
 
   /**
    * Accepts either our palette colors (primary, success ..etc) or a hex value `#FFFFFF`, `#000`.
-   * **`secondary` color is DEPRECATED, use `success` instead**
    */
   color?: IconColor;
   /**
@@ -107,7 +106,6 @@ const colorToHexMap: { [color in IconColor]: string } = {
   default: '#d3dae6',
   primary: visColors[1],
   success: visColors[0],
-  secondary: visColors[0],
   accent: visColors[2],
   warning: visColors[5],
   danger: visColors[9],
