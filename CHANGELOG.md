@@ -1,6 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
 - Added styling support for `valign` prop on `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
+- Added `minWidth` and `maxWidth` props to `EuiPanel` ([#5275](https://github.com/elastic/eui/pull/5275))
+- Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))
+- Updated `EuiEmptyPrompt` to extend `EuiPanelProps` ([#5275](https://github.com/elastic/eui/pull/5275))
 
 **Bug fixes**
 
