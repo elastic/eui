@@ -14,7 +14,7 @@ import {
 export const VisPalette = ({ variant }) => {
   const vars = useJsonVars();
   const visColors = vars.euiPaletteColorBlind;
-  const visColorKeys = Object.keys(vars.euiPaletteColorBlind);
+  const visColorKeys = Object.keys(visColors);
 
   function renderPaletteColor(palette, color, index, key) {
     const hex = key ? palette[color][key] : palette[color];
