@@ -23,12 +23,7 @@ export const mockRowHeightUtils = ({
   isAutoHeight: jest.fn(() => false),
   setRowHeight: jest.fn(),
   getRowHeight: jest.fn(() => 32),
-  getFont: jest.fn(() => null),
   getComputedCellStyles: jest.fn(() => {}),
-  compareHeights: jest.fn(
-    (currentRowHeight: number, cachedRowHeight: number) =>
-      currentRowHeight === cachedRowHeight
-  ),
   getCalculatedHeight: jest.fn(
     (heightOption: EuiDataGridRowHeightOption, defaultHeight: number) => {
       if (typeof heightOption === 'object') {

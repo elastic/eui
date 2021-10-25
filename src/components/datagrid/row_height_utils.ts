@@ -89,10 +89,6 @@ export class RowHeightUtils {
     return 0;
   }
 
-  compareHeights(currentRowHeight: number, cachedRowHeight: number) {
-    return currentRowHeight === cachedRowHeight;
-  }
-
   resetGrid() {
     this.grid?.resetAfterRowIndex(this.lastUpdatedRow);
     this.lastUpdatedRow = Infinity;
