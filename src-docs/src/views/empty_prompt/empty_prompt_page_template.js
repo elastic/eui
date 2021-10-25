@@ -19,7 +19,7 @@ export default () => (
       role: null, // For passing a11y tests in EUI docs only
     }}
     pageSideBar={
-      <EuiImage size={'fullWidth'} alt="Fake side nav list" url={sideNavSvg} />
+      <EuiImage size="fullWidth" alt="Fake side nav list" url={sideNavSvg} />
     }
   >
     <EuiEmptyPrompt

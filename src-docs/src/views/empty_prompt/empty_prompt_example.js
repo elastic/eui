@@ -22,19 +22,17 @@ import EmptyPrompt from './empty_prompt';
 const emptyPromptSource = require('!!raw-loader!./empty_prompt');
 const emptyPromptSnippet = `<EuiEmptyPrompt
   iconType="editorStrike"
-  title={<h2>You have no spice</h2>}
+  title={<h2>Your title</h2>}
   body={bodyContent}
   actions={actions}
-  footer={footer}
 />`;
 
 import Layout from './empty_prompt_layout';
 const layoutSource = require('!!raw-loader!./empty_prompt_layout');
 const layoutSnippet = `<EuiEmptyPrompt
-  iconType="editorStrike"
   layout="horizontal"
-  title={<h2>You have no spice</h2>}
-  titleSize="xs"
+  icon={<EuiImage size="l" src={illustration} alt="" />}
+  title={<h2>Your title</h2>}
   body={bodyContent}
   actions={actions}
   footer={footer}
@@ -44,19 +42,17 @@ import Panel from './empty_prompt_panel';
 const panelSource = require('!!raw-loader!./empty_prompt_panel');
 const panelSnippet = `<EuiEmptyPrompt
   iconType="editorStrike"
-  hasPanel
-  title={<h2>You have no spice</h2>}
-  titleSize="xs"
+  color="plain"
+  title={<h2>Your title</h2>}
   body={bodyContent}
   actions={actions}
-  footer={footer}
 />`;
 
 import Custom from './custom';
 const customSource = require('!!raw-loader!./custom');
 const customSnippet = `<EuiEmptyPrompt
   iconType="editorStrike"
-  title={<h2>You have no spice</h2>}
+  title={<h2>Your title</h2>}
   titleSize="xs"
   body={bodyContent}
   actions={actions}
@@ -65,7 +61,7 @@ const customSnippet = `<EuiEmptyPrompt
 import Simple from './simple';
 const simpleSource = require('!!raw-loader!./simple');
 const simpleSnippet = `<EuiEmptyPrompt
-  title={<h2>You have no spice</h2>}
+  title={<h2>Your title</h2>}
   actions={multipleActions}
 />`;
 
@@ -239,10 +235,11 @@ export const EmptyPromptExample = {
       text: (
         <>
           <p>
-            When using a <strong>EuiEmptyPrompt</strong> in page template pay
-            attention to the background color of the page. This color will
-            determine which <EuiCode>color</EuiCode> prop you should use to
-            ensure consistency across our Elastic products.
+            When using a <strong>EuiEmptyPrompt</strong> in a{' '}
+            <Link to="/layout/page">page template</Link> pay attention to the
+            background color of the page. This color will determine which{' '}
+            <EuiCode>color</EuiCode> prop you should use to ensure consistency
+            across our Elastic products.
           </p>
           <PageBackgroundColors />
 
@@ -250,7 +247,7 @@ export const EmptyPromptExample = {
           <p>
             The following example shows the usage of a{' '}
             <strong>EuiEmptyPrompt</strong> in a page template where the
-            background is <EuiCode>euiPageBackgroundColor</EuiCode>.
+            background color is <EuiCode>euiPageBackgroundColor</EuiCode>.
           </p>
         </>
       ),
