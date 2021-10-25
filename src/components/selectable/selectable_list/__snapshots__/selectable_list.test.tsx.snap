@@ -5,7 +5,9 @@ exports[`EuiSelectableListItem is rendered 1`] = `
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
+  <div
+    data-eui="EuiAutoSizer"
+  >
     <div
       class="euiSelectableList__list"
       style="position:relative;height:192px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
@@ -181,7 +183,9 @@ exports[`EuiSelectableListItem props activeOptionIndex 1`] = `
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
+  <div
+    data-eui="EuiAutoSizer"
+  >
     <div
       class="euiSelectableList__list"
       style="position:relative;height:192px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
@@ -376,7 +380,9 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
+  <div
+    data-eui="EuiAutoSizer"
+  >
     <div
       class="euiSelectableList__list"
       style="position:relative;height:192px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
@@ -552,7 +558,9 @@ exports[`EuiSelectableListItem props bordered 1`] = `
   class="euiSelectableList euiSelectableList-bordered testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
+  <div
+    data-eui="EuiAutoSizer"
+  >
     <div
       class="euiSelectableList__list"
       style="position:relative;height:192px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
@@ -728,7 +736,9 @@ exports[`EuiSelectableListItem props height is forced 1`] = `
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
+  <div
+    data-eui="EuiAutoSizer"
+  >
     <div
       class="euiSelectableList__list"
       style="position:relative;height:200px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
@@ -904,7 +914,9 @@ exports[`EuiSelectableListItem props height is full 1`] = `
   class="euiSelectableList euiSelectableList-fullHeight testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
+  <div
+    data-eui="EuiAutoSizer"
+  >
     <div
       class="euiSelectableList__list"
       style="position:relative;height:600px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
@@ -1080,7 +1092,9 @@ exports[`EuiSelectableListItem props renderOption 1`] = `
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
+  <div
+    data-eui="EuiAutoSizer"
+  >
     <div
       class="euiSelectableList__list"
       style="position:relative;height:192px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
@@ -1256,7 +1270,9 @@ exports[`EuiSelectableListItem props rowHeight 1`] = `
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
+  <div
+    data-eui="EuiAutoSizer"
+  >
     <div
       class="euiSelectableList__list"
       style="position:relative;height:120px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
@@ -1432,7 +1448,9 @@ exports[`EuiSelectableListItem props searchValue 1`] = `
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
+  <div
+    data-eui="EuiAutoSizer"
+  >
     <div
       class="euiSelectableList__list"
       style="position:relative;height:192px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
@@ -1613,7 +1631,9 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
+  <div
+    data-eui="EuiAutoSizer"
+  >
     <div
       class="euiSelectableList__list"
       style="position:relative;height:192px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
@@ -1794,7 +1814,9 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
+  <div
+    data-eui="EuiAutoSizer"
+  >
     <div
       class="euiSelectableList__list"
       style="position:relative;height:192px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
@@ -1946,7 +1968,9 @@ exports[`EuiSelectableListItem props singleSelection can be forced so that at le
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
+  <div
+    data-eui="EuiAutoSizer"
+  >
     <div
       class="euiSelectableList__list"
       style="position:relative;height:192px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
@@ -2122,7 +2146,9 @@ exports[`EuiSelectableListItem props singleSelection can be turned on 1`] = `
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
+  <div
+    data-eui="EuiAutoSizer"
+  >
     <div
       class="euiSelectableList__list"
       style="position:relative;height:192px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
@@ -2298,7 +2324,9 @@ exports[`EuiSelectableListItem props visibleOptions 1`] = `
   class="euiSelectableList testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <div>
+  <div
+    data-eui="EuiAutoSizer"
+  >
     <div
       class="euiSelectableList__list"
       style="position:relative;height:128px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"

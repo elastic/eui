@@ -17,5 +17,5 @@ export const EuiAutoSizer = ({
     height: defaultHeight ?? 600,
     width: defaultWidth ?? 600,
   };
-  return <div>{children(childrenParams)}</div>;
+  return <div data-eui="EuiAutoSizer">{children(childrenParams)}</div>;
 };
