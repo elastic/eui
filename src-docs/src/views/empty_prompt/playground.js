@@ -1,5 +1,11 @@
 import { PropTypes } from 'react-view';
-import { EuiEmptyPrompt, EuiButton } from '../../../../src/components/';
+import {
+  EuiEmptyPrompt,
+  EuiButton,
+  EuiTitle,
+  EuiText,
+  EuiLink,
+} from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   iconValidator,
@@ -13,7 +19,7 @@ export default () => {
 
   propsToUse.title = {
     ...propsToUse.title,
-    value: '<h2>You have no spice</h2>',
+    value: '<h2>No cases</h2>',
     type: PropTypes.ReactNode,
   };
 
@@ -33,12 +39,25 @@ export default () => {
   };
 
   propsToUse.actions.type = PropTypes.String;
-  propsToUse.body.type = PropTypes.String;
-  propsToUse.body.value = `Navigators use massive amounts of spice to gain a limited form of
-    prescience. This allows them to safely navigate interstellar space,
-    enabling trade and travel throughout the galaxy.`;
 
-  propsToUse.iconType = iconValidator(propsToUse.iconType, 'editorStrike');
+  propsToUse.body.type = PropTypes.String;
+  propsToUse.body.value =
+    'There are no cases to display. Please create a new case or change your filter settings.';
+
+  propsToUse.footer = {
+    ...propsToUse.footer,
+    value: `<>
+    <EuiTitle size="xxs">
+      <h3>Want to learn more?</h3>
+    </EuiTitle>
+    <EuiLink href="#" target="_blank">
+      Read documentation
+    </EuiLink>
+  </>`,
+    type: PropTypes.ReactNode,
+  };
+
+  propsToUse.iconType = iconValidator(propsToUse.iconType, 'logoSecurity');
 
   return {
     config: {
@@ -47,10 +66,19 @@ export default () => {
       scope: {
         EuiEmptyPrompt,
         EuiButton,
+        EuiTitle,
+        EuiText,
+        EuiLink,
       },
       imports: {
         '@elastic/eui': {
-          named: ['EuiEmptyPrompt', 'EuiButton'],
+          named: [
+            'EuiEmptyPrompt',
+            'EuiButton',
+            'EuiTitle',
+            'EuiText',
+            'EuiLink',
+          ],
         },
       },
     },

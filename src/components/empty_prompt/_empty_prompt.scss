@@ -82,6 +82,15 @@
   .euiEmptyPrompt__content {
     padding: $euiSizeL 0;
   }
+
+  .euiEmptyPrompt__icon,
+  .euiEmptyPrompt__content {
+    width: 50%;
+
+    @include euiBreakpoint('xs', 's', 'm') {
+      width: 100%;
+    }
+  }
 }
 
 // Padding

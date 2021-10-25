@@ -6,7 +6,6 @@ import {
   EuiSpacer,
   EuiSelect,
   EuiTitle,
-  EuiText,
   EuiLink,
 } from '../../../../src/components';
 
@@ -67,11 +66,9 @@ export default () => {
             <EuiTitle size="xxs">
               <h3>Want to learn more?</h3>
             </EuiTitle>
-            <EuiText size="s">
-              <EuiLink href="#" target="_blank">
-                Read documentation
-              </EuiLink>
-            </EuiText>
+            <EuiLink href="#" target="_blank">
+              Read documentation
+            </EuiLink>
           </>
         }
       />

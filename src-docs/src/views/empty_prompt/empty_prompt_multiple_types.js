@@ -38,6 +38,19 @@ export default () => {
     />
   );
 
+  const noPermission = (
+    <EuiEmptyPrompt
+      iconType="lock"
+      title={<h2>Contact your administrator for access</h2>}
+      body={<p>To view cases in this space, you need additional privileges.</p>}
+      actions={
+        <EuiButton color="primary" fill>
+          Go home
+        </EuiButton>
+      }
+    />
+  );
+
   const licenseUpgrade = (
     <EuiEmptyPrompt
       iconType="logoKibana"
@@ -137,6 +150,11 @@ export default () => {
       value: 'pageError',
       text: 'Page error',
       component: pageError,
+    },
+    {
+      value: 'noPermission',
+      text: 'No permission',
+      component: noPermission,
     },
     {
       value: 'licenseUpgrade',
