@@ -331,15 +331,17 @@ export const DatePickerExample = {
         },
       ],
       text: (
-        <p>
+        <>
           <h3>
             Dynamic <EuiCode>minDate</EuiCode> and <EuiCode>maxDate</EuiCode>
           </h3>
-          By using <EuiCode>minDate</EuiCode> and <EuiCode>maxDate</EuiCode>,
-          and updating the values based on <EuiCode>startDate</EuiCode> and{' '}
-          <EuiCode>endDate</EuiCode>, users get immediate feedback on what range
-          values are allowed.
-        </p>
+          <p>
+            By using <EuiCode>minDate</EuiCode> and <EuiCode>maxDate</EuiCode>,
+            and updating the values based on <EuiCode>startDate</EuiCode> and{' '}
+            <EuiCode>endDate</EuiCode>, users get immediate feedback on what
+            range values are allowed.
+          </p>
+        </>
       ),
       demo: <RangeRestricted />,
       props: { EuiDatePickerRange },
