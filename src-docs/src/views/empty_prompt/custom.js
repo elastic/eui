@@ -6,7 +6,7 @@ export default () => (
   <EuiEmptyPrompt
     iconType="securityAnalyticsApp"
     iconColor="default"
-    title={<h2>No cases</h2>}
+    title={<h2>Start adding cases</h2>}
     titleSize="xs"
     body={
       <Fragment>

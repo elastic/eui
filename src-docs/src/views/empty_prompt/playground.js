@@ -19,7 +19,7 @@ export default () => {
 
   propsToUse.title = {
     ...propsToUse.title,
-    value: '<h2>No cases</h2>',
+    value: '<h2>Start adding cases</h2>',
     type: PropTypes.ReactNode,
   };
 

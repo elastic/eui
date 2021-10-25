@@ -48,7 +48,7 @@ export default () => {
       <EuiSpacer size="l" />
       <EuiEmptyPrompt
         iconType="logoSecurity"
-        title={<h2>No cases</h2>}
+        title={<h2>Start adding cases</h2>}
         color={panelColor}
         body={
           <p>

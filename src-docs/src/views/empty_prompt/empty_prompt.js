@@ -10,7 +10,7 @@ import {
 export default () => (
   <EuiEmptyPrompt
     iconType="logoSecurity"
-    title={<h2>No cases</h2>}
+    title={<h2>Start adding cases</h2>}
     body={
       <p>
         There are no cases to display. Please create a new case or change your
