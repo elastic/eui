@@ -51,7 +51,7 @@ describe('EuiContextMenuPanel', () => {
     describe('up/down keys', () => {
       beforeEach(() => {
         mount(<EuiContextMenuPanel items={items} />);
-        cy.wait(100); // Intermittent flake workaround: without this, the first downarrow key does not always focus into the menu items as expected
+        cy.wait(200); // Intermittent flake workaround: without this, the first downarrow key does not always focus into the menu items as expected
       });
 
       it('focuses the panel by default', () => {
