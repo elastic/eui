@@ -16,7 +16,7 @@ import {
   EuiTableRowCell,
 } from '../../../../src/components';
 
-import imgAnatomy from '../../images/emptyPrompt_anatomy.svg';
+import imgAnatomy from '../../images/empty-prompt_anatomy.svg';
 
 export default () => (
   <>

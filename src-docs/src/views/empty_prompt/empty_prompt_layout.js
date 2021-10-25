@@ -8,7 +8,7 @@ import {
   EuiImage,
 } from '../../../../src/components';
 
-import illustration from '../../images/emptyPrompt_illustration.svg';
+import illustration from '../../images/empty-prompt_illustration.svg';
 
 export default () => {
   return (

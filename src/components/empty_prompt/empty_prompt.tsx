@@ -14,7 +14,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, keysOf } from '../common';
 import { EuiTitle, EuiTitleSize } from '../title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
@@ -28,6 +28,8 @@ const paddingSizeToClassNameMap = {
   m: 'euiEmptyPrompt--paddingMedium',
   l: 'euiEmptyPrompt--paddingLarge',
 };
+
+export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
 export type EuiEmptyPromptProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> &
@@ -68,7 +70,7 @@ export type EuiEmptyPromptProps = CommonProps &
      */
     footer?: ReactNode;
     /**
-     * Sets the layout. When `horizontal` the icon/illustration goes to the right column.
+     * Sets the layout. When `horizontal` the icon goes to the right column.
      */
     layout?: 'vertical' | 'horizontal';
 
@@ -161,8 +163,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
 
   const classes = classNames(
     'euiEmptyPrompt',
-    { 'euiEmptyPrompt--verticalLayout': isVerticalLayout },
-    { 'euiEmptyPrompt--horizontalLayout': !isVerticalLayout },
+    [`euiEmptyPrompt--${layout}`],
     paddingSizeToClassNameMap[paddingSize],
     className
   );
@@ -178,10 +179,12 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   return (
     <EuiPanel {...panelProps}>
       <div className="euiEmptyPrompt__main">
-        <div className="euiEmptyPrompt__icon">{iconNode}</div>
-        <div className="euiEmptyPrompt__content">
-          <div className="euiEmptyPrompt__contentInner">{contentNodes}</div>
-        </div>
+        {iconNode && <div className="euiEmptyPrompt__icon">{iconNode}</div>}
+        {contentNodes && (
+          <div className="euiEmptyPrompt__content">
+            <div className="euiEmptyPrompt__contentInner">{contentNodes}</div>
+          </div>
+        )}
       </div>
       {footer && <div className="euiEmptyPrompt__footer">{footer}</div>}
     </EuiPanel>

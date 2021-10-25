@@ -30,7 +30,7 @@
   }
 }
 
-.euiEmptyPrompt--verticalLayout {
+.euiEmptyPrompt--vertical {
   text-align: center;
 
   .euiEmptyPrompt__main {
@@ -54,7 +54,7 @@
   }
 }
 
-.euiEmptyPrompt--horizontalLayout {
+.euiEmptyPrompt--horizontal {
   @include euiBreakpoint('xs', 's', 'm') {
     justify-content: center;
     text-align: center;

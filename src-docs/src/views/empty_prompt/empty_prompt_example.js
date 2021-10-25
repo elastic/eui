@@ -339,14 +339,12 @@ export const EmptyPromptExample = {
         },
       ],
       text: (
-        <>
-          <p>
-            The following example showcases different types of empty states that
-            you can create with the <strong>EuiEmptyPrompt</strong>. For a full
-            list see the{' '}
-            <Link to="/guidelines/empty-prompt">usage guidelines</Link>.
-          </p>
-        </>
+        <p>
+          The following example showcases different types of empty states that
+          you can create with the <strong>EuiEmptyPrompt</strong>. For a full
+          list see the{' '}
+          <Link to="/guidelines/empty-prompt">usage guidelines</Link>.
+        </p>
       ),
       props: { EuiEmptyPrompt },
       demo: <MultipleTypes />,
