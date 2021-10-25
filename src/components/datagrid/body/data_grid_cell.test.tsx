@@ -160,7 +160,7 @@ describe('EuiDataGridCell', () => {
   });
 
   describe('componentDidUpdate', () => {
-    describe('setAutoRowHeight', () => {
+    describe('recalculateRowHeight', () => {
       beforeEach(() => {
         (mockRowHeightUtils.setRowHeight as jest.Mock).mockClear();
       });
@@ -171,7 +171,7 @@ describe('EuiDataGridCell', () => {
       const triggerUpdate = (component: ReactWrapper) =>
         component.setProps({ rowIndex: 2 });
 
-      it('sets the auto row height cache with cell heights on update', () => {
+      it('sets the row height cache with cell heights on update', () => {
         (mockRowHeightUtils.isAutoHeight as jest.Mock).mockReturnValue(true);
 
         const component = mountEuiDataGridCellWithContext({
