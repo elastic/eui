@@ -121,24 +121,9 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
     href?: string;
     target?: string;
     rel?: string;
-
     /**
-     * Add a badge to the card to label it as "Beta" or other non-GA state
-     * **DEPRECATED: Use `betaBadgeProps.label` instead.**
+     * Props to be passed through to the EuiBetaBadge
      */
-    betaBadgeLabel?: string;
-
-    /**
-     * Add a description to the beta badge (will appear in a tooltip)
-     * **DEPRECATED: Use `betaBadgeProps.tooltipContent` instead.**
-     */
-    betaBadgeTooltipContent?: ReactNode;
-
-    /**
-     * Optional title will be supplied as tooltip title or title attribute otherwise the label will be used.
-     * **DEPRECATED: Use `betaBadgeProps.title` instead.**
-     */
-    betaBadgeTitle?: string;
     betaBadgeProps?: Partial<EuiBetaBadgeProps>;
     /**
      * Matches to the color property of EuiPanel. If defined, removes any border & shadow.
@@ -186,9 +171,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   rel,
   target,
   textAlign = 'center',
-  betaBadgeLabel,
-  betaBadgeTooltipContent,
-  betaBadgeTitle,
   betaBadgeProps,
   layout = 'vertical',
   selectable,
@@ -234,10 +216,10 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     layoutToClassNameMap[layout],
     {
       'euiCard--isClickable': isClickable,
-      'euiCard--hasBetaBadge': betaBadgeLabel,
+      'euiCard--hasBetaBadge': betaBadgeProps?.label,
       'euiCard--hasIcon': icon,
       'euiCard--isSelectable': selectable,
-      'euiCard-isSelected': selectable && selectable.isSelected,
+      'euiCard-isSelected': selectable?.isSelected,
       'euiCard-isDisabled': isDisabled,
     },
     selectableColorClass,
@@ -287,16 +269,13 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
 
   let optionalBetaBadge;
   let optionalBetaBadgeID = '';
-  if (betaBadgeLabel) {
+  if (betaBadgeProps?.label) {
     optionalBetaBadgeID = `${ariaId}BetaBadge`;
     optionalBetaBadge = (
       <span className="euiCard__betaBadgeWrapper">
         <EuiBetaBadge
           id={optionalBetaBadgeID}
           {...(betaBadgeProps as EuiBetaBadgeProps)}
-          label={betaBadgeLabel}
-          title={betaBadgeTitle}
-          tooltipContent={betaBadgeTooltipContent}
           className={classNames(
             'euiCard__betaBadge',
             betaBadgeProps?.className

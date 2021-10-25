@@ -17,12 +17,12 @@ const cardNodes = icons.map(function (item, index) {
         icon={<EuiIcon size="xxl" type={`${item}App`} />}
         title={`Kibana ${item}`}
         description="Example of a card's description. Stick to one or two sentences."
-        betaBadgeLabel={badges[index]}
-        betaBadgeTooltipContent={
-          badges[index]
+        betaBadgeProps={{
+          label: badges[index],
+          tooltipContent: badges[index]
             ? 'This module is not GA. Please help us by reporting any bugs.'
-            : undefined
-        }
+            : undefined,
+        }}
         onClick={() => {}}
       />
     </EuiFlexItem>
@@ -41,9 +41,9 @@ export default () => (
         betaBadgeProps={{
           href: 'http://www.elastic.co/subscriptions',
           target: '_blank',
+          label: 'Basic',
+          tooltipContent: 'This feature requires a Basic License',
         }}
-        betaBadgeLabel="Basic"
-        betaBadgeTooltipContent="This feature requires a Basic License"
         onClick={() => {}}
       />
     </EuiFlexItem>
