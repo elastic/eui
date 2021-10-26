@@ -209,21 +209,13 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
       aria-controls="id"
       aria-expanded="false"
       aria-label="aria-label"
-      class="euiAccordion__button euiAccordion__buttonReverse euiCollapsibleNavGroup__heading testClass1 testClass2"
+      class="euiAccordion__button euiCollapsibleNavGroup__heading testClass1 testClass2"
       data-test-subj="test subject string"
       id="generated-id"
       type="button"
     >
       <span
-        class="euiAccordion__iconWrapper"
-      >
-        <span
-          class="euiAccordion__icon"
-          data-euiicon-type="arrowRight"
-        />
-      </span>
-      <span
-        class="euiIEFlexWrapFix"
+        class="euiAccordion__buttonContent"
       >
         <div
           class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -240,6 +232,21 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
           </div>
         </div>
       </span>
+    </button>
+    <button
+      aria-controls="id"
+      aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton--right"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
     </button>
   </div>
   <div
@@ -268,20 +275,12 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
     <button
       aria-controls="id"
       aria-expanded="false"
-      class="euiAccordion__button euiAccordion__buttonReverse euiCollapsibleNavGroup__heading"
+      class="euiAccordion__button euiCollapsibleNavGroup__heading"
       id="generated-id"
       type="button"
     >
       <span
-        class="euiAccordion__iconWrapper"
-      >
-        <span
-          class="euiAccordion__icon"
-          data-euiicon-type="arrowRight"
-        />
-      </span>
-      <span
-        class="euiIEFlexWrapFix"
+        class="euiAccordion__buttonContent"
       >
         <div
           class="euiFlexGroup euiFlexGroup--gutterMedium euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
@@ -298,6 +297,21 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
           </div>
         </div>
       </span>
+    </button>
+    <button
+      aria-controls="id"
+      aria-expanded="false"
+      aria-labelledby="generated-id"
+      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiAccordion__iconButton euiAccordion__iconButton--right"
+      tabindex="-1"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="arrowRight"
+      />
     </button>
   </div>
   <div

@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import { getDateMode, toAbsoluteString, toRelativeString } from './date_modes';
+import {
+  getDateMode,
+  INVALID_DATE,
+  toAbsoluteString,
+  toRelativeString,
+} from './date_modes';
 
 jest.mock('@elastic/datemath', () => {
   const moment = jest.requireActual('moment');
@@ -40,6 +45,8 @@ describe('dateMode', () => {
     expect(toAbsoluteString('now+y', true)).toBe('2020-03-19T00:00:00.000Z');
     expect(toAbsoluteString('now-1w')).toBe('2019-03-12T00:00:00.000Z');
     expect(toAbsoluteString('now-1w', true)).toBe('2019-03-12T00:00:00.000Z');
+    expect(toAbsoluteString('now-999999y', true)).toBe(INVALID_DATE); // invalid time ranges cannot be parsed to ISO strings
+    expect(toAbsoluteString('now+999999y', true)).toBe(INVALID_DATE);
   });
 
   test('toRelativeString', () => {

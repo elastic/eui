@@ -1,5 +1,35 @@
 [
   {
+    "version": "39.1.1",
+    "changes": [
+      {
+        "token": "euiRelativeTab.dateInputError",
+        "changeType": "added",
+        "value": "Must be a valid range"
+      }
+    ]
+  },
+  {
+    "version": "39.1.0",
+    "changes": [
+      {
+        "token": "euiBasicTable.tablePagination",
+        "changeType": "modified",
+        "value": "Pagination for table: {tableCaption}"
+      }
+    ]
+  },
+  {
+    "version": "39.0.0",
+    "changes": [
+      {
+        "token": "euiBasicTable.noItemsMessage",
+        "changeType": "added",
+        "value": "No items found"
+      }
+    ]
+  },
+  {
     "version": "38.1.0",
     "changes": [
       {

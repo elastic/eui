@@ -123,8 +123,19 @@
 
 .euiTableRowCell {
   @include euiTableCell;
-
   color: $euiTextColor;
+
+  &--top {
+    vertical-align: top;
+  }
+
+  &--bottom {
+    vertical-align: bottom;
+  }
+
+  &--baseline {
+    vertical-align: baseline;
+  }
 
   &.euiTableRowCell--isMobileHeader {
     display: none; // Hide if not mobile breakpoint

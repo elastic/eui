@@ -49,7 +49,7 @@
     }
 
     .euiTableRowCell--enlargeForMobile {
-      @include euiFontSize;
+      @include euiFontSizeM;
     }
 
     .euiTableRowCell--isMobileFullWidth {

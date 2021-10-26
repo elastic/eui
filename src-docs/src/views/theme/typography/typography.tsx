@@ -16,6 +16,7 @@ import {
   EuiLink,
   EuiRange,
   EuiCode,
+  EuiCallOut,
 } from '../../../../../src';
 
 import { ThemeExample } from '../_components/_theme_example';
@@ -39,8 +40,8 @@ export const typographySections = [
 
 export default () => {
   const { euiTheme } = useEuiTheme();
-  const legacyTheme = !euiTheme.themeName.includes('amsterdam');
   const themeContext = useContext(ThemeContext);
+  const legacyTheme = !themeContext.theme.includes('amsterdam');
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
 
@@ -55,10 +56,9 @@ export default () => {
   }, [showSass]);
 
   const scaleContent = useMemo(() => {
-    if (showSass)
+    if (showSass) {
       return (
         <>
-          <EuiSpacer size="xl" />
           <EuiText grow={false}>
             <h2
               id={`${typographySections[2].id}`}
@@ -75,6 +75,19 @@ export default () => {
           <FontScaleSass />
         </>
       );
+    } else {
+      return (
+        <>
+          <EuiText grow={false}>
+            <h2
+              id={`${typographySections[2].id}`}
+            >{`${typographySections[2].title}`}</h2>
+          </EuiText>
+          <EuiSpacer />
+          <EuiCallOut title="Coming soon" />
+        </>
+      );
+    }
   }, [showSass]);
 
   const weightContent = useMemo(() => {
@@ -189,6 +202,7 @@ export default () => {
         </>
       ) : undefined}
 
+      <EuiSpacer size="xl" />
       {scaleContent}
     </GuidePage>
   );

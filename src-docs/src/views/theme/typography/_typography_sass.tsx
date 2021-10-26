@@ -20,7 +20,9 @@ import {
   getDescriptionSmall,
 } from '../_components/_theme_values_descriptions';
 
-export const euiFontMixins = {
+export const euiFontMixins: {
+  [key: string]: { description: string; sample?: any };
+} = {
   euiFont: {
     description:
       'Base font reset including family, weight, letter-spacing, and kerning.',
@@ -34,6 +36,13 @@ export const euiFontMixins = {
   'euiTitle($size)': {
     description:
       "Accepts a `$size` parameter of `'xxxs'` to `'l'` and sets appropriate font-size, weight, color, and line-height. It also ensures long words wrap lines.",
+  },
+  'fontSize($size)': {
+    description:
+      'Accepts a `$size` parameter of a pixel value and returns the appropriate `font-size` property in `rem` units.',
+    sample: (
+      <div className={'guideSass__mixin--fontSize'}>The quick brown fox</div>
+    ),
   },
 };
 
@@ -54,7 +63,11 @@ export const FontSass = () => {
       <ThemeExample
         title={<code>$euiCodeFontFamily</code>}
         description={getDescription(baseProps.familyCode)}
-        example={values.euiCodeFontFamily}
+        example={
+          <p className="guideSass__fontFamily--code">
+            {values.euiCodeFontFamily}
+          </p>
+        }
         snippet={'font-family: $euiCodeFontFamily;'}
         snippetLanguage="scss"
       />
@@ -82,7 +95,8 @@ export const FontSass = () => {
         items={Object.keys(euiFontMixins).map(function (mixin) {
           return {
             id: mixin,
-            mixin: `@mixin ${mixin}`,
+            mixin: `@include ${mixin}`,
+            sample: euiFontMixins[mixin].sample,
           };
         })}
         columns={[
@@ -93,23 +107,27 @@ export const FontSass = () => {
               <div>
                 <EuiCode>{mixin}</EuiCode>
                 <EuiSpacer size="s" />
-                {/* @ts-ignore TODO */}
                 {getDescriptionSmall(euiFontMixins[item.id])}
               </div>
             ),
+            mobileOptions: {
+              header: false,
+              width: '100%',
+            },
           },
           {
             field: 'sample',
             name: 'Sample',
-            render: (sample, item) => (
-              <div
-                className={`guideSass__mixin--${
-                  item.id === 'euiTitle($size)' ? 'euiTitle' : item.id
-                }`}
-              >
-                The quick brown fox
-              </div>
-            ),
+            render: (sample, item) =>
+              sample || (
+                <div
+                  className={`guideSass__mixin--${
+                    item.id === 'euiTitle($size)' ? 'euiTitle' : item.id
+                  }`}
+                >
+                  The quick brown fox
+                </div>
+              ),
           },
         ]}
       />
@@ -161,6 +179,10 @@ export const FontWeightSass: FunctionComponent<ThemeRowType> = ({
             render: (variable: React.ReactNode) => (
               <EuiCode>{variable}</EuiCode>
             ),
+            mobileOptions: {
+              header: false,
+              width: '100%',
+            },
           },
           {
             field: 'sample',
@@ -247,6 +269,9 @@ export const FontScaleSass = () => {
                 The quick brown fox
               </div>
             ),
+            mobileOptions: {
+              width: '50%',
+            },
           },
           {
             field: 'value',

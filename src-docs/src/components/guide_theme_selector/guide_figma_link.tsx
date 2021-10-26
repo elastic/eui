@@ -49,7 +49,6 @@ const GuideFigmaLinkComponent: React.FunctionComponent<GuideFigmaLinkProps> = ({
       <EuiHeaderSectionItemButton
         notificationColor="subdued"
         aria-label={label}
-        // @ts-ignore TODO: FIX
         href={href}
       >
         <EuiIcon type={logoFigma} aria-hidden="true" />
