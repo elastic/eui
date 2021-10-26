@@ -623,6 +623,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const wrapperDimensions = useResizeObserver(wrapperRef.current);
 
   const innerGridRef = useRef<HTMLDivElement | null>(null);
+
+  // useState instead of useMemo as React reserves the right to drop memoized
+  // values in the future, and that would be very bad here
   const [rowManager] = useState<EuiDataGridRowManager>(() =>
     makeRowManager(innerGridRef)
   );
