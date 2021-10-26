@@ -10,7 +10,6 @@ import {
   EuiThemeFontBase,
   EuiThemeFontWeight,
   ThemeRowType,
-  getType,
 } from '../_props';
 
 import { ThemeExample } from '../_components/_theme_example';
@@ -24,12 +23,7 @@ export const FontJS = () => {
   return (
     <>
       <ThemeExample
-        title={
-          <code>
-            euiTheme.font.family{' '}
-            <small> : {getType(baseProps.family, euiTheme)}</small>
-          </code>
-        }
+        title={<code>euiTheme.font.family</code>}
         description={
           <>
             {getDescription(baseProps.family)}
@@ -53,12 +47,7 @@ export const FontJS = () => {
       />
 
       <ThemeExample
-        title={
-          <code>
-            euiTheme.font.familyCode{' '}
-            <small> : {getType(baseProps.familyCode, euiTheme)}</small>
-          </code>
-        }
+        title={<code>euiTheme.font.familyCode</code>}
         description={getDescription(baseProps.familyCode)}
         example={
           <p
@@ -73,12 +62,7 @@ export const FontJS = () => {
       />
 
       <ThemeExample
-        title={
-          <code>
-            euiTheme.font.featureSettings{' '}
-            <small> : {getType(baseProps.featureSettings, euiTheme)}</small>
-          </code>
-        }
+        title={<code>euiTheme.font.featureSettings</code>}
         description={getDescription(baseProps.featureSettings)}
         example={
           <p
@@ -106,7 +90,7 @@ export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
   return (
     <>
       <ThemeExample
-        title={<code>euiTheme.font.weight[string]</code>}
+        title={<code>euiTheme.font.weight[weight]</code>}
         description={description}
         example={
           <div
