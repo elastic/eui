@@ -20,6 +20,7 @@ import React, {
 } from 'react';
 import tabbable from 'tabbable';
 import { keys } from '../../../services';
+import { enqueueStateChange } from '../../../services/react';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiFocusTrap } from '../../focus_trap';
 import { useEuiI18n } from '../../i18n';
@@ -236,7 +237,7 @@ export class EuiDataGridCell extends Component<
   }
 
   componentDidUpdate(prevProps: EuiDataGridCellProps) {
-    this.recalculateRowHeight();
+    enqueueStateChange(this.recalculateRowHeight);
 
     if (this.props.columnId !== prevProps.columnId) {
       this.setCellProps({});

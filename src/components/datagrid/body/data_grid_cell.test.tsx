@@ -10,7 +10,11 @@ import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { keys } from '../../../services';
 
+jest.mock('../../../services/react', () => ({
+  enqueueStateChange: jest.fn((cb) => cb()),
+}));
 import { mockRowHeightUtils } from '../__mocks__/row_height_utils';
+
 import { EuiDataGridCell } from './data_grid_cell';
 
 describe('EuiDataGridCell', () => {
