@@ -102,7 +102,7 @@ export default () => {
             id: size,
             token: `size.${size}`,
             type: themeSizeProps[size],
-            // @ts-ignore TODO
+            // @ts-ignore Help
             value: sizes[size],
           };
         })}

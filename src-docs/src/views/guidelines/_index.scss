@@ -93,10 +93,6 @@
   height: $euiSize;
 }
 
-.guideSass__sizeRow + .guideSass__sizeRow {
-  margin-top: $euiSize;
-}
-
 .guideSass__size {
   background-color: $euiColorFullShade;
   display: inline-block;
@@ -115,11 +111,6 @@
     content: 'padding: #{$euiSizeXS / 2}';
     font-weight: $euiFontWeightBold;
   }
-}
-
-.guideSass__sizeItem {
-  width: $euiSizeXXL;
-  text-align: right;
 }
 
 .guideSass__fontSizeExample + .guideSass__fontSizeExample {
