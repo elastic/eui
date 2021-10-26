@@ -65,11 +65,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
       </EuiButtonEmpty>
     ) : (
       <EuiToolTip content="Github">
-        <EuiHeaderSectionItemButton
-          aria-label={label}
-          // @ts-ignore TODO: FIX
-          href={href}
-        >
+        <EuiHeaderSectionItemButton aria-label={label} href={href}>
           <EuiIcon type="logoGithub" aria-hidden="true" />
         </EuiHeaderSectionItemButton>
       </EuiToolTip>
