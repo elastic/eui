@@ -98,11 +98,6 @@ export class RowHeightUtils {
     this.grid = grid;
   }
 
-  clearHeightsCache() {
-    this.lastUpdatedRow = 0;
-    this.heightsCache.clear();
-  }
-
   isAutoHeight(
     rowIndex: number,
     rowHeightsOptions?: EuiDataGridRowHeightsOptions
@@ -153,8 +148,6 @@ export class RowHeightUtils {
       lineHeight: getNumberFromPx(allStyles.lineHeight),
     };
     document.body.removeChild(this.fakeCell);
-    // we need clear the height cache so that it recalculates heights for new styles
-    this.clearHeightsCache();
   }
 
   getComputedCellStyles() {

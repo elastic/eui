@@ -10,7 +10,6 @@ exports[`EuiDataGridCell renders 1`] = `
   renderCellValue={[Function]}
   rowHeightUtils={
     Object {
-      "clearHeightsCache": [MockFunction],
       "computeStylesForGridCell": [MockFunction],
       "getCalculatedHeight": [MockFunction],
       "getComputedCellStyles": [MockFunction],
@@ -57,7 +56,6 @@ exports[`EuiDataGridCell renders 1`] = `
           renderCellValue={[Function]}
           rowHeightUtils={
             Object {
-              "clearHeightsCache": [MockFunction],
               "computeStylesForGridCell": [MockFunction],
               "getCalculatedHeight": [MockFunction],
               "getComputedCellStyles": [MockFunction],

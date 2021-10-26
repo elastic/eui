@@ -12,7 +12,6 @@ import { RowHeightUtils } from '../row_height_utils';
 
 export const mockRowHeightUtils = ({
   computeStylesForGridCell: jest.fn(),
-  clearHeightsCache: jest.fn(),
   setGrid: jest.fn(),
   getStylesForCell: jest.fn(() => ({
     wordWrap: 'break-word',
