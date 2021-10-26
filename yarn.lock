@@ -1901,10 +1901,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@elastic/charts@^38.0.1":
-  version "38.0.1"
-  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-38.0.1.tgz#9c1db7e0f1de869e0b2b505e192bbb9d62d60dc8"
-  integrity sha512-i9mIA3Ji9jSjuFDtuh9gV1xpCl3sbBEDgJiOgLVt04pr/qZH2W+tr3AV5yHvjsR7Te0Pmh/Cm5wLBvFKaI1nIA==
+"@elastic/charts@^38.1.0":
+  version "38.1.0"
+  resolved "https://registry.yarnpkg.com/@elastic/charts/-/charts-38.1.0.tgz#52146564c0e399da2267c10ec4536c33e50969e4"
+  integrity sha512-u2hQ8+daCvqapKQiFqN8QHWTz3OXby5Xf/ta1Dv59KTDTFIinCZD/M8PyD3MapbKx4b67hL7UxbErqr4rZ8jeA==
   dependencies:
     "@popperjs/core" "^2.4.0"
     chroma-js "^2.1.0"
@@ -1915,6 +1915,7 @@
     d3-interpolate "^1.4.0"
     d3-scale "^1.0.7"
     d3-shape "^1.3.4"
+    luxon "^1.25.0"
     prop-types "^15.7.2"
     re-reselect "^3.4.0"
     react-redux "^7.1.0"
@@ -12002,6 +12003,11 @@ lru_map@^0.3.3:
   resolved "https://registry.yarnpkg.com/lru_map/-/lru_map-0.3.3.tgz#b5c8351b9464cbd750335a79650a0ec0e56118dd"
   integrity sha1-tcg1G5Rky9dQM1p5ZQoOwOVhGN0=
 
+luxon@^1.25.0:
+  version "1.28.0"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.28.0.tgz#e7f96daad3938c06a62de0fb027115d251251fbf"
+  integrity sha512-TfTiyvZhwBYM/7QdAVDh+7dBTBA29v4ik0Ce9zda3Mnf8on1S5KJI8P2jKFZ8+5C0jhmr0KwJEO/Wdpm0VeWJQ==
+
 lz-string@^1.4.4:
   version "1.4.4"
   resolved "https://registry.yarnpkg.com/lz-string/-/lz-string-1.4.4.tgz#c0d8eaf36059f705796e1e344811cf4c498d3a26"
@@ -15774,19 +15780,19 @@ relateurl@^0.2.7:
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
 
-remark-breaks@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/remark-breaks/-/remark-breaks-2.0.2.tgz#55fdec6c7da84f659aa7fdb1aa95b632870cee8d"
-  integrity sha512-LsQnPPQ7Fzp9RTjj4IwdEmjPOr9bxe9zYKWhs9ZQOg9hMg8rOfeeqQ410cvVdIK87Famqza1CKRxNkepp2EvUA==
-  dependencies:
-    unist-util-visit "^2.0.0"
-
 release-zalgo@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/release-zalgo/-/release-zalgo-1.0.0.tgz#09700b7e5074329739330e535c5a90fb67851730"
   integrity sha1-CXALflB0Mpc5Mw5TXFqQ+2eFFzA=
   dependencies:
     es6-error "^4.0.1"
+
+remark-breaks@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/remark-breaks/-/remark-breaks-2.0.2.tgz#55fdec6c7da84f659aa7fdb1aa95b632870cee8d"
+  integrity sha512-LsQnPPQ7Fzp9RTjj4IwdEmjPOr9bxe9zYKWhs9ZQOg9hMg8rOfeeqQ410cvVdIK87Famqza1CKRxNkepp2EvUA==
+  dependencies:
+    unist-util-visit "^2.0.0"
 
 remark-emoji@^2.1.0:
   version "2.1.0"
