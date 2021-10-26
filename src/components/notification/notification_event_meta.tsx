@@ -146,7 +146,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
                     aria-expanded={isPopoverOpen}
                     aria-haspopup="true"
                     iconType="boxesVertical"
-                    color="subdued"
+                    color="text"
                     onClick={onOpenPopover}
                     data-test-subj={`${id}-notificationEventMetaButton`}
                   />
