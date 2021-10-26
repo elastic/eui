@@ -18,8 +18,8 @@ export const makeRowManager = (
     reset() {
       rowIdToElements.clear();
     },
-    getRow(rowId) {
-      let rowElement = rowIdToElements.get(rowId);
+    getRow(rowIndex) {
+      let rowElement = rowIdToElements.get(rowIndex);
 
       if (rowElement == null) {
         rowElement = document.createElement('div');
