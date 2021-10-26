@@ -20,7 +20,9 @@ import {
   getDescriptionSmall,
 } from '../_components/_theme_values_descriptions';
 
-export const euiFontMixins = {
+export const euiFontMixins: {
+  [key: string]: { description: string; sample?: any };
+} = {
   euiFont: {
     description:
       'Base font reset including family, weight, letter-spacing, and kerning.',
@@ -94,7 +96,6 @@ export const FontSass = () => {
           return {
             id: mixin,
             mixin: `@include ${mixin}`,
-            // @ts-ignore Help
             sample: euiFontMixins[mixin].sample,
           };
         })}
@@ -106,7 +107,6 @@ export const FontSass = () => {
               <div>
                 <EuiCode>{mixin}</EuiCode>
                 <EuiSpacer size="s" />
-                {/* @ts-ignore Help */}
                 {getDescriptionSmall(euiFontMixins[item.id])}
               </div>
             ),

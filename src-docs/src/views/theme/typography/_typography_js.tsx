@@ -3,7 +3,10 @@ import { css } from '@emotion/react';
 import { useEuiTheme } from '../../../../../src/services';
 import { EuiCode } from '../../../../../src/components';
 
-import { fontWeight } from '../../../../../src/global_styling/variables/_typography';
+import {
+  fontWeight,
+  _EuiThemeFontWeight,
+} from '../../../../../src/global_styling/variables/_typography';
 
 import {
   getPropsFromThemeKey,
@@ -79,7 +82,7 @@ export const FontJS = () => {
   );
 };
 
-const weightKeys = Object.keys(fontWeight);
+const weightKeys = Object.keys(fontWeight) as Array<keyof _EuiThemeFontWeight>;
 
 export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
   description,
@@ -110,7 +113,6 @@ export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
             id: weight,
             token: `font.weight.${weight}`,
             type: weightProps[weight],
-            // @ts-ignore TODO
             value: euiTheme.font.weight[weight],
           };
         })}
