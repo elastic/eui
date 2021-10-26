@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSassVars } from '../_get_sass_vars';
+import { useJsonVars } from '../../theme/_json/_get_json_vars.js';
 
 import {
   EuiFlexGroup,
@@ -10,11 +10,11 @@ import {
   EuiText,
   EuiPanel,
 } from '../../../../../src/components';
-import { rgbToHex } from '../../../../../src/services';
 
 export const VisPalette = ({ variant }) => {
-  const visColors = useSassVars().euiPaletteColorBlind;
-  const visColorKeys = Object.keys(useSassVars().euiPaletteColorBlind);
+  const vars = useJsonVars();
+  const visColors = vars.euiPaletteColorBlind;
+  const visColorKeys = Object.keys(visColors);
 
   function renderPaletteColor(palette, color, index, key) {
     const hex = key ? palette[color][key] : palette[color];
@@ -30,7 +30,7 @@ export const VisPalette = ({ variant }) => {
                   onClick={copy}
                   size="xl"
                   type="stopFilled"
-                  color={rgbToHex(hex.rgba)}
+                  color={hex}
                 />
               )}
             </EuiCopy>
@@ -43,7 +43,7 @@ export const VisPalette = ({ variant }) => {
           <EuiFlexItem>
             <EuiText size="s" color="subdued">
               <p>
-                <code>{rgbToHex(hex.rgba).toUpperCase()}</code>
+                <code>{hex.toUpperCase()}</code>
               </p>
             </EuiText>
           </EuiFlexItem>
