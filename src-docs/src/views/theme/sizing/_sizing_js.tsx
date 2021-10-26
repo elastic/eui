@@ -106,7 +106,9 @@ export default () => {
             value: sizes[size],
           };
         })}
-        sampleColumnWidth={'100px'}
+        sampleColumnProps={{ width: '100px' }}
+        tokenColumnProps={{ valign: 'middle' }}
+        valueColumnProps={{ valign: 'middle' }}
         render={(size) => (
           <div
             css={css`

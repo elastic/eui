@@ -52,9 +52,13 @@ export default () => {
             value: `${euiBreakpoints[size]}`,
           };
         })}
-        valueColumnTitle="Min width"
-        sampleColumnTitle="Current"
-        sampleColumnWidth="80px"
+        valueColumnProps={{
+          title: 'Min width',
+        }}
+        sampleColumnProps={{
+          title: 'Current',
+          width: '80px',
+        }}
         render={(item) => (
           <div className={`guideSass__breakpoint--${item.id}`}>
             <EuiIcon

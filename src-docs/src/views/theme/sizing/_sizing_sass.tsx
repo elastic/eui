@@ -72,7 +72,9 @@ export default () => {
             value: values[size],
           };
         })}
-        sampleColumnWidth={'100px'}
+        sampleColumnProps={{ width: '100px' }}
+        tokenColumnProps={{ valign: 'middle' }}
+        valueColumnProps={{ valign: 'middle' }}
         render={(item) => (
           <div
             className="guideSass__size"
