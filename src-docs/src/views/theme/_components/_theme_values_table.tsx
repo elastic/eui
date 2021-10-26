@@ -7,6 +7,7 @@ import {
   EuiBasicTableProps,
   EuiCode,
   EuiBasicTableColumn,
+  EuiTableRowCellProps,
 } from '../../../../../src';
 import { getType } from '../_props';
 
@@ -26,6 +27,10 @@ interface BasicItem {
 type ThemeValuesTableProps = {
   items: EuiBasicTableProps<BasicItem>['items'];
   render: (item: BasicItem) => ReactNode;
+  /**
+   * Will apply to all columns. To apply individually use the `__ColumnProps` prop
+   */
+  valign?: EuiTableRowCellProps['valign'];
   sampleColumnProps?: Partial<EuiBasicTableColumn<BasicItem>>;
   tokenColumnProps?: Partial<EuiBasicTableColumn<BasicItem>>;
   typeColumnProps?: Partial<EuiBasicTableColumn<BasicItem>>;
@@ -35,6 +40,7 @@ type ThemeValuesTableProps = {
 export const ThemeValuesTable = ({
   items,
   render,
+  valign = 'top',
   sampleColumnProps,
   tokenColumnProps,
   typeColumnProps,
@@ -60,8 +66,8 @@ export const ThemeValuesTable = ({
       field: 'sample',
       name: 'Sample',
       align: 'center',
-      valign: 'top',
       width: '60px',
+      valign,
       render: (sample: undefined, item) => render(item),
       mobileOptions: {
         render: (item) => (
@@ -79,14 +85,14 @@ export const ThemeValuesTable = ({
     {
       field: 'token',
       name: 'Token',
-      valign: 'top',
+      width: '50%',
+      valign,
       render: (token: ReactNode, item) => (
         <div>
           <EuiCode language="tsx">{token}</EuiCode>
           {renderDescription(item)}
         </div>
       ),
-      width: '50%',
       mobileOptions: {
         // Evaluates just the first item as to whether they all have descriptions, may not be the best approach but works for now
         show: Boolean(renderDescription(items[0])),
@@ -102,7 +108,7 @@ export const ThemeValuesTable = ({
     columns.push({
       field: 'type',
       name: 'Type',
-      valign: 'top',
+      valign,
       render: (type: ReactNode) => (
         <small>
           <code>{getType(type, euiTheme)}</code>
@@ -117,7 +123,7 @@ export const ThemeValuesTable = ({
       field: 'value',
       name: 'Value',
       align: 'right',
-      valign: 'top',
+      valign,
       render: (value: ReactNode) => (
         <small>
           <code>{value}</code>
