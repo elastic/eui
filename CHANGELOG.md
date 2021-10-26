@@ -9,6 +9,17 @@
 - Fixed default text alignment in `EuiTableRowCell` on Safari ([#5283](https://github.com/elastic/eui/pull/5283))
 - Fixed `mobileOptions.truncateText` from getting overridden by `truncateText` in `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
 
+**Breaking changes**
+
+- Removed `EuiCodeEditor` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Removed `betaBadgeLabel`, `betaBadgeTooltipContent`, `betaBadgeTitle` props from `EuiCard` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Removed `EuiLoadingKibana` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Removed `secondary` color prop options ([#5323](https://github.com/elastic/eui/pull/5323))
+- Removed `subdued` color prop option from `EuiButtonIcon` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Removed `panelPaddingSize` from `EuiPageContent` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Removed `makeId` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Removed mobile-only props from `EuiTableRowCell` ([#5323](https://github.com/elastic/eui/pull/5323))
+
 **Theme: Amsterdam**
 
 - Fixed `mobileOptions.enlarge` styling in `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
