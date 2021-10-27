@@ -71,6 +71,16 @@ export class RowHeightUtils {
 
     rowHeights[colIndex] = adaptedHeight;
     this.heightsCache.set(rowIndex, rowHeights);
+    this.resetRow(visibleRowIndex);
+  }
+
+  unsetRowHeight(rowIndex: number, colIndex: number, visibleRowIndex: number) {
+    const rowHeights = this.heightsCache.get(rowIndex) || {};
+    delete rowHeights[colIndex];
+    this.resetRow(visibleRowIndex);
+  }
+
+  resetRow(visibleRowIndex: number) {
     // save the first row index of batch, reassigning it only
     // if this visible row index less than lastUpdatedRow
     this.lastUpdatedRow = Math.min(this.lastUpdatedRow, visibleRowIndex);
