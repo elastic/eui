@@ -69,7 +69,7 @@ export const useDataGridStyleSelector = (
       closePopover={() => setIsOpen(false)}
       anchorPosition="downCenter"
       panelPaddingSize="s"
-      panelClassName="euiDataGridColumnSelectorPopover"
+      panelClassName="euiDataGrid__controlPopover"
       button={
         <EuiButtonEmpty
           size="xs"
