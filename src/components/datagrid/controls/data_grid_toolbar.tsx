@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { EuiButtonEmpty } from '../../button';
+import { EuiButtonIcon } from '../../button';
 import { useEuiI18n } from '../../i18n';
 import {
   EuiDataGridProps,
@@ -79,16 +79,15 @@ export const EuiDataGridToolbar = ({
   }
 
   const fullScreenSelector = (
-    <EuiButtonEmpty
+    <EuiButtonIcon
       size="xs"
       iconType="fullScreen"
       color="text"
       className={controlBtnClasses}
       data-test-subj="dataGridFullScreenButton"
       onClick={() => setIsFullScreen(!isFullScreen)}
-    >
-      {isFullScreen ? fullScreenButtonActive : fullScreenButton}
-    </EuiButtonEmpty>
+      aria-label={isFullScreen ? fullScreenButtonActive : fullScreenButton}
+    />
   );
 
   return (

@@ -8,9 +8,9 @@
 
 import React, { ReactElement, useState } from 'react';
 import { EuiDataGridStyle } from '../data_grid_types';
-import { EuiI18n } from '../../i18n';
+import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiPopover } from '../../popover';
-import { EuiButtonEmpty, EuiButtonGroup } from '../../button';
+import { EuiButtonIcon, EuiButtonGroup } from '../../button';
 
 export const startingStyles: EuiDataGridStyle = {
   cellPadding: 'm',
@@ -67,20 +67,19 @@ export const useDataGridStyleSelector = (
       data-test-subj="dataGridStyleSelectorPopover"
       isOpen={isOpen}
       closePopover={() => setIsOpen(false)}
-      anchorPosition="downCenter"
+      anchorPosition="downRight"
       panelPaddingSize="s"
       panelClassName="euiDataGrid__controlPopover"
       button={
-        <EuiButtonEmpty
+        <EuiButtonIcon
           size="xs"
-          iconType="tableDensityExpanded"
+          iconType="tableDensityNormal"
           className="euiDataGrid__controlBtn"
           color="text"
           data-test-subj="dataGridStyleSelectorButton"
           onClick={() => setIsOpen(!isOpen)}
-        >
-          <EuiI18n token="euiStyleSelector.buttonText" default="Density" />
-        </EuiButtonEmpty>
+          aria-label={useEuiI18n('euiStyleSelector.buttonText', 'Grid display')}
+        />
       }
     >
       <EuiI18n
