@@ -234,12 +234,11 @@ export class EuiDataGridCell extends Component<
       this.unsubscribeCell();
     }
 
-    const { rowIndex, colIndex, visibleRowIndex } = this.props;
-    this.props.rowHeightUtils?.unsetRowHeight(
-      rowIndex,
-      colIndex,
-      visibleRowIndex
-    );
+    const { rowHeightUtils, rowIndex, rowHeightsOptions } = this.props;
+    if (rowHeightUtils?.isAutoHeight(rowIndex, rowHeightsOptions)) {
+      const { colIndex, visibleRowIndex } = this.props;
+      rowHeightUtils?.unsetRowHeight(rowIndex, colIndex, visibleRowIndex);
+    }
   }
 
   componentDidUpdate(prevProps: EuiDataGridCellProps) {
