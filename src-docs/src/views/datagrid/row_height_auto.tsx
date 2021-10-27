@@ -5,7 +5,6 @@ import React, {
   useContext,
   useMemo,
   ReactNode,
-  useEffect,
 } from 'react';
 // @ts-ignore not configured to import json
 import githubData from './row_auto_height_data.json';
@@ -51,7 +50,7 @@ type DataContextShape =
     };
 const DataContext = createContext<DataContextShape>(undefined);
 
-const gridColumns = [
+const columns = [
   {
     id: 'index',
     displayAsText: 'Index',
@@ -160,11 +159,6 @@ export default () => {
     },
     [setSortingColumns]
   );
-
-  const [columns, setColumns] = useState(gridColumns);
-  useEffect(() => {
-    setColumns([...gridColumns]);
-  }, [sortingColumns]);
 
   const onChangeItemsPerPage = useCallback(
     (pageSize) =>
