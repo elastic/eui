@@ -618,7 +618,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 
   // reset height constraint when rowCount changes
   useEffect(() => {
-    setHeight(wrapperRef.current!.getBoundingClientRect().height);
+    setHeight(undefined);
   }, [rowCount]);
 
   useEffect(() => {

@@ -8,6 +8,7 @@
 
 - Fixed default text alignment in `EuiTableRowCell` on Safari ([#5283](https://github.com/elastic/eui/pull/5283))
 - Fixed `mobileOptions.truncateText` from getting overridden by `truncateText` in `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
+- Fixed issue with dynamic row counts in `EuiDataGrid` ([#5313](https://github.com/elastic/eui/pull/5313))
 
 **Theme: Amsterdam**
 
