@@ -14,11 +14,27 @@ import { EuiDatePickerRange } from './date_picker_range';
 import { EuiDatePicker } from './date_picker';
 
 describe('EuiDatePickerRange', () => {
-  test('is rendered', () => {
+  it('is rendered', () => {
     const component = render(
       <EuiDatePickerRange
         startDateControl={<EuiDatePicker />}
         endDateControl={<EuiDatePicker />}
+        {...requiredProps}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  it('uses individual EuiDatePicker props', () => {
+    const component = render(
+      <EuiDatePickerRange
+        startDateControl={
+          <EuiDatePicker popoverPlacement="left" className="hello" />
+        }
+        endDateControl={
+          <EuiDatePicker popoverPlacement="left" className="world" />
+        }
         {...requiredProps}
       />
     );
