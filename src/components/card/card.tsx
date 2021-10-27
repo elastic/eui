@@ -122,7 +122,8 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
     target?: string;
     rel?: string;
     /**
-     * Props to be passed through to the EuiBetaBadge
+     * Adds a badge to top of the card to label it as "Beta" or other non-GA state.
+     * Accepts all the props of [EuiBetaBadge](#/display/badge#beta-badge-type), where `label` is required.
      */
     betaBadgeProps?: Partial<EuiBetaBadgeProps>;
     /**
