@@ -4,9 +4,24 @@
   z-index: 3; // Needs to sit above the content blow that sits below it
   border: $euiBorderThin;
   padding: $euiSizeXS;
-  flex-grow: 0;
+  display: flex;
+  justify-content: space-between;
+}
 
-  > * {
+.euiDataGrid__displayControls {
+  // Keep this right-aligned if hasRoomForGridControls is hiding dataControls
+  &:only-child {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  > * + * {
+    margin-left: $euiSizeS;
+  }
+}
+
+.euiDataGrid__dataControls {
+  > * + * {
     margin-left: $euiSizeXS / 2;
   }
 }

@@ -98,13 +98,7 @@ export const EuiDataGridToolbar = ({
       data-test-sub="dataGridControls"
     >
       {hasRoomForGridControls && (
-        <>
-          {checkOrDefaultToolBarDisplayOptions(
-            toolbarVisibility,
-            'additionalControls'
-          ) && typeof toolbarVisibility !== 'boolean'
-            ? toolbarVisibility.additionalControls
-            : null}
+        <div className="euiDataGrid__dataControls">
           {checkOrDefaultToolBarDisplayOptions(
             toolbarVisibility,
             'showColumnSelector'
@@ -113,24 +107,32 @@ export const EuiDataGridToolbar = ({
             : null}
           {checkOrDefaultToolBarDisplayOptions(
             toolbarVisibility,
-            'showStyleSelector'
-          )
-            ? styleSelector
-            : null}
-          {checkOrDefaultToolBarDisplayOptions(
-            toolbarVisibility,
             'showSortSelector'
           )
             ? columnSorting
             : null}
-        </>
+          {checkOrDefaultToolBarDisplayOptions(
+            toolbarVisibility,
+            'additionalControls'
+          ) && typeof toolbarVisibility !== 'boolean'
+            ? toolbarVisibility.additionalControls
+            : null}
+        </div>
       )}
-      {checkOrDefaultToolBarDisplayOptions(
-        toolbarVisibility,
-        'showFullScreenSelector'
-      )
-        ? fullScreenSelector
-        : null}
+      <div className="euiDataGrid__displayControls">
+        {checkOrDefaultToolBarDisplayOptions(
+          toolbarVisibility,
+          'showStyleSelector'
+        )
+          ? styleSelector
+          : null}
+        {checkOrDefaultToolBarDisplayOptions(
+          toolbarVisibility,
+          'showFullScreenSelector'
+        )
+          ? fullScreenSelector
+          : null}
+      </div>
     </div>
   );
 };
