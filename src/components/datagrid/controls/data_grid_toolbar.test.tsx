@@ -35,25 +35,32 @@ describe('EuiDataGridToolbar', () => {
         className="euiDataGrid__controls"
         data-test-sub="dataGridControls"
       >
-        <div>
-          mock column selector
-        </div>
-        <div>
-          mock style selector
-        </div>
-        <div>
-          mock column sorting
-        </div>
-        <EuiButtonEmpty
-          className=""
-          color="text"
-          data-test-subj="dataGridFullScreenButton"
-          iconType="fullScreen"
-          onClick={[Function]}
-          size="xs"
+        <div
+          className="euiDataGrid__dataControls"
         >
-          Full screen
-        </EuiButtonEmpty>
+          <div>
+            mock column selector
+          </div>
+          <div>
+            mock column sorting
+          </div>
+        </div>
+        <div
+          className="euiDataGrid__displayControls"
+        >
+          <div>
+            mock style selector
+          </div>
+          <EuiButtonIcon
+            aria-label="Full screen"
+            className=""
+            color="text"
+            data-test-subj="dataGridFullScreenButton"
+            iconType="fullScreen"
+            onClick={[Function]}
+            size="xs"
+          />
+        </div>
       </div>
     `);
   });
@@ -67,7 +74,14 @@ describe('EuiDataGridToolbar', () => {
       <div
         className="euiDataGrid__controls"
         data-test-sub="dataGridControls"
-      />
+      >
+        <div
+          className="euiDataGrid__dataControls"
+        />
+        <div
+          className="euiDataGrid__displayControls"
+        />
+      </div>
     `);
   });
 
@@ -90,9 +104,16 @@ describe('EuiDataGridToolbar', () => {
         className="euiDataGrid__controls"
         data-test-sub="dataGridControls"
       >
-        <div>
-          hello world
+        <div
+          className="euiDataGrid__dataControls"
+        >
+          <div>
+            hello world
+          </div>
         </div>
+        <div
+          className="euiDataGrid__displayControls"
+        />
       </div>
     `);
   });
@@ -109,16 +130,15 @@ describe('EuiDataGridToolbar', () => {
 
     expect(component.find('[data-test-subj="dataGridFullScreenButton"]'))
       .toMatchInlineSnapshot(`
-      <EuiButtonEmpty
+      <EuiButtonIcon
+        aria-label="Exit full screen"
         className=""
         color="text"
         data-test-subj="dataGridFullScreenButton"
         iconType="fullScreen"
         onClick={[Function]}
         size="xs"
-      >
-        Exit full screen
-      </EuiButtonEmpty>
+      />
     `);
   });
 });
