@@ -17,9 +17,9 @@ exports[`EuiDataGridCell renders 1`] = `
       "getStylesForCell": [MockFunction],
       "isAutoHeight": [MockFunction],
       "isDefinedHeight": [MockFunction],
+      "pruneHiddenColumnHeights": [MockFunction],
       "setGrid": [MockFunction],
       "setRowHeight": [MockFunction],
-      "unsetRowHeight": [MockFunction],
     }
   }
   rowIndex={0}
@@ -64,9 +64,9 @@ exports[`EuiDataGridCell renders 1`] = `
               "getStylesForCell": [MockFunction],
               "isAutoHeight": [MockFunction],
               "isDefinedHeight": [MockFunction],
+              "pruneHiddenColumnHeights": [MockFunction],
               "setGrid": [MockFunction],
               "setRowHeight": [MockFunction],
-              "unsetRowHeight": [MockFunction],
             }
           }
           rowIndex={0}

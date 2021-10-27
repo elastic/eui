@@ -205,20 +205,6 @@ describe('EuiDataGridCell', () => {
     });
   });
 
-  describe('componentWillUnmount', () => {
-    describe('when height is set to auto fit content', () => {
-      it('clears the row height cache for its cell row/col index', () => {
-        (mockRowHeightUtils.isAutoHeight as jest.Mock).mockReturnValue(true);
-
-        const component = mountEuiDataGridCellWithContext();
-        component.unmount();
-        expect(mockRowHeightUtils.unsetRowHeight).toHaveBeenCalled();
-
-        (mockRowHeightUtils.isAutoHeight as jest.Mock).mockRestore();
-      });
-    });
-  });
-
   // TODO: Test ResizeObserver logic in Cypress
 
   // TODO: Test interacting/focus/tabbing in Cypress instead of Jest

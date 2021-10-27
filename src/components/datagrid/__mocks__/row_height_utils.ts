@@ -21,7 +21,7 @@ export const mockRowHeightUtils = ({
   isDefinedHeight: jest.fn(() => true),
   isAutoHeight: jest.fn(() => false),
   setRowHeight: jest.fn(),
-  unsetRowHeight: jest.fn(),
+  pruneHiddenColumnHeights: jest.fn(),
   getRowHeight: jest.fn(() => 32),
   getComputedCellStyles: jest.fn(() => {}),
   getCalculatedHeight: jest.fn(

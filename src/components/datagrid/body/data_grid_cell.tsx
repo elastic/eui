@@ -201,12 +201,12 @@ export class EuiDataGridCell extends Component<
       rowHeightUtils &&
       rowHeightUtils.isAutoHeight(rowIndex, rowHeightsOptions)
     ) {
-      const { colIndex, visibleRowIndex } = this.props;
+      const { columnId, visibleRowIndex } = this.props;
       const rowHeight = this.cellContentsRef.offsetHeight;
 
       rowHeightUtils.setRowHeight(
         rowIndex,
-        colIndex,
+        columnId,
         rowHeight,
         visibleRowIndex
       );
@@ -232,12 +232,6 @@ export class EuiDataGridCell extends Component<
     window.clearTimeout(this.focusTimeout);
     if (this.unsubscribeCell) {
       this.unsubscribeCell();
-    }
-
-    const { rowHeightUtils, rowIndex, rowHeightsOptions } = this.props;
-    if (rowHeightUtils?.isAutoHeight(rowIndex, rowHeightsOptions)) {
-      const { colIndex, visibleRowIndex } = this.props;
-      rowHeightUtils?.unsetRowHeight(rowIndex, colIndex, visibleRowIndex);
     }
   }
 
