@@ -356,7 +356,7 @@ export default () => (
             Continue
           </EuiButton>
           &nbsp;&nbsp;
-          <EuiButton iconType="check" color="secondary" fill>
+          <EuiButton iconType="check" color="success" fill>
             Save and complete
           </EuiButton>
         </div>
@@ -514,7 +514,7 @@ export default () => (
         <EuiTableRow>
           <EuiTableRowCell mobileOptions={{ width: '100%' }}>
             <EuiButton fill>Save</EuiButton>&nbsp;&nbsp;
-            <EuiButton fill color="secondary" iconType="check">
+            <EuiButton fill color="success" iconType="check">
               Save and complete
             </EuiButton>
           </EuiTableRowCell>
