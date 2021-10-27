@@ -46,11 +46,7 @@ const GuideSketchLinkComponent: React.FunctionComponent<GuideSketchLinkProps> = 
         This will provide symbols that match against their EUI component
         counterparts."
     >
-      <EuiHeaderSectionItemButton
-        aria-label={label}
-        // @ts-ignore TODO: FIX
-        href={href}
-      >
+      <EuiHeaderSectionItemButton aria-label={label} href={href}>
         <EuiIcon type="logoSketch" aria-hidden="true" />
       </EuiHeaderSectionItemButton>
     </EuiToolTip>

@@ -110,7 +110,7 @@
     "@cypress/code-coverage": "^3.9.11",
     "@cypress/react": "^5.9.4",
     "@cypress/webpack-dev-server": "^1.4.0",
-    "@elastic/charts": "^38.0.1",
+    "@elastic/charts": "^38.1.0",
     "@elastic/datemath": "^5.0.3",
     "@elastic/eslint-config-kibana": "^0.15.0",
     "@emotion/babel-preset-css-prop": "^11.0.0",
