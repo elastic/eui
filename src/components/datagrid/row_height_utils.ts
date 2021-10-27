@@ -104,8 +104,9 @@ export class RowHeightUtils {
   }
 
   getRowHeight(rowIndex: number) {
-    const rowHeights =
-      this.heightsCache.get(rowIndex) || new Map<string, number>();
+    const rowHeights = this.heightsCache.get(rowIndex);
+    if (rowHeights == null) return 0;
+
     const rowHeightValues = Array.from(rowHeights.values());
 
     if (rowHeightValues.length) {
