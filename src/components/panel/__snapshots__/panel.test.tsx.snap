@@ -95,14 +95,12 @@ exports[`EuiPanel props hasShadow can be false 1`] = `
 exports[`EuiPanel props maxWidth is rendered 1`] = `
 <div
   class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow"
-  style="max-width:600px"
 />
 `;
 
 exports[`EuiPanel props minWidth is rendered 1`] = `
 <div
   class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow"
-  style="min-width:200px"
 />
 `;
 

@@ -14,7 +14,7 @@ import React, {
   CSSProperties,
 } from 'react';
 import classNames from 'classnames';
-
+import { useIsWithinBreakpoints } from '../../services';
 import { CommonProps, keysOf, ExclusiveUnion } from '../common';
 
 export const panelPaddingValues = {
@@ -86,11 +86,11 @@ export interface _EuiPanelProps extends CommonProps {
    */
   color?: PanelColor;
   /**
-   * Sets a min width
+   * Applies a min-width to the `style` attribute. Only works when breakpoint is `l` and above
    */
   minWidth?: CSSProperties['minWidth'];
   /**
-   * Sets a max width
+   * Applies a max-width to the `style` attribute. Only works when breakpoint is `l` and above
    */
   maxWidth?: CSSProperties['maxWidth'];
 }
@@ -150,8 +150,10 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     className
   );
 
-  const maxWidthStyles = maxWidth && { maxWidth };
-  const minWidthStyles = minWidth && { minWidth };
+  const isAboveLargeScreens = useIsWithinBreakpoints(['l', 'xl']);
+
+  const maxWidthStyles = maxWidth && isAboveLargeScreens && { maxWidth };
+  const minWidthStyles = minWidth && isAboveLargeScreens && { minWidth };
 
   const panelStyle: CSSProperties = {
     ...style,

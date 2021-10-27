@@ -18,7 +18,7 @@ import illustration from '../../images/empty-prompt_illustration.svg';
 export default () => {
   const pageError = (
     <EuiEmptyPrompt
-      icon={<EuiImage size="l" src={illustration} alt="" />}
+      icon={<EuiImage size="fullWidth" src={illustration} alt="" />}
       title={<h2>Page not found</h2>}
       layout="vertical"
       body={
@@ -83,7 +83,7 @@ export default () => {
 
   const noData = (
     <EuiEmptyPrompt
-      icon={<EuiImage size="l" src={illustration} alt="" />}
+      icon={<EuiImage size="fullWidth" src={illustration} alt="" />}
       title={<h2>Get started by adding your data</h2>}
       layout="horizontal"
       color="plain"

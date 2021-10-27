@@ -6,12 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-} from 'react';
+import React, { FunctionComponent, ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
@@ -20,7 +15,7 @@ import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
 import { EuiIcon, IconColor, IconType } from '../icon';
 import { EuiText, EuiTextColor } from '../text';
-import { EuiPanel, _EuiPanelProps } from '../panel/panel';
+import { EuiPanel, _EuiPanelProps, _EuiPanelDivlike } from '../panel/panel';
 
 const paddingSizeToClassNameMap = {
   none: null,
@@ -31,9 +26,13 @@ const paddingSizeToClassNameMap = {
 
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
+export type PaddingSize = typeof PADDING_SIZES[number];
+
 export type EuiEmptyPromptProps = CommonProps &
-  Omit<HTMLAttributes<HTMLDivElement>, 'title'> &
-  Omit<_EuiPanelProps, 'borderRadius' | 'grow' | 'panelRef' | 'paddingSize'> & {
+  Omit<
+    _EuiPanelDivlike,
+    'borderRadius' | 'grow' | 'panelRef' | 'paddingSize' | 'title'
+  > & {
     /*
      * Accepts any `EuiIcon.type` or pass a custom node
      */
@@ -77,7 +76,7 @@ export type EuiEmptyPromptProps = CommonProps &
     /**
      * Padding applied around the content and footer.
      */
-    paddingSize?: _EuiPanelProps['paddingSize'];
+    paddingSize?: PaddingSize;
   };
 
 export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
@@ -98,12 +97,11 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
 }) => {
   const isVerticalLayout = layout === 'vertical';
 
-  let iconNode;
-  if (icon) {
-    iconNode = icon;
-  } else if (iconType) {
-    iconNode = <EuiIcon type={iconType} size="xxl" color={iconColor} />;
-  }
+  const iconNode = iconType ? (
+    <EuiIcon type={iconType} size="xxl" color={iconColor} />
+  ) : (
+    icon
+  );
 
   let titleNode;
   let bodyNode;
@@ -129,9 +127,10 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
     if (Array.isArray(actions)) {
       actionsRow = (
         <EuiFlexGroup
+          className="euiEmptyPrompt__actions"
           gutterSize="m"
-          alignItems={isVerticalLayout ? 'center' : 'flexStart'}
-          justifyContent={isVerticalLayout ? 'center' : 'flexStart'}
+          alignItems="center"
+          justifyContent="center"
           direction={isVerticalLayout ? 'column' : 'row'}
         >
           {actions.map((action, index) => (
@@ -180,11 +179,9 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
     <EuiPanel {...panelProps}>
       <div className="euiEmptyPrompt__main">
         {iconNode && <div className="euiEmptyPrompt__icon">{iconNode}</div>}
-        {contentNodes && (
-          <div className="euiEmptyPrompt__content">
-            <div className="euiEmptyPrompt__contentInner">{contentNodes}</div>
-          </div>
-        )}
+        <div className="euiEmptyPrompt__content">
+          <div className="euiEmptyPrompt__contentInner">{contentNodes}</div>
+        </div>
       </div>
       {footer && <div className="euiEmptyPrompt__footer">{footer}</div>}
     </EuiPanel>

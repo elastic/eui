@@ -31,7 +31,7 @@ import Layout from './empty_prompt_layout';
 const layoutSource = require('!!raw-loader!./empty_prompt_layout');
 const layoutSnippet = `<EuiEmptyPrompt
   layout="horizontal"
-  icon={<EuiImage size="l" src={illustration} alt="" />}
+  icon={<EuiImage size="fullWidth" src={illustration} alt="" />}
   title={<h2>Your title</h2>}
   body={bodyContent}
   actions={actions}
@@ -186,7 +186,7 @@ export const EmptyPromptExample = {
             <Link to="/display/image">
               <strong>EuiImage</strong>
             </Link>{' '}
-            with the size set to large.
+            with the size set to <EuiCode>{'"fullWidth"'}</EuiCode>.
           </p>
         </>
       ),

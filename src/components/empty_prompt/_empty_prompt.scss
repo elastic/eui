@@ -1,6 +1,8 @@
 @import '../text/_variables';
 
 .euiEmptyPrompt {
+  text-align: center;
+  justify-content: center;
   margin: auto;
   max-width: max-content; // the width becomes as wide as necessary to contain all of its contents
 
@@ -31,8 +33,6 @@
 }
 
 .euiEmptyPrompt--vertical {
-  text-align: center;
-
   .euiEmptyPrompt__main {
     display: flex;
     flex-direction: column;
@@ -55,17 +55,17 @@
 }
 
 .euiEmptyPrompt--horizontal {
-  @include euiBreakpoint('xs', 's', 'm') {
-    justify-content: center;
-    text-align: center;
+  @include euiBreakpoint('l', 'xl') {
+    justify-content: flex-start;
+    text-align: left;
   }
 
   .euiEmptyPrompt__main {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
 
-    @include euiBreakpoint('xs', 's', 'm') {
-      flex-direction: column;
+    @include euiBreakpoint('l', 'xl') {
+      flex-direction: row-reverse;
     }
   }
 
@@ -77,6 +77,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    // Consumers should use an EuiImage (recommended) with the horizontal layout
+    // But ut they can use for example an img or other react node
+    > * {
+      max-width: convertToRem(360px);
+    }
   }
 
   .euiEmptyPrompt__content {
@@ -85,10 +91,14 @@
 
   .euiEmptyPrompt__icon,
   .euiEmptyPrompt__content {
-    width: 50%;
+    @include euiBreakpoint('l', 'xl') {
+      width: 50%;
+    }
+  }
 
-    @include euiBreakpoint('xs', 's', 'm') {
-      width: 100%;
+  .euiEmptyPrompt__actions {
+    @include euiBreakpoint('l', 'xl') {
+      justify-content: flex-start;
     }
   }
 }
