@@ -4,7 +4,11 @@
 
 > The Elastic UI Framework is a collection of React UI components for quickly building user interfaces at Elastic.
 
-You should check out our [living style guide][docs], which contains many examples of components in the EUI framework aesthetic, and how to use them in your products. We also have a [FAQ][faq] that covers common usage questions. You can read more about the ways to [consume EUI][consuming].
+## Installation and usage
+
+You should check out our [living style guide][docs], which contains project installation instructions, theming details, and many examples of all the EUI components and how to use them in your products. We also have a [FAQ][faq] that covers common usage questions. You can read more about the ways to [consume EUI][consuming].
+
+The rest of this doc will detail how to run and contribute to the **EUI documentation** site locally.
 
 ## Running Locally
 
