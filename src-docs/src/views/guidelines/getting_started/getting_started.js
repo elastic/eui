@@ -183,9 +183,9 @@ export const GettingStarted = {
           <EuiSpacer />
 
           <EuiText grow={false}>
-            <h4 id="embedding-with-font-face-">
+            <h3 id="embedding-with-font-face-">
               Embedding with <EuiCode>@font-face</EuiCode>
-            </h4>
+            </h3>
             <p>
               If your application doesn&#39;t allow grabbing the font assets
               from a CDN, you&#39;ll need to download and locally provide the
