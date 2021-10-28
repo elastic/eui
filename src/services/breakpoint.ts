@@ -70,9 +70,9 @@ export function isWithinMaxBreakpoint(
 }
 
 /**
- * Given the current `width` and a max breakpoint key,
- * this function returns true or false if the `width` falls within the max
- * breakpoint or any breakpoints below
+ * Given the current `width` and a min breakpoint key,
+ * this function returns true or false if the `width` falls within the min
+ * breakpoint or any breakpoints above
  *
  * @param {number} width Can either be the full window width or any width
  * @param {EuiBreakpointSize | number} min The named breakpoint or custom number to check against

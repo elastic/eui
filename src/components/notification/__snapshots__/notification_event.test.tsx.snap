@@ -541,7 +541,7 @@ exports[`EuiNotificationEvent props multiple messages are rendered 1`] = `
             type="button"
           >
             <span
-              class="euiIEFlexWrapFix"
+              class="euiAccordion__buttonContent"
             >
               + 2 more
             </span>

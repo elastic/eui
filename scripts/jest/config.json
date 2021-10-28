@@ -6,12 +6,11 @@
     "<rootDir>/packages/eslint-plugin"
   ],
   "collectCoverageFrom": [
-    "src/components/**/*.{ts,tsx,js,jsx}",
-    "!src/components/index.ts",
-    "!src/components/**/*/index.ts",
-    "src/services/**/*.{ts,tsx,js,jsx}",
-    "!src/services/index.ts",
-    "!src/services/**/*/index.ts"
+    "src/{components,services}/**/*.{ts,tsx,js,jsx}",
+    "!src/{components,services}/**/*.spec.{ts,tsx,js,jsx}",
+    "!src/{components,services}/**/*.testenv.{ts,tsx,js,jsx}",
+    "!src/{components,services}/index.ts",
+    "!src/{components,services}/**/*/index.ts"
   ],
   "moduleNameMapper": {
     "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/scripts/jest/mocks/file_mock.js",
@@ -28,6 +27,7 @@
   ],
   "coverageDirectory": "<rootDir>/reports/jest-coverage",
   "coverageReporters": [
+    "json",
     "html"
   ],
   "moduleFileExtensions": [

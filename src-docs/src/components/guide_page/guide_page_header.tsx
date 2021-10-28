@@ -65,11 +65,7 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
       </EuiButtonEmpty>
     ) : (
       <EuiToolTip content="Github">
-        <EuiHeaderSectionItemButton
-          aria-label={label}
-          // @ts-ignore TODO: FIX
-          href={href}
-        >
+        <EuiHeaderSectionItemButton aria-label={label} href={href}>
           <EuiIcon type="logoGithub" aria-hidden="true" />
         </EuiHeaderSectionItemButton>
       </EuiToolTip>
@@ -143,6 +139,8 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
 
   return (
     <EuiHeader
+      role="region"
+      aria-label="EUI Docs app bar"
       position="fixed"
       theme="dark"
       sections={[

@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiDataGridColumnSortingDraggable button group schema renders default A-Z sort text if the schema is unknown 1`] = `
+<EuiButtonGroup
+  buttonSize="compressed"
+  className="euiDataGridColumnSorting__order"
+  idSelected="columnAAsc"
+  isFullWidth={true}
+  legend="Select sorting method for Column A"
+  name="columnA"
+  onChange={[Function]}
+  options={
+    Array [
+      Object {
+        "data-test-subj": "euiDataGridColumnSorting-sortColumn-columnA-asc",
+        "id": "columnAAsc",
+        "label": <EuiI18n
+          default="A-Z"
+          token="euiColumnSortingDraggable.defaultSortAsc"
+        />,
+        "value": "asc",
+      },
+      Object {
+        "data-test-subj": "euiDataGridColumnSorting-sortColumn-columnA-desc",
+        "id": "columnADesc",
+        "label": <EuiI18n
+          default="Z-A"
+          token="euiColumnSortingDraggable.defaultSortDesc"
+        />,
+        "value": "desc",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`EuiDataGridColumnSortingDraggable button group schema renders different asc/desc text when a known schema is passed 1`] = `
+<EuiButtonGroup
+  buttonSize="compressed"
+  className="euiDataGridColumnSorting__order"
+  idSelected="columnADesc"
+  isFullWidth={true}
+  legend="Select sorting method for Column A"
+  name="columnA"
+  onChange={[Function]}
+  options={
+    Array [
+      Object {
+        "data-test-subj": "euiDataGridColumnSorting-sortColumn-columnA-asc",
+        "id": "columnAAsc",
+        "label": <EuiI18n
+          default="False-True"
+          token="euiDataGridSchema.booleanSortTextAsc"
+        />,
+        "value": "asc",
+      },
+      Object {
+        "data-test-subj": "euiDataGridColumnSorting-sortColumn-columnA-desc",
+        "id": "columnADesc",
+        "label": <EuiI18n
+          default="True-False"
+          token="euiDataGridSchema.booleanSortTextDesc"
+        />,
+        "value": "desc",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`EuiDataGridColumnSortingDraggable renders an EuiDraggable component of a single column that is currently being sorted 1`] = `
+<div
+  className="euiDataGridColumnSorting__item euiDataGridColumnSorting__item-isDragging"
+>
+  <EuiScreenReaderOnly>
+    <p>
+      <EuiI18n
+        default="{display} is sorting this data grid"
+        token="euiColumnSortingDraggable.activeSortLabel"
+        values={
+          Object {
+            "display": "Column A",
+          }
+        }
+      >
+        <Component />
+      </EuiI18n>
+    </p>
+  </EuiScreenReaderOnly>
+  <EuiFlexGroup
+    alignItems="center"
+    data-test-subj="euiDataGridColumnSorting-sortColumn-columnA"
+    gutterSize="xs"
+    responsive={false}
+  >
+    <EuiFlexItem
+      grow={false}
+    >
+      <EuiI18n
+        default="Remove {display} from data grid sort"
+        token="euiColumnSortingDraggable.removeSortLabel"
+        values={
+          Object {
+            "display": "Column A",
+          }
+        }
+      >
+        <Component />
+      </EuiI18n>
+    </EuiFlexItem>
+    <EuiFlexItem
+      grow={false}
+    >
+      <EuiToken
+        iconType="tokenNumber"
+      />
+    </EuiFlexItem>
+    <EuiFlexItem
+      aria-hidden={true}
+    >
+      <EuiText
+        size="xs"
+      >
+        <p>
+          Column A
+        </p>
+      </EuiText>
+    </EuiFlexItem>
+    <EuiFlexItem
+      className="euiDataGridColumnSorting__orderButtons"
+    >
+      <EuiI18n
+        default="Select sorting method for {display}"
+        token="euiColumnSortingDraggable.toggleLegend"
+        values={
+          Object {
+            "display": "Column A",
+          }
+        }
+      >
+        <Component />
+      </EuiI18n>
+    </EuiFlexItem>
+    <EuiFlexItem
+      grow={false}
+    >
+      <div>
+        <EuiIcon
+          color="subdued"
+          type="grab"
+        />
+      </div>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+</div>
+`;

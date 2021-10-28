@@ -241,6 +241,7 @@ export const Table = () => {
       <EuiSpacer size="l" />
 
       <EuiInMemoryTable
+        tableCaption="Demo of EuiInMemoryTable with selection"
         ref={tableRef}
         items={users}
         itemId="id"
