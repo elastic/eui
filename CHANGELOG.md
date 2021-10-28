@@ -9,12 +9,12 @@
 - Fixed default text alignment in `EuiTableRowCell` on Safari ([#5283](https://github.com/elastic/eui/pull/5283))
 - Fixed `mobileOptions.truncateText` from getting overridden by `truncateText` in `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
 - Fixed issue with dynamic row counts in `EuiDataGrid` ([#5313](https://github.com/elastic/eui/pull/5313))
-- Fixed `EuiDataGrid`'s expanded density not increasing font sizes on Amsterdam ([#5320](https://github.com/elastic/eui/pull/5320))
 - Fixed `EuiDataGrid` to dynamically update row heights when set to `auto` ([#5281](https://github.com/elastic/eui/pull/5281))
 
 **Theme: Amsterdam**
 
 - Fixed `mobileOptions.enlarge` styling in `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
+- Fixed `EuiDataGrid`'s expanded density not increasing font size on Amsterdam ([#5320](https://github.com/elastic/eui/pull/5320))
 
 ## [`40.0.0`](https://github.com/elastic/eui/tree/v40.0.0)
 
