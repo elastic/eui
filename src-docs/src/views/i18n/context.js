@@ -30,6 +30,7 @@ const mappings = {
 
 const ContextConsumer = () => {
   const [name, setName] = useState('');
+  const placeholderName = useEuiI18n('euiContext.placeholder', 'John Doe');
 
   return (
     <div>
@@ -38,7 +39,11 @@ const ContextConsumer = () => {
           token="euiContext.greeting"
           default="Welcome, {name}!"
           values={{
-            name: <EuiTextColor color="success">{name}</EuiTextColor>,
+            name: (
+              <EuiTextColor color="success">
+                {name === '' ? placeholderName : name}
+              </EuiTextColor>
+            ),
           }}
         />
       </strong>
@@ -58,7 +63,7 @@ const ContextConsumer = () => {
         >
           <EuiFieldText
             value={name}
-            placeholder={useEuiI18n('euiContext.placeholder', 'John Doe')}
+            placeholder={placeholderName}
             onChange={({ target }) => setName(target.value)}
           />
         </EuiFormRow>
