@@ -8,7 +8,6 @@
   "rangeStrategy": "bump",
   "semanticCommits": "disabled",
   "assignAutomerge": true,
-  "bumpVersion": "major",
   "vulnerabilityAlerts": {
     "enabled": false
   },
@@ -20,13 +19,13 @@
     {
       "groupName": "@elastic/charts",
       "matchPackageNames": ["@elastic/charts"],
+      "matchUpdateTypes": ["major"],
       "enabled": true
     },
     {
       "matchPackageNames": ["@elastic/charts"],
       "matchUpdateTypes": ["major"],
       "matchBaseBranches": ["master"],
-      "reviewers": ["team:datavis"],
       "labels": ["dependencies"],
       "automerge": true,
       "enabled": true
