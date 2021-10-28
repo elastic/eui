@@ -8,20 +8,20 @@
 
 import React, { Component, HTMLAttributes, ReactNode, memo } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../../common';
-import {
-  EuiSelectableListItem,
-  EuiSelectableListItemProps,
-} from './selectable_list_item';
-import { EuiHighlight } from '../../highlight';
-import { EuiSelectableOption } from '../selectable_option';
-import AutoSizer from 'react-virtualized-auto-sizer';
 import {
   FixedSizeList,
   ListProps,
   ListChildComponentProps as ReactWindowListChildComponentProps,
   areEqual,
 } from 'react-window';
+import { CommonProps } from '../../common';
+import { EuiAutoSizer } from '../../auto_sizer';
+import { EuiHighlight } from '../../highlight';
+import { EuiSelectableOption } from '../selectable_option';
+import {
+  EuiSelectableListItem,
+  EuiSelectableListItemProps,
+} from './selectable_list_item';
 
 interface ListChildComponentProps<T>
   extends ReactWindowListChildComponentProps {
@@ -310,7 +310,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
 
     return (
       <div className={classes} {...rest}>
-        <AutoSizer disableHeight={!heightIsFull}>
+        <EuiAutoSizer disableHeight={!heightIsFull}>
           {({ width, height }) => (
             <FixedSizeList
               ref={this.setListRef}
@@ -329,7 +329,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
               {this.ListRow}
             </FixedSizeList>
           )}
-        </AutoSizer>
+        </EuiAutoSizer>
       </div>
     );
   }

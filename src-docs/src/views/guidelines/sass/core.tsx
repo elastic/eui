@@ -1,8 +1,6 @@
 import React from 'react';
 
 // @ts-ignore Importing from Sass file
-import sizes from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../../src/global_styling/variables/_size.scss';
-// @ts-ignore Importing from Sass file
 import zindexs from '!!sass-vars-to-js-loader?preserveKeys=true!../../../../../src/global_styling/variables/_z_index.scss';
 // @ts-ignore Importing from Sass file
 import { RenderPaletteColor } from './render_palette';
@@ -20,17 +18,6 @@ import {
 } from '../../../../../src';
 
 const euiColors = [...allowedColors, 'euiColorGhost', 'euiColorInk'];
-
-const euiSizes = [
-  'euiSizeXS',
-  'euiSizeS',
-  'euiSizeM',
-  'euiSize',
-  'euiSizeL',
-  'euiSizeXL',
-  'euiSizeXXL',
-];
-
 const euiLevels = [
   'euiZToastList',
   'euiZModal',
@@ -41,33 +28,6 @@ const euiLevels = [
   'euiZFlyout',
   'euiZContent',
 ];
-
-function renderSize(size: string) {
-  return (
-    <EuiFlexGroup
-      responsive={false}
-      alignItems="center"
-      gutterSize="s"
-      key={size}
-      className="guideSass__sizeRow"
-    >
-      <EuiFlexItem grow={false} className="guideSass__sizeItem">
-        <div
-          className="guideSass__size"
-          style={{ width: sizes[size], height: sizes[size] }}
-        />
-      </EuiFlexItem>
-      <EuiFlexItem grow={false} style={{ minWidth: 184 }}>
-        <div>
-          <EuiCode>${size}</EuiCode>
-        </div>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiText size="s">{sizes[size]}px</EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
-  );
-}
 
 function renderLevel(level: string, index: number) {
   return (
@@ -102,18 +62,6 @@ export const Core = () => {
       <EuiFlexGrid columns={2}>
         <EuiFlexItem>
           <div>
-            <EuiTitle size="s">
-              <h3>Sizing</h3>
-            </EuiTitle>
-
-            <EuiSpacer />
-
-            {euiSizes.map(function (size) {
-              return renderSize(size);
-            })}
-
-            <EuiSpacer />
-
             <EuiTitle size="s">
               <h3>Z-index</h3>
             </EuiTitle>
