@@ -16,7 +16,7 @@ import Guidelines from './guidelines';
 
 import emptyPromptConfig from './playground';
 
-import PageBackgroundColors from './_page_background_colors';
+import PageTemplateTable from './_page_template_table';
 
 import EmptyPrompt from './empty_prompt';
 const emptyPromptSource = require('!!raw-loader!./empty_prompt');
@@ -235,18 +235,18 @@ export const EmptyPromptExample = {
         <>
           <p>
             When using a <strong>EuiEmptyPrompt</strong> in a{' '}
-            <Link to="/layout/page">page template</Link> pay attention to the
-            background color of the page. This color will determine which{' '}
-            <EuiCode>color</EuiCode> prop you should use to ensure consistency
-            across our Elastic products.
+            <Link to="/layout/page">page template</Link>, pay attention to the
+            template you’re passing. The template will determine which{' '}
+            <EuiCode>color</EuiCode> and <EuiCode>hasBorder</EuiCode> prop you
+            should use to ensure consistency across our Elastic products.
           </p>
-          <PageBackgroundColors />
+          <PageTemplateTable />
 
           <EuiSpacer size="xl" />
           <p>
             The following example shows the usage of a{' '}
             <strong>EuiEmptyPrompt</strong> in a page template where the
-            background color is <EuiCode>euiPageBackgroundColor</EuiCode>.
+            template is set to <EuiCode>{'"centeredBody"'}</EuiCode>.
           </p>
         </>
       ),
