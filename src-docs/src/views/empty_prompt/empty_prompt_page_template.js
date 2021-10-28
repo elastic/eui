@@ -8,19 +8,15 @@ import {
   EuiLink,
   EuiImage,
 } from '../../../../src/components';
-import sideNavSvg from '../../images/side_nav.svg';
 import illustration from '../../images/empty-prompt_illustration.svg';
 
 export default () => (
   <EuiPageTemplate
-    template="centeredBody"
+    template="empty"
     pageContentProps={{
       paddingSize: 'none',
       role: null, // For passing a11y tests in EUI docs only
     }}
-    pageSideBar={
-      <EuiImage size="fullWidth" alt="Fake side nav list" url={sideNavSvg} />
-    }
   >
     <EuiEmptyPrompt
       title={<h2>Create your first visualization</h2>}

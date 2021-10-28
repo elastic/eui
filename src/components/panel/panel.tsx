@@ -150,10 +150,15 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     className
   );
 
+  // Only applies the max-width and min-width styles in large screens
+  // For smaller screens the panel gets a width of 100%, so no need for a max-width
+  // A large min-with could create a layout overflow in small screens
   const isAboveLargeScreens = useIsWithinBreakpoints(['l', 'xl']);
 
   const maxWidthStyles = maxWidth && isAboveLargeScreens && { maxWidth };
   const minWidthStyles = minWidth && isAboveLargeScreens && { minWidth };
+
+  console.log('minWidth', minWidth);
 
   const panelStyle: CSSProperties = {
     ...style,

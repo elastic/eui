@@ -246,7 +246,7 @@ export const EmptyPromptExample = {
           <p>
             The following example shows the usage of a{' '}
             <strong>EuiEmptyPrompt</strong> in a page template where the
-            template is set to <EuiCode>{'"centeredBody"'}</EuiCode>.
+            template is set to <EuiCode>{'"empty"'}</EuiCode>.
           </p>
         </>
       ),

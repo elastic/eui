@@ -2,16 +2,33 @@
 
 .euiEmptyPrompt {
   text-align: center;
-  justify-content: center;
   margin: auto;
-  max-width: max-content; // the width becomes as wide as necessary to contain all of its contents
+
+  @include euiBreakpoint('l', 'xl') {
+    max-width: max-content; // the width becomes as wide as necessary to contain all of its contents
+  }
+
+  .euiEmptyPrompt__icon {
+    // Consumers should use an EuiImage (recommended) with the horizontal layout
+    // But they can use for example an img or other react node
+    > * {
+      max-width: convertToRem(360px);
+    }
+  }
 
   // Footer background colors
   @each $modifier, $color in $euiPanelBackgroundColorModifiers {
     @if ($modifier == 'transparent') {
       &.euiPanel--#{$modifier} .euiEmptyPrompt__footer {
-        border-radius: $euiBorderRadius;
         background-color: $euiPageBackgroundColor;
+
+        &:not(.euiPanel--hasBorder) {
+          border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
+        }
+
+        &.euiPanel--hasBorder {
+          border-radius: $euiBorderRadius;
+        }
       }
     } @else if ($modifier == 'plain') {
       &.euiPanel--#{$modifier} .euiEmptyPrompt__footer {
@@ -38,15 +55,11 @@
     flex-direction: column;
     justify-content: center;
     min-height: $euiSizeXXL * 6;
-
-    > * + * {
-      margin-bottom: $euiSize;
-    }
   }
 
-  .euiEmptyPrompt__main,
-  .euiEmptyPrompt__footer {
+  .euiEmptyPrompt__contentInner {
     max-width: $euiTextConstrainedMaxWidth;
+    margin: auto;
   }
 
   .euiEmptyPrompt__icon {
@@ -63,30 +76,27 @@
   .euiEmptyPrompt__main {
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     @include euiBreakpoint('l', 'xl') {
       flex-direction: row-reverse;
     }
   }
 
-  .euiEmptyPrompt__contentInner {
-    max-width: $euiTextConstrainedMaxWidth;
-  }
-
   .euiEmptyPrompt__icon {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    // Consumers should use an EuiImage (recommended) with the horizontal layout
-    // But ut they can use for example an img or other react node
-    > * {
-      max-width: convertToRem(360px);
-    }
   }
 
   .euiEmptyPrompt__content {
-    padding: $euiSizeL 0;
+    @include euiBreakpoint('l', 'xl') {
+      padding: $euiSizeL 0;
+    }
+  }
+
+  .euiEmptyPrompt__contentInner {
+    max-width: $euiTextConstrainedMaxWidth;
   }
 
   .euiEmptyPrompt__icon,

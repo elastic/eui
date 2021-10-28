@@ -36,22 +36,23 @@ export default () => (
       <EuiButtonEmpty>Try sample data</EuiButtonEmpty>,
     ]}
     footer={
-      <EuiFlexGroup>
+      <EuiFlexGroup className="eui-textLeft">
         <EuiFlexItem grow={false}>
           <EuiTitle size="xxs">
             <h3>Want to learn more?</h3>
           </EuiTitle>
-
-          <EuiButtonEmpty
-            href="#"
-            iconType="popout"
-            iconSide="right"
-            iconSize="s"
-            flush="both"
-            size="s"
-          >
-            Read documentation
-          </EuiButtonEmpty>
+          <span>
+            <EuiButtonEmpty
+              href="#"
+              iconType="popout"
+              iconSide="right"
+              iconSize="s"
+              flush="both"
+              size="s"
+            >
+              Read documentation
+            </EuiButtonEmpty>
+          </span>
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
           <EuiTitle size="xxs">
