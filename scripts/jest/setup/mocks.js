@@ -1,3 +1,8 @@
+jest.mock('./../../../src/components/auto_sizer', () => {
+  const { EuiAutoSizer } = require('./../../../src/components/auto_sizer/auto_sizer.testenv');
+  return { EuiAutoSizer };
+});
+
 jest.mock('./../../../src/components/icon', () => {
   const { EuiIcon } = require('./../../../src/components/icon/icon.testenv');
   return { EuiIcon };

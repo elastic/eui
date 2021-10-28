@@ -1,6 +1,18 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-**TODO**
+- Added `EuiAutoSizer` component for setting dimensions on virtualized lists ([#5278](https://github.com/elastic/eui/pull/5278))
+- Added `testenv` mock for `EuiAutoSizer` ([#5278](https://github.com/elastic/eui/pull/5278))
+
+### Feature: CSS-in-JS ([#5121](https://github.com/elastic/eui/pull/5121))
+
+- Added reset and global styles via CSS-in-JS with `@emotion/react/Global`
+- Added `EuiProvider`, a React context provider for theming and global styles
+- Added `isDefaultTheme` and `isLegacyTheme` utilities
+
+**Breaking changes**
+
+- Added `@emotion/react` to `peerDependencies`
+- Deprecated and renamed as "legacy" the pre-Amsterdam default theme
 
 ## [`40.1.0`](https://github.com/elastic/eui/tree/v40.1.0)
 
@@ -182,7 +194,7 @@
 
 ## [`37.5.0`](https://github.com/elastic/eui/tree/v37.5.0)
 
-### Feature: Emotion ([#4511](https://github.com/elastic/eui/pull/4511))
+### Feature: CSS-in-JS ([#4511](https://github.com/elastic/eui/pull/4511))
 
 - Added `EuiThemeProvider`, a React context provider for theme values and color mode selection
 - Added `useEuiTheme` React hook, and `withEuiTheme` React HOC for consuming the EuiTheme

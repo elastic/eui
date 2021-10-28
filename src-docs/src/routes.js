@@ -38,6 +38,8 @@ import { AccordionExample } from './views/accordion/accordion_example';
 
 import { AspectRatioExample } from './views/aspect_ratio/aspect_ratio_example';
 
+import { AutoSizerExample } from './views/auto_sizer/auto_sizer_example';
+
 import { AvatarExample } from './views/avatar/avatar_example';
 
 import { BadgeExample } from './views/badge/badge_example';
@@ -229,6 +231,7 @@ import ThemeValues from './views/theme/values';
 import Typography, {
   typographySections,
 } from './views/theme/typography/typography';
+import Sizing, { sizingSections } from './views/theme/sizing/sizing';
 import Breakpoints from './views/theme/breakpoints/breakpoints';
 import Borders, { bordersSections } from './views/theme/borders/borders';
 
@@ -359,6 +362,11 @@ const navigation = [
         name: 'Borders',
         component: Borders,
         sections: bordersSections,
+      },
+      {
+        name: 'Sizing',
+        component: Sizing,
+        sections: sizingSections,
       },
       {
         name: 'Typography',
@@ -492,6 +500,7 @@ const navigation = [
     name: 'Utilities',
     items: [
       AccessibilityExample,
+      AutoSizerExample,
       BeaconExample,
       ColorExample,
       ColorPaletteExample,

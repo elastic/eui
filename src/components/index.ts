@@ -6,13 +6,15 @@
  * Side Public License, v 1.
  */
 
+export * from './accessibility';
+
 export * from './accordion';
 
 export * from './aspect_ratio';
 
-export * from './avatar';
+export * from './auto_sizer';
 
-export * from './accessibility';
+export * from './avatar';
 
 export * from './badge';
 
