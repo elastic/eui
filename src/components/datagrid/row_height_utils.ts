@@ -122,15 +122,11 @@ export class RowHeightUtils {
     return false;
   }
 
-  computeStylesForGridCell(gridStyles: EuiDataGridStyle) {
+  cacheStyles(gridStyles: EuiDataGridStyle) {
     this.styles = {
       paddingTop: cellPaddingsMap[gridStyles.cellPadding!],
       paddingBottom: cellPaddingsMap[gridStyles.cellPadding!],
     };
-  }
-
-  getComputedCellStyles() {
-    return this.styles;
   }
 
   getRowHeightOption(

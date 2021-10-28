@@ -11,7 +11,7 @@ import { EuiDataGridRowHeightOption } from '../data_grid_types';
 import { RowHeightUtils } from '../row_height_utils';
 
 export const mockRowHeightUtils = ({
-  computeStylesForGridCell: jest.fn(),
+  cacheStyles: jest.fn(),
   setGrid: jest.fn(),
   getStylesForCell: jest.fn(() => ({
     wordWrap: 'break-word',
@@ -23,7 +23,6 @@ export const mockRowHeightUtils = ({
   pruneHiddenColumnHeights: jest.fn(),
   getRowHeight: jest.fn(() => 32),
   getRowHeightOption: jest.fn(),
-  getComputedCellStyles: jest.fn(() => {}),
   getCalculatedHeight: jest.fn(
     (heightOption: EuiDataGridRowHeightOption, defaultHeight: number) => {
       if (typeof heightOption === 'object') {

@@ -506,21 +506,14 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 
   const [minRowHeight, setRowHeight] = useState(DEFAULT_ROW_HEIGHT);
 
-  const computedCellStyles = rowHeightUtils.getComputedCellStyles();
-
   const defaultHeight = useMemo(() => {
-    // @ts-ignore we need to re-run this when computedCellStyles changes,
-    // but it isn't used directly; so let's make the hooks lint rule see
-    // that it is used, but we need to tell eslint to ignore
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const _computedCellStyles = computedCellStyles;
     return rowHeightsOptions?.defaultHeight
       ? rowHeightUtils.getCalculatedHeight(
           rowHeightsOptions.defaultHeight,
           minRowHeight
         )
       : minRowHeight;
-  }, [rowHeightsOptions, minRowHeight, rowHeightUtils, computedCellStyles]);
+  }, [rowHeightsOptions, minRowHeight, rowHeightUtils]);
 
   const getRowHeight = useCallback(
     (rowIndex) => {

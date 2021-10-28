@@ -694,7 +694,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   }, [focusedCell, contentRef]);
 
   useEffect(() => {
-    rowHeightUtils.computeStylesForGridCell({
+    rowHeightUtils.cacheStyles({
       cellPadding: gridStyles.cellPadding,
     });
   }, [gridStyles.cellPadding, rowHeightUtils]);
