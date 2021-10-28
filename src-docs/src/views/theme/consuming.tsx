@@ -1,4 +1,5 @@
 import React from 'react';
+import { css } from '@emotion/react';
 import { EuiIcon, EuiCode, EuiText, useEuiTheme } from '../../../../src';
 
 export default () => {
@@ -15,10 +16,10 @@ export default () => {
       </p>
 
       <p
-        css={{
-          background: euiTheme.colors.lightShade,
-          padding: `calc(${euiTheme.size.base} * 2)`,
-        }}
+        css={css`
+          background: ${euiTheme.colors.lightShade};
+          padding: calc(${euiTheme.size.base} * 2);
+        `}
       >
         The padding of this box is created using <EuiCode>calc()</EuiCode>{' '}
         because EUI&apos;s theme sizes are string pixel values that are

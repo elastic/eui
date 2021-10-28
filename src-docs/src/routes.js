@@ -10,7 +10,7 @@ import { EuiErrorBoundary } from '../../src/components';
 import { playgroundCreator } from './services/playground';
 
 // Guidelines
-const GettingStarted = require('!!raw-loader!./views/guidelines/getting_started.md');
+import { GettingStarted } from './views/guidelines/getting_started/getting_started';
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
 
@@ -305,8 +305,9 @@ const createExample = (example, customTitle) => {
   };
 };
 
-const createMarkdownExample = (example, title) => {
-  const headings = example.default.match(/^(##) (.*)/gm);
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const createMarkdownExample = ({ file, name, intro }) => {
+  const headings = file.default.match(/^(##) (.*)/gm);
 
   const sections = headings.map((heading) => {
     const title = heading.replace('## ', '');
@@ -315,12 +316,10 @@ const createMarkdownExample = (example, title) => {
   });
 
   return {
-    name: title,
+    name,
     component: () => (
-      <GuidePage title={title}>
-        <GuideMarkdownFormat grow={false}>
-          {example.default}
-        </GuideMarkdownFormat>
+      <GuidePage title={name}>
+        <GuideMarkdownFormat grow={false}>{file.default}</GuideMarkdownFormat>
       </GuidePage>
     ),
     sections: sections,
@@ -331,7 +330,7 @@ const navigation = [
   {
     name: 'Guidelines',
     items: [
-      createMarkdownExample(GettingStarted, 'Getting started'),
+      createExample(GettingStarted, 'Getting started'),
       createExample(AccessibilityGuidelines, 'Accessibility'),
       {
         name: 'Colors',
