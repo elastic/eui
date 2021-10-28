@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import { useEuiTheme } from '../../../../../src/services';
 
-import { EuiCode, EuiLink } from '../../../../../src/components';
+import { EuiCode, EuiLink, keysOf } from '../../../../../src/components';
 
 import { ThemeExample } from '../_components/_theme_example';
 
@@ -97,12 +97,11 @@ export default () => {
       />
 
       <ThemeValuesTable
-        items={Object.keys(sizes).map((size) => {
+        items={keysOf(sizes).map((size) => {
           return {
             id: size,
             token: `size.${size}`,
             type: themeSizeProps[size],
-            // @ts-ignore Help
             value: sizes[size],
           };
         })}
