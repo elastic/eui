@@ -6,6 +6,8 @@ import {
   EuiBasicTable,
   EuiBasicTableProps,
   EuiCode,
+  EuiBasicTableColumn,
+  EuiTableRowCellProps,
 } from '../../../../../src';
 import { getType } from '../_props';
 
@@ -25,19 +27,24 @@ interface BasicItem {
 type ThemeValuesTableProps = {
   items: EuiBasicTableProps<BasicItem>['items'];
   render: (item: BasicItem) => ReactNode;
-  sampleColumnTitle?: string;
-  sampleColumnWidth?: string;
-  valueColumnTitle?: string;
-  valueColumnWidth?: string;
+  /**
+   * Will apply to all columns. To apply individually use the `__ColumnProps` prop
+   */
+  valign?: EuiTableRowCellProps['valign'];
+  sampleColumnProps?: Partial<EuiBasicTableColumn<BasicItem>>;
+  tokenColumnProps?: Partial<EuiBasicTableColumn<BasicItem>>;
+  typeColumnProps?: Partial<EuiBasicTableColumn<BasicItem>>;
+  valueColumnProps?: Partial<EuiBasicTableColumn<BasicItem>>;
 };
 
 export const ThemeValuesTable = ({
   items,
   render,
-  sampleColumnTitle = 'Sample',
-  sampleColumnWidth = '60px',
-  valueColumnTitle = 'Value',
-  valueColumnWidth,
+  valign = 'top',
+  sampleColumnProps,
+  tokenColumnProps,
+  typeColumnProps,
+  valueColumnProps,
 }: ThemeValuesTableProps) => {
   const { euiTheme } = useEuiTheme();
 
@@ -57,10 +64,10 @@ export const ThemeValuesTable = ({
   const columns: EuiBasicTableProps<BasicItem>['columns'] = [
     {
       field: 'sample',
-      name: sampleColumnTitle,
+      name: 'Sample',
       align: 'center',
-      valign: 'top',
-      width: sampleColumnWidth,
+      width: '60px',
+      valign,
       render: (sample: undefined, item) => render(item),
       mobileOptions: {
         render: (item) => (
@@ -73,18 +80,19 @@ export const ThemeValuesTable = ({
         width: '100%', // Applies a specific width
         enlarge: true, // Increase text size compared to rest of cells
       },
+      ...sampleColumnProps,
     },
     {
       field: 'token',
       name: 'Token',
-      valign: 'top',
+      width: '50%',
+      valign,
       render: (token: ReactNode, item) => (
         <div>
           <EuiCode language="tsx">{token}</EuiCode>
           {renderDescription(item)}
         </div>
       ),
-      width: '50%',
       mobileOptions: {
         // Evaluates just the first item as to whether they all have descriptions, may not be the best approach but works for now
         show: Boolean(renderDescription(items[0])),
@@ -92,6 +100,7 @@ export const ThemeValuesTable = ({
         header: false, // Won't show inline header in mobile view
         width: '100%', // Applies a specific width
       },
+      ...tokenColumnProps,
     },
   ];
 
@@ -99,27 +108,28 @@ export const ThemeValuesTable = ({
     columns.push({
       field: 'type',
       name: 'Type',
-      valign: 'top',
+      valign,
       render: (type: ReactNode) => (
         <small>
           <code>{getType(type, euiTheme)}</code>
         </small>
       ),
+      ...typeColumnProps,
     });
   }
 
   if (items[0].value != null) {
     columns.push({
       field: 'value',
-      name: valueColumnTitle,
+      name: 'Value',
       align: 'right',
-      valign: 'top',
-      width: valueColumnWidth,
+      valign,
       render: (value: ReactNode) => (
         <small>
           <code>{value}</code>
         </small>
       ),
+      ...valueColumnProps,
     });
   }
 
