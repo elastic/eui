@@ -115,8 +115,9 @@ export const Table = () => {
       field: 'firstName',
       name: 'Full Name',
       mobileOptions: {
+        header: false,
         only: true,
-        fullWidth: true,
+        width: '100%',
       },
       render: (name, item) => (
         <EuiFlexGroup responsive={false} alignItems="center">

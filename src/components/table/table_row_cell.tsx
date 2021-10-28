@@ -150,7 +150,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     'euiTableCellContent--alignRight':
       mobileOptions.align === RIGHT_ALIGNMENT || align === RIGHT_ALIGNMENT,
     'euiTableCellContent--alignCenter':
-      mobileOptions.align === CENTER_ALIGNMENT || align === RIGHT_ALIGNMENT,
+      mobileOptions.align === CENTER_ALIGNMENT || align === CENTER_ALIGNMENT,
     'euiTableCellContent--showOnHover':
       mobileOptions.showOnHover ?? showOnHover,
     'euiTableCellContent--truncateText':
