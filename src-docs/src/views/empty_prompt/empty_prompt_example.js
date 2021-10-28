@@ -87,7 +87,6 @@ import PageTemplate from './empty_prompt_page_template';
 const pageTemplateSource = require('!!raw-loader!./empty_prompt_page_template');
 
 import MultipleTypes from './empty_prompt_multiple_types';
-const multipleTypesSource = require('!!raw-loader!./empty_prompt_multiple_types');
 
 export const EmptyPromptExample = {
   title: 'Empty prompt',
@@ -329,22 +328,21 @@ export const EmptyPromptExample = {
     },
     {
       title: 'For multiple types of empty states',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: multipleTypesSource,
-        },
-      ],
+      wrapText: false,
       text: (
-        <p>
-          The following example showcases different types of empty states that
-          you can create with the <strong>EuiEmptyPrompt</strong>. For a full
-          list see the{' '}
-          <Link to="/guidelines/empty-prompt">usage guidelines</Link>.
-        </p>
+        <>
+          <EuiText>
+            <p>
+              The following example showcases different types of empty states
+              that you can create with the <strong>EuiEmptyPrompt</strong>. For
+              a full list see the{' '}
+              <Link to="/guidelines/empty-prompt">usage guidelines</Link>.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <MultipleTypes />
+        </>
       ),
-      props: { EuiEmptyPrompt },
-      demo: <MultipleTypes />,
     },
   ],
   guidelines: <Guidelines />,
