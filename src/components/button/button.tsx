@@ -156,7 +156,9 @@ const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
 
     const classes = classNames(
       baseClassName,
-      color ? `${baseClassName}${colorToClassNameMap[color]}` : null,
+      color && colorToClassNameMap[color]
+        ? `${baseClassName}${colorToClassNameMap[color]}`
+        : `${baseClassName}${colorToClassNameMap.primary}`,
       size && sizeToClassNameMap[size]
         ? `${baseClassName}${sizeToClassNameMap[size]}`
         : null,

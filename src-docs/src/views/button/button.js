@@ -9,6 +9,7 @@ import {
 const buttons = [
   'primary',
   'success',
+  'secondary',
   'warning',
   'danger',
   'text',
