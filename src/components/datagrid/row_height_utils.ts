@@ -15,6 +15,7 @@ import {
   EuiDataGridStyle,
   EuiDataGridRowHeightOption,
   EuiDataGridRowHeightsOptions,
+  EuiDataGridColumn,
 } from './data_grid_types';
 
 const cellPaddingsToClassMap: Record<EuiDataGridStyleCellPaddings, string> = {
@@ -49,28 +50,52 @@ export class RowHeightUtils {
     lineHeight: 1,
   };
   private fakeCell = document.createElement('div');
-  private heightsCache = new Map<number, Record<number, number>>();
+  private heightsCache = new Map<number, Map<string, number>>();
   private timerId: any;
   private grid?: Grid;
   private lastUpdatedRow: number = Infinity;
 
   setRowHeight(
     rowIndex: number,
-    colIndex: number,
+    colId: string,
     height: number = DEFAULT_HEIGHT,
     visibleRowIndex: number
   ) {
-    const rowHeights = this.heightsCache.get(rowIndex) || {};
+    const rowHeights =
+      this.heightsCache.get(rowIndex) || new Map<string, number>();
     const adaptedHeight = Math.ceil(
       height + this.styles.paddingTop + this.styles.paddingBottom
     );
 
-    if (rowHeights[colIndex] === adaptedHeight) {
+    if (rowHeights.get(colId) === adaptedHeight) {
       return;
     }
 
-    rowHeights[colIndex] = adaptedHeight;
+    rowHeights.set(colId, adaptedHeight);
     this.heightsCache.set(rowIndex, rowHeights);
+    this.resetRow(visibleRowIndex);
+  }
+
+  pruneHiddenColumnHeights(visibleColumns: EuiDataGridColumn[]) {
+    const visibleColumnIds = new Set(visibleColumns.map(({ id }) => id));
+    let didModify = false;
+
+    this.heightsCache.forEach((rowHeights) => {
+      const existingColumnIds = Array.from(rowHeights.keys());
+      existingColumnIds.forEach((existingColumnId) => {
+        if (visibleColumnIds.has(existingColumnId) === false) {
+          didModify = true;
+          rowHeights.delete(existingColumnId);
+        }
+      });
+    });
+
+    if (didModify) {
+      this.resetRow(0);
+    }
+  }
+
+  resetRow(visibleRowIndex: number) {
     // save the first row index of batch, reassigning it only
     // if this visible row index less than lastUpdatedRow
     this.lastUpdatedRow = Math.min(this.lastUpdatedRow, visibleRowIndex);
@@ -79,18 +104,16 @@ export class RowHeightUtils {
   }
 
   getRowHeight(rowIndex: number) {
-    const rowHeights = this.heightsCache.get(rowIndex) || {};
-    const rowHeightValues = Object.values(rowHeights);
+    const rowHeights = this.heightsCache.get(rowIndex);
+    if (rowHeights == null) return 0;
+
+    const rowHeightValues = Array.from(rowHeights.values());
 
     if (rowHeightValues.length) {
       return Math.max(...rowHeightValues);
     }
 
     return 0;
-  }
-
-  compareHeights(currentRowHeight: number, cachedRowHeight: number) {
-    return currentRowHeight === cachedRowHeight;
   }
 
   resetGrid() {
@@ -102,20 +125,15 @@ export class RowHeightUtils {
     this.grid = grid;
   }
 
-  clearHeightsCache() {
-    this.lastUpdatedRow = 0;
-    this.heightsCache.clear();
-  }
-
   isAutoHeight(
     rowIndex: number,
-    rowHeightsOptions: EuiDataGridRowHeightsOptions
+    rowHeightsOptions?: EuiDataGridRowHeightsOptions
   ) {
-    if (rowHeightsOptions.rowHeights?.[rowIndex] === AUTO_HEIGHT) {
-      return true;
-    }
-
-    if (rowHeightsOptions.defaultHeight === AUTO_HEIGHT) {
+    if (rowHeightsOptions?.rowHeights?.[rowIndex] != null) {
+      if (rowHeightsOptions.rowHeights[rowIndex] === AUTO_HEIGHT) {
+        return true;
+      }
+    } else if (rowHeightsOptions?.defaultHeight === AUTO_HEIGHT) {
       return true;
     }
 
@@ -157,8 +175,6 @@ export class RowHeightUtils {
       lineHeight: getNumberFromPx(allStyles.lineHeight),
     };
     document.body.removeChild(this.fakeCell);
-    // we need clear the height cache so that it recalculates heights for new styles
-    this.clearHeightsCache();
   }
 
   getComputedCellStyles() {

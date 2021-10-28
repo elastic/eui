@@ -1,14 +1,5 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-- Added styling support for `valign` prop on `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
-- Added `remark-breaks` plugin to mimic GitHub-flavored markdown line breaks within `EuiMarkdownEditor` ([#5272](https://github.com/elastic/eui/pull/5272))
-- Removed `EuiErrorBoundary` from `EuiDatePicker` when unsupported props are used ([#5318](https://github.com/elastic/eui/pull/5318))
- 
-**Bug fixes**
-
-- Fixed default text alignment in `EuiTableRowCell` on Safari ([#5283](https://github.com/elastic/eui/pull/5283))
-- Fixed `mobileOptions.truncateText` from getting overridden by `truncateText` in `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
-
 **Breaking changes**
 
 - Removed `EuiCodeEditor` ([#5323](https://github.com/elastic/eui/pull/5323))
@@ -20,9 +11,23 @@
 - Removed `makeId` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Removed mobile-only props from `EuiTableRowCell` ([#5323](https://github.com/elastic/eui/pull/5323))
 
+## [`40.1.0`](https://github.com/elastic/eui/tree/v40.1.0)
+
+- Added styling support for `valign` prop on `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
+- Added `remark-breaks` plugin to mimic GitHub-flavored markdown line breaks within `EuiMarkdownEditor` ([#5272](https://github.com/elastic/eui/pull/5272))
+- Removed `EuiErrorBoundary` from `EuiDatePicker` when unsupported props are used ([#5318](https://github.com/elastic/eui/pull/5318))
+ 
+**Bug fixes**
+
+- Fixed default text alignment in `EuiTableRowCell` on Safari ([#5283](https://github.com/elastic/eui/pull/5283))
+- Fixed `mobileOptions.truncateText` from getting overridden by `truncateText` in `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
+- Fixed issue with dynamic row counts in `EuiDataGrid` ([#5313](https://github.com/elastic/eui/pull/5313))
+- Fixed `EuiDataGrid` to dynamically update row heights when set to `auto` ([#5281](https://github.com/elastic/eui/pull/5281))
+
 **Theme: Amsterdam**
 
 - Fixed `mobileOptions.enlarge` styling in `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
+- Fixed `EuiDataGrid`'s expanded density not increasing font size on Amsterdam ([#5320](https://github.com/elastic/eui/pull/5320))
 
 ## [`40.0.0`](https://github.com/elastic/eui/tree/v40.0.0)
 
@@ -36,6 +41,14 @@
 **Breaking changes**
 
 - Renamed `tokenKeyword` icon to `tokenTag` in `EuiToken` ([#5251](https://github.com/elastic/eui/pull/5251))
+
+## [`39.1.2`](https://github.com/elastic/eui/tree/v39.1.2)
+
+**Note: this release is a backport containing changes originally made in `40.1.0`**
+ 
+**Bug fixes**
+
+- Fixed `EuiDataGrid` to dynamically update row heights when set to `auto` ([#5281](https://github.com/elastic/eui/pull/5281))
 
 ## [`39.1.1`](https://github.com/elastic/eui/tree/v39.1.1)
 
