@@ -93,7 +93,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         showIcon: false,
         fullWidth: fullWidth,
         readOnly: readOnly,
-        popoverPlacement: endDateControl.props.popoverPlacement ?? 'bottom-end',
+        popoverPlacement: 'bottom-end',
         className: classNames(
           'euiDatePickerRange__end',
           endDateControl.props.className

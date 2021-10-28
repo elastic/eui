@@ -29,12 +29,8 @@ describe('EuiDatePickerRange', () => {
   it('uses individual EuiDatePicker props', () => {
     const component = render(
       <EuiDatePickerRange
-        startDateControl={
-          <EuiDatePicker popoverPlacement="left" className="hello" />
-        }
-        endDateControl={
-          <EuiDatePicker popoverPlacement="left" className="world" />
-        }
+        startDateControl={<EuiDatePicker className="hello" />}
+        endDateControl={<EuiDatePicker className="world" />}
         {...requiredProps}
       />
     );
