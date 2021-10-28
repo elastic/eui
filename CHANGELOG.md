@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `39.1.2`.
+
+## [`39.1.2`](https://github.com/elastic/eui/tree/v39.1.2)
+
 - Fixed `EuiDataGrid` to dynamically update row heights when set to `auto` ([#5281](https://github.com/elastic/eui/pull/5281))
 
 ## [`39.1.1`](https://github.com/elastic/eui/tree/v39.1.1)
