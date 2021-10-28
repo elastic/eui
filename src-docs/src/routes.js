@@ -38,6 +38,8 @@ import { AccordionExample } from './views/accordion/accordion_example';
 
 import { AspectRatioExample } from './views/aspect_ratio/aspect_ratio_example';
 
+import { AutoSizerExample } from './views/auto_sizer/auto_sizer_example';
+
 import { AvatarExample } from './views/avatar/avatar_example';
 
 import { BadgeExample } from './views/badge/badge_example';
@@ -491,6 +493,7 @@ const navigation = [
     name: 'Utilities',
     items: [
       AccessibilityExample,
+      AutoSizerExample,
       BeaconExample,
       ColorExample,
       ColorPaletteExample,
