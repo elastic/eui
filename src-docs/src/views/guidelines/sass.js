@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { LEGACY_NAME_KEY } from '../../../../src';
 
 import { ThemeContext } from '../../components';
-import { Typography } from './sass/typography';
 import { Animation } from './sass/animation';
 import { Shadow } from './sass/shadow';
 import { Color } from './sass/color';
@@ -187,11 +186,6 @@ export const SassGuidelines = {
       title: 'Going beyond the provided colors',
       wrapText: false,
       text: <Color />,
-    },
-    {
-      title: 'Typography',
-      wrapText: false,
-      text: <Typography />,
     },
     {
       title: 'Shadow and Depth',

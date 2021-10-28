@@ -48,10 +48,13 @@ describe('EuiContextMenuPanel', () => {
       </EuiContextMenuItem>,
     ];
 
+    // Intermittent flake workaround: without this, the first downarrow key does not always focus into the menu items as expected
+    const FLAKE_WAIT = 200;
+
     describe('up/down keys', () => {
       beforeEach(() => {
         mount(<EuiContextMenuPanel items={items} />);
-        cy.wait(100); // Intermittent flake workaround: without this, the first downarrow key does not always focus into the menu items as expected
+        cy.wait(FLAKE_WAIT);
       });
 
       it('focuses the panel by default', () => {
@@ -101,6 +104,7 @@ describe('EuiContextMenuPanel', () => {
             showNextPanel={showNextPanelHandler}
           />
         );
+        cy.wait(FLAKE_WAIT);
 
         cy.get('body')
           .type('{downarrow}')
@@ -118,6 +122,7 @@ describe('EuiContextMenuPanel', () => {
             showPreviousPanel={showPreviousPanelHandler}
           />
         );
+        cy.wait(FLAKE_WAIT);
 
         cy.get('body')
           .type('{downarrow}')
