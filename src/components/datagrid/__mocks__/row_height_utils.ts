@@ -18,11 +18,11 @@ export const mockRowHeightUtils = ({
     wordBreak: 'break-word',
     flexGrow: 1,
   })),
-  isDefinedHeight: jest.fn(() => true),
   isAutoHeight: jest.fn(() => false),
   setRowHeight: jest.fn(),
   pruneHiddenColumnHeights: jest.fn(),
   getRowHeight: jest.fn(() => 32),
+  getRowHeightOption: jest.fn(),
   getComputedCellStyles: jest.fn(() => {}),
   getCalculatedHeight: jest.fn(
     (heightOption: EuiDataGridRowHeightOption, defaultHeight: number) => {

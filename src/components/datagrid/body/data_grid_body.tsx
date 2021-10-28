@@ -28,7 +28,7 @@ import {
   useMutationObserver,
 } from '../../observer/mutation_observer';
 import { useResizeObserver } from '../../observer/resize_observer';
-import { DEFAULT_ROW_HEIGHT, AUTO_HEIGHT } from '../row_height_utils';
+import { DEFAULT_ROW_HEIGHT } from '../row_height_utils';
 import { EuiDataGridCell } from './data_grid_cell';
 import {
   DataGridSortingContext,
@@ -546,22 +546,16 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       const correctRowIndex = getCorrectRowIndex(rowIndex);
       let height;
 
-      if (rowHeightsOptions) {
-        if (rowHeightsOptions.rowHeights) {
-          const initialHeight = rowHeightsOptions.rowHeights[correctRowIndex];
-
-          if (initialHeight) {
-            height = rowHeightUtils.getCalculatedHeight(
-              initialHeight,
-              minRowHeight,
-              correctRowIndex
-            );
-          }
-        }
-
-        if (!height && rowHeightsOptions.defaultHeight === AUTO_HEIGHT) {
-          height = rowHeightUtils.getRowHeight(correctRowIndex);
-        }
+      const rowHeightOption = rowHeightUtils.getRowHeightOption(
+        correctRowIndex,
+        rowHeightsOptions
+      );
+      if (rowHeightOption) {
+        height = rowHeightUtils.getCalculatedHeight(
+          rowHeightOption,
+          minRowHeight,
+          correctRowIndex
+        );
       }
 
       return height || defaultHeight;

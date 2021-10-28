@@ -133,28 +133,11 @@ export class RowHeightUtils {
     rowIndex: number,
     rowHeightsOptions?: EuiDataGridRowHeightsOptions
   ) {
-    if (rowHeightsOptions?.rowHeights?.[rowIndex] != null) {
-      if (rowHeightsOptions.rowHeights[rowIndex] === AUTO_HEIGHT) {
-        return true;
-      }
-    } else if (rowHeightsOptions?.defaultHeight === AUTO_HEIGHT) {
+    const height = this.getRowHeightOption(rowIndex, rowHeightsOptions);
+
+    if (height === AUTO_HEIGHT) {
       return true;
     }
-
-    return false;
-  }
-
-  isDefinedHeight(
-    rowIndex: number,
-    rowHeightsOptions: EuiDataGridRowHeightsOptions
-  ) {
-    if (
-      rowHeightsOptions.rowHeights?.[rowIndex] ||
-      rowHeightsOptions.defaultHeight
-    ) {
-      return true;
-    }
-
     return false;
   }
 
@@ -180,6 +163,16 @@ export class RowHeightUtils {
 
   getComputedCellStyles() {
     return this.styles;
+  }
+
+  getRowHeightOption(
+    rowIndex: number,
+    rowHeightsOptions?: EuiDataGridRowHeightsOptions
+  ) {
+    return (
+      rowHeightsOptions?.rowHeights?.[rowIndex] ??
+      rowHeightsOptions?.defaultHeight
+    );
   }
 
   calculateHeightForLineCount(lineCount: number) {
@@ -220,20 +213,15 @@ export class RowHeightUtils {
     rowHeightsOptions: EuiDataGridRowHeightsOptions,
     rowIndex: number
   ): CSSProperties => {
-    if (this.isAutoHeight(rowIndex, rowHeightsOptions)) {
+    const height = this.getRowHeightOption(rowIndex, rowHeightsOptions);
+
+    if (height === AUTO_HEIGHT) {
       return {};
     }
 
-    let initialHeight =
-      rowHeightsOptions.rowHeights && rowHeightsOptions.rowHeights[rowIndex];
-
-    if (!initialHeight) {
-      initialHeight = rowHeightsOptions.defaultHeight;
-    }
-
-    if (isObject(initialHeight) && initialHeight.lineCount) {
+    if (isObject(height) && height.lineCount) {
       return {
-        WebkitLineClamp: initialHeight.lineCount,
+        WebkitLineClamp: height.lineCount,
         display: '-webkit-box',
         WebkitBoxOrient: 'vertical',
         height: '100%',

@@ -62,10 +62,10 @@ const EuiDataGridCellContent: FunctionComponent<
       { row: rowIndex + 1, col: colIndex + 1 }
     );
 
-    const isDefinedHeight =
-      rowHeightUtils &&
-      rowHeightsOptions &&
-      rowHeightUtils.isDefinedHeight(rowIndex, rowHeightsOptions);
+    const isDefinedHeight = !!rowHeightUtils?.getRowHeightOption(
+      rowIndex,
+      rowHeightsOptions
+    );
 
     return (
       <>

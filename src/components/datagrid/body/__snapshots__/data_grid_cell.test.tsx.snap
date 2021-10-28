@@ -14,9 +14,22 @@ exports[`EuiDataGridCell renders 1`] = `
       "getCalculatedHeight": [MockFunction],
       "getComputedCellStyles": [MockFunction],
       "getRowHeight": [MockFunction],
+      "getRowHeightOption": [MockFunction] {
+        "calls": Array [
+          Array [
+            0,
+            undefined,
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      },
       "getStylesForCell": [MockFunction],
       "isAutoHeight": [MockFunction],
-      "isDefinedHeight": [MockFunction],
       "pruneHiddenColumnHeights": [MockFunction],
       "setGrid": [MockFunction],
       "setRowHeight": [MockFunction],
@@ -61,9 +74,22 @@ exports[`EuiDataGridCell renders 1`] = `
               "getCalculatedHeight": [MockFunction],
               "getComputedCellStyles": [MockFunction],
               "getRowHeight": [MockFunction],
+              "getRowHeightOption": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    0,
+                    undefined,
+                  ],
+                ],
+                "results": Array [
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                ],
+              },
               "getStylesForCell": [MockFunction],
               "isAutoHeight": [MockFunction],
-              "isDefinedHeight": [MockFunction],
               "pruneHiddenColumnHeights": [MockFunction],
               "setGrid": [MockFunction],
               "setRowHeight": [MockFunction],
