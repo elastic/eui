@@ -1076,10 +1076,6 @@ export class EuiBasicTable<T = any> extends Component<
     let expandedRowColSpan = selection ? columns.length + 1 : columns.length;
 
     const mobileOnlyCols = columns.reduce<number>((num, column) => {
-      if ((column as EuiTableFieldDataColumnType<T>)?.mobileOptions?.only) {
-        return num + 1;
-      }
-
       return (column as EuiTableFieldDataColumnType<T>)?.mobileOptions?.only
         ? num + 1
         : num + 0; // BWC only

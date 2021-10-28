@@ -133,7 +133,6 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     'euiTableRowCell--isExpander': isExpander,
     'euiTableRowCell--hideForDesktop': mobileOptions.only,
     'euiTableRowCell--enlargeForMobile': mobileOptions.enlarge,
-    'euiTableRowCell--isMobileFullWidth': mobileOptions.width === '100%',
     [`euiTableRowCell--${valign}`]: valign,
   });
 
