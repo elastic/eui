@@ -11,7 +11,6 @@ import type { VariableSizeGrid as Grid } from 'react-window';
 import { isObject, isNumber } from '../../services/predicate';
 import {
   EuiDataGridStyleCellPaddings,
-  EuiDataGridStyleFontSizes,
   EuiDataGridStyle,
   EuiDataGridRowHeightOption,
   EuiDataGridRowHeightsOptions,
@@ -19,40 +18,22 @@ import {
 } from './data_grid_types';
 
 // TODO: Once JS variables are available, use them here instead of hard-coded maps
-const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, string> = {
-  s: '4px',
-  m: '6px',
-  l: '8px',
+const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, number> = {
+  s: 4,
+  m: 6,
+  l: 8,
 };
-const fontSizesMap: Record<EuiDataGridStyleFontSizes, string> = {
-  s: '12px',
-  m: '14px',
-  l: '16px',
-};
-const lineHeightsMap: Record<EuiDataGridStyleFontSizes, string> = {
-  s: '1.14286rem',
-  m: '1.71429rem',
-  l: '1.71429rem',
-};
-
-function getNumberFromPx(style?: string) {
-  return style ? parseInt(style.replace('px', ''), 10) : 0;
-}
 
 export const AUTO_HEIGHT = 'auto';
 export const DEFAULT_ROW_HEIGHT = 34;
 
-// So that we use lineCount options we should know exactly row height which allow to show defined line count.
-// For this we should know paddings and line height. Because of this we should compute styles for cell with grid styles
 export class RowHeightUtils {
   private styles: {
     paddingTop: number;
     paddingBottom: number;
-    lineHeight: number;
   } = {
     paddingTop: 0,
     paddingBottom: 0,
-    lineHeight: 1,
   };
   private heightsCache = new Map<number, Map<string, number>>();
   private timerId: any;
@@ -141,24 +122,11 @@ export class RowHeightUtils {
     return false;
   }
 
-  computeStylesForGridCell(
-    gridStyles: EuiDataGridStyle,
-    lineHeight: string | undefined
-  ) {
-    const fakeCell = document.createElement('div');
-    fakeCell.style.padding = cellPaddingsMap[gridStyles.cellPadding!];
-    fakeCell.style.fontSize = fontSizesMap[gridStyles.fontSize!];
-    fakeCell.style.lineHeight =
-      lineHeight || lineHeightsMap[gridStyles.fontSize!];
-
-    document.body.appendChild(fakeCell);
-    const allStyles = getComputedStyle(fakeCell);
+  computeStylesForGridCell(gridStyles: EuiDataGridStyle) {
     this.styles = {
-      paddingTop: getNumberFromPx(allStyles.paddingTop),
-      paddingBottom: getNumberFromPx(allStyles.paddingBottom),
-      lineHeight: getNumberFromPx(allStyles.lineHeight),
+      paddingTop: cellPaddingsMap[gridStyles.cellPadding!],
+      paddingBottom: cellPaddingsMap[gridStyles.cellPadding!],
     };
-    document.body.removeChild(fakeCell);
   }
 
   getComputedCellStyles() {
