@@ -38,7 +38,7 @@ interface lookupTokenOptions<
   valueDefault: DEFAULT;
   i18nMappingFunc?: (token: string) => string;
   values?: I18nTokenShape<T, DEFAULT>['values'];
-  render?: (children: any[]) => FunctionComponent<any>;
+  render?: I18nShape['render'];
 }
 
 function lookupToken<
