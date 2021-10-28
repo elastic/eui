@@ -7,31 +7,29 @@ import {
   EuiFlexItem,
 } from '../../../../src/components';
 
-const icons = ['dashboard', 'monitoring'];
-const badges = [null, 'Beta'];
-
-const cardNodes = icons.map(function (item, index) {
-  return (
-    <EuiFlexItem key={index}>
+export default () => (
+  <EuiFlexGroup gutterSize="l">
+    <EuiFlexItem>
       <EuiCard
-        icon={<EuiIcon size="xxl" type={`${item}App`} />}
-        title={`Kibana ${item}`}
+        icon={<EuiIcon size="xxl" type="dashboardApp" />}
+        title="Dashboards"
+        description="Example of a card's description. Stick to one or two sentences."
+        onClick={() => {}}
+      />
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiCard
+        icon={<EuiIcon size="xxl" type="monitoringApp" />}
+        title="Monitoring"
         description="Example of a card's description. Stick to one or two sentences."
         betaBadgeProps={{
-          label: badges[index],
-          tooltipContent: badges[index]
-            ? 'This module is not GA. Please help us by reporting any bugs.'
-            : undefined,
+          label: 'Beta',
+          tooltipContent:
+            'This module is not GA. Please help us by reporting any bugs.',
         }}
         onClick={() => {}}
       />
     </EuiFlexItem>
-  );
-});
-
-export default () => (
-  <EuiFlexGroup gutterSize="l">
-    {cardNodes}
     <EuiFlexItem>
       <EuiCard
         icon={<EuiIcon size="xxl" type="lensApp" />}

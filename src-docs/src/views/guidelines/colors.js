@@ -128,8 +128,7 @@ export default ({ selectedTheme }) => {
           showTextVariants={showTextVariants}
         >
           <p>
-            Also known as <EuiCode>euiColorSecondary</EuiCode>. Use this for
-            success graphics and <strong>additive</strong> actions.
+            Use this for success graphics and <strong>additive</strong> actions.
           </p>
         </ColorSection>
 

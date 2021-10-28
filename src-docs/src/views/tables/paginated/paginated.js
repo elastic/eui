@@ -122,6 +122,9 @@ export const Table = () => {
       name: 'Online',
       dataType: 'boolean',
       render: (online) => renderStatus(online),
+      mobileOptions: {
+        show: false,
+      },
     },
   ];
 
