@@ -17,7 +17,7 @@ export default () => (
   <Fragment>
     <div style={{ maxWidth: 160 }}>
       {data.map((item) => (
-        <>
+        <React.Fragment key={item.value}>
           <EuiProgress
             valueText={true}
             max={100}
@@ -26,13 +26,13 @@ export default () => (
             {...item}
           />
           <EuiSpacer size="s" />
-        </>
+        </React.Fragment>
       ))}
     </div>
     <EuiSpacer size="m" />
     <div style={{ maxWidth: 200 }}>
       {data.map((item) => (
-        <>
+        <Fragment key={item.value}>
           <EuiProgress
             valueText={true}
             max={100}
@@ -41,7 +41,7 @@ export default () => (
             {...item}
           />
           <EuiSpacer size="s" />
-        </>
+        </Fragment>
       ))}
     </div>
   </Fragment>
