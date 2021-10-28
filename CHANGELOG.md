@@ -33,6 +33,14 @@ No public interface changes since `40.1.0`.
 
 - Renamed `tokenKeyword` icon to `tokenTag` in `EuiToken` ([#5251](https://github.com/elastic/eui/pull/5251))
 
+## [`39.1.2`](https://github.com/elastic/eui/tree/v39.1.2)
+
+**Note: this release is a backport containing changes originally made in `40.1.0`**
+ 
+**Bug fixes**
+
+- Fixed `EuiDataGrid` to dynamically update row heights when set to `auto` ([#5281](https://github.com/elastic/eui/pull/5281))
+
 ## [`39.1.1`](https://github.com/elastic/eui/tree/v39.1.1)
 
 **Bug fixes**
