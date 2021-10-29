@@ -19,15 +19,17 @@
   // Footer background colors
   @each $modifier, $color in $euiPanelBackgroundColorModifiers {
     @if ($modifier == 'transparent') {
-      &.euiPanel--#{$modifier} .euiEmptyPrompt__footer {
-        background-color: $euiPageBackgroundColor;
-
-        &:not(.euiPanel--hasBorder) {
-          border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
+      &.euiPanel--#{$modifier} {
+        .euiEmptyPrompt__footer {
+          background-color: $euiPageBackgroundColor;
         }
 
-        &.euiPanel--hasBorder {
+        &:not(.euiPanel--hasBorder) .euiEmptyPrompt__footer {
           border-radius: $euiBorderRadius;
+        }
+
+        &.euiPanel--hasBorder .euiEmptyPrompt__footer {
+          border-radius: 0 0 $euiBorderRadius $euiBorderRadius;
         }
       }
     } @else if ($modifier == 'plain') {
