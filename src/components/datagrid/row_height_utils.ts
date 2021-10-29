@@ -133,7 +133,7 @@ export class RowHeightUtils {
    */
 
   private heightsCache = new Map<number, Map<string, number>>();
-  private timerId: any;
+  private timerId?: number;
   private grid?: Grid;
   private lastUpdatedRow: number = Infinity;
 
@@ -204,7 +204,7 @@ export class RowHeightUtils {
     // if this visible row index less than lastUpdatedRow
     this.lastUpdatedRow = Math.min(this.lastUpdatedRow, visibleRowIndex);
     clearTimeout(this.timerId);
-    this.timerId = setTimeout(() => this.resetGrid(), 0);
+    this.timerId = window.setTimeout(() => this.resetGrid(), 0);
   }
 
   resetGrid() {
