@@ -166,7 +166,7 @@ export class EuiDataGridCell extends Component<
     }
   };
 
-  recalculateRowHeight = () => {
+  recalculateAutoHeight = () => {
     const { rowHeightUtils, rowHeightsOptions, rowIndex } = this.props;
     if (
       this.cellContentsRef &&
@@ -229,7 +229,7 @@ export class EuiDataGridCell extends Component<
   }
 
   componentDidUpdate(prevProps: EuiDataGridCellProps) {
-    this.recalculateRowHeight();
+    this.recalculateAutoHeight();
 
     if (this.props.columnId !== prevProps.columnId) {
       this.setCellProps({});
@@ -284,7 +284,7 @@ export class EuiDataGridCell extends Component<
     this.cellContentsRef = ref;
     if (ref && hasResizeObserver) {
       this.contentObserver = new (window as any).ResizeObserver(() => {
-        this.recalculateRowHeight();
+        this.recalculateAutoHeight();
         this.recalculateLineCountHeight();
       });
       this.contentObserver.observe(ref);

@@ -35,6 +35,7 @@ export class RowHeightUtils {
     paddingTop: 0,
     paddingBottom: 0,
   };
+  // Used by auto height rows only
   private heightsCache = new Map<number, Map<string, number>>();
   private timerId: any;
   private grid?: Grid;

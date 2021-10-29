@@ -160,7 +160,7 @@ describe('EuiDataGridCell', () => {
   });
 
   describe('componentDidUpdate', () => {
-    describe('recalculateRowHeight', () => {
+    describe('recalculateAutoHeight', () => {
       beforeEach(() => {
         (mockRowHeightUtils.setRowHeight as jest.Mock).mockClear();
       });
