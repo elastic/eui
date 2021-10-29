@@ -943,6 +943,9 @@ Array [
         <div
           class="euiDataGrid__dataControls"
         >
+          <button>
+            Button
+          </button>
           <div
             class="euiPopover euiPopover--anchorDownLeft"
             data-test-subj="dataGridColumnSelectorPopover"
@@ -972,9 +975,6 @@ Array [
               </button>
             </div>
           </div>
-          <button>
-            Button
-          </button>
         </div>
         <div
           class="euiDataGrid__displayControls"
@@ -1333,6 +1333,9 @@ Array [
         <div
           class="euiDataGrid__dataControls"
         >
+          <button>
+            Button
+          </button>
           <div
             class="euiPopover euiPopover--anchorDownLeft"
             data-test-subj="dataGridColumnSelectorPopover"
@@ -1362,9 +1365,6 @@ Array [
               </button>
             </div>
           </div>
-          <button>
-            Button
-          </button>
         </div>
         <div
           class="euiDataGrid__displayControls"
