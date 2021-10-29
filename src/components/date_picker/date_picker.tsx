@@ -20,7 +20,7 @@ import { ApplyClassComponentDefaults, CommonProps } from '../common';
 import { PopoverAnchorPosition } from '../popover';
 
 // @ts-ignore the type is provided by ./react-datepicker/index.d.ts
-import _ReactDatePicker from './react-datepicker/src/index.jsx';
+import _ReactDatePicker from './react-datepicker/src';
 import ReactDatePicker, { ReactDatePickerProps } from './react-datepicker'; // eslint-disable-line import/no-unresolved
 
 export const euiDatePickerDefaultDateFormat = 'MM/DD/YYYY';

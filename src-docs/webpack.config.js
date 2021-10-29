@@ -61,14 +61,14 @@ const webpackConfig = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx|tsx?)$/,
+        test: /\.(js|tsx?)$/,
         loaders: employCache([
           {
             loader: 'babel-loader',
             options: { babelrc: false, ...babelConfig },
           },
         ]),
-        exclude: [/node_modules/, /packages(\/|\\)react-datepicker/],
+        exclude: [/node_modules/],
       },
       {
         test: /\.scss$/,
