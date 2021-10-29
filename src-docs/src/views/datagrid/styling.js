@@ -362,6 +362,12 @@ const DataGrid = () => {
   const handleVisibleColumns = (visibleColumns) =>
     setVisibleColumns(visibleColumns);
 
+  const [sortingColumns, setSortingColumns] = useState([]);
+  const onSort = useCallback(
+    (sortingColumns) => setSortingColumns(sortingColumns),
+    [setSortingColumns]
+  );
+
   const styleButton = (
     <EuiButton
       iconType="gear"
@@ -649,6 +655,7 @@ const DataGrid = () => {
           visibleColumns: visibleColumns,
           setVisibleColumns: handleVisibleColumns,
         }}
+        sorting={{ columns: sortingColumns, onSort }}
         rowCount={data.length}
         gridStyle={{
           border: borderSelected,
