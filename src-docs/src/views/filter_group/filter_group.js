@@ -7,6 +7,7 @@ import {
   EuiIcon,
   EuiSpacer,
 } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -49,6 +50,10 @@ export default () => {
     </EuiFilterButton>
   );
 
+  const filterGroupPopoverId = useGeneratedHtmlId({
+    prefix: 'filterGroupPopover',
+  });
+
   return (
     <EuiFilterGroup fullWidth={true}>
       <EuiFilterButton
@@ -74,7 +79,7 @@ export default () => {
         Off
       </EuiFilterButton>
       <EuiPopover
-        id="popover"
+        id={filterGroupPopoverId}
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}

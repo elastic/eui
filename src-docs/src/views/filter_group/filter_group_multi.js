@@ -11,6 +11,7 @@ import {
   EuiFilterGroup,
   EuiFilterButton,
 } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -22,6 +23,10 @@ export default () => {
   const closePopover = () => {
     setIsPopoverOpen(false);
   };
+
+  const filterGroupPopoverId = useGeneratedHtmlId({
+    prefix: 'filterGroupPopover',
+  });
 
   const [items, setItems] = useState([
     { name: 'Johann Sebastian Bach', checked: 'on' },
@@ -84,7 +89,7 @@ export default () => {
   return (
     <EuiFilterGroup>
       <EuiPopover
-        id="popoverExampleMultiSelect"
+        id={filterGroupPopoverId}
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}

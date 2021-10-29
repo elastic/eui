@@ -13,28 +13,42 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const idPrefix = htmlIdGenerator()();
+  const compressedFormCheckboxId__1 = useGeneratedHtmlId({
+    prefix: 'compressedFormCheckbox',
+    suffix: 'first',
+  });
+  const compressedFormCheckboxId__2 = useGeneratedHtmlId({
+    prefix: 'compressedFormCheckbox',
+    suffix: 'second',
+  });
+  const compressedFormCheckboxId__3 = useGeneratedHtmlId({
+    prefix: 'compressedFormCheckbox',
+    suffix: 'third',
+  });
+  const compressedFormRangeId = useGeneratedHtmlId({
+    prefix: 'compressedFormRange',
+  });
 
   const [checkboxes] = useState([
     {
-      id: `${idPrefix}0`,
+      id: compressedFormCheckboxId__1,
       label: 'Option one',
     },
     {
-      id: `${idPrefix}1`,
+      id: compressedFormCheckboxId__2,
       label: 'Option two is checked by default',
     },
     {
-      id: `${idPrefix}2`,
+      id: compressedFormCheckboxId__3,
       label: 'Option three',
     },
   ]);
   const [isSwitchChecked, setIsSwitchChecked] = useState(false);
   const [checkboxIdToSelectedMap, setCheckboxIdToSelectedMap] = useState({
-    [`${idPrefix}1`]: true,
+    [compressedFormCheckboxId__2]: true,
   });
 
   const [comboBoxSelectionOptions, setComboBoxSelectionOptions] = useState([]);
@@ -103,7 +117,7 @@ export default () => {
           min={0}
           max={100}
           name="range"
-          id="range"
+          id={compressedFormRangeId}
           showInput
           compressed
           value={value}

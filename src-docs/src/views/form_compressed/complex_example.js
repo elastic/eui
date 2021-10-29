@@ -22,50 +22,77 @@ import {
   EuiSuperSelect,
   EuiToolTip,
 } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const idPrefix = htmlIdGenerator()();
-  const idPrefix1 = htmlIdGenerator()();
+  const typeStyleToggleButtonId__1 = useGeneratedHtmlId({
+    prefix: 'typeStyleToggleButton',
+    suffix: 'first',
+  });
+  const typeStyleToggleButtonId__2 = useGeneratedHtmlId({
+    prefix: 'typeStyleToggleButton',
+    suffix: 'second',
+  });
+  const typeStyleToggleButtonId__3 = useGeneratedHtmlId({
+    prefix: 'typeStyleToggleButton',
+    suffix: 'third',
+  });
+  const typeStyleToggleButtonId__4 = useGeneratedHtmlId({
+    prefix: 'typeStyleToggleButton',
+    suffix: 'fourth',
+  });
 
   const typeStyleToggleButtons = [
     {
-      id: `${idPrefix1}3`,
+      id: typeStyleToggleButtonId__1,
       label: 'Bold',
       name: 'bold',
       iconType: 'editorBold',
     },
     {
-      id: `${idPrefix1}4`,
+      id: typeStyleToggleButtonId__2,
       label: 'Italic',
       name: 'italic',
       iconType: 'editorItalic',
     },
     {
-      id: `${idPrefix1}5`,
+      id: typeStyleToggleButtonId__3,
       label: 'Underline',
       name: 'underline',
       iconType: 'editorUnderline',
     },
     {
-      id: `${idPrefix1}6`,
+      id: typeStyleToggleButtonId__4,
       label: 'Strikethrough',
       name: 'strikethrough',
       iconType: 'editorStrike',
     },
   ];
 
+  const granularityToggleButtonId__1 = useGeneratedHtmlId({
+    prefix: 'granularityToggleButton',
+    suffix: 'first',
+  });
+  const granularityToggleButtonId__2 = useGeneratedHtmlId({
+    prefix: 'granularityToggleButton',
+    suffix: 'second',
+  });
+  const granularityToggleButtonId__3 = useGeneratedHtmlId({
+    prefix: 'granularityToggleButton',
+    suffix: 'third',
+  });
+
   const granularityToggleButtons = [
     {
-      id: `${idPrefix}3`,
+      id: granularityToggleButtonId__1,
       label: 'fine',
     },
     {
-      id: `${idPrefix}4`,
+      id: granularityToggleButtonId__2,
       label: 'rough',
     },
     {
-      id: `${idPrefix}5`,
+      id: granularityToggleButtonId__3,
       label: 'coarse',
     },
   ];
@@ -84,7 +111,7 @@ export default () => {
   const [
     granularityToggleButtonsIdSelected,
     setGranularityToggleButtonsIdSelected,
-  ] = useState(`${idPrefix}4`);
+  ] = useState(granularityToggleButtonId__2);
 
   const onPopoverSliderValueChange = (e) => {
     setPopoverSliderValues(e.target.value);
@@ -119,6 +146,22 @@ export default () => {
     setGranularityToggleButtonsIdSelected(optionId);
   };
 
+  const complexFormCompressedRangeId = useGeneratedHtmlId({
+    prefix: 'complexFormCompressedRange',
+  });
+  const docsExampleSelectTooltipContentId = useGeneratedHtmlId({
+    prefix: 'docsExampleSelectTooltipContent',
+  });
+  const docsExampleLabelFontSelectId = useGeneratedHtmlId({
+    prefix: 'docsExampleLabelFontSelect',
+  });
+  const docsExampleBorderSizeRangeId = useGeneratedHtmlId({
+    prefix: 'docsExampleBorderSizeRange',
+  });
+  const docsExampleBorderStyleSelectId = useGeneratedHtmlId({
+    prefix: 'docsExampleBorderStyleSelect',
+  });
+
   return (
     <EuiPanel style={{ maxWidth: 432 }}>
       <EuiFormRow label="Name" display="columnCompressed">
@@ -144,7 +187,7 @@ export default () => {
           min={0}
           max={100}
           name="range"
-          id="range"
+          id={complexFormCompressedRangeId}
           showInput
           compressed
           value={opacityValue}
@@ -156,7 +199,9 @@ export default () => {
       <EuiSpacer size="s" />
 
       <EuiScreenReaderOnly>
-        <span id="docsExampleSelectTooltipContent">{selectTooltipContent}</span>
+        <span id={docsExampleSelectTooltipContentId}>
+          {selectTooltipContent}
+        </span>
       </EuiScreenReaderOnly>
       <EuiFormRow
         label={
@@ -175,7 +220,7 @@ export default () => {
             { value: 'option_three', text: 'Option three' },
           ]}
           compressed
-          aria-describedby="docsExampleSelectTooltipContent"
+          aria-describedby={docsExampleSelectTooltipContentId}
         />
       </EuiFormRow>
 
@@ -262,7 +307,7 @@ export default () => {
       <EuiFormRow label="Label" display="columnCompressed">
         <div>
           <EuiSelect
-            id="docsExampleLabelFont"
+            id={docsExampleLabelFontSelectId}
             options={[
               { value: 'inter', text: 'Inter UI' },
               { value: 'roboto', text: 'Roboto' },
@@ -309,12 +354,12 @@ export default () => {
 
       <EuiSpacer size="s" />
 
-      <EuiFormLabel htmlFor="docsExampleBorderSize">Border</EuiFormLabel>
+      <EuiFormLabel htmlFor={docsExampleBorderSizeRangeId}>Border</EuiFormLabel>
       <EuiSpacer size="xs" />
       <EuiFlexGroup gutterSize="s" responsive={false} wrap>
         <EuiFlexItem style={{ flexBasis: 72 }}>
           <EuiRange
-            id="docsExampleBorderSize"
+            id={docsExampleBorderSizeRangeId}
             showInput="inputWithPopover"
             min={0}
             max={32}
@@ -326,7 +371,7 @@ export default () => {
         </EuiFlexItem>
         <EuiFlexItem grow={4} style={{ minWidth: 160 }}>
           <EuiSelect
-            id="docsExampleBorderStyle"
+            id={docsExampleBorderStyleSelectId}
             options={[
               { value: 'dashed', text: 'Dashed' },
               { value: 'dotted', text: 'Dotted' },
