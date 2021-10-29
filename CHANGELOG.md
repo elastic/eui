@@ -2,13 +2,30 @@
 
 - Added `EuiAutoSizer` component for setting dimensions on virtualized lists ([#5278](https://github.com/elastic/eui/pull/5278))
 - Added `testenv` mock for `EuiAutoSizer` ([#5278](https://github.com/elastic/eui/pull/5278))
+- Changed render of `useEuiTextDiff` to a `span` instead of `div` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Changed change prop type of `children` for `EuiMark` from `string` to `ReactNode` ([#5323](https://github.com/elastic/eui/pull/5323))
+
+**Bug fixes**
+
+- Fixed styling of `align: center` for mobile version of `EuiTableRowCell` ([#5323](https://github.com/elastic/eui/pull/5323))
+
+**Breaking changes**
+
+- Removed `EuiCodeEditor` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Removed `betaBadgeLabel`, `betaBadgeTooltipContent`, `betaBadgeTitle` props from `EuiCard` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Removed `EuiLoadingKibana` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Removed `secondary` color prop options ([#5323](https://github.com/elastic/eui/pull/5323))
+- Removed `subdued` color prop option from `EuiButtonIcon` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Removed `panelPaddingSize` from `EuiPageContent` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Removed `makeId` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Removed mobile-only props from `EuiTableRowCell` ([#5323](https://github.com/elastic/eui/pull/5323))
 
 ## [`40.1.0`](https://github.com/elastic/eui/tree/v40.1.0)
 
 - Added styling support for `valign` prop on `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
 - Added `remark-breaks` plugin to mimic GitHub-flavored markdown line breaks within `EuiMarkdownEditor` ([#5272](https://github.com/elastic/eui/pull/5272))
 - Removed `EuiErrorBoundary` from `EuiDatePicker` when unsupported props are used ([#5318](https://github.com/elastic/eui/pull/5318))
- 
+
 **Bug fixes**
 
 - Fixed default text alignment in `EuiTableRowCell` on Safari ([#5283](https://github.com/elastic/eui/pull/5283))
@@ -37,7 +54,7 @@
 ## [`39.1.2`](https://github.com/elastic/eui/tree/v39.1.2)
 
 **Note: this release is a backport containing changes originally made in `40.1.0`**
- 
+
 **Bug fixes**
 
 - Fixed `EuiDataGrid` to dynamically update row heights when set to `auto` ([#5281](https://github.com/elastic/eui/pull/5281))

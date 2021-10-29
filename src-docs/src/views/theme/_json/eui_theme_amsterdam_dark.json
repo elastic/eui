@@ -119,7 +119,6 @@
     "subdued": "#7a7f89",
     "primary": "#36a2ef",
     "success": "#7dded8",
-    "secondary": "#7dded8",
     "warning": "#f3d371",
     "danger": "#f86b63",
     "accent": "#f68fbe"
@@ -212,7 +211,6 @@
     "danger": "#f86b63",
     "ghost": "#ffffff",
     "primary": "#36a2ef",
-    "secondary": "#7dded8",
     "success": "#7dded8",
     "subdued": "#7a7f89",
     "text": "#dfe5ef",
@@ -231,7 +229,6 @@
   "euiLinkColors": {
     "subdued": "#7a7f89",
     "primary": "#36a2ef",
-    "secondary": "#7dded8",
     "success": "#7dded8",
     "accent": "#f68fbe",
     "warning": "#f3d371",
@@ -270,7 +267,6 @@
   },
   "euiProgressColors": {
     "primary": "#36a2ef",
-    "secondary": "#7dded8",
     "success": "#7dded8",
     "warning": "#f3d371",
     "danger": "#f86b63",
@@ -362,7 +358,6 @@
   "euiTextColors": {
     "default": "#dfe5ef",
     "subdued": "#7a7f89",
-    "secondary": "#7dded8",
     "success": "#7dded8",
     "accent": "#f68fbe",
     "warning": "#f3d371",
@@ -453,7 +448,6 @@
   "euiButtonTypes": {
     "primary": "#36a2ef",
     "accent": "#f68fbe",
-    "secondary": "#7dded8",
     "success": "#7dded8",
     "warning": "#f3d371",
     "danger": "#f86b63",

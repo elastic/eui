@@ -52,11 +52,6 @@ export const cardConfig = () => {
     type: PropTypes.String,
   };
 
-  propsToUse.betaBadgeTooltipContent = {
-    ...propsToUse.betaBadgeTooltipContent,
-    type: PropTypes.String,
-  };
-
   propsToUse.onClick = simulateFunction(propsToUse.onClick);
   propsToUse.display = createOptionalEnum(propsToUse.display);
 

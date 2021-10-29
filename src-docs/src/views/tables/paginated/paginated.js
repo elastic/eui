@@ -64,7 +64,6 @@ export const Table = () => {
       field: 'firstName',
       name: 'First Name',
       truncateText: true,
-      hideForMobile: true,
       mobileOptions: {
         show: false,
       },
@@ -123,6 +122,9 @@ export const Table = () => {
       name: 'Online',
       dataType: 'boolean',
       render: (online) => renderStatus(online),
+      mobileOptions: {
+        show: false,
+      },
     },
   ];
 
