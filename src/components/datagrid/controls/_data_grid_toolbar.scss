@@ -15,12 +15,14 @@
     margin-left: auto;
   }
 
+  // Ensure there's sufficient spacing between each toolbar icon/popover
   > * + * {
     margin-left: $euiSizeS;
   }
 }
 
 .euiDataGrid__dataControls {
+  // Ensure there's sufficient spacing between each toolbar icon/popover
   > * + * {
     margin-left: $euiSizeXS / 2;
   }
@@ -62,6 +64,4 @@
   transform: none !important;
   transition: none !important;
   margin-top: -$euiSizeS;
-  // IE11 needs a min-width
-  min-width: $euiSize * 12;
 }
