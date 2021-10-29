@@ -52,15 +52,6 @@
       @include euiFontSizeM;
     }
 
-    .euiTableRowCell--isMobileFullWidth {
-      width: 100%;
-
-      .euiTableCellContent--alignCenter {
-        justify-content: center;
-        text-align: center;
-      }
-    }
-
     // Make each row a Panel
     @include euiPanel($selector: '.euiTableRow');
 

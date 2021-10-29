@@ -53,7 +53,7 @@ const accessibleLabelsSnippet = `<EuiFormRow
 import ImplicitTitles from './implicit_titles';
 const ImplicitTitlesSource = require('!!raw-loader!./implicit_titles');
 const implicitTitleSnippet = `<EuiDescribedFormGroup
-  title={<h3 id={randomId}>{titleText}</h3>}
+  title={<h3 id={implicitTitleId}>{titleText}</h3>}
   <EuiFormRow>
     <EuiFieldText aria-labelledby={randomId} />
   </EuiFormRow>

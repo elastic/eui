@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export { EuiCodeEditor, EuiCodeEditorProps } from './code_editor';
+export { EuiAutoSizer, EuiAutoSizerProps } from './auto_sizer';

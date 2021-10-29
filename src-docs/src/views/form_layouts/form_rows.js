@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
@@ -15,27 +15,41 @@ import {
   EuiText,
 } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const idPrefix = useRef(htmlIdGenerator()());
   const [isSwitchChecked, setIsSwitchChecked] = useState(false);
+
+  const formRowCheckboxItemId__1 = useGeneratedHtmlId({
+    prefix: 'formRowCheckboxItem',
+    suffix: 'first',
+  });
+  const formRowCheckboxItemId__2 = useGeneratedHtmlId({
+    prefix: 'formRowCheckboxItem',
+    suffix: 'second',
+  });
+  const formRowCheckboxItemId__3 = useGeneratedHtmlId({
+    prefix: 'formRowCheckboxItem',
+    suffix: 'third',
+  });
+
+  const formRowRangeId = useGeneratedHtmlId({ prefix: 'formRowRange' });
   const checkboxes = [
     {
-      id: `${idPrefix.current}0`,
+      id: formRowCheckboxItemId__1,
       label: 'Option one',
     },
     {
-      id: `${idPrefix.current}1`,
+      id: formRowCheckboxItemId__2,
       label: 'Option two is checked by default',
     },
     {
-      id: `${idPrefix.current}2`,
+      id: formRowCheckboxItemId__3,
       label: 'Option three',
     },
   ];
   const [checkboxIdToSelectedMap, setCheckboxIdToSelectedMap] = useState({
-    [`${idPrefix.current}1`]: true,
+    [formRowCheckboxItemId__2]: true,
   });
 
   const onSwitchChange = () => {
@@ -87,7 +101,7 @@ export default () => {
       </EuiFormRow>
 
       <EuiFormRow label="Range">
-        <EuiRange min={0} max={100} name="range" id="range" />
+        <EuiRange min={0} max={100} name="range" id={formRowRangeId} />
       </EuiFormRow>
 
       <EuiSpacer />
