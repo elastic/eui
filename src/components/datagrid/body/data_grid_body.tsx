@@ -70,7 +70,6 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     setRowHeight,
     schemaDetectors,
     rowHeightsOptions,
-    getRowHeight,
     rowHeightUtils,
   } = data;
 
@@ -119,30 +118,33 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     [`euiDataGridRowCell--${textTransform}`]: textTransform,
   });
 
+  const sharedCellProps = {
+    rowIndex,
+    visibleRowIndex,
+    colIndex: columnIndex,
+    interactiveCellId,
+    className: classes,
+    style: {
+      ...style,
+      top: `${parseFloat(style.top as string) + headerRowHeight}px`,
+    },
+    rowHeightsOptions,
+    rowHeightUtils,
+    setRowHeight: isFirstColumn ? setRowHeight : undefined,
+  };
+
   if (isLeadingControlColumn) {
     const leadingColumn = leadingControlColumns[columnIndex];
     const { id, rowCellRender } = leadingColumn;
 
     cellContent = (
       <EuiDataGridCell
-        rowIndex={rowIndex}
-        visibleRowIndex={visibleRowIndex}
-        colIndex={columnIndex}
+        {...sharedCellProps}
         columnId={id}
         popoverContent={DefaultColumnFormatter}
         width={leadingColumn.width}
         renderCellValue={rowCellRender}
-        interactiveCellId={interactiveCellId}
         isExpandable={false}
-        className={classes}
-        setRowHeight={setRowHeight}
-        getRowHeight={getRowHeight}
-        rowHeightsOptions={rowHeightsOptions}
-        rowHeightUtils={rowHeightUtils}
-        style={{
-          ...style,
-          top: `${parseFloat(style.top as string) + headerRowHeight}px`,
-        }}
       />
     );
   } else if (isTrailingControlColumn) {
@@ -153,23 +155,12 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
 
     cellContent = (
       <EuiDataGridCell
-        rowIndex={rowIndex}
-        visibleRowIndex={visibleRowIndex}
-        colIndex={columnIndex}
+        {...sharedCellProps}
         columnId={id}
         popoverContent={DefaultColumnFormatter}
         width={trailingColumn.width}
         renderCellValue={rowCellRender}
-        interactiveCellId={interactiveCellId}
         isExpandable={false}
-        className={classes}
-        rowHeightsOptions={rowHeightsOptions}
-        getRowHeight={getRowHeight}
-        rowHeightUtils={rowHeightUtils}
-        style={{
-          ...style,
-          top: `${parseFloat(style.top as string) + headerRowHeight}px`,
-        }}
       />
     );
   } else {
@@ -188,9 +179,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
 
     cellContent = (
       <EuiDataGridCell
-        rowIndex={rowIndex}
-        visibleRowIndex={visibleRowIndex}
-        colIndex={columnIndex}
+        {...sharedCellProps}
         columnId={columnId}
         column={column}
         columnType={columnType}
@@ -199,14 +188,6 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
         renderCellValue={renderCellValue}
         interactiveCellId={interactiveCellId}
         isExpandable={isExpandable}
-        className={classes}
-        rowHeightsOptions={rowHeightsOptions}
-        getRowHeight={getRowHeight}
-        rowHeightUtils={rowHeightUtils}
-        style={{
-          ...style,
-          top: `${parseFloat(style.top as string) + headerRowHeight}px`,
-        }}
       />
     );
   }
@@ -700,7 +681,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 itemData={{
                   schemaDetectors,
                   setRowHeight,
-                  getRowHeight,
                   getCorrectRowIndex,
                   rowMap,
                   rowOffset: pagination

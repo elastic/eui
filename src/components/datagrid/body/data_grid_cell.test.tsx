@@ -176,7 +176,6 @@ describe('EuiDataGridCell', () => {
 
         const component = mountEuiDataGridCellWithContext({
           rowHeightsOptions: { defaultHeight: 'auto' },
-          getRowHeight: jest.fn(() => 50),
         });
 
         triggerUpdate(component);
@@ -188,7 +187,6 @@ describe('EuiDataGridCell', () => {
 
         const component = mountEuiDataGridCellWithContext({
           rowHeightsOptions: { defaultHeight: 34 },
-          getRowHeight: jest.fn(() => 50),
         });
 
         triggerUpdate(component);
