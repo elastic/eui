@@ -160,6 +160,17 @@ describe('EuiDataGridCell', () => {
   });
 
   describe('componentDidUpdate', () => {
+    it('resets cell props when the cell columnId changes', () => {
+      const setState = jest.spyOn(EuiDataGridCell.prototype, 'setState');
+      const component = mountEuiDataGridCellWithContext();
+
+      component.setProps({ columnId: 'newColumnId' });
+      expect(setState).toHaveBeenCalledWith({ cellProps: {} });
+    });
+  });
+
+  // TODO: Test ResizeObserver logic in Cypress alongside Jest
+  describe('row height logic & resize observers', () => {
     describe('recalculateAutoHeight', () => {
       beforeEach(() => {
         (mockRowHeightUtils.setRowHeight as jest.Mock).mockClear();
@@ -194,16 +205,34 @@ describe('EuiDataGridCell', () => {
       });
     });
 
-    it('resets cell props when the cell columnId changes', () => {
-      const setState = jest.spyOn(EuiDataGridCell.prototype, 'setState');
-      const component = mountEuiDataGridCellWithContext();
+    describe('recalculateLineCountHeight', () => {
+      const setRowHeight = jest.fn();
+      beforeEach(() => setRowHeight.mockClear());
 
-      component.setProps({ columnId: 'newColumnId' });
-      expect(setState).toHaveBeenCalledWith({ cellProps: {} });
+      const callMethod = (component: ReactWrapper) =>
+        (component.instance() as any).recalculateLineCountHeight();
+
+      it('observes the first cell for size changes and calls this.props.setRowHeight on change', () => {
+        const component = mountEuiDataGridCellWithContext({
+          rowHeightsOptions: { defaultHeight: { lineCount: 3 } },
+          setRowHeight,
+        });
+
+        callMethod(component);
+        expect(setRowHeight).toHaveBeenCalled();
+      });
+
+      it('does nothing if cell height is not set to lineCount', () => {
+        const component = mountEuiDataGridCellWithContext({
+          rowHeightsOptions: { defaultHeight: 34 },
+          setRowHeight,
+        });
+
+        callMethod(component);
+        expect(setRowHeight).not.toHaveBeenCalled();
+      });
     });
   });
-
-  // TODO: Test ResizeObserver logic in Cypress
 
   // TODO: Test interacting/focus/tabbing in Cypress instead of Jest
   describe('interactions', () => {
