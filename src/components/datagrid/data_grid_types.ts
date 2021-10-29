@@ -608,7 +608,7 @@ export interface EuiDataGridToolBarVisibilityOptions {
    */
   showFullScreenSelector?: boolean;
   /**
-   * Will place any passed node into the toolbar to the right of the column & sort selectors. Recommend using EuiButtonEmpty with the props shown in the examples.
+   * Will place any passed node into the toolbar to the left of all selectors. Recommend using EuiButtonEmpty with the props shown in the examples.
    */
   additionalControls?: ReactNode;
 }

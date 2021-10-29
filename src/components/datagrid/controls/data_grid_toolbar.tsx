@@ -100,6 +100,12 @@ export const EuiDataGridToolbar = ({
         <div className="euiDataGrid__dataControls">
           {checkOrDefaultToolBarDisplayOptions(
             toolbarVisibility,
+            'additionalControls'
+          ) && typeof toolbarVisibility !== 'boolean'
+            ? toolbarVisibility.additionalControls
+            : null}
+          {checkOrDefaultToolBarDisplayOptions(
+            toolbarVisibility,
             'showColumnSelector'
           )
             ? columnSelector
@@ -109,12 +115,6 @@ export const EuiDataGridToolbar = ({
             'showSortSelector'
           )
             ? columnSorting
-            : null}
-          {checkOrDefaultToolBarDisplayOptions(
-            toolbarVisibility,
-            'additionalControls'
-          ) && typeof toolbarVisibility !== 'boolean'
-            ? toolbarVisibility.additionalControls
             : null}
         </div>
       )}
