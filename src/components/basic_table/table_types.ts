@@ -65,11 +65,9 @@ export interface EuiTableFieldDataColumnType<T>
    * Indicates whether this column should truncate its content when it doesn't fit
    */
   truncateText?: boolean;
-  isMobileHeader?: boolean;
   mobileOptions?: Omit<EuiTableRowCellMobileOptionsShape, 'render'> & {
     render?: (item: T) => ReactNode;
   };
-  hideForMobile?: boolean;
   /**
    * Describe a custom renderer function for the content
    */

@@ -275,7 +275,7 @@ export default class extends Component {
           only: true,
           header: false,
           enlarge: true,
-          fullWidth: true,
+          width: '100%',
         },
         render: (title, item) => (
           <span>
