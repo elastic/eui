@@ -17,8 +17,8 @@ import { EuiFormControlLayoutIconsProps } from '../form/form_control_layout/form
 import { EuiI18nConsumer } from '../context';
 import { ApplyClassComponentDefaults, CommonProps } from '../common';
 
-// @ts-ignore the type is provided by react-datepicker.d.ts
-import { ReactDatePicker as _ReactDatePicker } from '../../../packages';
+// @ts-ignore the type is provided by ./react-datepicker/index.d.ts
+import _ReactDatePicker from './react-datepicker/src/index.jsx';
 import ReactDatePicker, { ReactDatePickerProps } from './react-datepicker'; // eslint-disable-line import/no-unresolved
 
 export const euiDatePickerDefaultDateFormat = 'MM/DD/YYYY';

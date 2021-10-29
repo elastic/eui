@@ -46,7 +46,7 @@ const webpackConfig = {
   },
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },
 
   resolveLoader: {
@@ -61,7 +61,7 @@ const webpackConfig = {
   module: {
     rules: [
       {
-        test: /\.(js|tsx?)$/,
+        test: /\.(js|jsx|tsx?)$/,
         loaders: employCache([
           {
             loader: 'babel-loader',
