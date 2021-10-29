@@ -114,7 +114,6 @@ export class EuiDataGridCell extends Component<
   static activeFocusTimeoutId: number | undefined = undefined;
 
   cellRef = createRef() as MutableRefObject<HTMLDivElement | null>;
-  observer!: any; // Cell ResizeObserver
   contentObserver!: any; // Cell Content ResizeObserver
   popoverPanelRef: MutableRefObject<HTMLElement | null> = createRef();
   cellContentsRef: HTMLDivElement | null = null;
@@ -129,33 +128,6 @@ export class EuiDataGridCell extends Component<
   unsubscribeCell?: Function = () => {};
   focusTimeout: number | undefined;
   style = null;
-
-  observeHeight = (
-    component: HTMLDivElement | null,
-    setRowHeight?: (rowHeight: number) => void
-  ) => {
-    const observer = new (window as any).ResizeObserver(() => {
-      const rowHeight = component!.getBoundingClientRect().height;
-      if (setRowHeight) {
-        setRowHeight(rowHeight);
-      }
-    });
-    observer.observe(component);
-    return observer;
-  };
-
-  setCellRef = (ref: HTMLDivElement | null) => {
-    this.cellRef.current = ref;
-
-    // watch the first cell for size changes and use that to re-compute row heights
-    if (this.props.colIndex === 0 && this.props.visibleRowIndex === 0) {
-      if (ref && hasResizeObserver) {
-        this.observer = this.observeHeight(ref, this.props.setRowHeight);
-      } else if (this.observer) {
-        this.observer.disconnect();
-      }
-    }
-  };
 
   static contextType = DataGridFocusContext;
 
@@ -311,10 +283,11 @@ export class EuiDataGridCell extends Component<
   setCellContentsRef = (ref: HTMLDivElement | null) => {
     this.cellContentsRef = ref;
     if (ref && hasResizeObserver) {
-      this.contentObserver = this.observeHeight(ref, () => {
+      this.contentObserver = new (window as any).ResizeObserver(() => {
         this.recalculateRowHeight();
         this.recalculateLineCountHeight();
       });
+      this.contentObserver.observe(ref);
     } else if (this.contentObserver) {
       this.contentObserver.disconnect();
     }
@@ -586,7 +559,7 @@ export class EuiDataGridCell extends Component<
         tabIndex={
           this.state.isFocused && !this.state.disableCellTabIndex ? 0 : -1
         }
-        ref={this.setCellRef}
+        ref={this.cellRef}
         {...cellProps}
         data-test-subj="dataGridRowCell"
         onKeyDown={handleCellKeyDown}
