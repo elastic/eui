@@ -40,6 +40,8 @@ const densityStyles: { [key: string]: Partial<EuiDataGridStyle> } = {
     cellPadding: 's',
   },
 };
+// Used to correctly format the icon name for the grid density icon
+const capitalizeDensityString = (s: string) => s[0].toUpperCase() + s.slice(1);
 
 export const useDataGridStyleSelector = (
   initialStyles: EuiDataGridStyle
@@ -73,7 +75,7 @@ export const useDataGridStyleSelector = (
       button={
         <EuiButtonIcon
           size="xs"
-          iconType="tableDensityNormal"
+          iconType={`tableDensity${capitalizeDensityString(gridDensity)}`}
           className="euiDataGrid__controlBtn"
           color="text"
           data-test-subj="dataGridStyleSelectorButton"
