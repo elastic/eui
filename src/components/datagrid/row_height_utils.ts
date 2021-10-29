@@ -18,7 +18,7 @@ import {
 } from './data_grid_types';
 
 // TODO: Once JS variables are available, use them here instead of hard-coded maps
-const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, number> = {
+export const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, number> = {
   s: 4,
   m: 6,
   l: 8,
@@ -119,7 +119,7 @@ export class RowHeightUtils {
 
   calculateHeightForLineCount(cellRef: HTMLElement, lineCount: number) {
     const computedStyles = window.getComputedStyle(cellRef, null);
-    const lineHeight = parseInt(computedStyles.lineHeight, 10) || 24;
+    const lineHeight = parseInt(computedStyles.lineHeight, 10);
 
     return Math.ceil(
       lineCount * lineHeight +
