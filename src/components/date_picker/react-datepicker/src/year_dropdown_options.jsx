@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import FocusTrap from "focus-trap-react";
 import { ScreenReaderOnly } from "./screen_reader_only";
+
+import {EuiFocusTrap} from '../../../focus_trap';
 
 function generateYears(year, noOfYear, minDate, maxDate) {
   var list = [];
@@ -230,7 +231,7 @@ export default class YearDropdownOptions extends React.Component {
     }
 
     return this.props.accessibleMode ? (
-      <FocusTrap>
+      <EuiFocusTrap>
         <div
           className={dropdownClass}
           tabIndex="0"
@@ -242,7 +243,7 @@ export default class YearDropdownOptions extends React.Component {
           </ScreenReaderOnly>
           {this.renderOptions()}
         </div>
-      </FocusTrap>
+      </EuiFocusTrap>
     ) : (
       <div className={dropdownClass}>{this.renderOptions()}</div>
     );

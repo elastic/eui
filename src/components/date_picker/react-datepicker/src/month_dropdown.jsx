@@ -1,10 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MonthDropdownOptions from "./month_dropdown_options";
-import onClickOutside from "react-onclickoutside";
 import * as utils from "./date_utils";
 
-const WrappedMonthDropdownOptions = onClickOutside(MonthDropdownOptions);
+import {EuiOutsideClickDetector} from '../../../outside_click_detector';
 
 export default class MonthDropdown extends React.Component {
   static propTypes = {
@@ -132,15 +131,17 @@ export default class MonthDropdown extends React.Component {
   );
 
   renderDropdown = monthNames => (
-    <WrappedMonthDropdownOptions
-      key="dropdown"
-      ref="options"
-      month={this.props.month}
-      monthNames={monthNames}
-      onChange={this.onChange}
-      onCancel={this.toggleDropdown}
-      accessibleMode={this.props.accessibleMode}
-    />
+    <EuiOutsideClickDetector onOutsideClick={this.toggleDropdown}>
+      <MonthDropdownOptions
+        key="dropdown"
+        ref="options"
+        month={this.props.month}
+        monthNames={monthNames}
+        onChange={this.onChange}
+        onCancel={this.toggleDropdown}
+        accessibleMode={this.props.accessibleMode}
+      />
+    </EuiOutsideClickDetector>
   );
 
   renderScrollMode = monthNames => {

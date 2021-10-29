@@ -6,7 +6,6 @@ import Time from "./time";
 import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import FocusTrap from "focus-trap-react";
 import CalendarContainer from "./calendar_container";
 import {
   now,
@@ -35,6 +34,8 @@ import {
   getEffectiveMinDate,
   getEffectiveMaxDate
 } from "./date_utils";
+
+import {EuiFocusTrap} from '../../../focus_trap';
 
 const FocusTrapContainer = React.forwardRef((props, ref) => <div ref={ref} className="react-datepicker__focusTrap" {...props}/>);
 
@@ -703,14 +704,11 @@ export default class Calendar extends React.Component {
             "react-datepicker--time-only": this.props.showTimeSelectOnly
           })}
         >
-          <FocusTrap
-            paused={this.state.pauseFocusTrap}
-            active={this.props.enableFocusTrap}
-            tag={FocusTrapContainer}
-            focusTrapOptions={{
-              onDeactivate: () => this.props.setOpen(false, true),
-              initialFocus: initialFocusTarget
-            }}
+          <EuiFocusTrap
+            disabled={this.state.pauseFocusTrap || !this.props.enableFocusTrap}
+            className="react-datepicker__focusTrap"
+            initialFocus={initialFocusTarget}
+            onClickOutside={() => this.props.setOpen(false, true)}
           >
             {this.renderPreviousMonthButton()}
             {this.renderNextMonthButton()}
@@ -718,7 +716,7 @@ export default class Calendar extends React.Component {
             {this.renderTodayButton()}
             {this.renderTimeSection()}
             {this.props.children}
-          </FocusTrap>
+          </EuiFocusTrap>
         </Container>
       );
     } else {

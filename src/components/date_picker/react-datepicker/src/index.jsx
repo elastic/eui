@@ -1,7 +1,6 @@
 import Calendar from "./calendar";
 import React from "react";
 import PropTypes from "prop-types";
-import PopperComponent, { popperPlacementPositions } from "./popper_component";
 import classnames from "classnames";
 
 import {
@@ -39,12 +38,12 @@ import {
   getYear,
   getMonth
 } from "./date_utils";
-import onClickOutside from "react-onclickoutside";
+
+import {EuiPopover, popoverAnchorPosition} from '../../../popover/popover';
 
 export { default as CalendarContainer } from "./calendar_container";
 
 const outsideClickIgnoreClass = "react-datepicker-ignore-onclickoutside";
-const WrappedCalendar = onClickOutside(Calendar);
 
 // Compares dates year+month combinations
 function hasPreSelectionChanged(date1, date2) {
@@ -125,7 +124,7 @@ export default class DatePicker extends React.Component {
     popperContainer: PropTypes.func,
     popperClassName: PropTypes.string, // <PopperComponent/> props
     popperModifiers: PropTypes.object, // <PopperComponent/> props
-    popperPlacement: PropTypes.oneOf(popperPlacementPositions), // <PopperComponent/> props
+    popperPlacement: PropTypes.oneOf(popoverAnchorPosition),
     popperProps: PropTypes.object,
     preventOpenOnFocus: PropTypes.bool,
     readOnly: PropTypes.bool,
@@ -641,7 +640,7 @@ export default class DatePicker extends React.Component {
     }
 
     const calendar = (
-      <WrappedCalendar
+      <Calendar
         ref={elem => {
           this.calendar = elem;
         }}
@@ -717,7 +716,7 @@ export default class DatePicker extends React.Component {
         enableFocusTrap={this.state.enableFocusTrap}
       >
         {this.props.children}
-      </WrappedCalendar>
+      </Calendar>
     );
 
     return calendar;
@@ -819,22 +818,29 @@ export default class DatePicker extends React.Component {
     }
 
     return (
-      <PopperComponent
+      <EuiPopover
+        ownFocus={false}
         className={this.props.popperClassName}
-        hidePopper={!this.isCalendarOpen()}
-        popperModifiers={this.props.popperModifiers}
-        targetComponent={
+        isOpen={this.isCalendarOpen()}
+        closePopover={() => this.setOpen(false, true)}
+        hasArrow={false}
+        buffer={0}
+        display="block"
+        panelPaddingSize="none"
+        anchorPosition={this.props.popperPlacement}
+        container={this.props.popperContainer}
+        {...this.props.popperProps} // TODO
+        button={
           <div className="react-datepicker__input-container">
             {this.renderDateInput()}
             {this.renderClearButton()}
             {this.renderAccessibleButton()}
           </div>
         }
-        popperContainer={this.props.popperContainer}
-        popperComponent={calendar}
-        popperPlacement={this.props.popperPlacement}
-        popperProps={this.props.popperProps}
-      />
+        
+      >
+        {calendar}
+      </EuiPopover>
     );
   }
 }

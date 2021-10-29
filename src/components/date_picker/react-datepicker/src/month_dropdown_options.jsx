@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FocusTrap from "focus-trap-react";
 import classnames from "classnames";
 import { ScreenReaderOnly } from "./screen_reader_only";
+
+import {EuiFocusTrap} from '../../../focus_trap';
 
 export default class MonthDropdownOptions extends React.Component {
   static propTypes = {
@@ -104,7 +105,7 @@ export default class MonthDropdownOptions extends React.Component {
     }
 
     return this.props.accessibleMode ? (
-      <FocusTrap>
+      <EuiFocusTrap>
         <div
           className="react-datepicker__month-dropdown"
           tabIndex="0"
@@ -116,7 +117,7 @@ export default class MonthDropdownOptions extends React.Component {
           </ScreenReaderOnly>
           {this.renderOptions()}
         </div>
-      </FocusTrap>
+      </EuiFocusTrap>
     ) : (
       <div className="react-datepicker__month-dropdown">
         {this.renderOptions()}

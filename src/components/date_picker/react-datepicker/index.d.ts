@@ -22,19 +22,7 @@
 import * as React from 'react';
 import * as moment from 'moment';
 
-type popperPlacement =
-  | 'bottom'
-  | 'bottom-end'
-  | 'bottom-start'
-  | 'left'
-  | 'left-end'
-  | 'left-start'
-  | 'right'
-  | 'right-end'
-  | 'right-start'
-  | 'top'
-  | 'top-end'
-  | 'top-start';
+import {PopoverAnchorPosition} from '../../popover';
 
 export interface ReactDatePickerProps {
   /**
@@ -147,7 +135,7 @@ export interface ReactDatePickerProps {
    */
   popperClassName?: string;
   popperContainer?(props: { children: React.ReactNode[] }): React.ReactNode;
-  popperPlacement?: popperPlacement;
+  popperPlacement?: PopoverAnchorPosition;
   preventOpenOnFocus?: boolean;
   readOnly?: boolean;
   required?: boolean;
