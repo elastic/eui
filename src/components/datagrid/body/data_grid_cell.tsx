@@ -213,6 +213,27 @@ export class EuiDataGridCell extends Component<
     }
   };
 
+  recalculateLineCountHeight = () => {
+    if (!this.props.setRowHeight) return; // setRowHeight is only passed by data_grid_body into one cell per row
+    if (!this.cellContentsRef) return;
+
+    const { rowHeightUtils, rowHeightsOptions, rowIndex } = this.props;
+    const rowHeightOption = rowHeightUtils?.getRowHeightOption(
+      rowIndex,
+      rowHeightsOptions
+    );
+    const lineCount = rowHeightUtils?.getLineCount(rowHeightOption);
+
+    if (lineCount) {
+      const height = rowHeightUtils!.calculateHeightForLineCount(
+        this.cellContentsRef,
+        lineCount
+      );
+
+      this.props.setRowHeight(height);
+    }
+  };
+
   componentDidMount() {
     this.unsubscribeCell = this.context.onFocusUpdate(
       [this.props.colIndex, this.props.visibleRowIndex],
@@ -290,7 +311,10 @@ export class EuiDataGridCell extends Component<
   setCellContentsRef = (ref: HTMLDivElement | null) => {
     this.cellContentsRef = ref;
     if (ref && hasResizeObserver) {
-      this.contentObserver = this.observeHeight(ref, this.recalculateRowHeight);
+      this.contentObserver = this.observeHeight(ref, () => {
+        this.recalculateRowHeight();
+        this.recalculateLineCountHeight();
+      });
     } else if (this.contentObserver) {
       this.contentObserver.disconnect();
     }

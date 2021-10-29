@@ -175,9 +175,16 @@ export class RowHeightUtils {
     );
   }
 
-  calculateHeightForLineCount(lineCount: number) {
+  getLineCount(option?: EuiDataGridRowHeightOption) {
+    return isObject(option) ? option.lineCount : undefined;
+  }
+
+  calculateHeightForLineCount(cellRef: HTMLElement, lineCount: number) {
+    const computedStyles = window.getComputedStyle(cellRef, null);
+    const lineHeight = parseInt(computedStyles.lineHeight, 10) || 24;
+
     return Math.ceil(
-      lineCount * this.styles.lineHeight +
+      lineCount * lineHeight +
         this.styles.paddingTop +
         this.styles.paddingBottom
     );
@@ -190,9 +197,8 @@ export class RowHeightUtils {
   ) {
     if (isObject(heightOption)) {
       if (heightOption.lineCount) {
-        return this.calculateHeightForLineCount(heightOption.lineCount);
+        return defaultHeight; // lineCount height is set in minRowHeight state in grid_row_body
       }
-
       if (heightOption.height) {
         return Math.max(heightOption.height, defaultHeight);
       }
@@ -219,9 +225,10 @@ export class RowHeightUtils {
       return {};
     }
 
-    if (isObject(height) && height.lineCount) {
+    const lineCount = this.getLineCount(height);
+    if (lineCount) {
       return {
-        WebkitLineClamp: height.lineCount,
+        WebkitLineClamp: lineCount,
         display: '-webkit-box',
         WebkitBoxOrient: 'vertical',
         height: '100%',
