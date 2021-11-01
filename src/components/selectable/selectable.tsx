@@ -746,7 +746,9 @@ export class EuiSelectable<T = {}> extends Component<
           <EuiScreenReaderStatus
             listId={this.listId}
             isActive={activeOptionIndex != null}
-            resultsLength={visibleOptions.length}
+            resultsLength={
+              visibleOptions.filter((option) => !option.disabled).length
+            }
             queryLength={searchValue.length}
           />
         )}
