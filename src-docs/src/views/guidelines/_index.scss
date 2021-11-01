@@ -230,9 +230,43 @@
   line-height: $euiSizeXL;
   color: $euiColorEmptyShade;
 
+  &--sans {
+    @include euiFont;
+  }
+
   &--code {
     @include euiCodeFont;
   }
+}
+
+.guideSass__mixin {
+  &--euiFont {
+    @include euiFont;
+  }
+
+  &--euiCodeFont {
+    @include euiCodeFont;
+  }
+
+  &--euiText {
+    @include euiText;
+  }
+
+  &--euiTitle {
+    @include euiTitle('s')
+  }
+
+  &--fontSize {
+    @include fontSize(19px)
+  }
+}
+
+.guideSass__fontSizeL {
+  @include euiFontSizeL;
+}
+
+.guideSass__fontFeatureSettings {
+  font-feature-settings: $euiFontFeatureSettings;
 }
 
 .guideSass__animRow + .guideSass__animRow {
