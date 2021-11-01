@@ -18,4 +18,38 @@ describe('EuiPagination', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  describe('props', () => {
+    describe('pageCount', () => {
+      test('is rendered', () => {
+        const component = render(<EuiPagination pageCount={10} />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('can be null', () => {
+        const component = render(<EuiPagination pageCount={null} />);
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    test('activePage is rendered', () => {
+      const component = render(<EuiPagination activePage={5} pageCount={10} />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('compressed is rendered', () => {
+      const component = render(<EuiPagination compressed />);
+
+      expect(component).toMatchSnapshot();
+    });
+
+    test('aria-controls is rendered', () => {
+      const component = render(<EuiPagination aria-controls={'idOfTable'} />);
+
+      expect(component).toMatchSnapshot();
+    });
+  });
 });
