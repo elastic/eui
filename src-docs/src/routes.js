@@ -56,8 +56,6 @@ import { CardExample } from './views/card/card_example';
 
 import { CallOutExample } from './views/call_out/call_out_example';
 
-import { CodeEditorExample } from './views/code_editor/code_editor_example';
-
 import { CodeExample } from './views/code/code_example';
 
 import { CollapsibleNavExample } from './views/collapsible_nav/collapsible_nav_example';
@@ -229,6 +227,7 @@ import ThemeValues from './views/theme/values';
 import Typography, {
   typographySections,
 } from './views/theme/typography/typography';
+import Sizing, { sizingSections } from './views/theme/sizing/sizing';
 import Breakpoints from './views/theme/breakpoints/breakpoints';
 import Borders, { bordersSections } from './views/theme/borders/borders';
 
@@ -362,6 +361,11 @@ const navigation = [
         sections: bordersSections,
       },
       {
+        name: 'Sizing',
+        component: Sizing,
+        sections: sizingSections,
+      },
+      {
         name: 'Typography',
         component: Typography,
         sections: typographySections,
@@ -474,7 +478,6 @@ const navigation = [
       MarkdownFormatExample,
       MarkdownEditorExample,
       MarkdownPluginExample,
-      CodeEditorExample,
       CodeExample,
     ].map((example) => createExample(example)),
   },

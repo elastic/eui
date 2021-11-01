@@ -292,8 +292,8 @@ describe('EuiCard', () => {
         description="Card description"
         betaBadgeProps={{
           href: 'http://www.elastic.co/',
+          label: 'Link',
         }}
-        betaBadgeLabel="Link"
       />
     );
 

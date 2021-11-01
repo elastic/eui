@@ -127,7 +127,7 @@ export const Table = () => {
         header: false,
         truncateText: false,
         enlarge: true,
-        fullWidth: true,
+        width: '100%',
       },
     },
     {
