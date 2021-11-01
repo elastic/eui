@@ -756,7 +756,7 @@ export default class extends Component {
         <EuiSpacer size="m" />
 
         <EuiTablePagination
-          tableCaption="Custom EuiTable demo"
+          aria-label="Custom EuiTable demo"
           aria-controls={exampleId}
           activePage={this.pager.getCurrentPageIndex()}
           itemsPerPage={this.state.itemsPerPage}
