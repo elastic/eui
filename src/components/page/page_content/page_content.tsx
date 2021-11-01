@@ -10,12 +10,7 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
-import {
-  EuiPanel,
-  PanelPaddingSize,
-  _EuiPanelProps,
-  _EuiPanelDivlike,
-} from '../../panel/panel';
+import { EuiPanel, _EuiPanelProps, _EuiPanelDivlike } from '../../panel/panel';
 import { HTMLAttributes } from 'enzyme';
 
 export type EuiPageContentVerticalPositions = 'center';
@@ -37,10 +32,6 @@ export type EuiPageContentProps = CommonProps &
   // Use only the div properties of EuiPanel (not button)
   _EuiPanelProps &
   Omit<_EuiPanelDivlike, 'onClick' | 'role'> & {
-    /**
-     * **DEPRECATED: use `paddingSize` instead.**
-     */
-    panelPaddingSize?: PanelPaddingSize;
     verticalPosition?: EuiPageContentVerticalPositions;
     horizontalPosition?: EuiPageContentHorizontalPositions;
     /**
@@ -53,7 +44,6 @@ export type EuiPageContentProps = CommonProps &
 export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   verticalPosition,
   horizontalPosition,
-  panelPaddingSize,
   paddingSize = 'l',
   borderRadius,
   children,
@@ -79,7 +69,7 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   return (
     <EuiPanel
       className={classes}
-      paddingSize={panelPaddingSize ?? paddingSize}
+      paddingSize={paddingSize}
       borderRadius={borderRadius}
       role={role}
       {...rest}

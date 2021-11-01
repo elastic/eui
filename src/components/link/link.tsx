@@ -24,7 +24,6 @@ export type EuiLinkType = 'button' | 'reset' | 'submit';
 export type EuiLinkColor =
   | 'primary'
   | 'subdued'
-  | 'secondary'
   | 'success'
   | 'accent'
   | 'danger'
@@ -35,7 +34,6 @@ export type EuiLinkColor =
 const colorsToClassNameMap: { [color in EuiLinkColor]: string } = {
   primary: 'euiLink--primary',
   subdued: 'euiLink--subdued',
-  secondary: 'euiLink--secondary',
   success: 'euiLink--success',
   accent: 'euiLink--accent',
   danger: 'euiLink--danger',
@@ -50,7 +48,6 @@ export interface LinkButtonProps {
   type?: EuiLinkType;
   /**
    * Any of our named colors.
-   * **`secondary` color is DEPRECATED, use `success` instead**
    */
   color?: EuiLinkColor;
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -65,7 +62,6 @@ export interface LinkAnchorProps {
   type?: EuiLinkType;
   /**
    * Any of our named colors.
-   * **`secondary` color is DEPRECATED, use `success` instead**
    */
   color?: EuiLinkColor;
   /**

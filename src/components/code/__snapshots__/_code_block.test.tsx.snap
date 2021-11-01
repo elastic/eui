@@ -79,8 +79,33 @@ exports[`EuiCodeBlockImpl block renders a virtualized code block 1`] = `
   style="max-height:300px"
 >
   <div
-    style="overflow:visible;width:0"
-  />
+    data-eui="EuiAutoSizer"
+  >
+    <pre
+      class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap euiCodeBlock__pre--isVirtualized"
+      style="position:relative;height:600px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+      tabindex="0"
+    >
+      <code
+        class="euiCodeBlock__code text"
+        style="height:36px;width:100%"
+      >
+        <span
+          class="euiCodeBlock__line"
+          style="position:absolute;left:0;top:0;height:18px;width:100%"
+        >
+          var some = 'code';
+
+        </span>
+        <span
+          class="euiCodeBlock__line"
+          style="position:absolute;left:0;top:18px;height:18px;width:100%"
+        >
+          console.log(some);
+        </span>
+      </code>
+    </pre>
+  </div>
   <div
     class="euiCodeBlock__controls"
   >

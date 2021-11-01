@@ -442,6 +442,7 @@ const typeToPathMap = {
   tokenRankFeature: 'tokenRankFeature',
   tokenRankFeatures: 'tokenRankFeatures',
   tokenKeyword: 'tokenKeyword',
+  tokenTag: 'tokenTag',
   tokenCompletionSuggester: 'tokenCompletionSuggester',
   tokenDenseVector: 'tokenDenseVector',
   tokenText: 'tokenText',
@@ -459,7 +460,6 @@ export type IconType = EuiIconType | string | ComponentType;
 const colorToClassMap = {
   default: null,
   primary: 'euiIcon--primary',
-  secondary: 'euiIcon--secondary',
   success: 'euiIcon--success',
   accent: 'euiIcon--accent',
   warning: 'euiIcon--warning',
@@ -503,7 +503,6 @@ export type EuiIconProps = CommonProps &
     /**
      * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value.
      * Note that coloring only works if your SVG is removed of fill attributes.
-     * **`secondary` color is DEPRECATED, use `success` instead**
      */
     color?: IconColor;
     /**

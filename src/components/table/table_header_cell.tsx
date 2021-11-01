@@ -32,18 +32,6 @@ export type TableHeaderCellScope = 'col' | 'row' | 'colgroup' | 'rowgroup';
 export type EuiTableHeaderCellProps = CommonProps &
   Omit<ThHTMLAttributes<HTMLTableHeaderCellElement>, 'align' | 'scope'> & {
     align?: HorizontalAlignment;
-    /**
-     * _DEPRECATED: use `mobileOptions.show = false`_ Indicates if the
-     * column should not show for mobile users (typically hidden because a
-     * custom mobile header utilizes the column's contents)
-     */
-    hideForMobile?: boolean;
-    /**
-     * _DEPRECATED: use `mobileOptions.only = true`_ Indicates if the
-     * column was created to be the row's heading in mobile view (this
-     * column will be hidden at larger screens)
-     */
-    isMobileHeader?: boolean;
     isSortAscending?: boolean;
     isSorted?: boolean;
     /**
@@ -136,15 +124,12 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   width,
   style,
   readOnly,
-  // Soon to be deprecated for {...mobileOptions}
-  isMobileHeader,
-  hideForMobile,
   description,
   ...rest
 }) => {
   const classes = classNames('euiTableHeaderCell', className, {
-    'euiTableHeaderCell--hideForDesktop': mobileOptions.only || isMobileHeader,
-    'euiTableHeaderCell--hideForMobile': !mobileOptions.show || hideForMobile,
+    'euiTableHeaderCell--hideForDesktop': mobileOptions.only,
+    'euiTableHeaderCell--hideForMobile': !mobileOptions.show,
   });
 
   const contentClasses = classNames('euiTableCellContent', className, {

@@ -631,7 +631,8 @@ export class EuiBasicTable<T = any> extends Component<
 
       if (
         !(column as EuiTableFieldDataColumnType<T>).sortable ||
-        (column as EuiTableFieldDataColumnType<T>).hideForMobile
+        (column as EuiTableFieldDataColumnType<T>)?.mobileOptions?.show ===
+          false
       ) {
         return;
       }
@@ -797,8 +798,6 @@ export class EuiBasicTable<T = any> extends Component<
         dataType,
         sortable,
         mobileOptions,
-        isMobileHeader,
-        hideForMobile,
         readOnly,
         description,
       } = column as EuiTableFieldDataColumnType<T>;
@@ -883,8 +882,6 @@ export class EuiBasicTable<T = any> extends Component<
           key={`_data_h_${field}_${index}`}
           align={columnAlign}
           width={width}
-          isMobileHeader={isMobileHeader}
-          hideForMobile={hideForMobile}
           mobileOptions={mobileOptions}
           data-test-subj={`tableHeaderCell_${field}_${index}`}
           description={description}
@@ -917,12 +914,11 @@ export class EuiBasicTable<T = any> extends Component<
       const footer = getColumnFooter(column, { items, pagination });
       const {
         mobileOptions,
-        isMobileHeader,
         field,
         align,
       } = column as EuiTableFieldDataColumnType<T>;
 
-      if ((mobileOptions && mobileOptions!.only) || isMobileHeader) {
+      if (mobileOptions?.only) {
         return; // exclude columns that only exist for mobile headers
       }
 
@@ -982,7 +978,7 @@ export class EuiBasicTable<T = any> extends Component<
           <EuiTableRowCell
             align="center"
             colSpan={colSpan}
-            isMobileFullWidth={true}
+            mobileOptions={{ width: '100%' }}
           >
             <EuiIcon type="minusInCircle" color="danger" /> {error}
           </EuiTableRowCell>
@@ -1000,7 +996,7 @@ export class EuiBasicTable<T = any> extends Component<
           <EuiTableRowCell
             align="center"
             colSpan={colSpan}
-            isMobileFullWidth={true}
+            mobileOptions={{ width: '100%' }}
           >
             {noItemsMessage}
           </EuiTableRowCell>
@@ -1080,14 +1076,7 @@ export class EuiBasicTable<T = any> extends Component<
     let expandedRowColSpan = selection ? columns.length + 1 : columns.length;
 
     const mobileOnlyCols = columns.reduce<number>((num, column) => {
-      if (
-        (column as EuiTableFieldDataColumnType<T>).mobileOptions &&
-        (column as EuiTableFieldDataColumnType<T>).mobileOptions!.only
-      ) {
-        return num + 1;
-      }
-
-      return (column as EuiTableFieldDataColumnType<T>).isMobileHeader
+      return (column as EuiTableFieldDataColumnType<T>)?.mobileOptions?.only
         ? num + 1
         : num + 0; // BWC only
     }, 0);
