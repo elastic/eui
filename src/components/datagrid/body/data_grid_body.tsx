@@ -48,6 +48,7 @@ import {
   EuiDataGridSchemaDetector,
 } from '../data_grid_types';
 import { makeRowManager } from './data_grid_row_manager';
+import { keysOf } from '../../common';
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
 
@@ -687,6 +688,18 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     finalWidth = window.innerWidth;
   }
 
+  const [dataItemsRendered, setDataItemsRendered] = useState('');
+  const setItemsRendered = useCallback<
+    NonNullable<VariableSizeGridProps['onItemsRendered']>
+  >(
+    (itemsRendered) => {
+      const keys = keysOf(itemsRendered);
+      const pairs = keys.sort().map((key) => `${key}=${itemsRendered[key]}`);
+      setDataItemsRendered(pairs.join());
+    },
+    [setDataItemsRendered]
+  );
+
   return (
     <EuiMutationObserver
       observerOptions={{ subtree: true, childList: true }}
@@ -694,6 +707,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     >
       {(mutationRef) => (
         <div
+          data-test-subj="euiDataGridBody"
+          data-itemsrendered={dataItemsRendered}
           style={{ width: '100%', height: '100%', overflow: 'hidden' }}
           ref={(el) => {
             wrapperRef.current = el;
@@ -708,6 +723,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 {...(virtualizationOptions ? virtualizationOptions : {})}
                 ref={setGridRef}
                 innerElementType={InnerElement}
+                onItemsRendered={setItemsRendered}
                 innerRef={innerGridRef}
                 className={VIRTUALIZED_CONTAINER_CLASS}
                 columnCount={

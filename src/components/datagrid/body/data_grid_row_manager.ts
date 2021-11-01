@@ -25,7 +25,7 @@ export const makeRowManager = (
         rowElement = document.createElement('div');
         rowElement.setAttribute('role', 'row');
         rowElement.classList.add('euiDataGridRow');
-        rowIdToElements.set(rowId, rowElement);
+        rowIdToElements.set(rowIndex, rowElement);
 
         // add the element to the wrapping container
         containerRef.current?.appendChild(rowElement);
@@ -35,7 +35,7 @@ export const makeRowManager = (
           if ((records[0].target as HTMLElement).childElementCount === 0) {
             observer.disconnect();
             rowElement?.remove();
-            rowIdToElements.delete(rowId);
+            rowIdToElements.delete(rowIndex);
           }
         });
         observer.observe(rowElement, { childList: true });
