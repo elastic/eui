@@ -21,6 +21,10 @@
 - Removed `makeId` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Removed mobile-only props from `EuiTableRowCell` ([#5323](https://github.com/elastic/eui/pull/5323))
 
+**Bug fixes**
+
+- Fixed `endDateControl` `className` in `EuiDatePickerRange` ([#5329](https://github.com/elastic/eui/pull/5329))
+
 ## [`40.1.0`](https://github.com/elastic/eui/tree/v40.1.0)
 
 - Added styling support for `valign` prop on `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
