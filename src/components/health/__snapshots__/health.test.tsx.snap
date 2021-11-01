@@ -177,28 +177,6 @@ exports[`EuiHealth props color primary is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiHealth props color secondary is rendered 1`] = `
-<div
-  class="euiHealth euiHealth--textSizeS"
->
-  <div
-    class="euiFlexGroup euiFlexGroup--gutterExtraSmall euiFlexGroup--alignItemsCenter euiFlexGroup--directionRow"
-  >
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    >
-      <span
-        color="secondary"
-        data-euiicon-type="dot"
-      />
-    </div>
-    <div
-      class="euiFlexItem euiFlexItem--flexGrowZero"
-    />
-  </div>
-</div>
-`;
-
 exports[`EuiHealth props color subdued is rendered 1`] = `
 <div
   class="euiHealth euiHealth--textSizeS"

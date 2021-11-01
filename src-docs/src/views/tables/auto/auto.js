@@ -116,11 +116,32 @@ const vAlignButtons = [
   },
 ];
 
+const alignButtons = [
+  {
+    id: `${idPrefix}6`,
+    label: 'Left',
+    value: 'left',
+  },
+  {
+    id: `${idPrefix}7`,
+    label: 'Center',
+    value: 'center',
+  },
+  {
+    id: `${idPrefix}8`,
+    label: 'Right',
+    value: 'right',
+  },
+];
+
 export const Table = () => {
   const [layout, setLayout] = useState('fixed');
   const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}0`);
   const [vAlignButtonsIdSelected, setVAlignButtonsIdSelected] = useState(
     `${idPrefix}3`
+  );
+  const [alignButtonsIdSelected, setAlignButtonsIdSelected] = useState(
+    `${idPrefix}6`
   );
 
   const onChange = (optionId) => {
@@ -136,6 +157,13 @@ export const Table = () => {
     const alignment = vAlignButtons.find((x) => x.id === optionId).value;
 
     columns.forEach((column) => (column.valign = alignment));
+  };
+
+  const onAlignChange = (optionId) => {
+    setAlignButtonsIdSelected(optionId);
+    const alignment = alignButtons.find((x) => x.id === optionId).value;
+
+    columns.forEach((column) => (column.align = alignment));
   };
 
   let callOutText;
@@ -170,6 +198,12 @@ export const Table = () => {
         onChange={onVAlignChange}
       />
       &emsp;
+      <EuiButtonGroup
+        legend="Horizontal align options"
+        options={alignButtons}
+        idSelected={alignButtonsIdSelected}
+        onChange={onAlignChange}
+      />
       <EuiSpacer size="m" />
       <EuiCallOut
         size="s"

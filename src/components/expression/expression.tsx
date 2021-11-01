@@ -21,7 +21,6 @@ const colorToClassNameMap = {
   subdued: 'euiExpression--subdued',
   primary: 'euiExpression--primary',
   success: 'euiExpression--success',
-  secondary: 'euiExpression--secondary',
   accent: 'euiExpression--accent',
   warning: 'euiExpression--warning',
   danger: 'euiExpression--danger',
@@ -54,7 +53,6 @@ export type EuiExpressionProps = CommonProps & {
   valueProps?: HTMLAttributes<HTMLSpanElement>;
   /**
    * Color of the `description`
-   * **`secondary` color is DEPRECATED, use `success` instead**
    */
   color?: ExpressionColor;
   /**

@@ -26,7 +26,7 @@ export default () => {
         title="Autosave"
         iconType="save"
         aria-pressed={toggle3On}
-        color={toggle3On ? 'primary' : 'subdued'}
+        color={toggle3On ? 'primary' : 'text'}
         onClick={() => {
           setToggle3On((isOn) => !isOn);
         }}

@@ -75,12 +75,6 @@ export interface EuiTableRowCellMobileOptionsShape
    */
   enlarge?: boolean;
   /**
-   * _DEPRECATED: use `mobileOptions.width = '100%'`_
-   * Allocates 100% of the width of the container in mobile view
-   * (typically cells are contained to 50%)
-   */
-  fullWidth?: boolean;
-  /**
    * Applies the value to the width of the cell in mobile view (typically 50%)
    */
   width?: CSSProperties['width'];
@@ -109,22 +103,6 @@ export interface EuiTableRowCellProps extends EuiTableRowCellSharedPropsShape {
    * See #EuiTableRowCellMobileOptionsShape
    */
   mobileOptions?: EuiTableRowCellMobileOptionsShape;
-  /**
-   * _DEPRECATED: use `mobileOptions.header`_
-   */
-  header?: string;
-  /**
-   * _DEPRECATED: use `mobileOptions.show = false`_
-   */
-  hideForMobile?: boolean;
-  /**
-   * _DEPRECATED: use `mobileOptions.fullWidth`_
-   */
-  isMobileFullWidth?: boolean;
-  /**
-   * _DEPRECATED: use `mobileOptions.only = true & mobileOptions.header = * false`_
-   */
-  isMobileHeader?: boolean;
 }
 
 type Props = CommonProps &
@@ -148,21 +126,13 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   mobileOptions = {
     show: true,
   },
-  // Soon to be deprecated for {...mobileOptions}
-  header,
-  hideForMobile,
-  isMobileHeader,
-  isMobileFullWidth,
   ...rest
 }) => {
   const cellClasses = classNames('euiTableRowCell', {
     'euiTableRowCell--hasActions': hasActions,
     'euiTableRowCell--isExpander': isExpander,
-    'euiTableRowCell--hideForDesktop': mobileOptions.only || isMobileHeader,
-    'euiTableRowCell--enlargeForMobile':
-      mobileOptions.enlarge || isMobileHeader,
-    'euiTableRowCell--isMobileFullWidth':
-      mobileOptions.fullWidth || isMobileFullWidth || isMobileHeader,
+    'euiTableRowCell--hideForDesktop': mobileOptions.only,
+    'euiTableRowCell--enlargeForMobile': mobileOptions.enlarge,
     [`euiTableRowCell--${valign}`]: valign,
   });
 
@@ -180,7 +150,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     'euiTableCellContent--alignRight':
       mobileOptions.align === RIGHT_ALIGNMENT || align === RIGHT_ALIGNMENT,
     'euiTableCellContent--alignCenter':
-      mobileOptions.align === CENTER_ALIGNMENT || align === RIGHT_ALIGNMENT,
+      mobileOptions.align === CENTER_ALIGNMENT || align === CENTER_ALIGNMENT,
     'euiTableCellContent--showOnHover':
       mobileOptions.showOnHover ?? showOnHover,
     'euiTableCellContent--truncateText':
@@ -232,7 +202,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     style: styleObj,
     ...rest,
   };
-  if (mobileOptions.show === false || hideForMobile) {
+  if (mobileOptions.show === false) {
     return (
       <Element
         className={`${cellClasses} ${hideForMobileClasses}`}
@@ -245,11 +215,11 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
     return (
       <Element className={cellClasses} {...sharedProps}>
         {/* Mobile-only header */}
-        {(mobileOptions.header || header) && !isMobileHeader && (
+        {mobileOptions.header && (
           <div
             className={`euiTableRowCell__mobileHeader ${showForMobileClasses}`}
           >
-            {mobileOptions.header || header}
+            {mobileOptions.header}
           </div>
         )}
 

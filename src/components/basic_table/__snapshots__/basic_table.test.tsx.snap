@@ -310,7 +310,11 @@ exports[`EuiBasicTable empty is rendered 1`] = `
           <EuiTableRowCell
             align="center"
             colSpan={1}
-            isMobileFullWidth={true}
+            mobileOptions={
+              Object {
+                "width": "100%",
+              }
+            }
           >
             <EuiI18n
               default="No items found"
@@ -382,7 +386,11 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
           <EuiTableRowCell
             align="center"
             colSpan={1}
-            isMobileFullWidth={true}
+            mobileOptions={
+              Object {
+                "width": "100%",
+              }
+            }
           >
             <p>
               no items, click 
@@ -459,7 +467,11 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
           <EuiTableRowCell
             align="center"
             colSpan={1}
-            isMobileFullWidth={true}
+            mobileOptions={
+              Object {
+                "width": "100%",
+              }
+            }
           >
             where my items at?
           </EuiTableRowCell>
@@ -2550,7 +2562,11 @@ exports[`EuiBasicTable with pagination and error 1`] = `
           <EuiTableRowCell
             align="center"
             colSpan={1}
-            isMobileFullWidth={true}
+            mobileOptions={
+              Object {
+                "width": "100%",
+              }
+            }
           >
             <EuiIcon
               color="danger"

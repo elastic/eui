@@ -56,8 +56,6 @@ import { CardExample } from './views/card/card_example';
 
 import { CallOutExample } from './views/call_out/call_out_example';
 
-import { CodeEditorExample } from './views/code_editor/code_editor_example';
-
 import { CodeExample } from './views/code/code_example';
 
 import { CollapsibleNavExample } from './views/collapsible_nav/collapsible_nav_example';
@@ -480,7 +478,6 @@ const navigation = [
       MarkdownFormatExample,
       MarkdownEditorExample,
       MarkdownPluginExample,
-      CodeEditorExample,
       CodeExample,
     ].map((example) => createExample(example)),
   },
