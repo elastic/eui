@@ -211,6 +211,37 @@ exports[`EuiI18n mapped tokens handles single token without values 1`] = `
 </EuiContext>
 `;
 
+exports[`EuiI18n mapped tokens i18nRenderFunc uses user defined component render function 1`] = `
+<EuiContext
+  i18n={
+    Object {
+      "render": [Function],
+    }
+  }
+>
+  <Component>
+    <section>
+      <Component
+        inside={
+          <span>
+            inside
+          </span>
+        }
+      >
+        <div>
+          placeholder 
+          <span
+            key="1"
+          >
+            inside
+          </span>
+        </div>
+      </Component>
+    </section>
+  </Component>
+</EuiContext>
+`;
+
 exports[`EuiI18n mapped tokens mappingFunc calls the mapping function with the source string 1`] = `
 <EuiContext
   i18n={

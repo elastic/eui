@@ -29,17 +29,31 @@ function errorOnMissingValues(token: string): never {
   );
 }
 
+interface lookupTokenOptions<
+  T extends RenderableValues,
+  DEFAULT extends Renderable<T>
+> {
+  token: string;
+  i18nMapping: I18nShape['mapping'];
+  valueDefault: DEFAULT;
+  i18nMappingFunc?: (token: string) => string;
+  values?: I18nTokenShape<T, DEFAULT>['values'];
+  render?: I18nShape['render'];
+}
+
 function lookupToken<
   T extends RenderableValues,
   DEFAULT extends Renderable<T>,
   RESOLVED extends ResolvedType<DEFAULT>
->(
-  token: string,
-  i18nMapping: I18nShape['mapping'],
-  valueDefault: DEFAULT,
-  i18nMappingFunc?: (token: string) => string,
-  values?: I18nTokenShape<T, DEFAULT>['values']
-): RESOLVED {
+>(options: lookupTokenOptions<T, DEFAULT>): RESOLVED {
+  const {
+    token,
+    i18nMapping,
+    valueDefault,
+    i18nMappingFunc,
+    values,
+    render,
+  } = options;
   let renderable = (i18nMapping && i18nMapping[token]) || valueDefault;
 
   if (typeof renderable === 'function') {
@@ -64,9 +78,9 @@ function lookupToken<
     return children as RESOLVED;
   }
 
-  const Component: FunctionComponent<any> = () => {
-    return <Fragment>{children}</Fragment>;
-  };
+  const Component: FunctionComponent<any> = render
+    ? render(children)
+    : () => <Fragment>{children}</Fragment>;
 
   // same reasons as above, we can't promise the transforms match the default's type
   return React.createElement(Component, values) as RESOLVED;
@@ -111,22 +125,29 @@ const EuiI18n = <
 ) => (
   <EuiI18nConsumer>
     {(i18nConfig) => {
-      const { mapping, mappingFunc } = i18nConfig;
+      const { mapping, mappingFunc, render } = i18nConfig;
+
       if (isI18nTokensShape(props)) {
         return props.children(
           props.tokens.map((token, idx) =>
-            lookupToken(token, mapping, props.defaults[idx], mappingFunc)
+            lookupToken({
+              token,
+              i18nMapping: mapping,
+              valueDefault: props.defaults[idx],
+              render,
+            })
           )
         );
       }
 
-      const tokenValue = lookupToken(
-        props.token,
-        mapping,
-        props.default,
-        mappingFunc,
-        props.values
-      );
+      const tokenValue = lookupToken({
+        token: props.token,
+        i18nMapping: mapping,
+        valueDefault: props.default,
+        i18nMappingFunc: mappingFunc,
+        values: props.values,
+        render,
+      });
       if (props.children) {
         return props.children(tokenValue);
       } else {
@@ -159,15 +180,28 @@ function useEuiI18n<DEFAULTS extends Array<string | ReactElement>>(
 ): Array<DefaultsRenderType<DEFAULTS>>;
 function useEuiI18n(...props: any[]) {
   const i18nConfig = useContext(I18nContext);
-  const { mapping, mappingFunc } = i18nConfig;
+  const { mapping, mappingFunc, render } = i18nConfig;
 
   if (typeof props[0] === 'string') {
     const [token, defaultValue, values] = props;
-    return lookupToken(token, mapping, defaultValue, mappingFunc, values);
+    return lookupToken({
+      token,
+      i18nMapping: mapping,
+      valueDefault: defaultValue,
+      i18nMappingFunc: mappingFunc,
+      values,
+      render,
+    });
   } else {
     const [tokens, defaultValues] = props as [string[], string[]];
     return tokens.map((token, idx) =>
-      lookupToken(token, mapping, defaultValues[idx], mappingFunc)
+      lookupToken({
+        token,
+        i18nMapping: mapping,
+        valueDefault: defaultValues[idx],
+        i18nMappingFunc: mappingFunc,
+        render,
+      })
     );
   }
 }
