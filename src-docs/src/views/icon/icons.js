@@ -64,6 +64,8 @@ export const iconTypes = [
   'documentEdit',
   'documents',
   'dot',
+  'doubleArrowLeft',
+  'doubleArrowRight',
   'download',
   'email',
   'empty',

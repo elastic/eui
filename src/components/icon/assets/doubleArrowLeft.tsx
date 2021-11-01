@@ -14,7 +14,7 @@ interface SVGRProps {
   titleId?: string;
 }
 
-const EuiIconArrowRight = ({
+const EuiIconDoubleArrowLeft = ({
   title,
   titleId,
   ...props
@@ -31,9 +31,13 @@ const EuiIconArrowRight = ({
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       clipRule="evenodd"
-      d="M4.982 14.043a.75.75 0 01-.025-1.06l4.591-4.81a.25.25 0 000-.346l-4.59-4.81a.75.75 0 011.085-1.035l4.59 4.81a1.75 1.75 0 010 2.416l-4.59 4.81a.75.75 0 01-1.06.024z"
+      d="M8.135 14.043a.75.75 0 00.025-1.06l-4.591-4.81a.25.25 0 010-.346l4.59-4.81a.75.75 0 10-1.084-1.035l-4.591 4.81a1.75 1.75 0 000 2.416l4.59 4.81c.287.3.761.31 1.061.024z"
+    />
+    <path
+      clipRule="evenodd"
+      d="M14.135 14.043a.75.75 0 00.025-1.06l-4.591-4.81a.25.25 0 010-.346l4.59-4.81a.75.75 0 10-1.084-1.035l-4.591 4.81a1.75 1.75 0 000 2.416l4.59 4.81c.287.3.761.31 1.061.024z"
     />
   </svg>
 );
 
-export const icon = EuiIconArrowRight;
+export const icon = EuiIconDoubleArrowLeft;

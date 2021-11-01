@@ -94,6 +94,8 @@ const typeToPathMap = {
   documentation: 'documentation',
   documents: 'documents',
   dot: 'dot',
+  doubleArrowLeft: 'doubleArrowLeft',
+  doubleArrowRight: 'doubleArrowRight',
   download: 'download',
   editorAlignCenter: 'editor_align_center',
   editorAlignLeft: 'editor_align_left',
