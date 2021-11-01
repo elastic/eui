@@ -1,3 +1,14 @@
+_Forked by @elastic/eui from Hacker0x01/react-datepicker for accessibility and consolidation of services._
+
+Decision to not use a more traditional "vendor" directory approach includes redundant services, unnecessary dependencies, and an separate build pipeline. Most notably, `react-datepicker` included third-party popover and focus trap service and components that do no align with EUI interaction standards and were replaced, at parity, with EUI components.
+
+Other modifications:
+
+* Changed to `.js` naming to conform to EUI build processes
+* Removed files related to repository management and publishing
+* Adjusted `babel.rc` and `package.json` naming to avoid babel configuration conlflicts
+
+___
 # React Date Picker
 
 [![npm version](https://badge.fury.io/js/react-datepicker.svg)](https://badge.fury.io/js/react-datepicker)
