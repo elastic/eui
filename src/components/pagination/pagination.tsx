@@ -15,6 +15,7 @@ import { EuiButtonIcon } from '../button';
 import { EuiI18n } from '../i18n';
 import { EuiText } from '../text';
 import { EuiHideFor } from '../responsive';
+import { EuiToolTip } from '../tool_tip';
 
 const MAX_VISIBLE_PAGES = 5;
 const NUMBER_SURROUNDING_PAGES = Math.floor(MAX_VISIBLE_PAGES * 0.5);
@@ -40,7 +41,7 @@ export interface EuiPaginationProps {
   /**
    * If true, will only show next/prev arrows instead of page numbers.
    */
-  compressed?: boolean;
+  compressed?: boolean | 'arrows';
 
   /**
    * If passed in, passes value through to each button to set aria-controls.
@@ -106,7 +107,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
       pageCount,
     };
 
-    if (compressed) {
+    if (compressed === true) {
       centerPageCount = (
         <EuiHideFor sizes={['xs', 's']}>
           <EuiText size="s" className="euiPagination__compressedText">
@@ -133,7 +134,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
           </EuiText>
         </EuiHideFor>
       );
-    } else {
+    } else if (compressed !== 'arrows') {
       const pages = [];
 
       const firstPageInRange = Math.max(
@@ -308,14 +309,19 @@ const PaginationButtonPrevious = ({
           default="Previous page"
         >
           {(disabledPreviousPage: string) => (
-            <EuiButtonIcon
-              onClick={(e: MouseEvent) => safeClick(e, activePage - 1)}
-              iconType="arrowLeft"
-              color="text"
-              aria-label={disabled ? disabledPreviousPage : previousPage}
-              data-test-subj="pagination-button-previous"
-              {...prevPageButtonProps}
-            />
+            <EuiToolTip
+              delay="long"
+              content={disabled ? undefined : previousPage}
+            >
+              <EuiButtonIcon
+                onClick={(e: MouseEvent) => safeClick(e, activePage - 1)}
+                iconType="arrowLeft"
+                color="text"
+                aria-label={disabled ? disabledPreviousPage : previousPage}
+                data-test-subj="pagination-button-previous"
+                {...prevPageButtonProps}
+              />
+            </EuiToolTip>
           )}
         </EuiI18n>
       )}
@@ -355,14 +361,16 @@ const PaginationButtonNext = ({
       {(nextPage: string) => (
         <EuiI18n token="euiPagination.disabledNextPage" default="Next page">
           {(disabledNextPage: string) => (
-            <EuiButtonIcon
-              onClick={(e: MouseEvent) => safeClick(e, activePage + 1)}
-              iconType="arrowRight"
-              aria-label={disabled ? disabledNextPage : nextPage}
-              color="text"
-              data-test-subj="pagination-button-next"
-              {...nextPageButtonProps}
-            />
+            <EuiToolTip delay="long" content={disabled ? undefined : nextPage}>
+              <EuiButtonIcon
+                onClick={(e: MouseEvent) => safeClick(e, activePage + 1)}
+                iconType="arrowRight"
+                aria-label={disabled ? disabledNextPage : nextPage}
+                color="text"
+                data-test-subj="pagination-button-next"
+                {...nextPageButtonProps}
+              />
+            </EuiToolTip>
           )}
         </EuiI18n>
       )}

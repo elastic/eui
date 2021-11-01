@@ -40,10 +40,17 @@ describe('EuiPagination', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('compressed is rendered', () => {
-      const component = render(<EuiPagination compressed />);
+    describe('compressed', () => {
+      test(' is rendered', () => {
+        const component = render(<EuiPagination compressed />);
 
-      expect(component).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
+      });
+      test('arrows is rendered', () => {
+        const component = render(<EuiPagination compressed="arrows" />);
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     test('aria-controls is rendered', () => {
