@@ -133,7 +133,7 @@ export class RowHeightUtils {
   getRowHeightOption(
     rowIndex: number,
     rowHeightsOptions?: EuiDataGridRowHeightsOptions
-  ) {
+  ): EuiDataGridRowHeightOption | undefined {
     return (
       rowHeightsOptions?.rowHeights?.[rowIndex] ??
       rowHeightsOptions?.defaultHeight
