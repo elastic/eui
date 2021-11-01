@@ -24,6 +24,7 @@
 **Bug fixes**
 
 - Fixed `endDateControl` `className` in `EuiDatePickerRange` ([#5329](https://github.com/elastic/eui/pull/5329))
+- Fixed `EuiMarkdownEditor` intercepting all drop events on the page ([#5340](https://github.com/elastic/eui/pull/5340))
 
 ## [`40.1.0`](https://github.com/elastic/eui/tree/v40.1.0)
 
