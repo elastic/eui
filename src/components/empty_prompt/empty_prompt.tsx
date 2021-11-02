@@ -15,7 +15,7 @@ import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
 import { EuiIcon, IconColor, IconType } from '../icon';
 import { EuiText, EuiTextColor } from '../text';
-import { EuiPanel, _EuiPanelProps, _EuiPanelDivlike } from '../panel/panel';
+import { EuiPanel, _EuiPanelDivlike } from '../panel/panel';
 
 const paddingSizeToClassNameMap = {
   none: null,
@@ -167,7 +167,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
     className
   );
 
-  const panelProps: _EuiPanelProps = {
+  const panelProps: _EuiPanelDivlike = {
     className: classes,
     color: color,
     paddingSize: 'none',

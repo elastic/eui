@@ -78,21 +78,5 @@ describe('EuiPanel', () => {
         });
       });
     });
-
-    describe('minWidth', () => {
-      test('is rendered', () => {
-        const component = render(<EuiPanel minWidth="200px" />);
-
-        expect(component).toMatchSnapshot();
-      });
-    });
-
-    describe('maxWidth', () => {
-      test('is rendered', () => {
-        const component = render(<EuiPanel maxWidth="600px" />);
-
-        expect(component).toMatchSnapshot();
-      });
-    });
   });
 });

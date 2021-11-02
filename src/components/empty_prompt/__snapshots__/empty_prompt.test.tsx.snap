@@ -475,6 +475,25 @@ exports[`EuiEmptyPrompt props paddingSize s is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiEmptyPrompt props styles are rendered 1`] = `
+<div
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"
+  style="background:yellow;min-width:200px;max-width:600px"
+>
+  <div
+    class="euiEmptyPrompt__main"
+  >
+    <div
+      class="euiEmptyPrompt__content"
+    >
+      <div
+        class="euiEmptyPrompt__contentInner"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiEmptyPrompt props title renders alone 1`] = `
 <div
   class="euiPanel euiPanel--borderRadiusMedium euiPanel--transparent euiPanel--noShadow euiEmptyPrompt euiEmptyPrompt--vertical euiEmptyPrompt--paddingLarge"

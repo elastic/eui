@@ -112,5 +112,21 @@ describe('EuiEmptyPrompt', () => {
         });
       });
     });
+
+    describe('styles', () => {
+      test('are rendered', () => {
+        const component = render(
+          <EuiEmptyPrompt
+            style={{
+              background: 'yellow',
+              minWidth: '200px',
+              maxWidth: '600px',
+            }}
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

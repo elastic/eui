@@ -11,10 +11,8 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   Ref,
-  CSSProperties,
 } from 'react';
 import classNames from 'classnames';
-import { useIsWithinBreakpoints } from '../../services';
 import { CommonProps, keysOf, ExclusiveUnion } from '../common';
 
 export const panelPaddingValues = {
@@ -85,14 +83,6 @@ export interface _EuiPanelProps extends CommonProps {
    * Usually a lightened form of the brand colors
    */
   color?: PanelColor;
-  /**
-   * Applies a min-width to the `style` attribute. Only works when breakpoint is `l` and above
-   */
-  minWidth?: CSSProperties['minWidth'];
-  /**
-   * Applies a max-width to the `style` attribute. Only works when breakpoint is `l` and above
-   */
-  maxWidth?: CSSProperties['maxWidth'];
 }
 
 export interface _EuiPanelDivlike
@@ -123,9 +113,6 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   grow = true,
   panelRef,
   element,
-  style,
-  minWidth,
-  maxWidth,
   ...rest
 }) => {
   // Shadows are only allowed when there's a white background (plain)
@@ -150,22 +137,6 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     className
   );
 
-  // Only applies the max-width and min-width styles in large screens
-  // For smaller screens the panel gets a width of 100%, so no need for a max-width
-  // A large min-with could create a layout overflow in small screens
-  const isAboveLargeScreens = useIsWithinBreakpoints(['l', 'xl']);
-
-  const maxWidthStyles = maxWidth && isAboveLargeScreens && { maxWidth };
-  const minWidthStyles = minWidth && isAboveLargeScreens && { minWidth };
-
-  console.log('minWidth', minWidth);
-
-  const panelStyle: CSSProperties = {
-    ...style,
-    ...maxWidthStyles,
-    ...minWidthStyles,
-  };
-
   if (rest.onClick && element !== 'div') {
     return (
       <button
@@ -182,7 +153,6 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     <div
       ref={panelRef as Ref<HTMLDivElement>}
       className={classes}
-      style={panelStyle}
       {...(rest as HTMLAttributes<HTMLDivElement>)}
     >
       {children}
