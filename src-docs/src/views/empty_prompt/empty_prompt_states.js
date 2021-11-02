@@ -24,13 +24,10 @@ export default () => {
     };
   });
 
-  const minWidth = '520px';
-
   let emptyPromptProps;
   switch (currentState) {
     case 'error':
       emptyPromptProps = {
-        minWidth: minWidth,
         color: 'danger',
         iconType: 'alert',
         iconColor: 'danger',
@@ -45,7 +42,6 @@ export default () => {
       break;
     case 'empty':
       emptyPromptProps = {
-        minWidth: minWidth,
         color: 'plain',
         hasBorder: true,
         iconType: 'dashboardApp',
@@ -62,7 +58,6 @@ export default () => {
 
     default:
       emptyPromptProps = {
-        minWidth: minWidth,
         color: 'subdued',
         icon: <EuiLoadingLogo logo="logoKibana" size="xl" />,
         title: <h2>Loading Dashboards</h2>,
