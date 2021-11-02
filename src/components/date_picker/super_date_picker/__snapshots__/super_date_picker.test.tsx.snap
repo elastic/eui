@@ -100,6 +100,7 @@ exports[`EuiSuperDatePicker accepts data-test-subj and passes to EuiFormControlL
   >
     <EuiSuperUpdateButton
       data-test-subj="superDatePickerApplyTimeButton"
+      fill={true}
       isDisabled={false}
       isLoading={false}
       needsUpdate={false}
@@ -209,6 +210,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
   >
     <EuiSuperUpdateButton
       data-test-subj="superDatePickerApplyTimeButton"
+      fill={true}
       isDisabled={false}
       isLoading={false}
       needsUpdate={false}

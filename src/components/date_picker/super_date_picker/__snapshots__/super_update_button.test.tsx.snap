@@ -1,5 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiSuperUpdateButton fill 1`] = `
+<EuiToolTip
+  delay="regular"
+  display="inlineBlock"
+  position="bottom"
+>
+  <EuiButton
+    className="euiSuperUpdateButton"
+    color="primary"
+    fill={true}
+    iconType="refresh"
+    isDisabled={false}
+    isLoading={false}
+    onClick={[Function]}
+    textProps={
+      Object {
+        "className": "euiSuperUpdateButton__text",
+      }
+    }
+  >
+    <EuiI18n
+      default="Refresh"
+      token="euiSuperUpdateButton.refreshButtonLabel"
+    />
+  </EuiButton>
+</EuiToolTip>
+`;
+
 exports[`EuiSuperUpdateButton is rendered 1`] = `
 <EuiToolTip
   delay="regular"

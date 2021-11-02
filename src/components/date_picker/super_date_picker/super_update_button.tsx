@@ -20,6 +20,7 @@ export type EuiSuperUpdateButtonProps = CommonProps &
     isDisabled: boolean;
     isLoading: boolean;
     needsUpdate: boolean;
+    fill?: boolean;
     onClick: MouseEventHandler<HTMLButtonElement>;
 
     /**
@@ -39,6 +40,7 @@ export class EuiSuperUpdateButton extends Component<EuiSuperUpdateButtonProps> {
     isLoading: false,
     isDisabled: false,
     showTooltip: false,
+    fill: true,
   };
 
   _isMounted = false;
@@ -94,6 +96,7 @@ export class EuiSuperUpdateButton extends Component<EuiSuperUpdateButtonProps> {
       onClick,
       toolTipProps,
       showTooltip,
+      fill,
 
       textProps: restTextProps,
       ...rest
@@ -148,7 +151,7 @@ export class EuiSuperUpdateButton extends Component<EuiSuperUpdateButtonProps> {
         <EuiButton
           className={classes}
           color={needsUpdate || isLoading ? 'success' : 'primary'}
-          fill
+          fill={fill}
           iconType={needsUpdate || isLoading ? 'kqlFunction' : 'refresh'}
           textProps={{
             ...restTextProps,

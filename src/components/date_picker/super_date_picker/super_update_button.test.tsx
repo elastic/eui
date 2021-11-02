@@ -53,6 +53,12 @@ describe('EuiSuperUpdateButton', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('fill', () => {
+    const component = shallow(<EuiSuperUpdateButton fill onClick={noop} />);
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('forwards props to EuiButton', () => {
     const speciallyHandledProps = {
       className: 'testClass',
