@@ -4,8 +4,8 @@
 
 ## Naming your test files
 
-Create test files with the name pattern of `{component name}.test.js` in the same directory which
-contains `{component name}.js`.
+Create test files with the name pattern of `{component name}.test.tsx` in the same directory which
+contains `{component name}.tsx`.
 
 ## Updating snapshots
 
