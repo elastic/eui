@@ -17,6 +17,8 @@ import Managed from './managed';
 import ManagedHook from './managed_hook';
 import FullScreen from './fullscreen';
 
+import Guidelines from './guidelines';
+
 const stepSource = require('!!raw-loader!./step');
 const stepHtml = renderToHtml(Step);
 const stepSnippet = `
@@ -188,4 +190,5 @@ export const TourExample = {
       },
     },
   ],
+  guidelines: <Guidelines />,
 };

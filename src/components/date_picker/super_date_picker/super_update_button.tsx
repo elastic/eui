@@ -94,6 +94,7 @@ export class EuiSuperUpdateButton extends Component<EuiSuperUpdateButtonProps> {
       onClick,
       toolTipProps,
       showTooltip,
+      fill,
 
       textProps: restTextProps,
       ...rest
@@ -148,7 +149,6 @@ export class EuiSuperUpdateButton extends Component<EuiSuperUpdateButtonProps> {
         <EuiButton
           className={classes}
           color={needsUpdate || isLoading ? 'success' : 'primary'}
-          fill
           iconType={needsUpdate || isLoading ? 'kqlFunction' : 'refresh'}
           textProps={{
             ...restTextProps,
