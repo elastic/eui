@@ -42,11 +42,11 @@ const MixinLink = () => {
     case 'light':
     case 'dark':
       url =
-        'https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_shadow.scss';
+        'https://github.com/elastic/eui/blob/main/src/global_styling/mixins/_shadow.scss';
       break;
     default:
       url =
-        'https://github.com/elastic/eui/blob/master/src/themes/eui-amsterdam/global_styling/mixins/_shadow.scss';
+        'https://github.com/elastic/eui/blob/main/src/themes/eui-amsterdam/global_styling/mixins/_shadow.scss';
   }
 
   return (
@@ -198,7 +198,7 @@ padding-right: $euiSizeS;
             <p>
               If you need to further customize the position or side of the
               overflow shadow use the <EuiCode>euiOverflowShadow</EuiCode>{' '}
-              <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/mixins/_shadow.scss">
+              <EuiLink href="https://github.com/elastic/eui/blob/main/src/global_styling/mixins/_shadow.scss">
                 mixin
               </EuiLink>
               .
