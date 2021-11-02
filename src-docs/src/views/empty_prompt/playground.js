@@ -59,16 +59,6 @@ export default () => {
 
   propsToUse.iconType = iconValidator(propsToUse.iconType, 'logoSecurity');
 
-  propsToUse.minWidth = {
-    ...propsToUse.minWidth,
-    type: PropTypes.Number,
-  };
-
-  propsToUse.maxWidth = {
-    ...propsToUse.minWidth,
-    type: PropTypes.Number,
-  };
-
   return {
     config: {
       componentName: 'EuiEmptyPrompt',
