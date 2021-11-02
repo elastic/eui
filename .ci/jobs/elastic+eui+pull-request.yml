@@ -5,7 +5,7 @@
     description: Jobs to run on EUI pull requests
     project-type: multijob
     concurrent: true
-    node: master
+    node: main
     triggers:
       - github-pull-request:
           org-list:
