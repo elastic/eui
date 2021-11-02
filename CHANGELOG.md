@@ -1,4 +1,4 @@
-## [`master`](https://github.com/elastic/eui/tree/master)
+## [`main`](https://github.com/elastic/eui/tree/main)
 
 - Added `EuiAutoSizer` component for setting dimensions on virtualized lists ([#5278](https://github.com/elastic/eui/pull/5278))
 - Added `testenv` mock for `EuiAutoSizer` ([#5278](https://github.com/elastic/eui/pull/5278))
