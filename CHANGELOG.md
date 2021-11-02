@@ -5,6 +5,8 @@
 - Changed render of `useEuiTextDiff` to a `span` instead of `div` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Changed change prop type of `children` for `EuiMark` from `string` to `ReactNode` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Added `render` prop to `EuiI18n` ([#5236](https://github.com/elastic/eui/pull/5236))
+- Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))
+- Updated `EuiEmptyPrompt` to extend `EuiPanelProps` ([#5275](https://github.com/elastic/eui/pull/5275))
 
 **Bug fixes**
 
@@ -29,10 +31,7 @@
 
 ## [`40.1.0`](https://github.com/elastic/eui/tree/v40.1.0)
 
-- Added styling support for `valign` prop on `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
-- Added `minWidth` and `maxWidth` props to `EuiPanel` ([#5275](https://github.com/elastic/eui/pull/5275))
-- Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))
-- Updated `EuiEmptyPrompt` to extend `EuiPanelProps` ([#5275](https://github.com/elastic/eui/pull/5275))
+- Added styling support for `valign` prop on `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283)
 - Added `remark-breaks` plugin to mimic GitHub-flavored markdown line breaks within `EuiMarkdownEditor` ([#5272](https://github.com/elastic/eui/pull/5272))
 - Removed `EuiErrorBoundary` from `EuiDatePicker` when unsupported props are used ([#5318](https://github.com/elastic/eui/pull/5318))
 
