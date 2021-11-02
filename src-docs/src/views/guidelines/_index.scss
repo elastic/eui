@@ -290,16 +290,7 @@
 }
 
 .guideSass__animRow {
-  width: 100%;
-
-  & + & {
-    margin-top: $euiSize;
-  }
-}
-
-.guideSass__animRowSmall {
-  width: 100%;
-  max-width: $euiSizeXL * 2;
+  width: $euiSizeXL * 2;
   margin-right: $euiSize;
   margin-top: $euiSizeXS;
 }

@@ -10,7 +10,7 @@ import {
 
 import { useDebouncedUpdate } from '../hooks';
 
-import { ThemeValue } from '../_values';
+import { ThemeValue } from './_values';
 
 import {
   getPropsFromThemeKey,
@@ -55,25 +55,27 @@ export default ({ onThemeUpdate }) => {
 
         {Object.keys(speedTypes).map((prop) => {
           return (
-            <div key={prop} className={'guideSass__animRow'}>
-              <ThemeValue
-                property="animation"
-                type={speedTypes[prop]}
-                name={prop}
-                value={animationClone[prop]}
-                onUpdate={(value) => updateAnimation(prop, value)}
-              />
-              <EuiSpacer size="xs" />
-              <div className={'guideSass__animParent'}>
-                <div
-                  className="guideSass__animChild"
-                  // Using inline style tag to override `:focus`
-                  style={{
-                    transitionDuration: animationClone[prop],
-                  }}
-                />
-              </div>
-            </div>
+            <ThemeValue
+              key={prop}
+              property="animation"
+              type={speedTypes[prop]}
+              name={prop}
+              value={animationClone[prop]}
+              onUpdate={(value) => updateAnimation(prop, value)}
+              example={
+                <div className={'guideSass__animRow'}>
+                  <div className={'guideSass__animParent'}>
+                    <div
+                      className="guideSass__animChild"
+                      // Using inline style tag to override `:focus`
+                      style={{
+                        transitionDuration: animationClone[prop],
+                      }}
+                    />
+                  </div>
+                </div>
+              }
+            />
           );
         })}
       </EuiPanel>
@@ -91,27 +93,29 @@ export default ({ onThemeUpdate }) => {
 
         {Object.keys(easingTypes).map((prop) => {
           return (
-            <div key={prop} className={'guideSass__animRow'}>
-              <ThemeValue
-                property="animation"
-                type={easingTypes[prop]}
-                name={prop}
-                value={animationClone[prop]}
-                onUpdate={(value) => updateAnimation(prop, value)}
-                stringProps={{
-                  style: { width: 240 },
-                }}
-              />
-              <EuiSpacer size="xs" />
-              <div className={'guideSass__animParent'}>
-                <div
-                  className="guideSass__animChild"
-                  style={{
-                    transitionTimingFunction: animationClone[prop],
-                  }}
-                />
-              </div>
-            </div>
+            <ThemeValue
+              key={prop}
+              property="animation"
+              type={easingTypes[prop]}
+              name={prop}
+              value={animationClone[prop]}
+              onUpdate={(value) => updateAnimation(prop, value)}
+              stringProps={{
+                style: { width: 240 },
+              }}
+              example={
+                <div className={'guideSass__animRow'}>
+                  <div className={'guideSass__animParent'}>
+                    <div
+                      className="guideSass__animChild"
+                      style={{
+                        transitionTimingFunction: animationClone[prop],
+                      }}
+                    />
+                  </div>
+                </div>
+              }
+            />
           );
         })}
       </EuiPanel>

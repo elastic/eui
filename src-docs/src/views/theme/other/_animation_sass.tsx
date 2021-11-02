@@ -47,8 +47,9 @@ export default ({
             value: `${values[speed]}`,
           };
         })}
+        sampleColumnProps={{ width: '80px', align: 'left' }}
         render={(item) => (
-          <div className={'guideSass__animRowSmall'}>
+          <div className={'guideSass__animRow'}>
             <div className={'guideSass__animParent'}>
               <div
                 className="guideSass__animChild"
@@ -84,15 +85,16 @@ export default ({
             value: `${values[ease]}`,
           };
         })}
+        sampleColumnProps={{ width: '80px', align: 'left' }}
         valueColumnProps={{ width: '260px' }}
         render={(item) => (
-          <div className={'guideSass__animRowSmall'}>
+          <div className={'guideSass__animRow'}>
             <div className={'guideSass__animParent'}>
               <div
                 className="guideSass__animChild"
                 // Using inline style tag to override `:focus`
                 style={{
-                  transitionDuration: item.value,
+                  transitionTimingFunction: item.value,
                 }}
               />
             </div>
