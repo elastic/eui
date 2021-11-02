@@ -7,11 +7,10 @@ $euiColorInk: #000 !default;
 
 // Core
 $euiColorPrimary: #1BA9F5 !default;
-$euiColorSecondary: #7DE2D1 !default;
 $euiColorAccent: #F990C0 !default;
 
 // Status
-$euiColorSuccess: $euiColorSecondary !default;
+$euiColorSuccess: #7DE2D1 !default;
 $euiColorWarning: #FFCE7A !default;
 $euiColorDanger: #F66 !default;
 
@@ -36,12 +35,11 @@ $euiColorDisabled: shade($euiTextColor, 70%) !default;
 
 // Contrasty text variants
 $euiColorPrimaryText: makeHighContrastColor($euiColorPrimary) !default;
-$euiColorSecondaryText: makeHighContrastColor($euiColorSecondary) !default;
+$euiColorSuccessText: makeHighContrastColor($euiColorSuccess) !default;
 $euiColorAccentText: makeHighContrastColor($euiColorAccent) !default;
 $euiColorWarningText: makeHighContrastColor($euiColorWarning) !default;
 $euiColorDangerText: makeHighContrastColor($euiColorDanger) !default;
 $euiColorDisabledText: makeDisabledContrastColor($euiColorDisabled) !default;
-$euiColorSuccessText: $euiColorSecondaryText !default;
 $euiLinkColor: $euiColorPrimaryText !default;
 
 // Charts
