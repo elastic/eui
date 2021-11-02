@@ -1,5 +1,26 @@
 [
   {
+    "version": "41.0.0",
+    "changes": [
+      {
+        "token": "euiCodeEditor.startInteracting",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCodeEditor.startEditing",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCodeEditor.stopInteracting",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCodeEditor.stopEditing",
+        "changeType": "deleted"
+      }
+    ]
+  },
+  {
     "version": "39.1.1",
     "changes": [
       {
