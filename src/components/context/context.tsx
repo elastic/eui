@@ -26,6 +26,11 @@ export interface I18nShape {
     [key: string]: Renderable<object>;
   };
   mappingFunc?: (value: string) => string;
+  /**
+   * Some browsers' translation features don't work with a rendered `<Fragment>` component.
+   * The `render` function allows you to pass in another component instead, e.g. `<div>`
+   */
+  render?: (children: any) => FunctionComponent;
   formatNumber?: (x: number) => string;
   formatDateTime?: (x: Date) => string;
   locale?: string;

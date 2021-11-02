@@ -38,8 +38,11 @@ export default () => (
           title="Transparent"
           display="transparent"
           description="This one doesn't have a background color anymore."
-          betaBadgeLabel="Beta"
-          betaBadgeTooltipContent="This module is not GA. Please help us by reporting any bugs."
+          betaBadgeProps={{
+            label: 'Beta',
+            tooltipContent:
+              'This module is not GA. Please help us by reporting any bugs.',
+          }}
           onClick={() => {}}
         />
       </EuiFlexItem>

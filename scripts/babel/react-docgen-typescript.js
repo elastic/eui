@@ -63,6 +63,7 @@ module.exports = function ({ types }) {
 
           // external modules whose props must be whitelisted
           const whiteListedParent = [
+            'AutoSizerProps',
             'DragDropContextProps',
             'DraggableProps',
             'DroppableProps',

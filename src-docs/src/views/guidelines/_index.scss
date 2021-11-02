@@ -93,18 +93,24 @@
   height: $euiSize;
 }
 
-.guideSass__sizeRow + .guideSass__sizeRow {
-  margin-top: $euiSize;
-}
-
 .guideSass__size {
   background-color: $euiColorFullShade;
   display: inline-block;
 }
 
-.guideSass__sizeItem {
-  width: $euiSizeXXL;
-  text-align: right;
+.guideSass__euiSize {
+  padding: $euiSize;
+  background-color: $euiColorHighlight;
+}
+
+.guideSass__euiSizeXS2 {
+  padding: $euiSizeXS / 2;
+  background-color: $euiColorHighlight;
+
+  &::after {
+    content: 'padding: #{$euiSizeXS / 2}';
+    font-weight: $euiFontWeightBold;
+  }
 }
 
 .guideSass__fontSizeExample + .guideSass__fontSizeExample {
