@@ -48,36 +48,7 @@ export const GettingStarted = {
     {
       title: 'Setting up your application',
       wrapText: false,
-      text: (
-        <>
-          <EuiText grow={false}>
-            <p>
-              EUI provides a general context provider to handle global aspects
-              like theming. While EUI is in the process of converting from a
-              Sass based theme to CSS-in-JS via Emotion. We require that both
-              the EuiProvider <strong>and</strong> the compiled CSS (or raw
-              Sass) files be imported during this transition.
-            </p>
-            <p>
-              EUI builds with both a light and dark theme. You can import these
-              default themes through their respective compiled CSS files. Use
-              the <EuiCode>.min.css</EuiCode> file extension for the minified
-              version.
-            </p>
-          </EuiText>
-
-          <EuiSpacer />
-          <AppSetup />
-          <EuiSpacer />
-
-          <EuiText grow={false}>
-            <p>
-              For the dark theme, you can swap the words{' '}
-              <EuiCode>light</EuiCode> for <EuiCode>dark</EuiCode>.
-            </p>
-          </EuiText>
-        </>
-      ),
+      text: <AppSetup />,
     },
     {
       title: 'Styling your application',

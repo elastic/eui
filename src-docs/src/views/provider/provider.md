@@ -1,18 +1,13 @@
-## EuiProvider
+## Basic setup
 
-`EuiProvider` contains all necessary context providers required for full functionality of EUI, including reset and globals styles, and `EuiThemeProvider` for theming and writing custom styles. 
-
-
-### Basic setup
-
-For EUI to work correctly, set up `EuiProvider` at the root of your application.
+For EUI to work correctly, set up **EuiProvider** at the root of your application.
 
 ```jsx
 import { EuiProvider } from '@elastic/eui'
 
-const App = ({ Component }) => (
+const MyApp = ({ Page }) => (
   <EuiProvider>
-    <Component />
+    <Page />
   </EuiProvider>
 );
 ```
@@ -23,15 +18,13 @@ See [**EuiThemeProvider**](/#/theming/theme-provider) for full documentation as 
 <EuiProvider colorMode={isDark ? 'dark' : 'light'} />
 ```
 
+It is not recommended to recreate the functionality of **EuiProvider** by composing its constituant parts. More context, functionality, and configurations will be added to **EuiProvider** in future releases. Nested instances of [**EuiThemeProvider**](/#/theming/theme-provider), however, are valid.
 
-### Configuration
+## Global reset
 
-#### Global styles
+A reset stylesheet and the global EUI styles are applied via Emotion. To prevent loading these styles from loading, pass `theme={null}` to the provider.
 
-A reset stylesheet and global EUI styles will by default be applied via CSS-in-JS. To prevent loading these styles from loading, pass `theme={null}` to the provider. 
-
-
-#### `@emotion/cache` and style injection location 
+### `@emotion/cache` and style injection location
 
 In the case that your app has its own static stylesheet, the global styles may not be injected into the correct location in the `<head>`, causing unintentional overrides or unapplied styles. [The **@emotion/cache** library](https://emotion.sh/docs/@emotion/cache) provides configuration options that help with specifying the injection location.
 
@@ -59,7 +52,7 @@ const cache = createCache({
   container: document.querySelector('#global-style-insert'),
 });
 
-const App = () => (
+const MyApp = () => (
   <EuiProvider cache={cache}>
     {/* Content */}
   </EuiProvider>
@@ -67,48 +60,7 @@ const App = () => (
 ```
 
 Any other options available with [the **createCache** API](https://emotion.sh/docs/@emotion/cache#createcache) will be respected by EUI.
+
 Note that EUI does not include the `@emotion/cache` library, so you will need to add it to your application dependencies.
 
 
-### Recommended app structure
-
-Although it is possible to recreate the functionality of `EuiProvider` by composing its constituant parts, this is not recommended. More context, functionality, and configuration will be added to `EuiProvider` in future releases. Nested instances of `EuiThemeProvider`, however, are entirely valid.
-
-```jsx
-// App.js
-import * as React from 'react';
-import createCache from '@emotion/cache';
-import { EuiProvider } from '@elastic/eui'
-
-import Component from './Component';
-
-// If necessary:
-const cache = createCache({
-  key: 'myApp',
-  container: document.querySelector('#global-style-insert'),
-});
-
-const App = () => {
-  const [isDarkMode, setIsDarkMode] = React.useState(false);
-
-  return (
-    <EuiProvider cache={cache} colorMode={isDarkMode ? 'dark' : 'light'}>
-      <Component />
-    </EuiProvider>
-  )
-};
-```
-
-```jsx
-// Component.js
-import { EuiThemeProvider } from '@elastic/eui';
-
-const Component = () => (
-  <div>
-    {/* Content using the global color mode */}
-    <EuiThemeProvider colorMode="inverse">
-      {/* Content using the inverse of the global color mode */}
-    </EuiThemeProvider>
-  </div>
-);
-```
