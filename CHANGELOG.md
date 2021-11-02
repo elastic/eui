@@ -1,5 +1,18 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+### Feature: CSS-in-JS ([#5121](https://github.com/elastic/eui/pull/5121))
+
+- Added reset and global styles via CSS-in-JS with `@emotion/react/Global`
+- Added `EuiProvider`, a React context provider for theming and global styles
+- Added `isDefaultTheme` and `isLegacyTheme` utilities
+
+**Breaking changes**
+
+- Added `@emotion/react` to `peerDependencies`
+- Deprecated and renamed as "legacy" the pre-Amsterdam default theme
+
+## [`41.0.0`](https://github.com/elastic/eui/tree/v41.0.0)
+
 - Added `EuiAutoSizer` component for setting dimensions on virtualized lists ([#5278](https://github.com/elastic/eui/pull/5278))
 - Added `testenv` mock for `EuiAutoSizer` ([#5278](https://github.com/elastic/eui/pull/5278))
 - Changed render of `useEuiTextDiff` to a `span` instead of `div` ([#5323](https://github.com/elastic/eui/pull/5323))
@@ -9,6 +22,8 @@
 **Bug fixes**
 
 - Fixed styling of `align: center` for mobile version of `EuiTableRowCell` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Fixed `endDateControl` `className` in `EuiDatePickerRange` ([#5329](https://github.com/elastic/eui/pull/5329))
+- Fixed `EuiMarkdownEditor` intercepting all drop events on the page ([#5340](https://github.com/elastic/eui/pull/5340))
 
 **Breaking changes**
 
@@ -21,22 +36,6 @@
 - Removed `makeId` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Removed mobile-only props from `EuiTableRowCell` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Removed Sass vars `$euiColorSecondary` and `$euiColorSecondaryText` ([#5345](https://github.com/elastic/eui/pull/5345))
-
-**Bug fixes**
-
-- Fixed `endDateControl` `className` in `EuiDatePickerRange` ([#5329](https://github.com/elastic/eui/pull/5329))
-- Fixed `EuiMarkdownEditor` intercepting all drop events on the page ([#5340](https://github.com/elastic/eui/pull/5340))
-
-### Feature: CSS-in-JS ([#5121](https://github.com/elastic/eui/pull/5121))
-
-- Added reset and global styles via CSS-in-JS with `@emotion/react/Global`
-- Added `EuiProvider`, a React context provider for theming and global styles
-- Added `isDefaultTheme` and `isLegacyTheme` utilities
-
-**Breaking changes**
-
-- Added `@emotion/react` to `peerDependencies`
-- Deprecated and renamed as "legacy" the pre-Amsterdam default theme
 
 ## [`40.1.0`](https://github.com/elastic/eui/tree/v40.1.0)
 
