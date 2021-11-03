@@ -76,7 +76,6 @@ import Error from './empty_prompt_error';
 const errorSource = require('!!raw-loader!./empty_prompt_error');
 const errorSnippet = `<EuiEmptyPrompt
   iconType="alert"
-  iconColor="danger"
   title={<h2>There was an error</h2>}
 />`;
 

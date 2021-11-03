@@ -28,6 +28,7 @@ export default () => {
   propsToUse.iconColor = {
     ...propsToUse.iconColor,
     type: PropTypes.Enum,
+    defaultValue: 'subdued',
     options: ICON_COLORS.reduce((a, v) => ({ ...a, [v]: v }), {}),
   };
 
