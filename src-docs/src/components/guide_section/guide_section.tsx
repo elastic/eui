@@ -1,8 +1,9 @@
 import React, { FunctionComponent, ReactNode, useState } from 'react';
+import { useRouteMatch } from 'react-router';
 
 import { EuiErrorBoundary } from '../../../../src/components/error_boundary';
-import { EuiText } from '../../../../src/components/text';
-import { EuiSwitch } from '../../../../src/components/form';
+import { EuiButton, EuiButtonEmpty } from '../../../../src/components/button';
+import { EuiFlyout } from '../../../../src/components/flyout';
 
 import { slugify } from '../../../../src/services/string/slugify';
 
@@ -15,7 +16,7 @@ import {
   GuideSectionExampleTabs,
   GuideSectionExampleTabsProps,
 } from './guide_section_parts/guide_section_tabs';
-import { GuideSectionPropsDescription } from './guide_section_parts/guide_section_props_description';
+import { GuideSectionTypes } from './guide_section_types';
 
 export interface GuideSection {
   id?: string;
@@ -23,6 +24,10 @@ export interface GuideSection {
   text?: ReactNode;
   source?: any[];
   demo?: ReactNode;
+  fullScreen?: {
+    slug: string;
+    demo: ReactNode;
+  };
   demoPanelProps?: GuideSectionExample['demoPanelProps'];
   props?: object;
   playground?: any;
@@ -35,6 +40,10 @@ export const GuideSectionCodeTypesMap = {
   JS: {
     name: 'demoJS',
     displayName: 'Demo JS',
+  },
+  TSX: {
+    name: 'demoTSX',
+    displayName: 'Demo TS',
   },
   SNIPPET: {
     name: 'snippet',
@@ -51,6 +60,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   title,
   text,
   demo,
+  fullScreen,
   source = [],
   props = {},
   playground,
@@ -59,6 +69,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
   demoPanelProps,
   snippet,
 }) => {
+  const { path } = useRouteMatch();
   const [renderingPlayground, setRenderingPlayground] = useState(false);
 
   const renderTabs = () => {
@@ -69,6 +80,9 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
       source.push({
         ...GuideSectionCodeTypesMap.SNIPPET,
         snippets: snippet,
+        displayName: `${GuideSectionCodeTypesMap.SNIPPET.displayName}${
+          Array.isArray(snippet) ? 's' : ''
+        }`,
       });
     }
 
@@ -89,7 +103,7 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
     if (source) {
       source.map((source) => {
         // Forever skipping the HTML tab
-        if (source.type === 'HTML') return;
+        if (source.type === GuideSectionTypes.HTML) return;
         tabs.push({
           // @ts-ignore Complicated
           ...GuideSectionCodeTypesMap[source.type],
@@ -98,7 +112,6 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
             ? slugify(source.displayName)
             : // @ts-ignore Complicated
               GuideSectionCodeTypesMap[source.type].name,
-          disabled: renderingPlayground,
           ...source,
         });
       });
@@ -122,39 +135,34 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
 
     if (!isPlaygroundUnsupported && !!playground) {
       return (
-        <EuiSwitch
-          onChange={() => {
+        <EuiButtonEmpty
+          size="xs"
+          iconType="controlsHorizontal"
+          onClick={() => {
             setRenderingPlayground((rendering) => !rendering);
           }}
-          checked={renderingPlayground}
-          compressed
-          label={
-            <EuiText size="xs">
-              <strong>Playground</strong>
-            </EuiText>
-          }
-        />
+        >
+          Playground
+        </EuiButtonEmpty>
       );
     }
   };
 
   const renderPlayground = () => {
-    const { config, setGhostBackground, playgroundClassName } = playground();
-
-    const description = (
-      <GuideSectionPropsDescription
-        componentName={config.componentName}
-        component={config.scope[config.componentName]}
-      />
-    );
+    const {
+      config,
+      setGhostBackground,
+      playgroundClassName,
+      playgroundPanelProps,
+    } = playground();
 
     return playgroundService({
       config,
       setGhostBackground,
       playgroundClassName,
+      playgroundPanelProps,
       playgroundToggle: renderPlaygroundToggle(),
       tabs: renderTabs(),
-      description,
     });
   };
 
@@ -164,10 +172,36 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
         {text}
       </GuideSectionExampleText>
 
-      {renderingPlayground && renderPlayground()}
-      {!renderingPlayground && demo && (
+      {renderingPlayground && (
+        <EuiFlyout
+          onClose={() => setRenderingPlayground(false)}
+          size="l"
+          paddingSize="none"
+          closeButtonPosition="outside"
+        >
+          {renderPlayground()}
+        </EuiFlyout>
+      )}
+      {(demo || fullScreen) && (
         <GuideSectionExample
-          example={<EuiErrorBoundary>{demo}</EuiErrorBoundary>}
+          example={
+            <EuiErrorBoundary>
+              {/* eslint-disable-next-line no-nested-ternary */}
+              {fullScreen == null ? (
+                <div>{demo}</div>
+              ) : demo == null ? (
+                <EuiButton
+                  fill
+                  iconType="fullScreen"
+                  href={`#${path}/${fullScreen.slug}`}
+                >
+                  Full screen demo
+                </EuiButton>
+              ) : (
+                demo
+              )}
+            </EuiErrorBoundary>
+          }
           tabs={renderTabs()}
           ghostBackground={ghostBackground}
           demoPanelProps={demoPanelProps}

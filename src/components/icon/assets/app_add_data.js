@@ -1,3 +1,5 @@
+// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY
+
 import * as React from 'react';
 
 const EuiIconAppAddData = ({ title, titleId, ...props }) => (
@@ -7,7 +9,8 @@ const EuiIconAppAddData = ({ title, titleId, ...props }) => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <path d="M32 30H0V3h12.57l3 5H32v22zM2 28h28V10H14.43l-3-5H2v23z" />
     <path

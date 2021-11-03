@@ -56,12 +56,12 @@ export const DataGridFocusExample = {
               element unless a subsequent user action changes it.
             </li>
             <li>
-              Enter or F2 can be used interchangibly to enter inner cell focus
+              Enter or F2 can be used interchangeably to enter inner cell focus
               if the logic below allows it.
             </li>
           </ul>
           <h2>
-            The content and expandability of the cells dicate the focus target
+            The content and expandability of the cells dictate the focus target
             of the cell
           </h2>
           <p>
@@ -70,14 +70,14 @@ export const DataGridFocusExample = {
             a grid with your keyboard.
           </p>
           <h3>
-            Cell alone recieves the focus, with no possible inner focus action
+            Cell alone receives the focus, with no possible inner focus action
             when:
           </h3>
           <ul>
             <li>The cell is not expandable.</li>
             <li>The cell has no interactive elements</li>
           </ul>
-          <h3>A single inner element within the cell recieves focus when:</h3>
+          <h3>A single inner element within the cell receives focus when:</h3>
           <ul>
             <li>The cell is not expandable.</li>
             <li>The cell has a single interaction element.</li>
@@ -98,7 +98,8 @@ export const DataGridFocusExample = {
           <EuiCallOut
             size="s"
             color="warning"
-            title="A caution about turning off cell expansion when the width of the column is unknown">
+            title="A caution about turning off cell expansion when the width of the column is unknown"
+          >
             In general, you should turn <EuiCode>isExpandible</EuiCode> to false
             only when you know the exact width and number of items that a cell
             will include. Control columns that contain row actions are a good

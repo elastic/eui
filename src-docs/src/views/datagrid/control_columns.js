@@ -89,18 +89,25 @@ const SelectionButton = () => {
             iconType="arrowDown"
             color="primary"
             className="euiDataGrid__controlBtn"
-            onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+            onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+          >
             {selectedRows.size} {selectedRows.size > 1 ? 'items' : 'item'}{' '}
             selected
           </EuiButtonEmpty>
         }
-        closePopover={() => setIsPopoverOpen(false)}>
+        closePopover={() => setIsPopoverOpen(false)}
+      >
         <EuiPopoverTitle>
           {selectedRows.size} {selectedRows.size > 1 ? 'items' : 'item'}
         </EuiPopoverTitle>
         <div style={{ width: 150 }}>
           <button onClick={() => {}} component="span">
-            <EuiFlexGroup alignItems="center" component="span" gutterSize="s">
+            <EuiFlexGroup
+              responsive={false}
+              alignItems="center"
+              component="span"
+              gutterSize="s"
+            >
               <EuiFlexItem grow={false}>
                 <EuiButtonIcon
                   aria-label="Pin selected items"
@@ -113,7 +120,12 @@ const SelectionButton = () => {
           </button>
           <EuiSpacer size="s" />
           <button onClick={() => {}}>
-            <EuiFlexGroup alignItems="center" component="span" gutterSize="s">
+            <EuiFlexGroup
+              responsive={false}
+              alignItems="center"
+              component="span"
+              gutterSize="s"
+            >
               <EuiFlexItem grow={false}>
                 <EuiButtonIcon
                   aria-label="Delete selected items"
@@ -263,14 +275,16 @@ const trailingControlColumns = [
                 onClick={() => setIsPopoverOpen(!isPopoverOpen)}
               />
             }
-            closePopover={() => setIsPopoverOpen(false)}>
+            closePopover={() => setIsPopoverOpen(false)}
+          >
             <EuiPopoverTitle>Actions</EuiPopoverTitle>
             <div style={{ width: 150 }}>
               <button onClick={() => {}} component="span">
                 <EuiFlexGroup
                   alignItems="center"
                   component="span"
-                  gutterSize="s">
+                  gutterSize="s"
+                >
                   <EuiFlexItem grow={false}>
                     <EuiButtonIcon
                       aria-label="Pin selected items"
@@ -286,7 +300,8 @@ const trailingControlColumns = [
                 <EuiFlexGroup
                   alignItems="center"
                   component="span"
-                  gutterSize="s">
+                  gutterSize="s"
+                >
                   <EuiFlexItem grow={false}>
                     <EuiButtonIcon
                       aria-label="Delete selected items"

@@ -3,8 +3,53 @@
 exports[`EuiBetaBadge is rendered 1`] = `
 <span
   aria-label="aria-label"
-  class="euiBetaBadge testClass1 testClass2"
+  class="euiBetaBadge euiBetaBadge--hollow testClass1 testClass2"
   data-test-subj="test subject string"
+  title="Beta"
+>
+  Beta
+</span>
+`;
+
+exports[`EuiBetaBadge props color accent is rendered 1`] = `
+<span
+  class="euiBetaBadge euiBetaBadge--accent"
+  title="Beta"
+>
+  Beta
+</span>
+`;
+
+exports[`EuiBetaBadge props color hollow is rendered 1`] = `
+<span
+  class="euiBetaBadge euiBetaBadge--hollow"
+  title="Beta"
+>
+  Beta
+</span>
+`;
+
+exports[`EuiBetaBadge props color subdued is rendered 1`] = `
+<span
+  class="euiBetaBadge euiBetaBadge--subdued"
+  title="Beta"
+>
+  Beta
+</span>
+`;
+
+exports[`EuiBetaBadge props size m is rendered 1`] = `
+<span
+  class="euiBetaBadge euiBetaBadge--hollow"
+  title="Beta"
+>
+  Beta
+</span>
+`;
+
+exports[`EuiBetaBadge props size s is rendered 1`] = `
+<span
+  class="euiBetaBadge euiBetaBadge--hollow euiBetaBadge--small"
   title="Beta"
 >
   Beta

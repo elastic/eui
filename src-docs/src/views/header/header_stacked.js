@@ -26,9 +26,6 @@ export default () => {
     },
   ];
 
-  /**
-   * Docs Note: This additional class is needed only for docs to override the usually single header
-   */
   useEffect(() => {
     if (isFixed) document.body.classList.add('euiBody--headerIsFixed--double');
 
@@ -75,7 +72,8 @@ export default () => {
             items: [
               <EuiHeaderSectionItemButton
                 aria-label="News feed: Updates available"
-                notification={true}>
+                notification={true}
+              >
                 <EuiIcon type="cheer" size="m" />
               </EuiHeaderSectionItemButton>,
             ],

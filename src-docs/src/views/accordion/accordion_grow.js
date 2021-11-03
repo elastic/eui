@@ -32,7 +32,8 @@ const Rows = () => {
           iconType="plusInCircleFilled"
           onClick={() => setCounter(counter + 1)}
           aria-controls={listId}
-          aria-describedby={growingAccordianDescriptionId}>
+          aria-describedby={growingAccordianDescriptionId}
+        >
           Increase height to {counter + 1} items
         </EuiButton>{' '}
         <EuiButton
@@ -41,7 +42,8 @@ const Rows = () => {
           aria-controls={listId}
           aria-describedby={growingAccordianDescriptionId}
           onClick={() => setCounter(Math.max(0, counter - 1))}
-          isDisabled={counter === 1}>
+          isDisabled={counter === 1}
+        >
           Decrease height to {counter - 1} item{counter > 2 && 's'}
         </EuiButton>
       </p>
@@ -55,7 +57,8 @@ export default () => (
     id={htmlIdGenerator()()}
     buttonContent="Click me to toggle close / open"
     initialIsOpen={true}
-    paddingSize="s">
+    paddingSize="s"
+  >
     <EuiPanel color="subdued">
       <Rows />
     </EuiPanel>

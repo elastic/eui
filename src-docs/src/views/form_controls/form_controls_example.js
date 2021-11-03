@@ -110,6 +110,18 @@ const filePickerSnippet = [
 />`,
 ];
 
+import FilePickerRemove from './file_picker_remove';
+const filePickerRemoveSource = require('!!raw-loader!./file_picker_remove');
+const filePickerRemoveSnippet = [
+  `<EuiFilePicker
+  id={filePickerId}
+  ref={filePickerRef}
+  multiple
+  initialPromptText="content that appears in the dropzone if no file is attached"
+  onChange={onChange}
+/>`,
+];
+
 import Select from './select';
 const selectSource = require('!!raw-loader!./select');
 const selectHtml = renderToHtml(Select);
@@ -165,12 +177,27 @@ const radioGroupHtml = renderToHtml(RadioGroup);
 
 import Switch from './switch';
 const switchSource = require('!!raw-loader!./switch');
-const switchHtml = renderToHtml(Switch);
-const switchSnippet = [
-  `<EuiSwitch
-  label="I am a switch"
+const switchSnippet = `<EuiSwitch
+  label="Enable"
   checked={checked}
   onChange={onChange}
+/>`;
+import SwitchLabel from './switch_label';
+const switchLabelSource = require('!!raw-loader!./switch_label');
+const switchLabelSnippet = [
+  `<EuiSwitch
+  showLabel={false}
+  label="Enable"
+  checked={checked}
+  onChange={onChange}
+  compressed
+/>`,
+  `<EuiSwitch
+  label={checked ? 'on' : 'off'}
+  aria-describedby={labelId}
+  checked={checked}
+  onChange={onChange}
+  compressed
 />`,
 ];
 
@@ -343,7 +370,8 @@ export const FormControlsExample = {
           files. The example below shows how to grab the files using the{' '}
           <EuiLink
             href="https://developer.mozilla.org/en-US/docs/Web/API/FileList"
-            target="_blank">
+            target="_blank"
+          >
             FileList API
           </EuiLink>
           . Like other form elements, you can wrap it in a{' '}
@@ -353,6 +381,28 @@ export const FormControlsExample = {
       components: { EuiFilePicker },
       snippet: filePickerSnippet,
       demo: <FilePicker />,
+      props: { EuiFilePicker },
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: filePickerRemoveSource,
+        },
+      ],
+      text: (
+        <>
+          <h3>Removing files programmatically</h3>
+          <p>
+            The current file selection can be cleared programmatically by
+            calling the <EuiCode>removeFiles</EuiCode> method, which can be
+            accessed on a component instance via React <EuiCode>ref</EuiCode>:{' '}
+            <EuiCode>filePickerRef.current.removeFiles()</EuiCode>.
+          </p>
+        </>
+      ),
+      snippet: filePickerRemoveSnippet,
+      demo: <FilePickerRemove />,
       props: { EuiFilePicker },
     },
     {
@@ -453,14 +503,25 @@ export const FormControlsExample = {
     },
     {
       title: 'Switch',
+      text: (
+        <>
+          <p>
+            A switch can be substituted for a checkbox when the semantics of the
+            label dictate a true on/off state. The label should be{' '}
+            <strong>static</strong>, action-oriented, and describe the feature
+            or present a question. Use past tense only when labelling a list of
+            previously created items, like in a{' '}
+            <EuiLink href="https://github.com/elastic/eui/pull/5119#discussion_r699717319">
+              table header
+            </EuiLink>
+            .
+          </p>
+        </>
+      ),
       source: [
         {
           type: GuideSectionTypes.JS,
           code: switchSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: switchHtml,
         },
       ],
       snippet: switchSnippet,
@@ -469,6 +530,37 @@ export const FormControlsExample = {
       },
       demo: <Switch />,
       playground: SwitchConfig,
+    },
+    {
+      text: (
+        <>
+          <p>
+            If the switch is described in some other manner, like when using an{' '}
+            <Link to="/forms/form-layouts#form-and-form-rows">
+              <strong>EuiFormRow</strong>
+            </Link>
+            , you can eliminate the visible label with{' '}
+            <EuiCode language="tsx">{'showLabel={false}'}</EuiCode> or use it to
+            further describe the state.
+          </p>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            title="When providing the state as the label, you'll need to provide an aria-describedby with the label's id to associate it with the swtich."
+          />
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: switchLabelSource,
+        },
+      ],
+      snippet: switchLabelSnippet,
+      props: {
+        EuiSwitch,
+      },
+      demo: <SwitchLabel />,
     },
     {
       title: 'Fieldset and legend',
@@ -487,7 +579,6 @@ export const FormControlsExample = {
           <EuiCallOut
             color="warning"
             iconType="accessibility"
-            size="s"
             title={
               <span>
                 &quot;[Use a fieldset and legend] for groups of related controls
@@ -496,7 +587,8 @@ export const FormControlsExample = {
                 description is needed.&quot;{' '}
                 <EuiLink
                   external
-                  href="https://www.w3.org/WAI/WCAG21/Techniques/html/H71">
+                  href="https://www.w3.org/WAI/WCAG21/Techniques/html/H71"
+                >
                   WCAG Spec
                 </EuiLink>
               </span>

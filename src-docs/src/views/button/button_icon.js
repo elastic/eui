@@ -6,9 +6,10 @@ import {
   EuiFlexItem,
   EuiSpacer,
   EuiTitle,
+  EuiCode,
 } from '../../../../src/components';
 
-const colors = ['primary', 'text', 'accent', 'success', 'warning', 'danger'];
+const colors = ['primary', 'success', 'warning', 'danger', 'text', 'accent'];
 
 export default () => (
   <>
@@ -18,15 +19,18 @@ export default () => (
           <EuiButtonIcon
             color={color}
             onClick={() => {}}
-            iconType="arrowRight"
-            aria-label="Next"
+            iconType="help"
+            aria-label="Help"
           />
         </EuiFlexItem>
       ))}
     </EuiFlexGroup>
     <EuiSpacer size="m" />
     <EuiTitle size="xxs">
-      <h3>Display</h3>
+      <h3>
+        Display (<EuiCode>empty</EuiCode>, <EuiCode>base</EuiCode>,{' '}
+        <EuiCode>fill</EuiCode>)
+      </h3>
     </EuiTitle>
     <EuiSpacer size="s" />
     <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
@@ -40,6 +44,10 @@ export default () => (
         <EuiButtonIcon display="fill" iconType="arrowRight" aria-label="Next" />
       </EuiFlexItem>
     </EuiFlexGroup>
+    <EuiSpacer size="m" />
+    <EuiTitle size="xxs">
+      <h3>Disabled </h3>
+    </EuiTitle>
     <EuiSpacer size="s" />
     <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
@@ -57,15 +65,18 @@ export default () => (
         <EuiButtonIcon
           iconType="arrowRight"
           display="fill"
-          isDisabled
+          disabled
           aria-label="Next"
         />
       </EuiFlexItem>
     </EuiFlexGroup>
     <EuiSpacer size="m" />
     <EuiTitle size="xxs">
-      <h3>Size</h3>
+      <h3>
+        Size (<EuiCode>xs</EuiCode>, <EuiCode>s</EuiCode>, <EuiCode>m</EuiCode>)
+      </h3>
     </EuiTitle>
+    <EuiSpacer size="s" />
     <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
       <EuiFlexItem grow={false}>
         <EuiButtonIcon display="base" iconType="arrowRight" aria-label="Next" />
@@ -86,6 +97,34 @@ export default () => (
           size="m"
           aria-label="Next"
         />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+    <EuiSpacer size="m" />
+    <EuiTitle size="xxs">
+      <h3>All icons types inherit button color</h3>
+    </EuiTitle>
+    <EuiSpacer size="s" />
+    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon iconType="heart" aria-label="Heart" color="accent" />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          iconType="dashboardApp"
+          aria-label="Dashboard"
+          color="success"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          display="base"
+          iconType="trash"
+          aria-label="Delete"
+          color="danger"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon display="base" iconType="lensApp" aria-label="Lens" />
       </EuiFlexItem>
     </EuiFlexGroup>
   </>

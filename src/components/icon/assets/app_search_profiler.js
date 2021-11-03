@@ -1,3 +1,5 @@
+// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY
+
 import * as React from 'react';
 
 const EuiIconAppSearchProfiler = ({ title, titleId, ...props }) => (
@@ -7,7 +9,8 @@ const EuiIconAppSearchProfiler = ({ title, titleId, ...props }) => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <path className="euiIcon__fillSecondary" d="M11.63 8h7.38v2h-7.38z" />
     <path d="M7 8h3.19v2H7z" />

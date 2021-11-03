@@ -10,9 +10,7 @@ export default () => (
       Simple, selected
     </EuiFacetButton>
     <br />
-    <EuiFacetButton
-      quantity={6}
-      icon={<EuiIcon type="dot" color="secondary" />}>
+    <EuiFacetButton quantity={6} icon={<EuiIcon type="dot" color="success" />}>
       Label or color indicator
     </EuiFacetButton>
     <br />
@@ -22,7 +20,8 @@ export default () => (
     <br />
     <EuiFacetButton
       quantity={6}
-      icon={<EuiAvatar size="s" name="Avatar Jones" />}>
+      icon={<EuiAvatar size="s" name="Avatar Jones" />}
+    >
       Avatar as icon
     </EuiFacetButton>
     <br />

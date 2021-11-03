@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
@@ -25,9 +14,10 @@ import { EuiTab, EuiTabs, EuiTabsProps } from '../../tabs';
 import { Props as EuiTabProps } from '../../tabs/tab';
 import { EuiFlexGroup, EuiFlexItem, EuiFlexGroupProps } from '../../flex';
 import { EuiSpacer } from '../../spacer';
-import { EuiTitle } from '../../title';
+import { EuiTitle, EuiTitleProps } from '../../title';
 import { EuiText } from '../../text';
 import { useIsWithinBreakpoints } from '../../../services/hooks';
+import { EuiScreenReaderOnly } from '../../accessibility';
 
 export const ALIGN_ITEMS = ['top', 'bottom', 'center', 'stretch'] as const;
 
@@ -46,6 +36,10 @@ export type EuiPageHeaderContentTitle = {
    */
   pageTitle?: ReactNode;
   /**
+   * Additional props to pass to the EuiTitle
+   */
+  pageTitleProps?: Omit<EuiTitleProps, 'children' | 'size'>;
+  /**
    * Optional icon to place to the left of the title
    */
   iconType?: IconType;
@@ -59,7 +53,6 @@ export type EuiPageHeaderContentTabs = {
   /**
    * In-app navigation presented as large borderless tabs.
    * Accepts an array of `EuiTab` objects;
-   * HELP: This is evaluating to `any[]` in the props table
    */
   tabs?: Tab[];
   /**
@@ -115,6 +108,7 @@ export type EuiPageHeaderContentProps = CommonProps &
 export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> = ({
   className,
   pageTitle,
+  pageTitleProps,
   iconType,
   iconProps,
   tabs,
@@ -161,7 +155,7 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
     ) : undefined;
 
     pageTitleNode = (
-      <EuiTitle size="l">
+      <EuiTitle {...pageTitleProps} size="l">
         <h1>
           {icon}
           {pageTitle}
@@ -172,6 +166,8 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
 
   let tabsNode;
   if (tabs) {
+    const tabsSize: EuiTabsProps['size'] = pageTitle ? 'l' : 'xl';
+
     const renderTabs = () => {
       return tabs.map((tab, index) => {
         const { label, ...tabRest } = tab;
@@ -183,10 +179,29 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
       });
     };
 
+    // When tabs exist without a pageTitle, we need to recreate an h1 based on the currently selected tab and visually hide it
+    const screenReaderPageTitle = !pageTitle && (
+      <EuiScreenReaderOnly>
+        <h1>
+          {
+            tabs.find((obj) => {
+              return obj.isSelected === true;
+            })?.label
+          }
+        </h1>
+      </EuiScreenReaderOnly>
+    );
+
     tabsNode = (
       <>
         {pageTitleNode && <EuiSpacer />}
-        <EuiTabs {...tabsProps} display="condensed" size="l">
+        {screenReaderPageTitle}
+        <EuiTabs
+          {...tabsProps}
+          display="condensed"
+          bottomBorder={false}
+          size={tabsSize}
+        >
           {renderTabs()}
         </EuiTabs>
       </>
@@ -252,7 +267,8 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
           className={classNames(
             'euiPageHeaderContent__rightSideItems',
             rightSideGroupProps?.className
-          )}>
+          )}
+        >
           {wrapWithFlex()}
         </EuiFlexGroup>
       </EuiFlexItem>
@@ -264,8 +280,9 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
       <EuiFlexGroup
         responsive={!!responsive}
         className="euiPageHeaderContent__top"
-        alignItems="flexStart"
-        gutterSize="l">
+        alignItems={pageTitle ? 'flexStart' : 'baseline'}
+        gutterSize="l"
+      >
         {isResponsiveBreakpoint && responsive === 'reverse' ? (
           <>
             {rightSideFlexItem}
@@ -286,7 +303,8 @@ export const EuiPageHeaderContent: FunctionComponent<EuiPageHeaderContentProps> 
         responsive={!!responsive}
         className="euiPageHeaderContent__top"
         alignItems={alignItems === 'bottom' ? 'flexEnd' : alignItems}
-        gutterSize="l">
+        gutterSize="l"
+      >
         <EuiFlexItem>
           {leftSideOrder}
           {bottomContentNode}

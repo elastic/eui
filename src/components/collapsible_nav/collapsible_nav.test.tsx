@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React from 'react';
@@ -22,6 +11,7 @@ import { render, mount } from 'enzyme';
 import { requiredProps, takeMountedSnapshot } from '../../test';
 
 import { EuiCollapsibleNav } from './collapsible_nav';
+import { EuiOverlayMaskProps } from '../overlay_mask';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, ...props }: any) => (
@@ -29,7 +19,17 @@ jest.mock('../overlay_mask', () => ({
   ),
 }));
 
-const propsNeededToRender = { id: 'id', isOpen: true };
+jest.mock('../portal', () => ({
+  EuiPortal: ({ children }: { children: any }) => children,
+}));
+
+const propsNeededToRender = { id: 'id', isOpen: true, onClose: () => {} };
+const flyoutProps = {
+  size: 240,
+  ownFocus: false,
+  outsideClickCloses: false,
+  maskProps: { headerZindexLocation: 'above' } as EuiOverlayMaskProps,
+};
 
 describe('EuiCollapsibleNav', () => {
   test('is rendered', () => {
@@ -48,6 +48,18 @@ describe('EuiCollapsibleNav', () => {
     test('onClose', () => {
       const component = mount(
         <EuiCollapsibleNav {...propsNeededToRender} onClose={() => {}} />
+      );
+
+      expect(
+        takeMountedSnapshot(component, {
+          hasArrayOutput: true,
+        })
+      ).toMatchSnapshot();
+    });
+
+    test('size', () => {
+      const component = mount(
+        <EuiCollapsibleNav {...propsNeededToRender} size={240} />
       );
 
       expect(
@@ -106,12 +118,9 @@ describe('EuiCollapsibleNav', () => {
       ).toMatchSnapshot();
     });
 
-    test('can alter mask props with maskProps without throwing error', () => {
+    test('accepts EuiFlyout props', () => {
       const component = mount(
-        <EuiCollapsibleNav
-          {...propsNeededToRender}
-          maskProps={{ headerZindexLocation: 'above' }}
-        />
+        <EuiCollapsibleNav {...propsNeededToRender} {...flyoutProps} />
       );
 
       expect(
@@ -125,22 +134,7 @@ describe('EuiCollapsibleNav', () => {
   describe('close button', () => {
     test('can be hidden', () => {
       const component = mount(
-        <EuiCollapsibleNav {...propsNeededToRender} showCloseButton={false} />
-      );
-
-      expect(
-        takeMountedSnapshot(component, {
-          hasArrayOutput: true,
-        })
-      ).toMatchSnapshot();
-    });
-
-    test('extends EuiButtonEmpty', () => {
-      const component = mount(
-        <EuiCollapsibleNav
-          {...propsNeededToRender}
-          closeButtonProps={{ className: 'class', 'data-test-subj': 'test' }}
-        />
+        <EuiCollapsibleNav {...propsNeededToRender} hideCloseButton={true} />
       );
 
       expect(
@@ -152,7 +146,7 @@ describe('EuiCollapsibleNav', () => {
   });
 
   test('does not render if isOpen is false', () => {
-    const component = render(<EuiCollapsibleNav id="id" />);
+    const component = render(<EuiCollapsibleNav onClose={() => {}} id="id" />);
 
     expect(component).toMatchSnapshot();
   });

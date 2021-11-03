@@ -116,7 +116,7 @@ export const Table = () => {
           {
             render: (item) => {
               return (
-                <EuiLink color="secondary" onClick={() => cloneUser(item)}>
+                <EuiLink color="success" onClick={() => cloneUser(item)}>
                   Clone
                 </EuiLink>
               );

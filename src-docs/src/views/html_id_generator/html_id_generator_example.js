@@ -1,30 +1,37 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 import { EuiCode } from '../../../../src/components';
 
 import IdGenerator from './html_id_generator';
-import { HtmlIdGeneratorPrefix } from './html_id_generator_prefix';
-import { HtmlIdGeneratorSuffix } from './html_id_generator_suffix';
-import { PrefixSufix } from './bothPrefixSuffix';
+import HtmlIdGeneratorPrefix from './html_id_generator_prefix';
+import HtmlIdGeneratorSuffix from './html_id_generator_suffix';
+import HtmlIdGeneratorPrefixSuffix from './html_id_generator_prefix_suffix';
+import HtmlIdGeneratorReuse from './html_id_generator_reuse';
+import UseGeneratedHtmlId from './use_generated_html_id';
+import { UseGeneratedHtmlIdProps } from './use_generated_html_id_props';
 
 const htmlIdGeneratorSource = require('!!raw-loader!./html_id_generator');
-const htmlIdGeneratorHtml = renderToHtml(IdGenerator);
 const htmlIdGeneratorSnippet = ' htmlIdGenerator()()';
 
 const htmlIdGeneratorPrefixSource = require('!!raw-loader!./html_id_generator_prefix');
-const htmlIdGeneratorPrefixHtml = renderToHtml(HtmlIdGeneratorPrefix);
 const htmlIdGeneratorPrefixSnippet = " htmlIdGenerator('prefix')()";
 
-const HtmlIdGeneratorSuffixSource = require('!!raw-loader!./html_id_generator_suffix');
-const HtmlIdGeneratorSuffixHtml = renderToHtml(HtmlIdGeneratorSuffix);
-const suffixSnippet = " htmlIdGenerator()('suffix')";
+const htmlIdGeneratorSuffixSource = require('!!raw-loader!./html_id_generator_suffix');
+const htmlIdGeneratorSuffixSnippet = " htmlIdGenerator()('suffix')";
 
-const PrefixSufixSource = require('!!raw-loader!./bothPrefixSuffix');
-const PrefixSufixHtml = renderToHtml(PrefixSufix);
-const prefixSuffixSnippet = " htmlIdGenerator('prefix')('suffix')";
+const htmlIdGeneratorPrefixSuffixSource = require('!!raw-loader!./html_id_generator_prefix_suffix');
+const htmlIdGeneratorPrefixSuffixSnippet =
+  " htmlIdGenerator('prefix')('suffix')";
+
+const htmlIdGeneratorReuseSource = require('!!raw-loader!./html_id_generator_reuse');
+const htmlIdGeneratorReuseSnippet = `  const generateId = htmlIdGenerator('prefix');
+  generateId();
+  generateId('suffix');`;
+
+const useGeneratedHtmlIdSource = require('!!raw-loader!./use_generated_html_id');
+const useGeneratedHtmlIdSnippet =
+  'useGeneratedHtmlId({ prefix, suffix, conditionalId })';
 
 export const HtmlIdGeneratorExample = {
   title: 'HTML ID generator',
@@ -34,10 +41,6 @@ export const HtmlIdGeneratorExample = {
         {
           type: GuideSectionTypes.JS,
           code: htmlIdGeneratorSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: htmlIdGeneratorHtml,
         },
       ],
       text: (
@@ -60,10 +63,6 @@ export const HtmlIdGeneratorExample = {
           type: GuideSectionTypes.JS,
           code: htmlIdGeneratorPrefixSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: htmlIdGeneratorPrefixHtml,
-        },
       ],
       text: (
         <p>
@@ -79,11 +78,7 @@ export const HtmlIdGeneratorExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: HtmlIdGeneratorSuffixSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: HtmlIdGeneratorSuffixHtml,
+          code: htmlIdGeneratorSuffixSource,
         },
       ],
       text: (
@@ -92,7 +87,7 @@ export const HtmlIdGeneratorExample = {
           starts with the specified suffix.
         </p>
       ),
-      snippet: suffixSnippet,
+      snippet: htmlIdGeneratorSuffixSnippet,
       demo: <HtmlIdGeneratorSuffix />,
     },
     {
@@ -100,11 +95,7 @@ export const HtmlIdGeneratorExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: PrefixSufixSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PrefixSufixHtml,
+          code: htmlIdGeneratorPrefixSuffixSource,
         },
       ],
       text: (
@@ -113,8 +104,60 @@ export const HtmlIdGeneratorExample = {
           with both a specified prefix <strong>and</strong> suffix.
         </p>
       ),
-      snippet: prefixSuffixSnippet,
-      demo: <PrefixSufix />,
+      snippet: htmlIdGeneratorPrefixSuffixSnippet,
+      demo: <HtmlIdGeneratorPrefixSuffix />,
+    },
+    {
+      title: 'Reusing the generator for multiple IDs',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: htmlIdGeneratorReuseSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            As you may have noticed, <EuiCode>htmlIdGenerator</EuiCode> is a
+            curried function. This means you can reuse the original{' '}
+            <EuiCode>htmlIdGenerator()</EuiCode> call to generate multiple IDs.
+            Additionally, if you pass in suffixes to your second call, the
+            generated ID(s) will share the same unique ID.
+          </p>
+        </>
+      ),
+      snippet: htmlIdGeneratorReuseSnippet,
+      demo: <HtmlIdGeneratorReuse />,
+    },
+    {
+      title: 'Memoized hook for component use',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: useGeneratedHtmlIdSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            <EuiCode>useGeneratedHtmlId</EuiCode> is a custom React hook that
+            automatically memoizes a randomly generated ID, preventing the ID
+            from regenerating on every component rerender. The ID will only
+            change if the component fully unmounts/mounts, or if you dynamically
+            pass in new hook arguments.
+          </p>
+          <p>
+            Please note that unlike <EuiCode>htmlIdGenerator</EuiCode>,{' '}
+            <EuiCode>useGeneratedHtmlId</EuiCode> is a single function and does
+            not support generating multiple IDs that share the same unique ID.
+            It is instead best used for simple one-off IDs, rather than groups
+            of them.
+          </p>
+        </>
+      ),
+      snippet: useGeneratedHtmlIdSnippet,
+      demo: <UseGeneratedHtmlId />,
+      props: { useGeneratedHtmlId: UseGeneratedHtmlIdProps },
     },
   ],
 };

@@ -4,9 +4,7 @@ import {
   EuiBreadcrumbs,
   EuiButton,
   EuiPageContent,
-  EuiPageContentHeader,
-  EuiPageContentHeaderSection,
-  EuiTitle,
+  EuiPageHeader,
   EuiSpacer,
 } from '../../../../src/components';
 
@@ -15,6 +13,7 @@ export default () => {
     {
       text: 'Animals',
       href: '#',
+      color: 'primary',
       onClick: (e) => {
         e.preventDefault();
       },
@@ -32,6 +31,10 @@ export default () => {
     },
     {
       text: 'Edit',
+      href: '#',
+      onClick: (e) => {
+        e.preventDefault();
+      },
     },
   ];
 
@@ -43,17 +46,11 @@ export default () => {
         aria-label="An example of EuiBreadcrumbs"
       />
       <EuiSpacer size="xs" />
-      <EuiPageContentHeader>
-        <EuiPageContentHeaderSection>
-          <EuiTitle size="l">
-            <h1>Boa constrictor</h1>
-          </EuiTitle>
-        </EuiPageContentHeaderSection>
-
-        <EuiPageContentHeaderSection>
-          <EuiButton>Cancel</EuiButton>
-        </EuiPageContentHeaderSection>
-      </EuiPageContentHeader>
+      <EuiPageHeader
+        role=""
+        pageTitle="Boa constrictor"
+        rightSideItems={[<EuiButton>Cancel</EuiButton>]}
+      />
     </EuiPageContent>
   );
 };

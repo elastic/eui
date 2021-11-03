@@ -116,6 +116,7 @@ export const RangeControlExample = {
         EuiRange,
       },
       demo: <RangeExample />,
+      playground: rangeConfig,
       snippet: [
         `<EuiRange
   min={100}
@@ -193,7 +194,9 @@ export const RangeControlExample = {
         EuiDualRange,
       },
       demo: <DualRangeExample />,
-      snippet: `<EuiDualRange
+      playground: dualRangeConfig,
+      snippet: [
+        `<EuiDualRange
   min={100}
   max={200}
   step={10}
@@ -201,6 +204,15 @@ export const RangeControlExample = {
   onChange={handleChange}
   showLabels
 />`,
+        `<EuiDualRange
+  min={0}
+  max={100}
+  step={1}
+  value={value}
+  onChange={handleChange}
+  isDraggable
+/>`,
+      ],
     },
     {
       title: 'Inputs',
@@ -424,5 +436,4 @@ export const RangeControlExample = {
       ],
     },
   ],
-  playground: [rangeConfig, dualRangeConfig],
 };

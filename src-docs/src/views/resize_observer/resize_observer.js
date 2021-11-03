@@ -4,7 +4,6 @@ import {
   EuiButton,
   EuiButtonEmpty,
   EuiCode,
-  EuiIcon,
   EuiResizeObserver,
   EuiPanel,
   EuiSpacer,
@@ -12,7 +11,6 @@ import {
 } from '../../../../src/components';
 
 export const ResizeObserverExample = () => {
-  const hasResizeObserver = typeof ResizeObserver !== 'undefined';
   const [paddingSize, setPaddingSize] = useState('s');
   const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);
   const [height, setHeight] = useState(0);
@@ -34,17 +32,6 @@ export const ResizeObserverExample = () => {
   return (
     <div>
       <EuiText>
-        {hasResizeObserver ? (
-          <p>
-            <EuiIcon type="checkInCircleFilled" color="secondary" /> Browser
-            supports ResizeObserver API.
-          </p>
-        ) : (
-          <p>
-            <EuiIcon type="crossInACircleFilled" color="danger" /> Browser does
-            not support ResizeObserver API. Using MutationObserver.
-          </p>
-        )}
         <p>
           <EuiCode>{`height: ${height}; width: ${width}`}</EuiCode>
         </p>
@@ -63,7 +50,8 @@ export const ResizeObserverExample = () => {
           <div className="eui-displayInlineBlock" ref={resizeRef}>
             <EuiPanel
               className="eui-displayInlineBlock"
-              paddingSize={paddingSize}>
+              paddingSize={paddingSize}
+            >
               <ul>
                 {items.map((item) => (
                   <li key={item}>{item}</li>

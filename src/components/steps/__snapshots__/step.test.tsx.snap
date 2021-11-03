@@ -110,6 +110,44 @@ exports[`EuiStep props status complete is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiStep props status current is rendered 1`] = `
+<div
+  class="euiStep"
+>
+  <div
+    class="euiStep__titleWrapper"
+  >
+    <span
+      class="euiStepNumber euiStep__circle"
+    >
+      <span
+        class="euiScreenReaderOnly"
+      >
+        Current step is 1
+      </span>
+      <span
+        aria-hidden="true"
+        class="euiStepNumber__number"
+      >
+        1
+      </span>
+    </span>
+    <p
+      class="euiTitle euiTitle--small euiStep__title"
+    >
+      First step
+    </p>
+  </div>
+  <div
+    class="euiStep__content"
+  >
+    <p>
+      Do this
+    </p>
+  </div>
+</div>
+`;
+
 exports[`EuiStep props status danger is rendered 1`] = `
 <div
   class="euiStep"

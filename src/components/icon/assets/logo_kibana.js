@@ -1,3 +1,5 @@
+// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY
+
 import * as React from 'react';
 
 const EuiIconLogoKibana = ({ title, titleId, ...props }) => (
@@ -7,7 +9,8 @@ const EuiIconLogoKibana = ({ title, titleId, ...props }) => (
     viewBox="0 0 32 32"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <g fill="none" fillRule="evenodd">
       <path fill="#F04E98" d="M4 0v28.789L28.935.017z" />

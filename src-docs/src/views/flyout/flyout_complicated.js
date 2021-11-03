@@ -3,6 +3,7 @@ import React, { useState, Fragment } from 'react';
 import {
   EuiButton,
   EuiButtonEmpty,
+  EuiCode,
   EuiCodeBlock,
   EuiComboBox,
   EuiExpression,
@@ -56,7 +57,8 @@ export default () => {
     <EuiTab
       onClick={() => onSelectedTabChanged(tab.id)}
       isSelected={tab.id === selectedTabId}
-      key={index}>
+      key={index}
+    >
       {tab.name}
     </EuiTab>
   ));
@@ -182,7 +184,8 @@ export default () => {
         ownFocus
         onClose={closeFlyout}
         hideCloseButton
-        aria-labelledby="flyoutComplicatedTitle">
+        aria-labelledby="flyoutComplicatedTitle"
+      >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
             <h2 id="flyoutComplicatedTitle">Flyout header</h2>
@@ -204,20 +207,27 @@ export default () => {
                 Even popovers can be included
               </EuiButton>
             }
-            isOpen={isPopoverOpen}>
+            isOpen={isPopoverOpen}
+            repositionOnScroll={true}
+          >
             <p>
               This is the popover content, notice how it can overflow the
               flyout!
             </p>
+            <p>
+              When placed in a flyout, the <EuiCode>repositionOnScroll</EuiCode>{' '}
+              prop ensures that the popover scrolls with body of the flyout.
+            </p>
           </EuiPopover>
           <EuiSpacer size="m" />
-          <EuiForm>
+          <EuiForm component="form">
             <EuiFormRow label="A SuperSelect field">
               <EuiSuperSelect
                 options={superSelectOptions}
                 valueOfSelected={superSelectvalue}
                 onChange={(value) => onSuperSelectChange(value)}
                 itemLayoutAlign="top"
+                repositionOnScroll={true}
                 hasDividers
               />
             </EuiFormRow>
@@ -226,13 +236,15 @@ export default () => {
           <EuiPopover
             isOpen={isExpressionOpen}
             closePopover={() => setIsExpressionOpen(false)}
+            repositionOnScroll={true}
             button={
               <EuiExpression
                 description="expression"
                 value="configurations"
                 onClick={() => setIsExpressionOpen(!isExpressionOpen)}
               />
-            }>
+            }
+          >
             <EuiComboBox
               selectedOptions={[{ label: 'Option one' }]}
               options={[
@@ -252,7 +264,8 @@ export default () => {
               <EuiButtonEmpty
                 iconType="cross"
                 onClick={closeFlyout}
-                flush="left">
+                flush="left"
+              >
                 Close
               </EuiButtonEmpty>
             </EuiFlexItem>

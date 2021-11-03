@@ -1,84 +1,59 @@
 import React from 'react';
 
+import classNames from 'classnames';
+
 import {
+  EuiFlexGrid,
+  EuiFlexItem,
   EuiIcon,
+  EuiPanel,
   EuiSpacer,
   EuiCodeBlock,
-  EuiSplitPanel,
+  EuiCopy,
 } from '../../../../src/components';
+
+const iconColors = [
+  'default',
+  'inherit',
+  'primary',
+  'success',
+  'accent',
+  'warning',
+  'danger',
+  'text',
+  'subdued',
+  'ghost',
+  '#DA8B45',
+  '#DDDDDD',
+];
 
 export default () => (
   <>
-    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
-      <EuiSplitPanel.Inner
-        className="eui-textCenter"
-        grow={false}
-        style={{ minWidth: 96 }}>
-        <EuiIcon type="gisApp" size="xl" />
-      </EuiSplitPanel.Inner>
-      <EuiSplitPanel.Inner paddingSize="s" color="subdued">
-        <EuiCodeBlock
-          language="html"
-          isCopyable
-          transparentBackground
-          paddingSize="m">
-          {'<EuiIcon type="gisApp" size="xl" />'}
-        </EuiCodeBlock>
-      </EuiSplitPanel.Inner>
-    </EuiSplitPanel.Outer>
+    <EuiCodeBlock language="html" isCopyable paddingSize="m">
+      {'<EuiIcon type="gisApp" color="primary" />'}
+    </EuiCodeBlock>
     <EuiSpacer />
-    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
-      <EuiSplitPanel.Inner
-        className="eui-textCenter"
-        grow={false}
-        style={{ minWidth: 96 }}>
-        <EuiIcon type="gisApp" color="text" size="xl" />
-      </EuiSplitPanel.Inner>
-      <EuiSplitPanel.Inner paddingSize="s" color="subdued">
-        <EuiCodeBlock
-          language="html"
-          isCopyable
-          transparentBackground
-          paddingSize="m">
-          {'<EuiIcon type="gisApp" color="text" size="xl" />'}
-        </EuiCodeBlock>
-      </EuiSplitPanel.Inner>
-    </EuiSplitPanel.Outer>
-    <EuiSpacer />
-    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
-      <EuiSplitPanel.Inner
-        className="eui-textCenter"
-        grow={false}
-        style={{ minWidth: 96 }}>
-        <EuiIcon type="gisApp" color="primary" size="xl" />
-      </EuiSplitPanel.Inner>
-      <EuiSplitPanel.Inner paddingSize="s" color="subdued">
-        <EuiCodeBlock
-          language="html"
-          isCopyable
-          transparentBackground
-          paddingSize="m">
-          {'<EuiIcon type="gisApp" color="primary" size="xl" />'}
-        </EuiCodeBlock>
-      </EuiSplitPanel.Inner>
-    </EuiSplitPanel.Outer>
-    <EuiSpacer />
-    <EuiSplitPanel.Outer hasShadow={false} hasBorder={true} direction="row">
-      <EuiSplitPanel.Inner
-        className="eui-textCenter"
-        grow={false}
-        style={{ minWidth: 96 }}>
-        <EuiIcon type="gisApp" color="#DA8B45" size="xl" />
-      </EuiSplitPanel.Inner>
-      <EuiSplitPanel.Inner paddingSize="s" color="subdued">
-        <EuiCodeBlock
-          language="html"
-          isCopyable
-          transparentBackground
-          paddingSize="m">
-          {'<EuiIcon type="gisApp" color="#DA8B45" size="xl" />'}
-        </EuiCodeBlock>
-      </EuiSplitPanel.Inner>
-    </EuiSplitPanel.Outer>
+    <EuiFlexGrid direction="column" columns={3}>
+      {iconColors.map((iconColor) => (
+        <EuiFlexItem key={iconColor}>
+          <EuiCopy display="block" textToCopy={`color="${iconColor}"`}>
+            {(copy) => (
+              <EuiPanel
+                hasShadow={false}
+                hasBorder={false}
+                onClick={copy}
+                className={classNames({
+                  guideDemo__ghostBackground: iconColor === 'ghost',
+                })}
+                paddingSize="s"
+              >
+                <EuiIcon type="gisApp" color={iconColor} />
+                &emsp; <small>{iconColor}</small>
+              </EuiPanel>
+            )}
+          </EuiCopy>
+        </EuiFlexItem>
+      ))}
+    </EuiFlexGrid>
   </>
 );

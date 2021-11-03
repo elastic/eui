@@ -14,7 +14,7 @@ exports[`renders EuiTable 1`] = `
         role="columnheader"
         scope="col"
       >
-        <div
+        <span
           class="euiTableCellContent"
         >
           <span
@@ -22,14 +22,14 @@ exports[`renders EuiTable 1`] = `
           >
             Hi Title
           </span>
-        </div>
+        </span>
       </th>
       <th
         class="euiTableHeaderCell"
         role="columnheader"
         scope="col"
       >
-        <div
+        <span
           class="euiTableCellContent"
         >
           <span
@@ -37,7 +37,7 @@ exports[`renders EuiTable 1`] = `
           >
             Bye Title
           </span>
-        </div>
+        </span>
       </th>
     </tr>
   </thead>

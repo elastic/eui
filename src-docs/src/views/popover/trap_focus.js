@@ -27,11 +27,13 @@ export default () => {
       button={button}
       isOpen={isPopoverOpen}
       closePopover={closePopover}
-      initialFocus="[id=asdf2]">
+      initialFocus="[id=asdf2]"
+    >
       <EuiFormRow
         label="Generate a public snapshot?"
         id="asdf"
-        hasChildLabel={false}>
+        hasChildLabel={false}
+      >
         <EuiSwitch
           name="switch"
           label="Snapshot data"

@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { Component } from 'react';
@@ -86,7 +75,8 @@ export class EuiTablePagination extends Component<
         iconType="arrowDown"
         iconSide="right"
         data-test-subj="tablePaginationPopoverButton"
-        onClick={this.onButtonClick}>
+        onClick={this.onButtonClick}
+      >
         <EuiI18n
           token="euiTablePagination.rowsPerPage"
           default="Rows per page"
@@ -103,7 +93,8 @@ export class EuiTablePagination extends Component<
           this.closePopover();
           onChangeItemsPerPage(itemsPerPageOption);
         }}
-        data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}>
+        data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}
+      >
         <EuiI18n
           token="euiTablePagination.rowsPerPageOption"
           values={{ rowsPerPage: itemsPerPageOption }}
@@ -118,7 +109,8 @@ export class EuiTablePagination extends Component<
         isOpen={this.state.isPopoverOpen}
         closePopover={this.closePopover}
         panelPaddingSize="none"
-        anchorPosition="upRight">
+        anchorPosition="upRight"
+      >
         <EuiContextMenuPanel items={items} />
       </EuiPopover>
     );
@@ -127,7 +119,8 @@ export class EuiTablePagination extends Component<
       <EuiFlexGroup
         justifyContent="spaceBetween"
         alignItems="center"
-        responsive={false}>
+        responsive={false}
+      >
         <EuiFlexItem grow={false}>
           {hidePerPageOptions ? null : itemsPerPagePopover}
         </EuiFlexItem>

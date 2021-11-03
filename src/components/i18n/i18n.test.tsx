@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { ReactChild } from 'react';
@@ -81,7 +70,8 @@ describe('EuiI18n', () => {
           <EuiI18n
             token="test"
             default="This is a {type} with {special}."
-            values={{ type: 'string', special: 'values' }}>
+            values={{ type: 'string', special: 'values' }}
+          >
             {(result: ReactChild) => `Here's something cool: ${result}`}
           </EuiI18n>
         );
@@ -112,7 +102,8 @@ describe('EuiI18n', () => {
             defaults={[
               'This is the first basic string.',
               'This is the second basic string.',
-            ]}>
+            ]}
+          >
             {([one, two]: ReactChild[]) => (
               <div>
                 {one} {two}
@@ -141,7 +132,8 @@ describe('EuiI18n', () => {
           <EuiContext
             i18n={{
               mapping: { test: 'An overridden {type} with {special}.' },
-            }}>
+            }}
+          >
             <EuiI18n
               token="test"
               default="This is a {type} with {special}."
@@ -185,11 +177,13 @@ describe('EuiI18n', () => {
           <EuiContext
             i18n={{
               mapping: { test: 'An overridden {type} with {special}.' },
-            }}>
+            }}
+          >
             <EuiI18n
               token="test"
               default="This is a {type} with {special}."
-              values={{ type: 'string', special: 'values' }}>
+              values={{ type: 'string', special: 'values' }}
+            >
               {(result: ReactChild) => `Here's something cool: ${result}`}
             </EuiI18n>
           </EuiContext>
@@ -224,13 +218,15 @@ describe('EuiI18n', () => {
                 test1: 'This is the first mapped value.',
                 test2: 'This is the second mapped value.',
               },
-            }}>
+            }}
+          >
             <EuiI18n
               tokens={['test1', 'test2']}
               defaults={[
                 'This is the first basic string.',
                 'This is the second basic string.',
-              ]}>
+              ]}
+            >
               {([one, two]: ReactChild[]) => (
                 <div>
                   {one} {two}
@@ -252,7 +248,8 @@ describe('EuiI18n', () => {
                 test1: 'This is the mapped value.',
               },
               mappingFunc: (value: string) => value.toUpperCase(),
-            }}>
+            }}
+          >
             <EuiI18n token="test1" default="This is the basic string.">
               {(one: string) => <div aria-label={one}>{one}</div>}
             </EuiI18n>
@@ -333,7 +330,8 @@ describe('EuiI18n', () => {
             mapping: {
               token: 'This is the mapped value.',
             },
-          }}>
+          }}
+        >
           <Component />
         </EuiContext>
       );
@@ -354,7 +352,8 @@ describe('EuiI18n', () => {
             mapping: {
               myToken: 'In reverse order: {second}, then {first}',
             },
-          }}>
+          }}
+        >
           <Component />
         </EuiContext>
       );
@@ -381,7 +380,8 @@ describe('EuiI18n', () => {
               test1: 'first value',
               test2: 'second value',
             },
-          }}>
+          }}
+        >
           <Component />
         </EuiContext>
       );
@@ -401,7 +401,8 @@ describe('EuiI18n', () => {
                 test1: 'This is the mapped value.',
               },
               mappingFunc: (value: string) => value.toUpperCase(),
-            }}>
+            }}
+          >
             <Component />
           </EuiContext>
         );

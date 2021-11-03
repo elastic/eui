@@ -28,49 +28,63 @@ export default {
   title: 'Accessibility guidelines',
   intro: (
     <>
-      <EuiText grow={false}>
+      <EuiText color="subdued" size="s" grow={false}>
         <p>
-          EUI provides a strong start to building accessibility into your apps.
-          The components provided strive to meet{' '}
-          <EuiLink href="https://www.w3.org/TR/WCAG21/">WCAG 2.1</EuiLink>{' '}
-          guidelines on semantics, keyboard functionality, color contrast, and
-          so on. How you stitch together these components in the overall page
-          structure also plays a large role in meeting accessibility goals.
-          Headings, landmarks, page titles, focus management, and accessible
-          names all work together to create accessible apps.
-        </p>
-        <p>
-          Building accessibility into your app is as important as code quality,
-          visual design, and performance, and it’s also important that you test
-          as you go. You can approach accessibility testing from three
-          dimensions: automated, manual, and empathetic thinking. Use automated
-          tests to quickly cover as much ground as possible, manual tests to
-          address more complicated scenarios, and empathy to fill in the gaps.
+          This page provides some general accessibility guidelines. For
+          component specific recommendations, be sure to check out their
+          individual documentation pages.
         </p>
       </EuiText>
-
-      <EuiSpacer size="xl" />
-      <EuiTitle size="xs">
-        <p>For a technical intro to accessibility and how EUI tackles it</p>
-      </EuiTitle>
-
-      <EuiSpacer size="l" />
-
-      <EuiAspectRatio width={16} height={9} maxWidth={700}>
-        <iframe
-          title="Building and Testing for Accessibility with EUI"
-          width="560"
-          height="315"
-          src="https://www.youtube-nocookie.com/embed/iDXoEe8NkrE"
-          frameBorder="0"
-          allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      </EuiAspectRatio>
-      <EuiSpacer size="xl" />
     </>
   ),
   sections: [
+    {
+      wrapText: false,
+      text: (
+        <>
+          <EuiText grow={false}>
+            <p>
+              EUI provides a strong start to building accessibility into your
+              apps. The components provided strive to meet{' '}
+              <EuiLink href="https://www.w3.org/TR/WCAG21/">WCAG 2.1</EuiLink>{' '}
+              guidelines on semantics, keyboard functionality, color contrast,
+              and so on. How you stitch together these components in the overall
+              page structure also plays a large role in meeting accessibility
+              goals. Headings, landmarks, page titles, focus management, and
+              accessible names all work together to create accessible apps.
+            </p>
+            <p>
+              Building accessibility into your app is as important as code
+              quality, visual design, and performance, and it’s also important
+              that you test as you go. You can approach accessibility testing
+              from three dimensions: automated, manual, and empathetic thinking.
+              Use automated tests to quickly cover as much ground as possible,
+              manual tests to address more complicated scenarios, and empathy to
+              fill in the gaps.
+            </p>
+          </EuiText>
+
+          <EuiSpacer size="xl" />
+          <EuiTitle size="xs">
+            <p>For a technical intro to accessibility and how EUI tackles it</p>
+          </EuiTitle>
+
+          <EuiSpacer size="l" />
+
+          <EuiAspectRatio width={16} height={9}>
+            <iframe
+              title="Building and Testing for Accessibility with EUI"
+              width="560"
+              height="315"
+              src="https://www.youtube-nocookie.com/embed/iDXoEe8NkrE"
+              frameBorder="0"
+              allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </EuiAspectRatio>
+        </>
+      ),
+    },
     {
       title: 'Headings and landmarks',
       wrapText: false,
@@ -102,7 +116,8 @@ export default {
               type="do"
               text="Descend through headings as you work your way through the document."
               panelStyles={{ justifyContent: 'flex-start' }}
-              panelProps={{ color: 'subdued' }}>
+              panelProps={{ color: 'subdued' }}
+            >
               <EuiCodeBlock {...codeBlockProps} transparentBackground>
                 {`<EuiText>
   <h1>Discover your data</h1>
@@ -118,7 +133,8 @@ export default {
               type="dont"
               text="This heading hierarchy is confusing. Also EuiText is not a good solution when you need to change heading presentation."
               panelStyles={{ justifyContent: 'flex-start' }}
-              panelProps={{ color: 'subdued' }}>
+              panelProps={{ color: 'subdued' }}
+            >
               <EuiCodeBlock {...codeBlockProps} transparentBackground>
                 {`<EuiText>
   <EuiScreenReaderOnly>
@@ -140,7 +156,8 @@ export default {
               type="do"
               text="This is a good heading hierarchy. Though visible headings are certainly better, sometimes that is difficult to accommodate so hidden headings can give additional context."
               panelStyles={{ justifyContent: 'flex-start' }}
-              panelProps={{ color: 'subdued' }}>
+              panelProps={{ color: 'subdued' }}
+            >
               <EuiCodeBlock {...codeBlockProps} transparentBackground>
                 {`<EuiTitle size="s"><h1>Discover your data</h1></EuiTitle>
 <EuiScreenReaderOnly><h2>Drill into site metrics</h2></EuiScreenReaderOnly>
@@ -196,7 +213,8 @@ export default {
               type="do"
               text="Use HTML5 elements which convey semantic meaning about their purpose. Notice that all of the content is inside of semantic elements."
               panelStyles={{ justifyContent: 'flex-start' }}
-              panelProps={{ color: 'subdued' }}>
+              panelProps={{ color: 'subdued' }}
+            >
               <EuiCodeBlock {...codeBlockProps} transparentBackground>{`<body>
   <header className="appHeader">
     <!-- content -->
@@ -211,7 +229,8 @@ export default {
               type="dont"
               text="Classes provide no semantic meaning and not all elements provide semantic meaning either."
               panelStyles={{ justifyContent: 'flex-start' }}
-              panelProps={{ color: 'subdued' }}>
+              panelProps={{ color: 'subdued' }}
+            >
               <EuiCodeBlock {...codeBlockProps} transparentBackground>{`<body>
   <div className="appHeader"></div>
   <discover-app></discover-app>
@@ -229,10 +248,12 @@ export default {
               type="do"
               text="Use landmarks and headings together to build complex pages."
               panelStyles={{ justifyContent: 'flex-start' }}
-              panelProps={{ color: 'subdued' }}>
+              panelProps={{ color: 'subdued' }}
+            >
               <EuiCodeBlock
                 {...codeBlockProps}
-                transparentBackground>{`<header aria-labelledby="pageHeading">
+                transparentBackground
+              >{`<header aria-labelledby="pageHeading">
   <h1 id="pageHeading">Discover your data</h1>
   <form role="search" aria-label="Site search"> <!-- input + label go in here --> </form>
 <header>
@@ -294,7 +315,7 @@ export default {
           <EuiSpacer />
           <EuiFlexGroup alignItems="center" gutterSize="s">
             <EuiFlexItem grow={false}>
-              <EuiIcon type="checkInCircleFilled" size="l" color="secondary" />
+              <EuiIcon type="checkInCircleFilled" size="l" color="success" />
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
               <EuiTitle size="xs">
@@ -309,7 +330,8 @@ export default {
             <GuideRuleExample
               type="do"
               minHeight={200}
-              text="These are good example of page titles.">
+              text="These are good example of page titles."
+            >
               <div>
                 <strong className="eui-textCenter eui-displayBlock">
                   Discover - Kibana
@@ -330,7 +352,8 @@ export default {
                     <strong>Use:</strong> Watchers - Management - Kibana
                   </EuiTextColor>
                 </>
-              }>
+              }
+            >
               <strong className="eui-textCenter eui-displayBlock">
                 Watchers
               </strong>
@@ -348,7 +371,8 @@ export default {
                     <strong>Use:</strong> Spaces - Management - Kibana
                   </EuiTextColor>
                 </>
-              }>
+              }
+            >
               <strong className="eui-textCenter eui-displayBlock">
                 Elastic Kibana - Spaces
               </strong>
@@ -366,7 +390,8 @@ export default {
                     <strong>Use:</strong> Reporting - Management - Kibana
                   </EuiTextColor>
                 </>
-              }>
+              }
+            >
               <strong className="eui-textCenter eui-displayBlock">
                 This is the Reporting page of the Management section of Kibana.
               </strong>
@@ -595,7 +620,8 @@ export default {
             <EuiCallOut
               iconType="bell"
               title="Give lists an accessible name to improve their discoverability!"
-              heading="p">
+              heading="p"
+            >
               <EuiCodeBlock language="html" paddingSize="m" fontSize="s">
                 {`<!-- Can be any heading level or even a paragraph -->
 <h1 id="a1b2c3">My favorite fruit</h1>

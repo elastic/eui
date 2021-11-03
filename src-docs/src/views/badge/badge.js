@@ -14,7 +14,7 @@ const badges = [
   'default',
   'hollow',
   'primary',
-  'secondary',
+  'success',
   'accent',
   'warning',
   'danger',
@@ -57,7 +57,8 @@ export default () => {
         wrap
         responsive={false}
         gutterSize="xs"
-        style={{ maxWidth: '300px' }}>
+        style={{ maxWidth: '300px' }}
+      >
         {customBadges.map((badge) => (
           <EuiFlexItem grow={false} key={badge}>
             <EuiBadge color={badge}>{badge}</EuiBadge>
@@ -82,7 +83,7 @@ export default () => {
       <EuiSpacer size="m" />
       <EuiFlexGroup wrap responsive={false} gutterSize="xs">
         <EuiFlexItem grow={false}>
-          <EuiBadge color="secondary" isDisabled={isDisabled}>
+          <EuiBadge color="success" isDisabled={isDisabled}>
             {isDisabled ? 'Disabled badge' : 'Disable me!'}
           </EuiBadge>
         </EuiFlexItem>

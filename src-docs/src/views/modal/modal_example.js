@@ -64,7 +64,7 @@ const modalFormSnippet = `<EuiModal onClose={closeModal}>
   </EuiModalHeader>
 
   <EuiModalBody>
-    <EuiForm id={formId}><!-- Modal body --></EuiForm>
+    <EuiForm id={formId} component="form"><!-- Modal body --></EuiForm>
   </EuiModalBody>
 
   <EuiModalFooter>

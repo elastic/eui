@@ -27,7 +27,8 @@ export default () => (
       username="janed"
       event="added a comment"
       actions={copyAction}
-      timestamp="on Jan 1, 2020">
+      timestamp="on Jan 1, 2020"
+    >
       {body}
     </EuiComment>
   </div>

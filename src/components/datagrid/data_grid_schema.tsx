@@ -1,72 +1,21 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
-import React, { useMemo, ReactNode } from 'react';
+import React, { useMemo } from 'react';
+import { EuiI18n } from '../i18n';
 import {
   EuiDataGridColumn,
   EuiDataGridInMemory,
   EuiDataGridInMemoryValues,
+  EuiDataGridSchema,
+  EuiDataGridSchemaDetector,
+  SchemaTypeScore,
 } from './data_grid_types';
-
-import { EuiI18n } from '../i18n';
-
-import { IconType } from '../icon';
-import { EuiTokenProps } from '../token';
-
-export interface EuiDataGridSchemaDetector {
-  /**
-   * The name of this data type, matches #EuiDataGridColumn / schema `schema`
-   */
-  type: string;
-  /**
-   * The function given the text value of a cell and returns a score of [0...1] of how well the value matches this data type
-   */
-  detector: (value: string) => number;
-  /**
-   * A custom comparator function when performing in-memory sorting on this data type, takes `(a: string, b: string, direction: 'asc' | 'desc) => -1 | 0 | 1`
-   */
-  comparator?: (a: string, b: string, direction: 'asc' | 'desc') => -1 | 0 | 1;
-  /**
-   * The icon used to visually represent this data type. Accepts any `EuiIcon IconType`.
-   */
-  icon: IconType;
-  /**
-   * The color associated with this data type; it's used to color the icon token
-   */
-  color?: EuiTokenProps['color'] | string;
-  /**
-   * Text for how to represent an ascending sort of this data type, e.g. 'A -> Z'
-   */
-  sortTextAsc: ReactNode;
-  /**
-   * Text for how to represent a descending sort of this data type, e.g. 'Z -> A'
-   */
-  sortTextDesc: ReactNode;
-  /**
-   * Whether this column is sortable (defaults to true)
-   */
-  isSortable?: boolean;
-  /**
-   * Default sort direction of the column
-   */
-  defaultSortDirection?: 'asc' | 'desc';
-}
 
 const numericChars = new Set([
   '0',
@@ -82,6 +31,7 @@ const numericChars = new Set([
   '.',
   '-',
 ]);
+
 export const schemaDetectors: EuiDataGridSchemaDetector[] = [
   {
     type: 'boolean',
@@ -178,10 +128,10 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
     },
     icon: 'tokenDate',
     sortTextAsc: (
-      <EuiI18n token="euiDataGridSchema.dateSortTextAsc" default="New-Old" />
+      <EuiI18n token="euiDataGridSchema.dateSortTextAsc" default="Old-New" />
     ),
     sortTextDesc: (
-      <EuiI18n token="euiDataGridSchema.dateSortTextDesc" default="Old-New" />
+      <EuiI18n token="euiDataGridSchema.dateSortTextDesc" default="New-Old" />
     ),
   },
   {
@@ -260,14 +210,13 @@ export const schemaDetectors: EuiDataGridSchemaDetector[] = [
   },
 ];
 
-export interface EuiDataGridSchema {
-  [columnId: string]: { columnType: string | null };
-}
-
-export interface SchemaTypeScore {
-  type: string;
-  score: number;
-}
+export const defaultComparator: NonNullable<
+  EuiDataGridSchemaDetector['comparator']
+> = (a, b, direction) => {
+  if (a < b) return direction === 'asc' ? -1 : 1;
+  if (a > b) return direction === 'asc' ? 1 : -1;
+  return 0;
+};
 
 function scoreValueBySchemaType(
   value: string,

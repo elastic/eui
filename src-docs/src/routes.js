@@ -4,16 +4,16 @@ import { slugify } from '../../src/services';
 
 import { createHashHistory } from 'history';
 
-import { GuidePage, GuideSection } from './components';
+import { GuidePage, GuideSection, GuideMarkdownFormat } from './components';
 
-import { GuideGuidelines } from './components/guide_guidelines';
+import { GuideTabbedPage } from './components/guide_tabbed_page';
 
 import { EuiErrorBoundary } from '../../src/components';
 
 import { playgroundCreator } from './services/playground';
 
 // Guidelines
-// const GettingStarted = require('!!raw-loader!./views/guidelines/getting_started.md');
+const GettingStarted = require('!!raw-loader!./views/guidelines/getting_started.md');
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
 
@@ -21,14 +21,17 @@ import ColorGuidelines from './views/guidelines/colors';
 
 import { SassGuidelines } from './views/guidelines/sass';
 
+import WritingGuidelinesPage from './views/guidelines/writing';
+
 import WritingGuidelines from './views/guidelines/writing_guidelines';
 import WritingExamples from './views/guidelines/writing_examples';
+import AnotherPage from './views/guidelines/another_page';
 
 // Services
 
 import { ColorPaletteExample } from './views/color_palette/color_palette_example';
 
-import { IsColorDarkExample } from './views/is_color_dark/is_color_dark_example';
+import { ColorExample } from './views/color/color_example';
 
 import { PrettyDurationExample } from './views/pretty_duration/pretty_duration_example';
 
@@ -84,6 +87,7 @@ import { DataGridStylingExample } from './views/datagrid/datagrid_styling_exampl
 import { DataGridControlColumnsExample } from './views/datagrid/datagrid_controlcolumns_example';
 import { DataGridFooterRowExample } from './views/datagrid/datagrid_footer_row_example';
 import { DataGridVirtualizationExample } from './views/datagrid/datagrid_virtualization_example';
+import { DataGridRowHeightOptionsExample } from './views/datagrid/datagrid_height_options_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';
 
@@ -225,6 +229,9 @@ import { I18nTokens } from './views/package/i18n_tokens';
 
 import { SuperSelectExample } from './views/super_select/super_select_example';
 
+import { ThemeExample } from './views/theme/theme_example';
+import ThemeValues from './views/theme/values';
+
 /** Elastic Charts */
 
 import { ElasticChartsThemingExample } from './views/elastic_charts/theming_example';
@@ -237,19 +244,14 @@ import { ElasticChartsSparklinesExample } from './views/elastic_charts/sparkline
 
 import { ElasticChartsPieExample } from './views/elastic_charts/pie_example';
 
+import { ElasticChartsAccessibilityExample } from './views/elastic_charts/accessibility_example';
+
 const createExample = (example, customTitle) => {
   if (!example) {
     throw new Error(
       'One of your example pages is undefined. This usually happens when you export or import it with the wrong name.'
     );
   }
-
-  const isPlaygroundUnsupported =
-    // Check for IE11
-    typeof window !== 'undefined' &&
-    typeof document !== 'undefined' &&
-    !!window.MSInputMethodContext &&
-    !!document.documentMode;
 
   const {
     title,
@@ -273,9 +275,7 @@ const createExample = (example, customTitle) => {
   );
 
   let playgroundComponent;
-  if (isPlaygroundUnsupported) {
-    playgroundComponent = null;
-  } else if (playground) {
+  if (playground) {
     if (Array.isArray(playground)) {
       playgroundComponent = playground.map((elm, idx) => {
         return <Fragment key={idx}>{playgroundCreator(elm())}</Fragment>;
@@ -290,7 +290,8 @@ const createExample = (example, customTitle) => {
         intro={intro}
         isBeta={beta}
         playground={playgroundComponent}
-        guidelines={guidelines}>
+        guidelines={guidelines}
+      >
         {renderedSections}
       </GuidePage>
     </EuiErrorBoundary>
@@ -305,23 +306,13 @@ const createExample = (example, customTitle) => {
   };
 };
 
-const createGuidelines = (title, guidelines, examples, isNew) => {
-  const component = () => (
-    <EuiErrorBoundary>
-      <GuideGuidelines
-        title={title}
-        guidelines={guidelines}
-        examples={examples}
-      />
-    </EuiErrorBoundary>
-  );
-
-  const createGuideLinesSections = (section) => {
+const createTabbedPage = (title, pages, isNew) => {
+  const createSections = (section) => {
     const htmlString = ReactDOMServer.renderToStaticMarkup(section);
 
     const headings = htmlString.match(/h2 id=\"(.*?)\"/g);
 
-    const guidelinesSections = headings.map((heading) => {
+    const sections = headings.map((heading) => {
       const id = heading.replace('h2 id="', '').slice(0, -1);
 
       const title = id.replace(/-/g, ' ');
@@ -331,67 +322,75 @@ const createGuidelines = (title, guidelines, examples, isNew) => {
       return { id: id, name: capitalizedTitle };
     });
 
-    return guidelinesSections;
+    return sections;
   };
+
+  const pagesSections = pages.map((page, index) => {
+    return {
+      id: page.id,
+      title: page.title,
+      items: createSections(pages[index].page()),
+    };
+  });
+
+  const component = () => (
+    <EuiErrorBoundary>
+      <GuideTabbedPage title={title} pages={pages} />
+    </EuiErrorBoundary>
+  );
 
   return {
     name: title,
     component,
-    sections: [
-      {
-        id: 'guidelines',
-        title: 'Guidelines',
-        items: createGuideLinesSections(guidelines()),
-      },
-      {
-        id: 'examples',
-        title: 'Examples',
-        items: createGuideLinesSections(examples()),
-      },
-    ],
+    sections: pagesSections,
     isNew,
-    isGuideLinePage: true,
+    isTabbedPage: true,
   };
 };
 
-// const createMarkdownExample = (example, title) => {
-//   const headings = example.default.match(/^(##) (.*)/gm);
+const createMarkdownExample = (example, title) => {
+  const headings = example.default.match(/^(##) (.*)/gm);
 
-//   const sections = headings.map((heading) => {
-//     const title = heading.replace('## ', '');
+  const sections = headings.map((heading) => {
+    const title = heading.replace('## ', '');
 
-//     return { id: slugify(title), title: title };
-//   });
+    return { id: slugify(title), title: title };
+  });
 
-//   return {
-//     name: title,
-//     component: () => (
-//       <GuidePage title={title}>
-//         <GuideMarkdownFormat title={title}>
-//           {example.default}
-//         </GuideMarkdownFormat>
-//       </GuidePage>
-//     ),
-//     sections: sections,
-//   };
-// };
+  return {
+    name: title,
+    component: () => (
+      <GuidePage title={title}>
+        <GuideMarkdownFormat grow={false}>
+          {example.default}
+        </GuideMarkdownFormat>
+      </GuidePage>
+    ),
+    sections: sections,
+  };
+};
 
 const navigation = [
   {
     name: 'Guidelines',
     items: [
-      // TODO uncomment when EuiMarkdownFormat has a better text formatting
-      // createMarkdownExample(GettingStarted, 'Getting started'),
+      createMarkdownExample(GettingStarted, 'Getting started'),
       createExample(AccessibilityGuidelines, 'Accessibility'),
       {
         name: 'Colors',
         component: ColorGuidelines,
       },
-      {
-        name: 'Sass',
-        component: SassGuidelines,
-      },
-      createGuidelines('Writing', WritingGuidelines, WritingExamples),
+      createExample(SassGuidelines, 'Sass'),
+      createTabbedPage('Writing with Tabs', [
+        {
+          id: 'guidelines',
+          title: 'Guidelines',
+          page: WritingGuidelines,
+        },
+        { id: 'examples', title: 'Examples', page: WritingExamples },
+        { id: 'another-tab', title: 'Just another tab', page: AnotherPage },
+      ]),
+      createExample(WritingGuidelinesPage, 'Writing'),
     ],
   },
   {
@@ -424,10 +423,10 @@ const navigation = [
       KeyPadMenuExample,
       LinkExample,
       PaginationExample,
-      TreeViewExample,
       SideNavExample,
       StepsExample,
       TabsExample,
+      TreeViewExample,
     ].map((example) => createExample(example)),
   },
   {
@@ -441,6 +440,7 @@ const navigation = [
       DataGridControlColumnsExample,
       DataGridFooterRowExample,
       DataGridVirtualizationExample,
+      DataGridRowHeightOptionsExample,
       TableExample,
       TableInMemoryExample,
     ].map((example) => createExample(example)),
@@ -510,6 +510,7 @@ const navigation = [
       ElasticChartsTimeExample,
       ElasticChartsCategoryExample,
       ElasticChartsPieExample,
+      ElasticChartsAccessibilityExample,
     ].map((example) => createExample(example)),
   },
   {
@@ -517,7 +518,7 @@ const navigation = [
     items: [
       AccessibilityExample,
       BeaconExample,
-      IsColorDarkExample,
+      ColorExample,
       ColorPaletteExample,
       CopyExample,
       UtilityClassesExample,
@@ -540,6 +541,17 @@ const navigation = [
     ].map((example) => createExample(example)),
   },
   {
+    name: 'Theming',
+    items: [
+      createExample(ThemeExample, 'Theme provider'),
+      {
+        name: 'Global values',
+        component: ThemeValues,
+        isNew: true,
+      },
+    ],
+  },
+  {
     name: 'Package',
     items: [Changelog, I18nTokens],
   },
@@ -547,27 +559,13 @@ const navigation = [
   name,
   type: slugify(name),
   items: items.map(
-    ({ name: itemName, hasGuidelines, isGuideLinePage, sections, ...rest }) => {
-      let item;
-
-      // when is as guidelinePage with multiple tabs the first nav item is the first of the list
-      if (isGuideLinePage) {
-        item = {
-          name: itemName,
-          path: `${slugify(name)}/${slugify(itemName)}/${slugify(
-            sections[0].id
-          )}`,
-          sections,
-          ...rest,
-        };
-      } else {
-        item = {
-          name: itemName,
-          path: `${slugify(name)}/${slugify(itemName)}`,
-          sections,
-          ...rest,
-        };
-      }
+    ({ name: itemName, hasGuidelines, isTabbedPage, sections, ...rest }) => {
+      const item = {
+        name: itemName,
+        path: `${slugify(name)}/${slugify(itemName)}`,
+        sections,
+        ...rest,
+      };
 
       if (hasGuidelines) {
         item.from = `guidelines/${slugify(itemName)}`;
@@ -588,12 +586,6 @@ const allRoutes = navigation.reduce((accummulatedRoutes, section) => {
 export default {
   history: createHashHistory(),
   navigation,
-
-  getRouteForPath: (path) => {
-    // React-router kinda sucks. Sometimes the path contains a leading slash, sometimes it doesn't.
-    const normalizedPath = path[0] === '/' ? path.slice(1, path.length) : path;
-    return allRoutes.find((route) => normalizedPath === route.path);
-  },
 
   getAppRoutes: function getAppRoutes() {
     return allRoutes;

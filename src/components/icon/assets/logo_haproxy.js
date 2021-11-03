@@ -1,3 +1,5 @@
+// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY
+
 import * as React from 'react';
 
 const EuiIconLogoHaproxy = ({ title, titleId, ...props }) => (
@@ -8,7 +10,8 @@ const EuiIconLogoHaproxy = ({ title, titleId, ...props }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <g clipPath="url(#clip0)">
       <path

@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { Component, ChangeEventHandler } from 'react';
@@ -70,7 +59,7 @@ export class EuiRelativeTab extends Component<
     sentenceCasedPosition: toSentenceCase(this.props.position),
   };
 
-  generateId = htmlIdGenerator();
+  relativeDateInputNumberDescriptionId = htmlIdGenerator()();
 
   onCountChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const sanitizedValue = parseInt(event.target.value, 10);
@@ -117,7 +106,6 @@ export class EuiRelativeTab extends Component<
 
   render() {
     const { count, unit } = this.state;
-    const relativeDateInputNumberDescriptionId = this.generateId();
     const isInvalid = count === undefined || count < 0;
     const parsedValue = dateMath.parse(this.props.value, {
       roundUp: this.props.roundUp,
@@ -137,15 +125,17 @@ export class EuiRelativeTab extends Component<
                 'euiRelativeTab.numberInputError',
                 'euiRelativeTab.numberInputLabel',
               ]}
-              defaults={['Must be >= 0', 'Time span amount']}>
+              defaults={['Must be >= 0', 'Time span amount']}
+            >
               {([numberInputError, numberInputLabel]: string[]) => (
                 <EuiFormRow
                   isInvalid={isInvalid}
-                  error={isInvalid ? numberInputError : null}>
+                  error={isInvalid ? numberInputError : null}
+                >
                   <EuiFieldNumber
                     compressed
                     aria-label={numberInputLabel}
-                    aria-describedby={relativeDateInputNumberDescriptionId}
+                    aria-describedby={this.relativeDateInputNumberDescriptionId}
                     data-test-subj={'superDatePickerRelativeDateInputNumber'}
                     value={count}
                     onChange={this.onCountChange}
@@ -158,7 +148,8 @@ export class EuiRelativeTab extends Component<
           <EuiFlexItem>
             <EuiI18n
               token="euiRelativeTab.unitInputLabel"
-              default="Relative time span">
+              default="Relative time span"
+            >
               {(unitInputLabel: string) => (
                 <EuiSelect
                   compressed
@@ -178,7 +169,8 @@ export class EuiRelativeTab extends Component<
         <EuiI18n
           token="euiRelativeTab.roundingLabel"
           default="Round to the {unit}"
-          values={{ unit: timeUnits[unit.substring(0, 1) as TimeUnitId] }}>
+          values={{ unit: timeUnits[unit.substring(0, 1) as TimeUnitId] }}
+        >
           {(roundingLabel: string) => (
             <EuiSwitch
               data-test-subj={'superDatePickerRelativeDateRoundSwitch'}
@@ -205,7 +197,7 @@ export class EuiRelativeTab extends Component<
           }
         />
         <EuiScreenReaderOnly>
-          <p id={relativeDateInputNumberDescriptionId}>
+          <p id={this.relativeDateInputNumberDescriptionId}>
             <EuiI18n
               token="euiRelativeTab.fullDescription"
               default="The unit is changeable. Currently set to {unit}."

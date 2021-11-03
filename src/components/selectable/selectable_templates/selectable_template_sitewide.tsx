@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
@@ -26,7 +15,7 @@ import React, {
   useEffect,
 } from 'react';
 import classNames from 'classnames';
-import { useCombinedRefs } from '../../../services';
+import { useCombinedRefs, throttle } from '../../../services';
 import { EuiSelectable, EuiSelectableProps } from '../selectable';
 import { EuiPopoverTitle, EuiPopoverFooter } from '../../popover';
 import { EuiPopover, Props as PopoverProps } from '../../popover/popover';
@@ -42,7 +31,6 @@ import {
   EuiBreakpointSize,
   isWithinBreakpoints,
 } from '../../../services/breakpoint';
-import { throttle } from '../../color_picker/utils';
 import { EuiSpacer } from '../../spacer';
 
 export type EuiSelectableTemplateSitewideProps = Partial<
@@ -242,7 +230,8 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
       searchProps={{
         placeholder: searchPlaceholder,
         isClearable: true,
-        ...searchProps,
+        // TS is mad that searchProps.className may be `undefined`, but we overwrite it below
+        ...(searchProps as Omit<typeof searchProps, 'className'>),
         onFocus: searchOnFocus,
         onBlur: searchOnBlur,
         onInput: onSearchInput,
@@ -268,7 +257,8 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
       noMatchesMessage={emptyMessage}
       {...rest}
       className={classes}
-      searchable>
+      searchable
+    >
       {(list, search) => (
         <EuiPopover
           panelPaddingSize="none"
@@ -278,7 +268,8 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<EuiSelectableTempl
           {...popoverRest}
           panelRef={setPanelRef}
           button={popoverTrigger ? popoverTrigger : search}
-          closePopover={closePopover}>
+          closePopover={closePopover}
+        >
           <div style={{ width: popoverWidth, maxWidth: '100%' }}>
             {popoverTitle || popoverTrigger ? (
               <EuiPopoverTitle paddingSize="s">

@@ -1,20 +1,9 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, { Component, MouseEventHandler, Ref } from 'react';
@@ -174,6 +163,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
         'euiFieldText--fullWidth': fullWidth,
         'euiFieldText-isLoading': isLoading,
         'euiFieldText--withIcon': !inline && showIcon,
+        'euiFieldText--isClearable': !inline && selected && onClear,
         'euiFieldText-isInvalid': isInvalid,
       },
       className
@@ -224,7 +214,9 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
       // This is easy enough to do. It can conflict with isLoading state
       this.props.isClearable ||
       // There is no reason to launch the datepicker in its own modal. Can always build these ourselves
-      this.props.withPortal
+      this.props.withPortal ||
+      // Causes Error: Cannot read property 'clone' of undefined
+      this.props.showMonthYearDropdown
     ) {
       return (
         <EuiErrorBoundary>
@@ -234,60 +226,57 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
     }
 
     return (
-      <span>
-        <span className={classes}>
-          <EuiFormControlLayout
-            icon={optionalIcon}
-            fullWidth={fullWidth}
-            clear={selected && onClear ? { onClick: onClear } : undefined}
-            isLoading={isLoading}>
-            <EuiValidatableControl isInvalid={isInvalid}>
-              <EuiI18nConsumer>
-                {({ locale: contextLocale }) => {
-                  return (
-                    <DatePicker
-                      adjustDateOnChange={adjustDateOnChange}
-                      calendarClassName={calendarClassName}
-                      className={datePickerClasses}
-                      customInput={customInput}
-                      dateFormat={fullDateFormat}
-                      dayClassName={dayClassName}
-                      disabled={disabled}
-                      excludeDates={excludeDates}
-                      filterDate={filterDate}
-                      injectTimes={injectTimes}
-                      inline={inline}
-                      locale={locale || contextLocale}
-                      maxDate={maxDate}
-                      maxTime={maxTime}
-                      minDate={minDate}
-                      minTime={minTime}
-                      onChange={onChange}
-                      openToDate={openToDate}
-                      placeholderText={placeholder}
-                      popperClassName={popperClassName}
-                      ref={inputRef}
-                      selected={selected}
-                      shouldCloseOnSelect={shouldCloseOnSelect}
-                      showMonthDropdown
-                      showTimeSelect={
-                        showTimeSelectOnly ? true : showTimeSelect
-                      }
-                      showTimeSelectOnly={showTimeSelectOnly}
-                      showYearDropdown
-                      timeFormat={timeFormat}
-                      utcOffset={utcOffset}
-                      yearDropdownItemNumber={7}
-                      accessibleMode
-                      popperPlacement={popoverPlacement}
-                      {...rest}
-                    />
-                  );
-                }}
-              </EuiI18nConsumer>
-            </EuiValidatableControl>
-          </EuiFormControlLayout>
-        </span>
+      <span className={classes}>
+        <EuiFormControlLayout
+          icon={optionalIcon}
+          fullWidth={fullWidth}
+          clear={selected && onClear ? { onClick: onClear } : undefined}
+          isLoading={isLoading}
+        >
+          <EuiValidatableControl isInvalid={isInvalid}>
+            <EuiI18nConsumer>
+              {({ locale: contextLocale }) => {
+                return (
+                  <DatePicker
+                    adjustDateOnChange={adjustDateOnChange}
+                    calendarClassName={calendarClassName}
+                    className={datePickerClasses}
+                    customInput={customInput}
+                    dateFormat={fullDateFormat}
+                    dayClassName={dayClassName}
+                    disabled={disabled}
+                    excludeDates={excludeDates}
+                    filterDate={filterDate}
+                    injectTimes={injectTimes}
+                    inline={inline}
+                    locale={locale || contextLocale}
+                    maxDate={maxDate}
+                    maxTime={maxTime}
+                    minDate={minDate}
+                    minTime={minTime}
+                    onChange={onChange}
+                    openToDate={openToDate}
+                    placeholderText={placeholder}
+                    popperClassName={popperClassName}
+                    ref={inputRef}
+                    selected={selected}
+                    shouldCloseOnSelect={shouldCloseOnSelect}
+                    showMonthDropdown
+                    showTimeSelect={showTimeSelectOnly ? true : showTimeSelect}
+                    showTimeSelectOnly={showTimeSelectOnly}
+                    showYearDropdown
+                    timeFormat={timeFormat}
+                    utcOffset={utcOffset}
+                    yearDropdownItemNumber={7}
+                    accessibleMode
+                    popperPlacement={popoverPlacement}
+                    {...rest}
+                  />
+                );
+              }}
+            </EuiI18nConsumer>
+          </EuiValidatableControl>
+        </EuiFormControlLayout>
       </span>
     );
   }

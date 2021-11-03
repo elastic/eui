@@ -102,6 +102,13 @@ exports[`EuiLink subdued is rendered 1`] = `
 />
 `;
 
+exports[`EuiLink success is rendered 1`] = `
+<button
+  class="euiLink euiLink--success"
+  type="button"
+/>
+`;
+
 exports[`EuiLink supports children 1`] = `
 <a
   class="euiLink euiLink--primary"

@@ -1,3 +1,5 @@
+// THIS IS A GENERATED FILE. DO NOT MODIFY MANUALLY
+
 import * as React from 'react';
 
 const EuiIconLogoDropwizard = ({ title, titleId, ...props }) => (
@@ -8,7 +10,8 @@ const EuiIconLogoDropwizard = ({ title, titleId, ...props }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
-    {...props}>
+    {...props}
+  >
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       d="M8 29.61s9.55 4.74 16.856-.893c-1.905-5.114-5.25-19.867-7.226-26.383-.422-1.389-.49-1.527-.663-1.909-.964-2.134-1.978 4.142-3.628 10.459C12.749 13.148 8 29.61 8 29.61"
@@ -37,7 +40,8 @@ const EuiIconLogoDropwizard = ({ title, titleId, ...props }) => (
         y1={7.674}
         x2={7.751}
         y2={21.331}
-        gradientUnits="userSpaceOnUse">
+        gradientUnits="userSpaceOnUse"
+      >
         <stop stopColor="#3871C1" />
         <stop offset={0.515} stopColor="#2C3792" />
         <stop offset={0.865} stopColor="#24265D" />
@@ -49,7 +53,8 @@ const EuiIconLogoDropwizard = ({ title, titleId, ...props }) => (
         y1={14.928}
         x2={6.017}
         y2={18.844}
-        gradientUnits="userSpaceOnUse">
+        gradientUnits="userSpaceOnUse"
+      >
         <stop stopColor="#3871C1" />
         <stop offset={0.515} stopColor="#2C3792" />
         <stop offset={0.865} stopColor="#24265D" />

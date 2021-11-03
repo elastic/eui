@@ -26,15 +26,6 @@ import {
 } from '@elastic/eui';
 ```
 
-### Services
-
-Most services are published from the `lib/services` directory. Some are published from their module directories in this directory.
-
-```js
-import { keys } from '@elastic/eui/lib/services';
-import { Timer } from '@elastic/eui/lib/services/time';
-```
-
 ### Test
 
 Test utilities are published from the `lib/test` directory.
@@ -127,7 +118,7 @@ The Amsterdam theme uses the latest version of Inter that can be grabbed from Go
 
 The Sass variables are also made available for consumption as json files. This enables reuse of values in css-in-js systems like [styled-components](https://www.styled-components.com). As the following example shows, it can also make the downstream components theme-aware without much extra effort:
 
-```js
+```jsx
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import styled, { ThemeProvider } from 'styled-components';
@@ -153,7 +144,7 @@ If you get an error when importing a React component, you might need to configur
 
 To reduce EUI's impact to application bundle sizes, the icons are dynamically imported on-demand. This is problematic for some bundlers and/or deployments, so a method exists to preload specific icons an application needs.
 
-```javascript
+```js
 import { appendIconComponentCache } from '@elastic/eui/es/components/icon/icon';
 
 import { icon as EuiIconArrowDown } from '@elastic/eui/es/components/icon/assets/arrow_down';
@@ -170,7 +161,7 @@ appendIconComponentCache({
 
 We do not recommend customizing EUI components by applying styles directly to EUI classes, eg. `.euiButton`. All components allow you to pass a custom `className` prop directly to the component which will then append this to the class list. Utilizing the cascade feature of CSS, you can then customize by overriding styles so long as your styles are imported **after** the EUI import.
 
-```html
+```jsx
 <EuiButton className="myCustomClass__button" />
 
 // Renders as:

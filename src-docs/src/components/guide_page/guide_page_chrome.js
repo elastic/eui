@@ -110,34 +110,33 @@ export class GuidePageChrome extends Component {
         name = (
           <EuiHighlight
             className="guideSideNav__item--inSearch"
-            search={searchTerm}>
+            search={searchTerm}
+          >
             {title}
           </EuiHighlight>
         );
       }
 
-      // nested pages
+      // tabbed pages (nested pages in the nav)
       if (items) {
+        const pageHref = `${href}/${id}`;
+
         const subSectionsItems = items.map((item) => {
           return {
-            id: item.id,
+            id: `nestedSubSection-${item.id}`,
             name: item.name,
-            href: href.concat(`#${item.id}`),
+            href: `${pageHref}#${item.id}`,
           };
         });
-
-        const firstSubSectionId = subSections[0].id;
-
-        const hrefToConcat = firstSubSectionId === id ? '' : `/${id}`;
 
         return {
           id: `subSection-${id}`,
           name,
-          href: href.concat(hrefToConcat),
+          href: pageHref,
           items: subSectionsItems,
-          isSelected: href.concat(hrefToConcat) === window.location.hash,
+          isSelected: pageHref === window.location.hash,
           // forceOpen: !!(searchTerm && hasMatchingSubItem),
-          className: 'guideSideNav__item',
+          className: 'guideSideNav__item aaaa',
         };
       } else {
         return {
@@ -196,7 +195,8 @@ export class GuidePageChrome extends Component {
           visibleName = (
             <EuiHighlight
               className="guideSideNav__item--inSearch"
-              search={searchTerm}>
+              search={searchTerm}
+            >
               {name}
             </EuiHighlight>
           );
@@ -256,11 +256,13 @@ export class GuidePageChrome extends Component {
           style={{ height: '100%' }}
           direction="column"
           responsive={false}
-          gutterSize="none">
+          gutterSize="none"
+        >
           <EuiFlexItem
             role="search"
             grow={false}
-            className="guideSideNav__search">
+            className="guideSideNav__search"
+          >
             <EuiFieldSearch
               fullWidth
               placeholder="Search"

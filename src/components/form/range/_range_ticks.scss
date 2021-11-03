@@ -1,32 +1,62 @@
+@mixin tickStyles {
+  @include size($euiSizeXS);
+
+  background-color: $euiColorDarkShade;
+  border-radius: 100%;
+  position: absolute;
+  top: 0;
+}
+
 .euiRangeTicks {
   position: absolute;
-  left: ($euiRangeThumbWidth / 2);
-  right: ($euiRangeThumbWidth / 2);
+  left: 0;
+  right: 0;
   top: $euiSizeS;
   display: flex;
+
+  &--isCustom {
+    left: ($euiRangeThumbWidth / 8);
+    right: ($euiRangeThumbWidth / 8);
+  }
 }
 
 .euiRangeTick {
   overflow-x: hidden;
   text-overflow: ellipsis;
   font-size: $euiFontSizeXS;
-  position: relative;
+  position: absolute;
+  transform: translateX(-50%);
   padding-top: $euiSize;
 
-  &::before {
-    @include size($euiSizeXS);
-
+  &:not(.euiRangeTick--hasTickMark)::before {
+    @include tickStyles;
     content: '';
-    background-color: $euiColorDarkShade;
-    border-radius: 100%;
-    position: absolute;
-    top: 0;
     left: calc(50% - #{($euiSizeXS/2)});
   }
 
+  .euiRangeTick__pseudo {
+    @include tickStyles;
+  }
+
   &--isCustom {
-    position: absolute;
-    transform: translateX(-50%);
+    overflow-x: visible;
+  }
+
+  &--isMin,
+  &--isMax {
+    transform: translateX(0);
+  }
+
+  &--isMin {
+    .euiRangeTick__pseudo {
+      left: 0;
+    }
+  }
+
+  &--isMax {
+    .euiRangeTick__pseudo {
+      right: 0;
+    }
   }
 
   &:enabled:hover,
@@ -50,4 +80,8 @@
   .euiRangeTick {
     padding-top: $euiSize - 2px;
   }
+}
+
+.euiRangeTick__label {
+  pointer-events: none;
 }

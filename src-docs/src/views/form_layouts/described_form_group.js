@@ -21,7 +21,7 @@ export default () => {
   };
 
   return (
-    <EuiForm>
+    <EuiForm component="form">
       <EuiDescribedFormGroup
         title={<h3>Single text field</h3>}
         description={
@@ -33,26 +33,28 @@ export default () => {
             </EuiLink>{' '}
             or any other type of content.
           </Fragment>
-        }>
+        }
+      >
         <EuiFormRow label="Text field">
           <EuiFieldText name="first" aria-label="Example" />
         </EuiFormRow>
       </EuiDescribedFormGroup>
-
       <EuiDescribedFormGroup title={<h3>No description</h3>}>
         <EuiFormRow label="Text field">
           <EuiFieldText name="first" />
         </EuiFormRow>
       </EuiDescribedFormGroup>
-
       <EuiDescribedFormGroup
         title={<h3>Multiple fields</h3>}
-        description="Here are three form rows. The first form row does not have a title.">
+        description="Here are three form rows. The first form row does not have a title."
+      >
         <EuiFormRow
           hasEmptyLabelSpace
-          helpText={<span>This is a help text</span>}>
+          helpText={<span>This is a help text</span>}
+        >
           <EuiSelect
             hasNoInitialSelection
+            onChange={() => {}}
             options={[
               { value: 'option_one', text: 'Option one' },
               { value: 'option_two', text: 'Option two' },
@@ -70,7 +72,6 @@ export default () => {
           <EuiRange min={0} max={100} name="range" id="range" />
         </EuiFormRow>
       </EuiDescribedFormGroup>
-
       <EuiDescribedFormGroup
         title={<h2>Full width</h2>}
         titleSize="xxxs"
@@ -82,11 +83,13 @@ export default () => {
             row components to expand to their container.
           </Fragment>
         }
-        fullWidth>
+        fullWidth
+      >
         <EuiFormRow
           label="Use a switch instead of a single checkbox"
           hasChildLabel={false}
-          fullWidth>
+          fullWidth
+        >
           <EuiSwitch
             name="switch"
             label="Should we do this?"

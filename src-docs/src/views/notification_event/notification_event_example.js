@@ -133,7 +133,8 @@ export const NotificationEventExample = {
           <EuiSpacer size="xs" />
           <EuiAccordion
             id="propsSnippet"
-            buttonContent={<small>Code snippet</small>}>
+            buttonContent={<small>Code snippet</small>}
+          >
             <EuiSpacer size="xs" />
             <EuiCodeBlock language="ts" isCopyable paddingSize="s">
               {notificationEventSnippet}
@@ -143,8 +144,8 @@ export const NotificationEventExample = {
           <EuiText>
             <ul style={{ listStyleType: 'upper-alpha' }}>
               <li>
-                <EuiCode>isRead</EuiCode>: Shows a button that indicates the
-                current <EuiCode>isRead</EuiCode> state of the event. Use{' '}
+                <EuiCode>isRead</EuiCode>: Shows a button or icon that indicates
+                the current <EuiCode>isRead</EuiCode> state of the event. Use{' '}
                 <EuiCode>onRead</EuiCode> to allow users to toggle between read
                 and unread states.
               </li>

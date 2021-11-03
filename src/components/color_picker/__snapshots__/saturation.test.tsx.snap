@@ -2,25 +2,12 @@
 
 exports[`EuiHue accepts a color 1`] = `
 <div
-  aria-activedescendant="undefined-saturationIndicator"
-  aria-describedby="undefined-saturationDescription"
   aria-label="aria-label"
-  aria-roledescription="HSV color mode saturation and value selection"
   class="euiSaturation testClass1 testClass2"
   data-test-subj="test subject string"
-  role="application"
   style="background:hsl(180, 100%, 50%)"
-  tabindex="0"
+  tabindex="-1"
 >
-  <p
-    class="euiScreenReaderOnly"
-  >
-    Use the arrow keys to navigate the square color gradient. The coordinates resulting from each key press will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right decrease and increase (respectively) the 'saturation' value. Up and down decrease and increase (respectively) the 'value' value.
-  </p>
-  <p
-    aria-live="polite"
-    class="euiScreenReaderOnly"
-  />
   <div
     class="euiSaturation__lightness"
   >
@@ -28,35 +15,34 @@ exports[`EuiHue accepts a color 1`] = `
       class="euiSaturation__saturation"
     />
   </div>
-  <div
+  <button
+    aria-describedby="undefined-instructions"
+    aria-roledescription="HSV color mode saturation and value 2-axis slider"
     class="euiSaturation__indicator"
     id="undefined-saturationIndicator"
     style="left:0;top:0"
   />
+  <span
+    aria-live="assertive"
+    hidden=""
+  />
+  <span
+    hidden=""
+    id="undefined-instructions"
+  >
+    Arrow keys to navigate the square color gradient. Coordinates will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right to change the saturation. Up and down change the value.
+  </span>
 </div>
 `;
 
 exports[`EuiHue is rendered 1`] = `
 <div
-  aria-activedescendant="undefined-saturationIndicator"
-  aria-describedby="undefined-saturationDescription"
   aria-label="aria-label"
-  aria-roledescription="HSV color mode saturation and value selection"
   class="euiSaturation testClass1 testClass2"
   data-test-subj="test subject string"
-  role="application"
   style="background:hsl(1, 100%, 50%)"
-  tabindex="0"
+  tabindex="-1"
 >
-  <p
-    class="euiScreenReaderOnly"
-  >
-    Use the arrow keys to navigate the square color gradient. The coordinates resulting from each key press will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right decrease and increase (respectively) the 'saturation' value. Up and down decrease and increase (respectively) the 'value' value.
-  </p>
-  <p
-    aria-live="polite"
-    class="euiScreenReaderOnly"
-  />
   <div
     class="euiSaturation__lightness"
   >
@@ -64,10 +50,22 @@ exports[`EuiHue is rendered 1`] = `
       class="euiSaturation__saturation"
     />
   </div>
-  <div
+  <button
+    aria-describedby="undefined-instructions"
+    aria-roledescription="HSV color mode saturation and value 2-axis slider"
     class="euiSaturation__indicator"
     id="undefined-saturationIndicator"
     style="left:0;top:0"
   />
+  <span
+    aria-live="assertive"
+    hidden=""
+  />
+  <span
+    hidden=""
+    id="undefined-instructions"
+  >
+    Arrow keys to navigate the square color gradient. Coordinates will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right to change the saturation. Up and down change the value.
+  </span>
 </div>
 `;

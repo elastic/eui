@@ -1,25 +1,14 @@
 /*
- * Licensed to Elasticsearch B.V. under one or more contributor
- * license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright
- * ownership. Elasticsearch B.V. licenses this file to you under
- * the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 import React, {
   PureComponent,
-  HTMLAttributes,
+  ImgHTMLAttributes,
   ComponentType,
   SVGAttributes,
 } from 'react';
@@ -40,14 +29,15 @@ const typeToPathMap = {
   accessibility: 'accessibility',
   addDataApp: 'app_add_data',
   advancedSettingsApp: 'app_advanced_settings',
+  agentApp: 'app_fleet',
   aggregate: 'aggregate',
   alert: 'alert',
   analyzeEvent: 'analyze_event',
   annotation: 'annotation',
   apmApp: 'app_apm',
   apmTrace: 'apm_trace',
-  apps: 'apps',
   appSearchApp: 'app_app_search',
+  apps: 'apps',
   arrowDown: 'arrow_down',
   arrowLeft: 'arrow_left',
   arrowRight: 'arrow_right',
@@ -67,7 +57,6 @@ const typeToPathMap = {
   bullseye: 'bullseye',
   calendar: 'calendar',
   canvasApp: 'app_canvas',
-  codeApp: 'app_code',
   check: 'check',
   checkInCircleFilled: 'checkInCircleFilled',
   cheer: 'cheer',
@@ -76,9 +65,15 @@ const typeToPathMap = {
   cloudDrizzle: 'cloudDrizzle',
   cloudStormy: 'cloudStormy',
   cloudSunny: 'cloudSunny',
+  codeApp: 'app_code',
+  color: 'color',
   compute: 'compute',
   console: 'console',
   consoleApp: 'app_console',
+  continuityAbove: 'continuityAbove',
+  continuityAboveBelow: 'continuityAboveBelow',
+  continuityBelow: 'continuityBelow',
+  continuityWithin: 'continuityWithin',
   controlsHorizontal: 'controls_horizontal',
   controlsVertical: 'controls_vertical',
   copy: 'copy',
@@ -89,17 +84,18 @@ const typeToPathMap = {
   createSingleMetricJob: 'ml_create_single_metric_job',
   cross: 'cross',
   crossClusterReplicationApp: 'app_cross_cluster_replication',
-  crosshairs: 'crosshairs',
   crossInACircleFilled: 'crossInACircleFilled',
+  crosshairs: 'crosshairs',
   currency: 'currency',
   cut: 'cut',
   dashboardApp: 'app_dashboard',
-  database: 'database',
   dataVisualizer: 'ml_data_visualizer',
+  database: 'database',
   devToolsApp: 'app_devtools',
   discoverApp: 'app_discover',
   document: 'document',
   documentEdit: 'documentEdit',
+  documentation: 'documentation',
   documents: 'documents',
   dot: 'dot',
   download: 'download',
@@ -113,9 +109,9 @@ const typeToPathMap = {
   editorDistributeVertical: 'editorDistributeVertical',
   editorHeading: 'editor_heading',
   editorItalic: 'editor_italic',
-  editorItemAlignLeft: 'editorItemAlignLeft',
   editorItemAlignBottom: 'editorItemAlignBottom',
   editorItemAlignCenter: 'editorItemAlignCenter',
+  editorItemAlignLeft: 'editorItemAlignLeft',
   editorItemAlignMiddle: 'editorItemAlignMiddle',
   editorItemAlignRight: 'editorItemAlignRight',
   editorItemAlignTop: 'editorItemAlignTop',
@@ -135,6 +131,7 @@ const typeToPathMap = {
   empty: 'empty',
   emsApp: 'app_ems',
   eql: 'eql',
+  eraser: 'eraser',
   exit: 'exit',
   expand: 'expand',
   expandMini: 'expandMini',
@@ -147,12 +144,17 @@ const typeToPathMap = {
   filebeatApp: 'app_filebeat',
   filter: 'filter',
   flag: 'flag',
+  fleetApp: 'app_agent',
   fold: 'fold',
   folderCheck: 'folder_check',
   folderClosed: 'folder_closed',
   folderExclamation: 'folder_exclamation',
   folderOpen: 'folder_open',
+  frameNext: 'frameNext',
+  framePrevious: 'framePrevious',
   fullScreen: 'full_screen',
+  fullScreenExit: 'fullScreenExit',
+  function: 'function',
   gear: 'gear',
   gisApp: 'app_gis',
   glasses: 'glasses',
@@ -190,18 +192,18 @@ const typeToPathMap = {
   kqlOperand: 'kql_operand',
   kqlSelector: 'kql_selector',
   kqlValue: 'kql_value',
+  layers: 'layers',
   lensApp: 'app_lens',
   link: 'link',
   list: 'list',
   listAdd: 'list_add',
   lock: 'lock',
   lockOpen: 'lockOpen',
-  logsApp: 'app_logs',
+  logoAWS: 'logo_aws',
+  logoAWSMono: 'logo_aws_mono',
   logoAerospike: 'logo_aerospike',
   logoApache: 'logo_apache',
   logoAppSearch: 'logo_app_search',
-  logoAWS: 'logo_aws',
-  logoAWSMono: 'logo_aws_mono',
   logoAzure: 'logo_azure',
   logoAzureMono: 'logo_azure_mono',
   logoBeats: 'logo_beats',
@@ -215,8 +217,8 @@ const typeToPathMap = {
   logoDocker: 'logo_docker',
   logoDropwizard: 'logo_dropwizard',
   logoElastic: 'logo_elastic',
-  logoElasticsearch: 'logo_elasticsearch',
   logoElasticStack: 'logo_elastic_stack',
+  logoElasticsearch: 'logo_elasticsearch',
   logoEnterpriseSearch: 'logo_enterprise_search',
   logoEtcd: 'logo_etcd',
   logoGCP: 'logo_gcp',
@@ -254,6 +256,7 @@ const typeToPathMap = {
   logoWebhook: 'logo_webhook',
   logoWindows: 'logo_windows',
   logoWorkplaceSearch: 'logo_workplace_search',
+  logsApp: 'app_logs',
   logstashFilter: 'logstash_filter',
   logstashIf: 'logstash_if',
   logstashInput: 'logstash_input',
@@ -278,6 +281,7 @@ const typeToPathMap = {
   minus: 'minus',
   minusInCircle: 'minus_in_circle',
   minusInCircleFilled: 'minus_in_circle_filled',
+  mobile: 'mobile',
   monitoringApp: 'app_monitoring',
   moon: 'moon',
   nested: 'nested',
@@ -291,14 +295,16 @@ const typeToPathMap = {
   packetbeatApp: 'app_packetbeat',
   pageSelect: 'pageSelect',
   pagesSelect: 'pagesSelect',
-  partial: 'partial',
   paperClip: 'paper_clip',
+  partial: 'partial',
   pause: 'pause',
   pencil: 'pencil',
+  percent: 'percent',
   pin: 'pin',
   pinFilled: 'pin_filled',
   pipelineApp: 'app_pipeline',
   play: 'play',
+  playFilled: 'playFilled',
   plus: 'plus',
   plusInCircle: 'plus_in_circle',
   plusInCircleFilled: 'plus_in_circle_filled',
@@ -325,11 +331,11 @@ const typeToPathMap = {
   shard: 'shard',
   share: 'share',
   snowflake: 'snowflake',
-  sortable: 'sortable',
   sortDown: 'sort_down',
   sortLeft: 'sortLeft',
   sortRight: 'sortRight',
   sortUp: 'sort_up',
+  sortable: 'sortable',
   spacesApp: 'app_spaces',
   sqlApp: 'app_sql',
   starEmpty: 'star_empty',
@@ -349,21 +355,22 @@ const typeToPathMap = {
   submodule: 'submodule',
   swatchInput: 'swatch_input', // Undocumented on purpose. Has an extra stroke for EuiColorPicker
   symlink: 'symlink',
-  tableOfContents: 'tableOfContents',
-  tableDensityExpanded: 'table_density_expanded',
   tableDensityCompact: 'table_density_compact',
+  tableDensityExpanded: 'table_density_expanded',
   tableDensityNormal: 'table_density_normal',
+  tableOfContents: 'tableOfContents',
   tag: 'tag',
   tear: 'tear',
   temperature: 'temperature',
   timeline: 'timeline',
   timelionApp: 'app_timelion',
+  timeslider: 'timeslider',
   training: 'training',
   trash: 'trash',
-  upgradeAssistantApp: 'app_upgrade_assistant',
-  uptimeApp: 'app_uptime',
   unfold: 'unfold',
   unlink: 'unlink',
+  upgradeAssistantApp: 'app_upgrade_assistant',
+  uptimeApp: 'app_uptime',
   user: 'user',
   users: 'users',
   usersRolesApp: 'app_users_roles',
@@ -386,10 +393,12 @@ const typeToPathMap = {
   visTagCloud: 'vis_tag_cloud',
   visText: 'vis_text',
   visTimelion: 'vis_timelion',
-  visualizeApp: 'app_visualize',
   visVega: 'vis_vega',
   visVisualBuilder: 'vis_visual_builder',
+  visualizeApp: 'app_visualize',
   watchesApp: 'app_watches',
+  wordWrap: 'wordWrap',
+  wordWrapDisabled: 'wordWrapDisabled',
   workplaceSearchApp: 'app_workplace_search',
   wrench: 'wrench',
   // Token Icon Imports
@@ -462,6 +471,7 @@ const colorToClassMap = {
   text: 'euiIcon--text',
   subdued: 'euiIcon--subdued',
   ghost: 'euiIcon--ghost',
+  inherit: 'euiIcon--inherit',
 };
 
 export const COLORS: NamedColor[] = keysOf(colorToClassMap);
@@ -497,6 +507,7 @@ export type EuiIconProps = CommonProps &
     /**
      * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value.
      * Note that coloring only works if your SVG is removed of fill attributes.
+     * **`secondary` color is DEPRECATED, use `success` instead**
      */
     color?: IconColor;
     /**
@@ -691,12 +702,16 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       typeof type === 'string' &&
       (/.+App$/.test(type) || /.+Job$/.test(type) || type === 'dataVisualizer');
 
+    const appIconHasColor = color && color !== 'default';
+
+    // parent is not one of
     const classes = classNames(
       'euiIcon',
       sizeToClassNameMap[size],
       optionalColorClass,
       {
-        'euiIcon--app': isAppIcon,
+        // The app icon only gets the .euiIcon--app class if no color is passed or if color="default" is passed
+        'euiIcon--app': isAppIcon && !appIconHasColor,
         'euiIcon-isLoading': isLoading,
         'euiIcon-isLoaded': !isLoading && neededLoading,
       },
@@ -720,7 +735,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
           src={icon}
           className={classes}
           tabIndex={tabIndex}
-          {...(rest as HTMLAttributes<HTMLImageElement>)}
+          {...(rest as ImgHTMLAttributes<HTMLImageElement>)}
         />
       );
     } else {

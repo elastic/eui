@@ -63,16 +63,19 @@ export const DisplayToggles = ({
             size="xs"
             onClick={() => {
               setIsPopoverOpen(!isPopoverOpen);
-            }}>
+            }}
+          >
             Display toggles
           </EuiButtonEmpty>
-        }>
+        }
+      >
         <div>
           <EuiFlexGroup
             wrap={true}
             direction="column"
             gutterSize="s"
-            responsive={false}>
+            responsive={false}
+          >
             {(canDisabled || canIsDisabled) && (
               <EuiFlexItem grow={false}>
                 <EuiSwitch
@@ -131,7 +134,7 @@ export const DisplayToggles = ({
                     <span>
                       compressed{' '}
                       <EuiToolTip content="Compressed usages are very specific. Click to view full compressed documentation">
-                        <a href="/#/forms/compressed-forms">
+                        <a href="#/forms/compressed-forms">
                           <EuiIcon type="help" />
                         </a>
                       </EuiToolTip>

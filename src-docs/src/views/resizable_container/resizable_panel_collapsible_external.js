@@ -55,7 +55,8 @@ export default () => {
       <EuiSpacer />
       <EuiResizableContainer
         onToggleCollapsed={onCollapse}
-        style={{ height: '250px' }}>
+        style={{ height: '250px' }}
+      >
         {(EuiResizablePanel, EuiResizableButton, { togglePanel }) => {
           collapseFn.current = (id, direction = 'left') =>
             togglePanel(id, { direction });
@@ -85,11 +86,13 @@ export default () => {
                 mode={['custom', { position: 'top' }]}
                 id="panel3"
                 initialSize={35}
-                minSize="10%">
+                minSize="10%"
+              >
                 <EuiPanel paddingSize="l" style={{ height: '100%' }}>
                   <EuiFlexGroup
                     justifyContent="spaceBetween"
-                    alignItems="center">
+                    alignItems="center"
+                  >
                     <EuiFlexItem>
                       <EuiTitle>
                         <p>Panel 3</p>

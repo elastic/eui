@@ -49,7 +49,8 @@ export default () => {
         <EuiSpacer />
         <EuiI18n
           tokens={['euiI18nMulti.title', 'euiI18nMulti.description']}
-          defaults={['Card Title', 'Card Description']}>
+          defaults={['Card Title', 'Card Description']}
+        >
           {([title, description]) => (
             <EuiCard
               className="eui-displayInlineBlock"

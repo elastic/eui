@@ -22,7 +22,8 @@ export default () => {
       size="s"
       iconType="arrowDown"
       iconSide="right"
-      onClick={onButtonClick}>
+      onClick={onButtonClick}
+    >
       Click to show some content
     </EuiButton>
   );
@@ -34,7 +35,8 @@ export default () => {
       isOpen={isPopoverOpen}
       closePopover={closePopover}
       panelPaddingSize="s"
-      anchorPosition="downLeft">
+      anchorPosition="downLeft"
+    >
       <EuiContextMenuPanel>
         This context menu doesn&#39;t render items, it passes a child instead.
       </EuiContextMenuPanel>
