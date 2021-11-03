@@ -21,11 +21,8 @@ import ColorGuidelines from './views/guidelines/colors';
 
 import { SassGuidelines } from './views/guidelines/sass';
 
-import WritingGuidelinesPage from './views/guidelines/writing';
-
 import WritingGuidelines from './views/guidelines/writing_guidelines';
 import WritingExamples from './views/guidelines/writing_examples';
-import AnotherPage from './views/guidelines/another_page';
 
 // Services
 
@@ -381,16 +378,14 @@ const navigation = [
         component: ColorGuidelines,
       },
       createExample(SassGuidelines, 'Sass'),
-      createTabbedPage('Writing with Tabs', [
+      createTabbedPage('Writing', [
         {
           id: 'guidelines',
           title: 'Guidelines',
           page: WritingGuidelines,
         },
         { id: 'examples', title: 'Examples', page: WritingExamples },
-        { id: 'another-tab', title: 'Just another tab', page: AnotherPage },
       ]),
-      createExample(WritingGuidelinesPage, 'Writing'),
     ],
   },
   {
