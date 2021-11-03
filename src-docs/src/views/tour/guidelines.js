@@ -9,13 +9,11 @@ import {
   EuiFlexItem,
   EuiImage,
   EuiPanel,
+  EuiAspectRatio,
 } from '../../../../src/components';
 
 import image1Do from '../../images/tour_1_do.svg';
 import image1Dont from '../../images/tour_1_dont.svg';
-import image2Example from '../../images/tour_2.png';
-import image3Example from '../../images/tour_3.png';
-import image5Example from '../../images/tour_5.png';
 import image6Example from '../../images/tour_6.gif';
 
 const whenDescription = (
@@ -98,39 +96,31 @@ export default () => (
     <GuideRule
       heading="Explain why the actions you want users to perform are useful"
       description="If users see value in an action they’ll be more likely to engage."
-    >
-      <EuiFlexItem>
-        <EuiPanel
-          color="subdued"
-          paddingSize="l"
-          hasShadow={false}
-          style={{ justifyContent: 'center', display: 'flex' }}
-        >
-          <EuiPanel style={{ maxWidth: 520 }} paddingSize="s">
-            <EuiImage alt="tour useful step" url={image2Example} />
-          </EuiPanel>
-        </EuiPanel>
-      </EuiFlexItem>
-    </GuideRule>
+    />
+    <EuiSpacer />
+    <EuiAspectRatio width={2} height={1}>
+      <iframe
+        width="800"
+        title="tour useful step"
+        height="450"
+        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FRzfYLj2xmH9K7gQtbSKygn%2FElastic-UI%3Fnode-id%3D21976%253A315602"
+      />
+    </EuiAspectRatio>
 
     <GuideRule
       heading="Keep the tone conversational and friendly"
       description="Good copy is a key element for a product tour’s success. Make sure you work alongside a writer in this process.
       "
-    >
-      <EuiFlexItem>
-        <EuiPanel
-          color="subdued"
-          paddingSize="l"
-          hasShadow={false}
-          style={{ justifyContent: 'center', display: 'flex' }}
-        >
-          <EuiPanel style={{ maxWidth: 520 }} paddingSize="s">
-            <EuiImage alt="step with good copy" url={image3Example} />
-          </EuiPanel>
-        </EuiPanel>
-      </EuiFlexItem>
-    </GuideRule>
+    />
+    <EuiSpacer />
+    <EuiAspectRatio width={2} height={1}>
+      <iframe
+        width="800"
+        title="step with good copy"
+        height="450"
+        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FRzfYLj2xmH9K7gQtbSKygn%2FElastic-UI%3Fnode-id%3D21976%253A315599"
+      />
+    </EuiAspectRatio>
 
     <GuideRule
       heading="Keep your tours short"
@@ -140,20 +130,16 @@ export default () => (
     <GuideRule
       heading="Allow users to end and restart the tour at any time"
       description="You can include a “Skip tour” button in your step’s footer. Users might be quick to dismiss a tour but realize they need to use it later on. Give them the option to re-trigger the tour at any time. A good spot for a tour’s trigger is the application’s help menu."
-    >
-      <EuiFlexItem>
-        <EuiPanel
-          color="subdued"
-          paddingSize="l"
-          hasShadow={false}
-          style={{ justifyContent: 'center', display: 'flex' }}
-        >
-          <EuiPanel style={{ maxWidth: 520 }} paddingSize="s">
-            <EuiImage alt="skip tour button" url={image5Example} />
-          </EuiPanel>
-        </EuiPanel>
-      </EuiFlexItem>
-    </GuideRule>
+    />
+    <EuiSpacer />
+    <EuiAspectRatio width={2} height={1}>
+      <iframe
+        width="800"
+        height="450"
+        title="skip tour button"
+        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FRzfYLj2xmH9K7gQtbSKygn%2FElastic-UI%3Fnode-id%3D21976%253A315575"
+      />
+    </EuiAspectRatio>
 
     <GuideRule
       heading="Consider using animation gifs"
@@ -172,6 +158,7 @@ export default () => (
         </EuiPanel>
       </EuiFlexItem>
     </GuideRule>
+    <EuiSpacer />
 
     <GuideRule
       heading="Be careful when using action-driven tours"
