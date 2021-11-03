@@ -71,7 +71,7 @@ export const Tokens: FunctionComponent = () => {
             </EuiText>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <LanguageSelector />
+            <LanguageSelector showTour={false} />
           </EuiFlexItem>
         </EuiFlexGroup>
       </EuiSplitPanel.Inner>
