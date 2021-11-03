@@ -370,6 +370,8 @@ export class EuiSelectable<T = {}> extends Component<
         break;
 
       case keys.ENTER:
+      case keys.SPACE:
+        if (event.key === keys.SPACE && this.props.searchable) return;
         event.preventDefault();
         event.stopPropagation();
         if (this.state.activeOptionIndex != null && optionsList) {
