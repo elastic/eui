@@ -27,9 +27,7 @@ const baseProps: EuiDataGridProps = {
 
 const getGridData = () => {
   // wait for the virtualized cells to render
-  cy.get(
-    '[data-test-subj="euiDataGridBody"][data-itemsrendered="overscanColumnStartIndex=0,overscanColumnStopIndex=1,overscanRowStartIndex=0,overscanRowStopIndex=2,visibleColumnStartIndex=0,visibleColumnStopIndex=1,visibleRowStartIndex=0,visibleRowStopIndex=2"]'
-  );
+  cy.get('[data-gridcell-id="1,0"]');
   const rows = cy.get('[role=row]');
   return rows.then((rows) => {
     const headers: string[] = [];

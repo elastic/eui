@@ -570,6 +570,7 @@ export class EuiDataGridCell extends Component<
         ref={this.setCellRef}
         {...cellProps}
         data-test-subj="dataGridRowCell"
+        data-gridcell-id={`${this.props.rowIndex},${this.props.colIndex}`}
         onKeyDown={handleCellKeyDown}
         onFocus={this.onFocus}
         onMouseEnter={() => {
