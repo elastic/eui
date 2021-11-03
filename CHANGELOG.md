@@ -1,6 +1,8 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
-No public interface changes since `41.0.0`.
+**Bug fixes**
+
+- Fixed an `EuiDataGrid` race condition where grid rows had incorrect heights if loaded in before CSS ([#5284](https://github.com/elastic/eui/pull/5284))
 
 ## [`41.0.0`](https://github.com/elastic/eui/tree/v41.0.0)
 
@@ -27,10 +29,6 @@ No public interface changes since `41.0.0`.
 - Removed `makeId` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Removed mobile-only props from `EuiTableRowCell` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Removed Sass vars `$euiColorSecondary` and `$euiColorSecondaryText` ([#5345](https://github.com/elastic/eui/pull/5345))
-
-**Bug fixes**
-
-- Fixed an `EuiDataGrid` race condition where grid rows had incorrect heights if loaded in before CSS ([#5284](https://github.com/elastic/eui/pull/5284))
 
 ## [`40.1.0`](https://github.com/elastic/eui/tree/v40.1.0)
 
