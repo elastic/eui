@@ -36,14 +36,14 @@ export default () => {
   propsToUse.body = {
     ...propsToUse.body,
     value:
-      '<p>There are no cases to display. Please create a new case or change your filter settings.</p>',
+      '<p>There are no cases to display. Add a new case or change your filter settings.</p>',
     type: PropTypes.ReactNode,
   };
 
   propsToUse.actions = {
     ...propsToUse.actions,
     value: `<EuiButton color="primary" fill>
-  Add new case
+  Add a case
 </EuiButton>`,
     type: PropTypes.ReactNode,
   };
