@@ -101,6 +101,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<EuiMarkdownEditorDropZ
     // Disable click and keydown behavior
     noClick: true,
     noKeyboard: true,
+    preventDropOnDocument: false,
     // multiple: false,
     onDragOver: (e) => {
       let result: boolean;

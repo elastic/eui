@@ -458,7 +458,6 @@
   "euiColorGhost": "#ffffff",
   "euiColorInk": "#000000",
   "euiColorPrimary": "#1ba9f5",
-  "euiColorSecondary": "#7de2d1",
   "euiColorAccent": "#f990c0",
   "euiColorSuccess": "#7de2d1",
   "euiColorWarning": "#ffce7a",
@@ -477,12 +476,11 @@
   "euiTextSubduedColor": "#7a7f89",
   "euiColorDisabled": "#434548",
   "euiColorPrimaryText": "#1ba9f5",
-  "euiColorSecondaryText": "#7de2d1",
   "euiColorAccentText": "#f990c0",
+  "euiColorSuccessText": "#7de2d1",
   "euiColorWarningText": "#ffce7a",
   "euiColorDangerText": "#ff6666",
   "euiColorDisabledText": "#4c4e51",
-  "euiColorSuccessText": "#7de2d1",
   "euiLinkColor": "#1ba9f5",
   "euiPaletteColorBlind": {
     "euiColorVis0": {
