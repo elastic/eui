@@ -28,7 +28,7 @@ import {
   useMutationObserver,
 } from '../../observer/mutation_observer';
 import { useResizeObserver } from '../../observer/resize_observer';
-import { AUTO_HEIGHT } from '../row_height_utils';
+import { DEFAULT_ROW_HEIGHT } from '../row_height_utils';
 import { EuiDataGridCell } from './data_grid_cell';
 import {
   DataGridSortingContext,
@@ -70,7 +70,6 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     setRowHeight,
     schemaDetectors,
     rowHeightsOptions,
-    getRowHeight,
     rowHeightUtils,
   } = data;
 
@@ -119,30 +118,33 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     [`euiDataGridRowCell--${textTransform}`]: textTransform,
   });
 
+  const sharedCellProps = {
+    rowIndex,
+    visibleRowIndex,
+    colIndex: columnIndex,
+    interactiveCellId,
+    className: classes,
+    style: {
+      ...style,
+      top: `${parseFloat(style.top as string) + headerRowHeight}px`,
+    },
+    rowHeightsOptions,
+    rowHeightUtils,
+    setRowHeight: isFirstColumn ? setRowHeight : undefined,
+  };
+
   if (isLeadingControlColumn) {
     const leadingColumn = leadingControlColumns[columnIndex];
     const { id, rowCellRender } = leadingColumn;
 
     cellContent = (
       <EuiDataGridCell
-        rowIndex={rowIndex}
-        visibleRowIndex={visibleRowIndex}
-        colIndex={columnIndex}
+        {...sharedCellProps}
         columnId={id}
         popoverContent={DefaultColumnFormatter}
         width={leadingColumn.width}
         renderCellValue={rowCellRender}
-        interactiveCellId={interactiveCellId}
         isExpandable={false}
-        className={classes}
-        setRowHeight={setRowHeight}
-        getRowHeight={getRowHeight}
-        rowHeightsOptions={rowHeightsOptions}
-        rowHeightUtils={rowHeightUtils}
-        style={{
-          ...style,
-          top: `${parseFloat(style.top as string) + headerRowHeight}px`,
-        }}
       />
     );
   } else if (isTrailingControlColumn) {
@@ -153,23 +155,12 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
 
     cellContent = (
       <EuiDataGridCell
-        rowIndex={rowIndex}
-        visibleRowIndex={visibleRowIndex}
-        colIndex={columnIndex}
+        {...sharedCellProps}
         columnId={id}
         popoverContent={DefaultColumnFormatter}
         width={trailingColumn.width}
         renderCellValue={rowCellRender}
-        interactiveCellId={interactiveCellId}
         isExpandable={false}
-        className={classes}
-        rowHeightsOptions={rowHeightsOptions}
-        getRowHeight={getRowHeight}
-        rowHeightUtils={rowHeightUtils}
-        style={{
-          ...style,
-          top: `${parseFloat(style.top as string) + headerRowHeight}px`,
-        }}
       />
     );
   } else {
@@ -188,9 +179,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
 
     cellContent = (
       <EuiDataGridCell
-        rowIndex={rowIndex}
-        visibleRowIndex={visibleRowIndex}
-        colIndex={columnIndex}
+        {...sharedCellProps}
         columnId={columnId}
         column={column}
         columnType={columnType}
@@ -199,14 +188,6 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
         renderCellValue={renderCellValue}
         interactiveCellId={interactiveCellId}
         isExpandable={isExpandable}
-        className={classes}
-        rowHeightsOptions={rowHeightsOptions}
-        getRowHeight={getRowHeight}
-        rowHeightUtils={rowHeightUtils}
-        style={{
-          ...style,
-          top: `${parseFloat(style.top as string) + headerRowHeight}px`,
-        }}
       />
     );
   }
@@ -240,7 +221,6 @@ const InnerElement: VariableSizeGridProps['innerElementType'] = forwardRef<
 });
 InnerElement.displayName = 'EuiDataGridInnerElement';
 
-const INITIAL_ROW_HEIGHT = 34;
 const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
 
 /**
@@ -524,45 +504,32 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     [rowHeightUtils]
   );
 
-  const [minRowHeight, setRowHeight] = useState(INITIAL_ROW_HEIGHT);
-
-  const computedCellStyles = rowHeightUtils.getComputedCellStyles();
+  const [minRowHeight, setRowHeight] = useState(DEFAULT_ROW_HEIGHT);
 
   const defaultHeight = useMemo(() => {
-    // @ts-ignore we need to re-run this when computedCellStyles changes,
-    // but it isn't used directly; so let's make the hooks lint rule see
-    // that it is used, but we need to tell eslint to ignore
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const _computedCellStyles = computedCellStyles;
     return rowHeightsOptions?.defaultHeight
       ? rowHeightUtils.getCalculatedHeight(
           rowHeightsOptions.defaultHeight,
           minRowHeight
         )
       : minRowHeight;
-  }, [rowHeightsOptions, minRowHeight, rowHeightUtils, computedCellStyles]);
+  }, [rowHeightsOptions, minRowHeight, rowHeightUtils]);
 
   const getRowHeight = useCallback(
     (rowIndex) => {
       const correctRowIndex = getCorrectRowIndex(rowIndex);
       let height;
 
-      if (rowHeightsOptions) {
-        if (rowHeightsOptions.rowHeights) {
-          const initialHeight = rowHeightsOptions.rowHeights[correctRowIndex];
-
-          if (initialHeight) {
-            height = rowHeightUtils.getCalculatedHeight(
-              initialHeight,
-              minRowHeight,
-              correctRowIndex
-            );
-          }
-        }
-
-        if (!height && rowHeightsOptions.defaultHeight === AUTO_HEIGHT) {
-          height = rowHeightUtils.getRowHeight(correctRowIndex);
-        }
+      const rowHeightOption = rowHeightUtils.getRowHeightOption(
+        correctRowIndex,
+        rowHeightsOptions
+      );
+      if (rowHeightOption) {
+        height = rowHeightUtils.getCalculatedHeight(
+          rowHeightOption,
+          minRowHeight,
+          correctRowIndex
+        );
       }
 
       return height || defaultHeight;
@@ -707,7 +674,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 itemData={{
                   schemaDetectors,
                   setRowHeight,
-                  getRowHeight,
                   getCorrectRowIndex,
                   rowMap,
                   rowOffset: pagination

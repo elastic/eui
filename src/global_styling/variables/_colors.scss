@@ -7,11 +7,10 @@ $euiColorInk: #000 !default;
 
 // Core
 $euiColorPrimary: #006BB4 !default;
-$euiColorSecondary: #017D73 !default;
 $euiColorAccent: #DD0A73 !default;
 
 // Status
-$euiColorSuccess: $euiColorSecondary !default;
+$euiColorSuccess: #017D73 !default;
 $euiColorWarning: #F5A700 !default;
 $euiColorDanger: #BD271E !default;
 
@@ -36,12 +35,11 @@ $euiColorDisabled: tint($euiTextColor, 70%) !default;
 
 // Contrasty text variants
 $euiColorPrimaryText: makeHighContrastColor($euiColorPrimary) !default;
-$euiColorSecondaryText: makeHighContrastColor($euiColorSecondary) !default;
 $euiColorAccentText: makeHighContrastColor($euiColorAccent) !default;
+$euiColorSuccessText: makeHighContrastColor($euiColorSuccess) !default;
 $euiColorWarningText: makeHighContrastColor($euiColorWarning) !default;
 $euiColorDangerText: makeHighContrastColor($euiColorDanger) !default;
 $euiColorDisabledText: makeDisabledContrastColor($euiColorDisabled) !default;
-$euiColorSuccessText: $euiColorSecondaryText !default;
 $euiLinkColor: $euiColorPrimaryText !default;
 
 // Visualization colors
