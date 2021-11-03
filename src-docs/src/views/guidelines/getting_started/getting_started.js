@@ -84,33 +84,29 @@ export const GettingStarted = {
               theme. This will re-compile all of the EUI components with your
               colors.
             </p>
-            <p>
-              <strong>Do not use in conjunction with the compiled CSS.</strong>
-            </p>
           </EuiText>
           <EuiSpacer />
           <CustomizeTokens />
           <EuiSpacer />
           <EuiText grow={false}>
-            <h4>Theming tips</h4>
+            <h4>Do not use in conjunction with the compiled CSS.</h4>
+            <p>If you provide both, it will duplicate the imported styles.</p>
+            <h4>Touch the least amount of variables possible.</h4>
             <p>
-              Touch the least amount of variables possible. By nature EUI is
-              very rigid. You shouldn&apos;t need much to make drastic changes
-              to color. Most themes are less then a dozen variable overwrites in
-              total.
+              By nature EUI is very rigid. You shouldn&apos;t need much to make
+              drastic changes to color. Most themes are less then a dozen
+              variable overwrites in total.
             </p>
-
-            <ul>
-              <li>
-                In general you should only overwrite variables contained in the
-                `src/global_styling` folder.
-              </li>
-              <li>
-                Do not overwrite individual component variables or classnames.
-                Although this is certainly possible components are much more
-                prone to change and you&apos;ll risk breaking your theme.
-              </li>
-            </ul>
+            <h4>
+              Do not overwrite individual component variables or{' '}
+              <EuiCode>.eui</EuiCode> class names.
+            </h4>
+            <p>
+              Although this may be possible, components are much more prone to
+              change and you&apos;ll risk breaking your theme. All EUI
+              components accept custom a <EuiCode>className</EuiCode> which you
+              can use to append your custom styles.
+            </p>
           </EuiText>
         </>
       ),
