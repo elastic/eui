@@ -2,10 +2,18 @@ import React, { useState, Fragment } from 'react';
 
 import { EuiRadio, EuiSpacer } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [checked, setChecked] = useState(false);
+
+  const basicRadioButtonId = useGeneratedHtmlId({ prefix: 'basicRadioButton' });
+  const disabledRadioButtonId = useGeneratedHtmlId({
+    prefix: 'disabledRadioButton',
+  });
+  const compressedRadioButtonId = useGeneratedHtmlId({
+    prefix: 'compressedRadioButton',
+  });
 
   const onChange = (e) => {
     setChecked(e.target.checked);
@@ -14,7 +22,7 @@ export default () => {
   return (
     <Fragment>
       <EuiRadio
-        id={htmlIdGenerator()()}
+        id={basicRadioButtonId}
         label="I am a radio"
         checked={checked}
         onChange={(e) => onChange(e)}
@@ -23,7 +31,7 @@ export default () => {
       <EuiSpacer size="m" />
 
       <EuiRadio
-        id={htmlIdGenerator()()}
+        id={disabledRadioButtonId}
         label="I am a disabled radio"
         checked={checked}
         onChange={(e) => onChange(e)}
@@ -33,7 +41,7 @@ export default () => {
       <EuiSpacer size="m" />
 
       <EuiRadio
-        id={htmlIdGenerator()()}
+        id={compressedRadioButtonId}
         label="I am a compressed radio"
         checked={checked}
         onChange={(e) => onChange(e)}

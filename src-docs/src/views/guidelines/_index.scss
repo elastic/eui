@@ -93,18 +93,24 @@
   height: $euiSize;
 }
 
-.guideSass__sizeRow + .guideSass__sizeRow {
-  margin-top: $euiSize;
-}
-
 .guideSass__size {
   background-color: $euiColorFullShade;
   display: inline-block;
 }
 
-.guideSass__sizeItem {
-  width: $euiSizeXXL;
-  text-align: right;
+.guideSass__euiSize {
+  padding: $euiSize;
+  background-color: $euiColorHighlight;
+}
+
+.guideSass__euiSizeXS2 {
+  padding: $euiSizeXS / 2;
+  background-color: $euiColorHighlight;
+
+  &::after {
+    content: 'padding: #{$euiSizeXS / 2}';
+    font-weight: $euiFontWeightBold;
+  }
 }
 
 .guideSass__fontSizeExample + .guideSass__fontSizeExample {
@@ -193,26 +199,32 @@
   padding: $euiSize;
 }
 
-.guideSass__border--radius {
+.guideSass__border--euiBorderRadius {
   border: $euiBorderThin;
   border-radius: $euiBorderRadius;
 }
 
-.guideSass__border--radiusSmall {
+.guideSass__border--euiBorderRadiusSmall {
   border: $euiBorderThin;
   border-radius: $euiBorderRadiusSmall;
 }
 
+.guideSass__border--euiBorderWidthThin,
 .guideSass__border--euiBorderThin {
   border: $euiBorderThin;
 }
 
+.guideSass__border--euiBorderWidthThick,
 .guideSass__border--euiBorderThick {
   border: $euiBorderThick;
 }
 
 .guideSass__border--euiBorderEditable {
   border: $euiBorderEditable;
+}
+
+.guideSass__border--thickDashed {
+  border: $euiBorderWidthThick dashed $euiBorderColor;
 }
 
 .guideSass__fontFamily {
@@ -224,9 +236,43 @@
   line-height: $euiSizeXL;
   color: $euiColorEmptyShade;
 
+  &--sans {
+    @include euiFont;
+  }
+
   &--code {
     @include euiCodeFont;
   }
+}
+
+.guideSass__mixin {
+  &--euiFont {
+    @include euiFont;
+  }
+
+  &--euiCodeFont {
+    @include euiCodeFont;
+  }
+
+  &--euiText {
+    @include euiText;
+  }
+
+  &--euiTitle {
+    @include euiTitle('s')
+  }
+
+  &--fontSize {
+    @include fontSize(19px)
+  }
+}
+
+.guideSass__fontSizeL {
+  @include euiFontSizeL;
+}
+
+.guideSass__fontFeatureSettings {
+  font-feature-settings: $euiFontFeatureSettings;
 }
 
 .guideSass__animRow + .guideSass__animRow {
@@ -286,10 +332,6 @@
   transition-duration: $euiAnimSpeedSlow;
 }
 
-.guideSass__breakpointExample {
-  padding: $euiSize;
-  color: $euiColorGhost;
-}
 
 .guideSass__themedBox {
   padding: $euiSize;
@@ -331,52 +373,12 @@
 
 @import 'colors/color_section';
 
-@include euiBreakpoint('xl') {
-  .guideSass__breakpointExample {
-    background: $euiColorPrimary;
+@each $key, $size in $euiBreakpoints {
+  .guideSass__breakpoint--#{$key} {
+    display: none;
 
-    &:before {
-      content: 'You are currently in the xl breakpoint';
-    }
-  }
-}
-
-@include euiBreakpoint('l') {
-  .guideSass__breakpointExample {
-    background: $euiColorSecondary;
-
-    &:before {
-      content: 'You are currently in the l breakpoint';
-    }
-  }
-}
-
-@include euiBreakpoint('m') {
-  .guideSass__breakpointExample {
-    background: $euiColorAccent;
-
-    &:before {
-      content: 'You are currently in the m breakpoint';
-    }
-  }
-}
-
-@include euiBreakpoint('s') {
-  .guideSass__breakpointExample {
-    background: $euiColorWarning;
-
-    &:before {
-      content: 'You are currently in the s breakpoint';
-    }
-  }
-}
-
-@include euiBreakpoint('xs') {
-  .guideSass__breakpointExample {
-    background: $euiColorDanger;
-
-    &:before {
-      content: 'You are currently in the xs breakpoint';
+    @include euiBreakpoint($key) {
+      display: block;
     }
   }
 }

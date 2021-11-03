@@ -10,16 +10,28 @@ exports[`EuiDataGridCell renders 1`] = `
   renderCellValue={[Function]}
   rowHeightUtils={
     Object {
-      "clearHeightsCache": [MockFunction],
-      "compareHeights": [MockFunction],
-      "computeStylesForGridCell": [MockFunction],
+      "cacheStyles": [MockFunction],
+      "calculateHeightForLineCount": [MockFunction],
       "getCalculatedHeight": [MockFunction],
-      "getComputedCellStyles": [MockFunction],
-      "getFont": [MockFunction],
+      "getLineCount": [MockFunction],
       "getRowHeight": [MockFunction],
+      "getRowHeightOption": [MockFunction] {
+        "calls": Array [
+          Array [
+            0,
+            undefined,
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      },
       "getStylesForCell": [MockFunction],
       "isAutoHeight": [MockFunction],
-      "isDefinedHeight": [MockFunction],
+      "pruneHiddenColumnHeights": [MockFunction],
       "setGrid": [MockFunction],
       "setRowHeight": [MockFunction],
     }
@@ -38,6 +50,7 @@ exports[`EuiDataGridCell renders 1`] = `
     role="gridcell"
     style={
       Object {
+        "lineHeight": undefined,
         "width": undefined,
       }
     }
@@ -58,16 +71,28 @@ exports[`EuiDataGridCell renders 1`] = `
           renderCellValue={[Function]}
           rowHeightUtils={
             Object {
-              "clearHeightsCache": [MockFunction],
-              "compareHeights": [MockFunction],
-              "computeStylesForGridCell": [MockFunction],
+              "cacheStyles": [MockFunction],
+              "calculateHeightForLineCount": [MockFunction],
               "getCalculatedHeight": [MockFunction],
-              "getComputedCellStyles": [MockFunction],
-              "getFont": [MockFunction],
+              "getLineCount": [MockFunction],
               "getRowHeight": [MockFunction],
+              "getRowHeightOption": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    0,
+                    undefined,
+                  ],
+                ],
+                "results": Array [
+                  Object {
+                    "type": "return",
+                    "value": undefined,
+                  },
+                ],
+              },
               "getStylesForCell": [MockFunction],
               "isAutoHeight": [MockFunction],
-              "isDefinedHeight": [MockFunction],
+              "pruneHiddenColumnHeights": [MockFunction],
               "setGrid": [MockFunction],
               "setRowHeight": [MockFunction],
             }

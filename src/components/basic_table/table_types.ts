@@ -12,6 +12,7 @@ import { Pagination } from './pagination_bar';
 import { Action } from './action_types';
 import { Primitive } from '../../services/sort/comparators';
 import { CommonProps } from '../common';
+import { EuiTableRowCellMobileOptionsShape } from '../table/table_row_cell';
 
 export type ItemId<T> = string | number | ((item: T) => string);
 export type ItemIdResolved = string | number;
@@ -64,14 +65,9 @@ export interface EuiTableFieldDataColumnType<T>
    * Indicates whether this column should truncate its content when it doesn't fit
    */
   truncateText?: boolean;
-  isMobileHeader?: boolean;
-  mobileOptions?: {
-    show?: boolean;
-    only?: boolean;
+  mobileOptions?: Omit<EuiTableRowCellMobileOptionsShape, 'render'> & {
     render?: (item: T) => ReactNode;
-    header?: boolean;
   };
-  hideForMobile?: boolean;
   /**
    * Describe a custom renderer function for the content
    */

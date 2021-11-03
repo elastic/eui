@@ -20,7 +20,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
     id: 'someColumn',
     index: 0,
     headerIsInteractive: true,
-    children: <button data-euigrid-tab-managed="true" />,
+    children: <button />,
   };
 
   const focusContext = {
@@ -57,9 +57,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
           style={Object {}}
           tabIndex={-1}
         >
-          <button
-            data-euigrid-tab-managed="true"
-          />
+          <button />
         </div>
       </EuiDataGridHeaderCellWrapper>
     `);
@@ -85,51 +83,56 @@ describe('EuiDataGridHeaderCellWrapper', () => {
         }
         tabIndex={-1}
       >
-        <button
-          data-euigrid-tab-managed="true"
-        />
+        <button />
       </div>
     `);
   });
 
   describe('focus behavior', () => {
-    it('warns when a header cell contains multiple interactive children', () => {
-      const consoleWarnSpy = jest
-        .spyOn(console, 'warn')
-        .mockImplementationOnce(() => {}); // Silence expected warning
+    // Reusable assertions for DRYness
+    const expectCellFocused = (headerCell: Element) => {
+      expect(document.activeElement).toEqual(headerCell);
+      expect(headerCell.getAttribute('tabIndex')).toEqual('0');
+    };
+    const expectCellChildrenFocused = (headerCell: Element) => {
+      expect(document.activeElement).toEqual(
+        headerCell.querySelector('[data-euigrid-tab-managed]')
+      );
+      expect(headerCell.getAttribute('tabIndex')).toEqual('-1');
+    };
+    const expectCellNotFocused = (headerCell: Element) => {
+      expect(document.activeElement).toBeInstanceOf(HTMLBodyElement);
+      expect(headerCell.getAttribute('tabIndex')).toEqual('-1');
+    };
 
-      mountWithContext({
-        children: (
-          <div>
-            <button data-euigrid-tab-managed="true" />
-            <button data-euigrid-tab-managed="true" />
-            <button data-euigrid-tab-managed="true" />
-          </div>
-        ),
+    describe('isFocused context', () => {
+      describe('when true', () => {
+        it('focuses the interactive cell children when present', () => {
+          const isFocused = true;
+          const headerCell = mountWithContext({}, isFocused).getDOMNode();
+          expectCellChildrenFocused(headerCell);
+        });
+
+        it('focuses the cell when no interactive children are present', () => {
+          const isFocused = true;
+          const headerCell = mountWithContext(
+            { children: <div /> },
+            isFocused
+          ).getDOMNode();
+          expectCellFocused(headerCell);
+        });
       });
 
-      expect(consoleWarnSpy).toHaveBeenCalledWith(
-        'EuiDataGridHeaderCell expects at most 1 tabbable element, 3 found instead'
-      );
+      describe('when false', () => {
+        it('sets isCellEntered to false and disables interactives', () => {
+          const isFocused = false;
+          const headerCell = mountWithContext({}, isFocused).getDOMNode();
+          expectCellNotFocused(headerCell);
+        });
+      });
     });
 
     describe('events', () => {
-      // Reusable assertions for DRYness
-      const expectCellFocused = (headerCell: Element) => {
-        expect(document.activeElement).toEqual(headerCell);
-        expect(headerCell.getAttribute('tabIndex')).toEqual('0');
-      };
-      const expectCellChildrenFocused = (headerCell: Element) => {
-        expect(document.activeElement).toEqual(
-          headerCell.querySelector('[data-euigrid-tab-managed]')
-        );
-        expect(headerCell.getAttribute('tabIndex')).toEqual('-1');
-      };
-      const expectCellNotFocused = (headerCell: Element) => {
-        expect(document.activeElement).toBeInstanceOf(HTMLBodyElement);
-        expect(headerCell.getAttribute('tabIndex')).toEqual('-1');
-      };
-
       describe('keyup', () => {
         test('enter key sets isCellEntered to true (which focuses the first interactive child in the header cell)', () => {
           const headerCell = mountWithContext().getDOMNode();
@@ -150,22 +153,6 @@ describe('EuiDataGridHeaderCellWrapper', () => {
           });
           expectCellFocused(headerCell);
         });
-
-        test('F2 key toggles between cell child focus and cell focus', () => {
-          const headerCell = mountWithContext().getDOMNode();
-          act(() => {
-            headerCell.dispatchEvent(
-              new KeyboardEvent('keyup', { key: keys.F2 })
-            );
-          });
-          expectCellFocused(headerCell);
-          act(() => {
-            headerCell.dispatchEvent(
-              new KeyboardEvent('keyup', { key: keys.F2 })
-            );
-          });
-          expectCellChildrenFocused(headerCell);
-        });
       });
 
       describe('focus', () => {
@@ -179,44 +166,36 @@ describe('EuiDataGridHeaderCellWrapper', () => {
           jest.restoreAllMocks();
         });
 
-        describe('when header is not interactive', () => {
-          it('does not focus in on the cell', () => {
-            const headerCell = mountWithContext(
-              { headerIsInteractive: false },
-              false
-            ).getDOMNode();
-            act(() => {
-              headerCell.dispatchEvent(new FocusEvent('focusin'));
+        describe('focusin', () => {
+          describe('when header is not interactive', () => {
+            it('does not focus in on the cell', () => {
+              const headerCell = mountWithContext(
+                { headerIsInteractive: false },
+                false
+              ).getDOMNode();
+              act(() => {
+                headerCell.dispatchEvent(new FocusEvent('focusin'));
+              });
+              expectCellNotFocused(headerCell);
             });
-            expectCellNotFocused(headerCell);
-          });
-        });
-
-        describe('when header is interactive', () => {
-          it('calls setFocusedCell when not already focused', () => {
-            const headerCell = mountWithContext({}, false).getDOMNode();
-            act(() => {
-              headerCell.dispatchEvent(new FocusEvent('focusin'));
-            });
-            expect(focusContext.setFocusedCell).toHaveBeenCalled();
           });
 
-          it('focuses the interactive cell children when present', () => {
-            const headerCell = mountWithContext().getDOMNode();
-            act(() => {
-              headerCell.dispatchEvent(new FocusEvent('focusin'));
+          describe('when header is interactive', () => {
+            it('calls setFocusedCell when not already focused', () => {
+              const headerCell = mountWithContext({}, false).getDOMNode();
+              act(() => {
+                headerCell.dispatchEvent(new FocusEvent('focusin'));
+              });
+              expect(focusContext.setFocusedCell).toHaveBeenCalled();
             });
-            expectCellChildrenFocused(headerCell);
-          });
 
-          it('focuses the cell when no interactive children are present', () => {
-            const headerCell = mountWithContext({
-              children: <div />,
-            }).getDOMNode();
-            act(() => {
-              headerCell.dispatchEvent(new FocusEvent('focusin'));
+            it('re-enables and focuses cell interactives when already focused', () => {
+              const headerCell = mountWithContext({}, true).getDOMNode();
+              act(() => {
+                headerCell.dispatchEvent(new FocusEvent('focusin'));
+              });
+              expectCellChildrenFocused(headerCell);
             });
-            expectCellFocused(headerCell);
           });
         });
 
@@ -249,6 +228,44 @@ describe('EuiDataGridHeaderCellWrapper', () => {
             expect(headerCell.querySelector('[tabIndex="0"]')).toBeNull();
           });
         });
+      });
+    });
+
+    describe('multiple interactive children', () => {
+      const children = (
+        <div>
+          <button />
+          <button />
+          <button />
+        </div>
+      );
+
+      let consoleWarnSpy: jest.SpyInstance;
+
+      beforeEach(() => {
+        consoleWarnSpy = jest
+          .spyOn(console, 'warn')
+          .mockImplementation(() => {}); // Silence expected warning
+      });
+      afterEach(() => {
+        consoleWarnSpy.mockRestore();
+      });
+
+      it('emits a console warning', () => {
+        mountWithContext({ children });
+        expect(consoleWarnSpy).toHaveBeenCalledWith(
+          'EuiDataGridHeaderCell expects at most 1 tabbable element, 3 found instead'
+        );
+      });
+
+      it('will still focus in to the first interactable element on cell enter', () => {
+        const headerCell = mountWithContext({ children }).getDOMNode();
+        act(() => {
+          headerCell.dispatchEvent(
+            new KeyboardEvent('keyup', { key: keys.ENTER })
+          );
+        });
+        expectCellChildrenFocused(headerCell);
       });
     });
   });

@@ -9,8 +9,8 @@
 import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { keys } from '../../../services';
-
 import { mockRowHeightUtils } from '../__mocks__/row_height_utils';
+
 import { EuiDataGridCell } from './data_grid_cell';
 
 describe('EuiDataGridCell', () => {
@@ -108,6 +108,9 @@ describe('EuiDataGridCell', () => {
         it('width', () => {
           component.setProps({ width: 30 });
         });
+        it('rowHeightsOptions', () => {
+          component.setProps({ rowHeightsOptions: { defaultHeight: 'auto' } });
+        });
         it('renderCellValue', () => {
           component.setProps({ renderCellValue: () => <div>test</div> });
         });
@@ -148,16 +151,6 @@ describe('EuiDataGridCell', () => {
           component.setState({ disableCellTabIndex: true });
         });
       });
-
-      it('when cell height changes', () => {
-        Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
-          configurable: true,
-          value: 10,
-        });
-        const getRowHeight = jest.fn(() => 20);
-
-        component.setProps({ getRowHeight });
-      });
     });
 
     it('should not update for prop/state changes not specified above', () => {
@@ -167,21 +160,6 @@ describe('EuiDataGridCell', () => {
   });
 
   describe('componentDidUpdate', () => {
-    it('recalculates row height on every update', () => {
-      const { isAutoHeight, setRowHeight } = mockRowHeightUtils;
-      (isAutoHeight as jest.Mock).mockImplementation(() => true);
-
-      const component = mountEuiDataGridCellWithContext({
-        rowHeightsOptions: { defaultHeight: 'auto' },
-        getRowHeight: jest.fn(() => 50),
-      });
-
-      component.setProps({ rowIndex: 2 }); // Trigger any update
-      expect(setRowHeight).toHaveBeenCalled();
-
-      (isAutoHeight as jest.Mock).mockRestore();
-    });
-
     it('resets cell props when the cell columnId changes', () => {
       const setState = jest.spyOn(EuiDataGridCell.prototype, 'setState');
       const component = mountEuiDataGridCellWithContext();
@@ -191,7 +169,70 @@ describe('EuiDataGridCell', () => {
     });
   });
 
-  // TODO: Test ResizeObserver logic in Cypress
+  // TODO: Test ResizeObserver logic in Cypress alongside Jest
+  describe('row height logic & resize observers', () => {
+    describe('recalculateAutoHeight', () => {
+      beforeEach(() => {
+        (mockRowHeightUtils.setRowHeight as jest.Mock).mockClear();
+      });
+      afterEach(() => {
+        (mockRowHeightUtils.isAutoHeight as jest.Mock).mockRestore();
+      });
+
+      const triggerUpdate = (component: ReactWrapper) =>
+        component.setProps({ rowIndex: 2 });
+
+      it('sets the row height cache with cell heights on update', () => {
+        (mockRowHeightUtils.isAutoHeight as jest.Mock).mockReturnValue(true);
+
+        const component = mountEuiDataGridCellWithContext({
+          rowHeightsOptions: { defaultHeight: 'auto' },
+        });
+
+        triggerUpdate(component);
+        expect(mockRowHeightUtils.setRowHeight).toHaveBeenCalled();
+      });
+
+      it('does not update the cache if cell height is not auto', () => {
+        (mockRowHeightUtils.isAutoHeight as jest.Mock).mockReturnValue(false);
+
+        const component = mountEuiDataGridCellWithContext({
+          rowHeightsOptions: { defaultHeight: 34 },
+        });
+
+        triggerUpdate(component);
+        expect(mockRowHeightUtils.setRowHeight).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('recalculateLineCountHeight', () => {
+      const setRowHeight = jest.fn();
+      beforeEach(() => setRowHeight.mockClear());
+
+      const callMethod = (component: ReactWrapper) =>
+        (component.instance() as any).recalculateLineCountHeight();
+
+      it('observes the first cell for size changes and calls this.props.setRowHeight on change', () => {
+        const component = mountEuiDataGridCellWithContext({
+          rowHeightsOptions: { defaultHeight: { lineCount: 3 } },
+          setRowHeight,
+        });
+
+        callMethod(component);
+        expect(setRowHeight).toHaveBeenCalled();
+      });
+
+      it('does nothing if cell height is not set to lineCount', () => {
+        const component = mountEuiDataGridCellWithContext({
+          rowHeightsOptions: { defaultHeight: 34 },
+          setRowHeight,
+        });
+
+        callMethod(component);
+        expect(setRowHeight).not.toHaveBeenCalled();
+      });
+    });
+  });
 
   // TODO: Test interacting/focus/tabbing in Cypress instead of Jest
   describe('interactions', () => {

@@ -356,7 +356,7 @@ export default () => (
             Continue
           </EuiButton>
           &nbsp;&nbsp;
-          <EuiButton iconType="check" color="secondary" fill>
+          <EuiButton iconType="check" color="success" fill>
             Save and complete
           </EuiButton>
         </div>
@@ -434,7 +434,7 @@ export default () => (
 
       <EuiTableBody>
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>
+          <EuiTableRowCell mobileOptions={{ width: '100%' }}>
             <EuiButton>Add thing</EuiButton>
           </EuiTableRowCell>
 
@@ -447,7 +447,7 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>
+          <EuiTableRowCell mobileOptions={{ width: '100%' }}>
             <EuiButtonEmpty size="s">Cancel</EuiButtonEmpty>
           </EuiTableRowCell>
           <EuiTableRowCell>
@@ -458,7 +458,7 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>
+          <EuiTableRowCell mobileOptions={{ width: '100%' }}>
             <EuiButton fill>Create thing</EuiButton>
           </EuiTableRowCell>
 
@@ -471,7 +471,7 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>
+          <EuiTableRowCell mobileOptions={{ width: '100%' }}>
             <EuiButton color="danger" fill>
               Delete
             </EuiButton>
@@ -495,7 +495,7 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>
+          <EuiTableRowCell mobileOptions={{ width: '100%' }}>
             <EuiButton color="danger">Remove</EuiButton>&nbsp;&nbsp;
             <EuiButtonIcon
               size="s"
@@ -512,9 +512,9 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>
+          <EuiTableRowCell mobileOptions={{ width: '100%' }}>
             <EuiButton fill>Save</EuiButton>&nbsp;&nbsp;
-            <EuiButton fill color="secondary" iconType="check">
+            <EuiButton fill color="success" iconType="check">
               Save and complete
             </EuiButton>
           </EuiTableRowCell>

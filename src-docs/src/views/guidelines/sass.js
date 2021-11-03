@@ -2,11 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ThemeContext } from '../../components';
-import { Typography } from './sass/typography';
 import { Animation } from './sass/animation';
-import { Breakpoints } from './sass/breakpoints';
 import { Shadow } from './sass/shadow';
-import { Border } from './sass/border';
 import { Color } from './sass/color';
 import { Core } from './sass/core';
 
@@ -18,6 +15,7 @@ import {
   EuiLink,
   EuiCode,
   EuiCodeBlock,
+  EuiCallOut,
 } from '../../../../src/components';
 
 const bemExample = `// Use camelCase naming
@@ -181,7 +179,25 @@ export const SassGuidelines = {
     {
       title: 'Core variables',
       wrapText: false,
-      text: <Core />,
+      text: (
+        <>
+          <EuiCallOut
+            color="warning"
+            title={
+              <>
+                The <Link to="/theming/borders">borders</Link>,{' '}
+                <Link to="/theming/breakpoints">breakpoints</Link>,{' '}
+                <Link to="/theming/sizing">sizing</Link>, and{' '}
+                <Link to="/theming/typography">typography</Link> values have all
+                been moved to their respective Theming pages. Just be sure to
+                change your preferred language to <strong>Sass</strong>.
+              </>
+            }
+          />
+          <EuiSpacer size="xl" />
+          <Core />
+        </>
+      ),
     },
     {
       title: 'Going beyond the provided colors',
@@ -189,24 +205,9 @@ export const SassGuidelines = {
       text: <Color />,
     },
     {
-      title: 'Typography',
-      wrapText: false,
-      text: <Typography />,
-    },
-    {
-      title: 'Borders',
-      wrapText: false,
-      text: <Border />,
-    },
-    {
       title: 'Shadow and Depth',
       wrapText: false,
       text: <Shadow />,
-    },
-    {
-      title: 'Media queries and breakpoints',
-      wrapText: false,
-      text: <Breakpoints />,
     },
     {
       title: 'Animation',

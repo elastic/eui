@@ -22,8 +22,8 @@ import React, {
 import classNames from 'classnames';
 import { highlight, RefractorNode, listLanguages } from 'refractor';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
-import AutoSizer from 'react-virtualized-auto-sizer';
 import { keys, useCombinedRefs } from '../../services';
+import { EuiAutoSizer } from '../auto_sizer';
 import { EuiButtonIcon } from '../button';
 import { keysOf, CommonProps, ExclusiveUnion } from '../common';
 import { EuiCopy } from '../copy';
@@ -67,8 +67,8 @@ const DEFAULT_LANGUAGE = 'text';
 
 // Based on observed line height for non-virtualized code blocks
 const fontSizeToRowHeightMap = {
-  s: 16,
-  m: 19,
+  s: 18,
+  m: 21,
   l: 21,
 };
 
@@ -116,6 +116,7 @@ type VirtualizedOptionProps = ExclusiveUnion<
 
 interface LineNumbersConfig {
   start?: number;
+  highlight?: string;
 }
 
 export type EuiCodeBlockImplProps = CommonProps & {
@@ -150,8 +151,8 @@ export type EuiCodeBlockImplProps = CommonProps & {
 
   /**
    * Displays line numbers.
-   * Optionally accepts a configuration object for setting the starting number:
-   * `{start: 100}`
+   * Optionally accepts a configuration object for setting the starting number and visual highlighting ranges:
+   * `{ start: 100, highlight: '1, 5-10, 20-30, 40' }`
    */
   lineNumbers?: boolean | LineNumbersConfig;
 } & VirtualizedOptionProps;
@@ -393,7 +394,7 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
           <EuiFocusTrap clickOutsideDisables={true}>
             <div className={fullScreenClasses}>
               {isVirtualized ? (
-                <AutoSizer>
+                <EuiAutoSizer>
                   {({ height, width }) => (
                     <FixedSizeList
                       height={height}
@@ -412,7 +413,7 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
                       {ListRow}
                     </FixedSizeList>
                   )}
-                </AutoSizer>
+                </EuiAutoSizer>
               ) : (
                 <pre className={preClasses} tabIndex={0}>
                   <code className={codeClasses} onKeyDown={onKeyDown}>
@@ -435,7 +436,7 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   return (
     <div {...wrapperProps}>
       {isVirtualized ? (
-        <AutoSizer disableHeight={typeof overflowHeight === 'number'}>
+        <EuiAutoSizer disableHeight={typeof overflowHeight === 'number'}>
           {({ height, width }) => (
             <FixedSizeList
               height={height ?? overflowHeight}
@@ -454,7 +455,7 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
               {ListRow}
             </FixedSizeList>
           )}
-        </AutoSizer>
+        </EuiAutoSizer>
       ) : (
         <pre
           ref={combinedRef}

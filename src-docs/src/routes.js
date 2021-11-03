@@ -42,6 +42,8 @@ import { AccordionExample } from './views/accordion/accordion_example';
 
 import { AspectRatioExample } from './views/aspect_ratio/aspect_ratio_example';
 
+import { AutoSizerExample } from './views/auto_sizer/auto_sizer_example';
+
 import { AvatarExample } from './views/avatar/avatar_example';
 
 import { BadgeExample } from './views/badge/badge_example';
@@ -57,8 +59,6 @@ import { ButtonExample } from './views/button/button_example';
 import { CardExample } from './views/card/card_example';
 
 import { CallOutExample } from './views/call_out/call_out_example';
-
-import { CodeEditorExample } from './views/code_editor/code_editor_example';
 
 import { CodeExample } from './views/code/code_example';
 
@@ -228,6 +228,12 @@ import { SuperSelectExample } from './views/super_select/super_select_example';
 
 import { ThemeExample } from './views/theme/theme_example';
 import ThemeValues from './views/theme/values';
+import Typography, {
+  typographySections,
+} from './views/theme/typography/typography';
+import Sizing, { sizingSections } from './views/theme/sizing/sizing';
+import Breakpoints from './views/theme/breakpoints/breakpoints';
+import Borders, { bordersSections } from './views/theme/borders/borders';
 
 /** Elastic Charts */
 
@@ -252,18 +258,20 @@ const createExample = (example, customTitle) => {
 
   const {
     title,
-    intro,
     sections,
     beta,
     isNew,
     playground,
     guidelines,
+    ...rest
   } = example;
-  sections.forEach((section) => {
+  const filteredSections = sections.filter((section) => section !== undefined);
+
+  filteredSections.forEach((section) => {
     section.id = section.title ? slugify(section.title) : undefined;
   });
 
-  const renderedSections = sections.map((section, index) =>
+  const renderedSections = filteredSections.map((section, index) =>
     createElement(GuideSection, {
       // Using index as the key because not all require a `title`
       key: index,
@@ -284,10 +292,10 @@ const createExample = (example, customTitle) => {
     <EuiErrorBoundary>
       <GuidePage
         title={title}
-        intro={intro}
         isBeta={beta}
         playground={playgroundComponent}
         guidelines={guidelines}
+        {...rest}
       >
         {renderedSections}
       </GuidePage>
@@ -297,7 +305,7 @@ const createExample = (example, customTitle) => {
   return {
     name: customTitle || title,
     component,
-    sections,
+    sections: filteredSections,
     isNew,
     hasGuidelines: typeof guidelines !== 'undefined',
   };
@@ -386,6 +394,37 @@ const navigation = [
         },
         { id: 'examples', title: 'Examples', page: WritingExamples },
       ]),
+    ],
+  },
+  {
+    name: 'Theming',
+    items: [
+      createExample(ThemeExample, 'Theme provider'),
+      {
+        name: 'Global values',
+        component: ThemeValues,
+        isNew: true,
+      },
+      {
+        name: 'Breakpoints',
+        component: Breakpoints,
+      },
+      {
+        name: 'Borders',
+        component: Borders,
+        sections: bordersSections,
+      },
+      {
+        name: 'Sizing',
+        component: Sizing,
+        sections: sizingSections,
+      },
+      {
+        name: 'Typography',
+        component: Typography,
+        sections: typographySections,
+      },
+      createExample(SassGuidelines, 'Sass'),
     ],
   },
   {
@@ -493,7 +532,6 @@ const navigation = [
       MarkdownFormatExample,
       MarkdownEditorExample,
       MarkdownPluginExample,
-      CodeEditorExample,
       CodeExample,
     ].map((example) => createExample(example)),
   },
@@ -512,6 +550,7 @@ const navigation = [
     name: 'Utilities',
     items: [
       AccessibilityExample,
+      AutoSizerExample,
       BeaconExample,
       ColorExample,
       ColorPaletteExample,
@@ -534,17 +573,6 @@ const navigation = [
       TextDiffExample,
       WindowEventExample,
     ].map((example) => createExample(example)),
-  },
-  {
-    name: 'Theming',
-    items: [
-      createExample(ThemeExample, 'Theme provider'),
-      {
-        name: 'Global values',
-        component: ThemeValues,
-        isNew: true,
-      },
-    ],
   },
   {
     name: 'Package',

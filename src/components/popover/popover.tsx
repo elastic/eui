@@ -435,8 +435,8 @@ export class EuiPopover extends Component<Props, State> {
         // there isn't a focus target, one of two reasons:
         // #1 is the whole panel hidden? If so, schedule another check
         // #2 panel is visible but no tabbables exist, move focus to the panel
-        const panelVisibility = window.getComputedStyle(this.panel).visibility;
-        if (panelVisibility === 'hidden') {
+        const panelVisibility = window.getComputedStyle(this.panel).opacity;
+        if (panelVisibility === '0') {
           // #1
           this.updateFocus();
         } else {

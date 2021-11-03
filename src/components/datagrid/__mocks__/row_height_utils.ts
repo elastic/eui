@@ -6,46 +6,26 @@
  * Side Public License, v 1.
  */
 
-import { EuiDataGridRowHeightOption } from '../data_grid_types';
+import { RowHeightUtils as ActualRowHeightUtils } from '../row_height_utils';
 
-import { RowHeightUtils } from '../row_height_utils';
+const actual = new ActualRowHeightUtils();
 
 export const mockRowHeightUtils = ({
-  computeStylesForGridCell: jest.fn(),
-  clearHeightsCache: jest.fn(),
+  cacheStyles: jest.fn(),
   setGrid: jest.fn(),
   getStylesForCell: jest.fn(() => ({
     wordWrap: 'break-word',
     wordBreak: 'break-word',
     flexGrow: 1,
   })),
-  isDefinedHeight: jest.fn(() => true),
   isAutoHeight: jest.fn(() => false),
   setRowHeight: jest.fn(),
+  pruneHiddenColumnHeights: jest.fn(),
   getRowHeight: jest.fn(() => 32),
-  getFont: jest.fn(() => null),
-  getComputedCellStyles: jest.fn(() => {}),
-  compareHeights: jest.fn(
-    (currentRowHeight: number, cachedRowHeight: number) =>
-      currentRowHeight === cachedRowHeight
-  ),
-  getCalculatedHeight: jest.fn(
-    (heightOption: EuiDataGridRowHeightOption, defaultHeight: number) => {
-      if (typeof heightOption === 'object') {
-        if (heightOption.lineCount) {
-          return heightOption.lineCount;
-        }
+  getRowHeightOption: jest.fn(actual.getRowHeightOption),
+  getCalculatedHeight: jest.fn(actual.getCalculatedHeight),
+  getLineCount: jest.fn(actual.getLineCount),
+  calculateHeightForLineCount: jest.fn(() => 50),
+} as unknown) as ActualRowHeightUtils;
 
-        if (heightOption.height) {
-          return heightOption.height;
-        }
-      }
-
-      if (heightOption) {
-        return heightOption;
-      }
-
-      return defaultHeight;
-    }
-  ),
-} as unknown) as RowHeightUtils;
+export const RowHeightUtils = jest.fn(() => mockRowHeightUtils);

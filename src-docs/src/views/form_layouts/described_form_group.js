@@ -12,6 +12,7 @@ import {
   EuiSwitch,
   EuiLink,
 } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isSwitchChecked, setIsSwitchChecked] = useState(false);
@@ -19,6 +20,10 @@ export default () => {
   const onSwitchChange = () => {
     setIsSwitchChecked(!isSwitchChecked);
   };
+
+  const describedFormRangeId = useGeneratedHtmlId({
+    prefix: 'describedFormRange',
+  });
 
   return (
     <EuiForm component="form">
@@ -69,7 +74,7 @@ export default () => {
         </EuiFormRow>
 
         <EuiFormRow label="Range">
-          <EuiRange min={0} max={100} name="range" id="range" />
+          <EuiRange min={0} max={100} name="range" id={describedFormRangeId} />
         </EuiFormRow>
       </EuiDescribedFormGroup>
       <EuiDescribedFormGroup
