@@ -438,7 +438,7 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
           textOnly={false}
           mobileOptions={{
             header: false,
-            fullWidth: true,
+            width: '100%',
           }}
         >
           <div>

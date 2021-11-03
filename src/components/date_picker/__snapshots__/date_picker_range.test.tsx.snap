@@ -82,3 +82,86 @@ exports[`EuiDatePickerRange is rendered 1`] = `
   </span>
 </div>
 `;
+
+exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiDatePickerRange testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <span
+    class="euiDatePicker euiDatePicker--shadow"
+  >
+    <div
+      class="euiFormControlLayout"
+    >
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <div
+          class="react-datepicker-wrapper"
+        >
+          <div
+            class="react-datepicker__input-container"
+          >
+            <input
+              aria-label="Press the down key to open a popover containing a calendar."
+              class="euiDatePicker euiFieldText euiFieldText--withIcon euiDatePickerRange__start hello"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="euiFormControlLayoutIcons"
+        >
+          <span
+            class="euiFormControlLayoutCustomIcon"
+          >
+            <span
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="calendar"
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+  </span>
+  <div
+    class="euiText euiText--small euiDatePickerRange__delimeter"
+  >
+    <div
+      class="euiTextColor euiTextColor--subdued"
+    >
+      →
+    </div>
+  </div>
+  <span
+    class="euiDatePicker euiDatePicker--shadow"
+  >
+    <div
+      class="euiFormControlLayout"
+    >
+      <div
+        class="euiFormControlLayout__childrenWrapper"
+      >
+        <div
+          class="react-datepicker-wrapper"
+        >
+          <div
+            class="react-datepicker__input-container"
+          >
+            <input
+              aria-label="Press the down key to open a popover containing a calendar."
+              class="euiDatePicker euiFieldText euiDatePickerRange__end world"
+              type="text"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </span>
+</div>
+`;

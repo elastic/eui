@@ -41,7 +41,6 @@ export type EuiNotificationEventMetaProps = {
   severity?: string;
   /**
    * Accepts either our palette colors (primary, success ..etc) or a hex value `#FFFFFF`, `#000`.
-   * **`secondary` color is DEPRECATED, use `success` instead**
    */
   badgeColor?: EuiBadgeProps['color'];
   /**
@@ -147,7 +146,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
                     aria-expanded={isPopoverOpen}
                     aria-haspopup="true"
                     iconType="boxesVertical"
-                    color="subdued"
+                    color="text"
                     onClick={onOpenPopover}
                     data-test-subj={`${id}-notificationEventMetaButton`}
                   />

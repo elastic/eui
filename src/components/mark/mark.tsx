@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, FunctionComponent } from 'react';
+import React, { HTMLAttributes, FunctionComponent, ReactNode } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
 export type EuiMarkProps = HTMLAttributes<HTMLElement> &
@@ -14,7 +14,7 @@ export type EuiMarkProps = HTMLAttributes<HTMLElement> &
     /**
      * ReactNode to render as this component's content
      */
-    children: string;
+    children: ReactNode;
   };
 
 export const EuiMark: FunctionComponent<EuiMarkProps> = ({

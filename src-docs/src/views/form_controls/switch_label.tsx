@@ -1,12 +1,12 @@
 import React, { useState, Fragment } from 'react';
 
 import { EuiSwitch, EuiFormRow } from '../../../../src/components';
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [checked1, setChecked1] = useState(false);
   const [checked2, setChecked2] = useState(false);
-  const switch2RowId = htmlIdGenerator('switch2row')();
+  const toggleTextSwitchId = useGeneratedHtmlId({ prefix: 'toggleTextSwitch' });
 
   const onChange1 = (e: {
     target: { checked: React.SetStateAction<boolean> };
@@ -33,13 +33,13 @@ export default () => {
       </EuiFormRow>
       <EuiFormRow
         display="columnCompressedSwitch"
-        label={<span id={switch2RowId}>Show something</span>}
+        label={<span id={toggleTextSwitchId}>Show something</span>}
       >
         <EuiSwitch
           label={checked2 ? 'on' : 'off'}
           checked={checked2}
           onChange={onChange2}
-          aria-describedby={switch2RowId}
+          aria-describedby={toggleTextSwitchId}
           compressed
         />
       </EuiFormRow>

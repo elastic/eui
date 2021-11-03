@@ -40,6 +40,13 @@ const EuiDataGridFooterRow = memo(
       );
       const dataTestSubj = classnames('dataGridRow', _dataTestSubj);
 
+      const sharedCellProps = {
+        rowIndex,
+        visibleRowIndex,
+        interactiveCellId,
+        isExpandable: true,
+      };
+
       return (
         <div
           ref={ref}
@@ -50,16 +57,13 @@ const EuiDataGridFooterRow = memo(
         >
           {leadingControlColumns.map(({ id, width }, i) => (
             <EuiDataGridCell
+              {...sharedCellProps}
               key={`${id}-${rowIndex}`}
-              rowIndex={rowIndex}
-              visibleRowIndex={visibleRowIndex}
               colIndex={i}
               columnId={id}
               popoverContent={DefaultColumnFormatter}
               width={width}
               renderCellValue={() => null}
-              interactiveCellId={interactiveCellId}
-              isExpandable={true}
               className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
             />
           ))}
@@ -74,17 +78,14 @@ const EuiDataGridFooterRow = memo(
 
             return (
               <EuiDataGridCell
+                {...sharedCellProps}
                 key={`${id}-${rowIndex}`}
-                rowIndex={rowIndex}
-                visibleRowIndex={visibleRowIndex}
                 colIndex={columnPosition}
                 columnId={id}
                 columnType={columnType}
                 popoverContent={popoverContent}
                 width={width || undefined}
                 renderCellValue={renderCellValue}
-                interactiveCellId={interactiveCellId}
-                isExpandable={true}
                 className="euiDataGridFooterCell"
               />
             );
@@ -94,16 +95,13 @@ const EuiDataGridFooterRow = memo(
 
             return (
               <EuiDataGridCell
+                {...sharedCellProps}
                 key={`${id}-${rowIndex}`}
-                rowIndex={rowIndex}
-                visibleRowIndex={visibleRowIndex}
                 colIndex={colIndex}
                 columnId={id}
                 popoverContent={DefaultColumnFormatter}
                 width={width}
                 renderCellValue={() => null}
-                interactiveCellId={interactiveCellId}
-                isExpandable={true}
                 className="euiDataGridFooterCell euiDataGridRowCell--controlColumn"
               />
             );

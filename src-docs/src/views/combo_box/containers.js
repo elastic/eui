@@ -11,6 +11,7 @@ import {
   EuiModalHeaderTitle,
   EuiSpacer,
 } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 const optionsStatic = [
   {
@@ -52,6 +53,7 @@ export default () => {
   const [selectedOptions, setSelected] = useState([options[2], options[4]]);
   const [isModalVisible, setModalVisible] = useState(false);
   const [isPopoverOpen, setPopover] = useState(false);
+  const containerPopoverId = useGeneratedHtmlId({ prefix: 'containerPopover' });
 
   const closeModal = () => {
     setModalVisible(false);
@@ -145,7 +147,7 @@ export default () => {
       <EuiSpacer />
 
       <EuiPopover
-        id="popover"
+        id={containerPopoverId}
         button={button}
         isOpen={isPopoverOpen}
         closePopover={closePopover}

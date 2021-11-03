@@ -2,11 +2,10 @@
 
 // Core
 $euiColorPrimary: #36A2EF;
-$euiColorSecondary: #7DDED8;
 $euiColorAccent: #F68FBE;
 
 // Status
-$euiColorSuccess: $euiColorSecondary;
+$euiColorSuccess: #7DDED8;
 $euiColorWarning: #F3D371;
 $euiColorDanger: #F86B63;
 $euiColorDisabled: #515761;
@@ -18,10 +17,9 @@ $euiColorHighlight: #2E2D25;
 
 // Contrasty text variants
 $euiColorPrimaryText: makeHighContrastColor($euiColorPrimary);
-$euiColorSecondaryText: makeHighContrastColor($euiColorSecondary);
 $euiColorAccentText: makeHighContrastColor($euiColorAccent);
+$euiColorSuccessText: makeHighContrastColor($euiColorSuccess);
 $euiColorWarningText: makeHighContrastColor($euiColorWarning);
 $euiColorDangerText: makeHighContrastColor($euiColorDanger);
 $euiColorDisabledText: makeDisabledContrastColor($euiColorDisabled);
-$euiColorSuccessText: $euiColorSecondaryText;
 $euiLinkColor: $euiColorPrimaryText;

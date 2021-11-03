@@ -6,7 +6,6 @@
  * Side Public License, v 1.
  */
 
-export { EuiLoadingKibana, EuiLoadingKibanaProps } from './loading_kibana';
 export { EuiLoadingElastic, EuiLoadingElasticProps } from './loading_elastic';
 export { EuiLoadingChart, EuiLoadingChartProps } from './loading_chart';
 export { EuiLoadingContent, EuiLoadingContentProps } from './loading_content';
