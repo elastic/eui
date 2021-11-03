@@ -2,29 +2,40 @@ import React, { useState } from 'react';
 
 import { EuiRadioGroup } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 import { DisplayToggles } from './display_toggles';
 
-const idPrefix = htmlIdGenerator()();
-
 export default () => {
+  const radioGroupItemId__1 = useGeneratedHtmlId({
+    prefix: 'radioGroupItem',
+    suffix: 'first',
+  });
+  const radioGroupItemId__2 = useGeneratedHtmlId({
+    prefix: 'radioGroupItem',
+    suffix: 'second',
+  });
+  const radioGroupItemId__3 = useGeneratedHtmlId({
+    prefix: 'radioGroupItem',
+    suffix: 'third',
+  });
+
   const radios = [
     {
-      id: `${idPrefix}0`,
+      id: radioGroupItemId__1,
       label: 'Option one',
     },
     {
-      id: `${idPrefix}1`,
+      id: radioGroupItemId__2,
       label: 'Option two is checked by default',
     },
     {
-      id: `${idPrefix}2`,
+      id: radioGroupItemId__3,
       label: 'Option three is disabled',
       disabled: true,
     },
   ];
 
-  const [radioIdSelected, setRadioIdSelected] = useState(`${idPrefix}1`);
+  const [radioIdSelected, setRadioIdSelected] = useState(radioGroupItemId__2);
 
   const onChange = (optionId) => {
     setRadioIdSelected(optionId);

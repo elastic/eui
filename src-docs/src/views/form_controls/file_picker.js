@@ -9,10 +9,13 @@ import {
   EuiSpacer,
   EuiSwitch,
 } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [files, setFiles] = useState({});
   const [large, setLarge] = useState(true);
+
+  const filePickerId = useGeneratedHtmlId({ prefix: 'filePicker' });
 
   const onChange = (files) => {
     setFiles(files.length > 0 ? Array.from(files) : []);
@@ -56,7 +59,7 @@ export default () => {
             ]}
           >
             <EuiFilePicker
-              id="asdf2"
+              id={filePickerId}
               multiple
               initialPromptText="Select or drag and drop multiple files"
               onChange={onChange}

@@ -5,30 +5,24 @@ import findIndex from 'lodash/findIndex';
 import {
   EuiCollapsibleNav,
   EuiCollapsibleNavGroup,
-} from '../../../../src/components/collapsible_nav';
-import {
   EuiHeaderSectionItemButton,
   EuiHeaderLogo,
   EuiHeader,
-} from '../../../../src/components/header';
-import { EuiIcon } from '../../../../src/components/icon';
-import { EuiButtonEmpty } from '../../../../src/components/button';
-import { EuiPageTemplate } from '../../../../src/components/page';
-import {
+  EuiIcon,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiPageTemplate,
   EuiPinnableListGroup,
-  EuiListGroupItem,
   EuiPinnableListGroupItemProps,
-} from '../../../../src/components/list_group';
-import { EuiFlexItem } from '../../../../src/components/flex';
-import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
+  EuiFlexItem,
+  EuiHorizontalRule,
+  EuiImage,
+  EuiListGroup,
+  useGeneratedHtmlId,
+} from '../../../../src';
 
-import {
-  DeploymentsGroup,
-  KibanaNavLinks,
-  SecurityGroup,
-} from './collapsible_nav_list';
-import { EuiShowFor } from '../../../../src/components/responsive';
-import { EuiImage } from '../../../../src/components/image';
+import { KibanaNavLinks, SecurityGroup } from './collapsible_nav_list';
+
 import contentSvg from '../../images/content.svg';
 import { useExitPath } from '../../services/routing/routing';
 
@@ -60,9 +54,6 @@ const LearnLinks: EuiPinnableListGroupItemProps[] = [
 const CollapsibleNavAll = () => {
   const exitPath = useExitPath();
   const [navIsOpen, setNavIsOpen] = useState(true);
-  const [navIsDocked, setNavIsDocked] = useState(
-    JSON.parse(String(localStorage.getItem('nav2IsDocked'))) || false
-  );
 
   /**
    * Accordion toggling
@@ -140,12 +131,13 @@ const CollapsibleNavAll = () => {
     return `Unpin ${listItem.label}`;
   }
 
+  const collapsibleNavId = useGeneratedHtmlId({ prefix: 'collapsibleNav' });
+
   const collapsibleNav = (
     <EuiCollapsibleNav
-      id="guideCollapsibleNavAllExampleNav"
+      id={collapsibleNavId}
       aria-label="Main navigation"
       isOpen={navIsOpen}
-      isDocked={navIsDocked}
       button={
         <EuiHeaderSectionItemButton
           aria-label="Toggle main navigation"
@@ -158,7 +150,24 @@ const CollapsibleNavAll = () => {
     >
       {/* Dark deployments section */}
       <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
-        {DeploymentsGroup}
+        <EuiCollapsibleNavGroup isCollapsible={false} background="dark">
+          <EuiListGroup
+            color="ghost"
+            maxWidth="none"
+            gutterSize="none"
+            size="s"
+            listItems={[
+              {
+                label: 'Manage deployment',
+                href: '#',
+                iconType: 'logoCloud',
+                iconProps: {
+                  color: 'ghost',
+                },
+              },
+            ]}
+          />
+        </EuiCollapsibleNavGroup>
       </EuiFlexItem>
 
       {/* Shaded pinned section always with a home item */}
@@ -189,7 +198,16 @@ const CollapsibleNavAll = () => {
       <EuiFlexItem className="eui-yScroll">
         {/* Kibana section */}
         <EuiCollapsibleNavGroup
-          title="Kibana"
+          title={
+            <a
+              className="eui-textInheritColor"
+              href="#/navigation/collapsible-nav"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Kibana
+            </a>
+          }
+          buttonElement="div"
           iconType="logoKibana"
           isCollapsible={true}
           initialIsOpen={openGroups.includes('Kibana')}
@@ -212,7 +230,16 @@ const CollapsibleNavAll = () => {
 
         {/* Learn section */}
         <EuiCollapsibleNavGroup
-          title="Learn"
+          title={
+            <a
+              className="eui-textInheritColor"
+              href="#/navigation/collapsible-nav"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Training
+            </a>
+          }
+          buttonElement="div"
           iconType="training"
           isCollapsible={true}
           initialIsOpen={openGroups.includes('Learn')}
@@ -229,25 +256,16 @@ const CollapsibleNavAll = () => {
             size="s"
           />
         </EuiCollapsibleNavGroup>
+      </EuiFlexItem>
 
-        {/* Docking button only for larger screens that can support it*/}
-        <EuiShowFor sizes={['l', 'xl']}>
-          <EuiCollapsibleNavGroup>
-            <EuiListGroupItem
-              size="xs"
-              color="subdued"
-              label={`${navIsDocked ? 'Undock' : 'Dock'} navigation`}
-              onClick={() => {
-                setNavIsDocked(!navIsDocked);
-                localStorage.setItem(
-                  'nav2IsDocked',
-                  JSON.stringify(!navIsDocked)
-                );
-              }}
-              iconType={navIsDocked ? 'lock' : 'lockOpen'}
-            />
-          </EuiCollapsibleNavGroup>
-        </EuiShowFor>
+      <EuiFlexItem grow={false}>
+        {/* Span fakes the nav group into not being the first item and therefore adding a top border */}
+        <span />
+        <EuiCollapsibleNavGroup>
+          <EuiButton fill fullWidth iconType="plusInCircleFilled">
+            Add data
+          </EuiButton>
+        </EuiCollapsibleNavGroup>
       </EuiFlexItem>
     </EuiCollapsibleNav>
   );

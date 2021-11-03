@@ -16,6 +16,7 @@ import { Comparators } from '../../../../src/services/sort';
 
 import { Options } from './data';
 import { createDataStore } from '../tables/data_store';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const countriesStore = createDataStore().countries.map((country) => {
@@ -30,6 +31,13 @@ export default () => {
   const [countries, setCountries] = useState(countriesStore);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+
+  const flexboxSelectablePopoverId = useGeneratedHtmlId({
+    prefix: 'flexboxSelectablePopover',
+  });
+  const flexboxSelectableFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'flexboxSelectableFlyoutTitle',
+  });
 
   const onButtonClick = () => {
     setOptions(options.slice().sort(Comparators.property('checked')));
@@ -65,7 +73,7 @@ export default () => {
   return (
     <Fragment>
       <EuiPopover
-        id="popover"
+        id={flexboxSelectablePopoverId}
         panelPaddingSize="none"
         button={button}
         isOpen={isPopoverOpen}
@@ -99,7 +107,11 @@ export default () => {
       <EuiButton onClick={showFlyout}>Show flyout</EuiButton>
 
       {isFlyoutVisible && (
-        <EuiFlyout ownFocus onClose={closeFlyout} aria-labelledby="flyoutTitle">
+        <EuiFlyout
+          ownFocus
+          onClose={closeFlyout}
+          aria-labelledby={flexboxSelectableFlyoutTitleId}
+        >
           <EuiSelectable
             aria-label="Popover example"
             searchable
@@ -111,7 +123,9 @@ export default () => {
               <Fragment>
                 <EuiFlyoutHeader hasBorder>
                   <EuiTitle size="m">
-                    <h2 id="flyoutTitle">Be mindful of the flexbox</h2>
+                    <h2 id={flexboxSelectableFlyoutTitleId}>
+                      Be mindful of the flexbox
+                    </h2>
                   </EuiTitle>
                   <EuiSpacer />
                   {search}

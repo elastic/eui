@@ -310,9 +310,16 @@ exports[`EuiBasicTable empty is rendered 1`] = `
           <EuiTableRowCell
             align="center"
             colSpan={1}
-            isMobileFullWidth={true}
+            mobileOptions={
+              Object {
+                "width": "100%",
+              }
+            }
           >
-            No items found
+            <EuiI18n
+              default="No items found"
+              token="euiBasicTable.noItemsMessage"
+            />
           </EuiTableRowCell>
         </EuiTableRow>
       </EuiTableBody>
@@ -379,7 +386,11 @@ exports[`EuiBasicTable empty renders a node as a custom message 1`] = `
           <EuiTableRowCell
             align="center"
             colSpan={1}
-            isMobileFullWidth={true}
+            mobileOptions={
+              Object {
+                "width": "100%",
+              }
+            }
           >
             <p>
               no items, click 
@@ -456,7 +467,11 @@ exports[`EuiBasicTable empty renders a string as a custom message 1`] = `
           <EuiTableRowCell
             align="center"
             colSpan={1}
-            isMobileFullWidth={true}
+            mobileOptions={
+              Object {
+                "width": "100%",
+              }
+            }
           >
             where my items at?
           </EuiTableRowCell>
@@ -994,18 +1009,17 @@ exports[`EuiBasicTable footers render with pagination, selection, sorting, and f
       </EuiTableFooter>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -1417,7 +1431,12 @@ exports[`EuiBasicTable with initial selection 1`] = `
       },
     ]
   }
-  noItemsMessage="No items found"
+  noItemsMessage={
+    <EuiI18n
+      default="No items found"
+      token="euiBasicTable.noItemsMessage"
+    />
+  }
   responsive={true}
   selection={
     Object {
@@ -1668,7 +1687,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                             compressed={false}
                             data-test-subj="checkboxSelectRow-1"
                             disabled={false}
-                            id="_selection_column_1-checkbox"
+                            id="__table_generated-id_selection_column_1-checkbox"
                             indeterminate={false}
                             onChange={[Function]}
                             title="Select this row"
@@ -1683,7 +1702,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                                 className="euiCheckbox__input"
                                 data-test-subj="checkboxSelectRow-1"
                                 disabled={false}
-                                id="_selection_column_1-checkbox"
+                                id="__table_generated-id_selection_column_1-checkbox"
                                 onChange={[Function]}
                                 title="Select this row"
                                 type="checkbox"
@@ -1710,7 +1729,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                     textOnly={true}
                   >
                     <td
-                      className="euiTableRowCell"
+                      className="euiTableRowCell euiTableRowCell--middle"
                       style={
                         Object {
                           "width": undefined,
@@ -1761,7 +1780,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                             compressed={false}
                             data-test-subj="checkboxSelectRow-2"
                             disabled={false}
-                            id="_selection_column_2-checkbox"
+                            id="__table_generated-id_selection_column_2-checkbox"
                             indeterminate={false}
                             onChange={[Function]}
                             title="Select this row"
@@ -1776,7 +1795,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                                 className="euiCheckbox__input"
                                 data-test-subj="checkboxSelectRow-2"
                                 disabled={false}
-                                id="_selection_column_2-checkbox"
+                                id="__table_generated-id_selection_column_2-checkbox"
                                 onChange={[Function]}
                                 title="Select this row"
                                 type="checkbox"
@@ -1803,7 +1822,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                     textOnly={true}
                   >
                     <td
-                      className="euiTableRowCell"
+                      className="euiTableRowCell euiTableRowCell--middle"
                       style={
                         Object {
                           "width": undefined,
@@ -1854,7 +1873,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                             compressed={false}
                             data-test-subj="checkboxSelectRow-3"
                             disabled={false}
-                            id="_selection_column_3-checkbox"
+                            id="__table_generated-id_selection_column_3-checkbox"
                             indeterminate={false}
                             onChange={[Function]}
                             title="Select this row"
@@ -1869,7 +1888,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                                 className="euiCheckbox__input"
                                 data-test-subj="checkboxSelectRow-3"
                                 disabled={false}
-                                id="_selection_column_3-checkbox"
+                                id="__table_generated-id_selection_column_3-checkbox"
                                 onChange={[Function]}
                                 title="Select this row"
                                 type="checkbox"
@@ -1896,7 +1915,7 @@ exports[`EuiBasicTable with initial selection 1`] = `
                     textOnly={true}
                   >
                     <td
-                      className="euiTableRowCell"
+                      className="euiTableRowCell euiTableRowCell--middle"
                       style={
                         Object {
                           "width": undefined,
@@ -2338,18 +2357,17 @@ exports[`EuiBasicTable with pagination - 2nd page 1`] = `
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 1,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -2469,18 +2487,17 @@ exports[`EuiBasicTable with pagination 1`] = `
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -2545,7 +2562,11 @@ exports[`EuiBasicTable with pagination and error 1`] = `
           <EuiTableRowCell
             align="center"
             colSpan={1}
-            isMobileFullWidth={true}
+            mobileOptions={
+              Object {
+                "width": "100%",
+              }
+            }
           >
             <EuiIcon
               color="danger"
@@ -2727,18 +2748,17 @@ exports[`EuiBasicTable with pagination and selection 1`] = `
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -2858,19 +2878,17 @@ exports[`EuiBasicTable with pagination, hiding the per page options 1`] = `
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "hidePerPageOptions": true,
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -3057,18 +3075,17 @@ exports[`EuiBasicTable with pagination, selection and sorting 1`] = `
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -3348,18 +3365,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and a single record a
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -3546,18 +3562,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and column dataType 1
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -3744,18 +3759,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and column renderer 1
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -4053,18 +4067,17 @@ exports[`EuiBasicTable with pagination, selection, sorting and multiple record a
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 
@@ -4251,18 +4264,17 @@ exports[`EuiBasicTable with pagination, selection, sorting, column renderer and 
       </EuiTableBody>
     </EuiTable>
   </div>
-  <PaginationBar
-    aria-controls="__table_generated-id"
-    onPageChange={[Function]}
-    onPageSizeChange={[Function]}
-    pagination={
+  <EuiI18n
+    default="Pagination for table: {tableCaption}"
+    token="euiBasicTable.tablePagination"
+    values={
       Object {
-        "pageIndex": 0,
-        "pageSize": 3,
-        "totalItemCount": 5,
+        "tableCaption": undefined,
       }
     }
-  />
+  >
+    <Component />
+  </EuiI18n>
 </div>
 `;
 

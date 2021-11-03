@@ -3,7 +3,7 @@ import React, { useState, Fragment } from 'react';
 import { EuiRange, EuiSpacer, EuiDualRange } from '../../../../src/components';
 import { DisplayToggles } from '../form_controls/display_toggles';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [value, setValue] = useState('20');
@@ -20,6 +20,11 @@ export default () => {
       color: 'success',
     },
   ];
+
+  const rangeWithOptionsId = useGeneratedHtmlId({ prefix: 'rangeWithOptions' });
+  const inputRangeWithOptionsId = useGeneratedHtmlId({
+    prefix: 'inputRangeWithOptions',
+  });
 
   const onChange = (e) => {
     setValue(e.target.value);
@@ -38,7 +43,7 @@ export default () => {
         canIsRequired={false}
       >
         <EuiRange
-          id={htmlIdGenerator()()}
+          id={rangeWithOptionsId}
           value={value}
           onChange={onChange}
           showTicks
@@ -56,7 +61,7 @@ export default () => {
 
       <DisplayToggles canLoading={false} canIsRequired={false}>
         <EuiDualRange
-          id={htmlIdGenerator()()}
+          id={inputRangeWithOptionsId}
           value={dualValue}
           onChange={onDualChange}
           showLabels

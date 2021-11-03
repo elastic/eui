@@ -3,29 +3,41 @@ import React, { useState } from 'react';
 import { EuiCheckboxGroup } from '../../../../src/components';
 import { DisplayToggles } from './display_toggles';
 
-import { htmlIdGenerator } from '../../../../src/services';
-const idPrefix = htmlIdGenerator()();
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
+  const checkboxGroupItemId__1 = useGeneratedHtmlId({
+    prefix: 'checkboxGroupItem',
+    suffix: 'first',
+  });
+  const checkboxGroupItemId__2 = useGeneratedHtmlId({
+    prefix: 'checkboxGroupItem',
+    suffix: 'second',
+  });
+  const checkboxGroupItemId__3 = useGeneratedHtmlId({
+    prefix: 'checkboxGroupItem',
+    suffix: 'third',
+  });
+
   const checkboxes = [
     {
-      id: `${idPrefix}0`,
+      id: checkboxGroupItemId__1,
       label: 'Option one',
       'data-test-sub': 'dts_test',
     },
     {
-      id: `${idPrefix}1`,
+      id: checkboxGroupItemId__2,
       label: 'Option two is checked by default',
       className: 'classNameTest',
     },
     {
-      id: `${idPrefix}2`,
+      id: checkboxGroupItemId__3,
       label: 'Option three is disabled',
       disabled: true,
     },
   ];
   const [checkboxIdToSelectedMap, setCheckboxIdToSelectedMap] = useState({
-    [`${idPrefix}1`]: true,
+    [checkboxGroupItemId__2]: true,
   });
 
   const onChange = (optionId) => {

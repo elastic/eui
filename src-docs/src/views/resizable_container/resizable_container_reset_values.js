@@ -10,6 +10,8 @@ import {
 } from '../../../../src/components';
 import { fake } from 'faker';
 
+import { htmlIdGenerator } from '../../../../src/services';
+
 const text = (
   <>
     <p>{fake('{{lorem.paragraphs}}')}</p>
@@ -18,8 +20,8 @@ const text = (
   </>
 );
 
-const firstPanelId = 'resizable-panel__1';
-const secondPanelId = 'resizable-panel__2';
+const firstPanelId = htmlIdGenerator('firstPanel')();
+const secondPanelId = htmlIdGenerator('secondPanel')();
 const stored = localStorage.getItem('resizableContainer');
 const storedSizes = stored && JSON.parse(stored);
 const defaultSizes = storedSizes || {
