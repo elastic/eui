@@ -5,7 +5,8 @@ import {
   EuiTitle,
   EuiText,
   EuiLink,
-} from '../../../../src/components/';
+  ICON_COLORS,
+} from '../../../../src/components';
 import {
   propUtilityForPlayground,
   iconValidator,
@@ -23,41 +24,42 @@ export default () => {
     type: PropTypes.ReactNode,
   };
 
+  propsToUse.iconType = iconValidator(propsToUse.iconType, 'logoSecurity');
   propsToUse.iconColor = {
     ...propsToUse.iconColor,
     type: PropTypes.Enum,
-    defaultValue: 'subdued',
-    options: {
-      default: 'default',
-      subdued: 'subdued',
-      success: 'success',
-      accent: 'accent',
-      danger: 'danger',
-      warning: 'warning',
-      ghost: 'ghost',
-    },
+    options: ICON_COLORS.reduce((a, v) => ({ ...a, [v]: v }), {}),
   };
 
   propsToUse.actions.type = PropTypes.String;
 
-  propsToUse.body.type = PropTypes.String;
-  propsToUse.body.value =
-    'There are no cases to display. Please create a new case or change your filter settings.';
+  propsToUse.body = {
+    ...propsToUse.body,
+    value:
+      '<p>There are no cases to display. Please create a new case or change your filter settings.</p>',
+    type: PropTypes.ReactNode,
+  };
+
+  propsToUse.actions = {
+    ...propsToUse.actions,
+    value: `<EuiButton color="primary" fill>
+  Add new case
+</EuiButton>`,
+    type: PropTypes.ReactNode,
+  };
 
   propsToUse.footer = {
     ...propsToUse.footer,
     value: `<>
-    <EuiTitle size="xxs">
-      <h3>Want to learn more?</h3>
-    </EuiTitle>
-    <EuiLink href="#" target="_blank">
-      Read documentation
-    </EuiLink>
-  </>`,
+  <EuiTitle size="xxs">
+    <h3>Want to learn more?</h3>
+  </EuiTitle>
+  <EuiLink href="#" target="_blank">
+    Read documentation
+  </EuiLink>
+</>`,
     type: PropTypes.ReactNode,
   };
-
-  propsToUse.iconType = iconValidator(propsToUse.iconType, 'logoSecurity');
 
   return {
     config: {
