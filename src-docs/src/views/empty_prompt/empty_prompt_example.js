@@ -33,7 +33,7 @@ const layoutSnippet = `<EuiEmptyPrompt
   layout="horizontal"
   icon={<EuiImage size="fullWidth" src={illustration} alt="" />}
   title={<h2>Your title</h2>}
-  body={bodyContent}
+  body={<p>bodyContent</p>}
   actions={actions}
   footer={footer}
 />`;
@@ -90,6 +90,7 @@ import MultipleTypes from './empty_prompt_multiple_types';
 
 export const EmptyPromptExample = {
   title: 'Empty prompt',
+  guidelines: <Guidelines />,
   intro: (
     <EuiText>
       <p>
@@ -223,36 +224,7 @@ export const EmptyPromptExample = {
       demo: <Panel />,
       snippet: panelSnippet,
     },
-    {
-      title: 'Usage in a page template',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: pageTemplateSource,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            When using a <strong>EuiEmptyPrompt</strong> in a{' '}
-            <Link to="/layout/page">page template</Link>, pay attention to the
-            template you’re passing. The template will determine which{' '}
-            <EuiCode>color</EuiCode> and <EuiCode>hasBorder</EuiCode> prop you
-            should use to ensure consistency across our Elastic products.
-          </p>
-          <PageTemplateTable />
 
-          <EuiSpacer size="xl" />
-          <p>
-            The following example shows the usage of a{' '}
-            <strong>EuiEmptyPrompt</strong> in a page template where the
-            template is set to <EuiCode>{'"empty"'}</EuiCode>.
-          </p>
-        </>
-      ),
-      props: { EuiEmptyPrompt },
-      demo: <PageTemplate />,
-    },
     {
       title: 'Loading and error prompts',
       source: [
@@ -327,15 +299,16 @@ export const EmptyPromptExample = {
       ),
     },
     {
-      title: 'For multiple types of empty states',
+      title: 'More types of empty states',
       wrapText: false,
       text: (
         <>
           <EuiText>
             <p>
-              The following example showcases different types of empty states
-              that you can create with the <strong>EuiEmptyPrompt</strong>. For
-              a full list see the{' '}
+              <strong>EuiEmptyPrompt</strong> can be used for more than just{' '}
+              <strong>empty</strong> pages. The following example showcases
+              different types of empty states that you can create with the{' '}
+              <strong>EuiEmptyPrompt</strong>. For a full list see the{' '}
               <Link to="/guidelines/empty-prompt">usage guidelines</Link>.
             </p>
           </EuiText>
@@ -344,6 +317,35 @@ export const EmptyPromptExample = {
         </>
       ),
     },
+    {
+      title: 'Using in a page template',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: pageTemplateSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            When using a <strong>EuiEmptyPrompt</strong> in a{' '}
+            <Link to="/layout/page">EuiPageTemplate</Link>, pay attention to the
+            template you’re passing. The template will determine which{' '}
+            <EuiCode>color</EuiCode> and <EuiCode>hasBorder</EuiCode> prop you
+            should use to ensure consistency across our Elastic products.
+          </p>
+          <PageTemplateTable />
+
+          <EuiSpacer size="xl" />
+          <p>
+            The following example shows the usage of a{' '}
+            <strong>EuiEmptyPrompt</strong> in a page template where the
+            template is set to <EuiCode>{'"empty"'}</EuiCode>.
+          </p>
+        </>
+      ),
+      props: { EuiEmptyPrompt },
+      demo: <PageTemplate />,
+    },
   ],
-  guidelines: <Guidelines />,
 };

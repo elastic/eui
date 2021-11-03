@@ -12,29 +12,31 @@ import {
 export default () => (
   <EuiTable>
     <EuiTableHeader>
-      <EuiTableHeaderCell>Page template</EuiTableHeaderCell>
-      <EuiTableHeaderCell>Empty prompt usage</EuiTableHeaderCell>
+      <EuiTableHeaderCell>
+        EuiPageTemplate <EuiCode>template</EuiCode>
+      </EuiTableHeaderCell>
+      <EuiTableHeaderCell>EuiEmptyPrompt settings</EuiTableHeaderCell>
     </EuiTableHeader>
 
     <EuiTableBody>
       <EuiTableRow>
         <EuiTableRowCell isMobileFullWidth>
-          <EuiCode>{'["centeredContent", "default"]'}</EuiCode>
+          <EuiCode>{"'centeredContent' | 'default'"}</EuiCode>
         </EuiTableRowCell>
 
         <EuiTableRowCell>
-          Set the color to <EuiCode>{'"plain"'}</EuiCode> and the{' '}
-          <EuiCode>hasBorder</EuiCode> prop to <EuiCode>true</EuiCode>.
+          Set <EuiCode language="tsx">{'color="plain"'}</EuiCode> and
+          <EuiCode language="tsx">{'hasBorder={true}'}</EuiCode>.
         </EuiTableRowCell>
       </EuiTableRow>
 
       <EuiTableRow>
         <EuiTableRowCell>
-          <EuiCode>{'["centeredBody", "empty"]'}</EuiCode>
+          <EuiCode>{"'centeredBody' | 'empty'"}</EuiCode>
         </EuiTableRowCell>
 
         <EuiTableRowCell>
-          Set the color to <EuiCode>{'"plain"'}</EuiCode>.
+          Set <EuiCode language="tsx">{'color="plain"'}</EuiCode>.
         </EuiTableRowCell>
       </EuiTableRow>
     </EuiTableBody>
