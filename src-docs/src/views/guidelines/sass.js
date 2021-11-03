@@ -186,8 +186,8 @@ export const SassGuidelines = {
                 The <Link to="/theming/borders">borders</Link>,{' '}
                 <Link to="/theming/breakpoints">breakpoints</Link>,{' '}
                 <Link to="/theming/sizing">sizing</Link>,{' '}
-                <Link to="/theming/other">animation</Link>,{' '}
-                <Link to="/theming/other">shadow</Link> and{' '}
+                <Link to="/theming/more-tokens#animation">animation</Link>,{' '}
+                <Link to="/theming/more-tokens#shadow">shadow</Link> and{' '}
                 <Link to="/theming/typography">typography</Link> values have all
                 been moved to their respective Theming pages. Just be sure to
                 change your preferred language to <strong>Sass</strong>.

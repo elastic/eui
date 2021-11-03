@@ -372,7 +372,7 @@ const navigation = [
         sections: typographySections,
       },
       {
-        name: 'More',
+        name: 'More tokens',
         component: Other,
         sections: otherSections,
       },

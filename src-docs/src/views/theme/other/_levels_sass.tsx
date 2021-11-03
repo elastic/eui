@@ -13,6 +13,8 @@ const euiLevels = [
   'euiZContentMenu',
   'euiZHeader',
   'euiZFlyout',
+  'euiZMaskBelowHeader',
+  'euiZDataGrid',
   'euiZContent',
 ];
 

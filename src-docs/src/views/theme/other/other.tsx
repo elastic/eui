@@ -15,9 +15,9 @@ import LevelsSass from './_levels_sass';
 
 // This array is used inside routes.js to create the sidenav sub-sections
 export const otherSections = [
-  { title: 'Animation', id: 'other-animation' },
-  { title: 'Shadow', id: 'other-shadow' },
-  { title: 'Levels', id: 'other-levels' },
+  { title: 'Animation', id: 'animation' },
+  { title: 'Shadow', id: 'shadow' },
+  { title: 'Levels', id: 'levels' },
 ];
 
 export default () => {

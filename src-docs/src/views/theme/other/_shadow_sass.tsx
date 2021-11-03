@@ -46,7 +46,7 @@ export default () => {
             <p>
               Shadows can be applied through Sass mixins only. There are a
               variety of sizes depending on the layer depth you are trying to
-              acheive.
+              achieve.
             </p>
             <p>
               Usually you want to avoid putting shadows on containers with the
@@ -137,7 +137,7 @@ export default () => {
         description={
           <>
             <p>
-              The horizontal equivelant should be used sparingly and usually
+              The horizontal equivalent should be used sparingly and usually
               only in full-height layouts or a grid of items.
             </p>
             <p>
