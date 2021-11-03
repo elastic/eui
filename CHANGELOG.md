@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+**Bug fixes**
+
+- Fixed an `EuiDataGrid` race condition where grid rows had incorrect heights if loaded in before CSS ([#5284](https://github.com/elastic/eui/pull/5284))
+
 ### Feature: CSS-in-JS ([#5121](https://github.com/elastic/eui/pull/5121))
 
 - Added reset and global styles via CSS-in-JS with `@emotion/react/Global`
