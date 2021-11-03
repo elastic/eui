@@ -1,7 +1,11 @@
 import React, { ReactNode } from 'react';
 import { css } from '@emotion/react';
-import { useEuiTheme } from '../../../../../src/services';
-import { transparentize } from '../../../../../src/services/color';
+import { keysOf, useEuiTheme, transparentize } from '../../../../../src';
+
+import {
+  _EuiThemeAnimationEasing,
+  _EuiThemeAnimationSpeed,
+} from '../../../../../src/global_styling/variables/_animations';
 
 import {
   getPropsFromThemeKey,
@@ -21,10 +25,14 @@ export default ({
   const { euiTheme } = useEuiTheme();
   const animation = euiTheme.animation;
 
-  const speedTypes = getPropsFromThemeKey(EuiThemeAnimationSpeed);
-  const speeds = Object.keys(speedTypes);
-  const easingTypes = getPropsFromThemeKey(EuiThemeAnimationEasing);
-  const eases = Object.keys(easingTypes);
+  const speedTypes = (getPropsFromThemeKey(
+    EuiThemeAnimationSpeed
+  ) as unknown) as _EuiThemeAnimationSpeed;
+  const speeds = keysOf(speedTypes);
+  const easingTypes = (getPropsFromThemeKey(
+    EuiThemeAnimationEasing
+  ) as unknown) as _EuiThemeAnimationEasing;
+  const eases = keysOf(easingTypes);
 
   return (
     <>
@@ -53,7 +61,6 @@ export default ({
             id: speed,
             token: `animation.${speed}`,
             type: speedTypes[speed],
-            // @ts-ignore Help
             value: animation[speed],
           };
         })}
@@ -102,7 +109,6 @@ export default ({
             id: ease,
             token: `animation.${ease}`,
             type: easingTypes[ease],
-            // @ts-ignore Help
             value: animation[ease],
           };
         })}
