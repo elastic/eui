@@ -25,7 +25,35 @@ const baseProps: EuiDataGridProps = {
   renderFooterCellValue: ({ columnId }) => `${columnId}, footer`,
 };
 
-const getGridData = () => {
+describe('EuiDataGrid', () => {
+  describe('row creation', () => {
+    it('creates rows', () => {
+      mount(<EuiDataGrid {...baseProps} />);
+
+      getGridData().then((data) => {
+        expect(data).to.deep.equal({
+          headers: ['First', 'Second'],
+          data: [
+            { First: 'a, 0', Second: 'b, 0' },
+            { First: 'a, 1', Second: 'b, 1' },
+            { First: 'a, 2', Second: 'b, 2' },
+          ],
+          footer: { First: 'a, footer', Second: 'b, footer' },
+        });
+      });
+
+      // find all cells and verify they all belong to a row or columnheader
+      cy.get('[role=gridcell]')
+        .filter((idx, element) => {
+          const role = element.parentElement?.getAttribute('role');
+          return role === 'row' || role === 'columnheader' ? false : true;
+        })
+        .should('have.lengthOf', 0);
+    });
+  });
+});
+
+function getGridData() {
   // wait for the virtualized cells to render
   cy.get('[data-gridcell-id="1,0"]');
   const rows = cy.get('[role=row]');
@@ -83,32 +111,4 @@ const getGridData = () => {
 
     return { headers, data, footer: footerData };
   });
-};
-
-describe('EuiDataGrid', () => {
-  describe('row creation', () => {
-    it('creates rows', () => {
-      mount(<EuiDataGrid {...baseProps} />);
-
-      getGridData().then((data) => {
-        expect(data).to.deep.equal({
-          headers: ['First', 'Second'],
-          data: [
-            { First: 'a, 0', Second: 'b, 0' },
-            { First: 'a, 1', Second: 'b, 1' },
-            { First: 'a, 2', Second: 'b, 2' },
-          ],
-          footer: { First: 'a, footer', Second: 'b, footer' },
-        });
-      });
-
-      // find all cells and verify they all belong to a row or columnheader
-      cy.get('[role=gridcell]')
-        .filter((idx, element) => {
-          const role = element.parentElement?.getAttribute('role');
-          return role === 'row' || role === 'columnheader' ? false : true;
-        })
-        .should('have.lengthOf', 0);
-    });
-  });
-});
+}

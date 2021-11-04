@@ -15,9 +15,6 @@ export const makeRowManager = (
   const rowIdToElements = new Map<number, HTMLDivElement>();
 
   return {
-    reset() {
-      rowIdToElements.clear();
-    },
     getRow(rowIndex) {
       let rowElement = rowIdToElements.get(rowIndex);
 

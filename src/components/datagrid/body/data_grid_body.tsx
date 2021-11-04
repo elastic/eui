@@ -134,7 +134,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     rowHeightsOptions,
     rowHeightUtils,
     setRowHeight: isFirstColumn ? setRowHeight : undefined,
-    rowManager: rowManager
+    rowManager: rowManager,
   };
 
   if (isLeadingControlColumn) {
