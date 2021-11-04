@@ -49,7 +49,8 @@ import Panel from './empty_prompt_panel_options';
 import Custom from './custom';
 const customSource = require('!!raw-loader!./custom');
 const customSnippet = `<EuiEmptyPrompt
-  iconType="editorStrike"
+  iconType="solutionApp"
+  iconColor="default"
   title={<h2>Your title</h2>}
   titleSize="xs"
   body={<p>Content</p>}
@@ -172,9 +173,8 @@ export const EmptyPromptExample = {
         </>
       ),
     },
-
     {
-      title: 'Custom sizes and colors',
+      title: 'Title sizes and icon colors',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -183,9 +183,15 @@ export const EmptyPromptExample = {
       ],
       text: (
         <p>
-          You can control the title size and icon color with the{' '}
-          <EuiCode>titleSize</EuiCode> and <EuiCode>iconColor</EuiCode> props
-          respectively.
+          Other customization options include changing the
+          <EuiCode>titleSize</EuiCode> to any of the{' '}
+          <Link to="/display/title">
+            <strong>EuiTitle</strong> sizes
+          </Link>{' '}
+          and <EuiCode>iconColor</EuiCode>. When using an application or
+          solution logo as the <EuiCode>iconType</EuiCode>, you can reset to the
+          multi-tone colors with{' '}
+          <EuiCode language="tsx">{'iconColor="default"'}</EuiCode>
         </p>
       ),
       props: { EuiEmptyPrompt },
