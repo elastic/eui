@@ -14,6 +14,7 @@ import { EuiTitle, EuiTitleSize } from '../title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
 import { EuiIcon, IconColor, IconType } from '../icon';
+import { COLORS as ICON_COLORS } from '../icon/icon';
 import { EuiText, EuiTextColor } from '../text';
 import { EuiPanel, _EuiPanelDivlike } from '../panel/panel';
 
@@ -34,7 +35,7 @@ export type EuiEmptyPromptProps = CommonProps &
     'borderRadius' | 'grow' | 'panelRef' | 'paddingSize' | 'title'
   > & {
     /*
-     * Accepts any `EuiIcon.type` or pass a custom node
+     * Accepts any [EuiIcon.type](#/display/icons)
      */
     iconType?: IconType;
     /**
@@ -82,7 +83,7 @@ export type EuiEmptyPromptProps = CommonProps &
 export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   icon,
   iconType,
-  iconColor = 'subdued',
+  iconColor: _iconColor,
   title,
   titleSize = 'm',
   paddingSize = 'l',
@@ -96,6 +97,10 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   ...rest
 }) => {
   const isVerticalLayout = layout === 'vertical';
+  // Default the iconColor to `subdued`,
+  // otherwise try to match the iconColor with the panel color unless iconColor is specified
+  const iconColor =
+    _iconColor ?? (ICON_COLORS.includes(color as any) ? color : 'subdued');
 
   const iconNode = iconType ? (
     <EuiIcon type={iconType} size="xxl" color={iconColor} />
