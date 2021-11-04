@@ -21,10 +21,11 @@ import PageTemplateTable from './_page_template_table';
 import EmptyPrompt from './empty_prompt';
 const emptyPromptSource = require('!!raw-loader!./empty_prompt');
 const emptyPromptSnippet = `<EuiEmptyPrompt
-  iconType="editorStrike"
+  iconType="logoSolution"
   title={<h2>Your title</h2>}
-  body={bodyContent}
+  body={<p>Content</p>}
   actions={actions}
+  footer={footer}
 />`;
 
 import Layout from './empty_prompt_layout';
@@ -44,7 +45,7 @@ const panelSnippet = `<EuiEmptyPrompt
   iconType="editorStrike"
   color="plain"
   title={<h2>Your title</h2>}
-  body={bodyContent}
+  body={<p>Content</p>}
   actions={actions}
 />`;
 
@@ -54,7 +55,7 @@ const customSnippet = `<EuiEmptyPrompt
   iconType="editorStrike"
   title={<h2>Your title</h2>}
   titleSize="xs"
-  body={bodyContent}
+  body={<p>Content</p>}
   actions={actions}
 />`;
 
@@ -62,7 +63,7 @@ import Simple from './simple';
 const simpleSource = require('!!raw-loader!./simple');
 const simpleSnippet = `<EuiEmptyPrompt
   title={<h2>Your title</h2>}
-  actions={multipleActions}
+  actions={[primaryAction, secondaryAction]}
 />`;
 
 import Loading from './empty_prompt_loading';
@@ -113,29 +114,23 @@ export const EmptyPromptExample = {
           code: emptyPromptSource,
         },
       ],
-      props: { EuiEmptyPrompt },
+      text: (
+        <>
+          <p>
+            While no one piece of content is required, each{' '}
+            <strong>EuiEmptyPrompt</strong> should contain at least a{' '}
+            <EuiCode>title</EuiCode> (wrapped in an HTML heading element) and/or
+            a <EuiCode>description</EuiCode>. They usually contain one or more{' '}
+            <EuiCode>actions</EuiCode> that promotes the primary
+            call-to-actions. You can also provide a <EuiCode>footer</EuiCode> to
+            direct users towards making informed decisions.
+          </p>
+        </>
+      ),
       demo: <EmptyPrompt />,
+      props: { EuiEmptyPrompt },
       snippet: emptyPromptSnippet,
       playground: emptyPromptConfig,
-    },
-    {
-      title: 'Custom sizes and colors',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: customSource,
-        },
-      ],
-      text: (
-        <p>
-          You can control the title size and icon color with the{' '}
-          <EuiCode>titleSize</EuiCode> and <EuiCode>iconColor</EuiCode> props
-          respectively.
-        </p>
-      ),
-      props: { EuiEmptyPrompt },
-      demo: <Custom />,
-      snippet: customSnippet,
     },
     {
       title: 'Less content, more actions',
@@ -158,6 +153,26 @@ export const EmptyPromptExample = {
       demo: <Simple />,
       snippet: simpleSnippet,
     },
+    {
+      title: 'Custom sizes and colors',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: customSource,
+        },
+      ],
+      text: (
+        <p>
+          You can control the title size and icon color with the{' '}
+          <EuiCode>titleSize</EuiCode> and <EuiCode>iconColor</EuiCode> props
+          respectively.
+        </p>
+      ),
+      props: { EuiEmptyPrompt },
+      demo: <Custom />,
+      snippet: customSnippet,
+    },
+
     {
       title: 'Layout',
       source: [
