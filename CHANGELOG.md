@@ -1,4 +1,4 @@
-## [`master`](https://github.com/elastic/eui/tree/master)
+## [`main`](https://github.com/elastic/eui/tree/main)
 
 - Added `useCombobox` hook for creating custom combobox components ([#5157](https://github.com/elastic/eui/pull/5157))
 - Added `paddingSize` prop to `EuiSelectableList` ([#5157](https://github.com/elastic/eui/pull/5157))

@@ -230,6 +230,7 @@ import Typography, {
 import Sizing, { sizingSections } from './views/theme/sizing/sizing';
 import Breakpoints from './views/theme/breakpoints/breakpoints';
 import Borders, { bordersSections } from './views/theme/borders/borders';
+import Other, { otherSections } from './views/theme/other/other';
 
 /** Elastic Charts */
 
@@ -369,6 +370,11 @@ const navigation = [
         name: 'Typography',
         component: Typography,
         sections: typographySections,
+      },
+      {
+        name: 'More tokens',
+        component: Other,
+        sections: otherSections,
       },
       createExample(SassGuidelines, 'Sass'),
     ],
