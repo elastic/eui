@@ -427,6 +427,13 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <span>
                 Titan
               </span>
+              <div
+                class="euiScreenReaderOnly"
+              >
+                <span>
+                  To select this option, press enter.
+                </span>
+              </div>
             </span>
           </span>
         </li>
@@ -454,6 +461,13 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <span>
                 Enceladus
               </span>
+              <div
+                class="euiScreenReaderOnly"
+              >
+                <span>
+                  To select this option, press enter.
+                </span>
+              </div>
             </span>
           </span>
         </li>
@@ -481,6 +495,13 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <span>
                 Mimas
               </span>
+              <div
+                class="euiScreenReaderOnly"
+              >
+                <span>
+                  To select this option, press enter.
+                </span>
+              </div>
             </span>
           </span>
         </li>
@@ -508,6 +529,13 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <span>
                 Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
               </span>
+              <div
+                class="euiScreenReaderOnly"
+              >
+                <span>
+                  To select this option, press enter.
+                </span>
+              </div>
             </span>
           </span>
         </li>
@@ -535,6 +563,13 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <span>
                 Tethys
               </span>
+              <div
+                class="euiScreenReaderOnly"
+              >
+                <span>
+                  To select this option, press enter.
+                </span>
+              </div>
             </span>
           </span>
         </li>
@@ -562,6 +597,13 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <span>
                 Hyperion
               </span>
+              <div
+                class="euiScreenReaderOnly"
+              >
+                <span>
+                  To select this option, press enter.
+                </span>
+              </div>
             </span>
           </span>
         </li>

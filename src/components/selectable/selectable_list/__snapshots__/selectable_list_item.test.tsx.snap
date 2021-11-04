@@ -65,16 +65,13 @@ exports[`EuiSelectableListItem props checked is off 1`] = `
     <span
       class="euiSelectableListItem__text"
     >
-      <span
+      <div
         class="euiScreenReaderOnly"
       >
-        Checked option.
-      </span>
-      <span
-        class="euiScreenReaderOnly"
-      >
-        To uncheck this option, press enter.
-      </span>
+        <span>
+          Checked option.
+        </span>
+      </div>
     </span>
   </span>
 </li>
@@ -97,16 +94,13 @@ exports[`EuiSelectableListItem props checked is on 1`] = `
     <span
       class="euiSelectableListItem__text"
     >
-      <span
+      <div
         class="euiScreenReaderOnly"
       >
-        Checked option.
-      </span>
-      <span
-        class="euiScreenReaderOnly"
-      >
-        To uncheck this option, press enter.
-      </span>
+        <span>
+          Checked option.
+        </span>
+      </div>
     </span>
   </span>
 </li>

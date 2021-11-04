@@ -62,6 +62,7 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
      * Padding for the list items.
      */
     paddingSize?: EuiSelectablePaddingSize;
+    searchable?: boolean;
   };
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -91,6 +92,7 @@ export class EuiSelectableListItem extends Component<
       onFocusBadge,
       paddingSize = 's',
       role = 'option',
+      searchable,
       ...rest
     } = this.props;
 
@@ -119,70 +121,67 @@ export class EuiSelectableListItem extends Component<
     let instruction: React.ReactNode;
     if (allowExclusions && checked === 'on') {
       state = (
-        <EuiScreenReaderOnly>
-          <span>
-            <EuiI18n
-              token="euiSelectableListItem.includedOption"
-              default="Included option."
-            />
-          </span>
-        </EuiScreenReaderOnly>
+        <span>
+          <EuiI18n
+            token="euiSelectableListItem.includedOption"
+            default="Selected option."
+          />
+        </span>
       );
       instruction = (
-        <EuiScreenReaderOnly>
-          <span>
-            <EuiI18n
-              token="euiSelectableListItem.includedOptionInstructions"
-              default="To exclude this option, press enter."
-            />
-          </span>
-        </EuiScreenReaderOnly>
+        <span>
+          <EuiI18n
+            token="euiSelectableListItem.includedOptionInstructions"
+            default="To exclude this option, press enter."
+          />
+        </span>
       );
     } else if (allowExclusions && checked === 'off') {
       state = (
-        <EuiScreenReaderOnly>
-          <span>
-            <EuiI18n
-              token="euiSelectableListItem.excludedOption"
-              default="Excluded option."
-            />
-          </span>
-        </EuiScreenReaderOnly>
+        <span>
+          <EuiI18n
+            token="euiSelectableListItem.excludedOption"
+            default="Excluded option."
+          />
+        </span>
       );
       instruction = (
-        <EuiScreenReaderOnly>
-          <span>
-            <EuiI18n
-              token="euiSelectableListItem.excludedOptionInstructions"
-              default="To deselect this option, press enter."
-            />
-          </span>
-        </EuiScreenReaderOnly>
+        <span>
+          <EuiI18n
+            token="euiSelectableListItem.excludedOptionInstructions"
+            default="To uncheck this option, press enter."
+          />
+        </span>
+      );
+    } else if (allowExclusions && !checked) {
+      instruction = (
+        <span>
+          <EuiI18n
+            token="euiSelectableListItem.excludedOptionInstructions"
+            default="To select this option, press enter."
+          />
+        </span>
       );
     }
 
     const isChecked = !disabled && typeof checked === 'string';
     if (!allowExclusions && isChecked) {
       state = (
-        <EuiScreenReaderOnly>
-          <span>
-            <EuiI18n
-              token="euiSelectableListItem.checkedOption"
-              default="Checked option."
-            />
-          </span>
-        </EuiScreenReaderOnly>
+        <span>
+          <EuiI18n
+            token="euiSelectableListItem.checkedOption"
+            default="Checked option."
+          />
+        </span>
       );
-      instruction = (
-        <EuiScreenReaderOnly>
-          <span>
-            <EuiI18n
-              token="euiSelectableListItem.checkedOptionInstructions"
-              default="To uncheck this option, press enter."
-            />
-          </span>
-        </EuiScreenReaderOnly>
-      );
+      instruction = searchable ? (
+        <span>
+          <EuiI18n
+            token="euiSelectableListItem.checkedOptionInstructions"
+            default="To uncheck this option, press enter."
+          />
+        </span>
+      ) : undefined;
     }
 
     let prependNode: React.ReactNode;
@@ -248,9 +247,15 @@ export class EuiSelectableListItem extends Component<
           {optionIcon}
           {prependNode}
           <span className="euiSelectableListItem__text">
-            {state}
             {children}
-            {instruction}
+            {(instruction || state) && (
+              <EuiScreenReaderOnly>
+                <div>
+                  {state}
+                  {instruction}
+                </div>
+              </EuiScreenReaderOnly>
+            )}
           </span>
           {appendNode}
         </span>

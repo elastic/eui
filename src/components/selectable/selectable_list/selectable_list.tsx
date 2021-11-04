@@ -212,6 +212,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       makeOptionId,
       renderOption,
       setActiveOptionIndex,
+      searchable,
     } = this.props;
 
     if (isGroupLabel) {
@@ -254,6 +255,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         allowExclusions={allowExclusions}
         showIcons={showIcons}
         paddingSize={paddingSize}
+        searchable={searchable}
         {...(optionRest as EuiSelectableListItemProps)}
       >
         {renderOption ? (
