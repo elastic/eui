@@ -85,9 +85,6 @@ export const GlobalFilterItem = (props) => {
       iconSide="right"
       onClick={togglePopover}
       onClickAriaLabel="Filter actions"
-      // Removing `closeButtonProps` in this case because the button has an implicit tabindex of 0.
-      // The icon inside it cannot have a declared tabindex or axe throws a violation.
-      // See components > badge > badge.tsx#255
       {...rest}
     >
       {prefix}
