@@ -8,7 +8,7 @@
   justify-content: space-between;
 }
 
-.euiDataGrid__displayControls {
+.euiDataGrid__rightControls {
   // Keep this right-aligned if hasRoomForGridControls is hiding dataControls
   &:only-child {
     margin-right: 0;
@@ -21,8 +21,8 @@
   }
 }
 
-.euiDataGrid__dataControls {
-  // Ensure there's sufficient spacing between each toolbar icon/popover
+.euiDataGrid__leftControls {
+  // Ensure there's sufficient spacing between each toolbar button/popover
   > * + * {
     margin-left: $euiSizeXS / 2;
   }

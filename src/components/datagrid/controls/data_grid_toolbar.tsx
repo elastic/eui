@@ -72,7 +72,7 @@ export const EuiDataGridToolbar = ({
       data-test-sub="dataGridControls"
     >
       {hasRoomForGridControls && (
-        <div className="euiDataGrid__dataControls">
+        <div className="euiDataGrid__leftControls">
           {checkOrDefaultToolBarDisplayOptions(
             toolbarVisibility,
             'additionalControls'
@@ -93,7 +93,7 @@ export const EuiDataGridToolbar = ({
             : null}
         </div>
       )}
-      <div className="euiDataGrid__displayControls">
+      <div className="euiDataGrid__rightControls">
         {checkOrDefaultToolBarDisplayOptions(
           toolbarVisibility,
           'showStyleSelector'

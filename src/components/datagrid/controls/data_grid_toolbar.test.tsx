@@ -36,7 +36,7 @@ describe('EuiDataGridToolbar', () => {
         data-test-sub="dataGridControls"
       >
         <div
-          className="euiDataGrid__dataControls"
+          className="euiDataGrid__leftControls"
         >
           <div>
             mock column selector
@@ -46,7 +46,7 @@ describe('EuiDataGridToolbar', () => {
           </div>
         </div>
         <div
-          className="euiDataGrid__displayControls"
+          className="euiDataGrid__rightControls"
         >
           <div>
             mock style selector
@@ -76,10 +76,10 @@ describe('EuiDataGridToolbar', () => {
         data-test-sub="dataGridControls"
       >
         <div
-          className="euiDataGrid__dataControls"
+          className="euiDataGrid__leftControls"
         />
         <div
-          className="euiDataGrid__displayControls"
+          className="euiDataGrid__rightControls"
         />
       </div>
     `);
@@ -105,14 +105,14 @@ describe('EuiDataGridToolbar', () => {
         data-test-sub="dataGridControls"
       >
         <div
-          className="euiDataGrid__dataControls"
+          className="euiDataGrid__leftControls"
         >
           <div>
             hello world
           </div>
         </div>
         <div
-          className="euiDataGrid__displayControls"
+          className="euiDataGrid__rightControls"
         />
       </div>
     `);

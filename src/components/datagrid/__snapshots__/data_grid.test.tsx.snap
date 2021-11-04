@@ -941,11 +941,8 @@ Array [
         data-test-sub="dataGridControls"
       >
         <div
-          class="euiDataGrid__dataControls"
+          class="euiDataGrid__leftControls"
         >
-          <button>
-            Button
-          </button>
           <div
             class="euiPopover euiPopover--anchorDownLeft"
             data-test-subj="dataGridColumnSelectorPopover"
@@ -975,9 +972,12 @@ Array [
               </button>
             </div>
           </div>
+          <button>
+            Button
+          </button>
         </div>
         <div
-          class="euiDataGrid__displayControls"
+          class="euiDataGrid__rightControls"
         >
           <div
             class="euiPopover euiPopover--anchorDownRight"
@@ -1331,11 +1331,8 @@ Array [
         data-test-sub="dataGridControls"
       >
         <div
-          class="euiDataGrid__dataControls"
+          class="euiDataGrid__leftControls"
         >
-          <button>
-            Button
-          </button>
           <div
             class="euiPopover euiPopover--anchorDownLeft"
             data-test-subj="dataGridColumnSelectorPopover"
@@ -1365,9 +1362,12 @@ Array [
               </button>
             </div>
           </div>
+          <button>
+            Button
+          </button>
         </div>
         <div
-          class="euiDataGrid__displayControls"
+          class="euiDataGrid__rightControls"
         >
           <div
             class="euiPopover euiPopover--anchorDownRight"
@@ -2027,7 +2027,7 @@ Array [
         data-test-sub="dataGridControls"
       >
         <div
-          class="euiDataGrid__dataControls"
+          class="euiDataGrid__leftControls"
         >
           <div
             class="euiPopover euiPopover--anchorDownLeft"
@@ -2060,7 +2060,7 @@ Array [
           </div>
         </div>
         <div
-          class="euiDataGrid__displayControls"
+          class="euiDataGrid__rightControls"
         >
           <div
             class="euiPopover euiPopover--anchorDownRight"
@@ -2416,7 +2416,7 @@ Array [
         data-test-sub="dataGridControls"
       >
         <div
-          class="euiDataGrid__dataControls"
+          class="euiDataGrid__leftControls"
         >
           <div
             class="euiPopover euiPopover--anchorDownLeft"
@@ -2449,7 +2449,7 @@ Array [
           </div>
         </div>
         <div
-          class="euiDataGrid__displayControls"
+          class="euiDataGrid__rightControls"
         >
           <div
             class="euiPopover euiPopover--anchorDownRight"
