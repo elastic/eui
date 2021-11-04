@@ -31,6 +31,8 @@ import {
 import { htmlIdGenerator } from '../../../../src/services';
 
 const WritingExamples = () => {
+  const modalStyles = { maxWidth: 480, transform: 'scale(.75)' };
+
   return (
     <>
       <EuiText>
@@ -47,10 +49,7 @@ const WritingExamples = () => {
           type="do"
           text="Use a verb + noun for a button label."
         >
-          <EuiPanel
-            paddingSize="none"
-            style={{ maxWidth: 400, transform: 'scale(.75)' }}
-          >
+          <EuiPanel paddingSize="none" style={modalStyles}>
             <EuiModalHeader>
               <EuiModalHeaderTitle>Search session complete</EuiModalHeaderTitle>
             </EuiModalHeader>
@@ -224,6 +223,12 @@ const WritingExamples = () => {
         </GuideRuleExample>
       </GuideRule>
 
+      <EuiSpacer />
+
+      <EuiLink href="#/display/empty-prompt">
+        More empty prompts examples
+      </EuiLink>
+
       <EuiHorizontalRule />
 
       <EuiSpacer size="m" />
@@ -291,7 +296,7 @@ const WritingExamples = () => {
           <EuiCallOut size="m" title="Building a dashboard?" iconType="gear">
             <p>
               Create content directly from our Dashboard app using our new
-              integrated workflow.
+              integrated workflow.{' '}
               <EuiLink href="http://www.elastic.co" external>
                 Learn more.
               </EuiLink>
@@ -309,10 +314,10 @@ const WritingExamples = () => {
             body={
               <p>
                 To use advanced security and our other awesome&nbsp;
-                <EuiLink href="http://www.elastic.co" external>
-                  subscription features,
+                <EuiLink href="http://www.elastic.co">
+                  subscription features
                 </EuiLink>
-                &nbsp;request an extension now.
+                , request an extension now.
               </p>
             }
             actions={
@@ -342,10 +347,7 @@ const WritingExamples = () => {
           type="do"
           text="For the body text, use one to two short sentences that explain the consequences."
         >
-          <EuiPanel
-            paddingSize="none"
-            style={{ maxWidth: 400, transform: 'scale(.75)' }}
-          >
+          <EuiPanel paddingSize="none" style={modalStyles}>
             <EuiModalHeader>
               <EuiModalHeaderTitle>
                 New dashboard already in progress
@@ -366,10 +368,7 @@ const WritingExamples = () => {
         </GuideRuleExample>
 
         <GuideRuleExample type="do" text="Some cases requrie three buttons.">
-          <EuiPanel
-            paddingSize="none"
-            style={{ maxWidth: 400, transform: 'scale(.75)' }}
-          >
+          <EuiPanel paddingSize="none" style={modalStyles}>
             <EuiModalHeader>
               <EuiModalHeaderTitle>
                 You have unsaved changes
@@ -401,10 +400,7 @@ const WritingExamples = () => {
           type="do"
           text="Use the same action verbs in the header and button text."
         >
-          <EuiPanel
-            paddingSize="none"
-            style={{ maxWidth: 400, transform: 'scale(.75)' }}
-          >
+          <EuiPanel paddingSize="none" style={modalStyles}>
             <EuiModalHeader>
               <EuiModalHeaderTitle>Refresh field list?</EuiModalHeaderTitle>
             </EuiModalHeader>
@@ -425,10 +421,7 @@ const WritingExamples = () => {
           type="do"
           text="Omit the body if users understand the decision from the header and button text alone."
         >
-          <EuiPanel
-            paddingSize="none"
-            style={{ maxWidth: 400, transform: 'scale(.75)' }}
-          >
+          <EuiPanel paddingSize="none" style={modalStyles}>
             <EuiModalHeader>
               <EuiModalHeaderTitle>Remove index pattern?</EuiModalHeaderTitle>
             </EuiModalHeader>
@@ -453,10 +446,7 @@ const WritingExamples = () => {
           text="Asking users to delete a single item should include the item name in the title, if possible.
    Use single quotes around the name if it helps clarify meaning."
         >
-          <EuiPanel
-            paddingSize="none"
-            style={{ maxWidth: 400, transform: 'scale(.75)' }}
-          >
+          <EuiPanel paddingSize="none" style={modalStyles}>
             <EuiModalHeader>
               <EuiModalHeaderTitle>
                 Delete pipeline &apos;MyPipeline&apos;?
@@ -482,10 +472,7 @@ const WritingExamples = () => {
           type="do"
           text="For bulk actions, include the number of items in the title."
         >
-          <EuiPanel
-            paddingSize="none"
-            style={{ maxWidth: 400, transform: 'scale(.75)' }}
-          >
+          <EuiPanel paddingSize="none" style={modalStyles}>
             <EuiModalHeader>
               <EuiModalHeaderTitle>Delete 6 pipelines?</EuiModalHeaderTitle>
             </EuiModalHeader>
@@ -624,8 +611,6 @@ const WritingExamples = () => {
             <EuiFieldNumber min={1} max={5} step={1} />
           </EuiFormRow>
         </GuideRuleExample>
-
-        <GuideRuleExample panelDisplay="block" type="" text="" />
       </GuideRule>
 
       <EuiSpacer size="m" />
@@ -722,10 +707,12 @@ const WritingExamples = () => {
         </GuideRuleExample>
       </GuideRule>
 
+      {/* TODO: The following guidelines are commented out because they're not finished */}
+      {/* 
       <EuiHorizontalRule />
 
       <EuiSpacer size="m" />
-
+      
       <EuiText>
         <h2 id="popovers">Popovers</h2>
 
@@ -735,7 +722,7 @@ const WritingExamples = () => {
         </p>
       </EuiText>
 
-      <EuiHorizontalRule />
+      <EuiHorizontalRule /> */}
     </>
   );
 };
