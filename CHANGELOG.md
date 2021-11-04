@@ -1,4 +1,4 @@
-## [`master`](https://github.com/elastic/eui/tree/master)
+## [`main`](https://github.com/elastic/eui/tree/main)
 
 **Bug fixes**
 
