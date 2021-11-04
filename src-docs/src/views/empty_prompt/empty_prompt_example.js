@@ -10,8 +10,6 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { COLORS } from '../../../../src/components/panel/panel';
-
 import Guidelines from './guidelines';
 
 import emptyPromptConfig from './playground';
@@ -39,15 +37,14 @@ const layoutSnippet = `<EuiEmptyPrompt
   footer={footer}
 />`;
 
-import Panel from './empty_prompt_panel';
-const panelSource = require('!!raw-loader!./empty_prompt_panel');
-const panelSnippet = `<EuiEmptyPrompt
-  iconType="editorStrike"
-  color="plain"
+import Simple from './simple';
+const simpleSource = require('!!raw-loader!./simple');
+const simpleSnippet = `<EuiEmptyPrompt
   title={<h2>Your title</h2>}
-  body={<p>Content</p>}
-  actions={actions}
+  actions={[primaryAction, secondaryAction]}
 />`;
+
+import Panel from './empty_prompt_panel_options';
 
 import Custom from './custom';
 const customSource = require('!!raw-loader!./custom');
@@ -57,13 +54,6 @@ const customSnippet = `<EuiEmptyPrompt
   titleSize="xs"
   body={<p>Content</p>}
   actions={actions}
-/>`;
-
-import Simple from './simple';
-const simpleSource = require('!!raw-loader!./simple');
-const simpleSnippet = `<EuiEmptyPrompt
-  title={<h2>Your title</h2>}
-  actions={[primaryAction, secondaryAction]}
 />`;
 
 import Loading from './empty_prompt_loading';
@@ -154,6 +144,36 @@ export const EmptyPromptExample = {
       snippet: simpleSnippet,
     },
     {
+      title: 'Panel options',
+      wrapText: false,
+      text: (
+        <>
+          <EuiText>
+            <p>
+              The <strong>EuiEmptyPrompt</strong> is wrapped by{' '}
+              <Link to="/layout/panel">
+                <strong>EuiPanel</strong>
+              </Link>
+              . By default, the panel is set to <EuiCode>transparent</EuiCode>{' '}
+              but you can customize other panel options like{' '}
+              <EuiCode>color</EuiCode>, <EuiCode>hasBorder</EuiCode> and{' '}
+              <EuiCode>paddingSize</EuiCode>. Changing the{' '}
+              <EuiCode>color</EuiCode> prop will also attempt to adjust the{' '}
+              <EuiCode>iconColor</EuiCode> and <EuiCode>footer</EuiCode> color.
+            </p>
+            <p>
+              Read the{' '}
+              <Link to="/guidelines/empty-prompt">usage guidelines</Link> to
+              better understand when to use certain panel props.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <Panel />
+        </>
+      ),
+    },
+
+    {
       title: 'Custom sizes and colors',
       source: [
         {
@@ -207,36 +227,6 @@ export const EmptyPromptExample = {
       props: { EuiEmptyPrompt },
       demo: <Layout />,
       snippet: layoutSnippet,
-    },
-    {
-      title: 'Panel colors',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: panelSource,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            The <strong>EuiEmptyPrompt</strong> is built on top of{' '}
-            <Link to="/layout/panel">
-              <strong>EuiPanel</strong>
-            </Link>
-            . By default, the panel color is set to transparent but you can
-            customize the panel color by passing one of the color options:{' '}
-            <EuiCode language="js">{JSON.stringify(COLORS, null, 2)}</EuiCode>.
-          </p>
-          <p>
-            Read the <Link to="/guidelines/empty-prompt">usage guidelines</Link>{' '}
-            to understand better what scenarios you should stick to the
-            transparent color or use any other colors.
-          </p>
-        </>
-      ),
-      props: { EuiEmptyPrompt },
-      demo: <Panel />,
-      snippet: panelSnippet,
     },
 
     {
