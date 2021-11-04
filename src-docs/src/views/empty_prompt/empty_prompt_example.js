@@ -198,43 +198,6 @@ export const EmptyPromptExample = {
       demo: <Custom />,
       snippet: customSnippet,
     },
-
-    {
-      title: 'Layout',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: layoutSource,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            You can supply a layout of either <EuiCode>horizontal</EuiCode> or{' '}
-            <EuiCode>vertical</EuiCode> with the default being{' '}
-            <EuiCode>vertical</EuiCode>. When creating empty states we want the
-            content to be short and straight to the point. So most of the time,
-            the <EuiCode>vertical</EuiCode> layout is enough. All the content
-            will be center aligned and this type of text alignment only works
-            with small content.
-          </p>
-          <p>
-            When you have longer texts or multiple calls to action, you can use
-            the <EuiCode>horizontal</EuiCode> layout. However, this layout only
-            works when you can provide an illustration. For consistency, we
-            recommend using the illustration with a{' '}
-            <Link to="/display/image">
-              <strong>EuiImage</strong>
-            </Link>{' '}
-            with the size set to <EuiCode>{'"fullWidth"'}</EuiCode>.
-          </p>
-        </>
-      ),
-      props: { EuiEmptyPrompt },
-      demo: <Layout />,
-      snippet: layoutSnippet,
-    },
-
     {
       title: 'Loading and error prompts',
       source: [
@@ -307,6 +270,47 @@ export const EmptyPromptExample = {
           <States />
         </div>
       ),
+    },
+    {
+      title: 'Layout',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: layoutSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            You can supply a <EuiCode>layout</EuiCode> of either{' '}
+            <EuiCode>{'"horizontal"'}</EuiCode> or{' '}
+            <EuiCode>{'"vertical"'}</EuiCode> with the default being{' '}
+            <EuiCode>{'vertical'}</EuiCode>. When creating empty states we want
+            the content to be short and straight to the point. So most of the
+            time, the <EuiCode>vertical</EuiCode> layout is enough. All the
+            content will be center aligned and this type of text alignment only
+            works with small content.
+          </p>
+          <p>
+            When you have longer body text with multiple calls to action, you
+            can use the <EuiCode>horizontal</EuiCode> layout. This layout works
+            best when you can provide a larger graphic like an illustration as
+            the <EuiCode>icon</EuiCode>. For consistency, we recommend providing
+            the illustration using a{' '}
+            <Link to="/display/image">
+              <strong>EuiImage</strong>
+            </Link>{' '}
+            with <EuiCode language="tsx">{'size="fullWidth"'}</EuiCode>.
+          </p>
+        </>
+      ),
+      props: { EuiEmptyPrompt },
+      demo: <Layout />,
+      demoPanelProps: {
+        color: 'subdued',
+        paddingSize: 'l',
+      },
+      snippet: layoutSnippet,
     },
     {
       title: 'More types of empty states',
