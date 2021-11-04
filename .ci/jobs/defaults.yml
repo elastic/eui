@@ -34,7 +34,7 @@
     parameters:
       - string:
           name: branch_specifier
-          default: refs/heads/master
+          default: refs/heads/main
           description: the Git branch specifier to build (&lt;branchName&gt;,
             &lt;tagName&gt;, &lt;commitId&gt;, etc.)
     wrappers:
