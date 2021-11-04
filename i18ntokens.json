@@ -37,11 +37,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 663,
+        "line": 664,
         "column": 10
       },
       "end": {
-        "line": 673,
+        "line": 674,
         "column": 12
       }
     },
@@ -53,11 +53,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 682,
+        "line": 683,
         "column": 12
       },
       "end": {
-        "line": 693,
+        "line": 694,
         "column": 14
       }
     },
@@ -69,11 +69,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 697,
+        "line": 698,
         "column": 12
       },
       "end": {
-        "line": 707,
+        "line": 708,
         "column": 14
       }
     },
@@ -85,11 +85,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 712,
+        "line": 713,
         "column": 10
       },
       "end": {
-        "line": 718,
+        "line": 719,
         "column": 12
       }
     },
@@ -101,11 +101,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 760,
+        "line": 761,
         "column": 6
       },
       "end": {
-        "line": 760,
+        "line": 761,
         "column": 77
       }
     },
@@ -117,11 +117,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1164,
+        "line": 1153,
         "column": 8
       },
       "end": {
-        "line": 1164,
+        "line": 1153,
         "column": 79
       }
     },
@@ -133,11 +133,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1384,
+        "line": 1373,
         "column": 8
       },
       "end": {
-        "line": 1388,
+        "line": 1377,
         "column": 9
       }
     },
@@ -302,70 +302,6 @@
       }
     },
     "filepath": "src/components/card/card_select.tsx"
-  },
-  {
-    "token": "euiCodeEditor.startInteracting",
-    "defString": "Press Enter to start interacting with the code.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 262,
-        "column": 12
-      },
-      "end": {
-        "line": 265,
-        "column": 14
-      }
-    },
-    "filepath": "src/components/code_editor/code_editor.tsx"
-  },
-  {
-    "token": "euiCodeEditor.startEditing",
-    "defString": "Press Enter to start editing.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 267,
-        "column": 12
-      },
-      "end": {
-        "line": 270,
-        "column": 14
-      }
-    },
-    "filepath": "src/components/code_editor/code_editor.tsx"
-  },
-  {
-    "token": "euiCodeEditor.stopInteracting",
-    "defString": "When you're done, press Escape to stop interacting with the code.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 276,
-        "column": 12
-      },
-      "end": {
-        "line": 279,
-        "column": 14
-      }
-    },
-    "filepath": "src/components/code_editor/code_editor.tsx"
-  },
-  {
-    "token": "euiCodeEditor.stopEditing",
-    "defString": "When you're done, press Escape to stop editing.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 281,
-        "column": 12
-      },
-      "end": {
-        "line": 284,
-        "column": 14
-      }
-    },
-    "filepath": "src/components/code_editor/code_editor.tsx"
   },
   {
     "token": "euiCodeBlock.copyButton",
@@ -2405,11 +2341,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 112,
+        "line": 108,
         "column": 20
       },
       "end": {
-        "line": 112,
+        "line": 108,
         "column": 77
       }
     },
@@ -2421,11 +2357,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 122,
+        "line": 118,
         "column": 10
       },
       "end": {
-        "line": 125,
+        "line": 121,
         "column": 12
       }
     },
@@ -2773,11 +2709,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 136,
+        "line": 135,
         "column": 14
       },
       "end": {
-        "line": 142,
+        "line": 141,
         "column": 15
       }
     },
@@ -3077,11 +3013,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 194,
+        "line": 190,
         "column": 6
       },
       "end": {
-        "line": 200,
+        "line": 196,
         "column": 8
       }
     },
@@ -3349,11 +3285,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 150,
+        "line": 148,
         "column": 10
       },
       "end": {
-        "line": 150,
+        "line": 148,
         "column": 80
       }
     },
@@ -3637,11 +3573,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 92,
+        "line": 80,
         "column": 10
       },
       "end": {
-        "line": 96,
+        "line": 84,
         "column": 11
       }
     },

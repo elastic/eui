@@ -3,7 +3,7 @@
   "extends": ["config:base", ":disableDependencyDashboard"],
   "ignorePaths": ["./.github/**"],
   "enabledManagers": ["npm"],
-  "baseBranches": ["master"],
+  "baseBranches": ["main"],
   "separateMajorMinor": false,
   "rangeStrategy": "bump",
   "semanticCommits": "disabled",
@@ -20,7 +20,7 @@
       "groupName": "@elastic/charts",
       "matchPackageNames": ["@elastic/charts"],
       "matchUpdateTypes": ["major"],
-      "matchBaseBranches": ["master"],
+      "matchBaseBranches": ["main"],
       "labels": ["dependencies", "skip-changelog"],
       "automerge": true,
       "enabled": true

@@ -64,10 +64,10 @@ const EuiDataGridCellContent: FunctionComponent<
       { row: rowIndex + 1, col: colIndex + 1 }
     );
 
-    const isDefinedHeight =
-      rowHeightUtils &&
-      rowHeightsOptions &&
-      rowHeightUtils.isDefinedHeight(rowIndex, rowHeightsOptions);
+    const isDefinedHeight = !!rowHeightUtils?.getRowHeightOption(
+      rowIndex,
+      rowHeightsOptions
+    );
 
     return (
       <>
@@ -116,7 +116,6 @@ export class EuiDataGridCell extends Component<
   static activeFocusTimeoutId: number | undefined = undefined;
 
   cellRef = createRef() as MutableRefObject<HTMLDivElement | null>;
-  observer!: any; // Cell ResizeObserver
   contentObserver!: any; // Cell Content ResizeObserver
   popoverPanelRef: MutableRefObject<HTMLElement | null> = createRef();
   cellContentsRef: HTMLDivElement | null = null;
@@ -131,34 +130,6 @@ export class EuiDataGridCell extends Component<
   unsubscribeCell?: Function = () => {};
   focusTimeout: number | undefined;
   style = null;
-
-  observeHeight = (
-    component: HTMLDivElement | null,
-    setRowHeight?: (rowHeight: number) => void
-  ) => {
-    const observer = new (window as any).ResizeObserver(() => {
-      const rowHeight = component!.getBoundingClientRect().height;
-      if (setRowHeight) {
-        setRowHeight(rowHeight);
-      }
-    });
-    observer.observe(component);
-    return observer;
-  };
-
-  setCellRef = (ref: HTMLDivElement | null) => {
-    // save the reference
-    this.cellRef.current = ref;
-
-    // watch the first cell for size changes and use that to re-compute row heights
-    if (this.props.colIndex === 0 && this.props.visibleRowIndex === 0) {
-      if (ref && hasResizeObserver) {
-        this.observer = this.observeHeight(ref, this.props.setRowHeight);
-      } else if (this.observer) {
-        this.observer.disconnect();
-      }
-    }
-  };
 
   static contextType = DataGridFocusContext;
 
@@ -197,7 +168,7 @@ export class EuiDataGridCell extends Component<
     }
   };
 
-  recalculateRowHeight = () => {
+  recalculateAutoHeight = () => {
     const { rowHeightUtils, rowHeightsOptions, rowIndex } = this.props;
     if (
       this.cellContentsRef &&
@@ -213,6 +184,27 @@ export class EuiDataGridCell extends Component<
         rowHeight,
         visibleRowIndex
       );
+    }
+  };
+
+  recalculateLineCountHeight = () => {
+    if (!this.props.setRowHeight) return; // setRowHeight is only passed by data_grid_body into one cell per row
+    if (!this.cellContentsRef) return;
+
+    const { rowHeightUtils, rowHeightsOptions, rowIndex } = this.props;
+    const rowHeightOption = rowHeightUtils?.getRowHeightOption(
+      rowIndex,
+      rowHeightsOptions
+    );
+    const lineCount = rowHeightUtils?.getLineCount(rowHeightOption);
+
+    if (lineCount) {
+      const height = rowHeightUtils!.calculateHeightForLineCount(
+        this.cellContentsRef,
+        lineCount
+      );
+
+      this.props.setRowHeight(height);
     }
   };
 
@@ -239,7 +231,7 @@ export class EuiDataGridCell extends Component<
   }
 
   componentDidUpdate(prevProps: EuiDataGridCellProps) {
-    this.recalculateRowHeight();
+    this.recalculateAutoHeight();
 
     if (this.props.columnId !== prevProps.columnId) {
       this.setCellProps({});
@@ -293,7 +285,11 @@ export class EuiDataGridCell extends Component<
   setCellContentsRef = (ref: HTMLDivElement | null) => {
     this.cellContentsRef = ref;
     if (ref && hasResizeObserver) {
-      this.contentObserver = this.observeHeight(ref, this.recalculateRowHeight);
+      this.contentObserver = new (window as any).ResizeObserver(() => {
+        this.recalculateAutoHeight();
+        this.recalculateLineCountHeight();
+      });
+      this.contentObserver.observe(ref);
     } else if (this.contentObserver) {
       this.contentObserver.disconnect();
     }
@@ -567,7 +563,7 @@ export class EuiDataGridCell extends Component<
         tabIndex={
           this.state.isFocused && !this.state.disableCellTabIndex ? 0 : -1
         }
-        ref={this.setCellRef}
+        ref={this.cellRef}
         {...cellProps}
         data-test-subj="dataGridRowCell"
         data-gridcell-id={`${this.props.rowIndex},${this.props.colIndex}`}
