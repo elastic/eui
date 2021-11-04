@@ -1,5 +1,8 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))
+- Updated `EuiEmptyPrompt` to extend `EuiPanelProps` ([#5275](https://github.com/elastic/eui/pull/5275))
+
 **Bug fixes**
 
 - Fixed an `EuiDataGrid` race condition where grid rows had incorrect heights if loaded in before CSS ([#5284](https://github.com/elastic/eui/pull/5284))
@@ -11,8 +14,6 @@
 - Changed render of `useEuiTextDiff` to a `span` instead of `div` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Changed change prop type of `children` for `EuiMark` from `string` to `ReactNode` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Added `render` prop to `EuiI18n` ([#5236](https://github.com/elastic/eui/pull/5236))
-- Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))
-- Updated `EuiEmptyPrompt` to extend `EuiPanelProps` ([#5275](https://github.com/elastic/eui/pull/5275))
 
 **Bug fixes**
 
