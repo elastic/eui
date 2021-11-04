@@ -503,7 +503,7 @@ export const PageExample = {
               CSS overflow utility classes
             </Link>{' '}
             to these children. There are a few <strong>caveats</strong> to
-            understand when trying to acheive full height layouts with{' '}
+            understand when trying to achieve full height layouts with{' '}
             <strong>EuiPageTemplate</strong>.
           </p>
           <ol>

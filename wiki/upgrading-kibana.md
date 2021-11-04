@@ -2,11 +2,11 @@
 
 ## Overview
 
-If the upgrade includes a large number of commits or has known breaking changes, consider performing a commit-less dry run prior to release using the process described below and a [pre-release build of EUI](https://github.com/elastic/eui/blob/master/wiki/component-development.md#testing-dev-features-in-local-kibana).
+If the upgrade includes a large number of commits or has known breaking changes, consider performing a commit-less dry run prior to release using the process described below and a [pre-release build of EUI](https://github.com/elastic/eui/blob/main/wiki/component-development.md#testing-dev-features-in-local-kibana).
 
-1. Start a new branch off the `master` branch in the Kibana repo
-2. Change the `@elastic/eui` entry in [`package.json`](https://github.com/elastic/kibana/blob/master/package.json) to the target version
-3. Change the `@elastic/eui@` entry in [`src/dev/license_checker/config.ts`](https://github.com/elastic/kibana/blob/master/src/dev/license_checker/config.ts) to the target version
+1. Start a new branch off the `main` branch in the Kibana repo
+2. Change the `@elastic/eui` entry in [`package.json`](https://github.com/elastic/kibana/blob/main/package.json) to the target version
+3. Change the `@elastic/eui@` entry in [`src/dev/license_checker/config.ts`](https://github.com/elastic/kibana/blob/main/src/dev/license_checker/config.ts) to the target version
 4. Run `yarn kbn bootstrap`
 5. Commit all changed files, including `yarn.lock`
 6. Update i18n tokens and translation files (see [i18n tokens](#i18n-tokens))
@@ -48,7 +48,7 @@ The best approach, again, involves narrowing the root cause to a commit in the c
 
 #### Cypress (`x-pack/plugins/security_solution/cypress/`)
 
-Follow the local [README instructions](https://github.com/elastic/kibana/blob/master/x-pack/plugins/security_solution/cypress/README.md#ftr--interactive) to run individual tests in a nice UI.
+Follow the local [README instructions](https://github.com/elastic/kibana/blob/main/x-pack/plugins/security_solution/cypress/README.md#ftr--interactive) to run individual tests in a nice UI.
 
 ### Other
 
@@ -62,14 +62,14 @@ If no mitigation strategies are presented, other options still exist (see [Snafu
 
 ### i18n tokens
 
-Check whether the target version upgrade range [contains i18n token changes](https://github.com/elastic/eui/blob/master/i18ntokens_changelog.json).
+Check whether the target version upgrade range [contains i18n token changes](https://github.com/elastic/eui/blob/main/i18ntokens_changelog.json).
 
 If changes exist:
 
-1. Manually update [`i18n_eui_mapping.tsx`](https://github.com/elastic/kibana/blob/master/src/core/public/i18n/i18n_eui_mapping.tsx) to match the changes
+1. Manually update [`i18n_eui_mapping.tsx`](https://github.com/elastic/kibana/blob/main/src/core/public/i18n/i18n_eui_mapping.tsx) to match the changes
 	* This file is strongly typed will surface missing or outdated token entries
 	* Provide descriptions for new entries
-2. Run `node scripts/i18n_check --fix` to delete removed or updated token entries from the [various translation files](https://github.com/elastic/kibana/tree/master/x-pack/plugins/translations/translations)
+2. Run `node scripts/i18n_check --fix` to delete removed or updated token entries from the [various translation files](https://github.com/elastic/kibana/tree/main/x-pack/plugins/translations/translations)
 3. Run `node scripts/i18n_check --ignore-missing` for verification
 
 ### Snafu
@@ -78,7 +78,7 @@ A change in EUI is having broader impact than expected or introduced a breaking 
 
 * _Low impact_: Skip the failing test(s) or `@ts-expect-error` the line with a "TODO" comment stating the intended action and linking to an issue in the EUI repo. Strive to resolve the TODO in the next upgrade.
 * _Medium impact_: If EUI has a clean changelog and the fix can be achieved with a PR and patch release, do so. Bump all files mentioned in the [Overview](#overview) to the new target version.
-* _Higher impact_: Typically reserved for when time is short (e.g., feature freeze deadline), the option is available to reduce the scope of the upgrade by creating a [backport release](https://github.com/elastic/eui/blob/master/wiki/releasing-versions.md#backport-process) that omits the offending commit. Update all files mentioned in the [Overview](#overview) to the new target version. This approach is absolutely valid, just be sure to fix the root issue before the next upgrade.
+* _Higher impact_: Typically reserved for when time is short (e.g., feature freeze deadline), the option is available to reduce the scope of the upgrade by creating a [backport release](https://github.com/elastic/eui/blob/main/wiki/releasing-versions.md#backport-process) that omits the offending commit. Update all files mentioned in the [Overview](#overview) to the new target version. This approach is absolutely valid, just be sure to fix the root issue before the next upgrade.
 
 
 ## PR Template
@@ -86,7 +86,7 @@ A change in EUI is having broader impact than expected or introduced a breaking 
 The typical EUI upgrade PR in Kibana looks something like [#109157](https://github.com/elastic/kibana/pull/109157), and reviewers have begun to expect the consistency. There are two important inclusions:
 
 * Call out changes made to accommodate test failures that might not be apparent from looking at the diff.
-* Copy-paste the full [changelog version range](https://github.com/elastic/eui/blob/master/CHANGELOG.md) for the upgrade.
+* Copy-paste the full [changelog version range](https://github.com/elastic/eui/blob/main/CHANGELOG.md) for the upgrade.
 
 
 ## PR Approvals
