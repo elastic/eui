@@ -1,6 +1,6 @@
 ## How EUI theming works
 
-EUI can be easily themed by overwriting the [global styling](https://github.com/elastic/eui/tree/master/src/global_styling)
+EUI can be easily themed by overwriting the [global styling](https://github.com/elastic/eui/tree/main/src/global_styling)
 variables. Currently we maintain the following themes:
 
 * theme_light (the default EUI theme)

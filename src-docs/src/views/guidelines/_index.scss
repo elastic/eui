@@ -91,6 +91,11 @@
   transform: scaleY(.5) rotate(30deg) skew(-30deg, 0deg);
   width: $euiSize;
   height: $euiSize;
+  margin: $euiSizeXS $euiSizeS 0;
+}
+
+.guideSass__sizeRow + .guideSass__sizeRow {
+  margin-top: $euiSize;
 }
 
 .guideSass__size {
@@ -153,15 +158,7 @@
   padding: $euiSizeXXL;
   background: $euiColorEmptyShade;
   border-radius: $euiBorderRadius;
-
-  & + .guideSass__shadow {
-    margin-top: $euiSizeXL;
-  }
-}
-
-.colorGuidelines_colorPreviewTooLight rect {
-  stroke: transparentize($euiColorLightShade, lightOrDarkTheme(.5, 0));
-  stroke-width: .25px;
+  margin: $euiSize;
 }
 
 .guideSass__shadow--euiSlightShadow { @include euiSlightShadow; }
@@ -173,17 +170,17 @@
 
 .guideSass__overflowShadows {
   overflow-y: hidden;
-  height: 200px;
+  height: 160px;
 
   .guideSass__overflowShadowText {
     @include euiYScrollWithShadows;
-    padding: $euiSizeS;
+    padding: $euiSize;
   }
 }
 
 .guideSass__overflowShadowsX {
   @include euiXScrollWithShadows;
-  padding: $euiSizeS $euiSizeS 0;
+  padding: $euiSize;
 
   .guideSass__overflowShadowTextX {
     width: 150%;
@@ -275,16 +272,35 @@
   font-feature-settings: $euiFontFeatureSettings;
 }
 
-.guideSass__animRow + .guideSass__animRow {
-  margin-top: $euiSizeL;
+.guideSass__speedExample {
+  transition: background $euiAnimSpeedSlow;
+
+  &:hover {
+    background: transparentize($euiColorDanger, .25);
+  }
+}
+
+.guideSass__easeExample {
+  padding: $euiSizeS;
+  transition: padding $euiAnimSpeedSlow $euiAnimSlightResistance;
+
+  &:hover {
+    padding: $euiSizeXL;
+  }
+}
+
+.guideSass__animRow {
+  width: $euiSizeXL * 2;
+  margin-right: $euiSize;
+  margin-top: $euiSizeXS;
 }
 
 .guideSass__animParent {
   background: $euiColorLightestShade;
   height: $euiSize;
-  margin-top: $euiSizeS;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .guideSass__animChild {
