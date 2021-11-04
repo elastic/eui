@@ -25,7 +25,7 @@ export default () => {
   }> = [
     {
       value: 'pageError',
-      text: 'Page error',
+      text: 'Page not found',
       component: pageError,
       source: pageErrorSource,
     },

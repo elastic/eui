@@ -67,6 +67,7 @@ const loadingSnippet = `<EuiEmptyPrompt
 import Error from './empty_prompt_error';
 const errorSource = require('!!raw-loader!./empty_prompt_error');
 const errorSnippet = `<EuiEmptyPrompt
+  color="danger"
   iconType="alert"
   title={<h2>There was an error</h2>}
 />`;
@@ -213,9 +214,9 @@ export const EmptyPromptExample = {
             by utilizing the same patterns.
           </p>
           <p>
-            For <strong>loading</strong> states, you can simply replace the{' '}
-            <EuiCode>iconType</EuiCode> with a custom <EuiCode>icon</EuiCode> by
-            passing in one of our{' '}
+            For <strong>loading</strong> states, instead of passing a{' '}
+            <EuiCode>iconType</EuiCode>, you can provide a custom{' '}
+            <EuiCode>icon</EuiCode> and pass in one of our{' '}
             <Link to="/display/loading">loading components</Link>.
           </p>
         </>
@@ -235,41 +236,13 @@ export const EmptyPromptExample = {
         <>
           <p>
             For <strong>error</strong> states, you can simply set the{' '}
-            <EuiCode>iconColor</EuiCode> to <EuiCode>danger</EuiCode> and/or
-            pass <EuiCode>danger</EuiCode> to the <EuiCode>color</EuiCode> prop.
+            <EuiCode>color</EuiCode> to <EuiCode>danger</EuiCode>.
           </p>
         </>
       ),
       props: { EuiEmptyPrompt },
       demo: <Error />,
       snippet: errorSnippet,
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: statesSource,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            You can then tie all three states together to create a seamless
-            loading to empty or loading to error experience. The following
-            example shows how to encorprate these states with{' '}
-            <Link to="/layout/page#simple-layout-with-centered-content">
-              <strong>EuiPageTemplate</strong>
-            </Link>{' '}
-            using <EuiCode>{'template="centeredContent"'}</EuiCode>.
-          </p>
-        </>
-      ),
-      props: { EuiEmptyPrompt },
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <States />
-        </div>
-      ),
     },
     {
       title: 'Layout',
@@ -360,6 +333,33 @@ export const EmptyPromptExample = {
       ),
       props: { EuiEmptyPrompt },
       demo: <PageTemplate />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: statesSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            You can then tie multiple types of empty states together to create a
+            seamless loading to empty or loading to error experience. The
+            following example shows how to encorprate these states with{' '}
+            <Link to="/layout/page#simple-layout-with-centered-content">
+              <strong>EuiPageTemplate</strong>
+            </Link>{' '}
+            using <EuiCode>{'template="centeredContent"'}</EuiCode>.
+          </p>
+        </>
+      ),
+      props: { EuiEmptyPrompt },
+      demo: (
+        <div className="guideDemo__highlightLayout">
+          <States />
+        </div>
+      ),
     },
   ],
 };
