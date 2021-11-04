@@ -13,6 +13,7 @@ import {
   EuiDataGridProps,
   EuiDataGridToolbarProps,
   EuiDataGridToolBarVisibilityOptions,
+  EuiDataGridToolBarAdditionalControlsOptions,
 } from '../data_grid_types';
 
 // Used to simplify some sizing logic which is difficult to account for in tests
@@ -75,12 +76,6 @@ export const EuiDataGridToolbar = ({
         <div className="euiDataGrid__leftControls">
           {checkOrDefaultToolBarDisplayOptions(
             toolbarVisibility,
-            'additionalControls'
-          ) && typeof toolbarVisibility !== 'boolean'
-            ? toolbarVisibility.additionalControls
-            : null}
-          {checkOrDefaultToolBarDisplayOptions(
-            toolbarVisibility,
             'showColumnSelector'
           )
             ? columnSelector
@@ -91,9 +86,11 @@ export const EuiDataGridToolbar = ({
           )
             ? columnSorting
             : null}
+          {renderAdditionalControls(toolbarVisibility, 'left')}
         </div>
       )}
       <div className="euiDataGrid__rightControls">
+        {renderAdditionalControls(toolbarVisibility, 'right')}
         {checkOrDefaultToolBarDisplayOptions(
           toolbarVisibility,
           'showStyleSelector'
@@ -139,4 +136,32 @@ export function checkOrDefaultToolBarDisplayOptions<
   } else {
     return true;
   }
+}
+
+export function renderAdditionalControls(
+  toolbarVisibility: EuiDataGridProps['toolbarVisibility'],
+  position: 'left' | 'right'
+) {
+  if (typeof toolbarVisibility === 'boolean') return null;
+  const { additionalControls } = toolbarVisibility || {};
+  if (!additionalControls) return null;
+
+  // Typescript is having obj issues, so we need to force cast to EuiDataGridToolBarAdditionalControlsOptions here
+  const additionalControlsObj: EuiDataGridToolBarAdditionalControlsOptions =
+    additionalControls?.constructor === Object ? additionalControls : {};
+
+  if (position === 'right') {
+    if (additionalControlsObj?.right) {
+      return additionalControlsObj.right;
+    }
+  } else if (position === 'left') {
+    if (additionalControlsObj?.left) {
+      return additionalControlsObj.left;
+    } else if (React.isValidElement(additionalControls)) {
+      // API backwards compatability: if the user passed in a single ReactNode, default to the the left position
+      return additionalControls;
+    }
+  }
+
+  return null;
 }

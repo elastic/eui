@@ -12,6 +12,7 @@ import { shallow } from 'enzyme';
 import {
   EuiDataGridToolbar,
   checkOrDefaultToolBarDisplayOptions,
+  renderAdditionalControls,
 } from './data_grid_toolbar';
 
 describe('EuiDataGridToolbar', () => {
@@ -94,7 +95,10 @@ describe('EuiDataGridToolbar', () => {
           showStyleSelector: false,
           showSortSelector: false,
           showFullScreenSelector: false,
-          additionalControls: <div>hello world</div>,
+          additionalControls: {
+            left: <div>hello</div>,
+            right: <div>world</div>,
+          },
         }}
       />
     );
@@ -108,12 +112,16 @@ describe('EuiDataGridToolbar', () => {
           className="euiDataGrid__leftControls"
         >
           <div>
-            hello world
+            hello
           </div>
         </div>
         <div
           className="euiDataGrid__rightControls"
-        />
+        >
+          <div>
+            world
+          </div>
+        </div>
       </div>
     `);
   });
@@ -166,5 +174,76 @@ describe('checkOrDefaultToolBarDisplayOptions', () => {
 
   it('defaults to true if `toolbarVisibility` is somehow undefined', () => {
     expect(checkOrDefaultToolBarDisplayOptions(undefined, key)).toEqual(true);
+  });
+});
+
+describe('renderAdditionalControls', () => {
+  const mockControl = <div data-test-subj="test" />;
+  // const mockToolbar = { additionalControls: mockControl };
+
+  it('does not render if a boolean was passed into toolbarVisibility', () => {
+    expect(renderAdditionalControls(false, 'left')).toEqual(null);
+    expect(renderAdditionalControls(true, 'left')).toEqual(null);
+  });
+
+  it('does not render if toolbarVisibility is undefined or additionalControls is undefined', () => {
+    expect(renderAdditionalControls(undefined, 'left')).toEqual(null);
+    expect(
+      renderAdditionalControls({ additionalControls: undefined }, 'left')
+    ).toEqual(null);
+  });
+
+  describe('left', () => {
+    it('renders a react node passed into the left side toolbar', () => {
+      expect(
+        renderAdditionalControls(
+          { additionalControls: { left: mockControl } },
+          'left'
+        )
+      ).toEqual(mockControl);
+    });
+
+    it('does not render right side positions', () => {
+      expect(
+        renderAdditionalControls(
+          { additionalControls: { right: mockControl } },
+          'left'
+        )
+      ).toEqual(null);
+    });
+  });
+
+  describe('right', () => {
+    it('renders a react node passed into the right side toolbar', () => {
+      expect(
+        renderAdditionalControls(
+          { additionalControls: { right: mockControl } },
+          'right'
+        )
+      ).toEqual(mockControl);
+    });
+
+    it('does not render left side positions', () => {
+      expect(
+        renderAdditionalControls(
+          { additionalControls: { left: mockControl } },
+          'right'
+        )
+      ).toEqual(null);
+    });
+  });
+
+  describe('single node', () => {
+    it('renders into the left side of toolbar by default', () => {
+      expect(
+        renderAdditionalControls({ additionalControls: mockControl }, 'left')
+      ).toEqual(mockControl);
+    });
+
+    it('does not render into the right side of the toolbar', () => {
+      expect(
+        renderAdditionalControls({ additionalControls: mockControl }, 'right')
+      ).toEqual(null);
+    });
   });
 });

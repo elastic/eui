@@ -608,9 +608,23 @@ export interface EuiDataGridToolBarVisibilityOptions {
    */
   showFullScreenSelector?: boolean;
   /**
-   * Will place any passed node into the toolbar to the left of all selectors. Recommend using EuiButtonEmpty with the props shown in the examples.
+   * If passed a `ReactNode`, appends the passed custom control into the left side of the toolbar, after the column & sort controls.
+   * Use #EuiDataGridToolBarAdditionalControlsOptions to customize the location of your control.
    */
-  additionalControls?: ReactNode;
+  additionalControls?: ReactNode | EuiDataGridToolBarAdditionalControlsOptions;
+}
+
+export interface EuiDataGridToolBarAdditionalControlsOptions {
+  /**
+   * Will append the passed node into the left side of the toolbar, after the column & sort controls.
+   * We recommend using `xs`-sized `EuiButtonEmpty`s to match the existing controls on the left.
+   */
+  left?: ReactNode;
+  /**
+   * Will prepend the passed node into the right side of the toolbar, before the density & full screen controls.
+   * We recommend using `xs`-sized `EuiButtonIcons`s to match the existing controls on the right.
+   */
+  right?: ReactNode;
 }
 
 // ideally this would use a generic to enforce `pageSize` exists in `pageSizeOptions`,
