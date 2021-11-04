@@ -4,6 +4,7 @@ import { fake } from 'faker';
 import {
   EuiDataGrid,
   EuiButtonEmpty,
+  EuiButtonIcon,
   EuiLink,
 } from '../../../../src/components/';
 
@@ -76,28 +77,50 @@ export default () => {
         onChangePage: setPageIndex,
       }}
       toolbarVisibility={{
-        additionalControls: (
-          <Fragment>
-            <EuiButtonEmpty
-              size="xs"
-              iconType="bell"
-              color="primary"
-              className="euiDataGrid__controlBtn"
-              onClick={() => {}}
-            >
-              New button
-            </EuiButtonEmpty>
-            <EuiButtonEmpty
-              size="xs"
-              iconType="branch"
-              color="danger"
-              className="euiDataGrid__controlBtn"
-              onClick={() => {}}
-            >
-              Another button
-            </EuiButtonEmpty>
-          </Fragment>
-        ),
+        additionalControls: {
+          left: (
+            <Fragment>
+              <EuiButtonEmpty
+                size="xs"
+                iconType="bell"
+                color="primary"
+                className="euiDataGrid__controlBtn"
+                onClick={() => {}}
+              >
+                New button
+              </EuiButtonEmpty>
+              <EuiButtonEmpty
+                size="xs"
+                iconType="branch"
+                color="danger"
+                className="euiDataGrid__controlBtn"
+                onClick={() => {}}
+              >
+                Another button
+              </EuiButtonEmpty>
+            </Fragment>
+          ),
+          right: (
+            <Fragment>
+              <EuiButtonIcon
+                aria-label="Right-side button"
+                size="xs"
+                iconType="refresh"
+                color="success"
+                className="euiDataGrid__controlBtn"
+                onClick={() => {}}
+              />
+              <EuiButtonIcon
+                aria-label="Another right-side button"
+                size="xs"
+                iconType="grid"
+                color="accent"
+                className="euiDataGrid__controlBtn"
+                onClick={() => {}}
+              />
+            </Fragment>
+          ),
+        },
       }}
     />
   );
