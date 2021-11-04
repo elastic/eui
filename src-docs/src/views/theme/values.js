@@ -11,7 +11,7 @@ import Colors from './_colors';
 import Size from './customizing/_size';
 import Typography from './customizing/_typography';
 import Border from './customizing/_border';
-import Animation from './_animation';
+import Animation from './customizing/_animation';
 import Breakpoints from './customizing/_breakpoints';
 
 import {

@@ -48,7 +48,7 @@ export type _EuiThemeBrandColors = {
 };
 
 /**
- * Every brand color must have a contrast computed text equivelant
+ * Every brand color must have a contrast computed text equivalent
  */
 export type _EuiThemeBrandTextColors = {
   /**
