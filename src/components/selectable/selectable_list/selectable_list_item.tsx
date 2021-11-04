@@ -157,7 +157,7 @@ export class EuiSelectableListItem extends Component<
       instruction = (
         <span>
           <EuiI18n
-            token="euiSelectableListItem.excludedOptionInstructions"
+            token="euiSelectableListItem.unckeckedOptionInstructions"
             default="To select this option, press enter."
           />
         </span>
