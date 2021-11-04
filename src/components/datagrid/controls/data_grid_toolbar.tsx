@@ -24,31 +24,6 @@ const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
 // When data grid is full screen, we add a class to the body to remove the extra scrollbar
 const GRID_IS_FULLSCREEN_CLASSNAME = 'euiDataGrid__restrictBody';
 
-// Typeguards to see if toolbarVisibility has a certain boolean property assigned
-// If not, just set it to true and assume it's OK to show
-function objectHasKey<O extends Record<string, any>, ObjectKey extends keyof O>(
-  object: O,
-  key: ObjectKey
-): object is Required<O> {
-  return object.hasOwnProperty(key);
-}
-export function checkOrDefaultToolBarDisplayOptions<
-  OptionKey extends keyof EuiDataGridToolBarVisibilityOptions
->(
-  arg: EuiDataGridProps['toolbarVisibility'],
-  option: OptionKey
-): Required<EuiDataGridToolBarVisibilityOptions>[OptionKey] {
-  if (arg === undefined) {
-    return true;
-  } else if (typeof arg === 'boolean') {
-    return arg as boolean;
-  } else if (objectHasKey(arg, option)) {
-    return arg[option];
-  } else {
-    return true;
-  }
-}
-
 export const EuiDataGridToolbar = ({
   gridWidth,
   minSizeForControls = MINIMUM_WIDTH_FOR_GRID_CONTROLS,
@@ -135,3 +110,33 @@ export const EuiDataGridToolbar = ({
     </div>
   );
 };
+
+/**
+ * Toolbar utilities
+ */
+
+// Typeguards to see if toolbarVisibility has a certain boolean property assigned
+// If not, just set it to true and assume it's OK to show
+function objectHasKey<O extends Record<string, any>, ObjectKey extends keyof O>(
+  object: O,
+  key: ObjectKey
+): object is Required<O> {
+  return object.hasOwnProperty(key);
+}
+
+export function checkOrDefaultToolBarDisplayOptions<
+  OptionKey extends keyof EuiDataGridToolBarVisibilityOptions
+>(
+  arg: EuiDataGridProps['toolbarVisibility'],
+  option: OptionKey
+): Required<EuiDataGridToolBarVisibilityOptions>[OptionKey] {
+  if (arg === undefined) {
+    return true;
+  } else if (typeof arg === 'boolean') {
+    return arg as boolean;
+  } else if (objectHasKey(arg, option)) {
+    return arg[option];
+  } else {
+    return true;
+  }
+}
