@@ -332,7 +332,7 @@ const createTabbedPage = (title, pages, isNew) => {
 
   const pagesSections = pages.map((page, index) => {
     return {
-      id: page.id,
+      id: slugify(page.title),
       title: page.title,
       items: createSections(pages[index].page()),
     };
@@ -388,11 +388,10 @@ const navigation = [
       createExample(SassGuidelines, 'Sass'),
       createTabbedPage('Writing', [
         {
-          id: 'guidelines',
           title: 'Guidelines',
           page: WritingGuidelines,
         },
-        { id: 'examples', title: 'Examples', page: WritingExamples },
+        { title: 'Examples', page: WritingExamples },
       ]),
     ],
   },

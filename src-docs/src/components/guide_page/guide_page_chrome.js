@@ -12,6 +12,7 @@ import {
 
 import { EuiHighlight } from '../../../../src/components/highlight';
 import { EuiBadge } from '../../../../src/components/badge';
+import { slugify } from '../../../../src/services';
 
 export class GuidePageChrome extends Component {
   _isMounted = false;
@@ -92,7 +93,9 @@ export class GuidePageChrome extends Component {
       return;
     }
 
-    return subSectionsWithTitles.map(({ title, id, items }) => {
+    return subSectionsWithTitles.map(({ title, items }) => {
+      const id = slugify(title);
+
       let name = title;
       if (searchTerm) {
         name = (

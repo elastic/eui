@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
+import { slugify } from '../../../../src/services/string/slugify';
 import {
   EuiPageHeader,
   EuiPageContent,
@@ -24,11 +25,12 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   pages,
 }) => {
   const tabs: any[] = pages.map((page: any) => {
+    const id = slugify(page.title);
     return {
-      id: page.id,
+      id: id,
       name: page.title,
       handleClick: () => {
-        history.push(`${match.path}/${page.id}`);
+        history.push(`${match.path}/${id}`);
       },
     };
   });
@@ -56,24 +58,22 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
 
   const pagesRoutes: any[] = pages.map((page: any) => {
     const pathname = location.pathname;
+    const id = slugify(page.title);
+    const firstTabId = slugify(pages[0].title);
 
     // first nav level redirects to first tab
     if (match.path === pathname) {
       return (
-        <Redirect from={`${match.path}`} to={`${match.path}/${pages[0].id}`} />
+        <Redirect from={`${match.path}`} to={`${match.path}/${firstTabId}`} />
       );
     } else {
-      return <Route path={`${match.path}/${page.id}`}>{page.page}</Route>;
+      return <Route path={`${match.path}/${id}`}>{page.page}</Route>;
     }
   });
 
   return (
     <>
-      <EuiPageHeader
-        restrictWidth
-        pageTitle={<>{title}</>}
-        tabs={renderTabs()}
-      />
+      <EuiPageHeader restrictWidth pageTitle={title} tabs={renderTabs()} />
 
       <EuiPageContent
         role="main"
