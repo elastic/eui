@@ -13,7 +13,6 @@ import { CommonProps, keysOf } from '../common';
 const colorsToClassNameMap = {
   default: 'euiTextColor--default',
   subdued: 'euiTextColor--subdued',
-  secondary: 'euiTextColor--secondary',
   success: 'euiTextColor--success',
   accent: 'euiTextColor--accent',
   danger: 'euiTextColor--danger',
@@ -32,7 +31,6 @@ export type EuiTextColorProps = CommonProps &
     'color'
   > & {
     /**
-     * **`secondary` color is DEPRECATED, use `success` instead**
      * Any of our named colors or a `hex`, `rgb` or `rgba` value.
      */
     color?: TextColor | CSSProperties['color'];

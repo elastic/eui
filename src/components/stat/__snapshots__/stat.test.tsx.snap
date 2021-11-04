@@ -405,7 +405,7 @@ exports[`EuiStat props s is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiStat props secondary is rendered 1`] = `
+exports[`EuiStat props subdued is rendered 1`] = `
 <div
   class="euiStat euiStat--leftAligned"
 >
@@ -420,7 +420,7 @@ exports[`EuiStat props secondary is rendered 1`] = `
   </div>
   <p
     aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title euiStat__title--secondary"
+    class="euiTitle euiTitle--large euiStat__title euiStat__title--subdued"
   >
     title
   </p>
@@ -448,33 +448,6 @@ exports[`EuiStat props success is rendered 1`] = `
   <p
     aria-hidden="true"
     class="euiTitle euiTitle--large euiStat__title euiStat__title--success"
-  >
-    title
-  </p>
-  <p
-    class="euiScreenReaderOnly"
-  >
-    description title
-  </p>
-</div>
-`;
-
-exports[`EuiStat props subdued is rendered 1`] = `
-<div
-  class="euiStat euiStat--leftAligned"
->
-  <div
-    class="euiText euiText--small euiStat__description"
-  >
-    <p
-      aria-hidden="true"
-    >
-      description
-    </p>
-  </div>
-  <p
-    aria-hidden="true"
-    class="euiTitle euiTitle--large euiStat__title euiStat__title--subdued"
   >
     title
   </p>

@@ -36,8 +36,8 @@ if (args.dry_run) {
     process.exit(1);
   }
 
-  // ensure git is on the master branch
-  await ensureMasterBranch();
+  // ensure git is on the main branch
+  await ensureMainBranch();
 
   // run linting and unit tests
   if (args.steps.indexOf('test') > -1) {
@@ -121,8 +121,8 @@ function parseArguments() {
   };
 }
 
-async function ensureMasterBranch() {
-  // ignore master check in CI since it's checking out the HEAD commit instead
+async function ensureMainBranch() {
+  // ignore main check in CI since it's checking out the HEAD commit instead
   if (process.env.CI === 'true') {
     return;
   }
@@ -133,8 +133,8 @@ async function ensureMasterBranch() {
   const currentBranch = await repo.getCurrentBranch();
   const currentBranchName = currentBranch.shorthand();
 
-  if (currentBranchName !== 'master') {
-    console.error(`Unable to release: currently on branch "${currentBranchName}", expected "master"`);
+  if (currentBranchName !== 'main') {
+    console.error(`Unable to release: currently on branch "${currentBranchName}", expected "main"`);
     process.exit(1);
   }
 }
@@ -153,7 +153,7 @@ async function getVersionTypeFromChangelog() {
   // get contents between the first two headings
   // changelog headings always use ##, this matches:
   //
-  // "##.+?[\r\n]+" consume the first heading & linebreak(s), which describes the master branch
+  // "##.+?[\r\n]+" consume the first heading & linebreak(s), which describes the main branch
   // "(.+?)" capture (non-greedy) all changes until the rest of the regex matches
   // "[\r\n]+##" any linebreak(s) leading up to the next ## heading
   //

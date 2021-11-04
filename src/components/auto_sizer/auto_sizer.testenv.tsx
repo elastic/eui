@@ -6,13 +6,16 @@
  * Side Public License, v 1.
  */
 
-// Generate statistically almost-certainly-unique `id`s for associating form
-// inputs with their labels and other descriptive text elements.
-function makeId(): string {
-  console.log(
-    'WARNING: makeId is deprecated. Use htmlIdGenerator from @elastic/eui instead.'
-  );
-  return Math.random().toString(36).slice(-8);
-}
+import React from 'react';
 
-export default makeId;
+export const EuiAutoSizer = ({
+  children,
+  defaultHeight,
+  defaultWidth,
+}: any) => {
+  const childrenParams = {
+    height: defaultHeight ?? 600,
+    width: defaultWidth ?? 600,
+  };
+  return <div data-eui="EuiAutoSizer">{children(childrenParams)}</div>;
+};

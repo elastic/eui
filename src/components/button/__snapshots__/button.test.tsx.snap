@@ -79,21 +79,6 @@ exports[`EuiButton props color primary is rendered 1`] = `
 </button>
 `;
 
-exports[`EuiButton props color secondary is rendered 1`] = `
-<button
-  class="euiButton euiButton--secondary"
-  type="button"
->
-  <span
-    class="euiButtonContent euiButton__content"
-  >
-    <span
-      class="euiButton__text"
-    />
-  </span>
-</button>
-`;
-
 exports[`EuiButton props color success is rendered 1`] = `
 <button
   class="euiButton euiButton--success"

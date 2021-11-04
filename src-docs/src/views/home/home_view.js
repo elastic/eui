@@ -70,7 +70,7 @@ export const HomeView = () => (
                   </Link>
                 </EuiFlexItem>
                 <EuiFlexItem grow={false}>
-                  <EuiLink href="https://github.com/elastic/eui/blob/master/CONTRIBUTING.md">
+                  <EuiLink href="https://github.com/elastic/eui/blob/main/CONTRIBUTING.md">
                     <strong>Contributing</strong>
                   </EuiLink>
                 </EuiFlexItem>
@@ -220,11 +220,11 @@ export const HomeView = () => (
         <EuiText size="xs" textAlign="center" color="subdued">
           <p>
             EUI is dual-licensed under{' '}
-            <EuiLink href="https://github.com/elastic/eui/blob/master/licenses/ELASTIC-LICENSE-2.0.md">
+            <EuiLink href="https://github.com/elastic/eui/blob/main/licenses/ELASTIC-LICENSE-2.0.md">
               Elastic License 2.0
             </EuiLink>{' '}
             and{' '}
-            <EuiLink href="https://github.com/elastic/eui/blob/master/licenses/SSPL-LICENSE.md">
+            <EuiLink href="https://github.com/elastic/eui/blob/main/licenses/SSPL-LICENSE.md">
               Server Side Public License, v 1
             </EuiLink>{' '}
             | Crafted with{' '}

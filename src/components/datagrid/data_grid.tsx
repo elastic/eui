@@ -667,8 +667,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const rowHeightUtils = useMemo(() => new RowHeightUtils(), []);
 
   useEffect(() => {
-    rowHeightUtils.clearHeightsCache();
-  }, [orderedVisibleColumns, rowHeightsOptions, rowHeightUtils]);
+    rowHeightUtils.pruneHiddenColumnHeights(orderedVisibleColumns);
+  }, [rowHeightUtils, orderedVisibleColumns]);
 
   const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
 
@@ -694,19 +694,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   }, [focusedCell, contentRef]);
 
   useEffect(() => {
-    rowHeightUtils.computeStylesForGridCell(
-      {
-        cellPadding: gridStyles.cellPadding,
-        fontSize: gridStyles.fontSize,
-      },
-      rowHeightsOptions?.lineHeight
-    );
-  }, [
-    gridStyles.cellPadding,
-    gridStyles.fontSize,
-    rowHeightsOptions?.lineHeight,
-    rowHeightUtils,
-  ]);
+    rowHeightUtils.cacheStyles({
+      cellPadding: gridStyles.cellPadding,
+    });
+  }, [gridStyles.cellPadding, rowHeightUtils]);
 
   const classes = classNames(
     'euiDataGrid',

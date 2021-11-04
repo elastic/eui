@@ -13,7 +13,7 @@ set +x
 # Expected env variables:
 # * GPROJECT - GCE project name, e.g. elastic-bekitzur
 # * GCE_ACCOUNT - credentials for the google service account (JSON blob)
-# * GIT_BRANCH - current Git branch or tag (e.g. "refs/heads/master", "v18.2.1")
+# * GIT_BRANCH - current Git branch or tag (e.g. "refs/heads/main", "v18.2.1")
 
 if [[ -z "${GPROJECT}" ]]; then
     echo "GPROJECT is not set, e.g. 'GPROJECT=elastic-bekitzur'"
@@ -24,7 +24,7 @@ if [[ -z "${GCE_ACCOUNT}" ]]; then
   exit 1
 fi
 if [[ -z "${GIT_BRANCH}" ]]; then
-  echo "GIT_BRANCH is not set, e.g. 'GIT_BRANCH=refs/heads/master'"
+  echo "GIT_BRANCH is not set, e.g. 'GIT_BRANCH=refs/heads/main'"
   exit 1
 fi
 

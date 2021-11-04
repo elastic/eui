@@ -119,7 +119,6 @@
     "subdued": "#6a717d",
     "primary": "#006bb4",
     "success": "#017d73",
-    "secondary": "#017d73",
     "warning": "#9b6900",
     "danger": "#bd271e",
     "accent": "#dd0a73"
@@ -212,7 +211,6 @@
     "danger": "#bd271e",
     "ghost": "#ffffff",
     "primary": "#006bb4",
-    "secondary": "#017d73",
     "success": "#017d73",
     "subdued": "#6a717d",
     "text": "#343741",
@@ -231,7 +229,6 @@
   "euiLinkColors": {
     "subdued": "#6a717d",
     "primary": "#006bb4",
-    "secondary": "#017d73",
     "success": "#017d73",
     "accent": "#dd0a73",
     "warning": "#9b6900",
@@ -270,7 +267,6 @@
   },
   "euiProgressColors": {
     "primary": "#006bb4",
-    "secondary": "#017d73",
     "success": "#017d73",
     "warning": "#f5a700",
     "danger": "#bd271e",
@@ -362,7 +358,6 @@
   "euiTextColors": {
     "default": "#343741",
     "subdued": "#6a717d",
-    "secondary": "#017d73",
     "success": "#017d73",
     "accent": "#dd0a73",
     "warning": "#f5a700",
@@ -454,7 +449,6 @@
   "euiButtonTypes": {
     "primary": "#006bb4",
     "accent": "#dd0a73",
-    "secondary": "#017d73",
     "success": "#017d73",
     "warning": "#f5a700",
     "danger": "#bd271e",
@@ -465,7 +459,6 @@
   "euiColorGhost": "#ffffff",
   "euiColorInk": "#000000",
   "euiColorPrimary": "#006bb4",
-  "euiColorSecondary": "#017d73",
   "euiColorAccent": "#dd0a73",
   "euiColorSuccess": "#017d73",
   "euiColorWarning": "#f5a700",
@@ -484,12 +477,11 @@
   "euiTextSubduedColor": "#6a717d",
   "euiColorDisabled": "#c2c3c6",
   "euiColorPrimaryText": "#006bb4",
-  "euiColorSecondaryText": "#017d73",
   "euiColorAccentText": "#dd0a73",
+  "euiColorSuccessText": "#017d73",
   "euiColorWarningText": "#9b6900",
   "euiColorDangerText": "#bd271e",
   "euiColorDisabledText": "#afb0b3",
-  "euiColorSuccessText": "#017d73",
   "euiLinkColor": "#006bb4",
   "euiPaletteColorBlind": {
     "euiColorVis0": {

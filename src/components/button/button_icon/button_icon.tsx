@@ -25,21 +25,11 @@ import {
 
 import { IconType, IconSize, EuiIcon } from '../../icon';
 
+import { ButtonColor } from '../button';
+
 import { validateHref } from '../../../services/security/href_validator';
 
-export type EuiButtonIconColor =
-  | 'accent'
-  | 'danger'
-  | 'ghost'
-  | 'primary'
-  /**
-   * Set for deprecation 3/2/21
-   * This color button is close enough to text to be duplicative
-   */
-  | 'subdued'
-  | 'success'
-  | 'text'
-  | 'warning';
+export type EuiButtonIconColor = ButtonColor;
 
 const displayToClassNameMap = {
   base: null,
@@ -54,7 +44,6 @@ export interface EuiButtonIconProps extends CommonProps {
   iconType: IconType;
   /**
    * Any of the named color palette options.
-   * **`subdued` set to be DEPRECATED, use `text` instead**
    */
   color?: EuiButtonIconColor;
   'aria-label'?: string;
@@ -77,9 +66,9 @@ export interface EuiButtonIconProps extends CommonProps {
   isSelected?: boolean;
   /**
    * Sets the display style for matching other EuiButton types.
-   * `base` is equivelant to a typical EuiButton
-   * `fill` is equivelant to a filled EuiButton
-   * `empty` (default) is equivelant to an EuiButtonEmpty
+   * `base` is equivalent to a typical EuiButton
+   * `fill` is equivalent to a filled EuiButton
+   * `empty` (default) is equivalent to an EuiButtonEmpty
    */
   display?: EuiButtonIconDisplay;
 }
@@ -112,7 +101,6 @@ const colorToClassNameMap: { [color in EuiButtonIconColor]: string } = {
   danger: 'euiButtonIcon--danger',
   ghost: 'euiButtonIcon--ghost',
   primary: 'euiButtonIcon--primary',
-  subdued: 'euiButtonIcon--subdued',
   success: 'euiButtonIcon--success',
   text: 'euiButtonIcon--text',
   warning: 'euiButtonIcon--warning',

@@ -45,7 +45,7 @@ export const Color = () => {
     <>
       <EuiText>
         <p>
-          <EuiLink href="https://github.com/elastic/eui/blob/master/src/global_styling/functions/_colors.scss">
+          <EuiLink href="https://github.com/elastic/eui/blob/main/src/global_styling/functions/_colors.scss">
             View the Sass code for color functions
           </EuiLink>
           .

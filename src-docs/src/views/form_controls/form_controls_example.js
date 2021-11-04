@@ -143,13 +143,13 @@ const checkboxSource = require('!!raw-loader!./checkbox');
 const checkboxHtml = renderToHtml(Checkbox);
 const checkboxSnippet = [
   `<EuiCheckbox
-  id={checkboxId}
+  id={checkboxId__1}
   label="I am a checkbox"
   checked={checked}
   onChange={onChange}
 />`,
   `<EuiCheckbox
-  id={checkboxId}
+  id={checkboxId__2}
   label="I am an indeterminate checkbox"
   indeterminate={indeterminate}
   onChange={onChangeIndeterminate}

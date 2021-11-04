@@ -13,3 +13,8 @@
   width: 100%;
   max-width: 300px;
 }
+
+.colorGuidelines_colorPreviewTooLight rect {
+  stroke: transparentize($euiColorLightShade, lightOrDarkTheme(.5, 0));
+  stroke-width: .25px;
+}

@@ -1,5 +1,4 @@
-.euiLoadingLogo,
-.euiLoadingKibana {
+.euiLoadingLogo {
   position: relative;
   display: inline-block;
 
@@ -27,8 +26,7 @@
     }
   }
 
-  .euiLoadingLogo__icon,
-  .euiLoadingKibana__icon {
+  .euiLoadingLogo__icon {
     display: block;
 
     @include euiCanAnimate {
@@ -40,8 +38,7 @@
 /**
  * 1. Requires pixel math for animation.
  */
-.euiLoadingLogo--medium,
-.euiLoadingKibana--medium {
+.euiLoadingLogo--medium {
   width: $euiSize;
 
   &:before,
@@ -50,15 +47,13 @@
     bottom: -$euiSizeXS;
   }
 
-  .euiLoadingLogo__icon,
-  .euiLoadingKibana__icon {
+  .euiLoadingLogo__icon {
     z-index: 999;
     animation-name: euiLoadingKibanaBounceMedium;
   }
 }
 
-.euiLoadingLogo--large,
-.euiLoadingKibana--large {
+.euiLoadingLogo--large {
   width: $euiSizeL;
 
   &:before,
@@ -67,14 +62,12 @@
     bottom: -$euiSizeS;
   }
 
-  .euiLoadingLogo__icon,
-  .euiLoadingKibana__icon {
+  .euiLoadingLogo__icon {
     animation-name: euiLoadingKibanaBounceLarge;
   }
 }
 
-.euiLoadingLogo--xLarge,
-.euiLoadingKibana--xLarge {
+.euiLoadingLogo--xLarge {
   width: $euiSizeXL;
 
   &:before,
@@ -83,8 +76,7 @@
     bottom: -$euiSizeM;
   }
 
-  .euiLoadingLogo__icon,
-  .euiLoadingKibana__icon {
+  .euiLoadingLogo__icon {
     animation-name: euiLoadingKibanaBounceXLarge;
   }
 }

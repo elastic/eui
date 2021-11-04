@@ -348,7 +348,7 @@ export default {
               text={
                 <>
                   Though unique, this does not provide enough context. <br />{' '}
-                  <EuiTextColor color="secondary">
+                  <EuiTextColor color="success">
                     <strong>Use:</strong> Watchers - Management - Kibana
                   </EuiTextColor>
                 </>
@@ -367,7 +367,7 @@ export default {
                 <>
                   Although it provides all the context, putting the most
                   important bit at the end is hard to find. <br />{' '}
-                  <EuiTextColor color="secondary">
+                  <EuiTextColor color="success">
                     <strong>Use:</strong> Spaces - Management - Kibana
                   </EuiTextColor>
                 </>
@@ -386,7 +386,7 @@ export default {
                 <>
                   Although this provides all the context and in a good order, a
                   title is not the place for any extra words. <br />{' '}
-                  <EuiTextColor color="secondary">
+                  <EuiTextColor color="success">
                     <strong>Use:</strong> Reporting - Management - Kibana
                   </EuiTextColor>
                 </>

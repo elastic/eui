@@ -11,66 +11,77 @@ import type { VariableSizeGrid as Grid } from 'react-window';
 import { isObject, isNumber } from '../../services/predicate';
 import {
   EuiDataGridStyleCellPaddings,
-  EuiDataGridStyleFontSizes,
   EuiDataGridStyle,
   EuiDataGridRowHeightOption,
   EuiDataGridRowHeightsOptions,
+  EuiDataGridColumn,
 } from './data_grid_types';
 
-const cellPaddingsToClassMap: Record<EuiDataGridStyleCellPaddings, string> = {
-  s: 'euiDataGridRowCell--paddingSmall',
-  m: '',
-  l: 'euiDataGridRowCell--paddingLarge',
+// TODO: Once JS variables are available, use them here instead of hard-coded maps
+const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, number> = {
+  s: 4,
+  m: 6,
+  l: 8,
 };
-
-const fontSizesToClassMap: Record<EuiDataGridStyleFontSizes, string> = {
-  s: 'euiDataGridRowCell--fontSizeSmall',
-  m: '',
-  l: 'euiDataGridRowCell--fontSizeLarge',
-};
-
-function getNumberFromPx(style?: string) {
-  return style ? parseInt(style.replace('px', ''), 10) : 0;
-}
 
 export const AUTO_HEIGHT = 'auto';
-const DEFAULT_HEIGHT = 32;
+export const DEFAULT_ROW_HEIGHT = 34;
 
-// So that we use lineCount options we should know exactly row height which allow to show defined line count.
-// For this we should know paddings and line height. Because of this we should compute styles for cell with grid styles
 export class RowHeightUtils {
   private styles: {
     paddingTop: number;
     paddingBottom: number;
-    lineHeight: number;
   } = {
     paddingTop: 0,
     paddingBottom: 0,
-    lineHeight: 1,
   };
-  private fakeCell = document.createElement('div');
-  private heightsCache = new Map<number, Record<number, number>>();
+  // Used by auto height rows only
+  private heightsCache = new Map<number, Map<string, number>>();
   private timerId: any;
   private grid?: Grid;
   private lastUpdatedRow: number = Infinity;
 
   setRowHeight(
     rowIndex: number,
-    colIndex: number,
-    height: number = DEFAULT_HEIGHT,
+    colId: string,
+    height: number = DEFAULT_ROW_HEIGHT,
     visibleRowIndex: number
   ) {
-    const rowHeights = this.heightsCache.get(rowIndex) || {};
+    const rowHeights =
+      this.heightsCache.get(rowIndex) || new Map<string, number>();
     const adaptedHeight = Math.ceil(
       height + this.styles.paddingTop + this.styles.paddingBottom
     );
 
-    if (rowHeights[colIndex] === adaptedHeight) {
+    if (rowHeights.get(colId) === adaptedHeight) {
       return;
     }
 
-    rowHeights[colIndex] = adaptedHeight;
+    rowHeights.set(colId, adaptedHeight);
     this.heightsCache.set(rowIndex, rowHeights);
+    this.resetRow(visibleRowIndex);
+  }
+
+  pruneHiddenColumnHeights(visibleColumns: EuiDataGridColumn[]) {
+    const visibleColumnIds = new Set(visibleColumns.map(({ id }) => id));
+    let didModify = false;
+
+    this.heightsCache.forEach((rowHeights) => {
+      const existingColumnIds = Array.from(rowHeights.keys());
+      existingColumnIds.forEach((existingColumnId) => {
+        if (visibleColumnIds.has(existingColumnId) === false) {
+          didModify = true;
+          rowHeights.delete(existingColumnId);
+        }
+      });
+    });
+
+    if (didModify) {
+      this.resetRow(0);
+    }
+  }
+
+  resetRow(visibleRowIndex: number) {
     // save the first row index of batch, reassigning it only
     // if this visible row index less than lastUpdatedRow
     this.lastUpdatedRow = Math.min(this.lastUpdatedRow, visibleRowIndex);
@@ -79,18 +90,16 @@ export class RowHeightUtils {
   }
 
   getRowHeight(rowIndex: number) {
-    const rowHeights = this.heightsCache.get(rowIndex) || {};
-    const rowHeightValues = Object.values(rowHeights);
+    const rowHeights = this.heightsCache.get(rowIndex);
+    if (rowHeights == null) return 0;
+
+    const rowHeightValues = Array.from(rowHeights.values());
 
     if (rowHeightValues.length) {
       return Math.max(...rowHeightValues);
     }
 
     return 0;
-  }
-
-  compareHeights(currentRowHeight: number, cachedRowHeight: number) {
-    return currentRowHeight === cachedRowHeight;
   }
 
   resetGrid() {
@@ -102,72 +111,45 @@ export class RowHeightUtils {
     this.grid = grid;
   }
 
-  clearHeightsCache() {
-    this.lastUpdatedRow = 0;
-    this.heightsCache.clear();
-  }
-
   isAutoHeight(
     rowIndex: number,
-    rowHeightsOptions: EuiDataGridRowHeightsOptions
+    rowHeightsOptions?: EuiDataGridRowHeightsOptions
   ) {
-    if (rowHeightsOptions.rowHeights?.[rowIndex] === AUTO_HEIGHT) {
+    const height = this.getRowHeightOption(rowIndex, rowHeightsOptions);
+
+    if (height === AUTO_HEIGHT) {
       return true;
     }
-
-    if (rowHeightsOptions.defaultHeight === AUTO_HEIGHT) {
-      return true;
-    }
-
     return false;
   }
 
-  isDefinedHeight(
-    rowIndex: number,
-    rowHeightsOptions: EuiDataGridRowHeightsOptions
-  ) {
-    if (
-      rowHeightsOptions.rowHeights?.[rowIndex] ||
-      rowHeightsOptions.defaultHeight
-    ) {
-      return true;
-    }
-
-    return false;
-  }
-
-  computeStylesForGridCell(
-    gridStyles: EuiDataGridStyle,
-    lineHeight: string | undefined
-  ) {
-    this.fakeCell.className = `
-      euiDataGridRowCell
-      ${cellPaddingsToClassMap[gridStyles.cellPadding!]}
-      ${fontSizesToClassMap[gridStyles.fontSize!]}
-    `;
-
-    // @ts-ignore it is valid to set `lineHeight` to undefined
-    this.fakeCell.style.lineHeight = lineHeight;
-
-    document.body.appendChild(this.fakeCell);
-    const allStyles = getComputedStyle(this.fakeCell);
+  cacheStyles(gridStyles: EuiDataGridStyle) {
     this.styles = {
-      paddingTop: getNumberFromPx(allStyles.paddingTop),
-      paddingBottom: getNumberFromPx(allStyles.paddingBottom),
-      lineHeight: getNumberFromPx(allStyles.lineHeight),
+      paddingTop: cellPaddingsMap[gridStyles.cellPadding!],
+      paddingBottom: cellPaddingsMap[gridStyles.cellPadding!],
     };
-    document.body.removeChild(this.fakeCell);
-    // we need clear the height cache so that it recalculates heights for new styles
-    this.clearHeightsCache();
   }
 
-  getComputedCellStyles() {
-    return this.styles;
+  getRowHeightOption(
+    rowIndex: number,
+    rowHeightsOptions?: EuiDataGridRowHeightsOptions
+  ): EuiDataGridRowHeightOption | undefined {
+    return (
+      rowHeightsOptions?.rowHeights?.[rowIndex] ??
+      rowHeightsOptions?.defaultHeight
+    );
   }
 
-  calculateHeightForLineCount(lineCount: number) {
+  getLineCount(option?: EuiDataGridRowHeightOption) {
+    return isObject(option) ? option.lineCount : undefined;
+  }
+
+  calculateHeightForLineCount(cellRef: HTMLElement, lineCount: number) {
+    const computedStyles = window.getComputedStyle(cellRef, null);
+    const lineHeight = parseInt(computedStyles.lineHeight, 10) || 24;
+
     return Math.ceil(
-      lineCount * this.styles.lineHeight +
+      lineCount * lineHeight +
         this.styles.paddingTop +
         this.styles.paddingBottom
     );
@@ -180,9 +162,8 @@ export class RowHeightUtils {
   ) {
     if (isObject(heightOption)) {
       if (heightOption.lineCount) {
-        return this.calculateHeightForLineCount(heightOption.lineCount);
+        return defaultHeight; // lineCount height is set in minRowHeight state in grid_row_body
       }
-
       if (heightOption.height) {
         return Math.max(heightOption.height, defaultHeight);
       }
@@ -192,7 +173,7 @@ export class RowHeightUtils {
       return Math.max(heightOption, defaultHeight);
     }
 
-    if (heightOption === AUTO_HEIGHT && rowIndex) {
+    if (heightOption === AUTO_HEIGHT && rowIndex != null) {
       return this.getRowHeight(rowIndex);
     }
 
@@ -203,20 +184,16 @@ export class RowHeightUtils {
     rowHeightsOptions: EuiDataGridRowHeightsOptions,
     rowIndex: number
   ): CSSProperties => {
-    if (this.isAutoHeight(rowIndex, rowHeightsOptions)) {
+    const height = this.getRowHeightOption(rowIndex, rowHeightsOptions);
+
+    if (height === AUTO_HEIGHT) {
       return {};
     }
 
-    let initialHeight =
-      rowHeightsOptions.rowHeights && rowHeightsOptions.rowHeights[rowIndex];
-
-    if (!initialHeight) {
-      initialHeight = rowHeightsOptions.defaultHeight;
-    }
-
-    if (isObject(initialHeight) && initialHeight.lineCount) {
+    const lineCount = this.getLineCount(height);
+    if (lineCount) {
       return {
-        WebkitLineClamp: initialHeight.lineCount,
+        WebkitLineClamp: lineCount,
         display: '-webkit-box',
         WebkitBoxOrient: 'vertical',
         height: '100%',
