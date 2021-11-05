@@ -163,11 +163,12 @@ export const EmptyPromptExample = {
               <EuiCode>color</EuiCode> prop will also attempt to adjust the{' '}
               <EuiCode>iconColor</EuiCode> and <EuiCode>footer</EuiCode> color.
             </p>
+            {/* Commenting out for now, as the Guidelines don't yet specify.
             <p>
               Read the{' '}
               <Link to="/guidelines/empty-prompt">usage guidelines</Link> to
               better understand when to use certain panel props.
-            </p>
+            </p> */}
           </EuiText>
           <EuiSpacer />
           <Panel />

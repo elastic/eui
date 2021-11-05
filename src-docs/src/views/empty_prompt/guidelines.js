@@ -45,22 +45,22 @@ export default () => (
         <EuiText>
           <ol>
             <li>
-              <strong>Illustration (optional):</strong> A meaningful
-              illustration that represents the context.
+              <strong>Icon/illustration (optional):</strong> A meaningful icon
+              or illustration that represents the solution or context.
             </li>
             <li>
               <strong>Title:</strong> The title will answer the question. What’s
               happening? Is it an error? Is there data?
             </li>
             <li>
-              <strong>Description:</strong> Why is it happening? You can try to
-              provide more information regarding why the space is empty and
-              guide the user through the next actions.
+              <strong>Description:</strong> Why is it happening? Try to provide
+              more information regarding why the space is empty and guide the
+              user through next actions.
             </li>
             <li>
-              <strong>Action:</strong> What to do to solve the issue? It’s
-              always important to lead users to take action or to guide them
-              about the next steps.
+              <strong>Action(s):</strong> What will solve the issue? It’s always
+              important to lead users to take action or to guide them about the
+              next steps.
             </li>
             <li>
               <strong>Footer (optional):</strong> Use the footer to provide more
@@ -87,14 +87,16 @@ export default () => (
 
     <EuiTable>
       <EuiTableHeader>
-        <EuiTableHeaderCell>Type</EuiTableHeaderCell>
+        <EuiTableHeaderCell width="200px">Type</EuiTableHeaderCell>
         <EuiTableHeaderCell>Description</EuiTableHeaderCell>
         <EuiTableHeaderCell>Goal</EuiTableHeaderCell>
       </EuiTableHeader>
 
       <EuiTableBody>
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>First use</EuiTableRowCell>
+          <EuiTableRowCell isMobileFullWidth>
+            <strong>First use</strong>
+          </EuiTableRowCell>
 
           <EuiTableRowCell>
             No content on screen because it is the first time users are
@@ -108,7 +110,9 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>No data</EuiTableRowCell>
+          <EuiTableRowCell isMobileFullWidth>
+            <strong>No data</strong>
+          </EuiTableRowCell>
 
           <EuiTableRowCell>
             No data is available, or the data doesn’t match the filter.
@@ -121,7 +125,9 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>No permission</EuiTableRowCell>
+          <EuiTableRowCell isMobileFullWidth>
+            <strong>No permission</strong>
+          </EuiTableRowCell>
 
           <EuiTableRowCell>
             No permission to access the content.
@@ -134,7 +140,9 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>No results</EuiTableRowCell>
+          <EuiTableRowCell isMobileFullWidth>
+            <strong>No results</strong>
+          </EuiTableRowCell>
 
           <EuiTableRowCell>No results matched the search.</EuiTableRowCell>
 
@@ -145,7 +153,9 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>Error</EuiTableRowCell>
+          <EuiTableRowCell isMobileFullWidth>
+            <strong>Error</strong>
+          </EuiTableRowCell>
 
           <EuiTableRowCell>An error happened.</EuiTableRowCell>
 
@@ -156,7 +166,9 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>Completed tasks</EuiTableRowCell>
+          <EuiTableRowCell isMobileFullWidth>
+            <strong>Completed tasks</strong>
+          </EuiTableRowCell>
 
           <EuiTableRowCell>
             All actions/tasks are completed, and there is nothing to display.
@@ -168,7 +180,9 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>License upgrade</EuiTableRowCell>
+          <EuiTableRowCell isMobileFullWidth>
+            <strong>License upgrade</strong>
+          </EuiTableRowCell>
 
           <EuiTableRowCell>No license to use a feature.</EuiTableRowCell>
 
