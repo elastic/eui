@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed an `EuiDataGrid` race condition where grid rows had incorrect heights if loaded in before CSS ([#5284](https://github.com/elastic/eui/pull/5284))
+- Fixed an accessibility issue where `EuiDataGrid` cells weren't owned by `role=row` elements ([#5285](https://github.com/elastic/eui/pull/5285))
 
 ## [`41.0.0`](https://github.com/elastic/eui/tree/v41.0.0)
 
