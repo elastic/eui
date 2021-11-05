@@ -41,6 +41,7 @@ exports[`EuiDataGridCell renders 1`] = `
 >
   <div
     className="euiDataGridRowCell"
+    data-gridcell-id="0,0"
     data-test-subj="dataGridRowCell"
     onBlur={[Function]}
     onFocus={[Function]}

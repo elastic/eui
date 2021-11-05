@@ -30,7 +30,7 @@ describe('EuiDataGridFooterRow', () => {
     expect(component).toMatchInlineSnapshot(`
       <div
         className="euiDataGridRow euiDataGridFooter"
-        data-test-subj="dataGridRow"
+        data-test-subj="dataGridRow dataGridFooterRow"
         role="row"
       >
         <EuiDataGridCell
@@ -83,7 +83,7 @@ describe('EuiDataGridFooterRow', () => {
     expect(component).toMatchInlineSnapshot(`
       <div
         className="euiDataGridRow euiDataGridFooter"
-        data-test-subj="dataGridRow"
+        data-test-subj="dataGridRow dataGridFooterRow"
         role="row"
       >
         <EuiDataGridCell
@@ -127,7 +127,7 @@ describe('EuiDataGridFooterRow', () => {
     expect(component).toMatchInlineSnapshot(`
       <div
         className="euiDataGridRow euiDataGridFooter"
-        data-test-subj="dataGridRow"
+        data-test-subj="dataGridRow dataGridFooterRow"
         role="row"
       >
         <EuiDataGridCell
