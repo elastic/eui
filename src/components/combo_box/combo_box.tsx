@@ -142,6 +142,10 @@ export interface _EuiComboBoxProps<T>
    * Specifies that the input should have focus when the component loads
    */
   autoFocus?: boolean;
+  /**
+   * Creates an accessible `aria-label` when using the Combobox without `<EuiFormRow />`
+   */
+  ariaLabel?: string;
 }
 
 /**
@@ -924,6 +928,7 @@ export class EuiComboBox<T> extends Component<
       delimiter,
       append,
       autoFocus,
+      ariaLabel,
       ...rest
     } = this.props;
     const {
@@ -1061,6 +1066,7 @@ export class EuiComboBox<T> extends Component<
           prepend={singleSelection ? prepend : undefined}
           isLoading={isLoading}
           autoFocus={autoFocus}
+          ariaLabel={ariaLabel}
         />
         {optionsList}
       </div>

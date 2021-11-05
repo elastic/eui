@@ -211,6 +211,14 @@ describe('props', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('accessible label is rendered', () => {
+    const component = shallow(
+      <EuiComboBox ariaLabel="Test label" options={options} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });
 
 test('does not show multiple checkmarks with duplicate labels', () => {

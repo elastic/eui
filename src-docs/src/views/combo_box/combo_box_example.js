@@ -19,6 +19,7 @@ import ComboBox from './combo_box';
 const comboBoxSource = require('!!raw-loader!./combo_box');
 const comboBoxHtml = renderToHtml(ComboBox);
 const comboBoxSnippet = `<EuiComboBox
+  ariaLabel="Accessible screen reader label"
   placeholder="Select or create options"
   options={[
     {
@@ -38,6 +39,7 @@ import Colors from './colors';
 const colorsSource = require('!!raw-loader!./colors');
 const colorsHtml = renderToHtml(Colors);
 const colorsSnippet = `<EuiComboBox
+  ariaLabel="Accessible screen reader label"
   placeholder="Select or create options"
   options={[
     {
@@ -55,6 +57,7 @@ import RenderOption from './render_option';
 const renderOptionSource = require('!!raw-loader!./render_option');
 const renderOptionHtml = renderToHtml(RenderOption);
 const renderOptionSnippet = `<EuiComboBox
+  ariaLabel="Accessible screen reader label"
   placeholder="Select or create options"
   options={options}
   selectedOptions={selectedOptions}
@@ -67,6 +70,7 @@ import Groups from './groups';
 const groupsSource = require('!!raw-loader!./groups');
 const groupsHtml = renderToHtml(Groups);
 const groupsSnippet = `<EuiComboBox
+  ariaLabel="Accessible screen reader label"
   placeholder="These options are grouped"
   options={[colorGroup, soundGroup]}
   selectedOptions={selectedOptions}
@@ -80,6 +84,7 @@ const singleSelectionSource = require('!!raw-loader!./single_selection');
 const singleSelectionHtml = renderToHtml(SingleSelection);
 const singleSelectionPrependSource = require('!!raw-loader!./single_selection_prepend');
 const singleSelectionSnippet = `<EuiComboBox
+  ariaLabel="Accessible screen reader label"
   placeholder="Select a single option"
   singleSelection={{ asPlainText: true }}
   options={options}
@@ -100,6 +105,7 @@ const singleSelectionCustomOptionsHtml = renderToHtml(
   SingleSelectionCustomOptions
 );
 const singleSelectionCustomOptionsSnippet = `<EuiComboBox
+  ariaLabel="Accessible screen reader label"
   placeholder="Select a single option"
   singleSelection={{ asPlainText: true }}
   options={options}
@@ -112,6 +118,7 @@ import DisallowCustomOptions from './disallow_custom_options';
 const disallowCustomOptionsSource = require('!!raw-loader!./disallow_custom_options');
 const disallowCustomOptionsHtml = renderToHtml(DisallowCustomOptions);
 const disallowCustomOptionsSnippet = `<EuiComboBox
+  ariaLabel="Accessible screen reader label"
   placeholder="Select one or more options"
   options={options}
   onChange={onChange}
@@ -137,6 +144,7 @@ const asyncHtml = renderToHtml(Async);
 const asyncSnippet = `<EuiComboBox
   placeholder="Search asynchronously"
   async
+  ariaLabel="Accessible screen reader label"
   options={options}
   selectedOptions={selectedOptions}
   isLoading={isLoading}
@@ -149,6 +157,7 @@ import Virtualized from './virtualized';
 const virtualizedSource = require('!!raw-loader!./virtualized');
 const virtualizedHtml = renderToHtml(Virtualized);
 const virtualizedSnippet = `<EuiComboBox
+  ariaLabel="Accessible screen reader label"
   placeholder="Select one or more options"
   options={options}
   selectedOptions={selectedOptions}
@@ -159,6 +168,7 @@ import Disabled from './disabled';
 const disabledSource = require('!!raw-loader!./disabled');
 const disabledHtml = renderToHtml(Disabled);
 const disabledSnippet = `<EuiComboBox
+  ariaLabel="Accessible screen reader label"
   placeholder="Select or create options"
   options={options}
   onChange={onChange}
@@ -170,6 +180,7 @@ import Delimiter from './combo_box_delimiter';
 const delimiterSource = require('!!raw-loader!./combo_box_delimiter');
 const delimiterHtml = renderToHtml(Delimiter);
 const delimiterSnippet = `<EuiComboBox
+  ariaLabel="Accessible screen reader label"
   placeholder="Select or create options"
   options={options}
   delimiter=","
@@ -183,6 +194,7 @@ import StartingWith from './startingWith';
 const startingWithSource = require('!!raw-loader!./startingWith');
 const startingWithHtml = renderToHtml(StartingWith);
 const startingWithSnippet = `<EuiComboBox
+  ariaLabel="Accessible screen reader label"
   placeholder="Select or create options"
   sortMatchesBy="startsWith"
   options={options}

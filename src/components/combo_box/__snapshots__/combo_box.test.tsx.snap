@@ -58,6 +58,42 @@ exports[`EuiComboBox is rendered 1`] = `
 </div>
 `;
 
+exports[`props accessible label is rendered 1`] = `
+<div
+  aria-expanded={false}
+  aria-haspopup="listbox"
+  className="euiComboBox"
+  onKeyDown={[Function]}
+  role="combobox"
+>
+  <EuiComboBoxInput
+    ariaLabel="Test label"
+    autoSizeInputRef={[Function]}
+    compressed={false}
+    fullWidth={false}
+    hasSelectedOptions={false}
+    id="generated-id__eui-combobox-id"
+    inputRef={[Function]}
+    isListOpen={false}
+    noIcon={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    rootId={[Function]}
+    searchValue=""
+    selectedOptions={Array []}
+    singleSelection={false}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value=""
+  />
+</div>
+`;
+
 exports[`props autoFocus is rendered 1`] = `
 <div
   aria-expanded={false}
