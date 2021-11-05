@@ -119,7 +119,7 @@ export class GuidePageChrome extends Component {
         : undefined;
 
       return {
-        id: `subSection-${id}`,
+        id: sectionHref,
         name,
         href: sectionHref,
         items: subItems,

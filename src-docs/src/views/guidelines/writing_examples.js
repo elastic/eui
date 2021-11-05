@@ -282,7 +282,7 @@ const WritingExamples = () => {
       <EuiSpacer size="m" />
 
       <EuiText>
-        <h2 id="labels">Links</h2>
+        <h2 id="links">Links</h2>
 
         <p>Use links to point to detailed information.</p>
       </EuiText>
