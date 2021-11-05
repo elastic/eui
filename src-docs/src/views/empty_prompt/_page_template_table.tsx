@@ -20,7 +20,7 @@ export default () => (
 
     <EuiTableBody>
       <EuiTableRow>
-        <EuiTableRowCell isMobileFullWidth>
+        <EuiTableRowCell mobileOptions={{ width: '100%' }}>
           <EuiCode>{"'centeredContent' | 'default'"}</EuiCode>
         </EuiTableRowCell>
 
@@ -31,7 +31,7 @@ export default () => (
       </EuiTableRow>
 
       <EuiTableRow>
-        <EuiTableRowCell>
+        <EuiTableRowCell mobileOptions={{ width: '100%' }}>
           <EuiCode>{"'centeredBody' | 'empty'"}</EuiCode>
         </EuiTableRowCell>
 

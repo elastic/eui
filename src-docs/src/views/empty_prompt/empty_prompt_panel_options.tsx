@@ -10,8 +10,7 @@ import { GuideSection } from '../../components/guide_section/guide_section';
 import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 import { COLORS, PanelColor } from '../../../../src/components/panel/panel';
 
-// @ts-ignore Importing from JS
-import Panel from './empty_prompt_panel';
+import { Panel } from './empty_prompt_panel';
 const panelSource = require('!!raw-loader!./empty_prompt_panel');
 
 export default () => {

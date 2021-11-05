@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 
 import {
   EuiEmptyPrompt,
   EuiButton,
   EuiTitle,
   EuiLink,
+  EuiEmptyPromptProps,
 } from '../../../../src/components';
 
-export default ({ color }) => {
+export const Panel: FunctionComponent<{
+  color: EuiEmptyPromptProps['color'];
+}> = ({ color }) => {
   return (
     <EuiEmptyPrompt
       iconType="securityAnalyticsApp"

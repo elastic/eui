@@ -5,6 +5,7 @@ import {
   EuiPageTemplate,
   EuiLoadingLogo,
   EuiButton,
+  EuiEmptyPromptProps,
 } from '../../../../src/components';
 
 export default () => {
@@ -24,7 +25,7 @@ export default () => {
     };
   });
 
-  let emptyPromptProps;
+  let emptyPromptProps: Partial<EuiEmptyPromptProps>;
   switch (currentState) {
     case 'error':
       emptyPromptProps = {

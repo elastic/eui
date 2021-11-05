@@ -1,5 +1,6 @@
 import React from 'react';
-import { GuideRuleTitle } from '../../components/';
+// @ts-ignore Importing from JS
+import { GuideRuleTitle } from '../../components';
 
 import {
   EuiTitle,
@@ -94,7 +95,7 @@ export default () => (
 
       <EuiTableBody>
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>
+          <EuiTableRowCell mobileOptions={{ width: '100%' }}>
             <strong>First use</strong>
           </EuiTableRowCell>
 
@@ -110,7 +111,7 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>
+          <EuiTableRowCell mobileOptions={{ width: '100%' }}>
             <strong>No data</strong>
           </EuiTableRowCell>
 
@@ -125,7 +126,7 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>
+          <EuiTableRowCell mobileOptions={{ width: '100%' }}>
             <strong>No permission</strong>
           </EuiTableRowCell>
 
@@ -140,7 +141,7 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>
+          <EuiTableRowCell mobileOptions={{ width: '100%' }}>
             <strong>No results</strong>
           </EuiTableRowCell>
 
@@ -153,7 +154,7 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>
+          <EuiTableRowCell mobileOptions={{ width: '100%' }}>
             <strong>Error</strong>
           </EuiTableRowCell>
 
@@ -166,7 +167,7 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>
+          <EuiTableRowCell mobileOptions={{ width: '100%' }}>
             <strong>Completed tasks</strong>
           </EuiTableRowCell>
 
@@ -180,7 +181,7 @@ export default () => (
         </EuiTableRow>
 
         <EuiTableRow>
-          <EuiTableRowCell isMobileFullWidth>
+          <EuiTableRowCell mobileOptions={{ width: '100%' }}>
             <strong>License upgrade</strong>
           </EuiTableRowCell>
 
