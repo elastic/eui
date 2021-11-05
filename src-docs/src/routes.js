@@ -325,7 +325,7 @@ const createTabbedPage = (title, pages, isNew) => {
 
       const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
 
-      return { id: id, name: capitalizedTitle };
+      return { id: id, title: capitalizedTitle };
     });
 
     return sections;
@@ -335,7 +335,7 @@ const createTabbedPage = (title, pages, isNew) => {
     return {
       id: slugify(page.title),
       title: page.title,
-      items: createSections(pages[index].page()),
+      sections: createSections(pages[index].page()),
     };
   });
 

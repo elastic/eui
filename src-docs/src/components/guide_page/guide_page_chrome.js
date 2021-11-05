@@ -93,7 +93,7 @@ export class GuidePageChrome extends Component {
       return;
     }
 
-    return subSectionsWithTitles.map(({ title, items }) => {
+    return subSectionsWithTitles.map(({ title, sections }) => {
       const id = slugify(title);
 
       let name = title;
@@ -108,34 +108,19 @@ export class GuidePageChrome extends Component {
         );
       }
 
-      // tabbed pages (nested pages in the nav)
-      if (items) {
-        const pageHref = `${href}/${id}`;
+      const sectionHref = sections ? `${href}/${id}` : `${href}/#${id}`;
+      const subItems = sections
+        ? this.renderSubSections(sectionHref, sections, searchTerm)
+        : undefined;
 
-        const subSectionsItems = items.map((item) => {
-          return {
-            id: `nestedSubSection-${item.id}`,
-            name: item.name,
-            href: `${pageHref}#${item.id}`,
-          };
-        });
-
-        return {
-          id: `subSection-${id}`,
-          name,
-          href: pageHref,
-          items: subSectionsItems,
-          isSelected: pageHref === window.location.hash,
-          // forceOpen: !!(searchTerm && hasMatchingSubItem),
-          className: 'guideSideNav__item aaaa',
-        };
-      } else {
-        return {
-          id: `subSection-${id}`,
-          name,
-          href: href.concat(`#${id}`),
-        };
-      }
+      return {
+        id: `subSection-${id}`,
+        name,
+        href: sectionHref,
+        items: subItems,
+        isSelected: window.location.hash.includes(sectionHref),
+        // forceOpen: !!(searchTerm && hasMatchingSubItem),
+      };
     });
   };
 
@@ -197,7 +182,7 @@ export class GuidePageChrome extends Component {
           id: `${section.type}-${path}`,
           name: visibleName,
           href,
-          items: this.renderSubSections(href, sections, searchTerm, path),
+          items: this.renderSubSections(href, sections, searchTerm),
           isSelected: item.path === this.props.currentRoute.path,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
           icon: newBadge,
