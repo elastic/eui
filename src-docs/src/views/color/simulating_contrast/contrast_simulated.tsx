@@ -8,7 +8,7 @@ import {
   EuiButtonGroup,
   EuiHorizontalRule,
   EuiIcon,
-} from '../../../../src/components';
+} from '../../../../../src/components';
 
 import {
   useEuiTheme,
@@ -16,7 +16,7 @@ import {
   transparentize,
   tint,
   shade,
-} from '../../../../src/services';
+} from '../../../../../src/services';
 
 export default () => {
   const { euiTheme, colorMode } = useEuiTheme();

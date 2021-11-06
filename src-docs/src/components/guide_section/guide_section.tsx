@@ -49,6 +49,10 @@ export const GuideSectionCodeTypesMap = {
     name: 'snippet',
     displayName: 'Snippet',
   },
+  SASS: {
+    name: 'sass',
+    displayName: 'Sass',
+  },
   PROPS: {
     name: 'props',
     displayName: 'Props',

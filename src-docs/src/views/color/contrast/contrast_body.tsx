@@ -2,9 +2,12 @@ import React, { Fragment } from 'react';
 import chroma from 'chroma-js';
 import { css } from '@emotion/react';
 
-import { EuiFlexGrid, EuiFlexItem } from '../../../../src/components';
-
-import { useEuiTheme, makeHighContrastColor } from '../../../../src/services';
+import {
+  EuiFlexGrid,
+  EuiFlexItem,
+  useEuiTheme,
+  makeHighContrastColor,
+} from '../../../../../src';
 
 export default () => {
   const { euiTheme } = useEuiTheme();
@@ -28,7 +31,6 @@ export default () => {
                 title={color}
                 css={css`
                   padding: ${euiTheme.size.base};
-                  background: ${euiTheme.colors.body};
                   border-radius: ${euiTheme.border.radius.small};
                   border: ${euiTheme.border.thin};
                   color: ${color};
