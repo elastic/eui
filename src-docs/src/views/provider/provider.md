@@ -18,7 +18,7 @@ See [**EuiThemeProvider**](/#/theming/theme-provider) for full documentation as 
 <EuiProvider colorMode={isDark ? 'dark' : 'light'} />
 ```
 
-It is not recommended to recreate the functionality of **EuiProvider** by composing its constituant parts. More context, functionality, and configurations will be added to **EuiProvider** in future releases. Nested instances of [**EuiThemeProvider**](/#/theming/theme-provider), however, are valid.
+It is not recommended to recreate the functionality of **EuiProvider** by composing its constituent parts. More context, functionality, and configurations will be added to **EuiProvider** in future releases. Nested instances of [**EuiThemeProvider**](/#/theming/theme-provider), however, are valid.
 
 ## Global reset
 

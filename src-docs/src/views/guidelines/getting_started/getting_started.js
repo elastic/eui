@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { EuiCodeBlock, EuiCode, EuiText, EuiSpacer } from '../../../../../src';
 
@@ -31,12 +32,12 @@ export const GettingStarted = {
           <EuiText grow={false}>
             <p>
               Note that EUI has{' '}
-              <a href="https://github.com/elastic/eui/package.json">
+              <a href="https://github.com/elastic/eui/blob/main/package.json">
                 several <EuiCode>peerDependencies</EuiCode> requirements
               </a>{' '}
               that will also need to be installed if starting with a blank
               project. You can read more about other ways to{' '}
-              <a href="https://github.com/elastic/eui/blob/master/wiki/consuming.md">
+              <a href="https://github.com/elastic/eui/blob/main/wiki/consuming.md">
                 consume EUI
               </a>
               .
@@ -59,9 +60,9 @@ export const GettingStarted = {
             <p>
               To build your custom components using EUI theme variables,
               functions, and mixins, you will need to consume them through one
-              of the <a href="/#/theming/sass">Sass</a>,{' '}
-              <a href="/#/theming/theme-provider">Emotion</a>, or{' '}
-              <a href="https://github.com/elastic/eui/blob/master/wiki/consuming.md#reusing-the-variables-in-javascript">
+              of the <Link to="/theming/sass">Sass</Link>,{' '}
+              <Link to="/theming/theme-provider">Emotion</Link>, or{' '}
+              <a href="https://github.com/elastic/eui/blob/main/wiki/consuming.md#reusing-the-variables-in-javascript">
                 JSON import
               </a>{' '}
               methods.
@@ -180,8 +181,14 @@ export const GettingStarted = {
       title: 'Components, Services and Testing imports',
       wrapText: false,
       text: (
-        <EuiText grow={false}>
-          <p>You can import React components from the top-level EUI module.</p>
+        <>
+          <EuiText grow={false}>
+            <p>
+              You can import React components from the top-level EUI module.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+
           <EuiCodeBlock language="jsx" isCopyable fontSize="m">
             {`import {
   EuiButton,
@@ -189,39 +196,50 @@ export const GettingStarted = {
   EuiPanel,
 } from '@elastic/eui';`}
           </EuiCodeBlock>
-          <p>
-            Most services are published from the <EuiCode>lib/services</EuiCode>{' '}
-            directory. Some are published from their module directories in this
-            directory.
-          </p>
+          <EuiSpacer />
+          <EuiText grow={false}>
+            <p>
+              Most services are published from the{' '}
+              <EuiCode>lib/services</EuiCode> directory. Some are published from
+              their module directories in this directory.
+            </p>
+          </EuiText>
+          <EuiSpacer />
           <EuiCodeBlock language="jsx" isCopyable fontSize="m">
             {`import { keys } from '@elastic/eui/lib/services';
 import { Timer } from '@elastic/eui/lib/services/time';`}
           </EuiCodeBlock>
-          <p>
-            Test utilities are published from the <EuiCode>lib/test</EuiCode>{' '}
-            directory.
-          </p>
+          <EuiSpacer />
+          <EuiText grow={false}>
+            <p>
+              Test utilities are published from the <EuiCode>lib/test</EuiCode>{' '}
+              directory.
+            </p>
+          </EuiText>
+          <EuiSpacer />
           <EuiCodeBlock language="jsx" isCopyable fontSize="m">
             {"import { findTestSubject } from '@elastic/eui/lib/test';"}
           </EuiCodeBlock>
-        </EuiText>
+        </>
       ),
     },
     {
       title: 'Customizing with classes',
       wrapText: false,
       text: (
-        <EuiText grow={false}>
-          <p>
-            We do not recommend customizing EUI components by applying styles
-            directly to EUI classes, eg. <EuiCode>.euiButton</EuiCode>. All
-            components allow you to pass a custom <EuiCode>className</EuiCode>{' '}
-            prop directly to the component which will then append this to the
-            class list. Utilizing the cascade feature of CSS, you can then
-            customize by overriding styles so long as your styles are imported{' '}
-            <strong>after</strong> the EUI import.
-          </p>
+        <>
+          <EuiText grow={false}>
+            <p>
+              We do not recommend customizing EUI components by applying styles
+              directly to EUI classes, eg. <EuiCode>.euiButton</EuiCode>. All
+              components allow you to pass a custom <EuiCode>className</EuiCode>{' '}
+              prop directly to the component which will then append this to the
+              class list. Utilizing the cascade feature of CSS, you can then
+              customize by overriding styles so long as your styles are imported{' '}
+              <strong>after</strong> the EUI import.
+            </p>
+          </EuiText>
+          <EuiSpacer />
           <EuiCodeBlock language="jsx" isCopyable fontSize="m">
             {'<EuiButton className="myCustomClass__button" />'}
           </EuiCodeBlock>
@@ -230,7 +248,7 @@ import { Timer } from '@elastic/eui/lib/services/time';`}
           <EuiCodeBlock language="html" isCopyable fontSize="m">
             {'<button class="euiButton myCustomClass__button" />'}
           </EuiCodeBlock>
-        </EuiText>
+        </>
       ),
     },
   ],

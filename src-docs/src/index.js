@@ -15,14 +15,14 @@ import { registerTheme, ExampleContext } from './services';
 import Routes from './routes';
 import legacyThemeLight from './legacy_light.scss';
 import legacyThemeDark from './legacy_dark.scss';
-import themeAmsterdamLight from './theme_light.scss';
-import themeAmsterdamDark from './theme_dark.scss';
+import themeLight from './theme_light.scss';
+import themeDark from './theme_dark.scss';
 import { ThemeProvider } from './components/with_theme/theme_context';
 import ScrollToHash from './components/scroll_to_hash';
 import { LEGACY_NAME_KEY } from '../../src/themes';
 
-registerTheme('light', [themeAmsterdamLight]);
-registerTheme('dark', [themeAmsterdamDark]);
+registerTheme('light', [themeLight]);
+registerTheme('dark', [themeDark]);
 registerTheme(`${LEGACY_NAME_KEY}_light`, [legacyThemeLight]);
 registerTheme(`${LEGACY_NAME_KEY}_dark`, [legacyThemeDark]);
 
