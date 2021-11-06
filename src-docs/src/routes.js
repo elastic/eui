@@ -1,11 +1,12 @@
 import React, { createElement, Fragment } from 'react';
+
+import { EuiErrorBoundary } from '../../src/components';
+
 import { slugify } from '../../src/services';
 
 import { createHashHistory } from 'history';
 
 import { GuidePage, GuideSection, GuideMarkdownFormat } from './components';
-
-import { EuiErrorBoundary } from '../../src/components';
 
 import { playgroundCreator } from './services/playground';
 
@@ -13,9 +14,6 @@ import { playgroundCreator } from './services/playground';
 const GettingStarted = require('!!raw-loader!./views/guidelines/getting_started.md');
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
-
-
-import { SassGuidelines } from './views/guidelines/sass';
 
 import WritingGuidelines from './views/guidelines/writing';
 
@@ -222,16 +220,16 @@ import { I18nTokens } from './views/package/i18n_tokens';
 import { SuperSelectExample } from './views/super_select/super_select_example';
 
 import { ThemeExample } from './views/theme/theme_example';
-import ThemeValues from './views/theme/values';
+import { ColorModeExample } from './views/theme/color_mode/color_mode_example';
+import Breakpoints from './views/theme/breakpoints/breakpoints';
+import Borders, { bordersSections } from './views/theme/borders/borders';
+import Color from './views/theme/color/colors';
+import Sizing, { sizingSections } from './views/theme/sizing/sizing';
 import Typography, {
   typographySections,
 } from './views/theme/typography/typography';
-import Sizing, { sizingSections } from './views/theme/sizing/sizing';
-import { ColorModeExample } from './views/theme/color_mode/color_mode_example';
-import Color from './views/theme/color/colors';
-import Breakpoints from './views/theme/breakpoints/breakpoints';
-import Borders, { bordersSections } from './views/theme/borders/borders';
 import Other, { otherSections } from './views/theme/other/other';
+import ThemeValues from './views/theme/customizing/values';
 
 /** Elastic Charts */
 
@@ -346,22 +344,17 @@ const navigation = [
       createExample(ThemeExample, 'Theme provider'),
       createExample(ColorModeExample),
       {
-        name: 'Global values',
-        component: ThemeValues,
-        isNew: true,
-      },
-      {
         name: 'Breakpoints',
         component: Breakpoints,
-      },
-      {
-        name: 'Colors',
-        component: Color,
       },
       {
         name: 'Borders',
         component: Borders,
         sections: bordersSections,
+      },
+      {
+        name: 'Colors',
+        component: Color,
       },
       {
         name: 'Sizing',
@@ -378,7 +371,11 @@ const navigation = [
         component: Other,
         sections: otherSections,
       },
-      createExample(SassGuidelines, 'Sass'),
+      {
+        name: 'Customizing themes',
+        component: ThemeValues,
+        isNew: true,
+      },
     ],
   },
   {
