@@ -1,5 +1,5 @@
 import React from 'react';
-import { useJsonVars } from '../../theme/_json/_get_json_vars.js';
+import { useJsonVars } from '../theme/_json/_get_json_vars.js';
 
 import {
   EuiFlexGroup,
@@ -9,7 +9,7 @@ import {
   EuiTitle,
   EuiText,
   EuiPanel,
-} from '../../../../../src/components';
+} from '../../../../src/components';
 
 export const VisPalette = ({ variant }) => {
   const vars = useJsonVars();

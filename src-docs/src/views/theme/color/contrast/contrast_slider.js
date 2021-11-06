@@ -10,7 +10,7 @@ import {
   EuiSwitch,
   EuiSpacer,
   EuiPanel,
-} from '../../../../../src/components';
+} from '../../../../../../src/components';
 import { ratingAAA, ratingAA18, ratingAA, ratingAll } from './_utilities';
 
 export const ContrastSlider = ({

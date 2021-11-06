@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from '../../../../components/with_theme';
 
 import {
   EuiText,
@@ -6,21 +7,27 @@ import {
   EuiLink,
   EuiTitle,
   EuiHorizontalRule,
-} from '../../../../src/components';
-import { ColorSection } from './colors/color_section';
-import { ContrastSlider } from './colors/contrast_slider';
+} from '../../../../../../src/components';
 
-import { ratingAA, allowedColors } from './colors/_utilities';
+// @ts-ignore Importing from JS
+import { ColorSection } from './color_section';
+// @ts-ignore Importing from JS
+import { ContrastSlider } from './contrast_slider';
+// @ts-ignore Importing from JS
+import { ratingAA, allowedColors } from './_utilities';
 
 import {
   brand_colors,
   shade_colors,
-} from '../../../../src/global_styling/variables/_colors';
+} from '../../../../../../src/global_styling/variables/_colors';
 
-export default ({ currentLanguage = 'js' }) => {
+export default () => {
   const [showTextVariants, setShowTextVariants] = useState(true);
   const [contrastValue, setContrastValue] = useState(4.5);
-  const colors = currentLanguage.includes('sass')
+  const themeContext = useContext(ThemeContext);
+  const currentLanguage = themeContext.themeLanguage;
+  const showSass = currentLanguage.includes('sass');
+  const colors = showSass
     ? allowedColors.concat(['euiPageBackgroundColor'])
     : Object.keys(brand_colors).concat(
         Object.keys(shade_colors).concat(['body'])
@@ -56,7 +63,10 @@ export default ({ currentLanguage = 'js' }) => {
         <ContrastSlider
           contrastValue={contrastValue}
           showTextVariants={showTextVariants}
-          onChange={(sliderValue, toggleChecked) => {
+          onChange={(
+            sliderValue: React.SetStateAction<number>,
+            toggleChecked: React.SetStateAction<boolean>
+          ) => {
             setContrastValue(sliderValue);
             setShowTextVariants(toggleChecked);
           }}
@@ -65,7 +75,7 @@ export default ({ currentLanguage = 'js' }) => {
         <EuiSpacer size="xxl" />
         <EuiSpacer size="xxl" />
 
-        {colors.map((color) => {
+        {colors.map((color: string | number | undefined) => {
           return (
             <React.Fragment key={color}>
               <ColorSection

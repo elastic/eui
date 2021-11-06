@@ -461,7 +461,6 @@
   background-color: $euiColorEmptyShade;
 }
 
-@import 'colors/color_section';
 
 @each $key, $size in $euiBreakpoints {
   .guideSass__breakpoint--#{$key} {

@@ -27,7 +27,7 @@ import ColorPaletteCustom from './color_palette_custom';
 const colorPaletteCustomSource = require('!!raw-loader!./color_palette_custom');
 const colorPaletteCustomHtml = renderToHtml(ColorPaletteCustom);
 
-import { VisPalette } from '../guidelines/colors/vis_palette';
+import { VisPalette } from './vis_palette.js';
 
 export const ColorPaletteExample = {
   title: 'Color palettes',

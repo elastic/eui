@@ -9,11 +9,7 @@ import { ThemeContext } from '../../../components/with_theme';
 import { ThemeNotice } from '../_components/_theme_notice';
 
 // @ts-ignore Importing JS
-import ColorsContrast from '../../guidelines/colors';
-// @ts-ignore Importing JS
-import { allowedColors } from '../../guidelines/colors/_utilities';
-// @ts-ignore Importing JS
-import { CorePalette } from '../../guidelines/colors/core_palette';
+import ColorsContrast from './contrast/contrast';
 
 import { BrandJS, ShadeJS, SpecialJS, TextJS } from './_color_js';
 import { Link } from 'react-router-dom';
@@ -28,6 +24,14 @@ const tabs = [
     label: 'Contrast checker',
     id: 'colorsTabs--contrast',
   },
+];
+
+// This array is used inside routes.js to create the sidenav sub-sections
+export const colorsSections = [
+  { title: 'Brand colors', id: 'brand-colors' },
+  { title: 'Text colors', id: 'text-colors' },
+  { title: 'Shades', id: 'shades' },
+  { title: 'Special colors', id: 'special-colors' },
 ];
 
 export default () => {
@@ -100,13 +104,6 @@ export default () => {
       notice={
         !showSass && !selectedTabId.includes('contrast') && <ThemeNotice />
       }
-      description="
-          Elastic UI builds with a very limited palette.
-          It uses a core set of three colors with a green / orange /
-          red qualitative set and combined with a
-          six-color grayscale. Variation beyond these colors is minimal and
-          always done with math manipulation against the original set.
-        "
       showThemeLanguageToggle
       tabs={tabs.map((tab) => {
         return {
@@ -118,9 +115,14 @@ export default () => {
       })}
       intro={
         <>
-          <CorePalette colors={allowedColors} />
-          <EuiSpacer />
           <EuiText grow={false}>
+            <p>
+              Elastic UI builds with a very limited palette. It uses a core set
+              of three colors with a green / orange / red qualitative set and
+              combined with a six-color grayscale. Variation beyond these colors
+              is minimal and always done with math manipulation against the
+              original set.
+            </p>
             <p>
               When switching between light and dark color modes, the theme keys
               do not change, only their values do. This is why most keys are not
@@ -134,11 +136,13 @@ export default () => {
       <EuiSpacer size="xl" />
 
       {selectedTabId.includes('contrast') ? (
-        <ColorsContrast currentLanguage={currentLanguage} />
+        <ColorsContrast />
       ) : (
         <>
-          <EuiText>
-            <h2>Brand</h2>
+          <EuiText grow={false}>
+            <h2
+              id={`${colorsSections[0].id}`}
+            >{`${colorsSections[0].title}`}</h2>
             <p>
               Elastic has two main brand colors. The other three are used for
               statefulness like indicating between successful and dangerous
@@ -152,8 +156,11 @@ export default () => {
 
           <EuiSpacer size="xl" />
 
-          <EuiText>
-            <h2>Text</h2>
+          <EuiText grow={false}>
+            {' '}
+            <h2
+              id={`${colorsSections[1].id}`}
+            >{`${colorsSections[1].title}`}</h2>
             <p>
               Specific text colors calculated off either the brand or shade
               colors.
@@ -176,8 +183,11 @@ export default () => {
 
           <EuiSpacer size="xl" />
 
-          <EuiText>
-            <h2>Shade</h2>
+          <EuiText grow={false}>
+            {' '}
+            <h2
+              id={`${colorsSections[2].id}`}
+            >{`${colorsSections[2].title}`}</h2>
             <p>
               A six-color grayscale palette. Variation beyond these colors is
               minimal and always done through computations against this set.
@@ -190,8 +200,11 @@ export default () => {
 
           <EuiSpacer size="xl" />
 
-          <EuiText>
-            <h2>Special</h2>
+          <EuiText grow={false}>
+            {' '}
+            <h2
+              id={`${colorsSections[3].id}`}
+            >{`${colorsSections[3].title}`}</h2>
             <p>These are used a lot for special cases.</p>
           </EuiText>
 

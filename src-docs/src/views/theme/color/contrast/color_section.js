@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSassVars } from '../_get_sass_vars';
+import { useSassVars } from '../../_json/_get_sass_vars';
 
 import {
   EuiIcon,
@@ -10,7 +10,7 @@ import {
   EuiFlexGrid,
   EuiPanel,
   useEuiTheme,
-} from '../../../../../src';
+} from '../../../../../../src';
 
 import {
   getHexValueFromColorName,
@@ -26,7 +26,7 @@ import {
   shade_colors,
   brand_text_colors,
   text_colors,
-} from '../../../../../src/global_styling/variables/_colors';
+} from '../../../../../../src/global_styling/variables/_colors';
 
 export const ColorSection = ({
   currentLanguage = 'sass',

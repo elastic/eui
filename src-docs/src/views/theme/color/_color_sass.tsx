@@ -13,7 +13,7 @@ import {
   coreTextVariants,
   coreColors,
   // @ts-ignore Importing from Sass file
-} from '../../guidelines/colors/_utilities';
+} from './contrast/_utilities';
 
 import { Link } from 'react-router-dom';
 import { ThemeRowType } from '../_props';

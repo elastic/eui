@@ -1,9 +1,13 @@
 import React from 'react';
-import { calculateContrast, rgbToHex } from '../../../../../src/services';
-import { useSassVars } from '../_get_sass_vars';
+import { calculateContrast, rgbToHex } from '../../../../../../src/services';
+import { useSassVars } from '../../_json/_get_sass_vars';
 
-import { EuiBadge, EuiCopy, EuiFlexItem } from '../../../../../src/components';
-import { EuiIcon } from '../../../../../src/components/icon';
+import {
+  EuiBadge,
+  EuiCopy,
+  EuiFlexItem,
+  EuiIcon,
+} from '../../../../../../src/components';
 
 export const coreColors = [
   'euiColorPrimary',
