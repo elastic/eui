@@ -14,7 +14,8 @@
 **Breaking changes**
 
 - Added `@emotion/react` to `peerDependencies`
-- Deprecated and renamed as "legacy" the pre-Amsterdam default theme
+- Amsterdam is now the default theme, deprecated and renamed old theme as "legacy"
+- Re-organized Sass files including where the `globals` are imported from
 
 ## [`41.0.0`](https://github.com/elastic/eui/tree/v41.0.0)
 
