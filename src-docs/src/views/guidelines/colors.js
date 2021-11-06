@@ -14,7 +14,6 @@ import {
 } from '../../../../src/components';
 import { ratingAA, allowedColors } from './colors/_utilities';
 import { CorePalette } from './colors/core_palette';
-import { VisPalette } from './colors/vis_palette';
 import { ColorSection } from './colors/color_section';
 import { ContrastSlider } from './colors/contrast_slider';
 
@@ -319,38 +318,6 @@ export default ({ selectedTheme }) => {
       <EuiSpacer size="xxl" />
       <EuiSpacer size="xxl" />
 
-      <EuiText grow={false}>
-        <h2>Categorical visualization palette</h2>
-        <p>
-          The following colors are color-blind safe and should be used in
-          categorically seried visualizations and graphics. They are meant to be
-          contrasted against the value of <EuiCode>euiColorEmptyShade</EuiCode>{' '}
-          for the current theme.
-        </p>
-        <p>
-          For more visualization palettes and rendering services, go to the{' '}
-          <Link to="/utilities/color-palettes">Color Palettes</Link> utility
-          page.
-        </p>
-        <p>
-          When using the palette as a background for text (i.e. badges), use the{' '}
-          <EuiCode>_behindText</EuiCode> variant. It is a brightened version of
-          the base palette to create better contrast with text.
-        </p>
-      </EuiText>
-
-      <EuiSpacer />
-
-      <EuiSpacer />
-
-      <EuiFlexGrid columns={2}>
-        <EuiFlexItem>
-          <VisPalette variant="graphic" />
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <VisPalette variant="behindText" />
-        </EuiFlexItem>
-      </EuiFlexGrid>
     </GuidePage>
   );
 };
