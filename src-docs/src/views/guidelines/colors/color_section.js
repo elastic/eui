@@ -9,7 +9,9 @@ import {
   EuiText,
   EuiFlexGrid,
   EuiPanel,
-} from '../../../../../src/components';
+  useEuiTheme,
+} from '../../../../../src';
+
 import {
   getHexValueFromColorName,
   ColorsContrastItem,
@@ -19,24 +21,55 @@ import {
   coreTextVariants,
 } from './_utilities';
 
+import {
+  brand_colors,
+  shade_colors,
+  brand_text_colors,
+  text_colors,
+} from '../../../../../src/global_styling/variables/_colors';
+
 export const ColorSection = ({
+  currentLanguage = 'sass',
   color,
   minimumContrast,
   showTextVariants,
   children,
 }) => {
+  const { euiTheme } = useEuiTheme();
   const palette = useSassVars();
-  const colorsForContrast = showTextVariants ? textVariants : allowedColors;
-  const hex = getHexValueFromColorName(palette, color);
+
+  let colorsForContrast;
+  let hex;
+
+  if (currentLanguage.includes('js')) {
+    const allowedColors = Object.keys(brand_colors).concat(
+      Object.keys(shade_colors)
+    );
+    const textVariants = Object.keys(brand_text_colors).concat(
+      Object.keys(text_colors)
+    );
+
+    colorsForContrast = showTextVariants ? textVariants : allowedColors;
+    hex = euiTheme.colors[color];
+  } else {
+    colorsForContrast = showTextVariants ? textVariants : allowedColors;
+    hex = getHexValueFromColorName(palette, color);
+  }
+
   const iconClass =
     color.includes('Lightest') ||
     color.includes('Empty') ||
-    color.includes('Page')
+    color.includes('Page') ||
+    color.includes('body')
       ? 'colorGuidelines_colorPreviewTooLight'
       : undefined;
 
   function colorIsCore(color) {
-    return coreColors.includes(color) || coreTextVariants.includes(color);
+    if (currentLanguage.includes('js')) {
+      return coreColors.includes(color) || coreTextVariants.includes(color);
+    } else {
+      return coreColors.includes(color) || coreTextVariants.includes(color);
+    }
   }
 
   return (
@@ -57,9 +90,12 @@ export const ColorSection = ({
 
       <EuiSpacer />
 
-      <EuiText grow={false}>{children}</EuiText>
-
-      <EuiSpacer />
+      {children && (
+        <>
+          <EuiText grow={false}>{children}</EuiText>
+          <EuiSpacer />
+        </>
+      )}
 
       <EuiPanel color="subdued">
         <EuiText size="xs">

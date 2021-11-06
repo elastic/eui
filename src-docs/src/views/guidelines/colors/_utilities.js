@@ -31,13 +31,13 @@ export const grayColors = [
   'euiColorFullShade',
 ];
 
-export const textColors = [
-  'euiTextSubduedColor',
+export const textOnly = [
   'euiTextColor',
+  'euiTextSubduedColor',
   'euiTitleColor',
-  'euiColorGhost',
-  'euiColorInk',
 ];
+
+export const textColors = [...textOnly, 'euiColorGhost', 'euiColorInk'];
 
 export const allowedColors = [...coreColors, ...grayColors];
 

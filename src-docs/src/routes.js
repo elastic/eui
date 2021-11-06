@@ -14,7 +14,6 @@ const GettingStarted = require('!!raw-loader!./views/guidelines/getting_started.
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
 
-import ColorGuidelines from './views/guidelines/colors';
 
 import { SassGuidelines } from './views/guidelines/sass';
 
@@ -229,6 +228,7 @@ import Typography, {
 } from './views/theme/typography/typography';
 import Sizing, { sizingSections } from './views/theme/sizing/sizing';
 import { ColorModeExample } from './views/theme/color_mode/color_mode_example';
+import Color from './views/theme/color/colors';
 import Breakpoints from './views/theme/breakpoints/breakpoints';
 import Borders, { bordersSections } from './views/theme/borders/borders';
 import Other, { otherSections } from './views/theme/other/other';
@@ -337,10 +337,6 @@ const navigation = [
     items: [
       createMarkdownExample(GettingStarted, 'Getting started'),
       createExample(AccessibilityGuidelines, 'Accessibility'),
-      {
-        name: 'Colors',
-        component: ColorGuidelines,
-      },
       createExample(WritingGuidelines, 'Writing'),
     ],
   },
@@ -357,6 +353,10 @@ const navigation = [
       {
         name: 'Breakpoints',
         component: Breakpoints,
+      },
+      {
+        name: 'Colors',
+        component: Color,
       },
       {
         name: 'Borders',

@@ -1,57 +1,33 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-
-import { GuidePage } from '../../components';
 
 import {
   EuiText,
   EuiSpacer,
-  EuiFlexGrid,
-  EuiFlexItem,
   EuiLink,
-  EuiCode,
   EuiTitle,
+  EuiHorizontalRule,
 } from '../../../../src/components';
-import { ratingAA, allowedColors } from './colors/_utilities';
-import { CorePalette } from './colors/core_palette';
 import { ColorSection } from './colors/color_section';
 import { ContrastSlider } from './colors/contrast_slider';
 
-export default ({ selectedTheme }) => {
+import { ratingAA, allowedColors } from './colors/_utilities';
+
+import {
+  brand_colors,
+  shade_colors,
+} from '../../../../src/global_styling/variables/_colors';
+
+export default ({ currentLanguage = 'js' }) => {
   const [showTextVariants, setShowTextVariants] = useState(true);
   const [contrastValue, setContrastValue] = useState(4.5);
-  const selectedThemeIsDark = selectedTheme.includes('dark');
+  const colors = currentLanguage.includes('sass')
+    ? allowedColors.concat(['euiPageBackgroundColor'])
+    : Object.keys(brand_colors).concat(
+        Object.keys(shade_colors).concat(['body'])
+      );
 
   return (
-    <GuidePage title="Color guidelines">
-      <EuiText grow={false}>
-        <h2>Elastic UI builds with a very limited palette.</h2>
-        <p>
-          We use a core set of three colors, combined with a green / orange /
-          red qualitative set of three, and finally combine those against a
-          six-color grayscale. Variation beyond these colors is minimal and
-          always done with math manipulation against the original set.
-        </p>
-      </EuiText>
-
-      <EuiSpacer />
-
-      <CorePalette colors={allowedColors} theme={selectedTheme} />
-
-      <EuiSpacer size="xxl" />
-
-      <EuiText grow={false}>
-        <h2>Variable naming</h2>
-        <p>
-          We use the same variable names of each color in all themes. That means
-          that our gray color names are opposite of their values in dark mode.
-          By just changing the values of the color, and not the usages of the
-          variables, we make it easier for the development multiple themes.
-        </p>
-      </EuiText>
-
-      <EuiSpacer size="xxl" />
-
+    <>
       <EuiText grow={false}>
         <h2>Accessible text contrast</h2>
         <p>
@@ -89,235 +65,21 @@ export default ({ selectedTheme }) => {
         <EuiSpacer size="xxl" />
         <EuiSpacer size="xxl" />
 
-        <ColorSection
-          color={'euiColorPrimary'}
-          minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}
-        >
-          <p>
-            Main brand color and used for most call to actions like{' '}
-            <Link to="/navigation/button">buttons</Link> and{' '}
-            <Link to="/navigation/link">links</Link>. Reserve usages to elements
-            with interactions like clickable items not for plain text.
-          </p>
-        </ColorSection>
+        {colors.map((color) => {
+          return (
+            <React.Fragment key={color}>
+              <ColorSection
+                currentLanguage={currentLanguage}
+                color={color}
+                minimumContrast={contrastValue}
+                showTextVariants={showTextVariants}
+              />
 
-        <EuiSpacer size="xxl" />
-        <EuiSpacer size="xxl" />
-
-        <ColorSection
-          color={'euiColorAccent'}
-          minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}
-        >
-          <p>
-            Pulls attention to key indicators like{' '}
-            <Link to="/display/badge">notifications</Link> or{' '}
-            <Link to="/navigation/facet">number of selections</Link>. Don&apos;t
-            use on elements with interactions.
-          </p>
-        </ColorSection>
-
-        <EuiSpacer size="xxl" />
-        <EuiSpacer size="xxl" />
-
-        <ColorSection
-          color={'euiColorSuccess'}
-          minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}
-        >
-          <p>
-            Use this for success graphics and <strong>additive</strong> actions.
-          </p>
-        </ColorSection>
-
-        <EuiSpacer size="xxl" />
-        <EuiSpacer size="xxl" />
-
-        <ColorSection
-          color={'euiColorWarning'}
-          minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}
-        >
-          <p>
-            Use this for warnings and actions that have a{' '}
-            <strong>potential</strong> to be destructive.
-          </p>
-        </ColorSection>
-
-        <EuiSpacer size="xxl" />
-        <EuiSpacer size="xxl" />
-
-        <ColorSection
-          color={'euiColorDanger'}
-          minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}
-        >
-          <p>
-            Use this for negative graphics like errors and{' '}
-            <strong>destructive</strong> actions.
-          </p>
-        </ColorSection>
-
-        <EuiSpacer size="xxl" />
-        <EuiSpacer size="xxl" />
-
-        <ColorSection
-          color={'euiColorEmptyShade'}
-          minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}
-        >
-          <p>
-            Used as the background color of primary{' '}
-            <Link to="/layout/page">page content</Link> and{' '}
-            <Link to="/layout/panel">panels</Link> including{' '}
-            <Link to="/layout/modal">modals</Link> and{' '}
-            <Link to="/layout/flyout">flyouts</Link>. Place your main content on
-            top of this color, or a panel-style component, to{' '}
-            <strong>ensure proper contrast</strong>.
-          </p>
-          {selectedThemeIsDark ? (
-            <p>
-              If you need a color that is full black in{' '}
-              <strong>both light and dark modes</strong>, use{' '}
-              <EuiCode>euiColorInk</EuiCode>.
-            </p>
-          ) : (
-            <p>
-              If you need a color that is full white in{' '}
-              <strong>both light and dark modes</strong>, use{' '}
-              <EuiCode>euiColorGhost</EuiCode>.
-            </p>
-          )}
-        </ColorSection>
-
-        <EuiSpacer size="xxl" />
-        <EuiSpacer size="xxl" />
-
-        <ColorSection
-          color={'euiColorLightestShade'}
-          minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}
-        >
-          <p>
-            Used to lightly shade areas that contain secondary content or{' '}
-            <strong>contain</strong> panel-like components. Proper contrast of
-            text on this color cannot be guaranteed.
-          </p>
-        </ColorSection>
-
-        <EuiSpacer size="xxl" />
-        <EuiSpacer size="xxl" />
-
-        <ColorSection
-          color={'euiPageBackgroundColor'}
-          minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}
-        >
-          <p>
-            The background color for the whole window (body) is a slightly
-            altered version of <EuiCode>euiColorLightestShade</EuiCode> that{' '}
-            <strong>does</strong> provide proper contrast for the text variant
-            colors.
-          </p>
-        </ColorSection>
-
-        <EuiSpacer size="xxl" />
-        <EuiSpacer size="xxl" />
-
-        <ColorSection
-          color={'euiColorLightShade'}
-          minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}
-        >
-          <p>
-            Used for most borders and dividers (
-            <Link to="/layout/horizontal-rule">horizontal rules</Link>).
-          </p>
-        </ColorSection>
-
-        <EuiSpacer size="xxl" />
-        <EuiSpacer size="xxl" />
-
-        <ColorSection
-          color={'euiColorMediumShade'}
-          minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}
-        >
-          <p>
-            The middle gray for all themes; this is the base for{' '}
-            <EuiCode>euiTextSubduedColor</EuiCode>. Use subdued text for hint or
-            inconsequential text.
-          </p>
-        </ColorSection>
-
-        <EuiSpacer size="xxl" />
-        <EuiSpacer size="xxl" />
-
-        <ColorSection
-          color={'euiColorDarkShade'}
-          minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}
-        >
-          <p>
-            A slightly less subtle shade for text, yet more subtle than the
-            default text color.
-          </p>
-        </ColorSection>
-
-        <EuiSpacer size="xxl" />
-        <EuiSpacer size="xxl" />
-
-        <ColorSection
-          color={'euiColorDarkestShade'}
-          minimumContrast={contrastValue}
-          showTextVariants={showTextVariants}
-        >
-          <p>
-            The default <Link to="/display/text">text</Link> color and the
-            background color for inverted backgrounds like{' '}
-            <Link to="/display/tooltip">tooltips</Link> and the{' '}
-            <Link to="/navigation/control-bar">control bar</Link>.{' '}
-            {!selectedThemeIsDark && (
-              <>
-                <Link to="/display/title">Titles</Link> are shaded slightly
-                darker than normal text.
-              </>
-            )}
-          </p>
-        </ColorSection>
-
-        <EuiSpacer size="xxl" />
+              <EuiHorizontalRule margin="xl" />
+            </React.Fragment>
+          );
+        })}
       </div>
-
-      <EuiSpacer size="xxl" />
-
-      <ColorSection
-        color={'euiColorFullShade'}
-        minimumContrast={contrastValue}
-        showTextVariants={showTextVariants}
-      >
-        <p>
-          The opposite of <EuiCode>euiColorEmptyShade</EuiCode>.
-        </p>
-        {selectedThemeIsDark ? (
-          <p>
-            If you need a color that is full white in{' '}
-            <strong>both light and dark modes</strong>, use{' '}
-            <EuiCode>euiColorGhost</EuiCode>.
-          </p>
-        ) : (
-          <p>
-            If you need a color that is full black in{' '}
-            <strong>both light and dark modes</strong>, use{' '}
-            <EuiCode>euiColorInk</EuiCode>.
-          </p>
-        )}
-      </ColorSection>
-
-      <EuiSpacer size="xxl" />
-      <EuiSpacer size="xxl" />
-
-    </GuidePage>
+    </>
   );
 };
