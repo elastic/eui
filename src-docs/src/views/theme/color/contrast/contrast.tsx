@@ -6,32 +6,20 @@ import {
   EuiSpacer,
   EuiLink,
   EuiTitle,
-  EuiHorizontalRule,
+  EuiPanel,
 } from '../../../../../../src/components';
 
-// @ts-ignore Importing from JS
 import { ColorSection } from './color_section';
-// @ts-ignore Importing from JS
 import { ContrastSlider } from './contrast_slider';
-// @ts-ignore Importing from JS
 import { ratingAA, allowedColors } from './_utilities';
-
-import {
-  brand_colors,
-  shade_colors,
-} from '../../../../../../src/global_styling/variables/_colors';
 
 export default () => {
   const [showTextVariants, setShowTextVariants] = useState(true);
   const [contrastValue, setContrastValue] = useState(4.5);
+  const colors = allowedColors.concat(['euiPageBackgroundColor']);
   const themeContext = useContext(ThemeContext);
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
-  const colors = showSass
-    ? allowedColors.concat(['euiPageBackgroundColor'])
-    : Object.keys(brand_colors).concat(
-        Object.keys(shade_colors).concat(['body'])
-      );
 
   return (
     <>
@@ -63,6 +51,7 @@ export default () => {
         <ContrastSlider
           contrastValue={contrastValue}
           showTextVariants={showTextVariants}
+          // @ts-ignore Help
           onChange={(
             sliderValue: React.SetStateAction<number>,
             toggleChecked: React.SetStateAction<boolean>
@@ -75,20 +64,19 @@ export default () => {
         <EuiSpacer size="xxl" />
         <EuiSpacer size="xxl" />
 
-        {colors.map((color: string | number | undefined) => {
-          return (
-            <React.Fragment key={color}>
-              <ColorSection
-                currentLanguage={currentLanguage}
-                color={color}
-                minimumContrast={contrastValue}
-                showTextVariants={showTextVariants}
-              />
-
-              <EuiHorizontalRule margin="xl" />
-            </React.Fragment>
-          );
-        })}
+        {showSass && (
+          <EuiPanel color="subdued">
+            {colors.map((color: string) => {
+              return (
+                <ColorSection
+                  color={color}
+                  minimumContrast={contrastValue}
+                  showTextVariants={showTextVariants}
+                />
+              );
+            })}
+          </EuiPanel>
+        )}
       </div>
     </>
   );

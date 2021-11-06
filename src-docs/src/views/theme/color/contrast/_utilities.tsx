@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { calculateContrast, rgbToHex } from '../../../../../../src/services';
+
+// @ts-ignore Importing from JS
 import { useSassVars } from '../../_json/_get_sass_vars';
 
 import {
@@ -64,7 +66,11 @@ export const ratingAA18 = (
 );
 export const ratingAll = <EuiBadge color="#eee">ALL</EuiBadge>;
 
-function getContrastRatings(background, foreground, palette) {
+function getContrastRatings(
+  background: string,
+  foreground: string,
+  palette: any
+) {
   const contrast = calculateContrast(
     [palette[background].r, palette[background].g, palette[background].b],
     [palette[foreground].r, palette[foreground].g, palette[foreground].b]
@@ -92,7 +98,13 @@ function getContrastRatings(background, foreground, palette) {
   return { contrast, contrastRating, contrastRatingBadge };
 }
 
-export const ColorsContrastItem = ({
+type ColorsContrastItem = {
+  foreground: string;
+  background: string;
+  minimumContrast: string | number;
+};
+
+export const ColorsContrastItem: FunctionComponent<ColorsContrastItem> = ({
   foreground,
   background,
   minimumContrast,
@@ -141,7 +153,6 @@ color: $${foreground};`;
             iconType={contrastRating}
             onClick={copy}
             onClickAriaLabel="Click to copy SASS configurations"
-            disabled={!contastIsAcceptableToCopy}
             style={{
               backgroundColor: palette[background].rgba,
               color: palette[foreground].rgba,
@@ -155,7 +166,11 @@ color: $${foreground};`;
   );
 };
 
-export function getHexValueFromColorName(palette, colorName, key) {
+export function getHexValueFromColorName(
+  palette: { [x: string]: any },
+  colorName: React.ReactText,
+  key?: React.ReactText
+) {
   const hex = key ? palette[colorName][key] : palette[colorName];
   return rgbToHex(hex.rgba).toUpperCase();
 }

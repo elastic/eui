@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FunctionComponent } from 'react';
 
 import {
   EuiFlexGroup,
@@ -10,10 +10,20 @@ import {
   EuiSwitch,
   EuiSpacer,
   EuiPanel,
+  EuiFlexGroupProps,
+  EuiRangeProps,
 } from '../../../../../../src/components';
+
+// @ts-ignore Importing from JS
 import { ratingAAA, ratingAA18, ratingAA, ratingAll } from './_utilities';
 
-export const ContrastSlider = ({
+type ContrastSlider = EuiFlexGroupProps & {
+  contrastValue: EuiRangeProps['value'];
+  showTextVariants: boolean;
+  onChange?: (value: number | string, checked: boolean) => void;
+};
+
+export const ContrastSlider: FunctionComponent<ContrastSlider> = ({
   contrastValue,
   showTextVariants,
   onChange,
@@ -114,6 +124,7 @@ export const ContrastSlider = ({
               value={value}
               onChange={(e) => {
                 setValue(e.currentTarget.value);
+                // @ts-ignore Help
                 onChange(e.currentTarget.value, checked);
               }}
               showTicks
@@ -139,6 +150,7 @@ export const ContrastSlider = ({
                 checked={showTextVariants}
                 onChange={(e) => {
                   setChecked(e.target.checked);
+                  // @ts-ignore Help
                   onChange(value, e.target.checked);
                 }}
               />
