@@ -10,6 +10,8 @@ import {
   EuiImage,
   EuiPanel,
   EuiAspectRatio,
+  EuiFlexGroup,
+  EuiHorizontalRule,
 } from '../../../../src/components';
 
 import image1Do from '../../images/tour_1_do.svg';
@@ -83,7 +85,7 @@ export default () => (
 
       <GuideRuleExample
         type="dont"
-        text="Use lenghty text that contains a lot of detail. Instead you can add a link for users to learn more."
+        text="Use lengthy text that contains a lot of detail. Instead you can add a link for users to learn more."
       >
         <EuiImage
           alt="lengthy content in tour step"
@@ -92,6 +94,33 @@ export default () => (
         />
       </GuideRuleExample>
     </GuideRule>
+
+    <EuiHorizontalRule />
+
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <GuideRule
+          heading="Keep your tours short"
+          description=" The more steps, the less likely it is that a user will complete a tour. If you need to decide which steps to drop, think of the ones the user is more likely to be able to figure out on their own."
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <GuideRule
+          heading="Be careful when using action-driven tours"
+          description="Tours where one step cannot be completed until the previous step has been completed can lead to the user feeling trapped. A nice detail when using this type of tours is to automatically take the user to the next step upon completion of the current step, instead of having to click on Next."
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <GuideRule
+          heading="Adjust your tour based on UX research"
+          description="Once your tour goes live, monitor user behavior to learn about what’s working and identify drop-off points. Based on that, iterate on your tour."
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer size="xl" />
+
+    <EuiHorizontalRule />
 
     <GuideRule
       heading="Explain why the actions you want users to perform are useful"
@@ -123,11 +152,6 @@ export default () => (
     </EuiAspectRatio>
 
     <GuideRule
-      heading="Keep your tours short"
-      description=" The more steps, the less likely it is that a user will complete a tour. If you need to decide which steps to drop, think of the ones the user is more likely to be able to figure out on their own."
-    />
-
-    <GuideRule
       heading="Allow users to end and restart the tour at any time"
       description="You can include a “Skip tour” button in your step’s footer. Users might be quick to dismiss a tour but realize they need to use it later on. Give them the option to re-trigger the tour at any time. A good spot for a tour’s trigger is the application’s help menu."
     />
@@ -152,22 +176,16 @@ export default () => (
           hasShadow={false}
           style={{ justifyContent: 'center', display: 'flex' }}
         >
-          <EuiPanel style={{ maxWidth: 520 }} paddingSize="s">
+          <EuiPanel
+            style={{ maxWidth: 520, overflow: 'hidden' }}
+            paddingSize="none"
+            hasBorder
+          >
             <EuiImage alt="skip tour button" url={image6Example} />
           </EuiPanel>
         </EuiPanel>
       </EuiFlexItem>
     </GuideRule>
     <EuiSpacer />
-
-    <GuideRule
-      heading="Be careful when using action-driven tours"
-      description="Tours where one step cannot be completed until the previous step has been completed can lead to the user feeling trapped. A nice detail when using this type of tours is to automatically take the user to the next step upon completion of the current step, instead of having to click on Next."
-    />
-
-    <GuideRule
-      heading="Adjust your tour based on UX research"
-      description="Once your tour goes live, monitor user behavior to learn about what’s working and identify drop-off points. Based on that, iterate on your tour."
-    />
   </>
 );
