@@ -228,6 +228,7 @@ import Typography, {
   typographySections,
 } from './views/theme/typography/typography';
 import Sizing, { sizingSections } from './views/theme/sizing/sizing';
+import { ColorModeExample } from './views/theme/color_mode/color_mode_example';
 import Breakpoints from './views/theme/breakpoints/breakpoints';
 import Borders, { bordersSections } from './views/theme/borders/borders';
 import Other, { otherSections } from './views/theme/other/other';
@@ -347,6 +348,7 @@ const navigation = [
     name: 'Theming',
     items: [
       createExample(ThemeExample, 'Theme provider'),
+      createExample(ColorModeExample),
       {
         name: 'Global values',
         component: ThemeValues,
