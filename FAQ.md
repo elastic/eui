@@ -14,7 +14,7 @@ See our licensing FAQ: [I’m using EUI or Elastic Charts in my application outs
 
 We use [semver](https://semver.org/) for versioning and use that to denote breaking changes in EUI upgrades. Traditionally we consider API changes in our prop names or existing component functionality to be a reason for a breaking change, but do not track the renaming of CSS selectors, mixins or other style changes under this same rigor.
 
-Traditionally releases are made weekly against whatever is in master and you can upgrade from NPM as you see fit.
+Traditionally releases are made weekly against whatever is in the `main` branch and you can upgrade from NPM as you see fit.
 
 ## How do you handle Typescript, Sass and theming?
 

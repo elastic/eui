@@ -129,7 +129,7 @@ export const ToolTipExample = {
             you&rsquo;ll need to make sure these props are applied to the root
             element rendered by your component. The best way to do that is to
             follow{' '}
-            <a href="https://github.com/elastic/eui/blob/master/wiki/component-design.md#pass-through-props">
+            <a href="https://github.com/elastic/eui/blob/main/wiki/component-design.md#pass-through-props">
               EUI&rsquo;s guidelines on pass-through props
             </a>
             .
