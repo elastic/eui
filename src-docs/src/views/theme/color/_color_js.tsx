@@ -17,7 +17,7 @@ import {
 } from '../../../../../src/global_styling/variables/_colors';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 
-const brandKeys = Object.keys(brand_colors);
+export const brandKeys = Object.keys(brand_colors);
 
 export const BrandJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
@@ -58,8 +58,8 @@ export const BrandJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   );
 };
 
-const brandTextKeys = Object.keys(brand_text_colors);
-const textKeys = Object.keys(text_colors);
+export const brandTextKeys = Object.keys(brand_text_colors);
+export const textKeys = Object.keys(text_colors);
 
 export const TextJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();
@@ -122,7 +122,7 @@ export const TextJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   );
 };
 
-const shadeKeys = Object.keys(shade_colors);
+export const shadeKeys = Object.keys(shade_colors);
 
 export const ShadeJS: FunctionComponent<ThemeRowType> = ({ description }) => {
   const { euiTheme } = useEuiTheme();

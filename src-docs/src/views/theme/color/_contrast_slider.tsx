@@ -12,10 +12,15 @@ import {
   EuiPanel,
   EuiFlexGroupProps,
   EuiRangeProps,
-} from '../../../../../../src/components';
+} from '../../../../../src/components';
 
 // @ts-ignore Importing from JS
-import { ratingAAA, ratingAA18, ratingAA, ratingAll } from './_utilities';
+import {
+  ratingAAA,
+  ratingAA18,
+  ratingAA,
+  ratingAll,
+} from './_contrast_utilities';
 
 type ContrastSlider = EuiFlexGroupProps & {
   contrastValue: EuiRangeProps['value'];
@@ -128,7 +133,6 @@ export const ContrastSlider: FunctionComponent<ContrastSlider> = ({
                 onChange(e.currentTarget.value, checked);
               }}
               showTicks
-              showValue
               ticks={ticks}
               valueAppend="+"
               fullWidth
@@ -140,7 +144,7 @@ export const ContrastSlider: FunctionComponent<ContrastSlider> = ({
         <EuiPanel paddingSize="l" color="subdued">
           <EuiFormRow
             labelType="legend"
-            label="Use text variant variables of core colors for better text contrast"
+            label="Show text variant versions of core color tokens as the foreground"
             hasChildLabel={false}
           >
             <div>

@@ -9,7 +9,7 @@ import { ThemeContext } from '../../../components/with_theme';
 import { ThemeNotice } from '../_components/_theme_notice';
 
 // @ts-ignore Importing JS
-import ColorsContrast from './contrast/contrast';
+import ColorsContrast from './contrast';
 
 import { BrandJS, ShadeJS, SpecialJS, TextJS } from './_color_js';
 import { Link } from 'react-router-dom';
@@ -39,7 +39,7 @@ export default () => {
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
 
-  const [selectedTabId, setSelectedTabId] = useState('colorsTabs--values');
+  const [selectedTabId, setSelectedTabId] = useState('colorsTabs--contrast');
   const onSelectedTabChanged = (id: string) => {
     setSelectedTabId(id);
   };

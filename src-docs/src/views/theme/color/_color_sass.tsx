@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from 'react';
+import { Link } from 'react-router-dom';
 
 import { EuiCode, EuiColorPickerSwatch } from '../../../../../src';
 
@@ -7,17 +8,14 @@ import { useJsonVars } from '../_json/_get_json_vars';
 
 import { ThemeExample } from '../_components/_theme_example';
 
-import {
-  grayColors,
-  textOnly,
-  coreTextVariants,
-  coreColors,
-  // @ts-ignore Importing from Sass file
-} from './contrast/_utilities';
-
-import { Link } from 'react-router-dom';
 import { ThemeRowType } from '../_props';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
+import {
+  coreColors,
+  coreTextVariants,
+  grayColors,
+  textOnly,
+} from './_contrast_sass';
 
 const euiBrandColors = [...coreColors];
 
