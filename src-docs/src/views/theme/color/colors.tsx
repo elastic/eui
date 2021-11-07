@@ -39,7 +39,7 @@ export default () => {
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
 
-  const [selectedTabId, setSelectedTabId] = useState('colorsTabs--contrast');
+  const [selectedTabId, setSelectedTabId] = useState('colorsTabs--values');
   const onSelectedTabChanged = (id: string) => {
     setSelectedTabId(id);
   };
