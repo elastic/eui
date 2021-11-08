@@ -65,17 +65,11 @@ const gridSnippet = `<EuiDataGrid
         <Fragment>
           <EuiButtonEmpty
             size="xs"
-            iconType="bell"
-            color="text"
-            className="euiDataGrid__controlBtn"
             onClick={() => {}}>
             New button
           </EuiButtonEmpty>
           <EuiButtonEmpty
             size="xs"
-            iconType="branch"
-            color="text"
-            className="euiDataGrid__controlBtn"
             onClick={() => {}}>
             Another button
           </EuiButtonEmpty>
@@ -108,17 +102,11 @@ const controlsSnippet = `<EuiDataGrid
         <Fragment>
           <EuiButtonEmpty
             size="xs"
-            iconType="bell"
-            color="text"
-            className="euiDataGrid__controlBtn"
             onClick={() => {}}>
             New button
           </EuiButtonEmpty>
           <EuiButtonEmpty
             size="xs"
-            iconType="branch"
-            color="text"
-            className="euiDataGrid__controlBtn"
             onClick={() => {}}>
             Another button
           </EuiButtonEmpty>
@@ -126,22 +114,22 @@ const controlsSnippet = `<EuiDataGrid
       ),
       right: (
         <Fragment>
-          <EuiButtonIcon
-            aria-label="Right-side button"
-            size="xs"
-            iconType="refresh"
-            color="success"
-            className="euiDataGrid__controlBtn"
-            onClick={() => {}}
-          />
-          <EuiButtonIcon
-            aria-label="Another right-side button"
-            size="xs"
-            iconType="grid"
-            color="accent"
-            className="euiDataGrid__controlBtn"
-            onClick={() => {}}
-          />
+          <EuiToolTip content="Right-side button">
+            <EuiButtonIcon
+              aria-label="Right-side button"
+              size="xs"
+              iconType="refresh"
+              onClick={() => {}}
+            />
+          </EuiToolTip>
+          <EuiToolTip content="Another right-side button">
+            <EuiButtonIcon
+              aria-label="Another right-side button"
+              size="xs"
+              iconType="inspect"
+              onClick={() => {}}
+            />
+          </EuiToolTip>
         </Fragment>
       )
     }
@@ -273,7 +261,7 @@ export const DataGridStylingExample = {
         <>
           <p>
             Use the <EuiCode>toolbarVisibility.additionalControls</EuiCode> prop
-            to pass additional controls to the toolbar. It will respect the{' '}
+            to pass more buttons to the toolbar. It will respect the{' '}
             <EuiCode language="js">toolbarVisibility={'{false}'}</EuiCode>{' '}
             setting and hide when appropriate.
           </p>
@@ -298,9 +286,10 @@ export const DataGridStylingExample = {
           </ul>
           <p>
             Although any node is allowed, the recommendation is to use{' '}
-            <strong>EuiButtonEmpty</strong> for the left-side of the toolbar and{' '}
-            <strong>EuiButtonIcon</strong> for the right-side of the toolbar,
-            with the configurations shown in the snippet.
+            <EuiCode>{'<EuiButtonEmpty size="xs" />'}</EuiCode> for the
+            left-side of the toolbar and{' '}
+            <EuiCode>{'<EuiButtonIcon size="xs" />'}</EuiCode> for the
+            right-side of the toolbar.
           </p>
         </>
       ),

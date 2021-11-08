@@ -52,15 +52,22 @@ describe('EuiDataGridToolbar', () => {
           <div>
             mock style selector
           </div>
-          <EuiButtonIcon
-            aria-label="Full screen"
-            className=""
-            color="text"
-            data-test-subj="dataGridFullScreenButton"
-            iconType="fullScreen"
-            onClick={[Function]}
-            size="xs"
-          />
+          <EuiToolTip
+            content="Full screen"
+            delay="long"
+            display="inlineBlock"
+            position="top"
+          >
+            <EuiButtonIcon
+              aria-label="Full screen"
+              className=""
+              color="text"
+              data-test-subj="dataGridFullScreenButton"
+              iconType="fullScreen"
+              onClick={[Function]}
+              size="xs"
+            />
+          </EuiToolTip>
         </div>
       </div>
     `);

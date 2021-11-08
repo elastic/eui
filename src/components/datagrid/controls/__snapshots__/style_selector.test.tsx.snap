@@ -5,15 +5,22 @@ exports[`useDataGridStyleSelector styleSelector renders a toolbar button/popover
   <EuiPopover
     anchorPosition="downRight"
     button={
-      <EuiButtonIcon
-        aria-label="Grid display"
-        className="euiDataGrid__controlBtn"
-        color="text"
-        data-test-subj="dataGridStyleSelectorButton"
-        iconType="tableDensityNormal"
-        onClick={[Function]}
-        size="xs"
-      />
+      <EuiToolTip
+        content="Display options"
+        delay="long"
+        display="inlineBlock"
+        position="top"
+      >
+        <EuiButtonIcon
+          aria-label="Display options"
+          className="euiDataGrid__controlBtn"
+          color="text"
+          data-test-subj="dataGridStyleSelectorButton"
+          iconType="tableDensityNormal"
+          onClick={[Function]}
+          size="xs"
+        />
+      </EuiToolTip>
     }
     closePopover={[Function]}
     data-test-subj="dataGridStyleSelectorPopover"
@@ -21,7 +28,7 @@ exports[`useDataGridStyleSelector styleSelector renders a toolbar button/popover
     hasArrow={true}
     isOpen={false}
     ownFocus={true}
-    panelClassName="euiDataGrid__controlPopover"
+    panelClassName="euiDataGrid__displayPopoverPanel"
     panelPaddingSize="s"
   >
     <EuiI18n
