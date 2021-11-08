@@ -28,7 +28,7 @@ export type EuiPaginationButtonArrowType = typeof TYPES[number];
 
 export type Props = Partial<Omit<EuiButtonIconPropsForAnchor, 'type'>> & {
   type: EuiPaginationButtonArrowType;
-  activePage?: number | null;
+  activePage?: number;
   disabled?: boolean;
   ariaControls?: string;
 };

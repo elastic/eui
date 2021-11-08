@@ -27,17 +27,29 @@ describe('EuiPagination', () => {
         expect(component).toMatchSnapshot();
       });
 
-      test('can be null', () => {
-        const component = render(<EuiPagination pageCount={null} />);
+      test('can be 0', () => {
+        const component = render(<EuiPagination pageCount={0} />);
 
         expect(component).toMatchSnapshot();
       });
     });
 
-    test('activePage is rendered', () => {
-      const component = render(<EuiPagination activePage={5} pageCount={10} />);
+    describe('activePage', () => {
+      test('is rendered', () => {
+        const component = render(
+          <EuiPagination activePage={5} pageCount={10} />
+        );
 
-      expect(component).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
+      });
+
+      test('can be 0', () => {
+        const component = render(
+          <EuiPagination pageCount={0} activePage={-1} />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
     });
 
     describe('compressed', () => {

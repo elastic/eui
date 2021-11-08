@@ -20,34 +20,24 @@ const MAX_VISIBLE_PAGES = 5;
 const NUMBER_SURROUNDING_PAGES = Math.floor(MAX_VISIBLE_PAGES * 0.5);
 
 export type PageClickHandler = (pageIndex: number) => void;
-export type SafeClickHandler = (
-  e: MouseEvent,
-  pageIndex: number | null
-) => void;
-
-export interface EuiPaginationIndeterminateProps {
-  onNextPage: () => void;
-  onPreviousPage: () => void;
-  onFirstPage: () => void;
-  onLastPage: () => void;
-  isFirstPage: boolean;
-  isLastPage: boolean;
-}
-
+export type SafeClickHandler = (e: MouseEvent, pageIndex: number) => void;
 export interface EuiPaginationProps {
   /**
    * The total number of pages.
-   * Pass `null` if total count in unknown.
+   * Pass `0` if total count in unknown.
    */
-  pageCount?: number | null;
+  pageCount?: number;
 
   /**
    * The current page using a zero based index.
    * So if you set the activePage to 1, it will activate the second page.
-   * Pass `null` if total count in unknown.
+   * Pass `-1` for forcing to last page.
    */
-  activePage?: number | null;
+  activePage?: number;
 
+  /**
+   * Click handler that passes back the internally calculated `activePage` index
+   */
   onPageClick?: PageClickHandler;
 
   /**
@@ -59,14 +49,6 @@ export interface EuiPaginationProps {
    * If passed in, passes value through to each button to set aria-controls.
    */
   'aria-controls'?: string;
-
-  /**
-   *
-   */
-  // indeterminateProps?: EuiPaginationIndeterminateProps;
-
-  onFirstPage?: () => void;
-  onLastPage?: () => void;
 }
 
 type Props = CommonProps & HTMLAttributes<HTMLDivElement> & EuiPaginationProps;
@@ -78,8 +60,6 @@ export const EuiPagination: FunctionComponent<Props> = ({
   onPageClick = () => {},
   compressed,
   'aria-controls': ariaControls,
-  onFirstPage,
-  onLastPage,
   ...rest
 }) => {
   const safeClick: SafeClickHandler = (e, pageIndex) => {
@@ -93,12 +73,12 @@ export const EuiPagination: FunctionComponent<Props> = ({
       }
     }
 
-    onPageClick(pageIndex === null ? 0 : pageIndex);
+    onPageClick(pageIndex);
   };
 
   const classes = classNames('euiPagination', className);
 
-  const firstButton = onFirstPage && (
+  const firstButton = pageCount < 1 && (
     <EuiPaginationButtonArrow
       type="first"
       activePage={activePage}
@@ -113,9 +93,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
       type="previous"
       activePage={activePage}
       ariaControls={ariaControls}
-      onClick={(e: MouseEvent) =>
-        safeClick(e, activePage !== null ? activePage - 1 : null)
-      }
+      onClick={(e: MouseEvent) => safeClick(e, activePage - 1)}
       disabled={activePage === 0}
     />
   );
@@ -125,28 +103,24 @@ export const EuiPagination: FunctionComponent<Props> = ({
       type="next"
       activePage={activePage}
       ariaControls={ariaControls}
-      onClick={(e: MouseEvent) =>
-        safeClick(e, activePage !== null ? activePage + 1 : null)
-      }
-      disabled={pageCount ? activePage === pageCount - 1 : false}
+      onClick={(e: MouseEvent) => safeClick(e, activePage + 1)}
+      disabled={activePage === -1 || activePage === pageCount - 1}
     />
   );
 
-  const lastButton = onLastPage && (
+  const lastButton = pageCount < 1 && (
     <EuiPaginationButtonArrow
       type="last"
       activePage={activePage}
       ariaControls={ariaControls}
-      onClick={(e: MouseEvent) =>
-        safeClick(e, pageCount ? pageCount - 1 : null)
-      }
-      disabled={pageCount ? activePage === pageCount - 1 : false}
+      onClick={(e: MouseEvent) => safeClick(e, -1)}
+      disabled={activePage === -1}
     />
   );
 
   let centerPageCount;
 
-  if (pageCount && activePage !== null) {
+  if (pageCount) {
     const sharedButtonProps = {
       activePage,
       ariaControls,
