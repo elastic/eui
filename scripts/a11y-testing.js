@@ -11,13 +11,7 @@ const docsPages = async (root, page) => {
     `${root}#/forms/color-selection`,
     `${root}#/forms/date-picker`,
     `${root}#/forms/super-date-picker`,
-    `${root}#/tabular-content/data-grid`,
-    `${root}#/tabular-content/data-grid-in-memory-settings`,
-    `${root}#/tabular-content/data-grid-schemas-and-popovers`,
-    `${root}#/tabular-content/data-grid-focus`,
     `${root}#/tabular-content/data-grid-styling-and-control`,
-    `${root}#/tabular-content/data-grid-control-columns`,
-    `${root}#/tabular-content/data-grid-footer-row`,
     `${root}#/tabular-content/data-grid-virtualization`,
     `${root}#/tabular-content/data-grid-row-heights-options`,
   ];

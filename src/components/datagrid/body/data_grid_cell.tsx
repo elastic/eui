@@ -18,6 +18,7 @@ import React, {
   memo,
   MutableRefObject,
 } from 'react';
+import { createPortal } from 'react-dom';
 import tabbable from 'tabbable';
 import { keys } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
@@ -33,6 +34,7 @@ import {
 } from '../data_grid_types';
 import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
 import { EuiDataGridCellPopover } from './data_grid_cell_popover';
+import { IS_JEST_ENVIRONMENT } from '../../../test';
 
 const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
@@ -362,9 +364,11 @@ export class EuiDataGridCell extends Component<
       className,
       column,
       style,
+      rowHeightsOptions,
+      rowManager,
       ...rest
     } = this.props;
-    const { rowIndex, rowHeightsOptions } = rest;
+    const { rowIndex } = rest;
 
     const showCellButtons =
       this.state.isFocused ||
@@ -553,7 +557,7 @@ export class EuiDataGridCell extends Component<
       }
     }
 
-    return (
+    const content = (
       <div
         role="gridcell"
         tabIndex={
@@ -562,6 +566,7 @@ export class EuiDataGridCell extends Component<
         ref={this.cellRef}
         {...cellProps}
         data-test-subj="dataGridRowCell"
+        data-gridcell-id={`${this.props.rowIndex},${this.props.colIndex}`}
         onKeyDown={handleCellKeyDown}
         onFocus={this.onFocus}
         onMouseEnter={() => {
@@ -575,5 +580,9 @@ export class EuiDataGridCell extends Component<
         {innerContent}
       </div>
     );
+
+    return rowManager && !IS_JEST_ENVIRONMENT
+      ? createPortal(content, rowManager.getRow(rowIndex))
+      : content;
   }
 }
