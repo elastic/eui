@@ -97,31 +97,6 @@ export default () => (
 
     <EuiHorizontalRule />
 
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <GuideRule
-          heading="Keep your tours short"
-          description=" The more steps, the less likely it is that a user will complete a tour. If you need to decide which steps to drop, think of the ones the user is more likely to be able to figure out on their own."
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <GuideRule
-          heading="Be careful when using action-driven tours"
-          description="Tours where one step cannot be completed until the previous step has been completed can lead to the user feeling trapped. A nice detail when using this type of tours is to automatically take the user to the next step upon completion of the current step, instead of having to click on Next."
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <GuideRule
-          heading="Adjust your tour based on UX research"
-          description="Once your tour goes live, monitor user behavior to learn about what’s working and identify drop-off points. Based on that, iterate on your tour."
-        />
-      </EuiFlexItem>
-    </EuiFlexGroup>
-
-    <EuiSpacer size="xl" />
-
-    <EuiHorizontalRule />
-
     <GuideRule
       heading="Explain why the actions you want users to perform are useful"
       description="If users see value in an action they’ll be more likely to engage."
@@ -164,6 +139,33 @@ export default () => (
         src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FRzfYLj2xmH9K7gQtbSKygn%2FElastic-UI%3Fnode-id%3D21976%253A315575"
       />
     </EuiAspectRatio>
+
+    <EuiHorizontalRule />
+
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <GuideRule
+          heading="Keep your tours short"
+          description=" The more steps, the less likely it is that a user will complete a tour. If you need to decide which steps to drop, think of the ones the user is more likely to be able to figure out on their own."
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <GuideRule
+          heading="Be careful when using action-driven tours"
+          description="Tours where one step cannot be completed until the previous step has been completed can lead to the user feeling trapped. A nice detail when using this type of tours is to automatically take the user to the next step upon completion of the current step, instead of having to click on Next."
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <GuideRule
+          heading="Adjust your tour based on UX research"
+          description="Once your tour goes live, monitor user behavior to learn about what’s working and identify drop-off points. Based on that, iterate on your tour."
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer size="xl" />
+
+    <EuiHorizontalRule />
 
     <GuideRule
       heading="Consider using animation gifs"
