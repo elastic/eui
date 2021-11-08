@@ -78,7 +78,7 @@ export default () => {
         </p>
         <p>
           For all available color functions see the{' '}
-          <Link to="/utilities/color">Color Utilities page</Link>.
+          <Link to="/utilities/color-functions">Color Utilities page</Link>.
         </p>
       </>
     );

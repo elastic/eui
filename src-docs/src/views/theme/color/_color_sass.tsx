@@ -66,7 +66,7 @@ export const TextSass: FunctionComponent<ThemeRowType> = ({ description }) => {
               If your background color is anything other than or darker than the{' '}
               <EuiCode>$euiPageBackgroundColor</EuiCode>, you will want to
               re-calculate the high contrast version by using the{' '}
-              <Link to="/utilities/color">
+              <Link to="/utilities/color-functions">
                 <EuiCode>
                   @include makeHighContrastColor($foreground, $background)
                 </EuiCode>

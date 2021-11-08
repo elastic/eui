@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { EuiCode, EuiCallOut } from '../../../../../src';
 import { GuideSectionTypes } from '../../../components/guide_section/guide_section_types';
 import { GuideSection } from '../../../components/guide_section/guide_section';
@@ -85,11 +84,7 @@ export const ContrastSections = () => {
       <EuiCallOut color="warning">
         <p>
           Note that color contrast cannot be accurately detected when using
-          transparency (colors with alpha channels). See the{' '}
-          <Link to="/utilities/color#simulating-contrast-with-transparency">
-            &quot;Simulating contrast with transparency&quot;
-          </Link>{' '}
-          example for details on how handle this internally.
+          transparency (colors with alpha channels).
         </p>
       </EuiCallOut>
     </>

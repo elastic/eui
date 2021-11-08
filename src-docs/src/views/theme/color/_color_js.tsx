@@ -77,7 +77,7 @@ export const TextJS: FunctionComponent<ThemeRowType> = ({ description }) => {
               If your background color is anything other than or darker than the{' '}
               <EuiCode>body</EuiCode> color, you will want to re-calculate the
               high contrast version by using the{' '}
-              <Link to="/utilities/color">
+              <Link to="/utilities/color-functions">
                 <EuiCode>makeHighContrastColor(foreground)(background)</EuiCode>
               </Link>{' '}
               method.
