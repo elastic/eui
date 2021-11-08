@@ -40,7 +40,6 @@ export const GuideSectionExampleText: FunctionComponent<GuideSectionExampleText>
     <>
       {titleNode}
       {textNode}
-      {(titleNode || textNode) && <EuiSpacer />}
     </>
   );
 };
