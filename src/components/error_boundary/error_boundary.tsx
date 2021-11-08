@@ -12,6 +12,7 @@ import classNames from 'classnames';
 
 import { EuiTitle } from '../title';
 import { EuiCodeBlock } from '../code';
+import { EuiI18n } from '../i18n';
 
 interface EuiErrorBoundaryState {
   hasError: boolean;
@@ -69,7 +70,9 @@ ${stackStr}`;
         >
           <EuiCodeBlock>
             <EuiTitle size="xs">
-              <p>Error</p>
+              <p>
+                <EuiI18n token="euiErrorBoundary.error" default="Error" />
+              </p>
             </EuiTitle>
             {this.state.error}
           </EuiCodeBlock>
