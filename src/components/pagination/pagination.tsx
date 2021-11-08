@@ -11,17 +11,28 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { EuiPaginationButton } from './pagination_button';
-import { EuiButtonIcon } from '../button';
 import { EuiI18n } from '../i18n';
 import { EuiText } from '../text';
 import { EuiHideFor } from '../responsive';
-import { EuiToolTip } from '../tool_tip';
+import { EuiPaginationButtonArrow } from './pagination_button_arrow';
 
 const MAX_VISIBLE_PAGES = 5;
 const NUMBER_SURROUNDING_PAGES = Math.floor(MAX_VISIBLE_PAGES * 0.5);
 
 export type PageClickHandler = (pageIndex: number) => void;
-type SafeClickHandler = (e: MouseEvent, pageIndex: number) => void;
+export type SafeClickHandler = (
+  e: MouseEvent,
+  pageIndex: number | null
+) => void;
+
+export interface EuiPaginationIndeterminateProps {
+  onNextPage: () => void;
+  onPreviousPage: () => void;
+  onFirstPage: () => void;
+  onLastPage: () => void;
+  isFirstPage: boolean;
+  isLastPage: boolean;
+}
 
 export interface EuiPaginationProps {
   /**
@@ -33,8 +44,9 @@ export interface EuiPaginationProps {
   /**
    * The current page using a zero based index.
    * So if you set the activePage to 1, it will activate the second page.
+   * Pass `null` if total count in unknown.
    */
-  activePage?: number;
+  activePage?: number | null;
 
   onPageClick?: PageClickHandler;
 
@@ -47,6 +59,14 @@ export interface EuiPaginationProps {
    * If passed in, passes value through to each button to set aria-controls.
    */
   'aria-controls'?: string;
+
+  /**
+   *
+   */
+  // indeterminateProps?: EuiPaginationIndeterminateProps;
+
+  onFirstPage?: () => void;
+  onLastPage?: () => void;
 }
 
 type Props = CommonProps & HTMLAttributes<HTMLDivElement> & EuiPaginationProps;
@@ -58,6 +78,8 @@ export const EuiPagination: FunctionComponent<Props> = ({
   onPageClick = () => {},
   compressed,
   'aria-controls': ariaControls,
+  onFirstPage,
+  onLastPage,
   ...rest
 }) => {
   const safeClick: SafeClickHandler = (e, pageIndex) => {
@@ -71,35 +93,60 @@ export const EuiPagination: FunctionComponent<Props> = ({
       }
     }
 
-    onPageClick(pageIndex);
+    onPageClick(pageIndex === null ? 0 : pageIndex);
   };
 
   const classes = classNames('euiPagination', className);
-  const hasControl = ariaControls !== undefined;
 
-  const nextButton = (
-    <PaginationButtonNext
-      hasControl={hasControl}
+  const firstButton = onFirstPage && (
+    <EuiPaginationButtonArrow
+      type="first"
       activePage={activePage}
       ariaControls={ariaControls}
-      safeClick={safeClick}
-      disabled={pageCount ? activePage === pageCount - 1 : false}
+      onClick={(e: MouseEvent) => safeClick(e, 0)}
+      disabled={activePage === 0}
     />
   );
 
   const previousButton = (
-    <PaginationButtonPrevious
-      hasControl={hasControl}
+    <EuiPaginationButtonArrow
+      type="previous"
       activePage={activePage}
       ariaControls={ariaControls}
-      safeClick={safeClick}
+      onClick={(e: MouseEvent) =>
+        safeClick(e, activePage !== null ? activePage - 1 : null)
+      }
       disabled={activePage === 0}
+    />
+  );
+
+  const nextButton = (
+    <EuiPaginationButtonArrow
+      type="next"
+      activePage={activePage}
+      ariaControls={ariaControls}
+      onClick={(e: MouseEvent) =>
+        safeClick(e, activePage !== null ? activePage + 1 : null)
+      }
+      disabled={pageCount ? activePage === pageCount - 1 : false}
+    />
+  );
+
+  const lastButton = onLastPage && (
+    <EuiPaginationButtonArrow
+      type="last"
+      activePage={activePage}
+      ariaControls={ariaControls}
+      onClick={(e: MouseEvent) =>
+        safeClick(e, pageCount ? pageCount - 1 : null)
+      }
+      disabled={pageCount ? activePage === pageCount - 1 : false}
     />
   );
 
   let centerPageCount;
 
-  if (pageCount) {
+  if (pageCount && activePage !== null) {
     const sharedButtonProps = {
       activePage,
       ariaControls,
@@ -267,114 +314,12 @@ export const EuiPagination: FunctionComponent<Props> = ({
 
   return (
     <nav className={classes} {...rest}>
+      {firstButton}
       {previousButton}
       {centerPageCount}
       {nextButton}
+      {lastButton}
     </nav>
-  );
-};
-
-const PaginationButtonPrevious = ({
-  hasControl,
-  activePage,
-  disabled,
-  ariaControls,
-  safeClick,
-}: {
-  hasControl?: boolean;
-  activePage: number;
-  disabled?: boolean;
-  ariaControls?: string;
-  safeClick: SafeClickHandler;
-}) => {
-  let prevPageButtonProps = {};
-  if (hasControl && !disabled) {
-    prevPageButtonProps = {
-      'aria-controls': ariaControls,
-      href: `#${ariaControls}`,
-    };
-  } else {
-    prevPageButtonProps = { disabled };
-  }
-
-  return (
-    <EuiI18n
-      token="euiPagination.previousPage"
-      default="Previous page, {page}"
-      values={{ page: activePage }}
-    >
-      {(previousPage: string) => (
-        <EuiI18n
-          token="euiPagination.disabledPreviousPage"
-          default="Previous page"
-        >
-          {(disabledPreviousPage: string) => (
-            <EuiToolTip
-              delay="long"
-              content={disabled ? undefined : previousPage}
-            >
-              <EuiButtonIcon
-                onClick={(e: MouseEvent) => safeClick(e, activePage - 1)}
-                iconType="arrowLeft"
-                color="text"
-                aria-label={disabled ? disabledPreviousPage : previousPage}
-                data-test-subj="pagination-button-previous"
-                {...prevPageButtonProps}
-              />
-            </EuiToolTip>
-          )}
-        </EuiI18n>
-      )}
-    </EuiI18n>
-  );
-};
-
-const PaginationButtonNext = ({
-  hasControl,
-  activePage,
-  disabled,
-  ariaControls,
-  safeClick,
-}: {
-  hasControl?: boolean;
-  activePage: number;
-  disabled?: boolean;
-  ariaControls?: string;
-  safeClick: SafeClickHandler;
-}) => {
-  let nextPageButtonProps = {};
-  if (hasControl && !disabled) {
-    nextPageButtonProps = {
-      'aria-controls': ariaControls,
-      href: `#${ariaControls}`,
-    };
-  } else {
-    nextPageButtonProps = { disabled };
-  }
-
-  return (
-    <EuiI18n
-      token="euiPagination.nextPage"
-      default="Next page, {page}"
-      values={{ page: activePage + 2 }}
-    >
-      {(nextPage: string) => (
-        <EuiI18n token="euiPagination.disabledNextPage" default="Next page">
-          {(disabledNextPage: string) => (
-            <EuiToolTip delay="long" content={disabled ? undefined : nextPage}>
-              <EuiButtonIcon
-                onClick={(e: MouseEvent) => safeClick(e, activePage + 1)}
-                iconType="arrowRight"
-                aria-label={disabled ? disabledNextPage : nextPage}
-                color="text"
-                data-test-subj="pagination-button-next"
-                {...nextPageButtonProps}
-              />
-            </EuiToolTip>
-          )}
-        </EuiI18n>
-      )}
-    </EuiI18n>
   );
 };
 

@@ -6,24 +6,20 @@ exports[`EuiPagination is rendered 1`] = `
   class="euiPagination testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  <span
-    class="euiToolTipAnchor"
+  <button
+    aria-label="Previous page"
+    class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+    data-test-subj="pagination-button-previous"
+    disabled=""
+    type="button"
   >
-    <button
-      aria-label="Previous page"
-      class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-      data-test-subj="pagination-button-previous"
-      disabled=""
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="arrowLeft"
-      />
-    </button>
-  </span>
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowLeft"
+    />
+  </button>
   <ul
     aria-label="aria-label"
     class="euiPagination__list"
@@ -51,24 +47,20 @@ exports[`EuiPagination is rendered 1`] = `
       </button>
     </li>
   </ul>
-  <span
-    class="euiToolTipAnchor"
+  <button
+    aria-label="Next page, 2"
+    class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+    data-test-subj="pagination-button-next"
+    disabled=""
+    type="button"
   >
-    <button
-      aria-label="Next page"
-      class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-      data-test-subj="pagination-button-next"
-      disabled=""
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="arrowRight"
-      />
-    </button>
-  </span>
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowRight"
+    />
+  </button>
 </nav>
 `;
 
@@ -76,23 +68,20 @@ exports[`EuiPagination props activePage is rendered 1`] = `
 <nav
   class="euiPagination"
 >
-  <span
-    class="euiToolTipAnchor"
+  <button
+    aria-label="Previous page, 5"
+    class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+    data-test-subj="pagination-button-previous"
+    title="Previous page, 5"
+    type="button"
   >
-    <button
-      aria-label="Previous page, 5"
-      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-      data-test-subj="pagination-button-previous"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="arrowLeft"
-      />
-    </button>
-  </span>
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowLeft"
+    />
+  </button>
   <ul
     class="euiPagination__list"
   >
@@ -265,23 +254,20 @@ exports[`EuiPagination props activePage is rendered 1`] = `
       </button>
     </li>
   </ul>
-  <span
-    class="euiToolTipAnchor"
+  <button
+    aria-label="Next page, 7"
+    class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+    data-test-subj="pagination-button-next"
+    title="Next page, 7"
+    type="button"
   >
-    <button
-      aria-label="Next page, 7"
-      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-      data-test-subj="pagination-button-next"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="arrowRight"
-      />
-    </button>
-  </span>
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowRight"
+    />
+  </button>
 </nav>
 `;
 
@@ -289,24 +275,20 @@ exports[`EuiPagination props aria-controls is rendered 1`] = `
 <nav
   class="euiPagination"
 >
-  <span
-    class="euiToolTipAnchor"
+  <button
+    aria-label="Previous page"
+    class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+    data-test-subj="pagination-button-previous"
+    disabled=""
+    type="button"
   >
-    <button
-      aria-label="Previous page"
-      class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-      data-test-subj="pagination-button-previous"
-      disabled=""
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="arrowLeft"
-      />
-    </button>
-  </span>
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowLeft"
+    />
+  </button>
   <ul
     class="euiPagination__list"
   >
@@ -334,24 +316,20 @@ exports[`EuiPagination props aria-controls is rendered 1`] = `
       </button>
     </li>
   </ul>
-  <span
-    class="euiToolTipAnchor"
+  <button
+    aria-label="Next page, 2"
+    class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+    data-test-subj="pagination-button-next"
+    disabled=""
+    type="button"
   >
-    <button
-      aria-label="Next page"
-      class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-      data-test-subj="pagination-button-next"
-      disabled=""
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="arrowRight"
-      />
-    </button>
-  </span>
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowRight"
+    />
+  </button>
 </nav>
 `;
 
@@ -359,24 +337,20 @@ exports[`EuiPagination props compressed  is rendered 1`] = `
 <nav
   class="euiPagination"
 >
-  <span
-    class="euiToolTipAnchor"
+  <button
+    aria-label="Previous page"
+    class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+    data-test-subj="pagination-button-previous"
+    disabled=""
+    type="button"
   >
-    <button
-      aria-label="Previous page"
-      class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-      data-test-subj="pagination-button-previous"
-      disabled=""
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="arrowLeft"
-      />
-    </button>
-  </span>
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowLeft"
+    />
+  </button>
   <div
     class="euiText euiText--small euiPagination__compressedText"
   >
@@ -418,24 +392,20 @@ exports[`EuiPagination props compressed  is rendered 1`] = `
       </span>
     </button>
   </div>
-  <span
-    class="euiToolTipAnchor"
+  <button
+    aria-label="Next page, 2"
+    class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+    data-test-subj="pagination-button-next"
+    disabled=""
+    type="button"
   >
-    <button
-      aria-label="Next page"
-      class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-      data-test-subj="pagination-button-next"
-      disabled=""
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="arrowRight"
-      />
-    </button>
-  </span>
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowRight"
+    />
+  </button>
 </nav>
 `;
 
@@ -443,42 +413,34 @@ exports[`EuiPagination props compressed arrows is rendered 1`] = `
 <nav
   class="euiPagination"
 >
-  <span
-    class="euiToolTipAnchor"
+  <button
+    aria-label="Previous page"
+    class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+    data-test-subj="pagination-button-previous"
+    disabled=""
+    type="button"
   >
-    <button
-      aria-label="Previous page"
-      class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-      data-test-subj="pagination-button-previous"
-      disabled=""
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="arrowLeft"
-      />
-    </button>
-  </span>
-  <span
-    class="euiToolTipAnchor"
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowLeft"
+    />
+  </button>
+  <button
+    aria-label="Next page, 2"
+    class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+    data-test-subj="pagination-button-next"
+    disabled=""
+    type="button"
   >
-    <button
-      aria-label="Next page"
-      class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-      data-test-subj="pagination-button-next"
-      disabled=""
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="arrowRight"
-      />
-    </button>
-  </span>
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowRight"
+    />
+  </button>
 </nav>
 `;
 
@@ -486,41 +448,34 @@ exports[`EuiPagination props pageCount can be null 1`] = `
 <nav
   class="euiPagination"
 >
-  <span
-    class="euiToolTipAnchor"
+  <button
+    aria-label="Previous page"
+    class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+    data-test-subj="pagination-button-previous"
+    disabled=""
+    type="button"
   >
-    <button
-      aria-label="Previous page"
-      class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-      data-test-subj="pagination-button-previous"
-      disabled=""
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="arrowLeft"
-      />
-    </button>
-  </span>
-  <span
-    class="euiToolTipAnchor"
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowLeft"
+    />
+  </button>
+  <button
+    aria-label="Next page, 2"
+    class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+    data-test-subj="pagination-button-next"
+    title="Next page, 2"
+    type="button"
   >
-    <button
-      aria-label="Next page, 2"
-      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-      data-test-subj="pagination-button-next"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="arrowRight"
-      />
-    </button>
-  </span>
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowRight"
+    />
+  </button>
 </nav>
 `;
 
@@ -528,24 +483,20 @@ exports[`EuiPagination props pageCount is rendered 1`] = `
 <nav
   class="euiPagination"
 >
-  <span
-    class="euiToolTipAnchor"
+  <button
+    aria-label="Previous page"
+    class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+    data-test-subj="pagination-button-previous"
+    disabled=""
+    type="button"
   >
-    <button
-      aria-label="Previous page"
-      class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-      data-test-subj="pagination-button-previous"
-      disabled=""
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="arrowLeft"
-      />
-    </button>
-  </span>
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowLeft"
+    />
+  </button>
   <ul
     class="euiPagination__list"
   >
@@ -678,22 +629,19 @@ exports[`EuiPagination props pageCount is rendered 1`] = `
       </button>
     </li>
   </ul>
-  <span
-    class="euiToolTipAnchor"
+  <button
+    aria-label="Next page, 2"
+    class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+    data-test-subj="pagination-button-next"
+    title="Next page, 2"
+    type="button"
   >
-    <button
-      aria-label="Next page, 2"
-      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-      data-test-subj="pagination-button-next"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="arrowRight"
-      />
-    </button>
-  </span>
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="arrowRight"
+    />
+  </button>
 </nav>
 `;
