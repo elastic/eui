@@ -290,10 +290,18 @@ describe('RowHeightUtils', () => {
       });
 
       describe('resetGrid', () => {
-        it('invokes grid.resetAfterRowIndex at the last cached/visible row', () => {
+        it('invokes grid.resetAfterRowIndex with the last visible row', () => {
           rowHeightUtils.setRowHeight(99, 'a', 34, 99);
           rowHeightUtils.resetGrid();
           expect(mockGrid.resetAfterRowIndex).toHaveBeenCalledWith(99);
+        });
+
+        it('invokes resetAfterRowIndex only once with the smallest cached row index', () => {
+          rowHeightUtils.setRowHeight(97, 'a', 34, 97);
+          rowHeightUtils.setRowHeight(99, 'a', 34, 99);
+          rowHeightUtils.resetGrid();
+          expect(mockGrid.resetAfterRowIndex).toHaveBeenCalledTimes(1);
+          expect(mockGrid.resetAfterRowIndex).toHaveBeenCalledWith(97);
         });
       });
     });
