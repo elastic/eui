@@ -6,7 +6,6 @@ import { GuideSectionTypes } from '../../components';
 import {
   EuiCode,
   EuiPagination,
-  EuiPaginationButton,
   EuiText,
   EuiCallOut,
 } from '../../../../src/components';
@@ -76,6 +75,16 @@ const compressedSnippet = `<EuiPagination
   compressed
 />`;
 
+import Indeterminate from './indeterminate';
+const indeterminateSource = require('!!raw-loader!./indeterminate');
+const indeterminateSnippet = `<EuiPagination
+  aria-label={paginationLabel}
+  pageCount={pageCount}
+  activePage={activePage}
+  onPageClick={(activePage) => goToPage(activePage)}
+  compressed
+/>`;
+
 export const PaginationExample = {
   title: 'Pagination',
   intro: (
@@ -122,7 +131,7 @@ export const PaginationExample = {
           />
         </>
       ),
-      props: { EuiPagination, EuiPaginationButton },
+      props: { EuiPagination },
       snippet: manyPagesSnippet,
       demo: <ManyPages />,
       playground: paginationConfig,
@@ -175,11 +184,34 @@ export const PaginationExample = {
       text: (
         <p>
           Use the <EuiCode>compressed</EuiCode> prop to minimize the horizontal
-          footprint.
+          footprint. This will replace the numbered buttons with static numbers
+          and rely on the first, last, next and previous icon buttons to
+          navigate.
         </p>
       ),
       snippet: compressedSnippet,
       demo: <Compressed />,
+    },
+    {
+      title: 'Indeterminate page count',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: indeterminateSource,
+        },
+      ],
+      text: (
+        <p>
+          If the total number of pages cannot be accurately determined, you can
+          pass <EuiCode>0</EuiCode> as the <EuiCode>pageCount</EuiCode>. This
+          will remove the button numbers and rely solely on the arrow icon
+          buttons for navigation. Without a total page count, the last page
+          button will pass back <EuiCode>-1</EuiCode> for the{' '}
+          <EuiCode>activePage</EuiCode>.
+        </p>
+      ),
+      snippet: indeterminateSnippet,
+      demo: <Indeterminate />,
     },
     {
       title: 'Customizable pagination',

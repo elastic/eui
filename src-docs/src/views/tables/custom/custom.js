@@ -764,6 +764,7 @@ export default class extends Component {
           pageCount={this.pager.getTotalPages()}
           onChangeItemsPerPage={this.onChangeItemsPerPage}
           onChangePage={this.onChangePage}
+          compressed
         />
       </div>
     );

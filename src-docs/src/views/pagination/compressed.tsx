@@ -4,17 +4,13 @@ import { EuiPagination } from '../../../../src/components';
 
 export default function () {
   const [activePage, setActivePage] = useState(0);
-  const PAGE_COUNT = 4;
-
-  const goToPage = (pageNumber) => {
-    setActivePage(pageNumber);
-  };
+  const PAGE_COUNT = 24;
 
   return (
     <EuiPagination
       pageCount={PAGE_COUNT}
       activePage={activePage}
-      onPageClick={(activePage) => goToPage(activePage)}
+      onPageClick={(activePage) => setActivePage(activePage)}
       compressed
     />
   );

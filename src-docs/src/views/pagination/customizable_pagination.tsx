@@ -21,9 +21,9 @@ export default () => {
     setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
   const closePopover = () => setIsPopoverOpen(false);
 
-  const goToPage = (pageNumber) => setActivePage(pageNumber);
+  const goToPage = (pageNumber: number) => setActivePage(pageNumber);
 
-  const getIconType = (size) => {
+  const getIconType = (size: number) => {
     return size === rowSize ? 'check' : 'empty';
   };
 
