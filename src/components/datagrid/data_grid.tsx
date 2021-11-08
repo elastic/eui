@@ -61,9 +61,7 @@ import {
   EuiDataGridStyleRowHover,
 } from './data_grid_types';
 import { RowHeightUtils } from './row_height_utils';
-
-// Used to short-circuit some async browser behaviour that is difficult to account for in tests
-const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
+import { IS_JEST_ENVIRONMENT } from '../../test';
 
 // Each gridStyle object above sets a specific CSS select to .euiGrid
 const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
@@ -694,19 +692,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   }, [focusedCell, contentRef]);
 
   useEffect(() => {
-    rowHeightUtils.computeStylesForGridCell(
-      {
-        cellPadding: gridStyles.cellPadding,
-        fontSize: gridStyles.fontSize,
-      },
-      rowHeightsOptions?.lineHeight
-    );
-  }, [
-    gridStyles.cellPadding,
-    gridStyles.fontSize,
-    rowHeightsOptions?.lineHeight,
-    rowHeightUtils,
-  ]);
+    rowHeightUtils.cacheStyles({
+      cellPadding: gridStyles.cellPadding,
+    });
+  }, [gridStyles.cellPadding, rowHeightUtils]);
 
   const classes = classNames(
     'euiDataGrid',
