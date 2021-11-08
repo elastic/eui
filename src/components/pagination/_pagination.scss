@@ -8,12 +8,15 @@
     align-items: center;
     line-height: 1 !important; // Override EuiText line-height
 
-    > *:first-child {
-      margin-right: $euiSizeXS;
-    }
+    > span {
+      margin-right: $euiSizeS;
+      margin-left: $euiSizeS;
+      font-weight: $euiFontWeightSemiBold;
 
-    > *:last-child {
-      margin-left: $euiSizeXS;
+      // sass-lint:disable-block nesting-depth
+      &:first-of-type {
+        color: $euiColorPrimaryText;
+      }
     }
   }
 }

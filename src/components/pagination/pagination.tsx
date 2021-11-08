@@ -38,7 +38,7 @@ export interface EuiPaginationProps {
   /**
    * Click handler that passes back the internally calculated `activePage` index
    */
-  onPageClick?: PageClickHandler;
+  onPageClick?: (pageIndex: number) => void;
 
   /**
    * If true, will only show next/prev arrows instead of page numbers.
@@ -78,7 +78,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
 
   const classes = classNames('euiPagination', className);
 
-  const firstButton = pageCount < 1 && (
+  const firstButton = (pageCount < 1 || compressed) && (
     <EuiPaginationButtonArrow
       type="first"
       activePage={activePage}
@@ -108,13 +108,13 @@ export const EuiPagination: FunctionComponent<Props> = ({
     />
   );
 
-  const lastButton = pageCount < 1 && (
+  const lastButton = (pageCount < 1 || compressed) && (
     <EuiPaginationButtonArrow
       type="last"
       activePage={activePage}
       ariaControls={ariaControls}
-      onClick={(e: MouseEvent) => safeClick(e, -1)}
-      disabled={activePage === -1}
+      onClick={(e: MouseEvent) => safeClick(e, pageCount ? pageCount - 1 : -1)}
+      disabled={activePage === -1 || activePage === pageCount - 1}
     />
   );
 
@@ -136,20 +136,8 @@ export const EuiPagination: FunctionComponent<Props> = ({
               token="euiPagination.pageOfTotalCompressed"
               default="{page} of {total}"
               values={{
-                page: (
-                  <PaginationButtonWrapper
-                    pageIndex={activePage}
-                    inList={false}
-                    {...sharedButtonProps}
-                  />
-                ),
-                total: (
-                  <PaginationButtonWrapper
-                    pageIndex={pageCount - 1}
-                    inList={false}
-                    {...sharedButtonProps}
-                  />
-                ),
+                page: <span>{activePage + 1}</span>,
+                total: <span>{pageCount}</span>,
               }}
             />
           </EuiText>
@@ -304,6 +292,7 @@ const PaginationButtonWrapper = ({
   pageCount,
   ariaControls,
   safeClick,
+  disabled,
 }: {
   pageIndex: number;
   inList?: boolean;
@@ -311,6 +300,7 @@ const PaginationButtonWrapper = ({
   pageCount: number;
   ariaControls?: string;
   safeClick: SafeClickHandler;
+  disabled?: boolean;
 }) => {
   const button = (
     <EuiPaginationButton
@@ -320,6 +310,7 @@ const PaginationButtonWrapper = ({
       pageIndex={pageIndex}
       aria-controls={ariaControls}
       hideOnMobile
+      disabled={disabled}
     />
   );
 
