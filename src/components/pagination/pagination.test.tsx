@@ -58,11 +58,6 @@ describe('EuiPagination', () => {
 
         expect(component).toMatchSnapshot();
       });
-      test('arrows is rendered', () => {
-        const component = render(<EuiPagination compressed="arrows" />);
-
-        expect(component).toMatchSnapshot();
-      });
     });
 
     test('aria-controls is rendered', () => {

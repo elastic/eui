@@ -43,7 +43,7 @@ export interface EuiPaginationProps {
   /**
    * If true, will only show next/prev arrows instead of page numbers.
    */
-  compressed?: boolean | 'arrows';
+  compressed?: boolean;
 
   /**
    * If passed in, passes value through to each button to set aria-controls.
@@ -128,7 +128,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
       pageCount,
     };
 
-    if (compressed === true) {
+    if (compressed) {
       centerPageCount = (
         <EuiHideFor sizes={['xs', 's']}>
           <EuiText size="s" className="euiPagination__compressedText">
@@ -155,7 +155,7 @@ export const EuiPagination: FunctionComponent<Props> = ({
           </EuiText>
         </EuiHideFor>
       );
-    } else if (compressed !== 'arrows') {
+    } else {
       const pages = [];
 
       const firstPageInRange = Math.max(
