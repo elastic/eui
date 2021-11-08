@@ -10,7 +10,8 @@ import React, { Component, HTMLAttributes, ReactNode } from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
 
-import { EuiText } from '../text';
+import { EuiTitle } from '../title';
+import { EuiCodeBlock } from '../code';
 
 interface EuiErrorBoundaryState {
   hasError: boolean;
@@ -66,14 +67,12 @@ ${stackStr}`;
           data-test-subj={dataTestSubj}
           {...rest}
         >
-          <div className="euiErrorBoundary__text">
-            <EuiText size="xs">
-              <h1>Error</h1>
-              <pre className="euiErrorBoundary__stack">
-                <p>{this.state.error}</p>
-              </pre>
-            </EuiText>
-          </div>
+          <EuiCodeBlock>
+            <EuiTitle size="xs">
+              <p>Error</p>
+            </EuiTitle>
+            {this.state.error}
+          </EuiCodeBlock>
         </div>
       );
     }
