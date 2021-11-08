@@ -63,6 +63,7 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   isLoading?: boolean;
   autoFocus?: boolean;
   ariaLabel?: string;
+  ariaLabelledby?: string;
 }
 
 interface EuiComboBoxInputState {
@@ -152,6 +153,7 @@ export class EuiComboBoxInput<T> extends Component<
       isLoading,
       autoFocus,
       ariaLabel,
+      ariaLabelledby,
     } = this.props;
 
     const singleSelection = Boolean(singleSelectionProp);
@@ -283,6 +285,7 @@ export class EuiComboBoxInput<T> extends Component<
           {placeholderMessage}
           <AutosizeInput
             aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledby}
             aria-activedescendant={focusedOptionId}
             aria-controls={isListOpen ? rootId('listbox') : ''}
             className="euiComboBox__input"

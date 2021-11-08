@@ -216,6 +216,19 @@ const duplicateOptionsSnippet = `const options = [{
   key: 'Label2',
 }]`;
 
+import Labelledby from './combo_box_labelledby';
+const labelledbySource = require('!!raw-loader!./combo_box_labelledby');
+const labelledbyHtml = renderToHtml(DuplicateOptions);
+const labelledbySnippet = `<EuiComboBox
+  ariaLabelledby={generatedId}
+  placeholder="Select or create options"
+  options={options}
+  selectedOptions={selectedOptions}
+  onChange={onChange}
+  onCreateOption={onCreateOption}
+  isClearable={true}
+/>`;
+
 export const ComboBoxExample = {
   title: 'Combo box',
   intro: (
@@ -227,6 +240,13 @@ export const ComboBoxExample = {
           able to select multiple options, and/or the user should have the
           ability to specify a custom value in addition to selecting from a
           predetermined list.
+        </p>
+        <p>
+          You must add an accessible label to each instance of{' '}
+          <strong>EuiComboBox</strong>. Labels can be created by wrapping the
+          combobox in an <strong>EuiFormRow</strong>, adding an{' '}
+          <EuiCode language="js">ariaLabel</EuiCode> prop, or passing a text
+          node ID to the <EuiCode language="js">ariaLabelledby</EuiCode> prop.
         </p>
       </EuiText>
     </Fragment>
@@ -629,6 +649,31 @@ export const ComboBoxExample = {
       props: { EuiComboBox, EuiComboBoxOptionOption },
       demo: <DuplicateOptions />,
       snippet: duplicateOptionsSnippet,
+    },
+    {
+      title: 'Accessible label with aria-labelledby',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: labelledbySource,
+        },
+        {
+          type: GuideSectionTypes.HTML,
+          code: labelledbyHtml,
+        },
+      ],
+      text: (
+        <p>
+          Sometimes it&rsquo;s preferable to label a combobox with a heading or
+          paragraph. You can easily create a unique ID for a text element using
+          the <a href="/#/utilities/html-id-generator">HTML ID generator</a>.
+          Then pass your unique ID to the{' '}
+          <EuiCode language="js">ariaLabelledby</EuiCode> prop.
+        </p>
+      ),
+      props: { EuiComboBox, EuiComboBoxOptionOption },
+      demo: <Labelledby />,
+      snippet: labelledbySnippet,
     },
   ],
 };

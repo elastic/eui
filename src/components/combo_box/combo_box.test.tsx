@@ -212,9 +212,17 @@ describe('props', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('accessible label is rendered', () => {
+  test('aria-label attribute is rendered', () => {
     const component = shallow(
       <EuiComboBox ariaLabel="Test label" options={options} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('aria-labelledby attribute is rendered', () => {
+    const component = shallow(
+      <EuiComboBox ariaLabelledby="test-heading-id" options={options} />
     );
 
     expect(component).toMatchSnapshot();

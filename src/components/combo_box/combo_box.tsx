@@ -146,6 +146,10 @@ export interface _EuiComboBoxProps<T>
    * Creates an accessible `aria-label` when using the Combobox without `<EuiFormRow />`
    */
   ariaLabel?: string;
+  /**
+   * Creates an accessible `aria-labelledby` that must reference the ID of a heading or descriptive text element
+   */
+  ariaLabelledby?: string;
 }
 
 /**
@@ -929,6 +933,7 @@ export class EuiComboBox<T> extends Component<
       append,
       autoFocus,
       ariaLabel,
+      ariaLabelledby,
       ...rest
     } = this.props;
     const {
@@ -1067,6 +1072,7 @@ export class EuiComboBox<T> extends Component<
           isLoading={isLoading}
           autoFocus={autoFocus}
           ariaLabel={ariaLabel}
+          ariaLabelledby={ariaLabelledby}
         />
         {optionsList}
       </div>
