@@ -8,12 +8,12 @@ import {
 
 export default () => (
   <EuiEmptyPrompt
-    title={<h2>You have no spice</h2>}
+    title={<h2>Upgrade your license to use Machine Learning</h2>}
     actions={[
       <EuiButton color="primary" fill>
-        Harvest spice
+        Upgrade
       </EuiButton>,
-      <EuiButtonEmpty color="danger">Sabotage all spice fields</EuiButtonEmpty>,
+      <EuiButtonEmpty color="primary">Start a trial</EuiButtonEmpty>,
     ]}
   />
 );
