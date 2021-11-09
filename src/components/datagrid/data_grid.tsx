@@ -649,7 +649,13 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     displayValues
   );
   const [displaySelector, gridStyles] = useDataGridDisplaySelector(
-    gridStyleWithDefaults
+    checkOrDefaultToolBarDisplayOptions(
+      toolbarVisibility,
+      'showDisplaySelector'
+    ),
+    gridStyleWithDefaults,
+    // @ts-ignore - showStyleSelector will be deprecated
+    toolbarVisibility?.showStyleSelector
   );
 
   // compute the default column width from the container's clientWidth and count of visible columns

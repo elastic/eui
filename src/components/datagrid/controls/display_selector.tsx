@@ -7,12 +7,18 @@
  */
 
 import React, { ReactElement, useState } from 'react';
-import { EuiDataGridStyle } from '../data_grid_types';
+
 import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiPopover } from '../../popover';
 import { EuiButtonIcon, EuiButtonGroup } from '../../button';
 import { EuiFormRow } from '../../form';
 import { EuiToolTip } from '../../tool_tip';
+
+import {
+  EuiDataGridToolBarVisibilityOptions,
+  EuiDataGridStyle,
+} from '../data_grid_types';
+import { getNestedObjectOptions } from './data_grid_toolbar';
 
 export const startingStyles: EuiDataGridStyle = {
   cellPadding: 'm',
@@ -45,12 +51,23 @@ const densityStyles: { [key: string]: Partial<EuiDataGridStyle> } = {
 const capitalizeDensityString = (s: string) => s[0].toUpperCase() + s.slice(1);
 
 export const useDataGridDisplaySelector = (
-  initialStyles: EuiDataGridStyle
+  showDisplaySelector: EuiDataGridToolBarVisibilityOptions['showDisplaySelector'],
+  initialStyles: EuiDataGridStyle,
+  showStyleSelector?: EuiDataGridToolBarVisibilityOptions['showStyleSelector'] // TODO: Deprecate
 ): [ReactElement, EuiDataGridStyle] => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const showDensityControls =
+    showStyleSelector ??
+    getNestedObjectOptions(showDisplaySelector, 'allowDensity');
+
+  const showRowHeightControls = getNestedObjectOptions(
+    showDisplaySelector,
+    'allowRowHeight'
+  );
+
   // track styles specified by the user at run time
   const [userGridStyles, setUserGridStyles] = useState({});
-
-  const [isOpen, setIsOpen] = useState(false);
 
   // Normal is the default density
   const [gridDensity, _setGridDensity] = useState(densityOptions[1]);
@@ -92,46 +109,50 @@ export const useDataGridDisplaySelector = (
         </EuiToolTip>
       }
     >
-      <EuiI18n
-        tokens={[
-          'euiDisplaySelector.densityLabel',
-          'euiDisplaySelector.labelCompact',
-          'euiDisplaySelector.labelNormal',
-          'euiDisplaySelector.labelExpanded',
-        ]}
-        defaults={['Density', 'Compact', 'Normal', 'Expanded']}
-      >
-        {([
-          densityLabel,
-          labelCompact,
-          labelNormal,
-          labelExpanded,
-        ]: string[]) => (
-          <EuiFormRow label={densityLabel} display="columnCompressed">
-            <EuiButtonGroup
-              legend={densityLabel}
-              buttonSize="compressed"
-              isFullWidth
-              options={[
-                {
-                  id: densityOptions[0],
-                  label: labelCompact,
-                },
-                {
-                  id: densityOptions[1],
-                  label: labelNormal,
-                },
-                {
-                  id: densityOptions[2],
-                  label: labelExpanded,
-                },
-              ]}
-              onChange={setGridDensity}
-              idSelected={gridDensity}
-            />
-          </EuiFormRow>
-        )}
-      </EuiI18n>
+      {showDensityControls && (
+        <EuiI18n
+          tokens={[
+            'euiDisplaySelector.densityLabel',
+            'euiDisplaySelector.labelCompact',
+            'euiDisplaySelector.labelNormal',
+            'euiDisplaySelector.labelExpanded',
+          ]}
+          defaults={['Density', 'Compact', 'Normal', 'Expanded']}
+        >
+          {([
+            densityLabel,
+            labelCompact,
+            labelNormal,
+            labelExpanded,
+          ]: string[]) => (
+            <EuiFormRow label={densityLabel} display="columnCompressed">
+              <EuiButtonGroup
+                legend={densityLabel}
+                buttonSize="compressed"
+                isFullWidth
+                options={[
+                  {
+                    id: densityOptions[0],
+                    label: labelCompact,
+                  },
+                  {
+                    id: densityOptions[1],
+                    label: labelNormal,
+                  },
+                  {
+                    id: densityOptions[2],
+                    label: labelExpanded,
+                  },
+                ]}
+                onChange={setGridDensity}
+                idSelected={gridDensity}
+                data-test-subj="densityButtonGroup"
+              />
+            </EuiFormRow>
+          )}
+        </EuiI18n>
+      )}
+      {showRowHeightControls && <>TODO: ROW HEIGHT OPTIONS</>}
     </EuiPopover>
   );
 

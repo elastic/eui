@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/popover allowing users to customize styles 1`] = `
+exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/popover allowing users to customize display settings 1`] = `
 <Fragment>
   <EuiPopover
     anchorPosition="downRight"
