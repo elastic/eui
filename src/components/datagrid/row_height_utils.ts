@@ -18,7 +18,7 @@ import {
 } from './data_grid_types';
 
 // TODO: Once JS variables are available, use them here instead of hard-coded maps
-const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, number> = {
+export const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, number> = {
   s: 4,
   m: 6,
   l: 8,
@@ -28,6 +28,45 @@ export const AUTO_HEIGHT = 'auto';
 export const DEFAULT_ROW_HEIGHT = 34;
 
 export class RowHeightUtils {
+  getRowHeightOption(
+    rowIndex: number,
+    rowHeightsOptions?: EuiDataGridRowHeightsOptions
+  ): EuiDataGridRowHeightOption | undefined {
+    return (
+      rowHeightsOptions?.rowHeights?.[rowIndex] ??
+      rowHeightsOptions?.defaultHeight
+    );
+  }
+
+  getCalculatedHeight(
+    heightOption: EuiDataGridRowHeightOption,
+    defaultHeight: number,
+    rowIndex?: number
+  ) {
+    if (isObject(heightOption)) {
+      if (heightOption.lineCount) {
+        return defaultHeight; // lineCount height is set in minRowHeight state in grid_row_body
+      }
+      if (heightOption.height) {
+        return Math.max(heightOption.height, defaultHeight);
+      }
+    }
+
+    if (heightOption && isNumber(heightOption)) {
+      return Math.max(heightOption, defaultHeight);
+    }
+
+    if (heightOption === AUTO_HEIGHT && rowIndex != null) {
+      return this.getRowHeight(rowIndex);
+    }
+
+    return defaultHeight;
+  }
+
+  /**
+   * Styles utils
+   */
+
   private styles: {
     paddingTop: number;
     paddingBottom: number;
@@ -35,11 +74,90 @@ export class RowHeightUtils {
     paddingTop: 0,
     paddingBottom: 0,
   };
-  // Used by auto height rows only
+
+  cacheStyles(gridStyles: EuiDataGridStyle) {
+    this.styles = {
+      paddingTop: cellPaddingsMap[gridStyles.cellPadding!],
+      paddingBottom: cellPaddingsMap[gridStyles.cellPadding!],
+    };
+  }
+
+  getStylesForCell = (
+    rowHeightsOptions: EuiDataGridRowHeightsOptions,
+    rowIndex: number
+  ): CSSProperties => {
+    const height = this.getRowHeightOption(rowIndex, rowHeightsOptions);
+
+    if (height === AUTO_HEIGHT) {
+      return {};
+    }
+
+    const lineCount = this.getLineCount(height);
+    if (lineCount) {
+      return {
+        WebkitLineClamp: lineCount,
+        display: '-webkit-box',
+        WebkitBoxOrient: 'vertical',
+        height: '100%',
+        overflow: 'hidden',
+      };
+    }
+
+    return {
+      height: '100%',
+      overflow: 'hidden',
+    };
+  };
+
+  /**
+   * Line count utils
+   */
+
+  getLineCount(option?: EuiDataGridRowHeightOption) {
+    return isObject(option) ? option.lineCount : undefined;
+  }
+
+  calculateHeightForLineCount(cellRef: HTMLElement, lineCount: number) {
+    const computedStyles = window.getComputedStyle(cellRef, null);
+    const lineHeight = parseInt(computedStyles.lineHeight, 10);
+
+    return Math.ceil(
+      lineCount * lineHeight +
+        this.styles.paddingTop +
+        this.styles.paddingBottom
+    );
+  }
+
+  /**
+   * Auto height utils
+   */
+
   private heightsCache = new Map<number, Map<string, number>>();
-  private timerId: any;
+  private timerId?: number;
   private grid?: Grid;
   private lastUpdatedRow: number = Infinity;
+
+  isAutoHeight(
+    rowIndex: number,
+    rowHeightsOptions?: EuiDataGridRowHeightsOptions
+  ) {
+    const height = this.getRowHeightOption(rowIndex, rowHeightsOptions);
+
+    if (height === AUTO_HEIGHT) {
+      return true;
+    }
+    return false;
+  }
+
+  getRowHeight(rowIndex: number) {
+    const rowHeights = this.heightsCache.get(rowIndex);
+    if (rowHeights == null) return 0;
+
+    const rowHeightValues = Array.from(rowHeights.values());
+    if (!rowHeightValues.length) return 0;
+
+    return Math.max(...rowHeightValues);
+  }
 
   setRowHeight(
     rowIndex: number,
@@ -86,20 +204,7 @@ export class RowHeightUtils {
     // if this visible row index less than lastUpdatedRow
     this.lastUpdatedRow = Math.min(this.lastUpdatedRow, visibleRowIndex);
     clearTimeout(this.timerId);
-    this.timerId = setTimeout(() => this.resetGrid(), 0);
-  }
-
-  getRowHeight(rowIndex: number) {
-    const rowHeights = this.heightsCache.get(rowIndex);
-    if (rowHeights == null) return 0;
-
-    const rowHeightValues = Array.from(rowHeights.values());
-
-    if (rowHeightValues.length) {
-      return Math.max(...rowHeightValues);
-    }
-
-    return 0;
+    this.timerId = window.setTimeout(() => this.resetGrid(), 0);
   }
 
   resetGrid() {
@@ -110,100 +215,4 @@ export class RowHeightUtils {
   setGrid(grid: Grid) {
     this.grid = grid;
   }
-
-  isAutoHeight(
-    rowIndex: number,
-    rowHeightsOptions?: EuiDataGridRowHeightsOptions
-  ) {
-    const height = this.getRowHeightOption(rowIndex, rowHeightsOptions);
-
-    if (height === AUTO_HEIGHT) {
-      return true;
-    }
-    return false;
-  }
-
-  cacheStyles(gridStyles: EuiDataGridStyle) {
-    this.styles = {
-      paddingTop: cellPaddingsMap[gridStyles.cellPadding!],
-      paddingBottom: cellPaddingsMap[gridStyles.cellPadding!],
-    };
-  }
-
-  getRowHeightOption(
-    rowIndex: number,
-    rowHeightsOptions?: EuiDataGridRowHeightsOptions
-  ): EuiDataGridRowHeightOption | undefined {
-    return (
-      rowHeightsOptions?.rowHeights?.[rowIndex] ??
-      rowHeightsOptions?.defaultHeight
-    );
-  }
-
-  getLineCount(option?: EuiDataGridRowHeightOption) {
-    return isObject(option) ? option.lineCount : undefined;
-  }
-
-  calculateHeightForLineCount(cellRef: HTMLElement, lineCount: number) {
-    const computedStyles = window.getComputedStyle(cellRef, null);
-    const lineHeight = parseInt(computedStyles.lineHeight, 10) || 24;
-
-    return Math.ceil(
-      lineCount * lineHeight +
-        this.styles.paddingTop +
-        this.styles.paddingBottom
-    );
-  }
-
-  getCalculatedHeight(
-    heightOption: EuiDataGridRowHeightOption,
-    defaultHeight: number,
-    rowIndex?: number
-  ) {
-    if (isObject(heightOption)) {
-      if (heightOption.lineCount) {
-        return defaultHeight; // lineCount height is set in minRowHeight state in grid_row_body
-      }
-      if (heightOption.height) {
-        return Math.max(heightOption.height, defaultHeight);
-      }
-    }
-
-    if (heightOption && isNumber(heightOption)) {
-      return Math.max(heightOption, defaultHeight);
-    }
-
-    if (heightOption === AUTO_HEIGHT && rowIndex != null) {
-      return this.getRowHeight(rowIndex);
-    }
-
-    return defaultHeight;
-  }
-
-  getStylesForCell = (
-    rowHeightsOptions: EuiDataGridRowHeightsOptions,
-    rowIndex: number
-  ): CSSProperties => {
-    const height = this.getRowHeightOption(rowIndex, rowHeightsOptions);
-
-    if (height === AUTO_HEIGHT) {
-      return {};
-    }
-
-    const lineCount = this.getLineCount(height);
-    if (lineCount) {
-      return {
-        WebkitLineClamp: lineCount,
-        display: '-webkit-box',
-        WebkitBoxOrient: 'vertical',
-        height: '100%',
-        overflow: 'hidden',
-      };
-    }
-
-    return {
-      height: '100%',
-      overflow: 'hidden',
-    };
-  };
 }
