@@ -28,7 +28,7 @@ const typeToPathMap = {
   agentApp: 'app_fleet',
   aggregate: 'aggregate',
   alert: 'alert',
-  analyzeEvent: 'analyze_event',
+  analyzeEvent: 'analyzeEvent',
   annotation: 'annotation',
   apmApp: 'app_apm',
   apmTrace: 'apm_trace',
