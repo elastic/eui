@@ -15,12 +15,6 @@ import React, {
   ChangeEvent,
 } from 'react';
 import classNames from 'classnames';
-import {
-  EuiDataGridColumn,
-  EuiDataGridColumnVisibility,
-  EuiDataGridToolBarVisibilityColumnSelectorOptions,
-  EuiDataGridToolBarVisibilityOptions,
-} from '../data_grid_types';
 import { EuiPopover, EuiPopoverFooter, EuiPopoverTitle } from '../../popover';
 import { EuiI18n } from '../../i18n';
 import { EuiButtonEmpty } from '../../button';
@@ -36,15 +30,12 @@ import { DropResult } from 'react-beautiful-dnd';
 import { EuiIcon } from '../../icon';
 import { useDependentState } from '../../../services';
 
-const getShowColumnSelectorValue = (
-  showColumnSelector: EuiDataGridToolBarVisibilityOptions['showColumnSelector'],
-  valueName: keyof EuiDataGridToolBarVisibilityColumnSelectorOptions
-) => {
-  if (showColumnSelector === false) return false;
-  if (showColumnSelector == null) return true;
-  if (showColumnSelector === true) return true;
-  return showColumnSelector[valueName] !== false;
-};
+import {
+  EuiDataGridColumn,
+  EuiDataGridColumnVisibility,
+  EuiDataGridToolBarVisibilityOptions,
+} from '../data_grid_types';
+import { getNestedObjectOptions } from './data_grid_toolbar';
 
 export const useDataGridColumnSelector = (
   availableColumns: EuiDataGridColumn[],
@@ -57,11 +48,11 @@ export const useDataGridColumnSelector = (
   (columns: string[]) => void,
   (colFrom: string, colTo: string) => void
 ] => {
-  const allowColumnHiding = getShowColumnSelectorValue(
+  const allowColumnHiding = getNestedObjectOptions(
     showColumnSelector,
     'allowHide'
   );
-  const allowColumnReorder = getShowColumnSelectorValue(
+  const allowColumnReorder = getNestedObjectOptions(
     showColumnSelector,
     'allowReorder'
   );

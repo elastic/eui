@@ -13,6 +13,7 @@ import {
   EuiDataGridToolbar,
   checkOrDefaultToolBarDisplayOptions,
   renderAdditionalControls,
+  getNestedObjectOptions,
 } from './data_grid_toolbar';
 
 describe('EuiDataGridToolbar', () => {
@@ -251,5 +252,23 @@ describe('renderAdditionalControls', () => {
         renderAdditionalControls({ additionalControls: mockControl }, 'right')
       ).toEqual(null);
     });
+  });
+});
+
+describe('getNestedObjectOptions', () => {
+  it('returns the passed boolean if the option is set to a boolean instead of an object', () => {
+    expect(getNestedObjectOptions(true, 'someKey')).toEqual(true);
+    expect(getNestedObjectOptions(false, 'someKey')).toEqual(false);
+  });
+
+  it('returns true if the option is undefined', () => {
+    expect(getNestedObjectOptions(undefined, 'someKey')).toEqual(true);
+  });
+
+  it('returns the nested object boolean if the option is an object configuration', () => {
+    expect(getNestedObjectOptions({ someKey: true }, 'someKey')).toEqual(true);
+    expect(getNestedObjectOptions({ someKey: false }, 'someKey')).toEqual(
+      false
+    );
   });
 });
