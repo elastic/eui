@@ -186,7 +186,6 @@ describe('checkOrDefaultToolBarDisplayOptions', () => {
 
 describe('renderAdditionalControls', () => {
   const mockControl = <div data-test-subj="test" />;
-  // const mockToolbar = { additionalControls: mockControl };
 
   it('does not render if a boolean was passed into toolbarVisibility', () => {
     expect(renderAdditionalControls(false, 'left')).toEqual(null);

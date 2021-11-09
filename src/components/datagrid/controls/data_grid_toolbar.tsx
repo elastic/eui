@@ -51,13 +51,11 @@ export const EuiDataGridToolbar = ({
 
   useEffect(() => {
     // When data grid is full screen, we add a class to the body to remove the extra scrollbar and stay above any fixed headers
-    if (isFullScreen && typeof document !== 'undefined') {
+    if (isFullScreen) {
       document.body.classList.add(GRID_IS_FULLSCREEN_CLASSNAME);
 
       return () => {
-        if (typeof document !== 'undefined') {
-          document.body.classList.remove(GRID_IS_FULLSCREEN_CLASSNAME);
-        }
+        document.body.classList.remove(GRID_IS_FULLSCREEN_CLASSNAME);
       };
     }
   }, [isFullScreen]);
