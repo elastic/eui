@@ -74,6 +74,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     rowHeightsOptions,
     rowHeightUtils,
     rowManager,
+    isFullScreen,
   } = data;
 
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
@@ -129,7 +130,9 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     className: classes,
     style: {
       ...style,
-      top: `${parseFloat(style.top as string) + headerRowHeight}px`,
+      top: isFullScreen
+        ? style.top
+        : `${parseFloat(style.top as string) + headerRowHeight}px`,
     },
     rowHeightsOptions,
     rowHeightUtils,
@@ -705,6 +708,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                   rowHeightsOptions,
                   rowHeightUtils,
                   rowManager,
+                  isFullScreen,
                 }}
                 rowCount={
                   IS_JEST_ENVIRONMENT || headerRowHeight > 0
