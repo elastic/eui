@@ -28,7 +28,7 @@ const typeToPathMap = {
   agentApp: 'app_fleet',
   aggregate: 'aggregate',
   alert: 'alert',
-  analyzeEvent: 'analyze_event',
+  analyzeEvent: 'analyzeEvent',
   annotation: 'annotation',
   apmApp: 'app_apm',
   apmTrace: 'apm_trace',
@@ -476,7 +476,7 @@ export const COLORS: NamedColor[] = keysOf(colorToClassMap);
 
 type NamedColor = keyof typeof colorToClassMap;
 
-function isNamedColor(name: string): name is NamedColor {
+export function isNamedColor(name: string): name is NamedColor {
   return colorToClassMap.hasOwnProperty(name);
 }
 
