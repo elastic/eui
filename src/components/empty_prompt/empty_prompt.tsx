@@ -14,7 +14,7 @@ import { EuiTitle, EuiTitleSize } from '../title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
 import { EuiIcon, IconColor, IconType } from '../icon';
-import { COLORS as ICON_COLORS } from '../icon/icon';
+import { isNamedColor } from '../icon/icon';
 import { EuiText, EuiTextColor } from '../text';
 import { EuiPanel, _EuiPanelDivlike } from '../panel/panel';
 
@@ -99,8 +99,7 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   const isVerticalLayout = layout === 'vertical';
   // Default the iconColor to `subdued`,
   // otherwise try to match the iconColor with the panel color unless iconColor is specified
-  const iconColor =
-    _iconColor ?? (ICON_COLORS.includes(color as any) ? color : 'subdued');
+  const iconColor = _iconColor ?? (isNamedColor(color) ? color : 'subdued');
 
   const iconNode = iconType ? (
     <EuiIcon type={iconType} size="xxl" color={iconColor} />

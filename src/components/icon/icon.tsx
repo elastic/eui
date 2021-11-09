@@ -474,7 +474,7 @@ export const COLORS: NamedColor[] = keysOf(colorToClassMap);
 
 type NamedColor = keyof typeof colorToClassMap;
 
-function isNamedColor(name: string): name is NamedColor {
+export function isNamedColor(name: string): name is NamedColor {
   return colorToClassMap.hasOwnProperty(name);
 }
 
