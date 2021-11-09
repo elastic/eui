@@ -767,6 +767,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
           focusable={focusable}
           role="img"
           title={title}
+          data-icon-type={this.state.iconTitle}
           {...titleId}
           {...rest}
           {...hideIconEmpty}
