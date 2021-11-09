@@ -44,8 +44,10 @@ import {
 import {
   EuiDataGridBodyProps,
   EuiDataGridInMemoryValues,
+  EuiDataGridRowManager,
   EuiDataGridSchemaDetector,
 } from '../data_grid_types';
+import { makeRowManager } from './data_grid_row_manager';
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
 
@@ -71,6 +73,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     schemaDetectors,
     rowHeightsOptions,
     rowHeightUtils,
+    rowManager,
   } = data;
 
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
@@ -131,6 +134,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     rowHeightsOptions,
     rowHeightUtils,
     setRowHeight: isFirstColumn ? setRowHeight : undefined,
+    rowManager: rowManager,
   };
 
   if (isLeadingControlColumn) {
@@ -583,6 +587,14 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const wrapperDimensions = useResizeObserver(wrapperRef.current);
 
+  const innerGridRef = useRef<HTMLDivElement | null>(null);
+
+  // useState instead of useMemo as React reserves the right to drop memoized
+  // values in the future, and that would be very bad here
+  const [rowManager] = useState<EuiDataGridRowManager>(() =>
+    makeRowManager(innerGridRef)
+  );
+
   // reset height constraint when rowCount changes
   useEffect(() => {
     setHeight(undefined);
@@ -647,6 +659,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     >
       {(mutationRef) => (
         <div
+          data-test-subj="euiDataGridBody"
           style={{ width: '100%', height: '100%', overflow: 'hidden' }}
           ref={(el) => {
             wrapperRef.current = el;
@@ -661,6 +674,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 {...(virtualizationOptions ? virtualizationOptions : {})}
                 ref={setGridRef}
                 innerElementType={InnerElement}
+                innerRef={innerGridRef}
                 className={VIRTUALIZED_CONTAINER_CLASS}
                 columnCount={
                   leadingControlColumns.length +
@@ -690,6 +704,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                   interactiveCellId,
                   rowHeightsOptions,
                   rowHeightUtils,
+                  rowManager,
                 }}
                 rowCount={
                   IS_JEST_ENVIRONMENT || headerRowHeight > 0

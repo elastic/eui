@@ -38,7 +38,11 @@ const EuiDataGridFooterRow = memo(
         'euiDataGridFooter',
         className
       );
-      const dataTestSubj = classnames('dataGridRow', _dataTestSubj);
+      const dataTestSubj = classnames(
+        'dataGridRow',
+        'dataGridFooterRow',
+        _dataTestSubj
+      );
 
       const sharedCellProps = {
         rowIndex,

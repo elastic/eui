@@ -6,25 +6,36 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  HTMLAttributes,
-  ReactElement,
-  ReactNode,
-} from 'react';
+import React, { FunctionComponent, ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../common';
+import { CommonProps, keysOf } from '../common';
 import { EuiTitle, EuiTitleSize } from '../title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
 import { EuiIcon, IconColor, IconType } from '../icon';
+import { isNamedColor } from '../icon/icon';
 import { EuiText, EuiTextColor } from '../text';
+import { EuiPanel, _EuiPanelDivlike } from '../panel/panel';
+
+const paddingSizeToClassNameMap = {
+  none: null,
+  s: 'euiEmptyPrompt--paddingSmall',
+  m: 'euiEmptyPrompt--paddingMedium',
+  l: 'euiEmptyPrompt--paddingLarge',
+};
+
+export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
+
+export type PaddingSize = typeof PADDING_SIZES[number];
 
 export type EuiEmptyPromptProps = CommonProps &
-  Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
+  Omit<
+    _EuiPanelDivlike,
+    'borderRadius' | 'grow' | 'panelRef' | 'paddingSize' | 'title'
+  > & {
     /*
-     * Accepts any `EuiIcon.type` or pass a custom node
+     * Accepts any [EuiIcon.type](#/display/icons)
      */
     iconType?: IconType;
     /**
@@ -54,37 +65,47 @@ export type EuiEmptyPromptProps = CommonProps &
      * Recommendation is to pass the primary action first and secondary actions as empty buttons
      */
     actions?: ReactNode;
+    /**
+     * Optionally provide a footer. Accepts any combination of elements.
+     */
+    footer?: ReactNode;
+    /**
+     * Sets the layout. When `horizontal` the icon goes to the right column.
+     */
+    layout?: 'vertical' | 'horizontal';
+
+    /**
+     * Padding applied around the content and footer.
+     */
+    paddingSize?: PaddingSize;
   };
 
 export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
   icon,
   iconType,
-  iconColor = 'subdued',
+  iconColor: _iconColor,
   title,
   titleSize = 'm',
+  paddingSize = 'l',
   body,
   actions,
   className,
+  layout = 'vertical',
+  hasBorder,
+  color = 'transparent',
+  footer,
   ...rest
 }) => {
-  const classes = classNames('euiEmptyPrompt', className);
+  const isVerticalLayout = layout === 'vertical';
+  // Default the iconColor to `subdued`,
+  // otherwise try to match the iconColor with the panel color unless iconColor is specified
+  const iconColor = _iconColor ?? (isNamedColor(color) ? color : 'subdued');
 
-  let iconNode;
-  if (icon) {
-    iconNode = (
-      <>
-        {icon}
-        <EuiSpacer size="m" />
-      </>
-    );
-  } else if (iconType) {
-    iconNode = (
-      <>
-        <EuiIcon type={iconType} size="xxl" color={iconColor} />
-        <EuiSpacer size="m" />
-      </>
-    );
-  }
+  const iconNode = iconType ? (
+    <EuiIcon type={iconType} size="xxl" color={iconColor} />
+  ) : (
+    icon
+  );
 
   let titleNode;
   let bodyNode;
@@ -110,10 +131,11 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
     if (Array.isArray(actions)) {
       actionsRow = (
         <EuiFlexGroup
+          className="euiEmptyPrompt__actions"
           gutterSize="m"
           alignItems="center"
           justifyContent="center"
-          direction="column"
+          direction={isVerticalLayout ? 'column' : 'row'}
         >
           {actions.map((action, index) => (
             <EuiFlexItem key={index} grow={false}>
@@ -134,12 +156,38 @@ export const EuiEmptyPrompt: FunctionComponent<EuiEmptyPromptProps> = ({
     );
   }
 
-  return (
-    <div className={classes} {...rest}>
-      {iconNode}
+  const contentNodes = (
+    <>
       {titleNode}
       {bodyNode}
       {actionsNode}
-    </div>
+    </>
+  );
+
+  const classes = classNames(
+    'euiEmptyPrompt',
+    [`euiEmptyPrompt--${layout}`],
+    paddingSizeToClassNameMap[paddingSize],
+    className
+  );
+
+  const panelProps: _EuiPanelDivlike = {
+    className: classes,
+    color: color,
+    paddingSize: 'none',
+    hasBorder: hasBorder,
+    ...rest,
+  };
+
+  return (
+    <EuiPanel {...panelProps}>
+      <div className="euiEmptyPrompt__main">
+        {iconNode && <div className="euiEmptyPrompt__icon">{iconNode}</div>}
+        <div className="euiEmptyPrompt__content">
+          <div className="euiEmptyPrompt__contentInner">{contentNodes}</div>
+        </div>
+      </div>
+      {footer && <div className="euiEmptyPrompt__footer">{footer}</div>}
+    </EuiPanel>
   );
 };
