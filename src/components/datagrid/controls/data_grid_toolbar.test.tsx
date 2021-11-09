@@ -20,7 +20,7 @@ describe('EuiDataGridToolbar', () => {
     gridWidth: 500,
     toolbarVisibility: true,
     isFullScreen: false,
-    styleSelector: React.createElement('div', null, 'mock style selector'),
+    displaySelector: React.createElement('div', null, 'mock style selector'),
     controlBtnClasses: '',
     columnSelector: React.createElement('div', null, 'mock column selector'),
     columnSorting: <div>mock column sorting</div>,
@@ -99,7 +99,7 @@ describe('EuiDataGridToolbar', () => {
         {...requiredProps}
         toolbarVisibility={{
           showColumnSelector: false,
-          showStyleSelector: false,
+          showDisplaySelector: false,
           showSortSelector: false,
           showFullScreenSelector: false,
           additionalControls: {
@@ -159,7 +159,7 @@ describe('EuiDataGridToolbar', () => {
 });
 
 describe('checkOrDefaultToolBarDisplayOptions', () => {
-  const key = 'showStyleSelector';
+  const key = 'showDisplaySelector';
 
   it('returns boolean `toolbarVisibility`s as-is', () => {
     expect(checkOrDefaultToolBarDisplayOptions(true, key)).toEqual(true);

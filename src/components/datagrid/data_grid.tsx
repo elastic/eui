@@ -27,7 +27,7 @@ import { EuiDataGridBody, VIRTUALIZED_CONTAINER_CLASS } from './body';
 import {
   useDataGridColumnSelector,
   useDataGridColumnSorting,
-  useDataGridStyleSelector,
+  useDataGridDisplaySelector,
   startingStyles,
   checkOrDefaultToolBarDisplayOptions,
   EuiDataGridToolbar,
@@ -648,7 +648,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     allSchemaDetectors,
     displayValues
   );
-  const [styleSelector, gridStyles] = useDataGridStyleSelector(
+  const [displaySelector, gridStyles] = useDataGridDisplaySelector(
     gridStyleWithDefaults
   );
 
@@ -808,7 +808,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                     gridWidth={gridWidth}
                     minSizeForControls={minSizeForControls}
                     toolbarVisibility={toolbarVisibility}
-                    styleSelector={styleSelector}
+                    displaySelector={displaySelector}
                     isFullScreen={isFullScreen}
                     setIsFullScreen={setIsFullScreen}
                     controlBtnClasses={controlBtnClasses}

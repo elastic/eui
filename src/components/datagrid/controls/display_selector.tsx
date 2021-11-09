@@ -44,7 +44,7 @@ const densityStyles: { [key: string]: Partial<EuiDataGridStyle> } = {
 // Used to correctly format the icon name for the grid density icon
 const capitalizeDensityString = (s: string) => s[0].toUpperCase() + s.slice(1);
 
-export const useDataGridStyleSelector = (
+export const useDataGridDisplaySelector = (
   initialStyles: EuiDataGridStyle
 ): [ReactElement, EuiDataGridStyle] => {
   // track styles specified by the user at run time
@@ -66,13 +66,13 @@ export const useDataGridStyleSelector = (
   };
 
   const buttonLabel = useEuiI18n(
-    'euiStyleSelector.buttonText',
+    'euiDisplaySelector.buttonText',
     'Display options'
   );
 
-  const styleSelector = (
+  const displaySelector = (
     <EuiPopover
-      data-test-subj="dataGridStyleSelectorPopover"
+      data-test-subj="dataGridDisplaySelectorPopover"
       isOpen={isOpen}
       closePopover={() => setIsOpen(false)}
       anchorPosition="downRight"
@@ -85,7 +85,7 @@ export const useDataGridStyleSelector = (
             iconType={`tableDensity${capitalizeDensityString(gridDensity)}`}
             className="euiDataGrid__controlBtn"
             color="text"
-            data-test-subj="dataGridStyleSelectorButton"
+            data-test-subj="dataGridDisplaySelectorButton"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={buttonLabel}
           />
@@ -94,10 +94,10 @@ export const useDataGridStyleSelector = (
     >
       <EuiI18n
         tokens={[
-          'euiStyleSelector.densityLabel',
-          'euiStyleSelector.labelCompact',
-          'euiStyleSelector.labelNormal',
-          'euiStyleSelector.labelExpanded',
+          'euiDisplaySelector.densityLabel',
+          'euiDisplaySelector.labelCompact',
+          'euiDisplaySelector.labelNormal',
+          'euiDisplaySelector.labelExpanded',
         ]}
         defaults={['Density', 'Compact', 'Normal', 'Expanded']}
       >
@@ -135,5 +135,5 @@ export const useDataGridStyleSelector = (
     </EuiPopover>
   );
 
-  return [styleSelector, gridStyles];
+  return [displaySelector, gridStyles];
 };

@@ -30,7 +30,7 @@ export interface EuiDataGridToolbarProps {
   gridWidth: number;
   minSizeForControls?: number;
   toolbarVisibility: boolean | EuiDataGridToolBarVisibilityOptions;
-  styleSelector: ReactElement;
+  displaySelector: ReactElement;
   isFullScreen: boolean;
   controlBtnClasses: string;
   columnSelector: ReactElement;
@@ -589,6 +589,17 @@ export interface EuiDataGridToolBarVisibilityColumnSelectorOptions {
   allowReorder?: boolean;
 }
 
+export interface EuiDataGridToolBarVisibilityDisplaySelectorOptions {
+  /**
+   * When `false`, removes the ability to change density display through the UI
+   */
+  allowDensity?: boolean;
+  /**
+   * When `false`, removes the ability to change row height display through the UI
+   */
+  allowRowHeight?: boolean;
+}
+
 export interface EuiDataGridToolBarVisibilityOptions {
   /**
    * Allows the ability for the user to hide fields and sort columns, boolean or a #EuiDataGridToolBarVisibilityColumnSelectorOptions
@@ -597,7 +608,16 @@ export interface EuiDataGridToolBarVisibilityOptions {
     | boolean
     | EuiDataGridToolBarVisibilityColumnSelectorOptions;
   /**
+   * Allows the ability for the user to customize display settings such as grid density and row heights.
+   * User changes will override what is provided in #EuiDataGridStyle and #EuiDataGridRowHeightsOptions
+   */
+  showDisplaySelector?:
+    | boolean
+    | EuiDataGridToolBarVisibilityDisplaySelectorOptions;
+  /**
    * Allows the ability for the user to set the grid density. If on, this merges against what is provided in #EuiDataGridStyle
+   *
+   * **DEPRECATED: Use `showDisplaySelector.allowDensity`**
    */
   showStyleSelector?: boolean;
   /**

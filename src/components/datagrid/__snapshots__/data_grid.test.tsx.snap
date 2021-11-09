@@ -981,7 +981,7 @@ Array [
         >
           <div
             class="euiPopover euiPopover--anchorDownRight"
-            data-test-subj="dataGridStyleSelectorPopover"
+            data-test-subj="dataGridDisplaySelectorPopover"
           >
             <div
               class="euiPopover__anchor"
@@ -992,7 +992,7 @@ Array [
                 <button
                   aria-label="Display options"
                   class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
-                  data-test-subj="dataGridStyleSelectorButton"
+                  data-test-subj="dataGridDisplaySelectorButton"
                   type="button"
                 >
                   <span
@@ -1386,7 +1386,7 @@ Array [
         >
           <div
             class="euiPopover euiPopover--anchorDownRight"
-            data-test-subj="dataGridStyleSelectorPopover"
+            data-test-subj="dataGridDisplaySelectorPopover"
           >
             <div
               class="euiPopover__anchor"
@@ -1397,7 +1397,7 @@ Array [
                 <button
                   aria-label="Display options"
                   class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
-                  data-test-subj="dataGridStyleSelectorButton"
+                  data-test-subj="dataGridDisplaySelectorButton"
                   type="button"
                 >
                   <span
@@ -2100,7 +2100,7 @@ Array [
         >
           <div
             class="euiPopover euiPopover--anchorDownRight"
-            data-test-subj="dataGridStyleSelectorPopover"
+            data-test-subj="dataGridDisplaySelectorPopover"
           >
             <div
               class="euiPopover__anchor"
@@ -2111,7 +2111,7 @@ Array [
                 <button
                   aria-label="Display options"
                   class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
-                  data-test-subj="dataGridStyleSelectorButton"
+                  data-test-subj="dataGridDisplaySelectorButton"
                   type="button"
                 >
                   <span
@@ -2504,7 +2504,7 @@ Array [
         >
           <div
             class="euiPopover euiPopover--anchorDownRight"
-            data-test-subj="dataGridStyleSelectorPopover"
+            data-test-subj="dataGridDisplaySelectorPopover"
           >
             <div
               class="euiPopover__anchor"
@@ -2515,7 +2515,7 @@ Array [
                 <button
                   aria-label="Display options"
                   class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
-                  data-test-subj="dataGridStyleSelectorButton"
+                  data-test-subj="dataGridDisplaySelectorButton"
                   type="button"
                 >
                   <span

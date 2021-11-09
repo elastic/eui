@@ -10,14 +10,14 @@ import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { shallow, mount } from 'enzyme';
 
-import { useDataGridStyleSelector, startingStyles } from './style_selector';
+import { useDataGridDisplaySelector, startingStyles } from './display_selector';
 
-describe('useDataGridStyleSelector', () => {
-  describe('styleSelector', () => {
+describe('useDataGridDisplaySelector', () => {
+  describe('displaySelector', () => {
     // Hooks can only be called inside function components
     const MockComponent = () => {
-      const [styleSelector] = useDataGridStyleSelector({});
-      return <>{styleSelector}</>;
+      const [displaySelector] = useDataGridDisplaySelector({});
+      return <>{displaySelector}</>;
     };
 
     it('renders a toolbar button/popover allowing users to customize styles', () => {
@@ -30,7 +30,7 @@ describe('useDataGridStyleSelector', () => {
 
       // Open popover
       component
-        .find('[data-test-subj="dataGridStyleSelectorButton"]')
+        .find('[data-test-subj="dataGridDisplaySelectorButton"]')
         .last()
         .simulate('click');
 
@@ -45,7 +45,7 @@ describe('useDataGridStyleSelector', () => {
       // Close popover
       act(() => {
         (component
-          .find('[data-test-subj="dataGridStyleSelectorPopover"]')
+          .find('[data-test-subj="dataGridDisplaySelectorPopover"]')
           .first()
           .prop('closePopover') as Function)();
       });
@@ -56,7 +56,7 @@ describe('useDataGridStyleSelector', () => {
     it('returns an object of grid styles with user overrides', () => {
       const initialStyles = { ...startingStyles, stripes: true };
       const MockComponent = () => {
-        const [, gridStyles] = useDataGridStyleSelector(initialStyles);
+        const [, gridStyles] = useDataGridDisplaySelector(initialStyles);
         return <table {...gridStyles} />;
       };
       const component = shallow(<MockComponent />);

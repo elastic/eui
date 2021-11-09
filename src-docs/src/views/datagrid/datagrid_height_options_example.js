@@ -201,26 +201,26 @@ export const DataGridRowHeightOptionsExample = {
       text: (
         <Fragment>
           <p>
-            You can change the default height for all rows by passing a line
-            count or pixel value to the <EuiCode>defaultHeight</EuiCode>{' '}
-            property, and customize the line height of all cells with the{' '}
-            <EuiCode>lineHeight</EuiCode> property.
+            You can change the default height for all rows via the{' '}
+            <EuiCode>defaultHeight</EuiCode> property. Note that the{' '}
+            <EuiCode>showDisplaySelector.allowRowHeight</EuiCode> setting in{' '}
+            <EuiCode>toolbarVisibility</EuiCode> means the user has the ability
+            to override this default height. Users will be able to toggle
+            between single rows, a configurable line count, or{' '}
+            <EuiCode>&quot;auto&quot;</EuiCode>.
+          </p>
+          <p>
+            You can also customize the line height of all cells with the{' '}
+            <EuiCode>lineHeight</EuiCode> property. However, if you wrap your
+            cell content with CSS that overrides/sets line-height (e.g. in an{' '}
+            <EuiCode>EuiText</EuiCode>), your row heights will not be calculated
+            correctly - make sure to match the passed{' '}
+            <EuiCode>lineHeight</EuiCode> property to the actual cell content
+            line height.
           </p>
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {lineHeightSnippet}
           </EuiCodeBlock>
-          <EuiCallOut
-            color="warning"
-            title="Make sure your line heights match!"
-          >
-            <p>
-              If you wrap your cell content with CSS that overrides/sets
-              line-height (e.g. in an <EuiCode>EuiText</EuiCode>), your row
-              heights will not be calculated correctly! Make sure to match or
-              inherit the passed <EuiCode>lineHeight</EuiCode> property to the
-              actual cell content line height.
-            </p>
-          </EuiCallOut>
         </Fragment>
       ),
       components: { DataGridRowLineHeight },

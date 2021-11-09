@@ -96,7 +96,7 @@ const gridSnippet = `
     // The prop also accepts a boolean if you want to toggle the entire toolbar on/off.
     toolbarVisibility={{
       showColumnSelector: false,
-      showStyleSelector: false,
+      showDisplaySelector: false,
       showSortSelector: false,
       showFullScreenSelector: false,
       additionalControls: {
@@ -247,6 +247,13 @@ const gridConcepts = [
           Data grid row heights options
         </EuiLink>{' '}
         for more details and examples.
+        <br />
+        Settings provided may be overwritten or merged with user defined
+        preferences if{' '}
+        <EuiCode>
+          toolbarVisibility.showDisplaySelector.allowRowHeight
+        </EuiCode>{' '}
+        is set to true (which is the default).
       </span>
     ),
   },
@@ -255,10 +262,16 @@ const gridConcepts = [
     description: (
       <span>
         Defines the look of the grid. Accepts a partial{' '}
-        <strong>EuiDataGridStyle</strong> object. Settings provided may be
-        overwritten or merged with user defined preferences if{' '}
-        <EuiCode>toolbarVisibility.showStyleSelector</EuiCode> is set to true
-        (which is the default).
+        <strong>EuiDataGridStyle</strong> object. See{' '}
+        <EuiLink href="/#/tabular-content/data-grid-styling-and-control">
+          Data grid styling and control
+        </EuiLink>{' '}
+        for more details and examples.
+        <br />
+        Settings provided may be overwritten or merged with user defined
+        preferences if{' '}
+        <EuiCode>toolbarVisibility.showDisplaySelector.allowDensity</EuiCode> is
+        set to true (which is the default).
       </span>
     ),
   },

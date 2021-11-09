@@ -32,7 +32,7 @@ export const EuiDataGridToolbar = ({
   toolbarVisibility,
   isFullScreen,
   controlBtnClasses,
-  styleSelector,
+  displaySelector,
   columnSelector,
   columnSorting,
   setRef,
@@ -112,9 +112,9 @@ export const EuiDataGridToolbar = ({
         {renderAdditionalControls(toolbarVisibility, 'right')}
         {checkOrDefaultToolBarDisplayOptions(
           toolbarVisibility,
-          'showStyleSelector'
+          'showDisplaySelector'
         )
-          ? styleSelector
+          ? displaySelector
           : null}
         {checkOrDefaultToolBarDisplayOptions(
           toolbarVisibility,
