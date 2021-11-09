@@ -8,6 +8,7 @@ export default function () {
 
   return (
     <EuiPagination
+      aria-label="Indeterminate example"
       pageCount={PAGE_COUNT}
       activePage={activePage}
       onPageClick={(activePage) => setActivePage(activePage)}
