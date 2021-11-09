@@ -5,6 +5,7 @@ import {
   EuiPageTemplate,
   EuiLoadingLogo,
   EuiButton,
+  EuiEmptyPromptProps,
 } from '../../../../src/components';
 
 export default () => {
@@ -24,12 +25,12 @@ export default () => {
     };
   });
 
-  let emptyPromptProps;
+  let emptyPromptProps: Partial<EuiEmptyPromptProps>;
   switch (currentState) {
     case 'error':
       emptyPromptProps = {
+        color: 'danger',
         iconType: 'alert',
-        iconColor: 'danger',
         title: <h2>Error loading Dashboards</h2>,
         body: (
           <p>
@@ -41,6 +42,8 @@ export default () => {
       break;
     case 'empty':
       emptyPromptProps = {
+        color: 'plain',
+        hasBorder: true,
         iconType: 'dashboardApp',
         iconColor: 'default',
         title: <h2>Dashboards</h2>,
@@ -55,6 +58,7 @@ export default () => {
 
     default:
       emptyPromptProps = {
+        color: 'subdued',
         icon: <EuiLoadingLogo logo="logoKibana" size="xl" />,
         title: <h2>Loading Dashboards</h2>,
       };
@@ -65,7 +69,7 @@ export default () => {
     <EuiPageTemplate
       template="centeredContent"
       pageContentProps={{
-        color: currentState === 'error' ? 'danger' : 'subdued',
+        paddingSize: 'none',
         role: null, // For passing a11y tests in EUI docs only
       }}
     >

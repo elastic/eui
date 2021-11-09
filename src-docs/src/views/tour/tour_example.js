@@ -17,6 +17,8 @@ import Managed from './managed';
 import ManagedHook from './managed_hook';
 import FullScreen from './fullscreen';
 
+import Guidelines from './guidelines';
+
 const stepSource = require('!!raw-loader!./step');
 const stepHtml = renderToHtml(Step);
 const stepSnippet = `
@@ -52,7 +54,6 @@ const fullHtml = renderToHtml(FullScreen);
 
 export const TourExample = {
   title: 'Tour',
-  beta: true,
   intro: (
     <EuiText>
       <p>
@@ -60,13 +61,18 @@ export const TourExample = {
         customizable way to showcase items on a page in an ordered manner by
         augmenting existing elements on the page without altering functionality.
       </p>
-      <EuiCallOut
-        iconType="save"
-        title="The examples on this page, use localStorage to persist state to demonstrate starting a tour at different stages."
-      />
     </EuiText>
   ),
   sections: [
+    {
+      wrapText: false,
+      text: (
+        <EuiCallOut
+          iconType="save"
+          title="The examples on this page, use localStorage to persist state to demonstrate starting a tour at different stages."
+        />
+      ),
+    },
     {
       title: 'Step options',
       source: [
@@ -188,4 +194,5 @@ export const TourExample = {
       },
     },
   ],
+  guidelines: <Guidelines />,
 };

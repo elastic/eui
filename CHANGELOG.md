@@ -1,13 +1,28 @@
-## [`master`](https://github.com/elastic/eui/tree/master)
+## [`main`](https://github.com/elastic/eui/tree/main)
+
+- Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))
+- Updated `EuiEmptyPrompt` to extend `EuiPanelProps` ([#5275](https://github.com/elastic/eui/pull/5275))
+
+**Bug fixes**
+
+- Fixed an `EuiDataGrid` race condition where grid rows had incorrect heights if loaded in before CSS ([#5284](https://github.com/elastic/eui/pull/5284))
+- Fixed an accessibility issue where `EuiDataGrid` cells weren't owned by `role=row` elements ([#5285](https://github.com/elastic/eui/pull/5285))
+- Fixed `EuiErrorBoundary` overflow scrolling by wrapping contents in `EuiCodeBlock` ([#5359](https://github.com/elastic/eui/pull/5359))
+- Fixed `analyzeEvent` icon to be horizontally centered [#5365](https://github.com/elastic/eui/pull/5365))
+
+## [`41.0.0`](https://github.com/elastic/eui/tree/v41.0.0)
 
 - Added `EuiAutoSizer` component for setting dimensions on virtualized lists ([#5278](https://github.com/elastic/eui/pull/5278))
 - Added `testenv` mock for `EuiAutoSizer` ([#5278](https://github.com/elastic/eui/pull/5278))
 - Changed render of `useEuiTextDiff` to a `span` instead of `div` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Changed change prop type of `children` for `EuiMark` from `string` to `ReactNode` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Added `render` prop to `EuiI18n` ([#5236](https://github.com/elastic/eui/pull/5236))
 
 **Bug fixes**
 
 - Fixed styling of `align: center` for mobile version of `EuiTableRowCell` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Fixed `endDateControl` `className` in `EuiDatePickerRange` ([#5329](https://github.com/elastic/eui/pull/5329))
+- Fixed `EuiMarkdownEditor` intercepting all drop events on the page ([#5340](https://github.com/elastic/eui/pull/5340))
 
 **Breaking changes**
 
@@ -19,6 +34,7 @@
 - Removed `panelPaddingSize` from `EuiPageContent` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Removed `makeId` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Removed mobile-only props from `EuiTableRowCell` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Removed Sass vars `$euiColorSecondary` and `$euiColorSecondaryText` ([#5345](https://github.com/elastic/eui/pull/5345))
 
 ## [`40.1.0`](https://github.com/elastic/eui/tree/v40.1.0)
 
