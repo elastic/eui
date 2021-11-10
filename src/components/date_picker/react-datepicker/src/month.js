@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import Week from "./week";
 import * as utils from "./date_utils";
-import { ScreenReaderOnly } from "./screen_reader_only";
+
+import { EuiScreenReaderOnly } from '../../../accessibility';
 
 const FIXED_HEIGHT_STANDARD_WEEK_COUNT = 6;
 
@@ -233,9 +234,9 @@ export default class Month extends React.Component {
         onFocus={this.onFocus}
         onBlur={this.onBlur}
       >
-        <ScreenReaderOnly>
+        <EuiScreenReaderOnly>
           <span>{screenReaderInstructions}</span>
-        </ScreenReaderOnly>
+        </EuiScreenReaderOnly>
         {this.renderWeeks()}
       </div>
     );

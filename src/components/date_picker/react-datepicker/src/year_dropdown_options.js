@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { ScreenReaderOnly } from "./screen_reader_only";
 
 import { EuiFocusTrap } from '../../../focus_trap';
+import { EuiScreenReaderOnly } from '../../../accessibility';
 
 function generateYears(year, noOfYear, minDate, maxDate) {
   var list = [];
@@ -238,9 +238,9 @@ export default class YearDropdownOptions extends React.Component {
           onKeyDown={this.onInputKeyDown}
           onFocus={this.onFocus}
         >
-          <ScreenReaderOnly>
+          <EuiScreenReaderOnly>
             <span>{screenReaderInstructions}</span>
-          </ScreenReaderOnly>
+          </EuiScreenReaderOnly>
           {this.renderOptions()}
         </div>
       </EuiFocusTrap>

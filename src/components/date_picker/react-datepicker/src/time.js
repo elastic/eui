@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import { ScreenReaderOnly } from "./screen_reader_only";
 import {
   getHour,
   getMinute,
@@ -15,6 +14,8 @@ import {
   timesToInjectAfter,
   setTime
 } from "./date_utils";
+
+import { EuiScreenReaderOnly } from '../../../accessibility';
 
 function doHoursAndMinutesAlign(time1, time2) {
   if (time1 == null || time2 == null) return false;
@@ -333,9 +334,9 @@ export default class Time extends React.Component {
           <div className="react-datepicker-time__header">
             {this.props.timeCaption}
           </div>
-          <ScreenReaderOnly>
+          <EuiScreenReaderOnly>
             <span>{screenReaderInstructions}</span>
-          </ScreenReaderOnly>
+          </EuiScreenReaderOnly>
         </div>
         <div className="react-datepicker__time">
           <div

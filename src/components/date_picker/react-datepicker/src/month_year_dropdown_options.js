@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { ScreenReaderOnly } from "./screen_reader_only";
 import {
   addMonths,
   cloneDate,
@@ -14,6 +13,7 @@ import {
 } from "./date_utils";
 
 import { EuiFocusTrap } from '../../../focus_trap';
+import { EuiScreenReaderOnly } from '../../../accessibility';
 
 function generateMonthYears(minDate, maxDate) {
   const list = [];
@@ -192,9 +192,9 @@ export default class MonthYearDropdownOptions extends React.Component {
           onKeyDown={this.onInputKeyDown}
           onFocus={this.onFocus}
         >
-          <ScreenReaderOnly>
+          <EuiScreenReaderOnly>
             <span>{screenReaderInstructions}</span>
-          </ScreenReaderOnly>
+          </EuiScreenReaderOnly>
           {this.renderOptions()}
         </div>
       </EuiFocusTrap>
