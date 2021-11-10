@@ -110,7 +110,6 @@ export const EuiColorPalettePicker: FunctionComponent<EuiColorPalettePickerProps
   palettes,
   append,
   prepend,
-  screenReaderId,
   selectionDisplay = 'palette',
   ...rest
 }) => {
