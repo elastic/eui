@@ -1,11 +1,16 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
 - Updated the organization of `EuiDataGrid`'s toolbar/grid controls ([#5334](https://github.com/elastic/eui/pull/5334))
+- Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))
+- Updated `EuiEmptyPrompt` to extend `EuiPanelProps` ([#5275](https://github.com/elastic/eui/pull/5275))
+- Add `data-icon-type` to `EuiIcon` `<svg>` for easier debugging of `iconType` [#5366](https://github.com/elastic/eui/pull/5366))
 
 **Bug fixes**
 
 - Fixed an `EuiDataGrid` race condition where grid rows had incorrect heights if loaded in before CSS ([#5284](https://github.com/elastic/eui/pull/5284))
 - Fixed an accessibility issue where `EuiDataGrid` cells weren't owned by `role=row` elements ([#5285](https://github.com/elastic/eui/pull/5285))
+- Fixed `EuiErrorBoundary` overflow scrolling by wrapping contents in `EuiCodeBlock` ([#5359](https://github.com/elastic/eui/pull/5359))
+- Fixed `analyzeEvent` icon to be horizontally centered [#5365](https://github.com/elastic/eui/pull/5365))
 - Fixed persistent `EuiDataGrid` full screen `<body>` class ([#5354](https://github.com/elastic/eui/pull/5354))
 
 ## [`41.0.0`](https://github.com/elastic/eui/tree/v41.0.0)
