@@ -34,10 +34,6 @@ export interface EuiColorPaletteDisplayShared {
    * Array of color `strings` or an array of #ColorStop. The stops must be numbers in an ordered range.
    */
   palette: string[] | ColorStop[];
-  /**
-   * Text `string` naming the color palette
-   */
-  title?: string;
 }
 
 interface DisplayGradient extends EuiColorPaletteDisplayGradientProps {
@@ -67,7 +63,6 @@ export const EuiColorPaletteDisplay: FunctionComponent<EuiColorPaletteDisplayPro
   palette,
   className,
   size = 's',
-  title,
   ...rest
 }) => {
   const classes = classnames(
@@ -82,14 +77,12 @@ export const EuiColorPaletteDisplay: FunctionComponent<EuiColorPaletteDisplayPro
         <EuiColorPaletteDisplayFixed
           className={classes}
           palette={palette}
-          title={title}
           {...rest}
         />
       ) : (
         <EuiColorPaletteDisplayGradient
           className={classes}
           palette={palette}
-          title={title}
           {...rest}
         />
       )}
