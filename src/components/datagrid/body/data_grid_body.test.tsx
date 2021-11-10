@@ -181,42 +181,6 @@ describe('Cell', () => {
       expect(component.hasClass('euiDataGridRowCell--stripe')).toBe(true);
     });
   });
-
-  describe('styles.top', () => {
-    describe('non-fullscreen mode', () => {
-      it('increases the top positioning of each cell by height of the columns header row', () => {
-        const component = shallow(
-          <Cell
-            {...requiredProps}
-            style={{ top: '100px' }}
-            data={{
-              ...requiredProps.data,
-              headerRowHeight: 36,
-              isFullScreen: false,
-            }}
-          />
-        );
-        expect(component.prop('style').top).toEqual('136px');
-      });
-    });
-
-    describe('fullscreen mode', () => {
-      it('passes styles.top as-is', () => {
-        const component = shallow(
-          <Cell
-            {...requiredProps}
-            style={{ top: '100px' }}
-            data={{
-              ...requiredProps.data,
-              headerRowHeight: 36,
-              isFullScreen: true,
-            }}
-          />
-        );
-        expect(component.prop('style').top).toEqual('100px');
-      });
-    });
-  });
 });
 
 describe('getParentCellContent', () => {
