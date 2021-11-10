@@ -107,11 +107,7 @@ export const useDataGridStyleSelector = (
           labelNormal,
           labelExpanded,
         ]: string[]) => (
-          <EuiFormRow
-            label={densityLabel}
-            display="columnCompressed"
-            className="euiDataGrid__displayFormRow"
-          >
+          <EuiFormRow label={densityLabel} display="columnCompressed">
             <EuiButtonGroup
               legend={densityLabel}
               buttonSize="compressed"
