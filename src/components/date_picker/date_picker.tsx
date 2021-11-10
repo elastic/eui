@@ -151,7 +151,10 @@ interface EuiExtendedDatePickerProps
   iconType?: EuiFormControlLayoutIconsProps['icon'];
 
   /**
-   * Sets the placement of the popover
+   * Sets the placement of the popover.
+   *
+   * DEPRECATED: 'bottom', 'bottom-end', 'bottom-start', 'left', 'left-end', 'left-start', right', 'right-end', 'right-start', 'top', 'top-end', 'top-start'
+   * Use `EuiPopover` values instead: 'upCenter', 'upLeft', 'upRight', downCenter', 'downLeft', 'downRight', 'leftCenter', 'leftUp', 'leftDown', 'rightCenter', 'rightUp', 'rightDown',
    */
   popoverPlacement?: PopoverAnchorPosition | popperPlacement;
 }
