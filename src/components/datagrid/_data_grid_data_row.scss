@@ -20,6 +20,7 @@
   > * {
     max-width: 100%;
     width: 100%;
+    height: 100%;
   }
 
   &.euiDataGridRowCell--firstColumn {
@@ -139,7 +140,7 @@
 .euiDataGridRowCell__expandFlex {
   position: relative; // for positioning expand button
   display: flex;
-  align-items: center;
+  align-items: baseline;
   height: 100%;
 }
 
@@ -150,10 +151,6 @@
 .euiDataGridRowCell__contentByHeight {
   flex-grow: 1;
   height: 100%;
-}
-
-.euiDataGridRowCell__alignBaseLine {
-  align-items: baseline;
 }
 
 .euiDataGridRowCell__expandButton {

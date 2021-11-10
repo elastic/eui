@@ -483,9 +483,7 @@ export class EuiDataGridCell extends Component<
       isDefinedHeight,
     };
 
-    const anchorClass = classNames('euiDataGridRowCell__expandFlex', {
-      euiDataGridRowCell__alignBaseLine: isDefinedHeight,
-    });
+    const anchorClass = 'euiDataGridRowCell__expandFlex';
     const expandClass = isDefinedHeight
       ? 'euiDataGridRowCell__contentByHeight'
       : 'euiDataGridRowCell__expandContent';
