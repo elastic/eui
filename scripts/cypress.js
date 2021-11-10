@@ -1,8 +1,11 @@
 const { execSync } = require('child_process');
 const chalk = require('chalk');
+const yargs = require('yargs/yargs')
+const { hideBin } = require('yargs/helpers')
+const argv = yargs(hideBin(process.argv)).argv
 
-const isDev = process.env.NODE_ENV === 'development';
-const skipScss = process.env.SKIP_CSS === 'true';
+const isDev = argv.hasOwnProperty('dev');
+const skipScss = argv.hasOwnProperty('skipCss');
 
 const info = chalk.white;
 
@@ -16,7 +19,7 @@ if (!skipScss) {
     }
   );
 } else {
-  console.log(info('Not compiling SCSS, disabled by SKIP_CSS=true'));
+  console.log(info('Not compiling SCSS, disabled by --skip-css'));
 }
 
 const cypressCommandParts = [

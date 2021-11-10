@@ -33,7 +33,7 @@
     "test-a11y": "node ./scripts/a11y-testing",
     "test-staged": "yarn lint && node scripts/test-staged.js",
     "test-cypress": "node ./scripts/cypress",
-    "test-cypress-dev": "NODE_ENV=development node ./scripts/cypress",
+    "test-cypress-dev": "node ./scripts/cypress --dev",
     "combine-test-coverage": "sh ./scripts/combine-coverage.sh",
     "start-test-server": "BABEL_MODULES=false NODE_ENV=puppeteer NODE_OPTIONS=--max-old-space-size=4096 webpack-dev-server --config src-docs/webpack.config.js --port 9999",
     "yo-component": "yo ./generator-eui/app/component.js",
@@ -92,7 +92,8 @@
     "unist-util-visit": "^2.0.3",
     "url-parse": "^1.5.3",
     "uuid": "^8.3.0",
-    "vfile": "^4.2.0"
+    "vfile": "^4.2.0",
+    "yargs": "^17.2.1"
   },
   "devDependencies": {
     "@axe-core/puppeteer": "^4.1.1",
