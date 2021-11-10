@@ -42,6 +42,8 @@ export const EuiColorPaletteDisplayFixed: FunctionComponent<EuiColorPaletteDispl
         <span>{title}</span>
       </EuiScreenReaderOnly>
       <span
+        // aria-hidden="true" is to ensure color blocks are ignored by screen readers,
+        // and the only accessible text for options is the EuiScreenReaderOnly {title}
         aria-hidden="true"
         className="euiColorPaletteDisplayFixed__bleedArea"
       >
