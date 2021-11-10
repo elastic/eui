@@ -62,6 +62,10 @@ export type EuiSelectableOptionsListProps = CommonProps &
      */
     onFocusBadge?: EuiSelectableListItemProps['onFocusBadge'];
     paddingSize?: EuiSelectableListItemProps['paddingSize'];
+    /**
+     * Use virtualized rendering for list items with `react-window`
+     */
+    isVirtualized?: boolean;
   };
 
 export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
@@ -110,6 +114,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
   static defaultProps = {
     rowHeight: 32,
     searchValue: '',
+    isVirtualized: true,
   };
 
   listRef: FixedSizeList | null = null;
@@ -297,6 +302,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       'aria-labelledby': ariaLabelledby,
       'aria-describedby': ariaDescribedby,
       role,
+      isVirtualized,
       ...rest
     } = this.props;
 
@@ -334,26 +340,47 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
 
     return (
       <div className={classes} {...rest}>
-        <EuiAutoSizer disableHeight={!heightIsFull}>
-          {({ width, height }) => (
-            <FixedSizeList
-              ref={this.setListRef}
-              outerRef={this.removeScrollableTabStop}
-              className="euiSelectableList__list"
-              data-skip-axe="scrollable-region-focusable"
-              width={width}
-              height={calculatedHeight || height}
-              itemCount={optionArray.length}
-              itemData={optionArray}
-              itemSize={rowHeight}
-              innerElementType="ul"
-              innerRef={this.setListBoxRef}
-              {...windowProps}
-            >
-              {this.ListRow}
-            </FixedSizeList>
-          )}
-        </EuiAutoSizer>
+        {isVirtualized ? (
+          <EuiAutoSizer disableHeight={!heightIsFull}>
+            {({ width, height }) => (
+              <FixedSizeList
+                ref={this.setListRef}
+                outerRef={this.removeScrollableTabStop}
+                className="euiSelectableList__list"
+                data-skip-axe="scrollable-region-focusable"
+                width={width}
+                height={calculatedHeight || height}
+                itemCount={optionArray.length}
+                itemData={optionArray}
+                itemSize={rowHeight}
+                innerElementType="ul"
+                innerRef={this.setListBoxRef}
+                {...windowProps}
+              >
+                {this.ListRow}
+              </FixedSizeList>
+            )}
+          </EuiAutoSizer>
+        ) : (
+          <div
+            className="euiSelectableList__list"
+            ref={this.removeScrollableTabStop}
+          >
+            <ul ref={this.setListBoxRef}>
+              {optionArray.map((_, index) =>
+                React.createElement(
+                  this.ListRow,
+                  {
+                    data: optionArray,
+                    index,
+                    style: {},
+                  },
+                  null
+                )
+              )}
+            </ul>
+          </div>
+        )}
       </div>
     );
   }

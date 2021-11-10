@@ -150,6 +150,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
             showIcons: false,
             onFocusBadge: false,
             paddingSize: 'none',
+            isVirtualized: false,
             ...listAttrs,
           }}
           renderOption={renderOption}

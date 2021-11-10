@@ -7,6 +7,7 @@
 - Added `paddingSize` prop to `EuiSelectableList` ([#5157](https://github.com/elastic/eui/pull/5157))
 - Refactored `EuiSelectable` accessibility ([#5157](https://github.com/elastic/eui/pull/5157))
 - Refactored `EuiSuggest` to use `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Added virtulized rendering optionality to `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
 
 **Bug fixes**
 
