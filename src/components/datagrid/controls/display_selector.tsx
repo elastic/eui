@@ -11,7 +11,7 @@ import React, { ReactElement, useState, useMemo, useCallback } from 'react';
 import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiPopover } from '../../popover';
 import { EuiButtonIcon, EuiButtonGroup } from '../../button';
-import { EuiFormRow } from '../../form';
+import { EuiFormRow, EuiFieldNumber } from '../../form';
 import { EuiToolTip } from '../../tool_tip';
 
 import {
@@ -100,22 +100,34 @@ export const useDataGridDisplaySelector = (
   };
 
   // Row height state
+  const [lineCount, setLineCount] = useState(
+    // @ts-ignore - optional chaining operator handles types & cases that aren't lineCount
+    initialRowHeightsOptions?.defaultHeight?.lineCount || 1
+  );
   const [rowHeightSelection, setRowHeightSelection] = useState(
     convertRowHeightsOptionsToSelection(initialRowHeightsOptions)
   );
-  const setRowHeight = useCallback((option: string) => {
-    let rowHeightsOptions: EuiDataGridRowHeightsOptions | undefined;
+  const setRowHeight = useCallback(
+    (option: string) => {
+      let rowHeightsOptions: EuiDataGridRowHeightsOptions | undefined;
 
-    if (option === 'auto') {
-      rowHeightsOptions = { defaultHeight: 'auto' };
-    } else if (option === 'lineCount') {
-      rowHeightsOptions = { defaultHeight: { lineCount: 3 } }; // TODO
-    } else {
-      rowHeightsOptions = { defaultHeight: undefined };
-    }
+      if (option === 'auto') {
+        rowHeightsOptions = { defaultHeight: 'auto' };
+      } else if (option === 'lineCount') {
+        rowHeightsOptions = { defaultHeight: { lineCount } };
+      } else {
+        rowHeightsOptions = { defaultHeight: undefined };
+      }
 
-    setRowHeightSelection(option);
-    setUserRowHeightsOptions(rowHeightsOptions);
+      setRowHeightSelection(option);
+      setUserRowHeightsOptions(rowHeightsOptions);
+    },
+    [lineCount]
+  );
+  const setLineCountHeight = useCallback((event) => {
+    const newLineCount = Number(event.target.value);
+    setLineCount(newLineCount);
+    setUserRowHeightsOptions({ defaultHeight: { lineCount: newLineCount } });
   }, []);
 
   // merge the developer-specified styles with any user overrides
@@ -210,14 +222,22 @@ export const useDataGridDisplaySelector = (
             'euiDisplaySelector.labelSingle',
             'euiDisplaySelector.labelAuto',
             'euiDisplaySelector.labelCustom',
+            'euiDisplaySelector.lineCountLabel',
           ]}
-          defaults={['Row height', 'Single', 'Auto fit', 'Custom']}
+          defaults={[
+            'Row height',
+            'Single',
+            'Auto fit',
+            'Custom',
+            'Lines per row',
+          ]}
         >
           {([
             rowHeightLabel,
             labelSingle,
             labelAuto,
             labelCustom,
+            lineCountLabel,
           ]: string[]) => (
             <>
               <EuiFormRow label={rowHeightLabel} display="columnCompressed">
@@ -244,6 +264,18 @@ export const useDataGridDisplaySelector = (
                   data-test-subj="rowHeightButtonGroup"
                 />
               </EuiFormRow>
+              {rowHeightSelection === rowHeightButtonOptions[2] && (
+                <EuiFormRow label={lineCountLabel} display="columnCompressed">
+                  <EuiFieldNumber
+                    compressed
+                    fullWidth
+                    min={1}
+                    value={lineCount}
+                    onChange={setLineCountHeight}
+                    data-test-subj="lineCountFieldNumber"
+                  />
+                </EuiFormRow>
+              )}
             </>
           )}
         </EuiI18n>

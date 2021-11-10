@@ -233,6 +233,14 @@ export class EuiDataGridCell extends Component<
   componentDidUpdate(prevProps: EuiDataGridCellProps) {
     this.recalculateAutoHeight();
 
+    if (
+      // @ts-ignore - optional chaining operator handles types & cases that aren't lineCount
+      this.props.rowHeightsOptions?.defaultHeight?.lineCount !== // @ts-ignore - see above
+      prevProps.rowHeightsOptions?.defaultHeight?.lineCount
+    ) {
+      this.recalculateLineCountHeight();
+    }
+
     if (this.props.columnId !== prevProps.columnId) {
       this.setCellProps({});
     }

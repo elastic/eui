@@ -222,6 +222,18 @@ describe('EuiDataGridCell', () => {
         expect(setRowHeight).toHaveBeenCalled();
       });
 
+      it('recalculates when rowHeightsOptions.defaultHeight.lineCount changes', () => {
+        const component = mountEuiDataGridCellWithContext({
+          rowHeightsOptions: { defaultHeight: { lineCount: 7 } },
+          setRowHeight,
+        });
+
+        component.setProps({
+          rowHeightsOptions: { defaultHeight: { lineCount: 6 } },
+        });
+        expect(setRowHeight).toHaveBeenCalled();
+      });
+
       it('does nothing if cell height is not set to lineCount', () => {
         const component = mountEuiDataGridCellWithContext({
           rowHeightsOptions: { defaultHeight: 34 },

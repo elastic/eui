@@ -167,7 +167,58 @@ describe('useDataGridDisplaySelector', () => {
       });
 
       describe('lineCount', () => {
-        // TODO
+        const getLineCountNumber = (component: ReactWrapper) =>
+          component
+            .find('EuiFieldNumber[data-test-subj="lineCountFieldNumber"]')
+            .prop('value');
+
+        it('conditionally displays a line count number input when the lineCount button is selected', () => {
+          const component = mount(<MockComponent />);
+          openPopover(component);
+          expect(
+            component.find('[data-test-subj="lineCountFieldNumber"]').exists()
+          ).toBe(false);
+
+          component.find('[data-test-subj="lineCount"]').simulate('change');
+          expect(getSelection(component)).toEqual('lineCount');
+
+          expect(
+            component.find('[data-test-subj="lineCountFieldNumber"]').exists()
+          ).toBe(true);
+        });
+
+        it('displays the defaultHeight.lineCount passed in by the developer', () => {
+          const component = mount(
+            <MockComponent
+              rowHeightsOptions={{ defaultHeight: { lineCount: 5 } }}
+            />
+          );
+          openPopover(component);
+
+          expect(getLineCountNumber(component)).toEqual(5);
+        });
+
+        it('defaults to a lineCount of 1 when no developer settings have been passed', () => {
+          const component = mount(<MockComponent />);
+          openPopover(component);
+          component.find('[data-test-subj="lineCount"]').simulate('change');
+
+          expect(getLineCountNumber(component)).toEqual(1);
+        });
+
+        it('increments the rowHeightOptions line count number', () => {
+          const component = mount(
+            <MockComponent
+              rowHeightsOptions={{ defaultHeight: { lineCount: 1 } }}
+            />
+          );
+          openPopover(component);
+
+          component
+            .find('input[data-test-subj="lineCountFieldNumber"]')
+            .simulate('change', { target: { value: 3 } });
+          expect(getLineCountNumber(component)).toEqual(3);
+        });
       });
     });
   });
@@ -230,6 +281,11 @@ describe('useDataGridDisplaySelector', () => {
         .find('[data-test-subj="rowHeightButtonGroup"]')
         .simulate('change', selection);
     };
+    const setLineCount = (component: ShallowWrapper, lineCount = 1) => {
+      diveIntoEuiI18n(component)
+        .find('[data-test-subj="lineCountFieldNumber"]')
+        .simulate('change', { target: { value: lineCount } });
+    };
     const getOutput = (component: ShallowWrapper) => {
       return JSON.parse(component.find('[data-test-subj="output"]').text());
     };
@@ -240,10 +296,11 @@ describe('useDataGridDisplaySelector', () => {
       );
 
       setRowHeight(component, 'lineCount');
+      setLineCount(component, 5);
 
       expect(getOutput(component)).toEqual({
         lineHeight: '2em',
-        defaultHeight: { lineCount: 1 },
+        defaultHeight: { lineCount: 5 },
       });
     });
 
