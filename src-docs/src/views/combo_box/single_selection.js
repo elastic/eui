@@ -56,7 +56,7 @@ export default () => {
       canPrepend
     >
       <EuiComboBox
-        ariaLabel="Accessible screen reader label"
+        aria-label="Accessible screen reader label"
         placeholder="Select a single option"
         singleSelection={{ asPlainText: true }}
         options={options}

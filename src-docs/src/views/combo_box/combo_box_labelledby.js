@@ -78,7 +78,7 @@ export default () => {
       </EuiText>
       <EuiSpacer size="s" />
       <EuiComboBox
-        ariaLabelledby={generatedId}
+        aria-labelledby={generatedId}
         placeholder="Select or create options"
         options={options}
         selectedOptions={selectedOptions}

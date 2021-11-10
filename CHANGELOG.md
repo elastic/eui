@@ -2,6 +2,7 @@
 
 - Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))
 - Updated `EuiEmptyPrompt` to extend `EuiPanelProps` ([#5275](https://github.com/elastic/eui/pull/5275))
+- Added `aria-label` and `aria-labelledby` attributes to extend `EuiComboBox` ([#5267](https://github.com/elastic/eui/issues/5267))
 
 **Bug fixes**
 

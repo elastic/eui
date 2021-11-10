@@ -72,7 +72,7 @@ export default () => {
 
   return (
     <EuiComboBox
-      ariaLabel="Accessible screen reader label"
+      aria-label="Accessible screen reader label"
       sortMatchesBy="startsWith"
       placeholder="Select or create options"
       options={options}

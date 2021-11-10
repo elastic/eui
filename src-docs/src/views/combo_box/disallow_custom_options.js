@@ -67,7 +67,7 @@ export default () => {
   return (
     <EuiFormRow error={error} isInvalid={error !== undefined}>
       <EuiComboBox
-        ariaLabel="Accessible screen reader label"
+        aria-label="Accessible screen reader label"
         placeholder="Select one or more options"
         options={options}
         selectedOptions={selectedOptions}

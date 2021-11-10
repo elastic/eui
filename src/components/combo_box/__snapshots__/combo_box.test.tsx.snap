@@ -4,7 +4,6 @@ exports[`EuiComboBox is rendered 1`] = `
 <div
   aria-expanded="false"
   aria-haspopup="listbox"
-  aria-label="aria-label"
   class="euiComboBox testClass1 testClass2"
   data-test-subj="test subject string"
   role="combobox"
@@ -26,6 +25,7 @@ exports[`EuiComboBox is rendered 1`] = `
         >
           <input
             aria-controls=""
+            aria-label="aria-label"
             data-test-subj="comboBoxSearchInput"
             id="generated-id__eui-combobox-id"
             role="textbox"
@@ -67,7 +67,7 @@ exports[`props aria-label attribute is rendered 1`] = `
   role="combobox"
 >
   <EuiComboBoxInput
-    ariaLabel="Test label"
+    aria-label="Test label"
     autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}
@@ -103,7 +103,7 @@ exports[`props aria-labelledby attribute is rendered 1`] = `
   role="combobox"
 >
   <EuiComboBoxInput
-    ariaLabelledby="test-heading-id"
+    aria-labelledby="test-heading-id"
     autoSizeInputRef={[Function]}
     compressed={false}
     fullWidth={false}

@@ -214,7 +214,7 @@ describe('props', () => {
 
   test('aria-label attribute is rendered', () => {
     const component = shallow(
-      <EuiComboBox ariaLabel="Test label" options={options} />
+      <EuiComboBox aria-label="Test label" options={options} />
     );
 
     expect(component).toMatchSnapshot();
@@ -222,7 +222,7 @@ describe('props', () => {
 
   test('aria-labelledby attribute is rendered', () => {
     const component = shallow(
-      <EuiComboBox ariaLabelledby="test-heading-id" options={options} />
+      <EuiComboBox aria-labelledby="test-heading-id" options={options} />
     );
 
     expect(component).toMatchSnapshot();
