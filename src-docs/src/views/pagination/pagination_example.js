@@ -10,6 +10,7 @@ import {
   EuiCallOut,
 } from '../../../../src/components';
 
+import Guidelines from './guidelines';
 import { paginationConfig } from './playground';
 
 import ManyPages from './many_pages';
@@ -76,6 +77,7 @@ const indeterminateSnippet = `<EuiPagination
 
 export const PaginationExample = {
   title: 'Pagination',
+  guidelines: <Guidelines />,
   intro: (
     <EuiText>
       <p>

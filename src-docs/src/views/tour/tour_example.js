@@ -54,6 +54,7 @@ const fullHtml = renderToHtml(FullScreen);
 
 export const TourExample = {
   title: 'Tour',
+  guidelines: <Guidelines />,
   intro: (
     <EuiText>
       <p>
@@ -194,5 +195,4 @@ export const TourExample = {
       },
     },
   ],
-  guidelines: <Guidelines />,
 };
