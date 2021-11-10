@@ -119,10 +119,7 @@ export const EuiColorPalettePicker: FunctionComponent<EuiColorPalettePickerProps
   }:
     | EuiColorPalettePickerPaletteFixedProps
     | EuiColorPalettePickerPaletteGradientProps) => {
-    // Working around ExclusiveUnion
-    return type === 'gradient' ? (
-      <EuiColorPaletteDisplay type={type} palette={palette} title={title} />
-    ) : (
+    return (
       <EuiColorPaletteDisplay type={type} palette={palette} title={title} />
     );
   };
