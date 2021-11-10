@@ -27,6 +27,7 @@ import {
   EuiDataGridInMemory,
   EuiDataGridStyle,
   EuiDataGridToolBarVisibilityOptions,
+  EuiDataGridToolBarAdditionalControlsOptions,
   EuiDataGridColumnVisibility,
   EuiDataGridColumnActions,
   EuiDataGridPopoverContentProps,
@@ -94,10 +95,14 @@ const gridSnippet = `
     // Optional. Allows you to configure what features the toolbar shows.
     // The prop also accepts a boolean if you want to toggle the entire toolbar on/off.
     toolbarVisibility={{
-      showColumnSelector: false
-      showStyleSelector: false
-      showSortSelector: false
-      showFullScreenSelector: false
+      showColumnSelector: false,
+      showStyleSelector: false,
+      showSortSelector: false,
+      showFullScreenSelector: false,
+      additionalControls: {
+        left: <EuiButtonEmpty size="xs" />,
+        right: <EuiButtonIcon size="xs" />,
+      },
     }}
     // Optional. Change the initial style of the grid.
     gridStyle={{
@@ -399,6 +404,7 @@ export const DataGridExample = {
         EuiDataGridStyle,
         EuiDataGridToolBarVisibilityOptions,
         EuiDataGridToolBarVisibilityColumnSelectorOptions,
+        EuiDataGridToolBarAdditionalControlsOptions,
         EuiDataGridPopoverContentProps,
         EuiDataGridRowHeightsOptions,
       },

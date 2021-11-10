@@ -6,13 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { EuiButtonEmpty } from '../../button';
+import React, { useEffect } from 'react';
+import { EuiToolTip } from '../../tool_tip';
+import { EuiButtonIcon } from '../../button';
 import { useEuiI18n } from '../../i18n';
 import {
   EuiDataGridProps,
   EuiDataGridToolbarProps,
   EuiDataGridToolBarVisibilityOptions,
+  EuiDataGridToolBarAdditionalControlsOptions,
 } from '../data_grid_types';
 
 // Used to simplify some sizing logic which is difficult to account for in tests
@@ -23,31 +25,6 @@ const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
 
 // When data grid is full screen, we add a class to the body to remove the extra scrollbar
 const GRID_IS_FULLSCREEN_CLASSNAME = 'euiDataGrid__restrictBody';
-
-// Typeguards to see if toolbarVisibility has a certain boolean property assigned
-// If not, just set it to true and assume it's OK to show
-function objectHasKey<O extends Record<string, any>, ObjectKey extends keyof O>(
-  object: O,
-  key: ObjectKey
-): object is Required<O> {
-  return object.hasOwnProperty(key);
-}
-export function checkOrDefaultToolBarDisplayOptions<
-  OptionKey extends keyof EuiDataGridToolBarVisibilityOptions
->(
-  arg: EuiDataGridProps['toolbarVisibility'],
-  option: OptionKey
-): Required<EuiDataGridToolBarVisibilityOptions>[OptionKey] {
-  if (arg === undefined) {
-    return true;
-  } else if (typeof arg === 'boolean') {
-    return arg as boolean;
-  } else if (objectHasKey(arg, option)) {
-    return arg[option];
-  } else {
-    return true;
-  }
-}
 
 export const EuiDataGridToolbar = ({
   gridWidth,
@@ -72,23 +49,40 @@ export const EuiDataGridToolbar = ({
     ? true
     : gridWidth > minSizeForControls || isFullScreen;
 
-  // need to safely access those Web APIs
-  if (typeof document !== 'undefined') {
-    // When data grid is full screen, we add a class to the body to remove the extra scrollbar
-    document.body.classList.toggle(GRID_IS_FULLSCREEN_CLASSNAME, isFullScreen);
-  }
+  useEffect(() => {
+    // When data grid is full screen, we add a class to the body to remove the extra scrollbar and stay above any fixed headers
+    if (isFullScreen) {
+      document.body.classList.add(GRID_IS_FULLSCREEN_CLASSNAME);
+
+      return () => {
+        document.body.classList.remove(GRID_IS_FULLSCREEN_CLASSNAME);
+      };
+    }
+  }, [isFullScreen]);
 
   const fullScreenSelector = (
-    <EuiButtonEmpty
-      size="xs"
-      iconType="fullScreen"
-      color="text"
-      className={controlBtnClasses}
-      data-test-subj="dataGridFullScreenButton"
-      onClick={() => setIsFullScreen(!isFullScreen)}
+    <EuiToolTip
+      content={
+        isFullScreen ? (
+          <>
+            {fullScreenButtonActive} (<kbd>esc</kbd>)
+          </>
+        ) : (
+          fullScreenButton
+        )
+      }
+      delay="long"
     >
-      {isFullScreen ? fullScreenButtonActive : fullScreenButton}
-    </EuiButtonEmpty>
+      <EuiButtonIcon
+        size="xs"
+        iconType="fullScreen"
+        color="text"
+        className={controlBtnClasses}
+        data-test-subj="dataGridFullScreenButton"
+        onClick={() => setIsFullScreen(!isFullScreen)}
+        aria-label={isFullScreen ? fullScreenButtonActive : fullScreenButton}
+      />
+    </EuiToolTip>
   );
 
   return (
@@ -98,13 +92,7 @@ export const EuiDataGridToolbar = ({
       data-test-sub="dataGridControls"
     >
       {hasRoomForGridControls && (
-        <>
-          {checkOrDefaultToolBarDisplayOptions(
-            toolbarVisibility,
-            'additionalControls'
-          ) && typeof toolbarVisibility !== 'boolean'
-            ? toolbarVisibility.additionalControls
-            : null}
+        <div className="euiDataGrid__leftControls">
           {checkOrDefaultToolBarDisplayOptions(
             toolbarVisibility,
             'showColumnSelector'
@@ -113,24 +101,86 @@ export const EuiDataGridToolbar = ({
             : null}
           {checkOrDefaultToolBarDisplayOptions(
             toolbarVisibility,
-            'showStyleSelector'
-          )
-            ? styleSelector
-            : null}
-          {checkOrDefaultToolBarDisplayOptions(
-            toolbarVisibility,
             'showSortSelector'
           )
             ? columnSorting
             : null}
-        </>
+          {renderAdditionalControls(toolbarVisibility, 'left')}
+        </div>
       )}
-      {checkOrDefaultToolBarDisplayOptions(
-        toolbarVisibility,
-        'showFullScreenSelector'
-      )
-        ? fullScreenSelector
-        : null}
+      <div className="euiDataGrid__rightControls">
+        {renderAdditionalControls(toolbarVisibility, 'right')}
+        {checkOrDefaultToolBarDisplayOptions(
+          toolbarVisibility,
+          'showStyleSelector'
+        )
+          ? styleSelector
+          : null}
+        {checkOrDefaultToolBarDisplayOptions(
+          toolbarVisibility,
+          'showFullScreenSelector'
+        )
+          ? fullScreenSelector
+          : null}
+      </div>
     </div>
   );
 };
+
+/**
+ * Toolbar utilities
+ */
+
+// Typeguards to see if toolbarVisibility has a certain boolean property assigned
+// If not, just set it to true and assume it's OK to show
+function objectHasKey<O extends Record<string, any>, ObjectKey extends keyof O>(
+  object: O,
+  key: ObjectKey
+): object is Required<O> {
+  return object.hasOwnProperty(key);
+}
+
+export function checkOrDefaultToolBarDisplayOptions<
+  OptionKey extends keyof EuiDataGridToolBarVisibilityOptions
+>(
+  arg: EuiDataGridProps['toolbarVisibility'],
+  option: OptionKey
+): Required<EuiDataGridToolBarVisibilityOptions>[OptionKey] {
+  if (arg === undefined) {
+    return true;
+  } else if (typeof arg === 'boolean') {
+    return arg as boolean;
+  } else if (objectHasKey(arg, option)) {
+    return arg[option];
+  } else {
+    return true;
+  }
+}
+
+export function renderAdditionalControls(
+  toolbarVisibility: EuiDataGridProps['toolbarVisibility'],
+  position: 'left' | 'right'
+) {
+  if (typeof toolbarVisibility === 'boolean') return null;
+  const { additionalControls } = toolbarVisibility || {};
+  if (!additionalControls) return null;
+
+  // Typescript is having obj issues, so we need to force cast to EuiDataGridToolBarAdditionalControlsOptions here
+  const additionalControlsObj: EuiDataGridToolBarAdditionalControlsOptions =
+    additionalControls?.constructor === Object ? additionalControls : {};
+
+  if (position === 'right') {
+    if (additionalControlsObj?.right) {
+      return additionalControlsObj.right;
+    }
+  } else if (position === 'left') {
+    if (additionalControlsObj?.left) {
+      return additionalControlsObj.left;
+    } else if (React.isValidElement(additionalControls)) {
+      // API backwards compatability: if the user passed in a single ReactNode, default to the the left position
+      return additionalControls;
+    }
+  }
+
+  return null;
+}

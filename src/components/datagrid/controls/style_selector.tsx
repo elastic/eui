@@ -8,9 +8,11 @@
 
 import React, { ReactElement, useState } from 'react';
 import { EuiDataGridStyle } from '../data_grid_types';
-import { EuiI18n } from '../../i18n';
+import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiPopover } from '../../popover';
-import { EuiButtonEmpty, EuiButtonGroup } from '../../button';
+import { EuiButtonIcon, EuiButtonGroup } from '../../button';
+import { EuiFormRow } from '../../form';
+import { EuiToolTip } from '../../tool_tip';
 
 export const startingStyles: EuiDataGridStyle = {
   cellPadding: 'm',
@@ -23,6 +25,8 @@ export const startingStyles: EuiDataGridStyle = {
   stickyFooter: true,
 };
 
+// These are the available options. They power the gridDensity hook and also the options in the render
+const densityOptions: string[] = ['compact', 'normal', 'expanded'];
 const densityStyles: { [key: string]: Partial<EuiDataGridStyle> } = {
   expanded: {
     fontSize: 'l',
@@ -37,6 +41,8 @@ const densityStyles: { [key: string]: Partial<EuiDataGridStyle> } = {
     cellPadding: 's',
   },
 };
+// Used to correctly format the icon name for the grid density icon
+const capitalizeDensityString = (s: string) => s[0].toUpperCase() + s.slice(1);
 
 export const useDataGridStyleSelector = (
   initialStyles: EuiDataGridStyle
@@ -45,9 +51,6 @@ export const useDataGridStyleSelector = (
   const [userGridStyles, setUserGridStyles] = useState({});
 
   const [isOpen, setIsOpen] = useState(false);
-
-  // These are the available options. They power the gridDensity hook and also the options in the render
-  const densityOptions: string[] = ['expanded', 'normal', 'compact'];
 
   // Normal is the default density
   const [gridDensity, _setGridDensity] = useState(densityOptions[1]);
@@ -62,73 +65,71 @@ export const useDataGridStyleSelector = (
     ...userGridStyles,
   };
 
+  const buttonLabel = useEuiI18n(
+    'euiStyleSelector.buttonText',
+    'Display options'
+  );
+
   const styleSelector = (
     <EuiPopover
       data-test-subj="dataGridStyleSelectorPopover"
       isOpen={isOpen}
       closePopover={() => setIsOpen(false)}
-      anchorPosition="downCenter"
+      anchorPosition="downRight"
       panelPaddingSize="s"
-      panelClassName="euiDataGridColumnSelectorPopover"
+      panelClassName="euiDataGrid__displayPopoverPanel"
       button={
-        <EuiButtonEmpty
-          size="xs"
-          iconType="tableDensityExpanded"
-          className="euiDataGrid__controlBtn"
-          color="text"
-          data-test-subj="dataGridStyleSelectorButton"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <EuiI18n token="euiStyleSelector.buttonText" default="Density" />
-        </EuiButtonEmpty>
+        <EuiToolTip content={buttonLabel} delay="long">
+          <EuiButtonIcon
+            size="xs"
+            iconType={`tableDensity${capitalizeDensityString(gridDensity)}`}
+            className="euiDataGrid__controlBtn"
+            color="text"
+            data-test-subj="dataGridStyleSelectorButton"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={buttonLabel}
+          />
+        </EuiToolTip>
       }
     >
       <EuiI18n
         tokens={[
-          'euiStyleSelector.buttonLegend',
-          'euiStyleSelector.labelExpanded',
-          'euiStyleSelector.labelNormal',
+          'euiStyleSelector.densityLabel',
           'euiStyleSelector.labelCompact',
+          'euiStyleSelector.labelNormal',
+          'euiStyleSelector.labelExpanded',
         ]}
-        defaults={[
-          'Select the display density for the data grid',
-          'Expanded density',
-          'Normal density',
-          'Compact density',
-        ]}
+        defaults={['Density', 'Compact', 'Normal', 'Expanded']}
       >
         {([
-          buttonLegend,
-          labelExpanded,
-          labelNormal,
+          densityLabel,
           labelCompact,
+          labelNormal,
+          labelExpanded,
         ]: string[]) => (
-          <EuiButtonGroup
-            legend={buttonLegend}
-            name="density"
-            className="eui-displayInlineBlock"
-            buttonSize="compressed"
-            options={[
-              {
-                id: densityOptions[0],
-                label: labelExpanded,
-                iconType: 'tableDensityExpanded',
-              },
-              {
-                id: densityOptions[1],
-                label: labelNormal,
-                iconType: 'tableDensityNormal',
-              },
-              {
-                id: densityOptions[2],
-                label: labelCompact,
-                iconType: 'tableDensityCompact',
-              },
-            ]}
-            onChange={setGridDensity}
-            idSelected={gridDensity}
-            isIconOnly
-          />
+          <EuiFormRow label={densityLabel} display="columnCompressed">
+            <EuiButtonGroup
+              legend={densityLabel}
+              buttonSize="compressed"
+              isFullWidth
+              options={[
+                {
+                  id: densityOptions[0],
+                  label: labelCompact,
+                },
+                {
+                  id: densityOptions[1],
+                  label: labelNormal,
+                },
+                {
+                  id: densityOptions[2],
+                  label: labelExpanded,
+                },
+              ]}
+              onChange={setGridDensity}
+              idSelected={gridDensity}
+            />
+          </EuiFormRow>
         )}
       </EuiI18n>
     </EuiPopover>
