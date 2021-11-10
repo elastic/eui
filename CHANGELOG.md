@@ -5,7 +5,7 @@
 - Fixed an `EuiDataGrid` race condition where grid rows had incorrect heights if loaded in before CSS ([#5284](https://github.com/elastic/eui/pull/5284))
 - Fixed an accessibility issue where `EuiDataGrid` cells weren't owned by `role=row` elements ([#5285](https://github.com/elastic/eui/pull/5285))
 - Fixed an accessibility issue where `EuiSuperSelect` was not creating accessible labels for its listbox ([#5292](https://github.com/elastic/eui/issues/5292))
-- Fixed an accessibility issue where `EuiColorPalettePicker` was not creating n accessible label for its button or listbox ([#5367](https://github.com/elastic/eui/issues/5367))
+- Fixed an accessibility issue where `EuiColorPalettePicker` was not creating an accessible label for its button ([#5367](https://github.com/elastic/eui/issues/5367))
 - Fixed `EuiErrorBoundary` overflow scrolling by wrapping contents in `EuiCodeBlock` ([#5359](https://github.com/elastic/eui/pull/5359))
 
 ## [`41.0.0`](https://github.com/elastic/eui/tree/v41.0.0)
