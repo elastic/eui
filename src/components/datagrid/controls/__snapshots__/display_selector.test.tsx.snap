@@ -51,6 +51,28 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
     >
       <Component />
     </EuiI18n>
+    <EuiI18n
+      defaults={
+        Array [
+          "Row height",
+          "Single",
+          "Auto fit",
+          "Custom",
+          "Lines per row",
+        ]
+      }
+      tokens={
+        Array [
+          "euiDisplaySelector.rowHeightLabel",
+          "euiDisplaySelector.labelSingle",
+          "euiDisplaySelector.labelAuto",
+          "euiDisplaySelector.labelCustom",
+          "euiDisplaySelector.lineCountLabel",
+        ]
+      }
+    >
+      <Component />
+    </EuiI18n>
   </EuiPopover>
 </Fragment>
 `;

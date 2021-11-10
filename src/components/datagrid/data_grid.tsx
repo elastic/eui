@@ -488,7 +488,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     minSizeForControls,
     height,
     width,
-    rowHeightsOptions,
+    rowHeightsOptions: _rowHeightsOptions,
     virtualizationOptions,
     ...rest
   } = props;
@@ -648,12 +648,17 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     allSchemaDetectors,
     displayValues
   );
-  const [displaySelector, gridStyles] = useDataGridDisplaySelector(
+  const [
+    displaySelector,
+    gridStyles,
+    rowHeightsOptions,
+  ] = useDataGridDisplaySelector(
     checkOrDefaultToolBarDisplayOptions(
       toolbarVisibility,
       'showDisplaySelector'
     ),
     gridStyleWithDefaults,
+    _rowHeightsOptions,
     // @ts-ignore - showStyleSelector will be deprecated
     toolbarVisibility?.showStyleSelector
   );

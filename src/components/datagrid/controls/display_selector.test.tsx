@@ -8,9 +8,12 @@
 
 import React from 'react';
 import { act } from 'react-dom/test-utils';
-import { shallow, mount, ReactWrapper } from 'enzyme';
+import { shallow, mount, ShallowWrapper, ReactWrapper } from 'enzyme';
 
-import { EuiDataGridToolBarVisibilityOptions } from '../data_grid_types';
+import {
+  EuiDataGridToolBarVisibilityOptions,
+  EuiDataGridRowHeightsOptions,
+} from '../data_grid_types';
 
 import { useDataGridDisplaySelector, startingStyles } from './display_selector';
 
@@ -20,11 +23,13 @@ describe('useDataGridDisplaySelector', () => {
     const MockComponent = ({
       showDisplaySelector = true as EuiDataGridToolBarVisibilityOptions['showDisplaySelector'],
       gridStyles = {},
+      rowHeightsOptions = undefined as EuiDataGridRowHeightsOptions | undefined,
       showStyleSelector = undefined as boolean | undefined,
     }) => {
       const [displaySelector] = useDataGridDisplaySelector(
         showDisplaySelector,
         gridStyles,
+        rowHeightsOptions,
         showStyleSelector
       );
       return <>{displaySelector}</>;
@@ -98,13 +103,84 @@ describe('useDataGridDisplaySelector', () => {
         ).toHaveLength(0);
       });
     });
+
+    describe('row height', () => {
+      const getSelection = (component: ReactWrapper) =>
+        component
+          .find('EuiButtonGroup[data-test-subj="rowHeightButtonGroup"]')
+          .prop('idSelected');
+
+      it('renders row height buttons that toggle betwen undefined, auto, and lineCount', () => {
+        const component = mount(<MockComponent />);
+        openPopover(component);
+        expect(getSelection(component)).toEqual('undefined');
+
+        component.find('[data-test-subj="auto"]').simulate('change');
+        expect(getSelection(component)).toEqual('auto');
+      });
+
+      it('hides the row height buttongroup if allowRowHeight is set to false', () => {
+        const component = mount(
+          <MockComponent showDisplaySelector={{ allowRowHeight: false }} />
+        );
+        openPopover(component);
+
+        expect(
+          component.find('[data-test-subj="rowHeightButtonGroup"]')
+        ).toHaveLength(0);
+      });
+
+      describe('convertRowHeightsOptionsToSelection (loading initial state from passed rowHeightsOptions)', () => {
+        test('auto', () => {
+          const component = mount(
+            <MockComponent rowHeightsOptions={{ defaultHeight: 'auto' }} />
+          );
+          openPopover(component);
+          expect(getSelection(component)).toEqual('auto');
+        });
+
+        test('lineCount', () => {
+          const component = mount(
+            <MockComponent
+              rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
+            />
+          );
+          openPopover(component);
+          expect(getSelection(component)).toEqual('lineCount');
+        });
+
+        test('undefined', () => {
+          const component = mount(
+            <MockComponent rowHeightsOptions={undefined} />
+          );
+          openPopover(component);
+          expect(getSelection(component)).toEqual('undefined');
+        });
+
+        test('height should fall back to undefined', () => {
+          const component = mount(
+            <MockComponent rowHeightsOptions={{ defaultHeight: 36 }} />
+          );
+          openPopover(component);
+          expect(getSelection(component)).toEqual('undefined');
+        });
+      });
+
+      describe('lineCount', () => {
+        // TODO
+      });
+    });
   });
 
   describe('gridStyles', () => {
     it('returns an object of grid styles with user overrides', () => {
       const initialStyles = { ...startingStyles, stripes: true };
       const MockComponent = () => {
-        const [, gridStyles] = useDataGridDisplaySelector(true, initialStyles);
+        const [, gridStyles] = useDataGridDisplaySelector(
+          true,
+          initialStyles,
+          {}
+        );
         return <table {...gridStyles} />;
       };
       const component = shallow(<MockComponent />);
@@ -121,6 +197,79 @@ describe('useDataGridDisplaySelector', () => {
           stripes={true}
         />
       `);
+    });
+  });
+
+  describe('rowHeightsOptions', () => {
+    // Test helpers
+    const MockComponent = ({
+      initialRowHeightsOptions = undefined as
+        | EuiDataGridRowHeightsOptions
+        | undefined,
+    }) => {
+      const [displaySelector, , rowHeightsOptions] = useDataGridDisplaySelector(
+        true,
+        {},
+        initialRowHeightsOptions
+      );
+      return (
+        <>
+          {displaySelector}
+          <div data-test-subj="output">{JSON.stringify(rowHeightsOptions)}</div>
+        </>
+      );
+    };
+    const diveIntoEuiI18n = (component: ShallowWrapper) => {
+      return (component
+        .find('EuiI18n')
+        .last()
+        .renderProp('children') as Function)(['', '', '', '']);
+    };
+    const setRowHeight = (component: ShallowWrapper, selection = '') => {
+      diveIntoEuiI18n(component)
+        .find('[data-test-subj="rowHeightButtonGroup"]')
+        .simulate('change', selection);
+    };
+    const getOutput = (component: ShallowWrapper) => {
+      return JSON.parse(component.find('[data-test-subj="output"]').text());
+    };
+
+    it('returns an object of rowHeightsOptions with user overrides', () => {
+      const component = shallow(
+        <MockComponent initialRowHeightsOptions={{ lineHeight: '2em' }} />
+      );
+
+      setRowHeight(component, 'lineCount');
+
+      expect(getOutput(component)).toEqual({
+        lineHeight: '2em',
+        defaultHeight: { lineCount: 1 },
+      });
+    });
+
+    it('handles undefined rowHeightsObjects (from the developer)', () => {
+      const component = shallow(
+        <MockComponent initialRowHeightsOptions={undefined} />
+      );
+      expect(getOutput(component)).toEqual({});
+
+      setRowHeight(component, 'auto');
+
+      expect(getOutput(component)).toEqual({
+        defaultHeight: 'auto',
+      });
+    });
+
+    it('handles undefined rowHeightsOptions (from the user)', () => {
+      const component = shallow(
+        <MockComponent initialRowHeightsOptions={{ lineHeight: '2em' }} />
+      );
+
+      setRowHeight(component, 'undefined');
+
+      expect(getOutput(component)).toEqual({
+        lineHeight: '2em',
+      });
     });
   });
 });
