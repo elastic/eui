@@ -9,7 +9,7 @@ const dtsGenerator = require('dts-generator').default;
 const IGNORE_BUILD = ['**/webpack.config.js','**/*.d.ts'];
 const IGNORE_TESTS = ['**/*.test.js','**/*.test.ts','**/*.test.tsx','**/*.spec.tsx'];
 const IGNORE_TESTENV = ['**/*.testenv.js','**/*.testenv.tsx','**/*.testenv.ts'];
-const IGNORE_PACKAGES = ['**/react-datepicker/*.js','**/react-datepicker/docs-site/**/*.js','**/react-datepicker/examples/**/*.js','**/react-datepicker/scripts/*.js','**/react-datepicker/test/**/*.js']
+const IGNORE_PACKAGES = ['**/react-datepicker/test/**/*.js']
 
 function compileLib() {
   shell.mkdir('-p', 'lib/services', 'lib/test');
