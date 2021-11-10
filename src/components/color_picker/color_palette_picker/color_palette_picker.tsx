@@ -16,6 +16,7 @@ import { ColorStop } from '../color_stops';
 
 import { EuiSuperSelectProps } from '../../form/super_select';
 import { EuiColorPaletteDisplay } from '../color_palette_display';
+import { EuiScreenReaderOnly } from '../../accessibility/screen_reader';
 
 export interface EuiColorPalettePickerPaletteTextProps extends CommonProps {
   /**
@@ -116,14 +117,25 @@ export const EuiColorPalettePicker: FunctionComponent<EuiColorPalettePickerProps
   const getPalette = ({
     type,
     palette,
+    title,
   }:
     | EuiColorPalettePickerPaletteFixedProps
     | EuiColorPalettePickerPaletteGradientProps) => {
     // Working around ExclusiveUnion
     return type === 'gradient' ? (
-      <EuiColorPaletteDisplay type={type} palette={palette} />
+      <React.Fragment>
+        <EuiColorPaletteDisplay type={type} palette={palette} />
+        <EuiScreenReaderOnly>
+          <div>{title}</div>
+        </EuiScreenReaderOnly>
+      </React.Fragment>
     ) : (
-      <EuiColorPaletteDisplay type={type} palette={palette} />
+      <React.Fragment>
+        <EuiColorPaletteDisplay type={type} palette={palette} />
+        <EuiScreenReaderOnly>
+          <div>{title}</div>
+        </EuiScreenReaderOnly>
+      </React.Fragment>
     );
   };
 
@@ -164,7 +176,6 @@ export const EuiColorPalettePicker: FunctionComponent<EuiColorPalettePickerProps
       fullWidth={fullWidth}
       append={append}
       prepend={prepend}
-      screenReaderId={screenReaderId}
       {...rest}
     />
   );
