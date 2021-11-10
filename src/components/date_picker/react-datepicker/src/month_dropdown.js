@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import MonthDropdownOptions from "./month_dropdown_options";
 import * as utils from "./date_utils";
 
-import {EuiOutsideClickDetector} from '../../../outside_click_detector';
+import { EuiOutsideClickDetector } from '../../../outside_click_detector';
 
 export default class MonthDropdown extends React.Component {
   static propTypes = {

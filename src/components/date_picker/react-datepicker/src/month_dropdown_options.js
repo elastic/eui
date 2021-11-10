@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import { ScreenReaderOnly } from "./screen_reader_only";
 
-import {EuiFocusTrap} from '../../../focus_trap';
+import { EuiFocusTrap } from '../../../focus_trap';
 
 export default class MonthDropdownOptions extends React.Component {
   static propTypes = {

@@ -12,7 +12,7 @@ import {
   newDate
 } from "./date_utils";
 
-import {EuiOutsideClickDetector} from '../../../outside_click_detector';
+import { EuiOutsideClickDetector } from '../../../outside_click_detector';
 
 export default class MonthYearDropdown extends React.Component {
   static propTypes = {

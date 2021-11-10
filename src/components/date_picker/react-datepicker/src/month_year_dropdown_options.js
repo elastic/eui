@@ -13,7 +13,7 @@ import {
   isBefore
 } from "./date_utils";
 
-import {EuiFocusTrap} from '../../../focus_trap';
+import { EuiFocusTrap } from '../../../focus_trap';
 
 function generateMonthYears(minDate, maxDate) {
   const list = [];

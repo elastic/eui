@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import YearDropdownOptions from "./year_dropdown_options";
 import { getYear } from "./date_utils";
 
-import {EuiOutsideClickDetector} from '../../../outside_click_detector';
+import { EuiOutsideClickDetector } from '../../../outside_click_detector';
 
 export default class YearDropdown extends React.Component {
   static propTypes = {

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { ScreenReaderOnly } from "./screen_reader_only";
 
-import {EuiFocusTrap} from '../../../focus_trap';
+import { EuiFocusTrap } from '../../../focus_trap';
 
 function generateYears(year, noOfYear, minDate, maxDate) {
   var list = [];

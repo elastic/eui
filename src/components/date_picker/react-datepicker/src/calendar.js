@@ -35,7 +35,7 @@ import {
   getEffectiveMaxDate
 } from "./date_utils";
 
-import {EuiFocusTrap} from '../../../focus_trap';
+import { EuiFocusTrap } from '../../../focus_trap';
 
 const FocusTrapContainer = React.forwardRef((props, ref) => <div ref={ref} className="react-datepicker__focusTrap" {...props}/>);
 
