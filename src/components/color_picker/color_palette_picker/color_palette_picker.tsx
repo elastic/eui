@@ -16,7 +16,6 @@ import { ColorStop } from '../color_stops';
 
 import { EuiSuperSelectProps } from '../../form/super_select';
 import { EuiColorPaletteDisplay } from '../color_palette_display';
-import { EuiScreenReaderOnly } from '../../accessibility/screen_reader';
 
 export interface EuiColorPalettePickerPaletteTextProps extends CommonProps {
   /**
@@ -122,19 +121,9 @@ export const EuiColorPalettePicker: FunctionComponent<EuiColorPalettePickerProps
     | EuiColorPalettePickerPaletteGradientProps) => {
     // Working around ExclusiveUnion
     return type === 'gradient' ? (
-      <React.Fragment>
-        <EuiColorPaletteDisplay type={type} palette={palette} />
-        <EuiScreenReaderOnly>
-          <div>{title}</div>
-        </EuiScreenReaderOnly>
-      </React.Fragment>
+      <EuiColorPaletteDisplay type={type} palette={palette} title={title} />
     ) : (
-      <React.Fragment>
-        <EuiColorPaletteDisplay type={type} palette={palette} />
-        <EuiScreenReaderOnly>
-          <div>{title}</div>
-        </EuiScreenReaderOnly>
-      </React.Fragment>
+      <EuiColorPaletteDisplay type={type} palette={palette} title={title} />
     );
   };
 
@@ -151,7 +140,12 @@ export const EuiColorPalettePicker: FunctionComponent<EuiColorPalettePickerProps
         dropdownDisplay: (
           <div className="euiColorPalettePicker__item">
             {title && type !== 'text' && (
-              <div className="euiColorPalettePicker__itemTitle">{title}</div>
+              <div
+                aria-hidden="true"
+                className="euiColorPalettePicker__itemTitle"
+              >
+                {title}
+              </div>
             )}
             {type === 'text' ? title : paletteForDisplay}
           </div>

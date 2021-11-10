@@ -9,6 +9,7 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../../common';
 import { getFixedLinearGradient } from '../utils';
+import { EuiScreenReaderOnly } from '../../accessibility/screen_reader';
 import { EuiColorPaletteDisplayShared } from './color_palette_display';
 
 export interface EuiColorPaletteDisplayFixedProps
@@ -23,6 +24,7 @@ interface paletteItem {
 
 export const EuiColorPaletteDisplayFixed: FunctionComponent<EuiColorPaletteDisplayFixedProps> = ({
   palette,
+  title,
   ...rest
 }) => {
   const fixedGradient = getFixedLinearGradient(palette);
@@ -36,7 +38,13 @@ export const EuiColorPaletteDisplayFixed: FunctionComponent<EuiColorPaletteDispl
 
   return (
     <span {...rest}>
-      <span className="euiColorPaletteDisplayFixed__bleedArea">
+      <EuiScreenReaderOnly>
+        <span>{title}</span>
+      </EuiScreenReaderOnly>
+      <span
+        aria-hidden="true"
+        className="euiColorPaletteDisplayFixed__bleedArea"
+      >
         {paletteStops}
       </span>
     </span>

@@ -131,6 +131,12 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
               class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
             >
               <span
+                class="euiScreenReaderOnly"
+              >
+                Palette 1
+              </span>
+              <span
+                aria-hidden="true"
                 class="euiColorPaletteDisplayFixed__bleedArea"
               >
                 <span
@@ -150,11 +156,6 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
                 />
               </span>
             </span>
-            <div
-              class="euiScreenReaderOnly"
-            >
-              Palette 1
-            </div>
             , is selected
           </span>
           <button
@@ -168,6 +169,12 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
               class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
             >
               <span
+                class="euiScreenReaderOnly"
+              >
+                Palette 1
+              </span>
+              <span
+                aria-hidden="true"
                 class="euiColorPaletteDisplayFixed__bleedArea"
               >
                 <span
@@ -187,11 +194,6 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
                 />
               </span>
             </span>
-            <div
-              class="euiScreenReaderOnly"
-            >
-              Palette 1
-            </div>
           </button>
           <div
             class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
@@ -237,14 +239,15 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
           >
             Select an option: 
             <span
-              class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
-              style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
-            />
-            <div
               class="euiScreenReaderOnly"
             >
               Linear Gradient
-            </div>
+            </span>
+            <span
+              aria-hidden="true"
+              class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
+              style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
+            />
             , is selected
           </span>
           <button
@@ -255,14 +258,15 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
             type="button"
           >
             <span
-              class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
-              style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
-            />
-            <div
               class="euiScreenReaderOnly"
             >
               Linear Gradient
-            </div>
+            </span>
+            <span
+              aria-hidden="true"
+              class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
+              style="background:linear-gradient(to right, #1fb0b2 0%, #ffdb6d 25%, #ee9191 50%, #ffffff 75%, #888094 100%)"
+            />
           </button>
           <div
             class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
@@ -308,14 +312,15 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
           >
             Select an option: 
             <span
-              class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
-              style="background:linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)"
-            />
-            <div
               class="euiScreenReaderOnly"
             >
               Linear Gradient with stops
-            </div>
+            </span>
+            <span
+              aria-hidden="true"
+              class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
+              style="background:linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)"
+            />
             , is selected
           </span>
           <button
@@ -326,14 +331,15 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
             type="button"
           >
             <span
-              class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
-              style="background:linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)"
-            />
-            <div
               class="euiScreenReaderOnly"
             >
               Linear Gradient with stops
-            </div>
+            </span>
+            <span
+              aria-hidden="true"
+              class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
+              style="background:linear-gradient(to right, #54B399 0%, #D36086 53%, #9170B8 74%, #F5A700 100%)"
+            />
           </button>
           <div
             class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
@@ -435,6 +441,12 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
               class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
             >
               <span
+                class="euiScreenReaderOnly"
+              >
+                Palette 1
+              </span>
+              <span
+                aria-hidden="true"
                 class="euiColorPaletteDisplayFixed__bleedArea"
               >
                 <span
@@ -454,11 +466,6 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                 />
               </span>
             </span>
-            <div
-              class="euiScreenReaderOnly"
-            >
-              Palette 1
-            </div>
             , is selected
           </span>
           <button
@@ -471,6 +478,12 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
               class="euiColorPaletteDisplay euiColorPaletteDisplay--sizeSmall"
             >
               <span
+                class="euiScreenReaderOnly"
+              >
+                Palette 1
+              </span>
+              <span
+                aria-hidden="true"
                 class="euiColorPaletteDisplayFixed__bleedArea"
               >
                 <span
@@ -490,11 +503,6 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                 />
               </span>
             </span>
-            <div
-              class="euiScreenReaderOnly"
-            >
-              Palette 1
-            </div>
           </button>
           <div
             class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
