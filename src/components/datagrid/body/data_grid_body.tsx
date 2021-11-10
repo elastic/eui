@@ -74,10 +74,9 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     rowHeightsOptions,
     rowHeightUtils,
     rowManager,
+    headerRowHeight,
     isFullScreen,
   } = data;
-
-  const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
 
   const offsetRowIndex = visibleRowIndex + rowOffset;
 
@@ -708,6 +707,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                   rowHeightsOptions,
                   rowHeightUtils,
                   rowManager,
+                  headerRowHeight,
                   isFullScreen,
                 }}
                 rowCount={
