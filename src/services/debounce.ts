@@ -6,12 +6,12 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiScreenReaderOnly,
-  EuiScreenReaderOnlyProps,
-} from './screen_reader_only';
-export {
-  EuiScreenReaderStatus,
-  EuiScreenReaderStatusProps,
-} from './screen_reader_status';
-export { EuiSkipLink, EuiSkipLinkProps } from './skip_link';
+export const debounce = (fn: (...args: any[]) => void, wait: number = 50) => {
+  let timeoutId: number;
+  return (...args: any[]) => {
+    window.clearTimeout(timeoutId);
+    timeoutId = window.setTimeout(() => {
+      fn(...args);
+    }, wait);
+  };
+};

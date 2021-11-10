@@ -6,12 +6,4 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiScreenReaderOnly,
-  EuiScreenReaderOnlyProps,
-} from './screen_reader_only';
-export {
-  EuiScreenReaderStatus,
-  EuiScreenReaderStatusProps,
-} from './screen_reader_status';
 export { EuiSkipLink, EuiSkipLinkProps } from './skip_link';
