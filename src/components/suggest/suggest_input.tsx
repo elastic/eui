@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { useState, FunctionComponent, KeyboardEvent } from 'react';
+import React, {
+  useState,
+  FunctionComponent,
+  KeyboardEvent,
+  CSSProperties,
+} from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
 import { keys } from '../../services';
@@ -22,6 +27,9 @@ export type EuiSuggestStatus = StatusTuple[number];
 
 export type EuiSuggestInputProps = CommonProps &
   EuiFieldTextProps & {
+    /**
+     * Changes the content of the tooltip that wraps the status icon
+     */
     tooltipContent?: string;
 
     /**
@@ -44,6 +52,11 @@ export type EuiSuggestInputProps = CommonProps &
      */
     sendValue?: (value: string) => void;
     onListOpen?: (isOpen: boolean) => void;
+
+    /**
+     * Maximum height to set for the list
+     */
+    maxHeight?: CSSProperties['maxHeight'];
   };
 
 interface Status {
@@ -83,6 +96,7 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
   suggestions,
   sendValue,
   onListOpen,
+  maxHeight = '90vh',
   ...rest
 }) => {
   const [value, setValue] = useState<string>('');
@@ -176,7 +190,9 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
       fullWidth
       closePopover={closePopover}
     >
-      {suggestions}
+      <div style={{ maxHeight }} className="eui-yScrollWithShadows">
+        {suggestions}
+      </div>
     </EuiInputPopover>
   );
 };

@@ -152,7 +152,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
           singleSelection={true}
           options={suggestionList}
           listProps={{
-            bordered: true,
+            bordered: false,
             showIcons: false,
             onFocusBadge: false,
             paddingSize: 'none',
@@ -162,6 +162,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
           renderOption={renderOption}
           optionIdGenerator={optionIdGenerator}
           onActiveOptionIndexChange={setFocusedOptionIndex}
+          height="full"
           searchable
         >
           {(list) => (

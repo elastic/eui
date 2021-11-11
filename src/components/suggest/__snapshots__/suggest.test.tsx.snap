@@ -7,7 +7,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -82,7 +82,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -157,7 +157,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -232,7 +232,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -312,7 +312,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -394,7 +394,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -478,7 +478,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -553,7 +553,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -637,7 +637,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -719,7 +719,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -803,7 +803,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -878,7 +878,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
