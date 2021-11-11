@@ -1,17 +1,16 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `41.1.0`.
+- Added `useCombobox` hook for creating custom combobox components ([#5157](https://github.com/elastic/eui/pull/5157))
+- Added `paddingSize` prop to `EuiSelectableList` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Refactored `EuiSelectable` accessibility ([#5157](https://github.com/elastic/eui/pull/5157))
+- Refactored `EuiSuggest` to use `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Added virtulized rendering optionality to `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
 
 ## [`41.1.0`](https://github.com/elastic/eui/tree/v41.1.0)
 
 - Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))
 - Updated `EuiEmptyPrompt` to extend `EuiPanelProps` ([#5275](https://github.com/elastic/eui/pull/5275))
 - Add `data-icon-type` to `EuiIcon` `<svg>` for easier debugging of `iconType` [#5366](https://github.com/elastic/eui/pull/5366))
-- Added `useCombobox` hook for creating custom combobox components ([#5157](https://github.com/elastic/eui/pull/5157))
-- Added `paddingSize` prop to `EuiSelectableList` ([#5157](https://github.com/elastic/eui/pull/5157))
-- Refactored `EuiSelectable` accessibility ([#5157](https://github.com/elastic/eui/pull/5157))
-- Refactored `EuiSuggest` to use `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
-- Added virtulized rendering optionality to `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
 
 **Bug fixes**
 
