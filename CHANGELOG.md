@@ -4,6 +4,7 @@
 - Updated `EuiEmptyPrompt` to extend `EuiPanelProps` ([#5275](https://github.com/elastic/eui/pull/5275))
 - Added first and last page arrow buttons to `EuiPagination` when `compressed=true` ([#5362](https://github.com/elastic/eui/pull/5362))
 - Added support for indeterminate `EuiPagination` when `pageCount=0` ([#5362](https://github.com/elastic/eui/pull/5362))
+- Added `responsive` prop to `EuiPagination` that renders the `compressed` display and is customizable ([#5362](https://github.com/elastic/eui/pull/5362))
 - Added `doubleArrowLeft` and `doubleArrowRight` icons ([#5362](https://github.com/elastic/eui/pull/5362))
 
 **Bug fixes**
