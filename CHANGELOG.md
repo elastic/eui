@@ -1,6 +1,8 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `41.1.0`.
+**Bug fixes**
+
+- Fixed an `EuiDataGrid` row height bug for grids that set a default `lineCount` and also used `rowHeights` to set row-specific `lineCount`s ([#5376](https://github.com/elastic/eui/pull/5376))
 
 ## [`41.1.0`](https://github.com/elastic/eui/tree/v41.1.0)
 
