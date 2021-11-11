@@ -548,7 +548,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                               >
                                 <EuiPaginationButton
                                   aria-controls="__table_generated-id"
-                                  hideOnMobile={true}
                                   isActive={false}
                                   onClick={[Function]}
                                   pageIndex={0}
@@ -576,7 +575,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                       <EuiButtonEmpty
                                         aria-controls="__table_generated-id"
                                         aria-label="Page 1 of 2"
-                                        className="euiPaginationButton euiPaginationButton--hideOnMobile"
+                                        className="euiPaginationButton"
                                         color="text"
                                         data-test-subj="pagination-button-0"
                                         href="#__table_generated-id"
@@ -587,7 +586,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                         <a
                                           aria-controls="__table_generated-id"
                                           aria-label="Page 1 of 2"
-                                          className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton euiPaginationButton--hideOnMobile"
+                                          className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton"
                                           data-test-subj="pagination-button-0"
                                           href="#__table_generated-id"
                                           onClick={[Function]}
@@ -633,7 +632,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                               >
                                 <EuiPaginationButton
                                   aria-controls="__table_generated-id"
-                                  hideOnMobile={true}
                                   isActive={true}
                                   onClick={[Function]}
                                   pageIndex={1}
@@ -662,7 +660,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                         aria-controls="__table_generated-id"
                                         aria-current={true}
                                         aria-label="Page 2 of 2"
-                                        className="euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
+                                        className="euiPaginationButton euiPaginationButton-isActive"
                                         color="text"
                                         data-test-subj="pagination-button-1"
                                         href="#__table_generated-id"
@@ -674,7 +672,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                                           aria-controls="__table_generated-id"
                                           aria-current={true}
                                           aria-label="Page 2 of 2"
-                                          className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiButtonEmpty-isDisabled euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
+                                          className="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiButtonEmpty-isDisabled euiPaginationButton euiPaginationButton-isActive"
                                           data-test-subj="pagination-button-1"
                                           disabled={true}
                                           onClick={[Function]}

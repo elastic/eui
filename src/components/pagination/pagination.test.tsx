@@ -43,7 +43,7 @@ describe('EuiPagination', () => {
         expect(component).toMatchSnapshot();
       });
 
-      test('can be 0', () => {
+      test('can be -1', () => {
         const component = render(
           <EuiPagination pageCount={0} activePage={-1} />
         );
@@ -53,7 +53,7 @@ describe('EuiPagination', () => {
     });
 
     describe('compressed', () => {
-      test(' is rendered', () => {
+      test('is rendered', () => {
         const component = render(<EuiPagination compressed />);
 
         expect(component).toMatchSnapshot();
@@ -64,6 +64,20 @@ describe('EuiPagination', () => {
       const component = render(<EuiPagination aria-controls={'idOfTable'} />);
 
       expect(component).toMatchSnapshot();
+    });
+
+    describe('responsive', () => {
+      test('can be false', () => {
+        const component = render(<EuiPagination responsive={false} />);
+
+        expect(component).toMatchSnapshot();
+      });
+
+      test('can be customized', () => {
+        const component = render(<EuiPagination responsive={['xs']} />);
+
+        expect(component).toMatchSnapshot();
+      });
     });
   });
 });

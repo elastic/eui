@@ -1,6 +1,8 @@
 .euiPagination {
+  @include euiScrollBar;
   display: flex;
   align-items: center;
+  overflow-x: auto;
 
   &__compressedText {
     // sass-lint:disable-block no-important

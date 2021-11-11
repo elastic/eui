@@ -13,8 +13,8 @@ import { CommonProps } from '../common';
 import { EuiPaginationButton } from './pagination_button';
 import { EuiI18n } from '../i18n';
 import { EuiText } from '../text';
-import { EuiHideFor } from '../responsive';
 import { EuiPaginationButtonArrow } from './pagination_button_arrow';
+import { EuiBreakpointSize, useIsWithinBreakpoints } from '../../services';
 
 const MAX_VISIBLE_PAGES = 5;
 const NUMBER_SURROUNDING_PAGES = Math.floor(MAX_VISIBLE_PAGES * 0.5);
@@ -41,7 +41,7 @@ export interface EuiPaginationProps {
   onPageClick?: (pageIndex: number) => void;
 
   /**
-   * If true, will only show next/prev arrows instead of page numbers.
+   * If true, will only show next/prev arrows and simplified number set.
    */
   compressed?: boolean;
 
@@ -49,6 +49,12 @@ export interface EuiPaginationProps {
    * If passed in, passes value through to each button to set aria-controls.
    */
   'aria-controls'?: string;
+
+  /**
+   * Automatically reduces to the `compressed` version on smaller screens.
+   * Remove completely with `false` or provide your own list of responsive breakpoints.
+   */
+  responsive?: false | EuiBreakpointSize[];
 }
 
 type Props = CommonProps & HTMLAttributes<HTMLDivElement> & EuiPaginationProps;
@@ -58,10 +64,19 @@ export const EuiPagination: FunctionComponent<Props> = ({
   pageCount = 1,
   activePage = 0,
   onPageClick = () => {},
-  compressed,
+  compressed: _compressed,
   'aria-controls': ariaControls,
+  responsive = ['xs', 's'],
   ...rest
 }) => {
+  const isResponsive = useIsWithinBreakpoints(
+    responsive as EuiBreakpointSize[],
+    !!responsive
+  );
+
+  // Force to `compressed` version if specified or within the responsive breakpoints
+  const compressed = _compressed || isResponsive;
+
   const safeClick: SafeClickHandler = (e, pageIndex) => {
     e.preventDefault();
 
@@ -130,18 +145,16 @@ export const EuiPagination: FunctionComponent<Props> = ({
 
     if (compressed) {
       centerPageCount = (
-        <EuiHideFor sizes={['xs', 's']}>
-          <EuiText size="s" className="euiPagination__compressedText">
-            <EuiI18n
-              token="euiPagination.pageOfTotalCompressed"
-              default="{page} of {total}"
-              values={{
-                page: <span>{activePage + 1}</span>,
-                total: <span>{pageCount}</span>,
-              }}
-            />
-          </EuiText>
-        </EuiHideFor>
+        <EuiText size="s" className="euiPagination__compressedText">
+          <EuiI18n
+            token="euiPagination.pageOfTotalCompressed"
+            default="{page} of {total}"
+            values={{
+              page: <span>{activePage + 1}</span>,
+              total: <span>{pageCount}</span>,
+            }}
+          />
+        </EuiText>
       );
     } else {
       const pages = [];
@@ -309,7 +322,6 @@ const PaginationButtonWrapper = ({
       onClick={(e: MouseEvent) => safeClick(e, pageIndex)}
       pageIndex={pageIndex}
       aria-controls={ariaControls}
-      hideOnMobile
       disabled={disabled}
     />
   );

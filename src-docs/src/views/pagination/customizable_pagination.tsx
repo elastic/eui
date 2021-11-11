@@ -29,7 +29,7 @@ export default () => {
 
   const button = (
     <EuiButtonEmpty
-      size="s"
+      size="xs"
       color="text"
       iconType="arrowDown"
       iconSide="right"
@@ -70,20 +70,15 @@ export default () => {
     >
       50 rows
     </EuiContextMenuItem>,
-    <EuiContextMenuItem
-      key="100 rows"
-      icon={getIconType(100)}
-      onClick={() => {
-        closePopover();
-        setRowSize(100);
-      }}
-    >
-      100 rows
-    </EuiContextMenuItem>,
   ];
 
   return (
-    <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
+    <EuiFlexGroup
+      justifyContent="spaceBetween"
+      alignItems="center"
+      responsive={false}
+      wrap
+    >
       <EuiFlexItem grow={false}>
         <EuiPopover
           button={button}

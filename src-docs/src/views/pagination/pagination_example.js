@@ -152,6 +152,7 @@ export const PaginationExample = {
       ),
       snippet: fewPagesSnippet,
       demo: <FewPages />,
+      props: { EuiPagination },
     },
     {
       title: 'Centered pagination',
@@ -174,7 +175,7 @@ export const PaginationExample = {
       demo: <CenteredPagination />,
     },
     {
-      title: 'Compressed display',
+      title: 'Compressed and responsive',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -182,15 +183,27 @@ export const PaginationExample = {
         },
       ],
       text: (
-        <p>
-          Use the <EuiCode>compressed</EuiCode> prop to minimize the horizontal
-          footprint. This will replace the numbered buttons with static numbers
-          and rely on the first, last, next and previous icon buttons to
-          navigate.
-        </p>
+        <>
+          <p>
+            Use the <EuiCode>compressed</EuiCode> prop to minimize the
+            horizontal footprint. This will replace the numbered buttons with
+            static numbers and rely on the first, last, next and previous icon
+            buttons to navigate.
+          </p>
+          <p>
+            This is also the same display that will occur when{' '}
+            <EuiCode>responsive</EuiCode> is <strong>not</strong>{' '}
+            <EuiCode>false</EuiCode>. You can adjust the responsiveness by
+            supplying an array of{' '}
+            <Link to="/theming/breakpoints">named breakpoints</Link> to{' '}
+            <EuiCode>responsive</EuiCode>. The default is{' '}
+            <EuiCode>{"['xs', 's']"}</EuiCode>.
+          </p>
+        </>
       ),
       snippet: compressedSnippet,
       demo: <Compressed />,
+      props: { EuiPagination },
     },
     {
       title: 'Indeterminate page count',
@@ -212,6 +225,7 @@ export const PaginationExample = {
       ),
       snippet: indeterminateSnippet,
       demo: <Indeterminate />,
+      props: { EuiPagination },
     },
     {
       title: 'Customizable pagination',
@@ -237,6 +251,7 @@ export const PaginationExample = {
       ),
       snippet: customizablePaginationSnippet,
       demo: <CustomizablePagination />,
+      props: { EuiPagination },
     },
   ],
 };
