@@ -582,6 +582,7 @@ export class EuiComboBox<T> extends Component<
   };
 
   onKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
+    if (this.props.isDisabled) return;
     switch (event.key) {
       case keys.ARROW_UP:
         event.preventDefault();
