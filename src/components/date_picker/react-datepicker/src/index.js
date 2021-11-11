@@ -829,7 +829,7 @@ export default class DatePicker extends React.Component {
         panelPaddingSize="none"
         anchorPosition={this.props.popperPlacement}
         container={this.props.popperContainer}
-        {...this.props.popperProps} // TODO
+        {...this.props.popperProps}
         button={
           <div className="react-datepicker__input-container">
             {this.renderDateInput()}
