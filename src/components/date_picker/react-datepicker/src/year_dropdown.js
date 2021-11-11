@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import YearDropdownOptions from "./year_dropdown_options";
 import { getYear } from "./date_utils";
 
-import { EuiOutsideClickDetector } from '../../../outside_click_detector';
-
 export default class YearDropdown extends React.Component {
   static propTypes = {
     adjustDateOnChange: PropTypes.bool,
@@ -116,20 +114,18 @@ export default class YearDropdown extends React.Component {
   );
 
   renderDropdown = () => (
-    <EuiOutsideClickDetector onOutsideClick={this.toggleDropdown}>
-      <YearDropdownOptions
-        key="dropdown"
-        ref="options"
-        year={this.props.year}
-        onChange={this.onChange}
-        onCancel={this.toggleDropdown}
-        minDate={this.props.minDate}
-        maxDate={this.props.maxDate}
-        scrollableYearDropdown={this.props.scrollableYearDropdown}
-        yearDropdownItemNumber={this.props.yearDropdownItemNumber}
-        accessibleMode={this.props.accessibleMode}
-      />
-    </EuiOutsideClickDetector>
+    <YearDropdownOptions
+      key="dropdown"
+      ref="options"
+      year={this.props.year}
+      onChange={this.onChange}
+      onCancel={this.toggleDropdown}
+      minDate={this.props.minDate}
+      maxDate={this.props.maxDate}
+      scrollableYearDropdown={this.props.scrollableYearDropdown}
+      yearDropdownItemNumber={this.props.yearDropdownItemNumber}
+      accessibleMode={this.props.accessibleMode}
+    />
   );
 
   renderScrollMode = () => {

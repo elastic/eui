@@ -1,6 +1,6 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-- Updated `EuiDatePicker` to use `EuiPopover`, `EuiFocusTrap`, and `EuiOutsideClickDetector` ([#5339](https://github.com/elastic/eui/pull/5339))
+- Updated `EuiDatePicker` to use `EuiPopover`, `EuiFocusTrap`, and `EuiScreenReaderOnly` ([#5339](https://github.com/elastic/eui/pull/5339))
 
 **Bug fixes**
 

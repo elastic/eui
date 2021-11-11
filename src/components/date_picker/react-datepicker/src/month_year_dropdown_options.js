@@ -185,7 +185,7 @@ export default class MonthYearDropdownOptions extends React.Component {
     }
 
     return this.props.accessibleMode ? (
-      <EuiFocusTrap>
+      <EuiFocusTrap onClickOutside={this.handleClickOutside}>
         <div
           className={dropdownClass}
           tabIndex="0"

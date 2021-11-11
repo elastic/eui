@@ -12,8 +12,6 @@ import {
   newDate
 } from "./date_utils";
 
-import { EuiOutsideClickDetector } from '../../../outside_click_detector';
-
 export default class MonthYearDropdown extends React.Component {
   static propTypes = {
     dropdownMode: PropTypes.oneOf(["scroll", "select"]).isRequired,
@@ -133,20 +131,18 @@ export default class MonthYearDropdown extends React.Component {
   };
 
   renderDropdown = () => (
-    <EuiOutsideClickDetector onOutsideClick={this.toggleDropdown}>
-      <MonthYearDropdownOptions
-        key="dropdown"
-        ref="options"
-        date={this.props.date}
-        dateFormat={this.props.dateFormat}
-        onChange={this.onChange}
-        onCancel={this.toggleDropdown}
-        minDate={localizeDate(this.props.minDate, this.props.locale)}
-        maxDate={localizeDate(this.props.maxDate, this.props.locale)}
-        scrollableMonthYearDropdown={this.props.scrollableMonthYearDropdown}
-        accessibleMode={this.props.accessibleMode}
-      />
-    </EuiOutsideClickDetector>
+    <MonthYearDropdownOptions
+      key="dropdown"
+      ref="options"
+      date={this.props.date}
+      dateFormat={this.props.dateFormat}
+      onChange={this.onChange}
+      onCancel={this.toggleDropdown}
+      minDate={localizeDate(this.props.minDate, this.props.locale)}
+      maxDate={localizeDate(this.props.maxDate, this.props.locale)}
+      scrollableMonthYearDropdown={this.props.scrollableMonthYearDropdown}
+      accessibleMode={this.props.accessibleMode}
+    />
   );
 
   renderScrollMode = () => {
