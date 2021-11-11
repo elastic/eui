@@ -1,13 +1,16 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `41.1.0`.
+- Updated `EuiDatePicker` to use `EuiPopover`, `EuiFocusTrap`, and `EuiOutsideClickDetector` ([#5339](https://github.com/elastic/eui/pull/5339))
+
+**Bug fixes**
+
+- Fixed `EuiDatePicker` being constrained to its parent container by using React portal ([#5339](https://github.com/elastic/eui/pull/5339))
 
 ## [`41.1.0`](https://github.com/elastic/eui/tree/v41.1.0)
 
 - Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))
 - Updated `EuiEmptyPrompt` to extend `EuiPanelProps` ([#5275](https://github.com/elastic/eui/pull/5275))
 - Add `data-icon-type` to `EuiIcon` `<svg>` for easier debugging of `iconType` [#5366](https://github.com/elastic/eui/pull/5366))
-- Updated `EuiDatePicker` to use `EuiPopover`, `EuiFocusTrap`, and `EuiOutsideClickDetector` ([#5339](https://github.com/elastic/eui/pull/5339))
 
 **Bug fixes**
 
@@ -15,7 +18,6 @@ No public interface changes since `41.1.0`.
 - Fixed an accessibility issue where `EuiDataGrid` cells weren't owned by `role=row` elements ([#5285](https://github.com/elastic/eui/pull/5285))
 - Fixed `EuiErrorBoundary` overflow scrolling by wrapping contents in `EuiCodeBlock` ([#5359](https://github.com/elastic/eui/pull/5359))
 - Fixed `analyzeEvent` icon to be horizontally centered [#5365](https://github.com/elastic/eui/pull/5365))
-- Fixed `EuiDatePicker` being constrained to its parent container by using React portal ([#5339](https://github.com/elastic/eui/pull/5339))
 
 ## [`41.0.0`](https://github.com/elastic/eui/tree/v41.0.0)
 
