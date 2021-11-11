@@ -39,8 +39,9 @@ import { IS_JEST_ENVIRONMENT } from '../../../test';
 const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
     setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
-    isExpanded: boolean;
     setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
+    isExpanded: boolean;
+    isDefinedHeight: boolean;
   }
 > = memo(
   ({
@@ -51,6 +52,7 @@ const EuiDataGridCellContent: FunctionComponent<
     rowIndex,
     colIndex,
     rowHeightUtils,
+    isDefinedHeight,
     ...rest
   }) => {
     // React is more permissible than the TS types indicate
@@ -62,11 +64,6 @@ const EuiDataGridCellContent: FunctionComponent<
       'euiDataGridCell.position',
       'Row: {row}; Column: {col}',
       { row: rowIndex + 1, col: colIndex + 1 }
-    );
-
-    const isDefinedHeight = !!rowHeightUtils?.getRowHeightOption(
-      rowIndex,
-      rowHeightsOptions
     );
 
     return (
@@ -372,6 +369,7 @@ export class EuiDataGridCell extends Component<
       className,
       column,
       style,
+      rowHeightUtils,
       rowHeightsOptions,
       rowManager,
       ...rest
@@ -466,6 +464,11 @@ export class EuiDataGridCell extends Component<
       }
     };
 
+    const isDefinedHeight = !!rowHeightUtils?.getRowHeightOption(
+      rowIndex,
+      rowHeightsOptions
+    );
+
     const cellContentProps = {
       ...rest,
       setCellProps: this.setCellProps,
@@ -475,14 +478,15 @@ export class EuiDataGridCell extends Component<
       isExpanded: this.state.popoverIsOpen,
       isDetails: false,
       setCellContentsRef: this.setCellContentsRef,
-      rowHeightsOptions: this.props.rowHeightsOptions,
-      rowHeightUtils: this.props.rowHeightUtils,
+      rowHeightsOptions,
+      rowHeightUtils,
+      isDefinedHeight,
     };
 
     const anchorClass = classNames('euiDataGridRowCell__expandFlex', {
-      euiDataGridRowCell__alignBaseLine: this.props.rowHeightsOptions,
+      euiDataGridRowCell__alignBaseLine: isDefinedHeight,
     });
-    const expandClass = this.props.rowHeightsOptions
+    const expandClass = isDefinedHeight
       ? 'euiDataGridRowCell__contentByHeight'
       : 'euiDataGridRowCell__expandContent';
 
@@ -493,7 +497,7 @@ export class EuiDataGridCell extends Component<
         onDeactivation={() => {
           this.setState({ isEntered: false }, this.preventTabbing);
         }}
-        style={this.props.rowHeightsOptions ? { height: '100%' } : {}}
+        style={isDefinedHeight ? { height: '100%' } : {}}
         clickOutsideDisables={true}
       >
         <div className={anchorClass}>
@@ -541,7 +545,7 @@ export class EuiDataGridCell extends Component<
         innerContent = (
           <div
             className={
-              this.props.rowHeightsOptions
+              isDefinedHeight
                 ? 'euiDataGridRowCell__contentByHeight'
                 : 'euiDataGridRowCell__content'
             }
