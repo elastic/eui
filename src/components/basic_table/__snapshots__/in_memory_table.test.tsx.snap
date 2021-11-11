@@ -384,12 +384,14 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                             onClick={[Function]}
                             size="xs"
                           >
-                            <EuiI18n
-                              default="Rows per page"
-                              token="euiTablePagination.rowsPerPage"
-                            />
-                            : 
-                            2
+                            <React.Fragment>
+                              <EuiI18n
+                                default="Rows per page"
+                                token="euiTablePagination.rowsPerPage"
+                              />
+                              : 
+                              2
+                            </React.Fragment>
                           </EuiButtonEmpty>
                         }
                         closePopover={[Function]}

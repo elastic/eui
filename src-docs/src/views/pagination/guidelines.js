@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { GuideRule, GuideRuleExample } from '../../components';
+import {
+  GuideRule,
+  GuideRuleExample,
+  GuideSectionTypes,
+} from '../../components';
 
 import {
   EuiText,
@@ -11,6 +15,7 @@ import {
   EuiHorizontalRule,
   EuiBasicTable,
   EuiLink,
+  EuiCode,
 } from '../../../../src/components';
 
 import animatedGif from '../../images/pagination_filters.gif';
@@ -18,6 +23,10 @@ import userControlDo from '../../images/pagination_options_do.svg';
 import userControlDont from '../../images/pagination_options_dont.svg';
 import infiniteDo from '../../images/pagination_infinite_do.svg';
 import infiniteDont from '../../images/pagination_infinite_dont.svg';
+
+import Table from './paginated_table';
+import { GuideSection } from '../../components/guide_section/guide_section';
+const source = require('!!raw-loader!./paginated_table');
 
 export default () => (
   <>
@@ -263,9 +272,23 @@ export default () => (
         current view. There’s nothing more frustrating than going back to find
         your filters and pagination have all been reset.
       </p>
+      <p>
+        Below is a working example that utilizes <EuiCode>localStorage</EuiCode>{' '}
+        to save the table’s state.
+      </p>
     </EuiText>
 
     <EuiSpacer size="l" />
+
+    <GuideSection
+      demo={<Table />}
+      source={[
+        {
+          type: GuideSectionTypes.JS,
+          code: source,
+        },
+      ]}
+    />
 
     <EuiSpacer size="l" />
 
@@ -282,7 +305,7 @@ export default () => (
         text="Use infinite scroll to automatically load more rows of data."
         panelProps={{ paddingSize: 'none' }}
       >
-        <EuiImage alt="Too many rows per page choices" url={infiniteDo} />
+        <EuiImage alt="Too many rows per page choices" url={infiniteDont} />
       </GuideRuleExample>
 
       <GuideRuleExample
@@ -290,7 +313,7 @@ export default () => (
         text="Provide a direct action for users to initiate the loading of more data. "
         panelProps={{ paddingSize: 'none' }}
       >
-        <EuiImage alt="Provide a Show all" url={infiniteDont} />
+        <EuiImage alt="Provide a Show all" url={infiniteDo} />
       </GuideRuleExample>
     </GuideRule>
   </>

@@ -78,31 +78,57 @@ export class EuiTablePagination extends Component<
         data-test-subj="tablePaginationPopoverButton"
         onClick={this.onButtonClick}
       >
-        <EuiI18n
-          token="euiTablePagination.rowsPerPage"
-          default="Rows per page"
-        />
-        : {itemsPerPage}
+        {itemsPerPage === 0 ? (
+          <EuiI18n
+            token="euiTablePagination.showingAll"
+            default="Showing all"
+          />
+        ) : (
+          <>
+            <EuiI18n
+              token="euiTablePagination.rowsPerPage"
+              default="Rows per page"
+            />
+            : {itemsPerPage}
+          </>
+        )}
       </EuiButtonEmpty>
     );
 
-    const items = itemsPerPageOptions.map((itemsPerPageOption) => (
-      <EuiContextMenuItem
-        key={itemsPerPageOption}
-        icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
-        onClick={() => {
-          this.closePopover();
-          onChangeItemsPerPage(itemsPerPageOption);
-        }}
-        data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}
-      >
-        <EuiI18n
-          token="euiTablePagination.rowsPerPageOption"
-          values={{ rowsPerPage: itemsPerPageOption }}
-          default="{rowsPerPage} rows"
-        />
-      </EuiContextMenuItem>
-    ));
+    const items = itemsPerPageOptions.map((itemsPerPageOption) => {
+      return itemsPerPageOption === 0 ? (
+        <EuiContextMenuItem
+          key={itemsPerPageOption}
+          icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
+          onClick={() => {
+            this.closePopover();
+            onChangeItemsPerPage(itemsPerPageOption);
+          }}
+          data-test-subj={`tablePagination-${'all'}-rows`}
+        >
+          <EuiI18n
+            token="euiTablePagination.rowsPerPageOptionShowAll"
+            default="Show all"
+          />
+        </EuiContextMenuItem>
+      ) : (
+        <EuiContextMenuItem
+          key={itemsPerPageOption}
+          icon={itemsPerPageOption === itemsPerPage ? 'check' : 'empty'}
+          onClick={() => {
+            this.closePopover();
+            onChangeItemsPerPage(itemsPerPageOption);
+          }}
+          data-test-subj={`tablePagination-${itemsPerPageOption}-rows`}
+        >
+          <EuiI18n
+            token="euiTablePagination.rowsPerPageOption"
+            values={{ rowsPerPage: itemsPerPageOption }}
+            default="{rowsPerPage} rows"
+          />
+        </EuiContextMenuItem>
+      );
+    });
 
     const itemsPerPagePopover = (
       <EuiPopover
@@ -127,12 +153,14 @@ export class EuiTablePagination extends Component<
         </EuiFlexItem>
 
         <EuiFlexItem grow={false}>
-          <EuiPagination
-            pageCount={pageCount}
-            activePage={activePage}
-            onPageClick={onChangePage}
-            {...rest}
-          />
+          {itemsPerPage > 0 && (
+            <EuiPagination
+              pageCount={pageCount}
+              activePage={activePage}
+              onPageClick={onChangePage}
+              {...rest}
+            />
+          )}
         </EuiFlexItem>
       </EuiFlexGroup>
     );

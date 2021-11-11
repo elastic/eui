@@ -11,6 +11,8 @@ import {
   EuiFlexItem,
   EuiSpacer,
   EuiSwitch,
+  EuiHorizontalRule,
+  EuiText,
 } from '../../../../../src/components';
 
 /*
@@ -39,7 +41,7 @@ const store = createDataStore();
 
 export const Table = () => {
   const [pageIndex, setPageIndex] = useState(0);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(10);
   const [showPerPageOptions, setShowPerPageOptions] = useState(true);
 
   const onTableChange = ({ page = {} }) => {
@@ -132,9 +134,21 @@ export const Table = () => {
     pageIndex,
     pageSize,
     totalItemCount,
-    pageSizeOptions: [3, 5, 8],
+    pageSizeOptions: [10, 0],
     hidePerPageOptions: !showPerPageOptions,
   };
+
+  const resultsCount =
+    pageSize === 0 ? (
+      <strong>All</strong>
+    ) : (
+      <>
+        <strong>
+          {pageSize * pageIndex + 1}-{pageSize * pageIndex + pageSize}
+        </strong>{' '}
+        of {totalItemCount}
+      </>
+    );
 
   return (
     <div>
@@ -149,6 +163,11 @@ export const Table = () => {
         onChange={togglePerPageOptions}
       />
       <EuiSpacer size="xl" />
+      <EuiText size="xs">
+        Showing {resultsCount} <strong>Users</strong>
+      </EuiText>
+      <EuiSpacer size="s" />
+      <EuiHorizontalRule margin="none" style={{ height: 2 }} />
       <EuiBasicTable
         tableCaption="Demo for EuiBasicTable with pagination"
         items={pageOfItems}
