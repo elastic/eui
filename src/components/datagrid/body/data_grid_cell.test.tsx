@@ -205,12 +205,12 @@ describe('EuiDataGridCell', () => {
       });
     });
 
-    describe('recalculateLineCountHeight', () => {
+    describe('recalculateLineHeight', () => {
       const setRowHeight = jest.fn();
       beforeEach(() => setRowHeight.mockClear());
 
       const callMethod = (component: ReactWrapper) =>
-        (component.instance() as any).recalculateLineCountHeight();
+        (component.instance() as any).recalculateLineHeight();
 
       it('observes the first cell for size changes and calls this.props.setRowHeight on change', () => {
         const component = mountEuiDataGridCellWithContext({
@@ -234,7 +234,20 @@ describe('EuiDataGridCell', () => {
         expect(setRowHeight).toHaveBeenCalled();
       });
 
-      it('does nothing if cell height is not set to lineCount', () => {
+      it('calculates undefined heights as single rows with a lineCount of 1', () => {
+        const component = mountEuiDataGridCellWithContext({
+          rowHeightsOptions: { defaultHeight: undefined },
+          setRowHeight,
+        });
+
+        callMethod(component);
+        expect(
+          mockRowHeightUtils.calculateHeightForLineCount
+        ).toHaveBeenCalledWith(expect.any(HTMLElement), 1);
+        expect(setRowHeight).toHaveBeenCalled();
+      });
+
+      it('does nothing if cell height is not lineCount or undefined', () => {
         const component = mountEuiDataGridCellWithContext({
           rowHeightsOptions: { defaultHeight: 34 },
           setRowHeight,

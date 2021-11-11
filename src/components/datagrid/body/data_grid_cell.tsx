@@ -184,7 +184,7 @@ export class EuiDataGridCell extends Component<
     }
   };
 
-  recalculateLineCountHeight = () => {
+  recalculateLineHeight = () => {
     if (!this.props.setRowHeight) return; // setRowHeight is only passed by data_grid_body into one cell per row
     if (!this.cellContentsRef) return;
 
@@ -193,7 +193,10 @@ export class EuiDataGridCell extends Component<
       rowIndex,
       rowHeightsOptions
     );
-    const lineCount = rowHeightUtils?.getLineCount(rowHeightOption);
+    const isSingleLine = rowHeightOption == null; // Undefined rowHeightsOptions default to a single line
+    const lineCount = isSingleLine
+      ? 1
+      : rowHeightUtils?.getLineCount(rowHeightOption);
 
     if (lineCount) {
       const height = rowHeightUtils!.calculateHeightForLineCount(
@@ -231,11 +234,10 @@ export class EuiDataGridCell extends Component<
     this.recalculateAutoHeight();
 
     if (
-      // @ts-ignore - optional chaining operator handles types & cases that aren't lineCount
-      this.props.rowHeightsOptions?.defaultHeight?.lineCount !== // @ts-ignore - see above
-      prevProps.rowHeightsOptions?.defaultHeight?.lineCount
+      this.props.rowHeightsOptions?.defaultHeight !==
+      prevProps.rowHeightsOptions?.defaultHeight
     ) {
-      this.recalculateLineCountHeight();
+      this.recalculateLineHeight();
     }
 
     if (this.props.columnId !== prevProps.columnId) {
@@ -292,7 +294,7 @@ export class EuiDataGridCell extends Component<
     if (ref && hasResizeObserver) {
       this.contentObserver = new (window as any).ResizeObserver(() => {
         this.recalculateAutoHeight();
-        this.recalculateLineCountHeight();
+        this.recalculateLineHeight();
       });
       this.contentObserver.observe(ref);
     } else if (this.contentObserver) {
