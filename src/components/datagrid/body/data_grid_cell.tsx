@@ -204,7 +204,17 @@ export class EuiDataGridCell extends Component<
         lineCount
       );
 
-      this.props.setRowHeight(height);
+      if (rowHeightUtils?.isRowHeightOverride(rowIndex, rowHeightsOptions)) {
+        const { columnId, visibleRowIndex } = this.props;
+        rowHeightUtils?.setRowHeight(
+          rowIndex,
+          columnId,
+          height,
+          visibleRowIndex
+        );
+      } else {
+        this.props.setRowHeight(height);
+      }
     }
   };
 
