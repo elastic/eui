@@ -1,6 +1,8 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `41.1.0`.
+**Bug fixes**
+
+- Fixed `EuiComboBox` from allowing keyboard actions when disabled ([#5373](https://github.com/elastic/eui/pull/5373))
 
 ## [`41.1.0`](https://github.com/elastic/eui/tree/v41.1.0)
 
