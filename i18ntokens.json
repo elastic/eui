@@ -837,11 +837,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 59,
+        "line": 61,
         "column": 25
       },
       "end": {
-        "line": 63,
+        "line": 65,
         "column": 5
       }
     },
@@ -1541,11 +1541,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 761,
+        "line": 750,
         "column": 20
       },
       "end": {
-        "line": 771,
+        "line": 760,
         "column": 3
       }
     },
@@ -1557,11 +1557,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 773,
+        "line": 762,
         "column": 25
       },
       "end": {
-        "line": 782,
+        "line": 771,
         "column": 3
       }
     },
@@ -1573,11 +1573,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 913,
+        "line": 902,
         "column": 18
       },
       "end": {
-        "line": 916,
+        "line": 905,
         "column": 20
       }
     },
@@ -2062,6 +2062,22 @@
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/super_update_button.tsx"
+  },
+  {
+    "token": "euiErrorBoundary.error",
+    "defString": "Error",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 74,
+        "column": 16
+      },
+      "end": {
+        "line": 74,
+        "column": 74
+      }
+    },
+    "filepath": "src/components/error_boundary/error_boundary.tsx"
   },
   {
     "token": "euiFilterButton.filterBadgeActiveAriaLabel",

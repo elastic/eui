@@ -1,11 +1,15 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-- Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))
-- Updated `EuiEmptyPrompt` to extend `EuiPanelProps` ([#5275](https://github.com/elastic/eui/pull/5275))
 - Added first and last page arrow buttons to `EuiPagination` when `compressed=true` ([#5362](https://github.com/elastic/eui/pull/5362))
 - Added support for indeterminate `EuiPagination` when `pageCount=0` ([#5362](https://github.com/elastic/eui/pull/5362))
 - Added `responsive` prop to `EuiPagination` that renders the `compressed` display and is customizable ([#5362](https://github.com/elastic/eui/pull/5362))
 - Added `doubleArrowLeft` and `doubleArrowRight` icons ([#5362](https://github.com/elastic/eui/pull/5362))
+
+## [`41.1.0`](https://github.com/elastic/eui/tree/v41.1.0)
+
+- Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))
+- Updated `EuiEmptyPrompt` to extend `EuiPanelProps` ([#5275](https://github.com/elastic/eui/pull/5275))
+- Add `data-icon-type` to `EuiIcon` `<svg>` for easier debugging of `iconType` [#5366](https://github.com/elastic/eui/pull/5366))
 
 **Bug fixes**
 
