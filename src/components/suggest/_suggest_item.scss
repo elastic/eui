@@ -1,9 +1,12 @@
 .euiSuggestItem {
   display: flex;
-  flex-grow: 1;
-  align-items: center;
+  align-items: flex-start;
   font-size: $euiFontSizeXS;
+  line-height: $euiSize;
+  color: $euiTextColor;
   white-space: nowrap;
+  flex: 1 1 100%;
+  max-width: 100%;
 
   &.euiSuggestItem-isClickable {
     width: 100%;
@@ -14,8 +17,8 @@
       cursor: pointer;
       background-color: $euiColorLightestShade;
 
-      .euiSuggestItem__type { //sass-lint:disable-line nesting-depth
-        color: $euiColorDarkestShade;
+      .euiSuggestItem__label { //sass-lint:disable-line nesting-depth
+        text-decoration: underline;
       }
     }
   }
@@ -28,35 +31,27 @@
     }
   }
 
-  .euiSuggestItem__label,
-  .euiSuggestItem__type,
-  .euiSuggestItem__description {
-    flex-grow: 0;
+  .euiSuggestItem__type {
     display: flex;
-    flex-direction: column;
+    flex: 0 0 auto;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: $euiSizeS;
+    width: $euiSizeXL;
+    min-height: $euiSizeXL;
+    align-self: stretch;
   }
 
-  .euiSuggestItem__type {
-    position: relative;
-    flex-shrink: 0;
-    flex-basis: auto;
-    width: $euiSizeXL;
-    height: $euiSizeXL;
-    text-align: center;
-    overflow: hidden;
-    padding: $euiSizeXS;
-    justify-content: center;
-    align-items: center;
+  .euiSuggestItem__label,
+  .euiSuggestItem__description {
+    @include euiTextTruncate;
+    display: inline-block;
+    padding: $euiSizeS;
+    flex-grow: 1;
   }
 
   .euiSuggestItem__label {
-    @include euiTextTruncate;
     font-family: $euiCodeFontFamily;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: $euiSizeXS $euiSizeS;
-    color: $euiTextColor;
-    display: block;
 
     // Sets labelWidth from 20% to 90% in increments of 10%
     @for $i from 20 through 90 {
@@ -69,30 +64,35 @@
 
     &.euiSuggestItem__labelDisplay--expand {
       flex-basis: auto;
-      flex-shrink: 1;
     }
   }
 
   .euiSuggestItem__description {
-    color: $euiColorDarkShade;
+    color: $euiTextSubduedColor;
+    padding-top: $euiSizeS + 1px;
     flex-basis: auto;
-    padding-top: $euiSizeXS * .5;
-    display: block;
+    align-self: baseline;
 
     &.euiSuggestItem__description--wrap {
       @include euiTextBreakWord;
-      white-space: normal;
-      line-height: $euiSizeM + 2px;
-    }
-
-    &.euiSuggestItem__description--truncate {
-      @include euiTextTruncate;
-      line-height: $euiLineHeight;
+      white-space: normal !important; // sass-lint:disable-line no-important
     }
 
     &:empty {
       flex-grow: 0;
       margin-left: 0;
+    }
+  }
+}
+
+// For specifically within EuiSelectable
+
+.euiSuggestItemOption {
+  &[class*='isFocused'],
+  &:hover:not([aria-disabled='true']),
+  &:focus {
+    .euiSuggestItem__label {
+      text-decoration: underline;
     }
   }
 }
