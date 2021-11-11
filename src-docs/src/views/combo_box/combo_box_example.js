@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { renderToHtml } from '../../services';
 
 import { GuideSectionTypes } from '../../components';
+import { EuiCallOut } from '../../../../src';
 
 import {
   EuiLink,
@@ -241,13 +242,20 @@ export const ComboBoxExample = {
           ability to specify a custom value in addition to selecting from a
           predetermined list.
         </p>
-        <p>
-          You must add an accessible label to each instance of{' '}
-          <strong>EuiComboBox</strong>. Labels can be created by wrapping the
-          combobox in an <strong>EuiFormRow</strong>, adding an{' '}
-          <EuiCode language="js">aria-label</EuiCode> prop, or passing a text
-          node ID to the <EuiCode language="js">aria-labelledby</EuiCode> prop.
-        </p>
+        <EuiCallOut
+          iconType="accessibility"
+          title={
+            <>
+              You must add an accessible label to each instance of{' '}
+              <strong>EuiComboBox</strong>
+            </>
+          }
+        >
+          Labels can be created by wrapping the combo box in an{' '}
+          <strong>EuiFormRow</strong>, adding an <EuiCode>aria-label</EuiCode>{' '}
+          prop, or passing a text node ID to the{' '}
+          <EuiCode>aria-labelledby</EuiCode> prop.
+        </EuiCallOut>
       </EuiText>
     </Fragment>
   ),
@@ -666,9 +674,9 @@ export const ComboBoxExample = {
         <p>
           Sometimes it&rsquo;s preferable to label a combobox with a heading or
           paragraph. You can easily create a unique ID for a text element using
-          the <a href="/#/utilities/html-id-generator">HTML ID generator</a>.
-          Then pass your unique ID to the{' '}
-          <EuiCode language="js">aria-labelledby</EuiCode> prop.
+          the <a href="/#/utilities/html-id-generator">HTML ID generator</a>,{' '}
+          then pass your unique ID to the <EuiCode>aria-labelledby</EuiCode>{' '}
+          prop.
         </p>
       ),
       props: { EuiComboBox, EuiComboBoxOptionOption },

@@ -143,7 +143,7 @@ export interface _EuiComboBoxProps<T>
    */
   autoFocus?: boolean;
   /**
-   * Creates an `aria-label` attribute when using the Combobox without a visible label from `<EuiFormRow />`
+   * Creates an `aria-label` attribute when using the combo box without a visible label from `<EuiFormRow />`
    */
   'aria-label'?: string;
   /**
