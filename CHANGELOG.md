@@ -2,7 +2,7 @@
 
 - Added first and last page arrow buttons to `EuiPagination` when `compressed=true` ([#5362](https://github.com/elastic/eui/pull/5362))
 - Added support for indeterminate `EuiPagination` when `pageCount=0` ([#5362](https://github.com/elastic/eui/pull/5362))
-- Added `responsive` prop to `EuiPagination` that renders the `compressed` display and is customizable ([#5362](https://github.com/elastic/eui/pull/5362))
+- Moved mobile behavior to a customizable `responsive` prop to `EuiPagination` that renders the `compressed` display ([#5362](https://github.com/elastic/eui/pull/5362))
 - Added `doubleArrowLeft` and `doubleArrowRight` icons ([#5362](https://github.com/elastic/eui/pull/5362))
 
 ## [`41.1.0`](https://github.com/elastic/eui/tree/v41.1.0)

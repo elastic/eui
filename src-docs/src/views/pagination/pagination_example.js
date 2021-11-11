@@ -45,44 +45,33 @@ const centeredPaginationSnippet = `<EuiFlexGroup justifyContent="spaceAround">
 
 import CustomizablePagination from './customizable_pagination';
 const customizablePaginationSource = require('!!raw-loader!./customizable_pagination');
-const customizablePaginationSnippet = `<EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
-  <EuiFlexItem grow={false}>
-    <EuiPopover
-      button={button}
-      isOpen={isPopoverOpen}
-      closePopover={closePopover}>
-      <EuiContextMenuPanel items={items} />
-    </EuiPopover>
-  </EuiFlexItem>
-
-  <EuiFlexItem grow={false}>
-    <EuiPagination
-      aria-label={paginationLabel}
-      pageCount={pageCount}
-      activePage={activePage}
-      onPageClick={(activePage) => goToPage(activePage)}
-    />
-  </EuiFlexItem>
-</EuiFlexGroup>`;
 
 import Compressed from './compressed';
 const compressedSource = require('!!raw-loader!./compressed');
-const compressedSnippet = `<EuiPagination
+const compressedSnippet = [
+  `<EuiPagination
   aria-label={paginationLabel}
   pageCount={pageCount}
   activePage={activePage}
   onPageClick={(activePage) => goToPage(activePage)}
   compressed
-/>`;
+/>`,
+  `<EuiPagination
+  aria-label={paginationLabel}
+  pageCount={pageCount}
+  activePage={activePage}
+  onPageClick={(activePage) => goToPage(activePage)}
+  responsive={['xs']}
+/>`,
+];
 
 import Indeterminate from './indeterminate';
 const indeterminateSource = require('!!raw-loader!./indeterminate');
 const indeterminateSnippet = `<EuiPagination
   aria-label={paginationLabel}
-  pageCount={pageCount}
+  pageCount={0}
   activePage={activePage}
   onPageClick={(activePage) => goToPage(activePage)}
-  compressed
 />`;
 
 export const PaginationExample = {
@@ -168,7 +157,7 @@ export const PaginationExample = {
           <Link to="/layout/flex">
             <strong>EuiFlexGroup</strong>
           </Link>{' '}
-          to set up this pagination layout.
+          to center the pagination in a layout.
         </p>
       ),
       snippet: centeredPaginationSnippet,
@@ -231,7 +220,7 @@ export const PaginationExample = {
       title: 'Customizable pagination',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: customizablePaginationSource,
         },
       ],
@@ -249,7 +238,6 @@ export const PaginationExample = {
           <Link to="/tabular-content/tables">tables</Link>.
         </p>
       ),
-      snippet: customizablePaginationSnippet,
       demo: <CustomizablePagination />,
       props: { EuiPagination },
     },
