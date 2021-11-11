@@ -22,7 +22,7 @@
 import * as React from 'react';
 import * as moment from 'moment';
 
-import {PopoverAnchorPosition} from '../../popover';
+import {PopoverAnchorPosition} from '../../../popover';
 
 export interface ReactDatePickerProps {
   /**

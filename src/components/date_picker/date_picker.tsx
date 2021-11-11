@@ -19,14 +19,10 @@ import { ApplyClassComponentDefaults, CommonProps } from '../common';
 
 import { PopoverAnchorPosition } from '../popover';
 
-// @ts-ignore the type is provided by ./react-datepicker/index.d.ts
-import _ReactDatePicker from './react-datepicker/src';
-import ReactDatePicker, { ReactDatePickerProps } from './react-datepicker'; // eslint-disable-line import/no-unresolved
+import { ReactDatePicker, ReactDatePickerProps } from './react-datepicker';
 
 export const euiDatePickerDefaultDateFormat = 'MM/DD/YYYY';
 export const euiDatePickerDefaultTimeFormat = 'hh:mm A';
-
-const DatePicker = _ReactDatePicker as typeof ReactDatePicker;
 
 type popperPlacement =
   | 'bottom'
@@ -276,7 +272,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
             <EuiI18nConsumer>
               {({ locale: contextLocale }) => {
                 return (
-                  <DatePicker
+                  <ReactDatePicker
                     adjustDateOnChange={adjustDateOnChange}
                     calendarClassName={calendarClassName}
                     className={datePickerClasses}
