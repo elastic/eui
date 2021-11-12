@@ -234,6 +234,15 @@ export class EuiSelectableListItem extends Component<
       }
     }
 
+    const instructions = (instruction || state) && (
+      <EuiScreenReaderOnly>
+        <div>
+          {state}
+          {instruction}
+        </div>
+      </EuiScreenReaderOnly>
+    );
+
     return (
       <li
         role={role}
@@ -243,22 +252,22 @@ export class EuiSelectableListItem extends Component<
         aria-disabled={disabled}
         {...rest}
       >
-        <span className="euiSelectableListItem__content">
-          {optionIcon}
-          {prependNode}
-          <span className="euiSelectableListItem__text">
-            {children}
-            {(instruction || state) && (
-              <EuiScreenReaderOnly>
-                <div>
-                  {state}
-                  {instruction}
-                </div>
-              </EuiScreenReaderOnly>
-            )}
+        {optionIcon || prependNode || appendNode ? (
+          <span className="euiSelectableListItem__content">
+            {optionIcon}
+            {prependNode}
+            <span className="euiSelectableListItem__text">
+              {children}
+              {instructions}
+            </span>
+            {appendNode}
           </span>
-          {appendNode}
-        </span>
+        ) : (
+          <>
+            {children}
+            {instructions}
+          </>
+        )}
       </li>
     );
   }

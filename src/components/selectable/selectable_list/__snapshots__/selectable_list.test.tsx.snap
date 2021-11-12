@@ -2306,16 +2306,8 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           style="position:absolute;left:0;top:0;height:32px;width:100%"
           title="Titan"
         >
-          <span
-            class="euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__text"
-            >
-              <span>
-                Titan
-              </span>
-            </span>
+          <span>
+            Titan
           </span>
         </li>
         <li
@@ -2329,16 +2321,8 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           style="position:absolute;left:0;top:32px;height:32px;width:100%"
           title="Enceladus"
         >
-          <span
-            class="euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__text"
-            >
-              <span>
-                Enceladus
-              </span>
-            </span>
+          <span>
+            Enceladus
           </span>
         </li>
         <li
@@ -2352,16 +2336,8 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           style="position:absolute;left:0;top:64px;height:32px;width:100%"
           title="Mimas"
         >
-          <span
-            class="euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__text"
-            >
-              <span>
-                Mimas
-              </span>
-            </span>
+          <span>
+            Mimas
           </span>
         </li>
         <li
@@ -2375,16 +2351,8 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           style="position:absolute;left:0;top:96px;height:32px;width:100%"
           title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
         >
-          <span
-            class="euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__text"
-            >
-              <span>
-                Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
-              </span>
-            </span>
+          <span>
+            Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
           </span>
         </li>
         <li
@@ -2398,16 +2366,8 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           style="position:absolute;left:0;top:128px;height:32px;width:100%"
           title="Tethys"
         >
-          <span
-            class="euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__text"
-            >
-              <span>
-                Tethys
-              </span>
-            </span>
+          <span>
+            Tethys
           </span>
         </li>
         <li
@@ -2421,16 +2381,8 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
           style="position:absolute;left:0;top:160px;height:32px;width:100%"
           title="Hyperion"
         >
-          <span
-            class="euiSelectableListItem__content"
-          >
-            <span
-              class="euiSelectableListItem__text"
-            >
-              <span>
-                Hyperion
-              </span>
-            </span>
+          <span>
+            Hyperion
           </span>
         </li>
       </ul>
