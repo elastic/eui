@@ -4,86 +4,88 @@
   font-size: $euiFontSizeXS;
   line-height: $euiSize;
   color: $euiTextColor;
-  white-space: nowrap;
   flex: 1 1 100%;
   max-width: 100%;
 
-  &.euiSuggestItem-isClickable {
-    width: 100%;
-    text-align: left;
-
-    &:hover,
-    &:focus {
-      cursor: pointer;
-      background-color: $euiColorLightestShade;
-
-      .euiSuggestItem__label { //sass-lint:disable-line nesting-depth
-        text-decoration: underline;
-      }
-    }
-  }
-
-  @each $name, $color in $euiSuggestItemColors {
-    .euiSuggestItem__type--#{$name} {
-      $backgroundColor: tintOrShade($color, 82%, 70%);
-      background-color: $backgroundColor;
-      color: makeHighContrastColor($color, $backgroundColor);
-    }
-  }
-
-  .euiSuggestItem__type {
-    display: flex;
-    flex: 0 0 auto;
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: $euiSizeS;
-    width: $euiSizeXL;
-    min-height: $euiSizeXL;
-    align-self: stretch;
-  }
-
-  .euiSuggestItem__label,
-  .euiSuggestItem__description {
-    @include euiTextTruncate;
-    display: inline-block;
-    padding: $euiSizeS;
-    flex-grow: 1;
-  }
-
-  .euiSuggestItem__label {
-    font-family: $euiCodeFontFamily;
-
-    // Sets labelWidth from 20% to 90% in increments of 10%
-    @for $i from 20 through 90 {
-      &.euiSuggestItem__label--width#{$i} {
-        flex-basis: $i * 1%;
-        min-width: $i * 1%;
-        $i: $i + 10;
-      }
-    }
-
-    &.euiSuggestItem__labelDisplay--expand {
-      flex-basis: auto;
-    }
-  }
-
-  .euiSuggestItem__description {
-    color: $euiTextSubduedColor;
-    padding-top: $euiSizeS + 1px;
-    flex-basis: auto;
-    align-self: baseline;
-
-    &.euiSuggestItem__description--wrap {
-      @include euiTextBreakWord;
-      white-space: normal !important; // sass-lint:disable-line no-important
-    }
-
-    &:empty {
-      flex-grow: 0;
-      margin-left: 0;
+  &--truncate {
+    .euiSuggestItem__label,
+    .euiSuggestItem__description {
+      @include euiTextTruncate;
     }
   }
 }
+
+button.euiSuggestItem { // sass-lint:disable-line no-qualifying-elements
+  width: 100%;
+  text-align: left;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+    background-color: $euiFocusBackgroundColor;
+
+    .euiSuggestItem__label {
+      text-decoration: underline;
+    }
+  }
+}
+
+@each $name, $color in $euiSuggestItemColors {
+  .euiSuggestItem__type--#{$name} {
+    $backgroundColor: tintOrShade($color, 82%, 70%);
+    background-color: $backgroundColor;
+    color: makeHighContrastColor($color, $backgroundColor);
+  }
+}
+
+.euiSuggestItem__type {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: $euiSizeS;
+  width: $euiSizeXL;
+  min-height: $euiSizeXL;
+  align-self: stretch;
+}
+
+.euiSuggestItem__label,
+.euiSuggestItem__description {
+  @include euiTextBreakWord;
+  display: inline-block;
+  padding: $euiSizeS;
+  flex-grow: 1;
+}
+
+.euiSuggestItem__label {
+  font-family: $euiCodeFontFamily;
+
+  // Sets labelWidth from 20% to 90% in increments of 10%
+  @for $i from 20 through 90 {
+    &.euiSuggestItem__label--width#{$i} {
+      flex-basis: calc(#{$i * 1%} - #{$euiSize});
+      min-width: calc(#{$i * 1%} - #{$euiSize});
+      $i: $i + 10;
+    }
+  }
+
+  &--expand {
+    flex-basis: auto;
+  }
+}
+
+.euiSuggestItem__description {
+  color: $euiTextSubduedColor;
+  padding-top: $euiSizeS + 1px;
+  flex-basis: auto;
+  align-self: baseline;
+
+  &.euiSuggestItem__description--wrap {
+    @include euiTextBreakWord;
+    white-space: normal !important; // sass-lint:disable-line no-important
+  }
+}
+
 
 // For specifically within EuiSelectable
 
