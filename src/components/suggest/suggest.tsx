@@ -50,7 +50,8 @@ type _EuiSuggestProps = CommonProps &
     onInputChange?: (target: EventTarget) => void;
 
     /**
-     * Use virtualized rendering for list items with `react-window`
+     * Use virtualized rendering for list items with `react-window`.
+     * Best used when there are a lot of items.
      */
     isVirtualized?: boolean;
   };
@@ -162,7 +163,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
           renderOption={renderOption}
           optionIdGenerator={optionIdGenerator}
           onActiveOptionIndexChange={setFocusedOptionIndex}
-          height="full"
+          height={isVirtualized ? undefined : 'full'}
           searchable
         >
           {(list) => (

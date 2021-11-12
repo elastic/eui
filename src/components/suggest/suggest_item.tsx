@@ -177,9 +177,13 @@ export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
           color="inherit" // forces the icon to inherit its parent color
         />
       </span>
-      <span className={labelClassNames}>{label}</span>
+      <span className={labelClassNames} title={label}>
+        {label}
+      </span>
       {description && (
-        <span className={descriptionClassNames}>{description}</span>
+        <span className={descriptionClassNames} title={description}>
+          {description}
+        </span>
       )}
     </React.Fragment>
   );

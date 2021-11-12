@@ -54,7 +54,8 @@ export type EuiSuggestInputProps = CommonProps &
     onListOpen?: (isOpen: boolean) => void;
 
     /**
-     * Maximum height to set for the list
+     * Maximum height to set for the list.
+     * Default is `60vh`
      */
     maxHeight?: CSSProperties['maxHeight'];
   };
@@ -96,7 +97,7 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
   suggestions,
   sendValue,
   onListOpen,
-  maxHeight = '90vh',
+  maxHeight = '60vh',
   ...rest
 }) => {
   const [value, setValue] = useState<string>('');
