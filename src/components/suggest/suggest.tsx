@@ -79,6 +79,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   'aria-label': ariaLabel,
   'aria-labelledby': labelId,
   isVirtualized = false,
+  fullWidth = true,
   ...rest
 }) => {
   const {
@@ -173,6 +174,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
               append={append}
               onListOpen={setListBoxOpen}
               suggestions={list}
+              fullWidth={fullWidth}
               {...rest}
               {...inputAttributes}
             />

@@ -98,6 +98,7 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
   sendValue,
   onListOpen,
   maxHeight = '60vh',
+  fullWidth,
   ...rest
 }) => {
   const [value, setValue] = useState<string>('');
@@ -135,7 +136,13 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
     icon = statusMap[status].icon || '';
     color = statusMap[status].color || '';
   }
-  const classes = classNames('euiSuggestInput', className);
+  const classes = classNames(
+    'euiSuggestInput',
+    {
+      'euiSuggestInput--fullWidth': fullWidth,
+    },
+    className
+  );
 
   // EuiFieldText's append accepts an array of elements so start by creating an empty array
   const appendArray = [];
@@ -172,7 +179,7 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
   const customInput = (
     <EuiFieldText
       value={value}
-      fullWidth
+      fullWidth={fullWidth}
       append={appendArray.length ? appendArray : undefined}
       isLoading={status === 'loading' ? true : false}
       onChange={onFieldChange}
@@ -188,10 +195,10 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
       input={customInput}
       isOpen={suggestions && isPopoverOpen}
       panelPaddingSize="none"
-      fullWidth
+      fullWidth={fullWidth}
       closePopover={closePopover}
     >
-      <div style={{ maxHeight }} className="eui-yScrollWithShadows">
+      <div style={{ maxHeight }} className="eui-yScroll">
         {suggestions}
       </div>
     </EuiInputPopover>
