@@ -1,16 +1,35 @@
 .euiSuperDatePicker__flexWrapper {
   // Need to offset 8px because of negative margins added by small size gutter
   max-width: calc(100% + #{$euiSizeS});
+  // Set a sensible min-width for when width is auto
+  min-width: ($euiFormMaxWidth / 2) + $euiSuperDatePickerButtonWidth + $euiSizeS;
   width: $euiSuperDatePickerWidth + $euiSuperDatePickerButtonWidth + $euiSizeS;
+
+  &.euiSuperDatePicker__flexWrapper--fullWidth {
+    // Need to offset 8px because of negative margins added by small size gutter
+    width: calc(100% + #{$euiSizeS});
+  }
+
+  &.euiSuperDatePicker__flexWrapper--isQuickSelectOnly {
+    min-width: 0;
+  }
+
+  &.euiSuperDatePicker__flexWrapper--autoWidth {
+    display: inline-flex;
+    width: auto;
+  }
 }
 
 .euiSuperDatePicker__flexWrapper--isAutoRefreshOnly {
+  min-width: ($euiFormMaxWidth / 2);
   width: $euiFormMaxWidth;
 }
 
 .euiSuperDatePicker__flexWrapper--noUpdateButton {
+  min-width: ($euiFormMaxWidth / 2);
   width: $euiSuperDatePickerWidth;
 }
+
 
 .euiSuperDatePicker {
   // sass-lint:disable-block no-important

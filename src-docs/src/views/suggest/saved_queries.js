@@ -115,7 +115,7 @@ export default () => {
     <div className="savedQueriesInput">
       <EuiFlexGroup
         gutterSize="s"
-        className={hideDatepicker ? 'savedQueriesInput__hideDatepicker' : ''}
+        // className={hideDatepicker ? 'savedQueriesInput__hideDatepicker' : ''}
       >
         <EuiFlexItem>
           <EuiSuggest
@@ -131,7 +131,11 @@ export default () => {
           />
         </EuiFlexItem>
         <EuiFlexItem grow={false} className="savedQueriesInput__datepicker">
-          <EuiSuperDatePicker onTimeChange={onTimeChange} />
+          <EuiSuperDatePicker
+            width="auto"
+            isQuickSelectOnly={hideDatepicker}
+            onTimeChange={onTimeChange}
+          />
         </EuiFlexItem>
       </EuiFlexGroup>
       <EuiFlexGroup

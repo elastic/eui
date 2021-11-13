@@ -83,14 +83,6 @@ exports[`EuiSuperDatePicker accepts data-test-subj and passes to EuiFormControlL
           onClick={[Function]}
         >
           Last 15 minutes
-          <span
-            className="euiSuperDatePicker__prettyFormatLink"
-          >
-            <EuiI18n
-              default="Show dates"
-              token="euiSuperDatePicker.showDatesButtonLabel"
-            />
-          </span>
         </button>
       </EuiDatePickerRange>
     </EuiFormControlLayout>
@@ -192,14 +184,6 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
           onClick={[Function]}
         >
           Last 15 minutes
-          <span
-            className="euiSuperDatePicker__prettyFormatLink"
-          >
-            <EuiI18n
-              default="Show dates"
-              token="euiSuperDatePicker.showDatesButtonLabel"
-            />
-          </span>
         </button>
       </EuiDatePickerRange>
     </EuiFormControlLayout>

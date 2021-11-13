@@ -139,7 +139,7 @@ describe('EuiSuperDatePicker', () => {
     const component = shallow(
       <EuiSuperDatePicker
         onTimeChange={noop}
-        dataTestSubj="mySuperDatePicker"
+        data-test-subj="mySuperDatePicker"
       />
     );
     expect(component).toMatchSnapshot();

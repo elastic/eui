@@ -21,6 +21,7 @@ const superDatePickerConfigSource = require('!!raw-loader!./super_date_picker_co
 const superDatePickerConfigHtml = renderToHtml(SuperDatePicker);
 
 import SuperDatePickerCustomQuickSelect from './super_date_picker_custom_quick_select';
+import { superDatePickerConfig } from './playground';
 const superDatePickerCustomQuickSelectSource = require('!!raw-loader!./super_date_picker_custom_quick_select');
 const superDatePickerCustomQuickSelectHtml = renderToHtml(SuperDatePicker);
 
@@ -99,6 +100,7 @@ if (!endMoment || !endMoment.isValid()) {
       props: { EuiSuperDatePicker },
       snippet: superDatePickerSnippet,
       demo: <SuperDatePicker />,
+      playground: superDatePickerConfig,
     },
     {
       title: 'Configurations',

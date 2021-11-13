@@ -28,7 +28,6 @@ import { EuiDatePickerRange } from '../date_picker_range';
 import { EuiFormControlLayout } from '../../form';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { AsyncInterval } from './async_interval';
-import { EuiI18n } from '../../i18n';
 import { EuiI18nConsumer } from '../../context';
 import { CommonProps } from '../../common';
 import {
@@ -61,7 +60,6 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * Specifies the formatted used when displaying dates and/or datetimes
    */
   dateFormat: string;
-  end: ShortDate;
 
   /**
    * Set isAutoRefreshOnly to true to limit the component to only display auto refresh content.
@@ -70,6 +68,14 @@ export type EuiSuperDatePickerProps = CommonProps & {
   isDisabled: boolean;
   isLoading?: boolean;
   isPaused: boolean;
+
+  /**
+   * Sets the overall width by adding sensible min and max widths.
+   * - `auto`: fits width to internal content / time string.
+   * - `restricted`: static width that fits the longest possible time string.
+   * - `full`: expands to 100% of the container.
+   */
+  width?: 'restricted' | 'full' | 'auto';
 
   /**
    * Used to localize e.g. month names, passed to `moment`
@@ -101,17 +107,24 @@ export type EuiSuperDatePickerProps = CommonProps & {
    */
   refreshInterval: Milliseconds;
 
-  /**
-   * Set showUpdateButton to false to immediately invoke onTimeChange for all start and end changes.
-   */
-  showUpdateButton: boolean;
   start: ShortDate;
+  end: ShortDate;
 
   /**
    * Specifies the formatted used when displaying times
    */
   timeFormat: string;
   utcOffset?: number;
+
+  /**
+   * Set showUpdateButton to false to immediately invoke onTimeChange for all start and end changes.
+   */
+  showUpdateButton: boolean;
+
+  /**
+   * Hides the actual input reducing to just the quick select button.
+   */
+  isQuickSelectOnly?: boolean;
 
   /**
    * Props passed to the update button
@@ -122,8 +135,6 @@ export type EuiSuperDatePickerProps = CommonProps & {
       'needsUpdate' | 'showTooltip' | 'isLoading' | 'isDisabled' | 'onClick'
     >
   >;
-
-  dataTestSubj?: string;
 };
 
 interface EuiSuperDatePickerState {
@@ -176,6 +187,8 @@ export class EuiSuperDatePicker extends Component<
     showUpdateButton: true,
     start: 'now-15m',
     timeFormat: 'HH:mm',
+    width: 'restricted',
+    showInput: true,
   };
 
   asyncInterval?: AsyncInterval;
@@ -295,7 +308,7 @@ export class EuiSuperDatePicker extends Component<
   };
 
   hidePrettyDuration = () => {
-    this.setState({ showPrettyDuration: false });
+    this.setState({ showPrettyDuration: false, isStartDatePopoverOpen: true });
   };
 
   onStartDatePopoverToggle = () => {
@@ -406,12 +419,6 @@ export class EuiSuperDatePicker extends Component<
             onClick={this.hidePrettyDuration}
           >
             {prettyDuration(start, end, commonlyUsedRanges, dateFormat)}
-            <span className="euiSuperDatePicker__prettyFormatLink">
-              <EuiI18n
-                token="euiSuperDatePicker.showDatesButtonLabel"
-                default="Show dates"
-              />
-            </span>
           </button>
         </EuiDatePickerRange>
       );
@@ -519,8 +526,13 @@ export class EuiSuperDatePicker extends Component<
       refreshInterval,
       showUpdateButton,
       start,
-      dataTestSubj,
+      'data-test-subj': dataTestSubj,
+      width: _width,
+      isQuickSelectOnly,
     } = this.props;
+
+    // Force reduction in width if showing quick select only
+    const width = isQuickSelectOnly ? 'auto' : _width;
 
     const quickSelect = (
       <EuiQuickSelectPopover
@@ -544,6 +556,9 @@ export class EuiSuperDatePicker extends Component<
     const flexWrapperClasses = classNames('euiSuperDatePicker__flexWrapper', {
       'euiSuperDatePicker__flexWrapper--noUpdateButton': !showUpdateButton,
       'euiSuperDatePicker__flexWrapper--isAutoRefreshOnly': isAutoRefreshOnly,
+      'euiSuperDatePicker__flexWrapper--isQuickSelectOnly': isQuickSelectOnly,
+      'euiSuperDatePicker__flexWrapper--fullWidth': width === 'full',
+      'euiSuperDatePicker__flexWrapper--autoWidth': width === 'auto',
     });
 
     return (
@@ -559,7 +574,7 @@ export class EuiSuperDatePicker extends Component<
             prepend={quickSelect}
             data-test-subj={dataTestSubj}
           >
-            {this.renderDatePickerRange()}
+            {!isQuickSelectOnly && this.renderDatePickerRange()}
           </EuiFormControlLayout>
         </EuiFlexItem>
         {this.renderUpdateButton()}
