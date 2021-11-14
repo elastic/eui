@@ -509,6 +509,17 @@ export class EuiSuperDatePicker extends Component<
     // Force reduction in width if showing quick select only
     const width = isQuickSelectOnly ? 'auto' : _width;
 
+    const autoRefreshAppend: EuiFormControlLayoutProps['append'] = !isPaused ? (
+      <EuiAutoRefreshButton
+        className="euiFormControlLayout__append"
+        refreshInterval={refreshInterval}
+        isDisabled={isDisabled}
+        isPaused={isPaused}
+        onRefreshChange={onRefreshChange ? this.onRefreshChange : undefined}
+        shortHand
+      />
+    ) : undefined;
+
     const quickSelect = (
       <EuiQuickSelectPopover
         applyRefreshInterval={
