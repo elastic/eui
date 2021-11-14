@@ -360,6 +360,7 @@ const typeToPathMap = {
   temperature: 'temperature',
   timeline: 'timeline',
   timelionApp: 'app_timelion',
+  timeRefresh: 'timeRefresh',
   timeslider: 'timeslider',
   training: 'training',
   trash: 'trash',
