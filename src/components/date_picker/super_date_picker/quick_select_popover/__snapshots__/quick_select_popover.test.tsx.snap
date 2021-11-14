@@ -76,8 +76,8 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
       }
     />
     <EuiRefreshInterval
-      applyRefreshInterval={[Function]}
       isPaused={true}
+      onRefreshChange={[Function]}
       refreshInterval={0}
     />
   </div>

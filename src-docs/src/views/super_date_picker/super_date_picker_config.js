@@ -11,11 +11,11 @@ export default () => {
   const [isDisabled, setIsDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showUpdateButton, setShowUpdateButton] = useState(true);
-  const [isAutoRefreshOnly, setIsAutoRefreshOnly] = useState(false);
+  const [isAutoRefreshOnly, setIsAutoRefreshOnly] = useState(true);
   const [start, setStart] = useState('now-30m');
   const [end, setEnd] = useState('now');
   const [isPaused, setIsPaused] = useState(true);
-  const [refreshInterval, setRefreshInterval] = useState();
+  const [refreshInterval, setRefreshInterval] = useState(1000);
 
   const onTimeChange = ({ start, end }) => {
     const recentlyUsedRange = recentlyUsedRanges.filter((recentlyUsedRange) => {
@@ -52,7 +52,9 @@ export default () => {
 
   const onRefreshChange = ({ isPaused, refreshInterval }) => {
     setIsPaused(isPaused);
-    setRefreshInterval(refreshInterval);
+    if (refreshInterval >= 100) {
+      setRefreshInterval(refreshInterval);
+    }
   };
 
   const toggleDisabled = () => {

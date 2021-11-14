@@ -515,7 +515,7 @@ export class EuiSuperDatePicker extends Component<
         refreshInterval={refreshInterval}
         isDisabled={isDisabled}
         isPaused={isPaused}
-        onRefreshChange={onRefreshChange ? this.onRefreshChange : undefined}
+        onRefreshChange={this.onRefreshChange}
         shortHand
       />
     ) : undefined;
@@ -552,7 +552,7 @@ export class EuiSuperDatePicker extends Component<
         responsive={false}
         className={flexWrapperClasses}
       >
-        {isAutoRefreshOnly ? (
+        {isAutoRefreshOnly && onRefreshChange ? (
           <EuiFlexItem>
             <EuiAutoRefresh
               isPaused={isPaused}

@@ -15,7 +15,27 @@ import { EuiAutoRefresh, EuiAutoRefreshButton } from './auto_refresh';
 describe('EuiAutoRefresh', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiAutoRefresh refreshInterval={1000} {...requiredProps} />
+      <EuiAutoRefresh onRefreshChange={() => {}} {...requiredProps} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('isPaused is false', () => {
+    const component = render(
+      <EuiAutoRefresh isPaused={false} onRefreshChange={() => {}} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('refreshInterval is rendered', () => {
+    const component = render(
+      <EuiAutoRefresh
+        isPaused={false}
+        refreshInterval={2000}
+        onRefreshChange={() => {}}
+      />
     );
 
     expect(component).toMatchSnapshot();
@@ -25,7 +45,27 @@ describe('EuiAutoRefresh', () => {
 describe('EuiAutoRefreshButton', () => {
   test('is rendered', () => {
     const component = render(
-      <EuiAutoRefreshButton refreshInterval={1000} {...requiredProps} />
+      <EuiAutoRefreshButton onRefreshChange={() => {}} {...requiredProps} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('isPaused is false', () => {
+    const component = render(
+      <EuiAutoRefreshButton isPaused={false} onRefreshChange={() => {}} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('refreshInterval is rendered', () => {
+    const component = render(
+      <EuiAutoRefreshButton
+        isPaused={false}
+        refreshInterval={2000}
+        onRefreshChange={() => {}}
+      />
     );
 
     expect(component).toMatchSnapshot();

@@ -16,7 +16,3 @@ export {
 } from './quick_select_popover';
 export { EuiQuickSelect, EuiQuickSelectProps } from './quick_select';
 export { EuiRecentlyUsed, EuiRecentlyUsedProps } from './recently_used';
-export {
-  EuiRefreshInterval,
-  EuiRefreshIntervalProps,
-} from './refresh_interval';

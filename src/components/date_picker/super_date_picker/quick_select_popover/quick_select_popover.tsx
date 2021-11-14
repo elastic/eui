@@ -19,7 +19,7 @@ import { EuiText } from '../../../text';
 import { EuiQuickSelect } from './quick_select';
 import { EuiCommonlyUsedTimeRanges } from './commonly_used_time_ranges';
 import { EuiRecentlyUsed } from './recently_used';
-import { EuiRefreshInterval } from './refresh_interval';
+import { EuiRefreshInterval } from '../../auto_refresh/refresh_interval';
 import {
   DurationRange,
   ApplyRefreshInterval,
@@ -178,7 +178,7 @@ export class EuiQuickSelectPopover extends Component<
           {this.renderDateTimeSections()}
           {applyRefreshInterval && (
             <EuiRefreshInterval
-              applyRefreshInterval={applyRefreshInterval}
+              onRefreshChange={applyRefreshInterval}
               isPaused={isPaused}
               refreshInterval={refreshInterval}
             />

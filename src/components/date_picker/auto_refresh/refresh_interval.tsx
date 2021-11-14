@@ -11,24 +11,19 @@ import React, {
   ChangeEventHandler,
   KeyboardEventHandler,
 } from 'react';
-import { timeUnits, timeUnitsPlural } from '../time_units';
-import { EuiI18n } from '../../../i18n';
-import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
-import {
-  EuiSelect,
-  EuiFieldNumber,
-  EuiFormLabel,
-  EuiSwitch,
-} from '../../../form';
-import { htmlIdGenerator } from '../../../../services';
-import { EuiScreenReaderOnly } from '../../../accessibility';
+import { EuiI18n } from '../../i18n';
+import { keysOf } from '../../common';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiSelect, EuiFieldNumber, EuiFormLabel, EuiSwitch } from '../../form';
+import { htmlIdGenerator } from '../../../services';
+import { EuiScreenReaderOnly } from '../../accessibility';
 import {
   Milliseconds,
   TimeUnitId,
   RelativeOption,
   ApplyRefreshInterval,
-} from '../../types';
-import { keysOf } from '../../../common';
+} from '../types';
+import { timeUnits, timeUnitsPlural } from '../super_date_picker/time_units';
 
 const refreshUnitsOptions: RelativeOption[] = keysOf(timeUnits)
   .filter(
@@ -74,11 +69,20 @@ function toMilliseconds(units: TimeUnitId, value: Milliseconds) {
   }
 }
 
-export interface EuiRefreshIntervalProps {
-  applyRefreshInterval?: ApplyRefreshInterval;
-  isPaused: boolean;
-  refreshInterval: Milliseconds;
-}
+export type EuiRefreshIntervalProps = {
+  /**
+   * Is refresh paused or running.
+   */
+  isPaused?: boolean;
+  /**
+   * Refresh interval in milleseconds.
+   */
+  refreshInterval?: Milliseconds;
+  /**
+   * Passes back the updated state of `isPaused` and `refreshInterval`.
+   */
+  onRefreshChange: ApplyRefreshInterval;
+};
 
 interface EuiRefreshIntervalState {
   value: number | '';
@@ -89,7 +93,14 @@ export class EuiRefreshInterval extends Component<
   EuiRefreshIntervalProps,
   EuiRefreshIntervalState
 > {
-  state: EuiRefreshIntervalState = fromMilliseconds(this.props.refreshInterval);
+  static defaultProps = {
+    isPaused: true,
+    refreshInterval: 1000,
+  };
+
+  state: EuiRefreshIntervalState = fromMilliseconds(
+    this.props.refreshInterval || 0
+  );
 
   generateId = htmlIdGenerator();
   legendId = this.generateId();
@@ -115,7 +126,7 @@ export class EuiRefreshInterval extends Component<
   };
 
   startRefresh = () => {
-    const { applyRefreshInterval } = this.props;
+    const { onRefreshChange: applyRefreshInterval } = this.props;
     const { value, units } = this.state;
 
     if (value !== '' && value > 0 && applyRefreshInterval !== undefined) {
@@ -133,31 +144,31 @@ export class EuiRefreshInterval extends Component<
   };
 
   applyRefreshInterval = () => {
-    const { applyRefreshInterval, isPaused } = this.props;
+    const { onRefreshChange, isPaused } = this.props;
     const { units, value } = this.state;
     if (value === '') {
       return;
     }
-    if (!applyRefreshInterval) {
+    if (!onRefreshChange) {
       return;
     }
 
     const refreshInterval = toMilliseconds(units, value);
 
-    applyRefreshInterval({
+    onRefreshChange({
       refreshInterval,
-      isPaused: refreshInterval <= 0 ? true : isPaused,
+      isPaused: refreshInterval <= 0 ? true : !!isPaused,
     });
   };
 
   toggleRefresh = () => {
-    const { applyRefreshInterval, isPaused } = this.props;
+    const { onRefreshChange, isPaused } = this.props;
     const { units, value } = this.state;
 
-    if (!applyRefreshInterval || value === '') {
+    if (!onRefreshChange || value === '') {
       return;
     }
-    applyRefreshInterval({
+    onRefreshChange({
       refreshInterval: toMilliseconds(units, value),
       isPaused: !isPaused,
     });

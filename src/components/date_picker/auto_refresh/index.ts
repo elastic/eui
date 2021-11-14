@@ -13,3 +13,8 @@ export {
   EuiAutoRefreshButtonProps,
   EuiAutoRefreshSharedProps,
 } from './auto_refresh';
+
+export {
+  EuiRefreshInterval,
+  EuiRefreshIntervalProps,
+} from './refresh_interval';
