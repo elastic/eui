@@ -140,10 +140,7 @@ module.exports = class extends Generator {
             'const'
           )} ${componentExamplePrefix}Source = require(${chalk.cyan(
             `'!!raw-loader!./${fileName}'`
-          )});\n` +
-          `${chalk.magenta(
-            'const'
-          )} ${componentExamplePrefix}Html = renderToHtml(${componentExampleName});`
+          )});`
       );
 
       this.log(chalk.white('\n// Render demo.'));
@@ -153,9 +150,6 @@ module.exports = class extends Generator {
           '  source={[{\n' +
           '    type: GuideSectionTypes.JS,\n' +
           `    code: ${componentExamplePrefix}Source,\n` +
-          '  }, {\n' +
-          '    type: GuideSectionTypes.HTML,\n' +
-          `    code: ${componentExamplePrefix}Html,\n` +
           '  }]}\n' +
           '  text={\n' +
           `    <p>Description needed: how to use the ${componentExampleName} component.</p>\n` +
