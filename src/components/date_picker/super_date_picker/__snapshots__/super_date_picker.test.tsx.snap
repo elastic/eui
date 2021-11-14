@@ -60,11 +60,10 @@ exports[`EuiSuperDatePicker accepts data-test-subj and passes to EuiFormControlL
           }
           dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
           end="now"
-          isAutoRefreshOnly={false}
           isDisabled={false}
           isPaused={true}
           recentlyUsedRanges={Array []}
-          refreshInterval={0}
+          refreshInterval={1000}
           start="now-15m"
         />
       }
@@ -161,11 +160,10 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
           }
           dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
           end="now"
-          isAutoRefreshOnly={false}
           isDisabled={false}
           isPaused={true}
           recentlyUsedRanges={Array []}
-          refreshInterval={0}
+          refreshInterval={1000}
           start="now-15m"
         />
       }

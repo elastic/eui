@@ -35,7 +35,6 @@ export interface EuiQuickSelectPopoverProps {
   customQuickSelectPanels?: QuickSelectPanel[];
   dateFormat: string;
   end: string;
-  isAutoRefreshOnly: boolean;
   isDisabled: boolean;
   isPaused: boolean;
   recentlyUsedRanges: DurationRange[];
@@ -89,15 +88,10 @@ export class EuiQuickSelectPopover extends Component<
       commonlyUsedRanges,
       dateFormat,
       end,
-      isAutoRefreshOnly,
       recentlyUsedRanges,
       start,
     } = this.props;
     const { prevQuickSelect } = this.state;
-
-    if (isAutoRefreshOnly) {
-      return null;
-    }
 
     return (
       <Fragment>
@@ -147,7 +141,6 @@ export class EuiQuickSelectPopover extends Component<
   render() {
     const {
       applyRefreshInterval,
-      isAutoRefreshOnly,
       isDisabled,
       isPaused,
       refreshInterval,
@@ -166,7 +159,7 @@ export class EuiQuickSelectPopover extends Component<
         isDisabled={isDisabled}
         data-test-subj="superDatePickerToggleQuickMenuButton"
       >
-        <EuiIcon type={!isAutoRefreshOnly && isPaused ? 'calendar' : 'clock'} />
+        <EuiIcon type="calendar" />
       </EuiButtonEmpty>
     );
 
