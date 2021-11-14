@@ -183,11 +183,13 @@ export class EuiQuickSelectPopover extends Component<
           data-test-subj="superDatePickerQuickMenu"
         >
           {this.renderDateTimeSections()}
-          <EuiRefreshInterval
-            applyRefreshInterval={applyRefreshInterval}
-            isPaused={isPaused}
-            refreshInterval={refreshInterval}
-          />
+          {applyRefreshInterval && (
+            <EuiRefreshInterval
+              applyRefreshInterval={applyRefreshInterval}
+              isPaused={isPaused}
+              refreshInterval={refreshInterval}
+            />
+          )}
         </div>
       </EuiPopover>
     );
