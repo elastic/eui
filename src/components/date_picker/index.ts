@@ -8,6 +8,14 @@
 
 export * from './super_date_picker';
 
+export {
+  EuiAutoRefresh,
+  EuiAutoRefreshProps,
+  EuiAutoRefreshButton,
+  EuiAutoRefreshButtonProps,
+  EuiAutoRefreshSharedProps,
+} from './auto_refresh';
+
 export { EuiDatePicker, EuiDatePickerProps } from './date_picker';
 
 export {
