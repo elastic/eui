@@ -98,6 +98,7 @@ export default () => {
 
   return (
     <EuiComboBox
+      aria-label="Accessible screen reader label"
       placeholder="These options are grouped"
       options={allOptions}
       selectedOptions={selectedOptions}
