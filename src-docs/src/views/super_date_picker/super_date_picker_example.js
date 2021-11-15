@@ -21,6 +21,9 @@ const superDatePickerSource = require('!!raw-loader!./super_date_picker');
 import SuperDatePickerConfig from './super_date_picker_config';
 const superDatePickerConfigSource = require('!!raw-loader!./super_date_picker_config');
 
+import SuperDatePickerWidth from './super_date_picker_width_example';
+const superDatePickerWidthSource = require('!!raw-loader!./super_date_picker_width');
+
 import SuperDatePickerCustomQuickSelect from './super_date_picker_custom_quick_select';
 import { superDatePickerConfig } from './playground';
 const superDatePickerCustomQuickSelectSource = require('!!raw-loader!./super_date_picker_custom_quick_select');
@@ -155,6 +158,15 @@ if (!endMoment || !endMoment.isValid()) {
             immediately invoke <EuiCode>onTimeChange</EuiCode> for all{' '}
             <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> changes.
           </p>
+          <h3>More configurations</h3>
+          <p>
+            Instead of hiding completely, you can reduce the footprint of the
+            update button to just an icon with{' '}
+            <EuiCode>{'showUpdateButton="iconOnly"'}</EuiCode>. You can further
+            configure the button using <EuiCode>updateButtonProps</EuiCode>,
+            like setting the <EuiCode>fill</EuiCode> to <EuiCode>false</EuiCode>
+            .
+          </p>
         </>
       ),
       demo: <SuperDatePickerConfig />,
@@ -201,10 +213,57 @@ if (!endMoment || !endMoment.isValid()) {
               .
             </li>
           </ul>
+          <p>
+            You can also reduce the <strong>EuiSuperDatePicker</strong> to
+            display <strong>just</strong> the quick select button and dropdown
+            by passing{' '}
+            <EuiCode language="tsx">{'isQuickSelectOnly={true}'}</EuiCode>. Be
+            sure you display the rendered time period elsewhere in your
+            interface.
+          </p>
         </>
       ),
       snippet: superDatePickerCustomQuickSelectSnippet,
       demo: <SuperDatePickerCustomQuickSelect />,
+    },
+    {
+      title: 'Sizing',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: superDatePickerWidthSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            By default the <EuiCode>width</EuiCode> of the{' '}
+            <strong>EuiSuperDatePicker</strong> is set to{' '}
+            <EuiCode>{"'restricted'"}</EuiCode> which sets the size to a
+            reasonable max-width necessary to display full start and end date
+            strings.
+          </p>
+          <p>
+            You can adjust the <EuiCode>width</EuiCode> by passing:
+          </p>
+          <ul>
+            <li>
+              <EuiCode>{"'full'"}</EuiCode> to expand the width to 100% of the
+              parent
+            </li>
+            <li>
+              <EuiCode>{"'auto'"}</EuiCode> to grow and shrink as the contents
+              does
+            </li>
+          </ul>
+          <p>
+            The <strong>EuiSuperDatePicker</strong> also supports the{' '}
+            <EuiCode>compressed</EuiCode> form control option.
+          </p>
+        </>
+      ),
+      demo: <SuperDatePickerWidth />,
+      props: { EuiSuperDatePicker },
     },
     {
       title: 'Auto refresh',

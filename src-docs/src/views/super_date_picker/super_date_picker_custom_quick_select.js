@@ -18,14 +18,28 @@ function MyCustomQuickSelectPanel({ applyTime }) {
 }
 
 export default () => {
-  const [recentlyUsedRanges, setRecentlyUsedRanges] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [start, setStart] = useState('now-30m');
-  const [end, setEnd] = useState('now');
   const [showCustomQuickSelectPanel, setShowCustomQuickSelectPanel] = useState(
     true
   );
   const [showRecentlyUsed, setShowRecentlyUsed] = useState(true);
+  const [showQuickSelectOnly, setShowQuickSelectOnly] = useState(false);
+
+  const toggleShowCustomQuickSelectPanel = () => {
+    setShowCustomQuickSelectPanel(!showCustomQuickSelectPanel);
+  };
+
+  const toggleShowRecentlyUsed = () => {
+    setShowRecentlyUsed(!showRecentlyUsed);
+  };
+
+  const toggleShowQuickSelectOnly = () => {
+    setShowQuickSelectOnly(!showQuickSelectOnly);
+  };
+
+  const [recentlyUsedRanges, setRecentlyUsedRanges] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [start, setStart] = useState('now-30m');
+  const [end, setEnd] = useState('now');
 
   const onTimeChange = ({ start, end }) => {
     const recentlyUsedRange = recentlyUsedRanges.filter((recentlyUsedRange) => {
@@ -61,14 +75,6 @@ export default () => {
     setIsLoading(false);
   };
 
-  const toggleShowCustomQuickSelectPanel = () => {
-    setShowCustomQuickSelectPanel(!showCustomQuickSelectPanel);
-  };
-
-  const toggleShowRecentlyUsed = () => {
-    setShowRecentlyUsed(!showRecentlyUsed);
-  };
-
   const customQuickSelectPanels = [
     {
       title: 'My custom panel',
@@ -90,6 +96,12 @@ export default () => {
         checked={showCustomQuickSelectPanel}
       />
       &emsp;
+      <EuiSwitch
+        label="Show quick select only"
+        onChange={toggleShowQuickSelectOnly}
+        checked={showQuickSelectOnly}
+      />
+      &emsp;
       <EuiSpacer />
       <EuiSuperDatePicker
         isLoading={isLoading}
@@ -101,6 +113,7 @@ export default () => {
         customQuickSelectPanels={
           showCustomQuickSelectPanel ? customQuickSelectPanels : undefined
         }
+        isQuickSelectOnly={showQuickSelectOnly}
       />
       <EuiSpacer />
     </Fragment>
