@@ -43,21 +43,26 @@ import {
 // eslint-disable-next-line local/forward-ref
 const virtualizedOuterElement = ({
   className,
+  onKeyDown,
 }: HTMLAttributes<HTMLPreElement>) =>
   memo(
     forwardRef<any, any>((props, ref) => (
-      <pre {...props} ref={ref} className={className} tabIndex={0} />
+      <pre
+        {...props}
+        ref={ref}
+        className={className}
+        tabIndex={0}
+        role="presentation"
+        onKeyDown={onKeyDown}
+      />
     ))
   );
 
 // eslint-disable-next-line local/forward-ref
-const virtualizedInnerElement = ({
-  onKeyDown,
-  ...codeProps
-}: HTMLAttributes<HTMLElement>) =>
+const virtualizedInnerElement = (codeProps: HTMLAttributes<HTMLElement>) =>
   memo(
     forwardRef<any, any>((props, ref) => (
-      <code {...props} ref={ref} {...codeProps} onKeyDown={onKeyDown} />
+      <code {...props} ref={ref} {...codeProps} />
     ))
   );
 
@@ -372,21 +377,22 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
                       itemCount={data.length}
                       outerElementType={virtualizedOuterElement({
                         className: preClasses,
-                      })}
-                      innerElementType={virtualizedInnerElement({
-                        ...codeProps,
                         onKeyDown,
                       })}
+                      innerElementType={virtualizedInnerElement(codeProps)}
                     >
                       {ListRow}
                     </FixedSizeList>
                   )}
                 </EuiAutoSizer>
               ) : (
-                <pre className={preClasses} tabIndex={0}>
-                  <code {...codeProps} onKeyDown={onKeyDown}>
-                    {content}
-                  </code>
+                <pre
+                  className={preClasses}
+                  tabIndex={0}
+                  role="presentation"
+                  onKeyDown={onKeyDown}
+                >
+                  <code {...codeProps}>{content}</code>
                 </pre>
               )}
 
@@ -414,11 +420,9 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
               itemCount={data.length}
               outerElementType={virtualizedOuterElement({
                 className: preClasses,
-              })}
-              innerElementType={virtualizedInnerElement({
-                ...codeProps,
                 onKeyDown,
               })}
+              innerElementType={virtualizedInnerElement(codeProps)}
             >
               {ListRow}
             </FixedSizeList>
