@@ -234,10 +234,11 @@ export class EuiRefreshInterval extends Component<
           <p id={this.refreshSelectionId}>
             <EuiI18n
               token="euiRefreshInterval.fullDescription"
-              default="Refresh interval currently set to {optionValue} {optionText}."
+              default="Refresh is {state}, interval set to {optionValue} {optionText}."
               values={{
                 optionValue: value,
                 optionText,
+                state: isPaused ? 'off' : 'on',
               }}
             />
           </p>
