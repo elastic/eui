@@ -45,6 +45,12 @@ describe('EuiSuperUpdateButton', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('iconOnly', () => {
+    const component = shallow(<EuiSuperUpdateButton iconOnly onClick={noop} />);
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('showTooltip', () => {
     const component = shallow(
       <EuiSuperUpdateButton showTooltip onClick={noop} />
@@ -90,7 +96,7 @@ describe('EuiSuperUpdateButton', () => {
 
     expect(className).toBe('euiSuperUpdateButton testClass');
     expect(textProps).toEqual({
-      className: 'euiSuperUpdateButton__text textPropsTestClass',
+      className: 'textPropsTestClass',
       id: 'test',
     });
     expect(forwardedProps).toMatchObject(extraProps);

@@ -7,9 +7,12 @@ import {
 } from '../../../../src/components';
 
 export default () => {
+  const [showUpdateButton, setShowUpdateButton] = useState(true);
+  const [showIconOnly, setShowIconOnly] = useState(false);
+  const [showFill, setShowFill] = useState(true);
+
   const [recentlyUsedRanges, setRecentlyUsedRanges] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [showUpdateButton, setShowUpdateButton] = useState(true);
   const [start, setStart] = useState('now-30m');
   const [end, setEnd] = useState('now');
 
@@ -49,6 +52,12 @@ export default () => {
   const toggleShowApplyButton = () => {
     setShowUpdateButton(!showUpdateButton);
   };
+  const toggleShowIconOnly = () => {
+    setShowIconOnly(!showIconOnly);
+  };
+  const toggleShowFill = () => {
+    setShowFill(!showFill);
+  };
 
   return (
     <Fragment>
@@ -56,6 +65,20 @@ export default () => {
         label="Show update button"
         onChange={toggleShowApplyButton}
         checked={showUpdateButton}
+      />
+      &emsp;
+      <EuiSwitch
+        label="Fill"
+        onChange={toggleShowFill}
+        checked={showFill}
+        disabled={!showUpdateButton}
+      />
+      &emsp;
+      <EuiSwitch
+        label="Icon only"
+        onChange={toggleShowIconOnly}
+        checked={showIconOnly}
+        disabled={!showUpdateButton}
       />
       <EuiSpacer />
       <EuiSuperDatePicker
@@ -65,7 +88,10 @@ export default () => {
         onTimeChange={onTimeChange}
         onRefresh={onRefresh}
         recentlyUsedRanges={recentlyUsedRanges}
-        showUpdateButton={showUpdateButton}
+        showUpdateButton={
+          showUpdateButton && showIconOnly ? 'iconOnly' : showUpdateButton
+        }
+        updateButtonProps={{ fill: showFill }}
       />
       <EuiSpacer />
     </Fragment>

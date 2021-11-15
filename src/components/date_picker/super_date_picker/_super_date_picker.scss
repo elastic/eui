@@ -1,8 +1,10 @@
+// sass-lint:disable-block function-name-format
+
 .euiSuperDatePicker__flexWrapper {
   // Need to offset 8px because of negative margins added by small size gutter
   max-width: calc(100% + #{$euiSizeS});
   // Set a sensible min-width for when width is auto
-  min-width: ($euiFormMaxWidth / 2) + $euiSuperDatePickerButtonWidth + $euiSizeS;
+  min-width: MIN(($euiFormMaxWidth / 2) + $euiSuperDatePickerButtonWidth + $euiSizeS, 100%);
   width: $euiSuperDatePickerWidth + $euiSuperDatePickerButtonWidth + $euiSizeS;
 
   &.euiSuperDatePicker__flexWrapper--fullWidth {
@@ -21,12 +23,12 @@
 }
 
 .euiSuperDatePicker__flexWrapper--isAutoRefreshOnly {
-  min-width: ($euiFormMaxWidth / 2);
+  min-width: MIN($euiFormMaxWidth / 2, 100%);
   width: $euiFormMaxWidth;
 }
 
 .euiSuperDatePicker__flexWrapper--noUpdateButton {
-  min-width: ($euiFormMaxWidth / 2);
+  min-width: MIN($euiFormMaxWidth / 2, 100%);
   width: $euiSuperDatePickerWidth;
 }
 

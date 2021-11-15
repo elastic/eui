@@ -83,6 +83,11 @@ export type EuiSuperDatePickerProps = CommonProps & {
   width?: 'restricted' | 'full' | 'auto';
 
   /**
+   * Reduces overall height to compressed form size
+   */
+  compressed?: boolean;
+
+  /**
    * Used to localize e.g. month names, passed to `moment`
    */
   locale?: LocaleSpecifier;
@@ -124,7 +129,7 @@ export type EuiSuperDatePickerProps = CommonProps & {
   /**
    * Set showUpdateButton to false to immediately invoke onTimeChange for all start and end changes.
    */
-  showUpdateButton: boolean;
+  showUpdateButton: boolean | 'iconOnly';
 
   /**
    * Hides the actual input reducing to just the quick select button.
@@ -132,7 +137,7 @@ export type EuiSuperDatePickerProps = CommonProps & {
   isQuickSelectOnly?: boolean;
 
   /**
-   * Props passed to the update button
+   * Props passed to the update button #EuiSuperUpdateButton
    */
   updateButtonProps?: Partial<
     Omit<
@@ -140,11 +145,6 @@ export type EuiSuperDatePickerProps = CommonProps & {
       'needsUpdate' | 'showTooltip' | 'isLoading' | 'isDisabled' | 'onClick'
     >
   >;
-
-  /**
-   * Reduces overall height to compressed form size
-   */
-  compressed?: boolean;
 };
 
 interface EuiSuperDatePickerState {
@@ -476,7 +476,15 @@ export class EuiSuperDatePicker extends Component<
   };
 
   renderUpdateButton = () => {
-    const { isLoading, isDisabled, updateButtonProps } = this.props;
+    const {
+      isLoading,
+      isDisabled,
+      updateButtonProps,
+      showUpdateButton,
+    } = this.props;
+
+    if (!showUpdateButton) return null;
+
     return (
       <EuiFlexItem grow={false}>
         <EuiSuperUpdateButton
@@ -490,6 +498,7 @@ export class EuiSuperDatePicker extends Component<
           onClick={this.handleClickUpdateButton}
           data-test-subj="superDatePickerApplyTimeButton"
           size={this.props.compressed ? 's' : 'm'}
+          iconOnly={showUpdateButton === 'iconOnly'}
           {...updateButtonProps}
         />
       </EuiFlexItem>
@@ -586,7 +595,7 @@ export class EuiSuperDatePicker extends Component<
                 {!isQuickSelectOnly && this.renderDatePickerRange()}
               </EuiFormControlLayout>
             </EuiFlexItem>
-            {showUpdateButton && this.renderUpdateButton()}
+            {this.renderUpdateButton()}
           </>
         )}
       </EuiFlexGroup>

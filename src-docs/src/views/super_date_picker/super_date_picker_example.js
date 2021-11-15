@@ -12,6 +12,7 @@ import {
   EuiAutoRefresh,
   EuiAutoRefreshButton,
   EuiRefreshInterval,
+  EuiSuperUpdateButton,
 } from '../../../../src/components';
 
 import SuperDatePicker from './super_date_picker';
@@ -157,7 +158,7 @@ if (!endMoment || !endMoment.isValid()) {
         </>
       ),
       demo: <SuperDatePickerConfig />,
-      props: { EuiSuperDatePicker },
+      props: { EuiSuperDatePicker, EuiSuperUpdateButton },
       snippet: `<EuiSuperDatePicker
   onTimeChange={onTimeChange}
   start="now-30m"

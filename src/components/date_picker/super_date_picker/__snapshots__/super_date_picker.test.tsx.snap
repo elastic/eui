@@ -91,10 +91,18 @@ exports[`EuiSuperDatePicker accepts data-test-subj and passes to EuiFormControlL
   >
     <EuiSuperUpdateButton
       data-test-subj="superDatePickerApplyTimeButton"
+      fill={true}
+      iconOnly={false}
       isDisabled={false}
       isLoading={false}
       needsUpdate={false}
       onClick={[Function]}
+      responsive={
+        Array [
+          "xs",
+          "s",
+        ]
+      }
       showTooltip={true}
       size="m"
     />
@@ -192,10 +200,18 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
   >
     <EuiSuperUpdateButton
       data-test-subj="superDatePickerApplyTimeButton"
+      fill={true}
+      iconOnly={false}
       isDisabled={false}
       isLoading={false}
       needsUpdate={false}
       onClick={[Function]}
+      responsive={
+        Array [
+          "xs",
+          "s",
+        ]
+      }
       showTooltip={true}
       size="m"
     />
