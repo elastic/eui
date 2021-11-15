@@ -154,7 +154,7 @@ const WritingExamples = () => {
           text="Prompt first-time users to take action."
         >
           <EuiEmptyPrompt
-            iconType="importAction"
+            iconType="addDataApp"
             title={<h2>Register your first repository</h2>}
             body={<p>Create a place where your snapshots will live.</p>}
             actions={
@@ -170,7 +170,7 @@ const WritingExamples = () => {
           text="If there is nothing to show, give instructions on what to do."
         >
           <EuiEmptyPrompt
-            iconType="importAction"
+            iconType="searchProfilerApp"
             title={<h2>No queries to profile</h2>}
             body={
               <p>
@@ -189,7 +189,7 @@ const WritingExamples = () => {
           text="Introduce a feature."
         >
           <EuiEmptyPrompt
-            iconType="importAction"
+            iconType="discoverApp"
             title={<h2>Introducing our table view</h2>}
             body={
               <p>
@@ -210,7 +210,7 @@ const WritingExamples = () => {
           text="If using an empty for an error, explain next steps."
         >
           <EuiEmptyPrompt
-            iconType="importAction"
+            iconType="lock"
             title={<h2>We couldn&apos;t log you in</h2>}
             body={
               <p>
@@ -596,23 +596,6 @@ const WritingExamples = () => {
             isInvalid={true}
           >
             <EuiFieldText name="text" isInvalid={true} />
-          </EuiFormRow>
-        </GuideRuleExample>
-      </GuideRule>
-
-      <GuideRule description="Fields are more usable when you omit placeholder text.">
-        <GuideRuleExample
-          panelDisplay="block"
-          type="do"
-          text="Create clear hints that sit outside empty form fields and in unison with the labels."
-        >
-          <EuiFormRow
-            label="Set a custom interval"
-            helpText={
-              <span>Use shorthand notation, such as 30s, 10m, or 1h.</span>
-            }
-          >
-            <EuiFieldNumber min={1} max={5} step={1} />
           </EuiFormRow>
         </GuideRuleExample>
       </GuideRule>
