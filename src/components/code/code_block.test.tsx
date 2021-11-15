@@ -149,7 +149,11 @@ describe('EuiCodeBlock', () => {
   describe('full screen', () => {
     it('displays content in fullscreen mode', () => {
       const component = mount(
-        <EuiCodeBlock language="javascript" overflowHeight={300}>
+        <EuiCodeBlock
+          {...requiredProps}
+          language="javascript"
+          overflowHeight={300}
+        >
           const value = &quot;hello&quot;
         </EuiCodeBlock>
       );
@@ -157,9 +161,7 @@ describe('EuiCodeBlock', () => {
       component.find('EuiButtonIcon[iconType="fullScreen"]').simulate('click');
       component.update();
 
-      expect(component.find('.euiCodeBlock-isFullScreen').text()).toBe(
-        'const value = "hello"'
-      );
+      expect(component.find('.euiCodeBlock-isFullScreen')).toMatchSnapshot();
     });
   });
 

@@ -52,12 +52,12 @@ const virtualizedOuterElement = ({
 
 // eslint-disable-next-line local/forward-ref
 const virtualizedInnerElement = ({
-  className,
   onKeyDown,
+  ...codeProps
 }: HTMLAttributes<HTMLElement>) =>
   memo(
     forwardRef<any, any>((props, ref) => (
-      <code {...props} ref={ref} className={className} onKeyDown={onKeyDown} />
+      <code {...props} ref={ref} {...codeProps} onKeyDown={onKeyDown} />
     ))
   );
 
@@ -248,7 +248,11 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     className
   );
 
-  const codeClasses = classNames('euiCodeBlock__code', language);
+  const codeProps = {
+    className: 'euiCodeBlock__code',
+    'data-code-language': language,
+    ...rest,
+  };
 
   const preClasses = classNames('euiCodeBlock__pre', {
     'euiCodeBlock__pre--whiteSpacePre': whiteSpace === 'pre',
@@ -264,11 +268,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     optionalStyles[property] = overflowHeight;
   }
 
-  const codeSnippet = (
-    <code className={codeClasses} {...rest}>
-      {content}
-    </code>
-  );
+  const codeSnippet = <code {...codeProps}>{content}</code>;
 
   const wrapperProps = {
     className: classes,
@@ -374,7 +374,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
                         className: preClasses,
                       })}
                       innerElementType={virtualizedInnerElement({
-                        className: codeClasses,
+                        ...codeProps,
                         onKeyDown,
                       })}
                     >
@@ -384,7 +384,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
                 </EuiAutoSizer>
               ) : (
                 <pre className={preClasses} tabIndex={0}>
-                  <code className={codeClasses} onKeyDown={onKeyDown}>
+                  <code {...codeProps} onKeyDown={onKeyDown}>
                     {content}
                   </code>
                 </pre>
@@ -416,7 +416,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
                 className: preClasses,
               })}
               innerElementType={virtualizedInnerElement({
-                className: codeClasses,
+                ...codeProps,
                 onKeyDown,
               })}
             >

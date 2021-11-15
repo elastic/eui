@@ -10,7 +10,8 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 1`] = `
       tabindex="-1"
     >
       <code
-        class="euiCodeBlock__code javascript"
+        class="euiCodeBlock__code"
+        data-code-language="javascript"
       >
         const value = 'State 1'
       </code>
@@ -29,11 +30,107 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 2`] = `
       tabindex="-1"
     >
       <code
-        class="euiCodeBlock__code javascript"
+        class="euiCodeBlock__code"
+        data-code-language="javascript"
       >
         const value = 'State 2'
       </code>
     </pre>
+  </div>
+</div>
+`;
+
+exports[`EuiCodeBlock full screen displays content in fullscreen mode 1`] = `
+<div
+  className="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock-paddingLarge euiCodeBlock-isFullScreen testClass1 testClass2"
+>
+  <pre
+    className="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+    tabIndex={0}
+  >
+    <code
+      aria-label="aria-label"
+      className="euiCodeBlock__code"
+      data-code-language="javascript"
+      data-test-subj="test subject string"
+      onKeyDown={[Function]}
+    >
+      <span
+        className="euiCodeBlock__line"
+        key="node-0-0"
+      >
+        <span
+          className="token keyword"
+          key="node-1-0"
+        >
+          const
+        </span>
+         value 
+        <span
+          className="token operator"
+          key="node-1-2"
+        >
+          =
+        </span>
+         
+        <span
+          className="token string"
+          key="node-1-4"
+        >
+          "hello"
+        </span>
+      </span>
+    </code>
+  </pre>
+  <div
+    className="euiCodeBlock__controls"
+  >
+    <EuiI18n
+      defaults={
+        Array [
+          "Collapse",
+          "Expand",
+        ]
+      }
+      tokens={
+        Array [
+          "euiCodeBlock.fullscreenCollapse",
+          "euiCodeBlock.fullscreenExpand",
+        ]
+      }
+    >
+      <EuiButtonIcon
+        aria-label="Collapse"
+        className="euiCodeBlock__fullScreenButton"
+        color="text"
+        iconType="cross"
+        onClick={[Function]}
+      >
+        <button
+          aria-label="Collapse"
+          className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton"
+          disabled={false}
+          onClick={[Function]}
+          type="button"
+        >
+          <EuiIcon
+            aria-hidden="true"
+            className="euiButtonIcon__icon"
+            color="inherit"
+            size="m"
+            type="cross"
+          >
+            <span
+              aria-hidden="true"
+              className="euiButtonIcon__icon"
+              color="inherit"
+              data-euiicon-type="cross"
+              size="m"
+            />
+          </EuiIcon>
+        </button>
+      </EuiButtonIcon>
+    </EuiI18n>
   </div>
 </div>
 `;
@@ -48,7 +145,8 @@ exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
   >
     <code
       aria-label="aria-label"
-      class="euiCodeBlock__code text"
+      class="euiCodeBlock__code"
+      data-code-language="text"
       data-test-subj="test subject string"
     >
       <span
@@ -99,7 +197,8 @@ exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
   >
     <code
       aria-label="aria-label"
-      class="euiCodeBlock__code text"
+      class="euiCodeBlock__code"
+      data-code-language="text"
       data-test-subj="test subject string"
     >
       <span
@@ -150,7 +249,8 @@ exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] =
   >
     <code
       aria-label="aria-label"
-      class="euiCodeBlock__code text"
+      class="euiCodeBlock__code"
+      data-code-language="text"
       data-test-subj="test subject string"
     >
       <span
@@ -200,7 +300,8 @@ exports[`EuiCodeBlock props fontSize l is rendered 1`] = `
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code text"
+      class="euiCodeBlock__code"
+      data-code-language="text"
     >
       <span
         class="euiCodeBlock__line"
@@ -227,7 +328,8 @@ exports[`EuiCodeBlock props fontSize m is rendered 1`] = `
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code text"
+      class="euiCodeBlock__code"
+      data-code-language="text"
     >
       <span
         class="euiCodeBlock__line"
@@ -254,7 +356,8 @@ exports[`EuiCodeBlock props fontSize s is rendered 1`] = `
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code text"
+      class="euiCodeBlock__code"
+      data-code-language="text"
     >
       <span
         class="euiCodeBlock__line"
@@ -286,7 +389,8 @@ exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
       tabIndex={-1}
     >
       <code
-        className="euiCodeBlock__code text"
+        className="euiCodeBlock__code"
+        data-code-language="text"
       >
         <span
           className="euiCodeBlock__line"
@@ -382,7 +486,8 @@ exports[`EuiCodeBlock props language is rendered 1`] = `
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code html"
+      class="euiCodeBlock__code"
+      data-code-language="html"
     >
       <span
         class="euiCodeBlock__line"
@@ -411,7 +516,8 @@ exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code text"
+      class="euiCodeBlock__code"
+      data-code-language="text"
     >
       <span
         class="euiCodeBlock__line"
@@ -454,7 +560,8 @@ exports[`EuiCodeBlock props paddingSize l is rendered 1`] = `
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code text"
+      class="euiCodeBlock__code"
+      data-code-language="text"
     >
       <span
         class="euiCodeBlock__line"
@@ -481,7 +588,8 @@ exports[`EuiCodeBlock props paddingSize m is rendered 1`] = `
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code text"
+      class="euiCodeBlock__code"
+      data-code-language="text"
     >
       <span
         class="euiCodeBlock__line"
@@ -508,7 +616,8 @@ exports[`EuiCodeBlock props paddingSize none is rendered 1`] = `
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code text"
+      class="euiCodeBlock__code"
+      data-code-language="text"
     >
       <span
         class="euiCodeBlock__line"
@@ -535,7 +644,8 @@ exports[`EuiCodeBlock props paddingSize s is rendered 1`] = `
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code text"
+      class="euiCodeBlock__code"
+      data-code-language="text"
     >
       <span
         class="euiCodeBlock__line"
@@ -562,7 +672,8 @@ exports[`EuiCodeBlock props transparentBackground is rendered 1`] = `
     tabindex="-1"
   >
     <code
-      class="euiCodeBlock__code text"
+      class="euiCodeBlock__code"
+      data-code-language="text"
     >
       <span
         class="euiCodeBlock__line"
@@ -590,7 +701,8 @@ exports[`EuiCodeBlock props whiteSpace renders a pre block tag with a css class 
   >
     <code
       aria-label="aria-label"
-      class="euiCodeBlock__code text"
+      class="euiCodeBlock__code"
+      data-code-language="text"
       data-test-subj="test subject string"
     >
       <span
@@ -619,7 +731,8 @@ exports[`EuiCodeBlock renders a code block 1`] = `
   >
     <code
       aria-label="aria-label"
-      class="euiCodeBlock__code text"
+      class="euiCodeBlock__code"
+      data-code-language="text"
       data-test-subj="test subject string"
     >
       <span
@@ -652,7 +765,10 @@ exports[`EuiCodeBlock virtualization renders a virtualized code block 1`] = `
       tabindex="0"
     >
       <code
-        class="euiCodeBlock__code text"
+        aria-label="aria-label"
+        class="euiCodeBlock__code"
+        data-code-language="text"
+        data-test-subj="test subject string"
         style="height:36px;width:100%"
       >
         <span

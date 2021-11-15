@@ -1,6 +1,8 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `41.1.0`.
+**Bug fixes**
+
+- Fixed `EuiCodeBlock` not passing `data-test-subj` or `aria-label` to virtualized & full-screen code blocks ([#TODO](https://github.com/elastic/eui/pull/TODO))
 
 ## [`41.1.0`](https://github.com/elastic/eui/tree/v41.1.0)
 
