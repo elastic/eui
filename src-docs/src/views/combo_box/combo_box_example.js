@@ -219,7 +219,6 @@ const duplicateOptionsSnippet = `const options = [{
 
 import Labelledby from './combo_box_labelledby';
 const labelledbySource = require('!!raw-loader!./combo_box_labelledby');
-const labelledbyHtml = renderToHtml(DuplicateOptions);
 const labelledbySnippet = `<EuiComboBox
   aria-labelledby={generatedId}
   placeholder="Select or create options"
@@ -662,12 +661,8 @@ export const ComboBoxExample = {
       title: 'Accessible label with aria-labelledby',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: labelledbySource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: labelledbyHtml,
         },
       ],
       text: (
