@@ -23,7 +23,7 @@ import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import { keys, useCombinedRefs } from '../../services';
 import { EuiAutoSizer } from '../auto_sizer';
 import { EuiButtonIcon } from '../button';
-import { keysOf, CommonProps, ExclusiveUnion } from '../common';
+import { keysOf, ExclusiveUnion } from '../common';
 import { EuiCopy } from '../copy';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n } from '../i18n';
@@ -32,6 +32,7 @@ import { useMutationObserver } from '../observer/mutation_observer';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiOverlayMask } from '../overlay_mask';
 import {
+  EuiCodeSharedProps,
   DEFAULT_LANGUAGE,
   checkSupportedLanguage,
   getHtmlContent,
@@ -120,8 +121,7 @@ interface LineNumbersConfig {
   highlight?: string;
 }
 
-export type EuiCodeBlockImplProps = CommonProps & {
-  className?: string;
+export type EuiCodeBlockImplProps = EuiCodeSharedProps & {
   fontSize?: FontSize;
 
   /**
@@ -134,14 +134,7 @@ export type EuiCodeBlockImplProps = CommonProps & {
    */
   isCopyable?: boolean;
 
-  /**
-   * Sets the syntax highlighting for a specific language
-   * @see https://prismjs.com/#supported-languages
-   * for options
-   */
-  language?: string;
   paddingSize?: PaddingSize;
-  transparentBackground?: boolean;
 
   /**
    * Specify how `white-space` inside the element is handled.
