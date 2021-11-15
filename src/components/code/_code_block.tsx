@@ -11,8 +11,6 @@ import React, {
   HTMLAttributes,
   FunctionComponent,
   KeyboardEvent,
-  ReactElement,
-  ReactNode,
   memo,
   forwardRef,
   useEffect,
@@ -20,7 +18,7 @@ import React, {
   useState,
 } from 'react';
 import classNames from 'classnames';
-import { highlight, RefractorNode, listLanguages } from 'refractor';
+import { highlight, RefractorNode } from 'refractor';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import { keys, useCombinedRefs } from '../../services';
 import { EuiAutoSizer } from '../auto_sizer';
@@ -33,7 +31,13 @@ import { useInnerText } from '../inner_text';
 import { useMutationObserver } from '../observer/mutation_observer';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiOverlayMask } from '../overlay_mask';
-import { highlightByLine, nodeToHtml } from './utils';
+import {
+  DEFAULT_LANGUAGE,
+  checkSupportedLanguage,
+  getHtmlContent,
+  nodeToHtml,
+  highlightByLine,
+} from './utils';
 
 // eslint-disable-next-line local/forward-ref
 const virtualizedOuterElement = ({
@@ -61,9 +65,6 @@ const ListRow = ({ data, index, style }: ListChildComponentProps) => {
   row.properties.style = style;
   return nodeToHtml(row, index, data, 0);
 };
-
-const SUPPORTED_LANGUAGES = listLanguages();
-const DEFAULT_LANGUAGE = 'text';
 
 // Based on observed line height for non-virtualized code blocks
 const fontSizeToRowHeightMap = {
@@ -176,11 +177,9 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   lineNumbers = false,
   ...rest
 }) => {
-  const language: string = useMemo(
-    () =>
-      SUPPORTED_LANGUAGES.includes(_language) ? _language : DEFAULT_LANGUAGE,
-    [_language]
-  );
+  const language = useMemo(() => checkSupportedLanguage(_language), [
+    _language,
+  ]);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [wrapperRef, setWrapperRef] = useState<Element | null>(null);
   const [innerTextRef, _innerText] = useInnerText('');
@@ -218,12 +217,10 @@ export const EuiCodeBlockImpl: FunctionComponent<EuiCodeBlockImplProps> = ({
   ]);
 
   // Used by `pre` when `isVirtualized=false` or `children` is not parsable (`isVirtualized=false`)
-  const content: ReactElement[] | ReactNode = useMemo(() => {
-    if (!Array.isArray(data) || data.length < 1) {
-      return children;
-    }
-    return data.map(nodeToHtml);
-  }, [data, children]);
+  const content = useMemo(() => getHtmlContent(data, children), [
+    data,
+    children,
+  ]);
 
   const doesOverflow = () => {
     if (!wrapperRef) return;
