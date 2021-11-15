@@ -140,6 +140,11 @@ export type EuiSuperDatePickerProps = CommonProps & {
       'needsUpdate' | 'showTooltip' | 'isLoading' | 'isDisabled' | 'onClick'
     >
   >;
+
+  /**
+   * Reduces overall height to compressed form size
+   */
+  compressed?: boolean;
 };
 
 interface EuiSuperDatePickerState {
@@ -380,6 +385,7 @@ export class EuiSuperDatePicker extends Component<
       locale,
       timeFormat,
       utcOffset,
+      compressed,
     } = this.props;
 
     if (
@@ -419,6 +425,7 @@ export class EuiSuperDatePicker extends Component<
             startDateControl={
               <EuiDatePopoverButton
                 className="euiSuperDatePicker__startPopoverButton"
+                compressed={compressed}
                 position="start"
                 needsUpdating={hasChanged}
                 isInvalid={isInvalid}
@@ -437,6 +444,7 @@ export class EuiSuperDatePicker extends Component<
             endDateControl={
               <EuiDatePopoverButton
                 position="end"
+                compressed={compressed}
                 needsUpdating={hasChanged}
                 isInvalid={isInvalid}
                 isDisabled={isDisabled}
@@ -481,6 +489,7 @@ export class EuiSuperDatePicker extends Component<
           isDisabled={isDisabled || this.state.isInvalid}
           onClick={this.handleClickUpdateButton}
           data-test-subj="superDatePickerApplyTimeButton"
+          size={this.props.compressed ? 's' : 'm'}
           {...updateButtonProps}
         />
       </EuiFlexItem>
@@ -504,6 +513,7 @@ export class EuiSuperDatePicker extends Component<
       'data-test-subj': dataTestSubj,
       width: _width,
       isQuickSelectOnly,
+      compressed,
     } = this.props;
 
     // Force reduction in width if showing quick select only
@@ -559,6 +569,7 @@ export class EuiSuperDatePicker extends Component<
               refreshInterval={refreshInterval}
               onRefreshChange={onRefreshChange}
               fullWidth={width === 'full'}
+              compressed={compressed}
             />
           </EuiFlexItem>
         ) : (
@@ -566,6 +577,7 @@ export class EuiSuperDatePicker extends Component<
             <EuiFlexItem>
               <EuiFormControlLayout
                 className="euiSuperDatePicker"
+                compressed={compressed}
                 isDisabled={isDisabled}
                 prepend={quickSelect}
                 append={autoRefreshAppend}

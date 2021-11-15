@@ -57,6 +57,10 @@
   // Fixes margin around delimiter
   // Only needed on first popover since basic .euiFormControlLayout takes care of the last one
   margin-right: -$euiSizeM;
+
+  .euiFormControlLayout--compressed & {
+    margin-right: -$euiSizeS;
+  }
 }
 
 .euiSuperDatePicker__prettyFormat {

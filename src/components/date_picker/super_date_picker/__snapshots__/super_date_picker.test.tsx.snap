@@ -96,6 +96,7 @@ exports[`EuiSuperDatePicker accepts data-test-subj and passes to EuiFormControlL
       needsUpdate={false}
       onClick={[Function]}
       showTooltip={true}
+      size="m"
     />
   </EuiFlexItem>
 </EuiFlexGroup>
@@ -196,6 +197,7 @@ exports[`EuiSuperDatePicker is rendered 1`] = `
       needsUpdate={false}
       onClick={[Function]}
       showTooltip={true}
+      size="m"
     />
   </EuiFlexItem>
 </EuiFlexGroup>
