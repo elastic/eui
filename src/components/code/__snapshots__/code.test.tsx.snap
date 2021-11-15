@@ -2,11 +2,97 @@
 
 exports[`EuiCode renders a code snippet 1`] = `
 <span
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--inline prismjs language-text testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--inline testClass1 testClass2"
 >
   <code
     aria-label="aria-label"
-    class="euiCodeBlock__code text"
+    class="euiCodeBlock__code"
+    data-code-language="text"
+    data-test-subj="test subject string"
+  >
+    var some = 'code';
+console.log(some);
+  </code>
+</span>
+`;
+
+exports[`EuiCode renders languages 1`] = `
+<span
+  class="euiCodeBlock euiCodeBlock--inline testClass1 testClass2"
+>
+  <code
+    aria-label="aria-label"
+    class="euiCodeBlock__code"
+    data-code-language="js"
+    data-test-subj="test subject string"
+  >
+    <span
+      class="token keyword"
+    >
+      var
+    </span>
+     some 
+    <span
+      class="token operator"
+    >
+      =
+    </span>
+     
+    <span
+      class="token string"
+    >
+      'code'
+    </span>
+    <span
+      class="token punctuation"
+    >
+      ;
+    </span>
+    
+
+    <span
+      class="token console class-name"
+    >
+      console
+    </span>
+    <span
+      class="token punctuation"
+    >
+      .
+    </span>
+    <span
+      class="token method function property-access"
+    >
+      log
+    </span>
+    <span
+      class="token punctuation"
+    >
+      (
+    </span>
+    some
+    <span
+      class="token punctuation"
+    >
+      )
+    </span>
+    <span
+      class="token punctuation"
+    >
+      ;
+    </span>
+  </code>
+</span>
+`;
+
+exports[`EuiCode renders transparent backgrounds 1`] = `
+<span
+  class="euiCodeBlock euiCodeBlock--inline euiCodeBlock--transparentBackground testClass1 testClass2"
+>
+  <code
+    aria-label="aria-label"
+    class="euiCodeBlock__code"
+    data-code-language="text"
     data-test-subj="test subject string"
   >
     var some = 'code';

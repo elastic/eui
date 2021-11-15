@@ -6,16 +6,59 @@
  * Side Public License, v 1.
  */
 
-import { CommonProps } from '../common';
+import React, { useMemo, FunctionComponent, HTMLAttributes } from 'react';
+import { highlight, RefractorNode } from 'refractor';
+import classNames from 'classnames';
+import {
+  EuiCodeSharedProps,
+  DEFAULT_LANGUAGE,
+  checkSupportedLanguage,
+  getHtmlContent,
+} from './utils';
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+export type EuiCodeProps = EuiCodeSharedProps & HTMLAttributes<HTMLElement>;
 
-import { EuiCodeBlockImpl, EuiCodeBlockImplProps } from './_code_block';
+export const EuiCode: FunctionComponent<EuiCodeProps> = ({
+  transparentBackground = false,
+  language: _language = DEFAULT_LANGUAGE,
+  children,
+  className,
+  ...rest
+}) => {
+  const language = useMemo(() => checkSupportedLanguage(_language), [
+    _language,
+  ]);
 
-export type EuiCodeProps = CommonProps &
-  Pick<EuiCodeBlockImplProps, 'language' | 'transparentBackground'> &
-  HTMLAttributes<HTMLElement>;
+  const data: RefractorNode[] = useMemo(() => {
+    if (typeof children !== 'string') {
+      return [];
+    }
+    return highlight(children, language);
+  }, [children, language]);
 
-export const EuiCode: FunctionComponent<EuiCodeProps> = ({ ...rest }) => {
-  return <EuiCodeBlockImpl inline={true} {...rest} />;
+  const content = useMemo(() => getHtmlContent(data, children), [
+    data,
+    children,
+  ]);
+
+  const classes = classNames(
+    'euiCodeBlock',
+    'euiCodeBlock--inline',
+    {
+      'euiCodeBlock--transparentBackground': transparentBackground,
+    },
+    className
+  );
+
+  return (
+    <span className={classes}>
+      <code
+        className="euiCodeBlock__code"
+        data-code-language={language}
+        {...rest}
+      >
+        {content}
+      </code>
+    </span>
+  );
 };
