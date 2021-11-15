@@ -261,17 +261,21 @@ const WritingExamples = () => {
         </GuideRuleExample>
         <GuideRuleExample
           panelDisplay="block"
-          type="dont"
-          text="Use generic labels."
+          type="do"
+          text="Use specific labels."
         >
           <EuiFormRow>
             <EuiCheckbox
               onChange={() => {}}
               id={htmlIdGenerator()()}
-              label="Combine values in other bucket"
+              label="Limit incoming traffic"
             />
           </EuiFormRow>
-          <EuiFormRow label="Bucket label">
+          <EuiFormRow 
+                      label="Source"
+                      helpText={
+              <span>Enter CIDR or IP address, for example 192.168.132.6/22.</span>
+            }>
             <EuiFieldText />
           </EuiFormRow>
         </GuideRuleExample>
