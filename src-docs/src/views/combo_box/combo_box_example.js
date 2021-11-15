@@ -252,8 +252,8 @@ export const ComboBoxExample = {
           }
         >
           Labels can be created by wrapping the combo box in an{' '}
-          <strong>EuiFormRow</strong>, adding an <EuiCode>aria-label</EuiCode>{' '}
-          prop, or passing a text node ID to the{' '}
+          <strong>EuiFormRow</strong> with a <EuiCode>label</EuiCode>, adding an{' '}
+          <EuiCode>aria-label</EuiCode> prop, or passing a text node ID to the{' '}
           <EuiCode>aria-labelledby</EuiCode> prop.
         </EuiCallOut>
       </EuiText>

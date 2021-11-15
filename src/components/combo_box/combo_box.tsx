@@ -143,13 +143,12 @@ export interface _EuiComboBoxProps<T>
    */
   autoFocus?: boolean;
   /**
-   * Creates an `aria-label` attribute when using the combo box without a visible label from `<EuiFormRow />`
+   * Required when rendering without a visible label from [EuiFormRow](/#/forms/form-layouts).
    */
   'aria-label'?: string;
   /**
-   * Creates an `aria-labelledby` attribute that must reference the ID of a text element.
-   * This should be used when a heading or text block would provide a better label than
-   * an `aria-label`.
+   * Reference ID of a text element containing the visible label for the combo box when not
+   * supplied by `aria-label` or from [EuiFormRow](/#/forms/form-layouts).
    */
   'aria-labelledby'?: string;
 }

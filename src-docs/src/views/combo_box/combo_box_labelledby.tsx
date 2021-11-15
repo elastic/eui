@@ -4,6 +4,11 @@ import { EuiComboBox, EuiSpacer, EuiText } from '../../../../src/components';
 
 import { useGeneratedHtmlId } from '../../../../src/services';
 
+interface optionsInterface {
+  label: string;
+  'data-test-subj'?: string;
+}
+
 export default () => {
   const generatedId = useGeneratedHtmlId({ prefix: 'generated-heading' });
   const [options, updateOptions] = useState([
@@ -43,11 +48,14 @@ export default () => {
 
   const [selectedOptions, setSelected] = useState([options[2], options[4]]);
 
-  const onChange = (selectedOptions) => {
+  const onChange = (selectedOptions: optionsInterface[]) => {
     setSelected(selectedOptions);
   };
 
-  const onCreateOption = (searchValue, flattenedOptions) => {
+  const onCreateOption = (
+    searchValue: string,
+    flattenedOptions: optionsInterface[]
+  ) => {
     const normalizedSearchValue = searchValue.trim().toLowerCase();
 
     if (!normalizedSearchValue) {
