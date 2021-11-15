@@ -5,7 +5,10 @@ import {
   EuiSuggest,
   EuiSpacer,
   EuiFormRow,
+  EuiSuggestionProps,
 } from '../../../../src/components';
+
+import { EuiSuggestStatus } from '../../../../src/components/suggest/suggest_input';
 
 import { htmlIdGenerator } from '../../../../src/services';
 
@@ -54,12 +57,12 @@ export default () => {
   const [status, setStatus] = useState('unchanged');
   const [radioIdSelected, setSelectedId] = useState(`${idPrefix}0`);
 
-  const onChange = (optionId) => {
+  const onChange = (optionId: string) => {
     setSelectedId(optionId);
-    setStatus(radios.find((x) => x.id === optionId).value);
+    setStatus(radios.find((x) => x.id === optionId)!.value);
   };
 
-  const onItemClick = (item) => {
+  const onItemClick = (item: EuiSuggestionProps) => {
     console.log(item);
   };
 
@@ -74,7 +77,7 @@ export default () => {
       <EuiFormRow label="Suggest" id="test">
         <EuiSuggest
           aria-labelledby="test_label"
-          status={status}
+          status={status as EuiSuggestStatus}
           onInputChange={() => {}}
           onItemClick={onItemClick}
           placeholder="Enter query to display suggestions"
@@ -84,7 +87,7 @@ export default () => {
       <EuiSpacer size="xl" />
       <EuiSuggest
         aria-label="Suggest"
-        status={status}
+        status={status as EuiSuggestStatus}
         onInputChange={() => {}}
         onItemClick={onItemClick}
         placeholder="Enter query to display suggestions"
