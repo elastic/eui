@@ -367,7 +367,7 @@ const WritingExamples = () => {
           </EuiPanel>
         </GuideRuleExample>
 
-        <GuideRuleExample type="do" text="Some cases requrie three buttons.">
+        <GuideRuleExample type="do" text="Some cases require three buttons.">
           <EuiPanel paddingSize="none" style={modalStyles}>
             <EuiModalHeader>
               <EuiModalHeaderTitle>
