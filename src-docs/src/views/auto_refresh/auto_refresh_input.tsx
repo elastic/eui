@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { EuiAutoRefreshButton, OnRefreshChangeProps } from '../../../../../src';
+import { EuiAutoRefresh, OnRefreshChangeProps } from '../../../../src';
 
 export default () => {
   const [refreshInterval, setRefreshInterval] = useState(1000);
@@ -15,7 +15,7 @@ export default () => {
   };
 
   return (
-    <EuiAutoRefreshButton
+    <EuiAutoRefresh
       isPaused={isPaused}
       refreshInterval={refreshInterval}
       onRefreshChange={onRefreshChange}

@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 
-import { EuiAutoRefresh, OnRefreshChangeProps } from '../../../../../src';
+import {
+  EuiFormRow,
+  EuiRefreshInterval,
+  OnRefreshChangeProps,
+} from '../../../../src';
 
 export default () => {
   const [refreshInterval, setRefreshInterval] = useState(1000);
@@ -15,10 +19,12 @@ export default () => {
   };
 
   return (
-    <EuiAutoRefresh
-      isPaused={isPaused}
-      refreshInterval={refreshInterval}
-      onRefreshChange={onRefreshChange}
-    />
+    <EuiFormRow>
+      <EuiRefreshInterval
+        isPaused={isPaused}
+        refreshInterval={refreshInterval}
+        onRefreshChange={onRefreshChange}
+      />
+    </EuiFormRow>
   );
 };

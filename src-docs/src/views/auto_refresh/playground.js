@@ -3,12 +3,12 @@ import {
   EuiAutoRefresh,
   EuiAutoRefreshButton,
   EuiRefreshInterval,
-} from '../../../../../src/components/';
+} from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   dummyFunction,
   simulateFunction,
-} from '../../../services/playground';
+} from '../../services/playground';
 
 export const autoRefreshConfig = () => {
   const docgenInfo = Array.isArray(EuiAutoRefresh.__docgenInfo)

@@ -5,7 +5,7 @@ import {
   OnRefreshChangeProps,
   OnRefreshProps,
   OnTimeChangeProps,
-} from '../../../../../src';
+} from '../../../../src';
 
 export default () => {
   const [refreshInterval, setRefreshInterval] = useState(1000);

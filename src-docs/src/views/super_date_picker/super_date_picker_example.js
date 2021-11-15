@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -9,9 +10,6 @@ import {
   EuiLink,
   EuiText,
   EuiSuperDatePicker,
-  EuiAutoRefresh,
-  EuiAutoRefreshButton,
-  EuiRefreshInterval,
 } from '../../../../src/components';
 
 import { EuiSuperUpdateButtonProps } from './props';
@@ -29,21 +27,10 @@ import SuperDatePickerCustomQuickSelect from './super_date_picker_custom_quick_s
 import { superDatePickerConfig } from './playground';
 const superDatePickerCustomQuickSelectSource = require('!!raw-loader!./super_date_picker_custom_quick_select');
 
-import {
-  autoRefreshConfig,
-  autoRefreshButtonConfig,
-  refreshIntervalConfig,
-} from './auto_refresh/playground';
-import AutoRefresh from './auto_refresh/auto_refresh';
-const autoRefreshSource = require('!!raw-loader!./auto_refresh/auto_refresh');
-import AutoRefreshOnly from './auto_refresh/auto_refresh_only';
-const autoRefreshOnlySource = require('!!raw-loader!./auto_refresh/auto_refresh_only');
-import AutoRefreshButton from './auto_refresh/auto_refresh_button';
-const autoRefreshButtonSource = require('!!raw-loader!./auto_refresh/auto_refresh_button');
-import AutoRefreshInput from './auto_refresh/auto_refresh_input';
-const autoRefreshInputSource = require('!!raw-loader!./auto_refresh/auto_refresh_input');
-import AutoRefreshInterval from './auto_refresh/auto_refresh_interval';
-const autoRefreshIntervalSource = require('!!raw-loader!./auto_refresh/auto_refresh_interval');
+import AutoRefresh from './auto_refresh';
+const autoRefreshSource = require('!!raw-loader!./auto_refresh');
+import AutoRefreshOnly from './auto_refresh_only';
+const autoRefreshOnlySource = require('!!raw-loader!./auto_refresh_only');
 
 const superDatePickerSnippet = `<EuiSuperDatePicker
   onTimeChange={onTimeChange}
@@ -292,71 +279,28 @@ if (!endMoment || !endMoment.isValid()) {
         },
       ],
       text: (
-        <p>
-          Set <EuiCode>isAutoRefreshOnly</EuiCode> to <EuiCode>true </EuiCode>{' '}
-          to limit the component to only display auto refresh content. This is
-          useful in cases where there is no time data but auto-refresh
-          configuration is still desired.
-        </p>
+        <>
+          <p>
+            Set <EuiCode>isAutoRefreshOnly</EuiCode> to <EuiCode>true </EuiCode>{' '}
+            to limit the component to only display auto refresh content. This is
+            useful in cases where there is no time data but auto-refresh
+            configuration is still desired.
+          </p>
+          <p>
+            However, since this is still the full{' '}
+            <strong>EuiSuperDatePicker</strong> component it requires other
+            props that may not be necessary for the refresh only UI. In this
+            case, you can use the{' '}
+            <Link to="/forms/auto-refresh">
+              <strong>EuiAutoRefresh</strong>
+            </Link>{' '}
+            component directly. You will just need to manage the refresh counter
+            yourself.
+          </p>
+        </>
       ),
       demo: <AutoRefreshOnly />,
       props: { EuiSuperDatePicker },
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: autoRefreshInputSource,
-        },
-      ],
-      text: (
-        <p>
-          However, since this is still the full{' '}
-          <strong>EuiSuperDatePicker</strong> component it requires other props
-          that may not be necessary for the refresh only UI. In this case, you
-          can use the <strong>EuiAutoRefresh</strong> component directly. You
-          will need to manage the refresh counter yourself.
-        </p>
-      ),
-      demo: <AutoRefreshInput />,
-      props: { EuiAutoRefresh },
-      playground: autoRefreshConfig,
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: autoRefreshButtonSource,
-        },
-      ],
-      text: (
-        <p>
-          If you&apos;re looking for a more compact version, you can use{' '}
-          <strong>EuiAutoRefreshButton</strong>, which is the same button that
-          is appended to <strong>EuiSuperDatePicker</strong>.
-        </p>
-      ),
-      demo: <AutoRefreshButton />,
-      props: { EuiAutoRefreshButton },
-      playground: autoRefreshButtonConfig,
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: autoRefreshIntervalSource,
-        },
-      ],
-      text: (
-        <p>
-          For even more customizablity, you can use the{' '}
-          <strong>EuiRefreshInterval</strong> component which simply provides
-          the form inputs.
-        </p>
-      ),
-      demo: <AutoRefreshInterval />,
-      props: { EuiRefreshInterval },
-      playground: refreshIntervalConfig,
     },
   ],
 };
