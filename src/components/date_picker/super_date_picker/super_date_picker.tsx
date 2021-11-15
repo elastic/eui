@@ -137,14 +137,9 @@ export type EuiSuperDatePickerProps = CommonProps & {
   isQuickSelectOnly?: boolean;
 
   /**
-   * Props passed to the update button #EuiSuperUpdateButton
+   * Props passed to the update button #EuiSuperUpdateButtonProps
    */
-  updateButtonProps?: Partial<
-    Omit<
-      EuiSuperUpdateButtonProps,
-      'needsUpdate' | 'showTooltip' | 'isLoading' | 'isDisabled' | 'onClick'
-    >
-  >;
+  updateButtonProps?: EuiSuperUpdateButtonProps;
 };
 
 interface EuiSuperDatePickerState {

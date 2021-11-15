@@ -12,41 +12,42 @@ import classNames from 'classnames';
 import { EuiButton, EuiButtonProps } from '../../button';
 import { EuiI18n } from '../../i18n';
 import { EuiToolTip, EuiToolTipProps } from '../../tool_tip';
-import { CommonProps } from '../../common';
 import { EuiBreakpointSize } from '../../../services/breakpoint';
 import { EuiHideFor, EuiShowFor } from '../../responsive';
 
-export type EuiSuperUpdateButtonProps = CommonProps &
-  Partial<Omit<EuiButtonProps, 'isDisabled' | 'isLoading' | 'onClick'>> & {
-    className?: string;
-    isDisabled: boolean;
-    isLoading: boolean;
-    needsUpdate: boolean;
-    onClick: MouseEventHandler<HTMLButtonElement>;
+type EuiSuperUpdateButtonInternalProps = {
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  needsUpdate?: boolean;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+};
 
-    /**
-     * Passes props to `EuiToolTip`
-     */
-    toolTipProps?: EuiToolTipProps;
+export type EuiSuperUpdateButtonProps = {
+  /**
+   * Show the "Click to apply" tooltip
+   */
+  showTooltip?: boolean;
 
-    /**
-     * Show the "Click to apply" tooltip
-     */
-    showTooltip: boolean;
+  /**
+   * Passes props to `EuiToolTip`
+   */
+  toolTipProps?: EuiToolTipProps;
 
-    /**
-     * Returns an IconButton instead
-     */
-    iconOnly?: boolean;
+  /**
+   * Returns an IconButton instead
+   */
+  iconOnly?: boolean;
 
-    /**
-     * Forces state to be `iconOnly` when within provided breakpoints.
-     * Remove completely with `false` or provide your own list of breakpoints.
-     */
-    responsive?: false | EuiBreakpointSize[];
-  };
+  /**
+   * Forces state to be `iconOnly` when within provided breakpoints.
+   * Remove completely with `false` or provide your own list of breakpoints.
+   */
+  responsive?: false | EuiBreakpointSize[];
+} & Partial<Omit<EuiButtonProps, 'isDisabled' | 'isLoading' | 'onClick'>>;
 
-export class EuiSuperUpdateButton extends Component<EuiSuperUpdateButtonProps> {
+export class EuiSuperUpdateButton extends Component<
+  EuiSuperUpdateButtonInternalProps & EuiSuperUpdateButtonProps
+> {
   static defaultProps = {
     needsUpdate: false,
     isLoading: false,
