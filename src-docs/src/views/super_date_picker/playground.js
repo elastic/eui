@@ -1,3 +1,4 @@
+import { PropTypes } from 'react-view';
 import { EuiSuperDatePicker } from '../../../../src/components/';
 import {
   propUtilityForPlayground,
@@ -14,10 +15,10 @@ export const superDatePickerConfig = () => {
   propsToUse.onTimeChange = simulateFunction(propsToUse.onTimeChange, true);
   propsToUse.onRefreshChange = simulateFunction(propsToUse.onRefreshChange);
 
-  // propsToUse.pageCount = {
-  //   ...propsToUse.pageCount,
-  //   value: 22,
-  // };
+  propsToUse.locale = {
+    ...propsToUse.locale,
+    type: PropTypes.String,
+  };
 
   return {
     config: {

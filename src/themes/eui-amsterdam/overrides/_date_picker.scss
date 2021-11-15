@@ -8,11 +8,20 @@
   }
 }
 
-
 .euiDatePickerRange {
   border-radius: $euiFormControlBorderRadius;
 }
 
 .euiDatePicker.euiDatePicker--shadow.euiDatePicker--inline .react-datepicker {
   border: none;
+}
+
+.euiSuperDatePicker__prettyFormat {
+  border-top-right-radius: $euiFormControlBorderRadius;
+  border-bottom-right-radius: $euiFormControlBorderRadius;
+}
+
+.euiFormControlLayout--compressed.euiSuperDatePicker .euiSuperDatePicker__prettyFormat {
+  border-top-right-radius: $euiFormControlCompressedBorderRadius;
+  border-bottom-right-radius: $euiFormControlCompressedBorderRadius;
 }

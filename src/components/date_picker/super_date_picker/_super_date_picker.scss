@@ -49,8 +49,12 @@
     }
 
     &:not(:last-child) > .euiDatePickerRange {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
+      &,
+      .euiDatePopoverButton--end,
+      .euiSuperDatePicker__prettyFormat {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
     }
   }
 }
@@ -74,36 +78,17 @@
   &:not(:disabled):hover,
   &:focus {
     text-decoration: none;
-
-    .euiSuperDatePicker__prettyFormatLink {
-      text-decoration: underline;
-    }
   }
 
   &:disabled {
     background-color: $euiFormBackgroundDisabledColor;
     color: $euiColorDarkShade;
     cursor: not-allowed;
-
-    .euiSuperDatePicker__prettyFormatLink {
-      display: none;
-    }
   }
-}
-
-.euiSuperDatePicker__prettyFormatLink {
-  color: $euiLinkColor;
-  padding-left: $euiSizeXS; // Adds some separation between date text and link
-  flex-shrink: 0;
 }
 
 @include euiBreakpoint('xs', 's') {
   .euiSuperDatePicker__flexWrapper {
     width: calc(100% + #{$euiSizeS});
-  }
-
-  .euiSuperDatePicker__prettyFormatLink {
-    flex-shrink: 1;
-    min-width: 3em; // Ensures at least "Show" is always visible
   }
 }
