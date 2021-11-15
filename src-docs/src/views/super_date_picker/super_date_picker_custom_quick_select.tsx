@@ -5,11 +5,14 @@ import {
   EuiSwitch,
   EuiSpacer,
   EuiLink,
+  OnTimeChangeProps,
+  OnRefreshProps,
+  ApplyTime,
 } from '../../../../src/components';
 
-function MyCustomQuickSelectPanel({ applyTime }) {
+function MyCustomQuickSelectPanel({ applyTime }: { applyTime?: ApplyTime }) {
   function applyMyCustomTime() {
-    applyTime({ start: 'now-30d', end: 'now+7d' });
+    applyTime!({ start: 'now-30d', end: 'now+7d' });
   }
 
   return (
@@ -41,12 +44,14 @@ export default () => {
   const [start, setStart] = useState('now-30m');
   const [end, setEnd] = useState('now');
 
-  const onTimeChange = ({ start, end }) => {
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
     const recentlyUsedRange = recentlyUsedRanges.filter((recentlyUsedRange) => {
       const isDuplicate =
+        // @ts-ignore Help
         recentlyUsedRange.start === start && recentlyUsedRange.end === end;
       return !isDuplicate;
     });
+    // @ts-ignore Help
     recentlyUsedRange.unshift({ start, end });
     setStart(start);
     setEnd(end);
@@ -59,7 +64,7 @@ export default () => {
     startLoading();
   };
 
-  const onRefresh = ({ start, end, refreshInterval }) => {
+  const onRefresh = ({ start, end, refreshInterval }: OnRefreshProps) => {
     return new Promise((resolve) => {
       setTimeout(resolve, 100);
     }).then(() => {

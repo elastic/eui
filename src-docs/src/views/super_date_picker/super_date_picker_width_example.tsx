@@ -6,6 +6,7 @@ import {
   EuiSwitch,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiSuperDatePickerProps,
 } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
 
@@ -16,7 +17,10 @@ export default () => {
     prefix: 'widthButtonGroup',
   });
 
-  const widthButtons = [
+  const widthButtons: Array<{
+    id: string;
+    label: EuiSuperDatePickerProps['width'];
+  }> = [
     {
       id: `${widthButtonGroupPrefix}__restricted`,
       label: 'restricted',
@@ -33,9 +37,9 @@ export default () => {
 
   const [widthIdSelected, setWidthIdSelected] = useState(widthButtons[0].id);
 
-  const onWidthChange = (optionId) => {
+  const onWidthChange = (optionId: React.SetStateAction<string>) => {
     setWidthIdSelected(optionId);
-    setWidth(widthButtons.find(({ id }) => id === optionId).label);
+    setWidth(widthButtons.find(({ id }) => id === optionId)!.label);
   };
 
   const [showCompressed, setShowCompressed] = useState(false);
@@ -43,7 +47,9 @@ export default () => {
     setShowCompressed(!showCompressed);
   };
 
-  const [width, setWidth] = useState();
+  const [width, setWidth] = useState<
+    EuiSuperDatePickerProps['width'] | undefined
+  >();
 
   return (
     <>

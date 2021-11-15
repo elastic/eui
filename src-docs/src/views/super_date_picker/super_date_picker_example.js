@@ -13,6 +13,7 @@ import {
 } from '../../../../src/components';
 
 import { EuiSuperUpdateButtonProps } from './props';
+import { superDatePickerConfig } from './playground';
 
 import SuperDatePicker from './super_date_picker';
 const superDatePickerSource = require('!!raw-loader!./super_date_picker');
@@ -24,13 +25,15 @@ import SuperDatePickerWidth from './super_date_picker_width_example';
 const superDatePickerWidthSource = require('!!raw-loader!./super_date_picker_width');
 
 import SuperDatePickerCustomQuickSelect from './super_date_picker_custom_quick_select';
-import { superDatePickerConfig } from './playground';
 const superDatePickerCustomQuickSelectSource = require('!!raw-loader!./super_date_picker_custom_quick_select');
 
 import AutoRefresh from './auto_refresh';
 const autoRefreshSource = require('!!raw-loader!./auto_refresh');
 import AutoRefreshOnly from './auto_refresh_only';
 const autoRefreshOnlySource = require('!!raw-loader!./auto_refresh_only');
+
+import SuperDatePickerPattern from './super_date_picker_pattern';
+const superDatePickerPatternSource = require('!!raw-loader!./super_date_picker_pattern');
 
 const superDatePickerSnippet = `<EuiSuperDatePicker
   onTimeChange={onTimeChange}
@@ -301,6 +304,28 @@ if (!endMoment || !endMoment.isValid()) {
       ),
       demo: <AutoRefreshOnly />,
       props: { EuiSuperDatePicker },
+    },
+    {
+      title: 'Elastic pattern with KQL',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: superDatePickerPatternSource,
+        },
+      ],
+      text: (
+        <p>
+          The following is a demo pattern of how to layout the{' '}
+          <strong>EuiSuperDatePicker</strong> alongside Elastic&#39;s KQL search
+          bar using{' '}
+          <Link to="/forms/suggest">
+            <strong>EuiSuggest</strong>
+          </Link>{' '}
+          and shrinking to fit when the search bar is in focus.
+        </p>
+      ),
+      demo: <SuperDatePickerPattern />,
+      dempPanelProps: { color: 'subdued' },
     },
   ],
 };

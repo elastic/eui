@@ -7,33 +7,23 @@ import {
   EuiFormLabel,
   EuiPanel,
   EuiText,
+  OnRefreshProps,
+  OnTimeChangeProps,
 } from '../../../../src/components';
 
 export default () => {
-  const [recentlyUsedRanges, setRecentlyUsedRanges] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [start, setStart] = useState('now-30m');
   const [end, setEnd] = useState('now');
 
-  const onTimeChange = ({ start, end }) => {
-    const recentlyUsedRange = recentlyUsedRanges.filter((recentlyUsedRange) => {
-      const isDuplicate =
-        recentlyUsedRange.start === start && recentlyUsedRange.end === end;
-      return !isDuplicate;
-    });
-    recentlyUsedRange.unshift({ start, end });
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
     setStart(start);
     setEnd(end);
-    setRecentlyUsedRanges(
-      recentlyUsedRange.length > 10
-        ? recentlyUsedRange.slice(0, 9)
-        : recentlyUsedRange
-    );
     setIsLoading(true);
     startLoading();
   };
 
-  const onRefresh = ({ start, end, refreshInterval }) => {
+  const onRefresh = ({ start, end, refreshInterval }: OnRefreshProps) => {
     return new Promise((resolve) => {
       setTimeout(resolve, 100);
     }).then(() => {
@@ -41,11 +31,11 @@ export default () => {
     });
   };
 
-  const onStartInputChange = (e) => {
+  const onStartInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStart(e.target.value);
   };
 
-  const onEndInputChange = (e) => {
+  const onEndInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEnd(e.target.value);
   };
 
@@ -100,7 +90,6 @@ export default () => {
         end={end}
         onTimeChange={onTimeChange}
         onRefresh={onRefresh}
-        recentlyUsedRanges={recentlyUsedRanges}
       />
     </>
   );

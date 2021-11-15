@@ -1,20 +1,31 @@
 import React, { useState } from 'react';
 
-import { EuiSuperDatePicker } from '../../../../src/components';
+import {
+  EuiSuperDatePicker,
+  EuiSuperDatePickerProps,
+  OnRefreshProps,
+  OnTimeChangeProps,
+} from '../../../../src/components';
 
-export default ({ width, compressed }) => {
+export default ({
+  width,
+  compressed,
+}: {
+  width: EuiSuperDatePickerProps['width'];
+  compressed: boolean;
+}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [start, setStart] = useState('now-30m');
   const [end, setEnd] = useState('now');
 
-  const onTimeChange = ({ start, end }) => {
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
     setStart(start);
     setEnd(end);
     setIsLoading(true);
     startLoading();
   };
 
-  const onRefresh = ({ start, end, refreshInterval }) => {
+  const onRefresh = ({ start, end, refreshInterval }: OnRefreshProps) => {
     return new Promise((resolve) => {
       setTimeout(resolve, 100);
     }).then(() => {

@@ -17,6 +17,7 @@ export {
 } from './date_picker_range';
 
 export {
+  ApplyTime,
   DurationRange as EuiSuperDatePickerCommonRange,
   DurationRange as EuiSuperDatePickerDurationRange,
   DurationRange as EuiSuperDatePickerRecentRange,
