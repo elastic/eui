@@ -13,14 +13,13 @@ import html from 'html';
 import { act } from 'react-dom/test-utils';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiCodeBlock } from './code_block';
-import { FONT_SIZES, PADDING_SIZES } from './_code_block';
+import { EuiCodeBlock, FONT_SIZES, PADDING_SIZES } from './code_block';
 
 const code = `var some = 'code';
 console.log(some);`;
 
 describe('EuiCodeBlock', () => {
-  test('renders a code block', () => {
+  it('renders a code block', () => {
     const component = render(
       <EuiCodeBlock {...requiredProps}>{code}</EuiCodeBlock>
     );
@@ -90,6 +89,17 @@ describe('EuiCodeBlock', () => {
         });
       });
     });
+
+    describe('whiteSpace', () => {
+      it('renders a pre block tag with a css class modifier', () => {
+        const component = render(
+          <EuiCodeBlock whiteSpace="pre" {...requiredProps}>
+            {code}
+          </EuiCodeBlock>
+        );
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 
   describe('dynamic content', () => {
@@ -139,7 +149,9 @@ describe('EuiCodeBlock', () => {
 
       ReactDOM.render(<App />, appDiv);
     });
+  });
 
+  describe('full screen', () => {
     it('displays content in fullscreen mode', () => {
       const component = mount(
         <EuiCodeBlock language="javascript" overflowHeight={300}>
@@ -154,14 +166,45 @@ describe('EuiCodeBlock', () => {
         'const value = "hello"'
       );
     });
+  });
 
-    test('renders a virtualized code block', () => {
+  describe('virtualization', () => {
+    it('renders a virtualized code block', () => {
       const component = render(
         <EuiCodeBlock
           isVirtualized={true}
           overflowHeight="50%"
           {...requiredProps}
         >
+          {code}
+        </EuiCodeBlock>
+      );
+      expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('line numbers', () => {
+    it('renders line numbers', () => {
+      const component = render(
+        <EuiCodeBlock lineNumbers {...requiredProps}>
+          {code}
+        </EuiCodeBlock>
+      );
+      expect(component).toMatchSnapshot();
+    });
+
+    it('renders line numbers with a start value', () => {
+      const component = render(
+        <EuiCodeBlock lineNumbers={{ start: 10 }} {...requiredProps}>
+          {code}
+        </EuiCodeBlock>
+      );
+      expect(component).toMatchSnapshot();
+    });
+
+    it('renders highlighted line numbers', () => {
+      const component = render(
+        <EuiCodeBlock lineNumbers={{ highlight: '1' }} {...requiredProps}>
           {code}
         </EuiCodeBlock>
       );
