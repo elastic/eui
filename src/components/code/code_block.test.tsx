@@ -9,7 +9,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { mount, render } from 'enzyme';
-import html from 'html';
 import { act } from 'react-dom/test-utils';
 import { requiredProps } from '../../test/required_props';
 
@@ -107,12 +106,10 @@ describe('EuiCodeBlock', () => {
       expect.assertions(2);
 
       function takeSnapshot() {
-        expect(
-          html.prettyPrint(appDiv.innerHTML, {
-            indent_size: 2,
-            unformatted: [], // Expand all tags, including spans
-          })
-        ).toMatchSnapshot();
+        const snapshot = render(
+          <div dangerouslySetInnerHTML={{ __html: appDiv.innerHTML }} />
+        );
+        expect(snapshot).toMatchSnapshot();
       }
 
       // enzyme does not recreate enough of the React<->DOM interaction to reproduce this bug
@@ -139,11 +136,9 @@ describe('EuiCodeBlock', () => {
         }, [value]);
 
         return (
-          <div>
-            <EuiCodeBlock language="javascript">
-              const value = &apos;{value}&apos;
-            </EuiCodeBlock>
-          </div>
+          <EuiCodeBlock language="javascript">
+            const value = &apos;{value}&apos;
+          </EuiCodeBlock>
         );
       }
 

@@ -1,33 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiCodeBlock dynamic content updates DOM when input changes 1`] = `
-"<div>
-  <div class=\\"euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-javascript\\">
-    <pre class=\\"euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap\\" tabindex=\\"-1\\">
-      <code class=\\"euiCodeBlock__code javascript\\">const value = 'State 1'</code>
+<div>
+  <div
+    class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-javascript"
+  >
+    <pre
+      class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+      tabindex="-1"
+    >
+      <code
+        class="euiCodeBlock__code javascript"
+      >
+        const value = 'State 1'
+      </code>
     </pre>
   </div>
-</div>"
+</div>
 `;
 
 exports[`EuiCodeBlock dynamic content updates DOM when input changes 2`] = `
-"<div>
-  <div class=\\"euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-javascript\\">
-    <pre class=\\"euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap\\" tabindex=\\"-1\\">
-      <code class=\\"euiCodeBlock__code javascript\\">const value = 'State 2'</code>
+<div>
+  <div
+    class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-javascript"
+  >
+    <pre
+      class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
+      tabindex="-1"
+    >
+      <code
+        class="euiCodeBlock__code javascript"
+      >
+        const value = 'State 2'
+      </code>
     </pre>
   </div>
-</div>"
+</div>
 `;
 
 exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl euiCodeBlock--hasLineNumbers prismjs language-text testClass1 testClass2"
-  style="max-height:300px"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasLineNumbers prismjs language-text testClass1 testClass2"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
-    style="max-height:300px"
     tabindex="-1"
   >
     <code
@@ -70,33 +86,15 @@ exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
       </span>
     </code>
   </pre>
-  <div
-    class="euiCodeBlock__controls"
-  >
-    <button
-      aria-label="Expand"
-      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="fullScreen"
-      />
-    </button>
-  </div>
 </div>
 `;
 
 exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl euiCodeBlock--hasLineNumbers prismjs language-text testClass1 testClass2"
-  style="max-height:300px"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasLineNumbers prismjs language-text testClass1 testClass2"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
-    style="max-height:300px"
     tabindex="-1"
   >
     <code
@@ -139,33 +137,15 @@ exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
       </span>
     </code>
   </pre>
-  <div
-    class="euiCodeBlock__controls"
-  >
-    <button
-      aria-label="Expand"
-      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="fullScreen"
-      />
-    </button>
-  </div>
 </div>
 `;
 
 exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl euiCodeBlock--hasLineNumbers prismjs language-text testClass1 testClass2"
-  style="max-height:300px"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasLineNumbers prismjs language-text testClass1 testClass2"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
-    style="max-height:300px"
     tabindex="-1"
   >
     <code
@@ -208,22 +188,6 @@ exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] =
       </span>
     </code>
   </pre>
-  <div
-    class="euiCodeBlock__controls"
-  >
-    <button
-      aria-label="Expand"
-      class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton"
-      type="button"
-    >
-      <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="fullScreen"
-      />
-    </button>
-  </div>
 </div>
 `;
 
