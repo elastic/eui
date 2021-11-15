@@ -271,11 +271,14 @@ const WritingExamples = () => {
               label="Limit incoming traffic"
             />
           </EuiFormRow>
-          <EuiFormRow 
-                      label="Source"
-                      helpText={
-              <span>Enter CIDR or IP address, for example 192.168.132.6/22.</span>
-            }>
+          <EuiFormRow
+            label="Source"
+            helpText={
+              <span>
+                Enter CIDR or IP address, for example 192.168.132.6/22.
+              </span>
+            }
+          >
             <EuiFieldText />
           </EuiFormRow>
         </GuideRuleExample>
@@ -381,8 +384,8 @@ const WritingExamples = () => {
             <EuiModalBody>
               <EuiText>
                 <p>
-                  When you exit editing mode, you can keep or discard your changes.
-                  You can&apos;t recover discarded changes.
+                  When you exit editing mode, you can keep or discard your
+                  changes. You can&apos;t recover discarded changes.
                 </p>
               </EuiText>
             </EuiModalBody>
@@ -566,7 +569,7 @@ const WritingExamples = () => {
             label="Name"
             helpText={<span>Your name will be on public display.</span>}
           >
-            <EuiFieldNumber min={1} max={5} step={1} />
+            <EuiFieldText name="text" />
           </EuiFormRow>
         </GuideRuleExample>
       </GuideRule>
@@ -577,8 +580,8 @@ const WritingExamples = () => {
           type="do"
           text="Prefer this format for a required field."
         >
-          <EuiFormRow label="Name" helpText={<span>Name is required.</span>}>
-            <EuiFieldNumber min={1} max={5} step={1} />
+          <EuiFormRow label="Name" isInvalid={true} error="Name is required.">
+            <EuiFieldText name="text" isInvalid={true} />
           </EuiFormRow>
         </GuideRuleExample>
 
@@ -588,14 +591,11 @@ const WritingExamples = () => {
           text="Tell users what happened and how to fix it."
         >
           <EuiFormRow
-            label="Name"
-            helpText={
-              <span>
-                Choose a different address as this one already exists.
-              </span>
-            }
+            label="Address"
+            error="Choose a different address as this one already exists."
+            isInvalid={true}
           >
-            <EuiFieldNumber min={1} max={5} step={1} />
+            <EuiFieldText name="text" isInvalid={true} />
           </EuiFormRow>
         </GuideRuleExample>
       </GuideRule>
