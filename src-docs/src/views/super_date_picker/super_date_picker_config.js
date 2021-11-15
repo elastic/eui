@@ -8,14 +8,10 @@ import {
 
 export default () => {
   const [recentlyUsedRanges, setRecentlyUsedRanges] = useState([]);
-  const [isDisabled, setIsDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showUpdateButton, setShowUpdateButton] = useState(true);
-  const [isAutoRefreshOnly, setIsAutoRefreshOnly] = useState(true);
   const [start, setStart] = useState('now-30m');
   const [end, setEnd] = useState('now');
-  const [isPaused, setIsPaused] = useState(true);
-  const [refreshInterval, setRefreshInterval] = useState(1000);
 
   const onTimeChange = ({ start, end }) => {
     const recentlyUsedRange = recentlyUsedRanges.filter((recentlyUsedRange) => {
@@ -50,23 +46,8 @@ export default () => {
     setIsLoading(false);
   };
 
-  const onRefreshChange = ({ isPaused, refreshInterval }) => {
-    setIsPaused(isPaused);
-    if (refreshInterval >= 100) {
-      setRefreshInterval(refreshInterval);
-    }
-  };
-
-  const toggleDisabled = () => {
-    setIsDisabled(!isDisabled);
-  };
-
   const toggleShowApplyButton = () => {
     setShowUpdateButton(!showUpdateButton);
-  };
-
-  const toggleShowRefreshOnly = () => {
-    setIsAutoRefreshOnly(!isAutoRefreshOnly);
   };
 
   return (
@@ -74,35 +55,17 @@ export default () => {
       <EuiSwitch
         label="Show update button"
         onChange={toggleShowApplyButton}
-        checked={!isAutoRefreshOnly && showUpdateButton}
-        disabled={isAutoRefreshOnly}
-      />
-      &emsp;
-      <EuiSwitch
-        label="Is auto-refresh only"
-        onChange={toggleShowRefreshOnly}
-        checked={isAutoRefreshOnly}
-      />
-      &emsp;
-      <EuiSwitch
-        label="Is disabled"
-        onChange={toggleDisabled}
-        checked={isDisabled}
+        checked={showUpdateButton}
       />
       <EuiSpacer />
       <EuiSuperDatePicker
-        isDisabled={isDisabled}
         isLoading={isLoading}
         start={start}
         end={end}
         onTimeChange={onTimeChange}
         onRefresh={onRefresh}
-        isPaused={isPaused}
-        refreshInterval={refreshInterval}
-        onRefreshChange={onRefreshChange}
         recentlyUsedRanges={recentlyUsedRanges}
         showUpdateButton={showUpdateButton}
-        isAutoRefreshOnly={isAutoRefreshOnly}
       />
       <EuiSpacer />
     </Fragment>

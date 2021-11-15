@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiSuperDatePicker,
@@ -14,8 +14,6 @@ export default () => {
   const [isLoading, setIsLoading] = useState(false);
   const [start, setStart] = useState('now-30m');
   const [end, setEnd] = useState('now');
-  const [isPaused, setIsPaused] = useState(true);
-  const [refreshInterval, setRefreshInterval] = useState();
 
   const onTimeChange = ({ start, end }) => {
     const recentlyUsedRange = recentlyUsedRanges.filter((recentlyUsedRange) => {
@@ -59,61 +57,51 @@ export default () => {
     setIsLoading(false);
   };
 
-  const onRefreshChange = ({ isPaused, refreshInterval }) => {
-    setIsPaused(isPaused);
-    setRefreshInterval(refreshInterval);
-  };
-
   const renderTimeRange = () => {
     return (
-      <Fragment>
-        <EuiPanel paddingSize="m">
-          <EuiText size="s">
-            EuiSuperDatePicker should be resilient to invalid date values. You
-            can try to break it with unexpected values here.
-          </EuiText>
-          <EuiSpacer />
-          <EuiFormControlLayoutDelimited
-            prepend={<EuiFormLabel>Dates</EuiFormLabel>}
-            startControl={
-              <input
-                onChange={onStartInputChange}
-                type="text"
-                value={start}
-                placeholder="start"
-                className="euiFieldText"
-              />
-            }
-            endControl={
-              <input
-                onChange={onEndInputChange}
-                type="text"
-                placeholder="end"
-                value={end}
-                className="euiFieldText"
-              />
-            }
-          />
-        </EuiPanel>
-      </Fragment>
+      <EuiPanel color="subdued" paddingSize="m">
+        <EuiText size="s">
+          EuiSuperDatePicker should be resilient to invalid date values. You can
+          try to break it with unexpected values here.
+        </EuiText>
+        <EuiSpacer />
+        <EuiFormControlLayoutDelimited
+          prepend={<EuiFormLabel>Dates</EuiFormLabel>}
+          startControl={
+            <input
+              onChange={onStartInputChange}
+              type="text"
+              value={start}
+              placeholder="start"
+              className="euiFieldText"
+            />
+          }
+          endControl={
+            <input
+              onChange={onEndInputChange}
+              type="text"
+              placeholder="end"
+              value={end}
+              className="euiFieldText"
+            />
+          }
+        />
+      </EuiPanel>
     );
   };
 
   return (
-    <Fragment>
+    <>
+      {renderTimeRange()}
+      <EuiSpacer />
       <EuiSuperDatePicker
         isLoading={isLoading}
         start={start}
         end={end}
         onTimeChange={onTimeChange}
         onRefresh={onRefresh}
-        isPaused={isPaused}
-        refreshInterval={refreshInterval}
-        onRefreshChange={onRefreshChange}
         recentlyUsedRanges={recentlyUsedRanges}
       />
-      <EuiSpacer />
-      {renderTimeRange()}
-    </Fragment>
+    </>
   );
 };

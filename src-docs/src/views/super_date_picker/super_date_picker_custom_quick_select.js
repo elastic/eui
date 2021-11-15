@@ -13,7 +13,7 @@ function MyCustomQuickSelectPanel({ applyTime }) {
   }
 
   return (
-    <EuiLink onClick={applyMyCustomTime}>entire dataset timerange</EuiLink>
+    <EuiLink onClick={applyMyCustomTime}>Entire dataset timerange</EuiLink>
   );
 }
 
@@ -25,8 +25,7 @@ export default () => {
   const [showCustomQuickSelectPanel, setShowCustomQuickSelectPanel] = useState(
     true
   );
-  const [isPaused, setIsPaused] = useState(true);
-  const [refreshInterval, setRefreshInterval] = useState();
+  const [showRecentlyUsed, setShowRecentlyUsed] = useState(true);
 
   const onTimeChange = ({ start, end }) => {
     const recentlyUsedRange = recentlyUsedRanges.filter((recentlyUsedRange) => {
@@ -62,28 +61,31 @@ export default () => {
     setIsLoading(false);
   };
 
-  const onRefreshChange = ({ isPaused, refreshInterval }) => {
-    setIsPaused(isPaused);
-    setRefreshInterval(refreshInterval);
-  };
-
   const toggleShowCustomQuickSelectPanel = () => {
     setShowCustomQuickSelectPanel(!showCustomQuickSelectPanel);
   };
 
-  let customQuickSelectPanels;
-  if (showCustomQuickSelectPanel) {
-    customQuickSelectPanels = [
-      {
-        title: 'My custom panel',
-        content: <MyCustomQuickSelectPanel />,
-      },
-    ];
-  }
+  const toggleShowRecentlyUsed = () => {
+    setShowRecentlyUsed(!showRecentlyUsed);
+  };
+
+  const customQuickSelectPanels = [
+    {
+      title: 'My custom panel',
+      content: <MyCustomQuickSelectPanel />,
+    },
+  ];
+
   return (
     <Fragment>
       <EuiSwitch
-        label="Show custom quick menu panel"
+        label="Show recently used"
+        onChange={toggleShowRecentlyUsed}
+        checked={showRecentlyUsed}
+      />
+      &emsp;
+      <EuiSwitch
+        label="Show custom panel"
         onChange={toggleShowCustomQuickSelectPanel}
         checked={showCustomQuickSelectPanel}
       />
@@ -95,11 +97,10 @@ export default () => {
         end={end}
         onTimeChange={onTimeChange}
         onRefresh={onRefresh}
-        isPaused={isPaused}
-        refreshInterval={refreshInterval}
-        onRefreshChange={onRefreshChange}
-        recentlyUsedRanges={recentlyUsedRanges}
-        customQuickSelectPanels={customQuickSelectPanels}
+        recentlyUsedRanges={showRecentlyUsed ? recentlyUsedRanges : undefined}
+        customQuickSelectPanels={
+          showCustomQuickSelectPanel ? customQuickSelectPanels : undefined
+        }
       />
       <EuiSpacer />
     </Fragment>

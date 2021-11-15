@@ -7,6 +7,7 @@ import {
   EuiCodeBlock,
   EuiIcon,
   EuiLink,
+  EuiText,
   EuiSuperDatePicker,
   EuiAutoRefresh,
   EuiAutoRefreshButton,
@@ -40,25 +41,42 @@ import AutoRefreshInterval from './auto_refresh/auto_refresh_interval';
 const autoRefreshIntervalSource = require('!!raw-loader!./auto_refresh/auto_refresh_interval');
 
 const superDatePickerSnippet = `<EuiSuperDatePicker
-  onTimeChange={this.onTimeChange}
-/>
-`;
+  onTimeChange={onTimeChange}
+  start="now-30m"
+  end="now"
+/>`;
 
-const superDatePickerCustomQuickSelectSnippet = `customQuickSelectPanels = [
-  {
-    title: 'My custom panel',
-    content: <MyCustomQuickSelectPanel />,
-  },
-];
-
-<EuiSuperDatePicker
-  onTimeChange={this.onTimeChange}
-  customQuickSelectPanels={customQuickSelectPanels}
+const superDatePickerCustomQuickSelectSnippet = `<EuiSuperDatePicker
+  onTimeChange={onTimeChange}
+  recentlyUsedRanges={[
+    end: ShortDate,
+    start: ShortDate,
+    label?: string,
+  ]}
+  customQuickSelectPanels={[
+    {
+      title: string,
+      content: ReactElement,
+    },
+  ]}
 />
 `;
 
 export const SuperDatePickerExample = {
   title: 'Super date picker',
+  intro: (
+    <EuiText grow={false}>
+      <p>
+        <strong>EuiSuperDatePicker</strong> is a complex date picker that
+        supports relative and absolute dates. It offers a convenient{' '}
+        <strong>Quick select menu</strong>{' '}
+        <EuiIcon type="calendar" color="primary" /> which includes{' '}
+        <strong>Commonly used dates</strong>,{' '}
+        <strong>Recently used date ranges</strong> and{' '}
+        <strong>Auto refresh</strong> features.
+      </p>
+    </EuiText>
+  ),
   sections: [
     {
       source: [
@@ -68,16 +86,7 @@ export const SuperDatePickerExample = {
         },
       ],
       text: (
-        <div>
-          <p>
-            <strong>EuiSuperDatePicker</strong> is a date picker that supports
-            relative and absolute dates. It offers a convenient{' '}
-            <strong>Quick select menu</strong>{' '}
-            <EuiIcon type="calendar" color="primary" /> which includes{' '}
-            <strong>Commonly used dates</strong>,{' '}
-            <strong>Recently used date ranges</strong> and{' '}
-            <strong>Set refresh</strong> features.
-          </p>
+        <>
           <p>
             Pass <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> date times
             as strings in either datemath format (e.g.: <EuiCode>now</EuiCode>,{' '}
@@ -105,7 +114,7 @@ if (!endMoment || !endMoment.isValid()) {
   throw new Error('Unable to parse end string');
 }`}
           </EuiCodeBlock>
-        </div>
+        </>
       ),
       props: { EuiSuperDatePicker },
       snippet: superDatePickerSnippet,
@@ -113,7 +122,7 @@ if (!endMoment || !endMoment.isValid()) {
       playground: superDatePickerConfig,
     },
     {
-      title: 'Configurations',
+      title: 'Update button',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -121,7 +130,7 @@ if (!endMoment || !endMoment.isValid()) {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             When <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> change from
             interactions with <strong> Quick select</strong>,{' '}
@@ -145,12 +154,19 @@ if (!endMoment || !endMoment.isValid()) {
             immediately invoke <EuiCode>onTimeChange</EuiCode> for all{' '}
             <EuiCode>start</EuiCode> and <EuiCode>end</EuiCode> changes.
           </p>
-        </div>
+        </>
       ),
       demo: <SuperDatePickerConfig />,
+      props: { EuiSuperDatePicker },
+      snippet: `<EuiSuperDatePicker
+  onTimeChange={onTimeChange}
+  start="now-30m"
+  end="now"
+  showUpdateButton={false}
+/>`,
     },
     {
-      title: 'Custom quick select panel',
+      title: 'Quick select panels',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -158,13 +174,33 @@ if (!endMoment || !endMoment.isValid()) {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
-            <strong>EuiSuperDatePicker</strong>&apos;s quick select menu also
-            supports <strong>custom panels</strong>. These panels can have their
-            own title and perform custom actions on the date picker.
+            <strong>EuiSuperDatePicker</strong>&apos;s quick select menu
+            provides the user with single-click options for quick selection with
+            the following panels.
           </p>
-        </div>
+          <ul>
+            <li>
+              <EuiCode>commonlyUsedRanges</EuiCode>: A default set of common
+              date ranges is automatically provided but can be overridden with
+              this prop.
+            </li>
+            <li>
+              <EuiCode>recentlyUsedRanges</EuiCode>: Store the users previously
+              submitted time ranges and pass them back to date picker with this
+              props. It&apos;s best to limit this list to around 10 items.
+            </li>
+            <li>
+              <EuiCode>customQuickSelectPanels</EuiCode>: Accepts an array of
+              panel objects as{' '}
+              <EuiCode language="tsx">
+                {'{ title: string, content: ReactElement }'}
+              </EuiCode>
+              .
+            </li>
+          </ul>
+        </>
       ),
       snippet: superDatePickerCustomQuickSelectSnippet,
       demo: <SuperDatePickerCustomQuickSelect />,
