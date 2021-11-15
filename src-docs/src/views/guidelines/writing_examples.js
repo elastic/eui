@@ -377,7 +377,7 @@ const WritingExamples = () => {
             <EuiModalBody>
               <EuiText>
                 <p>
-                  You can keep or discard your changes on return to view mode.
+                  When you exit editing mode, you can keep or discard your changes.
                   You can&apos;t recover discarded changes.
                 </p>
               </EuiText>
