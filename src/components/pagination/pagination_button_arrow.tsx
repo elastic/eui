@@ -7,7 +7,6 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import { toSentenceCase } from '../../services';
 
 import {
   EuiButtonIcon,
@@ -42,6 +41,13 @@ export const EuiPaginationButtonArrow: FunctionComponent<Props> = ({
 }) => {
   let labelModifier: number | undefined;
 
+  const labels = {
+    first: useEuiI18n('euiPaginationButtonArrow.firstPage', 'First'),
+    previous: useEuiI18n('euiPaginationButtonArrow.previousPage', 'Previous'),
+    next: useEuiI18n('euiPaginationButtonArrow.nextPage', 'Next'),
+    last: useEuiI18n('euiPaginationButtonArrow.lastPage', 'Last'),
+  };
+
   if (type === 'previous') {
     labelModifier = activePage != null ? activePage : 0;
   } else if (type === 'next') {
@@ -49,9 +55,10 @@ export const EuiPaginationButtonArrow: FunctionComponent<Props> = ({
   }
 
   const label = useEuiI18n(
-    'euiPaginationButtonArrow.previousPage',
-    ({ page }) => `${toSentenceCase(type)} page${page ? `, ${page}` : ''}`,
+    'euiPaginationButtonArrow.label',
+    ({ type, page }) => `${type} page${page ? `, ${page}` : ''}`,
     {
+      type: labels[type],
       page: labelModifier,
     }
   );
