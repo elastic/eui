@@ -5,6 +5,10 @@
 - Fixed `EuiCodeBlock` not passing `data-test-subj` or `aria-label` to virtualized & full-screen code blocks ([#TODO](https://github.com/elastic/eui/pull/TODO))
 - Fixed `EuiCodeBlock` not closing full-screen mode when the Escape key is pressed ([#TODO](https://github.com/elastic/eui/pull/TODO))
 
+**Theme: Amsterdam**
+
+- Fixed `EuiCodeBlock`'s not properly increasing font size on large ([#TODO](https://github.com/elastic/eui/pull/TODO))
+
 ## [`41.1.0`](https://github.com/elastic/eui/tree/v41.1.0)
 
 - Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))

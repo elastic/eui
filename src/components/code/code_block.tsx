@@ -76,7 +76,7 @@ const ListRow = ({ data, index, style }: ListChildComponentProps) => {
 const fontSizeToRowHeightMap = {
   s: 18,
   m: 21,
-  l: 21,
+  l: 24,
 };
 
 const fontSizeToClassNameMap = {
