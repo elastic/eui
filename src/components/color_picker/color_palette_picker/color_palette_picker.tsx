@@ -137,6 +137,9 @@ export const EuiColorPalettePicker: FunctionComponent<EuiColorPalettePickerProps
         dropdownDisplay: (
           <div className="euiColorPalettePicker__item">
             {title && type !== 'text' && (
+              // Accessible labels are managed by color_palette_display_fixed and
+              // color_palette_display_gradient. Adding the aria-hidden attribute
+              // here to ensure screen readers don't speak the listbox options twice.
               <div
                 aria-hidden="true"
                 className="euiColorPalettePicker__itemTitle"

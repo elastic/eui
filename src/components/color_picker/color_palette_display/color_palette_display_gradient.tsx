@@ -27,9 +27,11 @@ export const EuiColorPaletteDisplayGradient: FunctionComponent<EuiColorPaletteDi
 
   return (
     <>
-      <EuiScreenReaderOnly>
-        <span>{title}</span>
-      </EuiScreenReaderOnly>
+      {title && (
+        <EuiScreenReaderOnly>
+          <span>{title}</span>
+        </EuiScreenReaderOnly>
+      )}
       <span
         // aria-hidden="true" is to ensure color blocks are ignored by screen readers,
         // and the only accessible text for options is the EuiScreenReaderOnly {title}
