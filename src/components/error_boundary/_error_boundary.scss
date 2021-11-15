@@ -9,15 +9,5 @@
     $color2 1px,
     $color2 20px
   );
-  overflow: auto;
   padding: $euiSize;
-}
-
-.euiErrorBoundary__text {
-  background-color: $euiColorEmptyShade;
-  padding: $euiSizeS;
-}
-
-.euiErrorBoundary__stack {
-  white-space: pre-wrap;
 }

@@ -13,7 +13,6 @@ import React, {
   Ref,
 } from 'react';
 import classNames from 'classnames';
-
 import { CommonProps, keysOf, ExclusiveUnion } from '../common';
 
 export const panelPaddingValues = {
