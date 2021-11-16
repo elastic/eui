@@ -40,6 +40,10 @@ import {
   highlightByLine,
 } from './utils';
 
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+// We're disabling the above a11y lint rule because it's valid for a tabIndex={0} element to have an onKeyDown event listener
+// The onKeyDown is an enhancement for keyboard users, and the tabIndex enables overflow scrolling for keyboard users and enhances focus for screen reader users
+
 // eslint-disable-next-line local/forward-ref
 const virtualizedOuterElement = ({
   className,
@@ -52,7 +56,6 @@ const virtualizedOuterElement = ({
         ref={ref}
         className={className}
         tabIndex={0}
-        role="presentation"
         onKeyDown={onKeyDown}
       />
     ))
@@ -386,12 +389,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
                   )}
                 </EuiAutoSizer>
               ) : (
-                <pre
-                  className={preClasses}
-                  tabIndex={0}
-                  role="presentation"
-                  onKeyDown={onKeyDown}
-                >
+                <pre className={preClasses} tabIndex={0} onKeyDown={onKeyDown}>
                   <code {...codeProps}>{content}</code>
                 </pre>
               )}
