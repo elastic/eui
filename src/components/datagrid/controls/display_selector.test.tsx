@@ -198,12 +198,12 @@ describe('useDataGridDisplaySelector', () => {
           expect(getLineCountNumber(component)).toEqual(5);
         });
 
-        it('defaults to a lineCount of 1 when no developer settings have been passed', () => {
+        it('defaults to a lineCount of 2 when no developer settings have been passed', () => {
           const component = mount(<MockComponent />);
           openPopover(component);
           component.find('[data-test-subj="lineCount"]').simulate('change');
 
-          expect(getLineCountNumber(component)).toEqual(1);
+          expect(getLineCountNumber(component)).toEqual(2);
         });
 
         it('increments the rowHeightOptions line count number', () => {

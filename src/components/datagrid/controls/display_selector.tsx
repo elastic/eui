@@ -102,7 +102,7 @@ export const useDataGridDisplaySelector = (
   // Row height state
   const [lineCount, setLineCount] = useState(
     // @ts-ignore - optional chaining operator handles types & cases that aren't lineCount
-    initialRowHeightsOptions?.defaultHeight?.lineCount || 1
+    initialRowHeightsOptions?.defaultHeight?.lineCount || 2
   );
   const [rowHeightSelection, setRowHeightSelection] = useState(
     convertRowHeightsOptionsToSelection(initialRowHeightsOptions)
