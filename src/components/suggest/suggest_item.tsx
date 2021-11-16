@@ -23,7 +23,7 @@ interface Type {
 
 export interface _EuiSuggestItemPropsBase {
   /**
-   * Takes 'iconType' for EuiIcon and 'color'. 'color' can be tint1 through tint9.
+   * Takes `iconType` for EuiIcon and 'color'. 'color' can be tint1 through tint9.
    */
   type: Type;
 
@@ -38,23 +38,33 @@ export interface _EuiSuggestItemPropsBase {
   description?: string;
 
   /**
-   * Label display is 'fixed' by default. Label will increase its width beyond 50% if needed with 'expand'.
-   */
-  labelDisplay?: keyof typeof labelDisplayToClassMap;
-
-  /**
-   * Width of 'label' when 'labelDisplay' is set to 'fixed'.
-   * Accepts multiples of 10, from 20 to 90. Defaults to 50.
+   * Percentage width of `label`.
+   * Accepts multiples of `10`, from `20` to `90`.
+   * Label will expand to 100% if `description` is not provided.
    */
   labelWidth?: LabelWidthSize;
 
   /**
-   * Set the way in which 'description' is displayed, defaults to 'truncate'.
+   * Truncates both label and description.
    */
-  descriptionDisplay?: keyof typeof descriptionDisplayToClassMap;
+  truncate?: boolean;
+
+  /**
+   * **DEPRECATED** Use `truncate` instead to specify truncation for both label and description.
+   *
+   * _Set the way in which 'description' is displayed, defaults to 'truncate'._
+   */
+  descriptionDisplay?: 'truncate' | 'wrap';
+
+  /**
+   * **DEPRECATED** Use `labelWidth` instead to specify a specific width.
+   *
+   * _Label display is 'fixed' by default. Label will increase its width beyond 50% if needed with 'expand'._
+   */
+  labelDisplay?: keyof typeof labelDisplayToClassMap;
 }
 
-type PropsForDiv = Omit<HTMLAttributes<HTMLDivElement>, 'onClick'>;
+type PropsForSpan = Omit<HTMLAttributes<HTMLSpanElement>, 'onClick'>;
 type PropsForButton = Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
   'onClick' | 'type'
@@ -64,7 +74,7 @@ type PropsForButton = Omit<
 
 export type EuiSuggestItemProps = CommonProps &
   _EuiSuggestItemPropsBase &
-  ExclusiveUnion<PropsForDiv, PropsForButton>;
+  ExclusiveUnion<PropsForSpan, PropsForButton>;
 
 interface ColorToClassMap {
   tint0: string;
@@ -120,20 +130,16 @@ const labelDisplayToClassMap = {
   expand: 'euiSuggestItem__labelDisplay--expand',
 };
 
-const descriptionDisplayToClassMap = {
-  truncate: 'euiSuggestItem__description--truncate',
-  wrap: 'euiSuggestItem__description--wrap',
-};
-
 export const DISPLAYS = keysOf(labelDisplayToClassMap);
 
 export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
   className,
   label,
   type,
-  labelDisplay = 'fixed',
+  labelDisplay: _labelDisplay = 'fixed',
   labelWidth = '50',
   description,
+  truncate = true,
   descriptionDisplay = 'truncate',
   onClick,
   ...rest
@@ -141,45 +147,43 @@ export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
   const classes = classNames(
     'euiSuggestItem',
     {
-      'euiSuggestItem-isClickable': onClick,
+      'euiSuggestItem--truncate': truncate,
     },
     className
   );
 
-  let colorClass = '';
+  const labelDisplay = !description ? 'expand' : _labelDisplay;
 
-  const labelDisplayCalculated = !description ? 'expand' : labelDisplay;
+  const labelClassNames = classNames('euiSuggestItem__label', {
+    [`euiSuggestItem__label--width${labelWidth}`]: labelDisplay === 'fixed',
+  });
 
-  const labelClassNames = classNames(
-    'euiSuggestItem__label',
-    labelDisplayToClassMap[labelDisplayCalculated],
-    {
-      [`euiSuggestItem__label--width${labelWidth}`]: labelDisplay === 'fixed',
-    }
-  );
+  const descriptionClassNames = classNames('euiSuggestItem__description', {
+    'euiSuggestItem__description--wrap': descriptionDisplay === 'wrap',
+  });
 
-  const descriptionClassNames = classNames(
-    'euiSuggestItem__description',
-    descriptionDisplayToClassMap[descriptionDisplay]
-  );
-
+  let typeColorClass = '';
   if (type && type.color) {
     if (COLORS.indexOf(type.color as string) > -1) {
-      colorClass = colorToClassNameMap[type.color];
+      typeColorClass = colorToClassNameMap[type.color];
     }
   }
 
   const innerContent = (
     <React.Fragment>
-      <span className={`euiSuggestItem__type ${colorClass}`}>
+      <span className={`euiSuggestItem__type ${typeColorClass}`}>
         <EuiIcon
           type={type.iconType}
           color="inherit" // forces the icon to inherit its parent color
         />
       </span>
-      <span className={labelClassNames}>{label}</span>
+      <span className={labelClassNames} title={label}>
+        {label}
+      </span>
       {description && (
-        <span className={descriptionClassNames}>{description}</span>
+        <span className={descriptionClassNames} title={description}>
+          {description}
+        </span>
       )}
     </React.Fragment>
   );
@@ -196,9 +200,9 @@ export const EuiSuggestItem: FunctionComponent<EuiSuggestItemProps> = ({
     );
   } else {
     return (
-      <div className={classes} {...(rest as PropsForDiv)}>
+      <span className={classes} {...(rest as PropsForSpan)}>
         {innerContent}
-      </div>
+      </span>
     );
   }
 };

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -9,46 +7,16 @@ import {
   EuiCode,
   EuiSpacer,
   EuiSuggest,
-  EuiSuggestItem,
+  EuiText,
 } from '../../../../src/components';
 
 import Suggest from './suggest';
 const suggestSource = require('!!raw-loader!./suggest');
-const suggestHtml = renderToHtml(Suggest);
 
 import SavedQueries from './saved_queries';
 const savedQueriesSource = require('!!raw-loader!./saved_queries');
-const savedQueriesHtml = renderToHtml(SavedQueries);
 
-import SuggestItem from './suggest_item';
-const suggestItemSource = require('!!raw-loader!./suggest_item');
-const suggestItemHtml = renderToHtml(SuggestItem);
-const suggestItemSnippet = [
-  `<EuiSuggestItem
-  type={sampleItem.type}
-  label={sampleItem.label}
-  description={sampleItem.description}
-/>
-`,
-  `<EuiSuggestItem
-  type={sampleItem.type}
-  label={sampleItem.label}
-  description={sampleItem.description}
-  labelDisplay="expand"
-/>`,
-  `<EuiSuggestItem
-  type={sampleItem.type}
-  label={sampleItem.label}
-  description={sampleItem.description}
-  labelWidth="30"
-/>`,
-  `<EuiSuggestItem
-  type={sampleItem.type}
-  label={sampleItem.label}
-  description={sampleItem.description}
-  descriptionDisplay="wrap"
-/>`,
-];
+import SuggestItem from './suggest_item_example';
 
 const suggestSnippet = [
   `<EuiSuggest
@@ -80,13 +48,9 @@ export const SuggestExample = {
           type: GuideSectionTypes.JS,
           code: suggestSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: suggestHtml,
-        },
       ],
       text: (
-        <div>
+        <>
           <p>
             <strong>EuiSuggest</strong> is a text field component used to
             display suggestions. The status of the component is shown on its
@@ -94,7 +58,7 @@ export const SuggestExample = {
             <EuiCode>unsaved</EuiCode>, <EuiCode>saved</EuiCode>,
             <EuiCode>unchanged</EuiCode> and <EuiCode>isLoading</EuiCode>.
           </p>
-        </div>
+        </>
       ),
       props: { EuiSuggest },
       snippet: suggestSnippet,
@@ -102,33 +66,23 @@ export const SuggestExample = {
     },
     {
       title: 'Suggest item',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: suggestItemSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: suggestItemHtml,
-        },
-      ],
+      wrapText: false,
       text: (
-        <div>
-          <p>
-            <strong>EuiSuggestItem</strong> is a list item component to display
-            suggestions when typing queries in <strong>EuiSuggest</strong>. Use{' '}
-            <EuiCode>labelDisplay</EuiCode> to set whether the{' '}
-            <EuiCode>label</EuiCode> has a fixed width or not. By default, fixed
-            labels will have a width of 50%, you can adjust this by setting{' '}
-            <EuiCode>labelWidth</EuiCode>. Use{' '}
-            <EuiCode>descriptionDisplay</EuiCode> to set whether the{' '}
-            <EuiCode>description</EuiCode> truncates or wraps.
-          </p>
-        </div>
+        <>
+          <EuiText>
+            <p>
+              <strong>EuiSuggestItem</strong> is a list item component to
+              display suggestions when typing queries in{' '}
+              <strong>EuiSuggest</strong>. By default, labels will have a width
+              of 50%, you can adjust this by setting{' '}
+              <EuiCode>labelWidth</EuiCode>. Use <EuiCode>truncate</EuiCode> to
+              set whether both the label and description should truncate.
+            </p>
+          </EuiText>
+          <EuiSpacer size="l" />
+          <SuggestItem />
+        </>
       ),
-      props: { EuiSuggestItem },
-      snippet: suggestItemSnippet,
-      demo: <SuggestItem />,
     },
     {
       title: 'Saved queries and filters',
@@ -136,10 +90,6 @@ export const SuggestExample = {
         {
           type: GuideSectionTypes.JS,
           code: savedQueriesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: savedQueriesHtml,
         },
       ],
       text: (

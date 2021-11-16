@@ -7,7 +7,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -26,7 +26,7 @@ Array [
         />
       </div>
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
       >
         <div
           class="euiPopover__anchor"
@@ -82,7 +82,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -101,7 +101,7 @@ Array [
         />
       </div>
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
       >
         <div
           class="euiPopover__anchor"
@@ -157,7 +157,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -176,7 +176,7 @@ Array [
         />
       </div>
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
       >
         <div
           class="euiPopover__anchor"
@@ -232,7 +232,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -251,7 +251,7 @@ Array [
         />
       </div>
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
       >
         <div
           class="euiPopover__anchor"
@@ -312,7 +312,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -331,7 +331,7 @@ Array [
         />
       </div>
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
       >
         <div
           class="euiPopover__anchor"
@@ -394,7 +394,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -413,7 +413,7 @@ Array [
         />
       </div>
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
       >
         <div
           class="euiPopover__anchor"
@@ -478,7 +478,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -497,7 +497,7 @@ Array [
         />
       </div>
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
       >
         <div
           class="euiPopover__anchor"
@@ -553,7 +553,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -572,7 +572,7 @@ Array [
         />
       </div>
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
       >
         <div
           class="euiPopover__anchor"
@@ -637,7 +637,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -656,7 +656,7 @@ Array [
         />
       </div>
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
       >
         <div
           class="euiPopover__anchor"
@@ -719,7 +719,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -738,7 +738,7 @@ Array [
         />
       </div>
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
       >
         <div
           class="euiPopover__anchor"
@@ -803,7 +803,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -822,7 +822,7 @@ Array [
         />
       </div>
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
       >
         <div
           class="euiPopover__anchor"
@@ -878,7 +878,7 @@ Array [
     role="combobox"
   >
     <div
-      class="euiSelectable"
+      class="euiSelectable euiSelectable-fullHeight"
     >
       <div
         class="euiScreenReaderOnly"
@@ -897,7 +897,7 @@ Array [
         />
       </div>
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
       >
         <div
           class="euiPopover__anchor"

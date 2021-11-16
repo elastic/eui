@@ -3,8 +3,8 @@
   display: inline-flex; // Necessary to make sure it doesn't force the whole popover to be too wide
   width: 100%;
   text-align: left;
-  color: $euiTextColor;
   cursor: pointer;
+  overflow: hidden;
 
   &:not(:last-of-type) {
     border-bottom: $euiSelectableListItemBorder;
@@ -12,7 +12,7 @@
 
   &-isFocused:not([aria-disabled='true']),
   &:hover:not([aria-disabled='true']) {
-    color: $euiColorPrimary;
+    color: $euiColorPrimaryText;
     background-color: $euiFocusBackgroundColor;
 
     .euiSelectableListItem__text {

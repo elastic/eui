@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { useState, FunctionComponent, KeyboardEvent } from 'react';
+import React, {
+  useState,
+  FunctionComponent,
+  KeyboardEvent,
+  CSSProperties,
+} from 'react';
 import { CommonProps } from '../common';
 import classNames from 'classnames';
 import { keys } from '../../services';
@@ -22,6 +27,9 @@ export type EuiSuggestStatus = StatusTuple[number];
 
 export type EuiSuggestInputProps = CommonProps &
   EuiFieldTextProps & {
+    /**
+     * Changes the content of the tooltip that wraps the status icon
+     */
     tooltipContent?: string;
 
     /**
@@ -44,6 +52,12 @@ export type EuiSuggestInputProps = CommonProps &
      */
     sendValue?: (value: string) => void;
     onListOpen?: (isOpen: boolean) => void;
+
+    /**
+     * Maximum height to set for the list.
+     * Default is `60vh`
+     */
+    maxHeight?: CSSProperties['maxHeight'];
   };
 
 interface Status {
@@ -83,6 +97,8 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
   suggestions,
   sendValue,
   onListOpen,
+  maxHeight = '60vh',
+  fullWidth,
   ...rest
 }) => {
   const [value, setValue] = useState<string>('');
@@ -120,7 +136,13 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
     icon = statusMap[status].icon || '';
     color = statusMap[status].color || '';
   }
-  const classes = classNames('euiSuggestInput', className);
+  const classes = classNames(
+    'euiSuggestInput',
+    {
+      'euiSuggestInput--fullWidth': fullWidth,
+    },
+    className
+  );
 
   // EuiFieldText's append accepts an array of elements so start by creating an empty array
   const appendArray = [];
@@ -157,7 +179,7 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
   const customInput = (
     <EuiFieldText
       value={value}
-      fullWidth
+      fullWidth={fullWidth}
       append={appendArray.length ? appendArray : undefined}
       isLoading={status === 'loading' ? true : false}
       onChange={onFieldChange}
@@ -173,10 +195,12 @@ export const EuiSuggestInput: FunctionComponent<EuiSuggestInputProps> = ({
       input={customInput}
       isOpen={suggestions && isPopoverOpen}
       panelPaddingSize="none"
-      fullWidth
+      fullWidth={fullWidth}
       closePopover={closePopover}
     >
-      {suggestions}
+      <div style={{ maxHeight }} className="eui-yScroll">
+        {suggestions}
+      </div>
     </EuiInputPopover>
   );
 };

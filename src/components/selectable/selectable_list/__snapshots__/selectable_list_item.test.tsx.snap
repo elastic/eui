@@ -278,13 +278,5 @@ exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
   aria-checked="false"
   class="euiSelectableListItem euiSelectableListItem--paddingSmall"
   role="option"
->
-  <span
-    class="euiSelectableListItem__content"
-  >
-    <span
-      class="euiSelectableListItem__text"
-    />
-  </span>
-</li>
+/>
 `;

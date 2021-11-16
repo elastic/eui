@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiSuggestItem is rendered 1`] = `
-<div
+<span
   aria-label="aria-label"
-  class="euiSuggestItem testClass1 testClass2"
+  class="euiSuggestItem euiSuggestItem--truncate testClass1 testClass2"
   data-test-subj="test subject string"
 >
   <span
@@ -15,16 +15,17 @@ exports[`EuiSuggestItem is rendered 1`] = `
     />
   </span>
   <span
-    class="euiSuggestItem__label euiSuggestItem__labelDisplay--expand euiSuggestItem__label--width50"
+    class="euiSuggestItem__label"
+    title="Test label"
   >
     Test label
   </span>
-</div>
+</span>
 `;
 
 exports[`props descriptionDisplay as wrap is rendered 1`] = `
-<div
-  class="euiSuggestItem"
+<span
+  class="euiSuggestItem euiSuggestItem--truncate"
 >
   <span
     class="euiSuggestItem__type euiSuggestItem__type--tint2"
@@ -35,21 +36,23 @@ exports[`props descriptionDisplay as wrap is rendered 1`] = `
     />
   </span>
   <span
-    class="euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__label--width50"
+    class="euiSuggestItem__label euiSuggestItem__label--width50"
+    title="This is the description"
   >
     This is the description
   </span>
   <span
     class="euiSuggestItem__description euiSuggestItem__description--wrap"
+    title="This is the description"
   >
     This is the description
   </span>
-</div>
+</span>
 `;
 
 exports[`props item with no description has expanded label is rendered 1`] = `
-<div
-  class="euiSuggestItem"
+<span
+  class="euiSuggestItem euiSuggestItem--truncate"
 >
   <span
     class="euiSuggestItem__type euiSuggestItem__type--tint2"
@@ -60,16 +63,17 @@ exports[`props item with no description has expanded label is rendered 1`] = `
     />
   </span>
   <span
-    class="euiSuggestItem__label euiSuggestItem__labelDisplay--expand euiSuggestItem__label--width50"
+    class="euiSuggestItem__label"
+    title="Charles de Gaulle International Airport"
   >
     Charles de Gaulle International Airport
   </span>
-</div>
+</span>
 `;
 
 exports[`props labelDisplay as expand is rendered 1`] = `
-<div
-  class="euiSuggestItem"
+<span
+  class="euiSuggestItem euiSuggestItem--truncate"
 >
   <span
     class="euiSuggestItem__type euiSuggestItem__type--tint2"
@@ -80,21 +84,23 @@ exports[`props labelDisplay as expand is rendered 1`] = `
     />
   </span>
   <span
-    class="euiSuggestItem__label euiSuggestItem__labelDisplay--expand"
+    class="euiSuggestItem__label"
+    title="This is the description"
   >
     This is the description
   </span>
   <span
-    class="euiSuggestItem__description euiSuggestItem__description--truncate"
+    class="euiSuggestItem__description"
+    title="This is the description"
   >
     This is the description
   </span>
-</div>
+</span>
 `;
 
 exports[`props labelWidth is 30% is rendered 1`] = `
-<div
-  class="euiSuggestItem"
+<span
+  class="euiSuggestItem euiSuggestItem--truncate"
 >
   <span
     class="euiSuggestItem__type euiSuggestItem__type--tint2"
@@ -105,14 +111,16 @@ exports[`props labelWidth is 30% is rendered 1`] = `
     />
   </span>
   <span
-    class="euiSuggestItem__label euiSuggestItem__labelDisplay--fixed euiSuggestItem__label--width30"
+    class="euiSuggestItem__label euiSuggestItem__label--width30"
+    title="This is the description"
   >
     This is the description
   </span>
   <span
-    class="euiSuggestItem__description euiSuggestItem__description--truncate"
+    class="euiSuggestItem__description"
+    title="This is the description"
   >
     This is the description
   </span>
-</div>
+</span>
 `;

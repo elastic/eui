@@ -2,21 +2,21 @@
 
 exports[`EuiSuggestInput is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuggestInput testClass1 testClass2"
 >
   <div
     class="euiPopover__anchor"
   >
     <div>
       <div
-        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+        class="euiFormControlLayout"
       >
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="aria-label"
-            class="euiFieldText euiFieldText--fullWidth"
+            class="euiFieldText"
             data-test-subj="test subject string"
             type="text"
             value=""
@@ -30,21 +30,21 @@ exports[`EuiSuggestInput is rendered 1`] = `
 
 exports[`EuiSuggestInput props append 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuggestInput testClass1 testClass2"
 >
   <div
     class="euiPopover__anchor"
   >
     <div>
       <div
-        class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+        class="euiFormControlLayout euiFormControlLayout--group"
       >
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="aria-label"
-            class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+            class="euiFieldText euiFieldText--inGroup"
             data-test-subj="test subject string"
             type="text"
             value=""
@@ -63,21 +63,21 @@ exports[`EuiSuggestInput props append 1`] = `
 
 exports[`EuiSuggestInput props status status: loading is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuggestInput testClass1 testClass2"
 >
   <div
     class="euiPopover__anchor"
   >
     <div>
       <div
-        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+        class="euiFormControlLayout"
       >
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="aria-label"
-            class="euiFieldText euiFieldText--fullWidth euiFieldText-isLoading"
+            class="euiFieldText euiFieldText-isLoading"
             data-test-subj="test subject string"
             type="text"
             value=""
@@ -98,21 +98,21 @@ exports[`EuiSuggestInput props status status: loading is rendered 1`] = `
 
 exports[`EuiSuggestInput props status status: saved is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuggestInput testClass1 testClass2"
 >
   <div
     class="euiPopover__anchor"
   >
     <div>
       <div
-        class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+        class="euiFormControlLayout euiFormControlLayout--group"
       >
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="aria-label"
-            class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+            class="euiFieldText euiFieldText--inGroup"
             data-test-subj="test subject string"
             type="text"
             value=""
@@ -135,21 +135,21 @@ exports[`EuiSuggestInput props status status: saved is rendered 1`] = `
 
 exports[`EuiSuggestInput props status status: unchanged is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuggestInput testClass1 testClass2"
 >
   <div
     class="euiPopover__anchor"
   >
     <div>
       <div
-        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+        class="euiFormControlLayout"
       >
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="aria-label"
-            class="euiFieldText euiFieldText--fullWidth"
+            class="euiFieldText"
             data-test-subj="test subject string"
             type="text"
             value=""
@@ -163,21 +163,21 @@ exports[`EuiSuggestInput props status status: unchanged is rendered 1`] = `
 
 exports[`EuiSuggestInput props status status: unsaved is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuggestInput testClass1 testClass2"
 >
   <div
     class="euiPopover__anchor"
   >
     <div>
       <div
-        class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+        class="euiFormControlLayout euiFormControlLayout--group"
       >
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="aria-label"
-            class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+            class="euiFieldText euiFieldText--inGroup"
             data-test-subj="test subject string"
             type="text"
             value=""
@@ -200,21 +200,21 @@ exports[`EuiSuggestInput props status status: unsaved is rendered 1`] = `
 
 exports[`EuiSuggestInput props tooltipContent tooltipContent for status: loading is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuggestInput testClass1 testClass2"
 >
   <div
     class="euiPopover__anchor"
   >
     <div>
       <div
-        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+        class="euiFormControlLayout"
       >
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="aria-label"
-            class="euiFieldText euiFieldText--fullWidth euiFieldText-isLoading"
+            class="euiFieldText euiFieldText-isLoading"
             data-test-subj="test subject string"
             type="text"
             value=""
@@ -235,21 +235,21 @@ exports[`EuiSuggestInput props tooltipContent tooltipContent for status: loading
 
 exports[`EuiSuggestInput props tooltipContent tooltipContent for status: saved is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuggestInput testClass1 testClass2"
 >
   <div
     class="euiPopover__anchor"
   >
     <div>
       <div
-        class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+        class="euiFormControlLayout euiFormControlLayout--group"
       >
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="aria-label"
-            class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+            class="euiFieldText euiFieldText--inGroup"
             data-test-subj="test subject string"
             type="text"
             value=""
@@ -272,21 +272,21 @@ exports[`EuiSuggestInput props tooltipContent tooltipContent for status: saved i
 
 exports[`EuiSuggestInput props tooltipContent tooltipContent for status: unchanged is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuggestInput testClass1 testClass2"
 >
   <div
     class="euiPopover__anchor"
   >
     <div>
       <div
-        class="euiFormControlLayout euiFormControlLayout--fullWidth"
+        class="euiFormControlLayout"
       >
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="aria-label"
-            class="euiFieldText euiFieldText--fullWidth"
+            class="euiFieldText"
             data-test-subj="test subject string"
             type="text"
             value=""
@@ -300,21 +300,21 @@ exports[`EuiSuggestInput props tooltipContent tooltipContent for status: unchang
 
 exports[`EuiSuggestInput props tooltipContent tooltipContent for status: unsaved is rendered 1`] = `
 <div
-  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput testClass1 testClass2"
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiSuggestInput testClass1 testClass2"
 >
   <div
     class="euiPopover__anchor"
   >
     <div>
       <div
-        class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+        class="euiFormControlLayout euiFormControlLayout--group"
       >
         <div
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="aria-label"
-            class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
+            class="euiFieldText euiFieldText--inGroup"
             data-test-subj="test subject string"
             type="text"
             value=""
