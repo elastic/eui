@@ -1,5 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Added `aria-label` and `aria-labelledby` props to `EuiComboBox` ([#5360](https://github.com/elastic/eui/issues/5360))
+
 **Bug fixes**
 
 - Fixed `EuiCodeBlock` not passing `data-test-subj` or `aria-label` to virtualized & full-screen code blocks ([#5379](https://github.com/elastic/eui/pull/5379))
@@ -15,7 +17,6 @@
 
 - Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))
 - Updated `EuiEmptyPrompt` to extend `EuiPanelProps` ([#5275](https://github.com/elastic/eui/pull/5275))
-- Added `aria-label` and `aria-labelledby` props to `EuiComboBox` ([#5267](https://github.com/elastic/eui/issues/5267))
 - Add `data-icon-type` to `EuiIcon` `<svg>` for easier debugging of `iconType` [#5366](https://github.com/elastic/eui/pull/5366))
 
 **Bug fixes**
