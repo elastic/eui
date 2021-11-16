@@ -3,7 +3,7 @@
 exports[`EuiCodeBlock dynamic content updates DOM when input changes 1`] = `
 <div>
   <div
-    class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-javascript"
+    class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
   >
     <pre
       class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -22,7 +22,7 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 1`] = `
 exports[`EuiCodeBlock dynamic content updates DOM when input changes 2`] = `
 <div>
   <div
-    class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-javascript"
+    class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
   >
     <pre
       class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -40,7 +40,7 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 2`] = `
 
 exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasLineNumbers prismjs language-text testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasLineNumbers testClass1 testClass2"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -91,7 +91,7 @@ exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
 
 exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasLineNumbers prismjs language-text testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasLineNumbers testClass1 testClass2"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -142,7 +142,7 @@ exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
 
 exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasLineNumbers prismjs language-text testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasLineNumbers testClass1 testClass2"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -193,7 +193,7 @@ exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] =
 
 exports[`EuiCodeBlock props fontSize l is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingLarge prismjs language-text"
+  class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingLarge"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -220,7 +220,7 @@ exports[`EuiCodeBlock props fontSize l is rendered 1`] = `
 
 exports[`EuiCodeBlock props fontSize m is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontMedium euiCodeBlock--paddingLarge prismjs language-text"
+  class="euiCodeBlock euiCodeBlock--fontMedium euiCodeBlock--paddingLarge"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -247,7 +247,7 @@ exports[`EuiCodeBlock props fontSize m is rendered 1`] = `
 
 exports[`EuiCodeBlock props fontSize s is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-text"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -277,7 +277,7 @@ exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
   isCopyable={true}
 >
   <div
-    className="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl prismjs language-text"
+    className="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl"
     style={Object {}}
   >
     <pre
@@ -375,7 +375,7 @@ console.log(some);"
 
 exports[`EuiCodeBlock props language is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-html"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -402,7 +402,7 @@ exports[`EuiCodeBlock props language is rendered 1`] = `
 
 exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl prismjs language-text"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl"
   style="max-height:200px"
 >
   <pre
@@ -447,7 +447,7 @@ exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
 
 exports[`EuiCodeBlock props paddingSize l is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-text"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -474,7 +474,7 @@ exports[`EuiCodeBlock props paddingSize l is rendered 1`] = `
 
 exports[`EuiCodeBlock props paddingSize m is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingMedium prismjs language-text"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingMedium"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -501,7 +501,7 @@ exports[`EuiCodeBlock props paddingSize m is rendered 1`] = `
 
 exports[`EuiCodeBlock props paddingSize none is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall prismjs language-text"
+  class="euiCodeBlock euiCodeBlock--fontSmall"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -528,7 +528,7 @@ exports[`EuiCodeBlock props paddingSize none is rendered 1`] = `
 
 exports[`EuiCodeBlock props paddingSize s is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingSmall prismjs language-text"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingSmall"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -555,7 +555,7 @@ exports[`EuiCodeBlock props paddingSize s is rendered 1`] = `
 
 exports[`EuiCodeBlock props transparentBackground is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground prismjs language-text"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--transparentBackground"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -582,7 +582,7 @@ exports[`EuiCodeBlock props transparentBackground is rendered 1`] = `
 
 exports[`EuiCodeBlock props whiteSpace renders a pre block tag with a css class modifier 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-text testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePre"
@@ -611,7 +611,7 @@ exports[`EuiCodeBlock props whiteSpace renders a pre block tag with a css class 
 
 exports[`EuiCodeBlock renders a code block 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge prismjs language-text testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -640,7 +640,7 @@ exports[`EuiCodeBlock renders a code block 1`] = `
 
 exports[`EuiCodeBlock virtualization renders a virtualized code block 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl prismjs language-text testClass1 testClass2"
+  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl testClass1 testClass2"
   style="height:50%"
 >
   <div

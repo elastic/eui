@@ -245,10 +245,6 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       'euiCodeBlock--hasBothControls': isCopyable && overflowHeight,
       'euiCodeBlock--hasLineNumbers': lineNumbersConfig.show,
     },
-    {
-      prismjs: !className?.includes('prismjs'),
-      [`language-${language || 'none'}`]: !className?.includes('language'),
-    },
     className
   );
 

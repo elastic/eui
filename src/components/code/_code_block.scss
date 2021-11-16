@@ -195,14 +195,6 @@
     background: transparent;
   }
 
-  .prismjs > *::selection {
-    // Only change the color if the variable IS a color
-    // or else no highlight color shows up at all
-    @if type-of($euiCodeBlockSelectedBackgroundColor) == color {
-      background-color: $euiCodeBlockSelectedBackgroundColor;
-    }
-  }
-
   .token.punctuation:not(.interpolation-punctuation):not([class*='attr-']) {
     opacity: .7;
   }
