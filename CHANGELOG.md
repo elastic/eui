@@ -1,5 +1,6 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Added `aria-label` and `aria-labelledby` props to `EuiComboBox` ([#5360](https://github.com/elastic/eui/issues/5360))
 - Updated `EuiDatePicker` to use `EuiPopover`, `EuiFocusTrap`, and `EuiScreenReaderOnly` ([#5339](https://github.com/elastic/eui/pull/5339))
 
 **Bug fixes**
@@ -10,7 +11,6 @@
 
 - Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))
 - Updated `EuiEmptyPrompt` to extend `EuiPanelProps` ([#5275](https://github.com/elastic/eui/pull/5275))
-- Added `aria-label` and `aria-labelledby` props to `EuiComboBox` ([#5267](https://github.com/elastic/eui/issues/5267))
 - Add `data-icon-type` to `EuiIcon` `<svg>` for easier debugging of `iconType` [#5366](https://github.com/elastic/eui/pull/5366))
 
 **Bug fixes**
