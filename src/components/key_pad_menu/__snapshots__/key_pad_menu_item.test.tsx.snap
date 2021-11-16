@@ -167,7 +167,6 @@ exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeTooltipContent 
     >
       <span
         class="euiBetaBadge euiBetaBadge--singleLetter euiBetaBadge--subdued euiBetaBadge--small euiKeyPadMenuItem__betaBadge"
-        tabindex="0"
       >
         B
       </span>

@@ -224,7 +224,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
           content={tooltipContent}
           title={title || label}
         >
-          <span tabIndex={0} className={classes} {...rest}>
+          <span className={classes} {...rest}>
             {icon || label}
           </span>
         </EuiToolTip>
