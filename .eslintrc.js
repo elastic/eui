@@ -40,7 +40,6 @@ module.exports = {
   plugins: ['jsx-a11y', 'prettier', 'local', 'react-hooks', '@emotion'],
   rules: {
     'prefer-template': 'error',
-    'local/copy-in-jsx': 'error',
     'local/i18n': 'error',
     'local/href-with-rel': 'error',
     'local/forward-ref': 'error',
