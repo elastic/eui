@@ -11,11 +11,11 @@ import React, {
   HTMLAttributes,
   FunctionComponent,
   KeyboardEvent,
-  memo,
   forwardRef,
   useEffect,
   useMemo,
   useState,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 import { RefractorNode } from 'refractor';
@@ -44,30 +44,25 @@ import {
 // We're disabling the above a11y lint rule because it's valid for a tabIndex={0} element to have an onKeyDown event listener
 // The onKeyDown is an enhancement for keyboard users, and the tabIndex enables overflow scrolling for keyboard users and enhances focus for screen reader users
 
-// eslint-disable-next-line local/forward-ref
 const virtualizedOuterElement = ({
   className,
   onKeyDown,
 }: HTMLAttributes<HTMLPreElement>) =>
-  memo(
-    forwardRef<any, any>((props, ref) => (
-      <pre
-        {...props}
-        ref={ref}
-        className={className}
-        tabIndex={0}
-        onKeyDown={onKeyDown}
-      />
-    ))
-  );
+  forwardRef<any, any>((props, ref) => (
+    <pre
+      {...props}
+      ref={ref}
+      className={className}
+      tabIndex={0}
+      onKeyDown={onKeyDown}
+    />
+  ));
 
 // eslint-disable-next-line local/forward-ref
 const virtualizedInnerElement = (codeProps: HTMLAttributes<HTMLElement>) =>
-  memo(
-    forwardRef<any, any>((props, ref) => (
-      <code {...props} ref={ref} {...codeProps} />
-    ))
-  );
+  forwardRef<any, any>((props, ref) => (
+    <code {...props} ref={ref} {...codeProps} />
+  ));
 
 const ListRow = ({ data, index, style }: ListChildComponentProps) => {
   const row = data[index];
@@ -227,13 +222,13 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
 
   useEffect(doesOverflow, [width, height, wrapperRef]);
 
-  const onKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+  const onKeyDown = useCallback((event: KeyboardEvent<HTMLElement>) => {
     if (event.key === keys.ESCAPE) {
       event.preventDefault();
       event.stopPropagation();
       closeFullScreen();
     }
-  };
+  }, []);
 
   const toggleFullScreen = () => {
     setIsFullScreen(!isFullScreen);
@@ -256,11 +251,14 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     className
   );
 
-  const codeProps = {
-    className: 'euiCodeBlock__code',
-    'data-code-language': language,
-    ...rest,
-  };
+  const codeProps = useMemo(
+    () => ({
+      className: 'euiCodeBlock__code',
+      'data-code-language': language,
+      ...rest,
+    }),
+    [language, rest]
+  );
 
   const preClasses = classNames('euiCodeBlock__pre', {
     'euiCodeBlock__pre--whiteSpacePre': whiteSpace === 'pre',
@@ -282,6 +280,19 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     className: classes,
     style: optionalStyles,
   };
+
+  const VirtualizedOuterElement = useMemo(
+    () =>
+      virtualizedOuterElement({
+        className: preClasses,
+        onKeyDown,
+      }),
+    [preClasses, onKeyDown]
+  );
+  const VirtualizedInnerElement = useMemo(
+    () => virtualizedInnerElement(codeProps),
+    [codeProps]
+  );
 
   const getCopyButton = (_textToCopy?: string) => {
     let copyButton: JSX.Element | undefined;
@@ -378,11 +389,8 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
                       itemData={data}
                       itemSize={rowHeight}
                       itemCount={data.length}
-                      outerElementType={virtualizedOuterElement({
-                        className: preClasses,
-                        onKeyDown,
-                      })}
-                      innerElementType={virtualizedInnerElement(codeProps)}
+                      outerElementType={VirtualizedOuterElement}
+                      innerElementType={VirtualizedInnerElement}
                     >
                       {ListRow}
                     </FixedSizeList>
@@ -416,11 +424,8 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
               itemData={data}
               itemSize={rowHeight}
               itemCount={data.length}
-              outerElementType={virtualizedOuterElement({
-                className: preClasses,
-                onKeyDown,
-              })}
-              innerElementType={virtualizedInnerElement(codeProps)}
+              outerElementType={VirtualizedOuterElement}
+              innerElementType={VirtualizedInnerElement}
             >
               {ListRow}
             </FixedSizeList>
