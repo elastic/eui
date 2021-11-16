@@ -2,11 +2,11 @@
 
 exports[`EuiCode renders a code snippet 1`] = `
 <span
-  class="euiCodeBlock euiCodeBlock--inline testClass1 testClass2"
+  class="euiCode testClass1 testClass2"
 >
   <code
     aria-label="aria-label"
-    class="euiCodeBlock__code"
+    class="euiCode__code"
     data-code-language="text"
     data-test-subj="test subject string"
   >
@@ -18,11 +18,11 @@ console.log(some);
 
 exports[`EuiCode renders languages 1`] = `
 <span
-  class="euiCodeBlock euiCodeBlock--inline testClass1 testClass2"
+  class="euiCode testClass1 testClass2"
 >
   <code
     aria-label="aria-label"
-    class="euiCodeBlock__code"
+    class="euiCode__code"
     data-code-language="js"
     data-test-subj="test subject string"
   >
@@ -87,11 +87,11 @@ exports[`EuiCode renders languages 1`] = `
 
 exports[`EuiCode renders transparent backgrounds 1`] = `
 <span
-  class="euiCodeBlock euiCodeBlock--inline euiCodeBlock--transparentBackground testClass1 testClass2"
+  class="euiCode euiCode--transparentBackground testClass1 testClass2"
 >
   <code
     aria-label="aria-label"
-    class="euiCodeBlock__code"
+    class="euiCode__code"
     data-code-language="text"
     data-test-subj="test subject string"
   >

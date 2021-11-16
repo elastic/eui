@@ -3,3 +3,15 @@ $euiCodeBlockPaddingModifiers: (
   'paddingMedium': $euiSize,
   'paddingLarge':  $euiSizeL
 ) !default;
+
+@mixin euiCodeTypography {
+  @include euiCodeFont;
+  line-height: $euiLineHeight;
+  font-weight: $euiCodeFontWeightRegular;
+  font-size: inherit;
+}
+
+@mixin euiCodeColors {
+  background: $euiCodeBlockBackgroundColor;
+  color: $euiCodeBlockColor;
+}

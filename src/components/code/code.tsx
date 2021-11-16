@@ -42,21 +42,16 @@ export const EuiCode: FunctionComponent<EuiCodeProps> = ({
   ]);
 
   const classes = classNames(
-    'euiCodeBlock',
-    'euiCodeBlock--inline',
+    'euiCode',
     {
-      'euiCodeBlock--transparentBackground': transparentBackground,
+      'euiCode--transparentBackground': transparentBackground,
     },
     className
   );
 
   return (
     <span className={classes}>
-      <code
-        className="euiCodeBlock__code"
-        data-code-language={language}
-        {...rest}
-      >
+      <code className="euiCode__code" data-code-language={language} {...rest}>
         {content}
       </code>
     </span>
