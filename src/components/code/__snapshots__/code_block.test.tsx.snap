@@ -85,52 +85,55 @@ exports[`EuiCodeBlock full screen displays content in fullscreen mode 1`] = `
   <div
     className="euiCodeBlock__controls"
   >
-    <EuiI18n
-      defaults={
-        Array [
-          "Collapse",
-          "Expand",
-        ]
-      }
-      tokens={
-        Array [
-          "euiCodeBlock.fullscreenCollapse",
-          "euiCodeBlock.fullscreenExpand",
-        ]
-      }
-    >
-      <EuiButtonIcon
-        aria-label="Collapse"
-        className="euiCodeBlock__fullScreenButton"
-        color="text"
-        iconType="cross"
-        onClick={[Function]}
+    <FullScreenButton>
+      <EuiI18n
+        defaults={
+          Array [
+            "Collapse",
+            "Expand",
+          ]
+        }
+        tokens={
+          Array [
+            "euiCodeBlock.fullscreenCollapse",
+            "euiCodeBlock.fullscreenExpand",
+          ]
+        }
       >
-        <button
+        <EuiButtonIcon
           aria-label="Collapse"
-          className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton"
-          disabled={false}
+          className="euiCodeBlock__fullScreenButton"
+          color="text"
+          iconType="cross"
           onClick={[Function]}
-          type="button"
         >
-          <EuiIcon
-            aria-hidden="true"
-            className="euiButtonIcon__icon"
-            color="inherit"
-            size="m"
-            type="cross"
+          <button
+            aria-label="Collapse"
+            className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiCodeBlock__fullScreenButton"
+            disabled={false}
+            onClick={[Function]}
+            type="button"
           >
-            <span
+            <EuiIcon
               aria-hidden="true"
               className="euiButtonIcon__icon"
               color="inherit"
-              data-euiicon-type="cross"
               size="m"
-            />
-          </EuiIcon>
-        </button>
-      </EuiButtonIcon>
-    </EuiI18n>
+              type="cross"
+            >
+              <span
+                aria-hidden="true"
+                className="euiButtonIcon__icon"
+                color="inherit"
+                data-euiicon-type="cross"
+                size="m"
+              />
+            </EuiIcon>
+          </button>
+        </EuiButtonIcon>
+      </EuiI18n>
+    </FullScreenButton>
+    <CopyButton />
   </div>
 </div>
 `;
@@ -410,69 +413,73 @@ exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
     <div
       className="euiCodeBlock__controls"
     >
-      <div
-        className="euiCodeBlock__copyButton"
-      >
-        <EuiI18n
-          default="Copy"
-          token="euiCodeBlock.copyButton"
+      <FullScreenButton />
+      <CopyButton>
+        <div
+          className="euiCodeBlock__copyButton"
         >
-          <EuiCopy
-            afterMessage="Copied"
-            textToCopy="var some = 'code';
-console.log(some);"
+          <EuiI18n
+            default="Copy"
+            token="euiCodeBlock.copyButton"
           >
-            <EuiToolTip
-              delay="regular"
-              display="inlineBlock"
-              onMouseOut={[Function]}
-              position="top"
+            <EuiCopy
+              afterMessage="Copied"
+              textToCopy="var some = 'code';
+console.log(some);"
             >
-              <span
-                className="euiToolTipAnchor"
+              <EuiToolTip
+                delay="regular"
+                display="inlineBlock"
                 onMouseOut={[Function]}
-                onMouseOver={[Function]}
+                position="top"
               >
-                <EuiButtonIcon
-                  aria-label="Copy"
-                  color="text"
-                  iconType="copyClipboard"
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
+                <span
+                  className="euiToolTipAnchor"
+                  onMouseOut={[Function]}
+                  onMouseOver={[Function]}
                 >
-                  <button
+                  <EuiButtonIcon
                     aria-label="Copy"
-                    className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
-                    disabled={false}
+                    color="text"
+                    iconType="copyClipboard"
                     onBlur={[Function]}
                     onClick={[Function]}
                     onFocus={[Function]}
-                    type="button"
                   >
-                    <EuiIcon
-                      aria-hidden="true"
-                      className="euiButtonIcon__icon"
-                      color="inherit"
-                      size="m"
-                      type="copyClipboard"
+                    <button
+                      aria-label="Copy"
+                      className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                      disabled={false}
+                      onBlur={[Function]}
+                      onClick={[Function]}
+                      onFocus={[Function]}
+                      type="button"
                     >
-                      <span
+                      <EuiIcon
                         aria-hidden="true"
                         className="euiButtonIcon__icon"
                         color="inherit"
-                        data-euiicon-type="copyClipboard"
                         size="m"
-                      />
-                    </EuiIcon>
-                  </button>
-                </EuiButtonIcon>
-              </span>
-            </EuiToolTip>
-          </EuiCopy>
-        </EuiI18n>
-      </div>
+                        type="copyClipboard"
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="euiButtonIcon__icon"
+                          color="inherit"
+                          data-euiicon-type="copyClipboard"
+                          size="m"
+                        />
+                      </EuiIcon>
+                    </button>
+                  </EuiButtonIcon>
+                </span>
+              </EuiToolTip>
+            </EuiCopy>
+          </EuiI18n>
+        </div>
+      </CopyButton>
     </div>
+    <FullScreenDisplay />
   </div>
 </EuiCodeBlock>
 `;
