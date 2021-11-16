@@ -42,7 +42,7 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 2`] = `
 
 exports[`EuiCodeBlock full screen displays content in fullscreen mode 1`] = `
 <div
-  className="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock-paddingLarge euiCodeBlock-isFullScreen testClass1 testClass2"
+  className="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingLarge euiCodeBlock-isFullScreen testClass1 testClass2"
 >
   <pre
     className="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"

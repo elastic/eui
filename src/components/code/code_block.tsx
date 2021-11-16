@@ -370,8 +370,8 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       // Force fullscreen to use large font and padding.
       const fullScreenClasses = classNames(
         'euiCodeBlock',
-        fontSizeToClassNameMap[fontSize],
-        'euiCodeBlock-paddingLarge',
+        'euiCodeBlock--fontLarge',
+        'euiCodeBlock--paddingLarge',
         'euiCodeBlock-isFullScreen',
         className
       );
@@ -387,7 +387,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
                       height={height}
                       width={width}
                       itemData={data}
-                      itemSize={rowHeight}
+                      itemSize={fontSizeToRowHeightMap.l}
                       itemCount={data.length}
                       outerElementType={VirtualizedOuterElement}
                       innerElementType={VirtualizedInnerElement}

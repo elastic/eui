@@ -4,6 +4,8 @@
 
 - Fixed `EuiCodeBlock` not passing `data-test-subj` or `aria-label` to virtualized & full-screen code blocks ([#5379](https://github.com/elastic/eui/pull/5379))
 - Fixed `EuiCodeBlock` not closing full-screen mode when the Escape key is pressed ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed `EuiCodeBlock` to use a large font and padding size when in full-screen mode ([#5379](https://github.com/elastic/eui/pull/5379))
+
 
 **Theme: Amsterdam**
 
