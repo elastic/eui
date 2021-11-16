@@ -32,13 +32,12 @@ export default () => (
   <>
     <EuiText grow={false}>
       <h2>
-        Don’t rely on pagination for users to find what they&apos;re looking for
+        Don’t rely on pagination for users to find what they’re looking for
       </h2>
       <p>
-        For any results style table there should absolutely be ways to filter,
-        search, etc for the thing that the user wants. Pagination is only
-        helpful once the user has reduced the 1000+ results to just 100 (for
-        example).
+        For any results-style table, always provide ways to filter, search, etc
+        for the thing that the user wants. Pagination is only helpful once the
+        user has reduced the 1000+ results to just 100 (for example).
       </p>
     </EuiText>
 
@@ -73,18 +72,18 @@ export default () => (
         When possible, always present a clear indicator of how many (and if not
         all results) have been returned. Just a simple count will do. Including
         a detailed summary of results at the top of the table or list goes a
-        long way to signify what paging can&apos;t.
+        long way to signify what paging can’t.
       </p>
-      <h3>Indeterminate results</h3>
+      <h3>Indicate indeterminate results</h3>
       <p>
         If you cannot provide a concrete number of results, you still have to
-        communicate what the current results showcase. For instance, it can say
+        communicate what the current results showcase. For instance, say
         &quot;Showing first 100 results&quot; or &quot;Search results maxed at
-        1000&quot; or&#10; &quot;Results fetched at runtime&quot;.{' '}
+        1000&quot; or &quot;Results fetched at runtime&quot;.
       </p>
       <p>
         <em>
-          Remember that not all users understand how your data API works, they
+          Remember that not all users understand how your data API works. They
           just care about the data that&apos;s being shown to them.
         </em>
       </p>
@@ -99,30 +98,29 @@ export default () => (
     <EuiText grow={false}>
       <h2>Give users control of pagination</h2>
       <p>
-        Usually providing a{' '}
+        Providing a{' '}
         <Link to="/navigation/pagination#customizable-pagination">
           “Rows per page” option
         </Link>{' '}
-        is helpful enough to provide users control over the amount of data they
-        see at once.
+        is often helpful enough to provide users control over the amount of data
+        they see at once.
       </p>
     </EuiText>
 
     <GuideRule>
-      <GuideRuleExample
-        type="dont"
-        text="Overload the user with choices, stick to only 2-3 options."
-        panelProps={{ paddingSize: 'l' }}
-      >
-        <EuiImage alt="Too many rows per page choices" url={userControlDont} />
-      </GuideRuleExample>
-
       <GuideRuleExample
         type="do"
         text="For shorter sets of data, you may want to include an “Show all” option."
         panelProps={{ paddingSize: 'l' }}
       >
         <EuiImage alt="Provide a Show all" url={userControlDo} />
+      </GuideRuleExample>
+      <GuideRuleExample
+        type="dont"
+        text="Overload the user with choices, stick to only 2-3 options."
+        panelProps={{ paddingSize: 'l' }}
+      >
+        <EuiImage alt="Too many rows per page choices" url={userControlDont} />
       </GuideRuleExample>
     </GuideRule>
 
@@ -131,16 +129,15 @@ export default () => (
     <EuiText grow={false}>
       <h3>Optimize your defaults</h3>
       <p>
-        Most users won’t actually customize the default view. Therefore, it’s
-        vital that you provide optimal defaults and reduce complexity as the
-        number of entries increase. This usually means choosing a default “Rows
-        per page” that corresponds best to the total results. For instance 1000+
-        results shouldn’t start with 10 rows per page, but probably more like 25
-        or even 50.
+        Most users don’t customize the default view. Therefore, it’s vital that
+        you provide optimal defaults and reduce complexity as the number of
+        entries increase. This means choosing a default “Rows per page” that
+        best corresponds to the total results. For instance, 1000+ results
+        shouldn’t start with 10 rows per page, but rather 25 or 50.
       </p>
       <p>
-        Here are some samples of what controls to provide based on the number of
-        data entries.
+        Here are some <strong>samples</strong> of what controls to provide based
+        on the number of data entries.
       </p>
     </EuiText>
 
@@ -247,7 +244,7 @@ export default () => (
         If the total results are unknown, you can make a best guess based on the
         context of that specific table, whether there’s{' '}
         <strong>most likely</strong> going to be tens or thousands of results.
-        So from there you can decide to show 10 rows per page or 25 by default.
+        From there you can decide to show 10 rows per page or 25 by default.
       </p>
       <p>
         <strong>
@@ -266,11 +263,11 @@ export default () => (
     <EuiText grow={false}>
       <h2>Preserve the user-customized state of pagination</h2>
       <p>
-        When providing pagination, customizable display options and data
-        filters, always save the user’s state in some manner. This is especially
+        When providing pagination, customizable display options, and data
+        filters, always save the user’s state in some form. This is especially
         important if your data includes links that navigate a user away from the
-        current view. There’s nothing more frustrating than going back to find
-        your filters and pagination have all been reset.
+        current view. There’s nothing more frustrating for users than going back
+        to find their filters and pagination have been reset.
       </p>
       <p>
         Below is a working example that utilizes <EuiCode>localStorage</EuiCode>{' '}
@@ -301,19 +298,18 @@ export default () => (
                     “Load more” action."
     >
       <GuideRuleExample
-        type="dont"
-        text="Use infinite scroll to automatically load more rows of data."
-        panelProps={{ paddingSize: 'none' }}
-      >
-        <EuiImage alt="Too many rows per page choices" url={infiniteDont} />
-      </GuideRuleExample>
-
-      <GuideRuleExample
         type="do"
         text="Provide a direct action for users to initiate the loading of more data. "
         panelProps={{ paddingSize: 'none' }}
       >
         <EuiImage alt="Provide a Show all" url={infiniteDo} />
+      </GuideRuleExample>
+      <GuideRuleExample
+        type="dont"
+        text="Use infinite scroll to automatically load more rows of data."
+        panelProps={{ paddingSize: 'none' }}
+      >
+        <EuiImage alt="Too many rows per page choices" url={infiniteDont} />
       </GuideRuleExample>
     </GuideRule>
   </>
