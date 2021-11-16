@@ -61,7 +61,9 @@ const rowHeightsSnippet = `rowHeightsOptions = {
 const rowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   () => ({
     defaultHeight: 140,
-};
+  }),
+  []
+);
 
 <EuiDataGrid
   aria-label="Data grid with fixed height for rows"
