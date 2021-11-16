@@ -1,5 +1,5 @@
 const { join } = require('path');
-const rule = require('./copy_in_jsx');
+const rule = require('./text_in_jsx');
 const RuleTester = require('eslint').RuleTester;
 
 const ruleTester = new RuleTester({
@@ -159,7 +159,7 @@ const invalid = [
   },
 ];
 
-ruleTester.run('copy-in-jsx', rule, {
+ruleTester.run('text-in-jsx', rule, {
   valid: valid.map(insertFilename),
   invalid: invalid.map(insertFilename),
 });

@@ -11,13 +11,13 @@ module.exports = {
     {
       files: ['*.{ts,tsx}'],
       rules: {
-        'local/copy-in-jsx': 'error',
+        'local/text-in-jsx': 'error',
       },
     },
     {
       files: ['*.{test,spec}.tsx'],
       rules: {
-        'local/copy-in-jsx': 'off',
+        'local/text-in-jsx': 'off',
       },
     },
   ],
