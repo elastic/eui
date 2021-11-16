@@ -54,7 +54,7 @@ describe('PaginationBar', () => {
         pageIndex: 0,
         pageSize: 5,
         totalItemCount: 0,
-        hidePerPageOptions: true,
+        showPerPageOptions: true,
       },
       onPageSizeChange: () => {},
       onPageChange: () => {},

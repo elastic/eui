@@ -2,6 +2,7 @@
   @include euiScrollBar;
   display: flex;
   align-items: center;
+  overflow-y: hidden;
   overflow-x: auto;
 
   &__compressedText {

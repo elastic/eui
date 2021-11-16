@@ -262,7 +262,7 @@ describe('EuiInMemoryTable', () => {
         },
       ],
       pagination: {
-        hidePerPageOptions: true,
+        showPerPageOptions: false,
       },
     };
     const component = shallow(<EuiInMemoryTable {...props} />);

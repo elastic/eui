@@ -11,23 +11,36 @@ import React, { FunctionComponent, useState } from 'react';
 import { EuiButtonEmpty } from '../../button';
 import { EuiContextMenuItem, EuiContextMenuPanel } from '../../context_menu';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { EuiPagination } from '../../pagination';
+import { EuiPagination, EuiPaginationProps } from '../../pagination';
 import { EuiPopover } from '../../popover';
 import { EuiI18n } from '../../i18n';
 
-export type PageChangeHandler = (pageIndex: number) => void;
+export type PageChangeHandler = EuiPaginationProps['onPageClick'];
 export type ItemsPerPageChangeHandler = (pageSize: number) => void;
 
-export interface EuiTablePaginationProps {
-  activePage?: number;
-  hidePerPageOptions?: boolean;
+export interface EuiTablePaginationProps
+  extends Omit<EuiPaginationProps, 'onPageClick'> {
+  /**
+   * Option to completely hide the "Rows per page" selector.
+   */
+  showPerPageOptions?: boolean;
+  /**
+   * Current selection for "Rows per page".
+   * Pass `0` as to display the selected "Show all" option and hide the pagination.
+   */
   itemsPerPage?: number;
+  /**
+   * Custom array of options for "Rows per page".
+   * Pass `0` as one of option to create a "Show all" option.
+   */
   itemsPerPageOptions?: number[];
+  /**
+   * Click handler that passes back selected `pageSize` number
+   */
   onChangeItemsPerPage?: ItemsPerPageChangeHandler;
   onChangePage?: PageChangeHandler;
-  pageCount?: number;
   /**
-   * id of the table being controlled
+   * Requires the `id` of the table being controlled
    */
   'aria-controls'?: string;
   'aria-label'?: string;
@@ -37,7 +50,7 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
   activePage,
   itemsPerPage = 50,
   itemsPerPageOptions = [10, 20, 50, 100],
-  hidePerPageOptions = false,
+  showPerPageOptions = true,
   onChangeItemsPerPage = () => {},
   onChangePage,
   pageCount,
@@ -124,13 +137,9 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
   );
 
   return (
-    <EuiFlexGroup
-      justifyContent="spaceBetween"
-      alignItems="center"
-      responsive={false}
-    >
+    <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
       <EuiFlexItem grow={false}>
-        {hidePerPageOptions ? null : itemsPerPagePopover}
+        {showPerPageOptions && itemsPerPagePopover}
       </EuiFlexItem>
 
       <EuiFlexItem grow={false}>

@@ -34,7 +34,7 @@ export interface Pagination {
   /**
    * Hides the page size dropdown
    */
-  hidePerPageOptions?: boolean;
+  showPerPageOptions?: boolean;
 }
 
 export interface PaginationBarProps {
@@ -66,7 +66,7 @@ export const PaginationBar = ({
 
   useEffect(() => {
     if (pageCount < pagination.pageIndex + 1) {
-      onPageChange(pageCount - 1);
+      onPageChange!(pageCount - 1);
     }
   }, [pageCount, onPageChange, pagination]);
 
@@ -75,7 +75,7 @@ export const PaginationBar = ({
       <EuiSpacer size="m" />
       <EuiTablePagination
         activePage={pagination.pageIndex}
-        hidePerPageOptions={pagination.hidePerPageOptions}
+        showPerPageOptions={pagination.showPerPageOptions}
         itemsPerPage={pagination.pageSize}
         itemsPerPageOptions={pageSizeOptions}
         pageCount={pageCount}

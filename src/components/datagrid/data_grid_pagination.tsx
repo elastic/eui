@@ -52,7 +52,7 @@ export const EuiDataGridPaginationRenderer = ({
       <EuiTablePagination
         aria-controls={controls}
         activePage={pageIndex}
-        hidePerPageOptions={hidePerPageOptions}
+        showPerPageOptions={!hidePerPageOptions}
         itemsPerPage={pageSize}
         itemsPerPageOptions={pageSizeOptions}
         pageCount={pageCount}

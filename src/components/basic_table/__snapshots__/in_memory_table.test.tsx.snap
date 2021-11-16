@@ -80,7 +80,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
     onChange={[Function]}
     pagination={
       Object {
-        "hidePerPageOptions": undefined,
         "pageIndex": 1,
         "pageSize": 2,
         "pageSizeOptions": Array [
@@ -88,6 +87,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           4,
           6,
         ],
+        "showPerPageOptions": undefined,
         "totalItemCount": 4,
       }
     }
@@ -323,7 +323,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
           onPageSizeChange={[Function]}
           pagination={
             Object {
-              "hidePerPageOptions": undefined,
               "pageIndex": 1,
               "pageSize": 2,
               "pageSizeOptions": Array [
@@ -331,6 +330,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                 4,
                 6,
               ],
+              "showPerPageOptions": undefined,
               "totalItemCount": 4,
             }
           }
@@ -362,10 +362,9 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
               <EuiFlexGroup
                 alignItems="center"
                 justifyContent="spaceBetween"
-                responsive={false}
               >
                 <div
-                  className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+                  className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive"
                 >
                   <EuiFlexItem
                     grow={false}
@@ -1676,7 +1675,6 @@ exports[`EuiInMemoryTable with pagination 1`] = `
   onChange={[Function]}
   pagination={
     Object {
-      "hidePerPageOptions": undefined,
       "pageIndex": 0,
       "pageSize": 2,
       "pageSizeOptions": Array [
@@ -1684,6 +1682,7 @@ exports[`EuiInMemoryTable with pagination 1`] = `
         4,
         6,
       ],
+      "showPerPageOptions": undefined,
       "totalItemCount": 3,
     }
   }
@@ -1723,7 +1722,6 @@ exports[`EuiInMemoryTable with pagination and default page size and index 1`] = 
   onChange={[Function]}
   pagination={
     Object {
-      "hidePerPageOptions": undefined,
       "pageIndex": 1,
       "pageSize": 2,
       "pageSizeOptions": Array [
@@ -1731,6 +1729,7 @@ exports[`EuiInMemoryTable with pagination and default page size and index 1`] = 
         2,
         3,
       ],
+      "showPerPageOptions": undefined,
       "totalItemCount": 3,
     }
   }
@@ -1779,7 +1778,6 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
   onChange={[Function]}
   pagination={
     Object {
-      "hidePerPageOptions": undefined,
       "pageIndex": 0,
       "pageSize": 10,
       "pageSizeOptions": Array [
@@ -1787,6 +1785,7 @@ exports[`EuiInMemoryTable with pagination and selection 1`] = `
         25,
         50,
       ],
+      "showPerPageOptions": undefined,
       "totalItemCount": 3,
     }
   }
@@ -1832,7 +1831,6 @@ exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
   onChange={[Function]}
   pagination={
     Object {
-      "hidePerPageOptions": undefined,
       "pageIndex": 0,
       "pageSize": 4,
       "pageSizeOptions": Array [
@@ -1840,6 +1838,7 @@ exports[`EuiInMemoryTable with pagination, default page size and error 1`] = `
         4,
         6,
       ],
+      "showPerPageOptions": undefined,
       "totalItemCount": 1,
     }
   }
@@ -1887,7 +1886,6 @@ exports[`EuiInMemoryTable with pagination, hiding the per page options 1`] = `
   onChange={[Function]}
   pagination={
     Object {
-      "hidePerPageOptions": true,
       "pageIndex": 0,
       "pageSize": 10,
       "pageSizeOptions": Array [
@@ -1895,6 +1893,7 @@ exports[`EuiInMemoryTable with pagination, hiding the per page options 1`] = `
         25,
         50,
       ],
+      "showPerPageOptions": false,
       "totalItemCount": 3,
     }
   }
@@ -1944,7 +1943,6 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
   onChange={[Function]}
   pagination={
     Object {
-      "hidePerPageOptions": undefined,
       "pageIndex": 0,
       "pageSize": 10,
       "pageSizeOptions": Array [
@@ -1952,6 +1950,7 @@ exports[`EuiInMemoryTable with pagination, selection and sorting 1`] = `
         25,
         50,
       ],
+      "showPerPageOptions": undefined,
       "totalItemCount": 3,
     }
   }
@@ -2029,7 +2028,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
     onChange={[Function]}
     pagination={
       Object {
-        "hidePerPageOptions": undefined,
         "pageIndex": 0,
         "pageSize": 10,
         "pageSizeOptions": Array [
@@ -2037,6 +2035,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting  and simple search
           25,
           50,
         ],
+        "showPerPageOptions": undefined,
         "totalItemCount": 3,
       }
     }
@@ -2108,7 +2107,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
   onChange={[Function]}
   pagination={
     Object {
-      "hidePerPageOptions": undefined,
       "pageIndex": 0,
       "pageSize": 10,
       "pageSizeOptions": Array [
@@ -2116,6 +2114,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and a single recor
         25,
         50,
       ],
+      "showPerPageOptions": undefined,
       "totalItemCount": 3,
     }
   }
@@ -2173,7 +2172,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
   onChange={[Function]}
   pagination={
     Object {
-      "hidePerPageOptions": undefined,
       "pageIndex": 0,
       "pageSize": 2,
       "pageSizeOptions": Array [
@@ -2181,6 +2179,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and column rendere
         4,
         6,
       ],
+      "showPerPageOptions": undefined,
       "totalItemCount": 3,
     }
   }
@@ -2267,7 +2266,6 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
     onChange={[Function]}
     pagination={
       Object {
-        "hidePerPageOptions": undefined,
         "pageIndex": 0,
         "pageSize": 10,
         "pageSizeOptions": Array [
@@ -2275,6 +2273,7 @@ exports[`EuiInMemoryTable with pagination, selection, sorting and configured sea
           25,
           50,
         ],
+        "showPerPageOptions": undefined,
         "totalItemCount": 1,
       }
     }

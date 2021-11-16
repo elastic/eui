@@ -135,7 +135,7 @@ export const Table = () => {
     pageSize,
     totalItemCount,
     pageSizeOptions: [10, 0],
-    hidePerPageOptions: !showPerPageOptions,
+    showPerPageOptions,
   };
 
   const resultsCount =
@@ -157,7 +157,7 @@ export const Table = () => {
         label={
           <span>
             Hide per page options with{' '}
-            <EuiCode>pagination.hidePerPageOptions = true</EuiCode>
+            <EuiCode>pagination.showPerPageOptions = false</EuiCode>
           </span>
         }
         onChange={togglePerPageOptions}

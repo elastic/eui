@@ -349,7 +349,7 @@ describe('EuiBasicTable', () => {
         pageIndex: 0,
         pageSize: 3,
         totalItemCount: 5,
-        hidePerPageOptions: true,
+        showPerPageOptions: false,
       },
       onChange: () => {},
     };
