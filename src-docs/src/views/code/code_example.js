@@ -14,35 +14,35 @@ import {
 import { codeBlockConfig, codeConfig } from './playground';
 
 import Code from './code';
-const codeSource = require('!!raw-loader!./code');
+const codeSource = require('!!raw-loader!./code.tsx');
 const codeSnippet = '<EuiCode>Text to be formatted</EuiCode>';
 
 import CodeBlock from './code_block';
-const codeBlockSource = require('!!raw-loader!./code_block');
+const codeBlockSource = require('!!raw-loader!./code_block.tsx');
 const codeBlockSnippet = `<EuiCodeBlock language="html" paddingSize="s" isCopyable>
 { \`<h1>Title</h1>\` }
 </EuiCodeBlock>
 `;
 
 import CodeBlockLines from './line_numbers';
-const codeBlockLinesSource = require('!!raw-loader!./line_numbers');
+const codeBlockLinesSource = require('!!raw-loader!./line_numbers.tsx');
 const codeBlockLinesSnippet = `<EuiCodeBlock language="json" lineNumbers>
 {}
 </EuiCodeBlock>
 `;
 
 import CodeBlockVirtualized from './virtualized';
-const codeBlockVirtualizedSource = require('!!raw-loader!./virtualized');
+const codeBlockVirtualizedSource = require('!!raw-loader!./virtualized.tsx');
 const codeBlockVirtualizedSnippet = `<EuiCodeBlock language="json" isVirtualized overflowHeight={300}>
 {}
 </EuiCodeBlock>
 `;
 
 import CodeBlockVirtualizedFlyout from './virtualized_flyout';
-const codeBlockVirtualizedFlyoutSource = require('!!raw-loader!./virtualized_flyout');
+const codeBlockVirtualizedFlyoutSource = require('!!raw-loader!./virtualized_flyout.tsx');
 
 import CodeBlockPre from './code_block_pre';
-const codeBlockPreSource = require('!!raw-loader!./code_block_pre');
+const codeBlockPreSource = require('!!raw-loader!./code_block_pre.tsx');
 
 export const CodeExample = {
   title: 'Code',

@@ -8,7 +8,6 @@ export default () => (
       language="jsx"
       fontSize="m"
       paddingSize="m"
-      color="dark"
       overflowHeight={300}
       whiteSpace="pre"
       isCopyable
