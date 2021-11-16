@@ -218,6 +218,9 @@ describe('EuiDataGridCell', () => {
           });
 
           callMethod(component);
+          expect(
+            mockRowHeightUtils.calculateHeightForLineCount
+          ).toHaveBeenCalledWith(expect.any(HTMLElement), 3, false);
           expect(setRowHeight).toHaveBeenCalled();
         });
       });
@@ -234,6 +237,9 @@ describe('EuiDataGridCell', () => {
           });
 
           callMethod(component);
+          expect(
+            mockRowHeightUtils.calculateHeightForLineCount
+          ).toHaveBeenCalledWith(expect.any(HTMLElement), 10, true);
           expect(mockRowHeightUtils.setRowHeight).toHaveBeenCalled();
           expect(setRowHeight).not.toHaveBeenCalled();
         });
