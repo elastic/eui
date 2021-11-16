@@ -141,6 +141,11 @@ export default () => {
       defaultHeight: {
         lineCount: 3,
       },
+      rowHeights: {
+        0: { lineCount: 1 },
+        1: { lineCount: 2 },
+        3: { lineCount: 4 },
+      },
       lineHeight: '2em',
     }),
     []
