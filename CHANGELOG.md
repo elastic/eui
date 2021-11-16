@@ -2,12 +2,12 @@
 
 **Bug fixes**
 
-- Fixed `EuiCodeBlock` not passing `data-test-subj` or `aria-label` to virtualized & full-screen code blocks ([#TODO](https://github.com/elastic/eui/pull/TODO))
-- Fixed `EuiCodeBlock` not closing full-screen mode when the Escape key is pressed ([#TODO](https://github.com/elastic/eui/pull/TODO))
+- Fixed `EuiCodeBlock` not passing `data-test-subj` or `aria-label` to virtualized & full-screen code blocks ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed `EuiCodeBlock` not closing full-screen mode when the Escape key is pressed ([#5379](https://github.com/elastic/eui/pull/5379))
 
 **Theme: Amsterdam**
 
-- Fixed `EuiCodeBlock`'s not properly increasing font size on large ([#TODO](https://github.com/elastic/eui/pull/TODO))
+- Fixed `EuiCodeBlock` not properly increasing large font sizes on Amsterdam ([#5379](https://github.com/elastic/eui/pull/5379))
 
 ## [`41.1.0`](https://github.com/elastic/eui/tree/v41.1.0)
 
