@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 
-import { EuiComboBox } from '../../../../src/components';
+import { EuiComboBox, EuiSpacer, EuiText } from '../../../../src/components';
+
+import { useGeneratedHtmlId } from '../../../../src/services';
+
+interface optionsInterface {
+  label: string;
+  'data-test-subj'?: string;
+}
 
 export default () => {
+  const generatedId = useGeneratedHtmlId({ prefix: 'generated-heading' });
   const [options, updateOptions] = useState([
     {
       label: 'Titan',
@@ -10,7 +18,6 @@ export default () => {
     },
     {
       label: 'Enceladus is disabled',
-      disabled: true,
     },
     {
       label: 'Mimas',
@@ -41,11 +48,14 @@ export default () => {
 
   const [selectedOptions, setSelected] = useState([options[2], options[4]]);
 
-  const onChange = (selectedOptions) => {
+  const onChange = (selectedOptions: optionsInterface[]) => {
     setSelected(selectedOptions);
   };
 
-  const onCreateOption = (searchValue, flattenedOptions) => {
+  const onCreateOption = (
+    searchValue: string,
+    flattenedOptions: optionsInterface[]
+  ) => {
     const normalizedSearchValue = searchValue.trim().toLowerCase();
 
     if (!normalizedSearchValue) {
@@ -70,15 +80,20 @@ export default () => {
   };
 
   return (
-    <EuiComboBox
-      aria-label="Accessible screen reader label"
-      placeholder="Select or create options"
-      options={options}
-      selectedOptions={selectedOptions}
-      onChange={onChange}
-      onCreateOption={onCreateOption}
-      isClearable={true}
-      isDisabled
-    />
+    <React.Fragment>
+      <EuiText>
+        <h3 id={generatedId}>Heading as a label</h3>
+      </EuiText>
+      <EuiSpacer size="s" />
+      <EuiComboBox
+        aria-labelledby={generatedId}
+        placeholder="Select or create options"
+        options={options}
+        selectedOptions={selectedOptions}
+        onChange={onChange}
+        onCreateOption={onCreateOption}
+        isClearable={true}
+      />
+    </React.Fragment>
   );
 };
