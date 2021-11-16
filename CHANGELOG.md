@@ -1,5 +1,6 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Added `aria-label` and `aria-labelledby` props to `EuiComboBox` ([#5360](https://github.com/elastic/eui/issues/5360))
 - Added `useCombobox` hook for creating custom combobox components ([#5157](https://github.com/elastic/eui/pull/5157))
 - Added `paddingSize` prop to `EuiSelectableList` ([#5157](https://github.com/elastic/eui/pull/5157))
 - Refactored `EuiSelectable` accessibility ([#5157](https://github.com/elastic/eui/pull/5157))
