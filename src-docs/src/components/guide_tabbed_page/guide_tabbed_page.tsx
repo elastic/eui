@@ -43,7 +43,7 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
     return tabs.map(({ id, handleClick, name }, index) => {
       const pathname = location.pathname;
 
-      const isSelected = pathname === `${match.path}/${id}`;
+      const isSelected = pathname.includes(`${match.path}/${id}`);
 
       return {
         onClick: () => {
