@@ -4,7 +4,6 @@ exports[`EuiComboBox is rendered 1`] = `
 <div
   aria-expanded="false"
   aria-haspopup="listbox"
-  aria-label="aria-label"
   class="euiComboBox testClass1 testClass2"
   data-test-subj="test subject string"
   role="combobox"
@@ -26,6 +25,7 @@ exports[`EuiComboBox is rendered 1`] = `
         >
           <input
             aria-controls=""
+            aria-label="aria-label"
             data-test-subj="comboBoxSearchInput"
             id="generated-id__eui-combobox-id"
             role="textbox"
@@ -55,6 +55,78 @@ exports[`EuiComboBox is rendered 1`] = `
       </div>
     </div>
   </div>
+</div>
+`;
+
+exports[`props aria-label attribute is rendered 1`] = `
+<div
+  aria-expanded={false}
+  aria-haspopup="listbox"
+  className="euiComboBox"
+  onKeyDown={[Function]}
+  role="combobox"
+>
+  <EuiComboBoxInput
+    aria-label="Test label"
+    autoSizeInputRef={[Function]}
+    compressed={false}
+    fullWidth={false}
+    hasSelectedOptions={false}
+    id="generated-id__eui-combobox-id"
+    inputRef={[Function]}
+    isListOpen={false}
+    noIcon={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    rootId={[Function]}
+    searchValue=""
+    selectedOptions={Array []}
+    singleSelection={false}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value=""
+  />
+</div>
+`;
+
+exports[`props aria-labelledby attribute is rendered 1`] = `
+<div
+  aria-expanded={false}
+  aria-haspopup="listbox"
+  className="euiComboBox"
+  onKeyDown={[Function]}
+  role="combobox"
+>
+  <EuiComboBoxInput
+    aria-labelledby="test-heading-id"
+    autoSizeInputRef={[Function]}
+    compressed={false}
+    fullWidth={false}
+    hasSelectedOptions={false}
+    id="generated-id__eui-combobox-id"
+    inputRef={[Function]}
+    isListOpen={false}
+    noIcon={false}
+    onChange={[Function]}
+    onClear={[Function]}
+    onClick={[Function]}
+    onCloseListClick={[Function]}
+    onFocus={[Function]}
+    onOpenListClick={[Function]}
+    onRemoveOption={[Function]}
+    rootId={[Function]}
+    searchValue=""
+    selectedOptions={Array []}
+    singleSelection={false}
+    toggleButtonRef={[Function]}
+    updatePosition={[Function]}
+    value=""
+  />
 </div>
 `;
 

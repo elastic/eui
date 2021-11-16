@@ -98,6 +98,7 @@ export default () => {
 
   return (
     <EuiComboBox
+      aria-label="Accessible screen reader label"
       placeholder="Search asynchronously"
       async
       options={options}

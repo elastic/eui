@@ -7,3 +7,6 @@
  */
 
 export { EUI_THEMES, EUI_THEME } from './themes';
+
+export { EuiThemeAmsterdam } from './eui-amsterdam/theme';
+export { EuiThemeDefault } from './eui/theme';
