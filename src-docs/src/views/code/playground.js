@@ -25,7 +25,7 @@ export const codeBlockConfig = () => {
   propsToUse.overflowHeight = {
     ...propsToUse.overflowHeight,
     type: 'number',
-    value: 150,
+    value: undefined,
   };
 
   propsToUse.children = {

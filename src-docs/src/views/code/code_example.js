@@ -14,35 +14,59 @@ import {
 import { codeBlockConfig, codeConfig } from './playground';
 
 import Code from './code';
-const codeSource = require('!!raw-loader!./code.tsx');
+const codeSource = require('!!raw-loader!./code');
 const codeSnippet = '<EuiCode>Text to be formatted</EuiCode>';
 
 import CodeBlock from './code_block';
-const codeBlockSource = require('!!raw-loader!./code_block.tsx');
-const codeBlockSnippet = `<EuiCodeBlock language="html" paddingSize="s" isCopyable>
+const codeBlockSource = require('!!raw-loader!./code_block');
+const codeBlockSnippet = `<EuiCodeBlock language="html" fontSize="m" paddingSize="m">
+{ \`<h1>Title</h1>\` }
+</EuiCodeBlock>
+`;
+
+import CodeBlockCopy from './code_block_copy';
+const codeBlockCopySource = require('!!raw-loader!./code_block_copy');
+const codeBlockCopySnippet = `<EuiCodeBlock language="html" isCopyable>
+{ \`<h1>Title</h1>\` }
+</EuiCodeBlock>
+`;
+
+import CodeBlockOverflow from './code_block_overflow';
+const codeBlockOverflowSource = require('!!raw-loader!./code_block_copy');
+const codeBlockOverflowSnippet = `<EuiCodeBlock language="html" overflowHeight={300}>
+{ \`<h1>Title</h1>\` }
+</EuiCodeBlock>
+`;
+
+import CodeBlockPre from './code_block_pre';
+const codeBlockPreSource = require('!!raw-loader!./code_block_pre');
+const codeBlockPreSnippet = `<EuiCodeBlock language="html" whiteSpace="pre">
 { \`<h1>Title</h1>\` }
 </EuiCodeBlock>
 `;
 
 import CodeBlockLines from './line_numbers';
-const codeBlockLinesSource = require('!!raw-loader!./line_numbers.tsx');
+const codeBlockLinesSource = require('!!raw-loader!./line_numbers');
 const codeBlockLinesSnippet = `<EuiCodeBlock language="json" lineNumbers>
+{}
+</EuiCodeBlock>
+`;
+import CodeBlockLinesHighlight from './line_numbers_highlight';
+const codeBlockLinesHighlightSource = require('!!raw-loader!./line_numbers_highlight');
+const codeBlockLinesHighlightSnippet = `<EuiCodeBlock language="json" lineNumbers={{ start: 32, highlight: '32, 34-37, 40' }}>
 {}
 </EuiCodeBlock>
 `;
 
 import CodeBlockVirtualized from './virtualized';
-const codeBlockVirtualizedSource = require('!!raw-loader!./virtualized.tsx');
+const codeBlockVirtualizedSource = require('!!raw-loader!./virtualized');
 const codeBlockVirtualizedSnippet = `<EuiCodeBlock language="json" isVirtualized overflowHeight={300}>
 {}
 </EuiCodeBlock>
 `;
 
 import CodeBlockVirtualizedFlyout from './virtualized_flyout';
-const codeBlockVirtualizedFlyoutSource = require('!!raw-loader!./virtualized_flyout.tsx');
-
-import CodeBlockPre from './code_block_pre';
-const codeBlockPreSource = require('!!raw-loader!./code_block_pre.tsx');
+const codeBlockVirtualizedFlyoutSource = require('!!raw-loader!./virtualized_flyout');
 
 export const CodeExample = {
   title: 'Code',
@@ -118,15 +142,68 @@ export const CodeExample = {
       text: (
         <p>
           <strong>EuiCodeBlock</strong> can be used to create multi-line code
-          blocks. Copy and fullscreen buttons can be enabled via the
-          <EuiCode>isCopyable</EuiCode> and <EuiCode>overflowHeight</EuiCode>
-          props, respectively.
+          blocks with configurable font and padding sizes.
         </p>
       ),
       snippet: codeBlockSnippet,
       props: { EuiCodeBlock },
       demo: <CodeBlock />,
       playground: codeBlockConfig,
+    },
+    {
+      text: (
+        <p>
+          Adding the <EuiCode>isCopyable</EuiCode> prop allows users to copy the
+          text content of the code block.
+        </p>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: codeBlockCopySource,
+        },
+      ],
+      snippet: codeBlockCopySnippet,
+      props: { EuiCodeBlock },
+      demo: <CodeBlockCopy />,
+    },
+    {
+      text: (
+        <p>
+          For long content, you can set an <EuiCode>overflowHeight</EuiCode>{' '}
+          which will scroll if the text exceeds that height, and allows users to
+          view the code in full-screen mode.
+        </p>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: codeBlockOverflowSource,
+        },
+      ],
+      snippet: codeBlockOverflowSnippet,
+      props: { EuiCodeBlock },
+      demo: <CodeBlockOverflow />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: codeBlockPreSource,
+        },
+      ],
+      text: (
+        <p>
+          By default, the <EuiCode>whiteSpace</EuiCode> property is set to{' '}
+          <EuiCode>pre-wrap</EuiCode>. This makes the text wrap when needed. You
+          can, however, pass <EuiCode>pre</EuiCode> to the{' '}
+          <EuiCode>whiteSpace</EuiCode> prop and the text won&apos;t wrap unless
+          line breaks are in the content.
+        </p>
+      ),
+      props: { EuiCodeBlock },
+      snippet: codeBlockPreSnippet,
+      demo: <CodeBlockPre />,
     },
     {
       title: 'Line numbers',
@@ -138,17 +215,33 @@ export const CodeExample = {
       ],
       text: (
         <p>
-          To render line numbers, add <EuiCode>lineNumbers</EuiCode>, and
-          optionally change the starting number and/or visually highlight
-          certain lines by passing a configuration object:{' '}
-          <EuiCode>
-            {'lineNumbers={{ start: 32, highlight: "32, 34-37, 40" }}'}
-          </EuiCode>
+          To render line numbers, you can add <EuiCode>lineNumbers</EuiCode> as
+          boolean flag.
         </p>
       ),
       props: { EuiCodeBlock },
       snippet: codeBlockLinesSnippet,
       demo: <CodeBlockLines />,
+    },
+    {
+      text: (
+        <p>
+          You can also optionally change the starting number and/or visually
+          highlight certain lines by passing a configuration object:{' '}
+          <EuiCode>
+            {'lineNumbers={{ start: 32, highlight: "32, 34-37, 40" }}'}
+          </EuiCode>
+        </p>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: codeBlockLinesHighlightSource,
+        },
+      ],
+      props: { EuiCodeBlock },
+      snippet: codeBlockLinesHighlightSnippet,
+      demo: <CodeBlockLinesHighlight />,
     },
     {
       title: 'Code block virtualization',
@@ -186,26 +279,6 @@ export const CodeExample = {
         </p>
       ),
       demo: <CodeBlockVirtualizedFlyout />,
-    },
-    {
-      title: 'Code block and white-space',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: codeBlockPreSource,
-        },
-      ],
-      text: (
-        <p>
-          By default, the <EuiCode>whiteSpace</EuiCode> property is set to{' '}
-          <EuiCode>pre-wrap</EuiCode>. This makes the text wrap when needed. You
-          can, however, pass <EuiCode>pre</EuiCode> to the{' '}
-          <EuiCode>whiteSpace</EuiCode> prop and the text won&apos;t wrap unless
-          line breaks are in the content.
-        </p>
-      ),
-      props: { EuiCodeBlock },
-      demo: <CodeBlockPre />,
     },
   ],
 };
