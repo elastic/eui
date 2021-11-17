@@ -20,14 +20,13 @@ exports[`EuiSuperSelect is rendered 1`] = `
         >
           <span
             class="euiScreenReaderOnly"
-            id="generated-id"
+            id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
           </span>
           <button
-            aria-haspopup="true"
+            aria-haspopup="listbox"
             aria-label="aria-label"
-            aria-labelledby="generated-id"
             class="euiSuperSelectControl testClass1 testClass2"
             data-test-subj="test subject string"
             type="button"
@@ -72,14 +71,13 @@ exports[`EuiSuperSelect props compressed is rendered 1`] = `
         >
           <span
             class="euiScreenReaderOnly"
-            id="generated-id"
+            id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
           </span>
           <button
-            aria-haspopup="true"
+            aria-haspopup="listbox"
             aria-label="aria-label"
-            aria-labelledby="generated-id"
             class="euiSuperSelectControl euiSuperSelectControl--compressed testClass1 testClass2"
             data-test-subj="test subject string"
             type="button"
@@ -124,13 +122,12 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
         >
           <span
             class="euiScreenReaderOnly"
-            id="generated-id"
+            id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
           </span>
           <button
-            aria-haspopup="true"
-            aria-labelledby="generated-id"
+            aria-haspopup="listbox"
             class="euiSuperSelectControl euiSuperSelect--isOpen__button"
             data-test-subj="superSelect"
             type="button"
@@ -192,11 +189,13 @@ exports[`EuiSuperSelect props custom display is propagated to dropdown 1`] = `
           <div>
             <p
               class="euiScreenReaderOnly"
-              role="alert"
+              id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
-              You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+              You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
             </p>
             <div
+              aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
+              aria-labelledby="euiSuperSelect__generated-id__screenreaderLabelId"
               class="euiSuperSelect__listbox"
               role="listbox"
               tabindex="0"
@@ -284,14 +283,13 @@ exports[`EuiSuperSelect props fullWidth is rendered 1`] = `
         >
           <span
             class="euiScreenReaderOnly"
-            id="generated-id"
+            id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
           </span>
           <button
-            aria-haspopup="true"
+            aria-haspopup="listbox"
             aria-label="aria-label"
-            aria-labelledby="generated-id"
             class="euiSuperSelectControl euiSuperSelectControl--fullWidth testClass1 testClass2"
             data-test-subj="test subject string"
             type="button"
@@ -341,14 +339,13 @@ exports[`EuiSuperSelect props is rendered with a prepend and append 1`] = `
         >
           <span
             class="euiScreenReaderOnly"
-            id="generated-id"
+            id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
           </span>
           <button
-            aria-haspopup="true"
+            aria-haspopup="listbox"
             aria-label="aria-label"
-            aria-labelledby="generated-id"
             class="euiSuperSelectControl euiSuperSelectControl--inGroup testClass1 testClass2"
             data-test-subj="test subject string"
             type="button"
@@ -398,13 +395,12 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
         >
           <span
             class="euiScreenReaderOnly"
-            id="generated-id"
+            id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: Option #1, is selected
           </span>
           <button
-            aria-haspopup="true"
-            aria-labelledby="generated-id"
+            aria-haspopup="listbox"
             class="euiSuperSelectControl euiSuperSelect--isOpen__button"
             data-test-subj="superSelect"
             type="button"
@@ -468,12 +464,14 @@ exports[`EuiSuperSelect props more props are propogated to each option 1`] = `
           <div>
             <p
               class="euiScreenReaderOnly"
-              role="alert"
+              id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
-              You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+              You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
             </p>
             <div
               aria-activedescendant="1"
+              aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
+              aria-labelledby="euiSuperSelect__generated-id__screenreaderLabelId"
               class="euiSuperSelect__listbox"
               role="listbox"
               tabindex="0"
@@ -563,13 +561,12 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
         >
           <span
             class="euiScreenReaderOnly"
-            id="generated-id"
+            id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
           </span>
           <button
-            aria-haspopup="true"
-            aria-labelledby="generated-id"
+            aria-haspopup="listbox"
             class="euiSuperSelectControl euiSuperSelect--isOpen__button"
             data-test-subj="superSelect"
             type="button"
@@ -631,11 +628,13 @@ exports[`EuiSuperSelect props options are rendered when select is open 1`] = `
           <div>
             <p
               class="euiScreenReaderOnly"
-              role="alert"
+              id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
-              You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+              You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
             </p>
             <div
+              aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
+              aria-labelledby="euiSuperSelect__generated-id__screenreaderLabelId"
               class="euiSuperSelect__listbox"
               role="listbox"
               tabindex="0"
@@ -723,13 +722,12 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
         >
           <span
             class="euiScreenReaderOnly"
-            id="generated-id"
+            id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: Option #2, is selected
           </span>
           <button
-            aria-haspopup="true"
-            aria-labelledby="generated-id"
+            aria-haspopup="listbox"
             class="euiSuperSelectControl euiSuperSelect--isOpen__button"
             data-test-subj="superSelect"
             type="button"
@@ -793,12 +791,14 @@ exports[`EuiSuperSelect props renders popoverProps on the underlying EuiPopover 
           <div>
             <p
               class="euiScreenReaderOnly"
-              role="alert"
+              id="euiSuperSelect__generated-id__screenreaderDescribeId"
             >
-              You are in a form selector of 2 items and must select a single option. Use the up and down keys to navigate or escape to close.
+              You are in a form selector and must select a single option. Use the up and down keys to navigate or escape to close.
             </p>
             <div
               aria-activedescendant="2"
+              aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
+              aria-labelledby="euiSuperSelect__generated-id__screenreaderLabelId"
               class="euiSuperSelect__listbox"
               role="listbox"
               tabindex="0"
@@ -886,13 +886,12 @@ exports[`EuiSuperSelect props select component is rendered 1`] = `
         >
           <span
             class="euiScreenReaderOnly"
-            id="generated-id"
+            id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: , is selected
           </span>
           <button
-            aria-haspopup="true"
-            aria-labelledby="generated-id"
+            aria-haspopup="listbox"
             class="euiSuperSelectControl"
             type="button"
           />
@@ -936,13 +935,12 @@ exports[`EuiSuperSelect props valueSelected is rendered 1`] = `
         >
           <span
             class="euiScreenReaderOnly"
-            id="generated-id"
+            id="euiSuperSelect__generated-id__screenreaderLabelId"
           >
             Select an option: Option #2, is selected
           </span>
           <button
-            aria-haspopup="true"
-            aria-labelledby="generated-id"
+            aria-haspopup="listbox"
             class="euiSuperSelectControl"
             type="button"
           >

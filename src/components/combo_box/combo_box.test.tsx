@@ -211,6 +211,22 @@ describe('props', () => {
 
     expect(component).toMatchSnapshot();
   });
+
+  test('aria-label attribute is rendered', () => {
+    const component = shallow(
+      <EuiComboBox aria-label="Test label" options={options} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('aria-labelledby attribute is rendered', () => {
+    const component = shallow(
+      <EuiComboBox aria-labelledby="test-heading-id" options={options} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
 });
 
 test('does not show multiple checkmarks with duplicate labels', () => {
