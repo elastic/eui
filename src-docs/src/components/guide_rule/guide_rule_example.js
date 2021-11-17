@@ -10,11 +10,13 @@ import {
 const typeToClassNameMap = {
   do: 'guideRule__example--do',
   dont: 'guideRule__example--dont',
+  default: 'guideRule__example--default',
 };
 
 const typeToSubtitleTextMap = {
   do: 'Do',
   dont: 'Don’t',
+  default: null,
 };
 
 export const GuideRuleExample = ({
@@ -36,19 +38,28 @@ export const GuideRuleExample = ({
     className
   );
 
-  const styles = { ...style, minHeight };
+  let textColor;
+  let doOrDont;
 
-  if (type && !panelColor) {
-    panelColor = type === 'do' ? 'success' : 'danger';
+  if (type === 'do') {
+    textColor = 'success';
+    panelColor = 'success';
+    doOrDont = typeToSubtitleTextMap[type];
+  } else if (type === 'dont') {
+    textColor = 'danger';
+    panelColor = 'danger';
+    doOrDont = typeToSubtitleTextMap[type];
+  } else {
+    textColor = 'text';
+    panelColor = 'subdued';
+    doOrDont = typeToSubtitleTextMap[type];
   }
-
-  const doOrDont = type && typeToSubtitleTextMap[type];
 
   return (
     <EuiFlexItem>
       <EuiSplitPanel.Outer
         className={classes}
-        style={styles}
+        style={style}
         hasShadow={false}
         borderRadius="none"
         color="transparent"
@@ -60,14 +71,18 @@ export const GuideRuleExample = ({
             className={classNames('guideRule__example__panel', {
               'guideRule__example__panel--flex': panelDisplay === 'flex',
             })}
-            style={panelStyles}
+            style={{ ...panelStyles, minHeight }}
             color={panelColor}
             {...panelProps}
           >
             {children}
           </EuiSplitPanel.Inner>
-          <EuiSplitPanel.Inner color="transparent">
-            <EuiText color={type === 'do' ? 'success' : 'danger'} size="s">
+          <EuiSplitPanel.Inner
+            color="transparent"
+            paddingSize="none"
+            className="guideRule__example__panelFooter"
+          >
+            <EuiText color={textColor} size="s">
               <p>
                 {doOrDont && <strong>{doOrDont}.</strong>} {text}
               </p>
@@ -89,5 +104,5 @@ GuideRuleExample.propTypes = {
 };
 
 GuideRuleExample.defaultProps = {
-  type: 'do',
+  type: 'default',
 };
