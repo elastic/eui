@@ -199,12 +199,28 @@ export class EuiDataGridCell extends Component<
     const lineCount = rowHeightUtils?.getLineCount(rowHeightOption);
 
     if (lineCount) {
-      const height = rowHeightUtils!.calculateHeightForLineCount(
-        this.cellContentsRef,
-        lineCount
+      const shouldUseHeightsCache = rowHeightUtils?.isRowHeightOverride(
+        rowIndex,
+        rowHeightsOptions
       );
 
-      this.props.setRowHeight(height);
+      const height = rowHeightUtils!.calculateHeightForLineCount(
+        this.cellContentsRef,
+        lineCount,
+        shouldUseHeightsCache
+      );
+
+      if (shouldUseHeightsCache) {
+        const { columnId, visibleRowIndex } = this.props;
+        rowHeightUtils?.setRowHeight(
+          rowIndex,
+          columnId,
+          height,
+          visibleRowIndex
+        );
+      } else {
+        this.props.setRowHeight(height);
+      }
     }
   };
 

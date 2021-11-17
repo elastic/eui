@@ -2,6 +2,10 @@
 
 - Added `aria-label` and `aria-labelledby` props to `EuiComboBox` ([#5360](https://github.com/elastic/eui/issues/5360))
 
+**Bug fixes**
+
+- Fixed an `EuiDataGrid` row height bug for grids that set a default `lineCount` and also used `rowHeights` to set row-specific `lineCount`s ([#5376](https://github.com/elastic/eui/pull/5376))
+
 ## [`41.1.0`](https://github.com/elastic/eui/tree/v41.1.0)
 
 - Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))
