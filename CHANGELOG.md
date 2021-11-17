@@ -14,7 +14,7 @@
 - Fixed an accessibility issue where `EuiDataGrid` cells weren't owned by `role=row` elements ([#5285](https://github.com/elastic/eui/pull/5285))
 - Fixed `EuiErrorBoundary` overflow scrolling by wrapping contents in `EuiCodeBlock` ([#5359](https://github.com/elastic/eui/pull/5359))
 - Fixed `analyzeEvent` icon to be horizontally centered [#5365](https://github.com/elastic/eui/pull/5365))
-- Fixed an accessibility issue where `EuiKeyPadMenu` buttons had focusable child elements ([#5385]https://github.com/elastic/eui/pull/5385)
+- Fixed an accessibility issue where `EuiKeyPadMenu` buttons had focusable child elements ([#5385](https://github.com/elastic/eui/pull/5385))
 
 ## [`41.0.0`](https://github.com/elastic/eui/tree/v41.0.0)
 
