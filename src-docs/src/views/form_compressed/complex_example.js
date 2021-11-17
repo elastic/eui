@@ -97,6 +97,12 @@ export default () => {
     },
   ];
 
+  const superSelectOptions = [
+    { value: 'option_one', inputDisplay: 'Option one' },
+    { value: 'option_two', inputDisplay: 'Option two' },
+    { value: 'option_three', inputDisplay: 'Option three' },
+  ];
+
   const selectTooltipContent =
     'Otherwise use an EuiToolTip around the label of the form row.';
 
@@ -112,6 +118,7 @@ export default () => {
     granularityToggleButtonsIdSelected,
     setGranularityToggleButtonsIdSelected,
   ] = useState(granularityToggleButtonId__2);
+  const [superSelectValue] = useState(superSelectOptions[0].value);
 
   const onPopoverSliderValueChange = (e) => {
     setPopoverSliderValues(e.target.value);
@@ -241,11 +248,8 @@ export default () => {
 
       <EuiFormRow label="Select one" display="columnCompressed">
         <EuiSuperSelect
-          options={[
-            { value: 'option_one', inputDisplay: 'Option one' },
-            { value: 'option_two', inputDisplay: 'Option two' },
-            { value: 'option_three', inputDisplay: 'Option three' },
-          ]}
+          options={superSelectOptions}
+          valueOfSelected={superSelectValue}
           compressed
         />
       </EuiFormRow>
