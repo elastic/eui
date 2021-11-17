@@ -118,7 +118,7 @@
   }
 
   code:not(.euiCode):not(.euiCodeBlock__code) {
-    // Excluding EuiCode and EuiCodeBlock selectors to to compound the reduced font-size
+    // Excluding EuiCode and EuiCodeBlock selectors to not compound the reduced font-size
     font-size: fontSizeToRemOrEm(($baseFontSize * .9), $sizingMethod);
   }
 
