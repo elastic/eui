@@ -14,14 +14,12 @@ Array [
     >
       <span
         class="euiScreenReaderOnly"
-        id="generated-id"
       >
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
+        aria-haspopup="listbox"
         aria-label="aria-label"
-        aria-labelledby="generated-id"
         class="euiSuperSelectControl testClass1 testClass2"
         data-test-subj="test subject string"
         type="button"
@@ -58,13 +56,11 @@ Array [
     >
       <span
         class="euiScreenReaderOnly"
-        id="generated-id"
       >
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
-        aria-labelledby="generated-id"
+        aria-haspopup="listbox"
         class="euiSuperSelectControl euiSuperSelectControl--compressed"
         type="button"
       />
@@ -100,13 +96,11 @@ Array [
     >
       <span
         class="euiScreenReaderOnly"
-        id="generated-id"
       >
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
-        aria-labelledby="generated-id"
+        aria-haspopup="listbox"
         class="euiSuperSelectControl"
         type="button"
       />
@@ -142,13 +136,11 @@ Array [
     >
       <span
         class="euiScreenReaderOnly"
-        id="generated-id"
       >
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
-        aria-labelledby="generated-id"
+        aria-haspopup="listbox"
         class="euiSuperSelectControl"
         type="button"
       />
@@ -184,13 +176,11 @@ Array [
     >
       <span
         class="euiScreenReaderOnly"
-        id="generated-id"
       >
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
-        aria-labelledby="generated-id"
+        aria-haspopup="listbox"
         class="euiSuperSelectControl euiSuperSelectControl--fullWidth"
         type="button"
       />
@@ -226,13 +216,11 @@ Array [
     >
       <span
         class="euiScreenReaderOnly"
-        id="generated-id"
       >
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
-        aria-labelledby="generated-id"
+        aria-haspopup="listbox"
         class="euiSuperSelectControl euiSuperSelectControl-isInvalid"
         type="button"
       />
@@ -268,13 +256,11 @@ Array [
     >
       <span
         class="euiScreenReaderOnly"
-        id="generated-id"
       >
         Select an option: , is selected
       </span>
       <button
-        aria-haspopup="true"
-        aria-labelledby="generated-id"
+        aria-haspopup="listbox"
         class="euiSuperSelectControl euiSuperSelectControl-isLoading"
         type="button"
       />
@@ -313,13 +299,11 @@ Array [
     >
       <span
         class="euiScreenReaderOnly"
-        id="generated-id"
       >
         Select an option: Option #1, is selected
       </span>
       <button
-        aria-haspopup="true"
-        aria-labelledby="generated-id"
+        aria-haspopup="listbox"
         class="euiSuperSelectControl"
         type="button"
       >

@@ -142,6 +142,15 @@ export interface _EuiComboBoxProps<T>
    * Specifies that the input should have focus when the component loads
    */
   autoFocus?: boolean;
+  /**
+   * Required when rendering without a visible label from [EuiFormRow](/#/forms/form-layouts).
+   */
+  'aria-label'?: string;
+  /**
+   * Reference ID of a text element containing the visible label for the combo box when not
+   * supplied by `aria-label` or from [EuiFormRow](/#/forms/form-layouts).
+   */
+  'aria-labelledby'?: string;
 }
 
 /**
@@ -925,6 +934,8 @@ export class EuiComboBox<T> extends Component<
       delimiter,
       append,
       autoFocus,
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledby,
       ...rest
     } = this.props;
     const {
@@ -1062,6 +1073,8 @@ export class EuiComboBox<T> extends Component<
           prepend={singleSelection ? prepend : undefined}
           isLoading={isLoading}
           autoFocus={autoFocus}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledby}
         />
         {optionsList}
       </div>
