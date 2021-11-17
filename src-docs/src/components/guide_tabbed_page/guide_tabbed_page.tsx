@@ -8,13 +8,11 @@ import {
 } from '../../../../src/components/page';
 
 export type GuideTabbedPageProps = {
-  examples: any;
-  guidelines: any;
-  pages: any;
   title: string;
+  location: any;
   match: any;
   history: any;
-  location: any;
+  pages: any;
 };
 
 const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
