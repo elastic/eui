@@ -142,6 +142,10 @@
   display: flex;
   align-items: baseline;
   height: 100%;
+
+  .euiDataGridRowCell--controlColumn & {
+    align-items: center;
+  }
 }
 
 .euiDataGridRowCell__expandContent {
