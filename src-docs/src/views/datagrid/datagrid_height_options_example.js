@@ -87,12 +87,6 @@ const rowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
 const autoRowHeightsSnippet = `// the demo below matches this snippet
 rowHeightsOptions = {
   defaultHeight: 'auto', // all rows will automatically adjust the height except rows defined in 'rowHeights'
-  rowHeights: {
-    1: {
-      lineCount: 5, // row at index 1 will show 5 lines
-    },
-    4: 140, // row at index 4 will adjust the height to 140px
-  },
 }
 
 // you can also automatically adjust the height for a specific row

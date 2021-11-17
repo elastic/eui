@@ -41,6 +41,8 @@ describe('EuiDataGridCell', () => {
     });
   };
 
+  beforeEach(() => jest.clearAllMocks());
+
   it('renders', () => {
     const component = mountEuiDataGridCellWithContext();
     expect(component).toMatchSnapshot();
@@ -172,9 +174,6 @@ describe('EuiDataGridCell', () => {
   // TODO: Test ResizeObserver logic in Cypress alongside Jest
   describe('row height logic & resize observers', () => {
     describe('recalculateAutoHeight', () => {
-      beforeEach(() => {
-        (mockRowHeightUtils.setRowHeight as jest.Mock).mockClear();
-      });
       afterEach(() => {
         (mockRowHeightUtils.isAutoHeight as jest.Mock).mockRestore();
       });
@@ -207,19 +206,43 @@ describe('EuiDataGridCell', () => {
 
     describe('recalculateLineHeight', () => {
       const setRowHeight = jest.fn();
-      beforeEach(() => setRowHeight.mockClear());
 
       const callMethod = (component: ReactWrapper) =>
         (component.instance() as any).recalculateLineHeight();
 
-      it('observes the first cell for size changes and calls this.props.setRowHeight on change', () => {
-        const component = mountEuiDataGridCellWithContext({
-          rowHeightsOptions: { defaultHeight: { lineCount: 3 } },
-          setRowHeight,
-        });
+      describe('default height', () => {
+        it('observes the first cell for size changes and calls this.props.setRowHeight on change', () => {
+          const component = mountEuiDataGridCellWithContext({
+            rowHeightsOptions: { defaultHeight: { lineCount: 3 } },
+            setRowHeight,
+          });
 
-        callMethod(component);
-        expect(setRowHeight).toHaveBeenCalled();
+          callMethod(component);
+          expect(
+            mockRowHeightUtils.calculateHeightForLineCount
+          ).toHaveBeenCalledWith(expect.any(HTMLElement), 3, false);
+          expect(setRowHeight).toHaveBeenCalled();
+        });
+      });
+
+      describe('row height overrides', () => {
+        it('uses the rowHeightUtils.setRowHeight cache instead of this.props.setRowHeight', () => {
+          const component = mountEuiDataGridCellWithContext({
+            rowHeightsOptions: {
+              defaultHeight: { lineCount: 3 },
+              rowHeights: { 10: { lineCount: 10 } },
+            },
+            rowIndex: 10,
+            setRowHeight,
+          });
+
+          callMethod(component);
+          expect(
+            mockRowHeightUtils.calculateHeightForLineCount
+          ).toHaveBeenCalledWith(expect.any(HTMLElement), 10, true);
+          expect(mockRowHeightUtils.setRowHeight).toHaveBeenCalled();
+          expect(setRowHeight).not.toHaveBeenCalled();
+        });
       });
 
       it('recalculates when rowHeightsOptions.defaultHeight.lineCount changes', () => {
@@ -243,7 +266,7 @@ describe('EuiDataGridCell', () => {
         callMethod(component);
         expect(
           mockRowHeightUtils.calculateHeightForLineCount
-        ).toHaveBeenCalledWith(expect.any(HTMLElement), 1);
+        ).toHaveBeenCalledWith(expect.any(HTMLElement), 1, false);
         expect(setRowHeight).toHaveBeenCalled();
       });
 

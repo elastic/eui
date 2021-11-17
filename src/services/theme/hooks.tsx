@@ -19,11 +19,13 @@ import {
   EuiThemeComputed,
 } from './types';
 
-export const useEuiTheme = <T extends {} = {}>(): {
+export interface UseEuiTheme<T extends {} = {}> {
   euiTheme: EuiThemeComputed<T>;
   colorMode: EuiThemeColorMode;
   modifications: EuiThemeModifications<T>;
-} => {
+}
+
+export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
   const theme = useContext(EuiThemeContext);
   const colorMode = useContext(EuiColorModeContext);
   const modifications = useContext(EuiModificationsContext);
@@ -36,10 +38,7 @@ export const useEuiTheme = <T extends {} = {}>(): {
 };
 
 export interface WithEuiThemeProps<P = {}> {
-  theme: {
-    euiTheme: EuiThemeComputed<P>;
-    colorMode: EuiThemeColorMode;
-  };
+  theme: UseEuiTheme<P>;
 }
 export const withEuiTheme = <T extends {} = {}, U extends {} = {}>(
   Component: React.ComponentType<T & WithEuiThemeProps<U>>
@@ -49,12 +48,13 @@ export const withEuiTheme = <T extends {} = {}, U extends {} = {}>(
     props: Omit<T, keyof WithEuiThemeProps<U>>,
     ref: React.Ref<Omit<T, keyof WithEuiThemeProps<U>>>
   ) => {
-    const { euiTheme, colorMode } = useEuiTheme<U>();
+    const { euiTheme, colorMode, modifications } = useEuiTheme<U>();
     return (
       <Component
         theme={{
           euiTheme,
           colorMode,
+          modifications,
         }}
         ref={ref}
         {...(props as T)}
