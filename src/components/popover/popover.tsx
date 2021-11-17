@@ -47,19 +47,22 @@ import {
 import { EuiI18n } from '../i18n';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 
-export type PopoverAnchorPosition =
-  | 'upCenter'
-  | 'upLeft'
-  | 'upRight'
-  | 'downCenter'
-  | 'downLeft'
-  | 'downRight'
-  | 'leftCenter'
-  | 'leftUp'
-  | 'leftDown'
-  | 'rightCenter'
-  | 'rightUp'
-  | 'rightDown';
+export const popoverAnchorPosition = [
+  'upCenter',
+  'upLeft',
+  'upRight',
+  'downCenter',
+  'downLeft',
+  'downRight',
+  'leftCenter',
+  'leftUp',
+  'leftDown',
+  'rightCenter',
+  'rightUp',
+  'rightDown',
+] as const;
+
+export type PopoverAnchorPosition = typeof popoverAnchorPosition[number];
 
 export interface EuiPopoverProps {
   /**

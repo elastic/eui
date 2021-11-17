@@ -1,6 +1,11 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
 - Added `aria-label` and `aria-labelledby` props to `EuiComboBox` ([#5360](https://github.com/elastic/eui/issues/5360))
+- Updated `EuiDatePicker` to use `EuiPopover`, `EuiFocusTrap`, and `EuiScreenReaderOnly` ([#5339](https://github.com/elastic/eui/pull/5339))
+
+**Bug fixes**
+
+- Fixed `EuiDatePicker` being constrained to its parent container by using React portal ([#5339](https://github.com/elastic/eui/pull/5339))
 
 **Bug fixes**
 

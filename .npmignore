@@ -6,7 +6,6 @@ wiki/
 generator-eui/
 test/
 src-docs/
-packages/react-datepicker
 packages/eslint-plugin
 .nvmrc
 cypress
