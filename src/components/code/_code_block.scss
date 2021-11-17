@@ -1,8 +1,8 @@
 .euiCodeBlock {
-  @include euiCodeColors;
   max-width: 100%;
   display: block;
   position: relative;
+  background: $euiCodeBlockBackgroundColor;
 
   .euiCodeBlock__pre {
     @include euiScrollBar;

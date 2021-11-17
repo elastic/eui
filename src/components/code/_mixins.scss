@@ -1,3 +1,11 @@
+@mixin euiCodeTypography {
+  @include euiCodeFont;
+  line-height: $euiLineHeight;
+  font-weight: $euiCodeFontWeightRegular;
+  font-size: inherit;
+  color: $euiCodeBlockColor;
+}
+
 @mixin euiCodeSyntaxTokens {
   .token.punctuation:not(.interpolation-punctuation):not([class*='attr-']) {
     opacity: .7;

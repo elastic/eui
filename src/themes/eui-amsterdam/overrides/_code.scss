@@ -1,9 +1,9 @@
 .euiCode {
   border-radius: $euiBorderRadiusSmall;
-  color: makeHighContrastColor($euiColorVis3, $euiCodeBlockBackgroundColor);
 
   .euiCode__code {
     font-weight: $euiCodeFontWeightBold;
+    color: makeHighContrastColor($euiColorVis3, $euiCodeBlockBackgroundColor);
   }
 }
 
