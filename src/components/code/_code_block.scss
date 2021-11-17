@@ -72,7 +72,11 @@
   }
 
   .euiCodeBlock__code {
-    @include euiCodeTypography;
+    @include euiCodeFont;
+    line-height: $euiLineHeight;
+    font-weight: $euiCodeFontWeightRegular;
+    font-size: inherit;
+    color: $euiCodeBlockColor;
     display: block;
   }
 

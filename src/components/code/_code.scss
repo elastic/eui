@@ -2,17 +2,10 @@
 * 1. Size the code against the text its embedded within.
 */
 .euiCode {
-  display: inline-block;
-  white-space: pre;
-  font-size: 90%; /* 1 */
-  padding: 0 $euiSizeS;
+  @include euiCodeFont;
+  font-size: .9em; /* 1 */
+  padding: .2em .5em; /* 1 */
   background: $euiCodeBlockBackgroundColor;
-
-  .euiCode__code {
-    @include euiCodeTypography;
-    display: inline;
-    white-space: normal;
-  }
 
   &.euiCode--transparentBackground {
     background: transparent;

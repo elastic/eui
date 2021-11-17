@@ -19,8 +19,9 @@ const codeSnippet = '<EuiCode>Text to be formatted</EuiCode>';
 
 import CodeBlock from './code_block';
 const codeBlockSource = require('!!raw-loader!./code_block');
-const codeBlockSnippet = `<EuiCodeBlock language="html" fontSize="m" paddingSize="m">
-{ \`<h1>Title</h1>\` }
+const codeBlockSnippet = `<EuiCodeBlock language="jsx" fontSize="m" paddingSize="m">
+  { \`/* I'm an example of JS */
+  import React from 'react';\` }
 </EuiCodeBlock>
 `;
 
@@ -32,7 +33,7 @@ const codeBlockCopySnippet = `<EuiCodeBlock language="html" isCopyable>
 `;
 
 import CodeBlockOverflow from './code_block_overflow';
-const codeBlockOverflowSource = require('!!raw-loader!./code_block_copy');
+const codeBlockOverflowSource = require('!!raw-loader!./code_block_overflow');
 const codeBlockOverflowSnippet = `<EuiCodeBlock language="html" overflowHeight={300}>
 { \`<h1>Title</h1>\` }
 </EuiCodeBlock>
@@ -94,8 +95,7 @@ export const CodeExample = {
           <EuiLink external href="https://prismjs.com/#supported-languages">
             all language syntaxes
           </EuiLink>{' '}
-          supported by the
-          <EuiCode>prism</EuiCode>{' '}
+          supported by the <EuiCode>prism</EuiCode>{' '}
           <EuiLink external href="https://prismjs.com/">
             library
           </EuiLink>
@@ -105,8 +105,8 @@ export const CodeExample = {
         <p>
           JSX code (often React) has distinct language syntaxes from the base
           JavaScript and TypeScript languages. For these instances, use{' '}
-          <EuiCode>language=&quot;jsx&quot;</EuiCode> or{' '}
-          <EuiCode>language=&quot;tsx&quot;</EuiCode>.
+          <EuiCode language="jsx">language=&quot;jsx&quot;</EuiCode> or{' '}
+          <EuiCode language="tsx">language=&quot;tsx&quot;</EuiCode>.
         </p>
       </EuiText>
     </>
@@ -231,6 +231,7 @@ export const CodeExample = {
           <EuiCode>
             {'lineNumbers={{ start: 32, highlight: "32, 34-37, 40" }}'}
           </EuiCode>
+          .
         </p>
       ),
       source: [

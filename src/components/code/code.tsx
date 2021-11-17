@@ -50,10 +50,8 @@ export const EuiCode: FunctionComponent<EuiCodeProps> = ({
   );
 
   return (
-    <span className={classes}>
-      <code className="euiCode__code" data-code-language={language} {...rest}>
-        {content}
-      </code>
-    </span>
+    <code className={classes} data-code-language={language} {...rest}>
+      {content}
+    </code>
   );
 };

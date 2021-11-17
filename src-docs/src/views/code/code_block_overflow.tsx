@@ -16,12 +16,7 @@ insert into "topic" ("forum_id", "subject")
 values (2, 'D''artagnian');`;
 
 export default () => (
-  <EuiCodeBlock
-    language="sql"
-    fontSize="m"
-    paddingSize="m"
-    overflowHeight={150}
-  >
+  <EuiCodeBlock language="sql" overflowHeight={150}>
     {sqlCode}
   </EuiCodeBlock>
 );
