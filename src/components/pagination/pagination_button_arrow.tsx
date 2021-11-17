@@ -39,29 +39,47 @@ export const EuiPaginationButtonArrow: FunctionComponent<Props> = ({
   ariaControls,
   onClick,
 }) => {
-  let labelModifier: number | undefined;
-
   const labels = {
-    first: useEuiI18n('euiPaginationButtonArrow.firstPage', 'First'),
-    previous: useEuiI18n('euiPaginationButtonArrow.previousPage', 'Previous'),
-    next: useEuiI18n('euiPaginationButtonArrow.nextPage', 'Next'),
-    last: useEuiI18n('euiPaginationButtonArrow.lastPage', 'Last'),
+    first: useEuiI18n('euiPaginationButtonArrow.firstPage', 'First page'),
+    previous: useEuiI18n(
+      'euiPaginationButtonArrow.previousPage',
+      'Previous page, {page}',
+      {
+        page: activePage ?? 1,
+      }
+    ),
+    next: useEuiI18n('euiPaginationButtonArrow.nextPage', 'Next page, {page}', {
+      page: activePage != null ? activePage + 2 : 2,
+    }),
+    last: useEuiI18n('euiPaginationButtonArrow.lastPage', 'Last page'),
   };
 
-  if (type === 'previous') {
-    labelModifier = activePage != null ? activePage : 0;
-  } else if (type === 'next') {
-    labelModifier = activePage != null ? activePage + 2 : 0;
-  }
+  const indeterminateLabels = {
+    previous: useEuiI18n(
+      'euiPaginationButtonArrow.previousPageIndeterminate',
+      'Previous page, {count} from last page',
+      {
+        count: activePage != null ? Math.abs(activePage) : 1,
+      }
+    ),
+    next: useEuiI18n(
+      'euiPaginationButtonArrow.nextPageIndeterminate',
+      'Next page, {count} from last page',
+      {
+        count: activePage != null ? Math.abs(activePage) - 2 : 2,
+      }
+    ),
+  };
 
-  const label = useEuiI18n(
-    'euiPaginationButtonArrow.label',
-    ({ type, page }) => `${type} page${page ? `, ${page}` : ''}`,
-    {
-      type: labels[type],
-      page: labelModifier,
-    }
-  );
+  let label =
+    (type === 'next' || type === 'previous') &&
+    activePage != null &&
+    activePage < 0
+      ? indeterminateLabels[type]
+      : labels[type];
+  if (type === 'next' && activePage === -2) {
+    label = labels.last;
+  }
 
   const buttonProps: Partial<EuiButtonIconPropsForAnchor> = {};
 
