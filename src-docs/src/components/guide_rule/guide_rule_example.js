@@ -40,19 +40,20 @@ export const GuideRuleExample = ({
 
   let textColor;
   let doOrDont;
+  let autoPanelColor;
 
   if (type === 'do') {
     textColor = 'success';
-    panelColor = 'success';
     doOrDont = typeToSubtitleTextMap[type];
+    autoPanelColor = 'success';
   } else if (type === 'dont') {
     textColor = 'danger';
-    panelColor = 'danger';
     doOrDont = typeToSubtitleTextMap[type];
-  } else {
+    autoPanelColor = 'danger';
+  } else if (type === 'default') {
     textColor = 'text';
-    panelColor = 'subdued';
     doOrDont = typeToSubtitleTextMap[type];
+    autoPanelColor = 'subdued';
   }
 
   return (
@@ -72,7 +73,7 @@ export const GuideRuleExample = ({
               'guideRule__example__panel--flex': panelDisplay === 'flex',
             })}
             style={{ ...panelStyles, minHeight }}
-            color={panelColor}
+            color={panelColor ? panelColor : autoPanelColor}
             {...panelProps}
           >
             {children}
