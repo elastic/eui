@@ -7,6 +7,10 @@
 
 - Fixed persistent `EuiDataGrid` full screen `<body>` class ([#5354](https://github.com/elastic/eui/pull/5354))
 
+**Breaking changes**
+
+- Deprecated `toolbarVisibility`'s `showStyleSelector` prop of `EuiDataGrid` in favor of `showDisplaySelector`, which allows users to configure both grid density and row height ([#5372](https://github.com/elastic/eui/pull/5372))
+
 ## END FEATURE BRANCH
 
 - Added `aria-label` and `aria-labelledby` props to `EuiComboBox` ([#5360](https://github.com/elastic/eui/issues/5360))
@@ -27,10 +31,6 @@
 - Fixed an accessibility issue where `EuiDataGrid` cells weren't owned by `role=row` elements ([#5285](https://github.com/elastic/eui/pull/5285))
 - Fixed `EuiErrorBoundary` overflow scrolling by wrapping contents in `EuiCodeBlock` ([#5359](https://github.com/elastic/eui/pull/5359))
 - Fixed `analyzeEvent` icon to be horizontally centered [#5365](https://github.com/elastic/eui/pull/5365))
-
-**Breaking changes**
-
-- Deprecated `toolbarVisibility`'s `showStyleSelector` prop of `EuiDataGrid` in favor of `showDisplaySelector`, which allows users to configure both grid density and row height ([#5372](https://github.com/elastic/eui/pull/5372))
 
 ## [`41.0.0`](https://github.com/elastic/eui/tree/v41.0.0)
 
