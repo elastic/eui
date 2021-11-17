@@ -203,6 +203,9 @@
       // Needed to overtake striping
       background-color: $euiColorHighlight !important;
     }
+    .euiDataGridRowCell__contentByHeight + .euiDataGridRowCell__expandButton {
+      background-color: $euiColorHighlight !important;
+    }
   }
 }
 
@@ -211,6 +214,10 @@
   @include euiDataGridRowCell {
     &.euiDataGridRowCell--stripe {
       background: $euiColorLightestShade;
+
+      .euiDataGridRowCell__contentByHeight + .euiDataGridRowCell__expandButton {
+        background-color: $euiColorLightestShade;
+      }
     }
   }
 }
