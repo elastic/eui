@@ -5,12 +5,9 @@
 
 **Bug fixes**
 
-- Fixed `EuiDatePicker` being constrained to its parent container by using React portal ([#5339](https://github.com/elastic/eui/pull/5339))
-
-**Bug fixes**
-
 - Fixed an `EuiDataGrid` row height bug for grids that set a default `lineCount` and also used `rowHeights` to set row-specific `lineCount`s ([#5376](https://github.com/elastic/eui/pull/5376))
 - Fixed `EuiComboBox` from allowing keyboard actions when `isDisabled` ([#5373](https://github.com/elastic/eui/pull/5373))
+- Fixed `EuiDatePicker` being constrained to its parent container by using React portal ([#5339](https://github.com/elastic/eui/pull/5339))
 
 ## [`41.1.0`](https://github.com/elastic/eui/tree/v41.1.0)
 
