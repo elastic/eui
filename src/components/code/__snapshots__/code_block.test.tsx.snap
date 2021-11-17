@@ -42,7 +42,7 @@ exports[`EuiCodeBlock dynamic content updates DOM when input changes 2`] = `
 
 exports[`EuiCodeBlock full screen displays content in fullscreen mode 1`] = `
 <div
-  className="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingLarge euiCodeBlock-isFullScreen testClass1 testClass2"
+  className="testClass1 testClass2 euiCodeBlock euiCodeBlock--hasControl euiCodeBlock--fontLarge euiCodeBlock--paddingLarge euiCodeBlock-isFullScreen"
 >
   <pre
     className="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -140,7 +140,7 @@ exports[`EuiCodeBlock full screen displays content in fullscreen mode 1`] = `
 
 exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasLineNumbers testClass1 testClass2"
+  class="testClass1 testClass2 euiCodeBlock euiCodeBlock--hasLineNumbers euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -192,7 +192,7 @@ exports[`EuiCodeBlock line numbers renders highlighted line numbers 1`] = `
 
 exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasLineNumbers testClass1 testClass2"
+  class="testClass1 testClass2 euiCodeBlock euiCodeBlock--hasLineNumbers euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -244,7 +244,7 @@ exports[`EuiCodeBlock line numbers renders line numbers 1`] = `
 
 exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasLineNumbers testClass1 testClass2"
+  class="testClass1 testClass2 euiCodeBlock euiCodeBlock--hasLineNumbers euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -383,7 +383,7 @@ exports[`EuiCodeBlock props isCopyable is rendered 1`] = `
   isCopyable={true}
 >
   <div
-    className="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl"
+    className="euiCodeBlock euiCodeBlock--hasControl euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
     style={Object {}}
   >
     <pre
@@ -479,7 +479,9 @@ console.log(some);"
         </div>
       </CopyButton>
     </div>
-    <FullScreenDisplay />
+    <FullScreenDisplay
+      className="euiCodeBlock euiCodeBlock--hasControl"
+    />
   </div>
 </EuiCodeBlock>
 `;
@@ -514,7 +516,7 @@ exports[`EuiCodeBlock props language is rendered 1`] = `
 
 exports[`EuiCodeBlock props overflowHeight is rendered 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl"
+  class="euiCodeBlock euiCodeBlock--hasControl euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
   style="max-height:200px"
 >
   <pre
@@ -700,7 +702,7 @@ exports[`EuiCodeBlock props transparentBackground is rendered 1`] = `
 
 exports[`EuiCodeBlock props whiteSpace renders a pre block tag with a css class modifier 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"
+  class="testClass1 testClass2 euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePre"
@@ -730,7 +732,7 @@ exports[`EuiCodeBlock props whiteSpace renders a pre block tag with a css class 
 
 exports[`EuiCodeBlock renders a code block 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge testClass1 testClass2"
+  class="testClass1 testClass2 euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
 >
   <pre
     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
@@ -760,7 +762,7 @@ exports[`EuiCodeBlock renders a code block 1`] = `
 
 exports[`EuiCodeBlock virtualization renders a virtualized code block 1`] = `
 <div
-  class="euiCodeBlock euiCodeBlock--fontSmall euiCodeBlock--paddingLarge euiCodeBlock--hasControl testClass1 testClass2"
+  class="testClass1 testClass2 euiCodeBlock euiCodeBlock--hasControl euiCodeBlock--fontSmall euiCodeBlock--paddingLarge"
   style="height:50%"
 >
   <div

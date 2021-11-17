@@ -3275,7 +3275,9 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                                   </span>
                                                 </code>
                                               </pre>
-                                              <FullScreenDisplay />
+                                              <FullScreenDisplay
+                                                className="euiCodeBlock"
+                                              />
                                             </div>
                                           </EuiCodeBlock>
                                           <EuiSpacer

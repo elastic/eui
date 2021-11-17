@@ -180,19 +180,23 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     onKeyDown,
     FullScreenButton,
     FullScreenDisplay,
-  } = useFullScreen({ overflowHeight, className });
+  } = useFullScreen({ overflowHeight });
 
+  // Classes used in both full-screen and non-full-screen mode
+  const wrapperClasses = classNames(className, 'euiCodeBlock', {
+    'euiCodeBlock--hasControl': showCopyButton || showFullScreenButton,
+    'euiCodeBlock--hasBothControls': showCopyButton && showFullScreenButton,
+    'euiCodeBlock--hasLineNumbers': lineNumbersConfig.show,
+  });
+
+  // Classes used in non-full-screen mode only
   const classes = classNames(
-    'euiCodeBlock',
+    wrapperClasses,
     fontSizeToClassNameMap[fontSize],
     paddingSizeToClassNameMap[paddingSize],
     {
       'euiCodeBlock--transparentBackground': transparentBackground,
-      'euiCodeBlock--hasControl': isCopyable || overflowHeight,
-      'euiCodeBlock--hasBothControls': isCopyable && overflowHeight,
-      'euiCodeBlock--hasLineNumbers': lineNumbersConfig.show,
-    },
-    className
+    }
   );
 
   const codeProps = useMemo(
@@ -263,7 +267,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       )}
       {codeBlockControls}
 
-      <FullScreenDisplay>
+      <FullScreenDisplay className={wrapperClasses}>
         {isVirtualized ? (
           <VirtualizedCodeBlock
             data={data}
@@ -368,10 +372,8 @@ const useCopy = ({
 
 const useFullScreen = ({
   overflowHeight,
-  className,
 }: {
   overflowHeight?: number | string;
-  className?: string;
 }) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
 
@@ -412,16 +414,18 @@ const useFullScreen = ({
     );
   };
 
-  const FullScreenDisplay: React.FC = ({ children }) => {
+  const FullScreenDisplay: React.FC<{ className: string }> = ({
+    children,
+    className,
+  }) => {
     if (!isFullScreen) return null;
 
     // Force fullscreen to use large font and padding.
     const fullScreenClasses = classNames(
-      'euiCodeBlock',
+      className,
       'euiCodeBlock--fontLarge',
       'euiCodeBlock--paddingLarge',
-      'euiCodeBlock-isFullScreen',
-      className
+      'euiCodeBlock-isFullScreen'
     );
 
     // Attaches to the body because of EuiOverlayMask's React portal usage.
