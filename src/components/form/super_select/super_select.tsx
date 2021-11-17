@@ -357,9 +357,8 @@ export class EuiSuperSelect<T extends string> extends Component<
           <p id={this.describedById}>
             <EuiI18n
               token="euiSuperSelect.screenReaderAnnouncement"
-              default="You are in a form selector of {optionsCount} items and must select a single option.
+              default="You are in a form selector and must select a single option.
               Use the up and down keys to navigate or escape to close."
-              values={{ optionsCount: options.length }}
             />
           </p>
         </EuiScreenReaderOnly>
