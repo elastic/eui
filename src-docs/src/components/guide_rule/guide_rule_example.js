@@ -51,7 +51,7 @@ export const GuideRuleExample = ({
     doOrDont = typeToSubtitleTextMap[type];
     autoPanelColor = 'danger';
   } else if (type === 'default') {
-    textColor = 'text';
+    textColor = 'default';
     doOrDont = typeToSubtitleTextMap[type];
     autoPanelColor = 'subdued';
   }
