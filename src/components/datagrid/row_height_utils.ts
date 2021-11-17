@@ -38,22 +38,33 @@ export class RowHeightUtils {
     );
   }
 
+  isRowHeightOverride(
+    rowIndex: number,
+    rowHeightsOptions?: EuiDataGridRowHeightsOptions
+  ): boolean {
+    return rowHeightsOptions?.rowHeights?.[rowIndex] != null;
+  }
+
   getCalculatedHeight(
     heightOption: EuiDataGridRowHeightOption,
     defaultHeight: number,
-    rowIndex?: number
+    rowIndex?: number,
+    isRowHeightOverride?: boolean
   ) {
-    if (isObject(heightOption)) {
-      if (heightOption.lineCount) {
-        return defaultHeight; // lineCount height is set in minRowHeight state in grid_row_body
-      }
-      if (heightOption.height) {
-        return Math.max(heightOption.height, defaultHeight);
-      }
+    if (isObject(heightOption) && heightOption.height) {
+      return Math.max(heightOption.height, defaultHeight);
     }
 
     if (heightOption && isNumber(heightOption)) {
       return Math.max(heightOption, defaultHeight);
+    }
+
+    if (isObject(heightOption) && heightOption.lineCount) {
+      if (isRowHeightOverride) {
+        return this.getRowHeight(rowIndex!) || defaultHeight; // lineCount overrides are stored in the heights cache
+      } else {
+        return defaultHeight; // default lineCount height is set in minRowHeight state in grid_row_body
+      }
     }
 
     if (heightOption === AUTO_HEIGHT && rowIndex != null) {
@@ -117,15 +128,18 @@ export class RowHeightUtils {
     return isObject(option) ? option.lineCount : undefined;
   }
 
-  calculateHeightForLineCount(cellRef: HTMLElement, lineCount: number) {
+  calculateHeightForLineCount(
+    cellRef: HTMLElement,
+    lineCount: number,
+    excludePadding?: boolean
+  ) {
     const computedStyles = window.getComputedStyle(cellRef, null);
     const lineHeight = parseInt(computedStyles.lineHeight, 10);
+    const contentHeight = Math.ceil(lineCount * lineHeight);
 
-    return Math.ceil(
-      lineCount * lineHeight +
-        this.styles.paddingTop +
-        this.styles.paddingBottom
-    );
+    return excludePadding
+      ? contentHeight
+      : contentHeight + this.styles.paddingTop + this.styles.paddingBottom;
   }
 
   /**

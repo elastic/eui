@@ -38,15 +38,29 @@ describe('RowHeightUtils', () => {
     });
   });
 
-  describe('getCalculatedHeight', () => {
-    describe('lineCounts', () => {
-      it('returns the min/defaultHeight set by the data_grid_body state', () => {
-        expect(
-          rowHeightUtils.getCalculatedHeight({ lineCount: 3 }, 50)
-        ).toEqual(50);
-      });
+  describe('isRowHeightOverride', () => {
+    it('returns true if the passed rowIndex exists in rowHeights', () => {
+      expect(
+        rowHeightUtils.isRowHeightOverride(1, {
+          rowHeights: { 1: 'auto' },
+        })
+      ).toEqual(true);
     });
 
+    it('returns false otherwise', () => {
+      expect(
+        rowHeightUtils.isRowHeightOverride(1, {
+          rowHeights: { 2: 'auto' },
+        })
+      ).toEqual(false);
+      expect(rowHeightUtils.isRowHeightOverride(1, undefined)).toEqual(false);
+      expect(
+        rowHeightUtils.isRowHeightOverride(1, { lineHeight: '2em' })
+      ).toEqual(false);
+    });
+  });
+
+  describe('getCalculatedHeight', () => {
     describe('static height numbers', () => {
       it('returns the height number', () => {
         expect(rowHeightUtils.getCalculatedHeight({ height: 100 }, 34)).toEqual(
@@ -63,6 +77,34 @@ describe('RowHeightUtils', () => {
         expect(rowHeightUtils.getCalculatedHeight({ height: 10 }, 34)).toEqual(
           34
         );
+      });
+    });
+
+    describe('lineCounts', () => {
+      describe('default heights', () => {
+        it('returns the min/defaultHeight set by the data_grid_body state', () => {
+          const defaultHeight = 50;
+          expect(
+            rowHeightUtils.getCalculatedHeight({ lineCount: 3 }, defaultHeight)
+          ).toEqual(defaultHeight);
+        });
+      });
+
+      describe('row-specific overrides', () => {
+        it('returns the height set in the cache', () => {
+          const rowIndex = 5;
+          const rowHeightOverride = 100;
+          rowHeightUtils.setRowHeight(rowIndex, 'a', rowHeightOverride, 0);
+
+          expect(
+            rowHeightUtils.getCalculatedHeight(
+              { lineCount: 10 },
+              34,
+              rowIndex,
+              true
+            )
+          ).toEqual(rowHeightOverride);
+        });
       });
     });
 
@@ -166,6 +208,20 @@ describe('RowHeightUtils', () => {
         expect(rowHeightUtils.calculateHeightForLineCount(cell, 5)).toEqual(
           132
         ); // 5 * 24 + 6 + 6
+      });
+
+      it('excludes padding calculations when the excludePadding flag is true', () => {
+        // This is primarily used for rowHeight lineCount overrides that use the height cache,
+        // which already has padding calculations built in
+        expect(
+          rowHeightUtils.calculateHeightForLineCount(cell, 1, true)
+        ).toEqual(24); // 1 * 24
+        expect(
+          rowHeightUtils.calculateHeightForLineCount(cell, 3, true)
+        ).toEqual(72); // 3 * 24
+        expect(
+          rowHeightUtils.calculateHeightForLineCount(cell, 5, true)
+        ).toEqual(120); // 5 * 24
       });
     });
   });
