@@ -174,8 +174,10 @@ function validateChild(context, child) {
       break;
 
     case 'MemberExpression':
-      // @TODO: currently relying solely on type validation that this isn't a string
-      // instead of checking the source of the value like we do for an Identifier
+      // if the top-level object of this expression is a safe identifier, treat this as okay
+      let objectIdentifier = child.object;
+      while (objectIdentifier.type === 'MemberExpression') objectIdentifier = objectIdentifier.object;
+      if (isIdentifierSourceSafe(context, objectIdentifier)) return;
 
       const parserServices = getParserServices(context);
       const checker = parserServices.program.getTypeChecker();

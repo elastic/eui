@@ -42,7 +42,8 @@ const valid = [
   'const useEuiI18n: () => ""; <span>{useEuiI18n()}</span>', // used inside of JSX
 
   // MemberExpression
-  'const vals = { numeric: 5 };<span>{vals.numeric}</span>',
+  'const vals = { numeric: 5 };<span>{vals.numeric}</span>', // isn't a string
+  'function Component({ person }: { person: { name: string } }) { return <span>{person.name}</span> }', // variable comes from an argument
 
   // edge cases
   '<Component {...rest} />', // JSXSpreadAttribute
