@@ -1,23 +1,23 @@
 import React from 'react';
 // @ts-ignore Importing from JS
-import { GuideRuleTitle } from '../../components';
+import { GuideRule, GuideRuleExample, GuideRuleTitle } from '../../components';
 
 import {
   EuiTitle,
   EuiText,
   EuiSpacer,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiImage,
   EuiTable,
   EuiTableHeader,
   EuiTableHeaderCell,
   EuiTableBody,
   EuiTableRow,
   EuiTableRowCell,
+  EuiAspectRatio,
+  EuiImage,
 } from '../../../../src/components';
 
-import imgAnatomy from '../../images/empty-prompt_anatomy.svg';
+import vertical from '../../images/empty-prompt_vertical.svg';
+import horizontal from '../../images/empty-prompt_horizontal.svg';
 
 export default () => (
   <>
@@ -35,46 +35,50 @@ export default () => (
       </p>
       <p>To make the empty state clear, follow this pattern:</p>
     </EuiText>
+
+    <EuiSpacer size="l" />
+
+    <EuiAspectRatio width={2} height={1}>
+      <iframe
+        title="Anatomy of an empty state"
+        width="1200"
+        height="550"
+        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FRzfYLj2xmH9K7gQtbSKygn%2FElastic-UI%3Fnode-id%3D22764%253A276515"
+      />
+    </EuiAspectRatio>
+
     <EuiSpacer size="xl" />
-    <EuiFlexGroup>
-      <EuiFlexItem>
-        <div style={{ textAlign: 'center' }}>
-          <EuiImage alt="Anatomy of an empty state" url={imgAnatomy} />
-        </div>
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiText>
-          <ol>
-            <li>
-              <strong>Icon/illustration (optional):</strong> A meaningful icon
-              or illustration that represents the solution or context.
-            </li>
-            <li>
-              <strong>Title:</strong> The title will answer the question. What’s
-              happening? Is it an error? Is there data?
-            </li>
-            <li>
-              <strong>Description:</strong> Why is it happening? Try to provide
-              more information regarding why the space is empty and guide the
-              user through next actions.
-            </li>
-            <li>
-              <strong>Action(s):</strong> What will solve the issue? It’s always
-              important to lead users to take action or to guide them about the
-              next steps.
-            </li>
-            <li>
-              <strong>Footer (optional):</strong> Use the footer to provide more
-              helpful guidance. Use this section to reference documentation or
-              to link to an area where users can learn more about the issue they
-              are facing.
-            </li>
-          </ol>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+
+    <EuiText>
+      <ol>
+        <li>
+          <strong>Icon/illustration (optional):</strong> A meaningful icon or
+          illustration that represents the solution or context.
+        </li>
+        <li>
+          <strong>Title:</strong> The title will answer the question. What’s
+          happening? Is it an error? Is there data?
+        </li>
+        <li>
+          <strong>Description:</strong> Why is it happening? Try to provide more
+          information regarding why the space is empty and guide the user
+          through next actions.
+        </li>
+        <li>
+          <strong>Action(s):</strong> What will solve the issue? It’s always
+          important to lead users to take action or to guide them about the next
+          steps.
+        </li>
+        <li>
+          <strong>Footer (optional):</strong> Use the footer to provide more
+          helpful guidance. Use this section to reference documentation or to
+          link to an area where users can learn more about the issue they are
+          facing.
+        </li>
+      </ol>
+    </EuiText>
     {/* End of Content section */}
-    {/* Usage section */}
+    {/* Types of empty states and goals section */}
     <GuideRuleTitle>Types of empty states and goals</GuideRuleTitle>
     <EuiSpacer size="xl" />
 
@@ -195,6 +199,47 @@ export default () => (
         </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
-    {/* End of usage section */}
+
+    <EuiSpacer size="xl" />
+    {/* End of Types of empty states and goals section */}
+
+    {/* Design section */}
+    <EuiTitle>
+      <h2>Design</h2>
+    </EuiTitle>
+
+    <GuideRule
+      heading="Vertical vs. Horizontal"
+      description={
+        <>
+          <p>
+            Most of the time, you just need a vertical layout. The vertical
+            layout is perfect when the content is small. A title and the
+            description are no longer than 2 paragraphs. You can use this layout
+            with just an icon, an illustration or no icons at all.
+          </p>
+          <p>
+            Use the horizontal layout when you have large contents. When a
+            description has at least two paragraphs, multiple call to actions
+            and possibly a footer. For this type of layout an illustration is
+            required.
+          </p>
+        </>
+      }
+    >
+      <GuideRuleExample
+        text="Use the vertical layout when the content is small."
+        minHeight="280px"
+      >
+        <EuiImage alt="Vertical layout" url={vertical} height="252" />
+      </GuideRuleExample>
+      <GuideRuleExample
+        text="Use the horizontal layout when you have large contents and you can provide an illustration."
+        minHeight="280px"
+      >
+        <EuiImage alt="Horizontal layout" url={horizontal} height="252" />
+      </GuideRuleExample>
+    </GuideRule>
+    {/* End of Design section */}
   </>
 );
