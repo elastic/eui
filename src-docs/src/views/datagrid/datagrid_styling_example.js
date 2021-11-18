@@ -18,7 +18,7 @@ import DataGridFlex from './flex';
 const dataGridFlexSource = require('!!raw-loader!./flex');
 
 import DataGridStyling from './styling';
-const dataGridStylingSource = require('!!raw-loader!./styling');
+const dataGridStylingSource = require('!!raw-loader!./styling_grid');
 const dataGridStylingHtml = renderToHtml(DataGridStyling);
 
 import DataGridControls from './additional_controls';
