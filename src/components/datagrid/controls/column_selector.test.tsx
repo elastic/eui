@@ -83,6 +83,18 @@ describe('useDataGridColumnSelector', () => {
       closePopover(component);
     });
 
+    it('does not render if all valid sub-options are disabled', () => {
+      const component = shallow(
+        <MockComponent
+          showColumnSelector={{
+            allowHide: false,
+            allowReorder: false,
+          }}
+        />
+      );
+      expect(component.text()).toEqual('');
+    });
+
     describe('column filtering', () => {
       const showColumnSelector = { allowHide: true, allowReorder: true };
 

@@ -30,10 +30,10 @@ export interface EuiDataGridToolbarProps {
   gridWidth: number;
   minSizeForControls?: number;
   toolbarVisibility: boolean | EuiDataGridToolBarVisibilityOptions;
-  displaySelector: ReactElement;
+  displaySelector: ReactNode;
   isFullScreen: boolean;
   controlBtnClasses: string;
-  columnSelector: ReactElement;
+  columnSelector: ReactNode;
   columnSorting: ReactNode;
   setRef: RefCallback<HTMLDivElement | null>;
   setIsFullScreen: Dispatch<SetStateAction<boolean>>;

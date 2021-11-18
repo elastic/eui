@@ -52,6 +52,18 @@ describe('useDataGridDisplaySelector', () => {
       expect(component).toMatchSnapshot();
     });
 
+    it('does not render if all valid sub-options are disabled', () => {
+      const component = shallow(
+        <MockComponent
+          showDisplaySelector={{
+            allowDensity: false,
+            allowRowHeight: false,
+          }}
+        />
+      );
+      expect(component.text()).toEqual('');
+    });
+
     describe('density', () => {
       const getSelection = (component: ReactWrapper) =>
         component
