@@ -208,6 +208,8 @@
       background-color: $euiColorHighlight !important;
     }
     @include euiDataGridRowCellActions($definedHeight: true) {
+      // sass-lint:disable-block no-important
+      // Needed to overtake striping
       background-color: $euiColorHighlight !important;
     }
   }
@@ -217,11 +219,10 @@
 @include euiDataGridStyles(stripes) {
   @include euiDataGridRowCell {
     &.euiDataGridRowCell--stripe {
-      background: $euiColorLightestShade;
-
       @include euiDataGridRowCellActions($definedHeight: true) {
         background-color: $euiColorLightestShade;
       }
+      background: $euiColorLightestShade;
     }
   }
 }
@@ -275,12 +276,14 @@
   @include euiDataGridRowCellActions($definedHeight: false) {
     transform: translateY(1px);
   }
+
   .euiDataGridRowCell--controlColumn {
     .euiButtonIcon {
       height: $euiSize;
     }
+
     .euiCheckbox {
-      transform: scale(0.9);
+      transform: scale(.9);
     }
   }
 }
