@@ -68,7 +68,7 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
         outline-style: auto;
       }
 
-      //🙅‍♀️ But Chrome also needs to have the outline forcefully removed from regular \`:focus\` state
+      // 🙅‍♀️ But Chrome also needs to have the outline forcefully removed from regular \`:focus\` state
       &:not(:focus-visible) {
         outline: none;
       }

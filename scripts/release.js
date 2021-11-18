@@ -155,7 +155,7 @@ async function getVersionTypeFromChangelog() {
   //
   // "##.+?[\r\n]+" consume the first heading & linebreak(s), which describes the main branch
   // "(.+?)" capture (non-greedy) all changes until the rest of the regex matches
-  // "[\r\n]+##(?= \[`\d)" any linebreak(s) leading up to the next ## heading
+  // "[\r\n]+##(?= \[`\d)" any linebreak(s) leading up to the next ## heading with a numbered release, e.g. [`1.0.0`]
   //
   // regex flags "su" enable dotAll (s) and unicode-character matching (u)
   //
