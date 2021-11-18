@@ -57,7 +57,7 @@ export const GuideRuleExample = ({
   }
 
   return (
-    <EuiFlexItem>
+    <EuiFlexItem style={{ flexBasis: 300 }}>
       <EuiSplitPanel.Outer
         className={classes}
         style={style}

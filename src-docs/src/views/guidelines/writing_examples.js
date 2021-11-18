@@ -8,13 +8,9 @@ import {
   EuiCallOut,
   EuiCheckbox,
   EuiEmptyPrompt,
-  EuiFieldNumber,
   EuiFieldText,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiFormRow,
-  EuiHorizontalRule,
-  EuiIconTip,
+  EuiIcon,
   EuiLink,
   EuiModalBody,
   EuiModalFooter,
@@ -24,30 +20,31 @@ import {
   EuiSpacer,
   EuiSwitch,
   EuiText,
-  EuiTitle,
+  EuiToolTip,
   EuiToast,
 } from '../../../../src/components';
 
 import { htmlIdGenerator } from '../../../../src/services';
 
 const WritingExamples = () => {
-  const modalStyles = { maxWidth: 480, transform: 'scale(.75)' };
+  const modalStyles = { maxWidth: 480, transform: 'scale(.8)' };
 
   return (
     <>
-      <EuiText>
+      <EuiText grow={false}>
         <h2 id="buttons">Buttons</h2>
 
         <p>
-          Label buttons with their action. Don&apos;t use Yes, OK, or Confirm
-          when you can use a verb phrase instead.
+          Label <EuiLink href="#/navigation/button">buttons</EuiLink> with their
+          action. Don&apos;t use Yes, OK, or Confirm when you can use a verb
+          phrase instead.
         </p>
       </EuiText>
 
       <GuideRule>
         <GuideRuleExample
           text="Use a verb + noun for a button label."
-          minHeight="280px"
+          minHeight={280}
         >
           <EuiPanel paddingSize="none" style={modalStyles}>
             <EuiModalHeader>
@@ -61,56 +58,57 @@ const WritingExamples = () => {
 
             <EuiModalFooter>
               <EuiButtonEmpty>Manage sessions</EuiButtonEmpty>
-
               <EuiButton fill>Save session</EuiButton>
             </EuiModalFooter>
           </EuiPanel>
         </GuideRuleExample>
         <GuideRuleExample
           text="Use the same verb + noun as in the title."
-          minHeight="280px"
+          minHeight={280}
         >
-          <EuiPanel style={{ transform: 'scale(.75)' }}>
-            <EuiTitle size="m">
-              <span>Delete this index?</span>
-            </EuiTitle>
-            <EuiSpacer />
-            <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
-              <EuiButtonEmpty color="text" size="s">
-                Cancel
-              </EuiButtonEmpty>
-              <EuiButton color="danger" size="s">
-                Delete index
-              </EuiButton>
-            </EuiFlexGroup>
+          <EuiPanel paddingSize="none" style={modalStyles}>
+            <EuiModalHeader>
+              <EuiModalHeaderTitle>Delete this index?</EuiModalHeaderTitle>
+            </EuiModalHeader>
+
+            <EuiModalFooter>
+              <EuiButtonEmpty color="text">Cancel</EuiButtonEmpty>
+              <EuiButton color="danger">Delete index</EuiButton>
+            </EuiModalFooter>
           </EuiPanel>
         </GuideRuleExample>
       </GuideRule>
 
       <EuiSpacer />
-      <EuiLink href="#/navigation/button/guidelines">
-        Preferred wording for buttons
-      </EuiLink>
 
-      <EuiHorizontalRule />
+      <EuiText grow={false}>
+        <p>
+          Be sure to read the{' '}
+          <EuiLink href="#/navigation/button/guidelines">
+            full button guidelines
+          </EuiLink>
+          .
+        </p>
+      </EuiText>
 
-      <EuiSpacer size="m" />
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
 
-      <EuiText>
+      <EuiText grow={false}>
         <h2 id="callouts">Callouts</h2>
 
         <p>
-          Use a callout to relay an information, success, warning, or error
-          message related to the content on the page.
+          Use <EuiLink href="#/display/callout">callouts</EuiLink> to relay
+          informational, success, warning, or error messages related to the
+          content on the page.
         </p>
       </EuiText>
       <GuideRule>
         <GuideRuleExample
           text="Ensure the description provides information in addition to the title."
-          minHeight="120px"
+          minHeight={120}
         >
           <EuiCallOut
-            size="s"
             title="Index privileges missing"
             iconType="alert"
             color="danger"
@@ -123,37 +121,35 @@ const WritingExamples = () => {
         </GuideRuleExample>
         <GuideRuleExample
           text="If a single sentence, end with a period."
-          minHeight="120px"
+          minHeight={120}
         >
           <EuiCallOut
-            size="s"
             title="Your index can match two sources."
             iconType="search"
           />
         </GuideRuleExample>
       </GuideRule>
 
-      <EuiHorizontalRule />
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
 
-      <EuiSpacer size="m" />
-
-      <EuiText>
+      <EuiText grow={false}>
         <h2 id="empty-prompts">Empty prompts</h2>
 
         <p>
           The best empty state lets users know what is happening, why it is
           happening, and what to do about it. Here are four types of frequently
-          used empty states.
+          used <EuiLink href="#/display/empty-prompt">empty prompts</EuiLink>.
         </p>
       </EuiText>
 
       <GuideRule>
         <GuideRuleExample
-          panelDisplay="block"
           text="Prompt first-time users to take action."
-          minHeight="328px"
+          minHeight={300}
         >
           <EuiEmptyPrompt
+            style={modalStyles}
             iconType="addDataApp"
             title={<h2>Register your first repository</h2>}
             body={<p>Create a place where your snapshots will live.</p>}
@@ -165,11 +161,11 @@ const WritingExamples = () => {
           />
         </GuideRuleExample>
         <GuideRuleExample
-          panelDisplay="block"
           text="If there is nothing to show, give instructions on what to do."
-          minHeight="328px"
+          minHeight={300}
         >
           <EuiEmptyPrompt
+            style={modalStyles}
             iconType="searchProfilerApp"
             title={<h2>No queries to profile</h2>}
             body={
@@ -183,12 +179,9 @@ const WritingExamples = () => {
         </GuideRuleExample>
       </GuideRule>
       <GuideRule>
-        <GuideRuleExample
-          panelDisplay="block"
-          text="Introduce a feature."
-          minHeight="328px"
-        >
+        <GuideRuleExample text="Introduce a feature." minHeight={300}>
           <EuiEmptyPrompt
+            style={modalStyles}
             iconType="discoverApp"
             title={<h2>Introducing our table view</h2>}
             body={
@@ -205,11 +198,11 @@ const WritingExamples = () => {
           />
         </GuideRuleExample>
         <GuideRuleExample
-          panelDisplay="block"
           text="If using an empty prompt for an error, explain next steps."
-          minHeight="328px"
+          minHeight={300}
         >
           <EuiEmptyPrompt
+            style={modalStyles}
             iconType="lock"
             title={<h2>We couldn&apos;t log you in</h2>}
             body={
@@ -225,112 +218,110 @@ const WritingExamples = () => {
 
       <EuiSpacer />
 
-      <EuiLink href="#/display/empty-prompt">
-        More empty prompts examples
-      </EuiLink>
-
-      <EuiHorizontalRule />
-
-      <EuiSpacer size="m" />
-
-      <EuiText>
-        <h2 id="labels">Labels</h2>
-
+      <EuiText grow={false}>
         <p>
-          Avoid long labels, but don&apos;t sacrifice clarity. If needed, put
-          additional information in help text and tooltips.
+          Be sure to read the{' '}
+          <EuiLink href="#/display/empty-prompt/guidelines">
+            full empty prompt guidelines
+          </EuiLink>
+          .
         </p>
       </EuiText>
 
-      <GuideRule heading=" " description="">
-        <GuideRuleExample
-          panelDisplay="block"
-          text="Use labels that say what the component does."
-          minHeight="160px"
-        >
-          <EuiFormRow>
-            <EuiCheckbox
-              onChange={() => {}}
-              id={htmlIdGenerator()()}
-              label="Combine values in other bucket"
-            />
-          </EuiFormRow>
-          <EuiFormRow label="Bucket label">
-            <EuiFieldText />
-          </EuiFormRow>
-        </GuideRuleExample>
-        <GuideRuleExample
-          panelDisplay="block"
-          text="Use specific labels."
-          minHeight="160px"
-        >
-          <EuiFormRow>
-            <EuiCheckbox
-              onChange={() => {}}
-              id={htmlIdGenerator()()}
-              label="Limit incoming traffic"
-            />
-          </EuiFormRow>
-          <EuiFormRow
-            label="Source"
-            helpText={
-              <span>
-                Enter CIDR or IP address, for example 192.168.132.6/22.
-              </span>
-            }
-          >
-            <EuiFieldText />
-          </EuiFormRow>
-        </GuideRuleExample>
-      </GuideRule>
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
 
-      <EuiHorizontalRule />
+      <EuiText grow={false}>
+        <h2 id="labels">Labels</h2>
 
-      <EuiSpacer size="m" />
-
-      <EuiText>
-        <h2 id="links">Links</h2>
-
-        <p>Use links to point to detailed information.</p>
+        <p>
+          Avoid long{' '}
+          <EuiLink href="#/forms/form-layouts/#form-labels">labels</EuiLink>,
+          but don&apos;t sacrifice clarity. If needed, put additional
+          information in help text and tooltips.
+        </p>
       </EuiText>
 
       <GuideRule>
         <GuideRuleExample
-          panelDisplay="block"
-          text="Place a Learn more after a text that briefly introduces a topic or feature."
+          text="Use labels that say what the input does."
+          minHeight={160}
         >
-          <EuiFlexItem
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              minHeight: '280px',
-            }}
-          >
-            <EuiCallOut size="m" title="Building a dashboard?" iconType="gear">
-              <p>
-                Create content directly from our Dashboard app using our new
-                integrated workflow.{' '}
-                <EuiLink href="http://www.elastic.co" external>
-                  Learn more.
-                </EuiLink>
-              </p>
-            </EuiCallOut>
-          </EuiFlexItem>
+          <div style={{ width: 400 }}>
+            <EuiFormRow>
+              <EuiCheckbox
+                onChange={() => {}}
+                id={htmlIdGenerator()()}
+                label="Combine values in other bucket"
+              />
+            </EuiFormRow>
+            <EuiFormRow label="Bucket label">
+              <EuiFieldText />
+            </EuiFormRow>
+          </div>
+        </GuideRuleExample>
+        <GuideRuleExample text="Use specific labels." minHeight={160}>
+          <div style={{ width: 400 }}>
+            <EuiFormRow>
+              <EuiCheckbox
+                onChange={() => {}}
+                id={htmlIdGenerator()()}
+                label="Limit incoming traffic"
+              />
+            </EuiFormRow>
+            <EuiFormRow
+              label="Source"
+              helpText={
+                <span>
+                  Enter CIDR or IP address, for example 192.168.132.6/22.
+                </span>
+              }
+            >
+              <EuiFieldText />
+            </EuiFormRow>
+          </div>
+        </GuideRuleExample>
+      </GuideRule>
+
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
+
+      <EuiText grow={false}>
+        <h2 id="links">Links</h2>
+
+        <p>
+          Use <EuiLink href="#/navigation/link">links</EuiLink> to point to
+          detailed information.
+        </p>
+      </EuiText>
+
+      <GuideRule>
+        <GuideRuleExample
+          text="Place a 'Learn more' link after text that briefly introduces a topic or feature."
+          minHeight={280}
+        >
+          <EuiCallOut size="m" title="Building a dashboard?" iconType="gear">
+            <p>
+              Create content directly from our Dashboard app using our new
+              integrated workflow.{' '}
+              <EuiLink href="http://www.elastic.co" external>
+                Learn more.
+              </EuiLink>
+            </p>
+          </EuiCallOut>
         </GuideRuleExample>
         <GuideRuleExample
-          panelDisplay="block"
           text="Use inline links to point to a specific page that is stable."
-          minHeight="280px"
+          minHeight={280}
         >
           <EuiEmptyPrompt
+            style={modalStyles}
             title={<h2>Extend your trial</h2>}
             body={
               <p>
                 To use advanced security and our other awesome&nbsp;
-                <EuiLink href="http://www.elastic.co">
-                  subscription features
-                </EuiLink>
-                , request an extension now.
+                <EuiLink>subscription features</EuiLink>, request an extension
+                now.
               </p>
             }
             actions={
@@ -342,23 +333,22 @@ const WritingExamples = () => {
         </GuideRuleExample>
       </GuideRule>
 
-      <EuiHorizontalRule />
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
 
-      <EuiSpacer size="m" />
-
-      <EuiText>
+      <EuiText grow={false}>
         <h2 id="modal">Modals</h2>
 
         <p>
-          Modals are typically used for confirmation when the user might lose
-          data.
+          <EuiLink href="#/layout/modal">Modals</EuiLink> are typically used for
+          confirmation when the user might lose data.
         </p>
       </EuiText>
 
       <GuideRule>
         <GuideRuleExample
           text="For the body text, use one to two short sentences that explain the consequences."
-          minHeight="304px"
+          minHeight={300}
         >
           <EuiPanel paddingSize="none" style={modalStyles}>
             <EuiModalHeader>
@@ -382,7 +372,7 @@ const WritingExamples = () => {
 
         <GuideRuleExample
           text="Some cases require three buttons."
-          minHeight="304px"
+          minHeight={300}
         >
           <EuiPanel paddingSize="none" style={modalStyles}>
             <EuiModalHeader>
@@ -393,16 +383,16 @@ const WritingExamples = () => {
             <EuiModalBody>
               <EuiText>
                 <p>
-                  When you exit editing mode, you can keep or discard your
+                  When you exit editing mode, you can save or discard your
                   changes. You can&apos;t recover discarded changes.
                 </p>
               </EuiText>
             </EuiModalBody>
 
-            <EuiModalFooter>
+            <EuiModalFooter style={{ flexWrap: 'wrap' }}>
               <EuiButtonEmpty>Continue editing</EuiButtonEmpty>
               <EuiButtonEmpty>Discard changes</EuiButtonEmpty>
-              <EuiButton fill>Keep changes </EuiButton>
+              <EuiButton fill>Save changes </EuiButton>
             </EuiModalFooter>
           </EuiPanel>
         </GuideRuleExample>
@@ -411,7 +401,7 @@ const WritingExamples = () => {
       <GuideRule>
         <GuideRuleExample
           text="Use the same action verbs in the header and button text."
-          minHeight="250px"
+          minHeight={250}
         >
           <EuiPanel paddingSize="none" style={modalStyles}>
             <EuiModalHeader>
@@ -432,7 +422,7 @@ const WritingExamples = () => {
         </GuideRuleExample>
         <GuideRuleExample
           text="Omit the body if users understand the decision from the header and button text alone."
-          minHeight="250px"
+          minHeight={250}
         >
           <EuiPanel paddingSize="none" style={modalStyles}>
             <EuiModalHeader>
@@ -454,7 +444,7 @@ const WritingExamples = () => {
         <GuideRuleExample
           text="Asking users to delete a single item should include the item name in the title, if possible.
    Use single quotes around the name if it helps clarify meaning."
-          minHeight="256px"
+          minHeight={250}
         >
           <EuiPanel paddingSize="none" style={modalStyles}>
             <EuiModalHeader>
@@ -480,7 +470,7 @@ const WritingExamples = () => {
 
         <GuideRuleExample
           text="For bulk actions, include the number of items in the title."
-          minHeight="256px"
+          minHeight={250}
         >
           <EuiPanel paddingSize="none" style={modalStyles}>
             <EuiModalHeader>
@@ -503,124 +493,151 @@ const WritingExamples = () => {
         </GuideRuleExample>
       </GuideRule>
 
-      <EuiHorizontalRule />
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
 
-      <EuiSpacer size="m" />
-
-      <EuiText>
+      <EuiText grow={false}>
         <h2 id="switches">Switches</h2>
 
-        <p>Describe the action when the switch is enabled.</p>
+        <p>
+          Describe the action when the{' '}
+          <EuiLink href="#/forms/form-controls/#switch">switch</EuiLink> is
+          enabled.
+        </p>
       </EuiText>
 
       <GuideRule>
         <GuideRuleExample
-          panelDisplay="block"
           text="Keep labels and descriptions short and direct."
-          minHeight="150px"
+          minHeight={150}
         >
-          <EuiSwitch label="Use the first matching geo data" />
-          <EuiSpacer />
+          <div style={{ width: 400 }}>
+            <EuiSwitch
+              checked={false}
+              onChange={() => {}}
+              label="Use the first matching geo data"
+            />
+            <EuiSpacer />
+          </div>
         </GuideRuleExample>
         <GuideRuleExample
-          panelDisplay="block"
           text='Start with a keyword instead of "If true" or "If enabled".'
-          minHeight="150px"
+          minHeight={150}
         >
-          <EuiSwitch label="Use recommended defaults" />
-          <EuiSpacer />
-          <EuiText size="s">
-            Rollover when an index is 30 days old or reaches 50 gigabytes.
-          </EuiText>
-          <EuiSpacer />
+          <div style={{ width: 400 }}>
+            <EuiFormRow helpText="Rollover when an index is 30 days old or reaches 50 gigabytes.">
+              <EuiSwitch
+                checked={false}
+                onChange={() => {}}
+                label="Use recommended defaults"
+              />
+            </EuiFormRow>
+          </div>
         </GuideRuleExample>
       </GuideRule>
 
-      <EuiHorizontalRule />
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
 
-      <EuiSpacer size="m" />
-
-      <EuiText>
+      <EuiText grow={false}>
         <h2 id="text-fields">Text fields</h2>
+        <p>
+          Place hints and instruction outside a{' '}
+          <EuiLink href="#/forms/form-controls/#text-field">text field</EuiLink>{' '}
+          so it is always visible to the user.
+        </p>
       </EuiText>
 
-      <GuideRule description="Place hints and instruction outside a field so it is always visible to the user.">
-        <GuideRuleExample
-          panelDisplay="block"
-          text="Help users make the right decision by clarifying what goes inside a field."
-        >
-          <EuiFormRow
-            label="Set a custom interval"
-            helpText={
-              <span>Use shorthand notation, such as 30s, 10m, or 1h.</span>
-            }
-          >
-            <EuiFieldNumber min={1} max={5} step={1} />
-          </EuiFormRow>
+      <GuideRule>
+        <GuideRuleExample text="Help users make the right decision by clarifying what goes inside a field.">
+          <div style={{ width: 400 }}>
+            <EuiFormRow
+              label="Set a custom interval"
+              helpText={
+                <span>Use shorthand notation, such as 30s, 10m, or 1h.</span>
+              }
+            >
+              <EuiFieldText />
+            </EuiFormRow>
+          </div>
         </GuideRuleExample>
 
-        <GuideRuleExample
-          panelDisplay="block"
-          text="Use complete sentences and ending punctuation."
-        >
-          <EuiFormRow
-            label="Name"
-            helpText={<span>Your name will be on public display.</span>}
-          >
-            <EuiFieldText name="text" />
-          </EuiFormRow>
+        <GuideRuleExample text="Use complete sentences and ending punctuation.">
+          <div style={{ width: 400 }}>
+            <EuiFormRow
+              label="Name"
+              helpText={<span>Your name will be on public display.</span>}
+            >
+              <EuiFieldText name="text" />
+            </EuiFormRow>
+          </div>
         </GuideRuleExample>
       </GuideRule>
 
-      <GuideRule description="Use clear language for validation messages.">
-        <GuideRuleExample
-          panelDisplay="block"
-          text="Prefer this format for a required field."
-        >
-          <EuiFormRow label="Name" isInvalid={true} error="Name is required.">
-            <EuiFieldText name="text" isInvalid={true} />
-          </EuiFormRow>
+      <GuideRule
+        description={
+          <>
+            Use clear language for{' '}
+            <EuiLink href="#/forms/form-validation">validation</EuiLink>{' '}
+            messages.
+          </>
+        }
+      >
+        <GuideRuleExample text="Prefer this format for a required field.">
+          {' '}
+          <div style={{ width: 400 }}>
+            <EuiFormRow label="Name" isInvalid={true} error="Name is required.">
+              <EuiFieldText name="text" isInvalid={true} />
+            </EuiFormRow>
+          </div>
         </GuideRuleExample>
 
-        <GuideRuleExample
-          panelDisplay="block"
-          text="Tell users what happened and how to fix it."
-        >
-          <EuiFormRow
-            label="Address"
-            error="Choose a different address as this one already exists."
-            isInvalid={true}
-          >
-            <EuiFieldText name="text" isInvalid={true} />
-          </EuiFormRow>
+        <GuideRuleExample text="Tell users what happened and how to fix it.">
+          <div style={{ width: 400 }}>
+            <EuiFormRow
+              label="Address"
+              error="Choose a different address as this one already exists."
+              isInvalid={true}
+            >
+              <EuiFieldText
+                value="1234 Elastic Ave"
+                onChange={() => {}}
+                isInvalid={true}
+              />
+            </EuiFormRow>
+          </div>
         </GuideRuleExample>
       </GuideRule>
 
-      <EuiHorizontalRule />
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
 
-      <EuiSpacer size="m" />
-
-      <EuiText>
+      <EuiText grow={false}>
         <h2 id="toasts">Toasts</h2>
 
-        <p>A common use of toasts is as a success message.</p>
+        <p>
+          A common use of <EuiLink href="#/display/toast">toasts</EuiLink> is as
+          a success message.
+        </p>
       </EuiText>
 
-      <GuideRule description=" ">
+      <GuideRule>
         <GuideRuleExample
+          minHeight={120}
           text="For common actions such as create, add, delete, remove, and save,
                     include the object type, the object name if available, and the past tense of the action.
                     Don't include &quot;successfully&quot;. It's implied."
         >
-          <div>
-            <EuiToast
-              color="success"
-              style={{ maxWidth: 300 }}
-              title="User 'Casey Smith' was added"
-            />
-          </div>
+          <EuiToast
+            color="success"
+            style={{ maxWidth: 300 }}
+            title="User 'Casey Smith' was added"
+          />
         </GuideRuleExample>
-        <GuideRuleExample text="For a message about multiple objects, include the object count, but not the names of the objects.">
+        <GuideRuleExample
+          minHeight={120}
+          text="For a message about multiple objects, include the object count, but not the names of the objects."
+        >
           <EuiToast
             color="success"
             style={{ maxWidth: 300 }}
@@ -628,20 +645,29 @@ const WritingExamples = () => {
           />
         </GuideRuleExample>
       </GuideRule>
+
       <EuiSpacer />
-      <EuiLink href="#/display/toast/guidelines">More toast examples</EuiLink>
 
-      <EuiHorizontalRule />
+      <EuiText grow={false}>
+        <p>
+          Be sure to read the{' '}
+          <EuiLink href="#/display/toast/guidelines">
+            full toast guidelines
+          </EuiLink>
+          .
+        </p>
+      </EuiText>
 
-      <EuiSpacer size="m" />
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
 
-      <EuiText>
+      <EuiText grow={false}>
         <h2 id="tooltips">Tooltips</h2>
 
         <p>
           Provide additional information, such as what the user can do.
-          Don&apos;t use tooltips for essential information, which belongs
-          directly in the UI.
+          Don&apos;t use <EuiLink href="#/display/tooltip">tooltips</EuiLink>{' '}
+          for essential information, which belongs directly in the UI.
         </p>
       </EuiText>
 
@@ -650,39 +676,39 @@ const WritingExamples = () => {
           panelDisplay="block"
           text="Use sentence case and ending period.  Sentence fragments are ok."
         >
-          <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
-            <EuiFlexItem grow={false}>
-              <EuiCheckbox
-                id="explainedCheckbox"
-                label="Check for existing objects"
-                onChange={() => {}}
-              />
-            </EuiFlexItem>
-
-            <EuiFlexItem grow={false}>
-              <EuiIconTip
-                content="Check if objects were previously copied or imported into the space."
-                position="right"
-              />
-            </EuiFlexItem>
-          </EuiFlexGroup>
+          <EuiToolTip
+            content="Check if objects were previously copied or imported into the space."
+            position="right"
+          >
+            <EuiCheckbox
+              id="explainedCheckbox"
+              onChange={() => {}}
+              label={
+                <>
+                  Check for existing objects{' '}
+                  <EuiIcon className="eui-alignTop" type="questionInCircle" />
+                </>
+              }
+            />
+          </EuiToolTip>
         </GuideRuleExample>
         <GuideRuleExample
           panelDisplay="block"
           text="Multilines are ok, but use 2 lines max."
         >
-          <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
-            <EuiFlexItem grow={false}>
-              <EuiText size="s">Available fields</EuiText>
-            </EuiFlexItem>
-
-            <EuiFlexItem grow={false}>
-              <EuiIconTip
+          <EuiText size="s">
+            <p>
+              <EuiToolTip
                 content="Available fields have data in the first 500 documents that match your filters. Full text and geographic fields cannot be visualized and are not shown."
                 position="right"
-              />
-            </EuiFlexItem>
-          </EuiFlexGroup>
+              >
+                <span>
+                  Available fields{' '}
+                  <EuiIcon className="eui-alignTop" type="questionInCircle" />
+                </span>
+              </EuiToolTip>
+            </p>
+          </EuiText>
         </GuideRuleExample>
       </GuideRule>
     </>
