@@ -80,6 +80,9 @@ export default () => {
           aria-label="Composers"
           options={items}
           onChange={(newOptions) => setItems(newOptions)}
+          loadingMessage="Loading filters"
+          emptyMessage="No filters available"
+          noMatchesMessage="No filters found"
         >
           {(list, search) => (
             <div style={{ width: 300 }}>
@@ -88,28 +91,6 @@ export default () => {
             </div>
           )}
         </EuiSelectable>
-
-        {/* Use when loading items initially
-
-          <div className="euiFilterSelect__note">
-            <div className="euiFilterSelect__noteContent">
-              <EuiLoadingChart size="m" />
-              <EuiSpacer size="xs" />
-              <p>Loading filters</p>
-            </div>
-          </div> 
-        */}
-
-        {/* Use when no results are returned
-
-          <div className="euiFilterSelect__note">
-            <div className="euiFilterSelect__noteContent">
-              <EuiIcon type="minusInCircle" />
-              <EuiSpacer size="xs" />
-              <p>No filters found</p>
-            </div>
-          </div>
-        */}
       </EuiPopover>
     </EuiFilterGroup>
   );
