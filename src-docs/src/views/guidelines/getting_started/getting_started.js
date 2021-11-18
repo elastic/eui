@@ -157,11 +157,11 @@ export const GettingStarted = {
             <p>
               If your application doesn&#39;t allow grabbing the font assets
               from a CDN, you&#39;ll need to download and locally provide the
-              font files. You can download the files directly from their
-              source site <a href="https://rsms.me/inter/">rsms.me/inter/</a>,
-              then follow the instructions in the provided CSS file for
-              importing. We recommend using the single variable font file and
-              importing with the following settings:
+              font files. You can download the files directly from their source
+              site <a href="https://rsms.me/inter/">rsms.me/inter/</a>, then
+              follow the instructions in the provided CSS file for importing. We
+              recommend using the single variable font file and importing with
+              the following settings:
             </p>
           </EuiText>
           <EuiSpacer />
