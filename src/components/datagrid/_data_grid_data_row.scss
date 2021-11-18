@@ -276,16 +276,6 @@
   @include euiDataGridRowCellActions($definedHeight: false) {
     transform: translateY(1px);
   }
-
-  .euiDataGridRowCell--controlColumn {
-    .euiButtonIcon {
-      height: $euiSize;
-    }
-
-    .euiCheckbox {
-      transform: scale(.9);
-    }
-  }
 }
 
 @keyframes euiDataGridCellButtonSlideIn {
