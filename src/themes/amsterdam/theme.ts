@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { buildTheme, EuiThemeShape } from '../../services/theme';
+import { buildTheme } from '../../services/theme/utils';
+import { EuiThemeShape } from '../../services/theme/types';
 import { animation } from '../../global_styling/variables/_animations';
 import { breakpoint } from '../../global_styling/variables/_breakpoint';
 import { base, size } from '../../global_styling/variables/_size';

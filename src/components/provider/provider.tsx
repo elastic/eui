@@ -24,7 +24,7 @@ export interface EuiProviderProps<T>
   extends Omit<EuiThemeProviderProps<T>, 'children' | 'theme'>,
     EuiGlobalStylesProps {
   /**
-   * Provide a specific EuiTheme; Defaults to EuiThemeDefault;
+   * Provide a specific EuiTheme; Defaults to EuiThemeAmsterdam;
    * Pass `null` to remove all theming including global reset
    */
   theme?: EuiThemeSystem | null;

@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { computed, sizeToPixel } from '../../../../services/theme';
+import { computed } from '../../../../services/theme/utils';
+import { sizeToPixel } from '../../../../services/theme/size';
 import {
   border,
   EuiThemeBorder,
