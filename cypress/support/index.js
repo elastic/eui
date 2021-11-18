@@ -14,3 +14,4 @@
 // ***********************************************************
 
 import '@cypress/code-coverage/support';
+import '../../dist/eui_theme_dark.css';

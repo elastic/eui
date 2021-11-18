@@ -7,6 +7,7 @@ exports[`EuiColorPaletteDisplay is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <span
+    aria-hidden="true"
     class="euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
@@ -34,9 +35,14 @@ exports[`EuiColorPaletteDisplay props HTML attributes accepts span attributes 1`
   class="euiColorPaletteDisplay testClass1 testClass2 euiColorPaletteDisplay--sizeSmall"
   data-test-subj="test subject string"
   id="id"
-  title="title"
 >
   <span
+    class="euiScreenReaderOnly"
+  >
+    title
+  </span>
+  <span
+    aria-hidden="true"
     class="euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
@@ -65,6 +71,7 @@ exports[`EuiColorPaletteDisplay props size m is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <span
+    aria-hidden="true"
     class="euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
@@ -93,6 +100,7 @@ exports[`EuiColorPaletteDisplay props size s is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <span
+    aria-hidden="true"
     class="euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
@@ -121,6 +129,7 @@ exports[`EuiColorPaletteDisplay props size xs is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <span
+    aria-hidden="true"
     class="euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
@@ -149,6 +158,7 @@ exports[`EuiColorPaletteDisplay props type and palette are rendered with type fi
   data-test-subj="test subject string"
 >
   <span
+    aria-hidden="true"
     class="euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
@@ -174,6 +184,7 @@ exports[`EuiColorPaletteDisplay props type and palette are rendered with type fi
   data-test-subj="test subject string"
 >
   <span
+    aria-hidden="true"
     class="euiColorPaletteDisplayFixed__bleedArea"
   >
     <span
@@ -197,6 +208,7 @@ exports[`EuiColorPaletteDisplay props type and palette are rendered with type fi
 
 exports[`EuiColorPaletteDisplay props type and palette are rendered with type gradient and palette with stops 1`] = `
 <span
+  aria-hidden="true"
   aria-label="aria-label"
   class="euiColorPaletteDisplay testClass1 testClass2 euiColorPaletteDisplay--sizeSmall"
   data-test-subj="test subject string"
@@ -206,6 +218,7 @@ exports[`EuiColorPaletteDisplay props type and palette are rendered with type gr
 
 exports[`EuiColorPaletteDisplay props type and palette are rendered with type gradient and palette without stops 1`] = `
 <span
+  aria-hidden="true"
   aria-label="aria-label"
   class="euiColorPaletteDisplay testClass1 testClass2 euiColorPaletteDisplay--sizeSmall"
   data-test-subj="test subject string"

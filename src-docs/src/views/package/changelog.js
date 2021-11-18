@@ -4,7 +4,7 @@ import { EuiMarkdownFormat } from '../../../../src';
 import { GuidePage } from '../../components/guide_page';
 
 const changelogSource = require('!!raw-loader!../../../../CHANGELOG.md').default.replace(
-  /## \[`main`\].+?##(?= \[`\d)/s, // remove the `master` heading & contents
+  /## \[`main`\].+?##(?= \[`\d)/s, // remove the `main` heading & contents
   '##'
 );
 
