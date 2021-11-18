@@ -78,7 +78,7 @@ describe('EuiFocusTrap', () => {
               <input data-test-subj="input2" />
             </div>
           </EuiFocusTrap>
-          <button data-test-subj="outside" />
+          <button data-test-subj="outside">outside the focus trap</button>
         </div>
       );
 
@@ -102,7 +102,7 @@ describe('EuiFocusTrap', () => {
               <input data-test-subj="input2" />
             </div>
           </EuiFocusTrap>
-          <button data-test-subj="outside" />
+          <button data-test-subj="outside">outside the focus trap</button>
         </div>
       );
 
@@ -125,7 +125,7 @@ describe('EuiFocusTrap', () => {
               </EuiPortal>
             </div>
           </EuiFocusTrap>
-          <button data-test-subj="outside" />
+          <button data-test-subj="outside">outside the focus trap</button>
         </div>
       );
 
@@ -145,7 +145,7 @@ describe('EuiFocusTrap', () => {
               <input data-test-subj="input2" />
             </div>
           </EuiFocusTrap>
-          <button data-test-subj="outside" />
+          <button data-test-subj="outside">outside the focus trap</button>
         </div>
       );
 
