@@ -11,6 +11,8 @@ const sassExtractJsPlugin = require('./sass-extract-js-plugin');
 
 const postcssConfiguration = require('../postcss.config.js');
 
+const targetTheme = process.env['TARGET_THEME'];
+
 const writeFile = util.promisify(fs.writeFile);
 const mkdir = util.promisify(fs.mkdir);
 const glob = util.promisify(globModule);
@@ -37,7 +39,10 @@ async function compileScssFiles({
     }
   }
 
-  const inputFilenames = await glob(sourcePattern, undefined);
+  const inputFilenames = (await glob(sourcePattern, undefined)).filter(filename => {
+    if (targetTheme == null) return true;
+    return filename === `src/theme_${targetTheme}.scss`;
+  });
 
   await Promise.all(
     inputFilenames.map(async inputFilename => {
@@ -142,7 +147,7 @@ if (require.main === module) {
   }
 
   compileScssFiles({
-    sourcePattern: path.join('src', 'theme_*.scss'), 
+    sourcePattern: path.join('src', 'theme_*.scss'),
     destinationDirectory: 'dist',
     docsVariablesDirectory: 'src-docs/src/views/theme/_json',
     packageName: euiPackageName

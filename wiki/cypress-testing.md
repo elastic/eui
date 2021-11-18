@@ -6,7 +6,13 @@
 
 `yarn test-cypress-dev` launches a chrome window controlled by Cypress, which lists out the discovered tests and allows executing/interacting from that window.
 
-You can pass other [Cypress CLI arguments](https://docs.cypress.io/guides/guides/command-line). For example:
+### Skipping CSS compilation
+
+To ensure tests use up-to-date styles, the test runner compiles our SCSS to CSS before executing Cypress. This adds some processing time before the tests can run, and often the existing locally-built styles are still accurate. The CSS compilation step can be skipped by passing the `--skip-css` flag to `yarn test-cypress` and `yarn test-cypress-dev`.
+
+### Cypress arguments
+
+You can also pass [Cypress CLI arguments](https://docs.cypress.io/guides/guides/command-line). For example:
 
 ```bash
 # Only run a single specific test file, e.g. onBoarding.js
