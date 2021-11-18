@@ -76,17 +76,12 @@ export class GuidePageChrome extends Component {
   };
 
   renderSubSections = (href, subSections = [], searchTerm = '') => {
-    let hasMatchingSubItem = false;
-
     const subSectionsWithTitles = subSections.filter((item) => {
       if (!item.title) {
         return false;
       }
 
       if (searchTerm) {
-        hasMatchingSubItem = this.searchSubSections(searchTerm, item);
-        if (hasMatchingSubItem) return true;
-
         return item.title.toLowerCase().indexOf(searchTerm) !== -1;
       }
 
@@ -127,7 +122,6 @@ export class GuidePageChrome extends Component {
         href: sectionHref,
         items: subItems,
         isSelected: window.location.hash.includes(subSectionHref),
-        forceOpen: !!(searchTerm && hasMatchingSubItem),
       };
     });
   };
@@ -146,8 +140,14 @@ export class GuidePageChrome extends Component {
           return false;
         }
 
-        hasMatchingSubItem = this.searchSubSections(searchTerm, item);
-        if (hasMatchingSubItem) return true;
+        const itemSections = item.sections || [];
+        for (let i = 0; i < itemSections.length; i++) {
+          const sectionTitle = itemSections[i].title || '';
+          if (sectionTitle.toLowerCase().indexOf(searchTerm) !== -1) {
+            hasMatchingSubItem = true;
+            return true;
+          }
+        }
 
         if (item.name.toLowerCase().indexOf(searchTerm) !== -1) {
           return true;
@@ -204,22 +204,6 @@ export class GuidePageChrome extends Component {
     });
 
     return sideNavSections;
-  };
-
-  searchSubSections = (searchTerm, navItem) => {
-    const subSections = navItem.sections || [];
-
-    return subSections.some((subSection) => {
-      const subSectionTitle = subSection.title || '';
-      if (subSectionTitle.toLowerCase().includes(searchTerm)) {
-        return true;
-      }
-      if (subSection.sections) {
-        if (this.searchSubSections(searchTerm, subSection)) {
-          return true;
-        }
-      }
-    });
   };
 
   render() {
