@@ -187,6 +187,7 @@ export class GuidePageChrome extends Component {
           items: this.renderSubSections(href, sections, searchTerm),
           isSelected: item.path === this.props.currentRoute.path,
           forceOpen: !!(searchTerm && hasMatchingSubItem),
+          className: 'guideSideNav__item',
           icon: newBadge,
         };
       });
