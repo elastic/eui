@@ -62,10 +62,18 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
     // first nav level redirects to first tab
     if (match.path === pathname) {
       return (
-        <Redirect from={`${match.path}`} to={`${match.path}/${firstTabId}`} />
+        <Redirect
+          key={pathname}
+          from={`${match.path}`}
+          to={`${match.path}/${firstTabId}`}
+        />
       );
     } else {
-      return <Route path={`${match.path}/${id}`}>{page.page}</Route>;
+      return (
+        <Route key={pathname} path={`${match.path}/${id}`}>
+          {page.page}
+        </Route>
+      );
     }
   });
 

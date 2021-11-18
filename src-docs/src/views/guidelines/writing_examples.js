@@ -73,7 +73,9 @@ const WritingExamples = () => {
 
             <EuiModalFooter>
               <EuiButtonEmpty color="text">Cancel</EuiButtonEmpty>
-              <EuiButton color="danger">Delete index</EuiButton>
+              <EuiButton color="danger" fill>
+                Delete index
+              </EuiButton>
             </EuiModalFooter>
           </EuiPanel>
         </GuideRuleExample>
