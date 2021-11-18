@@ -113,7 +113,10 @@ export class GuidePageChrome extends Component {
         );
       }
 
-      const sectionHref = sections ? `${href}/${id}` : `${href}/#${id}`;
+      const subSectionHref = `${href}/${id}`;
+      const subSectionHashIdHref = `${href}#${id}`;
+
+      const sectionHref = sections ? subSectionHref : subSectionHashIdHref;
       const subItems = sections
         ? this.renderSubSections(sectionHref, sections, searchTerm)
         : undefined;
@@ -123,7 +126,7 @@ export class GuidePageChrome extends Component {
         name,
         href: sectionHref,
         items: subItems,
-        isSelected: window.location.hash.includes(sectionHref),
+        isSelected: window.location.hash.includes(subSectionHref),
         forceOpen: !!(searchTerm && hasMatchingSubItem),
       };
     });
