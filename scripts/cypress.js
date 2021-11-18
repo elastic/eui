@@ -24,7 +24,7 @@ const log = chalk.grey;
 if (!skipScss) {
   console.log(info('Compiling SCSS'));
   execSync(
-    `TARGET_THEME=amsterdam_dark yarn compile-scss`,
+    `TARGET_THEME=dark yarn compile-scss`,
     {
       stdio: 'inherit'
     }
