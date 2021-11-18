@@ -26,6 +26,7 @@ export const mockRowHeightUtils = ({
   getCalculatedHeight: jest.fn(actual.getCalculatedHeight),
   getLineCount: jest.fn(actual.getLineCount),
   calculateHeightForLineCount: jest.fn(() => 50),
+  isRowHeightOverride: jest.fn(actual.isRowHeightOverride),
 } as unknown) as ActualRowHeightUtils;
 
 export const RowHeightUtils = jest.fn(() => mockRowHeightUtils);

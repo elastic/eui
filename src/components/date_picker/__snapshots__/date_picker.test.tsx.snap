@@ -43,7 +43,7 @@ exports[`EuiDatePicker is rendered 2`] = `
   onMonthChange={[Function]}
   onSelect={[Function]}
   onYearChange={[Function]}
-  popperPlacement="bottom-start"
+  popperPlacement="downLeft"
   preventOpenOnFocus={false}
   previousMonthButtonLabel="Previous Month"
   readOnly={false}
@@ -189,7 +189,7 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
             tabindex="0"
           >
             <span
-              class="react-datepicker__screenReaderOnly"
+              class="euiScreenReaderOnly"
             />
             <div
               class="react-datepicker__week"
@@ -557,7 +557,7 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
             tabindex="0"
           >
             <span
-              class="react-datepicker__screenReaderOnly"
+              class="euiScreenReaderOnly"
             />
             <div
               class="react-datepicker__week"
@@ -853,7 +853,7 @@ exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
               onMonthChange={[Function]}
               onSelect={[Function]}
               onYearChange={[Function]}
-              popperPlacement="top-end"
+              popperPlacement="upRight"
               preventOpenOnFocus={false}
               previousMonthButtonLabel="Previous Month"
               readOnly={false}
@@ -869,21 +869,10 @@ exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
               withPortal={false}
               yearDropdownItemNumber={7}
             >
-              <PopperComponent
-                hidePopper={true}
-                popperComponent={null}
-                popperModifiers={
-                  Object {
-                    "preventOverflow": Object {
-                      "boundariesElement": "viewport",
-                      "enabled": true,
-                      "escapeWithReference": true,
-                    },
-                  }
-                }
-                popperPlacement="top-end"
-                popperProps={Object {}}
-                targetComponent={
+              <EuiPopover
+                anchorPosition="upRight"
+                buffer={0}
+                button={
                   <div
                     className="react-datepicker__input-container"
                   >
@@ -902,37 +891,48 @@ exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
                     />
                   </div>
                 }
+                closePopover={[Function]}
+                display="block"
+                hasArrow={false}
+                isOpen={false}
+                ownFocus={false}
+                panelPaddingSize="none"
               >
-                <Manager>
-                  <Reference>
-                    <InnerReference
-                      setReferenceNode={[Function]}
+                <EuiOutsideClickDetector
+                  onOutsideClick={[Function]}
+                >
+                  <div
+                    className="euiPopover euiPopover--anchorUpRight euiPopover--displayBlock"
+                    onKeyDown={[Function]}
+                    onMouseDown={[Function]}
+                    onMouseUp={[Function]}
+                    onTouchEnd={[Function]}
+                    onTouchStart={[Function]}
+                  >
+                    <div
+                      className="euiPopover__anchor"
                     >
                       <div
-                        className="react-datepicker-wrapper"
+                        className="react-datepicker__input-container"
                       >
-                        <div
-                          className="react-datepicker__input-container"
-                        >
-                          <input
-                            aria-label="Press the down key to open a popover containing a calendar."
-                            className="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2"
-                            disabled={false}
-                            onBlur={[Function]}
-                            onChange={[Function]}
-                            onClick={[Function]}
-                            onFocus={[Function]}
-                            onKeyDown={[Function]}
-                            readOnly={false}
-                            type="text"
-                            value=""
-                          />
-                        </div>
+                        <input
+                          aria-label="Press the down key to open a popover containing a calendar."
+                          className="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2"
+                          disabled={false}
+                          onBlur={[Function]}
+                          onChange={[Function]}
+                          onClick={[Function]}
+                          onFocus={[Function]}
+                          onKeyDown={[Function]}
+                          readOnly={false}
+                          type="text"
+                          value=""
+                        />
                       </div>
-                    </InnerReference>
-                  </Reference>
-                </Manager>
-              </PopperComponent>
+                    </div>
+                  </div>
+                </EuiOutsideClickDetector>
+              </EuiPopover>
             </DatePicker>
           </EuiValidatableControl>
           <EuiFormControlLayoutIcons
