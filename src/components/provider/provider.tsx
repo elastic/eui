@@ -31,13 +31,13 @@ export interface EuiProviderProps<T>
   cache?: EmotionCache;
 }
 
-export function EuiProvider<T = {}>({
+export const EuiProvider = <T extends {} = {}>({
   cache,
   theme = EuiThemeAmsterdam,
   colorMode,
   modify,
   children,
-}: PropsWithChildren<EuiProviderProps<T>>) {
+}: PropsWithChildren<EuiProviderProps<T>>) => {
   return theme !== null ? (
     <EuiThemeProvider theme={theme} colorMode={colorMode} modify={modify}>
       {cache ? (
@@ -52,4 +52,4 @@ export function EuiProvider<T = {}>({
   ) : (
     <EuiThemeProvider colorMode={colorMode}>{children}</EuiThemeProvider>
   );
-}
+};
