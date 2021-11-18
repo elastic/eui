@@ -83,38 +83,6 @@ describe('useDataGridColumnSelector', () => {
       closePopover(component);
     });
 
-    describe('getShowColumnSelectorValue', () => {
-      it('renders both hiding and reordering functionality when showColumnSelector is true', () => {
-        const component = mount(<MockComponent showColumnSelector={true} />);
-        openPopover(component);
-
-        expect(component.find('EuiSwitch')).toHaveLength(2);
-        expect(component.find('EuiIcon[type="grab"]')).toHaveLength(2);
-      });
-
-      it('defaults to enabling all functionality when showColumnSelector is not defined', () => {
-        const component = mount(
-          // @ts-ignore - normally this would be undefined and not null, but we have = fallbacks up above for testing QOL
-          <MockComponent showColumnSelector={null} />
-        );
-        openPopover(component);
-
-        expect(component.find('EuiSwitch')).toHaveLength(2);
-        expect(component.find('EuiIcon[type="grab"]')).toHaveLength(2);
-      });
-
-      it('does not render either hiding or reordering when showColumnSelector is false', () => {
-        const component = mount(<MockComponent showColumnSelector={false} />);
-        openPopover(component);
-
-        expect(component.find('EuiSwitch')).toHaveLength(0);
-        expect(component.find('EuiIcon[type="grab"]')).toHaveLength(0);
-        expect(component.find('EuiDroppable').prop('isDropDisabled')).toEqual(
-          true
-        );
-      });
-    });
-
     describe('column filtering', () => {
       const showColumnSelector = { allowHide: true, allowReorder: true };
 
