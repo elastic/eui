@@ -61,6 +61,10 @@ export type EuiSelectableOptionsListProps = CommonProps &
      * The default content when `true` is `↩ to select/deselect/include/exclude`
      */
     onFocusBadge?: EuiSelectableListItemProps['onFocusBadge'];
+    /**
+     * Use virtualized rendering for list items with `react-window`
+     */
+    isVirtualized?: boolean;
   };
 
 export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
@@ -109,6 +113,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
   static defaultProps = {
     rowHeight: 32,
     searchValue: '',
+    isVirtualized: true,
   };
 
   listRef: FixedSizeList | null = null;
@@ -186,6 +191,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
 
   ListRow = memo(({ data, index, style }: ListChildComponentProps<T>) => {
     const option = data[index];
+    const { labelProps, ..._option } = option;
     const {
       label,
       isGroupLabel,
@@ -196,6 +202,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       ref,
       key,
       searchableLabel,
+      labelProps: _labelProps,
       ...optionRest
     } = option;
 
@@ -241,7 +248,11 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         {...(optionRest as EuiSelectableListItemProps)}
       >
         {this.props.renderOption ? (
-          this.props.renderOption(option, this.props.searchValue)
+          this.props.renderOption(
+            // @ts-ignore complex
+            { ..._option, ...labelProps },
+            this.props.searchValue
+          )
         ) : (
           <EuiHighlight search={this.props.searchValue}>{label}</EuiHighlight>
         )}
@@ -273,6 +284,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
       'aria-describedby': ariaDescribedby,
+      isVirtualized,
       ...rest
     } = this.props;
 
@@ -310,26 +322,47 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
 
     return (
       <div className={classes} {...rest}>
-        <EuiAutoSizer disableHeight={!heightIsFull}>
-          {({ width, height }) => (
-            <FixedSizeList
-              ref={this.setListRef}
-              outerRef={this.removeScrollableTabStop}
-              className="euiSelectableList__list"
-              data-skip-axe="scrollable-region-focusable"
-              width={width}
-              height={calculatedHeight || height}
-              itemCount={optionArray.length}
-              itemData={optionArray}
-              itemSize={rowHeight}
-              innerElementType="ul"
-              innerRef={this.setListBoxRef}
-              {...windowProps}
-            >
-              {this.ListRow}
-            </FixedSizeList>
-          )}
-        </EuiAutoSizer>
+        {isVirtualized ? (
+          <EuiAutoSizer disableHeight={!heightIsFull}>
+            {({ width, height }) => (
+              <FixedSizeList
+                ref={this.setListRef}
+                outerRef={this.removeScrollableTabStop}
+                className="euiSelectableList__list"
+                data-skip-axe="scrollable-region-focusable"
+                width={width}
+                height={calculatedHeight || height}
+                itemCount={optionArray.length}
+                itemData={optionArray}
+                itemSize={rowHeight}
+                innerElementType="ul"
+                innerRef={this.setListBoxRef}
+                {...windowProps}
+              >
+                {this.ListRow}
+              </FixedSizeList>
+            )}
+          </EuiAutoSizer>
+        ) : (
+          <div
+            className="euiSelectableList__list"
+            ref={this.removeScrollableTabStop}
+          >
+            <ul ref={this.setListBoxRef}>
+              {optionArray.map((_, index) =>
+                React.createElement(
+                  this.ListRow,
+                  {
+                    data: optionArray,
+                    index,
+                    style: {},
+                  },
+                  null
+                )
+              )}
+            </ul>
+          </div>
+        )}
       </div>
     );
   }
