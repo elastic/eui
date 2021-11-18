@@ -8,7 +8,7 @@
 
 import React from 'react';
 import { requiredProps } from '../../../test';
-import { shallow } from 'enzyme';
+import { render } from 'enzyme';
 import {
   FieldValueSelectionFilter,
   FieldValueSelectionFilterProps,
@@ -30,7 +30,7 @@ describe('FieldValueSelectionFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueSelectionFilter {...props} />);
+    const component = render(<FieldValueSelectionFilter {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -62,7 +62,7 @@ describe('FieldValueSelectionFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueSelectionFilter {...props} />);
+    const component = render(<FieldValueSelectionFilter {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -96,7 +96,7 @@ describe('FieldValueSelectionFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueSelectionFilter {...props} />);
+    const component = render(<FieldValueSelectionFilter {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -120,7 +120,7 @@ describe('FieldValueSelectionFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueSelectionFilter {...props} />);
+    const component = render(<FieldValueSelectionFilter {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -144,7 +144,7 @@ describe('FieldValueSelectionFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueSelectionFilter {...props} />);
+    const component = render(<FieldValueSelectionFilter {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -176,7 +176,7 @@ describe('FieldValueSelectionFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueSelectionFilter {...props} />);
+    const component = render(<FieldValueSelectionFilter {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -208,7 +208,7 @@ describe('FieldValueSelectionFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueSelectionFilter {...props} />);
+    const component = render(<FieldValueSelectionFilter {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -242,7 +242,7 @@ describe('FieldValueSelectionFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueSelectionFilter {...props} />);
+    const component = render(<FieldValueSelectionFilter {...props} />);
 
     expect(component).toMatchSnapshot();
   });
@@ -276,7 +276,7 @@ describe('FieldValueSelectionFilter', () => {
       },
     };
 
-    const component = shallow(<FieldValueSelectionFilter {...props} />);
+    const component = render(<FieldValueSelectionFilter {...props} />);
 
     expect(component).toMatchSnapshot();
   });
