@@ -11,7 +11,7 @@ import React, { ReactElement, useState, useMemo, useCallback } from 'react';
 import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiPopover } from '../../popover';
 import { EuiButtonIcon, EuiButtonGroup } from '../../button';
-import { EuiFormRow, EuiFieldNumber } from '../../form';
+import { EuiFormRow, EuiRange } from '../../form';
 import { EuiToolTip } from '../../tool_tip';
 
 import {
@@ -126,6 +126,8 @@ export const useDataGridDisplaySelector = (
   );
   const setLineCountHeight = useCallback((event) => {
     const newLineCount = Number(event.target.value);
+    if (newLineCount < 1) return; // Don't let users set a 0 or negative line count
+
     setLineCount(newLineCount);
     setUserRowHeightsOptions({ defaultHeight: { lineCount: newLineCount } });
   }, []);
@@ -266,13 +268,16 @@ export const useDataGridDisplaySelector = (
               </EuiFormRow>
               {rowHeightSelection === rowHeightButtonOptions[2] && (
                 <EuiFormRow label={lineCountLabel} display="columnCompressed">
-                  <EuiFieldNumber
+                  <EuiRange
                     compressed
                     fullWidth
+                    showInput
                     min={1}
+                    max={20}
+                    step={1}
                     value={lineCount}
                     onChange={setLineCountHeight}
-                    data-test-subj="lineCountFieldNumber"
+                    data-test-subj="lineCountNumber"
                   />
                 </EuiFormRow>
               )}

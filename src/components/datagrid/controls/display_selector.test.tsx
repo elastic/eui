@@ -169,21 +169,25 @@ describe('useDataGridDisplaySelector', () => {
       describe('lineCount', () => {
         const getLineCountNumber = (component: ReactWrapper) =>
           component
-            .find('EuiFieldNumber[data-test-subj="lineCountFieldNumber"]')
+            .find('EuiRange[data-test-subj="lineCountNumber"]')
             .prop('value');
+        const setLineCountNumber = (component: ReactWrapper, number: number) =>
+          component
+            .find('input[type="range"][data-test-subj="lineCountNumber"]')
+            .simulate('change', { target: { value: number } });
 
         it('conditionally displays a line count number input when the lineCount button is selected', () => {
           const component = mount(<MockComponent />);
           openPopover(component);
           expect(
-            component.find('[data-test-subj="lineCountFieldNumber"]').exists()
+            component.find('[data-test-subj="lineCountNumber"]').exists()
           ).toBe(false);
 
           component.find('[data-test-subj="lineCount"]').simulate('change');
           expect(getSelection(component)).toEqual('lineCount');
 
           expect(
-            component.find('[data-test-subj="lineCountFieldNumber"]').exists()
+            component.find('[data-test-subj="lineCountNumber"]').exists()
           ).toBe(true);
         });
 
@@ -214,10 +218,23 @@ describe('useDataGridDisplaySelector', () => {
           );
           openPopover(component);
 
-          component
-            .find('input[data-test-subj="lineCountFieldNumber"]')
-            .simulate('change', { target: { value: 3 } });
+          setLineCountNumber(component, 3);
           expect(getLineCountNumber(component)).toEqual(3);
+        });
+
+        it('does not allow zero or negative line count values', () => {
+          const component = mount(
+            <MockComponent
+              rowHeightsOptions={{ defaultHeight: { lineCount: 2 } }}
+            />
+          );
+          openPopover(component);
+
+          setLineCountNumber(component, 0);
+          expect(getLineCountNumber(component)).toEqual(2);
+
+          setLineCountNumber(component, -50);
+          expect(getLineCountNumber(component)).toEqual(2);
         });
       });
     });
@@ -283,7 +300,7 @@ describe('useDataGridDisplaySelector', () => {
     };
     const setLineCount = (component: ShallowWrapper, lineCount = 1) => {
       diveIntoEuiI18n(component)
-        .find('[data-test-subj="lineCountFieldNumber"]')
+        .find('[data-test-subj="lineCountNumber"]')
         .simulate('change', { target: { value: lineCount } });
     };
     const getOutput = (component: ShallowWrapper) => {
