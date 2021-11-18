@@ -72,14 +72,14 @@ const convertRowHeightsOptionsToSelection = (
 export const useDataGridDisplaySelector = (
   showDisplaySelector: EuiDataGridToolBarVisibilityOptions['showDisplaySelector'],
   initialStyles: EuiDataGridStyle,
-  initialRowHeightsOptions?: EuiDataGridRowHeightsOptions,
-  showStyleSelector?: EuiDataGridToolBarVisibilityOptions['showStyleSelector'] // TODO: Deprecate
+  initialRowHeightsOptions?: EuiDataGridRowHeightsOptions
 ): [ReactElement, EuiDataGridStyle, EuiDataGridRowHeightsOptions] => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const showDensityControls =
-    showStyleSelector ??
-    getNestedObjectOptions(showDisplaySelector, 'allowDensity');
+  const showDensityControls = getNestedObjectOptions(
+    showDisplaySelector,
+    'allowDensity'
+  );
 
   const showRowHeightControls = getNestedObjectOptions(
     showDisplaySelector,

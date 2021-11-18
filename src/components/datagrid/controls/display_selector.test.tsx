@@ -24,13 +24,11 @@ describe('useDataGridDisplaySelector', () => {
       showDisplaySelector = true as EuiDataGridToolBarVisibilityOptions['showDisplaySelector'],
       gridStyles = {},
       rowHeightsOptions = undefined as EuiDataGridRowHeightsOptions | undefined,
-      showStyleSelector = undefined as boolean | undefined,
     }) => {
       const [displaySelector] = useDataGridDisplaySelector(
         showDisplaySelector,
         gridStyles,
-        rowHeightsOptions,
-        showStyleSelector
+        rowHeightsOptions
       );
       return <>{displaySelector}</>;
     };
@@ -86,16 +84,6 @@ describe('useDataGridDisplaySelector', () => {
         const component = mount(
           <MockComponent showDisplaySelector={{ allowDensity: false }} />
         );
-        openPopover(component);
-
-        expect(
-          component.find('[data-test-subj="densityButtonGroup"]')
-        ).toHaveLength(0);
-      });
-
-      // TODO: Deprecate
-      it('hides the density buttongroup if showStyleSelector is set to false', () => {
-        const component = mount(<MockComponent showStyleSelector={false} />);
         openPopover(component);
 
         expect(

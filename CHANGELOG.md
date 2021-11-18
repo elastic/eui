@@ -9,7 +9,7 @@
 
 **Breaking changes**
 
-- Deprecated `toolbarVisibility`'s `showStyleSelector` prop of `EuiDataGrid` in favor of `showDisplaySelector`, which allows users to configure both grid density and row height ([#5372](https://github.com/elastic/eui/pull/5372))
+- Removed `toolbarVisibility`'s `showStyleSelector` prop of `EuiDataGrid` in favor of `showDisplaySelector`, which allows users to configure both grid density and row height ([#5372](https://github.com/elastic/eui/pull/5372))
 
 ## END FEATURE BRANCH
 

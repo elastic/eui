@@ -615,12 +615,6 @@ export interface EuiDataGridToolBarVisibilityOptions {
     | boolean
     | EuiDataGridToolBarVisibilityDisplaySelectorOptions;
   /**
-   * Allows the ability for the user to set the grid density. If on, this merges against what is provided in #EuiDataGridStyle
-   *
-   * **DEPRECATED: Use `showDisplaySelector.allowDensity`**
-   */
-  showStyleSelector?: boolean;
-  /**
    * Allows the ability for the user to sort rows based upon column values
    */
   showSortSelector?: boolean;
