@@ -20,6 +20,7 @@ import { icon as empty } from './assets/empty';
 import { enqueueStateChange } from '../../services/react';
 
 import { htmlIdGenerator } from '../../services';
+import { colorToClassMap, isNamedColor, NamedColor } from './named_colors';
 
 const typeToPathMap = {
   accessibility: 'accessibility',
@@ -457,26 +458,7 @@ export type EuiIconType = keyof typeof typeToPathMap;
 
 export type IconType = EuiIconType | string | ComponentType;
 
-const colorToClassMap = {
-  default: null,
-  primary: 'euiIcon--primary',
-  success: 'euiIcon--success',
-  accent: 'euiIcon--accent',
-  warning: 'euiIcon--warning',
-  danger: 'euiIcon--danger',
-  text: 'euiIcon--text',
-  subdued: 'euiIcon--subdued',
-  ghost: 'euiIcon--ghost',
-  inherit: 'euiIcon--inherit',
-};
-
 export const COLORS: NamedColor[] = keysOf(colorToClassMap);
-
-type NamedColor = keyof typeof colorToClassMap;
-
-export function isNamedColor(name: string): name is NamedColor {
-  return colorToClassMap.hasOwnProperty(name);
-}
 
 // We accept arbitrary color strings, which are impossible to type.
 export type IconColor = string | NamedColor;
