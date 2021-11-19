@@ -128,7 +128,17 @@ export default () => {
         }}
         toolbarVisibility={{
           additionalControls: {
-            left: (
+            leftPrepend: (
+              <EuiButtonEmpty
+                size="xs"
+                iconType="document"
+                color="text"
+                onClick={alertAndClosePopover}
+              >
+                {data.length} results
+              </EuiButtonEmpty>
+            ),
+            leftAppend: (
               <EuiPopover
                 id={popoverId}
                 button={

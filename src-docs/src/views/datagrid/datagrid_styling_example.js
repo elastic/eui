@@ -61,7 +61,7 @@ const gridSnippet = `<EuiDataGrid
     // showColumnSelector also takes an object, check the prop docs.
     showColumnSelector: false,
     additionalControls: {
-      left: (
+      leftAppend: (
         <Fragment>
           <EuiButtonEmpty
             size="xs"
@@ -98,7 +98,21 @@ const controlsSnippet = `<EuiDataGrid
   toolbarVisibility={{
     // Use of a fragment for multiple items will insure proper margins
     additionalControls: {
-      left: (
+      leftPrepend: (
+        <Fragment>
+          <EuiButtonEmpty
+            size="xs"
+            onClick={() => {}}>
+            New button
+          </EuiButtonEmpty>
+          <EuiButtonEmpty
+            size="xs"
+            onClick={() => {}}>
+            Another button
+          </EuiButtonEmpty>
+        </Fragment>
+      ),
+      leftAppend: (
         <Fragment>
           <EuiButtonEmpty
             size="xs"
@@ -269,14 +283,20 @@ export const DataGridStylingExample = {
             Passing a single node to <EuiCode>additionalControls</EuiCode> will
             default to being appended to the left side of the toolbar. To
             configure which side of the toolbar your controls display in, pass
-            an object with either the <EuiCode>left</EuiCode> or{' '}
-            <EuiCode>right</EuiCode> properties:
+            an object with either the <EuiCode>leftPrepend</EuiCode>,{' '}
+            <EuiCode>leftAppend</EuiCode>, or <EuiCode>right</EuiCode>{' '}
+            properties:
           </p>
           <ul>
             <li>
-              <EuiCode>additionalControls.left</EuiCode> appends the passed
-              custom control into the left side of the toolbar, after the column
-              & sort controls.
+              <EuiCode>additionalControls.leftPrepend</EuiCode> prepends the
+              passed custom control into the left side of the toolbar, before
+              the column & sort controls.
+            </li>
+            <li>
+              <EuiCode>additionalControls.leftAppend</EuiCode> appends the
+              passed custom control into the left side of the toolbar, after the
+              column & sort controls.
             </li>
             <li>
               <EuiCode>additionalControls.right</EuiCode> prepends the passed
