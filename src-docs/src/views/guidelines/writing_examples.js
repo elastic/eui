@@ -106,9 +106,7 @@ export const WritingExamples = () => {
       <EuiText grow={false}>
         <p>
           Be sure to read the{' '}
-          <EuiLink href="#/navigation/button/guidelines">
-            full button guidelines
-          </EuiLink>
+          <Link to="/navigation/button/guidelines">full button guidelines</Link>
           .
         </p>
       </EuiText>
@@ -120,7 +118,7 @@ export const WritingExamples = () => {
         <h2 id="callouts">Callouts</h2>
 
         <p>
-          Use <EuiLink href="#/display/callout">callouts</EuiLink> to relay
+          Use <Link to="/display/callout">callouts</Link> to relay
           informational, success, warning, or error messages related to the
           content on the page.
         </p>
@@ -161,7 +159,7 @@ export const WritingExamples = () => {
         <p>
           The best empty state lets users know what is happening, why it is
           happening, and what to do about it. Here are four types of frequently
-          used <EuiLink href="#/display/empty-prompt">empty prompts</EuiLink>.
+          used <Link to="/display/empty-prompt">empty prompts</Link>.
         </p>
       </EuiText>
 
@@ -243,9 +241,9 @@ export const WritingExamples = () => {
       <EuiText grow={false}>
         <p>
           Be sure to read the{' '}
-          <EuiLink href="#/display/empty-prompt/guidelines">
+          <Link to="/display/empty-prompt/guidelines">
             full empty prompt guidelines
-          </EuiLink>
+          </Link>
           .
         </p>
       </EuiText>
@@ -257,8 +255,7 @@ export const WritingExamples = () => {
         <h2 id="labels">Labels</h2>
 
         <p>
-          Avoid long{' '}
-          <EuiLink href="#/forms/form-layouts/#form-labels">labels</EuiLink>,
+          Avoid long <Link to="/forms/form-layouts/#form-labels">labels</Link>,
           but don&apos;t sacrifice clarity. If needed, put additional
           information in help text and tooltips.
         </p>
@@ -312,8 +309,8 @@ export const WritingExamples = () => {
         <h2 id="links">Links</h2>
 
         <p>
-          Use <EuiLink href="#/navigation/link">links</EuiLink> to point to
-          detailed information.
+          Use <Link to="/navigation/link">links</Link> to point to detailed
+          information.
         </p>
       </EuiText>
 
@@ -362,7 +359,7 @@ export const WritingExamples = () => {
         <h2 id="modals">Modals</h2>
 
         <p>
-          <EuiLink href="#/layout/modal">Modals</EuiLink> are typically used for
+          <Link to="/layout/modal">Modals</Link> are typically used for
           confirmation when the user might lose data.
         </p>
       </EuiText>
@@ -523,8 +520,7 @@ export const WritingExamples = () => {
 
         <p>
           Describe the action when the{' '}
-          <EuiLink href="#/forms/form-controls/#switch">switch</EuiLink> is
-          enabled.
+          <Link to="/forms/form-controls/#switch">switch</Link> is enabled.
         </p>
       </EuiText>
 
@@ -565,8 +561,8 @@ export const WritingExamples = () => {
         <h2 id="text-fields">Text fields</h2>
         <p>
           Place hints and instruction outside a{' '}
-          <EuiLink href="#/forms/form-controls/#text-field">text field</EuiLink>{' '}
-          so it is always visible to the user.
+          <Link to="/forms/form-controls/#text-field">text field</Link> so it is
+          always visible to the user.
         </p>
       </EuiText>
 
@@ -600,8 +596,7 @@ export const WritingExamples = () => {
         description={
           <>
             Use clear language for{' '}
-            <EuiLink href="#/forms/form-validation">validation</EuiLink>{' '}
-            messages.
+            <Link to="/forms/form-validation">validation</Link> messages.
           </>
         }
       >
@@ -638,8 +633,8 @@ export const WritingExamples = () => {
         <h2 id="toasts">Toasts</h2>
 
         <p>
-          A common use of <EuiLink href="#/display/toast">toasts</EuiLink> is as
-          a success message.
+          A common use of <Link to="/display/toast">toasts</Link> is as a
+          success message.
         </p>
       </EuiText>
 
@@ -673,10 +668,7 @@ export const WritingExamples = () => {
       <EuiText grow={false}>
         <p>
           Be sure to read the{' '}
-          <EuiLink href="#/display/toast/guidelines">
-            full toast guidelines
-          </EuiLink>
-          .
+          <Link to="/display/toast/guidelines">full toast guidelines</Link>.
         </p>
       </EuiText>
 
@@ -688,8 +680,8 @@ export const WritingExamples = () => {
 
         <p>
           Provide additional information, such as what the user can do.
-          Don&apos;t use <EuiLink href="#/display/tooltip">tooltips</EuiLink>{' '}
-          for essential information, which belongs directly in the UI.
+          Don&apos;t use <Link to="/display/tooltip">tooltips</Link> for
+          essential information, which belongs directly in the UI.
         </p>
       </EuiText>
 
