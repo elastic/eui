@@ -45,6 +45,9 @@ const valid = [
   'const vals = { numeric: 5 };<span>{vals.numeric}</span>', // isn't a string
   'function Component({ person }: { person: { name: string } }) { return <span>{person.name}</span> }', // variable comes from an argument
 
+  // ChainExpression
+  'const values = { numeric: 5 }; <span>{values?.numeric}</span>', // isn't a string
+
   // edge cases
   '<Component {...rest} />', // JSXSpreadAttribute
   '<span>\n\t </span>', // whitespace-only characters
@@ -128,6 +131,16 @@ const invalid = [
   // MemberExpression
   {
     code: 'const vals = { string: "" };<span>{vals.string}</span>',
+    errors: [
+      {
+        message: 'String-type variables are not allowed as children within JSX',
+      },
+    ],
+  },
+
+  // ChainExpression
+  {
+    code: 'const vals = { string: "" };<span>{vals?.string}</span>',
     errors: [
       {
         message: 'String-type variables are not allowed as children within JSX',

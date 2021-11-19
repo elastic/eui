@@ -109,6 +109,18 @@ function validateChild(context, child) {
       // leaving these edge cases as out of scope for at least the PoC
       break;
 
+    case 'ChainExpression':
+      // Wraps a MemberExpression, indicating that the property access is chained with ?.
+      if (child.expression.type !== 'MemberExpression') {
+        context.report({
+          node: child,
+          message: `Unable to process a chained expression of type "${child.expression.type}"`,
+        });
+      } else {
+        validateChild(context, child.expression);
+      }
+      break;
+
     case 'Identifier': {
       // if this variable comes from a function parameter, we have no control and won't prevent usage
       if (isIdentifierSourceSafe(context, child)) return;
