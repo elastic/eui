@@ -135,6 +135,16 @@ const invalid = [
     ],
   },
 
+  // TemplateLiteral
+  {
+    code: '<span>{`content`}</span>',
+    errors: [
+      {
+        message: 'String-type variables are not allowed as children within JSX',
+      },
+    ],
+  },
+
   // edge cases
   {
     code: 'const text = "zero"; <Component>{isTrue ? "one" : text}</Component>',

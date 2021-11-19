@@ -194,6 +194,13 @@ function validateChild(context, child) {
       // treat spreading as safe
       break;
 
+    case 'TemplateLiteral':
+      context.report({
+        node: child,
+        message: 'String-type variables are not allowed as children within JSX',
+      });
+      break;
+
     case 'UnaryExpression':
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#unary_operators
       // the only unary operator that returns a string is `typeof`, and if that's used in JSX well then why not
