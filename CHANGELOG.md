@@ -1,5 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+No public interface changes since `41.2.1`.
+
+## [`41.2.1`](https://github.com/elastic/eui/tree/v41.2.1)
+
 **Bug fixes**
 
 - Refactored definition of `isNamedColor` function so it isn't mocked away by the testenv configuration ([#5397](https://github.com/elastic/eui/pull/5397))
