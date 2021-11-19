@@ -29,6 +29,42 @@ import {
 
 import { htmlIdGenerator } from '../../../../src/services';
 
+// This array is used inside routes.js to create the sidenav sub-sections
+export const writingGuidelinesSections = [
+  {
+    id: 'capitalization',
+    title: 'Capitalization',
+  },
+  {
+    id: 'writing-style',
+    title: 'Writing style',
+  },
+  {
+    id: 'addressing-the-user',
+    title: 'Addressing the user',
+  },
+  {
+    id: 'punctuation',
+    title: 'Punctuation',
+  },
+  {
+    id: 'messages',
+    title: 'Messages',
+  },
+  {
+    id: 'labels',
+    title: 'Labels',
+  },
+  {
+    id: 'be-careful-with-humor',
+    title: 'Be careful with humor',
+  },
+  {
+    id: 'verifying-your-text',
+    title: 'Verifying your text',
+  },
+];
+
 const GuideRuleWriting = ({ children, className, ...rest }) => {
   const classes = classNames(className);
 
@@ -39,7 +75,7 @@ const GuideRuleWriting = ({ children, className, ...rest }) => {
   );
 };
 
-const WritingGuidelines = () => {
+export const WritingGuidelines = () => {
   return (
     <>
       <EuiText grow={false}>
@@ -904,5 +940,3 @@ const WritingGuidelines = () => {
     </>
   );
 };
-
-export default WritingGuidelines;

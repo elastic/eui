@@ -1,5 +1,4 @@
 import React, { createElement, Fragment } from 'react';
-import ReactDOMServer from 'react-dom/server';
 import { slugify } from '../../src/services';
 
 import { createHashHistory } from 'history';
@@ -21,8 +20,14 @@ import ColorGuidelines from './views/guidelines/colors';
 
 import { SassGuidelines } from './views/guidelines/sass';
 
-import WritingGuidelines from './views/guidelines/writing_guidelines';
-import WritingExamples from './views/guidelines/writing_examples';
+import {
+  WritingGuidelines,
+  writingGuidelinesSections,
+} from './views/guidelines/writing_guidelines';
+import {
+  WritingExamples,
+  writingExamplesSections,
+} from './views/guidelines/writing_examples';
 
 // Services
 
@@ -313,37 +318,15 @@ const createExample = (example, customTitle) => {
 };
 
 const createTabbedPage = (title, pages, isNew) => {
-  const createSections = (section) => {
-    const htmlString = ReactDOMServer.renderToStaticMarkup(section);
-
-    const headings = htmlString.match(/h2 id=\"(.*?)\"/g);
-
-    const sections = headings.map((heading) => {
-      const id = heading.replace('h2 id="', '').slice(0, -1);
-
-      const title = id.replace(/-/g, ' ');
-
-      const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
-
-      return { id: id, title: capitalizedTitle };
-    });
-
-    return sections;
-  };
+  const component = () => <GuideTabbedPage title={title} pages={pages} />;
 
   const pagesSections = pages.map((page, index) => {
     return {
       id: slugify(page.title),
       title: page.title,
-      sections: createSections(pages[index].page()),
+      sections: pages[index].sections,
     };
   });
-
-  const component = () => (
-    <EuiErrorBoundary>
-      <GuideTabbedPage title={title} pages={pages} />
-    </EuiErrorBoundary>
-  );
 
   return {
     name: title,
@@ -391,8 +374,13 @@ const navigation = [
         {
           title: 'Guidelines',
           page: WritingGuidelines,
+          sections: writingGuidelinesSections,
         },
-        { title: 'Examples', page: WritingExamples },
+        {
+          title: 'Examples',
+          page: WritingExamples,
+          sections: writingExamplesSections,
+        },
       ]),
     ],
   },

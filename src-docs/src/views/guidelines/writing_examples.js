@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import { GuideRule, GuideRuleExample } from '../../components';
 
 import {
@@ -26,7 +26,27 @@ import {
 
 import { htmlIdGenerator } from '../../../../src/services';
 
-const WritingExamples = () => {
+// This array is used inside routes.js to create the sidenav sub-sections
+export const writingExamplesSections = [
+  {
+    id: 'buttons',
+    title: 'Buttons',
+  },
+  {
+    id: 'callouts',
+    title: 'Callouts',
+  },
+  { id: 'empty-prompts', title: 'Empty prompts' },
+  { id: 'labels', title: 'Labels' },
+  { id: 'links', title: 'Links' },
+  { id: 'modals', title: 'Modals' },
+  { id: 'switches', title: 'Switches' },
+  { id: 'text-fields', title: 'Text fields' },
+  { id: 'toasts', title: 'Toasts' },
+  { id: 'tooltips', title: 'Tooltips' },
+];
+
+export const WritingExamples = () => {
   const modalStyles = { maxWidth: 480, transform: 'scale(.8)' };
 
   return (
@@ -35,9 +55,9 @@ const WritingExamples = () => {
         <h2 id="buttons">Buttons</h2>
 
         <p>
-          Label <EuiLink href="#/navigation/button">buttons</EuiLink> with their
-          action. Don&apos;t use Yes, OK, or Confirm when you can use a verb
-          phrase instead.
+          Label <Link to="/navigation/button">buttons</Link> with their action.
+          Don&apos;t use Yes, OK, or Confirm when you can use a verb phrase
+          instead.
         </p>
       </EuiText>
 
@@ -339,7 +359,7 @@ const WritingExamples = () => {
       <EuiSpacer size="xxl" />
 
       <EuiText grow={false}>
-        <h2 id="modal">Modals</h2>
+        <h2 id="modals">Modals</h2>
 
         <p>
           <EuiLink href="#/layout/modal">Modals</EuiLink> are typically used for
@@ -716,5 +736,3 @@ const WritingExamples = () => {
     </>
   );
 };
-
-export default WritingExamples;
