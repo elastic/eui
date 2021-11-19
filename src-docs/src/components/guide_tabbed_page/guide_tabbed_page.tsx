@@ -1,11 +1,15 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ReactNode, useContext } from 'react';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { slugify } from '../../../../src/services/string/slugify';
 import {
   EuiPageHeader,
   EuiPageContent,
   EuiPageContentBody,
-} from '../../../../src/components/page';
+  EuiSpacer,
+  EuiBetaBadge,
+} from '../../../../src/components';
+
+import { LanguageSelector, ThemeContext } from '../with_theme';
 
 export type GuideTabbedPageProps = {
   title: string;
@@ -13,6 +17,11 @@ export type GuideTabbedPageProps = {
   match: any;
   history: any;
   pages: any;
+  isBeta?: boolean;
+  notice?: ReactNode;
+  showThemeLanguageToggle?: boolean;
+  description?: ReactNode;
+  rightSideItems?: ReactNode[];
 };
 
 const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
@@ -21,7 +30,23 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
   match,
   history,
   pages,
+  isBeta,
+  showThemeLanguageToggle,
+  notice,
+  description,
+  rightSideItems: _rightSideItems,
 }) => {
+  const themeContext = useContext(ThemeContext);
+  const currentLanguage = themeContext.themeLanguage;
+  const showSass = currentLanguage.includes('sass');
+
+  const betaBadge = isBeta && (
+    <EuiBetaBadge
+      label="Beta"
+      tooltipContent="This component is still under development and may contain breaking changes in the nearby future."
+    />
+  );
+
   const tabs: any[] = pages.map((page: any) => {
     const id = slugify(page.title);
     return {
@@ -54,6 +79,24 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
     });
   };
 
+  const renderNotice = () => {
+    if (!showSass && notice) {
+      return (
+        <>
+          <EuiPageContentBody role="region" aria-label="Notice" restrictWidth>
+            {notice}
+          </EuiPageContentBody>
+          <EuiSpacer size="l" />
+        </>
+      );
+    }
+  };
+
+  const rightSideItems = _rightSideItems || [];
+  if (showThemeLanguageToggle) {
+    rightSideItems.push(<LanguageSelector />);
+  }
+
   const pagesRoutes: any[] = pages.map((page: any) => {
     const pathname = location.pathname;
     const id = slugify(page.title);
@@ -69,9 +112,11 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
         />
       );
     } else {
+      const PageComponent = page.page;
+
       return (
         <Route key={pathname} path={`${match.path}/${id}`}>
-          {page.page}
+          <PageComponent showSass={showSass} />
         </Route>
       );
     }
@@ -79,7 +124,18 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
 
   return (
     <>
-      <EuiPageHeader restrictWidth pageTitle={title} tabs={renderTabs()} />
+      {renderNotice()}
+      <EuiPageHeader
+        restrictWidth
+        pageTitle={
+          <>
+            {title} {betaBadge}
+          </>
+        }
+        tabs={renderTabs()}
+        description={description}
+        rightSideItems={rightSideItems}
+      />
 
       <EuiPageContent
         role="main"

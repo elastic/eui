@@ -317,8 +317,25 @@ const createExample = (example, customTitle) => {
   };
 };
 
-const createTabbedPage = (title, pages, isNew) => {
-  const component = () => <GuideTabbedPage title={title} pages={pages} />;
+const createTabbedPage = ({
+  title,
+  pages,
+  isNew,
+  description,
+  showThemeLanguageToggle,
+  notice,
+  isBeta,
+}) => {
+  const component = () => (
+    <GuideTabbedPage
+      title={title}
+      pages={pages}
+      description={description}
+      showThemeLanguageToggle={showThemeLanguageToggle}
+      notice={notice}
+      isBeta={isBeta}
+    />
+  );
 
   const pagesSections = pages.map((page, index) => {
     return {
@@ -333,7 +350,6 @@ const createTabbedPage = (title, pages, isNew) => {
     component,
     sections: pagesSections,
     isNew,
-    isTabbedPage: true,
   };
 };
 
@@ -370,18 +386,21 @@ const navigation = [
         component: ColorGuidelines,
       },
       createExample(SassGuidelines, 'Sass'),
-      createTabbedPage('Writing', [
-        {
-          title: 'Guidelines',
-          page: WritingGuidelines,
-          sections: writingGuidelinesSections,
-        },
-        {
-          title: 'Examples',
-          page: WritingExamples,
-          sections: writingExamplesSections,
-        },
-      ]),
+      createTabbedPage({
+        title: 'Writing',
+        pages: [
+          {
+            title: 'Guidelines',
+            page: WritingGuidelines,
+            sections: writingGuidelinesSections,
+          },
+          {
+            title: 'Examples',
+            page: WritingExamples,
+            sections: writingExamplesSections,
+          },
+        ],
+      }),
     ],
   },
   {
