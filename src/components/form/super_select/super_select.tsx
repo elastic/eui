@@ -12,6 +12,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { EuiScreenReaderOnly } from '../../accessibility';
+import { htmlIdGenerator, keys } from '../../../services';
 import {
   EuiSuperSelectControl,
   EuiSuperSelectControlProps,
@@ -22,7 +23,7 @@ import {
   EuiContextMenuItem,
   EuiContextMenuItemLayoutAlignment,
 } from '../../context_menu';
-import { keys } from '../../../services';
+
 import { EuiI18n } from '../../i18n';
 
 enum ShiftDirection {
@@ -114,6 +115,9 @@ export class EuiSuperSelect<T extends string> extends Component<
 
   private itemNodes: Array<HTMLButtonElement | null> = [];
   private _isMounted: boolean = false;
+
+  describedById = htmlIdGenerator('euiSuperSelect_')('_screenreaderDescribeId');
+  labelledById = htmlIdGenerator('euiSuperSelect_')('_screenreaderLabelId');
 
   state = {
     isPopoverOpen: this.props.isOpen || false,
@@ -301,6 +305,7 @@ export class EuiSuperSelect<T extends string> extends Component<
 
     const button = (
       <EuiSuperSelectControl
+        screenReaderId={this.labelledById}
         options={options}
         value={valueOfSelected}
         onClick={
@@ -349,16 +354,17 @@ export class EuiSuperSelect<T extends string> extends Component<
         fullWidth={fullWidth}
       >
         <EuiScreenReaderOnly>
-          <p role="alert">
+          <p id={this.describedById}>
             <EuiI18n
               token="euiSuperSelect.screenReaderAnnouncement"
-              default="You are in a form selector of {optionsCount} items and must select a single option.
+              default="You are in a form selector and must select a single option.
               Use the up and down keys to navigate or escape to close."
-              values={{ optionsCount: options.length }}
             />
           </p>
         </EuiScreenReaderOnly>
         <div
+          aria-labelledby={this.labelledById}
+          aria-describedby={this.describedById}
           className="euiSuperSelect__listbox"
           role="listbox"
           aria-activedescendant={valueOfSelected}

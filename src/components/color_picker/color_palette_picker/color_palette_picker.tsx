@@ -115,14 +115,12 @@ export const EuiColorPalettePicker: FunctionComponent<EuiColorPalettePickerProps
   const getPalette = ({
     type,
     palette,
+    title,
   }:
     | EuiColorPalettePickerPaletteFixedProps
     | EuiColorPalettePickerPaletteGradientProps) => {
-    // Working around ExclusiveUnion
-    return type === 'gradient' ? (
-      <EuiColorPaletteDisplay type={type} palette={palette} />
-    ) : (
-      <EuiColorPaletteDisplay type={type} palette={palette} />
+    return (
+      <EuiColorPaletteDisplay type={type} palette={palette} title={title} />
     );
   };
 
@@ -139,7 +137,15 @@ export const EuiColorPalettePicker: FunctionComponent<EuiColorPalettePickerProps
         dropdownDisplay: (
           <div className="euiColorPalettePicker__item">
             {title && type !== 'text' && (
-              <div className="euiColorPalettePicker__itemTitle">{title}</div>
+              // Accessible labels are managed by color_palette_display_fixed and
+              // color_palette_display_gradient. Adding the aria-hidden attribute
+              // here to ensure screen readers don't speak the listbox options twice.
+              <div
+                aria-hidden="true"
+                className="euiColorPalettePicker__itemTitle"
+              >
+                {title}
+              </div>
             )}
             {type === 'text' ? title : paletteForDisplay}
           </div>
