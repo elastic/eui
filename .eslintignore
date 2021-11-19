@@ -12,3 +12,4 @@ scripts
 generator-eui
 cypress
 *.d.ts
+.eslintrc.js
