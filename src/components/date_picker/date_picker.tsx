@@ -17,14 +17,47 @@ import { EuiFormControlLayoutIconsProps } from '../form/form_control_layout/form
 import { EuiI18nConsumer } from '../context';
 import { ApplyClassComponentDefaults, CommonProps } from '../common';
 
-// @ts-ignore the type is provided by react-datepicker.d.ts
-import { ReactDatePicker as _ReactDatePicker } from '../../../packages';
-import ReactDatePicker, { ReactDatePickerProps } from './react-datepicker'; // eslint-disable-line import/no-unresolved
+import { PopoverAnchorPosition } from '../popover';
+
+import { ReactDatePicker, ReactDatePickerProps } from './react-datepicker';
 
 export const euiDatePickerDefaultDateFormat = 'MM/DD/YYYY';
 export const euiDatePickerDefaultTimeFormat = 'hh:mm A';
 
-const DatePicker = _ReactDatePicker as typeof ReactDatePicker;
+type popperPlacement =
+  | 'bottom'
+  | 'bottom-end'
+  | 'bottom-start'
+  | 'left'
+  | 'left-end'
+  | 'left-start'
+  | 'right'
+  | 'right-end'
+  | 'right-start'
+  | 'top'
+  | 'top-end'
+  | 'top-start';
+
+const mapAnchorPositions: {
+  [key in popperPlacement]: PopoverAnchorPosition;
+} = {
+  'bottom-start': 'downLeft',
+  bottom: 'downCenter',
+  'bottom-end': 'downRight',
+  'left-start': 'leftUp',
+  left: 'leftCenter',
+  'left-end': 'leftDown',
+  'right-start': 'rightUp',
+  right: 'rightCenter',
+  'right-end': 'rightDown',
+  'top-start': 'upLeft',
+  top: 'upCenter',
+  'top-end': 'upRight',
+};
+
+function isPopperPlacement(position?: string): position is popperPlacement {
+  return position != null && Object.keys(mapAnchorPositions).includes(position);
+}
 
 // EuiDatePicker only supports a subset of props from react-datepicker.
 const unsupportedProps = [
@@ -114,9 +147,13 @@ interface EuiExtendedDatePickerProps
   iconType?: EuiFormControlLayoutIconsProps['icon'];
 
   /**
-   * Sets the placement of the popover
+   * Sets the placement of the popover.
+   *
+   * DEPRECATED: 'bottom', 'bottom-end', 'bottom-start', 'left', 'left-end', 'left-start', right', 'right-end', 'right-start', 'top', 'top-end', 'top-start'
+   *
+   * **Use [EuiPopover](/#/layout/popover) values**: 'upCenter', 'upLeft', 'upRight', downCenter', 'downLeft', 'downRight', 'leftCenter', 'leftUp', 'leftDown', 'rightCenter', 'rightUp', 'rightDown'.
    */
-  popoverPlacement?: ReactDatePickerProps['popperPlacement'];
+  popoverPlacement?: PopoverAnchorPosition | popperPlacement;
 }
 
 type _EuiDatePickerProps = CommonProps & EuiExtendedDatePickerProps;
@@ -137,7 +174,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
     showIcon: true,
     showTimeSelect: false,
     timeFormat: euiDatePickerDefaultTimeFormat,
-    popoverPlacement: 'bottom-start',
+    popoverPlacement: 'downLeft',
   };
 
   render() {
@@ -168,7 +205,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
       openToDate,
       placeholder,
       popperClassName,
-      popoverPlacement,
+      popoverPlacement: _popoverPlacement,
       selected,
       shadow,
       shouldCloseOnSelect,
@@ -216,6 +253,13 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
       fullDateFormat = `${dateFormat} ${timeFormat}`;
     }
 
+    let popoverPlacement: PopoverAnchorPosition;
+    if (isPopperPlacement(_popoverPlacement)) {
+      popoverPlacement = mapAnchorPositions[_popoverPlacement];
+    } else {
+      popoverPlacement = _popoverPlacement!;
+    }
+
     return (
       <span className={classes}>
         <EuiFormControlLayout
@@ -228,7 +272,7 @@ export class EuiDatePicker extends Component<_EuiDatePickerProps> {
             <EuiI18nConsumer>
               {({ locale: contextLocale }) => {
                 return (
-                  <DatePicker
+                  <ReactDatePicker
                     adjustDateOnChange={adjustDateOnChange}
                     calendarClassName={calendarClassName}
                     className={datePickerClasses}
