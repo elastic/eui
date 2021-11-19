@@ -617,10 +617,15 @@ export interface EuiDataGridToolBarVisibilityOptions {
 
 export interface EuiDataGridToolBarAdditionalControlsOptions {
   /**
+   * Will prepend the passed node into the left side of the toolbar, **before** the column & sort controls.
+   * We recommend using `<EuiButtonEmpty size="xs" />` to match the existing controls on the left.
+   */
+  leftPrepend?: ReactNode;
+  /**
    * Will append the passed node into the left side of the toolbar, **after** the column & sort controls.
    * We recommend using `<EuiButtonEmpty size="xs" />` to match the existing controls on the left.
    */
-  left?: ReactNode;
+  leftAppend?: ReactNode;
   /**
    * Will prepend the passed node into the right side of the toolbar, **before** the density & full screen controls.
    * We recommend using `<EuiButtonIcon size="xs" />` to match the existing controls on the right.

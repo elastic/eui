@@ -117,11 +117,7 @@ describe('EuiDataGridToolbar', () => {
       >
         <div
           className="euiDataGrid__leftControls"
-        >
-          <div>
-            hello
-          </div>
-        </div>
+        />
         <div
           className="euiDataGrid__rightControls"
         >
@@ -188,32 +184,87 @@ describe('renderAdditionalControls', () => {
   const mockControl = <div data-test-subj="test" />;
 
   it('does not render if a boolean was passed into toolbarVisibility', () => {
-    expect(renderAdditionalControls(false, 'left')).toEqual(null);
-    expect(renderAdditionalControls(true, 'left')).toEqual(null);
+    expect(renderAdditionalControls(false, 'right')).toEqual(null);
+    expect(renderAdditionalControls(true, 'right')).toEqual(null);
   });
 
   it('does not render if toolbarVisibility is undefined or additionalControls is undefined', () => {
-    expect(renderAdditionalControls(undefined, 'left')).toEqual(null);
+    expect(renderAdditionalControls(undefined, 'right')).toEqual(null);
     expect(
-      renderAdditionalControls({ additionalControls: undefined }, 'left')
+      renderAdditionalControls({ additionalControls: undefined }, 'right')
     ).toEqual(null);
   });
 
-  describe('left', () => {
-    it('renders a react node passed into the left side toolbar', () => {
+  describe('leftAppend', () => {
+    it('renders a react node appended into the left side toolbar', () => {
       expect(
         renderAdditionalControls(
-          { additionalControls: { left: mockControl } },
-          'left'
+          { additionalControls: { leftAppend: mockControl } },
+          'leftAppend'
         )
       ).toEqual(mockControl);
     });
 
-    it('does not render right side positions', () => {
+    it('does not render other positions', () => {
+      expect(
+        renderAdditionalControls(
+          { additionalControls: { leftPrepend: mockControl } },
+          'leftAppend'
+        )
+      ).toEqual(null);
       expect(
         renderAdditionalControls(
           { additionalControls: { right: mockControl } },
-          'left'
+          'leftAppend'
+        )
+      ).toEqual(null);
+    });
+
+    describe('single node', () => {
+      it('renders into the leftAppend side of toolbar by default', () => {
+        expect(
+          renderAdditionalControls(
+            { additionalControls: mockControl },
+            'leftAppend'
+          )
+        ).toEqual(mockControl);
+      });
+
+      it('does not render other positions', () => {
+        expect(
+          renderAdditionalControls(
+            { additionalControls: mockControl },
+            'leftPrepend'
+          )
+        ).toEqual(null);
+        expect(
+          renderAdditionalControls({ additionalControls: mockControl }, 'right')
+        ).toEqual(null);
+      });
+    });
+  });
+
+  describe('leftPrepend', () => {
+    it('renders a react node prepended into the left side toolbar', () => {
+      expect(
+        renderAdditionalControls(
+          { additionalControls: { leftPrepend: mockControl } },
+          'leftPrepend'
+        )
+      ).toEqual(mockControl);
+    });
+
+    it('does not render other positions', () => {
+      expect(
+        renderAdditionalControls(
+          { additionalControls: { leftAppend: mockControl } },
+          'leftPrepend'
+        )
+      ).toEqual(null);
+      expect(
+        renderAdditionalControls(
+          { additionalControls: { right: mockControl } },
+          'leftPrepend'
         )
       ).toEqual(null);
     });
@@ -232,23 +283,15 @@ describe('renderAdditionalControls', () => {
     it('does not render left side positions', () => {
       expect(
         renderAdditionalControls(
-          { additionalControls: { left: mockControl } },
+          { additionalControls: { leftPrepend: mockControl } },
           'right'
         )
       ).toEqual(null);
-    });
-  });
-
-  describe('single node', () => {
-    it('renders into the left side of toolbar by default', () => {
       expect(
-        renderAdditionalControls({ additionalControls: mockControl }, 'left')
-      ).toEqual(mockControl);
-    });
-
-    it('does not render into the right side of the toolbar', () => {
-      expect(
-        renderAdditionalControls({ additionalControls: mockControl }, 'right')
+        renderAdditionalControls(
+          { additionalControls: { leftAppend: mockControl } },
+          'right'
+        )
       ).toEqual(null);
     });
   });

@@ -93,6 +93,7 @@ export const EuiDataGridToolbar = ({
     >
       {hasRoomForGridControls && (
         <div className="euiDataGrid__leftControls">
+          {renderAdditionalControls(toolbarVisibility, 'leftPrepend')}
           {checkOrDefaultToolBarDisplayOptions(
             toolbarVisibility,
             'showColumnSelector'
@@ -105,7 +106,7 @@ export const EuiDataGridToolbar = ({
           )
             ? columnSorting
             : null}
-          {renderAdditionalControls(toolbarVisibility, 'left')}
+          {renderAdditionalControls(toolbarVisibility, 'leftAppend')}
         </div>
       )}
       <div className="euiDataGrid__rightControls">
@@ -159,7 +160,7 @@ export function checkOrDefaultToolBarDisplayOptions<
 
 export function renderAdditionalControls(
   toolbarVisibility: EuiDataGridProps['toolbarVisibility'],
-  position: 'left' | 'right'
+  position: 'leftPrepend' | 'leftAppend' | 'right'
 ) {
   if (typeof toolbarVisibility === 'boolean') return null;
   const { additionalControls } = toolbarVisibility || {};
@@ -173,11 +174,16 @@ export function renderAdditionalControls(
     if (additionalControlsObj?.right) {
       return additionalControlsObj.right;
     }
-  } else if (position === 'left') {
-    if (additionalControlsObj?.left) {
-      return additionalControlsObj.left;
-    } else if (React.isValidElement(additionalControls)) {
-      // API backwards compatability: if the user passed in a single ReactNode, default to the the left position
+  } else if (position === 'leftPrepend') {
+    if (additionalControlsObj?.leftPrepend) {
+      return additionalControlsObj.leftPrepend;
+    }
+  } else if (position === 'leftAppend') {
+    if (additionalControlsObj?.leftAppend) {
+      return additionalControlsObj.leftAppend;
+    }
+    if (React.isValidElement(additionalControls)) {
+      // API backwards compatability: if the user passed in a single ReactNode, default to the the left prepend position
       return additionalControls;
     }
   }
