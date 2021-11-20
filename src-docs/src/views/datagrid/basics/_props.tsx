@@ -10,7 +10,7 @@ import {
   EuiSpacer,
 } from '../../../../../src/components';
 
-import { getPropsFromThemeKey } from '../../theme/_props';
+import { getPropsFromComponent } from '../../../services/props/get_props';
 import { getDescriptionSmall } from '../../theme/_components/_theme_values_descriptions';
 
 const gridSnippets = {
@@ -151,11 +151,17 @@ interface BasicItem {
 
 export const DataGridPropsTable: FunctionComponent<{}> = ({}) => {
   const { euiTheme } = useEuiTheme();
-  const gridProps = getPropsFromThemeKey(EuiDataGrid);
-  const gridPropsToExclude = ['className', 'data-test-subj', 'aria-label'];
-  const gridPropsKeys = Object.keys(gridProps).filter(
-    (i) => !gridPropsToExclude.includes(i)
-  );
+  const gridProps = getPropsFromComponent(EuiDataGrid);
+  const gridPropsToExclude = [
+    'className',
+    'data-test-subj',
+    'aria-label',
+    'width',
+    'height',
+  ];
+  const gridPropsKeys = Object.keys(gridProps)
+    .filter((i) => !gridPropsToExclude.includes(i))
+    .sort();
 
   const items: BasicItem[] = gridPropsKeys.map((prop) => {
     return {

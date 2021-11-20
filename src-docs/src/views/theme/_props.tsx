@@ -1,24 +1,11 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import { css } from '@emotion/react';
-import { useView } from 'react-view';
-// @ts-ignore NOT TS
-import { propUtilityForPlayground } from '../../services/playground';
 // @ts-ignore NOT TS yet
 import { humanizeType } from '../../services/playground/knobs';
 
 export type ThemeRowType = {
   description?: React.ReactNode;
 };
-
-export function getPropsFromThemeKey(component: any) {
-  const docgenInfo = Array.isArray(component.__docgenInfo)
-    ? component.__docgenInfo[0]
-    : component.__docgenInfo;
-  const { props } = docgenInfo;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const params = useView({ props: propUtilityForPlayground(props) });
-  return params.knobProps.state;
-}
 
 import { EuiThemeComputed, EuiThemeShape } from '../../../../src/services';
 

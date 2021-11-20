@@ -8,20 +8,15 @@ import {
   _EuiThemeFontWeight,
 } from '../../../../../src/global_styling/variables/_typography';
 
-import {
-  getPropsFromThemeKey,
-  EuiThemeFontBase,
-  EuiThemeFontWeight,
-  ThemeRowType,
-} from '../_props';
-
+import { EuiThemeFontBase, EuiThemeFontWeight, ThemeRowType } from '../_props';
+import { getPropsFromComponent } from '../../../services/props/get_props';
 import { ThemeExample } from '../_components/_theme_example';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 import { getDescription } from '../_components/_theme_values_descriptions';
 
 export const FontJS = () => {
   const { euiTheme } = useEuiTheme();
-  const baseProps = getPropsFromThemeKey(EuiThemeFontBase);
+  const baseProps = getPropsFromComponent(EuiThemeFontBase);
 
   return (
     <>
@@ -88,7 +83,7 @@ export const FontWeightJS: FunctionComponent<ThemeRowType> = ({
   description,
 }) => {
   const { euiTheme } = useEuiTheme();
-  const weightProps = getPropsFromThemeKey(EuiThemeFontWeight);
+  const weightProps = getPropsFromComponent(EuiThemeFontWeight);
 
   return (
     <>
