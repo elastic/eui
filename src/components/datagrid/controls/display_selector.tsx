@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactElement, useState, useMemo, useCallback } from 'react';
+import React, { ReactNode, useState, useMemo, useCallback } from 'react';
 
 import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiPopover } from '../../popover';
@@ -72,14 +72,14 @@ const convertRowHeightsOptionsToSelection = (
 export const useDataGridDisplaySelector = (
   showDisplaySelector: EuiDataGridToolBarVisibilityOptions['showDisplaySelector'],
   initialStyles: EuiDataGridStyle,
-  initialRowHeightsOptions?: EuiDataGridRowHeightsOptions,
-  showStyleSelector?: EuiDataGridToolBarVisibilityOptions['showStyleSelector'] // TODO: Deprecate
-): [ReactElement, EuiDataGridStyle, EuiDataGridRowHeightsOptions] => {
+  initialRowHeightsOptions?: EuiDataGridRowHeightsOptions
+): [ReactNode, EuiDataGridStyle, EuiDataGridRowHeightsOptions] => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const showDensityControls =
-    showStyleSelector ??
-    getNestedObjectOptions(showDisplaySelector, 'allowDensity');
+  const showDensityControls = getNestedObjectOptions(
+    showDisplaySelector,
+    'allowDensity'
+  );
 
   const showRowHeightControls = getNestedObjectOptions(
     showDisplaySelector,
@@ -152,141 +152,142 @@ export const useDataGridDisplaySelector = (
     'Display options'
   );
 
-  const displaySelector = (
-    <EuiPopover
-      data-test-subj="dataGridDisplaySelectorPopover"
-      isOpen={isOpen}
-      closePopover={() => setIsOpen(false)}
-      anchorPosition="downRight"
-      panelPaddingSize="s"
-      panelClassName="euiDataGrid__displayPopoverPanel"
-      button={
-        <EuiToolTip content={buttonLabel} delay="long">
-          <EuiButtonIcon
-            size="xs"
-            iconType={`tableDensity${capitalizeDensityString(gridDensity)}`}
-            className="euiDataGrid__controlBtn"
-            color="text"
-            data-test-subj="dataGridDisplaySelectorButton"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={buttonLabel}
-          />
-        </EuiToolTip>
-      }
-    >
-      {showDensityControls && (
-        <EuiI18n
-          tokens={[
-            'euiDisplaySelector.densityLabel',
-            'euiDisplaySelector.labelCompact',
-            'euiDisplaySelector.labelNormal',
-            'euiDisplaySelector.labelExpanded',
-          ]}
-          defaults={['Density', 'Compact', 'Normal', 'Expanded']}
-        >
-          {([
-            densityLabel,
-            labelCompact,
-            labelNormal,
-            labelExpanded,
-          ]: string[]) => (
-            <EuiFormRow label={densityLabel} display="columnCompressed">
-              <EuiButtonGroup
-                legend={densityLabel}
-                buttonSize="compressed"
-                isFullWidth
-                options={[
-                  {
-                    id: densityOptions[0],
-                    label: labelCompact,
-                  },
-                  {
-                    id: densityOptions[1],
-                    label: labelNormal,
-                  },
-                  {
-                    id: densityOptions[2],
-                    label: labelExpanded,
-                  },
-                ]}
-                onChange={setGridDensity}
-                idSelected={gridDensity}
-                data-test-subj="densityButtonGroup"
-              />
-            </EuiFormRow>
-          )}
-        </EuiI18n>
-      )}
-      {showRowHeightControls && (
-        <EuiI18n
-          tokens={[
-            'euiDisplaySelector.rowHeightLabel',
-            'euiDisplaySelector.labelSingle',
-            'euiDisplaySelector.labelAuto',
-            'euiDisplaySelector.labelCustom',
-            'euiDisplaySelector.lineCountLabel',
-          ]}
-          defaults={[
-            'Row height',
-            'Single',
-            'Auto fit',
-            'Custom',
-            'Lines per row',
-          ]}
-        >
-          {([
-            rowHeightLabel,
-            labelSingle,
-            labelAuto,
-            labelCustom,
-            lineCountLabel,
-          ]: string[]) => (
-            <>
-              <EuiFormRow label={rowHeightLabel} display="columnCompressed">
+  const displaySelector =
+    showDensityControls || showRowHeightControls ? (
+      <EuiPopover
+        data-test-subj="dataGridDisplaySelectorPopover"
+        isOpen={isOpen}
+        closePopover={() => setIsOpen(false)}
+        anchorPosition="downRight"
+        panelPaddingSize="s"
+        panelClassName="euiDataGrid__displayPopoverPanel"
+        button={
+          <EuiToolTip content={buttonLabel} delay="long">
+            <EuiButtonIcon
+              size="xs"
+              iconType={`tableDensity${capitalizeDensityString(gridDensity)}`}
+              className="euiDataGrid__controlBtn"
+              color="text"
+              data-test-subj="dataGridDisplaySelectorButton"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={buttonLabel}
+            />
+          </EuiToolTip>
+        }
+      >
+        {showDensityControls && (
+          <EuiI18n
+            tokens={[
+              'euiDisplaySelector.densityLabel',
+              'euiDisplaySelector.labelCompact',
+              'euiDisplaySelector.labelNormal',
+              'euiDisplaySelector.labelExpanded',
+            ]}
+            defaults={['Density', 'Compact', 'Normal', 'Expanded']}
+          >
+            {([
+              densityLabel,
+              labelCompact,
+              labelNormal,
+              labelExpanded,
+            ]: string[]) => (
+              <EuiFormRow label={densityLabel} display="columnCompressed">
                 <EuiButtonGroup
-                  legend={rowHeightLabel}
+                  legend={densityLabel}
                   buttonSize="compressed"
                   isFullWidth
                   options={[
                     {
-                      id: rowHeightButtonOptions[0],
-                      label: labelSingle,
+                      id: densityOptions[0],
+                      label: labelCompact,
                     },
                     {
-                      id: rowHeightButtonOptions[1],
-                      label: labelAuto,
+                      id: densityOptions[1],
+                      label: labelNormal,
                     },
                     {
-                      id: rowHeightButtonOptions[2],
-                      label: labelCustom,
+                      id: densityOptions[2],
+                      label: labelExpanded,
                     },
                   ]}
-                  onChange={setRowHeight}
-                  idSelected={rowHeightSelection}
-                  data-test-subj="rowHeightButtonGroup"
+                  onChange={setGridDensity}
+                  idSelected={gridDensity}
+                  data-test-subj="densityButtonGroup"
                 />
               </EuiFormRow>
-              {rowHeightSelection === rowHeightButtonOptions[2] && (
-                <EuiFormRow label={lineCountLabel} display="columnCompressed">
-                  <EuiRange
-                    compressed
-                    fullWidth
-                    showInput
-                    min={1}
-                    max={20}
-                    step={1}
-                    value={lineCount}
-                    onChange={setLineCountHeight}
-                    data-test-subj="lineCountNumber"
+            )}
+          </EuiI18n>
+        )}
+        {showRowHeightControls && (
+          <EuiI18n
+            tokens={[
+              'euiDisplaySelector.rowHeightLabel',
+              'euiDisplaySelector.labelSingle',
+              'euiDisplaySelector.labelAuto',
+              'euiDisplaySelector.labelCustom',
+              'euiDisplaySelector.lineCountLabel',
+            ]}
+            defaults={[
+              'Row height',
+              'Single',
+              'Auto fit',
+              'Custom',
+              'Lines per row',
+            ]}
+          >
+            {([
+              rowHeightLabel,
+              labelSingle,
+              labelAuto,
+              labelCustom,
+              lineCountLabel,
+            ]: string[]) => (
+              <>
+                <EuiFormRow label={rowHeightLabel} display="columnCompressed">
+                  <EuiButtonGroup
+                    legend={rowHeightLabel}
+                    buttonSize="compressed"
+                    isFullWidth
+                    options={[
+                      {
+                        id: rowHeightButtonOptions[0],
+                        label: labelSingle,
+                      },
+                      {
+                        id: rowHeightButtonOptions[1],
+                        label: labelAuto,
+                      },
+                      {
+                        id: rowHeightButtonOptions[2],
+                        label: labelCustom,
+                      },
+                    ]}
+                    onChange={setRowHeight}
+                    idSelected={rowHeightSelection}
+                    data-test-subj="rowHeightButtonGroup"
                   />
                 </EuiFormRow>
-              )}
-            </>
-          )}
-        </EuiI18n>
-      )}
-    </EuiPopover>
-  );
+                {rowHeightSelection === rowHeightButtonOptions[2] && (
+                  <EuiFormRow label={lineCountLabel} display="columnCompressed">
+                    <EuiRange
+                      compressed
+                      fullWidth
+                      showInput
+                      min={1}
+                      max={20}
+                      step={1}
+                      value={lineCount}
+                      onChange={setLineCountHeight}
+                      data-test-subj="lineCountNumber"
+                    />
+                  </EuiFormRow>
+                )}
+              </>
+            )}
+          </EuiI18n>
+        )}
+      </EuiPopover>
+    ) : null;
 
   return [displaySelector, gridStyles, rowHeightsOptions];
 };

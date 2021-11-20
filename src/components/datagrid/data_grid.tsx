@@ -658,9 +658,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
       'showDisplaySelector'
     ),
     gridStyleWithDefaults,
-    _rowHeightsOptions,
-    // @ts-ignore - showStyleSelector will be deprecated
-    toolbarVisibility?.showStyleSelector
+    _rowHeightsOptions
   );
 
   // compute the default column width from the container's clientWidth and count of visible columns

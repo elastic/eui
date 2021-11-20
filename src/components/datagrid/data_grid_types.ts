@@ -30,10 +30,10 @@ export interface EuiDataGridToolbarProps {
   gridWidth: number;
   minSizeForControls?: number;
   toolbarVisibility: boolean | EuiDataGridToolBarVisibilityOptions;
-  displaySelector: ReactElement;
+  displaySelector: ReactNode;
   isFullScreen: boolean;
   controlBtnClasses: string;
-  columnSelector: ReactElement;
+  columnSelector: ReactNode;
   columnSorting: ReactNode;
   setRef: RefCallback<HTMLDivElement | null>;
   setIsFullScreen: Dispatch<SetStateAction<boolean>>;
@@ -627,12 +627,6 @@ export interface EuiDataGridToolBarVisibilityOptions {
   showDisplaySelector?:
     | boolean
     | EuiDataGridToolBarVisibilityDisplaySelectorOptions;
-  /**
-   * Allows the ability for the user to set the grid density. If on, this merges against what is provided in #EuiDataGridStyle
-   *
-   * **DEPRECATED: Use `showDisplaySelector.allowDensity`**
-   */
-  showStyleSelector?: boolean;
   /**
    * Allows the ability for the user to sort rows based upon column values
    */

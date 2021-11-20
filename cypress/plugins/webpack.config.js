@@ -11,14 +11,6 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const plugins = [
-  // Force EuiIcon's dynamic imports to be included in the single eui.js build,
-  // instead of being split out into multiple files
-  new webpack.optimize.LimitChunkCountPlugin({
-    maxChunks: 1,
-  }),
-];
-
 module.exports = {
   mode: 'development',
 
@@ -39,12 +31,10 @@ module.exports = {
         },
       },
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         loaders: [
           'style-loader',
           'css-loader',
-          'postcss-loader',
-          'sass-loader',
         ],
         exclude: /node_modules/,
       },
@@ -55,6 +45,4 @@ module.exports = {
     ],
     strictExportPresence: false,
   },
-
-  plugins,
 };
