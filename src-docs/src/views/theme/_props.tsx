@@ -1,4 +1,5 @@
 import React, { FunctionComponent, ReactNode } from 'react';
+import { css } from '@emotion/react';
 import { useView } from 'react-view';
 // @ts-ignore NOT TS
 import { propUtilityForPlayground } from '../../services/playground';
@@ -91,7 +92,6 @@ export const EuiThemeAnimationEasing: FunctionComponent<_EuiThemeAnimationEasing
 );
 
 import { EuiThemeBreakpoint } from '../../../../src/global_styling/variables/_breakpoint';
-import { css } from '@emotion/react';
 
 export const _EuiThemeBreakpoint: FunctionComponent<EuiThemeBreakpoint> = () => (
   <div />
