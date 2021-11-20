@@ -203,12 +203,12 @@ export const DataGridPropsTable: FunctionComponent<{}> = ({}) => {
   const renderSample = (sample: BasicItem['sample']) => {
     if (sample) {
       return (
-        <>
-          <EuiSpacer size="s" />
+        <div style={{ flexGrow: 1 }}>
+          <EuiSpacer />
           <EuiCodeBlock paddingSize="s" language="tsx" isCopyable>
             {sample}
           </EuiCodeBlock>
-        </>
+        </div>
       );
     }
   };
@@ -217,7 +217,7 @@ export const DataGridPropsTable: FunctionComponent<{}> = ({}) => {
     {
       field: 'prop',
       name: 'Prop',
-      width: '30%',
+      width: '34%',
       valign: 'top',
       textOnly: false,
       render: (prop: ReactNode, item) => (
@@ -236,10 +236,14 @@ export const DataGridPropsTable: FunctionComponent<{}> = ({}) => {
 
   columns.push({
     field: 'sample',
-    name: 'Sample',
+    name: 'Sample snippet',
     align: 'left',
     valign: 'top',
     render: (sample: ReactNode) => renderSample(sample),
+    mobileOptions: {
+      header: false, // Won't show inline header in mobile view
+      width: '100%', // Applies a specific width
+    },
   });
 
   return (
