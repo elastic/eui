@@ -33,3 +33,7 @@ export const PropsLinkMarkdownRenderer = ({ propId }) => {
 
   return <EuiLink onClick={onClick}>{propId}</EuiLink>;
 };
+
+export const PropsLinkAsBoldRenderer = ({ propId }) => {
+  return <strong>{propId}</strong>;
+};

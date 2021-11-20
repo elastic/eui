@@ -11,7 +11,7 @@ import {
 } from '../../../../../src/components';
 
 import { getPropsFromComponent } from '../../../services/props/get_props';
-import { getDescriptionSmall } from '../../theme/_components/_theme_values_descriptions';
+import { getDescription } from '../../../services/props/get_description';
 
 const gridSnippets = {
   inMemory: `// Will try to autodectect schemas and do sorting and pagination in memory.
@@ -176,7 +176,7 @@ export const DataGridPropsTable: FunctionComponent<{}> = ({}) => {
   });
 
   const renderPropDescription = (item: BasicItem) => {
-    const description = getDescriptionSmall(item.type || item);
+    const description = getDescription(item.type || item, { color: 'subdued' });
 
     if (description) {
       return (

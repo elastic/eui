@@ -14,7 +14,7 @@ import { ThemeExample } from '../_components/_theme_example';
 import {
   getDescription,
   getDescriptionSmall,
-} from '../_components/_theme_values_descriptions';
+} from '../../../services/props/get_description';
 
 export const euiFontMixins: {
   [key: string]: { description: string; sample?: any };
