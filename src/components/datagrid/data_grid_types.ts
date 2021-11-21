@@ -69,7 +69,7 @@ export interface SchemaTypeScore {
 }
 export interface EuiDataGridSchemaDetector {
   /**
-   * The name of this data type, matches #EuiDataGridColumn / schema `schema`
+   * The name of this data type, matches #EuiDataGridColumn / `schema`
    */
   type: string;
   /**
@@ -201,7 +201,7 @@ export type CommonGridProps = CommonProps &
      */
     schemaDetectors?: EuiDataGridSchemaDetector[];
     /**
-     * An object mapping #EuiDataGridColumn `schema`s to a custom popover formatting component which receives #EuiDataGridPopoverContent props.
+     * An object mapping #EuiDataGridColumn `schema`s to a custom popover formatting component which receives #EuiDataGridPopoverContentProps.
      * This dictates the content of the popovers when you click into each cell.
      */
     popoverContents?: EuiDataGridPopoverContents;
@@ -441,7 +441,9 @@ export interface EuiDataGridColumn {
    */
   display?: ReactNode;
   /**
-   * A Schema to use for the column. Built-in values are ['boolean', 'currency', 'datetime', 'numeric', 'json'] but can be expanded by defining your own #EuiDataGrid `schemaDetectors` (for in-memory detection). In general, it is advised to pass in a value here when you are sure of the schema ahead of time, so that you don't need to rely on the automatic detection.
+   * A Schema to use for the column.
+   * Built-in values are [`boolean`, `currency`, `datetime`, `numeric`, `json`] but can be expanded by defining your own #EuiDataGrid `schemaDetectors` (for in-memory detection).
+   * In general, it is advised to pass in a value here when you are sure of the schema ahead of time, so that you don't need to rely on the automatic detection.
    */
   schema?: string;
   /**

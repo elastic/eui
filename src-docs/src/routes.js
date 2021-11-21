@@ -73,7 +73,7 @@ import { ControlBarExample } from './views/control_bar/control_bar_example';
 import { CopyExample } from './views/copy/copy_example';
 
 import { DataGridExample } from './views/datagrid/datagrid_example';
-import { DataGridSchemaExample } from './views/datagrid/data/datagrid_schema_example';
+import { DataGridSchemaExample } from './views/datagrid/datagrid_schema_example';
 import { DataGridToolbarExample } from './views/datagrid/datagrid_toolbar_example';
 import { DataGridColumnsExample } from './views/datagrid/columns_cells/datagrid_columns_example';
 import { DataGridStylingExample } from './views/datagrid/styling/datagrid_styling_example';

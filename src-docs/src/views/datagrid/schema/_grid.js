@@ -15,6 +15,7 @@ const columns = [
   {
     id: 'boolean',
     isExpandable: false,
+    schema: 'boolean',
   },
   {
     id: 'numeric',
@@ -102,7 +103,7 @@ const Franchise = (props) => {
   );
 };
 
-const DataGridSchema = () => {
+const DataGridSchema = ({ customPopover }) => {
   const [data, setData] = useState(storeData);
 
   const [sortingColumns, setSortingColumns] = useState([
@@ -153,7 +154,7 @@ const DataGridSchema = () => {
 
   return (
     <EuiDataGrid
-      aria-label="Top EUI contributors"
+      aria-label="Schemas"
       columns={columns}
       columnVisibility={{
         visibleColumns: visibleColumns,
@@ -164,7 +165,7 @@ const DataGridSchema = () => {
       renderCellValue={({ rowIndex, columnId, isDetails }) => {
         const value = data[rowIndex][columnId];
 
-        if (columnId === 'custom' && isDetails) {
+        if (columnId === 'custom' && isDetails && customPopover) {
           return <Franchise name={value} />;
         }
 
@@ -200,18 +201,20 @@ const DataGridSchema = () => {
           color: '#800080',
         },
       ]}
-      popoverContents={{
-        numeric: ({ cellContentsElement }) => {
-          // want to process the already-rendered cell value
-          const stringContents = cellContentsElement.textContent;
+      popoverContents={
+        customPopover && {
+          numeric: ({ cellContentsElement }) => {
+            // want to process the already-rendered cell value
+            const stringContents = cellContentsElement.textContent;
 
-          // extract the groups-of-three digits that are right-aligned
-          return stringContents.replace(/((\d{3})+)$/, (match) =>
-            // then replace each group of xyz digits with ,xyz
-            match.replace(/(\d{3})/g, ',$1')
-          );
-        },
-      }}
+            // extract the groups-of-three digits that are right-aligned
+            return stringContents.replace(/((\d{3})+)$/, (match) =>
+              // then replace each group of xyz digits with ,xyz
+              match.replace(/(\d{3})/g, ',$1')
+            );
+          },
+        }
+      }
     />
   );
 };

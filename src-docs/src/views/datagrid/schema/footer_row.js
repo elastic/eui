@@ -1,12 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { fake } from 'faker';
 
-import {
-  EuiDataGrid,
-  EuiSwitch,
-  EuiFlexGroup,
-  EuiFlexItem,
-} from '../../../../../src/components';
+import { EuiDataGrid } from '../../../../../src/components';
 
 const raw_data = [];
 
@@ -105,44 +100,28 @@ export default () => {
     []
   );
 
-  // Footer row
-  const [showFooterRow, setShowFooterRow] = useState(true);
-
   return (
-    <EuiFlexGroup direction="column">
-      <EuiFlexItem>
-        <EuiSwitch
-          label="Show footer row"
-          checked={showFooterRow}
-          onChange={(e) => setShowFooterRow(e.target.checked)}
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiDataGrid
-          aria-label="Data grid footer row demo"
-          columns={columns}
-          columnVisibility={{ visibleColumns, setVisibleColumns }}
-          rowCount={raw_data.length}
-          renderCellValue={renderCellValue}
-          renderFooterCellValue={
-            showFooterRow ? renderFooterCellValue : undefined
-          }
-          pagination={{
-            ...pagination,
-            pageSizeOptions: [10, 15, 20],
-            onChangeItemsPerPage: onChangeItemsPerPage,
-            onChangePage: onChangePage,
-          }}
-          onColumnResize={(eventData) => {
-            console.log(eventData);
-          }}
-          gridStyle={{
-            border: 'horizontal',
-            rowHover: 'highlight',
-            header: 'underline',
-          }}
-        />
-      </EuiFlexItem>
-    </EuiFlexGroup>
+    <EuiDataGrid
+      aria-label="Data grid footer row demo"
+      columns={columns}
+      columnVisibility={{ visibleColumns, setVisibleColumns }}
+      rowCount={raw_data.length}
+      renderCellValue={renderCellValue}
+      renderFooterCellValue={renderFooterCellValue}
+      pagination={{
+        ...pagination,
+        pageSizeOptions: [10, 15, 20],
+        onChangeItemsPerPage: onChangeItemsPerPage,
+        onChangePage: onChangePage,
+      }}
+      onColumnResize={(eventData) => {
+        console.log(eventData);
+      }}
+      gridStyle={{
+        border: 'horizontal',
+        rowHover: 'highlight',
+        header: 'underline',
+      }}
+    />
   );
 };
