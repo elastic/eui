@@ -1,18 +1,16 @@
 /* eslint-disable jsx-a11y/accessible-emoji */
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback } from 'react';
 import { fake } from 'faker';
 
 import {
   EuiDataGrid,
-  EuiButtonEmpty,
   EuiButtonIcon,
   EuiLink,
-  EuiSwitch,
-  EuiSpacer,
   EuiBadge,
   EuiToken,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiTextColor,
 } from '../../../../../src/components';
 
 const data = [];
@@ -33,169 +31,129 @@ for (let i = 0; i < 10; i++) {
       </EuiLink>
     </span>,
 
-    <span>
-      <EuiButtonEmpty size="xs" onClick={() => {}}>
+    <EuiTextColor color="subdued">
+      <EuiLink size="s" color="success" onClick={() => {}}>
         Yes
-      </EuiButtonEmpty>
-      <EuiButtonEmpty size="xs" color="danger" onClick={() => {}}>
+      </EuiLink>
+      {' | '}
+      <EuiLink size="s" color="danger" onClick={() => {}}>
         No
-      </EuiButtonEmpty>
-    </span>,
-    <span>
-      <EuiButtonEmpty size="xs" onClick={() => {}}>
+      </EuiLink>
+    </EuiTextColor>,
+    <EuiTextColor color="subdued">
+      <EuiLink size="s" color="success" onClick={() => {}}>
         Yes
-      </EuiButtonEmpty>
-      <EuiButtonEmpty size="xs" color="danger" onClick={() => {}}>
+      </EuiLink>
+      {' | '}
+      <EuiLink size="s" color="danger" onClick={() => {}}>
         No
-      </EuiButtonEmpty>
-    </span>,
+      </EuiLink>
+    </EuiTextColor>,
   ]);
 }
 
-const renderHeaderIcon = (areHeadersInteractive) =>
-  areHeadersInteractive ? (
-    <EuiFlexItem grow={false}>
-      <EuiButtonIcon
-        aria-label="column settings"
-        iconType="gear"
-        onClick={() => {}}
-      />
-    </EuiFlexItem>
-  ) : null;
-
 export default () => {
-  const [areHeadersInteractive, setAreHeadersInteractive] = useState(false);
-  const switchInteractiveHeaders = useCallback(
-    (e) => setAreHeadersInteractive(e.target.checked),
-    [setAreHeadersInteractive]
-  );
+  const columns = [
+    {
+      id: 'no-interactives not expandable',
+      display: (
+        <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
+          <EuiFlexItem grow={false}>
+            <EuiButtonIcon
+              aria-label="column settings"
+              iconType="gear"
+              onClick={() => {}}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiBadge>0 interactive</EuiBadge>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
+      isExpandable: false,
+      actions: false,
+    },
+    {
+      id: 'no-interactives is expandable',
+      display: (
+        <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
+          <EuiFlexItem grow={false}>
+            <EuiToken
+              iconType="expandMini"
+              color="euiColorVis0"
+              shape="square"
+              fill="dark"
+              title="Expandable"
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiBadge>0 interactive</EuiBadge>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
+      actions: false,
+    },
+    {
+      id: 'one-interactive not expandable',
+      display: <EuiBadge>1 interactive</EuiBadge>,
+      isExpandable: false,
+      actions: false,
+    },
+    {
+      id: 'one-interactives is expandable',
+      display: (
+        <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
+          <EuiFlexItem grow={false}>
+            <EuiButtonIcon
+              aria-label="column settings"
+              iconType="gear"
+              onClick={() => {}}
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiToken
+              iconType="expandMini"
+              color="euiColorVis0"
+              shape="square"
+              fill="dark"
+              title="Expandable"
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiBadge>1 interactive</EuiBadge>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
+      actions: false,
+    },
+    {
+      id: 'two-interactives not expandable',
+      display: <EuiBadge>2 interactive</EuiBadge>,
+      isExpandable: false,
+      actions: false,
+    },
+    {
+      id: 'two-interactives is expandable',
+      display: (
+        <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
+          <EuiFlexItem grow={false}>
+            <EuiToken
+              iconType="expandMini"
+              color="euiColorVis0"
+              shape="square"
+              fill="dark"
+              title="Expandable"
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiBadge>2 interactive</EuiBadge>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
+      actions: false,
+    },
+  ];
 
-  const columns = useMemo(
-    () => [
-      {
-        id: 'no-interactives not expandable',
-        display: (
-          <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
-            {renderHeaderIcon(areHeadersInteractive)}
-            <EuiFlexItem grow={false}>
-              <EuiToken
-                iconType="expandMini"
-                color="euiColorVis2"
-                shape="square"
-                fill="dark"
-              />
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiBadge>0 interactive</EuiBadge>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        ),
-        isExpandable: false,
-        actions: false,
-      },
-      {
-        id: 'no-interactives is expandable',
-        display: (
-          <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
-            <EuiFlexItem grow={false}>
-              <EuiToken
-                iconType="expandMini"
-                color="euiColorVis0"
-                shape="square"
-                fill="dark"
-              />
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiBadge>0 interactive</EuiBadge>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        ),
-        actions: false,
-      },
-      {
-        id: 'one-interactive not expandable',
-        display: (
-          <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
-            <EuiFlexItem grow={false}>
-              <EuiToken
-                iconType="expandMini"
-                color="euiColorVis2"
-                shape="square"
-                fill="dark"
-              />
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiBadge>1 interactive</EuiBadge>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        ),
-        isExpandable: false,
-        actions: false,
-      },
-      {
-        id: 'one-interactives is expandable',
-        display: (
-          <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
-            {renderHeaderIcon(areHeadersInteractive)}
-            <EuiFlexItem grow={false}>
-              <EuiToken
-                iconType="expandMini"
-                color="euiColorVis0"
-                shape="square"
-                fill="dark"
-              />
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiBadge>1 interactive</EuiBadge>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        ),
-        actions: false,
-      },
-      {
-        id: 'two-interactives not expandable',
-
-        display: (
-          <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
-            <EuiFlexItem grow={false}>
-              <EuiToken
-                iconType="expandMini"
-                color="euiColorVis2"
-                shape="square"
-                fill="dark"
-              />
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiBadge>2 interactive</EuiBadge>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        ),
-        isExpandable: false,
-        actions: false,
-      },
-      {
-        id: 'two-interactives is expandable',
-
-        display: (
-          <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
-            <EuiFlexItem grow={false}>
-              <EuiToken
-                iconType="expandMini"
-                color="euiColorVis0"
-                shape="square"
-                fill="dark"
-              />
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiBadge>2 interactive</EuiBadge>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        ),
-        actions: false,
-      },
-    ],
-    [areHeadersInteractive]
-  );
   const columnIdToIndex = columns.reduce((acc, { id }, index) => {
     acc[id] = index;
     return acc;
@@ -229,28 +187,17 @@ export default () => {
   );
 
   return (
-    <>
-      <EuiSwitch
-        label="Use interactive headers - toggling will reset the datagrid and any internal states"
-        checked={areHeadersInteractive}
-        onChange={switchInteractiveHeaders}
-      />
-
-      <EuiSpacer />
-
-      <EuiDataGrid
-        key={areHeadersInteractive ? 'interactive-headers' : 'static-headers'}
-        aria-label="Top EUI contributors"
-        columns={columns}
-        columnVisibility={{ visibleColumns, setVisibleColumns }}
-        rowCount={data.length}
-        renderCellValue={renderCellValue}
-        pagination={{
-          ...pagination,
-          onChangeItemsPerPage,
-          onChangePage,
-        }}
-      />
-    </>
+    <EuiDataGrid
+      aria-label="Focus"
+      columns={columns}
+      columnVisibility={{ visibleColumns, setVisibleColumns }}
+      rowCount={data.length}
+      renderCellValue={renderCellValue}
+      pagination={{
+        ...pagination,
+        onChangeItemsPerPage,
+        onChangePage,
+      }}
+    />
   );
 };

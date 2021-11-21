@@ -76,7 +76,7 @@ import { DataGridExample } from './views/datagrid/datagrid_example';
 import { DataGridSchemaExample } from './views/datagrid/datagrid_schema_example';
 import { DataGridToolbarExample } from './views/datagrid/datagrid_toolbar_example';
 import { DataGridColumnsExample } from './views/datagrid/columns_cells/datagrid_columns_example';
-import { DataGridStylingExample } from './views/datagrid/styling/datagrid_styling_example';
+import { DataGridStylingExample } from './views/datagrid/datagrid_styling_example';
 import { DataGridMemoryExample } from './views/datagrid/in-memory/datagrid_memory_example';
 
 import { DatePickerExample } from './views/date_picker/date_picker_example';

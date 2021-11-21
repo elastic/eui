@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback } from 'react';
 import { fake } from 'faker';
 
 import { EuiDataGrid, EuiAvatar } from '../../../../../src/components';
@@ -44,7 +44,7 @@ for (let i = 1; i < 6; i++) {
 }
 
 const footerCellValues = {
-  avatar: '5 accounts',
+  name: '5 accounts',
 };
 
 const renderFooterCellValue = ({ columnId }) =>
@@ -58,15 +58,6 @@ const DataGridStyle = ({
   rowHover,
   header,
   footer,
-  toolbarType,
-  showColumnSelector,
-  showSortSelector,
-  showDisplaySelector,
-  showFullScreenSelector,
-  allowDensity,
-  allowRowHeight,
-  allowHideColumns,
-  allowOrderingColumns,
 }) => {
   const [pagination, setPagination] = useState({
     pageIndex: 0,
@@ -99,46 +90,6 @@ const DataGridStyle = ({
     [setSortingColumns]
   );
 
-  const toggleColumnSelector = useMemo(() => {
-    if (
-      showColumnSelector === true &&
-      (allowHideColumns === false || allowOrderingColumns === false)
-    ) {
-      return {
-        allowHide: allowHideColumns,
-        allowReorder: allowOrderingColumns,
-      };
-    } else {
-      return showColumnSelector;
-    }
-  }, [showColumnSelector, allowHideColumns, allowOrderingColumns]);
-
-  const toggleDisplaySelector = useMemo(() => {
-    if (
-      showDisplaySelector === true &&
-      (allowDensity === false || allowRowHeight === false)
-    ) {
-      return { allowDensity, allowRowHeight };
-    } else {
-      return showDisplaySelector;
-    }
-  }, [showDisplaySelector, allowDensity, allowRowHeight]);
-
-  const toolbarVisibilityOptions = {
-    showColumnSelector: toggleColumnSelector,
-    showSortSelector: showSortSelector,
-    showDisplaySelector: toggleDisplaySelector,
-    showFullScreenSelector: showFullScreenSelector,
-  };
-
-  let toolbarConfig;
-
-  if (toolbarType === 'object') {
-    toolbarConfig = toolbarVisibilityOptions;
-  } else {
-    toolbarConfig = toolbarType === 'true';
-  }
-
   return (
     <EuiDataGrid
       aria-label="Top EUI contributors"
@@ -158,7 +109,6 @@ const DataGridStyle = ({
         header: header,
         footer: footer,
       }}
-      toolbarVisibility={toolbarConfig}
       renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
       renderFooterCellValue={renderFooterCellValue}
       pagination={{
