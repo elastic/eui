@@ -621,7 +621,7 @@ export interface EuiDataGridToolBarVisibilityOptions {
     | boolean
     | EuiDataGridToolBarVisibilityColumnSelectorOptions;
   /**
-   * Allows the ability for the user to customize display settings such as grid density and row heights.
+   * Allows the ability for the user to customize display settings such as grid density and row heights, boolean or a #EuiDataGridToolBarVisibilityDisplaySelectorOptions.
    * User changes will override what is provided in #EuiDataGridStyle and #EuiDataGridRowHeightsOptions
    */
   showDisplaySelector?:

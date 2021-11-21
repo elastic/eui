@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { fake } from 'faker';
 
-import { EuiDataGrid, EuiAvatar } from '../../../../../src/components/';
+import { EuiDataGrid, EuiAvatar } from '../../../../../src/components';
 
 const columns = [
   {
@@ -43,21 +43,7 @@ for (let i = 1; i < 6; i++) {
   });
 }
 
-const footerCellValues = {
-  avatar: '5 accounts',
-};
-
-const renderFooterCellValue = ({ columnId }) =>
-  footerCellValues[columnId] || null;
-
 const DataGridStyle = ({
-  border,
-  fontSize,
-  cellPadding,
-  stripes,
-  rowHover,
-  header,
-  footer,
   toolbarType,
   showColumnSelector,
   showSortSelector,
@@ -141,7 +127,7 @@ const DataGridStyle = ({
 
   return (
     <EuiDataGrid
-      aria-label="Top EUI contributors"
+      aria-label="Top contributors"
       columns={columns}
       columnVisibility={{
         visibleColumns: visibleColumns,
@@ -149,18 +135,8 @@ const DataGridStyle = ({
       }}
       sorting={{ columns: sortingColumns, onSort }}
       rowCount={data.length}
-      gridStyle={{
-        border: border,
-        fontSize: fontSize,
-        cellPadding: cellPadding,
-        stripes: stripes,
-        rowHover: rowHover,
-        header: header,
-        footer: footer,
-      }}
       toolbarVisibility={toolbarConfig}
       renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
-      renderFooterCellValue={renderFooterCellValue}
       pagination={{
         ...pagination,
         pageSizeOptions: [5, 10, 25],

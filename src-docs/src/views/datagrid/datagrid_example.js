@@ -143,7 +143,7 @@ export const DataGridExample = {
       ),
     },
     {
-      title: 'General props explanation',
+      title: 'Top level props',
       wrapText: false,
       text: (
         <Fragment>
@@ -183,6 +183,7 @@ export const DataGridExample = {
         </p>
       ),
       demo: <DataGridContainer />,
+      demoPanelProps: { color: 'subdued' },
     },
     {
       source: [
@@ -254,7 +255,7 @@ export const DataGridExample = {
       demo: <DataGridVirtualization />,
     },
     {
-      title: 'Constrained by DOM',
+      text: <h3>Constrained by DOM</h3>,
       source: [
         {
           type: GuideSectionTypes.JS,

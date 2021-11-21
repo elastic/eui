@@ -1,25 +1,22 @@
 import React, { Fragment } from 'react';
 
-import { GuideSectionTypes } from '../../../components';
-import {
-  EuiDataGrid,
-  EuiCode,
-  EuiCodeBlock,
-} from '../../../../../src/components';
+import { GuideSectionTypes } from '../../components';
+import { EuiCode } from '../../../../src/components';
 
-import DataGridStyling from '../styling/styling';
-const dataGridStylingSource = require('!!raw-loader!./styling_grid');
+import DataGridStyling from './toolbar/visibility';
+const dataGridStylingSource = require('!!raw-loader!./toolbar/_grid');
 
-import DataGridControls from './additional_controls';
-const dataGridControlsSource = require('!!raw-loader!./additional_controls');
+import DataGridControls from './toolbar/additional_controls';
+const dataGridControlsSource = require('!!raw-loader!./toolbar/additional_controls');
 
-import { gridSnippet } from '../styling/datagrid_styling_example';
+import { ToolbarPropsTable } from './toolbar/_props';
 
 import {
-  EuiDataGridStyle,
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridToolBarAdditionalControlsOptions,
-} from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
+  EuiDataGridToolBarVisibilityColumnSelectorOptions,
+  EuiDataGridToolBarVisibilityDisplaySelectorOptions,
+} from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 
 const controlsSnippet = `<EuiDataGrid
   {...usualGridProps}
@@ -79,15 +76,10 @@ export const DataGridToolbarExample = {
       text: (
         <Fragment>
           <p>
-            Styling can be passed down to the grid through the{' '}
-            <EuiCode>gridStyle</EuiCode> prop. It accepts an object that allows
-            for customization.
-          </p>
-          <p>
             The <EuiCode>toolbarVisibility</EuiCode> prop when used as a boolean
-            controls the visibility of the toolbar displayed above the grid.
-            Using the prop as a shape, allows setting the visibility of the
-            individual buttons within.
+            controls the visibility of the entire toolbar displayed above the
+            grid. Using the prop as a shape, allows setting the visibility of
+            the individual controls within.
           </p>
           <p>
             With the default settings, the{' '}
@@ -99,15 +91,13 @@ export const DataGridToolbarExample = {
             parent font size or elements that use units relative to the parent
             container.
           </p>
-          <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
-            {gridSnippet}
-          </EuiCodeBlock>
         </Fragment>
       ),
       props: {
-        EuiDataGrid,
-        EuiDataGridStyle,
         EuiDataGridToolBarVisibilityOptions,
+        EuiDataGridToolBarAdditionalControlsOptions,
+        EuiDataGridToolBarVisibilityColumnSelectorOptions,
+        EuiDataGridToolBarVisibilityDisplaySelectorOptions,
       },
       demo: <DataGridStyling />,
     },
@@ -157,11 +147,13 @@ export const DataGridToolbarExample = {
       ),
       snippet: controlsSnippet,
       props: {
-        EuiDataGrid,
-        EuiDataGridToolBarVisibilityOptions,
         EuiDataGridToolBarAdditionalControlsOptions,
       },
       demo: <DataGridControls />,
+    },
+    {
+      title: 'Toolbar props',
+      text: <ToolbarPropsTable />,
     },
   ],
 };
