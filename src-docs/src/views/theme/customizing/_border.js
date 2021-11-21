@@ -10,12 +10,13 @@ import {
   EuiTitle,
 } from '../../../../../src';
 
+import { getPropsFromComponent } from '../../../services/props/get_props';
+
 import { useDebouncedUpdate } from '../hooks';
 
 import { ThemeValue } from './_values';
 
 import {
-  getPropsFromThemeKey,
   EuiThemeBorderTypes,
   EuiThemeBorderColorValues,
   EuiThemeBorderWidthValues,
@@ -44,10 +45,10 @@ export default ({ onThemeUpdate }) => {
     time: 1000,
   });
 
-  const colorProps = getPropsFromThemeKey(EuiThemeBorderColorValues);
-  const widthProps = getPropsFromThemeKey(EuiThemeBorderWidthValues);
-  const radiusProps = getPropsFromThemeKey(EuiThemeBorderRadiusValues);
-  const typeProps = getPropsFromThemeKey(EuiThemeBorderTypes);
+  const colorProps = getPropsFromComponent(EuiThemeBorderColorValues);
+  const widthProps = getPropsFromComponent(EuiThemeBorderWidthValues);
+  const radiusProps = getPropsFromComponent(EuiThemeBorderRadiusValues);
+  const typeProps = getPropsFromComponent(EuiThemeBorderTypes);
 
   const style = css`
     width: ${euiTheme.size.xl};

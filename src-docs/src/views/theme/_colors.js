@@ -26,11 +26,9 @@ import {
 import { ThemeValue } from './_values';
 import { ThemeSection } from './_theme_section';
 
-import {
-  getPropsFromThemeKey,
-  EuiThemeColors,
-  EuiThemeConstantColors,
-} from './_props';
+import { EuiThemeColors, EuiThemeConstantColors } from './_props';
+
+import { getPropsFromComponent } from '../../services/props/get_props';
 import { makeHighContrastColor } from '../../../../src/services/color/contrast';
 import { EuiCodeBlock } from '../../../../src/components/code';
 
@@ -43,8 +41,8 @@ const textKeys = Object.keys(text_colors);
 export default ({ onThemeUpdate }) => {
   const { euiTheme, colorMode } = useEuiTheme();
   const colors = euiTheme.colors;
-  const props = getPropsFromThemeKey(EuiThemeColors);
-  const constantProps = getPropsFromThemeKey(EuiThemeConstantColors);
+  const props = getPropsFromComponent(EuiThemeColors);
+  const constantProps = getPropsFromComponent(EuiThemeConstantColors);
 
   const updateColor = (property, value) => {
     onThemeUpdate({

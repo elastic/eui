@@ -13,12 +13,13 @@ import {
 import { ThemeSection } from './_theme_section';
 import { ThemeValue } from './_values';
 
-import { getPropsFromThemeKey, EuiThemeFocus } from './_props';
+import { EuiThemeFocus } from './_props';
+import { getPropsFromComponent } from '../../services/props/get_props';
 
 export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
   const focus = euiTheme.focus;
-  const focusProps = getPropsFromThemeKey(EuiThemeFocus);
+  const focusProps = getPropsFromComponent(EuiThemeFocus);
 
   const updateFocus = (property, value) => {
     onThemeUpdate({
