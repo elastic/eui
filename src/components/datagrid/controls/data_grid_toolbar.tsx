@@ -15,6 +15,7 @@ import {
   EuiDataGridToolbarProps,
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridToolBarAdditionalControlsOptions,
+  EuiDataGridToolBarAdditionalControlsLeftOptions,
 } from '../data_grid_types';
 
 // Used to simplify some sizing logic which is difficult to account for in tests
@@ -93,7 +94,7 @@ export const EuiDataGridToolbar = ({
     >
       {hasRoomForGridControls && (
         <div className="euiDataGrid__leftControls">
-          {renderAdditionalControls(toolbarVisibility, 'leftPrepend')}
+          {renderAdditionalControls(toolbarVisibility, 'left.prepend')}
           {checkOrDefaultToolBarDisplayOptions(
             toolbarVisibility,
             'showColumnSelector'
@@ -106,7 +107,7 @@ export const EuiDataGridToolbar = ({
           )
             ? columnSorting
             : null}
-          {renderAdditionalControls(toolbarVisibility, 'leftAppend')}
+          {renderAdditionalControls(toolbarVisibility, 'left.append')}
         </div>
       )}
       <div className="euiDataGrid__rightControls">
@@ -160,7 +161,7 @@ export function checkOrDefaultToolBarDisplayOptions<
 
 export function renderAdditionalControls(
   toolbarVisibility: EuiDataGridProps['toolbarVisibility'],
-  position: 'leftPrepend' | 'leftAppend' | 'right'
+  position: 'left.prepend' | 'left.append' | 'right'
 ) {
   if (typeof toolbarVisibility === 'boolean') return null;
   const { additionalControls } = toolbarVisibility || {};
@@ -169,21 +170,30 @@ export function renderAdditionalControls(
   // Typescript is having obj issues, so we need to force cast to EuiDataGridToolBarAdditionalControlsOptions here
   const additionalControlsObj: EuiDataGridToolBarAdditionalControlsOptions =
     additionalControls?.constructor === Object ? additionalControls : {};
+  // Typescript workarounds continued
+  const leftPositionObj: EuiDataGridToolBarAdditionalControlsLeftOptions =
+    additionalControlsObj.left?.constructor === Object
+      ? additionalControlsObj.left
+      : {};
 
   if (position === 'right') {
     if (additionalControlsObj?.right) {
       return additionalControlsObj.right;
     }
-  } else if (position === 'leftPrepend') {
-    if (additionalControlsObj?.leftPrepend) {
-      return additionalControlsObj.leftPrepend;
+  } else if (position === 'left.prepend') {
+    if (leftPositionObj?.prepend) {
+      return leftPositionObj.prepend;
     }
-  } else if (position === 'leftAppend') {
-    if (additionalControlsObj?.leftAppend) {
-      return additionalControlsObj.leftAppend;
+  } else if (position === 'left.append') {
+    if (leftPositionObj?.append) {
+      return leftPositionObj.append;
+    }
+    if (React.isValidElement(additionalControlsObj?.left)) {
+      // If the consumer passed a single ReactNode to `additionalControls.left`, default to the left append position
+      return additionalControlsObj.left;
     }
     if (React.isValidElement(additionalControls)) {
-      // API backwards compatability: if the user passed in a single ReactNode, default to the the left prepend position
+      // API backwards compatability: if the consumer passed a single ReactNode to `additionalControls`, default to the the left append position
       return additionalControls;
     }
   }

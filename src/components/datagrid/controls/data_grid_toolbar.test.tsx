@@ -117,7 +117,11 @@ describe('EuiDataGridToolbar', () => {
       >
         <div
           className="euiDataGrid__leftControls"
-        />
+        >
+          <div>
+            hello
+          </div>
+        </div>
         <div
           className="euiDataGrid__rightControls"
         >
@@ -195,12 +199,12 @@ describe('renderAdditionalControls', () => {
     ).toEqual(null);
   });
 
-  describe('leftAppend', () => {
+  describe('left.append', () => {
     it('renders a react node appended into the left side toolbar', () => {
       expect(
         renderAdditionalControls(
-          { additionalControls: { leftAppend: mockControl } },
-          'leftAppend'
+          { additionalControls: { left: { append: mockControl } } },
+          'left.append'
         )
       ).toEqual(mockControl);
     });
@@ -208,24 +212,50 @@ describe('renderAdditionalControls', () => {
     it('does not render other positions', () => {
       expect(
         renderAdditionalControls(
-          { additionalControls: { leftPrepend: mockControl } },
-          'leftAppend'
+          { additionalControls: { left: { prepend: mockControl } } },
+          'left.append'
         )
       ).toEqual(null);
       expect(
         renderAdditionalControls(
           { additionalControls: { right: mockControl } },
-          'leftAppend'
+          'left.append'
         )
       ).toEqual(null);
     });
 
-    describe('single node', () => {
-      it('renders into the leftAppend side of toolbar by default', () => {
+    describe('additionalControls.left fallback', () => {
+      it('renders `additionalControls.left` nodes into `left.append` by default', () => {
+        expect(
+          renderAdditionalControls(
+            { additionalControls: { left: mockControl } },
+            'left.append'
+          )
+        ).toEqual(mockControl);
+      });
+
+      it('does not render other positions', () => {
+        expect(
+          renderAdditionalControls(
+            { additionalControls: { left: mockControl } },
+            'left.prepend'
+          )
+        ).toEqual(null);
+        expect(
+          renderAdditionalControls(
+            { additionalControls: { left: mockControl } },
+            'right'
+          )
+        ).toEqual(null);
+      });
+    });
+
+    describe('additionalControls fallback', () => {
+      it('renders `additionalControls` nodes into `left.append` by default', () => {
         expect(
           renderAdditionalControls(
             { additionalControls: mockControl },
-            'leftAppend'
+            'left.append'
           )
         ).toEqual(mockControl);
       });
@@ -234,7 +264,7 @@ describe('renderAdditionalControls', () => {
         expect(
           renderAdditionalControls(
             { additionalControls: mockControl },
-            'leftPrepend'
+            'left.prepend'
           )
         ).toEqual(null);
         expect(
@@ -244,12 +274,12 @@ describe('renderAdditionalControls', () => {
     });
   });
 
-  describe('leftPrepend', () => {
+  describe('left.prepend', () => {
     it('renders a react node prepended into the left side toolbar', () => {
       expect(
         renderAdditionalControls(
-          { additionalControls: { leftPrepend: mockControl } },
-          'leftPrepend'
+          { additionalControls: { left: { prepend: mockControl } } },
+          'left.prepend'
         )
       ).toEqual(mockControl);
     });
@@ -257,14 +287,14 @@ describe('renderAdditionalControls', () => {
     it('does not render other positions', () => {
       expect(
         renderAdditionalControls(
-          { additionalControls: { leftAppend: mockControl } },
-          'leftPrepend'
+          { additionalControls: { left: { append: mockControl } } },
+          'left.prepend'
         )
       ).toEqual(null);
       expect(
         renderAdditionalControls(
           { additionalControls: { right: mockControl } },
-          'leftPrepend'
+          'left.prepend'
         )
       ).toEqual(null);
     });
@@ -283,13 +313,13 @@ describe('renderAdditionalControls', () => {
     it('does not render left side positions', () => {
       expect(
         renderAdditionalControls(
-          { additionalControls: { leftPrepend: mockControl } },
+          { additionalControls: { left: { prepend: mockControl } } },
           'right'
         )
       ).toEqual(null);
       expect(
         renderAdditionalControls(
-          { additionalControls: { leftAppend: mockControl } },
+          { additionalControls: { left: { append: mockControl } } },
           'right'
         )
       ).toEqual(null);
