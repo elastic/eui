@@ -14,7 +14,7 @@ import { EuiTitle, EuiTitleSize } from '../title';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiSpacer } from '../spacer';
 import { EuiIcon, IconColor, IconType } from '../icon';
-import { isNamedColor } from '../icon/icon';
+import { isNamedColor } from '../icon/named_colors';
 import { EuiText, EuiTextColor } from '../text';
 import { EuiPanel, _EuiPanelDivlike } from '../panel/panel';
 
