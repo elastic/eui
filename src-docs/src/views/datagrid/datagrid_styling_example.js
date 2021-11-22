@@ -43,6 +43,7 @@ import {
   EuiDataGridStyle,
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridToolBarAdditionalControlsOptions,
+  EuiDataGridToolBarAdditionalControlsLeftOptions,
 } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 
 const gridSnippet = `<EuiDataGrid
@@ -61,7 +62,7 @@ const gridSnippet = `<EuiDataGrid
     // showColumnSelector also takes an object, check the prop docs.
     showColumnSelector: false,
     additionalControls: {
-      leftAppend: (
+      left: (
         <Fragment>
           <EuiButtonEmpty
             size="xs"
@@ -98,34 +99,36 @@ const controlsSnippet = `<EuiDataGrid
   toolbarVisibility={{
     // Use of a fragment for multiple items will insure proper margins
     additionalControls: {
-      leftPrepend: (
-        <Fragment>
-          <EuiButtonEmpty
-            size="xs"
-            onClick={() => {}}>
-            New button
-          </EuiButtonEmpty>
-          <EuiButtonEmpty
-            size="xs"
-            onClick={() => {}}>
-            Another button
-          </EuiButtonEmpty>
-        </Fragment>
-      ),
-      leftAppend: (
-        <Fragment>
-          <EuiButtonEmpty
-            size="xs"
-            onClick={() => {}}>
-            New button
-          </EuiButtonEmpty>
-          <EuiButtonEmpty
-            size="xs"
-            onClick={() => {}}>
-            Another button
-          </EuiButtonEmpty>
-        </Fragment>
-      ),
+      left: {
+        prepend: (
+          <Fragment>
+            <EuiButtonEmpty
+              size="xs"
+              onClick={() => {}}>
+              New button
+            </EuiButtonEmpty>
+            <EuiButtonEmpty
+              size="xs"
+              onClick={() => {}}>
+              Another button
+            </EuiButtonEmpty>
+          </Fragment>
+        ),
+        append: (
+          <Fragment>
+            <EuiButtonEmpty
+              size="xs"
+              onClick={() => {}}>
+              New button
+            </EuiButtonEmpty>
+            <EuiButtonEmpty
+              size="xs"
+              onClick={() => {}}>
+              Another button
+            </EuiButtonEmpty>
+          </Fragment>
+        ),
+      },
       right: (
         <Fragment>
           <EuiToolTip content="Right-side button">
@@ -283,20 +286,25 @@ export const DataGridStylingExample = {
             Passing a single node to <EuiCode>additionalControls</EuiCode> will
             default to being appended to the left side of the toolbar. To
             configure which side of the toolbar your controls display in, pass
-            an object with either the <EuiCode>leftPrepend</EuiCode>,{' '}
-            <EuiCode>leftAppend</EuiCode>, or <EuiCode>right</EuiCode>{' '}
-            properties:
+            an object with either the <EuiCode>left</EuiCode> or{' '}
+            <EuiCode>right</EuiCode> properties:
           </p>
           <ul>
             <li>
-              <EuiCode>additionalControls.leftPrepend</EuiCode> prepends the
-              passed custom control into the left side of the toolbar, before
-              the column & sort controls.
-            </li>
-            <li>
-              <EuiCode>additionalControls.leftAppend</EuiCode> appends the
-              passed custom control into the left side of the toolbar, after the
-              column & sort controls.
+              <EuiCode>additionalControls.left</EuiCode> appends the passed
+              custom control into the left side of the toolbar.
+              <ul>
+                <li>
+                  <EuiCode>left.prepend</EuiCode> prepends the passed node into
+                  the left side of the toolbar, before the column & sort
+                  controls.
+                </li>
+                <li>
+                  <EuiCode>left.append</EuiCode> appends the passed node into
+                  the left side of the toolbar, after the column & sort
+                  controls.
+                </li>
+              </ul>
             </li>
             <li>
               <EuiCode>additionalControls.right</EuiCode> prepends the passed
@@ -319,6 +327,7 @@ export const DataGridStylingExample = {
         EuiDataGrid,
         EuiDataGridToolBarVisibilityOptions,
         EuiDataGridToolBarAdditionalControlsOptions,
+        EuiDataGridToolBarAdditionalControlsLeftOptions,
       },
       demo: <DataGridControls />,
     },

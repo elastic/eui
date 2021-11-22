@@ -128,51 +128,53 @@ export default () => {
         }}
         toolbarVisibility={{
           additionalControls: {
-            leftPrepend: (
-              <EuiButtonEmpty
-                size="xs"
-                iconType="document"
-                color="text"
-                onClick={alertAndClosePopover}
-              >
-                {data.length} results
-              </EuiButtonEmpty>
-            ),
-            leftAppend: (
-              <EuiPopover
-                id={popoverId}
-                button={
-                  <EuiButtonEmpty
-                    size="xs"
-                    iconType="download"
-                    onClick={() => setPopover((open) => !open)}
-                  >
-                    Download
-                  </EuiButtonEmpty>
-                }
-                isOpen={isPopoverOpen}
-                closePopover={() => setPopover(false)}
-                panelPaddingSize="none"
-              >
-                <EuiContextMenuPanel
-                  size="s"
-                  items={[
-                    <EuiContextMenuItem
-                      key="csv"
-                      onClick={alertAndClosePopover}
+            left: {
+              prepend: (
+                <EuiButtonEmpty
+                  size="xs"
+                  iconType="document"
+                  color="text"
+                  onClick={alertAndClosePopover}
+                >
+                  {data.length} results
+                </EuiButtonEmpty>
+              ),
+              append: (
+                <EuiPopover
+                  id={popoverId}
+                  button={
+                    <EuiButtonEmpty
+                      size="xs"
+                      iconType="download"
+                      onClick={() => setPopover((open) => !open)}
                     >
-                      CSV
-                    </EuiContextMenuItem>,
-                    <EuiContextMenuItem
-                      key="jsonedit"
-                      onClick={alertAndClosePopover}
-                    >
-                      JSON
-                    </EuiContextMenuItem>,
-                  ]}
-                />
-              </EuiPopover>
-            ),
+                      Download
+                    </EuiButtonEmpty>
+                  }
+                  isOpen={isPopoverOpen}
+                  closePopover={() => setPopover(false)}
+                  panelPaddingSize="none"
+                >
+                  <EuiContextMenuPanel
+                    size="s"
+                    items={[
+                      <EuiContextMenuItem
+                        key="csv"
+                        onClick={alertAndClosePopover}
+                      >
+                        CSV
+                      </EuiContextMenuItem>,
+                      <EuiContextMenuItem
+                        key="jsonedit"
+                        onClick={alertAndClosePopover}
+                      >
+                        JSON
+                      </EuiContextMenuItem>,
+                    ]}
+                  />
+                </EuiPopover>
+              ),
+            },
             right: (
               <Fragment>
                 <EuiToolTip
