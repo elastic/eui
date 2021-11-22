@@ -35,12 +35,24 @@ export const GettingStarted = {
               <a href="https://github.com/elastic/eui/blob/main/package.json">
                 several <EuiCode>peerDependencies</EuiCode> requirements
               </a>{' '}
-              that will also need to be installed if starting with a blank
-              project. You can read more about other ways to{' '}
+              that will also need to be installed when starting with a blank
+              project.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <EuiCodeBlock language="bash" isCopyable fontSize="m">
+            {
+              'yarn add @elastic/eui @elastic/datemath @emotion/react moment prop-types'
+            }
+          </EuiCodeBlock>
+          <EuiSpacer />
+          <EuiText grow={false}>
+            <p>
+              You can read more about other ways to{' '}
               <a href="https://github.com/elastic/eui/blob/main/wiki/consuming.md">
                 consume EUI
-              </a>
-              .
+              </a>{' '}
+              in our wiki.
             </p>
           </EuiText>
         </>
