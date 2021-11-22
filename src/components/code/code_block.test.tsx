@@ -8,7 +8,7 @@
 
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { mount, render } from 'enzyme';
+import { mount, render, shallow } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import { requiredProps } from '../../test/required_props';
 
@@ -198,6 +198,28 @@ describe('EuiCodeBlock', () => {
         </EuiCodeBlock>
       );
       expect(component).toMatchSnapshot();
+    });
+
+    describe('type checks', () => {
+      it('requires overflowHeight', () => {
+        // @ts-expect-error should expect overflowHeight
+        shallow(<EuiCodeBlock isVirtualized overflowHeight={undefined} />);
+      });
+
+      it('only allows whiteSpace of pre', () => {
+        shallow(
+          // @ts-expect-error should only accept "pre"
+          <EuiCodeBlock
+            isVirtualized
+            overflowHeight={50}
+            whiteSpace="pre-wrap"
+          />
+        );
+        // OK
+        shallow(
+          <EuiCodeBlock isVirtualized overflowHeight={50} whiteSpace="pre" />
+        );
+      });
     });
   });
 

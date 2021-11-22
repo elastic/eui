@@ -8,6 +8,7 @@
 - Fixed `EuiCodeBlock` not closing full-screen mode when the Escape key is pressed ([#5379](https://github.com/elastic/eui/pull/5379))
 - Fixed virtualized `EuiCodeBlock`s blanking out when entering & exiting full-screen mode ([#5379](https://github.com/elastic/eui/pull/5379))
 - Fixed `EuiCodeBlock`'s full-screen mode to use a large font and padding size & added several missing wrapper classes ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed `EuiCodeBlock` broken line wrapping when using virtualization ([#5379](https://github.com/elastic/eui/pull/5379))
 
 **Theme: Amsterdam**
 

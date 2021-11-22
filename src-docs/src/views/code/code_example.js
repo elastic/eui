@@ -253,12 +253,23 @@ export const CodeExample = {
         },
       ],
       text: (
-        <p>
-          For large blocks of code, add <EuiCode>isVirtualized</EuiCode> to
-          reduce the number of rendered rows and improve load times. Note that{' '}
-          <EuiCode>overflowHeight</EuiCode> is required when using this
-          configuration.
-        </p>
+        <>
+          <p>
+            For large blocks of code, add <EuiCode>isVirtualized</EuiCode> to
+            reduce the number of rendered rows and improve load times. Note that
+            when using virtualization:
+          </p>
+          <ul>
+            <li>
+              <EuiCode>overflowHeight</EuiCode> is required
+            </li>
+            <li>
+              <EuiCode>whiteSpace</EuiCode> is enforced as{' '}
+              <EuiCode>pre</EuiCode>, and cannot be set to{' '}
+              <EuiCode>pre-wrap</EuiCode>
+            </li>
+          </ul>
+        </>
       ),
       props: { EuiCodeBlock },
       snippet: codeBlockVirtualizedSnippet,

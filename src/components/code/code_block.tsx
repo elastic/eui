@@ -68,25 +68,17 @@ const paddingSizeToClassNameMap: { [paddingSize in PaddingSize]: string } = {
 
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
-// overflowHeight is required when using virtualization
+// This exclusive union enforces specific props based on isVirtualized
 type VirtualizedOptionProps = ExclusiveUnion<
   {
-    /**
-     * Renders code block lines virtually.
-     * Useful for improving load times of large code blocks.
-     * `overflowHeight` is required when using this configuration.
-     */
     isVirtualized: true;
-    /**
-     * Sets the maximum container height.
-     * Accepts a pixel value (`300`) or a percentage (`'100%'`)
-     * Ensure the container has calcuable height when using a percentage
-     */
     overflowHeight: number | string;
+    whiteSpace?: 'pre';
   },
   {
-    isVirtualized?: boolean;
+    isVirtualized?: false;
     overflowHeight?: number | string;
+    whiteSpace?: 'pre' | 'pre-wrap';
   }
 >;
 
@@ -117,6 +109,22 @@ export type EuiCodeBlockProps = EuiCodeSharedProps & {
    * `{ start: 100, highlight: '1, 5-10, 20-30, 40' }`
    */
   lineNumbers?: boolean | LineNumbersConfig;
+
+  /**
+   * Sets the maximum container height.
+   * Accepts a pixel value (`300`) or a percentage (`'100%'`)
+   * Ensure the container has calcuable height when using a percentage
+   */
+  overflowHeight?: number | string;
+
+  /**
+   * Renders code block lines virtually.
+   * Useful for improving load times of large code blocks.
+   *
+   * When using this configuration, `overflowHeight` is required and
+   * `whiteSpace` can only be `pre`.
+   */
+  isVirtualized?: boolean;
 } & VirtualizedOptionProps;
 
 export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
@@ -209,8 +217,9 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   );
 
   const preClasses = classNames('euiCodeBlock__pre', {
-    'euiCodeBlock__pre--whiteSpacePre': whiteSpace === 'pre',
-    'euiCodeBlock__pre--whiteSpacePreWrap': whiteSpace === 'pre-wrap',
+    'euiCodeBlock__pre--whiteSpacePre': whiteSpace === 'pre' || isVirtualized,
+    'euiCodeBlock__pre--whiteSpacePreWrap':
+      whiteSpace === 'pre-wrap' && !isVirtualized,
     'euiCodeBlock__pre--isVirtualized': isVirtualized,
   });
   const preFullscreenProps = useMemo(
