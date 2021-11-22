@@ -32,7 +32,6 @@ import {
   EuiPopover,
   EuiText,
   EuiTitle,
-  EuiRange,
 } from '../../../../src/components/';
 const DataContext = createContext();
 
@@ -401,64 +400,23 @@ export default () => {
     console.log(eventData);
   });
 
-  const [data, setData] = useState(raw_data);
-  const [rowCount, setRowCount] = useState(15);
-  const sliceData = useCallback((e) => {
-    const newRowCount = Number(e.target.value);
-    const newData = raw_data.slice(0, newRowCount);
-    setData(newData);
-    setRowCount(newRowCount);
-  }, []);
-  const setRowCountInput = (
-    <EuiRange
-      min={0}
-      max={100}
-      step={5}
-      showLabels
-      showRange
-      showInput
-      onChange={sliceData}
-      value={rowCount}
-    />
-  );
-
   return (
-    <DataContext.Provider value={data}>
-      {setRowCountInput}
-      <div style={{ height: '300px', overflow: 'scroll' }}>
-        <EuiDataGrid
-          aria-label="Data grid demo"
-          columns={columns}
-          columnVisibility={{ visibleColumns, setVisibleColumns }}
-          trailingControlColumns={trailingControlColumns}
-          rowCount={rowCount}
-          renderCellValue={renderCellValue}
-          inMemory={{ level: 'sorting' }}
-          sorting={{ columns: sortingColumns, onSort }}
-          pagination={{
-            ...pagination,
-            pageSizeOptions: [10, 50, 100],
-            onChangeItemsPerPage: onChangeItemsPerPage,
-            onChangePage: onChangePage,
-          }}
-          onColumnResize={onColumnResize.current}
-        />
-      </div>
+    <DataContext.Provider value={raw_data}>
       <EuiDataGrid
         aria-label="Data grid demo"
         columns={columns}
         columnVisibility={{ visibleColumns, setVisibleColumns }}
         trailingControlColumns={trailingControlColumns}
-        rowCount={rowCount}
+        rowCount={raw_data.length}
         renderCellValue={renderCellValue}
-        // inMemory={{ level: 'sorting' }}
-        // sorting={{ columns: sortingColumns, onSort }}
-        // pagination={{
-        //   ...pagination,
-        //   pageSizeOptions: [10, 50, 100],
-        //   onChangeItemsPerPage: onChangeItemsPerPage,
-        //   onChangePage: onChangePage,
-        // }}
+        inMemory={{ level: 'sorting' }}
+        sorting={{ columns: sortingColumns, onSort }}
+        pagination={{
+          ...pagination,
+          pageSizeOptions: [10, 50, 100],
+          onChangeItemsPerPage: onChangeItemsPerPage,
+          onChangePage: onChangePage,
+        }}
         onColumnResize={onColumnResize.current}
       />
     </DataContext.Provider>
