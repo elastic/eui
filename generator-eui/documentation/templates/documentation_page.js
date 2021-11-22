@@ -5,6 +5,7 @@ import {
 } from '../../components';
 
 import {
+  EuiText,
   <%= componentName %>,
 } from '../../../../src';
 
@@ -13,6 +14,9 @@ const <%= componentExamplePrefix %>Source = require('!!raw-loader!./<%= fileName
 
 export const <%= componentExampleName %>Example = {
   title: '<%= componentExampleName %>',
+  intro: (
+    <><EuiText></EuiText></>
+  ),
   sections: [{
     title: '<%= componentExampleName %>',
     text: (
