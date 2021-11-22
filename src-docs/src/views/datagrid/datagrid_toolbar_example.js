@@ -9,7 +9,7 @@ const dataGridStylingSource = require('!!raw-loader!./toolbar/_grid');
 import DataGridControls from './toolbar/additional_controls';
 const dataGridControlsSource = require('!!raw-loader!./toolbar/additional_controls');
 
-import { ToolbarPropsTable } from './toolbar/_props';
+import ToolbarPropsTable from './toolbar/_props';
 
 import {
   EuiDataGridToolBarVisibilityOptions,

@@ -243,7 +243,8 @@ export type CommonGridProps = CommonProps &
      */
     pagination?: EuiDataGridPaginationProps;
     /**
-     * A #EuiDataGridSorting object that provides the sorted columns along with their direction.
+     * A #EuiDataGridSorting object that provides the sorted columns along with their direction. Provides a callback for when it changes.
+     * Optional, but required when inMemory is set.
      * Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarVisibility` prop.
      */
     sorting?: EuiDataGridSorting;
@@ -252,7 +253,7 @@ export type CommonGridProps = CommonProps &
      */
     onColumnResize?: EuiDataGridOnColumnResizeHandler;
     /**
-     * Defines a minimum width for the grid to show all controls in its header.
+     * Defines a minimum width for the grid to show all controls in its toolbar.
      */
     minSizeForControls?: number;
     /**

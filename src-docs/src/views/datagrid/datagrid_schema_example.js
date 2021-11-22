@@ -71,6 +71,35 @@ export const DataGridSchemaExample = {
         EuiDataGridColumn,
         EuiDataGridSchemaDetector,
       },
+      snippet: `// The following schema 'franchise' essentially acts like a boolean, looking for Star Wars or Star Trek in a column.
+schemaDetectors={[
+  {
+    type: 'franchise',
+    // Try to detect if column data is this schema. A value of 1 is the highest possible. A (mean_average - standard_deviation) of .5 will be good enough for the autodetector to assign.
+    detector(value) {
+      return value.toLowerCase() === 'star wars' ||
+        value.toLowerCase() === 'star trek'
+        ? 1
+        : 0;
+    },
+    // How we should sort data matching this schema. Again, a value of 1 is the highest value.
+    comparator(a, b, direction) {
+      const aValue = a.toLowerCase() === 'star wars';
+      const bValue = b.toLowerCase() === 'star wars';
+      if (aValue < bValue) return direction === 'asc' ? 1 : -1;
+      if (aValue > bValue) return direction === 'asc' ? -1 : 1;
+      return 0;
+    },
+    // Text for what the ASC sort does.
+    sortTextAsc: 'Star Wars-Star Trek',
+    // Text for what the DESC sort does.
+    sortTextDesc: 'Star Trek-Star Wars',
+    // EuiIcon or Prop to signify this schema.
+    icon: 'star',
+    // The color to use for the icon prop.
+    color: '#000000',
+  },
+]}`,
     },
     {
       title: 'Expansion popovers',
