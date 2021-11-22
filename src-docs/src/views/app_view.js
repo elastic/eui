@@ -24,34 +24,34 @@ export const AppView = ({ children, currentRoute }) => {
 
   const prevPath = useRef(currentRoute.path);
 
-  const onKeydown = (event) => {
-    if (event.target !== document.body) {
-      return;
-    }
-
-    if (event.metaKey) {
-      return;
-    }
-
-    if (event.key === keys.ARROW_LEFT) {
-      pushRoute(routes.getPreviousRoute);
-      return;
-    }
-
-    if (event.key === keys.ARROW_RIGHT) {
-      pushRoute(routes.getNextRoute);
-    }
-
-    function pushRoute(getRoute) {
-      const route = getRoute(currentRoute.name);
-
-      if (route) {
-        routes.history.push(`/${route.path}`);
-      }
-    }
-  };
-
   useEffect(() => {
+    const onKeydown = (event) => {
+      if (event.target !== document.body) {
+        return;
+      }
+
+      if (event.metaKey) {
+        return;
+      }
+
+      if (event.key === keys.ARROW_LEFT) {
+        pushRoute(routes.getPreviousRoute);
+        return;
+      }
+
+      if (event.key === keys.ARROW_RIGHT) {
+        pushRoute(routes.getNextRoute);
+      }
+
+      function pushRoute(getRoute) {
+        const route = getRoute(currentRoute.name);
+
+        if (route) {
+          routes.history.push(`/${route.path}`);
+        }
+      }
+    };
+
     document.addEventListener('keydown', onKeydown);
 
     return () => {
