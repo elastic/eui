@@ -27,14 +27,12 @@ export type EuiPaginationButtonArrowType = typeof TYPES[number];
 
 export type Props = Partial<Omit<EuiButtonIconPropsForAnchor, 'type'>> & {
   type: EuiPaginationButtonArrowType;
-  activePage?: number;
   disabled?: boolean;
   ariaControls?: string;
 };
 
 export const EuiPaginationButtonArrow: FunctionComponent<Props> = ({
   type,
-  activePage,
   disabled,
   ariaControls,
   onClick,
@@ -43,43 +41,11 @@ export const EuiPaginationButtonArrow: FunctionComponent<Props> = ({
     first: useEuiI18n('euiPaginationButtonArrow.firstPage', 'First page'),
     previous: useEuiI18n(
       'euiPaginationButtonArrow.previousPage',
-      'Previous page, {page}',
-      {
-        page: activePage ?? 1,
-      }
+      'Previous page'
     ),
-    next: useEuiI18n('euiPaginationButtonArrow.nextPage', 'Next page, {page}', {
-      page: activePage != null ? activePage + 2 : 2,
-    }),
+    next: useEuiI18n('euiPaginationButtonArrow.nextPage', 'Next page'),
     last: useEuiI18n('euiPaginationButtonArrow.lastPage', 'Last page'),
   };
-
-  const indeterminateLabels = {
-    previous: useEuiI18n(
-      'euiPaginationButtonArrow.previousPageIndeterminate',
-      'Previous page, {count} from last page',
-      {
-        count: activePage != null ? Math.abs(activePage) : 1,
-      }
-    ),
-    next: useEuiI18n(
-      'euiPaginationButtonArrow.nextPageIndeterminate',
-      'Next page, {count} from last page',
-      {
-        count: activePage != null ? Math.abs(activePage) - 2 : 2,
-      }
-    ),
-  };
-
-  let label =
-    (type === 'next' || type === 'previous') &&
-    activePage != null &&
-    activePage < 0
-      ? indeterminateLabels[type]
-      : labels[type];
-  if (type === 'next' && activePage === -2) {
-    label = labels.last;
-  }
 
   const buttonProps: Partial<EuiButtonIconPropsForAnchor> = {};
 
@@ -91,8 +57,8 @@ export const EuiPaginationButtonArrow: FunctionComponent<Props> = ({
   return (
     <EuiButtonIcon
       color="text"
-      aria-label={label}
-      title={disabled ? undefined : label}
+      aria-label={labels[type]}
+      title={disabled ? undefined : labels[type]}
       isDisabled={disabled}
       onClick={onClick}
       data-test-subj={`pagination-button-${type}`}

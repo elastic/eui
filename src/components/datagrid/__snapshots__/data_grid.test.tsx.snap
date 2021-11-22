@@ -43,14 +43,15 @@ exports[`EuiDataGrid pagination renders 1`] = `
       aria-label="Pagination for preceding grid: test grid"
       class="euiPagination"
     >
+      Page 2 of 2
       <a
         aria-controls="generated-id"
-        aria-label="Previous page, 1"
+        aria-label="Previous page"
         class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
         data-test-subj="pagination-button-previous"
         href="#generated-id"
         rel="noreferrer"
-        title="Previous page, 1"
+        title="Previous page"
       >
         <span
           aria-hidden="true"
@@ -110,7 +111,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
         </li>
       </ul>
       <button
-        aria-label="Next page, 3"
+        aria-label="Next page"
         class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
         data-test-subj="pagination-button-next"
         disabled=""
