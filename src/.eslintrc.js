@@ -5,6 +5,7 @@ module.exports = {
   overrides: [
     {
       files: ['*.{ts,tsx}'],
+      excludedFiles: ['*.@(spec|test).{ts,tsx}'],
       parserOptions: {
         sourceType: 'module',
         tsconfigRootDir: join(__dirname, '..'),
@@ -12,12 +13,6 @@ module.exports = {
       },
       rules: {
         'local/text-in-jsx': 'error',
-      },
-    },
-    {
-      files: ['*.{test,spec}.tsx'],
-      rules: {
-        'local/text-in-jsx': 'off',
       },
     },
   ],
