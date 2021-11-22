@@ -11,7 +11,7 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const THEME_IMPORT = `'../../dist/eui_theme_amsterdam_${process.env.THEME ?? 'dark'}.css'`;
+const THEME_IMPORT = `'../../dist/eui_theme_amsterdam_${process.env.THEME}.css'`;
 
 module.exports = {
   mode: 'development',
