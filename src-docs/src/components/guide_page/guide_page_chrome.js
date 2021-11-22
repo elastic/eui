@@ -127,7 +127,7 @@ export class GuidePageChrome extends Component {
         href: sectionHref,
         items: subItems,
         isSelected: window.location.hash.includes(subSectionHref),
-        forceOpen: !!(searchTerm && hasMatchingSubItem),
+        forceOpen: !!searchTerm,
       };
     });
   };
