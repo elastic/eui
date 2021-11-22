@@ -15,10 +15,6 @@ export const <%= componentExampleName %>Example = {
   title: '<%= componentExampleName %>',
   sections: [{
     title: '<%= componentExampleName %>',
-    source: [{
-      type: GuideSectionTypes.JS,
-      code: <%= componentExamplePrefix %>Source,
-    }],
     text: (
       <>
         <p>
@@ -26,6 +22,10 @@ export const <%= componentExampleName %>Example = {
         </p>
       </>
     ),
+    source: [{
+      type: GuideSectionTypes.JS,
+      code: <%= componentExamplePrefix %>Source,
+    }],
     demo: <<%= componentExampleName %> />,
     props: { <%= componentName %> },
   }],

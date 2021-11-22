@@ -148,13 +148,13 @@ module.exports = class extends Generator {
       this.log(
         '{\n' +
           `  title: '${componentExampleName}',\n` +
+          '  text: (\n' +
+          `    <><p>Description needed: how to use the <strong>${componentExampleName}</strong> component.</p></>\n` +
+          '  ),\n' +
           '  source: [{\n' +
           '    type: GuideSectionTypes.JS,\n' +
           `    code: ${componentExamplePrefix}Source,\n` +
           '  }],\n' +
-          '  text: (\n' +
-          `    <><p>Description needed: how to use the <strong>${componentExampleName}</strong> component.</p></>\n` +
-          '  ),\n' +
           `  demo: <${componentExampleName} />,\n` +
           `  props: { ${componentName} },\n` +
         ' }\n'
