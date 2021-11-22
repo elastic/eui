@@ -11,7 +11,7 @@ const argv = yargs(hideBin(process.argv))
   .options({
     'skip-css': { type: 'boolean' },
     'dev': { type: 'boolean' },
-    'theme': { type: 'string', default: 'dark', choices: ['light', 'dark'] },
+    'theme': { type: 'string', default: 'light', choices: ['light', 'dark'] },
   })
   .argv
 
