@@ -1,18 +1,15 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import {
   GuideSectionTypes,
 } from '../../components';
 
 import {
   <%= componentName %>,
-} from '../../../../src/components';
+} from '../../../../src';
 
 import <%= componentExampleName %> from './<%= fileName %>';
 const <%= componentExamplePrefix %>Source = require('!!raw-loader!./<%= fileName %>');
-const <%= componentExamplePrefix %>Html = renderToHtml(<%= componentExampleName %>);
 
 export const <%= componentExampleName %>Example = {
   title: '<%= componentExampleName %>',
@@ -21,16 +18,15 @@ export const <%= componentExampleName %>Example = {
     source: [{
       type: GuideSectionTypes.JS,
       code: <%= componentExamplePrefix %>Source,
-    }, {
-      type: GuideSectionTypes.HTML,
-      code: <%= componentExamplePrefix %>Html,
     }],
     text: (
-      <p>
-        Description needed: how to use the <strong>Eui<%= componentExampleName %></strong> component.
-      </p>
+      <>
+        <p>
+          Description needed: how to use the <strong>Eui<%= componentExampleName %></strong> component.
+        </p>
+      </>
     ),
-    props: { <%= componentName %> },
     demo: <<%= componentExampleName %> />,
+    props: { <%= componentName %> },
   }],
 };
