@@ -8,7 +8,7 @@
 
 ### Setting the theme
 
-By default tests are run using the dark theme. Light mode can be enabled by passing the `--theme=light` option.
+By default tests are run using the light theme. Dark mode can be enabled by passing the `--theme=dark` option.
 
 ### Skipping CSS compilation
 
