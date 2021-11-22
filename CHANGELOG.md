@@ -12,6 +12,12 @@
 - Amsterdam is now the default theme, deprecated and renamed old theme as "legacy"
 - Re-organized Sass files including where the `globals` are imported from
 
+## [`41.2.1`](https://github.com/elastic/eui/tree/v41.2.1)
+
+**Bug fixes**
+
+- Refactored definition of `isNamedColor` function so it isn't mocked away by the testenv configuration ([#5397](https://github.com/elastic/eui/pull/5397))
+
 ## [`41.2.0`](https://github.com/elastic/eui/tree/v41.2.0)
 
 - Added `aria-label` and `aria-labelledby` props to `EuiComboBox` ([#5360](https://github.com/elastic/eui/issues/5360))
