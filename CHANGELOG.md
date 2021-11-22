@@ -1,6 +1,6 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `41.2.1`.
+- Converted `FieldValueSelectionFilter` in `EuiSearchBar` to use `EuiSelectable` ([#5387](https://github.com/elastic/eui/issues/5387))
 
 ## [`41.2.1`](https://github.com/elastic/eui/tree/v41.2.1)
 
