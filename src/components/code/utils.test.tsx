@@ -6,86 +6,150 @@
  * Side Public License, v 1.
  */
 
-import { highlightByLine, parseLineRanges } from './utils';
+import React from 'react';
+import { shallow } from 'enzyme';
 
-const jsonCode = `{
-  "id": "1",
-}`;
+import {
+  checkSupportedLanguage,
+  getHtmlContent,
+  isAstElement,
+  nodeToHtml,
+  highlightByLine,
+  parseLineRanges,
+} from './utils';
 
-describe('highlightByLine', () => {
-  describe('without line numbers', () => {
-    it('renders a single .euiCodeBlock__line element per line', () => {
-      const highlight = highlightByLine(jsonCode, 'json', {
-        show: false,
-        start: 1,
-      });
-      expect(highlight).toMatchSnapshot();
-      // @ts-expect-error RefractorNode
-      expect(highlight[0].children[0].children.length).toBe(1);
+describe('shared utils', () => {
+  describe('checkSupportedLanguage', () => {
+    it('returns the language if included in the list of supported languages', () => {
+      expect(checkSupportedLanguage('html')).toEqual('html');
+    });
+
+    it('otherwise, returns text language as a default', () => {
+      expect(checkSupportedLanguage('fake language')).toEqual('text');
     });
   });
 
-  describe('with line numbers', () => {
-    it('renders two elements per line: .euiCodeBlock__lineNumber and .euiCodeBlock__lineText', () => {
-      const highlight = highlightByLine(jsonCode, 'json', {
-        show: true,
-        start: 1,
-      });
-      expect(highlight).toMatchSnapshot();
-      // @ts-expect-error RefractorNode
-      expect(highlight[0].children.length).toBe(2);
+  describe('getHtmlContent', () => {
+    it('returns the passed children as-is if data is not an array', () => {
+      // @ts-expect-error we're passing a type we don't expect to get in prod for the sake of the test
+      expect(getHtmlContent(undefined, 'children')).toEqual('children');
     });
 
-    describe('with a custom starting number', () => {
-      it('adds the starting lineNumber to each node', () => {
-        const highlight = highlightByLine(jsonCode, 'json', {
-          show: true,
-          start: 10,
-        });
-        expect(highlight).toMatchSnapshot();
-        expect(
-          // @ts-expect-error RefractorNode
-          highlight[0].children[0].properties['data-line-number']
-        ).toBe(10);
-      });
+    it('returns the passed children as-is if data is empty', () => {
+      expect(getHtmlContent([], 'children')).toEqual('children');
     });
+  });
 
-    describe('with highlighted lines', () => {
-      it('adds a class to the specified lines', () => {
-        const highlight = highlightByLine(jsonCode, 'json', {
-          show: true,
-          start: 1,
-          highlight: '1-2',
-        });
-        expect(highlight).toMatchSnapshot();
-        expect(
-          // @ts-expect-error RefractorNode
-          highlight[0].properties.className[0].includes(
-            'euiCodeBlock__line--isHighlighted'
-          )
-        ).toBe(true);
-      });
+  describe('isAstElement', () => {
+    it('checks if a passed node type is `element`', () => {
+      expect(isAstElement({ type: 'element' } as any)).toEqual(true);
+      expect(isAstElement({ type: 'text' } as any)).toEqual(false);
+    });
+  });
+
+  describe('nodeToHtml', () => {
+    it('recursively converts refactor nodes to React JSX', () => {
+      const output = nodeToHtml(
+        {
+          type: 'element',
+          tagName: 'span',
+          children: [
+            {
+              type: 'text',
+              value: 'Hello world',
+            },
+          ],
+          properties: { className: ['hello-world'] },
+        },
+        0,
+        []
+      );
+      const component = shallow(<div>{output}</div>);
+      expect(component).toMatchSnapshot();
     });
   });
 });
 
-describe('parseLineRanges', () => {
-  describe('given a comma-separated string of numbers', () => {
-    it('outputs an array of numbers', () => {
-      const array = parseLineRanges('1, 3, 5, 9');
-      expect(array).toEqual([1, 3, 5, 9]);
+describe('line utils', () => {
+  const jsonCode = `{
+    "id": "1",
+  }`;
+
+  describe('highlightByLine', () => {
+    describe('without line numbers', () => {
+      it('renders a single .euiCodeBlock__line element per line', () => {
+        const highlight = highlightByLine(jsonCode, 'json', {
+          show: false,
+          start: 1,
+        });
+        expect(highlight).toMatchSnapshot();
+        // @ts-expect-error RefractorNode
+        expect(highlight[0].children[0].children.length).toBe(1);
+      });
+    });
+
+    describe('with line numbers', () => {
+      it('renders two elements per line: .euiCodeBlock__lineNumber and .euiCodeBlock__lineText', () => {
+        const highlight = highlightByLine(jsonCode, 'json', {
+          show: true,
+          start: 1,
+        });
+        expect(highlight).toMatchSnapshot();
+        // @ts-expect-error RefractorNode
+        expect(highlight[0].children.length).toBe(2);
+      });
+
+      describe('with a custom starting number', () => {
+        it('adds the starting lineNumber to each node', () => {
+          const highlight = highlightByLine(jsonCode, 'json', {
+            show: true,
+            start: 10,
+          });
+          expect(highlight).toMatchSnapshot();
+          expect(
+            // @ts-expect-error RefractorNode
+            highlight[0].children[0].properties['data-line-number']
+          ).toBe(10);
+        });
+      });
+
+      describe('with highlighted lines', () => {
+        it('adds a class to the specified lines', () => {
+          const highlight = highlightByLine(jsonCode, 'json', {
+            show: true,
+            start: 1,
+            highlight: '1-2',
+          });
+          expect(highlight).toMatchSnapshot();
+          expect(
+            // @ts-expect-error RefractorNode
+            highlight[0].properties.className[0].includes(
+              'euiCodeBlock__line--isHighlighted'
+            )
+          ).toBe(true);
+        });
+      });
     });
   });
-  describe('given a comma-separated string of ranges', () => {
-    it('outputs an array of numbers', () => {
-      const array = parseLineRanges('1-5');
-      expect(array).toEqual([1, 2, 3, 4, 5]);
+
+  describe('parseLineRanges', () => {
+    describe('given a comma-separated string of numbers', () => {
+      it('outputs an array of numbers', () => {
+        const array = parseLineRanges('1, 3, 5, 9');
+        expect(array).toEqual([1, 3, 5, 9]);
+      });
     });
-  });
-  describe('given a comma-separated string of numbers and ranges', () => {
-    it('outputs an array of numbers', () => {
-      const array = parseLineRanges('1, 3-10, 15');
-      expect(array).toEqual([1, 3, 4, 5, 6, 7, 8, 9, 10, 15]);
+    describe('given a comma-separated string of ranges', () => {
+      it('outputs an array of numbers', () => {
+        const array = parseLineRanges('1-5');
+        expect(array).toEqual([1, 2, 3, 4, 5]);
+      });
+    });
+    describe('given a comma-separated string of numbers and ranges', () => {
+      it('outputs an array of numbers', () => {
+        const array = parseLineRanges('1, 3-10, 15');
+        expect(array).toEqual([1, 3, 4, 5, 6, 7, 8, 9, 10, 15]);
+      });
     });
   });
 });

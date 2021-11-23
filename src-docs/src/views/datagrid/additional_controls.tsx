@@ -87,9 +87,11 @@ export default () => {
   const popoverId = useGeneratedHtmlId({
     prefix: 'dataGridAdditionalControlsPopover',
   });
-  const alertAndClosePopover = () => {
+  const alertAndClosePopover = (position?: string) => {
     setPopover(false);
-    window.alert('This is not a real control.');
+    window.alert(
+      `This is not a real control. It was passed into the \`${position}\` position.`
+    );
   };
 
   const [visibleColumns, setVisibleColumns] = useState(() =>
@@ -128,41 +130,53 @@ export default () => {
         }}
         toolbarVisibility={{
           additionalControls: {
-            left: (
-              <EuiPopover
-                id={popoverId}
-                button={
-                  <EuiButtonEmpty
-                    size="xs"
-                    iconType="download"
-                    onClick={() => setPopover((open) => !open)}
-                  >
-                    Download
-                  </EuiButtonEmpty>
-                }
-                isOpen={isPopoverOpen}
-                closePopover={() => setPopover(false)}
-                panelPaddingSize="none"
-              >
-                <EuiContextMenuPanel
-                  size="s"
-                  items={[
-                    <EuiContextMenuItem
-                      key="csv"
-                      onClick={alertAndClosePopover}
+            left: {
+              prepend: (
+                <EuiButtonEmpty
+                  size="xs"
+                  iconType="document"
+                  color="text"
+                  onClick={() => alertAndClosePopover('left.prepend')}
+                >
+                  {data.length} results
+                </EuiButtonEmpty>
+              ),
+              append: (
+                <EuiPopover
+                  id={popoverId}
+                  button={
+                    <EuiButtonEmpty
+                      size="xs"
+                      iconType="download"
+                      onClick={() => setPopover((open) => !open)}
                     >
-                      CSV
-                    </EuiContextMenuItem>,
-                    <EuiContextMenuItem
-                      key="jsonedit"
-                      onClick={alertAndClosePopover}
-                    >
-                      JSON
-                    </EuiContextMenuItem>,
-                  ]}
-                />
-              </EuiPopover>
-            ),
+                      Download
+                    </EuiButtonEmpty>
+                  }
+                  isOpen={isPopoverOpen}
+                  closePopover={() => setPopover(false)}
+                  panelPaddingSize="none"
+                >
+                  <EuiContextMenuPanel
+                    size="s"
+                    items={[
+                      <EuiContextMenuItem
+                        key="csv"
+                        onClick={() => alertAndClosePopover('left.append')}
+                      >
+                        CSV
+                      </EuiContextMenuItem>,
+                      <EuiContextMenuItem
+                        key="jsonedit"
+                        onClick={() => alertAndClosePopover('left.append')}
+                      >
+                        JSON
+                      </EuiContextMenuItem>,
+                    ]}
+                  />
+                </EuiPopover>
+              ),
+            },
             right: (
               <Fragment>
                 <EuiToolTip
@@ -173,9 +187,7 @@ export default () => {
                     aria-label="Refresh grid data"
                     size="xs"
                     iconType="refresh"
-                    onClick={() => {
-                      window.alert('This is not a real control.');
-                    }}
+                    onClick={() => alertAndClosePopover('right')}
                   />
                 </EuiToolTip>
                 <EuiToolTip content="Inspect grid data">

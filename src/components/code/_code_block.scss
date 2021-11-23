@@ -3,7 +3,6 @@
   display: block;
   position: relative;
   background: $euiCodeBlockBackgroundColor;
-  color: $euiCodeBlockColor;
 
   .euiCodeBlock__pre {
     @include euiScrollBar;
@@ -74,10 +73,11 @@
 
   .euiCodeBlock__code {
     @include euiCodeFont;
-    display: block;
     line-height: $euiLineHeight;
     font-weight: $euiCodeFontWeightRegular;
     font-size: inherit;
+    color: $euiCodeBlockColor;
+    display: block;
   }
 
   .euiCodeBlock__controls {
@@ -169,163 +169,9 @@
     }
   }
 
-
-  /*
-   * 1. Size the code against the text its embedded within.
-   */
-  &.euiCodeBlock--inline {
-    display: inline-block;
-    white-space: pre;
-    color: $euiTextColor;
-    font-size: 90%; /* 1 */
-    padding: 0 $euiSizeS;
-    background: $euiCodeBlockBackgroundColor;
-
-    .euiCodeBlock__pre {
-      padding: 0 $euiSizeXS;
-    }
-
-    .euiCodeBlock__code {
-      display: inline;
-      white-space: normal;
-    }
-  }
-
   &.euiCodeBlock--transparentBackground {
     background: transparent;
   }
 
-  .prismjs > *::selection {
-    // Only change the color if the variable IS a color
-    // or else no highlight color shows up at all
-    @if type-of($euiCodeBlockSelectedBackgroundColor) == color {
-      background-color: $euiCodeBlockSelectedBackgroundColor;
-    }
-  }
-
-  .token.punctuation:not(.interpolation-punctuation):not([class*='attr-']) {
-    opacity: .7;
-  }
-
-  .token.comment,
-  .token.prolog,
-  .token.doctype,
-  .token.cdata,
-  .token.coord,
-  .token.blockquote {
-    color: $euiCodeBlockCommentColor;
-    font-style: italic;
-  }
-
-  .token.selector {
-    color: $euiCodeBlockSelectorTagColor;
-  }
-
-  .token.string,
-  .token.interpolation,
-  .token.interpolation-punctuation,
-  .token.doc-comment .token.keyword,
-  .token.attr-value,
-  .token.url .token.content {
-    color: $euiCodeBlockStringColor;
-  }
-
-  .token.number,
-  .token.boolean,
-  .token.keyword.nil,
-  .token.regex,
-  .token.variable,
-  .token.unit,
-  .token.hexcode,
-  .token.attr-name,
-  .token.attr-equals {
-    color: $euiCodeBlockNumberColor;
-  }
-
-  .token.atrule .token.rule,
-  .token.keyword {
-    color: $euiCodeBlockKeywordColor;
-  }
-
-  .token.function {
-    color: $euiCodeBlockFunctionTitleColor;
-  }
-
-  .token.tag {
-    color: $euiCodeBlockTagColor;
-  }
-
-  .token.class-name {
-    color: $euiCodeBlockTypeColor;
-  }
-
-  .token.property {
-    color: $euiCodeBlockAttributeColor;
-  }
-
-  .token.console,
-  .token.list-punctuation,
-  .token.url-reference,
-  .token.url .token.url {
-    color: $euiCodeBlockSymbolColor;
-  }
-
-  .token.paramater {
-    color: $euiCodeBlockParamsColor;
-  }
-
-  .token.meta,
-  .token.important {
-    color: $euiCodeBlockMetaColor;
-  }
-
-  .token.title {
-    color: $euiCodeBlockTitleColor;
-  }
-
-  .token.section {
-    color: $euiCodeBlockSectionColor;
-  }
-
-  .token.prefix.inserted,
-  .token.prefix.deleted {
-    padding-left: $euiSizeXS;
-    margin-left: -$euiSizeXS;
-  }
-
-  .token.prefix.inserted {
-    box-shadow: -$euiSizeXS 0 $euiCodeBlockAdditionColor;
-    color: $euiCodeBlockAdditionColor;
-  }
-
-  .token.prefix.deleted {
-    box-shadow: -$euiSizeXS 0 $euiCodeBlockDeletionColor;
-    color: $euiCodeBlockDeletionColor;
-  }
-
-  .token.selector .token.class {
-    color: $euiCodeBlockSelectorClassColor;
-  }
-
-  .token.selector .token.id {
-    color: $euiCodeBlockSelectorIdColor;
-  }
-
-  .token.italic {
-    font-style: italic;
-  }
-
-  .token.important,
-  .token.bold {
-    font-weight: $euiCodeFontWeightBold;
-  }
-
-  .token.url-reference,
-  .token.url .token.url {
-    text-decoration: underline;
-  }
-
-  .token.entity {
-    cursor: help;
-  }
+  @include euiCodeSyntaxTokens;
 }
