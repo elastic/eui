@@ -1,6 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
 - Updated the organization of `EuiDataGrid`'s toolbar/grid controls ([#5334](https://github.com/elastic/eui/pull/5334))
+- Added `left.append` and `left.prepend` to `EuiDataGrid`'s `toolbarVisibility.additionalControls` prop [#5394](https://github.com/elastic/eui/pull/5394))
 
 **Bug fixes**
 

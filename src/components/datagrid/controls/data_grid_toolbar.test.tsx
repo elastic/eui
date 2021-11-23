@@ -188,32 +188,113 @@ describe('renderAdditionalControls', () => {
   const mockControl = <div data-test-subj="test" />;
 
   it('does not render if a boolean was passed into toolbarVisibility', () => {
-    expect(renderAdditionalControls(false, 'left')).toEqual(null);
-    expect(renderAdditionalControls(true, 'left')).toEqual(null);
+    expect(renderAdditionalControls(false, 'right')).toEqual(null);
+    expect(renderAdditionalControls(true, 'right')).toEqual(null);
   });
 
   it('does not render if toolbarVisibility is undefined or additionalControls is undefined', () => {
-    expect(renderAdditionalControls(undefined, 'left')).toEqual(null);
+    expect(renderAdditionalControls(undefined, 'right')).toEqual(null);
     expect(
-      renderAdditionalControls({ additionalControls: undefined }, 'left')
+      renderAdditionalControls({ additionalControls: undefined }, 'right')
     ).toEqual(null);
   });
 
-  describe('left', () => {
-    it('renders a react node passed into the left side toolbar', () => {
+  describe('left.append', () => {
+    it('renders a react node appended into the left side toolbar', () => {
       expect(
         renderAdditionalControls(
-          { additionalControls: { left: mockControl } },
-          'left'
+          { additionalControls: { left: { append: mockControl } } },
+          'left.append'
         )
       ).toEqual(mockControl);
     });
 
-    it('does not render right side positions', () => {
+    it('does not render other positions', () => {
+      expect(
+        renderAdditionalControls(
+          { additionalControls: { left: { prepend: mockControl } } },
+          'left.append'
+        )
+      ).toEqual(null);
       expect(
         renderAdditionalControls(
           { additionalControls: { right: mockControl } },
-          'left'
+          'left.append'
+        )
+      ).toEqual(null);
+    });
+
+    describe('additionalControls.left fallback', () => {
+      it('renders `additionalControls.left` nodes into `left.append` by default', () => {
+        expect(
+          renderAdditionalControls(
+            { additionalControls: { left: mockControl } },
+            'left.append'
+          )
+        ).toEqual(mockControl);
+      });
+
+      it('does not render other positions', () => {
+        expect(
+          renderAdditionalControls(
+            { additionalControls: { left: mockControl } },
+            'left.prepend'
+          )
+        ).toEqual(null);
+        expect(
+          renderAdditionalControls(
+            { additionalControls: { left: mockControl } },
+            'right'
+          )
+        ).toEqual(null);
+      });
+    });
+
+    describe('additionalControls fallback', () => {
+      it('renders `additionalControls` nodes into `left.append` by default', () => {
+        expect(
+          renderAdditionalControls(
+            { additionalControls: mockControl },
+            'left.append'
+          )
+        ).toEqual(mockControl);
+      });
+
+      it('does not render other positions', () => {
+        expect(
+          renderAdditionalControls(
+            { additionalControls: mockControl },
+            'left.prepend'
+          )
+        ).toEqual(null);
+        expect(
+          renderAdditionalControls({ additionalControls: mockControl }, 'right')
+        ).toEqual(null);
+      });
+    });
+  });
+
+  describe('left.prepend', () => {
+    it('renders a react node prepended into the left side toolbar', () => {
+      expect(
+        renderAdditionalControls(
+          { additionalControls: { left: { prepend: mockControl } } },
+          'left.prepend'
+        )
+      ).toEqual(mockControl);
+    });
+
+    it('does not render other positions', () => {
+      expect(
+        renderAdditionalControls(
+          { additionalControls: { left: { append: mockControl } } },
+          'left.prepend'
+        )
+      ).toEqual(null);
+      expect(
+        renderAdditionalControls(
+          { additionalControls: { right: mockControl } },
+          'left.prepend'
         )
       ).toEqual(null);
     });
@@ -232,23 +313,15 @@ describe('renderAdditionalControls', () => {
     it('does not render left side positions', () => {
       expect(
         renderAdditionalControls(
-          { additionalControls: { left: mockControl } },
+          { additionalControls: { left: { prepend: mockControl } } },
           'right'
         )
       ).toEqual(null);
-    });
-  });
-
-  describe('single node', () => {
-    it('renders into the left side of toolbar by default', () => {
       expect(
-        renderAdditionalControls({ additionalControls: mockControl }, 'left')
-      ).toEqual(mockControl);
-    });
-
-    it('does not render into the right side of the toolbar', () => {
-      expect(
-        renderAdditionalControls({ additionalControls: mockControl }, 'right')
+        renderAdditionalControls(
+          { additionalControls: { left: { append: mockControl } } },
+          'right'
+        )
       ).toEqual(null);
     });
   });

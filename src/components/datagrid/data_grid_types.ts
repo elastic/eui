@@ -617,15 +617,27 @@ export interface EuiDataGridToolBarVisibilityOptions {
 
 export interface EuiDataGridToolBarAdditionalControlsOptions {
   /**
-   * Will append the passed node into the left side of the toolbar, **after** the column & sort controls.
+   * If passed a `ReactNode`, appends the passed node into the left side of the toolbar, **after** the column & sort controls.
+   * Or use #EuiDataGridToolBarAdditionalControlsLeftOptions to customize the location of your control.
    * We recommend using `<EuiButtonEmpty size="xs" />` to match the existing controls on the left.
    */
-  left?: ReactNode;
+  left?: ReactNode | EuiDataGridToolBarAdditionalControlsLeftOptions;
   /**
    * Will prepend the passed node into the right side of the toolbar, **before** the density & full screen controls.
    * We recommend using `<EuiButtonIcon size="xs" />` to match the existing controls on the right.
    */
   right?: ReactNode;
+}
+
+export interface EuiDataGridToolBarAdditionalControlsLeftOptions {
+  /**
+   * Will prepend the passed node into the left side of the toolbar, **before** the column & sort controls.
+   */
+  prepend?: ReactNode;
+  /**
+   * Will append the passed node into the left side of the toolbar, **after** the column & sort controls.
+   */
+  append?: ReactNode;
 }
 
 // ideally this would use a generic to enforce `pageSize` exists in `pageSizeOptions`,
