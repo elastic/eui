@@ -380,7 +380,6 @@ const navigation = [
     items: [
       createMarkdownExample(GettingStarted, 'Getting started'),
       createExample(AccessibilityGuidelines, 'Accessibility'),
-      createExample(WritingGuidelines, 'Writing'),
       createTabbedPage({
         title: 'Writing',
         pages: [
