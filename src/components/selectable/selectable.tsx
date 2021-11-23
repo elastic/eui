@@ -23,7 +23,7 @@ import { EuiLoadingSpinner } from '../loading';
 import { EuiSpacer } from '../spacer';
 import { getMatchingOptions } from './matching_options';
 import { keys, htmlIdGenerator } from '../../services';
-import { EuiScreenReaderStatus } from '../accessibility';
+import { EuiScreenReaderStatus, EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import { EuiSelectableOption } from './selectable_option';
 import { EuiSelectableOptionsListProps } from './selectable_list/selectable_list';
@@ -619,7 +619,11 @@ export class EuiSelectable<T = {}> extends Component<
       </EuiI18n>
     ) : undefined;
 
-    const listAccessibleName = getAccessibleName(listProps);
+    const listAriaDescribedbyId = `${this.listId}-instructions`;
+    const listAccessibleName = getAccessibleName(
+      listProps,
+      listAriaDescribedbyId
+    );
     const listHasAccessibleName = Boolean(
       Object.keys(listAccessibleName).length
     );
@@ -690,25 +694,39 @@ export class EuiSelectable<T = {}> extends Component<
     }
 
     return (
-      <div
-        ref={this.containerRef}
-        className={classes}
-        onKeyDown={this.onKeyDown}
-        onBlur={this.onContainerBlur}
-        onFocus={this.onFocus}
-        onMouseDown={this.onMouseDown}
-        {...rest}
-      >
-        {searchable && (
-          <EuiScreenReaderStatus
-            listId={this.listId}
-            isActive={activeOptionIndex != null}
-            updatePrecipitate={searchValue.length}
-            content={content}
-          />
-        )}
-        {children && children(list, search)}
-      </div>
+      <>
+        <div
+          ref={this.containerRef}
+          className={classes}
+          onKeyDown={this.onKeyDown}
+          onBlur={this.onContainerBlur}
+          onFocus={this.onFocus}
+          onMouseDown={this.onMouseDown}
+          {...rest}
+        >
+          {searchable && (
+            <EuiScreenReaderStatus
+              listId={this.listId}
+              isActive={activeOptionIndex != null}
+              updatePrecipitate={searchValue.length}
+              content={content}
+            />
+          )}
+          {children && children(list, search)}
+        </div>
+        <EuiI18n
+          token="euiSelectable.screenReaderInstructions"
+          default="'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'"
+        >
+          {(screenReaderInstructions: string) => (
+            <EuiScreenReaderOnly>
+              <div>
+                <p id={listAriaDescribedbyId}>{screenReaderInstructions}</p>
+              </div>
+            </EuiScreenReaderOnly>
+          )}
+        </EuiI18n>
+      </>
     );
   }
 }

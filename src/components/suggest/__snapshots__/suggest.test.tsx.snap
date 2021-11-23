@@ -3,54 +3,59 @@
 exports[`EuiSuggest is rendered 1`] = `
 Array [
   <div
-    aria-expanded="false"
-    role="combobox"
+    class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiSelectable euiSelectable-fullHeight"
+      class="euiScreenReaderOnly"
     >
       <div
-        class="euiScreenReaderOnly"
-      >
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--A"
-          role="status"
-        />
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--B"
-          role="status"
-        />
-      </div>
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--A"
+        role="status"
+      />
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--B"
+        role="status"
+      />
+    </div>
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
       >
-        <div
-          class="euiPopover__anchor"
-        >
-          <div>
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-activedescendant=""
+                aria-describedby="generated-id"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons"
               >
-                <input
-                  aria-activedescendant=""
-                  aria-autocomplete="list"
-                  aria-describedby="generated-id_info generated-id_instructions"
-                  aria-label="aria-label"
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--fullWidth"
-                  data-test-subj="test subject string"
-                  id="generated-id"
-                  role="textbox"
-                  type="text"
-                  value=""
-                />
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
               </div>
             </div>
           </div>
@@ -62,14 +67,18 @@ Array [
     class="euiScreenReaderOnly"
   >
     <p
-      id="generated-id_info"
+      id="generated-id-instructions"
+    >
+      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
+    </p>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id"
     >
       State: unchanged.
-    </p>
-    <p
-      id="generated-id_instructions"
-    >
-      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
     </p>
   </div>,
 ]
@@ -78,54 +87,59 @@ Array [
 exports[`EuiSuggest options common 1`] = `
 Array [
   <div
-    aria-expanded="false"
-    role="combobox"
+    class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiSelectable euiSelectable-fullHeight"
+      class="euiScreenReaderOnly"
     >
       <div
-        class="euiScreenReaderOnly"
-      >
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--A"
-          role="status"
-        />
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--B"
-          role="status"
-        />
-      </div>
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--A"
+        role="status"
+      />
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--B"
+        role="status"
+      />
+    </div>
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
       >
-        <div
-          class="euiPopover__anchor"
-        >
-          <div>
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-activedescendant=""
+                aria-describedby="generated-id"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons"
               >
-                <input
-                  aria-activedescendant=""
-                  aria-autocomplete="list"
-                  aria-describedby="generated-id_info generated-id_instructions"
-                  aria-label="aria-label"
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--fullWidth"
-                  data-test-subj="test subject string"
-                  id="generated-id"
-                  role="textbox"
-                  type="text"
-                  value=""
-                />
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
               </div>
             </div>
           </div>
@@ -137,14 +151,18 @@ Array [
     class="euiScreenReaderOnly"
   >
     <p
-      id="generated-id_info"
+      id="generated-id-instructions"
+    >
+      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
+    </p>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id"
     >
       State: unchanged.
-    </p>
-    <p
-      id="generated-id_instructions"
-    >
-      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
     </p>
   </div>,
 ]
@@ -153,54 +171,59 @@ Array [
 exports[`EuiSuggest options standard 1`] = `
 Array [
   <div
-    aria-expanded="false"
-    role="combobox"
+    class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiSelectable euiSelectable-fullHeight"
+      class="euiScreenReaderOnly"
     >
       <div
-        class="euiScreenReaderOnly"
-      >
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--A"
-          role="status"
-        />
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--B"
-          role="status"
-        />
-      </div>
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--A"
+        role="status"
+      />
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--B"
+        role="status"
+      />
+    </div>
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
       >
-        <div
-          class="euiPopover__anchor"
-        >
-          <div>
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-activedescendant=""
+                aria-describedby="generated-id"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons"
               >
-                <input
-                  aria-activedescendant=""
-                  aria-autocomplete="list"
-                  aria-describedby="generated-id_info generated-id_instructions"
-                  aria-label="aria-label"
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--fullWidth"
-                  data-test-subj="test subject string"
-                  id="generated-id"
-                  role="textbox"
-                  type="text"
-                  value=""
-                />
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
               </div>
             </div>
           </div>
@@ -212,14 +235,18 @@ Array [
     class="euiScreenReaderOnly"
   >
     <p
-      id="generated-id_info"
+      id="generated-id-instructions"
+    >
+      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
+    </p>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id"
     >
       State: unchanged.
-    </p>
-    <p
-      id="generated-id_instructions"
-    >
-      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
     </p>
   </div>,
 ]
@@ -228,61 +255,66 @@ Array [
 exports[`EuiSuggest props append 1`] = `
 Array [
   <div
-    aria-expanded="false"
-    role="combobox"
+    class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiSelectable euiSelectable-fullHeight"
+      class="euiScreenReaderOnly"
     >
       <div
-        class="euiScreenReaderOnly"
-      >
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--A"
-          role="status"
-        />
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--B"
-          role="status"
-        />
-      </div>
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--A"
+        role="status"
+      />
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--B"
+        role="status"
+      />
+    </div>
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
       >
-        <div
-          class="euiPopover__anchor"
-        >
-          <div>
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-activedescendant=""
+                aria-describedby="generated-id"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons"
               >
-                <input
-                  aria-activedescendant=""
-                  aria-autocomplete="list"
-                  aria-describedby="generated-id_info generated-id_instructions"
-                  aria-label="aria-label"
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-                  data-test-subj="test subject string"
-                  id="generated-id"
-                  role="textbox"
-                  type="text"
-                  value=""
-                />
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
               </div>
-              <span
-                class="euiFormControlLayout__append"
-              >
-                Appended
-              </span>
             </div>
+            <span
+              class="euiFormControlLayout__append"
+            >
+              Appended
+            </span>
           </div>
         </div>
       </div>
@@ -292,14 +324,18 @@ Array [
     class="euiScreenReaderOnly"
   >
     <p
-      id="generated-id_info"
+      id="generated-id-instructions"
+    >
+      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
+    </p>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id"
     >
       State: unchanged.
-    </p>
-    <p
-      id="generated-id_instructions"
-    >
-      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
     </p>
   </div>,
 ]
@@ -308,61 +344,66 @@ Array [
 exports[`EuiSuggest props status status: loading is rendered 1`] = `
 Array [
   <div
-    aria-expanded="false"
-    role="combobox"
+    class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiSelectable euiSelectable-fullHeight"
+      class="euiScreenReaderOnly"
     >
       <div
-        class="euiScreenReaderOnly"
-      >
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--A"
-          role="status"
-        />
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--B"
-          role="status"
-        />
-      </div>
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--A"
+        role="status"
+      />
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--B"
+        role="status"
+      />
+    </div>
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
       >
-        <div
-          class="euiPopover__anchor"
-        >
-          <div>
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-activedescendant=""
+                aria-describedby="generated-id"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiFieldSearch-isLoading euiSelectableSearch"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons"
               >
-                <input
-                  aria-activedescendant=""
-                  aria-autocomplete="list"
-                  aria-describedby="generated-id_info generated-id_instructions"
-                  aria-label="aria-label"
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--fullWidth euiFieldText-isLoading"
-                  data-test-subj="test subject string"
-                  id="generated-id"
-                  role="textbox"
-                  type="text"
-                  value=""
-                />
-                <div
-                  class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+                <span
+                  class="euiFormControlLayoutCustomIcon"
                 >
                   <span
-                    class="euiLoadingSpinner euiLoadingSpinner--medium"
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
                   />
-                </div>
+                </span>
+              </div>
+              <div
+                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+              >
+                <span
+                  class="euiLoadingSpinner euiLoadingSpinner--medium"
+                />
               </div>
             </div>
           </div>
@@ -374,14 +415,18 @@ Array [
     class="euiScreenReaderOnly"
   >
     <p
-      id="generated-id_info"
+      id="generated-id-instructions"
+    >
+      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
+    </p>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id"
     >
       State: loading.
-    </p>
-    <p
-      id="generated-id_instructions"
-    >
-      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
     </p>
   </div>,
 ]
@@ -390,65 +435,70 @@ Array [
 exports[`EuiSuggest props status status: saved is rendered 1`] = `
 Array [
   <div
-    aria-expanded="false"
-    role="combobox"
+    class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiSelectable euiSelectable-fullHeight"
+      class="euiScreenReaderOnly"
     >
       <div
-        class="euiScreenReaderOnly"
-      >
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--A"
-          role="status"
-        />
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--B"
-          role="status"
-        />
-      </div>
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--A"
+        role="status"
+      />
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--B"
+        role="status"
+      />
+    </div>
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
       >
-        <div
-          class="euiPopover__anchor"
-        >
-          <div>
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-activedescendant=""
+                aria-describedby="generated-id"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
-              >
-                <input
-                  aria-activedescendant=""
-                  aria-autocomplete="list"
-                  aria-describedby="generated-id_info generated-id_instructions"
-                  aria-label="aria-label"
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-                  data-test-subj="test subject string"
-                  id="generated-id"
-                  role="textbox"
-                  type="text"
-                  value=""
-                />
-              </div>
-              <span
-                class="euiToolTipAnchor"
+                class="euiFormControlLayoutIcons"
               >
                 <span
-                  class="euiSuggestInput__statusIcon"
-                  color="success"
-                  data-euiicon-type="checkInCircleFilled"
-                />
-              </span>
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
             </div>
+            <span
+              class="euiToolTipAnchor"
+            >
+              <span
+                class="euiSuggestInput__statusIcon"
+                color="success"
+                data-euiicon-type="checkInCircleFilled"
+              />
+            </span>
           </div>
         </div>
       </div>
@@ -458,14 +508,18 @@ Array [
     class="euiScreenReaderOnly"
   >
     <p
-      id="generated-id_info"
+      id="generated-id-instructions"
+    >
+      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
+    </p>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id"
     >
       State: saved.
-    </p>
-    <p
-      id="generated-id_instructions"
-    >
-      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
     </p>
   </div>,
 ]
@@ -474,54 +528,59 @@ Array [
 exports[`EuiSuggest props status status: unchanged is rendered 1`] = `
 Array [
   <div
-    aria-expanded="false"
-    role="combobox"
+    class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiSelectable euiSelectable-fullHeight"
+      class="euiScreenReaderOnly"
     >
       <div
-        class="euiScreenReaderOnly"
-      >
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--A"
-          role="status"
-        />
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--B"
-          role="status"
-        />
-      </div>
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--A"
+        role="status"
+      />
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--B"
+        role="status"
+      />
+    </div>
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
       >
-        <div
-          class="euiPopover__anchor"
-        >
-          <div>
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-activedescendant=""
+                aria-describedby="generated-id"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons"
               >
-                <input
-                  aria-activedescendant=""
-                  aria-autocomplete="list"
-                  aria-describedby="generated-id_info generated-id_instructions"
-                  aria-label="aria-label"
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--fullWidth"
-                  data-test-subj="test subject string"
-                  id="generated-id"
-                  role="textbox"
-                  type="text"
-                  value=""
-                />
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
               </div>
             </div>
           </div>
@@ -533,14 +592,18 @@ Array [
     class="euiScreenReaderOnly"
   >
     <p
-      id="generated-id_info"
+      id="generated-id-instructions"
+    >
+      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
+    </p>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id"
     >
       State: unchanged.
-    </p>
-    <p
-      id="generated-id_instructions"
-    >
-      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
     </p>
   </div>,
 ]
@@ -549,65 +612,70 @@ Array [
 exports[`EuiSuggest props status status: unsaved is rendered 1`] = `
 Array [
   <div
-    aria-expanded="false"
-    role="combobox"
+    class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiSelectable euiSelectable-fullHeight"
+      class="euiScreenReaderOnly"
     >
       <div
-        class="euiScreenReaderOnly"
-      >
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--A"
-          role="status"
-        />
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--B"
-          role="status"
-        />
-      </div>
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--A"
+        role="status"
+      />
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--B"
+        role="status"
+      />
+    </div>
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
       >
-        <div
-          class="euiPopover__anchor"
-        >
-          <div>
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-activedescendant=""
+                aria-describedby="generated-id"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
-              >
-                <input
-                  aria-activedescendant=""
-                  aria-autocomplete="list"
-                  aria-describedby="generated-id_info generated-id_instructions"
-                  aria-label="aria-label"
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-                  data-test-subj="test subject string"
-                  id="generated-id"
-                  role="textbox"
-                  type="text"
-                  value=""
-                />
-              </div>
-              <span
-                class="euiToolTipAnchor"
+                class="euiFormControlLayoutIcons"
               >
                 <span
-                  class="euiSuggestInput__statusIcon"
-                  color="accent"
-                  data-euiicon-type="dot"
-                />
-              </span>
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
             </div>
+            <span
+              class="euiToolTipAnchor"
+            >
+              <span
+                class="euiSuggestInput__statusIcon"
+                color="accent"
+                data-euiicon-type="dot"
+              />
+            </span>
           </div>
         </div>
       </div>
@@ -617,14 +685,18 @@ Array [
     class="euiScreenReaderOnly"
   >
     <p
-      id="generated-id_info"
+      id="generated-id-instructions"
+    >
+      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
+    </p>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id"
     >
       State: unsaved.
-    </p>
-    <p
-      id="generated-id_instructions"
-    >
-      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
     </p>
   </div>,
 ]
@@ -633,61 +705,66 @@ Array [
 exports[`EuiSuggest props tooltipContent tooltipContent for status: loading is rendered 1`] = `
 Array [
   <div
-    aria-expanded="false"
-    role="combobox"
+    class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiSelectable euiSelectable-fullHeight"
+      class="euiScreenReaderOnly"
     >
       <div
-        class="euiScreenReaderOnly"
-      >
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--A"
-          role="status"
-        />
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--B"
-          role="status"
-        />
-      </div>
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--A"
+        role="status"
+      />
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--B"
+        role="status"
+      />
+    </div>
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
       >
-        <div
-          class="euiPopover__anchor"
-        >
-          <div>
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-activedescendant=""
+                aria-describedby="generated-id"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiFieldSearch-isLoading euiSelectableSearch"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons"
               >
-                <input
-                  aria-activedescendant=""
-                  aria-autocomplete="list"
-                  aria-describedby="generated-id_info generated-id_instructions"
-                  aria-label="aria-label"
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--fullWidth euiFieldText-isLoading"
-                  data-test-subj="test subject string"
-                  id="generated-id"
-                  role="textbox"
-                  type="text"
-                  value=""
-                />
-                <div
-                  class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+                <span
+                  class="euiFormControlLayoutCustomIcon"
                 >
                   <span
-                    class="euiLoadingSpinner euiLoadingSpinner--medium"
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
                   />
-                </div>
+                </span>
+              </div>
+              <div
+                class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+              >
+                <span
+                  class="euiLoadingSpinner euiLoadingSpinner--medium"
+                />
               </div>
             </div>
           </div>
@@ -699,14 +776,18 @@ Array [
     class="euiScreenReaderOnly"
   >
     <p
-      id="generated-id_info"
+      id="generated-id-instructions"
+    >
+      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
+    </p>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id"
     >
       State: loading.
-    </p>
-    <p
-      id="generated-id_instructions"
-    >
-      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
     </p>
   </div>,
 ]
@@ -715,65 +796,70 @@ Array [
 exports[`EuiSuggest props tooltipContent tooltipContent for status: saved is rendered 1`] = `
 Array [
   <div
-    aria-expanded="false"
-    role="combobox"
+    class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiSelectable euiSelectable-fullHeight"
+      class="euiScreenReaderOnly"
     >
       <div
-        class="euiScreenReaderOnly"
-      >
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--A"
-          role="status"
-        />
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--B"
-          role="status"
-        />
-      </div>
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--A"
+        role="status"
+      />
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--B"
+        role="status"
+      />
+    </div>
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
       >
-        <div
-          class="euiPopover__anchor"
-        >
-          <div>
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-activedescendant=""
+                aria-describedby="generated-id"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
-              >
-                <input
-                  aria-activedescendant=""
-                  aria-autocomplete="list"
-                  aria-describedby="generated-id_info generated-id_instructions"
-                  aria-label="aria-label"
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-                  data-test-subj="test subject string"
-                  id="generated-id"
-                  role="textbox"
-                  type="text"
-                  value=""
-                />
-              </div>
-              <span
-                class="euiToolTipAnchor"
+                class="euiFormControlLayoutIcons"
               >
                 <span
-                  class="euiSuggestInput__statusIcon"
-                  color="success"
-                  data-euiicon-type="checkInCircleFilled"
-                />
-              </span>
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
             </div>
+            <span
+              class="euiToolTipAnchor"
+            >
+              <span
+                class="euiSuggestInput__statusIcon"
+                color="success"
+                data-euiicon-type="checkInCircleFilled"
+              />
+            </span>
           </div>
         </div>
       </div>
@@ -783,14 +869,18 @@ Array [
     class="euiScreenReaderOnly"
   >
     <p
-      id="generated-id_info"
+      id="generated-id-instructions"
+    >
+      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
+    </p>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id"
     >
       State: saved.
-    </p>
-    <p
-      id="generated-id_instructions"
-    >
-      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
     </p>
   </div>,
 ]
@@ -799,54 +889,59 @@ Array [
 exports[`EuiSuggest props tooltipContent tooltipContent for status: unchanged is rendered 1`] = `
 Array [
   <div
-    aria-expanded="false"
-    role="combobox"
+    class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiSelectable euiSelectable-fullHeight"
+      class="euiScreenReaderOnly"
     >
       <div
-        class="euiScreenReaderOnly"
-      >
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--A"
-          role="status"
-        />
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--B"
-          role="status"
-        />
-      </div>
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--A"
+        role="status"
+      />
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--B"
+        role="status"
+      />
+    </div>
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
       >
-        <div
-          class="euiPopover__anchor"
-        >
-          <div>
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-activedescendant=""
+                aria-describedby="generated-id"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
+                class="euiFormControlLayoutIcons"
               >
-                <input
-                  aria-activedescendant=""
-                  aria-autocomplete="list"
-                  aria-describedby="generated-id_info generated-id_instructions"
-                  aria-label="aria-label"
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--fullWidth"
-                  data-test-subj="test subject string"
-                  id="generated-id"
-                  role="textbox"
-                  type="text"
-                  value=""
-                />
+                <span
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
               </div>
             </div>
           </div>
@@ -858,14 +953,18 @@ Array [
     class="euiScreenReaderOnly"
   >
     <p
-      id="generated-id_info"
+      id="generated-id-instructions"
+    >
+      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
+    </p>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id"
     >
       State: unchanged.
-    </p>
-    <p
-      id="generated-id_instructions"
-    >
-      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
     </p>
   </div>,
 ]
@@ -874,65 +973,70 @@ Array [
 exports[`EuiSuggest props tooltipContent tooltipContent for status: unsaved is rendered 1`] = `
 Array [
   <div
-    aria-expanded="false"
-    role="combobox"
+    class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiSelectable euiSelectable-fullHeight"
+      class="euiScreenReaderOnly"
     >
       <div
-        class="euiScreenReaderOnly"
-      >
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--A"
-          role="status"
-        />
-        <div
-          aria-atomic="true"
-          aria-live="polite"
-          id="generated-id_collection__status--B"
-          role="status"
-        />
-      </div>
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--A"
+        role="status"
+      />
       <div
-        class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiSuggestInput euiSuggestInput--fullWidth testClass1 testClass2"
+        aria-atomic="true"
+        aria-live="polite"
+        id="generated-id__status--B"
+        role="status"
+      />
+    </div>
+    <div
+      class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
+    >
+      <div
+        class="euiPopover__anchor"
       >
-        <div
-          class="euiPopover__anchor"
-        >
-          <div>
+        <div>
+          <div
+            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+          >
             <div
-              class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+              class="euiFormControlLayout__childrenWrapper"
             >
+              <input
+                aria-activedescendant=""
+                aria-describedby="generated-id"
+                aria-haspopup="listbox"
+                autocomplete="off"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                placeholder="Filter options"
+                type="search"
+                value=""
+              />
               <div
-                class="euiFormControlLayout__childrenWrapper"
-              >
-                <input
-                  aria-activedescendant=""
-                  aria-autocomplete="list"
-                  aria-describedby="generated-id_info generated-id_instructions"
-                  aria-label="aria-label"
-                  autocomplete="off"
-                  class="euiFieldText euiFieldText--fullWidth euiFieldText--inGroup"
-                  data-test-subj="test subject string"
-                  id="generated-id"
-                  role="textbox"
-                  type="text"
-                  value=""
-                />
-              </div>
-              <span
-                class="euiToolTipAnchor"
+                class="euiFormControlLayoutIcons"
               >
                 <span
-                  class="euiSuggestInput__statusIcon"
-                  color="accent"
-                  data-euiicon-type="dot"
-                />
-              </span>
+                  class="euiFormControlLayoutCustomIcon"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiFormControlLayoutCustomIcon__icon"
+                    data-euiicon-type="search"
+                  />
+                </span>
+              </div>
             </div>
+            <span
+              class="euiToolTipAnchor"
+            >
+              <span
+                class="euiSuggestInput__statusIcon"
+                color="accent"
+                data-euiicon-type="dot"
+              />
+            </span>
           </div>
         </div>
       </div>
@@ -942,14 +1046,18 @@ Array [
     class="euiScreenReaderOnly"
   >
     <p
-      id="generated-id_info"
+      id="generated-id-instructions"
+    >
+      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
+    </p>
+  </div>,
+  <div
+    class="euiScreenReaderOnly"
+  >
+    <p
+      id="generated-id"
     >
       State: unsaved.
-    </p>
-    <p
-      id="generated-id_instructions"
-    >
-      Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.
     </p>
   </div>,
 ]

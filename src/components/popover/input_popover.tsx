@@ -20,7 +20,7 @@ import { CommonProps } from '../common';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiPopover, EuiPopoverProps } from './popover';
 import { EuiResizeObserver } from '../observer/resize_observer';
-import { cascadingMenuKeys } from '../../services';
+import { cascadingMenuKeys, useCombinedRefs } from '../../services';
 
 export interface _EuiInputPopoverProps
   extends Omit<EuiPopoverProps, 'button' | 'buttonRef'> {
@@ -42,14 +42,16 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   input,
   fullWidth = false,
   onPanelResize,
+  inputRef: _inputRef,
+  panelRef: _panelRef,
   ...props
 }) => {
   const [inputEl, setInputEl] = useState<HTMLElement | null>(null);
   const [inputElWidth, setInputElWidth] = useState<number>();
   const [panelEl, setPanelEl] = useState<HTMLElement | null>(null);
 
-  const inputRef = (node: HTMLElement | null) => setInputEl(node);
-  const panelRef = (node: HTMLElement | null) => setPanelEl(node);
+  const inputRef = useCombinedRefs([setInputEl, _inputRef]);
+  const panelRef = useCombinedRefs([setPanelEl, _panelRef]);
 
   const setPanelWidth = useCallback(
     (width?: number) => {

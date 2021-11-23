@@ -237,12 +237,13 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
     }
 
     const labelCount = data.filter((option) => option.isGroupLabel).length;
+    const id = makeOptionId(index);
 
     return (
       <EuiSelectableListItem
-        id={makeOptionId(index)}
+        key={id}
+        id={id}
         style={style}
-        key={key || label.toLowerCase()}
         onMouseDown={() => {
           setActiveOptionIndex(index);
         }}

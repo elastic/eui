@@ -6,18 +6,54 @@
  * Side Public License, v 1.
  */
 
-import React, { FormEvent, FunctionComponent } from 'react';
+import React, {
+  CSSProperties,
+  FormEvent,
+  FunctionComponent,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
-
-import { useCombobox } from '../../services';
+import { useGeneratedHtmlId } from '../../services';
 
 import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiIcon } from '../icon';
 import { useEuiI18n } from '../i18n';
+import { EuiInputPopover } from '../popover';
 import { EuiSelectable, EuiSelectableListItemProps } from '../selectable';
+import { EuiToolTip } from '../tool_tip';
 
 import { EuiSuggestItem, _EuiSuggestItemPropsBase } from './suggest_item';
-import { EuiSuggestInput, EuiSuggestInputProps } from './suggest_input';
+import { EuiSuggestInputProps } from './suggest_input';
+
+interface Status {
+  icon?: string;
+  color?: string;
+  tooltip?: string;
+}
+
+interface StatusMap {
+  unsaved: Status;
+  saved: Status;
+  unchanged: Status;
+  loading: Status;
+}
+
+const statusMap: StatusMap = {
+  unsaved: {
+    icon: 'dot',
+    color: 'accent',
+  },
+  saved: {
+    icon: 'checkInCircleFilled',
+    color: 'success',
+  },
+  unchanged: {
+    icon: '',
+    color: 'success',
+  },
+  loading: {},
+};
 
 // keys of _EuiSuggestItemPropsBase
 const suggestItemPropsKeys = [
@@ -54,6 +90,11 @@ type _EuiSuggestProps = CommonProps &
      * Best used when there are a lot of items.
      */
     isVirtualized?: boolean;
+    /**
+     * Maximum height to set for the list.
+     * Default is `60vh`
+     */
+    maxHeight?: CSSProperties['maxHeight'];
   };
 
 export type EuiSuggestProps = _EuiSuggestProps &
@@ -80,25 +121,94 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   'aria-labelledby': labelId,
   isVirtualized = false,
   fullWidth = true,
+  maxHeight = '60vh',
+  onFocus,
+  onBlur,
   ...rest
 }) => {
-  const {
-    containerAttributes,
-    inputAttributes,
-    listAttributes: { id: listAttrsId, ...listAttrs },
-    infoAttributes,
-    instructionsAttributes,
-    methods: { optionIdGenerator, setFocusedOptionIndex, setListBoxOpen },
-  } = useCombobox({
-    id,
-    ariaLabel,
-    labelId,
-  });
+  /**
+   * Popover helpers
+   */
+  const [popoverRef, setPopoverRef] = useState<HTMLElement | null>(null);
+  const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
+  const openPopover = () => setIsPopoverOpen(true);
+  const closePopover = () => setIsPopoverOpen(false);
 
-  const onChange = (e: FormEvent<HTMLDivElement>) => {
-    onInputChange ? onInputChange(e.target) : null;
+  /**
+   * Search helpers
+   */
+  const searchOnFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    onFocus && onFocus(e);
+    openPopover();
   };
 
+  const onSearchInput = (e: FormEvent<HTMLInputElement>) => {
+    onInputChange && onInputChange(e.target);
+    openPopover();
+  };
+
+  const searchOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    onBlur && onBlur(e);
+    if (!popoverRef?.contains(e.relatedTarget as HTMLElement)) {
+      closePopover();
+    }
+  };
+
+  const inputDescribedbyId = useGeneratedHtmlId({ prefix: id });
+
+  /**
+   * Status
+   */
+  let icon = '';
+  let color = '';
+
+  if (statusMap[status]) {
+    icon = statusMap[status].icon || '';
+    color = statusMap[status].color || '';
+  }
+
+  // EuiFieldText's append accepts an array of elements so start by creating an empty array
+  const appendArray = [];
+
+  const [statusSaved, statusUnsaved] = useEuiI18n(
+    ['euiSuggest.stateSavedTooltip', 'euiSuggest.stateUnsavedTooltip'],
+    ['Saved.', 'Changes have not been saved.']
+  );
+  statusMap.saved.tooltip = statusSaved;
+  statusMap.unsaved.tooltip = statusUnsaved;
+
+  const statusElement = (status === 'saved' || status === 'unsaved') && (
+    <EuiToolTip
+      position="left"
+      content={tooltipContent || statusMap[status].tooltip}
+    >
+      <EuiIcon
+        className="euiSuggestInput__statusIcon"
+        color={color}
+        type={icon}
+      />
+    </EuiToolTip>
+  );
+
+  // Push the status element to the array if it is not undefined
+  if (statusElement) appendArray.push(statusElement);
+
+  // Check to see if consumer passed an append item and if so, add it to the array
+  if (append) appendArray.push(append);
+
+  const [stateLoading, stateSaved, stateUnsaved, stateUnchanged] = useEuiI18n(
+    [
+      'euiSuggest.stateLoading',
+      'euiSuggest.stateSaved',
+      'euiSuggest.stateUnsaved',
+      'euiSuggest.stateUnchanged',
+    ],
+    ['State: loading', 'State: saved', 'State: unsaved', 'State: unchanged']
+  );
+
+  /**
+   * Options list
+   */
   const suggestionList = suggestions.map((item: EuiSuggestionProps) => {
     const { className, ...props } = item;
     if (onItemClick) {
@@ -131,59 +241,56 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     return <EuiSuggestItem {...props} />;
   };
 
-  const [stateLoading, stateSaved, stateUnsaved, stateUnchanged] = useEuiI18n(
-    [
-      'euiSuggest.stateLoading',
-      'euiSuggest.stateSaved',
-      'euiSuggest.stateUnsaved',
-      'euiSuggest.stateUnchanged',
-    ],
-    ['State: loading', 'State: saved', 'State: unsaved', 'State: unchanged']
-  );
-
-  const screenReaderInstructions = useEuiI18n(
-    'euiSuggest.screenReaderInstructions',
-    'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-  );
+  const classes = classNames('euiInputPopover', {
+    'euiInputPopover--fullWidth': fullWidth,
+  });
 
   return (
     <>
-      <div onChange={onChange} {...containerAttributes}>
-        <EuiSelectable<EuiSuggestionProps>
-          id={listAttrsId}
-          singleSelection={true}
-          options={suggestionList}
-          listProps={{
-            bordered: false,
-            showIcons: false,
-            onFocusBadge: false,
-            paddingSize: 'none',
-            isVirtualized,
-            ...listAttrs,
-          }}
-          renderOption={renderOption}
-          optionIdGenerator={optionIdGenerator}
-          onActiveOptionIndexChange={setFocusedOptionIndex}
-          height={isVirtualized ? undefined : 'full'}
-          searchable
-        >
-          {(list) => (
-            <EuiSuggestInput
-              status={status}
-              tooltipContent={tooltipContent}
-              append={append}
-              onListOpen={setListBoxOpen}
-              suggestions={list}
-              fullWidth={fullWidth}
-              {...rest}
-              {...inputAttributes}
-            />
-          )}
-        </EuiSelectable>
-      </div>
+      <EuiSelectable<EuiSuggestionProps>
+        id={id}
+        singleSelection={true}
+        height={isVirtualized ? undefined : 'full'}
+        options={suggestionList}
+        renderOption={renderOption}
+        listProps={{
+          bordered: false,
+          showIcons: false,
+          onFocusBadge: false,
+          paddingSize: 'none',
+          isVirtualized,
+          ...rest,
+        }}
+        searchable
+        searchProps={{
+          append: appendArray,
+          fullWidth,
+          isLoading: status === 'loading' ? true : false,
+          onFocus: searchOnFocus,
+          onBlur: searchOnBlur,
+          onInput: onSearchInput,
+          'aria-describedby': inputDescribedbyId,
+        }}
+      >
+        {(list, search) => (
+          <EuiInputPopover
+            className={classes}
+            input={<>{search}</>}
+            isOpen={isPopoverOpen}
+            panelPaddingSize="none"
+            fullWidth={fullWidth}
+            closePopover={closePopover}
+            panelRef={setPopoverRef}
+          >
+            <div style={{ maxHeight }} className="eui-yScroll">
+              {list}
+            </div>
+          </EuiInputPopover>
+        )}
+      </EuiSelectable>
       <EuiScreenReaderOnly>
         <div>
-          <p {...infoAttributes}>
+          <p id={inputDescribedbyId}>
             {`${(() => {
               switch (status) {
                 case 'loading':
@@ -197,7 +304,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
               }
             })()}.`}
           </p>
-          <p {...instructionsAttributes}>{screenReaderInstructions}</p>
         </div>
       </EuiScreenReaderOnly>
     </>
