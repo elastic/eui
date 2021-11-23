@@ -7,6 +7,7 @@
  */
 
 import React, { FunctionComponent } from 'react';
+import classNames from 'classnames';
 
 import {
   EuiButtonIcon,
@@ -32,6 +33,7 @@ export type Props = Partial<Omit<EuiButtonIconPropsForAnchor, 'type'>> & {
 };
 
 export const EuiPaginationButtonArrow: FunctionComponent<Props> = ({
+  className,
   type,
   disabled,
   ariaControls,
@@ -56,6 +58,7 @@ export const EuiPaginationButtonArrow: FunctionComponent<Props> = ({
 
   return (
     <EuiButtonIcon
+      className={classNames('euiPaginationArrowButton', className)}
       color="text"
       aria-label={labels[type]}
       title={disabled ? undefined : labels[type]}

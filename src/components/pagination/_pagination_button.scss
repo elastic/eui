@@ -3,7 +3,7 @@
   padding: 0;
   text-align: center;
   border-radius: $euiBorderRadius;
-  line-height: 1;
+  outline-offset: -$euiFocusRingSize;
 }
 
 .euiPaginationButton-isActive {
@@ -21,6 +21,10 @@
       text-decoration: underline;
     }
   }
+}
+
+.euiPaginationArrowButton {
+  outline-offset: -$euiFocusRingSize;
 }
 
 .euiPaginationButton-isPlaceholder {

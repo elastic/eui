@@ -54,7 +54,7 @@ exports[`EuiTablePagination is rendered 1`] = `
       </span>
       <button
         aria-label="Previous page"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
         data-test-subj="pagination-button-previous"
         title="Previous page"
         type="button"
@@ -175,7 +175,7 @@ exports[`EuiTablePagination is rendered 1`] = `
       </ul>
       <button
         aria-label="Next page"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
         data-test-subj="pagination-button-next"
         title="Next page"
         type="button"
@@ -217,7 +217,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
       </span>
       <button
         aria-label="Previous page"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
         data-test-subj="pagination-button-previous"
         title="Previous page"
         type="button"
@@ -338,7 +338,7 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
       </ul>
       <button
         aria-label="Next page"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
         data-test-subj="pagination-button-next"
         title="Next page"
         type="button"
