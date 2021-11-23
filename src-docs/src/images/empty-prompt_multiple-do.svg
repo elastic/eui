@@ -1,0 +1,54 @@
+<svg width="632" height="496" viewBox="0 0 632 496" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="path-2-inside-1_23023_279389" fill="white">
+<rect x="0.736816" y="0.29834" width="301.529" height="235.701" rx="6"/>
+</mask>
+<rect x="0.736816" y="0.29834" width="301.529" height="235.701" rx="6" fill="white" stroke="#D3DAE6" stroke-width="16" mask="url(#path-2-inside-1_23023_279389)"/>
+<rect x="86.5901" y="46.8926" width="129.82" height="22.3961" rx="6" fill="#D3DAE6"/>
+<rect x="105.728" y="138.157" width="91.5438" height="22.3961" rx="6" fill="#525761"/>
+<rect x="131.681" y="147.115" width="39.6375" height="4.47922" rx="2.23961" fill="white"/>
+<rect x="79.6335" y="175.67" width="160.721" height="13.4377" rx="4" fill="#D3DAE6"/>
+<ellipse cx="68.3085" cy="182.389" rx="5.6625" ry="6.71883" fill="#D3DAE6"/>
+<rect x="53.5859" y="82.7266" width="195.828" height="13.4376" rx="4" fill="#D3DAE6"/>
+<rect x="69.8657" y="109.602" width="163.269" height="13.4377" rx="4" fill="#D3DAE6"/>
+<mask id="path-11-inside-2_23023_279389" fill="white">
+<rect x="327.74" y="1.25195" width="301.529" height="198.748" rx="6"/>
+</mask>
+<rect x="327.74" y="1.25195" width="301.529" height="198.748" rx="6" fill="white" stroke="#D3DAE6" stroke-width="16" mask="url(#path-11-inside-2_23023_279389)"/>
+<mask id="path-13-inside-3_23023_279389" fill="white">
+<rect x="327.488" y="0.849121" width="303.526" height="234.328" rx="6"/>
+</mask>
+<rect x="327.488" y="0.849121" width="303.526" height="234.328" rx="6" fill="white" stroke="#D3DAE6" stroke-width="16" mask="url(#path-13-inside-3_23023_279389)"/>
+<g opacity="0.3">
+<path d="M456.213 33.5131C456.213 39.8899 451.055 45.0594 444.694 45.0594C438.332 45.0594 433.175 39.8899 433.175 33.5131C433.175 27.1362 438.332 21.9668 444.694 21.9668C451.055 21.9668 456.213 27.1362 456.213 33.5131Z" fill="#D6BF57"/>
+<path d="M433.175 80.8975V69.2539L456.213 51.7886L471.571 63.4322L509.967 34.3232L525.325 45.9668V80.8975H433.175Z" fill="#54B399"/>
+</g>
+<rect x="413.91" y="93.7295" width="130.68" height="19.0099" rx="6" fill="#D3DAE6"/>
+<rect x="433.175" y="171.194" width="92.15" height="19.0099" rx="6" fill="#0055B1"/>
+<rect x="459.3" y="178.798" width="39.9" height="3.80198" rx="1.90099" fill="white"/>
+<rect x="406.908" y="203.036" width="161.785" height="11.4059" rx="4" fill="#D3DAE6"/>
+<ellipse cx="395.508" cy="208.739" rx="5.7" ry="5.70297" fill="#D3DAE6"/>
+<rect x="380.688" y="124.145" width="197.125" height="11.4059" rx="4" fill="#D3DAE6"/>
+<rect x="397.075" y="146.957" width="164.35" height="11.4059" rx="4" fill="#D3DAE6"/>
+<mask id="path-24-inside-4_23023_279389" fill="white">
+<rect x="0.736816" y="260.298" width="301.529" height="235.701" rx="6"/>
+</mask>
+<rect x="0.736816" y="260.298" width="301.529" height="235.701" rx="6" fill="white" stroke="#D3DAE6" stroke-width="16" mask="url(#path-24-inside-4_23023_279389)"/>
+<rect x="86.5901" y="306.893" width="129.82" height="22.3961" rx="6" fill="#D3DAE6"/>
+<rect x="105.728" y="398.157" width="91.5438" height="22.3961" rx="6" fill="#525761"/>
+<rect x="131.681" y="407.115" width="39.6375" height="4.47922" rx="2.23961" fill="white"/>
+<rect x="79.6335" y="435.67" width="160.721" height="13.4377" rx="4" fill="#D3DAE6"/>
+<ellipse cx="68.3085" cy="442.389" rx="5.6625" ry="6.71883" fill="#D3DAE6"/>
+<rect x="53.5859" y="342.727" width="195.828" height="13.4376" rx="4" fill="#D3DAE6"/>
+<rect x="69.8657" y="369.602" width="163.269" height="13.4377" rx="4" fill="#D3DAE6"/>
+<mask id="path-33-inside-5_23023_279389" fill="white">
+<rect x="326.737" y="260.298" width="301.529" height="235.701" rx="6"/>
+</mask>
+<rect x="326.737" y="260.298" width="301.529" height="235.701" rx="6" fill="white" stroke="#D3DAE6" stroke-width="16" mask="url(#path-33-inside-5_23023_279389)"/>
+<rect x="412.59" y="306.893" width="129.82" height="22.3961" rx="6" fill="#D3DAE6"/>
+<rect x="431.728" y="398.157" width="91.5438" height="22.3961" rx="6" fill="#525761"/>
+<rect x="457.681" y="407.115" width="39.6375" height="4.47922" rx="2.23961" fill="white"/>
+<rect x="405.634" y="435.67" width="160.721" height="13.4377" rx="4" fill="#D3DAE6"/>
+<ellipse cx="394.309" cy="442.389" rx="5.6625" ry="6.71883" fill="#D3DAE6"/>
+<rect x="379.586" y="342.727" width="195.828" height="13.4376" rx="4" fill="#D3DAE6"/>
+<rect x="395.866" y="369.602" width="163.269" height="13.4377" rx="4" fill="#D3DAE6"/>
+</svg>

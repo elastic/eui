@@ -18,6 +18,9 @@ import {
 
 import vertical from '../../images/empty-prompt_vertical.svg';
 import horizontal from '../../images/empty-prompt_horizontal.svg';
+import iconDont from '../../images/empty-prompt_icon-dont.svg';
+import multipleDo from '../../images/empty-prompt_multiple-do.svg';
+import multipleDont from '../../images/empty-prompt_multiple-dont.svg';
 
 export default () => (
   <>
@@ -92,41 +95,29 @@ export default () => (
 
     <EuiTable>
       <EuiTableHeader>
-        <EuiTableHeaderCell width="200px">Type</EuiTableHeaderCell>
+        <EuiTableHeaderCell>Type</EuiTableHeaderCell>
         <EuiTableHeaderCell>Description</EuiTableHeaderCell>
         <EuiTableHeaderCell>Goal</EuiTableHeaderCell>
+        <EuiTableHeaderCell>Action</EuiTableHeaderCell>
       </EuiTableHeader>
 
       <EuiTableBody>
-        <EuiTableRow>
-          <EuiTableRowCell mobileOptions={{ width: '100%' }}>
-            <strong>First use</strong>
-          </EuiTableRowCell>
-
-          <EuiTableRowCell>
-            No content on screen because it is the first time users are
-            interacting with that screen.
-          </EuiTableRowCell>
-
-          <EuiTableRowCell>
-            Users understand there’s no data because it is the first time they
-            interact with the app. They can clearly understand how to add data.
-          </EuiTableRowCell>
-        </EuiTableRow>
-
         <EuiTableRow>
           <EuiTableRowCell mobileOptions={{ width: '100%' }}>
             <strong>No data</strong>
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-            No data is available, or the data doesn’t match the filter.
+            No data is available, or the data doesn’t match the filter. First
+            time use.
           </EuiTableRowCell>
 
           <EuiTableRowCell>
             Users understand why there is no data displayed and what actions
             they can perform to make it available.
           </EuiTableRowCell>
+
+          <EuiTableRowCell>Add data</EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
@@ -142,6 +133,8 @@ export default () => (
             Users understand why they don’t have permission to access the
             content and what actions they need to perform to get access.
           </EuiTableRowCell>
+
+          <EuiTableRowCell>Request permission</EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
@@ -154,6 +147,10 @@ export default () => (
           <EuiTableRowCell>
             Users understand why the search didn’t match any results and what
             they can do to have better results.
+          </EuiTableRowCell>
+
+          <EuiTableRowCell>
+            Refresh / try again / reformat data or action specific to error
           </EuiTableRowCell>
         </EuiTableRow>
 
@@ -168,6 +165,28 @@ export default () => (
             Users understand why they’re facing an error and what they can do to
             solve the error.
           </EuiTableRowCell>
+
+          <EuiTableRowCell>
+            Reset filter or push to adjust them / Redirect to filters or search
+          </EuiTableRowCell>
+        </EuiTableRow>
+
+        <EuiTableRow>
+          <EuiTableRowCell mobileOptions={{ width: '100%' }}>
+            <strong>Error page</strong>
+          </EuiTableRowCell>
+
+          <EuiTableRowCell>
+            The error pages come from client and server errors — the 4xx and 5xx
+            status code classes.
+          </EuiTableRowCell>
+
+          <EuiTableRowCell>
+            Users understand there is a client or server error and what is the
+            status code.
+          </EuiTableRowCell>
+
+          <EuiTableRowCell>Go home / go back</EuiTableRowCell>
         </EuiTableRow>
 
         <EuiTableRow>
@@ -196,6 +215,8 @@ export default () => (
             a feature and what actions they need to perform to upgrade the
             license.
           </EuiTableRowCell>
+
+          <EuiTableRowCell>Start trial / upgrade license</EuiTableRowCell>
         </EuiTableRow>
       </EuiTableBody>
     </EuiTable>
@@ -215,8 +236,8 @@ export default () => (
           <p>
             Most of the time, you just need a vertical layout. The vertical
             layout is perfect when the content is small. A title and the
-            description are no longer than 2 paragraphs. You can use this layout
-            with just an icon, an illustration or no icons at all.
+            description are no longer than two paragraphs. You can use this
+            layout with just an icon, an illustration or no icons at all.
           </p>
           <p>
             Use the horizontal layout when you have large contents. When a
@@ -238,6 +259,96 @@ export default () => (
         minHeight="280px"
       >
         <EuiImage alt="Horizontal layout" url={horizontal} height="252" />
+      </GuideRuleExample>
+    </GuideRule>
+
+    <GuideRule
+      heading="Panel colors"
+      description={
+        <>
+          <p>
+            Most of the time you just need the plain color with or without a
+            border considering what is the page layout you’re currently on.
+          </p>
+          <p>
+            In a few scenarios you can consider some color alternatives. Use the
+            following helper tool to find what is the best panel color to use
+            based on your use case.
+          </p>
+        </>
+      }
+    />
+
+    <GuideRule
+      heading="Icons and illustrations"
+      description={
+        <>
+          <p>
+            Icons and illustrations must first and foremost communicate meaning.
+            They are also an opportunity to delight users and show our Elastic
+            brand.
+          </p>
+          <p>
+            When using an illustration bear in mind that they stand out a lot.
+            Use one illustration per page. Having multiple illustrations might
+            make the page too crowded.
+          </p>
+        </>
+      }
+    >
+      <GuideRuleExample
+        type="do"
+        text="An illustration works better in a horizontal layout."
+        minHeight="280px"
+      >
+        <EuiImage alt="Horizontal layout" url={horizontal} height="252" />
+      </GuideRuleExample>
+      <GuideRuleExample
+        type="dont"
+        text="Avoid using icons and illustrations that don't mean anything and are not related with the content."
+        minHeight="280px"
+      >
+        <EuiImage alt="No meaningful icon" url={iconDont} height="252" />
+      </GuideRuleExample>
+    </GuideRule>
+
+    <GuideRule
+      heading="Multiple empty states "
+      description={
+        <>
+          <p>
+            <p>
+              When having multiple empty states throughout a page, avoid having
+              multiple primary actions and multiple icons/illustrations.
+            </p>
+          </p>
+          <p>
+            Use secondary actions and no icons/illustrations. This way the
+            visual noise will be reduced and Consider using an illustration or a
+            primary action if you want to make one of the empty states stand
+            out.
+          </p>
+        </>
+      }
+    >
+      <GuideRuleExample
+        type="do"
+        text="Only use an illustration or a primary action in case you want to make one of the empty states stand out."
+        minHeight="280px"
+      >
+        <EuiImage alt="Vertical layout" url={multipleDo} height="252" />
+      </GuideRuleExample>
+
+      <GuideRuleExample
+        type="dont"
+        text="Avoid multiple primary actions and multiple icons/illustrations as they create too much visual noise."
+        minHeight="280px"
+      >
+        <EuiImage
+          alt="Multiple empty states with primary actions and icons/illustrations"
+          url={multipleDont}
+          height="252"
+        />
       </GuideRuleExample>
     </GuideRule>
     {/* End of Design section */}

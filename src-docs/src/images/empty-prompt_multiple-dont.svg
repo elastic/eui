@@ -1,0 +1,78 @@
+<svg width="635" height="497" viewBox="0 0 635 497" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="path-2-inside-1_23023_279552" fill="white">
+<rect x="1.74048" y="1.68604" width="301.529" height="198.748" rx="6"/>
+</mask>
+<rect x="1.74048" y="1.68604" width="301.529" height="198.748" rx="6" fill="white" stroke="#D3DAE6" stroke-width="16" mask="url(#path-2-inside-1_23023_279552)"/>
+<mask id="path-4-inside-2_23023_279552" fill="white">
+<rect x="1.48828" y="1.2832" width="303.526" height="234.328" rx="6"/>
+</mask>
+<rect x="1.48828" y="1.2832" width="303.526" height="234.328" rx="6" fill="white" stroke="#D3DAE6" stroke-width="16" mask="url(#path-4-inside-2_23023_279552)"/>
+<g opacity="0.3">
+<path d="M130.212 33.9472C130.212 40.324 125.055 45.4935 118.694 45.4935C112.332 45.4935 107.175 40.324 107.175 33.9472C107.175 27.5703 112.332 22.4009 118.694 22.4009C125.055 22.4009 130.212 27.5703 130.212 33.9472Z" fill="#D6BF57"/>
+<path d="M107.175 81.3316V69.688L130.212 52.2227L145.571 63.8662L183.966 34.7573L199.325 46.4009V81.3316H107.175Z" fill="#54B399"/>
+</g>
+<rect x="87.9102" y="94.1631" width="130.68" height="19.0099" rx="6" fill="#D3DAE6"/>
+<rect x="107.175" y="171.629" width="92.15" height="19.0099" rx="6" fill="#0055B1"/>
+<rect x="133.3" y="179.233" width="39.9" height="3.80198" rx="1.90099" fill="white"/>
+<rect x="80.9077" y="203.47" width="161.785" height="11.4059" rx="4" fill="#D3DAE6"/>
+<ellipse cx="69.5076" cy="209.173" rx="5.7" ry="5.70297" fill="#D3DAE6"/>
+<rect x="54.6875" y="124.579" width="197.125" height="11.4059" rx="4" fill="#D3DAE6"/>
+<rect x="71.0752" y="147.391" width="164.35" height="11.4059" rx="4" fill="#D3DAE6"/>
+<mask id="path-15-inside-3_23023_279552" fill="white">
+<rect x="330.741" y="1.68604" width="301.529" height="198.748" rx="6"/>
+</mask>
+<rect x="330.741" y="1.68604" width="301.529" height="198.748" rx="6" fill="white" stroke="#D3DAE6" stroke-width="16" mask="url(#path-15-inside-3_23023_279552)"/>
+<mask id="path-17-inside-4_23023_279552" fill="white">
+<rect x="330.488" y="1.2832" width="303.526" height="234.328" rx="6"/>
+</mask>
+<rect x="330.488" y="1.2832" width="303.526" height="234.328" rx="6" fill="white" stroke="#D3DAE6" stroke-width="16" mask="url(#path-17-inside-4_23023_279552)"/>
+<g opacity="0.3">
+<path d="M459.213 33.9472C459.213 40.324 454.056 45.4935 447.694 45.4935C441.332 45.4935 436.175 40.324 436.175 33.9472C436.175 27.5703 441.332 22.4009 447.694 22.4009C454.056 22.4009 459.213 27.5703 459.213 33.9472Z" fill="#D6BF57"/>
+<path d="M436.175 81.3316V69.688L459.213 52.2227L474.571 63.8662L512.967 34.7573L528.325 46.4009V81.3316H436.175Z" fill="#54B399"/>
+</g>
+<rect x="416.91" y="94.1631" width="130.68" height="19.0099" rx="6" fill="#D3DAE6"/>
+<rect x="436.175" y="171.629" width="92.15" height="19.0099" rx="6" fill="#0055B1"/>
+<rect x="462.3" y="179.233" width="39.9" height="3.80198" rx="1.90099" fill="white"/>
+<rect x="409.908" y="203.47" width="161.785" height="11.4059" rx="4" fill="#D3DAE6"/>
+<ellipse cx="398.508" cy="209.173" rx="5.7" ry="5.70297" fill="#D3DAE6"/>
+<rect x="383.688" y="124.579" width="197.125" height="11.4059" rx="4" fill="#D3DAE6"/>
+<rect x="400.075" y="147.391" width="164.35" height="11.4059" rx="4" fill="#D3DAE6"/>
+<mask id="path-28-inside-5_23023_279552" fill="white">
+<rect x="1.74048" y="261.686" width="301.529" height="198.748" rx="6"/>
+</mask>
+<rect x="1.74048" y="261.686" width="301.529" height="198.748" rx="6" fill="white" stroke="#D3DAE6" stroke-width="16" mask="url(#path-28-inside-5_23023_279552)"/>
+<mask id="path-30-inside-6_23023_279552" fill="white">
+<rect x="1.48828" y="261.283" width="303.526" height="234.328" rx="6"/>
+</mask>
+<rect x="1.48828" y="261.283" width="303.526" height="234.328" rx="6" fill="white" stroke="#D3DAE6" stroke-width="16" mask="url(#path-30-inside-6_23023_279552)"/>
+<g opacity="0.3">
+<path d="M130.212 293.947C130.212 300.324 125.055 305.493 118.694 305.493C112.332 305.493 107.175 300.324 107.175 293.947C107.175 287.57 112.332 282.401 118.694 282.401C125.055 282.401 130.212 287.57 130.212 293.947Z" fill="#D6BF57"/>
+<path d="M107.175 341.332V329.688L130.212 312.223L145.571 323.866L183.966 294.757L199.325 306.401V341.332H107.175Z" fill="#54B399"/>
+</g>
+<rect x="87.9102" y="354.163" width="130.68" height="19.0099" rx="6" fill="#D3DAE6"/>
+<rect x="107.175" y="431.629" width="92.15" height="19.0099" rx="6" fill="#0055B1"/>
+<rect x="133.3" y="439.233" width="39.9" height="3.80198" rx="1.90099" fill="white"/>
+<rect x="80.9077" y="463.47" width="161.785" height="11.4059" rx="4" fill="#D3DAE6"/>
+<ellipse cx="69.5076" cy="469.173" rx="5.7" ry="5.70297" fill="#D3DAE6"/>
+<rect x="54.6875" y="384.579" width="197.125" height="11.4059" rx="4" fill="#D3DAE6"/>
+<rect x="71.0752" y="407.391" width="164.35" height="11.4059" rx="4" fill="#D3DAE6"/>
+<mask id="path-41-inside-7_23023_279552" fill="white">
+<rect x="330.741" y="261.686" width="301.529" height="198.748" rx="6"/>
+</mask>
+<rect x="330.741" y="261.686" width="301.529" height="198.748" rx="6" fill="white" stroke="#D3DAE6" stroke-width="16" mask="url(#path-41-inside-7_23023_279552)"/>
+<mask id="path-43-inside-8_23023_279552" fill="white">
+<rect x="330.488" y="261.283" width="303.526" height="234.328" rx="6"/>
+</mask>
+<rect x="330.488" y="261.283" width="303.526" height="234.328" rx="6" fill="white" stroke="#D3DAE6" stroke-width="16" mask="url(#path-43-inside-8_23023_279552)"/>
+<g opacity="0.3">
+<path d="M459.213 293.947C459.213 300.324 454.056 305.493 447.694 305.493C441.332 305.493 436.175 300.324 436.175 293.947C436.175 287.57 441.332 282.401 447.694 282.401C454.056 282.401 459.213 287.57 459.213 293.947Z" fill="#D6BF57"/>
+<path d="M436.175 341.332V329.688L459.213 312.223L474.571 323.866L512.967 294.757L528.325 306.401V341.332H436.175Z" fill="#54B399"/>
+</g>
+<rect x="416.91" y="354.163" width="130.68" height="19.0099" rx="6" fill="#D3DAE6"/>
+<rect x="436.175" y="431.629" width="92.15" height="19.0099" rx="6" fill="#0055B1"/>
+<rect x="462.3" y="439.233" width="39.9" height="3.80198" rx="1.90099" fill="white"/>
+<rect x="409.908" y="463.47" width="161.785" height="11.4059" rx="4" fill="#D3DAE6"/>
+<ellipse cx="398.508" cy="469.173" rx="5.7" ry="5.70297" fill="#D3DAE6"/>
+<rect x="383.688" y="384.579" width="197.125" height="11.4059" rx="4" fill="#D3DAE6"/>
+<rect x="400.075" y="407.391" width="164.35" height="11.4059" rx="4" fill="#D3DAE6"/>
+</svg>
