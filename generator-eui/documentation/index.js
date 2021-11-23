@@ -128,6 +128,7 @@ module.exports = class extends Generator {
       const {
         componentExampleName,
         componentExamplePrefix,
+        componentName,
         fileName,
       } = this.config.documentationVars;
 
@@ -143,21 +144,20 @@ module.exports = class extends Generator {
           )});`
       );
 
-      this.log(chalk.white('\n// Render demo.'));
+      this.log(chalk.white('\n// Append to existing example sections.'));
       this.log(
-        '<GuideSection\n' +
-          `  title="${componentExampleName}"\n` +
-          '  source={[{\n' +
+        '{\n' +
+          `  title: '${componentExampleName}',\n` +
+          '  text: (\n' +
+          `    <><p>Description needed: how to use the <strong>${componentExampleName}</strong> component.</p></>\n` +
+          '  ),\n' +
+          '  source: [{\n' +
           '    type: GuideSectionTypes.JS,\n' +
           `    code: ${componentExamplePrefix}Source,\n` +
-          '  }]}\n' +
-          '  text={\n' +
-          `    <p>Description needed: how to use the ${componentExampleName} component.</p>\n` +
-          ' }\n' +
-          '  demo={\n' +
-          `    <${componentExampleName} />\n` +
-          ' }\n' +
-          '/>\n'
+          '  }],\n' +
+          `  demo: <${componentExampleName} />,\n` +
+          `  props: { ${componentName} },\n` +
+        ' }\n'
       );
     };
 

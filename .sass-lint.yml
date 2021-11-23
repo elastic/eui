@@ -6,6 +6,7 @@ files:
     # These are themes of outside libraries we import
     - 'src/components/series_chart/**/*.s+(a|c)ss'
     - 'src/global_styling/react_date_picker/**/*.s+(a|c)ss'
+    - 'src/components/date_picker/react-datepicker/**/*.s+(a|c)ss'
 rules:
   quotes:
     - 2
