@@ -14,4 +14,4 @@
 // ***********************************************************
 
 import '@cypress/code-coverage/support';
-import '../../dist/eui_theme_amsterdam_dark.css';
+require(THEME_IMPORT); // defined by DefinePlugin in the cypress webpack config

@@ -8,19 +8,17 @@
 
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { mount, render } from 'enzyme';
-import html from 'html';
+import { mount, render, shallow } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiCodeBlock } from './code_block';
-import { FONT_SIZES, PADDING_SIZES } from './_code_block';
+import { EuiCodeBlock, FONT_SIZES, PADDING_SIZES } from './code_block';
 
 const code = `var some = 'code';
 console.log(some);`;
 
 describe('EuiCodeBlock', () => {
-  test('renders a code block', () => {
+  it('renders a code block', () => {
     const component = render(
       <EuiCodeBlock {...requiredProps}>{code}</EuiCodeBlock>
     );
@@ -90,6 +88,17 @@ describe('EuiCodeBlock', () => {
         });
       });
     });
+
+    describe('whiteSpace', () => {
+      it('renders a pre block tag with a css class modifier', () => {
+        const component = render(
+          <EuiCodeBlock whiteSpace="pre" {...requiredProps}>
+            {code}
+          </EuiCodeBlock>
+        );
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 
   describe('dynamic content', () => {
@@ -97,12 +106,10 @@ describe('EuiCodeBlock', () => {
       expect.assertions(2);
 
       function takeSnapshot() {
-        expect(
-          html.prettyPrint(appDiv.innerHTML, {
-            indent_size: 2,
-            unformatted: [], // Expand all tags, including spans
-          })
-        ).toMatchSnapshot();
+        const snapshot = render(
+          <div dangerouslySetInnerHTML={{ __html: appDiv.innerHTML }} />
+        );
+        expect(snapshot).toMatchSnapshot();
       }
 
       // enzyme does not recreate enough of the React<->DOM interaction to reproduce this bug
@@ -129,20 +136,24 @@ describe('EuiCodeBlock', () => {
         }, [value]);
 
         return (
-          <div>
-            <EuiCodeBlock language="javascript">
-              const value = &apos;{value}&apos;
-            </EuiCodeBlock>
-          </div>
+          <EuiCodeBlock language="javascript">
+            const value = &apos;{value}&apos;
+          </EuiCodeBlock>
         );
       }
 
       ReactDOM.render(<App />, appDiv);
     });
+  });
 
+  describe('full screen', () => {
     it('displays content in fullscreen mode', () => {
       const component = mount(
-        <EuiCodeBlock language="javascript" overflowHeight={300}>
+        <EuiCodeBlock
+          {...requiredProps}
+          language="javascript"
+          overflowHeight={300}
+        >
           const value = &quot;hello&quot;
         </EuiCodeBlock>
       );
@@ -150,18 +161,90 @@ describe('EuiCodeBlock', () => {
       component.find('EuiButtonIcon[iconType="fullScreen"]').simulate('click');
       component.update();
 
-      expect(component.find('.euiCodeBlock-isFullScreen').text()).toBe(
-        'const value = "hello"'
-      );
+      expect(component.find('.euiCodeBlock-isFullScreen')).toMatchSnapshot();
     });
 
-    test('renders a virtualized code block', () => {
+    it('closes fullscreen mode when the escape key is pressed', () => {
+      const component = mount(
+        <EuiCodeBlock
+          {...requiredProps}
+          language="javascript"
+          overflowHeight={300}
+        >
+          const value = &quot;world&quot;
+        </EuiCodeBlock>
+      );
+
+      component.find('EuiButtonIcon[iconType="fullScreen"]').simulate('click');
+      component.update();
+      component
+        .find('.euiCodeBlock-isFullScreen')
+        .childAt(0)
+        .simulate('keyDown', { key: 'Escape' });
+
+      expect(component.find('.euiCodeBlock-isFullScreen')).toHaveLength(0);
+    });
+  });
+
+  describe('virtualization', () => {
+    it('renders a virtualized code block', () => {
       const component = render(
         <EuiCodeBlock
           isVirtualized={true}
           overflowHeight="50%"
           {...requiredProps}
         >
+          {code}
+        </EuiCodeBlock>
+      );
+      expect(component).toMatchSnapshot();
+    });
+
+    describe('type checks', () => {
+      it('requires overflowHeight', () => {
+        // @ts-expect-error should expect overflowHeight
+        shallow(<EuiCodeBlock isVirtualized overflowHeight={undefined} />);
+      });
+
+      it('only allows whiteSpace of pre', () => {
+        shallow(
+          // @ts-expect-error should only accept "pre"
+          <EuiCodeBlock
+            isVirtualized
+            overflowHeight={50}
+            whiteSpace="pre-wrap"
+          />
+        );
+        // OK
+        shallow(
+          <EuiCodeBlock isVirtualized overflowHeight={50} whiteSpace="pre" />
+        );
+      });
+    });
+  });
+
+  describe('line numbers', () => {
+    it('renders line numbers', () => {
+      const component = render(
+        <EuiCodeBlock lineNumbers {...requiredProps}>
+          {code}
+        </EuiCodeBlock>
+      );
+      expect(component).toMatchSnapshot();
+    });
+
+    it('renders line numbers with a start value', () => {
+      const component = render(
+        <EuiCodeBlock lineNumbers={{ start: 10 }} {...requiredProps}>
+          {code}
+        </EuiCodeBlock>
+      );
+      expect(component).toMatchSnapshot();
+    });
+
+    it('renders highlighted line numbers', () => {
+      const component = render(
+        <EuiCodeBlock lineNumbers={{ highlight: '1' }} {...requiredProps}>
           {code}
         </EuiCodeBlock>
       );
