@@ -16,8 +16,28 @@ const code = `var some = 'code';
 console.log(some);`;
 
 describe('EuiCode', () => {
-  test('renders a code snippet', () => {
+  it('renders a code snippet', () => {
     const component = render(<EuiCode {...requiredProps}>{code}</EuiCode>);
+
+    expect(component).toMatchSnapshot();
+  });
+
+  it('renders transparent backgrounds', () => {
+    const component = render(
+      <EuiCode {...requiredProps} transparentBackground>
+        {code}
+      </EuiCode>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  it('renders languages', () => {
+    const component = render(
+      <EuiCode {...requiredProps} language="js">
+        {code}
+      </EuiCode>
+    );
 
     expect(component).toMatchSnapshot();
   });
