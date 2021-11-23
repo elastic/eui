@@ -77,7 +77,6 @@ export const EuiAutoRefresh: FunctionComponent<EuiAutoRefreshProps> = ({
       closePopover={() => {
         setIsPopoverOpen(false);
       }}
-      panelStyle={{ minWidth: 300 }}
     >
       <EuiRefreshInterval
         onRefreshChange={onRefreshChange}

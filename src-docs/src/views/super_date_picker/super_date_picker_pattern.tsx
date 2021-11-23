@@ -76,7 +76,7 @@ export default () => {
   return (
     <>
       <EuiFlexGroup gutterSize="s">
-        <EuiFlexItem>
+        <EuiFlexItem style={{ minWidth: '50%' }}>
           <EuiOutsideClickDetector
             onOutsideClick={() => setShowQuickSelectOnly(false)}
             isDisabled={!showQuickSelectOnly}
@@ -93,7 +93,7 @@ export default () => {
             />
           </EuiOutsideClickDetector>
         </EuiFlexItem>
-        <EuiFlexItem style={{ maxWidth: '50%' }} grow={false}>
+        <EuiFlexItem grow={false}>
           <div>
             <EuiSuperDatePicker
               start={start}

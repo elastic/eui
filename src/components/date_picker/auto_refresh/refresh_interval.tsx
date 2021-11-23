@@ -183,7 +183,12 @@ export class EuiRefreshInterval extends Component<
 
     return (
       <fieldset>
-        <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
+        <EuiFlexGroup
+          alignItems="center"
+          gutterSize="s"
+          responsive={false}
+          wrap
+        >
           <EuiFlexItem grow={false}>
             <EuiSwitch
               data-test-subj="superDatePickerToggleRefreshButton"
@@ -201,7 +206,7 @@ export class EuiRefreshInterval extends Component<
               }
             />
           </EuiFlexItem>
-          <EuiFlexItem>
+          <EuiFlexItem style={{ minWidth: 60 }}>
             <EuiFieldNumber
               compressed
               fullWidth
@@ -215,7 +220,7 @@ export class EuiRefreshInterval extends Component<
               data-test-subj="superDatePickerRefreshIntervalInput"
             />
           </EuiFlexItem>
-          <EuiFlexItem grow={2}>
+          <EuiFlexItem style={{ minWidth: 100 }} grow={2}>
             <EuiSelect
               compressed
               fullWidth
