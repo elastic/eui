@@ -15,6 +15,7 @@ import { EuiI18n, useEuiI18n } from '../i18n';
 import { EuiText } from '../text';
 import { EuiPaginationButtonArrow } from './pagination_button_arrow';
 import { EuiBreakpointSize, useIsWithinBreakpoints } from '../../services';
+import { EuiScreenReaderOnly } from '../accessibility';
 
 const MAX_VISIBLE_PAGES = 5;
 const NUMBER_SURROUNDING_PAGES = Math.floor(MAX_VISIBLE_PAGES * 0.5);
@@ -282,12 +283,16 @@ export const EuiPagination: FunctionComponent<Props> = ({
       );
     }
   }
+
+  // All the i18n strings used to build the whole SR-only text
   const lastLabel = useEuiI18n('euiPagination.last', 'Last');
   const pageLabel = useEuiI18n('euiPagination.page', 'Page');
   const ofLabel = useEuiI18n('euiPagination.of', 'of');
   const collectionLabel = useEuiI18n('euiPagination.collection', 'collection');
   const fromEndLabel = useEuiI18n('euiPagination.fromEndLabel', 'from end');
 
+  // Based on the `activePage` count, build the front of the SR-only text
+  // i.e. `Page 1`, `Page 2 from end`, `Last Page`
   const accessiblePageString = (): string => {
     if (activePage < -1)
       return `${pageLabel} ${Math.abs(activePage)} ${fromEndLabel}`;
@@ -295,14 +300,23 @@ export const EuiPagination: FunctionComponent<Props> = ({
     return `${pageLabel} ${activePage + 1}`;
   };
 
+  // If `pageCount` is unknown call it `collection`
   const accessibleCollectionString =
     pageCount === 0 ? collectionLabel : pageCount.toString();
 
-  const accessiblePageCount = `${accessiblePageString()} ${ofLabel} ${accessibleCollectionString}`;
+  // The compressed version already should the activePage with pageCount, so it just needs `Page`
+  // The other types will append the whole string with total pageCount or `collection`
+  const accessiblePageCount = compressed
+    ? pageLabel
+    : `${accessiblePageString()} ${ofLabel} ${accessibleCollectionString}`;
 
   return (
     <nav className={classes} {...rest}>
-      {accessiblePageCount}
+      <EuiScreenReaderOnly>
+        <span aria-atomic="true" aria-relevant="additions text" role="status">
+          {accessiblePageCount}
+        </span>
+      </EuiScreenReaderOnly>
       {firstButton}
       {previousButton}
       {centerPageCount}

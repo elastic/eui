@@ -6,7 +6,14 @@ exports[`EuiPagination is rendered 1`] = `
   class="euiPagination testClass1 testClass2"
   data-test-subj="test subject string"
 >
-  Page 1 of 1
+  <span
+    aria-atomic="true"
+    aria-relevant="additions text"
+    class="euiScreenReaderOnly"
+    role="status"
+  >
+    Page 1 of 1
+  </span>
   <button
     aria-label="Previous page"
     class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
@@ -69,7 +76,14 @@ exports[`EuiPagination props activePage can be -1 1`] = `
 <nav
   class="euiPagination"
 >
-  Last Page of collection
+  <span
+    aria-atomic="true"
+    aria-relevant="additions text"
+    class="euiScreenReaderOnly"
+    role="status"
+  >
+    Last Page of collection
+  </span>
   <button
     aria-label="First page"
     class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
@@ -133,7 +147,14 @@ exports[`EuiPagination props activePage is rendered 1`] = `
 <nav
   class="euiPagination"
 >
-  Page 6 of 10
+  <span
+    aria-atomic="true"
+    aria-relevant="additions text"
+    class="euiScreenReaderOnly"
+    role="status"
+  >
+    Page 6 of 10
+  </span>
   <button
     aria-label="Previous page"
     class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
@@ -341,7 +362,14 @@ exports[`EuiPagination props aria-controls is rendered 1`] = `
 <nav
   class="euiPagination"
 >
-  Page 1 of 1
+  <span
+    aria-atomic="true"
+    aria-relevant="additions text"
+    class="euiScreenReaderOnly"
+    role="status"
+  >
+    Page 1 of 1
+  </span>
   <button
     aria-label="Previous page"
     class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
@@ -404,7 +432,14 @@ exports[`EuiPagination props compressed is rendered 1`] = `
 <nav
   class="euiPagination"
 >
-  Page 1 of 1
+  <span
+    aria-atomic="true"
+    aria-relevant="additions text"
+    class="euiScreenReaderOnly"
+    role="status"
+  >
+    Page
+  </span>
   <button
     aria-label="First page"
     class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
@@ -479,7 +514,14 @@ exports[`EuiPagination props pageCount can be 0 1`] = `
 <nav
   class="euiPagination"
 >
-  Page 1 of collection
+  <span
+    aria-atomic="true"
+    aria-relevant="additions text"
+    class="euiScreenReaderOnly"
+    role="status"
+  >
+    Page 1 of collection
+  </span>
   <button
     aria-label="First page"
     class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
@@ -543,7 +585,14 @@ exports[`EuiPagination props pageCount is rendered 1`] = `
 <nav
   class="euiPagination"
 >
-  Page 1 of 10
+  <span
+    aria-atomic="true"
+    aria-relevant="additions text"
+    class="euiScreenReaderOnly"
+    role="status"
+  >
+    Page 1 of 10
+  </span>
   <button
     aria-label="Previous page"
     class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
@@ -711,7 +760,14 @@ exports[`EuiPagination props responsive can be customized 1`] = `
 <nav
   class="euiPagination"
 >
-  Page 1 of 1
+  <span
+    aria-atomic="true"
+    aria-relevant="additions text"
+    class="euiScreenReaderOnly"
+    role="status"
+  >
+    Page 1 of 1
+  </span>
   <button
     aria-label="Previous page"
     class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
@@ -773,7 +829,14 @@ exports[`EuiPagination props responsive can be false 1`] = `
 <nav
   class="euiPagination"
 >
-  Page 1 of 1
+  <span
+    aria-atomic="true"
+    aria-relevant="additions text"
+    class="euiScreenReaderOnly"
+    role="status"
+  >
+    Page 1 of 1
+  </span>
   <button
     aria-label="Previous page"
     class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"

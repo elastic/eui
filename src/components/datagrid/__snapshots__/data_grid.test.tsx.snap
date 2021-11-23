@@ -43,7 +43,14 @@ exports[`EuiDataGrid pagination renders 1`] = `
       aria-label="Pagination for preceding grid: test grid"
       class="euiPagination"
     >
-      Page 2 of 2
+      <span
+        aria-atomic="true"
+        aria-relevant="additions text"
+        class="euiScreenReaderOnly"
+        role="status"
+      >
+        Page 2 of 2
+      </span>
       <a
         aria-controls="generated-id"
         aria-label="Previous page"

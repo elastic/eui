@@ -44,7 +44,14 @@ exports[`EuiTablePagination is rendered 1`] = `
       class="euiPagination testClass1 testClass2"
       data-test-subj="test subject string"
     >
-      Page 2 of 5
+      <span
+        aria-atomic="true"
+        aria-relevant="additions text"
+        class="euiScreenReaderOnly"
+        role="status"
+      >
+        Page 2 of 5
+      </span>
       <button
         aria-label="Previous page"
         class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
@@ -200,7 +207,14 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
       class="euiPagination testClass1 testClass2"
       data-test-subj="test subject string"
     >
-      Page 2 of 5
+      <span
+        aria-atomic="true"
+        aria-relevant="additions text"
+        class="euiScreenReaderOnly"
+        role="status"
+      >
+        Page 2 of 5
+      </span>
       <button
         aria-label="Previous page"
         class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"

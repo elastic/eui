@@ -485,7 +485,16 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                           aria-label="Pagination for table: "
                           className="euiPagination"
                         >
-                          Page 2 of 2
+                          <EuiScreenReaderOnly>
+                            <span
+                              aria-atomic="true"
+                              aria-relevant="additions text"
+                              className="euiScreenReaderOnly"
+                              role="status"
+                            >
+                              Page 2 of 2
+                            </span>
+                          </EuiScreenReaderOnly>
                           <EuiPaginationButtonArrow
                             ariaControls="__table_generated-id"
                             disabled={false}
