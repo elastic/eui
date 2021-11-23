@@ -1,5 +1,5 @@
 import React from 'react';
-import { useJsonVars } from '../../theme/_json/_get_json_vars.js';
+import { useJsonVars } from '../theme/_json/_get_json_vars.js';
 
 import {
   EuiFlexGroup,
@@ -9,7 +9,7 @@ import {
   EuiTitle,
   EuiText,
   EuiPanel,
-} from '../../../../../src/components';
+} from '../../../../src/components';
 
 export const VisPalette = ({ variant }) => {
   const vars = useJsonVars();
@@ -24,7 +24,10 @@ export const VisPalette = ({ variant }) => {
       <EuiFlexItem key={index} grow={false}>
         <EuiFlexGroup responsive={false} alignItems="center">
           <EuiFlexItem grow={false}>
-            <EuiCopy beforeMessage="Click to copy color name" textToCopy={name}>
+            <EuiCopy
+              beforeMessage="Click to copy color name"
+              textToCopy={`$${name}`}
+            >
               {(copy) => (
                 <EuiIcon
                   onClick={copy}
@@ -37,7 +40,7 @@ export const VisPalette = ({ variant }) => {
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiTitle size="xxs">
-              <h3>{name}</h3>
+              <h3>${name}</h3>
             </EuiTitle>
           </EuiFlexItem>
           <EuiFlexItem>

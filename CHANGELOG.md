@@ -1,5 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Updated color of `EuiHorizontalRule` when rendered inside `EuiToolTip` ([#5378](https://github.com/elastic/eui/pull/5378))
+
 **Bug fixes**
 
 - Fixed an `EuiDataGrid` bug where paginated overflowing data grids could become unscrollable when `rowCount` changed ([#5400](https://github.com/elastic/eui/pull/5400))

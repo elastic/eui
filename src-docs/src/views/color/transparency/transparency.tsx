@@ -1,8 +1,12 @@
 import React, { Fragment } from 'react';
 
-import { EuiFlexGrid, EuiFlexItem, EuiBadge } from '../../../../src/components';
+import {
+  EuiFlexGrid,
+  EuiFlexItem,
+  EuiBadge,
+} from '../../../../../src/components';
 
-import { useEuiTheme, transparentize } from '../../../../src/services';
+import { useEuiTheme, transparentize } from '../../../../../src/services';
 
 export default () => {
   const { euiTheme, colorMode } = useEuiTheme();
