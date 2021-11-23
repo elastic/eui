@@ -157,12 +157,20 @@ describe('useDataGridDisplaySelector', () => {
           expect(getSelection(component)).toEqual('undefined');
         });
 
-        test('height should fall back to undefined', () => {
-          const component = mount(
+        test('height should not select any buttons', () => {
+          const component1 = mount(
             <MockComponent rowHeightsOptions={{ defaultHeight: 36 }} />
           );
-          openPopover(component);
-          expect(getSelection(component)).toEqual('undefined');
+          openPopover(component1);
+          expect(getSelection(component1)).toEqual('');
+
+          const component2 = mount(
+            <MockComponent
+              rowHeightsOptions={{ defaultHeight: { height: 36 } }}
+            />
+          );
+          openPopover(component2);
+          expect(getSelection(component2)).toEqual('');
         });
       });
 

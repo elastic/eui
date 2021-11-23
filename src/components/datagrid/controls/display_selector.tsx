@@ -65,6 +65,12 @@ const convertRowHeightsOptionsToSelection = (
     if (typeof defaultHeight === 'object' && defaultHeight?.lineCount) {
       return rowHeightButtonOptions[2];
     }
+    if (
+      typeof defaultHeight === 'number' ||
+      (typeof defaultHeight === 'object' && defaultHeight.height)
+    ) {
+      return '';
+    }
   }
   return rowHeightButtonOptions[0];
 };
