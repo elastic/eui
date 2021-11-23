@@ -12,6 +12,7 @@ const providerSource = require('!!raw-loader!./provider.md').default;
 
 export const ProviderExample = {
   title: 'Provider',
+  isNew: true,
   intro: (
     <EuiText>
       <p>
