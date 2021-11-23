@@ -11,11 +11,13 @@ const argv = yargs(hideBin(process.argv))
   .options({
     'skip-css': { type: 'boolean' },
     'dev': { type: 'boolean' },
+    'theme': { type: 'string', default: 'light', choices: ['light', 'dark'] },
   })
   .argv
 
 const isDev = argv.hasOwnProperty('dev');
 const skipScss = argv.hasOwnProperty('skip-css');
+const theme = argv.theme;
 
 const info = chalk.white;
 const log = chalk.grey;
@@ -24,7 +26,7 @@ const log = chalk.grey;
 if (!skipScss) {
   console.log(info('Compiling SCSS'));
   execSync(
-    `TARGET_THEME=amsterdam_dark yarn compile-scss`,
+    `TARGET_THEME=amsterdam_${theme} yarn compile-scss`,
     {
       stdio: 'inherit'
     }
@@ -35,6 +37,7 @@ if (!skipScss) {
 
 const cypressCommandParts = [
   'cross-env', // windows support
+  `THEME=${theme}`, // pass the theme
   'BABEL_MODULES=false', // let webpack receive ES Module code
   'NODE_ENV=cypress_test', // enable code coverage checks
   `cypress ${isDev ? 'open-ct' : 'run-ct'}`,

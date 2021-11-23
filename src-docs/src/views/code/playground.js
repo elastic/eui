@@ -16,6 +16,18 @@ export const codeBlockConfig = () => {
 
   propsToUse.language.value = 'html';
 
+  propsToUse.lineNumbers = {
+    ...propsToUse.lineNumbers,
+    type: 'boolean',
+    value: false,
+  };
+
+  propsToUse.overflowHeight = {
+    ...propsToUse.overflowHeight,
+    type: 'number',
+    value: undefined,
+  };
+
   propsToUse.children = {
     type: PropTypes.ReactNode,
     value: codeDemo,
