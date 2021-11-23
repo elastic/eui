@@ -12,6 +12,10 @@
 - Amsterdam is now the default theme, deprecated and renamed old theme as "legacy"
 - Re-organized Sass files including where the `globals` are imported from
 
+**Bug fixes**
+
+- Fixed an `EuiDataGrid` bug where paginated overflowing data grids could become unscrollable when `rowCount` changed ([#5400](https://github.com/elastic/eui/pull/5400))
+
 ## [`41.2.1`](https://github.com/elastic/eui/tree/v41.2.1)
 
 **Bug fixes**
