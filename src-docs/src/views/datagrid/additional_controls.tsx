@@ -87,9 +87,11 @@ export default () => {
   const popoverId = useGeneratedHtmlId({
     prefix: 'dataGridAdditionalControlsPopover',
   });
-  const alertAndClosePopover = () => {
+  const alertAndClosePopover = (position?: string) => {
     setPopover(false);
-    window.alert('This is not a real control.');
+    window.alert(
+      `This is not a real control. It was passed into the \`${position}\` position.`
+    );
   };
 
   const [visibleColumns, setVisibleColumns] = useState(() =>
@@ -134,7 +136,7 @@ export default () => {
                   size="xs"
                   iconType="document"
                   color="text"
-                  onClick={alertAndClosePopover}
+                  onClick={() => alertAndClosePopover('left.prepend')}
                 >
                   {data.length} results
                 </EuiButtonEmpty>
@@ -160,13 +162,13 @@ export default () => {
                     items={[
                       <EuiContextMenuItem
                         key="csv"
-                        onClick={alertAndClosePopover}
+                        onClick={() => alertAndClosePopover('left.append')}
                       >
                         CSV
                       </EuiContextMenuItem>,
                       <EuiContextMenuItem
                         key="jsonedit"
-                        onClick={alertAndClosePopover}
+                        onClick={() => alertAndClosePopover('left.append')}
                       >
                         JSON
                       </EuiContextMenuItem>,
@@ -185,9 +187,7 @@ export default () => {
                     aria-label="Refresh grid data"
                     size="xs"
                     iconType="refresh"
-                    onClick={() => {
-                      window.alert('This is not a real control.');
-                    }}
+                    onClick={() => alertAndClosePopover('right')}
                   />
                 </EuiToolTip>
                 <EuiToolTip content="Inspect grid data">

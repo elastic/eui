@@ -278,16 +278,14 @@ export const DataGridStylingExample = {
         <>
           <p>
             Use the <EuiCode>toolbarVisibility.additionalControls</EuiCode> prop
-            to pass more buttons to the toolbar. It will respect the{' '}
-            <EuiCode language="js">toolbarVisibility={'{false}'}</EuiCode>{' '}
-            setting and hide when appropriate.
+            to pass more buttons to the toolbar.
           </p>
           <p>
             Passing a single node to <EuiCode>additionalControls</EuiCode> will
-            default to being appended to the left side of the toolbar. To
-            configure which side of the toolbar your controls display in, pass
-            an object with either the <EuiCode>left</EuiCode> or{' '}
-            <EuiCode>right</EuiCode> properties:
+            default to being placed in the <EuiCode>left.append</EuiCode>{' '}
+            position of the toolbar. To configure which side of the toolbar your
+            controls display in, pass an object with the <EuiCode>left</EuiCode>{' '}
+            or <EuiCode>right</EuiCode> properties:
           </p>
           <ul>
             <li>
