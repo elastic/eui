@@ -10,11 +10,13 @@ import {
 const typeToClassNameMap = {
   do: 'guideRule__example--do',
   dont: 'guideRule__example--dont',
+  default: 'guideRule__example--default',
 };
 
 const typeToSubtitleTextMap = {
   do: 'Do',
   dont: 'Don’t',
+  default: null,
 };
 
 export const GuideRuleExample = ({
@@ -36,19 +38,29 @@ export const GuideRuleExample = ({
     className
   );
 
-  const styles = { ...style, minHeight };
+  let textColor;
+  let doOrDont;
+  let autoPanelColor;
 
-  if (type && !panelColor) {
-    panelColor = type === 'do' ? 'success' : 'danger';
+  if (type === 'do') {
+    textColor = 'success';
+    doOrDont = typeToSubtitleTextMap[type];
+    autoPanelColor = 'success';
+  } else if (type === 'dont') {
+    textColor = 'danger';
+    doOrDont = typeToSubtitleTextMap[type];
+    autoPanelColor = 'danger';
+  } else if (type === 'default') {
+    textColor = 'default';
+    doOrDont = typeToSubtitleTextMap[type];
+    autoPanelColor = 'subdued';
   }
 
-  const doOrDont = type && typeToSubtitleTextMap[type];
-
   return (
-    <EuiFlexItem>
+    <EuiFlexItem style={{ flexBasis: 300 }}>
       <EuiSplitPanel.Outer
         className={classes}
-        style={styles}
+        style={style}
         hasShadow={false}
         borderRadius="none"
         color="transparent"
@@ -60,14 +72,18 @@ export const GuideRuleExample = ({
             className={classNames('guideRule__example__panel', {
               'guideRule__example__panel--flex': panelDisplay === 'flex',
             })}
-            style={panelStyles}
-            color={panelColor}
+            style={{ ...panelStyles, minHeight }}
+            color={panelColor ? panelColor : autoPanelColor}
             {...panelProps}
           >
             {children}
           </EuiSplitPanel.Inner>
-          <EuiSplitPanel.Inner color="transparent">
-            <EuiText color={type === 'do' ? 'success' : 'danger'} size="s">
+          <EuiSplitPanel.Inner
+            color="transparent"
+            paddingSize="none"
+            className="guideRule__example__panelFooter"
+          >
+            <EuiText color={textColor} size="s">
               <p>
                 {doOrDont && <strong>{doOrDont}.</strong>} {text}
               </p>
@@ -89,5 +105,5 @@ GuideRuleExample.propTypes = {
 };
 
 GuideRuleExample.defaultProps = {
-  type: 'do',
+  type: 'default',
 };

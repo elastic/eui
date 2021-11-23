@@ -81,7 +81,7 @@ export type EuiPageHeaderContentProps = CommonProps &
   EuiPageHeaderContentLeft & {
     /**
      * Set to false if you don't want the children to stack at small screen sizes.
-     * Set to `reverse` to display the right side content first for the sack of hierarchy (like global time)
+     * Set to `reverse` to display the right side content first for the sake of hierarchy (like global time)
      */
     responsive?: boolean | 'reverse';
     /**

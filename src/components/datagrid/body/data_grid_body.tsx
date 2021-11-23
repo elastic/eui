@@ -532,7 +532,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
         height = rowHeightUtils.getCalculatedHeight(
           rowHeightOption,
           minRowHeight,
-          correctRowIndex
+          correctRowIndex,
+          rowHeightUtils.isRowHeightOverride(correctRowIndex, rowHeightsOptions)
         );
       }
 
@@ -595,11 +596,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     makeRowManager(innerGridRef)
   );
 
-  // reset height constraint when rowCount changes
-  useEffect(() => {
-    setHeight(undefined);
-  }, [rowCount]);
-
   useEffect(() => {
     const boundingRect = wrapperRef.current!.getBoundingClientRect();
 
@@ -609,7 +605,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     if (boundingRect.width !== unconstrainedWidth) {
       setWidth(boundingRect.width);
     }
-  }, [unconstrainedHeight, wrapperDimensions, isFullScreen]);
+  }, [rowCount, unconstrainedHeight, wrapperDimensions, isFullScreen]);
 
   const preventTabbing = useCallback((records: MutationRecord[]) => {
     // multiple mutation records can implicate the same cell

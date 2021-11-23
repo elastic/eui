@@ -11,7 +11,7 @@ import {
 } from '../../../../../src';
 
 import { ThemeSection } from '../_theme_section';
-import { ThemeValue } from '../_values';
+import { ThemeValue } from './_values';
 
 import { getPropsFromThemeKey, EuiThemeFocus } from '../_props';
 

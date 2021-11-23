@@ -6,9 +6,72 @@
  * Side Public License, v 1.
  */
 
-import React, { createElement, ReactElement } from 'react';
-import { highlight, AST, RefractorNode } from 'refractor';
+import React, { createElement, ReactElement, ReactNode } from 'react';
+import { listLanguages, highlight, AST, RefractorNode } from 'refractor';
 import classNames from 'classnames';
+import { CommonProps } from '../common';
+
+/**
+ * Utils shared between EuiCode and EuiCodeBlock
+ */
+
+export type EuiCodeSharedProps = CommonProps & {
+  /**
+   * Sets the syntax highlighting for a specific language
+   * @see [https://prismjs.com/#supported-languages](https://prismjs.com/#supported-languages) for options
+   */
+  language?: string;
+  transparentBackground?: boolean;
+};
+
+export const SUPPORTED_LANGUAGES = listLanguages();
+export const DEFAULT_LANGUAGE = 'text';
+
+export const checkSupportedLanguage = (language: string): string => {
+  return SUPPORTED_LANGUAGES.includes(language) ? language : DEFAULT_LANGUAGE;
+};
+
+export const getHtmlContent = (
+  data: RefractorNode[],
+  children: ReactNode
+): ReactElement[] | ReactNode => {
+  if (!Array.isArray(data) || data.length < 1) {
+    return children;
+  }
+  return data.map(nodeToHtml);
+};
+
+export const isAstElement = (node: RefractorNode): node is AST.Element =>
+  node.hasOwnProperty('type') && node.type === 'element';
+
+export const nodeToHtml = (
+  node: RefractorNode,
+  idx: number,
+  nodes: RefractorNode[],
+  depth: number = 0
+): ReactElement => {
+  const key = `node-${depth}-${idx}`;
+
+  if (isAstElement(node)) {
+    const { properties, tagName, children } = node;
+
+    return createElement(
+      tagName,
+      {
+        ...properties,
+        key,
+        className: classNames(properties.className),
+      },
+      children && children.map((el, i) => nodeToHtml(el, i, nodes, depth + 1))
+    );
+  }
+
+  return <React.Fragment key={key}>{node.value}</React.Fragment>;
+};
+
+/**
+ * Line utils specific to EuiCodeBlock
+ */
 
 type ExtendedRefractorNode = RefractorNode & {
   lineStart?: number;
@@ -24,9 +87,6 @@ interface LineNumbersConfig {
 // Approximate width of a single digit/character
 const CHAR_SIZE = 8;
 const $euiSizeS = 8;
-
-const isAstElement = (node: RefractorNode): node is AST.Element =>
-  node.hasOwnProperty('type') && node.type === 'element';
 
 // Creates an array of numbers from comma-separeated
 // string of numbers or number ranges using `-`
@@ -161,31 +221,6 @@ function wrapLines(
   });
   return wrapped;
 }
-
-export const nodeToHtml = (
-  node: RefractorNode,
-  idx: number,
-  nodes: RefractorNode[],
-  depth: number = 0
-): ReactElement => {
-  const key = `node-${depth}-${idx}`;
-
-  if (isAstElement(node)) {
-    const { properties, tagName, children } = node;
-
-    return createElement(
-      tagName,
-      {
-        ...properties,
-        key,
-        className: classNames(properties.className),
-      },
-      children && children.map((el, i) => nodeToHtml(el, i, nodes, depth + 1))
-    );
-  }
-
-  return <React.Fragment key={key}>{node.value}</React.Fragment>;
-};
 
 export const highlightByLine = (
   children: string,

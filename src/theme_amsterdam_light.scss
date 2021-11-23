@@ -7,9 +7,6 @@
 // Components
 @import 'components/index';
 
-// Packages
-@import '../packages/index';
-
 // Component overrides
 // Comes after the component import and overrides via cascade
 @import 'themes/eui-amsterdam/overrides/index';

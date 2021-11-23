@@ -1,5 +1,15 @@
 [
   {
+    "version": "41.2.0",
+    "changes": [
+      {
+        "token": "euiSuperSelect.screenReaderAnnouncement",
+        "changeType": "modified",
+        "value": "You are in a form selector and must select a single option.\n              Use the up and down keys to navigate or escape to close."
+      }
+    ]
+  },
+  {
     "version": "41.1.0",
     "changes": [
       {
