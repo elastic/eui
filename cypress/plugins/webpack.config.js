@@ -11,6 +11,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const THEME_IMPORT = `'../../dist/eui_theme_amsterdam_${process.env.THEME}.css'`;
+
 module.exports = {
   mode: 'development',
 
@@ -45,4 +47,10 @@ module.exports = {
     ],
     strictExportPresence: false,
   },
+
+  plugins: [
+    new webpack.DefinePlugin({
+      THEME_IMPORT, // allow cypress/suport/index.js to require the correct css file
+    }),
+  ]
 };

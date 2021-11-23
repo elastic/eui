@@ -1,6 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`highlightByLine with line numbers renders two elements per line: .euiCodeBlock__lineNumber and .euiCodeBlock__lineText 1`] = `
+exports[`shared utils nodeToHtml recursively converts refactor nodes to React JSX 1`] = `
+<div>
+  <span
+    className="hello-world"
+    key="node-0-0"
+  >
+    Hello world
+  </span>
+</div>
+`;
+
+exports[`line utils highlightByLine with line numbers renders two elements per line: .euiCodeBlock__lineNumber and .euiCodeBlock__lineText 1`] = `
 Array [
   Object {
     "children": Array [
@@ -93,7 +104,7 @@ Array [
             "lineEnd": 2,
             "lineStart": 2,
             "type": "text",
-            "value": "  ",
+            "value": "    ",
           },
           Object {
             "children": Array [
@@ -233,7 +244,7 @@ Array [
             "lineEnd": 3,
             "lineStart": 3,
             "type": "text",
-            "value": "",
+            "value": "  ",
           },
           Object {
             "children": Array [
@@ -280,7 +291,7 @@ Array [
 ]
 `;
 
-exports[`highlightByLine with line numbers with a custom starting number adds the starting lineNumber to each node 1`] = `
+exports[`line utils highlightByLine with line numbers with a custom starting number adds the starting lineNumber to each node 1`] = `
 Array [
   Object {
     "children": Array [
@@ -373,7 +384,7 @@ Array [
             "lineEnd": 11,
             "lineStart": 11,
             "type": "text",
-            "value": "  ",
+            "value": "    ",
           },
           Object {
             "children": Array [
@@ -513,7 +524,7 @@ Array [
             "lineEnd": 12,
             "lineStart": 12,
             "type": "text",
-            "value": "",
+            "value": "  ",
           },
           Object {
             "children": Array [
@@ -560,7 +571,7 @@ Array [
 ]
 `;
 
-exports[`highlightByLine with line numbers with highlighted lines adds a class to the specified lines 1`] = `
+exports[`line utils highlightByLine with line numbers with highlighted lines adds a class to the specified lines 1`] = `
 Array [
   Object {
     "children": Array [
@@ -653,7 +664,7 @@ Array [
             "lineEnd": 2,
             "lineStart": 2,
             "type": "text",
-            "value": "  ",
+            "value": "    ",
           },
           Object {
             "children": Array [
@@ -793,7 +804,7 @@ Array [
             "lineEnd": 3,
             "lineStart": 3,
             "type": "text",
-            "value": "",
+            "value": "  ",
           },
           Object {
             "children": Array [
@@ -840,7 +851,7 @@ Array [
 ]
 `;
 
-exports[`highlightByLine without line numbers renders a single .euiCodeBlock__line element per line 1`] = `
+exports[`line utils highlightByLine without line numbers renders a single .euiCodeBlock__line element per line 1`] = `
 Array [
   Object {
     "children": Array [
@@ -886,7 +897,7 @@ Array [
         "lineEnd": 2,
         "lineStart": 2,
         "type": "text",
-        "value": "  ",
+        "value": "    ",
       },
       Object {
         "children": Array [
@@ -996,7 +1007,7 @@ Array [
         "lineEnd": 3,
         "lineStart": 3,
         "type": "text",
-        "value": "",
+        "value": "  ",
       },
       Object {
         "children": Array [

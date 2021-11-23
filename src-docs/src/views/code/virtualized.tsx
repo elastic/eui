@@ -3,9 +3,8 @@ import React from 'react';
 import { EuiCodeBlock } from '../../../../src/components';
 
 export default () => (
-  <div>
-    <EuiCodeBlock language="json" overflowHeight={300} isCopyable isVirtualized>
-      {`{
+  <EuiCodeBlock language="json" overflowHeight={300} isCopyable isVirtualized>
+    {`{
   "id": "1",
   "rawResponse": {
     "took": 19,
@@ -819,6 +818,5 @@ export default () => (
   "loaded": 1,
   "isRestored": false
 }`}
-    </EuiCodeBlock>
-  </div>
+  </EuiCodeBlock>
 );

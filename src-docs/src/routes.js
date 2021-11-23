@@ -5,6 +5,8 @@ import { createHashHistory } from 'history';
 
 import { GuidePage, GuideSection, GuideMarkdownFormat } from './components';
 
+import { GuideTabbedPage } from './components/guide_tabbed_page';
+
 import { EuiErrorBoundary } from '../../src/components';
 
 import { playgroundCreator } from './services/playground';
@@ -18,7 +20,14 @@ import ColorGuidelines from './views/guidelines/colors';
 
 import { SassGuidelines } from './views/guidelines/sass';
 
-import WritingGuidelines from './views/guidelines/writing';
+import {
+  WritingGuidelines,
+  writingGuidelinesSections,
+} from './views/guidelines/writing_guidelines';
+import {
+  WritingExamples,
+  writingExamplesSections,
+} from './views/guidelines/writing_examples';
 
 // Services
 
@@ -310,8 +319,44 @@ const createExample = (example, customTitle) => {
   };
 };
 
+const createTabbedPage = ({
+  title,
+  pages,
+  isNew,
+  description,
+  showThemeLanguageToggle,
+  notice,
+  isBeta,
+}) => {
+  const component = () => (
+    <GuideTabbedPage
+      title={title}
+      pages={pages}
+      description={description}
+      showThemeLanguageToggle={showThemeLanguageToggle}
+      notice={notice}
+      isBeta={isBeta}
+    />
+  );
+
+  const pagesSections = pages.map((page, index) => {
+    return {
+      id: slugify(page.title),
+      title: page.title,
+      sections: pages[index].sections,
+    };
+  });
+
+  return {
+    name: title,
+    component,
+    sections: pagesSections,
+    isNew,
+  };
+};
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const createMarkdownExample = ({ file, name, intro }) => {
+const createMarkdownExample = (file, name, intro) => {
   const headings = file.default.match(/^(##) (.*)/gm);
 
   const sections = headings.map((heading) => {
@@ -341,7 +386,22 @@ const navigation = [
         name: 'Colors',
         component: ColorGuidelines,
       },
-      createExample(WritingGuidelines, 'Writing'),
+      createExample(SassGuidelines, 'Sass'),
+      createTabbedPage({
+        title: 'Writing',
+        pages: [
+          {
+            title: 'Guidelines',
+            page: WritingGuidelines,
+            sections: writingGuidelinesSections,
+          },
+          {
+            title: 'Examples',
+            page: WritingExamples,
+            sections: writingExamplesSections,
+          },
+        ],
+      }),
     ],
   },
   {
@@ -535,20 +595,23 @@ const navigation = [
 ].map(({ name, items, ...rest }) => ({
   name,
   type: slugify(name),
-  items: items.map(({ name: itemName, hasGuidelines, ...rest }) => {
-    const item = {
-      name: itemName,
-      path: `${slugify(name)}/${slugify(itemName)}`,
-      ...rest,
-    };
+  items: items.map(
+    ({ name: itemName, hasGuidelines, isTabbedPage, sections, ...rest }) => {
+      const item = {
+        name: itemName,
+        path: `${slugify(name)}/${slugify(itemName)}`,
+        sections,
+        ...rest,
+      };
 
-    if (hasGuidelines) {
-      item.from = `guidelines/${slugify(itemName)}`;
-      item.to = `${slugify(name)}/${slugify(itemName)}/guidelines`;
+      if (hasGuidelines) {
+        item.from = `guidelines/${slugify(itemName)}`;
+        item.to = `${slugify(name)}/${slugify(itemName)}/guidelines`;
+      }
+
+      return item;
     }
-
-    return item;
-  }),
+  ),
   ...rest,
 }));
 
