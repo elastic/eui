@@ -48,6 +48,16 @@ const densityStyles: { [key: string]: Partial<EuiDataGridStyle> } = {
     cellPadding: 's',
   },
 };
+const convertGridStylesToSelection = (gridStyles: EuiDataGridStyle) => {
+  if (gridStyles?.fontSize === 's' && gridStyles?.cellPadding === 's')
+    return 'compact';
+  if (gridStyles?.fontSize === 'm' && gridStyles?.cellPadding === 'm')
+    return 'normal';
+  if (gridStyles?.fontSize === 'l' && gridStyles?.cellPadding === 'l')
+    return 'expanded';
+  return '';
+};
+
 // Used to correctly format the icon name for the grid density icon
 const capitalizeDensityString = (s: string) => s[0].toUpperCase() + s.slice(1);
 
@@ -94,12 +104,12 @@ export const useDataGridDisplaySelector = (
 
   // track styles specified by the user at run time
   const [userGridStyles, setUserGridStyles] = useState({});
-  const [userRowHeightsOptions, setUserRowHeightsOptions] = useState(
-    initialRowHeightsOptions // Set initial state from the developer-passed props
-  );
+  const [userRowHeightsOptions, setUserRowHeightsOptions] = useState({});
 
   // Normal is the default density
-  const [gridDensity, _setGridDensity] = useState(densityOptions[1]);
+  const [gridDensity, _setGridDensity] = useState(
+    convertGridStylesToSelection(initialStyles)
+  );
   const setGridDensity = (density: string) => {
     _setGridDensity(density);
     setUserGridStyles(densityStyles[density]);
@@ -171,7 +181,11 @@ export const useDataGridDisplaySelector = (
           <EuiToolTip content={buttonLabel} delay="long">
             <EuiButtonIcon
               size="xs"
-              iconType={`tableDensity${capitalizeDensityString(gridDensity)}`}
+              iconType={
+                gridDensity
+                  ? `tableDensity${capitalizeDensityString(gridDensity)}`
+                  : 'tableDensityNormal'
+              }
               className="euiDataGrid__controlBtn"
               color="text"
               data-test-subj="dataGridDisplaySelectorButton"

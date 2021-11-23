@@ -102,6 +102,40 @@ describe('useDataGridDisplaySelector', () => {
           component.find('[data-test-subj="densityButtonGroup"]')
         ).toHaveLength(0);
       });
+
+      describe('convertGridStylesToSelection (loading initial state from passed gridStyles', () => {
+        it('should set compact state if both fontSize and cellPadding are s', () => {
+          const component = mount(
+            <MockComponent gridStyles={{ fontSize: 's', cellPadding: 's' }} />
+          );
+          openPopover(component);
+          expect(getSelection(component)).toEqual('compact');
+        });
+
+        it('should set normal state if both fontSize and cellPadding are m', () => {
+          const component = mount(
+            <MockComponent gridStyles={{ fontSize: 'm', cellPadding: 'm' }} />
+          );
+          openPopover(component);
+          expect(getSelection(component)).toEqual('normal');
+        });
+
+        it('should set compact state if both fontSize and cellPadding are l', () => {
+          const component = mount(
+            <MockComponent gridStyles={{ fontSize: 'l', cellPadding: 'l' }} />
+          );
+          openPopover(component);
+          expect(getSelection(component)).toEqual('expanded');
+        });
+
+        it('should not select any buttons if fontSize and cellPadding do not match a set density state', () => {
+          const component = mount(
+            <MockComponent gridStyles={{ fontSize: 'l', cellPadding: 's' }} />
+          );
+          openPopover(component);
+          expect(getSelection(component)).toEqual('');
+        });
+      });
     });
 
     describe('row height', () => {
