@@ -1,7 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
 - Updated the organization of `EuiDataGrid`'s toolbar/grid controls ([#5334](https://github.com/elastic/eui/pull/5334))
-- Added the ability for users to configure `EuiDataGrid`'s default row heights ([#5372](https://github.com/elastic/eui/pull/5372))
+- Added a row height control to `EuiDataGrid`'s toolbar ([#5372](https://github.com/elastic/eui/pull/5372))
 
 **Bug fixes**
 
@@ -9,7 +9,7 @@
 
 **Breaking changes**
 
-- Removed `toolbarVisibility`'s `showStyleSelector` prop of `EuiDataGrid` in favor of `showDisplaySelector`, which allows users to configure both grid density and row height ([#5372](https://github.com/elastic/eui/pull/5372))
+- Removed `toolbarVisibility`'s `showStyleSelector` prop of `EuiDataGrid` in favor of `showDisplaySelector`, which allows configuration of both grid density and row height ([#5372](https://github.com/elastic/eui/pull/5372))
 
 ## END FEATURE BRANCH
 
