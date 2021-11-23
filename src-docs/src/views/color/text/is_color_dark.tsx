@@ -1,10 +1,14 @@
 import React, { Fragment } from 'react';
 import { css } from '@emotion/react';
 
-import { EuiFlexGrid, EuiFlexItem } from '../../../../src/components';
+import {
+  EuiFlexGrid,
+  EuiFlexItem,
+  isColorDark,
+  useEuiTheme,
+} from '../../../../../src';
 
-import { isColorDark, useEuiTheme } from '../../../../src/services';
-const rgb = (r, g, b) => {
+const rgb = (r: number, g: number, b: number) => {
   return `rgb(${r}, ${g}, ${b})`;
 };
 
@@ -16,7 +20,7 @@ export default () => {
     border-radius: ${euiTheme.border.radius.small};
   `;
 
-  const COLORS = [
+  const COLORS: Array<[number, number, number]> = [
     [0, 104, 55],
     [165, 0, 38],
     [0, 0, 0],

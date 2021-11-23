@@ -2,13 +2,13 @@ import React, { Fragment } from 'react';
 import chroma from 'chroma-js';
 import { css } from '@emotion/react';
 
-import { EuiFlexGrid, EuiFlexItem } from '../../../../src/components';
+import { EuiFlexGrid, EuiFlexItem } from '../../../../../src/components';
 
 import {
   useEuiTheme,
   makeHighContrastColor,
   transparentize,
-} from '../../../../src/services';
+} from '../../../../../src/services';
 
 export default () => {
   const { euiTheme } = useEuiTheme();
