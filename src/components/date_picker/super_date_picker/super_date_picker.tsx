@@ -193,7 +193,6 @@ export class EuiSuperDatePicker extends Component<
     start: 'now-15m',
     timeFormat: 'HH:mm',
     width: 'restricted',
-    showInput: true,
   };
 
   asyncInterval?: AsyncInterval;

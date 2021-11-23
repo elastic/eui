@@ -59,6 +59,25 @@ describe('EuiSuperUpdateButton', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('responsive can be all', () => {
+    const component = shallow(
+      <EuiSuperUpdateButton
+        responsive={['xs', 's', 'm', 'l', 'xl']}
+        onClick={noop}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('responsive can be false', () => {
+    const component = shallow(
+      <EuiSuperUpdateButton responsive={false} onClick={noop} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('forwards props to EuiButton', () => {
     const speciallyHandledProps = {
       className: 'testClass',

@@ -312,6 +312,126 @@ exports[`EuiSuperUpdateButton needsUpdate 1`] = `
 </EuiToolTip>
 `;
 
+exports[`EuiSuperUpdateButton responsive can be all 1`] = `
+<EuiToolTip
+  delay="regular"
+  display="inlineBlock"
+  position="bottom"
+>
+  <EuiShowFor
+    sizes={
+      Array [
+        "xs",
+        "s",
+        "m",
+        "l",
+        "xl",
+      ]
+    }
+  >
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="primary"
+      fill={true}
+      iconType="refresh"
+      isDisabled={false}
+      isLoading={false}
+      minWidth={0}
+      onClick={[Function]}
+      textProps={
+        Object {
+          "className": "euiSuperUpdateButton__textResponsive",
+        }
+      }
+    >
+      <EuiI18n
+        default="Refresh"
+        token="euiSuperUpdateButton.refreshButtonLabel"
+      />
+    </EuiButton>
+  </EuiShowFor>
+  <EuiHideFor
+    sizes={
+      Array [
+        "xs",
+        "s",
+        "m",
+        "l",
+        "xl",
+      ]
+    }
+  >
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="primary"
+      fill={true}
+      iconType="refresh"
+      isDisabled={false}
+      isLoading={false}
+      minWidth={118}
+      onClick={[Function]}
+    >
+      <EuiI18n
+        default="Refresh"
+        token="euiSuperUpdateButton.refreshButtonLabel"
+      />
+    </EuiButton>
+  </EuiHideFor>
+</EuiToolTip>
+`;
+
+exports[`EuiSuperUpdateButton responsive can be false 1`] = `
+<EuiToolTip
+  delay="regular"
+  display="inlineBlock"
+  position="bottom"
+>
+  <EuiShowFor
+    sizes="none"
+  >
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="primary"
+      fill={true}
+      iconType="refresh"
+      isDisabled={false}
+      isLoading={false}
+      minWidth={0}
+      onClick={[Function]}
+      textProps={
+        Object {
+          "className": "euiSuperUpdateButton__textResponsive",
+        }
+      }
+    >
+      <EuiI18n
+        default="Refresh"
+        token="euiSuperUpdateButton.refreshButtonLabel"
+      />
+    </EuiButton>
+  </EuiShowFor>
+  <EuiHideFor
+    sizes="none"
+  >
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="primary"
+      fill={true}
+      iconType="refresh"
+      isDisabled={false}
+      isLoading={false}
+      minWidth={118}
+      onClick={[Function]}
+    >
+      <EuiI18n
+        default="Refresh"
+        token="euiSuperUpdateButton.refreshButtonLabel"
+      />
+    </EuiButton>
+  </EuiHideFor>
+</EuiToolTip>
+`;
+
 exports[`EuiSuperUpdateButton showTooltip 1`] = `
 <EuiToolTip
   delay="regular"

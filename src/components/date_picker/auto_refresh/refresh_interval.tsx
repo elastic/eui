@@ -126,11 +126,11 @@ export class EuiRefreshInterval extends Component<
   };
 
   startRefresh = () => {
-    const { onRefreshChange: applyRefreshInterval } = this.props;
+    const { onRefreshChange } = this.props;
     const { value, units } = this.state;
 
-    if (value !== '' && value > 0 && applyRefreshInterval !== undefined) {
-      applyRefreshInterval({
+    if (value !== '' && value > 0 && onRefreshChange !== undefined) {
+      onRefreshChange({
         refreshInterval: toMilliseconds(units, value),
         isPaused: false,
       });
