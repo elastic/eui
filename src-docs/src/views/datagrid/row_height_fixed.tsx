@@ -215,6 +215,9 @@ export default () => {
         inMemory={{ level: 'sorting' }}
         sorting={{ columns: sortingColumns, onSort }}
         rowHeightsOptions={rowHeightsOptions}
+        toolbarVisibility={{
+          showDisplaySelector: { allowRowHeight: false },
+        }}
         virtualizationOptions={{
           // rough average of the cell heights in the example
           // accurately setting this smooths out the scrolling experience

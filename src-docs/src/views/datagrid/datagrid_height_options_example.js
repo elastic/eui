@@ -75,6 +75,9 @@ const rowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   inMemory={{ level: 'sorting' }}
   sorting={{ columns: sortingColumns, onSort }}
   rowHeightsOptions={rowHeightsOptions}
+  toolbarVisibility={{
+    showDisplaySelelector: { allowRowHeight: false },
+  }}
   pagination={{
     ...pagination,
     pageSizeOptions: [50, 250, 1000],
@@ -243,6 +246,18 @@ export const DataGridRowHeightOptionsExample = {
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {rowHeightsSnippet}
           </EuiCodeBlock>
+          <EuiCallOut
+            color="warning"
+            title="Disable the row height toolbar control"
+          >
+            When using <EuiCode>rowHeights</EuiCode> overrides, we recommend
+            setting{' '}
+            <EuiCode>
+              toolbarVisibility.showDisplaySelector.allowRowHeight
+            </EuiCode>{' '}
+            to <EuiCode>false</EuiCode>, as users will otherwise be confused
+            when switching row heights does not affect specific overriden rows.
+          </EuiCallOut>
         </Fragment>
       ),
       components: { DataGridRowHeightOptions },

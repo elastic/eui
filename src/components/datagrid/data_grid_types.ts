@@ -758,6 +758,9 @@ export interface EuiDataGridRowHeightsOptions {
   defaultHeight?: EuiDataGridRowHeightOption;
   /**
    * Defines the height for a specific row. It can be line count or just height.
+   *
+   * When using row height overrides, we strongly setting the `showDisplaySelector: allowRowHeight`
+   * toolbar control to `false` in #EuiDataGridToolBarVisibilityOptions
    */
   rowHeights?: Record<number, EuiDataGridRowHeightOption>;
   /**
