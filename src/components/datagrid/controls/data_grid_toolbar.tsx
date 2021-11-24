@@ -33,7 +33,7 @@ export const EuiDataGridToolbar = ({
   toolbarVisibility,
   isFullScreen,
   controlBtnClasses,
-  styleSelector,
+  displaySelector,
   columnSelector,
   columnSorting,
   setRef,
@@ -114,9 +114,9 @@ export const EuiDataGridToolbar = ({
         {renderAdditionalControls(toolbarVisibility, 'right')}
         {checkOrDefaultToolBarDisplayOptions(
           toolbarVisibility,
-          'showStyleSelector'
+          'showDisplaySelector'
         )
-          ? styleSelector
+          ? displaySelector
           : null}
         {checkOrDefaultToolBarDisplayOptions(
           toolbarVisibility,
@@ -199,4 +199,21 @@ export function renderAdditionalControls(
   }
 
   return null;
+}
+
+/**
+ * Utility helper for selectors/controls that allow nested options
+ * (e.g. column selector, display selector)
+ */
+
+export function getNestedObjectOptions<T>(
+  controlOption: undefined | boolean | T,
+  objectKey: keyof T
+): boolean {
+  // If the config is a boolean, nested options follow that boolean
+  if (controlOption === false || controlOption === true) return controlOption;
+  // If config is not defined, default to enabled
+  if (controlOption == null) return true;
+  // Otherwise, type should be an object of boolean values - dive into it and return the value
+  return !!(controlOption[objectKey] ?? true);
 }

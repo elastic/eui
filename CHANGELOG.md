@@ -2,10 +2,15 @@
 
 - Updated the organization of `EuiDataGrid`'s toolbar/grid controls ([#5334](https://github.com/elastic/eui/pull/5334))
 - Added `left.append` and `left.prepend` to `EuiDataGrid`'s `toolbarVisibility.additionalControls` prop [#5394](https://github.com/elastic/eui/pull/5394))
+- Added a row height control to `EuiDataGrid`'s toolbar ([#5372](https://github.com/elastic/eui/pull/5372))
 
 **Bug fixes**
 
 - Fixed persistent `EuiDataGrid` full screen `<body>` class ([#5354](https://github.com/elastic/eui/pull/5354))
+
+**Breaking changes**
+
+- Removed `toolbarVisibility`'s `showStyleSelector` prop of `EuiDataGrid` in favor of `showDisplaySelector`, which allows configuration of both grid density and row height ([#5372](https://github.com/elastic/eui/pull/5372))
 
 ## END FEATURE BRANCH
 

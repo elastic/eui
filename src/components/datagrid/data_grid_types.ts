@@ -30,10 +30,10 @@ export interface EuiDataGridToolbarProps {
   gridWidth: number;
   minSizeForControls?: number;
   toolbarVisibility: boolean | EuiDataGridToolBarVisibilityOptions;
-  styleSelector: ReactElement;
+  displaySelector: ReactNode;
   isFullScreen: boolean;
   controlBtnClasses: string;
-  columnSelector: ReactElement;
+  columnSelector: ReactNode;
   columnSorting: ReactNode;
   setRef: RefCallback<HTMLDivElement | null>;
   setIsFullScreen: Dispatch<SetStateAction<boolean>>;
@@ -589,6 +589,17 @@ export interface EuiDataGridToolBarVisibilityColumnSelectorOptions {
   allowReorder?: boolean;
 }
 
+export interface EuiDataGridToolBarVisibilityDisplaySelectorOptions {
+  /**
+   * When `false`, removes the ability to change density display through the UI
+   */
+  allowDensity?: boolean;
+  /**
+   * When `false`, removes the ability to change row height display through the UI
+   */
+  allowRowHeight?: boolean;
+}
+
 export interface EuiDataGridToolBarVisibilityOptions {
   /**
    * Allows the ability for the user to hide fields and sort columns, boolean or a #EuiDataGridToolBarVisibilityColumnSelectorOptions
@@ -597,9 +608,12 @@ export interface EuiDataGridToolBarVisibilityOptions {
     | boolean
     | EuiDataGridToolBarVisibilityColumnSelectorOptions;
   /**
-   * Allows the ability for the user to set the grid density. If on, this merges against what is provided in #EuiDataGridStyle
+   * Allows the ability for the user to customize display settings such as grid density and row heights.
+   * User changes will override what is provided in #EuiDataGridStyle and #EuiDataGridRowHeightsOptions
    */
-  showStyleSelector?: boolean;
+  showDisplaySelector?:
+    | boolean
+    | EuiDataGridToolBarVisibilityDisplaySelectorOptions;
   /**
    * Allows the ability for the user to sort rows based upon column values
    */
@@ -744,6 +758,9 @@ export interface EuiDataGridRowHeightsOptions {
   defaultHeight?: EuiDataGridRowHeightOption;
   /**
    * Defines the height for a specific row. It can be line count or just height.
+   *
+   * When using row height overrides, we strongly setting the `showDisplaySelector: allowRowHeight`
+   * toolbar control to `false` in #EuiDataGridToolBarVisibilityOptions
    */
   rowHeights?: Record<number, EuiDataGridRowHeightOption>;
   /**

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`useDataGridStyleSelector styleSelector renders a toolbar button/popover allowing users to customize styles 1`] = `
+exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/popover allowing users to customize display settings 1`] = `
 <Fragment>
   <EuiPopover
     anchorPosition="downRight"
@@ -15,7 +15,7 @@ exports[`useDataGridStyleSelector styleSelector renders a toolbar button/popover
           aria-label="Display options"
           className="euiDataGrid__controlBtn"
           color="text"
-          data-test-subj="dataGridStyleSelectorButton"
+          data-test-subj="dataGridDisplaySelectorButton"
           iconType="tableDensityNormal"
           onClick={[Function]}
           size="xs"
@@ -23,7 +23,7 @@ exports[`useDataGridStyleSelector styleSelector renders a toolbar button/popover
       </EuiToolTip>
     }
     closePopover={[Function]}
-    data-test-subj="dataGridStyleSelectorPopover"
+    data-test-subj="dataGridDisplaySelectorPopover"
     display="inlineBlock"
     hasArrow={true}
     isOpen={false}
@@ -42,10 +42,32 @@ exports[`useDataGridStyleSelector styleSelector renders a toolbar button/popover
       }
       tokens={
         Array [
-          "euiStyleSelector.densityLabel",
-          "euiStyleSelector.labelCompact",
-          "euiStyleSelector.labelNormal",
-          "euiStyleSelector.labelExpanded",
+          "euiDisplaySelector.densityLabel",
+          "euiDisplaySelector.labelCompact",
+          "euiDisplaySelector.labelNormal",
+          "euiDisplaySelector.labelExpanded",
+        ]
+      }
+    >
+      <Component />
+    </EuiI18n>
+    <EuiI18n
+      defaults={
+        Array [
+          "Row height",
+          "Single",
+          "Auto fit",
+          "Custom",
+          "Lines per row",
+        ]
+      }
+      tokens={
+        Array [
+          "euiDisplaySelector.rowHeightLabel",
+          "euiDisplaySelector.labelSingle",
+          "euiDisplaySelector.labelAuto",
+          "euiDisplaySelector.labelCustom",
+          "euiDisplaySelector.lineCountLabel",
         ]
       }
     >

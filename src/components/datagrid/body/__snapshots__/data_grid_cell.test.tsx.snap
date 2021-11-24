@@ -67,6 +67,7 @@ exports[`EuiDataGridCell renders 1`] = `
         <Memo()
           colIndex={0}
           columnId="someColumn"
+          isDefinedHeight={false}
           isDetails={false}
           isExpandable={true}
           isExpanded={false}

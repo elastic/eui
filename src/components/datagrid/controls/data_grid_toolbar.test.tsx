@@ -13,6 +13,7 @@ import {
   EuiDataGridToolbar,
   checkOrDefaultToolBarDisplayOptions,
   renderAdditionalControls,
+  getNestedObjectOptions,
 } from './data_grid_toolbar';
 
 describe('EuiDataGridToolbar', () => {
@@ -20,9 +21,9 @@ describe('EuiDataGridToolbar', () => {
     gridWidth: 500,
     toolbarVisibility: true,
     isFullScreen: false,
-    styleSelector: React.createElement('div', null, 'mock style selector'),
+    displaySelector: <div>mock style selector</div>,
     controlBtnClasses: '',
-    columnSelector: React.createElement('div', null, 'mock column selector'),
+    columnSelector: <div>mock column selector</div>,
     columnSorting: <div>mock column sorting</div>,
     setRef: jest.fn(),
     setIsFullScreen: jest.fn(),
@@ -99,7 +100,7 @@ describe('EuiDataGridToolbar', () => {
         {...requiredProps}
         toolbarVisibility={{
           showColumnSelector: false,
-          showStyleSelector: false,
+          showDisplaySelector: false,
           showSortSelector: false,
           showFullScreenSelector: false,
           additionalControls: {
@@ -159,7 +160,7 @@ describe('EuiDataGridToolbar', () => {
 });
 
 describe('checkOrDefaultToolBarDisplayOptions', () => {
-  const key = 'showStyleSelector';
+  const key = 'showDisplaySelector';
 
   it('returns boolean `toolbarVisibility`s as-is', () => {
     expect(checkOrDefaultToolBarDisplayOptions(true, key)).toEqual(true);
@@ -323,6 +324,44 @@ describe('renderAdditionalControls', () => {
           'right'
         )
       ).toEqual(null);
+    });
+  });
+});
+
+describe('getNestedObjectOptions', () => {
+  interface MockOptions {
+    someKey?: boolean;
+  }
+
+  describe('non-object configuration', () => {
+    it('returns passed booleans', () => {
+      expect(getNestedObjectOptions<MockOptions>(true, 'someKey')).toEqual(
+        true
+      );
+      expect(getNestedObjectOptions<MockOptions>(false, 'someKey')).toEqual(
+        false
+      );
+    });
+
+    it('returns true if the option is undefined', () => {
+      expect(getNestedObjectOptions<MockOptions>(undefined, 'someKey')).toEqual(
+        true
+      );
+    });
+  });
+
+  describe('object configuration', () => {
+    it('returns nested object booleans', () => {
+      expect(
+        getNestedObjectOptions<MockOptions>({ someKey: true }, 'someKey')
+      ).toEqual(true);
+      expect(
+        getNestedObjectOptions<MockOptions>({ someKey: false }, 'someKey')
+      ).toEqual(false);
+    });
+
+    it('returns true if the nested object key is undefined', () => {
+      expect(getNestedObjectOptions<MockOptions>({}, 'someKey')).toEqual(true);
     });
   });
 });

@@ -20,6 +20,7 @@
   > * {
     max-width: 100%;
     width: 100%;
+    height: 100%;
   }
 
   &.euiDataGridRowCell--firstColumn {
@@ -139,8 +140,12 @@
 .euiDataGridRowCell__expandFlex {
   position: relative; // for positioning expand button
   display: flex;
-  align-items: center;
+  align-items: baseline;
   height: 100%;
+
+  .euiDataGridRowCell--controlColumn & {
+    align-items: center;
+  }
 }
 
 .euiDataGridRowCell__expandContent {
@@ -152,21 +157,21 @@
   height: 100%;
 }
 
-.euiDataGridRowCell__alignBaseLine {
-  align-items: baseline;
-}
-
+// Cell actions
+// Could probably be more precisely named than '__expandButton', since there can be multiple actions/buttons
+// TODO: Consider renaming this when working on https://github.com/elastic/eui/issues/5132
 .euiDataGridRowCell__expandButton {
   display: flex;
+}
+@include euiDataGridRowCellActions($definedHeight: false) {
   flex-grow: 0;
-
-  .euiDataGridRowCell__contentByHeight + & {
-    background-color: $euiColorEmptyShade;
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: $euiDataGridCellPaddingM 0;
-  }
+}
+@include euiDataGridRowCellActions($definedHeight: true) {
+  background-color: $euiColorEmptyShade;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: $euiDataGridCellPaddingM 0;
 }
 
 .euiDataGridRowCell__expandButtonIcon {
@@ -202,6 +207,11 @@
       // Needed to overtake striping
       background-color: $euiColorHighlight !important;
     }
+    @include euiDataGridRowCellActions($definedHeight: true) {
+      // sass-lint:disable-block no-important
+      // Needed to overtake striping
+      background-color: $euiColorHighlight !important;
+    }
   }
 }
 
@@ -209,6 +219,9 @@
 @include euiDataGridStyles(stripes) {
   @include euiDataGridRowCell {
     &.euiDataGridRowCell--stripe {
+      @include euiDataGridRowCellActions($definedHeight: true) {
+        background-color: $euiColorLightestShade;
+      }
       background: $euiColorLightestShade;
     }
   }
@@ -252,6 +265,16 @@
 @include euiDataGridStyles(paddingLarge) {
   @include euiDataGridRowCell {
     padding: $euiDataGridCellPaddingL;
+  }
+}
+
+// Compressed density grids - height tweaks
+@include euiDataGridStyles(fontSizeSmall, paddingSmall) {
+  @include euiDataGridRowCellActions($definedHeight: true) {
+    padding: ($euiDataGridCellPaddingS / 2) 0;
+  }
+  @include euiDataGridRowCellActions($definedHeight: false) {
+    transform: translateY(1px);
   }
 }
 
