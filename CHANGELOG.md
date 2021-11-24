@@ -1,6 +1,8 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `41.2.1`.
+**Bug fixes**
+
+- Fixed type exports to not include test mocks & specs ([#5412](https://github.com/elastic/eui/pull/5412))
 
 ## [`41.2.1`](https://github.com/elastic/eui/tree/v41.2.1)
 
