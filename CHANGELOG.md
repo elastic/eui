@@ -12,7 +12,7 @@
 - Amsterdam is now the default theme, deprecated and renamed old theme as "legacy"
 - Re-organized Sass files including where the `globals` are imported from
 
----
+## [`41.3.0`](https://github.com/elastic/eui/tree/v41.3.0)
 
 - Updated color of `EuiHorizontalRule` when rendered inside `EuiToolTip` ([#5378](https://github.com/elastic/eui/pull/5378))
 
@@ -25,16 +25,27 @@
 - Fixed virtualized `EuiCodeBlock`s blanking out when entering & exiting full-screen mode ([#5379](https://github.com/elastic/eui/pull/5379))
 - Fixed `EuiCodeBlock`'s full-screen mode to use a large font and padding size & added several missing wrapper classes ([#5379](https://github.com/elastic/eui/pull/5379))
 - Fixed `EuiCodeBlock` broken line wrapping when using virtualization ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed type exports to not include test mocks & specs ([#5412](https://github.com/elastic/eui/pull/5412))
 
 **Theme: Amsterdam**
 
 - Fixed `EuiCodeBlock` not properly increasing large font sizes on Amsterdam ([#5379](https://github.com/elastic/eui/pull/5379))
+
+## [`41.2.2`](https://github.com/elastic/eui/tree/v41.2.2)
+
+**Bug fixes**
+
+- Fixed type exports to not include test mocks & specs ([#5412](https://github.com/elastic/eui/pull/5412))
+
+**Note: this release is a backport containing changes originally made in `41.3.0`**
 
 ## [`41.2.1`](https://github.com/elastic/eui/tree/v41.2.1)
 
 **Bug fixes**
 
 - Refactored definition of `isNamedColor` function so it isn't mocked away by the testenv configuration ([#5397](https://github.com/elastic/eui/pull/5397))
+
+**Note: this release is a backport containing changes originally made in `14.6.0` and `14.7.0`**
 
 ## [`41.2.0`](https://github.com/elastic/eui/tree/v41.2.0)
 
