@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FunctionComponent } from 'react';
 
 import {
   EuiFlexGroup,
@@ -10,10 +10,25 @@ import {
   EuiSwitch,
   EuiSpacer,
   EuiPanel,
+  EuiFlexGroupProps,
+  EuiRangeProps,
 } from '../../../../../src/components';
-import { ratingAAA, ratingAA18, ratingAA, ratingAll } from './_utilities';
 
-export const ContrastSlider = ({
+// @ts-ignore Importing from JS
+import {
+  ratingAAA,
+  ratingAA18,
+  ratingAA,
+  ratingAll,
+} from './_contrast_utilities';
+
+type ContrastSlider = EuiFlexGroupProps & {
+  contrastValue: EuiRangeProps['value'];
+  showTextVariants: boolean;
+  onChange?: (value: number | string, checked: boolean) => void;
+};
+
+export const ContrastSlider: FunctionComponent<ContrastSlider> = ({
   contrastValue,
   showTextVariants,
   onChange,
@@ -114,10 +129,10 @@ export const ContrastSlider = ({
               value={value}
               onChange={(e) => {
                 setValue(e.currentTarget.value);
+                // @ts-ignore Help
                 onChange(e.currentTarget.value, checked);
               }}
               showTicks
-              showValue
               ticks={ticks}
               valueAppend="+"
               fullWidth
@@ -129,7 +144,7 @@ export const ContrastSlider = ({
         <EuiPanel paddingSize="l" color="subdued">
           <EuiFormRow
             labelType="legend"
-            label="Use text variant variables of core colors for better text contrast"
+            label="Show text variant versions of core color tokens as the foreground"
             hasChildLabel={false}
           >
             <div>
@@ -139,6 +154,7 @@ export const ContrastSlider = ({
                 checked={showTextVariants}
                 onChange={(e) => {
                   setChecked(e.target.checked);
+                  // @ts-ignore Help
                   onChange(value, e.target.checked);
                 }}
               />

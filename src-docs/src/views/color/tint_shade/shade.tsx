@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 
-import { EuiFlexGrid, EuiFlexItem, EuiBadge } from '../../../../src/components';
+import { EuiFlexGrid, EuiFlexItem, EuiBadge } from '../../../../../src';
 
-import { shade } from '../../../../src/services';
+import { shade } from '../../../../../src/services';
 
 export default () => {
   const COLORS = ['#006837', 'rgb(165,0,38)', 'rgba(0,0,0,.5)', 'pink'];

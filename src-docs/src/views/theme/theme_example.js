@@ -2,17 +2,13 @@ import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiText, EuiCode, EuiLink } from '../../../../src/components';
-import { EuiThemeProvider } from '../../../../src/services';
+import { EuiText, EuiThemeProvider, EuiCode, EuiLink } from '../../../../src';
 
 import Consuming from './consuming';
 const consumingSource = require('!!raw-loader!./consuming');
 
 import { ConsumingHOC } from './consuming_hoc';
 const consumingHOCSource = require('!!raw-loader!./consuming_hoc');
-
-import Inverse from './inverse';
-const InverseSource = require('!!raw-loader!./inverse');
 
 import OverrideSimple from './override_simple';
 const overrideSimpleSource = require('!!raw-loader!./override_simple');
@@ -146,31 +142,6 @@ export const ThemeExample = {
         </>
       ),
       demo: <ConsumingHOC />,
-    },
-    {
-      title: 'Rendering a specific color mode',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: InverseSource,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            While it is usually best to keep all consumptions of the global
-            variables rendering in the same light or dark color mode, some
-            instances benefit from an exaggerated change in contrast from the
-            current theme. For this you can specify{' '}
-            <strong>EuiThemeProvider</strong>&apos;s{' '}
-            <EuiCode>colorMode</EuiCode> to always be{' '}
-            <EuiCode>{'"light"'}</EuiCode>, <EuiCode>{'"dark"'}</EuiCode>, or{' '}
-            <EuiCode>{'"inverse"'}</EuiCode> which sets it to the opposite of
-            the current color mode.
-          </p>
-        </>
-      ),
-      demo: <Inverse />,
     },
     {
       title: 'Simple instance overrides',

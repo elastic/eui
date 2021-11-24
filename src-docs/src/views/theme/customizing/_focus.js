@@ -1,19 +1,19 @@
 import React from 'react';
 import { css } from '@emotion/react';
-import { useEuiTheme } from '../../../../src/services';
 
 import {
+  useEuiTheme,
   EuiTitle,
   EuiSpacer,
   EuiColorPickerSwatch,
   EuiFlexItem,
   EuiCodeBlock,
-} from '../../../../src/components';
+} from '../../../../../src';
 
-import { ThemeSection } from './_theme_section';
+import { ThemeSection } from '../_theme_section';
 import { ThemeValue } from './_values';
 
-import { getPropsFromThemeKey, EuiThemeFocus } from './_props';
+import { getPropsFromThemeKey, EuiThemeFocus } from '../_props';
 
 export default ({ onThemeUpdate }) => {
   const { euiTheme } = useEuiTheme();
