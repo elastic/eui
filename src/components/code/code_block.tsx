@@ -125,8 +125,7 @@ export type EuiCodeBlockProps = EuiCodeSharedProps & {
    * `whiteSpace` can only be `pre`.
    */
   isVirtualized?: boolean;
-} & VirtualizedOptionProps &
-  HTMLAttributes<HTMLElement>;
+} & VirtualizedOptionProps;
 
 export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   language: _language = DEFAULT_LANGUAGE,
