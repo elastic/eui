@@ -1,7 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
 - Updated color of `EuiHorizontalRule` when rendered inside `EuiToolTip` ([#5378](https://github.com/elastic/eui/pull/5378))
-- Added `payment` glyph to `EuiIcon` ([#0000](https://github.com/elastic/eui/pull/0000))
+- Added `payment` glyph to `EuiIcon` ([#5414](https://github.com/elastic/eui/pull/5414))
 
 **Bug fixes**
 
