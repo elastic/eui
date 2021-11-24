@@ -309,15 +309,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 318,
-        "column": 10
+        "line": 357,
+        "column": 8
       },
       "end": {
-        "line": 318,
-        "column": 66
+        "line": 357,
+        "column": 64
       }
     },
-    "filepath": "src/components/code/_code_block.tsx"
+    "filepath": "src/components/code/code_block.tsx"
   },
   {
     "token": "euiCodeBlock.fullscreenCollapse",
@@ -325,15 +325,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 343,
+        "line": 406,
         "column": 6
       },
       "end": {
-        "line": 349,
+        "line": 412,
         "column": 7
       }
     },
-    "filepath": "src/components/code/_code_block.tsx"
+    "filepath": "src/components/code/code_block.tsx"
   },
   {
     "token": "euiCodeBlock.fullscreenExpand",
@@ -341,15 +341,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 343,
+        "line": 406,
         "column": 6
       },
       "end": {
-        "line": 349,
+        "line": 412,
         "column": 7
       }
     },
-    "filepath": "src/components/code/_code_block.tsx"
+    "filepath": "src/components/code/code_block.tsx"
   },
   {
     "token": "euiColorPickerSwatch.ariaLabel",
