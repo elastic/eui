@@ -11,6 +11,7 @@
 - Fixed virtualized `EuiCodeBlock`s blanking out when entering & exiting full-screen mode ([#5379](https://github.com/elastic/eui/pull/5379))
 - Fixed `EuiCodeBlock`'s full-screen mode to use a large font and padding size & added several missing wrapper classes ([#5379](https://github.com/elastic/eui/pull/5379))
 - Fixed `EuiCodeBlock` broken line wrapping when using virtualization ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed type exports to not include test mocks & specs ([#5412](https://github.com/elastic/eui/pull/5412))
 
 **Theme: Amsterdam**
 
