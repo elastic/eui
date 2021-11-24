@@ -1,5 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+No public interface changes since `41.3.0`.
+
+## [`41.3.0`](https://github.com/elastic/eui/tree/v41.3.0)
+
 - Updated color of `EuiHorizontalRule` when rendered inside `EuiToolTip` ([#5378](https://github.com/elastic/eui/pull/5378))
 
 **Bug fixes**
