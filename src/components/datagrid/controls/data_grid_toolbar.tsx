@@ -211,8 +211,7 @@ export function getNestedObjectOptions<T>(
   objectKey: keyof T
 ): boolean {
   // If the config is a boolean, nested options follow that boolean
-  if (controlOption === false) return false;
-  if (controlOption === true) return true;
+  if (controlOption === false || controlOption === true) return controlOption;
   // If config is not defined, default to enabled
   if (controlOption == null) return true;
   // Otherwise, type should be an object of boolean values - dive into it and return the value
