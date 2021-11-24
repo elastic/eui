@@ -15,3 +15,10 @@
 
 import '@cypress/code-coverage/support';
 require(THEME_IMPORT); // defined by DefinePlugin in the cypress webpack config
+
+// @see https://github.com/quasarframework/quasar/issues/2233#issuecomment-492975745
+Cypress.on('uncaught:exception', (err) => {
+  if (err.message.includes('> ResizeObserver loop limit exceeded')) {
+    return false;
+  }
+});
