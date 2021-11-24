@@ -15,3 +15,5 @@ $guideDemoHighlightColor: transparentize($euiColorPrimary, .9);
 @import './suggest/index';
 @import './text/text_scaling';
 @import './tree_view/tree_view';
+
+@import './theme/color/color';

@@ -14,3 +14,4 @@
 // ***********************************************************
 
 import '@cypress/code-coverage/support';
+require(THEME_IMPORT); // defined by DefinePlugin in the cypress webpack config

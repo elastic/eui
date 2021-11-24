@@ -1,16 +1,39 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Updated color of `EuiHorizontalRule` when rendered inside `EuiToolTip` ([#5378](https://github.com/elastic/eui/pull/5378))
+
+**Bug fixes**
+
+- Fixed an `EuiDataGrid` bug where paginated overflowing data grids could become unscrollable when `rowCount` changed ([#5400](https://github.com/elastic/eui/pull/5400))
+- Fixed `EuiCode` line-wrapping ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed `EuiCodeBlock` not passing `data-test-subj` or `aria-label` to virtualized & full-screen code blocks ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed `EuiCodeBlock` not closing full-screen mode when the Escape key is pressed ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed virtualized `EuiCodeBlock`s blanking out when entering & exiting full-screen mode ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed `EuiCodeBlock`'s full-screen mode to use a large font and padding size & added several missing wrapper classes ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed `EuiCodeBlock` broken line wrapping when using virtualization ([#5379](https://github.com/elastic/eui/pull/5379))
+
+**Theme: Amsterdam**
+
+- Fixed `EuiCodeBlock` not properly increasing large font sizes on Amsterdam ([#5379](https://github.com/elastic/eui/pull/5379))
+
+## [`41.2.1`](https://github.com/elastic/eui/tree/v41.2.1)
+
+**Bug fixes**
+
+- Refactored definition of `isNamedColor` function so it isn't mocked away by the testenv configuration ([#5397](https://github.com/elastic/eui/pull/5397))
+
+## [`41.2.0`](https://github.com/elastic/eui/tree/v41.2.0)
+
 - Added `aria-label` and `aria-labelledby` props to `EuiComboBox` ([#5360](https://github.com/elastic/eui/issues/5360))
 - Updated `EuiDatePicker` to use `EuiPopover`, `EuiFocusTrap`, and `EuiScreenReaderOnly` ([#5339](https://github.com/elastic/eui/pull/5339))
 
 **Bug fixes**
 
-- Fixed `EuiDatePicker` being constrained to its parent container by using React portal ([#5339](https://github.com/elastic/eui/pull/5339))
-
-**Bug fixes**
-
 - Fixed an `EuiDataGrid` row height bug for grids that set a default `lineCount` and also used `rowHeights` to set row-specific `lineCount`s ([#5376](https://github.com/elastic/eui/pull/5376))
 - Fixed `EuiComboBox` from allowing keyboard actions when `isDisabled` ([#5373](https://github.com/elastic/eui/pull/5373))
+- Fixed an accessibility issue where `EuiSuperSelect` was not creating accessible labels for its listbox ([#5364](https://github.com/elastic/eui/pull/5364))
+- Fixed an accessibility issue where `EuiColorPalettePicker` was not creating an accessible label for its button ([#5364](https://github.com/elastic/eui/pull/5364))
+- Fixed `EuiDatePicker` being constrained to its parent container by using React portal ([#5339](https://github.com/elastic/eui/pull/5339))
 
 ## [`41.1.0`](https://github.com/elastic/eui/tree/v41.1.0)
 
@@ -22,8 +45,6 @@
 
 - Fixed an `EuiDataGrid` race condition where grid rows had incorrect heights if loaded in before CSS ([#5284](https://github.com/elastic/eui/pull/5284))
 - Fixed an accessibility issue where `EuiDataGrid` cells weren't owned by `role=row` elements ([#5285](https://github.com/elastic/eui/pull/5285))
-- Fixed an accessibility issue where `EuiSuperSelect` was not creating accessible labels for its listbox ([#5364](https://github.com/elastic/eui/pull/5364))
-- Fixed an accessibility issue where `EuiColorPalettePicker` was not creating an accessible label for its button ([#5364](https://github.com/elastic/eui/pull/5364))
 - Fixed `EuiErrorBoundary` overflow scrolling by wrapping contents in `EuiCodeBlock` ([#5359](https://github.com/elastic/eui/pull/5359))
 - Fixed `analyzeEvent` icon to be horizontally centered [#5365](https://github.com/elastic/eui/pull/5365))
 

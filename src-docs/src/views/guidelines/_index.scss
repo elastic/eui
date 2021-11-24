@@ -224,6 +224,27 @@
   border: $euiBorderWidthThick dashed $euiBorderColor;
 }
 
+.guideSass__euiColorWarning {
+  padding: $euiSizeS;
+  color: $euiColorInk;
+  background: $euiColorWarning;
+}
+
+.guideSass__euiColorWarningText {
+  color: $euiColorWarningText;
+}
+
+.guideSass__tintMediumShade {
+  padding: $euiSizeS;
+  background: tintOrShade($euiColorMediumShade, 90%, 70%);
+}
+
+.guideSass__special {
+  padding: $euiSizeS;
+  color: $euiColorGhost;
+  background: $euiColorInk;
+}
+
 .guideSass__fontFamily {
   font-size: $euiSizeL;
   background: $euiColorDarkestShade;
@@ -383,11 +404,63 @@
   }
 }
 
+.guideSass__transparencyExample {
+  background: transparentize($euiColorPrimary, .8);
+  padding: $euiSize;
+}
+
+.guideSass__tintExample {
+  $backgroundColor: tint($euiColorSuccess, 20%);
+  background: $backgroundColor;
+  color: chooseLightOrDarkText($backgroundColor);
+  padding: $euiSize;
+}
+
+.guideSass__shadeExample {
+  $backgroundColor: shade($euiColorSuccess, 20%);
+  background: $backgroundColor;
+  color: chooseLightOrDarkText($backgroundColor);
+  padding: $euiSize;
+}
+
+.guideSass__tintShadeExample {
+  $backgroundColor: tintOrShade($euiColorSuccess, 80%, 80%);
+  background: $backgroundColor;
+  color: chooseLightOrDarkText($backgroundColor);
+  padding: $euiSize;
+}
+
+.guideSass__textExample {
+  padding: $euiSize;
+  display: inline-block;
+  margin-right: $euiSize;
+
+  &--primary {
+    background-color: $euiColorPrimary;
+    color: chooseLightOrDarkText($euiColorPrimary);
+  }
+
+  &--success {
+    background-color: $euiColorSuccess;
+    color: chooseLightOrDarkText($euiColorSuccess);
+  }
+
+  &--warning {
+    background-color: $euiColorWarning;
+    color: chooseLightOrDarkText($euiColorWarning);
+  }
+
+  &--danger {
+    background-color: $euiColorDanger;
+    color: chooseLightOrDarkText($euiColorDanger);
+  }
+}
+
+
 .guideSection__emptyBox {
   background-color: $euiColorEmptyShade;
 }
 
-@import 'colors/color_section';
 
 @each $key, $size in $euiBreakpoints {
   .guideSass__breakpoint--#{$key} {

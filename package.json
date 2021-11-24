@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "41.1.0",
+  "version": "41.2.1",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -32,8 +32,8 @@
     "test-unit": "cross-env NODE_ENV=test jest --config ./scripts/jest/config.json",
     "test-a11y": "node ./scripts/a11y-testing",
     "test-staged": "yarn lint && node scripts/test-staged.js",
-    "test-cypress": "cross-env BABEL_MODULES=false NODE_ENV=cypress_test cypress run-ct",
-    "test-cypress-dev": "cross-env BABEL_MODULES=false NODE_ENV=cypress_test cypress open-ct",
+    "test-cypress": "node ./scripts/cypress",
+    "test-cypress-dev": "node ./scripts/cypress --dev",
     "combine-test-coverage": "sh ./scripts/combine-coverage.sh",
     "start-test-server": "BABEL_MODULES=false NODE_ENV=puppeteer NODE_OPTIONS=--max-old-space-size=4096 webpack-dev-server --config src-docs/webpack.config.js --port 9999",
     "yo-component": "yo ./generator-eui/app/component.js",
@@ -228,6 +228,7 @@
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
+    "yargs": "^17.2.1",
     "yeoman-generator": "^4.12.0",
     "yo": "^3.1.1"
   },
