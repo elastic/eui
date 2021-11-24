@@ -206,9 +206,9 @@ export function renderAdditionalControls(
  * (e.g. column selector, display selector)
  */
 
-export function getNestedObjectOptions(
-  controlOption: undefined | boolean | any, // any is in place here so we don't have to pass in each config obj manually
-  objectKey: string
+export function getNestedObjectOptions<T>(
+  controlOption: undefined | boolean | T,
+  objectKey: keyof T
 ): boolean {
   // If the config is a boolean, nested options follow that boolean
   if (controlOption === false) return false;
@@ -216,5 +216,5 @@ export function getNestedObjectOptions(
   // If config is not defined, default to enabled
   if (controlOption == null) return true;
   // Otherwise, type should be an object of boolean values - dive into it and return the value
-  return controlOption[objectKey] !== false;
+  return !!(controlOption[objectKey] ?? true);
 }

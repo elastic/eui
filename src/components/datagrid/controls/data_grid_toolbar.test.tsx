@@ -329,19 +329,39 @@ describe('renderAdditionalControls', () => {
 });
 
 describe('getNestedObjectOptions', () => {
-  it('returns the passed boolean if the option is set to a boolean instead of an object', () => {
-    expect(getNestedObjectOptions(true, 'someKey')).toEqual(true);
-    expect(getNestedObjectOptions(false, 'someKey')).toEqual(false);
+  interface MockOptions {
+    someKey?: boolean;
+  }
+
+  describe('non-object configuration', () => {
+    it('returns passed booleans', () => {
+      expect(getNestedObjectOptions<MockOptions>(true, 'someKey')).toEqual(
+        true
+      );
+      expect(getNestedObjectOptions<MockOptions>(false, 'someKey')).toEqual(
+        false
+      );
+    });
+
+    it('returns true if the option is undefined', () => {
+      expect(getNestedObjectOptions<MockOptions>(undefined, 'someKey')).toEqual(
+        true
+      );
+    });
   });
 
-  it('returns true if the option is undefined', () => {
-    expect(getNestedObjectOptions(undefined, 'someKey')).toEqual(true);
-  });
+  describe('object configuration', () => {
+    it('returns nested object booleans', () => {
+      expect(
+        getNestedObjectOptions<MockOptions>({ someKey: true }, 'someKey')
+      ).toEqual(true);
+      expect(
+        getNestedObjectOptions<MockOptions>({ someKey: false }, 'someKey')
+      ).toEqual(false);
+    });
 
-  it('returns the nested object boolean if the option is an object configuration', () => {
-    expect(getNestedObjectOptions({ someKey: true }, 'someKey')).toEqual(true);
-    expect(getNestedObjectOptions({ someKey: false }, 'someKey')).toEqual(
-      false
-    );
+    it('returns true if the nested object key is undefined', () => {
+      expect(getNestedObjectOptions<MockOptions>({}, 'someKey')).toEqual(true);
+    });
   });
 });
