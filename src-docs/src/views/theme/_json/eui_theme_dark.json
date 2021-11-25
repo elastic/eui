@@ -685,6 +685,7 @@
   "euiFocusTransparencyPercent": "80%",
   "euiFocusBackgroundColor": "#052231",
   "euiTooltipBackgroundColor": "#000000",
+  "euiTooltipBorderColor": "#333333",
   "euiTooltipAnimations": {
     "top": "euiToolTipTop",
     "left": "euiToolTipBottom",

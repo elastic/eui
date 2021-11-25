@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { createElement, ReactElement, ReactNode } from 'react';
+import React, {
+  createElement,
+  ReactElement,
+  ReactNode,
+  HTMLAttributes,
+} from 'react';
 import { listLanguages, highlight, AST, RefractorNode } from 'refractor';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
@@ -15,14 +20,15 @@ import { CommonProps } from '../common';
  * Utils shared between EuiCode and EuiCodeBlock
  */
 
-export type EuiCodeSharedProps = CommonProps & {
-  /**
-   * Sets the syntax highlighting for a specific language
-   * @see [https://prismjs.com/#supported-languages](https://prismjs.com/#supported-languages) for options
-   */
-  language?: string;
-  transparentBackground?: boolean;
-};
+export type EuiCodeSharedProps = CommonProps &
+  HTMLAttributes<HTMLElement> & {
+    /**
+     * Sets the syntax highlighting for a specific language
+     * @see [https://prismjs.com/#supported-languages](https://prismjs.com/#supported-languages) for options
+     */
+    language?: string;
+    transparentBackground?: boolean;
+  };
 
 export const SUPPORTED_LANGUAGES = listLanguages();
 export const DEFAULT_LANGUAGE = 'text';
