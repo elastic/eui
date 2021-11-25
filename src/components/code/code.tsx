@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useMemo, FunctionComponent, HTMLAttributes } from 'react';
+import React, { useMemo, FunctionComponent } from 'react';
 import { highlight, RefractorNode } from 'refractor';
 import classNames from 'classnames';
 import {
@@ -16,7 +16,7 @@ import {
   getHtmlContent,
 } from './utils';
 
-export type EuiCodeProps = EuiCodeSharedProps & HTMLAttributes<HTMLElement>;
+export type EuiCodeProps = EuiCodeSharedProps;
 
 export const EuiCode: FunctionComponent<EuiCodeProps> = ({
   transparentBackground = false,
