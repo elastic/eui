@@ -1,11 +1,10 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `41.3.0`.
+- Added `payment` glyph to `EuiIcon` ([#5414](https://github.com/elastic/eui/pull/5414))
 
 ## [`41.3.0`](https://github.com/elastic/eui/tree/v41.3.0)
 
 - Updated color of `EuiHorizontalRule` when rendered inside `EuiToolTip` ([#5378](https://github.com/elastic/eui/pull/5378))
-- Added `payment` glyph to `EuiIcon` ([#5414](https://github.com/elastic/eui/pull/5414))
 
 **Bug fixes**
 
