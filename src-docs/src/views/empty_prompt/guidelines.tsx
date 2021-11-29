@@ -15,6 +15,7 @@ import {
   EuiAspectRatio,
   EuiImage,
 } from '../../../../src/components';
+import PanelColorPicker from './_panel_color_picker';
 
 import vertical from '../../images/empty-prompt_vertical.svg';
 import horizontal from '../../images/empty-prompt_horizontal.svg';
@@ -278,6 +279,10 @@ export default () => (
         </>
       }
     />
+
+    <EuiSpacer size="xl" />
+
+    <PanelColorPicker />
 
     <GuideRule
       heading="Icons and illustrations"
