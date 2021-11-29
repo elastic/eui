@@ -416,7 +416,7 @@ const useFullScreen = ({
           <EuiButtonIcon
             className="euiCodeBlock__fullScreenButton"
             onClick={toggleFullScreen}
-            iconType={isFullScreen ? 'cross' : 'fullScreen'}
+            iconType={isFullScreen ? 'fullScreenExit' : 'fullScreen'}
             color="text"
             aria-label={isFullScreen ? fullscreenCollapse : fullscreenExpand}
           />
