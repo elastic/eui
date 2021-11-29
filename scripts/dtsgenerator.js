@@ -31,10 +31,11 @@ const generator = dtsGenerator({
   exclude: [
     'node_modules/**/*.d.ts',
     '*/custom_typings/**/*.d.ts',
-    '**/*.test.ts',
-    '**/*.test.tsx',
-    '**/*.testenv.ts',
-    '**/*.testenv.tsx',
+    '**/*.test.{ts,tsx}',
+    '**/*.testenv.{ts,tsx}',
+    '**/*.spec.{ts,tsx}',
+    '**/*.mock.{ts,tsx}',
+    '**/__mocks__/*',
     'src/themes/charts/*', // A separate d.ts file is generated for the charts theme file
     'src/test/*', // A separate d.ts file is generated for test utils
     'src-docs/**/*', // Don't include src-docs

@@ -124,6 +124,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   maxHeight = '60vh',
   onFocus,
   onBlur,
+  sendValue,
   ...rest
 }) => {
   /**
@@ -142,16 +143,20 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     openPopover();
   };
 
-  const onSearchInput = (e: FormEvent<HTMLInputElement>) => {
-    onInputChange && onInputChange(e.target);
-    openPopover();
-  };
-
   const searchOnBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     onBlur && onBlur(e);
     if (!popoverRef?.contains(e.relatedTarget as HTMLElement)) {
       closePopover();
     }
+  };
+
+  const searchOnInput = (e: FormEvent<HTMLInputElement>) => {
+    onInputChange && onInputChange(e.target);
+    openPopover();
+  };
+
+  const searchOnChange = (value: string) => {
+    sendValue && sendValue(value);
   };
 
   const inputDescribedbyId = useGeneratedHtmlId({ prefix: id });
@@ -268,7 +273,8 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
           isLoading: status === 'loading' ? true : false,
           onFocus: searchOnFocus,
           onBlur: searchOnBlur,
-          onInput: onSearchInput,
+          onInput: searchOnInput,
+          onSearch: searchOnChange,
           'aria-describedby': inputDescribedbyId,
         }}
       >

@@ -6,6 +6,10 @@
 
 `yarn test-cypress-dev` launches a chrome window controlled by Cypress, which lists out the discovered tests and allows executing/interacting from that window.
 
+### Setting the theme
+
+By default tests are run using the light theme. Dark mode can be enabled by passing the `--theme=dark` option.
+
 ### Skipping CSS compilation
 
 To ensure tests use up-to-date styles, the test runner compiles our SCSS to CSS before executing Cypress. This adds some processing time before the tests can run, and often the existing locally-built styles are still accurate. The CSS compilation step can be skipped by passing the `--skip-css` flag to `yarn test-cypress` and `yarn test-cypress-dev`.

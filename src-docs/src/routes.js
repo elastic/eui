@@ -1,4 +1,5 @@
 import React, { createElement, Fragment } from 'react';
+
 import { slugify } from '../../src/services';
 
 import { createHashHistory } from 'history';
@@ -15,10 +16,6 @@ import { playgroundCreator } from './services/playground';
 const GettingStarted = require('!!raw-loader!./views/guidelines/getting_started.md');
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
-
-import ColorGuidelines from './views/guidelines/colors';
-
-import { SassGuidelines } from './views/guidelines/sass';
 
 import {
   WritingGuidelines,
@@ -232,14 +229,16 @@ import { I18nTokens } from './views/package/i18n_tokens';
 import { SuperSelectExample } from './views/super_select/super_select_example';
 
 import { ThemeExample } from './views/theme/theme_example';
-import ThemeValues from './views/theme/values';
+import { ColorModeExample } from './views/theme/color_mode/color_mode_example';
+import Breakpoints from './views/theme/breakpoints/breakpoints';
+import Borders, { bordersSections } from './views/theme/borders/borders';
+import Color, { colorsSections } from './views/theme/color/colors';
+import Sizing, { sizingSections } from './views/theme/sizing/sizing';
 import Typography, {
   typographySections,
 } from './views/theme/typography/typography';
-import Sizing, { sizingSections } from './views/theme/sizing/sizing';
-import Breakpoints from './views/theme/breakpoints/breakpoints';
-import Borders, { bordersSections } from './views/theme/borders/borders';
 import Other, { otherSections } from './views/theme/other/other';
+import ThemeValues from './views/theme/customizing/values';
 
 /** Elastic Charts */
 
@@ -381,11 +380,6 @@ const navigation = [
     items: [
       createMarkdownExample(GettingStarted, 'Getting started'),
       createExample(AccessibilityGuidelines, 'Accessibility'),
-      {
-        name: 'Colors',
-        component: ColorGuidelines,
-      },
-      createExample(SassGuidelines, 'Sass'),
       createTabbedPage({
         title: 'Writing',
         pages: [
@@ -407,11 +401,7 @@ const navigation = [
     name: 'Theming',
     items: [
       createExample(ThemeExample, 'Theme provider'),
-      {
-        name: 'Global values',
-        component: ThemeValues,
-        isNew: true,
-      },
+      createExample(ColorModeExample),
       {
         name: 'Breakpoints',
         component: Breakpoints,
@@ -420,6 +410,11 @@ const navigation = [
         name: 'Borders',
         component: Borders,
         sections: bordersSections,
+      },
+      {
+        name: 'Colors',
+        component: Color,
+        sections: colorsSections,
       },
       {
         name: 'Sizing',
@@ -436,7 +431,11 @@ const navigation = [
         component: Other,
         sections: otherSections,
       },
-      createExample(SassGuidelines, 'Sass'),
+      {
+        name: 'Customizing themes',
+        component: ThemeValues,
+        isNew: true,
+      },
     ],
   },
   {
