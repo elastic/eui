@@ -276,6 +276,8 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
           onInput: searchOnInput,
           onSearch: searchOnChange,
           'aria-describedby': inputDescribedbyId,
+          'aria-label': ariaLabel,
+          'aria-labelledby': labelId,
         }}
       >
         {(list, search) => (

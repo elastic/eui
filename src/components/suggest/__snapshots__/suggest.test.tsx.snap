@@ -36,8 +36,8 @@ Array [
             >
               <input
                 aria-activedescendant=""
-                aria-describedby="generated-id"
                 aria-haspopup="listbox"
+                aria-label="aria-label"
                 autocomplete="off"
                 class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
                 placeholder="Filter options"
@@ -120,8 +120,8 @@ Array [
             >
               <input
                 aria-activedescendant=""
-                aria-describedby="generated-id"
                 aria-haspopup="listbox"
+                aria-label="aria-label"
                 autocomplete="off"
                 class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
                 placeholder="Filter options"
@@ -204,8 +204,8 @@ Array [
             >
               <input
                 aria-activedescendant=""
-                aria-describedby="generated-id"
                 aria-haspopup="listbox"
+                aria-label="aria-label"
                 autocomplete="off"
                 class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
                 placeholder="Filter options"
@@ -288,8 +288,8 @@ Array [
             >
               <input
                 aria-activedescendant=""
-                aria-describedby="generated-id"
                 aria-haspopup="listbox"
+                aria-label="aria-label"
                 autocomplete="off"
                 class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
                 placeholder="Filter options"
@@ -377,8 +377,8 @@ Array [
             >
               <input
                 aria-activedescendant=""
-                aria-describedby="generated-id"
                 aria-haspopup="listbox"
+                aria-label="aria-label"
                 autocomplete="off"
                 class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiFieldSearch-isLoading euiSelectableSearch"
                 placeholder="Filter options"
@@ -468,8 +468,8 @@ Array [
             >
               <input
                 aria-activedescendant=""
-                aria-describedby="generated-id"
                 aria-haspopup="listbox"
+                aria-label="aria-label"
                 autocomplete="off"
                 class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
                 placeholder="Filter options"
@@ -561,8 +561,8 @@ Array [
             >
               <input
                 aria-activedescendant=""
-                aria-describedby="generated-id"
                 aria-haspopup="listbox"
+                aria-label="aria-label"
                 autocomplete="off"
                 class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
                 placeholder="Filter options"
@@ -645,8 +645,8 @@ Array [
             >
               <input
                 aria-activedescendant=""
-                aria-describedby="generated-id"
                 aria-haspopup="listbox"
+                aria-label="aria-label"
                 autocomplete="off"
                 class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
                 placeholder="Filter options"
@@ -738,8 +738,8 @@ Array [
             >
               <input
                 aria-activedescendant=""
-                aria-describedby="generated-id"
                 aria-haspopup="listbox"
+                aria-label="aria-label"
                 autocomplete="off"
                 class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiFieldSearch-isLoading euiSelectableSearch"
                 placeholder="Filter options"
@@ -829,8 +829,8 @@ Array [
             >
               <input
                 aria-activedescendant=""
-                aria-describedby="generated-id"
                 aria-haspopup="listbox"
+                aria-label="aria-label"
                 autocomplete="off"
                 class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
                 placeholder="Filter options"
@@ -922,8 +922,8 @@ Array [
             >
               <input
                 aria-activedescendant=""
-                aria-describedby="generated-id"
                 aria-haspopup="listbox"
+                aria-label="aria-label"
                 autocomplete="off"
                 class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
                 placeholder="Filter options"
@@ -1006,8 +1006,8 @@ Array [
             >
               <input
                 aria-activedescendant=""
-                aria-describedby="generated-id"
                 aria-haspopup="listbox"
+                aria-label="aria-label"
                 autocomplete="off"
                 class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
                 placeholder="Filter options"
