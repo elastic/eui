@@ -1,6 +1,11 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
 - Added `payment` glyph to `EuiIcon` ([#5414](https://github.com/elastic/eui/pull/5414))
+- Updated `EuiCodeBlock`'s full screen mode to use the `fullScreenExit` icon ([#5421](https://github.com/elastic/eui/pull/5421))
+
+**Bug fixes**
+
+- Fixed an `EuiCodeBlock` bug where empty code blocks could be copyable ([#5421](https://github.com/elastic/eui/pull/5421))
 
 ## [`41.3.0`](https://github.com/elastic/eui/tree/v41.3.0)
 
