@@ -125,14 +125,16 @@ export const useDataGridDisplaySelector = (
   );
   const setRowHeight = useCallback(
     (option: string) => {
-      let rowHeightsOptions: EuiDataGridRowHeightsOptions | undefined;
+      const rowHeightsOptions: EuiDataGridRowHeightsOptions = {
+        rowHeights: {}, // Unset all row-specific heights
+      };
 
       if (option === 'auto') {
-        rowHeightsOptions = { defaultHeight: 'auto' };
+        rowHeightsOptions.defaultHeight = 'auto';
       } else if (option === 'lineCount') {
-        rowHeightsOptions = { defaultHeight: { lineCount } };
+        rowHeightsOptions.defaultHeight = { lineCount };
       } else {
-        rowHeightsOptions = { defaultHeight: undefined };
+        rowHeightsOptions.defaultHeight = undefined;
       }
 
       setRowHeightSelection(option);
@@ -145,7 +147,10 @@ export const useDataGridDisplaySelector = (
     if (newLineCount < 1) return; // Don't let users set a 0 or negative line count
 
     setLineCount(newLineCount);
-    setUserRowHeightsOptions({ defaultHeight: { lineCount: newLineCount } });
+    setUserRowHeightsOptions({
+      rowHeights: {}, // Unset all row-specific line counts
+      defaultHeight: { lineCount: newLineCount },
+    });
   }, []);
 
   // merge the developer-specified styles with any user overrides

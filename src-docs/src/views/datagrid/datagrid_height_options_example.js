@@ -248,15 +248,15 @@ export const DataGridRowHeightOptionsExample = {
           </EuiCodeBlock>
           <EuiCallOut
             color="warning"
-            title="Disable the row height toolbar control"
+            title="Disabling the row height toolbar control"
           >
-            When using <EuiCode>rowHeights</EuiCode> overrides, we recommend
-            setting{' '}
+            Individual row heights will be overridden by the toolbar display
+            controls. If you do not want users to be able to override specific
+            row heights, set{' '}
             <EuiCode>
               toolbarVisibility.showDisplaySelector.allowRowHeight
             </EuiCode>{' '}
-            to <EuiCode>false</EuiCode>, as users will otherwise be confused
-            when switching row heights does not affect specific overriden rows.
+            to <EuiCode>false</EuiCode>.
           </EuiCallOut>
         </Fragment>
       ),

@@ -349,21 +349,42 @@ describe('useDataGridDisplaySelector', () => {
       return JSON.parse(component.find('[data-test-subj="output"]').text());
     };
 
-    it('returns an object of rowHeightsOptions with user overrides', () => {
-      const component = shallow(
-        <MockComponent initialRowHeightsOptions={{ lineHeight: '2em' }} />
-      );
+    describe('returns an object of rowHeightsOptions with user overrides', () => {
+      it('overrides `rowHeights` and `defaultHeight`', () => {
+        const component = shallow(
+          <MockComponent
+            initialRowHeightsOptions={{
+              rowHeights: { 0: 100 },
+              defaultHeight: 50,
+            }}
+          />
+        );
 
-      setRowHeight(component, 'lineCount');
-      setLineCount(component, 5);
+        setRowHeight(component, 'undefined');
 
-      expect(getOutput(component)).toEqual({
-        lineHeight: '2em',
-        defaultHeight: { lineCount: 5 },
+        expect(getOutput(component)).toEqual({
+          rowHeights: {},
+          defaultHeight: undefined,
+        });
+      });
+
+      it('does not override other rowHeightsOptions properties', () => {
+        const component = shallow(
+          <MockComponent initialRowHeightsOptions={{ lineHeight: '2em' }} />
+        );
+
+        setRowHeight(component, 'lineCount');
+        setLineCount(component, 5);
+
+        expect(getOutput(component)).toEqual({
+          lineHeight: '2em',
+          defaultHeight: { lineCount: 5 },
+          rowHeights: {},
+        });
       });
     });
 
-    it('handles undefined rowHeightsObjects (from the developer)', () => {
+    it('handles undefined initialRowHeightsOptions', () => {
       const component = shallow(
         <MockComponent initialRowHeightsOptions={undefined} />
       );
@@ -373,18 +394,7 @@ describe('useDataGridDisplaySelector', () => {
 
       expect(getOutput(component)).toEqual({
         defaultHeight: 'auto',
-      });
-    });
-
-    it('handles undefined rowHeightsOptions (from the user)', () => {
-      const component = shallow(
-        <MockComponent initialRowHeightsOptions={{ lineHeight: '2em' }} />
-      );
-
-      setRowHeight(component, 'undefined');
-
-      expect(getOutput(component)).toEqual({
-        lineHeight: '2em',
+        rowHeights: {},
       });
     });
   });
