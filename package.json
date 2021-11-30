@@ -113,7 +113,9 @@
     "@elastic/datemath": "^5.0.3",
     "@elastic/eslint-config-kibana": "^0.15.0",
     "@emotion/babel-preset-css-prop": "^11.0.0",
+    "@emotion/cache": "^11.4.0",
     "@emotion/eslint-plugin": "^11.0.0",
+    "@emotion/jest": "^11.1.0",
     "@emotion/react": "^11.1.1",
     "@svgr/core": "5.5.0",
     "@svgr/plugin-svgo": "^4.0.3",
@@ -234,6 +236,7 @@
   },
   "peerDependencies": {
     "@elastic/datemath": "^5.0.2",
+    "@emotion/react": "11.x",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
     "moment": "^2.13.0",

@@ -4,6 +4,8 @@ import { GuideSectionTypes } from '../../components';
 
 import { EuiText, EuiThemeProvider, EuiCode, EuiLink } from '../../../../src';
 
+import Provider from './provider';
+
 import Consuming from './consuming';
 const consumingSource = require('!!raw-loader!./consuming');
 
@@ -30,9 +32,13 @@ export const ThemeExample = {
       <EuiText>
         <p>
           EUI is in the progress of switching it&apos;s core styles processor
-          from Sass to <EuiLink to="https://emotion.sh">Emotion</EuiLink>. It
-          requires that all consumer applications wrap their core application
-          with <strong>EuiThemeProvider</strong>.
+          from Sass to <EuiLink href="https://emotion.sh">Emotion</EuiLink>. To
+          take full advantage of this context layer, wrap the root of your
+          application with{' '}
+          <EuiLink href="#utilities/provider">
+            <strong>EuiProvider</strong>
+          </EuiLink>
+          .
         </p>
       </EuiText>
     </>
@@ -50,9 +56,15 @@ export const ThemeExample = {
           </p>
           <p>
             Typically your app will only need a single instance at the top level
-            and the functionality will flow down the component tree. It is also
-            possible to use several nested theme providers. In this case each
-            nested provider will inherit from its closest ancestor provider.
+            and the functionality will flow down the component tree. We
+            recommend using{' '}
+            <EuiLink href="#utilities/provider">
+              <strong>EuiProvider</strong>
+            </EuiLink>{' '}
+            at this level as it includes reset styles and future configuration
+            options. It is also possible to use several nested theme providers.
+            In this case each nested provider will inherit from its closest
+            ancestor provider.
           </p>
           <p>
             <EuiCode>EuiThemeProvider</EuiCode> accepts three props, all of
@@ -81,6 +93,7 @@ export const ThemeExample = {
           </p>
         </>
       ),
+      demo: <Provider />,
       props: { EuiThemeProvider },
     },
     {

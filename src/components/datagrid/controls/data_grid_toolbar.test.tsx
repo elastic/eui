@@ -45,7 +45,6 @@ describe('EuiDataGridToolbar', () => {
           mock column sorting
         </div>
         <EuiButtonEmpty
-          className=""
           color="text"
           data-test-subj="dataGridFullScreenButton"
           iconType="fullScreen"
@@ -110,7 +109,6 @@ describe('EuiDataGridToolbar', () => {
     expect(component.find('[data-test-subj="dataGridFullScreenButton"]'))
       .toMatchInlineSnapshot(`
       <EuiButtonEmpty
-        className=""
         color="text"
         data-test-subj="dataGridFullScreenButton"
         iconType="fullScreen"

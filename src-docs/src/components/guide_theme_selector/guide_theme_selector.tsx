@@ -1,19 +1,23 @@
 /* eslint-disable no-restricted-globals */
 import React, { useState } from 'react';
 
-import { EuiButton } from '../../../../src/components/button';
-import {
-  EuiContextMenuPanel,
-  EuiContextMenuItem,
-} from '../../../../src/components/context_menu';
-import { EuiPopover } from '../../../../src/components/popover';
-import { EuiHorizontalRule } from '../../../../src/components/horizontal_rule';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks/useIsWithinBreakpoints';
 import { EUI_THEME, EUI_THEMES } from '../../../../src/themes';
 
 import { ThemeContext } from '../with_theme';
 // @ts-ignore Not TS
 import { GuideLocaleSelector } from '../guide_locale_selector';
+import {
+  EuiText,
+  EuiTourStep,
+  EuiPopover,
+  EuiHorizontalRule,
+  EuiButton,
+  EuiContextMenuPanel,
+  EuiContextMenuItem,
+  EuiLink,
+  EuiIcon,
+} from '../../../../src/components';
 
 type GuideThemeSelectorProps = {
   onToggleLocale: () => {};
@@ -31,6 +35,8 @@ export const GuideThemeSelector: React.FunctionComponent<GuideThemeSelectorProps
   );
 };
 
+const STORAGE_KEY = 'legeacy_theme_notification';
+
 // @ts-ignore Context has no type
 const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorProps> = ({
   context,
@@ -39,9 +45,19 @@ const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorPro
 }) => {
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
   const [isPopoverOpen, setPopover] = useState(false);
+  const [isOpen, setIsOpen] = useState(
+    localStorage.getItem(STORAGE_KEY) !== 'dismissed'
+  );
+
+  const onTourDismiss = () => {
+    setIsOpen(false);
+    localStorage.setItem(STORAGE_KEY, 'dismissed');
+  };
 
   const onButtonClick = () => {
     setPopover(!isPopoverOpen);
+    setIsOpen(false);
+    localStorage.setItem(STORAGE_KEY, 'dismissed');
   };
 
   const closePopover = () => {
@@ -84,27 +100,53 @@ const GuideThemeSelectorComponent: React.FunctionComponent<GuideThemeSelectorPro
   );
 
   return (
-    <EuiPopover
-      id="docsThemeSelector"
-      repositionOnScroll
-      button={button}
-      isOpen={isPopoverOpen}
-      closePopover={closePopover}
-      panelPaddingSize="none"
-      anchorPosition="downRight"
-    >
-      <EuiContextMenuPanel size="s" items={items} />
-      {location.host.includes('803') && (
+    <EuiTourStep
+      content={
+        <EuiText style={{ maxWidth: 320 }}>
+          <p>
+            Amsterdam is now the default theme and the old theme is considered
+            legacy. Our{' '}
+            <EuiLink href="#/guidelines/getting-started#importing-styles">
+              setup instructions
+            </EuiLink>{' '}
+            will sync with the currently selected theme.
+          </p>
+        </EuiText>
+      }
+      isStepOpen={isOpen}
+      onFinish={onTourDismiss}
+      step={1}
+      stepsTotal={1}
+      title={
         <>
-          <EuiHorizontalRule margin="none" />
-          <div style={{ padding: 8 }}>
-            <GuideLocaleSelector
-              onToggleLocale={onToggleLocale}
-              selectedLocale={selectedLocale}
-            />
-          </div>
+          <EuiIcon type="bell" size="s" /> &nbsp; Theming update
         </>
-      )}
-    </EuiPopover>
+      }
+      footerAction={<EuiLink onClick={onTourDismiss}>Got it!</EuiLink>}
+      repositionOnScroll
+    >
+      <EuiPopover
+        id="docsThemeSelector"
+        repositionOnScroll
+        button={button}
+        isOpen={isPopoverOpen}
+        closePopover={closePopover}
+        panelPaddingSize="none"
+        anchorPosition="downRight"
+      >
+        <EuiContextMenuPanel size="s" items={items} />
+        {location.host.includes('803') && (
+          <>
+            <EuiHorizontalRule margin="none" />
+            <div style={{ padding: 8 }}>
+              <GuideLocaleSelector
+                onToggleLocale={onToggleLocale}
+                selectedLocale={selectedLocale}
+              />
+            </div>
+          </>
+        )}
+      </EuiPopover>
+    </EuiTourStep>
   );
 };
