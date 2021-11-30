@@ -65,7 +65,11 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
 
   useEffect(() => {
     const portalTarget = overlayMaskNode.current;
-    document.body.appendChild(overlayMaskNode.current);
+
+    if (document !== undefined) {
+      document.body.appendChild(overlayMaskNode.current);
+    }
+
     setIsPortalTargetReady(true);
 
     return () => {
