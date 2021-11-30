@@ -104,7 +104,7 @@ exports[`EuiCodeBlock full screen displays content in fullscreen mode 1`] = `
           aria-label="Collapse"
           className="euiCodeBlock__fullScreenButton"
           color="text"
-          iconType="cross"
+          iconType="fullScreenExit"
           onClick={[Function]}
         >
           <button
@@ -119,13 +119,13 @@ exports[`EuiCodeBlock full screen displays content in fullscreen mode 1`] = `
               className="euiButtonIcon__icon"
               color="inherit"
               size="m"
-              type="cross"
+              type="fullScreenExit"
             >
               <span
                 aria-hidden="true"
                 className="euiButtonIcon__icon"
                 color="inherit"
-                data-euiicon-type="cross"
+                data-euiicon-type="fullScreenExit"
                 size="m"
               />
             </EuiIcon>

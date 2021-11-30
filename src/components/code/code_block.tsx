@@ -166,13 +166,14 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     children,
   ]);
 
-  const isVirtualized = useMemo(() => _isVirtualized && Array.isArray(data), [
-    _isVirtualized,
-    data,
-  ]);
+  const isVirtualized = useMemo(
+    () => !!(_isVirtualized && Array.isArray(data)),
+    [_isVirtualized, data]
+  );
 
   const { innerTextRef, showCopyButton, CopyButton } = useCopy({
     isCopyable,
+    isVirtualized,
     children,
   });
 
@@ -334,18 +335,19 @@ const useOverflowDetection = () => {
 
 const useCopy = ({
   isCopyable,
+  isVirtualized,
   children,
 }: {
   isCopyable: boolean;
+  isVirtualized: boolean;
   children: ReactNode;
 }) => {
   const [innerTextRef, _innerText] = useInnerText('');
   const innerText = useMemo(
-    () => _innerText?.replace(/[\r\n?]{2}|\n\n/g, '\n'),
+    () => _innerText?.replace(/[\r\n?]{2}|\n\n/g, '\n') || '',
     [_innerText]
   );
-  // Fallback to `children` for virtualized blocks
-  const textToCopy = innerText || `${children}`;
+  const textToCopy = isVirtualized ? `${children}` : innerText; // Virtualized code blocks do not have inner text
 
   const showCopyButton = isCopyable && textToCopy;
 
@@ -414,7 +416,7 @@ const useFullScreen = ({
           <EuiButtonIcon
             className="euiCodeBlock__fullScreenButton"
             onClick={toggleFullScreen}
-            iconType={isFullScreen ? 'cross' : 'fullScreen'}
+            iconType={isFullScreen ? 'fullScreenExit' : 'fullScreen'}
             color="text"
             aria-label={isFullScreen ? fullscreenCollapse : fullscreenExpand}
           />
