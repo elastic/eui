@@ -9,7 +9,6 @@ import {
   EuiDescriptionList,
   EuiCodeBlock,
   EuiText,
-  EuiLink,
   EuiSpacer,
 } from '../../../../src/components';
 
@@ -244,9 +243,9 @@ const gridConcepts = [
         Allows configuring both default and specific heights of grid rows.
         Accepts a partial <strong>EuiDataGridRowHeightsOptions</strong> object.
         See{' '}
-        <EuiLink href="/#/tabular-content/data-grid-row-heights-options">
+        <Link to="/tabular-content/data-grid-row-heights-options">
           Data grid row heights options
-        </EuiLink>{' '}
+        </Link>{' '}
         for more details and examples.
         <br />
         Settings provided may be overwritten or merged with user defined
@@ -264,9 +263,9 @@ const gridConcepts = [
       <span>
         Defines the look of the grid. Accepts a partial{' '}
         <strong>EuiDataGridStyle</strong> object. See{' '}
-        <EuiLink href="/#/tabular-content/data-grid-styling-and-control">
+        <Link to="/tabular-content/data-grid-styling-and-control">
           Data grid styling and control
-        </EuiLink>{' '}
+        </Link>{' '}
         for more details and examples.
         <br />
         Settings provided may be overwritten or merged with user defined
