@@ -12,6 +12,15 @@
 - Amsterdam is now the default theme, deprecated and renamed old theme as "legacy"
 - Re-organized Sass files including where the `globals` are imported from
 
+## [`41.4.0`](https://github.com/elastic/eui/tree/v41.4.0)
+
+- Added `payment` glyph to `EuiIcon` ([#5414](https://github.com/elastic/eui/pull/5414))
+- Updated `EuiCodeBlock`'s full screen mode to use the `fullScreenExit` icon ([#5421](https://github.com/elastic/eui/pull/5421))
+
+**Bug fixes**
+
+- Fixed an `EuiCodeBlock` bug where empty code blocks could be copyable ([#5421](https://github.com/elastic/eui/pull/5421))
+
 ## [`41.3.0`](https://github.com/elastic/eui/tree/v41.3.0)
 
 - Updated color of `EuiHorizontalRule` when rendered inside `EuiToolTip` ([#5378](https://github.com/elastic/eui/pull/5378))
