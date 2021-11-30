@@ -1,5 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+No public interface changes since `41.4.0`.
+
+## [`41.4.0`](https://github.com/elastic/eui/tree/v41.4.0)
+
 - Added `payment` glyph to `EuiIcon` ([#5414](https://github.com/elastic/eui/pull/5414))
 - Updated `EuiCodeBlock`'s full screen mode to use the `fullScreenExit` icon ([#5421](https://github.com/elastic/eui/pull/5421))
 
