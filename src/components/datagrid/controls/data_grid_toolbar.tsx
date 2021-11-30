@@ -76,7 +76,7 @@ export const EuiDataGridToolbar = ({
     >
       <EuiButtonIcon
         size="xs"
-        iconType="fullScreen"
+        iconType={isFullScreen ? 'fullScreenExit' : 'fullScreen'}
         color="text"
         className={controlBtnClasses}
         data-test-subj="dataGridFullScreenButton"

@@ -151,7 +151,7 @@ describe('EuiDataGridToolbar', () => {
         className=""
         color="text"
         data-test-subj="dataGridFullScreenButton"
-        iconType="fullScreen"
+        iconType="fullScreenExit"
         onClick={[Function]}
         size="xs"
       />
