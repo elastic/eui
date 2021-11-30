@@ -10,6 +10,7 @@ No public interface changes since `41.4.0`.
 **Bug fixes**
 
 - Fixed an `EuiCodeBlock` bug where empty code blocks could be copyable ([#5421](https://github.com/elastic/eui/pull/5421))
+- Fixed an accessibility issue in `EuiAvatar` by adding a meaningful role ([#5423](https://github.com/elastic/eui/pull/5423))
 
 ## [`41.3.0`](https://github.com/elastic/eui/tree/v41.3.0)
 
