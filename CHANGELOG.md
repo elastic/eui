@@ -6,6 +6,7 @@
 **Bug fixes**
 
 - Fixed an `EuiCodeBlock` bug where empty code blocks could be copyable ([#5421](https://github.com/elastic/eui/pull/5421))
+- Fixed an `EuiOverlayMask` bug where it calls window.document on server side([#5422](https://github.com/elastic/eui/pull/5422))
 
 ## [`41.3.0`](https://github.com/elastic/eui/tree/v41.3.0)
 
