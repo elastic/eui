@@ -41,7 +41,6 @@ const lineHeightFullSnippet = `const rowHeightsOptions = useMemo(
   columns={columns}
   columnVisibility={{ visibleColumns, setVisibleColumns }}
   rowCount={rowCount}
-  height={400}
   renderCellValue={renderCellValue}
   rowHeightsOptions={rowHeightsOptions}
 />
@@ -74,17 +73,8 @@ const rowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   columns={columns}
   columnVisibility={{ visibleColumns, setVisibleColumns }}
   rowCount={rowCount}
-  height={400}
   renderCellValue={renderCellValue}
-  inMemory={{ level: 'sorting' }}
-  sorting={{ columns: sortingColumns, onSort }}
   rowHeightsOptions={rowHeightsOptions}
-  pagination={{
-    ...pagination,
-    pageSizeOptions: [50, 250, 1000],
-    onChangeItemsPerPage: onChangeItemsPerPage,
-    onChangePage: onChangePage,
-  }}
 />
 `;
 
@@ -114,17 +104,8 @@ const autoRowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   columns={columns}
   columnVisibility={{ visibleColumns, setVisibleColumns }}
   rowCount={rowCount}
-  height={400}
   renderCellValue={renderCellValue}
-  inMemory={{ level: 'sorting' }}
-  sorting={{ columns: sortingColumns, onSort }}
   rowHeightsOptions={rowHeightsOptions}
-  pagination={{
-    ...pagination,
-    pageSizeOptions: [50, 250, 1000],
-    onChangeItemsPerPage: onChangeItemsPerPage,
-    onChangePage: onChangePage,
-  }}
 />
 `;
 
