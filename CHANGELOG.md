@@ -1,5 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+No public interface changes since `42.0.0`.
+
+## [`42.0.0`](https://github.com/elastic/eui/tree/v42.0.0)
+
 ### Feature: CSS-in-JS ([#5121](https://github.com/elastic/eui/pull/5121))
 
 - Added reset and global styles via CSS-in-JS with `@emotion/react/Global`
