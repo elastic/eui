@@ -79,9 +79,6 @@ const rowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   inMemory={{ level: 'sorting' }}
   sorting={{ columns: sortingColumns, onSort }}
   rowHeightsOptions={rowHeightsOptions}
-  toolbarVisibility={{
-    showDisplaySelelector: { allowRowHeight: false },
-  }}
   pagination={{
     ...pagination,
     pageSizeOptions: [50, 250, 1000],
