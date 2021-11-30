@@ -133,29 +133,4 @@ export {
 
 export { throttle } from './throttle';
 
-export {
-  EuiSystemContext,
-  EuiThemeContext,
-  EuiModificationsContext,
-  EuiColorModeContext,
-  useEuiTheme,
-  withEuiTheme,
-  WithEuiThemeProps,
-  EuiThemeProvider,
-  EuiThemeProviderProps,
-  buildTheme,
-  computed,
-  isInverseColorMode,
-  getColorMode,
-  getComputed,
-  getOn,
-  mergeDeep,
-  setOn,
-  Computed,
-  ComputedThemeShape,
-  EuiThemeColorMode,
-  EuiThemeComputed,
-  EuiThemeModifications,
-  EuiThemeShape,
-  EuiThemeSystem,
-} from './theme';
+export * from './theme';
