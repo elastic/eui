@@ -1,6 +1,10 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `42.0.0`.
+- Added `paddingSize` prop to `EuiSelectableList` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Refactored `EuiSelectable` accessibility ([#5157](https://github.com/elastic/eui/pull/5157))
+- Refactored `EuiSuggest` to use `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Added `EuiScreenReaderStatus` component for updateable `aria-live` regions  ([#5157](https://github.com/elastic/eui/pull/5157))
+- Added virtulized rendering optionality to `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
 
 ## [`42.0.0`](https://github.com/elastic/eui/tree/v42.0.0)
 
@@ -20,11 +24,6 @@ No public interface changes since `42.0.0`.
 
 - Added `payment` glyph to `EuiIcon` ([#5414](https://github.com/elastic/eui/pull/5414))
 - Updated `EuiCodeBlock`'s full screen mode to use the `fullScreenExit` icon ([#5421](https://github.com/elastic/eui/pull/5421))
-- Added `paddingSize` prop to `EuiSelectableList` ([#5157](https://github.com/elastic/eui/pull/5157))
-- Refactored `EuiSelectable` accessibility ([#5157](https://github.com/elastic/eui/pull/5157))
-- Refactored `EuiSuggest` to use `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
-- Added `EuiScreenReaderStatus` component for updateable `aria-live` regions  ([#5157](https://github.com/elastic/eui/pull/5157))
-- Added virtulized rendering optionality to `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
 
 **Bug fixes**
 
