@@ -1,14 +1,9 @@
 # Creating components manually
 
-## Create component SCSS files
+## Create component style files
 
 1. Create a directory for your component in `src/components`.
-2. In this directory, create `_{component name}.scss`.
-3. _Optional:_ Create any other components that should be [logically-grouped][docs-logical-group] in this directory.
-4. Create an `_index.scss` file in this directory that import all of the new component SCSS files you created.
-5. Import the `_index.scss` file into `src/components/index.scss`.
-
-This makes your styles available to your project and to the [EUI documentation][docs].
+2. TBD
 
 ## Create the React component
 
