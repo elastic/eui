@@ -576,6 +576,11 @@ export interface EuiDataGridStyle {
    * If set to true, the footer row will be sticky
    */
   stickyFooter?: boolean;
+  /**
+   * Optional callback returning the current `gridStyle` config when changes occur from user input (e.g. toolbar display controls).
+   * Can be used for, e.g. storing user `gridStyle` in a local storage object.
+   */
+  onChange?: (gridStyle: EuiDataGridStyle) => void;
 }
 
 export interface EuiDataGridToolBarVisibilityColumnSelectorOptions {
@@ -767,6 +772,11 @@ export interface EuiDataGridRowHeightsOptions {
    * Defines a global lineHeight style to apply to all cells
    */
   lineHeight?: string;
+  /**
+   * Optional callback returning the current `rowHeightsOptions` when changes occur from user input (e.g. toolbar display controls).
+   * Can be used for, e.g. storing user `rowHeightsOptions` in a local storage object.
+   */
+  onChange?: (rowHeightsOptions: EuiDataGridRowHeightsOptions) => void;
 }
 
 export interface EuiDataGridRowManager {
