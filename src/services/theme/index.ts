@@ -18,7 +18,7 @@ export {
   withEuiTheme,
   WithEuiThemeProps,
 } from './hooks';
-export { EuiThemeProvider } from './provider';
+export { EuiThemeProvider, EuiThemeProviderProps } from './provider';
 export {
   buildTheme,
   computed,

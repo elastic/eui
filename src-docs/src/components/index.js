@@ -7,7 +7,7 @@ export {
 
 export { GuideMarkdownFormat } from './guide_markdown_format';
 
-export { GuidePage, GuidePageChrome } from './guide_page';
+export { GuidePage, GuidePageChrome, GuidePageHeader } from './guide_page';
 
 export { GuideSectionContainer as GuideSection } from './guide_section/guide_section_container';
 

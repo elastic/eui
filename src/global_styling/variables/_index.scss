@@ -6,9 +6,11 @@
 // coming from when looking inside the individual component files. Any component local
 // variables should be declared at the top of those documents prefixed with $componentName.
 
-// Import order is important. Size, color, ...etc are used in other variables.
+// Global colors are established and importer per theme, before this manifest
+// Import order is important. Size, vis colors, ...etc are used in other variables.
 @import 'size';
-@import 'colors';
+@import 'colors_vis';
+@import 'colors_code';
 @import 'animations';
 @import 'font_weight';
 @import 'typography';

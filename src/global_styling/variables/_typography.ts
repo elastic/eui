@@ -96,10 +96,20 @@ export const fontWeight: _EuiThemeFontWeight = {
 export type EuiThemeFont = _EuiThemeFontBase & {
   scale: { [key in _EuiThemeFontScale]: number };
   weight: _EuiThemeFontWeight;
+  body: {
+    scale: _EuiThemeFontScale;
+    weight: keyof _EuiThemeFontWeight;
+    letterSpacing?: CSSProperties['letterSpacing'];
+  };
 };
 
 export const font: EuiThemeFont = {
   ...fontBase,
   scale: fontScale,
   weight: fontWeight,
+  body: {
+    scale: 'm',
+    weight: 'regular',
+    letterSpacing: '-.005em',
+  },
 };

@@ -10,9 +10,74 @@ import chroma from 'chroma-js';
 import { useEuiTheme } from '../../services/theme/hooks';
 import { transparentize } from '../../services/color';
 import { useOverflowShadow } from './_shadow';
+import { CSSProperties } from 'react';
 
 /**
- * NOTE: These were quick conversions of their Sass counterparts.
+ * Set scroll bar appearance on Chrome (and firefox).
+ * All parameters are optional and default to specific global settings.
+ */
+export const useScrollBar = ({
+  thumbColor: _thumbColor,
+  trackColor = 'transparent',
+  width = 'thin',
+  size: _size,
+  corner: _corner,
+}: {
+  thumbColor?: CSSProperties['backgroundColor'];
+  trackColor?: CSSProperties['backgroundColor'];
+  /**
+   * Defaults to `thin`. Use `auto` only for large page scrollbars
+   */
+  width?: CSSProperties['scrollbarWidth'];
+  /**
+   * Overall width (height for horizontal scrollbars)
+   */
+  size?: CSSProperties['width'];
+  /**
+   * Corner sizes are usually determined by `width` and
+   * are used as an inset border and therefore a smaller corner size means a larger thumb
+   */
+  corner?: CSSProperties['borderWidth'];
+} = {}) => {
+  const {
+    euiTheme: { colors, size },
+  } = useEuiTheme();
+
+  // Set defaults from theme
+  const thumbColor = _thumbColor || transparentize(colors.darkShade, 0.5);
+  const scrollBarSize = _size || size.base;
+  const scrollBarCorner =
+    _corner || width === 'thin' ? `calc(${size.s} * 0.75)` : size.xs;
+
+  // Firefox's scrollbar coloring cascades, but the sizing does not,
+  // so it's being added to this mixin for allowing support wherever custom scrollbars are
+  const firefoxSupport = `scrollbar-color: ${thumbColor} ${trackColor};`;
+
+  return `scrollbar-width: ${width};
+
+    &::-webkit-scrollbar {
+      width: ${scrollBarSize};
+      height: ${scrollBarSize};
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: ${thumbColor};
+      background-clip: content-box;
+      border-radius: ${scrollBarSize};
+      border: ${scrollBarCorner} solid ${trackColor};
+    }
+
+    &::-webkit-scrollbar-corner,
+    &::-webkit-scrollbar-track {
+      background-color: ${trackColor};
+    }
+
+    ${firefoxSupport}
+  `;
+};
+
+/**
+ * NOTE: The ones below this comment were quick conversions of their Sass counterparts.
  *       They have yet to be used/tested.
  */
 
@@ -48,39 +113,6 @@ export const useInnerBorder = ({
       content: '';
       pointer-events: none;
       border: 1px solid ${color};
-    }
-  `;
-};
-
-// Set scroll bar appearance on Chrome (and firefox).
-export const useScrollBar = ({
-  thumbColor: _thumbColor,
-  trackBackgroundColor: _trackBackgroundColor,
-}: {
-  thumbColor?: string;
-  trackBackgroundColor?: string;
-} = {}) => {
-  const {
-    euiTheme: { colors, size },
-  } = useEuiTheme();
-  const thumbColor = _thumbColor || colors.darkShade;
-  const trackBackgroundColor = _trackBackgroundColor || 'transparent';
-  // Firefox's scrollbar coloring cascades, but the sizing does not,
-  // so it's being added to this mixin for allowing support wherever custom scrollbars are
-  return `
-    scrollbar-width: thin;
-    &::-webkit-scrollbar {
-      width: ${size.base};
-      height: ${size.base};
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: ${transparentize(thumbColor, 0.5)};
-      border: calc(${size.base} * 0.75) solid ${trackBackgroundColor};
-      background-clip: content-box;
-    }
-    &::-webkit-scrollbar-corner,
-    &::-webkit-scrollbar-track {
-      background-color: ${trackBackgroundColor};
     }
   `;
 };
