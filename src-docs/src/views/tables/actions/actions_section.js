@@ -1,12 +1,10 @@
 import React from 'react';
 import { EuiBasicTable } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
-import { renderToHtml } from '../../../services';
 
 import { Table } from './actions';
 import { EuiCode } from '../../../../../src/components/code';
 const source = require('!!raw-loader!./actions');
-const html = renderToHtml(Table);
 
 export const section = {
   title: 'Adding actions to table',
@@ -14,10 +12,6 @@ export const section = {
     {
       type: GuideSectionTypes.JS,
       code: source,
-    },
-    {
-      type: GuideSectionTypes.HTML,
-      code: html,
     },
   ],
   text: (

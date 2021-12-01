@@ -1,14 +1,11 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiText } from '../../../../src/components';
 
 import InnerText from './inner_text';
 const innerTextSource = require('!!raw-loader!./inner_text');
-const innerTextHtml = renderToHtml(InnerText);
 const useInnerTextSnippet = `const [ref, innerText] = useInnerText();
 <span ref={ref} title={innerText}>
   Content
@@ -57,10 +54,6 @@ export const InnerTextExample = {
         {
           type: GuideSectionTypes.JS,
           code: innerTextSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: innerTextHtml,
         },
       ],
       demo: <InnerText />,

@@ -10,39 +10,30 @@ import {
   EuiSpacer,
   EuiText,
 } from '../../../../src/components';
-import { renderToHtml } from '../../services';
 
 import DragAndDropBare from './drag_and_drop_bare';
 const dragAndDropBareSource = require('!!raw-loader!./drag_and_drop_bare');
-const dragAndDropBareHtml = renderToHtml(DragAndDropBare);
 
 import DragAndDrop from './drag_and_drop';
 const dragAndDropSource = require('!!raw-loader!./drag_and_drop');
-const dragAndDropHtml = renderToHtml(DragAndDrop);
 
 import DragAndDropCustomHandle from './drag_and_drop_custom_handle';
 const dragAndDropCustomHandleSource = require('!!raw-loader!./drag_and_drop_custom_handle');
-const dragAndDropCustomHandleHtml = renderToHtml(DragAndDropCustomHandle);
 
 import DragAndDropDisableBlocking from './drag_and_drop_disable_blocking';
 const dragAndDropDisableBlockingSource = require('!!raw-loader!./drag_and_drop_disable_blocking');
-const dragAndDropDisableBlockingHtml = renderToHtml(DragAndDropDisableBlocking);
 
 import DragAndDropMoveLists from './drag_and_drop_move_lists';
 const dragAndDropMoveListsSource = require('!!raw-loader!./drag_and_drop_move_lists');
-const dragAndDropMoveListsHtml = renderToHtml(DragAndDropMoveLists);
 
 import DragAndDropTypes from './drag_and_drop_types';
 const dragAndDropTypesSource = require('!!raw-loader!./drag_and_drop_types');
-const dragAndDropTypesHtml = renderToHtml(DragAndDropTypes);
 
 import DragAndDropClone from './drag_and_drop_clone';
 const dragAndDropCloneSource = require('!!raw-loader!./drag_and_drop_clone');
-const dragAndDropCloneHtml = renderToHtml(DragAndDropClone);
 
 import DragAndDropComplex from './drag_and_drop_complex';
 const dragAndDropComplexSource = require('!!raw-loader!./drag_and_drop_complex');
-const dragAndDropComplexHtml = renderToHtml(DragAndDropComplex);
 
 export const DragAndDropExample = {
   title: 'Drag and drop',
@@ -101,10 +92,6 @@ export const DragAndDropExample = {
         {
           type: GuideSectionTypes.JS,
           code: dragAndDropBareSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dragAndDropBareHtml,
         },
       ],
       text: (
@@ -179,10 +166,6 @@ export const DragAndDropExample = {
           type: GuideSectionTypes.JS,
           code: dragAndDropSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dragAndDropHtml,
-        },
       ],
       text: (
         <React.Fragment>
@@ -210,10 +193,6 @@ export const DragAndDropExample = {
         {
           type: GuideSectionTypes.JS,
           code: dragAndDropCustomHandleSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dragAndDropCustomHandleHtml,
         },
       ],
       text: (
@@ -243,10 +222,6 @@ export const DragAndDropExample = {
           type: GuideSectionTypes.JS,
           code: dragAndDropDisableBlockingSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dragAndDropDisableBlockingHtml,
-        },
       ],
       text: (
         <React.Fragment>
@@ -267,10 +242,6 @@ export const DragAndDropExample = {
         {
           type: GuideSectionTypes.JS,
           code: dragAndDropMoveListsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dragAndDropMoveListsHtml,
         },
       ],
       text: (
@@ -294,10 +265,6 @@ export const DragAndDropExample = {
         {
           type: GuideSectionTypes.JS,
           code: dragAndDropTypesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dragAndDropTypesHtml,
         },
       ],
       text: (
@@ -323,10 +290,6 @@ export const DragAndDropExample = {
         {
           type: GuideSectionTypes.JS,
           code: dragAndDropCloneSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dragAndDropCloneHtml,
         },
       ],
       text: (
@@ -360,10 +323,6 @@ export const DragAndDropExample = {
         {
           type: GuideSectionTypes.JS,
           code: dragAndDropComplexSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dragAndDropComplexHtml,
         },
       ],
       text: (
