@@ -52,7 +52,9 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   headerZindexLocation = 'above',
   ...rest
 }) => {
-  const overlayMaskNode = useRef<HTMLDivElement>(document.createElement('div'));
+  const overlayMaskNode = useRef<HTMLDivElement | undefined>(
+    typeof document !== 'undefined' ? document.createElement('div') : undefined
+  );
   const [isPortalTargetReady, setIsPortalTargetReady] = useState(false);
 
   useEffect(() => {
@@ -65,7 +67,8 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
 
   useEffect(() => {
     const portalTarget = overlayMaskNode.current;
-    document.body.appendChild(overlayMaskNode.current);
+    overlayMaskNode.current &&
+      document.body.appendChild(overlayMaskNode.current);
     setIsPortalTargetReady(true);
 
     return () => {
@@ -83,7 +86,8 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
           `Unhandled property type. EuiOverlayMask property ${key} is not a string.`
         );
       }
-      overlayMaskNode.current.setAttribute(key, rest[key]!);
+      overlayMaskNode.current &&
+        overlayMaskNode.current.setAttribute(key, rest[key]!);
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -113,7 +117,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
     };
   }, [onClick]);
 
-  return isPortalTargetReady ? (
-    <>{createPortal(children, overlayMaskNode.current!)}</>
+  return isPortalTargetReady && overlayMaskNode.current ? (
+    <>{createPortal(children, overlayMaskNode.current)}</>
   ) : null;
 };
