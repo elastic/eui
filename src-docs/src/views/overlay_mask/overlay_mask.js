@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {
   EuiOverlayMask,
   EuiButton,
+  EuiPanel,
   EuiSpacer,
   EuiTitle,
 } from '../../../../src/components';
@@ -18,22 +19,26 @@ export default () => {
           changeMask(false);
         }}
       >
-        <EuiTitle>
-          <h2> Click anywhere to close overlay. </h2>
-        </EuiTitle>
+        <EuiPanel grow={false}>
+          <EuiTitle>
+            <h2> Click anywhere to close overlay. </h2>
+          </EuiTitle>
+        </EuiPanel>
       </EuiOverlayMask>
     </React.Fragment>
   );
 
   const maskWithClick = (
     <EuiOverlayMask>
-      <EuiButton
-        onClick={() => {
-          changeMaskWithClick(false);
-        }}
-      >
-        Click this button to close
-      </EuiButton>
+      <EuiPanel grow={false}>
+        <EuiButton
+          onClick={() => {
+            changeMaskWithClick(false);
+          }}
+        >
+          Click this button to close
+        </EuiButton>
+      </EuiPanel>
     </EuiOverlayMask>
   );
 
