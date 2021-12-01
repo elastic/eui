@@ -12,8 +12,7 @@
 // Utility classes provide one-off selectors for common css problems
 @import 'utility/index';
 
-// The reset file makes use of variables and mixins
-@import 'reset/index';
+// The reset file has moved to global_styles.tsx
 
 // Customization of the React Date Picker
 @import 'react_date_picker/index';

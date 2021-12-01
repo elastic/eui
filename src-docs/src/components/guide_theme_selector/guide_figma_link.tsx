@@ -28,13 +28,13 @@ const GuideFigmaLinkComponent: React.FunctionComponent<GuideFigmaLinkProps> = ({
 }) => {
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
 
-  const isAmsterdam = context.theme.includes('amsterdam');
+  const isLegacy = context.theme.includes('legacy');
 
-  let href = 'https://www.figma.com/community/file/809845546262698150';
+  let href = 'https://www.figma.com/community/file/964536385682658129';
   const label = 'EUI Figma Design Library';
 
-  if (isAmsterdam) {
-    href = 'https://www.figma.com/community/file/964536385682658129';
+  if (isLegacy) {
+    href = 'https://www.figma.com/community/file/809845546262698150';
   }
 
   return isMobileSize ? (
