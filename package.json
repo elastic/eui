@@ -181,7 +181,6 @@
     "fork-ts-checker-webpack-plugin": "^5.1.0",
     "get-port": "^5.1.1",
     "glob": "^7.1.6",
-    "html": "^1.0.0",
     "html-format": "^1.0.1",
     "html-webpack-plugin": "^4.4.1",
     "jest": "^24.1.0",
