@@ -52,7 +52,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   headerZindexLocation = 'above',
   ...rest
 }) => {
-  const overlayMaskNode = useRef<HTMLDivElement>(document.createElement('div'));
+  const overlayMaskNode = useRef<HTMLDivElement>();
   const [isPortalTargetReady, setIsPortalTargetReady] = useState(false);
 
   useEffect(() => {
@@ -64,9 +64,15 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   }, []);
 
   useEffect(() => {
+    if (typeof document !== undefined) {
+      overlayMaskNode.current = document.createElement('div');
+    }
+  }, []);
+
+  useEffect(() => {
     const portalTarget = overlayMaskNode.current;
 
-    if (document !== undefined) {
+    if (typeof document !== undefined && overlayMaskNode.current) {
       document.body.appendChild(overlayMaskNode.current);
     }
 
@@ -87,7 +93,9 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
           `Unhandled property type. EuiOverlayMask property ${key} is not a string.`
         );
       }
-      overlayMaskNode.current.setAttribute(key, rest[key]!);
+      if (overlayMaskNode.current) {
+        overlayMaskNode.current.setAttribute(key, rest[key]!);
+      }
     });
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
