@@ -47,7 +47,7 @@ describe('useDataGridDisplaySelector', () => {
       });
     };
 
-    it('renders a toolbar button/popover allowing users to customize display settings', () => {
+    it('renders a toolbar button/popover allowing users to customize & reset display settings', () => {
       const component = shallow(<MockComponent />);
       expect(component).toMatchSnapshot();
     });
@@ -136,6 +136,22 @@ describe('useDataGridDisplaySelector', () => {
           expect(getSelection(component)).toEqual('');
         });
       });
+
+      it('correctly resets density to initial developer-passed state', () => {
+        const component = mount(
+          <MockComponent gridStyles={{ fontSize: 'l', cellPadding: 'l' }} />
+        );
+        openPopover(component);
+        expect(getSelection(component)).toEqual('expanded');
+
+        component.find('[data-test-subj="compact"]').simulate('change');
+        expect(getSelection(component)).toEqual('compact');
+
+        component
+          .find('button[data-test-subj="resetDisplaySelector"]')
+          .simulate('click');
+        expect(getSelection(component)).toEqual('expanded');
+      });
     });
 
     describe('row height', () => {
@@ -208,6 +224,22 @@ describe('useDataGridDisplaySelector', () => {
         });
       });
 
+      it('correctly resets row height to initial developer-passed state', () => {
+        const component = mount(
+          <MockComponent rowHeightsOptions={{ defaultHeight: undefined }} />
+        );
+        openPopover(component);
+        expect(getSelection(component)).toEqual('undefined');
+
+        component.find('[data-test-subj="auto"]').simulate('change');
+        expect(getSelection(component)).toEqual('auto');
+
+        component
+          .find('button[data-test-subj="resetDisplaySelector"]')
+          .simulate('click');
+        expect(getSelection(component)).toEqual('undefined');
+      });
+
       describe('lineCount', () => {
         const getLineCountNumber = (component: ReactWrapper) =>
           component
@@ -277,6 +309,24 @@ describe('useDataGridDisplaySelector', () => {
 
           setLineCountNumber(component, -50);
           expect(getLineCountNumber(component)).toEqual(2);
+        });
+
+        it('correctly resets lineCount to initial developer-passed state', () => {
+          const component = mount(
+            <MockComponent
+              rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
+            />
+          );
+          openPopover(component);
+          expect(getLineCountNumber(component)).toEqual(3);
+
+          setLineCountNumber(component, 5);
+          expect(getLineCountNumber(component)).toEqual(5);
+
+          component
+            .find('button[data-test-subj="resetDisplaySelector"]')
+            .simulate('click');
+          expect(getLineCountNumber(component)).toEqual(3);
         });
       });
     });

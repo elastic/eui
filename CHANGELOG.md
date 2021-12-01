@@ -4,6 +4,7 @@
 - Updated `EuiDataGrid`'s full screen mode to use the `fullScreenExit` icon ([#5415](https://github.com/elastic/eui/pull/5415))
 - Added `left.append` and `left.prepend` to `EuiDataGrid`'s `toolbarVisibility.additionalControls` prop [#5394](https://github.com/elastic/eui/pull/5394))
 - Added a row height control to `EuiDataGrid`'s toolbar ([#5372](https://github.com/elastic/eui/pull/5372))
+- Added a reset button to `EuiDataGrid`'s display controls ([#5428](https://github.com/elastic/eui/pull/5428))
 
 **Bug fixes**
 
