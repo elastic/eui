@@ -1,6 +1,8 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `42.0.0`.
+**Bug fixes**
+
+- Fixed `EuiOverlayMask` so it works in server-side rendering ([#5430](https://github.com/elastic/eui/pull/5430))
 
 ## [`42.0.0`](https://github.com/elastic/eui/tree/v42.0.0)
 
