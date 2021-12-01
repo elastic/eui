@@ -11,47 +11,52 @@ import {
   EuiHeaderLinks,
   EuiHeaderLink,
   EuiHeaderSectionItemButton,
-} from '../../../../src/components/header';
-import { EuiBadge } from '../../../../src/components/badge';
-import { EuiIcon } from '../../../../src/components/icon';
-import { EuiAvatar } from '../../../../src/components/avatar';
+  EuiBadge,
+  EuiIcon,
+  EuiAvatar,
+  useEuiTheme,
+} from '../../../../src';
 
-export default ({ theme }: { theme: any }) => (
-  <EuiHeader
-    theme="dark"
-    sections={[
-      {
-        items: [
-          <EuiHeaderLogo>Elastic</EuiHeaderLogo>,
-          <EuiHeaderLinks aria-label="App navigation dark theme example">
-            <EuiHeaderLink isActive>Docs</EuiHeaderLink>
-            <EuiHeaderLink>Code</EuiHeaderLink>
-            <EuiHeaderLink iconType="help"> Help</EuiHeaderLink>
-          </EuiHeaderLinks>,
-        ],
-        borders: 'right',
-      },
-      {
-        items: [
-          <EuiBadge
-            color={theme.euiColorDarkestShade.rgba}
-            iconType="arrowDown"
-            iconSide="right"
-          >
-            Production logs
-          </EuiBadge>,
-          <EuiHeaderSectionItemButton
-            aria-label="2 Notifications"
-            notification={'2'}
-          >
-            <EuiIcon type="cheer" size="m" />
-          </EuiHeaderSectionItemButton>,
-          <EuiHeaderSectionItemButton aria-label="Account menu">
-            <EuiAvatar name="John Username" size="s" />
-          </EuiHeaderSectionItemButton>,
-        ],
-        borders: 'none',
-      },
-    ]}
-  />
-);
+export default () => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <EuiHeader
+      theme="dark"
+      sections={[
+        {
+          items: [
+            <EuiHeaderLogo>Elastic</EuiHeaderLogo>,
+            <EuiHeaderLinks aria-label="App navigation dark theme example">
+              <EuiHeaderLink isActive>Docs</EuiHeaderLink>
+              <EuiHeaderLink>Code</EuiHeaderLink>
+              <EuiHeaderLink iconType="help"> Help</EuiHeaderLink>
+            </EuiHeaderLinks>,
+          ],
+          borders: 'right',
+        },
+        {
+          items: [
+            <EuiBadge
+              color={euiTheme.colors.darkestShade}
+              iconType="arrowDown"
+              iconSide="right"
+            >
+              Production logs
+            </EuiBadge>,
+            <EuiHeaderSectionItemButton
+              aria-label="2 Notifications"
+              notification={'2'}
+            >
+              <EuiIcon type="cheer" size="m" />
+            </EuiHeaderSectionItemButton>,
+            <EuiHeaderSectionItemButton aria-label="Account menu">
+              <EuiAvatar name="John Username" size="s" />
+            </EuiHeaderSectionItemButton>,
+          ],
+          borders: 'none',
+        },
+      ]}
+    />
+  );
+};

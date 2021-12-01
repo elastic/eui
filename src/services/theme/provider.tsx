@@ -35,12 +35,12 @@ export interface EuiThemeProviderProps<T> {
   children: any;
 }
 
-export function EuiThemeProvider<T = {}>({
+export const EuiThemeProvider = <T extends {} = {}>({
   theme: _system,
   colorMode: _colorMode,
   modify: _modifications,
   children,
-}: PropsWithChildren<EuiThemeProviderProps<T>>) {
+}: PropsWithChildren<EuiThemeProviderProps<T>>) => {
   const parentSystem = useContext(EuiSystemContext);
   const parentModifications = useContext(EuiModificationsContext);
   const parentColorMode = useContext(EuiColorModeContext);
@@ -125,4 +125,4 @@ export function EuiThemeProvider<T = {}>({
       </EuiSystemContext.Provider>
     </EuiColorModeContext.Provider>
   );
-}
+};
