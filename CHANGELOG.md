@@ -1,5 +1,23 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+No public interface changes since `42.0.0`.
+
+## [`42.0.0`](https://github.com/elastic/eui/tree/v42.0.0)
+
+### Feature: CSS-in-JS ([#5121](https://github.com/elastic/eui/pull/5121))
+
+- Added reset and global styles via CSS-in-JS with `@emotion/react/Global`
+- Added `EuiProvider`, a React context provider for theming and global styles
+- Added `isDefaultTheme` and `isLegacyTheme` utilities
+
+**Breaking changes**
+
+- Added `@emotion/react` to `peerDependencies`
+- Amsterdam is now the default theme, deprecated and renamed old theme as "legacy"
+- Re-organized Sass files including where the `globals` are imported from
+
+## [`41.4.0`](https://github.com/elastic/eui/tree/v41.4.0)
+
 - Added `payment` glyph to `EuiIcon` ([#5414](https://github.com/elastic/eui/pull/5414))
 - Updated `EuiCodeBlock`'s full screen mode to use the `fullScreenExit` icon ([#5421](https://github.com/elastic/eui/pull/5421))
 
@@ -7,6 +25,7 @@
 
 - Fixed an `EuiCodeBlock` bug where empty code blocks could be copyable ([#5421](https://github.com/elastic/eui/pull/5421))
 - Fixed an `EuiOverlayMask` bug where it calls window.document on server side([#5422](https://github.com/elastic/eui/pull/5422))
+- Fixed an accessibility issue in `EuiAvatar` by adding a meaningful role ([#5423](https://github.com/elastic/eui/pull/5423))
 
 ## [`41.3.0`](https://github.com/elastic/eui/tree/v41.3.0)
 
@@ -275,7 +294,7 @@
 
 ## [`37.5.0`](https://github.com/elastic/eui/tree/v37.5.0)
 
-### Feature: Emotion ([#4511](https://github.com/elastic/eui/pull/4511))
+### Feature: CSS-in-JS ([#4511](https://github.com/elastic/eui/pull/4511))
 
 - Added `EuiThemeProvider`, a React context provider for theme values and color mode selection
 - Added `useEuiTheme` React hook, and `withEuiTheme` React HOC for consuming the EuiTheme
