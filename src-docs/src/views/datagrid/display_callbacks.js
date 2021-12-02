@@ -23,15 +23,9 @@ for (let i = 1; i <= 5; i++) {
 
 const GRID_STYLES_KEY = 'euiDataGridStyles';
 const INITIAL_STYLES = JSON.stringify({ stripes: true });
-const storedGridStyles = JSON.parse(
-  localStorage.getItem(GRID_STYLES_KEY) || INITIAL_STYLES
-);
 
 const ROW_HEIGHTS_KEY = 'euiDataGridRowHeightsOptions';
 const INITIAL_ROW_HEIGHTS = JSON.stringify({});
-const storedRowHeightsOptions = JSON.parse(
-  localStorage.getItem(ROW_HEIGHTS_KEY) || INITIAL_ROW_HEIGHTS
-);
 
 export default () => {
   const [densitySize, setDensitySize] = useState('');
@@ -56,12 +50,21 @@ export default () => {
     [responsiveIcon, responsiveIconWidth]
   );
 
-  const saveRowHeightsOptions = useCallback((updatedRowHeights) => {
+  const storedRowHeightsOptions = useMemo(
+    () =>
+      JSON.parse(localStorage.getItem(ROW_HEIGHTS_KEY) || INITIAL_ROW_HEIGHTS),
+    []
+  );
+  const storeRowHeightsOptions = useCallback((updatedRowHeights) => {
     console.log(updatedRowHeights);
     localStorage.setItem(ROW_HEIGHTS_KEY, JSON.stringify(updatedRowHeights));
   }, []);
 
-  const saveGridStyles = useCallback((updatedStyles) => {
+  const storedGridStyles = useMemo(
+    () => JSON.parse(localStorage.getItem(GRID_STYLES_KEY) || INITIAL_STYLES),
+    []
+  );
+  const storeGridStyles = useCallback((updatedStyles) => {
     console.log(updatedStyles);
     localStorage.setItem(GRID_STYLES_KEY, JSON.stringify(updatedStyles));
     setDensitySize(updatedStyles.fontSize);
@@ -77,11 +80,11 @@ export default () => {
       leadingControlColumns={leadingControlColumns}
       rowHeightsOptions={{
         ...storedRowHeightsOptions,
-        onChange: saveRowHeightsOptions,
+        onChange: storeRowHeightsOptions,
       }}
       gridStyle={{
         ...storedGridStyles,
-        onChange: saveGridStyles,
+        onChange: storeGridStyles,
       }}
       columns={columns}
       columnVisibility={{ visibleColumns, setVisibleColumns }}
