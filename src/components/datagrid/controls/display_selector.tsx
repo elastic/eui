@@ -8,6 +8,7 @@
 
 import React, { ReactNode, useState, useMemo, useCallback } from 'react';
 
+import { useUpdateEffect } from '../../../services';
 import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiPopover } from '../../popover';
 import { EuiButtonIcon, EuiButtonGroup } from '../../button';
@@ -162,6 +163,17 @@ export const useDataGridDisplaySelector = (
       ...userRowHeightsOptions,
     };
   }, [initialRowHeightsOptions, userRowHeightsOptions]);
+
+  // Invoke onChange callbacks on user input (removing the callback value itself, so that only configuration values are returned)
+  useUpdateEffect(() => {
+    const { onChange, ...currentGridStyles } = gridStyles;
+    initialStyles?.onChange?.(currentGridStyles);
+  }, [userGridStyles]);
+
+  useUpdateEffect(() => {
+    const { onChange, ...currentRowHeightsOptions } = rowHeightsOptions;
+    initialRowHeightsOptions?.onChange?.(currentRowHeightsOptions);
+  }, [userRowHeightsOptions]);
 
   const buttonLabel = useEuiI18n(
     'euiDisplaySelector.buttonText',

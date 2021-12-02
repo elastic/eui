@@ -92,6 +92,24 @@ describe('useDataGridDisplaySelector', () => {
         ).toEqual('tableDensityCompact');
       });
 
+      it('calls the gridStyles.onDensityChange callback on user change', () => {
+        const onDensityChange = jest.fn();
+        const component = mount(
+          <MockComponent
+            gridStyles={{ stripes: true, onChange: onDensityChange }}
+          />
+        );
+
+        openPopover(component);
+        component.find('[data-test-subj="expanded"]').simulate('change');
+
+        expect(onDensityChange).toHaveBeenCalledWith({
+          stripes: true,
+          fontSize: 'l',
+          cellPadding: 'l',
+        });
+      });
+
       it('hides the density buttongroup if allowDensity is set to false', () => {
         const component = mount(
           <MockComponent showDisplaySelector={{ allowDensity: false }} />
@@ -151,6 +169,23 @@ describe('useDataGridDisplaySelector', () => {
 
         component.find('[data-test-subj="auto"]').simulate('change');
         expect(getSelection(component)).toEqual('auto');
+      });
+
+      it('calls the rowHeightsOptions.onChange callback on user change', () => {
+        const onRowHeightChange = jest.fn();
+        const component = mount(
+          <MockComponent
+            rowHeightsOptions={{ lineHeight: '3', onChange: onRowHeightChange }}
+          />
+        );
+
+        openPopover(component);
+        component.find('[data-test-subj="auto"]').simulate('change');
+
+        expect(onRowHeightChange).toHaveBeenCalledWith({
+          defaultHeight: 'auto',
+          lineHeight: '3',
+        });
       });
 
       it('hides the row height buttongroup if allowRowHeight is set to false', () => {
@@ -286,7 +321,7 @@ describe('useDataGridDisplaySelector', () => {
     it('returns an object of grid styles with user overrides', () => {
       const initialStyles = { ...startingStyles, stripes: true };
       const MockComponent = () => {
-        const [, gridStyles] = useDataGridDisplaySelector(
+        const [, { onChange, ...gridStyles }] = useDataGridDisplaySelector(
           true,
           initialStyles,
           {}
