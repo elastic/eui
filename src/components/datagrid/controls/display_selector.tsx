@@ -199,6 +199,20 @@ export const useDataGridDisplaySelector = (
     setLineCount(initialLineCount);
   }, [initialDensity, initialRowHeight, initialLineCount]);
 
+  const showResetButton = useMemo(() => {
+    if (initialDensity !== gridDensity) return true;
+    if (initialRowHeight !== rowHeightSelection) return true;
+    if (initialLineCount !== lineCount) return true;
+    return false;
+  }, [
+    initialDensity,
+    gridDensity,
+    initialRowHeight,
+    rowHeightSelection,
+    initialLineCount,
+    lineCount,
+  ]);
+
   const buttonLabel = useEuiI18n(
     'euiDisplaySelector.buttonText',
     'Display options'
@@ -346,15 +360,17 @@ export const useDataGridDisplaySelector = (
             )}
           </EuiI18n>
         )}
-        <EuiPopoverFooter>
-          <EuiButtonEmpty
-            size="xs"
-            onClick={resetToInitialState}
-            data-test-subj="resetDisplaySelector"
-          >
-            {resetButtonLabel}
-          </EuiButtonEmpty>
-        </EuiPopoverFooter>
+        {showResetButton && (
+          <EuiPopoverFooter>
+            <EuiButtonEmpty
+              size="xs"
+              onClick={resetToInitialState}
+              data-test-subj="resetDisplaySelector"
+            >
+              {resetButtonLabel}
+            </EuiButtonEmpty>
+          </EuiPopoverFooter>
+        )}
       </EuiPopover>
     ) : null;
 

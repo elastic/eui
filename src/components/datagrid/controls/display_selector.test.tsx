@@ -47,7 +47,7 @@ describe('useDataGridDisplaySelector', () => {
       });
     };
 
-    it('renders a toolbar button/popover allowing users to customize & reset display settings', () => {
+    it('renders a toolbar button/popover allowing users to customize display settings', () => {
       const component = shallow(<MockComponent />);
       expect(component).toMatchSnapshot();
     });
@@ -365,6 +365,27 @@ describe('useDataGridDisplaySelector', () => {
           expect(getLineCountNumber(component)).toEqual(3);
         });
       });
+    });
+
+    it('renders a reset button only when the user changes from the current settings', () => {
+      const component = mount(<MockComponent gridStyles={startingStyles} />);
+      openPopover(component);
+      expect(
+        component.find('[data-test-subj="resetDisplaySelector"]').exists()
+      ).toBe(false);
+
+      component.find('[data-test-subj="expanded"]').simulate('change');
+      component.find('[data-test-subj="auto"]').simulate('change');
+      expect(
+        component.find('[data-test-subj="resetDisplaySelector"]').exists()
+      ).toBe(true);
+
+      // Should hide the reset button again when changing back to the initial configuration
+      component.find('[data-test-subj="normal"]').simulate('change');
+      component.find('[data-test-subj="undefined"]').simulate('change');
+      expect(
+        component.find('[data-test-subj="resetDisplaySelector"]').exists()
+      ).toBe(false);
     });
   });
 
