@@ -362,13 +362,18 @@ export const useDataGridDisplaySelector = (
         )}
         {showResetButton && (
           <EuiPopoverFooter>
-            <EuiButtonEmpty
-              size="xs"
-              onClick={resetToInitialState}
-              data-test-subj="resetDisplaySelector"
-            >
-              {resetButtonLabel}
-            </EuiButtonEmpty>
+            <EuiFlexGroup justifyContent="flexEnd" responsive={false}>
+              <EuiFlexItem>
+                <EuiButtonEmpty
+                  flush="both"
+                  size="xs"
+                  onClick={resetToInitialState}
+                  data-test-subj="resetDisplaySelector"
+                >
+                  {resetButtonLabel}
+                </EuiButtonEmpty>
+              </EuiFlexItem>
+            <EuiFlexGroup>
           </EuiPopoverFooter>
         )}
       </EuiPopover>
