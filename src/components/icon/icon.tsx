@@ -39,6 +39,8 @@ const typeToPathMap = {
   arrowLeft: 'arrow_left',
   arrowRight: 'arrow_right',
   arrowUp: 'arrow_up',
+  arrowStart: 'arrowStart',
+  arrowEnd: 'arrowEnd',
   asterisk: 'asterisk',
   auditbeatApp: 'app_auditbeat',
   beaker: 'beaker',

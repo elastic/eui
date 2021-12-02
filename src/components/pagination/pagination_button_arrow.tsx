@@ -17,10 +17,10 @@ import { keysOf } from '../common';
 import { useEuiI18n } from '../i18n';
 
 const typeToIconTypeMap = {
-  first: 'doubleArrowLeft',
+  first: 'arrowStart',
   previous: 'arrowLeft',
   next: 'arrowRight',
-  last: 'doubleArrowRight',
+  last: 'arrowEnd',
 };
 
 export const TYPES = keysOf(typeToIconTypeMap);

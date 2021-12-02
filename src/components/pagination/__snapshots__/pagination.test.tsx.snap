@@ -95,7 +95,7 @@ exports[`EuiPagination props activePage can be -1 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="doubleArrowLeft"
+      data-euiicon-type="arrowStart"
     />
   </button>
   <button
@@ -137,7 +137,7 @@ exports[`EuiPagination props activePage can be -1 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="doubleArrowRight"
+      data-euiicon-type="arrowEnd"
     />
   </button>
 </nav>
@@ -451,7 +451,7 @@ exports[`EuiPagination props compressed is rendered 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="doubleArrowLeft"
+      data-euiicon-type="arrowStart"
     />
   </button>
   <button
@@ -504,7 +504,7 @@ exports[`EuiPagination props compressed is rendered 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="doubleArrowRight"
+      data-euiicon-type="arrowEnd"
     />
   </button>
 </nav>
@@ -533,7 +533,7 @@ exports[`EuiPagination props pageCount can be 0 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="doubleArrowLeft"
+      data-euiicon-type="arrowStart"
     />
   </button>
   <button
@@ -575,7 +575,7 @@ exports[`EuiPagination props pageCount can be 0 1`] = `
       aria-hidden="true"
       class="euiButtonIcon__icon"
       color="inherit"
-      data-euiicon-type="doubleArrowRight"
+      data-euiicon-type="arrowEnd"
     />
   </button>
 </nav>
