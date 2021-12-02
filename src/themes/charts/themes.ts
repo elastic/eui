@@ -16,9 +16,9 @@ import {
 import { RecursivePartial } from '../../components/common';
 
 // @ts-ignore typescript doesn't understand the webpack loader
-import lightColors from '!!sass-vars-to-js-loader!../../global_styling/variables/_colors.scss';
+import lightColors from '!!sass-vars-to-js-loader!../../themes/amsterdam/_colors_light.scss';
 // @ts-ignore typescript doesn't understand the webpack loader
-import darkColors from '!!sass-vars-to-js-loader!../../themes/eui/eui_colors_dark.scss';
+import darkColors from '!!sass-vars-to-js-loader!../../themes/amsterdam/_colors_dark.scss';
 
 const fontFamily = `'Inter', 'Inter UI', -apple-system, BlinkMacSystemFont,
   'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`;

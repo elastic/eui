@@ -1,8 +1,7 @@
 // sass-lint:disable no-url-domains, no-url-protocols
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i');
-@import url('https://rsms.me/inter/inter-ui.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10,300..700;0,300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap');
 
-@import '../../src/theme_light';
+@import '../../src/themes/amsterdam/theme_light';
 @import './components/index';
 @import './services/playground/index';
 @import './views/index';

@@ -61,7 +61,6 @@ describe('EuiDataGridToolbar', () => {
           >
             <EuiButtonIcon
               aria-label="Full screen"
-              className=""
               color="text"
               data-test-subj="dataGridFullScreenButton"
               iconType="fullScreen"
@@ -148,7 +147,6 @@ describe('EuiDataGridToolbar', () => {
       .toMatchInlineSnapshot(`
       <EuiButtonIcon
         aria-label="Exit full screen"
-        className=""
         color="text"
         data-test-subj="dataGridFullScreenButton"
         iconType="fullScreenExit"

@@ -155,13 +155,13 @@ async function getVersionTypeFromChangelog() {
   //
   // "##.+?[\r\n]+" consume the first heading & linebreak(s), which describes the main branch
   // "(.+?)" capture (non-greedy) all changes until the rest of the regex matches
-  // "[\r\n]+##" any linebreak(s) leading up to the next ## heading
+  // "[\r\n]+##(?= \[`\d)" any linebreak(s) leading up to the next ## heading with a numbered release, e.g. [`1.0.0`]
   //
   // regex flags "su" enable dotAll (s) and unicode-character matching (u)
   //
   // effectively capturing pending changes in the capture group
   // which is stored as the second item in the returned array from `changelog.match()`
-  const [, unreleasedchanges] = changelog.match(/##.+?[\r\n]+(.+?)[\r\n]+##/su);
+  const [, unreleasedchanges] = changelog.match(/##.+?[\r\n]+(.+?)[\r\n]+##(?= \[`\d)/su);
 
   // these changes contain bug fixes if the string "**bug fixes**" exists
   const hasBugFixes = unreleasedchanges.toLowerCase().indexOf('**bug fixes**') !== -1;

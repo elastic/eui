@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
-import lightColors from '!!sass-vars-to-js-loader!../../../../src/global_styling/variables/_colors.scss';
 
 import {
   EuiHeader,
@@ -347,7 +346,7 @@ export const HeaderExample = {
         </p>
       ),
       snippet: '<EuiHeader theme="dark" />',
-      demo: <HeaderDark theme={lightColors} />,
+      demo: <HeaderDark />,
       demoPanelProps: {
         color: 'subdued',
       },
@@ -497,7 +496,7 @@ export const HeaderExample = {
       ),
       fullScreen: {
         slug: 'elastic-pattern',
-        demo: <HeaderElasticPattern theme={lightColors} />,
+        demo: <HeaderElasticPattern />,
       },
     },
   ],
