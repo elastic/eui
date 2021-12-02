@@ -2,6 +2,10 @@
 
 No public interface changes since `42.0.0`.
 
+**Bug fixes**
+
+- Fixed an `EuiOverlayMask` bug where it calls window.document on server side([#5422](https://github.com/elastic/eui/pull/5422))
+
 ## [`42.0.0`](https://github.com/elastic/eui/tree/v42.0.0)
 
 ### Feature: CSS-in-JS ([#5121](https://github.com/elastic/eui/pull/5121))
