@@ -22,6 +22,7 @@ import horizontal from '../../images/empty-prompt_horizontal.svg';
 import iconDont from '../../images/empty-prompt_icon-dont.svg';
 import multipleDo from '../../images/empty-prompt_multiple-do.svg';
 import multipleDont from '../../images/empty-prompt_multiple-dont.svg';
+import inlineLink from '../../images/empty-prompt_inline-link.svg';
 
 export default () => (
   <>
@@ -314,6 +315,36 @@ export default () => (
         minHeight="280px"
       >
         <EuiImage alt="No meaningful icon" url={iconDont} height="252" />
+      </GuideRuleExample>
+    </GuideRule>
+
+    <GuideRule
+      heading="Learn more links"
+      description={
+        <>
+          <p>
+            Use Learn more links in your empty prompt to link to documentation,
+            where users can get more detailed help.
+          </p>
+          <p>
+            When the empty prompt doesn’t contain any call to action, use the
+            link after the description. Otherwise, if there are call to actions,
+            use the learn more link in the footer.
+          </p>
+        </>
+      }
+    >
+      <GuideRuleExample
+        text="Add the learn more link after the description when the empty prompt doesn’t contain call to actions."
+        minHeight="280px"
+      >
+        <EuiImage alt="Inline link" url={inlineLink} height="252" />
+      </GuideRuleExample>
+      <GuideRuleExample
+        text="Add the learn more link in the footer when the empty prompt contains call to actions."
+        minHeight="280px"
+      >
+        <EuiImage alt="Footer link" url={horizontal} height="252" />
       </GuideRuleExample>
     </GuideRule>
 
