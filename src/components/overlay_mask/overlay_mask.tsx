@@ -64,7 +64,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   }, []);
 
   useEffect(() => {
-    if (typeof document !== undefined) {
+    if (typeof document !== 'undefined') {
       overlayMaskNode.current = document.createElement('div');
     }
   }, []);
@@ -72,8 +72,8 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
   useEffect(() => {
     const portalTarget = overlayMaskNode.current;
 
-    if (typeof document !== undefined && overlayMaskNode.current) {
-      document.body.appendChild(overlayMaskNode.current);
+    if (portalTarget) {
+      document.body.appendChild(portalTarget);
     }
 
     setIsPortalTargetReady(true);
