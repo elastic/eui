@@ -179,7 +179,8 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
     <div
       className={classes}
       style={avatarStyle}
-      aria-label={name}
+      aria-label={isDisabled ? undefined : name}
+      role={isDisabled ? 'presentation' : 'img'}
       title={name}
       {...rest}
     >

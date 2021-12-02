@@ -8,6 +8,7 @@
 
 import React, { ReactNode, useState, useMemo, useCallback } from 'react';
 
+import { useUpdateEffect } from '../../../services';
 import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiPopover, EuiPopoverFooter } from '../../popover';
 import { EuiButtonIcon, EuiButtonGroup, EuiButtonEmpty } from '../../button';
@@ -177,6 +178,17 @@ export const useDataGridDisplaySelector = (
       ...userRowHeightsOptions,
     };
   }, [initialRowHeightsOptions, userRowHeightsOptions]);
+
+  // Invoke onChange callbacks on user input (removing the callback value itself, so that only configuration values are returned)
+  useUpdateEffect(() => {
+    const { onChange, ...currentGridStyles } = gridStyles;
+    initialStyles?.onChange?.(currentGridStyles);
+  }, [userGridStyles]);
+
+  useUpdateEffect(() => {
+    const { onChange, ...currentRowHeightsOptions } = rowHeightsOptions;
+    initialRowHeightsOptions?.onChange?.(currentRowHeightsOptions);
+  }, [userRowHeightsOptions]);
 
   // Allow resetting to initial developer-specified configurations
   const resetToInitialState = useCallback(() => {

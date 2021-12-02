@@ -1125,7 +1125,6 @@ exports[`useDataGridColumnSorting columnSorting renders a toolbar button/popover
                                                                                   >
                                                                                     <EuiButtonDisplay
                                                                                       baseClassName="euiButtonGroupButton"
-                                                                                      className=""
                                                                                       color="text"
                                                                                       data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
                                                                                       element="label"

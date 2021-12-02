@@ -11,6 +11,9 @@ import {
   EuiListGroupItem,
 } from '../../../../src/components';
 
+import DataGridDisplayCallbacks from './display_callbacks';
+const dataGridDisplayCallbacksSource = require('!!raw-loader!./display_callbacks');
+
 import DataGridContainer from './container';
 const dataGridContainerSource = require('!!raw-loader!./container');
 const dataGridContainerHtml = renderToHtml(DataGridContainer);
@@ -219,6 +222,32 @@ export const DataGridStylingExample = {
         EuiDataGridToolBarVisibilityOptions,
       },
       demo: <DataGridStyling />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dataGridDisplayCallbacksSource,
+        },
+      ],
+      title: 'Adjusting your grid to user/toolbar changes',
+      text: (
+        <>
+          <p>
+            You can use the optional <EuiCode>gridStyle.onChange</EuiCode> and{' '}
+            <EuiCode>rowHeightsOptions.onChange</EuiCode> callbacks to adjust
+            your data grid based on user density or row height changes.
+          </p>
+          <p>
+            For example, if the user changes the grid density to compressed, you
+            may want to adjust a cell&apos;s content sizing in response. Or you
+            could store user settings in localStorage or other database to
+            preserve display settings on page refresh, like the below example
+            does.
+          </p>
+        </>
+      ),
+      demo: <DataGridDisplayCallbacks />,
     },
     {
       source: [

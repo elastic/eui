@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 import {
@@ -118,8 +119,8 @@ export const DataGridRowHeightOptionsExample = {
           By default, all rows get a height of <strong>34 pixels</strong>, but
           there are scenarios where you might want to adjust the height to fit
           more content. To do that, you can pass an object to the{' '}
-          <EuiCode>rowHeightsOptions</EuiCode> prop. This object accepts three
-          properties:
+          <EuiCode>rowHeightsOptions</EuiCode> prop. This object accepts the
+          following properties:
         </p>
         <ul>
           <li>
@@ -152,6 +153,24 @@ export const DataGridRowHeightOptionsExample = {
               <li>
                 Accepts any value that the <EuiCode>line-height</EuiCode> CSS
                 property normally takes (e.g. px, ems, rems, or unitless)
+              </li>
+            </ul>
+          </li>
+          <li>
+            <EuiCode>onChange</EuiCode>
+            <ul>
+              <li>
+                Optional callback when the user changes the data grid&apos;s
+                internal <EuiCode>rowHeightsOptions</EuiCode> (e.g., via the
+                toolbar display selector).
+              </li>
+              <li>
+                Can be used to store and preserve user display preferences on
+                page refresh - see this{' '}
+                <Link to="/tabular-content/data-grid-styling-and-control#adjusting-your-grid-to-usertoolbar-changes">
+                  data grid styling and control example
+                </Link>
+                .
               </li>
             </ul>
           </li>

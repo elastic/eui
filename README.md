@@ -6,20 +6,7 @@
 
 Check out our [full documentation site][docs] which contains many examples of components in the EUI framework aesthetic, and how to use them in your products. We also have a [FAQ][faq] that covers common usage questions. For other general questions regarding EUI, check out the [Discussions tab](https://github.com/elastic/eui/discussions).
 
-## Installation
-
-To install the Elastic UI Framework into an existing project, use the `yarn` CLI (`npm` is not supported).
-
-```
-yarn add @elastic/eui
-```
-
-Note that EUI has [several `peerDependencies` requirements](package.json) that will also need to be installed if starting with a blank project. You can read more about other ways to [consume EUI][consuming].
-
-```
-yarn add @elastic/eui @elastic/datemath moment prop-types
-```
-
+The rest of this doc will detail how to run and contribute to the **EUI documentation** site locally.
 
 ## Running Locally
 
@@ -31,7 +18,7 @@ You will probably want to install a node version manager. [nvm](https://github.c
 
 To install and use the correct node version with `nvm`:
 
-```
+```bash
 nvm install
 ```
 
@@ -39,14 +26,14 @@ nvm install
 
 You can run the documentation locally at [http://localhost:8030/](http://localhost:8030/) by running the following.
 
-```
+```bash
 yarn
 yarn start
 ```
 
 If another process is already listening on port 8030, the next free port will be used. Alternatively, you can specify a port:
 
-```
+```bash
 yarn start --port 9000
 ```
 
@@ -75,7 +62,6 @@ directly in the code. And unit test coverage for the UI components allows us to 
   * [Creating components manually](wiki/creating-components-manually.md)
   * [Creating components with Yeoman](wiki/creating-components-yeoman.md)
 * [Creating icons](wiki/creating-icons.md)
-* [Theming](wiki/theming.md)
 * [Testing](wiki/testing.md)
   * [Accessibility Testing](wiki/automated-accessibility-testing.md)
 * [Documentation](wiki/documentation-guidelines.md)
