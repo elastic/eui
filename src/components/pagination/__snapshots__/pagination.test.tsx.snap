@@ -438,7 +438,7 @@ exports[`EuiPagination props compressed is rendered 1`] = `
     class="euiScreenReaderOnly"
     role="status"
   >
-    Page
+    Page 1 of 1
   </span>
   <button
     aria-label="First page"

@@ -304,11 +304,8 @@ export const EuiPagination: FunctionComponent<Props> = ({
   const accessibleCollectionString =
     pageCount === 0 ? collectionLabel : pageCount.toString();
 
-  // The compressed version already should the activePage with pageCount, so it just needs `Page`
-  // The other types will append the whole string with total pageCount or `collection`
-  const accessiblePageCount = compressed
-    ? pageLabel
-    : `${accessiblePageString()} ${ofLabel} ${accessibleCollectionString}`;
+  // Create the whole string with total pageCount or `collection`
+  const accessiblePageCount = `${accessiblePageString()} ${ofLabel} ${accessibleCollectionString}`;
 
   return (
     <nav className={classes} {...rest}>
