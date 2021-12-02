@@ -15,11 +15,14 @@ import {
 } from './theme_context';
 
 const NOTIF_STORAGE_KEY = 'js_vs_sass_notification';
+const NOTIF_STORAGE_VALUE = 'dismissed';
 
 export const LanguageSelector = ({
   onChange,
+  showTour = true,
 }: {
   onChange?: (id: string) => void;
+  showTour?: boolean;
 }) => {
   const themeContext = useContext(ThemeContext);
   const toggleIdSelected = themeContext.themeLanguage;
@@ -27,16 +30,18 @@ export const LanguageSelector = ({
     themeContext.changeThemeLanguage(optionId as THEME_LANGUAGES['id']);
     onChange?.(optionId);
     setTourIsOpen(false);
-    localStorage.setItem(NOTIF_STORAGE_KEY, 'dismissed');
+    localStorage.setItem(NOTIF_STORAGE_KEY, NOTIF_STORAGE_VALUE);
   };
 
   const [isTourOpen, setTourIsOpen] = useState(
-    localStorage.getItem(NOTIF_STORAGE_KEY) !== 'dismissed'
+    localStorage.getItem(NOTIF_STORAGE_KEY) === NOTIF_STORAGE_VALUE
+      ? false
+      : showTour
   );
 
   const onTourDismiss = () => {
     setTourIsOpen(false);
-    localStorage.setItem(NOTIF_STORAGE_KEY, 'dismissed');
+    localStorage.setItem(NOTIF_STORAGE_KEY, NOTIF_STORAGE_VALUE);
   };
 
   return (
