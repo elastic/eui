@@ -22,6 +22,7 @@
 **Breaking changes**
 
 - Changed prop name `applyRefreshInterval` to `onRefreshChange` in `EuiRefreshInterval` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Fixed an `EuiOverlayMask` bug where it calls window.document on server side([#5422](https://github.com/elastic/eui/pull/5422))
 
 ## [`42.0.0`](https://github.com/elastic/eui/tree/v42.0.0)
 
