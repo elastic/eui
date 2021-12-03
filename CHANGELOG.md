@@ -4,6 +4,7 @@
 
 - Fixed scrollbars in `EuiRange` tick labels in Safari ([#5427](https://github.com/elastic/eui/pull/5427))
 - Fixed an `EuiOverlayMask` bug where it calls window.document on server side([#5422](https://github.com/elastic/eui/pull/5422))
+- Fixed unremoved event listener memory leak in `EuiPopover` ([#5436](https://github.com/elastic/eui/pull/5436))
 
 ## [`42.0.0`](https://github.com/elastic/eui/tree/v42.0.0)
 
