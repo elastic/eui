@@ -42,7 +42,6 @@ const lineHeightFullSnippet = `const rowHeightsOptions = useMemo(
   columns={columns}
   columnVisibility={{ visibleColumns, setVisibleColumns }}
   rowCount={rowCount}
-  height={400}
   renderCellValue={renderCellValue}
   rowHeightsOptions={rowHeightsOptions}
 />
@@ -62,29 +61,21 @@ const rowHeightsSnippet = `rowHeightsOptions = {
 const rowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   () => ({
     defaultHeight: 140,
+    rowHeights: {
+      0: 200,
+      1: 50,
+    },
   }),
   []
 );
 
 <EuiDataGrid
-  aria-label="Data grid with fixed height for rows"
+  aria-label="Data grid with row heights overrides"
   columns={columns}
   columnVisibility={{ visibleColumns, setVisibleColumns }}
   rowCount={rowCount}
-  height={400}
   renderCellValue={renderCellValue}
-  inMemory={{ level: 'sorting' }}
-  sorting={{ columns: sortingColumns, onSort }}
   rowHeightsOptions={rowHeightsOptions}
-  toolbarVisibility={{
-    showDisplaySelelector: { allowRowHeight: false },
-  }}
-  pagination={{
-    ...pagination,
-    pageSizeOptions: [50, 250, 1000],
-    onChangeItemsPerPage: onChangeItemsPerPage,
-    onChangePage: onChangePage,
-  }}
 />
 `;
 
@@ -114,17 +105,8 @@ const autoRowHeightsFullSnippet = `const rowHeightsOptions = useMemo(
   columns={columns}
   columnVisibility={{ visibleColumns, setVisibleColumns }}
   rowCount={rowCount}
-  height={400}
   renderCellValue={renderCellValue}
-  inMemory={{ level: 'sorting' }}
-  sorting={{ columns: sortingColumns, onSort }}
   rowHeightsOptions={rowHeightsOptions}
-  pagination={{
-    ...pagination,
-    pageSizeOptions: [50, 250, 1000],
-    onChangeItemsPerPage: onChangeItemsPerPage,
-    onChangePage: onChangePage,
-  }}
 />
 `;
 
@@ -267,15 +249,15 @@ export const DataGridRowHeightOptionsExample = {
           </EuiCodeBlock>
           <EuiCallOut
             color="warning"
-            title="Disable the row height toolbar control"
+            title="Disabling the row height toolbar control"
           >
-            When using <EuiCode>rowHeights</EuiCode> overrides, we recommend
-            setting{' '}
+            Individual row heights will be overridden by the toolbar display
+            controls. If you do not want users to be able to override specific
+            row heights, set{' '}
             <EuiCode>
               toolbarVisibility.showDisplaySelector.allowRowHeight
             </EuiCode>{' '}
-            to <EuiCode>false</EuiCode>, as users will otherwise be confused
-            when switching row heights does not affect specific overriden rows.
+            to <EuiCode>false</EuiCode>.
           </EuiCallOut>
         </Fragment>
       ),

@@ -154,6 +154,22 @@ describe('useDataGridDisplaySelector', () => {
           expect(getSelection(component)).toEqual('');
         });
       });
+
+      it('correctly resets density to initial developer-passed state', () => {
+        const component = mount(
+          <MockComponent gridStyles={{ fontSize: 'l', cellPadding: 'l' }} />
+        );
+        openPopover(component);
+        expect(getSelection(component)).toEqual('expanded');
+
+        component.find('[data-test-subj="compact"]').simulate('change');
+        expect(getSelection(component)).toEqual('compact');
+
+        component
+          .find('button[data-test-subj="resetDisplaySelector"]')
+          .simulate('click');
+        expect(getSelection(component)).toEqual('expanded');
+      });
     });
 
     describe('row height', () => {
@@ -183,6 +199,7 @@ describe('useDataGridDisplaySelector', () => {
         component.find('[data-test-subj="auto"]').simulate('change');
 
         expect(onRowHeightChange).toHaveBeenCalledWith({
+          rowHeights: {},
           defaultHeight: 'auto',
           lineHeight: '3',
         });
@@ -241,6 +258,22 @@ describe('useDataGridDisplaySelector', () => {
           openPopover(component2);
           expect(getSelection(component2)).toEqual('');
         });
+      });
+
+      it('correctly resets row height to initial developer-passed state', () => {
+        const component = mount(
+          <MockComponent rowHeightsOptions={{ defaultHeight: undefined }} />
+        );
+        openPopover(component);
+        expect(getSelection(component)).toEqual('undefined');
+
+        component.find('[data-test-subj="auto"]').simulate('change');
+        expect(getSelection(component)).toEqual('auto');
+
+        component
+          .find('button[data-test-subj="resetDisplaySelector"]')
+          .simulate('click');
+        expect(getSelection(component)).toEqual('undefined');
       });
 
       describe('lineCount', () => {
@@ -313,7 +346,46 @@ describe('useDataGridDisplaySelector', () => {
           setLineCountNumber(component, -50);
           expect(getLineCountNumber(component)).toEqual(2);
         });
+
+        it('correctly resets lineCount to initial developer-passed state', () => {
+          const component = mount(
+            <MockComponent
+              rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
+            />
+          );
+          openPopover(component);
+          expect(getLineCountNumber(component)).toEqual(3);
+
+          setLineCountNumber(component, 5);
+          expect(getLineCountNumber(component)).toEqual(5);
+
+          component
+            .find('button[data-test-subj="resetDisplaySelector"]')
+            .simulate('click');
+          expect(getLineCountNumber(component)).toEqual(3);
+        });
       });
+    });
+
+    it('renders a reset button only when the user changes from the current settings', () => {
+      const component = mount(<MockComponent gridStyles={startingStyles} />);
+      openPopover(component);
+      expect(
+        component.find('[data-test-subj="resetDisplaySelector"]').exists()
+      ).toBe(false);
+
+      component.find('[data-test-subj="expanded"]').simulate('change');
+      component.find('[data-test-subj="auto"]').simulate('change');
+      expect(
+        component.find('[data-test-subj="resetDisplaySelector"]').exists()
+      ).toBe(true);
+
+      // Should hide the reset button again when changing back to the initial configuration
+      component.find('[data-test-subj="normal"]').simulate('change');
+      component.find('[data-test-subj="undefined"]').simulate('change');
+      expect(
+        component.find('[data-test-subj="resetDisplaySelector"]').exists()
+      ).toBe(false);
     });
   });
 
@@ -384,21 +456,42 @@ describe('useDataGridDisplaySelector', () => {
       return JSON.parse(component.find('[data-test-subj="output"]').text());
     };
 
-    it('returns an object of rowHeightsOptions with user overrides', () => {
-      const component = shallow(
-        <MockComponent initialRowHeightsOptions={{ lineHeight: '2em' }} />
-      );
+    describe('returns an object of rowHeightsOptions with user overrides', () => {
+      it('overrides `rowHeights` and `defaultHeight`', () => {
+        const component = shallow(
+          <MockComponent
+            initialRowHeightsOptions={{
+              rowHeights: { 0: 100 },
+              defaultHeight: 50,
+            }}
+          />
+        );
 
-      setRowHeight(component, 'lineCount');
-      setLineCount(component, 5);
+        setRowHeight(component, 'undefined');
 
-      expect(getOutput(component)).toEqual({
-        lineHeight: '2em',
-        defaultHeight: { lineCount: 5 },
+        expect(getOutput(component)).toEqual({
+          rowHeights: {},
+          defaultHeight: undefined,
+        });
+      });
+
+      it('does not override other rowHeightsOptions properties', () => {
+        const component = shallow(
+          <MockComponent initialRowHeightsOptions={{ lineHeight: '2em' }} />
+        );
+
+        setRowHeight(component, 'lineCount');
+        setLineCount(component, 5);
+
+        expect(getOutput(component)).toEqual({
+          lineHeight: '2em',
+          defaultHeight: { lineCount: 5 },
+          rowHeights: {},
+        });
       });
     });
 
-    it('handles undefined rowHeightsObjects (from the developer)', () => {
+    it('handles undefined initialRowHeightsOptions', () => {
       const component = shallow(
         <MockComponent initialRowHeightsOptions={undefined} />
       );
@@ -408,18 +501,7 @@ describe('useDataGridDisplaySelector', () => {
 
       expect(getOutput(component)).toEqual({
         defaultHeight: 'auto',
-      });
-    });
-
-    it('handles undefined rowHeightsOptions (from the user)', () => {
-      const component = shallow(
-        <MockComponent initialRowHeightsOptions={{ lineHeight: '2em' }} />
-      );
-
-      setRowHeight(component, 'undefined');
-
-      expect(getOutput(component)).toEqual({
-        lineHeight: '2em',
+        rowHeights: {},
       });
     });
   });
