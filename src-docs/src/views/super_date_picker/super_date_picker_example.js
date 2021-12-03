@@ -76,7 +76,7 @@ export const SuperDatePickerExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: superDatePickerSource,
         },
       ],
@@ -120,7 +120,7 @@ if (!endMoment || !endMoment.isValid()) {
       title: 'Update button',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: superDatePickerConfigSource,
         },
       ],
@@ -175,7 +175,7 @@ if (!endMoment || !endMoment.isValid()) {
       title: 'Quick select panels',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: superDatePickerCustomQuickSelectSource,
         },
       ],
@@ -223,7 +223,7 @@ if (!endMoment || !endMoment.isValid()) {
       title: 'Sizing',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: superDatePickerWidthSource,
         },
       ],
@@ -262,7 +262,7 @@ if (!endMoment || !endMoment.isValid()) {
       title: 'Auto refresh',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: autoRefreshSource,
         },
       ],
@@ -281,7 +281,7 @@ if (!endMoment || !endMoment.isValid()) {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: autoRefreshOnlySource,
         },
       ],
@@ -313,7 +313,7 @@ if (!endMoment || !endMoment.isValid()) {
       title: 'Elastic pattern with KQL',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: superDatePickerPatternSource,
         },
       ],
