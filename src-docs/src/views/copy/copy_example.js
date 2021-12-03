@@ -1,14 +1,11 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCopy, EuiCode } from '../../../../src/components';
 
 import Copy from './copy';
 const copySource = require('!!raw-loader!./copy');
-const copyHtml = renderToHtml(Copy);
 
 export const CopyExample = {
   title: 'Copy',
@@ -18,10 +15,6 @@ export const CopyExample = {
         {
           type: GuideSectionTypes.JS,
           code: copySource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: copyHtml,
         },
       ],
       text: (

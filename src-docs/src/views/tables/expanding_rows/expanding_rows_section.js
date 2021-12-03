@@ -1,11 +1,9 @@
 import React from 'react';
 import { EuiBasicTable, EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
-import { renderToHtml } from '../../../services';
 
 import { Table } from './expanding_rows';
 const source = require('!!raw-loader!./expanding_rows');
-const html = renderToHtml(Table);
 
 export const section = {
   title: 'Expanding rows',
@@ -13,10 +11,6 @@ export const section = {
     {
       type: GuideSectionTypes.JS,
       code: source,
-    },
-    {
-      type: GuideSectionTypes.HTML,
-      code: html,
     },
   ],
   text: (

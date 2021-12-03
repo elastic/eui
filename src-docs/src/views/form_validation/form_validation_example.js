@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -15,7 +13,6 @@ import {
 
 import Validation from './validation';
 const validationSource = require('!!raw-loader!./validation');
-const validationHtml = renderToHtml(Validation);
 
 export const FormValidationExample = {
   title: 'Form validation',
@@ -35,10 +32,6 @@ export const FormValidationExample = {
         {
           type: GuideSectionTypes.JS,
           code: validationSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: validationHtml,
         },
       ],
       props: {

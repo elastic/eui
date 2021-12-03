@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiAvatar, EuiCode } from '../../../../src/components';
@@ -9,7 +7,6 @@ import avatarConfig from './playground';
 
 import Avatar from './avatar';
 const avatarSource = require('!!raw-loader!./avatar');
-const avatarHtml = renderToHtml(Avatar);
 const avatarSnippet = [
   `<EuiAvatar name="Raphael" />
 `,
@@ -20,7 +17,6 @@ const avatarSnippet = [
 
 import AvatarInitials from './avatar_initials';
 const avatarInitialsSource = require('!!raw-loader!./avatar_initials');
-const avatarInitialsHtml = renderToHtml(AvatarInitials);
 const avatarInitialsSnippet = [
   `<EuiAvatar name="Kibana" initialsLength={2}/>
 `,
@@ -32,7 +28,6 @@ const avatarInitialsSnippet = [
 
 import AvatarTypes from './avatar_type';
 const avatarTypesSource = require('!!raw-loader!./avatar_type');
-const avatarTypesHtml = renderToHtml(AvatarTypes);
 const avatarTypesSnippet = [
   `<EuiAvatar type="space" name="Engineering Space" />
 `,
@@ -40,7 +35,6 @@ const avatarTypesSnippet = [
 
 import AvatarIcons from './avatar_icon';
 const avatarIconsSource = require('!!raw-loader!./avatar_icon');
-const avatarIconsHtml = renderToHtml(AvatarIcons);
 const avatarIconsSnippet = [
   `<EuiAvatar name="Management" iconType="managementApp" />
 `,
@@ -52,7 +46,6 @@ const avatarIconsSnippet = [
 
 import AvatarDisabled from './avatar_disabled';
 const avatarDisabledSource = require('!!raw-loader!./avatar_disabled');
-const avatarDisabledHtml = renderToHtml(AvatarDisabled);
 const avatarDisabledSnippet = [
   `<EuiAvatar isDisabled={true} name="Avatar" />
 `,
@@ -66,10 +59,6 @@ export const AvatarExample = {
         {
           type: GuideSectionTypes.JS,
           code: avatarSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: avatarHtml,
         },
       ],
       text: (
@@ -95,10 +84,6 @@ export const AvatarExample = {
         {
           type: GuideSectionTypes.JS,
           code: avatarInitialsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: avatarInitialsHtml,
         },
       ],
       text: (
@@ -126,10 +111,6 @@ export const AvatarExample = {
           type: GuideSectionTypes.JS,
           code: avatarTypesSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: avatarTypesHtml,
-        },
       ],
       text: (
         <div>
@@ -151,10 +132,6 @@ export const AvatarExample = {
         {
           type: GuideSectionTypes.JS,
           code: avatarIconsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: avatarIconsHtml,
         },
       ],
       text: (
@@ -186,10 +163,6 @@ export const AvatarExample = {
         {
           type: GuideSectionTypes.JS,
           code: avatarDisabledSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: avatarDisabledHtml,
         },
       ],
       text: (

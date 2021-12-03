@@ -3,7 +3,8 @@
 **Bug fixes**
 
 - Fixed scrollbars in `EuiRange` tick labels in Safari ([#5427](https://github.com/elastic/eui/pull/5427))
-- Fixed an `EuiOverlayMask` bug where it calls window.document on server side ([#5422](https://github.com/elastic/eui/pull/5422))
+- Fixed an `EuiOverlayMask` bug where it calls window.document on server side([#5422](https://github.com/elastic/eui/pull/5422))
+- Fixed unremoved event listener memory leak in `EuiPopover` ([#5436](https://github.com/elastic/eui/pull/5436))
 - Fixed `EuiDatePicker` not correctly handling the `onBlur` callback ([#5441](https://github.com/elastic/eui/pull/5441))
 - Fixed `EuiToolTip` not correctly handling child `onBlur` and `onFocus` callbacks ([#5441](https://github.com/elastic/eui/pull/5441))
 
