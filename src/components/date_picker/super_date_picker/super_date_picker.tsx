@@ -475,6 +475,7 @@ export class EuiSuperDatePicker extends Component<
       isDisabled,
       updateButtonProps,
       showUpdateButton,
+      compressed,
     } = this.props;
 
     if (!showUpdateButton) return null;
@@ -491,7 +492,7 @@ export class EuiSuperDatePicker extends Component<
           isDisabled={isDisabled || this.state.isInvalid}
           onClick={this.handleClickUpdateButton}
           data-test-subj="superDatePickerApplyTimeButton"
-          size={this.props.compressed ? 's' : 'm'}
+          size={compressed ? 's' : 'm'}
           iconOnly={showUpdateButton === 'iconOnly'}
           {...updateButtonProps}
         />

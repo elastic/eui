@@ -101,16 +101,12 @@ export class EuiQuickSelectPopover extends Component<
           end={end}
           prevQuickSelect={prevQuickSelect}
         />
-        {commonlyUsedRanges.length ? (
-          <EuiHorizontalRule margin="s" />
-        ) : undefined}
+        {commonlyUsedRanges.length > 0 && <EuiHorizontalRule margin="s" />}
         <EuiCommonlyUsedTimeRanges
           applyTime={this.applyTime}
           commonlyUsedRanges={commonlyUsedRanges}
         />
-        {recentlyUsedRanges.length ? (
-          <EuiHorizontalRule margin="s" />
-        ) : undefined}
+        {recentlyUsedRanges.length > 0 && <EuiHorizontalRule margin="s" />}
         <EuiRecentlyUsed
           applyTime={this.applyTime}
           commonlyUsedRanges={commonlyUsedRanges}
