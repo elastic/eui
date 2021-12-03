@@ -373,7 +373,7 @@ export const useDataGridDisplaySelector = (
                   {resetButtonLabel}
                 </EuiButtonEmpty>
               </EuiFlexItem>
-            <EuiFlexGroup>
+            </EuiFlexGroup>
           </EuiPopoverFooter>
         )}
       </EuiPopover>
