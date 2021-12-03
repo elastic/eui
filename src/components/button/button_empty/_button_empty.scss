@@ -31,6 +31,12 @@
   &.euiButtonEmpty--xSmall {
     height: $euiButtonHeightXSmall;
     font-size: $euiFontSizeS;
+
+    // Forces the xs loading spinner to be the same size as xs-EuiIcons
+    .euiButtonContent__spinner {
+      width: $euiSizeM;
+      height: $euiSizeM;
+    }
   }
 
   &:disabled {
