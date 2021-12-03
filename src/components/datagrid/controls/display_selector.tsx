@@ -364,7 +364,7 @@ export const useDataGridDisplaySelector = (
         {showResetButton && (
           <EuiPopoverFooter>
             <EuiFlexGroup justifyContent="flexEnd" responsive={false}>
-              <EuiFlexItem>
+              <EuiFlexItem grow={false}>
                 <div>
                   <EuiButtonEmpty
                     flush="both"
