@@ -14,6 +14,7 @@ import {
   CommonEuiButtonEmptyProps,
 } from '../../button/button_empty/button_empty';
 import { EuiInputPopover, EuiPopover } from '../../popover';
+import { useEuiI18n } from '../../i18n';
 
 import { prettyInterval } from '../super_date_picker/pretty_interval';
 import {
@@ -27,7 +28,7 @@ export type EuiAutoRefreshSharedProps = EuiRefreshIntervalProps & {
 
 export type EuiAutoRefreshProps = EuiAutoRefreshSharedProps & {
   /**
-   * The input is `readOnly` by default becuase the input value is handled by the popover form.
+   * The input is `readOnly` by default because the input value is handled by the popover form.
    * If you need make the input `isInvalid`, you'll need to set `readOnly` to `false`.
    */
   readOnly?: EuiFieldTextProps['readOnly'];
@@ -44,6 +45,11 @@ export const EuiAutoRefresh: FunctionComponent<EuiAutoRefreshProps> = ({
 }) => {
   const classes = classNames('euiAutoRefresh', className);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  const autoRefeshLabel = useEuiI18n(
+    'euiAutoRefresh.autoRefreshLabel',
+    'Auto refresh'
+  );
 
   return (
     <EuiInputPopover
@@ -62,11 +68,10 @@ export const EuiAutoRefresh: FunctionComponent<EuiAutoRefreshProps> = ({
               isDisabled={isDisabled}
             >
               <strong>
-                <small>Auto refresh</small>
+                <small>{autoRefeshLabel}</small>
               </strong>
             </EuiButtonEmpty>
           }
-          placeholder="Placeholder text"
           readOnly={readOnly}
           disabled={isDisabled}
           value={prettyInterval(Boolean(isPaused), refreshInterval)}
@@ -111,6 +116,16 @@ export const EuiAutoRefreshButton: FunctionComponent<EuiAutoRefreshButtonProps> 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const classes = classNames('euiAutoRefreshButton', className);
 
+  const autoRefeshLabelOff = useEuiI18n(
+    'euiAutoRefresh.buttonLabelOff',
+    'Auto refresh is off'
+  );
+  const autoRefeshLabelOn = useEuiI18n(
+    'euiAutoRefresh.buttonLabelOn',
+    'Auto refresh is on and set to {prettyInterval}',
+    { prettyInterval: prettyInterval(Boolean(isPaused), refreshInterval) }
+  );
+
   return (
     <EuiPopover
       button={
@@ -120,14 +135,7 @@ export const EuiAutoRefreshButton: FunctionComponent<EuiAutoRefreshButtonProps> 
           size={size}
           color={color}
           iconType="timeRefresh"
-          title={
-            isPaused
-              ? 'Auto refresh is off'
-              : `Auto refresh is on and set to ${prettyInterval(
-                  Boolean(isPaused),
-                  refreshInterval
-                )}`
-          }
+          title={isPaused ? autoRefeshLabelOff : autoRefeshLabelOn}
           isDisabled={isDisabled}
           {...rest}
         >

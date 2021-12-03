@@ -181,6 +181,26 @@ export class EuiRefreshInterval extends Component<
     const options = refreshUnitsOptions.find(({ value }) => value === units);
     const optionText = options ? options.text : '';
 
+    const fullDescription = isPaused ? (
+      <EuiI18n
+        token="euiRefreshInterval.fullDescriptionOff"
+        default="Refresh is off, interval set to {optionValue} {optionText}."
+        values={{
+          optionValue: value,
+          optionText,
+        }}
+      />
+    ) : (
+      <EuiI18n
+        token="euiRefreshInterval.fullDescriptionOn"
+        default="Refresh is on, interval set to {optionValue} {optionText}."
+        values={{
+          optionValue: value,
+          optionText,
+        }}
+      />
+    );
+
     return (
       <fieldset>
         <EuiFlexGroup
@@ -236,17 +256,7 @@ export class EuiRefreshInterval extends Component<
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiScreenReaderOnly>
-          <p id={this.refreshSelectionId}>
-            <EuiI18n
-              token="euiRefreshInterval.fullDescription"
-              default="Refresh is {state}, interval set to {optionValue} {optionText}."
-              values={{
-                optionValue: value,
-                optionText,
-                state: isPaused ? 'off' : 'on',
-              }}
-            />
-          </p>
+          <p id={this.refreshSelectionId}>{fullDescription}</p>
         </EuiScreenReaderOnly>
       </fieldset>
     );
