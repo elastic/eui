@@ -64,8 +64,8 @@ export const SuperDatePickerExample = {
       <p>
         <strong>EuiSuperDatePicker</strong> is a complex date picker that
         supports relative and absolute dates. It offers a convenient{' '}
-        <strong>Quick select menu</strong>{' '}
-        <EuiIcon type="calendar" color="primary" /> which includes{' '}
+        <EuiIcon type="calendar" color="primary" />{' '}
+        <strong>Quick select menu</strong> which includes{' '}
         <strong>Commonly used dates</strong>,{' '}
         <strong>Recently used date ranges</strong> and{' '}
         <strong>Auto refresh</strong> features.
@@ -269,7 +269,9 @@ if (!endMoment || !endMoment.isValid()) {
         <p>
           By supplying a callback function to <EuiCode>onRefreshChange</EuiCode>
           , the <strong>EuiSuperDatePicker</strong> will display the{' '}
-          <EuiCode>refreshInterval</EuiCode> configuration UI.
+          <EuiCode>refreshInterval</EuiCode> configuration UI in the{' '}
+          <EuiIcon type="calendar" color="primary" />{' '}
+          <strong>Quick select menu</strong>.
         </p>
       ),
       demo: <AutoRefresh />,
@@ -317,8 +319,8 @@ if (!endMoment || !endMoment.isValid()) {
       text: (
         <p>
           The following is a demo pattern of how to layout the{' '}
-          <strong>EuiSuperDatePicker</strong> alongside Elastic&#39;s KQL search
-          bar using{' '}
+          <strong>EuiSuperDatePicker</strong> alongside Elastic&apos;s KQL
+          search bar using{' '}
           <Link to="/forms/suggest">
             <strong>EuiSuggest</strong>
           </Link>{' '}
