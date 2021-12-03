@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `39.1.3`.
+
+## [`39.1.3`](https://github.com/elastic/eui/tree/v39.1.3)
+
 - Fixed unremoved event listener memory leak in `EuiPopover` ([#5436](https://github.com/elastic/eui/pull/5436))
 
 ## [`39.1.2`](https://github.com/elastic/eui/tree/v39.1.2)
