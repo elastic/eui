@@ -5,7 +5,7 @@ import { ThemeContext } from '../../components';
 
 export default () => {
   const themeContext = useContext(ThemeContext);
-  const isAmsterdamTheme = themeContext.theme.includes('amsterdam');
+  const isAmsterdamTheme = !themeContext.theme.includes('legacy');
 
   return (
     <div>

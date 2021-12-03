@@ -159,6 +159,7 @@ export const iconTypes = [
   'paperClip',
   'partial',
   'pause',
+  'payment',
   'pencil',
   'percent',
   'pin',

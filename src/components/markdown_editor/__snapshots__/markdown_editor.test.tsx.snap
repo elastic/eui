@@ -2333,14 +2333,15 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                     class="euiSpacer euiSpacer--s"
                                   />
                                   <div
-                                    class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall prismjs language-md"
+                                    class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall"
                                   >
                                     <pre
                                       class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
                                       tabindex="-1"
                                     >
                                       <code
-                                        class="euiCodeBlock__code md"
+                                        class="euiCodeBlock__code"
+                                        data-code-language="md"
                                       >
                                         <span
                                           class="euiCodeBlock__line"
@@ -2568,14 +2569,15 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                             class="euiSpacer euiSpacer--s"
                                           />
                                           <div
-                                            class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall prismjs language-md"
+                                            class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall"
                                           >
                                             <pre
                                               class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
                                               tabindex="-1"
                                             >
                                               <code
-                                                class="euiCodeBlock__code md"
+                                                class="euiCodeBlock__code"
+                                                data-code-language="md"
                                               >
                                                 <span
                                                   class="euiCodeBlock__line"
@@ -2719,14 +2721,15 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                               class="euiSpacer euiSpacer--s"
                                             />
                                             <div
-                                              class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall prismjs language-md"
+                                              class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall"
                                             >
                                               <pre
                                                 class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
                                                 tabindex="-1"
                                               >
                                                 <code
-                                                  class="euiCodeBlock__code md"
+                                                  class="euiCodeBlock__code"
+                                                  data-code-language="md"
                                                 >
                                                   <span
                                                     class="euiCodeBlock__line"
@@ -2870,14 +2873,15 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                                 class="euiSpacer euiSpacer--s"
                                               />
                                               <div
-                                                class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall prismjs language-md"
+                                                class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall"
                                               >
                                                 <pre
                                                   class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
                                                   tabindex="-1"
                                                 >
                                                   <code
-                                                    class="euiCodeBlock__code md"
+                                                    class="euiCodeBlock__code"
+                                                    data-code-language="md"
                                                   >
                                                     <span
                                                       class="euiCodeBlock__line"
@@ -3009,14 +3013,15 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                                   class="euiSpacer euiSpacer--s"
                                                 />
                                                 <div
-                                                  class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall prismjs language-md"
+                                                  class="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall"
                                                 >
                                                   <pre
                                                     class="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
                                                     tabindex="-1"
                                                   >
                                                     <code
-                                                      class="euiCodeBlock__code md"
+                                                      class="euiCodeBlock__code"
+                                                      data-code-language="md"
                                                     >
                                                       <span
                                                         class="euiCodeBlock__line"
@@ -3249,34 +3254,31 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                                             language="md"
                                             paddingSize="s"
                                           >
-                                            <EuiCodeBlockImpl
-                                              fontSize="l"
-                                              inline={false}
-                                              language="md"
-                                              paddingSize="s"
+                                            <div
+                                              className="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall"
+                                              style={Object {}}
                                             >
-                                              <div
-                                                className="euiCodeBlock euiCodeBlock--fontLarge euiCodeBlock--paddingSmall prismjs language-md"
+                                              <pre
+                                                className="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
                                                 style={Object {}}
+                                                tabIndex={-1}
                                               >
-                                                <pre
-                                                  className="euiCodeBlock__pre euiCodeBlock__pre--whiteSpacePreWrap"
-                                                  style={Object {}}
-                                                  tabIndex={-1}
+                                                <code
+                                                  className="euiCodeBlock__code"
+                                                  data-code-language="md"
                                                 >
-                                                  <code
-                                                    className="euiCodeBlock__code md"
+                                                  <span
+                                                    className="euiCodeBlock__line"
+                                                    key="node-0-0"
                                                   >
-                                                    <span
-                                                      className="euiCodeBlock__line"
-                                                      key="node-0-0"
-                                                    >
-                                                      !{tooltip[anchor text](helpful description)}
-                                                    </span>
-                                                  </code>
-                                                </pre>
-                                              </div>
-                                            </EuiCodeBlockImpl>
+                                                    !{tooltip[anchor text](helpful description)}
+                                                  </span>
+                                                </code>
+                                              </pre>
+                                              <FullScreenDisplay
+                                                className="euiCodeBlock"
+                                              />
+                                            </div>
                                           </EuiCodeBlock>
                                           <EuiSpacer
                                             size="l"

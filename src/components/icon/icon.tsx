@@ -295,6 +295,7 @@ const typeToPathMap = {
   paperClip: 'paper_clip',
   partial: 'partial',
   pause: 'pause',
+  payment: 'payment',
   pencil: 'pencil',
   percent: 'percent',
   pin: 'pin',

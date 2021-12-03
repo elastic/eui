@@ -142,7 +142,7 @@ export const RadiusSass: FunctionComponent<ThemeRowType> = ({
             <strong>{`border-radius: ${values.euiBorderRadius};`}</strong>
           </div>
         }
-        snippet={'border-width: $euiBorderRadius;'}
+        snippet={'border-radius: $euiBorderRadius;'}
         snippetLanguage="scss"
       />
 
