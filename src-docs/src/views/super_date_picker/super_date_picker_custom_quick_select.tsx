@@ -8,6 +8,7 @@ import {
   OnTimeChangeProps,
   OnRefreshProps,
   ApplyTime,
+  EuiSuperDatePickerProps,
 } from '../../../../src/components';
 
 function MyCustomQuickSelectPanel({ applyTime }: { applyTime?: ApplyTime }) {
@@ -39,7 +40,9 @@ export default () => {
     setShowQuickSelectOnly(!showQuickSelectOnly);
   };
 
-  const [recentlyUsedRanges, setRecentlyUsedRanges] = useState([]);
+  const [recentlyUsedRanges, setRecentlyUsedRanges] = useState<
+    EuiSuperDatePickerProps['recentlyUsedRanges']
+  >([]);
   const [isLoading, setIsLoading] = useState(false);
   const [start, setStart] = useState('now-30m');
   const [end, setEnd] = useState('now');
@@ -47,11 +50,9 @@ export default () => {
   const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
     const recentlyUsedRange = recentlyUsedRanges.filter((recentlyUsedRange) => {
       const isDuplicate =
-        // @ts-ignore Help
         recentlyUsedRange.start === start && recentlyUsedRange.end === end;
       return !isDuplicate;
     });
-    // @ts-ignore Help
     recentlyUsedRange.unshift({ start, end });
     setStart(start);
     setEnd(end);

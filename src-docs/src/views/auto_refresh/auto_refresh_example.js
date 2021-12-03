@@ -25,6 +25,7 @@ const autoRefreshIntervalSource = require('!!raw-loader!./auto_refresh_interval'
 
 export const AutoRefreshExample = {
   title: 'Auto refresh',
+  isNew: true,
   sections: [
     {
       source: [
@@ -64,7 +65,7 @@ export const AutoRefreshExample = {
           is appended to <strong>EuiSuperDatePicker</strong>. For even more
           compactness, add{' '}
           <EuiCode language="tsx">{'shortHand={true}'}</EuiCode> to reduce the
-          unit to a single letter.
+          active unit to a single letter.
         </p>
       ),
       demo: <AutoRefreshButton />,

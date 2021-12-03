@@ -113,10 +113,7 @@ export default () => {
 
   return (
     <div className="savedQueriesInput">
-      <EuiFlexGroup
-        gutterSize="s"
-        // className={hideDatepicker ? 'savedQueriesInput__hideDatepicker' : ''}
-      >
+      <EuiFlexGroup gutterSize="s">
         <EuiFlexItem>
           <EuiSuggest
             status={status}

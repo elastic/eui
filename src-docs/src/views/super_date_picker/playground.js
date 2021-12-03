@@ -1,5 +1,8 @@
 import { PropTypes } from 'react-view';
-import { EuiSuperDatePicker } from '../../../../src/components/';
+import {
+  EuiSuperDatePicker,
+  EuiSuperUpdateButton,
+} from '../../../../src/components/';
 import {
   propUtilityForPlayground,
   dummyFunction,
@@ -35,6 +38,33 @@ export const superDatePickerConfig = () => {
       customProps: {
         onTimeChange: dummyFunction,
         onRefreshChange: dummyFunction,
+      },
+    },
+  };
+};
+
+export const superUpdateButtonConfig = () => {
+  const docgenInfo = Array.isArray(EuiSuperUpdateButton.__docgenInfo)
+    ? EuiSuperUpdateButton.__docgenInfo[0]
+    : EuiSuperUpdateButton.__docgenInfo;
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
+
+  propsToUse.onClick = simulateFunction(propsToUse.onClick, true);
+
+  return {
+    config: {
+      componentName: 'EuiSuperUpdateButton',
+      props: propsToUse,
+      scope: {
+        EuiSuperUpdateButton,
+      },
+      imports: {
+        '@elastic/eui': {
+          named: ['EuiSuperUpdateButton'],
+        },
+      },
+      customProps: {
+        onClick: dummyFunction,
       },
     },
   };

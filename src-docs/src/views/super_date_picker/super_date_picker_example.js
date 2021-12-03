@@ -13,7 +13,7 @@ import {
 } from '../../../../src/components';
 
 import { EuiSuperUpdateButtonProps } from './props';
-import { superDatePickerConfig } from './playground';
+import { superDatePickerConfig, superUpdateButtonConfig } from './playground';
 
 import SuperDatePicker from './super_date_picker';
 const superDatePickerSource = require('!!raw-loader!./super_date_picker');
@@ -162,6 +162,7 @@ if (!endMoment || !endMoment.isValid()) {
       ),
       demo: <SuperDatePickerConfig />,
       props: { EuiSuperDatePicker, EuiSuperUpdateButtonProps },
+      playground: superUpdateButtonConfig,
       snippet: `<EuiSuperDatePicker
   onTimeChange={onTimeChange}
   start="now-30m"

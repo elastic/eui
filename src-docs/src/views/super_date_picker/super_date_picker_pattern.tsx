@@ -7,6 +7,7 @@ import {
   EuiFlexItem,
   EuiSuggest,
   EuiSuperDatePicker,
+  EuiSuperDatePickerProps,
   OnRefreshChangeProps,
   OnRefreshProps,
   OnTimeChangeProps,
@@ -21,7 +22,9 @@ const sampleItems = [
 ];
 
 export default () => {
-  const [recentlyUsedRanges, setRecentlyUsedRanges] = useState([]);
+  const [recentlyUsedRanges, setRecentlyUsedRanges] = useState<
+    EuiSuperDatePickerProps['recentlyUsedRanges']
+  >([]);
   const [isLoading, setIsLoading] = useState(false);
   const [refreshInterval, setRefreshInterval] = useState(1000);
   const [isPaused, setIsPaused] = useState(true);
@@ -32,11 +35,9 @@ export default () => {
   const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
     const recentlyUsedRange = recentlyUsedRanges.filter((recentlyUsedRange) => {
       const isDuplicate =
-        // @ts-ignore Help
         recentlyUsedRange.start === start && recentlyUsedRange.end === end;
       return !isDuplicate;
     });
-    // @ts-ignore Help
     recentlyUsedRange.unshift({ start, end });
     setStart(start);
     setEnd(end);
