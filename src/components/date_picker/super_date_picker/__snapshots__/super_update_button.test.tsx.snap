@@ -20,7 +20,7 @@ exports[`EuiSuperUpdateButton iconOnly 1`] = `
       onClick={[Function]}
       textProps={
         Object {
-          "className": "euiSuperUpdateButton__textResponsive",
+          "className": "euiScreenReaderOnly",
         }
       }
     >
@@ -77,7 +77,7 @@ exports[`EuiSuperUpdateButton is rendered 1`] = `
       onClick={[Function]}
       textProps={
         Object {
-          "className": "euiSuperUpdateButton__textResponsive",
+          "className": "euiScreenReaderOnly",
         }
       }
     >
@@ -145,7 +145,7 @@ exports[`EuiSuperUpdateButton isDisabled 1`] = `
       onClick={[Function]}
       textProps={
         Object {
-          "className": "euiSuperUpdateButton__textResponsive",
+          "className": "euiScreenReaderOnly",
         }
       }
     >
@@ -207,7 +207,7 @@ exports[`EuiSuperUpdateButton isLoading 1`] = `
       onClick={[Function]}
       textProps={
         Object {
-          "className": "euiSuperUpdateButton__textResponsive",
+          "className": "euiScreenReaderOnly",
         }
       }
     >
@@ -275,7 +275,7 @@ exports[`EuiSuperUpdateButton needsUpdate 1`] = `
       onClick={[Function]}
       textProps={
         Object {
-          "className": "euiSuperUpdateButton__textResponsive",
+          "className": "euiScreenReaderOnly",
         }
       }
     >
@@ -340,7 +340,7 @@ exports[`EuiSuperUpdateButton responsive can be all 1`] = `
       onClick={[Function]}
       textProps={
         Object {
-          "className": "euiSuperUpdateButton__textResponsive",
+          "className": "euiScreenReaderOnly",
         }
       }
     >
@@ -400,7 +400,7 @@ exports[`EuiSuperUpdateButton responsive can be false 1`] = `
       onClick={[Function]}
       textProps={
         Object {
-          "className": "euiSuperUpdateButton__textResponsive",
+          "className": "euiScreenReaderOnly",
         }
       }
     >
@@ -457,7 +457,7 @@ exports[`EuiSuperUpdateButton showTooltip 1`] = `
       onClick={[Function]}
       textProps={
         Object {
-          "className": "euiSuperUpdateButton__textResponsive",
+          "className": "euiScreenReaderOnly",
         }
       }
     >

@@ -182,7 +182,7 @@ export class EuiSuperUpdateButton extends Component<
               textProps={{
                 ...restTextProps,
                 className: classNames(
-                  'euiSuperUpdateButton__textResponsive',
+                  'euiScreenReaderOnly',
                   restTextProps?.className
                 ),
               }}
