@@ -57,6 +57,7 @@ export const EuiAutoRefresh: FunctionComponent<EuiAutoRefreshProps> = ({
       fullWidth={rest.fullWidth}
       input={
         <EuiFieldText
+          aria-label={autoRefeshLabel}
           onFocus={() => setIsPopoverOpen(true)}
           prepend={
             <EuiButtonEmpty

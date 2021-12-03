@@ -90,6 +90,7 @@ exports[`EuiAutoRefresh isPaused is false 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
+            aria-label="Auto refresh"
             class="euiFieldText euiFieldText--inGroup"
             readonly=""
             type="text"
@@ -140,6 +141,7 @@ exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
           class="euiFormControlLayout__childrenWrapper"
         >
           <input
+            aria-label="Auto refresh"
             class="euiFieldText euiFieldText--inGroup"
             readonly=""
             type="text"

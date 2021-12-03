@@ -21,7 +21,7 @@ const superDatePickerSource = require('!!raw-loader!./super_date_picker');
 import SuperDatePickerConfig from './super_date_picker_config';
 const superDatePickerConfigSource = require('!!raw-loader!./super_date_picker_config');
 
-import SuperDatePickerWidth from './super_date_picker_width_example';
+import SuperDatePickerWidthExample from './super_date_picker_width_example';
 const superDatePickerWidthSource = require('!!raw-loader!./super_date_picker_width');
 
 import SuperDatePickerCustomQuickSelect from './super_date_picker_custom_quick_select';
@@ -158,6 +158,7 @@ if (!endMoment || !endMoment.isValid()) {
             like setting the <EuiCode>fill</EuiCode> to <EuiCode>false</EuiCode>
             .
           </p>
+          {/* {superDatePickerConfigSource} */}
         </>
       ),
       demo: <SuperDatePickerConfig />,
@@ -222,7 +223,7 @@ if (!endMoment || !endMoment.isValid()) {
       title: 'Sizing',
       source: [
         {
-          type: GuideSectionTypes.TSX,
+          type: GuideSectionTypes.JS,
           code: superDatePickerWidthSource,
         },
       ],
@@ -254,14 +255,14 @@ if (!endMoment || !endMoment.isValid()) {
           </p>
         </>
       ),
-      demo: <SuperDatePickerWidth />,
+      demo: <SuperDatePickerWidthExample />,
       props: { EuiSuperDatePicker },
     },
     {
       title: 'Auto refresh',
       source: [
         {
-          type: GuideSectionTypes.TSX,
+          type: GuideSectionTypes.JS,
           code: autoRefreshSource,
         },
       ],
@@ -280,7 +281,7 @@ if (!endMoment || !endMoment.isValid()) {
     {
       source: [
         {
-          type: GuideSectionTypes.TSX,
+          type: GuideSectionTypes.JS,
           code: autoRefreshOnlySource,
         },
       ],
