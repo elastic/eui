@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -16,27 +14,21 @@ import {
 import Guidelines from './guidelines';
 import FormRows from './form_rows';
 const formRowsSource = require('!!raw-loader!./form_rows');
-const formRowsHtml = renderToHtml(FormRows);
 
 import DescribedFormGroup from './described_form_group';
 const describedFormGroupSource = require('!!raw-loader!./described_form_group');
-const describedFormGroupHtml = renderToHtml(DescribedFormGroup);
 
 import FullWidth from './full_width';
 const fullWidthSource = require('!!raw-loader!./full_width');
-const fullWidthHtml = renderToHtml(FullWidth);
 
 import Inline from './inline';
 const inlineSource = require('!!raw-loader!./inline');
-const inlineHtml = renderToHtml(Inline);
 
 import InlineSizing from './inline_sizing';
 const inlineSizingSource = require('!!raw-loader!./inline_sizing');
-const inlineSizingHtml = renderToHtml(InlineSizing);
 
 import InlinePopover from './inline_popover';
 const inlinePopoverSource = require('!!raw-loader!./inline_popover');
-const inlinePopoverHtml = renderToHtml(InlinePopover);
 
 import AccessibleLabels from './accessible_labels';
 const AccessibleLabelsSource = require('!!raw-loader!./accessible_labels');
@@ -83,10 +75,6 @@ export const FormLayoutsExample = {
           type: GuideSectionTypes.JS,
           code: formRowsSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: formRowsHtml,
-        },
       ],
       text: (
         <p>
@@ -116,10 +104,6 @@ export const FormLayoutsExample = {
         {
           type: GuideSectionTypes.JS,
           code: describedFormGroupSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: describedFormGroupHtml,
         },
       ],
       text: (
@@ -241,10 +225,6 @@ export const FormLayoutsExample = {
           type: GuideSectionTypes.JS,
           code: fullWidthSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fullWidthHtml,
-        },
       ],
       text: (
         <p>
@@ -287,10 +267,6 @@ export const FormLayoutsExample = {
           type: GuideSectionTypes.JS,
           code: inlineSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inlineHtml,
-        },
       ],
       demo: <Inline />,
     },
@@ -300,10 +276,6 @@ export const FormLayoutsExample = {
         {
           type: GuideSectionTypes.JS,
           code: inlineSizingSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inlineSizingHtml,
         },
       ],
       text: (
@@ -333,10 +305,6 @@ export const FormLayoutsExample = {
         {
           type: GuideSectionTypes.JS,
           code: inlinePopoverSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inlinePopoverHtml,
         },
       ],
       text: (
