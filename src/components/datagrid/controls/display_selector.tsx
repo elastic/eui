@@ -365,14 +365,16 @@ export const useDataGridDisplaySelector = (
           <EuiPopoverFooter>
             <EuiFlexGroup justifyContent="flexEnd" responsive={false}>
               <EuiFlexItem>
-                <EuiButtonEmpty
-                  flush="both"
-                  size="xs"
-                  onClick={resetToInitialState}
-                  data-test-subj="resetDisplaySelector"
-                >
-                  {resetButtonLabel}
-                </EuiButtonEmpty>
+                <div>
+                  <EuiButtonEmpty
+                    flush="both"
+                    size="xs"
+                    onClick={resetToInitialState}
+                    data-test-subj="resetDisplaySelector"
+                  >
+                    {resetButtonLabel}
+                  </EuiButtonEmpty>
+                </div>
               </EuiFlexItem>
             </EuiFlexGroup>
           </EuiPopoverFooter>
