@@ -1,6 +1,5 @@
 import React from 'react';
 import { GuideSectionTypes } from '../../../components';
-import { renderToHtml } from '../../../services';
 
 import { EuiCode, EuiCallOut } from '../../../../../src/components';
 import { Table } from './in_memory';
@@ -28,17 +27,12 @@ import { FieldValueOptionType } from '!!prop-loader!../../../../../src/component
 import { FieldValueToggleGroupFilterItemType } from '!prop-loader!../../../../../src/components/search_bar/filters/field_value_toggle_group_filter.tsx';
 
 const source = require('!!raw-loader!./in_memory');
-const html = renderToHtml(Table);
 
 export const section = {
   source: [
     {
       type: GuideSectionTypes.JS,
       code: source,
-    },
-    {
-      type: GuideSectionTypes.HTML,
-      code: html,
     },
   ],
   text: (

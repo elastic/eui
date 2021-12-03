@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -13,7 +11,6 @@ import {
 
 import DescriptionList from './description_list';
 const descriptionListSource = require('!!raw-loader!./description_list');
-const descriptionListHtml = renderToHtml(DescriptionList);
 const descriptionListSnippet = [
   `<EuiDescriptionList
   listItems={[
@@ -33,7 +30,6 @@ const descriptionListSnippet = [
 
 import DescriptionListColumn from './description_list_column';
 const descriptionListColumnSource = require('!!raw-loader!./description_list_column');
-const descriptionListColumnHtml = renderToHtml(DescriptionListColumn);
 const descriptionListColumnSnippet = [
   `<EuiDescriptionList
   type="column"
@@ -47,7 +43,6 @@ const descriptionListColumnSnippet = [
 
 import DescriptionListStyling from './description_list_styling';
 const descriptionListStylingSource = require('!!raw-loader!./description_list_styling');
-const descriptionListStylingHtml = renderToHtml(DescriptionListStyling);
 const descriptionListStylingSnippet = [
   `<EuiDescriptionList
   listItems={favoriteVideoGames}
@@ -58,7 +53,6 @@ const descriptionListStylingSnippet = [
 
 import DescriptionListInline from './description_list_inline';
 const descriptionListInlineSource = require('!!raw-loader!./description_list_inline');
-const descriptionListInlineHtml = renderToHtml(DescriptionListInline);
 const descriptionListInlineSnippet = [
   `<EuiDescriptionList
   type="inline"
@@ -68,7 +62,6 @@ const descriptionListInlineSnippet = [
 
 import DescriptionListReverse from './description_list_reverse';
 const descriptionListReverseSource = require('!!raw-loader!./description_list_reverse');
-const descriptionListReverseHtml = renderToHtml(DescriptionListReverse);
 const descriptionListReverseSnippet = [
   `<EuiDescriptionList
   textStyle="reverse"
@@ -78,7 +71,6 @@ const descriptionListReverseSnippet = [
 
 import DescriptionListClasses from './description_list_classes';
 const descriptionListClassesSource = require('!!raw-loader!./description_list_classes');
-const descriptionListClassesHtml = renderToHtml(DescriptionListClasses);
 const descriptionListClassesSnippet = [
   `<EuiDescriptionList
   titleProps={{ className: 'eui-textTruncate' }}
@@ -95,10 +87,6 @@ export const DescriptionListExample = {
         {
           type: GuideSectionTypes.JS,
           code: descriptionListSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: descriptionListHtml,
         },
       ],
       text: (
@@ -126,10 +114,6 @@ export const DescriptionListExample = {
           type: GuideSectionTypes.JS,
           code: descriptionListReverseSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: descriptionListReverseHtml,
-        },
       ],
       text: (
         <div>
@@ -156,10 +140,6 @@ export const DescriptionListExample = {
           type: GuideSectionTypes.JS,
           code: descriptionListColumnSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: descriptionListColumnHtml,
-        },
       ],
       text: (
         <Fragment>
@@ -184,10 +164,6 @@ export const DescriptionListExample = {
           type: GuideSectionTypes.JS,
           code: descriptionListInlineSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: descriptionListInlineHtml,
-        },
       ],
       text: (
         <p>
@@ -207,10 +183,6 @@ export const DescriptionListExample = {
           type: GuideSectionTypes.JS,
           code: descriptionListStylingSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: descriptionListStylingHtml,
-        },
       ],
       text: (
         <p>
@@ -228,10 +200,6 @@ export const DescriptionListExample = {
         {
           type: GuideSectionTypes.JS,
           code: descriptionListClassesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: descriptionListClassesHtml,
         },
       ],
       text: (

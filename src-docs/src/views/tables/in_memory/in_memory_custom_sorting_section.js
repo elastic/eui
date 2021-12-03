@@ -1,7 +1,6 @@
 import React from 'react';
 import { EuiCode } from '../../../../../src/components';
 import { GuideSectionTypes } from '../../../components';
-import { renderToHtml } from '../../../services';
 
 import { Table } from './in_memory_custom_sorting';
 
@@ -28,7 +27,6 @@ import { FieldValueOptionType } from '!!prop-loader!../../../../../src/component
 import { FieldValueToggleGroupFilterItemType } from '!prop-loader!../../../../../src/components/search_bar/filters/field_value_toggle_group_filter.tsx';
 
 const source = require('!!raw-loader!./in_memory_custom_sorting');
-const html = renderToHtml(Table);
 
 export const customSortingSection = {
   title: 'In-memory table with custom sort values',
@@ -36,10 +34,6 @@ export const customSortingSection = {
     {
       type: GuideSectionTypes.JS,
       code: source,
-    },
-    {
-      type: GuideSectionTypes.HTML,
-      code: html,
     },
   ],
   text: (

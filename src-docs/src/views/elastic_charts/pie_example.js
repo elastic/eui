@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { ExternalBadge } from './shared';
@@ -21,13 +20,11 @@ import {
 
 import PieChart from './pie';
 const pieSource = require('!!raw-loader!./pie');
-const pieHtml = renderToHtml(PieChart);
 
 import PieSlices from './pie_slices';
 
 import Treemaps from './treemap';
 const treemapsSource = require('!!raw-loader!./treemap');
-const treemapsHtml = renderToHtml(Treemaps);
 
 import PieAlts from './pie_alts';
 
@@ -153,10 +150,6 @@ export const ElasticChartsPieExample = {
         {
           type: GuideSectionTypes.JS,
           code: pieSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: pieHtml,
         },
       ],
       text: (
@@ -309,10 +302,6 @@ const euiPartitionConfig = euiChartTheme.partition;
         {
           type: GuideSectionTypes.JS,
           code: treemapsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: treemapsHtml,
         },
       ],
       text: (

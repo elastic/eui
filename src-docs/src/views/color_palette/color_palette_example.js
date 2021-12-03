@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 import { qualitativePropsInfo, palettePropsInfo } from './props_info';
 
@@ -17,15 +15,12 @@ import {
 
 import ColorPalette from './color_palette';
 const colorPaletteSource = require('!!raw-loader!./color_palette');
-const colorPaletteHtml = renderToHtml(ColorPalette);
 
 import ColorPaletteQuant from './color_palette_quantitative';
 const colorPaletteQuantSource = require('!!raw-loader!./color_palette_quantitative');
-const colorPaletteQuantHtml = renderToHtml(ColorPaletteQuant);
 
 import ColorPaletteCustom from './color_palette_custom';
 const colorPaletteCustomSource = require('!!raw-loader!./color_palette_custom');
-const colorPaletteCustomHtml = renderToHtml(ColorPaletteCustom);
 
 import { VisPalette } from './vis_palette.js';
 
@@ -48,10 +43,6 @@ export const ColorPaletteExample = {
         {
           type: GuideSectionTypes.JS,
           code: colorPaletteSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorPaletteHtml,
         },
       ],
       text: (
@@ -91,10 +82,6 @@ export const ColorPaletteExample = {
           type: GuideSectionTypes.JS,
           code: colorPaletteQuantSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorPaletteQuantHtml,
-        },
       ],
       text: (
         <div>
@@ -124,10 +111,6 @@ export const ColorPaletteExample = {
         {
           type: GuideSectionTypes.JS,
           code: colorPaletteCustomSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorPaletteCustomHtml,
         },
       ],
       text: (

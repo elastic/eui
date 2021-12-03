@@ -1,13 +1,10 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 import { EuiDataGrid, EuiCodeBlock, EuiCode } from '../../../../src/components';
 
 import DataGridFooterRow from './footer_row';
 const dataGridControlColumnsSource = require('!!raw-loader!./footer_row');
-const dataGridControlColumnsHtml = renderToHtml(DataGridFooterRow);
 
 import { EuiDataGridControlColumn } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 import { EuiDataGridCellValueElementProps } from '!!prop-loader!../../../../src/components/datagrid/body/data_grid_cell';
@@ -32,10 +29,6 @@ export const DataGridFooterRowExample = {
         {
           type: GuideSectionTypes.JS,
           code: dataGridControlColumnsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridControlColumnsHtml,
         },
       ],
       text: (
