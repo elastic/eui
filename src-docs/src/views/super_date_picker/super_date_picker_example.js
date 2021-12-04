@@ -158,7 +158,6 @@ if (!endMoment || !endMoment.isValid()) {
             like setting the <EuiCode>fill</EuiCode> to <EuiCode>false</EuiCode>
             .
           </p>
-          {/* {superDatePickerConfigSource} */}
         </>
       ),
       demo: <SuperDatePickerConfig />,
