@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiTitle } from '../../../../src/components';
@@ -9,7 +7,6 @@ import { titleConfig } from './playground';
 
 import Title from './title';
 const titleSource = require('!!raw-loader!./title');
-const titleHtml = renderToHtml(Title);
 const titleSnippet = [
   `<EuiTitle>
   <h2><!-- Defaults to medium size. Change the heading level based on your context. --></h2>
@@ -27,10 +24,6 @@ export const TitleExample = {
         {
           type: GuideSectionTypes.JS,
           code: titleSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: titleHtml,
         },
       ],
       text: (

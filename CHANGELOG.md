@@ -1,10 +1,41 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Added `timeRefresh` icon ([#5383](https://github.com/elastic/eui/pull/5383))
+- Added `responsive` and `iconOnly` props to `EuiSuperUpdateButton`  ([#5383](https://github.com/elastic/eui/pull/5383))
+- Added better auto refresh indicator to `EuiSuperDatePicker` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Added `compressed`, `width`, `isQuickSelectOnly` props to `EuiSuperDatePicker` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Updated `showUpdateButton` prop with `iconOnly` option in `EuiSuperDatePicker` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Increased default `refreshInterval` of `EuiSuperDatePicker` to `1000` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Remove `Show dates` button from pretty format of `EuiSuperDatePicker` in favor of directly opening `start` date popover ([#5383](https://github.com/elastic/eui/pull/5383))
+- Added `shortHand` option to `prettyInterval` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Moved `rounding` switch to popover footer in relative tab of `EuiSuperDatePicker` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Simplified `EuiRefreshInterval` to use a switch to start/stop and other visual touch ups ([#5383](https://github.com/elastic/eui/pull/5383))
+- Created stand alone `EuiAutoRefresh` and `EuiAutoRefreshButton` components ([#5383](https://github.com/elastic/eui/pull/5383))
+
+**Bug fixes**
+
+- Fixed dark mode background color of `EuiFormControlLayout` `prepend` and `append` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Fixed background color of `EuiFormControlLayout` when `readOnly` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Fixed the name of `data-test-subj` prop of `EuiFormControlLayout` ([#5383](https://github.com/elastic/eui/pull/5383))
+
+**Breaking changes**
+
+- Changed prop name `applyRefreshInterval` to `onRefreshChange` in `EuiRefreshInterval` ([#5383](https://github.com/elastic/eui/pull/5383))
+
+## [`42.1.0`](https://github.com/elastic/eui/tree/v42.1.0)
+
+- Added first and last page arrow buttons to `EuiPagination` when `compressed=true` ([#5362](https://github.com/elastic/eui/pull/5362))
+- Added support for indeterminate `EuiPagination` when `pageCount=0` ([#5362](https://github.com/elastic/eui/pull/5362))
+- Moved mobile behavior to a customizable `responsive` prop to `EuiPagination` that renders the `compressed` display ([#5362](https://github.com/elastic/eui/pull/5362))
+- Added `doubleArrowLeft`, `doubleArrowRight`, `arrowStart`, `arrowEnd` icons ([#5362](https://github.com/elastic/eui/pull/5362))
+
 **Bug fixes**
 
 - Fixed scrollbars in `EuiRange` tick labels in Safari ([#5427](https://github.com/elastic/eui/pull/5427))
 - Fixed an `EuiOverlayMask` bug where it calls window.document on server side([#5422](https://github.com/elastic/eui/pull/5422))
-- Fixed unremoved event listener memory leak in `EuiPopover` ([#5436](https://github.com/elastic/eui/pull/5436))
+- Fixed unremoved event listener memory leak in `EuiPopover` ([#5437](https://github.com/elastic/eui/pull/5437))
+- Fixed `EuiDatePicker` not correctly handling the `onBlur` callback ([#5441](https://github.com/elastic/eui/pull/5441))
+- Fixed `EuiToolTip` not correctly handling child `onBlur` and `onFocus` callbacks ([#5441](https://github.com/elastic/eui/pull/5441))
 
 **Breaking changes**
 
@@ -52,6 +83,15 @@
 **Theme: Amsterdam**
 
 - Fixed `EuiCodeBlock` not properly increasing large font sizes on Amsterdam ([#5379](https://github.com/elastic/eui/pull/5379))
+
+## [`41.2.3`](https://github.com/elastic/eui/tree/v41.2.3)
+
+**Note: this release is a backport containing changes originally made in `42.1.0`**
+
+**Bug fixes**
+
+- Fixed `EuiDatePicker` not correctly handling the `onBlur` callback ([#5441](https://github.com/elastic/eui/pull/5441))
+- Fixed `EuiToolTip` not correctly handling child `onBlur` and `onFocus` callbacks ([#5441](https://github.com/elastic/eui/pull/5441))
 
 ## [`41.2.2`](https://github.com/elastic/eui/tree/v41.2.2)
 
@@ -121,6 +161,14 @@
 - Removed mobile-only props from `EuiTableRowCell` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Removed Sass vars `$euiColorSecondary` and `$euiColorSecondaryText` ([#5345](https://github.com/elastic/eui/pull/5345))
 
+## [`40.1.1`](https://github.com/elastic/eui/tree/v40.1.0)
+
+**Note: this release is a backport containing changes originally made after `42.0.0`**
+
+**Bug fixes**
+
+- Fixed unremoved event listener memory leak in `EuiPopover` ([#5437](https://github.com/elastic/eui/pull/5437))
+
 ## [`40.1.0`](https://github.com/elastic/eui/tree/v40.1.0)
 
 - Added styling support for `valign` prop on `EuiTableRowCell` ([#5283](https://github.com/elastic/eui/pull/5283))
@@ -151,6 +199,14 @@
 **Breaking changes**
 
 - Renamed `tokenKeyword` icon to `tokenTag` in `EuiToken` ([#5251](https://github.com/elastic/eui/pull/5251))
+
+## [`39.1.3`](https://github.com/elastic/eui/tree/v39.1.2)
+
+**Note: this release is a backport containing changes originally made after `42.0.0`**
+
+**Bug fixes**
+
+- Fixed unremoved event listener memory leak in `EuiPopover` ([#5437](https://github.com/elastic/eui/pull/5437))
 
 ## [`39.1.2`](https://github.com/elastic/eui/tree/v39.1.2)
 

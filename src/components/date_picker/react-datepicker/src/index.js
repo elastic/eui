@@ -235,6 +235,11 @@ export default class DatePicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.calcInitialState();
+
+    // Refs
+    this.input;
+    this.calendar;
+    this.popover;
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -339,7 +344,13 @@ export default class DatePicker extends React.Component {
               enableFocusTrap: skipSetBlur ? false : prev.enableFocusTrap
             }),
             () => {
-              !skipSetBlur && this.setBlur();
+              // Skip `onBlur` if 
+              // 1) we are possibly manually moving focus between the input and popover (skipSetBlur) and
+              // 2) the blur event keeps focus on the input 
+              // Focus is also guaranteed to not be inside the popover at this point
+              if (!skipSetBlur || (document != null && document.activeElement !== this.input)) {
+                this.setBlur();
+              } 
 
               this.setState({ inputValue: null });
             }
@@ -385,21 +396,26 @@ export default class DatePicker extends React.Component {
 
   handleBlur = event => {
     if (this.props.accessibleMode === true) {
-      // allow normal de-focusing in a11y mode
-      return;
-    }
-
-    if (this.state.open && !this.props.withPortal) {
-      this.deferFocusInput();
+      // Fire the `onBlur` callback if
+      // 1) the popover is closed or
+      // 2) the blur event places focus outside the popover
+      // Focus is also guaranteed to not on be on input at this point
+      if (!this.state.open || (this.popover && !this.popover.contains(event.relatedTarget))) {
+        this.props.onBlur && this.props.onBlur(event);
+      }
     } else {
-      this.props.onBlur(event);
+      if (this.state.open && !this.props.withPortal) {
+        this.deferFocusInput();
+      } else {
+        this.props.onBlur && this.props.onBlur(event);
+      }
+      this.setState({ focused: false });
     }
-    this.setState({ focused: false });
   };
 
   handleCalendarClickOutside = event => {
     if (!this.props.inline) {
-      this.setOpen(false);
+      this.setOpen(false, true);
     }
     this.props.onClickOutside(event);
     if (this.props.withPortal) {
@@ -854,6 +870,9 @@ export default class DatePicker extends React.Component {
         panelPaddingSize="none"
         anchorPosition={this.props.popperPlacement}
         container={this.props.popperContainer}
+        panelRef={elem => {
+          this.popover = elem;
+        }}
         {...this.props.popperProps}
         button={
           <div className="react-datepicker__input-container">

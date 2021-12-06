@@ -2864,16 +2864,80 @@
     "filepath": "src/components/notification/notification_event_read_icon.tsx"
   },
   {
+    "token": "euiPaginationButtonArrow.firstPage",
+    "defString": "First page",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 43,
+        "column": 11
+      },
+      "end": {
+        "line": 43,
+        "column": 73
+      }
+    },
+    "filepath": "src/components/pagination/pagination_button_arrow.tsx"
+  },
+  {
+    "token": "euiPaginationButtonArrow.previousPage",
+    "defString": "Previous page",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 44,
+        "column": 14
+      },
+      "end": {
+        "line": 47,
+        "column": 5
+      }
+    },
+    "filepath": "src/components/pagination/pagination_button_arrow.tsx"
+  },
+  {
+    "token": "euiPaginationButtonArrow.nextPage",
+    "defString": "Next page",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 48,
+        "column": 10
+      },
+      "end": {
+        "line": 48,
+        "column": 70
+      }
+    },
+    "filepath": "src/components/pagination/pagination_button_arrow.tsx"
+  },
+  {
+    "token": "euiPaginationButtonArrow.lastPage",
+    "defString": "Last page",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 49,
+        "column": 10
+      },
+      "end": {
+        "line": 49,
+        "column": 70
+      }
+    },
+    "filepath": "src/components/pagination/pagination_button_arrow.tsx"
+  },
+  {
     "token": "euiPaginationButton.longPageString",
     "defString": "Page {page} of {totalPages}",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 69,
+        "line": 66,
         "column": 4
       },
       "end": {
-        "line": 73,
+        "line": 70,
         "column": 5
       }
     },
@@ -2885,44 +2949,28 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 75,
+        "line": 72,
         "column": 8
       },
       "end": {
-        "line": 79,
+        "line": 76,
         "column": 9
       }
     },
     "filepath": "src/components/pagination/pagination_button.tsx"
   },
   {
-    "token": "euiPagination.previousPage",
-    "defString": "Previous page, {page}",
+    "token": "euiPagination.pageOfTotalCompressed",
+    "defString": "{page} of {total}",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 109,
-        "column": 4
+        "line": 146,
+        "column": 10
       },
       "end": {
-        "line": 113,
-        "column": 5
-      }
-    },
-    "filepath": "src/components/pagination/pagination.tsx"
-  },
-  {
-    "token": "euiPagination.disabledPreviousPage",
-    "defString": "Previous page",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 115,
-        "column": 8
-      },
-      "end": {
-        "line": 118,
-        "column": 9
+        "line": 153,
+        "column": 12
       }
     },
     "filepath": "src/components/pagination/pagination.tsx"
@@ -2933,12 +2981,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 145,
-        "column": 8
+        "line": 198,
+        "column": 12
       },
       "end": {
-        "line": 150,
-        "column": 9
+        "line": 203,
+        "column": 13
       }
     },
     "filepath": "src/components/pagination/pagination.tsx"
@@ -2949,60 +2997,92 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 181,
-        "column": 8
-      },
-      "end": {
-        "line": 186,
-        "column": 9
-      }
-    },
-    "filepath": "src/components/pagination/pagination.tsx"
-  },
-  {
-    "token": "euiPagination.nextPage",
-    "defString": "Next page, {page}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 219,
-        "column": 4
-      },
-      "end": {
-        "line": 223,
-        "column": 5
-      }
-    },
-    "filepath": "src/components/pagination/pagination.tsx"
-  },
-  {
-    "token": "euiPagination.disabledNextPage",
-    "defString": "Next page",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 225,
-        "column": 8
-      },
-      "end": {
-        "line": 225,
-        "column": 76
-      }
-    },
-    "filepath": "src/components/pagination/pagination.tsx"
-  },
-  {
-    "token": "euiPagination.pageOfTotalCompressed",
-    "defString": "{page} of {total}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 266,
+        "line": 238,
         "column": 12
       },
       "end": {
-        "line": 273,
-        "column": 14
+        "line": 246,
+        "column": 13
+      }
+    },
+    "filepath": "src/components/pagination/pagination.tsx"
+  },
+  {
+    "token": "euiPagination.last",
+    "defString": "Last",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 288,
+        "column": 20
+      },
+      "end": {
+        "line": 288,
+        "column": 60
+      }
+    },
+    "filepath": "src/components/pagination/pagination.tsx"
+  },
+  {
+    "token": "euiPagination.page",
+    "defString": "Page",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 289,
+        "column": 20
+      },
+      "end": {
+        "line": 289,
+        "column": 60
+      }
+    },
+    "filepath": "src/components/pagination/pagination.tsx"
+  },
+  {
+    "token": "euiPagination.of",
+    "defString": "of",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 290,
+        "column": 18
+      },
+      "end": {
+        "line": 290,
+        "column": 54
+      }
+    },
+    "filepath": "src/components/pagination/pagination.tsx"
+  },
+  {
+    "token": "euiPagination.collection",
+    "defString": "collection",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 291,
+        "column": 26
+      },
+      "end": {
+        "line": 291,
+        "column": 78
+      }
+    },
+    "filepath": "src/components/pagination/pagination.tsx"
+  },
+  {
+    "token": "euiPagination.fromEndLabel",
+    "defString": "from end",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 292,
+        "column": 23
+      },
+      "end": {
+        "line": 292,
+        "column": 75
       }
     },
     "filepath": "src/components/pagination/pagination.tsx"

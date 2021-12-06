@@ -733,7 +733,7 @@ export default class Calendar extends React.Component {
             disabled={this.state.pauseFocusTrap || !this.props.enableFocusTrap}
             className="react-datepicker__focusTrap"
             initialFocus={initialFocusTarget}
-            onClickOutside={() => this.props.setOpen(false, true)}
+            onClickOutside={this.handleClickOutside}
           >
             {this.renderPreviousMonthButton()}
             {this.renderNextMonthButton()}

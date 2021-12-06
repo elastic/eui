@@ -8,29 +8,15 @@
 
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import {
-  prettyDuration,
-  showPrettyDuration,
-  commonDurationRanges,
-} from './pretty_duration';
-import { prettyInterval } from './pretty_interval';
-
+import moment, { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 import dateMath from '@elastic/datemath';
 
-import {
-  EuiSuperUpdateButton,
-  EuiSuperUpdateButtonProps,
-} from './super_update_button';
-import { EuiQuickSelectPopover } from './quick_select_popover/quick_select_popover';
-import { EuiDatePopoverButton } from './date_popover/date_popover_button';
-
-import { EuiDatePickerRange } from '../date_picker_range';
-import { EuiFormControlLayout } from '../../form';
-import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { AsyncInterval } from './async_interval';
-import { EuiI18n } from '../../i18n';
 import { EuiI18nConsumer } from '../../context';
 import { CommonProps } from '../../common';
+import { EuiDatePickerRange } from '../date_picker_range';
+import { EuiFormControlLayout, EuiFormControlLayoutProps } from '../../form';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+
 import {
   ShortDate,
   Milliseconds,
@@ -39,8 +25,26 @@ import {
   ApplyRefreshInterval,
   QuickSelectPanel,
 } from '../types';
+
+import {
+  prettyDuration,
+  showPrettyDuration,
+  commonDurationRanges,
+} from './pretty_duration';
+import { AsyncInterval } from './async_interval';
+
+import {
+  EuiSuperUpdateButton,
+  EuiSuperUpdateButtonProps,
+} from './super_update_button';
+import { EuiQuickSelectPopover } from './quick_select_popover/quick_select_popover';
+import { EuiDatePopoverButton } from './date_popover/date_popover_button';
+
 import { EuiDatePopoverContentProps } from './date_popover/date_popover_content';
-import moment, { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
+import {
+  EuiAutoRefresh,
+  EuiAutoRefreshButton,
+} from '../auto_refresh/auto_refresh';
 
 export { prettyDuration, commonDurationRanges };
 
@@ -61,7 +65,6 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * Specifies the formatted used when displaying dates and/or datetimes
    */
   dateFormat: string;
-  end: ShortDate;
 
   /**
    * Set isAutoRefreshOnly to true to limit the component to only display auto refresh content.
@@ -70,6 +73,19 @@ export type EuiSuperDatePickerProps = CommonProps & {
   isDisabled: boolean;
   isLoading?: boolean;
   isPaused: boolean;
+
+  /**
+   * Sets the overall width by adding sensible min and max widths.
+   * - `auto`: fits width to internal content / time string.
+   * - `restricted`: static width that fits the longest possible time string.
+   * - `full`: expands to 100% of the container.
+   */
+  width?: 'restricted' | 'full' | 'auto';
+
+  /**
+   * Reduces overall height to compressed form size
+   */
+  compressed?: boolean;
 
   /**
    * Used to localize e.g. month names, passed to `moment`
@@ -101,11 +117,8 @@ export type EuiSuperDatePickerProps = CommonProps & {
    */
   refreshInterval: Milliseconds;
 
-  /**
-   * Set showUpdateButton to false to immediately invoke onTimeChange for all start and end changes.
-   */
-  showUpdateButton: boolean;
   start: ShortDate;
+  end: ShortDate;
 
   /**
    * Specifies the formatted used when displaying times
@@ -114,16 +127,19 @@ export type EuiSuperDatePickerProps = CommonProps & {
   utcOffset?: number;
 
   /**
-   * Props passed to the update button
+   * Set showUpdateButton to false to immediately invoke onTimeChange for all start and end changes.
    */
-  updateButtonProps?: Partial<
-    Omit<
-      EuiSuperUpdateButtonProps,
-      'needsUpdate' | 'showTooltip' | 'isLoading' | 'isDisabled' | 'onClick'
-    >
-  >;
+  showUpdateButton: boolean | 'iconOnly';
 
-  dataTestSubj?: string;
+  /**
+   * Hides the actual input reducing to just the quick select button.
+   */
+  isQuickSelectOnly?: boolean;
+
+  /**
+   * Props passed to the update button #EuiSuperUpdateButtonProps
+   */
+  updateButtonProps?: EuiSuperUpdateButtonProps;
 };
 
 interface EuiSuperDatePickerState {
@@ -172,10 +188,11 @@ export class EuiSuperDatePicker extends Component<
     isDisabled: false,
     isPaused: true,
     recentlyUsedRanges: [],
-    refreshInterval: 0,
+    refreshInterval: 1000,
     showUpdateButton: true,
     start: 'now-15m',
     timeFormat: 'HH:mm',
+    width: 'restricted',
   };
 
   asyncInterval?: AsyncInterval;
@@ -295,7 +312,7 @@ export class EuiSuperDatePicker extends Component<
   };
 
   hidePrettyDuration = () => {
-    this.setState({ showPrettyDuration: false });
+    this.setState({ showPrettyDuration: false, isStartDatePopoverOpen: true });
   };
 
   onStartDatePopoverToggle = () => {
@@ -358,31 +375,12 @@ export class EuiSuperDatePicker extends Component<
     const {
       commonlyUsedRanges,
       dateFormat,
-      isAutoRefreshOnly,
       isDisabled,
-      isPaused,
       locale,
-      refreshInterval,
       timeFormat,
       utcOffset,
+      compressed,
     } = this.props;
-
-    if (isAutoRefreshOnly) {
-      return (
-        <EuiDatePickerRange
-          className="euiDatePickerRange--inGroup"
-          iconType={false}
-          isCustom
-          startDateControl={<div />}
-          endDateControl={<div />}
-          readOnly
-        >
-          <span className="euiSuperDatePicker__prettyFormat">
-            {prettyInterval(Boolean(isPaused), refreshInterval)}
-          </span>
-        </EuiDatePickerRange>
-      );
-    }
 
     if (
       showPrettyDuration &&
@@ -406,12 +404,6 @@ export class EuiSuperDatePicker extends Component<
             onClick={this.hidePrettyDuration}
           >
             {prettyDuration(start, end, commonlyUsedRanges, dateFormat)}
-            <span className="euiSuperDatePicker__prettyFormatLink">
-              <EuiI18n
-                token="euiSuperDatePicker.showDatesButtonLabel"
-                default="Show dates"
-              />
-            </span>
           </button>
         </EuiDatePickerRange>
       );
@@ -427,6 +419,7 @@ export class EuiSuperDatePicker extends Component<
             startDateControl={
               <EuiDatePopoverButton
                 className="euiSuperDatePicker__startPopoverButton"
+                compressed={compressed}
                 position="start"
                 needsUpdating={hasChanged}
                 isInvalid={isInvalid}
@@ -445,6 +438,7 @@ export class EuiSuperDatePicker extends Component<
             endDateControl={
               <EuiDatePopoverButton
                 position="end"
+                compressed={compressed}
                 needsUpdating={hasChanged}
                 isInvalid={isInvalid}
                 isDisabled={isDisabled}
@@ -477,15 +471,14 @@ export class EuiSuperDatePicker extends Component<
 
   renderUpdateButton = () => {
     const {
-      showUpdateButton,
-      isAutoRefreshOnly,
       isLoading,
       isDisabled,
       updateButtonProps,
+      showUpdateButton,
+      compressed,
     } = this.props;
-    if (!showUpdateButton || isAutoRefreshOnly) {
-      return;
-    }
+
+    if (!showUpdateButton) return null;
 
     return (
       <EuiFlexItem grow={false}>
@@ -499,6 +492,8 @@ export class EuiSuperDatePicker extends Component<
           isDisabled={isDisabled || this.state.isInvalid}
           onClick={this.handleClickUpdateButton}
           data-test-subj="superDatePickerApplyTimeButton"
+          size={compressed ? 's' : 'm'}
+          iconOnly={showUpdateButton === 'iconOnly'}
           {...updateButtonProps}
         />
       </EuiFlexItem>
@@ -519,8 +514,25 @@ export class EuiSuperDatePicker extends Component<
       refreshInterval,
       showUpdateButton,
       start,
-      dataTestSubj,
+      'data-test-subj': dataTestSubj,
+      width: _width,
+      isQuickSelectOnly,
+      compressed,
     } = this.props;
+
+    // Force reduction in width if showing quick select only
+    const width = isQuickSelectOnly ? 'auto' : _width;
+
+    const autoRefreshAppend: EuiFormControlLayoutProps['append'] = !isPaused ? (
+      <EuiAutoRefreshButton
+        className="euiFormControlLayout__append"
+        refreshInterval={refreshInterval}
+        isDisabled={isDisabled}
+        isPaused={isPaused}
+        onRefreshChange={this.onRefreshChange}
+        shortHand
+      />
+    ) : undefined;
 
     const quickSelect = (
       <EuiQuickSelectPopover
@@ -532,7 +544,6 @@ export class EuiSuperDatePicker extends Component<
         customQuickSelectPanels={customQuickSelectPanels}
         dateFormat={dateFormat}
         end={end}
-        isAutoRefreshOnly={isAutoRefreshOnly}
         isDisabled={isDisabled}
         isPaused={isPaused}
         recentlyUsedRanges={recentlyUsedRanges}
@@ -544,6 +555,9 @@ export class EuiSuperDatePicker extends Component<
     const flexWrapperClasses = classNames('euiSuperDatePicker__flexWrapper', {
       'euiSuperDatePicker__flexWrapper--noUpdateButton': !showUpdateButton,
       'euiSuperDatePicker__flexWrapper--isAutoRefreshOnly': isAutoRefreshOnly,
+      'euiSuperDatePicker__flexWrapper--isQuickSelectOnly': isQuickSelectOnly,
+      'euiSuperDatePicker__flexWrapper--fullWidth': width === 'full',
+      'euiSuperDatePicker__flexWrapper--autoWidth': width === 'auto',
     });
 
     return (
@@ -552,17 +566,33 @@ export class EuiSuperDatePicker extends Component<
         responsive={false}
         className={flexWrapperClasses}
       >
-        <EuiFlexItem>
-          <EuiFormControlLayout
-            className="euiSuperDatePicker"
-            isDisabled={isDisabled}
-            prepend={quickSelect}
-            data-test-subj={dataTestSubj}
-          >
-            {this.renderDatePickerRange()}
-          </EuiFormControlLayout>
-        </EuiFlexItem>
-        {this.renderUpdateButton()}
+        {isAutoRefreshOnly && onRefreshChange ? (
+          <EuiFlexItem>
+            <EuiAutoRefresh
+              isPaused={isPaused}
+              refreshInterval={refreshInterval}
+              onRefreshChange={onRefreshChange}
+              fullWidth={width === 'full'}
+              compressed={compressed}
+            />
+          </EuiFlexItem>
+        ) : (
+          <>
+            <EuiFlexItem>
+              <EuiFormControlLayout
+                className="euiSuperDatePicker"
+                compressed={compressed}
+                isDisabled={isDisabled}
+                prepend={quickSelect}
+                append={autoRefreshAppend}
+                data-test-subj={dataTestSubj}
+              >
+                {!isQuickSelectOnly && this.renderDatePickerRange()}
+              </EuiFormControlLayout>
+            </EuiFlexItem>
+            {this.renderUpdateButton()}
+          </>
+        )}
       </EuiFlexGroup>
     );
   }

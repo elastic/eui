@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCallOut, EuiCode, EuiProgress } from '../../../../src/components';
@@ -10,17 +8,14 @@ import progressConfig from './playground';
 
 import Progress from './progress';
 const progressSource = require('!!raw-loader!./progress');
-const progressHtml = renderToHtml(Progress);
 const progressSnippet = '<EuiProgress size="xs" color="accent" />';
 
 import ProgressValue from './progress_value';
 const progressValueSource = require('!!raw-loader!./progress_value');
-const progressValueHtml = renderToHtml(ProgressValue);
 const progressValueSnippet = '<EuiProgress value={22} max={100} size="xs" />';
 
 import ProgressFixed from './progress_fixed';
 const progressFixedSource = require('!!raw-loader!./progress_fixed');
-const progressFixedHtml = renderToHtml(ProgressFixed);
 const progressFixedSnippet = `<!-- Position at top of parent container -->
 <EuiProgress size="xs" color="accent" position="absolute" />
 
@@ -31,7 +26,6 @@ const progressFixedSnippet = `<!-- Position at top of parent container -->
 
 import ProgressSizes from './progress_sizes';
 const progressSizesSource = require('!!raw-loader!./progress_sizes');
-const progressSizesHtml = renderToHtml(ProgressSizes);
 const progressSizesSnippet = `<EuiProgress
   value={20}
   max={100}
@@ -40,7 +34,6 @@ const progressSizesSnippet = `<EuiProgress
 
 import ProgressColors from './progress_colors';
 const progressColorsSource = require('!!raw-loader!./progress_colors');
-const progressColorsHtml = renderToHtml(ProgressColors);
 const progressColorsSnippet = `<EuiProgress
   value={20}
   max={100}
@@ -49,7 +42,6 @@ const progressColorsSnippet = `<EuiProgress
 
 import ProgressChart from './progress_chart';
 const progressChartSource = require('!!raw-loader!./progress_chart');
-const progressChartHtml = renderToHtml(ProgressChart);
 const progressChartSnippet = `<EuiProgress
   value={20}
   valueText={true}
@@ -65,10 +57,6 @@ export const ProgressExample = {
         {
           type: GuideSectionTypes.JS,
           code: progressSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: progressHtml,
         },
       ],
       text: (
@@ -92,10 +80,6 @@ export const ProgressExample = {
           type: GuideSectionTypes.JS,
           code: progressValueSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: progressValueHtml,
-        },
       ],
       text: (
         <p>
@@ -113,10 +97,6 @@ export const ProgressExample = {
         {
           type: GuideSectionTypes.JS,
           code: progressFixedSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: progressFixedHtml,
         },
       ],
       text: (
@@ -154,10 +134,6 @@ export const ProgressExample = {
           type: GuideSectionTypes.JS,
           code: progressSizesSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: progressSizesHtml,
-        },
       ],
       text: (
         <p>
@@ -174,10 +150,6 @@ export const ProgressExample = {
         {
           type: GuideSectionTypes.JS,
           code: progressColorsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: progressColorsHtml,
         },
       ],
       text: (
@@ -217,10 +189,6 @@ export const ProgressExample = {
         {
           type: GuideSectionTypes.JS,
           code: progressChartSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: progressChartHtml,
         },
       ],
       text: (

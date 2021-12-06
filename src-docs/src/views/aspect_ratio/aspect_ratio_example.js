@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 import {
   EuiLink,
@@ -13,7 +11,6 @@ import aspectRatioConfig from './playground';
 
 import AspectRatio from './aspect_ratio';
 const aspectRatioSource = require('!!raw-loader!./aspect_ratio');
-const aspectRatioHtml = renderToHtml(AspectRatio);
 
 const aspectRatioSnippet = `<EuiAspectRatio width={16} height={9}>
   <!-- Embed goes here -->
@@ -27,10 +24,6 @@ export const AspectRatioExample = {
         {
           type: GuideSectionTypes.JS,
           code: aspectRatioSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: aspectRatioHtml,
         },
       ],
       text: (

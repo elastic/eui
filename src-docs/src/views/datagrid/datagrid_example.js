@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 import {
   EuiDataGrid,
@@ -17,7 +15,6 @@ import { Link } from 'react-router-dom';
 
 import DataGrid from './datagrid';
 const dataGridSource = require('!!raw-loader!./datagrid');
-const dataGridHtml = renderToHtml(DataGrid);
 
 import {
   EuiDataGridColumn,
@@ -332,10 +329,6 @@ export const DataGridExample = {
         {
           type: GuideSectionTypes.JS,
           code: dataGridSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridHtml,
         },
       ],
       text: (
