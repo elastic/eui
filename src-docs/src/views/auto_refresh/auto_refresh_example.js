@@ -43,7 +43,7 @@ export const AutoRefreshExample = {
           component to create an automatic refresh configuration. It merely
           provides a common UI pattern but the actual refresh counter is
           maintained by you. It <EuiCode>isPaused</EuiCode> by default and the{' '}
-          <EuiCode>refreshInterval</EuiCode> is set in milleseconds.
+          <EuiCode>refreshInterval</EuiCode> is set in milliseconds.
         </p>
       ),
       demo: <AutoRefreshInput />,

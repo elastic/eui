@@ -75,7 +75,7 @@ export type EuiRefreshIntervalProps = {
    */
   isPaused?: boolean;
   /**
-   * Refresh interval in milleseconds.
+   * Refresh interval in milliseconds.
    */
   refreshInterval?: Milliseconds;
   /**
