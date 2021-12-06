@@ -58,7 +58,7 @@ export const EuiAutoRefresh: FunctionComponent<EuiAutoRefreshProps> = ({
       input={
         <EuiFieldText
           aria-label={autoRefeshLabel}
-          onFocus={() => setIsPopoverOpen(true)}
+          onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
           prepend={
             <EuiButtonEmpty
               className="euiFormControlLayout__prepend"
