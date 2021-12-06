@@ -348,7 +348,7 @@ export default class DatePicker extends React.Component {
               // 1) we are possibly manually moving focus between the input and popover (skipSetBlur) and
               // 2) the blur event keeps focus on the input 
               // Focus is also guaranteed to not be inside the popover at this point
-              if (!skipSetBlur || (document.activeElement !== this.input)) {
+              if (!skipSetBlur || (document != null && document.activeElement !== this.input)) {
                 this.setBlur();
               } 
 
