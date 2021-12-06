@@ -6,9 +6,11 @@ import {
   EuiSpacer,
   OnRefreshProps,
   OnTimeChangeProps,
-} from '../../../../src/components';
+  useEuiTheme,
+} from '../../../../src';
 
 export default () => {
+  const { euiTheme } = useEuiTheme();
   const [showUpdateButton, setShowUpdateButton] = useState(true);
   const [showIconOnly, setShowIconOnly] = useState(false);
   const [showFill, setShowFill] = useState(true);
@@ -56,19 +58,19 @@ export default () => {
         onChange={toggleShowApplyButton}
         checked={showUpdateButton}
       />
-      &emsp;
       <EuiSwitch
         label="Fill"
         onChange={toggleShowFill}
         checked={showFill}
         disabled={!showUpdateButton}
+        style={{ marginLeft: euiTheme.size.xl }}
       />
-      &emsp;
       <EuiSwitch
         label="Icon only"
         onChange={toggleShowIconOnly}
         checked={showIconOnly}
         disabled={!showUpdateButton}
+        style={{ marginLeft: euiTheme.size.xl }}
       />
       <EuiSpacer />
       <EuiSuperDatePicker

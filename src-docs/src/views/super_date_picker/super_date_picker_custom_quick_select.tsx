@@ -9,7 +9,8 @@ import {
   OnRefreshProps,
   ApplyTime,
   EuiSuperDatePickerProps,
-} from '../../../../src/components';
+  useEuiTheme,
+} from '../../../../src';
 
 function MyCustomQuickSelectPanel({ applyTime }: { applyTime?: ApplyTime }) {
   function applyMyCustomTime() {
@@ -22,6 +23,7 @@ function MyCustomQuickSelectPanel({ applyTime }: { applyTime?: ApplyTime }) {
 }
 
 export default () => {
+  const { euiTheme } = useEuiTheme();
   const [showCustomQuickSelectPanel, setShowCustomQuickSelectPanel] = useState(
     true
   );
@@ -95,19 +97,18 @@ export default () => {
         onChange={toggleShowRecentlyUsed}
         checked={showRecentlyUsed}
       />
-      &emsp;
       <EuiSwitch
         label="Show custom panel"
         onChange={toggleShowCustomQuickSelectPanel}
         checked={showCustomQuickSelectPanel}
+        style={{ marginLeft: euiTheme.size.xl }}
       />
-      &emsp;
       <EuiSwitch
         label="Show quick select only"
         onChange={toggleShowQuickSelectOnly}
         checked={showQuickSelectOnly}
+        style={{ marginLeft: euiTheme.size.xl }}
       />
-      &emsp;
       <EuiSpacer />
       <EuiSuperDatePicker
         isLoading={isLoading}
