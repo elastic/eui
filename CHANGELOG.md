@@ -1,6 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `41.2.2`.
+**Bug fixes**
+
+- Fixed `EuiDatePicker` not correctly handling the `onBlur` callback ([#5441](https://github.com/elastic/eui/pull/5441))
+- Fixed `EuiToolTip` not correctly handling child `onBlur` and `onFocus` callbacks ([#5441](https://github.com/elastic/eui/pull/5441))
 
 ## [`41.2.2`](https://github.com/elastic/eui/tree/v41.2.2)
 

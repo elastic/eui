@@ -897,6 +897,7 @@ exports[`EuiDatePicker popoverPlacement top-end is rendered 1`] = `
                 isOpen={false}
                 ownFocus={false}
                 panelPaddingSize="none"
+                panelRef={[Function]}
               >
                 <EuiOutsideClickDetector
                   onOutsideClick={[Function]}
