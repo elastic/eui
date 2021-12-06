@@ -21,6 +21,7 @@
 **Breaking changes**
 
 - Changed prop name `applyRefreshInterval` to `onRefreshChange` in `EuiRefreshInterval` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Increased the size of `s`-sized `EuiLoadingSpinner`s to match `s`-sized `EuiIcon`s ([#5440](https://github.com/elastic/eui/pull/5440))
 
 ## [`42.1.0`](https://github.com/elastic/eui/tree/v42.1.0)
 
@@ -36,10 +37,6 @@
 - Fixed unremoved event listener memory leak in `EuiPopover` ([#5437](https://github.com/elastic/eui/pull/5437))
 - Fixed `EuiDatePicker` not correctly handling the `onBlur` callback ([#5441](https://github.com/elastic/eui/pull/5441))
 - Fixed `EuiToolTip` not correctly handling child `onBlur` and `onFocus` callbacks ([#5441](https://github.com/elastic/eui/pull/5441))
-
-**Breaking changes**
-
-- Increased the size of `s`-sized `EuiLoadingSpinner`s to match `s`-sized `EuiIcon`s ([#5440](https://github.com/elastic/eui/pull/5440))
 
 ## [`42.0.0`](https://github.com/elastic/eui/tree/v42.0.0)
 
