@@ -573,11 +573,33 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     }
   }, [getRowHeight]);
 
+  let knownHeight = 0;
+  let knownRowCount = 0;
+  for (let i = startRow; i < endRow; i++) {
+    const correctRowIndex = getCorrectRowIndex(i);
+    const rowHeightOption = rowHeightUtils.getRowHeightOption(
+      correctRowIndex,
+      rowHeightsOptions
+    );
+    if (rowHeightOption) {
+      knownRowCount++;
+      knownHeight += rowHeightUtils.getCalculatedHeight(
+        rowHeightOption,
+        defaultHeight, // minRowHeight,
+        correctRowIndex,
+        rowHeightUtils.isRowHeightOverride(correctRowIndex, rowHeightsOptions)
+      );
+    }
+  }
+
   const rowCountToAffordFor = pagination
     ? pagination.pageSize
     : visibleRowIndices.length;
   const unconstrainedHeight =
-    defaultHeight * rowCountToAffordFor + headerRowHeight + footerRowHeight;
+    defaultHeight * (rowCountToAffordFor - knownRowCount) +
+    knownHeight +
+    headerRowHeight +
+    footerRowHeight;
 
   // unable to determine this until the container's size is known anyway
   const unconstrainedWidth = 0;
