@@ -49,7 +49,7 @@ describe('EuiContextMenuPanel', () => {
     ];
 
     // Intermittent flake workaround: without this, the first downarrow key does not always focus into the menu items as expected
-    const FLAKE_WAIT = 200;
+    const FLAKE_WAIT = 500;
 
     describe('up/down keys', () => {
       beforeEach(() => {
