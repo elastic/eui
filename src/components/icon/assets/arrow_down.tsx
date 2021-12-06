@@ -20,17 +20,18 @@ const EuiIconArrowDown = ({
   ...props
 }: React.SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={16}
     viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
     <path
-      fillRule="nonzero"
-      d="M13.069 5.157L8.384 9.768a.546.546 0 01-.768 0L2.93 5.158a.552.552 0 00-.771 0 .53.53 0 000 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 000-.76.552.552 0 00-.771 0z"
+      clipRule="evenodd"
+      d="M1.957 4.982a.75.75 0 011.06-.025l4.81 4.591a.25.25 0 00.346 0l4.81-4.59a.75.75 0 011.035 1.085l-4.81 4.59a1.75 1.75 0 01-2.416 0l-4.81-4.59a.75.75 0 01-.025-1.06z"
     />
   </svg>
 );

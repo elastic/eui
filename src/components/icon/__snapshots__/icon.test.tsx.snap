@@ -744,6 +744,7 @@ exports[`EuiIcon props type arrowDown is rendered 1`] = `
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
   data-icon-type="arrowDown"
+  fill="none"
   focusable="false"
   height="16"
   role="img"
@@ -752,8 +753,31 @@ exports[`EuiIcon props type arrowDown is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M13.069 5.157L8.384 9.768a.546.546 0 01-.768 0L2.93 5.158a.552.552 0 00-.771 0 .53.53 0 000 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 000-.76.552.552 0 00-.771 0z"
-    fill-rule="nonzero"
+    clip-rule="evenodd"
+    d="M1.957 4.982a.75.75 0 011.06-.025l4.81 4.591a.25.25 0 00.346 0l4.81-4.59a.75.75 0 011.035 1.085l-4.81 4.59a1.75 1.75 0 01-2.416 0l-4.81-4.59a.75.75 0 01-.025-1.06z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type arrowEnd is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="arrowEnd"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M2.857 14.043a.75.75 0 01-.025-1.06l4.591-4.81a.25.25 0 000-.346l-4.59-4.81a.75.75 0 011.085-1.035l4.59 4.81a1.75 1.75 0 010 2.416l-4.59 4.81a.75.75 0 01-1.06.024z"
+    fill-rule="evenodd"
+  />
+  <path
+    d="M10.5 2.75a.75.75 0 011.5 0v10.5a.75.75 0 01-1.5 0V2.75z"
   />
 </svg>
 `;
@@ -763,6 +787,7 @@ exports[`EuiIcon props type arrowLeft is rendered 1`] = `
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
   data-icon-type="arrowLeft"
+  fill="none"
   focusable="false"
   height="16"
   role="img"
@@ -771,8 +796,8 @@ exports[`EuiIcon props type arrowLeft is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M10.843 13.069L6.232 8.384a.546.546 0 010-.768l4.61-4.685a.552.552 0 000-.771.53.53 0 00-.759 0l-4.61 4.684a1.65 1.65 0 000 2.312l4.61 4.684a.53.53 0 00.76 0 .552.552 0 000-.771z"
-    fill-rule="nonzero"
+    clip-rule="evenodd"
+    d="M11.018 14.043a.75.75 0 00.024-1.06l-4.59-4.81a.25.25 0 010-.346l4.59-4.81a.75.75 0 10-1.085-1.035l-4.59 4.81a1.75 1.75 0 000 2.416l4.59 4.81c.286.3.761.31 1.06.024z"
   />
 </svg>
 `;
@@ -782,6 +807,7 @@ exports[`EuiIcon props type arrowRight is rendered 1`] = `
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
   data-icon-type="arrowRight"
+  fill="none"
   focusable="false"
   height="16"
   role="img"
@@ -790,8 +816,31 @@ exports[`EuiIcon props type arrowRight is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M5.157 13.069l4.611-4.685a.546.546 0 000-.768L5.158 2.93a.552.552 0 010-.771.53.53 0 01.759 0l4.61 4.684c.631.641.63 1.672 0 2.312l-4.61 4.684a.53.53 0 01-.76 0 .552.552 0 010-.771z"
-    fill-rule="nonzero"
+    clip-rule="evenodd"
+    d="M4.982 14.043a.75.75 0 01-.025-1.06l4.591-4.81a.25.25 0 000-.346l-4.59-4.81a.75.75 0 011.085-1.035l4.59 4.81a1.75 1.75 0 010 2.416l-4.59 4.81a.75.75 0 01-1.06.024z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type arrowStart is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="arrowStart"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M4 2.75a.75.75 0 011.5 0v10.5a.75.75 0 01-1.5 0V2.75z"
+  />
+  <path
+    clip-rule="evenodd"
+    d="M13.135 14.043a.75.75 0 00.025-1.06l-4.59-4.81a.25.25 0 010-.346l4.59-4.81a.75.75 0 00-1.085-1.035l-4.59 4.81a1.75 1.75 0 000 2.416l4.59 4.81c.286.3.76.31 1.06.024z"
+    fill-rule="evenodd"
   />
 </svg>
 `;
@@ -801,6 +850,7 @@ exports[`EuiIcon props type arrowUp is rendered 1`] = `
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
   data-icon-type="arrowUp"
+  fill="none"
   focusable="false"
   height="16"
   role="img"
@@ -809,8 +859,8 @@ exports[`EuiIcon props type arrowUp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M2.931 10.843l4.685-4.611a.546.546 0 01.768 0l4.685 4.61c.213.21.558.21.771 0a.53.53 0 000-.759l-4.684-4.61a1.65 1.65 0 00-2.312 0l-4.684 4.61a.53.53 0 000 .76c.213.21.558.21.771 0z"
-    fill-rule="nonzero"
+    clip-rule="evenodd"
+    d="M1.957 11.018c.286.3.761.31 1.06.024l4.81-4.59a.25.25 0 01.346 0l4.81 4.59a.75.75 0 001.035-1.085l-4.81-4.59a1.75 1.75 0 00-2.416 0l-4.81 4.59a.75.75 0 00-.025 1.06z"
   />
 </svg>
 `;
@@ -1914,6 +1964,54 @@ exports[`EuiIcon props type dot is rendered 1`] = `
     cx="8"
     cy="8"
     r="4"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type doubleArrowLeft is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="doubleArrowLeft"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M8.135 14.043a.75.75 0 00.025-1.06l-4.591-4.81a.25.25 0 010-.346l4.59-4.81a.75.75 0 10-1.084-1.035l-4.591 4.81a1.75 1.75 0 000 2.416l4.59 4.81c.287.3.761.31 1.061.024z"
+  />
+  <path
+    clip-rule="evenodd"
+    d="M14.135 14.043a.75.75 0 00.025-1.06l-4.591-4.81a.25.25 0 010-.346l4.59-4.81a.75.75 0 10-1.084-1.035l-4.591 4.81a1.75 1.75 0 000 2.416l4.59 4.81c.287.3.761.31 1.061.024z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type doubleArrowRight is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="doubleArrowRight"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M2.232 14.043a.75.75 0 01-.025-1.06l4.591-4.81a.25.25 0 000-.346l-4.59-4.81a.75.75 0 011.085-1.035l4.59 4.81a1.75 1.75 0 010 2.416l-4.59 4.81a.75.75 0 01-1.06.024z"
+  />
+  <path
+    clip-rule="evenodd"
+    d="M8.232 14.043a.75.75 0 01-.025-1.06l4.591-4.81a.25.25 0 000-.346l-4.59-4.81a.75.75 0 011.085-1.035l4.59 4.81a1.75 1.75 0 010 2.416l-4.59 4.81a.75.75 0 01-1.06.024z"
   />
 </svg>
 `;

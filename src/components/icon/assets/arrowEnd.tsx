@@ -14,7 +14,7 @@ interface SVGRProps {
   titleId?: string;
 }
 
-const EuiIconArrowRight = ({
+const EuiIconArrowEnd = ({
   title,
   titleId,
   ...props
@@ -23,17 +23,18 @@ const EuiIconArrowRight = ({
     width={16}
     height={16}
     viewBox="0 0 16 16"
-    fill="none"
     xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
     <path
+      fillRule="evenodd"
       clipRule="evenodd"
-      d="M4.982 14.043a.75.75 0 01-.025-1.06l4.591-4.81a.25.25 0 000-.346l-4.59-4.81a.75.75 0 011.085-1.035l4.59 4.81a1.75 1.75 0 010 2.416l-4.59 4.81a.75.75 0 01-1.06.024z"
+      d="M2.857 14.043a.75.75 0 01-.025-1.06l4.591-4.81a.25.25 0 000-.346l-4.59-4.81a.75.75 0 011.085-1.035l4.59 4.81a1.75 1.75 0 010 2.416l-4.59 4.81a.75.75 0 01-1.06.024z"
     />
+    <path d="M10.5 2.75a.75.75 0 011.5 0v10.5a.75.75 0 01-1.5 0V2.75z" />
   </svg>
 );
 
-export const icon = EuiIconArrowRight;
+export const icon = EuiIconArrowEnd;
