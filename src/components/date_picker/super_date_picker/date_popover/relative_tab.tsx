@@ -35,6 +35,7 @@ import { RelativeParts, TimeUnitId } from '../../types';
 import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 import { EuiDatePopoverContentProps } from './date_popover_content';
 import { INVALID_DATE } from '../date_modes';
+import { EuiPopoverFooter } from '../../../popover';
 
 export interface EuiRelativeTabProps {
   dateFormat: string;
@@ -135,104 +136,111 @@ export class EuiRelativeTab extends Component<
     };
 
     return (
-      <EuiForm className="euiDatePopoverContent__padded">
-        <EuiFlexGroup gutterSize="s" responsive={false}>
-          <EuiFlexItem>
-            <EuiI18n
-              tokens={[
-                'euiRelativeTab.numberInputError',
-                'euiRelativeTab.numberInputLabel',
-                'euiRelativeTab.dateInputError',
-              ]}
-              defaults={[
-                'Must be >= 0',
-                'Time span amount',
-                'Must be a valid range',
-              ]}
-            >
-              {([
-                numberInputError,
-                numberInputLabel,
-                dateInputError,
-              ]: string[]) => (
-                <EuiFormRow
-                  isInvalid={isInvalid}
-                  error={getErrorMessage({ numberInputError, dateInputError })}
-                >
-                  <EuiFieldNumber
-                    compressed
-                    aria-label={numberInputLabel}
-                    aria-describedby={this.relativeDateInputNumberDescriptionId}
-                    data-test-subj={'superDatePickerRelativeDateInputNumber'}
-                    value={count}
-                    onChange={this.onCountChange}
-                    isInvalid={isInvalid}
-                  />
-                </EuiFormRow>
-              )}
-            </EuiI18n>
-          </EuiFlexItem>
-          <EuiFlexItem>
-            <EuiI18n
-              token="euiRelativeTab.unitInputLabel"
-              default="Relative time span"
-            >
-              {(unitInputLabel: string) => (
-                <EuiSelect
-                  compressed
-                  aria-label={unitInputLabel}
-                  data-test-subj={
-                    'superDatePickerRelativeDateInputUnitSelector'
-                  }
-                  value={unit}
-                  options={relativeOptions}
-                  onChange={this.onUnitChange}
-                />
-              )}
-            </EuiI18n>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiSpacer size="m" />
-        <EuiI18n
-          token="euiRelativeTab.roundingLabel"
-          default="Round to the {unit}"
-          values={{ unit: timeUnits[unit.substring(0, 1) as TimeUnitId] }}
-        >
-          {(roundingLabel: string) => (
-            <EuiSwitch
-              data-test-subj={'superDatePickerRelativeDateRoundSwitch'}
-              label={roundingLabel}
-              checked={this.state.round}
-              onChange={this.onRoundChange}
-            />
-          )}
-        </EuiI18n>
-
-        <EuiSpacer size="m" />
-        <EuiFieldText
-          compressed
-          value={formattedValue}
-          readOnly
-          prepend={
-            <EuiFormLabel>
+      <>
+        <EuiForm className="euiDatePopoverContent__padded">
+          <EuiFlexGroup gutterSize="s" responsive={false}>
+            <EuiFlexItem>
               <EuiI18n
-                token="euiRelativeTab.relativeDate"
-                default="{position} date"
-                values={{ position: this.state.sentenceCasedPosition }}
+                tokens={[
+                  'euiRelativeTab.numberInputError',
+                  'euiRelativeTab.numberInputLabel',
+                  'euiRelativeTab.dateInputError',
+                ]}
+                defaults={[
+                  'Must be >= 0',
+                  'Time span amount',
+                  'Must be a valid range',
+                ]}
+              >
+                {([
+                  numberInputError,
+                  numberInputLabel,
+                  dateInputError,
+                ]: string[]) => (
+                  <EuiFormRow
+                    isInvalid={isInvalid}
+                    error={getErrorMessage({
+                      numberInputError,
+                      dateInputError,
+                    })}
+                  >
+                    <EuiFieldNumber
+                      compressed
+                      aria-label={numberInputLabel}
+                      aria-describedby={
+                        this.relativeDateInputNumberDescriptionId
+                      }
+                      data-test-subj={'superDatePickerRelativeDateInputNumber'}
+                      value={count}
+                      onChange={this.onCountChange}
+                      isInvalid={isInvalid}
+                    />
+                  </EuiFormRow>
+                )}
+              </EuiI18n>
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiI18n
+                token="euiRelativeTab.unitInputLabel"
+                default="Relative time span"
+              >
+                {(unitInputLabel: string) => (
+                  <EuiSelect
+                    compressed
+                    aria-label={unitInputLabel}
+                    data-test-subj={
+                      'superDatePickerRelativeDateInputUnitSelector'
+                    }
+                    value={unit}
+                    options={relativeOptions}
+                    onChange={this.onUnitChange}
+                  />
+                )}
+              </EuiI18n>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+          <EuiSpacer size="s" />
+          <EuiFieldText
+            compressed
+            value={formattedValue}
+            readOnly
+            prepend={
+              <EuiFormLabel>
+                <EuiI18n
+                  token="euiRelativeTab.relativeDate"
+                  default="{position} date"
+                  values={{ position: this.state.sentenceCasedPosition }}
+                />
+              </EuiFormLabel>
+            }
+          />
+          <EuiScreenReaderOnly>
+            <p id={this.relativeDateInputNumberDescriptionId}>
+              <EuiI18n
+                token="euiRelativeTab.fullDescription"
+                default="The unit is changeable. Currently set to {unit}."
+                values={{ unit }}
               />
-            </EuiFormLabel>
-          }
-        />
-        <EuiScreenReaderOnly>
-          <p id={this.relativeDateInputNumberDescriptionId}>
-            <EuiI18n
-              token="euiRelativeTab.fullDescription"
-              default="The unit is changeable. Currently set to {unit}."
-              values={{ unit }}
-            />
-          </p>
-        </EuiScreenReaderOnly>
-      </EuiForm>
+            </p>
+          </EuiScreenReaderOnly>
+        </EuiForm>
+        <EuiPopoverFooter paddingSize="s">
+          <EuiI18n
+            token="euiRelativeTab.roundingLabel"
+            default="Round to the {unit}"
+            values={{ unit: timeUnits[unit.substring(0, 1) as TimeUnitId] }}
+          >
+            {(roundingLabel: string) => (
+              <EuiSwitch
+                data-test-subj={'superDatePickerRelativeDateRoundSwitch'}
+                label={roundingLabel}
+                checked={this.state.round}
+                onChange={this.onRoundChange}
+              />
+            )}
+          </EuiI18n>
+        </EuiPopoverFooter>
+      </>
     );
   }
 }

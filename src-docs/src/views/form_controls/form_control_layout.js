@@ -160,6 +160,7 @@ export default () => {
         prepend={
           <EuiFormLabel htmlFor={readOnlyInputId}>Read only</EuiFormLabel>
         }
+        append={<EuiButtonEmpty size="xs">Button</EuiButtonEmpty>}
       >
         <input
           type="text"

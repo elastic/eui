@@ -7,12 +7,14 @@
  */
 
 export {
-  EuiCommonlyUsedTimeRanges,
-  EuiCommonlyUsedTimeRangesProps,
-} from './commonly_used_time_ranges';
+  EuiAutoRefresh,
+  EuiAutoRefreshProps,
+  EuiAutoRefreshButton,
+  EuiAutoRefreshButtonProps,
+  EuiAutoRefreshSharedProps,
+} from './auto_refresh';
+
 export {
-  EuiQuickSelectPopover,
-  EuiQuickSelectPopoverProps,
-} from './quick_select_popover';
-export { EuiQuickSelect, EuiQuickSelectProps } from './quick_select';
-export { EuiRecentlyUsed, EuiRecentlyUsedProps } from './recently_used';
+  EuiRefreshInterval,
+  EuiRefreshIntervalProps,
+} from './refresh_interval';

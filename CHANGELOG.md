@@ -1,6 +1,26 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `42.1.0`.
+- Added `timeRefresh` icon ([#5383](https://github.com/elastic/eui/pull/5383))
+- Added `responsive` and `iconOnly` props to `EuiSuperUpdateButton`  ([#5383](https://github.com/elastic/eui/pull/5383))
+- Added better auto refresh indicator to `EuiSuperDatePicker` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Added `compressed`, `width`, `isQuickSelectOnly` props to `EuiSuperDatePicker` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Updated `showUpdateButton` prop with `iconOnly` option in `EuiSuperDatePicker` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Increased default `refreshInterval` of `EuiSuperDatePicker` to `1000` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Remove `Show dates` button from pretty format of `EuiSuperDatePicker` in favor of directly opening `start` date popover ([#5383](https://github.com/elastic/eui/pull/5383))
+- Added `shortHand` option to `prettyInterval` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Moved `rounding` switch to popover footer in relative tab of `EuiSuperDatePicker` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Simplified `EuiRefreshInterval` to use a switch to start/stop and other visual touch ups ([#5383](https://github.com/elastic/eui/pull/5383))
+- Created stand alone `EuiAutoRefresh` and `EuiAutoRefreshButton` components ([#5383](https://github.com/elastic/eui/pull/5383))
+
+**Bug fixes**
+
+- Fixed dark mode background color of `EuiFormControlLayout` `prepend` and `append` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Fixed background color of `EuiFormControlLayout` when `readOnly` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Fixed the name of `data-test-subj` prop of `EuiFormControlLayout` ([#5383](https://github.com/elastic/eui/pull/5383))
+
+**Breaking changes**
+
+- Changed prop name `applyRefreshInterval` to `onRefreshChange` in `EuiRefreshInterval` ([#5383](https://github.com/elastic/eui/pull/5383))
 
 ## [`42.1.0`](https://github.com/elastic/eui/tree/v42.1.0)
 

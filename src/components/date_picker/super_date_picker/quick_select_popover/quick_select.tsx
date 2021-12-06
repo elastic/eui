@@ -19,7 +19,6 @@ import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
 import { EuiSpacer } from '../../../spacer';
 import { EuiSelect, EuiFieldNumber } from '../../../form';
 import { EuiToolTip } from '../../../tool_tip';
-import { EuiHorizontalRule } from '../../../horizontal_rule';
 import { EuiI18n } from '../../../i18n';
 import { timeUnits } from '../time_units';
 import { EuiScreenReaderOnly } from '../../../accessibility';
@@ -296,7 +295,6 @@ export class EuiQuickSelect extends Component<
             </EuiButton>
           </EuiFlexItem>
         </EuiFlexGroup>
-        <EuiHorizontalRule margin="s" />
         <EuiScreenReaderOnly>
           <p id={this.timeSelectionId}>
             <EuiI18n
