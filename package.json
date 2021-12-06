@@ -189,7 +189,7 @@
     "moment": "^2.27.0",
     "moment-timezone": "^0.5.31",
     "node-sass": "^6.0.1",
-    "nodegit": "^0.27.0",
+    "nodegit": "^0.28.0-alpha.10",
     "pegjs": "^0.10.0",
     "postcss-cli": "^7.1.2",
     "postcss-inline-svg": "^4.1.0",
