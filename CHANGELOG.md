@@ -11,7 +11,7 @@
 - Moved `rounding` switch to popover footer in relative tab of `EuiSuperDatePicker` ([#5383](https://github.com/elastic/eui/pull/5383))
 - Simplified `EuiRefreshInterval` to use a switch to start/stop and other visual touch ups ([#5383](https://github.com/elastic/eui/pull/5383))
 - Created stand alone `EuiAutoRefresh` and `EuiAutoRefreshButton` components ([#5383](https://github.com/elastic/eui/pull/5383))
-- Added `magnifyWithExclamation` icon ([#0000](https://github.com/elastic/eui/pull/0000))
+- Added `magnifyWithExclamation` icon ([#5455](https://github.com/elastic/eui/pull/5455))
 
 **Bug fixes**
 
