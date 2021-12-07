@@ -498,6 +498,15 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     ]
   );
 
+  const [, setRenderPass] = useState(0);
+  useEffect(() => {
+    const callback = () => {
+      setRenderPass((x) => x + 1);
+    };
+    rowHeightUtils.onUpdatedRowHeight(callback);
+    return () => rowHeightUtils.offUpdatedRowHeight(callback);
+  }, [rowHeightUtils]);
+
   const setGridRef = useCallback(
     (ref: Grid | null) => {
       gridRef.current = ref;
