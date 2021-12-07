@@ -15,14 +15,14 @@ exports[`EuiPageContent role can be removed 1`] = `
 
 exports[`EuiPageContent template accepts EuiPanel props 1`] = `
 <div
-  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent"
   role="main"
 />
 `;
 
 exports[`EuiPageContent template accepts EuiPanel props 2`] = `
 <div
-  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+  class="euiPanel euiPanel--borderRadiusMedium euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
   role="main"
 />
 `;
@@ -36,7 +36,7 @@ exports[`EuiPageContent template accepts EuiPanel props 3`] = `
 
 exports[`EuiPageContent template accepts EuiPanel props 4`] = `
 <div
-  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent"
   role="main"
 />
 `;

@@ -21,7 +21,7 @@ export interface EuiPageContentBodyProps
   extends CommonProps,
     // Use only the div properties of EuiPanel (not button)
     _EuiPanelProps,
-    Omit<_EuiPanelDivlike, 'onClick' | 'role'>,
+    Omit<_EuiPanelDivlike, 'onClick'>,
     _EuiPageRestrictWidth,
     _EuiPageTemplate {}
 

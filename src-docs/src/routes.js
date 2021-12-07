@@ -208,6 +208,7 @@ import { StepsExample } from './views/steps/steps_example';
 
 import { SuggestExample } from './views/suggest/suggest_example';
 
+import { SitewideSearchExample } from './views/selectable/selectable_sitewide_template_example';
 import { SuperDatePickerExample } from './views/super_date_picker/super_date_picker_example';
 
 import { TableExample } from './views/tables/tables_example';
@@ -447,9 +448,11 @@ const navigation = [
   },
   {
     name: 'Templates',
-    items: [PageTemplateExample, SuperDatePickerExample].map((example) =>
-      createExample(example)
-    ),
+    items: [
+      PageTemplateExample,
+      SitewideSearchExample,
+      SuperDatePickerExample,
+    ].map((example) => createExample(example)),
   },
   {
     name: 'Layout',
@@ -547,7 +550,6 @@ const navigation = [
       SearchBarExample,
       SelectableExample,
       SuggestExample,
-      SuperDatePickerExample,
       SuperSelectExample,
     ].map((example) => createExample(example)),
   },
