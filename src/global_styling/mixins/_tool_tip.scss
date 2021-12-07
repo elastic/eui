@@ -18,7 +18,7 @@
 
 @mixin euiToolTipTitle {
   font-weight: $euiFontWeightBold;
-  border-bottom: solid 1px tintOrShade($euiColorFullShade, 35%, 80%);
+  border-bottom: solid $euiBorderWidthThin $euiTooltipBorderColor;
   padding-bottom: $euiSizeXS;
   margin-bottom: $euiSizeXS;
 }

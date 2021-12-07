@@ -1,4 +1,5 @@
 .euiDataGridRow {
+  // needed for footer cells to correctly position
   display: flex;
 }
 
@@ -13,6 +14,7 @@
   position: relative;
   align-items: center;
   display: flex;
+  overflow: hidden;
 
   // Hack to allow for all the focus guard stuff
   > * {
@@ -30,7 +32,6 @@
 
   &:focus {
     @include euiDataGridCellFocus;
-    margin-top: -1px;
   }
 
   // Only add the transition effect on hover, so that it is instantaneous on focus
@@ -84,11 +85,6 @@
     }
   }
 
-  &:focus:not(:first-of-type) {
-    // Needed because the focus state adds a border, which needs to be subtracted from padding
-    padding-left: $euiDataGridCellPaddingM - 1px;
-  }
-
   &.euiDataGridRowCell--numeric {
     text-align: right;
   }
@@ -107,6 +103,11 @@
 
   &.euiDataGridRowCell--capitalize {
     text-transform: capitalize;
+  }
+
+  .euiDataGridRowCell__definedHeight {
+    @include euiTextBreakWord;
+    flex-grow: 1;
   }
 
   // We only truncate if the cell is not a control column.
@@ -235,56 +236,22 @@
   }
 }
 
-.euiDataGridRowCell--fontSizeSmall {
-  @include euiFontSizeXS;
-}
-
 @include euiDataGridStyles(fontSizeLarge) {
   @include euiDataGridRowCell {
     @include euiFontSize;
   }
 }
 
-.euiDataGridRowCell--fontSizeLarge {
-  @include euiFontSize;
-}
-
 // Padding alternates
 @include euiDataGridStyles(paddingSmall) {
   @include euiDataGridRowCell {
     padding: $euiDataGridCellPaddingS;
-
-    &:focus:not(:first-of-type) {
-      // Needed because the focus state adds a border, which needs to be subtracted from padding
-      padding-left: $euiDataGridCellPaddingS - 1px;
-    }
-  }
-}
-
-.euiDataGridRowCell--paddingSmall {
-  padding: $euiDataGridCellPaddingS;
-
-  .euiDataGridRowCell__contentByHeight + .euiDataGridRowCell__expandButton {
-    padding: 0;
   }
 }
 
 @include euiDataGridStyles(paddingLarge) {
   @include euiDataGridRowCell {
     padding: $euiDataGridCellPaddingL;
-
-    &:focus:not(:first-of-type) {
-      // Needed because the focus state adds a border, which needs to be subtracted from padding
-      padding-left: $euiDataGridCellPaddingL - 1px;
-    }
-  }
-}
-
-.euiDataGridRowCell--paddingLarge {
-  padding: $euiDataGridCellPaddingL;
-
-  .euiDataGridRowCell__contentByHeight + .euiDataGridRowCell__expandButton {
-    padding: $euiDataGridCellPaddingL 0;
   }
 }
 

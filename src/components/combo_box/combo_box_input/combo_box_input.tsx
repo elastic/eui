@@ -62,6 +62,8 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   append?: EuiFormControlLayoutProps['append'];
   isLoading?: boolean;
   autoFocus?: boolean;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
 }
 
 interface EuiComboBoxInputState {
@@ -150,6 +152,8 @@ export class EuiComboBoxInput<T> extends Component<
       append,
       isLoading,
       autoFocus,
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledby,
     } = this.props;
 
     const singleSelection = Boolean(singleSelectionProp);
@@ -200,7 +204,7 @@ export class EuiComboBoxInput<T> extends Component<
         }Combo box input. ${readPlaceholder} Type some text or, to display a list of choices, press Down Arrow. ` +
         'To exit the list of choices, press Escape.';
 
-      removeOptionMessageId = htmlIdGenerator()();
+      removeOptionMessageId = rootId('removeOptionMessage');
 
       // aria-live="assertive" will read this message aloud immediately once it enters the DOM.
       // We'll render to the DOM when the input gains focus and remove it when the input loses focus.
@@ -264,6 +268,7 @@ export class EuiComboBoxInput<T> extends Component<
       <EuiFormControlLayout
         icon={icon}
         {...clickProps}
+        inputId={id}
         isLoading={isLoading}
         compressed={compressed}
         fullWidth={fullWidth}
@@ -279,6 +284,8 @@ export class EuiComboBoxInput<T> extends Component<
           {!singleSelection || !searchValue ? pills : null}
           {placeholderMessage}
           <AutosizeInput
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledby}
             aria-activedescendant={focusedOptionId}
             aria-controls={isListOpen ? rootId('listbox') : ''}
             className="euiComboBox__input"

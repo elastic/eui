@@ -13,6 +13,11 @@ export const bottomBarConfig = () => {
     value: '<EuiButton color="ghost">Save</EuiButton>',
   };
 
+  propsToUse.position = {
+    ...propsToUse.position,
+    value: 'static',
+  };
+
   propsToUse.top = {
     ...propsToUse.top,
     type: PropTypes.Number,

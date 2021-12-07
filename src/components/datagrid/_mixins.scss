@@ -51,11 +51,24 @@ $euiDataGridStyles: (
 }
 
 @mixin euiDataGridCellFocus {
-  border: 1px solid transparent;
-  box-shadow: 0 0 0 2px $euiFocusRingColor;
-  border-radius: 1px;
-  z-index: 2; // Needed so it sits above potential striping in the next row
   outline: none; // Remove outline as we're handling it manually
+
+  // We don't want to use a border on the focused cell directly because we want to maintain the light gray borders
+  // We can't use a box shadow or outline because it would be contained outside the cell and it would be cut by other surrounding cells
+  // So the solution is to use use a pseudo-element. It allows us to use a border, and it can be contained inside the cell by positioning it with an absolute position.
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: $euiBorderWidthThick solid $euiFocusRingColor;
+    border-radius: $euiBorderRadiusSmall;
+    z-index: 2; // We want this to be on top of all the content
+    pointer-events: none; // Because we put it with a higher z-index we don't want to make it clickable this way we allow selecting the content behind 
+  }
 }
 
 @mixin euiDataGridRowCell {

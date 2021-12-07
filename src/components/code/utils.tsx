@@ -6,21 +6,118 @@
  * Side Public License, v 1.
  */
 
-import React, { createElement, ReactElement } from 'react';
-import { highlight, AST, RefractorNode } from 'refractor';
+import React, {
+  createElement,
+  ReactElement,
+  ReactNode,
+  HTMLAttributes,
+} from 'react';
+import { listLanguages, highlight, AST, RefractorNode } from 'refractor';
 import classNames from 'classnames';
+import { CommonProps } from '../common';
+
+/**
+ * Utils shared between EuiCode and EuiCodeBlock
+ */
+
+export type EuiCodeSharedProps = CommonProps &
+  HTMLAttributes<HTMLElement> & {
+    /**
+     * Sets the syntax highlighting for a specific language
+     * @see [https://prismjs.com/#supported-languages](https://prismjs.com/#supported-languages) for options
+     */
+    language?: string;
+    transparentBackground?: boolean;
+  };
+
+export const SUPPORTED_LANGUAGES = listLanguages();
+export const DEFAULT_LANGUAGE = 'text';
+
+export const checkSupportedLanguage = (language: string): string => {
+  return SUPPORTED_LANGUAGES.includes(language) ? language : DEFAULT_LANGUAGE;
+};
+
+export const getHtmlContent = (
+  data: RefractorNode[],
+  children: ReactNode
+): ReactElement[] | ReactNode => {
+  if (!Array.isArray(data) || data.length < 1) {
+    return children;
+  }
+  return data.map(nodeToHtml);
+};
+
+export const isAstElement = (node: RefractorNode): node is AST.Element =>
+  node.hasOwnProperty('type') && node.type === 'element';
+
+export const nodeToHtml = (
+  node: RefractorNode,
+  idx: number,
+  nodes: RefractorNode[],
+  depth: number = 0
+): ReactElement => {
+  const key = `node-${depth}-${idx}`;
+
+  if (isAstElement(node)) {
+    const { properties, tagName, children } = node;
+
+    return createElement(
+      tagName,
+      {
+        ...properties,
+        key,
+        className: classNames(properties.className),
+      },
+      children && children.map((el, i) => nodeToHtml(el, i, nodes, depth + 1))
+    );
+  }
+
+  return <React.Fragment key={key}>{node.value}</React.Fragment>;
+};
+
+/**
+ * Line utils specific to EuiCodeBlock
+ */
 
 type ExtendedRefractorNode = RefractorNode & {
   lineStart?: number;
   lineEnd?: number;
 };
 
-const isAstElement = (node: RefractorNode): node is AST.Element =>
-  node.hasOwnProperty('type') && node.type === 'element';
+interface LineNumbersConfig {
+  start: number;
+  show: boolean;
+  highlight?: string;
+}
+
+// Approximate width of a single digit/character
+const CHAR_SIZE = 8;
+const $euiSizeS = 8;
+
+// Creates an array of numbers from comma-separeated
+// string of numbers or number ranges using `-`
+// (e.g., "1, 3-10, 15")
+export const parseLineRanges = (ranges: string) => {
+  const highlights: number[] = [];
+  ranges
+    .replace(/\s/g, '')
+    .split(',')
+    .forEach((line: string) => {
+      if (line.includes('-')) {
+        const range = line.split('-').map(Number);
+        for (let i = range[0]; i <= range[1]; i++) {
+          highlights.push(i);
+        }
+      } else {
+        highlights.push(Number(line));
+      }
+    });
+  return highlights;
+};
 
 const addLineData = (
   nodes: ExtendedRefractorNode[],
-  data = { lineNumber: 1 }
+  data: { lineNumber: number }
 ): ExtendedRefractorNode[] => {
   return nodes.reduce<ExtendedRefractorNode[]>((result, node) => {
     const lineStart = data.lineNumber;
@@ -68,7 +165,13 @@ const addLineData = (
   }, []);
 };
 
-function wrapLines(nodes: ExtendedRefractorNode[]) {
+function wrapLines(
+  nodes: ExtendedRefractorNode[],
+  options: { showLineNumbers: boolean; highlight?: string }
+) {
+  const highlights = options.highlight
+    ? parseLineRanges(options.highlight)
+    : [];
   const grouped: ExtendedRefractorNode[][] = [];
   nodes.forEach((node) => {
     const lineStart = node.lineStart! - 1;
@@ -79,44 +182,59 @@ function wrapLines(nodes: ExtendedRefractorNode[]) {
     }
   });
   const wrapped: RefractorNode[] = [];
-  grouped.forEach((node) => {
+  const digits = grouped.length.toString().length;
+  const width = digits * CHAR_SIZE;
+  grouped.forEach((node, i) => {
+    const lineNumber = i + 1;
+    const classes = classNames('euiCodeBlock__line', {
+      'euiCodeBlock__line--isHighlighted': highlights.includes(lineNumber),
+    });
+    const children: RefractorNode[] = options.showLineNumbers
+      ? [
+          {
+            type: 'element',
+            tagName: 'span',
+            properties: {
+              style: { width },
+              ['data-line-number']: lineNumber,
+              ['aria-hidden']: true,
+              className: ['euiCodeBlock__lineNumber'],
+            },
+            children: [],
+          },
+          {
+            type: 'element',
+            tagName: 'span',
+            properties: {
+              style: {
+                marginLeft: width + $euiSizeS,
+                width: `calc(100% - ${width}px)`,
+              },
+              className: ['euiCodeBlock__lineText'],
+            },
+            children: node,
+          },
+        ]
+      : node;
     wrapped.push({
       type: 'element',
       tagName: 'span',
       properties: {
-        className: ['euiCodeBlock__line'],
+        className: [classes],
       },
-      children: node,
+      children,
     });
   });
   return wrapped;
 }
 
-export const nodeToHtml = (
-  node: RefractorNode,
-  idx: number,
-  nodes: RefractorNode[],
-  depth: number = 0
-): ReactElement => {
-  const key = `node-${depth}-${idx}`;
-
-  if (isAstElement(node)) {
-    const { properties, tagName, children } = node;
-
-    return createElement(
-      tagName,
-      {
-        ...properties,
-        key,
-        className: classNames(properties.className),
-      },
-      children && children.map((el, i) => nodeToHtml(el, i, nodes, depth + 1))
-    );
-  }
-
-  return <React.Fragment key={key}>{node.value}</React.Fragment>;
-};
-
-export const highlightByLine = (children: string, language: string) => {
-  return wrapLines(addLineData(highlight(children, language)));
+export const highlightByLine = (
+  children: string,
+  language: string,
+  data: LineNumbersConfig
+) => {
+  return wrapLines(
+    addLineData(highlight(children, language), { lineNumber: data.start }),
+    { showLineNumbers: data.show, highlight: data.highlight }
+  );
 };

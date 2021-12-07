@@ -3,6 +3,7 @@ import React, { useState, Fragment } from 'react';
 import {
   EuiButton,
   EuiButtonEmpty,
+  EuiCode,
   EuiCodeBlock,
   EuiComboBox,
   EuiExpression,
@@ -23,12 +24,17 @@ import {
   EuiSuperSelect,
 } from '../../../../src/components';
 
+import { useGeneratedHtmlId } from '../../../../src/services';
+
 export default () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
   const [selectedTabId, setSelectedTabId] = useState('1');
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [superSelectvalue, setSuperSelectValue] = useState('option_one');
   const [isExpressionOpen, setIsExpressionOpen] = useState(false);
+  const complicatedFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'complicatedFlyoutTitle',
+  });
 
   const tabs = [
     {
@@ -183,11 +189,11 @@ export default () => {
         ownFocus
         onClose={closeFlyout}
         hideCloseButton
-        aria-labelledby="flyoutComplicatedTitle"
+        aria-labelledby={complicatedFlyoutTitleId}
       >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="m">
-            <h2 id="flyoutComplicatedTitle">Flyout header</h2>
+            <h2 id={complicatedFlyoutTitleId}>Flyout header</h2>
           </EuiTitle>
           <EuiSpacer size="s" />
           <EuiText color="subdued">
@@ -207,10 +213,15 @@ export default () => {
               </EuiButton>
             }
             isOpen={isPopoverOpen}
+            repositionOnScroll={true}
           >
             <p>
               This is the popover content, notice how it can overflow the
               flyout!
+            </p>
+            <p>
+              When placed in a flyout, the <EuiCode>repositionOnScroll</EuiCode>{' '}
+              prop ensures that the popover scrolls with body of the flyout.
             </p>
           </EuiPopover>
           <EuiSpacer size="m" />
@@ -221,6 +232,7 @@ export default () => {
                 valueOfSelected={superSelectvalue}
                 onChange={(value) => onSuperSelectChange(value)}
                 itemLayoutAlign="top"
+                repositionOnScroll={true}
                 hasDividers
               />
             </EuiFormRow>
@@ -229,6 +241,7 @@ export default () => {
           <EuiPopover
             isOpen={isExpressionOpen}
             closePopover={() => setIsExpressionOpen(false)}
+            repositionOnScroll={true}
             button={
               <EuiExpression
                 description="expression"

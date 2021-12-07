@@ -101,12 +101,18 @@ export const PageHeaderExample = {
       text: (
         <>
           <p>
-            When supplying <EuiCode>tabs</EuiCode> without a{' '}
-            <EuiCode>pageTitle</EuiCode>, <strong>EuiPageHeader</strong> will
-            promote those tabs as if they are the page title. This means that
-            any <EuiCode>description</EuiCode> or <EuiCode>children</EuiCode>{' '}
-            will sit <strong>below</strong> the tabs and should be describing
-            the currently selected tab.
+            A set of <EuiCode>tabs</EuiCode> can be displayed inside the page
+            header by passing an array of{' '}
+            <Link to="/navigation/tabs">
+              <strong>EuiTab</strong>
+            </Link>{' '}
+            objects using the <EuiCode>label</EuiCode> key for the tab content.
+            When displaying tabs it is recommended to also apply the{' '}
+            <EuiCode>bottomBorder</EuiCode> prop (on the{' '}
+            <strong>EuiPageHeader</strong> component not through{' '}
+            <EuiCode>tabsProps</EuiCode>) to create separation of the header and
+            content. You&apos;ll still need to manage the page content and
+            selected tab in your own instance.
           </p>
         </>
       ),
@@ -118,7 +124,7 @@ export const PageHeaderExample = {
     { label:"Tab 1", isSelected: true },
     { label:"Tab 2" }
   ]}
-  description="Example of a description."
+  bottomBorder
 />`,
     },
     {
@@ -147,6 +153,7 @@ export const PageHeaderExample = {
     { label:"Tab 1", isSelected: true },
     { label:"Tab 2" }
   ]}
+  bottomBorder
   description="Example of a description."
 />`,
     },

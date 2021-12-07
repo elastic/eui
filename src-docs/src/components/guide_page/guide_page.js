@@ -1,7 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import { EuiBetaBadge, EuiPageBody } from '../../../../src/components';
+import {
+  EuiBetaBadge,
+  EuiPageHeader,
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiSpacer,
+} from '../../../../src/components';
+
+import { LanguageSelector } from '../with_theme';
 
 const GuidePageComponent = ({
   children,
@@ -13,6 +21,11 @@ const GuidePageComponent = ({
   location,
   match,
   history,
+  description,
+  rightSideItems: _rightSideItems,
+  tabs: _tabs,
+  notice,
+  showThemeLanguageToggle,
 }) => {
   const betaBadge = isBeta ? (
     <EuiBetaBadge
@@ -73,36 +86,62 @@ const GuidePageComponent = ({
     });
   };
 
+  const renderNotice = () => {
+    if (notice) {
+      return (
+        <>
+          <EuiPageContentBody role="region" aria-label="Notice" restrictWidth>
+            {notice}
+          </EuiPageContentBody>
+          <EuiSpacer size="l" />
+        </>
+      );
+    }
+  };
+
+  const rightSideItems = _rightSideItems || [];
+  if (showThemeLanguageToggle) {
+    rightSideItems.push(<LanguageSelector />);
+  }
+
   return (
-    <EuiPageBody
-      template="default"
-      panelled
-      restrictWidth
-      paddingSize="l"
-      pageHeader={
-        title
-          ? {
-              pageTitle: (
-                <>
-                  {title} {betaBadge}
-                </>
-              ),
-              tabs: renderTabs(),
-              children: intro,
-            }
-          : undefined
-      }
-    >
-      <Switch>
-        {playground && (
-          <Route path={`${match.path}/playground`}>{playground}</Route>
-        )}
-        {guidelines && (
-          <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
-        )}
-        <Route path="">{children}</Route>
-      </Switch>
-    </EuiPageBody>
+    <>
+      {renderNotice()}
+      <EuiPageHeader
+        restrictWidth
+        pageTitle={
+          <>
+            {title} {betaBadge}
+          </>
+        }
+        tabs={renderTabs() || _tabs}
+        description={description}
+        rightSideItems={rightSideItems}
+      >
+        {intro}
+      </EuiPageHeader>
+
+      <EuiPageContent
+        role="main"
+        hasShadow={false}
+        paddingSize="none"
+        color="transparent"
+        hasBorder={false}
+        borderRadius="none"
+      >
+        <EuiPageContentBody restrictWidth>
+          <Switch>
+            {playground && (
+              <Route path={`${match.path}/playground`}>{playground}</Route>
+            )}
+            {guidelines && (
+              <Route path={`${match.path}/guidelines`}>{guidelines}</Route>
+            )}
+            <Route path="">{children}</Route>
+          </Switch>
+        </EuiPageContentBody>
+      </EuiPageContent>
+    </>
   );
 };
 
@@ -117,6 +156,11 @@ GuidePageComponent.propTypes = {
   location: PropTypes.object,
   match: PropTypes.object,
   history: PropTypes.object,
+  description: PropTypes.node,
+  notice: PropTypes.node,
+  tabs: PropTypes.arrayOf(PropTypes.object),
+  rightSideItems: PropTypes.arrayOf(PropTypes.node),
+  showThemeLanguageToggle: PropTypes.bool,
 };
 
 export const GuidePage = withRouter(GuidePageComponent);

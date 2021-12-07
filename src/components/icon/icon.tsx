@@ -16,14 +16,11 @@ import classNames from 'classnames';
 
 import { CommonProps, keysOf } from '../common';
 
-// @ts-ignore not generating typescript files or definitions for the generated JS components
-// because we'd need to dynamically know if we're importing the
-// TS file (dev/docs) or the JS file (distributed), and it's more effort than worth
-// to generate & git track a TS module definition for each icon component
-import { icon as empty } from './assets/empty.js';
+import { icon as empty } from './assets/empty';
 import { enqueueStateChange } from '../../services/react';
 
 import { htmlIdGenerator } from '../../services';
+import { colorToClassMap, isNamedColor, NamedColor } from './named_colors';
 
 const typeToPathMap = {
   accessibility: 'accessibility',
@@ -32,7 +29,7 @@ const typeToPathMap = {
   agentApp: 'app_fleet',
   aggregate: 'aggregate',
   alert: 'alert',
-  analyzeEvent: 'analyze_event',
+  analyzeEvent: 'analyzeEvent',
   annotation: 'annotation',
   apmApp: 'app_apm',
   apmTrace: 'apm_trace',
@@ -42,6 +39,8 @@ const typeToPathMap = {
   arrowLeft: 'arrow_left',
   arrowRight: 'arrow_right',
   arrowUp: 'arrow_up',
+  arrowStart: 'arrowStart',
+  arrowEnd: 'arrowEnd',
   asterisk: 'asterisk',
   auditbeatApp: 'app_auditbeat',
   beaker: 'beaker',
@@ -98,6 +97,8 @@ const typeToPathMap = {
   documentation: 'documentation',
   documents: 'documents',
   dot: 'dot',
+  doubleArrowLeft: 'doubleArrowLeft',
+  doubleArrowRight: 'doubleArrowRight',
   download: 'download',
   editorAlignCenter: 'editor_align_center',
   editorAlignLeft: 'editor_align_left',
@@ -139,7 +140,7 @@ const typeToPathMap = {
   eye: 'eye',
   eyeClosed: 'eye_closed',
   faceHappy: 'face_happy',
-  faceNeutral: 'faceNeutral',
+  faceNeutral: 'face_neutral',
   faceSad: 'face_sad',
   filebeatApp: 'app_filebeat',
   filter: 'filter',
@@ -298,6 +299,7 @@ const typeToPathMap = {
   paperClip: 'paper_clip',
   partial: 'partial',
   pause: 'pause',
+  payment: 'payment',
   pencil: 'pencil',
   percent: 'percent',
   pin: 'pin',
@@ -364,6 +366,7 @@ const typeToPathMap = {
   temperature: 'temperature',
   timeline: 'timeline',
   timelionApp: 'app_timelion',
+  timeRefresh: 'timeRefresh',
   timeslider: 'timeslider',
   training: 'training',
   trash: 'trash',
@@ -402,56 +405,57 @@ const typeToPathMap = {
   workplaceSearchApp: 'app_workplace_search',
   wrench: 'wrench',
   // Token Icon Imports
-  tokenClass: 'tokens/tokenClass',
-  tokenProperty: 'tokens/tokenProperty',
-  tokenEnum: 'tokens/tokenEnum',
-  tokenVariable: 'tokens/tokenVariable',
-  tokenMethod: 'tokens/tokenMethod',
-  tokenAnnotation: 'tokens/tokenAnnotation',
-  tokenException: 'tokens/tokenException',
-  tokenInterface: 'tokens/tokenInterface',
-  tokenParameter: 'tokens/tokenParameter',
-  tokenField: 'tokens/tokenField',
-  tokenElement: 'tokens/tokenElement',
-  tokenFunction: 'tokens/tokenFunction',
-  tokenBoolean: 'tokens/tokenBoolean',
-  tokenString: 'tokens/tokenString',
-  tokenArray: 'tokens/tokenArray',
-  tokenNumber: 'tokens/tokenNumber',
-  tokenConstant: 'tokens/tokenConstant',
-  tokenObject: 'tokens/tokenObject',
-  tokenEvent: 'tokens/tokenEvent',
-  tokenKey: 'tokens/tokenKey',
-  tokenNull: 'tokens/tokenNull',
-  tokenStruct: 'tokens/tokenStruct',
-  tokenPackage: 'tokens/tokenPackage',
-  tokenOperator: 'tokens/tokenOperator',
-  tokenEnumMember: 'tokens/tokenEnumMember',
-  tokenRepo: 'tokens/tokenRepo',
-  tokenSymbol: 'tokens/tokenSymbol',
-  tokenFile: 'tokens/tokenFile',
-  tokenModule: 'tokens/tokenModule',
-  tokenNamespace: 'tokens/tokenNamespace',
-  tokenDate: 'tokens/tokenDate',
-  tokenIP: 'tokens/tokenIP',
-  tokenNested: 'tokens/tokenNested',
-  tokenAlias: 'tokens/tokenAlias',
-  tokenShape: 'tokens/tokenShape',
-  tokenGeo: 'tokens/tokenGeo',
-  tokenRange: 'tokens/tokenRange',
-  tokenBinary: 'tokens/tokenBinary',
-  tokenJoin: 'tokens/tokenJoin',
-  tokenPercolator: 'tokens/tokenPercolator',
-  tokenFlattened: 'tokens/tokenFlattened',
-  tokenRankFeature: 'tokens/tokenRankFeature',
-  tokenRankFeatures: 'tokens/tokenRankFeatures',
-  tokenKeyword: 'tokens/tokenKeyword',
-  tokenCompletionSuggester: 'tokens/tokenCompletionSuggester',
-  tokenDenseVector: 'tokens/tokenDenseVector',
-  tokenText: 'tokens/tokenText',
-  tokenTokenCount: 'tokens/tokenTokenCount',
-  tokenSearchType: 'tokens/tokenSearchType',
-  tokenHistogram: 'tokens/tokenHistogram',
+  tokenClass: 'tokenClass',
+  tokenProperty: 'tokenProperty',
+  tokenEnum: 'tokenEnum',
+  tokenVariable: 'tokenVariable',
+  tokenMethod: 'tokenMethod',
+  tokenAnnotation: 'tokenAnnotation',
+  tokenException: 'tokenException',
+  tokenInterface: 'tokenInterface',
+  tokenParameter: 'tokenParameter',
+  tokenField: 'tokenField',
+  tokenElement: 'tokenElement',
+  tokenFunction: 'tokenFunction',
+  tokenBoolean: 'tokenBoolean',
+  tokenString: 'tokenString',
+  tokenArray: 'tokenArray',
+  tokenNumber: 'tokenNumber',
+  tokenConstant: 'tokenConstant',
+  tokenObject: 'tokenObject',
+  tokenEvent: 'tokenEvent',
+  tokenKey: 'tokenKey',
+  tokenNull: 'tokenNull',
+  tokenStruct: 'tokenStruct',
+  tokenPackage: 'tokenPackage',
+  tokenOperator: 'tokenOperator',
+  tokenEnumMember: 'tokenEnumMember',
+  tokenRepo: 'tokenRepo',
+  tokenSymbol: 'tokenSymbol',
+  tokenFile: 'tokenFile',
+  tokenModule: 'tokenModule',
+  tokenNamespace: 'tokenNamespace',
+  tokenDate: 'tokenDate',
+  tokenIP: 'tokenIP',
+  tokenNested: 'tokenNested',
+  tokenAlias: 'tokenAlias',
+  tokenShape: 'tokenShape',
+  tokenGeo: 'tokenGeo',
+  tokenRange: 'tokenRange',
+  tokenBinary: 'tokenBinary',
+  tokenJoin: 'tokenJoin',
+  tokenPercolator: 'tokenPercolator',
+  tokenFlattened: 'tokenFlattened',
+  tokenRankFeature: 'tokenRankFeature',
+  tokenRankFeatures: 'tokenRankFeatures',
+  tokenKeyword: 'tokenKeyword',
+  tokenTag: 'tokenTag',
+  tokenCompletionSuggester: 'tokenCompletionSuggester',
+  tokenDenseVector: 'tokenDenseVector',
+  tokenText: 'tokenText',
+  tokenTokenCount: 'tokenTokenCount',
+  tokenSearchType: 'tokenSearchType',
+  tokenHistogram: 'tokenHistogram',
 };
 
 export const TYPES = keysOf(typeToPathMap);
@@ -460,27 +464,7 @@ export type EuiIconType = keyof typeof typeToPathMap;
 
 export type IconType = EuiIconType | string | ComponentType;
 
-const colorToClassMap = {
-  default: null,
-  primary: 'euiIcon--primary',
-  secondary: 'euiIcon--secondary',
-  success: 'euiIcon--success',
-  accent: 'euiIcon--accent',
-  warning: 'euiIcon--warning',
-  danger: 'euiIcon--danger',
-  text: 'euiIcon--text',
-  subdued: 'euiIcon--subdued',
-  ghost: 'euiIcon--ghost',
-  inherit: 'euiIcon--inherit',
-};
-
 export const COLORS: NamedColor[] = keysOf(colorToClassMap);
-
-type NamedColor = keyof typeof colorToClassMap;
-
-function isNamedColor(name: string): name is NamedColor {
-  return colorToClassMap.hasOwnProperty(name);
-}
 
 // We accept arbitrary color strings, which are impossible to type.
 export type IconColor = string | NamedColor;
@@ -507,7 +491,6 @@ export type EuiIconProps = CommonProps &
     /**
      * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value.
      * Note that coloring only works if your SVG is removed of fill attributes.
-     * **`secondary` color is DEPRECATED, use `success` instead**
      */
     color?: IconColor;
     /**
@@ -645,7 +628,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       // It's important that we don't use a template string here, it
       // stops webpack from building a dynamic require context.
       // eslint-disable-next-line prefer-template
-      './assets/' + typeToPathMap[iconType] + '.js'
+      './assets/' + typeToPathMap[iconType]
     ).then(({ icon }) => {
       iconComponentCache[iconType] = icon;
       enqueueStateChange(() => {
@@ -718,14 +701,14 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
       className
     );
 
-    const icon = this.state.icon || (empty as ComponentType);
+    const icon = this.state.icon || empty;
 
     // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
     // focusable="false".
-    //   - If there's no tab index specified, we'll default the icon to not be focusable,
+    //   - If there's no tabindex specified, we'll default the icon to not be focusable,
     //     which is how SVGs behave in Chrome, Safari, and FF.
-    //   - If tab index is -1, then the consumer wants the icon to not be focusable.
-    //   - For all other values, the consumer wants the icon to be focusable.
+    //   - If tabindex is -1, then the consumer wants the icon to be focusable by JavaScript only.
+    //   - If the tabindex is 0, the consumer wants the icon to be keyboard focusable.
     const focusable = tabIndex == null || tabIndex === -1 ? 'false' : 'true';
 
     if (typeof icon === 'string') {
@@ -772,6 +755,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
           focusable={focusable}
           role="img"
           title={title}
+          data-icon-type={this.state.iconTitle}
           {...titleId}
           {...rest}
           {...hideIconEmpty}

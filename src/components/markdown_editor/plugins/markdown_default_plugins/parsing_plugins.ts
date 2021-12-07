@@ -24,18 +24,31 @@ import {
 } from 'unified';
 import markdown from 'remark-parse';
 import emoji from 'remark-emoji';
+import breaks from 'remark-breaks';
 import highlight from '../remark/remark_prismjs';
 import * as MarkdownTooltip from '../markdown_tooltip';
 import * as MarkdownCheckbox from '../markdown_checkbox';
 import { markdownLinkValidator } from '../markdown_link_validator';
 
-export const getDefaultEuiMarkdownParsingPlugins = (): PluggableList => [
-  [markdown, {}],
-  [highlight, {}],
-  [emoji, { emoticon: true }],
-  [MarkdownTooltip.parser, {}],
-  [MarkdownCheckbox.parser, {}],
-  [markdownLinkValidator, {}],
-];
+export type DefaultEuiMarkdownParsingPlugins = PluggableList;
+
+export const getDefaultEuiMarkdownParsingPlugins = ({
+  exclude,
+}: { exclude?: Array<'tooltip'> } = {}): DefaultEuiMarkdownParsingPlugins => {
+  const excludeSet = new Set(exclude);
+  const parsingPlugins: PluggableList = [
+    [markdown, {}],
+    [highlight, {}],
+    [emoji, { emoticon: false }],
+    [breaks, {}],
+    [markdownLinkValidator, {}],
+    [MarkdownCheckbox.parser, {}],
+  ];
+
+  if (!excludeSet.has('tooltip'))
+    parsingPlugins.push([MarkdownTooltip.parser, {}]);
+
+  return parsingPlugins;
+};
 
 export const defaultParsingPlugins = getDefaultEuiMarkdownParsingPlugins();

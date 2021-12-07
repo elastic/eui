@@ -19,13 +19,19 @@ import React, {
   useState,
 } from 'react';
 import tabbable from 'tabbable';
-import { htmlIdGenerator, keys } from '../../services';
+import { useGeneratedHtmlId, keys } from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n, useEuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiDataGridBody, VIRTUALIZED_CONTAINER_CLASS } from './body';
-import { useDataGridColumnSelector } from './column_selector';
-import { useDataGridColumnSorting } from './column_sorting';
+import {
+  useDataGridColumnSelector,
+  useDataGridColumnSorting,
+  useDataGridStyleSelector,
+  startingStyles,
+  checkOrDefaultToolBarDisplayOptions,
+  EuiDataGridToolbar,
+} from './controls';
 import {
   DataGridFocusContext,
   DataGridSortingContext,
@@ -37,10 +43,6 @@ import {
   useDetectSchema,
   useMergedSchema,
 } from './data_grid_schema';
-import {
-  checkOrDefaultToolBarDisplayOptions,
-  EuiDataGridToolbar,
-} from './data_grid_toolbar';
 import {
   DataGridFocusContextShape,
   EuiDataGridColumn,
@@ -59,10 +61,7 @@ import {
   EuiDataGridStyleRowHover,
 } from './data_grid_types';
 import { RowHeightUtils } from './row_height_utils';
-import { startingStyles, useDataGridStyleSelector } from './style_selector';
-
-// Used to short-circuit some async browser behaviour that is difficult to account for in tests
-const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
+import { IS_JEST_ENVIRONMENT } from '../../test';
 
 // Each gridStyle object above sets a specific CSS select to .euiGrid
 const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
@@ -490,13 +489,14 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     height,
     width,
     rowHeightsOptions,
+    virtualizationOptions,
     ...rest
   } = props;
 
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [gridWidth, setGridWidth] = useState(0);
 
-  const [interactiveCellId] = useState(htmlIdGenerator()());
+  const interactiveCellId = useGeneratedHtmlId();
   const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
 
   const cellsUpdateFocus = useRef<Map<string, Function>>(new Map());
@@ -662,6 +662,12 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     orderedVisibleColumns
   );
 
+  const rowHeightUtils = useMemo(() => new RowHeightUtils(), []);
+
+  useEffect(() => {
+    rowHeightUtils.pruneHiddenColumnHeights(orderedVisibleColumns);
+  }, [rowHeightUtils, orderedVisibleColumns]);
+
   const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -685,11 +691,11 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     }
   }, [focusedCell, contentRef]);
 
-  const [rowHeightUtils] = useState(new RowHeightUtils());
-
   useEffect(() => {
-    rowHeightUtils.computeStylesForGridCell(gridStyles);
-  }, [gridStyles, rowHeightUtils]);
+    rowHeightUtils.cacheStyles({
+      cellPadding: gridStyles.cellPadding,
+    });
+  }, [gridStyles.cellPadding, rowHeightUtils]);
 
   const classes = classNames(
     'euiDataGrid',
@@ -738,9 +744,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     };
   }, [setFocusedCell, onFocusUpdate]);
 
-  const gridIds = htmlIdGenerator();
-  const gridId = gridIds();
-  const ariaLabelledById = gridIds();
+  const gridId = useGeneratedHtmlId();
+  const ariaLabelledById = useGeneratedHtmlId();
 
   const ariaLabel = useEuiI18n(
     'euiDataGrid.ariaLabel',
@@ -874,6 +879,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                         interactiveCellId={interactiveCellId}
                         rowHeightsOptions={rowHeightsOptions}
                         rowHeightUtils={rowHeightUtils}
+                        virtualizationOptions={virtualizationOptions || {}}
                         gridStyles={gridStyles}
                       />
                     </div>

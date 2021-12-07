@@ -9,6 +9,7 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../../common';
 import { getLinearGradient } from '../utils';
+import { EuiScreenReaderOnly } from '../../accessibility/screen_reader';
 import { EuiColorPaletteDisplayShared } from './color_palette_display';
 
 export interface EuiColorPaletteDisplayGradientProps
@@ -18,10 +19,26 @@ export interface EuiColorPaletteDisplayGradientProps
 
 export const EuiColorPaletteDisplayGradient: FunctionComponent<EuiColorPaletteDisplayGradientProps> = ({
   palette,
+  title,
   style = {},
   ...rest
 }) => {
   const gradient = getLinearGradient(palette);
 
-  return <span style={{ ...style, background: gradient }} {...rest} />;
+  return (
+    <>
+      {title && (
+        <EuiScreenReaderOnly>
+          <span>{title}</span>
+        </EuiScreenReaderOnly>
+      )}
+      <span
+        // aria-hidden="true" is to ensure color blocks are ignored by screen readers,
+        // and the only accessible text for options is the EuiScreenReaderOnly {title}
+        aria-hidden="true"
+        style={{ ...style, background: gradient }}
+        {...rest}
+      />
+    </>
+  );
 };

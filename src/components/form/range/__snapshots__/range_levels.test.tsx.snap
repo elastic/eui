@@ -5,12 +5,28 @@ exports[`EuiRangeLevels is rendered 1`] = `
   class="euiRangeLevels euiRangeLevels--hasTicks"
 >
   <span
-    class="euiRangeLevel euiRangeLevel--danger"
-    style="width:20%"
+    class="euiRangeLevel euiRangeLevel--danger customClass"
+    data-test-subj="firstLevel"
+    style="left:calc(0% + 0px);right:calc(100% - 0px)"
   />
   <span
     class="euiRangeLevel euiRangeLevel--success"
-    style="width:80%"
+    style="left:calc(0% + 0px);right:calc(100% - 0px)"
+  />
+</div>
+`;
+
+exports[`EuiRangeLevels is rendered with named and custom color 1`] = `
+<div
+  class="euiRangeLevels euiRangeLevels--hasTicks"
+>
+  <span
+    class="euiRangeLevel euiRangeLevel--danger"
+    style="left:calc(0% + 0px);right:calc(100% - 0px)"
+  />
+  <span
+    class="euiRangeLevel euiRangeLevel--customColor"
+    style="left:calc(0% + 0px);right:calc(100% - 0px);background-color:#ff0000"
   />
 </div>
 `;

@@ -2,9 +2,8 @@ import React, { Fragment } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
+import { EuiCallOut } from '../../../../src';
 
 import {
   EuiLink,
@@ -17,8 +16,8 @@ import { EuiComboBoxOptionOption } from '!!prop-loader!../../../../src/component
 
 import ComboBox from './combo_box';
 const comboBoxSource = require('!!raw-loader!./combo_box');
-const comboBoxHtml = renderToHtml(ComboBox);
 const comboBoxSnippet = `<EuiComboBox
+  aria-label="Accessible screen reader label"
   placeholder="Select or create options"
   options={[
     {
@@ -32,12 +31,11 @@ const comboBoxSnippet = `<EuiComboBox
 
 import Containers from './containers';
 const containersSource = require('!!raw-loader!./containers');
-const containersHtml = renderToHtml(Containers);
 
 import Colors from './colors';
 const colorsSource = require('!!raw-loader!./colors');
-const colorsHtml = renderToHtml(Colors);
 const colorsSnippet = `<EuiComboBox
+  aria-label="Accessible screen reader label"
   placeholder="Select or create options"
   options={[
     {
@@ -53,8 +51,8 @@ const colorsSnippet = `<EuiComboBox
 
 import RenderOption from './render_option';
 const renderOptionSource = require('!!raw-loader!./render_option');
-const renderOptionHtml = renderToHtml(RenderOption);
 const renderOptionSnippet = `<EuiComboBox
+  aria-label="Accessible screen reader label"
   placeholder="Select or create options"
   options={options}
   selectedOptions={selectedOptions}
@@ -65,8 +63,8 @@ const renderOptionSnippet = `<EuiComboBox
 
 import Groups from './groups';
 const groupsSource = require('!!raw-loader!./groups');
-const groupsHtml = renderToHtml(Groups);
 const groupsSnippet = `<EuiComboBox
+  aria-label="Accessible screen reader label"
   placeholder="These options are grouped"
   options={[colorGroup, soundGroup]}
   selectedOptions={selectedOptions}
@@ -75,10 +73,19 @@ const groupsSnippet = `<EuiComboBox
 />`;
 
 import SingleSelection from './single_selection';
+import SingleSelectionPrepend from './single_selection_prepend';
 const singleSelectionSource = require('!!raw-loader!./single_selection');
-const singleSelectionHtml = renderToHtml(SingleSelection);
+const singleSelectionPrependSource = require('!!raw-loader!./single_selection_prepend');
 const singleSelectionSnippet = `<EuiComboBox
+  aria-label="Accessible screen reader label"
   placeholder="Select a single option"
+  singleSelection={{ asPlainText: true }}
+  options={options}
+  selectedOptions={selectedOptions}
+  onChange={onChange}
+/>`;
+const singleSelectionPrependSnippet = `<EuiComboBox
+  prepend="Prepend"
   singleSelection={{ asPlainText: true }}
   options={options}
   selectedOptions={selectedOptions}
@@ -87,10 +94,8 @@ const singleSelectionSnippet = `<EuiComboBox
 
 import SingleSelectionCustomOptions from './single_selection_custom_options';
 const singleSelectionCustomOptionsSource = require('!!raw-loader!./single_selection_custom_options');
-const singleSelectionCustomOptionsHtml = renderToHtml(
-  SingleSelectionCustomOptions
-);
 const singleSelectionCustomOptionsSnippet = `<EuiComboBox
+  aria-label="Accessible screen reader label"
   placeholder="Select a single option"
   singleSelection={{ asPlainText: true }}
   options={options}
@@ -101,8 +106,8 @@ const singleSelectionCustomOptionsSnippet = `<EuiComboBox
 
 import DisallowCustomOptions from './disallow_custom_options';
 const disallowCustomOptionsSource = require('!!raw-loader!./disallow_custom_options');
-const disallowCustomOptionsHtml = renderToHtml(DisallowCustomOptions);
 const disallowCustomOptionsSnippet = `<EuiComboBox
+  aria-label="Accessible screen reader label"
   placeholder="Select one or more options"
   options={options}
   onChange={onChange}
@@ -111,7 +116,6 @@ const disallowCustomOptionsSnippet = `<EuiComboBox
 
 import CustomOptionsOnly from './custom_options_only';
 const customOptionsOnlySource = require('!!raw-loader!./custom_options_only');
-const customOptionsOnlyHtml = renderToHtml(CustomOptionsOnly);
 const customOptionsOnlySnippet = `<EuiComboBox
   noSuggestions
   placeholder="Create some tags (letters only)"
@@ -124,10 +128,10 @@ const customOptionsOnlySnippet = `<EuiComboBox
 
 import Async from './async';
 const asyncSource = require('!!raw-loader!./async');
-const asyncHtml = renderToHtml(Async);
 const asyncSnippet = `<EuiComboBox
   placeholder="Search asynchronously"
   async
+  aria-label="Accessible screen reader label"
   options={options}
   selectedOptions={selectedOptions}
   isLoading={isLoading}
@@ -138,8 +142,8 @@ const asyncSnippet = `<EuiComboBox
 
 import Virtualized from './virtualized';
 const virtualizedSource = require('!!raw-loader!./virtualized');
-const virtualizedHtml = renderToHtml(Virtualized);
 const virtualizedSnippet = `<EuiComboBox
+  aria-label="Accessible screen reader label"
   placeholder="Select one or more options"
   options={options}
   selectedOptions={selectedOptions}
@@ -148,8 +152,8 @@ const virtualizedSnippet = `<EuiComboBox
 
 import Disabled from './disabled';
 const disabledSource = require('!!raw-loader!./disabled');
-const disabledHtml = renderToHtml(Disabled);
 const disabledSnippet = `<EuiComboBox
+  aria-label="Accessible screen reader label"
   placeholder="Select or create options"
   options={options}
   onChange={onChange}
@@ -159,8 +163,8 @@ const disabledSnippet = `<EuiComboBox
 
 import Delimiter from './combo_box_delimiter';
 const delimiterSource = require('!!raw-loader!./combo_box_delimiter');
-const delimiterHtml = renderToHtml(Delimiter);
 const delimiterSnippet = `<EuiComboBox
+  aria-label="Accessible screen reader label"
   placeholder="Select or create options"
   options={options}
   delimiter=","
@@ -172,8 +176,8 @@ const delimiterSnippet = `<EuiComboBox
 
 import StartingWith from './startingWith';
 const startingWithSource = require('!!raw-loader!./startingWith');
-const startingWithHtml = renderToHtml(StartingWith);
 const startingWithSnippet = `<EuiComboBox
+  aria-label="Accessible screen reader label"
   placeholder="Select or create options"
   sortMatchesBy="startsWith"
   options={options}
@@ -185,7 +189,6 @@ const startingWithSnippet = `<EuiComboBox
 
 import DuplicateOptions from './combo_box_duplicates';
 const duplicateOptionsSource = require('!!raw-loader!./combo_box_duplicates');
-const duplicateOptionsHtml = renderToHtml(DuplicateOptions);
 const duplicateOptionsSnippet = `const options = [{
   label: 'Label',
   key: 'label1',
@@ -194,6 +197,18 @@ const duplicateOptionsSnippet = `const options = [{
   label: 'Label',
   key: 'Label2',
 }]`;
+
+import Labelledby from './combo_box_labelledby';
+const labelledbySource = require('!!raw-loader!./combo_box_labelledby');
+const labelledbySnippet = `<EuiComboBox
+  aria-labelledby={generatedId}
+  placeholder="Select or create options"
+  options={options}
+  selectedOptions={selectedOptions}
+  onChange={onChange}
+  onCreateOption={onCreateOption}
+  isClearable={true}
+/>`;
 
 export const ComboBoxExample = {
   title: 'Combo box',
@@ -207,6 +222,20 @@ export const ComboBoxExample = {
           ability to specify a custom value in addition to selecting from a
           predetermined list.
         </p>
+        <EuiCallOut
+          iconType="accessibility"
+          title={
+            <>
+              You must add an accessible label to each instance of{' '}
+              <strong>EuiComboBox</strong>
+            </>
+          }
+        >
+          Labels can be created by wrapping the combo box in an{' '}
+          <strong>EuiFormRow</strong> with a <EuiCode>label</EuiCode>, adding an{' '}
+          <EuiCode>aria-label</EuiCode> prop, or passing a text node ID to the{' '}
+          <EuiCode>aria-labelledby</EuiCode> prop.
+        </EuiCallOut>
       </EuiText>
     </Fragment>
   ),
@@ -216,10 +245,6 @@ export const ComboBoxExample = {
         {
           type: GuideSectionTypes.JS,
           code: comboBoxSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: comboBoxHtml,
         },
       ],
       props: { EuiComboBox, EuiComboBoxOptionOption },
@@ -232,10 +257,6 @@ export const ComboBoxExample = {
         {
           type: GuideSectionTypes.JS,
           code: disabledSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: disabledHtml,
         },
       ],
       text: (
@@ -254,10 +275,6 @@ export const ComboBoxExample = {
         {
           type: GuideSectionTypes.JS,
           code: virtualizedSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: virtualizedHtml,
         },
       ],
       text: (
@@ -281,10 +298,6 @@ export const ComboBoxExample = {
           type: GuideSectionTypes.JS,
           code: containersSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: containersHtml,
-        },
       ],
       text: (
         <p>
@@ -302,10 +315,6 @@ export const ComboBoxExample = {
         {
           type: GuideSectionTypes.JS,
           code: colorsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorsHtml,
         },
       ],
       text: (
@@ -330,10 +339,6 @@ export const ComboBoxExample = {
         {
           type: GuideSectionTypes.JS,
           code: renderOptionSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: renderOptionHtml,
         },
       ],
       text: (
@@ -365,10 +370,6 @@ export const ComboBoxExample = {
           type: GuideSectionTypes.JS,
           code: groupsSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: groupsHtml,
-        },
       ],
       text: (
         <p>
@@ -387,10 +388,6 @@ export const ComboBoxExample = {
           type: GuideSectionTypes.JS,
           code: singleSelectionSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: singleSelectionHtml,
-        },
       ],
       text: (
         <Fragment>
@@ -402,14 +399,6 @@ export const ComboBoxExample = {
               {'singleSelection={{ asPlainText: true }}'}
             </EuiCode>
           </p>
-          <p>
-            <strong>Note:</strong> <EuiCode>append</EuiCode> and{' '}
-            <EuiCode>prepend</EuiCode> props only work if
-            <EuiCode>singleSelection</EuiCode> prop is not set to{' '}
-            <EuiCode>false</EuiCode> to avoid multilines that makes combobox
-            height greater than that of <EuiCode>append</EuiCode> and{' '}
-            <EuiCode>prepend</EuiCode>.
-          </p>
         </Fragment>
       ),
       props: { EuiComboBox, EuiComboBoxOptionOption },
@@ -417,15 +406,35 @@ export const ComboBoxExample = {
       demo: <SingleSelection />,
     },
     {
+      title: 'Single selection with prepended label',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: singleSelectionPrependSource,
+        },
+      ],
+      text: (
+        <Fragment>
+          <p>
+            <EuiCode>append</EuiCode> and <EuiCode>prepend</EuiCode> props only
+            work if
+            <EuiCode>singleSelection</EuiCode> prop is not set to{' '}
+            <EuiCode>false</EuiCode> to avoid multi-lines that makes combobox
+            height greater than that of <EuiCode>append</EuiCode> and{' '}
+            <EuiCode>prepend</EuiCode>.
+          </p>
+        </Fragment>
+      ),
+      props: { EuiComboBox, EuiComboBoxOptionOption },
+      snippet: singleSelectionPrependSnippet,
+      demo: <SingleSelectionPrepend />,
+    },
+    {
       title: 'Single selection with custom options',
       source: [
         {
           type: GuideSectionTypes.JS,
           code: singleSelectionCustomOptionsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: singleSelectionCustomOptionsHtml,
         },
       ],
       text: (
@@ -455,10 +464,6 @@ export const ComboBoxExample = {
           type: GuideSectionTypes.JS,
           code: disallowCustomOptionsSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: disallowCustomOptionsHtml,
-        },
       ],
       text: (
         <p>
@@ -476,10 +481,6 @@ export const ComboBoxExample = {
         {
           type: GuideSectionTypes.JS,
           code: customOptionsOnlySource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: customOptionsOnlyHtml,
         },
       ],
       text: (
@@ -499,10 +500,6 @@ export const ComboBoxExample = {
         {
           type: GuideSectionTypes.JS,
           code: asyncSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: asyncHtml,
         },
       ],
       text: (
@@ -524,10 +521,6 @@ export const ComboBoxExample = {
           type: GuideSectionTypes.JS,
           code: delimiterSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: delimiterHtml,
-        },
       ],
       text: (
         <p>
@@ -546,10 +539,6 @@ export const ComboBoxExample = {
         {
           type: GuideSectionTypes.JS,
           code: startingWithSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: startingWithHtml,
         },
       ],
       text: (
@@ -572,10 +561,6 @@ export const ComboBoxExample = {
           type: GuideSectionTypes.JS,
           code: duplicateOptionsSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: duplicateOptionsHtml,
-        },
       ],
       text: (
         <p>
@@ -588,6 +573,27 @@ export const ComboBoxExample = {
       props: { EuiComboBox, EuiComboBoxOptionOption },
       demo: <DuplicateOptions />,
       snippet: duplicateOptionsSnippet,
+    },
+    {
+      title: 'Accessible label with aria-labelledby',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: labelledbySource,
+        },
+      ],
+      text: (
+        <p>
+          Sometimes it&rsquo;s preferable to label a combobox with a heading or
+          paragraph. You can easily create a unique ID for a text element using
+          the <a href="/#/utilities/html-id-generator">HTML ID generator</a>,{' '}
+          then pass your unique ID to the <EuiCode>aria-labelledby</EuiCode>{' '}
+          prop.
+        </p>
+      ),
+      props: { EuiComboBox, EuiComboBoxOptionOption },
+      demo: <Labelledby />,
+      snippet: labelledbySnippet,
     },
   ],
 };

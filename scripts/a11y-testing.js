@@ -6,22 +6,14 @@ const docsPages = async (root, page) => {
   const pagesToSkip = [
     `${root}#/layout/page`, // Has duplicate `<main>` element
     `${root}#/layout/page-header`, // Has duplicate `<header>` element
-    `${root}#/tabular-content/tables`,
-    `${root}#/tabular-content/in-memory-tables`,
     `${root}#/display/aspect-ratio`,
     `${root}#/forms/combo-box`,
     `${root}#/forms/color-selection`,
     `${root}#/forms/date-picker`,
     `${root}#/forms/super-date-picker`,
-    `${root}#/tabular-content/data-grid`,
-    `${root}#/tabular-content/data-grid-in-memory-settings`,
-    `${root}#/tabular-content/data-grid-schemas-and-popovers`,
-    `${root}#/tabular-content/data-grid-focus`,
     `${root}#/tabular-content/data-grid-styling-and-control`,
-    `${root}#/tabular-content/data-grid-control-columns`,
-    `${root}#/tabular-content/data-grid-footer-row`,
     `${root}#/tabular-content/data-grid-virtualization`,
-    `${root}#/tabular-content/data-grid-row-height-options`,
+    `${root}#/tabular-content/data-grid-row-heights-options`,
   ];
 
   return [

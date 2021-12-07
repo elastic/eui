@@ -23,7 +23,7 @@ import {
   EuiContextMenuPanel,
 } from '../context_menu';
 import { EuiI18n } from '../i18n';
-import { htmlIdGenerator } from '../../services';
+import { useGeneratedHtmlId } from '../../services';
 
 export type EuiNotificationEventMetaProps = {
   id: string;
@@ -41,7 +41,6 @@ export type EuiNotificationEventMetaProps = {
   severity?: string;
   /**
    * Accepts either our palette colors (primary, success ..etc) or a hex value `#FFFFFF`, `#000`.
-   * **`secondary` color is DEPRECATED, use `success` instead**
    */
   badgeColor?: EuiBadgeProps['color'];
   /**
@@ -85,7 +84,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
     ReturnType<NonNullable<typeof onOpenContextMenu>>
   >([]);
 
-  const randomPopoverId = htmlIdGenerator()();
+  const randomPopoverId = useGeneratedHtmlId();
 
   const ariaAttribute = iconAriaLabel
     ? { 'aria-label': iconAriaLabel }
@@ -147,7 +146,7 @@ export const EuiNotificationEventMeta: FunctionComponent<EuiNotificationEventMet
                     aria-expanded={isPopoverOpen}
                     aria-haspopup="true"
                     iconType="boxesVertical"
-                    color="subdued"
+                    color="text"
                     onClick={onOpenPopover}
                     data-test-subj={`${id}-notificationEventMetaButton`}
                   />

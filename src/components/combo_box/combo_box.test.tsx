@@ -92,6 +92,18 @@ describe('props', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('custom ID is rendered', () => {
+    const component = shallow(
+      <EuiComboBox
+        id="test-id-1"
+        options={options}
+        selectedOptions={[options[2], options[4]]}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
   describe('isClearable=false disallows user from clearing input', () => {
     test('when no options are selected', () => {
       const component = shallow(
@@ -195,6 +207,22 @@ describe('props', () => {
         options={options}
         selectedOptions={[options[2], options[3]]}
       />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('aria-label attribute is rendered', () => {
+    const component = shallow(
+      <EuiComboBox aria-label="Test label" options={options} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('aria-labelledby attribute is rendered', () => {
+    const component = shallow(
+      <EuiComboBox aria-labelledby="test-heading-id" options={options} />
     );
 
     expect(component).toMatchSnapshot();

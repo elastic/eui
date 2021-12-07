@@ -88,13 +88,6 @@ exports[`EuiLink primary is rendered 1`] = `
 />
 `;
 
-exports[`EuiLink secondary is rendered 1`] = `
-<button
-  class="euiLink euiLink--secondary"
-  type="button"
-/>
-`;
-
 exports[`EuiLink subdued is rendered 1`] = `
 <button
   class="euiLink euiLink--subdued"

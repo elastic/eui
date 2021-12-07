@@ -142,6 +142,15 @@ export interface _EuiComboBoxProps<T>
    * Specifies that the input should have focus when the component loads
    */
   autoFocus?: boolean;
+  /**
+   * Required when rendering without a visible label from [EuiFormRow](/#/forms/form-layouts).
+   */
+  'aria-label'?: string;
+  /**
+   * Reference ID of a text element containing the visible label for the combo box when not
+   * supplied by `aria-label` or from [EuiFormRow](/#/forms/form-layouts).
+   */
+  'aria-labelledby'?: string;
 }
 
 /**
@@ -582,6 +591,7 @@ export class EuiComboBox<T> extends Component<
   };
 
   onKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
+    if (this.props.isDisabled) return;
     switch (event.key) {
       case keys.ARROW_UP:
         event.preventDefault();
@@ -924,6 +934,8 @@ export class EuiComboBox<T> extends Component<
       delimiter,
       append,
       autoFocus,
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledby,
       ...rest
     } = this.props;
     const {
@@ -936,6 +948,9 @@ export class EuiComboBox<T> extends Component<
       matchingOptions,
     } = this.state;
 
+    // Make sure we have a valid ID if users don't pass one as a prop
+    const inputId = id ?? this.rootId('_eui-combobox-id');
+
     // Visually indicate the combobox is in an invalid state if it has lost focus but there is text entered in the input.
     // When custom options are disabled and the user leaves the combo box after entering text that does not match any
     // options, this tells the user that they've entered invalid input.
@@ -946,6 +961,8 @@ export class EuiComboBox<T> extends Component<
     const classes = classNames('euiComboBox', className, {
       'euiComboBox--compressed': compressed,
       'euiComboBox--fullWidth': fullWidth,
+      'euiComboBox--prepended': prepend,
+      'euiComboBox--appended': append,
       'euiComboBox-isDisabled': isDisabled,
       'euiComboBox-isInvalid': markAsInvalid,
       'euiComboBox-isOpen': isListOpen,
@@ -1030,7 +1047,7 @@ export class EuiComboBox<T> extends Component<
           }
           fullWidth={fullWidth}
           hasSelectedOptions={selectedOptions.length > 0}
-          id={id}
+          id={inputId}
           inputRef={this.searchInputRefCallback}
           isDisabled={isDisabled}
           isListOpen={isListOpen}
@@ -1056,6 +1073,8 @@ export class EuiComboBox<T> extends Component<
           prepend={singleSelection ? prepend : undefined}
           isLoading={isLoading}
           autoFocus={autoFocus}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledby}
         />
         {optionsList}
       </div>

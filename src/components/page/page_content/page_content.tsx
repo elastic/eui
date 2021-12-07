@@ -10,42 +10,33 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
-import {
-  EuiPanel,
-  PanelPaddingSize,
-  _EuiPanelProps,
-  _EuiPanelDivlike,
-} from '../../panel/panel';
+import { EuiPanel, _EuiPanelProps, _EuiPanelDivlike } from '../../panel/panel';
 import { HTMLAttributes } from 'enzyme';
 import { _EuiPageTemplate } from '../_template';
 
 export type EuiPageContentVerticalPositions = 'center';
 export type EuiPageContentHorizontalPositions = 'center';
 
-export interface EuiPageContentProps
-  extends CommonProps,
-    // Use only the div properties of EuiPanel (not button)
-    _EuiPanelProps,
-    Omit<_EuiPanelDivlike, 'onClick' | 'role'>,
-    _EuiPageTemplate {
-  /**
-   * **DEPRECATED: use `paddingSize` instead.**
-   */
-  panelPaddingSize?: PanelPaddingSize;
-  verticalPosition?: EuiPageContentVerticalPositions;
-  horizontalPosition?: EuiPageContentHorizontalPositions;
-  /**
-   * There should only be one EuiPageContent per page and should contain the main contents.
-   * If this is untrue, set role = `null`, or change it to match your needed aria role
-   */
-  role?: HTMLAttributes['role'] | null;
-}
+export type EuiPageContentProps = CommonProps &
+  // Use only the div properties of EuiPanel (not button)
+  _EuiPanelProps &
+  Omit<_EuiPanelDivlike, 'onClick' | 'role'> &
+  _EuiPageTemplate & {
+    verticalPosition?: EuiPageContentVerticalPositions;
+    horizontalPosition?: EuiPageContentHorizontalPositions;
+    /**
+     * There should only be one EuiPageContent per page and should contain the main contents.
+     * If this is untrue, set role = `null`, or change it to match your needed aria role
+     */
+    role?: HTMLAttributes['role'] | null;
+  };
 
 export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   template,
   verticalPosition,
   horizontalPosition,
-  panelPaddingSize,
+  paddingSize = 'l',
+  borderRadius,
   children,
   className,
   role: _role = 'main',
@@ -66,7 +57,7 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   );
 
   let templateProps: Partial<_EuiPanelProps> = {
-    paddingSize: rest.paddingSize || panelPaddingSize || 'l',
+    paddingSize,
   };
 
   if (template === 'default') {

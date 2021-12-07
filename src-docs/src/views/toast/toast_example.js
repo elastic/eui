@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -17,7 +15,6 @@ import toastConfig from './playground';
 
 import ToastList from './toast_list';
 const toastListSource = require('!!raw-loader!./toast_list');
-const toastListHtml = renderToHtml(ToastList);
 const toastListSnippet = [
   `<EuiGlobalToastList
   toasts={[
@@ -33,7 +30,6 @@ const toastListSnippet = [
 
 import Default from './default';
 const defaultSource = require('!!raw-loader!./default');
-const defaultHtml = renderToHtml(Default);
 const defaultToastSnippet = [
   `<EuiToast
   title="Default toast"
@@ -44,7 +40,6 @@ const defaultToastSnippet = [
 
 import Info from './info';
 const infoSource = require('!!raw-loader!./info');
-const infoHtml = renderToHtml(Info);
 const infoToastSnippet = [
   `<EuiToast
   title="Info toast"
@@ -56,7 +51,6 @@ const infoToastSnippet = [
 
 import Success from './success';
 const successSource = require('!!raw-loader!./success');
-const successHtml = renderToHtml(Success);
 const successToastSnippet = [
   `<EuiToast
   title="Success toast"
@@ -69,7 +63,6 @@ const successToastSnippet = [
 
 import Warning from './warning';
 const warningSource = require('!!raw-loader!./warning');
-const warningHtml = renderToHtml(Warning);
 const warningToastSnippet = [
   `<EuiToast
   title="Warning toast"
@@ -82,7 +75,6 @@ const warningToastSnippet = [
 
 import Danger from './danger';
 const dangerSource = require('!!raw-loader!./danger');
-const dangerHtml = renderToHtml(Danger);
 const dangerToastSnippet = [
   `<EuiToast
   title="Danger toast"
@@ -95,6 +87,7 @@ const dangerToastSnippet = [
 
 export const ToastExample = {
   title: 'Toast',
+  guidelines: <Guidelines />,
   intro: (
     <EuiText>
       <p>
@@ -110,10 +103,6 @@ export const ToastExample = {
         {
           type: GuideSectionTypes.JS,
           code: toastListSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: toastListHtml,
         },
       ],
       props: {
@@ -134,10 +123,6 @@ export const ToastExample = {
         {
           type: GuideSectionTypes.JS,
           code: defaultSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: defaultHtml,
         },
       ],
       text: (
@@ -162,6 +147,7 @@ export const ToastExample = {
         </div>
       ),
       snippet: defaultToastSnippet,
+      playground: toastConfig,
     },
     {
       title: 'Info',
@@ -169,10 +155,6 @@ export const ToastExample = {
         {
           type: GuideSectionTypes.JS,
           code: infoSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: infoHtml,
         },
       ],
       text: (
@@ -194,10 +176,6 @@ export const ToastExample = {
           type: GuideSectionTypes.JS,
           code: successSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: successHtml,
-        },
       ],
       text: (
         <p>
@@ -217,10 +195,6 @@ export const ToastExample = {
         {
           type: GuideSectionTypes.JS,
           code: warningSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: warningHtml,
         },
       ],
       text: (
@@ -242,10 +216,6 @@ export const ToastExample = {
           type: GuideSectionTypes.JS,
           code: dangerSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dangerHtml,
-        },
       ],
       text: (
         <p>
@@ -260,6 +230,4 @@ export const ToastExample = {
       snippet: dangerToastSnippet,
     },
   ],
-  guidelines: <Guidelines />,
-  playground: toastConfig,
 };

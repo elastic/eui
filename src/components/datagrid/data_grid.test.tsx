@@ -15,40 +15,8 @@ import {
   takeMountedSnapshot,
 } from '../../test';
 import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer';
-import { EuiDataGridRowHeightOption } from './data_grid_types';
 import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';
-
-jest.mock('./row_height_utils', () => {
-  return {
-    RowHeightUtils: jest.fn().mockImplementation(() => {
-      return {
-        computeStylesForGridCell: () => {},
-        getCalculatedHeight: (
-          heightOption: EuiDataGridRowHeightOption,
-          defaultHeight: number
-        ) => {
-          if (typeof heightOption === 'object') {
-            if (heightOption.lineCount) {
-              return heightOption.lineCount;
-            }
-
-            if (heightOption.height) {
-              return heightOption.height;
-            }
-          }
-
-          if (heightOption) {
-            return heightOption;
-          }
-
-          return defaultHeight;
-        },
-      };
-    }),
-    getStylesForCell: () => ({}),
-  };
-});
 
 function getFocusableCell(component: ReactWrapper) {
   return findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');
@@ -561,16 +529,19 @@ describe('EuiDataGrid', () => {
         Array [
           Object {
             "className": "euiDataGridRowCell euiDataGridRowCell--firstColumn customClass",
+            "data-gridcell-id": "0,0",
             "data-test-subj": "dataGridRowCell",
             "onBlur": [Function],
             "onFocus": [Function],
             "onKeyDown": [Function],
             "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "red",
               "height": 34,
               "left": 0,
+              "lineHeight": undefined,
               "position": "absolute",
               "top": "100px",
               "width": 100,
@@ -579,16 +550,19 @@ describe('EuiDataGrid', () => {
           },
           Object {
             "className": "euiDataGridRowCell euiDataGridRowCell--lastColumn customClass",
+            "data-gridcell-id": "0,1",
             "data-test-subj": "dataGridRowCell",
             "onBlur": [Function],
             "onFocus": [Function],
             "onKeyDown": [Function],
             "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "blue",
               "height": 34,
               "left": 100,
+              "lineHeight": undefined,
               "position": "absolute",
               "top": "100px",
               "width": 100,
@@ -597,16 +571,19 @@ describe('EuiDataGrid', () => {
           },
           Object {
             "className": "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn customClass",
+            "data-gridcell-id": "1,0",
             "data-test-subj": "dataGridRowCell",
             "onBlur": [Function],
             "onFocus": [Function],
             "onKeyDown": [Function],
             "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "red",
               "height": 34,
               "left": 0,
+              "lineHeight": undefined,
               "position": "absolute",
               "top": "134px",
               "width": 100,
@@ -615,16 +592,19 @@ describe('EuiDataGrid', () => {
           },
           Object {
             "className": "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn customClass",
+            "data-gridcell-id": "1,1",
             "data-test-subj": "dataGridRowCell",
             "onBlur": [Function],
             "onFocus": [Function],
             "onKeyDown": [Function],
             "onMouseEnter": [Function],
+            "onMouseLeave": [Function],
             "role": "gridcell",
             "style": Object {
               "color": "blue",
               "height": 34,
               "left": 100,
+              "lineHeight": undefined,
               "position": "absolute",
               "top": "134px",
               "width": 100,
@@ -2240,7 +2220,7 @@ describe('EuiDataGrid', () => {
       const cellHeights = extractRowHeights(component);
       expect(cellHeights).toEqual({
         0: 70,
-        1: 3,
+        1: 34,
         2: 50,
       });
     });
@@ -2282,7 +2262,7 @@ describe('EuiDataGrid', () => {
 
       expect(extractRowHeights(component)).toEqual({
         0: 70,
-        1: 3,
+        1: 34,
         2: 50,
       });
 
@@ -2300,7 +2280,7 @@ describe('EuiDataGrid', () => {
 
       expect(extractRowHeights(component)).toEqual({
         0: 70,
-        1: 3,
+        1: 34,
         2: 50,
       });
     });

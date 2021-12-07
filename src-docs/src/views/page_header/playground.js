@@ -67,6 +67,16 @@ export const pageHeaderConfig = () => {
     type: PropTypes.String,
   };
 
+  propsToUse.alignItems = {
+    ...propsToUse.alignItems,
+    value: 'top',
+  };
+
+  propsToUse.restrictWidth = {
+    ...propsToUse.restrictWidth,
+    type: PropTypes.Number,
+  };
+
   propsToUse.rightSideItems = simulateFunction({
     ...propsToUse.rightSideItems,
     custom: {

@@ -7,115 +7,226 @@
  */
 
 import { CSSProperties } from 'react';
+import type { VariableSizeGrid as Grid } from 'react-window';
 import { isObject, isNumber } from '../../services/predicate';
 import {
   EuiDataGridStyleCellPaddings,
-  EuiDataGridStyleFontSizes,
   EuiDataGridStyle,
   EuiDataGridRowHeightOption,
   EuiDataGridRowHeightsOptions,
+  EuiDataGridColumn,
 } from './data_grid_types';
 
-const cellPaddingsToClassMap: Record<EuiDataGridStyleCellPaddings, string> = {
-  s: 'euiDataGridRowCell--paddingSmall',
-  m: '',
-  l: 'euiDataGridRowCell--paddingLarge',
+// TODO: Once JS variables are available, use them here instead of hard-coded maps
+export const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, number> = {
+  s: 4,
+  m: 6,
+  l: 8,
 };
 
-const fontSizesToClassMap: Record<EuiDataGridStyleFontSizes, string> = {
-  s: 'euiDataGridRowCell--fontSizeSmall',
-  m: '',
-  l: 'euiDataGridRowCell--fontSizeLarge',
-};
+export const AUTO_HEIGHT = 'auto';
+export const DEFAULT_ROW_HEIGHT = 34;
 
-function getNumberFromPx(style?: string) {
-  return style ? parseInt(style.replace('px', ''), 10) : 0;
-}
-
-// So that we use lineCount options we should know exactly row height which allow to show defined line count.
-// For this we should know paddings and line height. Because of this we should compute styles for cell with grid styles
 export class RowHeightUtils {
-  private styles: {
-    paddingTop?: string;
-    paddingBottom?: string;
-    lineHeight?: string;
-  } = {};
-  private fakeCell = document.createElement('div');
-
-  computeStylesForGridCell(gridStyles: EuiDataGridStyle) {
-    this.fakeCell.className = `
-      euiDataGridRowCell
-      ${cellPaddingsToClassMap[gridStyles.cellPadding!]}
-      ${fontSizesToClassMap[gridStyles.fontSize!]}
-    `;
-    document.body.appendChild(this.fakeCell);
-    const allStyles = getComputedStyle(this.fakeCell);
-    this.styles = {
-      paddingTop: allStyles.paddingTop,
-      paddingBottom: allStyles.paddingBottom,
-      lineHeight: allStyles.lineHeight,
-    };
-    document.body.removeChild(this.fakeCell);
+  getRowHeightOption(
+    rowIndex: number,
+    rowHeightsOptions?: EuiDataGridRowHeightsOptions
+  ): EuiDataGridRowHeightOption | undefined {
+    return (
+      rowHeightsOptions?.rowHeights?.[rowIndex] ??
+      rowHeightsOptions?.defaultHeight
+    );
   }
 
-  calculateHeightForLineCount(lineCount: number) {
-    const paddingTop = getNumberFromPx(this.styles.paddingTop);
-    const paddingBottom = getNumberFromPx(this.styles.paddingBottom);
-    const lineHeight = getNumberFromPx(this.styles.lineHeight);
-    return Math.ceil(lineCount * lineHeight + paddingTop + paddingBottom);
+  isRowHeightOverride(
+    rowIndex: number,
+    rowHeightsOptions?: EuiDataGridRowHeightsOptions
+  ): boolean {
+    return rowHeightsOptions?.rowHeights?.[rowIndex] != null;
   }
 
   getCalculatedHeight(
     heightOption: EuiDataGridRowHeightOption,
-    defaultHeight: number
+    defaultHeight: number,
+    rowIndex?: number,
+    isRowHeightOverride?: boolean
   ) {
-    if (isObject(heightOption)) {
-      if (heightOption.lineCount) {
-        return this.calculateHeightForLineCount(heightOption.lineCount);
-      }
-
-      if (heightOption.height) {
-        return Math.max(heightOption.height, defaultHeight);
-      }
+    if (isObject(heightOption) && heightOption.height) {
+      return Math.max(heightOption.height, defaultHeight);
     }
 
     if (heightOption && isNumber(heightOption)) {
       return Math.max(heightOption, defaultHeight);
     }
 
+    if (isObject(heightOption) && heightOption.lineCount) {
+      if (isRowHeightOverride) {
+        return this.getRowHeight(rowIndex!) || defaultHeight; // lineCount overrides are stored in the heights cache
+      } else {
+        return defaultHeight; // default lineCount height is set in minRowHeight state in grid_row_body
+      }
+    }
+
+    if (heightOption === AUTO_HEIGHT && rowIndex != null) {
+      return this.getRowHeight(rowIndex);
+    }
+
     return defaultHeight;
   }
-}
 
-export const getStylesForCell = (
-  rowHeightsOptions: EuiDataGridRowHeightsOptions,
-  rowIndex: number
-): CSSProperties => {
-  let initialHeight =
-    rowHeightsOptions.rowHeights && rowHeightsOptions.rowHeights[rowIndex];
+  /**
+   * Styles utils
+   */
 
-  if (!initialHeight) {
-    initialHeight = rowHeightsOptions.defaultHeight;
-  }
+  private styles: {
+    paddingTop: number;
+    paddingBottom: number;
+  } = {
+    paddingTop: 0,
+    paddingBottom: 0,
+  };
 
-  if (isObject(initialHeight) && initialHeight.lineCount) {
-    return {
-      WebkitLineClamp: initialHeight.lineCount,
-      display: '-webkit-box',
-      WebkitBoxOrient: 'vertical',
-      height: '100%',
-      overflow: 'hidden',
-      flexGrow: 1,
-      wordWrap: 'break-word',
-      wordBreak: 'break-word',
+  cacheStyles(gridStyles: EuiDataGridStyle) {
+    this.styles = {
+      paddingTop: cellPaddingsMap[gridStyles.cellPadding!],
+      paddingBottom: cellPaddingsMap[gridStyles.cellPadding!],
     };
   }
 
-  return {
-    height: '100%',
-    overflow: 'hidden',
-    flexGrow: 1,
-    wordWrap: 'break-word',
-    wordBreak: 'break-word',
+  getStylesForCell = (
+    rowHeightsOptions: EuiDataGridRowHeightsOptions,
+    rowIndex: number
+  ): CSSProperties => {
+    const height = this.getRowHeightOption(rowIndex, rowHeightsOptions);
+
+    if (height === AUTO_HEIGHT) {
+      return {};
+    }
+
+    const lineCount = this.getLineCount(height);
+    if (lineCount) {
+      return {
+        WebkitLineClamp: lineCount,
+        display: '-webkit-box',
+        WebkitBoxOrient: 'vertical',
+        height: '100%',
+        overflow: 'hidden',
+      };
+    }
+
+    return {
+      height: '100%',
+      overflow: 'hidden',
+    };
   };
-};
+
+  /**
+   * Line count utils
+   */
+
+  getLineCount(option?: EuiDataGridRowHeightOption) {
+    return isObject(option) ? option.lineCount : undefined;
+  }
+
+  calculateHeightForLineCount(
+    cellRef: HTMLElement,
+    lineCount: number,
+    excludePadding?: boolean
+  ) {
+    const computedStyles = window.getComputedStyle(cellRef, null);
+    const lineHeight = parseInt(computedStyles.lineHeight, 10);
+    const contentHeight = Math.ceil(lineCount * lineHeight);
+
+    return excludePadding
+      ? contentHeight
+      : contentHeight + this.styles.paddingTop + this.styles.paddingBottom;
+  }
+
+  /**
+   * Auto height utils
+   */
+
+  private heightsCache = new Map<number, Map<string, number>>();
+  private timerId?: number;
+  private grid?: Grid;
+  private lastUpdatedRow: number = Infinity;
+
+  isAutoHeight(
+    rowIndex: number,
+    rowHeightsOptions?: EuiDataGridRowHeightsOptions
+  ) {
+    const height = this.getRowHeightOption(rowIndex, rowHeightsOptions);
+
+    if (height === AUTO_HEIGHT) {
+      return true;
+    }
+    return false;
+  }
+
+  getRowHeight(rowIndex: number) {
+    const rowHeights = this.heightsCache.get(rowIndex);
+    if (rowHeights == null) return 0;
+
+    const rowHeightValues = Array.from(rowHeights.values());
+    if (!rowHeightValues.length) return 0;
+
+    return Math.max(...rowHeightValues);
+  }
+
+  setRowHeight(
+    rowIndex: number,
+    colId: string,
+    height: number = DEFAULT_ROW_HEIGHT,
+    visibleRowIndex: number
+  ) {
+    const rowHeights =
+      this.heightsCache.get(rowIndex) || new Map<string, number>();
+    const adaptedHeight = Math.ceil(
+      height + this.styles.paddingTop + this.styles.paddingBottom
+    );
+
+    if (rowHeights.get(colId) === adaptedHeight) {
+      return;
+    }
+
+    rowHeights.set(colId, adaptedHeight);
+    this.heightsCache.set(rowIndex, rowHeights);
+    this.resetRow(visibleRowIndex);
+  }
+
+  pruneHiddenColumnHeights(visibleColumns: EuiDataGridColumn[]) {
+    const visibleColumnIds = new Set(visibleColumns.map(({ id }) => id));
+    let didModify = false;
+
+    this.heightsCache.forEach((rowHeights) => {
+      const existingColumnIds = Array.from(rowHeights.keys());
+      existingColumnIds.forEach((existingColumnId) => {
+        if (visibleColumnIds.has(existingColumnId) === false) {
+          didModify = true;
+          rowHeights.delete(existingColumnId);
+        }
+      });
+    });
+
+    if (didModify) {
+      this.resetRow(0);
+    }
+  }
+
+  resetRow(visibleRowIndex: number) {
+    // save the first row index of batch, reassigning it only
+    // if this visible row index less than lastUpdatedRow
+    this.lastUpdatedRow = Math.min(this.lastUpdatedRow, visibleRowIndex);
+    clearTimeout(this.timerId);
+    this.timerId = window.setTimeout(() => this.resetGrid(), 0);
+  }
+
+  resetGrid() {
+    this.grid?.resetAfterRowIndex(this.lastUpdatedRow);
+    this.lastUpdatedRow = Infinity;
+  }
+
+  setGrid(grid: Grid) {
+    this.grid = grid;
+  }
+}

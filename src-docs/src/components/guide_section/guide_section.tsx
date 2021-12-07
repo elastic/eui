@@ -1,10 +1,13 @@
 import React, { FunctionComponent, ReactNode, useState } from 'react';
 import { useRouteMatch } from 'react-router';
 
-import { EuiErrorBoundary } from '../../../../src/components/error_boundary';
-import { EuiText } from '../../../../src/components/text';
-import { EuiSwitch } from '../../../../src/components/form';
-import { EuiButton } from '../../../../src/components/button';
+import {
+  EuiSpacer,
+  EuiErrorBoundary,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiFlyout,
+} from '../../../../src';
 
 import { slugify } from '../../../../src/services/string/slugify';
 
@@ -17,7 +20,6 @@ import {
   GuideSectionExampleTabs,
   GuideSectionExampleTabsProps,
 } from './guide_section_parts/guide_section_tabs';
-import { GuideSectionPropsDescription } from './guide_section_parts/guide_section_props_description';
 
 export interface GuideSection {
   id?: string;
@@ -42,9 +44,17 @@ export const GuideSectionCodeTypesMap = {
     name: 'demoJS',
     displayName: 'Demo JS',
   },
+  TSX: {
+    name: 'demoTSX',
+    displayName: 'Demo TS',
+  },
   SNIPPET: {
     name: 'snippet',
     displayName: 'Snippet',
+  },
+  SASS: {
+    name: 'sass',
+    displayName: 'Sass',
   },
   PROPS: {
     name: 'props',
@@ -99,8 +109,6 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
 
     if (source) {
       source.map((source) => {
-        // Forever skipping the HTML tab
-        if (source.type === 'HTML') return;
         tabs.push({
           // @ts-ignore Complicated
           ...GuideSectionCodeTypesMap[source.type],
@@ -109,7 +117,6 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
             ? slugify(source.displayName)
             : // @ts-ignore Complicated
               GuideSectionCodeTypesMap[source.type].name,
-          disabled: renderingPlayground,
           ...source,
         });
       });
@@ -133,39 +140,34 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
 
     if (!isPlaygroundUnsupported && !!playground) {
       return (
-        <EuiSwitch
-          onChange={() => {
+        <EuiButtonEmpty
+          size="xs"
+          iconType="controlsHorizontal"
+          onClick={() => {
             setRenderingPlayground((rendering) => !rendering);
           }}
-          checked={renderingPlayground}
-          compressed
-          label={
-            <EuiText size="xs">
-              <strong>Playground</strong>
-            </EuiText>
-          }
-        />
+        >
+          Playground
+        </EuiButtonEmpty>
       );
     }
   };
 
   const renderPlayground = () => {
-    const { config, setGhostBackground, playgroundClassName } = playground();
-
-    const description = (
-      <GuideSectionPropsDescription
-        componentName={config.componentName}
-        component={config.scope[config.componentName]}
-      />
-    );
+    const {
+      config,
+      setGhostBackground,
+      playgroundClassName,
+      playgroundPanelProps,
+    } = playground();
 
     return playgroundService({
       config,
       setGhostBackground,
       playgroundClassName,
+      playgroundPanelProps,
       playgroundToggle: renderPlaygroundToggle(),
       tabs: renderTabs(),
-      description,
     });
   };
 
@@ -175,31 +177,43 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
         {text}
       </GuideSectionExampleText>
 
-      {renderingPlayground && renderPlayground()}
-      {!renderingPlayground && (demo || fullScreen) && (
-        <GuideSectionExample
-          example={
-            <EuiErrorBoundary>
-              {/* eslint-disable-next-line no-nested-ternary */}
-              {fullScreen == null ? (
-                <div>{demo}</div>
-              ) : demo == null ? (
-                <EuiButton
-                  fill
-                  iconType="fullScreen"
-                  href={`#${path}/${fullScreen.slug}`}
-                >
-                  Full screen demo
-                </EuiButton>
-              ) : (
-                demo
-              )}
-            </EuiErrorBoundary>
-          }
-          tabs={renderTabs()}
-          ghostBackground={ghostBackground}
-          demoPanelProps={demoPanelProps}
-        />
+      {renderingPlayground && (
+        <EuiFlyout
+          onClose={() => setRenderingPlayground(false)}
+          size="l"
+          paddingSize="none"
+          closeButtonPosition="outside"
+        >
+          {renderPlayground()}
+        </EuiFlyout>
+      )}
+      {(demo || fullScreen) && (
+        <>
+          <EuiSpacer />
+          <GuideSectionExample
+            example={
+              <EuiErrorBoundary>
+                {/* eslint-disable-next-line no-nested-ternary */}
+                {fullScreen == null ? (
+                  <div>{demo}</div>
+                ) : demo == null ? (
+                  <EuiButton
+                    fill
+                    iconType="fullScreen"
+                    href={`#${path}/${fullScreen.slug}`}
+                  >
+                    Full screen demo
+                  </EuiButton>
+                ) : (
+                  demo
+                )}
+              </EuiErrorBoundary>
+            }
+            tabs={renderTabs()}
+            ghostBackground={ghostBackground}
+            demoPanelProps={demoPanelProps}
+          />
+        </>
       )}
     </div>
   );

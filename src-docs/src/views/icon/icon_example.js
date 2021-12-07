@@ -83,7 +83,7 @@ export const IconExample = {
           <p>
             If you would like to contribute to our growing list of glyphs, you
             can follow{' '}
-            <EuiLink to="https://github.com/elastic/eui/blob/master/wiki/creating-icons.md">
+            <EuiLink to="https://github.com/elastic/eui/blob/main/wiki/creating-icons.md">
               these guidelines
             </EuiLink>
             .
@@ -104,14 +104,23 @@ export const IconExample = {
     },
     {
       title: 'Elastic logos',
+      wrapText: false,
       text: (
-        <p>
-          Product logos follow similar rules as app logos. Note the use of{' '}
-          <EuiCode>.euiIcon__fillNegative</EuiCode> on portions of the SVGs to
-          handle flipping colors for dark mode.
-        </p>
+        <>
+          <EuiText>
+            <p>
+              These logos are restricted in use to Elastic products or when
+              referencing Elastic products. They are multi-color with some
+              internal paths having a class of{' '}
+              <EuiCode>.euiIcon__fillNegative</EuiCode> to handle flipping
+              colors for dark mode. The only other colors most of them support
+              are ghost and text which turn them into a solid shape.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <Logos />
+        </>
       ),
-      demo: <Logos />,
     },
     {
       title: 'Apps',

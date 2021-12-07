@@ -50,7 +50,7 @@ export default () => {
             <EuiButtonIcon
               aria-hidden="true"
               iconType="boxesVertical"
-              color="subdued"
+              color="text"
             />
           </div>
         </div>

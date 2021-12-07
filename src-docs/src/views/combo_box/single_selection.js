@@ -51,11 +51,12 @@ export default () => {
       canDisabled={false}
       canReadOnly={false}
       canLoading={false}
-      canPrepend={false}
       canIsDisabled
       canAppend
+      canPrepend
     >
       <EuiComboBox
+        aria-label="Accessible screen reader label"
         placeholder="Select a single option"
         singleSelection={{ asPlainText: true }}
         options={options}

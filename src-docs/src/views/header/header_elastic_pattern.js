@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// Uncomment to use in consuming apps or CodeSandbox
-// import theme from '@elastic/eui/dist/eui_theme_light.json';
 
 import {
   EuiAvatar,
@@ -28,10 +26,33 @@ import {
   EuiTitle,
   EuiSelectableTemplateSitewide,
   EuiSelectableMessage,
-} from '../../../../src/components';
+  useEuiTheme,
+  useGeneratedHtmlId,
+} from '../../../../src';
+
 import { ExampleContext } from '../../services';
 
-export default ({ theme }) => {
+export default () => {
+  const { euiTheme } = useEuiTheme();
+  const guideHeaderCollapsibleNavId = useGeneratedHtmlId({
+    prefix: 'guideHeaderCollapsibleNav',
+  });
+  const guideHeaderAlertFlyoutId = useGeneratedHtmlId({
+    prefix: 'guideHeaderAlertFlyout',
+  });
+  const guideHeaderAlertFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'guideHeaderAlertFlyoutTitle',
+  });
+  const guideHeaderUserPopoverId = useGeneratedHtmlId({
+    prefix: 'guideHeaderUserPopover',
+  });
+  const guideHeaderSpacesPopoverId = useGeneratedHtmlId({
+    prefix: 'guideHeaderSpacesPopover',
+  });
+  const guideHeaderDeploymentPopoverId = useGeneratedHtmlId({
+    prefix: 'guideHeaderDeploymentPopover',
+  });
+
   useEffect(() => {
     document.body.classList.add('euiBody--headerIsFixed--double');
 
@@ -51,7 +72,7 @@ export default ({ theme }) => {
   );
   const collapsibleNav = (
     <EuiCollapsibleNav
-      id="guideHeaderCollapsibleNavExample"
+      id={guideHeaderCollapsibleNavId}
       aria-label="Main navigation"
       isOpen={navIsOpen}
       isDocked={navIsDocked}
@@ -111,12 +132,12 @@ export default ({ theme }) => {
       <EuiFlyout
         onClose={() => setIsAlertFlyoutVisible(false)}
         size="s"
-        id="guideHeaderAlertExample"
-        aria-labelledby="guideHeaderAlertExampleTitle"
+        id={guideHeaderAlertFlyoutId}
+        aria-labelledby={guideHeaderAlertFlyoutTitleId}
       >
         <EuiFlyoutHeader hasBorder>
           <EuiTitle size="s">
-            <h2 id="guideHeaderAlertExampleTitle">EuiHeaderAlert</h2>
+            <h2 id={guideHeaderAlertFlyoutTitleId}>EuiHeaderAlert</h2>
           </EuiTitle>
         </EuiFlyoutHeader>
         <EuiFlyoutBody>
@@ -140,11 +161,11 @@ export default ({ theme }) => {
   const [isUserMenuVisible, setIsUserMenuVisible] = useState(false);
   const userMenu = (
     <EuiPopover
-      id="guideHeaderUserMenuExample"
+      id={guideHeaderUserPopoverId}
       repositionOnScroll
       button={
         <EuiHeaderSectionItemButton
-          aria-controls="guideHeaderUserMenuExample"
+          aria-controls={guideHeaderUserPopoverId}
           aria-expanded={isUserMenuVisible}
           aria-haspopup="true"
           aria-label="User menu"
@@ -177,11 +198,11 @@ export default ({ theme }) => {
   const [isSpacesMenuVisible, setIsSpacesMenuVisible] = useState(false);
   const spacesMenu = (
     <EuiPopover
-      id="guideHeaderSpacesMenuExample"
+      id={guideHeaderSpacesPopoverId}
       repositionOnScroll
       button={
         <EuiHeaderSectionItemButton
-          aria-controls="guideHeaderSpacesMenuExample"
+          aria-controls={guideHeaderSpacesPopoverId}
           aria-expanded={isSpacesMenuVisible}
           aria-haspopup="true"
           aria-label="Spaces menu"
@@ -214,14 +235,14 @@ export default ({ theme }) => {
   const [isDeploymentMenuVisible, setIsDeploymentMenuVisible] = useState(false);
   const deploymentMenu = (
     <EuiPopover
-      id="guideHeaderDeploymentMenuExample"
+      id={guideHeaderDeploymentPopoverId}
       repositionOnScroll
       button={
         <EuiBadge
-          color={theme.euiColorDarkestShade.rgba}
+          color={euiTheme.colors.darkestShade}
           iconType="arrowDown"
           iconSide="right"
-          aria-controls="guideHeaderDeploymentMenuExample"
+          aria-controls={guideHeaderDeploymentPopoverId}
           aria-expanded={isDeploymentMenuVisible}
           aria-haspopup="true"
           onClickAriaLabel="Current deployment: Production logs. Click to open deployment menu."

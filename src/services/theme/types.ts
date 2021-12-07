@@ -25,7 +25,7 @@ export const COLOR_MODES_STANDARD = {
 export const COLOR_MODES_INVERSE = 'INVERSE' as const;
 
 type EuiThemeColorModeInverse = typeof COLOR_MODES_INVERSE;
-type EuiThemeColorModeStandard = ValueOf<typeof COLOR_MODES_STANDARD>;
+export type EuiThemeColorModeStandard = ValueOf<typeof COLOR_MODES_STANDARD>;
 export type EuiThemeColorMode =
   | string
   | EuiThemeColorModeStandard

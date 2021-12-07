@@ -29,7 +29,6 @@ export type EuiHealthProps = CommonProps &
      * Sets the color of the dot icon.
      * It accepts any `IconColor`: `default`, `primary`, `success`, `accent`, `warning`, `danger`, `text`,
      * `subdued` or `ghost`; or any valid CSS color value as a `string`
-     * **`secondary` color is DEPRECATED, use `success` instead**
      */
     color?: IconColor;
     /**

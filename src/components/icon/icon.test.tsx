@@ -20,8 +20,7 @@ import {
   appendIconComponentCache,
 } from './icon';
 import { PropsOf } from '../common';
-// @ts-ignore importing from a JS file
-import { icon as EuiIconVideoPlayer } from './assets/videoPlayer.js';
+import { icon as EuiIconVideoPlayer } from './assets/videoPlayer';
 
 jest.mock('./icon', () => {
   return jest.requireActual('./icon');
@@ -34,7 +33,7 @@ const prettyHtml = cheerio.load('');
 function testIcon(props: PropsOf<EuiIcon>) {
   return () => {
     expect.assertions(1);
-    return new Promise((resolve) => {
+    return new Promise<void>((resolve) => {
       const onIconLoad = () => {
         component.update();
         expect(prettyHtml(component.html())).toMatchSnapshot();

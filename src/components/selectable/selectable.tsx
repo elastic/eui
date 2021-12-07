@@ -51,9 +51,19 @@ type EuiSelectableSearchableProps<T> = ExclusiveUnion<
      */
     searchable: true;
     /**
-     * Passes props down to the `EuiFieldSearch`
+     * Passes props down to the `EuiFieldSearch`.
+     * See #EuiSelectableSearchProps
      */
-    searchProps?: Partial<EuiSelectableSearchProps<T>>;
+    searchProps?: EuiSelectableSearchableSearchProps<T>;
+  }
+>;
+
+export type EuiSelectableSearchableSearchProps<T> = Partial<
+  Omit<EuiSelectableSearchProps<T>, 'onSearch'> & {
+    onSearch: (
+      searchValue: string,
+      matchingOptions: Array<EuiSelectableOption<T>>
+    ) => void;
   }
 >;
 
@@ -152,6 +162,7 @@ export class EuiSelectable<T = {}> extends Component<
   };
   private containerRef = createRef<HTMLDivElement>();
   private optionsListRef = createRef<EuiSelectableList<T>>();
+  private preventOnFocus = false;
   rootId = htmlIdGenerator();
   constructor(props: EuiSelectableProps<T>) {
     super(props);
@@ -212,7 +223,19 @@ export class EuiSelectable<T = {}> extends Component<
     return this.state.activeOptionIndex != null;
   };
 
+  onMouseDown = () => {
+    // Bypass onFocus when a click event originates from this.containerRef.
+    // Prevents onFocus from scrolling away from a clicked option and negating the selection event.
+    // https://github.com/elastic/eui/issues/4147
+    this.preventOnFocus = true;
+  };
+
   onFocus = () => {
+    if (this.preventOnFocus) {
+      this.preventOnFocus = false;
+      return;
+    }
+
     if (!this.state.visibleOptions.length || this.state.activeOptionIndex) {
       return;
     }
@@ -324,7 +347,7 @@ export class EuiSelectable<T = {}> extends Component<
       }
     );
     if (this.props.searchProps && this.props.searchProps.onSearch) {
-      this.props.searchProps.onSearch(searchValue);
+      this.props.searchProps.onSearch(searchValue, visibleOptions);
     }
   };
 
@@ -511,7 +534,7 @@ export class EuiSelectable<T = {}> extends Component<
      */
     const getAccessibleName = (
       props:
-        | Partial<EuiSelectableSearchProps<T>>
+        | EuiSelectableSearchableSearchProps<T>
         | EuiSelectableOptionsListPropsWithDefaults
         | undefined,
       messageContentId?: string
@@ -618,6 +641,7 @@ export class EuiSelectable<T = {}> extends Component<
         onKeyDown={this.onKeyDown}
         onBlur={this.onContainerBlur}
         onFocus={this.onFocus}
+        onMouseDown={this.onMouseDown}
         {...rest}
       >
         {children && children(list, search)}

@@ -68,7 +68,7 @@ const webpackConfig = {
             options: { babelrc: false, ...babelConfig },
           },
         ]),
-        exclude: [/node_modules/, /packages(\/|\\)react-datepicker/],
+        exclude: [/node_modules/],
       },
       {
         test: /\.scss$/,

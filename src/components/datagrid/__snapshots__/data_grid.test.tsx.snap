@@ -43,13 +43,22 @@ exports[`EuiDataGrid pagination renders 1`] = `
       aria-label="Pagination for preceding grid: test grid"
       class="euiPagination"
     >
+      <span
+        aria-atomic="true"
+        aria-relevant="additions text"
+        class="euiScreenReaderOnly"
+        role="status"
+      >
+        Page 2 of 2
+      </span>
       <a
         aria-controls="generated-id"
-        aria-label="Previous page, 1"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+        aria-label="Previous page"
+        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
         data-test-subj="pagination-button-previous"
         href="#generated-id"
         rel="noreferrer"
+        title="Previous page"
       >
         <span
           aria-hidden="true"
@@ -68,7 +77,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
           <a
             aria-controls="generated-id"
             aria-label="Page 1 of 2"
-            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton euiPaginationButton--hideOnMobile"
+            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiPaginationButton"
             data-test-subj="pagination-button-0"
             href="#generated-id"
             rel="noreferrer"
@@ -91,7 +100,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
             aria-controls="generated-id"
             aria-current="true"
             aria-label="Page 2 of 2"
-            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiButtonEmpty-isDisabled euiPaginationButton euiPaginationButton-isActive euiPaginationButton--hideOnMobile"
+            class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiButtonEmpty-isDisabled euiPaginationButton euiPaginationButton-isActive"
             data-test-subj="pagination-button-1"
             disabled=""
             type="button"
@@ -110,7 +119,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
       </ul>
       <button
         aria-label="Next page"
-        class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+        class="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
         data-test-subj="pagination-button-next"
         disabled=""
         type="button"
@@ -182,7 +191,6 @@ exports[`EuiDataGrid render column actions renders various column actions config
     </li>
   </EuiListGroupItem>
   <EuiListGroupItem
-    className=""
     color="text"
     iconType="sortUp"
     isDisabled={false}
@@ -265,7 +273,6 @@ exports[`EuiDataGrid render column actions renders various column actions config
     </li>
   </EuiListGroupItem>
   <EuiListGroupItem
-    className=""
     color="text"
     iconType="sortDown"
     isDisabled={false}
@@ -489,7 +496,6 @@ exports[`EuiDataGrid render column actions renders various column actions config
   data-test-subj="dataGridHeaderCellActionGroup-D"
 >
   <EuiListGroupItem
-    className=""
     color="text"
     iconType="sortUp"
     isDisabled={false}
@@ -572,7 +578,6 @@ exports[`EuiDataGrid render column actions renders various column actions config
     </li>
   </EuiListGroupItem>
   <EuiListGroupItem
-    className=""
     color="text"
     iconType="sortDown"
     isDisabled={false}
@@ -727,7 +732,6 @@ exports[`EuiDataGrid render column actions renders various column actions config
     </li>
   </EuiListGroupItem>
   <EuiListGroupItem
-    className=""
     color="text"
     iconType="sortUp"
     isDisabled={false}
@@ -768,7 +772,6 @@ exports[`EuiDataGrid render column actions renders various column actions config
     </li>
   </EuiListGroupItem>
   <EuiListGroupItem
-    className=""
     color="text"
     iconType="sortDown"
     isDisabled={false}
@@ -1037,6 +1040,7 @@ Array [
             tabindex="0"
           >
             <div
+              data-test-subj="euiDataGridBody"
               style="width:100%;height:100%;overflow:hidden"
             >
               <div
@@ -1130,6 +1134,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    data-gridcell-id="0,0"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:0px;height:34px;width:100px"
@@ -1143,6 +1148,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           0, A
                         </div>
@@ -1156,6 +1162,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    data-gridcell-id="0,1"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:0px;height:34px;width:100px"
@@ -1169,6 +1176,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           0, B
                         </div>
@@ -1182,6 +1190,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+                    data-gridcell-id="1,0"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:34px;height:34px;width:100px"
@@ -1195,6 +1204,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           1, A
                         </div>
@@ -1208,6 +1218,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+                    data-gridcell-id="1,1"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:34px;height:34px;width:100px"
@@ -1221,6 +1232,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           1, B
                         </div>
@@ -1234,6 +1246,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    data-gridcell-id="2,0"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:68px;height:34px;width:100px"
@@ -1247,6 +1260,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           2, A
                         </div>
@@ -1260,6 +1274,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    data-gridcell-id="2,1"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:68px;height:34px;width:100px"
@@ -1273,6 +1288,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           2, B
                         </div>
@@ -1427,6 +1443,7 @@ Array [
             tabindex="0"
           >
             <div
+              data-test-subj="euiDataGridBody"
               style="width:100%;height:100%;overflow:hidden"
             >
               <div
@@ -1550,6 +1567,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
+                    data-gridcell-id="0,0"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:0px;height:34px;width:50px"
@@ -1576,6 +1594,7 @@ Array [
                         >
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             0
                           </div>
@@ -1595,6 +1614,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell"
+                    data-gridcell-id="0,1"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:50px;top:0px;height:34px;width:100px"
@@ -1608,6 +1628,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           0, A
                         </div>
@@ -1621,6 +1642,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell"
+                    data-gridcell-id="0,2"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:150px;top:0px;height:34px;width:100px"
@@ -1634,6 +1656,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           0, B
                         </div>
@@ -1647,6 +1670,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
+                    data-gridcell-id="0,3"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:250px;top:0px;height:34px;width:50px"
@@ -1673,6 +1697,7 @@ Array [
                         >
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             0
                           </div>
@@ -1692,6 +1717,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
+                    data-gridcell-id="1,0"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:34px;height:34px;width:50px"
@@ -1718,6 +1744,7 @@ Array [
                         >
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             1
                           </div>
@@ -1737,6 +1764,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--stripe"
+                    data-gridcell-id="1,1"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:50px;top:34px;height:34px;width:100px"
@@ -1750,6 +1778,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           1, A
                         </div>
@@ -1763,6 +1792,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--stripe"
+                    data-gridcell-id="1,2"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:150px;top:34px;height:34px;width:100px"
@@ -1776,6 +1806,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           1, B
                         </div>
@@ -1789,6 +1820,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
+                    data-gridcell-id="1,3"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:250px;top:34px;height:34px;width:50px"
@@ -1815,6 +1847,7 @@ Array [
                         >
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             1
                           </div>
@@ -1834,6 +1867,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
+                    data-gridcell-id="2,0"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:68px;height:34px;width:50px"
@@ -1860,6 +1894,7 @@ Array [
                         >
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             2
                           </div>
@@ -1879,6 +1914,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell"
+                    data-gridcell-id="2,1"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:50px;top:68px;height:34px;width:100px"
@@ -1892,6 +1928,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           2, A
                         </div>
@@ -1905,6 +1942,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell"
+                    data-gridcell-id="2,2"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:150px;top:68px;height:34px;width:100px"
@@ -1918,6 +1956,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           2, B
                         </div>
@@ -1931,6 +1970,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
+                    data-gridcell-id="2,3"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:250px;top:68px;height:34px;width:50px"
@@ -1957,6 +1997,7 @@ Array [
                         >
                           <div
                             class="euiDataGridRowCell__truncate"
+                            data-datagrid-cellcontent="true"
                           >
                             2
                           </div>
@@ -2114,6 +2155,7 @@ Array [
             tabindex="0"
           >
             <div
+              data-test-subj="euiDataGridBody"
               style="width:100%;height:100%;overflow:hidden"
             >
               <div
@@ -2209,6 +2251,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    data-gridcell-id="0,0"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:0px;height:34px;width:100px"
@@ -2222,6 +2265,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           0, A
                         </div>
@@ -2235,6 +2279,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    data-gridcell-id="0,1"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:0px;height:34px;width:100px"
@@ -2248,6 +2293,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           0, B
                         </div>
@@ -2261,6 +2307,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+                    data-gridcell-id="1,0"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:34px;height:34px;width:100px"
@@ -2274,6 +2321,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           1, A
                         </div>
@@ -2287,6 +2335,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+                    data-gridcell-id="1,1"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:34px;height:34px;width:100px"
@@ -2300,6 +2349,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           1, B
                         </div>
@@ -2313,6 +2363,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    data-gridcell-id="2,0"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:68px;height:34px;width:100px"
@@ -2326,6 +2377,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           2, A
                         </div>
@@ -2339,6 +2391,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    data-gridcell-id="2,1"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:68px;height:34px;width:100px"
@@ -2352,6 +2405,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           2, B
                         </div>
@@ -2503,6 +2557,7 @@ Array [
             tabindex="0"
           >
             <div
+              data-test-subj="euiDataGridBody"
               style="width:100%;height:100%;overflow:hidden"
             >
               <div
@@ -2596,6 +2651,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    data-gridcell-id="0,0"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:0px;height:34px;width:100px"
@@ -2609,6 +2665,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           0, A
                         </div>
@@ -2622,6 +2679,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    data-gridcell-id="0,1"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:0px;height:34px;width:100px"
@@ -2635,6 +2693,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           0, B
                         </div>
@@ -2648,6 +2707,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+                    data-gridcell-id="1,0"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:34px;height:34px;width:100px"
@@ -2661,6 +2721,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           1, A
                         </div>
@@ -2674,6 +2735,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+                    data-gridcell-id="1,1"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:34px;height:34px;width:100px"
@@ -2687,6 +2749,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           1, B
                         </div>
@@ -2700,6 +2763,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+                    data-gridcell-id="2,0"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:0;top:68px;height:34px;width:100px"
@@ -2713,6 +2777,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           2, A
                         </div>
@@ -2726,6 +2791,7 @@ Array [
                   </div>
                   <div
                     class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+                    data-gridcell-id="2,1"
                     data-test-subj="dataGridRowCell"
                     role="gridcell"
                     style="position:absolute;left:100px;top:68px;height:34px;width:100px"
@@ -2739,6 +2805,7 @@ Array [
                       >
                         <div
                           class="euiDataGridRowCell__truncate"
+                          data-datagrid-cellcontent="true"
                         >
                           2, B
                         </div>

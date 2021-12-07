@@ -11,11 +11,8 @@ import { EuiI18n } from '../../../i18n';
 import { EuiFlexGrid, EuiFlexItem } from '../../../flex';
 import { EuiTitle } from '../../../title';
 import { EuiLink } from '../../../link';
-import { EuiHorizontalRule } from '../../../horizontal_rule';
-import { htmlIdGenerator } from '../../../../services';
+import { useGeneratedHtmlId } from '../../../../services';
 import { DurationRange, ApplyTime } from '../../types';
-
-const generateId = htmlIdGenerator();
 
 export interface EuiCommonlyUsedTimeRangesProps {
   applyTime: ApplyTime;
@@ -26,7 +23,7 @@ export const EuiCommonlyUsedTimeRanges: FunctionComponent<EuiCommonlyUsedTimeRan
   applyTime,
   commonlyUsedRanges,
 }) => {
-  const legendId = generateId();
+  const legendId = useGeneratedHtmlId();
   const links = commonlyUsedRanges.map(({ start, end, label }) => {
     const applyCommonlyUsed = () => {
       applyTime({ start, end });
@@ -69,7 +66,6 @@ export const EuiCommonlyUsedTimeRanges: FunctionComponent<EuiCommonlyUsedTimeRan
           {links}
         </EuiFlexGrid>
       </div>
-      <EuiHorizontalRule margin="s" />
     </fieldset>
   );
 };

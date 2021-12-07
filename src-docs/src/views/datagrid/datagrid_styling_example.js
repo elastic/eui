@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 import {
   EuiDataGrid,
@@ -13,27 +11,22 @@ import {
 
 import DataGridContainer from './container';
 const dataGridContainerSource = require('!!raw-loader!./container');
-const dataGridContainerHtml = renderToHtml(DataGridContainer);
+
 import DataGridFlex from './flex';
 const dataGridFlexSource = require('!!raw-loader!./flex');
 
 import DataGridStyling from './styling';
 const dataGridStylingSource = require('!!raw-loader!./styling');
-const dataGridStylingHtml = renderToHtml(DataGridStyling);
 
 import DataGridControls from './additional_controls';
 const dataGridControlsSource = require('!!raw-loader!./additional_controls');
-const dataGridControlsHtml = renderToHtml(DataGridControls);
 
 import DataGridColumnWidths from './column_widths';
 import DataGridColumnActions from './column_actions';
 import DataGridColumnCellActions from './column_cell_actions';
 const dataGridColumnWidthsSource = require('!!raw-loader!./column_widths');
-const dataGridColumnWidthsHtml = renderToHtml(DataGridColumnWidths);
 const dataGridColumnActionsSource = require('!!raw-loader!./column_actions');
-const dataGridColumnActionsHtml = renderToHtml(DataGridColumnActions);
 const dataGridColumnCellActionsSource = require('!!raw-loader!./column_cell_actions');
-const dataGridColumnCellActionsHtml = renderToHtml(DataGridColumnActions);
 
 import {
   EuiDataGridColumn,
@@ -148,10 +141,6 @@ export const DataGridStylingExample = {
           type: GuideSectionTypes.JS,
           code: dataGridStylingSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridStylingHtml,
-        },
       ],
       text: (
         <Fragment>
@@ -170,7 +159,10 @@ export const DataGridStylingExample = {
             With the default settings, the <EuiCode>showStyleSelector</EuiCode>{' '}
             setting in <EuiCode>toolbarVisibility</EuiCode> means the user has
             the ability to override the padding and font size passed into{' '}
-            <EuiCode>gridStyle</EuiCode> by the engineer.
+            <EuiCode>gridStyle</EuiCode> by the engineer. The font size
+            overriding only works with text or elements that can inherit the
+            parent font size or elements that use units relative to the parent
+            container.
           </p>
           <EuiCodeBlock language="javascript" paddingSize="s" isCopyable>
             {gridSnippet}
@@ -191,10 +183,6 @@ export const DataGridStylingExample = {
         {
           type: GuideSectionTypes.JS,
           code: dataGridContainerSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridContainerHtml,
         },
       ],
       title: 'Data grid adapts to its container',
@@ -235,10 +223,6 @@ export const DataGridStylingExample = {
           type: GuideSectionTypes.JS,
           code: dataGridControlsSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridControlsHtml,
-        },
       ],
       title: 'Additional controls in the toolbar',
       text: (
@@ -261,10 +245,6 @@ export const DataGridStylingExample = {
         {
           type: GuideSectionTypes.JS,
           code: dataGridColumnWidthsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridColumnWidthsHtml,
         },
       ],
       title: 'Column width constraints',
@@ -302,10 +282,6 @@ export const DataGridStylingExample = {
           type: GuideSectionTypes.JS,
           code: dataGridColumnActionsSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridColumnActionsHtml,
-        },
       ],
       title: 'Column actions',
       text: (
@@ -342,10 +318,6 @@ export const DataGridStylingExample = {
         {
           type: GuideSectionTypes.JS,
           code: dataGridColumnCellActionsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridColumnCellActionsHtml,
         },
       ],
       title: 'Column cell actions',

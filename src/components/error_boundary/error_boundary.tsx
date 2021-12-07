@@ -8,9 +8,11 @@
 
 import React, { Component, HTMLAttributes, ReactNode } from 'react';
 import { CommonProps } from '../common';
-import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-import { EuiText } from '../text';
+import { EuiTitle } from '../title';
+import { EuiCodeBlock } from '../code';
+import { EuiI18n } from '../i18n';
 
 interface EuiErrorBoundaryState {
   hasError: boolean;
@@ -29,10 +31,6 @@ export class EuiErrorBoundary extends Component<
   EuiErrorBoundaryProps,
   EuiErrorBoundaryState
 > {
-  static propTypes = {
-    children: PropTypes.node,
-  };
-
   constructor(props: EuiErrorBoundaryProps) {
     super(props);
 
@@ -59,20 +57,25 @@ ${stackStr}`;
   }
 
   render() {
-    const { children, ...rest } = this.props;
+    const { children, 'data-test-subj': _dataTestSubj, ...rest } = this.props;
+    const dataTestSubj = classNames('euiErrorBoundary', _dataTestSubj);
 
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (
-        <div className="euiErrorBoundary" {...rest}>
-          <div className="euiErrorBoundary__text">
-            <EuiText size="xs">
-              <h1>Error</h1>
-              <pre className="euiErrorBoundary__stack">
-                <p>{this.state.error}</p>
-              </pre>
-            </EuiText>
-          </div>
+        <div
+          className="euiErrorBoundary"
+          data-test-subj={dataTestSubj}
+          {...rest}
+        >
+          <EuiCodeBlock>
+            <EuiTitle size="xs">
+              <p>
+                <EuiI18n token="euiErrorBoundary.error" default="Error" />
+              </p>
+            </EuiTitle>
+            {this.state.error}
+          </EuiCodeBlock>
         </div>
       );
     }

@@ -2,8 +2,6 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -15,23 +13,18 @@ import commentConfig from './playground';
 
 import Comment from './comment';
 const commentSource = require('!!raw-loader!./comment');
-const commentHtml = renderToHtml(Comment);
 
 import CommentTypes from './comment_types';
 const commentTypesSource = require('!!raw-loader!./comment_types');
-const commentTypesHtml = renderToHtml(CommentTypes);
 
 import CommentTimelineIcons from './comment_timelineIcons';
 const commentTimelineIconsSource = require('!!raw-loader!./comment_timelineIcons');
-const commentTimelineIconsHtml = renderToHtml(CommentTimelineIcons);
 
 import CommentActions from './comment_actions';
 const commentActionsSource = require('!!raw-loader!./comment_actions');
-const commentActionsHtml = renderToHtml(CommentActions);
 
 import CommentList from './comment_list';
 const commentListSource = require('!!raw-loader!./comment_list');
-const commentListHtml = renderToHtml(CommentList);
 
 const commentSnippet = `<EuiComment username="janed">
   {body}
@@ -87,10 +80,6 @@ export const CommentListExample = {
           type: GuideSectionTypes.JS,
           code: commentListSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: commentListHtml,
-        },
       ],
       text: (
         <div>
@@ -111,10 +100,6 @@ export const CommentListExample = {
           type: GuideSectionTypes.JS,
           code: commentSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: commentHtml,
-        },
       ],
       text: (
         <div>
@@ -133,6 +118,7 @@ export const CommentListExample = {
       props: { EuiComment },
       snippet: commentSnippet,
       demo: <Comment />,
+      playground: commentConfig,
     },
     {
       title: 'Comment types',
@@ -140,10 +126,6 @@ export const CommentListExample = {
         {
           type: GuideSectionTypes.JS,
           code: commentTypesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: commentTypesHtml,
         },
       ],
       text: (
@@ -172,10 +154,6 @@ export const CommentListExample = {
         {
           type: GuideSectionTypes.JS,
           code: commentTimelineIconsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: commentTimelineIconsHtml,
         },
       ],
       text: (
@@ -215,10 +193,6 @@ export const CommentListExample = {
           type: GuideSectionTypes.JS,
           code: commentActionsSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: commentActionsHtml,
-        },
       ],
       text: (
         <div>
@@ -252,5 +226,4 @@ export const CommentListExample = {
       demo: <CommentActions />,
     },
   ],
-  playground: commentConfig,
 };

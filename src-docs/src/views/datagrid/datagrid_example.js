@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 import {
   EuiDataGrid,
@@ -9,6 +7,7 @@ import {
   EuiDescriptionList,
   EuiCodeBlock,
   EuiText,
+  EuiLink,
   EuiSpacer,
 } from '../../../../src/components';
 
@@ -16,7 +15,6 @@ import { Link } from 'react-router-dom';
 
 import DataGrid from './datagrid';
 const dataGridSource = require('!!raw-loader!./datagrid');
-const dataGridHtml = renderToHtml(DataGrid);
 
 import {
   EuiDataGridColumn,
@@ -106,6 +104,14 @@ const gridSnippet = `
       stripes: true,
       rowHover: 'highlight',
       header: 'shade',
+    }}
+    // Optional. Allows configuring the heights of grid rows
+    rowHeightsOptions={{
+      defaultHeight: 34,
+      rowHeights: {
+        0: auto
+      },
+      lineHeight: '1em',
     }}
     // Optional. Provide additional schemas to use in the grid.
     // This schema 'franchise' essentially acts like a boolean, looking for Star Wars or Star Trek in a column.
@@ -223,6 +229,20 @@ const gridConcepts = [
       'The total number of rows in the dataset (used by e.g. pagination to know how many pages to list).',
   },
   {
+    title: 'rowHeightsOptions',
+    description: (
+      <span>
+        Allows configuring both default and specific heights of grid rows.
+        Accepts a partial <strong>EuiDataGridRowHeightsOptions</strong> object.
+        See{' '}
+        <EuiLink href="/#/tabular-content/data-grid-row-heights-options">
+          Data grid row heights options
+        </EuiLink>{' '}
+        for more details and examples.
+      </span>
+    ),
+  },
+  {
     title: 'gridStyle',
     description: (
       <span>
@@ -309,10 +329,6 @@ export const DataGridExample = {
         {
           type: GuideSectionTypes.JS,
           code: dataGridSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridHtml,
         },
       ],
       text: (
@@ -415,7 +431,7 @@ export const DataGridExample = {
               explanation on the lower level object types. The majority of the
               types are defined in the{' '}
               <a
-                href="https://github.com/elastic/eui/tree/master/src/components/datagrid/data_grid_types.ts"
+                href="https://github.com/elastic/eui/tree/main/src/components/datagrid/data_grid_types.ts"
                 target="_blank"
               >
                 /datagrid/data_grid_types.ts

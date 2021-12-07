@@ -91,6 +91,7 @@
   transform: scaleY(.5) rotate(30deg) skew(-30deg, 0deg);
   width: $euiSize;
   height: $euiSize;
+  margin: $euiSizeXS $euiSizeS 0;
 }
 
 .guideSass__sizeRow + .guideSass__sizeRow {
@@ -102,9 +103,19 @@
   display: inline-block;
 }
 
-.guideSass__sizeItem {
-  width: $euiSizeXXL;
-  text-align: right;
+.guideSass__euiSize {
+  padding: $euiSize;
+  background-color: $euiColorHighlight;
+}
+
+.guideSass__euiSizeXS2 {
+  padding: $euiSizeXS / 2;
+  background-color: $euiColorHighlight;
+
+  &::after {
+    content: 'padding: #{$euiSizeXS / 2}';
+    font-weight: $euiFontWeightBold;
+  }
 }
 
 .guideSass__fontSizeExample + .guideSass__fontSizeExample {
@@ -147,15 +158,7 @@
   padding: $euiSizeXXL;
   background: $euiColorEmptyShade;
   border-radius: $euiBorderRadius;
-
-  & + .guideSass__shadow {
-    margin-top: $euiSizeXL;
-  }
-}
-
-.colorGuidelines_colorPreviewTooLight rect {
-  stroke: transparentize($euiColorLightShade, lightOrDarkTheme(.5, 0));
-  stroke-width: .25px;
+  margin: $euiSize;
 }
 
 .guideSass__shadow--euiSlightShadow { @include euiSlightShadow; }
@@ -167,17 +170,17 @@
 
 .guideSass__overflowShadows {
   overflow-y: hidden;
-  height: 200px;
+  height: 160px;
 
   .guideSass__overflowShadowText {
     @include euiYScrollWithShadows;
-    padding: $euiSizeS;
+    padding: $euiSize;
   }
 }
 
 .guideSass__overflowShadowsX {
   @include euiXScrollWithShadows;
-  padding: $euiSizeS $euiSizeS 0;
+  padding: $euiSize;
 
   .guideSass__overflowShadowTextX {
     width: 150%;
@@ -193,26 +196,53 @@
   padding: $euiSize;
 }
 
-.guideSass__border--radius {
+.guideSass__border--euiBorderRadius {
   border: $euiBorderThin;
   border-radius: $euiBorderRadius;
 }
 
-.guideSass__border--radiusSmall {
+.guideSass__border--euiBorderRadiusSmall {
   border: $euiBorderThin;
   border-radius: $euiBorderRadiusSmall;
 }
 
+.guideSass__border--euiBorderWidthThin,
 .guideSass__border--euiBorderThin {
   border: $euiBorderThin;
 }
 
+.guideSass__border--euiBorderWidthThick,
 .guideSass__border--euiBorderThick {
   border: $euiBorderThick;
 }
 
 .guideSass__border--euiBorderEditable {
   border: $euiBorderEditable;
+}
+
+.guideSass__border--thickDashed {
+  border: $euiBorderWidthThick dashed $euiBorderColor;
+}
+
+.guideSass__euiColorWarning {
+  padding: $euiSizeS;
+  color: $euiColorInk;
+  background: $euiColorWarning;
+}
+
+.guideSass__euiColorWarningText {
+  color: $euiColorWarningText;
+}
+
+.guideSass__tintMediumShade {
+  padding: $euiSizeS;
+  background: tintOrShade($euiColorMediumShade, 90%, 70%);
+}
+
+.guideSass__special {
+  padding: $euiSizeS;
+  color: $euiColorGhost;
+  background: $euiColorInk;
 }
 
 .guideSass__fontFamily {
@@ -224,21 +254,74 @@
   line-height: $euiSizeXL;
   color: $euiColorEmptyShade;
 
+  &--sans {
+    @include euiFont;
+  }
+
   &--code {
     @include euiCodeFont;
   }
 }
 
-.guideSass__animRow + .guideSass__animRow {
-  margin-top: $euiSizeL;
+.guideSass__mixin {
+  &--euiFont {
+    @include euiFont;
+  }
+
+  &--euiCodeFont {
+    @include euiCodeFont;
+  }
+
+  &--euiText {
+    @include euiText;
+  }
+
+  &--euiTitle {
+    @include euiTitle('s')
+  }
+
+  &--fontSize {
+    @include fontSize(19px)
+  }
+}
+
+.guideSass__fontSizeL {
+  @include euiFontSizeL;
+}
+
+.guideSass__fontFeatureSettings {
+  font-feature-settings: $euiFontFeatureSettings;
+}
+
+.guideSass__speedExample {
+  transition: background $euiAnimSpeedSlow;
+
+  &:hover {
+    background: transparentize($euiColorDanger, .25);
+  }
+}
+
+.guideSass__easeExample {
+  padding: $euiSizeS;
+  transition: padding $euiAnimSpeedSlow $euiAnimSlightResistance;
+
+  &:hover {
+    padding: $euiSizeXL;
+  }
+}
+
+.guideSass__animRow {
+  width: $euiSizeXL * 2;
+  margin-right: $euiSize;
+  margin-top: $euiSizeXS;
 }
 
 .guideSass__animParent {
   background: $euiColorLightestShade;
   height: $euiSize;
-  margin-top: $euiSizeS;
   position: relative;
   overflow: hidden;
+  width: 100%;
 }
 
 .guideSass__animChild {
@@ -286,10 +369,6 @@
   transition-duration: $euiAnimSpeedSlow;
 }
 
-.guideSass__breakpointExample {
-  padding: $euiSize;
-  color: $euiColorGhost;
-}
 
 .guideSass__themedBox {
   padding: $euiSize;
@@ -325,58 +404,70 @@
   }
 }
 
+.guideSass__transparencyExample {
+  background: transparentize($euiColorPrimary, .8);
+  padding: $euiSize;
+}
+
+.guideSass__tintExample {
+  $backgroundColor: tint($euiColorSuccess, 20%);
+  background: $backgroundColor;
+  color: chooseLightOrDarkText($backgroundColor);
+  padding: $euiSize;
+}
+
+.guideSass__shadeExample {
+  $backgroundColor: shade($euiColorSuccess, 20%);
+  background: $backgroundColor;
+  color: chooseLightOrDarkText($backgroundColor);
+  padding: $euiSize;
+}
+
+.guideSass__tintShadeExample {
+  $backgroundColor: tintOrShade($euiColorSuccess, 80%, 80%);
+  background: $backgroundColor;
+  color: chooseLightOrDarkText($backgroundColor);
+  padding: $euiSize;
+}
+
+.guideSass__textExample {
+  padding: $euiSize;
+  display: inline-block;
+  margin-right: $euiSize;
+
+  &--primary {
+    background-color: $euiColorPrimary;
+    color: chooseLightOrDarkText($euiColorPrimary);
+  }
+
+  &--success {
+    background-color: $euiColorSuccess;
+    color: chooseLightOrDarkText($euiColorSuccess);
+  }
+
+  &--warning {
+    background-color: $euiColorWarning;
+    color: chooseLightOrDarkText($euiColorWarning);
+  }
+
+  &--danger {
+    background-color: $euiColorDanger;
+    color: chooseLightOrDarkText($euiColorDanger);
+  }
+}
+
+
 .guideSection__emptyBox {
   background-color: $euiColorEmptyShade;
 }
 
-@import 'colors/color_section';
 
-@include euiBreakpoint('xl') {
-  .guideSass__breakpointExample {
-    background: $euiColorPrimary;
+@each $key, $size in $euiBreakpoints {
+  .guideSass__breakpoint--#{$key} {
+    display: none;
 
-    &:before {
-      content: 'You are currently in the xl breakpoint';
-    }
-  }
-}
-
-@include euiBreakpoint('l') {
-  .guideSass__breakpointExample {
-    background: $euiColorSecondary;
-
-    &:before {
-      content: 'You are currently in the l breakpoint';
-    }
-  }
-}
-
-@include euiBreakpoint('m') {
-  .guideSass__breakpointExample {
-    background: $euiColorAccent;
-
-    &:before {
-      content: 'You are currently in the m breakpoint';
-    }
-  }
-}
-
-@include euiBreakpoint('s') {
-  .guideSass__breakpointExample {
-    background: $euiColorWarning;
-
-    &:before {
-      content: 'You are currently in the s breakpoint';
-    }
-  }
-}
-
-@include euiBreakpoint('xs') {
-  .guideSass__breakpointExample {
-    background: $euiColorDanger;
-
-    &:before {
-      content: 'You are currently in the xs breakpoint';
+    @include euiBreakpoint($key) {
+      display: block;
     }
   }
 }

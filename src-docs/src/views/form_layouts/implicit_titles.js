@@ -9,16 +9,16 @@ import {
   EuiDescribedFormGroup,
 } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
-  const randomId = htmlIdGenerator()();
+  const implicitTitleId = useGeneratedHtmlId({ prefix: 'implicitTitle' });
   const titleText = 'Implicit titles';
 
   return (
     <EuiForm component="form">
       <EuiDescribedFormGroup
-        title={<h3 id={randomId}>{titleText}</h3>}
+        title={<h3 id={implicitTitleId}>{titleText}</h3>}
         description={
           <>
             <strong>EuiDescribedFormGroup</strong> components tend to use this
@@ -36,7 +36,7 @@ export default () => {
             </>
           }
         >
-          <EuiFieldText aria-labelledby={randomId} />
+          <EuiFieldText aria-labelledby={implicitTitleId} />
         </EuiFormRow>
         <EuiFormRow
           helpText={

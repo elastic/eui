@@ -56,6 +56,7 @@ export default () => {
       helpText="Select an occupation from the list. If your occupation isn’t available, create a custom one."
     >
       <EuiComboBox
+        aria-label="Accessible screen reader label"
         placeholder="Select a single option"
         singleSelection={{ asPlainText: true }}
         options={options}

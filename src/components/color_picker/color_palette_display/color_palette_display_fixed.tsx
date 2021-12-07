@@ -9,6 +9,7 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../../common';
 import { getFixedLinearGradient } from '../utils';
+import { EuiScreenReaderOnly } from '../../accessibility/screen_reader';
 import { EuiColorPaletteDisplayShared } from './color_palette_display';
 
 export interface EuiColorPaletteDisplayFixedProps
@@ -23,6 +24,7 @@ interface paletteItem {
 
 export const EuiColorPaletteDisplayFixed: FunctionComponent<EuiColorPaletteDisplayFixedProps> = ({
   palette,
+  title,
   ...rest
 }) => {
   const fixedGradient = getFixedLinearGradient(palette);
@@ -36,7 +38,17 @@ export const EuiColorPaletteDisplayFixed: FunctionComponent<EuiColorPaletteDispl
 
   return (
     <span {...rest}>
-      <span className="euiColorPaletteDisplayFixed__bleedArea">
+      {title && (
+        <EuiScreenReaderOnly>
+          <span>{title}</span>
+        </EuiScreenReaderOnly>
+      )}
+      <span
+        // aria-hidden="true" is to ensure color blocks are ignored by screen readers,
+        // and the only accessible text for options is the EuiScreenReaderOnly {title}
+        aria-hidden="true"
+        className="euiColorPaletteDisplayFixed__bleedArea"
+      >
         {paletteStops}
       </span>
     </span>

@@ -1,19 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiLink } from '../../../../src/components';
 
 import { ResizeObserverExample as ResizeObserver } from './resize_observer';
 const resizeObserverSource = require('!!raw-loader!./resize_observer');
-const resizeObserverHtml = renderToHtml(ResizeObserver);
 
 import { ResizeObserverHookExample as ResizeObserverHook } from './resize_observer_hook';
 const resizeObserverHookSource = require('!!raw-loader!./resize_observer_hook');
-const resizeObserverHookHtml = renderToHtml(ResizeObserverHook);
 
 export const ResizeObserverExample = {
   title: 'Resize observer',
@@ -23,10 +19,6 @@ export const ResizeObserverExample = {
         {
           type: GuideSectionTypes.JS,
           code: resizeObserverSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: resizeObserverHtml,
         },
       ],
       text: (
@@ -61,10 +53,6 @@ export const ResizeObserverExample = {
         {
           type: GuideSectionTypes.JS,
           code: resizeObserverHookSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: resizeObserverHookHtml,
         },
       ],
       text: (

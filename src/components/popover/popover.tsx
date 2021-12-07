@@ -47,21 +47,22 @@ import {
 import { EuiI18n } from '../i18n';
 import { EuiOutsideClickDetector } from '../outside_click_detector';
 
-export type PopoverAnchorPosition =
-  | 'upCenter'
-  | 'upLeft'
-  | 'upRight'
-  | 'downCenter'
-  | 'downLeft'
-  | 'downRight'
-  | 'leftCenter'
-  | 'leftUp'
-  | 'leftDown'
-  | 'rightCenter'
-  | 'rightUp'
-  | 'rightDown';
+export const popoverAnchorPosition = [
+  'upCenter',
+  'upLeft',
+  'upRight',
+  'downCenter',
+  'downLeft',
+  'downRight',
+  'leftCenter',
+  'leftUp',
+  'leftDown',
+  'rightCenter',
+  'rightUp',
+  'rightDown',
+] as const;
 
-const generateId = htmlIdGenerator();
+export type PopoverAnchorPosition = typeof popoverAnchorPosition[number];
 
 export interface EuiPopoverProps {
   /**
@@ -151,7 +152,8 @@ export interface EuiPopoverProps {
   popoverRef?: Ref<HTMLDivElement>;
   /**
    * When `true`, the popover's position is re-calculated when the user
-   * scrolls, this supports having fixed-position popover anchors
+   * scrolls, this supports having fixed-position popover anchors. When nesting
+   * an `EuiPopover` in a scrollable container, `repositionOnScroll` should be `true`
    */
   repositionOnScroll?: boolean;
   /**
@@ -350,6 +352,7 @@ export class EuiPopover extends Component<Props, State> {
   private button: HTMLElement | null = null;
   private panel: HTMLElement | null = null;
   private hasSetInitialFocus: boolean = false;
+  private descriptionId: string = htmlIdGenerator()();
 
   constructor(props: Props) {
     super(props);
@@ -435,8 +438,8 @@ export class EuiPopover extends Component<Props, State> {
         // there isn't a focus target, one of two reasons:
         // #1 is the whole panel hidden? If so, schedule another check
         // #2 panel is visible but no tabbables exist, move focus to the panel
-        const panelVisibility = window.getComputedStyle(this.panel).visibility;
-        if (panelVisibility === 'hidden') {
+        const panelVisibility = window.getComputedStyle(this.panel).opacity;
+        if (panelVisibility === '0') {
           // #1
           this.updateFocus();
         } else {
@@ -510,7 +513,7 @@ export class EuiPopover extends Component<Props, State> {
     }
 
     if (this.props.repositionOnScroll) {
-      window.addEventListener('scroll', this.positionPopoverFixed);
+      window.addEventListener('scroll', this.positionPopoverFixed, true);
     }
   }
 
@@ -523,9 +526,9 @@ export class EuiPopover extends Component<Props, State> {
     // update scroll listener
     if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
       if (this.props.repositionOnScroll) {
-        window.addEventListener('scroll', this.positionPopoverFixed);
+        window.addEventListener('scroll', this.positionPopoverFixed, true);
       } else {
-        window.removeEventListener('scroll', this.positionPopoverFixed);
+        window.removeEventListener('scroll', this.positionPopoverFixed, true);
       }
     }
 
@@ -543,7 +546,7 @@ export class EuiPopover extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.positionPopoverFixed);
+    window.removeEventListener('scroll', this.positionPopoverFixed, true);
     clearTimeout(this.respositionTimeout);
     clearTimeout(this.closingTransitionTimeout);
     cancelAnimationFrame(this.closingTransitionAnimationFrame!);
@@ -698,8 +701,6 @@ export class EuiPopover extends Component<Props, State> {
       ...rest
     } = this.props;
 
-    const descriptionId = generateId();
-
     const classes = classNames(
       'euiPopover',
       anchorPosition ? anchorPositionToClassNameMap[anchorPosition] : null,
@@ -741,10 +742,10 @@ export class EuiPopover extends Component<Props, State> {
 
       let focusTrapScreenReaderText;
       if (ownFocus) {
-        ariaDescribedby = descriptionId;
+        ariaDescribedby = this.descriptionId;
         focusTrapScreenReaderText = (
           <EuiScreenReaderOnly>
-            <p id={descriptionId}>
+            <p id={this.descriptionId}>
               <EuiI18n
                 token="euiPopover.screenReaderAnnouncement"
                 default="You are in a dialog. To close this dialog, hit escape."

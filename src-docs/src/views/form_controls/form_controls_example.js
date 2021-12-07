@@ -2,8 +2,6 @@ import React, { Fragment } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -43,7 +41,6 @@ import {
 
 import FieldSearch from './field_search';
 const fieldSearchSource = require('!!raw-loader!./field_search');
-const fieldSearchHtml = renderToHtml(FieldSearch);
 const fieldSearchSnippet = [
   `<EuiFieldSearch
   placeholder="Search this"
@@ -55,7 +52,6 @@ const fieldSearchSnippet = [
 
 import FieldText from './field_text';
 const fieldTextSource = require('!!raw-loader!./field_text');
-const fieldTextHtml = renderToHtml(FieldText);
 const fieldTextSnippet = [
   `<EuiFieldText
   placeholder="Placeholder text"
@@ -66,7 +62,6 @@ const fieldTextSnippet = [
 
 import FieldNumber from './field_number';
 const fieldNumberSource = require('!!raw-loader!./field_number');
-const fieldNumberHtml = renderToHtml(FieldNumber);
 const fieldNumberSnippet = [
   `<EuiFieldNumber
   placeholder="Placeholder text"
@@ -77,7 +72,6 @@ const fieldNumberSnippet = [
 
 import FieldPassword from './field_password';
 const fieldPasswordSource = require('!!raw-loader!./field_password');
-const fieldPasswordHtml = renderToHtml(FieldPassword);
 const fieldPasswordSnippet = [
   `<EuiFieldPassword
   placeholder="Placeholder text"
@@ -89,7 +83,6 @@ const fieldPasswordSnippet = [
 
 import TextArea from './text_area';
 const textAreaSource = require('!!raw-loader!./text_area');
-const textAreaHtml = renderToHtml(TextArea);
 const textAreaSnippet = [
   `<EuiTextArea
   placeholder="Placeholder text"
@@ -100,7 +93,6 @@ const textAreaSnippet = [
 
 import FilePicker from './file_picker';
 const filePickerSource = require('!!raw-loader!./file_picker');
-const filePickerHtml = renderToHtml(FilePicker);
 const filePickerSnippet = [
   `<EuiFilePicker
   id={filePickerId}
@@ -124,7 +116,6 @@ const filePickerRemoveSnippet = [
 
 import Select from './select';
 const selectSource = require('!!raw-loader!./select');
-const selectHtml = renderToHtml(Select);
 const selectSnippet = [
   `<EuiSelect
   options={[
@@ -140,16 +131,15 @@ const selectSnippet = [
 
 import Checkbox from './checkbox';
 const checkboxSource = require('!!raw-loader!./checkbox');
-const checkboxHtml = renderToHtml(Checkbox);
 const checkboxSnippet = [
   `<EuiCheckbox
-  id={checkboxId}
+  id={checkboxId__1}
   label="I am a checkbox"
   checked={checked}
   onChange={onChange}
 />`,
   `<EuiCheckbox
-  id={checkboxId}
+  id={checkboxId__2}
   label="I am an indeterminate checkbox"
   indeterminate={indeterminate}
   onChange={onChangeIndeterminate}
@@ -158,11 +148,9 @@ const checkboxSnippet = [
 
 import CheckboxGroup from './checkbox_group';
 const checkboxGroupSource = require('!!raw-loader!./checkbox_group');
-const checkboxGroupHtml = renderToHtml(CheckboxGroup);
 
 import Radio from './radio';
 const radioSource = require('!!raw-loader!./radio');
-const radioHtml = renderToHtml(Radio);
 const radioSnippet = [
   `<EuiRadio
   label="I am a radio"
@@ -173,34 +161,44 @@ const radioSnippet = [
 
 import RadioGroup from './radio_group';
 const radioGroupSource = require('!!raw-loader!./radio_group');
-const radioGroupHtml = renderToHtml(RadioGroup);
 
 import Switch from './switch';
 const switchSource = require('!!raw-loader!./switch');
-const switchHtml = renderToHtml(Switch);
-const switchSnippet = [
-  `<EuiSwitch
-  label="I am a switch"
+const switchSnippet = `<EuiSwitch
+  label="Enable"
   checked={checked}
   onChange={onChange}
+/>`;
+import SwitchLabel from './switch_label';
+const switchLabelSource = require('!!raw-loader!./switch_label');
+const switchLabelSnippet = [
+  `<EuiSwitch
+  showLabel={false}
+  label="Enable"
+  checked={checked}
+  onChange={onChange}
+  compressed
+/>`,
+  `<EuiSwitch
+  label={checked ? 'on' : 'off'}
+  aria-describedby={labelId}
+  checked={checked}
+  onChange={onChange}
+  compressed
 />`,
 ];
 
 import PrependAppend from './prepend_append';
 const PrependAppendSource = require('!!raw-loader!./prepend_append');
-const PrependAppendHtml = renderToHtml(PrependAppend);
 
 import Fieldset from './fieldset';
 const fieldsetSource = require('!!raw-loader!./fieldset');
-const fieldsetHtml = renderToHtml(Fieldset);
 
 import FormControlLayout from './form_control_layout';
 const formControlLayoutSource = require('!!raw-loader!./form_control_layout');
-const formControlLayoutHtml = renderToHtml(FormControlLayout);
 
 import FormControlLayoutRange from './form_control_layout_range';
 const formControlLayoutRangeSource = require('!!raw-loader!./form_control_layout_range');
-const formControlLayoutRangeHtml = renderToHtml(FormControlLayoutRange);
 
 export const FormControlsExample = {
   title: 'Form controls',
@@ -211,10 +209,6 @@ export const FormControlsExample = {
         {
           type: GuideSectionTypes.JS,
           code: fieldTextSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fieldTextHtml,
         },
       ],
       snippet: fieldTextSnippet,
@@ -231,10 +225,6 @@ export const FormControlsExample = {
           type: GuideSectionTypes.JS,
           code: fieldSearchSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fieldSearchHtml,
-        },
       ],
       snippet: fieldSearchSnippet,
       props: {
@@ -249,10 +239,6 @@ export const FormControlsExample = {
         {
           type: GuideSectionTypes.JS,
           code: fieldNumberSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fieldNumberHtml,
         },
       ],
       snippet: fieldNumberSnippet,
@@ -269,10 +255,6 @@ export const FormControlsExample = {
           type: GuideSectionTypes.JS,
           code: fieldPasswordSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fieldPasswordHtml,
-        },
       ],
       snippet: fieldPasswordSnippet,
       props: {
@@ -287,10 +269,6 @@ export const FormControlsExample = {
         {
           type: GuideSectionTypes.JS,
           code: selectSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectHtml,
         },
       ],
       text: (
@@ -323,10 +301,6 @@ export const FormControlsExample = {
           type: GuideSectionTypes.JS,
           code: textAreaSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: textAreaHtml,
-        },
       ],
       snippet: textAreaSnippet,
       props: {
@@ -341,10 +315,6 @@ export const FormControlsExample = {
         {
           type: GuideSectionTypes.JS,
           code: filePickerSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: filePickerHtml,
         },
       ],
       text: (
@@ -397,10 +367,6 @@ export const FormControlsExample = {
           type: GuideSectionTypes.JS,
           code: checkboxSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: checkboxHtml,
-        },
       ],
       snippet: checkboxSnippet,
       props: {
@@ -415,10 +381,6 @@ export const FormControlsExample = {
         {
           type: GuideSectionTypes.JS,
           code: checkboxGroupSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: checkboxGroupHtml,
         },
       ],
       props: {
@@ -443,10 +405,6 @@ export const FormControlsExample = {
           type: GuideSectionTypes.JS,
           code: radioSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: radioHtml,
-        },
       ],
       snippet: radioSnippet,
       props: {
@@ -461,10 +419,6 @@ export const FormControlsExample = {
         {
           type: GuideSectionTypes.JS,
           code: radioGroupSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: radioGroupHtml,
         },
       ],
       props: {
@@ -488,14 +442,25 @@ export const FormControlsExample = {
     },
     {
       title: 'Switch',
+      text: (
+        <>
+          <p>
+            A switch can be substituted for a checkbox when the semantics of the
+            label dictate a true on/off state. The label should be{' '}
+            <strong>static</strong>, action-oriented, and describe the feature
+            or present a question. Use past tense only when labelling a list of
+            previously created items, like in a{' '}
+            <EuiLink href="https://github.com/elastic/eui/pull/5119#discussion_r699717319">
+              table header
+            </EuiLink>
+            .
+          </p>
+        </>
+      ),
       source: [
         {
           type: GuideSectionTypes.JS,
           code: switchSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: switchHtml,
         },
       ],
       snippet: switchSnippet,
@@ -506,15 +471,42 @@ export const FormControlsExample = {
       playground: SwitchConfig,
     },
     {
+      text: (
+        <>
+          <p>
+            If the switch is described in some other manner, like when using an{' '}
+            <Link to="/forms/form-layouts#form-and-form-rows">
+              <strong>EuiFormRow</strong>
+            </Link>
+            , you can eliminate the visible label with{' '}
+            <EuiCode language="tsx">{'showLabel={false}'}</EuiCode> or use it to
+            further describe the state.
+          </p>
+          <EuiCallOut
+            color="warning"
+            iconType="accessibility"
+            title="When providing the state as the label, you'll need to provide an aria-describedby with the label's id to associate it with the swtich."
+          />
+        </>
+      ),
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: switchLabelSource,
+        },
+      ],
+      snippet: switchLabelSnippet,
+      props: {
+        EuiSwitch,
+      },
+      demo: <SwitchLabel />,
+    },
+    {
       title: 'Fieldset and legend',
       source: [
         {
           type: GuideSectionTypes.JS,
           code: fieldsetSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fieldsetHtml,
         },
       ],
       text: (
@@ -522,7 +514,6 @@ export const FormControlsExample = {
           <EuiCallOut
             color="warning"
             iconType="accessibility"
-            size="s"
             title={
               <span>
                 &quot;[Use a fieldset and legend] for groups of related controls
@@ -588,10 +579,6 @@ export const FormControlsExample = {
           type: GuideSectionTypes.JS,
           code: PrependAppendSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: PrependAppendHtml,
-        },
       ],
       demo: <PrependAppend />,
       snippet: [
@@ -611,10 +598,6 @@ export const FormControlsExample = {
         {
           type: GuideSectionTypes.JS,
           code: formControlLayoutSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: formControlLayoutHtml,
         },
       ],
       text: (
@@ -652,10 +635,6 @@ export const FormControlsExample = {
         {
           type: GuideSectionTypes.JS,
           code: formControlLayoutRangeSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: formControlLayoutRangeHtml,
         },
       ],
       text: (

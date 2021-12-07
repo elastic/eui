@@ -9,6 +9,7 @@ import {
   EuiTitle,
   EuiSpacer,
 } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [example1, setExample1] = useState({
@@ -24,6 +25,15 @@ export default () => {
   const [example2, setExample2] = useState({
     isOpen: false,
     value: 'count()',
+  });
+
+  const columnsPopoverId__1 = useGeneratedHtmlId({
+    prefix: 'columnsPopover',
+    suffix: 'first',
+  });
+  const columnsPopoverId__2 = useGeneratedHtmlId({
+    prefix: 'columnsPopover',
+    suffix: 'second',
   });
 
   const options = [
@@ -140,7 +150,7 @@ export default () => {
   return (
     <div style={{ maxWidth: 500 }}>
       <EuiPopover
-        id="columnsPopover1"
+        id={columnsPopoverId__1}
         button={
           <EuiExpression
             description="indices"
@@ -163,7 +173,7 @@ export default () => {
       </EuiPopover>
 
       <EuiPopover
-        id="columnsPopover2"
+        id={columnsPopoverId__2}
         panelPaddingSize="s"
         button={
           <EuiExpression
