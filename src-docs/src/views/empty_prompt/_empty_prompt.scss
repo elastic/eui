@@ -1,25 +1,6 @@
-.guideDemo__emptyPromptPanelPicker {
-  border: $euiBorderThin;
-  display: flex;
-  flex-direction: row;
-}
-
-.guideDemo__emptyPromptPanelPickerControls,
-.guideDemo__emptyPromptPanelPickerPreview {
-  padding: $euiSize;
-}
-
-.guideDemo__emptyPromptPanelPickerControls {
-  background: $euiPageBackgroundColor;
-}
-
-.guideDemo__emptyPromptPanelPickerPreview {
-  padding: $euiSize;
-  background: $euiColorEmptyShade;
-  flex: 1;
-
-  > .euiPanel {
-    margin-top: $euiSize;
+.guideDemo__emptyPromptRecommendCards {
+  .euiCheckableCard {
+    margin-bottom: $euiSize;
   }
 }
 
@@ -36,9 +17,13 @@
   &:first-of-type {
     margin-right: $euiSize;
   }
+
+  &:focus {
+    outline: 2px solid $euiFocusRingColor;
+  }
 }
 
-.guideDemo__emptyPromptPanelPickerCheckMark {
+.guideDemo__emptyPromptBgPickerCheckMark {
   position: absolute;
   top: $euiSizeXS;
   right: $euiSizeXS;
