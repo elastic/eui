@@ -40,6 +40,47 @@ exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiFormControlLayout props compressed renders small-sized icon, clear button, and loading spinner 1`] = `
+<div
+  class="euiFormControlLayout euiFormControlLayout--compressed"
+>
+  <div
+    class="euiFormControlLayout__childrenWrapper"
+  >
+    <div
+      class="euiFormControlLayoutIcons"
+    >
+      <span
+        class="euiFormControlLayoutCustomIcon"
+      >
+        <span
+          aria-hidden="true"
+          class="euiFormControlLayoutCustomIcon__icon"
+          data-euiicon-type="alert"
+        />
+      </span>
+    </div>
+    <div
+      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right"
+    >
+      <button
+        aria-label="Clear input"
+        class="euiFormControlLayoutClearButton euiFormControlLayoutClearButton--small"
+        type="button"
+      >
+        <span
+          class="euiFormControlLayoutClearButton__icon"
+          data-euiicon-type="cross"
+        />
+      </button>
+      <span
+        class="euiLoadingSpinner euiLoadingSpinner--small"
+      />
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiFormControlLayout props fullWidth is rendered 1`] = `
 <div
   class="euiFormControlLayout euiFormControlLayout--fullWidth"

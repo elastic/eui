@@ -14,4 +14,5 @@
 // ***********************************************************
 
 import '@cypress/code-coverage/support';
+import './commands.js';
 require(THEME_IMPORT); // defined by DefinePlugin in the cypress webpack config
