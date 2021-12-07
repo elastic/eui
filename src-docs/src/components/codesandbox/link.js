@@ -81,11 +81,11 @@ export const CodeSandboxLinkComponent = ({
     })
     .join(' ');
 
-  let indexContent;
+  let demoContent;
 
   if (!content) {
     /* 2 */
-    indexContent = `import React from 'react';
+    demoContent = `import React from 'react';
 
 import { EuiButton } from '@elastic/eui';
 
@@ -111,22 +111,22 @@ export const Demo = () => (<EuiButton>Hello world!</EuiButton>);
       return null;
     }
 
-    indexContent = exampleCleaned.replace(
+    demoContent = exampleCleaned.replace(
       /(from )'.+display_toggles';/,
       "from './display_toggles';"
     );
   }
 
-  const indexContentDeps = listExtraDeps(indexContent);
-  let mergedDeps = indexContentDeps;
+  const demoContentDeps = listExtraDeps(demoContent);
+  let mergedDeps = demoContentDeps;
 
   /* 5 */
-  if (hasDisplayToggles(indexContent)) {
+  if (hasDisplayToggles(demoContent)) {
     const cleanedDisplayToggles = cleanEuiImports(displayTogglesRawCode);
     const displayToggleDeps = listExtraDeps(cleanedDisplayToggles);
 
     /* 6 */
-    mergedDeps = { ...indexContentDeps, ...displayToggleDeps };
+    mergedDeps = { ...demoContentDeps, ...displayToggleDeps };
   }
 
   const config = {
@@ -153,7 +153,7 @@ export const Demo = () => (<EuiButton>Hello world!</EuiButton>);
       },
       /* 3 */
       [`demo.${type}`]: {
-        content: indexContent,
+        content: demoContent,
       },
       'index.js': {
         content: `import '${cssFile}';
@@ -208,7 +208,7 @@ ReactDOM.render(
   };
 
   /* 5 */
-  if (hasDisplayToggles(indexContent)) {
+  if (hasDisplayToggles(demoContent)) {
     const cleanedDisplayToggles = cleanEuiImports(displayTogglesRawCode);
 
     config.files['display_toggles.js'] = {
