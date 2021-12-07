@@ -12,5 +12,5 @@ export const useForceRender = () => {
   const [, setRenderCount] = useState(0);
   return useCallback(() => {
     setRenderCount((x) => x + 1);
-  }, [setRenderCount]);
+  }, []);
 };
