@@ -28,18 +28,6 @@
   .euiPageBody--#{$modifier} {
     padding: $amount;
 
-    & > .euiPageHeader:not([class*='--padding']) {
-      // Match the body's padding for spacing if it doesn't have it's own
-      margin-bottom: $amount;
-      // When the page header is actually inside of a panelled page body,
-      // We want to add some extra separation between it and the content body
-      border-bottom: $euiBorderThin;
-
-      &:not(.euiPageHeader--tabsAtBottom):not(.euiPageHeader--onlyTabs) {
-        padding-bottom: $amount;
-      }
-    }
-
     // When only tabs, remove all padding
     & > .euiPageHeader.euiPageHeader--onlyTabs {
       padding-top: 0;
