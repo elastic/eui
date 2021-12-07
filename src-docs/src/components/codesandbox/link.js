@@ -25,9 +25,10 @@ const getVersion = (packageName) => {
  * 1. A `content` prop is passed containing the src-doc example code we need to manipulate for CS.
  * 2. If no content exists (like the homepage link), we'll make a hello world file bundled with EUI and call it a day.
  * 3. If content exists, we build an `index.js/tsx` (depending on the passed source type) file with a <Demo> component based on the original content.
- * 4. If content contains `DisplayToggles`, we also generate a `display_toggles.js` file alongside the `index.js` file to import.
- * 5. Through regex we read the dependencies of both `content` and `display_toggles` and pass that to CS.
- * 6. We pass the files and dependencies as params to CS through a POST call.
+ * 4. If the default theme is in use, create an `index.html file in `./public` and a `provider.js` file inside `./csb-src` to import and provide global styles.
+ * 5. If content contains `DisplayToggles`, we also generate a `display_toggles.js` file inside `./csb-src` to import.
+ * 6. Through regex we read the dependencies of both `content` and `display_toggles` and pass that to CS.
+ * 7. We pass the files and dependencies as params to CS through a POST call.
  * */
 
 const displayTogglesRawCode = require('!!raw-loader!../../views/form_controls/display_toggles')
@@ -83,11 +84,13 @@ export const CodeSandboxLinkComponent = ({
   // Renders the new Demo component generically into the code sandbox page
   const exampleClose = `ReactDOM.render(
   ${
+    /* 4 */
     isLegacyTheme
       ? '<Demo />'
-      : `<EuiProvider ${providerProps}>
+      : `// See \`./csb-src/provider\` for \`EuiProvider\` configuration
+  <Provider ${providerProps}>
     <Demo />
-  </EuiProvider>`
+  </Provider>`
   },
   document.getElementById('root')
 );`;
@@ -100,15 +103,15 @@ export const CodeSandboxLinkComponent = ({
 import '${cssFile}';
 import React from 'react';
 
-import {
-  ${
-    isLegacyTheme
-      ? 'EuiButton,'
-      : `EuiButton,
-  EuiProvider,`
-  }
-} from '@elastic/eui';
-
+import { EuiButton } from '@elastic/eui';
+${
+  /* 4 */
+  !isLegacyTheme
+    ? `
+import { Provider } from './csb-src/provider';
+`
+    : ''
+}
 const Demo = () => (<EuiButton>Hello world!</EuiButton>);
 
 ${exampleClose}
@@ -123,29 +126,35 @@ ${exampleClose}
       .replace('export default', 'const Demo =')
       .replace(
         /(from )'(..\/)+display_toggles(\/?';)/,
-        "from './display_toggles';"
+        "from './csb-src/display_toggles';"
       );
 
-    if (!isLegacyTheme && !exampleCleaned.includes('EuiProvider')) {
+    if (!isLegacyTheme && !exampleCleaned.includes('Provider')) {
       if (exampleCleaned.includes(" } from '@elastic/eui';")) {
         // Single line import statement
         exampleCleaned = exampleCleaned.replace(
           " } from '@elastic/eui';",
-          ", EuiProvider } from '@elastic/eui';"
+          ` } from '@elastic/eui';
+
+import { Provider } from './csb-src/provider';`
         );
       } else {
         // Multi line import statement
         exampleCleaned = exampleCleaned.replace(
           "} from '@elastic/eui';",
-          `  EuiProvider,
-} from '@elastic/eui';`
+          `} from '@elastic/eui';
+
+import { Provider } from './csb-src/provider';`
         );
       }
     }
 
     // If the code example still has local doc imports after the above cleaning it's
-    // too complicated for code sandbox so we don't provide a link
-    const hasLocalImports = /(from )'((.|..)\/).*?';/.test(exampleCleaned);
+    // too complicated for code sandbox so we don't provide a link.
+    // `./csb-src` is allowed as an environment import location.
+    const hasLocalImports = /(from )'((.|..)\/)(?!csb-src).*?';/.test(
+      exampleCleaned
+    );
 
     if (hasLocalImports && !hasDisplayToggles(exampleCleaned)) {
       return null;
@@ -163,19 +172,19 @@ ${exampleClose}
 `;
     indexContent = cleanedContent.replace(
       /(from )'.+display_toggles';/,
-      "from './display_toggles';"
+      "from './csb-src/display_toggles';"
     );
   }
 
   const indexContentDeps = listExtraDeps(indexContent);
   let mergedDeps = indexContentDeps;
 
-  /* 4 */
+  /* 5 */
   if (hasDisplayToggles(indexContent)) {
     const cleanedDisplayToggles = cleanEuiImports(displayTogglesRawCode);
     const displayToggleDeps = listExtraDeps(cleanedDisplayToggles);
 
-    /* 5 */
+    /* 6 */
     mergedDeps = { ...indexContentDeps, ...displayToggleDeps };
   }
 
@@ -187,6 +196,7 @@ ${exampleClose}
             '@elastic/eui': pkg.version,
             ...[
               '@elastic/datemath',
+              '@emotion/cache',
               '@emotion/react',
               'moment',
               'react',
@@ -208,10 +218,45 @@ ${exampleClose}
   };
 
   /* 4 */
+  if (!isLegacyTheme) {
+    config.files['public/index.html'] = {
+      content: `<head>
+  <title>Elastic UI Framework v${pkg.version}</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="global-styles">
+</head>
+<body>
+  <div id="root" />
+</body>`,
+    };
+
+    config.files['csb-src/provider.js'] = {
+      content: `import React from 'react';
+import createCache from '@emotion/cache';
+import { EuiProvider } from '@elastic/eui';
+
+const cache = createCache({
+  key: 'codesandbox',
+  container: document.querySelector('meta[name="global-styles"]'),
+});
+
+export const Provider = ({ children, ...rest }) => {
+  return (
+    <EuiProvider cache={cache} {...rest}>
+      {children}
+    </EuiProvider>
+  );
+};`,
+    };
+  }
+
+  /* 5 */
   if (hasDisplayToggles(indexContent)) {
     const cleanedDisplayToggles = cleanEuiImports(displayTogglesRawCode);
 
-    config.files['display_toggles.js'] = {
+    config.files['csb-src/display_toggles.js'] = {
       content: cleanedDisplayToggles,
     };
   }
@@ -229,7 +274,7 @@ ${exampleClose}
       target="_blank"
       className={className}
     >
-      {/* 6 */}
+      {/* 7 */}
       <input type="hidden" name="parameters" value={params} />
       {childWithSubmit}
     </form>
