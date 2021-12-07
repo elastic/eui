@@ -40,7 +40,7 @@ exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
 </div>
 `;
 
-exports[`EuiFormControlLayout props compressed renders small-sized icons, clear button, and loading spinner 1`] = `
+exports[`EuiFormControlLayout props compressed renders small-sized icon, clear button, and loading spinner 1`] = `
 <div
   class="euiFormControlLayout euiFormControlLayout--compressed"
 >
