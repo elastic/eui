@@ -8,11 +8,7 @@ import {
 
 export default function () {
   const [activePage, setActivePage] = useState(0);
-  const PAGE_COUNT = 10;
-
-  const goToPage = (pageNumber) => {
-    setActivePage(pageNumber);
-  };
+  const PAGE_COUNT = 15;
 
   return (
     <EuiFlexGroup justifyContent="spaceAround">
@@ -21,7 +17,7 @@ export default function () {
           aria-label="Centered pagination example"
           pageCount={PAGE_COUNT}
           activePage={activePage}
-          onPageClick={(activePage) => goToPage(activePage)}
+          onPageClick={(activePage) => setActivePage(activePage)}
         />
       </EuiFlexItem>
     </EuiFlexGroup>

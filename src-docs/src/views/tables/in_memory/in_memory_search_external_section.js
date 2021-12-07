@@ -1,6 +1,5 @@
 import React from 'react';
 import { GuideSectionTypes } from '../../../components';
-import { renderToHtml } from '../../../services';
 
 import { Table } from './in_memory_search_external';
 
@@ -27,7 +26,6 @@ import { FieldValueOptionType } from '!!prop-loader!../../../../../src/component
 import { FieldValueToggleGroupFilterItemType } from '!prop-loader!../../../../../src/components/search_bar/filters/field_value_toggle_group_filter.tsx';
 
 const source = require('!!raw-loader!./in_memory_search_external');
-const html = renderToHtml(Table);
 
 export const searchExternalSection = {
   title: 'In-memory table with search and external state',
@@ -35,10 +33,6 @@ export const searchExternalSection = {
     {
       type: GuideSectionTypes.JS,
       code: source,
-    },
-    {
-      type: GuideSectionTypes.HTML,
-      code: html,
     },
   ],
   text: (

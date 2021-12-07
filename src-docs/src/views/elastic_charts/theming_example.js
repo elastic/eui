@@ -1,14 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { renderToHtml } from '../../services';
 import { GuideSectionTypes } from '../../components';
 
 import { ExternalBadge } from './shared';
 
 import { Theming } from './theming';
 const themingSource = require('!!raw-loader!./theming');
-const themingHtml = renderToHtml(Theming);
 
 import { Categorical } from './theming_categorical';
 
@@ -48,10 +46,6 @@ export const ElasticChartsThemingExample = {
         {
           type: GuideSectionTypes.JS,
           code: themingSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: themingHtml,
         },
       ],
       text: (

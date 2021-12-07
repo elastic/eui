@@ -1,5 +1,71 @@
 [
   {
+    "version": "42.1.0",
+    "changes": [
+      {
+        "token": "euiPagination.previousPage",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiPagination.disabledPreviousPage",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiPagination.nextPage",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiPagination.disabledNextPage",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiPaginationButtonArrow.firstPage",
+        "changeType": "added",
+        "value": "First page"
+      },
+      {
+        "token": "euiPaginationButtonArrow.previousPage",
+        "changeType": "added",
+        "value": "Previous page"
+      },
+      {
+        "token": "euiPaginationButtonArrow.nextPage",
+        "changeType": "added",
+        "value": "Next page"
+      },
+      {
+        "token": "euiPaginationButtonArrow.lastPage",
+        "changeType": "added",
+        "value": "Last page"
+      },
+      {
+        "token": "euiPagination.last",
+        "changeType": "added",
+        "value": "Last"
+      },
+      {
+        "token": "euiPagination.page",
+        "changeType": "added",
+        "value": "Page"
+      },
+      {
+        "token": "euiPagination.of",
+        "changeType": "added",
+        "value": "of"
+      },
+      {
+        "token": "euiPagination.collection",
+        "changeType": "added",
+        "value": "collection"
+      },
+      {
+        "token": "euiPagination.fromEndLabel",
+        "changeType": "added",
+        "value": "from end"
+      }
+    ]
+  },
+  {
     "version": "41.2.0",
     "changes": [
       {

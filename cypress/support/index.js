@@ -14,6 +14,7 @@
 // ***********************************************************
 
 import '@cypress/code-coverage/support';
+import './commands.js';
 require(THEME_IMPORT); // defined by DefinePlugin in the cypress webpack config
 
 // @see https://github.com/quasarframework/quasar/issues/2233#issuecomment-492975745

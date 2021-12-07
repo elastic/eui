@@ -12,35 +12,50 @@ import classNames from 'classnames';
 import { EuiButton, EuiButtonProps } from '../../button';
 import { EuiI18n } from '../../i18n';
 import { EuiToolTip, EuiToolTipProps } from '../../tool_tip';
-import { CommonProps } from '../../common';
+import { EuiBreakpointSize } from '../../../services/breakpoint';
+import { EuiHideFor, EuiShowFor } from '../../responsive';
 
-export type EuiSuperUpdateButtonProps = CommonProps &
-  Partial<Omit<EuiButtonProps, 'isDisabled' | 'isLoading' | 'onClick'>> & {
-    className?: string;
-    isDisabled: boolean;
-    isLoading: boolean;
-    needsUpdate: boolean;
-    onClick: MouseEventHandler<HTMLButtonElement>;
+type EuiSuperUpdateButtonInternalProps = {
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  needsUpdate?: boolean;
+  onClick: MouseEventHandler<HTMLButtonElement>;
+};
 
-    /**
-     * Passes props to `EuiToolTip`
-     */
-    toolTipProps?: EuiToolTipProps;
+export type EuiSuperUpdateButtonProps = {
+  /**
+   * Show the "Click to apply" tooltip
+   */
+  showTooltip?: boolean;
 
-    /**
-     * Show the "Click to apply" tooltip
-     */
-    showTooltip: boolean;
-  };
+  /**
+   * Passes props to `EuiToolTip`
+   */
+  toolTipProps?: EuiToolTipProps;
 
-export class EuiSuperUpdateButton extends Component<EuiSuperUpdateButtonProps> {
+  /**
+   * Returns an IconButton instead
+   */
+  iconOnly?: boolean;
+
+  /**
+   * Forces state to be `iconOnly` when within provided breakpoints.
+   * Remove completely with `false` or provide your own list of breakpoints.
+   */
+  responsive?: false | EuiBreakpointSize[];
+} & Partial<Omit<EuiButtonProps, 'isDisabled' | 'isLoading' | 'onClick'>>;
+
+export class EuiSuperUpdateButton extends Component<
+  EuiSuperUpdateButtonInternalProps & EuiSuperUpdateButtonProps
+> {
   static defaultProps = {
     needsUpdate: false,
     isLoading: false,
     isDisabled: false,
     showTooltip: false,
+    responsive: ['xs', 's'],
+    fill: true,
   };
-
   _isMounted = false;
   tooltipTimeout: number | undefined;
   tooltip: EuiToolTip | null = null;
@@ -94,10 +109,14 @@ export class EuiSuperUpdateButton extends Component<EuiSuperUpdateButtonProps> {
       onClick,
       toolTipProps,
       showTooltip,
-
+      iconOnly,
+      responsive: _responsive,
       textProps: restTextProps,
+      fill,
       ...rest
     } = this.props;
+    // Force responsive for "all" if `iconOnly = true`
+    const responsive = iconOnly ? 'all' : _responsive;
 
     const classes = classNames('euiSuperUpdateButton', className);
 
@@ -138,6 +157,14 @@ export class EuiSuperUpdateButton extends Component<EuiSuperUpdateButtonProps> {
       );
     }
 
+    const sharedButtonProps = {
+      color: needsUpdate || isLoading ? 'success' : 'primary',
+      iconType: needsUpdate || isLoading ? 'kqlFunction' : 'refresh',
+      isDisabled: isDisabled,
+      onClick: onClick,
+      isLoading: isLoading,
+    };
+
     return (
       <EuiToolTip
         ref={this.setTootipRef}
@@ -145,25 +172,38 @@ export class EuiSuperUpdateButton extends Component<EuiSuperUpdateButtonProps> {
         position="bottom"
         {...toolTipProps}
       >
-        <EuiButton
-          className={classes}
-          color={needsUpdate || isLoading ? 'success' : 'primary'}
-          fill
-          iconType={needsUpdate || isLoading ? 'kqlFunction' : 'refresh'}
-          textProps={{
-            ...restTextProps,
-            className: classNames(
-              'euiSuperUpdateButton__text',
-              restTextProps?.className
-            ),
-          }}
-          isDisabled={isDisabled}
-          onClick={onClick}
-          isLoading={isLoading}
-          {...rest}
-        >
-          {buttonText}
-        </EuiButton>
+        <>
+          <EuiShowFor sizes={responsive || 'none'}>
+            <EuiButton
+              className={classes}
+              minWidth={0}
+              {...(sharedButtonProps as EuiButtonProps)}
+              fill={fill}
+              textProps={{
+                ...restTextProps,
+                className: classNames(
+                  'euiScreenReaderOnly',
+                  restTextProps?.className
+                ),
+              }}
+              {...rest}
+            >
+              {buttonText}
+            </EuiButton>
+          </EuiShowFor>
+          <EuiHideFor sizes={responsive || 'none'}>
+            <EuiButton
+              className={classes}
+              minWidth={118}
+              {...(sharedButtonProps as EuiButtonProps)}
+              fill={fill}
+              textProps={restTextProps}
+              {...rest}
+            >
+              {buttonText}
+            </EuiButton>
+          </EuiHideFor>
+        </>
       </EuiToolTip>
     );
   }
