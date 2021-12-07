@@ -585,7 +585,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       knownRowCount++;
       knownHeight += rowHeightUtils.getCalculatedHeight(
         rowHeightOption,
-        defaultHeight, // minRowHeight,
+        defaultHeight,
         correctRowIndex,
         rowHeightUtils.isRowHeightOverride(correctRowIndex, rowHeightsOptions)
       );
