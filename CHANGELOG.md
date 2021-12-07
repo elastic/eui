@@ -21,6 +21,7 @@
 **Breaking changes**
 
 - Changed prop name `applyRefreshInterval` to `onRefreshChange` in `EuiRefreshInterval` ([#5383](https://github.com/elastic/eui/pull/5383))
+- Increased the size of `s`-sized `EuiLoadingSpinner`s to match `s`-sized `EuiIcon`s ([#5440](https://github.com/elastic/eui/pull/5440))
 
 ## [`42.1.0`](https://github.com/elastic/eui/tree/v42.1.0)
 
