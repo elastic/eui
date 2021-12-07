@@ -5,18 +5,28 @@ import React, {
   FunctionComponent,
 } from 'react';
 import { useRouteMatch } from 'react-router';
-import { EuiImage } from '../../../../src/components/image';
-import { EuiButton } from '../../../../src/components/button';
-import { EuiSpacer } from '../../../../src/components/spacer';
-import { EuiSwitch } from '../../../../src/components/form';
-import { EuiTextAlign } from '../../../../src/components/text';
-import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
+import classNames from 'classnames';
+
+import {
+  EuiImage,
+  EuiButton,
+  EuiSpacer,
+  EuiSwitch,
+  useIsWithinBreakpoints,
+} from '../../../../src';
+
 import { useExitPath } from '../../services/routing/routing';
 
 import contentSvg from '../../images/content.svg';
 import contentCenterSvg from '../../images/content_center.svg';
 import sideNavSvg from '../../images/side_nav.svg';
 import singleSvg from '../../images/single.svg';
+import {
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiPanel,
+  EuiSelect,
+} from '../../../../src/components';
 
 const ExitFullscreenDemoButton = () => {
   const exitPath = useExitPath();
@@ -44,14 +54,15 @@ export const PageDemo: FunctionComponent<{
     sideNav: ReactElement;
     bottomBar: ReactElement;
   }>;
-  template: ComponentType<{
+  template?: ComponentType<{
     button: ReactElement;
     content: ReactElement;
     sideNav: ReactElement;
     bottomBar: ReactElement;
   }>;
   centered?: boolean;
-}> = ({ slug, fullscreen, pattern, template, centered }) => {
+  highlight?: string;
+}> = ({ slug, fullscreen, pattern, template, centered, highlight }) => {
   const { path } = useRouteMatch();
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
   const [showTemplate, _setShowTemplate] = useState(
@@ -107,7 +118,21 @@ export const PageDemo: FunctionComponent<{
     </EuiButton>
   );
 
-  const Child = showTemplate ? template : pattern;
+  const options = [
+    'none',
+    'euiPage',
+    'euiPageBody',
+    'euiPageSideBar',
+    'euiPageHeader',
+    'euiPageContent',
+    'euiPageContentBody',
+  ];
+
+  const [highlightValue, setHighlightValue] = useState<string | undefined>(
+    highlight
+  );
+
+  const Child = showTemplate && template ? template : pattern;
   return fullscreen ? (
     <Child
       button={button}
@@ -117,7 +142,11 @@ export const PageDemo: FunctionComponent<{
     />
   ) : (
     <>
-      <div className={'guideDemo__highlightLayout'}>
+      <div
+        className={classNames('guideDemo__highlightLayout', {
+          [`guideDemo__highlightLayout--${highlightValue}`]: highlight,
+        })}
+      >
         <Child
           button={button}
           content={content}
@@ -125,14 +154,36 @@ export const PageDemo: FunctionComponent<{
           bottomBar={bottomBar}
         />
       </div>
-      <EuiTextAlign textAlign="right">
-        <EuiSpacer />
-        <EuiSwitch
-          label="Show with individual components"
-          checked={!showTemplate}
-          onChange={() => setShowTemplate((showing) => !showing)}
-        />
-      </EuiTextAlign>
+      {template && pattern && (
+        <EuiPanel hasBorder="1px 0" borderRadius="none">
+          <EuiFlexGroup alignItems="center">
+            {highlight === 'all' && (
+              <EuiFlexItem>
+                <EuiSelect
+                  compressed
+                  prepend="Highlight"
+                  options={options.map((option) => {
+                    return {
+                      value: option,
+                      text: option.charAt(0).toUpperCase() + option.slice(1),
+                    };
+                  })}
+                  onChange={(e) => setHighlightValue(e.target.value)}
+                  value={highlightValue}
+                  aria-label="Use aria labels when no actual label is in use"
+                />
+              </EuiFlexItem>
+            )}
+            <EuiFlexItem>
+              <EuiSwitch
+                label="Show with individual components"
+                checked={!showTemplate}
+                onChange={() => setShowTemplate((showing) => !showing)}
+              />
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiPanel>
+      )}
     </>
   );
 };

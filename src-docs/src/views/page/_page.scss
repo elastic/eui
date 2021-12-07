@@ -2,7 +2,6 @@
 .guideDemo__highlightLayout,
 .guideDemo__highlightLayout--playground,
 .guideDemo__highlightLayout--legacy {
-  border: 1px solid $guideDemoHighlightColor;
   overflow: hidden;
   height: 460px;
   display: flex;
@@ -12,9 +11,54 @@
   }
 }
 
+
+.guideDemo__highlightLayout--playground,
+.guideDemo__highlightLayout--legacy {
+  border: 1px solid $guideDemoHighlightColor;
+}
+
 .guideDemo__highlightLayout--legacy {
   > div,
   > div > div {
     background: $guideDemoHighlightColor;
+  }
+}
+
+// sass-lint:disable-block indentation
+$highlightOptionsOverlay:
+  'euiPage',
+  'euiPageBody';
+$highlightOptions:
+  'euiPageSideBar',
+  'euiPageHeader',
+  'euiPageContent',
+  'euiPageContentBody';
+
+.guideDemo__highlightLayout {
+  @each $option in $highlightOptionsOverlay {
+    &--#{$option} {
+      .#{$option} {
+        position: relative;
+
+        &::after {
+          background: $guideDemoHighlightColor;
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
+  @each $option in $highlightOptions {
+    &--#{$option} {
+      .#{$option} {
+        background: $guideDemoHighlightColor;
+      }
+    }
   }
 }

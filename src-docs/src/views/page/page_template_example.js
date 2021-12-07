@@ -19,6 +19,7 @@ import {
   EuiCallOut,
   EuiSpacer,
   EuiBottomBar,
+  EuiCodeBlock,
 } from '../../../../src/components';
 
 import PageNew from './page_new';
@@ -71,9 +72,6 @@ const PageCustomContentSource = require('!!raw-loader!./page_custom_content');
 import PageCustomContentTemplate from './page_custom_content_template';
 const PageCustomContentTemplateSource = require('!!raw-loader!./page_custom_content_template');
 
-import PageLegacy from './page';
-const PageLegacySource = require('!!raw-loader!./page');
-
 export const PageTemplateExample = {
   title: 'Page templates',
   intro: (
@@ -89,13 +87,24 @@ export const PageTemplateExample = {
       </EuiText>
       <EuiSpacer />
       <EuiCallOut
-        iconType="document"
+        iconType="documentation"
         title="The following examples showcase the both the template and custom built usages of the page components."
       >
         <p>
           You&apos;ll find the code for each in their own tab and if you go to
           full screen, you can see how they would behave in a typical
           application layout.
+        </p>
+      </EuiCallOut>
+      <EuiSpacer />
+      <EuiCallOut
+        color="danger"
+        iconType="alert"
+        title="Do not nest multiple EuiPageTemplate components."
+      >
+        <p>
+          The template is a very fragile component that will cause unexpected
+          results if nested.
         </p>
       </EuiCallOut>
     </>
@@ -116,7 +125,7 @@ export const PageTemplateExample = {
         },
       ],
       text: (
-        <div>
+        <>
           <p>
             EUI provides a family of components using the{' '}
             <EuiCode>EuiPage</EuiCode> prefix that work together to build
@@ -164,7 +173,24 @@ export const PageTemplateExample = {
             props like <EuiCode>pageSideBarProps</EuiCode> and{' '}
             <EuiCode>pageContentProps</EuiCode>.
           </p>
-        </div>
+          <EuiCallOut
+            color="warning"
+            iconType="editorCodeBlock"
+            title="Flex wrapper required"
+          >
+            <p>
+              If the <strong>EuiPageTemplate</strong> is not a direct descendent
+              of the <EuiCode>{'<body>'}</EuiCode> tag, it is required that
+              every parent wrapper is a flex based element with the following
+              properties:
+            </p>
+            <EuiCodeBlock paddingSize="s" language="css">
+              {`display: flex;
+flex-flow: column nowrap;
+flex-grow: 1;`}
+            </EuiCodeBlock>
+          </EuiCallOut>
+        </>
       ),
       props: {
         EuiPageTemplate,
@@ -178,8 +204,14 @@ export const PageTemplateExample = {
       },
       playground: pageTemplateConfig,
       demo: (
-        <PageDemo slug="full-page" pattern={PageNew} template={PageTemplate} />
+        <PageDemo
+          slug="full-page"
+          pattern={PageNew}
+          template={PageTemplate}
+          highlight="all"
+        />
       ),
+      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
       fullScreen: {
         slug: 'full-page',
         demo: (
@@ -234,8 +266,10 @@ export const PageTemplateExample = {
           slug="restricting-page-width"
           pattern={PageRestrictingWidth}
           template={PageRestrictingWidthTemplate}
+          highlight="all"
         />
       ),
+      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
       fullScreen: {
         slug: 'restricting-page-width',
         demo: (
@@ -300,8 +334,10 @@ export const PageTemplateExample = {
           slug="bottom-bar"
           pattern={PageBottomBar}
           template={PageBottomBarTemplate}
+          highlight="all"
         />
       ),
+      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
       fullScreen: {
         slug: 'bottom-bar',
         demo: (
@@ -356,8 +392,10 @@ export const PageTemplateExample = {
           centered
           pattern={PageCenteredBody}
           template={PageCenteredBodyTemplate}
+          highlight="all"
         />
       ),
+      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
       fullScreen: {
         slug: 'centered-body',
         demo: (
@@ -411,8 +449,10 @@ export const PageTemplateExample = {
           centered
           pattern={PageCenteredContent}
           template={PageCenteredContentTemplate}
+          highlight="all"
         />
       ),
+      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
       fullScreen: {
         slug: 'centered-content',
         demo: (
@@ -465,8 +505,10 @@ export const PageTemplateExample = {
           slug="tabs"
           pattern={PageSimple}
           template={PageSimpleTemplate}
+          highlight="all"
         />
       ),
+      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
       fullScreen: {
         slug: 'tabs',
         demo: (
@@ -557,8 +599,10 @@ export const PageTemplateExample = {
           slug="full-height"
           pattern={PageFullHeight}
           template={PageFullHeightTemplate}
+          highlight="all"
         />
       ),
+      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
       fullScreen: {
         slug: 'full-height',
         demo: (
@@ -602,8 +646,10 @@ export const PageTemplateExample = {
           centered
           pattern={PageSimpleCenteredBody}
           template={PageSimpleCenteredBodyTemplate}
+          highlight="all"
         />
       ),
+      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
       fullScreen: {
         slug: 'simple-centered-body',
         demo: (
@@ -645,8 +691,10 @@ export const PageTemplateExample = {
           centered
           pattern={PageSimpleEmptyContent}
           template={PageSimpleEmptyContentTemplate}
+          highlight="all"
         />
       ),
+      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
       fullScreen: {
         slug: 'simple-centered-content',
         demo: (
@@ -698,8 +746,10 @@ export const PageTemplateExample = {
           slug="simple-custom-content"
           pattern={PageCustomContent}
           template={PageCustomContentTemplate}
+          highlight="all"
         />
       ),
+      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
       fullScreen: {
         slug: 'simple-custom-content',
         demo: (
@@ -710,37 +760,6 @@ export const PageTemplateExample = {
             fullscreen
           />
         ),
-      },
-    },
-    {
-      title: 'Legacy layout',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageLegacySource,
-        },
-      ],
-      text: (
-        <p>
-          In previous versions of EUI, we emulated page layouts where the{' '}
-          <strong>EuiPageContent</strong> had margins all around created by
-          padding on <strong>EuiPage</strong>. This layout is still achievable
-          but not through <strong>EuiPageTemplate</strong>. You must use the{' '}
-          <strong>EuiPage</strong> components manually as seen in this example.
-        </p>
-      ),
-      demo: (
-        <div className="guideDemo__highlightLayout--legacy">
-          <PageLegacy />
-        </div>
-      ),
-      props: {
-        EuiPage,
-        EuiPageBody,
-        EuiPageSideBar,
-        EuiPageHeader,
-        EuiPageContent,
-        EuiPageContentBody,
       },
     },
   ],
