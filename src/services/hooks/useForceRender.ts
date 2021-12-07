@@ -6,10 +6,11 @@
  * Side Public License, v 1.
  */
 
-export { useDataGridColumnSelector } from './column_selector';
-export { useDataGridColumnSorting } from './column_sorting';
-export { useDataGridDisplaySelector, startingStyles } from './display_selector';
-export {
-  checkOrDefaultToolBarDisplayOptions,
-  EuiDataGridToolbar,
-} from './data_grid_toolbar';
+import { useState, useCallback } from 'react';
+
+export const useForceRender = () => {
+  const [, setRenderCount] = useState(0);
+  return useCallback(() => {
+    setRenderCount((x) => x + 1);
+  }, []);
+};

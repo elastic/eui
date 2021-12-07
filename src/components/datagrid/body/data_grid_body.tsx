@@ -28,7 +28,7 @@ import {
   useMutationObserver,
 } from '../../observer/mutation_observer';
 import { useResizeObserver } from '../../observer/resize_observer';
-import { DEFAULT_ROW_HEIGHT } from '../row_height_utils';
+import { DEFAULT_ROW_HEIGHT, RowHeightUtils } from '../row_height_utils';
 import { EuiDataGridCell } from './data_grid_cell';
 import {
   DataGridSortingContext,
@@ -44,10 +44,12 @@ import {
 import {
   EuiDataGridBodyProps,
   EuiDataGridInMemoryValues,
+  EuiDataGridRowHeightsOptions,
   EuiDataGridRowManager,
   EuiDataGridSchemaDetector,
 } from '../data_grid_types';
 import { makeRowManager } from './data_grid_row_manager';
+import { useForceRender } from '../../../services/hooks/useForceRender';
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
 
@@ -252,6 +254,67 @@ export function getParentCellContent(_element: Node | HTMLElement) {
   }
   return element;
 }
+
+// computes the unconstrained (total possible) height of a grid
+const useUnconstrainedHeight = ({
+  rowHeightUtils,
+  startRow,
+  endRow,
+  getCorrectRowIndex,
+  rowHeightsOptions,
+  defaultHeight,
+  headerRowHeight,
+  footerRowHeight,
+}: {
+  rowHeightUtils: RowHeightUtils;
+  startRow: number;
+  endRow: number;
+  getCorrectRowIndex: (rowIndex: number) => number;
+  rowHeightsOptions?: EuiDataGridRowHeightsOptions;
+  defaultHeight: number;
+  headerRowHeight: number;
+  footerRowHeight: number;
+}) => {
+  // when a row height is updated, force a re-render of the grid body to update the unconstrained height
+  const forceRender = useForceRender();
+  useEffect(() => {
+    rowHeightUtils.setRerenderGridBody(forceRender);
+  }, [rowHeightUtils, forceRender]);
+
+  let knownHeight = 0; // tracks the pixel height of rows we know the size of
+  let knownRowCount = 0; // how many rows we know the size of
+  for (let i = startRow; i < endRow; i++) {
+    const correctRowIndex = getCorrectRowIndex(i); // map visible row to logical row
+
+    // lookup the height configuration of this row
+    const rowHeightOption = rowHeightUtils.getRowHeightOption(
+      correctRowIndex,
+      rowHeightsOptions
+    );
+
+    if (rowHeightOption) {
+      // this row's height is known
+      knownRowCount++;
+      knownHeight += rowHeightUtils.getCalculatedHeight(
+        rowHeightOption,
+        defaultHeight,
+        correctRowIndex,
+        rowHeightUtils.isRowHeightOverride(correctRowIndex, rowHeightsOptions)
+      );
+    }
+  }
+
+  // how many rows to provide space for on the screen
+  const rowCountToAffordFor = endRow - startRow;
+
+  const unconstrainedHeight =
+    defaultHeight * (rowCountToAffordFor - knownRowCount) + // guess how much space is required for unknown rows
+    knownHeight + // computed pixel height of the known rows
+    headerRowHeight + // account for header
+    footerRowHeight; // account for footer
+
+  return unconstrainedHeight;
+};
 
 export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   props
@@ -573,11 +636,16 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     }
   }, [getRowHeight]);
 
-  const rowCountToAffordFor = pagination
-    ? pagination.pageSize
-    : visibleRowIndices.length;
-  const unconstrainedHeight =
-    defaultHeight * rowCountToAffordFor + headerRowHeight + footerRowHeight;
+  const unconstrainedHeight = useUnconstrainedHeight({
+    rowHeightUtils,
+    startRow,
+    endRow,
+    getCorrectRowIndex,
+    rowHeightsOptions,
+    defaultHeight,
+    headerRowHeight,
+    footerRowHeight,
+  });
 
   // unable to determine this until the container's size is known anyway
   const unconstrainedWidth = 0;

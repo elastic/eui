@@ -943,87 +943,89 @@ Array [
         class="euiDataGrid__controls"
         data-test-sub="dataGridControls"
       >
-        <button>
-          Button
-        </button>
         <div
-          class="euiPopover euiPopover--anchorDownLeft"
-          data-test-subj="dataGridColumnSelectorPopover"
+          class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover__anchor"
+            class="euiPopover euiPopover--anchorDownLeft"
+            data-test-subj="dataGridColumnSelectorPopover"
           >
-            <button
-              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
-              data-test-subj="dataGridColumnSelectorButton"
-              type="button"
+            <div
+              class="euiPopover__anchor"
             >
-              <span
-                class="euiButtonContent euiButtonEmpty__content"
+              <button
+                class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+                data-test-subj="dataGridColumnSelectorButton"
+                type="button"
               >
                 <span
-                  class="euiButtonContent__icon"
-                  color="inherit"
-                  data-euiicon-type="listAdd"
-                />
-                <span
-                  class="euiButtonEmpty__text"
+                  class="euiButtonContent euiButtonEmpty__content"
                 >
-                  Columns
+                  <span
+                    class="euiButtonContent__icon"
+                    color="inherit"
+                    data-euiicon-type="listAdd"
+                  />
+                  <span
+                    class="euiButtonEmpty__text"
+                  >
+                    Columns
+                  </span>
                 </span>
-              </span>
-            </button>
+              </button>
+            </div>
           </div>
+          <button>
+            Button
+          </button>
         </div>
         <div
-          class="euiPopover euiPopover--anchorDownCenter"
-          data-test-subj="dataGridStyleSelectorPopover"
+          class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover__anchor"
+            class="euiPopover euiPopover--anchorDownRight"
+            data-test-subj="dataGridDisplaySelectorPopover"
           >
-            <button
-              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
-              data-test-subj="dataGridStyleSelectorButton"
-              type="button"
+            <div
+              class="euiPopover__anchor"
             >
               <span
-                class="euiButtonContent euiButtonEmpty__content"
+                class="euiToolTipAnchor"
               >
-                <span
-                  class="euiButtonContent__icon"
-                  color="inherit"
-                  data-euiicon-type="tableDensityExpanded"
-                />
-                <span
-                  class="euiButtonEmpty__text"
+                <button
+                  aria-label="Display options"
+                  class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
+                  data-test-subj="dataGridDisplaySelectorButton"
+                  type="button"
                 >
-                  Density
-                </span>
+                  <span
+                    aria-hidden="true"
+                    class="euiButtonIcon__icon"
+                    color="inherit"
+                    data-euiicon-type="tableDensityNormal"
+                  />
+                </button>
               </span>
-            </button>
+            </div>
           </div>
-        </div>
-        <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
-          data-test-subj="dataGridFullScreenButton"
-          type="button"
-        >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiToolTipAnchor"
           >
-            <span
-              class="euiButtonContent__icon"
-              color="inherit"
-              data-euiicon-type="fullScreen"
-            />
-            <span
-              class="euiButtonEmpty__text"
+            <button
+              aria-label="Full screen"
+              class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
+              data-test-subj="dataGridFullScreenButton"
+              type="button"
             >
-              Full screen
-            </span>
+              <span
+                aria-hidden="true"
+                class="euiButtonIcon__icon"
+                color="inherit"
+                data-euiicon-type="fullScreen"
+              />
+            </button>
           </span>
-        </button>
+        </div>
       </div>
       <div
         class="euiDataGrid__verticalScroll"
@@ -1346,87 +1348,89 @@ Array [
         class="euiDataGrid__controls"
         data-test-sub="dataGridControls"
       >
-        <button>
-          Button
-        </button>
         <div
-          class="euiPopover euiPopover--anchorDownLeft"
-          data-test-subj="dataGridColumnSelectorPopover"
+          class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover__anchor"
+            class="euiPopover euiPopover--anchorDownLeft"
+            data-test-subj="dataGridColumnSelectorPopover"
           >
-            <button
-              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
-              data-test-subj="dataGridColumnSelectorButton"
-              type="button"
+            <div
+              class="euiPopover__anchor"
             >
-              <span
-                class="euiButtonContent euiButtonEmpty__content"
+              <button
+                class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+                data-test-subj="dataGridColumnSelectorButton"
+                type="button"
               >
                 <span
-                  class="euiButtonContent__icon"
-                  color="inherit"
-                  data-euiicon-type="listAdd"
-                />
-                <span
-                  class="euiButtonEmpty__text"
+                  class="euiButtonContent euiButtonEmpty__content"
                 >
-                  Columns
+                  <span
+                    class="euiButtonContent__icon"
+                    color="inherit"
+                    data-euiicon-type="listAdd"
+                  />
+                  <span
+                    class="euiButtonEmpty__text"
+                  >
+                    Columns
+                  </span>
                 </span>
-              </span>
-            </button>
+              </button>
+            </div>
           </div>
+          <button>
+            Button
+          </button>
         </div>
         <div
-          class="euiPopover euiPopover--anchorDownCenter"
-          data-test-subj="dataGridStyleSelectorPopover"
+          class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover__anchor"
+            class="euiPopover euiPopover--anchorDownRight"
+            data-test-subj="dataGridDisplaySelectorPopover"
           >
-            <button
-              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
-              data-test-subj="dataGridStyleSelectorButton"
-              type="button"
+            <div
+              class="euiPopover__anchor"
             >
               <span
-                class="euiButtonContent euiButtonEmpty__content"
+                class="euiToolTipAnchor"
               >
-                <span
-                  class="euiButtonContent__icon"
-                  color="inherit"
-                  data-euiicon-type="tableDensityExpanded"
-                />
-                <span
-                  class="euiButtonEmpty__text"
+                <button
+                  aria-label="Display options"
+                  class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
+                  data-test-subj="dataGridDisplaySelectorButton"
+                  type="button"
                 >
-                  Density
-                </span>
+                  <span
+                    aria-hidden="true"
+                    class="euiButtonIcon__icon"
+                    color="inherit"
+                    data-euiicon-type="tableDensityNormal"
+                  />
+                </button>
               </span>
-            </button>
+            </div>
           </div>
-        </div>
-        <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
-          data-test-subj="dataGridFullScreenButton"
-          type="button"
-        >
           <span
-            class="euiButtonContent euiButtonEmpty__content"
+            class="euiToolTipAnchor"
           >
-            <span
-              class="euiButtonContent__icon"
-              color="inherit"
-              data-euiicon-type="fullScreen"
-            />
-            <span
-              class="euiButtonEmpty__text"
+            <button
+              aria-label="Full screen"
+              class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
+              data-test-subj="dataGridFullScreenButton"
+              type="button"
             >
-              Full screen
-            </span>
+              <span
+                aria-hidden="true"
+                class="euiButtonIcon__icon"
+                color="inherit"
+                data-euiicon-type="fullScreen"
+              />
+            </button>
           </span>
-        </button>
+        </div>
       </div>
       <div
         class="euiDataGrid__verticalScroll"
@@ -2062,83 +2066,85 @@ Array [
         data-test-sub="dataGridControls"
       >
         <div
-          class="euiPopover euiPopover--anchorDownLeft"
-          data-test-subj="dataGridColumnSelectorPopover"
+          class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover__anchor"
+            class="euiPopover euiPopover--anchorDownLeft"
+            data-test-subj="dataGridColumnSelectorPopover"
           >
-            <button
-              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
-              data-test-subj="dataGridColumnSelectorButton"
-              type="button"
+            <div
+              class="euiPopover__anchor"
             >
-              <span
-                class="euiButtonContent euiButtonEmpty__content"
+              <button
+                class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+                data-test-subj="dataGridColumnSelectorButton"
+                type="button"
               >
                 <span
-                  class="euiButtonContent__icon"
-                  color="inherit"
-                  data-euiicon-type="listAdd"
-                />
-                <span
-                  class="euiButtonEmpty__text"
+                  class="euiButtonContent euiButtonEmpty__content"
                 >
-                  Columns
+                  <span
+                    class="euiButtonContent__icon"
+                    color="inherit"
+                    data-euiicon-type="listAdd"
+                  />
+                  <span
+                    class="euiButtonEmpty__text"
+                  >
+                    Columns
+                  </span>
                 </span>
-              </span>
-            </button>
+              </button>
+            </div>
           </div>
         </div>
         <div
-          class="euiPopover euiPopover--anchorDownCenter"
-          data-test-subj="dataGridStyleSelectorPopover"
+          class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover__anchor"
+            class="euiPopover euiPopover--anchorDownRight"
+            data-test-subj="dataGridDisplaySelectorPopover"
+          >
+            <div
+              class="euiPopover__anchor"
+            >
+              <span
+                class="euiToolTipAnchor"
+              >
+                <button
+                  aria-label="Display options"
+                  class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
+                  data-test-subj="dataGridDisplaySelectorButton"
+                  type="button"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiButtonIcon__icon"
+                    color="inherit"
+                    data-euiicon-type="tableDensityNormal"
+                  />
+                </button>
+              </span>
+            </div>
+          </div>
+          <span
+            class="euiToolTipAnchor"
           >
             <button
-              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
-              data-test-subj="dataGridStyleSelectorButton"
+              aria-label="Full screen"
+              class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
+              data-test-subj="dataGridFullScreenButton"
               type="button"
             >
               <span
-                class="euiButtonContent euiButtonEmpty__content"
-              >
-                <span
-                  class="euiButtonContent__icon"
-                  color="inherit"
-                  data-euiicon-type="tableDensityExpanded"
-                />
-                <span
-                  class="euiButtonEmpty__text"
-                >
-                  Density
-                </span>
-              </span>
+                aria-hidden="true"
+                class="euiButtonIcon__icon"
+                color="inherit"
+                data-euiicon-type="fullScreen"
+              />
             </button>
-          </div>
-        </div>
-        <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
-          data-test-subj="dataGridFullScreenButton"
-          type="button"
-        >
-          <span
-            class="euiButtonContent euiButtonEmpty__content"
-          >
-            <span
-              class="euiButtonContent__icon"
-              color="inherit"
-              data-euiicon-type="fullScreen"
-            />
-            <span
-              class="euiButtonEmpty__text"
-            >
-              Full screen
-            </span>
           </span>
-        </button>
+        </div>
       </div>
       <div
         class="euiDataGrid__verticalScroll"
@@ -2464,83 +2470,85 @@ Array [
         data-test-sub="dataGridControls"
       >
         <div
-          class="euiPopover euiPopover--anchorDownLeft"
-          data-test-subj="dataGridColumnSelectorPopover"
+          class="euiDataGrid__leftControls"
         >
           <div
-            class="euiPopover__anchor"
+            class="euiPopover euiPopover--anchorDownLeft"
+            data-test-subj="dataGridColumnSelectorPopover"
           >
-            <button
-              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
-              data-test-subj="dataGridColumnSelectorButton"
-              type="button"
+            <div
+              class="euiPopover__anchor"
             >
-              <span
-                class="euiButtonContent euiButtonEmpty__content"
+              <button
+                class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
+                data-test-subj="dataGridColumnSelectorButton"
+                type="button"
               >
                 <span
-                  class="euiButtonContent__icon"
-                  color="inherit"
-                  data-euiicon-type="listAdd"
-                />
-                <span
-                  class="euiButtonEmpty__text"
+                  class="euiButtonContent euiButtonEmpty__content"
                 >
-                  Columns
+                  <span
+                    class="euiButtonContent__icon"
+                    color="inherit"
+                    data-euiicon-type="listAdd"
+                  />
+                  <span
+                    class="euiButtonEmpty__text"
+                  >
+                    Columns
+                  </span>
                 </span>
-              </span>
-            </button>
+              </button>
+            </div>
           </div>
         </div>
         <div
-          class="euiPopover euiPopover--anchorDownCenter"
-          data-test-subj="dataGridStyleSelectorPopover"
+          class="euiDataGrid__rightControls"
         >
           <div
-            class="euiPopover__anchor"
+            class="euiPopover euiPopover--anchorDownRight"
+            data-test-subj="dataGridDisplaySelectorPopover"
+          >
+            <div
+              class="euiPopover__anchor"
+            >
+              <span
+                class="euiToolTipAnchor"
+              >
+                <button
+                  aria-label="Display options"
+                  class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
+                  data-test-subj="dataGridDisplaySelectorButton"
+                  type="button"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="euiButtonIcon__icon"
+                    color="inherit"
+                    data-euiicon-type="tableDensityNormal"
+                  />
+                </button>
+              </span>
+            </div>
+          </div>
+          <span
+            class="euiToolTipAnchor"
           >
             <button
-              class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
-              data-test-subj="dataGridStyleSelectorButton"
+              aria-label="Full screen"
+              class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiDataGrid__controlBtn"
+              data-test-subj="dataGridFullScreenButton"
               type="button"
             >
               <span
-                class="euiButtonContent euiButtonEmpty__content"
-              >
-                <span
-                  class="euiButtonContent__icon"
-                  color="inherit"
-                  data-euiicon-type="tableDensityExpanded"
-                />
-                <span
-                  class="euiButtonEmpty__text"
-                >
-                  Density
-                </span>
-              </span>
+                aria-hidden="true"
+                class="euiButtonIcon__icon"
+                color="inherit"
+                data-euiicon-type="fullScreen"
+              />
             </button>
-          </div>
-        </div>
-        <button
-          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--xSmall euiDataGrid__controlBtn"
-          data-test-subj="dataGridFullScreenButton"
-          type="button"
-        >
-          <span
-            class="euiButtonContent euiButtonEmpty__content"
-          >
-            <span
-              class="euiButtonContent__icon"
-              color="inherit"
-              data-euiicon-type="fullScreen"
-            />
-            <span
-              class="euiButtonEmpty__text"
-            >
-              Full screen
-            </span>
           </span>
-        </button>
+        </div>
       </div>
       <div
         class="euiDataGrid__verticalScroll"

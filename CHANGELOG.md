@@ -1,5 +1,11 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Updated the organization of `EuiDataGrid`'s toolbar/grid controls ([#5334](https://github.com/elastic/eui/pull/5334))
+- Updated `EuiDataGrid`'s full screen mode to use the `fullScreenExit` icon ([#5415](https://github.com/elastic/eui/pull/5415))
+- Added `left.append` and `left.prepend` to `EuiDataGrid`'s `toolbarVisibility.additionalControls` prop [#5394](https://github.com/elastic/eui/pull/5394))
+- Added a row height control to `EuiDataGrid`'s toolbar ([#5372](https://github.com/elastic/eui/pull/5372))
+- Added `onChange` callbacks to `EuiDataGrid`'s `gridStyle` and `rowHeightOptions` settings ([#5424](https://github.com/elastic/eui/pull/5424))
+- Added a reset button to `EuiDataGrid`'s display controls ([#5428](https://github.com/elastic/eui/pull/5428))
 - Added `timeRefresh` icon ([#5383](https://github.com/elastic/eui/pull/5383))
 - Added `responsive` and `iconOnly` props to `EuiSuperUpdateButton`  ([#5383](https://github.com/elastic/eui/pull/5383))
 - Added better auto refresh indicator to `EuiSuperDatePicker` ([#5383](https://github.com/elastic/eui/pull/5383))
@@ -14,6 +20,7 @@
 
 **Bug fixes**
 
+- Fixed persistent `EuiDataGrid` full screen `<body>` class ([#5354](https://github.com/elastic/eui/pull/5354))
 - Fixed dark mode background color of `EuiFormControlLayout` `prepend` and `append` ([#5383](https://github.com/elastic/eui/pull/5383))
 - Fixed background color of `EuiFormControlLayout` when `readOnly` ([#5383](https://github.com/elastic/eui/pull/5383))
 - Fixed the name of `data-test-subj` prop of `EuiFormControlLayout` ([#5383](https://github.com/elastic/eui/pull/5383))
@@ -21,6 +28,7 @@
 
 **Breaking changes**
 
+- Removed `toolbarVisibility`'s `showStyleSelector` prop of `EuiDataGrid` in favor of `showDisplaySelector`, which allows configuration of both grid density and row height ([#5372](https://github.com/elastic/eui/pull/5372))
 - Changed prop name `applyRefreshInterval` to `onRefreshChange` in `EuiRefreshInterval` ([#5383](https://github.com/elastic/eui/pull/5383))
 - Increased the size of `s`-sized `EuiLoadingSpinner`s to match `s`-sized `EuiIcon`s ([#5440](https://github.com/elastic/eui/pull/5440))
 

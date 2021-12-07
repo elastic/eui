@@ -82,3 +82,18 @@ $euiDataGridStyles: (
     @content;
   }
 }
+
+@mixin euiDataGridRowCellActions($definedHeight: false) {
+  @if $definedHeight {
+    // Defined heights are cells with row heights of auto, lineCount, or a static height
+    // that set the __contentByHeight class
+    .euiDataGridRowCell__contentByHeight + .euiDataGridRowCell__expandButton {
+      @content;
+    }
+  } @else {
+    // Otherwise, an undefined height (single flex row) will set __expandContent
+    .euiDataGridRowCell__expandContent + .euiDataGridRowCell__expandButton {
+      @content;
+    }
+  }
+}
