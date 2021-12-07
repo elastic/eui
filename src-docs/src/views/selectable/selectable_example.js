@@ -357,6 +357,14 @@ export const SelectableExample = {
             <EuiCode>searchValue</EuiCode> to use for highlighting.
           </p>
           <p>
+            To provide data that can be used by the{' '}
+            <EuiCode>renderOption</EuiCode> function that does not match the
+            standard option API, use <EuiCode>option.labelProps</EuiCode> which
+            will be make custom data available in the <EuiCode>option</EuiCode>{' '}
+            parameter. See the <EuiCode>secondaryContent</EuiCode> configuration
+            in the following example.
+          </p>
+          <p>
             In order for the list to know how to scroll to the selected or
             highlighted option, it must also know the height of the rows. It
             applies this pixel height directly to options. If your custom
@@ -365,7 +373,10 @@ export const SelectableExample = {
             <EuiCode>listProps.rowHeight</EuiCode>.
           </p>
           <p>
-            <strong>Every row must be the same height.</strong>
+            <strong>Every row must be the same height</strong> unless{' '}
+            <EuiCode>listProps.isVirtualized</EuiCode> is set to{' '}
+            <EuiCode>false</EuiCode>, in which case we recommend having a large
+            enough container to accomodate all optons and eliminate scrolling.
           </p>
         </Fragment>
       ),
