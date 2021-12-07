@@ -34,6 +34,7 @@ exports[`EuiDataGridCell renders 1`] = `
       "isRowHeightOverride": [MockFunction],
       "pruneHiddenColumnHeights": [MockFunction],
       "setGrid": [MockFunction],
+      "setRerenderGridBody": [MockFunction],
       "setRowHeight": [MockFunction],
     }
   }
@@ -98,6 +99,7 @@ exports[`EuiDataGridCell renders 1`] = `
               "isRowHeightOverride": [MockFunction],
               "pruneHiddenColumnHeights": [MockFunction],
               "setGrid": [MockFunction],
+              "setRerenderGridBody": [MockFunction],
               "setRowHeight": [MockFunction],
             }
           }

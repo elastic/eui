@@ -6,9 +6,11 @@
  * Side Public License, v 1.
  */
 
-export * from './useDependentState';
-export * from './useCombinedRefs';
-export * from './useForceRender';
-export * from './useIsWithinBreakpoints';
-export * from './useMouseMove';
-export * from './useUpdateEffect';
+import { useState, useCallback } from 'react';
+
+export const useForceRender = () => {
+  const [, setRenderCount] = useState(0);
+  return useCallback(() => {
+    setRenderCount((x) => x + 1);
+  }, []);
+};
