@@ -2,8 +2,6 @@ import React, { Fragment } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -23,7 +21,6 @@ import {
 import Badge from './badge';
 
 const badgeSource = require('!!raw-loader!./badge');
-const badgeHtml = renderToHtml(Badge);
 const badgeSnippet = [
   `<EuiBadge>Default</EuiBadge>
 `,
@@ -39,13 +36,11 @@ const badgeSnippet = [
 
 import BadgeWithIcon from './badge_with_icon';
 const badgeWithIconSource = require('!!raw-loader!./badge_with_icon');
-const badgeWithIconHtml = renderToHtml(BadgeWithIcon);
 const badgeWithIconSnippet = `<EuiBadge color="hollow" iconType="cross" iconSide="right">Label</EuiBadge>
 `;
 
 import BadgeButton from './badge_button';
 const badgeButtonSource = require('!!raw-loader!./badge_button');
-const badgeButtonHtml = renderToHtml(BadgeButton);
 const badgeButtonSnippet = [
   `<EuiBadge
   color="primary"
@@ -78,7 +73,6 @@ const badgeButtonSnippet = [
 
 import BadgeHealth from './badge_health';
 const badgeHealthSource = require('!!raw-loader!./badge_health');
-const badgeHealthHtml = renderToHtml(BadgeHealth);
 const badgeHealthSnippet = [
   `<EuiBadge color="success">Healthy</EuiBadge>
 `,
@@ -90,12 +84,10 @@ const badgeHealthSnippet = [
 
 import BadgeHref from './badge_href';
 const badgeHrefSource = require('!!raw-loader!./badge_href');
-const badgeHrefHtml = renderToHtml(BadgeHref);
 const badgeHrefSnippet = ['<EuiBadge href="#" />'];
 
 import BadgeTruncate from './badge_truncate';
 const badgeTruncateSource = require('!!raw-loader!./badge_truncate');
-const badgeTruncateHtml = renderToHtml(BadgeTruncate);
 const badgeTruncateSnippet = [
   `<EuiBadgeGroup gutterSize="s">
   <EuiBadge />
@@ -105,7 +97,6 @@ const badgeTruncateSnippet = [
 
 import BetaBadge from './beta_badge';
 const betaBadgeSource = require('!!raw-loader!./beta_badge');
-const betaBadgeHtml = renderToHtml(BetaBadge);
 const betaBadgeSnippet = [
   `<EuiBetaBadge label="Beta" />
 `,
@@ -117,7 +108,6 @@ const betaBadgeSnippet = [
 
 import NotificationBadge from './notification_badge';
 const notificationBadgeSource = require('!!raw-loader!./notification_badge');
-const notificationBadgeHtml = renderToHtml(NotificationBadge);
 const notificationBadgeSnippet = `<EuiNotificationBadge>3</EuiNotificationBadge>
 `;
 
@@ -129,10 +119,6 @@ export const BadgeExample = {
         {
           type: GuideSectionTypes.JS,
           code: badgeSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: badgeHtml,
         },
       ],
       text: (
@@ -156,10 +142,6 @@ export const BadgeExample = {
           type: GuideSectionTypes.JS,
           code: badgeWithIconSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: badgeWithIconHtml,
-        },
       ],
       text: <p>Badges can use icons on the left and right (default) sides.</p>,
       snippet: badgeWithIconSnippet,
@@ -171,10 +153,6 @@ export const BadgeExample = {
         {
           type: GuideSectionTypes.JS,
           code: badgeButtonSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: badgeButtonHtml,
         },
       ],
       text: (
@@ -208,10 +186,6 @@ export const BadgeExample = {
           type: GuideSectionTypes.JS,
           code: badgeHealthSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: badgeHealthHtml,
-        },
       ],
       text: (
         <div>
@@ -231,10 +205,6 @@ export const BadgeExample = {
           type: GuideSectionTypes.JS,
           code: badgeHrefSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: badgeHrefHtml,
-        },
       ],
       text: (
         <div>
@@ -253,10 +223,6 @@ export const BadgeExample = {
         {
           type: GuideSectionTypes.JS,
           code: badgeTruncateSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: badgeTruncateHtml,
         },
       ],
       text: (
@@ -288,10 +254,6 @@ export const BadgeExample = {
         {
           type: GuideSectionTypes.JS,
           code: betaBadgeSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: betaBadgeHtml,
         },
       ],
       text: (
@@ -336,10 +298,6 @@ export const BadgeExample = {
         {
           type: GuideSectionTypes.JS,
           code: notificationBadgeSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: notificationBadgeHtml,
         },
       ],
       text: (

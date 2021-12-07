@@ -11,22 +11,19 @@ import React, {
   ChangeEventHandler,
   KeyboardEventHandler,
 } from 'react';
-import { timeUnits, timeUnitsPlural } from '../time_units';
-import { EuiI18n } from '../../../i18n';
-import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
-import { EuiTitle } from '../../../title';
-import { EuiSpacer } from '../../../spacer';
-import { EuiSelect, EuiFieldNumber } from '../../../form';
-import { EuiButton } from '../../../button';
-import { htmlIdGenerator } from '../../../../services';
-import { EuiScreenReaderOnly } from '../../../accessibility';
+import { EuiI18n } from '../../i18n';
+import { keysOf } from '../../common';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiSelect, EuiFieldNumber, EuiFormLabel, EuiSwitch } from '../../form';
+import { htmlIdGenerator } from '../../../services';
+import { EuiScreenReaderOnly } from '../../accessibility';
 import {
   Milliseconds,
   TimeUnitId,
   RelativeOption,
   ApplyRefreshInterval,
-} from '../../types';
-import { keysOf } from '../../../common';
+} from '../types';
+import { timeUnits, timeUnitsPlural } from '../super_date_picker/time_units';
 
 const refreshUnitsOptions: RelativeOption[] = keysOf(timeUnits)
   .filter(
@@ -72,11 +69,20 @@ function toMilliseconds(units: TimeUnitId, value: Milliseconds) {
   }
 }
 
-export interface EuiRefreshIntervalProps {
-  applyRefreshInterval?: ApplyRefreshInterval;
-  isPaused: boolean;
-  refreshInterval: Milliseconds;
-}
+export type EuiRefreshIntervalProps = {
+  /**
+   * Is refresh paused or running.
+   */
+  isPaused?: boolean;
+  /**
+   * Refresh interval in milliseconds.
+   */
+  refreshInterval?: Milliseconds;
+  /**
+   * Passes back the updated state of `isPaused` and `refreshInterval`.
+   */
+  onRefreshChange: ApplyRefreshInterval;
+};
 
 interface EuiRefreshIntervalState {
   value: number | '';
@@ -87,7 +93,14 @@ export class EuiRefreshInterval extends Component<
   EuiRefreshIntervalProps,
   EuiRefreshIntervalState
 > {
-  state: EuiRefreshIntervalState = fromMilliseconds(this.props.refreshInterval);
+  static defaultProps = {
+    isPaused: true,
+    refreshInterval: 1000,
+  };
+
+  state: EuiRefreshIntervalState = fromMilliseconds(
+    this.props.refreshInterval || 0
+  );
 
   generateId = htmlIdGenerator();
   legendId = this.generateId();
@@ -113,11 +126,11 @@ export class EuiRefreshInterval extends Component<
   };
 
   startRefresh = () => {
-    const { applyRefreshInterval } = this.props;
+    const { onRefreshChange } = this.props;
     const { value, units } = this.state;
 
-    if (value !== '' && value > 0 && applyRefreshInterval !== undefined) {
-      applyRefreshInterval({
+    if (value !== '' && value > 0 && onRefreshChange !== undefined) {
+      onRefreshChange({
         refreshInterval: toMilliseconds(units, value),
         isPaused: false,
       });
@@ -131,111 +144,119 @@ export class EuiRefreshInterval extends Component<
   };
 
   applyRefreshInterval = () => {
-    const { applyRefreshInterval, isPaused } = this.props;
+    const { onRefreshChange, isPaused } = this.props;
     const { units, value } = this.state;
     if (value === '') {
       return;
     }
-    if (!applyRefreshInterval) {
+    if (!onRefreshChange) {
       return;
     }
 
     const refreshInterval = toMilliseconds(units, value);
 
-    applyRefreshInterval({
+    onRefreshChange({
       refreshInterval,
-      isPaused: refreshInterval <= 0 ? true : isPaused,
+      isPaused: refreshInterval <= 0 ? true : !!isPaused,
     });
   };
 
   toggleRefresh = () => {
-    const { applyRefreshInterval, isPaused } = this.props;
+    const { onRefreshChange, isPaused } = this.props;
     const { units, value } = this.state;
 
-    if (!applyRefreshInterval || value === '') {
+    if (!onRefreshChange || value === '') {
       return;
     }
-    applyRefreshInterval({
+    onRefreshChange({
       refreshInterval: toMilliseconds(units, value),
       isPaused: !isPaused,
     });
   };
 
   render() {
-    const { applyRefreshInterval, isPaused } = this.props;
+    const { isPaused } = this.props;
     const { value, units } = this.state;
-
-    if (!applyRefreshInterval) {
-      return null;
-    }
 
     const options = refreshUnitsOptions.find(({ value }) => value === units);
     const optionText = options ? options.text : '';
 
+    const fullDescription = isPaused ? (
+      <EuiI18n
+        token="euiRefreshInterval.fullDescriptionOff"
+        default="Refresh is off, interval set to {optionValue} {optionText}."
+        values={{
+          optionValue: value,
+          optionText,
+        }}
+      />
+    ) : (
+      <EuiI18n
+        token="euiRefreshInterval.fullDescriptionOn"
+        default="Refresh is on, interval set to {optionValue} {optionText}."
+        values={{
+          optionValue: value,
+          optionText,
+        }}
+      />
+    );
+
     return (
       <fieldset>
-        <EuiTitle size="xxxs">
-          <legend id={this.legendId}>
-            <EuiI18n
-              token="euiRefreshInterval.legend"
-              default="Refresh every"
+        <EuiFlexGroup
+          alignItems="center"
+          gutterSize="s"
+          responsive={false}
+          wrap
+        >
+          <EuiFlexItem grow={false}>
+            <EuiSwitch
+              data-test-subj="superDatePickerToggleRefreshButton"
+              aria-describedby={this.refreshSelectionId}
+              checked={!isPaused}
+              onChange={this.toggleRefresh}
+              compressed
+              label={
+                <EuiFormLabel type="legend" id={this.legendId}>
+                  <EuiI18n
+                    token="euiRefreshInterval.legend"
+                    default="Refresh every"
+                  />
+                </EuiFormLabel>
+              }
             />
-          </legend>
-        </EuiTitle>
-        <EuiSpacer size="s" />
-        <EuiFlexGroup gutterSize="s" responsive={false}>
-          <EuiFlexItem>
+          </EuiFlexItem>
+          <EuiFlexItem style={{ minWidth: 60 }}>
             <EuiFieldNumber
               compressed
+              fullWidth
               value={value}
               onChange={this.onValueChange}
               onKeyDown={this.handleKeyDown}
+              isInvalid={!isPaused && (value === '' || value <= 0)}
+              disabled={isPaused}
               aria-label="Refresh interval value"
               aria-describedby={`${this.refreshSelectionId} ${this.legendId}`}
               data-test-subj="superDatePickerRefreshIntervalInput"
             />
           </EuiFlexItem>
-          <EuiFlexItem>
+          <EuiFlexItem style={{ minWidth: 100 }} grow={2}>
             <EuiSelect
               compressed
+              fullWidth
               aria-label="Refresh interval units"
               aria-describedby={`${this.refreshSelectionId} ${this.legendId}`}
               value={units}
+              disabled={isPaused}
               options={refreshUnitsOptions}
               onChange={this.onUnitsChange}
               onKeyDown={this.handleKeyDown}
               data-test-subj="superDatePickerRefreshIntervalUnitsSelect"
             />
           </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiButton
-              className="euiRefreshInterval__startButton"
-              iconType={isPaused ? 'play' : 'stop'}
-              size="s"
-              onClick={this.toggleRefresh}
-              disabled={value === '' || value <= 0}
-              data-test-subj="superDatePickerToggleRefreshButton"
-              aria-describedby={this.refreshSelectionId}
-            >
-              {isPaused ? (
-                <EuiI18n token="euiRefreshInterval.start" default="Start" />
-              ) : (
-                <EuiI18n token="euiRefreshInterval.stop" default="Stop" />
-              )}
-            </EuiButton>
-          </EuiFlexItem>
         </EuiFlexGroup>
         <EuiScreenReaderOnly>
-          <p id={this.refreshSelectionId}>
-            <EuiI18n
-              token="euiRefreshInterval.fullDescription"
-              default="Refresh interval currently set to {optionValue} {optionText}."
-              values={{
-                optionValue: value,
-                optionText,
-              }}
-            />
-          </p>
+          <p id={this.refreshSelectionId}>{fullDescription}</p>
         </EuiScreenReaderOnly>
       </fieldset>
     );

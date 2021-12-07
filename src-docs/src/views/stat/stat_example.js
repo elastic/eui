@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiStat } from '../../../../src/components';
@@ -9,7 +7,6 @@ import statConfig from './playground';
 
 import Stat from './stat';
 const statSource = require('!!raw-loader!./stat');
-const statHtml = renderToHtml(Stat);
 const statSnippet = `<EuiStat
   title="22,123"
   description="Total people"
@@ -18,7 +15,6 @@ const statSnippet = `<EuiStat
 
 import StatColors from './stat_colors';
 const statColorsSource = require('!!raw-loader!./stat_colors');
-const statColorsHtml = renderToHtml(StatColors);
 const statColorSnippet = `<EuiStat
   title="22,123"
   description="Total people"
@@ -28,7 +24,6 @@ const statColorSnippet = `<EuiStat
 
 import StatAlign from './stat_align';
 const statAlignSource = require('!!raw-loader!./stat_align');
-const statAlignHtml = renderToHtml(StatAlign);
 const statAlignSnippet = `<EuiStat
   title="22,123"
   description="Total people"
@@ -38,7 +33,6 @@ const statAlignSnippet = `<EuiStat
 
 import StatSize from './stat_size';
 const statSizeSource = require('!!raw-loader!./stat_size');
-const statSizeHtml = renderToHtml(StatSize);
 const statSizeSnippet = `<EuiStat
   title="22,123"
   description="Total people"
@@ -48,7 +42,6 @@ const statSizeSnippet = `<EuiStat
 
 import StatOrder from './stat_order';
 const statOrderSource = require('!!raw-loader!./stat_order');
-const statOrderHtml = renderToHtml(StatOrder);
 const statOrderSnippet = `<EuiStat
   title="22,123"
   description="Total people"
@@ -58,11 +51,9 @@ const statOrderSnippet = `<EuiStat
 
 import StatCombos from './stat_combos';
 const statCombosSource = require('!!raw-loader!./stat_combos');
-const statCombosHtml = renderToHtml(StatCombos);
 
 import StatLoading from './stat_loading';
 const statLoadingSource = require('!!raw-loader!./stat_loading');
-const statLoadingHtml = renderToHtml(StatLoading);
 const statLoadingSnippet = `<EuiStat
   title={someNumber}
   description="Total people"
@@ -78,10 +69,6 @@ export const StatExample = {
         {
           type: GuideSectionTypes.JS,
           code: statSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: statHtml,
         },
       ],
       text: (
@@ -104,10 +91,6 @@ export const StatExample = {
           type: GuideSectionTypes.JS,
           code: statColorsSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: statColorsHtml,
-        },
       ],
       text: (
         <p>
@@ -127,10 +110,6 @@ export const StatExample = {
           type: GuideSectionTypes.JS,
           code: statAlignSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: statAlignHtml,
-        },
       ],
       text: (
         <p>
@@ -147,10 +126,6 @@ export const StatExample = {
         {
           type: GuideSectionTypes.JS,
           code: statSizeSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: statSizeHtml,
         },
       ],
       text: (
@@ -178,10 +153,6 @@ export const StatExample = {
           type: GuideSectionTypes.JS,
           code: statOrderSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: statOrderHtml,
-        },
       ],
       text: (
         <p>
@@ -201,10 +172,6 @@ export const StatExample = {
           type: GuideSectionTypes.JS,
           code: statLoadingSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: statLoadingHtml,
-        },
       ],
       text: (
         <p>
@@ -222,10 +189,6 @@ export const StatExample = {
         {
           type: GuideSectionTypes.JS,
           code: statCombosSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: statCombosHtml,
         },
       ],
       text: (

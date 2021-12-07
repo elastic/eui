@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiImage } from '../../../../src/components';
@@ -11,7 +9,6 @@ import imageConfig from './playground';
 
 import Image from './image';
 const imageSource = require('!!raw-loader!./image');
-const imageHtml = renderToHtml(Image);
 const imageSnippet = `<EuiImage
   alt={description}
   src={someSrc}
@@ -20,7 +17,6 @@ const imageSnippet = `<EuiImage
 
 import ImageSizes from './image_size';
 const imageSizesSource = require('!!raw-loader!./image_size');
-const imageSizesHtml = renderToHtml(ImageSizes);
 const imageSizesSnippet = `<EuiImage
   size="l"
   alt={description}
@@ -30,7 +26,6 @@ const imageSizesSnippet = `<EuiImage
 
 import ImageZoom from './image_zoom';
 const imageZoomSource = require('!!raw-loader!./image_zoom');
-const imageZoomHtml = renderToHtml(ImageZoom);
 const imageZoomSnippet = `<EuiImage
   allowFullScreen
   alt={description}
@@ -42,7 +37,6 @@ import ImageFloat from './float';
 import { EuiCallOut } from '../../../../src/components/call_out';
 import { Fragment } from 'react-is';
 const imageFloatSource = require('!!raw-loader!./float');
-const imageFloatHtml = renderToHtml(ImageFloat);
 const imageFloatSnippet = `<EuiImage
   alt={description}
   src={someSrc}
@@ -59,10 +53,6 @@ export const ImageExample = {
         {
           type: GuideSectionTypes.JS,
           code: imageSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: imageHtml,
         },
       ],
       text: (
@@ -85,10 +75,6 @@ export const ImageExample = {
           type: GuideSectionTypes.JS,
           code: imageZoomSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: imageZoomHtml,
-        },
       ],
       text: (
         <p>
@@ -109,10 +95,6 @@ export const ImageExample = {
         {
           type: GuideSectionTypes.JS,
           code: imageSizesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: imageSizesHtml,
         },
       ],
       text: (
@@ -137,10 +119,6 @@ export const ImageExample = {
         {
           type: GuideSectionTypes.JS,
           code: imageFloatSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: imageFloatHtml,
         },
       ],
       text: (

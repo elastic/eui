@@ -1,13 +1,10 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 import { EuiDataGrid, EuiCodeBlock, EuiCode } from '../../../../src/components';
 
 import DataGridControlColumns from './control_columns';
 const dataGridControlColumnsSource = require('!!raw-loader!./control_columns');
-const dataGridControlColumnsHtml = renderToHtml(DataGridControlColumns);
 
 import { EuiDataGridControlColumn } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 
@@ -40,10 +37,6 @@ export const DataGridControlColumnsExample = {
         {
           type: GuideSectionTypes.JS,
           code: dataGridControlColumnsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridControlColumnsHtml,
         },
       ],
       text: (

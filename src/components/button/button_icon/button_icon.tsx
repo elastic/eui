@@ -73,7 +73,7 @@ export interface EuiButtonIconProps extends CommonProps {
   display?: EuiButtonIconDisplay;
 }
 
-type EuiButtonIconPropsForAnchor = {
+export type EuiButtonIconPropsForAnchor = {
   type?: string;
 } & PropsForAnchor<
   EuiButtonIconProps,

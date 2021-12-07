@@ -7,7 +7,7 @@ import {
   EuiCode,
   EuiSpacer,
   EuiSuggest,
-  EuiText,
+  EuiSuggestItem,
 } from '../../../../src/components';
 
 import Suggest from './suggest';
@@ -16,7 +16,34 @@ const suggestSource = require('!!raw-loader!./suggest');
 import SavedQueries from './saved_queries';
 const savedQueriesSource = require('!!raw-loader!./saved_queries');
 
-import SuggestItem from './suggest_item_example';
+import SuggestItem from './suggest_item';
+const suggestItemSource = require('!!raw-loader!./suggest_item');
+const suggestItemSnippet = [
+  `<EuiSuggestItem
+  type={sampleItem.type}
+  label={sampleItem.label}
+  description={sampleItem.description}
+/>
+`,
+  `<EuiSuggestItem
+  type={sampleItem.type}
+  label={sampleItem.label}
+  description={sampleItem.description}
+  labelDisplay="expand"
+/>`,
+  `<EuiSuggestItem
+  type={sampleItem.type}
+  label={sampleItem.label}
+  description={sampleItem.description}
+  labelWidth="30"
+/>`,
+  `<EuiSuggestItem
+  type={sampleItem.type}
+  label={sampleItem.label}
+  description={sampleItem.description}
+  descriptionDisplay="wrap"
+/>`,
+];
 
 const suggestSnippet = [
   `<EuiSuggest
@@ -66,23 +93,29 @@ export const SuggestExample = {
     },
     {
       title: 'Suggest item',
-      wrapText: false,
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: suggestItemSource,
+        },
+      ],
       text: (
-        <>
-          <EuiText>
-            <p>
-              <strong>EuiSuggestItem</strong> is a list item component to
-              display suggestions when typing queries in{' '}
-              <strong>EuiSuggest</strong>. By default, labels will have a width
-              of 50%, you can adjust this by setting{' '}
-              <EuiCode>labelWidth</EuiCode>. Use <EuiCode>truncate</EuiCode> to
-              set whether both the label and description should truncate.
-            </p>
-          </EuiText>
-          <EuiSpacer size="l" />
-          <SuggestItem />
-        </>
+        <div>
+          <p>
+            <strong>EuiSuggestItem</strong> is a list item component to display
+            suggestions when typing queries in <strong>EuiSuggest</strong>. Use{' '}
+            <EuiCode>labelDisplay</EuiCode> to set whether the{' '}
+            <EuiCode>label</EuiCode> has a fixed width or not. By default, fixed
+            labels will have a width of 50%, you can adjust this by setting{' '}
+            <EuiCode>labelWidth</EuiCode>. Use{' '}
+            <EuiCode>descriptionDisplay</EuiCode> to set whether the{' '}
+            <EuiCode>description</EuiCode> truncates or wraps.
+          </p>
+        </div>
       ),
+      props: { EuiSuggestItem },
+      snippet: suggestItemSnippet,
+      demo: <SuggestItem />,
     },
     {
       title: 'Saved queries and filters',

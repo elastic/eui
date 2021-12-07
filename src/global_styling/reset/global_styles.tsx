@@ -108,9 +108,12 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
 
     input,
     textarea,
-    select,
-    button {
+    select {
       ${fontReset}
+    }
+
+    button {
+      font-family: ${font.family};
     }
 
     em {

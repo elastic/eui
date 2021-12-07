@@ -118,6 +118,21 @@ describe('EuiFormControlLayout', () => {
       expect(component).toMatchSnapshot();
     });
 
+    describe('compressed', () => {
+      it('renders small-sized icon, clear button, and loading spinner', () => {
+        const component = render(
+          <EuiFormControlLayout
+            compressed
+            icon={{ type: 'alert' }}
+            clear={{ onClick: jest.fn() }}
+            isLoading
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
+
     test('fullWidth is rendered', () => {
       const component = render(<EuiFormControlLayout fullWidth />);
 
