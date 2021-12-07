@@ -28,8 +28,6 @@ export const AUTO_HEIGHT = 'auto';
 export const DEFAULT_ROW_HEIGHT = 34;
 
 export class RowHeightUtils {
-  onUpdateCallbacks: Array<() => void> = [];
-
   getRowHeightOption(
     rowIndex: number,
     rowHeightsOptions?: EuiDataGridRowHeightsOptions
@@ -152,6 +150,7 @@ export class RowHeightUtils {
   private timerId?: number;
   private grid?: Grid;
   private lastUpdatedRow: number = Infinity;
+  private rerenderGridBody: Function = () => {};
 
   isAutoHeight(
     rowIndex: number,
@@ -175,15 +174,6 @@ export class RowHeightUtils {
     return Math.max(...rowHeightValues);
   }
 
-  onUpdatedRowHeight(callback: () => void) {
-    this.onUpdateCallbacks.push(callback);
-  }
-
-  offUpdatedRowHeight(callback: () => void) {
-    const idx = this.onUpdateCallbacks.indexOf(callback);
-    if (idx !== -1) this.onUpdateCallbacks.splice(idx, 1);
-  }
-
   setRowHeight(
     rowIndex: number,
     colId: string,
@@ -203,8 +193,7 @@ export class RowHeightUtils {
     rowHeights.set(colId, adaptedHeight);
     this.heightsCache.set(rowIndex, rowHeights);
     this.resetRow(visibleRowIndex);
-
-    this.onUpdateCallbacks.forEach((callback) => callback());
+    this.rerenderGridBody();
   }
 
   pruneHiddenColumnHeights(visibleColumns: EuiDataGridColumn[]) {
@@ -241,5 +230,9 @@ export class RowHeightUtils {
 
   setGrid(grid: Grid) {
     this.grid = grid;
+  }
+
+  setRerenderGridBody(rerenderGridBody: Function) {
+    this.rerenderGridBody = rerenderGridBody;
   }
 }
