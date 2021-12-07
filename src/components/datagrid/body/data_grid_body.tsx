@@ -48,6 +48,7 @@ import {
   EuiDataGridSchemaDetector,
 } from '../data_grid_types';
 import { makeRowManager } from './data_grid_row_manager';
+import { useForceRender } from '../../../services/hooks/useForceRender';
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
 
@@ -498,12 +499,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     ]
   );
 
-  const [, setRenderPass] = useState(0);
-  useEffect(() => {
-    const callback = () => setRenderPass((x) => x + 1);
-    rowHeightUtils.setRerenderGridBody(callback);
-  }, [rowHeightUtils]);
-
   const setGridRef = useCallback(
     (ref: Grid | null) => {
       gridRef.current = ref;
@@ -513,6 +508,11 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     },
     [rowHeightUtils]
   );
+
+  const forceRender = useForceRender();
+  useEffect(() => {
+    rowHeightUtils.setRerenderGridBody(forceRender);
+  }, [rowHeightUtils, forceRender]);
 
   const [minRowHeight, setRowHeight] = useState(DEFAULT_ROW_HEIGHT);
 
