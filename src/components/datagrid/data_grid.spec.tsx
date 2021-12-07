@@ -64,7 +64,9 @@ describe('EuiDataGrid', () => {
         </>
       );
 
-      cy.mount(<EuiDataGrid {...baseProps} renderCellValue={renderCellValue} />);
+      cy.mount(
+        <EuiDataGrid {...baseProps} renderCellValue={renderCellValue} />
+      );
 
       getGridData();
       cy.get('[data-test-subj=euiDataGridBody]')
