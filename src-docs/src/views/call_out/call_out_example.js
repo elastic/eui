@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCallOut, EuiText, EuiCode } from '../../../../src/components';
@@ -9,7 +7,6 @@ import callOutConfig from './playground';
 
 import Info from './info';
 const infoSource = require('!!raw-loader!./info');
-const infoHtml = renderToHtml(Info);
 const infoSnippet = [
   `<EuiCallOut size="m" title="Just a title. No content." iconType="gear" />
 `,
@@ -24,7 +21,6 @@ const infoSnippet = [
 
 import Success from './success';
 const successSource = require('!!raw-loader!./success');
-const successHtml = renderToHtml(Success);
 const successSnippet = [
   `<EuiCallOut title="Good news, everyone!" color="success" iconType="user">
   <p><!-- Content --></p>
@@ -34,7 +30,6 @@ const successSnippet = [
 
 import Warning from './warning';
 const warningSource = require('!!raw-loader!./warning');
-const warningHtml = renderToHtml(Warning);
 const warningSnippet = [
   `<EuiCallOut title="Proceed with caution!" color="warning" iconType="help">
   <p><!-- Content --></p>
@@ -44,7 +39,6 @@ const warningSnippet = [
 
 import Danger from './danger';
 const dangerSource = require('!!raw-loader!./danger');
-const dangerHtml = renderToHtml(Danger);
 const dangerSnippet = [
   `<EuiCallOut title="Sorry, there was an error" color="danger" iconType="alert">
   <p><!-- Content --></p>
@@ -95,10 +89,6 @@ export const CallOutExample = {
           type: GuideSectionTypes.JS,
           code: infoSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: infoHtml,
-        },
       ],
       text: (
         <div>
@@ -120,10 +110,6 @@ export const CallOutExample = {
           type: GuideSectionTypes.JS,
           code: successSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: successHtml,
-        },
       ],
       text: (
         <p>
@@ -142,10 +128,6 @@ export const CallOutExample = {
           type: GuideSectionTypes.JS,
           code: warningSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: warningHtml,
-        },
       ],
       text: (
         <p>
@@ -161,10 +143,6 @@ export const CallOutExample = {
         {
           type: GuideSectionTypes.JS,
           code: dangerSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dangerHtml,
         },
       ],
       text: (

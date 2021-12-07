@@ -11,4 +11,5 @@ export {
   EuiButtonIconColor,
   EuiButtonIconProps,
   EuiButtonIconPropsForButton,
+  EuiButtonIconPropsForAnchor,
 } from './button_icon';

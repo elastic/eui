@@ -120,28 +120,81 @@ describe('EuiSuperDatePicker', () => {
     jest.useRealTimers();
   });
 
-  test('updateButtonProps', () => {
-    const updateButtonProps: EuiSuperDatePickerProps['updateButtonProps'] = {
-      fill: false,
-      color: 'ghost',
-    };
+  describe('props', () => {
+    test('updateButtonProps', () => {
+      const updateButtonProps: EuiSuperDatePickerProps['updateButtonProps'] = {
+        fill: false,
+        color: 'ghost',
+      };
 
-    const component = mount(
-      <EuiSuperDatePicker
-        onTimeChange={noop}
-        updateButtonProps={updateButtonProps}
-      />
-    );
-    expect(component.find(EuiButton).props()).toMatchObject(updateButtonProps);
-  });
+      const component = mount(
+        <EuiSuperDatePicker
+          onTimeChange={noop}
+          updateButtonProps={updateButtonProps}
+        />
+      );
+      expect(component.find(EuiButton).props()).toMatchObject(
+        updateButtonProps
+      );
+    });
 
-  test('accepts data-test-subj and passes to EuiFormControlLayout', () => {
-    const component = shallow(
-      <EuiSuperDatePicker
-        onTimeChange={noop}
-        dataTestSubj="mySuperDatePicker"
-      />
-    );
-    expect(component).toMatchSnapshot();
+    describe('showUpdateButton', () => {
+      test('can be false', () => {
+        const component = shallow(
+          <EuiSuperDatePicker onTimeChange={noop} showUpdateButton={false} />
+        );
+        expect(component).toMatchSnapshot();
+      });
+
+      test('can be iconOnly', () => {
+        const component = shallow(
+          <EuiSuperDatePicker onTimeChange={noop} showUpdateButton="iconOnly" />
+        );
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    test('accepts data-test-subj and passes to EuiFormControlLayout', () => {
+      const component = shallow(
+        <EuiSuperDatePicker
+          onTimeChange={noop}
+          data-test-subj="mySuperDatePicker"
+        />
+      );
+      expect(component).toMatchSnapshot();
+    });
+
+    describe('width', () => {
+      test('can be full', () => {
+        const component = shallow(
+          <EuiSuperDatePicker onTimeChange={noop} width="full" />
+        );
+        expect(component).toMatchSnapshot();
+      });
+      test('can be auto', () => {
+        const component = shallow(
+          <EuiSuperDatePicker onTimeChange={noop} width="auto" />
+        );
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('compressed', () => {
+      test('is rendered', () => {
+        const component = shallow(
+          <EuiSuperDatePicker onTimeChange={noop} compressed />
+        );
+        expect(component).toMatchSnapshot();
+      });
+    });
+
+    describe('isQuickSelectOnly', () => {
+      test('is rendered', () => {
+        const component = shallow(
+          <EuiSuperDatePicker onTimeChange={noop} isQuickSelectOnly />
+        );
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

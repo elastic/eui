@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -27,31 +25,24 @@ import { EuiRangeInput } from '../../../../src/components/form/range/range_input
 
 import DualRangeExample from './dual_range';
 const dualRangeSource = require('!!raw-loader!./dual_range');
-const dualRangeHtml = renderToHtml(DualRangeExample);
 
 import RangeExample from './range';
 const rangeSource = require('!!raw-loader!./range');
-const rangeHtml = renderToHtml(RangeExample);
 
 import InputExample from './input';
 const inputSource = require('!!raw-loader!./input');
-const inputHtml = renderToHtml(InputExample);
 
 import TicksExample from './ticks';
 const ticksSource = require('!!raw-loader!./ticks');
-const ticksHtml = renderToHtml(TicksExample);
 
 import LevelsExample from './levels';
 const levelsSource = require('!!raw-loader!./levels');
-const levelsHtml = renderToHtml(LevelsExample);
 
 import StatesExample from './states';
 const statesSource = require('!!raw-loader!./states');
-const statesHtml = renderToHtml(StatesExample);
 
 import InputOnlyExample from './input_only';
 const inputOnlySource = require('!!raw-loader!./input_only');
-const inputOnlyHtml = renderToHtml(InputOnlyExample);
 
 export const RangeControlExample = {
   title: 'Range sliders',
@@ -109,10 +100,6 @@ export const RangeControlExample = {
         {
           type: GuideSectionTypes.JS,
           code: rangeSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: rangeHtml,
         },
       ],
       props: {
@@ -188,10 +175,6 @@ export const RangeControlExample = {
           type: GuideSectionTypes.JS,
           code: dualRangeSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dualRangeHtml,
-        },
       ],
       props: {
         EuiDualRange,
@@ -238,10 +221,6 @@ export const RangeControlExample = {
           type: GuideSectionTypes.JS,
           code: inputSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inputHtml,
-        },
       ],
       demo: <InputExample />,
       props: { EuiRangeInput },
@@ -276,10 +255,6 @@ export const RangeControlExample = {
         {
           type: GuideSectionTypes.JS,
           code: ticksSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: ticksHtml,
         },
       ],
       demo: <TicksExample />,
@@ -323,10 +298,6 @@ export const RangeControlExample = {
           type: GuideSectionTypes.JS,
           code: levelsSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: levelsHtml,
-        },
       ],
       demo: <LevelsExample />,
       props: { EuiRangeLevels, EuiRangeLevel },
@@ -367,10 +338,6 @@ export const RangeControlExample = {
           type: GuideSectionTypes.JS,
           code: inputOnlySource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inputOnlyHtml,
-        },
       ],
       demo: <InputOnlyExample />,
       snippet: [
@@ -402,10 +369,6 @@ export const RangeControlExample = {
         {
           type: GuideSectionTypes.JS,
           code: statesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: statesHtml,
         },
       ],
       demo: <StatesExample />,

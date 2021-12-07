@@ -1,13 +1,10 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 import { EuiCallOut, EuiCode } from '../../../../src/components';
 
 import DataGridFocus from './focus';
 const dataGridFocusSource = require('!!raw-loader!./focus');
-const dataGridFocusHtml = renderToHtml(DataGridFocus);
 
 export const DataGridFocusExample = {
   title: 'Data grid focus',
@@ -17,10 +14,6 @@ export const DataGridFocusExample = {
         {
           type: GuideSectionTypes.JS,
           code: dataGridFocusSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridFocusHtml,
         },
       ],
       text: (

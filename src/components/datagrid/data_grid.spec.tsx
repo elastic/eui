@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import { mount } from '@cypress/react';
 import { EuiDataGrid, EuiDataGridProps } from './index';
 
 const baseProps: EuiDataGridProps = {
@@ -28,7 +27,7 @@ const baseProps: EuiDataGridProps = {
 describe('EuiDataGrid', () => {
   describe('row creation', () => {
     it('creates rows', () => {
-      mount(<EuiDataGrid {...baseProps} />);
+      cy.mount(<EuiDataGrid {...baseProps} />);
 
       getGridData().then((data) => {
         expect(data).to.deep.equal({

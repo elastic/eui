@@ -1,5 +1,4 @@
-import React, { Fragment } from 'react';
-import { renderToHtml } from '../../services';
+import React from 'react';
 import { GuideSectionTypes } from '../../components';
 import { Link } from 'react-router-dom';
 import { EuiNotificationEventMeta } from '../../../../src/components/notification/notification_event_meta';
@@ -17,15 +16,12 @@ import NotificationEventPropsMethods from './notification_event_props_methods';
 
 import NotificationEvent from './notification_event';
 const notificationEventSource = require('!!raw-loader!./notification_event');
-const notificationEventHtml = renderToHtml(NotificationEvent);
 
 import NotificationEventFlexible from './notification_event_flexible';
 const notificationEventFlexibleSource = require('!!raw-loader!./notification_event_flexible');
-const notificationEventFlexibleHtml = renderToHtml(NotificationEventFlexible);
 
 import NotificationsFeed from './notifications_feed';
 const notificationsFeedSource = require('!!raw-loader!./notifications_feed');
-const notificationsFeedHtml = renderToHtml(NotificationsFeed);
 
 const notificationEventSnippet = `<EuiNotificationEvent
   id={id}
@@ -93,10 +89,6 @@ export const NotificationEventExample = {
           type: GuideSectionTypes.JS,
           code: notificationEventSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: notificationEventHtml,
-        },
       ],
       props: {
         EuiNotificationEvent,
@@ -112,10 +104,6 @@ export const NotificationEventExample = {
         {
           type: GuideSectionTypes.JS,
           code: notificationEventFlexibleSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: notificationEventFlexibleHtml,
         },
       ],
       title: 'A flexible component',
@@ -217,10 +205,6 @@ export const NotificationEventExample = {
         {
           type: GuideSectionTypes.JS,
           code: notificationsFeedSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: notificationsFeedHtml,
         },
       ],
       title: 'Notifications feed',

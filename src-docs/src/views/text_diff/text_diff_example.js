@@ -1,19 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode } from '../../../../src/components';
 import { useEuiTextDiffProp } from './props';
 import TextDiff from './text_diff';
 const textDiffSource = require('!!raw-loader!./text_diff');
-const textDiffHtml = renderToHtml(TextDiff);
 
 import TextDiffCustomComponents from './text_diff_custom_components';
 const customComponentsSource = require('!!raw-loader!./text_diff_custom_components');
-const customComponentsHtml = renderToHtml(TextDiffCustomComponents);
 
 export const TextDiffExample = {
   title: 'Text diff',
@@ -23,10 +19,6 @@ export const TextDiffExample = {
         {
           type: GuideSectionTypes.JS,
           code: textDiffSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: textDiffHtml,
         },
       ],
       text: (
@@ -62,10 +54,6 @@ export const TextDiffExample = {
         {
           type: GuideSectionTypes.JS,
           code: customComponentsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: customComponentsHtml,
         },
       ],
       text: (

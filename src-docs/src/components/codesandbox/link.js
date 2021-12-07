@@ -187,6 +187,7 @@ ${exampleClose}
             '@elastic/eui': pkg.version,
             ...[
               '@elastic/datemath',
+              '@emotion/react',
               'moment',
               'react',
               'react-dom',

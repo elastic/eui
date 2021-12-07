@@ -1,12 +1,10 @@
 import React from 'react';
 import { GuideSectionTypes } from '../../../components';
-import { renderToHtml } from '../../../services';
 
 import { Table } from './mobile';
 import { EuiTextColor } from '../../../../../src/components/text';
 import { EuiCode, EuiCodeBlock } from '../../../../../src/components/code';
 const source = require('!!raw-loader!./mobile');
-const html = renderToHtml(Table);
 import { EuiTableRowCellMobileOptionsShape } from '../props/props';
 
 const exampleItem = `{
@@ -28,10 +26,6 @@ export const section = {
     {
       type: GuideSectionTypes.JS,
       code: source,
-    },
-    {
-      type: GuideSectionTypes.HTML,
-      code: html,
     },
   ],
   text: (

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -25,7 +23,6 @@ import { colorPickerConfig } from './playground';
 
 import ColorPicker from './color_picker';
 const colorPickerSource = require('!!raw-loader!./color_picker');
-const colorPickerHtml = renderToHtml(ColorPicker);
 const colorPickerSnippet = `<EuiColorPicker
   id={colorPickerId}
   onChange={handleChange}
@@ -36,7 +33,6 @@ const colorPickerSnippet = `<EuiColorPicker
 
 import ColorPaletteDisplay from './color_palette_display';
 const colorPaletteDisplaySource = require('!!raw-loader!./color_palette_display');
-const colorPaletteDisplayHtml = renderToHtml(ColorPaletteDisplay);
 const colorPaletteDisplaySnippet = [
   `<EuiColorPaletteDisplay
   palette={euiPaletteColorBlind()}
@@ -63,7 +59,6 @@ const colorPaletteDisplaySnippet = [
 
 import ColorPalettePicker from './color_palette_picker';
 const colorPalettePickerSource = require('!!raw-loader!./color_palette_picker');
-const colorPalettePickerHtml = renderToHtml(ColorPalettePicker);
 const colorPalettePickerSnippet = `<EuiColorPalettePicker
   palettes={[
     {
@@ -80,7 +75,6 @@ const colorPalettePickerSnippet = `<EuiColorPalettePicker
 
 import ColorStops from './color_stops';
 const colorStopsSource = require('!!raw-loader!./color_stops');
-const colorStopsHtml = renderToHtml(ColorStops);
 const colorStopsSnippetStandard = `<EuiColorStops
   label="Standard"
   onChange={handleChange}
@@ -121,7 +115,6 @@ const colorStopsSnippetStepped = `<EuiColorStops
 
 import ColorStopsRange from './color_stops_range';
 const colorStopsRangeSource = require('!!raw-loader!./color_stops_range');
-const colorStopsRangeHtml = renderToHtml(ColorStopsRange);
 const colorPickerRangeSnippet = `<EuiColorStops
   label="Free-range color stops"
   onChange={handleChange}
@@ -131,7 +124,6 @@ const colorPickerRangeSnippet = `<EuiColorStops
 
 import Alpha from './alpha';
 const alphaSource = require('!!raw-loader!./alpha');
-const alphaHtml = renderToHtml(Alpha);
 const alphaSnippet = `<EuiColorPicker
   id={colorPickerId}
   onChange={handleChange}
@@ -142,7 +134,6 @@ const alphaSnippet = `<EuiColorPicker
 
 import Formats from './formats';
 const formatsSource = require('!!raw-loader!./formats');
-const formatsHtml = renderToHtml(Formats);
 const formatsSnippet = `<EuiColorPicker
   format="hex"
   id={colorPickerId}
@@ -153,7 +144,6 @@ const formatsSnippet = `<EuiColorPicker
 
 import CustomSwatches from './custom_swatches';
 const customSwatchesSource = require('!!raw-loader!./custom_swatches');
-const customSwatchesHtml = renderToHtml(CustomSwatches);
 const customSwatchesSnippet = `<EuiColorPicker
   id={colorPickerId}
   onChange={handleChange}
@@ -184,7 +174,6 @@ const stopCustomSwatchesSnippet = `<EuiColorStops
 
 import CustomButton from './custom_button';
 const customButtonSource = require('!!raw-loader!./custom_button');
-const customButtonHtml = renderToHtml(CustomButton);
 const customButtonSnippet = `<EuiColorPicker
   onChange={handleChange}
   color={chosenColor}
@@ -216,7 +205,6 @@ const customBadgeSnippet = `// Be sure to provide relevant accessibility to unma
 
 import Empty from './empty_state';
 const emptySource = require('!!raw-loader!./empty_state');
-const emptyHtml = renderToHtml(CustomButton);
 const emptySnippet = `<EuiColorPicker
   onChange={handleChange}
   color={chosenColor}
@@ -227,7 +215,6 @@ const emptySnippet = `<EuiColorPicker
 
 import Modes from './modes';
 const modesSource = require('!!raw-loader!./modes');
-const modesHtml = renderToHtml(Modes);
 const modesSwatchSnippet = `// Swatches only
 <EuiColorPicker
   onChange={handleChange}
@@ -267,7 +254,6 @@ const stopModesPickerSnippet = `// Gradient map only
 
 import Inline from './inline';
 const inlineSource = require('!!raw-loader!./inline');
-const inlineHtml = renderToHtml(Inline);
 const inlineSnippet = `<EuiColorPicker
   onChange={handleChange}
   color={chosenColor}
@@ -278,11 +264,9 @@ const inlineSnippet = `<EuiColorPicker
 
 import Containers from './containers';
 const containersSource = require('!!raw-loader!./containers');
-const containersHtml = renderToHtml(Containers);
 
 import KitchenSink from './kitchen_sink';
 const kitchenSinkSource = require('!!raw-loader!./kitchen_sink');
-const kitchenSinkHtml = renderToHtml(KitchenSink);
 const kitchenSinkSnippet = `<EuiColorPicker
   onChange={handleChange}
   color={chosenColor}
@@ -360,10 +344,6 @@ export const ColorPickerExample = {
           type: GuideSectionTypes.JS,
           code: colorPickerSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorPickerHtml,
-        },
       ],
       props: { EuiColorPicker },
       snippet: colorPickerSnippet,
@@ -396,10 +376,6 @@ export const ColorPickerExample = {
         {
           type: GuideSectionTypes.JS,
           code: colorPalettePickerSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorPalettePickerHtml,
         },
       ],
       props: {
@@ -445,10 +421,6 @@ export const ColorPickerExample = {
           type: GuideSectionTypes.JS,
           code: colorPaletteDisplaySource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorPaletteDisplayHtml,
-        },
       ],
       props: {
         EuiColorPaletteDisplay,
@@ -475,10 +447,6 @@ export const ColorPickerExample = {
         {
           type: GuideSectionTypes.JS,
           code: colorStopsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorStopsHtml,
         },
       ],
       props: {
@@ -515,10 +483,6 @@ export const ColorPickerExample = {
           type: GuideSectionTypes.JS,
           code: colorStopsRangeSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: colorStopsRangeHtml,
-        },
       ],
       snippet: colorPickerRangeSnippet,
       demo: <ColorStopsRange />,
@@ -529,10 +493,6 @@ export const ColorPickerExample = {
         {
           type: GuideSectionTypes.JS,
           code: formatsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: formatsHtml,
         },
       ],
       text: (
@@ -560,10 +520,6 @@ export const ColorPickerExample = {
           type: GuideSectionTypes.JS,
           code: alphaSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: alphaHtml,
-        },
       ],
       text: (
         <p>
@@ -582,10 +538,6 @@ export const ColorPickerExample = {
           type: GuideSectionTypes.JS,
           code: customSwatchesSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: customSwatchesHtml,
-        },
       ],
       text: (
         <p>
@@ -603,10 +555,6 @@ export const ColorPickerExample = {
         {
           type: GuideSectionTypes.JS,
           code: modesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: modesHtml,
         },
       ],
       text: (
@@ -632,10 +580,6 @@ export const ColorPickerExample = {
         {
           type: GuideSectionTypes.JS,
           code: customButtonSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: customButtonHtml,
         },
       ],
       text: (
@@ -665,10 +609,6 @@ export const ColorPickerExample = {
           type: GuideSectionTypes.JS,
           code: emptySource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: emptyHtml,
-        },
       ],
       text: (
         <>
@@ -691,10 +631,6 @@ export const ColorPickerExample = {
           type: GuideSectionTypes.JS,
           code: inlineSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inlineHtml,
-        },
       ],
       text: (
         <p>
@@ -714,10 +650,6 @@ export const ColorPickerExample = {
           type: GuideSectionTypes.JS,
           code: containersSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: containersHtml,
-        },
       ],
       text: (
         <p>
@@ -734,10 +666,6 @@ export const ColorPickerExample = {
         {
           type: GuideSectionTypes.JS,
           code: kitchenSinkSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: kitchenSinkHtml,
         },
       ],
       snippet: [kitchenSinkSnippet, stopKitchenSinkSnippet],

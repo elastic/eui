@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -14,15 +12,12 @@ import {
 
 import FilterGroup from './filter_group';
 const filterGroupSource = require('!!raw-loader!./filter_group');
-const filterGroupHtml = renderToHtml(FilterGroup);
 
 import FilterGroupSimple from './filter_group_simple';
 const filterGroupSimpleSource = require('!!raw-loader!./filter_group_simple');
-const filterGroupSimpleHtml = renderToHtml(FilterGroup);
 
 import FilterGroupMulti from './filter_group_multi';
 const filterGroupMultiSource = require('!!raw-loader!./filter_group_multi');
-const filterGroupMultiHtml = renderToHtml(FilterGroup);
 
 export const FilterGroupExample = {
   title: 'Filter group',
@@ -33,10 +28,6 @@ export const FilterGroupExample = {
         {
           type: GuideSectionTypes.JS,
           code: filterGroupSimpleSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: filterGroupSimpleHtml,
         },
       ],
       text: (
@@ -79,10 +70,6 @@ export const FilterGroupExample = {
         {
           type: GuideSectionTypes.JS,
           code: filterGroupMultiSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: filterGroupMultiHtml,
         },
       ],
       text: (
@@ -136,10 +123,6 @@ export const FilterGroupExample = {
         {
           type: GuideSectionTypes.JS,
           code: filterGroupSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: filterGroupHtml,
         },
       ],
       text: (
