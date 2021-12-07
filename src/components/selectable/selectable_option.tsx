@@ -55,7 +55,7 @@ export type EuiSelectableOptionBase = CommonProps & {
   id?: never;
   /**
    * Props to pass through to the `renderOptions` element.
-   * Bypass `EuiSelectableItem` and avoid DOM attribute warnings
+   * Bypass `EuiSelectableItem` and avoid DOM attribute warnings.
    */
   labelProps?: { [key: string]: any };
 };

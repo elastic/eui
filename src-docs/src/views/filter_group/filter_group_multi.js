@@ -6,9 +6,6 @@ import {
   EuiFilterGroup,
   EuiFilterButton,
   EuiSelectable,
-  // EuiLoadingChart,
-  // EuiSpacer,
-  // EuiIcon,
 } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
 

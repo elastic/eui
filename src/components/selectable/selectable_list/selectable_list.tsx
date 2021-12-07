@@ -62,7 +62,8 @@ export type EuiSelectableOptionsListProps = CommonProps &
      */
     onFocusBadge?: EuiSelectableListItemProps['onFocusBadge'];
     /**
-     * Use virtualized rendering for list items with `react-window`
+     * Use virtualized rendering for list items with `react-window`.
+     * Requires that each option be the same height.
      */
     isVirtualized?: boolean;
   };
