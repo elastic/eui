@@ -29,17 +29,10 @@ export const EuiScreenReaderStatus: FunctionComponent<EuiScreenReaderStatusProps
   content,
 }) => {
   const [toggle, setToggle] = useState(false);
-  const [active, setActive] = useState(isActive);
 
   useEffect(() => {
     setToggle((toggle) => !toggle);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    // we want to update the toggle value only when `updatePrecipitate` changes
   }, [updatePrecipitate]);
-
-  useEffect(() => {
-    setActive(isActive);
-  }, [isActive]);
 
   return (
     <EuiScreenReaderOnly>
@@ -50,7 +43,7 @@ export const EuiScreenReaderStatus: FunctionComponent<EuiScreenReaderStatusProps
           aria-atomic="true"
           aria-live="polite"
         >
-          {active && toggle ? content : ''}
+          {isActive && toggle ? content : ''}
         </div>
         <div
           id={`${listId}__status--B`}
@@ -58,7 +51,7 @@ export const EuiScreenReaderStatus: FunctionComponent<EuiScreenReaderStatusProps
           aria-atomic="true"
           aria-live="polite"
         >
-          {active && !toggle ? content : ''}
+          {isActive && !toggle ? content : ''}
         </div>
       </div>
     </EuiScreenReaderOnly>

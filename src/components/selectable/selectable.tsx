@@ -619,25 +619,25 @@ export class EuiSelectable<T = {}> extends Component<
       </EuiI18n>
     ) : undefined;
 
-    let content: ReactNode = null;
+    let listScreenReaderStatus: ReactNode = null;
     const resultsLength = visibleOptions.filter((option) => !option.disabled)
       .length;
     if (resultsLength === 0) {
-      content = (
+      listScreenReaderStatus = (
         <EuiI18n
           token="euiSelectable.noSearchResults"
           default="No search results"
         />
       );
     } else if (resultsLength === 1) {
-      content = (
+      listScreenReaderStatus = (
         <EuiI18n
           token="euiSelectable.singleSearchResult"
           default="1 result available"
         />
       );
     } else {
-      content = (
+      listScreenReaderStatus = (
         <EuiI18n
           token="euiSelectable.multipleSearchResults"
           default="{resultsLength} results available"
@@ -672,7 +672,7 @@ export class EuiSelectable<T = {}> extends Component<
                 listId={this.listId}
                 isActive={activeOptionIndex != null}
                 updatePrecipitate={searchValue.length}
-                content={content}
+                content={listScreenReaderStatus}
               />
             )}
             <EuiSelectableList<T>
