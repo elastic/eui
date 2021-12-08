@@ -837,11 +837,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 61,
+        "line": 63,
         "column": 25
       },
       "end": {
-        "line": 65,
+        "line": 67,
         "column": 5
       }
     },
@@ -949,11 +949,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 130,
+        "line": 121,
         "column": 4
       },
       "end": {
-        "line": 130,
+        "line": 121,
         "column": 66
       }
     },
@@ -965,11 +965,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 135,
+        "line": 126,
         "column": 6
       },
       "end": {
-        "line": 139,
+        "line": 130,
         "column": 8
       }
     },
@@ -981,11 +981,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 143,
+        "line": 134,
         "column": 6
       },
       "end": {
-        "line": 147,
+        "line": 138,
         "column": 8
       }
     },
@@ -997,12 +997,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 175,
-        "column": 12
+        "line": 167,
+        "column": 14
       },
       "end": {
-        "line": 181,
-        "column": 13
+        "line": 173,
+        "column": 15
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1013,12 +1013,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 175,
-        "column": 12
+        "line": 167,
+        "column": 14
       },
       "end": {
-        "line": 181,
-        "column": 13
+        "line": 173,
+        "column": 15
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1029,12 +1029,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 283,
-        "column": 16
+        "line": 275,
+        "column": 18
       },
       "end": {
-        "line": 286,
-        "column": 18
+        "line": 278,
+        "column": 20
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1045,12 +1045,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 296,
-        "column": 16
+        "line": 288,
+        "column": 18
       },
       "end": {
-        "line": 296,
-        "column": 80
+        "line": 291,
+        "column": 20
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1237,11 +1237,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 64,
+        "line": 42,
         "column": 53
       },
       "end": {
-        "line": 70,
+        "line": 48,
         "column": 3
       }
     },
@@ -1253,95 +1253,191 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 64,
+        "line": 42,
         "column": 53
       },
       "end": {
-        "line": 70,
+        "line": 48,
         "column": 3
       }
     },
     "filepath": "src/components/datagrid/controls/data_grid_toolbar.tsx"
   },
   {
-    "token": "euiStyleSelector.buttonText",
+    "token": "euiDisplaySelector.buttonText",
+    "defString": "Display options",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 217,
+        "column": 22
+      },
+      "end": {
+        "line": 220,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/datagrid/controls/display_selector.tsx"
+  },
+  {
+    "token": "euiDisplaySelector.resetButtonText",
+    "defString": "Reset to default",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 221,
+        "column": 27
+      },
+      "end": {
+        "line": 224,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/datagrid/controls/display_selector.tsx"
+  },
+  {
+    "token": "euiDisplaySelector.densityLabel",
     "defString": "Density",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 82,
+        "line": 254,
         "column": 10
       },
       "end": {
-        "line": 82,
-        "column": 75
+        "line": 262,
+        "column": 11
       }
     },
-    "filepath": "src/components/datagrid/controls/style_selector.tsx"
+    "filepath": "src/components/datagrid/controls/display_selector.tsx"
   },
   {
-    "token": "euiStyleSelector.buttonLegend",
-    "defString": "Select the display density for the data grid",
+    "token": "euiDisplaySelector.labelCompact",
+    "defString": "Compact",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 86,
-        "column": 6
+        "line": 254,
+        "column": 10
       },
       "end": {
-        "line": 99,
-        "column": 7
+        "line": 262,
+        "column": 11
       }
     },
-    "filepath": "src/components/datagrid/controls/style_selector.tsx"
+    "filepath": "src/components/datagrid/controls/display_selector.tsx"
   },
   {
-    "token": "euiStyleSelector.labelExpanded",
-    "defString": "Expanded density",
+    "token": "euiDisplaySelector.labelNormal",
+    "defString": "Normal",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 86,
-        "column": 6
+        "line": 254,
+        "column": 10
       },
       "end": {
-        "line": 99,
-        "column": 7
+        "line": 262,
+        "column": 11
       }
     },
-    "filepath": "src/components/datagrid/controls/style_selector.tsx"
+    "filepath": "src/components/datagrid/controls/display_selector.tsx"
   },
   {
-    "token": "euiStyleSelector.labelNormal",
-    "defString": "Normal density",
+    "token": "euiDisplaySelector.labelExpanded",
+    "defString": "Expanded",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 86,
-        "column": 6
+        "line": 254,
+        "column": 10
       },
       "end": {
-        "line": 99,
-        "column": 7
+        "line": 262,
+        "column": 11
       }
     },
-    "filepath": "src/components/datagrid/controls/style_selector.tsx"
+    "filepath": "src/components/datagrid/controls/display_selector.tsx"
   },
   {
-    "token": "euiStyleSelector.labelCompact",
-    "defString": "Compact density",
+    "token": "euiDisplaySelector.rowHeightLabel",
+    "defString": "Row height",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 86,
-        "column": 6
+        "line": 297,
+        "column": 10
       },
       "end": {
-        "line": 99,
-        "column": 7
+        "line": 312,
+        "column": 11
       }
     },
-    "filepath": "src/components/datagrid/controls/style_selector.tsx"
+    "filepath": "src/components/datagrid/controls/display_selector.tsx"
+  },
+  {
+    "token": "euiDisplaySelector.labelSingle",
+    "defString": "Single",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 297,
+        "column": 10
+      },
+      "end": {
+        "line": 312,
+        "column": 11
+      }
+    },
+    "filepath": "src/components/datagrid/controls/display_selector.tsx"
+  },
+  {
+    "token": "euiDisplaySelector.labelAuto",
+    "defString": "Auto fit",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 297,
+        "column": 10
+      },
+      "end": {
+        "line": 312,
+        "column": 11
+      }
+    },
+    "filepath": "src/components/datagrid/controls/display_selector.tsx"
+  },
+  {
+    "token": "euiDisplaySelector.labelCustom",
+    "defString": "Custom",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 297,
+        "column": 10
+      },
+      "end": {
+        "line": 312,
+        "column": 11
+      }
+    },
+    "filepath": "src/components/datagrid/controls/display_selector.tsx"
+  },
+  {
+    "token": "euiDisplaySelector.lineCountLabel",
+    "defString": "Lines per row",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 297,
+        "column": 10
+      },
+      "end": {
+        "line": 312,
+        "column": 11
+      }
+    },
+    "filepath": "src/components/datagrid/controls/display_selector.tsx"
   },
   {
     "token": "euiDataGridPagination.detailedPaginationLabel",
@@ -1541,11 +1637,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 750,
+        "line": 759,
         "column": 20
       },
       "end": {
-        "line": 760,
+        "line": 769,
         "column": 3
       }
     },
@@ -1557,11 +1653,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 762,
+        "line": 771,
         "column": 25
       },
       "end": {
-        "line": 771,
+        "line": 780,
         "column": 3
       }
     },
@@ -1573,15 +1669,111 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 902,
+        "line": 911,
         "column": 18
       },
       "end": {
-        "line": 905,
+        "line": 914,
         "column": 20
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
+  },
+  {
+    "token": "euiAutoRefresh.autoRefreshLabel",
+    "defString": "Auto refresh",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 49,
+        "column": 26
+      },
+      "end": {
+        "line": 52,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/auto_refresh.tsx"
+  },
+  {
+    "token": "euiAutoRefresh.buttonLabelOff",
+    "defString": "Auto refresh is off",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 120,
+        "column": 29
+      },
+      "end": {
+        "line": 123,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/auto_refresh.tsx"
+  },
+  {
+    "token": "euiAutoRefresh.buttonLabelOn",
+    "defString": "Auto refresh is on and set to {prettyInterval}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 124,
+        "column": 28
+      },
+      "end": {
+        "line": 128,
+        "column": 3
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/auto_refresh.tsx"
+  },
+  {
+    "token": "euiRefreshInterval.fullDescriptionOff",
+    "defString": "Refresh is off, interval set to {optionValue} {optionText}.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 185,
+        "column": 6
+      },
+      "end": {
+        "line": 192,
+        "column": 8
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
+  },
+  {
+    "token": "euiRefreshInterval.fullDescriptionOn",
+    "defString": "Refresh is on, interval set to {optionValue} {optionText}.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 194,
+        "column": 6
+      },
+      "end": {
+        "line": 201,
+        "column": 8
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
+  },
+  {
+    "token": "euiRefreshInterval.legend",
+    "defString": "Refresh every",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 221,
+        "column": 18
+      },
+      "end": {
+        "line": 224,
+        "column": 20
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
   },
   {
     "token": "euiDatePopoverButton.invalidTitle",
@@ -1589,11 +1781,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 81,
+        "line": 84,
         "column": 23
       },
       "end": {
-        "line": 85,
+        "line": 88,
         "column": 3
       }
     },
@@ -1605,11 +1797,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 86,
+        "line": 89,
         "column": 24
       },
       "end": {
-        "line": 90,
+        "line": 93,
         "column": 3
       }
     },
@@ -1621,12 +1813,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 141,
-        "column": 12
+        "line": 143,
+        "column": 14
       },
       "end": {
-        "line": 152,
-        "column": 13
+        "line": 154,
+        "column": 15
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
@@ -1637,12 +1829,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 141,
-        "column": 12
+        "line": 143,
+        "column": 14
       },
       "end": {
-        "line": 152,
-        "column": 13
+        "line": 154,
+        "column": 15
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
@@ -1653,12 +1845,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 141,
-        "column": 12
+        "line": 143,
+        "column": 14
       },
       "end": {
-        "line": 152,
-        "column": 13
+        "line": 154,
+        "column": 15
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
@@ -1669,28 +1861,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 176,
-        "column": 12
+        "line": 183,
+        "column": 14
       },
       "end": {
-        "line": 179,
-        "column": 13
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
-  },
-  {
-    "token": "euiRelativeTab.roundingLabel",
-    "defString": "Round to the {unit}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 196,
-        "column": 8
-      },
-      "end": {
-        "line": 200,
-        "column": 9
+        "line": 186,
+        "column": 15
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
@@ -1701,12 +1877,12 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 218,
-        "column": 14
+        "line": 209,
+        "column": 16
       },
       "end": {
-        "line": 222,
-        "column": 16
+        "line": 213,
+        "column": 18
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
@@ -1717,12 +1893,28 @@
     "highlighting": "string",
     "loc": {
       "start": {
+        "line": 219,
+        "column": 14
+      },
+      "end": {
+        "line": 223,
+        "column": 16
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
+  },
+  {
+    "token": "euiRelativeTab.roundingLabel",
+    "defString": "Round to the {unit}",
+    "highlighting": "string",
+    "loc": {
+      "start": {
         "line": 228,
-        "column": 12
+        "column": 10
       },
       "end": {
         "line": 232,
-        "column": 14
+        "column": 11
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
@@ -1733,11 +1925,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 52,
+        "line": 51,
         "column": 10
       },
       "end": {
-        "line": 55,
+        "line": 54,
         "column": 12
       }
     },
@@ -1749,11 +1941,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 172,
+        "line": 171,
         "column": 8
       },
       "end": {
-        "line": 175,
+        "line": 174,
         "column": 9
       }
     },
@@ -1765,11 +1957,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 193,
+        "line": 192,
         "column": 12
       },
       "end": {
-        "line": 196,
+        "line": 195,
         "column": 13
       }
     },
@@ -1781,11 +1973,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 207,
+        "line": 206,
         "column": 16
       },
       "end": {
-        "line": 210,
+        "line": 209,
         "column": 17
       }
     },
@@ -1797,11 +1989,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 223,
+        "line": 222,
         "column": 16
       },
       "end": {
-        "line": 226,
+        "line": 225,
         "column": 17
       }
     },
@@ -1813,11 +2005,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 244,
+        "line": 243,
         "column": 12
       },
       "end": {
-        "line": 244,
+        "line": 243,
         "column": 76
       }
     },
@@ -1829,11 +2021,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 259,
+        "line": 258,
         "column": 12
       },
       "end": {
-        "line": 259,
+        "line": 258,
         "column": 76
       }
     },
@@ -1845,11 +2037,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 273,
+        "line": 272,
         "column": 12
       },
       "end": {
-        "line": 273,
+        "line": 272,
         "column": 74
       }
     },
@@ -1861,11 +2053,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 295,
+        "line": 294,
         "column": 14
       },
       "end": {
-        "line": 295,
+        "line": 294,
         "column": 76
       }
     },
@@ -1877,11 +2069,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 302,
+        "line": 300,
         "column": 12
       },
       "end": {
-        "line": 310,
+        "line": 308,
         "column": 14
       }
     },
@@ -1893,95 +2085,15 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 58,
+        "line": 57,
         "column": 10
       },
       "end": {
-        "line": 61,
+        "line": 60,
         "column": 12
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/recently_used.tsx"
-  },
-  {
-    "token": "euiRefreshInterval.legend",
-    "defString": "Refresh every",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 179,
-        "column": 12
-      },
-      "end": {
-        "line": 182,
-        "column": 14
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/refresh_interval.tsx"
-  },
-  {
-    "token": "euiRefreshInterval.start",
-    "defString": "Start",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 221,
-        "column": 16
-      },
-      "end": {
-        "line": 221,
-        "column": 76
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/refresh_interval.tsx"
-  },
-  {
-    "token": "euiRefreshInterval.stop",
-    "defString": "Stop",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 223,
-        "column": 16
-      },
-      "end": {
-        "line": 223,
-        "column": 74
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/refresh_interval.tsx"
-  },
-  {
-    "token": "euiRefreshInterval.fullDescription",
-    "defString": "Refresh interval currently set to {optionValue} {optionText}.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 230,
-        "column": 12
-      },
-      "end": {
-        "line": 237,
-        "column": 14
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/refresh_interval.tsx"
-  },
-  {
-    "token": "euiSuperDatePicker.showDatesButtonLabel",
-    "defString": "Show dates",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 410,
-        "column": 14
-      },
-      "end": {
-        "line": 413,
-        "column": 16
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/super_date_picker.tsx"
   },
   {
     "token": "euiSuperUpdateButton.refreshButtonLabel",
@@ -1989,11 +2101,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 105,
+        "line": 124,
         "column": 6
       },
       "end": {
-        "line": 108,
+        "line": 127,
         "column": 8
       }
     },
@@ -2005,11 +2117,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 112,
+        "line": 131,
         "column": 8
       },
       "end": {
-        "line": 115,
+        "line": 134,
         "column": 10
       }
     },
@@ -2021,11 +2133,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 117,
+        "line": 136,
         "column": 8
       },
       "end": {
-        "line": 120,
+        "line": 139,
         "column": 10
       }
     },
@@ -2037,11 +2149,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 127,
+        "line": 146,
         "column": 8
       },
       "end": {
-        "line": 130,
+        "line": 149,
         "column": 10
       }
     },
@@ -2053,11 +2165,11 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 134,
+        "line": 153,
         "column": 8
       },
       "end": {
-        "line": 137,
+        "line": 156,
         "column": 10
       }
     },

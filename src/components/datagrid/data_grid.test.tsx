@@ -752,7 +752,7 @@ describe('EuiDataGrid', () => {
         toolbarVisibility: {
           showFullScreenSelector: false,
           showSortSelector: false,
-          showStyleSelector: true,
+          showDisplaySelector: true,
         },
       });
 
@@ -769,7 +769,7 @@ describe('EuiDataGrid', () => {
       // style selector
       component.debug();
       expect(
-        findTestSubject(component, 'dataGridStyleSelectorButton').length
+        findTestSubject(component, 'dataGridDisplaySelectorButton').length
       ).toBe(1);
 
       // column selector
