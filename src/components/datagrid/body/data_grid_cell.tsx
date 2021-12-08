@@ -39,8 +39,9 @@ import { IS_JEST_ENVIRONMENT } from '../../../test';
 const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
     setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
-    isExpanded: boolean;
     setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
+    isExpanded: boolean;
+    isDefinedHeight: boolean;
   }
 > = memo(
   ({
@@ -51,6 +52,7 @@ const EuiDataGridCellContent: FunctionComponent<
     rowIndex,
     colIndex,
     rowHeightUtils,
+    isDefinedHeight,
     ...rest
   }) => {
     // React is more permissible than the TS types indicate
@@ -62,11 +64,6 @@ const EuiDataGridCellContent: FunctionComponent<
       'euiDataGridCell.position',
       'Row: {row}; Column: {col}',
       { row: rowIndex + 1, col: colIndex + 1 }
-    );
-
-    const isDefinedHeight = !!rowHeightUtils?.getRowHeightOption(
-      rowIndex,
-      rowHeightsOptions
     );
 
     return (
@@ -187,7 +184,7 @@ export class EuiDataGridCell extends Component<
     }
   };
 
-  recalculateLineCountHeight = () => {
+  recalculateLineHeight = () => {
     if (!this.props.setRowHeight) return; // setRowHeight is only passed by data_grid_body into one cell per row
     if (!this.cellContentsRef) return;
 
@@ -196,7 +193,10 @@ export class EuiDataGridCell extends Component<
       rowIndex,
       rowHeightsOptions
     );
-    const lineCount = rowHeightUtils?.getLineCount(rowHeightOption);
+    const isSingleLine = rowHeightOption == null; // Undefined rowHeightsOptions default to a single line
+    const lineCount = isSingleLine
+      ? 1
+      : rowHeightUtils?.getLineCount(rowHeightOption);
 
     if (lineCount) {
       const shouldUseHeightsCache = rowHeightUtils?.isRowHeightOverride(
@@ -248,6 +248,13 @@ export class EuiDataGridCell extends Component<
 
   componentDidUpdate(prevProps: EuiDataGridCellProps) {
     this.recalculateAutoHeight();
+
+    if (
+      this.props.rowHeightsOptions?.defaultHeight !==
+      prevProps.rowHeightsOptions?.defaultHeight
+    ) {
+      this.recalculateLineHeight();
+    }
 
     if (this.props.columnId !== prevProps.columnId) {
       this.setCellProps({});
@@ -303,7 +310,7 @@ export class EuiDataGridCell extends Component<
     if (ref && hasResizeObserver) {
       this.contentObserver = new (window as any).ResizeObserver(() => {
         this.recalculateAutoHeight();
-        this.recalculateLineCountHeight();
+        this.recalculateLineHeight();
       });
       this.contentObserver.observe(ref);
     } else if (this.contentObserver) {
@@ -380,6 +387,7 @@ export class EuiDataGridCell extends Component<
       className,
       column,
       style,
+      rowHeightUtils,
       rowHeightsOptions,
       rowManager,
       ...rest
@@ -474,6 +482,11 @@ export class EuiDataGridCell extends Component<
       }
     };
 
+    const isDefinedHeight = !!rowHeightUtils?.getRowHeightOption(
+      rowIndex,
+      rowHeightsOptions
+    );
+
     const cellContentProps = {
       ...rest,
       setCellProps: this.setCellProps,
@@ -483,14 +496,13 @@ export class EuiDataGridCell extends Component<
       isExpanded: this.state.popoverIsOpen,
       isDetails: false,
       setCellContentsRef: this.setCellContentsRef,
-      rowHeightsOptions: this.props.rowHeightsOptions,
-      rowHeightUtils: this.props.rowHeightUtils,
+      rowHeightsOptions,
+      rowHeightUtils,
+      isDefinedHeight,
     };
 
-    const anchorClass = classNames('euiDataGridRowCell__expandFlex', {
-      euiDataGridRowCell__alignBaseLine: this.props.rowHeightsOptions,
-    });
-    const expandClass = this.props.rowHeightsOptions
+    const anchorClass = 'euiDataGridRowCell__expandFlex';
+    const expandClass = isDefinedHeight
       ? 'euiDataGridRowCell__contentByHeight'
       : 'euiDataGridRowCell__expandContent';
 
@@ -501,7 +513,7 @@ export class EuiDataGridCell extends Component<
         onDeactivation={() => {
           this.setState({ isEntered: false }, this.preventTabbing);
         }}
-        style={this.props.rowHeightsOptions ? { height: '100%' } : {}}
+        style={isDefinedHeight ? { height: '100%' } : {}}
         clickOutsideDisables={true}
       >
         <div className={anchorClass}>
@@ -549,7 +561,7 @@ export class EuiDataGridCell extends Component<
         innerContent = (
           <div
             className={
-              this.props.rowHeightsOptions
+              isDefinedHeight
                 ? 'euiDataGridRowCell__contentByHeight'
                 : 'euiDataGridRowCell__content'
             }

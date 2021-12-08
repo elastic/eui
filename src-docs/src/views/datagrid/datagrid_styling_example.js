@@ -9,6 +9,9 @@ import {
   EuiListGroupItem,
 } from '../../../../src/components';
 
+import DataGridDisplayCallbacks from './display_callbacks';
+const dataGridDisplayCallbacksSource = require('!!raw-loader!./display_callbacks');
+
 import DataGridContainer from './container';
 const dataGridContainerSource = require('!!raw-loader!./container');
 
@@ -35,6 +38,8 @@ import {
   EuiDataGridColumnCellActionProps,
   EuiDataGridStyle,
   EuiDataGridToolBarVisibilityOptions,
+  EuiDataGridToolBarAdditionalControlsOptions,
+  EuiDataGridToolBarAdditionalControlsLeftOptions,
 } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 
 const gridSnippet = `<EuiDataGrid
@@ -47,31 +52,27 @@ const gridSnippet = `<EuiDataGrid
   ]}
   // This can work as a shape.
   toolbarVisibility={{
-    showStyleSelector: false,
+    showDisplaySelector: false,
     showSortSelector: false,
     showFullScreenSelector: false,
     // showColumnSelector also takes an object, check the prop docs.
     showColumnSelector: false,
-    additionalControls: (
-      <Fragment>
-        <EuiButtonEmpty
-          size="xs"
-          iconType="bell"
-          color="text"
-          className="euiDataGrid__controlBtn"
-          onClick={() => {}}>
-          New button
-        </EuiButtonEmpty>
-        <EuiButtonEmpty
-          size="xs"
-          iconType="branch"
-          color="text"
-          className="euiDataGrid__controlBtn"
-          onClick={() => {}}>
-          Another button
-        </EuiButtonEmpty>
-      </Fragment>
-    )
+    additionalControls: {
+      left: (
+        <Fragment>
+          <EuiButtonEmpty
+            size="xs"
+            onClick={() => {}}>
+            New button
+          </EuiButtonEmpty>
+          <EuiButtonEmpty
+            size="xs"
+            onClick={() => {}}>
+            Another button
+          </EuiButtonEmpty>
+        </Fragment>
+      )
+    }
   }}
   // Or as a boolean to turn everything off.
   toolbarVisibility={false}
@@ -81,7 +82,7 @@ const gridSnippet = `<EuiDataGrid
     stripes: true,
     rowHover: 'highlight',
     header: 'shade',
-    // If showStyleSelector={true} from toolbarVisibility, these last two will be superceded by what the user decides.
+    // If showDisplaySelector.allowDensity={true} from toolbarVisibility, fontSize and cellPadding will be superceded by what the user decides.
     fontSize: 'm',
     cellPadding: 'm',
     footer: 'overline'
@@ -93,26 +94,58 @@ const controlsSnippet = `<EuiDataGrid
   {...usualGridProps}
   toolbarVisibility={{
     // Use of a fragment for multiple items will insure proper margins
-    additionalControls: (
-      <Fragment>
-        <EuiButtonEmpty
-          size="xs"
-          iconType="bell"
-          color="text"
-          className="euiDataGrid__controlBtn"
-          onClick={() => {}}>
-          New button
-        </EuiButtonEmpty>
-        <EuiButtonEmpty
-          size="xs"
-          iconType="branch"
-          color="text"
-          className="euiDataGrid__controlBtn"
-          onClick={() => {}}>
-          Another button
-        </EuiButtonEmpty>
-      </Fragment>
-    )
+    additionalControls: {
+      left: {
+        prepend: (
+          <Fragment>
+            <EuiButtonEmpty
+              size="xs"
+              onClick={() => {}}>
+              New button
+            </EuiButtonEmpty>
+            <EuiButtonEmpty
+              size="xs"
+              onClick={() => {}}>
+              Another button
+            </EuiButtonEmpty>
+          </Fragment>
+        ),
+        append: (
+          <Fragment>
+            <EuiButtonEmpty
+              size="xs"
+              onClick={() => {}}>
+              New button
+            </EuiButtonEmpty>
+            <EuiButtonEmpty
+              size="xs"
+              onClick={() => {}}>
+              Another button
+            </EuiButtonEmpty>
+          </Fragment>
+        ),
+      },
+      right: (
+        <Fragment>
+          <EuiToolTip content="Right-side button">
+            <EuiButtonIcon
+              aria-label="Right-side button"
+              size="xs"
+              iconType="refresh"
+              onClick={() => {}}
+            />
+          </EuiToolTip>
+          <EuiToolTip content="Another right-side button">
+            <EuiButtonIcon
+              aria-label="Another right-side button"
+              size="xs"
+              iconType="inspect"
+              onClick={() => {}}
+            />
+          </EuiToolTip>
+        </Fragment>
+      )
+    }
   }}
 />
 `;
@@ -156,9 +189,10 @@ export const DataGridStylingExample = {
             individual buttons within.
           </p>
           <p>
-            With the default settings, the <EuiCode>showStyleSelector</EuiCode>{' '}
-            setting in <EuiCode>toolbarVisibility</EuiCode> means the user has
-            the ability to override the padding and font size passed into{' '}
+            With the default settings, the{' '}
+            <EuiCode>showDisplaySelector.allowDensity</EuiCode> setting in{' '}
+            <EuiCode>toolbarVisibility</EuiCode> means the user has the ability
+            to override the padding and font size passed into{' '}
             <EuiCode>gridStyle</EuiCode> by the engineer. The font size
             overriding only works with text or elements that can inherit the
             parent font size or elements that use units relative to the parent
@@ -177,6 +211,32 @@ export const DataGridStylingExample = {
         EuiDataGridToolBarVisibilityOptions,
       },
       demo: <DataGridStyling />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dataGridDisplayCallbacksSource,
+        },
+      ],
+      title: 'Adjusting your grid to user/toolbar changes',
+      text: (
+        <>
+          <p>
+            You can use the optional <EuiCode>gridStyle.onChange</EuiCode> and{' '}
+            <EuiCode>rowHeightsOptions.onChange</EuiCode> callbacks to adjust
+            your data grid based on user density or row height changes.
+          </p>
+          <p>
+            For example, if the user changes the grid density to compressed, you
+            may want to adjust a cell&apos;s content sizing in response. Or you
+            could store user settings in localStorage or other database to
+            preserve display settings on page refresh, like the below example
+            does.
+          </p>
+        </>
+      ),
+      demo: <DataGridDisplayCallbacks />,
     },
     {
       source: [
@@ -226,18 +286,58 @@ export const DataGridStylingExample = {
       ],
       title: 'Additional controls in the toolbar',
       text: (
-        <p>
-          Use the <EuiCode>toolbarVisibility.additionalControls</EuiCode> prop
-          to pass additional controls to the toolbar. These will always live to
-          the left of the full screen button. It will respect the{' '}
-          <EuiCode language="js">toolbarVisibility={'{false}'}</EuiCode> setting
-          and hide when appropriate. Although any node can fit in this space,
-          the recommendation is to use <strong>EuiButtonEmpty</strong>{' '}
-          components with the configuration shown in the snippet.
-        </p>
+        <>
+          <p>
+            Use the <EuiCode>toolbarVisibility.additionalControls</EuiCode> prop
+            to pass more buttons to the toolbar.
+          </p>
+          <p>
+            Passing a single node to <EuiCode>additionalControls</EuiCode> will
+            default to being placed in the <EuiCode>left.append</EuiCode>{' '}
+            position of the toolbar. To configure which side of the toolbar your
+            controls display in, pass an object with the <EuiCode>left</EuiCode>{' '}
+            or <EuiCode>right</EuiCode> properties:
+          </p>
+          <ul>
+            <li>
+              <EuiCode>additionalControls.left</EuiCode> appends the passed
+              custom control into the left side of the toolbar.
+              <ul>
+                <li>
+                  <EuiCode>left.prepend</EuiCode> prepends the passed node into
+                  the left side of the toolbar, before the column & sort
+                  controls.
+                </li>
+                <li>
+                  <EuiCode>left.append</EuiCode> appends the passed node into
+                  the left side of the toolbar, after the column & sort
+                  controls.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <EuiCode>additionalControls.right</EuiCode> prepends the passed
+              node into the right side of the toolbar, before the density & full
+              screen controls.
+            </li>
+          </ul>
+          <p>
+            Although any node is allowed, the recommendation is to use{' '}
+            <EuiCode>{'<EuiButtonEmpty size="xs" />'}</EuiCode> for the
+            left-side of the toolbar and{' '}
+            <EuiCode>{'<EuiButtonIcon size="xs" />'}</EuiCode> for the
+            right-side of the toolbar.
+          </p>
+        </>
       ),
       components: { DataGridControls },
       snippet: controlsSnippet,
+      props: {
+        EuiDataGrid,
+        EuiDataGridToolBarVisibilityOptions,
+        EuiDataGridToolBarAdditionalControlsOptions,
+        EuiDataGridToolBarAdditionalControlsLeftOptions,
+      },
       demo: <DataGridControls />,
     },
     {

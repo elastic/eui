@@ -27,7 +27,7 @@ import { EuiDataGridBody, VIRTUALIZED_CONTAINER_CLASS } from './body';
 import {
   useDataGridColumnSelector,
   useDataGridColumnSorting,
-  useDataGridStyleSelector,
+  useDataGridDisplaySelector,
   startingStyles,
   checkOrDefaultToolBarDisplayOptions,
   EuiDataGridToolbar,
@@ -488,7 +488,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     minSizeForControls,
     height,
     width,
-    rowHeightsOptions,
+    rowHeightsOptions: _rowHeightsOptions,
     virtualizationOptions,
     ...rest
   } = props;
@@ -648,8 +648,17 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     allSchemaDetectors,
     displayValues
   );
-  const [styleSelector, gridStyles] = useDataGridStyleSelector(
-    gridStyleWithDefaults
+  const [
+    displaySelector,
+    gridStyles,
+    rowHeightsOptions,
+  ] = useDataGridDisplaySelector(
+    checkOrDefaultToolBarDisplayOptions(
+      toolbarVisibility,
+      'showDisplaySelector'
+    ),
+    gridStyleWithDefaults,
+    _rowHeightsOptions
   );
 
   // compute the default column width from the container's clientWidth and count of visible columns
@@ -808,7 +817,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                     gridWidth={gridWidth}
                     minSizeForControls={minSizeForControls}
                     toolbarVisibility={toolbarVisibility}
-                    styleSelector={styleSelector}
+                    displaySelector={displaySelector}
                     isFullScreen={isFullScreen}
                     setIsFullScreen={setIsFullScreen}
                     controlBtnClasses={controlBtnClasses}

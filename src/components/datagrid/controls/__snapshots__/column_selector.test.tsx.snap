@@ -27,7 +27,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
     hasArrow={true}
     isOpen={true}
     ownFocus={true}
-    panelClassName="euiDataGridColumnSelectorPopover"
+    panelClassName="euiDataGrid__controlPopoverWithDragDrop"
     panelPaddingSize="s"
   >
     <div
@@ -115,7 +115,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                   aria-describedby="generated-id"
                   aria-live="off"
                   aria-modal="true"
-                  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiDataGridColumnSelectorPopover"
+                  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop"
                   data-autofocus="true"
                   role="dialog"
                   style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
@@ -472,7 +472,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                         aria-describedby="generated-id"
                         aria-live="off"
                         aria-modal="true"
-                        className="euiPopover__panel euiPopover__panel--bottom euiDataGridColumnSelectorPopover"
+                        className="euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop"
                         hasShadow={false}
                         paddingSize="s"
                         panelRef={[Function]}
@@ -491,7 +491,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                           aria-describedby="generated-id"
                           aria-live="off"
                           aria-modal="true"
-                          className="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiDataGridColumnSelectorPopover"
+                          className="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--plain euiPanel--noShadow euiPopover__panel euiPopover__panel--bottom euiDataGrid__controlPopoverWithDragDrop"
                           role="dialog"
                           style={
                             Object {

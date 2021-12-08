@@ -106,13 +106,13 @@ export class EuiFormControlLayoutIcons extends Component<
   }
 
   renderLoadingSpinner() {
-    const { isLoading } = this.props;
+    const { isLoading, compressed } = this.props;
 
     if (!isLoading) {
       return null;
     }
 
-    return <EuiLoadingSpinner size="m" />;
+    return <EuiLoadingSpinner size={compressed ? 's' : 'm'} />;
   }
 
   renderClearButton() {
