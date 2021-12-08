@@ -1,6 +1,6 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `43.0.0`.
+- Added `magnifyWithExclamation` icon ([#5455](https://github.com/elastic/eui/pull/5455))
 
 ## [`43.0.0`](https://github.com/elastic/eui/tree/v43.0.0)
 
@@ -21,7 +21,6 @@ No public interface changes since `43.0.0`.
 - Moved `rounding` switch to popover footer in relative tab of `EuiSuperDatePicker` ([#5383](https://github.com/elastic/eui/pull/5383))
 - Simplified `EuiRefreshInterval` to use a switch to start/stop and other visual touch ups ([#5383](https://github.com/elastic/eui/pull/5383))
 - Created stand alone `EuiAutoRefresh` and `EuiAutoRefreshButton` components ([#5383](https://github.com/elastic/eui/pull/5383))
-- Added `magnifyWithExclamation` icon ([#5455](https://github.com/elastic/eui/pull/5455))
 
 **Bug fixes**
 
