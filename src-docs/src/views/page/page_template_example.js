@@ -111,7 +111,6 @@ export const PageTemplateExample = {
   ),
   sections: [
     {
-      title: 'A full page with everything',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -166,12 +165,12 @@ export const PageTemplateExample = {
             </li>
           </ul>
           <p>
-            Or you can use the provided <strong>EuiPageTemplate</strong>, which
-            is simply a shortcut for creating the different types of page layout
-            patterns described in these docs. It is somewhat opinionated, but
-            still has the ability to customize most of the inner components with
-            props like <EuiCode>pageSideBarProps</EuiCode> and{' '}
-            <EuiCode>pageContentProps</EuiCode>.
+            But we recommend using the provided <strong>EuiPageTemplate</strong>
+            , which is simply a shortcut for creating the different types of
+            page layout patterns described in these docs. It is somewhat
+            opinionated, but still has the ability to customize most of the
+            inner components with props like <EuiCode>pageSideBarProps</EuiCode>{' '}
+            and <EuiCode>pageContentProps</EuiCode>.
           </p>
           <EuiCallOut
             color="warning"
@@ -506,6 +505,7 @@ flex-grow: 1;`}
           pattern={PageSimple}
           template={PageSimpleTemplate}
           highlight="all"
+          showSideNav={false}
         />
       ),
       demoPanelProps: { color: 'subdued', paddingSize: 'none' },
@@ -600,6 +600,7 @@ flex-grow: 1;`}
           pattern={PageFullHeight}
           template={PageFullHeightTemplate}
           highlight="all"
+          showSideNav={false}
         />
       ),
       demoPanelProps: { color: 'subdued', paddingSize: 'none' },
@@ -647,6 +648,7 @@ flex-grow: 1;`}
           pattern={PageSimpleCenteredBody}
           template={PageSimpleCenteredBodyTemplate}
           highlight="all"
+          showSideNav={false}
         />
       ),
       demoPanelProps: { color: 'subdued', paddingSize: 'none' },
@@ -692,6 +694,7 @@ flex-grow: 1;`}
           pattern={PageSimpleEmptyContent}
           template={PageSimpleEmptyContentTemplate}
           highlight="all"
+          showSideNav={false}
         />
       ),
       demoPanelProps: { color: 'subdued', paddingSize: 'none' },
@@ -747,6 +750,7 @@ flex-grow: 1;`}
           pattern={PageCustomContent}
           template={PageCustomContentTemplate}
           highlight="all"
+          showSideNav={false}
         />
       ),
       demoPanelProps: { color: 'subdued', paddingSize: 'none' },

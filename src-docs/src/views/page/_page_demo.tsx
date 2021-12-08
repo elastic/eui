@@ -51,20 +51,30 @@ export const PageDemo: FunctionComponent<{
   pattern: ComponentType<{
     button: ReactElement;
     content: ReactElement;
-    sideNav: ReactElement;
+    sideNav?: ReactElement;
     bottomBar: ReactElement;
   }>;
   template?: ComponentType<{
     button: ReactElement;
     content: ReactElement;
-    sideNav: ReactElement;
+    sideNav?: ReactElement;
     bottomBar: ReactElement;
   }>;
   centered?: boolean;
   highlight?: string;
-}> = ({ slug, fullscreen, pattern, template, centered, highlight }) => {
+  showSideNav?: boolean;
+}> = ({
+  slug,
+  fullscreen,
+  pattern,
+  template,
+  centered,
+  highlight,
+  showSideNav: _showSideNav = true,
+}) => {
   const { path } = useRouteMatch();
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
+  const [showSideNav, setShowSideNav] = useState(_showSideNav);
   const [showTemplate, _setShowTemplate] = useState(
     !demosAsIndividualComponents.has(slug)
   );
@@ -79,18 +89,22 @@ export const PageDemo: FunctionComponent<{
   const button = fullscreen ? (
     <ExitFullscreenDemoButton />
   ) : (
-    <EuiButton fill href={`#${path}/${slug}`}>
+    <EuiButton
+      isDisabled={Boolean(_showSideNav && !showSideNav)}
+      fill
+      href={`#${path}/${slug}`}
+    >
       Go full screen
     </EuiButton>
   );
 
-  const sideNav = (
+  const sideNav = showSideNav ? (
     <EuiImage
       size={isMobileSize ? 'original' : 'fullWidth'}
       alt="Fake side nav list"
       url={isMobileSize ? singleSvg : sideNavSvg}
     />
-  );
+  ) : undefined;
 
   const content = (
     <>
@@ -157,6 +171,22 @@ export const PageDemo: FunctionComponent<{
       {template && pattern && (
         <EuiPanel hasBorder="1px 0" borderRadius="none">
           <EuiFlexGroup alignItems="center">
+            {_showSideNav && (
+              <EuiFlexItem grow={false}>
+                <EuiSwitch
+                  label="Sidebar"
+                  checked={showSideNav}
+                  onChange={() => setShowSideNav((showing) => !showing)}
+                />
+              </EuiFlexItem>
+            )}
+            <EuiFlexItem>
+              <EuiSwitch
+                label="Show using EuiPageTemplate"
+                checked={showTemplate}
+                onChange={() => setShowTemplate((showing) => !showing)}
+              />
+            </EuiFlexItem>
             {highlight === 'all' && (
               <EuiFlexItem>
                 <EuiSelect
@@ -174,13 +204,6 @@ export const PageDemo: FunctionComponent<{
                 />
               </EuiFlexItem>
             )}
-            <EuiFlexItem>
-              <EuiSwitch
-                label="Show with individual components"
-                checked={!showTemplate}
-                onChange={() => setShowTemplate((showing) => !showing)}
-              />
-            </EuiFlexItem>
           </EuiFlexGroup>
         </EuiPanel>
       )}
