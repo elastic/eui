@@ -372,6 +372,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
                 React.createElement(
                   this.ListRow,
                   {
+                    key: index,
                     data: optionArray,
                     index,
                     style: {},
