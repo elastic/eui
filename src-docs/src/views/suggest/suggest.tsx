@@ -8,7 +8,7 @@ import {
   EuiSuggestionProps,
 } from '../../../../src/components';
 
-import { EuiSuggestStatus } from '../../../../src/components/suggest/suggest_input';
+import { EuiSuggestStatus } from '../../../../src/components/suggest/types';
 
 import { htmlIdGenerator } from '../../../../src/services';
 

@@ -17,6 +17,7 @@ import { CommonProps, ExclusiveUnion } from '../common';
 import { useGeneratedHtmlId } from '../../services';
 
 import { EuiScreenReaderOnly } from '../accessibility';
+import { EuiFieldSearchProps } from '../form';
 import { EuiIcon } from '../icon';
 import { useEuiI18n } from '../i18n';
 import { EuiInputPopover } from '../popover';
@@ -24,20 +25,7 @@ import { EuiSelectable, EuiSelectableListItemProps } from '../selectable';
 import { EuiToolTip } from '../tool_tip';
 
 import { EuiSuggestItem, _EuiSuggestItemPropsBase } from './suggest_item';
-import { EuiSuggestInputProps } from './suggest_input';
-
-interface Status {
-  icon?: string;
-  color?: string;
-  tooltip?: string;
-}
-
-interface StatusMap {
-  unsaved: Status;
-  saved: Status;
-  unchanged: Status;
-  loading: Status;
-}
+import { EuiSuggestStatus, StatusMap } from './types';
 
 const statusMap: StatusMap = {
   unsaved: {
@@ -64,6 +52,7 @@ const suggestItemPropsKeys = [
   'labelWidth',
   'descriptionDisplay',
 ];
+
 export interface EuiSuggestionProps
   extends CommonProps,
     _EuiSuggestItemPropsBase {
@@ -71,7 +60,7 @@ export interface EuiSuggestionProps
 }
 
 type _EuiSuggestProps = CommonProps &
-  Omit<EuiSuggestInputProps, 'suggestions'> & {
+  EuiFieldSearchProps & {
     /**
      * List of suggestions to display using EuiSuggestItem.
      * Accepts props from #EuiSuggestItemProps
@@ -79,11 +68,34 @@ type _EuiSuggestProps = CommonProps &
     suggestions: EuiSuggestionProps[];
 
     /**
+     * Changes the content of the tooltip that wraps the status icon
+     */
+    tooltipContent?: string;
+
+    /**
+     * Status of the current query 'unsaved', 'saved', 'unchanged' or 'loading'.
+     */
+    status?: EuiSuggestStatus;
+
+    /**
+     * Element to be appended to the input bar.
+     */
+    append?: JSX.Element;
+
+    /**
      * Handler for click on an EuiSuggestItem.
      */
     onItemClick?: (item: EuiSuggestionProps) => void;
 
+    /**
+     * Callback function called when the input changes.
+     */
     onInputChange?: (target: EventTarget) => void;
+
+    /**
+     * Callback function called when the search changes.
+     */
+    onSearchChange?: (value: string) => void;
 
     /**
      * Use virtualized rendering for list items with `react-window`.
@@ -111,7 +123,10 @@ export type EuiSuggestProps = _EuiSuggestProps &
 
 export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   onItemClick,
+  onBlur,
+  onFocus,
   onInputChange,
+  onSearchChange,
   status = 'unchanged',
   append,
   tooltipContent,
@@ -122,9 +137,6 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   isVirtualized = false,
   fullWidth = true,
   maxHeight = '60vh',
-  onFocus,
-  onBlur,
-  sendValue,
   ...rest
 }) => {
   /**
@@ -156,7 +168,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
   };
 
   const searchOnChange = (value: string) => {
-    sendValue && sendValue(value);
+    onSearchChange && onSearchChange(value);
   };
 
   const inputDescribedbyId = useGeneratedHtmlId({ prefix: id });

@@ -6,6 +6,12 @@
 - Added `EuiScreenReaderStatus` component for updateable `aria-live` regions  ([#5157](https://github.com/elastic/eui/pull/5157))
 - Added virtulized rendering optionality to `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
 
+**Breaking changes**
+
+- Removed `EuiSuggestInput` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Required `aria-label` or `aria-labelledby` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Renamed `sendValue` prop to `onSearchChange` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
+
 ## [`43.0.0`](https://github.com/elastic/eui/tree/v43.0.0)
 
 - Updated the organization of `EuiDataGrid`'s toolbar/grid controls ([#5334](https://github.com/elastic/eui/pull/5334))

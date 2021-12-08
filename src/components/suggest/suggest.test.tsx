@@ -11,7 +11,7 @@ import { render, mount } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
 import { EuiSuggest, EuiSuggestionProps } from './suggest';
-import { ALL_STATUS } from './suggest_input';
+import { ALL_STATUS } from './types';
 
 const sampleItems: EuiSuggestionProps[] = [
   {
@@ -81,13 +81,13 @@ describe('EuiSuggest', () => {
       });
     });
 
-    test('sendValue', () => {
+    test('onSearchChange', () => {
       const handler = jest.fn();
       const component = mount(
         <EuiSuggest
           {...requiredProps}
           suggestions={sampleItems}
-          sendValue={handler}
+          onSearchChange={handler}
         />
       );
 
