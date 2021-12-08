@@ -301,6 +301,11 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
             fullWidth={fullWidth}
             closePopover={closePopover}
             panelRef={setPopoverRef}
+            panelProps={{
+              'aria-live': undefined,
+              'aria-modal': false,
+              role: undefined,
+            }}
           >
             <div style={{ maxHeight }} className="eui-yScroll">
               {list}

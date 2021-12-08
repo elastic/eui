@@ -619,52 +619,7 @@ export class EuiSelectable<T = {}> extends Component<
       </EuiI18n>
     ) : undefined;
 
-    const listAriaDescribedbyId = `${this.listId}-instructions`;
-    const listAccessibleName = getAccessibleName(
-      listProps,
-      listAriaDescribedbyId
-    );
-    const listHasAccessibleName = Boolean(
-      Object.keys(listAccessibleName).length
-    );
-    const list = messageContent ? (
-      <EuiSelectableMessage
-        id={this.messageContentId}
-        bordered={listProps && listProps.bordered}
-      >
-        {messageContent}
-      </EuiSelectableMessage>
-    ) : (
-      <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
-        {(placeholderName: string) => (
-          <EuiSelectableList<T>
-            key="list"
-            options={options}
-            visibleOptions={visibleOptions}
-            searchValue={searchValue}
-            activeOptionIndex={activeOptionIndex}
-            setActiveOptionIndex={(index, cb) => {
-              this.setState({ activeOptionIndex: index }, cb);
-            }}
-            onOptionClick={this.onOptionClick}
-            singleSelection={singleSelection}
-            ref={this.optionsListRef}
-            renderOption={renderOption}
-            height={height}
-            allowExclusions={allowExclusions}
-            searchable={searchable}
-            makeOptionId={this.makeOptionId}
-            listId={this.listId}
-            {...(listHasAccessibleName
-              ? listAccessibleName
-              : searchable && { 'aria-label': placeholderName })}
-            {...cleanedListProps}
-          />
-        )}
-      </EuiI18n>
-    );
-
-    let content = null;
+    let content: ReactNode = null;
     const resultsLength = visibleOptions.filter((option) => !option.disabled)
       .length;
     if (resultsLength === 0) {
@@ -693,6 +648,61 @@ export class EuiSelectable<T = {}> extends Component<
       );
     }
 
+    const listAriaDescribedbyId = `${this.listId}-instructions`;
+    const listAccessibleName = getAccessibleName(
+      listProps,
+      listAriaDescribedbyId
+    );
+    const listHasAccessibleName = Boolean(
+      Object.keys(listAccessibleName).length
+    );
+    const list = messageContent ? (
+      <EuiSelectableMessage
+        id={this.messageContentId}
+        bordered={listProps && listProps.bordered}
+      >
+        {messageContent}
+      </EuiSelectableMessage>
+    ) : (
+      <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
+        {(placeholderName: string) => (
+          <>
+            {searchable && (
+              <EuiScreenReaderStatus
+                listId={this.listId}
+                isActive={activeOptionIndex != null}
+                updatePrecipitate={searchValue.length}
+                content={content}
+              />
+            )}
+            <EuiSelectableList<T>
+              key="list"
+              options={options}
+              visibleOptions={visibleOptions}
+              searchValue={searchValue}
+              activeOptionIndex={activeOptionIndex}
+              setActiveOptionIndex={(index, cb) => {
+                this.setState({ activeOptionIndex: index }, cb);
+              }}
+              onOptionClick={this.onOptionClick}
+              singleSelection={singleSelection}
+              ref={this.optionsListRef}
+              renderOption={renderOption}
+              height={height}
+              allowExclusions={allowExclusions}
+              searchable={searchable}
+              makeOptionId={this.makeOptionId}
+              listId={this.listId}
+              {...(listHasAccessibleName
+                ? listAccessibleName
+                : searchable && { 'aria-label': placeholderName })}
+              {...cleanedListProps}
+            />
+          </>
+        )}
+      </EuiI18n>
+    );
+
     return (
       <>
         <div
@@ -704,14 +714,6 @@ export class EuiSelectable<T = {}> extends Component<
           onMouseDown={this.onMouseDown}
           {...rest}
         >
-          {searchable && (
-            <EuiScreenReaderStatus
-              listId={this.listId}
-              isActive={activeOptionIndex != null}
-              updatePrecipitate={searchValue.length}
-              content={content}
-            />
-          )}
           {children && children(list, search)}
         </div>
         <EuiI18n

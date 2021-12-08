@@ -6,22 +6,6 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
-    <div
       class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
     >
       <div
@@ -89,22 +73,6 @@ Array [
   <div
     class="euiSelectable euiSelectable-fullHeight"
   >
-    <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
     <div
       class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
     >
@@ -174,22 +142,6 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
-    <div
       class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
     >
       <div
@@ -257,22 +209,6 @@ Array [
   <div
     class="euiSelectable euiSelectable-fullHeight"
   >
-    <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
     <div
       class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
     >
@@ -346,22 +282,6 @@ Array [
   <div
     class="euiSelectable euiSelectable-fullHeight"
   >
-    <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
     <div
       class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
     >
@@ -437,22 +357,6 @@ Array [
   <div
     class="euiSelectable euiSelectable-fullHeight"
   >
-    <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
     <div
       class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
     >
@@ -531,22 +435,6 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
-    <div
       class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
     >
       <div
@@ -614,22 +502,6 @@ Array [
   <div
     class="euiSelectable euiSelectable-fullHeight"
   >
-    <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
     <div
       class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
     >
@@ -708,22 +580,6 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
-    <div
       class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
     >
       <div
@@ -798,22 +654,6 @@ Array [
   <div
     class="euiSelectable euiSelectable-fullHeight"
   >
-    <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
     <div
       class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
     >
@@ -892,22 +732,6 @@ Array [
     class="euiSelectable euiSelectable-fullHeight"
   >
     <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
-    <div
       class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
     >
       <div
@@ -975,22 +799,6 @@ Array [
   <div
     class="euiSelectable euiSelectable-fullHeight"
   >
-    <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
     <div
       class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiInputPopover--fullWidth euiInputPopover euiInputPopover--fullWidth"
     >

@@ -124,24 +124,7 @@ exports[`EuiSelectable props searchable 1`] = `
 Array [
   <div
     class="euiSelectable"
-  >
-    <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
-  </div>,
+  />,
   <div
     class="euiScreenReaderOnly"
   >

@@ -13,8 +13,6 @@ import React, {
   useState,
 } from 'react';
 
-import { debounce } from '../../../services';
-
 import { EuiScreenReaderOnly } from '../screen_reader_only';
 
 export interface EuiScreenReaderStatusProps {
@@ -31,24 +29,17 @@ export const EuiScreenReaderStatus: FunctionComponent<EuiScreenReaderStatusProps
   content,
 }) => {
   const [toggle, setToggle] = useState(false);
-  const [debounced, setDebounced] = useState(false);
-  const [active, setActive] = useState(false);
-
-  const debounceStatusUpdate = debounce(() => {
-    if (!debounced) {
-      setToggle((toggle) => !toggle);
-      setDebounced(true);
-      setActive(isActive);
-    }
-  }, 1400);
+  const [active, setActive] = useState(isActive);
 
   useEffect(() => {
-    setDebounced(false);
-  }, [updatePrecipitate, isActive]);
+    setToggle((toggle) => !toggle);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // we want to update the toggle value only when `updatePrecipitate` changes
+  }, [updatePrecipitate]);
 
   useEffect(() => {
-    debounceStatusUpdate();
-  }, [debounced]); // eslint-disable-line
+    setActive(isActive);
+  }, [isActive]);
 
   return (
     <EuiScreenReaderOnly>
@@ -59,7 +50,7 @@ export const EuiScreenReaderStatus: FunctionComponent<EuiScreenReaderStatusProps
           aria-atomic="true"
           aria-live="polite"
         >
-          {active && debounced && toggle ? content : ''}
+          {active && toggle ? content : ''}
         </div>
         <div
           id={`${listId}__status--B`}
@@ -67,7 +58,7 @@ export const EuiScreenReaderStatus: FunctionComponent<EuiScreenReaderStatusProps
           aria-atomic="true"
           aria-live="polite"
         >
-          {active && debounced && !toggle ? content : ''}
+          {active && !toggle ? content : ''}
         </div>
       </div>
     </EuiScreenReaderOnly>

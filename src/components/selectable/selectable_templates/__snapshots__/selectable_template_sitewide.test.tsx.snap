@@ -7,22 +7,6 @@ Array [
     data-test-subj="test subject string"
   >
     <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
-    <div
       class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
     >
       <div
@@ -79,22 +63,6 @@ Array [
   <div
     class="euiSelectable euiSelectableTemplateSitewide"
   >
-    <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
     <div
       class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
     >
@@ -153,22 +121,6 @@ Array [
     class="euiSelectable euiSelectableTemplateSitewide"
   >
     <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
-    <div
       class="euiPopover euiPopover--anchorDownCenter"
     >
       <div
@@ -198,22 +150,6 @@ Array [
     class="euiSelectable euiSelectableTemplateSitewide"
   >
     <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
-    <div
       class="euiPopover euiPopover--anchorDownCenter"
     >
       <div
@@ -242,22 +178,6 @@ Array [
   <div
     class="euiSelectable euiSelectableTemplateSitewide"
   >
-    <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
     <div
       class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
     >
@@ -316,22 +236,6 @@ Array [
     class="euiSelectable euiSelectableTemplateSitewide"
   >
     <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
-    <div
       class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock customPopoverClass"
     >
       <div
@@ -388,22 +292,6 @@ Array [
   <div
     class="euiSelectable euiSelectableTemplateSitewide"
   >
-    <div
-      class="euiScreenReaderOnly"
-    >
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--A"
-        role="status"
-      />
-      <div
-        aria-atomic="true"
-        aria-live="polite"
-        id="generated-id__status--B"
-        role="status"
-      />
-    </div>
     <div
       class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
     >
