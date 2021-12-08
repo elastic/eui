@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useCallback } from 'react';
+import React, { useState, Fragment, useCallback, useMemo } from 'react';
 import { fake } from 'faker';
 
 import {
@@ -155,6 +155,37 @@ const DataGrid = () => {
     },
   ];
 
+  const showColumnSelectorOptions = [
+    {
+      id: 'true',
+      label: 'True',
+    },
+    {
+      id: 'false',
+      label: 'False',
+    },
+  ];
+  const allowHideColumnsOptions = [
+    {
+      id: 'true',
+      label: 'True',
+    },
+    {
+      id: 'false',
+      label: 'False',
+    },
+  ];
+  const allowOrderingColumnsOptions = [
+    {
+      id: 'true',
+      label: 'True',
+    },
+    {
+      id: 'false',
+      label: 'False',
+    },
+  ];
+
   const showSortSelectorOptions = [
     {
       id: 'true',
@@ -166,7 +197,7 @@ const DataGrid = () => {
     },
   ];
 
-  const showStyleSelectorOptions = [
+  const showDisplaySelectorOptions = [
     {
       id: 'true',
       label: 'True',
@@ -177,7 +208,7 @@ const DataGrid = () => {
     },
   ];
 
-  const showColumnSelectorOptions = [
+  const allowDensityOptions = [
     {
       id: 'true',
       label: 'True',
@@ -187,19 +218,7 @@ const DataGrid = () => {
       label: 'False',
     },
   ];
-
-  const allowHideColumnsOptions = [
-    {
-      id: 'true',
-      label: 'True',
-    },
-    {
-      id: 'false',
-      label: 'False',
-    },
-  ];
-
-  const allowOrderingColumnsOptions = [
+  const allowRowHeightOptions = [
     {
       id: 'true',
       label: 'True',
@@ -252,7 +271,9 @@ const DataGrid = () => {
   const [headerSelected, setHeaderSelected] = useState('underline');
   const [footerSelected, setFooterSelected] = useState('overline');
   const [showSortSelector, setShowSortSelector] = useState(true);
-  const [showStyleSelector, setShowStyleSelector] = useState(true);
+  const [showDisplaySelector, setShowDisplaySelector] = useState(true);
+  const [allowDensity, setAllowDensity] = useState(true);
+  const [allowRowHeight, setAllowRowHeight] = useState(true);
   const [showColumnSelector, setShowColumnSelector] = useState(true);
   const [allowHideColumns, setAllowHideColumns] = useState(true);
   const [allowOrderingColumns, setAllowOrderingColumns] = useState(true);
@@ -297,24 +318,28 @@ const DataGrid = () => {
     setFooterSelected(optionId);
   };
 
+  const onShowColumnSelectorChange = (optionId) => {
+    setShowColumnSelector(optionId === 'true');
+  };
+  const onAllowHideColumnsChange = (optionId) => {
+    setAllowHideColumns(optionId === 'true');
+  };
+  const onAllowOrderingColumnsChange = (optionId) => {
+    setAllowOrderingColumns(optionId === 'true');
+  };
+
   const onShowSortSelectorChange = (optionId) => {
     setShowSortSelector(optionId === 'true');
   };
 
-  const onShowStyleSelectorChange = (optionId) => {
-    setShowStyleSelector(optionId === 'true');
+  const onShowDisplaySelectorChange = (optionId) => {
+    setShowDisplaySelector(optionId === 'true');
   };
-
-  const onShowColumnSelectorChange = (optionId) => {
-    setShowColumnSelector(optionId === 'true');
+  const onAllowDensityChange = (optionId) => {
+    setAllowDensity(optionId === 'true');
   };
-
-  const onAllowHideColumnsChange = (optionId) => {
-    setAllowHideColumns(optionId === 'true');
-  };
-
-  const onAllowOrderingColumnsChange = (optionId) => {
-    setAllowOrderingColumns(optionId === 'true');
+  const onAllowRowHeightChange = (optionId) => {
+    setAllowRowHeight(optionId === 'true');
   };
 
   const onShowFullScreenSelectorChange = (optionId) => {
@@ -362,6 +387,12 @@ const DataGrid = () => {
   const handleVisibleColumns = (visibleColumns) =>
     setVisibleColumns(visibleColumns);
 
+  const [sortingColumns, setSortingColumns] = useState([]);
+  const onSort = useCallback(
+    (sortingColumns) => setSortingColumns(sortingColumns),
+    [setSortingColumns]
+  );
+
   const styleButton = (
     <EuiButton
       iconType="gear"
@@ -383,20 +414,35 @@ const DataGrid = () => {
       toolbarVisibility options
     </EuiButton>
   );
-  let displayColumnSelector = showColumnSelector;
-  if (
-    displayColumnSelector === true &&
-    (allowHideColumns === false || allowOrderingColumns === false)
-  ) {
-    displayColumnSelector = {
-      allowHide: allowHideColumns,
-      allowReorder: allowOrderingColumns,
-    };
-  }
+
+  const toggleColumnSelector = useMemo(() => {
+    if (
+      showColumnSelector === true &&
+      (allowHideColumns === false || allowOrderingColumns === false)
+    ) {
+      return {
+        allowHide: allowHideColumns,
+        allowReorder: allowOrderingColumns,
+      };
+    } else {
+      return showColumnSelector;
+    }
+  }, [showColumnSelector, allowHideColumns, allowOrderingColumns]);
+
+  const toggleDisplaySelector = useMemo(() => {
+    if (
+      showDisplaySelector === true &&
+      (allowDensity === false || allowRowHeight === false)
+    ) {
+      return { allowDensity, allowRowHeight };
+    } else {
+      return showDisplaySelector;
+    }
+  }, [showDisplaySelector, allowDensity, allowRowHeight]);
 
   const toolbarVisibilityOptions = {
-    showColumnSelector: displayColumnSelector,
-    showStyleSelector: showStyleSelector,
+    showColumnSelector: toggleColumnSelector,
+    showDisplaySelector: toggleDisplaySelector,
     showSortSelector: showSortSelector,
     showFullScreenSelector: showFullScreenSelector,
   };
@@ -447,7 +493,7 @@ const DataGrid = () => {
                 <EuiButtonGroup
                   isFullWidth
                   buttonSize="compressed"
-                  legend="Fornt size"
+                  legend="Font size"
                   options={fontSizeOptions}
                   idSelected={fontSizeSelected}
                   onChange={onFontSizeChange}
@@ -516,7 +562,7 @@ const DataGrid = () => {
                 <EuiButtonGroup
                   isFullWidth
                   buttonSize="compressed"
-                  legend="Border"
+                  legend="toolbarVisibility type"
                   options={toolbarPropTypeIsBooleanOptions}
                   idSelected={toolbarPropTypeIsBoolean.toString()}
                   onChange={onToolbarPropTypeIsBooleanChange}
@@ -526,60 +572,18 @@ const DataGrid = () => {
                 <Fragment>
                   <EuiFormRow
                     display="columnCompressed"
-                    label="Show style selector"
-                  >
-                    <EuiButtonGroup
-                      isFullWidth
-                      buttonSize="compressed"
-                      legend="Border"
-                      options={showStyleSelectorOptions}
-                      idSelected={showStyleSelector.toString()}
-                      onChange={onShowStyleSelectorChange}
-                    />
-                  </EuiFormRow>
-
-                  <EuiFormRow
-                    display="columnCompressed"
-                    label="Show sort selector"
-                  >
-                    <EuiButtonGroup
-                      isFullWidth
-                      buttonSize="compressed"
-                      legend="Border"
-                      options={showSortSelectorOptions}
-                      idSelected={showSortSelector.toString()}
-                      onChange={onShowSortSelectorChange}
-                    />
-                  </EuiFormRow>
-
-                  <EuiFormRow
-                    display="columnCompressed"
-                    label="Show full screen selector"
-                  >
-                    <EuiButtonGroup
-                      isFullWidth
-                      buttonSize="compressed"
-                      legend="Border"
-                      options={showFullScreenSelectorOptions}
-                      idSelected={showFullScreenSelector.toString()}
-                      onChange={onShowFullScreenSelectorChange}
-                    />
-                  </EuiFormRow>
-
-                  <EuiFormRow
-                    display="columnCompressed"
                     label="Show column selector"
                   >
                     <EuiButtonGroup
                       isFullWidth
                       buttonSize="compressed"
-                      legend="Border"
+                      legend="Column options"
                       options={showColumnSelectorOptions}
-                      idSelected={displayColumnSelector ? 'true' : 'false'}
+                      idSelected={toggleColumnSelector ? 'true' : 'false'}
                       onChange={onShowColumnSelectorChange}
                     />
                   </EuiFormRow>
-                  {displayColumnSelector && (
+                  {toggleColumnSelector && (
                     <>
                       <EuiFormRow
                         display="columnCompressed"
@@ -589,7 +593,7 @@ const DataGrid = () => {
                         <EuiButtonGroup
                           isFullWidth
                           buttonSize="compressed"
-                          legend="Border"
+                          legend="Column hiding options"
                           options={allowHideColumnsOptions}
                           idSelected={allowHideColumns.toString()}
                           onChange={onAllowHideColumnsChange}
@@ -603,7 +607,7 @@ const DataGrid = () => {
                         <EuiButtonGroup
                           isFullWidth
                           buttonSize="compressed"
-                          legend="Border"
+                          legend="Column ordering options"
                           options={allowOrderingColumnsOptions}
                           idSelected={allowOrderingColumns.toString()}
                           onChange={onAllowOrderingColumnsChange}
@@ -611,13 +615,87 @@ const DataGrid = () => {
                       </EuiFormRow>
                     </>
                   )}
+
+                  <EuiFormRow
+                    display="columnCompressed"
+                    label="Show sort selector"
+                  >
+                    <EuiButtonGroup
+                      isFullWidth
+                      buttonSize="compressed"
+                      legend="Sort options"
+                      options={showSortSelectorOptions}
+                      idSelected={showSortSelector.toString()}
+                      onChange={onShowSortSelectorChange}
+                    />
+                  </EuiFormRow>
+
+                  <EuiFormRow
+                    display="columnCompressed"
+                    label="Show display selector"
+                  >
+                    <EuiButtonGroup
+                      isFullWidth
+                      buttonSize="compressed"
+                      legend="Display options"
+                      options={showDisplaySelectorOptions}
+                      idSelected={toggleDisplaySelector ? 'true' : 'false'}
+                      onChange={onShowDisplaySelectorChange}
+                    />
+                  </EuiFormRow>
+                  {toggleDisplaySelector && (
+                    <>
+                      <EuiFormRow
+                        display="columnCompressed"
+                        label="Allow density"
+                        style={{ marginLeft: 32 }}
+                      >
+                        <EuiButtonGroup
+                          isFullWidth
+                          buttonSize="compressed"
+                          legend="Density options"
+                          options={allowDensityOptions}
+                          idSelected={allowDensity.toString()}
+                          onChange={onAllowDensityChange}
+                        />
+                      </EuiFormRow>
+                      <EuiFormRow
+                        display="columnCompressed"
+                        label="Allow row height"
+                        style={{ marginLeft: 32 }}
+                      >
+                        <EuiButtonGroup
+                          isFullWidth
+                          buttonSize="compressed"
+                          legend="Row height options"
+                          options={allowRowHeightOptions}
+                          idSelected={allowRowHeight.toString()}
+                          onChange={onAllowRowHeightChange}
+                        />
+                      </EuiFormRow>
+                    </>
+                  )}
+
+                  <EuiFormRow
+                    display="columnCompressed"
+                    label="Show full screen selector"
+                  >
+                    <EuiButtonGroup
+                      isFullWidth
+                      buttonSize="compressed"
+                      legend="Full screen options"
+                      options={showFullScreenSelectorOptions}
+                      idSelected={showFullScreenSelector.toString()}
+                      onChange={onShowFullScreenSelectorChange}
+                    />
+                  </EuiFormRow>
                 </Fragment>
               ) : (
                 <EuiFormRow display="columnCompressed" label="Show toolbar">
                   <EuiButtonGroup
                     isFullWidth
                     buttonSize="compressed"
-                    legend="Border"
+                    legend="toolbarVisibility flag"
                     options={showToolbarOptions}
                     idSelected={showToolbar.toString()}
                     onChange={onShowToolbarChange}
@@ -649,6 +727,7 @@ const DataGrid = () => {
           visibleColumns: visibleColumns,
           setVisibleColumns: handleVisibleColumns,
         }}
+        sorting={{ columns: sortingColumns, onSort }}
         rowCount={data.length}
         gridStyle={{
           border: borderSelected,

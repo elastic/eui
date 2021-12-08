@@ -31,9 +31,9 @@ const GuideSketchLinkComponent: React.FunctionComponent<GuideSketchLinkProps> = 
     'https://github.com/elastic/eui/releases/download/v8.0.0/eui_sketch_8.0.0.zip';
   const label = 'EUI Sketch Library (download)';
 
-  const isAmsterdam = context.theme.includes('amsterdam');
+  const isLegacy = context.theme.includes('legacy');
 
-  if (isAmsterdam) return <></>;
+  if (!isLegacy) return <></>;
 
   return isMobileSize ? (
     <EuiButtonEmpty size="s" flush="both" iconType="logoSketch" href={href}>

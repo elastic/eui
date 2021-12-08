@@ -45,9 +45,34 @@ describe('EuiSuperUpdateButton', () => {
     expect(component).toMatchSnapshot();
   });
 
+  test('iconOnly', () => {
+    const component = shallow(<EuiSuperUpdateButton iconOnly onClick={noop} />);
+
+    expect(component).toMatchSnapshot();
+  });
+
   test('showTooltip', () => {
     const component = shallow(
       <EuiSuperUpdateButton showTooltip onClick={noop} />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('responsive can be all', () => {
+    const component = shallow(
+      <EuiSuperUpdateButton
+        responsive={['xs', 's', 'm', 'l', 'xl']}
+        onClick={noop}
+      />
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  test('responsive can be false', () => {
+    const component = shallow(
+      <EuiSuperUpdateButton responsive={false} onClick={noop} />
     );
 
     expect(component).toMatchSnapshot();
@@ -90,7 +115,7 @@ describe('EuiSuperUpdateButton', () => {
 
     expect(className).toBe('euiSuperUpdateButton testClass');
     expect(textProps).toEqual({
-      className: 'euiSuperUpdateButton__text textPropsTestClass',
+      className: 'textPropsTestClass',
       id: 'test',
     });
     expect(forwardedProps).toMatchObject(extraProps);

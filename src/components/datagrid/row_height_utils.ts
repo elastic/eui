@@ -150,6 +150,7 @@ export class RowHeightUtils {
   private timerId?: number;
   private grid?: Grid;
   private lastUpdatedRow: number = Infinity;
+  private rerenderGridBody: Function = () => {};
 
   isAutoHeight(
     rowIndex: number,
@@ -192,6 +193,7 @@ export class RowHeightUtils {
     rowHeights.set(colId, adaptedHeight);
     this.heightsCache.set(rowIndex, rowHeights);
     this.resetRow(visibleRowIndex);
+    this.rerenderGridBody();
   }
 
   pruneHiddenColumnHeights(visibleColumns: EuiDataGridColumn[]) {
@@ -228,5 +230,9 @@ export class RowHeightUtils {
 
   setGrid(grid: Grid) {
     this.grid = grid;
+  }
+
+  setRerenderGridBody(rerenderGridBody: Function) {
+    this.rerenderGridBody = rerenderGridBody;
   }
 }

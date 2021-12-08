@@ -1,14 +1,9 @@
 import React, { useContext } from 'react';
-import {
-  EuiSpacer,
-  EuiCallOut,
-  EuiText,
-  EuiLink,
-  EuiCodeBlock,
-} from '../../../../../src';
+import { EuiSpacer, EuiCallOut, EuiText, EuiLink } from '../../../../../src';
 
 // @ts-ignore Importing from JS
 import { ThemeContext } from '../../../components/with_theme';
+import { CustomizeTokens } from '../../guidelines/getting_started/_customize_tokens';
 
 export const SassAlert = () => {
   const themeContext = useContext(ThemeContext);
@@ -29,36 +24,6 @@ export const SassAlert = () => {
   );
 };
 
-const ImportCustomizableExample = () => {
-  const themeContext = useContext(ThemeContext);
-  let files;
-  switch (themeContext.theme) {
-    case 'light':
-      files = "@import '@elastic/eui/src/themes/legacy/legacy_light';";
-      break;
-    case 'dark':
-      files = "@import '@elastic/eui/src/themes/legacy/legacy_dark';";
-      break;
-    case 'amsterdam-dark':
-      files = "@import '@elastic/eui/src/themes/amsterdam/theme_dark';";
-      break;
-    default:
-      files = "@import '@elastic/eui/src/themes/amsterdam/theme_light';";
-      break;
-  }
-
-  return (
-    <>
-      <EuiCodeBlock language="scss" paddingSize="m" fontSize="m" isCopyable>
-        {`// mytheme.scss
-$euiColorPrimary: #7B61FF;
-
-${files}`}
-      </EuiCodeBlock>
-    </>
-  );
-};
-
 export default () => {
   return (
     <>
@@ -76,7 +41,7 @@ export default () => {
       </EuiText>
 
       <EuiSpacer />
-      <ImportCustomizableExample />
+      <CustomizeTokens />
     </>
   );
 };

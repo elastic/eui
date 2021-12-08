@@ -2,9 +2,6 @@ import React from 'react';
 import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
 // @ts-ignore importing from a JS file
 import { applyTheme } from '../../services';
-import { EuiThemeProvider } from '../../../../src/services';
-import { EuiThemeAmsterdam } from '../../../../src/themes/eui-amsterdam/theme';
-import { EuiThemeDefault } from '../../../../src/themes/eui/theme';
 
 export const STYLE_STORAGE_KEY = 'js_vs_sass_preference';
 
@@ -92,14 +89,7 @@ export class ThemeProvider extends React.Component<object, State> {
           changeThemeLanguage: this.changeThemeLanguage,
         }}
       >
-        <EuiThemeProvider
-          theme={
-            theme.includes('amsterdam') ? EuiThemeAmsterdam : EuiThemeDefault
-          }
-          colorMode={theme.includes('light') ? 'light' : 'dark'}
-        >
-          {children}
-        </EuiThemeProvider>
+        {children}
       </ThemeContext.Provider>
     );
   }

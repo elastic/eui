@@ -1,6 +1,5 @@
 import React from 'react';
 import { GuideSectionTypes } from '../../../components';
-import { renderToHtml } from '../../../services';
 import { EuiCode } from '../../../../../src/components';
 import { Table } from './basic';
 import { EuiBasicTable } from '../../../../../src/components/basic_table';
@@ -20,7 +19,6 @@ import { CustomItemAction } from '!!prop-loader!../../../../../src/components/ba
 import { DefaultItemActionProps as DefaultItemAction } from '../props/props';
 
 const source = require('!!raw-loader!./basic');
-const html = renderToHtml(Table);
 
 export const section = {
   title: 'A basic table',
@@ -28,10 +26,6 @@ export const section = {
     {
       type: GuideSectionTypes.JS,
       code: source,
-    },
-    {
-      type: GuideSectionTypes.HTML,
-      code: html,
     },
   ],
   text: (

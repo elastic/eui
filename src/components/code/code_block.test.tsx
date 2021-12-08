@@ -200,6 +200,20 @@ describe('EuiCodeBlock', () => {
       expect(component).toMatchSnapshot();
     });
 
+    it('correctly copies virtualized text', () => {
+      const component = render(
+        <EuiCodeBlock
+          isCopyable
+          isVirtualized={true}
+          overflowHeight="50%"
+          {...requiredProps}
+        >
+          {code}
+        </EuiCodeBlock>
+      );
+      expect(component.find('.euiCodeBlock__copyButton')).toHaveLength(1);
+    });
+
     describe('type checks', () => {
       it('requires overflowHeight', () => {
         // @ts-expect-error should expect overflowHeight

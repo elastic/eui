@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -16,7 +14,6 @@ import { EuiBreakpointSize } from '!!prop-loader!../../../../src/services/breakp
 
 import Responsive from './responsive';
 const responsiveSource = require('!!raw-loader!./responsive');
-const responsiveHtml = renderToHtml(Responsive);
 const responsiveSnippet = [
   `<EuiHideFor sizes={['xs', 's']}>
   <!-- Content to hide from xs and s screens -->
@@ -47,10 +44,6 @@ export const ResponsiveExample = {
         {
           type: GuideSectionTypes.JS,
           code: responsiveSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: responsiveHtml,
         },
       ],
       text: (

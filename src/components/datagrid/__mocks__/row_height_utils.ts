@@ -27,6 +27,7 @@ export const mockRowHeightUtils = ({
   getLineCount: jest.fn(actual.getLineCount),
   calculateHeightForLineCount: jest.fn(() => 50),
   isRowHeightOverride: jest.fn(actual.isRowHeightOverride),
+  setRerenderGridBody: jest.fn(),
 } as unknown) as ActualRowHeightUtils;
 
 export const RowHeightUtils = jest.fn(() => mockRowHeightUtils);

@@ -13,7 +13,7 @@ import { EuiErrorBoundary } from '../../src/components';
 import { playgroundCreator } from './services/playground';
 
 // Guidelines
-const GettingStarted = require('!!raw-loader!./views/guidelines/getting_started.md');
+import { GettingStarted } from './views/guidelines/getting_started/getting_started';
 
 import AccessibilityGuidelines from './views/guidelines/accessibility';
 
@@ -43,6 +43,8 @@ import { AccessibilityExample } from './views/accessibility/accessibility_exampl
 import { AccordionExample } from './views/accordion/accordion_example';
 
 import { AspectRatioExample } from './views/aspect_ratio/aspect_ratio_example';
+
+import { AutoRefreshExample } from './views/auto_refresh/auto_refresh_example';
 
 import { AutoSizerExample } from './views/auto_sizer/auto_sizer_example';
 
@@ -175,6 +177,8 @@ import { PopoverExample } from './views/popover/popover_example';
 import { PortalExample } from './views/portal/portal_example';
 
 import { ProgressExample } from './views/progress/progress_example';
+
+import { ProviderExample } from './views/provider/provider_example';
 
 import { RangeControlExample } from './views/range/range_example';
 
@@ -352,8 +356,9 @@ const createTabbedPage = ({
   };
 };
 
-const createMarkdownExample = (example, title) => {
-  const headings = example.default.match(/^(##) (.*)/gm);
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const createMarkdownExample = (file, name, intro) => {
+  const headings = file.default.match(/^(##) (.*)/gm);
 
   const sections = headings.map((heading) => {
     const title = heading.replace('## ', '');
@@ -362,12 +367,10 @@ const createMarkdownExample = (example, title) => {
   });
 
   return {
-    name: title,
+    name,
     component: () => (
-      <GuidePage title={title}>
-        <GuideMarkdownFormat grow={false}>
-          {example.default}
-        </GuideMarkdownFormat>
+      <GuidePage title={name}>
+        <GuideMarkdownFormat grow={false}>{file.default}</GuideMarkdownFormat>
       </GuidePage>
     ),
     sections: sections,
@@ -378,7 +381,7 @@ const navigation = [
   {
     name: 'Guidelines',
     items: [
-      createMarkdownExample(GettingStarted, 'Getting started'),
+      createExample(GettingStarted, 'Getting started'),
       createExample(AccessibilityGuidelines, 'Accessibility'),
       createTabbedPage({
         title: 'Writing',
@@ -524,7 +527,7 @@ const navigation = [
       FormLayoutsExample,
       FormCompressedExample,
       FormValidationExample,
-      SuperSelectExample,
+      AutoRefreshExample,
       ComboBoxExample,
       ColorPickerExample,
       DatePickerExample,
@@ -535,6 +538,7 @@ const navigation = [
       SelectableExample,
       SuggestExample,
       SuperDatePickerExample,
+      SuperSelectExample,
     ].map((example) => createExample(example)),
   },
   {
@@ -579,6 +583,7 @@ const navigation = [
       OverlayMaskExample,
       PortalExample,
       PrettyDurationExample,
+      ProviderExample,
       ResizeObserverExample,
       ResponsiveExample,
       TextDiffExample,
