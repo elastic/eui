@@ -282,6 +282,14 @@ describe('RowHeightUtils', () => {
 
           expect(resetRowSpy).not.toHaveBeenCalled();
         });
+
+        it('calls rerenderGridBody', () => {
+          const rerenderGridBody = jest.fn();
+          rowHeightUtils.setRerenderGridBody(rerenderGridBody);
+          expect(rerenderGridBody).toHaveBeenCalledTimes(0);
+          rowHeightUtils.setRowHeight(1, 'a', 34, 1);
+          expect(rerenderGridBody).toHaveBeenCalledTimes(1);
+        });
       });
 
       describe('getRowHeight', () => {

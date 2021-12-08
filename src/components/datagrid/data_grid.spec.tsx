@@ -50,6 +50,37 @@ describe('EuiDataGrid', () => {
         .should('have.lengthOf', 0);
     });
   });
+
+  describe('height calculation', async () => {
+    it('computes a new unconstrained height when switching to auto height', () => {
+      const renderCellValue: EuiDataGridProps['renderCellValue'] = ({
+        rowIndex,
+        columnId,
+      }) => (
+        <>
+          row {rowIndex}
+          <br />
+          column {columnId}
+        </>
+      );
+
+      cy.mount(
+        <EuiDataGrid {...baseProps} renderCellValue={renderCellValue} />
+      );
+
+      getGridData();
+      cy.get('[data-test-subj=euiDataGridBody]')
+        .invoke('outerHeight')
+        .then((firstHeight) => {
+          cy.get('[data-test-subj=dataGridDisplaySelectorPopover]').click();
+          cy.get('[data-text="Auto fit"]').click();
+
+          cy.get('[data-test-subj=euiDataGridBody]')
+            .invoke('outerHeight')
+            .should('be.greaterThan', firstHeight);
+        });
+    });
+  });
 });
 
 function getGridData() {
