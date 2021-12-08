@@ -8,7 +8,7 @@
 
 export { useDataGridColumnSelector } from './column_selector';
 export { useDataGridColumnSorting } from './column_sorting';
-export { useDataGridStyleSelector, startingStyles } from './style_selector';
+export { useDataGridDisplaySelector, startingStyles } from './display_selector';
 export {
   checkOrDefaultToolBarDisplayOptions,
   EuiDataGridToolbar,

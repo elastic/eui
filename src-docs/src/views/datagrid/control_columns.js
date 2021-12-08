@@ -27,6 +27,8 @@ import {
   EuiDescriptionList,
   EuiDescriptionListTitle,
   EuiDescriptionListDescription,
+  EuiContextMenuItem,
+  EuiContextMenuPanel,
 } from '../../../../src/components/';
 
 const columns = [
@@ -77,6 +79,11 @@ const SelectionContext = createContext();
 const SelectionButton = () => {
   const [selectedRows] = useContext(SelectionContext);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const alertAndClosePopover = () => {
+    setIsPopoverOpen(false);
+    window.alert('This is not a real control.');
+  };
+
   if (selectedRows.size > 0) {
     return (
       <EuiPopover
@@ -87,8 +94,7 @@ const SelectionButton = () => {
           <EuiButtonEmpty
             size="xs"
             iconType="arrowDown"
-            color="primary"
-            className="euiDataGrid__controlBtn"
+            iconSide="right"
             onClick={() => setIsPopoverOpen(!isPopoverOpen)}
           >
             {selectedRows.size} {selectedRows.size > 1 ? 'items' : 'item'}{' '}
@@ -100,43 +106,25 @@ const SelectionButton = () => {
         <EuiPopoverTitle>
           {selectedRows.size} {selectedRows.size > 1 ? 'items' : 'item'}
         </EuiPopoverTitle>
-        <div style={{ width: 150 }}>
-          <button onClick={() => {}} component="span">
-            <EuiFlexGroup
-              responsive={false}
-              alignItems="center"
-              component="span"
-              gutterSize="s"
+        <EuiContextMenuPanel
+          size="s"
+          items={[
+            <EuiContextMenuItem
+              key="pin"
+              icon="pin"
+              onClick={alertAndClosePopover}
             >
-              <EuiFlexItem grow={false}>
-                <EuiButtonIcon
-                  aria-label="Pin selected items"
-                  iconType="pin"
-                  color="text"
-                />
-              </EuiFlexItem>
-              <EuiFlexItem>Pin items</EuiFlexItem>
-            </EuiFlexGroup>
-          </button>
-          <EuiSpacer size="s" />
-          <button onClick={() => {}}>
-            <EuiFlexGroup
-              responsive={false}
-              alignItems="center"
-              component="span"
-              gutterSize="s"
+              Pin items
+            </EuiContextMenuItem>,
+            <EuiContextMenuItem
+              key="delete"
+              icon="trash"
+              onClick={alertAndClosePopover}
             >
-              <EuiFlexItem grow={false}>
-                <EuiButtonIcon
-                  aria-label="Delete selected items"
-                  iconType="trash"
-                  color="text"
-                />
-              </EuiFlexItem>
-              <EuiFlexItem>Delete items</EuiFlexItem>
-            </EuiFlexGroup>
-          </button>
-        </div>
+              Delete item
+            </EuiContextMenuItem>,
+          ]}
+        />
       </EuiPopover>
     );
   } else {

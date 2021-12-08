@@ -10,7 +10,7 @@ export { EuiDataGrid } from './data_grid';
 export {
   useDataGridColumnSelector,
   useDataGridColumnSorting,
-  useDataGridStyleSelector,
+  useDataGridDisplaySelector,
 } from './controls';
 
 export * from './data_grid_types';
