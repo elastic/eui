@@ -11,16 +11,10 @@ import React, {
   useState,
   useMemo,
   useCallback,
-  ReactElement,
+  ReactNode,
   ChangeEvent,
 } from 'react';
 import classNames from 'classnames';
-import {
-  EuiDataGridColumn,
-  EuiDataGridColumnVisibility,
-  EuiDataGridToolBarVisibilityColumnSelectorOptions,
-  EuiDataGridToolBarVisibilityOptions,
-} from '../data_grid_types';
 import { EuiPopover, EuiPopoverFooter, EuiPopoverTitle } from '../../popover';
 import { EuiI18n } from '../../i18n';
 import { EuiButtonEmpty } from '../../button';
@@ -36,15 +30,12 @@ import { DropResult } from 'react-beautiful-dnd';
 import { EuiIcon } from '../../icon';
 import { useDependentState } from '../../../services';
 
-const getShowColumnSelectorValue = (
-  showColumnSelector: EuiDataGridToolBarVisibilityOptions['showColumnSelector'],
-  valueName: keyof EuiDataGridToolBarVisibilityColumnSelectorOptions
-) => {
-  if (showColumnSelector === false) return false;
-  if (showColumnSelector == null) return true;
-  if (showColumnSelector === true) return true;
-  return showColumnSelector[valueName] !== false;
-};
+import {
+  EuiDataGridColumn,
+  EuiDataGridColumnVisibility,
+  EuiDataGridToolBarVisibilityOptions,
+} from '../data_grid_types';
+import { getNestedObjectOptions } from './data_grid_toolbar';
 
 export const useDataGridColumnSelector = (
   availableColumns: EuiDataGridColumn[],
@@ -52,16 +43,16 @@ export const useDataGridColumnSelector = (
   showColumnSelector: EuiDataGridToolBarVisibilityOptions['showColumnSelector'],
   displayValues: { [key: string]: string }
 ): [
-  ReactElement,
+  ReactNode,
   EuiDataGridColumn[],
   (columns: string[]) => void,
   (colFrom: string, colTo: string) => void
 ] => {
-  const allowColumnHiding = getShowColumnSelectorValue(
+  const allowColumnHiding = getNestedObjectOptions(
     showColumnSelector,
     'allowHide'
   );
-  const allowColumnReorder = getShowColumnSelectorValue(
+  const allowColumnReorder = getNestedObjectOptions(
     showColumnSelector,
     'allowReorder'
   );
@@ -148,159 +139,163 @@ export const useDataGridColumnSelector = (
     );
   }
 
-  const columnSelector = (
-    <EuiPopover
-      data-test-subj="dataGridColumnSelectorPopover"
-      isOpen={isOpen}
-      closePopover={() => setIsOpen(false)}
-      anchorPosition="downLeft"
-      panelPaddingSize="s"
-      panelClassName="euiDataGridColumnSelectorPopover"
-      button={
-        <EuiButtonEmpty
-          size="xs"
-          iconType={allowColumnHiding ? 'listAdd' : 'list'}
-          color="text"
-          className={controlBtnClasses}
-          data-test-subj="dataGridColumnSelectorButton"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {buttonText}
-        </EuiButtonEmpty>
-      }
-    >
-      <div>
-        {allowColumnHiding && (
-          <EuiPopoverTitle>
-            <EuiI18n
-              tokens={[
-                'euiColumnSelector.search',
-                'euiColumnSelector.searchcolumns',
-              ]}
-              defaults={['Search', 'Search columns']}
-            >
-              {([search, searchcolumns]: string[]) => (
-                <EuiFieldText
-                  compressed
-                  placeholder={search}
-                  aria-label={searchcolumns}
-                  value={columnSearchText}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setColumnSearchText(e.currentTarget.value)
-                  }
-                  data-test-subj="dataGridColumnSelectorSearch"
-                />
-              )}
-            </EuiI18n>
-          </EuiPopoverTitle>
-        )}
-        <div className="euiDataGrid__controlScroll">
-          <EuiDragDropContext onDragEnd={onDragEnd}>
-            <EuiDroppable
-              droppableId="columnOrder"
-              isDropDisabled={!isDragEnabled}
-            >
-              <Fragment>
-                {filteredColumns.map((id, index) => (
-                  <EuiDraggable
-                    key={id}
-                    draggableId={id}
-                    index={index}
-                    isDragDisabled={!isDragEnabled}
-                  >
-                    {(provided, state) => (
-                      <div
-                        className={`euiDataGridColumnSelector__item ${
-                          state.isDragging &&
-                          'euiDataGridColumnSelector__item-isDragging'
-                        }`}
-                        data-test-subj={`dataGridColumnSelectorColumnItem-${id}`}
-                      >
-                        <EuiFlexGroup
-                          responsive={false}
-                          gutterSize="m"
-                          alignItems="center"
-                        >
-                          <EuiFlexItem>
-                            {allowColumnHiding ? (
-                              <EuiSwitch
-                                name={id}
-                                label={displayValues[id] || id}
-                                checked={visibleColumnIds.has(id)}
-                                compressed
-                                className="euiSwitch--mini"
-                                onChange={(event) => {
-                                  const {
-                                    target: { checked },
-                                  } = event;
-                                  const nextVisibleColumns = sortedColumns.filter(
-                                    (columnId) =>
-                                      checked
-                                        ? visibleColumnIds.has(columnId) ||
-                                          id === columnId
-                                        : visibleColumnIds.has(columnId) &&
-                                          id !== columnId
-                                  );
-                                  setVisibleColumns(nextVisibleColumns);
-                                }}
-                                data-test-subj={`dataGridColumnSelectorToggleColumnVisibility-${id}`}
-                              />
-                            ) : (
-                              <span className="euiDataGridColumnSelector__itemLabel">
-                                {id}
-                              </span>
-                            )}
-                          </EuiFlexItem>
-                          {isDragEnabled && (
-                            <EuiFlexItem grow={false}>
-                              <EuiIcon type="grab" color="subdued" />
-                            </EuiFlexItem>
-                          )}
-                        </EuiFlexGroup>
-                      </div>
-                    )}
-                  </EuiDraggable>
-                ))}
-              </Fragment>
-            </EuiDroppable>
-          </EuiDragDropContext>
-        </div>
-      </div>
-      {allowColumnHiding && (
-        <EuiPopoverFooter>
-          <EuiFlexGroup
-            gutterSize="s"
-            responsive={false}
-            justifyContent="spaceBetween"
+  const columnSelector =
+    allowColumnHiding || allowColumnReorder ? (
+      <EuiPopover
+        data-test-subj="dataGridColumnSelectorPopover"
+        isOpen={isOpen}
+        closePopover={() => setIsOpen(false)}
+        anchorPosition="downLeft"
+        panelPaddingSize="s"
+        panelClassName="euiDataGrid__controlPopoverWithDragDrop"
+        button={
+          <EuiButtonEmpty
+            size="xs"
+            iconType={allowColumnHiding ? 'listAdd' : 'list'}
+            color="text"
+            className={controlBtnClasses}
+            data-test-subj="dataGridColumnSelectorButton"
+            onClick={() => setIsOpen(!isOpen)}
           >
-            <EuiFlexItem grow={false}>
-              <EuiButtonEmpty
-                size="xs"
-                flush="left"
-                onClick={() => setVisibleColumns(sortedColumns)}
-                data-test-subj="dataGridColumnSelectorShowAllButton"
+            {buttonText}
+          </EuiButtonEmpty>
+        }
+      >
+        <div>
+          {allowColumnHiding && (
+            <EuiPopoverTitle>
+              <EuiI18n
+                tokens={[
+                  'euiColumnSelector.search',
+                  'euiColumnSelector.searchcolumns',
+                ]}
+                defaults={['Search', 'Search columns']}
               >
-                <EuiI18n
-                  token="euiColumnSelector.selectAll"
-                  default="Show all"
-                />
-              </EuiButtonEmpty>
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiButtonEmpty
-                size="xs"
-                flush="right"
-                onClick={() => setVisibleColumns([])}
-                data-test-subj="dataGridColumnSelectorHideAllButton"
+                {([search, searchcolumns]: string[]) => (
+                  <EuiFieldText
+                    compressed
+                    placeholder={search}
+                    aria-label={searchcolumns}
+                    value={columnSearchText}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      setColumnSearchText(e.currentTarget.value)
+                    }
+                    data-test-subj="dataGridColumnSelectorSearch"
+                  />
+                )}
+              </EuiI18n>
+            </EuiPopoverTitle>
+          )}
+          <div className="euiDataGrid__controlScroll">
+            <EuiDragDropContext onDragEnd={onDragEnd}>
+              <EuiDroppable
+                droppableId="columnOrder"
+                isDropDisabled={!isDragEnabled}
               >
-                <EuiI18n token="euiColumnSelector.hideAll" default="Hide all" />
-              </EuiButtonEmpty>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiPopoverFooter>
-      )}
-    </EuiPopover>
-  );
+                <Fragment>
+                  {filteredColumns.map((id, index) => (
+                    <EuiDraggable
+                      key={id}
+                      draggableId={id}
+                      index={index}
+                      isDragDisabled={!isDragEnabled}
+                    >
+                      {(provided, state) => (
+                        <div
+                          className={`euiDataGridColumnSelector__item ${
+                            state.isDragging &&
+                            'euiDataGridColumnSelector__item-isDragging'
+                          }`}
+                          data-test-subj={`dataGridColumnSelectorColumnItem-${id}`}
+                        >
+                          <EuiFlexGroup
+                            responsive={false}
+                            gutterSize="m"
+                            alignItems="center"
+                          >
+                            <EuiFlexItem>
+                              {allowColumnHiding ? (
+                                <EuiSwitch
+                                  name={id}
+                                  label={displayValues[id] || id}
+                                  checked={visibleColumnIds.has(id)}
+                                  compressed
+                                  className="euiSwitch--mini"
+                                  onChange={(event) => {
+                                    const {
+                                      target: { checked },
+                                    } = event;
+                                    const nextVisibleColumns = sortedColumns.filter(
+                                      (columnId) =>
+                                        checked
+                                          ? visibleColumnIds.has(columnId) ||
+                                            id === columnId
+                                          : visibleColumnIds.has(columnId) &&
+                                            id !== columnId
+                                    );
+                                    setVisibleColumns(nextVisibleColumns);
+                                  }}
+                                  data-test-subj={`dataGridColumnSelectorToggleColumnVisibility-${id}`}
+                                />
+                              ) : (
+                                <span className="euiDataGridColumnSelector__itemLabel">
+                                  {id}
+                                </span>
+                              )}
+                            </EuiFlexItem>
+                            {isDragEnabled && (
+                              <EuiFlexItem grow={false}>
+                                <EuiIcon type="grab" color="subdued" />
+                              </EuiFlexItem>
+                            )}
+                          </EuiFlexGroup>
+                        </div>
+                      )}
+                    </EuiDraggable>
+                  ))}
+                </Fragment>
+              </EuiDroppable>
+            </EuiDragDropContext>
+          </div>
+        </div>
+        {allowColumnHiding && (
+          <EuiPopoverFooter>
+            <EuiFlexGroup
+              gutterSize="s"
+              responsive={false}
+              justifyContent="spaceBetween"
+            >
+              <EuiFlexItem grow={false}>
+                <EuiButtonEmpty
+                  size="xs"
+                  flush="left"
+                  onClick={() => setVisibleColumns(sortedColumns)}
+                  data-test-subj="dataGridColumnSelectorShowAllButton"
+                >
+                  <EuiI18n
+                    token="euiColumnSelector.selectAll"
+                    default="Show all"
+                  />
+                </EuiButtonEmpty>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButtonEmpty
+                  size="xs"
+                  flush="right"
+                  onClick={() => setVisibleColumns([])}
+                  data-test-subj="dataGridColumnSelectorHideAllButton"
+                >
+                  <EuiI18n
+                    token="euiColumnSelector.hideAll"
+                    default="Hide all"
+                  />
+                </EuiButtonEmpty>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiPopoverFooter>
+        )}
+      </EuiPopover>
+    ) : null;
 
   const orderedVisibleColumns = useMemo(
     () =>

@@ -32,49 +32,6 @@
   background: $euiColorEmptyShade;
 }
 
-.euiDataGrid__controls {
-  background: $euiPageBackgroundColor;
-  position: relative;
-  z-index: 3; // Needs to sit above the content blow that sits below it
-  border: $euiBorderThin;
-  padding: $euiSizeXS;
-  flex-grow: 0;
-
-  > * {
-    margin-left: $euiSizeXS / 2;
-  }
-}
-
-.euiDataGrid__controlBtn {
-  border-radius: $euiBorderRadius;
-
-  &:focus {
-    background: shadeOrTint($euiColorLightestShade, 10%, 10%);
-  }
-}
-
-.euiDataGrid__controlBtn--active,
-.euiDataGrid__controlBtn--active:focus {
-  font-weight: $euiFontWeightSemiBold;
-  color: $euiColorFullShade;
-}
-
-@include euiDataGridStyles(bordersNone) {
-  .euiDataGrid__controls {
-    border: none;
-    background: $euiColorEmptyShade;
-  }
-}
-
-@include euiDataGridStyles(bordersHorizontal) {
-  .euiDataGrid__controls {
-    border-right: none;
-    border-left: none;
-    border-top: none;
-    background: $euiColorEmptyShade;
-  }
-}
-
 .euiDataGrid__pagination {
 
   padding-top: $euiSizeXS;

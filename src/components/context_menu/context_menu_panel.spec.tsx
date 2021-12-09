@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import { mount } from '@cypress/react';
 
 import { EuiContextMenuItem } from './context_menu_item';
 import { EuiContextMenuPanel } from './context_menu_panel';
@@ -15,7 +14,7 @@ import { EuiContextMenuPanel } from './context_menu_panel';
 describe('EuiContextMenuPanel', () => {
   describe('focus behavior', () => {
     it('is set on the first focusable element by default if there are no items and hasFocus is true', () => {
-      mount(
+      cy.mount(
         <EuiContextMenuPanel>
           <button data-test-subj="button">Hello world</button>
         </EuiContextMenuPanel>
@@ -25,7 +24,7 @@ describe('EuiContextMenuPanel', () => {
     });
 
     it('is not set on anything if hasFocus is false', () => {
-      mount(
+      cy.mount(
         <EuiContextMenuPanel hasFocus={false}>
           <button data-test-subj="button">Hello world</button>
         </EuiContextMenuPanel>
@@ -53,7 +52,7 @@ describe('EuiContextMenuPanel', () => {
 
     describe('up/down keys', () => {
       beforeEach(() => {
-        mount(<EuiContextMenuPanel items={items} />);
+        cy.mount(<EuiContextMenuPanel items={items} />);
         cy.wait(FLAKE_WAIT);
       });
 
@@ -98,7 +97,7 @@ describe('EuiContextMenuPanel', () => {
     describe('left/right arrow keys', () => {
       it("right arrow key shows next panel with focused item's index", () => {
         const showNextPanelHandler = cy.stub();
-        mount(
+        cy.mount(
           <EuiContextMenuPanel
             items={items}
             showNextPanel={showNextPanelHandler}
@@ -116,7 +115,7 @@ describe('EuiContextMenuPanel', () => {
 
       it('left arrow key shows previous panel', () => {
         const showPreviousPanelHandler = cy.stub();
-        mount(
+        cy.mount(
           <EuiContextMenuPanel
             items={items}
             showPreviousPanel={showPreviousPanelHandler}

@@ -125,6 +125,8 @@ export { EuiWindowEvent } from './window_event';
 
 export {
   useCombinedRefs,
+  useForceRender,
+  useUpdateEffect,
   useDependentState,
   useIsWithinBreakpoints,
   useMouseMove,

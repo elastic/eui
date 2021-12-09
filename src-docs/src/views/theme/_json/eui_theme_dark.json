@@ -578,7 +578,7 @@
   "euiFormControlDisabledColor": "#535966",
   "euiFormControlBoxShadow": "0 0 rgba(0, 0, 0, 0)",
   "euiFormControlPlaceholderText": "#81858f",
-  "euiFormInputGroupLabelBackground": "#1f2127",
+  "euiFormInputGroupLabelBackground": "#2c2f37",
   "euiFormInputGroupBorder": "none",
   "euiSwitchOffColor": "rgba(83, 89, 102, 0.7)",
   "euiFormControlLayoutGroupInputHeight": "38px",

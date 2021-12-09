@@ -1,8 +1,8 @@
 # Derived from the zenato/puppeteer Docker image
 # https://github.com/zenato/docker-puppeteer/blob/master/Dockerfile
 
-# >=12.0 required (for cypress), but latest right now is 14.17.6
-FROM node:14.17.6
+# >=12.0 required (for cypress), but latest right now is 16.13.1
+FROM node:16.13.1
 
 # See https://crbug.com/795759
 RUN apt-get update && apt-get install -yq libgconf-2-4

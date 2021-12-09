@@ -7,7 +7,6 @@ import {
   EuiDescriptionList,
   EuiCodeBlock,
   EuiText,
-  EuiLink,
   EuiSpacer,
 } from '../../../../src/components';
 
@@ -24,6 +23,8 @@ import {
   EuiDataGridInMemory,
   EuiDataGridStyle,
   EuiDataGridToolBarVisibilityOptions,
+  EuiDataGridToolBarAdditionalControlsOptions,
+  EuiDataGridToolBarAdditionalControlsLeftOptions,
   EuiDataGridColumnVisibility,
   EuiDataGridColumnActions,
   EuiDataGridPopoverContentProps,
@@ -91,10 +92,14 @@ const gridSnippet = `
     // Optional. Allows you to configure what features the toolbar shows.
     // The prop also accepts a boolean if you want to toggle the entire toolbar on/off.
     toolbarVisibility={{
-      showColumnSelector: false
-      showStyleSelector: false
-      showSortSelector: false
-      showFullScreenSelector: false
+      showColumnSelector: false,
+      showDisplaySelector: false,
+      showSortSelector: false,
+      showFullScreenSelector: false,
+      additionalControls: {
+        left: <EuiButtonEmpty size="xs" />,
+        right: <EuiButtonIcon size="xs" />,
+      },
     }}
     // Optional. Change the initial style of the grid.
     gridStyle={{
@@ -235,10 +240,17 @@ const gridConcepts = [
         Allows configuring both default and specific heights of grid rows.
         Accepts a partial <strong>EuiDataGridRowHeightsOptions</strong> object.
         See{' '}
-        <EuiLink href="/#/tabular-content/data-grid-row-heights-options">
+        <Link to="/tabular-content/data-grid-row-heights-options">
           Data grid row heights options
-        </EuiLink>{' '}
+        </Link>{' '}
         for more details and examples.
+        <br />
+        Settings provided may be overwritten or merged with user defined
+        preferences if{' '}
+        <EuiCode>
+          toolbarVisibility.showDisplaySelector.allowRowHeight
+        </EuiCode>{' '}
+        is set to true (which is the default).
       </span>
     ),
   },
@@ -247,10 +259,16 @@ const gridConcepts = [
     description: (
       <span>
         Defines the look of the grid. Accepts a partial{' '}
-        <strong>EuiDataGridStyle</strong> object. Settings provided may be
-        overwritten or merged with user defined preferences if{' '}
-        <EuiCode>toolbarVisibility.showStyleSelector</EuiCode> is set to true
-        (which is the default).
+        <strong>EuiDataGridStyle</strong> object. See{' '}
+        <Link to="/tabular-content/data-grid-styling-and-control">
+          Data grid styling and control
+        </Link>{' '}
+        for more details and examples.
+        <br />
+        Settings provided may be overwritten or merged with user defined
+        preferences if{' '}
+        <EuiCode>toolbarVisibility.showDisplaySelector.allowDensity</EuiCode> is
+        set to true (which is the default).
       </span>
     ),
   },
@@ -392,6 +410,8 @@ export const DataGridExample = {
         EuiDataGridStyle,
         EuiDataGridToolBarVisibilityOptions,
         EuiDataGridToolBarVisibilityColumnSelectorOptions,
+        EuiDataGridToolBarAdditionalControlsOptions,
+        EuiDataGridToolBarAdditionalControlsLeftOptions,
         EuiDataGridPopoverContentProps,
         EuiDataGridRowHeightsOptions,
       },

@@ -26,7 +26,7 @@ A reset stylesheet and the global EUI styles are applied via Emotion. To prevent
 
 ### `@emotion/cache` and style injection location
 
-In the case that your app has its own static stylesheet, the global styles may not be injected into the correct location in the `<head>`, causing unintentional overrides or unapplied styles. [The **@emotion/cache** library](https://emotion.sh/docs/@emotion/cache) provides configuration options that help with specifying the injection location.
+In the case that your app has its own static stylesheet, the global styles may not be injected into the correct location in the `<head>`, causing unintentional overrides or unapplied styles. [The **@emotion/cache** library](https://emotion.sh/docs/@emotion/cache) provides configuration options that help with specifying the injection location. We recommend using a `<meta>` tag to achieve this.
 
 ```html
 <!-- index.html -->
@@ -34,7 +34,7 @@ In the case that your app has its own static stylesheet, the global styles may n
 <html lang="en">
   <head>
     <title>My App</title>
-    <style id="global-style-insert"></style>
+    <meta name="global-style-insert">
   </head>
   <body>
     <div id="root"></div>
@@ -49,7 +49,7 @@ import { EuiProvider } from '@elastic/eui'
 
 const cache = createCache({
   key: 'myApp',
-  container: document.querySelector('#global-style-insert'),
+  container: document.querySelector('meta[name="global-style-insert"]'),
 });
 
 const MyApp = () => (
