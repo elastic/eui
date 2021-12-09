@@ -406,7 +406,7 @@ export const ButtonExample = {
             accept both props to be applied simultaneously to support certain
             routing mechansims, it is not usually recommended. For more specific
             information on how to integrate EUI buttons with react-router,{' '}
-            <EuiLink href="https://github.com/elastic/eui/blob/master/wiki/react-router.md#how-react-router-works">
+            <EuiLink href="https://github.com/elastic/eui/blob/main/wiki/react-router.md#how-react-router-works">
               see this wiki page
             </EuiLink>
             .

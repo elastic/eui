@@ -1,13 +1,114 @@
-## [`master`](https://github.com/elastic/eui/tree/master)
+## [`main`](https://github.com/elastic/eui/tree/main)
+
+- Added first and last page arrow buttons to `EuiPagination` when `compressed=true` ([#5362](https://github.com/elastic/eui/pull/5362))
+- Added support for indeterminate `EuiPagination` when `pageCount=0` ([#5362](https://github.com/elastic/eui/pull/5362))
+- Moved mobile behavior to a customizable `responsive` prop to `EuiPagination` that renders the `compressed` display ([#5362](https://github.com/elastic/eui/pull/5362))
+- Added `doubleArrowLeft`, `doubleArrowRight`, `arrowStart`, `arrowEnd` icons ([#5362](https://github.com/elastic/eui/pull/5362))
+
+**Bug fixes**
+
+- Fixed scrollbars in `EuiRange` tick labels in Safari ([#5427](https://github.com/elastic/eui/pull/5427))
+- Fixed an `EuiOverlayMask` bug where it calls window.document on server side([#5422](https://github.com/elastic/eui/pull/5422))
+- Fixed unremoved event listener memory leak in `EuiPopover` ([#5437](https://github.com/elastic/eui/pull/5437))
+
+## [`42.0.0`](https://github.com/elastic/eui/tree/v42.0.0)
+
+### Feature: CSS-in-JS ([#5121](https://github.com/elastic/eui/pull/5121))
+
+- Added reset and global styles via CSS-in-JS with `@emotion/react/Global`
+- Added `EuiProvider`, a React context provider for theming and global styles
+- Added `isDefaultTheme` and `isLegacyTheme` utilities
+
+**Breaking changes**
+
+- Added `@emotion/react` to `peerDependencies`
+- Amsterdam is now the default theme, deprecated and renamed old theme as "legacy"
+- Re-organized Sass files including where the `globals` are imported from
+
+## [`41.4.0`](https://github.com/elastic/eui/tree/v41.4.0)
+
+- Added `payment` glyph to `EuiIcon` ([#5414](https://github.com/elastic/eui/pull/5414))
+- Updated `EuiCodeBlock`'s full screen mode to use the `fullScreenExit` icon ([#5421](https://github.com/elastic/eui/pull/5421))
+
+**Bug fixes**
+
+- Fixed an `EuiCodeBlock` bug where empty code blocks could be copyable ([#5421](https://github.com/elastic/eui/pull/5421))
+- Fixed an accessibility issue in `EuiAvatar` by adding a meaningful role ([#5423](https://github.com/elastic/eui/pull/5423))
+
+## [`41.3.0`](https://github.com/elastic/eui/tree/v41.3.0)
+
+- Updated color of `EuiHorizontalRule` when rendered inside `EuiToolTip` ([#5378](https://github.com/elastic/eui/pull/5378))
+
+**Bug fixes**
+
+- Fixed an `EuiDataGrid` bug where paginated overflowing data grids could become unscrollable when `rowCount` changed ([#5400](https://github.com/elastic/eui/pull/5400))
+- Fixed `EuiCode` line-wrapping ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed `EuiCodeBlock` not passing `data-test-subj` or `aria-label` to virtualized & full-screen code blocks ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed `EuiCodeBlock` not closing full-screen mode when the Escape key is pressed ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed virtualized `EuiCodeBlock`s blanking out when entering & exiting full-screen mode ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed `EuiCodeBlock`'s full-screen mode to use a large font and padding size & added several missing wrapper classes ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed `EuiCodeBlock` broken line wrapping when using virtualization ([#5379](https://github.com/elastic/eui/pull/5379))
+- Fixed type exports to not include test mocks & specs ([#5412](https://github.com/elastic/eui/pull/5412))
+
+**Theme: Amsterdam**
+
+- Fixed `EuiCodeBlock` not properly increasing large font sizes on Amsterdam ([#5379](https://github.com/elastic/eui/pull/5379))
+
+## [`41.2.2`](https://github.com/elastic/eui/tree/v41.2.2)
+
+**Bug fixes**
+
+- Fixed type exports to not include test mocks & specs ([#5412](https://github.com/elastic/eui/pull/5412))
+
+**Note: this release is a backport containing changes originally made in `41.3.0`**
+
+## [`41.2.1`](https://github.com/elastic/eui/tree/v41.2.1)
+
+**Bug fixes**
+
+- Refactored definition of `isNamedColor` function so it isn't mocked away by the testenv configuration ([#5397](https://github.com/elastic/eui/pull/5397))
+
+**Note: this release is a backport containing changes originally made in `14.6.0` and `14.7.0`**
+
+## [`41.2.0`](https://github.com/elastic/eui/tree/v41.2.0)
+
+- Added `aria-label` and `aria-labelledby` props to `EuiComboBox` ([#5360](https://github.com/elastic/eui/issues/5360))
+- Updated `EuiDatePicker` to use `EuiPopover`, `EuiFocusTrap`, and `EuiScreenReaderOnly` ([#5339](https://github.com/elastic/eui/pull/5339))
+
+**Bug fixes**
+
+- Fixed an `EuiDataGrid` row height bug for grids that set a default `lineCount` and also used `rowHeights` to set row-specific `lineCount`s ([#5376](https://github.com/elastic/eui/pull/5376))
+- Fixed `EuiComboBox` from allowing keyboard actions when `isDisabled` ([#5373](https://github.com/elastic/eui/pull/5373))
+- Fixed an accessibility issue where `EuiSuperSelect` was not creating accessible labels for its listbox ([#5364](https://github.com/elastic/eui/pull/5364))
+- Fixed an accessibility issue where `EuiColorPalettePicker` was not creating an accessible label for its button ([#5364](https://github.com/elastic/eui/pull/5364))
+- Fixed `EuiDatePicker` being constrained to its parent container by using React portal ([#5339](https://github.com/elastic/eui/pull/5339))
+
+## [`41.1.0`](https://github.com/elastic/eui/tree/v41.1.0)
+
+- Added `layout` and `footer` props to `EuiEmptyPrompt` ([#5275](https://github.com/elastic/eui/pull/5275))
+- Updated `EuiEmptyPrompt` to extend `EuiPanelProps` ([#5275](https://github.com/elastic/eui/pull/5275))
+- Add `data-icon-type` to `EuiIcon` `<svg>` for easier debugging of `iconType` [#5366](https://github.com/elastic/eui/pull/5366))
+
+**Bug fixes**
+
+- Fixed an `EuiDataGrid` race condition where grid rows had incorrect heights if loaded in before CSS ([#5284](https://github.com/elastic/eui/pull/5284))
+- Fixed an accessibility issue where `EuiDataGrid` cells weren't owned by `role=row` elements ([#5285](https://github.com/elastic/eui/pull/5285))
+- Fixed `EuiErrorBoundary` overflow scrolling by wrapping contents in `EuiCodeBlock` ([#5359](https://github.com/elastic/eui/pull/5359))
+- Fixed `analyzeEvent` icon to be horizontally centered [#5365](https://github.com/elastic/eui/pull/5365))
+
+## [`41.0.0`](https://github.com/elastic/eui/tree/v41.0.0)
 
 - Added `EuiAutoSizer` component for setting dimensions on virtualized lists ([#5278](https://github.com/elastic/eui/pull/5278))
 - Added `testenv` mock for `EuiAutoSizer` ([#5278](https://github.com/elastic/eui/pull/5278))
 - Changed render of `useEuiTextDiff` to a `span` instead of `div` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Changed change prop type of `children` for `EuiMark` from `string` to `ReactNode` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Added `render` prop to `EuiI18n` ([#5236](https://github.com/elastic/eui/pull/5236))
 
 **Bug fixes**
 
 - Fixed styling of `align: center` for mobile version of `EuiTableRowCell` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Fixed `endDateControl` `className` in `EuiDatePickerRange` ([#5329](https://github.com/elastic/eui/pull/5329))
+- Fixed `EuiMarkdownEditor` intercepting all drop events on the page ([#5340](https://github.com/elastic/eui/pull/5340))
 
 **Breaking changes**
 
@@ -19,6 +120,15 @@
 - Removed `panelPaddingSize` from `EuiPageContent` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Removed `makeId` ([#5323](https://github.com/elastic/eui/pull/5323))
 - Removed mobile-only props from `EuiTableRowCell` ([#5323](https://github.com/elastic/eui/pull/5323))
+- Removed Sass vars `$euiColorSecondary` and `$euiColorSecondaryText` ([#5345](https://github.com/elastic/eui/pull/5345))
+
+## [`40.1.1`](https://github.com/elastic/eui/tree/v40.1.0)
+
+**Note: this release is a backport containing changes originally made after `42.0.0`**
+
+**Bug fixes**
+
+- Fixed unremoved event listener memory leak in `EuiPopover` ([#5437](https://github.com/elastic/eui/pull/5437))
 
 ## [`40.1.0`](https://github.com/elastic/eui/tree/v40.1.0)
 
@@ -50,6 +160,14 @@
 **Breaking changes**
 
 - Renamed `tokenKeyword` icon to `tokenTag` in `EuiToken` ([#5251](https://github.com/elastic/eui/pull/5251))
+
+## [`39.1.3`](https://github.com/elastic/eui/tree/v39.1.2)
+
+**Note: this release is a backport containing changes originally made after `42.0.0`**
+
+**Bug fixes**
+
+- Fixed unremoved event listener memory leak in `EuiPopover` ([#5437](https://github.com/elastic/eui/pull/5437))
 
 ## [`39.1.2`](https://github.com/elastic/eui/tree/v39.1.2)
 
@@ -200,7 +318,7 @@
 
 ## [`37.5.0`](https://github.com/elastic/eui/tree/v37.5.0)
 
-### Feature: Emotion ([#4511](https://github.com/elastic/eui/pull/4511))
+### Feature: CSS-in-JS ([#4511](https://github.com/elastic/eui/pull/4511))
 
 - Added `EuiThemeProvider`, a React context provider for theme values and color mode selection
 - Added `useEuiTheme` React hook, and `withEuiTheme` React HOC for consuming the EuiTheme

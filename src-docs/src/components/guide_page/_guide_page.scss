@@ -63,8 +63,8 @@ $guideSideNavWidth: 240px;
   }
 }
 
-.guideSideNav__item--inSearch {
-  color: $euiColorDarkShade;
+.euiSideNavItem--trunk > .euiSideNavItemButton .guideSideNav__item--inSearch .euiMark {
+  color: $euiColorPrimary;
 }
 
 

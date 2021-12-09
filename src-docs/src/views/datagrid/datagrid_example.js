@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 import {
   EuiDataGrid,
@@ -17,7 +15,6 @@ import { Link } from 'react-router-dom';
 
 import DataGrid from './datagrid';
 const dataGridSource = require('!!raw-loader!./datagrid');
-const dataGridHtml = renderToHtml(DataGrid);
 
 import {
   EuiDataGridColumn,
@@ -333,10 +330,6 @@ export const DataGridExample = {
           type: GuideSectionTypes.JS,
           code: dataGridSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridHtml,
-        },
       ],
       text: (
         <Fragment>
@@ -438,7 +431,7 @@ export const DataGridExample = {
               explanation on the lower level object types. The majority of the
               types are defined in the{' '}
               <a
-                href="https://github.com/elastic/eui/tree/master/src/components/datagrid/data_grid_types.ts"
+                href="https://github.com/elastic/eui/tree/main/src/components/datagrid/data_grid_types.ts"
                 target="_blank"
               >
                 /datagrid/data_grid_types.ts

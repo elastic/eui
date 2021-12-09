@@ -2,17 +2,15 @@ import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiText, EuiCode, EuiLink } from '../../../../src/components';
-import { EuiThemeProvider } from '../../../../src/services';
+import { EuiText, EuiThemeProvider, EuiCode, EuiLink } from '../../../../src';
+
+import Provider from './provider';
 
 import Consuming from './consuming';
 const consumingSource = require('!!raw-loader!./consuming');
 
 import { ConsumingHOC } from './consuming_hoc';
 const consumingHOCSource = require('!!raw-loader!./consuming_hoc');
-
-import Inverse from './inverse';
-const InverseSource = require('!!raw-loader!./inverse');
 
 import OverrideSimple from './override_simple';
 const overrideSimpleSource = require('!!raw-loader!./override_simple');
@@ -34,9 +32,13 @@ export const ThemeExample = {
       <EuiText>
         <p>
           EUI is in the progress of switching it&apos;s core styles processor
-          from Sass to <EuiLink to="https://emotion.sh">Emotion</EuiLink>. It
-          requires that all consumer applications wrap their core application
-          with <strong>EuiThemeProvider</strong>.
+          from Sass to <EuiLink href="https://emotion.sh">Emotion</EuiLink>. To
+          take full advantage of this context layer, wrap the root of your
+          application with{' '}
+          <EuiLink href="#utilities/provider">
+            <strong>EuiProvider</strong>
+          </EuiLink>
+          .
         </p>
       </EuiText>
     </>
@@ -54,9 +56,15 @@ export const ThemeExample = {
           </p>
           <p>
             Typically your app will only need a single instance at the top level
-            and the functionality will flow down the component tree. It is also
-            possible to use several nested theme providers. In this case each
-            nested provider will inherit from its closest ancestor provider.
+            and the functionality will flow down the component tree. We
+            recommend using{' '}
+            <EuiLink href="#utilities/provider">
+              <strong>EuiProvider</strong>
+            </EuiLink>{' '}
+            at this level as it includes reset styles and future configuration
+            options. It is also possible to use several nested theme providers.
+            In this case each nested provider will inherit from its closest
+            ancestor provider.
           </p>
           <p>
             <EuiCode>EuiThemeProvider</EuiCode> accepts three props, all of
@@ -85,6 +93,7 @@ export const ThemeExample = {
           </p>
         </>
       ),
+      demo: <Provider />,
       props: { EuiThemeProvider },
     },
     {
@@ -146,31 +155,6 @@ export const ThemeExample = {
         </>
       ),
       demo: <ConsumingHOC />,
-    },
-    {
-      title: 'Rendering a specific color mode',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: InverseSource,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            While it is usually best to keep all consumptions of the global
-            variables rendering in the same light or dark color mode, some
-            instances benefit from an exaggerated change in contrast from the
-            current theme. For this you can specify{' '}
-            <strong>EuiThemeProvider</strong>&apos;s{' '}
-            <EuiCode>colorMode</EuiCode> to always be{' '}
-            <EuiCode>{'"light"'}</EuiCode>, <EuiCode>{'"dark"'}</EuiCode>, or{' '}
-            <EuiCode>{'"inverse"'}</EuiCode> which sets it to the opposite of
-            the current color mode.
-          </p>
-        </>
-      ),
-      demo: <Inverse />,
     },
     {
       title: 'Simple instance overrides',

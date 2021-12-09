@@ -66,14 +66,14 @@ export interface EuiButtonIconProps extends CommonProps {
   isSelected?: boolean;
   /**
    * Sets the display style for matching other EuiButton types.
-   * `base` is equivelant to a typical EuiButton
-   * `fill` is equivelant to a filled EuiButton
-   * `empty` (default) is equivelant to an EuiButtonEmpty
+   * `base` is equivalent to a typical EuiButton
+   * `fill` is equivalent to a filled EuiButton
+   * `empty` (default) is equivalent to an EuiButtonEmpty
    */
   display?: EuiButtonIconDisplay;
 }
 
-type EuiButtonIconPropsForAnchor = {
+export type EuiButtonIconPropsForAnchor = {
   type?: string;
 } & PropsForAnchor<
   EuiButtonIconProps,

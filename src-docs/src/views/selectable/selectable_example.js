@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -26,37 +24,29 @@ import {
 
 import Selectable from './selectable';
 const selectableSource = require('!!raw-loader!./selectable');
-const selectableHtml = renderToHtml(Selectable);
 
 import SelectablePopover from './selectable_popover';
 const selectablePopoverSource = require('!!raw-loader!./selectable_popover');
-const selectablePopoverHtml = renderToHtml(SelectablePopover);
 
 import SelectableSearch from './selectable_search';
 const selectableSearchSource = require('!!raw-loader!./selectable_search');
-const selectableSearchHtml = renderToHtml(SelectableSearch);
 
 import SelectableSingle from './selectable_single';
 const selectableSingleSource = require('!!raw-loader!./selectable_single');
-const selectableSingleHtml = renderToHtml(SelectableSingle);
 
 import SelectableExclusion from './selectable_exclusion';
 const selectableExclusionSource = require('!!raw-loader!./selectable_exclusion');
-const selectableExclusionHtml = renderToHtml(SelectableExclusion);
 
 import SelectableMessages from './selectable_messages';
 const selectableMessagesSource = require('!!raw-loader!./selectable_messages');
-const selectableMessagesHtml = renderToHtml(SelectableMessages);
 
 import SelectableCustomRender from './selectable_custom_render';
 const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_render');
-const selectableCustomRenderHtml = renderToHtml(SelectableCustomRender);
 
 import SearchOption from './sitewide_option';
 import Search from './search';
 import { EuiCallOut } from '../../../../src/components/call_out';
 const searchSource = require('!!raw-loader!./search');
-const searchHtml = renderToHtml(Search);
 
 export const SelectableExample = {
   title: 'Selectable',
@@ -91,10 +81,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: selectableSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableHtml,
         },
       ],
       text: (
@@ -142,10 +128,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: selectableSearchSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableSearchHtml,
         },
       ],
       text: (
@@ -200,10 +182,6 @@ export const SelectableExample = {
           type: GuideSectionTypes.JS,
           code: selectableSingleSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableSingleHtml,
-        },
       ],
       text: (
         <Fragment>
@@ -235,10 +213,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: selectablePopoverSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectablePopoverHtml,
         },
       ],
       text: (
@@ -276,10 +250,6 @@ export const SelectableExample = {
           type: GuideSectionTypes.JS,
           code: selectableExclusionSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableExclusionHtml,
-        },
       ],
       text: (
         <Fragment>
@@ -306,10 +276,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: selectableMessagesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableMessagesHtml,
         },
       ],
       text: (
@@ -354,10 +320,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: selectableCustomRenderSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableCustomRenderHtml,
         },
       ],
       text: (
@@ -433,10 +395,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: searchSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: searchHtml,
         },
       ],
       text: (

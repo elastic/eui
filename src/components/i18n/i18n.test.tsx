@@ -409,5 +409,26 @@ describe('EuiI18n', () => {
         expect(component).toMatchSnapshot();
       });
     });
+
+    describe('i18nRenderFunc', () => {
+      it('uses user defined component render function', () => {
+        const Component = () => {
+          const value = useEuiI18n('test', 'placeholder {inside}', {
+            inside: <span>inside</span>,
+          });
+          return <section>{value}</section>;
+        };
+        const component = mount(
+          <EuiContext
+            i18n={{
+              render: (children) => () => <div>{children}</div>,
+            }}
+          >
+            <Component />
+          </EuiContext>
+        );
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

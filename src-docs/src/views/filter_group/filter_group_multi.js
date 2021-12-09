@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   EuiPopover,
@@ -15,20 +15,8 @@ import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
-  const onButtonClick = () => {
-    setIsPopoverOpen(!isPopoverOpen);
-  };
-
-  const closePopover = () => {
-    setIsPopoverOpen(false);
-  };
-
-  const filterGroupPopoverId = useGeneratedHtmlId({
-    prefix: 'filterGroupPopover',
-  });
-
-  const [items, setItems] = useState([
+  const [loadingList, setLoadingList] = useState(true);
+  const [items] = useState([
     { name: 'Johann Sebastian Bach', checked: 'on' },
     { name: 'Wolfgang Amadeus Mozart', checked: 'on' },
     { name: 'Antonín Dvořák', checked: 'off' },
@@ -49,13 +37,33 @@ export default () => {
     { name: 'Sergej S. Prokofiew' },
     { name: 'Wolfgang Amadeus Mozart' },
   ]);
+  const [searchResults, setSearchResults] = useState(items);
+
+  // Used to show the content loader when the filtergroup is opened for the first time only
+  useEffect(() => {
+    setTimeout(() => {
+      setLoadingList(false);
+    }, 3000);
+  });
+
+  const onButtonClick = () => {
+    setIsPopoverOpen(!isPopoverOpen);
+  };
+
+  const closePopover = () => {
+    setIsPopoverOpen(false);
+  };
+
+  const filterGroupPopoverId = useGeneratedHtmlId({
+    prefix: 'filterGroupPopover',
+  });
 
   function updateItem(index) {
-    if (!items[index]) {
+    if (!searchResults[index]) {
       return;
     }
 
-    const newItems = [...items];
+    const newItems = [...searchResults];
 
     switch (newItems[index].checked) {
       case 'on':
@@ -69,21 +77,52 @@ export default () => {
       default:
         newItems[index].checked = 'on';
     }
-
-    setItems(newItems);
+    setSearchResults(newItems);
   }
+
+  const findSearchQuery = (searchQuery) => {
+    searchQuery = searchQuery.toLowerCase();
+    setSearchResults(
+      items.filter((item) => {
+        const name = item.name.toLowerCase();
+        return name.includes(searchQuery);
+      })
+    );
+  };
 
   const button = (
     <EuiFilterButton
       iconType="arrowDown"
       onClick={onButtonClick}
       isSelected={isPopoverOpen}
-      numFilters={items.length}
-      hasActiveFilters={!!items.find((item) => item.checked === 'on')}
-      numActiveFilters={items.filter((item) => item.checked === 'on').length}
+      numFilters={searchResults.length}
+      hasActiveFilters={!!searchResults.find((item) => item.checked === 'on')}
+      numActiveFilters={
+        searchResults.filter((item) => item.checked === 'on').length
+      }
     >
       Composers
     </EuiFilterButton>
+  );
+
+  const noResultsFound = (
+    <div className="euiFilterSelect__note">
+      <div className="euiFilterSelect__noteContent">
+        <EuiIcon type="minusInCircle" />
+        <EuiSpacer size="xs" />
+        <p>No filters found</p>
+      </div>
+    </div>
+  );
+
+  const loadingChart = (
+    <div className="euiFilterSelect__note">
+      <div className="euiFilterSelect__noteContent">
+        <EuiLoadingChart size="m" />
+        <EuiSpacer size="xs" />
+        <p>Loading filters</p>
+      </div>
+    </div>
   );
 
   return (
@@ -96,38 +135,25 @@ export default () => {
         panelPaddingSize="none"
       >
         <EuiPopoverTitle paddingSize="s">
-          <EuiFieldSearch compressed />
+          <EuiFieldSearch
+            incremental={true}
+            onSearch={findSearchQuery}
+            compressed
+          />
         </EuiPopoverTitle>
         <div className="euiFilterSelect__items">
-          {items.map((item, index) => (
-            <EuiFilterSelectItem
-              checked={item.checked}
-              key={index}
-              onClick={() => updateItem(index)}
-            >
-              {item.name}
-            </EuiFilterSelectItem>
-          ))}
-          {/*
-                Use when loading items initially
-              */}
-          <div className="euiFilterSelect__note">
-            <div className="euiFilterSelect__noteContent">
-              <EuiLoadingChart size="m" />
-              <EuiSpacer size="xs" />
-              <p>Loading filters</p>
-            </div>
-          </div>
-          {/*
-                Use when no results are returned
-              */}
-          <div className="euiFilterSelect__note">
-            <div className="euiFilterSelect__noteContent">
-              <EuiIcon type="minusInCircle" />
-              <EuiSpacer size="xs" />
-              <p>No filters found</p>
-            </div>
-          </div>
+          {loadingList
+            ? loadingChart
+            : searchResults.map((item, index) => (
+                <EuiFilterSelectItem
+                  checked={item.checked}
+                  key={index}
+                  onClick={() => updateItem(index)}
+                >
+                  {item.name}
+                </EuiFilterSelectItem>
+              ))}
+          {searchResults.length === 0 && noResultsFound}
         </div>
       </EuiPopover>
     </EuiFilterGroup>

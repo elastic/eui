@@ -17,7 +17,6 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { EuiScreenReaderOnly } from '../../accessibility';
-import { useGeneratedHtmlId } from '../../../services/accessibility';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
@@ -57,6 +56,11 @@ export interface EuiSuperSelectControlProps<T>
    * `string` | `ReactElement` or an array of these
    */
   append?: EuiFormControlLayoutProps['append'];
+  /**
+   * Creates a semantic label ID for the `div[role="listbox"]` that's opened on click or keypress.
+   * __Generated and passed down by `EuiSuperSelect`.__
+   */
+  screenReaderId?: string;
 }
 
 export const EuiSuperSelectControl: <T extends string>(
@@ -74,6 +78,7 @@ export const EuiSuperSelectControl: <T extends string>(
   value,
   prepend,
   append,
+  screenReaderId,
   ...rest
 }) => {
   const classes = classNames(
@@ -107,8 +112,6 @@ export const EuiSuperSelectControl: <T extends string>(
     type: 'arrowDown',
     side: 'right',
   };
-
-  const screenReaderId = useGeneratedHtmlId();
 
   return (
     <Fragment>
@@ -144,8 +147,7 @@ export const EuiSuperSelectControl: <T extends string>(
         <button
           type="button"
           className={classes}
-          aria-haspopup="true"
-          aria-labelledby={screenReaderId}
+          aria-haspopup="listbox"
           {...rest}
         >
           {selectedValue}

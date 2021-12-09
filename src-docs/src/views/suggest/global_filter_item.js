@@ -85,11 +85,6 @@ export const GlobalFilterItem = (props) => {
       iconSide="right"
       onClick={togglePopover}
       onClickAriaLabel="Filter actions"
-      closeButtonProps={{
-        // Removing tab focus on close button because the same option can be optained through the context menu
-        // Also, we may want to add a `DEL` keyboard press functionality
-        tabIndex: '-1',
-      }}
       {...rest}
     >
       {prefix}

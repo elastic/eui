@@ -1,5 +1,46 @@
 [
   {
+    "version": "41.2.0",
+    "changes": [
+      {
+        "token": "euiSuperSelect.screenReaderAnnouncement",
+        "changeType": "modified",
+        "value": "You are in a form selector and must select a single option.\n              Use the up and down keys to navigate or escape to close."
+      }
+    ]
+  },
+  {
+    "version": "41.1.0",
+    "changes": [
+      {
+        "token": "euiErrorBoundary.error",
+        "changeType": "added",
+        "value": "Error"
+      }
+    ]
+  },
+  {
+    "version": "41.0.0",
+    "changes": [
+      {
+        "token": "euiCodeEditor.startInteracting",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCodeEditor.startEditing",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCodeEditor.stopInteracting",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiCodeEditor.stopEditing",
+        "changeType": "deleted"
+      }
+    ]
+  },
+  {
     "version": "39.1.1",
     "changes": [
       {

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -14,15 +12,12 @@ import {
 
 import SuperDatePicker from './super_date_picker';
 const superDatePickerSource = require('!!raw-loader!./super_date_picker');
-const superDatePickerHtml = renderToHtml(SuperDatePicker);
 
 import SuperDatePickerConfig from './super_date_picker_config';
 const superDatePickerConfigSource = require('!!raw-loader!./super_date_picker_config');
-const superDatePickerConfigHtml = renderToHtml(SuperDatePicker);
 
 import SuperDatePickerCustomQuickSelect from './super_date_picker_custom_quick_select';
 const superDatePickerCustomQuickSelectSource = require('!!raw-loader!./super_date_picker_custom_quick_select');
-const superDatePickerCustomQuickSelectHtml = renderToHtml(SuperDatePicker);
 
 const superDatePickerSnippet = `<EuiSuperDatePicker
   onTimeChange={this.onTimeChange}
@@ -50,10 +45,6 @@ export const SuperDatePickerExample = {
         {
           type: GuideSectionTypes.JS,
           code: superDatePickerSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: superDatePickerHtml,
         },
       ],
       text: (
@@ -107,10 +98,6 @@ if (!endMoment || !endMoment.isValid()) {
           type: GuideSectionTypes.JS,
           code: superDatePickerConfigSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: superDatePickerConfigHtml,
-        },
       ],
       text: (
         <div>
@@ -153,10 +140,6 @@ if (!endMoment || !endMoment.isValid()) {
         {
           type: GuideSectionTypes.JS,
           code: superDatePickerCustomQuickSelectSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: superDatePickerCustomQuickSelectHtml,
         },
       ],
       text: (

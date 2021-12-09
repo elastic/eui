@@ -4,6 +4,7 @@ exports[`EuiIcon is rendered 1`] = `
 <svg
   aria-label="aria-label"
   class="euiIcon euiIcon--medium euiIcon-isLoaded testClass1 testClass2"
+  data-icon-type="search"
   data-test-subj="test subject string"
   focusable="false"
   height="16"
@@ -22,6 +23,7 @@ exports[`EuiIcon props color #885522 is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--customColor euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -40,6 +42,7 @@ exports[`EuiIcon props color #fde is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--customColor euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -58,6 +61,7 @@ exports[`EuiIcon props color accent is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--accent euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -75,6 +79,7 @@ exports[`EuiIcon props color danger is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--danger euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -92,6 +97,7 @@ exports[`EuiIcon props color default is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -109,6 +115,7 @@ exports[`EuiIcon props color ghost is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--ghost euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -126,6 +133,7 @@ exports[`EuiIcon props color hsla(270, 60%, 70%, 0.9) is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--customColor euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -144,6 +152,7 @@ exports[`EuiIcon props color inherit is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--inherit euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -161,6 +170,7 @@ exports[`EuiIcon props color primary is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--primary euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -178,6 +188,7 @@ exports[`EuiIcon props color rgb(100, 150, 200) is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--customColor euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -196,6 +207,7 @@ exports[`EuiIcon props color subdued is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--subdued euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -213,6 +225,7 @@ exports[`EuiIcon props color success is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--success euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -230,6 +243,7 @@ exports[`EuiIcon props color text is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--text euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -247,6 +261,7 @@ exports[`EuiIcon props color warning is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--warning euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -264,6 +279,7 @@ exports[`EuiIcon props other props are passed through to the icon 1`] = `
 <svg
   aria-label="A Search Icon"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -284,6 +300,7 @@ exports[`EuiIcon props size \${size} is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -301,6 +318,7 @@ exports[`EuiIcon props size \${size} is rendered 2`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--small euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -318,6 +336,7 @@ exports[`EuiIcon props size \${size} is rendered 3`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -335,6 +354,7 @@ exports[`EuiIcon props size \${size} is rendered 4`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--large euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -352,6 +372,7 @@ exports[`EuiIcon props size \${size} is rendered 5`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--xLarge euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -369,6 +390,7 @@ exports[`EuiIcon props size \${size} is rendered 6`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--xxLarge euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -386,6 +408,7 @@ exports[`EuiIcon props tabIndex renders focusable="false" when -1 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -404,6 +427,7 @@ exports[`EuiIcon props tabIndex renders focusable="false" when not provided 1`] 
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -421,6 +445,7 @@ exports[`EuiIcon props tabIndex renders focusable="true" when 0 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="true"
   height="16"
   role="img"
@@ -439,6 +464,7 @@ exports[`EuiIcon props title and titleId are passed and generate an aria-labelle
 <svg
   aria-labelledby="id-test"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -461,6 +487,7 @@ exports[`EuiIcon props type accessibility is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="accessibility"
   focusable="false"
   height="16"
   role="img"
@@ -478,6 +505,7 @@ exports[`EuiIcon props type addDataApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="addDataApp"
   focusable="false"
   height="32"
   role="img"
@@ -499,6 +527,7 @@ exports[`EuiIcon props type advancedSettingsApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="advancedSettingsApp"
   focusable="false"
   height="32"
   role="img"
@@ -534,6 +563,7 @@ exports[`EuiIcon props type agentApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="agentApp"
   focusable="false"
   height="32"
   role="img"
@@ -555,6 +585,7 @@ exports[`EuiIcon props type aggregate is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="aggregate"
   focusable="false"
   height="16"
   role="img"
@@ -573,6 +604,7 @@ exports[`EuiIcon props type alert is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="alert"
   focusable="false"
   height="16"
   role="img"
@@ -591,16 +623,18 @@ exports[`EuiIcon props type analyzeEvent is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="analyzeEvent"
+  fill="none"
   focusable="false"
   height="16"
   role="img"
   viewBox="0 0 16 16"
-  width="14"
+  width="16"
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M13.924 4.013a.605.605 0 00-.228-.236L7.304.082a.607.607 0 00-.608 0L.304 3.777A.62.62 0 000 4.304v7.392c0 .217.116.418.304.527l6.392 3.695c.188.11.42.11.608 0l6.392-3.695a.609.609 0 00.304-.527V4.304a.607.607 0 00-.076-.291zM1 5.079v6.391l6 3.47 6-3.47V5.08L7.252 8.432 7 8.579l-.252-.147L1 5.079zm11.476-.852L7 1.06 1.524 4.227 7 7.42l5.476-3.194z"
-    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M8 9.169L2 5.25v6.17l6 3.428 6-3.428V5.25L8 9.17zM15 4v8l-7 4-7-4V4l7-4 7 4zm-1.428.336L8 1.152 2.428 4.336 8 7.974l5.572-3.638z"
   />
 </svg>
 `;
@@ -609,6 +643,7 @@ exports[`EuiIcon props type annotation is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="annotation"
   focusable="false"
   height="16"
   role="img"
@@ -626,6 +661,7 @@ exports[`EuiIcon props type apmApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="apmApp"
   focusable="false"
   height="32"
   role="img"
@@ -647,6 +683,7 @@ exports[`EuiIcon props type apmTrace is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="apmTrace"
   focusable="false"
   height="16"
   role="img"
@@ -664,6 +701,7 @@ exports[`EuiIcon props type appSearchApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="appSearchApp"
   focusable="false"
   height="32"
   role="img"
@@ -687,6 +725,7 @@ exports[`EuiIcon props type apps is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="apps"
   focusable="false"
   height="16"
   role="img"
@@ -704,6 +743,8 @@ exports[`EuiIcon props type arrowDown is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="arrowDown"
+  fill="none"
   focusable="false"
   height="16"
   role="img"
@@ -712,8 +753,31 @@ exports[`EuiIcon props type arrowDown is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M13.069 5.157L8.384 9.768a.546.546 0 01-.768 0L2.93 5.158a.552.552 0 00-.771 0 .53.53 0 000 .759l4.684 4.61c.641.631 1.672.63 2.312 0l4.684-4.61a.53.53 0 000-.76.552.552 0 00-.771 0z"
-    fill-rule="nonzero"
+    clip-rule="evenodd"
+    d="M1.957 4.982a.75.75 0 011.06-.025l4.81 4.591a.25.25 0 00.346 0l4.81-4.59a.75.75 0 011.035 1.085l-4.81 4.59a1.75 1.75 0 01-2.416 0l-4.81-4.59a.75.75 0 01-.025-1.06z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type arrowEnd is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="arrowEnd"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M2.857 14.043a.75.75 0 01-.025-1.06l4.591-4.81a.25.25 0 000-.346l-4.59-4.81a.75.75 0 011.085-1.035l4.59 4.81a1.75 1.75 0 010 2.416l-4.59 4.81a.75.75 0 01-1.06.024z"
+    fill-rule="evenodd"
+  />
+  <path
+    d="M10.5 2.75a.75.75 0 011.5 0v10.5a.75.75 0 01-1.5 0V2.75z"
   />
 </svg>
 `;
@@ -722,6 +786,8 @@ exports[`EuiIcon props type arrowLeft is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="arrowLeft"
+  fill="none"
   focusable="false"
   height="16"
   role="img"
@@ -730,8 +796,8 @@ exports[`EuiIcon props type arrowLeft is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M10.843 13.069L6.232 8.384a.546.546 0 010-.768l4.61-4.685a.552.552 0 000-.771.53.53 0 00-.759 0l-4.61 4.684a1.65 1.65 0 000 2.312l4.61 4.684a.53.53 0 00.76 0 .552.552 0 000-.771z"
-    fill-rule="nonzero"
+    clip-rule="evenodd"
+    d="M11.018 14.043a.75.75 0 00.024-1.06l-4.59-4.81a.25.25 0 010-.346l4.59-4.81a.75.75 0 10-1.085-1.035l-4.59 4.81a1.75 1.75 0 000 2.416l4.59 4.81c.286.3.761.31 1.06.024z"
   />
 </svg>
 `;
@@ -740,6 +806,8 @@ exports[`EuiIcon props type arrowRight is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="arrowRight"
+  fill="none"
   focusable="false"
   height="16"
   role="img"
@@ -748,8 +816,31 @@ exports[`EuiIcon props type arrowRight is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M5.157 13.069l4.611-4.685a.546.546 0 000-.768L5.158 2.93a.552.552 0 010-.771.53.53 0 01.759 0l4.61 4.684c.631.641.63 1.672 0 2.312l-4.61 4.684a.53.53 0 01-.76 0 .552.552 0 010-.771z"
-    fill-rule="nonzero"
+    clip-rule="evenodd"
+    d="M4.982 14.043a.75.75 0 01-.025-1.06l4.591-4.81a.25.25 0 000-.346l-4.59-4.81a.75.75 0 011.085-1.035l4.59 4.81a1.75 1.75 0 010 2.416l-4.59 4.81a.75.75 0 01-1.06.024z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type arrowStart is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="arrowStart"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M4 2.75a.75.75 0 011.5 0v10.5a.75.75 0 01-1.5 0V2.75z"
+  />
+  <path
+    clip-rule="evenodd"
+    d="M13.135 14.043a.75.75 0 00.025-1.06l-4.59-4.81a.25.25 0 010-.346l4.59-4.81a.75.75 0 00-1.085-1.035l-4.59 4.81a1.75 1.75 0 000 2.416l4.59 4.81c.286.3.76.31 1.06.024z"
+    fill-rule="evenodd"
   />
 </svg>
 `;
@@ -758,6 +849,8 @@ exports[`EuiIcon props type arrowUp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="arrowUp"
+  fill="none"
   focusable="false"
   height="16"
   role="img"
@@ -766,8 +859,8 @@ exports[`EuiIcon props type arrowUp is rendered 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M2.931 10.843l4.685-4.611a.546.546 0 01.768 0l4.685 4.61c.213.21.558.21.771 0a.53.53 0 000-.759l-4.684-4.61a1.65 1.65 0 00-2.312 0l-4.684 4.61a.53.53 0 000 .76c.213.21.558.21.771 0z"
-    fill-rule="nonzero"
+    clip-rule="evenodd"
+    d="M1.957 11.018c.286.3.761.31 1.06.024l4.81-4.59a.25.25 0 01.346 0l4.81 4.59a.75.75 0 001.035-1.085l-4.81-4.59a1.75 1.75 0 00-2.416 0l-4.81 4.59a.75.75 0 00-.025 1.06z"
   />
 </svg>
 `;
@@ -776,6 +869,7 @@ exports[`EuiIcon props type asterisk is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="asterisk"
   focusable="false"
   height="16"
   role="img"
@@ -793,6 +887,7 @@ exports[`EuiIcon props type auditbeatApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="auditbeatApp"
   focusable="false"
   height="32"
   role="img"
@@ -814,6 +909,7 @@ exports[`EuiIcon props type beaker is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="beaker"
   focusable="false"
   height="16"
   role="img"
@@ -831,6 +927,7 @@ exports[`EuiIcon props type bell is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="bell"
   focusable="false"
   height="16"
   role="img"
@@ -849,6 +946,7 @@ exports[`EuiIcon props type bellSlash is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="bellSlash"
   focusable="false"
   height="16"
   role="img"
@@ -866,6 +964,7 @@ exports[`EuiIcon props type bolt is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="bolt"
   focusable="false"
   height="16"
   role="img"
@@ -883,6 +982,7 @@ exports[`EuiIcon props type boxesHorizontal is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="boxesHorizontal"
   focusable="false"
   height="16"
   role="img"
@@ -900,6 +1000,7 @@ exports[`EuiIcon props type boxesVertical is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="boxesVertical"
   focusable="false"
   height="16"
   role="img"
@@ -917,6 +1018,7 @@ exports[`EuiIcon props type branch is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="branch"
   focusable="false"
   height="16"
   role="img"
@@ -934,6 +1036,7 @@ exports[`EuiIcon props type broom is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="broom"
   focusable="false"
   height="16"
   role="img"
@@ -951,6 +1054,7 @@ exports[`EuiIcon props type brush is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="brush"
   focusable="false"
   height="16"
   role="img"
@@ -968,6 +1072,7 @@ exports[`EuiIcon props type bug is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="bug"
   focusable="false"
   height="16"
   role="img"
@@ -985,6 +1090,7 @@ exports[`EuiIcon props type bullseye is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="bullseye"
   focusable="false"
   height="16"
   role="img"
@@ -1002,6 +1108,7 @@ exports[`EuiIcon props type calendar is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="calendar"
   focusable="false"
   height="16"
   role="img"
@@ -1020,6 +1127,7 @@ exports[`EuiIcon props type canvasApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="canvasApp"
   focusable="false"
   height="32"
   role="img"
@@ -1041,6 +1149,7 @@ exports[`EuiIcon props type check is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="check"
   focusable="false"
   height="16"
   role="img"
@@ -1059,6 +1168,7 @@ exports[`EuiIcon props type checkInCircleFilled is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="checkInCircleFilled"
   focusable="false"
   height="16"
   role="img"
@@ -1077,6 +1187,7 @@ exports[`EuiIcon props type cheer is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="cheer"
   focusable="false"
   height="16"
   role="img"
@@ -1094,6 +1205,7 @@ exports[`EuiIcon props type classificationJob is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="classificationJob"
   focusable="false"
   height="32"
   role="img"
@@ -1115,6 +1227,7 @@ exports[`EuiIcon props type clock is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="clock"
   focusable="false"
   height="16"
   role="img"
@@ -1133,6 +1246,7 @@ exports[`EuiIcon props type cloudDrizzle is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="cloudDrizzle"
   focusable="false"
   height="16"
   role="img"
@@ -1150,6 +1264,7 @@ exports[`EuiIcon props type cloudStormy is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="cloudStormy"
   focusable="false"
   height="16"
   role="img"
@@ -1167,6 +1282,7 @@ exports[`EuiIcon props type cloudSunny is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="cloudSunny"
   focusable="false"
   height="16"
   role="img"
@@ -1184,6 +1300,7 @@ exports[`EuiIcon props type codeApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="codeApp"
   focusable="false"
   height="32"
   role="img"
@@ -1205,6 +1322,7 @@ exports[`EuiIcon props type color is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="color"
   focusable="false"
   height="16"
   role="img"
@@ -1222,6 +1340,7 @@ exports[`EuiIcon props type compute is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="compute"
   focusable="false"
   height="16"
   role="img"
@@ -1246,6 +1365,7 @@ exports[`EuiIcon props type console is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="console"
   focusable="false"
   height="16"
   role="img"
@@ -1263,6 +1383,7 @@ exports[`EuiIcon props type consoleApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="consoleApp"
   focusable="false"
   height="32"
   role="img"
@@ -1287,6 +1408,7 @@ exports[`EuiIcon props type continuityAbove is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="continuityAbove"
   focusable="false"
   height="16"
   role="img"
@@ -1304,6 +1426,7 @@ exports[`EuiIcon props type continuityAboveBelow is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="continuityAboveBelow"
   focusable="false"
   height="16"
   role="img"
@@ -1321,6 +1444,7 @@ exports[`EuiIcon props type continuityBelow is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="continuityBelow"
   focusable="false"
   height="16"
   role="img"
@@ -1338,6 +1462,7 @@ exports[`EuiIcon props type continuityWithin is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="continuityWithin"
   focusable="false"
   height="16"
   role="img"
@@ -1355,6 +1480,7 @@ exports[`EuiIcon props type controlsHorizontal is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="controlsHorizontal"
   focusable="false"
   height="16"
   role="img"
@@ -1373,6 +1499,7 @@ exports[`EuiIcon props type controlsVertical is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="controlsVertical"
   focusable="false"
   height="16"
   role="img"
@@ -1391,6 +1518,7 @@ exports[`EuiIcon props type copy is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="copy"
   focusable="false"
   height="16"
   role="img"
@@ -1411,6 +1539,7 @@ exports[`EuiIcon props type copyClipboard is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="copyClipboard"
   focusable="false"
   height="16"
   role="img"
@@ -1431,6 +1560,7 @@ exports[`EuiIcon props type createAdvancedJob is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="createAdvancedJob"
   focusable="false"
   height="32"
   role="img"
@@ -1452,6 +1582,7 @@ exports[`EuiIcon props type createMultiMetricJob is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="createMultiMetricJob"
   focusable="false"
   height="32"
   role="img"
@@ -1473,6 +1604,7 @@ exports[`EuiIcon props type createPopulationJob is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="createPopulationJob"
   focusable="false"
   height="32"
   role="img"
@@ -1494,6 +1626,7 @@ exports[`EuiIcon props type createSingleMetricJob is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="createSingleMetricJob"
   focusable="false"
   height="32"
   role="img"
@@ -1515,6 +1648,7 @@ exports[`EuiIcon props type cross is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="cross"
   focusable="false"
   height="16"
   role="img"
@@ -1532,6 +1666,7 @@ exports[`EuiIcon props type crossClusterReplicationApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="crossClusterReplicationApp"
   focusable="false"
   height="32"
   role="img"
@@ -1553,6 +1688,7 @@ exports[`EuiIcon props type crossInACircleFilled is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="crossInACircleFilled"
   focusable="false"
   height="16"
   role="img"
@@ -1570,6 +1706,7 @@ exports[`EuiIcon props type crosshairs is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="crosshairs"
   focusable="false"
   height="16"
   role="img"
@@ -1587,6 +1724,7 @@ exports[`EuiIcon props type currency is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="currency"
   focusable="false"
   height="16"
   role="img"
@@ -1604,6 +1742,7 @@ exports[`EuiIcon props type cut is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="cut"
   focusable="false"
   height="16"
   role="img"
@@ -1622,6 +1761,7 @@ exports[`EuiIcon props type dashboardApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="dashboardApp"
   focusable="false"
   height="32"
   role="img"
@@ -1650,6 +1790,7 @@ exports[`EuiIcon props type dataVisualizer is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="dataVisualizer"
   focusable="false"
   height="32"
   role="img"
@@ -1671,6 +1812,7 @@ exports[`EuiIcon props type database is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="database"
   focusable="false"
   height="16"
   role="img"
@@ -1688,6 +1830,7 @@ exports[`EuiIcon props type devToolsApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="devToolsApp"
   focusable="false"
   height="32"
   role="img"
@@ -1709,6 +1852,7 @@ exports[`EuiIcon props type discoverApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="discoverApp"
   focusable="false"
   height="32"
   role="img"
@@ -1730,6 +1874,7 @@ exports[`EuiIcon props type document is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="document"
   focusable="false"
   height="16"
   role="img"
@@ -1747,6 +1892,7 @@ exports[`EuiIcon props type documentEdit is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="documentEdit"
   focusable="false"
   height="16"
   role="img"
@@ -1764,6 +1910,7 @@ exports[`EuiIcon props type documentation is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="documentation"
   focusable="false"
   height="16"
   role="img"
@@ -1787,6 +1934,7 @@ exports[`EuiIcon props type documents is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="documents"
   focusable="false"
   height="16"
   role="img"
@@ -1804,6 +1952,7 @@ exports[`EuiIcon props type dot is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="dot"
   focusable="false"
   height="16"
   role="img"
@@ -1819,10 +1968,59 @@ exports[`EuiIcon props type dot is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type doubleArrowLeft is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="doubleArrowLeft"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M8.135 14.043a.75.75 0 00.025-1.06l-4.591-4.81a.25.25 0 010-.346l4.59-4.81a.75.75 0 10-1.084-1.035l-4.591 4.81a1.75 1.75 0 000 2.416l4.59 4.81c.287.3.761.31 1.061.024z"
+  />
+  <path
+    clip-rule="evenodd"
+    d="M14.135 14.043a.75.75 0 00.025-1.06l-4.591-4.81a.25.25 0 010-.346l4.59-4.81a.75.75 0 10-1.084-1.035l-4.591 4.81a1.75 1.75 0 000 2.416l4.59 4.81c.287.3.761.31 1.061.024z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type doubleArrowRight is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="doubleArrowRight"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M2.232 14.043a.75.75 0 01-.025-1.06l4.591-4.81a.25.25 0 000-.346l-4.59-4.81a.75.75 0 011.085-1.035l4.59 4.81a1.75 1.75 0 010 2.416l-4.59 4.81a.75.75 0 01-1.06.024z"
+  />
+  <path
+    clip-rule="evenodd"
+    d="M8.232 14.043a.75.75 0 01-.025-1.06l4.591-4.81a.25.25 0 000-.346l-4.59-4.81a.75.75 0 011.085-1.035l4.59 4.81a1.75 1.75 0 010 2.416l-4.59 4.81a.75.75 0 01-1.06.024z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type download is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="download"
   focusable="false"
   height="16"
   role="img"
@@ -1843,6 +2041,7 @@ exports[`EuiIcon props type editorAlignCenter is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorAlignCenter"
   focusable="false"
   height="16"
   role="img"
@@ -1860,6 +2059,7 @@ exports[`EuiIcon props type editorAlignLeft is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorAlignLeft"
   focusable="false"
   height="16"
   role="img"
@@ -1877,6 +2077,7 @@ exports[`EuiIcon props type editorAlignRight is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorAlignRight"
   focusable="false"
   height="16"
   role="img"
@@ -1894,6 +2095,7 @@ exports[`EuiIcon props type editorBold is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorBold"
   focusable="false"
   height="16"
   role="img"
@@ -1911,6 +2113,7 @@ exports[`EuiIcon props type editorCodeBlock is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorCodeBlock"
   focusable="false"
   height="16"
   role="img"
@@ -1928,6 +2131,7 @@ exports[`EuiIcon props type editorComment is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorComment"
   focusable="false"
   height="16"
   role="img"
@@ -1945,6 +2149,7 @@ exports[`EuiIcon props type editorDistributeHorizontal is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorDistributeHorizontal"
   focusable="false"
   height="16"
   role="img"
@@ -1962,6 +2167,7 @@ exports[`EuiIcon props type editorDistributeVertical is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorDistributeVertical"
   focusable="false"
   height="16"
   role="img"
@@ -1979,6 +2185,7 @@ exports[`EuiIcon props type editorHeading is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorHeading"
   focusable="false"
   height="16"
   role="img"
@@ -1996,6 +2203,7 @@ exports[`EuiIcon props type editorItalic is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorItalic"
   focusable="false"
   height="16"
   role="img"
@@ -2013,6 +2221,7 @@ exports[`EuiIcon props type editorItemAlignBottom is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorItemAlignBottom"
   focusable="false"
   height="16"
   role="img"
@@ -2030,6 +2239,7 @@ exports[`EuiIcon props type editorItemAlignCenter is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorItemAlignCenter"
   focusable="false"
   height="16"
   role="img"
@@ -2047,6 +2257,7 @@ exports[`EuiIcon props type editorItemAlignLeft is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorItemAlignLeft"
   focusable="false"
   height="16"
   role="img"
@@ -2064,6 +2275,7 @@ exports[`EuiIcon props type editorItemAlignMiddle is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorItemAlignMiddle"
   focusable="false"
   height="16"
   role="img"
@@ -2081,6 +2293,7 @@ exports[`EuiIcon props type editorItemAlignRight is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorItemAlignRight"
   focusable="false"
   height="16"
   role="img"
@@ -2098,6 +2311,7 @@ exports[`EuiIcon props type editorItemAlignTop is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorItemAlignTop"
   focusable="false"
   height="16"
   role="img"
@@ -2115,6 +2329,7 @@ exports[`EuiIcon props type editorLink is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorLink"
   focusable="false"
   height="16"
   role="img"
@@ -2132,6 +2347,7 @@ exports[`EuiIcon props type editorOrderedList is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorOrderedList"
   focusable="false"
   height="16"
   role="img"
@@ -2149,6 +2365,7 @@ exports[`EuiIcon props type editorPositionBottomLeft is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorPositionBottomLeft"
   focusable="false"
   height="16"
   role="img"
@@ -2166,6 +2383,7 @@ exports[`EuiIcon props type editorPositionBottomRight is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorPositionBottomRight"
   focusable="false"
   height="16"
   role="img"
@@ -2183,6 +2401,7 @@ exports[`EuiIcon props type editorPositionTopLeft is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorPositionTopLeft"
   focusable="false"
   height="16"
   role="img"
@@ -2200,6 +2419,7 @@ exports[`EuiIcon props type editorPositionTopRight is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorPositionTopRight"
   focusable="false"
   height="16"
   role="img"
@@ -2217,6 +2437,7 @@ exports[`EuiIcon props type editorRedo is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorRedo"
   focusable="false"
   height="16"
   role="img"
@@ -2234,6 +2455,7 @@ exports[`EuiIcon props type editorStrike is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorStrike"
   focusable="false"
   height="16"
   role="img"
@@ -2251,6 +2473,7 @@ exports[`EuiIcon props type editorTable is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorTable"
   focusable="false"
   height="16"
   role="img"
@@ -2268,6 +2491,7 @@ exports[`EuiIcon props type editorUnderline is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorUnderline"
   focusable="false"
   height="16"
   role="img"
@@ -2285,6 +2509,7 @@ exports[`EuiIcon props type editorUndo is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorUndo"
   focusable="false"
   height="16"
   role="img"
@@ -2302,6 +2527,7 @@ exports[`EuiIcon props type editorUnorderedList is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="editorUnorderedList"
   focusable="false"
   height="16"
   role="img"
@@ -2319,6 +2545,7 @@ exports[`EuiIcon props type email is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="email"
   focusable="false"
   height="16"
   role="img"
@@ -2337,6 +2564,7 @@ exports[`EuiIcon props type empty is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="empty"
   focusable="false"
   height="16"
   role="img"
@@ -2350,6 +2578,7 @@ exports[`EuiIcon props type emsApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="emsApp"
   focusable="false"
   height="32"
   role="img"
@@ -2371,6 +2600,7 @@ exports[`EuiIcon props type eql is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="eql"
   focusable="false"
   height="16"
   role="img"
@@ -2391,6 +2621,7 @@ exports[`EuiIcon props type eraser is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="eraser"
   focusable="false"
   height="16"
   role="img"
@@ -2411,6 +2642,7 @@ exports[`EuiIcon props type exit is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="exit"
   focusable="false"
   height="16"
   role="img"
@@ -2429,6 +2661,7 @@ exports[`EuiIcon props type expand is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="expand"
   focusable="false"
   height="16"
   role="img"
@@ -2447,6 +2680,7 @@ exports[`EuiIcon props type expandMini is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="expandMini"
   focusable="false"
   height="16"
   role="img"
@@ -2465,6 +2699,7 @@ exports[`EuiIcon props type exportAction is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="exportAction"
   focusable="false"
   height="16"
   role="img"
@@ -2482,6 +2717,7 @@ exports[`EuiIcon props type eye is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="eye"
   focusable="false"
   height="16"
   role="img"
@@ -2499,6 +2735,7 @@ exports[`EuiIcon props type eyeClosed is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="eyeClosed"
   focusable="false"
   height="16"
   role="img"
@@ -2516,6 +2753,7 @@ exports[`EuiIcon props type faceHappy is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="faceHappy"
   focusable="false"
   height="16"
   role="img"
@@ -2533,6 +2771,7 @@ exports[`EuiIcon props type faceNeutral is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="faceNeutral"
   focusable="false"
   height="16"
   role="img"
@@ -2551,6 +2790,7 @@ exports[`EuiIcon props type faceSad is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="faceSad"
   focusable="false"
   height="16"
   role="img"
@@ -2568,6 +2808,7 @@ exports[`EuiIcon props type filebeatApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="filebeatApp"
   focusable="false"
   height="32"
   role="img"
@@ -2589,6 +2830,7 @@ exports[`EuiIcon props type filter is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="filter"
   focusable="false"
   height="16"
   role="img"
@@ -2607,6 +2849,7 @@ exports[`EuiIcon props type flag is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="flag"
   focusable="false"
   height="16"
   role="img"
@@ -2624,6 +2867,7 @@ exports[`EuiIcon props type fleetApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="fleetApp"
   focusable="false"
   height="32"
   role="img"
@@ -2655,6 +2899,7 @@ exports[`EuiIcon props type fold is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="fold"
   focusable="false"
   role="img"
   viewBox="0 0 16 16"
@@ -2670,6 +2915,7 @@ exports[`EuiIcon props type folderCheck is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="folderCheck"
   focusable="false"
   height="16"
   role="img"
@@ -2688,6 +2934,7 @@ exports[`EuiIcon props type folderClosed is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="folderClosed"
   focusable="false"
   height="16"
   role="img"
@@ -2705,6 +2952,7 @@ exports[`EuiIcon props type folderExclamation is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="folderExclamation"
   focusable="false"
   height="16"
   role="img"
@@ -2723,6 +2971,7 @@ exports[`EuiIcon props type folderOpen is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="folderOpen"
   focusable="false"
   height="16"
   role="img"
@@ -2740,6 +2989,7 @@ exports[`EuiIcon props type frameNext is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="frameNext"
   fill="none"
   focusable="false"
   height="16"
@@ -2759,6 +3009,7 @@ exports[`EuiIcon props type framePrevious is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="framePrevious"
   fill="none"
   focusable="false"
   height="16"
@@ -2778,6 +3029,7 @@ exports[`EuiIcon props type fullScreen is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="fullScreen"
   focusable="false"
   height="16"
   role="img"
@@ -2796,6 +3048,7 @@ exports[`EuiIcon props type fullScreenExit is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="fullScreenExit"
   focusable="false"
   height="16"
   role="img"
@@ -2813,6 +3066,7 @@ exports[`EuiIcon props type function is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="function"
   focusable="false"
   height="16"
   role="img"
@@ -2830,6 +3084,7 @@ exports[`EuiIcon props type gear is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="gear"
   focusable="false"
   height="16"
   role="img"
@@ -2847,6 +3102,7 @@ exports[`EuiIcon props type gisApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="gisApp"
   focusable="false"
   height="32"
   role="img"
@@ -2868,6 +3124,7 @@ exports[`EuiIcon props type glasses is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="glasses"
   focusable="false"
   height="16"
   role="img"
@@ -2885,6 +3142,7 @@ exports[`EuiIcon props type globe is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="globe"
   focusable="false"
   height="16"
   role="img"
@@ -2902,6 +3160,7 @@ exports[`EuiIcon props type grab is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="grab"
   focusable="false"
   height="16"
   role="img"
@@ -2920,6 +3179,7 @@ exports[`EuiIcon props type grabHorizontal is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="grabHorizontal"
   focusable="false"
   height="16"
   role="img"
@@ -2938,6 +3198,7 @@ exports[`EuiIcon props type graphApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="graphApp"
   focusable="false"
   height="32"
   role="img"
@@ -2959,6 +3220,7 @@ exports[`EuiIcon props type grid is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="grid"
   focusable="false"
   height="16"
   role="img"
@@ -2976,6 +3238,7 @@ exports[`EuiIcon props type grokApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="grokApp"
   focusable="false"
   height="32"
   role="img"
@@ -2997,6 +3260,7 @@ exports[`EuiIcon props type heart is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="heart"
   focusable="false"
   height="16"
   role="img"
@@ -3014,6 +3278,7 @@ exports[`EuiIcon props type heartbeatApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="heartbeatApp"
   focusable="false"
   height="32"
   role="img"
@@ -3035,6 +3300,7 @@ exports[`EuiIcon props type heatmap is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="heatmap"
   focusable="false"
   height="16"
   role="img"
@@ -3052,6 +3318,7 @@ exports[`EuiIcon props type help is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="help"
   focusable="false"
   height="16"
   role="img"
@@ -3070,6 +3337,7 @@ exports[`EuiIcon props type home is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="home"
   focusable="false"
   height="16"
   role="img"
@@ -3087,6 +3355,7 @@ exports[`EuiIcon props type iInCircle is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="iInCircle"
   focusable="false"
   height="16"
   role="img"
@@ -3105,6 +3374,7 @@ exports[`EuiIcon props type image is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="image"
   focusable="false"
   height="16"
   role="img"
@@ -3122,6 +3392,7 @@ exports[`EuiIcon props type importAction is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="importAction"
   focusable="false"
   height="16"
   role="img"
@@ -3139,6 +3410,7 @@ exports[`EuiIcon props type indexClose is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="indexClose"
   focusable="false"
   height="16"
   role="img"
@@ -3156,6 +3428,7 @@ exports[`EuiIcon props type indexEdit is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="indexEdit"
   focusable="false"
   height="16"
   role="img"
@@ -3173,6 +3446,7 @@ exports[`EuiIcon props type indexFlush is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="indexFlush"
   focusable="false"
   height="16"
   role="img"
@@ -3191,6 +3465,7 @@ exports[`EuiIcon props type indexManagementApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="indexManagementApp"
   focusable="false"
   height="32"
   role="img"
@@ -3215,6 +3490,7 @@ exports[`EuiIcon props type indexMapping is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="indexMapping"
   focusable="false"
   height="16"
   role="img"
@@ -3232,6 +3508,7 @@ exports[`EuiIcon props type indexOpen is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="indexOpen"
   focusable="false"
   height="16"
   role="img"
@@ -3249,6 +3526,7 @@ exports[`EuiIcon props type indexPatternApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="indexPatternApp"
   focusable="false"
   height="32"
   role="img"
@@ -3270,6 +3548,7 @@ exports[`EuiIcon props type indexRollupApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="indexRollupApp"
   focusable="false"
   height="32"
   role="img"
@@ -3297,6 +3576,7 @@ exports[`EuiIcon props type indexRuntime is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="indexRuntime"
   focusable="false"
   height="16"
   role="img"
@@ -3317,6 +3597,7 @@ exports[`EuiIcon props type indexSettings is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="indexSettings"
   focusable="false"
   height="16"
   role="img"
@@ -3340,6 +3621,7 @@ exports[`EuiIcon props type inputOutput is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="inputOutput"
   focusable="false"
   height="16"
   role="img"
@@ -3363,6 +3645,7 @@ exports[`EuiIcon props type inspect is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="inspect"
   focusable="false"
   height="16"
   role="img"
@@ -3380,6 +3663,7 @@ exports[`EuiIcon props type invert is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="invert"
   focusable="false"
   height="16"
   role="img"
@@ -3400,6 +3684,7 @@ exports[`EuiIcon props type ip is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="ip"
   focusable="false"
   height="16"
   role="img"
@@ -3417,6 +3702,7 @@ exports[`EuiIcon props type keyboardShortcut is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="keyboardShortcut"
   focusable="false"
   height="16"
   role="img"
@@ -3434,6 +3720,7 @@ exports[`EuiIcon props type kqlField is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="kqlField"
   focusable="false"
   height="10"
   role="img"
@@ -3451,6 +3738,7 @@ exports[`EuiIcon props type kqlFunction is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="kqlFunction"
   focusable="false"
   height="16"
   role="img"
@@ -3468,6 +3756,7 @@ exports[`EuiIcon props type kqlOperand is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="kqlOperand"
   focusable="false"
   height="16"
   role="img"
@@ -3485,6 +3774,7 @@ exports[`EuiIcon props type kqlSelector is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="kqlSelector"
   focusable="false"
   height="16"
   role="img"
@@ -3502,6 +3792,7 @@ exports[`EuiIcon props type kqlValue is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="kqlValue"
   focusable="false"
   height="16"
   role="img"
@@ -3519,6 +3810,7 @@ exports[`EuiIcon props type layers is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="layers"
   focusable="false"
   height="16"
   role="img"
@@ -3542,6 +3834,7 @@ exports[`EuiIcon props type lensApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="lensApp"
   focusable="false"
   height="32"
   role="img"
@@ -3563,6 +3856,7 @@ exports[`EuiIcon props type link is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="link"
   focusable="false"
   height="16"
   role="img"
@@ -3580,6 +3874,7 @@ exports[`EuiIcon props type list is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="list"
   focusable="false"
   height="16"
   role="img"
@@ -3597,6 +3892,7 @@ exports[`EuiIcon props type listAdd is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="listAdd"
   focusable="false"
   height="16"
   role="img"
@@ -3614,6 +3910,7 @@ exports[`EuiIcon props type lock is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="lock"
   focusable="false"
   height="16"
   role="img"
@@ -3631,6 +3928,7 @@ exports[`EuiIcon props type lockOpen is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="lockOpen"
   focusable="false"
   height="16"
   role="img"
@@ -3648,6 +3946,7 @@ exports[`EuiIcon props type logoAWS is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoAWS"
   focusable="false"
   height="32"
   role="img"
@@ -3681,6 +3980,7 @@ exports[`EuiIcon props type logoAWSMono is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoAWSMono"
   focusable="false"
   height="32"
   role="img"
@@ -3709,6 +4009,7 @@ exports[`EuiIcon props type logoAerospike is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoAerospike"
   focusable="false"
   height="32"
   role="img"
@@ -3735,6 +4036,7 @@ exports[`EuiIcon props type logoApache is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoApache"
   focusable="false"
   height="32"
   role="img"
@@ -3954,6 +4256,7 @@ exports[`EuiIcon props type logoAppSearch is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoAppSearch"
   focusable="false"
   height="32"
   role="img"
@@ -3980,6 +4283,7 @@ exports[`EuiIcon props type logoAzure is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoAzure"
   focusable="false"
   height="32"
   role="img"
@@ -3998,6 +4302,7 @@ exports[`EuiIcon props type logoAzureMono is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoAzureMono"
   focusable="false"
   height="32"
   role="img"
@@ -4015,6 +4320,7 @@ exports[`EuiIcon props type logoBeats is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoBeats"
   focusable="false"
   height="32"
   role="img"
@@ -4041,6 +4347,7 @@ exports[`EuiIcon props type logoBusinessAnalytics is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoBusinessAnalytics"
   focusable="false"
   height="32"
   role="img"
@@ -4072,6 +4379,7 @@ exports[`EuiIcon props type logoCeph is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoCeph"
   fill="none"
   focusable="false"
   height="32"
@@ -4091,6 +4399,7 @@ exports[`EuiIcon props type logoCloud is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoCloud"
   focusable="false"
   height="32"
   role="img"
@@ -4122,6 +4431,7 @@ exports[`EuiIcon props type logoCloudEnterprise is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoCloudEnterprise"
   focusable="false"
   height="32"
   role="img"
@@ -4148,6 +4458,7 @@ exports[`EuiIcon props type logoCode is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoCode"
   focusable="false"
   height="32"
   role="img"
@@ -4174,6 +4485,7 @@ exports[`EuiIcon props type logoCodesandbox is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoCodesandbox"
   focusable="false"
   height="32"
   role="img"
@@ -4191,6 +4503,7 @@ exports[`EuiIcon props type logoCouchbase is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoCouchbase"
   focusable="false"
   height="32"
   role="img"
@@ -4209,6 +4522,7 @@ exports[`EuiIcon props type logoDocker is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoDocker"
   focusable="false"
   height="32"
   role="img"
@@ -4228,6 +4542,7 @@ exports[`EuiIcon props type logoDropwizard is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoDropwizard"
   fill="none"
   focusable="false"
   height="32"
@@ -4313,6 +4628,7 @@ exports[`EuiIcon props type logoElastic is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoElastic"
   data-type="logoElastic"
   fill="none"
   focusable="false"
@@ -4360,6 +4676,7 @@ exports[`EuiIcon props type logoElasticStack is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoElasticStack"
   focusable="false"
   height="32"
   role="img"
@@ -4395,6 +4712,7 @@ exports[`EuiIcon props type logoElasticsearch is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoElasticsearch"
   focusable="false"
   height="32"
   role="img"
@@ -4426,6 +4744,7 @@ exports[`EuiIcon props type logoEnterpriseSearch is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoEnterpriseSearch"
   focusable="false"
   height="32"
   role="img"
@@ -4458,6 +4777,7 @@ exports[`EuiIcon props type logoEtcd is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoEtcd"
   focusable="false"
   height="32"
   role="img"
@@ -4482,6 +4802,7 @@ exports[`EuiIcon props type logoGCP is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoGCP"
   focusable="false"
   height="32"
   role="img"
@@ -4551,6 +4872,7 @@ exports[`EuiIcon props type logoGCPMono is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoGCPMono"
   focusable="false"
   height="32"
   role="img"
@@ -4571,6 +4893,7 @@ exports[`EuiIcon props type logoGithub is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoGithub"
   focusable="false"
   height="32"
   role="img"
@@ -4588,6 +4911,7 @@ exports[`EuiIcon props type logoGmail is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoGmail"
   focusable="false"
   height="32"
   role="img"
@@ -4634,6 +4958,7 @@ exports[`EuiIcon props type logoGolang is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoGolang"
   fill="none"
   focusable="false"
   height="32"
@@ -4781,6 +5106,7 @@ exports[`EuiIcon props type logoGoogleG is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoGoogleG"
   focusable="false"
   height="32"
   role="img"
@@ -4891,6 +5217,7 @@ exports[`EuiIcon props type logoHAproxy is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoHAproxy"
   fill="none"
   focusable="false"
   height="32"
@@ -4978,6 +5305,7 @@ exports[`EuiIcon props type logoIBM is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoIBM"
   focusable="false"
   height="32"
   role="img"
@@ -5135,6 +5463,7 @@ exports[`EuiIcon props type logoIBMMono is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoIBMMono"
   focusable="false"
   height="32"
   role="img"
@@ -5153,6 +5482,7 @@ exports[`EuiIcon props type logoKafka is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoKafka"
   focusable="false"
   height="32"
   role="img"
@@ -5170,6 +5500,7 @@ exports[`EuiIcon props type logoKibana is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoKibana"
   focusable="false"
   height="32"
   role="img"
@@ -5201,6 +5532,7 @@ exports[`EuiIcon props type logoKubernetes is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoKubernetes"
   focusable="false"
   height="32"
   role="img"
@@ -5219,6 +5551,7 @@ exports[`EuiIcon props type logoLogging is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoLogging"
   focusable="false"
   height="32"
   role="img"
@@ -5245,6 +5578,7 @@ exports[`EuiIcon props type logoLogstash is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoLogstash"
   focusable="false"
   height="32"
   role="img"
@@ -5271,6 +5605,7 @@ exports[`EuiIcon props type logoMaps is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoMaps"
   focusable="false"
   height="32"
   role="img"
@@ -5297,6 +5632,7 @@ exports[`EuiIcon props type logoMemcached is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoMemcached"
   focusable="false"
   height="32"
   role="img"
@@ -5409,6 +5745,7 @@ exports[`EuiIcon props type logoMetrics is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoMetrics"
   focusable="false"
   height="32"
   role="img"
@@ -5440,6 +5777,7 @@ exports[`EuiIcon props type logoMongodb is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoMongodb"
   focusable="false"
   height="32"
   role="img"
@@ -5482,6 +5820,7 @@ exports[`EuiIcon props type logoMySQL is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoMySQL"
   focusable="false"
   height="32"
   role="img"
@@ -5506,6 +5845,7 @@ exports[`EuiIcon props type logoNginx is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoNginx"
   focusable="false"
   height="32"
   role="img"
@@ -5534,6 +5874,7 @@ exports[`EuiIcon props type logoObservability is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoObservability"
   focusable="false"
   height="32"
   role="img"
@@ -5560,6 +5901,7 @@ exports[`EuiIcon props type logoOsquery is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoOsquery"
   focusable="false"
   height="32"
   role="img"
@@ -5610,6 +5952,7 @@ exports[`EuiIcon props type logoPhp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoPhp"
   focusable="false"
   height="32"
   role="img"
@@ -5746,6 +6089,7 @@ exports[`EuiIcon props type logoPostgres is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoPostgres"
   focusable="false"
   height="32"
   role="img"
@@ -5780,6 +6124,7 @@ exports[`EuiIcon props type logoPrometheus is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoPrometheus"
   focusable="false"
   height="32"
   role="img"
@@ -5798,6 +6143,7 @@ exports[`EuiIcon props type logoRabbitmq is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoRabbitmq"
   focusable="false"
   height="32"
   role="img"
@@ -5816,6 +6162,7 @@ exports[`EuiIcon props type logoRedis is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoRedis"
   focusable="false"
   height="32"
   role="img"
@@ -5878,6 +6225,7 @@ exports[`EuiIcon props type logoSecurity is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoSecurity"
   focusable="false"
   height="32"
   role="img"
@@ -5904,6 +6252,7 @@ exports[`EuiIcon props type logoSiteSearch is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoSiteSearch"
   focusable="false"
   height="32"
   role="img"
@@ -5935,6 +6284,7 @@ exports[`EuiIcon props type logoSketch is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoSketch"
   focusable="false"
   height="32"
   role="img"
@@ -5977,6 +6327,7 @@ exports[`EuiIcon props type logoSlack is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoSlack"
   focusable="false"
   height="32"
   role="img"
@@ -6011,6 +6362,7 @@ exports[`EuiIcon props type logoUptime is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoUptime"
   focusable="false"
   height="32"
   role="img"
@@ -6037,6 +6389,7 @@ exports[`EuiIcon props type logoWebhook is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoWebhook"
   focusable="false"
   height="32"
   role="img"
@@ -6067,6 +6420,7 @@ exports[`EuiIcon props type logoWindows is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoWindows"
   focusable="false"
   height="32"
   role="img"
@@ -6085,6 +6439,7 @@ exports[`EuiIcon props type logoWorkplaceSearch is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logoWorkplaceSearch"
   focusable="false"
   height="32"
   role="img"
@@ -6111,6 +6466,7 @@ exports[`EuiIcon props type logsApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="logsApp"
   focusable="false"
   height="32"
   role="img"
@@ -6132,6 +6488,7 @@ exports[`EuiIcon props type logstashFilter is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logstashFilter"
   focusable="false"
   height="16"
   role="img"
@@ -6149,6 +6506,7 @@ exports[`EuiIcon props type logstashIf is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logstashIf"
   focusable="false"
   height="16"
   role="img"
@@ -6166,6 +6524,7 @@ exports[`EuiIcon props type logstashInput is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logstashInput"
   focusable="false"
   height="16"
   role="img"
@@ -6183,6 +6542,7 @@ exports[`EuiIcon props type logstashOutput is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logstashOutput"
   focusable="false"
   height="16"
   role="img"
@@ -6200,6 +6560,7 @@ exports[`EuiIcon props type logstashQueue is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="logstashQueue"
   focusable="false"
   height="16"
   role="img"
@@ -6217,6 +6578,7 @@ exports[`EuiIcon props type machineLearningApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="machineLearningApp"
   focusable="false"
   height="32"
   role="img"
@@ -6238,6 +6600,7 @@ exports[`EuiIcon props type magnet is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="magnet"
   focusable="false"
   height="16"
   role="img"
@@ -6255,6 +6618,7 @@ exports[`EuiIcon props type magnifyWithMinus is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="magnifyWithMinus"
   focusable="false"
   height="16"
   role="img"
@@ -6272,6 +6636,7 @@ exports[`EuiIcon props type magnifyWithPlus is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="magnifyWithPlus"
   focusable="false"
   height="16"
   role="img"
@@ -6289,6 +6654,7 @@ exports[`EuiIcon props type managementApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="managementApp"
   focusable="false"
   height="32"
   role="img"
@@ -6310,6 +6676,7 @@ exports[`EuiIcon props type mapMarker is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="mapMarker"
   focusable="false"
   height="16"
   role="img"
@@ -6327,6 +6694,7 @@ exports[`EuiIcon props type memory is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="memory"
   focusable="false"
   height="16"
   role="img"
@@ -6347,6 +6715,7 @@ exports[`EuiIcon props type menu is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="menu"
   fill="none"
   focusable="false"
   height="16"
@@ -6365,6 +6734,7 @@ exports[`EuiIcon props type menuDown is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="menuDown"
   focusable="false"
   height="16"
   role="img"
@@ -6382,6 +6752,7 @@ exports[`EuiIcon props type menuLeft is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="menuLeft"
   focusable="false"
   height="16"
   role="img"
@@ -6399,6 +6770,7 @@ exports[`EuiIcon props type menuRight is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="menuRight"
   focusable="false"
   height="16"
   role="img"
@@ -6416,6 +6788,7 @@ exports[`EuiIcon props type menuUp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="menuUp"
   focusable="false"
   height="16"
   role="img"
@@ -6433,6 +6806,7 @@ exports[`EuiIcon props type merge is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="merge"
   focusable="false"
   height="16"
   role="img"
@@ -6450,6 +6824,7 @@ exports[`EuiIcon props type metricbeatApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="metricbeatApp"
   focusable="false"
   height="32"
   role="img"
@@ -6474,6 +6849,7 @@ exports[`EuiIcon props type metricsApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="metricsApp"
   focusable="false"
   height="32"
   role="img"
@@ -6495,6 +6871,7 @@ exports[`EuiIcon props type minimize is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="minimize"
   focusable="false"
   height="16"
   role="img"
@@ -6512,6 +6889,7 @@ exports[`EuiIcon props type minus is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="minus"
   focusable="false"
   height="16"
   role="img"
@@ -6533,6 +6911,7 @@ exports[`EuiIcon props type minusInCircle is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="minusInCircle"
   focusable="false"
   height="16"
   role="img"
@@ -6551,6 +6930,7 @@ exports[`EuiIcon props type minusInCircleFilled is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="minusInCircleFilled"
   focusable="false"
   height="16"
   role="img"
@@ -6569,6 +6949,7 @@ exports[`EuiIcon props type mobile is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="mobile"
   focusable="false"
   height="16"
   role="img"
@@ -6591,6 +6972,7 @@ exports[`EuiIcon props type monitoringApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="monitoringApp"
   focusable="false"
   height="32"
   role="img"
@@ -6612,6 +6994,7 @@ exports[`EuiIcon props type moon is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="moon"
   focusable="false"
   height="16"
   role="img"
@@ -6629,6 +7012,7 @@ exports[`EuiIcon props type nested is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="nested"
   focusable="false"
   height="16"
   role="img"
@@ -6646,6 +7030,7 @@ exports[`EuiIcon props type node is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="node"
   focusable="false"
   height="16"
   role="img"
@@ -6663,6 +7048,7 @@ exports[`EuiIcon props type notebookApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="notebookApp"
   focusable="false"
   height="32"
   role="img"
@@ -6687,6 +7073,7 @@ exports[`EuiIcon props type number is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="number"
   focusable="false"
   height="16"
   role="img"
@@ -6705,6 +7092,7 @@ exports[`EuiIcon props type offline is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="offline"
   focusable="false"
   height="16"
   role="img"
@@ -6722,6 +7110,7 @@ exports[`EuiIcon props type online is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="online"
   focusable="false"
   height="16"
   role="img"
@@ -6739,6 +7128,7 @@ exports[`EuiIcon props type outlierDetectionJob is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="outlierDetectionJob"
   focusable="false"
   height="32"
   role="img"
@@ -6760,6 +7150,7 @@ exports[`EuiIcon props type package is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="package"
   focusable="false"
   height="16"
   role="img"
@@ -6777,6 +7168,7 @@ exports[`EuiIcon props type packetbeatApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="packetbeatApp"
   focusable="false"
   height="32"
   role="img"
@@ -6798,6 +7190,7 @@ exports[`EuiIcon props type pageSelect is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="pageSelect"
   focusable="false"
   height="16"
   role="img"
@@ -6816,6 +7209,7 @@ exports[`EuiIcon props type pagesSelect is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="pagesSelect"
   focusable="false"
   height="16"
   role="img"
@@ -6834,6 +7228,7 @@ exports[`EuiIcon props type paperClip is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="paperClip"
   focusable="false"
   height="16"
   role="img"
@@ -6851,6 +7246,7 @@ exports[`EuiIcon props type partial is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="partial"
   focusable="false"
   height="16"
   role="img"
@@ -6868,6 +7264,7 @@ exports[`EuiIcon props type pause is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="pause"
   focusable="false"
   height="16"
   role="img"
@@ -6881,10 +7278,30 @@ exports[`EuiIcon props type pause is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type payment is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="payment"
+  fill="none"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M.586 2.586A2 2 0 000 4h1a1 1 0 011-1V2a2 2 0 00-1.414.586zM2 2h10.5a.5.5 0 010 1H2V2zM0 4h1v6.5a.5.5 0 01-1 0V4zm2.586.586A2 2 0 002 6h1a1 1 0 011-1V4a2 2 0 00-1.414.586zm0 8.828A2 2 0 012 12h1a1 1 0 001 1v1a2 2 0 01-1.414-.586zm12.828-8.828A2 2 0 0116 6h-1a1 1 0 00-1-1V4a2 2 0 011.414.586zm0 8.828A2 2 0 0016 12h-1a1 1 0 01-1 1v1a2 2 0 001.414-.586zM4 4h10v1H4zM3 7h12v1H3zm1 6h10v1H4zM2 6h1v6H2zm13 0h1v6h-1zm-5.5 4a.5.5 0 010 1H7.496a.5.5 0 010-1H9.5zm4 0a.5.5 0 010 1h-2.004a.5.5 0 010-1H13.5z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type pencil is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="pencil"
   focusable="false"
   height="16"
   role="img"
@@ -6902,6 +7319,7 @@ exports[`EuiIcon props type percent is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="percent"
   focusable="false"
   height="16"
   role="img"
@@ -6927,6 +7345,7 @@ exports[`EuiIcon props type pin is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="pin"
   focusable="false"
   height="16"
   role="img"
@@ -6945,6 +7364,7 @@ exports[`EuiIcon props type pinFilled is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="pinFilled"
   focusable="false"
   height="16"
   role="img"
@@ -6962,6 +7382,7 @@ exports[`EuiIcon props type pipelineApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="pipelineApp"
   focusable="false"
   height="32"
   role="img"
@@ -6983,6 +7404,7 @@ exports[`EuiIcon props type play is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="play"
   focusable="false"
   height="16"
   role="img"
@@ -7000,6 +7422,7 @@ exports[`EuiIcon props type playFilled is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="playFilled"
   fill="none"
   focusable="false"
   height="16"
@@ -7018,6 +7441,7 @@ exports[`EuiIcon props type plus is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="plus"
   focusable="false"
   height="16"
   role="img"
@@ -7035,6 +7459,7 @@ exports[`EuiIcon props type plusInCircle is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="plusInCircle"
   focusable="false"
   height="16"
   role="img"
@@ -7053,6 +7478,7 @@ exports[`EuiIcon props type plusInCircleFilled is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="plusInCircleFilled"
   focusable="false"
   height="16"
   role="img"
@@ -7070,6 +7496,7 @@ exports[`EuiIcon props type popout is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="popout"
   focusable="false"
   height="16"
   role="img"
@@ -7087,6 +7514,7 @@ exports[`EuiIcon props type push is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="push"
   focusable="false"
   height="16"
   role="img"
@@ -7107,6 +7535,7 @@ exports[`EuiIcon props type questionInCircle is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="questionInCircle"
   focusable="false"
   height="16"
   role="img"
@@ -7124,6 +7553,7 @@ exports[`EuiIcon props type quote is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="quote"
   focusable="false"
   height="16"
   role="img"
@@ -7141,6 +7571,7 @@ exports[`EuiIcon props type recentlyViewedApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="recentlyViewedApp"
   focusable="false"
   height="32"
   role="img"
@@ -7162,6 +7593,7 @@ exports[`EuiIcon props type refresh is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="refresh"
   focusable="false"
   height="16"
   role="img"
@@ -7179,6 +7611,7 @@ exports[`EuiIcon props type regressionJob is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="regressionJob"
   focusable="false"
   height="32"
   role="img"
@@ -7200,6 +7633,7 @@ exports[`EuiIcon props type reporter is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="reporter"
   focusable="false"
   height="16"
   role="img"
@@ -7218,6 +7652,7 @@ exports[`EuiIcon props type reportingApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="reportingApp"
   focusable="false"
   height="32"
   role="img"
@@ -7242,6 +7677,7 @@ exports[`EuiIcon props type returnKey is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="returnKey"
   focusable="false"
   height="16"
   role="img"
@@ -7259,6 +7695,7 @@ exports[`EuiIcon props type save is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="save"
   focusable="false"
   height="16"
   role="img"
@@ -7276,6 +7713,7 @@ exports[`EuiIcon props type savedObjectsApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="savedObjectsApp"
   focusable="false"
   height="32"
   role="img"
@@ -7297,6 +7735,7 @@ exports[`EuiIcon props type scale is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="scale"
   focusable="false"
   height="16"
   role="img"
@@ -7315,6 +7754,7 @@ exports[`EuiIcon props type search is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="search"
   focusable="false"
   height="16"
   role="img"
@@ -7332,6 +7772,7 @@ exports[`EuiIcon props type searchProfilerApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="searchProfilerApp"
   focusable="false"
   height="32"
   role="img"
@@ -7363,6 +7804,7 @@ exports[`EuiIcon props type securityAnalyticsApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="securityAnalyticsApp"
   focusable="false"
   height="32"
   role="img"
@@ -7387,6 +7829,7 @@ exports[`EuiIcon props type securityApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="securityApp"
   focusable="false"
   height="32"
   role="img"
@@ -7408,6 +7851,7 @@ exports[`EuiIcon props type securitySignal is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="securitySignal"
   focusable="false"
   height="16"
   role="img"
@@ -7426,6 +7870,7 @@ exports[`EuiIcon props type securitySignalDetected is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="securitySignalDetected"
   focusable="false"
   height="16"
   role="img"
@@ -7444,6 +7889,7 @@ exports[`EuiIcon props type securitySignalResolved is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="securitySignalResolved"
   focusable="false"
   height="16"
   role="img"
@@ -7462,6 +7908,7 @@ exports[`EuiIcon props type shard is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="shard"
   focusable="false"
   height="16"
   role="img"
@@ -7479,6 +7926,7 @@ exports[`EuiIcon props type share is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="share"
   focusable="false"
   height="16"
   role="img"
@@ -7496,6 +7944,7 @@ exports[`EuiIcon props type snowflake is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="snowflake"
   focusable="false"
   height="16"
   role="img"
@@ -7514,6 +7963,7 @@ exports[`EuiIcon props type sortDown is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="sortDown"
   focusable="false"
   height="16"
   role="img"
@@ -7531,6 +7981,7 @@ exports[`EuiIcon props type sortLeft is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="sortLeft"
   focusable="false"
   height="16"
   role="img"
@@ -7549,6 +8000,7 @@ exports[`EuiIcon props type sortRight is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="sortRight"
   focusable="false"
   height="16"
   role="img"
@@ -7566,6 +8018,7 @@ exports[`EuiIcon props type sortUp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="sortUp"
   focusable="false"
   height="16"
   role="img"
@@ -7583,6 +8036,7 @@ exports[`EuiIcon props type sortable is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="sortable"
   focusable="false"
   height="16"
   role="img"
@@ -7600,6 +8054,7 @@ exports[`EuiIcon props type spacesApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="spacesApp"
   focusable="false"
   height="32"
   role="img"
@@ -7625,6 +8080,7 @@ exports[`EuiIcon props type sqlApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="sqlApp"
   focusable="false"
   height="32"
   role="img"
@@ -7646,6 +8102,7 @@ exports[`EuiIcon props type starEmpty is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="starEmpty"
   focusable="false"
   height="16"
   role="img"
@@ -7664,6 +8121,7 @@ exports[`EuiIcon props type starEmptySpace is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="starEmptySpace"
   focusable="false"
   height="16"
   role="img"
@@ -7682,6 +8140,7 @@ exports[`EuiIcon props type starFilled is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="starFilled"
   focusable="false"
   height="16"
   role="img"
@@ -7700,6 +8159,7 @@ exports[`EuiIcon props type starFilledSpace is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="starFilledSpace"
   focusable="false"
   height="16"
   role="img"
@@ -7718,6 +8178,7 @@ exports[`EuiIcon props type starMinusEmpty is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="starMinusEmpty"
   focusable="false"
   height="16"
   role="img"
@@ -7736,6 +8197,7 @@ exports[`EuiIcon props type starMinusFilled is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="starMinusFilled"
   focusable="false"
   height="16"
   role="img"
@@ -7754,6 +8216,7 @@ exports[`EuiIcon props type starPlusEmpty is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="starPlusEmpty"
   focusable="false"
   height="16"
   role="img"
@@ -7772,6 +8235,7 @@ exports[`EuiIcon props type starPlusFilled is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="starPlusFilled"
   focusable="false"
   height="16"
   role="img"
@@ -7790,6 +8254,7 @@ exports[`EuiIcon props type stats is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="stats"
   focusable="false"
   height="16"
   role="img"
@@ -7808,6 +8273,7 @@ exports[`EuiIcon props type stop is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="stop"
   focusable="false"
   height="16"
   role="img"
@@ -7826,6 +8292,7 @@ exports[`EuiIcon props type stopFilled is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="stopFilled"
   focusable="false"
   height="16"
   role="img"
@@ -7848,6 +8315,7 @@ exports[`EuiIcon props type stopSlash is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="stopSlash"
   focusable="false"
   height="16"
   role="img"
@@ -7865,6 +8333,7 @@ exports[`EuiIcon props type storage is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="storage"
   focusable="false"
   height="16"
   role="img"
@@ -7901,6 +8370,7 @@ exports[`EuiIcon props type string is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="string"
   focusable="false"
   height="16"
   role="img"
@@ -7919,6 +8389,7 @@ exports[`EuiIcon props type submodule is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="submodule"
   fill="none"
   focusable="false"
   height="16"
@@ -7938,6 +8409,7 @@ exports[`EuiIcon props type swatchInput is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="swatchInput"
   focusable="false"
   height="16"
   role="img"
@@ -7967,6 +8439,7 @@ exports[`EuiIcon props type symlink is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="symlink"
   fill="none"
   focusable="false"
   height="16"
@@ -7986,6 +8459,7 @@ exports[`EuiIcon props type tableDensityCompact is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tableDensityCompact"
   focusable="false"
   height="16"
   role="img"
@@ -8003,6 +8477,7 @@ exports[`EuiIcon props type tableDensityExpanded is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tableDensityExpanded"
   focusable="false"
   height="16"
   role="img"
@@ -8020,6 +8495,7 @@ exports[`EuiIcon props type tableDensityNormal is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tableDensityNormal"
   focusable="false"
   height="16"
   role="img"
@@ -8037,6 +8513,7 @@ exports[`EuiIcon props type tableOfContents is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tableOfContents"
   focusable="false"
   height="16"
   role="img"
@@ -8054,6 +8531,7 @@ exports[`EuiIcon props type tag is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tag"
   focusable="false"
   height="16"
   role="img"
@@ -8071,6 +8549,7 @@ exports[`EuiIcon props type tear is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tear"
   focusable="false"
   height="16"
   role="img"
@@ -8088,6 +8567,7 @@ exports[`EuiIcon props type temperature is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="temperature"
   focusable="false"
   height="16"
   role="img"
@@ -8108,6 +8588,7 @@ exports[`EuiIcon props type timeline is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="timeline"
   focusable="false"
   height="16"
   role="img"
@@ -8126,6 +8607,7 @@ exports[`EuiIcon props type timelionApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="timelionApp"
   focusable="false"
   height="32"
   role="img"
@@ -8147,6 +8629,7 @@ exports[`EuiIcon props type timeslider is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="timeslider"
   fill="none"
   focusable="false"
   height="16"
@@ -8166,6 +8649,7 @@ exports[`EuiIcon props type tokenAlias is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenAlias"
   focusable="false"
   height="16"
   role="img"
@@ -8184,6 +8668,7 @@ exports[`EuiIcon props type tokenAnnotation is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenAnnotation"
   focusable="false"
   height="16"
   role="img"
@@ -8202,6 +8687,7 @@ exports[`EuiIcon props type tokenArray is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenArray"
   focusable="false"
   height="16"
   role="img"
@@ -8220,6 +8706,7 @@ exports[`EuiIcon props type tokenBinary is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenBinary"
   focusable="false"
   height="16"
   role="img"
@@ -8238,6 +8725,7 @@ exports[`EuiIcon props type tokenBoolean is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenBoolean"
   focusable="false"
   height="16"
   role="img"
@@ -8256,6 +8744,7 @@ exports[`EuiIcon props type tokenClass is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenClass"
   focusable="false"
   height="16"
   role="img"
@@ -8274,6 +8763,7 @@ exports[`EuiIcon props type tokenCompletionSuggester is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenCompletionSuggester"
   focusable="false"
   height="16"
   role="img"
@@ -8296,6 +8786,7 @@ exports[`EuiIcon props type tokenConstant is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenConstant"
   focusable="false"
   height="16"
   role="img"
@@ -8314,6 +8805,7 @@ exports[`EuiIcon props type tokenDate is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenDate"
   focusable="false"
   height="16"
   role="img"
@@ -8332,6 +8824,7 @@ exports[`EuiIcon props type tokenDenseVector is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenDenseVector"
   focusable="false"
   height="16"
   role="img"
@@ -8349,6 +8842,7 @@ exports[`EuiIcon props type tokenElement is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenElement"
   focusable="false"
   height="16"
   role="img"
@@ -8367,6 +8861,7 @@ exports[`EuiIcon props type tokenEnum is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenEnum"
   focusable="false"
   height="16"
   role="img"
@@ -8385,6 +8880,7 @@ exports[`EuiIcon props type tokenEnumMember is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenEnumMember"
   focusable="false"
   height="16"
   role="img"
@@ -8403,6 +8899,7 @@ exports[`EuiIcon props type tokenEvent is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenEvent"
   focusable="false"
   height="16"
   role="img"
@@ -8421,6 +8918,7 @@ exports[`EuiIcon props type tokenException is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenException"
   focusable="false"
   height="16"
   role="img"
@@ -8438,6 +8936,7 @@ exports[`EuiIcon props type tokenField is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenField"
   focusable="false"
   height="16"
   role="img"
@@ -8456,6 +8955,7 @@ exports[`EuiIcon props type tokenFile is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenFile"
   focusable="false"
   height="16"
   role="img"
@@ -8473,6 +8973,7 @@ exports[`EuiIcon props type tokenFlattened is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenFlattened"
   focusable="false"
   height="16"
   role="img"
@@ -8490,6 +8991,7 @@ exports[`EuiIcon props type tokenFunction is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenFunction"
   focusable="false"
   height="16"
   role="img"
@@ -8508,6 +9010,7 @@ exports[`EuiIcon props type tokenGeo is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenGeo"
   focusable="false"
   height="16"
   role="img"
@@ -8526,6 +9029,7 @@ exports[`EuiIcon props type tokenHistogram is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenHistogram"
   focusable="false"
   height="16"
   role="img"
@@ -8543,6 +9047,7 @@ exports[`EuiIcon props type tokenIP is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenIP"
   focusable="false"
   height="16"
   role="img"
@@ -8561,6 +9066,7 @@ exports[`EuiIcon props type tokenInterface is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenInterface"
   focusable="false"
   height="16"
   role="img"
@@ -8579,6 +9085,7 @@ exports[`EuiIcon props type tokenJoin is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenJoin"
   focusable="false"
   height="16"
   role="img"
@@ -8598,6 +9105,7 @@ exports[`EuiIcon props type tokenKey is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenKey"
   focusable="false"
   height="16"
   role="img"
@@ -8616,6 +9124,7 @@ exports[`EuiIcon props type tokenKeyword is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenKeyword"
   focusable="false"
   height="16"
   role="img"
@@ -8633,6 +9142,7 @@ exports[`EuiIcon props type tokenMethod is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenMethod"
   focusable="false"
   height="16"
   role="img"
@@ -8651,6 +9161,7 @@ exports[`EuiIcon props type tokenModule is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenModule"
   focusable="false"
   height="16"
   role="img"
@@ -8671,6 +9182,7 @@ exports[`EuiIcon props type tokenNamespace is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenNamespace"
   focusable="false"
   height="16"
   role="img"
@@ -8688,6 +9200,7 @@ exports[`EuiIcon props type tokenNested is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenNested"
   focusable="false"
   height="16"
   role="img"
@@ -8712,6 +9225,7 @@ exports[`EuiIcon props type tokenNull is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenNull"
   focusable="false"
   height="16"
   role="img"
@@ -8729,6 +9243,7 @@ exports[`EuiIcon props type tokenNumber is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenNumber"
   focusable="false"
   height="16"
   role="img"
@@ -8746,6 +9261,7 @@ exports[`EuiIcon props type tokenObject is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenObject"
   focusable="false"
   height="16"
   role="img"
@@ -8764,6 +9280,7 @@ exports[`EuiIcon props type tokenOperator is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenOperator"
   focusable="false"
   height="16"
   role="img"
@@ -8782,6 +9299,7 @@ exports[`EuiIcon props type tokenPackage is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenPackage"
   focusable="false"
   height="16"
   role="img"
@@ -8800,6 +9318,7 @@ exports[`EuiIcon props type tokenParameter is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenParameter"
   focusable="false"
   height="16"
   role="img"
@@ -8818,6 +9337,7 @@ exports[`EuiIcon props type tokenPercolator is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenPercolator"
   focusable="false"
   height="16"
   role="img"
@@ -8837,6 +9357,7 @@ exports[`EuiIcon props type tokenProperty is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenProperty"
   focusable="false"
   height="16"
   role="img"
@@ -8855,6 +9376,7 @@ exports[`EuiIcon props type tokenRange is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenRange"
   focusable="false"
   height="16"
   role="img"
@@ -8876,6 +9398,7 @@ exports[`EuiIcon props type tokenRankFeature is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenRankFeature"
   focusable="false"
   height="16"
   role="img"
@@ -8893,6 +9416,7 @@ exports[`EuiIcon props type tokenRankFeatures is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenRankFeatures"
   focusable="false"
   height="16"
   role="img"
@@ -8910,6 +9434,7 @@ exports[`EuiIcon props type tokenRepo is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenRepo"
   focusable="false"
   height="16"
   role="img"
@@ -8928,6 +9453,7 @@ exports[`EuiIcon props type tokenSearchType is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenSearchType"
   focusable="false"
   height="16"
   role="img"
@@ -8950,6 +9476,7 @@ exports[`EuiIcon props type tokenShape is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenShape"
   focusable="false"
   height="16"
   role="img"
@@ -8968,6 +9495,7 @@ exports[`EuiIcon props type tokenString is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenString"
   focusable="false"
   height="16"
   role="img"
@@ -8985,6 +9513,7 @@ exports[`EuiIcon props type tokenStruct is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenStruct"
   focusable="false"
   height="16"
   role="img"
@@ -9003,6 +9532,7 @@ exports[`EuiIcon props type tokenSymbol is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenSymbol"
   focusable="false"
   height="16"
   role="img"
@@ -9020,6 +9550,7 @@ exports[`EuiIcon props type tokenTag is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenTag"
   focusable="false"
   height="16"
   role="img"
@@ -9042,6 +9573,7 @@ exports[`EuiIcon props type tokenText is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenText"
   focusable="false"
   height="16"
   role="img"
@@ -9059,6 +9591,7 @@ exports[`EuiIcon props type tokenTokenCount is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenTokenCount"
   focusable="false"
   height="16"
   role="img"
@@ -9076,6 +9609,7 @@ exports[`EuiIcon props type tokenVariable is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="tokenVariable"
   focusable="false"
   height="16"
   role="img"
@@ -9094,6 +9628,7 @@ exports[`EuiIcon props type training is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="training"
   focusable="false"
   height="16"
   role="img"
@@ -9111,6 +9646,7 @@ exports[`EuiIcon props type trash is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="trash"
   focusable="false"
   height="16"
   role="img"
@@ -9128,6 +9664,7 @@ exports[`EuiIcon props type unfold is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="unfold"
   focusable="false"
   role="img"
   viewBox="0 0 16 16"
@@ -9143,6 +9680,7 @@ exports[`EuiIcon props type unlink is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="unlink"
   fill="none"
   focusable="false"
   height="16"
@@ -9164,6 +9702,7 @@ exports[`EuiIcon props type upgradeAssistantApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="upgradeAssistantApp"
   focusable="false"
   height="32"
   role="img"
@@ -9185,6 +9724,7 @@ exports[`EuiIcon props type uptimeApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="uptimeApp"
   focusable="false"
   height="32"
   role="img"
@@ -9206,6 +9746,7 @@ exports[`EuiIcon props type user is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="user"
   focusable="false"
   height="18"
   role="img"
@@ -9230,6 +9771,7 @@ exports[`EuiIcon props type users is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="users"
   focusable="false"
   height="16"
   role="img"
@@ -9252,6 +9794,7 @@ exports[`EuiIcon props type usersRolesApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="usersRolesApp"
   focusable="false"
   height="32"
   role="img"
@@ -9273,6 +9816,7 @@ exports[`EuiIcon props type vector is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="vector"
   focusable="false"
   height="16"
   role="img"
@@ -9290,6 +9834,7 @@ exports[`EuiIcon props type videoPlayer is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="videoPlayer"
   focusable="false"
   height="16"
   role="img"
@@ -9307,6 +9852,7 @@ exports[`EuiIcon props type visArea is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visArea"
   focusable="false"
   height="16"
   role="img"
@@ -9324,6 +9870,7 @@ exports[`EuiIcon props type visAreaStacked is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visAreaStacked"
   focusable="false"
   height="16"
   role="img"
@@ -9341,6 +9888,7 @@ exports[`EuiIcon props type visBarHorizontal is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visBarHorizontal"
   focusable="false"
   height="16"
   role="img"
@@ -9358,6 +9906,7 @@ exports[`EuiIcon props type visBarHorizontalStacked is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visBarHorizontalStacked"
   focusable="false"
   height="16"
   role="img"
@@ -9375,6 +9924,7 @@ exports[`EuiIcon props type visBarVertical is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visBarVertical"
   focusable="false"
   height="16"
   role="img"
@@ -9392,6 +9942,7 @@ exports[`EuiIcon props type visBarVerticalStacked is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visBarVerticalStacked"
   focusable="false"
   height="16"
   role="img"
@@ -9409,6 +9960,7 @@ exports[`EuiIcon props type visGauge is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visGauge"
   focusable="false"
   height="16"
   role="img"
@@ -9426,6 +9978,7 @@ exports[`EuiIcon props type visGoal is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visGoal"
   focusable="false"
   height="16"
   role="img"
@@ -9443,6 +9996,7 @@ exports[`EuiIcon props type visLine is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visLine"
   focusable="false"
   height="16"
   role="img"
@@ -9460,6 +10014,7 @@ exports[`EuiIcon props type visMapCoordinate is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visMapCoordinate"
   focusable="false"
   height="16"
   role="img"
@@ -9477,6 +10032,7 @@ exports[`EuiIcon props type visMapRegion is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visMapRegion"
   focusable="false"
   height="16"
   role="img"
@@ -9494,6 +10050,7 @@ exports[`EuiIcon props type visMetric is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visMetric"
   focusable="false"
   height="16"
   role="img"
@@ -9511,6 +10068,7 @@ exports[`EuiIcon props type visPie is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visPie"
   focusable="false"
   height="16"
   role="img"
@@ -9528,6 +10086,7 @@ exports[`EuiIcon props type visTable is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visTable"
   focusable="false"
   height="16"
   role="img"
@@ -9545,6 +10104,7 @@ exports[`EuiIcon props type visTagCloud is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visTagCloud"
   focusable="false"
   height="16"
   role="img"
@@ -9562,6 +10122,7 @@ exports[`EuiIcon props type visText is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visText"
   focusable="false"
   height="16"
   role="img"
@@ -9579,6 +10140,7 @@ exports[`EuiIcon props type visTimelion is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visTimelion"
   focusable="false"
   height="16"
   role="img"
@@ -9596,6 +10158,7 @@ exports[`EuiIcon props type visVega is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visVega"
   focusable="false"
   height="16"
   role="img"
@@ -9613,6 +10176,7 @@ exports[`EuiIcon props type visVisualBuilder is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="visVisualBuilder"
   focusable="false"
   height="16"
   role="img"
@@ -9630,6 +10194,7 @@ exports[`EuiIcon props type visualizeApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="visualizeApp"
   focusable="false"
   height="32"
   role="img"
@@ -9654,6 +10219,7 @@ exports[`EuiIcon props type watchesApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="watchesApp"
   focusable="false"
   height="32"
   role="img"
@@ -9681,6 +10247,7 @@ exports[`EuiIcon props type wordWrap is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="wordWrap"
   focusable="false"
   height="16"
   role="img"
@@ -9701,6 +10268,7 @@ exports[`EuiIcon props type wordWrapDisabled is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="wordWrapDisabled"
   focusable="false"
   height="16"
   role="img"
@@ -9718,6 +10286,7 @@ exports[`EuiIcon props type workplaceSearchApp is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon--app euiIcon-isLoaded"
+  data-icon-type="workplaceSearchApp"
   focusable="false"
   height="32"
   role="img"
@@ -9741,6 +10310,7 @@ exports[`EuiIcon props type wrench is rendered 1`] = `
 <svg
   aria-hidden="true"
   class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="wrench"
   focusable="false"
   height="16"
   role="img"
