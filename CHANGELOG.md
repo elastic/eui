@@ -2,6 +2,10 @@
 
 - Added `magnifyWithExclamation` icon ([#5455](https://github.com/elastic/eui/pull/5455))
 
+**Bug fixes**
+
+- Fixed `EUiDataGrid`'s cell popover overlapping with modals and flyouts ([#5461](https://github.com/elastic/eui/pull/5461))
+
 ## [`43.0.0`](https://github.com/elastic/eui/tree/v43.0.0)
 
 - Updated the organization of `EuiDataGrid`'s toolbar/grid controls ([#5334](https://github.com/elastic/eui/pull/5334))
