@@ -135,6 +135,7 @@ export const iconTypes = [
   'logstashInput',
   'logstashOutput',
   'logstashQueue',
+  'magnifyWithExclamation',
   'magnifyWithMinus',
   'magnifyWithPlus',
   'magnet',

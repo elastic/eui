@@ -14,27 +14,22 @@ interface SVGRProps {
   titleId?: string;
 }
 
-const EuiIconTimeRefresh = ({
+const EuiIconMagnifyWithExclamation = ({
   title,
   titleId,
   ...props
 }: React.SVGProps<SVGSVGElement> & SVGRProps) => (
   <svg
+    xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={16}
     viewBox="0 0 16 16"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
     aria-labelledby={titleId}
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path
-      clipRule="evenodd"
-      d="M12.809 8.807a4.5 4.5 0 01-5.572-5.75A5 5 0 003.04 9.31a.5.5 0 01-.966.259 6 6 0 015.672-7.553 4.5 4.5 0 116.117 6.313 6.002 6.002 0 01-7.803 5.409.5.5 0 11.303-.954 5.001 5.001 0 006.445-3.979zM11.859 5H13.5a.5.5 0 000-1H12V1.5a.5.5 0 00-1 0v3a.5.5 0 00.5.5h.36z"
-    />
-    <path d="M3.757 15.848l-.776-2.897a1.5 1.5 0 011.06-1.838l2.898-.776a.5.5 0 11.259.966l-2.898.776a.5.5 0 00-.353.613l.776 2.898a.5.5 0 01-.966.258z" />
+    <path d="M15.143 15.85l-3.872-3.872a.5.5 0 01-.034-.738 6.01 6.01 0 000-8.486 6.004 6.004 0 00-8.484 0 6.01 6.01 0 000 8.486 5.96 5.96 0 004.242 1.757.5.5 0 010 1 6.955 6.955 0 01-4.949-2.05c-2.728-2.73-2.728-7.171 0-9.9 2.728-2.73 7.168-2.73 9.898 0 2.609 2.61 2.723 6.785.342 9.532l3.565 3.564a.502.502 0 01-.708.708zM6.254 3l.277 5.063h.935L7.754 3h-1.5zm.222 7.548a.727.727 0 00.533.222.717.717 0 00.52-.22.715.715 0 00.225-.53.716.716 0 00-.222-.534.724.724 0 00-.523-.216.731.731 0 00-.533.219.719.719 0 00-.222.53c0 .205.074.38.222.529z" />
   </svg>
 );
 
-export const icon = EuiIconTimeRefresh;
+export const icon = EuiIconMagnifyWithExclamation;
