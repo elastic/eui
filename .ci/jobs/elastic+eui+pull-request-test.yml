@@ -11,7 +11,7 @@
           #!/usr/local/bin/runbld
           export NVM_DIR="/var/lib/jenkins/.nvm"
           [[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"
-          NPM_VERSION=10
-          nvm install ${NPM_VERSION}
-          nvm use ${NPM_VERSION} --delete-prefix
+          NODE_VERSION=16.13.1
+          nvm install ${NODE_VERSION}
+          nvm use ${NODE_VERSION} --delete-prefix
           npm run test-docker
