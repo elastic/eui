@@ -265,6 +265,7 @@ const typeToPathMap = {
   logstashQueue: 'logstash_queue',
   machineLearningApp: 'app_ml',
   magnet: 'magnet',
+  magnifyWithExclamation: 'magnifyWithExclamation',
   magnifyWithMinus: 'magnifyWithMinus',
   magnifyWithPlus: 'magnifyWithPlus',
   managementApp: 'app_management',

@@ -6,7 +6,7 @@
   "main": "lib",
   "module": "es",
   "types": "eui.d.ts",
-  "docker_image": "node:14.17.6",
+  "docker_image": "node:16.13.1",
   "sideEffects": [
     "*.css",
     "*.scss"
@@ -49,7 +49,8 @@
     "url": "https://github.com/elastic/eui.git"
   },
   "resolutions": {
-    "**/trim": "0.0.3"
+    "**/trim": "0.0.3",
+    "**/node-sass": "^6.0.1"
   },
   "pre-commit": [
     "test-staged"
@@ -187,8 +188,8 @@
     "jest-cli": "^24.1.0",
     "moment": "^2.27.0",
     "moment-timezone": "^0.5.31",
-    "node-sass": "^4.14.1",
-    "nodegit": "^0.27.0",
+    "node-sass": "^6.0.1",
+    "nodegit": "^0.28.0-alpha.10",
     "pegjs": "^0.10.0",
     "postcss-cli": "^7.1.2",
     "postcss-inline-svg": "^4.1.0",
@@ -217,7 +218,7 @@
     "sass-extract": "^2.1.0",
     "sass-lint": "^1.13.1",
     "sass-lint-auto-fix": "^0.21.2",
-    "sass-loader": "^10.0.1",
+    "sass-loader": "^10.2.0",
     "sass-vars-to-js-loader": "^2.1.1",
     "shelljs": "^0.8.4",
     "start-server-and-test": "^1.11.3",

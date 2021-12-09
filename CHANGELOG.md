@@ -1,6 +1,6 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `43.0.0`.
+- Added `magnifyWithExclamation` icon ([#5455](https://github.com/elastic/eui/pull/5455))
 
 ## [`43.0.0`](https://github.com/elastic/eui/tree/v43.0.0)
 
