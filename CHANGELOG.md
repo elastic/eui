@@ -12,6 +12,14 @@
 - Required `aria-label` or `aria-labelledby` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
 - Renamed `sendValue` prop to `onSearchChange` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
 
+## [`43.1.0`](https://github.com/elastic/eui/tree/v43.1.0)
+
+- Added `magnifyWithExclamation` icon ([#5455](https://github.com/elastic/eui/pull/5455))
+
+**Bug fixes**
+
+- Reinstated `EuiCode` and `EuiCodeBlock` `testenv` mocking ([#5464](https://github.com/elastic/eui/pull/5464))
+
 ## [`43.0.0`](https://github.com/elastic/eui/tree/v43.0.0)
 
 - Updated the organization of `EuiDataGrid`'s toolbar/grid controls ([#5334](https://github.com/elastic/eui/pull/5334))
