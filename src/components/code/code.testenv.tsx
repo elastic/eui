@@ -7,6 +7,14 @@
  */
 
 import React from 'react';
-export const EuiCode = ({ children, 'data-test-subj': dataTestSubj }: any) => {
-  return <code data-test-subj={dataTestSubj}>{children}</code>;
+export const EuiCode = ({
+  children,
+  'data-test-subj': dataTestSubj,
+  language,
+}: any) => {
+  return (
+    <code data-test-subj={dataTestSubj} data-code-language={language}>
+      {children}
+    </code>
+  );
 };

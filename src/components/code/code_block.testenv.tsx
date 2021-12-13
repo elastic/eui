@@ -10,11 +10,14 @@ import React from 'react';
 export const EuiCodeBlock = ({
   children,
   'data-test-subj': dataTestSubj,
+  language,
 }: any) => {
   return (
     <div>
       <pre>
-        <code data-test-subj={dataTestSubj}>{children}</code>
+        <code data-test-subj={dataTestSubj} data-code-language={language}>
+          {children}
+        </code>
       </pre>
     </div>
   );
