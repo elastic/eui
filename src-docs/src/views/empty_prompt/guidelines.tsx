@@ -32,7 +32,7 @@ export default () => (
     </EuiTitle>
     <EuiSpacer size="xl" />
 
-    <EuiText>
+    <EuiText grow={false}>
       <p>
         A useful empty state will let the user know what’s happening, why it’s
         happening, and what to do about it. If done right, it can can contribute
@@ -54,7 +54,7 @@ export default () => (
 
     <EuiSpacer size="xl" />
 
-    <EuiText>
+    <EuiText grow={false}>
       <ol>
         <li>
           <strong>Icon/illustration (optional):</strong> A meaningful icon or
@@ -87,7 +87,7 @@ export default () => (
     <GuideRuleTitle>Types of empty states and goals</GuideRuleTitle>
     <EuiSpacer size="xl" />
 
-    <EuiText>
+    <EuiText grow={false}>
       <p>
         But how do you know when you should create an empty state? These are the
         scenarios we recommend the usage of an empty state:
@@ -353,14 +353,12 @@ export default () => (
       description={
         <>
           <p>
-            <p>
-              When having multiple empty states throughout a page, avoid having
-              multiple primary actions and multiple icons/illustrations.
-            </p>
+            When having multiple empty states throughout a page, avoid having
+            multiple primary actions and multiple icons/illustrations.
           </p>
           <p>
             Use secondary actions and no icons/illustrations. This way the
-            visual noise will be reduced and Consider using an illustration or a
+            visual noise will be reduced. Consider using an illustration or a
             primary action if you want to make one of the empty states stand
             out.
           </p>
@@ -369,7 +367,7 @@ export default () => (
     >
       <GuideRuleExample
         type="do"
-        text="Only use an illustration or a primary action in case you want to make one of the empty states stand out."
+        text="When displaying multiple empty states use secondary actions and no icons/illustrations."
         minHeight="280px"
       >
         <EuiImage alt="Vertical layout" url={multipleDo} height="252" />
@@ -377,7 +375,7 @@ export default () => (
 
       <GuideRuleExample
         type="dont"
-        text="Avoid multiple primary actions and multiple icons/illustrations as they create too much visual noise."
+        text="Avoid mixing different type of empty states. Try to be consistent."
         minHeight="280px"
       >
         <EuiImage

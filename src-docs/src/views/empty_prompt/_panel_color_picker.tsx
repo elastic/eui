@@ -193,7 +193,7 @@ export default () => {
                   />
                 )}
               </button>
-              <EuiSpacer size="xs" />
+              <EuiSpacer size="s" />
               <p>White</p>
             </EuiFlexItem>
 
@@ -217,7 +217,7 @@ export default () => {
                   />
                 )}
               </button>
-              <EuiSpacer size="xs" />
+              <EuiSpacer size="s" />
               <p>Subdued</p>
             </EuiFlexItem>
           </EuiFlexGroup>
