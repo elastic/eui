@@ -1,6 +1,14 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+No public interface changes since `43.1.0`.
+
+## [`43.1.0`](https://github.com/elastic/eui/tree/v43.1.0)
+
 - Added `magnifyWithExclamation` icon ([#5455](https://github.com/elastic/eui/pull/5455))
+
+**Bug fixes**
+
+- Reinstated `EuiCode` and `EuiCodeBlock` `testenv` mocking ([#5464](https://github.com/elastic/eui/pull/5464))
 
 ## [`43.0.0`](https://github.com/elastic/eui/tree/v43.0.0)
 
