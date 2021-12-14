@@ -1,10 +1,16 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+**Bug fixes**
+
+- Fixed `EUiDataGrid`'s cell popover overlapping with modals and flyouts ([#5461](https://github.com/elastic/eui/pull/5461))
+
+## [`43.1.0`](https://github.com/elastic/eui/tree/v43.1.0)
+
 - Added `magnifyWithExclamation` icon ([#5455](https://github.com/elastic/eui/pull/5455))
 
 **Bug fixes**
 
-- Fixed `EUiDataGrid`'s cell popover overlapping with modals and flyouts ([#5461](https://github.com/elastic/eui/pull/5461))
+- Reinstated `EuiCode` and `EuiCodeBlock` `testenv` mocking ([#5464](https://github.com/elastic/eui/pull/5464))
 
 ## [`43.0.0`](https://github.com/elastic/eui/tree/v43.0.0)
 
