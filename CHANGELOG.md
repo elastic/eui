@@ -2,7 +2,8 @@
 
 **Bug fixes**
 
-- Fixed `EUiDataGrid`'s cell popover overlapping with modals and flyouts ([#5461](https://github.com/elastic/eui/pull/5461))
+- Fixed `EuiDataGrid`'s cell popover overlapping with modals and flyouts ([#5461](https://github.com/elastic/eui/pull/5461))
+- Fixed `EuiSuperDatePicker` not passing `isDisabled` to `EuiAutoRefresh` ([#5472](https://github.com/elastic/eui/pull/5472))
 
 ## [`43.1.0`](https://github.com/elastic/eui/tree/v43.1.0)
 
