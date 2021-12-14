@@ -29,25 +29,14 @@ export const useCasesObj: any = {
     id: 'noPermission',
     label: 'No permission',
     iconType: 'logoKibana',
-    title: <h2>No permission</h2>,
-    body: (
-      <p>
-        There are no cases to display. Add a new case or change your filter
-        settings.
-      </p>
-    ),
-    actions: [
-      <EuiButton color="primary" fill>
-        Add your data
-      </EuiButton>,
-      <EuiButtonEmpty>Try sample data</EuiButtonEmpty>,
-    ],
+    title: <h2>Contact your administrator for access</h2>,
+    body: <p>To view cases in this space, you need additional privileges.</p>,
   },
   noResults: {
     id: 'noResults',
     label: 'No results',
     iconType: 'logoKibana',
-    title: <h2>No results</h2>,
+    title: <h2>Start adding cases</h2>,
     body: (
       <p>
         There are no cases to display. Add a new case or change your filter
@@ -56,9 +45,8 @@ export const useCasesObj: any = {
     ),
     actions: [
       <EuiButton color="primary" fill>
-        Add your data
+        Add a case
       </EuiButton>,
-      <EuiButtonEmpty>Try sample data</EuiButtonEmpty>,
     ],
   },
   error: {
@@ -95,13 +83,13 @@ export const useCasesObj: any = {
     id: 'completedTasks',
     label: 'Completed tasks',
     iconType: 'logoKibana',
-    title: <h2>Completed tasks</h2>,
-    body: (
-      <p>
-        There are no cases to display. Add a new case or change your filter
-        settings.
-      </p>
-    ),
+    title: <h2>All your tasks are done!</h2>,
+    body: <p>You’ve finished all your tasks.</p>,
+    actions: [
+      <EuiButton color="primary" fill>
+        Add a task
+      </EuiButton>,
+    ],
   },
   licenseUpgrade: {
     id: 'licenseUpgrade',
