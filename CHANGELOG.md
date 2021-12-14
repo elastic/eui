@@ -1,5 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+**Bug fixes**
+
 - Fixed an accessibility issue where `EuiDatePicker` time options did not have unique IDs ([#5466])(https://github.com/elastic/eui/pull/5466)
 
 ## [`43.1.0`](https://github.com/elastic/eui/tree/v43.1.0)
