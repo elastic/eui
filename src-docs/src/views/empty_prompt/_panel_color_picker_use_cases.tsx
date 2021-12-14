@@ -75,7 +75,7 @@ export const useCasesObj: any = {
   },
   errorPage: {
     id: 'errorPage',
-    label: 'Page not found',
+    label: 'Page error',
     iconType: 'logoKibana',
     title: <h2>Page not found</h2>,
     body: (

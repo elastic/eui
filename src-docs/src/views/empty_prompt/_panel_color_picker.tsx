@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import reactElementToJSXString from 'react-element-to-jsx-string';
 import classNames from 'classnames';
 import {
   EuiTitle,
@@ -21,6 +22,9 @@ import pageCenteredContent from '../../images/thumbnail_page-centered-content.sv
 import pageCenteredBody from '../../images/thumbnail_page-centered-body.svg';
 import { recommendedObj } from './_panel_color_picker_recommended';
 import { useCasesObj } from './_panel_color_picker_use_cases';
+
+import { GuideSection } from '../../components/guide_section/guide_section';
+import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 
 export default () => {
   const useCasesOptions: any = Object.values(useCasesObj);
@@ -162,9 +166,21 @@ export default () => {
     />
   );
 
+  const code = reactElementToJSXString(
+    <EuiEmptyPrompt
+      iconType={currentUseCaseObj?.iconType}
+      title={currentUseCaseObj.title}
+      body={currentUseCaseObj?.body}
+      actions={currentUseCaseObj?.actions}
+      {...(panelProps as any)}
+    />
+  );
+
+  console.log(code);
+
   return (
     <>
-      <EuiSplitPanel.Outer direction="row">
+      <EuiSplitPanel.Outer direction="row" hasBorder>
         <EuiSplitPanel.Inner color="subdued">
           <EuiTitle size="xs">
             <h3>What is the page background?</h3>
@@ -239,7 +255,9 @@ export default () => {
           />
 
           <EuiSpacer size="xl" />
+        </EuiSplitPanel.Inner>
 
+        <EuiSplitPanel.Inner>
           <div className="guideDemo__emptyPromptRecommendCards">
             <EuiTitle size="xs">
               <h3>Recommend panel color</h3>
@@ -270,11 +288,18 @@ export default () => {
             </EuiFormFieldset>
           </div>
         </EuiSplitPanel.Inner>
-
-        <EuiSplitPanel.Inner color={isPageSubdued ? 'subdued' : 'transparent'}>
-          {euiEmptyPromptPreview}
-        </EuiSplitPanel.Inner>
       </EuiSplitPanel.Outer>
+
+      <GuideSection
+        demo={euiEmptyPromptPreview}
+        demoPanelProps={{ color: isPageSubdued ? 'subdued' : 'transparent' }}
+        source={[
+          {
+            type: GuideSectionTypes.STRING_JS,
+            code: code,
+          },
+        ]}
+      />
     </>
   );
 };
