@@ -49,6 +49,11 @@ describe('EuiDataGridCellPopover', () => {
         ownFocus={true}
         panelClassName="euiDataGridRowCell__popover"
         panelPaddingSize="s"
+        panelProps={
+          Object {
+            "data-test-subj": "euiDataGridExpansionPanel",
+          }
+        }
         panelRef={[Function]}
         zIndex={8001}
       >
@@ -90,6 +95,11 @@ describe('EuiDataGridCellPopover', () => {
         ownFocus={true}
         panelClassName="euiDataGridRowCell__popover"
         panelPaddingSize="s"
+        panelProps={
+          Object {
+            "data-test-subj": "euiDataGridExpansionPanel",
+          }
+        }
         panelRef={[Function]}
         zIndex={8001}
       >
