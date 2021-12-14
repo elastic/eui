@@ -50,7 +50,6 @@ describe('EuiDataGridCellPopover', () => {
         panelClassName="euiDataGridRowCell__popover"
         panelPaddingSize="s"
         panelRef={[Function]}
-        zIndex={8001}
       >
         <popoverContent
           cellContentsElement={<div />}
@@ -91,7 +90,6 @@ describe('EuiDataGridCellPopover', () => {
         panelClassName="euiDataGridRowCell__popover"
         panelPaddingSize="s"
         panelRef={[Function]}
-        zIndex={8001}
       >
         <popoverContent
           cellContentsElement={<div />}

@@ -41,7 +41,6 @@ export function EuiDataGridCellPopover({
       panelRef={panelRefFn}
       panelClassName="euiDataGridRowCell__popover"
       panelPaddingSize="s"
-      zIndex={8001}
       display="block"
       closePopover={closePopover}
       onKeyDown={(event) => {
