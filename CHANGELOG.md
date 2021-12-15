@@ -1,5 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+No public interface changes since `43.1.1`.
+
+## [`43.1.1`](https://github.com/elastic/eui/tree/v43.1.1)
+
 **Bug fixes**
 
 - Fixed `EuiDataGrid`'s cell popover overlapping with modals and flyouts ([#5461](https://github.com/elastic/eui/pull/5461))
