@@ -11,26 +11,32 @@ import {
 
 export default ({ button = <></>, content, sideNav }) => (
   <EuiPage paddingSize="none">
-    <EuiPageSideBar paddingSize="l" sticky>
-      {sideNav}
-    </EuiPageSideBar>
+    {sideNav && (
+      <EuiPageSideBar paddingSize="l" sticky>
+        {sideNav}
+      </EuiPageSideBar>
+    )}
 
-    <EuiPageBody panelled>
-      <EuiPageHeader
-        restrictWidth
-        iconType="logoElastic"
-        pageTitle="Page title"
-        rightSideItems={[button]}
-      />
-
+    <EuiPageBody panelled={Boolean(sideNav)}>
       <EuiPageContent
-        verticalPosition="center"
-        horizontalPosition="center"
-        paddingSize="none"
-        color="subdued"
-        hasShadow={false}
+        restrictWidth
+        template="empty"
+        grow={false}
+        border={sideNav ? 'bottom' : 'bottomExtended'}
       >
-        <EuiEmptyPrompt title={<span>No spice</span>} body={content} />
+        <EuiPageHeader
+          iconType="logoElastic"
+          pageTitle="Page title"
+          rightSideItems={[button]}
+        />
+      </EuiPageContent>
+
+      <EuiPageContent restrictWidth template="centeredContent">
+        <EuiEmptyPrompt
+          color="subdued"
+          title={<span>No spice</span>}
+          body={content}
+        />
       </EuiPageContent>
     </EuiPageBody>
   </EuiPage>

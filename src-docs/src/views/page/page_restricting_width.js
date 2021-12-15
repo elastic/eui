@@ -3,38 +3,41 @@ import React from 'react';
 import {
   EuiPage,
   EuiPageContent,
-  EuiPageContentBody,
   EuiPageHeader,
   EuiPageSideBar,
   EuiPageBody,
+  EuiText,
 } from '../../../../src/components';
 
 export default ({ button = <></>, content, sideNav }) => {
   return (
     <EuiPage paddingSize="none">
-      <EuiPageSideBar paddingSize="l" sticky>
-        {sideNav}
-      </EuiPageSideBar>
+      {sideNav && (
+        <EuiPageSideBar paddingSize="l" sticky>
+          {sideNav}
+        </EuiPageSideBar>
+      )}
 
-      <EuiPageBody panelled>
-        <EuiPageHeader
-          restrictWidth={'75%'}
-          iconType="logoElastic"
-          pageTitle="Page title"
-          rightSideItems={[button]}
-          description="Restricting the width to 75%."
-        />
-
+      <EuiPageBody panelled={Boolean(sideNav)}>
         <EuiPageContent
-          hasBorder={false}
-          hasShadow={false}
-          paddingSize="none"
-          color="transparent"
-          borderRadius="none"
+          restrictWidth="75%"
+          template="empty"
+          grow={false}
+          border={'bottomExtended'}
         >
-          <EuiPageContentBody restrictWidth={'75%'}>
-            {content}
-          </EuiPageContentBody>
+          <EuiPageHeader pageTitle="Page title" rightSideItems={[button]} />
+        </EuiPageContent>
+        <EuiPageContent restrictWidth="75%" color="subdued" grow={false}>
+          <EuiText>
+            <p>Restricting the width to 75% on multiple contents.</p>
+          </EuiText>
+        </EuiPageContent>
+        <EuiPageContent
+          restrictWidth="75%"
+          template="default"
+          border={'topExtended'}
+        >
+          {content}
         </EuiPageContent>
       </EuiPageBody>
     </EuiPage>

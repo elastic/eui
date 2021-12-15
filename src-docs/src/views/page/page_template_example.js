@@ -22,10 +22,10 @@ import {
   EuiCodeBlock,
 } from '../../../../src/components';
 
-import PageNew from './page_new';
-const pageNewSource = require('!!raw-loader!./page_new');
-import PageTemplate from './page_template';
-const PageTemplateSource = require('!!raw-loader!./page_template');
+import PageNew from './components/page_new';
+const pageNewSource = require('!!raw-loader!./components/page_new');
+import PageTemplate from './templates/page_template';
+const PageTemplateSource = require('!!raw-loader!./templates/page_template');
 
 import PageBottomBar from './page_bottom_bar';
 const pageBottomBarSource = require('!!raw-loader!./page_bottom_bar');

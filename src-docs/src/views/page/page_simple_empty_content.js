@@ -11,27 +11,24 @@ import {
 export default ({ button = <></>, content }) => (
   <EuiPage paddingSize="none">
     <EuiPageBody>
-      <EuiPageHeader
-        restrictWidth
-        iconType="logoElastic"
-        pageTitle="Page title"
-        rightSideItems={[button]}
-        paddingSize="l"
-      />
       <EuiPageContent
-        borderRadius="none"
-        hasShadow={false}
-        style={{ display: 'flex' }}
+        restrictWidth
+        template="empty"
+        grow={false}
+        border="bottomExtended"
       >
-        <EuiPageContent
-          verticalPosition="center"
-          horizontalPosition="center"
-          paddingSize="none"
+        <EuiPageHeader
+          iconType="logoElastic"
+          pageTitle="Page title"
+          rightSideItems={[button]}
+        />
+      </EuiPageContent>
+      <EuiPageContent restrictWidth template="centeredContent">
+        <EuiEmptyPrompt
           color="subdued"
-          hasShadow={false}
-        >
-          <EuiEmptyPrompt title={<span>No spice</span>} body={content} />
-        </EuiPageContent>
+          title={<span>No spice</span>}
+          body={content}
+        />
       </EuiPageContent>
     </EuiPageBody>
   </EuiPage>

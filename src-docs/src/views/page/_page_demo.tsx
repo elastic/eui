@@ -132,7 +132,7 @@ export const PageDemo: FunctionComponent<{
     </EuiButton>
   );
 
-  const options = [
+  const highlightOptions = [
     'none',
     'euiPage',
     'euiPageBody',
@@ -168,18 +168,18 @@ export const PageDemo: FunctionComponent<{
           bottomBar={bottomBar}
         />
       </div>
-      {template && pattern && (
-        <EuiPanel hasBorder="1px 0" borderRadius="none">
-          <EuiFlexGroup alignItems="center">
-            {_showSideNav && (
-              <EuiFlexItem grow={false}>
-                <EuiSwitch
-                  label="Sidebar"
-                  checked={showSideNav}
-                  onChange={() => setShowSideNav((showing) => !showing)}
-                />
-              </EuiFlexItem>
-            )}
+      <EuiPanel hasBorder="1px 0" borderRadius="none">
+        <EuiFlexGroup alignItems="center">
+          {_showSideNav && (
+            <EuiFlexItem grow={false}>
+              <EuiSwitch
+                label="Sidebar"
+                checked={showSideNav}
+                onChange={() => setShowSideNav((showing) => !showing)}
+              />
+            </EuiFlexItem>
+          )}
+          {template && pattern && (
             <EuiFlexItem>
               <EuiSwitch
                 label="Show using EuiPageTemplate"
@@ -187,26 +187,26 @@ export const PageDemo: FunctionComponent<{
                 onChange={() => setShowTemplate((showing) => !showing)}
               />
             </EuiFlexItem>
-            {highlight === 'all' && (
-              <EuiFlexItem>
-                <EuiSelect
-                  compressed
-                  prepend="Highlight"
-                  options={options.map((option) => {
-                    return {
-                      value: option,
-                      text: option.charAt(0).toUpperCase() + option.slice(1),
-                    };
-                  })}
-                  onChange={(e) => setHighlightValue(e.target.value)}
-                  value={highlightValue}
-                  aria-label="Use aria labels when no actual label is in use"
-                />
-              </EuiFlexItem>
-            )}
-          </EuiFlexGroup>
-        </EuiPanel>
-      )}
+          )}
+          {highlight === 'all' && (
+            <EuiFlexItem>
+              <EuiSelect
+                compressed
+                prepend="Highlight"
+                options={highlightOptions.map((option) => {
+                  return {
+                    value: option,
+                    text: option.charAt(0).toUpperCase() + option.slice(1),
+                  };
+                })}
+                onChange={(e) => setHighlightValue(e.target.value)}
+                value={highlightValue}
+                aria-label="Use aria labels when no actual label is in use"
+              />
+            </EuiFlexItem>
+          )}
+        </EuiFlexGroup>
+      </EuiPanel>
     </>
   );
 };

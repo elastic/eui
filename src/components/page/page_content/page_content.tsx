@@ -34,12 +34,17 @@ export type EuiPageContentProps = CommonProps &
      */
     role?: HTMLAttributes['role'] | null;
     border?: 'bottom' | 'bottomExtended' | 'top' | 'topExtended';
+    /**
+     * Usually used to turn off the bottom padding when tabs exist
+     */
+    paddingBottom?: boolean;
   };
 
 export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   children,
   className,
   paddingSize = 'l',
+  paddingBottom = true,
   template,
   role: _role = 'main',
   restrictWidth = false,
@@ -56,6 +61,10 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
     },
     className
   );
+
+  if (paddingBottom === false) {
+    style.paddingBottom = 0;
+  }
 
   // If the new template specific props are not provided, just return a basic panel
   if (!template && !restrictWidth) {
@@ -97,6 +106,10 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
     style.paddingBottom = 0;
     contentBodyProps.paddingSize = paddingSize;
     contentBodyProps.style = { paddingLeft: 0, paddingRight: 0 };
+
+    if (paddingBottom === false) {
+      contentBodyProps.style.paddingBottom = 0;
+    }
 
     // If border is not extended, add it to the body instead
     if (border === 'bottom') {

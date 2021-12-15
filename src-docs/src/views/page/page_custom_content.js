@@ -4,7 +4,7 @@ import {
   EuiPage,
   EuiPageHeader,
   EuiButton,
-  EuiPageContentBody,
+  EuiPageContent,
   EuiPageBody,
   EuiFlexGrid,
   EuiFlexItem,
@@ -12,15 +12,16 @@ import {
 } from '../../../../src/components';
 
 export default ({ button = <></> }) => (
-  <EuiPage paddingSize="l">
+  <EuiPage paddingSize="none">
     <EuiPageBody>
-      <EuiPageHeader
-        iconType="logoElastic"
-        pageTitle="Page title"
-        rightSideItems={[button, <EuiButton>Do something</EuiButton>]}
-        bottomBorder
-      />
-      <EuiPageContentBody>
+      <EuiPageContent template="empty" grow={false} border="bottomExtended">
+        <EuiPageHeader
+          iconType="logoElastic"
+          pageTitle="Page title"
+          rightSideItems={[button, <EuiButton>Do something</EuiButton>]}
+        />
+      </EuiPageContent>
+      <EuiPageContent template="empty">
         <EuiFlexGrid columns={2}>
           <EuiFlexItem>
             <EuiPanel style={{ height: 200 }} />
@@ -35,7 +36,7 @@ export default ({ button = <></> }) => (
             <EuiPanel style={{ height: 200 }} />
           </EuiFlexItem>
         </EuiFlexGrid>
-      </EuiPageContentBody>
+      </EuiPageContent>
     </EuiPageBody>
   </EuiPage>
 );

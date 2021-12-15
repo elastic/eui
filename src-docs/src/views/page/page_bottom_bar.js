@@ -13,30 +13,29 @@ import {
 export default ({ button = <></>, content, sideNav, bottomBar }) => {
   return (
     <EuiPage paddingSize="none">
-      <EuiPageSideBar paddingSize="l" sticky>
-        {sideNav}
-      </EuiPageSideBar>
+      {sideNav && (
+        <EuiPageSideBar paddingSize="l" sticky>
+          {sideNav}
+        </EuiPageSideBar>
+      )}
 
       {/* Double EuiPageBody to accommodate for the bottom bar */}
-      <EuiPageBody panelled paddingSize="none">
-        <EuiPageBody paddingSize="l">
+      <EuiPageBody panelled={Boolean(sideNav)}>
+        <EuiPageContent
+          restrictWidth
+          template="empty"
+          grow={false}
+          border={sideNav ? 'bottom' : 'bottomExtended'}
+        >
           <EuiPageHeader
-            bottomBorder
-            restrictWidth
             iconType="logoElastic"
             pageTitle="Page title"
             rightSideItems={[button]}
           />
-          <EuiPageContent
-            hasBorder={false}
-            hasShadow={false}
-            paddingSize="none"
-            color="transparent"
-            borderRadius="none"
-          >
-            <EuiPageContentBody restrictWidth>{content}</EuiPageContentBody>
-          </EuiPageContent>
-        </EuiPageBody>
+        </EuiPageContent>
+        <EuiPageContent restrictWidth template="default">
+          {content}
+        </EuiPageContent>
         <EuiBottomBar paddingSize="l" position="sticky">
           {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}
           <EuiPageContentBody paddingSize={'none'} restrictWidth>
