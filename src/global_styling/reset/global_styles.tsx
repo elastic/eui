@@ -12,12 +12,13 @@ import { useScrollBar } from '../mixins/_helpers';
 import { shade, tint, transparentize } from '../../services/color';
 import { useEuiTheme } from '../../services/theme';
 import { resetStyles as reset } from './reset';
+import { isLegacyTheme } from '../../themes';
 
 export interface EuiGlobalStylesProps {}
 
 export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
   const {
-    euiTheme: { base, border, colors, font },
+    euiTheme: { base, border, colors, font, themeName },
     colorMode,
   } = useEuiTheme();
 
@@ -32,6 +33,15 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
         : tint(colors.body, 0.07),
     width: 'auto',
   });
+
+  /**
+   * Early return with no styles if using the legacy theme,
+   * which has reset and global styles included in the compiled CSS.
+   * Comes after `scrollbarStyles` because of hook rules.
+   */
+  if (isLegacyTheme(themeName)) {
+    return null;
+  }
 
   /**
    * This font reset sets all our base font/typography related properties
