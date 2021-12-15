@@ -574,6 +574,8 @@ export class EuiSuperDatePicker extends Component<
               onRefreshChange={onRefreshChange}
               fullWidth={width === 'full'}
               compressed={compressed}
+              isDisabled={isDisabled}
+              data-test-subj={dataTestSubj}
             />
           </EuiFlexItem>
         ) : (

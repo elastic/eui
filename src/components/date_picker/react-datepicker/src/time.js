@@ -41,6 +41,7 @@ import {
 } from "./date_utils";
 
 import { EuiScreenReaderOnly } from '../../../accessibility';
+import { htmlIdGenerator } from '../../../../services/accessibility/html_id_generator';
 
 function doHoursAndMinutesAlign(time1, time2) {
   if (time1 == null || time2 == null) return false;
@@ -112,6 +113,7 @@ export default class Time extends React.Component {
       });
     }
 
+    this.timeOptionId = htmlIdGenerator();
     this.timeFormat = "hh:mm A";
     this.state = {
       preSelection,
@@ -313,7 +315,7 @@ export default class Time extends React.Component {
           }
         }}
         role="option"
-        id={i}
+        id={this.timeOptionId(`datepicker_time_${i}`)}
       >
         {formatDate(time, format)}
       </li>
