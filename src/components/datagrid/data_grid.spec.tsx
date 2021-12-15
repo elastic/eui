@@ -284,7 +284,7 @@ describe('EuiDataGrid', () => {
         cy.focused().should(
           'have.attr',
           'data-test-subj',
-          'euiDataGridExpansionPanel'
+          'euiDataGridExpansionPopover'
         );
         cy.focused().type('{esc}');
         cy.focused().should('have.attr', 'data-gridcell-id', '0,1');
@@ -320,7 +320,7 @@ describe('EuiDataGrid', () => {
         cy.focused().type('{enter}'); // trigger expansion popover
         cy.focused().should('have.attr', 'data-test-subj', 'btn-yes'); // focus trap should move focus to the first button
         cy.focused().parentsUntil(
-          '[data-test-subj="euiDataGridExpansionPanel"]'
+          '[data-test-subj="euiDataGridExpansionPopover"]'
         ); // ensure focus is in the popover
         cy.focused().tab();
         cy.focused().should('have.attr', 'data-test-subj', 'btn-no');
@@ -328,7 +328,7 @@ describe('EuiDataGrid', () => {
         cy.focused().should(
           'have.attr',
           'data-test-subj',
-          'euiDataGridExpansionPanel'
+          'euiDataGridExpansionPopover'
         );
         cy.focused().type('{esc}');
         cy.focused().should('have.attr', 'data-gridcell-id', '0,5');

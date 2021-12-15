@@ -51,7 +51,7 @@ describe('EuiDataGridCellPopover', () => {
         panelPaddingSize="s"
         panelProps={
           Object {
-            "data-test-subj": "euiDataGridExpansionPanel",
+            "data-test-subj": "euiDataGridExpansionPopover",
           }
         }
         panelRef={[Function]}
@@ -97,7 +97,7 @@ describe('EuiDataGridCellPopover', () => {
         panelPaddingSize="s"
         panelProps={
           Object {
-            "data-test-subj": "euiDataGridExpansionPanel",
+            "data-test-subj": "euiDataGridExpansionPopover",
           }
         }
         panelRef={[Function]}
