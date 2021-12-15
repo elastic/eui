@@ -43,6 +43,9 @@ export function EuiDataGridCellPopover({
       panelPaddingSize="s"
       display="block"
       closePopover={closePopover}
+      panelProps={{
+        'data-test-subj': 'euiDataGridExpansionPopover',
+      }}
       onKeyDown={(event) => {
         if (event.key === keys.F2 || event.key === keys.ESCAPE) {
           event.preventDefault();
