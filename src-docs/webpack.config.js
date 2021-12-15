@@ -1,8 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const babelConfig = require('./.babelrc.js');
-// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const getPort = require('get-port');
 const deasync = require('deasync');
@@ -27,6 +27,10 @@ function employCache(loaders) {
   }
 
   return loaders;
+}
+
+if (isDevelopment) {
+  babelConfig.plugins.push('react-refresh/babel');
 }
 
 const webpackConfig = {
@@ -116,12 +120,8 @@ const webpackConfig = {
       failOnError: true,
     }),
 
-    // run TypeScript during webpack build
-    // new ForkTsCheckerWebpackPlugin({
-    //   typescript: { configFile: path.resolve(__dirname, '..', 'tsconfig.json') },
-    //   async: false, // makes errors more visible, but potentially less performant
-    // }),
-  ],
+    isDevelopment && new ReactRefreshWebpackPlugin(),
+  ].filter(Boolean),
 
   devServer: isDevelopment
     ? {
@@ -141,6 +141,7 @@ const webpackConfig = {
               ignored: '**/*',
             }
           : undefined,
+        hot: true,
       }
     : undefined,
   node: {
