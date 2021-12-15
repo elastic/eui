@@ -18,7 +18,7 @@ import {
   EuiThemeProviderProps,
   EuiThemeSystem,
 } from '../../services';
-import { EuiThemeAmsterdam, isLegacyTheme } from '../../themes';
+import { EuiThemeAmsterdam } from '../../themes';
 
 export interface EuiProviderProps<T>
   extends Omit<EuiThemeProviderProps<T>, 'children' | 'theme'>,
@@ -38,19 +38,18 @@ export const EuiProvider = <T extends {} = {}>({
   modify,
   children,
 }: PropsWithChildren<EuiProviderProps<T>>) => {
-  return theme === null ? (
-    <EuiThemeProvider colorMode={colorMode}>{children}</EuiThemeProvider>
-  ) : (
+  return theme !== null ? (
     <EuiThemeProvider theme={theme} colorMode={colorMode} modify={modify}>
-      {!isLegacyTheme(theme.key) &&
-        (cache ? (
-          <CacheProvider value={cache}>
-            <EuiGlobalStyles />
-          </CacheProvider>
-        ) : (
+      {cache ? (
+        <CacheProvider value={cache}>
           <EuiGlobalStyles />
-        ))}
+        </CacheProvider>
+      ) : (
+        <EuiGlobalStyles />
+      )}
       {children}
     </EuiThemeProvider>
+  ) : (
+    <EuiThemeProvider colorMode={colorMode}>{children}</EuiThemeProvider>
   );
 };

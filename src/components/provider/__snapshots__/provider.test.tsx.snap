@@ -894,7 +894,9 @@ exports[`EuiProvider changing themes propagates \`theme\` 1`] = `
       },
     }
   }
-/>
+>
+  <EuiGlobalStyles />
+</EuiThemeProvider>
 `;
 
 exports[`EuiProvider is rendered 1`] = `
