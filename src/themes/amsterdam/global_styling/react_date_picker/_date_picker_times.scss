@@ -20,6 +20,8 @@
   flex-grow: 1;
   background-color: $euiPageBackgroundColor;
   border-radius: $euiBorderRadius;
+  flex-direction: column;
+  position: relative;
 
   &--focus {
     .react-datepicker__time-list-item--preselected {
@@ -43,12 +45,13 @@
   @include euiYScroll;
   padding: $euiSizeXS $euiSizeM;
   // Set the min-height with the following, but it should stretch to fit if the container is larger
-  height: 100px !important; // sass-lint:disable-line no-important
+  height: 120px !important; // sass-lint:disable-line no-important
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   align-items: center;
   gap: $euiSizeXS; // sass-lint:disable-line no-misspelled-properties
+  min-width: 115px; // Safari bug where list width collapses
 }
 
 // Mainly a copy/paste of .euiEmptyButton
