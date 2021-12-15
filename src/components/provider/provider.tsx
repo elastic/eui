@@ -18,7 +18,7 @@ import {
   EuiThemeProviderProps,
   EuiThemeSystem,
 } from '../../services';
-import { EuiThemeAmsterdam } from '../../themes/amsterdam/theme';
+import { EuiThemeAmsterdam } from '../../themes';
 
 export interface EuiProviderProps<T>
   extends Omit<EuiThemeProviderProps<T>, 'children' | 'theme'>,
