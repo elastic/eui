@@ -13,6 +13,8 @@ const isDevelopment = WEBPACK_DEV_SERVER === 'true' && CI == null;
 const isProduction = NODE_ENV === 'production';
 const isPuppeteer = NODE_ENV === 'puppeteer';
 
+const useReactRefresh = isDevelopment && !isPuppeteer;
+
 function employCache(loaders) {
   if (isDevelopment && !isPuppeteer) {
     return [
@@ -29,7 +31,7 @@ function employCache(loaders) {
   return loaders;
 }
 
-if (isDevelopment) {
+if (isDevelopment && useReactRefresh) {
   babelConfig.plugins.push('react-refresh/babel');
 }
 
@@ -120,7 +122,7 @@ const webpackConfig = {
       failOnError: true,
     }),
 
-    isDevelopment && new ReactRefreshWebpackPlugin(),
+    useReactRefresh && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean),
 
   devServer: isDevelopment
