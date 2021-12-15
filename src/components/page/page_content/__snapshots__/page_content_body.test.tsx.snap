@@ -1,77 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiPageContentBody template accepts EuiPanel props 1`] = `
-<div
-  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
-/>
-`;
-
-exports[`EuiPageContentBody template accepts EuiPanel props 2`] = `
-<div
-  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
-/>
-`;
-
-exports[`EuiPageContentBody template accepts EuiPanel props 3`] = `
-<div
-  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContentBody euiPageContentBody--centeredContent"
-/>
-`;
-
-exports[`EuiPageContentBody template accepts EuiPanel props 4`] = `
-<div
-  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
-/>
-`;
-
-exports[`EuiPageContentBody template is rendered 1`] = `
-<div
-  aria-label="aria-label"
-  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody testClass1 testClass2"
-  data-test-subj="test subject string"
-/>
-`;
-
-exports[`EuiPageContentBody template is rendered 2`] = `
-<div
-  aria-label="aria-label"
-  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody testClass1 testClass2"
-  data-test-subj="test subject string"
-/>
-`;
-
-exports[`EuiPageContentBody template is rendered 3`] = `
-<div
-  aria-label="aria-label"
-  class="euiPanel euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageContentBody euiPageContentBody--centeredContent testClass1 testClass2"
-  data-test-subj="test subject string"
-/>
-`;
-
-exports[`EuiPageContentBody template is rendered 4`] = `
-<div
-  aria-label="aria-label"
-  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody testClass1 testClass2"
-  data-test-subj="test subject string"
-/>
-`;
-
 exports[`EuiPageContentBody template restrict width can be set to a custom number 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody euiPageContentBody--restrictWidth-custom"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody euiPageContentBody--restrictWidth-custom"
   style="max-width:1024px"
 />
 `;
 
 exports[`EuiPageContentBody template restrict width can be set to a custom value and does not override custom style 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody euiPageContentBody--restrictWidth-custom"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody euiPageContentBody--restrictWidth-custom"
   style="color:red;max-width:24rem"
 />
 `;
 
 exports[`EuiPageContentBody template restrict width can be set to a default 1`] = `
 <div
-  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody euiPageContentBody--restrictWidth-default"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody euiPageContentBody--restrictWidth-default"
 />
 `;

@@ -8,34 +8,34 @@
 
 import React from 'react';
 import { render } from 'enzyme';
-import { requiredProps } from '../../../test/required_props';
+// import { requiredProps } from '../../../test/required_props';
 
 import { EuiPageContentBody } from './page_content_body';
-import { TEMPLATES } from '../_template';
+// import { TEMPLATES } from '../_template';
 
 describe('EuiPageContentBody', () => {
   describe('template', () => {
-    TEMPLATES.forEach((template) => {
-      test('is rendered', () => {
-        const component = render(
-          <EuiPageContentBody template={template} {...requiredProps} />
-        );
+    // TEMPLATES.forEach((template) => {
+    //   test('is rendered', () => {
+    //     const component = render(
+    //       <EuiPageContentBody template={template} {...requiredProps} />
+    //     );
 
-        expect(component).toMatchSnapshot();
-      });
+    //     expect(component).toMatchSnapshot();
+    //   });
 
-      it('accepts EuiPanel props', () => {
-        const component = render(
-          <EuiPageContentBody
-            template={template}
-            paddingSize={'s'}
-            color="danger"
-          />
-        );
+    //   it('accepts EuiPanel props', () => {
+    //     const component = render(
+    //       <EuiPageContentBody
+    //         template={template}
+    //         paddingSize={'s'}
+    //         color="danger"
+    //       />
+    //     );
 
-        expect(component).toMatchSnapshot();
-      });
-    });
+    //     expect(component).toMatchSnapshot();
+    //   });
+    // });
 
     describe('restrict width', () => {
       test('can be set to a default', () => {

@@ -2,9 +2,12 @@
   @include euiPageRestrictWidth;
 }
 
-.euiPageContentBody--centeredContent {
-  align-self: center;
-  margin: auto;
-  width: auto;
-  flex-grow: 0; // Offsets the properties of .euiPanel within flexboxes
+.euiPageContentBody--verticalCenter {
+  display: flex;
+  align-items: center;
+}
+
+.euiPageContentBody--horizontalCenter {
+  display: flex;
+  justify-content: center;
 }

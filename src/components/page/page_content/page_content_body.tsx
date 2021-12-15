@@ -13,21 +13,36 @@ import {
   _EuiPageRestrictWidth,
   setPropsForRestrictedPageWidth,
 } from '../_restrict_width';
-import { _EuiPanelProps, _EuiPanelDivlike, EuiPanel } from '../../panel/panel';
+import { _EuiPanelDivlike, EuiPanel, EuiPanelProps } from '../../panel/panel';
 
-import { _EuiPageTemplate } from '../_template';
+import {
+  EuiPageContentHorizontalPositions,
+  EuiPageContentVerticalPositions,
+} from './page_content';
 
 export interface EuiPageContentBodyProps
   extends CommonProps,
-    // Use only the div properties of EuiPanel (not button)
-    _EuiPanelProps,
     Omit<_EuiPanelDivlike, 'onClick'>,
-    _EuiPageRestrictWidth,
-    _EuiPageTemplate {}
+    _EuiPageRestrictWidth {
+  paddingSize?: EuiPanelProps['paddingSize'];
+  /**
+   * Supports
+   * `default`: Typical layout with panelled content;
+   * `centeredBody`: The panelled content is centered;
+   * `centeredContent`: Vertically and horizontally centers itself (requires parent to be flex); and
+   * `empty`: Removes the panneling of the page content
+   */
+  // template?: typeof TEMPLATES[number];
+  verticalPosition?: EuiPageContentVerticalPositions;
+  horizontalPosition?: EuiPageContentHorizontalPositions;
+}
 
 export const EuiPageContentBody: FunctionComponent<EuiPageContentBodyProps> = ({
-  template = 'empty',
+  // template = 'empty',
+  paddingSize = 'none',
   restrictWidth = false,
+  verticalPosition,
+  horizontalPosition,
   children,
   style,
   className,
@@ -42,29 +57,24 @@ export const EuiPageContentBody: FunctionComponent<EuiPageContentBodyProps> = ({
     'euiPageContentBody',
     {
       [`euiPageContentBody--${widthClassName}`]: widthClassName,
-      'euiPageContentBody--centeredContent': template === 'centeredContent',
+      'euiPageContentBody--verticalCenter': verticalPosition === 'center',
+      'euiPageContentBody--horizontalCenter': horizontalPosition === 'center',
     },
     className
   );
 
-  const panelProps = {
-    borderRadius: rest.borderRadius || 'none',
-    hasBorder: rest.hasBorder || false,
-    hasShadow: rest.hasShadow || false,
-    color: rest.color || 'transparent',
-    paddingSize: rest.paddingSize || 'none',
-  };
-
-  if (template === 'centeredContent') {
-    panelProps.borderRadius = rest.borderRadius || 'm';
-    panelProps.color = rest.color || 'subdued';
-  }
+  // let paddingSize = _paddingSize;
+  // if (template) {
+  //   // paddingSize = 'l';
+  // }
 
   return (
     <EuiPanel
       className={classes}
       style={newStyle || style}
-      {...panelProps}
+      paddingSize={paddingSize}
+      color="transparent"
+      borderRadius="none"
       {...rest}
     >
       {children}

@@ -13,6 +13,11 @@ import { CommonProps } from '../../common';
 import { EuiPanel, _EuiPanelProps, _EuiPanelDivlike } from '../../panel/panel';
 import { HTMLAttributes } from 'enzyme';
 import { _EuiPageTemplate } from '../_template';
+import { _EuiPageRestrictWidth } from '../_restrict_width';
+import {
+  EuiPageContentBody,
+  EuiPageContentBodyProps,
+} from './page_content_body';
 
 export type EuiPageContentVerticalPositions = 'center';
 export type EuiPageContentHorizontalPositions = 'center';
@@ -21,25 +26,25 @@ export type EuiPageContentProps = CommonProps &
   // Use only the div properties of EuiPanel (not button)
   _EuiPanelProps &
   Omit<_EuiPanelDivlike, 'onClick' | 'role'> &
-  _EuiPageTemplate & {
-    verticalPosition?: EuiPageContentVerticalPositions;
-    horizontalPosition?: EuiPageContentHorizontalPositions;
+  _EuiPageTemplate &
+  _EuiPageRestrictWidth & {
     /**
      * There should only be one EuiPageContent per page and should contain the main contents.
      * If this is untrue, set role = `null`, or change it to match your needed aria role
      */
     role?: HTMLAttributes['role'] | null;
+    border?: 'bottom' | 'bottomExtended' | 'top' | 'topExtended';
   };
 
 export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
-  template,
-  verticalPosition,
-  horizontalPosition,
-  paddingSize = 'l',
-  borderRadius,
   children,
   className,
+  paddingSize = 'l',
+  template,
   role: _role = 'main',
+  restrictWidth = false,
+  border,
+  style = {},
   ...rest
 }) => {
   const role = _role === null ? undefined : _role;
@@ -47,48 +52,78 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   const classes = classNames(
     'euiPageContent',
     {
-      'euiPageContent--verticalCenter':
-        verticalPosition === 'center' || template === 'centeredBody',
-      'euiPageContent--horizontalCenter':
-        horizontalPosition === 'center' || template === 'centeredBody',
       'euiPageContent--flex': template === 'centeredContent',
     },
     className
   );
 
-  let templateProps: Partial<_EuiPanelProps> = {
+  // If the new template specific props are not provided, just return a basic panel
+  if (!template && !restrictWidth) {
+    return (
+      <EuiPanel
+        className={classes}
+        paddingSize={paddingSize}
+        role={role}
+        style={style}
+        {...rest}
+      >
+        {children}
+      </EuiPanel>
+    );
+  }
+
+  const contentProps: Partial<_EuiPanelProps> = {
     paddingSize,
+    borderRadius: rest.borderRadius || 'none',
+    // All content should have white background unless empty
+    color: template === 'empty' ? 'transparent' : rest.color,
+    // If a template is decalared, ensure the whole the grows to stretch
+    grow: rest.grow ?? true,
+    hasShadow: false,
   };
 
-  if (template === 'default') {
-    templateProps = {
-      borderRadius: 'none',
-      hasShadow: false,
-      paddingSize: 'none',
-    };
-  } else if (template === 'empty') {
-    templateProps = {
-      borderRadius: 'none',
-      hasBorder: false,
-      hasShadow: false,
-      color: 'transparent',
-      paddingSize: 'none',
-    };
-  } else if (template === 'centeredContent') {
-    templateProps = {
-      borderRadius: 'none',
-      hasShadow: false,
-      paddingSize: templateProps.paddingSize,
-    };
-  } else if (template === 'centeredBody') {
-    templateProps = {
-      paddingSize: 'none',
-    };
+  if (border?.includes('bottom')) {
+    contentProps.hasBorder = '0 0 1px 0';
+  } else if (border?.includes('top')) {
+    contentProps.hasBorder = '1px 0 0 0';
+  }
+
+  const contentBodyProps: Partial<EuiPageContentBodyProps> = {
+    paddingSize: 'none',
+  };
+
+  if (restrictWidth) {
+    style.paddingTop = 0;
+    style.paddingBottom = 0;
+    contentBodyProps.paddingSize = paddingSize;
+    contentBodyProps.style = { paddingLeft: 0, paddingRight: 0 };
+
+    // If border is not extended, add it to the body instead
+    if (border === 'bottom') {
+      contentProps.hasBorder = false;
+      contentBodyProps.hasBorder = '0 0 1px 0';
+    } else if (border === 'top') {
+      contentProps.hasBorder = false;
+      contentBodyProps.hasBorder = '1px 0 0 0';
+    }
+  }
+
+  if (template === 'centeredContent') {
+    contentBodyProps.verticalPosition = 'center';
+    contentBodyProps.horizontalPosition = 'center';
   }
 
   return (
-    <EuiPanel className={classes} role={role} {...templateProps} {...rest}>
-      {children}
+    <EuiPanel
+      className={classes}
+      role={role}
+      style={style}
+      {...contentProps}
+      {...rest}
+    >
+      <EuiPageContentBody {...contentBodyProps} restrictWidth={restrictWidth}>
+        {children}
+      </EuiPageContentBody>
     </EuiPanel>
   );
 };

@@ -33,15 +33,15 @@ export type _EuiPageRestrictWidth = {
 export function setPropsForRestrictedPageWidth(
   restrictWidth: _EuiPageRestrictWidth['restrictWidth'],
   style?: CSSProperties
-): { widthClassName?: string; newStyle?: CSSProperties } {
+): { widthClassName?: string; newStyle: CSSProperties } {
   let widthClassName;
-  let newStyle;
+  const newStyle = { ...style };
 
   if (restrictWidth === true) {
     widthClassName = 'restrictWidth-default';
   } else if (restrictWidth !== false) {
     widthClassName = 'restrictWidth-custom';
-    newStyle = { ...style, maxWidth: restrictWidth };
+    newStyle.maxWidth = restrictWidth;
   }
 
   return { widthClassName, newStyle };

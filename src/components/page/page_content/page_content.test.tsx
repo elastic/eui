@@ -10,7 +10,7 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiPageContent } from './page_content';
+import { EuiPageContent, EuiPageContentProps } from './page_content';
 import { TEMPLATES } from '../_template';
 
 describe('EuiPageContent', () => {
@@ -36,17 +36,39 @@ describe('EuiPageContent', () => {
     });
   });
 
-  test('verticalPosition is rendered', () => {
-    const component = render(<EuiPageContent verticalPosition="center" />);
+  describe('border', () => {
+    ['top', 'topExtended', 'bottom', 'bottomExtended'].forEach((border) => {
+      test('is rendered', () => {
+        const component = render(<EuiPageContent {...requiredProps} />);
 
-    expect(component).toMatchSnapshot();
+        expect(component).toMatchSnapshot();
+      });
+
+      it('accepts EuiPanel props', () => {
+        const component = render(
+          <EuiPageContent
+            border={border as EuiPageContentProps['border']}
+            paddingSize={'s'}
+            color="danger"
+          />
+        );
+
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 
-  test('horizontalPosition is rendered', () => {
-    const component = render(<EuiPageContent horizontalPosition="center" />);
+  // test('verticalPosition is rendered', () => {
+  //   const component = render(<EuiPageContent verticalPosition="center" />);
 
-    expect(component).toMatchSnapshot();
-  });
+  //   expect(component).toMatchSnapshot();
+  // });
+
+  // test('horizontalPosition is rendered', () => {
+  //   const component = render(<EuiPageContent horizontalPosition="center" />);
+
+  //   expect(component).toMatchSnapshot();
+  // });
 
   test('role can be removed', () => {
     const component = render(<EuiPageContent role={null} />);
