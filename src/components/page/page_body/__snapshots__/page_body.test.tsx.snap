@@ -3,25 +3,23 @@
 exports[`EuiPageBody restrict width can be set to a custom number 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody euiPageBody--restrictWidth-custom testClass1 testClass2"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
   data-test-subj="test subject string"
-  style="max-width:1024px"
 />
 `;
 
 exports[`EuiPageBody restrict width can be set to a custom value and measurement 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody euiPageBody--restrictWidth-custom testClass1 testClass2"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
   data-test-subj="test subject string"
-  style="max-width:24rem"
 />
 `;
 
 exports[`EuiPageBody restrict width can be set to a default 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody euiPageBody--restrictWidth-default testClass1 testClass2"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
   data-test-subj="test subject string"
 />
 `;
@@ -29,93 +27,128 @@ exports[`EuiPageBody restrict width can be set to a default 1`] = `
 exports[`EuiPageBody template centeredBody is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody testClass1 testClass2"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiPageBody template centeredBody is rendered with bottomBar 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
-    class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent"
     role="main"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
-    />
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
+    >
+      <div
+        class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
+        template="centeredBody"
+      />
+    </div>
   </div>
 </div>
 `;
 
 exports[`EuiPageBody template centeredBody is rendered with pageContentBodyProps 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
-    class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent"
     role="main"
   >
     <div
-      aria-label="aria-label"
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody testClass1 testClass2"
-      data-test-subj="test subject string"
-    />
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
+    >
+      <div
+        aria-label="aria-label"
+        class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody testClass1 testClass2"
+        data-test-subj="test subject string"
+        template="centeredBody"
+      />
+    </div>
   </div>
 </div>
 `;
 
 exports[`EuiPageBody template centeredBody is rendered with pageContentProps 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
     aria-label="aria-label"
-    class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter testClass1 testClass2"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent testClass1 testClass2"
     data-test-subj="test subject string"
     role="main"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
-    />
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
+    >
+      <div
+        class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
+        template="centeredBody"
+      />
+    </div>
   </div>
 </div>
 `;
 
 exports[`EuiPageBody template centeredBody is rendered with pageHeader 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
-    class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent"
     role="main"
   >
-    <header
-      aria-label="aria-label"
-      class="euiPageHeader euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
-      data-test-subj="test subject string"
-      title="Page title"
-    />
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--hasBorder euiPageContentBody"
-      style="border-width:1px 0 0 0"
-    />
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
+    >
+      <div
+        class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--hasBorder euiPanel--flexGrowZero euiPageContent"
+        role="main"
+        style="border-width:0 0 1px 0"
+      >
+        <div
+          class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
+        >
+          <header
+            aria-label="aria-label"
+            class="euiPageHeader euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
+            data-test-subj="test subject string"
+            title="Page title"
+          />
+        </div>
+      </div>
+      <div
+        class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--hasBorder euiPageContentBody"
+        style="border-width:1px 0 0 0"
+        template="centeredBody"
+      />
+    </div>
   </div>
 </div>
 `;
 
 exports[`EuiPageBody template centeredBody paddingSize is rendered 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
-    class="euiPanel euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent euiPageContent--verticalCenter euiPageContent--horizontalCenter"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent"
     role="main"
   >
     <div
-      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
-    />
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
+    >
+      <div
+        class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
+        template="centeredBody"
+      />
+    </div>
   </div>
 </div>
 `;
@@ -123,41 +156,33 @@ exports[`EuiPageBody template centeredBody paddingSize is rendered 1`] = `
 exports[`EuiPageBody template centeredBody panelled also accepts panelProps 1`] = `
 <div
   class="euiPanel euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageBody"
->
-  <div
-    class="euiPageBody"
-  />
-</div>
+/>
 `;
 
 exports[`EuiPageBody template centeredBody panelled can be set to true 1`] = `
 <div
   class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody"
->
-  <div
-    class="euiPageBody"
-  />
-</div>
+/>
 `;
 
 exports[`EuiPageBody template centeredContent is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody testClass1 testClass2"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiPageBody template centeredContent is rendered with bottomBar 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
-    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--flex"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--flex"
     role="main"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageContentBody euiPageContentBody--centeredContent"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody euiPageContentBody--verticalCenter euiPageContentBody--horizontalCenter"
     />
   </div>
   <section
@@ -171,7 +196,7 @@ exports[`EuiPageBody template centeredContent is rendered with bottomBar 1`] = `
       Page level controls
     </h2>
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
+      class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
     >
       Bottom bar
     </div>
@@ -187,16 +212,14 @@ exports[`EuiPageBody template centeredContent is rendered with bottomBar 1`] = `
 
 exports[`EuiPageBody template centeredContent is rendered with pageContentBodyProps 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
-    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--flex"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--flex"
     role="main"
   >
     <div
-      aria-label="aria-label"
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageContentBody euiPageContentBody--centeredContent testClass1 testClass2"
-      data-test-subj="test subject string"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody euiPageContentBody--verticalCenter euiPageContentBody--horizontalCenter"
     />
   </div>
 </div>
@@ -204,16 +227,16 @@ exports[`EuiPageBody template centeredContent is rendered with pageContentBodyPr
 
 exports[`EuiPageBody template centeredContent is rendered with pageContentProps 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
     aria-label="aria-label"
-    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--flex testClass1 testClass2"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--flex testClass1 testClass2"
     data-test-subj="test subject string"
     role="main"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageContentBody euiPageContentBody--centeredContent"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody euiPageContentBody--verticalCenter euiPageContentBody--horizontalCenter"
     />
   </div>
 </div>
@@ -221,21 +244,30 @@ exports[`EuiPageBody template centeredContent is rendered with pageContentProps 
 
 exports[`EuiPageBody template centeredContent is rendered with pageHeader 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
-  <header
-    aria-label="aria-label"
-    class="euiPageHeader euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
-    data-test-subj="test subject string"
-    title="Page title"
-  />
   <div
-    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--hasBorder euiPageContent euiPageContent--flex"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--hasBorder euiPanel--flexGrowZero euiPageContent"
     role="main"
-    style="border-width:1px 0 0 0"
+    style="border-width:0 0 1px 0"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageContentBody euiPageContentBody--centeredContent"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
+    >
+      <header
+        aria-label="aria-label"
+        class="euiPageHeader euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
+        data-test-subj="test subject string"
+        title="Page title"
+      />
+    </div>
+  </div>
+  <div
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--flex"
+    role="main"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody euiPageContentBody--verticalCenter euiPageContentBody--horizontalCenter"
     />
   </div>
 </div>
@@ -243,14 +275,14 @@ exports[`EuiPageBody template centeredContent is rendered with pageHeader 1`] = 
 
 exports[`EuiPageBody template centeredContent paddingSize is rendered 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
-    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--flex"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--flex"
     role="main"
   >
     <div
-      class="euiPanel euiPanel--borderRadiusMedium euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageContentBody euiPageContentBody--centeredContent"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody euiPageContentBody--verticalCenter euiPageContentBody--horizontalCenter"
     />
   </div>
 </div>
@@ -259,41 +291,33 @@ exports[`EuiPageBody template centeredContent paddingSize is rendered 1`] = `
 exports[`EuiPageBody template centeredContent panelled also accepts panelProps 1`] = `
 <div
   class="euiPanel euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageBody"
->
-  <div
-    class="euiPageBody"
-  />
-</div>
+/>
 `;
 
 exports[`EuiPageBody template centeredContent panelled can be set to true 1`] = `
 <div
   class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody"
->
-  <div
-    class="euiPageBody"
-  />
-</div>
+/>
 `;
 
 exports[`EuiPageBody template default is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody testClass1 testClass2"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiPageBody template default is rendered with bottomBar 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
-    class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent"
     role="main"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
     />
   </div>
   <section
@@ -307,7 +331,7 @@ exports[`EuiPageBody template default is rendered with bottomBar 1`] = `
       Page level controls
     </h2>
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
+      class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
     >
       Bottom bar
     </div>
@@ -323,16 +347,14 @@ exports[`EuiPageBody template default is rendered with bottomBar 1`] = `
 
 exports[`EuiPageBody template default is rendered with pageContentBodyProps 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
-    class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent"
     role="main"
   >
     <div
-      aria-label="aria-label"
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody testClass1 testClass2"
-      data-test-subj="test subject string"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
     />
   </div>
 </div>
@@ -340,16 +362,16 @@ exports[`EuiPageBody template default is rendered with pageContentBodyProps 1`] 
 
 exports[`EuiPageBody template default is rendered with pageContentProps 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
     aria-label="aria-label"
-    class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent testClass1 testClass2"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent testClass1 testClass2"
     data-test-subj="test subject string"
     role="main"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
     />
   </div>
 </div>
@@ -357,21 +379,30 @@ exports[`EuiPageBody template default is rendered with pageContentProps 1`] = `
 
 exports[`EuiPageBody template default is rendered with pageHeader 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
-  <header
-    aria-label="aria-label"
-    class="euiPageHeader euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
-    data-test-subj="test subject string"
-    title="Page title"
-  />
   <div
-    class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--hasBorder euiPageContent"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--hasBorder euiPanel--flexGrowZero euiPageContent"
     role="main"
-    style="border-width:1px 0 0 0"
+    style="border-width:0 0 1px 0"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
+    >
+      <header
+        aria-label="aria-label"
+        class="euiPageHeader euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
+        data-test-subj="test subject string"
+        title="Page title"
+      />
+    </div>
+  </div>
+  <div
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent"
+    role="main"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
     />
   </div>
 </div>
@@ -379,14 +410,14 @@ exports[`EuiPageBody template default is rendered with pageHeader 1`] = `
 
 exports[`EuiPageBody template default paddingSize is rendered 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
-    class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPageContent"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent"
     role="main"
   >
     <div
-      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
     />
   </div>
 </div>
@@ -395,41 +426,33 @@ exports[`EuiPageBody template default paddingSize is rendered 1`] = `
 exports[`EuiPageBody template default panelled also accepts panelProps 1`] = `
 <div
   class="euiPanel euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageBody"
->
-  <div
-    class="euiPageBody"
-  />
-</div>
+/>
 `;
 
 exports[`EuiPageBody template default panelled can be set to true 1`] = `
 <div
   class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody"
->
-  <div
-    class="euiPageBody"
-  />
-</div>
+/>
 `;
 
 exports[`EuiPageBody template empty is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiPageBody testClass1 testClass2"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
   data-test-subj="test subject string"
 />
 `;
 
 exports[`EuiPageBody template empty is rendered with bottomBar 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
-    class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContent"
     role="main"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
     />
   </div>
   <section
@@ -443,7 +466,7 @@ exports[`EuiPageBody template empty is rendered with bottomBar 1`] = `
       Page level controls
     </h2>
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
+      class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
     >
       Bottom bar
     </div>
@@ -459,16 +482,14 @@ exports[`EuiPageBody template empty is rendered with bottomBar 1`] = `
 
 exports[`EuiPageBody template empty is rendered with pageContentBodyProps 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
-    class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContent"
     role="main"
   >
     <div
-      aria-label="aria-label"
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody testClass1 testClass2"
-      data-test-subj="test subject string"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
     />
   </div>
 </div>
@@ -476,16 +497,16 @@ exports[`EuiPageBody template empty is rendered with pageContentBodyProps 1`] = 
 
 exports[`EuiPageBody template empty is rendered with pageContentProps 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
     aria-label="aria-label"
-    class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent testClass1 testClass2"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContent testClass1 testClass2"
     data-test-subj="test subject string"
     role="main"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
     />
   </div>
 </div>
@@ -493,21 +514,30 @@ exports[`EuiPageBody template empty is rendered with pageContentProps 1`] = `
 
 exports[`EuiPageBody template empty is rendered with pageHeader 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
-  <header
-    aria-label="aria-label"
-    class="euiPageHeader euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
-    data-test-subj="test subject string"
-    title="Page title"
-  />
   <div
-    class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--hasBorder euiPageContent"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--hasBorder euiPanel--flexGrowZero euiPageContent"
     role="main"
-    style="border-width:1px 0 0 0"
+    style="border-width:0 0 1px 0"
   >
     <div
-      class="euiPanel euiPanel--paddingMedium euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
+    >
+      <header
+        aria-label="aria-label"
+        class="euiPageHeader euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
+        data-test-subj="test subject string"
+        title="Page title"
+      />
+    </div>
+  </div>
+  <div
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContent"
+    role="main"
+  >
+    <div
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
     />
   </div>
 </div>
@@ -515,14 +545,14 @@ exports[`EuiPageBody template empty is rendered with pageHeader 1`] = `
 
 exports[`EuiPageBody template empty paddingSize is rendered 1`] = `
 <div
-  class="euiPageBody"
+  class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageBody"
 >
   <div
-    class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContent"
+    class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContent"
     role="main"
   >
     <div
-      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--noBorder euiPageContentBody"
+      class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
     />
   </div>
 </div>
@@ -531,19 +561,11 @@ exports[`EuiPageBody template empty paddingSize is rendered 1`] = `
 exports[`EuiPageBody template empty panelled also accepts panelProps 1`] = `
 <div
   class="euiPanel euiPanel--borderRadiusNone euiPanel--subdued euiPanel--noShadow euiPanel--noBorder euiPageBody"
->
-  <div
-    class="euiPageBody"
-  />
-</div>
+/>
 `;
 
 exports[`EuiPageBody template empty panelled can be set to true 1`] = `
 <div
   class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody"
->
-  <div
-    class="euiPageBody"
-  />
-</div>
+/>
 `;

@@ -9,10 +9,7 @@
 import React, { PropsWithChildren, ComponentType, ComponentProps } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../../common';
-import {
-  setPropsForRestrictedPageWidth,
-  _EuiPageRestrictWidth,
-} from '../_restrict_width';
+import { _EuiPageRestrictWidth } from '../_restrict_width';
 import { EuiPanel, EuiPanelProps } from '../../panel';
 import { TEMPLATES } from '../_template';
 import {
@@ -23,7 +20,6 @@ import {
 } from '../page_content';
 import { EuiPageHeader, EuiPageHeaderProps } from '../page_header';
 import { EuiBottomBarProps, EuiBottomBar } from '../../bottom_bar';
-import { EuiSpacer } from '../../spacer';
 
 const paddingSizeToClassNameMap = {
   none: null,
@@ -89,7 +85,7 @@ export type EuiPageBodyProps<T extends ComponentTypes = 'main'> = CommonProps &
 export const EuiPageBody = <T extends ComponentTypes>({
   template,
   restrictWidth = false,
-  paddingSize,
+  paddingSize = 'l',
   panelled = false,
   panelProps,
   pageHeader,
@@ -97,54 +93,28 @@ export const EuiPageBody = <T extends ComponentTypes>({
   pageContentProps,
   children,
   className,
-  component: Component = 'div' as T,
   bottomBar,
   bottomBarProps,
-  style,
   ...rest
 }: PropsWithChildren<EuiPageBodyProps<T>>) => {
-  const { widthClassName, newStyle } = setPropsForRestrictedPageWidth(
-    !template && restrictWidth,
-    style
-  );
-
-  const paddingClass =
-    panelled &&
-    paddingSizeToClassNameMap[paddingSize as typeof PADDING_SIZES[number]];
-
-  const classes = classNames(
-    'euiPageBody',
-    paddingClass,
-    {
-      [`euiPageBody--${widthClassName}`]: widthClassName,
-    },
-    className
-  );
-
-  const nonBreakingDefaultPadding = panelled ? 'l' : paddingSize;
-  paddingSize = template ? paddingSize : nonBreakingDefaultPadding;
-
   /**
    * Logic for when to use a horizontal border separator and if full width or only under header
    */
   const contentHasBorder = !panelled && pageHeader ? '1px 0 0 0' : false;
-  const contentPaddingSize = panelled ? 'none' : paddingSize;
-  const contentSeparator = panelled && <EuiSpacer size={paddingSize} />;
 
   /**
    * The EuiPageHeader is always the same
    */
   const pageHeaderNode = pageHeader && (
-    <>
-      <EuiPageHeader
-        paddingSize={contentPaddingSize}
-        restrictWidth={restrictWidth}
-        // Non-panelled content applies the border to the EuiPageContent
-        bottomBorder={panelled}
-        {...pageHeader}
-      />
-      {contentSeparator}
-    </>
+    <EuiPageContent
+      restrictWidth={restrictWidth}
+      template="empty"
+      grow={false}
+      border={panelled ? 'bottom' : 'bottomExtended'}
+      paddingBottom={!Boolean(pageHeader.tabs)}
+    >
+      <EuiPageHeader {...pageHeader} />
+    </EuiPageContent>
   );
 
   // Only the default template can display a bottom bar
@@ -164,11 +134,11 @@ export const EuiPageBody = <T extends ComponentTypes>({
    * Don't add any wrappers if template is undefined
    */
   let pageContent = (
-    <Component className={classes} style={newStyle || style} {...rest}>
+    <>
       {pageHeaderNode}
       {children}
       {bottomBarNode}
-    </Component>
+    </>
   );
 
   if (template === 'centeredBody') {
@@ -178,7 +148,7 @@ export const EuiPageBody = <T extends ComponentTypes>({
      * Color of panel depends on `panelled` prop
      */
     pageContent = (
-      <Component className={classes} style={newStyle || style} {...rest}>
+      <>
         <EuiPageContent
           template={template}
           color={panelled ? 'subdued' : 'plain'}
@@ -187,7 +157,7 @@ export const EuiPageBody = <T extends ComponentTypes>({
           {pageHeaderNode}
           <EuiPageContentBody
             template={template}
-            paddingSize={contentPaddingSize}
+            // paddingSize={contentPaddingSize}
             restrictWidth={restrictWidth}
             hasBorder={contentHasBorder}
             {...pageContentBodyProps}
@@ -195,7 +165,7 @@ export const EuiPageBody = <T extends ComponentTypes>({
             {children}
           </EuiPageContentBody>
         </EuiPageContent>
-      </Component>
+      </>
     );
   } else if (template) {
     /**
@@ -204,40 +174,30 @@ export const EuiPageBody = <T extends ComponentTypes>({
      */
     pageContent = (
       <>
-        <Component className={classes} style={newStyle || style} {...rest}>
-          {pageHeaderNode}
-          <EuiPageContent
-            template={template}
-            hasBorder={contentHasBorder}
-            {...pageContentProps}
-          >
-            <EuiPageContentBody
-              template={template}
-              paddingSize={contentPaddingSize}
-              restrictWidth={restrictWidth}
-              {...pageContentBodyProps}
-            >
-              {children}
-            </EuiPageContentBody>
-          </EuiPageContent>
-          {!panelled && bottomBarNode}
-        </Component>
-        {panelled && bottomBarNode}
+        {pageHeaderNode}
+        <EuiPageContent
+          restrictWidth={restrictWidth}
+          template={template}
+          {...pageContentProps}
+        >
+          {children}
+        </EuiPageContent>
+        {bottomBarNode}
       </>
     );
   }
 
-  return panelled ? (
+  return (
     <EuiPanel
       paddingSize="none"
       borderRadius="none"
+      color={panelled ? 'plain' : 'transparent'}
       {...panelProps}
       // Needs the same top class name for flex layout
-      className={classNames('euiPageBody', panelProps?.className)}
+      className={classNames('euiPageBody', rest?.className)}
+      {...rest}
     >
       {pageContent}
     </EuiPanel>
-  ) : (
-    pageContent
   );
 };
