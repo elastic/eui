@@ -82,6 +82,40 @@ describe('EuiDataGrid', () => {
             .should('be.greaterThan', firstHeight);
         });
     });
+
+    it('accounts for a horizontal scrollbar', () => {
+      const columns: EuiDataGridColumn[] = [
+        { id: 'one' },
+        { id: 'two' },
+        { id: 'three' },
+        { id: 'four' },
+        { id: 'five' },
+        { id: 'six' },
+      ];
+      const columnVisibility = {
+        visibleColumns: columns.map(({ id }) => id),
+        setVisibleColumns: () => {},
+      };
+      cy.mount(
+        <EuiDataGrid
+          {...baseProps}
+          columns={columns}
+          columnVisibility={columnVisibility}
+          renderFooterCellValue={undefined}
+        />
+      );
+
+      getGridData();
+
+      cy.get('[data-test-subj=euiDataGridBody]')
+        .children()
+        .first()
+        .then(([outerContainer]: [HTMLDivElement]) => {
+          expect(outerContainer.offsetWidth).not.to.be.greaterThan(
+            outerContainer.clientWidth
+          );
+        });
+    });
   });
 
   describe('focus management', () => {
