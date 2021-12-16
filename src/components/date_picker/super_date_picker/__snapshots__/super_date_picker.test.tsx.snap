@@ -329,6 +329,43 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
 </EuiFlexGroup>
 `;
 
+exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
+<EuiFlexGroup
+  className="euiSuperDatePicker__flexWrapper euiSuperDatePicker__flexWrapper--isAutoRefreshOnly"
+  gutterSize="s"
+  responsive={false}
+>
+  <EuiFlexItem>
+    <EuiAutoRefresh
+      fullWidth={false}
+      isDisabled={false}
+      isPaused={true}
+      onRefreshChange={[Function]}
+      refreshInterval={1000}
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
+
+exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = `
+<EuiFlexGroup
+  className="euiSuperDatePicker__flexWrapper euiSuperDatePicker__flexWrapper--isAutoRefreshOnly"
+  gutterSize="s"
+  responsive={false}
+>
+  <EuiFlexItem>
+    <EuiAutoRefresh
+      data-test-subj="autoRefreshOnly"
+      fullWidth={false}
+      isDisabled={true}
+      isPaused={true}
+      onRefreshChange={[Function]}
+      refreshInterval={1000}
+    />
+  </EuiFlexItem>
+</EuiFlexGroup>
+`;
+
 exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
 <EuiFlexGroup
   className="euiSuperDatePicker__flexWrapper euiSuperDatePicker__flexWrapper--isQuickSelectOnly euiSuperDatePicker__flexWrapper--autoWidth"
