@@ -14,6 +14,11 @@
     border: 1px solid $euiColorPrimary;
   }
 
+  &-isDisabled {
+    cursor: not-allowed;
+    filter: grayscale(100%);
+  }
+
   &:first-of-type {
     margin-right: $euiSize;
   }
@@ -21,6 +26,10 @@
   &:focus {
     outline: 2px solid $euiFocusRingColor;
   }
+}
+
+.guideDemo__emptyPromptPanelPickerThumbText-isDisabled {
+  color: $euiColorDisabledText;
 }
 
 .guideDemo__emptyPromptBgPickerCheckMark {
