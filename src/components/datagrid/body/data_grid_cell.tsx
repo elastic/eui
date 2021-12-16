@@ -225,10 +225,21 @@ export class EuiDataGridCell extends Component<
   };
 
   componentDidMount() {
+    const { colIndex, visibleRowIndex } = this.props;
+
     this.unsubscribeCell = this.context.onFocusUpdate(
-      [this.props.colIndex, this.props.visibleRowIndex],
+      [colIndex, visibleRowIndex],
       this.onFocusUpdate
     );
+
+    // Account for virtualization - when a cell unmounts when scrolled out of view
+    // and then remounts when scrolled back into view, it should retain focus state
+    if (
+      this.context.focusedCell?.[0] === colIndex &&
+      this.context.focusedCell?.[1] === visibleRowIndex
+    ) {
+      this.onFocusUpdate(true);
+    }
   }
 
   onFocusUpdate = (isFocused: boolean) => {

@@ -10,6 +10,7 @@ import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { keys } from '../../../services';
 import { mockRowHeightUtils } from '../__mocks__/row_height_utils';
+import { DataGridFocusContext } from '../data_grid_context';
 
 import { EuiDataGridCell } from './data_grid_cell';
 
@@ -168,6 +169,40 @@ describe('EuiDataGridCell', () => {
 
       component.setProps({ columnId: 'newColumnId' });
       expect(setState).toHaveBeenCalledWith({ cellProps: {} });
+    });
+  });
+
+  describe('componentDidMount', () => {
+    const focusContext = {
+      focusedCell: undefined,
+      onFocusUpdate: jest.fn(),
+      setFocusedCell: jest.fn(),
+    };
+
+    it('creates an onFocusUpdate subscription', () => {
+      mount(
+        <DataGridFocusContext.Provider value={focusContext}>
+          <EuiDataGridCell {...requiredProps} />
+        </DataGridFocusContext.Provider>
+      );
+
+      expect(focusContext.onFocusUpdate).toHaveBeenCalled();
+    });
+
+    it('mounts the cell with focus state if the current cell should be focused', () => {
+      const component = mount(
+        <DataGridFocusContext.Provider
+          value={{ ...focusContext, focusedCell: [3, 3] }}
+        >
+          <EuiDataGridCell
+            {...requiredProps}
+            colIndex={3}
+            visibleRowIndex={3}
+          />
+        </DataGridFocusContext.Provider>
+      );
+
+      expect((component.instance().state as any).isFocused).toEqual(true);
     });
   });
 
