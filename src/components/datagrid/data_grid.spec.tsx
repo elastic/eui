@@ -117,9 +117,7 @@ describe('EuiDataGrid', () => {
 
       // make sure the vertical scrollbar is gone
       virtualizedContainer.then(([outerContainer]: [HTMLDivElement]) => {
-        expect(outerContainer.offsetWidth).to.equal(
-          outerContainer.clientWidth
-        );
+        expect(outerContainer.offsetWidth).to.equal(outerContainer.clientWidth);
       });
     });
   });
