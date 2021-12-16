@@ -32,31 +32,24 @@ describe('EuiDataGridCell', () => {
     rowHeightUtils: mockRowHeightUtils,
   };
 
-  const mountEuiDataGridCellWithContext = ({ ...props } = {}) => {
-    const focusContext = {
-      setFocusedCell: jest.fn(),
-      onFocusUpdate: jest.fn(),
-    };
-    return mount(<EuiDataGridCell {...requiredProps} {...props} />, {
-      context: focusContext,
-    });
-  };
-
   beforeEach(() => jest.clearAllMocks());
 
   it('renders', () => {
-    const component = mountEuiDataGridCellWithContext();
+    const component = mount(<EuiDataGridCell {...requiredProps} />);
     expect(component).toMatchSnapshot();
   });
 
   it('renders cell buttons', () => {
-    const component = mountEuiDataGridCellWithContext({
-      isExpandable: false,
-      column: {
-        id: 'someColumn',
-        cellActions: [() => <button />],
-      },
-    });
+    const component = mount(
+      <EuiDataGridCell
+        {...requiredProps}
+        isExpandable={false}
+        column={{
+          id: 'someColumn',
+          cellActions: [() => <button />],
+        }}
+      />
+    );
     component.setState({ popoverIsOpen: true });
 
     const cellButtons = component.find('EuiDataGridCellButtons');
@@ -81,7 +74,7 @@ describe('EuiDataGridCell', () => {
         EuiDataGridCell.prototype,
         'shouldComponentUpdate'
       );
-      component = mountEuiDataGridCellWithContext();
+      component = mount(<EuiDataGridCell {...requiredProps} />);
     });
     afterEach(() => {
       shouldComponentUpdate.mockRestore();
@@ -165,7 +158,7 @@ describe('EuiDataGridCell', () => {
   describe('componentDidUpdate', () => {
     it('resets cell props when the cell columnId changes', () => {
       const setState = jest.spyOn(EuiDataGridCell.prototype, 'setState');
-      const component = mountEuiDataGridCellWithContext();
+      const component = mount(<EuiDataGridCell {...requiredProps} />);
 
       component.setProps({ columnId: 'newColumnId' });
       expect(setState).toHaveBeenCalledWith({ cellProps: {} });
@@ -219,9 +212,12 @@ describe('EuiDataGridCell', () => {
       it('sets the row height cache with cell heights on update', () => {
         (mockRowHeightUtils.isAutoHeight as jest.Mock).mockReturnValue(true);
 
-        const component = mountEuiDataGridCellWithContext({
-          rowHeightsOptions: { defaultHeight: 'auto' },
-        });
+        const component = mount(
+          <EuiDataGridCell
+            {...requiredProps}
+            rowHeightsOptions={{ defaultHeight: 'auto' }}
+          />
+        );
 
         triggerUpdate(component);
         expect(mockRowHeightUtils.setRowHeight).toHaveBeenCalled();
@@ -230,9 +226,12 @@ describe('EuiDataGridCell', () => {
       it('does not update the cache if cell height is not auto', () => {
         (mockRowHeightUtils.isAutoHeight as jest.Mock).mockReturnValue(false);
 
-        const component = mountEuiDataGridCellWithContext({
-          rowHeightsOptions: { defaultHeight: 34 },
-        });
+        const component = mount(
+          <EuiDataGridCell
+            {...requiredProps}
+            rowHeightsOptions={{ defaultHeight: 34 }}
+          />
+        );
 
         triggerUpdate(component);
         expect(mockRowHeightUtils.setRowHeight).not.toHaveBeenCalled();
@@ -247,10 +246,13 @@ describe('EuiDataGridCell', () => {
 
       describe('default height', () => {
         it('observes the first cell for size changes and calls this.props.setRowHeight on change', () => {
-          const component = mountEuiDataGridCellWithContext({
-            rowHeightsOptions: { defaultHeight: { lineCount: 3 } },
-            setRowHeight,
-          });
+          const component = mount(
+            <EuiDataGridCell
+              {...requiredProps}
+              rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
+              setRowHeight={setRowHeight}
+            />
+          );
 
           callMethod(component);
           expect(
@@ -262,14 +264,17 @@ describe('EuiDataGridCell', () => {
 
       describe('row height overrides', () => {
         it('uses the rowHeightUtils.setRowHeight cache instead of this.props.setRowHeight', () => {
-          const component = mountEuiDataGridCellWithContext({
-            rowHeightsOptions: {
-              defaultHeight: { lineCount: 3 },
-              rowHeights: { 10: { lineCount: 10 } },
-            },
-            rowIndex: 10,
-            setRowHeight,
-          });
+          const component = mount(
+            <EuiDataGridCell
+              {...requiredProps}
+              rowHeightsOptions={{
+                defaultHeight: { lineCount: 3 },
+                rowHeights: { 10: { lineCount: 10 } },
+              }}
+              rowIndex={10}
+              setRowHeight={setRowHeight}
+            />
+          );
 
           callMethod(component);
           expect(
@@ -281,10 +286,13 @@ describe('EuiDataGridCell', () => {
       });
 
       it('recalculates when rowHeightsOptions.defaultHeight.lineCount changes', () => {
-        const component = mountEuiDataGridCellWithContext({
-          rowHeightsOptions: { defaultHeight: { lineCount: 7 } },
-          setRowHeight,
-        });
+        const component = mount(
+          <EuiDataGridCell
+            {...requiredProps}
+            rowHeightsOptions={{ defaultHeight: { lineCount: 7 } }}
+            setRowHeight={setRowHeight}
+          />
+        );
 
         component.setProps({
           rowHeightsOptions: { defaultHeight: { lineCount: 6 } },
@@ -293,10 +301,13 @@ describe('EuiDataGridCell', () => {
       });
 
       it('calculates undefined heights as single rows with a lineCount of 1', () => {
-        const component = mountEuiDataGridCellWithContext({
-          rowHeightsOptions: { defaultHeight: undefined },
-          setRowHeight,
-        });
+        const component = mount(
+          <EuiDataGridCell
+            {...requiredProps}
+            rowHeightsOptions={{ defaultHeight: undefined }}
+            setRowHeight={setRowHeight}
+          />
+        );
 
         callMethod(component);
         expect(
@@ -306,10 +317,13 @@ describe('EuiDataGridCell', () => {
       });
 
       it('does nothing if cell height is not lineCount or undefined', () => {
-        const component = mountEuiDataGridCellWithContext({
-          rowHeightsOptions: { defaultHeight: 34 },
-          setRowHeight,
-        });
+        const component = mount(
+          <EuiDataGridCell
+            {...requiredProps}
+            rowHeightsOptions={{ defaultHeight: 34 }}
+            setRowHeight={setRowHeight}
+          />
+        );
 
         callMethod(component);
         expect(setRowHeight).not.toHaveBeenCalled();
@@ -321,7 +335,7 @@ describe('EuiDataGridCell', () => {
   describe('interactions', () => {
     describe('keyboard events', () => {
       it('when cell is expandable', () => {
-        const component = mountEuiDataGridCellWithContext();
+        const component = mount(<EuiDataGridCell {...requiredProps} />);
         const preventDefault = jest.fn();
 
         component.simulate('keyDown', { preventDefault, key: keys.ENTER });
@@ -331,9 +345,9 @@ describe('EuiDataGridCell', () => {
       });
 
       it('when cell is not expandable', () => {
-        const component = mountEuiDataGridCellWithContext({
-          isExpandable: false,
-        });
+        const component = mount(
+          <EuiDataGridCell {...requiredProps} isExpandable={false} />
+        );
         const preventDefault = jest.fn();
 
         component.simulate('keyDown', { preventDefault, key: keys.ENTER });
@@ -356,7 +370,7 @@ describe('EuiDataGridCell', () => {
     });
 
     it('mouse events', () => {
-      const component = mountEuiDataGridCellWithContext();
+      const component = mount(<EuiDataGridCell {...requiredProps} />);
       component.simulate('mouseEnter');
       expect(component.state('enableInteractions')).toEqual(true);
       component.simulate('mouseLeave');
@@ -364,7 +378,7 @@ describe('EuiDataGridCell', () => {
     });
 
     it('focus/blur events', () => {
-      const component = mountEuiDataGridCellWithContext();
+      const component = mount(<EuiDataGridCell {...requiredProps} />);
       component.simulate('focus');
       component.simulate('blur');
       expect(component.state('disableCellTabIndex')).toEqual(false);
@@ -372,12 +386,15 @@ describe('EuiDataGridCell', () => {
   });
 
   it('renders certain classes/styles if rowHeightOptions is passed', () => {
-    const component = mountEuiDataGridCellWithContext({
-      rowHeightsOptions: {
-        defaultHeight: 20,
-        rowHeights: { 0: 10 },
-      },
-    });
+    const component = mount(
+      <EuiDataGridCell
+        {...requiredProps}
+        rowHeightsOptions={{
+          defaultHeight: 20,
+          rowHeights: { 0: 10 },
+        }}
+      />
+    );
     component.setState({ popoverIsOpen: true });
 
     expect(
