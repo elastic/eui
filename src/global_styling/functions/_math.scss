@@ -35,7 +35,7 @@
     @if ($hasTrailingOne) {
       $power: $power - 1;
     }
-    $halfPower: pow($number, floor($power / 2));
+    $halfPower: pow($number, floor(math.div($power, 2)));
     $fullPower: $halfPower * $halfPower;
     @if ($hasTrailingOne) {
       $fullPower: $fullPower * $number;

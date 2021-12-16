@@ -51,9 +51,9 @@
 
   @for $i from 1 through 3 {
     $rgb: nth($rgba, $i);
-    $rgb: $rgb / 255;
+    $rgb: math.div($rgb, 255);
 
-    $rgb: if($rgb < .03928, $rgb / 12.92, pow(($rgb + .055) / 1.055, 2.4));
+    $rgb: if($rgb < .03928, math.div($rgb, 12.92), pow(math.div(($rgb + .055) / 1.055), 2.4));
 
     $rgba2: append($rgba2, $rgb);
   }
@@ -66,7 +66,7 @@
   $backgroundLum: luminance($background) + .05;
   $foregroundLum: luminance($foreground) + .05;
 
-  @return max($backgroundLum, $foregroundLum) / min($backgroundLum, $foregroundLum);
+  @return math.div(max($backgroundLum, $foregroundLum), min($backgroundLum, $foregroundLum));
 }
 
 // Given $color, decide whether $lightText or $darkText should be used as the text color
