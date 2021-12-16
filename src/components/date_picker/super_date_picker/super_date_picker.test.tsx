@@ -196,5 +196,31 @@ describe('EuiSuperDatePicker', () => {
         expect(component).toMatchSnapshot();
       });
     });
+
+    describe('isAutoRefreshOnly', () => {
+      it('is rendered', () => {
+        const component = shallow(
+          <EuiSuperDatePicker
+            onTimeChange={noop}
+            onRefreshChange={noop}
+            isAutoRefreshOnly
+          />
+        );
+        expect(component).toMatchSnapshot();
+      });
+
+      it('passes required props', () => {
+        const component = shallow(
+          <EuiSuperDatePicker
+            onTimeChange={noop}
+            onRefreshChange={noop}
+            isAutoRefreshOnly
+            isDisabled
+            data-test-subj="autoRefreshOnly"
+          />
+        );
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

@@ -2,6 +2,15 @@
 
 - Converted `FieldValueSelectionFilter` in `EuiSearchBar` to use `EuiSelectable` ([#5387](https://github.com/elastic/eui/issues/5387))
 
+## [`43.1.1`](https://github.com/elastic/eui/tree/v43.1.1)
+
+**Bug fixes**
+
+- Fixed `EuiDataGrid`'s cell popover overlapping with modals and flyouts ([#5461](https://github.com/elastic/eui/pull/5461))
+- Fixed an accessibility issue where `EuiDatePicker` time options did not have unique IDs ([#5466](https://github.com/elastic/eui/pull/5466))
+- Fixed global and reset styles when using the legacy theme ([#5473](https://github.com/elastic/eui/pull/5473))
+- Fixed `EuiSuperDatePicker` not passing `isDisabled` to `EuiAutoRefresh` ([#5472](https://github.com/elastic/eui/pull/5472))
+
 ## [`43.1.0`](https://github.com/elastic/eui/tree/v43.1.0)
 
 - Added `magnifyWithExclamation` icon ([#5455](https://github.com/elastic/eui/pull/5455))
