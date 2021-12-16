@@ -13,10 +13,10 @@ const isDevelopment = WEBPACK_DEV_SERVER === 'true' && CI == null;
 const isProduction = NODE_ENV === 'production';
 const isPuppeteer = NODE_ENV === 'puppeteer';
 
-const useReactRefresh = isDevelopment && !isPuppeteer;
+const isLocalDevelopment = isDevelopment && !isPuppeteer;
 
 function employCache(loaders) {
-  if (isDevelopment && !isPuppeteer) {
+  if (isLocalDevelopment) {
     return [
       {
         loader: 'cache-loader',
@@ -31,7 +31,7 @@ function employCache(loaders) {
   return loaders;
 }
 
-if (useReactRefresh) {
+if (isLocalDevelopment) {
   babelConfig.plugins.push('react-refresh/babel');
 }
 
@@ -117,12 +117,15 @@ const webpackConfig = {
       showErrors: true,
     }),
 
-    new CircularDependencyPlugin({
-      exclude: /node_modules/,
-      failOnError: true,
-    }),
+    // only run circular dependency checker in prod & test builds
+    !isLocalDevelopment &&
+      new CircularDependencyPlugin({
+        exclude: /node_modules/,
+        failOnError: true,
+      }),
 
-    useReactRefresh && new ReactRefreshWebpackPlugin(),
+    // enable react-refresh for local development
+    isLocalDevelopment && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean),
 
   devServer: isDevelopment
