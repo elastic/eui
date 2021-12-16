@@ -130,6 +130,7 @@
   // sass-lint:disable-block no-important
   max-width: 400px !important;
   max-height: 400px !important;
+  z-index: $euiZDataGridCellPopover !important;
 }
 
 .euiDataGridRowCell__expand {
