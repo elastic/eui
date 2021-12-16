@@ -283,6 +283,13 @@ export type EuiDataGridProps = OneOf<
   'aria-label' | 'aria-labelledby'
 >;
 
+export interface EuiDataGridRefProps {
+  setFocusedCell({ rowIndex, colIndex }: EuiDataGridCellLocation): void;
+  focusIntoGrid(): void;
+}
+
+export type EuiDataGridCellLocation = { rowIndex: number; colIndex: number };
+
 export interface EuiDataGridColumnResizerProps {
   columnId: string;
   columnWidth: number;
