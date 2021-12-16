@@ -31,7 +31,7 @@ function employCache(loaders) {
   return loaders;
 }
 
-if (isDevelopment && useReactRefresh) {
+if (useReactRefresh) {
   babelConfig.plugins.push('react-refresh/babel');
 }
 
