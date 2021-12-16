@@ -1,6 +1,8 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `43.1.1`.
+**Bug fixes**
+
+- Fixed `EuiDataGrid` issue where a focused cell would lose focus when scrolled out of and back into view ([#5488](https://github.com/elastic/eui/pull/5488))
 
 ## [`43.1.1`](https://github.com/elastic/eui/tree/v43.1.1)
 
