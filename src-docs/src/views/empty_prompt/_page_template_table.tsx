@@ -25,8 +25,7 @@ export default () => (
         </EuiTableRowCell>
 
         <EuiTableRowCell>
-          Set <EuiCode language="tsx">{'color="plain"'}</EuiCode> and
-          <EuiCode language="tsx">{'hasBorder={true}'}</EuiCode>.
+          Set <EuiCode language="tsx">{'color="subdued"'}</EuiCode>.
         </EuiTableRowCell>
       </EuiTableRow>
 

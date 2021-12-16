@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import classNames from 'classnames';
 import {
@@ -6,10 +6,7 @@ import {
   EuiImage,
   EuiSpacer,
   EuiIcon,
-  EuiCode,
   EuiText,
-  EuiFormFieldset,
-  EuiCheckableCard,
   EuiRadioGroup,
   EuiEmptyPrompt,
   EuiSplitPanel,
@@ -17,148 +14,97 @@ import {
   EuiFlexItem,
   EuiRadioGroupOption,
 } from '../../../../src/components';
-import { useGeneratedHtmlId } from '../../../../src/services';
-import pageCenteredContent from '../../images/thumbnail_page-centered-content.svg';
-import pageCenteredBody from '../../images/thumbnail_page-centered-body.svg';
+import { ThemeContext } from '../../components/with_theme';
 import { recommendedObj } from './_panel_color_picker_recommended';
 import { useCasesObj } from './_panel_color_picker_use_cases';
 
 import { GuideSection } from '../../components/guide_section/guide_section';
 import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 
+// images dark
+import darkSidebar from '../../images/empty-prompt/thumbnail_dark_page-sidebar.svg';
+import darkEmpty from '../../images/empty-prompt/thumbnail_dark_page-empty.svg';
+import darkMultiple from '../../images/empty-prompt/thumbnail_dark_page-multiple.svg';
+
+// images light
+import lightSidebar from '../../images/empty-prompt/thumbnail_light_page-sidebar.svg';
+import lightEmpty from '../../images/empty-prompt/thumbnail_light_page-empty.svg';
+import lightMultiple from '../../images/empty-prompt/thumbnail_light_page-multiple.svg';
+
 export default () => {
+  const themeContext = useContext(ThemeContext);
+
+  /**
+   * Setup theme based on current light/dark theme
+   */
+  const isDarkTheme = themeContext.theme.includes('dark');
+
   const useCasesOptions: any = Object.values(useCasesObj);
 
   const errorValue = useCasesObj.error.id;
-  const errorPageValue = useCasesObj.errorPage.id;
   const [radioUseCaseId, setRadioUseCaseId] = useState<
     EuiRadioGroupOption['id']
   >(useCasesObj.noData.id);
-  const radioGroupId = useGeneratedHtmlId({ prefix: 'radioGroup' });
-  const [recommendedId, setRecommendedId] = useState('plainWithBorder');
-  const [panelProps, setPanelProps] = useState({ color: 'plain' });
-  const [pageBgColor, setPageBgColor] = useState('white');
 
-  const onChangeBgColor = (pageBgColor: string) => {
-    setPageBgColor(pageBgColor);
+  const [panelProps, setPanelProps] = useState({ color: 'plain' });
+  const [thumbnail, setThumbnail] = useState('sidebar');
+
+  const onSelectThumbnail = (thumbnailName: string) => {
+    setThumbnail(thumbnailName);
   };
 
-  const isPageSubdued = pageBgColor === 'subdued';
+  const isSidebar = thumbnail === 'sidebar';
+  const isEmpty = thumbnail === 'empty';
+  const isMultiple = thumbnail === 'multiple';
+
+  const isPageSubdued = thumbnail === 'empty';
 
   const onChangeUseCase = (id: EuiRadioGroupOption['id']) => {
     setRadioUseCaseId(id);
-
-    // when use case changes and the recommendedId is set to `alternativeError`
-    // we want to adjust the card recommendedId to the first card on the list
-    if (!isPageSubdued && recommendedId === 'alternativeError') {
-      setRecommendedId('plainWithBorder');
-    } else if (isPageSubdued && recommendedId === 'alternativeError') {
-      setRecommendedId('plain');
-    }
-
-    // when use case changes to error and the current recommended card is `plain` or `plainWithBorder`
-    // we want to set the recommended card to `errorPanel`
-    if (id === 'error' && recommendedId === 'plain') {
-      setRecommendedId('errorPanel');
-    } else if (id === 'error' && recommendedId === 'plainWithBorder') {
-      setRecommendedId('errorPanel');
-    }
-
-    // when use case changes from error to other use case and the current recommended card is `errorPanel`
-    // we want to set the recommended card to `plain` or `plainWithBorder`
-    if (id !== 'error' && !isPageSubdued && recommendedId === 'errorPanel') {
-      setRecommendedId('plainWithBorder');
-    } else if (
-      id !== 'error' &&
-      isPageSubdued &&
-      recommendedId === 'errorPanel'
-    ) {
-      setRecommendedId('plain');
-    }
   };
 
-  const card = (obj: any) => (
-    <EuiCheckableCard
-      id={obj.id}
-      label={
-        <>
-          <EuiCode>{obj.code}</EuiCode>
-          <EuiSpacer size="m" />
-          <EuiText size="s">{obj.text}</EuiText>
-        </>
-      }
-      name={radioGroupId}
-      value={obj.id}
-      checked={recommendedId === obj.id}
-      onChange={() => setRecommendedId(obj.id)}
-    />
+  const getRecommendedText = (obj: any) => (
+    <EuiText size="s">{obj.text}</EuiText>
   );
 
-  const [visibleRecommendedCard, setVisibleRecommendedCard] = useState(
-    card(recommendedObj.plainWithBorder)
-  );
-
-  // the `visibleAlternativeErrorCard` only exist for the error page so we don't show when the page renders
-  const [
-    visibleAlternativeErrorCard,
-    setVisibleAlternativeErrorCard,
-  ] = useState<any>(null);
-  const [
-    visibleAlternativeStandOutCard,
-    setVisibleAlternativeStandOutCard,
-  ] = useState(card(recommendedObj.standOutSubdued));
-
-  // exists for all use cases
-  const visibleAlternativeTransparentCard = card(
-    recommendedObj.alternativeTransparent
+  const [visibleRecommendedText, setVisibleRecommendedText] = useState(
+    getRecommendedText(recommendedObj.subdued)
   );
 
   useEffect(() => {
-    // Some scenarios varies according to the bg color,
-    // So we need to adjust them according to the bg color and the current recommendedId ID
-    if (!isPageSubdued && recommendedId === 'plain') {
-      setRecommendedId('plainWithBorder');
-    } else if (isPageSubdued && recommendedId === 'plainWithBorder') {
-      setRecommendedId('plain');
-    } else if (!isPageSubdued && recommendedId === 'standOutColored') {
-      setRecommendedId('standOutSubdued');
-    } else if (isPageSubdued && recommendedId === 'standOutSubdued') {
-      setRecommendedId('standOutColored');
-    }
-
-    // we want to show the following recommendedId cards according to the page bg and if is or it is not an error panel
-    if (!isPageSubdued && radioUseCaseId !== errorValue) {
-      setVisibleRecommendedCard(card(recommendedObj.plainWithBorder));
-    } else if (isPageSubdued && radioUseCaseId !== errorValue) {
-      setVisibleRecommendedCard(card(recommendedObj.plain));
+    if (isSidebar && radioUseCaseId !== errorValue) {
+      setVisibleRecommendedText(getRecommendedText(recommendedObj.subdued));
+      setPanelProps(recommendedObj.subdued.props);
+    } else if (isEmpty && radioUseCaseId !== errorValue) {
+      setVisibleRecommendedText(getRecommendedText(recommendedObj.plain));
+      setPanelProps(recommendedObj.plain.props);
+    } else if (isMultiple && radioUseCaseId !== errorValue) {
+      setVisibleRecommendedText(getRecommendedText(recommendedObj.multiple));
+      setPanelProps(recommendedObj.multiple.props);
     } else {
-      setVisibleRecommendedCard(card(recommendedObj.errorPanel));
+      setVisibleRecommendedText(getRecommendedText(recommendedObj.error));
+      setPanelProps(recommendedObj.error.props);
     }
-
-    // visibleAlternative stand out cards
-    if (isPageSubdued) {
-      setVisibleAlternativeStandOutCard(card(recommendedObj.standOutColored));
-    } else if (!isPageSubdued) {
-      setVisibleAlternativeStandOutCard(card(recommendedObj.standOutSubdued));
-    }
-
-    // visibleAlternative error card
-    if (radioUseCaseId === errorPageValue) {
-      setVisibleAlternativeErrorCard(card(recommendedObj.alternativeError));
-    } else {
-      // if is not an error page it disappears
-      setVisibleAlternativeErrorCard(null);
-    }
-
-    setPanelProps(recommendedObj[recommendedId].props);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isPageSubdued, radioUseCaseId, errorValue, recommendedId]);
+  }, [
+    isPageSubdued,
+    radioUseCaseId,
+    errorValue,
+    isSidebar,
+    isEmpty,
+    isMultiple,
+  ]);
 
   const currentUseCaseObj: any = useCasesObj[radioUseCaseId];
 
+  const icon = currentUseCaseObj.iconType
+    ? { iconType: currentUseCaseObj.iconType }
+    : {
+        icon: currentUseCaseObj.icon,
+      };
+
   const euiEmptyPromptPreview = (
     <EuiEmptyPrompt
-      iconType={currentUseCaseObj?.iconType}
+      {...icon}
       title={currentUseCaseObj.title}
       body={currentUseCaseObj?.body}
       actions={currentUseCaseObj?.actions}
@@ -166,80 +112,12 @@ export default () => {
     />
   );
 
-  const code = reactElementToJSXString(
-    <EuiEmptyPrompt
-      iconType={currentUseCaseObj?.iconType}
-      title={currentUseCaseObj.title}
-      body={currentUseCaseObj?.body}
-      actions={currentUseCaseObj?.actions}
-      {...(panelProps as any)}
-    />
-  );
-
-  console.log(code);
+  const code = reactElementToJSXString(euiEmptyPromptPreview);
 
   return (
     <>
       <EuiSplitPanel.Outer direction="row" hasBorder>
         <EuiSplitPanel.Inner color="subdued">
-          <EuiTitle size="xs">
-            <h3>What is the page background?</h3>
-          </EuiTitle>
-
-          <EuiSpacer size="m" />
-
-          <EuiFlexGroup>
-            <EuiFlexItem>
-              <button
-                onClick={() => onChangeBgColor('plain')}
-                className={classNames(
-                  'guideDemo__emptyPromptPanelPickerThumbBtn',
-                  {
-                    'guideDemo__emptyPromptPanelPickerThumbBtn-isSelected': !isPageSubdued,
-                  }
-                )}
-                aria-label="Select page centered content template"
-              >
-                <EuiImage alt="" url={pageCenteredContent} size="fullWidth" />
-                {!isPageSubdued && (
-                  <EuiIcon
-                    type="checkInCircleFilled"
-                    color="primary"
-                    className="guideDemo__emptyPromptBgPickerCheckMark"
-                  />
-                )}
-              </button>
-              <EuiSpacer size="s" />
-              <p>White</p>
-            </EuiFlexItem>
-
-            <EuiFlexItem>
-              <button
-                onClick={() => onChangeBgColor('subdued')}
-                className={classNames(
-                  'guideDemo__emptyPromptPanelPickerThumbBtn',
-                  {
-                    'guideDemo__emptyPromptPanelPickerThumbBtn-isSelected': isPageSubdued,
-                  }
-                )}
-                aria-label="Select page centered body template"
-              >
-                <EuiImage alt="" url={pageCenteredBody} size="fullWidth" />
-                {isPageSubdued && (
-                  <EuiIcon
-                    type="checkInCircleFilled"
-                    color="primary"
-                    className="guideDemo__emptyPromptBgPickerCheckMark"
-                  />
-                )}
-              </button>
-              <EuiSpacer size="s" />
-              <p>Subdued</p>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-
-          <EuiSpacer size="xl" />
-
           <EuiRadioGroup
             options={useCasesOptions}
             idSelected={radioUseCaseId}
@@ -255,6 +133,109 @@ export default () => {
           />
 
           <EuiSpacer size="xl" />
+
+          <EuiTitle size="xs">
+            <h3>What is the type of page?</h3>
+          </EuiTitle>
+
+          <EuiSpacer size="m" />
+
+          <EuiFlexGroup>
+            <EuiFlexItem>
+              <button
+                onClick={() => onSelectThumbnail('sidebar')}
+                className={classNames(
+                  'guideDemo__emptyPromptPanelPickerThumbBtn',
+                  {
+                    'guideDemo__emptyPromptPanelPickerThumbBtn-isSelected': isSidebar,
+                  }
+                )}
+                aria-label="Select page with sidebar thumbnail"
+              >
+                <EuiImage
+                  alt=""
+                  url={isDarkTheme ? darkSidebar : lightSidebar}
+                  size="fullWidth"
+                />
+                {isSidebar && (
+                  <EuiIcon
+                    type="checkInCircleFilled"
+                    color="primary"
+                    className="guideDemo__emptyPromptBgPickerCheckMark"
+                  />
+                )}
+              </button>
+              <EuiSpacer size="s" />
+
+              <EuiText size="xs">
+                <p>Page with sidebar</p>
+              </EuiText>
+            </EuiFlexItem>
+
+            <EuiFlexItem>
+              <button
+                onClick={() => onSelectThumbnail('empty')}
+                className={classNames(
+                  'guideDemo__emptyPromptPanelPickerThumbBtn',
+                  {
+                    'guideDemo__emptyPromptPanelPickerThumbBtn-isSelected': isEmpty,
+                  }
+                )}
+                aria-label="Select empty page thumbnail"
+              >
+                <EuiImage
+                  alt=""
+                  url={isDarkTheme ? darkEmpty : lightEmpty}
+                  size="fullWidth"
+                />
+                {isEmpty && (
+                  <EuiIcon
+                    type="checkInCircleFilled"
+                    color="primary"
+                    className="guideDemo__emptyPromptBgPickerCheckMark"
+                  />
+                )}
+              </button>
+              <EuiSpacer size="s" />
+
+              <EuiText size="xs">
+                <p>Empty page</p>
+              </EuiText>
+            </EuiFlexItem>
+
+            <EuiFlexItem>
+              <button
+                onClick={() => onSelectThumbnail('multiple')}
+                className={classNames(
+                  'guideDemo__emptyPromptPanelPickerThumbBtn',
+                  {
+                    'guideDemo__emptyPromptPanelPickerThumbBtn-isSelected': isMultiple,
+                  }
+                )}
+                aria-label="Select page with multiple panels thumbnail"
+              >
+                <EuiImage
+                  alt=""
+                  url={isDarkTheme ? darkMultiple : lightMultiple}
+                  size="fullWidth"
+                />
+                {isMultiple && (
+                  <EuiIcon
+                    type="checkInCircleFilled"
+                    color="primary"
+                    className="guideDemo__emptyPromptBgPickerCheckMark"
+                  />
+                )}
+              </button>
+              <EuiSpacer size="s" />
+
+              <EuiText size="xs">
+                <p>Page with multiple panels</p>
+              </EuiText>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+
+          <EuiSpacer size="xl" />
         </EuiSplitPanel.Inner>
 
         <EuiSplitPanel.Inner>
@@ -263,29 +244,9 @@ export default () => {
               <h3>Recommend panel color</h3>
             </EuiTitle>
 
-            <EuiSpacer size="s" />
-
-            {visibleRecommendedCard}
-
             <EuiSpacer size="m" />
 
-            <EuiFormFieldset
-              legend={{
-                children: (
-                  <>
-                    <EuiTitle size="xs">
-                      <h3>Alternatives</h3>
-                    </EuiTitle>
-                  </>
-                ),
-              }}
-            >
-              {visibleAlternativeTransparentCard}
-
-              {visibleAlternativeErrorCard}
-
-              {visibleAlternativeStandOutCard}
-            </EuiFormFieldset>
+            {visibleRecommendedText}
           </div>
         </EuiSplitPanel.Inner>
       </EuiSplitPanel.Outer>

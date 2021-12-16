@@ -1,11 +1,15 @@
 import React from 'react';
-import { EuiButton, EuiButtonEmpty } from '../../../../src/components';
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiLoadingLogo,
+} from '../../../../src/components';
 
 export const useCasesObj: any = {
   noData: {
     id: 'noData',
     label: 'No data',
-    iconType: 'logoKibana',
+    iconType: 'addDataApp',
     title: <h2>Get started by adding your data</h2>,
     body: (
       <>
@@ -28,14 +32,14 @@ export const useCasesObj: any = {
   noPermission: {
     id: 'noPermission',
     label: 'No permission',
-    iconType: 'logoKibana',
+    iconType: 'lock',
     title: <h2>Contact your administrator for access</h2>,
     body: <p>To view cases in this space, you need additional privileges.</p>,
   },
   noResults: {
     id: 'noResults',
     label: 'No results',
-    iconType: 'logoKibana',
+    iconType: 'logoSecurity',
     title: <h2>Start adding cases</h2>,
     body: (
       <p>
@@ -52,7 +56,7 @@ export const useCasesObj: any = {
   error: {
     id: 'error',
     label: 'Error',
-    iconType: 'logoKibana',
+    iconType: 'alert',
     title: <h2>Error loading Dashboards</h2>,
     body: (
       <p>
@@ -64,7 +68,7 @@ export const useCasesObj: any = {
   errorPage: {
     id: 'errorPage',
     label: 'Page error',
-    iconType: 'logoKibana',
+    iconType: 'magnifyWithExclamation',
     title: <h2>Page not found</h2>,
     body: (
       <p>
@@ -79,18 +83,19 @@ export const useCasesObj: any = {
       <EuiButtonEmpty>Go back</EuiButtonEmpty>,
     ],
   },
-  completedTasks: {
-    id: 'completedTasks',
-    label: 'Completed tasks',
-    iconType: 'logoKibana',
-    title: <h2>All your tasks are done!</h2>,
-    body: <p>You’ve finished all your tasks.</p>,
-    actions: [
-      <EuiButton color="primary" fill>
-        Add a task
-      </EuiButton>,
-    ],
-  },
+  // This example was commented out. Can we provide a better example?
+  // completedTasks: {
+  //   id: 'completedTasks',
+  //   label: 'Completed tasks',
+  //   iconType: 'logoKibana',
+  //   title: <h2>Looks like you don&apos;t have any invoices!</h2>,
+  //   body: <p>You’ve finished all your tasks.</p>,
+  //   actions: [
+  //     <EuiButton color="primary" fill>
+  //       Add a task
+  //     </EuiButton>,
+  //   ],
+  // },
   licenseUpgrade: {
     id: 'licenseUpgrade',
     label: 'License upgrade',
@@ -107,5 +112,11 @@ export const useCasesObj: any = {
       </EuiButton>,
       <EuiButtonEmpty>Start a free trial</EuiButtonEmpty>,
     ],
+  },
+  loading: {
+    id: 'loading',
+    label: 'Loading',
+    icon: <EuiLoadingLogo logo="logoKibana" size="xl" />,
+    title: <h2>Loading Dashboards</h2>,
   },
 };

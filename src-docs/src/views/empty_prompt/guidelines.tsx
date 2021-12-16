@@ -17,12 +17,12 @@ import {
 } from '../../../../src/components';
 import PanelColorPicker from './_panel_color_picker';
 
-import vertical from '../../images/empty-prompt_vertical.svg';
-import horizontal from '../../images/empty-prompt_horizontal.svg';
-import iconDont from '../../images/empty-prompt_icon-dont.svg';
-import multipleDo from '../../images/empty-prompt_multiple-do.svg';
-import multipleDont from '../../images/empty-prompt_multiple-dont.svg';
-import inlineLink from '../../images/empty-prompt_inline-link.svg';
+import vertical from '../../images/empty-prompt/vertical.svg';
+import horizontal from '../../images/empty-prompt/horizontal.svg';
+import iconDont from '../../images/empty-prompt/icon-dont.svg';
+import multipleDo from '../../images/empty-prompt/multiple-do.svg';
+import multipleDont from '../../images/empty-prompt/multiple-dont.svg';
+import inlineLink from '../../images/empty-prompt/inline-link.svg';
 
 export default () => (
   <>
@@ -269,8 +269,8 @@ export default () => (
       description={
         <>
           <p>
-            Most of the time you just need the plain color with or without a
-            border considering what is the page layout you’re currently on.
+            Most of the time you just need the plain or subdued color
+            considering what is the page layout you’re currently on.
           </p>
           <p>
             In a few scenarios you can consider some color alternatives. Use the

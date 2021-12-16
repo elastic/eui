@@ -1,77 +1,64 @@
 import React from 'react';
+import { EuiCode } from '../../../../src/components';
 
 export const recommendedObj: any = {
-  plainWithBorder: {
-    id: 'plainWithBorder',
-    code: 'color="plain” | hasBorder={true}',
+  subdued: {
+    id: 'subdued',
     text: (
-      <p>
-        Use this panel color to make users not getting distracted and focus on
-        the content.
-      </p>
-    ),
-    props: { color: 'plain', hasBorder: true },
-  },
-  plain: {
-    id: 'plain',
-    code: 'color="plain”',
-    text: (
-      <p>
-        Use this panel color to make users not getting distracted and focus on
-        the content.
-      </p>
-    ),
-    props: { color: 'plain' },
-  },
-  errorPanel: {
-    id: 'errorPanel',
-    code: 'color="error"',
-    text: <p>Use this panel color to emphasize that an error happened.</p>,
-    props: { color: 'danger' },
-  },
-  standOutSubdued: {
-    id: 'standOutSubdued',
-    code: 'color="subdued"',
-    text: (
-      <p>
-        Consider this alternative if you want to make the empty prompt stand
-        out. For example, if there are other components on the page, and you
-        want to make users look to the empty prompt first.
-      </p>
+      <>
+        <p>
+          Set <EuiCode>{'color="subdued"'}</EuiCode> to make users not getting
+          distracted and focus on the content.
+        </p>
+        <p>
+          Consider the transparent color if the empty prompt is contained in
+          another component.
+        </p>
+      </>
     ),
     props: { color: 'subdued' },
   },
-  standOutColored: {
-    id: 'standOutColored',
-    code: 'color="primary" | color="accent"',
+  plain: {
+    id: 'plain',
     text: (
-      <p>
-        Consider any of these alternative if you want to make the empty prompt
-        to stand out. For example, if there are other components on the page and
-        you want to make users look to the empty prompt first.
-      </p>
+      <>
+        <p>
+          Set <EuiCode>{'color="plain”'}</EuiCode> to make users not getting
+          distracted and focus on the content.
+        </p>
+        <p>
+          Consider the transparent color if the empty prompt is contained in
+          another component.
+        </p>
+      </>
     ),
-    props: { color: 'primary' },
+    props: { color: 'plain' },
   },
-  alternativeError: {
-    id: 'alternativeError',
-    code: 'color="error"',
+  error: {
+    id: 'error',
     text: (
       <p>
-        ALternative. Use this panel color to emphasize that an error happened.
+        Set <EuiCode>{'color="danger'}</EuiCode> to emphasize that an error
+        happened.
       </p>
     ),
     props: { color: 'danger' },
   },
-  alternativeTransparent: {
-    id: 'alternativeTransparent',
-    code: 'color="transparent”"',
+  multiple: {
+    id: 'multiple',
     text: (
-      <p>
-        Consider this alternative if the empty prompt is contained in another
-        component.
-      </p>
+      <>
+        <p>
+          Set <EuiCode>{'color="plain” | hasBorder={true}'}</EuiCode> when you
+          have multiple panels on the page. The other panels should also have
+          borders to ensure consistency.
+        </p>
+        <p>
+          Consider the transparent color if the empty prompt is contained in
+          another component.
+        </p>
+      </>
     ),
-    props: { color: 'transparent' },
+    props: { color: 'plain', hasBorder: true },
   },
 };
