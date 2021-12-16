@@ -82,6 +82,44 @@ describe('EuiDataGrid', () => {
             .should('be.greaterThan', firstHeight);
         });
     });
+
+    it('accounts for a horizontal scrollbar', () => {
+      const columns: EuiDataGridColumn[] = [];
+      for (let i = 0; i < 100; i++) {
+        columns.push({ id: `column ${i}` });
+      }
+      const columnVisibility = {
+        visibleColumns: columns.map(({ id }) => id),
+        setVisibleColumns: () => {},
+      };
+      cy.mount(
+        <EuiDataGrid
+          {...baseProps}
+          columns={columns}
+          columnVisibility={columnVisibility}
+          renderFooterCellValue={undefined}
+        />
+      );
+
+      getGridData();
+
+      const virtualizedContainer = cy
+        .get('[data-test-subj=euiDataGridBody]')
+        .children()
+        .first();
+
+      // make sure the horizontal scrollbar is present
+      virtualizedContainer.then(([outerContainer]: [HTMLDivElement]) => {
+        expect(outerContainer.offsetHeight).to.be.greaterThan(
+          outerContainer.clientHeight
+        );
+      });
+
+      // make sure the vertical scrollbar is gone
+      virtualizedContainer.then(([outerContainer]: [HTMLDivElement]) => {
+        expect(outerContainer.offsetWidth).to.equal(outerContainer.clientWidth);
+      });
+    });
   });
 
   describe('focus management', () => {
