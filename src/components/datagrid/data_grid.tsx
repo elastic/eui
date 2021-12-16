@@ -13,6 +13,7 @@ import React, {
   useMemo,
   useRef,
   useState,
+  useImperativeHandle,
 } from 'react';
 import { VariableSizeGrid as Grid } from 'react-window';
 import { useGeneratedHtmlId, keys } from '../../services';
@@ -262,6 +263,19 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     } = useHeaderIsInteractive(contentRef.current);
     const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus(
       headerIsInteractive
+    );
+
+    /**
+     * Expose internal APIs as ref to consumer
+     */
+    useImperativeHandle(
+      ref,
+      () => ({
+        setFocusedCell: ({ rowIndex, colIndex }) => {
+          focusContext.setFocusedCell([colIndex, rowIndex]);
+        },
+      }),
+      [focusContext]
     );
 
     /**

@@ -2724,4 +2724,32 @@ describe('EuiDataGrid', () => {
       expect(takeMountedSnapshot(component)).toMatchSnapshot();
     });
   });
+
+  it('returns a ref which exposes internal imperative APIs', () => {
+    // Using a class component for this test so we can inspect the internal gridRef
+    class MockApp extends React.Component {
+      gridRef = React.createRef<any>();
+
+      render() {
+        return (
+          <EuiDataGrid
+            {...requiredProps}
+            columns={[{ id: 'A' }, { id: 'B' }]}
+            columnVisibility={{
+              visibleColumns: ['A', 'B'],
+              setVisibleColumns: () => {},
+            }}
+            rowCount={1}
+            renderCellValue={() => 'value'}
+            ref={this.gridRef}
+          />
+        );
+      }
+    }
+    const component = mount(<MockApp />);
+
+    expect((component.instance() as any).gridRef.current).toEqual({
+      setFocusedCell: expect.any(Function),
+    });
+  });
 });

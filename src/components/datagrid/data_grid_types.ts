@@ -285,7 +285,6 @@ export type EuiDataGridProps = OneOf<
 
 export interface EuiDataGridRefProps {
   setFocusedCell({ rowIndex, colIndex }: EuiDataGridCellLocation): void;
-  focusIntoGrid(): void;
 }
 
 export type EuiDataGridCellLocation = { rowIndex: number; colIndex: number };
@@ -523,6 +522,10 @@ export interface EuiDataGridColumnCellActionProps {
    * The index of the row that contains cell's data
    */
   rowIndex: number;
+  /**
+   * The index of the column that contains cell's data
+   */
+  colIndex: number;
   /**
    * The id of the column that contains the cell's data
    */
