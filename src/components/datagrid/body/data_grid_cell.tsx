@@ -142,7 +142,7 @@ export class EuiDataGridCell extends Component<
     return [];
   };
 
-  takeFocus = () => {
+  takeFocus = (preventScroll: boolean) => {
     const cell = this.cellRef.current;
 
     if (cell) {
@@ -157,9 +157,9 @@ export class EuiDataGridCell extends Component<
         const interactables = this.getInteractables();
         if (this.props.isExpandable === false && interactables.length === 1) {
           // Only one element can be interacted with
-          interactables[0].focus();
+          interactables[0].focus({ preventScroll });
         } else {
-          cell.focus();
+          cell.focus({ preventScroll });
         }
       }
     }
@@ -238,14 +238,16 @@ export class EuiDataGridCell extends Component<
       this.context.focusedCell?.[0] === colIndex &&
       this.context.focusedCell?.[1] === visibleRowIndex
     ) {
-      this.onFocusUpdate(true);
+      // The second flag sets preventScroll: true as a focus option, which prevents
+      // hijacking the user's scroll behavior when the cell re-mounts on scroll
+      this.onFocusUpdate(true, true);
     }
   }
 
-  onFocusUpdate = (isFocused: boolean) => {
+  onFocusUpdate = (isFocused: boolean, preventScroll = false) => {
     this.setState({ isFocused }, () => {
       if (isFocused) {
-        this.takeFocus();
+        this.takeFocus(preventScroll);
       }
     });
   };

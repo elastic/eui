@@ -183,6 +183,7 @@ describe('EuiDataGridCell', () => {
     });
 
     it('mounts the cell with focus state if the current cell should be focused', () => {
+      const focusSpy = jest.spyOn(HTMLElement.prototype, 'focus');
       const component = mount(
         <DataGridFocusContext.Provider
           value={{ ...focusContext, focusedCell: [3, 3] }}
@@ -196,6 +197,7 @@ describe('EuiDataGridCell', () => {
       );
 
       expect((component.instance().state as any).isFocused).toEqual(true);
+      expect(focusSpy).toHaveBeenCalledWith({ preventScroll: true });
     });
   });
 
