@@ -2,6 +2,7 @@
 
 **Bug fixes**
 
+- Fixed a `EuiDataGrid` sizing bug which didn't account for a horizontal scrollbar ([#5478](https://github.com/elastic/eui/pull/5478))
 - Fixed `EuiDataGrid` issue where a focused cell would lose focus when scrolled out of and back into view ([#5488](https://github.com/elastic/eui/pull/5488))
 
 ## [`43.1.1`](https://github.com/elastic/eui/tree/v43.1.1)
