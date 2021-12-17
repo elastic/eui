@@ -67,7 +67,7 @@ export const useCasesObj: any = {
   },
   errorPage: {
     id: 'errorPage',
-    label: 'Page error',
+    label: 'Page not found',
     iconType: 'magnifyWithExclamation',
     title: <h2>Page not found</h2>,
     body: (

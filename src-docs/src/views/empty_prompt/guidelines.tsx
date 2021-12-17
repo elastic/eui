@@ -184,8 +184,7 @@ export default () => (
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-            Users understand there is a client or server error and the status
-            code.
+            Users understand there is a client or server error.
           </EuiTableRowCell>
 
           <EuiTableRowCell>Go home / go back</EuiTableRowCell>
