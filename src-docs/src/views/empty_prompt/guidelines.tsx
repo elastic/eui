@@ -34,9 +34,10 @@ export default () => (
 
     <EuiText grow={false}>
       <p>
-        A useful empty state will let the user know what’s happening, why it’s
-        happening, and what to do about it. If done right, it can can contribute
-        to a more compelling user experience and add more value to the business.
+        A useful empty state will let the user know what&apos;s happening, why
+        it&apos;s happening, and what to do about it. It can contribute to a
+        more compelling user experience and add more value to the business if
+        done right.
       </p>
       <p>To make the empty state clear, follow this pattern:</p>
     </EuiText>
@@ -58,27 +59,26 @@ export default () => (
       <ol>
         <li>
           <strong>Icon/illustration (optional):</strong> A meaningful icon or
-          illustration that represents the solution or context.
+          illustration representing the solution or context.
         </li>
         <li>
-          <strong>Title:</strong> The title will answer the question. What’s
-          happening? Is it an error? Is there data?
+          <strong>Title:</strong> The title will answer the question.
+          What&apos;s happening? Is it an error? Is there data?
         </li>
         <li>
-          <strong>Description:</strong> Why is it happening? Try to provide more
-          information regarding why the space is empty and guide the user
-          through next actions.
+          <strong>Description:</strong> Why is it happening? Try to explain why
+          the space is empty and guide the user through the required following
+          actions.
         </li>
         <li>
-          <strong>Action(s):</strong> What will solve the issue? It’s always
-          important to lead users to take action or to guide them about the next
-          steps.
+          <strong>Action(s):</strong> What will solve the issue? It&apos;s
+          always important to lead users to take action or guide them about the
+          next steps.
         </li>
         <li>
           <strong>Footer (optional):</strong> Use the footer to provide more
-          helpful guidance. Use this section to reference documentation or to
-          link to an area where users can learn more about the issue they are
-          facing.
+          helpful guidance. Use this section to reference documentation or link
+          to an area where users can learn more about the issue they are facing.
         </li>
       </ol>
     </EuiText>
@@ -110,8 +110,8 @@ export default () => (
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-            No data is available, or the data doesn’t match the filter. First
-            time use.
+            No data is available, or the data doesn&apos;t match the filter.
+            First time use.
           </EuiTableRowCell>
 
           <EuiTableRowCell>
@@ -147,12 +147,12 @@ export default () => (
           <EuiTableRowCell>No results matched the search.</EuiTableRowCell>
 
           <EuiTableRowCell>
-            Users understand why the search didn’t match any results and what
-            they can do to have better results.
+            Users understand why the search didn&apos;t match any results and
+            what they can do to have better results.
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-            Refresh / try again / reformat data or action specific to error
+            Refresh / try again / reformat data or action specific to the error.
           </EuiTableRowCell>
         </EuiTableRow>
 
@@ -164,8 +164,8 @@ export default () => (
           <EuiTableRowCell>An error happened.</EuiTableRowCell>
 
           <EuiTableRowCell>
-            Users understand why they’re facing an error and what they can do to
-            solve the error.
+            Users understand why they&apos;re facing an error and what they can
+            do to solve it.
           </EuiTableRowCell>
 
           <EuiTableRowCell>
@@ -184,8 +184,8 @@ export default () => (
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-            Users understand there is a client or server error and what is the
-            status code.
+            Users understand there is a client or server error and the status
+            code.
           </EuiTableRowCell>
 
           <EuiTableRowCell>Go home / go back</EuiTableRowCell>
@@ -213,9 +213,9 @@ export default () => (
           <EuiTableRowCell>No license to use a feature.</EuiTableRowCell>
 
           <EuiTableRowCell>
-            Users understand that they don’t have the required license to access
-            a feature and what actions they need to perform to upgrade the
-            license.
+            Users understand that they don&apos;t have the required license to
+            access a feature and what actions they need to perform to upgrade
+            the license.
           </EuiTableRowCell>
 
           <EuiTableRowCell>Start trial / upgrade license</EuiTableRowCell>
@@ -239,13 +239,12 @@ export default () => (
             Most of the time, you just need a vertical layout. The vertical
             layout is perfect when the content is small. A title and the
             description are no longer than two paragraphs. You can use this
-            layout with just an icon, an illustration or no icons at all.
+            layout with just an icon, an illustration, or no icons at all.
           </p>
           <p>
-            Use the horizontal layout when you have large contents. When a
-            description has at least two paragraphs, multiple call to actions
-            and possibly a footer. For this type of layout an illustration is
-            required.
+            Use the horizontal layout when you have a long description, multiple
+            calls to action, and possibly a footer. For this type of layout, an
+            illustration is required.
           </p>
         </>
       }
@@ -257,7 +256,7 @@ export default () => (
         <EuiImage alt="Vertical layout" url={vertical} height="252" />
       </GuideRuleExample>
       <GuideRuleExample
-        text="Use the horizontal layout when you have large contents and you can provide an illustration."
+        text="Use the horizontal layout when you have a long description, and you can provide an illustration."
         minHeight="280px"
       >
         <EuiImage alt="Horizontal layout" url={horizontal} height="252" />
@@ -269,13 +268,13 @@ export default () => (
       description={
         <>
           <p>
-            Most of the time you just need the plain or subdued color
-            considering what is the page layout you’re currently on.
+            Most of the time, you just need the plain or subdued color,
+            considering the page layout you&apos;re currently on.
           </p>
           <p>
-            In a few scenarios you can consider some color alternatives. Use the
-            following helper tool to find what is the best panel color to use
-            based on your use case.
+            In a few scenarios, you can consider some color alternatives. Use
+            the following helper tool to find the best panel color based on your
+            use case.
           </p>
         </>
       }
@@ -295,7 +294,7 @@ export default () => (
             brand.
           </p>
           <p>
-            When using an illustration bear in mind that they stand out a lot.
+            When using an illustration, bear in mind that they stand out a lot.
             Use one illustration per page. Having multiple illustrations might
             make the page too crowded.
           </p>
@@ -323,25 +322,25 @@ export default () => (
       description={
         <>
           <p>
-            Use learn more links in your empty prompt to link to a documentation
+            Use learn more links in your empty prompt to link to documentation
             where users can get more detailed help.
           </p>
           <p>
-            When the empty prompt doesn’t contain any call to action, use the
-            link after the description. Otherwise, if there are call to actions,
-            use the learn more link in the footer.
+            Use the link after the description when the empty prompt
+            doesn&apos;t contain any call to action. Otherwise, if there is a
+            call to action, use the learn more link in the footer.
           </p>
         </>
       }
     >
       <GuideRuleExample
-        text="Add the learn more link after the description when the empty prompt doesn’t contain call to actions."
+        text="Add the learn more link after the description when the empty prompt doesn't contain a call to action."
         minHeight="280px"
       >
         <EuiImage alt="Inline link" url={inlineLink} height="252" />
       </GuideRuleExample>
       <GuideRuleExample
-        text="Add the learn more link in the footer when the empty prompt contains call to actions."
+        text="Add the learn more link in the footer when the empty prompt contains a call to action."
         minHeight="280px"
       >
         <EuiImage alt="Footer link" url={horizontal} height="252" />
@@ -357,7 +356,7 @@ export default () => (
             multiple primary actions and multiple icons/illustrations.
           </p>
           <p>
-            Use secondary actions and no icons/illustrations. This way the
+            Use secondary actions and no icons/illustrations. This way, the
             visual noise will be reduced. Consider using an illustration or a
             primary action if you want to make one of the empty states stand
             out.
@@ -367,7 +366,7 @@ export default () => (
     >
       <GuideRuleExample
         type="do"
-        text="When displaying multiple empty states use secondary actions and no icons/illustrations."
+        text="Use secondary actions and no icons/illustrations when displaying multiple empty states."
         minHeight="280px"
       >
         <EuiImage alt="Vertical layout" url={multipleDo} height="252" />
@@ -375,7 +374,7 @@ export default () => (
 
       <GuideRuleExample
         type="dont"
-        text="Avoid mixing different type of empty states. Try to be consistent."
+        text="Avoid mixing different types of empty states. Try to be consistent."
         minHeight="280px"
       >
         <EuiImage

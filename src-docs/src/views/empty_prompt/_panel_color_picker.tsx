@@ -101,7 +101,11 @@ export default () => {
       setPanelProps(recommendedObj.error.props);
     }
 
-    if (radioUseCaseId === 'noPermission' || radioUseCaseId === 'errorPage') {
+    if (
+      radioUseCaseId === 'noPermission' ||
+      radioUseCaseId === 'errorPage' ||
+      radioUseCaseId === 'loading'
+    ) {
       // if this thumb is selected when we changing to use case for `noPermission` or `pageError` we select the first thumb
       if (thumbnail === 'multiple') {
         setThumbnail('sidebar');

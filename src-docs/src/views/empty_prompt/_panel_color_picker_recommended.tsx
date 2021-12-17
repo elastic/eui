@@ -23,8 +23,8 @@ export const recommendedObj: any = {
     text: (
       <>
         <p>
-          Set <EuiCode>{'color="plain”'}</EuiCode> to make users not getting
-          distracted and focus on the content.
+          Set <EuiCode>{'color="plain”'}</EuiCode> to make users getting focus
+          on the content
         </p>
         <p>
           Consider the transparent color if the empty prompt is contained in
