@@ -57,7 +57,7 @@ export default () => {
                   groupByRollup: (d) => d.status,
                   shape: {
                     fillColor: (d) =>
-                      euiChartTheme.colors.vizColors[d.sortIndex],
+                      euiChartTheme.theme.colors.vizColors[d.sortIndex],
                   },
                 },
               ]}
@@ -96,7 +96,7 @@ export default () => {
                   groupByRollup: (d) => d.language,
                   shape: {
                     fillColor: (d) =>
-                      euiChartTheme.colors.vizColors[d.sortIndex],
+                      euiChartTheme.theme.colors.vizColors[d.sortIndex],
                   },
                 },
               ]}
