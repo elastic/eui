@@ -374,6 +374,7 @@ export default class Time extends React.Component {
             onBlur={this.onBlur}
           >
             <ul
+              aria-label={this.props.timeCaption}
               className="react-datepicker__time-list"
               ref={list => {
                 this.list = list;
