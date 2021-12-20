@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, useMemo } from 'react';
 import classnames from 'classnames';
 import { CommonProps } from '../common';
 
@@ -20,14 +20,14 @@ export const EuiModalHeaderTitle: EuiModalHeaderTitleProps = ({
   ...rest
 }) => {
   const classes = classnames('euiModalHeader__title', className);
-  const renderChildren = () =>
-    React.Children.map(children, (child) => {
-      if (typeof child === 'string') return <h1>{child}</h1>;
-      return child;
-    });
+  const childrenWithHeading = useMemo(() => {
+    if (children && !children.hasOwnProperty('$$typeof'))
+      return <h1>{children}</h1>;
+    return children;
+  }, [children]);
   return (
     <div className={classes} {...rest}>
-      {renderChildren()}
+      {childrenWithHeading}
     </div>
   );
 };
