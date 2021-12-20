@@ -22,6 +22,7 @@ const fontFamily = `'Inter', 'Inter UI', -apple-system, BlinkMacSystemFont,
 export interface EuiChartThemeType {
   lineAnnotation: LineAnnotationStyle;
   theme: PartialTheme;
+  partition: PartialTheme['partition'];
 }
 
 function createTheme(colors: any): EuiChartThemeType {
@@ -38,6 +39,25 @@ function createTheme(colors: any): EuiChartThemeType {
         fill: colors.euiTextColor.rgba,
         padding: 0,
       },
+    },
+    partition: {
+      fontFamily: fontFamily,
+      minFontSize: 8,
+      maxFontSize: 16,
+      fillLabel: {
+        valueFont: {
+          fontWeight: 700,
+        },
+      },
+      linkLabel: {
+        maxCount: 5,
+        fontSize: 11,
+        textColor: colors.euiTextColor.rgba,
+      },
+      outerSizeRatio: 1,
+      circlePadding: 4,
+      sectorLineStroke: colors.euiColorEmptyShade.rgba,
+      sectorLineWidth: 1.5,
     },
     theme: {
       background: {
