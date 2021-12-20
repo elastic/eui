@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import { PartialTheme, LineAnnotationStyle } from '@elastic/charts';
+import {
+  PartialTheme,
+  LineAnnotationStyle,
+  RecursivePartial,
+  PartitionConfig,
+} from '@elastic/charts';
 
 import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
 import { DEFAULT_VISUALIZATION_COLOR } from '../../services/color/visualization_colors';
@@ -22,7 +27,7 @@ const fontFamily = `'Inter', 'Inter UI', -apple-system, BlinkMacSystemFont,
 export interface EuiChartThemeType {
   lineAnnotation: LineAnnotationStyle;
   theme: PartialTheme;
-  partition: PartialTheme['partition'];
+  partition: RecursivePartial<PartitionConfig>;
 }
 
 function createTheme(colors: any): EuiChartThemeType {
