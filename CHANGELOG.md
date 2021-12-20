@@ -2,6 +2,8 @@
 
 No public interface changes since `43.1.1`.
 
+- Fixed overriding border radius [#5490](https://github.com/elastic/eui/pull/5490)
+
 ## [`43.1.1`](https://github.com/elastic/eui/tree/v43.1.1)
 
 **Bug fixes**
