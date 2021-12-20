@@ -20,9 +20,14 @@ export const EuiModalHeaderTitle: EuiModalHeaderTitleProps = ({
   ...rest
 }) => {
   const classes = classnames('euiModalHeader__title', className);
+  const renderChildren = () =>
+    React.Children.map(children, (child) => {
+      if (typeof child === 'string') return <h1>{child}</h1>;
+      return child;
+    });
   return (
     <div className={classes} {...rest}>
-      {children}
+      {renderChildren()}
     </div>
   );
 };
