@@ -16,6 +16,7 @@
 - Fixed an accessibility issue where `EuiDatePicker` time options did not have unique IDs ([#5466](https://github.com/elastic/eui/pull/5466))
 - Fixed global and reset styles when using the legacy theme ([#5473](https://github.com/elastic/eui/pull/5473))
 - Fixed `EuiSuperDatePicker` not passing `isDisabled` to `EuiAutoRefresh` ([#5472](https://github.com/elastic/eui/pull/5472))
+- Fixed `EuiModalHeaderTitle` to conditionally wrap title strings in an H1 ([#5494](https://github.com/elastic/eui/pull/5494))
 
 ## [`43.1.0`](https://github.com/elastic/eui/tree/v43.1.0)
 
