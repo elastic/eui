@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../../components';
-import { Chart, Partition, Settings } from '@elastic/charts';
+import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
 
 import {
   EUI_CHARTS_THEME_DARK,
@@ -27,7 +27,6 @@ export default () => {
   const euiChartTheme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;
-  const euiPartitionConfig = euiChartTheme.partition;
 
   return (
     <div>
@@ -38,7 +37,7 @@ export default () => {
           </EuiTitle>
           <EuiSpacer />
           <Chart size={{ height: 200 }}>
-            <Settings ariaLabelledBy={exampleOne} />
+            <Settings theme={euiChartTheme.theme} ariaLabelledBy={exampleOne} />
             <Partition
               id="pieByPR"
               data={[
@@ -51,6 +50,7 @@ export default () => {
                   count: 319,
                 },
               ]}
+              layout={PartitionLayout.sunburst}
               valueAccessor={(d) => d.count}
               layers={[
                 {
@@ -61,10 +61,7 @@ export default () => {
                   },
                 },
               ]}
-              config={{
-                ...euiPartitionConfig,
-                clockwiseSectors: false,
-              }}
+              clockwiseSectors={false}
             />
           </Chart>
         </EuiFlexItem>
@@ -74,7 +71,7 @@ export default () => {
           </EuiTitle>
           <EuiSpacer />
           <Chart size={{ height: 200 }}>
-            <Settings ariaLabelledBy={exampleTwo} />
+            <Settings theme={euiChartTheme.theme} ariaLabelledBy={exampleTwo} />
             <Partition
               id="donutByLanguage"
               data={[
@@ -91,6 +88,7 @@ export default () => {
                   percent: 8.7,
                 },
               ]}
+              layout={PartitionLayout.sunburst}
               valueAccessor={(d) => Number(d.percent)}
               valueFormatter={() => ''}
               layers={[
@@ -102,11 +100,8 @@ export default () => {
                   },
                 },
               ]}
-              config={{
-                ...euiPartitionConfig,
-                emptySizeRatio: 0.4,
-                clockwiseSectors: false,
-              }}
+              emptySizeRatio={0.4}
+              clockwiseSectors={false}
             />
           </Chart>
         </EuiFlexItem>
