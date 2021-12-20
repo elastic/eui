@@ -70,7 +70,7 @@ export default () => {
     clockwiseSectors: false,
   });
   const [sliceOrderConfigText, setSliceOrderConfigText] = useState(
-    'clockwiseSectors: false,'
+    'clockwiseSectors={false}'
   );
 
   const [pieTypeIdSelected, setPieTypeIdSelected] = useState(
@@ -92,10 +92,10 @@ export default () => {
       .label;
     if (sliceOrderLabel.includes('Counter')) {
       setSliceOrderConfig({ clockwiseSectors: false });
-      setSliceOrderConfigText('clockwiseSectors: false,');
+      setSliceOrderConfigText('clockwiseSectors={false}');
     } else if (sliceOrderLabel.includes('Clockwise')) {
       setSliceOrderConfig({ specialFirstInnermostSector: false });
-      setSliceOrderConfigText('specialFirstInnermostSector: false,');
+      setSliceOrderConfigText('specialFirstInnermostSector={false}');
     } else if (sliceOrderLabel.includes('natural')) {
       setSliceOrderConfig({});
       setSliceOrderConfigText('');
@@ -312,9 +312,7 @@ export default () => {
       },
     ]}
     ${pieTypeIdSelected.includes('Donut') ? 'emptySizeRatio={0.4}' : ''}
-    {...{
-      ${sliceOrderConfigText}
-    }}
+    ${sliceOrderConfigText}
   />
 </Chart>`}
         >
