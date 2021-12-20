@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '../../components';
-import { Chart, Partition, Settings } from '@elastic/charts';
+import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
 
 import {
   EUI_CHARTS_THEME_DARK,
@@ -20,7 +20,6 @@ export const AccessibilitySunburst = () => {
   const euiChartTheme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;
-  const euiPartitionConfig = euiChartTheme.partition;
   const { vizColors } = euiChartTheme.theme.colors;
 
   const data = [
@@ -50,12 +49,14 @@ export const AccessibilitySunburst = () => {
       <EuiSpacer />
       <Chart size={{ height: 200 }}>
         <Settings
+          theme={euiChartTheme.theme}
           ariaLabelledBy={id}
           ariaDescription="There is a great variety of reported favorite fruit"
           ariaTableCaption="For the chart representation, after Clementine (22) individual results are not labelled as the segments become too small"
         />
         <Partition
           data={data}
+          layout={PartitionLayout.sunburst}
           valueAccessor={({ count }) => count}
           layers={[
             {
@@ -66,11 +67,7 @@ export const AccessibilitySunburst = () => {
               },
             },
           ]}
-          config={{
-            ...euiPartitionConfig,
-            clockwiseSectors: false,
-            partitionLayout: 'sunburst',
-          }}
+          clockwiseSectors={false}
         />
       </Chart>
     </>
@@ -82,6 +79,7 @@ export const AccessibilitySunburst = () => {
       <EuiSpacer />
       <Chart size={{ height: 200 }}>
         <Settings
+          theme={euiChartTheme.theme}
           ariaLabelledBy={id}
           ariaDescription="There is a great variety of reported favorite fruit"
           ariaTableCaption="For the chart representation, after Clementine (22) individual results are not labelled as the segments become too small"
@@ -89,6 +87,7 @@ export const AccessibilitySunburst = () => {
         <Partition
           data={data}
           valueAccessor={({ count }) => count}
+          layout={PartitionLayout.sunburst}
           layers={[
             {
               groupByRollup: ({ fruit }) => fruit,
@@ -98,14 +97,7 @@ export const AccessibilitySunburst = () => {
               },
             },
           ]}
-          config={{
-            ...euiPartitionConfig,
-            ...(isDarkTheme
-              ? EUI_CHARTS_THEME_DARK.partition
-              : EUI_CHARTS_THEME_LIGHT.partition),
-            clockwiseSectors: false,
-            partitionLayout: 'sunburst',
-          }}
+          clockwiseSectors={false}
         />
       </Chart>
     </>
