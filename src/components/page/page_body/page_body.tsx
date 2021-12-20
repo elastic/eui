@@ -98,11 +98,6 @@ export const EuiPageBody = <T extends ComponentTypes>({
   ...rest
 }: PropsWithChildren<EuiPageBodyProps<T>>) => {
   /**
-   * Logic for when to use a horizontal border separator and if full width or only under header
-   */
-  const contentHasBorder = !panelled && pageHeader ? '1px 0 0 0' : false;
-
-  /**
    * The EuiPageHeader is always the same
    */
   const pageHeaderNode = pageHeader && (
@@ -147,23 +142,18 @@ export const EuiPageBody = <T extends ComponentTypes>({
      * Wraps ALL the content inside of centered panel.
      * Color of panel depends on `panelled` prop
      */
+    panelled = false;
     pageContent = (
       <>
         <EuiPageContent
+          restrictWidth={restrictWidth}
           template={template}
-          color={panelled ? 'subdued' : 'plain'}
+          color={'plain'}
+          hasShadow
+          borderRadius="m"
           {...pageContentProps}
         >
-          {pageHeaderNode}
-          <EuiPageContentBody
-            template={template}
-            // paddingSize={contentPaddingSize}
-            restrictWidth={restrictWidth}
-            hasBorder={contentHasBorder}
-            {...pageContentBodyProps}
-          >
-            {children}
-          </EuiPageContentBody>
+          {children}
         </EuiPageContent>
       </>
     );

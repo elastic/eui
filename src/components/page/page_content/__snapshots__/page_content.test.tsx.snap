@@ -3,28 +3,24 @@
 exports[`EuiPageContent border accepts EuiPanel props 1`] = `
 <div
   class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent"
-  role="main"
 />
 `;
 
 exports[`EuiPageContent border accepts EuiPanel props 2`] = `
 <div
   class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent"
-  role="main"
 />
 `;
 
 exports[`EuiPageContent border accepts EuiPanel props 3`] = `
 <div
   class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent"
-  role="main"
 />
 `;
 
 exports[`EuiPageContent border accepts EuiPanel props 4`] = `
 <div
   class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusMedium euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent"
-  role="main"
 />
 `;
 
@@ -33,7 +29,6 @@ exports[`EuiPageContent border is rendered 1`] = `
   aria-label="aria-label"
   class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent testClass1 testClass2"
   data-test-subj="test subject string"
-  role="main"
 />
 `;
 
@@ -42,7 +37,6 @@ exports[`EuiPageContent border is rendered 2`] = `
   aria-label="aria-label"
   class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent testClass1 testClass2"
   data-test-subj="test subject string"
-  role="main"
 />
 `;
 
@@ -51,7 +45,6 @@ exports[`EuiPageContent border is rendered 3`] = `
   aria-label="aria-label"
   class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent testClass1 testClass2"
   data-test-subj="test subject string"
-  role="main"
 />
 `;
 
@@ -60,20 +53,12 @@ exports[`EuiPageContent border is rendered 4`] = `
   aria-label="aria-label"
   class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent testClass1 testClass2"
   data-test-subj="test subject string"
-  role="main"
-/>
-`;
-
-exports[`EuiPageContent role can be removed 1`] = `
-<div
-  class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent"
 />
 `;
 
 exports[`EuiPageContent template accepts EuiPanel props 1`] = `
 <div
   class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent"
-  role="main"
 >
   <div
     class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
@@ -84,7 +69,6 @@ exports[`EuiPageContent template accepts EuiPanel props 1`] = `
 exports[`EuiPageContent template accepts EuiPanel props 2`] = `
 <div
   class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent"
-  role="main"
 >
   <div
     class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
@@ -94,22 +78,20 @@ exports[`EuiPageContent template accepts EuiPanel props 2`] = `
 
 exports[`EuiPageContent template accepts EuiPanel props 3`] = `
 <div
-  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--flex"
-  role="main"
+  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent"
 >
   <div
-    class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody euiPageContentBody--verticalCenter euiPageContentBody--horizontalCenter"
+    class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
   />
 </div>
 `;
 
 exports[`EuiPageContent template accepts EuiPanel props 4`] = `
 <div
-  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent"
-  role="main"
+  class="euiPanel euiPanel--paddingSmall euiPanel--borderRadiusNone euiPanel--danger euiPanel--noShadow euiPanel--noBorder euiPageContent euiPageContent--flex"
 >
   <div
-    class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody"
+    class="euiPanel euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPageContentBody euiPageContentBody--verticalCenter euiPageContentBody--horizontalCenter"
   />
 </div>
 `;
@@ -119,7 +101,6 @@ exports[`EuiPageContent template is rendered 1`] = `
   aria-label="aria-label"
   class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent testClass1 testClass2"
   data-test-subj="test subject string"
-  role="main"
 />
 `;
 
@@ -128,7 +109,6 @@ exports[`EuiPageContent template is rendered 2`] = `
   aria-label="aria-label"
   class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent testClass1 testClass2"
   data-test-subj="test subject string"
-  role="main"
 />
 `;
 
@@ -137,7 +117,6 @@ exports[`EuiPageContent template is rendered 3`] = `
   aria-label="aria-label"
   class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent testClass1 testClass2"
   data-test-subj="test subject string"
-  role="main"
 />
 `;
 
@@ -146,6 +125,5 @@ exports[`EuiPageContent template is rendered 4`] = `
   aria-label="aria-label"
   class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusMedium euiPanel--plain euiPanel--hasShadow euiPageContent testClass1 testClass2"
   data-test-subj="test subject string"
-  role="main"
 />
 `;

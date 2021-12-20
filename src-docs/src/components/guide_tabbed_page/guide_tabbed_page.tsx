@@ -138,7 +138,7 @@ const GuideTabbedPageComponent: FunctionComponent<GuideTabbedPageProps> = ({
       />
 
       <EuiPageContent
-        role="main"
+        // role="main"
         hasShadow={false}
         paddingSize="none"
         color="transparent"

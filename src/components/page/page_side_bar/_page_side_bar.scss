@@ -5,6 +5,7 @@
 .euiPageSideBar {
   min-width: $euiPageSidebarMinWidth + ($euiSizeL * 2);
   flex: 0 1 0%; /* 1 */
+  border-right: $euiBorderWidthThin solid transparentize($euiColorLightShade, .7);
 }
 
 @each $modifier, $amount in $euiPanelPaddingModifiers {

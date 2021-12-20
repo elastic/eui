@@ -120,7 +120,7 @@ export const PageTemplateExample = {
         {
           type: GuideSectionTypes.JS,
           code: pageNewSource,
-          displayName: 'Components JS',
+          displayName: 'Composable JS',
         },
       ],
       text: (
@@ -234,7 +234,7 @@ flex-grow: 1;`}
         {
           type: GuideSectionTypes.JS,
           code: PageRestrictingWidthSource,
-          displayName: 'Components JS',
+          displayName: 'Composable JS',
         },
       ],
       text: (
@@ -292,7 +292,7 @@ flex-grow: 1;`}
         {
           type: GuideSectionTypes.JS,
           code: pageBottomBarSource,
-          displayName: 'Components JS',
+          displayName: 'Composable JS',
         },
       ],
       text: (
@@ -360,7 +360,7 @@ flex-grow: 1;`}
         {
           type: GuideSectionTypes.JS,
           code: PageCenteredBodySource,
-          displayName: 'Components JS',
+          displayName: 'Composable JS',
         },
       ],
       text: (
@@ -420,7 +420,7 @@ flex-grow: 1;`}
         {
           type: GuideSectionTypes.JS,
           code: PageCenteredContentSource,
-          displayName: 'Components JS',
+          displayName: 'Composable JS',
         },
       ],
       text: (
@@ -476,7 +476,7 @@ flex-grow: 1;`}
         {
           type: GuideSectionTypes.JS,
           code: PageSimpleSource,
-          displayName: 'Components JS',
+          displayName: 'Composable JS',
         },
       ],
       text: (
@@ -532,7 +532,7 @@ flex-grow: 1;`}
         {
           type: GuideSectionTypes.JS,
           code: PageFullHeightSource,
-          displayName: 'Components JS',
+          displayName: 'Composable JS',
         },
       ],
       text: (
@@ -627,7 +627,7 @@ flex-grow: 1;`}
         {
           type: GuideSectionTypes.JS,
           code: PageSimpleCenteredBodySource,
-          displayName: 'Components JS',
+          displayName: 'Composable JS',
         },
       ],
       text: (
@@ -676,7 +676,7 @@ flex-grow: 1;`}
         {
           type: GuideSectionTypes.JS,
           code: PageSimpleEmptyContentSource,
-          displayName: 'Components JS',
+          displayName: 'Composable JS',
         },
       ],
       text: (
@@ -722,7 +722,7 @@ flex-grow: 1;`}
         {
           type: GuideSectionTypes.JS,
           code: PageCustomContentSource,
-          displayName: 'Components JS',
+          displayName: 'Composable JS',
         },
       ],
       text: (

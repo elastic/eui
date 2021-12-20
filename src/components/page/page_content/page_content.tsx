@@ -11,34 +11,35 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { EuiPanel, _EuiPanelProps, _EuiPanelDivlike } from '../../panel/panel';
-import { HTMLAttributes } from 'enzyme';
-import { _EuiPageTemplate } from '../_template';
+import { TEMPLATES } from '../_template';
 import { _EuiPageRestrictWidth } from '../_restrict_width';
 import {
   EuiPageContentBody,
   EuiPageContentBodyProps,
 } from './page_content_body';
 
-export type EuiPageContentVerticalPositions = 'center';
-export type EuiPageContentHorizontalPositions = 'center';
-
 export type EuiPageContentProps = CommonProps &
   // Use only the div properties of EuiPanel (not button)
-  _EuiPanelProps &
-  Omit<_EuiPanelDivlike, 'onClick' | 'role'> &
-  _EuiPageTemplate &
   _EuiPageRestrictWidth & {
     /**
-     * There should only be one EuiPageContent per page and should contain the main contents.
-     * If this is untrue, set role = `null`, or change it to match your needed aria role
+     * Choose between 4 types of templates.
+     * `default`: Typical layout with panelled content;
+     * `centeredBody`: The panelled content is centered;
+     * `centeredContent`: The content inside the panel is centered;
+     * `empty`: Removes the panneling of the page content
      */
-    role?: HTMLAttributes['role'] | null;
+    template?: typeof TEMPLATES[number] | 'pageHeader';
     border?: 'bottom' | 'bottomExtended' | 'top' | 'topExtended';
+    /**
+     * Quickly turn on/off the background color (and other panel attributes)
+     */
+    panelled?: boolean;
     /**
      * Usually used to turn off the bottom padding when tabs exist
      */
     paddingBottom?: boolean;
-  };
+  } & _EuiPanelProps &
+  Omit<_EuiPanelDivlike, 'onClick' | 'role'>;
 
 export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   children,
@@ -46,18 +47,18 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   paddingSize = 'l',
   paddingBottom = true,
   template,
-  role: _role = 'main',
   restrictWidth = false,
   border,
+  panelled = true,
   style = {},
   ...rest
 }) => {
-  const role = _role === null ? undefined : _role;
+  const color = panelled ? 'plain' : 'transparent';
 
   const classes = classNames(
     'euiPageContent',
     {
-      'euiPageContent--flex': template === 'centeredContent',
+      'euiPageContent--flex': template === 'empty',
     },
     className
   );
@@ -72,7 +73,7 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
       <EuiPanel
         className={classes}
         paddingSize={paddingSize}
-        role={role}
+        color={color}
         style={style}
         {...rest}
       >
@@ -84,8 +85,6 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   const contentProps: Partial<_EuiPanelProps> = {
     paddingSize,
     borderRadius: rest.borderRadius || 'none',
-    // All content should have white background unless empty
-    color: template === 'empty' ? 'transparent' : rest.color,
     // If a template is decalared, ensure the whole the grows to stretch
     grow: rest.grow ?? true,
     hasShadow: false,
@@ -121,16 +120,19 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
     }
   }
 
-  if (template === 'centeredContent') {
+  if (template === 'empty') {
     contentBodyProps.verticalPosition = 'center';
     contentBodyProps.horizontalPosition = 'center';
+  } else if (template === 'pageHeader') {
+    contentProps.grow = rest.grow ?? false;
+    contentProps.color = rest.color ?? 'transparent';
   }
 
   return (
     <EuiPanel
       className={classes}
-      role={role}
       style={style}
+      color={color}
       {...contentProps}
       {...rest}
     >

@@ -9,19 +9,30 @@ import {
   EuiPageContent,
   EuiPageContentBody,
   EuiPageSideBar,
+  EuiCode,
+  EuiPageHeader,
   EuiText,
   EuiCallOut,
   EuiSpacer,
 } from '../../../../src/components';
 
-import Page from './page';
+import { pageContentBodyConfig } from './playground';
+import { PageDemo } from './_page_demo';
+
+import { PageContentDemo } from './components/page_content_demo';
+const PageContentSource = require('!!raw-loader!./components/page_content');
+
 const PageSource = require('!!raw-loader!./page');
 import PageBody from './page_body';
 const PageBodySource = require('!!raw-loader!./page_body');
-import PageContent from './page_content';
-const PageContentSource = require('!!raw-loader!./page_content');
 import PageSidebar from './page_sidebar';
 const PageSidebarSource = require('!!raw-loader!./page_sidebar');
+
+import PageCenteredContent from './components/page_content_body';
+// const PageCenteredContentSource = require('!!raw-loader!./page_centered_content');
+
+import PageLegacy from './page';
+const PageLegacySource = require('!!raw-loader!./page');
 
 export const PageExample = {
   title: 'Page',
@@ -61,7 +72,7 @@ export const PageExample = {
       text: <p />,
       demo: (
         <div className="guideDemo__highlightLayout">
-          <Page />
+          <PageLegacy />
         </div>
       ),
       props: {
@@ -94,12 +105,31 @@ export const PageExample = {
           code: PageContentSource,
         },
       ],
-      text: <p />,
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageContent />
-        </div>
+      text: (
+        <>
+          <p>
+            <strong>EuiPageContent</strong> is a stackable component that is
+            essentially an EuiPanel with props for quickly creating common
+            usages. Use <EuiCode>panelled</EuiCode> to quickly turn on/off the
+            panel background and other attributes. You&apos;ll need to set{' '}
+            <EuiCode>{'grow={false}'}</EuiCode> to any content that you
+            don&apos;t want to stretch within the page.
+          </p>
+          <p>
+            To create dividers between contents, use the{' '}
+            <EuiCode>border</EuiCode> prop. When using in conjunction with{' '}
+            <EuiCode>restrictWidth</EuiCode>, you&apos;ll may want to consider
+            the extended border version which will ensure the border touches the
+            sides of the parent.
+          </p>
+          <p>
+            You can also use the same <EuiCode>template</EuiCode> and{' '}
+            <EuiCode>restrictWidth</EuiCode> options as EuiPageTemplate.
+          </p>
+        </>
       ),
+      demo: <PageContentDemo />,
+      demoPanelProps: { paddingSize: 'none', color: 'subdued' },
       props: {
         EuiPageContent,
         EuiPageContentBody,
@@ -121,6 +151,64 @@ export const PageExample = {
       ),
       props: {
         EuiPageSideBar,
+      },
+    },
+    {
+      title: 'Page content body',
+      text: (
+        <p>
+          <strong>EuiPageContentBody</strong> is simply an{' '}
+          <Link>
+            <strong>EuiPanel</strong>
+          </Link>{' '}
+          with added support for <EuiCode>restrictWidth</EuiCode> and
+          vertical/horizontal centering. You should wrap every direct child of{' '}
+          <strong>EuiPageContent</strong> with this component, matching settings
+          for <EuiCode>restrictWidth</EuiCode>.
+        </p>
+      ),
+      demo: (
+        <PageDemo
+          slug="centered-content"
+          centered
+          pattern={PageCenteredContent}
+          highlight="euiPageContentBody"
+        />
+      ),
+      playground: pageContentBodyConfig,
+      props: {
+        EuiPageContentBody,
+      },
+    },
+    {
+      title: 'Legacy layout',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageLegacySource,
+        },
+      ],
+      text: (
+        <p>
+          In previous versions of EUI, we emulated page layouts where the{' '}
+          <strong>EuiPageContent</strong> had margins all around created by
+          padding on <strong>EuiPage</strong>. This layout is still achievable
+          but not through <strong>EuiPageTemplate</strong>. You must use the{' '}
+          <strong>EuiPage</strong> components manually as seen in this example.
+        </p>
+      ),
+      demo: (
+        <div className="guideDemo__highlightLayout--legacy">
+          <PageLegacy />
+        </div>
+      ),
+      props: {
+        EuiPage,
+        EuiPageBody,
+        EuiPageSideBar,
+        EuiPageHeader,
+        EuiPageContent,
+        EuiPageContentBody,
       },
     },
   ],

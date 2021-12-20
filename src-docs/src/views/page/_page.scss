@@ -5,6 +5,7 @@
   overflow: hidden;
   height: 460px;
   display: flex;
+  flex-direction: column;
 
   .euiPageSideBar--sticky {
     top: 0;

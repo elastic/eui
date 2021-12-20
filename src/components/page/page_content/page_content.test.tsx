@@ -70,9 +70,9 @@ describe('EuiPageContent', () => {
   //   expect(component).toMatchSnapshot();
   // });
 
-  test('role can be removed', () => {
-    const component = render(<EuiPageContent role={null} />);
+  // test('role can be removed', () => {
+  //   const component = render(<EuiPageContent role={null} />);
 
-    expect(component).toMatchSnapshot();
-  });
+  //   expect(component).toMatchSnapshot();
+  // });
 });

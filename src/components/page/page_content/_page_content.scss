@@ -3,19 +3,15 @@
   min-width: 0; // Make sure that inner flex layouts don't get larger than this container
 }
 
-.euiPageContent--verticalCenter {
+.euiPageContent--centeredBody {
   align-self: center;
   margin-top: auto;
   margin-bottom: auto;
   flex-grow: 0;
-}
-
-.euiPageContent--horizontalCenter {
   width: auto;
   max-width: 100%; // Fixes IE
   margin-left: auto;
   margin-right: auto;
-  flex-grow: 0; // Offsets the properties of .euiPanel within flexboxes
 }
 
 .euiPageContent--flex {

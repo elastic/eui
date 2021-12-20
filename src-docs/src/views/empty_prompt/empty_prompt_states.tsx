@@ -70,7 +70,7 @@ export default () => {
       template="centeredContent"
       pageContentProps={{
         paddingSize: 'none',
-        role: null, // For passing a11y tests in EUI docs only
+        // role: null, // For passing a11y tests in EUI docs only
       }}
     >
       <EuiEmptyPrompt {...emptyPromptProps} />

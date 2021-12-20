@@ -1,6 +1,7 @@
 import { PropTypes } from 'react-view';
 import {
   EuiPageTemplate,
+  EuiPageContent,
   EuiPageHeader,
   EuiButton,
 } from '../../../../src/components/';
@@ -8,6 +9,41 @@ import {
   propUtilityForPlayground,
   generateCustomProps,
 } from '../../services/playground';
+
+export const pageContentBodyConfig = () => {
+  const docgenInfo = Array.isArray(EuiPageContent.__docgenInfo)
+    ? EuiPageContent.__docgenInfo[0]
+    : EuiPageContent.__docgenInfo;
+  const propsToUse = propUtilityForPlayground(docgenInfo.props);
+
+  propsToUse.children = {
+    ...propsToUse.children,
+    value: 'Children',
+    type: PropTypes.ReactNode,
+    hidden: false,
+  };
+
+  propsToUse.restrictWidth = {
+    ...propsToUse.restrictWidth,
+    type: PropTypes.String,
+  };
+
+  return {
+    config: {
+      componentName: 'EuiPageContent',
+      props: propsToUse,
+      scope: {
+        EuiPageContent,
+      },
+      imports: {
+        '@elastic/eui': {
+          named: ['EuiPageContent'],
+        },
+      },
+    },
+    playgroundClassName: 'guideDemo__highlightLayout--playground',
+  };
+};
 
 export const pageTemplateConfig = () => {
   const docgenInfo = Array.isArray(EuiPageTemplate.__docgenInfo)

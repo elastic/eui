@@ -15,10 +15,8 @@ import {
 } from '../_restrict_width';
 import { _EuiPanelDivlike, EuiPanel, EuiPanelProps } from '../../panel/panel';
 
-import {
-  EuiPageContentHorizontalPositions,
-  EuiPageContentVerticalPositions,
-} from './page_content';
+export type EuiPageContentVerticalPositions = 'center';
+export type EuiPageContentHorizontalPositions = 'center';
 
 export interface EuiPageContentBodyProps
   extends CommonProps,

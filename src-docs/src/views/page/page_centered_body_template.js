@@ -5,9 +5,14 @@ import { EuiPageTemplate, EuiEmptyPrompt } from '../../../../src/components';
 export default ({ button = <></>, content, sideNav }) => {
   return (
     <EuiPageTemplate
-      template="centeredBody"
+      template="empty"
       pageContentProps={{ paddingSize: 'none' }}
       pageSideBar={sideNav}
+      pageHeader={{
+        iconType: 'logoElastic',
+        pageTitle: 'Page title',
+        rightSideItems: [button],
+      }}
     >
       <EuiEmptyPrompt
         title={<span>No spice</span>}

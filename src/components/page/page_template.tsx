@@ -70,6 +70,10 @@ export type EuiPageTemplateProps = Omit<EuiPageProps, 'paddingSize'> &
      * Minimum height in which to enforce scrolling
      */
     minHeight?: CSSProperties['minHeight'];
+    /**
+     * Wraps the main children inside of a page panel (empty shade)
+     */
+    panelled?: boolean;
   };
 
 export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
@@ -89,6 +93,7 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   bottomBar,
   bottomBarProps = {},
   minHeight = 460,
+  panelled = true,
   ...rest
 }) => {
   /**
@@ -160,14 +165,13 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
       {sideBarNode}
 
       <EuiPageBody
-        panelled={Boolean(sideBarNode)}
         {...pageBodyProps}
         template={template}
+        panelled={panelled}
         paddingSize={paddingSize}
         restrictWidth={restrictWidth}
         pageHeader={pageHeader}
         pageContentProps={pageContentProps}
-        pageContentBodyProps={pageContentBodyProps}
         bottomBar={bottomBar}
       >
         {children}

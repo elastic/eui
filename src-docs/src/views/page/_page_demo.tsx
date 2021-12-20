@@ -182,8 +182,8 @@ export const PageDemo: FunctionComponent<{
           {template && pattern && (
             <EuiFlexItem>
               <EuiSwitch
-                label="Show using EuiPageTemplate"
-                checked={showTemplate}
+                label="Composable"
+                checked={!showTemplate}
                 onChange={() => setShowTemplate((showing) => !showing)}
               />
             </EuiFlexItem>
