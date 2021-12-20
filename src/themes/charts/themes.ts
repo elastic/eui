@@ -27,6 +27,7 @@ const fontFamily = `'Inter', 'Inter UI', -apple-system, BlinkMacSystemFont,
 export interface EuiChartThemeType {
   lineAnnotation: LineAnnotationStyle;
   theme: PartialTheme;
+  /** DEPRECATED: Use `theme.partition` config instead */
   partition: RecursivePartial<PartitionConfig>;
 }
 
