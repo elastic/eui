@@ -13,8 +13,6 @@ import {
   EuiLink,
   EuiIconTip,
   EuiToolTip,
-  EuiCallOut,
-  EuiCode,
   EuiImage,
 } from '../../../../src/components';
 
@@ -197,40 +195,15 @@ export const ElasticChartsPieExample = {
             />
             .
           </p>
-          <EuiCallOut
-            color="warning"
-            title={
-              <>
-                Elastic Charts&apos;{' '}
-                <EuiLink href="https://github.com/elastic/elastic-charts/issues/518">
-                  partition charts do not currently support theming
-                </EuiLink>{' '}
-                through the <EuiCode>{'<Settings />'}</EuiCode> component.
-              </>
-            }
-          >
-            <p>
-              {' '}
-              EUI provides a separate key for use with
-              <EuiCode language="ts">
-                {'Partition.config={{...EUI_CHARTS_THEME_LIGHT.partition}}'}
-              </EuiCode>
-              . The chart colors also need to be passed a different way via{' '}
-              <EuiCode language="ts">
-                {'Partition.layers.shape.fillColor'}
-              </EuiCode>
-              . See the snippet for full details.
-            </p>
-          </EuiCallOut>
         </>
       ),
       demo: <PieChart />,
       snippet: `import { EUI_CHARTS_THEME_DARK, EUI_CHARTS_THEME_LIGHT } from '@elastic/eui/dist/eui_charts_theme';
 
 const euiChartTheme = isDarkTheme ? EUI_CHARTS_THEME_DARK : EUI_CHARTS_THEME_LIGHT;
-const euiPartitionConfig = euiChartTheme.partition;
 
-<Chart size={{height: 200}}>
+<Chart size={{ height: 200 }}>
+  <Settings theme={euiChartTheme.theme} />
   <Partition
     data={[
       {
@@ -248,11 +221,8 @@ const euiPartitionConfig = euiChartTheme.partition;
         },
       },
     ]}
-    config={{
-      ...euiPartitionConfig,
-      emptySizeRatio: 0.4, // To create a donut chart
-      clockwiseSectors: false, // For correct slice order
-    }}
+    emptySizeRatio={0.4} // To create a donut chart
+    clockwiseSectors={false} // For correct slice order
   />
 </Chart>`,
     },

@@ -6,14 +6,15 @@
  * Side Public License, v 1.
  */
 
-import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
-import { DEFAULT_VISUALIZATION_COLOR } from '../../services/color/visualization_colors';
 import {
   PartialTheme,
   LineAnnotationStyle,
+  RecursivePartial,
   PartitionConfig,
 } from '@elastic/charts';
-import { RecursivePartial } from '../../components/common';
+
+import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
+import { DEFAULT_VISUALIZATION_COLOR } from '../../services/color/visualization_colors';
 
 // @ts-ignore typescript doesn't understand the webpack loader
 import lightColors from '!!sass-vars-to-js-loader!../../themes/amsterdam/_colors_light.scss';
@@ -26,6 +27,7 @@ const fontFamily = `'Inter', 'Inter UI', -apple-system, BlinkMacSystemFont,
 export interface EuiChartThemeType {
   lineAnnotation: LineAnnotationStyle;
   theme: PartialTheme;
+  /** DEPRECATED: Use `theme.partition` config instead */
   partition: RecursivePartial<PartitionConfig>;
 }
 
@@ -207,6 +209,25 @@ function createTheme(colors: any): EuiChartThemeType {
         progressLine: {
           stroke: colors.euiColorDarkestShade.rgba,
         },
+      },
+      partition: {
+        fontFamily: fontFamily,
+        minFontSize: 8,
+        maxFontSize: 16,
+        fillLabel: {
+          valueFont: {
+            fontWeight: 700,
+          },
+        },
+        linkLabel: {
+          maxCount: 5,
+          fontSize: 11,
+          textColor: colors.euiTextColor.rgba,
+        },
+        outerSizeRatio: 1,
+        circlePadding: 4,
+        sectorLineStroke: colors.euiColorEmptyShade.rgba,
+        sectorLineWidth: 1.5,
       },
     },
   };
