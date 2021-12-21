@@ -22,7 +22,7 @@ export const EuiModalHeaderTitle: EuiModalHeaderTitleProps = ({
   const classes = classnames('euiModalHeader__title', className);
   return (
     <div className={classes} {...rest}>
-      {children}
+      {React.isValidElement(children) ? children : <h1>{children}</h1>}
     </div>
   );
 };
