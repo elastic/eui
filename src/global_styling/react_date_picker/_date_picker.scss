@@ -326,7 +326,7 @@
         flex-grow: 1;
         overflow-y: auto;
         align-items: center;
-        min-width: 90px; // Safari bug where list width collapses
+        min-width: $euiSize * 5.625; // Safari bug where list width collapses. 90px min-width.
 
         li.react-datepicker__time-list-item {
           padding: $euiSizeXS $euiSizeS;

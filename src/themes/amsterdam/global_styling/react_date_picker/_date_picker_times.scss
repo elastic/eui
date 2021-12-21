@@ -45,13 +45,14 @@
   @include euiYScroll;
   padding: $euiSizeXS $euiSizeM;
   // Set the min-height with the following, but it should stretch to fit if the container is larger
-  height: 120px !important; // sass-lint:disable-line no-important
+  // Default height is 120px;
+  height: $euiSize * 7.5 !important; // sass-lint:disable-line no-important
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   align-items: center;
   gap: $euiSizeXS; // sass-lint:disable-line no-misspelled-properties
-  min-width: 115px; // Safari bug where list width collapses
+  min-width: $euiSize * 7.1875; // Safari bug where list width collapses. 115px min-width.
 }
 
 // Mainly a copy/paste of .euiEmptyButton
