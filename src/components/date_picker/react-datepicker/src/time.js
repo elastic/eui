@@ -72,7 +72,7 @@ export default class Time extends React.Component {
       intervals: 30,
       onTimeChange: () => {},
       todayButton: null,
-      timeCaption: "Time"
+      timeCaption: "Timing"
     };
   }
 

@@ -183,7 +183,7 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
             </div>
           </div>
           <div
-            aria-label="month-2019-07"
+            aria-label="7월, 2019"
             class="react-datepicker__month react-datepicker__month--accessible"
             role="listbox"
             tabindex="0"
@@ -586,7 +586,7 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
             </div>
           </div>
           <div
-            aria-label="month-2019-07"
+            aria-label="juillet, 2019"
             class="react-datepicker__month react-datepicker__month--accessible"
             role="listbox"
             tabindex="0"
