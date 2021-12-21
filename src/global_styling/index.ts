@@ -6,8 +6,4 @@
  * Side Public License, v 1.
  */
 
-export * from './components';
-export * from './services';
-export * from './utils';
-export * from './themes';
-export * from './global_styling';
+export * from './reset/global_styles';
