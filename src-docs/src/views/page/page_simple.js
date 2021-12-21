@@ -10,18 +10,12 @@ import {
 export default ({ button = <></>, content }) => (
   <EuiPage paddingSize="none">
     <EuiPageBody>
-      <EuiPageContent
+      <EuiPageHeader
         restrictWidth
-        template="empty"
-        grow={false}
-        paddingBottom={false}
-      >
-        <EuiPageHeader
-          pageTitle="Page title"
-          rightSideItems={[button]}
-          tabs={[{ label: 'Tab 1', isSelected: true }, { label: 'Tab 2' }]}
-        />
-      </EuiPageContent>
+        pageTitle="Page title"
+        rightSideItems={[button]}
+        tabs={[{ label: 'Tab 1', isSelected: true }, { label: 'Tab 2' }]}
+      />
       <EuiPageContent restrictWidth border="topExtended" template="default">
         {content}
       </EuiPageContent>

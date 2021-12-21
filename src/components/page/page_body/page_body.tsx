@@ -101,15 +101,12 @@ export const EuiPageBody = <T extends ComponentTypes>({
    * The EuiPageHeader is always the same
    */
   const pageHeaderNode = pageHeader && (
-    <EuiPageContent
+    <EuiPageHeader
       restrictWidth={restrictWidth}
-      template="empty"
-      grow={false}
-      border={panelled ? 'bottom' : 'bottomExtended'}
-      paddingBottom={!Boolean(pageHeader.tabs)}
-    >
-      <EuiPageHeader {...pageHeader} />
-    </EuiPageContent>
+      bottomBorder={panelled ? true : 'extended'}
+      paddingSize={paddingSize}
+      {...pageHeader}
+    />
   );
 
   // Only the default template can display a bottom bar

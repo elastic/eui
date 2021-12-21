@@ -34,10 +34,6 @@ export type EuiPageContentProps = CommonProps &
      * Quickly turn on/off the background color (and other panel attributes)
      */
     panelled?: boolean;
-    /**
-     * Usually used to turn off the bottom padding when tabs exist
-     */
-    paddingBottom?: boolean;
   } & _EuiPanelProps &
   Omit<_EuiPanelDivlike, 'onClick' | 'role'>;
 
@@ -45,7 +41,6 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   children,
   className,
   paddingSize = 'l',
-  paddingBottom = true,
   template,
   restrictWidth = false,
   border,
@@ -62,10 +57,6 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
     },
     className
   );
-
-  if (paddingBottom === false) {
-    style.paddingBottom = 0;
-  }
 
   // If the new template specific props are not provided, just return a basic panel
   if (!template && !restrictWidth) {
@@ -105,10 +96,6 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
     style.paddingBottom = 0;
     contentBodyProps.paddingSize = paddingSize;
     contentBodyProps.style = { paddingLeft: 0, paddingRight: 0 };
-
-    if (paddingBottom === false) {
-      contentBodyProps.style.paddingBottom = 0;
-    }
 
     // If border is not extended, add it to the body instead
     if (border === 'bottom') {

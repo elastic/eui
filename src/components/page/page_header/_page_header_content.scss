@@ -1,11 +1,27 @@
 .euiPageHeader .euiPageHeaderContent {
+  @include euiPageRestrictWidth;
   width: 100%;
+}
+
+.euiPageHeaderContent--bottomBorder {
+  border-bottom: $euiBorderThin;
 }
 
 .euiPageHeaderContent__titleIcon {
   top: -$euiSizeXS;
   position: relative;
   margin-right: $euiSize;
+}
+
+@each $modifier, $amount in $euiPanelPaddingModifiers {
+  // Only apply padding to vertical sides so that we can control the bottom padding when tabs exist
+  .euiPageHeaderContent--#{$modifier} {
+    padding: $amount 0;
+
+    .euiPageHeader--tabsAtBottom & {
+      padding-bottom: 0;
+    }
+  }
 }
 
 @include euiBreakpoint('m', 'l', 'xl') {

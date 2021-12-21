@@ -13,16 +13,12 @@ export default ({
 
   return (
     <>
-      <EuiPageContent
+      <EuiPageHeader
         restrictWidth={width}
-        template="pageHeader"
-        border={restrictWidth ? 'bottomExtended' : 'bottom'}
-      >
-        <EuiPageHeader
-          pageTitle="Page title"
-          description="This EuiPageHeader is wrapped by EuiPageContent."
-        />
-      </EuiPageContent>
+        bottomBorder="extended"
+        pageTitle="Page title"
+        description="This EuiPageHeader is wrapped by EuiPageContent."
+      />
       <EuiPageContent restrictWidth={width} color="subdued" grow={false}>
         Secondary content with subdued background.
       </EuiPageContent>

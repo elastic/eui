@@ -21,7 +21,9 @@ export default () => (
       },
     ]}
     rightSideItems={[
-      <EuiButton fill>Add something</EuiButton>,
+      <EuiButton fill iconType="plusInCircleFilled">
+        Add something
+      </EuiButton>,
       <EuiButton>Do something</EuiButton>,
     ]}
   />

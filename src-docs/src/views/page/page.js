@@ -17,6 +17,8 @@ export default () => (
     <EuiPageSideBar>SideBar nav</EuiPageSideBar>
     <EuiPageBody>
       <EuiPageHeader
+        bottomBorder={false}
+        paddingSize="none"
         iconType="logoElastic"
         pageTitle="Page title"
         rightSideItems={[

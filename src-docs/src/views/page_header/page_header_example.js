@@ -77,18 +77,16 @@ export const PageHeaderExample = {
             alignment of the two sides, and <EuiCode>responsiveOrder</EuiCode>{' '}
             to determine which content side to display first on smaller screens.
           </p>
+          <p>
+            When using the page header content props, the{' '}
+            <EuiCode>bottomBorder</EuiCode> will automatically be set to{' '}
+            <EuiCode>true</EuiCode> to create separation of the page header and
+            page content.
+          </p>
         </>
       ),
       demo: <PageHeader />,
       props: { EuiPageHeader },
-      snippet: `<EuiPageHeader
-  pageTitle="Page title"
-  description="Example of a description."
-  rightSideItems={[
-    <EuiButton fill>Button 1</EuiButton>,
-    <EuiButton>Button 2</EuiButton>
-  ]}
-/>`,
     },
     {
       title: 'Tabs in the page header',
@@ -107,25 +105,17 @@ export const PageHeaderExample = {
               <strong>EuiTab</strong>
             </Link>{' '}
             objects using the <EuiCode>label</EuiCode> key for the tab content.
-            When displaying tabs it is recommended to also apply the{' '}
-            <EuiCode>bottomBorder</EuiCode> prop (on the{' '}
-            <strong>EuiPageHeader</strong> component not through{' '}
-            <EuiCode>tabsProps</EuiCode>) to create separation of the header and
-            content. You&apos;ll still need to manage the page content and
-            selected tab in your own instance.
+            When displaying tabs the
+            <EuiCode>bottomBorder</EuiCode> will align just under the tab
+            content by removing the bottom padding. You&apos;ll still need to
+            manage the page content and selected tab in your own instance. When
+            using tabs as main page navigation, it is recommended to hook the
+            selected states into your application&apos;s router.
           </p>
         </>
       ),
       demo: <PageHeaderTabsTitle />,
       props: { EuiPageHeader },
-      snippet: `<EuiPageHeader
-  pageTitle="Page title"
-  tabs={[
-    { label:"Tab 1", isSelected: true },
-    { label:"Tab 2" }
-  ]}
-  bottomBorder
-/>`,
     },
     {
       source: [
@@ -148,14 +138,6 @@ export const PageHeaderExample = {
       ),
       demo: <PageHeaderTabs />,
       props: { EuiPageHeader },
-      snippet: `<EuiPageHeader
-  tabs={[
-    { label:"Tab 1", isSelected: true },
-    { label:"Tab 2" }
-  ]}
-  bottomBorder
-  description="Example of a description."
-/>`,
     },
     {
       title: 'Breadcrumbs in the page header',
@@ -168,10 +150,6 @@ export const PageHeaderExample = {
       text: <></>,
       demo: <PageBreadcrumbs />,
       props: { EuiPageHeader },
-      snippet: `<EuiPageHeader
-  pageTitle="Page title"
-  description="Example of a description."
-/>`,
     },
     {
       source: [
@@ -188,10 +166,6 @@ export const PageHeaderExample = {
       ),
       demo: <PageBreadcrumbsReturn />,
       props: { EuiPageHeader },
-      snippet: `<EuiPageHeader
-  pageTitle="Page title"
-  description="Example of a description."
-/>`,
     },
     {
       title: 'Customizing the page header',

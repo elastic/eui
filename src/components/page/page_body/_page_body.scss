@@ -27,10 +27,5 @@
 @each $modifier, $amount in $euiPanelPaddingModifiers {
   .euiPageBody--#{$modifier} {
     padding: $amount;
-
-    // When only tabs, remove all padding
-    & > .euiPageHeader.euiPageHeader--onlyTabs {
-      padding-top: 0;
-    }
   }
 }

@@ -39,26 +39,20 @@ export default ({
       )}
 
       <EuiPageBody panelled={Boolean(sideNav)}>
-        <EuiPageContent
+        <EuiPageHeader
           restrictWidth
-          template="empty"
-          grow={false}
-          border={sideNav ? 'bottom' : 'bottomExtended'}
-          paddingBottom={false}
-        >
-          <EuiPageHeader
-            iconType="logoElastic"
-            pageTitle="Page title"
-            rightSideItems={[button]}
-            tabs={[
-              { label: 'Tab 1', isSelected: true },
-              {
-                label: 'Tab 2',
-                onClick: () => setshowBottomBar((showing) => !showing),
-              },
-            ]}
-          />
-        </EuiPageContent>
+          bottomBorder={sideNav ? true : 'extended'}
+          iconType="logoElastic"
+          pageTitle="Page title"
+          rightSideItems={[button]}
+          tabs={[
+            { label: 'Tab 1', isSelected: true },
+            {
+              label: 'Tab 2',
+              onClick: () => setshowBottomBar((showing) => !showing),
+            },
+          ]}
+        />
         <EuiPageContent restrictWidth template="default">
           {content}
         </EuiPageContent>

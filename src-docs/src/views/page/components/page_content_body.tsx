@@ -25,17 +25,14 @@ export default ({
       )}
 
       <EuiPageBody panelled={Boolean(sideNav)}>
-        <EuiPageContent
+        <EuiPageHeader
+          bottomBorder={sideNav ? true : 'extended'}
           restrictWidth="75%"
-          template="empty"
-          grow={false}
-          border={sideNav ? 'bottom' : 'bottomExtended'}
-        >
-          <EuiPageHeader pageTitle="Page title" />
-        </EuiPageContent>
-        {/* <EuiPageContent restrictWidth="75%" color="subdued" grow={false}>
+          pageTitle="Page title"
+        />
+        <EuiPageContent restrictWidth="75%" color="subdued" grow={false}>
           SUBDUED CONTENT
-        </EuiPageContent> */}
+        </EuiPageContent>
         <EuiPageContent
           restrictWidth="75%"
           template="empty"

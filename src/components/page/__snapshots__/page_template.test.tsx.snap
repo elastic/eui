@@ -427,22 +427,24 @@ exports[`EuiPageTemplate template centeredContent is rendered with pageHeader 1`
   <div
     class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody"
   >
-    <div
-      class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiPageContent euiPageContent--flex"
-      style="padding-top:0;padding-bottom:0"
+    <header
+      aria-label="aria-label"
+      class="euiPageHeader euiPageHeader--paddingLarge euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
+      data-test-subj="test subject string"
+      title="Page title"
     >
       <div
-        class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--hasBorder euiPageContentBody euiPageContentBody--restrictWidth-default euiPageContentBody--verticalCenter euiPageContentBody--horizontalCenter"
-        style="padding-left:0;padding-right:0;border-width:0 0 1px 0"
+        class="euiPageHeaderContent euiPageHeaderContent--paddingLarge euiPageHeaderContent--restrictWidth-default euiPageHeaderContent--bottomBorder"
       >
-        <header
-          aria-label="aria-label"
-          class="euiPageHeader euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
-          data-test-subj="test subject string"
-          title="Page title"
-        />
+        <div
+          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+        >
+          <div
+            class="euiFlexItem"
+          />
+        </div>
       </div>
-    </div>
+    </header>
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent"
       style="padding-top:0;padding-bottom:0"
@@ -669,22 +671,24 @@ exports[`EuiPageTemplate template default is rendered with pageHeader 1`] = `
   <div
     class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody"
   >
-    <div
-      class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiPageContent euiPageContent--flex"
-      style="padding-top:0;padding-bottom:0"
+    <header
+      aria-label="aria-label"
+      class="euiPageHeader euiPageHeader--paddingLarge euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
+      data-test-subj="test subject string"
+      title="Page title"
     >
       <div
-        class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--hasBorder euiPageContentBody euiPageContentBody--restrictWidth-default euiPageContentBody--verticalCenter euiPageContentBody--horizontalCenter"
-        style="padding-left:0;padding-right:0;border-width:0 0 1px 0"
+        class="euiPageHeaderContent euiPageHeaderContent--paddingLarge euiPageHeaderContent--restrictWidth-default euiPageHeaderContent--bottomBorder"
       >
-        <header
-          aria-label="aria-label"
-          class="euiPageHeader euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
-          data-test-subj="test subject string"
-          title="Page title"
-        />
+        <div
+          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+        >
+          <div
+            class="euiFlexItem"
+          />
+        </div>
       </div>
-    </div>
+    </header>
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent"
       style="padding-top:0;padding-bottom:0"
@@ -911,22 +915,24 @@ exports[`EuiPageTemplate template empty is rendered with pageHeader 1`] = `
   <div
     class="euiPanel euiPanel--borderRadiusNone euiPanel--plain euiPanel--hasShadow euiPageBody"
   >
-    <div
-      class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPanel--noBorder euiPanel--flexGrowZero euiPageContent euiPageContent--flex"
-      style="padding-top:0;padding-bottom:0"
+    <header
+      aria-label="aria-label"
+      class="euiPageHeader euiPageHeader--paddingLarge euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
+      data-test-subj="test subject string"
+      title="Page title"
     >
       <div
-        class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--transparent euiPanel--noShadow euiPanel--hasBorder euiPageContentBody euiPageContentBody--restrictWidth-default euiPageContentBody--verticalCenter euiPageContentBody--horizontalCenter"
-        style="padding-left:0;padding-right:0;border-width:0 0 1px 0"
+        class="euiPageHeaderContent euiPageHeaderContent--paddingLarge euiPageHeaderContent--restrictWidth-default euiPageHeaderContent--bottomBorder"
       >
-        <header
-          aria-label="aria-label"
-          class="euiPageHeader euiPageHeader--responsive euiPageHeader--center testClass1 testClass2"
-          data-test-subj="test subject string"
-          title="Page title"
-        />
+        <div
+          class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsBaseline euiFlexGroup--directionRow euiFlexGroup--responsive euiPageHeaderContent__top"
+        >
+          <div
+            class="euiFlexItem"
+          />
+        </div>
       </div>
-    </div>
+    </header>
     <div
       class="euiPanel euiPanel--paddingLarge euiPanel--borderRadiusNone euiPanel--plain euiPanel--noShadow euiPageContent euiPageContent--flex"
       style="padding-top:0;padding-bottom:0"
