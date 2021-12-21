@@ -1,5 +1,8 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Added `globalStyles` prop to `EuiProvider` to allow for global style customization ([#5497](https://github.com/elastic/eui/pull/5497))
+- Exported `EuiGlobalStyles` component ([#5497](https://github.com/elastic/eui/pull/5497))
+
 **Bug fixes**
 
 - Fixed a `EuiDataGrid` sizing bug which didn't account for a horizontal scrollbar ([#5478](https://github.com/elastic/eui/pull/5478))
