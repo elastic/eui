@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { ThemeContext } from '../../components';
 import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
 import { GITHUB_DATASET_MOD } from './data';
@@ -32,6 +32,11 @@ export default () => {
     sortBy: 'natural',
   });
 
+  const euiChartTheme = useMemo(
+    () => (isDarkTheme ? EUI_CHARTS_THEME_DARK : EUI_CHARTS_THEME_LIGHT),
+    [isDarkTheme]
+  );
+
   return (
     <div>
       <EuiTitle className="eui-textCenter" size="xs">
@@ -41,18 +46,21 @@ export default () => {
       <EuiFlexGrid columns={2}>
         <EuiFlexItem>
           <Chart size={{ height: 240 }}>
-            <Settings showLegend legendMaxDepth={2} />
+            <Settings
+              theme={euiChartTheme.theme}
+              showLegend
+              legendMaxDepth={2}
+            />
             <Partition
               id="sunburst"
               data={GITHUB_DATASET_MOD}
+              layout={PartitionLayout.sunburst}
               valueAccessor={(d) => d.count}
               layers={[
                 {
                   groupByRollup: (d) => d.total,
                   shape: {
-                    fillColor: isDarkTheme
-                      ? EUI_CHARTS_THEME_DARK.partition.sectorLineStroke
-                      : EUI_CHARTS_THEME_LIGHT.partition.sectorLineStroke,
+                    fillColor: euiChartTheme.theme.partition.sectorLineStroke,
                   },
                   hideInLegend: true,
                 },
@@ -70,27 +78,21 @@ export default () => {
                   },
                 },
               ]}
-              config={{
-                ...(isDarkTheme
-                  ? EUI_CHARTS_THEME_DARK.partition
-                  : EUI_CHARTS_THEME_LIGHT.partition),
-                clockwiseSectors: false,
-                fillLabel: {
-                  ...(isDarkTheme
-                    ? EUI_CHARTS_THEME_DARK.partition.fillLabel
-                    : EUI_CHARTS_THEME_LIGHT.partition.fillLabel),
-                  textInvertible: true,
-                },
-              }}
+              clockwiseSectors={false}
             />
           </Chart>
         </EuiFlexItem>
         <EuiFlexItem>
           <Chart size={{ height: 240 }}>
-            <Settings showLegend legendMaxDepth={1} />
+            <Settings
+              theme={euiChartTheme.theme}
+              showLegend
+              legendMaxDepth={1}
+            />
             <Partition
               id="treemap"
               data={GITHUB_DATASET_MOD}
+              layout={PartitionLayout.treemap}
               valueAccessor={(d) => d.count}
               valueGetter="percent"
               topGroove={0}
@@ -113,12 +115,6 @@ export default () => {
                   },
                 },
               ]}
-              config={{
-                partitionLayout: PartitionLayout.treemap,
-                ...(isDarkTheme
-                  ? EUI_CHARTS_THEME_DARK.partition
-                  : EUI_CHARTS_THEME_LIGHT.partition),
-              }}
             />
           </Chart>
         </EuiFlexItem>
