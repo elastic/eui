@@ -1,5 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Added the ability to access certain `EuiDataGrid` internal methods via the `ref` prop ([#5499](https://github.com/elastic/eui/pull/5499))
+
 **Breaking changes**
 
 - Removed `data-test-subj="dataGridWrapper"`  from `EuiDataGrid` in favor of `data-test-subj="euiDataGridBody"` ([#5506](https://github.com/elastic/eui/pull/5506))
