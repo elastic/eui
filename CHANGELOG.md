@@ -6,6 +6,14 @@
 - Added `EuiScreenReaderStatus` component for updateable `aria-live` regions  ([#5157](https://github.com/elastic/eui/pull/5157))
 - Added virtulized rendering optionality to `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
 
+**Bug fixes**
+
+- Fixed a `EuiDataGrid` sizing bug which didn't account for a horizontal scrollbar ([#5478](https://github.com/elastic/eui/pull/5478))
+
+**Deprecations**
+
+- Deprecated `PartitionConfig` in favor of inclusion in Charts `theme.partition` ([#5492](https://github.com/elastic/eui/pull/5492))
+
 **Breaking changes**
 
 - Removed `EuiSuggestInput` ([#5157](https://github.com/elastic/eui/pull/5157))
