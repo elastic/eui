@@ -405,7 +405,7 @@ export class EuiDataGridCell extends Component<
       rowManager,
       ...rest
     } = this.props;
-    const { rowIndex } = rest;
+    const { rowIndex, colIndex } = rest;
 
     const showCellButtons =
       this.state.isFocused ||
@@ -546,6 +546,7 @@ export class EuiDataGridCell extends Component<
             </div>
             <EuiDataGridCellButtons
               rowIndex={rowIndex}
+              colIndex={colIndex}
               column={column}
               popoverIsOpen={this.state.popoverIsOpen}
               closePopover={this.closePopover}
@@ -588,6 +589,7 @@ export class EuiDataGridCell extends Component<
               panelRefFn={(ref) => (this.popoverPanelRef.current = ref)}
               popoverIsOpen={this.state.popoverIsOpen}
               rowIndex={rowIndex}
+              colIndex={colIndex}
               renderCellValue={rest.renderCellValue}
               popoverContent={PopoverContent}
             />

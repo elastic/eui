@@ -28,6 +28,7 @@ export function EuiDataGridCellPopover({
   popoverIsOpen,
   renderCellValue,
   rowIndex,
+  colIndex,
 }: EuiDataGridCellPopoverProps) {
   const CellElement = renderCellValue as JSXElementConstructor<
     EuiDataGridCellValueElementProps
@@ -71,6 +72,7 @@ export function EuiDataGridCellPopover({
                       <EuiFlexItem key={idx}>
                         <CellButtonElement
                           rowIndex={rowIndex}
+                          colIndex={colIndex}
                           columnId={column.id}
                           Component={(props: EuiButtonEmptyProps) => (
                             <EuiButtonEmpty {...props} size="s" />

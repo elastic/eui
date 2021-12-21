@@ -313,6 +313,7 @@ export interface EuiDataGridCellPopoverProps {
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
   rowIndex: number;
+  colIndex: number;
 }
 export interface EuiDataGridColumnSortingDraggableProps {
   id: string;
