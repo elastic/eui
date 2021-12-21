@@ -50,6 +50,7 @@ import {
 } from '../data_grid_types';
 import { makeRowManager } from './data_grid_row_manager';
 import { useForceRender } from '../../../services/hooks/useForceRender';
+import { useUpdateEffect } from '../../../services';
 
 export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
 
@@ -265,6 +266,8 @@ const useUnconstrainedHeight = ({
   defaultHeight,
   headerRowHeight,
   footerRowHeight,
+  outerGridRef,
+  innerGridRef,
 }: {
   rowHeightUtils: RowHeightUtils;
   startRow: number;
@@ -274,6 +277,8 @@ const useUnconstrainedHeight = ({
   defaultHeight: number;
   headerRowHeight: number;
   footerRowHeight: number;
+  outerGridRef: React.MutableRefObject<HTMLDivElement | null>;
+  innerGridRef: React.MutableRefObject<HTMLDivElement | null>;
 }) => {
   // when a row height is updated, force a re-render of the grid body to update the unconstrained height
   const forceRender = useForceRender();
@@ -307,11 +312,29 @@ const useUnconstrainedHeight = ({
   // how many rows to provide space for on the screen
   const rowCountToAffordFor = endRow - startRow;
 
+  // watch the inner element for a change to its width
+  // which may cause the horizontal scrollbar to be added or removed
+  const { width: innerWidth } = useResizeObserver(
+    innerGridRef.current,
+    'width'
+  );
+  useUpdateEffect(forceRender, [innerWidth]);
+
+  // https://stackoverflow.com/a/5038256
+  const hasHorizontalScroll =
+    (outerGridRef.current?.scrollWidth ?? 0) >
+    (outerGridRef.current?.clientWidth ?? 0);
+  // https://stackoverflow.com/a/24797425
+  const scrollbarHeight = hasHorizontalScroll
+    ? outerGridRef.current!.offsetHeight - outerGridRef.current!.clientHeight
+    : 0;
+
   const unconstrainedHeight =
     defaultHeight * (rowCountToAffordFor - knownRowCount) + // guess how much space is required for unknown rows
     knownHeight + // computed pixel height of the known rows
     headerRowHeight + // account for header
-    footerRowHeight; // account for footer
+    footerRowHeight + // account for footer
+    scrollbarHeight; // account for horizontal scrollbar
 
   return unconstrainedHeight;
 };
@@ -636,6 +659,12 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     }
   }, [getRowHeight]);
 
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const wrapperDimensions = useResizeObserver(wrapperRef.current);
+
+  const outerGridRef = useRef<HTMLDivElement | null>(null); // container that becomes scrollable
+  const innerGridRef = useRef<HTMLDivElement | null>(null); // container sized to fit all content
+
   const unconstrainedHeight = useUnconstrainedHeight({
     rowHeightUtils,
     startRow,
@@ -645,6 +674,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     defaultHeight,
     headerRowHeight,
     footerRowHeight,
+    outerGridRef,
+    innerGridRef,
   });
 
   // unable to determine this until the container's size is known anyway
@@ -652,11 +683,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 
   const [height, setHeight] = useState<number | undefined>(undefined);
   const [width, setWidth] = useState<number | undefined>(undefined);
-
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const wrapperDimensions = useResizeObserver(wrapperRef.current);
-
-  const innerGridRef = useRef<HTMLDivElement | null>(null);
 
   // useState instead of useMemo as React reserves the right to drop memoized
   // values in the future, and that would be very bad here
@@ -738,6 +764,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 {...(virtualizationOptions ? virtualizationOptions : {})}
                 ref={setGridRef}
                 innerElementType={InnerElement}
+                outerRef={outerGridRef}
                 innerRef={innerGridRef}
                 className={VIRTUALIZED_CONTAINER_CLASS}
                 columnCount={
