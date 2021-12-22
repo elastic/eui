@@ -6,8 +6,159 @@
  * Side Public License, v 1.
  */
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, MutableRefObject } from 'react';
+import { IS_JEST_ENVIRONMENT } from '../../../test';
+import { useUpdateEffect, useForceRender } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
+import { RowHeightUtils } from '../row_height_utils';
+import { EuiDataGridRowHeightsOptions } from '../data_grid_types';
+
+export const useFinalGridDimensions = ({
+  unconstrainedHeight,
+  unconstrainedWidth,
+  wrapperDimensions,
+  wrapperRef,
+  toolbarHeight,
+  headerRowHeight,
+  footerRowHeight,
+  rowCount,
+  isFullScreen,
+}: {
+  unconstrainedHeight: number;
+  unconstrainedWidth: number;
+  wrapperDimensions: { width: number; height: number };
+  wrapperRef: MutableRefObject<HTMLDivElement | null>;
+  toolbarHeight: number;
+  headerRowHeight: number;
+  footerRowHeight: number;
+  rowCount: number;
+  isFullScreen: boolean;
+}) => {
+  // Used if the grid needs to scroll
+  const [height, setHeight] = useState<number | undefined>(undefined);
+  const [width, setWidth] = useState<number | undefined>(undefined);
+
+  // Set the wrapper height on load, whenever the grid wrapper resizes, and whenever rowCount changes
+  useEffect(() => {
+    const boundingRect = wrapperRef.current!.getBoundingClientRect();
+
+    if (boundingRect.height !== unconstrainedHeight && !isFullScreen) {
+      setHeight(boundingRect.height);
+    }
+    if (boundingRect.width !== unconstrainedWidth) {
+      setWidth(boundingRect.width);
+    }
+  }, [
+    // Effects that should cause recalculations
+    rowCount,
+    wrapperDimensions,
+    // Dependencies
+    wrapperRef,
+    unconstrainedHeight,
+    unconstrainedWidth,
+    isFullScreen,
+  ]);
+
+  let finalHeight = IS_JEST_ENVIRONMENT
+    ? Number.MAX_SAFE_INTEGER
+    : height || unconstrainedHeight;
+  let finalWidth = IS_JEST_ENVIRONMENT
+    ? Number.MAX_SAFE_INTEGER
+    : width || unconstrainedWidth;
+
+  if (isFullScreen) {
+    finalHeight =
+      window.innerHeight - toolbarHeight - headerRowHeight - footerRowHeight;
+    finalWidth = window.innerWidth;
+  }
+
+  return { finalHeight, finalWidth };
+};
+
+/**
+ * Computes the unconstrained (total possible) height of a grid
+ */
+export const useUnconstrainedHeight = ({
+  rowHeightUtils,
+  startRow,
+  endRow,
+  getCorrectRowIndex,
+  rowHeightsOptions,
+  defaultHeight,
+  headerRowHeight,
+  footerRowHeight,
+  outerGridRef,
+  innerGridRef,
+}: {
+  rowHeightUtils: RowHeightUtils;
+  startRow: number;
+  endRow: number;
+  getCorrectRowIndex: (rowIndex: number) => number;
+  rowHeightsOptions?: EuiDataGridRowHeightsOptions;
+  defaultHeight: number;
+  headerRowHeight: number;
+  footerRowHeight: number;
+  outerGridRef: React.MutableRefObject<HTMLDivElement | null>;
+  innerGridRef: React.MutableRefObject<HTMLDivElement | null>;
+}) => {
+  // when a row height is updated, force a re-render of the grid body to update the unconstrained height
+  const forceRender = useForceRender();
+  useEffect(() => {
+    rowHeightUtils.setRerenderGridBody(forceRender);
+  }, [rowHeightUtils, forceRender]);
+
+  let knownHeight = 0; // tracks the pixel height of rows we know the size of
+  let knownRowCount = 0; // how many rows we know the size of
+  for (let i = startRow; i < endRow; i++) {
+    const correctRowIndex = getCorrectRowIndex(i); // map visible row to logical row
+
+    // lookup the height configuration of this row
+    const rowHeightOption = rowHeightUtils.getRowHeightOption(
+      correctRowIndex,
+      rowHeightsOptions
+    );
+
+    if (rowHeightOption) {
+      // this row's height is known
+      knownRowCount++;
+      knownHeight += rowHeightUtils.getCalculatedHeight(
+        rowHeightOption,
+        defaultHeight,
+        correctRowIndex,
+        rowHeightUtils.isRowHeightOverride(correctRowIndex, rowHeightsOptions)
+      );
+    }
+  }
+
+  // how many rows to provide space for on the screen
+  const rowCountToAffordFor = endRow - startRow;
+
+  // watch the inner element for a change to its width
+  // which may cause the horizontal scrollbar to be added or removed
+  const { width: innerWidth } = useResizeObserver(
+    innerGridRef.current,
+    'width'
+  );
+  useUpdateEffect(forceRender, [innerWidth]);
+
+  // https://stackoverflow.com/a/5038256
+  const hasHorizontalScroll =
+    (outerGridRef.current?.scrollWidth ?? 0) >
+    (outerGridRef.current?.clientWidth ?? 0);
+  // https://stackoverflow.com/a/24797425
+  const scrollbarHeight = hasHorizontalScroll
+    ? outerGridRef.current!.offsetHeight - outerGridRef.current!.clientHeight
+    : 0;
+
+  const unconstrainedHeight =
+    defaultHeight * (rowCountToAffordFor - knownRowCount) + // guess how much space is required for unknown rows
+    knownHeight + // computed pixel height of the known rows
+    headerRowHeight + // account for header
+    footerRowHeight + // account for footer
+    scrollbarHeight; // account for horizontal scrollbar
+
+  return unconstrainedHeight;
+};
 
 /**
  * Returns the size of the cell container minus the scroll bar width.

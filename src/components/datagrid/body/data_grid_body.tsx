@@ -28,7 +28,7 @@ import {
   useMutationObserver,
 } from '../../observer/mutation_observer';
 import { useResizeObserver } from '../../observer/resize_observer';
-import { DEFAULT_ROW_HEIGHT, RowHeightUtils } from '../row_height_utils';
+import { DEFAULT_ROW_HEIGHT } from '../row_height_utils';
 import { EuiDataGridCell } from './data_grid_cell';
 import {
   DataGridSortingContext,
@@ -44,15 +44,17 @@ import {
 import {
   EuiDataGridBodyProps,
   EuiDataGridInMemoryValues,
-  EuiDataGridRowHeightsOptions,
   EuiDataGridRowManager,
   EuiDataGridSchemaDetector,
 } from '../data_grid_types';
 import { makeRowManager } from './data_grid_row_manager';
-import { useForceRender } from '../../../services/hooks/useForceRender';
-import { useUpdateEffect } from '../../../services';
-import { useVirtualizeContainerWidth } from '../utils/grid_height_width';
+import {
+  useFinalGridDimensions,
+  useUnconstrainedHeight,
+  useVirtualizeContainerWidth,
+} from '../utils/grid_height_width';
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
+import { IS_JEST_ENVIRONMENT } from '../../../test';
 
 export const Cell: FunctionComponent<GridChildComponentProps> = ({
   columnIndex,
@@ -224,8 +226,6 @@ const InnerElement: VariableSizeGridProps['innerElementType'] = forwardRef<
 });
 InnerElement.displayName = 'EuiDataGridInnerElement';
 
-const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
-
 /**
  * getParentCellContent is called by the grid body's mutation observer,
  * which exists to pick up DOM changes in cells and remove interactive elements
@@ -251,89 +251,6 @@ export function getParentCellContent(_element: Node | HTMLElement) {
   }
   return element;
 }
-
-// computes the unconstrained (total possible) height of a grid
-const useUnconstrainedHeight = ({
-  rowHeightUtils,
-  startRow,
-  endRow,
-  getCorrectRowIndex,
-  rowHeightsOptions,
-  defaultHeight,
-  headerRowHeight,
-  footerRowHeight,
-  outerGridRef,
-  innerGridRef,
-}: {
-  rowHeightUtils: RowHeightUtils;
-  startRow: number;
-  endRow: number;
-  getCorrectRowIndex: (rowIndex: number) => number;
-  rowHeightsOptions?: EuiDataGridRowHeightsOptions;
-  defaultHeight: number;
-  headerRowHeight: number;
-  footerRowHeight: number;
-  outerGridRef: React.MutableRefObject<HTMLDivElement | null>;
-  innerGridRef: React.MutableRefObject<HTMLDivElement | null>;
-}) => {
-  // when a row height is updated, force a re-render of the grid body to update the unconstrained height
-  const forceRender = useForceRender();
-  useEffect(() => {
-    rowHeightUtils.setRerenderGridBody(forceRender);
-  }, [rowHeightUtils, forceRender]);
-
-  let knownHeight = 0; // tracks the pixel height of rows we know the size of
-  let knownRowCount = 0; // how many rows we know the size of
-  for (let i = startRow; i < endRow; i++) {
-    const correctRowIndex = getCorrectRowIndex(i); // map visible row to logical row
-
-    // lookup the height configuration of this row
-    const rowHeightOption = rowHeightUtils.getRowHeightOption(
-      correctRowIndex,
-      rowHeightsOptions
-    );
-
-    if (rowHeightOption) {
-      // this row's height is known
-      knownRowCount++;
-      knownHeight += rowHeightUtils.getCalculatedHeight(
-        rowHeightOption,
-        defaultHeight,
-        correctRowIndex,
-        rowHeightUtils.isRowHeightOverride(correctRowIndex, rowHeightsOptions)
-      );
-    }
-  }
-
-  // how many rows to provide space for on the screen
-  const rowCountToAffordFor = endRow - startRow;
-
-  // watch the inner element for a change to its width
-  // which may cause the horizontal scrollbar to be added or removed
-  const { width: innerWidth } = useResizeObserver(
-    innerGridRef.current,
-    'width'
-  );
-  useUpdateEffect(forceRender, [innerWidth]);
-
-  // https://stackoverflow.com/a/5038256
-  const hasHorizontalScroll =
-    (outerGridRef.current?.scrollWidth ?? 0) >
-    (outerGridRef.current?.clientWidth ?? 0);
-  // https://stackoverflow.com/a/24797425
-  const scrollbarHeight = hasHorizontalScroll
-    ? outerGridRef.current!.offsetHeight - outerGridRef.current!.clientHeight
-    : 0;
-
-  const unconstrainedHeight =
-    defaultHeight * (rowCountToAffordFor - knownRowCount) + // guess how much space is required for unknown rows
-    knownHeight + // computed pixel height of the known rows
-    headerRowHeight + // account for header
-    footerRowHeight + // account for footer
-    scrollbarHeight; // account for horizontal scrollbar
-
-  return unconstrainedHeight;
-};
 
 export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   props
@@ -640,41 +557,11 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const wrapperDimensions = useResizeObserver(wrapperRef.current);
 
-  const unconstrainedHeight = useUnconstrainedHeight({
-    rowHeightUtils,
-    startRow,
-    endRow,
-    getCorrectRowIndex,
-    rowHeightsOptions,
-    defaultHeight,
-    headerRowHeight,
-    footerRowHeight,
-    outerGridRef,
-    innerGridRef,
-  });
-
-  // unable to determine this until the container's size is known anyway
-  const unconstrainedWidth = 0;
-
-  const [height, setHeight] = useState<number | undefined>(undefined);
-  const [width, setWidth] = useState<number | undefined>(undefined);
-
   // useState instead of useMemo as React reserves the right to drop memoized
   // values in the future, and that would be very bad here
   const [rowManager] = useState<EuiDataGridRowManager>(() =>
     makeRowManager(innerGridRef)
   );
-
-  useEffect(() => {
-    const boundingRect = wrapperRef.current!.getBoundingClientRect();
-
-    if (boundingRect.height !== unconstrainedHeight && !isFullScreen) {
-      setHeight(boundingRect.height);
-    }
-    if (boundingRect.width !== unconstrainedWidth) {
-      setWidth(boundingRect.width);
-    }
-  }, [rowCount, unconstrainedHeight, wrapperDimensions, isFullScreen]);
 
   const preventTabbing = useCallback((records: MutationRecord[]) => {
     // multiple mutation records can implicate the same cell
@@ -705,17 +592,30 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     }
   }, []);
 
-  let finalHeight = IS_JEST_ENVIRONMENT
-    ? Number.MAX_SAFE_INTEGER
-    : height || unconstrainedHeight;
-  let finalWidth = IS_JEST_ENVIRONMENT
-    ? Number.MAX_SAFE_INTEGER
-    : width || unconstrainedWidth;
-  if (isFullScreen) {
-    finalHeight =
-      window.innerHeight - toolbarHeight - headerRowHeight - footerRowHeight;
-    finalWidth = window.innerWidth;
-  }
+  const unconstrainedHeight = useUnconstrainedHeight({
+    rowHeightUtils,
+    startRow,
+    endRow,
+    getCorrectRowIndex,
+    rowHeightsOptions,
+    defaultHeight,
+    headerRowHeight,
+    footerRowHeight,
+    outerGridRef,
+    innerGridRef,
+  });
+
+  const { finalWidth, finalHeight } = useFinalGridDimensions({
+    unconstrainedHeight,
+    unconstrainedWidth: 0, // unable to determine this until the container's size is known
+    wrapperDimensions,
+    wrapperRef,
+    toolbarHeight,
+    headerRowHeight,
+    footerRowHeight,
+    rowCount,
+    isFullScreen,
+  });
 
   return (
     <EuiMutationObserver
