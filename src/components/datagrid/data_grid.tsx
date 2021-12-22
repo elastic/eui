@@ -572,6 +572,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                       <EuiDataGridBody
                         isFullScreen={isFullScreen}
                         columns={orderedVisibleColumns}
+                        visibleColCount={visibleColCount}
                         columnWidths={columnWidths}
                         defaultColumnWidth={defaultColumnWidth}
                         toolbarHeight={toolbarDemensions.height}
@@ -591,6 +592,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                         renderCellValue={renderCellValue}
                         renderFooterCellValue={renderFooterCellValue}
                         rowCount={rowCount}
+                        visibleRows={visibleRows}
                         interactiveCellId={interactiveCellId}
                         rowHeightsOptions={rowHeightsOptions}
                         rowHeightUtils={rowHeightUtils}

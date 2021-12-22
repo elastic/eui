@@ -20,12 +20,14 @@ describe('EuiDataGridBody', () => {
     isFullScreen: false,
     headerIsInteractive: true,
     rowCount: 1,
+    visibleRows: { startRow: 0, endRow: 1, visibleRowCount: 1 },
     toolbarHeight: 10,
     columnWidths: { columnA: 20 },
     columns: [
       { id: 'columnA', schema: 'boolean' },
       { id: 'columnB', isExpandable: true },
     ],
+    visibleColCount: 2,
     schema: {
       columnA: { columnType: 'boolean' },
       columnB: { columnType: 'string' },
@@ -79,6 +81,7 @@ describe('EuiDataGridBody', () => {
             width: 40,
           },
         ]}
+        visibleColCount={4}
         renderFooterCellValue={() => <footer data-test-subj="footer" />}
       />
     );

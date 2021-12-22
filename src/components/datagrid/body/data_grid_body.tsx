@@ -66,6 +66,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     leadingControlColumns,
     trailingControlColumns,
     columns,
+    visibleColCount,
     schema,
     popoverContents,
     columnWidths,
@@ -90,12 +91,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
   let cellContent;
 
   const isFirstColumn = columnIndex === 0;
-  const isLastColumn =
-    columnIndex ===
-    columns.length +
-      leadingControlColumns.length +
-      trailingControlColumns.length -
-      1;
+  const isLastColumn = columnIndex === visibleColCount - 1;
   const isStripableRow = visibleRowIndex % 2 !== 0;
 
   const isLeadingControlColumn = columnIndex < leadingControlColumns.length;
@@ -349,10 +345,12 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     leadingControlColumns = [],
     trailingControlColumns = [],
     columns,
+    visibleColCount,
     schema,
     schemaDetectors,
     popoverContents,
     rowCount,
+    visibleRows: { startRow, endRow, visibleRowCount },
     renderCellValue,
     renderFooterCellValue,
     inMemory,
@@ -380,20 +378,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   });
   const { height: headerRowHeight } = useResizeObserver(headerRowRef, 'height');
   const { height: footerRowHeight } = useResizeObserver(footerRowRef, 'height');
-
-  const startRow = pagination ? pagination.pageIndex * pagination.pageSize : 0;
-  let endRow = pagination
-    ? (pagination.pageIndex + 1) * pagination.pageSize
-    : rowCount;
-  endRow = Math.min(endRow, rowCount);
-
-  const visibleRowIndices = useMemo(() => {
-    const visibleRowIndices = [];
-    for (let i = startRow; i < endRow; i++) {
-      visibleRowIndices.push(i);
-    }
-    return visibleRowIndices;
-  }, [startRow, endRow]);
 
   const sorting = useContext(DataGridSortingContext);
   const sortingColumns = sorting?.columns;
@@ -511,8 +495,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
         columnWidths={columnWidths}
         defaultColumnWidth={defaultColumnWidth}
         renderCellValue={renderFooterCellValue}
-        rowIndex={visibleRowIndices.length}
-        visibleRowIndex={visibleRowIndices.length}
+        rowIndex={visibleRowCount}
+        visibleRowIndex={visibleRowCount}
         interactiveCellId={interactiveCellId}
       />
     );
@@ -526,18 +510,15 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     renderFooterCellValue,
     schema,
     trailingControlColumns,
-    visibleRowIndices.length,
+    visibleRowCount,
   ]);
 
-  const paginationOffset = pagination
-    ? pagination.pageIndex * pagination.pageSize
-    : 0;
   const getCorrectRowIndex = useCallback(
     (rowIndex: number) => {
       let rowIndexWithOffset = rowIndex;
 
-      if (rowIndex - paginationOffset < 0) {
-        rowIndexWithOffset = rowIndex + paginationOffset;
+      if (rowIndex - startRow < 0) {
+        rowIndexWithOffset = rowIndex + startRow;
       }
 
       const correctRowIndex = rowMap.hasOwnProperty(rowIndexWithOffset)
@@ -546,7 +527,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 
       return correctRowIndex;
     },
-    [paginationOffset, rowMap]
+    [startRow, rowMap]
   );
 
   const gridRef = useRef<Grid | null>(null);
@@ -767,11 +748,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 outerRef={outerGridRef}
                 innerRef={innerGridRef}
                 className={VIRTUALIZED_CONTAINER_CLASS}
-                columnCount={
-                  leadingControlColumns.length +
-                  columns.length +
-                  trailingControlColumns.length
-                }
+                columnCount={visibleColCount}
                 width={finalWidth}
                 columnWidth={getWidth}
                 height={finalHeight}
@@ -787,6 +764,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                   leadingControlColumns,
                   trailingControlColumns,
                   columns,
+                  visibleColCount,
                   schema,
                   popoverContents: mergedPopoverContents,
                   columnWidths,
@@ -799,7 +777,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 }}
                 rowCount={
                   IS_JEST_ENVIRONMENT || headerRowHeight > 0
-                    ? visibleRowIndices.length
+                    ? visibleRowCount
                     : 0
                 }
               >

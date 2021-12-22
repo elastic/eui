@@ -319,10 +319,12 @@ export interface EuiDataGridBodyProps {
   leadingControlColumns?: EuiDataGridControlColumn[];
   trailingControlColumns?: EuiDataGridControlColumn[];
   columns: EuiDataGridColumn[];
+  visibleColCount: number;
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
   popoverContents?: EuiDataGridPopoverContents;
   rowCount: number;
+  visibleRows: EuiDataGridVisibleRows;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
   renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
   inMemory?: EuiDataGridInMemory;
