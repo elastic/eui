@@ -22,7 +22,7 @@ import { VariableSizeGridProps } from 'react-window';
 import { EuiListGroupItemProps } from '../list_group';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { ExclusiveUnion, CommonProps, OneOf } from '../common';
-import { RowHeightUtils } from './row_height_utils';
+import { RowHeightUtils } from './utils/row_heights';
 import { IconType } from '../icon';
 import { EuiTokenProps } from '../token';
 
@@ -337,8 +337,7 @@ export interface EuiDataGridBodyProps {
   toolbarHeight: number;
   virtualizationOptions?: Partial<VariableSizeGridProps>;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
-  rowHeightUtils: RowHeightUtils;
-  gridStyles?: EuiDataGridStyle;
+  gridStyles: EuiDataGridStyle;
   gridWidth: number;
 }
 export interface EuiDataGridCellValueElementProps {

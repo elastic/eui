@@ -10,7 +10,7 @@ import { useEffect, useState, MutableRefObject } from 'react';
 import { IS_JEST_ENVIRONMENT } from '../../../test';
 import { useUpdateEffect, useForceRender } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
-import { RowHeightUtils } from '../row_height_utils';
+import { RowHeightUtils } from './row_heights';
 import { EuiDataGridRowHeightsOptions } from '../data_grid_types';
 
 export const useFinalGridDimensions = ({
@@ -84,7 +84,7 @@ export const useUnconstrainedHeight = ({
   endRow,
   getCorrectRowIndex,
   rowHeightsOptions,
-  defaultHeight,
+  defaultRowHeight,
   headerRowHeight,
   footerRowHeight,
   outerGridRef,
@@ -95,7 +95,7 @@ export const useUnconstrainedHeight = ({
   endRow: number;
   getCorrectRowIndex: (rowIndex: number) => number;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
-  defaultHeight: number;
+  defaultRowHeight: number;
   headerRowHeight: number;
   footerRowHeight: number;
   outerGridRef: React.MutableRefObject<HTMLDivElement | null>;
@@ -123,7 +123,7 @@ export const useUnconstrainedHeight = ({
       knownRowCount++;
       knownHeight += rowHeightUtils.getCalculatedHeight(
         rowHeightOption,
-        defaultHeight,
+        defaultRowHeight,
         correctRowIndex,
         rowHeightUtils.isRowHeightOverride(correctRowIndex, rowHeightsOptions)
       );
@@ -151,7 +151,7 @@ export const useUnconstrainedHeight = ({
     : 0;
 
   const unconstrainedHeight =
-    defaultHeight * (rowCountToAffordFor - knownRowCount) + // guess how much space is required for unknown rows
+    defaultRowHeight * (rowCountToAffordFor - knownRowCount) + // guess how much space is required for unknown rows
     knownHeight + // computed pixel height of the known rows
     headerRowHeight + // account for header
     footerRowHeight + // account for footer

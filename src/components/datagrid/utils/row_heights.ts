@@ -6,16 +6,22 @@
  * Side Public License, v 1.
  */
 
-import { CSSProperties } from 'react';
+import {
+  useEffect,
+  useState,
+  useMemo,
+  useCallback,
+  CSSProperties,
+} from 'react';
 import type { VariableSizeGrid as Grid } from 'react-window';
-import { isObject, isNumber } from '../../services/predicate';
+import { isObject, isNumber } from '../../../services/predicate';
 import {
   EuiDataGridStyleCellPaddings,
   EuiDataGridStyle,
   EuiDataGridRowHeightOption,
   EuiDataGridRowHeightsOptions,
   EuiDataGridColumn,
-} from './data_grid_types';
+} from '../data_grid_types';
 
 // TODO: Once JS variables are available, use them here instead of hard-coded maps
 export const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, number> = {
@@ -236,3 +242,96 @@ export class RowHeightUtils {
     this.rerenderGridBody = rerenderGridBody;
   }
 }
+
+/**
+ * Hook for instantiating RowHeightUtils, and also updating
+ * internal vars from outside props via useEffects
+ */
+export const useRowHeightUtils = ({
+  gridRef,
+  gridStyles,
+  columns,
+}: {
+  gridRef: Grid | null;
+  gridStyles: EuiDataGridStyle;
+  columns: EuiDataGridColumn[];
+}) => {
+  const rowHeightUtils = useMemo(() => new RowHeightUtils(), []);
+
+  // Update rowHeightUtils with grid ref
+  useEffect(() => {
+    if (gridRef) rowHeightUtils.setGrid(gridRef);
+  }, [gridRef, rowHeightUtils]);
+
+  // Re-cache styles whenever grid density changes
+  useEffect(() => {
+    rowHeightUtils.cacheStyles({
+      cellPadding: gridStyles.cellPadding,
+    });
+  }, [gridStyles.cellPadding, rowHeightUtils]);
+
+  // Update row heights map to remove hidden columns whenever orderedVisibleColumns change
+  useEffect(() => {
+    rowHeightUtils.pruneHiddenColumnHeights(columns);
+  }, [rowHeightUtils, columns]);
+
+  return rowHeightUtils;
+};
+
+export const useDefaultRowHeight = ({
+  rowHeightsOptions,
+  rowHeightUtils,
+  getCorrectRowIndex,
+}: {
+  rowHeightsOptions?: EuiDataGridRowHeightsOptions;
+  rowHeightUtils: RowHeightUtils;
+  getCorrectRowIndex(index: number): number;
+}) => {
+  // `minRowHeight` is primarily used by undefined & lineCount heights
+  // and ignored by auto & static heights (unless the static height is < the min)
+  const [minRowHeight, setRowHeight] = useState(DEFAULT_ROW_HEIGHT);
+
+  // Default/fallback height for all rows
+  const defaultRowHeight = useMemo(() => {
+    return rowHeightsOptions?.defaultHeight
+      ? rowHeightUtils.getCalculatedHeight(
+          rowHeightsOptions.defaultHeight,
+          minRowHeight
+        )
+      : minRowHeight;
+  }, [rowHeightsOptions, minRowHeight, rowHeightUtils]);
+
+  // Used by react-window's Grid component to determine actual row heights
+  const getRowHeight = useCallback(
+    (rowIndex: number) => {
+      const correctRowIndex = getCorrectRowIndex(rowIndex);
+      let rowHeight;
+
+      // Account for row-specific height overrides
+      const rowHeightOption = rowHeightUtils.getRowHeightOption(
+        correctRowIndex,
+        rowHeightsOptions
+      );
+      if (rowHeightOption) {
+        rowHeight = rowHeightUtils.getCalculatedHeight(
+          rowHeightOption,
+          minRowHeight,
+          correctRowIndex,
+          rowHeightUtils.isRowHeightOverride(correctRowIndex, rowHeightsOptions)
+        );
+      }
+
+      // Use the row-specific height if it exists, if not, fall back to the default
+      return rowHeight || defaultRowHeight;
+    },
+    [
+      minRowHeight,
+      rowHeightsOptions,
+      getCorrectRowIndex,
+      rowHeightUtils,
+      defaultRowHeight,
+    ]
+  );
+
+  return { defaultRowHeight, setRowHeight, getRowHeight };
+};

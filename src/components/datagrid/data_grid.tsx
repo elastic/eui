@@ -57,7 +57,6 @@ import {
   EuiDataGridStyleHeader,
   EuiDataGridStyleRowHover,
 } from './data_grid_types';
-import { RowHeightUtils } from './row_height_utils';
 
 // Each gridStyle object above sets a specific CSS select to .euiGrid
 const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
@@ -237,18 +236,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     _rowHeightsOptions
   );
 
-  const rowHeightUtils = useMemo(() => new RowHeightUtils(), []);
-
-  useEffect(() => {
-    rowHeightUtils.pruneHiddenColumnHeights(orderedVisibleColumns);
-  }, [rowHeightUtils, orderedVisibleColumns]);
-
-  useEffect(() => {
-    rowHeightUtils.cacheStyles({
-      cellPadding: gridStyles.cellPadding,
-    });
-  }, [gridStyles.cellPadding, rowHeightUtils]);
-
   const visibleColCount = useMemo(() => {
     return (
       orderedVisibleColumns.length +
@@ -425,7 +412,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                     visibleRows={visibleRows}
                     interactiveCellId={interactiveCellId}
                     rowHeightsOptions={rowHeightsOptions}
-                    rowHeightUtils={rowHeightUtils}
                     virtualizationOptions={virtualizationOptions || {}}
                     gridStyles={gridStyles}
                     gridWidth={gridDimensions.width}

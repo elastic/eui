@@ -9,7 +9,7 @@
 import React from 'react';
 import { mount, render, shallow } from 'enzyme';
 
-import { mockRowHeightUtils } from '../__mocks__/row_height_utils';
+import { mockRowHeightUtils } from '../utils/__mocks__/row_heights';
 import { DataGridSortingContext } from '../data_grid_context';
 import { schemaDetectors } from '../data_grid_schema';
 
@@ -41,6 +41,7 @@ describe('EuiDataGridBody', () => {
     switchColumnPos: jest.fn(),
     schemaDetectors,
     rowHeightUtils: mockRowHeightUtils,
+    gridStyles: {},
     gridWidth: 300,
   };
 

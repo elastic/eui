@@ -28,7 +28,6 @@ import {
   useMutationObserver,
 } from '../../observer/mutation_observer';
 import { useResizeObserver } from '../../observer/resize_observer';
-import { DEFAULT_ROW_HEIGHT } from '../row_height_utils';
 import { EuiDataGridCell } from './data_grid_cell';
 import {
   DataGridSortingContext,
@@ -54,6 +53,7 @@ import {
   useVirtualizeContainerWidth,
 } from '../utils/grid_height_width';
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
+import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
 import { IS_JEST_ENVIRONMENT } from '../../../test';
 
 export const Cell: FunctionComponent<GridChildComponentProps> = ({
@@ -279,7 +279,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     onColumnResize,
     toolbarHeight,
     rowHeightsOptions,
-    rowHeightUtils,
     virtualizationOptions,
     gridStyles,
     gridWidth,
@@ -479,55 +478,17 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     }
   }, [columns, columnWidths, defaultColumnWidth]);
 
-  const setGridRef = useCallback(
-    (ref: Grid | null) => {
-      gridRef.current = ref;
-      if (ref) {
-        rowHeightUtils.setGrid(ref);
-      }
-    },
-    [rowHeightUtils]
-  );
+  const rowHeightUtils = useRowHeightUtils({
+    gridRef: gridRef.current,
+    gridStyles,
+    columns,
+  });
 
-  const [minRowHeight, setRowHeight] = useState(DEFAULT_ROW_HEIGHT);
-
-  const defaultHeight = useMemo(() => {
-    return rowHeightsOptions?.defaultHeight
-      ? rowHeightUtils.getCalculatedHeight(
-          rowHeightsOptions.defaultHeight,
-          minRowHeight
-        )
-      : minRowHeight;
-  }, [rowHeightsOptions, minRowHeight, rowHeightUtils]);
-
-  const getRowHeight = useCallback(
-    (rowIndex) => {
-      const correctRowIndex = getCorrectRowIndex(rowIndex);
-      let height;
-
-      const rowHeightOption = rowHeightUtils.getRowHeightOption(
-        correctRowIndex,
-        rowHeightsOptions
-      );
-      if (rowHeightOption) {
-        height = rowHeightUtils.getCalculatedHeight(
-          rowHeightOption,
-          minRowHeight,
-          correctRowIndex,
-          rowHeightUtils.isRowHeightOverride(correctRowIndex, rowHeightsOptions)
-        );
-      }
-
-      return height || defaultHeight;
-    },
-    [
-      minRowHeight,
-      rowHeightsOptions,
-      getCorrectRowIndex,
-      rowHeightUtils,
-      defaultHeight,
-    ]
-  );
+  const { defaultRowHeight, setRowHeight, getRowHeight } = useDefaultRowHeight({
+    rowHeightsOptions,
+    rowHeightUtils,
+    getCorrectRowIndex,
+  });
 
   useEffect(() => {
     if (gridRef.current && rowHeightsOptions) {
@@ -598,7 +559,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     endRow,
     getCorrectRowIndex,
     rowHeightsOptions,
-    defaultHeight,
+    defaultRowHeight,
     headerRowHeight,
     footerRowHeight,
     outerGridRef,
@@ -637,7 +598,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
             >
               <Grid
                 {...(virtualizationOptions ? virtualizationOptions : {})}
-                ref={setGridRef}
+                ref={gridRef}
                 innerElementType={InnerElement}
                 outerRef={outerGridRef}
                 innerRef={innerGridRef}
