@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 
 import {
   EuiPopover,
-  // EuiPopoverTitle,
-  // EuiFieldSearch,
-  // EuiFilterSelectItem,
-  //EuiLoadingChart,
-  //EuiSpacer,
-  //EuiIcon,
   EuiFilterGroup,
   EuiFilterButton,
   EuiSelectable,
@@ -74,13 +68,11 @@ export default () => {
         panelPaddingSize="none"
       >
         <EuiSelectable
-          aria-label="Searchable example"
+          aria-label="Filter group multiselect example"
           searchable
-          searchProps={{
-            'data-test-subj': 'selectableSearchHere',
-          }}
           options={items}
           onChange={(newItems) => setItems(newItems)}
+          allowExclusions
         >
           {(items, search) => (
             <>
