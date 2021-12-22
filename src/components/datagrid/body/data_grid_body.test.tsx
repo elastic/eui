@@ -11,7 +11,7 @@ import { mount, render, shallow } from 'enzyme';
 
 import { mockRowHeightUtils } from '../utils/__mocks__/row_heights';
 import { DataGridSortingContext } from '../data_grid_context';
-import { schemaDetectors } from '../data_grid_schema';
+import { schemaDetectors } from '../utils/data_grid_schema';
 
 import { EuiDataGridBody, Cell, getParentCellContent } from './data_grid_body';
 

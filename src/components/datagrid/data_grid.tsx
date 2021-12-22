@@ -43,9 +43,8 @@ import { computeVisibleRows } from './utils/row_count';
 import { EuiDataGridPaginationRenderer } from './data_grid_pagination';
 import {
   schemaDetectors as providedSchemaDetectors,
-  useDetectSchema,
   useMergedSchema,
-} from './data_grid_schema';
+} from './utils/data_grid_schema';
 import {
   EuiDataGridColumn,
   EuiDataGridControlColumn,
@@ -169,30 +168,18 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
   const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory, rowCount);
 
-  const definedColumnSchemas = useMemo(() => {
-    return columns.reduce<{ [key: string]: string }>(
-      (definedColumnSchemas, { id, schema }) => {
-        if (schema != null) {
-          definedColumnSchemas[id] = schema;
-        }
-        return definedColumnSchemas;
-      },
-      {}
-    );
-  }, [columns]);
-
   const allSchemaDetectors = useMemo(
     () => [...providedSchemaDetectors, ...(schemaDetectors || [])],
     [schemaDetectors]
   );
-  const detectedSchema = useDetectSchema(
+
+  const mergedSchema = useMergedSchema({
+    columns,
     inMemory,
     inMemoryValues,
-    allSchemaDetectors,
-    definedColumnSchemas,
-    inMemory != null
-  );
-  const mergedSchema = useMergedSchema(detectedSchema, columns);
+    schemaDetectors: allSchemaDetectors,
+    autoDetectSchema: inMemory != null,
+  });
 
   const displayValues: { [key: string]: string } = columns.reduce(
     (acc: { [key: string]: string }, column: EuiDataGridColumn) => ({

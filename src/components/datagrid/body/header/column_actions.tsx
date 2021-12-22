@@ -16,7 +16,7 @@ import {
 } from '../../data_grid_types';
 import { EuiI18n } from '../../../i18n';
 import { EuiListGroupItemProps } from '../../../list_group';
-import { getDetailsForSchema } from '../../data_grid_schema';
+import { getDetailsForSchema } from '../../utils/data_grid_schema';
 import {
   defaultSortAscLabel,
   defaultSortDescLabel,

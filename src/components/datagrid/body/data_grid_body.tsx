@@ -33,7 +33,7 @@ import {
   DataGridSortingContext,
   DataGridWrapperRowsContext,
 } from '../data_grid_context';
-import { defaultComparator } from '../data_grid_schema';
+import { defaultComparator } from '../utils/data_grid_schema';
 import { EuiDataGridFooterRow } from './data_grid_footer_row';
 import { EuiDataGridHeaderRow } from './header';
 import {
