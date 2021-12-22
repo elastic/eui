@@ -30,14 +30,15 @@ export default ({
           restrictWidth="75%"
           pageTitle="Page title"
         />
-        <EuiPageContent restrictWidth="75%" color="subdued" grow={false}>
-          SUBDUED CONTENT
-        </EuiPageContent>
         <EuiPageContent
           restrictWidth="75%"
-          template="empty"
-          border={sideNav ? 'top' : 'topExtended'}
+          color="transparent"
+          grow={false}
+          bottomBorder={sideNav ? true : 'extended'}
         >
+          Secondary content
+        </EuiPageContent>
+        <EuiPageContent restrictWidth="75%">
           <EuiEmptyPrompt
             title={<span>No spice</span>}
             body={content}

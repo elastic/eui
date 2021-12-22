@@ -15,32 +15,19 @@ import {
 } from '../_restrict_width';
 import { _EuiPanelDivlike, EuiPanel, EuiPanelProps } from '../../panel/panel';
 
-export type EuiPageContentVerticalPositions = 'center';
-export type EuiPageContentHorizontalPositions = 'center';
-
 export interface EuiPageContentBodyProps
   extends CommonProps,
     Omit<_EuiPanelDivlike, 'onClick'>,
     _EuiPageRestrictWidth {
   paddingSize?: EuiPanelProps['paddingSize'];
-  /**
-   * Supports
-   * `default`: Typical layout with panelled content;
-   * `centeredBody`: The panelled content is centered;
-   * `centeredContent`: Vertically and horizontally centers itself (requires parent to be flex); and
-   * `empty`: Removes the panneling of the page content
-   */
-  // template?: typeof TEMPLATES[number];
-  verticalPosition?: EuiPageContentVerticalPositions;
-  horizontalPosition?: EuiPageContentHorizontalPositions;
+  bottomBorder?: boolean;
 }
 
 export const EuiPageContentBody: FunctionComponent<EuiPageContentBodyProps> = ({
-  // template = 'empty',
   paddingSize = 'none',
   restrictWidth = false,
-  verticalPosition,
-  horizontalPosition,
+  bottomBorder = false,
+  grow = false,
   children,
   style,
   className,
@@ -54,17 +41,11 @@ export const EuiPageContentBody: FunctionComponent<EuiPageContentBodyProps> = ({
   const classes = classNames(
     'euiPageContentBody',
     {
+      'euiPageContentBody--bottomBorder': bottomBorder,
       [`euiPageContentBody--${widthClassName}`]: widthClassName,
-      'euiPageContentBody--verticalCenter': verticalPosition === 'center',
-      'euiPageContentBody--horizontalCenter': horizontalPosition === 'center',
     },
     className
   );
-
-  // let paddingSize = _paddingSize;
-  // if (template) {
-  //   // paddingSize = 'l';
-  // }
 
   return (
     <EuiPanel
@@ -73,6 +54,7 @@ export const EuiPageContentBody: FunctionComponent<EuiPageContentBodyProps> = ({
       paddingSize={paddingSize}
       color="transparent"
       borderRadius="none"
+      grow={grow}
       {...rest}
     >
       {children}

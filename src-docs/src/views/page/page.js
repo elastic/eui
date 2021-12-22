@@ -6,26 +6,24 @@ import {
   EuiPageContent,
   EuiPageContentBody,
   EuiPageHeader,
+  EuiPageHeaderSection,
   EuiPageSideBar,
   EuiTitle,
-  EuiButton,
   EuiSpacer,
 } from '../../../../src/components';
 
 export default () => (
-  <EuiPage>
+  <EuiPage paddingSize="l">
     <EuiPageSideBar>SideBar nav</EuiPageSideBar>
     <EuiPageBody>
-      <EuiPageHeader
-        bottomBorder={false}
-        paddingSize="none"
-        iconType="logoElastic"
-        pageTitle="Page title"
-        rightSideItems={[
-          <EuiButton fill>Add something</EuiButton>,
-          <EuiButton>Do something</EuiButton>,
-        ]}
-      />
+      <EuiPageHeader paddingSize="none" alignItems="center">
+        <EuiPageHeaderSection>
+          <EuiTitle size="l">
+            <h1>Page title</h1>
+          </EuiTitle>
+        </EuiPageHeaderSection>
+        <EuiPageHeaderSection>Page abilities</EuiPageHeaderSection>
+      </EuiPageHeader>
       <EuiPageContent>
         <EuiTitle>
           <h2>Content title</h2>

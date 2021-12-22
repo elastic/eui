@@ -16,7 +16,7 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { pageContentBodyConfig } from './playground';
+import { pageContentConfig } from './playground';
 import { PageDemo } from './_page_demo';
 
 import { PageContentDemo } from './components/page_content_demo';
@@ -63,13 +63,22 @@ export const PageExample = {
   sections: [
     {
       title: 'Page',
+      text: (
+        <>
+          <p>
+            <strong>EuiPage</strong> is simply a flex wrapper with built in
+            <EuiCode>paddingSize</EuiCode> which controls the outer padding and
+            the gap size between children. When wrapped in another flex box it
+            will automatically <EuiCode>grow</EuiCode> to fill the height.
+          </p>
+        </>
+      ),
       source: [
         {
           type: GuideSectionTypes.JS,
           code: PageSource,
         },
       ],
-      text: <p />,
       demo: (
         <div className="guideDemo__highlightLayout">
           <PageLegacy />
@@ -134,6 +143,7 @@ export const PageExample = {
         EuiPageContent,
         EuiPageContentBody,
       },
+      playground: pageContentConfig,
     },
     {
       title: 'Page sidebar',
@@ -175,7 +185,6 @@ export const PageExample = {
           highlight="euiPageContentBody"
         />
       ),
-      playground: pageContentBodyConfig,
       props: {
         EuiPageContentBody,
       },

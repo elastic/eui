@@ -10,53 +10,57 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../../test/required_props';
 
-import { EuiPageContent, EuiPageContentProps } from './page_content';
-import { TEMPLATES } from '../_template';
+import { EuiPageContent } from './page_content';
 
 describe('EuiPageContent', () => {
-  describe('template', () => {
-    TEMPLATES.forEach((template) => {
-      test('is rendered', () => {
-        const component = render(<EuiPageContent {...requiredProps} />);
+  test('is rendered', () => {
+    const component = render(<EuiPageContent {...requiredProps} />);
 
-        expect(component).toMatchSnapshot();
-      });
-
-      it('accepts EuiPanel props', () => {
-        const component = render(
-          <EuiPageContent
-            template={template}
-            paddingSize={'s'}
-            color="danger"
-          />
-        );
-
-        expect(component).toMatchSnapshot();
-      });
-    });
+    expect(component).toMatchSnapshot();
   });
+  // describe('template', () => {
+  //   TEMPLATES.forEach((template) => {
+  //     test('is rendered', () => {
+  //       const component = render(<EuiPageContent {...requiredProps} />);
 
-  describe('border', () => {
-    ['top', 'topExtended', 'bottom', 'bottomExtended'].forEach((border) => {
-      test('is rendered', () => {
-        const component = render(<EuiPageContent {...requiredProps} />);
+  //       expect(component).toMatchSnapshot();
+  //     });
 
-        expect(component).toMatchSnapshot();
-      });
+  //     it('accepts EuiPanel props', () => {
+  //       const component = render(
+  //         <EuiPageContent
+  //           // template={template}
+  //           paddingSize={'s'}
+  //           color="danger"
+  //         />
+  //       );
 
-      it('accepts EuiPanel props', () => {
-        const component = render(
-          <EuiPageContent
-            border={border as EuiPageContentProps['border']}
-            paddingSize={'s'}
-            color="danger"
-          />
-        );
+  //       expect(component).toMatchSnapshot();
+  //     });
+  //   });
+  // });
 
-        expect(component).toMatchSnapshot();
-      });
-    });
-  });
+  // describe('border', () => {
+  //   ['top', 'topExtended', 'bottom', 'bottomExtended'].forEach((border) => {
+  //     test('is rendered', () => {
+  //       const component = render(<EuiPageContent {...requiredProps} />);
+
+  //       expect(component).toMatchSnapshot();
+  //     });
+
+  //     it('accepts EuiPanel props', () => {
+  //       const component = render(
+  //         <EuiPageContent
+  //           border={border as EuiPageContentProps['border']}
+  //           paddingSize={'s'}
+  //           color="danger"
+  //         />
+  //       );
+
+  //       expect(component).toMatchSnapshot();
+  //     });
+  //   });
+  // });
 
   // test('verticalPosition is rendered', () => {
   //   const component = render(<EuiPageContent verticalPosition="center" />);

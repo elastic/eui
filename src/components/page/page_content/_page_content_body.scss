@@ -1,13 +1,7 @@
 .euiPageContentBody {
   @include euiPageRestrictWidth;
-}
 
-.euiPageContentBody--verticalCenter {
-  display: flex;
-  align-items: center;
-}
-
-.euiPageContentBody--horizontalCenter {
-  display: flex;
-  justify-content: center;
+  &--bottomBorder {
+    border-bottom: $euiBorderThin;
+  }
 }

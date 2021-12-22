@@ -11,25 +11,21 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { EuiPanel, _EuiPanelProps, _EuiPanelDivlike } from '../../panel/panel';
-import { TEMPLATES } from '../_template';
 import { _EuiPageRestrictWidth } from '../_restrict_width';
+import { _EuiPageBottomBorder } from '../_bottom_border';
+
 import {
   EuiPageContentBody,
   EuiPageContentBodyProps,
 } from './page_content_body';
 
+export type EuiPageContentPositions = 'top' | 'center' | 'horizontalCenter';
+
 export type EuiPageContentProps = CommonProps &
   // Use only the div properties of EuiPanel (not button)
-  _EuiPageRestrictWidth & {
-    /**
-     * Choose between 4 types of templates.
-     * `default`: Typical layout with panelled content;
-     * `centeredBody`: The panelled content is centered;
-     * `centeredContent`: The content inside the panel is centered;
-     * `empty`: Removes the panneling of the page content
-     */
-    template?: typeof TEMPLATES[number] | 'pageHeader';
-    border?: 'bottom' | 'bottomExtended' | 'top' | 'topExtended';
+  _EuiPageRestrictWidth &
+  _EuiPageBottomBorder & {
+    position?: EuiPageContentPositions;
     /**
      * Quickly turn on/off the background color (and other panel attributes)
      */
@@ -41,31 +37,36 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   children,
   className,
   paddingSize = 'l',
-  template,
+  position,
   restrictWidth = false,
-  border,
+  bottomBorder,
   panelled = true,
+  grow = true,
   style = {},
   ...rest
 }) => {
+  const isTemplate = restrictWidth || bottomBorder || position;
   const color = panelled ? 'plain' : 'transparent';
 
   const classes = classNames(
     'euiPageContent',
     {
-      'euiPageContent--flex': template === 'empty',
+      'euiPageContent--flex': isTemplate,
+      'euiPageContent--bottomBorder': bottomBorder === 'extended',
+      [`euiPageContent--${position}`]: position,
     },
     className
   );
 
   // If the new template specific props are not provided, just return a basic panel
-  if (!template && !restrictWidth) {
+  if (!isTemplate) {
     return (
       <EuiPanel
         className={classes}
         paddingSize={paddingSize}
         color={color}
         style={style}
+        grow={grow}
         {...rest}
       >
         {children}
@@ -75,55 +76,36 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
 
   const contentProps: Partial<_EuiPanelProps> = {
     paddingSize,
-    borderRadius: rest.borderRadius || 'none',
-    // If a template is decalared, ensure the whole the grows to stretch
-    grow: rest.grow ?? true,
+    borderRadius: 'none',
     hasShadow: false,
   };
 
-  if (border?.includes('bottom')) {
-    contentProps.hasBorder = '0 0 1px 0';
-  } else if (border?.includes('top')) {
-    contentProps.hasBorder = '1px 0 0 0';
-  }
+  style.paddingTop = 0;
+  style.paddingBottom = 0;
 
   const contentBodyProps: Partial<EuiPageContentBodyProps> = {
-    paddingSize: 'none',
+    paddingSize,
+    style: { paddingLeft: 0, paddingRight: 0 },
   };
 
-  if (restrictWidth) {
-    style.paddingTop = 0;
-    style.paddingBottom = 0;
-    contentBodyProps.paddingSize = paddingSize;
-    contentBodyProps.style = { paddingLeft: 0, paddingRight: 0 };
-
-    // If border is not extended, add it to the body instead
-    if (border === 'bottom') {
-      contentProps.hasBorder = false;
-      contentBodyProps.hasBorder = '0 0 1px 0';
-    } else if (border === 'top') {
-      contentProps.hasBorder = false;
-      contentBodyProps.hasBorder = '1px 0 0 0';
-    }
-  }
-
-  if (template === 'empty') {
-    contentBodyProps.verticalPosition = 'center';
-    contentBodyProps.horizontalPosition = 'center';
-  } else if (template === 'pageHeader') {
-    contentProps.grow = rest.grow ?? false;
-    contentProps.color = rest.color ?? 'transparent';
+  if (position?.toLowerCase().includes('center')) {
+    contentBodyProps.style!.width = 'auto';
   }
 
   return (
     <EuiPanel
       className={classes}
+      {...contentProps}
       style={style}
       color={color}
-      {...contentProps}
+      grow={grow}
       {...rest}
     >
-      <EuiPageContentBody {...contentBodyProps} restrictWidth={restrictWidth}>
+      <EuiPageContentBody
+        {...contentBodyProps}
+        bottomBorder={bottomBorder === true}
+        restrictWidth={restrictWidth}
+      >
         {children}
       </EuiPageContentBody>
     </EuiPanel>

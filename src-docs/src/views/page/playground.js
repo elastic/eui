@@ -10,7 +10,7 @@ import {
   generateCustomProps,
 } from '../../services/playground';
 
-export const pageContentBodyConfig = () => {
+export const pageContentConfig = () => {
   const docgenInfo = Array.isArray(EuiPageContent.__docgenInfo)
     ? EuiPageContent.__docgenInfo[0]
     : EuiPageContent.__docgenInfo;

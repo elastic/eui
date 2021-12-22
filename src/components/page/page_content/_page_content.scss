@@ -3,18 +3,20 @@
   min-width: 0; // Make sure that inner flex layouts don't get larger than this container
 }
 
-.euiPageContent--centeredBody {
-  align-self: center;
-  margin-top: auto;
-  margin-bottom: auto;
-  flex-grow: 0;
-  width: auto;
-  max-width: 100%; // Fixes IE
-  margin-left: auto;
-  margin-right: auto;
+.euiPageContent--bottomBorder {
+  border-bottom: $euiBorderThin;
 }
 
 .euiPageContent--flex {
   display: flex;
   flex-direction: column;
+}
+
+.euiPageContent--center {
+  align-items: center;
+  justify-content: center;
+}
+
+.euiPageContent--horizontalCenter {
+  align-items: center;
 }

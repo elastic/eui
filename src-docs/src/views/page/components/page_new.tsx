@@ -53,9 +53,7 @@ export default ({
             },
           ]}
         />
-        <EuiPageContent restrictWidth template="default">
-          {content}
-        </EuiPageContent>
+        <EuiPageContent restrictWidth>{content}</EuiPageContent>
         {bottomBarNode}
       </EuiPageBody>
     </EuiPage>

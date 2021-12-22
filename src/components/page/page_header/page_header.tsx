@@ -14,6 +14,8 @@ import {
   _EuiPageHeaderContentProps,
 } from './page_header_content';
 
+import { _EuiPageBottomBorder } from '../_bottom_border';
+
 export const paddingSizeToClassNameMap = {
   none: null,
   s: 'euiPageHeader--paddingSmall',
@@ -24,13 +26,9 @@ export const paddingSizeToClassNameMap = {
 export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
 
 export type EuiPageHeaderProps = CommonProps &
-  HTMLAttributes<HTMLElement> & {
-    /**
-     * Adds a bottom border to separate it from the content after;
-     * Passing `extended` will ensure the border touches the sides of the parent container.
-     */
-    bottomBorder?: _EuiPageHeaderContentProps['bottomBorder'] | 'extended';
-  } & Omit<_EuiPageHeaderContentProps, 'bottomBorder'>;
+  HTMLAttributes<HTMLElement> &
+  _EuiPageBottomBorder &
+  Omit<_EuiPageHeaderContentProps, 'bottomBorder'>;
 
 export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   className,
