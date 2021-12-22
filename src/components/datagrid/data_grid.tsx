@@ -16,7 +16,6 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import tabbable from 'tabbable';
 import { useGeneratedHtmlId, keys } from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n, useEuiI18n } from '../i18n';
@@ -40,6 +39,7 @@ import {
   useInMemoryValues,
   EuiDataGridInMemoryRenderer,
 } from './utils/in_memory';
+import { useHeaderIsInteractive } from './body/header/header_is_interactive';
 import { EuiDataGridPaginationRenderer } from './data_grid_pagination';
 import {
   schemaDetectors as providedSchemaDetectors,
@@ -50,7 +50,6 @@ import {
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
   EuiDataGridControlColumn,
-  EuiDataGridFocusedCell,
   EuiDataGridOnColumnResizeHandler,
   EuiDataGridProps,
   EuiDataGridStyleBorders,
@@ -270,64 +269,20 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     ...rest
   } = props;
 
+  const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
+
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [gridWidth, setGridWidth] = useState(0);
 
   const interactiveCellId = useGeneratedHtmlId();
-  const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
 
+  const { headerIsInteractive, handleHeaderMutation } = useHeaderIsInteractive(
+    contentRef
+  );
   const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus(
     headerIsInteractive
   );
   const { focusedCell, setFocusedCell } = focusContext;
-
-  // maintain a statically-referenced copy of `focusedCell`
-  // so it can be looked up when needed without causing a re-render
-  const focusedCellReference = useRef<
-    EuiDataGridFocusedCell | null | undefined
-  >(focusedCell);
-  useEffect(() => {
-    focusedCellReference.current = focusedCell;
-  }, [focusedCell]);
-
-  const handleHeaderChange = useCallback<(headerRow: HTMLElement) => void>(
-    (headerRow) => {
-      const tabbables = tabbable(headerRow);
-      const managed = headerRow.querySelectorAll('[data-euigrid-tab-managed]');
-      const hasInteractives = tabbables.length > 0 || managed.length > 0;
-      if (hasInteractives !== headerIsInteractive) {
-        setHeaderIsInteractive(hasInteractives);
-
-        // if the focus is on the header, and the header is no longer interactive
-        // move the focus down to the first row
-        const focusedCell = focusedCellReference.current;
-        if (hasInteractives === false && focusedCell && focusedCell[1] === -1) {
-          setFocusedCell([focusedCell[0], 0]);
-        }
-      }
-    },
-    [headerIsInteractive, setHeaderIsInteractive, setFocusedCell]
-  );
-
-  const handleHeaderMutation = useCallback<MutationCallback>(
-    (records) => {
-      const [{ target }] = records;
-
-      // find the wrapping header div
-      let headerRow = target.parentElement;
-      while (
-        headerRow &&
-        (headerRow.getAttribute('data-test-subj') || '')
-          .split(/\s+/)
-          .indexOf('dataGridHeader') === -1
-      ) {
-        headerRow = headerRow.parentElement;
-      }
-
-      if (headerRow) handleHeaderChange(headerRow);
-    },
-    [handleHeaderChange]
-  );
 
   const handleGridKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     switch (event.key) {
@@ -451,19 +406,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   useEffect(() => {
     rowHeightUtils.pruneHiddenColumnHeights(orderedVisibleColumns);
   }, [rowHeightUtils, orderedVisibleColumns]);
-
-  const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (contentRef) {
-      const headerElement = contentRef.querySelector(
-        '[data-test-subj~=dataGridHeader]'
-      );
-      if (headerElement) {
-        handleHeaderChange(headerElement as HTMLElement);
-      }
-    }
-  }, [contentRef, handleHeaderChange]);
 
   useEffect(() => {
     rowHeightUtils.cacheStyles({
