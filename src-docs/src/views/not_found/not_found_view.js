@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { EuiPageContent, EuiEmptyPrompt } from '../../../../src';
 
 export const NotFoundView = () => (
-  <EuiPageContent position="center" panelled={false}>
+  <EuiPageContent alignment="center" panelled={false}>
     <EuiEmptyPrompt
       title={<h1>404</h1>}
       color="plain"

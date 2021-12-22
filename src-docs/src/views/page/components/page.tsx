@@ -18,7 +18,7 @@ export default ({
 }) => (
   <EuiPage {...rest}>
     <EuiPageSideBar paddingSize="l">{sideBar}</EuiPageSideBar>
-    <EuiPageBody paddingSize="l" panelled>
+    <EuiPageBody panelled>
       <EuiPageContent panelled={false}>{content}</EuiPageContent>
     </EuiPageBody>
   </EuiPage>

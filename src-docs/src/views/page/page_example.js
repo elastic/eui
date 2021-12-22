@@ -26,8 +26,8 @@ import { PageBodyDemo } from './components/page_body_demo';
 const PageBodySource = require('!!raw-loader!./components/page_body');
 import { PageSideBarDemo } from './components/page_side_bar_demo';
 const PageSidebarSource = require('!!raw-loader!./components/page_side_bar');
-import PageLegacy from './components/page';
-const PageLegacySource = require('!!raw-loader!./components/page');
+import PageLegacy from './components/page_legacy';
+const PageLegacySource = require('!!raw-loader!./components/page_legacy');
 
 export const PageExample = {
   title: 'Page components',

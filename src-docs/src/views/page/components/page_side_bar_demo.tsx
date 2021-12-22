@@ -7,7 +7,6 @@ import {
   EuiPanel,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiPageProps,
 } from '../../../../../src';
 
 import contentSvg from '../../../images/content.svg';
@@ -17,9 +16,6 @@ import contentCenterSvg from '../../../images/content_center.svg';
 import PageSideBar from './page_side_bar';
 
 export const PageSideBarDemo: FunctionComponent = () => {
-  const [restrictWidth, setRestrictWidth] = useState<
-    EuiPageProps['restrictWidth']
-  >(false);
   const [showSideBar, setShowSideBar] = useState(true);
   const [centeredContent, setCenteredContent] = useState(false);
 
@@ -32,7 +28,7 @@ export const PageSideBarDemo: FunctionComponent = () => {
   );
 
   const sideBar = showSideBar ? (
-    <EuiImage alt="Fake paragraph" url={sideNavSvg} size={'fullWidth'} />
+    <EuiImage alt="Fake paragraph" url={sideNavSvg} size={'original'} />
   ) : undefined;
 
   return (
@@ -41,7 +37,6 @@ export const PageSideBarDemo: FunctionComponent = () => {
         <PageSideBar
           content={content}
           sideBar={sideBar}
-          restrictWidth={restrictWidth}
           centeredContent={centeredContent}
         />
       </div>
@@ -52,15 +47,6 @@ export const PageSideBarDemo: FunctionComponent = () => {
               label="Sidebar"
               checked={showSideBar}
               onChange={() => setShowSideBar((s) => !s)}
-            />
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiSwitch
-              label="Restrict width"
-              checked={!!restrictWidth}
-              onChange={(e) =>
-                setRestrictWidth(e.target.checked ? '75%' : false)
-              }
             />
           </EuiFlexItem>
           <EuiFlexItem>

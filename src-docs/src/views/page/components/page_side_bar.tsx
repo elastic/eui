@@ -14,7 +14,6 @@ export default ({
   content = <></>,
   sideBar,
   centeredContent,
-  restrictWidth,
 }: _EuiPageRestrictWidth & {
   content: ReactElement;
   sideBar?: ReactElement;
@@ -32,11 +31,7 @@ export default ({
 
       <EuiPageBody panelled={Boolean(sideBar)}>
         {centeredContent ? (
-          <EuiPageContent
-            panelled={false}
-            alignment="center"
-            restrictWidth={restrictWidth}
-          >
+          <EuiPageContent panelled={false} alignment="center">
             <EuiEmptyPrompt
               title={<span>No spice</span>}
               body={content}
@@ -45,22 +40,15 @@ export default ({
           </EuiPageContent>
         ) : (
           <>
-            <EuiPageHeader
-              bottomBorder={bottomBorder}
-              restrictWidth={restrictWidth}
-              pageTitle="Page title"
-            />
+            <EuiPageHeader bottomBorder={bottomBorder} pageTitle="Page title" />
             <EuiPageContent
               bottomBorder={bottomBorder}
-              restrictWidth={restrictWidth}
               color="transparent"
               grow={false}
             >
               Secondary content
             </EuiPageContent>
-            <EuiPageContent alignment={'top'} restrictWidth={restrictWidth}>
-              {content}
-            </EuiPageContent>
+            <EuiPageContent alignment={'top'}>{content}</EuiPageContent>
           </>
         )}
       </EuiPageBody>

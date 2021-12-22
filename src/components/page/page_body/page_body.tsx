@@ -9,17 +9,11 @@
 import React, { PropsWithChildren, ComponentType, ComponentProps } from 'react';
 import classNames from 'classnames';
 import { CommonProps, keysOf } from '../../common';
-import { _EuiPageRestrictWidth } from '../_restrict_width';
-import { EuiPanel, EuiPanelProps } from '../../panel';
-import { TEMPLATES } from '../_template';
 import {
-  EuiPageContent,
-  EuiPageContentBody,
-  EuiPageContentBodyProps,
-  EuiPageContentProps,
-} from '../page_content';
-import { EuiPageHeader, EuiPageHeaderProps } from '../page_header';
-import { EuiBottomBarProps, EuiBottomBar } from '../../bottom_bar';
+  _EuiPageRestrictWidth,
+  setPropsForRestrictedPageWidth,
+} from '../_restrict_width';
+import { EuiPanel, EuiPanelProps } from '../../panel';
 
 const paddingSizeToClassNameMap = {
   none: null,
@@ -36,14 +30,6 @@ export type EuiPageBodyProps<T extends ComponentTypes = 'main'> = CommonProps &
   ComponentProps<T> &
   _EuiPageRestrictWidth & {
     /**
-     * Choose between 3 types of templates.
-     * `default`: Typical layout with nothing centered
-     * `centeredBody`: The panelled content is centered
-     * `centeredContent`: The content inside the panel is centered
-     * `empty`: Removes the panneling of the page content
-     */
-    template?: typeof TEMPLATES[number];
-    /**
      * Sets the HTML element for `EuiPageBody`.
      */
     component?: T;
@@ -59,132 +45,52 @@ export type EuiPageBodyProps<T extends ComponentTypes = 'main'> = CommonProps &
      * Adjusts the padding
      */
     paddingSize?: typeof PADDING_SIZES[number];
-    /**
-     * Optionally include an #EuiPageHeader by passing an object of its props
-     */
-    pageHeader?: EuiPageHeaderProps;
-    /**
-     * Gets passed along to the #EuiPageContent component
-     */
-    pageContentProps?: EuiPageContentProps;
-    /**
-     * Gets passed along to the #EuiPageContentBody component
-     */
-    pageContentBodyProps?: EuiPageContentBodyProps;
-    /**
-     * Adds contents inside of an EuiBottomBar.
-     * Only works when `template = 'default' | 'empty'`
-     */
-    bottomBar?: EuiBottomBarProps['children'];
-    /**
-     * Gets passed along to the #EuiBottomBar component if `bottomBar` has contents
-     */
-    bottomBarProps?: EuiBottomBarProps;
   };
 
 export const EuiPageBody = <T extends ComponentTypes>({
-  template,
-  restrictWidth = false,
-  paddingSize = 'l',
-  panelled = false,
-  panelProps,
-  pageHeader,
-  pageContentBodyProps,
-  pageContentProps,
   children,
+  restrictWidth = false,
+  style,
   className,
-  bottomBar,
-  bottomBarProps,
+  component: Component = 'div' as T,
+  panelled,
+  panelProps,
+  paddingSize = 'none',
+  borderRadius = 'none',
   ...rest
 }: PropsWithChildren<EuiPageBodyProps<T>>) => {
-  /**
-   * The EuiPageHeader is always the same
-   */
-  const pageHeaderNode = pageHeader && (
-    <EuiPageHeader
-      restrictWidth={restrictWidth}
-      bottomBorder={panelled ? true : 'extended'}
-      paddingSize={paddingSize}
-      {...pageHeader}
-    />
+  const { widthClassName, newStyle } = setPropsForRestrictedPageWidth(
+    restrictWidth,
+    style
+  );
+  const borderRadiusClass =
+    borderRadius === 'none' ? 'euiPageBody--borderRadiusNone' : '';
+
+  const classes = classNames(
+    'euiPageBody',
+    borderRadiusClass,
+    // This may duplicate the padding styles from EuiPanel, but allows for some nested configurations in the CSS
+    paddingSizeToClassNameMap[paddingSize as typeof PADDING_SIZES[number]],
+    {
+      [`euiPageBody--${widthClassName}`]: widthClassName,
+    },
+    className
   );
 
-  // Only the default template can display a bottom bar
-  const bottomBarNode = bottomBar ? (
-    <EuiBottomBar paddingSize="none" position="sticky" {...bottomBarProps}>
-      {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}
-      <EuiPageContentBody
-        paddingSize={paddingSize}
-        restrictWidth={restrictWidth}
-      >
-        {bottomBar}
-      </EuiPageContentBody>
-    </EuiBottomBar>
-  ) : undefined;
-
-  /**
-   * Don't add any wrappers if template is undefined
-   */
-  let pageContent = (
-    <>
-      {pageHeaderNode}
-      {children}
-      {bottomBarNode}
-    </>
-  );
-
-  if (template === 'centeredBody') {
-    /**
-     * CENTERED BODY
-     * Wraps ALL the content inside of centered panel.
-     * Color of panel depends on `panelled` prop
-     */
-    panelled = false;
-    pageContent = (
-      <>
-        <EuiPageContent
-          restrictWidth={restrictWidth}
-          template={template}
-          color={'plain'}
-          hasShadow
-          borderRadius="m"
-          {...pageContentProps}
-        >
-          {children}
-        </EuiPageContent>
-      </>
-    );
-  } else if (template) {
-    /**
-     * The rest: CENTERED CONTENT or DEFAULT or EMPTY.
-     * BottomBar location is based on `panelled` prop
-     */
-    pageContent = (
-      <>
-        {pageHeaderNode}
-        <EuiPageContent
-          restrictWidth={restrictWidth}
-          template={template}
-          {...pageContentProps}
-        >
-          {children}
-        </EuiPageContent>
-        {bottomBarNode}
-      </>
-    );
-  }
-
-  return (
+  return panelled ? (
     <EuiPanel
-      paddingSize="none"
-      borderRadius="none"
-      color={panelled ? 'plain' : 'transparent'}
+      className={classes}
+      style={newStyle || style}
+      borderRadius={borderRadius}
+      paddingSize={paddingSize}
       {...panelProps}
-      // Needs the same top class name for flex layout
-      className={classNames('euiPageBody', rest?.className)}
       {...rest}
     >
-      {pageContent}
+      {children}
     </EuiPanel>
+  ) : (
+    <Component className={classes} style={newStyle || style} {...rest}>
+      {children}
+    </Component>
   );
 };

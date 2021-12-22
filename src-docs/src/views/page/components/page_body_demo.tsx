@@ -22,7 +22,7 @@ export const PageBodyDemo: FunctionComponent = () => {
   );
 
   const sideBar = showSideBar ? (
-    <EuiImage alt="Fake paragraph" url={sideNavSvg} size={'fullWidth'} />
+    <EuiImage alt="Fake paragraph" url={sideNavSvg} size={'original'} />
   ) : undefined;
 
   return (
