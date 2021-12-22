@@ -20,9 +20,9 @@ See [**EuiThemeProvider**](/#/theming/theme-provider) for full documentation as 
 
 It is not recommended to recreate the functionality of **EuiProvider** by composing its constituent parts. More context, functionality, and configurations will be added to **EuiProvider** in future releases. Nested instances of [**EuiThemeProvider**](/#/theming/theme-provider), however, are valid.
 
-## Global reset
+## Global styles
 
-A reset stylesheet and the global EUI styles are applied via Emotion. To prevent loading these styles from loading, pass `theme={null}` to the provider.
+A reset stylesheet and the global EUI styles are applied via Emotion. To prevent loading these styles from loading, pass `globalStyles={false}` to the provider. If you are using the legacy theme, we recommend passing `theme={null}` to achieve similar results.
 
 ### `@emotion/cache` and style injection location
 
