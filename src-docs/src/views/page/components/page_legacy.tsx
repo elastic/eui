@@ -10,7 +10,7 @@ import {
   EuiPageSideBar,
   EuiTitle,
   EuiSpacer,
-} from '../../../../src/components';
+} from '../../../../../src/components';
 
 export default () => (
   <EuiPage paddingSize="l">

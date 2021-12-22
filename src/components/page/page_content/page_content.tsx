@@ -25,11 +25,12 @@ export type EuiPageContentProps = CommonProps &
   // Use only the div properties of EuiPanel (not button)
   _EuiPageRestrictWidth &
   _EuiPageBottomBorder & {
-    position?: EuiPageContentPositions;
+    alignment?: EuiPageContentPositions;
     /**
      * Quickly turn on/off the background color (and other panel attributes)
      */
     panelled?: boolean;
+    bodyProps?: EuiPageContentBodyProps;
   } & _EuiPanelProps &
   Omit<_EuiPanelDivlike, 'onClick' | 'role'>;
 
@@ -37,15 +38,16 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
   children,
   className,
   paddingSize = 'l',
-  position,
+  alignment,
   restrictWidth = false,
   bottomBorder,
   panelled = true,
   grow = true,
+  bodyProps,
   style = {},
   ...rest
 }) => {
-  const isTemplate = restrictWidth || bottomBorder || position;
+  const isTemplate = restrictWidth || bottomBorder || alignment;
   const color = panelled ? 'plain' : 'transparent';
 
   const classes = classNames(
@@ -53,7 +55,7 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
     {
       'euiPageContent--flex': isTemplate,
       'euiPageContent--bottomBorder': bottomBorder === 'extended',
-      [`euiPageContent--${position}`]: position,
+      [`euiPageContent--${alignment}`]: alignment,
     },
     className
   );
@@ -88,7 +90,7 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
     style: { paddingLeft: 0, paddingRight: 0 },
   };
 
-  if (position?.toLowerCase().includes('center')) {
+  if (alignment?.toLowerCase().includes('center')) {
     contentBodyProps.style!.width = 'auto';
   }
 
@@ -105,6 +107,7 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
         {...contentBodyProps}
         bottomBorder={bottomBorder === true}
         restrictWidth={restrictWidth}
+        {...bodyProps}
       >
         {children}
       </EuiPageContentBody>

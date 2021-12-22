@@ -17,25 +17,20 @@ import {
 } from '../../../../src/components';
 
 import { pageContentConfig } from './playground';
-import { PageDemo } from './_page_demo';
 
 import { PageContentDemo } from './components/page_content_demo';
 const PageContentSource = require('!!raw-loader!./components/page_content');
-
-const PageSource = require('!!raw-loader!./page');
-import PageBody from './page_body';
-const PageBodySource = require('!!raw-loader!./page_body');
-import PageSidebar from './page_sidebar';
-const PageSidebarSource = require('!!raw-loader!./page_sidebar');
-
-import PageCenteredContent from './components/page_content_body';
-// const PageCenteredContentSource = require('!!raw-loader!./page_centered_content');
-
-import PageLegacy from './page';
-const PageLegacySource = require('!!raw-loader!./page');
+import { PageComponentDemo } from './components/page_demo';
+const PageSource = require('!!raw-loader!./components/page');
+import { PageBodyDemo } from './components/page_body_demo';
+const PageBodySource = require('!!raw-loader!./components/page_body');
+import { PageSideBarDemo } from './components/page_side_bar_demo';
+const PageSidebarSource = require('!!raw-loader!./components/page_side_bar');
+import PageLegacy from './components/page';
+const PageLegacySource = require('!!raw-loader!./components/page');
 
 export const PageExample = {
-  title: 'Page',
+  title: 'Page components',
   intro: (
     <>
       <EuiText>
@@ -66,42 +61,59 @@ export const PageExample = {
       text: (
         <>
           <p>
-            <strong>EuiPage</strong> is simply a flex wrapper with built in
-            <EuiCode>paddingSize</EuiCode> which controls the outer padding and
-            the gap size between children. When wrapped in another flex box it
-            will automatically <EuiCode>grow</EuiCode> to fill the height.
+            <strong>EuiPage</strong> is simply a flex wrapper that will
+            automatically <EuiCode>grow</EuiCode> to fill the height of a flex
+            container. You can also control the flex{' '}
+            <EuiCode>direction</EuiCode> the maximum width using
+            <EuiCode>restrictWidth</EuiCode> which centers the page when it
+            reaches the provided value (or <EuiCode>1200px</EuiCode> if set to{' '}
+            <EuiCode>true</EuiCode>).
           </p>
         </>
       ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: PageSource,
         },
       ],
       demo: (
         <div className="guideDemo__highlightLayout">
-          <PageLegacy />
+          <PageComponentDemo />
         </div>
       ),
+      demoPanelProps: {
+        paddingSize: 'none',
+        style: { overflow: 'hidden' },
+      },
       props: {
         EuiPage,
       },
     },
     {
       title: 'Page body',
+      text: (
+        <p>
+          Typically you&apos;ll want to wrap all your page contents in{' '}
+          <strong>EuiPageBody</strong> and set{' '}
+          <EuiCode>{'panelled={true}'}</EuiCode> when you have a side bar.
+        </p>
+      ),
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: PageBodySource,
         },
       ],
-      text: <p />,
       demo: (
         <div className="guideDemo__highlightLayout">
-          <PageBody />
+          <PageBodyDemo />
         </div>
       ),
+      demoPanelProps: {
+        paddingSize: 'none',
+        style: { overflow: 'hidden' },
+      },
       props: {
         EuiPageBody,
       },
@@ -110,7 +122,7 @@ export const PageExample = {
       title: 'Page content',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: PageContentSource,
         },
       ],
@@ -126,14 +138,17 @@ export const PageExample = {
           </p>
           <p>
             To create dividers between contents, use the{' '}
-            <EuiCode>border</EuiCode> prop. When using in conjunction with{' '}
-            <EuiCode>restrictWidth</EuiCode>, you&apos;ll may want to consider
-            the extended border version which will ensure the border touches the
-            sides of the parent.
+            <EuiCode>bottomBorder</EuiCode> prop. The{' '}
+            <EuiCode>{"'extended'"}</EuiCode> version ensures the border touches
+            the sides of the parent. It also supports{' '}
+            <EuiCode>restrictWidth</EuiCode> and <EuiCode>alignment</EuiCode> to
+            align with common usages.
           </p>
           <p>
-            You can also use the same <EuiCode>template</EuiCode> and{' '}
-            <EuiCode>restrictWidth</EuiCode> options as EuiPageTemplate.
+            When providing these custom properties, the component adds an
+            additional wrapper of <strong>EuiPageContentBody</strong> to support
+            the configurations. To further expand on this wrappers props, you
+            can pass <EuiCode>bodyProps</EuiCode>.
           </p>
         </>
       ),
@@ -149,44 +164,51 @@ export const PageExample = {
       title: 'Page sidebar',
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: PageSidebarSource,
         },
       ],
-      text: <p />,
-      demo: (
-        <div className="guideDemo__highlightLayout">
-          <PageSidebar />
-        </div>
+      text: (
+        <>
+          <p>
+            <strong>EuiPageSidebar</strong> doesn&apos;t contain many
+            configurations itself, but it does dictate how the rest of the page
+            contents should be displayed.
+          </p>
+          <p>
+            For example when <strong>including</strong> a sidebar:
+          </p>
+          <ul>
+            <li>
+              <strong>EuiPageHeader</strong> &amp;{' '}
+              <strong>EuiPageContent</strong>:{' '}
+              <EuiCode>{'bottomBorder={true}'}</EuiCode>
+            </li>
+            <li>
+              <strong>EuiEmptyPrompt</strong> for centered contents:{' '}
+              <EuiCode>{'color="subdued"'}</EuiCode>
+            </li>
+          </ul>
+          <p>
+            When <strong>not</strong> including a sidebar:
+          </p>
+          <ul>
+            <li>
+              <strong>EuiPageHeader</strong> &amp;{' '}
+              <strong>EuiPageContent</strong>:{' '}
+              <EuiCode>{'bottomBorder="extended"'}</EuiCode>
+            </li>
+            <li>
+              <strong>EuiEmptyPrompt</strong> for centered contents &amp; page
+              contents is not panelled: <EuiCode>{'color="plain"'}</EuiCode>
+            </li>
+          </ul>
+        </>
       ),
+      demo: <PageSideBarDemo />,
+      demoPanelProps: { paddingSize: 'none', style: { overflow: 'hidden' } },
       props: {
         EuiPageSideBar,
-      },
-    },
-    {
-      title: 'Page content body',
-      text: (
-        <p>
-          <strong>EuiPageContentBody</strong> is simply an{' '}
-          <Link>
-            <strong>EuiPanel</strong>
-          </Link>{' '}
-          with added support for <EuiCode>restrictWidth</EuiCode> and
-          vertical/horizontal centering. You should wrap every direct child of{' '}
-          <strong>EuiPageContent</strong> with this component, matching settings
-          for <EuiCode>restrictWidth</EuiCode>.
-        </p>
-      ),
-      demo: (
-        <PageDemo
-          slug="centered-content"
-          centered
-          pattern={PageCenteredContent}
-          highlight="euiPageContentBody"
-        />
-      ),
-      props: {
-        EuiPageContentBody,
       },
     },
     {

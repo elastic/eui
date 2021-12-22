@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import { EuiPageContent, EuiPageHeader } from '../../../../../src/components';
 
 export default ({
-  content,
+  content = <></>,
   extendedBorder,
   restrictWidth,
   centeredContent,
@@ -34,7 +34,7 @@ export default ({
       </EuiPageContent>
       <EuiPageContent
         restrictWidth={width}
-        position={centeredContent ? 'center' : 'top'}
+        alignment={centeredContent ? 'center' : 'top'}
         panelled={extendedBorder}
       >
         {content}
