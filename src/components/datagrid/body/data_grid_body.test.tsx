@@ -36,12 +36,12 @@ describe('EuiDataGridBody', () => {
     interactiveCellId: 'someId',
     inMemory: { level: 'enhancements' as any },
     inMemoryValues: {},
-    setColumnWidth: jest.fn(),
     handleHeaderMutation: jest.fn(),
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
     schemaDetectors,
     rowHeightUtils: mockRowHeightUtils,
+    gridWidth: 300,
   };
 
   beforeAll(() => {
@@ -121,15 +121,6 @@ describe('EuiDataGridBody', () => {
   });
 
   // TODO: Test final height/weights in Cypress
-  it('calculates height and widths', () => {
-    mount(
-      <EuiDataGridBody
-        {...requiredProps}
-        rowHeightsOptions={{ defaultHeight: 10, rowHeights: { 0: 20 } }}
-        defaultColumnWidth={50}
-      />
-    );
-  });
 
   // TODO: Test tabbing in Cypress
 

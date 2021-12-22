@@ -314,8 +314,6 @@ export interface EuiDataGridColumnSortingDraggableProps {
 }
 export interface EuiDataGridBodyProps {
   isFullScreen: boolean;
-  columnWidths: EuiDataGridColumnWidths;
-  defaultColumnWidth?: number | null;
   leadingControlColumns?: EuiDataGridControlColumn[];
   trailingControlColumns?: EuiDataGridControlColumn[];
   columns: EuiDataGridColumn[];
@@ -331,16 +329,17 @@ export interface EuiDataGridBodyProps {
   inMemoryValues: EuiDataGridInMemoryValues;
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   pagination?: EuiDataGridPaginationProps;
-  setColumnWidth: (columnId: string, width: number) => void;
   headerIsInteractive: boolean;
   handleHeaderMutation: MutationCallback;
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
+  onColumnResize?: EuiDataGridOnColumnResizeHandler;
   toolbarHeight: number;
   virtualizationOptions?: Partial<VariableSizeGridProps>;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils: RowHeightUtils;
   gridStyles?: EuiDataGridStyle;
+  gridWidth: number;
 }
 export interface EuiDataGridCellValueElementProps {
   /**

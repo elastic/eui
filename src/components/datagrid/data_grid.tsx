@@ -10,17 +10,15 @@ import classNames from 'classnames';
 import React, {
   FunctionComponent,
   KeyboardEvent,
-  useCallback,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from 'react';
 import { useGeneratedHtmlId, keys } from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n, useEuiI18n } from '../i18n';
 import { useResizeObserver } from '../observer/resize_observer';
-import { EuiDataGridBody, VIRTUALIZED_CONTAINER_CLASS } from './body';
+import { EuiDataGridBody } from './body';
 import {
   useDataGridColumnSelector,
   useDataGridColumnSorting,
@@ -50,9 +48,7 @@ import {
 } from './data_grid_schema';
 import {
   EuiDataGridColumn,
-  EuiDataGridColumnWidths,
   EuiDataGridControlColumn,
-  EuiDataGridOnColumnResizeHandler,
   EuiDataGridProps,
   EuiDataGridStyleBorders,
   EuiDataGridStyleCellPaddings,
@@ -62,7 +58,6 @@ import {
   EuiDataGridStyleRowHover,
 } from './data_grid_types';
 import { RowHeightUtils } from './row_height_utils';
-import { IS_JEST_ENVIRONMENT } from '../../test';
 
 // Each gridStyle object above sets a specific CSS select to .euiGrid
 const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
@@ -102,147 +97,6 @@ const cellPaddingsToClassMap: {
   m: '',
   l: 'euiDataGrid--paddingLarge',
 };
-
-/**
- * Returns the size of the cell container minus the scroll bar width.
- * To do so, this hook is listening for size changes of the container itself,
- * as well as pagination changes to make sure every update is caught.
- *
- * This is necessary because there is no callback/event fired by the browser
- * indicating the scroll bar state has changed.
- * @param resizeRef the wrapper element containging the data grid
- * @param pageSize the currently applied page size
- */
-function useVirtualizeContainerWidth(
-  resizeRef: HTMLDivElement | null,
-  pageSize: number | undefined
-) {
-  const [virtualizeContainerWidth, setVirtualizeContainerWidth] = useState(0);
-  const virtualizeContainer = resizeRef?.getElementsByClassName(
-    VIRTUALIZED_CONTAINER_CLASS
-  )[0] as HTMLDivElement | null;
-
-  // re-render data grid on size changes
-  useResizeObserver(virtualizeContainer);
-
-  useEffect(() => {
-    if (virtualizeContainer?.clientWidth) {
-      setVirtualizeContainerWidth(virtualizeContainer.clientWidth);
-    }
-  }, [virtualizeContainer?.clientWidth]);
-
-  useEffect(() => {
-    // wait for layout to settle, then measure virtualize container
-    setTimeout(() => {
-      if (virtualizeContainer?.clientWidth) {
-        const containerWidth = virtualizeContainer.clientWidth;
-        setVirtualizeContainerWidth(containerWidth);
-      }
-    }, 100);
-  }, [pageSize, virtualizeContainer]);
-
-  return virtualizeContainerWidth;
-}
-
-function useDefaultColumnWidth(
-  gridWidth: number,
-  leadingControlColumns: EuiDataGridControlColumn[],
-  trailingControlColumns: EuiDataGridControlColumn[],
-  columns: EuiDataGridProps['columns']
-): number | null {
-  const computeDefaultWidth = useCallback((): number | null => {
-    if (IS_JEST_ENVIRONMENT) return 100;
-    if (gridWidth === 0) return null; // we can't tell what size to compute yet
-
-    const controlColumnWidths = [
-      ...leadingControlColumns,
-      ...trailingControlColumns,
-    ].reduce<number>(
-      (claimedWidth, controlColumn: EuiDataGridControlColumn) =>
-        claimedWidth + controlColumn.width,
-      0
-    );
-
-    const columnsWithWidths = columns.filter<
-      EuiDataGridColumn & { initialWidth: number }
-    >(doesColumnHaveAnInitialWidth);
-
-    const definedColumnsWidth = columnsWithWidths.reduce(
-      (claimedWidth, column) => claimedWidth + column.initialWidth,
-      0
-    );
-
-    const claimedWidth = controlColumnWidths + definedColumnsWidth;
-
-    const widthToFill = gridWidth - claimedWidth;
-    const unsizedColumnCount = columns.length - columnsWithWidths.length;
-    if (unsizedColumnCount === 0) {
-      return 100;
-    }
-    return Math.max(widthToFill / unsizedColumnCount, 100);
-  }, [gridWidth, columns, leadingControlColumns, trailingControlColumns]);
-
-  const [defaultColumnWidth, setDefaultColumnWidth] = useState<number | null>(
-    computeDefaultWidth
-  );
-
-  useEffect(() => {
-    const columnWidth = computeDefaultWidth();
-    setDefaultColumnWidth(columnWidth);
-  }, [computeDefaultWidth]);
-
-  return defaultColumnWidth;
-}
-
-function doesColumnHaveAnInitialWidth(
-  column: EuiDataGridColumn
-): column is EuiDataGridColumn & { initialWidth: number } {
-  return column.hasOwnProperty('initialWidth');
-}
-
-function useColumnWidths(
-  columns: EuiDataGridColumn[],
-  onColumnResize?: EuiDataGridOnColumnResizeHandler
-): [EuiDataGridColumnWidths, (columnId: string, width: number) => void] {
-  const hasMounted = useRef(false);
-
-  const computeColumnWidths = useCallback(() => {
-    return columns
-      .filter<EuiDataGridColumn & { initialWidth: number }>(
-        doesColumnHaveAnInitialWidth
-      )
-      .reduce<EuiDataGridColumnWidths>((initialWidths, column) => {
-        initialWidths[column.id] = column.initialWidth;
-        return initialWidths;
-      }, {});
-  }, [columns]);
-
-  const [columnWidths, setColumnWidths] = useState<EuiDataGridColumnWidths>(
-    computeColumnWidths
-  );
-
-  useEffect(() => {
-    if (!hasMounted.current) {
-      hasMounted.current = true;
-      return;
-    }
-
-    setColumnWidths(computeColumnWidths());
-  }, [computeColumnWidths]);
-
-  const setColumnWidth = useCallback(
-    (columnId: string, width: number) => {
-      setColumnWidths({ ...columnWidths, [columnId]: width });
-
-      if (onColumnResize) {
-        onColumnResize({ columnId, width });
-      }
-    },
-    [columnWidths, onColumnResize]
-  );
-
-  return [columnWidths, setColumnWidth];
-}
 
 const emptyArrayDefault: EuiDataGridControlColumn[] = [];
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
@@ -310,16 +164,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
       setGridWidth(0);
     }
   }, [resizeRef, gridDimensions]);
-
-  const virtualizeContainerWidth = useVirtualizeContainerWidth(
-    resizeRef,
-    pagination?.pageSize
-  );
-
-  const [columnWidths, setColumnWidth] = useColumnWidths(
-    columns,
-    onColumnResize
-  );
 
   // apply style props on top of defaults
   const gridStyleWithDefaults = { ...startingStyles, ...gridStyle };
@@ -391,16 +235,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     ),
     gridStyleWithDefaults,
     _rowHeightsOptions
-  );
-
-  // compute the default column width from the container's clientWidth and count of visible columns
-  const defaultColumnWidth = useDefaultColumnWidth(
-    // use clientWidth of the virtualization container to take scroll bar into account
-    // if that's not possible fall back to the size of the wrapper element
-    virtualizeContainerWidth || gridDimensions.width,
-    leadingControlColumns,
-    trailingControlColumns,
-    orderedVisibleColumns
   );
 
   const rowHeightUtils = useMemo(() => new RowHeightUtils(), []);
@@ -515,115 +349,110 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
             ref={setResizeRef}
             {...rest}
           >
-            {(IS_JEST_ENVIRONMENT || defaultColumnWidth) && (
-              <>
-                {showToolbar && (
-                  <EuiDataGridToolbar
-                    setRef={setToolbarRef}
-                    gridWidth={gridWidth}
-                    minSizeForControls={minSizeForControls}
-                    toolbarVisibility={toolbarVisibility}
-                    displaySelector={displaySelector}
-                    isFullScreen={isFullScreen}
-                    setIsFullScreen={setIsFullScreen}
-                    controlBtnClasses={controlBtnClasses}
-                    columnSelector={columnSelector}
-                    columnSorting={columnSorting}
-                  />
-                )}
-                <div
-                  onKeyDown={createKeyDownHandler({
-                    gridElement: contentRef,
-                    visibleColCount,
-                    visibleRowCount,
-                    rowCount,
-                    pagination,
-                    hasFooter: !!renderFooterCellValue,
-                    headerIsInteractive,
-                    focusContext,
-                  })}
-                  className="euiDataGrid__verticalScroll"
-                >
-                  <div className="euiDataGrid__overflow">
-                    {inMemory ? (
-                      <EuiDataGridInMemoryRenderer
-                        inMemory={inMemory}
-                        renderCellValue={renderCellValue}
-                        columns={columns}
-                        rowCount={
-                          inMemory.level === 'enhancements'
-                            ? // if `inMemory.level === enhancements` then we can only be sure the pagination's pageSize is available in memory
-                              pagination?.pageSize || rowCount
-                            : // otherwise, all of the data is present and usable
-                              rowCount
-                        }
-                        onCellRender={onCellRender}
-                      />
-                    ) : null}
-                    <div
-                      ref={setContentRef}
-                      data-test-subj="dataGridWrapper"
-                      className="euiDataGrid__content"
-                      role="grid"
-                      id={gridId}
-                      {...wrappingDivFocusProps}
-                      {...gridAriaProps}
-                    >
-                      <EuiDataGridBody
-                        isFullScreen={isFullScreen}
-                        columns={orderedVisibleColumns}
-                        visibleColCount={visibleColCount}
-                        columnWidths={columnWidths}
-                        defaultColumnWidth={defaultColumnWidth}
-                        toolbarHeight={toolbarDemensions.height}
-                        leadingControlColumns={leadingControlColumns}
-                        schema={mergedSchema}
-                        trailingControlColumns={trailingControlColumns}
-                        setVisibleColumns={setVisibleColumns}
-                        switchColumnPos={switchColumnPos}
-                        setColumnWidth={setColumnWidth}
-                        headerIsInteractive={headerIsInteractive}
-                        handleHeaderMutation={handleHeaderMutation}
-                        inMemoryValues={inMemoryValues}
-                        inMemory={inMemory}
-                        schemaDetectors={allSchemaDetectors}
-                        popoverContents={popoverContents}
-                        pagination={pagination}
-                        renderCellValue={renderCellValue}
-                        renderFooterCellValue={renderFooterCellValue}
-                        rowCount={rowCount}
-                        visibleRows={visibleRows}
-                        interactiveCellId={interactiveCellId}
-                        rowHeightsOptions={rowHeightsOptions}
-                        rowHeightUtils={rowHeightUtils}
-                        virtualizationOptions={virtualizationOptions || {}}
-                        gridStyles={gridStyles}
-                      />
-                    </div>
-                  </div>
-                </div>
-                {props.pagination && props['aria-labelledby'] && (
-                  <p id={ariaLabelledById} hidden>
-                    {ariaLabelledBy}
-                  </p>
-                )}
-                {props.pagination && (
-                  <EuiDataGridPaginationRenderer
-                    {...props.pagination}
-                    rowCount={props.rowCount}
-                    controls={gridId}
-                    aria-label={props['aria-label']}
-                  />
-                )}
-                <p id={interactiveCellId} hidden>
-                  <EuiI18n
-                    token="euiDataGrid.screenReaderNotice"
-                    default="Cell contains interactive content."
-                  />
-                  {/* TODO: if no keyboard shortcuts panel gets built, add keyboard shortcut info here */}
-                </p>
-              </>
+            {showToolbar && (
+              <EuiDataGridToolbar
+                setRef={setToolbarRef}
+                gridWidth={gridWidth}
+                minSizeForControls={minSizeForControls}
+                toolbarVisibility={toolbarVisibility}
+                displaySelector={displaySelector}
+                isFullScreen={isFullScreen}
+                setIsFullScreen={setIsFullScreen}
+                controlBtnClasses={controlBtnClasses}
+                columnSelector={columnSelector}
+                columnSorting={columnSorting}
+              />
             )}
+            <div
+              onKeyDown={createKeyDownHandler({
+                gridElement: contentRef,
+                visibleColCount,
+                visibleRowCount,
+                rowCount,
+                pagination,
+                hasFooter: !!renderFooterCellValue,
+                headerIsInteractive,
+                focusContext,
+              })}
+              className="euiDataGrid__verticalScroll"
+            >
+              <div className="euiDataGrid__overflow">
+                {inMemory ? (
+                  <EuiDataGridInMemoryRenderer
+                    inMemory={inMemory}
+                    renderCellValue={renderCellValue}
+                    columns={columns}
+                    rowCount={
+                      inMemory.level === 'enhancements'
+                        ? // if `inMemory.level === enhancements` then we can only be sure the pagination's pageSize is available in memory
+                          pagination?.pageSize || rowCount
+                        : // otherwise, all of the data is present and usable
+                          rowCount
+                    }
+                    onCellRender={onCellRender}
+                  />
+                ) : null}
+                <div
+                  ref={setContentRef}
+                  data-test-subj="dataGridWrapper"
+                  className="euiDataGrid__content"
+                  role="grid"
+                  id={gridId}
+                  {...wrappingDivFocusProps}
+                  {...gridAriaProps}
+                >
+                  <EuiDataGridBody
+                    isFullScreen={isFullScreen}
+                    columns={orderedVisibleColumns}
+                    visibleColCount={visibleColCount}
+                    toolbarHeight={toolbarDemensions.height}
+                    leadingControlColumns={leadingControlColumns}
+                    schema={mergedSchema}
+                    trailingControlColumns={trailingControlColumns}
+                    setVisibleColumns={setVisibleColumns}
+                    switchColumnPos={switchColumnPos}
+                    onColumnResize={onColumnResize}
+                    headerIsInteractive={headerIsInteractive}
+                    handleHeaderMutation={handleHeaderMutation}
+                    inMemoryValues={inMemoryValues}
+                    inMemory={inMemory}
+                    schemaDetectors={allSchemaDetectors}
+                    popoverContents={popoverContents}
+                    pagination={pagination}
+                    renderCellValue={renderCellValue}
+                    renderFooterCellValue={renderFooterCellValue}
+                    rowCount={rowCount}
+                    visibleRows={visibleRows}
+                    interactiveCellId={interactiveCellId}
+                    rowHeightsOptions={rowHeightsOptions}
+                    rowHeightUtils={rowHeightUtils}
+                    virtualizationOptions={virtualizationOptions || {}}
+                    gridStyles={gridStyles}
+                    gridWidth={gridDimensions.width}
+                  />
+                </div>
+              </div>
+            </div>
+            {props.pagination && props['aria-labelledby'] && (
+              <p id={ariaLabelledById} hidden>
+                {ariaLabelledBy}
+              </p>
+            )}
+            {props.pagination && (
+              <EuiDataGridPaginationRenderer
+                {...props.pagination}
+                rowCount={props.rowCount}
+                controls={gridId}
+                aria-label={props['aria-label']}
+              />
+            )}
+            <p id={interactiveCellId} hidden>
+              <EuiI18n
+                token="euiDataGrid.screenReaderNotice"
+                default="Cell contains interactive content."
+              />
+              {/* TODO: if no keyboard shortcuts panel gets built, add keyboard shortcut info here */}
+            </p>
           </div>
         </EuiFocusTrap>
       </DataGridSortingContext.Provider>

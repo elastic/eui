@@ -51,8 +51,8 @@ import {
 import { makeRowManager } from './data_grid_row_manager';
 import { useForceRender } from '../../../services/hooks/useForceRender';
 import { useUpdateEffect } from '../../../services';
-
-export const VIRTUALIZED_CONTAINER_CLASS = 'euiDataGrid__virtualized';
+import { useVirtualizeContainerWidth } from '../utils/grid_height_width';
+import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
 
 export const Cell: FunctionComponent<GridChildComponentProps> = ({
   columnIndex,
@@ -340,8 +340,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 ) => {
   const {
     isFullScreen,
-    columnWidths,
-    defaultColumnWidth,
     leadingControlColumns = [],
     trailingControlColumns = [],
     columns,
@@ -357,17 +355,43 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     inMemoryValues,
     interactiveCellId,
     pagination,
-    setColumnWidth,
     headerIsInteractive,
     handleHeaderMutation,
     setVisibleColumns,
     switchColumnPos,
+    onColumnResize,
     toolbarHeight,
     rowHeightsOptions,
     rowHeightUtils,
     virtualizationOptions,
     gridStyles,
+    gridWidth,
   } = props;
+
+  const outerGridRef = useRef<HTMLDivElement | null>(null); // container that becomes scrollable
+  const innerGridRef = useRef<HTMLDivElement | null>(null); // container sized to fit all content
+
+  const virtualizeContainerWidth = useVirtualizeContainerWidth(
+    outerGridRef.current,
+    gridWidth,
+    pagination?.pageSize
+  );
+
+  // compute the default column width from the container's width and count of visible columns
+  const defaultColumnWidth = useDefaultColumnWidth(
+    virtualizeContainerWidth,
+    leadingControlColumns,
+    trailingControlColumns,
+    columns
+  );
+
+  const { columnWidths, setColumnWidth, getColumnWidth } = useColumnWidths({
+    columns,
+    leadingControlColumns,
+    trailingControlColumns,
+    defaultColumnWidth,
+    onColumnResize,
+  });
 
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
   const [footerRowRef, setFooterRowRef] = useState<HTMLDivElement | null>(null);
@@ -538,33 +562,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     }
   }, [columns, columnWidths, defaultColumnWidth]);
 
-  const getWidth = useCallback(
-    (index: number) => {
-      if (index < leadingControlColumns.length) {
-        // this is a leading control column
-        return leadingControlColumns[index].width;
-      } else if (index >= leadingControlColumns.length + columns.length) {
-        // this is a trailing control column
-        return trailingControlColumns[
-          index - leadingControlColumns.length - columns.length
-        ].width;
-      }
-      // normal data column
-      return (
-        columnWidths[columns[index - leadingControlColumns.length].id] ||
-        defaultColumnWidth ||
-        100
-      );
-    },
-    [
-      leadingControlColumns,
-      columns,
-      columnWidths,
-      defaultColumnWidth,
-      trailingControlColumns,
-    ]
-  );
-
   const setGridRef = useCallback(
     (ref: Grid | null) => {
       gridRef.current = ref;
@@ -642,9 +639,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const wrapperDimensions = useResizeObserver(wrapperRef.current);
-
-  const outerGridRef = useRef<HTMLDivElement | null>(null); // container that becomes scrollable
-  const innerGridRef = useRef<HTMLDivElement | null>(null); // container sized to fit all content
 
   const unconstrainedHeight = useUnconstrainedHeight({
     rowHeightUtils,
@@ -747,10 +741,10 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 innerElementType={InnerElement}
                 outerRef={outerGridRef}
                 innerRef={innerGridRef}
-                className={VIRTUALIZED_CONTAINER_CLASS}
+                className="euiDataGrid__virtualized"
                 columnCount={visibleColCount}
                 width={finalWidth}
-                columnWidth={getWidth}
+                columnWidth={getColumnWidth}
                 height={finalHeight}
                 rowHeight={getRowHeight}
                 itemData={{

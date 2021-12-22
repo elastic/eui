@@ -10,7 +10,7 @@ exports[`EuiDataGridBody renders 1`] = `
     style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
   >
     <div
-      style="height:34px;width:120px"
+      style="height:34px;width:200px"
     >
       <div
         class="euiDataGridHeader"
@@ -21,7 +21,7 @@ exports[`EuiDataGridBody renders 1`] = `
           class="euiDataGridHeaderCell euiDataGridHeaderCell--boolean"
           data-test-subj="dataGridHeaderCell-columnA"
           role="columnheader"
-          style="width:20px"
+          style="width:100px"
           tabindex="-1"
         >
           <div
@@ -59,8 +59,14 @@ exports[`EuiDataGridBody renders 1`] = `
           class="euiDataGridHeaderCell euiDataGridHeaderCell--string"
           data-test-subj="dataGridHeaderCell-columnB"
           role="columnheader"
+          style="width:100px"
           tabindex="-1"
         >
+          <div
+            class="euiDataGridColumnResizer"
+            data-test-subj="dataGridColumnResizer"
+            style="margin-right:0px"
+          />
           <div
             class="euiPopover euiPopover--anchorDownCenter"
             offset="7"
@@ -93,7 +99,7 @@ exports[`EuiDataGridBody renders 1`] = `
         data-gridcell-id="0,0"
         data-test-subj="dataGridRowCell"
         role="gridcell"
-        style="position:absolute;left:0;top:0px;height:34px;width:20px"
+        style="position:absolute;left:0;top:0px;height:34px;width:100px"
         tabindex="-1"
       >
         <div
@@ -123,7 +129,7 @@ exports[`EuiDataGridBody renders 1`] = `
         data-gridcell-id="0,1"
         data-test-subj="dataGridRowCell"
         role="gridcell"
-        style="position:absolute;left:20px;top:0px;height:34px"
+        style="position:absolute;left:100px;top:0px;height:34px;width:100px"
         tabindex="-1"
       >
         <div
