@@ -8,17 +8,9 @@
 
 import React from 'react';
 import {
-  DataGridFocusContextShape,
   DataGridWrapperRowsContentsShape,
   EuiDataGridSorting,
 } from './data_grid_types';
-
-export const DataGridFocusContext = React.createContext<
-  DataGridFocusContextShape
->({
-  setFocusedCell: () => {},
-  onFocusUpdate: () => () => {},
-});
 
 export const DataGridSortingContext = React.createContext<
   EuiDataGridSorting | undefined
