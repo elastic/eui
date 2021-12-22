@@ -9,7 +9,7 @@
 import React, {
   HTMLAttributes,
   KeyboardEvent,
-  MutableRefObject,
+  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -37,13 +37,23 @@ type FocusProps = Pick<HTMLAttributes<HTMLDivElement>, 'tabIndex' | 'onFocus'>;
  * Main focus context and overarching focus state management
  */
 export const useFocus = (
-  headerIsInteractive: boolean,
-  cellsUpdateFocus: MutableRefObject<Map<string, Function>>
-): [
-  FocusProps,
-  EuiDataGridFocusedCell | undefined,
-  (focusedCell: EuiDataGridFocusedCell) => void
-] => {
+  headerIsInteractive: boolean
+): DataGridFocusContextShape & { focusProps: FocusProps } => {
+  // Maintain a map of focus cell state callbacks
+  const cellsUpdateFocus = useRef<Map<string, Function>>(new Map());
+
+  const onFocusUpdate = useCallback(
+    (cell: EuiDataGridFocusedCell, updateFocus: Function) => {
+      const key = `${cell[0]}-${cell[1]}`;
+      cellsUpdateFocus.current.set(key, updateFocus);
+      return () => {
+        cellsUpdateFocus.current.delete(key);
+      };
+    },
+    []
+  );
+
+  // Current focused cell
   const [focusedCell, setFocusedCell] = useState<
     EuiDataGridFocusedCell | undefined
   >(undefined);
@@ -88,7 +98,12 @@ export const useFocus = (
     [hasHadFocus, setFocusedCell, headerIsInteractive]
   );
 
-  return [focusProps, focusedCell, setFocusedCell];
+  return {
+    onFocusUpdate,
+    focusedCell,
+    setFocusedCell,
+    focusProps,
+  };
 };
 
 export const notifyCellOfFocusState = (

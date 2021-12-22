@@ -47,7 +47,6 @@ import {
   useMergedSchema,
 } from './data_grid_schema';
 import {
-  DataGridFocusContextShape,
   EuiDataGridColumn,
   EuiDataGridColumnWidths,
   EuiDataGridControlColumn,
@@ -277,12 +276,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const interactiveCellId = useGeneratedHtmlId();
   const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
 
-  const cellsUpdateFocus = useRef<Map<string, Function>>(new Map());
-
-  const [wrappingDivFocusProps, focusedCell, setFocusedCell] = useFocus(
-    headerIsInteractive,
-    cellsUpdateFocus
+  const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus(
+    headerIsInteractive
   );
+  const { focusedCell, setFocusedCell } = focusContext;
 
   // maintain a statically-referenced copy of `focusedCell`
   // so it can be looked up when needed without causing a re-render
@@ -514,23 +511,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   // By default the toolbar appears
   const showToolbar = !!toolbarVisibility;
 
-  const onFocusUpdate = useCallback(
-    (cell: EuiDataGridFocusedCell, updateFocus: Function) => {
-      const key = `${cell[0]}-${cell[1]}`;
-      cellsUpdateFocus.current.set(key, updateFocus);
-      return () => {
-        cellsUpdateFocus.current.delete(key);
-      };
-    },
-    []
-  );
-  const datagridFocusContext = useMemo<DataGridFocusContextShape>(() => {
-    return {
-      setFocusedCell,
-      onFocusUpdate,
-    };
-  }, [setFocusedCell, onFocusUpdate]);
-
   const gridId = useGeneratedHtmlId();
   const ariaLabelledById = useGeneratedHtmlId();
 
@@ -574,7 +554,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   }
 
   return (
-    <DataGridFocusContext.Provider value={datagridFocusContext}>
+    <DataGridFocusContext.Provider value={focusContext}>
       <DataGridSortingContext.Provider value={sorting}>
         <EuiFocusTrap
           disabled={!isFullScreen}
