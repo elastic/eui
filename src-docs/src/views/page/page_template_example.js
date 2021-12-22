@@ -27,50 +27,35 @@ const pageNewSource = require('!!raw-loader!./components/page_new');
 import PageTemplate from './templates/page_template';
 const PageTemplateSource = require('!!raw-loader!./templates/page_template');
 
-import PageBottomBar from './page_bottom_bar';
-const pageBottomBarSource = require('!!raw-loader!./page_bottom_bar');
-import PageBottomBarTemplate from './page_bottom_bar_template';
-const PageBottomBarTemplateSource = require('!!raw-loader!./page_bottom_bar_template');
+import PageBottomBar from './composable/page_bottom_bar';
+const pageBottomBarSource = require('!!raw-loader!./composable/page_bottom_bar');
+import PageBottomBarTemplate from './templates/page_bottom_bar_template';
+const PageBottomBarTemplateSource = require('!!raw-loader!./templates/page_bottom_bar_template');
 
-import PageRestrictingWidth from './page_restricting_width';
-const PageRestrictingWidthSource = require('!!raw-loader!./page_restricting_width');
-import PageRestrictingWidthTemplate from './page_restricting_width_template';
-const PageRestrictingWidthTemplateSource = require('!!raw-loader!./page_restricting_width_template');
+import PageRestrictingWidth from './composable/page_restricting_width';
+const PageRestrictingWidthSource = require('!!raw-loader!./composable/page_restricting_width');
+import PageRestrictingWidthTemplate from './templates/page_restricting_width_template';
+const PageRestrictingWidthTemplateSource = require('!!raw-loader!./templates/page_restricting_width_template');
 
-import PageCenteredBody from './page_centered_body';
-const PageCenteredBodySource = require('!!raw-loader!./page_centered_body');
-import PageCenteredBodyTemplate from './page_centered_body_template';
-const PageCenteredBodyTemplateSource = require('!!raw-loader!./page_centered_body_template');
+import PageCenteredBody from './composable/page_centered_body';
+const PageCenteredBodySource = require('!!raw-loader!./composable/page_centered_body');
+import PageCenteredBodyTemplate from './templates/page_centered_body_template';
+const PageCenteredBodyTemplateSource = require('!!raw-loader!./templates/page_centered_body_template');
 
-import PageCenteredContent from './page_centered_content';
-const PageCenteredContentSource = require('!!raw-loader!./page_centered_content');
-import PageCenteredContentTemplate from './page_centered_content_template';
-const PageCenteredContentTemplateSource = require('!!raw-loader!./page_centered_content_template');
+import PageCenteredContent from './composable/page_centered_content';
+const PageCenteredContentSource = require('!!raw-loader!./composable/page_centered_content');
+import PageCenteredContentTemplate from './templates/page_centered_content_template';
+const PageCenteredContentTemplateSource = require('!!raw-loader!./templates/page_centered_content_template');
 
-import PageSimple from './page_simple';
-const PageSimpleSource = require('!!raw-loader!./page_simple');
-import PageSimpleTemplate from './page_simple_template';
-const PageSimpleTemplateSource = require('!!raw-loader!./page_simple_template');
+import PageFullHeight from './composable/page_full_height';
+const PageFullHeightSource = require('!!raw-loader!./composable/page_full_height');
+import PageFullHeightTemplate from './templates/page_full_height_template';
+const PageFullHeightTemplateSource = require('!!raw-loader!./templates/page_full_height_template');
 
-import PageFullHeight from './page_full_height';
-const PageFullHeightSource = require('!!raw-loader!./page_full_height');
-import PageFullHeightTemplate from './page_full_height_template';
-const PageFullHeightTemplateSource = require('!!raw-loader!./page_full_height_template');
-
-import PageSimpleCenteredBody from './page_simple_content_body';
-const PageSimpleCenteredBodySource = require('!!raw-loader!./page_simple_content_body');
-import PageSimpleCenteredBodyTemplate from './page_simple_content_body_template';
-const PageSimpleCenteredBodyTemplateSource = require('!!raw-loader!./page_simple_content_body_template');
-
-import PageSimpleEmptyContent from './page_simple_empty_content';
-const PageSimpleEmptyContentSource = require('!!raw-loader!./page_simple_empty_content');
-import PageSimpleEmptyContentTemplate from './page_simple_empty_content_template';
-const PageSimpleEmptyContentTemplateSource = require('!!raw-loader!./page_simple_empty_content_template');
-
-import PageCustomContent from './page_custom_content';
-const PageCustomContentSource = require('!!raw-loader!./page_custom_content');
-import PageCustomContentTemplate from './page_custom_content_template';
-const PageCustomContentTemplateSource = require('!!raw-loader!./page_custom_content_template');
+import PageCustomContent from './composable/page_custom_content';
+const PageCustomContentSource = require('!!raw-loader!./composable/page_custom_content');
+import PageCustomContentTemplate from './templates/page_custom_content_template';
+const PageCustomContentTemplateSource = require('!!raw-loader!./templates/page_custom_content_template');
 
 export const PageTemplateExample = {
   title: 'Page templates',
@@ -133,7 +118,7 @@ export const PageTemplateExample = {
           <ul>
             <li>
               <strong>EuiPage</strong> and <strong>EuiPageBody</strong> provide
-              the overall wrapper with a column flex display.
+              the overall wrappers with a column flex display.
             </li>
             <li>
               <strong>EuiPageSideBar</strong> provides a way to add side
@@ -152,16 +137,7 @@ export const PageTemplateExample = {
               tabs.
             </li>
             <li>
-              <strong>EuiPageContent</strong> provides the main content
-              container and extends{' '}
-              <Link to="/layout/panel">
-                <strong>EuiPanel</strong>
-              </Link>
-              .
-            </li>
-            <li>
-              <strong>EuiPageContentBody</strong> wraps the content that comes
-              after the page header.
+              <strong>EuiPageContent</strong> wraps the children.
             </li>
           </ul>
           <p>
@@ -210,7 +186,7 @@ flex-grow: 1;`}
           highlight="all"
         />
       ),
-      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
+      demoPanelProps: { overflow: 'hidden', paddingSize: 'none' },
       fullScreen: {
         slug: 'full-page',
         demo: (
@@ -268,7 +244,7 @@ flex-grow: 1;`}
           highlight="all"
         />
       ),
-      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
+      demoPanelProps: { overflow: 'hidden', paddingSize: 'none' },
       fullScreen: {
         slug: 'restricting-page-width',
         demo: (
@@ -336,7 +312,7 @@ flex-grow: 1;`}
           highlight="all"
         />
       ),
-      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
+      demoPanelProps: { overflow: 'hidden', paddingSize: 'none' },
       fullScreen: {
         slug: 'bottom-bar',
         demo: (
@@ -350,7 +326,63 @@ flex-grow: 1;`}
       },
     },
     {
-      title: 'Centered body',
+      title: 'Empty content',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: PageCenteredContentTemplateSource,
+          displayName: 'Template JS',
+        },
+        {
+          type: GuideSectionTypes.JS,
+          code: PageCenteredContentSource,
+          displayName: 'Composable JS',
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Similar to the previous example, you can create a centered panel to
+            emphasize incompleteness even with a page header. For this setup, we
+            recommend using setting <strong>EuiPageContent</strong> to use the{' '}
+            <EuiCode>subdued</EuiCode> color as to not have nested shadows.
+          </p>
+          <EuiCallOut
+            size="s"
+            title={
+              <>
+                This layout can be achieved in <strong>EuiPageTemplate</strong>{' '}
+                by setting <EuiCode>{'template="emptyContent"'}</EuiCode>.
+              </>
+            }
+          />
+        </>
+      ),
+      demo: (
+        <PageDemo
+          slug="centered-content"
+          centered
+          pattern={PageCenteredContent}
+          template={PageCenteredContentTemplate}
+          highlight="all"
+        />
+      ),
+      demoPanelProps: { overflow: 'hidden', paddingSize: 'none' },
+      fullScreen: {
+        slug: 'centered-content',
+        demo: (
+          <PageDemo
+            slug="centered-content"
+            centered
+            pattern={PageCenteredContent}
+            template={PageCenteredContentTemplate}
+            fullscreen
+          />
+        ),
+      },
+    },
+    {
+      title: 'Empty page',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -379,7 +411,7 @@ flex-grow: 1;`}
             title={
               <>
                 This layout can be achieved in <strong>EuiPageTemplate</strong>{' '}
-                by setting <EuiCode>{'template="centeredBody"'}</EuiCode>.
+                by setting <EuiCode>{'template="emptyPage"'}</EuiCode>.
               </>
             }
           />
@@ -394,7 +426,7 @@ flex-grow: 1;`}
           highlight="all"
         />
       ),
-      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
+      demoPanelProps: { overflow: 'hidden', paddingSize: 'none' },
       fullScreen: {
         slug: 'centered-body',
         demo: (
@@ -408,118 +440,6 @@ flex-grow: 1;`}
         ),
       },
       props: { EuiPageTemplate, EuiEmptyPrompt },
-    },
-    {
-      title: 'Centered content',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageCenteredContentTemplateSource,
-          displayName: 'Template JS',
-        },
-        {
-          type: GuideSectionTypes.JS,
-          code: PageCenteredContentSource,
-          displayName: 'Composable JS',
-        },
-      ],
-      text: (
-        <>
-          <p>
-            Similar to the previous example, you can create a centered panel to
-            emphasize incompleteness even with a page header. For this setup, we
-            recommend using setting <strong>EuiPageContent</strong> to use the{' '}
-            <EuiCode>subdued</EuiCode> color as to not have nested shadows.
-          </p>
-          <EuiCallOut
-            size="s"
-            title={
-              <>
-                This layout can be achieved in <strong>EuiPageTemplate</strong>{' '}
-                by setting <EuiCode>{'template="centeredContent"'}</EuiCode>.
-              </>
-            }
-          />
-        </>
-      ),
-      demo: (
-        <PageDemo
-          slug="centered-content"
-          centered
-          pattern={PageCenteredContent}
-          template={PageCenteredContentTemplate}
-          highlight="all"
-        />
-      ),
-      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
-      fullScreen: {
-        slug: 'centered-content',
-        demo: (
-          <PageDemo
-            slug="centered-content"
-            centered
-            pattern={PageCenteredContent}
-            template={PageCenteredContentTemplate}
-            fullscreen
-          />
-        ),
-      },
-    },
-    {
-      title: 'A simple page with tabs',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageSimpleTemplateSource,
-          displayName: 'Template JS',
-        },
-        {
-          type: GuideSectionTypes.JS,
-          code: PageSimpleSource,
-          displayName: 'Composable JS',
-        },
-      ],
-      text: (
-        <>
-          <p>
-            When leaving off the <strong>EuiPageSideBar</strong>, we recommend a
-            slightly different configuration by pulling the page header out of
-            the <strong>EuiPageContent</strong> and removing the shadow from{' '}
-            <strong>EuiPageContent</strong>.
-          </p>
-          <EuiCallOut
-            size="s"
-            title={
-              <>
-                This layout will automatically be achieved through{' '}
-                <strong>EuiPageTemplate</strong> by leaving{' '}
-                <EuiCode>pageSideBar</EuiCode> as <EuiCode>undefined</EuiCode>.
-              </>
-            }
-          />
-        </>
-      ),
-      demo: (
-        <PageDemo
-          slug="tabs"
-          pattern={PageSimple}
-          template={PageSimpleTemplate}
-          highlight="all"
-          showSideNav={false}
-        />
-      ),
-      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
-      fullScreen: {
-        slug: 'tabs',
-        demo: (
-          <PageDemo
-            slug="tabs"
-            pattern={PageSimple}
-            template={PageSimpleTemplate}
-            fullscreen
-          />
-        ),
-      },
     },
     {
       title: 'Full height layout',
@@ -603,7 +523,7 @@ flex-grow: 1;`}
           showSideNav={false}
         />
       ),
-      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
+      demoPanelProps: { overflow: 'hidden', paddingSize: 'none' },
       fullScreen: {
         slug: 'full-height',
         demo: (
@@ -617,102 +537,7 @@ flex-grow: 1;`}
       },
     },
     {
-      title: 'Simple layout with centered body',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageSimpleCenteredBodyTemplateSource,
-          displayName: 'Template JS',
-        },
-        {
-          type: GuideSectionTypes.JS,
-          code: PageSimpleCenteredBodySource,
-          displayName: 'Composable JS',
-        },
-      ],
-      text: (
-        <p>
-          Similar to the version with a side bar, when the content for the page
-          is minimal or in an empty/pre-setup state, the page content can be
-          centered vertically and horizontally. We recommend then using the{' '}
-          <Link to="/display/empty-prompt">
-            <strong>EuiEmptyPrompt</strong>
-          </Link>{' '}
-          for the content.
-        </p>
-      ),
-      demo: (
-        <PageDemo
-          slug="simple-centered-body"
-          centered
-          pattern={PageSimpleCenteredBody}
-          template={PageSimpleCenteredBodyTemplate}
-          highlight="all"
-          showSideNav={false}
-        />
-      ),
-      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
-      fullScreen: {
-        slug: 'simple-centered-body',
-        demo: (
-          <PageDemo
-            slug="simple-centered-body"
-            centered
-            pattern={PageSimpleCenteredBody}
-            template={PageSimpleCenteredBodyTemplate}
-            fullscreen
-          />
-        ),
-      },
-    },
-    {
-      title: 'Simple layout with centered content',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageSimpleEmptyContentTemplateSource,
-          displayName: 'Template JS',
-        },
-        {
-          type: GuideSectionTypes.JS,
-          code: PageSimpleEmptyContentSource,
-          displayName: 'Composable JS',
-        },
-      ],
-      text: (
-        <p>
-          Also similar to the previous examples, you can create a centered panel
-          to emphasis incompleteness even with a page header. For this setup,
-          You will need to use nested <strong>EuiPageContent</strong> components
-          in order for the centering to work.
-        </p>
-      ),
-      demo: (
-        <PageDemo
-          slug="simple-centered-content"
-          centered
-          pattern={PageSimpleEmptyContent}
-          template={PageSimpleEmptyContentTemplate}
-          highlight="all"
-          showSideNav={false}
-        />
-      ),
-      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
-      fullScreen: {
-        slug: 'simple-centered-content',
-        demo: (
-          <PageDemo
-            slug="simple-centered-content"
-            centered
-            pattern={PageSimpleEmptyContent}
-            template={PageSimpleEmptyContentTemplate}
-            fullscreen
-          />
-        ),
-      },
-    },
-    {
-      title: 'A simple page layout with custom content',
+      title: 'Custom content',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -728,17 +553,15 @@ flex-grow: 1;`}
       text: (
         <>
           <p>
-            You can replace the inner parts of <strong>EuiPageBody</strong> with
-            your own content, with or without a page header. This allows you to
-            create dashboard style layouts with lots of panels. It is not
-            recommended, however, to use this setup when you also have side bar.
+            You can create custom stacked content by passing your own
+            EuiPageHeader and EuiPageContent elements.
           </p>
           <EuiCallOut
             size="s"
             title={
               <>
                 This layout can be achieved in <strong>EuiPageTemplate</strong>{' '}
-                by setting <EuiCode>{'template="empty"'}</EuiCode>.
+                by setting <EuiCode>{'template="customContent"'}</EuiCode>.
               </>
             }
           />
@@ -750,10 +573,9 @@ flex-grow: 1;`}
           pattern={PageCustomContent}
           template={PageCustomContentTemplate}
           highlight="all"
-          showSideNav={false}
         />
       ),
-      demoPanelProps: { color: 'subdued', paddingSize: 'none' },
+      demoPanelProps: { overflow: 'hidden', paddingSize: 'none' },
       fullScreen: {
         slug: 'simple-custom-content',
         demo: (

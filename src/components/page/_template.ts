@@ -11,15 +11,20 @@ export const TEMPLATES = [
   'centeredBody',
   'centeredContent',
   'empty',
+  'emptyPage',
+  'emptyContent',
+  'customContent',
 ] as const;
 
 export type _EuiPageTemplate = {
   /**
    * Choose between 4 types of templates.
    * `default`: Typical layout with panelled content;
-   * `centeredBody`: The panelled content is centered;
    * `centeredContent`: The content inside the panel is centered;
-   * `empty`: Removes the panneling of the page content
+   * `empty`: Removes the panneling of the page content;
+   * `emptyPage`: The content is centered and the pageHeader ignored;
+   * `emptyContent`: The content is centered;
+   * `customContent`: The content is not wrapped by EuiPageContent, you must provide it yourself;
    */
   template?: typeof TEMPLATES[number];
 };

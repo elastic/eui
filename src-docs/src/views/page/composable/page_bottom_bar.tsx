@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import {
   EuiPage,
@@ -8,9 +8,19 @@ import {
   EuiPageSideBar,
   EuiPageBody,
   EuiBottomBar,
-} from '../../../../src/components';
+} from '../../../../../src';
 
-export default ({ button = <></>, content, sideNav, bottomBar }) => {
+export default ({
+  button = <></>,
+  content = <></>,
+  sideNav,
+  bottomBar = <></>,
+}: {
+  button?: ReactNode;
+  content?: ReactNode;
+  sideNav?: ReactNode;
+  bottomBar?: ReactNode;
+}) => {
   return (
     <EuiPage paddingSize="none">
       {sideNav && (
@@ -19,23 +29,15 @@ export default ({ button = <></>, content, sideNav, bottomBar }) => {
         </EuiPageSideBar>
       )}
 
-      {/* Double EuiPageBody to accommodate for the bottom bar */}
       <EuiPageBody panelled={Boolean(sideNav)}>
-        <EuiPageContent
+        <EuiPageHeader
           restrictWidth
-          template="empty"
-          grow={false}
-          border={sideNav ? 'bottom' : 'bottomExtended'}
-        >
-          <EuiPageHeader
-            iconType="logoElastic"
-            pageTitle="Page title"
-            rightSideItems={[button]}
-          />
-        </EuiPageContent>
-        <EuiPageContent restrictWidth template="default">
-          {content}
-        </EuiPageContent>
+          iconType="logoElastic"
+          pageTitle="Page title"
+          rightSideItems={[button]}
+          bottomBorder={sideNav ? true : 'extended'}
+        />
+        <EuiPageContent restrictWidth>{content}</EuiPageContent>
         <EuiBottomBar paddingSize="l" position="sticky">
           {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}
           <EuiPageContentBody paddingSize={'none'} restrictWidth>

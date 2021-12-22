@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-import { EuiPageTemplate, EuiEmptyPrompt } from '../../../../src/components';
+import { EuiPageTemplate, EuiEmptyPrompt } from '../../../../../src/components';
 
-export default ({ button = <></>, content, sideNav }) => {
+export default ({
+  button = <></>,
+  content = <></>,
+  sideNav,
+}: {
+  button?: ReactNode;
+  content?: ReactNode;
+  sideNav?: ReactNode;
+}) => {
   return (
     <EuiPageTemplate
-      template="empty"
-      pageContentProps={{ paddingSize: 'none' }}
+      template="emptyPage"
       pageSideBar={sideNav}
       pageHeader={{
         iconType: 'logoElastic',
@@ -15,6 +22,7 @@ export default ({ button = <></>, content, sideNav }) => {
       }}
     >
       <EuiEmptyPrompt
+        color={sideNav ? 'subdued' : 'plain'}
         title={<span>No spice</span>}
         body={content}
         actions={button}

@@ -351,7 +351,7 @@ export const EmptyPromptExample = {
             <Link to="/layout/page#simple-layout-with-centered-content">
               <strong>EuiPageTemplate</strong>
             </Link>{' '}
-            using <EuiCode>{'template="centeredContent"'}</EuiCode>.
+            using <EuiCode>{'template="emptyContent"'}</EuiCode>.
           </p>
         </>
       ),

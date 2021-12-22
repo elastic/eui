@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import {
   EuiPage,
@@ -7,9 +7,17 @@ import {
   EuiPageHeader,
   EuiPageSideBar,
   EuiPageBody,
-} from '../../../../src/components';
+} from '../../../../../src';
 
-export default ({ button = <></>, content, sideNav }) => (
+export default ({
+  button = <></>,
+  content = <></>,
+  sideNav,
+}: {
+  button?: ReactNode;
+  content?: ReactNode;
+  sideNav?: ReactNode;
+}) => (
   <EuiPage paddingSize="none">
     {sideNav && (
       <EuiPageSideBar paddingSize="l" sticky>
@@ -18,20 +26,15 @@ export default ({ button = <></>, content, sideNav }) => (
     )}
 
     <EuiPageBody panelled={Boolean(sideNav)}>
-      <EuiPageContent
+      <EuiPageHeader
         restrictWidth
-        template="empty"
-        grow={false}
-        border={sideNav ? 'bottom' : 'bottomExtended'}
-      >
-        <EuiPageHeader
-          iconType="logoElastic"
-          pageTitle="Page title"
-          rightSideItems={[button]}
-        />
-      </EuiPageContent>
+        iconType="logoElastic"
+        pageTitle="Page title"
+        rightSideItems={[button]}
+        bottomBorder={sideNav ? true : 'extended'}
+      />
 
-      <EuiPageContent restrictWidth template="centeredContent">
+      <EuiPageContent restrictWidth alignment="center">
         <EuiEmptyPrompt
           color="subdued"
           title={<span>No spice</span>}

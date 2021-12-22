@@ -4,7 +4,7 @@ import { EuiPageTemplate } from '../../../../../src';
 
 export default ({
   button = <></>,
-  content,
+  content = <></>,
   sideNav,
 }: {
   button?: ReactNode;

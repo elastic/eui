@@ -21,7 +21,7 @@ export default () => (
     <EuiTableBody>
       <EuiTableRow>
         <EuiTableRowCell mobileOptions={{ width: '100%' }}>
-          <EuiCode>{"'centeredContent' | 'default'"}</EuiCode>
+          <EuiCode>{"'emptyContent' | 'default'"}</EuiCode>
         </EuiTableRowCell>
 
         <EuiTableRowCell>
@@ -32,7 +32,7 @@ export default () => (
 
       <EuiTableRow>
         <EuiTableRowCell mobileOptions={{ width: '100%' }}>
-          <EuiCode>{"'centeredBody' | 'empty'"}</EuiCode>
+          <EuiCode>{"'emptyPage' | 'empty'"}</EuiCode>
         </EuiTableRowCell>
 
         <EuiTableRowCell>

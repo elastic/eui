@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-import { EuiPageTemplate } from '../../../../src/components';
+import { EuiPageTemplate } from '../../../../../src';
 
-export default ({ button = <></>, content, sideNav }) => {
+export default ({
+  button = <></>,
+  content = <></>,
+  sideNav,
+}: {
+  button?: ReactNode;
+  content?: ReactNode;
+  sideNav?: ReactNode;
+}) => {
   return (
     <EuiPageTemplate
       pageSideBar={sideNav}

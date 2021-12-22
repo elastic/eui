@@ -10,7 +10,8 @@ import React from 'react';
 import { render } from 'enzyme';
 import { requiredProps } from '../../test/required_props';
 
-import { EuiPageTemplate, TEMPLATES } from './page_template';
+import { EuiPageTemplate } from './page_template';
+import { TEMPLATES } from './_template';
 
 describe('EuiPageTemplate', () => {
   test('is rendered', () => {
@@ -121,17 +122,6 @@ describe('EuiPageTemplate', () => {
             <EuiPageTemplate
               template={template}
               pageContentProps={requiredProps}
-            />
-          );
-
-          expect(component).toMatchSnapshot();
-        });
-
-        test('is rendered with pageContentBodyProps', () => {
-          const component = render(
-            <EuiPageTemplate
-              template={template}
-              pageContentBodyProps={requiredProps}
             />
           );
 

@@ -13,10 +13,11 @@ import illustration from '../../images/empty-prompt_illustration.svg';
 export default () => (
   <EuiPageTemplate
     template="empty"
-    pageContentProps={{
-      paddingSize: 'none',
-      // role: null, // For passing a11y tests in EUI docs only
-    }}
+    pageContentProps={
+      {
+        // role: null, // For passing a11y tests in EUI docs only
+      }
+    }
   >
     <EuiEmptyPrompt
       title={<h2>Create your first visualization</h2>}
