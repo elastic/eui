@@ -41,6 +41,7 @@ import {
   EuiDataGridInMemoryRenderer,
 } from './utils/in_memory';
 import { useHeaderIsInteractive } from './body/header/header_is_interactive';
+import { computeVisibleRows } from './utils/row_count';
 import { EuiDataGridPaginationRenderer } from './data_grid_pagination';
 import {
   schemaDetectors as providedSchemaDetectors,
@@ -283,8 +284,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus(
     headerIsInteractive
   );
-  const { focusedCell, setFocusedCell } = focusContext;
-
   useHeaderFocusWorkaround(headerIsInteractive);
 
   const handleGridKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -416,6 +415,20 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     });
   }, [gridStyles.cellPadding, rowHeightUtils]);
 
+  const visibleColCount = useMemo(() => {
+    return (
+      orderedVisibleColumns.length +
+      leadingControlColumns.length +
+      trailingControlColumns.length
+    );
+  }, [orderedVisibleColumns, leadingControlColumns, trailingControlColumns]);
+
+  const visibleRows = useMemo(
+    () => computeVisibleRows({ pagination, rowCount }),
+    [pagination, rowCount]
+  );
+  const { visibleRowCount } = visibleRows;
+
   const classes = classNames(
     'euiDataGrid',
     fontSizesToClassMap[gridStyles.fontSize!],
@@ -519,16 +532,16 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                   />
                 )}
                 <div
-                  onKeyDown={createKeyDownHandler(
-                    props,
-                    contentRef,
-                    orderedVisibleColumns,
-                    leadingControlColumns,
-                    trailingControlColumns,
-                    focusedCell,
+                  onKeyDown={createKeyDownHandler({
+                    gridElement: contentRef,
+                    visibleColCount,
+                    visibleRowCount,
+                    rowCount,
+                    pagination,
+                    hasFooter: !!renderFooterCellValue,
                     headerIsInteractive,
-                    setFocusedCell
-                  )}
+                    focusContext,
+                  })}
                   className="euiDataGrid__verticalScroll"
                 >
                   <div className="euiDataGrid__overflow">

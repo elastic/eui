@@ -166,6 +166,12 @@ export type EuiDataGridFooterRowProps = CommonProps &
     visibleRowIndex?: number;
   };
 
+export interface EuiDataGridVisibleRows {
+  startRow: number;
+  endRow: number;
+  visibleRowCount: number;
+}
+
 export interface DataGridFocusContextShape {
   focusedCell?: EuiDataGridFocusedCell;
   setFocusedCell: (cell: EuiDataGridFocusedCell) => void;

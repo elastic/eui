@@ -20,7 +20,6 @@ import {
 import { keys } from '../../../services';
 import {
   DataGridFocusContextShape,
-  EuiDataGridControlColumn,
   EuiDataGridFocusedCell,
   EuiDataGridProps,
 } from '../data_grid_types';
@@ -121,40 +120,41 @@ export const notifyCellOfFocusState = (
 /**
  * Keydown handler for connecting focus state with keyboard navigation
  */
-export const createKeyDownHandler = (
-  props: EuiDataGridProps,
-  contentElement: HTMLDivElement | null,
-  visibleColumns: EuiDataGridProps['columns'],
-  leadingControlColumns: EuiDataGridControlColumn[],
-  trailingControlColumns: EuiDataGridControlColumn[],
-  focusedCell: EuiDataGridFocusedCell | undefined,
-  headerIsInteractive: boolean,
-  setFocusedCell: (focusedCell: EuiDataGridFocusedCell) => void
-) => {
+export const createKeyDownHandler = ({
+  gridElement,
+  visibleColCount,
+  visibleRowCount,
+  rowCount,
+  pagination,
+  hasFooter,
+  headerIsInteractive,
+  focusContext,
+}: {
+  gridElement: HTMLDivElement | null;
+  visibleColCount: number;
+  visibleRowCount: number;
+  rowCount: EuiDataGridProps['rowCount'];
+  pagination: EuiDataGridProps['pagination'];
+  hasFooter: boolean;
+  headerIsInteractive: boolean;
+  focusContext: DataGridFocusContextShape;
+}) => {
   return (event: KeyboardEvent<HTMLDivElement>) => {
+    const { focusedCell, setFocusedCell } = focusContext;
     if (focusedCell == null) return;
 
-    if (
-      contentElement == null ||
-      !contentElement.contains(document.activeElement)
-    ) {
+    if (gridElement == null || !gridElement.contains(document.activeElement)) {
       // if the `contentElement` does not contain the focused element, don't handle the event
       // this happens when React bubbles the key event through a portal
       return;
     }
 
-    const colCount =
-      visibleColumns.length +
-      leadingControlColumns.length +
-      trailingControlColumns.length -
-      1;
     const [x, y] = focusedCell;
-    const rowCount = computeVisibleRows(props);
     const { key, ctrlKey } = event;
 
     if (key === keys.ARROW_DOWN) {
       event.preventDefault();
-      if (props.renderFooterCellValue ? y < rowCount : y < rowCount - 1) {
+      if (hasFooter ? y < visibleRowCount : y < visibleRowCount - 1) {
         setFocusedCell([x, y + 1]);
       }
     } else if (key === keys.ARROW_LEFT) {
@@ -170,59 +170,43 @@ export const createKeyDownHandler = (
       }
     } else if (key === keys.ARROW_RIGHT) {
       event.preventDefault();
-      if (x < colCount) {
+      if (x < visibleColCount - 1) {
         setFocusedCell([x + 1, y]);
       }
     } else if (key === keys.PAGE_DOWN) {
-      if (props.pagination) {
+      if (pagination) {
         event.preventDefault();
-        const rowCount = props.rowCount;
-        const pageIndex = props.pagination.pageIndex;
-        const pageSize = props.pagination.pageSize;
+        const pageSize = pagination.pageSize;
         const pageCount = Math.ceil(rowCount / pageSize);
+        const pageIndex = pagination.pageIndex;
         if (pageIndex < pageCount - 1) {
-          props.pagination.onChangePage(pageIndex + 1);
+          pagination.onChangePage(pageIndex + 1);
         }
         setFocusedCell([focusedCell[0], 0]);
       }
     } else if (key === keys.PAGE_UP) {
-      if (props.pagination) {
+      if (pagination) {
         event.preventDefault();
-        const pageIndex = props.pagination.pageIndex;
+        const pageIndex = pagination.pageIndex;
         if (pageIndex > 0) {
-          props.pagination.onChangePage(pageIndex - 1);
+          pagination.onChangePage(pageIndex - 1);
         }
-        setFocusedCell([focusedCell[0], props.pagination.pageSize - 1]);
+        setFocusedCell([focusedCell[0], pagination.pageSize - 1]);
       }
     } else if (key === (ctrlKey && keys.END)) {
       event.preventDefault();
-      setFocusedCell([colCount, rowCount - 1]);
+      setFocusedCell([visibleColCount - 1, visibleRowCount - 1]);
     } else if (key === (ctrlKey && keys.HOME)) {
       event.preventDefault();
       setFocusedCell([0, 0]);
     } else if (key === keys.END) {
       event.preventDefault();
-      setFocusedCell([colCount, y]);
+      setFocusedCell([visibleColCount - 1, y]);
     } else if (key === keys.HOME) {
       event.preventDefault();
       setFocusedCell([0, y]);
     }
   };
-};
-
-// TODO: Move this out to a row-specific util
-export const computeVisibleRows = (
-  props: Pick<EuiDataGridProps, 'pagination' | 'rowCount'>
-) => {
-  const { pagination, rowCount } = props;
-
-  const startRow = pagination ? pagination.pageIndex * pagination.pageSize : 0;
-  let endRow = pagination
-    ? (pagination.pageIndex + 1) * pagination.pageSize
-    : rowCount;
-  endRow = Math.min(endRow, rowCount);
-
-  return endRow - startRow;
 };
 
 /**
