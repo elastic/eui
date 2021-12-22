@@ -34,6 +34,7 @@ import {
   DataGridFocusContext,
   useFocus,
   createKeyDownHandler,
+  useHeaderFocusWorkaround,
 } from './utils/focus';
 import {
   useInMemoryValues,
@@ -283,6 +284,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     headerIsInteractive
   );
   const { focusedCell, setFocusedCell } = focusContext;
+
+  useHeaderFocusWorkaround(headerIsInteractive);
 
   const handleGridKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     switch (event.key) {

@@ -6,14 +6,16 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  HTMLAttributes,
-  KeyboardEvent,
+import {
+  createContext,
+  useContext,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
+  HTMLAttributes,
+  KeyboardEvent,
 } from 'react';
 import { keys } from '../../../services';
 import {
@@ -23,9 +25,7 @@ import {
   EuiDataGridProps,
 } from '../data_grid_types';
 
-export const DataGridFocusContext = React.createContext<
-  DataGridFocusContextShape
->({
+export const DataGridFocusContext = createContext<DataGridFocusContextShape>({
   focusedCell: undefined,
   setFocusedCell: () => {},
   onFocusUpdate: () => () => {},
@@ -223,4 +223,19 @@ export const computeVisibleRows = (
   endRow = Math.min(endRow, rowCount);
 
   return endRow - startRow;
+};
+
+/**
+ * Focus fixes & workarounds
+ */
+
+// If the focus is on the header, and the header is no longer interactive,
+// move the focus down to the first row
+export const useHeaderFocusWorkaround = (headerIsInteractive: boolean) => {
+  const { focusedCell, setFocusedCell } = useContext(DataGridFocusContext);
+  useEffect(() => {
+    if (!headerIsInteractive && focusedCell && focusedCell[1] === -1) {
+      setFocusedCell([focusedCell[0], 0]);
+    }
+  }, [headerIsInteractive, focusedCell, setFocusedCell]);
 };

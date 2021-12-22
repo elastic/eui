@@ -19,14 +19,6 @@ export const useHeaderIsInteractive = (gridElement: HTMLElement | null) => {
       const hasInteractives = tabbables.length > 0 || managed.length > 0;
       if (hasInteractives !== headerIsInteractive) {
         setHeaderIsInteractive(hasInteractives);
-
-        // TODO (next commit)
-        // if the focus is on the header, and the header is no longer interactive
-        // move the focus down to the first row
-        // const focusedCell = focusedCellReference.current;
-        // if (hasInteractives === false && focusedCell && focusedCell[1] === -1) {
-        //   setFocusedCell([focusedCell[0], 0]);
-        // }
       }
     },
     [headerIsInteractive]
