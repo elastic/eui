@@ -19,7 +19,7 @@ import {
   SetStateAction,
   MutableRefObject,
 } from 'react';
-import { VariableSizeGridProps } from 'react-window';
+import { VariableSizeGridProps, VariableSizeGrid as Grid } from 'react-window';
 import { EuiListGroupItemProps } from '../list_group';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { ExclusiveUnion, CommonProps, OneOf } from '../common';
@@ -344,6 +344,7 @@ export interface EuiDataGridBodyProps {
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   gridStyles: EuiDataGridStyle;
   gridWidth: number;
+  gridRef: MutableRefObject<Grid | null>;
   wrapperRef: MutableRefObject<HTMLDivElement | null>;
 }
 export interface EuiDataGridCellValueElementProps {

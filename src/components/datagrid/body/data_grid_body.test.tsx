@@ -46,6 +46,12 @@ describe('EuiDataGridBody', () => {
     rowHeightUtils: mockRowHeightUtils,
     gridStyles: {},
     gridWidth: 300,
+    gridRef: {
+      current: {
+        resetAfterColumnIndex: jest.fn(),
+        resetAfterRowIndex: jest.fn(),
+      } as any,
+    },
     wrapperRef: { current: document.createElement('div') },
   };
 

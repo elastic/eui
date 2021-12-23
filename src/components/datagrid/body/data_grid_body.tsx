@@ -241,6 +241,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     virtualizationOptions,
     gridStyles,
     gridWidth,
+    gridRef,
     wrapperRef,
   } = props;
 
@@ -248,8 +249,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
    * Grid refs & observers
    */
   const wrapperDimensions = useResizeObserver(wrapperRef.current);
-
-  const gridRef = useRef<Grid | null>(null); // Imperative handler passed back by react-window
   const outerGridRef = useRef<HTMLDivElement | null>(null); // container that becomes scrollable
   const innerGridRef = useRef<HTMLDivElement | null>(null); // container sized to fit all content
 
@@ -413,13 +412,14 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     if (gridRef.current) {
       gridRef.current.resetAfterColumnIndex(0);
     }
-  }, [columns, columnWidths, defaultColumnWidth]);
+  }, [gridRef, columns, columnWidths, defaultColumnWidth]);
 
   useEffect(() => {
     if (gridRef.current && rowHeightsOptions) {
       gridRef.current.resetAfterRowIndex(0);
     }
   }, [
+    gridRef,
     pagination?.pageIndex,
     rowHeightsOptions,
     gridStyles?.cellPadding,
@@ -430,7 +430,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     if (gridRef.current) {
       gridRef.current.resetAfterRowIndex(0);
     }
-  }, [getRowHeight]);
+  }, [gridRef, getRowHeight]);
 
   useEffect(() => {
     if (gridRef.current && pagination?.pageIndex !== undefined) {
@@ -438,7 +438,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
         rowIndex: 0,
       });
     }
-  }, [pagination?.pageIndex]);
+  }, [gridRef, pagination?.pageIndex]);
 
   return IS_JEST_ENVIRONMENT || finalWidth > 0 ? (
     <DataGridWrapperRowsContext.Provider

@@ -14,6 +14,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { VariableSizeGrid as Grid } from 'react-window';
 import { useGeneratedHtmlId, keys } from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n, useEuiI18n } from '../i18n';
@@ -43,7 +44,7 @@ import {
 import { useHeaderIsInteractive } from './body/header/header_is_interactive';
 import { providedPopoverContents } from './body/popover_utils';
 import { computeVisibleRows } from './utils/row_count';
-import { EuiDataGridPaginationRenderer } from './data_grid_pagination';
+import { EuiDataGridPaginationRenderer } from './utils/data_grid_pagination';
 import {
   schemaDetectors as providedSchemaDetectors,
   useMergedSchema,
@@ -155,14 +156,20 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   /**
    * Grid refs & observers
    */
+  // Outermost wrapper div
   const resizeRef = useRef<HTMLDivElement | null>(null);
   const { width: gridWidth } = useResizeObserver(resizeRef.current, 'width');
 
+  // Wrapper div around EuiDataGridBody
   const contentRef = useRef<HTMLDivElement | null>(null);
   useMutationObserver(contentRef.current, preventTabbing, {
     subtree: true,
     childList: true,
   });
+
+  // Imperative handler passed back by react-window - we're setting this at
+  // the top datagrid level to make passing it to other children & utils easier
+  const gridRef = useRef<Grid | null>(null);
 
   /**
    * Display
@@ -431,6 +438,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                 virtualizationOptions={virtualizationOptions || {}}
                 gridStyles={gridStyles}
                 gridWidth={gridWidth}
+                gridRef={gridRef}
                 wrapperRef={contentRef}
               />
             </div>
