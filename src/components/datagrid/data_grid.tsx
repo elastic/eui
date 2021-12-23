@@ -121,38 +121,11 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     ...rest
   } = props;
 
-  const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
-
-  const [isFullScreen, setIsFullScreen] = useState(false);
-
-  const interactiveCellId = useGeneratedHtmlId();
-
-  const { headerIsInteractive, handleHeaderMutation } = useHeaderIsInteractive(
-    contentRef
-  );
-  const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus(
-    headerIsInteractive
-  );
-  useHeaderFocusWorkaround(headerIsInteractive);
-
-  const handleGridKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    switch (event.key) {
-      case keys.ESCAPE:
-        if (isFullScreen) {
-          event.preventDefault();
-          setIsFullScreen(false);
-        }
-        break;
-    }
-  };
-
-  const [resizeRef, setResizeRef] = useState<HTMLDivElement | null>(null);
-  const [toolbarRef, setToolbarRef] = useState<HTMLDivElement | null>(null);
-  const { width: gridWidth } = useResizeObserver(resizeRef, 'width');
-  const { height: toolbarHeight } = useResizeObserver(toolbarRef, 'height');
-
-  // apply consumer props on top of defaults
+  /**
+   * Merge consumer settings with defaults
+   */
   const gridStyleWithDefaults = { ...startingStyles, ...gridStyle };
+
   const mergedPopoverContents = useMemo(
     () => ({
       ...providedPopoverContents,
@@ -176,6 +149,16 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     autoDetectSchema: inMemory != null,
   });
 
+  /**
+   * Grid refs & observers
+   */
+  const [resizeRef, setResizeRef] = useState<HTMLDivElement | null>(null);
+  const { width: gridWidth } = useResizeObserver(resizeRef, 'width');
+  const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
+
+  /**
+   * Display
+   */
   const displayValues: { [key: string]: string } = useMemo(() => {
     return columns.reduce(
       (acc: { [key: string]: string }, column: EuiDataGridColumn) => ({
@@ -186,6 +169,22 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     );
   }, [columns]);
 
+  const [
+    displaySelector,
+    gridStyles,
+    rowHeightsOptions,
+  ] = useDataGridDisplaySelector(
+    checkOrDefaultToolBarDisplayOptions(
+      toolbarVisibility,
+      'showDisplaySelector'
+    ),
+    gridStyleWithDefaults,
+    _rowHeightsOptions
+  );
+
+  /**
+   * Column order & visibility
+   */
   const [
     columnSelector,
     orderedVisibleColumns,
@@ -199,25 +198,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
       'showColumnSelector'
     ),
     displayValues
-  );
-  const columnSorting = useDataGridColumnSorting(
-    orderedVisibleColumns,
-    sorting,
-    mergedSchema,
-    allSchemaDetectors,
-    displayValues
-  );
-  const [
-    displaySelector,
-    gridStyles,
-    rowHeightsOptions,
-  ] = useDataGridDisplaySelector(
-    checkOrDefaultToolBarDisplayOptions(
-      toolbarVisibility,
-      'showDisplaySelector'
-    ),
-    gridStyleWithDefaults,
-    _rowHeightsOptions
   );
 
   const visibleColCount = useMemo(() => {
@@ -234,6 +214,17 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   );
   const { visibleRowCount } = visibleRows;
 
+  /**
+   * Sorting
+   */
+  const columnSorting = useDataGridColumnSorting(
+    orderedVisibleColumns,
+    sorting,
+    mergedSchema,
+    allSchemaDetectors,
+    displayValues
+  );
+
   const sortingContext = useSorting({
     sorting,
     inMemory,
@@ -243,6 +234,39 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     startRow: visibleRows.startRow,
   });
 
+  /**
+   * Focus
+   */
+  const { headerIsInteractive, handleHeaderMutation } = useHeaderIsInteractive(
+    contentRef
+  );
+  const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus(
+    headerIsInteractive
+  );
+  useHeaderFocusWorkaround(headerIsInteractive);
+
+  /**
+   * Toolbar & full-screen
+   */
+  const showToolbar = !!toolbarVisibility;
+  const [toolbarRef, setToolbarRef] = useState<HTMLDivElement | null>(null);
+  const { height: toolbarHeight } = useResizeObserver(toolbarRef, 'height');
+
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const handleGridKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    switch (event.key) {
+      case keys.ESCAPE:
+        if (isFullScreen) {
+          event.preventDefault();
+          setIsFullScreen(false);
+        }
+        break;
+    }
+  };
+
+  /**
+   * Classes
+   */
   const classes = classNames(
     'euiDataGrid',
     fontSizesToClassMap[gridStyles.fontSize!],
@@ -270,10 +294,11 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     'euiDataGrid__controlBtn--active': isFullScreen,
   });
 
-  // By default the toolbar appears
-  const showToolbar = !!toolbarVisibility;
-
+  /**
+   * Accessibility
+   */
   const gridId = useGeneratedHtmlId();
+  const interactiveCellId = useGeneratedHtmlId();
   const ariaLabelledById = useGeneratedHtmlId();
 
   const ariaLabel = useEuiI18n(
@@ -282,9 +307,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     {
       label: rest['aria-label'],
       page: pagination ? pagination.pageIndex + 1 : 0,
-      pageCount: pagination
-        ? Math.ceil(props.rowCount / pagination.pageSize)
-        : 0,
+      pageCount: pagination ? Math.ceil(rowCount / pagination.pageSize) : 0,
     }
   );
 
@@ -293,9 +316,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     'Page {page} of {pageCount}.',
     {
       page: pagination ? pagination.pageIndex + 1 : 0,
-      pageCount: pagination
-        ? Math.ceil(props.rowCount / pagination.pageSize)
-        : 0,
+      pageCount: pagination ? Math.ceil(rowCount / pagination.pageSize) : 0,
     }
   );
 
@@ -410,15 +431,15 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                 </div>
               </div>
             </div>
-            {props.pagination && props['aria-labelledby'] && (
+            {pagination && props['aria-labelledby'] && (
               <p id={ariaLabelledById} hidden>
                 {ariaLabelledBy}
               </p>
             )}
-            {props.pagination && (
+            {pagination && (
               <EuiDataGridPaginationRenderer
-                {...props.pagination}
-                rowCount={props.rowCount}
+                {...pagination}
+                rowCount={rowCount}
                 controls={gridId}
                 aria-label={props['aria-label']}
               />
