@@ -240,9 +240,18 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     gridWidth,
   } = props;
 
+  /**
+   * Grid refs & observers
+   */
+  const gridRef = useRef<Grid | null>(null); // Imperative handler passed back by react-window
   const outerGridRef = useRef<HTMLDivElement | null>(null); // container that becomes scrollable
   const innerGridRef = useRef<HTMLDivElement | null>(null); // container sized to fit all content
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const wrapperDimensions = useResizeObserver(wrapperRef.current);
 
+  /**
+   * Widths
+   */
   const virtualizeContainerWidth = useVirtualizeContainerWidth(
     outerGridRef.current,
     gridWidth,
@@ -265,15 +274,15 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     onColumnResize,
   });
 
+  /**
+   * Header
+   */
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
-  const [footerRowRef, setFooterRowRef] = useState<HTMLDivElement | null>(null);
-
   useMutationObserver(headerRowRef, handleHeaderMutation, {
     subtree: true,
     childList: true,
   });
   const { height: headerRowHeight } = useResizeObserver(headerRowRef, 'height');
-  const { height: footerRowHeight } = useResizeObserver(footerRowRef, 'height');
 
   const headerRow = useMemo(() => {
     return (
@@ -306,6 +315,12 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     headerIsInteractive,
   ]);
 
+  /**
+   * Footer
+   */
+  const [footerRowRef, setFooterRowRef] = useState<HTMLDivElement | null>(null);
+  const { height: footerRowHeight } = useResizeObserver(footerRowRef, 'height');
+
   const footerRow = useMemo(() => {
     if (renderFooterCellValue == null) return null;
     return (
@@ -337,14 +352,18 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     visibleRowCount,
   ]);
 
-  const gridRef = useRef<Grid | null>(null);
+  /**
+   * Row manager
+   */
+  // useState instead of useMemo as React reserves the right to drop memoized
+  // values in the future, and that would be very bad here
+  const [rowManager] = useState<EuiDataGridRowManager>(() =>
+    makeRowManager(innerGridRef)
+  );
 
-  useEffect(() => {
-    if (gridRef.current) {
-      gridRef.current.resetAfterColumnIndex(0);
-    }
-  }, [columns, columnWidths, defaultColumnWidth]);
-
+  /**
+   * Heights
+   */
   const rowHeightUtils = useRowHeightUtils({
     gridRef: gridRef.current,
     gridStyles,
@@ -355,40 +374,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     rowHeightsOptions,
     rowHeightUtils,
   });
-
-  useEffect(() => {
-    if (gridRef.current && rowHeightsOptions) {
-      gridRef.current.resetAfterRowIndex(0);
-    }
-  }, [
-    pagination?.pageIndex,
-    rowHeightsOptions,
-    gridStyles?.cellPadding,
-    gridStyles?.fontSize,
-  ]);
-
-  useEffect(() => {
-    if (gridRef.current && pagination?.pageIndex !== undefined) {
-      gridRef.current.scrollToItem({
-        rowIndex: 0,
-      });
-    }
-  }, [pagination?.pageIndex]);
-
-  useEffect(() => {
-    if (gridRef.current) {
-      gridRef.current.resetAfterRowIndex(0);
-    }
-  }, [getRowHeight]);
-
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const wrapperDimensions = useResizeObserver(wrapperRef.current);
-
-  // useState instead of useMemo as React reserves the right to drop memoized
-  // values in the future, and that would be very bad here
-  const [rowManager] = useState<EuiDataGridRowManager>(() =>
-    makeRowManager(innerGridRef)
-  );
 
   const unconstrainedHeight = useUnconstrainedHeight({
     rowHeightUtils,
@@ -402,6 +387,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     innerGridRef,
   });
 
+  /**
+   * Final grid height & width
+   */
   const { finalWidth, finalHeight } = useFinalGridDimensions({
     unconstrainedHeight,
     unconstrainedWidth: 0, // unable to determine this until the container's size is known
@@ -413,6 +401,40 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     rowCount,
     isFullScreen,
   });
+
+  /**
+   * Grid resets
+   */
+  useEffect(() => {
+    if (gridRef.current) {
+      gridRef.current.resetAfterColumnIndex(0);
+    }
+  }, [columns, columnWidths, defaultColumnWidth]);
+
+  useEffect(() => {
+    if (gridRef.current && rowHeightsOptions) {
+      gridRef.current.resetAfterRowIndex(0);
+    }
+  }, [
+    pagination?.pageIndex,
+    rowHeightsOptions,
+    gridStyles?.cellPadding,
+    gridStyles?.fontSize,
+  ]);
+
+  useEffect(() => {
+    if (gridRef.current) {
+      gridRef.current.resetAfterRowIndex(0);
+    }
+  }, [getRowHeight]);
+
+  useEffect(() => {
+    if (gridRef.current && pagination?.pageIndex !== undefined) {
+      gridRef.current.scrollToItem({
+        rowIndex: 0,
+      });
+    }
+  }, [pagination?.pageIndex]);
 
   return (
     <EuiMutationObserver
