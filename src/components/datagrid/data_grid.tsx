@@ -39,6 +39,7 @@ import {
   EuiDataGridInMemoryRenderer,
 } from './utils/in_memory';
 import { useHeaderIsInteractive } from './body/header/header_is_interactive';
+import { providedPopoverContents } from './body/popover_utils';
 import { computeVisibleRows } from './utils/row_count';
 import { EuiDataGridPaginationRenderer } from './data_grid_pagination';
 import {
@@ -163,8 +164,15 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     }
   }, [resizeRef, gridDimensions]);
 
-  // apply style props on top of defaults
+  // apply consumer props on top of defaults
   const gridStyleWithDefaults = { ...startingStyles, ...gridStyle };
+  const mergedPopoverContents = useMemo(
+    () => ({
+      ...providedPopoverContents,
+      ...popoverContents,
+    }),
+    [popoverContents]
+  );
 
   const [inMemoryValues, onCellRender] = useInMemoryValues(inMemory, rowCount);
 
@@ -398,7 +406,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                     headerIsInteractive={headerIsInteractive}
                     handleHeaderMutation={handleHeaderMutation}
                     schemaDetectors={allSchemaDetectors}
-                    popoverContents={popoverContents}
+                    popoverContents={mergedPopoverContents}
                     pagination={pagination}
                     renderCellValue={renderCellValue}
                     renderFooterCellValue={renderFooterCellValue}

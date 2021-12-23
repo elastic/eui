@@ -326,7 +326,7 @@ export interface EuiDataGridBodyProps {
   visibleColCount: number;
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
-  popoverContents?: EuiDataGridPopoverContents;
+  popoverContents: EuiDataGridPopoverContents;
   rowCount: number;
   visibleRows: EuiDataGridVisibleRows;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];

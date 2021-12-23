@@ -30,10 +30,7 @@ import { EuiDataGridCell } from './data_grid_cell';
 import { DataGridWrapperRowsContext } from '../data_grid_context';
 import { EuiDataGridFooterRow } from './data_grid_footer_row';
 import { EuiDataGridHeaderRow } from './header';
-import {
-  DefaultColumnFormatter,
-  providedPopoverContents,
-} from './popover_utils';
+import { DefaultColumnFormatter } from './popover_utils';
 import {
   EuiDataGridBodyProps,
   EuiDataGridRowManager,
@@ -278,14 +275,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const { height: headerRowHeight } = useResizeObserver(headerRowRef, 'height');
   const { height: footerRowHeight } = useResizeObserver(footerRowRef, 'height');
 
-  const mergedPopoverContents = useMemo(
-    () => ({
-      ...providedPopoverContents,
-      ...popoverContents,
-    }),
-    [popoverContents]
-  );
-
   const headerRow = useMemo(() => {
     return (
       <EuiDataGridHeaderRow
@@ -326,7 +315,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
         trailingControlColumns={trailingControlColumns}
         columns={columns}
         schema={schema}
-        popoverContents={mergedPopoverContents}
+        popoverContents={popoverContents}
         columnWidths={columnWidths}
         defaultColumnWidth={defaultColumnWidth}
         renderCellValue={renderFooterCellValue}
@@ -341,7 +330,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     defaultColumnWidth,
     interactiveCellId,
     leadingControlColumns,
-    mergedPopoverContents,
+    popoverContents,
     renderFooterCellValue,
     schema,
     trailingControlColumns,
@@ -463,7 +452,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                   columns,
                   visibleColCount,
                   schema,
-                  popoverContents: mergedPopoverContents,
+                  popoverContents,
                   columnWidths,
                   defaultColumnWidth,
                   renderCellValue,
