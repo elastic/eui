@@ -1028,275 +1028,267 @@ Array [
         </div>
       </div>
       <div
-        class="euiDataGrid__verticalScroll"
+        aria-label="aria-label"
+        class="euiDataGrid__content"
+        data-test-subj="euiDataGridBody"
+        id="generated-id"
+        role="grid"
+        tabindex="0"
       >
         <div
-          class="euiDataGrid__overflow"
+          class="euiDataGrid__virtualized"
+          style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
         >
           <div
-            aria-label="aria-label"
-            class="euiDataGrid__content"
-            data-test-subj="euiDataGridBody"
-            id="generated-id"
-            role="grid"
-            tabindex="0"
+            style="height:102px;width:200px"
           >
             <div
-              class="euiDataGrid__virtualized"
-              style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+              class="euiDataGridHeader"
+              data-test-subj="dataGridHeader"
+              role="row"
             >
               <div
-                style="height:102px;width:200px"
+                class="euiDataGridHeaderCell"
+                data-test-subj="dataGridHeaderCell-A"
+                role="columnheader"
+                style="width:100px"
+                tabindex="-1"
               >
                 <div
-                  class="euiDataGridHeader"
-                  data-test-subj="dataGridHeader"
-                  role="row"
+                  class="euiDataGridColumnResizer"
+                  data-test-subj="dataGridColumnResizer"
+                  style="margin-right:0px"
+                />
+                <div
+                  class="euiPopover euiPopover--anchorDownCenter"
+                  offset="7"
                 >
                   <div
-                    class="euiDataGridHeaderCell"
-                    data-test-subj="dataGridHeaderCell-A"
-                    role="columnheader"
-                    style="width:100px"
-                    tabindex="-1"
+                    class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                   >
-                    <div
-                      class="euiDataGridColumnResizer"
-                      data-test-subj="dataGridColumnResizer"
-                      style="margin-right:0px"
-                    />
-                    <div
-                      class="euiPopover euiPopover--anchorDownCenter"
-                      offset="7"
+                    <button
+                      class="euiDataGridHeaderCell__button"
                     >
                       <div
-                        class="euiPopover__anchor euiDataGridHeaderCell__anchor"
+                        class="euiDataGridHeaderCell__content"
                       >
-                        <button
-                          class="euiDataGridHeaderCell__button"
-                        >
-                          <div
-                            class="euiDataGridHeaderCell__content"
-                          >
-                            A
-                          </div>
-                          <span
-                            aria-label="Header actions"
-                            class="euiDataGridHeaderCell__icon"
-                            color="text"
-                            data-euiicon-type="arrowDown"
-                            data-test-subj="dataGridHeaderCellActionButton-A"
-                          />
-                        </button>
+                        A
                       </div>
-                    </div>
-                  </div>
-                  <div
-                    class="euiDataGridHeaderCell"
-                    data-test-subj="dataGridHeaderCell-B"
-                    role="columnheader"
-                    style="width:100px"
-                    tabindex="-1"
-                  >
-                    <div
-                      class="euiDataGridColumnResizer"
-                      data-test-subj="dataGridColumnResizer"
-                      style="margin-right:0px"
-                    />
-                    <div
-                      class="euiPopover euiPopover--anchorDownCenter"
-                      offset="7"
-                    >
-                      <div
-                        class="euiPopover__anchor euiDataGridHeaderCell__anchor"
-                      >
-                        <button
-                          class="euiDataGridHeaderCell__button"
-                        >
-                          <div
-                            class="euiDataGridHeaderCell__content"
-                          >
-                            B
-                          </div>
-                          <span
-                            aria-label="Header actions"
-                            class="euiDataGridHeaderCell__icon"
-                            color="text"
-                            data-euiicon-type="arrowDown"
-                            data-test-subj="dataGridHeaderCellActionButton-B"
-                          />
-                        </button>
-                      </div>
-                    </div>
+                      <span
+                        aria-label="Header actions"
+                        class="euiDataGridHeaderCell__icon"
+                        color="text"
+                        data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
+                      />
+                    </button>
                   </div>
                 </div>
+              </div>
+              <div
+                class="euiDataGridHeaderCell"
+                data-test-subj="dataGridHeaderCell-B"
+                role="columnheader"
+                style="width:100px"
+                tabindex="-1"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
-                  data-gridcell-id="0,0"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:0;top:0px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridColumnResizer"
+                  data-test-subj="dataGridColumnResizer"
+                  style="margin-right:0px"
+                />
+                <div
+                  class="euiPopover euiPopover--anchorDownCenter"
+                  offset="7"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
+                    <button
+                      class="euiDataGridHeaderCell__button"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
+                        class="euiDataGridHeaderCell__content"
                       >
-                        0, A
+                        B
                       </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 1; Column: 1
-                      </p>
-                    </div>
+                      <span
+                        aria-label="Header actions"
+                        class="euiDataGridHeaderCell__icon"
+                        color="text"
+                        data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
+                      />
+                    </button>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+              data-gridcell-id="0,0"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:0;top:0px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
-                  data-gridcell-id="0,1"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:100px;top:0px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridRowCell__expandContent"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        0, B
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 1; Column: 2
-                      </p>
-                    </div>
+                    0, A
                   </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 1; Column: 1
+                  </p>
                 </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+              data-gridcell-id="0,1"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:100px;top:0px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
-                  data-gridcell-id="1,0"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:0;top:34px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridRowCell__expandContent"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        1, A
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 2; Column: 1
-                      </p>
-                    </div>
+                    0, B
                   </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 1; Column: 2
+                  </p>
                 </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+              data-gridcell-id="1,0"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:0;top:34px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
-                  data-gridcell-id="1,1"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:100px;top:34px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridRowCell__expandContent"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        1, B
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 2; Column: 2
-                      </p>
-                    </div>
+                    1, A
                   </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 2; Column: 1
+                  </p>
                 </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+              data-gridcell-id="1,1"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:100px;top:34px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
-                  data-gridcell-id="2,0"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:0;top:68px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridRowCell__expandContent"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        2, A
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 3; Column: 1
-                      </p>
-                    </div>
+                    1, B
                   </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 2; Column: 2
+                  </p>
                 </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+              data-gridcell-id="2,0"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:0;top:68px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
-                  data-gridcell-id="2,1"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:100px;top:68px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridRowCell__expandContent"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        2, B
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 3; Column: 2
-                      </p>
-                    </div>
+                    2, A
                   </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 3; Column: 1
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+              data-gridcell-id="2,1"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:100px;top:68px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
+                <div
+                  class="euiDataGridRowCell__expandContent"
+                >
+                  <div
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
+                  >
+                    2, B
+                  </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 3; Column: 2
+                  </p>
                 </div>
               </div>
             </div>
@@ -1428,589 +1420,581 @@ Array [
         </div>
       </div>
       <div
-        class="euiDataGrid__verticalScroll"
+        aria-label="aria-label"
+        class="euiDataGrid__content"
+        data-test-subj="euiDataGridBody"
+        id="generated-id"
+        role="grid"
+        tabindex="0"
       >
         <div
-          class="euiDataGrid__overflow"
+          class="euiDataGrid__virtualized"
+          style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
         >
           <div
-            aria-label="aria-label"
-            class="euiDataGrid__content"
-            data-test-subj="euiDataGridBody"
-            id="generated-id"
-            role="grid"
-            tabindex="0"
+            style="height:102px;width:300px"
           >
             <div
-              class="euiDataGrid__virtualized"
-              style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+              class="euiDataGridHeader"
+              data-test-subj="dataGridHeader"
+              role="row"
             >
               <div
-                style="height:102px;width:300px"
+                class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
+                data-test-subj="dataGridHeaderCell-leading"
+                role="columnheader"
+                style="width:50px"
+                tabindex="-1"
               >
                 <div
-                  class="euiDataGridHeader"
-                  data-test-subj="dataGridHeader"
-                  role="row"
+                  class="euiDataGridHeaderCell__content"
                 >
-                  <div
-                    class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
-                    data-test-subj="dataGridHeaderCell-leading"
-                    role="columnheader"
-                    style="width:50px"
-                    tabindex="-1"
-                  >
-                    <div
-                      class="euiDataGridHeaderCell__content"
-                    >
-                      <span>
-                        leading heading
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    class="euiDataGridHeaderCell"
-                    data-test-subj="dataGridHeaderCell-A"
-                    role="columnheader"
-                    style="width:100px"
-                    tabindex="-1"
-                  >
-                    <div
-                      class="euiDataGridColumnResizer"
-                      data-test-subj="dataGridColumnResizer"
-                      style="margin-right:0px"
-                    />
-                    <div
-                      class="euiPopover euiPopover--anchorDownCenter"
-                      offset="7"
-                    >
-                      <div
-                        class="euiPopover__anchor euiDataGridHeaderCell__anchor"
-                      >
-                        <button
-                          class="euiDataGridHeaderCell__button"
-                        >
-                          <div
-                            class="euiDataGridHeaderCell__content"
-                          >
-                            A
-                          </div>
-                          <span
-                            aria-label="Header actions"
-                            class="euiDataGridHeaderCell__icon"
-                            color="text"
-                            data-euiicon-type="arrowDown"
-                            data-test-subj="dataGridHeaderCellActionButton-A"
-                          />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="euiDataGridHeaderCell"
-                    data-test-subj="dataGridHeaderCell-B"
-                    role="columnheader"
-                    style="width:100px"
-                    tabindex="-1"
-                  >
-                    <div
-                      class="euiDataGridColumnResizer"
-                      data-test-subj="dataGridColumnResizer"
-                      style="margin-right:0px"
-                    />
-                    <div
-                      class="euiPopover euiPopover--anchorDownCenter"
-                      offset="7"
-                    >
-                      <div
-                        class="euiPopover__anchor euiDataGridHeaderCell__anchor"
-                      >
-                        <button
-                          class="euiDataGridHeaderCell__button"
-                        >
-                          <div
-                            class="euiDataGridHeaderCell__content"
-                          >
-                            B
-                          </div>
-                          <span
-                            aria-label="Header actions"
-                            class="euiDataGridHeaderCell__icon"
-                            color="text"
-                            data-euiicon-type="arrowDown"
-                            data-test-subj="dataGridHeaderCellActionButton-B"
-                          />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
-                    data-test-subj="dataGridHeaderCell-trailing"
-                    role="columnheader"
-                    style="width:50px"
-                    tabindex="-1"
-                  >
-                    <div
-                      class="euiDataGridHeaderCell__content"
-                    >
-                      <span>
-                        trailing heading
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
-                  data-gridcell-id="0,0"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:0;top:0px;height:34px;width:50px"
-                  tabindex="-1"
-                >
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-lock-disabled="disabled"
-                  >
-                    <div
-                      class="euiDataGridRowCell__expandFlex"
-                    >
-                      <div
-                        class="euiDataGridRowCell__expandContent"
-                      >
-                        <div
-                          class="euiDataGridRowCell__truncate"
-                          data-datagrid-cellcontent="true"
-                        >
-                          0
-                        </div>
-                        <p
-                          class="euiScreenReaderOnly"
-                        >
-                          Row: 1; Column: 1
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                </div>
-                <div
-                  class="euiDataGridRowCell"
-                  data-gridcell-id="0,1"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:50px;top:0px;height:34px;width:100px"
-                  tabindex="-1"
-                >
-                  <div
-                    class="euiDataGridRowCell__expandFlex"
-                  >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        0, A
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 1; Column: 2
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="euiDataGridRowCell"
-                  data-gridcell-id="0,2"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:150px;top:0px;height:34px;width:100px"
-                  tabindex="-1"
-                >
-                  <div
-                    class="euiDataGridRowCell__expandFlex"
-                  >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        0, B
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 1; Column: 3
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
-                  data-gridcell-id="0,3"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:250px;top:0px;height:34px;width:50px"
-                  tabindex="-1"
-                >
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-lock-disabled="disabled"
-                  >
-                    <div
-                      class="euiDataGridRowCell__expandFlex"
-                    >
-                      <div
-                        class="euiDataGridRowCell__expandContent"
-                      >
-                        <div
-                          class="euiDataGridRowCell__truncate"
-                          data-datagrid-cellcontent="true"
-                        >
-                          0
-                        </div>
-                        <p
-                          class="euiScreenReaderOnly"
-                        >
-                          Row: 1; Column: 4
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                </div>
-                <div
-                  class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
-                  data-gridcell-id="1,0"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:0;top:34px;height:34px;width:50px"
-                  tabindex="-1"
-                >
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-lock-disabled="disabled"
-                  >
-                    <div
-                      class="euiDataGridRowCell__expandFlex"
-                    >
-                      <div
-                        class="euiDataGridRowCell__expandContent"
-                      >
-                        <div
-                          class="euiDataGridRowCell__truncate"
-                          data-datagrid-cellcontent="true"
-                        >
-                          1
-                        </div>
-                        <p
-                          class="euiScreenReaderOnly"
-                        >
-                          Row: 2; Column: 1
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                </div>
-                <div
-                  class="euiDataGridRowCell euiDataGridRowCell--stripe"
-                  data-gridcell-id="1,1"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:50px;top:34px;height:34px;width:100px"
-                  tabindex="-1"
-                >
-                  <div
-                    class="euiDataGridRowCell__expandFlex"
-                  >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        1, A
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 2; Column: 2
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="euiDataGridRowCell euiDataGridRowCell--stripe"
-                  data-gridcell-id="1,2"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:150px;top:34px;height:34px;width:100px"
-                  tabindex="-1"
-                >
-                  <div
-                    class="euiDataGridRowCell__expandFlex"
-                  >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        1, B
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 2; Column: 3
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
-                  data-gridcell-id="1,3"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:250px;top:34px;height:34px;width:50px"
-                  tabindex="-1"
-                >
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-lock-disabled="disabled"
-                  >
-                    <div
-                      class="euiDataGridRowCell__expandFlex"
-                    >
-                      <div
-                        class="euiDataGridRowCell__expandContent"
-                      >
-                        <div
-                          class="euiDataGridRowCell__truncate"
-                          data-datagrid-cellcontent="true"
-                        >
-                          1
-                        </div>
-                        <p
-                          class="euiScreenReaderOnly"
-                        >
-                          Row: 2; Column: 4
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                </div>
-                <div
-                  class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
-                  data-gridcell-id="2,0"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:0;top:68px;height:34px;width:50px"
-                  tabindex="-1"
-                >
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-lock-disabled="disabled"
-                  >
-                    <div
-                      class="euiDataGridRowCell__expandFlex"
-                    >
-                      <div
-                        class="euiDataGridRowCell__expandContent"
-                      >
-                        <div
-                          class="euiDataGridRowCell__truncate"
-                          data-datagrid-cellcontent="true"
-                        >
-                          2
-                        </div>
-                        <p
-                          class="euiScreenReaderOnly"
-                        >
-                          Row: 3; Column: 1
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                </div>
-                <div
-                  class="euiDataGridRowCell"
-                  data-gridcell-id="2,1"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:50px;top:68px;height:34px;width:100px"
-                  tabindex="-1"
-                >
-                  <div
-                    class="euiDataGridRowCell__expandFlex"
-                  >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        2, A
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 3; Column: 2
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="euiDataGridRowCell"
-                  data-gridcell-id="2,2"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:150px;top:68px;height:34px;width:100px"
-                  tabindex="-1"
-                >
-                  <div
-                    class="euiDataGridRowCell__expandFlex"
-                  >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        2, B
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 3; Column: 3
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
-                  data-gridcell-id="2,3"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:250px;top:68px;height:34px;width:50px"
-                  tabindex="-1"
-                >
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
-                  <div
-                    data-focus-lock-disabled="disabled"
-                  >
-                    <div
-                      class="euiDataGridRowCell__expandFlex"
-                    >
-                      <div
-                        class="euiDataGridRowCell__expandContent"
-                      >
-                        <div
-                          class="euiDataGridRowCell__truncate"
-                          data-datagrid-cellcontent="true"
-                        >
-                          2
-                        </div>
-                        <p
-                          class="euiScreenReaderOnly"
-                        >
-                          Row: 3; Column: 4
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    data-focus-guard="true"
-                    style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
-                    tabindex="-1"
-                  />
+                  <span>
+                    leading heading
+                  </span>
                 </div>
               </div>
+              <div
+                class="euiDataGridHeaderCell"
+                data-test-subj="dataGridHeaderCell-A"
+                role="columnheader"
+                style="width:100px"
+                tabindex="-1"
+              >
+                <div
+                  class="euiDataGridColumnResizer"
+                  data-test-subj="dataGridColumnResizer"
+                  style="margin-right:0px"
+                />
+                <div
+                  class="euiPopover euiPopover--anchorDownCenter"
+                  offset="7"
+                >
+                  <div
+                    class="euiPopover__anchor euiDataGridHeaderCell__anchor"
+                  >
+                    <button
+                      class="euiDataGridHeaderCell__button"
+                    >
+                      <div
+                        class="euiDataGridHeaderCell__content"
+                      >
+                        A
+                      </div>
+                      <span
+                        aria-label="Header actions"
+                        class="euiDataGridHeaderCell__icon"
+                        color="text"
+                        data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="euiDataGridHeaderCell"
+                data-test-subj="dataGridHeaderCell-B"
+                role="columnheader"
+                style="width:100px"
+                tabindex="-1"
+              >
+                <div
+                  class="euiDataGridColumnResizer"
+                  data-test-subj="dataGridColumnResizer"
+                  style="margin-right:0px"
+                />
+                <div
+                  class="euiPopover euiPopover--anchorDownCenter"
+                  offset="7"
+                >
+                  <div
+                    class="euiPopover__anchor euiDataGridHeaderCell__anchor"
+                  >
+                    <button
+                      class="euiDataGridHeaderCell__button"
+                    >
+                      <div
+                        class="euiDataGridHeaderCell__content"
+                      >
+                        B
+                      </div>
+                      <span
+                        aria-label="Header actions"
+                        class="euiDataGridHeaderCell__icon"
+                        color="text"
+                        data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn"
+                data-test-subj="dataGridHeaderCell-trailing"
+                role="columnheader"
+                style="width:50px"
+                tabindex="-1"
+              >
+                <div
+                  class="euiDataGridHeaderCell__content"
+                >
+                  <span>
+                    trailing heading
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
+              data-gridcell-id="0,0"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:0;top:0px;height:34px;width:50px"
+              tabindex="-1"
+            >
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+              <div
+                data-focus-lock-disabled="disabled"
+              >
+                <div
+                  class="euiDataGridRowCell__expandFlex"
+                >
+                  <div
+                    class="euiDataGridRowCell__expandContent"
+                  >
+                    <div
+                      class="euiDataGridRowCell__truncate"
+                      data-datagrid-cellcontent="true"
+                    >
+                      0
+                    </div>
+                    <p
+                      class="euiScreenReaderOnly"
+                    >
+                      Row: 1; Column: 1
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+            </div>
+            <div
+              class="euiDataGridRowCell"
+              data-gridcell-id="0,1"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:50px;top:0px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
+                <div
+                  class="euiDataGridRowCell__expandContent"
+                >
+                  <div
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
+                  >
+                    0, A
+                  </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 1; Column: 2
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell"
+              data-gridcell-id="0,2"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:150px;top:0px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
+                <div
+                  class="euiDataGridRowCell__expandContent"
+                >
+                  <div
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
+                  >
+                    0, B
+                  </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 1; Column: 3
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
+              data-gridcell-id="0,3"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:250px;top:0px;height:34px;width:50px"
+              tabindex="-1"
+            >
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+              <div
+                data-focus-lock-disabled="disabled"
+              >
+                <div
+                  class="euiDataGridRowCell__expandFlex"
+                >
+                  <div
+                    class="euiDataGridRowCell__expandContent"
+                  >
+                    <div
+                      class="euiDataGridRowCell__truncate"
+                      data-datagrid-cellcontent="true"
+                    >
+                      0
+                    </div>
+                    <p
+                      class="euiScreenReaderOnly"
+                    >
+                      Row: 1; Column: 4
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
+              data-gridcell-id="1,0"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:0;top:34px;height:34px;width:50px"
+              tabindex="-1"
+            >
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+              <div
+                data-focus-lock-disabled="disabled"
+              >
+                <div
+                  class="euiDataGridRowCell__expandFlex"
+                >
+                  <div
+                    class="euiDataGridRowCell__expandContent"
+                  >
+                    <div
+                      class="euiDataGridRowCell__truncate"
+                      data-datagrid-cellcontent="true"
+                    >
+                      1
+                    </div>
+                    <p
+                      class="euiScreenReaderOnly"
+                    >
+                      Row: 2; Column: 1
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--stripe"
+              data-gridcell-id="1,1"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:50px;top:34px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
+                <div
+                  class="euiDataGridRowCell__expandContent"
+                >
+                  <div
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
+                  >
+                    1, A
+                  </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 2; Column: 2
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--stripe"
+              data-gridcell-id="1,2"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:150px;top:34px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
+                <div
+                  class="euiDataGridRowCell__expandContent"
+                >
+                  <div
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
+                  >
+                    1, B
+                  </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 2; Column: 3
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
+              data-gridcell-id="1,3"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:250px;top:34px;height:34px;width:50px"
+              tabindex="-1"
+            >
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+              <div
+                data-focus-lock-disabled="disabled"
+              >
+                <div
+                  class="euiDataGridRowCell__expandFlex"
+                >
+                  <div
+                    class="euiDataGridRowCell__expandContent"
+                  >
+                    <div
+                      class="euiDataGridRowCell__truncate"
+                      data-datagrid-cellcontent="true"
+                    >
+                      1
+                    </div>
+                    <p
+                      class="euiScreenReaderOnly"
+                    >
+                      Row: 2; Column: 4
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
+              data-gridcell-id="2,0"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:0;top:68px;height:34px;width:50px"
+              tabindex="-1"
+            >
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+              <div
+                data-focus-lock-disabled="disabled"
+              >
+                <div
+                  class="euiDataGridRowCell__expandFlex"
+                >
+                  <div
+                    class="euiDataGridRowCell__expandContent"
+                  >
+                    <div
+                      class="euiDataGridRowCell__truncate"
+                      data-datagrid-cellcontent="true"
+                    >
+                      2
+                    </div>
+                    <p
+                      class="euiScreenReaderOnly"
+                    >
+                      Row: 3; Column: 1
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+            </div>
+            <div
+              class="euiDataGridRowCell"
+              data-gridcell-id="2,1"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:50px;top:68px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
+                <div
+                  class="euiDataGridRowCell__expandContent"
+                >
+                  <div
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
+                  >
+                    2, A
+                  </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 3; Column: 2
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell"
+              data-gridcell-id="2,2"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:150px;top:68px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
+                <div
+                  class="euiDataGridRowCell__expandContent"
+                >
+                  <div
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
+                  >
+                    2, B
+                  </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 3; Column: 3
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
+              data-gridcell-id="2,3"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:250px;top:68px;height:34px;width:50px"
+              tabindex="-1"
+            >
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
+              <div
+                data-focus-lock-disabled="disabled"
+              >
+                <div
+                  class="euiDataGridRowCell__expandFlex"
+                >
+                  <div
+                    class="euiDataGridRowCell__expandContent"
+                  >
+                    <div
+                      class="euiDataGridRowCell__truncate"
+                      data-datagrid-cellcontent="true"
+                    >
+                      2
+                    </div>
+                    <p
+                      class="euiScreenReaderOnly"
+                    >
+                      Row: 3; Column: 4
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                data-focus-guard="true"
+                style="width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+                tabindex="-1"
+              />
             </div>
           </div>
         </div>
@@ -2137,277 +2121,269 @@ Array [
         </div>
       </div>
       <div
-        class="euiDataGrid__verticalScroll"
+        aria-label="aria-label"
+        class="euiDataGrid__content"
+        data-test-subj="euiDataGridBody"
+        id="generated-id"
+        role="grid"
+        tabindex="0"
       >
         <div
-          class="euiDataGrid__overflow"
+          class="euiDataGrid__virtualized"
+          style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
         >
           <div
-            aria-label="aria-label"
-            class="euiDataGrid__content"
-            data-test-subj="euiDataGridBody"
-            id="generated-id"
-            role="grid"
-            tabindex="0"
+            style="height:102px;width:200px"
           >
             <div
-              class="euiDataGrid__virtualized"
-              style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+              class="euiDataGridHeader"
+              data-test-subj="dataGridHeader"
+              role="row"
             >
               <div
-                style="height:102px;width:200px"
+                class="euiDataGridHeaderCell"
+                data-test-subj="dataGridHeaderCell-A"
+                role="columnheader"
+                style="width:100px"
+                tabindex="-1"
               >
                 <div
-                  class="euiDataGridHeader"
-                  data-test-subj="dataGridHeader"
-                  role="row"
+                  class="euiDataGridColumnResizer"
+                  data-test-subj="dataGridColumnResizer"
+                  style="margin-right:0px"
+                />
+                <div
+                  class="euiPopover euiPopover--anchorDownCenter"
+                  offset="7"
                 >
                   <div
-                    class="euiDataGridHeaderCell"
-                    data-test-subj="dataGridHeaderCell-A"
-                    role="columnheader"
-                    style="width:100px"
-                    tabindex="-1"
+                    class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                   >
-                    <div
-                      class="euiDataGridColumnResizer"
-                      data-test-subj="dataGridColumnResizer"
-                      style="margin-right:0px"
-                    />
-                    <div
-                      class="euiPopover euiPopover--anchorDownCenter"
-                      offset="7"
+                    <button
+                      class="euiDataGridHeaderCell__button"
                     >
                       <div
-                        class="euiPopover__anchor euiDataGridHeaderCell__anchor"
+                        class="euiDataGridHeaderCell__content"
                       >
-                        <button
-                          class="euiDataGridHeaderCell__button"
-                        >
-                          <div
-                            class="euiDataGridHeaderCell__content"
-                          >
-                            Column A
-                          </div>
-                          <span
-                            aria-label="Header actions"
-                            class="euiDataGridHeaderCell__icon"
-                            color="text"
-                            data-euiicon-type="arrowDown"
-                            data-test-subj="dataGridHeaderCellActionButton-A"
-                          />
-                        </button>
+                        Column A
                       </div>
-                    </div>
-                  </div>
-                  <div
-                    class="euiDataGridHeaderCell"
-                    data-test-subj="dataGridHeaderCell-B"
-                    role="columnheader"
-                    style="width:100px"
-                    tabindex="-1"
-                  >
-                    <div
-                      class="euiDataGridColumnResizer"
-                      data-test-subj="dataGridColumnResizer"
-                      style="margin-right:0px"
-                    />
-                    <div
-                      class="euiPopover euiPopover--anchorDownCenter"
-                      offset="7"
-                    >
-                      <div
-                        class="euiPopover__anchor euiDataGridHeaderCell__anchor"
-                      >
-                        <button
-                          class="euiDataGridHeaderCell__button"
-                        >
-                          <div
-                            class="euiDataGridHeaderCell__content"
-                          >
-                            <div>
-                              More Elements
-                            </div>
-                          </div>
-                          <span
-                            aria-label="Header actions"
-                            class="euiDataGridHeaderCell__icon"
-                            color="text"
-                            data-euiicon-type="arrowDown"
-                            data-test-subj="dataGridHeaderCellActionButton-B"
-                          />
-                        </button>
-                      </div>
-                    </div>
+                      <span
+                        aria-label="Header actions"
+                        class="euiDataGridHeaderCell__icon"
+                        color="text"
+                        data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
+                      />
+                    </button>
                   </div>
                 </div>
+              </div>
+              <div
+                class="euiDataGridHeaderCell"
+                data-test-subj="dataGridHeaderCell-B"
+                role="columnheader"
+                style="width:100px"
+                tabindex="-1"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
-                  data-gridcell-id="0,0"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:0;top:0px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridColumnResizer"
+                  data-test-subj="dataGridColumnResizer"
+                  style="margin-right:0px"
+                />
+                <div
+                  class="euiPopover euiPopover--anchorDownCenter"
+                  offset="7"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
+                    <button
+                      class="euiDataGridHeaderCell__button"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
+                        class="euiDataGridHeaderCell__content"
                       >
-                        0, A
+                        <div>
+                          More Elements
+                        </div>
                       </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 1; Column: 1
-                      </p>
-                    </div>
+                      <span
+                        aria-label="Header actions"
+                        class="euiDataGridHeaderCell__icon"
+                        color="text"
+                        data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
+                      />
+                    </button>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+              data-gridcell-id="0,0"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:0;top:0px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
-                  data-gridcell-id="0,1"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:100px;top:0px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridRowCell__expandContent"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        0, B
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 1; Column: 2
-                      </p>
-                    </div>
+                    0, A
                   </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 1; Column: 1
+                  </p>
                 </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+              data-gridcell-id="0,1"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:100px;top:0px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
-                  data-gridcell-id="1,0"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:0;top:34px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridRowCell__expandContent"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        1, A
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 2; Column: 1
-                      </p>
-                    </div>
+                    0, B
                   </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 1; Column: 2
+                  </p>
                 </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+              data-gridcell-id="1,0"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:0;top:34px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
-                  data-gridcell-id="1,1"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:100px;top:34px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridRowCell__expandContent"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        1, B
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 2; Column: 2
-                      </p>
-                    </div>
+                    1, A
                   </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 2; Column: 1
+                  </p>
                 </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+              data-gridcell-id="1,1"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:100px;top:34px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
-                  data-gridcell-id="2,0"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:0;top:68px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridRowCell__expandContent"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        2, A
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 3; Column: 1
-                      </p>
-                    </div>
+                    1, B
                   </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 2; Column: 2
+                  </p>
                 </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+              data-gridcell-id="2,0"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:0;top:68px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
-                  data-gridcell-id="2,1"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:100px;top:68px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridRowCell__expandContent"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        2, B
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 3; Column: 2
-                      </p>
-                    </div>
+                    2, A
                   </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 3; Column: 1
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+              data-gridcell-id="2,1"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:100px;top:68px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
+                <div
+                  class="euiDataGridRowCell__expandContent"
+                >
+                  <div
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
+                  >
+                    2, B
+                  </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 3; Column: 2
+                  </p>
                 </div>
               </div>
             </div>
@@ -2536,275 +2512,267 @@ Array [
         </div>
       </div>
       <div
-        class="euiDataGrid__verticalScroll"
+        aria-label="aria-label"
+        class="euiDataGrid__content"
+        data-test-subj="euiDataGridBody"
+        id="generated-id"
+        role="grid"
+        tabindex="0"
       >
         <div
-          class="euiDataGrid__overflow"
+          class="euiDataGrid__virtualized"
+          style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
         >
           <div
-            aria-label="aria-label"
-            class="euiDataGrid__content"
-            data-test-subj="euiDataGridBody"
-            id="generated-id"
-            role="grid"
-            tabindex="0"
+            style="height:102px;width:200px"
           >
             <div
-              class="euiDataGrid__virtualized"
-              style="position:relative;height:9007199254740991px;width:9007199254740991px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+              class="euiDataGridHeader"
+              data-test-subj="dataGridHeader"
+              role="row"
             >
               <div
-                style="height:102px;width:200px"
+                class="euiDataGridHeaderCell"
+                data-test-subj="dataGridHeaderCell-A"
+                role="columnheader"
+                style="width:100px"
+                tabindex="-1"
               >
                 <div
-                  class="euiDataGridHeader"
-                  data-test-subj="dataGridHeader"
-                  role="row"
+                  class="euiDataGridColumnResizer"
+                  data-test-subj="dataGridColumnResizer"
+                  style="margin-right:0px"
+                />
+                <div
+                  class="euiPopover euiPopover--anchorDownCenter"
+                  offset="7"
                 >
                   <div
-                    class="euiDataGridHeaderCell"
-                    data-test-subj="dataGridHeaderCell-A"
-                    role="columnheader"
-                    style="width:100px"
-                    tabindex="-1"
+                    class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                   >
-                    <div
-                      class="euiDataGridColumnResizer"
-                      data-test-subj="dataGridColumnResizer"
-                      style="margin-right:0px"
-                    />
-                    <div
-                      class="euiPopover euiPopover--anchorDownCenter"
-                      offset="7"
+                    <button
+                      class="euiDataGridHeaderCell__button"
                     >
                       <div
-                        class="euiPopover__anchor euiDataGridHeaderCell__anchor"
+                        class="euiDataGridHeaderCell__content"
                       >
-                        <button
-                          class="euiDataGridHeaderCell__button"
-                        >
-                          <div
-                            class="euiDataGridHeaderCell__content"
-                          >
-                            A
-                          </div>
-                          <span
-                            aria-label="Header actions"
-                            class="euiDataGridHeaderCell__icon"
-                            color="text"
-                            data-euiicon-type="arrowDown"
-                            data-test-subj="dataGridHeaderCellActionButton-A"
-                          />
-                        </button>
+                        A
                       </div>
-                    </div>
-                  </div>
-                  <div
-                    class="euiDataGridHeaderCell"
-                    data-test-subj="dataGridHeaderCell-B"
-                    role="columnheader"
-                    style="width:100px"
-                    tabindex="-1"
-                  >
-                    <div
-                      class="euiDataGridColumnResizer"
-                      data-test-subj="dataGridColumnResizer"
-                      style="margin-right:0px"
-                    />
-                    <div
-                      class="euiPopover euiPopover--anchorDownCenter"
-                      offset="7"
-                    >
-                      <div
-                        class="euiPopover__anchor euiDataGridHeaderCell__anchor"
-                      >
-                        <button
-                          class="euiDataGridHeaderCell__button"
-                        >
-                          <div
-                            class="euiDataGridHeaderCell__content"
-                          >
-                            B
-                          </div>
-                          <span
-                            aria-label="Header actions"
-                            class="euiDataGridHeaderCell__icon"
-                            color="text"
-                            data-euiicon-type="arrowDown"
-                            data-test-subj="dataGridHeaderCellActionButton-B"
-                          />
-                        </button>
-                      </div>
-                    </div>
+                      <span
+                        aria-label="Header actions"
+                        class="euiDataGridHeaderCell__icon"
+                        color="text"
+                        data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-A"
+                      />
+                    </button>
                   </div>
                 </div>
+              </div>
+              <div
+                class="euiDataGridHeaderCell"
+                data-test-subj="dataGridHeaderCell-B"
+                role="columnheader"
+                style="width:100px"
+                tabindex="-1"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
-                  data-gridcell-id="0,0"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:0;top:0px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridColumnResizer"
+                  data-test-subj="dataGridColumnResizer"
+                  style="margin-right:0px"
+                />
+                <div
+                  class="euiPopover euiPopover--anchorDownCenter"
+                  offset="7"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiPopover__anchor euiDataGridHeaderCell__anchor"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
+                    <button
+                      class="euiDataGridHeaderCell__button"
                     >
                       <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
+                        class="euiDataGridHeaderCell__content"
                       >
-                        0, A
+                        B
                       </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 1; Column: 1
-                      </p>
-                    </div>
+                      <span
+                        aria-label="Header actions"
+                        class="euiDataGridHeaderCell__icon"
+                        color="text"
+                        data-euiicon-type="arrowDown"
+                        data-test-subj="dataGridHeaderCellActionButton-B"
+                      />
+                    </button>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+              data-gridcell-id="0,0"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:0;top:0px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
-                  data-gridcell-id="0,1"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:100px;top:0px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridRowCell__expandContent"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        0, B
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 1; Column: 2
-                      </p>
-                    </div>
+                    0, A
                   </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 1; Column: 1
+                  </p>
                 </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+              data-gridcell-id="0,1"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:100px;top:0px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
-                  data-gridcell-id="1,0"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:0;top:34px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridRowCell__expandContent"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        1, A
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 2; Column: 1
-                      </p>
-                    </div>
+                    0, B
                   </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 1; Column: 2
+                  </p>
                 </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+              data-gridcell-id="1,0"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:0;top:34px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
-                  data-gridcell-id="1,1"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:100px;top:34px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridRowCell__expandContent"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        1, B
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 2; Column: 2
-                      </p>
-                    </div>
+                    1, A
                   </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 2; Column: 1
+                  </p>
                 </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+              data-gridcell-id="1,1"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:100px;top:34px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
-                  data-gridcell-id="2,0"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:0;top:68px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridRowCell__expandContent"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        2, A
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 3; Column: 1
-                      </p>
-                    </div>
+                    1, B
                   </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 2; Column: 2
+                  </p>
                 </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
+              data-gridcell-id="2,0"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:0;top:68px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
                 <div
-                  class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
-                  data-gridcell-id="2,1"
-                  data-test-subj="dataGridRowCell"
-                  role="gridcell"
-                  style="position:absolute;left:100px;top:68px;height:34px;width:100px"
-                  tabindex="-1"
+                  class="euiDataGridRowCell__expandContent"
                 >
                   <div
-                    class="euiDataGridRowCell__expandFlex"
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
                   >
-                    <div
-                      class="euiDataGridRowCell__expandContent"
-                    >
-                      <div
-                        class="euiDataGridRowCell__truncate"
-                        data-datagrid-cellcontent="true"
-                      >
-                        2, B
-                      </div>
-                      <p
-                        class="euiScreenReaderOnly"
-                      >
-                        Row: 3; Column: 2
-                      </p>
-                    </div>
+                    2, A
                   </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 3; Column: 1
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
+              data-gridcell-id="2,1"
+              data-test-subj="dataGridRowCell"
+              role="gridcell"
+              style="position:absolute;left:100px;top:68px;height:34px;width:100px"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridRowCell__expandFlex"
+              >
+                <div
+                  class="euiDataGridRowCell__expandContent"
+                >
+                  <div
+                    class="euiDataGridRowCell__truncate"
+                    data-datagrid-cellcontent="true"
+                  >
+                    2, B
+                  </div>
+                  <p
+                    class="euiScreenReaderOnly"
+                  >
+                    Row: 3; Column: 2
+                  </p>
                 </div>
               </div>
             </div>

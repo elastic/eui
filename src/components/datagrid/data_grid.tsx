@@ -372,7 +372,23 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                 columnSorting={columnSorting}
               />
             )}
-            <div
+            {inMemory ? (
+              <EuiDataGridInMemoryRenderer
+                inMemory={inMemory}
+                renderCellValue={renderCellValue}
+                columns={columns}
+                rowCount={
+                  inMemory.level === 'enhancements'
+                    ? // if `inMemory.level === enhancements` then we can only be sure the pagination's pageSize is available in memory
+                      pagination?.pageSize || rowCount
+                    : // otherwise, all of the data is present and usable
+                      rowCount
+                }
+                onCellRender={onCellRender}
+              />
+            ) : null}
+            <div // eslint-disable-line jsx-a11y/interactive-supports-focus
+              ref={contentRef}
               onKeyDown={createKeyDownHandler({
                 gridElement: contentRef.current,
                 visibleColCount,
@@ -383,62 +399,40 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                 headerIsInteractive,
                 focusContext,
               })}
-              className="euiDataGrid__verticalScroll"
+              data-test-subj="euiDataGridBody"
+              className="euiDataGrid__content"
+              role="grid"
+              id={gridId}
+              {...wrappingDivFocusProps} // re: above jsx-a11y - tabIndex is handled by these props, but the linter isn't smart enough to know that
+              {...gridAriaProps}
             >
-              <div className="euiDataGrid__overflow">
-                {inMemory ? (
-                  <EuiDataGridInMemoryRenderer
-                    inMemory={inMemory}
-                    renderCellValue={renderCellValue}
-                    columns={columns}
-                    rowCount={
-                      inMemory.level === 'enhancements'
-                        ? // if `inMemory.level === enhancements` then we can only be sure the pagination's pageSize is available in memory
-                          pagination?.pageSize || rowCount
-                        : // otherwise, all of the data is present and usable
-                          rowCount
-                    }
-                    onCellRender={onCellRender}
-                  />
-                ) : null}
-                <div
-                  ref={contentRef}
-                  data-test-subj="euiDataGridBody"
-                  className="euiDataGrid__content"
-                  role="grid"
-                  id={gridId}
-                  {...wrappingDivFocusProps}
-                  {...gridAriaProps}
-                >
-                  <EuiDataGridBody
-                    isFullScreen={isFullScreen}
-                    columns={orderedVisibleColumns}
-                    visibleColCount={visibleColCount}
-                    toolbarHeight={toolbarHeight}
-                    leadingControlColumns={leadingControlColumns}
-                    schema={mergedSchema}
-                    trailingControlColumns={trailingControlColumns}
-                    setVisibleColumns={setVisibleColumns}
-                    switchColumnPos={switchColumnPos}
-                    onColumnResize={onColumnResize}
-                    headerIsInteractive={headerIsInteractive}
-                    handleHeaderMutation={handleHeaderMutation}
-                    schemaDetectors={allSchemaDetectors}
-                    popoverContents={mergedPopoverContents}
-                    pagination={pagination}
-                    renderCellValue={renderCellValue}
-                    renderFooterCellValue={renderFooterCellValue}
-                    rowCount={rowCount}
-                    visibleRows={visibleRows}
-                    interactiveCellId={interactiveCellId}
-                    rowHeightsOptions={rowHeightsOptions}
-                    virtualizationOptions={virtualizationOptions || {}}
-                    gridStyles={gridStyles}
-                    gridWidth={gridWidth}
-                    wrapperRef={contentRef}
-                  />
-                </div>
-              </div>
+              <EuiDataGridBody
+                isFullScreen={isFullScreen}
+                columns={orderedVisibleColumns}
+                visibleColCount={visibleColCount}
+                toolbarHeight={toolbarHeight}
+                leadingControlColumns={leadingControlColumns}
+                schema={mergedSchema}
+                trailingControlColumns={trailingControlColumns}
+                setVisibleColumns={setVisibleColumns}
+                switchColumnPos={switchColumnPos}
+                onColumnResize={onColumnResize}
+                headerIsInteractive={headerIsInteractive}
+                handleHeaderMutation={handleHeaderMutation}
+                schemaDetectors={allSchemaDetectors}
+                popoverContents={mergedPopoverContents}
+                pagination={pagination}
+                renderCellValue={renderCellValue}
+                renderFooterCellValue={renderFooterCellValue}
+                rowCount={rowCount}
+                visibleRows={visibleRows}
+                interactiveCellId={interactiveCellId}
+                rowHeightsOptions={rowHeightsOptions}
+                virtualizationOptions={virtualizationOptions || {}}
+                gridStyles={gridStyles}
+                gridWidth={gridWidth}
+                wrapperRef={contentRef}
+              />
             </div>
             {pagination && props['aria-labelledby'] && (
               <p id={ariaLabelledById} hidden>
