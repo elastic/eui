@@ -6,12 +6,13 @@
  * Side Public License, v 1.
  */
 
-import { useEffect, useState, MutableRefObject } from 'react';
+import { useEffect, useState, useContext, MutableRefObject } from 'react';
 import { IS_JEST_ENVIRONMENT } from '../../../test';
 import { useUpdateEffect, useForceRender } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
-import { RowHeightUtils } from './row_heights';
 import { EuiDataGridRowHeightsOptions } from '../data_grid_types';
+import { RowHeightUtils } from './row_heights';
+import { DataGridSortingContext } from './sorting';
 
 export const useFinalGridDimensions = ({
   unconstrainedHeight,
@@ -82,7 +83,6 @@ export const useUnconstrainedHeight = ({
   rowHeightUtils,
   startRow,
   endRow,
-  getCorrectRowIndex,
   rowHeightsOptions,
   defaultRowHeight,
   headerRowHeight,
@@ -93,7 +93,6 @@ export const useUnconstrainedHeight = ({
   rowHeightUtils: RowHeightUtils;
   startRow: number;
   endRow: number;
-  getCorrectRowIndex: (rowIndex: number) => number;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   defaultRowHeight: number;
   headerRowHeight: number;
@@ -101,6 +100,8 @@ export const useUnconstrainedHeight = ({
   outerGridRef: React.MutableRefObject<HTMLDivElement | null>;
   innerGridRef: React.MutableRefObject<HTMLDivElement | null>;
 }) => {
+  const { getCorrectRowIndex } = useContext(DataGridSortingContext);
+
   // when a row height is updated, force a re-render of the grid body to update the unconstrained height
   const forceRender = useForceRender();
   useEffect(() => {

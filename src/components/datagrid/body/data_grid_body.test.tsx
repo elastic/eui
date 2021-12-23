@@ -10,7 +10,6 @@ import React from 'react';
 import { mount, render, shallow } from 'enzyme';
 
 import { mockRowHeightUtils } from '../utils/__mocks__/row_heights';
-import { DataGridSortingContext } from '../data_grid_context';
 import { schemaDetectors } from '../utils/data_grid_schema';
 
 import { EuiDataGridBody, Cell, getParentCellContent } from './data_grid_body';
@@ -90,37 +89,6 @@ describe('EuiDataGridBody', () => {
     expect(component.find('[data-test-subj="footer"]')).toHaveLength(2);
   });
 
-  // TODO: This is likely better handled/asserted by Cypress.
-  // I'm leaving it in for now to provide an example of props/inMemoryValues
-  it('handles in-memory sorting and pagination', () => {
-    mount(
-      <DataGridSortingContext.Provider
-        value={{
-          onSort: jest.fn(),
-          columns: [
-            { id: 'columnA', direction: 'desc' },
-            { id: 'columnB', direction: 'asc' },
-          ],
-        }}
-      >
-        <EuiDataGridBody
-          {...requiredProps}
-          inMemory={{ level: 'sorting' }}
-          inMemoryValues={{
-            '0': { columnA: 'true', columnB: 'sdff' },
-            '1': { columnA: 'false', columnB: 'asdfsdf' },
-          }}
-          pagination={{
-            pageIndex: 0,
-            pageSize: 1,
-            onChangeItemsPerPage: jest.fn(),
-            onChangePage: jest.fn(),
-          }}
-        />
-      </DataGridSortingContext.Provider>
-    );
-  });
-
   // TODO: Test final height/weights in Cypress
 
   // TODO: Test tabbing in Cypress
@@ -161,19 +129,6 @@ describe('Cell', () => {
 
       component.setProps({ rowIndex: 4 });
       expect(component.hasClass('euiDataGridRowCell--stripe')).toBe(false);
-    });
-
-    it('renders striping based on the visible rowIndex, and not from the row offset that accounts for pagination', () => {
-      const component = shallow(
-        <Cell
-          {...requiredProps}
-          rowIndex={3}
-          data={{ ...requiredProps.data, rowOffset: 15 }}
-        />
-      );
-      expect(component.prop('rowIndex')).toBe(18);
-      expect(component.prop('visibleRowIndex')).toBe(3);
-      expect(component.hasClass('euiDataGridRowCell--stripe')).toBe(true);
     });
   });
 });

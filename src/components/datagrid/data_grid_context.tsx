@@ -7,14 +7,7 @@
  */
 
 import React from 'react';
-import {
-  DataGridWrapperRowsContentsShape,
-  EuiDataGridSorting,
-} from './data_grid_types';
-
-export const DataGridSortingContext = React.createContext<
-  EuiDataGridSorting | undefined
->(undefined);
+import { DataGridWrapperRowsContentsShape } from './data_grid_types';
 
 export const DataGridWrapperRowsContext = React.createContext<
   DataGridWrapperRowsContentsShape

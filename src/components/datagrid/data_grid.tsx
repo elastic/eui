@@ -27,7 +27,7 @@ import {
   checkOrDefaultToolBarDisplayOptions,
   EuiDataGridToolbar,
 } from './controls';
-import { DataGridSortingContext } from './data_grid_context';
+import { DataGridSortingContext, useSorting } from './utils/sorting';
 import {
   DataGridFocusContext,
   useFocus,
@@ -237,6 +237,15 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   );
   const { visibleRowCount } = visibleRows;
 
+  const sortingContext = useSorting({
+    sorting,
+    inMemory,
+    inMemoryValues,
+    schema: mergedSchema,
+    schemaDetectors: allSchemaDetectors,
+    startRow: visibleRows.startRow,
+  });
+
   const classes = classNames(
     'euiDataGrid',
     fontSizesToClassMap[gridStyles.fontSize!],
@@ -311,7 +320,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
 
   return (
     <DataGridFocusContext.Provider value={focusContext}>
-      <DataGridSortingContext.Provider value={sorting}>
+      <DataGridSortingContext.Provider value={sortingContext}>
         <EuiFocusTrap
           disabled={!isFullScreen}
           className="euiDataGrid__focusWrap"
@@ -388,8 +397,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                     onColumnResize={onColumnResize}
                     headerIsInteractive={headerIsInteractive}
                     handleHeaderMutation={handleHeaderMutation}
-                    inMemoryValues={inMemoryValues}
-                    inMemory={inMemory}
                     schemaDetectors={allSchemaDetectors}
                     popoverContents={popoverContents}
                     pagination={pagination}

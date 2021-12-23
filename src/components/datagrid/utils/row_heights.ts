@@ -11,6 +11,7 @@ import {
   useState,
   useMemo,
   useCallback,
+  useContext,
   CSSProperties,
 } from 'react';
 import type { VariableSizeGrid as Grid } from 'react-window';
@@ -22,6 +23,7 @@ import {
   EuiDataGridRowHeightsOptions,
   EuiDataGridColumn,
 } from '../data_grid_types';
+import { DataGridSortingContext } from './sorting';
 
 // TODO: Once JS variables are available, use them here instead of hard-coded maps
 export const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, number> = {
@@ -281,12 +283,12 @@ export const useRowHeightUtils = ({
 export const useDefaultRowHeight = ({
   rowHeightsOptions,
   rowHeightUtils,
-  getCorrectRowIndex,
 }: {
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils: RowHeightUtils;
-  getCorrectRowIndex(index: number): number;
 }) => {
+  const { getCorrectRowIndex } = useContext(DataGridSortingContext);
+
   // `minRowHeight` is primarily used by undefined & lineCount heights
   // and ignored by auto & static heights (unless the static height is < the min)
   const [minRowHeight, setRowHeight] = useState(DEFAULT_ROW_HEIGHT);

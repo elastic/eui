@@ -172,6 +172,12 @@ export interface EuiDataGridVisibleRows {
   visibleRowCount: number;
 }
 
+export interface DataGridSortingContextShape {
+  sorting?: EuiDataGridSorting;
+  sortedRowMap: { [key: number]: number };
+  getCorrectRowIndex: (rowIndex: number) => number;
+}
+
 export interface DataGridFocusContextShape {
   focusedCell?: EuiDataGridFocusedCell;
   setFocusedCell: (cell: EuiDataGridFocusedCell) => void;
@@ -325,8 +331,6 @@ export interface EuiDataGridBodyProps {
   visibleRows: EuiDataGridVisibleRows;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
   renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
-  inMemory?: EuiDataGridInMemory;
-  inMemoryValues: EuiDataGridInMemoryValues;
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   pagination?: EuiDataGridPaginationProps;
   headerIsInteractive: boolean;

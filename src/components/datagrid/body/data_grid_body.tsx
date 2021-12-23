@@ -29,11 +29,7 @@ import {
 } from '../../observer/mutation_observer';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { EuiDataGridCell } from './data_grid_cell';
-import {
-  DataGridSortingContext,
-  DataGridWrapperRowsContext,
-} from '../data_grid_context';
-import { defaultComparator } from '../utils/data_grid_schema';
+import { DataGridWrapperRowsContext } from '../data_grid_context';
 import { EuiDataGridFooterRow } from './data_grid_footer_row';
 import { EuiDataGridHeaderRow } from './header';
 import {
@@ -42,7 +38,6 @@ import {
 } from './popover_utils';
 import {
   EuiDataGridBodyProps,
-  EuiDataGridInMemoryValues,
   EuiDataGridRowManager,
   EuiDataGridSchemaDetector,
 } from '../data_grid_types';
@@ -54,6 +49,7 @@ import {
 } from '../utils/grid_height_width';
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
 import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
+import { DataGridSortingContext } from '../utils/sorting';
 import { IS_JEST_ENVIRONMENT } from '../../../test';
 
 export const Cell: FunctionComponent<GridChildComponentProps> = ({
@@ -63,8 +59,6 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
   data,
 }) => {
   const {
-    rowMap,
-    rowOffset,
     leadingControlColumns,
     trailingControlColumns,
     columns,
@@ -81,14 +75,8 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     rowHeightUtils,
     rowManager,
   } = data;
-
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
-
-  const offsetRowIndex = visibleRowIndex + rowOffset;
-
-  const rowIndex = rowMap.hasOwnProperty(offsetRowIndex)
-    ? rowMap[offsetRowIndex]
-    : offsetRowIndex;
+  const { getCorrectRowIndex } = useContext(DataGridSortingContext);
 
   let cellContent;
 
@@ -123,7 +111,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
   });
 
   const sharedCellProps = {
-    rowIndex,
+    rowIndex: getCorrectRowIndex(visibleRowIndex),
     visibleRowIndex,
     colIndex: columnIndex,
     interactiveCellId,
@@ -268,8 +256,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     visibleRows: { startRow, endRow, visibleRowCount },
     renderCellValue,
     renderFooterCellValue,
-    inMemory,
-    inMemoryValues,
     interactiveCellId,
     pagination,
     headerIsInteractive,
@@ -318,70 +304,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   });
   const { height: headerRowHeight } = useResizeObserver(headerRowRef, 'height');
   const { height: footerRowHeight } = useResizeObserver(footerRowRef, 'height');
-
-  const sorting = useContext(DataGridSortingContext);
-  const sortingColumns = sorting?.columns;
-
-  const rowMap = useMemo(() => {
-    const rowMap: { [key: number]: number } = {};
-
-    if (
-      inMemory?.level === 'sorting' &&
-      sortingColumns != null &&
-      sortingColumns.length > 0
-    ) {
-      const inMemoryRowIndices = Object.keys(inMemoryValues);
-      const wrappedValues: Array<{
-        index: number;
-        values: EuiDataGridInMemoryValues[number];
-      }> = [];
-      for (let i = 0; i < inMemoryRowIndices.length; i++) {
-        const inMemoryRow = inMemoryValues[inMemoryRowIndices[i]];
-        wrappedValues.push({ index: i, values: inMemoryRow });
-      }
-
-      wrappedValues.sort((a, b) => {
-        for (let i = 0; i < sortingColumns.length; i++) {
-          const column = sortingColumns[i];
-          const aValue = a.values[column.id];
-          const bValue = b.values[column.id];
-
-          // get the comparator, based on schema
-          let comparator = defaultComparator;
-          if (schema.hasOwnProperty(column.id)) {
-            const columnType = schema[column.id].columnType;
-            for (let i = 0; i < schemaDetectors.length; i++) {
-              const detector = schemaDetectors[i];
-              if (
-                detector.type === columnType &&
-                detector.hasOwnProperty('comparator')
-              ) {
-                comparator = detector.comparator!;
-              }
-            }
-          }
-
-          const result = comparator(aValue, bValue, column.direction);
-          // only return if the columns are unequal, otherwise allow the next sort-by column to run
-          if (result !== 0) return result;
-        }
-
-        return 0;
-      });
-
-      for (let i = 0; i < wrappedValues.length; i++) {
-        rowMap[i] = wrappedValues[i].index;
-      }
-    }
-
-    return rowMap;
-  }, [
-    sortingColumns,
-    inMemoryValues,
-    schema,
-    schemaDetectors,
-    inMemory?.level,
-  ]);
 
   const mergedPopoverContents = useMemo(
     () => ({
@@ -453,23 +375,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     visibleRowCount,
   ]);
 
-  const getCorrectRowIndex = useCallback(
-    (rowIndex: number) => {
-      let rowIndexWithOffset = rowIndex;
-
-      if (rowIndex - startRow < 0) {
-        rowIndexWithOffset = rowIndex + startRow;
-      }
-
-      const correctRowIndex = rowMap.hasOwnProperty(rowIndexWithOffset)
-        ? rowMap[rowIndexWithOffset]
-        : rowIndexWithOffset;
-
-      return correctRowIndex;
-    },
-    [startRow, rowMap]
-  );
-
   const gridRef = useRef<Grid | null>(null);
 
   useEffect(() => {
@@ -487,7 +392,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const { defaultRowHeight, setRowHeight, getRowHeight } = useDefaultRowHeight({
     rowHeightsOptions,
     rowHeightUtils,
-    getCorrectRowIndex,
   });
 
   useEffect(() => {
@@ -557,7 +461,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     rowHeightUtils,
     startRow,
     endRow,
-    getCorrectRowIndex,
     rowHeightsOptions,
     defaultRowHeight,
     headerRowHeight,
@@ -611,11 +514,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
                 itemData={{
                   schemaDetectors,
                   setRowHeight,
-                  getCorrectRowIndex,
-                  rowMap,
-                  rowOffset: pagination
-                    ? pagination.pageIndex * pagination.pageSize
-                    : 0,
                   leadingControlColumns,
                   trailingControlColumns,
                   columns,
