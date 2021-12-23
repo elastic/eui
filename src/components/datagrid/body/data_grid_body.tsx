@@ -22,10 +22,7 @@ import {
   VariableSizeGrid as Grid,
   VariableSizeGridProps,
 } from 'react-window';
-import {
-  EuiMutationObserver,
-  useMutationObserver,
-} from '../../observer/mutation_observer';
+import { useMutationObserver } from '../../observer/mutation_observer';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { EuiDataGridCell } from './data_grid_cell';
 import { EuiDataGridFooterRow } from './data_grid_footer_row';
@@ -46,7 +43,6 @@ import {
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
 import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
 import { DataGridSortingContext } from '../utils/sorting';
-import { preventTabbing } from '../utils/focus';
 import { IS_JEST_ENVIRONMENT } from '../../../test';
 
 export const Cell: FunctionComponent<GridChildComponentProps> = ({
@@ -245,16 +241,17 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     virtualizationOptions,
     gridStyles,
     gridWidth,
+    wrapperRef,
   } = props;
 
   /**
    * Grid refs & observers
    */
+  const wrapperDimensions = useResizeObserver(wrapperRef.current);
+
   const gridRef = useRef<Grid | null>(null); // Imperative handler passed back by react-window
   const outerGridRef = useRef<HTMLDivElement | null>(null); // container that becomes scrollable
   const innerGridRef = useRef<HTMLDivElement | null>(null); // container sized to fit all content
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const wrapperDimensions = useResizeObserver(wrapperRef.current);
 
   /**
    * Widths
@@ -443,65 +440,45 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     }
   }, [pagination?.pageIndex]);
 
-  return (
-    <EuiMutationObserver
-      observerOptions={{ subtree: true, childList: true }}
-      onMutation={preventTabbing}
+  return IS_JEST_ENVIRONMENT || finalWidth > 0 ? (
+    <DataGridWrapperRowsContext.Provider
+      value={{ headerRowHeight, headerRow, footerRow }}
     >
-      {(mutationRef) => (
-        <div
-          data-test-subj="euiDataGridBody"
-          style={{ width: '100%', height: '100%', overflow: 'hidden' }}
-          ref={(el) => {
-            wrapperRef.current = el;
-            mutationRef(el);
-          }}
-        >
-          {(IS_JEST_ENVIRONMENT || finalWidth > 0) && (
-            <DataGridWrapperRowsContext.Provider
-              value={{ headerRowHeight, headerRow, footerRow }}
-            >
-              <Grid
-                {...(virtualizationOptions ? virtualizationOptions : {})}
-                ref={gridRef}
-                innerElementType={InnerElement}
-                outerRef={outerGridRef}
-                innerRef={innerGridRef}
-                className="euiDataGrid__virtualized"
-                columnCount={visibleColCount}
-                width={finalWidth}
-                columnWidth={getColumnWidth}
-                height={finalHeight}
-                rowHeight={getRowHeight}
-                itemData={{
-                  schemaDetectors,
-                  setRowHeight,
-                  leadingControlColumns,
-                  trailingControlColumns,
-                  columns,
-                  visibleColCount,
-                  schema,
-                  popoverContents,
-                  columnWidths,
-                  defaultColumnWidth,
-                  renderCellValue,
-                  interactiveCellId,
-                  rowHeightsOptions,
-                  rowHeightUtils,
-                  rowManager,
-                }}
-                rowCount={
-                  IS_JEST_ENVIRONMENT || headerRowHeight > 0
-                    ? visibleRowCount
-                    : 0
-                }
-              >
-                {Cell}
-              </Grid>
-            </DataGridWrapperRowsContext.Provider>
-          )}
-        </div>
-      )}
-    </EuiMutationObserver>
-  );
+      <Grid
+        {...(virtualizationOptions ? virtualizationOptions : {})}
+        ref={gridRef}
+        innerElementType={InnerElement}
+        outerRef={outerGridRef}
+        innerRef={innerGridRef}
+        className="euiDataGrid__virtualized"
+        columnCount={visibleColCount}
+        width={finalWidth}
+        columnWidth={getColumnWidth}
+        height={finalHeight}
+        rowHeight={getRowHeight}
+        itemData={{
+          schemaDetectors,
+          setRowHeight,
+          leadingControlColumns,
+          trailingControlColumns,
+          columns,
+          visibleColCount,
+          schema,
+          popoverContents,
+          columnWidths,
+          defaultColumnWidth,
+          renderCellValue,
+          interactiveCellId,
+          rowHeightsOptions,
+          rowHeightUtils,
+          rowManager,
+        }}
+        rowCount={
+          IS_JEST_ENVIRONMENT || headerRowHeight > 0 ? visibleRowCount : 0
+        }
+      >
+        {Cell}
+      </Grid>
+    </DataGridWrapperRowsContext.Provider>
+  ) : null;
 };

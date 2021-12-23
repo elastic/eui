@@ -46,6 +46,7 @@ describe('EuiDataGridBody', () => {
     rowHeightUtils: mockRowHeightUtils,
     gridStyles: {},
     gridWidth: 300,
+    wrapperRef: { current: document.createElement('div') },
   };
 
   beforeAll(() => {

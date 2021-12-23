@@ -17,6 +17,7 @@ import {
   AriaAttributes,
   Dispatch,
   SetStateAction,
+  MutableRefObject,
 } from 'react';
 import { VariableSizeGridProps } from 'react-window';
 import { EuiListGroupItemProps } from '../list_group';
@@ -343,6 +344,7 @@ export interface EuiDataGridBodyProps {
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   gridStyles: EuiDataGridStyle;
   gridWidth: number;
+  wrapperRef: MutableRefObject<HTMLDivElement | null>;
 }
 export interface EuiDataGridCellValueElementProps {
   /**

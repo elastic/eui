@@ -28,6 +28,7 @@
   font-feature-settings: 'tnum' 1; // Tabular numbers
   max-width: 100%;
   width: 100%;
+  overflow: hidden;
   z-index: 2; // Sits above the pagination below it, but below the controls above it
   background: $euiColorEmptyShade;
 }

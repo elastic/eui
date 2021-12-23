@@ -11,11 +11,13 @@ import React, {
   FunctionComponent,
   KeyboardEvent,
   useMemo,
+  useRef,
   useState,
 } from 'react';
 import { useGeneratedHtmlId, keys } from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n, useEuiI18n } from '../i18n';
+import { useMutationObserver } from '../observer/mutation_observer';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiDataGridBody } from './body';
 import {
@@ -31,6 +33,7 @@ import {
   DataGridFocusContext,
   useFocus,
   createKeyDownHandler,
+  preventTabbing,
   useHeaderFocusWorkaround,
 } from './utils/focus';
 import {
@@ -152,9 +155,14 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   /**
    * Grid refs & observers
    */
-  const [resizeRef, setResizeRef] = useState<HTMLDivElement | null>(null);
-  const { width: gridWidth } = useResizeObserver(resizeRef, 'width');
-  const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
+  const resizeRef = useRef<HTMLDivElement | null>(null);
+  const { width: gridWidth } = useResizeObserver(resizeRef.current, 'width');
+
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  useMutationObserver(contentRef.current, preventTabbing, {
+    subtree: true,
+    childList: true,
+  });
 
   /**
    * Display
@@ -238,7 +246,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
    * Focus
    */
   const { headerIsInteractive, handleHeaderMutation } = useHeaderIsInteractive(
-    contentRef
+    contentRef.current
   );
   const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus(
     headerIsInteractive
@@ -347,7 +355,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
             className={classes}
             onKeyDown={handleGridKeyDown}
             style={isFullScreen ? undefined : { width, height }}
-            ref={setResizeRef}
+            ref={resizeRef}
             {...rest}
           >
             {showToolbar && (
@@ -366,7 +374,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
             )}
             <div
               onKeyDown={createKeyDownHandler({
-                gridElement: contentRef,
+                gridElement: contentRef.current,
                 visibleColCount,
                 visibleRowCount,
                 rowCount,
@@ -394,8 +402,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                   />
                 ) : null}
                 <div
-                  ref={setContentRef}
-                  data-test-subj="dataGridWrapper"
+                  ref={contentRef}
+                  data-test-subj="euiDataGridBody"
                   className="euiDataGrid__content"
                   role="grid"
                   id={gridId}
@@ -427,6 +435,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                     virtualizationOptions={virtualizationOptions || {}}
                     gridStyles={gridStyles}
                     gridWidth={gridWidth}
+                    wrapperRef={contentRef}
                   />
                 </div>
               </div>
