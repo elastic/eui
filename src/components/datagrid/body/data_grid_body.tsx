@@ -10,6 +10,7 @@ import classNames from 'classnames';
 import React, {
   forwardRef,
   FunctionComponent,
+  createContext,
   useContext,
   useEffect,
   useMemo,
@@ -27,13 +28,13 @@ import {
 } from '../../observer/mutation_observer';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { EuiDataGridCell } from './data_grid_cell';
-import { DataGridWrapperRowsContext } from '../data_grid_context';
 import { EuiDataGridFooterRow } from './data_grid_footer_row';
 import { EuiDataGridHeaderRow } from './header';
 import { DefaultColumnFormatter } from './popover_utils';
 import {
   EuiDataGridBodyProps,
   EuiDataGridRowManager,
+  DataGridWrapperRowsContentsShape,
   EuiDataGridSchemaDetector,
 } from '../data_grid_types';
 import { makeRowManager } from './data_grid_row_manager';
@@ -183,6 +184,12 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
 
   return cellContent;
 };
+
+// Context is required to pass props to react-window's innerElementType
+// @see https://github.com/bvaughn/react-window/issues/404
+export const DataGridWrapperRowsContext = createContext<
+  DataGridWrapperRowsContentsShape
+>({ headerRow: <div />, headerRowHeight: 0, footerRow: null });
 
 const InnerElement: VariableSizeGridProps['innerElementType'] = forwardRef<
   HTMLDivElement,
