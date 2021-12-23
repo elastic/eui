@@ -453,6 +453,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                 rowCount={rowCount}
                 controls={gridId}
                 aria-label={props['aria-label']}
+                gridRef={gridRef}
               />
             )}
             <p id={interactiveCellId} hidden>

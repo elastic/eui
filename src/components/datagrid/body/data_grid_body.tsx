@@ -432,14 +432,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     }
   }, [gridRef, getRowHeight]);
 
-  useEffect(() => {
-    if (gridRef.current && pagination?.pageIndex !== undefined) {
-      gridRef.current.scrollToItem({
-        rowIndex: 0,
-      });
-    }
-  }, [gridRef, pagination?.pageIndex]);
-
   return IS_JEST_ENVIRONMENT || finalWidth > 0 ? (
     <DataGridWrapperRowsContext.Provider
       value={{ headerRowHeight, headerRow, footerRow }}
