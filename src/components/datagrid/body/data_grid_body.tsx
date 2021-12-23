@@ -215,8 +215,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
 ) => {
   const {
     isFullScreen,
-    leadingControlColumns = [],
-    trailingControlColumns = [],
+    leadingControlColumns,
+    trailingControlColumns,
     columns,
     visibleColCount,
     schema,

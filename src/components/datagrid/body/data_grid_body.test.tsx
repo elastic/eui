@@ -27,6 +27,8 @@ describe('EuiDataGridBody', () => {
       { id: 'columnA', schema: 'boolean' },
       { id: 'columnB', isExpandable: true },
     ],
+    leadingControlColumns: [],
+    trailingControlColumns: [],
     visibleColCount: 2,
     schema: {
       columnA: { columnType: 'boolean' },

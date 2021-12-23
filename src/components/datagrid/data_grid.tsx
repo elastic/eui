@@ -47,7 +47,6 @@ import {
 } from './utils/data_grid_schema';
 import {
   EuiDataGridColumn,
-  EuiDataGridControlColumn,
   EuiDataGridProps,
   EuiDataGridStyleBorders,
   EuiDataGridStyleCellPaddings,
@@ -96,11 +95,10 @@ const cellPaddingsToClassMap: {
   l: 'euiDataGrid--paddingLarge',
 };
 
-const emptyArrayDefault: EuiDataGridControlColumn[] = [];
 export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const {
-    leadingControlColumns = emptyArrayDefault,
-    trailingControlColumns = emptyArrayDefault,
+    leadingControlColumns = [],
+    trailingControlColumns = [],
     columns,
     columnVisibility,
     schemaDetectors,
@@ -178,13 +176,15 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     autoDetectSchema: inMemory != null,
   });
 
-  const displayValues: { [key: string]: string } = columns.reduce(
-    (acc: { [key: string]: string }, column: EuiDataGridColumn) => ({
-      ...acc,
-      [column.id]: column.displayAsText || column.id,
-    }),
-    {}
-  );
+  const displayValues: { [key: string]: string } = useMemo(() => {
+    return columns.reduce(
+      (acc: { [key: string]: string }, column: EuiDataGridColumn) => ({
+        ...acc,
+        [column.id]: column.displayAsText || column.id,
+      }),
+      {}
+    );
+  }, [columns]);
 
   const [
     columnSelector,
