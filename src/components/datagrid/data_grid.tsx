@@ -10,7 +10,6 @@ import classNames from 'classnames';
 import React, {
   FunctionComponent,
   KeyboardEvent,
-  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -127,7 +126,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const [contentRef, setContentRef] = useState<HTMLDivElement | null>(null);
 
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [gridWidth, setGridWidth] = useState(0);
 
   const interactiveCellId = useGeneratedHtmlId();
 
@@ -150,19 +148,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
     }
   };
 
-  // enables/disables grid controls based on available width
   const [resizeRef, setResizeRef] = useState<HTMLDivElement | null>(null);
   const [toolbarRef, setToolbarRef] = useState<HTMLDivElement | null>(null);
-  const gridDimensions = useResizeObserver(resizeRef, 'width');
-  const toolbarDemensions = useResizeObserver(toolbarRef, 'height');
-  useEffect(() => {
-    if (resizeRef) {
-      const { width } = gridDimensions;
-      setGridWidth(width);
-    } else {
-      setGridWidth(0);
-    }
-  }, [resizeRef, gridDimensions]);
+  const { width: gridWidth } = useResizeObserver(resizeRef, 'width');
+  const { height: toolbarHeight } = useResizeObserver(toolbarRef, 'height');
 
   // apply consumer props on top of defaults
   const gridStyleWithDefaults = { ...startingStyles, ...gridStyle };
@@ -396,7 +385,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                     isFullScreen={isFullScreen}
                     columns={orderedVisibleColumns}
                     visibleColCount={visibleColCount}
-                    toolbarHeight={toolbarDemensions.height}
+                    toolbarHeight={toolbarHeight}
                     leadingControlColumns={leadingControlColumns}
                     schema={mergedSchema}
                     trailingControlColumns={trailingControlColumns}
@@ -416,7 +405,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                     rowHeightsOptions={rowHeightsOptions}
                     virtualizationOptions={virtualizationOptions || {}}
                     gridStyles={gridStyles}
-                    gridWidth={gridDimensions.width}
+                    gridWidth={gridWidth}
                   />
                 </div>
               </div>

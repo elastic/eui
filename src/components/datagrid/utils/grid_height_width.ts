@@ -177,9 +177,11 @@ export const useVirtualizeContainerWidth = (
   pageSize: number | undefined
 ) => {
   const [virtualizeContainerWidth, setVirtualizeContainerWidth] = useState(0);
+  useResizeObserver(virtualizeContainer);
 
   // re-render data grid on size changes
-  useResizeObserver(virtualizeContainer);
+  const forceRender = useForceRender();
+  useUpdateEffect(forceRender, [gridWidth, forceRender]);
 
   useEffect(() => {
     if (virtualizeContainer?.clientWidth) {

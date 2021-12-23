@@ -46,6 +46,7 @@ export const EuiDataGridToolbar = ({
     ],
     ['Full screen', 'Exit full screen']
   );
+  // Enables/disables grid controls based on available width
   const hasRoomForGridControls = IS_JEST_ENVIRONMENT
     ? true
     : gridWidth > minSizeForControls || isFullScreen;
