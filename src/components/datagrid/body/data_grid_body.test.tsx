@@ -12,7 +12,7 @@ import { mount, render, shallow } from 'enzyme';
 import { mockRowHeightUtils } from '../utils/__mocks__/row_heights';
 import { schemaDetectors } from '../utils/data_grid_schema';
 
-import { EuiDataGridBody, Cell, getParentCellContent } from './data_grid_body';
+import { EuiDataGridBody, Cell } from './data_grid_body';
 
 describe('EuiDataGridBody', () => {
   const requiredProps = {
@@ -130,38 +130,5 @@ describe('Cell', () => {
       component.setProps({ rowIndex: 4 });
       expect(component.hasClass('euiDataGridRowCell--stripe')).toBe(false);
     });
-  });
-});
-
-describe('getParentCellContent', () => {
-  const doc = document.createDocumentFragment();
-
-  const body = document.createElement('body');
-  doc.appendChild(body);
-
-  const cell = document.createElement('div');
-  cell.setAttribute('data-datagrid-cellcontent', 'true');
-  body.appendChild(cell);
-
-  const span = document.createElement('span');
-  span.textContent = 'Here comes the text';
-  cell.appendChild(span);
-
-  const text = span.childNodes[0];
-
-  it('locates the cell element when starting with the cell itself', () => {
-    expect(getParentCellContent(cell)).toBe(cell);
-  });
-
-  it('locates the cell element when starting with an element inside the cell', () => {
-    expect(getParentCellContent(span!)).toBe(cell);
-  });
-
-  it('locates the cell element when starting with a text node inside the cell', () => {
-    expect(getParentCellContent(text!)).toBe(cell);
-  });
-
-  it('does not locate the cell element when starting outside the cell', () => {
-    expect(getParentCellContent(body)).toBeNull();
   });
 });

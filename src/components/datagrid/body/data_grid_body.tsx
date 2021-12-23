@@ -10,7 +10,6 @@ import classNames from 'classnames';
 import React, {
   forwardRef,
   FunctionComponent,
-  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -22,7 +21,6 @@ import {
   VariableSizeGrid as Grid,
   VariableSizeGridProps,
 } from 'react-window';
-import tabbable from 'tabbable';
 import {
   EuiMutationObserver,
   useMutationObserver,
@@ -50,6 +48,7 @@ import {
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
 import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
 import { DataGridSortingContext } from '../utils/sorting';
+import { preventTabbing } from '../utils/focus';
 import { IS_JEST_ENVIRONMENT } from '../../../test';
 
 export const Cell: FunctionComponent<GridChildComponentProps> = ({
@@ -213,32 +212,6 @@ const InnerElement: VariableSizeGridProps['innerElementType'] = forwardRef<
   );
 });
 InnerElement.displayName = 'EuiDataGridInnerElement';
-
-/**
- * getParentCellContent is called by the grid body's mutation observer,
- * which exists to pick up DOM changes in cells and remove interactive elements
- * from the page's tab index, as we want to move between cells via arrow keys
- * instead of tabbing.
- *
- * So we start with a Node or HTMLElement returned by a mutation record
- * and search its ancestors for a div[data-datagrid-cellcontent], if any,
- * which is a valid target for disabling tabbing within
- */
-export function getParentCellContent(_element: Node | HTMLElement) {
-  let element: HTMLElement | null =
-    _element.nodeType === document.ELEMENT_NODE
-      ? (_element as HTMLElement)
-      : _element.parentElement;
-
-  while (
-    element && // we haven't walked off the document yet
-    element.nodeName !== 'div' && // looking for a div
-    !element.hasAttribute('data-datagrid-cellcontent') // that has data-datagrid-cellcontent
-  ) {
-    element = element.parentElement;
-  }
-  return element;
-}
 
 export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   props
@@ -427,35 +400,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const [rowManager] = useState<EuiDataGridRowManager>(() =>
     makeRowManager(innerGridRef)
   );
-
-  const preventTabbing = useCallback((records: MutationRecord[]) => {
-    // multiple mutation records can implicate the same cell
-    // so be sure to only check each cell once
-    const processedCells = new Set();
-
-    for (let i = 0; i < records.length; i++) {
-      const record = records[i];
-      // find the cell content owning this mutation
-      const cell = getParentCellContent(record.target);
-      if (processedCells.has(cell)) continue;
-      processedCells.add(cell);
-
-      if (cell) {
-        // if we found it, disable tabbable elements
-        const tabbables = tabbable(cell);
-        for (let i = 0; i < tabbables.length; i++) {
-          const element = tabbables[i];
-          if (
-            element.getAttribute('role') !== 'gridcell' &&
-            !element.dataset['euigrid-tab-managed']
-          ) {
-            element.setAttribute('tabIndex', '-1');
-            element.setAttribute('data-datagrid-interactable', 'true');
-          }
-        }
-      }
-    }
-  }, []);
 
   const unconstrainedHeight = useUnconstrainedHeight({
     rowHeightUtils,
