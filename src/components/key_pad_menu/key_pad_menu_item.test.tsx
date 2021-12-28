@@ -166,7 +166,7 @@ describe('EuiKeyPadMenuItem', () => {
       </EuiKeyPadMenuItem>
     );
 
-    $button.simulate('click');
+    $button.find('button').simulate('click');
 
     expect(onClickHandler).toBeCalledTimes(1);
   });

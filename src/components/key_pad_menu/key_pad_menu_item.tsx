@@ -225,6 +225,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
 
     return (
       <EuiBetaBadge
+        aria-label={`${label}. Beta item.`}
         size="s"
         color="subdued"
         className="euiKeyPadMenuItem__betaBadge"
@@ -238,7 +239,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
 
   const renderContent = () => (
     <span className="euiKeyPadMenuItem__inner">
-      {checkable ? renderCheckableElement() : renderBetaBadge()}
+      {checkable && renderCheckableElement()}
       <span className="euiKeyPadMenuItem__icon">{children}</span>
       <span className="euiKeyPadMenuItem__label">{label}</span>
     </span>
@@ -269,14 +270,17 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   }
 
   return (
-    <Element
-      className={classes}
-      {...(relObj as ElementType)}
-      {...(rest as ElementType)}
-      // Unable to get past `LegacyRef` conflicts
-      ref={buttonRef as Ref<any>}
-    >
-      {renderContent()}
-    </Element>
+    <React.Fragment>
+      <Element
+        className={classes}
+        {...(relObj as ElementType)}
+        {...(rest as ElementType)}
+        // Unable to get past `LegacyRef` conflicts
+        ref={buttonRef as Ref<any>}
+      >
+        {renderContent()}
+      </Element>
+      {betaBadgeLabel && renderBetaBadge()}
+    </React.Fragment>
   );
 };

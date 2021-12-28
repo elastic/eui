@@ -94,96 +94,106 @@ exports[`EuiKeyPadMenuItem is rendered 1`] = `
 `;
 
 exports[`EuiKeyPadMenuItem props betaBadge renders 1`] = `
-<button
-  class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
-  type="button"
->
-  <span
-    class="euiKeyPadMenuItem__inner"
+Array [
+  <button
+    class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
+    type="button"
   >
     <span
-      class="euiBetaBadge euiBetaBadge--singleLetter euiBetaBadge--subdued euiBetaBadge--small euiKeyPadMenuItem__betaBadge"
-      title="Beta"
+      class="euiKeyPadMenuItem__inner"
     >
-      B
+      <span
+        class="euiKeyPadMenuItem__icon"
+      >
+        Icon
+      </span>
+      <span
+        class="euiKeyPadMenuItem__label"
+      >
+        Label
+      </span>
     </span>
-    <span
-      class="euiKeyPadMenuItem__icon"
-    >
-      Icon
-    </span>
-    <span
-      class="euiKeyPadMenuItem__label"
-    >
-      Label
-    </span>
-  </span>
-</button>
+  </button>,
+  <span
+    aria-label="Label. Beta item."
+    class="euiBetaBadge euiBetaBadge--singleLetter euiBetaBadge--subdued euiBetaBadge--small euiKeyPadMenuItem__betaBadge"
+    title="Beta"
+  >
+    B
+  </span>,
+]
 `;
 
 exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeIconType 1`] = `
-<button
-  class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
-  type="button"
->
-  <span
-    class="euiKeyPadMenuItem__inner"
+Array [
+  <button
+    class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
+    type="button"
   >
     <span
-      class="euiBetaBadge euiBetaBadge--iconOnly euiBetaBadge--singleLetter euiBetaBadge--subdued euiBetaBadge--small euiKeyPadMenuItem__betaBadge"
-      title="Beta"
+      class="euiKeyPadMenuItem__inner"
     >
       <span
-        aria-hidden="true"
-        class="euiBetaBadge__icon"
-        color="inherit"
-        data-euiicon-type="bolt"
-      />
+        class="euiKeyPadMenuItem__icon"
+      >
+        Icon
+      </span>
+      <span
+        class="euiKeyPadMenuItem__label"
+      >
+        Label
+      </span>
     </span>
+  </button>,
+  <span
+    aria-label="Label. Beta item."
+    class="euiBetaBadge euiBetaBadge--iconOnly euiBetaBadge--singleLetter euiBetaBadge--subdued euiBetaBadge--small euiKeyPadMenuItem__betaBadge"
+    title="Beta"
+  >
     <span
-      class="euiKeyPadMenuItem__icon"
-    >
-      Icon
-    </span>
-    <span
-      class="euiKeyPadMenuItem__label"
-    >
-      Label
-    </span>
-  </span>
-</button>
+      aria-hidden="true"
+      class="euiBetaBadge__icon"
+      color="inherit"
+      data-euiicon-type="bolt"
+    />
+  </span>,
+]
 `;
 
 exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeTooltipContent 1`] = `
-<button
-  class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
-  type="button"
->
-  <span
-    class="euiKeyPadMenuItem__inner"
+Array [
+  <button
+    class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
+    type="button"
   >
     <span
-      class="euiToolTipAnchor"
+      class="euiKeyPadMenuItem__inner"
     >
       <span
-        class="euiBetaBadge euiBetaBadge--singleLetter euiBetaBadge--subdued euiBetaBadge--small euiKeyPadMenuItem__betaBadge"
-        tabindex="0"
+        class="euiKeyPadMenuItem__icon"
       >
-        B
+        Icon
+      </span>
+      <span
+        class="euiKeyPadMenuItem__label"
+      >
+        Label
       </span>
     </span>
+  </button>,
+  <span
+    class="euiToolTipAnchor"
+  >
     <span
-      class="euiKeyPadMenuItem__icon"
+      aria-label="Label. Beta item."
+      class="euiBetaBadge euiBetaBadge--singleLetter euiBetaBadge--subdued euiBetaBadge--small euiKeyPadMenuItem__betaBadge"
+      role="button"
+      tabindex="0"
     >
-      Icon
+      B
     </span>
-    <span
-      class="euiKeyPadMenuItem__label"
-    >
-      Label
-    </span>
-  </span>
-</button>
+  </span>,
+]
 `;
 
 exports[`EuiKeyPadMenuItem props isDisabled renders with href 1`] = `

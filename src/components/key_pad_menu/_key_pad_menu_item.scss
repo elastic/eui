@@ -92,10 +92,6 @@
   .euiKeyPadMenuItem__checkableInput {
     transform: scale(.75);
     transform-origin: top right;
-  }
-
-  .euiKeyPadMenuItem__checkableInput,
-  .euiKeyPadMenuItem__betaBadge {
     position: absolute;
     top: $euiSizeXS;
     right: $euiSizeXS;
@@ -124,5 +120,14 @@
     @include euiFocusBackground;
     color: $euiColorPrimaryText;
     border-color: $euiColorPrimaryText;
+  }
+}
+
+.euiKeyPadMenuListItem {
+  .euiToolTipAnchor {
+    position: absolute;
+    top: $euiSizeS;
+    right: $euiSizeS;
+    z-index: 3;
   }
 }

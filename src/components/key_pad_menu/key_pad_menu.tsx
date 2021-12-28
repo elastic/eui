@@ -74,7 +74,7 @@ export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
   ) : (
     <ul className={classes} {...rest}>
       {React.Children.map(children, (child) => (
-        <li>{child}</li>
+        <li className="euiKeyPadMenuListItem">{child}</li>
       ))}
     </ul>
   );
