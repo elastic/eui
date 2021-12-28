@@ -748,10 +748,11 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   );
   const datagridFocusContext = useMemo<DataGridFocusContextShape>(() => {
     return {
+      focusedCell,
       setFocusedCell,
       onFocusUpdate,
     };
-  }, [setFocusedCell, onFocusUpdate]);
+  }, [focusedCell, setFocusedCell, onFocusUpdate]);
 
   const gridId = useGeneratedHtmlId();
   const ariaLabelledById = useGeneratedHtmlId();

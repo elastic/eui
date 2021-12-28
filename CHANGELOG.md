@@ -5,6 +5,7 @@
 - Fixed a `EuiDataGrid` sizing bug which didn't account for a horizontal scrollbar ([#5478](https://github.com/elastic/eui/pull/5478))
 - Fixed a `EuiDatePicker` a11y bug where axe-core reported missing ARIA and role attributes ([#5501](https://github.com/elastic/eui/pull/5501))
 - Fixed `EuiModalHeaderTitle` to conditionally wrap title strings in an H1 ([#5494](https://github.com/elastic/eui/pull/5494))
+- Fixed a `EuiDataGrid` issue where a focused cell would lose focus when scrolled out of and back into view ([#5488](https://github.com/elastic/eui/pull/5488))
 - Fixed an `EuiDatePicker` accessibility issue where `tabindex` was not applied to a listbox element ([#5509](https://github.com/elastic/eui/pull/5509))
 
 **Deprecations**
