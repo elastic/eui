@@ -358,8 +358,8 @@ export const DataGridExample = {
                 in memory level
               </Link>{' '}
               to have the grid automatically handle updating your columns.
-              Depending upon the level choosen you may need to manage the
-              content order separate from the grid.
+              Depending upon the level chosen, you may need to manage the
+              content order separately from the grid.
             </li>
             <li>
               <Link to="/tabular-content/data-grid-schemas-and-popovers/">

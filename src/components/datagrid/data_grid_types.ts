@@ -167,6 +167,7 @@ export type EuiDataGridFooterRowProps = CommonProps &
   };
 
 export interface DataGridFocusContextShape {
+  focusedCell?: EuiDataGridFocusedCell;
   setFocusedCell: (cell: EuiDataGridFocusedCell) => void;
   onFocusUpdate: (
     cell: EuiDataGridFocusedCell,
