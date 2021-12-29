@@ -21,7 +21,7 @@
   background-color: $euiPageBackgroundColor;
   border-radius: $euiBorderRadius;
   flex-direction: column;
-  position: relative;
+  position: relative; /* Needed when we switch to mobile in Amsterdam. Container height is different, offset value must be calculated on this element. */
 
   &--focus {
     .react-datepicker__time-list-item--preselected {
