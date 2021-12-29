@@ -23,6 +23,7 @@ import {
 } from '../common';
 
 import { EuiBetaBadge } from '../badge/beta_badge';
+import { useEuiI18n } from '../i18n/i18n';
 
 import { getSecureRelForTarget, useGeneratedHtmlId } from '../../services';
 
@@ -178,6 +179,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     },
     className
   );
+  const betaItemLabel = useEuiI18n('euiKeyPadMenuItem.betaLabel', 'Beta item.');
 
   let Element: keyof JSX.IntrinsicElements =
     href && !isDisabled ? 'a' : 'button';
@@ -225,7 +227,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
 
     return (
       <EuiBetaBadge
-        aria-label={`${label}. Beta item.`}
+        aria-label={`${label}. ${betaItemLabel}`}
         size="s"
         color="subdued"
         className="euiKeyPadMenuItem__betaBadge"
@@ -280,7 +282,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
       >
         {renderContent()}
       </Element>
-      {betaBadgeLabel && renderBetaBadge()}
+      {betaBadgeLabel && !checkable && renderBetaBadge()}
     </React.Fragment>
   );
 };

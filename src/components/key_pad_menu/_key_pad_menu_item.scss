@@ -122,12 +122,3 @@
     border-color: $euiColorPrimaryText;
   }
 }
-
-.euiKeyPadMenuListItem {
-  .euiToolTipAnchor {
-    position: absolute;
-    top: $euiSizeS;
-    right: $euiSizeS;
-    z-index: 3;
-  }
-}
