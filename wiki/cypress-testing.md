@@ -110,6 +110,17 @@ describe('TestComponent', () => {
 });
 ```
 
+#### Do's and don'ts for Cypress Real Events
+
+* DO follow [all previous guidance](#dos-and-donts) for writing Cypress tests
+* DO add a 1px by 1px target to your tests and click on it. Cypress Real Events doesn't always [set focus in the testing window](https://github.com/dmtrKovalenko/cypress-real-events/issues/196).<br/><br/>
+  ```javascript
+    cy.get('[data-test-subj="cypress-real-event-target"]').realClick({
+      position: 'topLeft',
+    });
+  ```
+* DO be on the lookout for new features!
+
 ## Debugging tests
 
 For debugging failures locally, use `yarn test-cypress-dev`, which allows you to run a single specific test suite and runs tests in a browser window, making dev tools available to you so you can pause and inspect DOM as needed.
