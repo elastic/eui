@@ -26,7 +26,7 @@ describe('EuiAccordion', () => {
       cy.mount(
         <Fragment>
           <div
-            id="data-cypress-target"
+            data-test-subj="cypress-real-event-target"
             style={{ height: '1px', width: '1px' }}
           />
           <EuiAccordion {...baseProps}>
@@ -37,7 +37,9 @@ describe('EuiAccordion', () => {
           </EuiAccordion>
         </Fragment>
       );
-      cy.get('#data-cypress-target').realClick({ position: 'topLeft' });
+      cy.get('[data-test-subj="cypress-real-event-target"]').realClick({
+        position: 'topLeft',
+      });
       cy.realPress('Tab');
       cy.focused().contains('Click me to toggle');
       cy.end();
@@ -47,7 +49,7 @@ describe('EuiAccordion', () => {
       cy.mount(
         <Fragment>
           <div
-            id="data-cypress-target"
+            data-test-subj="cypress-real-event-target"
             style={{ height: '1px', width: '1px' }}
           />
           <EuiAccordion {...baseProps}>
@@ -58,7 +60,9 @@ describe('EuiAccordion', () => {
           </EuiAccordion>
         </Fragment>
       );
-      cy.get('#data-cypress-target').realClick({ position: 'topLeft' });
+      cy.get('[data-test-subj="cypress-real-event-target"]').realClick({
+        position: 'topLeft',
+      });
       cy.realPress('Tab');
       cy.focused().contains('Click me to toggle').realPress('Enter');
       cy.realPress(['Shift', 'Tab']);
@@ -72,7 +76,7 @@ describe('EuiAccordion', () => {
       cy.mount(
         <Fragment>
           <div
-            id="data-cypress-target"
+            data-test-subj="cypress-real-event-target"
             style={{ height: '1px', width: '1px' }}
           />
           <EuiAccordion {...baseProps}>
@@ -83,7 +87,9 @@ describe('EuiAccordion', () => {
           </EuiAccordion>
         </Fragment>
       );
-      cy.get('#data-cypress-target').realClick({ position: 'topLeft' });
+      cy.get('[data-test-subj="cypress-real-event-target"]').realClick({
+        position: 'topLeft',
+      });
       cy.realPress('Tab');
       cy.focused().contains('Click me to toggle').realPress('Space');
       cy.realPress(['Shift', 'Tab']);
@@ -99,7 +105,7 @@ describe('EuiAccordion', () => {
       cy.mount(
         <Fragment>
           <div
-            id="data-cypress-target"
+            data-test-subj="cypress-real-event-target"
             style={{ height: '1px', width: '1px' }}
           />
           <EuiAccordion {...noArrowProps}>
@@ -118,7 +124,7 @@ describe('EuiAccordion', () => {
       cy.mount(
         <Fragment>
           <div
-            id="data-cypress-target"
+            data-test-subj="cypress-real-event-target"
             style={{ height: '1px', width: '1px' }}
           />
           <EuiAccordion {...noArrowProps}>
@@ -129,7 +135,9 @@ describe('EuiAccordion', () => {
           </EuiAccordion>
         </Fragment>
       );
-      cy.get('#data-cypress-target').realClick({ position: 'topLeft' });
+      cy.get('[data-test-subj="cypress-real-event-target"]').realClick({
+        position: 'topLeft',
+      });
       cy.realPress('Tab');
       cy.focused().contains('Click me to toggle').realPress('Enter');
       cy.focused().invoke('attr', 'tabindex').should('equal', '-1');
@@ -143,7 +151,7 @@ describe('EuiAccordion', () => {
       cy.mount(
         <Fragment>
           <div
-            id="data-cypress-target"
+            data-test-subj="cypress-real-event-target"
             style={{ height: '1px', width: '1px' }}
           />
           <EuiAccordion {...noArrowProps} forceState="open">
@@ -154,7 +162,9 @@ describe('EuiAccordion', () => {
           </EuiAccordion>
         </Fragment>
       );
-      cy.get('#data-cypress-target').realClick({ position: 'topLeft' });
+      cy.get('[data-test-subj="cypress-real-event-target"]').realClick({
+        position: 'topLeft',
+      });
       cy.realPress('Tab');
       cy.focused().contains('Click me to toggle');
       cy.focused().invoke('attr', 'aria-expanded').should('equal', 'true');
