@@ -12,6 +12,10 @@
 
 - Deprecated `PartitionConfig` in favor of inclusion in Charts `theme.partition` ([#5492](https://github.com/elastic/eui/pull/5492))
 
+**Breaking changes**
+
+- Removed `data-test-subj="dataGridWrapper"`  from `EuiDataGrid` in favor of `data-test-subj="euiDataGridBody"` ([#5506](https://github.com/elastic/eui/pull/5506))
+
 ## [`43.1.1`](https://github.com/elastic/eui/tree/v43.1.1)
 
 **Bug fixes**
