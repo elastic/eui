@@ -81,19 +81,19 @@ contains `{component name}.tsx`.
 * DON'T depend upon class names or other implementation details for `find`ing nodes, if possible.
 * DON'T extend the `cy.` global namespace - instead prefer to import helper functions directly
 
-## Cypress Real Events
+### Cypress Real Events
 
 > Cypress default events are simulated. That means that all events like `cy.click` or `cy.type` are fired from JavaScript. That's why these events will be untrusted (`event.isTrusted` will be `false`) and they can behave a little different from real native events. But for some cases, it can be impossible to use simulated events, for example, to fill a native alert or copy to the clipboard. This plugin solves this problem.
 
 [Cypress Real Events](https://github.com/dmtrKovalenko/cypress-real-events#why)
 
-### Why Cypress Real Events?
+#### Why Cypress Real Events?
 
 Cypress Real Events uses the [Chrome Devtools Protocol](https://chromedevtools.github.io/devtools-protocol/) to handle behaviors like a real browser. This gives us a better way to test complex events like mouse hover and keyboard focus. By using real events and making assertions against them, we can test keyboard and screen reader accessibility as users change the local state.
 
-### How to write Cypress (real events) tests
+#### How to write Cypress (real event) tests
 
-The [Cypress Real Events API](https://github.com/dmtrKovalenko/cypress-real-events#api) works seamlessly with existing `cy()` methods. If you wanted to press a button using Cypress Real Events, you could use `realPress('Tab')` as a replacement for the `cy.tab()` synthetic method. All Cypress Real Events methods are prefixed with the string "real". Here's a small example test:
+The [Cypress Real Events API](https://github.com/dmtrKovalenko/cypress-real-events#api) works seamlessly with existing `cy()` methods. If you want to press a button using Cypress Real Events, you could use `realPress('Tab')` as a replacement for the `cy.tab()` synthetic method. All Cypress Real Events methods are prefixed with the string "real". Here's a small example test:
 
 ```jsx
 import { mount } from '@cypress/react';
@@ -101,10 +101,11 @@ import TestComponent from './test_component';
 
 describe('TestComponent', () => {
   it('clicks a button with Cypress Real Events', () => {
-    mount(<TestComponent />);
-
+    /* Use the custom command `realMount` to set your test up properly */
+    cy.realMount(<TestComponent />);
     /* Activate a button with a real keypress event */
     cy.get('[data-test-subj="submitButton"]').realPress('Enter');
+    /* Assert the button has focus and the aria-expanded attribute has updated */
     cy.focused().invoke('attr', 'aria-expanded').should('equal', 'true');
   });
 });
