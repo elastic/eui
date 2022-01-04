@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import { EuiAccordion, EuiAccordionProps } from './index';
 import { EuiPanel } from '../../components/panel';
 import { htmlIdGenerator } from '../../services';
@@ -23,46 +23,28 @@ const noArrowProps: EuiAccordionProps = Object.assign(baseProps, noArrow);
 describe('EuiAccordion', () => {
   describe('Keyboard and screen reader accessibility', () => {
     it('renders with required props', () => {
-      cy.mount(
-        <Fragment>
-          <div
-            data-test-subj="cypress-real-event-target"
-            style={{ height: '1px', width: '1px' }}
-          />
-          <EuiAccordion {...baseProps}>
-            <EuiPanel color="subdued">
-              Any content inside of <strong>EuiAccordion</strong> will appear
-              here.
-            </EuiPanel>
-          </EuiAccordion>
-        </Fragment>
+      cy.realMount(
+        <EuiAccordion {...baseProps}>
+          <EuiPanel color="subdued">
+            Any content inside of <strong>EuiAccordion</strong> will appear
+            here.
+          </EuiPanel>
+        </EuiAccordion>
       );
-      cy.get('[data-test-subj="cypress-real-event-target"]').realClick({
-        position: 'topLeft',
-      });
       cy.realPress('Tab');
       cy.focused().contains('Click me to toggle');
       cy.end();
     });
 
     it('opens and closes on ENTER keypress', () => {
-      cy.mount(
-        <Fragment>
-          <div
-            data-test-subj="cypress-real-event-target"
-            style={{ height: '1px', width: '1px' }}
-          />
-          <EuiAccordion {...baseProps}>
-            <EuiPanel color="subdued">
-              Any content inside of <strong>EuiAccordion</strong> will appear
-              here.
-            </EuiPanel>
-          </EuiAccordion>
-        </Fragment>
+      cy.realMount(
+        <EuiAccordion {...baseProps}>
+          <EuiPanel color="subdued">
+            Any content inside of <strong>EuiAccordion</strong> will appear
+            here.
+          </EuiPanel>
+        </EuiAccordion>
       );
-      cy.get('[data-test-subj="cypress-real-event-target"]').realClick({
-        position: 'topLeft',
-      });
       cy.realPress('Tab');
       cy.focused().contains('Click me to toggle').realPress('Enter');
       cy.realPress(['Shift', 'Tab']);
@@ -73,23 +55,14 @@ describe('EuiAccordion', () => {
     });
 
     it('opens and closes on SPACE keypress', () => {
-      cy.mount(
-        <Fragment>
-          <div
-            data-test-subj="cypress-real-event-target"
-            style={{ height: '1px', width: '1px' }}
-          />
-          <EuiAccordion {...baseProps}>
-            <EuiPanel color="subdued">
-              Any content inside of <strong>EuiAccordion</strong> will appear
-              here.
-            </EuiPanel>
-          </EuiAccordion>
-        </Fragment>
+      cy.realMount(
+        <EuiAccordion {...baseProps}>
+          <EuiPanel color="subdued">
+            Any content inside of <strong>EuiAccordion</strong> will appear
+            here.
+          </EuiPanel>
+        </EuiAccordion>
       );
-      cy.get('[data-test-subj="cypress-real-event-target"]').realClick({
-        position: 'topLeft',
-      });
       cy.realPress('Tab');
       cy.focused().contains('Click me to toggle').realPress('Space');
       cy.realPress(['Shift', 'Tab']);
@@ -102,42 +75,27 @@ describe('EuiAccordion', () => {
 
   describe('Props and keyboard navigation', () => {
     it('should not have an arrow', () => {
-      cy.mount(
-        <Fragment>
-          <div
-            data-test-subj="cypress-real-event-target"
-            style={{ height: '1px', width: '1px' }}
-          />
-          <EuiAccordion {...noArrowProps}>
-            <EuiPanel color="subdued">
-              Any content inside of <strong>EuiAccordion</strong> will appear
-              here. We will include <a href="#">a link</a> to confirm focus.
-            </EuiPanel>
-          </EuiAccordion>
-        </Fragment>
+      cy.realMount(
+        <EuiAccordion {...noArrowProps}>
+          <EuiPanel color="subdued">
+            Any content inside of <strong>EuiAccordion</strong> will appear
+            here.
+          </EuiPanel>
+        </EuiAccordion>
       );
       cy.get('.euiAccordion__iconButton').should('not.exist');
       cy.end();
     });
 
     it('manages focus when panel is opened', () => {
-      cy.mount(
-        <Fragment>
-          <div
-            data-test-subj="cypress-real-event-target"
-            style={{ height: '1px', width: '1px' }}
-          />
-          <EuiAccordion {...noArrowProps}>
-            <EuiPanel color="subdued">
-              Any content inside of <strong>EuiAccordion</strong> will appear
-              here. We will include <a href="#">a link</a> to confirm focus.
-            </EuiPanel>
-          </EuiAccordion>
-        </Fragment>
+      cy.realMount(
+        <EuiAccordion {...noArrowProps}>
+          <EuiPanel color="subdued">
+            Any content inside of <strong>EuiAccordion</strong> will appear
+            here. We will include <a href="#">a link</a> to confirm focus.
+          </EuiPanel>
+        </EuiAccordion>
       );
-      cy.get('[data-test-subj="cypress-real-event-target"]').realClick({
-        position: 'topLeft',
-      });
       cy.realPress('Tab');
       cy.focused().contains('Click me to toggle').realPress('Enter');
       cy.focused().invoke('attr', 'tabindex').should('equal', '-1');
@@ -148,23 +106,14 @@ describe('EuiAccordion', () => {
     });
 
     it('manages focus when forceState is open', () => {
-      cy.mount(
-        <Fragment>
-          <div
-            data-test-subj="cypress-real-event-target"
-            style={{ height: '1px', width: '1px' }}
-          />
-          <EuiAccordion {...noArrowProps} forceState="open">
-            <EuiPanel color="subdued">
-              Any content inside of <strong>EuiAccordion</strong> will appear
-              here. We will include <a href="#">a link</a> to confirm focus.
-            </EuiPanel>
-          </EuiAccordion>
-        </Fragment>
+      cy.realMount(
+        <EuiAccordion {...noArrowProps} forceState="open">
+          <EuiPanel color="subdued">
+            Any content inside of <strong>EuiAccordion</strong> will appear
+            here. We will include <a href="#">a link</a> to confirm focus.
+          </EuiPanel>
+        </EuiAccordion>
       );
-      cy.get('[data-test-subj="cypress-real-event-target"]').realClick({
-        position: 'topLeft',
-      });
       cy.realPress('Tab');
       cy.focused().contains('Click me to toggle');
       cy.focused().invoke('attr', 'aria-expanded').should('equal', 'true');
