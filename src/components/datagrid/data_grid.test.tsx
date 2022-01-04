@@ -6,9 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, createRef } from 'react';
 import { mount, ReactWrapper, render } from 'enzyme';
-import { EuiDataGrid, EuiDataGridProps } from './';
+import { EuiDataGrid } from './';
+import { EuiDataGridProps, EuiDataGridRefProps } from './data_grid_types';
 import {
   findTestSubject,
   requiredProps,
@@ -2726,29 +2727,23 @@ describe('EuiDataGrid', () => {
   });
 
   it('returns a ref which exposes internal imperative APIs', () => {
-    // Using a class component for this test so we can inspect the internal gridRef
-    class MockApp extends React.Component {
-      gridRef = React.createRef<any>();
+    const gridRef = createRef<EuiDataGridRefProps>();
 
-      render() {
-        return (
-          <EuiDataGrid
-            {...requiredProps}
-            columns={[{ id: 'A' }, { id: 'B' }]}
-            columnVisibility={{
-              visibleColumns: ['A', 'B'],
-              setVisibleColumns: () => {},
-            }}
-            rowCount={1}
-            renderCellValue={() => 'value'}
-            ref={this.gridRef}
-          />
-        );
-      }
-    }
-    const component = mount(<MockApp />);
+    mount(
+      <EuiDataGrid
+        {...requiredProps}
+        columns={[{ id: 'A' }, { id: 'B' }]}
+        columnVisibility={{
+          visibleColumns: ['A', 'B'],
+          setVisibleColumns: () => {},
+        }}
+        rowCount={1}
+        renderCellValue={() => 'value'}
+        ref={gridRef}
+      />
+    );
 
-    expect((component.instance() as any).gridRef.current).toEqual({
+    expect(gridRef.current).toEqual({
       setFocusedCell: expect.any(Function),
     });
   });
