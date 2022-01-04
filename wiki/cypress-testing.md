@@ -100,12 +100,21 @@ import { mount } from '@cypress/react';
 import TestComponent from './test_component';
 
 describe('TestComponent', () => {
-  it('clicks a button with Cypress Real Events', () => {
-    /* Use the custom command `realMount` to set your test up properly */
+  it('presses a button using the Enter key', () => {
+    /* Use the `realMount()` command to set focus in the test window */
     cy.realMount(<TestComponent />);
+    
     /* Activate a button with a real keypress event */
     cy.get('[data-test-subj="submitButton"]').realPress('Enter');
+    
     /* Assert the button has focus and the aria-expanded attribute has updated */
+    cy.focused().invoke('attr', 'aria-expanded').should('equal', 'true');
+  });
+
+  it('presses a button using the Space key', () => {
+    /* Assert the button also accepts the Spacebar keypress */
+    cy.realMount(<TestComponent />);
+    cy.get('[data-test-subj="submitButton"]').realPress('Space');
     cy.focused().invoke('attr', 'aria-expanded').should('equal', 'true');
   });
 });
@@ -114,12 +123,9 @@ describe('TestComponent', () => {
 #### Do's and don'ts for Cypress Real Events
 
 * DO follow [all previous guidance](#dos-and-donts) for writing Cypress tests
-* DO add a 1px by 1px target to your tests and click on it. Cypress Real Events doesn't always [set focus in the testing window](https://github.com/dmtrKovalenko/cypress-real-events/issues/196).<br/><br/>
-  ```javascript
-  cy.get('[data-test-subj="cypress-real-event-target"]').realClick({
-    position: 'topLeft',
-  });
-  ```
+* DO use the correct mounting method:
+  * Use `cy.realMount()` if your component doesn't receive focus automatically **OR**
+  * Use `cy.mount()` for components that receive focus on render
 * DO be on the lookout for new features!
 
 ## Debugging tests
