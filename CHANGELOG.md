@@ -12,6 +12,10 @@
 
 - Deprecated `PartitionConfig` in favor of inclusion in Charts `theme.partition` ([#5492](https://github.com/elastic/eui/pull/5492))
 
+**Breaking changes**
+
+- Removed `popoverClassName` and `repositionOnScroll` props from `EuiSuperSelect` (use `popoverProps` instead) ([#5512](https://github.com/elastic/eui/pull/5512))
+
 ## [`43.1.1`](https://github.com/elastic/eui/tree/v43.1.1)
 
 **Bug fixes**
