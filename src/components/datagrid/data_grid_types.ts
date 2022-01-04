@@ -291,7 +291,7 @@ export interface EuiDataGridRefProps {
    * toggles a modal or flyout - focus must be restored to the grid on close
    * to prevent keyboard or screen reader users from being stranded.
    */
-  setFocusedCell({ rowIndex, colIndex }: EuiDataGridCellLocation): void;
+  setFocusedCell(targetCell: EuiDataGridCellLocation): void;
 }
 
 export type EuiDataGridCellLocation = { rowIndex: number; colIndex: number };
