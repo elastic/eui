@@ -179,7 +179,11 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     },
     className
   );
-  const betaItemLabel = useEuiI18n('euiKeyPadMenuItem.betaLabel', 'Beta item.');
+  const betaItemLabel = useEuiI18n(
+    'euiKeyPadMenuItem.betaLabel',
+    '{label}. Beta item.',
+    { label }
+  );
 
   let Element: keyof JSX.IntrinsicElements =
     href && !isDisabled ? 'a' : 'button';
@@ -227,7 +231,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
 
     return (
       <EuiBetaBadge
-        aria-label={`${label}. ${betaItemLabel}`}
+        aria-label={betaItemLabel}
         size="s"
         color="subdued"
         className="euiKeyPadMenuItem__betaBadge"
