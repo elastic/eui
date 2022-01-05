@@ -232,7 +232,7 @@ export default () => {
                 valueOfSelected={superSelectvalue}
                 onChange={(value) => onSuperSelectChange(value)}
                 itemLayoutAlign="top"
-                repositionOnScroll={true}
+                popoverProps={{ repositionOnScroll: true }}
                 hasDividers
               />
             </EuiFormRow>
