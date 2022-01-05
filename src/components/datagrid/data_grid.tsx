@@ -266,19 +266,6 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     );
 
     /**
-     * Expose internal APIs as ref to consumer
-     */
-    useImperativeHandle(
-      ref,
-      () => ({
-        setFocusedCell: ({ rowIndex, colIndex }) => {
-          focusContext.setFocusedCell([colIndex, rowIndex]);
-        },
-      }),
-      [focusContext]
-    );
-
-    /**
      * Toolbar & full-screen
      */
     const showToolbar = !!toolbarVisibility;
@@ -296,6 +283,19 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
           break;
       }
     };
+
+    /**
+     * Expose internal APIs as ref to consumer
+     */
+    useImperativeHandle(
+      ref,
+      () => ({
+        setFocusedCell: ({ rowIndex, colIndex }) => {
+          focusContext.setFocusedCell([colIndex, rowIndex]);
+        },
+      }),
+      [focusContext]
+    );
 
     /**
      * Classes
