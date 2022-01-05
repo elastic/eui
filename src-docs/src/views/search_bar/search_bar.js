@@ -17,10 +17,10 @@ import {
 const random = new Random();
 
 const tags = [
-  { name: 'marketing', color: 'danger' },
-  { name: 'finance', color: 'success' },
-  { name: 'eng', color: 'success' },
-  { name: 'sales', color: 'warning' },
+  { name: ' marketing', color: 'danger' },
+  { name: '	finance', color: 'success' }, // NB: this is a tab character
+  { name: ' eng ', color: 'success' },
+  { name: 'sa les', color: 'warning' },
   { name: 'ga', color: 'success' },
 ];
 
@@ -85,11 +85,11 @@ export const SearchBar = () => {
         field: 'status',
         items: [
           {
-            value: 'open',
+            value: ' open',
             name: 'Open',
           },
           {
-            value: 'closed',
+            value: 'closed ',
             name: 'Closed',
           },
         ],
@@ -104,7 +104,7 @@ export const SearchBar = () => {
         type: 'field_value_toggle',
         name: 'Mine',
         field: 'owner',
-        value: 'dewey',
+        value: ' dewey',
       },
       {
         type: 'field_value_toggle',
