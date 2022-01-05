@@ -1,39 +1,24 @@
-.guideDemo__emptyPromptRecommendCards {
-  .euiCheckableCard {
-    margin-bottom: $euiSize;
-  }
+.guideDemo__emptyPromptPanelPicker {
+  width: 100%;
+  gap: $euiSizeXL; // sass-lint:disable-line no-misspelled-properties
 }
 
 .guideDemo__emptyPromptPanelPickerThumbBtn {
+  width: 120px;
+  height: auto;
+
+  .euiKeyPadMenuItem__icon {
+    transform: none;
+    margin-bottom: $euiSizeS;
+  }
+}
+
+.guideDemo__emptyPromptPanelPickerThumb {
   border: $euiBorderThin;
   border-radius: $euiBorderRadius;
-  position: relative;
   overflow: hidden;
 
   &-isSelected {
-    border: 1px solid $euiColorPrimary;
+    border-color: $euiColorPrimary;
   }
-
-  &-isDisabled {
-    cursor: not-allowed;
-    filter: grayscale(100%);
-  }
-
-  &:first-of-type {
-    margin-right: $euiSize;
-  }
-
-  &:focus {
-    outline: 2px solid $euiFocusRingColor;
-  }
-}
-
-.guideDemo__emptyPromptPanelPickerThumbText-isDisabled {
-  color: $euiColorDisabledText;
-}
-
-.guideDemo__emptyPromptBgPickerCheckMark {
-  position: absolute;
-  top: $euiSizeXS;
-  right: $euiSizeXS;
 }

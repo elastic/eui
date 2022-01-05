@@ -5,17 +5,17 @@ import {
   EuiTitle,
   EuiImage,
   EuiSpacer,
-  EuiIcon,
   EuiText,
   EuiRadioGroup,
   EuiEmptyPrompt,
   EuiSplitPanel,
-  EuiFlexGroup,
+  EuiKeyPadMenu,
   EuiFlexItem,
   EuiRadioGroupOption,
   EuiPageTemplate,
   EuiFlexGrid,
   EuiPanel,
+  EuiKeyPadMenuItem,
 } from '../../../../src/components';
 import { ThemeContext } from '../../components/with_theme';
 import { recommendedObj } from './_panel_color_picker_recommended';
@@ -200,112 +200,82 @@ export default () => {
           <EuiSpacer size="xl" />
 
           <EuiTitle size="xs">
-            <h3>What is the page template?</h3>
+            <h3 id="emptyPromptPanelPageTemplateLegend">
+              What is the page template?
+            </h3>
           </EuiTitle>
 
           <EuiSpacer size="m" />
 
-          <EuiFlexGroup>
-            <EuiFlexItem>
-              <button
-                onClick={() => onSelectThumbnail('sidebar')}
+          <EuiKeyPadMenu
+            className="guideDemo__emptyPromptPanelPicker"
+            checkable={{
+              ariaLegend: 'What is the page template?',
+            }}
+          >
+            <EuiKeyPadMenuItem
+              checkable="single"
+              name={'radioGroupName'}
+              className="guideDemo__emptyPromptPanelPickerThumbBtn"
+              isSelected={isSidebar}
+              label={'Centered content with sidebar'}
+              onChange={() => onSelectThumbnail('sidebar')}
+            >
+              <EuiImage
                 className={classNames(
-                  'guideDemo__emptyPromptPanelPickerThumbBtn',
+                  'guideDemo__emptyPromptPanelPickerThumb',
                   {
-                    'guideDemo__emptyPromptPanelPickerThumbBtn-isSelected': isSidebar,
+                    'guideDemo__emptyPromptPanelPickerThumb-isSelected': isSidebar,
                   }
                 )}
-                aria-label="Select page with sidebar thumbnail"
-              >
-                <EuiImage
-                  alt=""
-                  url={isDarkTheme ? darkSidebar : lightSidebar}
-                  size="fullWidth"
-                />
-                {isSidebar && (
-                  <EuiIcon
-                    type="checkInCircleFilled"
-                    color="primary"
-                    className="guideDemo__emptyPromptBgPickerCheckMark"
-                  />
-                )}
-              </button>
-              <EuiSpacer size="s" />
-
-              <EuiText size="xs">
-                <p>Centered content with sidebar</p>
-              </EuiText>
-            </EuiFlexItem>
-
-            <EuiFlexItem>
-              <button
-                onClick={() => onSelectThumbnail('empty')}
+                alt="Page with sidebar thumbnail"
+                url={isDarkTheme ? darkSidebar : lightSidebar}
+                size="fullWidth"
+              />
+            </EuiKeyPadMenuItem>
+            <EuiKeyPadMenuItem
+              checkable="single"
+              name={'radioGroupName'}
+              className="guideDemo__emptyPromptPanelPickerThumbBtn"
+              isSelected={isEmpty}
+              label={'Centered body without sidebar'}
+              onChange={() => onSelectThumbnail('empty')}
+            >
+              <EuiImage
                 className={classNames(
-                  'guideDemo__emptyPromptPanelPickerThumbBtn',
+                  'guideDemo__emptyPromptPanelPickerThumb',
                   {
-                    'guideDemo__emptyPromptPanelPickerThumbBtn-isSelected': isEmpty,
+                    'guideDemo__emptyPromptPanelPickerThumb-isSelected': isEmpty,
                   }
                 )}
-                aria-label="Select empty page thumbnail"
+                alt="Empty page thumbnail"
+                url={isDarkTheme ? darkEmpty : lightEmpty}
+                size="fullWidth"
+              />
+            </EuiKeyPadMenuItem>
+            {!isDisabledMultipleThumb && (
+              <EuiKeyPadMenuItem
+                checkable="single"
+                name={'radioGroupName'}
+                className="guideDemo__emptyPromptPanelPickerThumbBtn"
+                isSelected={isMultiple}
+                label={'Default with multiple panels'}
+                onChange={() => onSelectThumbnail('multiple')}
               >
                 <EuiImage
-                  alt=""
-                  url={isDarkTheme ? darkEmpty : lightEmpty}
-                  size="fullWidth"
-                />
-                {isEmpty && (
-                  <EuiIcon
-                    type="checkInCircleFilled"
-                    color="primary"
-                    className="guideDemo__emptyPromptBgPickerCheckMark"
-                  />
-                )}
-              </button>
-              <EuiSpacer size="s" />
-
-              <EuiText size="xs">
-                <p>Centered body</p>
-              </EuiText>
-            </EuiFlexItem>
-
-            <EuiFlexItem>
-              <button
-                onClick={() => onSelectThumbnail('multiple')}
-                className={classNames(
-                  'guideDemo__emptyPromptPanelPickerThumbBtn',
-                  {
-                    'guideDemo__emptyPromptPanelPickerThumbBtn-isSelected': isMultiple,
-                    'guideDemo__emptyPromptPanelPickerThumbBtn-isDisabled': isDisabledMultipleThumb,
-                  }
-                )}
-                aria-label="Select page with multiple panels thumbnail"
-                disabled={isDisabledMultipleThumb}
-              >
-                <EuiImage
-                  alt=""
+                  className={classNames(
+                    'guideDemo__emptyPromptPanelPickerThumb',
+                    {
+                      'guideDemo__emptyPromptPanelPickerThumb-isSelected': isMultiple,
+                    }
+                  )}
+                  alt="Page with multiple panels thumbnail"
                   url={isDarkTheme ? darkMultiple : lightMultiple}
                   size="fullWidth"
                 />
-                {isMultiple && (
-                  <EuiIcon
-                    type="checkInCircleFilled"
-                    color="primary"
-                    className="guideDemo__emptyPromptBgPickerCheckMark"
-                  />
-                )}
-              </button>
-              <EuiSpacer size="s" />
-
-              <EuiText
-                size="xs"
-                className={classNames({
-                  'guideDemo__emptyPromptPanelPickerThumbText-isDisabled': isDisabledMultipleThumb,
-                })}
-              >
-                <p>Default with multiple panels</p>
-              </EuiText>
-            </EuiFlexItem>
-          </EuiFlexGroup>
+              </EuiKeyPadMenuItem>
+            )}
+          </EuiKeyPadMenu>
 
           <EuiSpacer size="xl" />
         </EuiSplitPanel.Inner>
