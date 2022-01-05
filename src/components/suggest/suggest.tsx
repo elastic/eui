@@ -280,7 +280,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
         }}
         searchable
         searchProps={{
-          append: appendArray,
+          append: appendArray.length ? appendArray : undefined,
           fullWidth,
           isLoading: status === 'loading' ? true : false,
           onFocus: searchOnFocus,

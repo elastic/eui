@@ -76,6 +76,7 @@ export default () => {
       <EuiSpacer size="xl" />
       <EuiFormRow label="Suggest" id="test">
         <EuiSuggest
+          fullWidth
           aria-labelledby="test_label"
           status={status as EuiSuggestStatus}
           onInputChange={() => {}}
@@ -84,15 +85,6 @@ export default () => {
           suggestions={sampleItems}
         />
       </EuiFormRow>
-      <EuiSpacer size="xl" />
-      <EuiSuggest
-        aria-label="Suggest"
-        status={status as EuiSuggestStatus}
-        onInputChange={() => {}}
-        onItemClick={onItemClick}
-        placeholder="Enter query to display suggestions"
-        suggestions={sampleItems}
-      />
     </div>
   );
 };
