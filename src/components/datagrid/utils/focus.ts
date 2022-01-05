@@ -18,7 +18,10 @@ import {
   KeyboardEvent,
   MutableRefObject,
 } from 'react';
-import { GridOnItemsRenderedProps } from 'react-window';
+import {
+  VariableSizeGrid as Grid,
+  GridOnItemsRenderedProps,
+} from 'react-window';
 import tabbable from 'tabbable';
 import { keys } from '../../../services';
 import {
@@ -316,4 +319,54 @@ export const useHeaderFocusWorkaround = (headerIsInteractive: boolean) => {
       setFocusedCell([focusedCell[0], 0]);
     }
   }, [headerIsInteractive, focusedCell, setFocusedCell]);
+};
+
+// Force the grid to always scroll to/show the full cell on keyboard navigation
+export const useKeyboardFocusScrollWorkaround = ({
+  focusedCell,
+  gridRef,
+  visibleRowCount,
+}: {
+  focusedCell?: EuiDataGridFocusedCell;
+  gridRef: MutableRefObject<Grid | null>;
+  visibleRowCount: number;
+}) => {
+  const [x, y] = focusedCell || [];
+  const previousFocusedCell = useRef<EuiDataGridFocusedCell>([0, 0]);
+
+  useEffect(() => {
+    if (!focusedCell || !gridRef.current) return;
+
+    const isNavigatingDown = focusedCell[1] > previousFocusedCell.current[1];
+    const isLastRow = focusedCell[1] >= visibleRowCount - 1; // Uses >= instead of === to account for footer rows
+
+    // @see https://github.com/bvaughn/react-window/issues/586
+    // Navigating downwards doesn't scroll to items as expected due to the sticky header,
+    // so we let .focus() auto scrolling handle that for us and not the scrollToItem API
+    if (!isNavigatingDown && !isLastRow) {
+      gridRef.current.scrollToItem({ columnIndex: x, rowIndex: y });
+    }
+
+    // The last row has incorrect scrollTop calculations, again due to the sticky header,
+    // so we can't use just scrollToItem - we have to manually calculate and scrollTo the bottom of the grid
+    if (isLastRow) {
+      // Left/right scrollToItem still works
+      gridRef.current.scrollToItem({ columnIndex: x });
+
+      // @ts-ignore - _outerRef is an internal variable
+      const gridOuterRef = gridRef.current._outerRef as HTMLElement;
+      const gridInnerRef = gridOuterRef.firstChild as HTMLElement;
+      const scrollBottom =
+        gridInnerRef.clientHeight - gridOuterRef.clientHeight;
+
+      // @ts-ignore - despite react-window's typing, it's possible to pass in only a scrollTop
+      gridRef.current.scrollTo({ scrollTop: scrollBottom });
+    }
+
+    previousFocusedCell.current = focusedCell;
+
+    // We specifically only want this to fire when the current focused cell location changes
+    // (since the focusedCell reference can change without the coords changing)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [x, y]);
 };
