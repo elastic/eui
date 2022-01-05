@@ -16,6 +16,7 @@ import {
 export const DataGridFocusContext = React.createContext<
   DataGridFocusContextShape
 >({
+  focusedCell: undefined,
   setFocusedCell: () => {},
   onFocusUpdate: () => () => {},
 });

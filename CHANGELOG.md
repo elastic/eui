@@ -6,9 +6,21 @@
 - Added `EuiScreenReaderStatus` component for updateable `aria-live` regions  ([#5157](https://github.com/elastic/eui/pull/5157))
 - Added virtulized rendering optionality to `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
 
+**Breaking changes**
+
+- Removed `EuiSuggestInput` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Required `aria-label` or `aria-labelledby` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Renamed `sendValue` prop to `onSearchChange` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
+
+## [`44.0.0`](https://github.com/elastic/eui/tree/v44.0.0)
+
 **Bug fixes**
 
 - Fixed a `EuiDataGrid` sizing bug which didn't account for a horizontal scrollbar ([#5478](https://github.com/elastic/eui/pull/5478))
+- Fixed a `EuiDatePicker` a11y bug where axe-core reported missing ARIA and role attributes ([#5501](https://github.com/elastic/eui/pull/5501))
+- Fixed `EuiModalHeaderTitle` to conditionally wrap title strings in an H1 ([#5494](https://github.com/elastic/eui/pull/5494))
+- Fixed a `EuiDataGrid` issue where a focused cell would lose focus when scrolled out of and back into view ([#5488](https://github.com/elastic/eui/pull/5488))
+- Fixed an `EuiDatePicker` accessibility issue where `tabindex` was not applied to a listbox element ([#5509](https://github.com/elastic/eui/pull/5509))
 
 **Deprecations**
 
@@ -16,9 +28,7 @@
 
 **Breaking changes**
 
-- Removed `EuiSuggestInput` ([#5157](https://github.com/elastic/eui/pull/5157))
-- Required `aria-label` or `aria-labelledby` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
-- Renamed `sendValue` prop to `onSearchChange` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Removed `popoverClassName` and `repositionOnScroll` props from `EuiSuperSelect` (use `popoverProps` instead) ([#5512](https://github.com/elastic/eui/pull/5512))
 
 ## [`43.1.1`](https://github.com/elastic/eui/tree/v43.1.1)
 
