@@ -1,5 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+**Bug fixes**
+
+- Fixed `EuiSearchBar` to allow phrases with leading and trailing spaces ([#5514](https://github.com/elastic/eui/pull/5514))
+
 **Breaking changes**
 
 - Removed `data-test-subj="dataGridWrapper"`  from `EuiDataGrid` in favor of `data-test-subj="euiDataGridBody"` ([#5506](https://github.com/elastic/eui/pull/5506))
