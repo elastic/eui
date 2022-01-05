@@ -1,5 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+No public interface changes since `44.0.0`.
+
+## [`44.0.0`](https://github.com/elastic/eui/tree/v44.0.0)
+
 **Bug fixes**
 
 - Fixed a `EuiDataGrid` sizing bug which didn't account for a horizontal scrollbar ([#5478](https://github.com/elastic/eui/pull/5478))
