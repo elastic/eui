@@ -1,5 +1,11 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+**Breaking changes**
+
+- Removed `data-test-subj="dataGridWrapper"`  from `EuiDataGrid` in favor of `data-test-subj="euiDataGridBody"` ([#5506](https://github.com/elastic/eui/pull/5506))
+
+## [`44.0.0`](https://github.com/elastic/eui/tree/v44.0.0)
+
 **Bug fixes**
 
 - Fixed a `EuiDataGrid` sizing bug which didn't account for a horizontal scrollbar ([#5478](https://github.com/elastic/eui/pull/5478))
@@ -14,7 +20,7 @@
 
 **Breaking changes**
 
-- Removed `data-test-subj="dataGridWrapper"`  from `EuiDataGrid` in favor of `data-test-subj="euiDataGridBody"` ([#5506](https://github.com/elastic/eui/pull/5506))
+- Removed `popoverClassName` and `repositionOnScroll` props from `EuiSuperSelect` (use `popoverProps` instead) ([#5512](https://github.com/elastic/eui/pull/5512))
 
 ## [`43.1.1`](https://github.com/elastic/eui/tree/v43.1.1)
 
