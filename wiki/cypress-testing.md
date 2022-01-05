@@ -96,7 +96,6 @@ Cypress Real Events uses the [Chrome Devtools Protocol](https://chromedevtools.g
 The [Cypress Real Events API](https://github.com/dmtrKovalenko/cypress-real-events#api) works seamlessly with existing `cy()` methods. If you want to press a button using Cypress Real Events, you could use `realPress('Tab')` as a replacement for the `cy.tab()` synthetic method. All Cypress Real Events methods are prefixed with the string "real". Here's a small example test:
 
 ```jsx
-import { mount } from '@cypress/react';
 import TestComponent from './test_component';
 
 describe('TestComponent', () => {
