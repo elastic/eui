@@ -65,8 +65,8 @@ export const useCasesObj: any = {
       </p>
     ),
   },
-  errorPage: {
-    id: 'errorPage',
+  pageNotFound: {
+    id: 'pageNotFound',
     label: 'Page not found',
     iconType: 'magnifyWithExclamation',
     title: <h2>Page not found</h2>,
@@ -74,6 +74,25 @@ export const useCasesObj: any = {
       <p>
         The page you are looking for might have been removed or temporarily
         unavailable
+      </p>
+    ),
+    actions: [
+      <EuiButton color="primary" fill>
+        Go home
+      </EuiButton>,
+      <EuiButtonEmpty>Go back</EuiButtonEmpty>,
+    ],
+  },
+  forbidden: {
+    id: 'forbidden',
+    label: 'Access denied',
+    iconType: 'alert',
+    title: <h2>Access denied</h2>,
+    body: (
+      <p>
+        You dont&apos;t have enought permissions to access this page. Contact{' '}
+        <a href="#">support.elastic.co</a> if you need assistance, or go to the
+        homepage and browse other pages.
       </p>
     ),
     actions: [

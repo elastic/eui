@@ -175,7 +175,8 @@ export default () => (
 
         <EuiTableRow>
           <EuiTableRowCell mobileOptions={{ width: '100%' }}>
-            <strong>Error page</strong>
+            <strong>Error pages:</strong> Access denied (403) and page not found
+            (404)
           </EuiTableRowCell>
 
           <EuiTableRowCell>
