@@ -16,7 +16,7 @@ import React, {
 } from 'react';
 import tabbable from 'tabbable';
 import { keys } from '../../../../services';
-import { DataGridFocusContext } from '../../data_grid_context';
+import { DataGridFocusContext } from '../../utils/focus';
 import { EuiDataGridHeaderCellWrapperProps } from '../../data_grid_types';
 
 /**

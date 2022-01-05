@@ -9,7 +9,7 @@
 import { ReactElement } from 'react';
 
 import { EuiListGroupItemProps } from '../../../list_group';
-import { schemaDetectors } from '../../data_grid_schema';
+import { schemaDetectors } from '../../utils/data_grid_schema';
 
 import {
   getColumnActions,
