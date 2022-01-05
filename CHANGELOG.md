@@ -1,6 +1,8 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `45.0.0`.
+**Bug fixes**
+
+- Fixed keyboard navigation in `EuiDataGrid` not fully scrolling cells into view ([#5515](https://github.com/elastic/eui/pull/5515))
 
 ## [`45.0.0`](https://github.com/elastic/eui/tree/v45.0.0)
 
