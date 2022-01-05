@@ -35,7 +35,6 @@ import {
   useFocus,
   createKeyDownHandler,
   preventTabbing,
-  useHeaderFocusWorkaround,
 } from './utils/focus';
 import {
   useInMemoryValues,
@@ -258,7 +257,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus(
     headerIsInteractive
   );
-  useHeaderFocusWorkaround(headerIsInteractive);
 
   /**
    * Toolbar & full-screen

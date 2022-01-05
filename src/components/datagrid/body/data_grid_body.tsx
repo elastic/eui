@@ -42,6 +42,7 @@ import {
 } from '../utils/grid_height_width';
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
 import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
+import { useHeaderFocusWorkaround } from '../utils/focus';
 import { DataGridSortingContext } from '../utils/sorting';
 import { IS_JEST_ENVIRONMENT } from '../../../test';
 
@@ -317,6 +318,8 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     schemaDetectors,
     headerIsInteractive,
   ]);
+
+  useHeaderFocusWorkaround(headerIsInteractive);
 
   /**
    * Footer
