@@ -1,8 +1,8 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-**Bug fixes**
+**Breaking changes**
 
-- Fixed `EuiSearchBar` to allow phrases with leading and trailing spaces ([#5514](https://github.com/elastic/eui/pull/5514))
+- Changed `EuiSearchBar` to preserve phrases with leading and trailing spaces, instead of dropping surrounding whitespace ([#5514](https://github.com/elastic/eui/pull/5514))
 
 **Breaking changes**
 
