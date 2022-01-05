@@ -33,7 +33,6 @@ describe('EuiAccordion', () => {
       );
       cy.realPress('Tab');
       cy.focused().contains('Click me to toggle');
-      cy.end();
     });
 
     it('opens and closes on ENTER keypress', () => {
@@ -51,7 +50,6 @@ describe('EuiAccordion', () => {
       cy.focused().invoke('attr', 'aria-expanded').should('equal', 'true');
       cy.realPress('Enter');
       cy.focused().invoke('attr', 'aria-expanded').should('equal', 'false');
-      cy.end();
     });
 
     it('opens and closes on SPACE keypress', () => {
@@ -69,7 +67,6 @@ describe('EuiAccordion', () => {
       cy.focused().invoke('attr', 'aria-expanded').should('equal', 'true');
       cy.realPress('Space');
       cy.focused().invoke('attr', 'aria-expanded').should('equal', 'false');
-      cy.end();
     });
   });
 
@@ -84,7 +81,6 @@ describe('EuiAccordion', () => {
         </EuiAccordion>
       );
       cy.get('.euiAccordion__iconButton').should('not.exist');
-      cy.end();
     });
 
     it('manages focus when panel is opened', () => {
@@ -102,7 +98,6 @@ describe('EuiAccordion', () => {
       cy.focused().contains('Any content inside of EuiAccordion');
       cy.realPress('Tab');
       cy.focused().contains('a link');
-      cy.end();
     });
 
     it('manages focus when forceState is open', () => {
@@ -120,7 +115,6 @@ describe('EuiAccordion', () => {
       cy.focused().invoke('attr', 'tabindex').should('not.exist');
       cy.realPress('Tab');
       cy.focused().contains('a link');
-      cy.end();
     });
   });
 });
