@@ -16,17 +16,29 @@ import React, {
 import { EuiScreenReaderOnly } from '../screen_reader_only';
 
 export interface EuiScreenReaderStatusProps {
-  listId: string;
+  /**
+   * Use the `id` of the target element when possible
+   */
+  id: string;
+  /**
+   * Whether the make screen readers aware of the content
+   */
   isActive: boolean;
+  /**
+   * A value to watch to trigger an update so that screen readers pick up changes
+   */
   updatePrecipitate: number | string;
-  content?: ReactNode;
+  /**
+   * Content for screen readers to announce
+   */
+  children?: ReactNode;
 }
 
 export const EuiScreenReaderStatus: FunctionComponent<EuiScreenReaderStatusProps> = ({
-  listId,
+  id,
   isActive,
   updatePrecipitate,
-  content,
+  children,
 }) => {
   const [toggle, setToggle] = useState(false);
 
@@ -38,20 +50,20 @@ export const EuiScreenReaderStatus: FunctionComponent<EuiScreenReaderStatusProps
     <EuiScreenReaderOnly>
       <div>
         <div
-          id={`${listId}__status--A`}
+          id={`${id}__status--A`}
           role="status"
           aria-atomic="true"
           aria-live="polite"
         >
-          {isActive && toggle ? content : ''}
+          {isActive && toggle ? children : ''}
         </div>
         <div
-          id={`${listId}__status--B`}
+          id={`${id}__status--B`}
           role="status"
           aria-atomic="true"
           aria-live="polite"
         >
-          {isActive && !toggle ? content : ''}
+          {isActive && !toggle ? children : ''}
         </div>
       </div>
     </EuiScreenReaderOnly>

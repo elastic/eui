@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiScreenReaderStatus with a static configuration is can be active 1`] = `
+<div
+  class="euiScreenReaderOnly"
+>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    id="test__status--A"
+    role="status"
+  />
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    id="test__status--B"
+    role="status"
+  >
+    <p>
+      This paragraph is not visibile to sighted users but will be read by screenreaders.
+    </p>
+  </div>
+</div>
+`;
+
+exports[`EuiScreenReaderStatus with a static configuration is can be inactive 1`] = `
+<div
+  class="euiScreenReaderOnly"
+>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    id="test__status--A"
+    role="status"
+  />
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    id="test__status--B"
+    role="status"
+  />
+</div>
+`;
+
+exports[`EuiScreenReaderStatus with dynamic properties is rendered 1`] = `
+<Component>
+  <div>
+    <button
+      data-test-subj="increment"
+      onClick={[Function]}
+    >
+      Increment
+    </button>
+    <EuiScreenReaderStatus
+      id="test"
+      isActive={true}
+      updatePrecipitate={0}
+    >
+      <EuiScreenReaderOnly>
+        <div
+          className="euiScreenReaderOnly"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            id="test__status--A"
+            role="status"
+          >
+            <p>
+              Number of active options: 
+              0
+            </p>
+          </div>
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            id="test__status--B"
+            role="status"
+          />
+        </div>
+      </EuiScreenReaderOnly>
+    </EuiScreenReaderStatus>
+  </div>
+</Component>
+`;
+
+exports[`EuiScreenReaderStatus with dynamic properties toggles the active live region when changed 1`] = `
+<Component>
+  <div>
+    <button
+      data-test-subj="increment"
+      onClick={[Function]}
+    >
+      Increment
+    </button>
+    <EuiScreenReaderStatus
+      id="test"
+      isActive={true}
+      updatePrecipitate={1}
+    >
+      <EuiScreenReaderOnly>
+        <div
+          className="euiScreenReaderOnly"
+        >
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            id="test__status--A"
+            role="status"
+          />
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+            id="test__status--B"
+            role="status"
+          >
+            <p>
+              Number of active options: 
+              1
+            </p>
+          </div>
+        </div>
+      </EuiScreenReaderOnly>
+    </EuiScreenReaderStatus>
+  </div>
+</Component>
+`;

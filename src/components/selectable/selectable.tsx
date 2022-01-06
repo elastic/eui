@@ -669,11 +669,12 @@ export class EuiSelectable<T = {}> extends Component<
           <>
             {searchable && (
               <EuiScreenReaderStatus
-                listId={this.listId}
+                id={this.listId}
                 isActive={activeOptionIndex != null}
                 updatePrecipitate={searchValue.length}
-                content={listScreenReaderStatus}
-              />
+              >
+                {listScreenReaderStatus}
+              </EuiScreenReaderStatus>
             )}
             <EuiSelectableList<T>
               key="list"
