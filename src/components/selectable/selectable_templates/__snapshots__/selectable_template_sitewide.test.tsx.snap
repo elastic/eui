@@ -1,345 +1,268 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
-Array [
+<div
+  class="euiSelectable euiSelectableTemplateSitewide testClass1 testClass2"
+  data-test-subj="test subject string"
+>
   <div
-    class="euiSelectable euiSelectableTemplateSitewide testClass1 testClass2"
-    data-test-subj="test subject string"
+    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
   >
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+      class="euiPopover__anchor"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
       >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          class="euiFormControlLayout__childrenWrapper"
         >
+          <input
+            aria-activedescendant=""
+            aria-haspopup="listbox"
+            aria-label="aria-label"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+            placeholder="Search for anything..."
+            type="search"
+            value=""
+          />
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayoutIcons"
           >
-            <input
-              aria-activedescendant=""
-              aria-haspopup="listbox"
-              aria-label="aria-label"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
-              placeholder="Search for anything..."
-              type="search"
-              value=""
-            />
-            <div
-              class="euiFormControlLayoutIcons"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
           </div>
         </div>
       </div>
     </div>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiSelectableTemplateSitewide props popoverButton is not rendered with popoverButtonBreakpoints xs 1`] = `
-Array [
+<div
+  class="euiSelectable euiSelectableTemplateSitewide"
+>
   <div
-    class="euiSelectable euiSelectableTemplateSitewide"
+    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
   >
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+      class="euiPopover__anchor"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
       >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          class="euiFormControlLayout__childrenWrapper"
         >
+          <input
+            aria-activedescendant=""
+            aria-haspopup="listbox"
+            aria-label="Filter options"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+            placeholder="Search for anything..."
+            type="search"
+            value=""
+          />
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayoutIcons"
           >
-            <input
-              aria-activedescendant=""
-              aria-haspopup="listbox"
-              aria-label="Filter options"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
-              placeholder="Search for anything..."
-              type="search"
-              value=""
-            />
-            <div
-              class="euiFormControlLayoutIcons"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
           </div>
         </div>
       </div>
     </div>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiSelectableTemplateSitewide props popoverButton is rendered 1`] = `
-Array [
+<div
+  class="euiSelectable euiSelectableTemplateSitewide"
+>
   <div
-    class="euiSelectable euiSelectableTemplateSitewide"
+    class="euiPopover euiPopover--anchorDownCenter"
   >
     <div
-      class="euiPopover euiPopover--anchorDownCenter"
+      class="euiPopover__anchor"
     >
-      <div
-        class="euiPopover__anchor"
-      >
-        <button>
-          Button
-        </button>
-      </div>
+      <button>
+        Button
+      </button>
     </div>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiSelectableTemplateSitewide props popoverButton is rendered with popoverButtonBreakpoints m 1`] = `
-Array [
+<div
+  class="euiSelectable euiSelectableTemplateSitewide"
+>
   <div
-    class="euiSelectable euiSelectableTemplateSitewide"
+    class="euiPopover euiPopover--anchorDownCenter"
   >
     <div
-      class="euiPopover euiPopover--anchorDownCenter"
+      class="euiPopover__anchor"
     >
-      <div
-        class="euiPopover__anchor"
-      >
-        <button>
-          Button
-        </button>
-      </div>
+      <button>
+        Button
+      </button>
     </div>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
-Array [
+<div
+  class="euiSelectable euiSelectableTemplateSitewide"
+>
   <div
-    class="euiSelectable euiSelectableTemplateSitewide"
+    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
   >
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+      class="euiPopover__anchor"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
       >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          class="euiFormControlLayout__childrenWrapper"
         >
+          <input
+            aria-activedescendant=""
+            aria-haspopup="listbox"
+            aria-label="Filter options"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+            placeholder="Search for anything..."
+            type="search"
+            value=""
+          />
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayoutIcons"
           >
-            <input
-              aria-activedescendant=""
-              aria-haspopup="listbox"
-              aria-label="Filter options"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
-              placeholder="Search for anything..."
-              type="search"
-              value=""
-            />
-            <div
-              class="euiFormControlLayoutIcons"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
           </div>
         </div>
       </div>
     </div>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
-Array [
+<div
+  class="euiSelectable euiSelectableTemplateSitewide"
+>
   <div
-    class="euiSelectable euiSelectableTemplateSitewide"
+    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock customPopoverClass"
   >
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock customPopoverClass"
+      class="euiPopover__anchor"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
       >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          class="euiFormControlLayout__childrenWrapper"
         >
+          <input
+            aria-activedescendant=""
+            aria-haspopup="listbox"
+            aria-label="Filter options"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+            placeholder="Search for anything..."
+            type="search"
+            value=""
+          />
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayoutIcons"
           >
-            <input
-              aria-activedescendant=""
-              aria-haspopup="listbox"
-              aria-label="Filter options"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
-              placeholder="Search for anything..."
-              type="search"
-              value=""
-            />
-            <div
-              class="euiFormControlLayoutIcons"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
           </div>
         </div>
       </div>
     </div>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-]
+  </div>
+</div>
 `;
 
 exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
-Array [
+<div
+  class="euiSelectable euiSelectableTemplateSitewide"
+>
   <div
-    class="euiSelectable euiSelectableTemplateSitewide"
+    class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
   >
     <div
-      class="euiPopover euiPopover--anchorDownCenter euiPopover--displayBlock"
+      class="euiPopover__anchor"
     >
       <div
-        class="euiPopover__anchor"
+        class="euiFormControlLayout euiFormControlLayout--fullWidth"
       >
         <div
-          class="euiFormControlLayout euiFormControlLayout--fullWidth"
+          class="euiFormControlLayout__childrenWrapper"
         >
+          <input
+            aria-activedescendant=""
+            aria-haspopup="listbox"
+            aria-label="Filter options"
+            autocomplete="off"
+            class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+            placeholder="Search for anything..."
+            type="search"
+            value=""
+          />
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayoutIcons"
           >
-            <input
-              aria-activedescendant=""
-              aria-haspopup="listbox"
-              aria-label="Filter options"
-              autocomplete="off"
-              class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
-              placeholder="Search for anything..."
-              type="search"
-              value=""
-            />
-            <div
-              class="euiFormControlLayoutIcons"
+            <span
+              class="euiFormControlLayoutCustomIcon"
             >
               <span
-                class="euiFormControlLayoutCustomIcon"
-              >
-                <span
-                  aria-hidden="true"
-                  class="euiFormControlLayoutCustomIcon__icon"
-                  data-euiicon-type="search"
-                />
-              </span>
-            </div>
+                aria-hidden="true"
+                class="euiFormControlLayoutCustomIcon__icon"
+                data-euiicon-type="search"
+              />
+            </span>
           </div>
         </div>
       </div>
     </div>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-]
+  </div>
+</div>
 `;

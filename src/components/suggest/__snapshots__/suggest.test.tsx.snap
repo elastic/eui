@@ -47,24 +47,12 @@ Array [
       </div>
     </div>
   </div>,
-  <div
+  <p
     class="euiScreenReaderOnly"
+    id="generated-id"
   >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id"
-    >
-      State: unchanged.
-    </p>
-  </div>,
+    State: unchanged.
+  </p>,
 ]
 `;
 
@@ -115,24 +103,12 @@ Array [
       </div>
     </div>
   </div>,
-  <div
+  <p
     class="euiScreenReaderOnly"
+    id="generated-id"
   >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id"
-    >
-      State: unchanged.
-    </p>
-  </div>,
+    State: unchanged.
+  </p>,
 ]
 `;
 
@@ -183,24 +159,12 @@ Array [
       </div>
     </div>
   </div>,
-  <div
+  <p
     class="euiScreenReaderOnly"
+    id="generated-id"
   >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id"
-    >
-      State: unchanged.
-    </p>
-  </div>,
+    State: unchanged.
+  </p>,
 ]
 `;
 
@@ -256,24 +220,12 @@ Array [
       </div>
     </div>
   </div>,
-  <div
+  <p
     class="euiScreenReaderOnly"
+    id="generated-id"
   >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id"
-    >
-      State: unchanged.
-    </p>
-  </div>,
+    State: unchanged.
+  </p>,
 ]
 `;
 
@@ -331,24 +283,12 @@ Array [
       </div>
     </div>
   </div>,
-  <div
+  <p
     class="euiScreenReaderOnly"
+    id="generated-id"
   >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id"
-    >
-      State: loading.
-    </p>
-  </div>,
+    State: loading.
+  </p>,
 ]
 `;
 
@@ -408,24 +348,12 @@ Array [
       </div>
     </div>
   </div>,
-  <div
+  <p
     class="euiScreenReaderOnly"
+    id="generated-id"
   >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id"
-    >
-      State: saved.
-    </p>
-  </div>,
+    State: saved.
+  </p>,
 ]
 `;
 
@@ -476,24 +404,12 @@ Array [
       </div>
     </div>
   </div>,
-  <div
+  <p
     class="euiScreenReaderOnly"
+    id="generated-id"
   >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id"
-    >
-      State: unchanged.
-    </p>
-  </div>,
+    State: unchanged.
+  </p>,
 ]
 `;
 
@@ -553,24 +469,12 @@ Array [
       </div>
     </div>
   </div>,
-  <div
+  <p
     class="euiScreenReaderOnly"
+    id="generated-id"
   >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id"
-    >
-      State: unsaved.
-    </p>
-  </div>,
+    State: unsaved.
+  </p>,
 ]
 `;
 
@@ -628,24 +532,12 @@ Array [
       </div>
     </div>
   </div>,
-  <div
+  <p
     class="euiScreenReaderOnly"
+    id="generated-id"
   >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id"
-    >
-      State: loading.
-    </p>
-  </div>,
+    State: loading.
+  </p>,
 ]
 `;
 
@@ -705,24 +597,12 @@ Array [
       </div>
     </div>
   </div>,
-  <div
+  <p
     class="euiScreenReaderOnly"
+    id="generated-id"
   >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id"
-    >
-      State: saved.
-    </p>
-  </div>,
+    State: saved.
+  </p>,
 ]
 `;
 
@@ -773,24 +653,12 @@ Array [
       </div>
     </div>
   </div>,
-  <div
+  <p
     class="euiScreenReaderOnly"
+    id="generated-id"
   >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id"
-    >
-      State: unchanged.
-    </p>
-  </div>,
+    State: unchanged.
+  </p>,
 ]
 `;
 
@@ -850,23 +718,11 @@ Array [
       </div>
     </div>
   </div>,
-  <div
+  <p
     class="euiScreenReaderOnly"
+    id="generated-id"
   >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id"
-    >
-      State: unsaved.
-    </p>
-  </div>,
+    State: unsaved.
+  </p>,
 ]
 `;

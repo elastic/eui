@@ -716,18 +716,18 @@ export class EuiSelectable<T = {}> extends Component<
         >
           {children && children(list, search)}
         </div>
-        <EuiI18n
-          token="euiSelectable.screenReaderInstructions"
-          default="'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'"
-        >
-          {(screenReaderInstructions: string) => (
-            <EuiScreenReaderOnly>
-              <div>
+        {this.optionsListRef.current && (
+          <EuiI18n
+            token="euiSelectable.screenReaderInstructions"
+            default="'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'"
+          >
+            {(screenReaderInstructions: string) => (
+              <EuiScreenReaderOnly>
                 <p id={listAriaDescribedbyId}>{screenReaderInstructions}</p>
-              </div>
-            </EuiScreenReaderOnly>
-          )}
-        </EuiI18n>
+              </EuiScreenReaderOnly>
+            )}
+          </EuiI18n>
+        )}
       </>
     );
   }

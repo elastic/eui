@@ -1,157 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiSelectable is rendered 1`] = `
-Array [
-  <div
-    class="euiSelectable testClass1 testClass2"
-    data-test-subj="test subject string"
-  />,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-]
+<div
+  class="euiSelectable testClass1 testClass2"
+  data-test-subj="test subject string"
+/>
 `;
 
 exports[`EuiSelectable props allowExclusions 1`] = `
-Array [
-  <div
-    class="euiSelectable"
-  />,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-]
+<div
+  class="euiSelectable"
+/>
 `;
 
 exports[`EuiSelectable props height can be forced 1`] = `
-Array [
-  <div
-    class="euiSelectable"
-  />,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-]
+<div
+  class="euiSelectable"
+/>
 `;
 
 exports[`EuiSelectable props height can be full 1`] = `
-Array [
-  <div
-    class="euiSelectable euiSelectable-fullHeight"
-  />,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-]
+<div
+  class="euiSelectable euiSelectable-fullHeight"
+/>
 `;
 
 exports[`EuiSelectable props isLoading 1`] = `
-Array [
-  <div
-    class="euiSelectable"
-  />,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-]
+<div
+  class="euiSelectable"
+/>
 `;
 
 exports[`EuiSelectable props listProps 1`] = `
-Array [
-  <div
-    class="euiSelectable"
-  />,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-]
+<div
+  class="euiSelectable"
+/>
 `;
 
 exports[`EuiSelectable props renderOption 1`] = `
-Array [
-  <div
-    class="euiSelectable"
-  />,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-]
+<div
+  class="euiSelectable"
+/>
 `;
 
 exports[`EuiSelectable props searchable 1`] = `
-Array [
-  <div
-    class="euiSelectable"
-  />,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-]
+<div
+  class="euiSelectable"
+/>
 `;
 
 exports[`EuiSelectable props singleSelection 1`] = `
-Array [
-  <div
-    class="euiSelectable"
-  />,
-  <div
-    class="euiScreenReaderOnly"
-  >
-    <p
-      id="generated-id-instructions"
-    >
-      'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'
-    </p>
-  </div>,
-]
+<div
+  class="euiSelectable"
+/>
 `;
 
 exports[`EuiSelectable should not reset the activeOptionIndex nor isFocused when EuiSelectable is blurred in favour of its popover 1`] = `

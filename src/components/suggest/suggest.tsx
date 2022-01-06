@@ -314,22 +314,20 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
         )}
       </EuiSelectable>
       <EuiScreenReaderOnly>
-        <div>
-          <p id={inputDescribedbyId}>
-            {`${(() => {
-              switch (status) {
-                case 'loading':
-                  return stateLoading;
-                case 'saved':
-                  return stateSaved;
-                case 'unsaved':
-                  return stateUnsaved;
-                case 'unchanged':
-                  return stateUnchanged;
-              }
-            })()}.`}
-          </p>
-        </div>
+        <p id={inputDescribedbyId}>
+          {`${(() => {
+            switch (status) {
+              case 'loading':
+                return stateLoading;
+              case 'saved':
+                return stateSaved;
+              case 'unsaved':
+                return stateUnsaved;
+              case 'unchanged':
+                return stateUnchanged;
+            }
+          })()}.`}
+        </p>
       </EuiScreenReaderOnly>
     </>
   );
