@@ -240,7 +240,7 @@ describe('EuiSelectable', () => {
           renderOption={(option) => {
             return (
               <span>
-                {option.label}: {option.numeral}
+                {option.numeral}: {option.label}
               </span>
             );
           }}

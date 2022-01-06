@@ -360,9 +360,15 @@ export const SelectableExample = {
             To provide data that can be used by the{' '}
             <EuiCode>renderOption</EuiCode> function that does not match the
             standard option API, use <EuiCode>option.labelProps</EuiCode> which
-            will be make custom data available in the <EuiCode>option</EuiCode>{' '}
+            will make custom data available in the <EuiCode>option</EuiCode>{' '}
             parameter. See the <EuiCode>secondaryContent</EuiCode> configuration
             in the following example.
+          </p>
+          <p>
+            <strong>Every row must be the same height</strong> unless{' '}
+            <EuiCode>listProps.isVirtualized</EuiCode> is set to{' '}
+            <EuiCode>false</EuiCode>, in which case we recommend having a large
+            enough container to accomodate all optons and eliminate scrolling.
           </p>
           <p>
             In order for the list to know how to scroll to the selected or
@@ -371,12 +377,6 @@ export const SelectableExample = {
             content is taller than the default of <EuiCode>32px</EuiCode> tall,
             you will need to recalculate this height and apply it via{' '}
             <EuiCode>listProps.rowHeight</EuiCode>.
-          </p>
-          <p>
-            <strong>Every row must be the same height</strong> unless{' '}
-            <EuiCode>listProps.isVirtualized</EuiCode> is set to{' '}
-            <EuiCode>false</EuiCode>, in which case we recommend having a large
-            enough container to accomodate all optons and eliminate scrolling.
           </p>
         </Fragment>
       ),

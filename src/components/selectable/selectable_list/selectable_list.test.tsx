@@ -215,7 +215,7 @@ describe('EuiSelectableListItem', () => {
       expect(component).toMatchSnapshot();
     });
 
-    test('isVirtualized', () => {
+    test('isVirtualized can be false', () => {
       const component = render(
         <EuiSelectableList
           options={options}

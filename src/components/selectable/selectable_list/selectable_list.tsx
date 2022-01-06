@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, HTMLAttributes, ReactNode, memo } from 'react';
+import React, {
+  Component,
+  HTMLAttributes,
+  ReactNode,
+  memo,
+  CSSProperties,
+} from 'react';
 import classNames from 'classnames';
 import {
   FixedSizeList,
@@ -24,8 +30,9 @@ import {
 } from './selectable_list_item';
 
 interface ListChildComponentProps<T>
-  extends ReactWindowListChildComponentProps {
+  extends Omit<ReactWindowListChildComponentProps, 'style'> {
   data: Array<EuiSelectableOption<T>>;
+  style?: CSSProperties;
 }
 
 // Consumer Configurable Props via `EuiSelectable.listProps`
@@ -63,7 +70,7 @@ export type EuiSelectableOptionsListProps = CommonProps &
     onFocusBadge?: EuiSelectableListItemProps['onFocusBadge'];
     /**
      * Use virtualized rendering for list items with `react-window`.
-     * Requires that each option be the same height.
+     * Sets each row's height to the value of `rowHeight`.
      */
     isVirtualized?: boolean;
   };
@@ -357,7 +364,6 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
                     key: index,
                     data: optionArray,
                     index,
-                    style: {},
                   },
                   null
                 )

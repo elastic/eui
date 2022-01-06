@@ -38,7 +38,7 @@ exports[`EuiSelectable custom options with labelProps 1`] = `
                 class="euiSelectableListItem__text"
               >
                 <span>
-                  Titan: VI
+                  VI: Titan
                 </span>
               </span>
             </span>
@@ -64,7 +64,7 @@ exports[`EuiSelectable custom options with labelProps 1`] = `
                 class="euiSelectableListItem__text"
               >
                 <span>
-                  Enceladus: II
+                  II: Enceladus
                 </span>
               </span>
             </span>
@@ -90,7 +90,7 @@ exports[`EuiSelectable custom options with labelProps 1`] = `
                 class="euiSelectableListItem__text"
               >
                 <span>
-                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology: XVII
+                  XVII: Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
                 </span>
               </span>
             </span>
