@@ -66,7 +66,7 @@ export default () => (
           What&apos;s happening? Is it an error? Is there data?
         </li>
         <li>
-          <strong>Description:</strong> Why is it happening? Try to explain why
+          <strong>Description:</strong> Why is it happening? Explain why
           the space is empty and guide the user through the required following
           actions.
         </li>
