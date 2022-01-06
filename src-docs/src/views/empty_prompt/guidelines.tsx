@@ -356,7 +356,7 @@ export default () => (
             multiple primary actions and multiple icons or illustrations.
           </p>
           <p>
-            Use secondary actions and no icons/illustrations. This way, the
+            Use secondary actions and no icons or illustrations. This way, the
             visual noise will be reduced. Consider using an illustration or a
             primary action if you want to make one of the empty states stand
             out.
