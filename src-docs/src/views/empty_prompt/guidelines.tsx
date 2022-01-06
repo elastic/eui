@@ -366,7 +366,7 @@ export default () => (
     >
       <GuideRuleExample
         type="do"
-        text="Use secondary actions and no icons/illustrations when displaying multiple empty states."
+        text="Use secondary actions and no icons or illustrations when displaying multiple empty states."
         minHeight="280px"
       >
         <EuiImage alt="Vertical layout" url={multipleDo} height="252" />
