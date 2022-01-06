@@ -58,7 +58,7 @@ export default () => (
     <EuiText grow={false}>
       <ol>
         <li>
-          <strong>Icon/illustration (optional):</strong> A meaningful icon or
+          <strong>Icon or illustration (optional):</strong> A meaningful icon or
           illustration representing the solution or context.
         </li>
         <li>
