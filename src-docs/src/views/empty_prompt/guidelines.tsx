@@ -353,7 +353,7 @@ export default () => (
         <>
           <p>
             When a page has multiple empty states, avoid using
-            multiple primary actions and multiple icons/illustrations.
+            multiple primary actions and multiple icons or illustrations.
           </p>
           <p>
             Use secondary actions and no icons/illustrations. This way, the
