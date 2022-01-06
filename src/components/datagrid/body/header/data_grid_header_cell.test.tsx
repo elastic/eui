@@ -10,7 +10,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 
 import { EuiDataGridSorting } from '../../data_grid_types';
-import { DataGridSortingContext } from '../../data_grid_context';
+import { DataGridSortingContext } from '../../utils/sorting';
 
 import { EuiDataGridHeaderCell } from './data_grid_header_cell';
 
@@ -45,7 +45,11 @@ describe('EuiDataGridHeaderCell', () => {
     const mountWithContext = (props = {}, sorting = {}) => {
       return mount(
         <DataGridSortingContext.Provider
-          value={{ ...sortingContext, ...sorting }}
+          value={{
+            sorting: { ...sortingContext, ...sorting },
+            sortedRowMap: {},
+            getCorrectRowIndex: jest.fn(),
+          }}
         >
           <EuiDataGridHeaderCell {...requiredProps} {...props} />
         </DataGridSortingContext.Provider>

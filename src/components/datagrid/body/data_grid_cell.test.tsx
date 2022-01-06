@@ -9,8 +9,8 @@
 import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { keys } from '../../../services';
-import { mockRowHeightUtils } from '../__mocks__/row_height_utils';
-import { DataGridFocusContext } from '../data_grid_context';
+import { mockRowHeightUtils } from '../utils/__mocks__/row_heights';
+import { DataGridFocusContext } from '../utils/focus';
 
 import { EuiDataGridCell } from './data_grid_cell';
 

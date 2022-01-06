@@ -11,7 +11,7 @@ import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 
 import { keys } from '../../../../services';
-import { DataGridFocusContext } from '../../data_grid_context';
+import { DataGridFocusContext } from '../../utils/focus';
 
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 

@@ -21,7 +21,7 @@ import { EuiPopover, EuiPopoverFooter } from '../../popover';
 import { EuiText } from '../../text';
 import { EuiToken } from '../../token';
 import { EuiDataGridColumnSortingDraggable } from './column_sorting_draggable';
-import { getDetailsForSchema } from '../data_grid_schema';
+import { getDetailsForSchema } from '../utils/data_grid_schema';
 import {
   EuiDataGridColumn,
   EuiDataGridSchema,

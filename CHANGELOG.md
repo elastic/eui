@@ -8,6 +8,8 @@
 
 **Breaking changes**
 
+- Changed `EuiSearchBar` to preserve phrases with leading and trailing spaces, instead of dropping surrounding whitespace ([#5514](https://github.com/elastic/eui/pull/5514))
+- Removed `data-test-subj="dataGridWrapper"`  from `EuiDataGrid` in favor of `data-test-subj="euiDataGridBody"` ([#5506](https://github.com/elastic/eui/pull/5506))
 - Removed `EuiSuggestInput` ([#5157](https://github.com/elastic/eui/pull/5157))
 - Required `aria-label` or `aria-labelledby` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
 - Renamed `sendValue` prop to `onSearchChange` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))

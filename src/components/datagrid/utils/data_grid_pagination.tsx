@@ -6,20 +6,21 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { useEuiI18n } from '../i18n';
-import { EuiTablePagination } from '../table/table_pagination';
-import { EuiDataGridPaginationRendererProps } from './data_grid_types';
+import React, { useCallback } from 'react';
+import { useEuiI18n } from '../../i18n'; // Note: this file must be named data_grid_pagination to match i18n tokens
+import { EuiTablePagination } from '../../table/table_pagination';
+import { EuiDataGridPaginationRendererProps } from '../data_grid_types';
 
 export const EuiDataGridPaginationRenderer = ({
   pageIndex,
   pageSize,
   pageSizeOptions,
-  onChangePage,
+  onChangePage: _onChangePage,
   onChangeItemsPerPage,
   rowCount,
   controls,
   'aria-label': ariaLabel,
+  gridRef,
 }: EuiDataGridPaginationRendererProps) => {
   const detailedPaginationLabel = useEuiI18n(
     'euiDataGridPagination.detailedPaginationLabel',
@@ -29,6 +30,15 @@ export const EuiDataGridPaginationRenderer = ({
   const paginationLabel = useEuiI18n(
     'euiDataGridPagination.paginationLabel',
     'Pagination for preceding grid'
+  );
+
+  // Scroll back to the top of the grid whenever paginating to a new page
+  const onChangePage = useCallback(
+    (pageIndex) => {
+      _onChangePage(pageIndex);
+      gridRef.current?.scrollToItem?.({ rowIndex: 0 });
+    },
+    [gridRef, _onChangePage]
   );
 
   const pageCount = Math.ceil(rowCount / pageSize);

@@ -15,7 +15,7 @@ import { EuiI18n } from '../../i18n';
 import { EuiIcon } from '../../icon';
 import { EuiText } from '../../text';
 import { EuiToken } from '../../token';
-import { getDetailsForSchema } from '../data_grid_schema';
+import { getDetailsForSchema } from '../utils/data_grid_schema';
 import { EuiDataGridColumnSortingDraggableProps } from '../data_grid_types';
 
 export const defaultSortAscLabel = (
