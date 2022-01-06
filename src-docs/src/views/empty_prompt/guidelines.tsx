@@ -152,7 +152,7 @@ export default () => (
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-            Refresh / try again / reformat data or action specific to the error.
+            Refresh, try again, reformat the data, or try another action specific to the error.
           </EuiTableRowCell>
         </EuiTableRow>
 
