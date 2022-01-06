@@ -13,7 +13,7 @@ Array [
       >
         <div>
           <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
             <div
               class="euiFormControlLayout__childrenWrapper"
@@ -23,7 +23,7 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -69,7 +69,7 @@ Array [
       >
         <div>
           <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
             <div
               class="euiFormControlLayout__childrenWrapper"
@@ -79,7 +79,7 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -125,7 +125,7 @@ Array [
       >
         <div>
           <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
             <div
               class="euiFormControlLayout__childrenWrapper"
@@ -135,7 +135,7 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -242,7 +242,7 @@ Array [
       >
         <div>
           <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
             <div
               class="euiFormControlLayout__childrenWrapper"
@@ -252,7 +252,7 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiFieldSearch-isLoading euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -370,7 +370,7 @@ Array [
       >
         <div>
           <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
             <div
               class="euiFormControlLayout__childrenWrapper"
@@ -380,7 +380,7 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -491,7 +491,7 @@ Array [
       >
         <div>
           <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
             <div
               class="euiFormControlLayout__childrenWrapper"
@@ -501,7 +501,7 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiFieldSearch-isLoading euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch-isLoading euiSelectableSearch"
                 placeholder="Filter options"
                 type="search"
                 value=""
@@ -619,7 +619,7 @@ Array [
       >
         <div>
           <div
-            class="euiFormControlLayout euiFormControlLayout--fullWidth euiFormControlLayout--group"
+            class="euiFormControlLayout euiFormControlLayout--fullWidth"
           >
             <div
               class="euiFormControlLayout__childrenWrapper"
@@ -629,7 +629,7 @@ Array [
                 aria-haspopup="listbox"
                 aria-label="aria-label"
                 autocomplete="off"
-                class="euiFieldSearch euiFieldSearch--fullWidth euiFieldSearch--inGroup euiSelectableSearch"
+                class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch"
                 placeholder="Filter options"
                 type="search"
                 value=""
