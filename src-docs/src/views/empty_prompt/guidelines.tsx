@@ -67,7 +67,7 @@ export default () => (
         </li>
         <li>
           <strong>Description:</strong> Why is it happening? Explain why
-          the space is empty and guide the user through the required following
+          the space is empty and guide the user through the required  
           actions.
         </li>
         <li>
