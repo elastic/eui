@@ -18,8 +18,8 @@ import {
   EuiKeyPadMenuItem,
 } from '../../../../src/components';
 import { ThemeContext } from '../../components/with_theme';
-import { recommendedObj } from './_panel_color_picker_recommended';
-import { useCasesObj } from './_panel_color_picker_use_cases';
+import { typesOfPanelColors } from './_types_of_panel_colors';
+import { typesOfUseCases } from './_types_of_use_cases';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import { GuideSection } from '../../components/guide_section/guide_section';
 import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
@@ -45,12 +45,12 @@ export default () => {
    */
   const isDarkTheme = themeContext.theme.includes('dark');
 
-  const useCasesOptions: any = Object.values(useCasesObj);
+  const useCasesOptions: any = Object.values(typesOfUseCases);
 
-  const errorValue = useCasesObj.error.id;
+  const errorValue = typesOfUseCases.error.id;
   const [radioUseCaseId, setRadioUseCaseId] = useState<
     EuiRadioGroupOption['id']
-  >(useCasesObj.noData.id);
+  >(typesOfUseCases.noData.id);
 
   const [panelProps, setPanelProps] = useState({ color: 'plain' });
   const [thumbnail, setThumbnail] = useState('sidebar');
@@ -68,13 +68,10 @@ export default () => {
     setRadioUseCaseId(id);
   };
 
-  const getRecommendedText = (obj: any) => (
-    <EuiText size="s">{obj.text}</EuiText>
-  );
-
-  const [visibleRecommendedText, setVisibleRecommendedText] = useState(
-    getRecommendedText(recommendedObj.subdued)
-  );
+  const [
+    visibleRecommendedPanelColorText,
+    setVisibleRecommendedPanelColorText,
+  ] = useState(typesOfPanelColors.subdued.text);
 
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
 
@@ -88,17 +85,17 @@ export default () => {
 
   useEffect(() => {
     if (isSidebar && radioUseCaseId !== errorValue) {
-      setVisibleRecommendedText(getRecommendedText(recommendedObj.subdued));
-      setPanelProps(recommendedObj.subdued.props);
+      setVisibleRecommendedPanelColorText(typesOfPanelColors.subdued.text);
+      setPanelProps(typesOfPanelColors.subdued.props);
     } else if (isEmpty && radioUseCaseId !== errorValue) {
-      setVisibleRecommendedText(getRecommendedText(recommendedObj.plain));
-      setPanelProps(recommendedObj.plain.props);
+      setVisibleRecommendedPanelColorText(typesOfPanelColors.plain.text);
+      setPanelProps(typesOfPanelColors.plain.props);
     } else if (isMultiple && radioUseCaseId !== errorValue) {
-      setVisibleRecommendedText(getRecommendedText(recommendedObj.multiple));
-      setPanelProps(recommendedObj.multiple.props);
+      setVisibleRecommendedPanelColorText(typesOfPanelColors.multiple.text);
+      setPanelProps(typesOfPanelColors.multiple.props);
     } else {
-      setVisibleRecommendedText(getRecommendedText(recommendedObj.error));
-      setPanelProps(recommendedObj.error.props);
+      setVisibleRecommendedPanelColorText(typesOfPanelColors.error.text);
+      setPanelProps(typesOfPanelColors.error.props);
     }
 
     if (
@@ -119,20 +116,22 @@ export default () => {
     }
   }, [radioUseCaseId, errorValue, isSidebar, isEmpty, isMultiple, thumbnail]);
 
-  const currentUseCaseObj: any = useCasesObj[radioUseCaseId];
+  const currentUseCaseInfo: any = typesOfUseCases[radioUseCaseId].info;
 
-  const icon = currentUseCaseObj.iconType
-    ? { iconType: currentUseCaseObj.iconType }
+  const currentUseCaseExample: any = typesOfUseCases[radioUseCaseId].example;
+
+  const icon = currentUseCaseExample.iconType
+    ? { iconType: currentUseCaseExample.iconType }
     : {
-        icon: currentUseCaseObj.icon,
+        icon: currentUseCaseExample.icon,
       };
 
   const euiEmptyPromptPreview = (
     <EuiEmptyPrompt
       {...icon}
-      title={currentUseCaseObj.title}
-      body={currentUseCaseObj?.body}
-      actions={currentUseCaseObj?.actions}
+      title={currentUseCaseExample.title}
+      body={currentUseCaseExample?.body}
+      actions={currentUseCaseExample?.actions}
       {...(panelProps as any)}
     />
   );
@@ -283,12 +282,46 @@ export default () => {
         <EuiSplitPanel.Inner>
           <div className="guideDemo__emptyPromptRecommendCards">
             <EuiTitle size="xs">
+              <h3>Description</h3>
+            </EuiTitle>
+
+            <EuiSpacer size="m" />
+
+            <EuiText size="s">{currentUseCaseInfo.description}</EuiText>
+
+            <EuiSpacer size="xl" />
+
+            <EuiTitle size="xs">
+              <h3>Goal</h3>
+            </EuiTitle>
+
+            <EuiSpacer size="m" />
+
+            <EuiText size="s">{currentUseCaseInfo.goal}</EuiText>
+
+            <EuiSpacer size="xl" />
+
+            {currentUseCaseInfo.action && (
+              <>
+                <EuiTitle size="xs">
+                  <h3>Action</h3>
+                </EuiTitle>
+
+                <EuiSpacer size="m" />
+
+                <EuiText size="s">{currentUseCaseInfo.action}</EuiText>
+
+                <EuiSpacer size="xl" />
+              </>
+            )}
+
+            <EuiTitle size="xs">
               <h3>Recommend panel color</h3>
             </EuiTitle>
 
             <EuiSpacer size="m" />
 
-            {visibleRecommendedText}
+            <EuiText size="s">{visibleRecommendedPanelColorText}</EuiText>
           </div>
         </EuiSplitPanel.Inner>
       </EuiSplitPanel.Outer>

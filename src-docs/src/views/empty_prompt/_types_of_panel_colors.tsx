@@ -1,7 +1,7 @@
 import React from 'react';
 import { EuiCode } from '../../../../src/components';
 
-export const recommendedObj: any = {
+export const typesOfPanelColors: any = {
   subdued: {
     id: 'subdued',
     text: (
