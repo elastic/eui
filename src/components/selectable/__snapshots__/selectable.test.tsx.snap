@@ -1,5 +1,107 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiSelectable custom options with labelProps 1`] = `
+<div
+  class="euiSelectable"
+>
+  <div
+    class="euiSelectableList"
+  >
+    <div
+      data-eui="EuiAutoSizer"
+    >
+      <div
+        class="euiSelectableList__list"
+        style="position:relative;height:96px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+      >
+        <ul
+          style="height:96px;width:100%"
+        >
+          <li
+            aria-posinset="1"
+            aria-selected="false"
+            aria-setsize="3"
+            class="euiSelectableListItem"
+            id="generated-id_listbox_option-0"
+            role="option"
+            style="position:absolute;left:0;top:0;height:32px;width:100%"
+            title="Titan"
+          >
+            <span
+              class="euiSelectableListItem__content"
+            >
+              <span
+                class="euiSelectableListItem__icon"
+                data-euiicon-type="empty"
+              />
+              <span
+                class="euiSelectableListItem__text"
+              >
+                <span>
+                  Titan: VI
+                </span>
+              </span>
+            </span>
+          </li>
+          <li
+            aria-posinset="2"
+            aria-selected="false"
+            aria-setsize="3"
+            class="euiSelectableListItem"
+            id="generated-id_listbox_option-1"
+            role="option"
+            style="position:absolute;left:0;top:32px;height:32px;width:100%"
+            title="Enceladus"
+          >
+            <span
+              class="euiSelectableListItem__content"
+            >
+              <span
+                class="euiSelectableListItem__icon"
+                data-euiicon-type="empty"
+              />
+              <span
+                class="euiSelectableListItem__text"
+              >
+                <span>
+                  Enceladus: II
+                </span>
+              </span>
+            </span>
+          </li>
+          <li
+            aria-posinset="3"
+            aria-selected="false"
+            aria-setsize="3"
+            class="euiSelectableListItem"
+            id="generated-id_listbox_option-2"
+            role="option"
+            style="position:absolute;left:0;top:64px;height:32px;width:100%"
+            title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
+          >
+            <span
+              class="euiSelectableListItem__content"
+            >
+              <span
+                class="euiSelectableListItem__icon"
+                data-euiicon-type="empty"
+              />
+              <span
+                class="euiSelectableListItem__text"
+              >
+                <span>
+                  Pandora is one of Saturn's moons, named for a Titaness of Greek mythology: XVII
+                </span>
+              </span>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiSelectable is rendered 1`] = `
 <div
   class="euiSelectable testClass1 testClass2"
