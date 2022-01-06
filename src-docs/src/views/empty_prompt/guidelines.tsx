@@ -89,7 +89,7 @@ export default () => (
 
     <EuiText grow={false}>
       <p>
-        But how do you know when you should create an empty state? These are the
+        How do you know when you should create an empty state? Here are the
         scenarios we recommend the usage of an empty state:
       </p>
     </EuiText>
