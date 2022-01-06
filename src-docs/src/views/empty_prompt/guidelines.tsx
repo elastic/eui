@@ -115,7 +115,7 @@ export default () => (
           </EuiTableRowCell>
 
           <EuiTableRowCell>
-            Users understand why there is no data displayed and what actions
+            Help users understand why no data is displayed and what actions
             they can perform to make it available.
           </EuiTableRowCell>
 
