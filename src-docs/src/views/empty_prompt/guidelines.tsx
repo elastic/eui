@@ -352,7 +352,7 @@ export default () => (
       description={
         <>
           <p>
-            When having multiple empty states throughout a page, avoid having
+            When a page has multiple empty states, avoid using
             multiple primary actions and multiple icons/illustrations.
           </p>
           <p>
