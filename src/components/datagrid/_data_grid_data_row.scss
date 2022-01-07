@@ -122,6 +122,13 @@
       white-space: nowrap;
     }
   }
+
+  // Ensures focus halo color consistency in ButtonIcons inside of the grid
+  .euiButtonIcon {
+    &:focus {
+      outline: $euiFocusRingColor solid $euiFocusRingSize;
+    }
+  }
 }
 
 .euiDataGridRowCell__popover {
