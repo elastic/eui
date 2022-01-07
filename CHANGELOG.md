@@ -1,5 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+**Bug fixes**
+
+- Fixed a `EuiDataGrid` inconsistent color halo when focusing on the control columns ([#5522](https://github.com/elastic/eui/pull/5522))
+
 **Breaking changes**
 
 - Changed `EuiSearchBar` to preserve phrases with leading and trailing spaces, instead of dropping surrounding whitespace ([#5514](https://github.com/elastic/eui/pull/5514))

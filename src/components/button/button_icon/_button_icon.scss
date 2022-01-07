@@ -50,6 +50,12 @@
       text-decoration: none;
     }
   }
+
+  &:not(.euiDataGrid__controlBtn) {
+    &:focus {
+      outline: $euiFocusRingColor solid $euiFocusRingSize;
+    }
+  }
 }
 
 .euiButtonIcon--xSmall {

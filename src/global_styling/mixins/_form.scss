@@ -344,13 +344,14 @@
   // Requires a selector to work with the Amsterdam outline styles
   @if ($amsterdamSelector) {
     + #{$amsterdamSelector} {
-      outline: $euiFocusRingSize solid currentColor;
+      outline: $euiFocusRingColor solid $euiFocusRingSize;
     }
 
     // Chrome
     &:focus-visible + #{$amsterdamSelector} {
       outline-style: auto;
       outline-offset: 3px;
+      outline: $euiFocusRingColor solid $euiFocusRingSize;
     }
 
     &:not(:focus-visible) + #{$amsterdamSelector} {
