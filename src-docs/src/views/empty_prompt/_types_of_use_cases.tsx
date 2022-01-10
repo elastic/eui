@@ -22,7 +22,7 @@ const ForbiddenImg = () => {
 
   const pageNotFoundImg = isDarkTheme ? forbiddenDark : forbiddenLight;
 
-  return <EuiImage size="fullWidth" src={pageNotFoundImg} alt="" />;
+  return <EuiImage size="fullWidth" url={pageNotFoundImg} alt="" />;
 };
 
 const PageNotFoundImg = () => {
@@ -31,7 +31,7 @@ const PageNotFoundImg = () => {
 
   const pageNotFoundImg = isDarkTheme ? pageNotFoundDark : pageNotFoundLight;
 
-  return <EuiImage size="fullWidth" src={pageNotFoundImg} alt="" />;
+  return <EuiImage size="fullWidth" url={pageNotFoundImg} alt="" />;
 };
 
 const GenericIllustration = () => (
