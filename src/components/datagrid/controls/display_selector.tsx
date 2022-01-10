@@ -57,11 +57,11 @@ const densityStyles: { [key: string]: Partial<EuiDataGridStyle> } = {
   },
 };
 const convertGridStylesToSelection = (gridStyles: EuiDataGridStyle) => {
-  if (gridStyles?.fontSize === 's' && gridStyles?.cellPadding === 's')
+  if (gridStyles.fontSize === 's' && gridStyles.cellPadding === 's')
     return 'compact';
-  if (gridStyles?.fontSize === 'm' && gridStyles?.cellPadding === 'm')
+  if (gridStyles.fontSize === 'm' && gridStyles.cellPadding === 'm')
     return 'normal';
-  if (gridStyles?.fontSize === 'l' && gridStyles?.cellPadding === 'l')
+  if (gridStyles.fontSize === 'l' && gridStyles.cellPadding === 'l')
     return 'expanded';
   return '';
 };
@@ -72,23 +72,21 @@ const capitalizeDensityString = (s: string) => s[0].toUpperCase() + s.slice(1);
 // Row height options and utilities
 const rowHeightButtonOptions: string[] = ['undefined', 'auto', 'lineCount'];
 const convertRowHeightsOptionsToSelection = (
-  rowHeightsOptions?: EuiDataGridRowHeightsOptions
+  rowHeightsOptions: EuiDataGridRowHeightsOptions
 ) => {
-  if (rowHeightsOptions) {
-    const { defaultHeight } = rowHeightsOptions;
+  const { defaultHeight } = rowHeightsOptions;
 
-    if (defaultHeight === 'auto') {
-      return rowHeightButtonOptions[1];
-    }
-    if (typeof defaultHeight === 'object' && defaultHeight?.lineCount) {
-      return rowHeightButtonOptions[2];
-    }
-    if (
-      typeof defaultHeight === 'number' ||
-      (typeof defaultHeight === 'object' && defaultHeight.height)
-    ) {
-      return '';
-    }
+  if (defaultHeight === 'auto') {
+    return rowHeightButtonOptions[1];
+  }
+  if (typeof defaultHeight === 'object' && defaultHeight?.lineCount) {
+    return rowHeightButtonOptions[2];
+  }
+  if (
+    typeof defaultHeight === 'number' ||
+    (typeof defaultHeight === 'object' && defaultHeight.height)
+  ) {
+    return '';
   }
   return rowHeightButtonOptions[0];
 };
