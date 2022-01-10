@@ -44,6 +44,8 @@ import { AccordionExample } from './views/accordion/accordion_example';
 
 import { AspectRatioExample } from './views/aspect_ratio/aspect_ratio_example';
 
+import { AutoRefreshExample } from './views/auto_refresh/auto_refresh_example';
+
 import { AutoSizerExample } from './views/auto_sizer/auto_sizer_example';
 
 import { AvatarExample } from './views/avatar/avatar_example';
@@ -525,7 +527,7 @@ const navigation = [
       FormLayoutsExample,
       FormCompressedExample,
       FormValidationExample,
-      SuperSelectExample,
+      AutoRefreshExample,
       ComboBoxExample,
       ColorPickerExample,
       DatePickerExample,
@@ -536,6 +538,7 @@ const navigation = [
       SelectableExample,
       SuggestExample,
       SuperDatePickerExample,
+      SuperSelectExample,
     ].map((example) => createExample(example)),
   },
   {

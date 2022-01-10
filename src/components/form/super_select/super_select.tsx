@@ -76,7 +76,7 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
 
     /**
      * Optional props to pass to the underlying [EuiPopover](/#/layout/popover).
-     *  Allows fine-grained control of the popover dropdown menu, including
+     * Allows fine-grained control of the popover dropdown menu, including
      * `repositionOnScroll` for EuiSuperSelects used within scrollable containers,
      * and customizing popover panel styling.
      *
@@ -84,22 +84,6 @@ export type EuiSuperSelectProps<T extends string> = CommonProps &
      * `isOpen` API instead.
      */
     popoverProps?: Partial<CommonProps & Omit<EuiPopoverProps, 'isOpen'>>;
-
-    /**
-     * Applied to the outermost wrapper (popover)
-     *
-     * **DEPRECATED: Use `popoverProps.className` instead (will take precedence over this prop if set).**
-     */
-    popoverClassName?: string;
-
-    /**
-     * When `true`, the popover's position is re-calculated when the user
-     * scrolls. When nesting an `EuiSuperSelect` in a scrollable container,
-     * `repositionOnScroll` should be `true`
-     *
-     * **DEPRECATED: Use `popoverProps.repositionOnScroll` instead (will take precedence over this prop if set).**
-     */
-    repositionOnScroll?: boolean;
   };
 
 export class EuiSuperSelect<T extends string> extends Component<
@@ -276,16 +260,14 @@ export class EuiSuperSelect<T extends string> extends Component<
       itemClassName,
       itemLayoutAlign,
       fullWidth,
-      popoverClassName,
       popoverProps,
       compressed,
-      repositionOnScroll,
       ...rest
     } = this.props;
 
     const popoverClasses = classNames(
       'euiSuperSelect',
-      popoverProps?.className ?? popoverClassName
+      popoverProps?.className
     );
 
     const buttonClasses = classNames(
@@ -346,7 +328,6 @@ export class EuiSuperSelect<T extends string> extends Component<
       <EuiInputPopover
         closePopover={this.closePopover}
         panelPaddingSize="none"
-        repositionOnScroll={repositionOnScroll}
         {...popoverProps}
         className={popoverClasses}
         isOpen={isOpen || this.state.isPopoverOpen}

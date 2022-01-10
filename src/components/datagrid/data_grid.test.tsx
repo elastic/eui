@@ -752,7 +752,7 @@ describe('EuiDataGrid', () => {
         toolbarVisibility: {
           showFullScreenSelector: false,
           showSortSelector: false,
-          showStyleSelector: true,
+          showDisplaySelector: true,
         },
       });
 
@@ -769,7 +769,7 @@ describe('EuiDataGrid', () => {
       // style selector
       component.debug();
       expect(
-        findTestSubject(component, 'dataGridStyleSelectorButton').length
+        findTestSubject(component, 'dataGridDisplaySelectorButton').length
       ).toBe(1);
 
       // column selector
@@ -2325,7 +2325,7 @@ describe('EuiDataGrid', () => {
       // enable the grid to accept focus
       act(() =>
         component
-          .find('div [data-test-subj="dataGridWrapper"][onFocus]')
+          .find('div [data-test-subj="euiDataGridBody"][onFocus]')
           .props().onFocus!({} as React.FocusEvent)
       );
       component.update();
@@ -2523,7 +2523,7 @@ describe('EuiDataGrid', () => {
       // enable the grid to accept focus
       act(() =>
         component
-          .find('div [data-test-subj="dataGridWrapper"][onFocus]')
+          .find('div [data-test-subj="euiDataGridBody"][onFocus]')
           .props().onFocus!({} as React.FocusEvent)
       );
       component.update();

@@ -146,9 +146,9 @@ containsValue
   / word
 
 phrase
-  = '"' space? phrase:(
-  	(phraseWord+)? (space phraseWord+)* { return unescapePhraseValue(text()); }
-  ) space? '"' { return Exp.string(phrase, location()); }
+  = '"' phrase:(
+  	space? (phraseWord+)? (space phraseWord+)* space? { return unescapePhraseValue(text()); }
+  ) '"' { return Exp.string(phrase, location()); }
 
 phraseWord
   // not a backslash, quote, or space

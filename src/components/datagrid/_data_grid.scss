@@ -24,73 +24,19 @@
 }
 
 .euiDataGrid__content {
+  flex-grow: 1;
   height: 100%;
-  font-feature-settings: 'tnum' 1; // Tabular numbers
   max-width: 100%;
   width: 100%;
+  overflow: hidden;
   z-index: 2; // Sits above the pagination below it, but below the controls above it
   background: $euiColorEmptyShade;
-}
-
-.euiDataGrid__controls {
-  background: $euiPageBackgroundColor;
-  position: relative;
-  z-index: 3; // Needs to sit above the content blow that sits below it
-  border: $euiBorderThin;
-  padding: $euiSizeXS;
-  flex-grow: 0;
-
-  > * {
-    margin-left: $euiSizeXS / 2;
-  }
-}
-
-.euiDataGrid__controlBtn {
-  border-radius: $euiBorderRadius;
-
-  &:focus {
-    background: shadeOrTint($euiColorLightestShade, 10%, 10%);
-  }
-}
-
-.euiDataGrid__controlBtn--active,
-.euiDataGrid__controlBtn--active:focus {
-  font-weight: $euiFontWeightSemiBold;
-  color: $euiColorFullShade;
-}
-
-@include euiDataGridStyles(bordersNone) {
-  .euiDataGrid__controls {
-    border: none;
-    background: $euiColorEmptyShade;
-  }
-}
-
-@include euiDataGridStyles(bordersHorizontal) {
-  .euiDataGrid__controls {
-    border-right: none;
-    border-left: none;
-    border-top: none;
-    background: $euiColorEmptyShade;
-  }
+  font-feature-settings: 'tnum' 1; // Tabular numbers
 }
 
 .euiDataGrid__pagination {
-
   padding-top: $euiSizeXS;
   flex-grow: 0;
-}
-
-.euiDataGrid__verticalScroll {
-  flex-grow: 1;
-  overflow-y: hidden;
-  height: 100%;
-}
-
-.euiDataGrid__overflow {
-  overflow-y: hidden;
-  height: 100%;
-  background: $euiColorEmptyShade;
 }
 
 // This is used to remove extra scrollbars on the body when fullscreen is enabled

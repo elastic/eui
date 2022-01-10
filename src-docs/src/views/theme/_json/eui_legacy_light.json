@@ -102,6 +102,7 @@
   "euiDataGridStyles": "'bordersAll', 'bordersNone', 'bordersHorizontal', 'paddingSmall', 'paddingMedium', 'paddingLarge', 'stripes', 'rowHoverNone', 'rowHoverHighlight', 'headerShade', 'headerUnderline', 'footerShade', 'footerOverline', 'fontSizeSmall', 'fontSizeLarge', 'noControls', 'stickyFooter'",
   "euiZDataGrid": 999,
   "euiZHeaderBelowDataGrid": 998,
+  "euiZDataGridCellPopover": 1000,
   "euiDataGridColumnResizerWidth": "3px",
   "euiDataGridPopoverMaxHeight": "400px",
   "euiDataGridCellPaddingS": "4px",

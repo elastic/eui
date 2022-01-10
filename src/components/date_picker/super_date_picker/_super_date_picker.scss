@@ -1,16 +1,37 @@
+// sass-lint:disable-block function-name-format
+
 .euiSuperDatePicker__flexWrapper {
   // Need to offset 8px because of negative margins added by small size gutter
   max-width: calc(100% + #{$euiSizeS});
+  // Set a sensible min-width for when width is auto
+  min-width: MIN(($euiFormMaxWidth / 2) + $euiSuperDatePickerButtonWidth + $euiSizeS, 100%);
   width: $euiSuperDatePickerWidth + $euiSuperDatePickerButtonWidth + $euiSizeS;
+
+  &.euiSuperDatePicker__flexWrapper--fullWidth {
+    // Need to offset 8px because of negative margins added by small size gutter
+    width: calc(100% + #{$euiSizeS});
+  }
+
+  &.euiSuperDatePicker__flexWrapper--isQuickSelectOnly {
+    min-width: 0;
+  }
+
+  &.euiSuperDatePicker__flexWrapper--autoWidth {
+    display: inline-flex;
+    width: auto;
+  }
 }
 
 .euiSuperDatePicker__flexWrapper--isAutoRefreshOnly {
+  min-width: MIN($euiFormMaxWidth / 2, 100%);
   width: $euiFormMaxWidth;
 }
 
 .euiSuperDatePicker__flexWrapper--noUpdateButton {
+  min-width: MIN($euiFormMaxWidth / 2, 100%);
   width: $euiSuperDatePickerWidth;
 }
+
 
 .euiSuperDatePicker {
   // sass-lint:disable-block no-important
@@ -26,6 +47,15 @@
       width: auto;
       border-radius: 0 $euiFormControlBorderRadius $euiFormControlBorderRadius 0;
     }
+
+    &:not(:last-child) > .euiDatePickerRange {
+      &,
+      .euiDatePopoverButton--end,
+      .euiSuperDatePicker__prettyFormat {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
   }
 }
 
@@ -33,6 +63,10 @@
   // Fixes margin around delimiter
   // Only needed on first popover since basic .euiFormControlLayout takes care of the last one
   margin-right: -$euiSizeM;
+
+  .euiFormControlLayout--compressed & {
+    margin-right: -$euiSizeS;
+  }
 }
 
 .euiSuperDatePicker__prettyFormat {
@@ -44,36 +78,17 @@
   &:not(:disabled):hover,
   &:focus {
     text-decoration: none;
-
-    .euiSuperDatePicker__prettyFormatLink {
-      text-decoration: underline;
-    }
   }
 
   &:disabled {
     background-color: $euiFormBackgroundDisabledColor;
     color: $euiColorDarkShade;
     cursor: not-allowed;
-
-    .euiSuperDatePicker__prettyFormatLink {
-      display: none;
-    }
   }
-}
-
-.euiSuperDatePicker__prettyFormatLink {
-  color: $euiLinkColor;
-  padding-left: $euiSizeXS; // Adds some separation between date text and link
-  flex-shrink: 0;
 }
 
 @include euiBreakpoint('xs', 's') {
   .euiSuperDatePicker__flexWrapper {
     width: calc(100% + #{$euiSizeS});
-  }
-
-  .euiSuperDatePicker__prettyFormatLink {
-    flex-shrink: 1;
-    min-width: 3em; // Ensures at least "Show" is always visible
   }
 }

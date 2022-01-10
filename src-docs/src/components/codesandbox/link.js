@@ -24,10 +24,11 @@ const getVersion = (packageName) => {
  *
  * 1. A `content` prop is passed containing the src-doc example code we need to manipulate for CS.
  * 2. If no content exists (like the homepage link), we'll make a hello world file bundled with EUI and call it a day.
- * 3. If content exists, we build an `index.js/tsx` (depending on the passed source type) file with a <Demo> component based on the original content.
- * 4. If content contains `DisplayToggles`, we also generate a `display_toggles.js` file alongside the `index.js` file to import.
- * 5. Through regex we read the dependencies of both `content` and `display_toggles` and pass that to CS.
- * 6. We pass the files and dependencies as params to CS through a POST call.
+ * 3. If content exists, we build an `demo.js/tsx` (depending on the passed source type) file with a <Demo> component based on the original content.
+ * 4. If the default theme is in use, create an `index.html file in `./public` and an `index.js` file alongside to provide global styles.
+ * 5. If content contains `DisplayToggles`, we also generate a `display_toggles.js` file alongside to import.
+ * 6. Through regex we read the dependencies of both `content` and `display_toggles` and pass that to CS.
+ * 7. We pass the files, dependencies, and queries as params to CS through a POST call.
  * */
 
 const displayTogglesRawCode = require('!!raw-loader!../../views/form_controls/display_toggles')
@@ -80,103 +81,52 @@ export const CodeSandboxLinkComponent = ({
     })
     .join(' ');
 
-  // Renders the new Demo component generically into the code sandbox page
-  const exampleClose = `ReactDOM.render(
-  ${
-    isLegacyTheme
-      ? '<Demo />'
-      : `<EuiProvider ${providerProps}>
-    <Demo />
-  </EuiProvider>`
-  },
-  document.getElementById('root')
-);`;
-
-  let indexContent;
+  let demoContent;
 
   if (!content) {
     /* 2 */
-    indexContent = `import ReactDOM from 'react-dom';
-import '${cssFile}';
-import React from 'react';
+    demoContent = `import React from 'react';
 
-import {
-  ${
-    isLegacyTheme
-      ? 'EuiButton,'
-      : `EuiButton,
-  EuiProvider,`
-  }
-} from '@elastic/eui';
+import { EuiButton } from '@elastic/eui';
 
-const Demo = () => (<EuiButton>Hello world!</EuiButton>);
-
-${exampleClose}
+export const Demo = () => (<EuiButton>Hello world!</EuiButton>);
 `;
   } else {
     /** This cleans the Demo JS example for Code Sanbox.
     - Replaces relative imports with pure @elastic/eui ones
-    - Adds provider import, if necessary
     - Changes the JS example from a default export to a component const named Demo
     **/
-    let exampleCleaned = cleanEuiImports(content)
-      .replace('export default', 'const Demo =')
+    const exampleCleaned = cleanEuiImports(content)
+      .replace('export default', 'export const Demo =')
       .replace(
         /(from )'(..\/)+display_toggles(\/?';)/,
         "from './display_toggles';"
       );
 
-    if (!isLegacyTheme && !exampleCleaned.includes('EuiProvider')) {
-      if (exampleCleaned.includes(" } from '@elastic/eui';")) {
-        // Single line import statement
-        exampleCleaned = exampleCleaned.replace(
-          " } from '@elastic/eui';",
-          ", EuiProvider } from '@elastic/eui';"
-        );
-      } else {
-        // Multi line import statement
-        exampleCleaned = exampleCleaned.replace(
-          "} from '@elastic/eui';",
-          `  EuiProvider,
-} from '@elastic/eui';`
-        );
-      }
-    }
-
     // If the code example still has local doc imports after the above cleaning it's
-    // too complicated for code sandbox so we don't provide a link
+    // too complicated for code sandbox so we don't provide a link.
     const hasLocalImports = /(from )'((.|..)\/).*?';/.test(exampleCleaned);
 
     if (hasLocalImports && !hasDisplayToggles(exampleCleaned)) {
       return null;
     }
 
-    // The Code Sanbbox demo needs to import CSS at the top of the document. CS has trouble
-    // with our dynamic imports so we need to warn the user for now
-    const exampleStart = `import ReactDOM from 'react-dom';
-import '${cssFile}';`;
-
-    // Concat the three pieces of the example into a single string to use for index.js
-    const cleanedContent = `${exampleStart}
-${exampleCleaned}
-${exampleClose}
-`;
-    indexContent = cleanedContent.replace(
+    demoContent = exampleCleaned.replace(
       /(from )'.+display_toggles';/,
       "from './display_toggles';"
     );
   }
 
-  const indexContentDeps = listExtraDeps(indexContent);
-  let mergedDeps = indexContentDeps;
+  const demoContentDeps = listExtraDeps(demoContent);
+  let mergedDeps = demoContentDeps;
 
-  /* 4 */
-  if (hasDisplayToggles(indexContent)) {
+  /* 5 */
+  if (hasDisplayToggles(demoContent)) {
     const cleanedDisplayToggles = cleanEuiImports(displayTogglesRawCode);
     const displayToggleDeps = listExtraDeps(cleanedDisplayToggles);
 
-    /* 5 */
-    mergedDeps = { ...indexContentDeps, ...displayToggleDeps };
+    /* 6 */
+    mergedDeps = { ...demoContentDeps, ...displayToggleDeps };
   }
 
   const config = {
@@ -187,6 +137,7 @@ ${exampleClose}
             '@elastic/eui': pkg.version,
             ...[
               '@elastic/datemath',
+              '@emotion/cache',
               '@emotion/react',
               'moment',
               'react',
@@ -201,14 +152,63 @@ ${exampleClose}
         },
       },
       /* 3 */
-      [`index.${type}`]: {
-        content: indexContent,
+      [`demo.${type}`]: {
+        content: demoContent,
+      },
+      'index.js': {
+        content: `import '${cssFile}';
+import ReactDOM from 'react-dom';
+import React from 'react';
+${
+  /* 4 */
+  !isLegacyTheme
+    ? `import createCache from '@emotion/cache';
+import { EuiProvider } from '@elastic/eui';
+`
+    : ''
+}
+import { Demo } from './demo';
+${
+  /* 4 */
+  !isLegacyTheme
+    ? `
+const cache = createCache({
+  key: 'codesandbox',
+  container: document.querySelector('meta[name="global-styles"]'),
+});
+`
+    : ''
+}
+ReactDOM.render(
+  ${
+    /* 4 */
+    isLegacyTheme
+      ? '<Demo />'
+      : `<EuiProvider cache={cache} ${providerProps}>
+    <Demo />
+  </EuiProvider>`
+  },
+  document.getElementById('root')
+);`,
+      },
+      /* 4 */
+      'public/index.html': {
+        content: `<head>
+  <title>Elastic UI Framework v${pkg.version}</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="global-styles">
+</head>
+<body>
+  <div id="root" />
+</body>`,
       },
     },
   };
 
-  /* 4 */
-  if (hasDisplayToggles(indexContent)) {
+  /* 5 */
+  if (hasDisplayToggles(demoContent)) {
     const cleanedDisplayToggles = cleanEuiImports(displayTogglesRawCode);
 
     config.files['display_toggles.js'] = {
@@ -229,8 +229,9 @@ ${exampleClose}
       target="_blank"
       className={className}
     >
-      {/* 6 */}
+      {/* 7 */}
       <input type="hidden" name="parameters" value={params} />
+      <input type="hidden" name="query" value="file=/demo.js" />
       {childWithSubmit}
     </form>
   );

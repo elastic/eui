@@ -40,6 +40,7 @@ export interface EuiDatePopoverButtonProps {
   timeFormat: string;
   value: string;
   utcOffset?: number;
+  compressed?: boolean;
 }
 
 export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> = (
@@ -61,6 +62,7 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
     isOpen,
     onPopoverToggle,
     onPopoverClose,
+    compressed,
     ...rest
   } = props;
 
@@ -68,6 +70,7 @@ export const EuiDatePopoverButton: FunctionComponent<EuiDatePopoverButtonProps> 
     'euiDatePopoverButton',
     `euiDatePopoverButton--${position}`,
     {
+      'euiDatePopoverButton--compressed': compressed,
       'euiDatePopoverButton-isSelected': isOpen,
       'euiDatePopoverButton-isInvalid': isInvalid,
       'euiDatePopoverButton-needsUpdating': needsUpdating,
