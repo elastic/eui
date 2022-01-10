@@ -455,6 +455,9 @@ const DataGrid = () => {
     toolbarConfig = toolbarVisibilityOptions;
   }
 
+  const [rowHeight, setRowHeight] = useState();
+  const setRowHeightAuto = () => setRowHeight('auto');
+
   return (
     <div>
       <EuiFlexGroup gutterSize="s">
@@ -705,6 +708,11 @@ const DataGrid = () => {
             </div>
           </EuiPopover>
         </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton size="s" onClick={setRowHeightAuto}>
+            [TEST] Set row height to auto
+          </EuiButton>
+        </EuiFlexItem>
       </EuiFlexGroup>
 
       {footerSelected === 'striped' ? (
@@ -738,6 +746,7 @@ const DataGrid = () => {
           header: headerSelected,
           footer: footerSelected,
         }}
+        rowHeightsOptions={{ defaultHeight: rowHeight }}
         toolbarVisibility={toolbarConfig}
         renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
         renderFooterCellValue={renderFooterCellValue}
