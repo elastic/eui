@@ -213,6 +213,7 @@ export const typesOfUseCases: any = {
     example: {
       title: <h2>Page not found</h2>,
       icon: <PageNotFoundImg />,
+      layout: 'horizontal',
       body: (
         <>
           <p>
@@ -253,6 +254,7 @@ export const typesOfUseCases: any = {
     example: {
       title: <h2>Access denied</h2>,
       icon: <ForbiddenImg />,
+      layout: 'horizontal',
       body: (
         <>
           <p>
@@ -261,7 +263,7 @@ export const typesOfUseCases: any = {
           </p>
           <p>
             Unfortunately, you don’t have permission to access this page.
-            Contact your administrator for help or reach out to us at
+            Contact your administrator for help or reach out to us at{' '}
             <a href="#">support.elastic.co</a>.
           </p>
         </>
