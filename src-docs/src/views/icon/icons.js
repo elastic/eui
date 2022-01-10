@@ -125,6 +125,7 @@ export const iconTypes = [
   'kqlSelector',
   'kqlValue',
   'layers',
+  'lettering',
   'link',
   'list',
   'listAdd',
