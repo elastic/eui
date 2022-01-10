@@ -121,7 +121,7 @@ describe('useDataGridDisplaySelector', () => {
         ).toHaveLength(0);
       });
 
-      describe('convertGridStylesToSelection (loading initial state from passed gridStyles', () => {
+      describe('convertGridStylesToSelection', () => {
         it('should set compact state if both fontSize and cellPadding are s', () => {
           const component = mount(
             <MockComponent gridStyles={{ fontSize: 's', cellPadding: 's' }} />
@@ -153,6 +153,18 @@ describe('useDataGridDisplaySelector', () => {
           openPopover(component);
           expect(getSelection(component)).toEqual('');
         });
+      });
+
+      it('updates grid density whenever new developer styles are passed in', () => {
+        const component = mount(
+          <MockComponent gridStyles={{ fontSize: 'l', cellPadding: 'l' }} />
+        );
+        openPopover(component);
+        expect(getSelection(component)).toEqual('expanded');
+
+        component.setProps({ gridStyles: { fontSize: 's', cellPadding: 's' } });
+        component.update();
+        expect(getSelection(component)).toEqual('compact');
       });
 
       it('correctly resets density to initial developer-passed state', () => {
@@ -216,7 +228,7 @@ describe('useDataGridDisplaySelector', () => {
         ).toHaveLength(0);
       });
 
-      describe('convertRowHeightsOptionsToSelection (loading initial state from passed rowHeightsOptions)', () => {
+      describe('convertRowHeightsOptionsToSelection', () => {
         test('auto', () => {
           const component = mount(
             <MockComponent rowHeightsOptions={{ defaultHeight: 'auto' }} />
@@ -258,6 +270,20 @@ describe('useDataGridDisplaySelector', () => {
           openPopover(component2);
           expect(getSelection(component2)).toEqual('');
         });
+      });
+
+      it('updates row height whenever new developer settings are passed in', () => {
+        const component = mount(
+          <MockComponent rowHeightsOptions={{ defaultHeight: 'auto' }} />
+        );
+        openPopover(component);
+        expect(getSelection(component)).toEqual('auto');
+
+        component.setProps({
+          rowHeightsOptions: { defaultHeight: { lineCount: 3 } },
+        });
+        component.update();
+        expect(getSelection(component)).toEqual('lineCount');
       });
 
       it('correctly resets row height to initial developer-passed state', () => {
