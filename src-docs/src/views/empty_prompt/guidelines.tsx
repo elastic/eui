@@ -6,11 +6,11 @@ import {
   EuiTitle,
   EuiText,
   EuiSpacer,
-  EuiAspectRatio,
   EuiImage,
 } from '../../../../src/components';
 import TypesOfEmptyStates from './_types_of_empty_states';
 
+import anatomy from '../../images/empty-prompt/anatomy.svg';
 import vertical from '../../images/empty-prompt/vertical.svg';
 import horizontal from '../../images/empty-prompt/horizontal.svg';
 import iconDont from '../../images/empty-prompt/icon-dont.svg';
@@ -38,14 +38,7 @@ export default () => (
 
     <EuiSpacer size="l" />
 
-    <EuiAspectRatio width={2} height={1}>
-      <iframe
-        title="Anatomy of an empty state"
-        width="1200"
-        height="550"
-        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FRzfYLj2xmH9K7gQtbSKygn%2FElastic-UI%3Fnode-id%3D22764%253A276515"
-      />
-    </EuiAspectRatio>
+    <EuiImage alt="Vertical layout" url={anatomy} />
 
     <EuiSpacer size="xl" />
 
