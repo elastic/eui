@@ -4,7 +4,8 @@
 .guideDemo__highlightLayout--legacy {
   border: 1px solid $guideDemoHighlightColor;
   overflow: hidden;
-  height: 460px;
+  min-height: 460px;
+  height: 100%;
   display: flex;
 
   .euiPageSideBar--sticky {

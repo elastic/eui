@@ -45,7 +45,14 @@ export default () => {
    */
   const isDarkTheme = themeContext.theme.includes('dark');
 
-  const useCasesOptions: any = Object.values(typesOfUseCases);
+  const useCasesOptions: EuiRadioGroupOption[] = Object.values(
+    typesOfUseCases
+  ).map((item: any) => {
+    return {
+      id: item.id,
+      label: item.label,
+    };
+  });
 
   const errorValue = typesOfUseCases.error.id;
   const [radioUseCaseId, setRadioUseCaseId] = useState<
