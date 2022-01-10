@@ -474,11 +474,6 @@ describe('useDataGridDisplaySelector', () => {
         .find('[data-test-subj="rowHeightButtonGroup"]')
         .simulate('change', selection);
     };
-    const setLineCount = (component: ShallowWrapper, lineCount = 1) => {
-      diveIntoEuiI18n(component)
-        .find('[data-test-subj="lineCountNumber"]')
-        .simulate('change', { target: { value: lineCount } });
-    };
     const getOutput = (component: ShallowWrapper) => {
       return JSON.parse(component.find('[data-test-subj="output"]').text());
     };
@@ -508,11 +503,10 @@ describe('useDataGridDisplaySelector', () => {
         );
 
         setRowHeight(component, 'lineCount');
-        setLineCount(component, 5);
 
         expect(getOutput(component)).toEqual({
           lineHeight: '2em',
-          defaultHeight: { lineCount: 5 },
+          defaultHeight: { lineCount: 2 },
           rowHeights: {},
         });
       });
