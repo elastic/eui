@@ -184,13 +184,22 @@ export const useDataGridDisplaySelector = (
     // @ts-ignore - same as above
   }, [rowHeightsOptions?.defaultHeight?.lineCount]);
 
-  // Invoke onChange callbacks on user input (removing the callback value itself, so that only configuration values are returned)
+  // Show a reset button whenever users manually change settings, and
+  // invoke onChange callbacks (removing the callback value itself, so that only configuration values are returned)
+  const [showResetButton, setShowResetButton] = useState(false);
+
   useUpdateEffect(() => {
+    const hasUserChanges = Object.keys(userGridStyles).length > 0;
+    if (hasUserChanges) setShowResetButton(true);
+
     const { onChange, ...currentGridStyles } = gridStyles;
     initialStyles?.onChange?.(currentGridStyles);
   }, [userGridStyles]);
 
   useUpdateEffect(() => {
+    const hasUserChanges = Object.keys(userRowHeightsOptions).length > 0;
+    if (hasUserChanges) setShowResetButton(true);
+
     const { onChange, ...currentRowHeightsOptions } = rowHeightsOptions;
     initialRowHeightsOptions?.onChange?.(currentRowHeightsOptions);
   }, [userRowHeightsOptions]);
@@ -199,21 +208,8 @@ export const useDataGridDisplaySelector = (
   const resetToInitialState = useCallback(() => {
     setUserGridStyles({});
     setUserRowHeightsOptions({});
+    setShowResetButton(false);
   }, []);
-
-  const showResetButton = useMemo(() => {
-    if (initialDensity !== gridDensity) return true;
-    if (initialRowHeight !== rowHeightSelection) return true;
-    if (initialLineCount !== lineCount) return true;
-    return false;
-  }, [
-    initialDensity,
-    gridDensity,
-    initialRowHeight,
-    rowHeightSelection,
-    initialLineCount,
-    lineCount,
-  ]);
 
   const buttonLabel = useEuiI18n(
     'euiDisplaySelector.buttonText',

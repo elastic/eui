@@ -406,9 +406,10 @@ describe('useDataGridDisplaySelector', () => {
         component.find('[data-test-subj="resetDisplaySelector"]').exists()
       ).toBe(true);
 
-      // Should hide the reset button again when changing back to the initial configuration
-      component.find('[data-test-subj="normal"]').simulate('change');
-      component.find('[data-test-subj="undefined"]').simulate('change');
+      // Should hide the reset button again after it's been clicked
+      component
+        .find('button[data-test-subj="resetDisplaySelector"]')
+        .simulate('click');
       expect(
         component.find('[data-test-subj="resetDisplaySelector"]').exists()
       ).toBe(false);
