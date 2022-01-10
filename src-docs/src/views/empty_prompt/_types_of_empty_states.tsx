@@ -126,9 +126,14 @@ export default () => {
         icon: currentUseCaseExample.icon,
       };
 
+  const layout = currentUseCaseExample.layout
+    ? { layout: currentUseCaseExample.layout }
+    : { layout: 'vertical' };
+
   const euiEmptyPromptPreview = (
     <EuiEmptyPrompt
       {...icon}
+      {...layout}
       title={currentUseCaseExample.title}
       body={currentUseCaseExample?.body}
       actions={currentUseCaseExample?.actions}

@@ -1,9 +1,42 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   EuiButton,
   EuiButtonEmpty,
   EuiLoadingLogo,
+  EuiImage,
+  EuiTitle,
+  EuiLink,
+  EuiFlexGroup,
+  EuiFlexItem,
 } from '../../../../src/components';
+import { ThemeContext } from '../../components/with_theme';
+import genericIllustration from '../../images/empty-prompt/illustration.svg';
+import forbiddenLight from '../../images/empty-prompt/403_rainy_cloud_light.png';
+import forbiddenDark from '../../images/empty-prompt/403_rainy_cloud_dark.png';
+import pageNotFoundLight from '../../images/empty-prompt/404_rainy_cloud_light.png';
+import pageNotFoundDark from '../../images/empty-prompt/404_rainy_cloud_dark.png';
+
+const ForbiddenImg = () => {
+  const themeContext = useContext(ThemeContext);
+  const isDarkTheme = themeContext.theme.includes('dark');
+
+  const pageNotFoundImg = isDarkTheme ? forbiddenDark : forbiddenLight;
+
+  return <EuiImage size="fullWidth" src={pageNotFoundImg} alt="" />;
+};
+
+const PageNotFoundImg = () => {
+  const themeContext = useContext(ThemeContext);
+  const isDarkTheme = themeContext.theme.includes('dark');
+
+  const pageNotFoundImg = isDarkTheme ? pageNotFoundDark : pageNotFoundLight;
+
+  return <EuiImage size="fullWidth" src={pageNotFoundImg} alt="" />;
+};
+
+const GenericIllustration = () => (
+  <EuiImage size="fullWidth" src={genericIllustration} alt="" />
+);
 
 export const typesOfUseCases: any = {
   noData: {
@@ -25,8 +58,9 @@ export const typesOfUseCases: any = {
       action: <p>Add data</p>,
     },
     example: {
-      iconType: 'addDataApp',
+      icon: <GenericIllustration />,
       title: <h2>Get started by adding your data</h2>,
+      layout: 'horizontal',
       body: (
         <>
           <p>
@@ -46,6 +80,44 @@ export const typesOfUseCases: any = {
         <EuiButtonEmpty>Try sample data</EuiButtonEmpty>,
       ],
     },
+    footer: (
+      <EuiFlexGroup className="eui-textLeft">
+        <EuiFlexItem grow={false}>
+          <EuiTitle size="xxs">
+            <h3>Want to learn more?</h3>
+          </EuiTitle>
+          <span>
+            <EuiButtonEmpty
+              href="#"
+              iconType="popout"
+              iconSide="right"
+              iconSize="s"
+              flush="both"
+              size="s"
+            >
+              Read documentation
+            </EuiButtonEmpty>
+          </span>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiTitle size="xxs">
+            <h3>Pretty sure you have data?</h3>
+          </EuiTitle>
+          <span>
+            <EuiButtonEmpty
+              onClick={() => {}}
+              iconType="refresh"
+              iconSide="right"
+              iconSize="s"
+              flush="both"
+              size="s"
+            >
+              Check for new data
+            </EuiButtonEmpty>
+          </span>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    ),
   },
   noPermission: {
     id: 'noPermission',
@@ -126,7 +198,7 @@ export const typesOfUseCases: any = {
   },
   pageNotFound: {
     id: 'pageNotFound',
-    label: 'Page not found',
+    label: '404 Not Found',
     info: {
       description: <p>The page was not found.</p>,
       goal: (
@@ -140,17 +212,67 @@ export const typesOfUseCases: any = {
     },
     example: {
       title: <h2>Page not found</h2>,
+      icon: <PageNotFoundImg />,
       body: (
-        <p>
-          The page you are looking for might have been removed, renamed, or
-          never existed.
-        </p>
+        <>
+          <p>
+            “Reality is frequently inaccurate.” The Restaurant at the End of the
+            Universe
+          </p>
+          <p>
+            Sorry, we can&apos;t seem to find the page you&apos;re looking for.
+            It might have been removed or renamed, or maybe it never existed at
+            all.
+          </p>
+        </>
       ),
       actions: [
         <EuiButton color="primary" fill>
           Go home
         </EuiButton>,
-        <EuiButtonEmpty>Go back</EuiButtonEmpty>,
+        <EuiButtonEmpty iconType="arrowLeft" flush="both">
+          Go back
+        </EuiButtonEmpty>,
+      ],
+    },
+  },
+  forbidden: {
+    id: 'forbidden',
+    label: '403 Forbidden',
+    info: {
+      description: <p>The page was not found.</p>,
+      goal: (
+        <p>
+          Help users understand why the page was not found. That could be either
+          because the page never existed, the page was removed (deleted), or the
+          page&apos;s URL was changed to a different URL.
+        </p>
+      ),
+      action: <p>Go home or go back</p>,
+    },
+    example: {
+      title: <h2>Access denied</h2>,
+      icon: <ForbiddenImg />,
+      body: (
+        <>
+          <p>
+            “For a moment, nothing happened. Then, after a second or so, nothing
+            continued to happen.” The Hitchhiker&apos;s Guide to the Galaxy
+          </p>
+          <p>
+            Unfortunately, you don’t have permission to access this page.
+            Contact your administrator for help or reach out to us at
+            <a href="#">support.elastic.co</a>.
+          </p>
+        </>
+      ),
+      actions: [
+        <EuiButton color="primary" fill>
+          Go home
+        </EuiButton>,
+        <EuiButtonEmpty iconType="arrowLeft" flush="both">
+          Go back
+        </EuiButtonEmpty>,
       ],
     },
   },
@@ -182,6 +304,16 @@ export const typesOfUseCases: any = {
         </EuiButton>,
         <EuiButtonEmpty>Start a free trial</EuiButtonEmpty>,
       ],
+      footer: (
+        <>
+          <EuiTitle size="xxs">
+            <h3>Want to learn more?</h3>
+          </EuiTitle>
+          <EuiLink href="#" target="_blank">
+            Read documentation
+          </EuiLink>
+        </>
+      ),
     },
   },
   loading: {
@@ -190,7 +322,6 @@ export const typesOfUseCases: any = {
     info: {
       description: <p>The page or content is loading.</p>,
       goal: <p>Help users understand that the data is loading.</p>,
-      action: <p>Lorem action</p>,
     },
     example: {
       icon: <EuiLoadingLogo logo="logoKibana" size="xl" />,

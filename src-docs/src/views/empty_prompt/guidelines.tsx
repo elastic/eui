@@ -121,13 +121,13 @@ export default () => (
     >
       <GuideRuleExample
         text="Use the vertical layout when the content is small."
-        minHeight="280"
+        minHeight={280}
       >
         <EuiImage alt="Vertical layout" url={vertical} height="252" />
       </GuideRuleExample>
       <GuideRuleExample
         text="Use the horizontal layout when you have a long description, and you can provide an illustration."
-        minHeight="280"
+        minHeight={280}
       >
         <EuiImage alt="Horizontal layout" url={horizontal} height="252" />
       </GuideRuleExample>
@@ -153,14 +153,14 @@ export default () => (
       <GuideRuleExample
         type="do"
         text="An illustration works better in a horizontal layout."
-        minHeight="280"
+        minHeight={280}
       >
         <EuiImage alt="Horizontal layout" url={horizontal} height="252" />
       </GuideRuleExample>
       <GuideRuleExample
         type="dont"
         text="Avoid using icons and illustrations that don't mean anything and are not related to the content."
-        minHeight="280"
+        minHeight={280}
       >
         <EuiImage alt="No meaningful icon" url={iconDont} height="252" />
       </GuideRuleExample>
@@ -184,13 +184,13 @@ export default () => (
     >
       <GuideRuleExample
         text="Add the learn more link after the description when the empty prompt doesn't contain a call to action."
-        minHeight="280"
+        minHeight={280}
       >
         <EuiImage alt="Inline link" url={inlineLink} height="252" />
       </GuideRuleExample>
       <GuideRuleExample
         text="Add the learn more link in the footer when the empty prompt contains a call to action."
-        minHeight="280"
+        minHeight={280}
       >
         <EuiImage alt="Footer link" url={horizontal} height="252" />
       </GuideRuleExample>
@@ -216,7 +216,7 @@ export default () => (
       <GuideRuleExample
         type="do"
         text="Use secondary actions and no icons or illustrations when displaying multiple empty states."
-        minHeight="280"
+        minHeight={280}
       >
         <EuiImage alt="Vertical layout" url={multipleDo} height="252" />
       </GuideRuleExample>
@@ -224,7 +224,7 @@ export default () => (
       <GuideRuleExample
         type="dont"
         text="Avoid mixing different types of empty states. Try to be consistent."
-        minHeight="280"
+        minHeight={280}
       >
         <EuiImage
           alt="Multiple empty states with primary actions and icons/illustrations"

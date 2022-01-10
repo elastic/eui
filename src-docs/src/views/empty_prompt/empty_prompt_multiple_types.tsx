@@ -6,8 +6,8 @@ import { GuideSection } from '../../components/guide_section/guide_section';
 import { GuideSectionTypes } from '../../components/guide_section/guide_section_types';
 import { PanelColor } from '../../../../src/components/panel/panel';
 
-import pageError from './prompt_types/page_error';
-const pageErrorSource = require('!!raw-loader!./prompt_types/page_error');
+import pageNotFound from './prompt_types/page_not_found';
+const pageNotFoundSource = require('!!raw-loader!./prompt_types/page_not_found');
 import noPermission from './prompt_types/no_permission';
 const noPermissionSource = require('!!raw-loader!./prompt_types/no_permission');
 import licenseUpgrade from './prompt_types/license_upgrade';
@@ -24,10 +24,10 @@ export default () => {
     demoBackground?: PanelColor;
   }> = [
     {
-      value: 'pageError',
+      value: 'pageNotFound',
       text: 'Page not found',
-      component: pageError,
-      source: pageErrorSource,
+      component: pageNotFound,
+      source: pageNotFoundSource,
     },
     {
       value: 'noPermission',
