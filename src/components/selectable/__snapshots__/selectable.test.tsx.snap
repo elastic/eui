@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiSelectable custom options with labelProps 1`] = `
+exports[`EuiSelectable custom options with data 1`] = `
 <div
   class="euiSelectable"
 >

@@ -359,8 +359,8 @@ export const SelectableExample = {
           <p>
             To provide data that can be used by the{' '}
             <EuiCode>renderOption</EuiCode> function that does not match the
-            standard option API, use <EuiCode>option.labelProps</EuiCode> which
-            will make custom data available in the <EuiCode>option</EuiCode>{' '}
+            standard option API, use <EuiCode>option.data</EuiCode> which will
+            make custom data available in the <EuiCode>option</EuiCode>{' '}
             parameter. See the <EuiCode>secondaryContent</EuiCode> configuration
             in the following example.
           </p>

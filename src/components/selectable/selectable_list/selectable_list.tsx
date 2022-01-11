@@ -208,7 +208,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
 
   ListRow = memo(({ data, index, style }: ListChildComponentProps<T>) => {
     const option = data[index];
-    const { labelProps, ..._option } = option;
+    const { data: optionData, ..._option } = option;
     const {
       label,
       isGroupLabel,
@@ -219,7 +219,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       ref,
       key,
       searchableLabel,
-      labelProps: _labelProps,
+      data: _data,
       ...optionRest
     } = option;
 
@@ -267,7 +267,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         {this.props.renderOption ? (
           this.props.renderOption(
             // @ts-ignore complex
-            { ..._option, ...labelProps },
+            { ..._option, ...optionData },
             this.props.searchValue
           )
         ) : (

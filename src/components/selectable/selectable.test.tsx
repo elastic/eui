@@ -209,33 +209,33 @@ describe('EuiSelectable', () => {
       ).toEqual(options);
     });
 
-    test('with labelProps', () => {
-      type WithLabelProps = {
+    test('with data', () => {
+      type WithData = {
         numeral?: string;
       };
       const options = [
         {
           label: 'Titan',
-          labelProps: {
+          data: {
             numeral: 'VI',
           },
         },
         {
           label: 'Enceladus',
-          labelProps: {
+          data: {
             numeral: 'II',
           },
         },
         {
           label:
             "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
-          labelProps: {
+          data: {
             numeral: 'XVII',
           },
         },
       ];
       const component = render(
-        <EuiSelectable<WithLabelProps>
+        <EuiSelectable<WithData>
           options={options}
           renderOption={(option) => {
             return (

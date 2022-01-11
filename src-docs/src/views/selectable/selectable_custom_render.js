@@ -20,7 +20,7 @@ export default () => {
       prepend: country.flag,
       append: <EuiBadge>{country.code}</EuiBadge>,
       showIcons: false,
-      labelProps: {
+      data: {
         secondaryContent: 'I am secondary content, I am!',
       },
     };
