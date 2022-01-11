@@ -59,7 +59,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   } = {};
   const screenReaderId = useGeneratedHtmlId();
 
-  const { focusFirstVisibleInteractiveCell } = useContext(DataGridFocusContext);
+  const { setFocusedCell, focusFirstVisibleInteractiveCell } = useContext(
+    DataGridFocusContext
+  );
 
   const { sorting } = useContext(DataGridSortingContext);
   let sortString;
@@ -99,6 +101,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     setIsPopoverOpen,
     sorting,
     switchColumnPos,
+    setFocusedCell,
   });
 
   const showColumnActions = columnActions && columnActions.length > 0;
