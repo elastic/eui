@@ -81,6 +81,52 @@ contains `{component name}.tsx`.
 * DON'T depend upon class names or other implementation details for `find`ing nodes, if possible.
 * DON'T extend the `cy.` global namespace - instead prefer to import helper functions directly
 
+### Cypress Real Events
+
+> Cypress default events are simulated. That means that all events like `cy.click` or `cy.type` are fired from JavaScript. That's why these events will be untrusted (`event.isTrusted` will be `false`) and they can behave a little different from real native events. But for some cases, it can be impossible to use simulated events, for example, to fill a native alert or copy to the clipboard. This plugin solves this problem.
+
+[Cypress Real Events](https://github.com/dmtrKovalenko/cypress-real-events#why)
+
+#### Why Cypress Real Events?
+
+Cypress Real Events uses the [Chrome Devtools Protocol](https://chromedevtools.github.io/devtools-protocol/) to handle behaviors like a real browser. This gives us a better way to test complex events like mouse hover and keyboard focus. By using real events and making assertions against them, we can test keyboard and screen reader accessibility as users change the local state.
+
+#### How to write Cypress (real event) tests
+
+The [Cypress Real Events API](https://github.com/dmtrKovalenko/cypress-real-events#api) works seamlessly with existing `cy()` methods. If you want to press a button using Cypress Real Events, you could use `realPress('Tab')` as a replacement for the `cy.tab()` synthetic method. All Cypress Real Events methods are prefixed with the string "real". Here's a small example test:
+
+```jsx
+import TestComponent from './test_component';
+
+describe('TestComponent', () => {
+  it('presses a button using the Enter key', () => {
+    /* Use the `realMount()` command to set focus in the test window */
+    cy.realMount(<TestComponent />);
+    
+    /* Activate a button with a real keypress event */
+    cy.get('[data-test-subj="submitButton"]').realPress('Enter');
+    
+    /* Assert the button has focus and the aria-expanded attribute has updated */
+    cy.focused().invoke('attr', 'aria-expanded').should('equal', 'true');
+  });
+
+  it('presses a button using the Space key', () => {
+    /* Assert the button also accepts the Spacebar keypress */
+    cy.realMount(<TestComponent />);
+    cy.get('[data-test-subj="submitButton"]').realPress('Space');
+    cy.focused().invoke('attr', 'aria-expanded').should('equal', 'true');
+  });
+});
+```
+
+#### Do's and don'ts for Cypress Real Events
+
+* DO follow [all previous guidance](#dos-and-donts) for writing Cypress tests
+* DO use the correct mounting method:
+  * Use `cy.realMount()` if your component doesn't receive focus automatically **OR**
+  * Use `cy.mount()` for components that receive focus on render
+* DO be on the lookout for new features!
+
 ## Debugging tests
 
 For debugging failures locally, use `yarn test-cypress-dev`, which allows you to run a single specific test suite and runs tests in a browser window, making dev tools available to you so you can pause and inspect DOM as needed.

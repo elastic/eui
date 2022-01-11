@@ -7,7 +7,7 @@
  */
 
 import React, { useMemo } from 'react';
-import { EuiI18n } from '../i18n';
+import { EuiI18n } from '../../i18n'; // Note: this file must be named data_grid_schema to match i18n tokens
 import {
   EuiDataGridColumn,
   EuiDataGridInMemory,
@@ -15,7 +15,11 @@ import {
   EuiDataGridSchema,
   EuiDataGridSchemaDetector,
   SchemaTypeScore,
-} from './data_grid_types';
+} from '../data_grid_types';
+
+/**
+ * Default schema
+ */
 
 const numericChars = new Set([
   '0',
@@ -218,10 +222,14 @@ export const defaultComparator: NonNullable<
   return 0;
 };
 
-function scoreValueBySchemaType(
+/**
+ * Scoring
+ */
+
+const scoreValueBySchemaType = (
   value: string,
   schemaDetectors: EuiDataGridSchemaDetector[] = []
-) {
+) => {
   const scores: SchemaTypeScore[] = [];
 
   for (let i = 0; i < schemaDetectors.length; i++) {
@@ -231,20 +239,52 @@ function scoreValueBySchemaType(
   }
 
   return scores;
-}
+};
 
 // completely arbitrary minimum match I came up with
 // represents lowest score a type detector can have to be considered valid
 const MINIMUM_SCORE_MATCH = 0.5;
 
+/**
+ * Schema detection & merging used by EuiDataGrid
+ */
+
+interface UseSchemaProps {
+  columns: EuiDataGridColumn[];
+  inMemory: EuiDataGridInMemory | undefined;
+  inMemoryValues: EuiDataGridInMemoryValues;
+  schemaDetectors: EuiDataGridSchemaDetector[];
+  autoDetectSchema: boolean;
+}
+
+export const useDefinedColumnSchemas = (
+  columns: EuiDataGridColumn[]
+): { [key: string]: string } => {
+  const definedColumnSchemas = useMemo(() => {
+    return columns.reduce<{ [key: string]: string }>(
+      (definedColumnSchemas, { id, schema }) => {
+        if (schema != null) {
+          definedColumnSchemas[id] = schema;
+        }
+        return definedColumnSchemas;
+      },
+      {}
+    );
+  }, [columns]);
+
+  return definedColumnSchemas;
+};
+
 const emptyArray: unknown = []; // for in-memory object permanence
-export function useDetectSchema(
-  inMemory: EuiDataGridInMemory | undefined,
-  inMemoryValues: EuiDataGridInMemoryValues,
-  schemaDetectors: EuiDataGridSchemaDetector[] | undefined,
-  definedColumnSchemas: { [key: string]: string },
-  autoDetectSchema: boolean
-) {
+export const useDetectSchema = ({
+  columns,
+  inMemory,
+  inMemoryValues,
+  schemaDetectors,
+  autoDetectSchema,
+}: UseSchemaProps): EuiDataGridSchema => {
+  const definedColumnSchemas = useDefinedColumnSchemas(columns);
+
   const inMemorySkipColumns =
     inMemory?.skipColumns ??
     (emptyArray as NonNullable<EuiDataGridInMemory['skipColumns']>);
@@ -362,13 +402,14 @@ export function useDetectSchema(
     inMemoryValues,
     schemaDetectors,
   ]);
-  return schema;
-}
 
-export function useMergedSchema(
-  detectedSchema: EuiDataGridSchema,
-  columns: EuiDataGridColumn[]
-) {
+  return schema;
+};
+
+export const useMergedSchema = (props: UseSchemaProps) => {
+  const detectedSchema = useDetectSchema(props);
+  const { columns } = props;
+
   return useMemo(() => {
     const mergedSchema = { ...detectedSchema };
 
@@ -385,17 +426,21 @@ export function useMergedSchema(
 
     return mergedSchema;
   }, [detectedSchema, columns]);
-}
+};
+
+/**
+ * Schema utils used by columns
+ */
 
 // Given a provided schema, return the details for the schema
 // Useful for grabbing the color or icon
-export function getDetailsForSchema(
+export const getDetailsForSchema = (
   detectors: EuiDataGridSchemaDetector[],
   providedSchema: string | null
-) {
+) => {
   const results = detectors.filter((matches) => {
     return matches.type === providedSchema;
   });
 
   return results[0];
-}
+};

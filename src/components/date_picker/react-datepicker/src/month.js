@@ -253,7 +253,7 @@ export default class Month extends React.Component {
         className={this.getClassNames()}
         onMouseLeave={this.handleMouseLeave}
         role="listbox"
-        aria-label={"month-" + this.props.day.format("YYYY-MM")}
+        aria-label={this.props.day.format("MMMM, YYYY")}
         tabIndex={this.props.accessibleMode ? 0 : -1}
         onKeyDown={this.onInputKeyDown}
         onFocus={this.onFocus}

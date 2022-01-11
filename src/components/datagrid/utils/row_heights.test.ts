@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { RowHeightUtils, cellPaddingsMap } from './row_height_utils';
+import { RowHeightUtils, cellPaddingsMap } from './row_heights';
 
 describe('RowHeightUtils', () => {
   const rowHeightUtils = new RowHeightUtils();
