@@ -347,6 +347,20 @@ export const SelectableExample = {
             similar to a title. Add one of these by setting the{' '}
             <EuiCode>option.isGroupLabel</EuiCode> to true.{' '}
           </p>
+          <h3>Row height and virtualization</h3>
+          <p>
+            When virtualization is on,{' '}
+            <strong>every row must be the same height</strong> in order for the
+            list to know how to scroll to the selected or highlighted option. It
+            applies the <EuiCode>listProps.rowHeight</EuiCode> (in pixels)
+            directly to each option hiding any overflow.
+          </p>
+          <p>
+            If <EuiCode>listProps.isVirtualized</EuiCode> is set to{' '}
+            <EuiCode>false</EuiCode>, each row will fit its contents and removes
+            all scrolling. Therefore, we recommend having a large enough
+            container to accomodate all optons.
+          </p>
           <h3>Custom content</h3>
           <p>
             While it is best to stick to the{' '}
@@ -365,18 +379,9 @@ export const SelectableExample = {
             in the following example.
           </p>
           <p>
-            <strong>Every row must be the same height</strong> unless{' '}
-            <EuiCode>listProps.isVirtualized</EuiCode> is set to{' '}
-            <EuiCode>false</EuiCode>, in which case we recommend having a large
-            enough container to accomodate all optons and eliminate scrolling.
-          </p>
-          <p>
-            In order for the list to know how to scroll to the selected or
-            highlighted option, it must also know the height of the rows. It
-            applies this pixel height directly to options. If your custom
-            content is taller than the default of <EuiCode>32px</EuiCode> tall,
-            you will need to recalculate this height and apply it via{' '}
-            <EuiCode>listProps.rowHeight</EuiCode>.
+            Also, if your custom content is taller than the default{' '}
+            <EuiCode>listProps.rowHeight</EuiCode> of <EuiCode>32px</EuiCode>{' '}
+            tall, you will need to pass in a custom value to this prop.
           </p>
         </Fragment>
       ),
