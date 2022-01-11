@@ -3,9 +3,8 @@ import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import {
   EuiBetaBadge,
-  EuiPageBody,
-  EuiPageContentBody,
-  EuiSpacer,
+  EuiPageHeader,
+  EuiPageContent,
 } from '../../../../src/components';
 
 import { LanguageSelector } from '../with_theme';
@@ -89,10 +88,14 @@ const GuidePageComponent = ({
     if (notice) {
       return (
         <>
-          <EuiPageContentBody role="region" aria-label="Notice" restrictWidth>
+          <EuiPageContent
+            grow={false}
+            role="region"
+            aria-label="Notice"
+            restrictWidth
+          >
             {notice}
-          </EuiPageContentBody>
-          <EuiSpacer size="l" />
+          </EuiPageContent>
         </>
       );
     }
@@ -105,28 +108,22 @@ const GuidePageComponent = ({
 
   return (
     <>
-      <EuiPageBody
-        template="default"
-        panelled
+      {renderNotice()}
+      <EuiPageHeader
         restrictWidth
-        paddingSize="l"
-        pageHeader={
-          title
-            ? {
-                pageTitle: (
-                  <>
-                    {title} {betaBadge}
-                  </>
-                ),
-                tabs: renderTabs() || _tabs,
-                description,
-                rightSideItems,
-                children: intro,
-              }
-            : undefined
+        bottomBorder
+        pageTitle={
+          <>
+            {title} {betaBadge}
+          </>
         }
+        rightSideItems={rightSideItems}
+        description={description}
+        tabs={renderTabs() || _tabs}
       >
-        {renderNotice()}
+        {intro}
+      </EuiPageHeader>
+      <EuiPageContent restrictWidth>
         <Switch>
           {playground && (
             <Route path={`${match.path}/playground`}>{playground}</Route>
@@ -136,7 +133,7 @@ const GuidePageComponent = ({
           )}
           <Route path="">{children}</Route>
         </Switch>
-      </EuiPageBody>
+      </EuiPageContent>
     </>
   );
 };

@@ -2,6 +2,8 @@
   @include euiBottomShadowFlat($euiShadowColorLarge);
   background: $euiHeaderDarkBackgroundColor;
   color: $euiColorGhost;
+  // Ensures that flex groups with negative margins don't futz with the page overflow
+  overflow: hidden;
 
   // sass-lint:disable-block mixins-before-declarations
   @include euiCanAnimate {

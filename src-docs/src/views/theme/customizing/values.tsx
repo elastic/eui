@@ -17,6 +17,7 @@ import {
   useEuiTheme,
   mergeDeep,
   EuiThemeProvider,
+  EuiPageContentBody,
 } from '../../../../../src';
 
 // @ts-ignore Importing from JS
@@ -80,8 +81,7 @@ export default () => {
       <GuidePage
         isBeta
         title="Customizing theme"
-        intro={!showSass && <ThemeNotice type="support" />}
-        notice={showSass ? <SassAlert /> : <ThemeNotice />}
+        notice={showSass ? <SassAlert /> : <ThemeNotice type="both" />}
         showThemeLanguageToggle
       >
         {showSass ? (
@@ -117,44 +117,47 @@ export default () => {
 
       {!showSass && (
         <>
-          <EuiBottomBar
-            style={{ marginLeft: -24, marginRight: -24, marginBottom: -24 }}
-            position="sticky"
-          >
-            <EuiFlexGroup responsive={false} justifyContent="flexEnd">
-              {Object.keys(overrides).length > 0 && (
-                <>
-                  <EuiFlexItem grow={false}>
-                    <EuiButtonEmpty
+          <EuiBottomBar paddingSize="none" position="sticky">
+            <EuiPageContentBody paddingSize={'s'} restrictWidth>
+              <EuiFlexGroup responsive={false} justifyContent="flexEnd">
+                {Object.keys(overrides).length > 0 && (
+                  <>
+                    <EuiFlexItem grow={false}>
+                      <EuiButtonEmpty
+                        color="ghost"
+                        iconType="cross"
+                        onClick={clearOverrides}
+                      >
+                        Clear overrides
+                      </EuiButtonEmpty>
+                    </EuiFlexItem>
+                    <EuiFlexItem grow={false}>
+                      <EuiCopy textToCopy={JSON.stringify(overrides, null, 2)}>
+                        {(copy) => (
+                          <EuiButton
+                            onClick={copy}
+                            fill
+                            iconType="copyClipboard"
+                          >
+                            Copy overrides
+                          </EuiButton>
+                        )}
+                      </EuiCopy>
+                    </EuiFlexItem>
+                  </>
+                )}
+                <EuiFlexItem grow={false}>
+                  <span>
+                    <EuiButton
+                      onClick={() => setJsonFlyoutIsOpen(true)}
                       color="ghost"
-                      iconType="cross"
-                      onClick={clearOverrides}
                     >
-                      Clear overrides
-                    </EuiButtonEmpty>
-                  </EuiFlexItem>
-                  <EuiFlexItem grow={false}>
-                    <EuiCopy textToCopy={JSON.stringify(overrides, null, 2)}>
-                      {(copy) => (
-                        <EuiButton onClick={copy} fill iconType="copyClipboard">
-                          Copy overrides
-                        </EuiButton>
-                      )}
-                    </EuiCopy>
-                  </EuiFlexItem>
-                </>
-              )}
-              <EuiFlexItem grow={false}>
-                <span>
-                  <EuiButton
-                    onClick={() => setJsonFlyoutIsOpen(true)}
-                    color="ghost"
-                  >
-                    View theme JSON
-                  </EuiButton>
-                </span>
-              </EuiFlexItem>
-            </EuiFlexGroup>
+                      View theme JSON
+                    </EuiButton>
+                  </span>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiPageContentBody>
           </EuiBottomBar>
           {jsonFlyoutIsOpen && <JsonFlyout setIsOpen={setJsonFlyoutIsOpen} />}
         </>

@@ -5,7 +5,7 @@ import { toggleLocale as _toggleLocale } from '../actions';
 import { GuidePageChrome, ThemeContext, GuidePageHeader } from '../components';
 import { getLocale, getRoutes } from '../store';
 
-import { EuiErrorBoundary, EuiPage } from '../../../src/components';
+import { EuiErrorBoundary } from '../../../src/components';
 
 import { keys } from '../../../src/services';
 
@@ -65,18 +65,16 @@ export const AppView = ({ children, currentRoute }) => {
   return (
     <LinkWrapper>
       <GuidePageHeader onToggleLocale={toggleLocale} selectedLocale={locale} />
-      <EuiPage paddingSize="none">
-        <EuiErrorBoundary>
-          <GuidePageChrome
-            currentRoute={currentRoute}
-            navigation={routes.navigation}
-            onToggleLocale={toggleLocale}
-            selectedLocale={locale}
-          />
-        </EuiErrorBoundary>
-
-        {children({ theme })}
-      </EuiPage>
+      <EuiErrorBoundary>
+        <GuidePageChrome
+          currentRoute={currentRoute}
+          navigation={routes.navigation}
+          onToggleLocale={toggleLocale}
+          selectedLocale={locale}
+        >
+          {children({ theme })}
+        </GuidePageChrome>
+      </EuiErrorBoundary>
     </LinkWrapper>
   );
 };
