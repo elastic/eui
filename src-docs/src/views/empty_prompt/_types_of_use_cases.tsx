@@ -11,10 +11,11 @@ import {
 } from '../../../../src/components';
 import { ThemeContext } from '../../components/with_theme';
 import genericIllustration from '../../images/empty-prompt/illustration.svg';
-import forbiddenLight from '../../images/empty-prompt/403_rainy_cloud_light.png';
-import forbiddenDark from '../../images/empty-prompt/403_rainy_cloud_dark.png';
-import pageNotFoundLight from '../../images/empty-prompt/404_rainy_cloud_light.png';
-import pageNotFoundDark from '../../images/empty-prompt/404_rainy_cloud_dark.png';
+
+const forbiddenLight = '../../images/empty-prompt/403_rainy_cloud_light.png';
+const forbiddenDark = '../../images/empty-prompt/403_rainy_cloud_dark.png';
+const pageNotFoundLight = '../../images/empty-prompt/404_rainy_cloud_light.png';
+const pageNotFoundDark = '../../images/empty-prompt/404_rainy_cloud_dark.png';
 
 const ForbiddenImg = () => {
   const themeContext = useContext(ThemeContext);
@@ -22,7 +23,7 @@ const ForbiddenImg = () => {
 
   const pageNotFoundImg = isDarkTheme ? forbiddenDark : forbiddenLight;
 
-  return <EuiImage size="fullWidth" url={pageNotFoundImg} alt="" />;
+  return <EuiImage size="fullWidth" src={pageNotFoundImg} alt="" />;
 };
 
 const PageNotFoundImg = () => {
@@ -31,7 +32,7 @@ const PageNotFoundImg = () => {
 
   const pageNotFoundImg = isDarkTheme ? pageNotFoundDark : pageNotFoundLight;
 
-  return <EuiImage size="fullWidth" url={pageNotFoundImg} alt="" />;
+  return <EuiImage size="fullWidth" src={pageNotFoundImg} alt="" />;
 };
 
 const GenericIllustration = () => (
