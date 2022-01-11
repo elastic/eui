@@ -1,8 +1,8 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-**Bug fixes**
+**Enhancements**
 
-- Fixed a `EuiDataGrid` inconsistent color halo when focusing on the control columns by changing outline of class `euiButtonIcon` in `euiDataGridRowCell` and mixin `euiCustomControlFocused` [#5522](https://github.com/elastic/eui/pull/5522))
+- Fixed `EuiDataGrid` inconsistent color halo when focusing on the control columns by changing outline of class `euiButtonIcon` and `.euiCheckbox` in `euiDataGridRowCell`, as well as `.euiCheckbox` in `euiDataGridHeaderCell` [#5522](https://github.com/elastic/eui/pull/5522))
 
 **Breaking changes**
 

@@ -126,7 +126,21 @@
   // Ensures focus halo color consistency in ButtonIcons inside of the grid
   .euiButtonIcon {
     &:focus {
-      outline: $euiFocusRingColor solid $euiFocusRingSize;
+      outline: $euiFocusRingSize solid $euiFocusRingColor;
+    }
+  }
+
+  // Ensures focus halo color consistency in Checkboxes inside of the grid
+  .euiCheckbox .euiCheckbox__input {
+    &:focus {
+      + .euiCheckbox__square {
+        outline: $euiFocusRingSize solid $euiFocusRingColor;
+      }
+
+      // Chrome
+      &:focus-visible + .euiCheckbox__square {
+        outline: $euiFocusRingSize solid $euiFocusRingColor;
+      }
     }
   }
 }
