@@ -89,16 +89,20 @@ export const useFocus = ({
   }, [cellsUpdateFocus, focusedCell]);
 
   const focusFirstVisibleInteractiveCell = useCallback(() => {
-    const {
-      visibleColumnStartIndex,
-      visibleRowStartIndex,
-    } = gridItemsRendered.current!;
+    if (headerIsInteractive) {
+      // The header (rowIndex -1) is sticky and will always be in view
+      setFocusedCell([0, -1]);
+    } else if (gridItemsRendered.current) {
+      const {
+        visibleColumnStartIndex,
+        visibleRowStartIndex,
+      } = gridItemsRendered.current;
 
-    setFocusedCell(
-      headerIsInteractive
-        ? [0, -1]
-        : [visibleColumnStartIndex, visibleRowStartIndex]
-    );
+      setFocusedCell([visibleColumnStartIndex, visibleRowStartIndex]);
+    } else {
+      // If the header is non-interactive and there are no rendered cells,
+      // there's nothing to do - we might as well leave focus on the grid body wrapper
+    }
   }, [setFocusedCell, headerIsInteractive, gridItemsRendered]);
 
   const focusProps = useMemo<FocusProps>(
