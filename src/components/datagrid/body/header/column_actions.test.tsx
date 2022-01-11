@@ -195,6 +195,10 @@ describe('getColumnActions', () => {
         callActionOnClick(moveRight);
         expect(switchColumnPos).toHaveBeenCalledWith('B', 'C');
         expect(setFocusedCell).toHaveBeenLastCalledWith([2, -1]);
+
+        // Quick note about the -1 row index above: `-1` is the index we set for our
+        // sticky header row, and these column actions can only ever be called by an
+        // interactive header cell, so we can safely and statically set the -1 index
       });
     });
 
