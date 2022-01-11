@@ -2,8 +2,14 @@
 
 - Added the ability to access certain `EuiDataGrid` internal methods via the `ref` prop ([#5499](https://github.com/elastic/eui/pull/5499))
 
+#### END FEATURE BRANCH
+
+- Added virtulized rendering option to `EuiSelectableList` with `isVirtualized` ([#5521](https://github.com/elastic/eui/pull/5521))
+- Added expanded option properties to `EuiSelectableOption` with `data` ([#5521](https://github.com/elastic/eui/pull/5521))
+
 **Breaking changes**
 
+- Changed `EuiSearchBar` to preserve phrases with leading and trailing spaces, instead of dropping surrounding whitespace ([#5514](https://github.com/elastic/eui/pull/5514))
 - Removed `data-test-subj="dataGridWrapper"`  from `EuiDataGrid` in favor of `data-test-subj="euiDataGridBody"` ([#5506](https://github.com/elastic/eui/pull/5506))
 
 ## [`44.0.0`](https://github.com/elastic/eui/tree/v44.0.0)
