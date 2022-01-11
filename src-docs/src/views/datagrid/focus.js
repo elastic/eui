@@ -17,7 +17,7 @@ import {
 
 const data = [];
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 25; i++) {
   data.push([
     <span>{fake('{{name.firstName}}')}</span>,
     <span>{fake('{{name.firstName}}')}</span>,
@@ -214,7 +214,7 @@ export default () => {
   );
 
   const [pagination, setPagination] = useState({
-    pageSize: 4,
+    pageSize: 20,
     pageIndex: 0,
     pageSizeOptions: [4],
   });
@@ -250,6 +250,7 @@ export default () => {
           onChangeItemsPerPage,
           onChangePage,
         }}
+        height={300}
       />
     </>
   );
