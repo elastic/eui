@@ -5,6 +5,7 @@
   text-align: left;
   color: $euiTextColor;
   cursor: pointer;
+  overflow: hidden;
 
   &:not(:last-of-type) {
     border-bottom: $euiSelectableListItemBorder;
@@ -12,7 +13,7 @@
 
   &-isFocused:not([aria-disabled='true']),
   &:hover:not([aria-disabled='true']) {
-    color: $euiColorPrimary;
+    color: $euiColorPrimaryText;
     background-color: $euiFocusBackgroundColor;
 
     .euiSelectableListItem__text {
