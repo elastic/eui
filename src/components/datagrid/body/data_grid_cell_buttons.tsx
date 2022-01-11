@@ -21,12 +21,14 @@ export const EuiDataGridCellButtons = ({
   onExpandClick,
   column,
   rowIndex,
+  colIndex,
 }: {
   popoverIsOpen: boolean;
   closePopover: () => void;
   onExpandClick: () => void;
   column?: EuiDataGridColumn;
   rowIndex: number;
+  colIndex: number;
 }) => {
   const buttonIconClasses = classNames('euiDataGridRowCell__expandButtonIcon', {
     'euiDataGridRowCell__expandButtonIcon-isActive': popoverIsOpen,
@@ -74,6 +76,7 @@ export const EuiDataGridCellButtons = ({
               <CellButtonElement
                 key={idx}
                 rowIndex={rowIndex}
+                colIndex={colIndex}
                 columnId={column.id}
                 Component={ButtonComponent}
                 isExpanded={false}
@@ -83,7 +86,7 @@ export const EuiDataGridCellButtons = ({
           }
         )
       : [];
-  }, [column, rowIndex, closePopover]);
+  }, [column, colIndex, rowIndex, closePopover]);
 
   return (
     <div className={buttonClasses}>{[...additionalButtons, expandButton]}</div>

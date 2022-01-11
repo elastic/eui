@@ -6,9 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, createRef } from 'react';
 import { mount, ReactWrapper, render } from 'enzyme';
-import { EuiDataGrid, EuiDataGridProps } from './';
+import { EuiDataGrid } from './';
+import { EuiDataGridProps, EuiDataGridRefProps } from './data_grid_types';
 import {
   findTestSubject,
   requiredProps,
@@ -2722,6 +2723,28 @@ describe('EuiDataGrid', () => {
       focusableCell = getFocusableCell(component);
       expect(focusableCell.text()).toEqual('0, B'); // grid navigation is enabled again, check that we can move
       expect(takeMountedSnapshot(component)).toMatchSnapshot();
+    });
+  });
+
+  it('returns a ref which exposes internal imperative APIs', () => {
+    const gridRef = createRef<EuiDataGridRefProps>();
+
+    mount(
+      <EuiDataGrid
+        {...requiredProps}
+        columns={[{ id: 'A' }, { id: 'B' }]}
+        columnVisibility={{
+          visibleColumns: ['A', 'B'],
+          setVisibleColumns: () => {},
+        }}
+        rowCount={1}
+        renderCellValue={() => 'value'}
+        ref={gridRef}
+      />
+    );
+
+    expect(gridRef.current).toEqual({
+      setFocusedCell: expect.any(Function),
     });
   });
 });

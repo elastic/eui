@@ -17,6 +17,7 @@ describe('EuiDataGridCellButtons', () => {
     closePopover: jest.fn(),
     onExpandClick: jest.fn(),
     rowIndex: 0,
+    colIndex: 0,
   };
 
   it('renders an expand button', () => {
@@ -66,6 +67,7 @@ describe('EuiDataGridCellButtons', () => {
         <Component
           Component={[Function]}
           closePopover={[MockFunction]}
+          colIndex={0}
           columnId="someId"
           isExpanded={false}
           key="0"

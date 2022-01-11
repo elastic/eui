@@ -283,6 +283,19 @@ export type EuiDataGridProps = OneOf<
   'aria-label' | 'aria-labelledby'
 >;
 
+export interface EuiDataGridRefProps {
+  /**
+   * Allows manually focusing the specified cell in the grid.
+   *
+   * Using this method is an accessibility requirement if your EuiDataGrid
+   * toggles a modal or flyout - focus must be restored to the grid on close
+   * to prevent keyboard or screen reader users from being stranded.
+   */
+  setFocusedCell(targetCell: EuiDataGridCellLocation): void;
+}
+
+export type EuiDataGridCellLocation = { rowIndex: number; colIndex: number };
+
 export interface EuiDataGridColumnResizerProps {
   columnId: string;
   columnWidth: number;
@@ -307,6 +320,7 @@ export interface EuiDataGridCellPopoverProps {
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
   rowIndex: number;
+  colIndex: number;
 }
 export interface EuiDataGridColumnSortingDraggableProps {
   id: string;
@@ -516,6 +530,10 @@ export interface EuiDataGridColumnCellActionProps {
    * The index of the row that contains cell's data
    */
   rowIndex: number;
+  /**
+   * The index of the column that contains cell's data
+   */
+  colIndex: number;
   /**
    * The id of the column that contains the cell's data
    */

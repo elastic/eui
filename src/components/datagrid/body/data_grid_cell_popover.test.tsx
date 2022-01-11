@@ -14,8 +14,8 @@ import { EuiDataGridCellPopover } from './data_grid_cell_popover';
 
 describe('EuiDataGridCellPopover', () => {
   const requiredProps = {
-    // column,
     rowIndex: 0,
+    colIndex: 0,
     cellContentProps: {
       rowIndex: 0,
       columnId: 'someId',
@@ -123,6 +123,7 @@ describe('EuiDataGridCellPopover', () => {
               <Component
                 Component={[Function]}
                 closePopover={[MockFunction]}
+                colIndex={0}
                 columnId="someId"
                 isExpanded={true}
                 rowIndex={0}
