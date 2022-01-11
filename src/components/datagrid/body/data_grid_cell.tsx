@@ -25,7 +25,7 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiFocusTrap } from '../../focus_trap';
 import { useEuiI18n } from '../../i18n';
 import { hasResizeObserver } from '../../observer/resize_observer/resize_observer';
-import { DataGridFocusContext } from '../data_grid_context';
+import { DataGridFocusContext } from '../utils/focus';
 import {
   EuiDataGridCellProps,
   EuiDataGridCellState,
@@ -142,7 +142,7 @@ export class EuiDataGridCell extends Component<
     return [];
   };
 
-  takeFocus = () => {
+  takeFocus = (preventScroll: boolean) => {
     const cell = this.cellRef.current;
 
     if (cell) {
@@ -157,9 +157,9 @@ export class EuiDataGridCell extends Component<
         const interactables = this.getInteractables();
         if (this.props.isExpandable === false && interactables.length === 1) {
           // Only one element can be interacted with
-          interactables[0].focus();
+          interactables[0].focus({ preventScroll });
         } else {
-          cell.focus();
+          cell.focus({ preventScroll });
         }
       }
     }
@@ -225,16 +225,29 @@ export class EuiDataGridCell extends Component<
   };
 
   componentDidMount() {
+    const { colIndex, visibleRowIndex } = this.props;
+
     this.unsubscribeCell = this.context.onFocusUpdate(
-      [this.props.colIndex, this.props.visibleRowIndex],
+      [colIndex, visibleRowIndex],
       this.onFocusUpdate
     );
+
+    // Account for virtualization - when a cell unmounts when scrolled out of view
+    // and then remounts when scrolled back into view, it should retain focus state
+    if (
+      this.context.focusedCell?.[0] === colIndex &&
+      this.context.focusedCell?.[1] === visibleRowIndex
+    ) {
+      // The second flag sets preventScroll: true as a focus option, which prevents
+      // hijacking the user's scroll behavior when the cell re-mounts on scroll
+      this.onFocusUpdate(true, true);
+    }
   }
 
-  onFocusUpdate = (isFocused: boolean) => {
+  onFocusUpdate = (isFocused: boolean, preventScroll = false) => {
     this.setState({ isFocused }, () => {
       if (isFocused) {
-        this.takeFocus();
+        this.takeFocus(preventScroll);
       }
     });
   };

@@ -2325,7 +2325,7 @@ describe('EuiDataGrid', () => {
       // enable the grid to accept focus
       act(() =>
         component
-          .find('div [data-test-subj="dataGridWrapper"][onFocus]')
+          .find('div [data-test-subj="euiDataGridBody"][onFocus]')
           .props().onFocus!({} as React.FocusEvent)
       );
       component.update();
@@ -2523,7 +2523,7 @@ describe('EuiDataGrid', () => {
       // enable the grid to accept focus
       act(() =>
         component
-          .find('div [data-test-subj="dataGridWrapper"][onFocus]')
+          .find('div [data-test-subj="euiDataGridBody"][onFocus]')
           .props().onFocus!({} as React.FocusEvent)
       );
       component.update();
