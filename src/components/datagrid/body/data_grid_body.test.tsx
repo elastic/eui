@@ -52,6 +52,7 @@ describe('EuiDataGridBody', () => {
         resetAfterRowIndex: jest.fn(),
       } as any,
     },
+    gridItemsRendered: {} as any,
     wrapperRef: { current: document.createElement('div') },
   };
 

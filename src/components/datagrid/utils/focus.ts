@@ -16,7 +16,9 @@ import {
   useState,
   HTMLAttributes,
   KeyboardEvent,
+  MutableRefObject,
 } from 'react';
+import { GridOnItemsRenderedProps } from 'react-window';
 import tabbable from 'tabbable';
 import { keys } from '../../../services';
 import {
@@ -37,9 +39,13 @@ type FocusProps = Pick<HTMLAttributes<HTMLDivElement>, 'tabIndex' | 'onFocus'>;
 /**
  * Main focus context and overarching focus state management
  */
-export const useFocus = (
-  headerIsInteractive: boolean
-): DataGridFocusContextShape & { focusProps: FocusProps } => {
+export const useFocus = ({
+  headerIsInteractive,
+  gridItemsRendered,
+}: {
+  headerIsInteractive: boolean;
+  gridItemsRendered: MutableRefObject<GridOnItemsRenderedProps | null>;
+}): DataGridFocusContextShape & { focusProps: FocusProps } => {
   // Maintain a map of focus cell state callbacks
   const cellsUpdateFocus = useRef<Map<string, Function>>(new Map());
 
@@ -81,6 +87,19 @@ export const useFocus = (
     }
   }, [cellsUpdateFocus, focusedCell]);
 
+  const focusFirstVisibleInteractiveCell = useCallback(() => {
+    const {
+      visibleColumnStartIndex,
+      visibleRowStartIndex,
+    } = gridItemsRendered.current!;
+
+    setFocusedCell(
+      headerIsInteractive
+        ? [0, -1]
+        : [visibleColumnStartIndex, visibleRowStartIndex]
+    );
+  }, [setFocusedCell, headerIsInteractive, gridItemsRendered]);
+
   const focusProps = useMemo<FocusProps>(
     () =>
       isFocusedCellInView
@@ -94,13 +113,13 @@ export const useFocus = (
               // if e.target (the source element of the `focus event`
               // matches e.currentTarget (always the div with this onFocus listener)
               // then the user has focused directly on the data grid wrapper (almost definitely by tabbing)
-              // so shift focus to the first interactive cell within the grid
+              // so shift focus to the first visible and interactive cell within the grid
               if (e.target === e.currentTarget) {
-                setFocusedCell(headerIsInteractive ? [0, -1] : [0, 0]);
+                focusFirstVisibleInteractiveCell();
               }
             },
           },
-    [isFocusedCellInView, setFocusedCell, headerIsInteractive]
+    [isFocusedCellInView, focusFirstVisibleInteractiveCell]
   );
 
   return {
