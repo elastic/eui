@@ -18,15 +18,5 @@
   > *:not(legend) {
     margin-bottom: $euiKeyPadMenuMarginSize;
     margin-right: $euiKeyPadMenuMarginSize;
-    position: relative;
-  }
-
-  &__listItem {
-    .euiToolTipAnchor {
-      position: absolute;
-      top: $euiSizeS;
-      right: $euiSizeS;
-      z-index: 3;
-    }
   }
 }

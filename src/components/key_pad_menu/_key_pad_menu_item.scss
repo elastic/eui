@@ -1,3 +1,7 @@
+.euiKeyPadMenuItem__outer {
+  position: relative;
+}
+
 /**
  * 1. If this class is applied to a button, we need to override the Chrome default font.
  * 2. If it has a BetaBadge, make sure only the first letter shows
@@ -77,6 +81,15 @@
     .euiKeyPadMenuItem__checkableInput {
       @include euiScreenReaderOnly;
     }
+  }
+
+  // Position the tooltip container top right when it's a sibling
+  // to the key pad menu item <button>
+  + .euiToolTipAnchor {
+    position: absolute;
+    top: $euiSizeS;
+    right: $euiSizeS;
+    z-index: 3;
   }
 }
 

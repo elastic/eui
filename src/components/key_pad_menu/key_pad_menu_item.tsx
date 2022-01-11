@@ -276,7 +276,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   }
 
   return (
-    <React.Fragment>
+    <div className="euiKeyPadMenuItem__outer">
       <Element
         className={classes}
         {...(relObj as ElementType)}
@@ -287,6 +287,6 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
         {renderContent()}
       </Element>
       {betaBadgeLabel && !checkable && renderBetaBadge()}
-    </React.Fragment>
+    </div>
   );
 };
