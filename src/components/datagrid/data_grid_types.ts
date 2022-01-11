@@ -183,6 +183,7 @@ export interface DataGridSortingContextShape {
 export interface DataGridFocusContextShape {
   focusedCell?: EuiDataGridFocusedCell;
   setFocusedCell: (cell: EuiDataGridFocusedCell) => void;
+  setIsFocusedCellInView: (isFocusedCellInView: boolean) => void;
   onFocusUpdate: (
     cell: EuiDataGridFocusedCell,
     updateFocus: Function

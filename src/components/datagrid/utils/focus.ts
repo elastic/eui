@@ -28,6 +28,7 @@ import {
 export const DataGridFocusContext = createContext<DataGridFocusContextShape>({
   focusedCell: undefined,
   setFocusedCell: () => {},
+  setIsFocusedCellInView: () => {},
   onFocusUpdate: () => () => {},
 });
 
@@ -54,9 +55,15 @@ export const useFocus = (
   );
 
   // Current focused cell
-  const [focusedCell, setFocusedCell] = useState<
+  const [isFocusedCellInView, setIsFocusedCellInView] = useState(false);
+  const [focusedCell, _setFocusedCell] = useState<
     EuiDataGridFocusedCell | undefined
   >(undefined);
+
+  const setFocusedCell = useCallback((focusedCell: EuiDataGridFocusedCell) => {
+    _setFocusedCell(focusedCell);
+    setIsFocusedCellInView(true); // The cell must be in view to focus it
+  }, []);
 
   const previousCell = useRef<EuiDataGridFocusedCell | undefined>(undefined);
   useEffect(() => {
@@ -74,11 +81,9 @@ export const useFocus = (
     }
   }, [cellsUpdateFocus, focusedCell]);
 
-  const hasHadFocus = useMemo(() => focusedCell != null, [focusedCell]);
-
   const focusProps = useMemo<FocusProps>(
     () =>
-      hasHadFocus
+      isFocusedCellInView
         ? {
             // FireFox allows tabbing to a div that is scrollable, while Chrome does not
             tabIndex: -1,
@@ -95,13 +100,14 @@ export const useFocus = (
               }
             },
           },
-    [hasHadFocus, setFocusedCell, headerIsInteractive]
+    [isFocusedCellInView, setFocusedCell, headerIsInteractive]
   );
 
   return {
     onFocusUpdate,
     focusedCell,
     setFocusedCell,
+    setIsFocusedCellInView,
     focusProps,
   };
 };
