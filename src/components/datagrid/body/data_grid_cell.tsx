@@ -25,7 +25,7 @@ import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiFocusTrap } from '../../focus_trap';
 import { useEuiI18n } from '../../i18n';
 import { hasResizeObserver } from '../../observer/resize_observer/resize_observer';
-import { DataGridFocusContext } from '../data_grid_context';
+import { DataGridFocusContext } from '../utils/focus';
 import {
   EuiDataGridCellProps,
   EuiDataGridCellState,

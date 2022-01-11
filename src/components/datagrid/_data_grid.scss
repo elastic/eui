@@ -24,30 +24,19 @@
 }
 
 .euiDataGrid__content {
+  flex-grow: 1;
   height: 100%;
-  font-feature-settings: 'tnum' 1; // Tabular numbers
   max-width: 100%;
   width: 100%;
+  overflow: hidden;
   z-index: 2; // Sits above the pagination below it, but below the controls above it
   background: $euiColorEmptyShade;
+  font-feature-settings: 'tnum' 1; // Tabular numbers
 }
 
 .euiDataGrid__pagination {
-
   padding-top: $euiSizeXS;
   flex-grow: 0;
-}
-
-.euiDataGrid__verticalScroll {
-  flex-grow: 1;
-  overflow-y: hidden;
-  height: 100%;
-}
-
-.euiDataGrid__overflow {
-  overflow-y: hidden;
-  height: 100%;
-  background: $euiColorEmptyShade;
 }
 
 // This is used to remove extra scrollbars on the body when fullscreen is enabled

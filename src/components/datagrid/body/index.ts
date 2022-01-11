@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export { EuiDataGridBody, VIRTUALIZED_CONTAINER_CLASS } from './data_grid_body';
+export { EuiDataGridBody } from './data_grid_body';

@@ -345,7 +345,7 @@ export class FieldValueSelectionFilter extends Component<
           return {
             label,
             checked,
-            labelProps: {
+            data: {
               view: option.view ?? label,
               value: option.value,
               optionField,
@@ -396,7 +396,7 @@ export class FieldValueSelectionFilter extends Component<
             </div>
           </div>
         ) : (
-          <EuiSelectable<Partial<typeof items[number]['labelProps']>>
+          <EuiSelectable<Partial<typeof items[number]['data']>>
             singleSelection={!multiSelect}
             aria-label={config.name}
             options={items}
@@ -420,8 +420,8 @@ export class FieldValueSelectionFilter extends Component<
               );
               if (diff) {
                 this.onOptionClick(
-                  diff.labelProps.optionField,
-                  diff.labelProps.value,
+                  diff.data.optionField,
+                  diff.data.value,
                   diff.checked
                 );
               }

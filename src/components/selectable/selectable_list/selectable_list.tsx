@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, HTMLAttributes, ReactNode, memo } from 'react';
+import React, {
+  Component,
+  HTMLAttributes,
+  ReactNode,
+  memo,
+  CSSProperties,
+} from 'react';
 import classNames from 'classnames';
 import {
   FixedSizeList,
@@ -14,7 +20,7 @@ import {
   ListChildComponentProps as ReactWindowListChildComponentProps,
   areEqual,
 } from 'react-window';
-import { CommonProps } from '../../common';
+import { CommonProps, ExclusiveUnion } from '../../common';
 import { EuiAutoSizer } from '../../auto_sizer';
 import { EuiHighlight } from '../../highlight';
 import { EuiSelectableOption } from '../selectable_option';
@@ -24,9 +30,28 @@ import {
 } from './selectable_list_item';
 
 interface ListChildComponentProps<T>
-  extends ReactWindowListChildComponentProps {
+  extends Omit<ReactWindowListChildComponentProps, 'style'> {
   data: Array<EuiSelectableOption<T>>;
+  style?: CSSProperties;
 }
+
+export type EuiSelectableOptionsListVirtualizedProps = ExclusiveUnion<
+  {
+    /**
+     * Use virtualized rendering for list items with `react-window`.
+     * Sets each row's height to the value of `rowHeight`.
+     */
+    isVirtualized?: true;
+    /**
+     *  The height of each option in pixels. Defaults to `32`.
+     *  Has no effect if `isVirtualized=false`.
+     */
+    rowHeight: number;
+  },
+  {
+    isVirtualized: false;
+  }
+>;
 
 // Consumer Configurable Props via `EuiSelectable.listProps`
 export type EuiSelectableOptionsListProps = CommonProps &
@@ -37,10 +62,6 @@ export type EuiSelectableOptionsListProps = CommonProps &
      * directly to that option
      */
     activeOptionIndex?: number;
-    /**
-     *  The height of each option in pixels. Defaults to `32`
-     */
-    rowHeight: number;
     /**
      * Show the check/cross selection indicator icons
      */
@@ -61,12 +82,7 @@ export type EuiSelectableOptionsListProps = CommonProps &
      * The default content when `true` is `↩ to select/deselect/include/exclude`
      */
     onFocusBadge?: EuiSelectableListItemProps['onFocusBadge'];
-    /**
-     * Use virtualized rendering for list items with `react-window`.
-     * Requires that each option be the same height.
-     */
-    isVirtualized?: boolean;
-  };
+  } & EuiSelectableOptionsListVirtualizedProps;
 
 export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
   /**
@@ -192,7 +208,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
 
   ListRow = memo(({ data, index, style }: ListChildComponentProps<T>) => {
     const option = data[index];
-    const { labelProps, ..._option } = option;
+    const { data: optionData, ..._option } = option;
     const {
       label,
       isGroupLabel,
@@ -203,7 +219,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
       ref,
       key,
       searchableLabel,
-      labelProps: _labelProps,
+      data: _data,
       ...optionRest
     } = option;
 
@@ -251,7 +267,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
         {this.props.renderOption ? (
           this.props.renderOption(
             // @ts-ignore complex
-            { ..._option, ...labelProps },
+            { ..._option, ...optionData },
             this.props.searchValue
           )
         ) : (
@@ -306,9 +322,9 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
 
       if (numVisibleMoreThanMax) {
         // Show only half of the last one to indicate there's more to scroll to
-        calculatedHeight = (maxVisibleOptions - 0.5) * rowHeight;
+        calculatedHeight = (maxVisibleOptions - 0.5) * rowHeight!;
       } else {
-        calculatedHeight = numVisibleOptions * rowHeight;
+        calculatedHeight = numVisibleOptions * rowHeight!;
       }
     }
 
@@ -335,7 +351,7 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
                 height={calculatedHeight || height}
                 itemCount={optionArray.length}
                 itemData={optionArray}
-                itemSize={rowHeight}
+                itemSize={rowHeight!}
                 innerElementType="ul"
                 innerRef={this.setListBoxRef}
                 {...windowProps}
@@ -354,9 +370,9 @@ export class EuiSelectableList<T> extends Component<EuiSelectableListProps<T>> {
                 React.createElement(
                   this.ListRow,
                   {
+                    key: index,
                     data: optionArray,
                     index,
-                    style: {},
                   },
                   null
                 )
