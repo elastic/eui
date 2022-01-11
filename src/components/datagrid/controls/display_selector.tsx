@@ -112,15 +112,13 @@ export const useDataGridDisplaySelector = (
   const [userGridStyles, setUserGridStyles] = useState({});
   const [userRowHeightsOptions, setUserRowHeightsOptions] = useState({});
 
-  // Density state
-  const [gridDensity, setGridDensity] = useState('');
-  const setGridStyles = (density: string) => {
+  // Density logic
+  const setGridStyles = useCallback((density: string) => {
     setUserGridStyles(densityStyles[density]);
-  };
+  }, []);
 
-  // Row height state
+  // Row height logic
   const [lineCount, setLineCount] = useState(2);
-  const [rowHeightSelection, setRowHeightSelection] = useState('');
   const setRowHeight = useCallback(
     (option: string) => {
       const rowHeightsOptions: EuiDataGridRowHeightsOptions = {
@@ -165,15 +163,13 @@ export const useDataGridDisplaySelector = (
     };
   }, [initialRowHeightsOptions, userRowHeightsOptions]);
 
-  // Update UI controls based on current settings, on init & when either developer or user settings change
-  useEffect(() => {
-    setGridDensity(convertGridStylesToSelection(gridStyles));
+  // Set UI controls based on current configurations, on init & when either developer or user settings change
+  const gridDensity = useMemo(() => {
+    return convertGridStylesToSelection(gridStyles);
   }, [gridStyles]);
 
-  useEffect(() => {
-    setRowHeightSelection(
-      convertRowHeightsOptionsToSelection(rowHeightsOptions)
-    );
+  const rowHeightSelection = useMemo(() => {
+    return convertRowHeightsOptionsToSelection(rowHeightsOptions);
   }, [rowHeightsOptions]);
 
   useEffect(() => {

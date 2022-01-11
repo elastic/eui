@@ -127,7 +127,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   /**
    * Merge consumer settings with defaults
    */
-  const gridStyleWithDefaults = { ...startingStyles, ...gridStyle };
+  const gridStyleWithDefaults = useMemo(
+    () => ({ ...startingStyles, ...gridStyle }),
+    [gridStyle]
+  );
 
   const mergedPopoverContents = useMemo(
     () => ({
