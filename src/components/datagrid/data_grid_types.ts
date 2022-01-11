@@ -192,6 +192,7 @@ export interface DataGridFocusContextShape {
     cell: EuiDataGridFocusedCell,
     updateFocus: Function
   ) => () => void;
+  focusFirstVisibleInteractiveCell: () => void;
 }
 
 export type CommonGridProps = CommonProps &

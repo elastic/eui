@@ -32,6 +32,7 @@ export const DataGridFocusContext = createContext<DataGridFocusContextShape>({
   setFocusedCell: () => {},
   setIsFocusedCellInView: () => {},
   onFocusUpdate: () => () => {},
+  focusFirstVisibleInteractiveCell: () => {},
 });
 
 type FocusProps = Pick<HTMLAttributes<HTMLDivElement>, 'tabIndex' | 'onFocus'>;
@@ -127,6 +128,7 @@ export const useFocus = ({
     focusedCell,
     setFocusedCell,
     setIsFocusedCellInView,
+    focusFirstVisibleInteractiveCell,
     focusProps,
   };
 };

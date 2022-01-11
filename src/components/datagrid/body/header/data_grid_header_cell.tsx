@@ -21,6 +21,7 @@ import { EuiIcon } from '../../../icon';
 import { EuiListGroup } from '../../../list_group';
 import { EuiPopover } from '../../../popover';
 import { DataGridSortingContext } from '../../utils/sorting';
+import { DataGridFocusContext } from '../../utils/focus';
 import { EuiDataGridHeaderCellProps } from '../../data_grid_types';
 
 import { getColumnActions } from './column_actions';
@@ -58,6 +59,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   } = {};
   const screenReaderId = useGeneratedHtmlId();
 
+  const { focusFirstVisibleInteractiveCell } = useContext(DataGridFocusContext);
+
   const { sorting } = useContext(DataGridSortingContext);
   let sortString;
   if (sorting) {
@@ -92,6 +95,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     schema,
     schemaDetectors,
     setVisibleColumns,
+    focusFirstVisibleInteractiveCell,
     setIsPopoverOpen,
     sorting,
     switchColumnPos,

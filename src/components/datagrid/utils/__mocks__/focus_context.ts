@@ -11,4 +11,5 @@ export const mockFocusContext = {
   onFocusUpdate: jest.fn(),
   setFocusedCell: jest.fn(),
   setIsFocusedCellInView: jest.fn(),
+  focusFirstVisibleInteractiveCell: jest.fn(),
 };

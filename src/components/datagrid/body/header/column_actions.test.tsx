@@ -19,6 +19,7 @@ import {
 
 describe('getColumnActions', () => {
   const setVisibleColumns = jest.fn();
+  const focusFirstVisibleInteractiveCell = jest.fn();
   const setIsPopoverOpen = jest.fn();
   const switchColumnPos = jest.fn();
 
@@ -28,6 +29,7 @@ describe('getColumnActions', () => {
     schema: {},
     schemaDetectors,
     setVisibleColumns,
+    focusFirstVisibleInteractiveCell,
     setIsPopoverOpen,
     sorting: undefined,
     switchColumnPos,
@@ -104,9 +106,10 @@ describe('getColumnActions', () => {
           `);
       });
 
-      it('sets column visibility on click', () => {
+      it('hides the current column on click and refocuses into the grid', () => {
         callActionOnClick(hideColumn);
         expect(setVisibleColumns).toHaveBeenCalledWith(['A', 'C']);
+        expect(focusFirstVisibleInteractiveCell).toHaveBeenCalled();
       });
     });
 
