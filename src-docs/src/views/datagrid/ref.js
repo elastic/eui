@@ -148,6 +148,14 @@ export default () => {
             Set cell focus
           </EuiButton>
         </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiButton
+            size="s"
+            onClick={() => dataGridRef.current.setIsFullScreen(true)}
+          >
+            Set grid to full screen
+          </EuiButton>
+        </EuiFlexItem>
       </EuiFlexGroup>
       <EuiSpacer />
 

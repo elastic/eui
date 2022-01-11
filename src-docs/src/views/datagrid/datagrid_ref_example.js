@@ -14,6 +14,9 @@ const dataGridRefSource = require('!!raw-loader!./ref');
 const dataGridRefSnippet = `const dataGridRef = useRef();
 <EuiDataGrid ref={dataGridRef} {...props} />
 
+// Mnaually toggle the data grid's full screen state
+dataGridRef.current.setIsFullScreen(true);
+
 // Mnaually focus a specific cell within the data grid
 dataGridRef.current.setFocusedCell({ rowIndex, colIndex });
 `;
@@ -37,6 +40,13 @@ export const DataGridRefExample = {
             the <EuiCode>ref</EuiCode> prop of EuiDataGrid. These methods are:
           </p>
           <ul>
+            <li>
+              <p>
+                <EuiCode>setIsFullScreen(isFullScreen)</EuiCode> - controls the
+                full screen state of the data grid. Accepts a true/false boolean
+                flag.
+              </p>
+            </li>
             <li>
               <EuiCode>setFocusedCell({'{ rowIndex, colIndex }'})</EuiCode> -
               focuses the specified cell in the grid.
