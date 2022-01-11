@@ -216,6 +216,18 @@ describe('EuiSelectableListItem', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('isVirtualized can be false', () => {
+      const component = render(
+        <EuiSelectableList
+          options={options}
+          isVirtualized={false}
+          {...selectableListRequiredProps}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     describe('paddingSize', () => {
       PADDING_SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {

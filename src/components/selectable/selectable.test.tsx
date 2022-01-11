@@ -208,5 +208,48 @@ describe('EuiSelectable', () => {
         (component.find('EuiSelectableList').props() as any).visibleOptions
       ).toEqual(options);
     });
+
+    test('with data', () => {
+      type WithData = {
+        numeral?: string;
+      };
+      const options = [
+        {
+          label: 'Titan',
+          data: {
+            numeral: 'VI',
+          },
+        },
+        {
+          label: 'Enceladus',
+          data: {
+            numeral: 'II',
+          },
+        },
+        {
+          label:
+            "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+          data: {
+            numeral: 'XVII',
+          },
+        },
+      ];
+      const component = render(
+        <EuiSelectable<WithData>
+          options={options}
+          renderOption={(option) => {
+            return (
+              <span>
+                {option.numeral}: {option.label}
+              </span>
+            );
+          }}
+        >
+          {(list) => list}
+        </EuiSelectable>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

@@ -234,12 +234,12 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
 
     // Omit props destined for the EuiSuggestItem so that they don't
     // cause warnings or render in the DOM of the EuiSelectableItem
-    const labelProps = {};
+    const data = {};
     const liProps = { label: props.label };
     Object.keys(props).forEach((key) => {
       if (suggestItemPropsKeys.includes(key)) {
         // @ts-ignore string index type
-        labelProps[key] = props[key];
+        data[key] = props[key];
       } else {
         // @ts-ignore string index type
         liProps[key] = props[key];
@@ -247,7 +247,7 @@ export const EuiSuggest: FunctionComponent<EuiSuggestProps> = ({
     });
     return {
       ...(liProps as typeof props),
-      labelProps,
+      data,
       className: classNames(className, 'euiSuggestItemOption'),
     };
   });

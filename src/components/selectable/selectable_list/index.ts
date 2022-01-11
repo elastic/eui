@@ -10,6 +10,7 @@ export {
   EuiSelectableList,
   EuiSelectableListProps,
   EuiSelectableOptionsListProps,
+  EuiSelectableOptionsListVirtualizedProps,
 } from './selectable_list';
 export {
   EuiSelectableListItem,

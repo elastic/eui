@@ -18,7 +18,10 @@ import classNames from 'classnames';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiSelectableSearch } from './selectable_search';
 import { EuiSelectableMessage } from './selectable_message';
-import { EuiSelectableList } from './selectable_list';
+import {
+  EuiSelectableList,
+  EuiSelectableOptionsListVirtualizedProps,
+} from './selectable_list';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiSpacer } from '../spacer';
 import { getMatchingOptions } from './matching_options';
@@ -471,8 +474,23 @@ export class EuiSelectable<T = {}> extends Component<
     const {
       'aria-label': listAriaLabel,
       'aria-describedby': listAriaDescribedby,
+      isVirtualized,
+      rowHeight,
       ...cleanedListProps
-    } = listProps || unknownAccessibleName;
+    } = (listProps || unknownAccessibleName) as typeof listProps &
+      typeof unknownAccessibleName;
+
+    let virtualizedProps: EuiSelectableOptionsListVirtualizedProps;
+
+    if (isVirtualized === false) {
+      virtualizedProps = {
+        isVirtualized,
+      };
+    } else if (rowHeight != null) {
+      virtualizedProps = {
+        rowHeight,
+      };
+    }
 
     const classes = classNames(
       'euiSelectable',
@@ -698,6 +716,7 @@ export class EuiSelectable<T = {}> extends Component<
                 ? listAccessibleName
                 : searchable && { 'aria-label': placeholderName })}
               {...cleanedListProps}
+              {...virtualizedProps}
             />
           </>
         )}
