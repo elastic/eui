@@ -562,8 +562,8 @@ describe('defaultSyntax', () => {
     expect(printedQuery).toBe(query);
   });
 
-  test('relaxed phrases with spaces', () => {
-    const query = 'f:" this is a relaxed phrase \t"';
+  test('phrases with spaces', () => {
+    const query = 'f:" this is a phrase that preserves spaces\t"';
     const ast = defaultSyntax.parse(query);
 
     expect(ast).toBeDefined();
@@ -574,10 +574,10 @@ describe('defaultSyntax', () => {
     expect(AST.Field.isInstance(clause)).toBe(true);
     expect(AST.Match.isMustClause(clause)).toBe(true);
     expect(clause.field).toBe('f');
-    expect(clause.value).toBe('this is a relaxed phrase');
+    expect(clause.value).toBe(' this is a phrase that preserves spaces	');
 
     const printedQuery = defaultSyntax.print(ast);
-    expect(printedQuery).toBe('f:"this is a relaxed phrase"');
+    expect(printedQuery).toBe('f:" this is a phrase that preserves spaces	"');
   });
 
   test('phrases with extra characters', () => {

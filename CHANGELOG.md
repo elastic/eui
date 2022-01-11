@@ -1,12 +1,27 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+**Breaking changes**
+
+- Changed `EuiSearchBar` to preserve phrases with leading and trailing spaces, instead of dropping surrounding whitespace ([#5514](https://github.com/elastic/eui/pull/5514))
+- Removed `data-test-subj="dataGridWrapper"`  from `EuiDataGrid` in favor of `data-test-subj="euiDataGridBody"` ([#5506](https://github.com/elastic/eui/pull/5506))
+
+## [`44.0.0`](https://github.com/elastic/eui/tree/v44.0.0)
+
 **Bug fixes**
 
 - Fixed a `EuiDataGrid` sizing bug which didn't account for a horizontal scrollbar ([#5478](https://github.com/elastic/eui/pull/5478))
+- Fixed a `EuiDatePicker` a11y bug where axe-core reported missing ARIA and role attributes ([#5501](https://github.com/elastic/eui/pull/5501))
+- Fixed `EuiModalHeaderTitle` to conditionally wrap title strings in an H1 ([#5494](https://github.com/elastic/eui/pull/5494))
+- Fixed a `EuiDataGrid` issue where a focused cell would lose focus when scrolled out of and back into view ([#5488](https://github.com/elastic/eui/pull/5488))
+- Fixed an `EuiDatePicker` accessibility issue where `tabindex` was not applied to a listbox element ([#5509](https://github.com/elastic/eui/pull/5509))
 
 **Deprecations**
 
 - Deprecated `PartitionConfig` in favor of inclusion in Charts `theme.partition` ([#5492](https://github.com/elastic/eui/pull/5492))
+
+**Breaking changes**
+
+- Removed `popoverClassName` and `repositionOnScroll` props from `EuiSuperSelect` (use `popoverProps` instead) ([#5512](https://github.com/elastic/eui/pull/5512))
 
 ## [`43.1.1`](https://github.com/elastic/eui/tree/v43.1.1)
 

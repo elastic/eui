@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { RowHeightUtils as ActualRowHeightUtils } from '../row_height_utils';
+import { RowHeightUtils as ActualRowHeightUtils } from '../row_heights';
 
 const actual = new ActualRowHeightUtils();
 
