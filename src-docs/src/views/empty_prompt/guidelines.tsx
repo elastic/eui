@@ -1,5 +1,5 @@
 import React from 'react';
-// @ts-ignore Importing from JS
+// @ts-ignore Importing from JS file
 import { GuideRule, GuideRuleExample, GuideRuleTitle } from '../../components';
 
 import {
@@ -7,16 +7,18 @@ import {
   EuiText,
   EuiSpacer,
   EuiImage,
+  EuiAspectRatio,
 } from '../../../../src/components';
 import TypesOfEmptyStates from './_types_of_empty_states';
 
-import anatomy from '../../images/empty-prompt/anatomy.svg';
-import vertical from '../../images/empty-prompt/vertical.svg';
-import horizontal from '../../images/empty-prompt/horizontal.svg';
-import iconDont from '../../images/empty-prompt/icon-dont.svg';
-import multipleDo from '../../images/empty-prompt/multiple-do.svg';
-import multipleDont from '../../images/empty-prompt/multiple-dont.svg';
-import inlineLink from '../../images/empty-prompt/inline-link.svg';
+import vertical from '../../images/empty-prompt/thumbnail_vertical.svg';
+import horizontal from '../../images/empty-prompt/thumbnail_horizontal.svg';
+import iconDont from '../../images/empty-prompt/thumbnail_icon-dont.svg';
+import iconDo from '../../images/empty-prompt/thumbnail_icon-do.svg';
+import multipleDo from '../../images/empty-prompt/thumbnail_multiple-do.svg';
+import multipleDont from '../../images/empty-prompt/thumbnail_multiple-dont.svg';
+import inlineLink from '../../images/empty-prompt/thumbnail_inline-link.svg';
+import footerLink from '../../images/empty-prompt/thumbnail_footer-link.svg';
 
 export default () => (
   <>
@@ -38,7 +40,14 @@ export default () => (
 
     <EuiSpacer size="l" />
 
-    <EuiImage alt="Vertical layout" url={anatomy} />
+    <EuiAspectRatio width={1200} height={550}>
+      <iframe
+        title="Anatomy of an empty state"
+        width="1200"
+        height="550"
+        src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FRzfYLj2xmH9K7gQtbSKygn%2FElastic-UI%3Fnode-id%3D22764%253A276515"
+      />
+    </EuiAspectRatio>
 
     <EuiSpacer size="xl" />
 
@@ -57,7 +66,7 @@ export default () => (
           space is empty and guide the user through the required actions.
         </li>
         <li>
-          <strong>Call to action:</strong> What will solve the issue? It&apos;s
+          <strong>Action(s):</strong> What will solve the issue? It&apos;s
           always important to lead users to take action or guide them about the
           next steps.
         </li>
@@ -87,13 +96,10 @@ export default () => (
 
     <TypesOfEmptyStates />
 
-    <EuiSpacer size="xl" />
     {/* End of Types of empty states; goals and recommendations section */}
 
     {/* Design section */}
-    <EuiTitle>
-      <h2>Design</h2>
-    </EuiTitle>
+    <GuideRuleTitle>Design</GuideRuleTitle>
 
     <GuideRule
       heading="Vertical vs. Horizontal"
@@ -148,7 +154,7 @@ export default () => (
         text="An illustration works better in a horizontal layout."
         minHeight={280}
       >
-        <EuiImage alt="Horizontal layout" url={horizontal} height="252" />
+        <EuiImage alt="Horizontal layout" url={iconDo} height="252" />
       </GuideRuleExample>
       <GuideRuleExample
         type="dont"
@@ -185,7 +191,7 @@ export default () => (
         text="Add the learn more link in the footer when the empty prompt contains a call to action."
         minHeight={280}
       >
-        <EuiImage alt="Footer link" url={horizontal} height="252" />
+        <EuiImage alt="Footer link" url={footerLink} height="252" />
       </GuideRuleExample>
     </GuideRule>
 

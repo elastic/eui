@@ -8,23 +8,15 @@ import {
   EuiLink,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiDescriptionList,
+  EuiDescriptionListTitle,
+  EuiDescriptionListDescription,
 } from '../../../../src/components';
 import { ThemeContext } from '../../components/with_theme';
-import genericIllustration from '../../images/empty-prompt/illustration.svg';
-
-const forbiddenLight = '../../images/empty-prompt/403_rainy_cloud_light.png';
-const forbiddenDark = '../../images/empty-prompt/403_rainy_cloud_dark.png';
-const pageNotFoundLight = '../../images/empty-prompt/404_rainy_cloud_light.png';
-const pageNotFoundDark = '../../images/empty-prompt/404_rainy_cloud_dark.png';
-
-const ForbiddenImg = () => {
-  const themeContext = useContext(ThemeContext);
-  const isDarkTheme = themeContext.theme.includes('dark');
-
-  const pageNotFoundImg = isDarkTheme ? forbiddenDark : forbiddenLight;
-
-  return <EuiImage size="fullWidth" src={pageNotFoundImg} alt="" />;
-};
+import pageNotFoundLight from '../../images/empty-prompt/404_rainy_cloud_light.png';
+import pageNotFoundDark from '../../images/empty-prompt/404_rainy_cloud_dark.png';
+import noResultsLight from '../../images/empty-prompt/no-results--light.svg';
+import noResultsDark from '../../images/empty-prompt/no-results--dark.svg';
 
 const PageNotFoundImg = () => {
   const themeContext = useContext(ThemeContext);
@@ -35,50 +27,47 @@ const PageNotFoundImg = () => {
   return <EuiImage size="fullWidth" src={pageNotFoundImg} alt="" />;
 };
 
-const GenericIllustration = () => (
-  <EuiImage size="fullWidth" src={genericIllustration} alt="" />
-);
+const NoResultsImg = () => {
+  const themeContext = useContext(ThemeContext);
+  const isDarkTheme = themeContext.theme.includes('dark');
 
-export const typesOfUseCases: any = {
-  noData: {
-    id: 'noData',
-    label: 'No data',
+  const noResultsImg = isDarkTheme ? noResultsDark : noResultsLight;
+
+  return <EuiImage size="fullWidth" src={noResultsImg} alt="" />;
+};
+
+export const typesOfUseCases = {
+  firstUse: {
+    id: 'firstUse',
+    label: 'First time use',
     info: {
-      description: (
-        <p>
-          No data is available, or the data doesn&apos;t match the filter. First
-          time use.
-        </p>
-      ),
+      description: <p>First time use.</p>,
       goal: (
         <p>
-          Help users understand why no data is displayed and what actions they
-          can perform to make it available.
+          Help users understand how they can start using the product. For no
+          data use cases consider using another component.
         </p>
       ),
-      action: <p>Add data</p>,
+      action: (
+        <p>
+          Actions specific to first use. For example: “Add cases”, “Create job”,
+          “Add workpad”
+        </p>
+      ),
     },
     example: {
-      icon: <GenericIllustration />,
-      title: <h2>Get started by adding your data</h2>,
-      layout: 'horizontal',
+      iconType: 'logoSecurity',
+      title: <h2>Start adding cases</h2>,
       body: (
-        <>
-          <p>
-            To start working with your data, use one of our many ingest options.
-            Collect data from an app or service, or upload a file.
-          </p>
-          <p>
-            If you&apos;re not ready to use your own data, add a sample data
-            set.
-          </p>
-        </>
+        <p>
+          There are no cases to display. Add a new case or change your filter
+          settings.
+        </p>
       ),
       actions: [
         <EuiButton color="primary" fill>
-          Add your data
+          Add a case
         </EuiButton>,
-        <EuiButtonEmpty>Try sample data</EuiButtonEmpty>,
       ],
     },
     footer: (
@@ -159,26 +148,31 @@ export const typesOfUseCases: any = {
       ),
     },
     example: {
-      iconType: 'logoSecurity',
-      title: <h2>Start adding cases</h2>,
+      icon: <NoResultsImg />,
+      title: <h2>No results match your search criteria</h2>,
+      layout: 'horizontal',
       body: (
-        <p>
-          There are no cases to display. Add a new case or change your filter
-          settings.
-        </p>
+        <EuiDescriptionList compressed>
+          <EuiDescriptionListTitle>
+            Expand your time range
+          </EuiDescriptionListTitle>
+          <EuiDescriptionListDescription>
+            Try searching over a longer period of time.
+          </EuiDescriptionListDescription>
+
+          <EuiDescriptionListTitle>Adjust your query</EuiDescriptionListTitle>
+          <EuiDescriptionListDescription>
+            Try searching for a different combination of terms.
+          </EuiDescriptionListDescription>
+        </EuiDescriptionList>
       ),
-      actions: [
-        <EuiButton color="primary" fill>
-          Add a case
-        </EuiButton>,
-      ],
     },
   },
   error: {
     id: 'error',
-    label: 'Error',
+    label: 'Error loading data',
     info: {
-      description: <p>An error happened.</p>,
+      description: <p>An error happened when loading the data.</p>,
       goal: (
         <p>
           Help users understand why they&apos;re facing an error and what they
@@ -197,77 +191,27 @@ export const typesOfUseCases: any = {
       ),
     },
   },
-  pageNotFound: {
-    id: 'pageNotFound',
-    label: '404 Not Found',
+  errorPages: {
+    id: 'errorPages',
+    label: 'Error pages (4xx and 5xx)',
     info: {
-      description: <p>The page was not found.</p>,
-      goal: (
+      description: (
         <p>
-          Help users understand why the page was not found. That could be either
-          because the page never existed, the page was removed (deleted), or the
-          page&apos;s URL was changed to a different URL.
+          The error pages come from client and server errors — the 4xx and 5xx
+          status code classes.
         </p>
       ),
+      goal: <p>Help users understand there is a client or server error.</p>,
       action: <p>Go home or go back</p>,
     },
     example: {
       title: <h2>Page not found</h2>,
       icon: <PageNotFoundImg />,
-      layout: 'horizontal',
       body: (
-        <>
-          <p>
-            “Reality is frequently inaccurate.” The Restaurant at the End of the
-            Universe
-          </p>
-          <p>
-            Sorry, we can&apos;t seem to find the page you&apos;re looking for.
-            It might have been removed or renamed, or maybe it never existed at
-            all.
-          </p>
-        </>
-      ),
-      actions: [
-        <EuiButton color="primary" fill>
-          Go home
-        </EuiButton>,
-        <EuiButtonEmpty iconType="arrowLeft" flush="both">
-          Go back
-        </EuiButtonEmpty>,
-      ],
-    },
-  },
-  forbidden: {
-    id: 'forbidden',
-    label: '403 Forbidden',
-    info: {
-      description: <p>The page was not found.</p>,
-      goal: (
         <p>
-          Help users understand why the page was not found. That could be either
-          because the page never existed, the page was removed (deleted), or the
-          page&apos;s URL was changed to a different URL.
+          Sorry, we can&apos;t seem to find the page you&apos;re looking for. It
+          might have been removed or renamed, or maybe it never existed at all.
         </p>
-      ),
-      action: <p>Go home or go back</p>,
-    },
-    example: {
-      title: <h2>Access denied</h2>,
-      icon: <ForbiddenImg />,
-      layout: 'horizontal',
-      body: (
-        <>
-          <p>
-            “For a moment, nothing happened. Then, after a second or so, nothing
-            continued to happen.” The Hitchhiker&apos;s Guide to the Galaxy
-          </p>
-          <p>
-            Unfortunately, you don’t have permission to access this page.
-            Contact your administrator for help or reach out to us at{' '}
-            <a href="#">support.elastic.co</a>.
-          </p>
-        </>
       ),
       actions: [
         <EuiButton color="primary" fill>

@@ -5,7 +5,6 @@ import {
   EuiTitle,
   EuiImage,
   EuiSpacer,
-  EuiText,
   EuiRadioGroup,
   EuiEmptyPrompt,
   EuiSplitPanel,
@@ -16,9 +15,13 @@ import {
   EuiFlexGrid,
   EuiPanel,
   EuiKeyPadMenuItem,
+  EuiDescriptionList,
+  EuiDescriptionListTitle,
+  EuiDescriptionListDescription,
 } from '../../../../src/components';
 import { ThemeContext } from '../../components/with_theme';
 import { typesOfPanelColors } from './_types_of_panel_colors';
+// @ts-ignore Importing from JS file
 import { typesOfUseCases } from './_types_of_use_cases';
 import { useIsWithinBreakpoints } from '../../../../src/services/hooks';
 import { GuideSection } from '../../components/guide_section/guide_section';
@@ -57,7 +60,7 @@ export default () => {
   const errorValue = typesOfUseCases.error.id;
   const [radioUseCaseId, setRadioUseCaseId] = useState<
     EuiRadioGroupOption['id']
-  >(typesOfUseCases.noData.id);
+  >(typesOfUseCases.firstUse.id);
 
   const [panelProps, setPanelProps] = useState({ color: 'plain' });
   const [thumbnail, setThumbnail] = useState('sidebar');
@@ -107,11 +110,11 @@ export default () => {
 
     if (
       radioUseCaseId === 'noPermission' ||
-      radioUseCaseId === 'pageNotFound' ||
+      radioUseCaseId === 'errorPages' ||
       radioUseCaseId === 'forbidden' ||
       radioUseCaseId === 'loading'
     ) {
-      // if the `multiple` thumb is selected when we changing the use case for `noPermission`, `pageNotFound`, `forbidden` or `loading` we change the selection for the first thumb
+      // if the `multiple` thumb is selected when we changing the use case for `noPermission`, `errorPages`, `forbidden` or `loading` we change the selection for the first thumb
       // because these use cases don't work for a `multiple` page layout
       if (thumbnail === 'multiple') {
         setThumbnail('sidebar');
@@ -292,49 +295,35 @@ export default () => {
         </EuiSplitPanel.Inner>
 
         <EuiSplitPanel.Inner>
-          <div className="guideDemo__emptyPromptRecommendCards">
-            <EuiTitle size="xs">
-              <h3>Description</h3>
-            </EuiTitle>
+          <EuiDescriptionList>
+            <EuiDescriptionListTitle>Description</EuiDescriptionListTitle>
+            <EuiDescriptionListDescription>
+              {currentUseCaseInfo.description}
+            </EuiDescriptionListDescription>
 
-            <EuiSpacer size="m" />
-
-            <EuiText size="s">{currentUseCaseInfo.description}</EuiText>
-
-            <EuiSpacer size="xl" />
-
-            <EuiTitle size="xs">
-              <h3>Goal</h3>
-            </EuiTitle>
-
-            <EuiSpacer size="m" />
-
-            <EuiText size="s">{currentUseCaseInfo.goal}</EuiText>
-
-            <EuiSpacer size="xl" />
+            <EuiDescriptionListTitle>Goal</EuiDescriptionListTitle>
+            <EuiDescriptionListDescription>
+              {currentUseCaseInfo.goal}
+            </EuiDescriptionListDescription>
 
             {currentUseCaseInfo.action && (
               <>
-                <EuiTitle size="xs">
-                  <h3>Action</h3>
-                </EuiTitle>
-
-                <EuiSpacer size="m" />
-
-                <EuiText size="s">{currentUseCaseInfo.action}</EuiText>
-
-                <EuiSpacer size="xl" />
+                <EuiDescriptionListTitle>Action</EuiDescriptionListTitle>
+                <EuiDescriptionListDescription>
+                  {currentUseCaseInfo.action}
+                </EuiDescriptionListDescription>
               </>
             )}
 
-            <EuiTitle size="xs">
-              <h3>Recommend panel color</h3>
-            </EuiTitle>
+            <EuiDescriptionListTitle>
+              Recommend panel color
+            </EuiDescriptionListTitle>
+            <EuiDescriptionListDescription>
+              {visibleRecommendedPanelColorText}
+            </EuiDescriptionListDescription>
+          </EuiDescriptionList>
 
-            <EuiSpacer size="m" />
-
-            <EuiText size="s">{visibleRecommendedPanelColorText}</EuiText>
-          </div>
+          <div className="guideDemo__emptyPromptRecommendCards">{/*  */}</div>
         </EuiSplitPanel.Inner>
       </EuiSplitPanel.Outer>
 
