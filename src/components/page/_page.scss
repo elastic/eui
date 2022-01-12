@@ -2,7 +2,7 @@
   @include euiPageRestrictWidth;
   display: flex;
   background-color: $euiPageBackgroundColor;
-  flex-shrink: 0; // Ensures Safari doesn't shrink height beyond contents
+  // flex-shrink: 0; // Ensures Safari doesn't shrink height beyond contents
   max-width: 100%; // Ensures Firefox doesn't expand width beyond bounds
 
   &--grow {

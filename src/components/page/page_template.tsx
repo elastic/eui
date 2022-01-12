@@ -20,7 +20,6 @@ import {
 } from './page_content';
 import { EuiBottomBarProps, EuiBottomBar } from '../bottom_bar';
 import { useIsWithinBreakpoints } from '../../services';
-import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { _EuiPageTemplate } from './_template';
 
 export type EuiPageTemplateProps = Omit<EuiPageProps, 'paddingSize'> &
@@ -101,38 +100,25 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
     useIsWithinBreakpoints(['m', 'l', 'xl']) &&
     (template === 'default' || template === 'empty');
   const fullHeightClass = { 'eui-fullHeight': fullHeight && canFullHeight };
-  const yScrollClass = { 'eui-yScroll': fullHeight && canFullHeight };
 
   if (canFullHeight && fullHeight) {
-    // By using flex group it will also fix the negative margin issues for nested flex groups
-    children = (
-      <EuiFlexGroup
-        className="eui-fullHeight"
-        gutterSize="none"
-        direction="column"
-        responsive={false}
-      >
-        <EuiFlexItem
-          className={classNames({
-            'eui-yScroll': fullHeight === true,
-            'eui-fullHeight': fullHeight === 'noscroll',
-          })}
-          grow={true}
-        >
-          {children}
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    );
-
     pageBodyProps = {
       ...pageBodyProps,
-      className: classNames(fullHeightClass, pageBodyProps?.className),
+      className: classNames(
+        { fullHeightClass: !pageSideBar },
+        pageBodyProps?.className
+      ),
     };
     pageContentProps = {
       ...pageContentProps,
       grow: true,
-      className: classNames(yScrollClass, pageContentProps?.className),
+      className: classNames(fullHeightClass, pageContentProps?.className),
       bodyProps: {
+        grow: true,
+        style: {
+          display: 'flex',
+          flexDirection: 'column',
+        },
         className: classNames(
           fullHeightClass,
           pageContentProps?.bodyProps?.className

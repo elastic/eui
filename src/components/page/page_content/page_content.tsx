@@ -87,7 +87,7 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
 
   const contentBodyProps: Partial<EuiPageContentBodyProps> = {
     paddingSize,
-    style: { paddingLeft: 0, paddingRight: 0 },
+    style: { ...bodyProps?.style, paddingLeft: 0, paddingRight: 0 },
   };
 
   if (alignment?.toLowerCase().includes('center')) {
@@ -104,10 +104,10 @@ export const EuiPageContent: FunctionComponent<EuiPageContentProps> = ({
       {...rest}
     >
       <EuiPageContentBody
-        {...contentBodyProps}
         bottomBorder={bottomBorder === true}
         restrictWidth={restrictWidth}
         {...bodyProps}
+        {...contentBodyProps}
       >
         {children}
       </EuiPageContentBody>
