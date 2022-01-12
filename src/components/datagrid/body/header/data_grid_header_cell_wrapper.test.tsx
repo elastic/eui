@@ -12,6 +12,7 @@ import { mount } from 'enzyme';
 
 import { keys } from '../../../../services';
 import { DataGridFocusContext } from '../../utils/focus';
+import { mockFocusContext } from '../../utils/__mocks__/focus_context';
 
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 
@@ -23,16 +24,12 @@ describe('EuiDataGridHeaderCellWrapper', () => {
     children: <button />,
   };
 
-  const focusContext = {
-    setFocusedCell: jest.fn(),
-    onFocusUpdate: jest.fn(),
-  };
   const mountWithContext = (props = {}, isFocused = true) => {
-    (focusContext.onFocusUpdate as jest.Mock).mockImplementation(
+    (mockFocusContext.onFocusUpdate as jest.Mock).mockImplementation(
       (_, callback) => callback(isFocused) // allows us to mock isFocused state
     );
     return mount(
-      <DataGridFocusContext.Provider value={focusContext}>
+      <DataGridFocusContext.Provider value={mockFocusContext}>
         <EuiDataGridHeaderCellWrapper {...requiredProps} {...props} />
       </DataGridFocusContext.Provider>
     );
@@ -186,7 +183,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
               act(() => {
                 headerCell.dispatchEvent(new FocusEvent('focusin'));
               });
-              expect(focusContext.setFocusedCell).toHaveBeenCalled();
+              expect(mockFocusContext.setFocusedCell).toHaveBeenCalled();
             });
 
             it('re-enables and focuses cell interactives when already focused', () => {
