@@ -112,6 +112,16 @@ Besides babel transforms, the test environment build consumes mocked component f
 
 The `optimize` output directory is opt-in intermediaty step as we work towards dedicated, formal build output for development and production environments.
 
+When compiling with webpack, use the `resolve.alias` configuration to target the desired directory:
+
+```json
+resolve: {
+  alias: {
+    '@elastic/eui$': '@elastic/eui/optimize/lib'
+  }
+}
+```
+
 Designated "Beta" as included babel plugins may change and the output directory is likely to be renamed.
 
 ### Notable differences
