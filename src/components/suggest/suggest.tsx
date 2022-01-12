@@ -25,9 +25,9 @@ import { EuiSelectable, EuiSelectableListItemProps } from '../selectable';
 import { EuiToolTip } from '../tool_tip';
 
 import { EuiSuggestItem, _EuiSuggestItemPropsBase } from './suggest_item';
-import { EuiSuggestStatus, StatusMap } from './types';
+import { EuiSuggestStatus, _EuiSuggestStatusMap } from './types';
 
-const statusMap: StatusMap = {
+const statusMap: _EuiSuggestStatusMap = {
   unsaved: {
     icon: 'dot',
     color: 'accent',

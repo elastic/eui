@@ -62,6 +62,11 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
      * Padding for the list items.
      */
     paddingSize?: EuiSelectablePaddingSize;
+    /**
+     * Whether the `EuiSelectable` instance is searchable.
+     * When false, allows SPACE to toggle item selection.
+     * Enables the correct screen reader instructions for selection.
+     */
     searchable?: boolean;
   };
 

@@ -228,6 +228,18 @@ describe('EuiSelectableListItem', () => {
       expect(component).toMatchSnapshot();
     });
 
+    test('searchable enables correct screen reader instructions', () => {
+      const component = render(
+        <EuiSelectableList
+          options={options}
+          searchable={true}
+          {...selectableListRequiredProps}
+        />
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
     describe('paddingSize', () => {
       PADDING_SIZES.forEach((size) => {
         test(`${size} is rendered`, () => {

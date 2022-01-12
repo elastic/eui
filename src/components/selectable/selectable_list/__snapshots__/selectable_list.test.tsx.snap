@@ -2450,6 +2450,190 @@ exports[`EuiSelectableListItem props searchValue 2`] = `
 </div>
 `;
 
+exports[`EuiSelectableListItem props searchable enables correct screen reader instructions 1`] = `
+<div
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    data-eui="EuiAutoSizer"
+  >
+    <div
+      class="euiSelectableList__list"
+      style="position:relative;height:192px;width:600px;overflow:auto;-webkit-overflow-scrolling:touch;will-change:transform;direction:ltr"
+    >
+      <ul
+        style="height:192px;width:100%"
+      >
+        <li
+          aria-checked="false"
+          aria-posinset="1"
+          aria-selected="false"
+          aria-setsize="6"
+          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+          data-test-subj="titanOption"
+          id="option_0"
+          role="option"
+          style="position:absolute;left:0;top:0;height:32px;width:100%"
+          title="Titan"
+        >
+          <span
+            class="euiSelectableListItem__content"
+          >
+            <span
+              class="euiSelectableListItem__icon"
+              data-euiicon-type="empty"
+            />
+            <span
+              class="euiSelectableListItem__text"
+            >
+              <span>
+                Titan
+              </span>
+            </span>
+          </span>
+        </li>
+        <li
+          aria-checked="false"
+          aria-posinset="2"
+          aria-selected="false"
+          aria-setsize="6"
+          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+          id="option_1"
+          role="option"
+          style="position:absolute;left:0;top:32px;height:32px;width:100%"
+          title="Enceladus"
+        >
+          <span
+            class="euiSelectableListItem__content"
+          >
+            <span
+              class="euiSelectableListItem__icon"
+              data-euiicon-type="empty"
+            />
+            <span
+              class="euiSelectableListItem__text"
+            >
+              <span>
+                Enceladus
+              </span>
+            </span>
+          </span>
+        </li>
+        <li
+          aria-checked="false"
+          aria-posinset="3"
+          aria-selected="false"
+          aria-setsize="6"
+          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+          id="option_2"
+          role="option"
+          style="position:absolute;left:0;top:64px;height:32px;width:100%"
+          title="Mimas"
+        >
+          <span
+            class="euiSelectableListItem__content"
+          >
+            <span
+              class="euiSelectableListItem__icon"
+              data-euiicon-type="empty"
+            />
+            <span
+              class="euiSelectableListItem__text"
+            >
+              <span>
+                Mimas
+              </span>
+            </span>
+          </span>
+        </li>
+        <li
+          aria-checked="false"
+          aria-posinset="4"
+          aria-selected="false"
+          aria-setsize="6"
+          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+          id="option_3"
+          role="option"
+          style="position:absolute;left:0;top:96px;height:32px;width:100%"
+          title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
+        >
+          <span
+            class="euiSelectableListItem__content"
+          >
+            <span
+              class="euiSelectableListItem__icon"
+              data-euiicon-type="empty"
+            />
+            <span
+              class="euiSelectableListItem__text"
+            >
+              <span>
+                Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
+              </span>
+            </span>
+          </span>
+        </li>
+        <li
+          aria-checked="false"
+          aria-posinset="5"
+          aria-selected="false"
+          aria-setsize="6"
+          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+          id="option_4"
+          role="option"
+          style="position:absolute;left:0;top:128px;height:32px;width:100%"
+          title="Tethys"
+        >
+          <span
+            class="euiSelectableListItem__content"
+          >
+            <span
+              class="euiSelectableListItem__icon"
+              data-euiicon-type="empty"
+            />
+            <span
+              class="euiSelectableListItem__text"
+            >
+              <span>
+                Tethys
+              </span>
+            </span>
+          </span>
+        </li>
+        <li
+          aria-checked="false"
+          aria-posinset="6"
+          aria-selected="false"
+          aria-setsize="6"
+          class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+          id="option_5"
+          role="option"
+          style="position:absolute;left:0;top:160px;height:32px;width:100%"
+          title="Hyperion"
+        >
+          <span
+            class="euiSelectableListItem__content"
+          >
+            <span
+              class="euiSelectableListItem__icon"
+              data-euiicon-type="empty"
+            />
+            <span
+              class="euiSelectableListItem__text"
+            >
+              <span>
+                Hyperion
+              </span>
+            </span>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiSelectableListItem props showIcons can be turned off 1`] = `
 <div
   class="euiSelectableList testClass1 testClass2"

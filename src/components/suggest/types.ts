@@ -10,15 +10,15 @@ export const ALL_STATUS = ['unsaved', 'saved', 'unchanged', 'loading'] as const;
 type StatusTuple = typeof ALL_STATUS;
 export type EuiSuggestStatus = StatusTuple[number];
 
-export interface Status {
+export interface _Status {
   icon?: string;
   color?: string;
   tooltip?: string;
 }
 
-export interface StatusMap {
-  unsaved: Status;
-  saved: Status;
-  unchanged: Status;
-  loading: Status;
+export interface _EuiSuggestStatusMap {
+  unsaved: _Status;
+  saved: _Status;
+  unchanged: _Status;
+  loading: _Status;
 }
