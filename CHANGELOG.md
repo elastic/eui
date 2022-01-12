@@ -5,6 +5,7 @@
 
 **Bug fixes**
 
+- Fixed multiple bugs with `EuiDataGrid` keyboard focus restoration ([#5530](https://github.com/elastic/eui/pull/5530))
 - Fixed `EuiDataGrid`'s display toolbar control to update initial UI state when developer `gridStyle` or `rowHeightsOptions` props are updated ([#5525](https://github.com/elastic/eui/pull/5525))
 
 **Breaking changes**
