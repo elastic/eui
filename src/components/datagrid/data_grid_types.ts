@@ -285,6 +285,10 @@ export type EuiDataGridProps = OneOf<
 
 export interface EuiDataGridRefProps {
   /**
+   * Allows manually controlling the full-screen state of the grid.
+   */
+  setIsFullScreen: (isFullScreen: boolean) => void;
+  /**
    * Allows manually focusing the specified cell in the grid.
    *
    * Using this method is an accessibility requirement if your EuiDataGrid

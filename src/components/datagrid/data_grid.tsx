@@ -290,6 +290,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     useImperativeHandle(
       ref,
       () => ({
+        setIsFullScreen,
         setFocusedCell: ({ rowIndex, colIndex }) => {
           focusContext.setFocusedCell([colIndex, rowIndex]);
         },
