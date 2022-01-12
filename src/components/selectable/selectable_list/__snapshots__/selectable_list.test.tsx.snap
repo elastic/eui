@@ -1087,6 +1087,171 @@ exports[`EuiSelectableListItem props height is full 1`] = `
 </div>
 `;
 
+exports[`EuiSelectableListItem props isVirtualized can be false 1`] = `
+<div
+  class="euiSelectableList testClass1 testClass2"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiSelectableList__list"
+  >
+    <ul>
+      <li
+        aria-posinset="1"
+        aria-selected="false"
+        aria-setsize="6"
+        class="euiSelectableListItem"
+        data-test-subj="titanOption"
+        id="option_0"
+        role="option"
+        title="Titan"
+      >
+        <span
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text"
+          >
+            <span>
+              Titan
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        aria-posinset="2"
+        aria-selected="false"
+        aria-setsize="6"
+        class="euiSelectableListItem"
+        id="option_1"
+        role="option"
+        title="Enceladus"
+      >
+        <span
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text"
+          >
+            <span>
+              Enceladus
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        aria-posinset="3"
+        aria-selected="false"
+        aria-setsize="6"
+        class="euiSelectableListItem"
+        id="option_2"
+        role="option"
+        title="Mimas"
+      >
+        <span
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text"
+          >
+            <span>
+              Mimas
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        aria-posinset="4"
+        aria-selected="false"
+        aria-setsize="6"
+        class="euiSelectableListItem"
+        id="option_3"
+        role="option"
+        title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
+      >
+        <span
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text"
+          >
+            <span>
+              Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        aria-posinset="5"
+        aria-selected="false"
+        aria-setsize="6"
+        class="euiSelectableListItem"
+        id="option_4"
+        role="option"
+        title="Tethys"
+      >
+        <span
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text"
+          >
+            <span>
+              Tethys
+            </span>
+          </span>
+        </span>
+      </li>
+      <li
+        aria-posinset="6"
+        aria-selected="false"
+        aria-setsize="6"
+        class="euiSelectableListItem"
+        id="option_5"
+        role="option"
+        title="Hyperion"
+      >
+        <span
+          class="euiSelectableListItem__content"
+        >
+          <span
+            class="euiSelectableListItem__icon"
+            data-euiicon-type="empty"
+          />
+          <span
+            class="euiSelectableListItem__text"
+          >
+            <span>
+              Hyperion
+            </span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
 exports[`EuiSelectableListItem props renderOption 1`] = `
 <div
   class="euiSelectableList testClass1 testClass2"

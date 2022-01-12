@@ -6,13 +6,10 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiSelectableList,
-  EuiSelectableListProps,
-  EuiSelectableOptionsListProps,
-  EuiSelectableOptionsListVirtualizedProps,
-} from './selectable_list';
-export {
-  EuiSelectableListItem,
-  EuiSelectableListItemProps,
-} from './selectable_list_item';
+export const mockFocusContext = {
+  focusedCell: undefined,
+  onFocusUpdate: jest.fn(),
+  setFocusedCell: jest.fn(),
+  setIsFocusedCellInView: jest.fn(),
+  focusFirstVisibleInteractiveCell: jest.fn(),
+};
