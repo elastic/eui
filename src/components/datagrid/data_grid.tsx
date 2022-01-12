@@ -403,6 +403,8 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                 gridElement: contentRef.current,
                 visibleColCount,
                 visibleRowCount,
+                visibleRowStartIndex:
+                  gridItemsRendered.current?.visibleRowStartIndex || 0,
                 rowCount,
                 pagination,
                 hasFooter: !!renderFooterCellValue,

@@ -156,6 +156,7 @@ export const createKeyDownHandler = ({
   gridElement,
   visibleColCount,
   visibleRowCount,
+  visibleRowStartIndex,
   rowCount,
   pagination,
   hasFooter,
@@ -165,6 +166,7 @@ export const createKeyDownHandler = ({
   gridElement: HTMLDivElement | null;
   visibleColCount: number;
   visibleRowCount: number;
+  visibleRowStartIndex: number;
   rowCount: EuiDataGridProps['rowCount'];
   pagination: EuiDataGridProps['pagination'];
   hasFooter: boolean;
@@ -187,7 +189,14 @@ export const createKeyDownHandler = ({
     if (key === keys.ARROW_DOWN) {
       event.preventDefault();
       if (hasFooter ? y < visibleRowCount : y < visibleRowCount - 1) {
-        setFocusedCell([x, y + 1]);
+        if (y === -1) {
+          // The header is sticky, so on scrolling virtualized grids, row 0 will not
+          // always be rendered to navigate down to. We need to account for this by
+          // sending the down arrow to the first visible/virtualized row instead
+          setFocusedCell([x, visibleRowStartIndex]);
+        } else {
+          setFocusedCell([x, y + 1]);
+        }
       }
     } else if (key === keys.ARROW_LEFT) {
       event.preventDefault();
