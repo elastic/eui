@@ -1,0 +1,7 @@
+.euiDescriptionList {
+  &.euiDescriptionList--inline {
+    .euiDescriptionList__title {
+      line-height: $euiLineHeight;
+    }
+  }
+}

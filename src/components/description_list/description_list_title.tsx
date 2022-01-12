@@ -9,15 +9,34 @@
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
+import { EuiBadge } from '../badge';
+
+export type EuiDescriptionListType = keyof typeof typesToClassNameMap;
+
+export type EuiDescriptionListTitleProps = {
+  type?: EuiDescriptionListType;
+};
+
+const typesToClassNameMap = {
+  row: 'euiDescriptionList--row',
+  inline: 'euiDescriptionList--inline',
+  column: 'euiDescriptionList--column',
+  responsiveColumn: 'euiDescriptionList--responsiveColumn',
+};
 
 export const EuiDescriptionListTitle: FunctionComponent<
-  CommonProps & HTMLAttributes<HTMLElement>
-> = ({ children, className, ...rest }) => {
+  EuiDescriptionListTitleProps & CommonProps & HTMLAttributes<HTMLElement>
+> = ({ children, type, className, ...rest }) => {
   const classes = classNames('euiDescriptionList__title', className);
-
   return (
     <dt className={classes} {...rest}>
-      {children}
+      {type === 'inline' ? (
+        <EuiBadge className="euiDescriptionList__titleBadge">
+          {children}
+        </EuiBadge>
+      ) : (
+        children
+      )}
     </dt>
   );
 };

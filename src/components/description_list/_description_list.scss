@@ -170,19 +170,30 @@
 
   &.euiDescriptionList--inline {
 
+    &:not(.euiDescriptionList--compressed) {
+      .euiDescriptionList__titleBadge {
+        @include fontSize($euiFontSizeS);
+      }
+    }
+
     .euiDescriptionList__title {
       @include euiFontSizeS;
       display: inline;
-      border-radius: $euiBorderRadius;
-      font-weight: $euiFontWeightRegular;
-      background: $euiColorLightestShade;
-      border: $euiBorderThin;
-      padding:  0 $euiSizeXS;
+      padding:  0;
       margin: 0 $euiSizeXS;
+
+      &Badge {
+        vertical-align: baseline;
+        font-weight: $euiFontWeightRegular;
+        padding:  0 $euiSizeXS;
+        border: none;
+        background-color: transparentize(shade($euiColorPrimary, 20%), .9) !important; // sass-lint:disable-line no-important
+      }
 
       // Make sure the first <dt> doesn't get a margin.
       &:first-of-type {
         margin-left: 0;
+        padding-left: 0;
       }
     }
 
@@ -194,10 +205,6 @@
 
     // Compressed when inline is even smaller.
     &.euiDescriptionList--compressed {
-
-      .euiDescriptionList__title {
-        @include euiFontSizeXS;
-      }
 
       .euiDescriptionList__description {
         @include euiFontSizeXS;
