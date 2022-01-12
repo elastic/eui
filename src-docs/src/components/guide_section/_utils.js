@@ -1,38 +1,29 @@
+/**
+ * renderJsSource code is responsible for formatting the JavaScript that goes into the DemoJS within the
+ * EUI Docs. In addition to formatting the code for the tab, this function also combines EUI imports by
+ * searching code.default for all EUI imports, extracting the variables, and combining them at the top of
+ * the formatted code.
+ */
 import { cleanEuiImports } from '../../services';
 
 export const renderJsSourceCode = (code) => {
-  let renderedCode = cleanEuiImports(code.default).split('\n');
-  const linesWithImport = [];
-  // eslint-disable-next-line guard-for-in
-  for (const idx in renderedCode) {
-    const line = renderedCode[idx];
-    if (line.includes('import') && line.includes("from '@elastic/eui';")) {
-      linesWithImport.push(line);
-      renderedCode[idx] = '';
+  let renderedCode = cleanEuiImports(code.default);
+  const elasticImports = [];
+
+  // Find all imports that come from '@elastic/eui'
+  renderedCode = renderedCode.replace(
+    /[\r\n]import\s+\{(?<imports>.+?)\}\s+from\s'@elastic\/eui';[\r\n]/gs,
+    (match, imports) => {
+      // remove any additional characters from imports
+      const namedImports = imports.match(/[a-zA-Z0-9]+/g);
+      elasticImports.push(...namedImports);
+      return '';
     }
-  }
-  if (linesWithImport.length > 1) {
-    linesWithImport[0] = linesWithImport[0].replace(
-      " } from '@elastic/eui';",
-      ','
-    );
-    for (let i = 1; i < linesWithImport.length - 1; i++) {
-      linesWithImport[i] = linesWithImport[i]
-        .replace('import {', '')
-        .replace(" } from '@elastic/eui';", ',');
-    }
-    linesWithImport[linesWithImport.length - 1] = linesWithImport[
-      linesWithImport.length - 1
-    ].replace('import {', '');
-  }
-  const newImport = linesWithImport.join('');
-  renderedCode.unshift(newImport);
-  renderedCode = renderedCode.join('\n');
-  let len = renderedCode.replace('\n\n\n', '\n\n').length;
-  while (len < renderedCode.length) {
-    renderedCode = renderedCode.replace('\n\n\n', '\n\n');
-    len = renderedCode.replace('\n\n\n', '\n\n').length;
-  }
+  );
+  renderedCode = `import { ${elasticImports.join(', ')} } from '@elastic/eui';
+  
+${renderedCode}
+  `;
 
   return renderedCode;
 };
