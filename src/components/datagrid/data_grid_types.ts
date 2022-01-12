@@ -17,12 +17,13 @@ import {
   AriaAttributes,
   Dispatch,
   SetStateAction,
+  MutableRefObject,
 } from 'react';
-import { VariableSizeGridProps } from 'react-window';
+import { VariableSizeGridProps, VariableSizeGrid as Grid } from 'react-window';
 import { EuiListGroupItemProps } from '../list_group';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { ExclusiveUnion, CommonProps, OneOf } from '../common';
-import { RowHeightUtils } from './row_height_utils';
+import { RowHeightUtils } from './utils/row_heights';
 import { IconType } from '../icon';
 import { EuiTokenProps } from '../token';
 
@@ -44,6 +45,7 @@ export interface EuiDataGridPaginationRendererProps
   controls: string;
   'aria-label'?: AriaAttributes['aria-label'];
   'aria-labelledby'?: AriaAttributes['aria-labelledby'];
+  gridRef: EuiDataGridBodyProps['gridRef'];
 }
 
 export interface EuiDataGridInMemoryRendererProps {
@@ -165,6 +167,18 @@ export type EuiDataGridFooterRowProps = CommonProps &
     interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
     visibleRowIndex?: number;
   };
+
+export interface EuiDataGridVisibleRows {
+  startRow: number;
+  endRow: number;
+  visibleRowCount: number;
+}
+
+export interface DataGridSortingContextShape {
+  sorting?: EuiDataGridSorting;
+  sortedRowMap: { [key: number]: number };
+  getCorrectRowIndex: (rowIndex: number) => number;
+}
 
 export interface DataGridFocusContextShape {
   focusedCell?: EuiDataGridFocusedCell;
@@ -308,31 +322,31 @@ export interface EuiDataGridColumnSortingDraggableProps {
 }
 export interface EuiDataGridBodyProps {
   isFullScreen: boolean;
-  columnWidths: EuiDataGridColumnWidths;
-  defaultColumnWidth?: number | null;
-  leadingControlColumns?: EuiDataGridControlColumn[];
-  trailingControlColumns?: EuiDataGridControlColumn[];
+  leadingControlColumns: EuiDataGridControlColumn[];
+  trailingControlColumns: EuiDataGridControlColumn[];
   columns: EuiDataGridColumn[];
+  visibleColCount: number;
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
-  popoverContents?: EuiDataGridPopoverContents;
+  popoverContents: EuiDataGridPopoverContents;
   rowCount: number;
+  visibleRows: EuiDataGridVisibleRows;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
   renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
-  inMemory?: EuiDataGridInMemory;
-  inMemoryValues: EuiDataGridInMemoryValues;
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   pagination?: EuiDataGridPaginationProps;
-  setColumnWidth: (columnId: string, width: number) => void;
   headerIsInteractive: boolean;
   handleHeaderMutation: MutationCallback;
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
+  onColumnResize?: EuiDataGridOnColumnResizeHandler;
   toolbarHeight: number;
   virtualizationOptions?: Partial<VariableSizeGridProps>;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
-  rowHeightUtils: RowHeightUtils;
-  gridStyles?: EuiDataGridStyle;
+  gridStyles: EuiDataGridStyle;
+  gridWidth: number;
+  gridRef: MutableRefObject<Grid | null>;
+  wrapperRef: MutableRefObject<HTMLDivElement | null>;
 }
 export interface EuiDataGridCellValueElementProps {
   /**

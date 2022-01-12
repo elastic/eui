@@ -19,7 +19,6 @@ describe('EuiContextMenuPanel', () => {
           <button data-test-subj="button">Hello world</button>
         </EuiContextMenuPanel>
       );
-
       cy.focused().should('have.attr', 'data-test-subj', 'button');
     });
 
@@ -29,7 +28,6 @@ describe('EuiContextMenuPanel', () => {
           <button data-test-subj="button">Hello world</button>
         </EuiContextMenuPanel>
       );
-
       cy.focused().should('not.exist');
     });
   });
@@ -47,13 +45,9 @@ describe('EuiContextMenuPanel', () => {
       </EuiContextMenuItem>,
     ];
 
-    // Intermittent flake workaround: without this, the first downarrow key does not always focus into the menu items as expected
-    const FLAKE_WAIT = 500;
-
     describe('up/down keys', () => {
       beforeEach(() => {
         cy.mount(<EuiContextMenuPanel items={items} />);
-        cy.wait(FLAKE_WAIT);
       });
 
       it('focuses the panel by default', () => {
@@ -61,35 +55,32 @@ describe('EuiContextMenuPanel', () => {
       });
 
       it('down arrow key focuses the first menu item', () => {
-        cy.get('body').type('{downarrow}');
-
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.realPress('{downarrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'itemA');
       });
 
       it('subsequently, down arrow key focuses the next menu item', () => {
-        cy.get('body').type('{downarrow}');
-        cy.get('body').type('{downarrow}');
-
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.repeatRealPress('{downarrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'itemB');
       });
 
       it('up arrow key wraps to last menu item', () => {
-        cy.get('body').type('{uparrow}');
-
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.realPress('{uparrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'itemC');
       });
 
       it('down arrow key wraps to first menu item', () => {
-        cy.get('body').type('{uparrow}');
-        cy.get('body').type('{downarrow}');
-
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.repeatRealPress('{downarrow}', 4);
         cy.focused().should('have.attr', 'data-test-subj', 'itemA');
       });
 
       it('subsequently, up arrow key focuses the previous menu item', () => {
-        cy.get('body').type('{uparrow}');
-        cy.get('body').type('{uparrow}');
-
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.repeatRealPress('{uparrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'itemB');
       });
     });
@@ -103,14 +94,10 @@ describe('EuiContextMenuPanel', () => {
             showNextPanel={showNextPanelHandler}
           />
         );
-        cy.wait(FLAKE_WAIT);
-
-        cy.get('body')
-          .type('{downarrow}')
-          .type('{rightarrow}')
-          .then(() => {
-            expect(showNextPanelHandler).to.be.called;
-          });
+        cy.realPress('{downarrow}');
+        cy.realPress('{rightarrow}').then(() => {
+          expect(showNextPanelHandler).to.be.called;
+        });
       });
 
       it('left arrow key shows previous panel', () => {
@@ -121,14 +108,10 @@ describe('EuiContextMenuPanel', () => {
             showPreviousPanel={showPreviousPanelHandler}
           />
         );
-        cy.wait(FLAKE_WAIT);
-
-        cy.get('body')
-          .type('{downarrow}')
-          .type('{leftarrow}')
-          .then(() => {
-            expect(showPreviousPanelHandler).to.be.called;
-          });
+        cy.realPress('{downarrow}');
+        cy.realPress('{leftarrow}').then(() => {
+          expect(showPreviousPanelHandler).to.be.called;
+        });
       });
     });
   });

@@ -11,7 +11,7 @@ import { act } from 'react-dom/test-utils';
 import { mount, ReactWrapper } from 'enzyme';
 import { findTestSubject } from '../../../test';
 
-import { schemaDetectors } from '../data_grid_schema';
+import { schemaDetectors } from '../utils/data_grid_schema';
 
 import { useDataGridColumnSorting } from './column_sorting';
 describe('useDataGridColumnSorting', () => {
