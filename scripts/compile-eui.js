@@ -18,6 +18,7 @@ function compileLib() {
 
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
 
+  // Default build
   execSync(
     `babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "${[...IGNORE_BUILD, ...IGNORE_TESTS, ...IGNORE_TESTENV, ...IGNORE_PACKAGES].join(',')}" src`,
     {
@@ -28,7 +29,6 @@ function compileLib() {
       },
     }
   );
-
   execSync(
     `babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "${[...IGNORE_BUILD, ...IGNORE_TESTS, ...IGNORE_TESTENV, ...IGNORE_PACKAGES].join(',')}" src`,
     {
@@ -39,8 +39,19 @@ function compileLib() {
     }
   );
 
+  // `optimize` build (Beta)
   execSync(
-    `babel --quiet --out-dir=optimize --extensions .js,.ts,.tsx --config-file="./.babelrc-optimize.js" --ignore "${[...IGNORE_BUILD, ...IGNORE_TESTS, ...IGNORE_TESTENV, ...IGNORE_PACKAGES].join(',')}" src`,
+    `babel --quiet --out-dir=optimize/es --extensions .js,.ts,.tsx --config-file="./.babelrc-optimize.js" --ignore "${[...IGNORE_BUILD, ...IGNORE_TESTS, ...IGNORE_TESTENV, ...IGNORE_PACKAGES].join(',')}" src`,
+    {
+      env: {
+        ...process.env,
+        BABEL_MODULES: false,
+        NO_COREJS_POLYFILL: true,
+      },
+    }
+  );
+  execSync(
+    `babel --quiet --out-dir=optimize/lib --extensions .js,.ts,.tsx --config-file="./.babelrc-optimize.js" --ignore "${[...IGNORE_BUILD, ...IGNORE_TESTS, ...IGNORE_TESTENV, ...IGNORE_PACKAGES].join(',')}" src`,
     {
       env: {
         ...process.env,
@@ -49,6 +60,7 @@ function compileLib() {
     }
   );
 
+  // `test-env` build
   execSync(
     `babel --quiet --out-dir=test-env --extensions .js,.ts,.tsx --config-file="./.babelrc-test-env.js" --ignore "${[...IGNORE_BUILD, ...IGNORE_TESTS, ...IGNORE_PACKAGES].join(',')}" src`,
     {

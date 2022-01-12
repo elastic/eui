@@ -1,11 +1,15 @@
+// See `wiki/consuming.md` for rationale and consumer requirements.
+
 const baseConfig = require('./.babelrc.js');
-const index = baseConfig.plugins.indexOf(
-  './scripts/babel/proptypes-from-ts-props'
-);
+// Skip `propType` generation
 baseConfig.plugins.splice(
-  index,
+  baseConfig.plugins.indexOf(
+    './scripts/babel/proptypes-from-ts-props'
+  ),
   1
 );
+// Transform runtimes using babel plugin.
+// Requires consming applications to use `@babel/runtime`.
 baseConfig.plugins.push('@babel/plugin-transform-runtime');
 baseConfig.env = {};
 module.exports = baseConfig;
