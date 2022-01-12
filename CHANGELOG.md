@@ -1,6 +1,13 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Added virtulized rendering option to `EuiSelectableList` with `isVirtualized` ([#5521](https://github.com/elastic/eui/pull/5521))
+- Added expanded option properties to `EuiSelectableOption` with `data` ([#5521](https://github.com/elastic/eui/pull/5521))
 - **[Beta]** Added `optimize` build as a lighter weight option more suited to prodcution environments ([#5527](https://github.com/elastic/eui/pull/5527))
+
+**Bug fixes**
+
+- Fixed multiple bugs with `EuiDataGrid` keyboard focus restoration ([#5530](https://github.com/elastic/eui/pull/5530))
+- Fixed `EuiDataGrid`'s display toolbar control to update initial UI state when developer `gridStyle` or `rowHeightsOptions` props are updated ([#5525](https://github.com/elastic/eui/pull/5525))
 
 **Breaking changes**
 
