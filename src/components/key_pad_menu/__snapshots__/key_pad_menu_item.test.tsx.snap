@@ -1,404 +1,456 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiKeyPadMenuItem checkable renders as checkbox 1`] = `
-<div
+<span
   class="euiKeyPadMenuItem__outer"
 >
-  <label
-    class="euiKeyPadMenuItem euiKeyPadMenuItem--checkable"
-    for="generated-id"
+  <span
+    class="euiKeyPadMenuItem__positioned"
   >
-    <span
-      class="euiKeyPadMenuItem__inner"
+    <label
+      class="euiKeyPadMenuItem euiKeyPadMenuItem--checkable"
+      for="generated-id"
     >
-      <div
-        class="euiCheckbox euiCheckbox--noLabel euiKeyPadMenuItem__checkableInput"
+      <span
+        class="euiKeyPadMenuItem__inner"
       >
-        <input
-          class="euiCheckbox__input"
-          id="generated-id"
-          type="checkbox"
-        />
         <div
-          class="euiCheckbox__square"
-        />
-      </div>
-      <span
-        class="euiKeyPadMenuItem__icon"
-      >
-        Icon
+          class="euiCheckbox euiCheckbox--noLabel euiKeyPadMenuItem__checkableInput"
+        >
+          <input
+            class="euiCheckbox__input"
+            id="generated-id"
+            type="checkbox"
+          />
+          <div
+            class="euiCheckbox__square"
+          />
+        </div>
+        <span
+          class="euiKeyPadMenuItem__icon"
+        >
+          Icon
+        </span>
+        <span
+          class="euiKeyPadMenuItem__label"
+        >
+          Label
+        </span>
       </span>
-      <span
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </span>
-    </span>
-  </label>
-</div>
+    </label>
+  </span>
+</span>
 `;
 
 exports[`EuiKeyPadMenuItem checkable renders as radio 1`] = `
-<div
+<span
   class="euiKeyPadMenuItem__outer"
 >
-  <label
-    class="euiKeyPadMenuItem euiKeyPadMenuItem--checkable"
-    for="generated-id"
+  <span
+    class="euiKeyPadMenuItem__positioned"
   >
-    <span
-      class="euiKeyPadMenuItem__inner"
+    <label
+      class="euiKeyPadMenuItem euiKeyPadMenuItem--checkable"
+      for="generated-id"
     >
-      <div
-        class="euiRadio euiRadio--noLabel euiKeyPadMenuItem__checkableInput"
+      <span
+        class="euiKeyPadMenuItem__inner"
       >
-        <input
-          class="euiRadio__input"
-          id="generated-id"
-          name="single"
-          type="radio"
-        />
         <div
-          class="euiRadio__circle"
-        />
-      </div>
-      <span
-        class="euiKeyPadMenuItem__icon"
-      >
-        Icon
+          class="euiRadio euiRadio--noLabel euiKeyPadMenuItem__checkableInput"
+        >
+          <input
+            class="euiRadio__input"
+            id="generated-id"
+            name="single"
+            type="radio"
+          />
+          <div
+            class="euiRadio__circle"
+          />
+        </div>
+        <span
+          class="euiKeyPadMenuItem__icon"
+        >
+          Icon
+        </span>
+        <span
+          class="euiKeyPadMenuItem__label"
+        >
+          Label
+        </span>
       </span>
-      <span
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </span>
-    </span>
-  </label>
-</div>
+    </label>
+  </span>
+</span>
 `;
 
 exports[`EuiKeyPadMenuItem is rendered 1`] = `
-<div
+<span
   class="euiKeyPadMenuItem__outer"
 >
-  <button
-    aria-label="aria-label"
-    class="euiKeyPadMenuItem testClass1 testClass2"
-    data-test-subj="test subject string"
-    type="button"
+  <span
+    class="euiKeyPadMenuItem__positioned"
   >
-    <span
-      class="euiKeyPadMenuItem__inner"
+    <button
+      aria-label="aria-label"
+      class="euiKeyPadMenuItem testClass1 testClass2"
+      data-test-subj="test subject string"
+      type="button"
     >
       <span
-        class="euiKeyPadMenuItem__icon"
+        class="euiKeyPadMenuItem__inner"
       >
-        Icon
+        <span
+          class="euiKeyPadMenuItem__icon"
+        >
+          Icon
+        </span>
+        <span
+          class="euiKeyPadMenuItem__label"
+        >
+          Label
+        </span>
       </span>
-      <span
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </span>
-    </span>
-  </button>
-</div>
+    </button>
+  </span>
+</span>
 `;
 
 exports[`EuiKeyPadMenuItem props betaBadge renders 1`] = `
-<div
+<span
   class="euiKeyPadMenuItem__outer"
 >
-  <button
-    class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
-    type="button"
+  <span
+    class="euiKeyPadMenuItem__positioned"
   >
-    <span
-      class="euiKeyPadMenuItem__inner"
+    <button
+      class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
+      type="button"
     >
       <span
-        class="euiKeyPadMenuItem__icon"
+        class="euiKeyPadMenuItem__inner"
       >
-        Icon
+        <span
+          class="euiKeyPadMenuItem__icon"
+        >
+          Icon
+        </span>
+        <span
+          class="euiKeyPadMenuItem__label"
+        >
+          Label
+        </span>
       </span>
-      <span
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </span>
-    </span>
-  </button>
-  <span
-    aria-label="Label. Beta item."
-    class="euiBetaBadge euiBetaBadge--singleLetter euiBetaBadge--subdued euiBetaBadge--small euiKeyPadMenuItem__betaBadge"
-    title="Beta"
-  >
-    B
-  </span>
-</div>
-`;
-
-exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeIconType 1`] = `
-<div
-  class="euiKeyPadMenuItem__outer"
->
-  <button
-    class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
-    type="button"
-  >
+    </button>
     <span
-      class="euiKeyPadMenuItem__inner"
-    >
-      <span
-        class="euiKeyPadMenuItem__icon"
-      >
-        Icon
-      </span>
-      <span
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </span>
-    </span>
-  </button>
-  <span
-    aria-label="Label. Beta item."
-    class="euiBetaBadge euiBetaBadge--iconOnly euiBetaBadge--singleLetter euiBetaBadge--subdued euiBetaBadge--small euiKeyPadMenuItem__betaBadge"
-    title="Beta"
-  >
-    <span
-      aria-hidden="true"
-      class="euiBetaBadge__icon"
-      color="inherit"
-      data-euiicon-type="bolt"
-    />
-  </span>
-</div>
-`;
-
-exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeTooltipContent 1`] = `
-<div
-  class="euiKeyPadMenuItem__outer"
->
-  <button
-    class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
-    type="button"
-  >
-    <span
-      class="euiKeyPadMenuItem__inner"
-    >
-      <span
-        class="euiKeyPadMenuItem__icon"
-      >
-        Icon
-      </span>
-      <span
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </span>
-    </span>
-  </button>
-  <span
-    class="euiToolTipAnchor"
-  >
-    <span
-      aria-label="Label. Beta item."
+      aria-label="Label Beta"
       class="euiBetaBadge euiBetaBadge--singleLetter euiBetaBadge--subdued euiBetaBadge--small euiKeyPadMenuItem__betaBadge"
-      role="button"
-      tabindex="0"
+      title="Beta"
     >
       B
     </span>
   </span>
-</div>
+</span>
+`;
+
+exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeIconType 1`] = `
+<span
+  class="euiKeyPadMenuItem__outer"
+>
+  <span
+    class="euiKeyPadMenuItem__positioned"
+  >
+    <button
+      class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
+      type="button"
+    >
+      <span
+        class="euiKeyPadMenuItem__inner"
+      >
+        <span
+          class="euiKeyPadMenuItem__icon"
+        >
+          Icon
+        </span>
+        <span
+          class="euiKeyPadMenuItem__label"
+        >
+          Label
+        </span>
+      </span>
+    </button>
+    <span
+      aria-label="Label Beta"
+      class="euiBetaBadge euiBetaBadge--iconOnly euiBetaBadge--singleLetter euiBetaBadge--subdued euiBetaBadge--small euiKeyPadMenuItem__betaBadge"
+      title="Beta"
+    >
+      <span
+        aria-hidden="true"
+        class="euiBetaBadge__icon"
+        color="inherit"
+        data-euiicon-type="bolt"
+      />
+    </span>
+  </span>
+</span>
+`;
+
+exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeTooltipContent 1`] = `
+<span
+  class="euiKeyPadMenuItem__outer"
+>
+  <span
+    class="euiKeyPadMenuItem__positioned"
+  >
+    <button
+      class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
+      type="button"
+    >
+      <span
+        class="euiKeyPadMenuItem__inner"
+      >
+        <span
+          class="euiKeyPadMenuItem__icon"
+        >
+          Icon
+        </span>
+        <span
+          class="euiKeyPadMenuItem__label"
+        >
+          Label
+        </span>
+      </span>
+    </button>
+    <span
+      class="euiToolTipAnchor"
+    >
+      <span
+        aria-label="Label Beta"
+        class="euiBetaBadge euiBetaBadge--singleLetter euiBetaBadge--subdued euiBetaBadge--small euiKeyPadMenuItem__betaBadge"
+        role="button"
+        tabindex="0"
+      >
+        B
+      </span>
+    </span>
+  </span>
+</span>
 `;
 
 exports[`EuiKeyPadMenuItem props isDisabled renders with href 1`] = `
-<div
+<span
   class="euiKeyPadMenuItem__outer"
 >
-  <button
-    class="euiKeyPadMenuItem euiKeyPadMenuItem-isDisabled"
-    disabled=""
-    type="button"
+  <span
+    class="euiKeyPadMenuItem__positioned"
   >
-    <span
-      class="euiKeyPadMenuItem__inner"
+    <button
+      class="euiKeyPadMenuItem euiKeyPadMenuItem-isDisabled"
+      disabled=""
+      type="button"
     >
       <span
-        class="euiKeyPadMenuItem__icon"
+        class="euiKeyPadMenuItem__inner"
       >
-        Icon
+        <span
+          class="euiKeyPadMenuItem__icon"
+        >
+          Icon
+        </span>
+        <span
+          class="euiKeyPadMenuItem__label"
+        >
+          Label
+        </span>
       </span>
-      <span
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </span>
-    </span>
-  </button>
-</div>
+    </button>
+  </span>
+</span>
 `;
 
 exports[`EuiKeyPadMenuItem props isDisabled renders with onClick 1`] = `
-<div
+<span
   class="euiKeyPadMenuItem__outer"
 >
-  <button
-    class="euiKeyPadMenuItem euiKeyPadMenuItem-isDisabled"
-    disabled=""
-    type="button"
+  <span
+    class="euiKeyPadMenuItem__positioned"
   >
-    <span
-      class="euiKeyPadMenuItem__inner"
+    <button
+      class="euiKeyPadMenuItem euiKeyPadMenuItem-isDisabled"
+      disabled=""
+      type="button"
     >
       <span
-        class="euiKeyPadMenuItem__icon"
+        class="euiKeyPadMenuItem__inner"
       >
-        Icon
+        <span
+          class="euiKeyPadMenuItem__icon"
+        >
+          Icon
+        </span>
+        <span
+          class="euiKeyPadMenuItem__label"
+        >
+          Label
+        </span>
       </span>
-      <span
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </span>
-    </span>
-  </button>
-</div>
+    </button>
+  </span>
+</span>
 `;
 
 exports[`EuiKeyPadMenuItem props isSelected renders with href 1`] = `
-<div
+<span
   class="euiKeyPadMenuItem__outer"
 >
-  <a
-    aria-current="true"
-    class="euiKeyPadMenuItem euiKeyPadMenuItem-isSelected"
-    href="#"
-    rel="noreferrer"
+  <span
+    class="euiKeyPadMenuItem__positioned"
   >
-    <span
-      class="euiKeyPadMenuItem__inner"
+    <a
+      aria-current="true"
+      class="euiKeyPadMenuItem euiKeyPadMenuItem-isSelected"
+      href="#"
+      rel="noreferrer"
     >
       <span
-        class="euiKeyPadMenuItem__icon"
+        class="euiKeyPadMenuItem__inner"
       >
-        Icon
+        <span
+          class="euiKeyPadMenuItem__icon"
+        >
+          Icon
+        </span>
+        <span
+          class="euiKeyPadMenuItem__label"
+        >
+          Label
+        </span>
       </span>
-      <span
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </span>
-    </span>
-  </a>
-</div>
+    </a>
+  </span>
+</span>
 `;
 
 exports[`EuiKeyPadMenuItem props isSelected renders with onClick 1`] = `
-<div
+<span
   class="euiKeyPadMenuItem__outer"
 >
-  <button
-    aria-pressed="true"
-    class="euiKeyPadMenuItem euiKeyPadMenuItem-isSelected"
-    type="button"
+  <span
+    class="euiKeyPadMenuItem__positioned"
   >
-    <span
-      class="euiKeyPadMenuItem__inner"
+    <button
+      aria-pressed="true"
+      class="euiKeyPadMenuItem euiKeyPadMenuItem-isSelected"
+      type="button"
     >
       <span
-        class="euiKeyPadMenuItem__icon"
+        class="euiKeyPadMenuItem__inner"
       >
-        Icon
+        <span
+          class="euiKeyPadMenuItem__icon"
+        >
+          Icon
+        </span>
+        <span
+          class="euiKeyPadMenuItem__label"
+        >
+          Label
+        </span>
       </span>
-      <span
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </span>
-    </span>
-  </button>
-</div>
+    </button>
+  </span>
+</span>
 `;
 
 exports[`EuiKeyPadMenuItem renders button 1`] = `
-<div
+<span
   class="euiKeyPadMenuItem__outer"
 >
-  <button
-    class="euiKeyPadMenuItem"
-    type="button"
+  <span
+    class="euiKeyPadMenuItem__positioned"
   >
-    <span
-      class="euiKeyPadMenuItem__inner"
+    <button
+      class="euiKeyPadMenuItem"
+      type="button"
     >
       <span
-        class="euiKeyPadMenuItem__icon"
+        class="euiKeyPadMenuItem__inner"
       >
-        Icon
+        <span
+          class="euiKeyPadMenuItem__icon"
+        >
+          Icon
+        </span>
+        <span
+          class="euiKeyPadMenuItem__label"
+        >
+          Label
+        </span>
       </span>
-      <span
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </span>
-    </span>
-  </button>
-</div>
+    </button>
+  </span>
+</span>
 `;
 
 exports[`EuiKeyPadMenuItem renders href 1`] = `
-<div
+<span
   class="euiKeyPadMenuItem__outer"
 >
-  <a
-    class="euiKeyPadMenuItem"
-    href="#"
-    rel="noreferrer"
+  <span
+    class="euiKeyPadMenuItem__positioned"
   >
-    <span
-      class="euiKeyPadMenuItem__inner"
+    <a
+      class="euiKeyPadMenuItem"
+      href="#"
+      rel="noreferrer"
     >
       <span
-        class="euiKeyPadMenuItem__icon"
+        class="euiKeyPadMenuItem__inner"
       >
-        Icon
+        <span
+          class="euiKeyPadMenuItem__icon"
+        >
+          Icon
+        </span>
+        <span
+          class="euiKeyPadMenuItem__label"
+        >
+          Label
+        </span>
       </span>
-      <span
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </span>
-    </span>
-  </a>
-</div>
+    </a>
+  </span>
+</span>
 `;
 
 exports[`EuiKeyPadMenuItem renders href with rel 1`] = `
-<div
+<span
   class="euiKeyPadMenuItem__outer"
 >
-  <a
-    class="euiKeyPadMenuItem"
-    href="#"
-    rel="noreferrer"
+  <span
+    class="euiKeyPadMenuItem__positioned"
   >
-    <span
-      class="euiKeyPadMenuItem__inner"
+    <a
+      class="euiKeyPadMenuItem"
+      href="#"
+      rel="noreferrer"
     >
       <span
-        class="euiKeyPadMenuItem__icon"
+        class="euiKeyPadMenuItem__inner"
       >
-        Icon
+        <span
+          class="euiKeyPadMenuItem__icon"
+        >
+          Icon
+        </span>
+        <span
+          class="euiKeyPadMenuItem__label"
+        >
+          Label
+        </span>
       </span>
-      <span
-        class="euiKeyPadMenuItem__label"
-      >
-        Label
-      </span>
-    </span>
-  </a>
-</div>
+    </a>
+  </span>
+</span>
 `;

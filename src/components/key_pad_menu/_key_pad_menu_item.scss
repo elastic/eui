@@ -1,4 +1,17 @@
+/**
+ * This class sets the base width of Key Pad Menu Item, and allows it
+ * to grow to fit a wider container
+ */
 .euiKeyPadMenuItem__outer {
+  display: inline-block;
+}
+
+/**
+ * This class will keep the beta button in proximity to button, link or label
+ */
+.euiKeyPadMenuItem__positioned {
+  display: inline-block;
+  max-width: $euiKeyPadMenuSize;
   position: relative;
 }
 

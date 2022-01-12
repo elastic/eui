@@ -23,7 +23,7 @@ import {
 } from '../common';
 
 import { EuiBetaBadge } from '../badge/beta_badge';
-import { useEuiI18n } from '../i18n/i18n';
+// import { useEuiI18n } from '../i18n/i18n';
 
 import { getSecureRelForTarget, useGeneratedHtmlId } from '../../services';
 
@@ -179,11 +179,11 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     },
     className
   );
-  const betaItemLabel = useEuiI18n(
-    'euiKeyPadMenuItem.betaLabel',
-    '{label}. Beta item.',
-    { label }
-  );
+  // const betaItemLabel = useEuiI18n(
+  //   'euiKeyPadMenuItem.betaLabel',
+  //   '{label}. Beta item.',
+  //   { label }
+  // );
 
   let Element: keyof JSX.IntrinsicElements =
     href && !isDisabled ? 'a' : 'button';
@@ -228,10 +228,11 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
 
   const renderBetaBadge = () => {
     if (!betaBadgeLabel) return;
+    if (checkable) return;
 
     return (
       <EuiBetaBadge
-        aria-label={betaItemLabel}
+        aria-label={`${label} ${betaBadgeLabel}`}
         size="s"
         color="subdued"
         className="euiKeyPadMenuItem__betaBadge"
@@ -245,7 +246,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
 
   const renderContent = () => (
     <span className="euiKeyPadMenuItem__inner">
-      {checkable && renderCheckableElement()}
+      {renderCheckableElement()}
       <span className="euiKeyPadMenuItem__icon">{children}</span>
       <span className="euiKeyPadMenuItem__label">{label}</span>
     </span>
@@ -276,17 +277,19 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   }
 
   return (
-    <div className="euiKeyPadMenuItem__outer">
-      <Element
-        className={classes}
-        {...(relObj as ElementType)}
-        {...(rest as ElementType)}
-        // Unable to get past `LegacyRef` conflicts
-        ref={buttonRef as Ref<any>}
-      >
-        {renderContent()}
-      </Element>
-      {betaBadgeLabel && !checkable && renderBetaBadge()}
-    </div>
+    <span className="euiKeyPadMenuItem__outer">
+      <span className="euiKeyPadMenuItem__positioned">
+        <Element
+          className={classes}
+          {...(relObj as ElementType)}
+          {...(rest as ElementType)}
+          // Unable to get past `LegacyRef` conflicts
+          ref={buttonRef as Ref<any>}
+        >
+          {renderContent()}
+        </Element>
+        {renderBetaBadge()}
+      </span>
+    </span>
   );
 };
