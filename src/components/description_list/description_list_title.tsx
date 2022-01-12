@@ -11,26 +11,17 @@ import classNames from 'classnames';
 import { CommonProps } from '../common';
 import { EuiBadge } from '../badge';
 
-export type EuiDescriptionListType = keyof typeof typesToClassNameMap;
-
 export type EuiDescriptionListTitleProps = {
-  type?: EuiDescriptionListType;
-};
-
-const typesToClassNameMap = {
-  row: 'euiDescriptionList--row',
-  inline: 'euiDescriptionList--inline',
-  column: 'euiDescriptionList--column',
-  responsiveColumn: 'euiDescriptionList--responsiveColumn',
+  inline?: boolean;
 };
 
 export const EuiDescriptionListTitle: FunctionComponent<
   EuiDescriptionListTitleProps & CommonProps & HTMLAttributes<HTMLElement>
-> = ({ children, type, className, ...rest }) => {
+> = ({ children, inline, className, ...rest }) => {
   const classes = classNames('euiDescriptionList__title', className);
   return (
     <dt className={classes} {...rest}>
-      {type === 'inline' ? (
+      {inline ? (
         <EuiBadge className="euiDescriptionList__titleBadge">
           {children}
         </EuiBadge>

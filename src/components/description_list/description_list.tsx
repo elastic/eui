@@ -104,7 +104,7 @@ export const EuiDescriptionList: FunctionComponent<
       return [
         <EuiDescriptionListTitle
           key={`title-${index}`}
-          type={type}
+          inline={type === 'inline'}
           {...titleProps}
         >
           {item.title}
