@@ -49,6 +49,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
       >
         <div
           className="euiDataGridHeaderCell"
+          data-gridcell-id="0,-1"
           data-test-subj="dataGridHeaderCell-someColumn"
           role="columnheader"
           style={Object {}}
@@ -71,6 +72,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
       <div
         aria-label="test"
         className="euiDataGridHeaderCell euiDataGridHeaderCell--test"
+        data-gridcell-id="0,-1"
         data-test-subj="dataGridHeaderCell-someColumn"
         role="columnheader"
         style={

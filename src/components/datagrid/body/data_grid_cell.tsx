@@ -616,7 +616,7 @@ export class EuiDataGridCell extends Component<
         ref={this.cellRef}
         {...cellProps}
         data-test-subj="dataGridRowCell"
-        data-gridcell-id={`${this.props.rowIndex},${this.props.colIndex}`}
+        data-gridcell-id={`${this.props.colIndex},${this.props.visibleRowIndex}`}
         onKeyDown={handleCellKeyDown}
         onFocus={this.onFocus}
         onMouseEnter={() => {

@@ -15,6 +15,7 @@ exports[`EuiDataGridBody renders 1`] = `
     >
       <div
         class="euiDataGridHeaderCell euiDataGridHeaderCell--boolean"
+        data-gridcell-id="0,-1"
         data-test-subj="dataGridHeaderCell-columnA"
         role="columnheader"
         style="width:100px"
@@ -53,6 +54,7 @@ exports[`EuiDataGridBody renders 1`] = `
       </div>
       <div
         class="euiDataGridHeaderCell euiDataGridHeaderCell--string"
+        data-gridcell-id="1,-1"
         data-test-subj="dataGridHeaderCell-columnB"
         role="columnheader"
         style="width:100px"
@@ -122,7 +124,7 @@ exports[`EuiDataGridBody renders 1`] = `
     </div>
     <div
       class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridRowCell--lastColumn"
-      data-gridcell-id="0,1"
+      data-gridcell-id="1,0"
       data-test-subj="dataGridRowCell"
       role="gridcell"
       style="position:absolute;left:100px;top:0px;height:34px;width:100px"
