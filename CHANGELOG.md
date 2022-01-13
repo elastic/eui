@@ -1,5 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+No public interface changes since `45.0.0`.
+
+## [`45.0.0`](https://github.com/elastic/eui/tree/v45.0.0)
+
 - Added virtulized rendering option to `EuiSelectableList` with `isVirtualized` ([#5521](https://github.com/elastic/eui/pull/5521))
 - Added expanded option properties to `EuiSelectableOption` with `data` ([#5521](https://github.com/elastic/eui/pull/5521))
 
