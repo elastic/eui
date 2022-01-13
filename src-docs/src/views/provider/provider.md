@@ -22,7 +22,7 @@ It is not recommended to recreate the functionality of **EuiProvider** by compos
 
 ## Global styles
 
-A reset stylesheet and the global EUI styles are applied via Emotion. To prevent loading these styles from loading, pass `globalStyles={false}` to the provider. If you are using the legacy theme, we recommend passing `theme={null}` to achieve similar results.
+The provider includes general reset and global styles, applied via Emotion. These only need to be applied **once** so to prevent these styles from loading in nested instances of the provider, pass `globalStyles={false}`.
 
 ### `@emotion/cache` and style injection location
 
