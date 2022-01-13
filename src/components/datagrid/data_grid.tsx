@@ -38,7 +38,6 @@ import {
   useFocus,
   createKeyDownHandler,
   preventTabbing,
-  useKeyboardFocusScrollWorkaround,
 } from './utils/focus';
 import {
   useInMemoryValues,
@@ -265,12 +264,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
   const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus({
     headerIsInteractive,
     gridItemsRendered,
-  });
-
-  useKeyboardFocusScrollWorkaround({
-    focusedCell: focusContext.focusedCell,
-    gridRef,
-    visibleRowCount,
   });
 
   /**
