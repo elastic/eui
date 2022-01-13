@@ -243,6 +243,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     gridStyles,
     gridWidth,
     gridRef,
+    gridItemsRendered,
     wrapperRef,
   } = props;
 
@@ -442,6 +443,9 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       <Grid
         {...(virtualizationOptions ? virtualizationOptions : {})}
         ref={gridRef}
+        onItemsRendered={(itemsRendered) => {
+          gridItemsRendered.current = itemsRendered;
+        }}
         innerElementType={InnerElement}
         outerRef={outerGridRef}
         innerRef={innerGridRef}

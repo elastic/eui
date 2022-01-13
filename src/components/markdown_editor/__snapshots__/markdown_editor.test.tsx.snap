@@ -659,7 +659,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
       className="euiMarkdownEditor__toggleContainer"
       style={
         Object {
-          "height": "calc(100% - 34px)",
+          "height": "calc(100% - 0px)",
         }
       }
     >
@@ -2069,7 +2069,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
       className="euiMarkdownEditor__toggleContainer"
       style={
         Object {
-          "height": "calc(100% - 34px)",
+          "height": "calc(100% - 0px)",
         }
       }
     >

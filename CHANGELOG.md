@@ -1,7 +1,5 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-- Added virtulized rendering option to `EuiSelectableList` with `isVirtualized` ([#5521](https://github.com/elastic/eui/pull/5521))
-- Added expanded option properties to `EuiSelectableOption` with `data` ([#5521](https://github.com/elastic/eui/pull/5521))
 - Added `paddingSize` prop to `EuiSelectableList` ([#5157](https://github.com/elastic/eui/pull/5157))
 - Refactored `EuiSelectable` accessibility ([#5157](https://github.com/elastic/eui/pull/5157))
 - Refactored `EuiSuggest` to use `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
@@ -9,11 +7,24 @@
 
 **Breaking changes**
 
-- Changed `EuiSearchBar` to preserve phrases with leading and trailing spaces, instead of dropping surrounding whitespace ([#5514](https://github.com/elastic/eui/pull/5514))
-- Removed `data-test-subj="dataGridWrapper"`  from `EuiDataGrid` in favor of `data-test-subj="euiDataGridBody"` ([#5506](https://github.com/elastic/eui/pull/5506))
 - Removed `EuiSuggestInput` ([#5157](https://github.com/elastic/eui/pull/5157))
 - Required `aria-label` or `aria-labelledby` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
 - Renamed `sendValue` prop to `onSearchChange` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
+
+## [`45.0.0`](https://github.com/elastic/eui/tree/v45.0.0)
+
+- Added virtulized rendering option to `EuiSelectableList` with `isVirtualized` ([#5521](https://github.com/elastic/eui/pull/5521))
+- Added expanded option properties to `EuiSelectableOption` with `data` ([#5521](https://github.com/elastic/eui/pull/5521))
+
+**Bug fixes**
+
+- Fixed multiple bugs with `EuiDataGrid` keyboard focus restoration ([#5530](https://github.com/elastic/eui/pull/5530))
+- Fixed `EuiDataGrid`'s display toolbar control to update initial UI state when developer `gridStyle` or `rowHeightsOptions` props are updated ([#5525](https://github.com/elastic/eui/pull/5525))
+
+**Breaking changes**
+
+- Changed `EuiSearchBar` to preserve phrases with leading and trailing spaces, instead of dropping surrounding whitespace ([#5514](https://github.com/elastic/eui/pull/5514))
+- Removed `data-test-subj="dataGridWrapper"`  from `EuiDataGrid` in favor of `data-test-subj="euiDataGridBody"` ([#5506](https://github.com/elastic/eui/pull/5506))
 
 ## [`44.0.0`](https://github.com/elastic/eui/tree/v44.0.0)
 
