@@ -1,7 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-- Fixed `EuiDataGrid` inconsistent color halo when focusing on the control columns by changing outline of class `euiButtonIcon` and `.euiCheckbox` in `euiDataGridRowCell`, as well as `.euiCheckbox` in `euiDataGridHeaderCell` [#5522](https://github.com/elastic/eui/pull/5522))
-
+- Updated the outline color in `euiCustomControlFocused` mixin to use 
+`$euiFocusRingColor` instead of `currentColor` ([#5479](https://github.com/elastic/eui/pull/5479))
 - Added virtulized rendering option to `EuiSelectableList` with `isVirtualized` ([#5521](https://github.com/elastic/eui/pull/5521))
 - Added expanded option properties to `EuiSelectableOption` with `data` ([#5521](https://github.com/elastic/eui/pull/5521))
 

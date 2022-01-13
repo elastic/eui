@@ -122,27 +122,6 @@
       white-space: nowrap;
     }
   }
-
-  // Ensures focus halo color consistency in ButtonIcons inside of the grid
-  .euiButtonIcon {
-    &:focus {
-      outline: $euiFocusRingSize solid $euiFocusRingColor;
-    }
-  }
-
-  // Ensures focus halo color consistency in Checkboxes inside of the grid
-  .euiCheckbox .euiCheckbox__input {
-    &:focus {
-      + .euiCheckbox__square {
-        outline: $euiFocusRingSize solid $euiFocusRingColor;
-      }
-
-      // Chrome
-      &:focus-visible + .euiCheckbox__square {
-        outline: $euiFocusRingSize solid $euiFocusRingColor;
-      }
-    }
-  }
 }
 
 .euiDataGridRowCell__popover {
