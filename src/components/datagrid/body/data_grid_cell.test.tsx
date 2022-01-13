@@ -10,6 +10,7 @@ import React from 'react';
 import { mount, ReactWrapper } from 'enzyme';
 import { keys } from '../../../services';
 import { mockRowHeightUtils } from '../utils/__mocks__/row_heights';
+import { mockFocusContext } from '../utils/__mocks__/focus_context';
 import { DataGridFocusContext } from '../utils/focus';
 
 import { EuiDataGridCell } from './data_grid_cell';
@@ -166,27 +167,21 @@ describe('EuiDataGridCell', () => {
   });
 
   describe('componentDidMount', () => {
-    const focusContext = {
-      focusedCell: undefined,
-      onFocusUpdate: jest.fn(),
-      setFocusedCell: jest.fn(),
-    };
-
     it('creates an onFocusUpdate subscription', () => {
       mount(
-        <DataGridFocusContext.Provider value={focusContext}>
+        <DataGridFocusContext.Provider value={mockFocusContext}>
           <EuiDataGridCell {...requiredProps} />
         </DataGridFocusContext.Provider>
       );
 
-      expect(focusContext.onFocusUpdate).toHaveBeenCalled();
+      expect(mockFocusContext.onFocusUpdate).toHaveBeenCalled();
     });
 
     it('mounts the cell with focus state if the current cell should be focused', () => {
       const focusSpy = jest.spyOn(HTMLElement.prototype, 'focus');
       const component = mount(
         <DataGridFocusContext.Provider
-          value={{ ...focusContext, focusedCell: [3, 3] }}
+          value={{ ...mockFocusContext, focusedCell: [3, 3] }}
         >
           <EuiDataGridCell
             {...requiredProps}
@@ -198,6 +193,44 @@ describe('EuiDataGridCell', () => {
 
       expect((component.instance().state as any).isFocused).toEqual(true);
       expect(focusSpy).toHaveBeenCalledWith({ preventScroll: true });
+      expect(mockFocusContext.setIsFocusedCellInView).toHaveBeenCalledWith(
+        true
+      );
+    });
+  });
+
+  describe('componentWillUnmount', () => {
+    it('unsubscribes from the onFocusUpdate subscription', () => {
+      const unsubscribeCellMock = jest.fn();
+      mockFocusContext.onFocusUpdate.mockReturnValueOnce(unsubscribeCellMock);
+
+      const component = mount(
+        <DataGridFocusContext.Provider value={mockFocusContext}>
+          <EuiDataGridCell {...requiredProps} />
+        </DataGridFocusContext.Provider>
+      );
+      component.unmount();
+
+      expect(unsubscribeCellMock).toHaveBeenCalled();
+    });
+
+    it('sets isFocusedCellInView to false if the current cell is focused and unmounting due to being scrolled out of view', () => {
+      const component = mount(
+        <DataGridFocusContext.Provider
+          value={{ ...mockFocusContext, focusedCell: [3, 3] }}
+        >
+          <EuiDataGridCell
+            {...requiredProps}
+            colIndex={3}
+            visibleRowIndex={3}
+          />
+        </DataGridFocusContext.Provider>
+      );
+      component.unmount();
+
+      expect(mockFocusContext.setIsFocusedCellInView).toHaveBeenCalledWith(
+        false
+      );
     });
   });
 

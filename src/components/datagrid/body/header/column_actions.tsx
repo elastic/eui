@@ -13,6 +13,7 @@ import {
   EuiDataGridSchema,
   EuiDataGridSchemaDetector,
   EuiDataGridSorting,
+  DataGridFocusContextShape,
 } from '../../data_grid_types';
 import { EuiI18n } from '../../../i18n';
 import { EuiListGroupItemProps } from '../../../list_group';
@@ -28,9 +29,11 @@ interface GetColumnActions {
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
   setVisibleColumns: (columnId: string[]) => void;
+  focusFirstVisibleInteractiveCell: DataGridFocusContextShape['focusFirstVisibleInteractiveCell'];
   setIsPopoverOpen: (value: boolean) => void;
   sorting: EuiDataGridSorting | undefined;
   switchColumnPos: (colFromId: string, colToId: string) => void;
+  setFocusedCell: DataGridFocusContextShape['setFocusedCell'];
 }
 
 export const getColumnActions = ({
@@ -39,9 +42,11 @@ export const getColumnActions = ({
   schema,
   schemaDetectors,
   setVisibleColumns,
+  focusFirstVisibleInteractiveCell,
   setIsPopoverOpen,
   sorting,
   switchColumnPos,
+  setFocusedCell,
 }: GetColumnActions): EuiListGroupItemProps[] => {
   if (column.actions === false) {
     return [];
@@ -52,6 +57,7 @@ export const getColumnActions = ({
       column,
       columns,
       setVisibleColumns,
+      focusFirstVisibleInteractiveCell,
     }),
     ...getSortColumnActions({
       column,
@@ -63,6 +69,7 @@ export const getColumnActions = ({
       column,
       columns,
       switchColumnPos,
+      setFocusedCell,
     }),
     ...(column.actions?.additional || []),
   ];
@@ -85,20 +92,27 @@ export const getColumnActions = ({
  */
 type HideColumnAction = Pick<
   GetColumnActions,
-  'column' | 'columns' | 'setVisibleColumns'
+  | 'column'
+  | 'columns'
+  | 'setVisibleColumns'
+  | 'focusFirstVisibleInteractiveCell'
 >;
 
 export const getHideColumnAction = ({
   column,
   columns,
   setVisibleColumns,
+  focusFirstVisibleInteractiveCell,
 }: HideColumnAction): EuiListGroupItemProps[] => {
   const items = [];
 
-  const onClickHideColumn = () =>
+  const onClickHideColumn = () => {
     setVisibleColumns(
       columns.filter((col) => col.id !== column.id).map((col) => col.id)
     );
+    // Since we hid the current column, we need to manually set focus back onto the grid
+    focusFirstVisibleInteractiveCell();
+  };
 
   const action = {
     label: (
@@ -122,13 +136,14 @@ export const getHideColumnAction = ({
  */
 type MoveColumnActions = Pick<
   GetColumnActions,
-  'column' | 'columns' | 'switchColumnPos'
+  'column' | 'columns' | 'switchColumnPos' | 'setFocusedCell'
 >;
 
 const getMoveColumnActions = ({
   column,
   columns,
   switchColumnPos,
+  setFocusedCell,
 }: MoveColumnActions): EuiListGroupItemProps[] => {
   const items = [];
 
@@ -139,6 +154,7 @@ const getMoveColumnActions = ({
       const targetCol = columns[colIdx - 1];
       if (targetCol) {
         switchColumnPos(column.id, targetCol.id);
+        setFocusedCell([colIdx - 1, -1]);
       }
     };
     const action = {
@@ -158,6 +174,7 @@ const getMoveColumnActions = ({
       const targetCol = columns[colIdx + 1];
       if (targetCol) {
         switchColumnPos(column.id, targetCol.id);
+        setFocusedCell([colIdx + 1, -1]);
       }
     };
     const action = {
