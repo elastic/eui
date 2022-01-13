@@ -1,5 +1,9 @@
 ## [`master`](https://github.com/elastic/eui/tree/master)
 
+No public interface changes since `39.1.4`.
+
+## [`39.1.4`](https://github.com/elastic/eui/tree/v39.1.4)
+
 **Deprecations**
 
 - Deprecated `PartitionConfig` in favor of inclusion in Charts `theme.partition` ([#5492](https://github.com/elastic/eui/pull/5492)).
