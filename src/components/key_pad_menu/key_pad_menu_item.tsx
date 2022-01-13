@@ -23,7 +23,6 @@ import {
 } from '../common';
 
 import { EuiBetaBadge } from '../badge/beta_badge';
-// import { useEuiI18n } from '../i18n/i18n';
 
 import { getSecureRelForTarget, useGeneratedHtmlId } from '../../services';
 
@@ -179,11 +178,6 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     },
     className
   );
-  // const betaItemLabel = useEuiI18n(
-  //   'euiKeyPadMenuItem.betaLabel',
-  //   '{label}. Beta item.',
-  //   { label }
-  // );
 
   let Element: keyof JSX.IntrinsicElements =
     href && !isDisabled ? 'a' : 'button';
