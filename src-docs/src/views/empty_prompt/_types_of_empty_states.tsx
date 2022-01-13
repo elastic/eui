@@ -126,9 +126,9 @@ export default () => {
     }
   }, [radioUseCaseId, errorValue, isSidebar, isEmpty, isMultiple, thumbnail]);
 
-  const currentUseCaseInfo: any = typesOfUseCases[radioUseCaseId].info;
+  const currentUseCaseInfo = typesOfUseCases[radioUseCaseId].info;
 
-  const currentUseCaseExample: any = typesOfUseCases[radioUseCaseId].example;
+  const currentUseCaseExample = typesOfUseCases[radioUseCaseId].example;
 
   const icon = currentUseCaseExample.iconType
     ? { iconType: currentUseCaseExample.iconType }

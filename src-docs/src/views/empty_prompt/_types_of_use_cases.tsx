@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, ReactNode } from 'react';
 import {
   EuiButton,
   EuiButtonEmpty,
@@ -11,6 +11,7 @@ import {
   EuiDescriptionList,
   EuiDescriptionListTitle,
   EuiDescriptionListDescription,
+  IconType,
 } from '../../../../src/components';
 import { ThemeContext } from '../../components/with_theme';
 import pageNotFoundLight from '../../images/empty-prompt/404_rainy_cloud_light.png';
@@ -36,7 +37,27 @@ const NoResultsImg = () => {
   return <EuiImage size="fullWidth" src={noResultsImg} alt="" />;
 };
 
-export const typesOfUseCases = {
+export const typesOfUseCases: {
+  [key: string]: {
+    id: string;
+    label: string;
+    info: {
+      description: ReactNode;
+      goal: ReactNode;
+      action?: ReactNode;
+    };
+    example: {
+      icon?: ReactNode;
+      iconType?: IconType;
+      title: ReactNode;
+      body?: ReactNode;
+      actions?: ReactNode[];
+      layout?: 'horizontal' | 'vertical';
+      footer?: ReactNode;
+    };
+    footer?: ReactNode;
+  };
+} = {
   firstUse: {
     id: 'firstUse',
     label: 'First time use',
