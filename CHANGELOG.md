@@ -260,6 +260,14 @@ No public interface changes since `45.0.0`.
 
 - Renamed `tokenKeyword` icon to `tokenTag` in `EuiToken` ([#5251](https://github.com/elastic/eui/pull/5251))
 
+## [`39.1.4`](https://github.com/elastic/eui/tree/v39.1.4)
+
+**Note: this release is a backport containing changes originally made in `44.0.0`**
+
+**Deprecations**
+
+- Deprecated `PartitionConfig` in favor of inclusion in Charts `theme.partition` ([#5492](https://github.com/elastic/eui/pull/5492)).
+
 ## [`39.1.3`](https://github.com/elastic/eui/tree/v39.1.2)
 
 **Note: this release is a backport containing changes originally made after `42.0.0`**
