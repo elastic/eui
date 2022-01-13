@@ -1,8 +1,14 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-**Enhancements**
-
 - Fixed `EuiDataGrid` inconsistent color halo when focusing on the control columns by changing outline of class `euiButtonIcon` and `.euiCheckbox` in `euiDataGridRowCell`, as well as `.euiCheckbox` in `euiDataGridHeaderCell` [#5522](https://github.com/elastic/eui/pull/5522))
+
+- Added virtulized rendering option to `EuiSelectableList` with `isVirtualized` ([#5521](https://github.com/elastic/eui/pull/5521))
+- Added expanded option properties to `EuiSelectableOption` with `data` ([#5521](https://github.com/elastic/eui/pull/5521))
+
+**Bug fixes**
+
+- Fixed multiple bugs with `EuiDataGrid` keyboard focus restoration ([#5530](https://github.com/elastic/eui/pull/5530))
+- Fixed `EuiDataGrid`'s display toolbar control to update initial UI state when developer `gridStyle` or `rowHeightsOptions` props are updated ([#5525](https://github.com/elastic/eui/pull/5525))
 
 **Breaking changes**
 
