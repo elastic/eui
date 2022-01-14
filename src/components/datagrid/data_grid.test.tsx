@@ -2762,6 +2762,8 @@ describe('EuiDataGrid', () => {
     expect(gridRef.current).toEqual({
       setIsFullScreen: expect.any(Function),
       setFocusedCell: expect.any(Function),
+      openCellPopover: expect.any(Function),
+      closeCellPopover: expect.any(Function),
     });
   });
 });

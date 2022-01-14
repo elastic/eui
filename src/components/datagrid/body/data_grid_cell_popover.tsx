@@ -5,17 +5,61 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-import React, { JSXElementConstructor } from 'react';
+
+import React, {
+  createContext,
+  useState,
+  useCallback,
+  JSXElementConstructor,
+} from 'react';
 import { keys } from '../../../services';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button/button_empty';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiPopover, EuiPopoverFooter } from '../../popover';
 import {
+  DataGridCellPopoverContextShape,
   EuiDataGridCellPopoverProps,
   EuiDataGridCellValueElementProps,
   EuiDataGridColumnCellAction,
   EuiDataGridColumnCellActionProps,
 } from '../data_grid_types';
+
+export const DataGridCellPopoverContext = createContext<
+  DataGridCellPopoverContextShape
+>({
+  popoverIsOpen: false,
+  openCellLocation: { rowIndex: 0, colIndex: 0 },
+  openCellPopover: () => {},
+  closeCellPopover: () => {},
+});
+
+export const useCellPopover = (): {
+  cellPopoverContext: DataGridCellPopoverContextShape;
+} => {
+  // Current open state & cell location are handled here
+  const [popoverIsOpen, setPopoverIsOpen] = useState(false);
+  const [openCellLocation, setOpenCellLocation] = useState({
+    rowIndex: 0,
+    colIndex: 0,
+  });
+
+  const closeCellPopover = useCallback(() => setPopoverIsOpen(false), []);
+  const openCellPopover = useCallback(({ rowIndex, colIndex }) => {
+    // TODO: Popover anchor & content
+
+    setOpenCellLocation({ rowIndex, colIndex });
+    setPopoverIsOpen(true);
+  }, []);
+
+  const cellPopoverContext = {
+    popoverIsOpen,
+    closeCellPopover,
+    openCellPopover,
+    openCellLocation,
+  };
+
+  return { cellPopoverContext };
+};
 
 export function EuiDataGridCellPopover({
   anchorContent,

@@ -195,6 +195,13 @@ export interface DataGridFocusContextShape {
   focusFirstVisibleInteractiveCell: () => void;
 }
 
+export interface DataGridCellPopoverContextShape {
+  popoverIsOpen: boolean;
+  closeCellPopover(): void;
+  openCellPopover(args: { rowIndex: number; colIndex: number }): void;
+  openCellLocation: { rowIndex: number; colIndex: number };
+}
+
 export type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     /**
@@ -301,10 +308,16 @@ export interface EuiDataGridRefProps {
    * toggles a modal or flyout - focus must be restored to the grid on close
    * to prevent keyboard or screen reader users from being stranded.
    */
-  setFocusedCell(targetCell: EuiDataGridCellLocation): void;
+  setFocusedCell: (cell: { rowIndex: number; colIndex: number }) => void;
+  /**
+   * Allows manually opening the popover of the specified cell in the grid.
+   */
+  openCellPopover: (cell: { rowIndex: number; colIndex: number }) => void;
+  /**
+   * Closes any currently open popovers in the data grid.
+   */
+  closeCellPopover: () => void;
 }
-
-export type EuiDataGridCellLocation = { rowIndex: number; colIndex: number };
 
 export interface EuiDataGridColumnResizerProps {
   columnId: string;

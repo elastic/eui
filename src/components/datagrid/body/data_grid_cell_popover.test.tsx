@@ -7,10 +7,49 @@
  */
 
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { shallow } from 'enzyme';
 import { keys } from '../../../services';
+import { testCustomHook } from '../../../test';
 
-import { EuiDataGridCellPopover } from './data_grid_cell_popover';
+import {
+  useCellPopover,
+  EuiDataGridCellPopover,
+} from './data_grid_cell_popover';
+
+describe('useCellPopover', () => {
+  describe('openCellPopover', () => {
+    it('sets popoverIsOpen state to true', () => {
+      const {
+        return: { cellPopoverContext },
+        getUpdatedState,
+      } = testCustomHook(() => useCellPopover());
+      expect(cellPopoverContext.popoverIsOpen).toEqual(false);
+
+      act(() =>
+        cellPopoverContext.openCellPopover({ rowIndex: 0, colIndex: 0 })
+      );
+      expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(true);
+    });
+  });
+
+  describe('closeCellPopover', () => {
+    it('sets popoverIsOpen state to false', () => {
+      const {
+        return: { cellPopoverContext },
+        getUpdatedState,
+      } = testCustomHook(() => useCellPopover());
+
+      act(() =>
+        cellPopoverContext.openCellPopover({ rowIndex: 0, colIndex: 0 })
+      );
+      expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(true);
+
+      act(() => cellPopoverContext.closeCellPopover());
+      expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(false);
+    });
+  });
+});
 
 describe('EuiDataGridCellPopover', () => {
   const requiredProps = {
