@@ -7,6 +7,17 @@ exports[`EuiDataGridCell renders 1`] = `
   interactiveCellId="someId"
   isExpandable={true}
   popoverContent={[Function]}
+  popoverContext={
+    Object {
+      "closeCellPopover": [MockFunction],
+      "openCellLocation": Object {
+        "colIndex": 0,
+        "rowIndex": 0,
+      },
+      "openCellPopover": [MockFunction],
+      "popoverIsOpen": false,
+    }
+  }
   renderCellValue={[Function]}
   rowHeightUtils={
     Object {

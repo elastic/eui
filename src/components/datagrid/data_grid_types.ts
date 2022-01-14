@@ -428,6 +428,7 @@ export interface EuiDataGridCellProps {
   isExpandable: boolean;
   className?: string;
   popoverContent: EuiDataGridPopoverContent;
+  popoverContext: DataGridCellPopoverContextShape;
   renderCellValue:
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
@@ -450,7 +451,11 @@ export interface EuiDataGridCellState {
 
 export type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
-  'width' | 'interactiveCellId' | 'popoverContent' | 'rowManager'
+  | 'width'
+  | 'interactiveCellId'
+  | 'popoverContent'
+  | 'popoverContext'
+  | 'rowManager'
 >;
 export interface EuiDataGridControlColumn {
   /**

@@ -404,6 +404,7 @@ export class EuiDataGridCell extends Component<
       width,
       isExpandable,
       popoverContent: PopoverContent,
+      popoverContext,
       interactiveCellId,
       columnType,
       className,

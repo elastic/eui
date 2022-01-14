@@ -16,6 +16,12 @@ import { DataGridFocusContext } from '../utils/focus';
 import { EuiDataGridCell } from './data_grid_cell';
 
 describe('EuiDataGridCell', () => {
+  const mockPopoverContext = {
+    popoverIsOpen: false,
+    openCellLocation: { rowIndex: 0, colIndex: 0 },
+    closeCellPopover: jest.fn(),
+    openCellPopover: jest.fn(),
+  };
   const requiredProps = {
     rowIndex: 0,
     visibleRowIndex: 0,
@@ -30,6 +36,7 @@ describe('EuiDataGridCell', () => {
       </div>
     ),
     popoverContent: () => <div>popover</div>,
+    popoverContext: mockPopoverContext,
     rowHeightUtils: mockRowHeightUtils,
   };
 
