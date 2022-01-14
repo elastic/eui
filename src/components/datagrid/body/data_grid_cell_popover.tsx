@@ -38,12 +38,25 @@ export const useCellPopover = (): {
   const [popoverContent, setPopoverContent] = useState<ReactNode>();
 
   const closeCellPopover = useCallback(() => setPopoverIsOpen(false), []);
-  const openCellPopover = useCallback(({ rowIndex, colIndex }) => {
-    // Toggle our open cell state, which causes EuiDataGridCells to react/check
-    // if they should be the open popover and send their anchor+content if so
-    setOpenCellLocation({ rowIndex, colIndex });
-    setPopoverIsOpen(true);
-  }, []);
+  const openCellPopover = useCallback(
+    ({ rowIndex, colIndex }) => {
+      // Prevent popover DOM issues when re-opening the same popover
+      if (
+        popoverIsOpen &&
+        rowIndex === openCellLocation.rowIndex &&
+        colIndex === openCellLocation.colIndex
+      ) {
+        return;
+      }
+
+      // Toggle our open cell state, which causes EuiDataGridCells to react/check
+      // if they should be the open popover and send their anchor+content if so
+      setPopoverAnchor(null); // Resetting the anchor node is required for rerendering to work correctly
+      setOpenCellLocation({ rowIndex, colIndex });
+      setPopoverIsOpen(true);
+    },
+    [popoverIsOpen, openCellLocation]
+  );
 
   const cellPopoverContext = {
     popoverIsOpen,

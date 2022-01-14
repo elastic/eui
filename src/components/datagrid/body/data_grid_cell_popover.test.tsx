@@ -29,6 +29,28 @@ describe('useCellPopover', () => {
       );
       expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(true);
     });
+
+    it('does nothing if called again on a popover that is already open', () => {
+      const {
+        return: { cellPopoverContext, cellPopover },
+        getUpdatedState,
+      } = testCustomHook(() => useCellPopover());
+      expect(cellPopover).toBeFalsy();
+
+      act(() => {
+        cellPopoverContext.openCellPopover({ rowIndex: 0, colIndex: 0 });
+        cellPopoverContext.setPopoverAnchor(document.createElement('div'));
+      });
+      expect(getUpdatedState().cellPopover).not.toBeFalsy();
+
+      act(() => {
+        getUpdatedState().cellPopoverContext.openCellPopover({
+          rowIndex: 0,
+          colIndex: 0,
+        });
+      });
+      expect(getUpdatedState().cellPopover).not.toBeFalsy();
+    });
   });
 
   describe('closeCellPopover', () => {
