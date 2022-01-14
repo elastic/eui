@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactNode, useState, useMemo, useCallback } from 'react';
+import React, {
+  ReactNode,
+  useState,
+  useMemo,
+  useCallback,
+  useEffect,
+} from 'react';
 
 import { useUpdateEffect } from '../../../services';
 import { EuiI18n, useEuiI18n } from '../../i18n';
@@ -51,11 +57,11 @@ const densityStyles: { [key: string]: Partial<EuiDataGridStyle> } = {
   },
 };
 const convertGridStylesToSelection = (gridStyles: EuiDataGridStyle) => {
-  if (gridStyles?.fontSize === 's' && gridStyles?.cellPadding === 's')
+  if (gridStyles.fontSize === 's' && gridStyles.cellPadding === 's')
     return 'compact';
-  if (gridStyles?.fontSize === 'm' && gridStyles?.cellPadding === 'm')
+  if (gridStyles.fontSize === 'm' && gridStyles.cellPadding === 'm')
     return 'normal';
-  if (gridStyles?.fontSize === 'l' && gridStyles?.cellPadding === 'l')
+  if (gridStyles.fontSize === 'l' && gridStyles.cellPadding === 'l')
     return 'expanded';
   return '';
 };
@@ -66,23 +72,21 @@ const capitalizeDensityString = (s: string) => s[0].toUpperCase() + s.slice(1);
 // Row height options and utilities
 const rowHeightButtonOptions: string[] = ['undefined', 'auto', 'lineCount'];
 const convertRowHeightsOptionsToSelection = (
-  rowHeightsOptions?: EuiDataGridRowHeightsOptions
+  rowHeightsOptions: EuiDataGridRowHeightsOptions
 ) => {
-  if (rowHeightsOptions) {
-    const { defaultHeight } = rowHeightsOptions;
+  const { defaultHeight } = rowHeightsOptions;
 
-    if (defaultHeight === 'auto') {
-      return rowHeightButtonOptions[1];
-    }
-    if (typeof defaultHeight === 'object' && defaultHeight?.lineCount) {
-      return rowHeightButtonOptions[2];
-    }
-    if (
-      typeof defaultHeight === 'number' ||
-      (typeof defaultHeight === 'object' && defaultHeight.height)
-    ) {
-      return '';
-    }
+  if (defaultHeight === 'auto') {
+    return rowHeightButtonOptions[1];
+  }
+  if (typeof defaultHeight === 'object' && defaultHeight?.lineCount) {
+    return rowHeightButtonOptions[2];
+  }
+  if (
+    typeof defaultHeight === 'number' ||
+    (typeof defaultHeight === 'object' && defaultHeight.height)
+  ) {
+    return '';
   }
   return rowHeightButtonOptions[0];
 };
@@ -104,37 +108,17 @@ export const useDataGridDisplaySelector = (
     'allowRowHeight'
   );
 
-  // Get initial state (also used when resetting)
-  const initialDensity = useMemo(
-    () => convertGridStylesToSelection(initialStyles),
-    [initialStyles]
-  );
-  const initialRowHeight = useMemo(
-    () => convertRowHeightsOptionsToSelection(initialRowHeightsOptions),
-    [initialRowHeightsOptions]
-  );
-  const initialLineCount = useMemo(
-    // @ts-ignore - optional chaining operator handles types & cases that aren't lineCount
-    () => initialRowHeightsOptions?.defaultHeight?.lineCount || 2,
-    [initialRowHeightsOptions?.defaultHeight]
-  );
-
   // Track styles specified by the user at run time
   const [userGridStyles, setUserGridStyles] = useState({});
   const [userRowHeightsOptions, setUserRowHeightsOptions] = useState({});
 
-  // Density state
-  const [gridDensity, _setGridDensity] = useState(initialDensity);
-  const setGridDensity = (density: string) => {
-    _setGridDensity(density);
+  // Density logic
+  const setGridStyles = useCallback((density: string) => {
     setUserGridStyles(densityStyles[density]);
-  };
+  }, []);
 
-  // Row height state
-  const [lineCount, setLineCount] = useState(initialLineCount);
-  const [rowHeightSelection, setRowHeightSelection] = useState(
-    initialRowHeight
-  );
+  // Row height logic
+  const [lineCount, setLineCount] = useState(2);
   const setRowHeight = useCallback(
     (option: string) => {
       const rowHeightsOptions: EuiDataGridRowHeightsOptions = {
@@ -149,7 +133,6 @@ export const useDataGridDisplaySelector = (
         rowHeightsOptions.defaultHeight = undefined;
       }
 
-      setRowHeightSelection(option);
       setUserRowHeightsOptions(rowHeightsOptions);
     },
     [lineCount]
@@ -180,39 +163,47 @@ export const useDataGridDisplaySelector = (
     };
   }, [initialRowHeightsOptions, userRowHeightsOptions]);
 
-  // Invoke onChange callbacks on user input (removing the callback value itself, so that only configuration values are returned)
+  // Set UI controls based on current configurations, on init & when either developer or user settings change
+  const gridDensity = useMemo(() => {
+    return convertGridStylesToSelection(gridStyles);
+  }, [gridStyles]);
+
+  const rowHeightSelection = useMemo(() => {
+    return convertRowHeightsOptionsToSelection(rowHeightsOptions);
+  }, [rowHeightsOptions]);
+
+  useEffect(() => {
+    // @ts-ignore - optional chaining operator handles types & cases that aren't lineCount
+    setLineCount(rowHeightsOptions?.defaultHeight?.lineCount || 2);
+    // @ts-ignore - same as above
+  }, [rowHeightsOptions?.defaultHeight?.lineCount]);
+
+  // Show a reset button whenever users manually change settings, and
+  // invoke onChange callbacks (removing the callback value itself, so that only configuration values are returned)
+  const [showResetButton, setShowResetButton] = useState(false);
+
   useUpdateEffect(() => {
+    const hasUserChanges = Object.keys(userGridStyles).length > 0;
+    if (hasUserChanges) setShowResetButton(true);
+
     const { onChange, ...currentGridStyles } = gridStyles;
     initialStyles?.onChange?.(currentGridStyles);
   }, [userGridStyles]);
 
   useUpdateEffect(() => {
+    const hasUserChanges = Object.keys(userRowHeightsOptions).length > 0;
+    if (hasUserChanges) setShowResetButton(true);
+
     const { onChange, ...currentRowHeightsOptions } = rowHeightsOptions;
     initialRowHeightsOptions?.onChange?.(currentRowHeightsOptions);
   }, [userRowHeightsOptions]);
 
   // Allow resetting to initial developer-specified configurations
   const resetToInitialState = useCallback(() => {
-    setGridDensity(initialDensity);
     setUserGridStyles({});
-    setRowHeightSelection(initialRowHeight);
     setUserRowHeightsOptions({});
-    setLineCount(initialLineCount);
-  }, [initialDensity, initialRowHeight, initialLineCount]);
-
-  const showResetButton = useMemo(() => {
-    if (initialDensity !== gridDensity) return true;
-    if (initialRowHeight !== rowHeightSelection) return true;
-    if (initialLineCount !== lineCount) return true;
-    return false;
-  }, [
-    initialDensity,
-    gridDensity,
-    initialRowHeight,
-    rowHeightSelection,
-    initialLineCount,
-    lineCount,
-  ]);
+    setShowResetButton(false);
+  }, []);
 
   const buttonLabel = useEuiI18n(
     'euiDisplaySelector.buttonText',
@@ -285,7 +276,7 @@ export const useDataGridDisplaySelector = (
                       label: labelExpanded,
                     },
                   ]}
-                  onChange={setGridDensity}
+                  onChange={setGridStyles}
                   idSelected={gridDensity}
                   data-test-subj="densityButtonGroup"
                 />

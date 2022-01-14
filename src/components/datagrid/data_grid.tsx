@@ -15,7 +15,10 @@ import React, {
   useState,
   useImperativeHandle,
 } from 'react';
-import { VariableSizeGrid as Grid } from 'react-window';
+import {
+  VariableSizeGrid as Grid,
+  GridOnItemsRenderedProps,
+} from 'react-window';
 import { useGeneratedHtmlId, keys } from '../../services';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n, useEuiI18n } from '../i18n';
@@ -130,7 +133,10 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     /**
      * Merge consumer settings with defaults
      */
-    const gridStyleWithDefaults = { ...startingStyles, ...gridStyle };
+    const gridStyleWithDefaults = useMemo(
+      () => ({ ...startingStyles, ...gridStyle }),
+      [gridStyle]
+    );
 
     const mergedPopoverContents = useMemo(
       () => ({
@@ -175,6 +181,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     // Imperative handler passed back by react-window - we're setting this at
     // the top datagrid level to make passing it to other children & utils easier
     const gridRef = useRef<Grid | null>(null);
+    const gridItemsRendered = useRef<GridOnItemsRenderedProps | null>(null);
 
     /**
      * Display
@@ -261,9 +268,10 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       headerIsInteractive,
       handleHeaderMutation,
     } = useHeaderIsInteractive(contentRef.current);
-    const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus(
-      headerIsInteractive
-    );
+    const { focusProps: wrappingDivFocusProps, ...focusContext } = useFocus({
+      headerIsInteractive,
+      gridItemsRendered,
+    });
 
     /**
      * Toolbar & full-screen
@@ -420,6 +428,8 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                   gridElement: contentRef.current,
                   visibleColCount,
                   visibleRowCount,
+                  visibleRowStartIndex:
+                    gridItemsRendered.current?.visibleRowStartIndex || 0,
                   rowCount,
                   pagination,
                   hasFooter: !!renderFooterCellValue,
@@ -459,6 +469,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                   gridStyles={gridStyles}
                   gridWidth={gridWidth}
                   gridRef={gridRef}
+                  gridItemsRendered={gridItemsRendered}
                   wrapperRef={contentRef}
                 />
               </div>

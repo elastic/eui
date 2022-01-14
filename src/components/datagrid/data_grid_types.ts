@@ -19,7 +19,11 @@ import {
   SetStateAction,
   MutableRefObject,
 } from 'react';
-import { VariableSizeGridProps, VariableSizeGrid as Grid } from 'react-window';
+import {
+  VariableSizeGridProps,
+  VariableSizeGrid as Grid,
+  GridOnItemsRenderedProps,
+} from 'react-window';
 import { EuiListGroupItemProps } from '../list_group';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { ExclusiveUnion, CommonProps, OneOf } from '../common';
@@ -183,10 +187,12 @@ export interface DataGridSortingContextShape {
 export interface DataGridFocusContextShape {
   focusedCell?: EuiDataGridFocusedCell;
   setFocusedCell: (cell: EuiDataGridFocusedCell) => void;
+  setIsFocusedCellInView: (isFocusedCellInView: boolean) => void;
   onFocusUpdate: (
     cell: EuiDataGridFocusedCell,
     updateFocus: Function
   ) => () => void;
+  focusFirstVisibleInteractiveCell: () => void;
 }
 
 export type CommonGridProps = CommonProps &
@@ -364,6 +370,7 @@ export interface EuiDataGridBodyProps {
   gridStyles: EuiDataGridStyle;
   gridWidth: number;
   gridRef: MutableRefObject<Grid | null>;
+  gridItemsRendered: MutableRefObject<GridOnItemsRenderedProps | null>;
   wrapperRef: MutableRefObject<HTMLDivElement | null>;
 }
 export interface EuiDataGridCellValueElementProps {
