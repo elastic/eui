@@ -15,7 +15,12 @@ export default ({
   button?: ReactNode;
   content?: ReactNode;
 }) => (
-  <EuiPageTemplate fullHeight template="empty">
+  <EuiPageTemplate
+    style={{ maxHeight: '100vh' }}
+    fullHeight
+    // template="empty"
+    pageSideBar={'Sidebar'}
+  >
     <EuiFlexGroup
       className="eui-fullHeight"
       gutterSize="none"

@@ -13,11 +13,11 @@ import {
 export default ({
   button = <></>,
   content,
-  sideNav,
+  sideBar,
 }: {
   button?: ReactNode;
   content?: ReactNode;
-  sideNav?: ReactNode;
+  sideBar?: ReactNode;
 }) => {
   const [showBottomBar, setshowBottomBar] = useState(false);
 
@@ -32,16 +32,16 @@ export default ({
 
   return (
     <EuiPage paddingSize="none">
-      {sideNav && (
+      {sideBar && (
         <EuiPageSideBar paddingSize="l" sticky>
-          {sideNav}
+          {sideBar}
         </EuiPageSideBar>
       )}
 
-      <EuiPageBody panelled={Boolean(sideNav)}>
+      <EuiPageBody panelled={Boolean(sideBar)}>
         <EuiPageHeader
           restrictWidth
-          bottomBorder={sideNav ? true : 'extended'}
+          bottomBorder={sideBar ? true : 'extended'}
           iconType="logoElastic"
           pageTitle="Page title"
           rightSideItems={[button]}

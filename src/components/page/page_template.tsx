@@ -141,13 +141,17 @@ export const EuiPageTemplate: FunctionComponent<EuiPageTemplateProps> = ({
   // Only the default template can display a bottom bar
   const bottomBarNode = bottomBar ? (
     <EuiBottomBar
-      paddingSize={paddingSize}
+      paddingSize={'none'}
       position={canFullHeight && fullHeight ? 'static' : 'sticky'}
+      style={{ flexShrink: 0, ...bottomBarProps?.style }}
       // Using uknown here because of the possible conflict with overriding props and position `sticky`
       {...(bottomBarProps as unknown)}
     >
       {/* Wrapping the contents with EuiPageContentBody allows us to match the restrictWidth to keep the contents aligned */}
-      <EuiPageContentBody paddingSize={'none'} restrictWidth={restrictWidth}>
+      <EuiPageContentBody
+        paddingSize={paddingSize}
+        restrictWidth={restrictWidth}
+      >
         {bottomBar}
       </EuiPageContentBody>
     </EuiBottomBar>

@@ -22,6 +22,8 @@ import {
   EuiCodeBlock,
 } from '../../../../src/components';
 
+import { PageDemoExample } from './page_demo_example';
+
 import PageNew from './components/page_new';
 const pageNewSource = require('!!raw-loader!./components/page_new');
 import PageTemplate from './templates/page_template';
@@ -96,58 +98,50 @@ export const PageTemplateExample = {
   ),
   sections: [
     {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: PageTemplateSource,
-          displayName: 'Template JS',
-        },
-        {
-          type: GuideSectionTypes.JS,
-          code: pageNewSource,
-          displayName: 'Composable JS',
-        },
-      ],
+      wrapText: false,
       text: (
         <>
-          <p>
-            EUI provides a family of components using the{' '}
-            <EuiCode>EuiPage</EuiCode> prefix that work together to build
-            consistent page layouts that work responsively.
-          </p>
-          <ul>
-            <li>
-              <strong>EuiPage</strong> and <strong>EuiPageBody</strong> provide
-              the overall wrappers with a column flex display.
-            </li>
-            <li>
-              <strong>EuiPageSideBar</strong> provides a way to add side
-              navigation that can be made <EuiCode>sticky</EuiCode> to scroll
-              independent of the page content. See{' '}
-              <Link to="/navigation/side-nav">
-                <strong>EuiSideNav</strong>
-              </Link>{' '}
-              for contents.
-            </li>
-            <li>
-              <Link to="/layout/page-header">
-                <strong>EuiPageHeader</strong>
-              </Link>{' '}
-              provides a title, description, section for actions and possible
-              tabs.
-            </li>
-            <li>
-              <strong>EuiPageContent</strong> wraps the children.
-            </li>
-          </ul>
-          <p>
-            But we recommend using the provided <strong>EuiPageTemplate</strong>
-            , which is simply a shortcut for creating the different types of
-            page layout patterns described in these docs. It is somewhat
-            opinionated, but still has the ability to customize most of the
-            inner components with props like <EuiCode>pageSideBarProps</EuiCode>{' '}
-            and <EuiCode>pageContentProps</EuiCode>.
-          </p>
+          <EuiText>
+            <p>
+              EUI provides a family of components using the{' '}
+              <EuiCode>EuiPage</EuiCode> prefix that work together to build
+              consistent page layouts that work responsively.
+            </p>
+            <ul>
+              <li>
+                <strong>EuiPage</strong> and <strong>EuiPageBody</strong>{' '}
+                provide the overall wrappers with a column flex display.
+              </li>
+              <li>
+                <strong>EuiPageSideBar</strong> provides a way to add side
+                navigation that can be made <EuiCode>sticky</EuiCode> to scroll
+                independent of the page content. See{' '}
+                <Link to="/navigation/side-nav">
+                  <strong>EuiSideNav</strong>
+                </Link>{' '}
+                for contents.
+              </li>
+              <li>
+                <Link to="/layout/page-header">
+                  <strong>EuiPageHeader</strong>
+                </Link>{' '}
+                provides a title, description, section for actions and possible
+                tabs.
+              </li>
+              <li>
+                <strong>EuiPageContent</strong> wraps the children.
+              </li>
+            </ul>
+            <p>
+              But we recommend using the provided{' '}
+              <strong>EuiPageTemplate</strong>, which is simply a shortcut for
+              creating the different types of page layout patterns described in
+              these docs. It is somewhat opinionated, but still has the ability
+              to customize most of the inner components with props like{' '}
+              <EuiCode>pageSideBarProps</EuiCode> and{' '}
+              <EuiCode>pageContentProps</EuiCode>.
+            </p>
+          </EuiText>
           <EuiCallOut
             color="warning"
             iconType="editorCodeBlock"
@@ -165,39 +159,32 @@ flex-flow: column nowrap;
 flex-grow: 1;`}
             </EuiCodeBlock>
           </EuiCallOut>
+          <EuiSpacer />
+          <PageDemoExample
+            slug="full-page"
+            highlight="all"
+            template={{
+              demo: PageTemplate,
+              source: PageTemplateSource,
+            }}
+            composable={{
+              demo: PageNew,
+              source: pageNewSource,
+            }}
+            playground={pageTemplateConfig}
+            props={{
+              EuiPageTemplate,
+              EuiPage,
+              EuiPageBody,
+              EuiPageSideBar,
+              EuiPageHeader,
+              EuiPageContent,
+              EuiPageContentBody,
+              EuiBottomBar,
+            }}
+          />
         </>
       ),
-      props: {
-        EuiPageTemplate,
-        EuiPage,
-        EuiPageBody,
-        EuiPageSideBar,
-        EuiPageHeader,
-        EuiPageContent,
-        EuiPageContentBody,
-        EuiBottomBar,
-      },
-      playground: pageTemplateConfig,
-      demo: (
-        <PageDemo
-          slug="full-page"
-          pattern={PageNew}
-          template={PageTemplate}
-          highlight="all"
-        />
-      ),
-      demoPanelProps: { overflow: 'hidden', paddingSize: 'none' },
-      fullScreen: {
-        slug: 'full-page',
-        demo: (
-          <PageDemo
-            slug="full-page"
-            pattern={PageNew}
-            template={PageTemplate}
-            fullscreen
-          />
-        ),
-      },
     },
     {
       title: 'Restricting page width',
