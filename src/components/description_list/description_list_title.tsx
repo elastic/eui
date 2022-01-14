@@ -9,25 +9,15 @@
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { EuiBadge } from '../badge';
-
-export type EuiDescriptionListTitleProps = {
-  inline?: boolean;
-};
 
 export const EuiDescriptionListTitle: FunctionComponent<
-  EuiDescriptionListTitleProps & CommonProps & HTMLAttributes<HTMLElement>
-> = ({ children, inline, className, ...rest }) => {
+  CommonProps & HTMLAttributes<HTMLElement>
+> = ({ children, className, ...rest }) => {
   const classes = classNames('euiDescriptionList__title', className);
+
   return (
     <dt className={classes} {...rest}>
-      {inline ? (
-        <EuiBadge className="euiDescriptionList__titleBadge">
-          {children}
-        </EuiBadge>
-      ) : (
-        children
-      )}
+      {children}
     </dt>
   );
 };

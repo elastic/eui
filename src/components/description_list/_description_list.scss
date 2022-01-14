@@ -170,42 +170,33 @@
 
   &.euiDescriptionList--inline {
 
-    &:not(.euiDescriptionList--compressed) {
-      .euiDescriptionList__titleBadge {
-        @include fontSize($euiFontSizeS);
-      }
-    }
-
     .euiDescriptionList__title {
       @include euiFontSizeS;
       display: inline;
-      padding:  0;
+      border-radius: $euiBorderRadius / 2;
+      font-weight: $euiFontWeightMedium;
+      background-color: transparentize(shadeOrTint($euiColorPrimary, 20%, 30%), .9) !important; // sass-lint:disable-line no-important
+      padding:  1px $euiSizeXS;
       margin: 0 $euiSizeXS;
-
-      &Badge {
-        vertical-align: baseline;
-        font-weight: $euiFontWeightRegular;
-        padding:  0 $euiSizeXS;
-        border: none;
-        background-color: transparentize(shade($euiColorPrimary, 20%), .9) !important; // sass-lint:disable-line no-important
-        color: $euiTextColor !important; // sass-lint:disable-line no-important
-      }
 
       // Make sure the first <dt> doesn't get a margin.
       &:first-of-type {
         margin-left: 0;
-        padding-left: 0;
       }
     }
 
     .euiDescriptionList__description {
       @include euiFontSizeS;
       display: inline;
-      word-break: break-all;
     }
 
     // Compressed when inline is even smaller.
     &.euiDescriptionList--compressed {
+
+      .euiDescriptionList__title {
+        @include euiFontSizeXS;
+        padding:  0 $euiSizeXS;
+      }
 
       .euiDescriptionList__description {
         @include euiFontSizeXS;
