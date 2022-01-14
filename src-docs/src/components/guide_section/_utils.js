@@ -8,7 +8,7 @@ import { cleanEuiImports } from '../../services';
 
 export const renderJsSourceCode = (code) => {
   let renderedCode = cleanEuiImports(code.default);
-  const elasticImports = [];
+  const elasticImports = [''];
 
   // Find all imports that come from '@elastic/eui'
   renderedCode = renderedCode.replace(
@@ -25,8 +25,13 @@ export const renderJsSourceCode = (code) => {
       return '';
     }
   );
-  renderedCode = `import { ${elasticImports.join(', ')} } from '@elastic/eui';
 
+  // Separate the first line (import { ) onto it's own line without a ", "
+  // Combine all EUI imports with a comma and new line
+  renderedCode = `import { ${elasticImports.slice(
+    0,
+    1
+  )}\n${elasticImports.slice(1).join(', \n')} \n} from '@elastic/eui';
 ${renderedCode}
   `;
 
