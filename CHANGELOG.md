@@ -1,6 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `45.0.0`.
+- Updated the outline color in `euiCustomControlFocused` mixin to use 
+`$euiFocusRingColor` instead of `currentColor` ([#5479](https://github.com/elastic/eui/pull/5479))
 
 ## [`45.0.0`](https://github.com/elastic/eui/tree/v45.0.0)
 
