@@ -110,7 +110,7 @@ Besides babel transforms, the test environment build consumes mocked component f
 
 ## Using the `optimize` build (Beta)
 
-The `optimize` output directory is opt-in intermediaty step as we work towards dedicated, formal build output for development and production environments.
+The `optimize` output directory is an opt-in intermediate step as we work towards dedicated, formal build output for development and production environments.
 
 When compiling with webpack, use the `resolve.alias` configuration to target the desired directory:
 

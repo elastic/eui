@@ -9,7 +9,7 @@ baseConfig.plugins.splice(
   1
 );
 // Transform runtimes using babel plugin.
-// Requires consming applications to use `@babel/runtime`.
+// Requires consuming applications to use `@babel/runtime`.
 baseConfig.plugins.push('@babel/plugin-transform-runtime');
 baseConfig.env = {};
 module.exports = baseConfig;
