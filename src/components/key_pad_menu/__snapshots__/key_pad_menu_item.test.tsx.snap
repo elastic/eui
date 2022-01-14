@@ -125,6 +125,38 @@ exports[`EuiKeyPadMenuItem props betaBadge renders 1`] = `
 </span>
 `;
 
+exports[`EuiKeyPadMenuItem props betaBadge renders extra betaBadgeTooltipProps 1`] = `
+<span
+  class="euiToolTipAnchor customTooltipClass"
+>
+  <button
+    class="euiKeyPadMenuItem euiKeyPadMenuItem--hasBetaBadge"
+    type="button"
+  >
+    <span
+      class="euiKeyPadMenuItem__inner"
+    >
+      <span
+        class="euiBetaBadge euiBetaBadge--singleLetter euiBetaBadge--subdued euiBetaBadge--small euiKeyPadMenuItem__betaBadge"
+        title="B"
+      >
+        B
+      </span>
+      <span
+        class="euiKeyPadMenuItem__icon"
+      >
+        Icon
+      </span>
+      <span
+        class="euiKeyPadMenuItem__label"
+      >
+        Label
+      </span>
+    </span>
+  </button>
+</span>
+`;
+
 exports[`EuiKeyPadMenuItem props betaBadge renders with betaBadgeIconType 1`] = `
 <span
   class="euiToolTipAnchor"

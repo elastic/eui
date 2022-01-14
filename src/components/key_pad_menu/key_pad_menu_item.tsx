@@ -29,7 +29,7 @@ import { getSecureRelForTarget, useGeneratedHtmlId } from '../../services';
 import { IconType } from '../icon';
 import { EuiRadio, EuiCheckbox } from '../form';
 import { validateHref } from '../../services/security/href_validator';
-import { EuiToolTip } from '../tool_tip';
+import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 
 export type EuiKeyPadMenuItemCheckableType = 'single' | 'multi';
 
@@ -71,6 +71,12 @@ type EuiKeyPadMenuItemPropsForUncheckable = {
    * Add a description to the beta badge (will appear in a tooltip)
    */
   betaBadgeTooltipContent?: ReactNode;
+  /**
+   * Extends the wrapping EuiToolTip props when betaBadgeLabel is provided
+   */
+  betaBadgeTooltipProps?: Partial<
+    Omit<EuiToolTipProps, 'title' | 'content' | 'delay'>
+  >;
   /**
    * Use `onClick` instead when the item is not `checkable`
    */
@@ -154,6 +160,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   betaBadgeLabel,
   betaBadgeTooltipContent,
   betaBadgeIconType,
+  betaBadgeTooltipProps,
   href,
   rel,
   target,
@@ -279,6 +286,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
 
   return betaBadgeLabel ? (
     <EuiToolTip
+      {...betaBadgeTooltipProps}
       title={betaBadgeLabel}
       content={betaBadgeTooltipContent}
       delay="long"
