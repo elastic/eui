@@ -21,6 +21,8 @@ describe('EuiDataGridCell', () => {
     openCellLocation: { rowIndex: 0, colIndex: 0 },
     closeCellPopover: jest.fn(),
     openCellPopover: jest.fn(),
+    setPopoverAnchor: jest.fn(),
+    setPopoverContent: jest.fn(),
   };
   const requiredProps = {
     rowIndex: 0,
@@ -129,6 +131,19 @@ describe('EuiDataGridCell', () => {
         it('popoverContent', () => {
           component.setProps({ popoverContent: () => <div>test</div> });
         });
+        it('popoverContext.popoverIsOpen', () => {
+          component.setProps({
+            popoverContext: { ...mockPopoverContext, popoverIsOpen: true },
+          });
+        });
+        it('popoverContext.openCellLocation', () => {
+          component.setProps({
+            popoverContext: {
+              ...mockPopoverContext,
+              openCellLocation: { rowIndex: 5, colIndex: 5 },
+            },
+          });
+        });
         it('style', () => {
           component.setProps({ style: {} });
           component.setProps({ style: { top: 0 } });
@@ -173,6 +188,18 @@ describe('EuiDataGridCell', () => {
       component.setProps({ columnId: 'newColumnId' });
       expect(setState).toHaveBeenCalledWith({ cellProps: {} });
     });
+
+    it("handles the cell popover by forwarding the cell's DOM node and contents to the parent popover context", () => {
+      const component = mount(<EuiDataGridCell {...requiredProps} />);
+      expect(mockPopoverContext.setPopoverAnchor).not.toHaveBeenCalled();
+      expect(mockPopoverContext.setPopoverContent).not.toHaveBeenCalled();
+
+      component.setProps({
+        popoverContext: { ...mockPopoverContext, popoverIsOpen: true },
+      });
+      expect(mockPopoverContext.setPopoverAnchor).toHaveBeenCalled();
+      expect(mockPopoverContext.setPopoverContent).toHaveBeenCalled();
+    });
   });
 
   describe('componentDidMount', () => {
@@ -205,6 +232,18 @@ describe('EuiDataGridCell', () => {
       expect(mockFocusContext.setIsFocusedCellInView).toHaveBeenCalledWith(
         true
       );
+    });
+
+    it('handles the cell popover if the current cell should have an open popover', () => {
+      mount(
+        <EuiDataGridCell
+          {...requiredProps}
+          popoverContext={{ ...mockPopoverContext, popoverIsOpen: true }}
+        />
+      );
+
+      expect(mockPopoverContext.setPopoverAnchor).toHaveBeenCalled();
+      expect(mockPopoverContext.setPopoverContent).toHaveBeenCalled();
     });
   });
 

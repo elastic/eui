@@ -200,6 +200,8 @@ export interface DataGridCellPopoverContextShape {
   closeCellPopover(): void;
   openCellPopover(args: { rowIndex: number; colIndex: number }): void;
   openCellLocation: { rowIndex: number; colIndex: number };
+  setPopoverAnchor(anchor: HTMLElement): void;
+  setPopoverContent(content: ReactNode): void;
 }
 
 export type CommonGridProps = CommonProps &

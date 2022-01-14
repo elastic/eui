@@ -239,6 +239,10 @@ export class EuiDataGridCell extends Component<
       this.onFocusUpdate(true, true);
       this.context.setIsFocusedCellInView(true);
     }
+
+    // Check if popover should be open on mount (typically only occurs if
+    // openCellPopover() is manually called on a location that's out of view)
+    this.handleCellPopover();
   }
 
   isFocusedCell = () => {
@@ -277,6 +281,15 @@ export class EuiDataGridCell extends Component<
       this.recalculateLineHeight();
     }
 
+    if (
+      this.props.popoverContext.popoverIsOpen !==
+        prevProps.popoverContext.popoverIsOpen ||
+      this.props.popoverContext.openCellLocation !==
+        prevProps.popoverContext.openCellLocation
+    ) {
+      this.handleCellPopover();
+    }
+
     if (this.props.columnId !== prevProps.columnId) {
       this.setCellProps({});
     }
@@ -298,6 +311,13 @@ export class EuiDataGridCell extends Component<
     if (nextProps.interactiveCellId !== this.props.interactiveCellId)
       return true;
     if (nextProps.popoverContent !== this.props.popoverContent) return true;
+    if (
+      nextProps.popoverContext.popoverIsOpen !==
+        this.props.popoverContext.popoverIsOpen ||
+      nextProps.popoverContext.openCellLocation !==
+        this.props.popoverContext.openCellLocation
+    )
+      return true;
 
     // respond to adjusted position & dimensions
     if (nextProps.style) {
@@ -412,6 +432,22 @@ export class EuiDataGridCell extends Component<
       }
     }
     return false;
+  };
+
+  handleCellPopover = () => {
+    if (this.isPopoverOpen()) {
+      const { setPopoverAnchor, setPopoverContent } = this.props.popoverContext;
+
+      // Set popover anchor
+      const cellAnchorEl = this.cellRef.current!.querySelector<HTMLDivElement>(
+        '.euiDataGridRowCell__expandFlex' // Anchor class
+      )!;
+      setPopoverAnchor(cellAnchorEl);
+
+      // Set popover contents with cell content
+      const popoverContent = <>TODO, testing</>;
+      setPopoverContent(popoverContent);
+    }
   };
 
   render() {

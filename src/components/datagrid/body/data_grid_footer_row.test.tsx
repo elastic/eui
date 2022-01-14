@@ -51,6 +51,8 @@ describe('EuiDataGridFooterRow', () => {
               },
               "openCellPopover": [Function],
               "popoverIsOpen": false,
+              "setPopoverAnchor": [Function],
+              "setPopoverContent": [Function],
             }
           }
           renderCellValue={[Function]}
@@ -76,6 +78,8 @@ describe('EuiDataGridFooterRow', () => {
               },
               "openCellPopover": [Function],
               "popoverIsOpen": false,
+              "setPopoverAnchor": [Function],
+              "setPopoverContent": [Function],
             }
           }
           renderCellValue={[Function]}
@@ -125,6 +129,8 @@ describe('EuiDataGridFooterRow', () => {
               },
               "openCellPopover": [Function],
               "popoverIsOpen": false,
+              "setPopoverAnchor": [Function],
+              "setPopoverContent": [Function],
             }
           }
           renderCellValue={[Function]}
@@ -180,6 +186,8 @@ describe('EuiDataGridFooterRow', () => {
               },
               "openCellPopover": [Function],
               "popoverIsOpen": false,
+              "setPopoverAnchor": [Function],
+              "setPopoverContent": [Function],
             }
           }
           renderCellValue={[Function]}

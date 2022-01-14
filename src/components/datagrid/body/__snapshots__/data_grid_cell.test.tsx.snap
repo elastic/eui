@@ -16,6 +16,8 @@ exports[`EuiDataGridCell renders 1`] = `
       },
       "openCellPopover": [MockFunction],
       "popoverIsOpen": false,
+      "setPopoverAnchor": [MockFunction],
+      "setPopoverContent": [MockFunction],
     }
   }
   renderCellValue={[Function]}

@@ -31,6 +31,8 @@ export const DataGridCellPopoverContext = createContext<
   openCellLocation: { rowIndex: 0, colIndex: 0 },
   openCellPopover: () => {},
   closeCellPopover: () => {},
+  setPopoverAnchor: () => {},
+  setPopoverContent: () => {},
 });
 
 export const useCellPopover = (): {
@@ -42,11 +44,14 @@ export const useCellPopover = (): {
     rowIndex: 0,
     colIndex: 0,
   });
+  // Popover anchor & content are passed by individual `EuiDataGridCell`s
+  const [popoverAnchor, setPopoverAnchor] = useState<HTMLElement | null>(null);
+  const [popoverContent, setPopoverContent] = useState<ReactNode>();
 
   const closeCellPopover = useCallback(() => setPopoverIsOpen(false), []);
   const openCellPopover = useCallback(({ rowIndex, colIndex }) => {
-    // TODO: Popover anchor & content
-
+    // Toggle our open cell state, which causes EuiDataGridCells to react/check
+    // if they should be the open popover and send their anchor+content if so
     setOpenCellLocation({ rowIndex, colIndex });
     setPopoverIsOpen(true);
   }, []);
@@ -56,6 +61,8 @@ export const useCellPopover = (): {
     closeCellPopover,
     openCellPopover,
     openCellLocation,
+    setPopoverAnchor,
+    setPopoverContent,
   };
 
   return { cellPopoverContext };
