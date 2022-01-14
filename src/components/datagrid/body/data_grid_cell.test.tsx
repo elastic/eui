@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { mount, ReactWrapper } from 'enzyme';
+import { mount, render, ReactWrapper } from 'enzyme';
 import { keys } from '../../../services';
 import { mockRowHeightUtils } from '../utils/__mocks__/row_heights';
 import { mockFocusContext } from '../utils/__mocks__/focus_context';
@@ -37,7 +37,9 @@ describe('EuiDataGridCell', () => {
         <button data-datagrid-interactable="true">world</button>
       </div>
     ),
-    popoverContent: () => <div>popover</div>,
+    popoverContent: ({ children }: { children: React.ReactNode }) => (
+      <div data-test-subj="popover-test">{children}</div>
+    ),
     popoverContext: mockPopoverContext,
     rowHeightUtils: mockRowHeightUtils,
   };
@@ -190,7 +192,12 @@ describe('EuiDataGridCell', () => {
     });
 
     it("handles the cell popover by forwarding the cell's DOM node and contents to the parent popover context", () => {
-      const component = mount(<EuiDataGridCell {...requiredProps} />);
+      const component = mount(
+        <EuiDataGridCell
+          {...requiredProps}
+          column={{ id: 'someColumn', cellActions: [() => <button />] }}
+        />
+      );
       expect(mockPopoverContext.setPopoverAnchor).not.toHaveBeenCalled();
       expect(mockPopoverContext.setPopoverContent).not.toHaveBeenCalled();
 
@@ -199,6 +206,12 @@ describe('EuiDataGridCell', () => {
       });
       expect(mockPopoverContext.setPopoverAnchor).toHaveBeenCalled();
       expect(mockPopoverContext.setPopoverContent).toHaveBeenCalled();
+
+      // Examine popover content which should contain popoverContent, renderCellValue, and cellActions
+      const popoverContent = render(
+        <>{mockPopoverContext.setPopoverContent.mock.calls[0][0]}</>
+      );
+      expect(popoverContent).toMatchSnapshot();
     });
   });
 

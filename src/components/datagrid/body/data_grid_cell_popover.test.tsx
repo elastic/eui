@@ -12,10 +12,8 @@ import { shallow } from 'enzyme';
 import { keys } from '../../../services';
 import { testCustomHook } from '../../../test';
 
-import {
-  useCellPopover,
-  EuiDataGridCellPopover,
-} from './data_grid_cell_popover';
+import { DataGridCellPopoverContextShape } from '../data_grid_types';
+import { useCellPopover } from './data_grid_cell_popover';
 
 describe('useCellPopover', () => {
   describe('openCellPopover', () => {
@@ -49,158 +47,137 @@ describe('useCellPopover', () => {
       expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(false);
     });
   });
-});
 
-describe('EuiDataGridCellPopover', () => {
-  const requiredProps = {
-    rowIndex: 0,
-    colIndex: 0,
-    cellContentProps: {
-      rowIndex: 0,
-      columnId: 'someId',
-      setCellProps: () => {},
-      isExpandable: false,
-      isExpanded: false,
-      isDetails: false,
-    },
-    anchorContent: <button />,
-    cellContentsRef: ((<div />) as unknown) as HTMLDivElement,
-    panelRefFn: () => <div />,
-    renderCellValue: () => <div />,
-    popoverContent: () => <div />,
-    popoverIsOpen: true,
-    closePopover: jest.fn(),
-  };
-
-  it('renders', () => {
-    const component = shallow(<EuiDataGridCellPopover {...requiredProps} />);
-
-    expect(component).toMatchInlineSnapshot(`
-      <EuiPopover
-        anchorClassName="euiDataGridRowCell__expand"
-        anchorPosition="downCenter"
-        button={<button />}
-        closePopover={[MockFunction]}
-        display="block"
-        hasArrow={false}
-        isOpen={true}
-        onKeyDown={[Function]}
-        ownFocus={true}
-        panelClassName="euiDataGridRowCell__popover"
-        panelPaddingSize="s"
-        panelProps={
-          Object {
-            "data-test-subj": "euiDataGridExpansionPopover",
-          }
-        }
-        panelRef={[Function]}
-      >
-        <popoverContent
-          cellContentsElement={<div />}
-        >
-          <renderCellValue
-            columnId="someId"
-            isDetails={true}
-            isExpandable={false}
-            isExpanded={false}
-            rowIndex={0}
-            setCellProps={[Function]}
-          />
-        </popoverContent>
-      </EuiPopover>
-    `);
-  });
-
-  it('renders popover content', () => {
-    const component = shallow(
-      <EuiDataGridCellPopover
-        {...requiredProps}
-        popoverIsOpen={true}
-        column={{ id: 'someId', cellActions: [() => <button />] }}
-      />
+  describe('cellPopver', () => {
+    const mockPopoverAnchor = document.createElement('div');
+    const mockPopoverContent = (
+      <div data-test-subj="mockPopover">Hello world</div>
     );
+    const populateCellPopover = (
+      cellPopoverContext: DataGridCellPopoverContextShape
+    ) => {
+      act(() => {
+        cellPopoverContext.openCellPopover({ colIndex: 0, rowIndex: 0 });
+        cellPopoverContext.setPopoverAnchor(mockPopoverAnchor);
+        cellPopoverContext.setPopoverContent(mockPopoverContent);
+      });
+    };
 
-    expect(component).toMatchInlineSnapshot(`
-      <EuiPopover
-        anchorClassName="euiDataGridRowCell__expand"
-        anchorPosition="downCenter"
-        button={<button />}
-        closePopover={[MockFunction]}
-        display="block"
-        hasArrow={false}
-        isOpen={true}
-        onKeyDown={[Function]}
-        ownFocus={true}
-        panelClassName="euiDataGridRowCell__popover"
-        panelPaddingSize="s"
-        panelProps={
-          Object {
-            "data-test-subj": "euiDataGridExpansionPopover",
+    it('renders', () => {
+      const {
+        return: { cellPopoverContext, cellPopover },
+        getUpdatedState,
+      } = testCustomHook(() => useCellPopover());
+      expect(cellPopover).toBeFalsy(); // Should be empty on init
+
+      populateCellPopover(cellPopoverContext);
+      expect(getUpdatedState().cellPopover).toMatchInlineSnapshot(`
+        <EuiWrappingPopover
+          anchorClassName="euiDataGridRowCell__expand"
+          button={<div />}
+          closePopover={[Function]}
+          display="block"
+          hasArrow={false}
+          isOpen={true}
+          onKeyDown={[Function]}
+          panelClassName="euiDataGridRowCell__popover"
+          panelPaddingSize="s"
+          panelProps={
+            Object {
+              "data-test-subj": "euiDataGridExpansionPopover",
+            }
           }
-        }
-        panelRef={[Function]}
-      >
-        <popoverContent
-          cellContentsElement={<div />}
         >
-          <renderCellValue
-            columnId="someId"
-            isDetails={true}
-            isExpandable={false}
-            isExpanded={false}
-            rowIndex={0}
-            setCellProps={[Function]}
-          />
-        </popoverContent>
-        <EuiPopoverFooter>
-          <EuiFlexGroup
-            gutterSize="s"
+          <div
+            data-test-subj="mockPopover"
           >
-            <EuiFlexItem
-              key="0"
-            >
-              <Component
-                Component={[Function]}
-                closePopover={[MockFunction]}
-                colIndex={0}
-                columnId="someId"
-                isExpanded={true}
-                rowIndex={0}
-              />
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiPopoverFooter>
-      </EuiPopover>
-    `);
-
-    const button = component
-      .find('EuiFlexItem')
-      .children()
-      .renderProp('Component');
-    expect(button()).toMatchInlineSnapshot(`
-      <EuiButtonEmpty
-        size="s"
-      />
-    `);
-  });
-
-  it('handles closing the popover', () => {
-    const component = shallow(<EuiDataGridCellPopover {...requiredProps} />);
-    requiredProps.closePopover.mockImplementation(() => {
-      component.setProps({ popoverIsOpen: false });
+            Hello world
+          </div>
+        </EuiWrappingPopover>
+      `);
     });
 
-    const event = {
-      key: keys.ESCAPE,
-      preventDefault: jest.fn(),
-      stopPropagation: jest.fn(),
-    };
-    component.find('EuiPopover').simulate('keyDown', event);
+    describe('onKeyDown', () => {
+      const renderCellPopover = () => {
+        const {
+          return: { cellPopoverContext },
+          getUpdatedState,
+        } = testCustomHook<ReturnType<typeof useCellPopover>>(() =>
+          useCellPopover()
+        );
+        populateCellPopover(cellPopoverContext);
 
-    expect(requiredProps.closePopover).toHaveBeenCalled();
-    expect(event.preventDefault).toHaveBeenCalled();
-    expect(event.stopPropagation).toHaveBeenCalled();
+        const { cellPopover } = getUpdatedState();
+        const component = shallow(<div>{cellPopover}</div>);
 
-    requiredProps.closePopover.mockReset();
+        return { component, getUpdatedState };
+      };
+
+      it('closes the popover when the Escape key is pressed', () => {
+        const { component, getUpdatedState } = renderCellPopover();
+        expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(
+          true
+        );
+
+        const event = {
+          key: keys.ESCAPE,
+          preventDefault: jest.fn(),
+          stopPropagation: jest.fn(),
+        };
+        act(() => {
+          component.find('EuiWrappingPopover').simulate('keyDown', event);
+        });
+
+        expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(
+          false
+        );
+        expect(event.preventDefault).toHaveBeenCalled();
+        expect(event.stopPropagation).toHaveBeenCalled();
+      });
+
+      it('closes the popover when the F2 key is pressed', () => {
+        const { component, getUpdatedState } = renderCellPopover();
+        expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(
+          true
+        );
+
+        const event = {
+          key: keys.F2,
+          preventDefault: jest.fn(),
+          stopPropagation: jest.fn(),
+        };
+        act(() => {
+          component.find('EuiWrappingPopover').simulate('keyDown', event);
+        });
+
+        expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(
+          false
+        );
+        expect(event.preventDefault).toHaveBeenCalled();
+        expect(event.stopPropagation).toHaveBeenCalled();
+      });
+
+      it('does nothing when other keys are pressed', () => {
+        const { component, getUpdatedState } = renderCellPopover();
+        expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(
+          true
+        );
+
+        const event = {
+          key: keys.ENTER,
+          preventDefault: jest.fn(),
+          stopPropagation: jest.fn(),
+        };
+        act(() => {
+          component.find('EuiWrappingPopover').simulate('keyDown', event);
+        });
+
+        expect(getUpdatedState().cellPopoverContext.popoverIsOpen).toEqual(
+          true
+        );
+        expect(event.preventDefault).not.toHaveBeenCalled();
+        expect(event.stopPropagation).not.toHaveBeenCalled();
+      });
+    });
   });
 });

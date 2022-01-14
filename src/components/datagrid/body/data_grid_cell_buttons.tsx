@@ -5,6 +5,7 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
+
 import React, { JSXElementConstructor, useMemo } from 'react';
 import {
   EuiDataGridColumn,
@@ -12,8 +13,12 @@ import {
   EuiDataGridColumnCellActionProps,
 } from '../data_grid_types';
 import classNames from 'classnames';
+
 import { EuiI18n } from '../../i18n';
 import { EuiButtonIcon, EuiButtonIconProps } from '../../button/button_icon';
+import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button/button_empty';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiPopoverFooter } from '../../popover';
 
 export const EuiDataGridCellButtons = ({
   popoverIsOpen,
@@ -90,5 +95,44 @@ export const EuiDataGridCellButtons = ({
 
   return (
     <div className={buttonClasses}>{[...additionalButtons, expandButton]}</div>
+  );
+};
+
+export const EuiDataGridCellPopoverButtons = ({
+  rowIndex,
+  colIndex,
+  column,
+}: {
+  column?: EuiDataGridColumn;
+  colIndex: number;
+  rowIndex: number;
+}) => {
+  if (!column?.cellActions?.length) return null;
+
+  return (
+    <EuiPopoverFooter>
+      <EuiFlexGroup gutterSize="s">
+        {column.cellActions.map(
+          (Action: EuiDataGridColumnCellAction, idx: number) => {
+            const CellButtonElement = Action as JSXElementConstructor<
+              EuiDataGridColumnCellActionProps
+            >;
+            return (
+              <EuiFlexItem key={idx}>
+                <CellButtonElement
+                  rowIndex={rowIndex}
+                  colIndex={colIndex}
+                  columnId={column.id}
+                  Component={(props: EuiButtonEmptyProps) => (
+                    <EuiButtonEmpty {...props} size="s" />
+                  )}
+                  isExpanded={true}
+                />
+              </EuiFlexItem>
+            );
+          }
+        )}
+      </EuiFlexGroup>
+    </EuiPopoverFooter>
   );
 };

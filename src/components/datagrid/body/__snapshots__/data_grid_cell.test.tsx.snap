@@ -167,3 +167,37 @@ exports[`EuiDataGridCell renders 1`] = `
   </div>
 </EuiDataGridCell>
 `;
+
+exports[`EuiDataGridCell componentDidUpdate handles the cell popover by forwarding the cell's DOM node and contents to the parent popover context 1`] = `
+Array [
+  <div
+    data-test-subj="popover-test"
+  >
+    <div>
+      <button
+        data-datagrid-interactable="true"
+      >
+        hello
+      </button>
+      <button
+        data-datagrid-interactable="true"
+      >
+        world
+      </button>
+    </div>
+  </div>,
+  <div
+    class="euiPopoverFooter"
+  >
+    <div
+      class="euiFlexGroup euiFlexGroup--gutterSmall euiFlexGroup--directionRow euiFlexGroup--responsive"
+    >
+      <div
+        class="euiFlexItem"
+      >
+        <button />
+      </div>
+    </div>
+  </div>,
+]
+`;

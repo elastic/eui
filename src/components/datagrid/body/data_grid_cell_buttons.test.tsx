@@ -9,7 +9,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
+import {
+  EuiDataGridCellButtons,
+  EuiDataGridCellPopoverButtons,
+} from './data_grid_cell_buttons';
 
 describe('EuiDataGridCellButtons', () => {
   const requiredProps = {
@@ -52,7 +55,7 @@ describe('EuiDataGridCellButtons', () => {
     `);
   });
 
-  it('renders column cell actions', () => {
+  it('renders column cell actions as `EuiButtonIcon`s', () => {
     const component = shallow(
       <EuiDataGridCellButtons
         {...requiredProps}
@@ -92,5 +95,61 @@ describe('EuiDataGridCellButtons', () => {
         iconType="eye"
       />
     `);
+  });
+});
+
+describe('EuiDataGridCellPopoverButtons', () => {
+  it('renders column cell actions as `EuiButtonEmpty`s', () => {
+    const component = shallow(
+      <EuiDataGridCellPopoverButtons
+        colIndex={0}
+        rowIndex={0}
+        column={{ id: 'someId', cellActions: [() => <button />] }}
+      />
+    );
+
+    expect(component).toMatchInlineSnapshot(`
+      <EuiPopoverFooter>
+        <EuiFlexGroup
+          gutterSize="s"
+        >
+          <EuiFlexItem
+            key="0"
+          >
+            <Component
+              Component={[Function]}
+              colIndex={0}
+              columnId="someId"
+              isExpanded={true}
+              rowIndex={0}
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiPopoverFooter>
+    `);
+
+    const button = component
+      .childAt(0)
+      .childAt(0)
+      .childAt(0) // .find('Component') doesn't work, for whatever reason
+      .renderProp('Component');
+    expect(button({ iconType: 'function' })).toMatchInlineSnapshot(`
+      <EuiButtonEmpty
+        iconType="function"
+        size="s"
+      />
+    `);
+  });
+
+  it('does not render anything if the column has no cell actions', () => {
+    const component = shallow(
+      <EuiDataGridCellPopoverButtons
+        colIndex={0}
+        rowIndex={0}
+        column={{ id: 'noActions' }}
+      />
+    );
+
+    expect(component.isEmptyRender()).toBe(true);
   });
 });

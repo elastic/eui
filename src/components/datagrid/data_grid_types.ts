@@ -332,21 +332,6 @@ export interface EuiDataGridColumnResizerState {
   offset: number;
 }
 
-export interface EuiDataGridCellPopoverProps {
-  anchorContent: NonNullable<ReactNode>;
-  cellContentProps: EuiDataGridCellValueElementProps;
-  cellContentsRef: HTMLDivElement | null;
-  closePopover: () => void;
-  column?: EuiDataGridColumn;
-  panelRefFn: RefCallback<HTMLElement | null>;
-  popoverIsOpen: boolean;
-  popoverContent: EuiDataGridPopoverContent;
-  renderCellValue:
-    | JSXElementConstructor<EuiDataGridCellValueElementProps>
-    | ((props: EuiDataGridCellValueElementProps) => ReactNode);
-  rowIndex: number;
-  colIndex: number;
-}
 export interface EuiDataGridColumnSortingDraggableProps {
   id: string;
   direction: string;
@@ -581,7 +566,7 @@ export interface EuiDataGridColumnCellActionProps {
    * Closes the popover if a cell is expanded.
    * The prop is provided for an expanded cell only.
    */
-  closePopover: () => void;
+  closePopover?: () => void;
 }
 
 export interface EuiDataGridColumnVisibility {

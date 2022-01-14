@@ -6,23 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  createContext,
-  useState,
-  useCallback,
-  JSXElementConstructor,
-} from 'react';
+import React, { createContext, useState, useCallback, ReactNode } from 'react';
+
 import { keys } from '../../../services';
-import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button/button_empty';
-import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { EuiPopover, EuiPopoverFooter } from '../../popover';
-import {
-  DataGridCellPopoverContextShape,
-  EuiDataGridCellPopoverProps,
-  EuiDataGridCellValueElementProps,
-  EuiDataGridColumnCellAction,
-  EuiDataGridColumnCellActionProps,
-} from '../data_grid_types';
+import { EuiWrappingPopover } from '../../popover';
+import { DataGridCellPopoverContextShape } from '../data_grid_types';
 
 export const DataGridCellPopoverContext = createContext<
   DataGridCellPopoverContextShape
@@ -37,6 +25,7 @@ export const DataGridCellPopoverContext = createContext<
 
 export const useCellPopover = (): {
   cellPopoverContext: DataGridCellPopoverContextShape;
+  cellPopover: ReactNode;
 } => {
   // Current open state & cell location are handled here
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
@@ -65,36 +54,17 @@ export const useCellPopover = (): {
     setPopoverContent,
   };
 
-  return { cellPopoverContext };
-};
-
-export function EuiDataGridCellPopover({
-  anchorContent,
-  cellContentProps,
-  cellContentsRef,
-  closePopover,
-  column,
-  panelRefFn,
-  popoverContent: PopoverContent,
-  popoverIsOpen,
-  renderCellValue,
-  rowIndex,
-  colIndex,
-}: EuiDataGridCellPopoverProps) {
-  const CellElement = renderCellValue as JSXElementConstructor<
-    EuiDataGridCellValueElementProps
-  >;
-  return (
-    <EuiPopover
+  // Note that this popover is rendered once at the top grid level, rather than one popover per cell
+  const cellPopover = popoverIsOpen && popoverAnchor && (
+    <EuiWrappingPopover
       hasArrow={false}
       anchorClassName="euiDataGridRowCell__expand"
-      button={anchorContent}
+      button={popoverAnchor}
       isOpen={popoverIsOpen}
-      panelRef={panelRefFn}
       panelClassName="euiDataGridRowCell__popover"
       panelPaddingSize="s"
       display="block"
-      closePopover={closePopover}
+      closePopover={closeCellPopover}
       panelProps={{
         'data-test-subj': 'euiDataGridExpansionPopover',
       }}
@@ -102,44 +72,13 @@ export function EuiDataGridCellPopover({
         if (event.key === keys.F2 || event.key === keys.ESCAPE) {
           event.preventDefault();
           event.stopPropagation();
-          closePopover();
+          closeCellPopover();
         }
       }}
     >
-      {popoverIsOpen ? (
-        <>
-          <PopoverContent cellContentsElement={cellContentsRef!}>
-            <CellElement {...cellContentProps} isDetails={true} />
-          </PopoverContent>
-          {column && column.cellActions && column.cellActions.length ? (
-            <EuiPopoverFooter>
-              <EuiFlexGroup gutterSize="s">
-                {column.cellActions.map(
-                  (Action: EuiDataGridColumnCellAction, idx: number) => {
-                    const CellButtonElement = Action as JSXElementConstructor<
-                      EuiDataGridColumnCellActionProps
-                    >;
-                    return (
-                      <EuiFlexItem key={idx}>
-                        <CellButtonElement
-                          rowIndex={rowIndex}
-                          colIndex={colIndex}
-                          columnId={column.id}
-                          Component={(props: EuiButtonEmptyProps) => (
-                            <EuiButtonEmpty {...props} size="s" />
-                          )}
-                          isExpanded={true}
-                          closePopover={closePopover}
-                        />
-                      </EuiFlexItem>
-                    );
-                  }
-                )}
-              </EuiFlexGroup>
-            </EuiPopoverFooter>
-          ) : null}
-        </>
-      ) : null}
-    </EuiPopover>
+      {popoverContent}
+    </EuiWrappingPopover>
   );
-}
+
+  return { cellPopoverContext, cellPopover };
+};

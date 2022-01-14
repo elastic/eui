@@ -32,8 +32,10 @@ import {
   EuiDataGridCellValueElementProps,
   EuiDataGridCellValueProps,
 } from '../data_grid_types';
-import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
-import { EuiDataGridCellPopover } from './data_grid_cell_popover';
+import {
+  EuiDataGridCellButtons,
+  EuiDataGridCellPopoverButtons,
+} from './data_grid_cell_buttons';
 import { IS_JEST_ENVIRONMENT } from '../../../test';
 
 const EuiDataGridCellContent: FunctionComponent<
@@ -114,7 +116,7 @@ export class EuiDataGridCell extends Component<
 
   cellRef = createRef() as MutableRefObject<HTMLDivElement | null>;
   contentObserver!: any; // Cell Content ResizeObserver
-  popoverPanelRef: MutableRefObject<HTMLElement | null> = createRef();
+  popoverAnchorRef = createRef() as MutableRefObject<HTMLDivElement | null>;
   cellContentsRef: HTMLDivElement | null = null;
   state: EuiDataGridCellState = {
     cellProps: {},
@@ -439,13 +441,40 @@ export class EuiDataGridCell extends Component<
       const { setPopoverAnchor, setPopoverContent } = this.props.popoverContext;
 
       // Set popover anchor
-      const cellAnchorEl = this.cellRef.current!.querySelector<HTMLDivElement>(
-        '.euiDataGridRowCell__expandFlex' // Anchor class
-      )!;
+      const cellAnchorEl = this.popoverAnchorRef.current!;
       setPopoverAnchor(cellAnchorEl);
 
       // Set popover contents with cell content
-      const popoverContent = <>TODO, testing</>;
+      const {
+        popoverContent: PopoverContent,
+        renderCellValue,
+        rowIndex,
+        colIndex,
+        column,
+        columnId,
+      } = this.props;
+      const CellElement = renderCellValue as JSXElementConstructor<
+        EuiDataGridCellValueElementProps
+      >;
+      const popoverContent = (
+        <>
+          <PopoverContent cellContentsElement={this.cellContentsRef!}>
+            <CellElement
+              rowIndex={rowIndex}
+              columnId={columnId}
+              isExpandable={true}
+              isExpanded={true}
+              setCellProps={this.setCellProps}
+              isDetails={true}
+            />
+          </PopoverContent>
+          <EuiDataGridCellPopoverButtons
+            rowIndex={rowIndex}
+            colIndex={colIndex}
+            column={column}
+          />
+        </>
+      );
       setPopoverContent(popoverContent);
     }
   };
@@ -454,7 +483,7 @@ export class EuiDataGridCell extends Component<
     const {
       width,
       isExpandable,
-      popoverContent: PopoverContent,
+      popoverContent,
       popoverContext: { closeCellPopover, openCellPopover },
       interactiveCellId,
       columnType,
@@ -582,7 +611,7 @@ export class EuiDataGridCell extends Component<
       ? 'euiDataGridRowCell__contentByHeight'
       : 'euiDataGridRowCell__expandContent';
 
-    let anchorContent = (
+    let innerContent = (
       <EuiFocusTrap
         disabled={!this.state.isEntered}
         autoFocus={true}
@@ -592,7 +621,7 @@ export class EuiDataGridCell extends Component<
         style={isDefinedHeight ? { height: '100%' } : {}}
         clickOutsideDisables={true}
       >
-        <div className={anchorClass}>
+        <div className={anchorClass} ref={this.popoverAnchorRef}>
           <div className={expandClass}>
             <EuiDataGridCellContent {...cellContentProps} />
           </div>
@@ -602,8 +631,8 @@ export class EuiDataGridCell extends Component<
 
     if (hasCellButtons) {
       if (showCellButtons) {
-        anchorContent = (
-          <div className={anchorClass}>
+        innerContent = (
+          <div className={anchorClass} ref={this.popoverAnchorRef}>
             <div className={expandClass}>
               <EuiDataGridCellContent {...cellContentProps} />
             </div>
@@ -624,44 +653,13 @@ export class EuiDataGridCell extends Component<
           </div>
         );
       } else {
-        anchorContent = (
-          <div className={anchorClass}>
+        innerContent = (
+          <div className={anchorClass} ref={this.popoverAnchorRef}>
             <div className={expandClass}>
               <EuiDataGridCellContent {...cellContentProps} />
             </div>
           </div>
         );
-      }
-    }
-
-    let innerContent = anchorContent;
-    if (hasCellButtons) {
-      if (popoverIsOpen) {
-        innerContent = (
-          <div
-            className={
-              isDefinedHeight
-                ? 'euiDataGridRowCell__contentByHeight'
-                : 'euiDataGridRowCell__content'
-            }
-          >
-            <EuiDataGridCellPopover
-              anchorContent={anchorContent}
-              cellContentProps={cellContentProps}
-              cellContentsRef={this.cellContentsRef}
-              closePopover={closeCellPopover}
-              column={column}
-              panelRefFn={(ref) => (this.popoverPanelRef.current = ref)}
-              popoverIsOpen={popoverIsOpen}
-              rowIndex={rowIndex}
-              colIndex={colIndex}
-              renderCellValue={rest.renderCellValue}
-              popoverContent={PopoverContent}
-            />
-          </div>
-        );
-      } else {
-        innerContent = anchorContent;
       }
     }
 

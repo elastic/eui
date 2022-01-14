@@ -280,7 +280,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     /**
      * Cell popover
      */
-    const { cellPopoverContext } = useCellPopover();
+    const { cellPopoverContext, cellPopover } = useCellPopover();
 
     /**
      * Toolbar & full-screen
@@ -509,6 +509,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
               </div>
             </EuiFocusTrap>
           </DataGridSortingContext.Provider>
+          {cellPopover}
         </DataGridCellPopoverContext.Provider>
       </DataGridFocusContext.Provider>
     );
