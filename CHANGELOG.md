@@ -3,6 +3,7 @@
 - Added `lettering` glyph to `EuiIcon` ([#5525](https://github.com/elastic/eui/pull/5525))
 - Updated the outline color in `euiCustomControlFocused` mixin to use 
 `$euiFocusRingColor` instead of `currentColor` ([#5479](https://github.com/elastic/eui/pull/5479))
+- **[Beta]** Added `optimize` build as a lighter weight option more suited to prodcution environments ([#5527](https://github.com/elastic/eui/pull/5527))
 
 ## [`45.0.0`](https://github.com/elastic/eui/tree/v45.0.0)
 
