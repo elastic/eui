@@ -361,7 +361,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   ]);
 
   /**
-   * Handles scroll cells fully into view
+   * Handle scrolling cells fully into view
    */
   useScroll({
     gridRef,
