@@ -164,6 +164,29 @@ describe('useScrollCellIntoView', () => {
 
       expect(scrollTo).toHaveBeenCalledWith({ scrollLeft: 0, scrollTop: 0 });
     });
+
+    it('scrolls to the left side over the right if the cell width is larger than the grid width', () => {
+      const cell = {
+        ...mockCell,
+        offsetLeft: 50,
+        offsetWidth: 300,
+      };
+      const grid = {
+        scrollLeft: 100,
+        clientWidth: 250,
+      };
+
+      getCell.mockReturnValue(cell);
+      const { scrollCellIntoView } = testCustomHook(() =>
+        useScrollCellIntoView({
+          ...args,
+          outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
+        })
+      );
+      scrollCellIntoView({ rowIndex: 1, colIndex: 1 });
+
+      expect(scrollTo).toHaveBeenCalledWith({ scrollLeft: 50, scrollTop: 0 });
+    });
   });
 
   describe('bottom scroll adjustments', () => {
@@ -263,6 +286,30 @@ describe('useScrollCellIntoView', () => {
       );
       scrollCellIntoView({ rowIndex: 1, colIndex: 0 });
       expect(scrollTo).toHaveBeenCalledWith({ scrollTop: 20, scrollLeft: 0 });
+    });
+
+    it('scrolls to the top side over the bottom if the cell height is larger than the grid height', () => {
+      const cell = {
+        ...mockCell,
+        offsetTop: 100,
+        offsetHeight: 600,
+      };
+      const grid = {
+        scrollTop: 200,
+        clientHeight: 300,
+      };
+
+      getCell.mockReturnValue(cell);
+      const { scrollCellIntoView } = testCustomHook(() =>
+        useScrollCellIntoView({
+          ...args,
+          outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
+          headerRowHeight: 50,
+        })
+      );
+      scrollCellIntoView({ rowIndex: 1, colIndex: 0 });
+
+      expect(scrollTo).toHaveBeenCalledWith({ scrollTop: 50, scrollLeft: 0 });
     });
 
     it('makes no vertical adjustments if the cell is a sticky header cell', () => {

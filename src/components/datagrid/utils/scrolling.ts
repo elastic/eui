@@ -114,12 +114,12 @@ export const useScrollCellIntoView = ({
 
       // Check if the cell's left side is outside the current scrolling bounds
       const cellLeftPos = cell.offsetLeft;
-      const leftScrollBound = scrollLeft;
+      const leftScrollBound = adjustedScrollLeft ?? scrollLeft;
       const leftWidthOutOfView = leftScrollBound - cellLeftPos;
       if (leftWidthOutOfView > 0) {
         // Note: This overrides the right side being out of bounds, as we want to prefer
-        // showing the top-left corner of items if a cell is somehow larger than the grid container
-        adjustedScrollLeft = scrollLeft - leftWidthOutOfView;
+        // showing the top-left corner of items if a cell is larger than the grid container
+        adjustedScrollLeft = cellLeftPos;
       }
 
       // Skip top/bottom scroll adjustments for sticky headers & footers
@@ -139,12 +139,12 @@ export const useScrollCellIntoView = ({
 
         // Check if the cell's top side is outside the current scrolling bounds
         const cellTopPos = cell.offsetTop;
-        const topScrollBound = scrollTop + headerRowHeight; // Sticky header is always present
+        const topScrollBound = adjustedScrollTop ?? scrollTop + headerRowHeight; // Sticky header is always present
         const topHeightOutOfView = topScrollBound - cellTopPos;
         if (topHeightOutOfView > 0) {
           // Note: This overrides the bottom side being out of bounds, as we want to prefer
-          // showing the top-left corner of items if a cell is somehow larger than the grid container
-          adjustedScrollTop = scrollTop - topHeightOutOfView;
+          // showing the top-left corner of items if a cell is larger than the grid container
+          adjustedScrollTop = cellTopPos - headerRowHeight;
         }
       }
 
