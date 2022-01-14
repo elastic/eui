@@ -118,7 +118,6 @@ export class EuiDataGridCell extends Component<
   cellContentsRef: HTMLDivElement | null = null;
   state: EuiDataGridCellState = {
     cellProps: {},
-    popoverIsOpen: false,
     isFocused: false,
     isEntered: false,
     enableInteractions: false,
@@ -312,7 +311,6 @@ export class EuiDataGridCell extends Component<
     }
 
     if (nextState.cellProps !== this.state.cellProps) return true;
-    if (nextState.popoverIsOpen !== this.state.popoverIsOpen) return true;
     if (nextState.isEntered !== this.state.isEntered) return true;
     if (nextState.isFocused !== this.state.isFocused) return true;
     if (nextState.enableInteractions !== this.state.enableInteractions)
@@ -395,8 +393,25 @@ export class EuiDataGridCell extends Component<
     }
   };
 
-  closePopover = () => {
-    this.setState({ popoverIsOpen: false });
+  isPopoverOpen = () => {
+    const { isExpandable, popoverContext } = this.props;
+    const { popoverIsOpen, openCellLocation } = popoverContext;
+
+    if (
+      popoverIsOpen &&
+      openCellLocation.colIndex === this.props.colIndex &&
+      openCellLocation.rowIndex === this.props.visibleRowIndex
+    ) {
+      if (isExpandable) {
+        return true;
+      } else {
+        // If `openCellPopover` was somehow called on this cell but it's not
+        // supposed to be expandable, we should do nothing and set popoverIsOpen
+        // state back to false
+        popoverContext.closeCellPopover();
+      }
+    }
+    return false;
   };
 
   render() {
@@ -404,7 +419,7 @@ export class EuiDataGridCell extends Component<
       width,
       isExpandable,
       popoverContent: PopoverContent,
-      popoverContext,
+      popoverContext: { closeCellPopover, openCellPopover },
       interactiveCellId,
       columnType,
       className,
@@ -417,17 +432,19 @@ export class EuiDataGridCell extends Component<
     } = this.props;
     const { rowIndex, colIndex } = rest;
 
+    const popoverIsOpen = this.isPopoverOpen();
+    const hasCellButtons = isExpandable || column?.cellActions;
     const showCellButtons =
       this.state.isFocused ||
       this.state.isEntered ||
       this.state.enableInteractions ||
-      this.state.popoverIsOpen;
+      popoverIsOpen;
 
     const cellClasses = classNames(
       'euiDataGridRowCell',
       {
         [`euiDataGridRowCell--${columnType}`]: columnType,
-        ['euiDataGridRowCell--open']: this.state.popoverIsOpen,
+        ['euiDataGridRowCell--open']: popoverIsOpen,
       },
       className
     );
@@ -450,14 +467,14 @@ export class EuiDataGridCell extends Component<
 
     const handleCellKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
       if (isExpandable) {
-        if (this.state.popoverIsOpen) {
+        if (popoverIsOpen) {
           return;
         }
         switch (event.key) {
           case keys.ENTER:
           case keys.F2:
             event.preventDefault();
-            this.setState({ popoverIsOpen: true });
+            openCellPopover({ rowIndex, colIndex });
             break;
         }
       } else {
@@ -516,7 +533,7 @@ export class EuiDataGridCell extends Component<
       column,
       columnType: columnType,
       isExpandable,
-      isExpanded: this.state.popoverIsOpen,
+      isExpanded: popoverIsOpen,
       isDetails: false,
       setCellContentsRef: this.setCellContentsRef,
       rowHeightsOptions,
@@ -547,7 +564,7 @@ export class EuiDataGridCell extends Component<
       </EuiFocusTrap>
     );
 
-    if (isExpandable || (column && column.cellActions)) {
+    if (hasCellButtons) {
       if (showCellButtons) {
         anchorContent = (
           <div className={anchorClass}>
@@ -558,12 +575,14 @@ export class EuiDataGridCell extends Component<
               rowIndex={rowIndex}
               colIndex={colIndex}
               column={column}
-              popoverIsOpen={this.state.popoverIsOpen}
-              closePopover={this.closePopover}
+              popoverIsOpen={popoverIsOpen}
+              closePopover={closeCellPopover}
               onExpandClick={() => {
-                this.setState(({ popoverIsOpen }) => ({
-                  popoverIsOpen: !popoverIsOpen,
-                }));
+                if (popoverIsOpen) {
+                  closeCellPopover();
+                } else {
+                  openCellPopover({ rowIndex, colIndex });
+                }
               }}
             />
           </div>
@@ -580,8 +599,8 @@ export class EuiDataGridCell extends Component<
     }
 
     let innerContent = anchorContent;
-    if (isExpandable || (column && column.cellActions)) {
-      if (this.state.popoverIsOpen) {
+    if (hasCellButtons) {
+      if (popoverIsOpen) {
         innerContent = (
           <div
             className={
@@ -594,10 +613,10 @@ export class EuiDataGridCell extends Component<
               anchorContent={anchorContent}
               cellContentProps={cellContentProps}
               cellContentsRef={this.cellContentsRef}
-              closePopover={this.closePopover}
+              closePopover={closeCellPopover}
               column={column}
               panelRefFn={(ref) => (this.popoverPanelRef.current = ref)}
-              popoverIsOpen={this.state.popoverIsOpen}
+              popoverIsOpen={popoverIsOpen}
               rowIndex={rowIndex}
               colIndex={colIndex}
               renderCellValue={rest.renderCellValue}

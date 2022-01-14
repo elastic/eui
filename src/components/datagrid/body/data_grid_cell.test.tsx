@@ -58,19 +58,24 @@ describe('EuiDataGridCell', () => {
         }}
       />
     );
-    component.setState({ popoverIsOpen: true });
+    component.setState({ enableInteractions: true });
 
-    const cellButtons = component.find('EuiDataGridCellButtons');
-    expect(component.find('EuiDataGridCellButtons')).toHaveLength(1);
+    const getCellButtons = () => component.find('EuiDataGridCellButtons');
+    expect(getCellButtons()).toHaveLength(1);
 
-    // Should handle re-closing the popover correctly
+    // Should handle opening the popover
+    (getCellButtons().prop('onExpandClick') as Function)();
+    expect(mockPopoverContext.openCellPopover).toHaveBeenCalled();
 
-    (cellButtons.prop('onExpandClick') as Function)();
-    expect(component.state('popoverIsOpen')).toEqual(false);
-
-    component.setState({ popoverIsOpen: true });
-    (cellButtons.prop('closePopover') as Function)();
-    expect(component.state('popoverIsOpen')).toEqual(false);
+    // Should handle closing the popover
+    component.setProps({
+      isExpandable: true,
+      popoverContext: { ...mockPopoverContext, popoverIsOpen: true },
+    });
+    (getCellButtons().prop('onExpandClick') as Function)();
+    expect(mockPopoverContext.closeCellPopover).toHaveBeenCalledTimes(1);
+    (getCellButtons().prop('closePopover') as Function)();
+    expect(mockPopoverContext.closeCellPopover).toHaveBeenCalledTimes(2);
   });
 
   describe('shouldComponentUpdate', () => {
@@ -138,9 +143,6 @@ describe('EuiDataGridCell', () => {
       describe('when state changes:', () => {
         it('cellProps', () => {
           component.setState({ cellProps: {} });
-        });
-        it('popoverIsOpen', () => {
-          component.setState({ popoverIsOpen: true });
         });
         it('isEntered', () => {
           component.setState({ isEntered: true });
@@ -238,6 +240,85 @@ describe('EuiDataGridCell', () => {
       expect(mockFocusContext.setIsFocusedCellInView).toHaveBeenCalledWith(
         false
       );
+    });
+  });
+
+  describe('isFocusedCell', () => {
+    it("returns true if the current focusedCell[x,y] matches the cell's colIndex and visibleRowIndex", () => {
+      const component = mount(
+        <DataGridFocusContext.Provider
+          value={{ ...mockFocusContext, focusedCell: [5, 10] }}
+        >
+          <EuiDataGridCell
+            {...requiredProps}
+            colIndex={5}
+            visibleRowIndex={10}
+          />
+        </DataGridFocusContext.Provider>
+      );
+
+      expect((component.instance() as any).isFocusedCell()).toEqual(true);
+    });
+
+    it("returns false if the current focusedCell[x,y] does not match the cell's colIndex and visibleRowIndex", () => {
+      const component = mount(
+        <DataGridFocusContext.Provider
+          value={{ ...mockFocusContext, focusedCell: [1, 2] }}
+        >
+          <EuiDataGridCell
+            {...requiredProps}
+            colIndex={3}
+            visibleRowIndex={4}
+          />
+        </DataGridFocusContext.Provider>
+      );
+
+      expect((component.instance() as any).isFocusedCell()).toEqual(false);
+    });
+  });
+
+  describe('isPopoverOpen', () => {
+    const props = {
+      ...requiredProps,
+      popoverContext: {
+        ...mockPopoverContext,
+        popoverIsOpen: true,
+        openCellLocation: { colIndex: 1, rowIndex: 2 },
+      },
+      colIndex: 1,
+      visibleRowIndex: 2,
+      isExpandable: true,
+    };
+
+    it('returns true if the cell is expandable, the popover is open, and the cell location matches', () => {
+      const component = mount(<EuiDataGridCell {...props} />);
+
+      expect((component.instance() as any).isPopoverOpen()).toEqual(true);
+    });
+
+    it('returns false if popoverContext.popoverIsOpen is false', () => {
+      const component = mount(
+        <EuiDataGridCell
+          {...props}
+          popoverContext={{ ...props.popoverContext, popoverIsOpen: false }}
+        />
+      );
+      expect((component.instance() as any).isPopoverOpen()).toEqual(false);
+    });
+
+    it("returns false if popoverContext.openCellLocation does not match the cell's colIndex and visibleRowIndex", () => {
+      const component = mount(
+        <EuiDataGridCell {...props} colIndex={3} visibleRowIndex={4} />
+      );
+      expect((component.instance() as any).isPopoverOpen()).toEqual(false);
+    });
+
+    it('returns false if the cell is not expandable, and sets popover state to closed', () => {
+      const component = mount(
+        <EuiDataGridCell {...props} isExpandable={false} />
+      );
+      expect((component.instance() as any).isPopoverOpen()).toEqual(false);
+      expect(mockPopoverContext.closeCellPopover).toHaveBeenCalled();
     });
   });
 
@@ -383,7 +464,22 @@ describe('EuiDataGridCell', () => {
         component.simulate('keyDown', { preventDefault, key: keys.ENTER });
         component.simulate('keyDown', { preventDefault, key: keys.F2 });
 
-        expect(component.state('popoverIsOpen')).toEqual(true);
+        expect(mockPopoverContext.openCellPopover).toHaveBeenCalledWith({
+          rowIndex: 0,
+          colIndex: 0,
+        });
+        expect(mockPopoverContext.openCellPopover).toHaveBeenCalledTimes(2);
+
+        // If the cell popover is open, the nothing should happen
+        jest.clearAllMocks();
+        component.setProps({
+          popoverContext: { ...mockPopoverContext, popoverIsOpen: true },
+        });
+
+        component.simulate('keyDown', { preventDefault, key: keys.ENTER });
+        component.simulate('keyDown', { preventDefault, key: keys.F2 });
+
+        expect(mockPopoverContext.openCellPopover).not.toHaveBeenCalled();
       });
 
       it('when cell is not expandable', () => {
@@ -437,7 +533,6 @@ describe('EuiDataGridCell', () => {
         }}
       />
     );
-    component.setState({ popoverIsOpen: true });
 
     expect(
       component.find('.euiDataGridRowCell__contentByHeight').exists()
