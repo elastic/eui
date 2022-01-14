@@ -58,20 +58,20 @@ export default () => (
           illustration representing the solution or context.
         </li>
         <li>
-          <strong>Title:</strong> The title will answer the question.
-          What&apos;s happening? Is it an error? Is there data?
+          <strong>Title:</strong> The title will answer the question
+          &quot;What&apos;s happening?&quot;. Is it an error? Is it loading?
         </li>
         <li>
           <strong>Description:</strong> Why is it happening? Explain why the
-          space is empty and guide the user through the required actions.
+          space is empty and guide the users through the required actions.
         </li>
         <li>
-          <strong>Action(s):</strong> What will solve the issue? It&apos;s
-          always important to lead users to take action or guide them about the
-          next steps.
+          <strong>Action(s):</strong> Your call to actions. Should answer the
+          question What will solve the issue? Lead the users to take action or
+          guide them about the next steps.
         </li>
         <li>
-          <strong>Footer (optional):</strong>Use this section to reference
+          <strong>Footer (optional):</strong> Use this section to reference
           documentation or link to an area where users can learn more about the
           issue they are facing.
         </li>
