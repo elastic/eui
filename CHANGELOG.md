@@ -1,5 +1,11 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Added `lettering` glyph to `EuiIcon` ([#5525](https://github.com/elastic/eui/pull/5525))
+- Updated the outline color in `euiCustomControlFocused` mixin to use 
+`$euiFocusRingColor` instead of `currentColor` ([#5479](https://github.com/elastic/eui/pull/5479))
+
+## [`45.0.0`](https://github.com/elastic/eui/tree/v45.0.0)
+
 - Added virtulized rendering option to `EuiSelectableList` with `isVirtualized` ([#5521](https://github.com/elastic/eui/pull/5521))
 - Added expanded option properties to `EuiSelectableOption` with `data` ([#5521](https://github.com/elastic/eui/pull/5521))
 - Updated styles in `EuiDescriptionList` of `type` inline ([#5534](https://github.com/elastic/eui/pull/5534))
@@ -256,6 +262,14 @@
 **Breaking changes**
 
 - Renamed `tokenKeyword` icon to `tokenTag` in `EuiToken` ([#5251](https://github.com/elastic/eui/pull/5251))
+
+## [`39.1.4`](https://github.com/elastic/eui/tree/v39.1.4)
+
+**Note: this release is a backport containing changes originally made in `44.0.0`**
+
+**Deprecations**
+
+- Deprecated `PartitionConfig` in favor of inclusion in Charts `theme.partition` ([#5492](https://github.com/elastic/eui/pull/5492)).
 
 ## [`39.1.3`](https://github.com/elastic/eui/tree/v39.1.2)
 

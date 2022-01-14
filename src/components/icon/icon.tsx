@@ -195,6 +195,7 @@ const typeToPathMap = {
   kqlValue: 'kql_value',
   layers: 'layers',
   lensApp: 'app_lens',
+  lettering: 'lettering',
   link: 'link',
   list: 'list',
   listAdd: 'list_add',
