@@ -124,7 +124,7 @@ export class EuiDataGridCell extends Component<
     enableInteractions: false,
     disableCellTabIndex: false,
   };
-  unsubscribeCell?: Function = () => {};
+  unsubscribeCell?: Function;
   focusTimeout: number | undefined;
   style = null;
 
@@ -234,15 +234,20 @@ export class EuiDataGridCell extends Component<
 
     // Account for virtualization - when a cell unmounts when scrolled out of view
     // and then remounts when scrolled back into view, it should retain focus state
-    if (
-      this.context.focusedCell?.[0] === colIndex &&
-      this.context.focusedCell?.[1] === visibleRowIndex
-    ) {
+    if (this.isFocusedCell()) {
       // The second flag sets preventScroll: true as a focus option, which prevents
       // hijacking the user's scroll behavior when the cell re-mounts on scroll
       this.onFocusUpdate(true, true);
+      this.context.setIsFocusedCellInView(true);
     }
   }
+
+  isFocusedCell = () => {
+    return (
+      this.context.focusedCell?.[0] === this.props.colIndex &&
+      this.context.focusedCell?.[1] === this.props.visibleRowIndex
+    );
+  };
 
   onFocusUpdate = (isFocused: boolean, preventScroll = false) => {
     this.setState({ isFocused }, () => {
@@ -256,6 +261,10 @@ export class EuiDataGridCell extends Component<
     window.clearTimeout(this.focusTimeout);
     if (this.unsubscribeCell) {
       this.unsubscribeCell();
+    }
+
+    if (this.isFocusedCell()) {
+      this.context.setIsFocusedCellInView(false);
     }
   }
 
