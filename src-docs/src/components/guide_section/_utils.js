@@ -12,7 +12,12 @@ export const renderJsSourceCode = (code) => {
 
   // Find all imports that come from '@elastic/eui'
   renderedCode = renderedCode.replace(
-    /[\r\n]import\s+\{(?<imports>.+?)\}\s+from\s'@elastic\/eui';[\r\n]/gs,
+    // [\r\n]                       - start of a line
+    // import\s+\{                  - import / whitespace / opening brace
+    // ([^}]+)                      - group together anything that isn't a closing brace
+    // \}\s+from\s+'@elastic\/eui'; - closing brace / whitespace / from / whitespace / '@elastic/eui';
+    // [\r\n]                       - match end of line, so the extra new line is removed via the replace operation
+    /[\r\n]import\s+\{([^}]+)\}\s+from\s+'@elastic\/eui';[\r\n]/g,
     (match, imports) => {
       // remove any additional characters from imports
       const namedImports = imports.match(/[a-zA-Z0-9]+/g);
@@ -21,7 +26,7 @@ export const renderJsSourceCode = (code) => {
     }
   );
   renderedCode = `import { ${elasticImports.join(', ')} } from '@elastic/eui';
-  
+
 ${renderedCode}
   `;
 
