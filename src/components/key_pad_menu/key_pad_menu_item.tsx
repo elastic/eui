@@ -29,6 +29,7 @@ import { getSecureRelForTarget, useGeneratedHtmlId } from '../../services';
 import { IconType } from '../icon';
 import { EuiRadio, EuiCheckbox } from '../form';
 import { validateHref } from '../../services/security/href_validator';
+import { EuiToolTip } from '../tool_tip';
 
 export type EuiKeyPadMenuItemCheckableType = 'single' | 'multi';
 
@@ -229,20 +230,12 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
         color="subdued"
         className="euiKeyPadMenuItem__betaBadge"
         label={betaBadgeLabel.charAt(0)}
-        title={betaBadgeLabel}
+        // title={betaBadgeLabel}
         iconType={betaBadgeIconType}
-        tooltipContent={betaBadgeTooltipContent}
+        // tooltipContent={betaBadgeTooltipContent}
       />
     );
   };
-
-  const renderContent = () => (
-    <span className="euiKeyPadMenuItem__inner">
-      {checkable ? renderCheckableElement() : renderBetaBadge()}
-      <span className="euiKeyPadMenuItem__icon">{children}</span>
-      <span className="euiKeyPadMenuItem__label">{label}</span>
-    </span>
-  );
 
   const relObj: {
     disabled?: boolean;
@@ -268,7 +261,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     relObj['aria-pressed'] = isSelected;
   }
 
-  return (
+  const button = (
     <Element
       className={classes}
       {...(relObj as ElementType)}
@@ -276,7 +269,23 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
       // Unable to get past `LegacyRef` conflicts
       ref={buttonRef as Ref<any>}
     >
-      {renderContent()}
+      <span className="euiKeyPadMenuItem__inner">
+        {checkable ? renderCheckableElement() : renderBetaBadge()}
+        <span className="euiKeyPadMenuItem__icon">{children}</span>
+        <span className="euiKeyPadMenuItem__label">{label}</span>
+      </span>
     </Element>
+  );
+
+  return betaBadgeLabel ? (
+    <EuiToolTip
+      title={betaBadgeLabel}
+      content={betaBadgeTooltipContent}
+      delay="long"
+    >
+      {button}
+    </EuiToolTip>
+  ) : (
+    button
   );
 };
