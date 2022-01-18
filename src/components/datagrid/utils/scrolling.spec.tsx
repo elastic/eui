@@ -38,16 +38,24 @@ describe('useScroll', () => {
       cy.realPress('ArrowDown');
 
       cy.realPress('End');
-      cy.focused().should('have.attr', 'data-gridcell-id', '5,0');
+      cy.focused()
+        .should('have.attr', 'data-gridcell-column-index', '5')
+        .should('have.attr', 'data-gridcell-visible-row-index', '0');
 
       cy.realPress(['Control', 'End']);
-      cy.focused().should('have.attr', 'data-gridcell-id', '5,14');
+      cy.focused()
+        .should('have.attr', 'data-gridcell-column-index', '5')
+        .should('have.attr', 'data-gridcell-visible-row-index', '14');
 
       cy.realPress('Home');
-      cy.focused().should('have.attr', 'data-gridcell-id', '0,14');
+      cy.focused()
+        .should('have.attr', 'data-gridcell-column-index', '0')
+        .should('have.attr', 'data-gridcell-visible-row-index', '14');
 
       cy.realPress(['Control', 'Home']);
-      cy.focused().should('have.attr', 'data-gridcell-id', '0,0');
+      cy.focused()
+        .should('have.attr', 'data-gridcell-column-index', '0')
+        .should('have.attr', 'data-gridcell-visible-row-index', '0');
     });
   });
 });

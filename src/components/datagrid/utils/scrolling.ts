@@ -78,7 +78,7 @@ export const useScrollCellIntoView = ({
       // of scroll adjustment the cell needs
       const getCell = () =>
         outerGridRef.current!.querySelector<HTMLDivElement>(
-          `[data-gridcell-id="${colIndex},${rowIndex}"]`
+          `[data-gridcell-column-index="${colIndex}"][data-gridcell-visible-row-index="${rowIndex}"]`
         );
       let cell = getCell();
 

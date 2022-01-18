@@ -529,7 +529,11 @@ describe('EuiDataGrid', () => {
         Array [
           Object {
             "className": "euiDataGridRowCell euiDataGridRowCell--firstColumn customClass",
+            "data-gridcell-column-id": "A",
+            "data-gridcell-column-index": 0,
             "data-gridcell-id": "0,0",
+            "data-gridcell-row-index": 0,
+            "data-gridcell-visible-row-index": 0,
             "data-test-subj": "dataGridRowCell",
             "onBlur": [Function],
             "onFocus": [Function],
@@ -550,7 +554,11 @@ describe('EuiDataGrid', () => {
           },
           Object {
             "className": "euiDataGridRowCell euiDataGridRowCell--lastColumn customClass",
+            "data-gridcell-column-id": "B",
+            "data-gridcell-column-index": 1,
             "data-gridcell-id": "1,0",
+            "data-gridcell-row-index": 0,
+            "data-gridcell-visible-row-index": 0,
             "data-test-subj": "dataGridRowCell",
             "onBlur": [Function],
             "onFocus": [Function],
@@ -571,7 +579,11 @@ describe('EuiDataGrid', () => {
           },
           Object {
             "className": "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn customClass",
+            "data-gridcell-column-id": "A",
+            "data-gridcell-column-index": 0,
             "data-gridcell-id": "0,1",
+            "data-gridcell-row-index": 1,
+            "data-gridcell-visible-row-index": 1,
             "data-test-subj": "dataGridRowCell",
             "onBlur": [Function],
             "onFocus": [Function],
@@ -592,7 +604,11 @@ describe('EuiDataGrid', () => {
           },
           Object {
             "className": "euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn customClass",
+            "data-gridcell-column-id": "B",
+            "data-gridcell-column-index": 1,
             "data-gridcell-id": "1,1",
+            "data-gridcell-row-index": 1,
+            "data-gridcell-visible-row-index": 1,
             "data-test-subj": "dataGridRowCell",
             "onBlur": [Function],
             "onFocus": [Function],
