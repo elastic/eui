@@ -31,11 +31,13 @@ import { GuideSectionTypes } from '../../components/guide_section/guide_section_
 import darkSidebar from '../../images/empty-prompt/thumbnail_dark_page-sidebar.svg';
 import darkEmpty from '../../images/empty-prompt/thumbnail_dark_page-empty.svg';
 import darkMultiple from '../../images/empty-prompt/thumbnail_dark_page-multiple.svg';
+import darkContent from '../../images/empty-prompt/thumbnail_dark_empty_content.svg';
 
 // images light
 import lightSidebar from '../../images/empty-prompt/thumbnail_light_page-sidebar.svg';
 import lightEmpty from '../../images/empty-prompt/thumbnail_light_page-empty.svg';
 import lightMultiple from '../../images/empty-prompt/thumbnail_light_page-multiple.svg';
+import lightContent from '../../images/empty-prompt/thumbnail_light_empty_content.svg';
 
 import sideNavSvg from '../../images/side_nav.svg';
 import singleSvg from '../../images/single.svg';
@@ -111,8 +113,7 @@ export default () => {
     if (
       radioUseCaseId === 'noPermission' ||
       radioUseCaseId === 'errorPages' ||
-      radioUseCaseId === 'forbidden' ||
-      radioUseCaseId === 'loading'
+      radioUseCaseId === 'forbidden'
     ) {
       // if the `multiple` thumb is selected when we changing the use case for `noPermission`, `errorPages`, `forbidden` or `loading` we change the selection for the first thumb
       // because these use cases don't work for a `multiple` page layout
@@ -140,11 +141,23 @@ export default () => {
     ? { layout: currentUseCaseExample.layout }
     : { layout: 'vertical' };
 
+  const titleSize = isMultiple ? 's' : 'm';
+  const multipleLoadingPanel = isMultiple && radioUseCaseId === 'loading';
+
+  const multipleLoadingPanelStyles = multipleLoadingPanel && {
+    style: {
+      minWidth: '100%',
+      width: '100%',
+    },
+  };
+
   const euiEmptyPromptPreview = (
     <EuiEmptyPrompt
       {...icon}
       {...layout}
+      {...multipleLoadingPanelStyles}
       title={currentUseCaseExample.title}
+      titleSize={titleSize}
       body={currentUseCaseExample?.body}
       actions={currentUseCaseExample?.actions}
       {...(panelProps as any)}
@@ -178,13 +191,31 @@ export default () => {
         <EuiFlexGrid columns={2}>
           <EuiFlexItem>{euiEmptyPromptPreview}</EuiFlexItem>
           <EuiFlexItem style={{ minHeight: '200px' }}>
-            <EuiPanel hasBorder />
+            <EuiPanel hasBorder>
+              <EuiImage
+                width="fullWidth"
+                url={isDarkTheme ? darkContent : lightContent}
+                alt=""
+              />
+            </EuiPanel>
           </EuiFlexItem>
           <EuiFlexItem style={{ minHeight: '200px' }}>
-            <EuiPanel hasBorder />
+            <EuiPanel hasBorder>
+              <EuiImage
+                width="fullWidth"
+                url={isDarkTheme ? darkContent : lightContent}
+                alt=""
+              />
+            </EuiPanel>
           </EuiFlexItem>
           <EuiFlexItem style={{ minHeight: '200px' }}>
-            <EuiPanel hasBorder />
+            <EuiPanel hasBorder>
+              <EuiImage
+                width="fullWidth"
+                url={isDarkTheme ? darkContent : lightContent}
+                alt=""
+              />
+            </EuiPanel>
           </EuiFlexItem>
         </EuiFlexGrid>
       </EuiPageTemplate>
