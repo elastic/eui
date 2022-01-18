@@ -87,7 +87,6 @@ export default ({
         fullWidth={fullWidth}
         aria-label="Suggest"
         onInputChange={() => {}}
-        // onItemClick={onItemClick}
         placeholder="Enter query to display suggestions"
         isVirtualized={virtualized}
         suggestions={allItems}

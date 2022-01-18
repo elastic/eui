@@ -220,7 +220,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
 
     let optionalLabel;
     const isLegend = label && labelType === 'legend' ? true : false;
-    const labelId = `${id}_label`;
+    const labelId = `${id}-label`;
 
     if (label || labelAppend) {
       let labelProps = {};

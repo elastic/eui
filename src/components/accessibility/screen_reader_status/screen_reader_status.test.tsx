@@ -15,7 +15,7 @@ import { EuiScreenReaderStatus } from './screen_reader_status';
 
 const content = (
   <p>
-    This paragraph is not visibile to sighted users but will be read by
+    This paragraph is not visible to sighted users but will be read by
     screenreaders.
   </p>
 );
