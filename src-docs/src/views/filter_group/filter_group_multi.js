@@ -82,7 +82,7 @@ export default () => {
           noMatchesMessage="No filters found"
         >
           {(list, search) => (
-            <div style={{ width: 300 }}>
+            <div>
               <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
               {list}
             </div>

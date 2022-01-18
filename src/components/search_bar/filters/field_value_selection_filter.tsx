@@ -387,57 +387,57 @@ export class FieldValueSelectionFilter extends Component<
         anchorPosition="downCenter"
         panelClassName="euiFilterGroup__popoverPanel"
       >
-        {this.state.error ? (
-          <div className="euiFilterSelect__note">
-            <div className="euiFilterSelect__noteContent">
-              <EuiIcon size="m" type="faceSad" color="danger" />
-              <EuiSpacer size="xs" />
-              <p>{this.state.error}</p>
-            </div>
-          </div>
-        ) : (
-          <EuiSelectable<Partial<typeof items[number]['data']>>
-            singleSelection={!multiSelect}
-            aria-label={config.name}
-            options={items}
-            renderOption={(option) => option.view}
-            isLoading={isNil(this.state.options)}
-            loadingMessage={
-              config.loadingMessage || defaults.config.loadingMessage
-            }
-            emptyMessage={
-              config.noOptionsMessage || defaults.config.noOptionsMessage
-            }
-            noMatchesMessage={
-              config.noOptionsMessage || defaults.config.noOptionsMessage
-            }
-            listProps={{
-              isVirtualized: isOverSearchThreshold || true,
-            }}
-            onChange={(options) => {
-              const diff = items.find(
-                (item, index) => item.checked !== options[index].checked
+        <EuiSelectable<Partial<typeof items[number]['data']>>
+          singleSelection={!multiSelect}
+          aria-label={config.name}
+          options={items}
+          renderOption={(option) => option.view}
+          isLoading={isNil(this.state.options)}
+          loadingMessage={
+            config.loadingMessage || defaults.config.loadingMessage
+          }
+          emptyMessage={
+            config.noOptionsMessage || defaults.config.noOptionsMessage
+          }
+          noMatchesMessage={
+            config.noOptionsMessage || defaults.config.noOptionsMessage
+          }
+          listProps={{
+            isVirtualized: isOverSearchThreshold || false,
+          }}
+          onChange={(options) => {
+            const diff = items.find(
+              (item, index) => item.checked !== options[index].checked
+            );
+            if (diff) {
+              this.onOptionClick(
+                diff.data.optionField,
+                diff.data.value,
+                diff.checked
               );
-              if (diff) {
-                this.onOptionClick(
-                  diff.data.optionField,
-                  diff.data.value,
-                  diff.checked
-                );
-              }
-            }}
-            {...searchProps}
-          >
-            {(list, search) => (
-              <>
-                {isOverSearchThreshold && (
-                  <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
-                )}
-                {list}
-              </>
-            )}
-          </EuiSelectable>
-        )}
+            }
+          }}
+          {...searchProps}
+        >
+          {(list, search) => (
+            <>
+              {isOverSearchThreshold && (
+                <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
+              )}
+              {this.state.error ? (
+                <div className="euiFilterSelect__note">
+                  <div className="euiFilterSelect__noteContent">
+                    <EuiIcon size="m" type="faceSad" color="danger" />
+                    <EuiSpacer size="xs" />
+                    <p>{this.state.error}</p>
+                  </div>
+                </div>
+              ) : (
+                list
+              )}
+            </>
+          )}
+        </EuiSelectable>
       </EuiPopover>
     );
   }
