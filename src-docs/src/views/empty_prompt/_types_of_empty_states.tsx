@@ -18,6 +18,7 @@ import {
   EuiDescriptionList,
   EuiDescriptionListTitle,
   EuiDescriptionListDescription,
+  EuiLoadingSpinner,
 } from '../../../../src/components';
 import { ThemeContext } from '../../components/with_theme';
 import { typesOfPanelColors } from './_types_of_panel_colors';
@@ -131,11 +132,21 @@ export default () => {
 
   const currentUseCaseExample = typesOfUseCases[radioUseCaseId].example;
 
-  const icon = currentUseCaseExample.iconType
-    ? { iconType: currentUseCaseExample.iconType }
-    : {
-        icon: currentUseCaseExample.icon,
-      };
+  let icon;
+
+  if (
+    currentUseCaseExample.icon &&
+    isMultiple &&
+    radioUseCaseId === 'loading'
+  ) {
+    icon = { icon: <EuiLoadingSpinner size="l" /> };
+  } else if (currentUseCaseExample.iconType) {
+    icon = { iconType: currentUseCaseExample.iconType };
+  } else {
+    icon = {
+      icon: currentUseCaseExample.icon,
+    };
+  }
 
   const layout = currentUseCaseExample.layout
     ? { layout: currentUseCaseExample.layout }
