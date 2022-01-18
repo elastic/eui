@@ -72,7 +72,7 @@ type EuiKeyPadMenuItemPropsForUncheckable = {
    */
   betaBadgeTooltipContent?: ReactNode;
   /**
-   * Extends the wrapping EuiToolTip props when betaBadgeLabel is provided
+   * Extends the wrapping EuiToolTip props when `betaBadgeLabel` is provided
    */
   betaBadgeTooltipProps?: Partial<
     Omit<EuiToolTipProps, 'title' | 'content' | 'delay'>
