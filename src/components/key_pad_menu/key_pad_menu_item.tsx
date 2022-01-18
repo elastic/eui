@@ -233,13 +233,14 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
 
     return (
       <EuiBetaBadge
+        // Since we move the tooltip contents to a wrapping EuiToolTip,
+        // this badge is purely visual therefore we can safely hide it from screen readers
+        aria-hidden="true"
         size="s"
         color="subdued"
         className="euiKeyPadMenuItem__betaBadge"
         label={betaBadgeLabel.charAt(0)}
-        // title={betaBadgeLabel}
         iconType={betaBadgeIconType}
-        // tooltipContent={betaBadgeTooltipContent}
       />
     );
   };
