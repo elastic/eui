@@ -141,8 +141,6 @@ export default () => {
             rowHover: 'highlight',
             header: 'underline',
           }}
-          width={330}
-          height={330}
         />
       </EuiFlexItem>
     </EuiFlexGroup>
