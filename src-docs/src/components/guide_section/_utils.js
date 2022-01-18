@@ -18,7 +18,7 @@ export const renderJsSourceCode = (code) => {
     // ([^}]+)                      - group together anything that isn't a closing brace
     // \}\s+from\s+'@elastic\/eui'; - closing brace / whitespace / from / whitespace / '@elastic/eui';
     // [\r\n]                       - match end of line, so the extra new line is removed via the replace operation
-    /[\r\n]import\s+\{([^}]+)\}\s+from\s+'@elastic\/eui';[\r\n]/g,
+    /[\r\n]import\s+\{([^}]+)\}\s+from\s+'@elastic\/eui';/g,
     (match, imports) => {
       // remove any additional characters from imports
       const namedImports = imports.match(/[a-zA-Z0-9]+/g);
@@ -32,7 +32,7 @@ export const renderJsSourceCode = (code) => {
   renderedCode = `import { ${elasticImports.slice(
     0,
     1
-  )}\n${elasticImports.slice(1).join(', \n')} \n} from '@elastic/eui';
+  )}\n  ${elasticImports.slice(1).join(', \n  ')} \n} from '@elastic/eui';
 ${renderedCode}
   `;
 
