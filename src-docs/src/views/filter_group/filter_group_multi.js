@@ -82,10 +82,10 @@ export default () => {
           noMatchesMessage="No filters found"
         >
           {(list, search) => (
-            <div>
+            <>
               <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
               {list}
-            </div>
+            </>
           )}
         </EuiSelectable>
       </EuiPopover>
