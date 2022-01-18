@@ -4,6 +4,7 @@
  * searching code.default for all EUI imports, extracting the variables, and combining them at the top of
  * the formatted code.
  */
+
 import { cleanEuiImports } from '../../services';
 
 export const renderJsSourceCode = (code) => {
