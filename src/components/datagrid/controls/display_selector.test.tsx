@@ -420,7 +420,9 @@ describe('useDataGridDisplaySelector', () => {
   describe('gridStyles', () => {
     it('returns an object of grid styles with user overrides', () => {
       const initialStyles = { ...startingStyles, stripes: true };
-      const [, gridStyles] = testCustomHook(() =>
+      const {
+        return: [, gridStyles],
+      } = testCustomHook(() =>
         useDataGridDisplaySelector(true, initialStyles, {})
       );
 
