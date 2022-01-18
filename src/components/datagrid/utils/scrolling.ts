@@ -106,7 +106,7 @@ export const useScrollCellIntoView = ({
 
       // Check if the cell's right side is outside the current scrolling bounds
       const cellRightPos = cell.offsetLeft + cell.offsetWidth;
-      const rightScrollBound = scrollLeft + outerGridRef.current.clientWidth; // Note: clientWidth accounts for scrollbars
+      const rightScrollBound = scrollLeft + outerGridRef.current.clientWidth; // Note: We specifically want clientWidth and not offsetWidth here to account for scrollbars
       const rightWidthOutOfView = cellRightPos - rightScrollBound;
       if (rightWidthOutOfView > 0) {
         adjustedScrollLeft = scrollLeft + rightWidthOutOfView;
@@ -130,7 +130,7 @@ export const useScrollCellIntoView = ({
       if (!isStickyHeader && !isStickyFooter) {
         // Check if the cell's bottom side is outside the current scrolling bounds
         const cellBottomPos = cell.offsetTop + cell.offsetHeight;
-        let bottomScrollBound = scrollTop + outerGridRef.current.clientHeight; // Note: clientHeight accounts for scrollbars
+        let bottomScrollBound = scrollTop + outerGridRef.current.clientHeight; // Note: We specifically want clientHeight and not offsetHeight here to account for scrollbars
         if (hasStickyFooter) bottomScrollBound -= footerRowHeight; // Sticky footer is not always present
         const bottomHeightOutOfView = cellBottomPos - bottomScrollBound;
         if (bottomHeightOutOfView > 0) {
