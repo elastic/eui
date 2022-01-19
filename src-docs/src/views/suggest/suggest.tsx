@@ -74,7 +74,7 @@ export default () => {
         onChange={(id) => onChange(id)}
       />
       <EuiSpacer size="xl" />
-      <EuiFormRow label="Suggest" id="test">
+      <EuiFormRow label="Suggest">
         <EuiSuggest
           fullWidth
           aria-labelledby="test_label"

@@ -7,13 +7,13 @@ exports[`EuiScreenReaderStatus with a static configuration is can be active 1`] 
   <div
     aria-atomic="true"
     aria-live="polite"
-    id="test__status--A"
+    id="test-statusA"
     role="status"
   />
   <div
     aria-atomic="true"
     aria-live="polite"
-    id="test__status--B"
+    id="test-statusB"
     role="status"
   >
     <p>
@@ -30,13 +30,13 @@ exports[`EuiScreenReaderStatus with a static configuration is can be inactive 1`
   <div
     aria-atomic="true"
     aria-live="polite"
-    id="test__status--A"
+    id="test-statusA"
     role="status"
   />
   <div
     aria-atomic="true"
     aria-live="polite"
-    id="test__status--B"
+    id="test-statusB"
     role="status"
   />
 </div>
@@ -63,7 +63,7 @@ exports[`EuiScreenReaderStatus with dynamic properties is rendered 1`] = `
           <div
             aria-atomic="true"
             aria-live="polite"
-            id="test__status--A"
+            id="test-statusA"
             role="status"
           >
             <p>
@@ -74,7 +74,7 @@ exports[`EuiScreenReaderStatus with dynamic properties is rendered 1`] = `
           <div
             aria-atomic="true"
             aria-live="polite"
-            id="test__status--B"
+            id="test-statusB"
             role="status"
           />
         </div>
@@ -105,13 +105,13 @@ exports[`EuiScreenReaderStatus with dynamic properties toggles the active live r
           <div
             aria-atomic="true"
             aria-live="polite"
-            id="test__status--A"
+            id="test-statusA"
             role="status"
           />
           <div
             aria-atomic="true"
             aria-live="polite"
-            id="test__status--B"
+            id="test-statusB"
             role="status"
           >
             <p>

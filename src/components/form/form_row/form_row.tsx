@@ -227,14 +227,12 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
       if (isLegend) {
         labelProps = {
           type: labelType,
-          id: labelId,
         };
       } else {
         labelProps = {
           htmlFor: hasChildLabel ? id : undefined,
           ...(!isDisabled && { isFocused: this.state.isFocused }), // If the row is disabled, don't pass the isFocused state.
           type: labelType,
-          id: labelId,
         };
       }
       optionalLabel = (
@@ -244,6 +242,7 @@ export class EuiFormRow extends Component<EuiFormRowProps, EuiFormRowState> {
             isInvalid={isInvalid}
             isDisabled={isDisabled}
             aria-invalid={isInvalid}
+            id={labelId}
             {...labelProps}
           >
             {label}

@@ -47,10 +47,16 @@ export const EuiScreenReaderStatus: FunctionComponent<EuiScreenReaderStatusProps
   }, [updatePrecipitate]);
 
   return (
+    /**
+     * Intentionally uses two persistent live regions with oscillating content updates.
+     * Screen readers can more easily track and accurately (timing) announce changes than with a single rerendered <div>.
+     * Adapted from https://github.com/alphagov/accessible-autocomplete/blob/a7106f03150941fc15e6c1ceb0a90e8872fa86ef/src/status.js
+     * Debouncing was not needed for this case, but could prove to be useful for future use cases.
+     */
     <EuiScreenReaderOnly>
       <div>
         <div
-          id={`${id}__status--A`}
+          id={`${id}-statusA`}
           role="status"
           aria-atomic="true"
           aria-live="polite"
@@ -58,7 +64,7 @@ export const EuiScreenReaderStatus: FunctionComponent<EuiScreenReaderStatusProps
           {isActive && toggle ? children : ''}
         </div>
         <div
-          id={`${id}__status--B`}
+          id={`${id}-statusB`}
           role="status"
           aria-atomic="true"
           aria-live="polite"

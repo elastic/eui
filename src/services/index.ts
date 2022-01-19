@@ -83,8 +83,6 @@ export * from './console';
 
 export { copyToClipboard } from './copy_to_clipboard';
 
-export * from './debounce';
-
 export {
   formatAuto,
   formatBoolean,
