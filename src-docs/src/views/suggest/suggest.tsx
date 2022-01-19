@@ -81,7 +81,7 @@ export default () => {
       <EuiFormRow label="Suggest" id={idPrefix}>
         <EuiSuggest
           fullWidth
-          aria-labelledby={`${idPrefix}_label`}
+          aria-labelledby={`${idPrefix}-label`}
           status={status}
           onInputChange={() => {}}
           onItemClick={onItemClick}
