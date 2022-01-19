@@ -7,7 +7,6 @@ import {
   EuiCode,
   EuiSpacer,
   EuiSuggest,
-  EuiSuggestItem,
   EuiText,
 } from '../../../../src/components';
 
@@ -122,7 +121,6 @@ export const SuggestExample = {
           <SuggestItem />
         </>
       ),
-      props: { EuiSuggestItem },
       snippet: suggestItemSnippet,
     },
     {

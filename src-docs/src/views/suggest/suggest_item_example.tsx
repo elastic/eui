@@ -52,7 +52,7 @@ export default () => {
             code: suggestItemSource,
           },
         ]}
-        props={EuiSuggestItem}
+        props={{ EuiSuggestItem }}
       />
     </>
   );

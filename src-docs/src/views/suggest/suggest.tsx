@@ -78,10 +78,10 @@ export default () => {
         onChange={(id) => onChange(id)}
       />
       <EuiSpacer size="xl" />
-      <EuiFormRow label="Suggest">
+      <EuiFormRow label="Suggest" id={idPrefix}>
         <EuiSuggest
           fullWidth
-          aria-label="Suggest"
+          aria-labelledby={`${idPrefix}_label`}
           status={status}
           onInputChange={() => {}}
           onItemClick={onItemClick}
