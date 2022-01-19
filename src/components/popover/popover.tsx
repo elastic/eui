@@ -732,7 +732,7 @@ export class EuiPopover extends Component<Props, State> {
       let ariaLive: HTMLAttributes<any>['aria-live'];
 
       const panelAriaModal = panelProps?.hasOwnProperty('aria-modal')
-        ? panelProps.['aria-modal']
+        ? panelProps['aria-modal']
         : 'true';
       const panelRole = panelProps?.hasOwnProperty('role')
         ? panelProps.role

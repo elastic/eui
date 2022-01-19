@@ -17,7 +17,7 @@ exports[`EuiScreenReaderStatus with a static configuration is can be active 1`] 
     role="status"
   >
     <p>
-      This paragraph is not visibile to sighted users but will be read by screenreaders.
+      This paragraph is not visible to sighted users but will be read by screenreaders.
     </p>
   </div>
 </div>
