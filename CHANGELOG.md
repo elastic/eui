@@ -1,6 +1,6 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `46.0.0`.
+- Updated styles in `EuiDescriptionList` of `type` inline ([#5534](https://github.com/elastic/eui/pull/5534))
 
 ## [`46.0.0`](https://github.com/elastic/eui/tree/v46.0.0)
 
