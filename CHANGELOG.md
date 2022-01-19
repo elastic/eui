@@ -1,10 +1,24 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-- Added `lettering` glyph to `EuiIcon` ([#5525](https://github.com/elastic/eui/pull/5525))
-- Updated the outline color in `euiCustomControlFocused` mixin to use 
-`$euiFocusRingColor` instead of `currentColor` ([#5479](https://github.com/elastic/eui/pull/5479))
 - **[Beta]** Added `optimize` build as a lighter weight option more suited to prodcution environments ([#5527](https://github.com/elastic/eui/pull/5527))
+- Added `lettering` glyph to `EuiIcon` ([#5525](https://github.com/elastic/eui/pull/5525))
+- Updated the outline color in `euiCustomControlFocused` mixin to use `$euiFocusRingColor` instead of `currentColor` ([#5479](https://github.com/elastic/eui/pull/5479))
+- Added `betaBadgeTooltipProps` to `EuiKeyPadMenuItem` to extend the wrapping `EuiToolTip` ([#5541](https://github.com/elastic/eui/pull/5541))
 - Converted `FieldValueSelectionFilter` in `EuiSearchBar` to use `EuiSelectable` ([#5387](https://github.com/elastic/eui/issues/5387))
+
+**Bug fixes**
+
+- Updated the outline color in `euiCustomControlFocused` mixin to use `$euiFocusRingColor` instead of `currentColor` ([#5479](https://github.com/elastic/eui/pull/5479))
+- Fixed keyboard navigation in `EuiDataGrid` not fully scrolling cells into view ([#5515](https://github.com/elastic/eui/pull/5515))
+- Fixed `EuiKeyPadMenuItem` accessibility issue where there was a nested focusable element ([#5541](https://github.com/elastic/eui/pull/5541))
+
+**Deprecations**
+
+- Deprecated `data-gridcell-id` from `EuiDataGrid` in favor of 4 new and more flexible props - `data-gridcell-column-id`, `data-gridcell-column-index`, `data-gridcell-row-index`, and `data-gridcell-visible-row-index` ([#5515](https://github.com/elastic/eui/pull/5515))
+
+**Breaking changes**
+
+- `EuiKeyPadMenuItem` now wraps itself with `EuiToolTip` when `betaBadgeLabel` is supplied forcing top element style props to be passed via `betaBadgeTooltipProps` ([#5541](https://github.com/elastic/eui/pull/5541))
 
 ## [`45.0.0`](https://github.com/elastic/eui/tree/v45.0.0)
 
