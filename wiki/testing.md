@@ -21,7 +21,7 @@ The [`src/test`](../src/test) module exports some functions and constants to hel
 
 ### Test helper naming pattern
 
-If the test helper includes `enzyme` or other libraries included only in `devDependencies`, use the `*.test-helper.tsx` naming pattern to exlcude the component from production builds.
+If the test helper includes `enzyme` or other libraries included only in `devDependencies`, use the `*.test_helper.[ts, tsx]` naming pattern to exclude the component from production builds.
 
 ## Test design
 

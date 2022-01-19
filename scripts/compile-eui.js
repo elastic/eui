@@ -7,7 +7,7 @@ const fs = require('fs');
 const dtsGenerator = require('dts-generator').default;
 
 const IGNORE_BUILD = ['**/webpack.config.js','**/*.d.ts'];
-const IGNORE_TESTS = ['**/*.test.js','**/*.test.ts','**/*.test.tsx','**/*.spec.tsx', '**/*.test_helper.tsx'];
+const IGNORE_TESTS = ['**/*.test.js','**/*.test.ts','**/*.test.tsx','**/*.spec.tsx', '**/*.test_helper.ts', '**/*.test_helper.tsx', '**/__mocks__/**'];
 const IGNORE_TESTENV = ['**/*.testenv.js','**/*.testenv.tsx','**/*.testenv.ts'];
 const IGNORE_PACKAGES = ['**/react-datepicker/test/**/*.js']
 
