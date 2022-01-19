@@ -16,17 +16,48 @@ import {
   EuiBasicTable,
   EuiLink,
   EuiCode,
+  EuiButtonEmpty,
+  EuiContextMenuPanel,
+  EuiContextMenuItem,
 } from '../../../../src/components';
 
 import animatedGif from '../../images/pagination_filters.gif';
-import userControlDo from '../../images/pagination_options_do.svg';
-import userControlDont from '../../images/pagination_options_dont.svg';
 import infiniteDo from '../../images/pagination_infinite_do.svg';
 import infiniteDont from '../../images/pagination_infinite_dont.svg';
 
 import Table from './paginated_table';
 import { GuideSection } from '../../components/guide_section/guide_section';
 const source = require('!!raw-loader!./paginated_table');
+
+const items = [
+  <EuiContextMenuItem key="10 rows" icon={'check'}>
+    10 rows
+  </EuiContextMenuItem>,
+  <EuiContextMenuItem key="20 rows" icon={'empty'}>
+    20 rows
+  </EuiContextMenuItem>,
+  <EuiContextMenuItem key="50 rows" icon={'empty'}>
+    50 rows
+  </EuiContextMenuItem>,
+];
+
+const tooManyItems = [
+  <EuiContextMenuItem key="10 rows" icon={'check'}>
+    10 rows
+  </EuiContextMenuItem>,
+  <EuiContextMenuItem key="20 rows" icon={'empty'}>
+    15 rows
+  </EuiContextMenuItem>,
+  <EuiContextMenuItem key="20 rows" icon={'empty'}>
+    20 rows
+  </EuiContextMenuItem>,
+  <EuiContextMenuItem key="20 rows" icon={'empty'}>
+    30 rows
+  </EuiContextMenuItem>,
+  <EuiContextMenuItem key="50 rows" icon={'empty'}>
+    50 rows
+  </EuiContextMenuItem>,
+];
 
 export default () => (
   <>
@@ -59,8 +90,8 @@ export default () => (
         size="xl"
       />
       <EuiSpacer />
-      <EuiLink href="https://www.figma.com/proto/RzfYLj2xmH9K7gQtbSKygn/Elastic-UI?page-id=15020%3A1&node-id=22022%3A276909&viewport=323%2C48%2C0.35&scaling=min-zoom&starting-point-node-id=22022%3A276461">
-        Figma
+      <EuiLink href="https://www.figma.com/proto/RzfYLj2xmH9K7gQtbSKygn/Elastic-UI?page-id=15025%3A1&node-id=22522%3A276461&viewport=441%2C48%2C0.28&scaling=min-zoom&starting-point-node-id=22522%3A276461">
+        Full prototype
       </EuiLink>
     </EuiPanel>
 
@@ -117,15 +148,45 @@ export default () => (
         type="do"
         text="For shorter sets of data, you may want to include an “Show all” option."
         panelProps={{ paddingSize: 'l' }}
+        panelStyles={{ alignItems: 'flex-start' }}
+        minHeight={300}
       >
-        <EuiImage alt="Provide a Show all" url={userControlDo} />
+        <div>
+          <EuiButtonEmpty
+            size="xs"
+            color="text"
+            iconType="arrowDown"
+            iconSide="right"
+          >
+            Rows per page: 10
+          </EuiButtonEmpty>
+          <EuiSpacer size="s" />
+          <EuiPanel paddingSize="none" hasShadow>
+            <EuiContextMenuPanel items={items} />
+          </EuiPanel>
+        </div>
       </GuideRuleExample>
       <GuideRuleExample
         type="dont"
         text="Overload the user with choices, stick to only 2-3 options."
         panelProps={{ paddingSize: 'l' }}
+        panelStyles={{ alignItems: 'flex-start' }}
+        minHeight={300}
       >
-        <EuiImage alt="Too many rows per page choices" url={userControlDont} />
+        <div>
+          <EuiButtonEmpty
+            size="xs"
+            color="text"
+            iconType="arrowDown"
+            iconSide="right"
+          >
+            Rows per page: 10
+          </EuiButtonEmpty>
+          <EuiSpacer size="s" />
+          <EuiPanel paddingSize="none" hasShadow>
+            <EuiContextMenuPanel items={tooManyItems} />
+          </EuiPanel>
+        </div>
       </GuideRuleExample>
     </GuideRule>
 
@@ -306,6 +367,7 @@ export default () => (
         type="do"
         text="Provide a direct action for users to initiate the loading of more data. "
         panelProps={{ paddingSize: 'none' }}
+        panelStyles={{ justifyContent: 'flex-end' }}
       >
         <EuiImage alt="Provide a Show all" url={infiniteDo} />
       </GuideRuleExample>
@@ -313,6 +375,7 @@ export default () => (
         type="dont"
         text="Use infinite scroll to automatically load more rows of data."
         panelProps={{ paddingSize: 'none' }}
+        panelStyles={{ justifyContent: 'flex-end' }}
       >
         <EuiImage alt="Too many rows per page choices" url={infiniteDont} />
       </GuideRuleExample>
