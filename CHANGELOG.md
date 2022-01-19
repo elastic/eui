@@ -4,6 +4,8 @@
 - Added `lettering` glyph to `EuiIcon` ([#5525](https://github.com/elastic/eui/pull/5525))
 - Updated the outline color in `euiCustomControlFocused` mixin to use `$euiFocusRingColor` instead of `currentColor` ([#5479](https://github.com/elastic/eui/pull/5479))
 - Added `betaBadgeTooltipProps` to `EuiKeyPadMenuItem` to extend the wrapping `EuiToolTip` ([#5541](https://github.com/elastic/eui/pull/5541))
+- Added `globalStyles` prop to `EuiProvider` to allow for global style customization ([#5497](https://github.com/elastic/eui/pull/5497))
+- Exported `EuiGlobalStyles` component ([#5497](https://github.com/elastic/eui/pull/5497))
 
 **Bug fixes**
 
