@@ -10,6 +10,7 @@ import { prettyInterval } from './pretty_interval';
 
 const IS_NOT_PAUSED = false;
 const IS_PAUSED = true;
+const SHORT_HAND = true;
 
 test('Off', () => {
   expect(prettyInterval(IS_NOT_PAUSED, 0)).toBe('Off');
@@ -34,4 +35,11 @@ test('hours', () => {
 test('days', () => {
   expect(prettyInterval(IS_NOT_PAUSED, 86400000)).toBe('1 day');
   expect(prettyInterval(IS_NOT_PAUSED, 86400000 * 2)).toBe('2 days');
+});
+
+test('shortHand', () => {
+  expect(prettyInterval(IS_NOT_PAUSED, 86400000, SHORT_HAND)).toBe('1 d');
+  expect(prettyInterval(IS_NOT_PAUSED, 43200000, SHORT_HAND)).toBe('12 h');
+  expect(prettyInterval(IS_NOT_PAUSED, 1800000, SHORT_HAND)).toBe('30 m');
+  expect(prettyInterval(IS_NOT_PAUSED, 15000, SHORT_HAND)).toBe('15 s');
 });

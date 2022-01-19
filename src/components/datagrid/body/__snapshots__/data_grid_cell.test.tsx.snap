@@ -31,8 +31,10 @@ exports[`EuiDataGridCell renders 1`] = `
       },
       "getStylesForCell": [MockFunction],
       "isAutoHeight": [MockFunction],
+      "isRowHeightOverride": [MockFunction],
       "pruneHiddenColumnHeights": [MockFunction],
       "setGrid": [MockFunction],
+      "setRerenderGridBody": [MockFunction],
       "setRowHeight": [MockFunction],
     }
   }
@@ -41,7 +43,11 @@ exports[`EuiDataGridCell renders 1`] = `
 >
   <div
     className="euiDataGridRowCell"
+    data-gridcell-column-id="someColumn"
+    data-gridcell-column-index={0}
     data-gridcell-id="0,0"
+    data-gridcell-row-index={0}
+    data-gridcell-visible-row-index={0}
     data-test-subj="dataGridRowCell"
     onBlur={[Function]}
     onFocus={[Function]}
@@ -66,6 +72,7 @@ exports[`EuiDataGridCell renders 1`] = `
         <Memo()
           colIndex={0}
           columnId="someColumn"
+          isDefinedHeight={false}
           isDetails={false}
           isExpandable={true}
           isExpanded={false}
@@ -93,8 +100,10 @@ exports[`EuiDataGridCell renders 1`] = `
               },
               "getStylesForCell": [MockFunction],
               "isAutoHeight": [MockFunction],
+              "isRowHeightOverride": [MockFunction],
               "pruneHiddenColumnHeights": [MockFunction],
               "setGrid": [MockFunction],
+              "setRerenderGridBody": [MockFunction],
               "setRowHeight": [MockFunction],
             }
           }

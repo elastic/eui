@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -20,7 +18,6 @@ import FullScreen from './fullscreen';
 import Guidelines from './guidelines';
 
 const stepSource = require('!!raw-loader!./step');
-const stepHtml = renderToHtml(Step);
 const stepSnippet = `
 <EuiTourStep
   content={
@@ -43,14 +40,10 @@ const stepSnippet = `
 </EuiTourStep>
 `;
 const tourSource = require('!!raw-loader!./tour');
-const tourHtml = renderToHtml(Tour);
 const managedSource = require('!!raw-loader!./managed');
-const managedHtml = renderToHtml(Managed);
 const managedHookSource = require('!!raw-loader!./managed_hook');
-const managedHookHtml = renderToHtml(ManagedHook);
 
 const fullSource = require('!!raw-loader!./fullscreen');
-const fullHtml = renderToHtml(FullScreen);
 
 export const TourExample = {
   title: 'Tour',
@@ -81,10 +74,6 @@ export const TourExample = {
           type: GuideSectionTypes.JS,
           code: stepSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: stepHtml,
-        },
       ],
       text: (
         <>
@@ -109,10 +98,6 @@ export const TourExample = {
           type: GuideSectionTypes.JS,
           code: tourSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: tourHtml,
-        },
       ],
       text: (
         <p>
@@ -131,10 +116,6 @@ export const TourExample = {
         {
           type: GuideSectionTypes.JS,
           code: managedHookSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: managedHookHtml,
         },
       ],
       text: (
@@ -156,10 +137,6 @@ export const TourExample = {
           type: GuideSectionTypes.JS,
           code: managedSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: managedHtml,
-        },
       ],
       text: (
         <p>
@@ -177,10 +154,6 @@ export const TourExample = {
         {
           type: GuideSectionTypes.JS,
           code: fullSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: fullHtml,
         },
       ],
       text: (

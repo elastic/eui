@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -26,37 +24,29 @@ import {
 
 import Selectable from './selectable';
 const selectableSource = require('!!raw-loader!./selectable');
-const selectableHtml = renderToHtml(Selectable);
 
 import SelectablePopover from './selectable_popover';
 const selectablePopoverSource = require('!!raw-loader!./selectable_popover');
-const selectablePopoverHtml = renderToHtml(SelectablePopover);
 
 import SelectableSearch from './selectable_search';
 const selectableSearchSource = require('!!raw-loader!./selectable_search');
-const selectableSearchHtml = renderToHtml(SelectableSearch);
 
 import SelectableSingle from './selectable_single';
 const selectableSingleSource = require('!!raw-loader!./selectable_single');
-const selectableSingleHtml = renderToHtml(SelectableSingle);
 
 import SelectableExclusion from './selectable_exclusion';
 const selectableExclusionSource = require('!!raw-loader!./selectable_exclusion');
-const selectableExclusionHtml = renderToHtml(SelectableExclusion);
 
 import SelectableMessages from './selectable_messages';
 const selectableMessagesSource = require('!!raw-loader!./selectable_messages');
-const selectableMessagesHtml = renderToHtml(SelectableMessages);
 
 import SelectableCustomRender from './selectable_custom_render';
 const selectableCustomRenderSource = require('!!raw-loader!./selectable_custom_render');
-const selectableCustomRenderHtml = renderToHtml(SelectableCustomRender);
 
 import SearchOption from './sitewide_option';
 import Search from './search';
 import { EuiCallOut } from '../../../../src/components/call_out';
 const searchSource = require('!!raw-loader!./search');
-const searchHtml = renderToHtml(Search);
 
 export const SelectableExample = {
   title: 'Selectable',
@@ -91,10 +81,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: selectableSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableHtml,
         },
       ],
       text: (
@@ -142,10 +128,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: selectableSearchSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableSearchHtml,
         },
       ],
       text: (
@@ -200,10 +182,6 @@ export const SelectableExample = {
           type: GuideSectionTypes.JS,
           code: selectableSingleSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableSingleHtml,
-        },
       ],
       text: (
         <Fragment>
@@ -235,10 +213,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: selectablePopoverSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectablePopoverHtml,
         },
       ],
       text: (
@@ -276,10 +250,6 @@ export const SelectableExample = {
           type: GuideSectionTypes.JS,
           code: selectableExclusionSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableExclusionHtml,
-        },
       ],
       text: (
         <Fragment>
@@ -306,10 +276,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: selectableMessagesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableMessagesHtml,
         },
       ],
       text: (
@@ -355,10 +321,6 @@ export const SelectableExample = {
           type: GuideSectionTypes.JS,
           code: selectableCustomRenderSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: selectableCustomRenderHtml,
-        },
       ],
       text: (
         <Fragment>
@@ -385,6 +347,20 @@ export const SelectableExample = {
             similar to a title. Add one of these by setting the{' '}
             <EuiCode>option.isGroupLabel</EuiCode> to true.{' '}
           </p>
+          <h3>Row height and virtualization</h3>
+          <p>
+            When virtualization is on,{' '}
+            <strong>every row must be the same height</strong> in order for the
+            list to know how to scroll to the selected or highlighted option. It
+            applies the <EuiCode>listProps.rowHeight</EuiCode> (in pixels)
+            directly to each option hiding any overflow.
+          </p>
+          <p>
+            If <EuiCode>listProps.isVirtualized</EuiCode> is set to{' '}
+            <EuiCode>false</EuiCode>, each row will fit its contents and removes
+            all scrolling. Therefore, we recommend having a large enough
+            container to accomodate all optons.
+          </p>
           <h3>Custom content</h3>
           <p>
             While it is best to stick to the{' '}
@@ -395,15 +371,17 @@ export const SelectableExample = {
             <EuiCode>searchValue</EuiCode> to use for highlighting.
           </p>
           <p>
-            In order for the list to know how to scroll to the selected or
-            highlighted option, it must also know the height of the rows. It
-            applies this pixel height directly to options. If your custom
-            content is taller than the default of <EuiCode>32px</EuiCode> tall,
-            you will need to recalculate this height and apply it via{' '}
-            <EuiCode>listProps.rowHeight</EuiCode>.
+            To provide data that can be used by the{' '}
+            <EuiCode>renderOption</EuiCode> function that does not match the
+            standard option API, use <EuiCode>option.data</EuiCode> which will
+            make custom data available in the <EuiCode>option</EuiCode>{' '}
+            parameter. See the <EuiCode>secondaryContent</EuiCode> configuration
+            in the following example.
           </p>
           <p>
-            <strong>Every row must be the same height.</strong>
+            Also, if your custom content is taller than the default{' '}
+            <EuiCode>listProps.rowHeight</EuiCode> of <EuiCode>32px</EuiCode>{' '}
+            tall, you will need to pass in a custom value to this prop.
           </p>
         </Fragment>
       ),
@@ -433,10 +411,6 @@ export const SelectableExample = {
         {
           type: GuideSectionTypes.JS,
           code: searchSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: searchHtml,
         },
       ],
       text: (

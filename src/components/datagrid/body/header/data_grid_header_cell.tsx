@@ -20,7 +20,8 @@ import { useEuiI18n } from '../../../i18n';
 import { EuiIcon } from '../../../icon';
 import { EuiListGroup } from '../../../list_group';
 import { EuiPopover } from '../../../popover';
-import { DataGridSortingContext } from '../../data_grid_context';
+import { DataGridSortingContext } from '../../utils/sorting';
+import { DataGridFocusContext } from '../../utils/focus';
 import { EuiDataGridHeaderCellProps } from '../../data_grid_types';
 
 import { getColumnActions } from './column_actions';
@@ -58,7 +59,11 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
   } = {};
   const screenReaderId = useGeneratedHtmlId();
 
-  const sorting = useContext(DataGridSortingContext);
+  const { setFocusedCell, focusFirstVisibleInteractiveCell } = useContext(
+    DataGridFocusContext
+  );
+
+  const { sorting } = useContext(DataGridSortingContext);
   let sortString;
   if (sorting) {
     const sortedColumnIds = new Set(sorting.columns.map(({ id }) => id));
@@ -92,9 +97,11 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     schema,
     schemaDetectors,
     setVisibleColumns,
+    focusFirstVisibleInteractiveCell,
     setIsPopoverOpen,
     sorting,
     switchColumnPos,
+    setFocusedCell,
   });
 
   const showColumnActions = columnActions && columnActions.length > 0;

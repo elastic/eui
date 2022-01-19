@@ -41,6 +41,9 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
       end="now"
       start="now-15m"
     />
+    <EuiHorizontalRule
+      margin="s"
+    />
     <EuiCommonlyUsedTimeRanges
       applyTime={[Function]}
       commonlyUsedRanges={
@@ -52,6 +55,9 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
           },
         ]
       }
+    />
+    <EuiHorizontalRule
+      margin="s"
     />
     <EuiRecentlyUsed
       applyTime={[Function]}
@@ -75,54 +81,12 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
         ]
       }
     />
-    <EuiRefreshInterval
-      applyRefreshInterval={[Function]}
-      isPaused={true}
-      refreshInterval={0}
+    <EuiHorizontalRule
+      margin="s"
     />
-  </div>
-</EuiPopover>
-`;
-
-exports[`EuiQuickSelectPopover isAutoRefreshOnly 1`] = `
-<EuiPopover
-  anchorClassName="euiQuickSelectPopover__anchor"
-  anchorPosition="downLeft"
-  button={
-    <EuiButtonEmpty
-      aria-label="Date quick select"
-      className="euiFormControlLayout__prepend"
-      data-test-subj="superDatePickerToggleQuickMenuButton"
-      iconSide="right"
-      iconType="arrowDown"
-      isDisabled={false}
-      onClick={[Function]}
-      size="xs"
-      textProps={
-        Object {
-          "className": "euiQuickSelectPopover__buttonText",
-        }
-      }
-    >
-      <EuiIcon
-        type="clock"
-      />
-    </EuiButtonEmpty>
-  }
-  closePopover={[Function]}
-  display="inlineBlock"
-  hasArrow={true}
-  isOpen={false}
-  ownFocus={true}
-  panelPaddingSize="m"
->
-  <div
-    className="euiQuickSelectPopover__content"
-    data-test-subj="superDatePickerQuickMenu"
-  >
     <EuiRefreshInterval
-      applyRefreshInterval={[Function]}
       isPaused={true}
+      onRefreshChange={[Function]}
       refreshInterval={0}
     />
   </div>

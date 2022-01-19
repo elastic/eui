@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -14,7 +12,6 @@ import {
 
 import PrettyDuration from './pretty_duration';
 const prettyDurationSource = require('!!raw-loader!./pretty_duration');
-const prettyDurationHtml = renderToHtml(PrettyDuration);
 
 export const PrettyDurationExample = {
   title: 'Pretty duration',
@@ -24,10 +21,6 @@ export const PrettyDurationExample = {
         {
           type: GuideSectionTypes.JS,
           code: prettyDurationSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: prettyDurationHtml,
         },
       ],
       text: (

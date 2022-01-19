@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useEffect } from 'react';
+import React, { FunctionComponent, useState, useEffect, useMemo } from 'react';
 import { EuiCodeBlock } from '../../../../../src/components/code';
 import { EuiButtonEmpty } from '../../../../../src/components/button';
 // @ts-ignore Not TS
@@ -16,16 +16,26 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
   code,
   type = GuideSectionTypes.JS,
 }) => {
+  const isJavascript = useMemo(
+    () => [GuideSectionTypes.JS, GuideSectionTypes.TSX].includes(type),
+    [type]
+  );
+
   const [codeToRender, setCodeToRender] = useState();
 
   useEffect(() => {
-    setCodeToRender(renderJsSourceCode(code));
+    if (isJavascript) {
+      setCodeToRender(renderJsSourceCode(code));
+    } else {
+      setCodeToRender(code);
+    }
+
     return () => {
       setCodeToRender(undefined);
     };
-  }, [code]);
+  }, [code, isJavascript]);
 
-  const codeSandboxLink = (
+  const codeSandboxLink = isJavascript ? (
     <CodeSandboxLink
       className="guideSectionExampleCode__link"
       content={code.default}
@@ -35,7 +45,7 @@ export const GuideSectionExampleCode: FunctionComponent<GuideSectionExampleCode>
         Try out this demo on Code Sandbox
       </EuiButtonEmpty>
     </CodeSandboxLink>
-  );
+  ) : undefined;
 
   return (
     <>

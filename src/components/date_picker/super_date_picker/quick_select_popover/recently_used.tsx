@@ -13,7 +13,6 @@ import { EuiI18n } from '../../../i18n';
 import { useGeneratedHtmlId } from '../../../../services';
 import { EuiTitle } from '../../../title';
 import { EuiLink } from '../../../link';
-import { EuiHorizontalRule } from '../../../horizontal_rule';
 import { DurationRange, ApplyTime } from '../../types';
 
 export interface EuiRecentlyUsedProps {
@@ -64,7 +63,6 @@ export const EuiRecentlyUsed: FunctionComponent<EuiRecentlyUsedProps> = ({
       <div className="euiQuickSelectPopover__section">
         <ul>{links}</ul>
       </div>
-      <EuiHorizontalRule margin="s" />
     </fieldset>
   );
 };

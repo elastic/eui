@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -12,7 +10,6 @@ import {
 
 import { MutationObserver } from './mutation_observer';
 const mutationObserverSource = require('!!raw-loader!./mutation_observer');
-const mutationObserverHtml = renderToHtml(MutationObserver);
 
 export const MutationObserverExample = {
   title: 'Mutation observer',
@@ -22,10 +19,6 @@ export const MutationObserverExample = {
         {
           type: GuideSectionTypes.JS,
           code: mutationObserverSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: mutationObserverHtml,
         },
       ],
       text: (

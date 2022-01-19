@@ -6,15 +6,21 @@ const glob = require('glob');
 const fs = require('fs');
 const dtsGenerator = require('dts-generator').default;
 
+const IGNORE_BUILD = ['**/webpack.config.js','**/*.d.ts'];
+const IGNORE_TESTS = ['**/*.test.js','**/*.test.ts','**/*.test.tsx','**/*.spec.tsx'];
+const IGNORE_TESTENV = ['**/*.testenv.js','**/*.testenv.tsx','**/*.testenv.ts'];
+const IGNORE_PACKAGES = ['**/react-datepicker/test/**/*.js']
+
 function compileLib() {
   shell.mkdir('-p', 'lib/services', 'lib/test');
 
-  console.log('Compiling src/ to es/, lib/, and test-env/');
+  console.log('Compiling src/ to es/, lib/, optimize/, and test-env/');
 
   // Run all code (com|trans)pilation through babel (ESNext JS & TypeScript)
 
+  // Default build
   execSync(
-    'babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts,**/*.testenv.js,**/*.testenv.tsx,**/*.testenv.ts,**/*.spec.tsx" src',
+    `babel --quiet --out-dir=es --extensions .js,.ts,.tsx --ignore "${[...IGNORE_BUILD, ...IGNORE_TESTS, ...IGNORE_TESTENV, ...IGNORE_PACKAGES].join(',')}" src`,
     {
       env: {
         ...process.env,
@@ -23,9 +29,8 @@ function compileLib() {
       },
     }
   );
-
   execSync(
-    'babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts,**/*.testenv.js,**/*.testenv.tsx,**/*.testenv.ts,**/*.spec.tsx" src',
+    `babel --quiet --out-dir=lib --extensions .js,.ts,.tsx --ignore "${[...IGNORE_BUILD, ...IGNORE_TESTS, ...IGNORE_TESTENV, ...IGNORE_PACKAGES].join(',')}" src`,
     {
       env: {
         ...process.env,
@@ -34,8 +39,30 @@ function compileLib() {
     }
   );
 
+  // `optimize` build (Beta)
   execSync(
-    'babel --quiet --out-dir=test-env --extensions .js,.ts,.tsx --config-file="./.babelrc-test-env.js" --ignore "**/webpack.config.js,**/*.test.js,**/*.test.ts,**/*.test.tsx,**/*.d.ts,**/*.spec.tsx" src',
+    `babel --quiet --out-dir=optimize/es --extensions .js,.ts,.tsx --config-file="./.babelrc-optimize.js" --ignore "${[...IGNORE_BUILD, ...IGNORE_TESTS, ...IGNORE_TESTENV, ...IGNORE_PACKAGES].join(',')}" src`,
+    {
+      env: {
+        ...process.env,
+        BABEL_MODULES: false,
+        NO_COREJS_POLYFILL: true,
+      },
+    }
+  );
+  execSync(
+    `babel --quiet --out-dir=optimize/lib --extensions .js,.ts,.tsx --config-file="./.babelrc-optimize.js" --ignore "${[...IGNORE_BUILD, ...IGNORE_TESTS, ...IGNORE_TESTENV, ...IGNORE_PACKAGES].join(',')}" src`,
+    {
+      env: {
+        ...process.env,
+        NO_COREJS_POLYFILL: true,
+      },
+    }
+  );
+
+  // `test-env` build
+  execSync(
+    `babel --quiet --out-dir=test-env --extensions .js,.ts,.tsx --config-file="./.babelrc-test-env.js" --ignore "${[...IGNORE_BUILD, ...IGNORE_TESTS, ...IGNORE_PACKAGES].join(',')}" src`,
     {
       env: {
         ...process.env,

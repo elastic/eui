@@ -167,10 +167,13 @@
   //
   // ReadOnly alterations
   &.euiFormControlLayout--readOnly {
-    @include euiFormControlReadOnlyStyle;
+    cursor: default;
+    background: $euiFormInputGroupLabelBackground;
+    border-color: transparent;
+    box-shadow: inset 0 0 0 1px $euiFormInputGroupLabelBackground;
 
     input {
-      background-color: transparent; // Ensures the input and layout don't double up on background color
+      background-color: $euiFormBackgroundReadOnlyColor;
     }
   }
 }

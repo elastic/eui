@@ -7,7 +7,7 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import { toSentenceCase } from '../../services';
+import classNames from 'classnames';
 
 import {
   EuiButtonIcon,
@@ -17,10 +17,10 @@ import { keysOf } from '../common';
 import { useEuiI18n } from '../i18n';
 
 const typeToIconTypeMap = {
-  first: 'doubleArrowLeft',
+  first: 'arrowStart',
   previous: 'arrowLeft',
   next: 'arrowRight',
-  last: 'doubleArrowRight',
+  last: 'arrowEnd',
 };
 
 export const TYPES = keysOf(typeToIconTypeMap);
@@ -28,33 +28,26 @@ export type EuiPaginationButtonArrowType = typeof TYPES[number];
 
 export type Props = Partial<Omit<EuiButtonIconPropsForAnchor, 'type'>> & {
   type: EuiPaginationButtonArrowType;
-  activePage?: number;
   disabled?: boolean;
   ariaControls?: string;
 };
 
 export const EuiPaginationButtonArrow: FunctionComponent<Props> = ({
+  className,
   type,
-  activePage,
   disabled,
   ariaControls,
   onClick,
 }) => {
-  let labelModifier: number | undefined;
-
-  if (type === 'previous') {
-    labelModifier = activePage != null ? activePage : 0;
-  } else if (type === 'next') {
-    labelModifier = activePage != null ? activePage + 2 : 0;
-  }
-
-  const label = useEuiI18n(
-    'euiPaginationButtonArrow.previousPage',
-    ({ page }) => `${toSentenceCase(type)} page${page ? `, ${page}` : ''}`,
-    {
-      page: labelModifier,
-    }
-  );
+  const labels = {
+    first: useEuiI18n('euiPaginationButtonArrow.firstPage', 'First page'),
+    previous: useEuiI18n(
+      'euiPaginationButtonArrow.previousPage',
+      'Previous page'
+    ),
+    next: useEuiI18n('euiPaginationButtonArrow.nextPage', 'Next page'),
+    last: useEuiI18n('euiPaginationButtonArrow.lastPage', 'Last page'),
+  };
 
   const buttonProps: Partial<EuiButtonIconPropsForAnchor> = {};
 
@@ -65,9 +58,10 @@ export const EuiPaginationButtonArrow: FunctionComponent<Props> = ({
 
   return (
     <EuiButtonIcon
+      className={classNames('euiPaginationArrowButton', className)}
       color="text"
-      aria-label={label}
-      title={disabled ? undefined : label}
+      aria-label={labels[type]}
+      title={disabled ? undefined : labels[type]}
       isDisabled={disabled}
       onClick={onClick}
       data-test-subj={`pagination-button-${type}`}

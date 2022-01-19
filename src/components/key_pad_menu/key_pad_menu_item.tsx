@@ -29,6 +29,7 @@ import { getSecureRelForTarget, useGeneratedHtmlId } from '../../services';
 import { IconType } from '../icon';
 import { EuiRadio, EuiCheckbox } from '../form';
 import { validateHref } from '../../services/security/href_validator';
+import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 
 export type EuiKeyPadMenuItemCheckableType = 'single' | 'multi';
 
@@ -70,6 +71,12 @@ type EuiKeyPadMenuItemPropsForUncheckable = {
    * Add a description to the beta badge (will appear in a tooltip)
    */
   betaBadgeTooltipContent?: ReactNode;
+  /**
+   * Extends the wrapping EuiToolTip props when `betaBadgeLabel` is provided
+   */
+  betaBadgeTooltipProps?: Partial<
+    Omit<EuiToolTipProps, 'title' | 'content' | 'delay'>
+  >;
   /**
    * Use `onClick` instead when the item is not `checkable`
    */
@@ -153,6 +160,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   betaBadgeLabel,
   betaBadgeTooltipContent,
   betaBadgeIconType,
+  betaBadgeTooltipProps,
   href,
   rel,
   target,
@@ -225,24 +233,17 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
 
     return (
       <EuiBetaBadge
+        // Since we move the tooltip contents to a wrapping EuiToolTip,
+        // this badge is purely visual therefore we can safely hide it from screen readers
+        aria-hidden="true"
         size="s"
         color="subdued"
         className="euiKeyPadMenuItem__betaBadge"
         label={betaBadgeLabel.charAt(0)}
-        title={betaBadgeLabel}
         iconType={betaBadgeIconType}
-        tooltipContent={betaBadgeTooltipContent}
       />
     );
   };
-
-  const renderContent = () => (
-    <span className="euiKeyPadMenuItem__inner">
-      {checkable ? renderCheckableElement() : renderBetaBadge()}
-      <span className="euiKeyPadMenuItem__icon">{children}</span>
-      <span className="euiKeyPadMenuItem__label">{label}</span>
-    </span>
-  );
 
   const relObj: {
     disabled?: boolean;
@@ -268,7 +269,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     relObj['aria-pressed'] = isSelected;
   }
 
-  return (
+  const button = (
     <Element
       className={classes}
       {...(relObj as ElementType)}
@@ -276,7 +277,24 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
       // Unable to get past `LegacyRef` conflicts
       ref={buttonRef as Ref<any>}
     >
-      {renderContent()}
+      <span className="euiKeyPadMenuItem__inner">
+        {checkable ? renderCheckableElement() : renderBetaBadge()}
+        <span className="euiKeyPadMenuItem__icon">{children}</span>
+        <span className="euiKeyPadMenuItem__label">{label}</span>
+      </span>
     </Element>
+  );
+
+  return betaBadgeLabel ? (
+    <EuiToolTip
+      {...betaBadgeTooltipProps}
+      title={betaBadgeLabel}
+      content={betaBadgeTooltipContent}
+      delay="long"
+    >
+      {button}
+    </EuiToolTip>
+  ) : (
+    button
   );
 };

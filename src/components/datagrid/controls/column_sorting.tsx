@@ -21,7 +21,7 @@ import { EuiPopover, EuiPopoverFooter } from '../../popover';
 import { EuiText } from '../../text';
 import { EuiToken } from '../../token';
 import { EuiDataGridColumnSortingDraggable } from './column_sorting_draggable';
-import { getDetailsForSchema } from '../data_grid_schema';
+import { getDetailsForSchema } from '../utils/data_grid_schema';
 import {
   EuiDataGridColumn,
   EuiDataGridSchema,
@@ -141,7 +141,7 @@ export const useDataGridColumnSorting = (
       closePopover={() => setIsOpen(false)}
       anchorPosition="downLeft"
       panelPaddingSize="s"
-      panelClassName="euiDataGridColumnSortingPopover"
+      panelClassName="euiDataGrid__controlPopoverWithDragDrop"
       button={
         <EuiButtonEmpty
           size="xs"

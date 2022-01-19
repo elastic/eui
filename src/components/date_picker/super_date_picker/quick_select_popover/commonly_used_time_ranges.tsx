@@ -11,7 +11,6 @@ import { EuiI18n } from '../../../i18n';
 import { EuiFlexGrid, EuiFlexItem } from '../../../flex';
 import { EuiTitle } from '../../../title';
 import { EuiLink } from '../../../link';
-import { EuiHorizontalRule } from '../../../horizontal_rule';
 import { useGeneratedHtmlId } from '../../../../services';
 import { DurationRange, ApplyTime } from '../../types';
 
@@ -67,7 +66,6 @@ export const EuiCommonlyUsedTimeRanges: FunctionComponent<EuiCommonlyUsedTimeRan
           {links}
         </EuiFlexGrid>
       </div>
-      <EuiHorizontalRule margin="s" />
     </fieldset>
   );
 };

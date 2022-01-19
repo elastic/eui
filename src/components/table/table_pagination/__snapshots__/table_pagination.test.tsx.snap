@@ -2,7 +2,7 @@
 
 exports[`EuiTablePagination is rendered 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive"
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
 >
   <div
     class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -44,11 +44,19 @@ exports[`EuiTablePagination is rendered 1`] = `
       class="euiPagination testClass1 testClass2"
       data-test-subj="test subject string"
     >
+      <span
+        aria-atomic="true"
+        aria-relevant="additions text"
+        class="euiScreenReaderOnly"
+        role="status"
+      >
+        Page 2 of 5
+      </span>
       <button
-        aria-label="Previous page, 1"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+        aria-label="Previous page"
+        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
         data-test-subj="pagination-button-previous"
-        title="Previous page, 1"
+        title="Previous page"
         type="button"
       >
         <span
@@ -166,10 +174,10 @@ exports[`EuiTablePagination is rendered 1`] = `
         </li>
       </ul>
       <button
-        aria-label="Next page, 3"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+        aria-label="Next page"
+        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
         data-test-subj="pagination-button-next"
-        title="Next page, 3"
+        title="Next page"
         type="button"
       >
         <span
@@ -186,7 +194,7 @@ exports[`EuiTablePagination is rendered 1`] = `
 
 exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
 <div
-  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow euiFlexGroup--responsive"
+  class="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
 >
   <div
     class="euiFlexItem euiFlexItem--flexGrowZero"
@@ -199,11 +207,19 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
       class="euiPagination testClass1 testClass2"
       data-test-subj="test subject string"
     >
+      <span
+        aria-atomic="true"
+        aria-relevant="additions text"
+        class="euiScreenReaderOnly"
+        role="status"
+      >
+        Page 2 of 5
+      </span>
       <button
-        aria-label="Previous page, 1"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+        aria-label="Previous page"
+        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
         data-test-subj="pagination-button-previous"
-        title="Previous page, 1"
+        title="Previous page"
         type="button"
       >
         <span
@@ -321,10 +337,10 @@ exports[`EuiTablePagination is rendered when hiding the per page options 1`] = `
         </li>
       </ul>
       <button
-        aria-label="Next page, 3"
-        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+        aria-label="Next page"
+        class="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
         data-test-subj="pagination-button-next"
-        title="Next page, 3"
+        title="Next page"
         type="button"
       >
         <span

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode } from '../../../../src/components';
@@ -11,11 +9,9 @@ import { EuiOverlayMaskProps } from './props';
 
 import OverlayMask from './overlay_mask';
 const overlayMaskSource = require('!!raw-loader!./overlay_mask');
-const overlayMaskHtml = renderToHtml(OverlayMask);
 
 import OverlayMaskHeader from './overlay_mask_header';
 const overlayMaskHeaderSource = require('!!raw-loader!./overlay_mask_header');
-const overlayMaskHeaderHtml = renderToHtml(OverlayMaskHeader);
 
 export const OverlayMaskExample = {
   title: 'Overlay mask',
@@ -25,10 +21,6 @@ export const OverlayMaskExample = {
         {
           type: GuideSectionTypes.JS,
           code: overlayMaskSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: overlayMaskHtml,
         },
       ],
       text: (
@@ -64,10 +56,6 @@ export const OverlayMaskExample = {
         {
           type: GuideSectionTypes.JS,
           code: overlayMaskHeaderSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: overlayMaskHeaderHtml,
         },
       ],
       text: (

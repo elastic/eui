@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 import {
   EuiDataGrid,
@@ -13,21 +11,15 @@ import {
 
 import InMemoryDataGrid from './in_memory';
 const inMemoryDataGridSource = require('!!raw-loader!./in_memory');
-const inMemoryDataGridHtml = renderToHtml(InMemoryDataGrid);
 
 import InMemoryEnhancementsDataGrid from './in_memory_enhancements';
 const inMemoryEnhancementsDataGridSource = require('!!raw-loader!./in_memory_enhancements');
-const inMemoryEnhancementsDataGridHtml = renderToHtml(
-  InMemoryEnhancementsDataGrid
-);
 
 import InMemoryPaginationDataGrid from './in_memory_pagination';
 const inMemoryPaginationDataGridSource = require('!!raw-loader!./in_memory_pagination');
-const inMemoryPaginationDataGridHtml = renderToHtml(InMemoryPaginationDataGrid);
 
 import InMemorySortingDataGrid from './in_memory_sorting';
 const inMemorySortingDataGridSource = require('!!raw-loader!./in_memory_sorting');
-const inMemorySortingDataGridHtml = renderToHtml(InMemorySortingDataGrid);
 
 import {
   EuiDataGridColumn,
@@ -37,10 +29,9 @@ import {
   EuiDataGridStyle,
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridColumnVisibility,
+  EuiDataGridCellValueElementProps,
+  EuiDataGridSchemaDetector,
 } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
-
-import { EuiDataGridCellValueElementProps } from '!!prop-loader!../../../../src/components/datagrid/body/data_grid_cell';
-import { EuiDataGridSchemaDetector } from '!!prop-loader!../../../../src/components/datagrid/data_grid_schema';
 
 export const DataGridMemoryExample = {
   title: 'Data grid in-memory settings',
@@ -105,10 +96,6 @@ export const DataGridMemoryExample = {
           type: GuideSectionTypes.JS,
           code: inMemoryDataGridSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inMemoryDataGridHtml,
-        },
       ],
       title: 'When in-memory is not used',
       text: (
@@ -147,10 +134,6 @@ export const DataGridMemoryExample = {
           type: GuideSectionTypes.JS,
           code: inMemoryEnhancementsDataGridSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inMemoryEnhancementsDataGridHtml,
-        },
       ],
       title: 'Enhancements only in-memory',
       text: (
@@ -185,10 +168,6 @@ export const DataGridMemoryExample = {
           type: GuideSectionTypes.JS,
           code: inMemoryPaginationDataGridSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inMemoryPaginationDataGridHtml,
-        },
       ],
       title: 'Pagination only in-memory',
       text: (
@@ -221,10 +200,6 @@ export const DataGridMemoryExample = {
         {
           type: GuideSectionTypes.JS,
           code: inMemorySortingDataGridSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: inMemorySortingDataGridHtml,
         },
       ],
       title: 'Sorting and pagination in-memory',

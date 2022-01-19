@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -20,7 +18,6 @@ import { Link } from 'react-router-dom';
 
 import MarkdownEditorWithPlugins from './markdown_editor_with_plugins';
 const markdownEditorWithPluginsSource = require('!!raw-loader!./markdown_editor_with_plugins');
-const markdownEditorWithPluginsHtml = renderToHtml(MarkdownEditorWithPlugins);
 
 const pluginSnippet = `<EuiMarkdownEditor
   uiPlugin={myPluginUI}
@@ -360,10 +357,6 @@ processingList[1][1].components.emojiPlugin = EmojiMarkdownRenderer;`}</EuiCodeB
         {
           type: GuideSectionTypes.JS,
           code: markdownEditorWithPluginsSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: markdownEditorWithPluginsHtml,
         },
       ],
       title: 'Putting it all together: a simple chart plugin',

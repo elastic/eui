@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { Fragment, useState, useContext } from 'react';
-import { Chart, Partition, Settings } from '@elastic/charts';
+import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
 import { ThemeContext } from '../../components';
 
 import {
@@ -34,7 +34,6 @@ export default () => {
   const euiChartTheme = isDarkTheme
     ? EUI_CHARTS_THEME_DARK
     : EUI_CHARTS_THEME_LIGHT;
-  const euiPartitionConfig = euiChartTheme.partition;
 
   const sliceOrderRadiosIdPrefix = 'colorType';
   const sliceOrderRadios = [
@@ -71,7 +70,7 @@ export default () => {
     clockwiseSectors: false,
   });
   const [sliceOrderConfigText, setSliceOrderConfigText] = useState(
-    'clockwiseSectors: false,'
+    'clockwiseSectors={false}'
   );
 
   const [pieTypeIdSelected, setPieTypeIdSelected] = useState(
@@ -93,10 +92,10 @@ export default () => {
       .label;
     if (sliceOrderLabel.includes('Counter')) {
       setSliceOrderConfig({ clockwiseSectors: false });
-      setSliceOrderConfigText('clockwiseSectors: false,');
+      setSliceOrderConfigText('clockwiseSectors={false}');
     } else if (sliceOrderLabel.includes('Clockwise')) {
       setSliceOrderConfig({ specialFirstInnermostSector: false });
-      setSliceOrderConfigText('specialFirstInnermostSector: false,');
+      setSliceOrderConfigText('specialFirstInnermostSector={false}');
     } else if (sliceOrderLabel.includes('natural')) {
       setSliceOrderConfig({});
       setSliceOrderConfigText('');
@@ -140,15 +139,26 @@ export default () => {
     }
   };
 
+  const themeOverrides = {
+    partition: {
+      emptySizeRatio: pieTypeIdSelected.includes('Donut') && 0.4,
+    },
+  };
+
   return (
     <Fragment>
       {customTitle}
       <div style={{ position: 'relative' }}>
         <Chart size={{ height: 200 }}>
-          <Settings showLegend={showLegend} showLegendExtra />
+          <Settings
+            theme={[themeOverrides, euiChartTheme.theme]}
+            showLegend={showLegend}
+            showLegendExtra
+          />
           <Partition
             id="donutByLanguage"
             data={pieData()}
+            layout={PartitionLayout.sunburst}
             valueAccessor={(d) => Number(d.percent)}
             valueFormatter={showValues ? undefined : () => ''}
             valueGetter={showValues ? 'percent' : undefined}
@@ -161,11 +171,7 @@ export default () => {
                 },
               },
             ]}
-            config={{
-              ...euiPartitionConfig,
-              emptySizeRatio: pieTypeIdSelected.includes('Donut') && 0.4,
-              ...sliceOrderConfig,
-            }}
+            {...sliceOrderConfig}
           />
         </Chart>
       </div>
@@ -273,8 +279,10 @@ export default () => {
           textToCopy={`<EuiTitle size="xxs">
   <h4>Distribution of the top ${numSlices} browsers from 2019</h4>
 </EuiTitle>
-<Chart size={{height: 200}}>
-  ${showLegend ? '<Settings showLegend />' : ''}
+<Chart size={{ height: 200 }}>
+  <Settings${showLegend ? '\nshowLegend' : ''}
+    theme={[themeOverrides, euiChartTheme.theme]}
+  />
   <Partition
     id={chartID}
     data={[
@@ -303,11 +311,8 @@ export default () => {
         },
       },
     ]}
-    config={{
-      ...euiPartitionConfig,
-      ${pieTypeIdSelected.includes('Donut') ? 'emptySizeRatio: 0.4,' : ''}
-      ${sliceOrderConfigText}
-    }}
+    ${pieTypeIdSelected.includes('Donut') ? 'emptySizeRatio={0.4}' : ''}
+    ${sliceOrderConfigText}
   />
 </Chart>`}
         >

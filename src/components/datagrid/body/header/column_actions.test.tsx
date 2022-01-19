@@ -9,7 +9,7 @@
 import { ReactElement } from 'react';
 
 import { EuiListGroupItemProps } from '../../../list_group';
-import { schemaDetectors } from '../../data_grid_schema';
+import { schemaDetectors } from '../../utils/data_grid_schema';
 
 import {
   getColumnActions,
@@ -19,8 +19,10 @@ import {
 
 describe('getColumnActions', () => {
   const setVisibleColumns = jest.fn();
+  const focusFirstVisibleInteractiveCell = jest.fn();
   const setIsPopoverOpen = jest.fn();
   const switchColumnPos = jest.fn();
+  const setFocusedCell = jest.fn();
 
   const testArgs = {
     column: { id: 'B' },
@@ -28,9 +30,11 @@ describe('getColumnActions', () => {
     schema: {},
     schemaDetectors,
     setVisibleColumns,
+    focusFirstVisibleInteractiveCell,
     setIsPopoverOpen,
     sorting: undefined,
     switchColumnPos,
+    setFocusedCell,
   };
 
   // DRY test helper
@@ -104,9 +108,10 @@ describe('getColumnActions', () => {
           `);
       });
 
-      it('sets column visibility on click', () => {
+      it('hides the current column on click and refocuses into the grid', () => {
         callActionOnClick(hideColumn);
         expect(setVisibleColumns).toHaveBeenCalledWith(['A', 'C']);
+        expect(focusFirstVisibleInteractiveCell).toHaveBeenCalled();
       });
     });
 
@@ -182,12 +187,18 @@ describe('getColumnActions', () => {
           `);
       });
 
-      it('calls switchColumnPos on click', () => {
+      it('calls switchColumnPos and updates the focused cell column index on click', () => {
         callActionOnClick(moveLeft);
         expect(switchColumnPos).toHaveBeenCalledWith('B', 'A');
+        expect(setFocusedCell).toHaveBeenLastCalledWith([0, -1]);
 
         callActionOnClick(moveRight);
         expect(switchColumnPos).toHaveBeenCalledWith('B', 'C');
+        expect(setFocusedCell).toHaveBeenLastCalledWith([2, -1]);
+
+        // Quick note about the -1 row index above: `-1` is the index we set for our
+        // sticky header row, and these column actions can only ever be called by an
+        // interactive header cell, so we can safely and statically set the -1 index
       });
     });
 
