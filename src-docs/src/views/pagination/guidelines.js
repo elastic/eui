@@ -59,7 +59,7 @@ export default () => (
         size="xl"
       />
       <EuiSpacer />
-      <EuiLink href="https://www.figma.com/proto/RzfYLj2xmH9K7gQtbSKygn/Elastic-UI?page-id=15025%3A1&node-id=22522%3A276909&viewport=323%2C48%2C0.35&scaling=min-zoom&starting-point-node-id=22522%3A276461">
+      <EuiLink href="https://www.figma.com/proto/RzfYLj2xmH9K7gQtbSKygn/Elastic-UI?page-id=15020%3A1&node-id=22022%3A276909&viewport=323%2C48%2C0.35&scaling=min-zoom&starting-point-node-id=22022%3A276461">
         Figma
       </EuiLink>
     </EuiPanel>
@@ -105,6 +105,11 @@ export default () => (
         is often helpful enough to provide users control over the amount of data
         they see at once.
       </p>
+      <p>
+        Keep the choices simple and only show “Rows per page” if there are more
+        rows than the smallest option. For example, if there are only 9 rows and
+        the smallest option is 10 rows per page, hide the selector.
+      </p>
     </EuiText>
 
     <GuideRule>
@@ -133,7 +138,7 @@ export default () => (
         you provide optimal defaults and reduce complexity as the number of
         entries increase. This means choosing a default “Rows per page” that
         best corresponds to the total results. For instance, 1000+ results
-        shouldn’t start with 10 rows per page, but rather 25 or 50.
+        shouldn’t start with 10 rows per page, but rather 20 or 50.
       </p>
       <p>
         Here are some <strong>samples</strong> of what controls to provide based
@@ -208,7 +213,7 @@ export default () => (
         },
         {
           entries: 'More than 200',
-          rows: '25, 50, 100',
+          rows: '20, 50, 100',
           style: (
             <span>
               <Link to="/navigation/pagination#basic-usage-with-many-pages">
@@ -244,7 +249,7 @@ export default () => (
         If the total results are unknown, you can make a best guess based on the
         context of that specific table, whether there’s{' '}
         <strong>most likely</strong> going to be tens or thousands of results.
-        From there you can decide to show 10 rows per page or 25 by default.
+        From there you can decide to show 10 rows per page or 20 by default.
       </p>
       <p>
         <strong>
