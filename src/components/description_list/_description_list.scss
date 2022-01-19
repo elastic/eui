@@ -175,7 +175,7 @@
       display: inline;
       border-radius: $euiBorderRadius / 2;
       font-weight: $euiFontWeightMedium;
-      background-color: transparentize(shadeOrTint($euiColorMediumShade, 20%, 90%), .9);
+      background-color: tintOrShade($euiColorLightShade, 50%, 0%);
       padding:  1px $euiSizeXS;
       margin: 0 $euiSizeXS;
 
