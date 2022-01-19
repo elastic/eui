@@ -130,15 +130,15 @@ export const typesOfUseCases: {
       </EuiFlexGroup>
     ),
   },
-  noPermission: {
-    id: 'noPermission',
-    label: 'No permission',
+  noPrivileges: {
+    id: 'noPrivileges',
+    label: 'No privileges',
     info: {
-      description: <p>No permission to access the content.</p>,
+      description: <p>No privileges to access a feature.</p>,
       goal: (
         <p>
-          Help users understand why they don&apos;t have permission to access
-          the content and what actions to take to get access.
+          Help users understand why they don&apos;t have privileges to a feature
+          and what actions to take to get access.
         </p>
       ),
       action: <p>Request permission</p>,

@@ -8,8 +8,8 @@ import { PanelColor } from '../../../../src/components/panel/panel';
 
 import errorPages from './prompt_types/page_not_found';
 const errorPagesSource = require('!!raw-loader!./prompt_types/page_not_found');
-import noPermission from './prompt_types/no_permission';
-const noPermissionSource = require('!!raw-loader!./prompt_types/no_permission');
+import noPrivileges from './prompt_types/no_permission';
+const noPrivilegesSource = require('!!raw-loader!./prompt_types/no_permission');
 import licenseUpgrade from './prompt_types/license_upgrade';
 const licenseUpgradeSource = require('!!raw-loader!./prompt_types/license_upgrade');
 import complex from './prompt_types/complex';
@@ -30,10 +30,10 @@ export default () => {
       source: errorPagesSource,
     },
     {
-      value: 'noPermission',
+      value: 'noPrivileges',
       text: 'No permission',
-      component: noPermission,
-      source: noPermissionSource,
+      component: noPrivileges,
+      source: noPrivilegesSource,
     },
     {
       value: 'licenseUpgrade',
