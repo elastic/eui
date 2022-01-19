@@ -69,7 +69,7 @@ export const useFocus = ({
 
   const setFocusedCell = useCallback((focusedCell: EuiDataGridFocusedCell) => {
     _setFocusedCell(focusedCell);
-    setIsFocusedCellInView(true); // The cell must be in view to focus it
+    setIsFocusedCellInView(true); // scrolling.ts ensures focused cells are fully in view
   }, []);
 
   const previousCell = useRef<EuiDataGridFocusedCell | undefined>(undefined);
