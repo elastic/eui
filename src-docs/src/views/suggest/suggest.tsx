@@ -48,13 +48,17 @@ const sampleItems = [
 const idPrefix = htmlIdGenerator()();
 
 export default () => {
-  const radios = [
+  const radios: Array<{
+    id: string;
+    value: EuiSuggestStatus;
+    label: string;
+  }> = [
     { id: `${idPrefix}0`, value: 'unchanged', label: 'No new changes' },
     { id: `${idPrefix}1`, value: 'unsaved', label: 'Not yet saved' },
     { id: `${idPrefix}2`, value: 'saved', label: 'Saved' },
     { id: `${idPrefix}3`, value: 'loading', label: 'Loading' },
   ];
-  const [status, setStatus] = useState('unchanged');
+  const [status, setStatus] = useState<EuiSuggestStatus>('unchanged');
   const [radioIdSelected, setSelectedId] = useState(`${idPrefix}0`);
 
   const onChange = (optionId: string) => {
@@ -77,8 +81,8 @@ export default () => {
       <EuiFormRow label="Suggest">
         <EuiSuggest
           fullWidth
-          aria-labelledby="test_label"
-          status={status as EuiSuggestStatus}
+          aria-label="Suggest"
+          status={status}
           onInputChange={() => {}}
           onItemClick={onItemClick}
           placeholder="Enter query to display suggestions"
