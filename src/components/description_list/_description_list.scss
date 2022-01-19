@@ -173,7 +173,7 @@
     .euiDescriptionList__title {
       @include euiFontSizeS;
       display: inline;
-      border-radius: $euiBorderRadius / 2;
+      border-radius: $euiBorderRadiusSmall;
       font-weight: $euiFontWeightMedium;
       background-color: tintOrShade($euiColorLightShade, 50%, 0%);
       padding:  1px $euiSizeXS;
