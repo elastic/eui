@@ -33,8 +33,7 @@ export const renderJsSourceCode = (code) => {
     0,
     1
   )}\n  ${elasticImports.slice(1).join(', \n  ')} \n} from '@elastic/eui';
-${renderedCode}
-  `;
+${renderedCode}`;
 
   return renderedCode;
 };
