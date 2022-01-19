@@ -1,6 +1,6 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-- Added `sun` glyph to `EuiIcon` ([#0000](https://github.com/elastic/eui/pull/0000))
+- Added `sun` glyph to `EuiIcon` ([#5548](https://github.com/elastic/eui/pull/5548))
 
 ## [`46.0.0`](https://github.com/elastic/eui/tree/v46.0.0)
 
