@@ -7,7 +7,7 @@ const fs = require('fs');
 const dtsGenerator = require('dts-generator').default;
 
 const IGNORE_BUILD = ['**/webpack.config.js','**/*.d.ts'];
-const IGNORE_TESTS = ['**/*.test.js','**/*.test.ts','**/*.test.tsx','**/*.spec.tsx'];
+const IGNORE_TESTS = ['**/*.test.js','**/*.test.ts','**/*.test.tsx','**/*.spec.tsx', '**/*.test_helper.tsx'];
 const IGNORE_TESTENV = ['**/*.testenv.js','**/*.testenv.tsx','**/*.testenv.ts'];
 const IGNORE_PACKAGES = ['**/react-datepicker/test/**/*.js']
 
@@ -93,12 +93,14 @@ function compileLib() {
   // Also copy over SVGs. Babel has a --copy-files option but that brings over
   // all kinds of things we don't want into the lib folder.
   shell.mkdir('-p', 'lib/components/icon/svgs', 'lib/components/icon/svgs/tokens');
+  shell.mkdir('-p', 'optimize/lib/components/icon/svgs', 'optimize/lib/components/icon/svgs/tokens');
 
   glob('./src/components/**/*.svg', undefined, (error, files) => {
     files.forEach(file => {
       const splitPath = file.split('/');
       const basePath = splitPath.slice(2, splitPath.length).join('/');
       shell.cp('-f', `${file}`, `lib/${basePath}`);
+      shell.cp('-f', `${file}`, `optimize/lib/${basePath}`);
     });
 
     console.log(chalk.green('✔ Finished copying SVGs'));
@@ -144,6 +146,21 @@ function compileBundle() {
   });
   dtsGenerator({
     prefix: '',
+    out: 'optimize/lib/test/index.d.ts',
+    baseDir: path.resolve(__dirname, '..', 'src/test/'),
+    files: ['index.ts'],
+    resolveModuleId({ currentModuleId }) {
+      return `@elastic/eui/optimize/lib/test${currentModuleId !== 'index' ? `/${currentModuleId}` : ''}`;
+    },
+    resolveModuleImport({ currentModuleId, importedModuleId }) {
+   		if (currentModuleId === 'index') {
+  			return `@elastic/eui/optimize/lib/test/${importedModuleId.replace('./', '')}`;
+  		}
+			return null;
+	  }
+  });
+  dtsGenerator({
+    prefix: '',
     out: 'es/test/index.d.ts',
     baseDir: path.resolve(__dirname, '..', 'src/test/'),
     files: ['index.ts'],
@@ -153,6 +170,21 @@ function compileBundle() {
     resolveModuleImport({ currentModuleId, importedModuleId }) {
    		if (currentModuleId === 'index') {
           return `@elastic/eui/es/test/${importedModuleId.replace('./', '')}`;
+  		}
+			return null;
+	  }
+  });
+  dtsGenerator({
+    prefix: '',
+    out: 'optimize/es/test/index.d.ts',
+    baseDir: path.resolve(__dirname, '..', 'src/test/'),
+    files: ['index.ts'],
+    resolveModuleId({ currentModuleId }) {
+      return `@elastic/eui/optimize/es/test${currentModuleId !== 'index' ? `/${currentModuleId}` : ''}`;
+    },
+    resolveModuleImport({ currentModuleId, importedModuleId }) {
+   		if (currentModuleId === 'index') {
+          return `@elastic/eui/optimize/es/test/${importedModuleId.replace('./', '')}`;
   		}
 			return null;
 	  }
