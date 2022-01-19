@@ -134,6 +134,10 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<EuiDataGridHeaderCe
       tabIndex={isFocused && !isCellEntered ? 0 : -1}
       className={classes}
       data-test-subj={`dataGridHeaderCell-${id}`}
+      data-gridcell-column-id={id}
+      data-gridcell-column-index={index}
+      data-gridcell-row-index="-1"
+      data-gridcell-visible-row-index="-1"
       style={width != null ? { width: `${width}px` } : {}}
       {...rest}
     >
