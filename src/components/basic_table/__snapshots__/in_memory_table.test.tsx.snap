@@ -486,8 +486,17 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                           aria-label="Pagination for table: "
                           className="euiPagination"
                         >
+                          <EuiScreenReaderOnly>
+                            <span
+                              aria-atomic="true"
+                              aria-relevant="additions text"
+                              className="euiScreenReaderOnly"
+                              role="status"
+                            >
+                              Page 2 of 2
+                            </span>
+                          </EuiScreenReaderOnly>
                           <EuiPaginationButtonArrow
-                            activePage={1}
                             ariaControls="__table_generated-id"
                             disabled={false}
                             onClick={[Function]}
@@ -495,24 +504,25 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                           >
                             <EuiButtonIcon
                               aria-controls="__table_generated-id"
-                              aria-label="Previous page, 1"
+                              aria-label="Previous page"
+                              className="euiPaginationArrowButton"
                               color="text"
                               data-test-subj="pagination-button-previous"
                               href="#__table_generated-id"
                               iconType="arrowLeft"
                               isDisabled={false}
                               onClick={[Function]}
-                              title="Previous page, 1"
+                              title="Previous page"
                             >
                               <a
                                 aria-controls="__table_generated-id"
-                                aria-label="Previous page, 1"
-                                className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                                aria-label="Previous page"
+                                className="euiButtonIcon euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
                                 data-test-subj="pagination-button-previous"
                                 href="#__table_generated-id"
                                 onClick={[Function]}
                                 rel="noreferrer"
-                                title="Previous page, 1"
+                                title="Previous page"
                               >
                                 <EuiIcon
                                   aria-hidden="true"
@@ -708,14 +718,14 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                             </PaginationButtonWrapper>
                           </ul>
                           <EuiPaginationButtonArrow
-                            activePage={1}
                             ariaControls="__table_generated-id"
                             disabled={true}
                             onClick={[Function]}
                             type="next"
                           >
                             <EuiButtonIcon
-                              aria-label="Next page, 3"
+                              aria-label="Next page"
+                              className="euiPaginationArrowButton"
                               color="text"
                               data-test-subj="pagination-button-next"
                               iconType="arrowRight"
@@ -723,8 +733,8 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
                               onClick={[Function]}
                             >
                               <button
-                                aria-label="Next page, 3"
-                                className="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall"
+                                aria-label="Next page"
+                                className="euiButtonIcon euiButtonIcon-isDisabled euiButtonIcon--text euiButtonIcon--empty euiButtonIcon--xSmall euiPaginationArrowButton"
                                 data-test-subj="pagination-button-next"
                                 disabled={true}
                                 onClick={[Function]}
