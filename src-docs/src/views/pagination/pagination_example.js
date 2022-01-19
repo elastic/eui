@@ -233,7 +233,7 @@ export const PaginationExample = {
       text: (
         <p>
           You can use{' '}
-          <Link to="/layout/flex">
+          <Link to="/tabular-content/tables#adding-pagination-to-a-table">
             <strong>EuiTablePagination</strong>
           </Link>{' '}
           to create a combination &quot;Rows per page&quot; and pagination set,

@@ -23,7 +23,7 @@ export default () => {
       onChangePage={goToPage}
       itemsPerPage={rowSize}
       onChangeItemsPerPage={changeItemsPerPage}
-      itemsPerPageOptions={[10, 20, 50, 0]}
+      itemsPerPageOptions={[10, 20, 0]}
     />
   );
 };

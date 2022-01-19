@@ -42,7 +42,7 @@ exports[`PaginationBar render - hiding per page options 1`] = `
     onChangeItemsPerPage={[Function]}
     onChangePage={[Function]}
     pageCount={0}
-    showPerPageOptions={true}
+    showPerPageOptions={false}
   />
 </div>
 `;
