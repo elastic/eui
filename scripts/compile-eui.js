@@ -7,7 +7,7 @@ const fs = require('fs');
 const dtsGenerator = require('dts-generator').default;
 
 const IGNORE_BUILD = ['**/webpack.config.js','**/*.d.ts'];
-const IGNORE_TESTS = ['**/*.test.js','**/*.test.ts','**/*.test.tsx','**/*.spec.tsx', '**/*.test_helper.ts', '**/*.test_helper.tsx', '**/__mocks__/**'];
+const IGNORE_TESTS = ['**/*.test.js','**/*.test.ts','**/*.test.tsx','**/*.spec.tsx','**/*.test_helper.ts','**/*.test_helper.tsx','**/__mocks__/**'];
 const IGNORE_TESTENV = ['**/*.testenv.js','**/*.testenv.tsx','**/*.testenv.ts'];
 const IGNORE_PACKAGES = ['**/react-datepicker/test/**/*.js']
 
@@ -129,66 +129,23 @@ function compileBundle() {
   });
 
   console.log('Building test utils .d.ts files...');
-  dtsGenerator({
-    prefix: '',
-    out: 'lib/test/index.d.ts',
-    baseDir: path.resolve(__dirname, '..', 'src/test/'),
-    files: ['index.ts'],
-    resolveModuleId({ currentModuleId }) {
-      return `@elastic/eui/lib/test${currentModuleId !== 'index' ? `/${currentModuleId}` : ''}`;
-    },
-    resolveModuleImport({ currentModuleId, importedModuleId }) {
-   		if (currentModuleId === 'index') {
-  			return `@elastic/eui/lib/test/${importedModuleId.replace('./', '')}`;
-  		}
-			return null;
-	  }
-  });
-  dtsGenerator({
-    prefix: '',
-    out: 'optimize/lib/test/index.d.ts',
-    baseDir: path.resolve(__dirname, '..', 'src/test/'),
-    files: ['index.ts'],
-    resolveModuleId({ currentModuleId }) {
-      return `@elastic/eui/optimize/lib/test${currentModuleId !== 'index' ? `/${currentModuleId}` : ''}`;
-    },
-    resolveModuleImport({ currentModuleId, importedModuleId }) {
-   		if (currentModuleId === 'index') {
-  			return `@elastic/eui/optimize/lib/test/${importedModuleId.replace('./', '')}`;
-  		}
-			return null;
-	  }
-  });
-  dtsGenerator({
-    prefix: '',
-    out: 'es/test/index.d.ts',
-    baseDir: path.resolve(__dirname, '..', 'src/test/'),
-    files: ['index.ts'],
-    resolveModuleId({ currentModuleId }) {
-      return `@elastic/eui/es/test${currentModuleId !== 'index' ? `/${currentModuleId}` : ''}`;
-    },
-    resolveModuleImport({ currentModuleId, importedModuleId }) {
-   		if (currentModuleId === 'index') {
-          return `@elastic/eui/es/test/${importedModuleId.replace('./', '')}`;
-  		}
-			return null;
-	  }
-  });
-  dtsGenerator({
-    prefix: '',
-    out: 'optimize/es/test/index.d.ts',
-    baseDir: path.resolve(__dirname, '..', 'src/test/'),
-    files: ['index.ts'],
-    resolveModuleId({ currentModuleId }) {
-      return `@elastic/eui/optimize/es/test${currentModuleId !== 'index' ? `/${currentModuleId}` : ''}`;
-    },
-    resolveModuleImport({ currentModuleId, importedModuleId }) {
-   		if (currentModuleId === 'index') {
-          return `@elastic/eui/optimize/es/test/${importedModuleId.replace('./', '')}`;
-  		}
-			return null;
-	  }
-  });
+  ['lib/test', 'optimize/lib/test', 'es/test', 'optimize/es/test'].forEach((dir) => {
+    dtsGenerator({
+      prefix: '',
+      out: `${dir}/index.d.ts`,
+      baseDir: path.resolve(__dirname, '..', 'src/test/'),
+      files: ['index.ts'],
+      resolveModuleId({ currentModuleId }) {
+        return `@elastic/eui/${dir}${currentModuleId !== 'index' ? `/${currentModuleId}` : ''}`;
+      },
+      resolveModuleImport({ currentModuleId, importedModuleId }) {
+        if (currentModuleId === 'index') {
+          return `@elastic/eui/${dir}/${importedModuleId.replace('./', '')}`;
+        }
+        return null;
+      }
+    });
+  })
   console.log(chalk.green('✔ Finished test utils files'));
 
   console.log('Building chart theme module...');
