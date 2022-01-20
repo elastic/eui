@@ -20,7 +20,7 @@ import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button/button_empty';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiPopoverFooter } from '../../popover';
 
-export const EuiDataGridCellButtons = ({
+export const EuiDataGridCellActions = ({
   popoverIsOpen,
   closePopover,
   onExpandClick,
@@ -44,7 +44,7 @@ export const EuiDataGridCellButtons = ({
   const expandButton = (
     <EuiI18n
       key={'expand'}
-      token="euiDataGridCellButtons.expandButtonTitle"
+      token="euiDataGridCellActions.expandButtonTitle"
       default="Click or hit enter to interact with cell content"
     >
       {(expandButtonTitle: string) => (
@@ -74,11 +74,11 @@ export const EuiDataGridCellButtons = ({
       ? column.cellActions.map(
           (Action: EuiDataGridColumnCellAction, idx: number) => {
             // React is more permissible than the TS types indicate
-            const CellButtonElement = Action as JSXElementConstructor<
+            const ActionButtonElement = Action as JSXElementConstructor<
               EuiDataGridColumnCellActionProps
             >;
             return (
-              <CellButtonElement
+              <ActionButtonElement
                 key={idx}
                 rowIndex={rowIndex}
                 colIndex={colIndex}
@@ -98,7 +98,7 @@ export const EuiDataGridCellButtons = ({
   );
 };
 
-export const EuiDataGridCellPopoverButtons = ({
+export const EuiDataGridCellPopoverActions = ({
   rowIndex,
   colIndex,
   column,
@@ -114,12 +114,12 @@ export const EuiDataGridCellPopoverButtons = ({
       <EuiFlexGroup gutterSize="s">
         {column.cellActions.map(
           (Action: EuiDataGridColumnCellAction, idx: number) => {
-            const CellButtonElement = Action as JSXElementConstructor<
+            const ActionButtonElement = Action as JSXElementConstructor<
               EuiDataGridColumnCellActionProps
             >;
             return (
               <EuiFlexItem key={idx}>
-                <CellButtonElement
+                <ActionButtonElement
                   rowIndex={rowIndex}
                   colIndex={colIndex}
                   columnId={column.id}

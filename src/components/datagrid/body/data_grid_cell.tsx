@@ -33,9 +33,9 @@ import {
   EuiDataGridCellValueProps,
 } from '../data_grid_types';
 import {
-  EuiDataGridCellButtons,
-  EuiDataGridCellPopoverButtons,
-} from './data_grid_cell_buttons';
+  EuiDataGridCellActions,
+  EuiDataGridCellPopoverActions,
+} from './data_grid_cell_actions';
 import { IS_JEST_ENVIRONMENT } from '../../../test';
 
 const EuiDataGridCellContent: FunctionComponent<
@@ -465,7 +465,7 @@ export class EuiDataGridCell extends Component<
               isDetails={true}
             />
           </PopoverContent>
-          <EuiDataGridCellPopoverButtons
+          <EuiDataGridCellPopoverActions
             rowIndex={rowIndex}
             colIndex={colIndex}
             column={column}
@@ -495,8 +495,8 @@ export class EuiDataGridCell extends Component<
     const { rowIndex, visibleRowIndex, colIndex } = rest;
 
     const popoverIsOpen = this.isPopoverOpen();
-    const hasCellButtons = isExpandable || column?.cellActions;
-    const showCellButtons =
+    const hasCellActions = isExpandable || column?.cellActions;
+    const showCellActions =
       this.state.isFocused ||
       this.state.isEntered ||
       this.state.enableInteractions ||
@@ -626,14 +626,14 @@ export class EuiDataGridCell extends Component<
       </EuiFocusTrap>
     );
 
-    if (hasCellButtons) {
-      if (showCellButtons) {
+    if (hasCellActions) {
+      if (showCellActions) {
         innerContent = (
           <div className={anchorClass} ref={this.popoverAnchorRef}>
             <div className={expandClass}>
               <EuiDataGridCellContent {...cellContentProps} />
             </div>
-            <EuiDataGridCellButtons
+            <EuiDataGridCellActions
               rowIndex={rowIndex}
               colIndex={colIndex}
               column={column}

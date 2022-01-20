@@ -10,11 +10,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import {
-  EuiDataGridCellButtons,
-  EuiDataGridCellPopoverButtons,
-} from './data_grid_cell_buttons';
+  EuiDataGridCellActions,
+  EuiDataGridCellPopoverActions,
+} from './data_grid_cell_actions';
 
-describe('EuiDataGridCellButtons', () => {
+describe('EuiDataGridCellActions', () => {
   const requiredProps = {
     popoverIsOpen: false,
     closePopover: jest.fn(),
@@ -24,7 +24,7 @@ describe('EuiDataGridCellButtons', () => {
   };
 
   it('renders an expand button', () => {
-    const component = shallow(<EuiDataGridCellButtons {...requiredProps} />);
+    const component = shallow(<EuiDataGridCellActions {...requiredProps} />);
 
     expect(component).toMatchInlineSnapshot(`
       <div
@@ -33,7 +33,7 @@ describe('EuiDataGridCellButtons', () => {
         <EuiI18n
           default="Click or hit enter to interact with cell content"
           key="expand"
-          token="euiDataGridCellButtons.expandButtonTitle"
+          token="euiDataGridCellActions.expandButtonTitle"
         >
           <Component />
         </EuiI18n>
@@ -57,7 +57,7 @@ describe('EuiDataGridCellButtons', () => {
 
   it('renders column cell actions as `EuiButtonIcon`s', () => {
     const component = shallow(
-      <EuiDataGridCellButtons
+      <EuiDataGridCellActions
         {...requiredProps}
         column={{ id: 'someId', cellActions: [() => <button />] }}
       />
@@ -79,7 +79,7 @@ describe('EuiDataGridCellButtons', () => {
         <EuiI18n
           default="Click or hit enter to interact with cell content"
           key="expand"
-          token="euiDataGridCellButtons.expandButtonTitle"
+          token="euiDataGridCellActions.expandButtonTitle"
         >
           <Component />
         </EuiI18n>
@@ -98,10 +98,10 @@ describe('EuiDataGridCellButtons', () => {
   });
 });
 
-describe('EuiDataGridCellPopoverButtons', () => {
+describe('EuiDataGridCellPopoverActions', () => {
   it('renders column cell actions as `EuiButtonEmpty`s', () => {
     const component = shallow(
-      <EuiDataGridCellPopoverButtons
+      <EuiDataGridCellPopoverActions
         colIndex={0}
         rowIndex={0}
         column={{ id: 'someId', cellActions: [() => <button />] }}
@@ -143,7 +143,7 @@ describe('EuiDataGridCellPopoverButtons', () => {
 
   it('does not render anything if the column has no cell actions', () => {
     const component = shallow(
-      <EuiDataGridCellPopoverButtons
+      <EuiDataGridCellPopoverActions
         colIndex={0}
         rowIndex={0}
         column={{ id: 'noActions' }}
