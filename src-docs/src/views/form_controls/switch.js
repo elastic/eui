@@ -19,7 +19,7 @@ export default () => {
       canFullWidth={false}
     >
       <EuiSwitch
-        label="Enable"
+        label="Malware protection"
         checked={checked}
         onChange={(e) => onChange(e)}
       />

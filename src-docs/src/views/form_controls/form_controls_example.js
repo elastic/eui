@@ -2,7 +2,11 @@ import React, { Fragment } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { GuideSectionTypes } from '../../components';
+import {
+  GuideSectionTypes,
+  GuideRule,
+  GuideRuleExample,
+} from '../../components';
 
 import {
   EuiBadge,
@@ -19,6 +23,7 @@ import {
   EuiFormLegend,
   EuiFormControlLayout,
   EuiFormControlLayoutDelimited,
+  EuiFormRow,
   EuiLink,
   EuiRadio,
   EuiRadioGroup,
@@ -165,7 +170,7 @@ const radioGroupSource = require('!!raw-loader!./radio_group');
 import Switch from './switch';
 const switchSource = require('!!raw-loader!./switch');
 const switchSnippet = `<EuiSwitch
-  label="Enable"
+  label="Malware protection"
   checked={checked}
   onChange={onChange}
 />`;
@@ -174,7 +179,7 @@ const switchLabelSource = require('!!raw-loader!./switch_label');
 const switchLabelSnippet = [
   `<EuiSwitch
   showLabel={false}
-  label="Enable"
+  label="Autoscaling"
   checked={checked}
   onChange={onChange}
   compressed
@@ -446,14 +451,7 @@ export const FormControlsExample = {
         <>
           <p>
             A switch can be substituted for a checkbox when the semantics of the
-            label dictate a true on/off state. The label should be{' '}
-            <strong>static</strong>, action-oriented, and describe the feature
-            or present a question. Use past tense only when labelling a list of
-            previously created items, like in a{' '}
-            <EuiLink href="https://github.com/elastic/eui/pull/5119#discussion_r699717319">
-              table header
-            </EuiLink>
-            .
+            label dictate a true on/off state.
           </p>
         </>
       ),
@@ -473,6 +471,36 @@ export const FormControlsExample = {
     {
       text: (
         <>
+          <p>
+            <strong>Label</strong>
+          </p>
+          <p>
+            Do:
+            <ul>
+              <li>
+                Start with a noun describing the setting to turn on/off. If
+                relevant, use a simple verb in addition (&quot;Use A&quot;,
+                &quot;Show B&quot;).
+              </li>
+              <li>Make it static.</li>
+              <li>
+                Use past tense only when labelling a list of previously created
+                items, like in a{' '}
+                <EuiLink href="https://github.com/elastic/eui/pull/5119#discussion_r699717319">
+                  table header
+                </EuiLink>
+                .
+              </li>
+            </ul>
+            Don&apos;t:
+            <ul>
+              <li>
+                Start with statements such as &quot;If true&quot; or &quot;If
+                enabled&quot;.
+              </li>
+              <li>Use only a verb, such as &quot;Enable&quot;.</li>
+            </ul>
+          </p>
           <p>
             If the switch is described in some other manner, like when using an{' '}
             <Link to="/forms/form-layouts#form-and-form-rows">
@@ -500,6 +528,37 @@ export const FormControlsExample = {
         EuiSwitch,
       },
       demo: <SwitchLabel />,
+    },
+    {
+      text: (
+        <>
+          <p>
+            <strong>Examples</strong>
+          </p>
+          <GuideRule>
+            <GuideRuleExample text="Keep labels and descriptions short and direct.">
+              <div style={{ width: 400 }}>
+                <EuiSwitch
+                  checked={false}
+                  onChange={() => {}}
+                  label="Malware protection"
+                />
+              </div>
+            </GuideRuleExample>
+            <GuideRuleExample text='Start with a keyword instead of "If true" or "If enabled".'>
+              <div style={{ width: 400 }}>
+                <EuiFormRow helpText="Rollover when an index is 30 days old or reaches 50 gigabytes.">
+                  <EuiSwitch
+                    checked={false}
+                    onChange={() => {}}
+                    label="Use recommended defaults"
+                  />
+                </EuiFormRow>
+              </div>
+            </GuideRuleExample>
+          </GuideRule>
+        </>
+      ),
     },
     {
       title: 'Fieldset and legend',
