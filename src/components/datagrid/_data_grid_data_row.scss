@@ -159,9 +159,7 @@
 }
 
 // Cell actions
-// Could probably be more precisely named than '__expandButton', since there can be multiple actions/buttons
-// TODO: Consider renaming this when working on https://github.com/elastic/eui/issues/5132
-.euiDataGridRowCell__expandButton {
+.euiDataGridRowCell__expandActions {
   display: flex;
 }
 @include euiDataGridRowCellActions($definedHeight: false) {

@@ -28,7 +28,7 @@ describe('EuiDataGridCellActions', () => {
 
     expect(component).toMatchInlineSnapshot(`
       <div
-        className="euiDataGridRowCell__expandButton"
+        className="euiDataGridRowCell__expandActions"
       >
         <EuiI18n
           default="Click or hit enter to interact with cell content"
@@ -65,7 +65,7 @@ describe('EuiDataGridCellActions', () => {
 
     expect(component).toMatchInlineSnapshot(`
       <div
-        className="euiDataGridRowCell__expandButton"
+        className="euiDataGridRowCell__expandActions"
       >
         <Component
           Component={[Function]}

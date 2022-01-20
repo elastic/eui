@@ -38,7 +38,7 @@ export const EuiDataGridCellActions = ({
   const buttonIconClasses = classNames('euiDataGridRowCell__expandButtonIcon', {
     'euiDataGridRowCell__expandButtonIcon-isActive': popoverIsOpen,
   });
-  const buttonClasses = classNames('euiDataGridRowCell__expandButton', {
+  const buttonClasses = classNames('euiDataGridRowCell__expandActions', {
     'euiDataGridRowCell__expandButton-isActive': popoverIsOpen,
   });
   const expandButton = (
