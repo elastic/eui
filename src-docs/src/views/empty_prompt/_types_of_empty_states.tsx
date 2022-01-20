@@ -114,9 +114,10 @@ export default () => {
     if (
       radioUseCaseId === 'noPrivileges' ||
       radioUseCaseId === 'errorPages' ||
-      radioUseCaseId === 'forbidden'
+      radioUseCaseId === 'forbidden' ||
+      radioUseCaseId === 'noResults'
     ) {
-      // if the `multiple` thumb is selected when we changing the use case for `noPrivileges`, `errorPages`, `forbidden` or `loading` we change the selection for the first thumb
+      // if the `multiple` thumb is selected when we changing the use case for `noPrivileges`, `errorPages`, `forbidden` or `noResults` we change the selection for the first thumb
       // because these use cases don't work for a `multiple` page layout
       if (thumbnail === 'multiple') {
         setThumbnail('sidebar');
