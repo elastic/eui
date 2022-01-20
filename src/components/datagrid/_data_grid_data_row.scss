@@ -10,7 +10,6 @@
   border-right: $euiDataGridVerticalBorder;
   border-bottom: $euiBorderThin;
   flex: 0 0 auto;
-  background: $euiColorEmptyShade;
   position: relative;
   align-items: center;
   display: flex;
@@ -200,31 +199,23 @@
   transition: none; // Have to take out the generic transition so it is instaneous on focus
 }
 
-// Row highlights
-@include euiDataGridStyles(rowHoverHighlight) {
-  .euiDataGridRow:hover {
-    @include euiDataGridRowCell {
-      // sass-lint:disable-block no-important
-      // Needed to overtake striping
-      background-color: $euiColorHighlight !important;
-    }
+// Row stripes
+@include euiDataGridStyles(stripes) {
+  .euiDataGridRow:nth-child(odd) {
     @include euiDataGridRowCellActions($definedHeight: true) {
-      // sass-lint:disable-block no-important
-      // Needed to overtake striping
-      background-color: $euiColorHighlight !important;
+      background-color: $euiColorLightestShade;
     }
+    background-color: $euiColorLightestShade;
   }
 }
 
-// Stripes
-@include euiDataGridStyles(stripes) {
-  @include euiDataGridRowCell {
-    &.euiDataGridRowCell--stripe {
-      @include euiDataGridRowCellActions($definedHeight: true) {
-        background-color: $euiColorLightestShade;
-      }
-      background: $euiColorLightestShade;
+// Row highlights
+@include euiDataGridStyles(rowHoverHighlight) {
+  .euiDataGridRow:hover {
+    @include euiDataGridRowCellActions($definedHeight: true) {
+      background-color: $euiColorHighlight;
     }
+    background-color: $euiColorHighlight;
   }
 }
 

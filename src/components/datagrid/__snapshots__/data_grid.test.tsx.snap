@@ -1197,7 +1197,7 @@ Array [
               </div>
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
               data-gridcell-id="0,1"
@@ -1229,7 +1229,7 @@ Array [
               </div>
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
               data-gridcell-id="1,1"
@@ -1761,7 +1761,7 @@ Array [
               />
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="leading"
               data-gridcell-column-index="0"
               data-gridcell-id="0,1"
@@ -1812,7 +1812,7 @@ Array [
               />
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe"
+              class="euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="1"
               data-gridcell-id="1,1"
@@ -1844,7 +1844,7 @@ Array [
               </div>
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe"
+              class="euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="2"
               data-gridcell-id="2,1"
@@ -1876,7 +1876,7 @@ Array [
               </div>
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
               data-gridcell-column-id="trailing"
               data-gridcell-column-index="3"
               data-gridcell-id="3,1"
@@ -2388,7 +2388,7 @@ Array [
               </div>
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
               data-gridcell-id="0,1"
@@ -2420,7 +2420,7 @@ Array [
               </div>
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
               data-gridcell-id="1,1"
@@ -2809,7 +2809,7 @@ Array [
               </div>
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--firstColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
               data-gridcell-id="0,1"
@@ -2841,7 +2841,7 @@ Array [
               </div>
             </div>
             <div
-              class="euiDataGridRowCell euiDataGridRowCell--stripe euiDataGridRowCell--lastColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
               data-gridcell-id="1,1"
