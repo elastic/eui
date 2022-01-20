@@ -9,10 +9,7 @@
 import React, { PropsWithChildren } from 'react';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 
-import {
-  EuiGlobalStyles,
-  EuiGlobalStylesProps,
-} from '../../global_styling/reset/global_styles';
+import { EuiGlobalStyles, EuiGlobalStylesProps } from '../../global_styling';
 import {
   EuiThemeProvider,
   EuiThemeProviderProps,
@@ -28,24 +25,33 @@ export interface EuiProviderProps<T>
    * Pass `null` to remove all theming including global reset
    */
   theme?: EuiThemeSystem | null;
+  /**
+   * Provide global styles via `@emotion/react` `Global` for your custom theme.
+   * Pass `false` to remove the default EUI global styles.
+   */
+  globalStyles?: false | ((params: any) => JSX.Element | null);
+  /**
+   * Provide a cache configuration from `@emotion/cache`
+   */
   cache?: EmotionCache;
 }
 
 export const EuiProvider = <T extends {} = {}>({
   cache,
   theme = EuiThemeAmsterdam,
+  globalStyles: GlobalStyles = EuiGlobalStyles,
   colorMode,
   modify,
   children,
 }: PropsWithChildren<EuiProviderProps<T>>) => {
-  return theme !== null ? (
+  return theme !== null && GlobalStyles !== false ? (
     <EuiThemeProvider theme={theme} colorMode={colorMode} modify={modify}>
       {cache ? (
         <CacheProvider value={cache}>
-          <EuiGlobalStyles />
+          <GlobalStyles />
         </CacheProvider>
       ) : (
-        <EuiGlobalStyles />
+        <GlobalStyles />
       )}
       {children}
     </EuiThemeProvider>
