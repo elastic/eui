@@ -72,13 +72,14 @@ export default () => {
       {
         id: 'name',
         displayAsText: 'Name',
-        cellActions: [openModalAction],
+        isExpandable: false,
       },
       {
         id: 'email',
         displayAsText: 'Email address',
         initialWidth: 130,
         cellActions: [openModalAction],
+        isExpandable: false,
       },
       {
         id: 'location',
