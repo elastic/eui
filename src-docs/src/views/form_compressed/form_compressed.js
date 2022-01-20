@@ -127,7 +127,7 @@ export default () => {
 
       <EuiFormRow label="Switch" display="rowCompressed" hasChildLabel={false}>
         <EuiSwitch
-          label="Should we do this?"
+          label="Setting name"
           name="switch"
           checked={isSwitchChecked}
           onChange={onSwitchChange}
