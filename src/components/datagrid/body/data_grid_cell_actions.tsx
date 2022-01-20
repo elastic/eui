@@ -20,19 +20,21 @@ import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiPopoverFooter } from '../../popover';
 
 export const EuiDataGridCellActions = ({
+  isExpandable,
   closePopover,
   onExpandClick,
   column,
   rowIndex,
   colIndex,
 }: {
+  isExpandable: boolean;
   closePopover: () => void;
   onExpandClick: () => void;
   column?: EuiDataGridColumn;
   rowIndex: number;
   colIndex: number;
 }) => {
-  const expandButton = (
+  const expandButton = isExpandable ? (
     <EuiI18n
       key={'expand'}
       token="euiDataGridCellActions.expandButtonTitle"
@@ -51,7 +53,8 @@ export const EuiDataGridCellActions = ({
         />
       )}
     </EuiI18n>
-  );
+  ) : null;
+
   const additionalButtons = useMemo(() => {
     const ButtonComponent = (props: EuiButtonIconProps) => (
       <EuiButtonIcon

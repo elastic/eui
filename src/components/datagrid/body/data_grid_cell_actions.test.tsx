@@ -23,7 +23,9 @@ describe('EuiDataGridCellActions', () => {
   };
 
   it('renders an expand button', () => {
-    const component = shallow(<EuiDataGridCellActions {...requiredProps} />);
+    const component = shallow(
+      <EuiDataGridCellActions {...requiredProps} isExpandable={true} />
+    );
 
     expect(component).toMatchInlineSnapshot(`
       <div
@@ -54,10 +56,47 @@ describe('EuiDataGridCellActions', () => {
     `);
   });
 
-  it('renders column cell actions as `EuiButtonIcon`s', () => {
+  it('renders cell actions as `EuiButtonIcon`s', () => {
     const component = shallow(
       <EuiDataGridCellActions
         {...requiredProps}
+        isExpandable={false}
+        column={{ id: 'someId', cellActions: [() => <button />] }}
+      />
+    );
+
+    expect(component).toMatchInlineSnapshot(`
+      <div
+        className="euiDataGridRowCell__expandActions"
+      >
+        <Component
+          Component={[Function]}
+          closePopover={[MockFunction]}
+          colIndex={0}
+          columnId="someId"
+          isExpanded={false}
+          key="0"
+          rowIndex={0}
+        />
+      </div>
+    `);
+
+    const button = component.childAt(0).renderProp('Component');
+    expect(button({ iconType: 'eye' })).toMatchInlineSnapshot(`
+      <EuiButtonIcon
+        aria-hidden={true}
+        className="euiDataGridRowCell__actionButtonIcon"
+        iconSize="s"
+        iconType="eye"
+      />
+    `);
+  });
+
+  it('renders both cell actions and expand button', () => {
+    const component = shallow(
+      <EuiDataGridCellActions
+        {...requiredProps}
+        isExpandable={true}
         column={{ id: 'someId', cellActions: [() => <button />] }}
       />
     );
@@ -83,16 +122,6 @@ describe('EuiDataGridCellActions', () => {
           <Component />
         </EuiI18n>
       </div>
-    `);
-
-    const button = component.childAt(0).renderProp('Component');
-    expect(button({ iconType: 'eye' })).toMatchInlineSnapshot(`
-      <EuiButtonIcon
-        aria-hidden={true}
-        className="euiDataGridRowCell__actionButtonIcon"
-        iconSize="s"
-        iconType="eye"
-      />
     `);
   });
 });

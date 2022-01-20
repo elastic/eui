@@ -637,6 +637,7 @@ export class EuiDataGridCell extends Component<
               rowIndex={rowIndex}
               colIndex={colIndex}
               column={column}
+              isExpandable={isExpandable}
               closePopover={closeCellPopover}
               onExpandClick={() => {
                 if (popoverIsOpen) {
