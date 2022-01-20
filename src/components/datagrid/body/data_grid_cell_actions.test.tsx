@@ -16,7 +16,6 @@ import {
 
 describe('EuiDataGridCellActions', () => {
   const requiredProps = {
-    popoverIsOpen: false,
     closePopover: jest.fn(),
     onExpandClick: jest.fn(),
     rowIndex: 0,
@@ -44,7 +43,7 @@ describe('EuiDataGridCellActions', () => {
     expect(button('expandButtonTitle')).toMatchInlineSnapshot(`
       <EuiButtonIcon
         aria-hidden={true}
-        className="euiDataGridRowCell__expandButtonIcon"
+        className="euiDataGridRowCell__actionButtonIcon"
         color="primary"
         display="fill"
         iconSize="s"

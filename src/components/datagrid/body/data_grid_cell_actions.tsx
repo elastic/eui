@@ -12,7 +12,6 @@ import {
   EuiDataGridColumnCellAction,
   EuiDataGridColumnCellActionProps,
 } from '../data_grid_types';
-import classNames from 'classnames';
 
 import { EuiI18n } from '../../i18n';
 import { EuiButtonIcon, EuiButtonIconProps } from '../../button/button_icon';
@@ -21,26 +20,18 @@ import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiPopoverFooter } from '../../popover';
 
 export const EuiDataGridCellActions = ({
-  popoverIsOpen,
   closePopover,
   onExpandClick,
   column,
   rowIndex,
   colIndex,
 }: {
-  popoverIsOpen: boolean;
   closePopover: () => void;
   onExpandClick: () => void;
   column?: EuiDataGridColumn;
   rowIndex: number;
   colIndex: number;
 }) => {
-  const buttonIconClasses = classNames('euiDataGridRowCell__expandButtonIcon', {
-    'euiDataGridRowCell__expandButtonIcon-isActive': popoverIsOpen,
-  });
-  const buttonClasses = classNames('euiDataGridRowCell__expandActions', {
-    'euiDataGridRowCell__expandButton-isActive': popoverIsOpen,
-  });
   const expandButton = (
     <EuiI18n
       key={'expand'}
@@ -50,7 +41,7 @@ export const EuiDataGridCellActions = ({
       {(expandButtonTitle: string) => (
         <EuiButtonIcon
           display="fill"
-          className={buttonIconClasses}
+          className="euiDataGridRowCell__actionButtonIcon"
           color="primary"
           iconSize="s"
           iconType="expandMini"
@@ -94,7 +85,9 @@ export const EuiDataGridCellActions = ({
   }, [column, colIndex, rowIndex, closePopover]);
 
   return (
-    <div className={buttonClasses}>{[...additionalButtons, expandButton]}</div>
+    <div className="euiDataGridRowCell__expandActions">
+      {[...additionalButtons, expandButton]}
+    </div>
   );
 };
 

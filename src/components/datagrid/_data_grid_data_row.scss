@@ -38,17 +38,9 @@
   // Only add the transition effect on hover, so that it is instantaneous on focus
   // Long delays on hover to mitigate the accordion effect
   &:hover {
-    .euiDataGridRowCell__expandButtonIcon {
-      animation-duration: $euiAnimSpeedExtraFast;
-      animation-name: euiDataGridCellButtonSlideIn;
-      animation-iteration-count: 1;
-      animation-delay: $euiAnimSpeedNormal;
-      animation-fill-mode: forwards;
-    }
-
     .euiDataGridRowCell__actionButtonIcon {
       animation-duration: $euiAnimSpeedExtraFast;
-      animation-name: euiDataGridCellButtonSlideIn;
+      animation-name: euiDataGridCellActionsSlideIn;
       animation-iteration-count: 1;
       animation-delay: $euiAnimSpeedNormal;
       animation-fill-mode: forwards;
@@ -57,12 +49,6 @@
 
   &:not(:hover),
   &.euiDataGridRowCell--open {
-    .euiDataGridRowCell__expandButtonIcon {
-      animation: none;
-      margin-left: $euiDataGridCellPaddingM;
-      width: $euiSizeM;
-    }
-
     .euiDataGridRowCell__actionButtonIcon {
       animation: none;
       margin-left: $euiDataGridCellPaddingM;
@@ -80,7 +66,6 @@
 
   // if a cell is not hovered nor focused nor open via popover, don't show buttons in general
   &:not(:hover):not(:focus):not(.euiDataGridRowCell--open) {
-    .euiDataGridRowCell__expandButtonIcon,
     .euiDataGridRowCell__actionButtonIcon {
       display: none;
     }
@@ -173,23 +158,6 @@
   padding: $euiDataGridCellPaddingM 0;
 }
 
-.euiDataGridRowCell__expandButtonIcon {
-  height: $euiSizeM;
-  border-radius: $euiBorderRadius / 2;
-  width: 0;
-  overflow: hidden;
-  transition: none; // Have to take out the generic transition so it is instaneous on focus
-  box-shadow: none !important; // sass-lint:disable-line no-important
-  // Remove default .euiButtonIcon--fill border
-  // This way we don't need to animate the border that is inexistent in Amsterdam and unnecessary for a fill button
-  border: none;
-
-  &-isActive {
-    margin-left: $euiDataGridCellPaddingM;
-    width: $euiSizeM;
-  }
-}
-
 .euiDataGridRowCell__actionButtonIcon {
   height: $euiSizeM;
   border-radius: $euiBorderRadius / 2;
@@ -277,7 +245,7 @@
   }
 }
 
-@keyframes euiDataGridCellButtonSlideIn {
+@keyframes euiDataGridCellActionsSlideIn {
   from {
     margin-left: 0;
     width: 0;
