@@ -37,7 +37,7 @@
 
   // Only add the transition effect on hover, so that it is instantaneous on focus
   // Long delays on hover to mitigate the accordion effect
-  &:hover {
+  &:hover:not(:focus) {
     .euiDataGridRowCell__actionButtonIcon {
       animation-duration: $euiAnimSpeedExtraFast;
       animation-name: euiDataGridCellActionsSlideIn;
