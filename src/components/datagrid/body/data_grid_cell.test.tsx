@@ -293,6 +293,21 @@ describe('EuiDataGridCell', () => {
         false
       );
     });
+
+    it('closes the popover if open and the user scrolls out of view', () => {
+      const component = mount(
+        <EuiDataGridCell
+          {...requiredProps}
+          popoverContext={{
+            ...mockPopoverContext,
+            popoverIsOpen: true,
+          }}
+        />
+      );
+      component.unmount();
+
+      expect(mockPopoverContext.closeCellPopover).toHaveBeenCalled();
+    });
   });
 
   describe('isFocusedCell', () => {

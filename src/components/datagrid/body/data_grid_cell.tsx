@@ -271,6 +271,10 @@ export class EuiDataGridCell extends Component<
     if (this.isFocusedCell()) {
       this.context.setIsFocusedCellInView(false);
     }
+
+    if (this.isPopoverOpen()) {
+      this.props.popoverContext.closeCellPopover();
+    }
   }
 
   componentDidUpdate(prevProps: EuiDataGridCellProps) {
