@@ -110,6 +110,21 @@ describe('EuiKeyPadMenuItem', () => {
 
         expect(component).toMatchSnapshot();
       });
+
+      test('renders extra betaBadgeTooltipProps', () => {
+        const component = render(
+          <EuiKeyPadMenuItem
+            betaBadgeLabel="Beta"
+            betaBadgeTooltipContent="Content"
+            betaBadgeTooltipProps={{ anchorClassName: 'customTooltipClass' }}
+            label="Label"
+          >
+            Icon
+          </EuiKeyPadMenuItem>
+        );
+
+        expect(component).toMatchSnapshot();
+      });
     });
   });
 
