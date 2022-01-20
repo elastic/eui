@@ -522,6 +522,7 @@ export class EuiDataGridCell extends Component<
 
     cellProps.style = {
       ...style, // from react-window
+      top: 0, // The cell's row will handle top positioning
       width, // column width, can be undefined
       lineHeight: rowHeightsOptions?.lineHeight ?? undefined, // lineHeight configuration
       ...cellProps.style, // apply anything from setCellProps({style})
@@ -690,7 +691,14 @@ export class EuiDataGridCell extends Component<
     );
 
     return rowManager && !IS_JEST_ENVIRONMENT
-      ? createPortal(content, rowManager.getRow(rowIndex))
+      ? createPortal(
+          content,
+          rowManager.getRow(
+            rowIndex,
+            style!.top as string, // comes in as a `{float}px` string from react-window
+            style!.height as number // comes in as an integer from react-window
+          )
+        )
       : content;
   }
 }
