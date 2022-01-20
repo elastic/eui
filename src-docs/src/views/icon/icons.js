@@ -211,6 +211,7 @@ export const iconTypes = [
   'storage',
   'string',
   'submodule',
+  'sun',
   'symlink',
   'tableOfContents',
   'tableDensityExpanded',
