@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiFormRow, EuiFormRowProps } from './form_row';
+export type { EuiFormRowProps } from './form_row';
+export { EuiFormRow } from './form_row';

@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiContext, EuiI18nConsumer, EuiContextProps } from './context';
+export type { EuiContextProps } from './context';
+export { EuiContext, EuiI18nConsumer } from './context';

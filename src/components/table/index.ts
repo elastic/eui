@@ -6,39 +6,30 @@
  * Side Public License, v 1.
  */
 
-export { EuiTable, EuiTableProps } from './table';
-export { EuiTableBody, EuiTableBodyProps } from './table_body';
+export type { EuiTableProps } from './table';
+export { EuiTable } from './table';
+export type { EuiTableBodyProps } from './table_body';
+export { EuiTableBody } from './table_body';
 export { EuiTableFooter } from './table_footer';
-export {
-  EuiTableFooterCell,
-  EuiTableFooterCellProps,
-} from './table_footer_cell';
-export { EuiTableHeader, EuiTableHeaderProps } from './table_header';
-export {
-  EuiTableHeaderButton,
-  EuiTableHeaderButtonProps,
-} from './table_header_button';
-export {
-  EuiTableHeaderCell,
-  EuiTableHeaderCellProps,
-} from './table_header_cell';
-export {
-  EuiTableHeaderCellCheckbox,
-  EuiTableHeaderCellCheckboxProps,
-} from './table_header_cell_checkbox';
-export {
-  EuiTablePagination,
-  EuiTablePaginationProps,
-} from './table_pagination';
+export type { EuiTableFooterCellProps } from './table_footer_cell';
+export { EuiTableFooterCell } from './table_footer_cell';
+export type { EuiTableHeaderProps } from './table_header';
+export { EuiTableHeader } from './table_header';
+export type { EuiTableHeaderButtonProps } from './table_header_button';
+export { EuiTableHeaderButton } from './table_header_button';
+export type { EuiTableHeaderCellProps } from './table_header_cell';
+export { EuiTableHeaderCell } from './table_header_cell';
+export type { EuiTableHeaderCellCheckboxProps } from './table_header_cell_checkbox';
+export { EuiTableHeaderCellCheckbox } from './table_header_cell_checkbox';
+export type { EuiTablePaginationProps } from './table_pagination';
+export { EuiTablePagination } from './table_pagination';
 export { EuiTableHeaderMobile } from './mobile/table_header_mobile';
-export {
-  EuiTableSortMobile,
-  EuiTableSortMobileProps,
-} from './mobile/table_sort_mobile';
-export {
-  EuiTableSortMobileItem,
-  EuiTableSortMobileItemProps,
-} from './mobile/table_sort_mobile_item';
-export { EuiTableRow, EuiTableRowProps } from './table_row';
-export { EuiTableRowCell, EuiTableRowCellProps } from './table_row_cell';
+export type { EuiTableSortMobileProps } from './mobile/table_sort_mobile';
+export { EuiTableSortMobile } from './mobile/table_sort_mobile';
+export type { EuiTableSortMobileItemProps } from './mobile/table_sort_mobile_item';
+export { EuiTableSortMobileItem } from './mobile/table_sort_mobile_item';
+export type { EuiTableRowProps } from './table_row';
+export { EuiTableRow } from './table_row';
+export type { EuiTableRowCellProps } from './table_row_cell';
+export { EuiTableRowCell } from './table_row_cell';
 export { EuiTableRowCellCheckbox } from './table_row_cell_checkbox';

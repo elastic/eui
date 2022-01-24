@@ -6,9 +6,10 @@
  * Side Public License, v 1.
  */
 
-export { EuiCheckbox, EuiCheckboxProps } from './checkbox';
-export {
-  EuiCheckboxGroup,
+export type { EuiCheckboxProps } from './checkbox';
+export { EuiCheckbox } from './checkbox';
+export type {
   EuiCheckboxGroupProps,
   EuiCheckboxGroupOption,
 } from './checkbox_group';
+export { EuiCheckboxGroup } from './checkbox_group';

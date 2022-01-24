@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiFocusTrap, EuiFocusTrapProps, FocusTarget } from './focus_trap';
+export type { EuiFocusTrapProps, FocusTarget } from './focus_trap';
+export { EuiFocusTrap } from './focus_trap';

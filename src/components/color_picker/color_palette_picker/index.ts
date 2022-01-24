@@ -6,11 +6,11 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiColorPalettePicker,
+export type {
   EuiColorPalettePickerProps,
   EuiColorPalettePickerPaletteTextProps,
   EuiColorPalettePickerPaletteFixedProps,
   EuiColorPalettePickerPaletteGradientProps,
   EuiColorPalettePickerPaletteProps,
 } from './color_palette_picker';
+export { EuiColorPalettePicker } from './color_palette_picker';
