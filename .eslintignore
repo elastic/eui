@@ -5,6 +5,7 @@ lib
 test-env
 types
 eui.d.ts
+src/themes/index.d.ts
 package.json
 docs
 packages
