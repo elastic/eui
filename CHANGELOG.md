@@ -1,5 +1,9 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+No public interface changes since `46.1.0`.
+
+## [`46.1.0`](https://github.com/elastic/eui/tree/v46.1.0)
+
 - Added `sun` glyph to `EuiIcon` ([#5548](https://github.com/elastic/eui/pull/5548))
 - Updated styles in `EuiDescriptionList` of `type` inline ([#5534](https://github.com/elastic/eui/pull/5534))
 
