@@ -2,7 +2,7 @@
 
 - Added `sun` glyph to `EuiIcon` ([#5548](https://github.com/elastic/eui/pull/5548))
 - Updated styles in `EuiDescriptionList` of `type` inline ([#5534](https://github.com/elastic/eui/pull/5534))
-- Updated `tokenTag` design to look more like a tag ([#0000](https://github.com/elastic/eui/pull/0000))
+- Updated `tokenTag` design to look more like a tag ([#5553](https://github.com/elastic/eui/pull/5553))
 
 ## [`46.0.0`](https://github.com/elastic/eui/tree/v46.0.0)
 
