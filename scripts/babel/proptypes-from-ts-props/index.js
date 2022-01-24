@@ -1300,6 +1300,9 @@ const buildPropTypes = babelTemplate('COMPONENT_NAME.propTypes = PROP_TYPES');
 function processComponentDeclaration(typeDefinition, path, state) {
   const types = state.get('types');
 
+  // Do not generate propTypes 
+  if (state.opts.generatePropTypes === false) return;
+
   const propTypesAST = getPropTypesForNode(typeDefinition, false, state);
 
   // if the resulting proptype is PropTypes.any don't bother setting the proptypes
