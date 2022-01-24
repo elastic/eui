@@ -107,3 +107,28 @@ This eliminates the need to polyfill or transform the EUI build for an environme
 ### Mocked component files
 
 Besides babel transforms, the test environment build consumes mocked component files of the type `src/**/[name].testenv.*`. During the build, files of the type `src/**/[name].*` will be replaced by those with the `testenv` namespace. The purpose of this mocking is to further mitigate the impacts of time- and import-dependent rendering, and simplify environment output such as test snapshots. Information on creating mock component files can be found with [testing documentation](testing.md).
+
+## Using the `optimize` build (Beta)
+
+The `optimize` output directory is an opt-in intermediate step as we work towards dedicated, formal build output for development and production environments.
+
+When compiling with webpack, use the `resolve.alias` configuration to target the desired directory:
+
+```json
+resolve: {
+  alias: {
+    '@elastic/eui$': '@elastic/eui/optimize/lib'
+  }
+}
+```
+
+Designated "Beta" as included babel plugins may change and the output directory is likely to be renamed.
+
+### Notable differences
+
+* Absence of `propTypes`
+  * Significant bundle size decrease
+  * Likely not suitable for development environments
+* Runtime transforms
+  * Slight bundle size decrease
+  * Requires `@babel/runtime` be a consumer dependency
