@@ -43,7 +43,7 @@ export const useFinalGridDimensions = ({
   useEffect(() => {
     const boundingRect = wrapperRef.current!.getBoundingClientRect();
 
-    if (boundingRect.height !== unconstrainedHeight && !isFullScreen) {
+    if (boundingRect.height !== unconstrainedHeight) {
       setHeight(boundingRect.height);
     }
     if (boundingRect.width !== unconstrainedWidth) {
@@ -57,21 +57,14 @@ export const useFinalGridDimensions = ({
     wrapperRef,
     unconstrainedHeight,
     unconstrainedWidth,
-    isFullScreen,
   ]);
 
-  let finalHeight = IS_JEST_ENVIRONMENT
+  const finalHeight = IS_JEST_ENVIRONMENT
     ? Number.MAX_SAFE_INTEGER
     : height || unconstrainedHeight;
-  let finalWidth = IS_JEST_ENVIRONMENT
+  const finalWidth = IS_JEST_ENVIRONMENT
     ? Number.MAX_SAFE_INTEGER
     : width || unconstrainedWidth;
-
-  if (isFullScreen) {
-    finalHeight =
-      window.innerHeight - toolbarHeight - headerRowHeight - footerRowHeight;
-    finalWidth = window.innerWidth;
-  }
 
   return { finalHeight, finalWidth };
 };
