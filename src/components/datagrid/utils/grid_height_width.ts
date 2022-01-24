@@ -19,21 +19,13 @@ export const useFinalGridDimensions = ({
   unconstrainedWidth,
   wrapperDimensions,
   wrapperRef,
-  toolbarHeight,
-  headerRowHeight,
-  footerRowHeight,
   rowCount,
-  isFullScreen,
 }: {
   unconstrainedHeight: number;
   unconstrainedWidth: number;
   wrapperDimensions: { width: number; height: number };
   wrapperRef: MutableRefObject<HTMLDivElement | null>;
-  toolbarHeight: number;
-  headerRowHeight: number;
-  footerRowHeight: number;
   rowCount: number;
-  isFullScreen: boolean;
 }) => {
   // Used if the grid needs to scroll
   const [height, setHeight] = useState<number | undefined>(undefined);
