@@ -17,7 +17,6 @@ import { EuiDataGridBody, Cell } from './data_grid_body';
 
 describe('EuiDataGridBody', () => {
   const requiredProps = {
-    isFullScreen: false,
     headerIsInteractive: true,
     rowCount: 1,
     visibleRows: { startRow: 0, endRow: 1, visibleRowCount: 1 },

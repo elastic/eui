@@ -327,7 +327,6 @@ export interface EuiDataGridColumnSortingDraggableProps {
   display: string;
 }
 export interface EuiDataGridBodyProps {
-  isFullScreen: boolean;
   leadingControlColumns: EuiDataGridControlColumn[];
   trailingControlColumns: EuiDataGridControlColumn[];
   columns: EuiDataGridColumn[];

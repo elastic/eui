@@ -422,7 +422,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
               {...gridAriaProps}
             >
               <EuiDataGridBody
-                isFullScreen={isFullScreen}
                 columns={orderedVisibleColumns}
                 visibleColCount={visibleColCount}
                 toolbarHeight={toolbarHeight}
