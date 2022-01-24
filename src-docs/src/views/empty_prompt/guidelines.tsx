@@ -170,7 +170,7 @@ export default () => (
       description={
         <>
           <p>
-            Use &quot;Learn more&quot; links in your empty prompt to link to
+            Use &quot;learn more&quot; links in your empty prompt to link to
             documentation where users can get more detailed help.
           </p>
           <p>
@@ -182,13 +182,13 @@ export default () => (
       }
     >
       <GuideRuleExample
-        text="Add the learn more link after the description when the empty prompt doesn't contain a call to action."
+        text='Add the "learn more" link after the description when the empty prompt doesn&apos;t contain a call to action.'
         minHeight={280}
       >
         <EuiImage alt="Inline link" url={inlineLink} height="252" />
       </GuideRuleExample>
       <GuideRuleExample
-        text="Add the learn more link in the footer when the empty prompt contains a call to action."
+        text='Add the "learn more" link in the footer when the empty prompt contains a call to action.'
         minHeight={280}
       >
         <EuiImage alt="Footer link" url={footerLink} height="252" />

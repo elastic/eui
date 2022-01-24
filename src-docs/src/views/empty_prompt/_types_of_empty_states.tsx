@@ -163,6 +163,14 @@ export default () => {
     },
   };
 
+  const body = currentUseCaseExample.body && {
+    body: currentUseCaseExample.body,
+  };
+
+  const actions = currentUseCaseExample.actions && {
+    actions: currentUseCaseExample.actions,
+  };
+
   const euiEmptyPromptPreview = (
     <EuiEmptyPrompt
       {...icon}
@@ -170,8 +178,8 @@ export default () => {
       {...multipleLoadingPanelStyles}
       title={currentUseCaseExample.title}
       titleSize={titleSize}
-      body={currentUseCaseExample?.body}
-      actions={currentUseCaseExample?.actions}
+      {...body}
+      {...actions}
       {...(panelProps as any)}
     />
   );

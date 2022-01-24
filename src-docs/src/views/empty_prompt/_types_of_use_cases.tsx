@@ -72,7 +72,7 @@ export const typesOfUseCases: {
       action: (
         <p>
           Actions specific to first use. For example: “Add cases”, “Create job”,
-          “Add workpad”
+          “Add workpad”.
         </p>
       ),
     },
