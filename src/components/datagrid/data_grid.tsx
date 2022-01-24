@@ -270,8 +270,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
    * Toolbar & full-screen
    */
   const showToolbar = !!toolbarVisibility;
-  const [toolbarRef, setToolbarRef] = useState<HTMLDivElement | null>(null);
-  const { height: toolbarHeight } = useResizeObserver(toolbarRef, 'height');
 
   const [isFullScreen, setIsFullScreen] = useState(false);
   const handleGridKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -373,7 +371,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
           >
             {showToolbar && (
               <EuiDataGridToolbar
-                setRef={setToolbarRef}
                 gridWidth={gridWidth}
                 minSizeForControls={minSizeForControls}
                 toolbarVisibility={toolbarVisibility}
@@ -424,7 +421,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
               <EuiDataGridBody
                 columns={orderedVisibleColumns}
                 visibleColCount={visibleColCount}
-                toolbarHeight={toolbarHeight}
                 leadingControlColumns={leadingControlColumns}
                 schema={mergedSchema}
                 trailingControlColumns={trailingControlColumns}

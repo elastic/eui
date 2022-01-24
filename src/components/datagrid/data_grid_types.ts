@@ -40,9 +40,9 @@ export interface EuiDataGridToolbarProps {
   controlBtnClasses: string;
   columnSelector: ReactNode;
   columnSorting: ReactNode;
-  setRef: RefCallback<HTMLDivElement | null>;
   setIsFullScreen: Dispatch<SetStateAction<boolean>>;
 }
+
 export interface EuiDataGridPaginationRendererProps
   extends EuiDataGridPaginationProps {
   rowCount: number;
@@ -345,7 +345,6 @@ export interface EuiDataGridBodyProps {
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
   onColumnResize?: EuiDataGridOnColumnResizeHandler;
-  toolbarHeight: number;
   virtualizationOptions?: Partial<VariableSizeGridProps>;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   gridStyles: EuiDataGridStyle;
