@@ -17,7 +17,7 @@ interface ScrollCellIntoView {
 interface Dependencies {
   gridRef: MutableRefObject<Grid | null>;
   outerGridRef: MutableRefObject<HTMLDivElement | null>;
-  innerGridRef: MutableRefObject<HTMLDivElement | null>;
+  hasGridScrolling: boolean;
   headerRowHeight: number;
   footerRowHeight: number;
   visibleRowCount: number;
@@ -53,7 +53,7 @@ export const useScroll = (args: Dependencies) => {
 export const useScrollCellIntoView = ({
   gridRef,
   outerGridRef,
-  innerGridRef,
+  hasGridScrolling,
   headerRowHeight,
   footerRowHeight,
   visibleRowCount,
@@ -61,15 +61,11 @@ export const useScrollCellIntoView = ({
 }: Dependencies) => {
   const scrollCellIntoView = useCallback(
     async ({ rowIndex, colIndex }: ScrollCellIntoView) => {
-      if (!gridRef.current || !outerGridRef.current || !innerGridRef.current) {
+      if (!gridRef.current || !outerGridRef.current) {
         return; // Grid isn't rendered yet or is empty
       }
 
-      const gridDoesNotScroll =
-        innerGridRef.current.offsetHeight ===
-          outerGridRef.current.offsetHeight &&
-        innerGridRef.current.offsetWidth === outerGridRef.current.offsetWidth;
-      if (gridDoesNotScroll) {
+      if (!hasGridScrolling) {
         return; // If it doesn't scroll, there's nothing to do here
       }
 
@@ -160,7 +156,7 @@ export const useScrollCellIntoView = ({
     [
       gridRef,
       outerGridRef,
-      innerGridRef,
+      hasGridScrolling,
       headerRowHeight,
       footerRowHeight,
       visibleRowCount,

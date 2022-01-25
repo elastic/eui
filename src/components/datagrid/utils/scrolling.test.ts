@@ -38,12 +38,7 @@ describe('useScrollCellIntoView', () => {
         querySelector: getCell,
       } as any,
     },
-    innerGridRef: {
-      current: {
-        offsetHeight: 800,
-        offsetWidth: 1000,
-      } as any,
-    },
+    hasGridScrolling: true,
     headerRowHeight: 0,
     footerRowHeight: 0,
     visibleRowCount: 100,
@@ -61,32 +56,17 @@ describe('useScrollCellIntoView', () => {
         ...args,
         gridRef: { current: null },
         outerGridRef: { current: null },
-        innerGridRef: { current: null },
       })
     );
     scrollCellIntoView({ rowIndex: 0, colIndex: 0 });
     expect(scrollTo).not.toHaveBeenCalled();
   });
 
-  it('does nothing if the grid does not scroll (inner and outer grid dimensions are the same)', () => {
-    const outerGrid = {
-      offsetHeight: 500,
-      offsetWidth: 500,
-    };
-    const innerGrid = {
-      offsetHeight: 500,
-      offsetWidth: 500,
-    };
-
+  it('does nothing if the grid does not scroll', () => {
     const { scrollCellIntoView } = testCustomHook(() =>
       useScrollCellIntoView({
         ...args,
-        outerGridRef: {
-          current: { ...args.outerGridRef.current, ...outerGrid },
-        },
-        innerGridRef: {
-          current: { ...args.innerGridRef.current, ...innerGrid },
-        },
+        hasGridScrolling: false,
       })
     );
     scrollCellIntoView({ rowIndex: 0, colIndex: 0 });
