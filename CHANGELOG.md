@@ -29,6 +29,7 @@ No public interface changes since `46.1.0`.
 **Breaking changes**
 
 - `EuiKeyPadMenuItem` now wraps itself with `EuiToolTip` when `betaBadgeLabel` is supplied forcing top element style props to be passed via `betaBadgeTooltipProps` ([#5541](https://github.com/elastic/eui/pull/5541))
+- Changed `data-gridcell-id` in `EuiDataGrid` to the inverse index order: `[columnIndex],[rowIndex]` ([#5515](https://github.com/elastic/eui/pull/5515))
 
 ## [`45.0.0`](https://github.com/elastic/eui/tree/v45.0.0)
 
