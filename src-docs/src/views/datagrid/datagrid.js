@@ -2,7 +2,6 @@ import React, {
   Fragment,
   useCallback,
   useEffect,
-  useMemo,
   useState,
   createContext,
   useContext,
@@ -65,6 +64,35 @@ for (let i = 1; i < 100; i++) {
     version: fake('{{system.semver}}'),
   });
 }
+
+const RenderCellValue = ({ rowIndex, columnId, setCellProps }) => {
+  const data = useContext(DataContext);
+  useEffect(() => {
+    if (columnId === 'amount') {
+      if (data.hasOwnProperty(rowIndex)) {
+        const numeric = parseFloat(
+          data[rowIndex][columnId].match(/\d+\.\d+/)[0],
+          10
+        );
+        setCellProps({
+          style: {
+            backgroundColor: `rgba(0, 255, 0, ${numeric * 0.0002})`,
+          },
+        });
+      }
+    }
+  }, [rowIndex, columnId, setCellProps, data]);
+
+  function getFormatted() {
+    return data[rowIndex][columnId].formatted
+      ? data[rowIndex][columnId].formatted
+      : data[rowIndex][columnId];
+  }
+
+  return data.hasOwnProperty(rowIndex)
+    ? getFormatted(rowIndex, columnId)
+    : null;
+};
 
 const columns = [
   {
@@ -365,37 +393,6 @@ export default () => {
     columns.map(({ id }) => id)
   ); // initialize to the full set of columns
 
-  const renderCellValue = useMemo(() => {
-    return ({ rowIndex, columnId, setCellProps }) => {
-      const data = useContext(DataContext);
-      useEffect(() => {
-        if (columnId === 'amount') {
-          if (data.hasOwnProperty(rowIndex)) {
-            const numeric = parseFloat(
-              data[rowIndex][columnId].match(/\d+\.\d+/)[0],
-              10
-            );
-            setCellProps({
-              style: {
-                backgroundColor: `rgba(0, 255, 0, ${numeric * 0.0002})`,
-              },
-            });
-          }
-        }
-      }, [rowIndex, columnId, setCellProps, data]);
-
-      function getFormatted() {
-        return data[rowIndex][columnId].formatted
-          ? data[rowIndex][columnId].formatted
-          : data[rowIndex][columnId];
-      }
-
-      return data.hasOwnProperty(rowIndex)
-        ? getFormatted(rowIndex, columnId)
-        : null;
-    };
-  }, []);
-
   const onColumnResize = useRef((eventData) => {
     console.log(eventData);
   });
@@ -408,7 +405,7 @@ export default () => {
         columnVisibility={{ visibleColumns, setVisibleColumns }}
         trailingControlColumns={trailingControlColumns}
         rowCount={raw_data.length}
-        renderCellValue={renderCellValue}
+        renderCellValue={RenderCellValue}
         inMemory={{ level: 'sorting' }}
         sorting={{ columns: sortingColumns, onSort }}
         pagination={{
