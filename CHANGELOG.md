@@ -1,6 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `46.1.0`.
+**Bug fixes**
+- Fixed an accessibility issue where `EuiComboBoxPill` close button had a nested interactive element ([#5560](https://github.com/elastic/eui/pull/5560))
 
 ## [`46.1.0`](https://github.com/elastic/eui/tree/v46.1.0)
 
