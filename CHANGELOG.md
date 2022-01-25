@@ -2,6 +2,10 @@
 
 - Updated `EuiDataGrid`'s body to a light gray background, which primarily shows when scrolling through virtualized content ([#5562](https://github.com/elastic/eui/pull/5562))
 
+**Bug fixes**
+
+- Fixed EuiDataGrid height issue when in full-screen mode and with scrolling content ([#5557](https://github.com/elastic/eui/pull/5557))
+
 ## [`46.1.0`](https://github.com/elastic/eui/tree/v46.1.0)
 
 - Added `sun` glyph to `EuiIcon` ([#5548](https://github.com/elastic/eui/pull/5548))
