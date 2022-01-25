@@ -260,6 +260,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     scrollBarHeight,
     hasVerticalScroll,
     hasHorizontalScroll,
+    scrollBorderOverlay,
   } = useScrollBars(outerGridRef);
 
   /**
@@ -495,6 +496,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       >
         {Cell}
       </Grid>
+      {scrollBorderOverlay}
     </DataGridWrapperRowsContext.Provider>
   ) : null;
 };

@@ -6,7 +6,14 @@
  * Side Public License, v 1.
  */
 
-import { useContext, useEffect, useCallback, MutableRefObject } from 'react';
+import React, {
+  useContext,
+  useEffect,
+  useCallback,
+  useMemo,
+  MutableRefObject,
+  ReactNode,
+} from 'react';
 import { VariableSizeGrid as Grid } from 'react-window';
 import { DataGridFocusContext } from './focus';
 
@@ -177,6 +184,7 @@ export const useScrollBars = (
   scrollBarWidth: number;
   hasVerticalScroll: boolean;
   hasHorizontalScroll: boolean;
+  scrollBorderOverlay: ReactNode;
 } => {
   // https://stackoverflow.com/a/40568748/4294462
   const scrollBarHeight = outerGridRef.current
@@ -195,10 +203,36 @@ export const useScrollBars = (
     ? outerGridRef.current.scrollHeight > outerGridRef.current.clientHeight
     : false;
 
+  // If the grid scrolls or has scrollbars, we add custom border overlays
+  // (since borders are normally set by cells) to ensure our grid body has
+  // ending borders regardless of scroll position
+  const scrollBorderOverlay = useMemo(() => {
+    if (!hasHorizontalScroll && !hasVerticalScroll) {
+      return null; // Nothing to render if the grid doesn't scroll
+    }
+    return (
+      <div className="euiDataGrid__scrollOverlay" role="presentation">
+        {scrollBarHeight > 0 && (
+          <div
+            className="euiDataGrid__scrollBarOverlayBottom"
+            style={{ bottom: scrollBarHeight, right: 0 }}
+          />
+        )}
+        {scrollBarWidth > 0 && (
+          <div
+            className="euiDataGrid__scrollBarOverlayRight"
+            style={{ bottom: scrollBarHeight, right: scrollBarWidth }}
+          />
+        )}
+      </div>
+    );
+  }, [hasHorizontalScroll, hasVerticalScroll, scrollBarHeight, scrollBarWidth]);
+
   return {
     scrollBarHeight,
     scrollBarWidth,
     hasVerticalScroll,
     hasHorizontalScroll,
+    scrollBorderOverlay,
   };
 };

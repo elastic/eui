@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
+import { render } from 'enzyme';
 import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
 import { useScrollCellIntoView, useScrollBars } from './scrolling';
 
@@ -372,12 +374,119 @@ describe('useScrollBars', () => {
     });
   });
 
-  describe('returns 0s and falses if outerGridRef is not yet instantiated', () => {
+  describe('scrollBorderOverlay', () => {
+    describe('if the grid does not scroll', () => {
+      it('does not render anything', () => {
+        const { scrollBorderOverlay } = testCustomHook(() =>
+          useScrollBars({
+            current: {
+              ...mockOuterGridRef.current,
+              clientHeight: 100,
+              scrollHeight: 100,
+              clientWidth: 200,
+              scrollWidth: 200,
+            },
+          })
+        );
+
+        expect(scrollBorderOverlay).toEqual(null);
+      });
+    });
+
+    describe('if the grid scrolls but has inline scrollbars & no scrollbar width/height', () => {
+      it('renders a single overlay with borders for the outermost grid', () => {
+        const { scrollBorderOverlay } = testCustomHook(() =>
+          useScrollBars({
+            current: {
+              ...mockOuterGridRef.current,
+              clientHeight: 50,
+              offsetHeight: 50,
+              scrollHeight: 100,
+              clientWidth: 100,
+              offsetWidth: 100,
+              scrollWidth: 200,
+            },
+          })
+        );
+        const component = render(<>{scrollBorderOverlay}</>);
+
+        expect(component).toMatchInlineSnapshot(`
+          <div
+            class="euiDataGrid__scrollOverlay"
+            role="presentation"
+          />
+        `);
+      });
+    });
+
+    describe('if the grid scrolls and has scrollbars that take up width/height', () => {
+      it('renders a top border for the bottom scrollbar', () => {
+        const { scrollBorderOverlay } = testCustomHook(() =>
+          useScrollBars({
+            current: {
+              ...mockOuterGridRef.current,
+              clientHeight: 40,
+              offsetHeight: 50,
+              scrollHeight: 100,
+              clientWidth: 100,
+              offsetWidth: 100,
+              scrollWidth: 100,
+            },
+          })
+        );
+        const component = render(<>{scrollBorderOverlay}</>);
+
+        expect(component).toMatchInlineSnapshot(`
+          <div
+            class="euiDataGrid__scrollOverlay"
+            role="presentation"
+          >
+            <div
+              class="euiDataGrid__scrollBarOverlayBottom"
+              style="bottom:10px;right:0"
+            />
+          </div>
+        `);
+      });
+
+      it('renders a left border for the bottom scrollbar', () => {
+        const { scrollBorderOverlay } = testCustomHook(() =>
+          useScrollBars({
+            current: {
+              ...mockOuterGridRef.current,
+              clientHeight: 50,
+              offsetHeight: 50,
+              scrollHeight: 50,
+              clientWidth: 90,
+              offsetWidth: 100,
+              scrollWidth: 200,
+            },
+          })
+        );
+        const component = render(<>{scrollBorderOverlay}</>);
+
+        expect(component).toMatchInlineSnapshot(`
+          <div
+            class="euiDataGrid__scrollOverlay"
+            role="presentation"
+          >
+            <div
+              class="euiDataGrid__scrollBarOverlayRight"
+              style="bottom:0;right:10px"
+            />
+          </div>
+        `);
+      });
+    });
+  });
+
+  it('returns falsey values if outerGridRef is not yet instantiated', () => {
     expect(testCustomHook(() => useScrollBars({ current: null }))).toEqual({
       scrollBarHeight: 0,
       scrollBarWidth: 0,
       hasVerticalScroll: false,
       hasHorizontalScroll: false,
+      scrollBorderOverlay: null,
     });
   });
 });

@@ -30,6 +30,7 @@
   width: 100%;
   overflow: hidden;
   z-index: 2; // Sits above the pagination below it, but below the controls above it
+  position: relative;
   background: $euiColorEmptyShade;
   font-feature-settings: 'tnum' 1; // Tabular numbers
 }
@@ -64,4 +65,41 @@
 .euiDataGrid__virtualized {
   @include euiScrollBar($euiColorDarkShade, $euiColorEmptyShade);
   scroll-padding: 0;
+}
+
+.euiDataGrid__scrollOverlay {
+  position: absolute;
+  top: -1 * $euiBorderWidthThin; // Overlaps the toolbar border
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  // Ensure the scrolling data grid body always has border edges
+  // regardless of cell position
+  box-shadow: inset 0 0 0 $euiBorderWidthThin $euiBorderColor;
+  // Note that this *must* be an inset `box-shadow` and not `border`, because
+  // border will affect the relative position of the child scroll bar overlays
+  // and cause them to be off by the width of the border
+
+  // Ensure the underlying grid is still interactable
+  pointer-events: none;
+
+  // Ensure the horizontal scrollbar has a top border
+  .euiDataGrid__scrollBarOverlayBottom {
+    position: absolute;
+    width: 100%;
+    height: $euiBorderWidthThin;
+    background-color: $euiBorderColor;
+  }
+
+  // Ensure the vertical scrollbar has a left border
+  .euiDataGrid__scrollBarOverlayRight {
+    position: absolute;
+    height: 100%;
+    width: $euiBorderWidthThin;
+    background-color: $euiBorderColor;
+  }
+
+  // Note: Scroll bar border positions are set via JS inline style, since
+  // JS has access to the exact OS scrollbar width/height and CSS doesn't
 }
