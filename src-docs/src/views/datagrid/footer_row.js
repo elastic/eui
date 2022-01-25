@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { fake } from 'faker';
 
 import {
@@ -19,6 +19,28 @@ for (let i = 1; i < 20; i++) {
     version: fake('{{system.semver}}'),
   });
 }
+
+const RenderCellValue = ({ rowIndex, columnId, setCellProps }) => {
+  useEffect(() => {
+    if (columnId === 'amount') {
+      if (raw_data.hasOwnProperty(rowIndex)) {
+        const numeric = parseFloat(
+          raw_data[rowIndex][columnId].match(/\d+\.\d+/)[0],
+          10
+        );
+        setCellProps({
+          style: {
+            backgroundColor: `rgba(0, 255, 0, ${numeric * 0.0002})`,
+          },
+        });
+      }
+    }
+  }, [rowIndex, columnId, setCellProps]);
+
+  return raw_data.hasOwnProperty(rowIndex)
+    ? raw_data[rowIndex][columnId]
+    : null;
+};
 
 const columns = [
   {
@@ -53,6 +75,9 @@ const footerCellValues = {
   }`,
 };
 
+const renderFooterCellValue = ({ columnId }) =>
+  footerCellValues[columnId] || null;
+
 export default () => {
   // ** Pagination config
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
@@ -76,35 +101,6 @@ export default () => {
     columns.map(({ id }) => id)
   ); // initialize to the full set of columns
 
-  const renderCellValue = useMemo(() => {
-    return ({ rowIndex, columnId, setCellProps }) => {
-      useEffect(() => {
-        if (columnId === 'amount') {
-          if (raw_data.hasOwnProperty(rowIndex)) {
-            const numeric = parseFloat(
-              raw_data[rowIndex][columnId].match(/\d+\.\d+/)[0],
-              10
-            );
-            setCellProps({
-              style: {
-                backgroundColor: `rgba(0, 255, 0, ${numeric * 0.0002})`,
-              },
-            });
-          }
-        }
-      }, [rowIndex, columnId, setCellProps]);
-
-      return raw_data.hasOwnProperty(rowIndex)
-        ? raw_data[rowIndex][columnId]
-        : null;
-    };
-  }, []);
-
-  const renderFooterCellValue = useCallback(
-    ({ columnId }) => footerCellValues[columnId] || null,
-    []
-  );
-
   // Footer row
   const [showFooterRow, setShowFooterRow] = useState(true);
 
@@ -123,7 +119,7 @@ export default () => {
           columns={columns}
           columnVisibility={{ visibleColumns, setVisibleColumns }}
           rowCount={raw_data.length}
-          renderCellValue={renderCellValue}
+          renderCellValue={RenderCellValue}
           renderFooterCellValue={
             showFooterRow ? renderFooterCellValue : undefined
           }
