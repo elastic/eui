@@ -45,17 +45,17 @@ export const useScroll = (args: Dependencies) => {
     }
   }, [focusedCell, scrollCellIntoView]);
 
-  const { popoverIsOpen, openCellLocation } = useContext(
+  const { popoverIsOpen, cellLocation } = useContext(
     DataGridCellPopoverContext
   );
   useEffect(() => {
     if (popoverIsOpen) {
       scrollCellIntoView({
-        rowIndex: openCellLocation.rowIndex,
-        colIndex: openCellLocation.colIndex,
+        rowIndex: cellLocation.rowIndex,
+        colIndex: cellLocation.colIndex,
       });
     }
-  }, [popoverIsOpen, openCellLocation, scrollCellIntoView]);
+  }, [popoverIsOpen, cellLocation, scrollCellIntoView]);
 
   return { scrollCellIntoView };
 };

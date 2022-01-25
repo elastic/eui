@@ -9,11 +9,11 @@ exports[`EuiDataGridCell renders 1`] = `
   popoverContent={[Function]}
   popoverContext={
     Object {
-      "closeCellPopover": [MockFunction],
-      "openCellLocation": Object {
+      "cellLocation": Object {
         "colIndex": 0,
         "rowIndex": 0,
       },
+      "closeCellPopover": [MockFunction],
       "openCellPopover": [MockFunction],
       "popoverIsOpen": false,
       "setPopoverAnchor": [MockFunction],

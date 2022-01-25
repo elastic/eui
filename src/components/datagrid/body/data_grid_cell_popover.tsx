@@ -16,7 +16,7 @@ export const DataGridCellPopoverContext = createContext<
   DataGridCellPopoverContextShape
 >({
   popoverIsOpen: false,
-  openCellLocation: { rowIndex: 0, colIndex: 0 },
+  cellLocation: { rowIndex: 0, colIndex: 0 },
   openCellPopover: () => {},
   closeCellPopover: () => {},
   setPopoverAnchor: () => {},
@@ -29,7 +29,7 @@ export const useCellPopover = (): {
 } => {
   // Current open state & cell location are handled here
   const [popoverIsOpen, setPopoverIsOpen] = useState(false);
-  const [openCellLocation, setOpenCellLocation] = useState({
+  const [cellLocation, setCellLocation] = useState({
     rowIndex: 0,
     colIndex: 0,
   });
@@ -43,8 +43,8 @@ export const useCellPopover = (): {
       // Prevent popover DOM issues when re-opening the same popover
       if (
         popoverIsOpen &&
-        rowIndex === openCellLocation.rowIndex &&
-        colIndex === openCellLocation.colIndex
+        rowIndex === cellLocation.rowIndex &&
+        colIndex === cellLocation.colIndex
       ) {
         return;
       }
@@ -52,17 +52,17 @@ export const useCellPopover = (): {
       // Toggle our open cell state, which causes EuiDataGridCells to react/check
       // if they should be the open popover and send their anchor+content if so
       setPopoverAnchor(null); // Resetting the anchor node is required for rerendering to work correctly
-      setOpenCellLocation({ rowIndex, colIndex });
+      setCellLocation({ rowIndex, colIndex });
       setPopoverIsOpen(true);
     },
-    [popoverIsOpen, openCellLocation]
+    [popoverIsOpen, cellLocation]
   );
 
   const cellPopoverContext = {
     popoverIsOpen,
     closeCellPopover,
     openCellPopover,
-    openCellLocation,
+    cellLocation,
     setPopoverAnchor,
     setPopoverContent,
   };

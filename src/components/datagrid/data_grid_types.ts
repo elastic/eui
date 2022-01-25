@@ -197,9 +197,9 @@ export interface DataGridFocusContextShape {
 
 export interface DataGridCellPopoverContextShape {
   popoverIsOpen: boolean;
-  closeCellPopover(): void;
+  cellLocation: { rowIndex: number; colIndex: number };
   openCellPopover(args: { rowIndex: number; colIndex: number }): void;
-  openCellLocation: { rowIndex: number; colIndex: number };
+  closeCellPopover(): void;
   setPopoverAnchor(anchor: HTMLElement): void;
   setPopoverContent(content: ReactNode): void;
 }

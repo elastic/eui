@@ -290,8 +290,8 @@ export class EuiDataGridCell extends Component<
     if (
       this.props.popoverContext.popoverIsOpen !==
         prevProps.popoverContext.popoverIsOpen ||
-      this.props.popoverContext.openCellLocation !==
-        prevProps.popoverContext.openCellLocation
+      this.props.popoverContext.cellLocation !==
+        prevProps.popoverContext.cellLocation
     ) {
       this.handleCellPopover();
     }
@@ -320,8 +320,8 @@ export class EuiDataGridCell extends Component<
     if (
       nextProps.popoverContext.popoverIsOpen !==
         this.props.popoverContext.popoverIsOpen ||
-      nextProps.popoverContext.openCellLocation !==
-        this.props.popoverContext.openCellLocation
+      nextProps.popoverContext.cellLocation !==
+        this.props.popoverContext.cellLocation
     )
       return true;
 
@@ -421,12 +421,12 @@ export class EuiDataGridCell extends Component<
 
   isPopoverOpen = () => {
     const { isExpandable, popoverContext } = this.props;
-    const { popoverIsOpen, openCellLocation } = popoverContext;
+    const { popoverIsOpen, cellLocation } = popoverContext;
 
     if (
       popoverIsOpen &&
-      openCellLocation.colIndex === this.props.colIndex &&
-      openCellLocation.rowIndex === this.props.visibleRowIndex
+      cellLocation.colIndex === this.props.colIndex &&
+      cellLocation.rowIndex === this.props.visibleRowIndex
     ) {
       if (isExpandable) {
         return true;

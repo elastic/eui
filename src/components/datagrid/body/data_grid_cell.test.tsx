@@ -18,7 +18,7 @@ import { EuiDataGridCell } from './data_grid_cell';
 describe('EuiDataGridCell', () => {
   const mockPopoverContext = {
     popoverIsOpen: false,
-    openCellLocation: { rowIndex: 0, colIndex: 0 },
+    cellLocation: { rowIndex: 0, colIndex: 0 },
     closeCellPopover: jest.fn(),
     openCellPopover: jest.fn(),
     setPopoverAnchor: jest.fn(),
@@ -138,11 +138,11 @@ describe('EuiDataGridCell', () => {
             popoverContext: { ...mockPopoverContext, popoverIsOpen: true },
           });
         });
-        it('popoverContext.openCellLocation', () => {
+        it('popoverContext.cellLocation', () => {
           component.setProps({
             popoverContext: {
               ...mockPopoverContext,
-              openCellLocation: { rowIndex: 5, colIndex: 5 },
+              cellLocation: { rowIndex: 5, colIndex: 5 },
             },
           });
         });
@@ -350,7 +350,7 @@ describe('EuiDataGridCell', () => {
       popoverContext: {
         ...mockPopoverContext,
         popoverIsOpen: true,
-        openCellLocation: { colIndex: 1, rowIndex: 2 },
+        cellLocation: { colIndex: 1, rowIndex: 2 },
       },
       colIndex: 1,
       visibleRowIndex: 2,
@@ -373,7 +373,7 @@ describe('EuiDataGridCell', () => {
       expect((component.instance() as any).isPopoverOpen()).toEqual(false);
     });
 
-    it("returns false if popoverContext.openCellLocation does not match the cell's colIndex and visibleRowIndex", () => {
+    it("returns false if popoverContext.cellLocation does not match the cell's colIndex and visibleRowIndex", () => {
       const component = mount(
         <EuiDataGridCell {...props} colIndex={3} visibleRowIndex={4} />
       );

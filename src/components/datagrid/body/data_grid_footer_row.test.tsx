@@ -44,11 +44,11 @@ describe('EuiDataGridFooterRow', () => {
           popoverContent={[Function]}
           popoverContext={
             Object {
-              "closeCellPopover": [Function],
-              "openCellLocation": Object {
+              "cellLocation": Object {
                 "colIndex": 0,
                 "rowIndex": 0,
               },
+              "closeCellPopover": [Function],
               "openCellPopover": [Function],
               "popoverIsOpen": false,
               "setPopoverAnchor": [Function],
@@ -71,11 +71,11 @@ describe('EuiDataGridFooterRow', () => {
           popoverContent={[Function]}
           popoverContext={
             Object {
-              "closeCellPopover": [Function],
-              "openCellLocation": Object {
+              "cellLocation": Object {
                 "colIndex": 0,
                 "rowIndex": 0,
               },
+              "closeCellPopover": [Function],
               "openCellPopover": [Function],
               "popoverIsOpen": false,
               "setPopoverAnchor": [Function],
@@ -122,11 +122,11 @@ describe('EuiDataGridFooterRow', () => {
           popoverContent={[Function]}
           popoverContext={
             Object {
-              "closeCellPopover": [Function],
-              "openCellLocation": Object {
+              "cellLocation": Object {
                 "colIndex": 0,
                 "rowIndex": 0,
               },
+              "closeCellPopover": [Function],
               "openCellPopover": [Function],
               "popoverIsOpen": false,
               "setPopoverAnchor": [Function],
@@ -179,11 +179,11 @@ describe('EuiDataGridFooterRow', () => {
           popoverContent={[Function]}
           popoverContext={
             Object {
-              "closeCellPopover": [Function],
-              "openCellLocation": Object {
+              "cellLocation": Object {
                 "colIndex": 0,
                 "rowIndex": 0,
               },
+              "closeCellPopover": [Function],
               "openCellPopover": [Function],
               "popoverIsOpen": false,
               "setPopoverAnchor": [Function],
