@@ -59,3 +59,10 @@
   transition: none !important;
   margin-top: -$euiSizeS;
 }
+
+.euiDataGrid__controlScroll {
+  @include euiYScrollWithShadows;
+  max-height: $euiDataGridPopoverMaxHeight;
+  padding: $euiSizeS;
+  margin: -$euiSizeS; // Offset against the panel to make the scrollbar flush scrollbars
+}
