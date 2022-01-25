@@ -362,7 +362,7 @@ const trailingControlColumns = [
 ];
 
 export default () => {
-  // ** Pagination config
+  // Pagination
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
   const onChangeItemsPerPage = useCallback(
     (pageSize) =>
@@ -379,7 +379,7 @@ export default () => {
     [setPagination]
   );
 
-  // ** Sorting config
+  // Sorting
   const [sortingColumns, setSortingColumns] = useState([]);
   const onSort = useCallback(
     (sortingColumns) => {
@@ -389,9 +389,9 @@ export default () => {
   );
 
   // Column visibility
-  const [visibleColumns, setVisibleColumns] = useState(() =>
-    columns.map(({ id }) => id)
-  ); // initialize to the full set of columns
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id) // initialize to the full set of columns
+  );
 
   const onColumnResize = useRef((eventData) => {
     console.log(eventData);
