@@ -1,15 +1,13 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `46.1.0`.
+**Bug fixes**
+
+- Fixed a focus bug in `EuiDataGrid` when clicking another cell header with an already-open cell header popover ([#5556](https://github.com/elastic/eui/pull/5556))
 
 ## [`46.1.0`](https://github.com/elastic/eui/tree/v46.1.0)
 
 - Added `sun` glyph to `EuiIcon` ([#5548](https://github.com/elastic/eui/pull/5548))
 - Updated styles in `EuiDescriptionList` of `type` inline ([#5534](https://github.com/elastic/eui/pull/5534))
-
-**Bug fixes**
-
-- Fixed a focus bug in `EuiDataGrid` when clicking another cell header with an already-open cell header popover ([#5556](https://github.com/elastic/eui/pull/5556))
 
 ## [`46.0.0`](https://github.com/elastic/eui/tree/v46.0.0)
 
