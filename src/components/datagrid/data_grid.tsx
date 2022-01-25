@@ -304,17 +304,20 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     /**
      * Expose internal APIs as ref to consumer
      */
+    const { setFocusedCell } = focusContext; // eslint complains about the dependency array otherwise
+    const { openCellPopover, closeCellPopover } = cellPopoverContext;
+
     useImperativeHandle(
       ref,
       () => ({
         setIsFullScreen,
         setFocusedCell: ({ rowIndex, colIndex }) => {
-          focusContext.setFocusedCell([colIndex, rowIndex]);
+          setFocusedCell([colIndex, rowIndex]); // Transmog args from obj to array
         },
-        openCellPopover: cellPopoverContext.openCellPopover,
-        closeCellPopover: cellPopoverContext.closeCellPopover,
+        openCellPopover,
+        closeCellPopover,
       }),
-      [focusContext, cellPopoverContext]
+      [setFocusedCell, openCellPopover, closeCellPopover]
     );
 
     /**
