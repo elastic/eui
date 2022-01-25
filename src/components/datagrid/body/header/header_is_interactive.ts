@@ -8,7 +8,6 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import tabbable from 'tabbable';
-import { useForceRender } from '../../../../services';
 
 export const useHeaderIsInteractive = (gridElement: HTMLElement | null) => {
   const [headerIsInteractive, setHeaderIsInteractive] = useState(false);
@@ -58,14 +57,6 @@ export const useHeaderIsInteractive = (gridElement: HTMLElement | null) => {
     },
     [handleHeaderChange]
   );
-
-  // For some bizarre reason, when the header is *not* interactive, we have to
-  // force a rerender, otherwise the resizeRef/gridWidth of the data grid
-  // registers as 0 and EuiDataGridToolbar hides its left side buttons
-  const forceRender = useForceRender();
-  useEffect(() => {
-    if (!headerIsInteractive) forceRender();
-  }, [headerIsInteractive, forceRender]);
 
   return { headerIsInteractive, handleHeaderMutation };
 };

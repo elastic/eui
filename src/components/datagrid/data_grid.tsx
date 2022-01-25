@@ -162,8 +162,10 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
    * Grid refs & observers
    */
   // Outermost wrapper div
-  const resizeRef = useRef<HTMLDivElement | null>(null);
-  const { width: gridWidth } = useResizeObserver(resizeRef.current, 'width');
+  // this ref needs to be managed by a state, to cause a re-render after mount
+  // and passing the mounted element to the resize observer
+  const [resizeRef, setResizeRef] = useState<HTMLDivElement | null>(null);
+  const { width: gridWidth } = useResizeObserver(resizeRef, 'width');
 
   // Wrapper div around EuiDataGridBody
   const contentRef = useRef<HTMLDivElement | null>(null);
@@ -366,7 +368,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
             className={classes}
             onKeyDown={handleGridKeyDown}
             style={isFullScreen ? undefined : { width, height }}
-            ref={resizeRef}
+            ref={setResizeRef}
             {...rest}
           >
             {showToolbar && (
