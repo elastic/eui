@@ -1496,7 +1496,6 @@ exports[`EuiProvider providing an @emotion cache config applies the cache to glo
           "before": null,
           "container": <head />,
           "ctr": 0,
-          "insertionPoint": undefined,
           "isSpeedy": false,
           "key": "testing",
           "nonce": undefined,
