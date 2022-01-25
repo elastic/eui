@@ -170,3 +170,39 @@ export const useScrollCellIntoView = ({
 
   return { scrollCellIntoView };
 };
+
+/**
+ * Checks whether the current grid scrolls and/or has scrollbars
+ */
+export const useScrollBars = (
+  outerGridRef: MutableRefObject<HTMLDivElement | null>
+): {
+  scrollBarHeight: number;
+  scrollBarWidth: number;
+  hasVerticalScroll: boolean;
+  hasHorizontalScroll: boolean;
+} => {
+  // https://stackoverflow.com/a/40568748/4294462
+  const scrollBarHeight = outerGridRef.current
+    ? outerGridRef.current.offsetHeight - outerGridRef.current.clientHeight
+    : 0;
+  const scrollBarWidth = outerGridRef.current
+    ? outerGridRef.current.offsetWidth - outerGridRef.current.clientWidth
+    : 0;
+
+  // https://stackoverflow.com/a/5038256
+  // Note that it is possible (MacOS) for a grid to scroll but not have scrollbar widths/heights
+  const hasHorizontalScroll = outerGridRef.current
+    ? outerGridRef.current.scrollWidth > outerGridRef.current.clientWidth
+    : false;
+  const hasVerticalScroll = outerGridRef.current
+    ? outerGridRef.current.scrollHeight > outerGridRef.current.clientHeight
+    : false;
+
+  return {
+    scrollBarHeight,
+    scrollBarWidth,
+    hasVerticalScroll,
+    hasHorizontalScroll,
+  };
+};

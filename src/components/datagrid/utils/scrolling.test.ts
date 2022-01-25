@@ -7,7 +7,7 @@
  */
 
 import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
-import { useScrollCellIntoView } from './scrolling';
+import { useScrollCellIntoView, useScrollBars } from './scrolling';
 
 // see scrolling.spec.tsx for E2E useScroll tests
 
@@ -336,6 +336,68 @@ describe('useScrollCellIntoView', () => {
       );
       scrollCellIntoView({ rowIndex: 25, colIndex: 0 });
       expect(scrollTo).not.toHaveBeenCalled();
+    });
+  });
+});
+
+describe('useScrollBars', () => {
+  const mockOuterGridRef = {
+    current: {
+      clientHeight: 40,
+      offsetHeight: 50,
+      scrollHeight: 50,
+      clientWidth: 100,
+      offsetWidth: 100,
+      scrollWidth: 200,
+    } as any,
+  };
+
+  describe('scrollBarHeight', () => {
+    it("is derived by the difference between the grid's offsetHeight vs clientHeight", () => {
+      const { scrollBarHeight } = testCustomHook(() =>
+        useScrollBars(mockOuterGridRef)
+      );
+
+      expect(scrollBarHeight).toEqual(10);
+    });
+  });
+
+  describe('scrollBarWidth', () => {
+    it('is zero if there is no difference between offsetWidth and clientWidth', () => {
+      const { scrollBarWidth } = testCustomHook(() =>
+        useScrollBars(mockOuterGridRef)
+      );
+
+      expect(scrollBarWidth).toEqual(0);
+    });
+  });
+
+  describe('hasVerticalScroll', () => {
+    it("compares the grid's scrollHeight vs. clientHeight to see if there is scrolling overflow", () => {
+      const { hasVerticalScroll } = testCustomHook(() =>
+        useScrollBars(mockOuterGridRef)
+      );
+
+      expect(hasVerticalScroll).toEqual(true);
+    });
+  });
+
+  describe('hasHorizontalScroll', () => {
+    it("compares the grid's scrollWidth vs. clientWidth to see if there is scrolling overflow", () => {
+      const { hasHorizontalScroll } = testCustomHook(() =>
+        useScrollBars(mockOuterGridRef)
+      );
+
+      expect(hasHorizontalScroll).toEqual(true);
+    });
+  });
+
+  describe('returns 0s and falses if outerGridRef is not yet instantiated', () => {
+    expect(testCustomHook(() => useScrollBars({ current: null }))).toEqual({
+      scrollBarHeight: 0,
+      scrollBarWidth: 0,
+      hasVerticalScroll: false,
+      hasHorizontalScroll: false,
     });
   });
 });
