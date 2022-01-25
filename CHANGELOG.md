@@ -1,6 +1,8 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `46.1.0`.
+**Bug fixes**
+
+- Fixed EuiDataGrid height issue when in full-screen mode and with scrolling content ([#5557](https://github.com/elastic/eui/pull/5557))
 
 ## [`46.1.0`](https://github.com/elastic/eui/tree/v46.1.0)
 
