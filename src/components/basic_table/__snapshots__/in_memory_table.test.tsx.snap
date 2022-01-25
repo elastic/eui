@@ -361,11 +361,12 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
             >
               <EuiFlexGroup
                 alignItems="center"
+                className="eui-xScroll"
                 justifyContent="spaceBetween"
                 responsive={false}
               >
                 <div
-                  className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow"
+                  className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--alignItemsCenter euiFlexGroup--justifyContentSpaceBetween euiFlexGroup--directionRow eui-xScroll"
                 >
                   <EuiFlexItem
                     grow={false}

@@ -121,6 +121,7 @@ export class EuiTablePagination extends Component<
         justifyContent="spaceBetween"
         alignItems="center"
         responsive={false}
+        className="eui-xScroll"
       >
         <EuiFlexItem grow={false}>
           {hidePerPageOptions ? null : itemsPerPagePopover}
