@@ -1,6 +1,8 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-No public interface changes since `46.1.0`.
+**Bug fixes**
+
+- Fixed `EuiDataGrid` and `EuiTable` pagination potentially rendering out view on narrow tables with many pages ([#5561](https://github.com/elastic/eui/pull/5561))
 
 ## [`46.1.0`](https://github.com/elastic/eui/tree/v46.1.0)
 
