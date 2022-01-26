@@ -15,6 +15,7 @@ import React, {
   ReactNode,
 } from 'react';
 import { VariableSizeGrid as Grid } from 'react-window';
+import { EuiDataGridStyle } from '../data_grid_types';
 import { DataGridFocusContext } from './focus';
 
 interface ScrollCellIntoView {
@@ -178,7 +179,8 @@ export const useScrollCellIntoView = ({
  * Checks whether the current grid scrolls and/or has scrollbars
  */
 export const useScrollBars = (
-  outerGridRef: MutableRefObject<HTMLDivElement | null>
+  outerGridRef: MutableRefObject<HTMLDivElement | null>,
+  borderStyle: EuiDataGridStyle['border'] = 'all'
 ): {
   scrollBarHeight: number;
   scrollBarWidth: number;
@@ -210,6 +212,9 @@ export const useScrollBars = (
     if (!hasHorizontalScroll && !hasVerticalScroll) {
       return null; // Nothing to render if the grid doesn't scroll
     }
+    if (borderStyle === 'none') {
+      return null; // Nothing to render if the grid doesn't use borders
+    }
     return (
       <div className="euiDataGrid__scrollOverlay" role="presentation">
         {scrollBarHeight > 0 && (
@@ -226,7 +231,13 @@ export const useScrollBars = (
         )}
       </div>
     );
-  }, [hasHorizontalScroll, hasVerticalScroll, scrollBarHeight, scrollBarWidth]);
+  }, [
+    hasHorizontalScroll,
+    hasVerticalScroll,
+    scrollBarHeight,
+    scrollBarWidth,
+    borderStyle,
+  ]);
 
   return {
     scrollBarHeight,

@@ -261,7 +261,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     hasVerticalScroll,
     hasHorizontalScroll,
     scrollBorderOverlay,
-  } = useScrollBars(outerGridRef);
+  } = useScrollBars(outerGridRef, gridStyles.border);
 
   /**
    * Widths

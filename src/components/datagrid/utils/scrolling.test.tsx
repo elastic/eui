@@ -393,6 +393,16 @@ describe('useScrollBars', () => {
       });
     });
 
+    describe('if the grid does not display borders', () => {
+      it('does not render anything', () => {
+        const { scrollBorderOverlay } = testCustomHook(() =>
+          useScrollBars(mockOuterGridRef, 'none')
+        );
+
+        expect(scrollBorderOverlay).toEqual(null);
+      });
+    });
+
     describe('if the grid scrolls but has inline scrollbars & no scrollbar width/height', () => {
       it('renders a single overlay with borders for the outermost grid', () => {
         const { scrollBorderOverlay } = testCustomHook(() =>
