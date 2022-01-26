@@ -2,6 +2,7 @@
 
 **Bug fixes**
 
+- Fixed EuiDataGrid height issue when in full-screen mode and with scrolling content ([#5557](https://github.com/elastic/eui/pull/5557))
 - Fixed a focus bug in `EuiDataGrid` when clicking another cell header with an already-open cell header popover ([#5556](https://github.com/elastic/eui/pull/5556))
 
 ## [`46.1.0`](https://github.com/elastic/eui/tree/v46.1.0)
@@ -31,6 +32,7 @@
 **Breaking changes**
 
 - `EuiKeyPadMenuItem` now wraps itself with `EuiToolTip` when `betaBadgeLabel` is supplied forcing top element style props to be passed via `betaBadgeTooltipProps` ([#5541](https://github.com/elastic/eui/pull/5541))
+- Changed `data-gridcell-id` in `EuiDataGrid` to the inverse index order: `[columnIndex],[rowIndex]` ([#5515](https://github.com/elastic/eui/pull/5515))
 
 ## [`45.0.0`](https://github.com/elastic/eui/tree/v45.0.0)
 
