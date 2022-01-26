@@ -219,7 +219,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   props
 ) => {
   const {
-    isFullScreen,
     leadingControlColumns,
     trailingControlColumns,
     columns,
@@ -238,7 +237,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     setVisibleColumns,
     switchColumnPos,
     onColumnResize,
-    toolbarHeight,
     rowHeightsOptions,
     virtualizationOptions,
     gridStyles,
@@ -416,11 +414,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     unconstrainedWidth: 0, // unable to determine this until the container's size is known
     wrapperDimensions,
     wrapperRef,
-    toolbarHeight,
-    headerRowHeight,
-    footerRowHeight,
     rowCount,
-    isFullScreen,
   });
 
   /**

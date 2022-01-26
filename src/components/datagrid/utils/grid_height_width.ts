@@ -19,21 +19,13 @@ export const useFinalGridDimensions = ({
   unconstrainedWidth,
   wrapperDimensions,
   wrapperRef,
-  toolbarHeight,
-  headerRowHeight,
-  footerRowHeight,
   rowCount,
-  isFullScreen,
 }: {
   unconstrainedHeight: number;
   unconstrainedWidth: number;
   wrapperDimensions: { width: number; height: number };
   wrapperRef: MutableRefObject<HTMLDivElement | null>;
-  toolbarHeight: number;
-  headerRowHeight: number;
-  footerRowHeight: number;
   rowCount: number;
-  isFullScreen: boolean;
 }) => {
   // Used if the grid needs to scroll
   const [height, setHeight] = useState<number | undefined>(undefined);
@@ -43,7 +35,7 @@ export const useFinalGridDimensions = ({
   useEffect(() => {
     const boundingRect = wrapperRef.current!.getBoundingClientRect();
 
-    if (boundingRect.height !== unconstrainedHeight && !isFullScreen) {
+    if (boundingRect.height !== unconstrainedHeight) {
       setHeight(boundingRect.height);
     }
     if (boundingRect.width !== unconstrainedWidth) {
@@ -57,21 +49,14 @@ export const useFinalGridDimensions = ({
     wrapperRef,
     unconstrainedHeight,
     unconstrainedWidth,
-    isFullScreen,
   ]);
 
-  let finalHeight = IS_JEST_ENVIRONMENT
+  const finalHeight = IS_JEST_ENVIRONMENT
     ? Number.MAX_SAFE_INTEGER
     : height || unconstrainedHeight;
-  let finalWidth = IS_JEST_ENVIRONMENT
+  const finalWidth = IS_JEST_ENVIRONMENT
     ? Number.MAX_SAFE_INTEGER
     : width || unconstrainedWidth;
-
-  if (isFullScreen) {
-    finalHeight =
-      window.innerHeight - toolbarHeight - headerRowHeight - footerRowHeight;
-    finalWidth = window.innerWidth;
-  }
 
   return { finalHeight, finalWidth };
 };
