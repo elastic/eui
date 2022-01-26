@@ -22,7 +22,7 @@ export type EuiScreenReaderLiveProps = Pick<AriaAttributes, 'aria-live'> &
     /**
      * Whether the make screen readers aware of the content
      */
-    isActive: boolean;
+    isActive?: boolean;
     /**
      * Content for screen readers to announce
      */
@@ -38,8 +38,8 @@ export type EuiScreenReaderLiveProps = Pick<AriaAttributes, 'aria-live'> &
   };
 
 export const EuiScreenReaderLive: FunctionComponent<EuiScreenReaderLiveProps> = ({
-  isActive,
   children,
+  isActive = true,
   role = 'status',
   'aria-live': ariaLive = 'polite',
 }) => {

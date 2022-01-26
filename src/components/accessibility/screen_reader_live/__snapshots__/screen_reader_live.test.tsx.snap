@@ -89,9 +89,7 @@ exports[`EuiScreenReaderLive with dynamic properties alternates rendering screen
     >
       Increment
     </button>
-    <EuiScreenReaderLive
-      isActive={true}
-    >
+    <EuiScreenReaderLive>
       <EuiScreenReaderOnly>
         <div
           className="euiScreenReaderOnly"
@@ -127,9 +125,7 @@ exports[`EuiScreenReaderLive with dynamic properties initially renders screen re
     >
       Increment
     </button>
-    <EuiScreenReaderLive
-      isActive={true}
-    >
+    <EuiScreenReaderLive>
       <EuiScreenReaderOnly>
         <div
           className="euiScreenReaderOnly"

@@ -40,9 +40,7 @@ describe('EuiScreenReaderLive', () => {
 
     it('accepts `role`', () => {
       const component = render(
-        <EuiScreenReaderLive isActive role="log">
-          {content}
-        </EuiScreenReaderLive>
+        <EuiScreenReaderLive role="log">{content}</EuiScreenReaderLive>
       );
 
       expect(component).toMatchSnapshot();
@@ -50,7 +48,7 @@ describe('EuiScreenReaderLive', () => {
 
     it('accepts `aria-live`', () => {
       const component = render(
-        <EuiScreenReaderLive isActive aria-live="assertive">
+        <EuiScreenReaderLive aria-live="assertive">
           {content}
         </EuiScreenReaderLive>
       );
@@ -71,7 +69,7 @@ describe('EuiScreenReaderLive', () => {
           >
             Increment
           </button>
-          <EuiScreenReaderLive isActive={true}>
+          <EuiScreenReaderLive>
             <p>Number of active options: {activeOptions}</p>
           </EuiScreenReaderLive>
         </div>
