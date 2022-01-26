@@ -8,6 +8,8 @@
 
 import { useContext, useEffect, useCallback, MutableRefObject } from 'react';
 import { VariableSizeGrid as Grid } from 'react-window';
+
+import { DataGridCellPopoverContext } from '../body/data_grid_cell_popover';
 import { DataGridFocusContext } from './focus';
 
 interface ScrollCellIntoView {
@@ -42,6 +44,18 @@ export const useScroll = (args: Dependencies) => {
       });
     }
   }, [focusedCell, scrollCellIntoView]);
+
+  const { popoverIsOpen, cellLocation } = useContext(
+    DataGridCellPopoverContext
+  );
+  useEffect(() => {
+    if (popoverIsOpen) {
+      scrollCellIntoView({
+        rowIndex: cellLocation.rowIndex,
+        colIndex: cellLocation.colIndex,
+      });
+    }
+  }, [popoverIsOpen, cellLocation, scrollCellIntoView]);
 
   return { scrollCellIntoView };
 };

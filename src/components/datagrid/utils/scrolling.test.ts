@@ -56,7 +56,9 @@ describe('useScrollCellIntoView', () => {
   });
 
   it('does nothing if the grid references are unavailable', () => {
-    const { scrollCellIntoView } = testCustomHook(() =>
+    const {
+      return: { scrollCellIntoView },
+    } = testCustomHook(() =>
       useScrollCellIntoView({
         ...args,
         gridRef: { current: null },
@@ -78,7 +80,9 @@ describe('useScrollCellIntoView', () => {
       offsetWidth: 500,
     };
 
-    const { scrollCellIntoView } = testCustomHook(() =>
+    const {
+      return: { scrollCellIntoView },
+    } = testCustomHook(() =>
       useScrollCellIntoView({
         ...args,
         outerGridRef: {
@@ -95,9 +99,9 @@ describe('useScrollCellIntoView', () => {
 
   it('calls scrollToItem if the specified cell is not virtualized', async () => {
     getCell.mockReturnValue(null);
-    const { scrollCellIntoView } = testCustomHook(() =>
-      useScrollCellIntoView(args)
-    );
+    const {
+      return: { scrollCellIntoView },
+    } = testCustomHook(() => useScrollCellIntoView(args));
     await scrollCellIntoView({ rowIndex: 20, colIndex: 5 });
     expect(scrollToItem).toHaveBeenCalledWith({ columnIndex: 5, rowIndex: 20 });
   });
@@ -108,9 +112,9 @@ describe('useScrollCellIntoView', () => {
       offsetTop: 50,
       offsetLeft: 50,
     });
-    const { scrollCellIntoView } = testCustomHook(() =>
-      useScrollCellIntoView(args)
-    );
+    const {
+      return: { scrollCellIntoView },
+    } = testCustomHook(() => useScrollCellIntoView(args));
     scrollCellIntoView({ rowIndex: 1, colIndex: 1 });
 
     expect(scrollToItem).not.toHaveBeenCalled();
@@ -130,7 +134,9 @@ describe('useScrollCellIntoView', () => {
       };
 
       getCell.mockReturnValue(cell);
-      const { scrollCellIntoView } = testCustomHook(() =>
+      const {
+        return: { scrollCellIntoView },
+      } = testCustomHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
@@ -154,7 +160,9 @@ describe('useScrollCellIntoView', () => {
       };
 
       getCell.mockReturnValue(cell);
-      const { scrollCellIntoView } = testCustomHook(() =>
+      const {
+        return: { scrollCellIntoView },
+      } = testCustomHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
@@ -177,7 +185,9 @@ describe('useScrollCellIntoView', () => {
       };
 
       getCell.mockReturnValue(cell);
-      const { scrollCellIntoView } = testCustomHook(() =>
+      const {
+        return: { scrollCellIntoView },
+      } = testCustomHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
@@ -202,7 +212,9 @@ describe('useScrollCellIntoView', () => {
 
     it('scrolls the grid down if the bottom side of the cell is out of view', () => {
       getCell.mockReturnValue(cell);
-      const { scrollCellIntoView } = testCustomHook(() =>
+      const {
+        return: { scrollCellIntoView },
+      } = testCustomHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
@@ -214,7 +226,9 @@ describe('useScrollCellIntoView', () => {
 
     it('accounts for the sticky bottom footer if present', () => {
       getCell.mockReturnValue(cell);
-      const { scrollCellIntoView } = testCustomHook(() =>
+      const {
+        return: { scrollCellIntoView },
+      } = testCustomHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
@@ -228,7 +242,9 @@ describe('useScrollCellIntoView', () => {
 
     it('makes no vertical adjustments if the cell is a sticky header cell', () => {
       getCell.mockReturnValue(cell);
-      const { scrollCellIntoView } = testCustomHook(() =>
+      const {
+        return: { scrollCellIntoView },
+      } = testCustomHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
@@ -240,7 +256,9 @@ describe('useScrollCellIntoView', () => {
 
     it('makes no vertical adjustments if the cell is a sticky footer cell', () => {
       getCell.mockReturnValue(cell);
-      const { scrollCellIntoView } = testCustomHook(() =>
+      const {
+        return: { scrollCellIntoView },
+      } = testCustomHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
@@ -265,7 +283,9 @@ describe('useScrollCellIntoView', () => {
 
     it('scrolls the grid up if the top side of the cell is out of view', () => {
       getCell.mockReturnValue(cell);
-      const { scrollCellIntoView } = testCustomHook(() =>
+      const {
+        return: { scrollCellIntoView },
+      } = testCustomHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
@@ -277,7 +297,9 @@ describe('useScrollCellIntoView', () => {
 
     it('accounts for the sticky header', () => {
       getCell.mockReturnValue(cell);
-      const { scrollCellIntoView } = testCustomHook(() =>
+      const {
+        return: { scrollCellIntoView },
+      } = testCustomHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
@@ -300,7 +322,9 @@ describe('useScrollCellIntoView', () => {
       };
 
       getCell.mockReturnValue(cell);
-      const { scrollCellIntoView } = testCustomHook(() =>
+      const {
+        return: { scrollCellIntoView },
+      } = testCustomHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
@@ -314,7 +338,9 @@ describe('useScrollCellIntoView', () => {
 
     it('makes no vertical adjustments if the cell is a sticky header cell', () => {
       getCell.mockReturnValue(cell);
-      const { scrollCellIntoView } = testCustomHook(() =>
+      const {
+        return: { scrollCellIntoView },
+      } = testCustomHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
@@ -326,7 +352,9 @@ describe('useScrollCellIntoView', () => {
 
     it('makes no vertical adjustments if the cell is a sticky footer cell', () => {
       getCell.mockReturnValue(cell);
-      const { scrollCellIntoView } = testCustomHook(() =>
+      const {
+        return: { scrollCellIntoView },
+      } = testCustomHook(() =>
         useScrollCellIntoView({
           ...args,
           outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },

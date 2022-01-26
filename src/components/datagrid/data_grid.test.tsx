@@ -19,6 +19,14 @@ import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer
 import { keys } from '../../services';
 import { act } from 'react-dom/test-utils';
 
+// Mock the cell popover (TODO: Move failing tests to Cypress and remove need for mock?)
+jest.mock('../popover', () => ({
+  ...jest.requireActual('../popover'),
+  EuiWrappingPopover: ({ children }: { children: React.ReactNode }) => (
+    <div data-test-subj="euiDataGridExpansionPopover">{children}</div>
+  ),
+}));
+
 function getFocusableCell(component: ReactWrapper) {
   return findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');
 }
@@ -2762,6 +2770,8 @@ describe('EuiDataGrid', () => {
     expect(gridRef.current).toEqual({
       setIsFullScreen: expect.any(Function),
       setFocusedCell: expect.any(Function),
+      openCellPopover: expect.any(Function),
+      closeCellPopover: expect.any(Function),
     });
   });
 });

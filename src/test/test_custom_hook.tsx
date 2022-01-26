@@ -15,9 +15,18 @@ export const HookWrapper = (props: { hook?: Function }) => {
   return <div hook={hook} />;
 };
 
-export const testCustomHook = <T,>(hook?: Function): T => {
+export const testCustomHook = <T,>(
+  hook?: Function
+): { return: T; getUpdatedState: () => T } => {
   const wrapper = mount(<HookWrapper hook={hook} />);
-  const hookValues: T = wrapper.find('div').prop('hook');
 
-  return hookValues;
+  const getHookReturn = (): T => {
+    wrapper.update();
+    return wrapper.find('div').prop('hook');
+  };
+
+  return {
+    return: getHookReturn(),
+    getUpdatedState: getHookReturn, // Allows consuming tests to get most recent values
+  };
 };

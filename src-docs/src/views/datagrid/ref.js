@@ -42,6 +42,7 @@ export default () => {
 
   const showModal = useCallback(({ rowIndex, colIndex }) => {
     setIsModalVisible(true);
+    dataGridRef.current.closeCellPopover(); // Close any open cell popovers
     setLastFocusedCell({ rowIndex, colIndex }); // Store the cell that opened this modal
   }, []);
 
@@ -112,8 +113,8 @@ export default () => {
 
   return (
     <>
-      <EuiFlexGroup alignItems="flexEnd" gutterSize="s" style={{ width: 500 }}>
-        <EuiFlexItem>
+      <EuiFlexGroup alignItems="flexEnd" gutterSize="s">
+        <EuiFlexItem grow={false} style={{ width: '80px' }}>
           <EuiFormRow label="Row index">
             <EuiFieldNumber
               min={0}
@@ -124,7 +125,7 @@ export default () => {
             />
           </EuiFormRow>
         </EuiFlexItem>
-        <EuiFlexItem>
+        <EuiFlexItem grow={false} style={{ width: '80px' }}>
           <EuiFormRow label="Column index">
             <EuiFieldNumber
               min={0}
@@ -135,7 +136,7 @@ export default () => {
             />
           </EuiFormRow>
         </EuiFlexItem>
-        <EuiFlexItem>
+        <EuiFlexItem grow={false}>
           <EuiButton
             size="s"
             onClick={() =>
@@ -148,7 +149,20 @@ export default () => {
             Set cell focus
           </EuiButton>
         </EuiFlexItem>
-        <EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton
+            size="s"
+            onClick={() =>
+              dataGridRef.current.openCellPopover({
+                rowIndex: rowIndexAction,
+                colIndex: colIndexAction,
+              })
+            }
+          >
+            Open cell popover
+          </EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
           <EuiButton
             size="s"
             onClick={() => dataGridRef.current.setIsFullScreen(true)}

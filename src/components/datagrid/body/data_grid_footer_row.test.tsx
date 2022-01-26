@@ -42,6 +42,19 @@ describe('EuiDataGridFooterRow', () => {
           isExpandable={true}
           key="someColumn-10"
           popoverContent={[Function]}
+          popoverContext={
+            Object {
+              "cellLocation": Object {
+                "colIndex": 0,
+                "rowIndex": 0,
+              },
+              "closeCellPopover": [Function],
+              "openCellPopover": [Function],
+              "popoverIsOpen": false,
+              "setPopoverAnchor": [Function],
+              "setPopoverContent": [Function],
+            }
+          }
           renderCellValue={[Function]}
           rowIndex={10}
           visibleRowIndex={10}
@@ -56,6 +69,19 @@ describe('EuiDataGridFooterRow', () => {
           isExpandable={true}
           key="someColumnWithoutSchema-10"
           popoverContent={[Function]}
+          popoverContext={
+            Object {
+              "cellLocation": Object {
+                "colIndex": 0,
+                "rowIndex": 0,
+              },
+              "closeCellPopover": [Function],
+              "openCellPopover": [Function],
+              "popoverIsOpen": false,
+              "setPopoverAnchor": [Function],
+              "setPopoverContent": [Function],
+            }
+          }
           renderCellValue={[Function]}
           rowIndex={10}
           visibleRowIndex={10}
@@ -94,6 +120,19 @@ describe('EuiDataGridFooterRow', () => {
           isExpandable={true}
           key="someLeadingColumn-10"
           popoverContent={[Function]}
+          popoverContext={
+            Object {
+              "cellLocation": Object {
+                "colIndex": 0,
+                "rowIndex": 0,
+              },
+              "closeCellPopover": [Function],
+              "openCellPopover": [Function],
+              "popoverIsOpen": false,
+              "setPopoverAnchor": [Function],
+              "setPopoverContent": [Function],
+            }
+          }
           renderCellValue={[Function]}
           rowIndex={10}
           visibleRowIndex={10}
@@ -138,6 +177,19 @@ describe('EuiDataGridFooterRow', () => {
           isExpandable={true}
           key="someTrailingColumn-10"
           popoverContent={[Function]}
+          popoverContext={
+            Object {
+              "cellLocation": Object {
+                "colIndex": 0,
+                "rowIndex": 0,
+              },
+              "closeCellPopover": [Function],
+              "openCellPopover": [Function],
+              "popoverIsOpen": false,
+              "setPopoverAnchor": [Function],
+              "setPopoverContent": [Function],
+            }
+          }
           renderCellValue={[Function]}
           rowIndex={10}
           visibleRowIndex={10}

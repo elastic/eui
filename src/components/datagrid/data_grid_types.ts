@@ -195,6 +195,15 @@ export interface DataGridFocusContextShape {
   focusFirstVisibleInteractiveCell: () => void;
 }
 
+export interface DataGridCellPopoverContextShape {
+  popoverIsOpen: boolean;
+  cellLocation: { rowIndex: number; colIndex: number };
+  openCellPopover(args: { rowIndex: number; colIndex: number }): void;
+  closeCellPopover(): void;
+  setPopoverAnchor(anchor: HTMLElement): void;
+  setPopoverContent(content: ReactNode): void;
+}
+
 export type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     /**
@@ -301,10 +310,16 @@ export interface EuiDataGridRefProps {
    * toggles a modal or flyout - focus must be restored to the grid on close
    * to prevent keyboard or screen reader users from being stranded.
    */
-  setFocusedCell(targetCell: EuiDataGridCellLocation): void;
+  setFocusedCell: (cell: { rowIndex: number; colIndex: number }) => void;
+  /**
+   * Allows manually opening the popover of the specified cell in the grid.
+   */
+  openCellPopover: (cell: { rowIndex: number; colIndex: number }) => void;
+  /**
+   * Closes any currently open popovers in the data grid.
+   */
+  closeCellPopover: () => void;
 }
-
-export type EuiDataGridCellLocation = { rowIndex: number; colIndex: number };
 
 export interface EuiDataGridColumnResizerProps {
   columnId: string;
@@ -317,21 +332,6 @@ export interface EuiDataGridColumnResizerState {
   offset: number;
 }
 
-export interface EuiDataGridCellPopoverProps {
-  anchorContent: NonNullable<ReactNode>;
-  cellContentProps: EuiDataGridCellValueElementProps;
-  cellContentsRef: HTMLDivElement | null;
-  closePopover: () => void;
-  column?: EuiDataGridColumn;
-  panelRefFn: RefCallback<HTMLElement | null>;
-  popoverIsOpen: boolean;
-  popoverContent: EuiDataGridPopoverContent;
-  renderCellValue:
-    | JSXElementConstructor<EuiDataGridCellValueElementProps>
-    | ((props: EuiDataGridCellValueElementProps) => ReactNode);
-  rowIndex: number;
-  colIndex: number;
-}
 export interface EuiDataGridColumnSortingDraggableProps {
   id: string;
   direction: string;
@@ -415,6 +415,7 @@ export interface EuiDataGridCellProps {
   isExpandable: boolean;
   className?: string;
   popoverContent: EuiDataGridPopoverContent;
+  popoverContext: DataGridCellPopoverContextShape;
   renderCellValue:
     | JSXElementConstructor<EuiDataGridCellValueElementProps>
     | ((props: EuiDataGridCellValueElementProps) => ReactNode);
@@ -428,7 +429,6 @@ export interface EuiDataGridCellProps {
 
 export interface EuiDataGridCellState {
   cellProps: CommonProps & HTMLAttributes<HTMLDivElement>;
-  popoverIsOpen: boolean; // is expansion popover open
   isFocused: boolean; // tracks if this cell has focus or not, used to enable tabIndex on the cell
   isEntered: boolean; // enables focus trap for non-expandable cells with multiple interactive elements
   enableInteractions: boolean; // cell got hovered at least once, so cell button and popover interactions are rendered
@@ -437,7 +437,11 @@ export interface EuiDataGridCellState {
 
 export type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
-  'width' | 'interactiveCellId' | 'popoverContent' | 'rowManager'
+  | 'width'
+  | 'interactiveCellId'
+  | 'popoverContent'
+  | 'popoverContext'
+  | 'rowManager'
 >;
 export interface EuiDataGridControlColumn {
   /**
@@ -562,7 +566,7 @@ export interface EuiDataGridColumnCellActionProps {
    * Closes the popover if a cell is expanded.
    * The prop is provided for an expanded cell only.
    */
-  closePopover: () => void;
+  closePopover?: () => void;
 }
 
 export interface EuiDataGridColumnVisibility {
