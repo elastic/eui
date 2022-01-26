@@ -37,6 +37,26 @@ describe('EuiScreenReaderLive', () => {
 
       expect(component).toMatchSnapshot();
     });
+
+    it('accepts `role`', () => {
+      const component = render(
+        <EuiScreenReaderLive isActive role="log">
+          {content}
+        </EuiScreenReaderLive>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    it('accepts `aria-live`', () => {
+      const component = render(
+        <EuiScreenReaderLive isActive aria-live="assertive">
+          {content}
+        </EuiScreenReaderLive>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 
   describe('with dynamic properties', () => {
