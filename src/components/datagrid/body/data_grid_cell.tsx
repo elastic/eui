@@ -423,21 +423,12 @@ export class EuiDataGridCell extends Component<
     const { isExpandable, popoverContext } = this.props;
     const { popoverIsOpen, cellLocation } = popoverContext;
 
-    if (
+    return (
+      isExpandable &&
       popoverIsOpen &&
       cellLocation.colIndex === this.props.colIndex &&
       cellLocation.rowIndex === this.props.visibleRowIndex
-    ) {
-      if (isExpandable) {
-        return true;
-      } else {
-        // If `openCellPopover` was somehow called on this cell but it's not
-        // supposed to be expandable, we should do nothing and set popoverIsOpen
-        // state back to false
-        popoverContext.closeCellPopover();
-      }
-    }
-    return false;
+    );
   };
 
   handleCellPopover = () => {

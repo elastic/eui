@@ -380,12 +380,11 @@ describe('EuiDataGridCell', () => {
       expect((component.instance() as any).isPopoverOpen()).toEqual(false);
     });
 
-    it('returns false if the cell is not expandable, and sets popover state to closed', () => {
+    it('returns false if the cell is not expandable', () => {
       const component = mount(
         <EuiDataGridCell {...props} isExpandable={false} />
       );
       expect((component.instance() as any).isPopoverOpen()).toEqual(false);
-      expect(mockPopoverContext.closeCellPopover).toHaveBeenCalled();
     });
   });
 
