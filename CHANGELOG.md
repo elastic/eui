@@ -1,5 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Added `EuiScreenReaderLive` component for updateable `aria-live` regions ([#5567](https://github.com/elastic/eui/pull/5567))
+
 **Bug fixes**
 
 - Fixed EuiDataGrid height issue when in full-screen mode and with scrolling content ([#5557](https://github.com/elastic/eui/pull/5557))
