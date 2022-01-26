@@ -2,22 +2,20 @@ import React, { Fragment } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import {
-  GuideSectionTypes,
-  GuideRule,
-  GuideRuleExample,
-} from '../../components';
+import { GuideSectionTypes } from '../../components';
+
+import Guidelines from './guidelines';
 
 import {
   EuiCallOut,
   EuiCheckbox,
   EuiCheckboxGroup,
   EuiCode,
-  EuiFormRow,
   EuiLink,
   EuiRadio,
   EuiRadioGroup,
   EuiSwitch,
+  EuiText,
 } from '../../../../src/components';
 
 import { CheckboxConfig, RadioConfig, SwitchConfig } from './playground';
@@ -83,6 +81,17 @@ const switchLabelSnippet = [
 
 export const SelectionControlsExample = {
   title: 'Selection controls',
+  intro: (
+    <EuiText>
+      <p>
+        Be sure to read the{' '}
+        <Link to="/forms//selection-controls/guidelines">
+          selection controls usage guidelines
+        </Link>
+        .
+      </p>
+    </EuiText>
+  ),
   sections: [
     {
       title: 'Checkbox',
@@ -191,81 +200,13 @@ export const SelectionControlsExample = {
       text: (
         <>
           <p>
-            <strong>Label</strong>
-          </p>
-          <GuideRule>
-            <GuideRuleExample
-              type="do"
-              text="Use a static noun describing the setting to turn on or off."
-            >
-              <div style={{ width: 400 }}>
-                <EuiSwitch
-                  checked={false}
-                  onChange={() => {}}
-                  label="Malware protection"
-                />
-              </div>
-            </GuideRuleExample>
-            <GuideRuleExample
-              type="dont"
-              text='Start with statements such as "If true" or "If
-              enabled".'
-            >
-              <div style={{ width: 400 }}>
-                <EuiSwitch
-                  checked={false}
-                  onChange={() => {}}
-                  label="If enabled, uses malware protection"
-                />
-              </div>
-            </GuideRuleExample>
-            <GuideRuleExample
-              type="do"
-              text='If
-              relevant, start with a verb ("Use A",
-              "Show B") and add help text to provide more info.'
-            >
-              <div style={{ width: 400 }}>
-                <EuiFormRow helpText="Rollover when an index is 30 days old or reaches 50 gigabytes.">
-                  <EuiSwitch
-                    checked={false}
-                    onChange={() => {}}
-                    label="Use recommended defaults"
-                  />
-                </EuiFormRow>
-              </div>
-            </GuideRuleExample>
-            <GuideRuleExample
-              type="dont"
-              text='Use only a verb, such as "Enable".'
-            >
-              <div style={{ width: 400 }}>
-                <EuiSwitch checked={false} onChange={() => {}} label="Enable" />
-              </div>
-            </GuideRuleExample>
-          </GuideRule>
-          <p>Special cases:</p>
-          <p>
-            <ul>
-              <li>
-                Use past tense only when labelling a list of previously created
-                items, like in a{' '}
-                <EuiLink href="https://github.com/elastic/eui/pull/5119#discussion_r699717319">
-                  table header
-                </EuiLink>
-                .
-              </li>
-              <li>
-                If the switch is described in some other manner, like when using
-                an{' '}
-                <Link to="/forms/form-layouts#form-and-form-rows">
-                  <strong>EuiFormRow</strong>
-                </Link>
-                , you can eliminate the visible label with{' '}
-                <EuiCode language="tsx">{'showLabel={false}'}</EuiCode> or use
-                it to further describe the state.
-              </li>
-            </ul>
+            If the switch is described in some other manner, like when using an{' '}
+            <Link to="/forms/form-layouts#form-and-form-rows">
+              <strong>EuiFormRow</strong>
+            </Link>
+            , you can eliminate the visible label with{' '}
+            <EuiCode language="tsx">{'showLabel={false}'}</EuiCode> or use it to
+            further describe the state.
           </p>
           <EuiCallOut
             color="warning"
@@ -287,4 +228,5 @@ export const SelectionControlsExample = {
       demo: <SwitchLabel />,
     },
   ],
+  guidelines: <Guidelines />,
 };
