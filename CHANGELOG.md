@@ -1,13 +1,33 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-- **[Beta]** Added `optimize` build as a lighter weight option more suited to prodcution environments ([#5527](https://github.com/elastic/eui/pull/5527))
-- Added `lettering` glyph to `EuiIcon` ([#5525](https://github.com/elastic/eui/pull/5525))
-- Updated the outline color in `euiCustomControlFocused` mixin to use `$euiFocusRingColor` instead of `currentColor` ([#5479](https://github.com/elastic/eui/pull/5479))
-- Added `betaBadgeTooltipProps` to `EuiKeyPadMenuItem` to extend the wrapping `EuiToolTip` ([#5541](https://github.com/elastic/eui/pull/5541))
 - Added `paddingSize` prop to `EuiSelectableList` ([#5157](https://github.com/elastic/eui/pull/5157))
 - Refactored `EuiSelectable` accessibility ([#5157](https://github.com/elastic/eui/pull/5157))
 - Refactored `EuiSuggest` to use `EuiSelectable` ([#5157](https://github.com/elastic/eui/pull/5157))
 - Added `EuiScreenReaderStatus` component for updateable `aria-live` regions  ([#5157](https://github.com/elastic/eui/pull/5157))
+
+**Bug fixes**
+
+- Fixed EuiDataGrid height issue when in full-screen mode and with scrolling content ([#5557](https://github.com/elastic/eui/pull/5557))
+
+**Breaking changes**
+
+- Removed `EuiSuggestInput` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Required `aria-label` or `aria-labelledby` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Renamed `sendValue` prop to `onSearchChange` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
+
+## [`46.1.0`](https://github.com/elastic/eui/tree/v46.1.0)
+
+- Added `sun` glyph to `EuiIcon` ([#5548](https://github.com/elastic/eui/pull/5548))
+- Updated styles in `EuiDescriptionList` of `type` inline ([#5534](https://github.com/elastic/eui/pull/5534))
+
+## [`46.0.0`](https://github.com/elastic/eui/tree/v46.0.0)
+
+- **[Beta]** Added `optimize` build as a lighter weight option more suited to production environments ([#5527](https://github.com/elastic/eui/pull/5527))
+- Added `lettering` glyph to `EuiIcon` ([#5525](https://github.com/elastic/eui/pull/5525))
+- Updated the outline color in `euiCustomControlFocused` mixin to use `$euiFocusRingColor` instead of `currentColor` ([#5479](https://github.com/elastic/eui/pull/5479))
+- Added `betaBadgeTooltipProps` to `EuiKeyPadMenuItem` to extend the wrapping `EuiToolTip` ([#5541](https://github.com/elastic/eui/pull/5541))
+- Added `globalStyles` prop to `EuiProvider` to allow for global style customization ([#5497](https://github.com/elastic/eui/pull/5497))
+- Exported `EuiGlobalStyles` component ([#5497](https://github.com/elastic/eui/pull/5497))
 
 **Bug fixes**
 
@@ -22,9 +42,7 @@
 **Breaking changes**
 
 - `EuiKeyPadMenuItem` now wraps itself with `EuiToolTip` when `betaBadgeLabel` is supplied forcing top element style props to be passed via `betaBadgeTooltipProps` ([#5541](https://github.com/elastic/eui/pull/5541))
-- Removed `EuiSuggestInput` ([#5157](https://github.com/elastic/eui/pull/5157))
-- Required `aria-label` or `aria-labelledby` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
-- Renamed `sendValue` prop to `onSearchChange` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
+- Changed `data-gridcell-id` in `EuiDataGrid` to the inverse index order: `[columnIndex],[rowIndex]` ([#5515](https://github.com/elastic/eui/pull/5515))
 
 ## [`45.0.0`](https://github.com/elastic/eui/tree/v45.0.0)
 
