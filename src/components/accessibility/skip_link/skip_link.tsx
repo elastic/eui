@@ -8,9 +8,9 @@
 
 import React, { FunctionComponent, Ref } from 'react';
 import classNames from 'classnames';
-import { EuiButton, EuiButtonProps } from '../button/button';
-import { EuiScreenReaderOnly } from '../accessibility/screen_reader';
-import { PropsForAnchor, PropsForButton, ExclusiveUnion } from '../common';
+import { EuiButton, EuiButtonProps } from '../../button';
+import { EuiScreenReaderOnly } from '../screen_reader_only';
+import { PropsForAnchor, PropsForButton, ExclusiveUnion } from '../../common';
 
 type Positions = 'static' | 'fixed' | 'absolute';
 export const POSITIONS = ['static', 'fixed', 'absolute'] as Positions[];
