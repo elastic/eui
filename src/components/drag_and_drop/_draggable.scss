@@ -16,6 +16,10 @@
     transition-duration: .001s !important; // sass-lint:disable-line no-important
   }
 
+  &.euiDraggable--hasInteractiveElements .euiFlexItem:first-of-type {
+    margin-left: $euiSize;
+  }
+
   &:focus > .euiDraggable__item,
   &.euiDraggable--hasCustomDragHandle > .euiDraggable__item [data-react-beautiful-dnd-drag-handle]:focus {
     @include euiFocusRing;

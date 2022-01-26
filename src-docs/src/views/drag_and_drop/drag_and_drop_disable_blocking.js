@@ -4,6 +4,10 @@ import {
   EuiDragDropContext,
   EuiDraggable,
   EuiDroppable,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiIcon,
+  EuiPanel,
   euiDragDropReorder,
 } from '../../../../src/components';
 import { htmlIdGenerator } from '../../../../src/services';
@@ -30,10 +34,9 @@ export default () => {
   return (
     <EuiDragDropContext onDragEnd={onDragEnd}>
       <EuiDroppable
-        droppableId="DROPPABLE_AREA"
+        droppableId="CUSTOM_HANDLE_DROPPABLE_AREA"
         spacing="m"
         withPanel
-        grow={false}
       >
         {list.map(({ content, id }, idx) => (
           <EuiDraggable
@@ -41,11 +44,26 @@ export default () => {
             key={id}
             index={idx}
             draggableId={id}
-            disableInteractiveElementBlocking
+            customDragHandle={true}
+            draggableContainer={true}
+            interactiveElements={true}
           >
-            <EuiButton fullWidth onClick={() => {}}>
-              {content}
-            </EuiButton>
+            {(provided) => (
+              <EuiPanel className="custom" paddingSize="s">
+                <EuiFlexGroup alignItems="center" gutterSize="m">
+                  <EuiFlexItem grow={false}>
+                    <div {...provided.dragHandleProps} aria-label="Drag Handle">
+                      <EuiIcon type="grab" />
+                    </div>
+                  </EuiFlexItem>
+                  <EuiFlexItem grow={true}>
+                    <EuiButton fullWidth onClick={() => {}}>
+                      {content}
+                    </EuiButton>
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiPanel>
+            )}
           </EuiDraggable>
         ))}
       </EuiDroppable>

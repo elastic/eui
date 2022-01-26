@@ -44,6 +44,7 @@ export default () => {
             index={idx}
             draggableId={id}
             customDragHandle={true}
+            draggableContainer={true}
           >
             {(provided) => (
               <EuiPanel className="custom" paddingSize="m">

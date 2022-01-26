@@ -41,6 +41,14 @@ export interface EuiDraggableProps
    */
   customDragHandle?: boolean;
   /**
+   * Whether the container is draggable and should have role="group" instead of "button"
+   */
+  draggableContainer?: boolean;
+  /**
+   * Whether the `children` will contain interactive elements
+   */
+  interactiveElements?: boolean;
+  /**
    * Whether the item is currently in a position to be removed
    */
   isRemovable?: boolean;
@@ -54,7 +62,9 @@ export interface EuiDraggableProps
 export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
   customDragHandle = false,
   draggableId,
+  interactiveElements = false,
   isDragDisabled = false,
+  draggableContainer = false,
   isRemovable = false,
   index,
   children,
@@ -79,6 +89,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
           {
             'euiDraggable--hasClone': cloneItems,
             'euiDraggable--hasCustomDragHandle': customDragHandle,
+            'euiDraggable--hasInteractiveElements': interactiveElements,
             'euiDraggable--isDragging': snapshot.isDragging,
             'euiDraggable--withoutDropAnimation': isRemovable,
           },
@@ -104,6 +115,14 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
               data-test-subj={dataTestSubj}
               className={classes}
               style={{ ...style, ...provided.draggableProps.style }}
+              role={
+                draggableContainer ? 'group' : provided.dragHandleProps?.role
+              }
+              tabIndex={
+                draggableContainer
+                  ? undefined
+                  : provided.dragHandleProps?.tabIndex
+              }
             >
               {cloneElement(DraggableElement, {
                 className: classNames(
