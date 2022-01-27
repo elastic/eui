@@ -19,7 +19,7 @@
   .euiDataGrid__pagination {
     padding-bottom: $euiSizeXS;
     background: $euiColorLightestShade;
-    border-top: $euiBorderThin;
+    box-shadow: $euiBorderWidthThin 0 0 $euiBorderWidthThin $euiBorderColor; // Use box-shadow instead of border-top to avoid duplicating the border-bottom on grid cells
   }
 }
 
@@ -29,13 +29,14 @@
   max-width: 100%;
   width: 100%;
   overflow: hidden;
-  z-index: 2; // Sits above the pagination below it, but below the controls above it
+  z-index: 1; // Sits below the controls above it and pagination below it
   position: relative;
   background: $euiColorEmptyShade;
   font-feature-settings: 'tnum' 1; // Tabular numbers
 }
 
 .euiDataGrid__pagination {
+  z-index: 2; // Sits above the content above it
   padding-top: $euiSizeXS;
   flex-grow: 0;
 }
