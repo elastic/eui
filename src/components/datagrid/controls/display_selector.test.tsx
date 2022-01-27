@@ -9,7 +9,7 @@
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { shallow, mount, ShallowWrapper, ReactWrapper } from 'enzyme';
-import { testCustomHook } from '../../../test';
+import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
 
 import {
   EuiDataGridToolBarVisibilityOptions,

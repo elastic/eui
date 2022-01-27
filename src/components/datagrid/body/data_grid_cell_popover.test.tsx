@@ -10,7 +10,7 @@ import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { shallow } from 'enzyme';
 import { keys } from '../../../services';
-import { testCustomHook } from '../../../test';
+import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
 
 import { DataGridCellPopoverContextShape } from '../data_grid_types';
 import { useCellPopover } from './data_grid_cell_popover';
