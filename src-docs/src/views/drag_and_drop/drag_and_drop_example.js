@@ -200,17 +200,14 @@ export const DragAndDropExample = {
           <p>
             By default the entire element surface can initiate a drag. To
             specify an element within as the handle and create a containing
-            group, set
-            <EuiCode>customDragHandle=true</EuiCode> and{' '}
-            <EuiCode>draggableContainer=true</EuiCode> on the{' '}
+            group, set <EuiCode>customDragHandle=true</EuiCode> on the{' '}
             <strong>EuiDraggable</strong>.
           </p>
           <p>
             The <EuiCode>provided</EuiCode> parameter on the{' '}
             <strong>EuiDraggable</strong> <EuiCode>children</EuiCode> render
             prop has all data required for functionality. Along with the{' '}
-            <EuiCode>customDragHandle</EuiCode> and{' '}
-            <EuiCode>draggableContainer</EuiCode>flags,
+            <EuiCode>customDragHandle</EuiCode> flag,
             <EuiCode>provided.dragHandleProps</EuiCode> needs to be added to the
             intended handle element.
           </p>
@@ -229,10 +226,9 @@ export const DragAndDropExample = {
       text: (
         <React.Fragment>
           <p>
-            <strong>EuiDraggable</strong> elements can contain interactive
-            elements such as buttons and form fields. Interactive elements
-            require <EuiCode>customDragHandle=true</EuiCode> and{' '}
-            <EuiCode>draggableContainer=true</EuiCode> on the{' '}
+            <strong>EuiDraggable</strong> can contain interactive elements such
+            as buttons and form fields. Interactive elements require{' '}
+            <EuiCode>customDragHandle=true</EuiCode> on the{' '}
             <strong>EuiDraggable</strong>. These props will maintain drag
             functionality and accessibility, while enabling click, keypress,
             etc., events on the interactive child elements.

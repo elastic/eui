@@ -45,10 +45,6 @@ export interface EuiDraggableProps
    */
   draggableContainer?: boolean;
   /**
-   * Whether the `children` will contain interactive elements
-   */
-  interactiveElements?: boolean;
-  /**
    * Whether the item is currently in a position to be removed
    */
   isRemovable?: boolean;
@@ -62,7 +58,6 @@ export interface EuiDraggableProps
 export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
   customDragHandle = false,
   draggableId,
-  interactiveElements = false,
   isDragDisabled = false,
   draggableContainer = false,
   isRemovable = false,
@@ -89,7 +84,6 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
           {
             'euiDraggable--hasClone': cloneItems,
             'euiDraggable--hasCustomDragHandle': customDragHandle,
-            'euiDraggable--hasInteractiveElements': interactiveElements,
             'euiDraggable--isDragging': snapshot.isDragging,
             'euiDraggable--withoutDropAnimation': isRemovable,
           },

@@ -46,11 +46,10 @@ export default () => {
             draggableId={id}
             customDragHandle={true}
             draggableContainer={true}
-            interactiveElements={true}
           >
             {(provided) => (
-              <EuiPanel className="custom" paddingSize="s">
-                <EuiFlexGroup alignItems="center" gutterSize="m">
+              <EuiPanel className="custom" paddingSize="m">
+                <EuiFlexGroup alignItems="center" gutterSize="l">
                   <EuiFlexItem grow={false}>
                     <div {...provided.dragHandleProps} aria-label="Drag Handle">
                       <EuiIcon type="grab" />
