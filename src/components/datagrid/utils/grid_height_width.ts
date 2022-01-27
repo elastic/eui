@@ -72,7 +72,7 @@ export const useUnconstrainedHeight = ({
   defaultRowHeight,
   headerRowHeight,
   footerRowHeight,
-  outerGridRef,
+  scrollBarHeight,
   innerGridRef,
 }: {
   rowHeightUtils: RowHeightUtils;
@@ -82,7 +82,7 @@ export const useUnconstrainedHeight = ({
   defaultRowHeight: number;
   headerRowHeight: number;
   footerRowHeight: number;
-  outerGridRef: React.MutableRefObject<HTMLDivElement | null>;
+  scrollBarHeight: number;
   innerGridRef: React.MutableRefObject<HTMLDivElement | null>;
 }) => {
   const { getCorrectRowIndex } = useContext(DataGridSortingContext);
@@ -127,21 +127,12 @@ export const useUnconstrainedHeight = ({
   );
   useUpdateEffect(forceRender, [innerWidth]);
 
-  // https://stackoverflow.com/a/5038256
-  const hasHorizontalScroll =
-    (outerGridRef.current?.scrollWidth ?? 0) >
-    (outerGridRef.current?.clientWidth ?? 0);
-  // https://stackoverflow.com/a/24797425
-  const scrollbarHeight = hasHorizontalScroll
-    ? outerGridRef.current!.offsetHeight - outerGridRef.current!.clientHeight
-    : 0;
-
   const unconstrainedHeight =
     defaultRowHeight * (rowCountToAffordFor - knownRowCount) + // guess how much space is required for unknown rows
     knownHeight + // computed pixel height of the known rows
     headerRowHeight + // account for header
     footerRowHeight + // account for footer
-    scrollbarHeight; // account for horizontal scrollbar
+    scrollBarHeight; // account for horizontal scrollbar
 
   return unconstrainedHeight;
 };
