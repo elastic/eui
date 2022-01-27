@@ -107,6 +107,12 @@ export default () => {
     []
   );
 
+  // Sorting
+  const [sortingColumns, setSortingColumns] = useState([]);
+  const onSort = useCallback((sortingColumns) => {
+    setSortingColumns(sortingColumns);
+  }, []);
+
   // Manual cell focus
   const [rowIndexAction, setRowIndexAction] = useState(0);
   const [colIndexAction, setColIndexAction] = useState(0);
@@ -118,7 +124,7 @@ export default () => {
           <EuiFormRow label="Row index">
             <EuiFieldNumber
               min={0}
-              max={24}
+              max={raw_data.length - 1}
               value={rowIndexAction}
               onChange={(e) => setRowIndexAction(Number(e.target.value))}
               compressed
@@ -129,7 +135,7 @@ export default () => {
           <EuiFormRow label="Column index">
             <EuiFieldNumber
               min={0}
-              max={4}
+              max={visibleColumns.length - 1}
               value={colIndexAction}
               onChange={(e) => setColIndexAction(Number(e.target.value))}
               compressed
@@ -177,6 +183,8 @@ export default () => {
         aria-label="Data grid demo"
         columns={columns}
         columnVisibility={{ visibleColumns, setVisibleColumns }}
+        sorting={{ columns: sortingColumns, onSort }}
+        inMemory={{ level: 'sorting' }}
         rowCount={raw_data.length}
         renderCellValue={({ rowIndex, columnId }) =>
           raw_data[rowIndex][columnId]
