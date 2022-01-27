@@ -17,25 +17,24 @@ import React, {
 
 import { EuiScreenReaderOnly } from '../screen_reader_only';
 
-export type EuiScreenReaderLiveProps = Pick<AriaAttributes, 'aria-live'> &
-  Pick<HTMLAttributes<HTMLDivElement>, 'role'> & {
-    /**
-     * Whether the make screen readers aware of the content
-     */
-    isActive?: boolean;
-    /**
-     * Content for screen readers to announce
-     */
-    children?: ReactNode;
-    /**
-     * `role` attribute for both live regions
-     */
-    role?: HTMLAttributes<HTMLDivElement>['role'];
-    /**
-     * `aria-live` attribute for both live regions
-     */
-    'aria-live'?: AriaAttributes['aria-live'];
-  };
+export interface EuiScreenReaderLiveProps {
+  /**
+   * Whether the make screen readers aware of the content
+   */
+  isActive?: boolean;
+  /**
+   * Content for screen readers to announce
+   */
+  children?: ReactNode;
+  /**
+   * `role` attribute for both live regions
+   */
+  role?: HTMLAttributes<HTMLDivElement>['role'];
+  /**
+   * `aria-live` attribute for both live regions
+   */
+  'aria-live'?: AriaAttributes['aria-live'];
+}
 
 export const EuiScreenReaderLive: FunctionComponent<EuiScreenReaderLiveProps> = ({
   children,
