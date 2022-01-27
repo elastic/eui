@@ -41,7 +41,8 @@ export interface EuiDraggableProps
    */
   customDragHandle?: boolean;
   /**
-   * Whether the container is draggable and should have role="group" instead of "button"
+   * Whether the container is draggable and should have `role="group"` instead of `"button"`.
+   * Setting this flag ensures your drag & drop container is keyboard & screen reader accessible.
    */
   draggableContainer?: boolean;
   /**

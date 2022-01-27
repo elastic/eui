@@ -67,4 +67,24 @@ describe('EuiDraggable', () => {
 
     expect(takeSnapshot(appDiv)).toMatchSnapshot();
   });
+
+  test('can be a draggable container with role group', () => {
+    const handler = jest.fn();
+    ReactDOM.render(
+      <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
+        <EuiDroppable droppableId="testDroppable">
+          <EuiDraggable
+            draggableContainer={true}
+            draggableId="testDraggable"
+            index={0}
+          >
+            <div>Hello</div>
+          </EuiDraggable>
+        </EuiDroppable>
+      </EuiDragDropContext>,
+      appDiv
+    );
+
+    expect(takeSnapshot(appDiv)).toMatchSnapshot();
+  });
 });
