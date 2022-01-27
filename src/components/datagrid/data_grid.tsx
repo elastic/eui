@@ -309,6 +309,8 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
       setIsFullScreen,
       focusContext,
       cellPopoverContext,
+      rowCount,
+      visibleColCount,
     });
 
     /**
