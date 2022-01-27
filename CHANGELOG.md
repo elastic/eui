@@ -3,6 +3,7 @@
 **Bug fixes**
 
 - Fixed EuiDataGrid height issue when in full-screen mode and with scrolling content ([#5557](https://github.com/elastic/eui/pull/5557))
+- Fixed an accessibility issue in custom and interactive Drag and Drop patterns ([#5568](https://github.com/elastic/eui/pull/5568))
 
 ## [`46.1.0`](https://github.com/elastic/eui/tree/v46.1.0)
 
