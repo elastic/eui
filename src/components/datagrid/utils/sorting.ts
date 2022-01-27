@@ -103,19 +103,21 @@ export const useSorting = ({
     schemaDetectors,
   ]);
 
+  // Given a visible row index, obtain the unpaginated & unsorted
+  // row index from the passed cell data
   const getCorrectRowIndex = useCallback(
-    (rowIndex: number) => {
-      let rowIndexWithOffset = rowIndex;
+    (visibleRowIndex: number) => {
+      const isPaginated = visibleRowIndex - startRow < 0;
+      const unpaginatedRowIndex = isPaginated
+        ? visibleRowIndex + startRow
+        : visibleRowIndex;
 
-      if (rowIndex - startRow < 0) {
-        rowIndexWithOffset = rowIndex + startRow;
-      }
+      const unsortedRowIndex =
+        unpaginatedRowIndex in sortedRowMap
+          ? sortedRowMap[unpaginatedRowIndex]
+          : unpaginatedRowIndex;
 
-      const correctRowIndex = sortedRowMap.hasOwnProperty(rowIndexWithOffset)
-        ? sortedRowMap[rowIndexWithOffset]
-        : rowIndexWithOffset;
-
-      return correctRowIndex;
+      return unsortedRowIndex;
     },
     [startRow, sortedRowMap]
   );
