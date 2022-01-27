@@ -28,7 +28,7 @@ export const DataGridRefExample = {
     {
       source: [
         {
-          type: GuideSectionTypes.JS,
+          type: GuideSectionTypes.TSX,
           code: dataGridRefSource,
         },
       ],
