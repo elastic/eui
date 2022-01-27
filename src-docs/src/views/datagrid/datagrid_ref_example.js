@@ -63,10 +63,30 @@ export const DataGridRefExample = {
               <EuiSpacer size="m" />
             </li>
             <li>
-              <p>
-                <EuiCode>openCellPopover({'{ rowIndex, colIndex }'})</EuiCode> -
-                opens the specified cell&apos;s popover contents.
-              </p>
+              <EuiCode>openCellPopover({'{ rowIndex, colIndex }'})</EuiCode> -
+              opens the specified cell&apos;s popover contents.
+              <EuiSpacer size="s" />
+              <EuiCallOut iconType="mapMarker" title="Handling cell location">
+                When using <EuiCode>setFocusedCell</EuiCode> or{' '}
+                <EuiCode>openCellPopover</EuiCode>, keep in mind:
+                <ul>
+                  <li>
+                    colIndex is affected by the user reordering or hiding
+                    columns.
+                  </li>
+                  <li>
+                    If the passed cell indices are outside the data grid&apos;s
+                    total row count or visible column count, an error will be
+                    thrown.
+                  </li>
+                  <li>
+                    If the data grid is paginated or sorted, the grid will
+                    handle automatically finding specified row index&apos;s
+                    correct location for you.
+                  </li>
+                </ul>
+              </EuiCallOut>
+              <EuiSpacer size="m" />
             </li>
             <li>
               <p>
