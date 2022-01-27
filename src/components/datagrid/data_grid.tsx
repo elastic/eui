@@ -13,7 +13,6 @@ import React, {
   useMemo,
   useRef,
   useState,
-  useImperativeHandle,
 } from 'react';
 import {
   VariableSizeGrid as Grid,
@@ -56,6 +55,7 @@ import {
   schemaDetectors as providedSchemaDetectors,
   useMergedSchema,
 } from './utils/data_grid_schema';
+import { useImperativeGridRef } from './utils/ref';
 import {
   EuiDataGridColumn,
   EuiDataGridProps,
@@ -302,23 +302,14 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
     };
 
     /**
-     * Expose internal APIs as ref to consumer
+     * Expose certain internal APIs as ref to consumer
      */
-    const { setFocusedCell } = focusContext; // eslint complains about the dependency array otherwise
-    const { openCellPopover, closeCellPopover } = cellPopoverContext;
-
-    useImperativeHandle(
+    useImperativeGridRef({
       ref,
-      () => ({
-        setIsFullScreen,
-        setFocusedCell: ({ rowIndex, colIndex }) => {
-          setFocusedCell([colIndex, rowIndex]); // Transmog args from obj to array
-        },
-        openCellPopover,
-        closeCellPopover,
-      }),
-      [setFocusedCell, openCellPopover, closeCellPopover]
-    );
+      setIsFullScreen,
+      focusContext,
+      cellPopoverContext,
+    });
 
     /**
      * Classes
