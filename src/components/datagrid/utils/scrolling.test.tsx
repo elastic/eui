@@ -323,21 +323,21 @@ describe('useScrollCellIntoView', () => {
 });
 
 describe('useScrollBars', () => {
-  const mockOuterGridRef = {
-    current: {
-      clientHeight: 40,
-      offsetHeight: 50,
-      scrollHeight: 50,
-      clientWidth: 100,
-      offsetWidth: 100,
-      scrollWidth: 200,
-    } as any,
-  };
+  const mockOuterGrid = {
+    clientHeight: 0,
+    offsetHeight: 0,
+    scrollHeight: 0,
+    clientWidth: 0,
+    offsetWidth: 0,
+    scrollWidth: 0,
+  } as any;
 
   describe('scrollBarHeight', () => {
     it("is derived by the difference between the grid's offsetHeight vs clientHeight", () => {
       const { scrollBarHeight } = testCustomHook(() =>
-        useScrollBars(mockOuterGridRef)
+        useScrollBars({
+          current: { ...mockOuterGrid, clientHeight: 40, offsetHeight: 50 },
+        })
       );
 
       expect(scrollBarHeight).toEqual(10);
@@ -347,7 +347,9 @@ describe('useScrollBars', () => {
   describe('scrollBarWidth', () => {
     it('is zero if there is no difference between offsetWidth and clientWidth', () => {
       const { scrollBarWidth } = testCustomHook(() =>
-        useScrollBars(mockOuterGridRef)
+        useScrollBars({
+          current: { ...mockOuterGrid, clientWidth: 40, offsetWidth: 40 },
+        })
       );
 
       expect(scrollBarWidth).toEqual(0);
@@ -355,22 +357,46 @@ describe('useScrollBars', () => {
   });
 
   describe('hasVerticalScroll', () => {
-    it("compares the grid's scrollHeight vs. clientHeight to see if there is scrolling overflow", () => {
+    it("has scrolling overflow if the grid's scrollHeight exceeds its clientHeight", () => {
       const { hasVerticalScroll } = testCustomHook(() =>
-        useScrollBars(mockOuterGridRef)
+        useScrollBars({
+          current: { ...mockOuterGrid, clientHeight: 50, scrollHeight: 100 },
+        })
       );
 
       expect(hasVerticalScroll).toEqual(true);
     });
+
+    it("does not have scrolling overflow if the the grid's scrollHeight is the same as its clientHeight", () => {
+      const { hasVerticalScroll } = testCustomHook(() =>
+        useScrollBars({
+          current: { ...mockOuterGrid, clientHeight: 50, scrollHeight: 50 },
+        })
+      );
+
+      expect(hasVerticalScroll).toEqual(false);
+    });
   });
 
   describe('hasHorizontalScroll', () => {
-    it("compares the grid's scrollWidth vs. clientWidth to see if there is scrolling overflow", () => {
+    it("has scrolling overflow if the grid's scrollWidth exceeds its clientWidth", () => {
       const { hasHorizontalScroll } = testCustomHook(() =>
-        useScrollBars(mockOuterGridRef)
+        useScrollBars({
+          current: { ...mockOuterGrid, clientWidth: 100, scrollWidth: 200 },
+        })
       );
 
       expect(hasHorizontalScroll).toEqual(true);
+    });
+
+    it("does not have scrolling overflow if the the grid's scrollWidth is the same as its clientWidth", () => {
+      const { hasHorizontalScroll } = testCustomHook(() =>
+        useScrollBars({
+          current: { ...mockOuterGrid, clientWidth: 200, scrollWidth: 200 },
+        })
+      );
+
+      expect(hasHorizontalScroll).toEqual(false);
     });
   });
 
@@ -380,7 +406,7 @@ describe('useScrollBars', () => {
         const { scrollBorderOverlay } = testCustomHook(() =>
           useScrollBars({
             current: {
-              ...mockOuterGridRef.current,
+              ...mockOuterGrid,
               clientHeight: 100,
               scrollHeight: 100,
               clientWidth: 200,
@@ -396,7 +422,16 @@ describe('useScrollBars', () => {
     describe('if the grid does not display borders', () => {
       it('does not render anything', () => {
         const { scrollBorderOverlay } = testCustomHook(() =>
-          useScrollBars(mockOuterGridRef, 'none')
+          useScrollBars(
+            {
+              current: {
+                ...mockOuterGrid,
+                clientHeight: 50,
+                scrollHeight: 100,
+              },
+            },
+            'none'
+          )
         );
 
         expect(scrollBorderOverlay).toEqual(null);
@@ -408,7 +443,7 @@ describe('useScrollBars', () => {
         const { scrollBorderOverlay } = testCustomHook(() =>
           useScrollBars({
             current: {
-              ...mockOuterGridRef.current,
+              ...mockOuterGrid,
               clientHeight: 50,
               offsetHeight: 50,
               scrollHeight: 100,
@@ -434,7 +469,7 @@ describe('useScrollBars', () => {
         const { scrollBorderOverlay } = testCustomHook(() =>
           useScrollBars({
             current: {
-              ...mockOuterGridRef.current,
+              ...mockOuterGrid,
               clientHeight: 40,
               offsetHeight: 50,
               scrollHeight: 100,
@@ -463,7 +498,7 @@ describe('useScrollBars', () => {
         const { scrollBorderOverlay } = testCustomHook(() =>
           useScrollBars({
             current: {
-              ...mockOuterGridRef.current,
+              ...mockOuterGrid,
               clientHeight: 50,
               offsetHeight: 50,
               scrollHeight: 50,
