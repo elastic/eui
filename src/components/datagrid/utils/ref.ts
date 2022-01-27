@@ -9,8 +9,10 @@
 import { useImperativeHandle, useCallback, Ref } from 'react';
 import {
   EuiDataGridRefProps,
+  EuiDataGridProps,
   DataGridFocusContextShape,
   DataGridCellPopoverContextShape,
+  DataGridSortingContextShape,
 } from '../data_grid_types';
 
 interface Dependencies {
@@ -18,6 +20,8 @@ interface Dependencies {
   setIsFullScreen: EuiDataGridRefProps['setIsFullScreen'];
   focusContext: DataGridFocusContextShape;
   cellPopoverContext: DataGridCellPopoverContextShape;
+  sortingContext: DataGridSortingContextShape;
+  pagination: EuiDataGridProps['pagination'];
   rowCount: number;
   visibleColCount: number;
 }
@@ -27,11 +31,14 @@ export const useImperativeGridRef = ({
   setIsFullScreen,
   focusContext,
   cellPopoverContext,
+  sortingContext: { sortedRowMap },
+  pagination,
   rowCount,
   visibleColCount,
 }: Dependencies) => {
   // Cell location helpers
   const { checkCellExists } = useCellLocationCheck(rowCount, visibleColCount);
+  const { getVisibleRowIndex } = useVisibleRowIndex(pagination, sortedRowMap);
 
   // Focus APIs
   const { setFocusedCell: _setFocusedCell } = focusContext; // eslint complains about the dependency array otherwise
@@ -43,9 +50,10 @@ export const useImperativeGridRef = ({
   const setFocusedCell = useCallback(
     ({ rowIndex, colIndex }) => {
       checkCellExists({ rowIndex, colIndex });
-      _setFocusedCell([colIndex, rowIndex]); // Transmog args from obj to array
+      const visibleRowIndex = getVisibleRowIndex(rowIndex);
+      _setFocusedCell([colIndex, visibleRowIndex]); // Transmog args from obj to array
     },
-    [_setFocusedCell, checkCellExists]
+    [_setFocusedCell, checkCellExists, getVisibleRowIndex]
   );
 
   // Popover APIs
@@ -61,9 +69,10 @@ export const useImperativeGridRef = ({
   const openCellPopover = useCallback(
     ({ rowIndex, colIndex }) => {
       checkCellExists({ rowIndex, colIndex });
-      _openCellPopover({ rowIndex, colIndex });
+      const visibleRowIndex = getVisibleRowIndex(rowIndex);
+      _openCellPopover({ rowIndex: visibleRowIndex, colIndex });
     },
-    [_openCellPopover, checkCellExists]
+    [_openCellPopover, checkCellExists, getVisibleRowIndex]
   );
 
   // Set the ref APIs
@@ -105,4 +114,41 @@ export const useCellLocationCheck = (rowCount: number, colCount: number) => {
   );
 
   return { checkCellExists };
+};
+
+/**
+ * The rowIndex passed from the consumer is the unsorted and unpaginated
+ * index derived from their original data. We need to convert that rowIndex
+ * into a visibleRowIndex (which is what our internal cell APIs use) and, if
+ * the row is not on the current page, the grid should automatically handle
+ * paginating to that row.
+ */
+export const useVisibleRowIndex = (
+  pagination: EuiDataGridProps['pagination'],
+  sortedRowMap: DataGridSortingContextShape['sortedRowMap']
+) => {
+  const getVisibleRowIndex = useCallback(
+    (rowIndex: number): number => {
+      // Account for sorting
+      const visibleRowIndex = sortedRowMap.length
+        ? sortedRowMap.findIndex((mappedIndex) => mappedIndex === rowIndex)
+        : rowIndex;
+
+      // Account for pagination
+      if (pagination) {
+        const pageIndex = Math.floor(visibleRowIndex / pagination.pageSize);
+        // If the targeted row is on a different page than the current page,
+        // we should automatically navigate the user to the correct page
+        if (pageIndex !== pagination.pageIndex) {
+          pagination.onChangePage(pageIndex);
+        }
+        // Get the row's visible row index on that page
+        return visibleRowIndex % pagination.pageSize;
+      }
+      return visibleRowIndex;
+    },
+    [pagination, sortedRowMap]
+  );
+
+  return { getVisibleRowIndex };
 };

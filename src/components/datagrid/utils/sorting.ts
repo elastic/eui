@@ -21,7 +21,7 @@ export const DataGridSortingContext = createContext<
   DataGridSortingContextShape
 >({
   sorting: undefined,
-  sortedRowMap: {},
+  sortedRowMap: [],
   getCorrectRowIndex: (number) => number,
 });
 
@@ -43,7 +43,7 @@ export const useSorting = ({
   const sortingColumns = sorting?.columns;
 
   const sortedRowMap = useMemo(() => {
-    const rowMap: DataGridSortingContextShape['sortedRowMap'] = {};
+    const rowMap: DataGridSortingContextShape['sortedRowMap'] = [];
 
     if (
       inMemory?.level === 'sorting' &&

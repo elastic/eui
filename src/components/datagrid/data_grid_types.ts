@@ -179,7 +179,7 @@ export interface EuiDataGridVisibleRows {
 
 export interface DataGridSortingContextShape {
   sorting?: EuiDataGridSorting;
-  sortedRowMap: { [key: number]: number };
+  sortedRowMap: number[];
   getCorrectRowIndex: (visibleRowIndex: number) => number;
 }
 
