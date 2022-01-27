@@ -11,7 +11,6 @@ import {
   EuiCheckbox,
   EuiCheckboxGroup,
   EuiCode,
-  EuiLink,
   EuiRadio,
   EuiRadioGroup,
   EuiSwitch,
