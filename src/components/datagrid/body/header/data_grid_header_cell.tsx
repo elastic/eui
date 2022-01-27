@@ -152,9 +152,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           button={
             <button
               className="euiDataGridHeaderCell__button"
-              onClick={() =>
-                setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen)
-              }
+              onClick={() => {
+                setFocusedCell([index, -1]);
+                setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+              }}
             >
               {sortingArrow}
               <div className="euiDataGridHeaderCell__content">
