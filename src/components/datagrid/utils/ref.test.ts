@@ -9,7 +9,7 @@
 import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
 import { useCellLocationCheck, useVisibleRowIndex } from './ref';
 
-// TODO: see ref.spec.tsx for E2E useImperativeGridRef tests
+// see ref.spec.tsx for E2E useImperativeGridRef tests
 
 describe('useCellLocationCheck', () => {
   const {
