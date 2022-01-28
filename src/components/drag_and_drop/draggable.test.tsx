@@ -68,13 +68,13 @@ describe('EuiDraggable', () => {
     expect(takeSnapshot(appDiv)).toMatchSnapshot();
   });
 
-  test('can be a draggable container with role group', () => {
+  test('hasInteractiveChildren renders with role="group" and no tabIndex', () => {
     const handler = jest.fn();
     ReactDOM.render(
       <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
         <EuiDroppable droppableId="testDroppable">
           <EuiDraggable
-            draggableContainer={true}
+            hasInteractiveChildren={true}
             draggableId="testDraggable"
             index={0}
           >

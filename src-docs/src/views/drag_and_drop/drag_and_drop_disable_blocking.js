@@ -45,11 +45,11 @@ export default () => {
             index={idx}
             draggableId={id}
             customDragHandle={true}
-            draggableContainer={true}
+            hasInteractiveChildren={true}
           >
             {(provided) => (
-              <EuiPanel className="custom" paddingSize="m">
-                <EuiFlexGroup alignItems="center" gutterSize="l">
+              <EuiPanel className="custom" paddingSize="s">
+                <EuiFlexGroup alignItems="center" gutterSize="m">
                   <EuiFlexItem grow={false}>
                     <div {...provided.dragHandleProps} aria-label="Drag Handle">
                       <EuiIcon type="grab" />

@@ -77,7 +77,7 @@ export default () => {
             spacing="l"
             style={{ flex: '1 0 50%' }}
             disableInteractiveElementBlocking // Allows button to be drag handle
-            draggableContainer={true}
+            hasInteractiveChildren={true}
           >
             {(provided) => (
               <EuiPanel color="subdued" paddingSize="s">
