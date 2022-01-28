@@ -111,7 +111,8 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
               className={classes}
               style={{ ...style, ...provided.draggableProps.style }}
               // We use [role="group"] instead of [role="button"] when we expect a nested
-              // interactive element. Screen readers will cue users that this is a container // and has one or more elements inside that are part of a related group.
+              // interactive element. Screen readers will cue users that this is a container
+              // and has one or more elements inside that are part of a related group.
               role={
                 hasInteractiveChildren
                   ? 'group'
