@@ -9,7 +9,9 @@ import { cleanEuiImports } from '../../services';
 
 export const renderJsSourceCode = (code) => {
   let renderedCode = cleanEuiImports(code.default);
-  const elasticImports = [''];
+
+  /* ----- Combine and clean Eui imports ----- */
+  let elasticImports = [''];
 
   // Find all imports that come from '@elastic/eui'
   renderedCode = renderedCode.replace(
@@ -27,13 +29,64 @@ export const renderJsSourceCode = (code) => {
     }
   );
 
-  // Separate the first line (import { ) onto it's own line without a ", "
-  // Combine all EUI imports with a comma and new line
-  renderedCode = `import { ${elasticImports.slice(
-    0,
-    1
-  )}\n  ${elasticImports.slice(1).join(', \n  ')} \n} from '@elastic/eui';
-${renderedCode}`;
+  // Remove empty spaces in the array
+  elasticImports = elasticImports.filter((ele) => ele);
 
-  return renderedCode;
+  let formattedEuiImports = '';
+  if (elasticImports.length === 1) {
+    // Account for and format Eui import statements that only contain one function/utility
+    formattedEuiImports = `import { ${elasticImports} } from '@elastic/eui';`;
+  } else {
+    formattedEuiImports = `import { \n  ${elasticImports.slice(
+      0,
+      1
+    )}\n  ${elasticImports.slice(1).join(', \n  ')} \n} from '@elastic/eui';`;
+  }
+
+  /* ----- Combine and clean non-Eui Imports ----- */
+  const nonEuiImports = [];
+
+  // renderedCode at this point will only include non-Eui imports and component code
+  renderedCode = renderedCode.replace(
+    /import\s+([^]+?)\s+from\s+(\'[A-Za-z0-9 _./-]*\'\;)/g,
+    (match, imports) => {
+      // Catches import statements that are only pulling in one function/utility. Examples include:
+      // import React from 'react';
+      // import { fake } from 'faker';
+      if (imports.match(/[a-zA-Z0-9]+/g).length === 1) {
+        nonEuiImports.push(match);
+      } else {
+        // Composes and formats import statements with multiple functions/utilities. Examples inlcude
+        // import React, { Fragment, useState } from 'react';
+        // import { test1, test2 } from 'test-library';
+        let composingImport = '';
+        const namedImports = imports.match(/[a-zA-Z0-9\{\}]+/g);
+        const library = match.match(/from\s\'[A-Za-z0-9_.-]+\';/g);
+
+        namedImports.forEach((ele, index) => {
+          if (ele === '{' && index === 0) {
+            composingImport += `${ele}\n`;
+          } else if (ele === '{' && index !== 0) {
+            composingImport += `${ele}\n`;
+          } else if (ele === '}') {
+            composingImport += `${ele}`;
+          } else {
+            namedImports[index + 1] === '{'
+              ? (composingImport += `${ele},`)
+              : (composingImport += `  ${ele},\n`);
+          }
+        });
+
+        nonEuiImports.push(`import ${composingImport} ${library}`);
+      }
+
+      return '';
+    }
+  );
+  const formattedNonEuiImports = nonEuiImports.join('\n');
+
+  // renderedCode at this point will only include the demo component code
+  const fullyFormattedCode = `${formattedEuiImports}\n${formattedNonEuiImports}\n\n${renderedCode.trim()}`;
+
+  return fullyFormattedCode;
 };
