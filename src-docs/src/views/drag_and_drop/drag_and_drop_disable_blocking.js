@@ -48,12 +48,17 @@ export default () => {
             hasInteractiveChildren={true}
           >
             {(provided) => (
-              <EuiPanel className="custom" paddingSize="s">
-                <EuiFlexGroup alignItems="center" gutterSize="m">
+              <EuiPanel paddingSize="s">
+                <EuiFlexGroup alignItems="center" gutterSize="s">
                   <EuiFlexItem grow={false}>
-                    <div {...provided.dragHandleProps} aria-label="Drag Handle">
+                    <EuiPanel
+                      color="transparent"
+                      paddingSize="s"
+                      {...provided.dragHandleProps}
+                      aria-label="Drag Handle"
+                    >
                       <EuiIcon type="grab" />
-                    </div>
+                    </EuiPanel>
                   </EuiFlexItem>
                   <EuiFlexItem grow={true}>
                     <EuiButton fullWidth onClick={() => {}}>

@@ -201,7 +201,7 @@ export const DragAndDropExample = {
             By default the entire element surface can initiate a drag. To
             specify an element within as the handle and create a containing
             group, set <EuiCode>customDragHandle=true</EuiCode> and{' '}
-            <EuiCode>hasInteractiveChildren=true</EuiCode> on the
+            <EuiCode>hasInteractiveChildren=true</EuiCode> on the{' '}
             <strong>EuiDraggable</strong>.
           </p>
           <p>
