@@ -1,7 +1,7 @@
 .euiDataGrid__controls {
   background: $euiPageBackgroundColor;
   position: relative;
-  z-index: 3; // Needs to sit above the content blow that sits below it
+  z-index: 2; // Needs to sit above the content below it
   border: $euiBorderThin;
   padding: $euiSizeXS $euiSizeXS $euiSizeXS 0;
   display: flex;

@@ -25,7 +25,6 @@ describe('EuiDataGridToolbar', () => {
     controlBtnClasses: '',
     columnSelector: <div>mock column selector</div>,
     columnSorting: <div>mock column sorting</div>,
-    setRef: jest.fn(),
     setIsFullScreen: jest.fn(),
   };
 
