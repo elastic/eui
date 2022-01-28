@@ -27,7 +27,9 @@ export interface EuiScreenReaderLiveProps {
    */
   children?: ReactNode;
   /**
-   * `role` attribute for both live regions
+   * `role` attribute for both live regions.
+   *
+   * https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions#roles_with_implicit_live_region_attributes
    */
   role?: HTMLAttributes<HTMLDivElement>['role'];
   /**
