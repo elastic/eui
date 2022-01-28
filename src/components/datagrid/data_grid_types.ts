@@ -49,7 +49,6 @@ export interface EuiDataGridPaginationRendererProps
   controls: string;
   'aria-label'?: AriaAttributes['aria-label'];
   'aria-labelledby'?: AriaAttributes['aria-labelledby'];
-  gridRef: EuiDataGridBodyProps['gridRef'];
 }
 
 export interface EuiDataGridInMemoryRendererProps {

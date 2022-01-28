@@ -21,7 +21,6 @@ export const EuiDataGridPaginationRenderer = ({
   rowCount,
   controls,
   'aria-label': ariaLabel,
-  gridRef,
 }: EuiDataGridPaginationRendererProps) => {
   const detailedPaginationLabel = useEuiI18n(
     'euiDataGridPagination.detailedPaginationLabel',
@@ -39,9 +38,8 @@ export const EuiDataGridPaginationRenderer = ({
     (pageIndex) => {
       _onChangePage(pageIndex);
       setFocusedCell([0, 0]);
-      gridRef.current?.scrollToItem?.({ rowIndex: 0 });
     },
-    [gridRef, setFocusedCell, _onChangePage]
+    [setFocusedCell, _onChangePage]
   );
 
   const pageCount = Math.ceil(rowCount / pageSize);
