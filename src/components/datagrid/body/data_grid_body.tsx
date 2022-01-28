@@ -43,7 +43,7 @@ import {
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
 import { useRowHeightUtils, useDefaultRowHeight } from '../utils/row_heights';
 import { useHeaderFocusWorkaround } from '../utils/focus';
-import { useScroll } from '../utils/scrolling';
+import { useScrollBars, useScroll } from '../utils/scrolling';
 import { DataGridSortingContext } from '../utils/sorting';
 import { IS_JEST_ENVIRONMENT } from '../../../test';
 
@@ -219,7 +219,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   props
 ) => {
   const {
-    isFullScreen,
     leadingControlColumns,
     trailingControlColumns,
     columns,
@@ -238,7 +237,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     setVisibleColumns,
     switchColumnPos,
     onColumnResize,
-    toolbarHeight,
     rowHeightsOptions,
     virtualizationOptions,
     gridStyles,
@@ -254,6 +252,16 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   const wrapperDimensions = useResizeObserver(wrapperRef.current);
   const outerGridRef = useRef<HTMLDivElement | null>(null); // container that becomes scrollable
   const innerGridRef = useRef<HTMLDivElement | null>(null); // container sized to fit all content
+
+  /**
+   * Scroll bars
+   */
+  const {
+    scrollBarHeight,
+    hasVerticalScroll,
+    hasHorizontalScroll,
+    scrollBorderOverlay,
+  } = useScrollBars(outerGridRef, gridStyles.border);
 
   /**
    * Widths
@@ -366,7 +374,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
   useScroll({
     gridRef,
     outerGridRef,
-    innerGridRef,
+    hasGridScrolling: hasVerticalScroll || hasHorizontalScroll,
     headerRowHeight,
     footerRowHeight,
     visibleRowCount,
@@ -404,7 +412,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     defaultRowHeight,
     headerRowHeight,
     footerRowHeight,
-    outerGridRef,
+    scrollBarHeight,
     innerGridRef,
   });
 
@@ -416,11 +424,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     unconstrainedWidth: 0, // unable to determine this until the container's size is known
     wrapperDimensions,
     wrapperRef,
-    toolbarHeight,
-    headerRowHeight,
-    footerRowHeight,
     rowCount,
-    isFullScreen,
   });
 
   /**
@@ -492,6 +496,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
       >
         {Cell}
       </Grid>
+      {scrollBorderOverlay}
     </DataGridWrapperRowsContext.Provider>
   ) : null;
 };
