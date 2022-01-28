@@ -29,7 +29,7 @@ $gutterTypes: (
 // Gutter Sizes
 @each $gutterName, $gutterSize in $gutterTypes {
   .euiFlexGroup--#{$gutterName} {
-    gap: $gutterSize;
+    gap: $gutterSize; // sass-lint:disable-line no-misspelled-properties - gap is a valid property, sass-lint is out of date
   }
 }
 
