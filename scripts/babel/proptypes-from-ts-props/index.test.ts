@@ -2515,26 +2515,6 @@ let something: any;
         expect(result.code).toBe('let something;');
       });
     });
-
-    it('can be disabled', () => {
-      const configuredBabelOptions = JSON.parse(JSON.stringify(babelOptions));
-      configuredBabelOptions.plugins[0] = ['./scripts/babel/proptypes-from-ts-props', { generatePropTypes: false }];
-
-      const result = transform(
-        `
-import React from 'react';
-interface IFooProps {bar: string}
-const FooComponent: React.SFC<IFooProps> = () => {
-  return (<div>Hello World</div>);
-}`,
-        configuredBabelOptions
-      );
-
-      expect(result.code).toBe(`import React from 'react';
-const FooComponent = () => {
-  return <div>Hello World</div>;
-};`);
-    });
   });
 
   describe('remove types from exports', () => {
