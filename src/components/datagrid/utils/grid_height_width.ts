@@ -60,16 +60,17 @@ export const useFinalGridDimensions = ({
     unconstrainedWidth,
   ]);
 
-  const finalHeight = IS_JEST_ENVIRONMENT
-    ? Number.MAX_SAFE_INTEGER
-    : isFullScreen
+  const finalHeight = isFullScreen
     ? fullScreenHeight
     : height || unconstrainedHeight;
-  const finalWidth = IS_JEST_ENVIRONMENT
-    ? Number.MAX_SAFE_INTEGER
-    : width || unconstrainedWidth;
+  const finalWidth = width || unconstrainedWidth;
 
-  return { finalHeight, finalWidth };
+  return IS_JEST_ENVIRONMENT
+    ? {
+        finalHeight: Number.MAX_SAFE_INTEGER,
+        finalWidth: Number.MAX_SAFE_INTEGER,
+      }
+    : { finalHeight, finalWidth };
 };
 
 /**
