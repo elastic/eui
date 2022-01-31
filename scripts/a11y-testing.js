@@ -9,9 +9,6 @@ const docsPages = async (root, page) => {
     `${root}#/display/aspect-ratio`,
     `${root}#/forms/combo-box`,
     `${root}#/forms/color-selection`,
-    `${root}#/tabular-content/data-grid-styling-and-control`,
-    `${root}#/tabular-content/data-grid-virtualization`,
-    `${root}#/tabular-content/data-grid-row-heights-options`,
   ];
 
   return [

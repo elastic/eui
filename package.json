@@ -96,7 +96,7 @@
     "vfile": "^4.2.0"
   },
   "devDependencies": {
-    "@axe-core/puppeteer": "^4.1.1",
+    "@axe-core/puppeteer": "^4.3.2",
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
@@ -136,7 +136,7 @@
     "@typescript-eslint/parser": "^4.8.1",
     "argparse": "^2.0.1",
     "autoprefixer": "^9.8.6",
-    "axe-core": "^4.1.1",
+    "axe-core": "^4.4.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^24.1.0",
