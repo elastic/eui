@@ -214,7 +214,6 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-router-redux": "^4.0.8",
-    "react-test-renderer": "^16.12.0",
     "react-view": "^2.3.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
@@ -241,7 +240,7 @@
   },
   "peerDependencies": {
     "@elastic/datemath": "^5.0.2",
-    "@emotion/react": "11.x",
+    "@emotion/react": "^11.7",
     "@types/react": "^16.9 || ^17.0",
     "@types/react-dom": "^16.9 || ^17.0",
     "moment": "^2.13.0",
