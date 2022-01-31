@@ -4,6 +4,7 @@
 - Added referenceable `id` for the generated label in `EuiFormRow` ([#5574](https://github.com/elastic/eui/pull/5574))
 - Addeed optional attribute configurations in `EuiPopover` to aid screen reader announcements ([#5574](https://github.com/elastic/eui/pull/5574))
 - Added `ref` passthroughs to `EuiIputPopover` subcomponents ([#5574](https://github.com/elastic/eui/pull/5574))
+- Added `EuiScreenReaderLive` component for updateable `aria-live` regions ([#5567](https://github.com/elastic/eui/pull/5567))
 
 **Bug fixes**
 
