@@ -50,7 +50,8 @@
   },
   "resolutions": {
     "**/trim": "0.0.3",
-    "**/node-sass": "^6.0.1"
+    "**/node-sass": "^6.0.1",
+    "**/react": "^17.0.0"
   },
   "pre-commit": [
     "test-staged"
@@ -125,8 +126,8 @@
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^24.0.6",
     "@types/node": "^10.17.5",
-    "@types/react": "^16.9.34",
-    "@types/react-dom": "^16.9.6",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
     "@types/react-is": "^16.7.1",
     "@types/react-router-dom": "^5.1.5",
     "@types/tabbable": "^3.1.0",
@@ -204,9 +205,9 @@
     "prop-types": "^15.6.0",
     "puppeteer": "^5.5.0",
     "raw-loader": "^4.0.1",
-    "react": "^16.12.0",
+    "react": "^17.0.2",
     "react-docgen-typescript": "^2.2.2",
-    "react-dom": "^16.12.0",
+    "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-redux": "^7.2.1",
     "react-refresh": "^0.11.0",
@@ -241,12 +242,12 @@
   "peerDependencies": {
     "@elastic/datemath": "^5.0.2",
     "@emotion/react": "11.x",
-    "@types/react": "^16.9.34",
-    "@types/react-dom": "^16.9.6",
+    "@types/react": "^16.9 || ^17.0",
+    "@types/react-dom": "^16.9 || ^17.0",
     "moment": "^2.13.0",
     "prop-types": "^15.5.0",
-    "react": "^16.12",
-    "react-dom": "^16.12",
+    "react": "^16.12 || ^17.0",
+    "react-dom": "^16.12 || ^17.0",
     "typescript": "~4.5.3"
   }
 }
