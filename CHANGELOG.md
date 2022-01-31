@@ -1,6 +1,7 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
 - Updated `EuiDataGrid`s with scrolling content to always have a border around the grid body and any scrollbars ([#5563](https://github.com/elastic/eui/pull/5563))
+- Updated `EuiDataGrid`'s body to a light gray background, which primarily shows when scrolling through virtualized content ([#5562](https://github.com/elastic/eui/pull/5562))
 - Added referenceable `id` for the generated label in `EuiFormRow` ([#5574](https://github.com/elastic/eui/pull/5574))
 - Addeed optional attribute configurations in `EuiPopover` to aid screen reader announcements ([#5574](https://github.com/elastic/eui/pull/5574))
 - Added `ref` passthroughs to `EuiIputPopover` subcomponents ([#5574](https://github.com/elastic/eui/pull/5574))
