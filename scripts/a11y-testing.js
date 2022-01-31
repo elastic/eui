@@ -6,9 +6,9 @@ const docsPages = async (root, page) => {
   const pagesToSkip = [
     `${root}#/layout/page`, // Has duplicate `<main>` element
     `${root}#/layout/page-header`, // Has duplicate `<header>` element
-    `${root}#/display/aspect-ratio`,
+    // `${root}#/display/aspect-ratio`,
     `${root}#/forms/combo-box`,
-    `${root}#/forms/color-selection`,
+    // `${root}#/forms/color-selection`,
   ];
 
   return [
