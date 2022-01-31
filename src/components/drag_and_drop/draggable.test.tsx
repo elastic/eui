@@ -67,4 +67,24 @@ describe('EuiDraggable', () => {
 
     expect(takeSnapshot(appDiv)).toMatchSnapshot();
   });
+
+  test('hasInteractiveChildren renders with role="group" and no tabIndex', () => {
+    const handler = jest.fn();
+    ReactDOM.render(
+      <EuiDragDropContext onDragEnd={handler} {...requiredProps}>
+        <EuiDroppable droppableId="testDroppable">
+          <EuiDraggable
+            hasInteractiveChildren={true}
+            draggableId="testDraggable"
+            index={0}
+          >
+            <div>Hello</div>
+          </EuiDraggable>
+        </EuiDroppable>
+      </EuiDragDropContext>,
+      appDiv
+    );
+
+    expect(takeSnapshot(appDiv)).toMatchSnapshot();
+  });
 });
