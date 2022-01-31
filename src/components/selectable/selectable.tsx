@@ -141,6 +141,14 @@ export type EuiSelectableProps<T = {}> = CommonProps &
      */
     emptyMessage?: ReactElement | string;
     /**
+     * Add an error message.
+     * The message will be shown when the value is not `null` or `undefined`.
+     * Pass a string to simply change the text, or a node to replace the whole content.
+     *
+     * `errorMessage={hasErrors ? 'My error message' : null}`
+     */
+    errorMessage?: ReactElement | string | null;
+    /**
      * Control whether or not options get filtered internally or if consumer will filter
      * Default: false
      */
@@ -427,6 +435,7 @@ export class EuiSelectable<T = {}> extends Component<
       loadingMessage,
       noMatchesMessage,
       emptyMessage,
+      errorMessage,
       isPreFiltered,
       ...rest
     } = this.props;
@@ -479,7 +488,10 @@ export class EuiSelectable<T = {}> extends Component<
 
     /** Create message content that replaces the list if no options are available (yet) */
     let messageContent: ReactNode | undefined;
-    if (isLoading) {
+    if (errorMessage != null) {
+      messageContent =
+        typeof errorMessage === 'string' ? <p>{errorMessage}</p> : errorMessage;
+    } else if (isLoading) {
       if (loadingMessage === undefined || typeof loadingMessage === 'string') {
         messageContent = (
           <>
