@@ -1,9 +1,13 @@
 import React, { FunctionComponent, ReactNode, useState } from 'react';
 import { useRouteMatch } from 'react-router';
 
-import { EuiErrorBoundary } from '../../../../src/components/error_boundary';
-import { EuiButton, EuiButtonEmpty } from '../../../../src/components/button';
-import { EuiFlyout } from '../../../../src/components/flyout';
+import {
+  EuiSpacer,
+  EuiErrorBoundary,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiFlyout,
+} from '../../../../src';
 
 import { slugify } from '../../../../src/services/string/slugify';
 
@@ -16,7 +20,6 @@ import {
   GuideSectionExampleTabs,
   GuideSectionExampleTabsProps,
 } from './guide_section_parts/guide_section_tabs';
-import { GuideSectionTypes } from './guide_section_types';
 
 export interface GuideSection {
   id?: string;
@@ -48,6 +51,10 @@ export const GuideSectionCodeTypesMap = {
   SNIPPET: {
     name: 'snippet',
     displayName: 'Snippet',
+  },
+  SASS: {
+    name: 'sass',
+    displayName: 'Sass',
   },
   PROPS: {
     name: 'props',
@@ -102,8 +109,6 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
 
     if (source) {
       source.map((source) => {
-        // Forever skipping the HTML tab
-        if (source.type === GuideSectionTypes.HTML) return;
         tabs.push({
           // @ts-ignore Complicated
           ...GuideSectionCodeTypesMap[source.type],
@@ -183,29 +188,32 @@ export const GuideSection: FunctionComponent<GuideSection> = ({
         </EuiFlyout>
       )}
       {(demo || fullScreen) && (
-        <GuideSectionExample
-          example={
-            <EuiErrorBoundary>
-              {/* eslint-disable-next-line no-nested-ternary */}
-              {fullScreen == null ? (
-                <div>{demo}</div>
-              ) : demo == null ? (
-                <EuiButton
-                  fill
-                  iconType="fullScreen"
-                  href={`#${path}/${fullScreen.slug}`}
-                >
-                  Full screen demo
-                </EuiButton>
-              ) : (
-                demo
-              )}
-            </EuiErrorBoundary>
-          }
-          tabs={renderTabs()}
-          ghostBackground={ghostBackground}
-          demoPanelProps={demoPanelProps}
-        />
+        <>
+          <EuiSpacer />
+          <GuideSectionExample
+            example={
+              <EuiErrorBoundary>
+                {/* eslint-disable-next-line no-nested-ternary */}
+                {fullScreen == null ? (
+                  <div>{demo}</div>
+                ) : demo == null ? (
+                  <EuiButton
+                    fill
+                    iconType="fullScreen"
+                    href={`#${path}/${fullScreen.slug}`}
+                  >
+                    Full screen demo
+                  </EuiButton>
+                ) : (
+                  demo
+                )}
+              </EuiErrorBoundary>
+            }
+            tabs={renderTabs()}
+            ghostBackground={ghostBackground}
+            demoPanelProps={demoPanelProps}
+          />
+        </>
       )}
     </div>
   );

@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/popover allowing users to customize display settings 1`] = `
+<Fragment>
+  <EuiPopover
+    anchorPosition="downRight"
+    button={
+      <EuiToolTip
+        content="Display options"
+        delay="long"
+        display="inlineBlock"
+        position="top"
+      >
+        <EuiButtonIcon
+          aria-label="Display options"
+          className="euiDataGrid__controlBtn"
+          color="text"
+          data-test-subj="dataGridDisplaySelectorButton"
+          iconType="tableDensityNormal"
+          onClick={[Function]}
+          size="xs"
+        />
+      </EuiToolTip>
+    }
+    closePopover={[Function]}
+    data-test-subj="dataGridDisplaySelectorPopover"
+    display="inlineBlock"
+    hasArrow={true}
+    isOpen={false}
+    ownFocus={true}
+    panelClassName="euiDataGrid__displayPopoverPanel"
+    panelPaddingSize="s"
+  >
+    <EuiI18n
+      defaults={
+        Array [
+          "Density",
+          "Compact",
+          "Normal",
+          "Expanded",
+        ]
+      }
+      tokens={
+        Array [
+          "euiDisplaySelector.densityLabel",
+          "euiDisplaySelector.labelCompact",
+          "euiDisplaySelector.labelNormal",
+          "euiDisplaySelector.labelExpanded",
+        ]
+      }
+    >
+      <Component />
+    </EuiI18n>
+    <EuiI18n
+      defaults={
+        Array [
+          "Row height",
+          "Single",
+          "Auto fit",
+          "Custom",
+          "Lines per row",
+        ]
+      }
+      tokens={
+        Array [
+          "euiDisplaySelector.rowHeightLabel",
+          "euiDisplaySelector.labelSingle",
+          "euiDisplaySelector.labelAuto",
+          "euiDisplaySelector.labelCustom",
+          "euiDisplaySelector.lineCountLabel",
+        ]
+      }
+    >
+      <Component />
+    </EuiI18n>
+  </EuiPopover>
+</Fragment>
+`;

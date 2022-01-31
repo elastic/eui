@@ -9,10 +9,12 @@ cypress/videos
 
 coverage/
 reports/
+.nyc_output/
 tmp/
 dist/
 lib/
 es/
+optimize/
 test-env/
 .idea
 .vscode/

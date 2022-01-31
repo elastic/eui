@@ -36,7 +36,7 @@ describe('AsyncInterval', () => {
     await instance.__pendingFn;
   }
 
-  describe('when creating a 1000ms interval', async () => {
+  describe('when creating a 1000ms interval', () => {
     let instance: AsyncInterval;
     let spy: jest.Mock;
     beforeEach(() => {
@@ -73,7 +73,7 @@ describe('AsyncInterval', () => {
     });
   });
 
-  describe('when creating a 1000ms interval that calls a fn that takes 2000ms to complete', async () => {
+  describe('when creating a 1000ms interval that calls a fn that takes 2000ms to complete', () => {
     let instance: AsyncInterval;
     let spy: jest.Mock;
     beforeEach(() => {

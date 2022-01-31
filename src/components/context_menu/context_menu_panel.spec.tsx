@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import { mount } from '@cypress/react';
 
 import { EuiContextMenuItem } from './context_menu_item';
 import { EuiContextMenuPanel } from './context_menu_panel';
@@ -15,22 +14,20 @@ import { EuiContextMenuPanel } from './context_menu_panel';
 describe('EuiContextMenuPanel', () => {
   describe('focus behavior', () => {
     it('is set on the first focusable element by default if there are no items and hasFocus is true', () => {
-      mount(
+      cy.mount(
         <EuiContextMenuPanel>
           <button data-test-subj="button">Hello world</button>
         </EuiContextMenuPanel>
       );
-
       cy.focused().should('have.attr', 'data-test-subj', 'button');
     });
 
     it('is not set on anything if hasFocus is false', () => {
-      mount(
+      cy.mount(
         <EuiContextMenuPanel hasFocus={false}>
           <button data-test-subj="button">Hello world</button>
         </EuiContextMenuPanel>
       );
-
       cy.focused().should('not.exist');
     });
   });
@@ -50,8 +47,7 @@ describe('EuiContextMenuPanel', () => {
 
     describe('up/down keys', () => {
       beforeEach(() => {
-        mount(<EuiContextMenuPanel items={items} />);
-        cy.wait(100); // Intermittent flake workaround: without this, the first downarrow key does not always focus into the menu items as expected
+        cy.mount(<EuiContextMenuPanel items={items} />);
       });
 
       it('focuses the panel by default', () => {
@@ -59,35 +55,32 @@ describe('EuiContextMenuPanel', () => {
       });
 
       it('down arrow key focuses the first menu item', () => {
-        cy.get('body').type('{downarrow}');
-
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.realPress('{downarrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'itemA');
       });
 
       it('subsequently, down arrow key focuses the next menu item', () => {
-        cy.get('body').type('{downarrow}');
-        cy.get('body').type('{downarrow}');
-
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.repeatRealPress('{downarrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'itemB');
       });
 
       it('up arrow key wraps to last menu item', () => {
-        cy.get('body').type('{uparrow}');
-
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.realPress('{uparrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'itemC');
       });
 
       it('down arrow key wraps to first menu item', () => {
-        cy.get('body').type('{uparrow}');
-        cy.get('body').type('{downarrow}');
-
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.repeatRealPress('{downarrow}', 4);
         cy.focused().should('have.attr', 'data-test-subj', 'itemA');
       });
 
       it('subsequently, up arrow key focuses the previous menu item', () => {
-        cy.get('body').type('{uparrow}');
-        cy.get('body').type('{uparrow}');
-
+        cy.focused().should('have.attr', 'class', 'euiContextMenuPanel');
+        cy.repeatRealPress('{uparrow}');
         cy.focused().should('have.attr', 'data-test-subj', 'itemB');
       });
     });
@@ -95,36 +88,30 @@ describe('EuiContextMenuPanel', () => {
     describe('left/right arrow keys', () => {
       it("right arrow key shows next panel with focused item's index", () => {
         const showNextPanelHandler = cy.stub();
-        mount(
+        cy.mount(
           <EuiContextMenuPanel
             items={items}
             showNextPanel={showNextPanelHandler}
           />
         );
-
-        cy.get('body')
-          .type('{downarrow}')
-          .type('{rightarrow}')
-          .then(() => {
-            expect(showNextPanelHandler).to.be.called;
-          });
+        cy.realPress('{downarrow}');
+        cy.realPress('{rightarrow}').then(() => {
+          expect(showNextPanelHandler).to.be.called;
+        });
       });
 
       it('left arrow key shows previous panel', () => {
         const showPreviousPanelHandler = cy.stub();
-        mount(
+        cy.mount(
           <EuiContextMenuPanel
             items={items}
             showPreviousPanel={showPreviousPanelHandler}
           />
         );
-
-        cy.get('body')
-          .type('{downarrow}')
-          .type('{leftarrow}')
-          .then(() => {
-            expect(showPreviousPanelHandler).to.be.called;
-          });
+        cy.realPress('{downarrow}');
+        cy.realPress('{leftarrow}').then(() => {
+          expect(showPreviousPanelHandler).to.be.called;
+        });
       });
     });
   });

@@ -3,12 +3,11 @@
   "extends": ["config:base", ":disableDependencyDashboard"],
   "ignorePaths": ["./.github/**"],
   "enabledManagers": ["npm"],
-  "baseBranches": ["master"],
+  "baseBranches": ["main"],
   "separateMajorMinor": false,
   "rangeStrategy": "bump",
   "semanticCommits": "disabled",
   "assignAutomerge": true,
-  "major": true,
   "vulnerabilityAlerts": {
     "enabled": false
   },
@@ -20,14 +19,9 @@
     {
       "groupName": "@elastic/charts",
       "matchPackageNames": ["@elastic/charts"],
-      "enabled": true
-    },
-    {
-      "matchPackageNames": ["@elastic/charts"],
       "matchUpdateTypes": ["major"],
-      "matchBaseBranches": ["master"],
-      "reviewers": ["team:datavis"],
-      "labels": ["dependencies"],
+      "matchBaseBranches": ["main"],
+      "labels": ["dependencies", "skip-changelog"],
       "automerge": true,
       "enabled": true
     }

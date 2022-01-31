@@ -7,14 +7,17 @@ import {
   EuiCode,
   EuiLink,
   EuiSkipLink,
+  EuiScreenReaderLive,
   EuiScreenReaderOnly,
   EuiSpacer,
 } from '../../../../src/components';
 
+import ScreenReaderLive from './screen_reader_live';
 import ScreenReaderOnly from './screen_reader';
 import ScreenReaderFocus from './screen_reader_focus';
 import SkipLink from './skip_link';
 
+const screenReaderLiveSource = require('!!raw-loader!./screen_reader_live');
 const screenReaderOnlySource = require('!!raw-loader!./screen_reader');
 const screenReaderFocusSource = require('!!raw-loader!./screen_reader_focus');
 
@@ -111,6 +114,46 @@ export const AccessibilityExample = {
   <!-- visually hidden content, displayed on focus -->
 </EuiScreenReaderOnly>`,
       demo: <ScreenReaderFocus />,
+    },
+    {
+      title: 'Screen reader live region',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: screenReaderLiveSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Using <EuiCode>EuiScreenReaderLive</EuiCode> to announce dynamic
+            content, such as status changes based on user interaction.
+          </p>
+          <p>
+            The configurable <EuiCode>role</EuiCode> and{' '}
+            <EuiCode>aria-live</EuiCode> props default to{' '}
+            <EuiCode>status</EuiCode> and <EuiCode>polite</EuiCode> respectively
+            for unintrusive but timely update announcements. When not using the
+            default values, be sure to follow{' '}
+            <EuiLink
+              href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions"
+              external
+            >
+              ARIA guidelines
+            </EuiLink>{' '}
+            for <EuiCode>role</EuiCode> to <EuiCode>aria-live</EuiCode> mapping.
+          </p>
+          <p>
+            Also consider other live region guidelines, such as that live
+            regions must be present on initial page load, and should not be in a
+            conditional JSX wrapper.
+          </p>
+        </>
+      ),
+      props: {
+        EuiScreenReaderLive,
+      },
+      demo: <ScreenReaderLive />,
     },
     {
       title: 'Skip link',

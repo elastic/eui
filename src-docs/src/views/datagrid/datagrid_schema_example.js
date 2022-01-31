@@ -1,13 +1,10 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 import { EuiDataGrid, EuiCode } from '../../../../src/components';
 
 import DataGridSchema from './schema';
 const dataGridSchemaSource = require('!!raw-loader!./schema');
-const dataGridSchemaHtml = renderToHtml(DataGridSchema);
 
 import {
   EuiDataGridColumn,
@@ -18,10 +15,9 @@ import {
   EuiDataGridStyle,
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridColumnVisibility,
+  EuiDataGridSchemaDetector,
+  EuiDataGridCellValueElementProps,
 } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
-
-import { EuiDataGridCellValueElementProps } from '!!prop-loader!../../../../src/components/datagrid/body/data_grid_cell';
-import { EuiDataGridSchemaDetector } from '!!prop-loader!../../../../src/components/datagrid/data_grid_schema';
 
 export const DataGridSchemaExample = {
   title: 'Data grid schemas and popovers',
@@ -31,10 +27,6 @@ export const DataGridSchemaExample = {
         {
           type: GuideSectionTypes.JS,
           code: dataGridSchemaSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridSchemaHtml,
         },
       ],
       text: (

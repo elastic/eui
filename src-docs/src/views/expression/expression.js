@@ -9,6 +9,7 @@ import {
   EuiFieldNumber,
   EuiExpression,
 } from '../../../../src/components';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 // Rise the popovers above GuidePageSideNav
 const POPOVER_STYLE = { zIndex: '200' };
@@ -22,6 +23,15 @@ export default () => {
   const [example2, setExample2] = useState({
     value: 100,
     description: 'Is above',
+  });
+
+  const expressionPopoverId__1 = useGeneratedHtmlId({
+    prefix: 'expressionPopover',
+    suffix: 'first',
+  });
+  const expressionPopoverId__2 = useGeneratedHtmlId({
+    prefix: 'expressionPopover',
+    suffix: 'second',
   });
 
   const openExample1 = () => {
@@ -132,7 +142,7 @@ export default () => {
     <EuiFlexGroup gutterSize="s">
       <EuiFlexItem grow={false}>
         <EuiPopover
-          id="popover1"
+          id={expressionPopoverId__1}
           button={
             <EuiExpression
               description="when"
@@ -152,7 +162,7 @@ export default () => {
 
       <EuiFlexItem grow={false}>
         <EuiPopover
-          id="popover2"
+          id={expressionPopoverId__2}
           panelPaddingSize="s"
           button={
             <EuiExpression

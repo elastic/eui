@@ -7,6 +7,7 @@
  */
 
 export * from './super_date_picker';
+export * from './auto_refresh';
 
 export { EuiDatePicker, EuiDatePickerProps } from './date_picker';
 
@@ -16,6 +17,7 @@ export {
 } from './date_picker_range';
 
 export {
+  ApplyTime,
   DurationRange as EuiSuperDatePickerCommonRange,
   DurationRange as EuiSuperDatePickerDurationRange,
   DurationRange as EuiSuperDatePickerRecentRange,

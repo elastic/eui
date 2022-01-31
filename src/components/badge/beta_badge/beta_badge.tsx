@@ -210,7 +210,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
           content={tooltipContent}
           title={title || label}
         >
-          <Fragment>{content}</Fragment>
+          {content}
         </EuiToolTip>
       );
     } else {
@@ -224,7 +224,7 @@ export const EuiBetaBadge: FunctionComponent<EuiBetaBadgeProps> = ({
           content={tooltipContent}
           title={title || label}
         >
-          <span tabIndex={0} className={classes} {...rest}>
+          <span tabIndex={0} className={classes} role="button" {...rest}>
             {icon || label}
           </span>
         </EuiToolTip>

@@ -34,7 +34,9 @@ export interface EuiTableFieldDataColumnType<T>
   /**
    * A field of the item (may be a nested field)
    */
-  field: keyof T | string; // supports outer.inner key paths
+  // type hack used for better autocomplete support
+  // https://github.com/microsoft/TypeScript/issues/29729
+  field: keyof T | (string & {}); // supports outer.inner key paths
   /**
    * The display name of the column
    */
@@ -65,11 +67,9 @@ export interface EuiTableFieldDataColumnType<T>
    * Indicates whether this column should truncate its content when it doesn't fit
    */
   truncateText?: boolean;
-  isMobileHeader?: boolean;
   mobileOptions?: Omit<EuiTableRowCellMobileOptionsShape, 'render'> & {
     render?: (item: T) => ReactNode;
   };
-  hideForMobile?: boolean;
   /**
    * Describe a custom renderer function for the content
    */

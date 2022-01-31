@@ -9,7 +9,7 @@ import Knobs from '../../../services/playground/knobs';
 import { propUtilityForPlayground } from '../../../services/playground';
 
 export type GuideSectionPropsTable = {
-  componentName: any;
+  componentName?: any;
   component: any;
 };
 
@@ -25,10 +25,12 @@ export const GuideSectionPropsTable: FunctionComponent<GuideSectionPropsTable> =
 
   return (
     <div>
-      <GuideSectionPropsDescription
-        componentName={componentName}
-        component={component}
-      />
+      {componentName && (
+        <GuideSectionPropsDescription
+          componentName={componentName}
+          component={component}
+        />
+      )}
       <PlaygroundProps
         isPlayground={false}
         config={{

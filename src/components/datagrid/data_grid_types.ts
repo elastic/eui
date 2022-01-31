@@ -17,12 +17,17 @@ import {
   AriaAttributes,
   Dispatch,
   SetStateAction,
+  MutableRefObject,
 } from 'react';
-import { VariableSizeGridProps } from 'react-window';
+import {
+  VariableSizeGridProps,
+  VariableSizeGrid as Grid,
+  GridOnItemsRenderedProps,
+} from 'react-window';
 import { EuiListGroupItemProps } from '../list_group';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { ExclusiveUnion, CommonProps, OneOf } from '../common';
-import { RowHeightUtils } from './row_height_utils';
+import { RowHeightUtils } from './utils/row_heights';
 import { IconType } from '../icon';
 import { EuiTokenProps } from '../token';
 
@@ -30,20 +35,19 @@ export interface EuiDataGridToolbarProps {
   gridWidth: number;
   minSizeForControls?: number;
   toolbarVisibility: boolean | EuiDataGridToolBarVisibilityOptions;
-  styleSelector: ReactElement;
+  displaySelector: ReactNode;
   isFullScreen: boolean;
   controlBtnClasses: string;
-  columnSelector: ReactElement;
+  columnSelector: ReactNode;
   columnSorting: ReactNode;
-  setRef: RefCallback<HTMLDivElement | null>;
   setIsFullScreen: Dispatch<SetStateAction<boolean>>;
 }
+
 export interface EuiDataGridPaginationRendererProps
   extends EuiDataGridPaginationProps {
   rowCount: number;
   controls: string;
   'aria-label'?: AriaAttributes['aria-label'];
-  'aria-labelledby'?: AriaAttributes['aria-labelledby'];
 }
 
 export interface EuiDataGridInMemoryRendererProps {
@@ -166,12 +170,27 @@ export type EuiDataGridFooterRowProps = CommonProps &
     visibleRowIndex?: number;
   };
 
+export interface EuiDataGridVisibleRows {
+  startRow: number;
+  endRow: number;
+  visibleRowCount: number;
+}
+
+export interface DataGridSortingContextShape {
+  sorting?: EuiDataGridSorting;
+  sortedRowMap: { [key: number]: number };
+  getCorrectRowIndex: (rowIndex: number) => number;
+}
+
 export interface DataGridFocusContextShape {
+  focusedCell?: EuiDataGridFocusedCell;
   setFocusedCell: (cell: EuiDataGridFocusedCell) => void;
+  setIsFocusedCellInView: (isFocusedCellInView: boolean) => void;
   onFocusUpdate: (
     cell: EuiDataGridFocusedCell,
     updateFocus: Function
   ) => () => void;
+  focusFirstVisibleInteractiveCell: () => void;
 }
 
 export type CommonGridProps = CommonProps &
@@ -221,7 +240,7 @@ export type CommonGridProps = CommonProps &
      */
     gridStyle?: EuiDataGridStyle;
     /**
-     * Accepts either a boolean or #EuiDataGridToolbarVisibilityOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar as well as add additional buttons.
+     * Accepts either a boolean or #EuiDataGridToolBarVisibilityOptions object. When used as a boolean, defines the display of the toolbar entire. WHen passed an object allows you to turn off individual controls within the toolbar as well as add additional buttons.
      */
     toolbarVisibility?: boolean | EuiDataGridToolBarVisibilityOptions;
     /**
@@ -306,32 +325,31 @@ export interface EuiDataGridColumnSortingDraggableProps {
   display: string;
 }
 export interface EuiDataGridBodyProps {
-  isFullScreen: boolean;
-  columnWidths: EuiDataGridColumnWidths;
-  defaultColumnWidth?: number | null;
-  leadingControlColumns?: EuiDataGridControlColumn[];
-  trailingControlColumns?: EuiDataGridControlColumn[];
+  leadingControlColumns: EuiDataGridControlColumn[];
+  trailingControlColumns: EuiDataGridControlColumn[];
   columns: EuiDataGridColumn[];
+  visibleColCount: number;
   schema: EuiDataGridSchema;
   schemaDetectors: EuiDataGridSchemaDetector[];
-  popoverContents?: EuiDataGridPopoverContents;
+  popoverContents: EuiDataGridPopoverContents;
   rowCount: number;
+  visibleRows: EuiDataGridVisibleRows;
   renderCellValue: EuiDataGridCellProps['renderCellValue'];
   renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
-  inMemory?: EuiDataGridInMemory;
-  inMemoryValues: EuiDataGridInMemoryValues;
   interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
   pagination?: EuiDataGridPaginationProps;
-  setColumnWidth: (columnId: string, width: number) => void;
   headerIsInteractive: boolean;
   handleHeaderMutation: MutationCallback;
   setVisibleColumns: EuiDataGridHeaderRowProps['setVisibleColumns'];
   switchColumnPos: EuiDataGridHeaderRowProps['switchColumnPos'];
-  toolbarHeight: number;
+  onColumnResize?: EuiDataGridOnColumnResizeHandler;
   virtualizationOptions?: Partial<VariableSizeGridProps>;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
-  rowHeightUtils: RowHeightUtils;
-  gridStyles?: EuiDataGridStyle;
+  gridStyles: EuiDataGridStyle;
+  gridWidth: number;
+  gridRef: MutableRefObject<Grid | null>;
+  gridItemsRendered: MutableRefObject<GridOnItemsRenderedProps | null>;
+  wrapperRef: MutableRefObject<HTMLDivElement | null>;
 }
 export interface EuiDataGridCellValueElementProps {
   /**
@@ -383,6 +401,7 @@ export interface EuiDataGridCellProps {
   style?: React.CSSProperties;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils?: RowHeightUtils;
+  rowManager?: EuiDataGridRowManager;
 }
 
 export interface EuiDataGridCellState {
@@ -396,7 +415,7 @@ export interface EuiDataGridCellState {
 
 export type EuiDataGridCellValueProps = Omit<
   EuiDataGridCellProps,
-  'width' | 'interactiveCellId' | 'popoverContent'
+  'width' | 'interactiveCellId' | 'popoverContent' | 'rowManager'
 >;
 export interface EuiDataGridControlColumn {
   /**
@@ -575,6 +594,11 @@ export interface EuiDataGridStyle {
    * If set to true, the footer row will be sticky
    */
   stickyFooter?: boolean;
+  /**
+   * Optional callback returning the current `gridStyle` config when changes occur from user input (e.g. toolbar display controls).
+   * Can be used for, e.g. storing user `gridStyle` in a local storage object.
+   */
+  onChange?: (gridStyle: EuiDataGridStyle) => void;
 }
 
 export interface EuiDataGridToolBarVisibilityColumnSelectorOptions {
@@ -588,6 +612,17 @@ export interface EuiDataGridToolBarVisibilityColumnSelectorOptions {
   allowReorder?: boolean;
 }
 
+export interface EuiDataGridToolBarVisibilityDisplaySelectorOptions {
+  /**
+   * When `false`, removes the ability to change density display through the UI
+   */
+  allowDensity?: boolean;
+  /**
+   * When `false`, removes the ability to change row height display through the UI
+   */
+  allowRowHeight?: boolean;
+}
+
 export interface EuiDataGridToolBarVisibilityOptions {
   /**
    * Allows the ability for the user to hide fields and sort columns, boolean or a #EuiDataGridToolBarVisibilityColumnSelectorOptions
@@ -596,9 +631,12 @@ export interface EuiDataGridToolBarVisibilityOptions {
     | boolean
     | EuiDataGridToolBarVisibilityColumnSelectorOptions;
   /**
-   * Allows the ability for the user to set the grid density. If on, this merges against what is provided in #EuiDataGridStyle
+   * Allows the ability for the user to customize display settings such as grid density and row heights.
+   * User changes will override what is provided in #EuiDataGridStyle and #EuiDataGridRowHeightsOptions
    */
-  showStyleSelector?: boolean;
+  showDisplaySelector?:
+    | boolean
+    | EuiDataGridToolBarVisibilityDisplaySelectorOptions;
   /**
    * Allows the ability for the user to sort rows based upon column values
    */
@@ -608,9 +646,35 @@ export interface EuiDataGridToolBarVisibilityOptions {
    */
   showFullScreenSelector?: boolean;
   /**
-   * Will place any passed node into the toolbar in front of the fullscreen button. Recommend using EuiButtonEmpty with the props shown in the examples.
+   * If passed a `ReactNode`, appends the passed custom control into the left side of the toolbar, after the column & sort controls.
+   * Or use #EuiDataGridToolBarAdditionalControlsOptions to customize the location of your control.
    */
-  additionalControls?: ReactNode;
+  additionalControls?: ReactNode | EuiDataGridToolBarAdditionalControlsOptions;
+}
+
+export interface EuiDataGridToolBarAdditionalControlsOptions {
+  /**
+   * If passed a `ReactNode`, appends the passed node into the left side of the toolbar, **after** the column & sort controls.
+   * Or use #EuiDataGridToolBarAdditionalControlsLeftOptions to customize the location of your control.
+   * We recommend using `<EuiButtonEmpty size="xs" />` to match the existing controls on the left.
+   */
+  left?: ReactNode | EuiDataGridToolBarAdditionalControlsLeftOptions;
+  /**
+   * Will prepend the passed node into the right side of the toolbar, **before** the density & full screen controls.
+   * We recommend using `<EuiButtonIcon size="xs" />` to match the existing controls on the right.
+   */
+  right?: ReactNode;
+}
+
+export interface EuiDataGridToolBarAdditionalControlsLeftOptions {
+  /**
+   * Will prepend the passed node into the left side of the toolbar, **before** the column & sort controls.
+   */
+  prepend?: ReactNode;
+  /**
+   * Will append the passed node into the left side of the toolbar, **after** the column & sort controls.
+   */
+  append?: ReactNode;
 }
 
 // ideally this would use a generic to enforce `pageSize` exists in `pageSizeOptions`,
@@ -717,10 +781,22 @@ export interface EuiDataGridRowHeightsOptions {
   defaultHeight?: EuiDataGridRowHeightOption;
   /**
    * Defines the height for a specific row. It can be line count or just height.
+   *
+   * When using row height overrides, we strongly setting the `showDisplaySelector: allowRowHeight`
+   * toolbar control to `false` in #EuiDataGridToolBarVisibilityOptions
    */
   rowHeights?: Record<number, EuiDataGridRowHeightOption>;
   /**
    * Defines a global lineHeight style to apply to all cells
    */
   lineHeight?: string;
+  /**
+   * Optional callback returning the current `rowHeightsOptions` when changes occur from user input (e.g. toolbar display controls).
+   * Can be used for, e.g. storing user `rowHeightsOptions` in a local storage object.
+   */
+  onChange?: (rowHeightsOptions: EuiDataGridRowHeightsOptions) => void;
+}
+
+export interface EuiDataGridRowManager {
+  getRow(rowIndex: number): HTMLDivElement;
 }

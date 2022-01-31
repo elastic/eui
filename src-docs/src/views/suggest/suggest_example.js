@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -14,15 +12,12 @@ import {
 
 import Suggest from './suggest';
 const suggestSource = require('!!raw-loader!./suggest');
-const suggestHtml = renderToHtml(Suggest);
 
 import SavedQueries from './saved_queries';
 const savedQueriesSource = require('!!raw-loader!./saved_queries');
-const savedQueriesHtml = renderToHtml(SavedQueries);
 
 import SuggestItem from './suggest_item';
 const suggestItemSource = require('!!raw-loader!./suggest_item');
-const suggestItemHtml = renderToHtml(SuggestItem);
 const suggestItemSnippet = [
   `<EuiSuggestItem
   type={sampleItem.type}
@@ -80,10 +75,6 @@ export const SuggestExample = {
           type: GuideSectionTypes.JS,
           code: suggestSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: suggestHtml,
-        },
       ],
       text: (
         <div>
@@ -106,10 +97,6 @@ export const SuggestExample = {
         {
           type: GuideSectionTypes.JS,
           code: suggestItemSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: suggestItemHtml,
         },
       ],
       text: (
@@ -136,10 +123,6 @@ export const SuggestExample = {
         {
           type: GuideSectionTypes.JS,
           code: savedQueriesSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: savedQueriesHtml,
         },
       ],
       text: (

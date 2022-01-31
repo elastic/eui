@@ -41,6 +41,11 @@ export interface EuiDraggableProps
    */
   customDragHandle?: boolean;
   /**
+   * Whether the container has interactive children and should have `role="group"` instead of `"button"`.
+   * Setting this flag ensures your drag & drop container is keyboard and screen reader accessible.
+   */
+  hasInteractiveChildren?: boolean;
+  /**
    * Whether the item is currently in a position to be removed
    */
   isRemovable?: boolean;
@@ -55,6 +60,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
   customDragHandle = false,
   draggableId,
   isDragDisabled = false,
+  hasInteractiveChildren = false,
   isRemovable = false,
   index,
   children,
@@ -104,6 +110,21 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
               data-test-subj={dataTestSubj}
               className={classes}
               style={{ ...style, ...provided.draggableProps.style }}
+              // We use [role="group"] instead of [role="button"] when we expect a nested
+              // interactive element. Screen readers will cue users that this is a container
+              // and has one or more elements inside that are part of a related group.
+              role={
+                hasInteractiveChildren
+                  ? 'group'
+                  : provided.dragHandleProps?.role
+              }
+              // If the container includes an interactive element, we remove the tabindex=0
+              // because [role="group"] does not permit or warrant a tab stop
+              tabIndex={
+                hasInteractiveChildren
+                  ? undefined
+                  : provided.dragHandleProps?.tabIndex
+              }
             >
               {cloneElement(DraggableElement, {
                 className: classNames(

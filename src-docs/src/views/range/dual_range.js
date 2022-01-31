@@ -2,16 +2,21 @@ import React, { useState } from 'react';
 
 import { EuiDualRange, EuiSpacer, EuiTitle } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [value, setValue] = useState(['100', '150']);
   const [value2, setValue2] = useState(['40', '60']);
 
+  const basicRangeSliderId = useGeneratedHtmlId({ prefix: 'basicRangeSlider' });
+  const draggableRangeSliderId = useGeneratedHtmlId({
+    prefix: 'draggableRangeSlider',
+  });
+
   return (
     <>
       <EuiDualRange
-        id={htmlIdGenerator()()}
+        id={basicRangeSliderId}
         min={0}
         max={300}
         step={10}
@@ -30,7 +35,7 @@ export default () => {
       <EuiSpacer size="l" />
 
       <EuiDualRange
-        id={htmlIdGenerator()()}
+        id={draggableRangeSliderId}
         min={0}
         max={100}
         step={1}

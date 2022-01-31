@@ -25,7 +25,6 @@ const colorToClassNameMap = {
   default: null,
   subdued: 'euiStat__title--subdued',
   primary: 'euiStat__title--primary',
-  secondary: 'euiStat__title--secondary',
   success: 'euiStat__title--success',
   danger: 'euiStat__title--danger',
   accent: 'euiStat__title--accent',
@@ -67,7 +66,6 @@ export interface EuiStatProps {
   title: ReactNode;
   /**
    * The color of the title text
-   * **`secondary` color is DEPRECATED, use `success` instead**
    */
   titleColor?: keyof typeof colorToClassNameMap | string;
   /**

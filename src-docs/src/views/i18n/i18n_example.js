@@ -1,14 +1,11 @@
 import React from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import { EuiCode, EuiI18n, EuiContext } from '../../../../src/components';
 
 import I18nBasic from './i18n_basic';
 const i18nBasicSource = require('!!raw-loader!./i18n_basic');
-const i18nBasicHtml = renderToHtml(I18nBasic);
 const basicSnippet = [
   `useEuiI18n('filename.token', 'default value')
 `,
@@ -18,7 +15,6 @@ const basicSnippet = [
 
 import I18nInterpolation from './i18n_interpolation';
 const i18nInterpolationSource = require('!!raw-loader!./i18n_interpolation');
-const i18nInterpolationHtml = renderToHtml(I18nInterpolation);
 const interpolationSnippet = [
   `useEuiI18n('filename.greeting', 'Hello, {planet}', { planet: 'world' })
 `,
@@ -34,7 +30,6 @@ const interpolationSnippet = [
 
 import I18nAttribute from './i18n_attribute';
 const i18nAttributeSource = require('!!raw-loader!./i18n_attribute');
-const i18nAttributeHtml = renderToHtml(I18nAttribute);
 const attributeSnippet = [
   `<p aria-label={useEuiI18n('filename.token', 'default value')}><!-- Text here--></p>
 `,
@@ -46,7 +41,6 @@ const attributeSnippet = [
 
 import I18nMulti from './i18n_multi';
 const I18nMultiSource = require('!!raw-loader!./i18n_multi');
-const I18nMultiHtml = renderToHtml(I18nMulti);
 const multiValueSnippet = [
   `const [label, text] = useEuiI18n(
   ['filename.label', 'filename.text'],
@@ -65,7 +59,6 @@ return <p aria-label={label}>{text}</p>;
 
 import I18nNumber from './i18n_number';
 const I18nNumberSource = require('!!raw-loader!./i18n_number');
-const I18nNumberHtml = renderToHtml(I18nNumber);
 const numberSnippet = [
   `Formatted count of users: <EuiI18nNumber value={5000000} />
 `,
@@ -73,7 +66,6 @@ const numberSnippet = [
 
 import Context from './context';
 const contextSource = require('!!raw-loader!./context');
-const contextHtml = renderToHtml(Context);
 
 import { I18nShapeProps } from './props';
 export const I18nExample = {
@@ -85,10 +77,6 @@ export const I18nExample = {
         {
           type: GuideSectionTypes.JS,
           code: i18nBasicSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: i18nBasicHtml,
         },
       ],
       text: (
@@ -112,10 +100,6 @@ export const I18nExample = {
         {
           type: GuideSectionTypes.JS,
           code: i18nInterpolationSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: i18nInterpolationHtml,
         },
       ],
       text: (
@@ -141,10 +125,6 @@ export const I18nExample = {
           type: GuideSectionTypes.JS,
           code: i18nAttributeSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: i18nAttributeHtml,
-        },
       ],
       text: (
         <p>
@@ -163,10 +143,6 @@ export const I18nExample = {
         {
           type: GuideSectionTypes.JS,
           code: I18nMultiSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: I18nMultiHtml,
         },
       ],
       text: (
@@ -189,10 +165,6 @@ export const I18nExample = {
           type: GuideSectionTypes.JS,
           code: I18nNumberSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: I18nNumberHtml,
-        },
       ],
       text: (
         <p>
@@ -212,10 +184,6 @@ export const I18nExample = {
         {
           type: GuideSectionTypes.JS,
           code: contextSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: contextHtml,
         },
       ],
       text: (

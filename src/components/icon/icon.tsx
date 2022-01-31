@@ -20,6 +20,7 @@ import { icon as empty } from './assets/empty';
 import { enqueueStateChange } from '../../services/react';
 
 import { htmlIdGenerator } from '../../services';
+import { colorToClassMap, isNamedColor, NamedColor } from './named_colors';
 
 const typeToPathMap = {
   accessibility: 'accessibility',
@@ -28,7 +29,7 @@ const typeToPathMap = {
   agentApp: 'app_fleet',
   aggregate: 'aggregate',
   alert: 'alert',
-  analyzeEvent: 'analyze_event',
+  analyzeEvent: 'analyzeEvent',
   annotation: 'annotation',
   apmApp: 'app_apm',
   apmTrace: 'apm_trace',
@@ -38,6 +39,8 @@ const typeToPathMap = {
   arrowLeft: 'arrow_left',
   arrowRight: 'arrow_right',
   arrowUp: 'arrow_up',
+  arrowStart: 'arrowStart',
+  arrowEnd: 'arrowEnd',
   asterisk: 'asterisk',
   auditbeatApp: 'app_auditbeat',
   beaker: 'beaker',
@@ -94,6 +97,8 @@ const typeToPathMap = {
   documentation: 'documentation',
   documents: 'documents',
   dot: 'dot',
+  doubleArrowLeft: 'doubleArrowLeft',
+  doubleArrowRight: 'doubleArrowRight',
   download: 'download',
   editorAlignCenter: 'editor_align_center',
   editorAlignLeft: 'editor_align_left',
@@ -190,6 +195,7 @@ const typeToPathMap = {
   kqlValue: 'kql_value',
   layers: 'layers',
   lensApp: 'app_lens',
+  lettering: 'lettering',
   link: 'link',
   list: 'list',
   listAdd: 'list_add',
@@ -260,6 +266,7 @@ const typeToPathMap = {
   logstashQueue: 'logstash_queue',
   machineLearningApp: 'app_ml',
   magnet: 'magnet',
+  magnifyWithExclamation: 'magnifyWithExclamation',
   magnifyWithMinus: 'magnifyWithMinus',
   magnifyWithPlus: 'magnifyWithPlus',
   managementApp: 'app_management',
@@ -294,6 +301,7 @@ const typeToPathMap = {
   paperClip: 'paper_clip',
   partial: 'partial',
   pause: 'pause',
+  payment: 'payment',
   pencil: 'pencil',
   percent: 'percent',
   pin: 'pin',
@@ -349,6 +357,7 @@ const typeToPathMap = {
   storage: 'storage',
   string: 'string',
   submodule: 'submodule',
+  sun: 'sun',
   swatchInput: 'swatch_input', // Undocumented on purpose. Has an extra stroke for EuiColorPicker
   symlink: 'symlink',
   tableDensityCompact: 'table_density_compact',
@@ -360,6 +369,7 @@ const typeToPathMap = {
   temperature: 'temperature',
   timeline: 'timeline',
   timelionApp: 'app_timelion',
+  timeRefresh: 'timeRefresh',
   timeslider: 'timeslider',
   training: 'training',
   trash: 'trash',
@@ -457,27 +467,7 @@ export type EuiIconType = keyof typeof typeToPathMap;
 
 export type IconType = EuiIconType | string | ComponentType;
 
-const colorToClassMap = {
-  default: null,
-  primary: 'euiIcon--primary',
-  secondary: 'euiIcon--secondary',
-  success: 'euiIcon--success',
-  accent: 'euiIcon--accent',
-  warning: 'euiIcon--warning',
-  danger: 'euiIcon--danger',
-  text: 'euiIcon--text',
-  subdued: 'euiIcon--subdued',
-  ghost: 'euiIcon--ghost',
-  inherit: 'euiIcon--inherit',
-};
-
 export const COLORS: NamedColor[] = keysOf(colorToClassMap);
-
-type NamedColor = keyof typeof colorToClassMap;
-
-function isNamedColor(name: string): name is NamedColor {
-  return colorToClassMap.hasOwnProperty(name);
-}
 
 // We accept arbitrary color strings, which are impossible to type.
 export type IconColor = string | NamedColor;
@@ -504,7 +494,6 @@ export type EuiIconProps = CommonProps &
     /**
      * One of EUI's color palette or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value.
      * Note that coloring only works if your SVG is removed of fill attributes.
-     * **`secondary` color is DEPRECATED, use `success` instead**
      */
     color?: IconColor;
     /**
@@ -719,10 +708,10 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
 
     // This is a fix for IE and Edge, which ignores tabindex="-1" on an SVG, but respects
     // focusable="false".
-    //   - If there's no tab index specified, we'll default the icon to not be focusable,
+    //   - If there's no tabindex specified, we'll default the icon to not be focusable,
     //     which is how SVGs behave in Chrome, Safari, and FF.
-    //   - If tab index is -1, then the consumer wants the icon to not be focusable.
-    //   - For all other values, the consumer wants the icon to be focusable.
+    //   - If tabindex is -1, then the consumer wants the icon to be focusable by JavaScript only.
+    //   - If the tabindex is 0, the consumer wants the icon to be keyboard focusable.
     const focusable = tabIndex == null || tabIndex === -1 ? 'false' : 'true';
 
     if (typeof icon === 'string') {
@@ -769,6 +758,7 @@ export class EuiIcon extends PureComponent<EuiIconProps, State> {
           focusable={focusable}
           role="img"
           title={title}
+          data-icon-type={this.state.iconTitle}
           {...titleId}
           {...rest}
           {...hideIconEmpty}

@@ -123,38 +123,8 @@ export {
 
 export { EuiWindowEvent } from './window_event';
 
-export {
-  useCombinedRefs,
-  useDependentState,
-  useIsWithinBreakpoints,
-  useMouseMove,
-  isMouseEvent,
-} from './hooks';
+export * from './hooks';
 
 export { throttle } from './throttle';
 
-export {
-  EuiSystemContext,
-  EuiThemeContext,
-  EuiModificationsContext,
-  EuiColorModeContext,
-  useEuiTheme,
-  withEuiTheme,
-  WithEuiThemeProps,
-  EuiThemeProvider,
-  buildTheme,
-  computed,
-  isInverseColorMode,
-  getColorMode,
-  getComputed,
-  getOn,
-  mergeDeep,
-  setOn,
-  Computed,
-  ComputedThemeShape,
-  EuiThemeColorMode,
-  EuiThemeComputed,
-  EuiThemeModifications,
-  EuiThemeShape,
-  EuiThemeSystem,
-} from './theme';
+export * from './theme';

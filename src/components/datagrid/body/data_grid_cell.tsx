@@ -18,13 +18,14 @@ import React, {
   memo,
   MutableRefObject,
 } from 'react';
+import { createPortal } from 'react-dom';
 import tabbable from 'tabbable';
 import { keys } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiFocusTrap } from '../../focus_trap';
 import { useEuiI18n } from '../../i18n';
 import { hasResizeObserver } from '../../observer/resize_observer/resize_observer';
-import { DataGridFocusContext } from '../data_grid_context';
+import { DataGridFocusContext } from '../utils/focus';
 import {
   EuiDataGridCellProps,
   EuiDataGridCellState,
@@ -33,12 +34,14 @@ import {
 } from '../data_grid_types';
 import { EuiDataGridCellButtons } from './data_grid_cell_buttons';
 import { EuiDataGridCellPopover } from './data_grid_cell_popover';
+import { IS_JEST_ENVIRONMENT } from '../../../test';
 
 const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
     setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
-    isExpanded: boolean;
     setCellContentsRef: EuiDataGridCell['setCellContentsRef'];
+    isExpanded: boolean;
+    isDefinedHeight: boolean;
   }
 > = memo(
   ({
@@ -49,6 +52,7 @@ const EuiDataGridCellContent: FunctionComponent<
     rowIndex,
     colIndex,
     rowHeightUtils,
+    isDefinedHeight,
     ...rest
   }) => {
     // React is more permissible than the TS types indicate
@@ -61,11 +65,6 @@ const EuiDataGridCellContent: FunctionComponent<
       'Row: {row}; Column: {col}',
       { row: rowIndex + 1, col: colIndex + 1 }
     );
-
-    const isDefinedHeight =
-      rowHeightUtils &&
-      rowHeightsOptions &&
-      rowHeightUtils.isDefinedHeight(rowIndex, rowHeightsOptions);
 
     return (
       <>
@@ -114,7 +113,6 @@ export class EuiDataGridCell extends Component<
   static activeFocusTimeoutId: number | undefined = undefined;
 
   cellRef = createRef() as MutableRefObject<HTMLDivElement | null>;
-  observer!: any; // Cell ResizeObserver
   contentObserver!: any; // Cell Content ResizeObserver
   popoverPanelRef: MutableRefObject<HTMLElement | null> = createRef();
   cellContentsRef: HTMLDivElement | null = null;
@@ -126,36 +124,9 @@ export class EuiDataGridCell extends Component<
     enableInteractions: false,
     disableCellTabIndex: false,
   };
-  unsubscribeCell?: Function = () => {};
+  unsubscribeCell?: Function;
   focusTimeout: number | undefined;
   style = null;
-
-  observeHeight = (
-    component: HTMLDivElement | null,
-    setRowHeight?: (rowHeight: number) => void
-  ) => {
-    const observer = new (window as any).ResizeObserver(() => {
-      const rowHeight = component!.getBoundingClientRect().height;
-      if (setRowHeight) {
-        setRowHeight(rowHeight);
-      }
-    });
-    observer.observe(component);
-    return observer;
-  };
-
-  setCellRef = (ref: HTMLDivElement | null) => {
-    this.cellRef.current = ref;
-
-    // watch the first cell for size changes and use that to re-compute row heights
-    if (this.props.colIndex === 0 && this.props.visibleRowIndex === 0) {
-      if (ref && hasResizeObserver) {
-        this.observer = this.observeHeight(ref, this.props.setRowHeight);
-      } else if (this.observer) {
-        this.observer.disconnect();
-      }
-    }
-  };
 
   static contextType = DataGridFocusContext;
 
@@ -171,7 +142,7 @@ export class EuiDataGridCell extends Component<
     return [];
   };
 
-  takeFocus = () => {
+  takeFocus = (preventScroll: boolean) => {
     const cell = this.cellRef.current;
 
     if (cell) {
@@ -186,52 +157,102 @@ export class EuiDataGridCell extends Component<
         const interactables = this.getInteractables();
         if (this.props.isExpandable === false && interactables.length === 1) {
           // Only one element can be interacted with
-          interactables[0].focus();
+          interactables[0].focus({ preventScroll });
         } else {
-          cell.focus();
+          cell.focus({ preventScroll });
         }
       }
     }
   };
 
-  recalculateRowHeight() {
-    const cellRef = this.cellRef.current;
-    const { getRowHeight, rowHeightUtils, rowHeightsOptions } = this.props;
+  recalculateAutoHeight = () => {
+    const { rowHeightUtils, rowHeightsOptions, rowIndex } = this.props;
+    if (
+      this.cellContentsRef &&
+      rowHeightUtils &&
+      rowHeightUtils.isAutoHeight(rowIndex, rowHeightsOptions)
+    ) {
+      const { columnId, visibleRowIndex } = this.props;
+      const rowHeight = this.cellContentsRef.offsetHeight;
 
-    if (cellRef && getRowHeight && rowHeightUtils && rowHeightsOptions) {
-      const { rowIndex, colIndex, visibleRowIndex } = this.props;
+      rowHeightUtils.setRowHeight(
+        rowIndex,
+        columnId,
+        rowHeight,
+        visibleRowIndex
+      );
+    }
+  };
 
-      const isAutoHeight = rowHeightUtils.isAutoHeight(
+  recalculateLineHeight = () => {
+    if (!this.props.setRowHeight) return; // setRowHeight is only passed by data_grid_body into one cell per row
+    if (!this.cellContentsRef) return;
+
+    const { rowHeightUtils, rowHeightsOptions, rowIndex } = this.props;
+    const rowHeightOption = rowHeightUtils?.getRowHeightOption(
+      rowIndex,
+      rowHeightsOptions
+    );
+    const isSingleLine = rowHeightOption == null; // Undefined rowHeightsOptions default to a single line
+    const lineCount = isSingleLine
+      ? 1
+      : rowHeightUtils?.getLineCount(rowHeightOption);
+
+    if (lineCount) {
+      const shouldUseHeightsCache = rowHeightUtils?.isRowHeightOverride(
         rowIndex,
         rowHeightsOptions
       );
-      const isHeightSame = rowHeightUtils.compareHeights(
-        cellRef.offsetHeight,
-        getRowHeight(rowIndex)
+
+      const height = rowHeightUtils!.calculateHeightForLineCount(
+        this.cellContentsRef,
+        lineCount,
+        shouldUseHeightsCache
       );
 
-      if (isAutoHeight && !isHeightSame) {
-        rowHeightUtils.setRowHeight(
+      if (shouldUseHeightsCache) {
+        const { columnId, visibleRowIndex } = this.props;
+        rowHeightUtils?.setRowHeight(
           rowIndex,
-          colIndex,
-          this.cellContentsRef?.offsetHeight,
+          columnId,
+          height,
           visibleRowIndex
         );
+      } else {
+        this.props.setRowHeight(height);
       }
+    }
+  };
+
+  componentDidMount() {
+    const { colIndex, visibleRowIndex } = this.props;
+
+    this.unsubscribeCell = this.context.onFocusUpdate(
+      [colIndex, visibleRowIndex],
+      this.onFocusUpdate
+    );
+
+    // Account for virtualization - when a cell unmounts when scrolled out of view
+    // and then remounts when scrolled back into view, it should retain focus state
+    if (this.isFocusedCell()) {
+      // The second flag sets preventScroll: true as a focus option, which prevents
+      // hijacking the user's scroll behavior when the cell re-mounts on scroll
+      this.onFocusUpdate(true, true);
+      this.context.setIsFocusedCellInView(true);
     }
   }
 
-  componentDidMount() {
-    this.unsubscribeCell = this.context.onFocusUpdate(
-      [this.props.colIndex, this.props.visibleRowIndex],
-      this.onFocusUpdate
+  isFocusedCell = () => {
+    return (
+      this.context.focusedCell?.[0] === this.props.colIndex &&
+      this.context.focusedCell?.[1] === this.props.visibleRowIndex
     );
-  }
+  };
 
-  onFocusUpdate = (isFocused: boolean) => {
+  onFocusUpdate = (isFocused: boolean, preventScroll = false) => {
     this.setState({ isFocused }, () => {
       if (isFocused) {
-        this.takeFocus();
+        this.takeFocus(preventScroll);
       }
     });
   };
@@ -241,10 +262,21 @@ export class EuiDataGridCell extends Component<
     if (this.unsubscribeCell) {
       this.unsubscribeCell();
     }
+
+    if (this.isFocusedCell()) {
+      this.context.setIsFocusedCellInView(false);
+    }
   }
 
   componentDidUpdate(prevProps: EuiDataGridCellProps) {
-    this.recalculateRowHeight();
+    this.recalculateAutoHeight();
+
+    if (
+      this.props.rowHeightsOptions?.defaultHeight !==
+      prevProps.rowHeightsOptions?.defaultHeight
+    ) {
+      this.recalculateLineHeight();
+    }
 
     if (this.props.columnId !== prevProps.columnId) {
       this.setCellProps({});
@@ -261,6 +293,8 @@ export class EuiDataGridCell extends Component<
     if (nextProps.columnId !== this.props.columnId) return true;
     if (nextProps.columnType !== this.props.columnType) return true;
     if (nextProps.width !== this.props.width) return true;
+    if (nextProps.rowHeightsOptions !== this.props.rowHeightsOptions)
+      return true;
     if (nextProps.renderCellValue !== this.props.renderCellValue) return true;
     if (nextProps.interactiveCellId !== this.props.interactiveCellId)
       return true;
@@ -286,22 +320,6 @@ export class EuiDataGridCell extends Component<
     if (nextState.disableCellTabIndex !== this.state.disableCellTabIndex)
       return true;
 
-    // check if we should update cell because height was changed
-    if (
-      this.cellRef.current &&
-      nextProps.getRowHeight &&
-      nextProps.rowHeightUtils
-    ) {
-      if (
-        !nextProps.rowHeightUtils?.compareHeights(
-          this.cellRef.current.offsetHeight,
-          nextProps.getRowHeight(nextProps.rowIndex)
-        )
-      ) {
-        return true;
-      }
-    }
-
     return false;
   }
 
@@ -311,27 +329,14 @@ export class EuiDataGridCell extends Component<
 
   setCellContentsRef = (ref: HTMLDivElement | null) => {
     this.cellContentsRef = ref;
-    const { rowHeightUtils, rowHeightsOptions, rowIndex } = this.props;
-    if (
-      hasResizeObserver &&
-      rowHeightUtils &&
-      rowHeightsOptions &&
-      rowHeightUtils.isAutoHeight(rowIndex, rowHeightsOptions)
-    ) {
-      if (ref) {
-        const { colIndex, visibleRowIndex } = this.props;
-
-        const setRowHeight = (rowHeight: number) =>
-          rowHeightUtils.setRowHeight(
-            rowIndex,
-            colIndex,
-            rowHeight,
-            visibleRowIndex
-          );
-        this.contentObserver = this.observeHeight(ref, setRowHeight);
-      } else if (this.contentObserver) {
-        this.contentObserver.disconnect();
-      }
+    if (ref && hasResizeObserver) {
+      this.contentObserver = new (window as any).ResizeObserver(() => {
+        this.recalculateAutoHeight();
+        this.recalculateLineHeight();
+      });
+      this.contentObserver.observe(ref);
+    } else if (this.contentObserver) {
+      this.contentObserver.disconnect();
     }
     this.preventTabbing();
   };
@@ -404,9 +409,12 @@ export class EuiDataGridCell extends Component<
       className,
       column,
       style,
+      rowHeightUtils,
+      rowHeightsOptions,
+      rowManager,
       ...rest
     } = this.props;
-    const { rowIndex, rowHeightsOptions } = rest;
+    const { rowIndex } = rest;
 
     const showCellButtons =
       this.state.isFocused ||
@@ -496,6 +504,11 @@ export class EuiDataGridCell extends Component<
       }
     };
 
+    const isDefinedHeight = !!rowHeightUtils?.getRowHeightOption(
+      rowIndex,
+      rowHeightsOptions
+    );
+
     const cellContentProps = {
       ...rest,
       setCellProps: this.setCellProps,
@@ -505,14 +518,13 @@ export class EuiDataGridCell extends Component<
       isExpanded: this.state.popoverIsOpen,
       isDetails: false,
       setCellContentsRef: this.setCellContentsRef,
-      rowHeightsOptions: this.props.rowHeightsOptions,
-      rowHeightUtils: this.props.rowHeightUtils,
+      rowHeightsOptions,
+      rowHeightUtils,
+      isDefinedHeight,
     };
 
-    const anchorClass = classNames('euiDataGridRowCell__expandFlex', {
-      euiDataGridRowCell__alignBaseLine: this.props.rowHeightsOptions,
-    });
-    const expandClass = this.props.rowHeightsOptions
+    const anchorClass = 'euiDataGridRowCell__expandFlex';
+    const expandClass = isDefinedHeight
       ? 'euiDataGridRowCell__contentByHeight'
       : 'euiDataGridRowCell__expandContent';
 
@@ -523,7 +535,7 @@ export class EuiDataGridCell extends Component<
         onDeactivation={() => {
           this.setState({ isEntered: false }, this.preventTabbing);
         }}
-        style={this.props.rowHeightsOptions ? { height: '100%' } : {}}
+        style={isDefinedHeight ? { height: '100%' } : {}}
         clickOutsideDisables={true}
       >
         <div className={anchorClass}>
@@ -571,7 +583,7 @@ export class EuiDataGridCell extends Component<
         innerContent = (
           <div
             className={
-              this.props.rowHeightsOptions
+              isDefinedHeight
                 ? 'euiDataGridRowCell__contentByHeight'
                 : 'euiDataGridRowCell__content'
             }
@@ -595,15 +607,21 @@ export class EuiDataGridCell extends Component<
       }
     }
 
-    return (
+    const content = (
       <div
         role="gridcell"
         tabIndex={
           this.state.isFocused && !this.state.disableCellTabIndex ? 0 : -1
         }
-        ref={this.setCellRef}
+        ref={this.cellRef}
         {...cellProps}
         data-test-subj="dataGridRowCell"
+        // Data attributes to help target specific cells by either data or current cell location
+        data-gridcell-column-id={this.props.columnId} // Static column ID name, not affected by column order
+        data-gridcell-column-index={this.props.colIndex} // Affected by column reordering
+        data-gridcell-row-index={this.props.rowIndex} // Index from data, not affected by sorting or pagination
+        data-gridcell-visible-row-index={this.props.visibleRowIndex} // Affected by sorting & pagination
+        data-gridcell-id={`${this.props.colIndex},${this.props.rowIndex}`} // TODO: Deprecate in favor of the above 4 data attrs
         onKeyDown={handleCellKeyDown}
         onFocus={this.onFocus}
         onMouseEnter={() => {
@@ -617,5 +635,9 @@ export class EuiDataGridCell extends Component<
         {innerContent}
       </div>
     );
+
+    return rowManager && !IS_JEST_ENVIRONMENT
+      ? createPortal(content, rowManager.getRow(rowIndex))
+      : content;
   }
 }

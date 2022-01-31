@@ -9,23 +9,25 @@
 import React from 'react';
 import { mount, render, shallow } from 'enzyme';
 
-import { mockRowHeightUtils } from '../__mocks__/row_height_utils';
-import { DataGridSortingContext } from '../data_grid_context';
-import { schemaDetectors } from '../data_grid_schema';
+import { mockRowHeightUtils } from '../utils/__mocks__/row_heights';
+import { schemaDetectors } from '../utils/data_grid_schema';
+import { providedPopoverContents } from './popover_utils';
 
-import { EuiDataGridBody, Cell, getParentCellContent } from './data_grid_body';
+import { EuiDataGridBody, Cell } from './data_grid_body';
 
 describe('EuiDataGridBody', () => {
   const requiredProps = {
-    isFullScreen: false,
     headerIsInteractive: true,
     rowCount: 1,
-    toolbarHeight: 10,
+    visibleRows: { startRow: 0, endRow: 1, visibleRowCount: 1 },
     columnWidths: { columnA: 20 },
     columns: [
       { id: 'columnA', schema: 'boolean' },
       { id: 'columnB', isExpandable: true },
     ],
+    leadingControlColumns: [],
+    trailingControlColumns: [],
+    visibleColCount: 2,
     schema: {
       columnA: { columnType: 'boolean' },
       columnB: { columnType: 'string' },
@@ -34,12 +36,22 @@ describe('EuiDataGridBody', () => {
     interactiveCellId: 'someId',
     inMemory: { level: 'enhancements' as any },
     inMemoryValues: {},
-    setColumnWidth: jest.fn(),
     handleHeaderMutation: jest.fn(),
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
     schemaDetectors,
+    popoverContents: providedPopoverContents,
     rowHeightUtils: mockRowHeightUtils,
+    gridStyles: {},
+    gridWidth: 300,
+    gridRef: {
+      current: {
+        resetAfterColumnIndex: jest.fn(),
+        resetAfterRowIndex: jest.fn(),
+      } as any,
+    },
+    gridItemsRendered: {} as any,
+    wrapperRef: { current: document.createElement('div') },
   };
 
   beforeAll(() => {
@@ -79,6 +91,7 @@ describe('EuiDataGridBody', () => {
             width: 40,
           },
         ]}
+        visibleColCount={4}
         renderFooterCellValue={() => <footer data-test-subj="footer" />}
       />
     );
@@ -86,47 +99,7 @@ describe('EuiDataGridBody', () => {
     expect(component.find('[data-test-subj="footer"]')).toHaveLength(2);
   });
 
-  // TODO: This is likely better handled/asserted by Cypress.
-  // I'm leaving it in for now to provide an example of props/inMemoryValues
-  it('handles in-memory sorting and pagination', () => {
-    mount(
-      <DataGridSortingContext.Provider
-        value={{
-          onSort: jest.fn(),
-          columns: [
-            { id: 'columnA', direction: 'desc' },
-            { id: 'columnB', direction: 'asc' },
-          ],
-        }}
-      >
-        <EuiDataGridBody
-          {...requiredProps}
-          inMemory={{ level: 'sorting' }}
-          inMemoryValues={{
-            '0': { columnA: 'true', columnB: 'sdff' },
-            '1': { columnA: 'false', columnB: 'asdfsdf' },
-          }}
-          pagination={{
-            pageIndex: 0,
-            pageSize: 1,
-            onChangeItemsPerPage: jest.fn(),
-            onChangePage: jest.fn(),
-          }}
-        />
-      </DataGridSortingContext.Provider>
-    );
-  });
-
   // TODO: Test final height/weights in Cypress
-  it('calculates height and widths', () => {
-    mount(
-      <EuiDataGridBody
-        {...requiredProps}
-        rowHeightsOptions={{ defaultHeight: 10, rowHeights: { 0: 20 } }}
-        defaultColumnWidth={50}
-      />
-    );
-  });
 
   // TODO: Test tabbing in Cypress
 
@@ -167,51 +140,5 @@ describe('Cell', () => {
       component.setProps({ rowIndex: 4 });
       expect(component.hasClass('euiDataGridRowCell--stripe')).toBe(false);
     });
-
-    it('renders striping based on the visible rowIndex, and not from the row offset that accounts for pagination', () => {
-      const component = shallow(
-        <Cell
-          {...requiredProps}
-          rowIndex={3}
-          data={{ ...requiredProps.data, rowOffset: 15 }}
-        />
-      );
-      expect(component.prop('rowIndex')).toBe(18);
-      expect(component.prop('visibleRowIndex')).toBe(3);
-      expect(component.hasClass('euiDataGridRowCell--stripe')).toBe(true);
-    });
-  });
-});
-
-describe('getParentCellContent', () => {
-  const doc = document.createDocumentFragment();
-
-  const body = document.createElement('body');
-  doc.appendChild(body);
-
-  const cell = document.createElement('div');
-  cell.setAttribute('data-datagrid-cellcontent', 'true');
-  body.appendChild(cell);
-
-  const span = document.createElement('span');
-  span.textContent = 'Here comes the text';
-  cell.appendChild(span);
-
-  const text = span.childNodes[0];
-
-  it('locates the cell element when starting with the cell itself', () => {
-    expect(getParentCellContent(cell)).toBe(cell);
-  });
-
-  it('locates the cell element when starting with an element inside the cell', () => {
-    expect(getParentCellContent(span!)).toBe(cell);
-  });
-
-  it('locates the cell element when starting with a text node inside the cell', () => {
-    expect(getParentCellContent(text!)).toBe(cell);
-  });
-
-  it('does not locate the cell element when starting outside the cell', () => {
-    expect(getParentCellContent(body)).toBeNull();
   });
 });

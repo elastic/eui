@@ -67,7 +67,7 @@ export default () => {
         onClick={() => {}}
         isActive
         extraAction={{
-          color: 'subdued',
+          color: 'text',
           onClick: link1Clicked,
           iconType: favorite1 === 'link1' ? 'starFilled' : 'starEmpty',
           iconSize: 's',
@@ -82,7 +82,7 @@ export default () => {
         onClick={() => {}}
         label="EUI button link"
         extraAction={{
-          color: 'subdued',
+          color: 'text',
           onClick: link2Clicked,
           iconType: favorite2 === 'link2' ? 'starFilled' : 'starEmpty',
           iconSize: 's',
@@ -98,7 +98,7 @@ export default () => {
         onClick={() => {}}
         label="EUI button link"
         extraAction={{
-          color: 'subdued',
+          color: 'text',
           onClick: link3Clicked,
           iconType: favorite3 === 'link3' ? 'starFilled' : 'starEmpty',
           iconSize: 's',
@@ -113,7 +113,7 @@ export default () => {
         iconType="broom"
         label="EUI button link"
         extraAction={{
-          color: 'subdued',
+          color: 'text',
           onClick: link4Clicked,
           iconType: favorite4 === 'link4' ? 'starFilled' : 'starEmpty',
           iconSize: 's',
@@ -129,7 +129,7 @@ export default () => {
         isDisabled
         label="EUI button link"
         extraAction={{
-          color: 'subdued',
+          color: 'text',
           onClick: () => {},
           iconType: 'starEmpty',
           iconSize: 's',

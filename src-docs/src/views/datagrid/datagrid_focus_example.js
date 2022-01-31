@@ -1,13 +1,10 @@
 import React, { Fragment } from 'react';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 import { EuiCallOut, EuiCode } from '../../../../src/components';
 
 import DataGridFocus from './focus';
 const dataGridFocusSource = require('!!raw-loader!./focus');
-const dataGridFocusHtml = renderToHtml(DataGridFocus);
 
 export const DataGridFocusExample = {
   title: 'Data grid focus',
@@ -17,10 +14,6 @@ export const DataGridFocusExample = {
         {
           type: GuideSectionTypes.JS,
           code: dataGridFocusSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: dataGridFocusHtml,
         },
       ],
       text: (
@@ -100,7 +93,7 @@ export const DataGridFocusExample = {
             color="warning"
             title="A caution about turning off cell expansion when the width of the column is unknown"
           >
-            In general, you should turn <EuiCode>isExpandible</EuiCode> to false
+            In general, you should turn <EuiCode>isExpandable</EuiCode> to false
             only when you know the exact width and number of items that a cell
             will include. Control columns that contain row actions are a good
             example of when to use them. In certain scenarios, allowing multiple

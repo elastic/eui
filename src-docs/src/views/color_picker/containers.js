@@ -16,6 +16,7 @@ import {
 import {
   useColorPickerState,
   useColorStopsState,
+  useGeneratedHtmlId,
 } from '../../../../src/services';
 
 export default () => {
@@ -23,6 +24,7 @@ export default () => {
   const [colorStops, setColorStops] = useColorStopsState();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const containerPopoverId = useGeneratedHtmlId({ prefix: 'containerPopover' });
 
   const closeModal = () => {
     setIsModalVisible(false);
@@ -98,7 +100,7 @@ export default () => {
 
       <EuiFormRow label="Unruly focus management">
         <EuiPopover
-          id="popover"
+          id={containerPopoverId}
           button={button}
           isOpen={isPopoverOpen}
           closePopover={closePopover}

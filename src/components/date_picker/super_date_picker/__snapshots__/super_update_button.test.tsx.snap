@@ -1,30 +1,116 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`EuiSuperUpdateButton iconOnly 1`] = `
+<EuiToolTip
+  delay="regular"
+  display="inlineBlock"
+  position="bottom"
+>
+  <EuiShowFor
+    sizes="all"
+  >
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="primary"
+      fill={true}
+      iconType="refresh"
+      isDisabled={false}
+      isLoading={false}
+      minWidth={0}
+      onClick={[Function]}
+      textProps={
+        Object {
+          "className": "euiScreenReaderOnly",
+        }
+      }
+    >
+      <EuiI18n
+        default="Refresh"
+        token="euiSuperUpdateButton.refreshButtonLabel"
+      />
+    </EuiButton>
+  </EuiShowFor>
+  <EuiHideFor
+    sizes="all"
+  >
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="primary"
+      fill={true}
+      iconType="refresh"
+      isDisabled={false}
+      isLoading={false}
+      minWidth={118}
+      onClick={[Function]}
+    >
+      <EuiI18n
+        default="Refresh"
+        token="euiSuperUpdateButton.refreshButtonLabel"
+      />
+    </EuiButton>
+  </EuiHideFor>
+</EuiToolTip>
+`;
+
 exports[`EuiSuperUpdateButton is rendered 1`] = `
 <EuiToolTip
   delay="regular"
   display="inlineBlock"
   position="bottom"
 >
-  <EuiButton
-    className="euiSuperUpdateButton"
-    color="primary"
-    fill={true}
-    iconType="refresh"
-    isDisabled={false}
-    isLoading={false}
-    onClick={[Function]}
-    textProps={
-      Object {
-        "className": "euiSuperUpdateButton__text",
-      }
+  <EuiShowFor
+    sizes={
+      Array [
+        "xs",
+        "s",
+      ]
     }
   >
-    <EuiI18n
-      default="Refresh"
-      token="euiSuperUpdateButton.refreshButtonLabel"
-    />
-  </EuiButton>
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="primary"
+      fill={true}
+      iconType="refresh"
+      isDisabled={false}
+      isLoading={false}
+      minWidth={0}
+      onClick={[Function]}
+      textProps={
+        Object {
+          "className": "euiScreenReaderOnly",
+        }
+      }
+    >
+      <EuiI18n
+        default="Refresh"
+        token="euiSuperUpdateButton.refreshButtonLabel"
+      />
+    </EuiButton>
+  </EuiShowFor>
+  <EuiHideFor
+    sizes={
+      Array [
+        "xs",
+        "s",
+      ]
+    }
+  >
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="primary"
+      fill={true}
+      iconType="refresh"
+      isDisabled={false}
+      isLoading={false}
+      minWidth={118}
+      onClick={[Function]}
+    >
+      <EuiI18n
+        default="Refresh"
+        token="euiSuperUpdateButton.refreshButtonLabel"
+      />
+    </EuiButton>
+  </EuiHideFor>
 </EuiToolTip>
 `;
 
@@ -40,25 +126,59 @@ exports[`EuiSuperUpdateButton isDisabled 1`] = `
   display="inlineBlock"
   position="bottom"
 >
-  <EuiButton
-    className="euiSuperUpdateButton"
-    color="primary"
-    fill={true}
-    iconType="refresh"
-    isDisabled={true}
-    isLoading={false}
-    onClick={[Function]}
-    textProps={
-      Object {
-        "className": "euiSuperUpdateButton__text",
-      }
+  <EuiShowFor
+    sizes={
+      Array [
+        "xs",
+        "s",
+      ]
     }
   >
-    <EuiI18n
-      default="Refresh"
-      token="euiSuperUpdateButton.refreshButtonLabel"
-    />
-  </EuiButton>
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="primary"
+      fill={true}
+      iconType="refresh"
+      isDisabled={true}
+      isLoading={false}
+      minWidth={0}
+      onClick={[Function]}
+      textProps={
+        Object {
+          "className": "euiScreenReaderOnly",
+        }
+      }
+    >
+      <EuiI18n
+        default="Refresh"
+        token="euiSuperUpdateButton.refreshButtonLabel"
+      />
+    </EuiButton>
+  </EuiShowFor>
+  <EuiHideFor
+    sizes={
+      Array [
+        "xs",
+        "s",
+      ]
+    }
+  >
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="primary"
+      fill={true}
+      iconType="refresh"
+      isDisabled={true}
+      isLoading={false}
+      minWidth={118}
+      onClick={[Function]}
+    >
+      <EuiI18n
+        default="Refresh"
+        token="euiSuperUpdateButton.refreshButtonLabel"
+      />
+    </EuiButton>
+  </EuiHideFor>
 </EuiToolTip>
 `;
 
@@ -68,25 +188,59 @@ exports[`EuiSuperUpdateButton isLoading 1`] = `
   display="inlineBlock"
   position="bottom"
 >
-  <EuiButton
-    className="euiSuperUpdateButton"
-    color="success"
-    fill={true}
-    iconType="kqlFunction"
-    isDisabled={false}
-    isLoading={true}
-    onClick={[Function]}
-    textProps={
-      Object {
-        "className": "euiSuperUpdateButton__text",
-      }
+  <EuiShowFor
+    sizes={
+      Array [
+        "xs",
+        "s",
+      ]
     }
   >
-    <EuiI18n
-      default="Updating"
-      token="euiSuperUpdateButton.updatingButtonLabel"
-    />
-  </EuiButton>
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="success"
+      fill={true}
+      iconType="kqlFunction"
+      isDisabled={false}
+      isLoading={true}
+      minWidth={0}
+      onClick={[Function]}
+      textProps={
+        Object {
+          "className": "euiScreenReaderOnly",
+        }
+      }
+    >
+      <EuiI18n
+        default="Updating"
+        token="euiSuperUpdateButton.updatingButtonLabel"
+      />
+    </EuiButton>
+  </EuiShowFor>
+  <EuiHideFor
+    sizes={
+      Array [
+        "xs",
+        "s",
+      ]
+    }
+  >
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="success"
+      fill={true}
+      iconType="kqlFunction"
+      isDisabled={false}
+      isLoading={true}
+      minWidth={118}
+      onClick={[Function]}
+    >
+      <EuiI18n
+        default="Updating"
+        token="euiSuperUpdateButton.updatingButtonLabel"
+      />
+    </EuiButton>
+  </EuiHideFor>
 </EuiToolTip>
 `;
 
@@ -102,25 +256,179 @@ exports[`EuiSuperUpdateButton needsUpdate 1`] = `
   display="inlineBlock"
   position="bottom"
 >
-  <EuiButton
-    className="euiSuperUpdateButton"
-    color="success"
-    fill={true}
-    iconType="kqlFunction"
-    isDisabled={false}
-    isLoading={false}
-    onClick={[Function]}
-    textProps={
-      Object {
-        "className": "euiSuperUpdateButton__text",
-      }
+  <EuiShowFor
+    sizes={
+      Array [
+        "xs",
+        "s",
+      ]
     }
   >
-    <EuiI18n
-      default="Update"
-      token="euiSuperUpdateButton.updateButtonLabel"
-    />
-  </EuiButton>
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="success"
+      fill={true}
+      iconType="kqlFunction"
+      isDisabled={false}
+      isLoading={false}
+      minWidth={0}
+      onClick={[Function]}
+      textProps={
+        Object {
+          "className": "euiScreenReaderOnly",
+        }
+      }
+    >
+      <EuiI18n
+        default="Update"
+        token="euiSuperUpdateButton.updateButtonLabel"
+      />
+    </EuiButton>
+  </EuiShowFor>
+  <EuiHideFor
+    sizes={
+      Array [
+        "xs",
+        "s",
+      ]
+    }
+  >
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="success"
+      fill={true}
+      iconType="kqlFunction"
+      isDisabled={false}
+      isLoading={false}
+      minWidth={118}
+      onClick={[Function]}
+    >
+      <EuiI18n
+        default="Update"
+        token="euiSuperUpdateButton.updateButtonLabel"
+      />
+    </EuiButton>
+  </EuiHideFor>
+</EuiToolTip>
+`;
+
+exports[`EuiSuperUpdateButton responsive can be all 1`] = `
+<EuiToolTip
+  delay="regular"
+  display="inlineBlock"
+  position="bottom"
+>
+  <EuiShowFor
+    sizes={
+      Array [
+        "xs",
+        "s",
+        "m",
+        "l",
+        "xl",
+      ]
+    }
+  >
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="primary"
+      fill={true}
+      iconType="refresh"
+      isDisabled={false}
+      isLoading={false}
+      minWidth={0}
+      onClick={[Function]}
+      textProps={
+        Object {
+          "className": "euiScreenReaderOnly",
+        }
+      }
+    >
+      <EuiI18n
+        default="Refresh"
+        token="euiSuperUpdateButton.refreshButtonLabel"
+      />
+    </EuiButton>
+  </EuiShowFor>
+  <EuiHideFor
+    sizes={
+      Array [
+        "xs",
+        "s",
+        "m",
+        "l",
+        "xl",
+      ]
+    }
+  >
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="primary"
+      fill={true}
+      iconType="refresh"
+      isDisabled={false}
+      isLoading={false}
+      minWidth={118}
+      onClick={[Function]}
+    >
+      <EuiI18n
+        default="Refresh"
+        token="euiSuperUpdateButton.refreshButtonLabel"
+      />
+    </EuiButton>
+  </EuiHideFor>
+</EuiToolTip>
+`;
+
+exports[`EuiSuperUpdateButton responsive can be false 1`] = `
+<EuiToolTip
+  delay="regular"
+  display="inlineBlock"
+  position="bottom"
+>
+  <EuiShowFor
+    sizes="none"
+  >
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="primary"
+      fill={true}
+      iconType="refresh"
+      isDisabled={false}
+      isLoading={false}
+      minWidth={0}
+      onClick={[Function]}
+      textProps={
+        Object {
+          "className": "euiScreenReaderOnly",
+        }
+      }
+    >
+      <EuiI18n
+        default="Refresh"
+        token="euiSuperUpdateButton.refreshButtonLabel"
+      />
+    </EuiButton>
+  </EuiShowFor>
+  <EuiHideFor
+    sizes="none"
+  >
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="primary"
+      fill={true}
+      iconType="refresh"
+      isDisabled={false}
+      isLoading={false}
+      minWidth={118}
+      onClick={[Function]}
+    >
+      <EuiI18n
+        default="Refresh"
+        token="euiSuperUpdateButton.refreshButtonLabel"
+      />
+    </EuiButton>
+  </EuiHideFor>
 </EuiToolTip>
 `;
 
@@ -130,24 +438,58 @@ exports[`EuiSuperUpdateButton showTooltip 1`] = `
   display="inlineBlock"
   position="bottom"
 >
-  <EuiButton
-    className="euiSuperUpdateButton"
-    color="primary"
-    fill={true}
-    iconType="refresh"
-    isDisabled={false}
-    isLoading={false}
-    onClick={[Function]}
-    textProps={
-      Object {
-        "className": "euiSuperUpdateButton__text",
-      }
+  <EuiShowFor
+    sizes={
+      Array [
+        "xs",
+        "s",
+      ]
     }
   >
-    <EuiI18n
-      default="Refresh"
-      token="euiSuperUpdateButton.refreshButtonLabel"
-    />
-  </EuiButton>
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="primary"
+      fill={true}
+      iconType="refresh"
+      isDisabled={false}
+      isLoading={false}
+      minWidth={0}
+      onClick={[Function]}
+      textProps={
+        Object {
+          "className": "euiScreenReaderOnly",
+        }
+      }
+    >
+      <EuiI18n
+        default="Refresh"
+        token="euiSuperUpdateButton.refreshButtonLabel"
+      />
+    </EuiButton>
+  </EuiShowFor>
+  <EuiHideFor
+    sizes={
+      Array [
+        "xs",
+        "s",
+      ]
+    }
+  >
+    <EuiButton
+      className="euiSuperUpdateButton"
+      color="primary"
+      fill={true}
+      iconType="refresh"
+      isDisabled={false}
+      isLoading={false}
+      minWidth={118}
+      onClick={[Function]}
+    >
+      <EuiI18n
+        default="Refresh"
+        token="euiSuperUpdateButton.refreshButtonLabel"
+      />
+    </EuiButton>
+  </EuiHideFor>
 </EuiToolTip>
 `;

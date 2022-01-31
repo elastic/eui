@@ -13,6 +13,12 @@ module.exports = {
     }],
     ["@babel/typescript", { isTSX: true, allExtensions: true }],
     "@babel/react",
+    [
+      "@emotion/babel-preset-css-prop",
+      {
+        "labelFormat": "[filename]-[local]"
+      },
+    ],
   ],
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",
@@ -36,4 +42,10 @@ module.exports = {
       }
     ],
   ],
+  // Used for Cypress code coverage - note that the env has to be Cypress-specific, otherwise Jest --coverage throws errors
+  "env": {
+    "cypress_test": {
+      "plugins": ["istanbul"]
+    }
+  }
 };

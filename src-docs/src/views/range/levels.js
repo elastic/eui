@@ -7,7 +7,7 @@ import {
   EuiDualRange,
 } from '../../../../src/components';
 
-import { htmlIdGenerator } from '../../../../src/services';
+import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
   const [value, setvalue] = useState('20');
@@ -65,6 +65,23 @@ export default () => {
     },
   ];
 
+  const rangeWithLevelsId = useGeneratedHtmlId({ prefix: 'rangeWithLevels' });
+  const rangeWithLevelsHelpId = useGeneratedHtmlId({
+    prefix: 'rangeWithLevelsHelp',
+  });
+  const rangeWithCustomColorsId = useGeneratedHtmlId({
+    prefix: 'rangeWithCustomColors',
+  });
+  const rangeWithCustomColorsHelpId = useGeneratedHtmlId({
+    prefix: 'rangeWithCustomColorsHelp',
+  });
+  const dualRangeWithLevelsId = useGeneratedHtmlId({
+    prefix: 'dualRangeWithLevels',
+  });
+  const dualRangeWithLevelsHelpId = useGeneratedHtmlId({
+    prefix: 'dualRangeWithLevelsHelp',
+  });
+
   const onChange = (e) => {
     setvalue(e.target.value);
   };
@@ -80,39 +97,39 @@ export default () => {
   return (
     <Fragment>
       <EuiRange
-        id={htmlIdGenerator()()}
+        id={rangeWithLevelsId}
         value={value}
         onChange={(e) => onChange(e)}
         showTicks
         tickInterval={20}
         levels={levels}
         aria-label="An example of EuiRange with levels prop"
-        aria-describedby="levelsHelp2"
+        aria-describedby={rangeWithLevelsHelpId}
       />
-      <EuiFormHelpText id="levelsHelp2">
+      <EuiFormHelpText id={rangeWithLevelsHelpId}>
         Recommended levels are {levels[1].min} and above.
       </EuiFormHelpText>
 
       <EuiSpacer size="xl" />
 
       <EuiRange
-        id={htmlIdGenerator()()}
+        id={rangeWithCustomColorsId}
         value={customColorsValue}
         onChange={(e) => onCustomColorsChange(e)}
         showTicks
         ticks={customTicks}
         levels={customColorsLevels}
         aria-label="An example of EuiRange with custom colored indicators"
-        aria-describedby="levelsHelp3"
+        aria-describedby={rangeWithCustomColorsHelpId}
       />
 
-      <EuiFormHelpText id="levelsHelp3">
+      <EuiFormHelpText id={rangeWithCustomColorsHelpId}>
         Recommended levels are below {customTicks[3].label}.
       </EuiFormHelpText>
 
       <EuiSpacer size="xl" />
       <EuiDualRange
-        id={htmlIdGenerator()()}
+        id={dualRangeWithLevelsId}
         value={dualValue}
         onChange={(value) => onDualChange(value)}
         showTicks
@@ -123,9 +140,9 @@ export default () => {
         showInput
         levels={levels}
         aria-label="An example of EuiDualRange with levels prop"
-        aria-describedby="levelsHelp4"
+        aria-describedby={dualRangeWithLevelsHelpId}
       />
-      <EuiFormHelpText id="levelsHelp4">
+      <EuiFormHelpText id={dualRangeWithLevelsHelpId}>
         Recommended size is {levels[1].min}kb and above.
       </EuiFormHelpText>
     </Fragment>

@@ -10,3 +10,5 @@ docs
 packages
 scripts
 generator-eui
+cypress
+react-datepicker

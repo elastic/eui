@@ -80,9 +80,9 @@ export const useEuiTextDiff = ({
   }, [textDiff, deleteComponent, insertComponent, sameComponent]); // produces diff array
 
   return [
-    <div className={classes} {...rest}>
+    <span className={classes} {...rest}>
       {rendereredHtml}
-    </div>,
+    </span>,
     textDiff,
   ];
 };

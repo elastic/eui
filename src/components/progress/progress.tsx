@@ -33,7 +33,6 @@ export type EuiProgressSize = keyof typeof sizeToClassNameMap;
 
 export type ProgressColor =
   | 'primary'
-  | 'secondary'
   | 'success'
   | 'warning'
   | 'danger'
@@ -52,7 +51,6 @@ export type ProgressColor =
 
 const colorToClassNameMap = {
   primary: 'euiProgress--primary',
-  secondary: 'euiProgress--secondary',
   success: 'euiProgress--success',
   warning: 'euiProgress--warning',
   danger: 'euiProgress--danger',
@@ -82,7 +80,6 @@ export type EuiProgressColor = keyof typeof colorToClassNameMap;
 
 const dataColorToClassNameMap: { [color in ProgressColor]: string } = {
   primary: 'euiProgress__data--primary',
-  secondary: 'euiProgress__data--secondary',
   success: 'euiProgress__data--success',
   warning: 'euiProgress__data--warning',
   danger: 'euiProgress__data--danger',
@@ -114,7 +111,6 @@ export type EuiProgressProps = CommonProps & {
   size?: EuiProgressSize;
   /**
    * One of EUI's color palette, vis colors or a valid CSS color value https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
-   * **`secondary` color is DEPRECATED, use `success` instead**
    */
   color?: EuiProgressColor | CSSProperties['color'];
   position?: EuiProgressPosition;

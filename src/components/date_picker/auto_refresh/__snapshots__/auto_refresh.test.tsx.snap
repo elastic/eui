@@ -1,0 +1,250 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiAutoRefresh is rendered 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiAutoRefresh testClass1 testClass2"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
+      >
+        <button
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend"
+          type="button"
+        >
+          <span
+            class="euiButtonContent euiButtonEmpty__content"
+          >
+            <span
+              class="euiButtonContent__icon"
+              color="inherit"
+              data-euiicon-type="timeRefresh"
+            />
+            <span
+              class="euiButtonEmpty__text"
+            >
+              <strong>
+                <small>
+                  Auto refresh
+                </small>
+              </strong>
+            </span>
+          </span>
+        </button>
+        <div
+          class="euiFormControlLayout__childrenWrapper"
+        >
+          <input
+            aria-label="aria-label"
+            class="euiFieldText euiFieldText--inGroup"
+            data-test-subj="test subject string"
+            readonly=""
+            type="text"
+            value="Off"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAutoRefresh isPaused is false 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiAutoRefresh"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
+      >
+        <button
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend"
+          type="button"
+        >
+          <span
+            class="euiButtonContent euiButtonEmpty__content"
+          >
+            <span
+              class="euiButtonContent__icon"
+              color="inherit"
+              data-euiicon-type="timeRefresh"
+            />
+            <span
+              class="euiButtonEmpty__text"
+            >
+              <strong>
+                <small>
+                  Auto refresh
+                </small>
+              </strong>
+            </span>
+          </span>
+        </button>
+        <div
+          class="euiFormControlLayout__childrenWrapper"
+        >
+          <input
+            aria-label="Auto refresh"
+            class="euiFieldText euiFieldText--inGroup"
+            readonly=""
+            type="text"
+            value="1 second"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAutoRefresh refreshInterval is rendered 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownLeft euiPopover--displayBlock euiInputPopover euiAutoRefresh"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <div>
+      <div
+        class="euiFormControlLayout euiFormControlLayout--readOnly euiFormControlLayout--group"
+      >
+        <button
+          class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiFormControlLayout__prepend euiFormControlLayout__prepend"
+          type="button"
+        >
+          <span
+            class="euiButtonContent euiButtonEmpty__content"
+          >
+            <span
+              class="euiButtonContent__icon"
+              color="inherit"
+              data-euiicon-type="timeRefresh"
+            />
+            <span
+              class="euiButtonEmpty__text"
+            >
+              <strong>
+                <small>
+                  Auto refresh
+                </small>
+              </strong>
+            </span>
+          </span>
+        </button>
+        <div
+          class="euiFormControlLayout__childrenWrapper"
+        >
+          <input
+            aria-label="Auto refresh"
+            class="euiFieldText euiFieldText--inGroup"
+            readonly=""
+            type="text"
+            value="2 seconds"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiAutoRefreshButton is rendered 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <button
+      aria-label="aria-label"
+      class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiAutoRefreshButton testClass1 testClass2"
+      data-test-subj="test subject string"
+      title="Auto refresh is off"
+      type="button"
+    >
+      <span
+        class="euiButtonContent euiButtonEmpty__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="timeRefresh"
+        />
+        <span
+          class="euiButtonEmpty__text"
+        >
+          Off
+        </span>
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`EuiAutoRefreshButton isPaused is false 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <button
+      class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiAutoRefreshButton"
+      title="Auto refresh is on and set to 1 second"
+      type="button"
+    >
+      <span
+        class="euiButtonContent euiButtonEmpty__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="timeRefresh"
+        />
+        <span
+          class="euiButtonEmpty__text"
+        >
+          1 second
+        </span>
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`EuiAutoRefreshButton refreshInterval is rendered 1`] = `
+<div
+  class="euiPopover euiPopover--anchorDownCenter"
+>
+  <div
+    class="euiPopover__anchor"
+  >
+    <button
+      class="euiButtonEmpty euiButtonEmpty--text euiButtonEmpty--small euiAutoRefreshButton"
+      title="Auto refresh is on and set to 2 seconds"
+      type="button"
+    >
+      <span
+        class="euiButtonContent euiButtonEmpty__content"
+      >
+        <span
+          class="euiButtonContent__icon"
+          color="inherit"
+          data-euiicon-type="timeRefresh"
+        />
+        <span
+          class="euiButtonEmpty__text"
+        >
+          2 seconds
+        </span>
+      </span>
+    </button>
+  </div>
+</div>
+`;

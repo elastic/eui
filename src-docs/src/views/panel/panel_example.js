@@ -2,8 +2,6 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { renderToHtml } from '../../services';
-
 import { GuideSectionTypes } from '../../components';
 
 import {
@@ -22,23 +20,18 @@ import Guidelines from './guidelines';
 
 import Panel from './panel';
 const panelSource = require('!!raw-loader!./panel');
-const panelHtml = renderToHtml(Panel);
 
 import PanelShadow from './panel_shadow';
 const panelShadowSource = require('!!raw-loader!./panel_shadow');
-const panelShadowHtml = renderToHtml(PanelShadow);
 
 import PanelColor from './panel_color';
 const panelColorSource = require('!!raw-loader!./panel_color');
-const panelColorHtml = renderToHtml(PanelColor);
 
 import PanelGrow from './panel_grow';
 const panelGrowSource = require('!!raw-loader!./panel_grow');
-const panelGrowHtml = renderToHtml(PanelGrow);
 
 import SplitPanel from './split_panel';
 const splitPanelSource = require('!!raw-loader!./split_panel');
-const splitPanelHtml = renderToHtml(SplitPanel);
 
 const panelSnippet = `<EuiPanel paddingSize="none">
   <!-- Panel with no padding -->
@@ -119,10 +112,6 @@ export const PanelExample = {
           type: GuideSectionTypes.JS,
           code: panelSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: panelHtml,
-        },
       ],
       text: (
         <p>The most basic use is to simply add padding around your content.</p>
@@ -138,10 +127,6 @@ export const PanelExample = {
         {
           type: GuideSectionTypes.JS,
           code: panelShadowSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: panelShadowHtml,
         },
       ],
       text: (
@@ -178,10 +163,6 @@ export const PanelExample = {
           type: GuideSectionTypes.JS,
           code: panelColorSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: panelColorHtml,
-        },
       ],
       text: (
         <>
@@ -209,10 +190,6 @@ export const PanelExample = {
           type: GuideSectionTypes.JS,
           code: panelGrowSource,
         },
-        {
-          type: GuideSectionTypes.HTML,
-          code: panelGrowHtml,
-        },
       ],
       text: (
         <p>
@@ -235,10 +212,6 @@ export const PanelExample = {
         {
           type: GuideSectionTypes.JS,
           code: splitPanelSource,
-        },
-        {
-          type: GuideSectionTypes.HTML,
-          code: splitPanelHtml,
         },
       ],
       text: (

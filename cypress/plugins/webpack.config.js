@@ -11,16 +11,7 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const SRC_DIR = path.resolve(__dirname, '..', 'src');
-const DIST_DIR = path.resolve(__dirname, '..', 'dist');
-
-const plugins = [
-  // Force EuiIcon's dynamic imports to be included in the single eui.js build,
-  // instead of being split out into multiple files
-  new webpack.optimize.LimitChunkCountPlugin({
-    maxChunks: 1,
-  }),
-];
+const THEME_IMPORT = `'../../dist/eui_theme_${process.env.THEME}.css'`;
 
 module.exports = {
   mode: 'development',
@@ -37,14 +28,15 @@ module.exports = {
         test: /\.(js|tsx?)$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
+        options: {
+          plugins: ['istanbul'],
+        },
       },
       {
-        test: /\.scss$/,
+        test: /\.css$/,
         loaders: [
           'style-loader',
           'css-loader',
-          'postcss-loader',
-          'sass-loader',
         ],
         exclude: /node_modules/,
       },
@@ -56,5 +48,9 @@ module.exports = {
     strictExportPresence: false,
   },
 
-  plugins,
+  plugins: [
+    new webpack.DefinePlugin({
+      THEME_IMPORT, // allow cypress/suport/index.js to require the correct css file
+    }),
+  ]
 };
