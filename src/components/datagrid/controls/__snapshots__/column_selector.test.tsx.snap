@@ -384,7 +384,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                 scrollLock={false}
                 sideCar={[Function]}
               >
-                <ForwardRef
+                <ForwardRef(FocusLockUI)
                   as={
                     Object {
                       "$$typeof": Symbol(react.forward_ref),
@@ -1178,7 +1178,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
                     }
                     tabIndex={-1}
                   />
-                </ForwardRef>
+                </ForwardRef(FocusLockUI)>
               </ForwardRef>
             </ForwardRef>
           </EuiFocusTrap>

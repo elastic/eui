@@ -888,7 +888,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                             scrollLock={false}
                             sideCar={[Function]}
                           >
-                            <ForwardRef
+                            <ForwardRef(FocusLockUI)
                               as={
                                 Object {
                                   "$$typeof": Symbol(react.forward_ref),
@@ -1123,7 +1123,7 @@ exports[`EuiMarkdownEditor custom plugins are excluded and popover is rendered 1
                                 }
                                 tabIndex={-1}
                               />
-                            </ForwardRef>
+                            </ForwardRef(FocusLockUI)>
                           </ForwardRef>
                         </ForwardRef>
                       </EuiFocusTrap>
@@ -2411,7 +2411,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                           scrollLock={false}
                           sideCar={[Function]}
                         >
-                          <ForwardRef
+                          <ForwardRef(FocusLockUI)
                             as={
                               Object {
                                 "$$typeof": Symbol(react.forward_ref),
@@ -3370,7 +3370,7 @@ exports[`EuiMarkdownEditor modal with help syntax is rendered 1`] = `
                               }
                               tabIndex={0}
                             />
-                          </ForwardRef>
+                          </ForwardRef(FocusLockUI)>
                           <RequireSideCar
                             noIsolation={true}
                             onClickOutside={[Function]}
