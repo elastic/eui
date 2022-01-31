@@ -19,7 +19,7 @@ import { EuiScreenReaderOnly } from '../screen_reader_only';
 
 export interface EuiScreenReaderLiveProps {
   /**
-   * Whether the make screen readers aware of the content
+   * Whether to make screen readers aware of the content
    */
   isActive?: boolean;
   /**
