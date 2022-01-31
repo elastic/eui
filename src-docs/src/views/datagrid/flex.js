@@ -44,7 +44,7 @@ for (let i = 1; i < 20; i++) {
 export default () => {
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
 
-  const [visibleColumns, setVisibleColumns] = useState(() =>
+  const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
   );
 
@@ -63,7 +63,11 @@ export default () => {
         <EuiPanel color="subdued">Sidebar</EuiPanel>
       </EuiFlexItem>
       <EuiFlexItem style={{ minWidth: 0 }}>
-        <EuiPanel style={{ height: 300 }} hasBorder paddingSize="none">
+        <EuiPanel
+          style={{ height: 300, overflow: 'hidden' }}
+          hasBorder
+          paddingSize="none"
+        >
           <EuiDataGrid
             aria-label="Container constrained data grid demo"
             columns={columns}

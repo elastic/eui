@@ -9,6 +9,7 @@
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { shallow, mount, ShallowWrapper, ReactWrapper } from 'enzyme';
+import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
 
 import {
   EuiDataGridToolBarVisibilityOptions,
@@ -419,27 +420,21 @@ describe('useDataGridDisplaySelector', () => {
   describe('gridStyles', () => {
     it('returns an object of grid styles with user overrides', () => {
       const initialStyles = { ...startingStyles, stripes: true };
-      const MockComponent = () => {
-        const [, { onChange, ...gridStyles }] = useDataGridDisplaySelector(
-          true,
-          initialStyles,
-          {}
-        );
-        return <table {...gridStyles} />;
-      };
-      const component = shallow(<MockComponent />);
+      const [, gridStyles] = testCustomHook(() =>
+        useDataGridDisplaySelector(true, initialStyles, {})
+      );
 
-      expect(component).toMatchInlineSnapshot(`
-        <table
-          border="all"
-          cellPadding="m"
-          fontSize="m"
-          footer="overline"
-          header="shade"
-          rowHover="highlight"
-          stickyFooter={true}
-          stripes={true}
-        />
+      expect(gridStyles).toMatchInlineSnapshot(`
+        Object {
+          "border": "all",
+          "cellPadding": "m",
+          "fontSize": "m",
+          "footer": "overline",
+          "header": "shade",
+          "rowHover": "highlight",
+          "stickyFooter": true,
+          "stripes": true,
+        }
       `);
     });
   });
