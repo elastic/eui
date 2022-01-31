@@ -4,6 +4,12 @@ exports[`EuiSelectable custom options with data 1`] = `
 <div
   class="euiSelectable"
 >
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id-instructions"
+  >
+    Filter options
+  </p>
   <div
     class="euiSelectableList"
   >
@@ -18,11 +24,12 @@ exports[`EuiSelectable custom options with data 1`] = `
           style="height:96px;width:100%"
         >
           <li
+            aria-checked="false"
             aria-posinset="1"
             aria-selected="false"
             aria-setsize="3"
-            class="euiSelectableListItem"
-            id="generated-id_listbox_option-0"
+            class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+            id="generated-id_option-0"
             role="option"
             style="position:absolute;left:0;top:0;height:32px;width:100%"
             title="Titan"
@@ -44,11 +51,12 @@ exports[`EuiSelectable custom options with data 1`] = `
             </span>
           </li>
           <li
+            aria-checked="false"
             aria-posinset="2"
             aria-selected="false"
             aria-setsize="3"
-            class="euiSelectableListItem"
-            id="generated-id_listbox_option-1"
+            class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+            id="generated-id_option-1"
             role="option"
             style="position:absolute;left:0;top:32px;height:32px;width:100%"
             title="Enceladus"
@@ -70,11 +78,12 @@ exports[`EuiSelectable custom options with data 1`] = `
             </span>
           </li>
           <li
+            aria-checked="false"
             aria-posinset="3"
             aria-selected="false"
             aria-setsize="3"
-            class="euiSelectableListItem"
-            id="generated-id_listbox_option-2"
+            class="euiSelectableListItem euiSelectableListItem--paddingSmall"
+            id="generated-id_option-2"
             role="option"
             style="position:absolute;left:0;top:64px;height:32px;width:100%"
             title="Pandora is one of Saturn's moons, named for a Titaness of Greek mythology"
@@ -179,8 +188,8 @@ Object {
 
 exports[`EuiSelectable should not reset the activeOptionIndex nor isFocused when EuiSelectable is blurred in favour of its popover 2`] = `
 Object {
-  "activeOptionIndex": 0,
-  "isFocused": true,
+  "activeOptionIndex": undefined,
+  "isFocused": false,
   "searchValue": "",
   "visibleOptions": Array [
     Object {
