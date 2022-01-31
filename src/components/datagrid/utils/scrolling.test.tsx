@@ -6,8 +6,10 @@
  * Side Public License, v 1.
  */
 
-import { testCustomHook } from '../../../test';
-import { useScrollCellIntoView } from './scrolling';
+import React from 'react';
+import { render } from 'enzyme';
+import { testCustomHook } from '../../../test/test_custom_hook.test_helper';
+import { useScrollCellIntoView, useScrollBars } from './scrolling';
 
 // see scrolling.spec.tsx for E2E useScroll tests
 
@@ -38,12 +40,7 @@ describe('useScrollCellIntoView', () => {
         querySelector: getCell,
       } as any,
     },
-    innerGridRef: {
-      current: {
-        offsetHeight: 800,
-        offsetWidth: 1000,
-      } as any,
-    },
+    hasGridScrolling: true,
     headerRowHeight: 0,
     footerRowHeight: 0,
     visibleRowCount: 100,
@@ -61,32 +58,17 @@ describe('useScrollCellIntoView', () => {
         ...args,
         gridRef: { current: null },
         outerGridRef: { current: null },
-        innerGridRef: { current: null },
       })
     );
     scrollCellIntoView({ rowIndex: 0, colIndex: 0 });
     expect(scrollTo).not.toHaveBeenCalled();
   });
 
-  it('does nothing if the grid does not scroll (inner and outer grid dimensions are the same)', () => {
-    const outerGrid = {
-      offsetHeight: 500,
-      offsetWidth: 500,
-    };
-    const innerGrid = {
-      offsetHeight: 500,
-      offsetWidth: 500,
-    };
-
+  it('does nothing if the grid does not scroll', () => {
     const { scrollCellIntoView } = testCustomHook(() =>
       useScrollCellIntoView({
         ...args,
-        outerGridRef: {
-          current: { ...args.outerGridRef.current, ...outerGrid },
-        },
-        innerGridRef: {
-          current: { ...args.innerGridRef.current, ...innerGrid },
-        },
+        hasGridScrolling: false,
       })
     );
     scrollCellIntoView({ rowIndex: 0, colIndex: 0 });
@@ -336,6 +318,220 @@ describe('useScrollCellIntoView', () => {
       );
       scrollCellIntoView({ rowIndex: 25, colIndex: 0 });
       expect(scrollTo).not.toHaveBeenCalled();
+    });
+  });
+});
+
+describe('useScrollBars', () => {
+  const mockOuterGrid = {
+    clientHeight: 0,
+    offsetHeight: 0,
+    scrollHeight: 0,
+    clientWidth: 0,
+    offsetWidth: 0,
+    scrollWidth: 0,
+  } as any;
+
+  describe('scrollBarHeight', () => {
+    it("is derived by the difference between the grid's offsetHeight vs clientHeight", () => {
+      const { scrollBarHeight } = testCustomHook(() =>
+        useScrollBars({
+          current: { ...mockOuterGrid, clientHeight: 40, offsetHeight: 50 },
+        })
+      );
+
+      expect(scrollBarHeight).toEqual(10);
+    });
+  });
+
+  describe('scrollBarWidth', () => {
+    it('is zero if there is no difference between offsetWidth and clientWidth', () => {
+      const { scrollBarWidth } = testCustomHook(() =>
+        useScrollBars({
+          current: { ...mockOuterGrid, clientWidth: 40, offsetWidth: 40 },
+        })
+      );
+
+      expect(scrollBarWidth).toEqual(0);
+    });
+  });
+
+  describe('hasVerticalScroll', () => {
+    it("has scrolling overflow if the grid's scrollHeight exceeds its clientHeight", () => {
+      const { hasVerticalScroll } = testCustomHook(() =>
+        useScrollBars({
+          current: { ...mockOuterGrid, clientHeight: 50, scrollHeight: 100 },
+        })
+      );
+
+      expect(hasVerticalScroll).toEqual(true);
+    });
+
+    it("does not have scrolling overflow if the the grid's scrollHeight is the same as its clientHeight", () => {
+      const { hasVerticalScroll } = testCustomHook(() =>
+        useScrollBars({
+          current: { ...mockOuterGrid, clientHeight: 50, scrollHeight: 50 },
+        })
+      );
+
+      expect(hasVerticalScroll).toEqual(false);
+    });
+  });
+
+  describe('hasHorizontalScroll', () => {
+    it("has scrolling overflow if the grid's scrollWidth exceeds its clientWidth", () => {
+      const { hasHorizontalScroll } = testCustomHook(() =>
+        useScrollBars({
+          current: { ...mockOuterGrid, clientWidth: 100, scrollWidth: 200 },
+        })
+      );
+
+      expect(hasHorizontalScroll).toEqual(true);
+    });
+
+    it("does not have scrolling overflow if the the grid's scrollWidth is the same as its clientWidth", () => {
+      const { hasHorizontalScroll } = testCustomHook(() =>
+        useScrollBars({
+          current: { ...mockOuterGrid, clientWidth: 200, scrollWidth: 200 },
+        })
+      );
+
+      expect(hasHorizontalScroll).toEqual(false);
+    });
+  });
+
+  describe('scrollBorderOverlay', () => {
+    describe('if the grid does not scroll', () => {
+      it('does not render anything', () => {
+        const { scrollBorderOverlay } = testCustomHook(() =>
+          useScrollBars({
+            current: {
+              ...mockOuterGrid,
+              clientHeight: 100,
+              scrollHeight: 100,
+              clientWidth: 200,
+              scrollWidth: 200,
+            },
+          })
+        );
+
+        expect(scrollBorderOverlay).toEqual(null);
+      });
+    });
+
+    describe('if the grid does not display borders', () => {
+      it('does not render anything', () => {
+        const { scrollBorderOverlay } = testCustomHook(() =>
+          useScrollBars(
+            {
+              current: {
+                ...mockOuterGrid,
+                clientHeight: 50,
+                scrollHeight: 100,
+              },
+            },
+            'none'
+          )
+        );
+
+        expect(scrollBorderOverlay).toEqual(null);
+      });
+    });
+
+    describe('if the grid scrolls but has inline scrollbars & no scrollbar width/height', () => {
+      it('renders a single overlay with borders for the outermost grid', () => {
+        const { scrollBorderOverlay } = testCustomHook(() =>
+          useScrollBars({
+            current: {
+              ...mockOuterGrid,
+              clientHeight: 50,
+              offsetHeight: 50,
+              scrollHeight: 100,
+              clientWidth: 100,
+              offsetWidth: 100,
+              scrollWidth: 200,
+            },
+          })
+        );
+        const component = render(<>{scrollBorderOverlay}</>);
+
+        expect(component).toMatchInlineSnapshot(`
+          <div
+            class="euiDataGrid__scrollOverlay"
+            role="presentation"
+          />
+        `);
+      });
+    });
+
+    describe('if the grid scrolls and has scrollbars that take up width/height', () => {
+      it('renders a top border for the bottom scrollbar', () => {
+        const { scrollBorderOverlay } = testCustomHook(() =>
+          useScrollBars({
+            current: {
+              ...mockOuterGrid,
+              clientHeight: 40,
+              offsetHeight: 50,
+              scrollHeight: 100,
+              clientWidth: 100,
+              offsetWidth: 100,
+              scrollWidth: 100,
+            },
+          })
+        );
+        const component = render(<>{scrollBorderOverlay}</>);
+
+        expect(component).toMatchInlineSnapshot(`
+          <div
+            class="euiDataGrid__scrollOverlay"
+            role="presentation"
+          >
+            <div
+              class="euiDataGrid__scrollBarOverlayBottom"
+              style="bottom:10px;right:0"
+            />
+          </div>
+        `);
+      });
+
+      it('renders a left border for the bottom scrollbar', () => {
+        const { scrollBorderOverlay } = testCustomHook(() =>
+          useScrollBars({
+            current: {
+              ...mockOuterGrid,
+              clientHeight: 50,
+              offsetHeight: 50,
+              scrollHeight: 50,
+              clientWidth: 90,
+              offsetWidth: 100,
+              scrollWidth: 200,
+            },
+          })
+        );
+        const component = render(<>{scrollBorderOverlay}</>);
+
+        expect(component).toMatchInlineSnapshot(`
+          <div
+            class="euiDataGrid__scrollOverlay"
+            role="presentation"
+          >
+            <div
+              class="euiDataGrid__scrollBarOverlayRight"
+              style="bottom:0;right:10px"
+            />
+          </div>
+        `);
+      });
+    });
+  });
+
+  it('returns falsey values if outerGridRef is not yet instantiated', () => {
+    expect(testCustomHook(() => useScrollBars({ current: null }))).toEqual({
+      scrollBarHeight: 0,
+      scrollBarWidth: 0,
+      hasVerticalScroll: false,
+      hasHorizontalScroll: false,
+      scrollBorderOverlay: null,
     });
   });
 });

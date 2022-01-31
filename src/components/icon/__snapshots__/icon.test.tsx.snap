@@ -8442,6 +8442,24 @@ exports[`EuiIcon props type submodule is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type sun is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon euiIcon--medium euiIcon-isLoaded"
+  data-icon-type="sun"
+  focusable="false"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M12 8a4 4 0 11-8 0 4 4 0 018 0zM7.25.75a.75.75 0 011.5 0v1.5a.75.75 0 11-1.5 0V.75zm0 13a.75.75 0 011.5 0v1.5a.75.75 0 01-1.5 0v-1.5zm5.346-11.407a.75.75 0 011.06 1.06l-1.06 1.061a.75.75 0 01-1.06-1.06l1.06-1.06zm-9.192 9.193a.75.75 0 111.06 1.06l-1.06 1.06a.75.75 0 01-1.06-1.06l1.06-1.06zM.75 8.75a.75.75 0 010-1.5h1.5a.75.75 0 110 1.5H.75zm13 0a.75.75 0 010-1.5h1.5a.75.75 0 010 1.5h-1.5zM2.343 3.404a.75.75 0 111.06-1.06l1.061 1.06a.75.75 0 01-1.06 1.06l-1.06-1.06zm9.193 9.192a.75.75 0 011.06-1.06l1.06 1.06a.75.75 0 01-1.06 1.06l-1.06-1.06z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type swatchInput is rendered 1`] = `
 <svg
   aria-hidden="true"
