@@ -199,8 +199,9 @@ export const DragAndDropExample = {
         <React.Fragment>
           <p>
             By default the entire element surface can initiate a drag. To
-            specify a certain element within as the handle, set
-            <EuiCode>customDragHandle=true</EuiCode> on the{' '}
+            specify an element within as the handle and create a containing
+            group, set <EuiCode>customDragHandle=true</EuiCode> and{' '}
+            <EuiCode>hasInteractiveChildren=true</EuiCode> on the{' '}
             <strong>EuiDraggable</strong>.
           </p>
           <p>
@@ -226,11 +227,13 @@ export const DragAndDropExample = {
       text: (
         <React.Fragment>
           <p>
-            <strong>EuiDraggable</strong> elements can contain interactive
-            elements such as buttons and form fields by adding the
-            <EuiCode>disableInteractiveElementBlocking</EuiCode> prop. This will
-            keep drag functionality while also enabling click, etc., events on
-            the interactive child elements.
+            <strong>EuiDraggable</strong> can contain interactive elements such
+            as buttons and form fields. Interactive elements require{' '}
+            <EuiCode>customDragHandle=true</EuiCode> and{' '}
+            <EuiCode>hasInteractiveChildren=true</EuiCode> on the{' '}
+            <strong>EuiDraggable</strong>. These props will maintain drag
+            functionality and accessibility, while enabling click, keypress,
+            etc., events on the interactive child elements.
           </p>
         </React.Fragment>
       ),

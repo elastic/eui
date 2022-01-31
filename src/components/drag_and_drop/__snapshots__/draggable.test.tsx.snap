@@ -35,6 +35,40 @@ exports[`EuiDraggable can be given ReactElement children 1`] = `
 
 exports[`EuiDraggable can be given ReactElement children 2`] = `undefined`;
 
+exports[`EuiDraggable hasInteractiveChildren renders with role="group" and no tabIndex 1`] = `
+<div>
+  <div
+    class="euiDroppable euiDroppable--noGrow"
+    data-rbd-droppable-context-id="0"
+    data-rbd-droppable-id="testDroppable"
+    data-test-subj="droppable"
+  >
+    <div
+      aria-describedby="rbd-hidden-text-0-hidden-text-0"
+      class="euiDraggable"
+      data-rbd-drag-handle-context-id="0"
+      data-rbd-drag-handle-draggable-id="testDraggable"
+      data-rbd-draggable-context-id="0"
+      data-rbd-draggable-id="testDraggable"
+      data-test-subj="draggable"
+      draggable="false"
+      role="group"
+    >
+      <div
+        class="euiDraggable__item"
+      >
+        Hello
+      </div>
+    </div>
+    <div
+      class="euiDroppable__placeholder"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiDraggable hasInteractiveChildren renders with role="group" and no tabIndex 2`] = `undefined`;
+
 exports[`EuiDraggable is rendered 1`] = `
 <div>
   <div
