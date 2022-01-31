@@ -26,7 +26,7 @@ import { EuiLoadingSpinner } from '../loading';
 import { EuiSpacer } from '../spacer';
 import { getMatchingOptions } from './matching_options';
 import { keys, htmlIdGenerator } from '../../services';
-import { EuiScreenReaderStatus, EuiScreenReaderOnly } from '../accessibility';
+import { EuiScreenReaderLive, EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
 import { EuiSelectableOption } from './selectable_option';
 import { EuiSelectableOptionsListProps } from './selectable_list/selectable_list';
@@ -145,8 +145,6 @@ export type EuiSelectableProps<T = {}> = CommonProps &
      * Default: false
      */
     isPreFiltered?: boolean;
-    onActiveOptionIndexChange?: (activeOptionIndex?: number) => void;
-    optionIdGenerator?: (index?: number) => string;
   };
 
 export interface EuiSelectableState<T> {
@@ -238,11 +236,6 @@ export class EuiSelectable<T = {}> extends Component<
     return this.state.activeOptionIndex != null;
   };
 
-  onActiveOptionIndexChange = () => {
-    this.props.onActiveOptionIndexChange &&
-      this.props.onActiveOptionIndexChange(this.state.activeOptionIndex);
-  };
-
   onMouseDown = () => {
     // Bypass onFocus when a click event originates from this.containerRef.
     // Prevents onFocus from scrolling away from a clicked option and negating the selection event.
@@ -265,20 +258,14 @@ export class EuiSelectable<T = {}> extends Component<
     );
 
     if (firstSelected > -1) {
-      this.setState(
-        { activeOptionIndex: firstSelected, isFocused: true },
-        this.onActiveOptionIndexChange
-      );
+      this.setState({ activeOptionIndex: firstSelected, isFocused: true });
     } else {
-      this.setState(
-        {
-          activeOptionIndex: this.state.visibleOptions.findIndex(
-            (option) => !option.disabled && !option.isGroupLabel
-          ),
-          isFocused: true,
-        },
-        this.onActiveOptionIndexChange
-      );
+      this.setState({
+        activeOptionIndex: this.state.visibleOptions.findIndex(
+          (option) => !option.disabled && !option.isGroupLabel
+        ),
+        isFocused: true,
+      });
     }
   };
 
@@ -355,7 +342,7 @@ export class EuiSelectable<T = {}> extends Component<
       }
 
       return { activeOptionIndex: nextActiveOptionIndex };
-    }, this.onActiveOptionIndexChange);
+    });
   };
 
   onSearchChange = (
@@ -387,13 +374,10 @@ export class EuiSelectable<T = {}> extends Component<
       return;
     }
 
-    this.setState(
-      {
-        activeOptionIndex: undefined,
-        isFocused: false,
-      },
-      this.onActiveOptionIndexChange
-    );
+    this.setState({
+      activeOptionIndex: undefined,
+      isFocused: false,
+    });
   };
 
   onOptionClick = (options: Array<EuiSelectableOption<T>>) => {
@@ -420,13 +404,8 @@ export class EuiSelectable<T = {}> extends Component<
     this.optionsListRef.current?.listRef?.scrollToItem(index, align);
   };
 
-  makeOptionId = (index?: number) => {
-    if (this.props.optionIdGenerator) {
-      return this.props.optionIdGenerator(index);
-    }
-
-    return index != null ? `${this.listId}_option-${index}` : '';
-  };
+  makeOptionId = (index?: number) =>
+    index != null ? `${this.listId}_option-${index}` : '';
 
   render() {
     const {
@@ -449,8 +428,6 @@ export class EuiSelectable<T = {}> extends Component<
       noMatchesMessage,
       emptyMessage,
       isPreFiltered,
-      onActiveOptionIndexChange,
-      optionIdGenerator,
       ...rest
     } = this.props;
 
@@ -686,13 +663,9 @@ export class EuiSelectable<T = {}> extends Component<
         {(placeholderName: string) => (
           <>
             {searchable && (
-              <EuiScreenReaderStatus
-                id={this.listId}
-                isActive={activeOptionIndex != null}
-                updatePrecipitate={searchValue.length}
-              >
+              <EuiScreenReaderLive isActive={activeOptionIndex != null}>
                 {listScreenReaderStatus}
-              </EuiScreenReaderStatus>
+              </EuiScreenReaderLive>
             )}
             <EuiSelectableList<T>
               key="list"

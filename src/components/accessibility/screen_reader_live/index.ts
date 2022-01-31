@@ -7,6 +7,6 @@
  */
 
 export {
-  EuiScreenReaderStatus,
-  EuiScreenReaderStatusProps,
-} from './screen_reader_status';
+  EuiScreenReaderLive,
+  EuiScreenReaderLiveProps,
+} from './screen_reader_live';

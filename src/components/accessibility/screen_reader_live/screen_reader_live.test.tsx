@@ -11,32 +11,46 @@ import { mount, render } from 'enzyme';
 
 import { findTestSubject } from '../../../test';
 
-import { EuiScreenReaderStatus } from './screen_reader_status';
+import { EuiScreenReaderLive } from './screen_reader_live';
 
-const content = (
-  <p>
-    This paragraph is not visible to sighted users but will be read by
-    screenreaders.
-  </p>
-);
-
-describe('EuiScreenReaderStatus', () => {
+describe('EuiScreenReaderLive', () => {
   describe('with a static configuration', () => {
-    it('is can be active', () => {
+    const content = (
+      <p>
+        This paragraph is not visible to sighted users but will be read by
+        screenreaders.
+      </p>
+    );
+
+    it('renders screen reader content when active', () => {
       const component = render(
-        <EuiScreenReaderStatus id="test" isActive={true} updatePrecipitate={0}>
-          {content}
-        </EuiScreenReaderStatus>
+        <EuiScreenReaderLive isActive={true}>{content}</EuiScreenReaderLive>
       );
 
       expect(component).toMatchSnapshot();
     });
 
-    it('is can be inactive', () => {
+    it('does not render screen reader content when inactive', () => {
       const component = render(
-        <EuiScreenReaderStatus id="test" isActive={false} updatePrecipitate={0}>
+        <EuiScreenReaderLive isActive={false}>{content}</EuiScreenReaderLive>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    it('accepts `role`', () => {
+      const component = render(
+        <EuiScreenReaderLive role="log">{content}</EuiScreenReaderLive>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    it('accepts `aria-live`', () => {
+      const component = render(
+        <EuiScreenReaderLive aria-live="assertive">
           {content}
-        </EuiScreenReaderStatus>
+        </EuiScreenReaderLive>
       );
 
       expect(component).toMatchSnapshot();
@@ -55,23 +69,20 @@ describe('EuiScreenReaderStatus', () => {
           >
             Increment
           </button>
-          <EuiScreenReaderStatus
-            id="test"
-            isActive={true}
-            updatePrecipitate={activeOptions}
-          >
+          <EuiScreenReaderLive>
             <p>Number of active options: {activeOptions}</p>
-          </EuiScreenReaderStatus>
+          </EuiScreenReaderLive>
         </div>
       );
     };
-    it('is rendered', () => {
+
+    it('initially renders screen reader content in the first live region', () => {
       const component = mount(<Component />);
 
       expect(component).toMatchSnapshot();
     });
 
-    it('toggles the active live region when changed', () => {
+    it('alternates rendering screen reader content into the second live region when changed/toggled', () => {
       const component = mount(<Component />);
 
       findTestSubject(component, 'increment').simulate('click');

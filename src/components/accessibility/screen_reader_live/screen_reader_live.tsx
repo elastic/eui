@@ -7,6 +7,8 @@
  */
 
 import React, {
+  AriaAttributes,
+  HTMLAttributes,
   FunctionComponent,
   ReactNode,
   useEffect,
@@ -15,60 +17,56 @@ import React, {
 
 import { EuiScreenReaderOnly } from '../screen_reader_only';
 
-export interface EuiScreenReaderStatusProps {
+export interface EuiScreenReaderLiveProps {
   /**
-   * Use the `id` of the target element when possible
+   * Whether to make screen readers aware of the content
    */
-  id: string;
-  /**
-   * Whether the make screen readers aware of the content
-   */
-  isActive: boolean;
-  /**
-   * A value to watch to trigger an update so that screen readers pick up changes
-   */
-  updatePrecipitate: number | string;
+  isActive?: boolean;
   /**
    * Content for screen readers to announce
    */
   children?: ReactNode;
+  /**
+   * `role` attribute for both live regions.
+   *
+   * https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions#roles_with_implicit_live_region_attributes
+   */
+  role?: HTMLAttributes<HTMLDivElement>['role'];
+  /**
+   * `aria-live` attribute for both live regions
+   */
+  'aria-live'?: AriaAttributes['aria-live'];
 }
 
-export const EuiScreenReaderStatus: FunctionComponent<EuiScreenReaderStatusProps> = ({
-  id,
-  isActive,
-  updatePrecipitate,
+export const EuiScreenReaderLive: FunctionComponent<EuiScreenReaderLiveProps> = ({
   children,
+  isActive = true,
+  role = 'status',
+  'aria-live': ariaLive = 'polite',
 }) => {
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     setToggle((toggle) => !toggle);
-  }, [updatePrecipitate]);
+  }, [children]);
 
   return (
     /**
      * Intentionally uses two persistent live regions with oscillating content updates.
-     * Screen readers can more easily track and accurately (timing) announce changes than with a single rerendered <div>.
+     * This resolves the problem of duplicate screen reader announcements in rapid succession
+     * caused by React's virtual DOM behaviour (https://github.com/nvaccess/nvda/issues/7996#issuecomment-413641709)
+     *
      * Adapted from https://github.com/alphagov/accessible-autocomplete/blob/a7106f03150941fc15e6c1ceb0a90e8872fa86ef/src/status.js
      * Debouncing was not needed for this case, but could prove to be useful for future use cases.
+     * See also https://github.com/AlmeroSteyn/react-aria-live and https://github.com/dequelabs/ngA11y
+     * for more examples of the double region approach.
      */
     <EuiScreenReaderOnly>
       <div>
-        <div
-          id={`${id}-statusA`}
-          role="status"
-          aria-atomic="true"
-          aria-live="polite"
-        >
+        <div role={role} aria-atomic="true" aria-live={ariaLive}>
           {isActive && toggle ? children : ''}
         </div>
-        <div
-          id={`${id}-statusB`}
-          role="status"
-          aria-atomic="true"
-          aria-live="polite"
-        >
+        <div role={role} aria-atomic="true" aria-live={ariaLive}>
           {isActive && !toggle ? children : ''}
         </div>
       </div>
