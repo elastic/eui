@@ -19,24 +19,32 @@ export const useFinalGridDimensions = ({
   unconstrainedWidth,
   wrapperDimensions,
   wrapperRef,
+  isFullScreen,
   rowCount,
 }: {
   unconstrainedHeight: number;
   unconstrainedWidth: number;
   wrapperDimensions: { width: number; height: number };
   wrapperRef: MutableRefObject<HTMLDivElement | null>;
+  isFullScreen: boolean;
   rowCount: number;
 }) => {
   // Used if the grid needs to scroll
   const [height, setHeight] = useState<number | undefined>(undefined);
   const [width, setWidth] = useState<number | undefined>(undefined);
+  // Tracking full screen height separately is necessary to correctly restore the grid back to non-full-screen height
+  const [fullScreenHeight, setFullScreenHeight] = useState(0);
 
   // Set the wrapper height on load, whenever the grid wrapper resizes, and whenever rowCount changes
   useEffect(() => {
     const boundingRect = wrapperRef.current!.getBoundingClientRect();
 
-    if (boundingRect.height !== unconstrainedHeight) {
-      setHeight(boundingRect.height);
+    if (isFullScreen) {
+      setFullScreenHeight(boundingRect.height);
+    } else {
+      if (boundingRect.height !== unconstrainedHeight) {
+        setHeight(boundingRect.height);
+      }
     }
     if (boundingRect.width !== unconstrainedWidth) {
       setWidth(boundingRect.width);
@@ -44,6 +52,7 @@ export const useFinalGridDimensions = ({
   }, [
     // Effects that should cause recalculations
     rowCount,
+    isFullScreen,
     wrapperDimensions,
     // Dependencies
     wrapperRef,
@@ -53,6 +62,8 @@ export const useFinalGridDimensions = ({
 
   const finalHeight = IS_JEST_ENVIRONMENT
     ? Number.MAX_SAFE_INTEGER
+    : isFullScreen
+    ? fullScreenHeight
     : height || unconstrainedHeight;
   const finalWidth = IS_JEST_ENVIRONMENT
     ? Number.MAX_SAFE_INTEGER
