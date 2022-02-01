@@ -37,10 +37,8 @@ export const renderJsSourceCode = (code) => {
     // Account for and format Eui import statements that only contain one function/utility
     formattedEuiImports = `import { ${elasticImports} } from '@elastic/eui';`;
   } else {
-    formattedEuiImports = `import { \n  ${elasticImports.slice(
-      0,
-      1
-    )}\n  ${elasticImports.slice(1).join(', \n  ')} \n} from '@elastic/eui';`;
+    const lineSeparatedImports = elasticImports.join(',\n  ');
+    formattedEuiImports = `import {\n  ${lineSeparatedImports},\n} from '@elastic/eui';`;
   }
 
   /* ----- Combine and clean non-Eui Imports ----- */
