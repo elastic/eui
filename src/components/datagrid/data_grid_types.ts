@@ -48,8 +48,6 @@ export interface EuiDataGridPaginationRendererProps
   rowCount: number;
   controls: string;
   'aria-label'?: AriaAttributes['aria-label'];
-  'aria-labelledby'?: AriaAttributes['aria-labelledby'];
-  gridRef: EuiDataGridBodyProps['gridRef'];
 }
 
 export interface EuiDataGridInMemoryRendererProps {
@@ -347,6 +345,7 @@ export interface EuiDataGridBodyProps {
   onColumnResize?: EuiDataGridOnColumnResizeHandler;
   virtualizationOptions?: Partial<VariableSizeGridProps>;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
+  isFullScreen: boolean;
   gridStyles: EuiDataGridStyle;
   gridWidth: number;
   gridRef: MutableRefObject<Grid | null>;

@@ -441,6 +441,7 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                 interactiveCellId={interactiveCellId}
                 rowHeightsOptions={rowHeightsOptions}
                 virtualizationOptions={virtualizationOptions || {}}
+                isFullScreen={isFullScreen}
                 gridStyles={gridStyles}
                 gridWidth={gridWidth}
                 gridRef={gridRef}
@@ -459,7 +460,6 @@ export const EuiDataGrid: FunctionComponent<EuiDataGridProps> = (props) => {
                 rowCount={rowCount}
                 controls={gridId}
                 aria-label={props['aria-label']}
-                gridRef={gridRef}
               />
             )}
             <p id={interactiveCellId} hidden>
