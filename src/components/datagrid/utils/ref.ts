@@ -38,7 +38,7 @@ export const useImperativeGridRef = ({
 }: Dependencies) => {
   // Cell location helpers
   const { checkCellExists } = useCellLocationCheck(rowCount, visibleColCount);
-  const { getVisibleRowIndex } = useVisibleRowIndex(pagination, sortedRowMap);
+  const { findVisibleRowIndex } = useSortPageCheck(pagination, sortedRowMap);
 
   // Focus APIs
   const { setFocusedCell: _setFocusedCell } = focusContext; // eslint complains about the dependency array otherwise
@@ -50,10 +50,10 @@ export const useImperativeGridRef = ({
   const setFocusedCell = useCallback(
     ({ rowIndex, colIndex }) => {
       checkCellExists({ rowIndex, colIndex });
-      const visibleRowIndex = getVisibleRowIndex(rowIndex);
+      const visibleRowIndex = findVisibleRowIndex(rowIndex);
       _setFocusedCell([colIndex, visibleRowIndex]); // Transmog args from obj to array
     },
-    [_setFocusedCell, checkCellExists, getVisibleRowIndex]
+    [_setFocusedCell, checkCellExists, findVisibleRowIndex]
   );
 
   // Popover APIs
@@ -69,10 +69,10 @@ export const useImperativeGridRef = ({
   const openCellPopover = useCallback(
     ({ rowIndex, colIndex }) => {
       checkCellExists({ rowIndex, colIndex });
-      const visibleRowIndex = getVisibleRowIndex(rowIndex);
+      const visibleRowIndex = findVisibleRowIndex(rowIndex);
       _openCellPopover({ rowIndex: visibleRowIndex, colIndex });
     },
-    [_openCellPopover, checkCellExists, getVisibleRowIndex]
+    [_openCellPopover, checkCellExists, findVisibleRowIndex]
   );
 
   // Set the ref APIs
@@ -123,11 +123,11 @@ export const useCellLocationCheck = (rowCount: number, colCount: number) => {
  * the row is not on the current page, the grid should automatically handle
  * paginating to that row.
  */
-export const useVisibleRowIndex = (
+export const useSortPageCheck = (
   pagination: EuiDataGridProps['pagination'],
   sortedRowMap: DataGridSortingContextShape['sortedRowMap']
 ) => {
-  const getVisibleRowIndex = useCallback(
+  const findVisibleRowIndex = useCallback(
     (rowIndex: number): number => {
       // Account for sorting
       const visibleRowIndex = sortedRowMap.length
@@ -150,5 +150,5 @@ export const useVisibleRowIndex = (
     [pagination, sortedRowMap]
   );
 
-  return { getVisibleRowIndex };
+  return { findVisibleRowIndex };
 };
