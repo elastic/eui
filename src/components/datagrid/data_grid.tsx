@@ -473,6 +473,7 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     interactiveCellId={interactiveCellId}
                     rowHeightsOptions={rowHeightsOptions}
                     virtualizationOptions={virtualizationOptions || {}}
+                    isFullScreen={isFullScreen}
                     gridStyles={gridStyles}
                     gridWidth={gridWidth}
                     gridRef={gridRef}
@@ -491,7 +492,6 @@ export const EuiDataGrid = forwardRef<EuiDataGridRefProps, EuiDataGridProps>(
                     rowCount={rowCount}
                     controls={gridId}
                     aria-label={props['aria-label']}
-                    gridRef={gridRef}
                   />
                 )}
                 <p id={interactiveCellId} hidden>

@@ -52,7 +52,10 @@ export default () => {
   );
 
   return (
-    <EuiPanel style={{ maxWidth: 400, height: 300 }} paddingSize="none">
+    <EuiPanel
+      style={{ maxWidth: 400, height: 300, overflow: 'hidden' }}
+      paddingSize="none"
+    >
       <EuiDataGrid
         aria-label="Container constrained data grid demo"
         columns={columns}
