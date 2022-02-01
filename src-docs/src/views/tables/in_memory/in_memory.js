@@ -95,6 +95,7 @@ export const Table = () => {
       columns={columns}
       pagination={true}
       sorting={sorting}
+      onTableChange={(values) => console.log(values.sort)}
     />
   );
 };
