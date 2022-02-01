@@ -1,6 +1,6 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
-- Added the ability to access certain `EuiDataGrid` internal methods via the `ref` prop ([#5499](https://github.com/elastic/eui/pull/5499))
+- Added the ability to control internal `EuiDataGrid` fullscreen, cell focus, and cell popover state via the `ref` prop ([#5590](https://github.com/elastic/eui/pull/5590))
 
 ## [`46.2.0`](https://github.com/elastic/eui/tree/v46.2.0)
 
