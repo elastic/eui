@@ -188,7 +188,7 @@ const getInitialPagination = (pagination: Pagination | undefined) => {
 function findColumnByProp<T>(
   columns: Array<EuiBasicTableColumn<T>>,
   prop: 'field' | 'name',
-  value: string
+  value: string | ReactNode
 ) {
   for (let i = 0; i < columns.length; i++) {
     const column = columns[i];
@@ -200,6 +200,19 @@ function findColumnByProp<T>(
       return column;
     }
   }
+}
+
+function findColumnByFieldOrName<T>(
+  columns: Array<EuiBasicTableColumn<T>>,
+  value: string | ReactNode
+) {
+  // The passed value can be a column's `field` or its `name`
+  // for backwards compatibility `field` must be checked first
+  let column = findColumnByProp(columns, 'field', value);
+  if (column == null) {
+    column = findColumnByProp(columns, 'name', value);
+  }
+  return column;
 }
 
 function getInitialSorting<T>(
@@ -218,12 +231,7 @@ function getInitialSorting<T>(
     direction: sortDirection,
   } = (sorting as SortingOptions).sort;
 
-  // sortable could be a column's `field` or its `name`
-  // for backwards compatibility `field` must be checked first
-  let sortColumn = findColumnByProp(columns, 'field', sortable);
-  if (sortColumn == null) {
-    sortColumn = findColumnByProp(columns, 'name', sortable);
-  }
+  const sortColumn = findColumnByFieldOrName(columns, sortable);
 
   if (sortColumn == null) {
     return {
@@ -404,11 +412,7 @@ export class EuiInMemoryTable<T> extends Component<
     // EuiBasicTable returns the column's `field` instead of `name` on sort
     // and the column's `name` instead of `field` on pagination
     if (sortName) {
-      const { columns } = this.props;
-      let sortColumn = findColumnByProp(columns, 'field', sortName as string);
-      if (sortColumn == null) {
-        sortColumn = findColumnByProp(columns, 'name', sortName as string);
-      }
+      const sortColumn = findColumnByFieldOrName(this.props.columns, sortName);
       if (sortColumn) {
         // Ensure sortName uses `name`
         sortName = sortColumn.name as keyof T;
