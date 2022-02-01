@@ -345,6 +345,7 @@ export interface EuiDataGridBodyProps {
   onColumnResize?: EuiDataGridOnColumnResizeHandler;
   virtualizationOptions?: Partial<VariableSizeGridProps>;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
+  isFullScreen: boolean;
   gridStyles: EuiDataGridStyle;
   gridWidth: number;
   gridRef: MutableRefObject<Grid | null>;

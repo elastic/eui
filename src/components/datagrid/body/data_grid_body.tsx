@@ -239,6 +239,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     onColumnResize,
     rowHeightsOptions,
     virtualizationOptions,
+    isFullScreen,
     gridStyles,
     gridWidth,
     gridRef,
@@ -414,6 +415,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     unconstrainedWidth: 0, // unable to determine this until the container's size is known
     wrapperDimensions,
     wrapperRef,
+    isFullScreen,
     rowCount,
   });
 
