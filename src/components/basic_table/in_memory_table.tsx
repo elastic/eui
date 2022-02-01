@@ -401,16 +401,21 @@ export class EuiInMemoryTable<T> extends Component<
     // from sortName; sortName gets stored internally while reportedSortName is sent to the callback
     let reportedSortName = sortName;
 
-    // EuiBasicTable returns the column's `field` if it exists instead of `name`,
-    // map back to `name` if this is the case
-    for (let i = 0; i < this.props.columns.length; i++) {
-      const column = this.props.columns[i];
-      if (
-        'field' in column &&
-        (column as EuiTableFieldDataColumnType<T>).field === sortName
-      ) {
-        sortName = column.name as keyof T;
-        break;
+    // EuiBasicTable returns the column's `field` instead of `name` on sort
+    // and the column's `name` instead of `field` on pagination
+    if (sortName) {
+      const { columns } = this.props;
+      let sortColumn = findColumnByProp(columns, 'field', sortName as string);
+      if (sortColumn == null) {
+        sortColumn = findColumnByProp(columns, 'name', sortName as string);
+      }
+      if (sortColumn) {
+        // Ensure sortName uses `name`
+        sortName = sortColumn.name as keyof T;
+
+        // Ensure reportedSortName uses `field` if it exists
+        const sortField = (sortColumn as EuiTableFieldDataColumnType<T>).field;
+        if (sortField) reportedSortName = sortField as keyof T;
       }
     }
 
