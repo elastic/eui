@@ -2,7 +2,7 @@
 
 - Added the ability to access certain `EuiDataGrid` internal methods via the `ref` prop ([#5499](https://github.com/elastic/eui/pull/5499))
 
-#### END FEATURE BRANCH
+## [`46.2.0`](https://github.com/elastic/eui/tree/v46.2.0)
 
 - Updated `EuiDataGrid`s with scrolling content to always have a border around the grid body and any scrollbars ([#5563](https://github.com/elastic/eui/pull/5563))
 - Updated `EuiDataGrid`'s body to a light gray background, which primarily shows when scrolling through virtualized content ([#5562](https://github.com/elastic/eui/pull/5562))
