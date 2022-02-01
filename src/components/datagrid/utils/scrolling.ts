@@ -74,6 +74,9 @@ export const useScrollCellIntoView = ({
   hasStickyFooter,
 }: Dependencies) => {
   const scrollCellIntoView = useCallback(
+    // Note: in order for this UX to work correctly with react-window's APIs,
+    // the `rowIndex` arg expected is actually our internal `visibleRowIndex`,
+    // not the `rowIndex` from the raw unsorted/unpaginated user data
     async ({ rowIndex, colIndex }: ScrollCellIntoView) => {
       if (!gridRef.current || !outerGridRef.current || !innerGridRef.current) {
         return; // Grid isn't rendered yet or is empty

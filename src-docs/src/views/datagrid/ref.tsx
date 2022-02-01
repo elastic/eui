@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState, useRef } from 'react';
+// @ts-ignore - faker does not have type declarations
 import { fake } from 'faker';
 
 import {
@@ -9,15 +10,16 @@ import {
   EuiFieldNumber,
   EuiButton,
   EuiDataGrid,
+  EuiDataGridRefProps,
   EuiModal,
   EuiModalBody,
   EuiModalFooter,
   EuiModalHeader,
   EuiModalHeaderTitle,
   EuiText,
-} from '../../../../src/components/';
+} from '../../../../src/components';
 
-const raw_data = [];
+const raw_data: Array<{ [key: string]: string }> = [];
 for (let i = 1; i < 100; i++) {
   raw_data.push({
     name: fake('{{name.lastName}}, {{name.firstName}}'),
@@ -29,20 +31,23 @@ for (let i = 1; i < 100; i++) {
 }
 
 export default () => {
-  const dataGridRef = useRef();
+  const dataGridRef = useRef<EuiDataGridRefProps>(null);
 
   // Modal
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [lastFocusedCell, setLastFocusedCell] = useState({});
+  const [lastFocusedCell, setLastFocusedCell] = useState({
+    rowIndex: 0,
+    colIndex: 0,
+  });
 
   const closeModal = useCallback(() => {
     setIsModalVisible(false);
-    dataGridRef.current.setFocusedCell(lastFocusedCell); // Set the data grid focus back to the cell that opened the modal
+    dataGridRef.current!.setFocusedCell(lastFocusedCell); // Set the data grid focus back to the cell that opened the modal
   }, [lastFocusedCell]);
 
   const showModal = useCallback(({ rowIndex, colIndex }) => {
     setIsModalVisible(true);
-    dataGridRef.current.closeCellPopover(); // Close any open cell popovers
+    dataGridRef.current!.closeCellPopover(); // Close any open cell popovers
     setLastFocusedCell({ rowIndex, colIndex }); // Store the cell that opened this modal
   }, []);
 
@@ -101,11 +106,18 @@ export default () => {
 
   // Pagination
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 25 });
-  const onChangePage = useCallback(
-    (pageIndex) =>
-      setPagination((pagination) => ({ ...pagination, pageIndex })),
-    []
-  );
+  const onChangePage = useCallback((pageIndex) => {
+    setPagination((pagination) => ({ ...pagination, pageIndex }));
+  }, []);
+  const onChangePageSize = useCallback((pageSize) => {
+    setPagination((pagination) => ({ ...pagination, pageSize }));
+  }, []);
+
+  // Sorting
+  const [sortingColumns, setSortingColumns] = useState([]);
+  const onSort = useCallback((sortingColumns) => {
+    setSortingColumns(sortingColumns);
+  }, []);
 
   // Manual cell focus
   const [rowIndexAction, setRowIndexAction] = useState(0);
@@ -118,7 +130,7 @@ export default () => {
           <EuiFormRow label="Row index">
             <EuiFieldNumber
               min={0}
-              max={24}
+              max={raw_data.length - 1}
               value={rowIndexAction}
               onChange={(e) => setRowIndexAction(Number(e.target.value))}
               compressed
@@ -129,7 +141,7 @@ export default () => {
           <EuiFormRow label="Column index">
             <EuiFieldNumber
               min={0}
-              max={4}
+              max={visibleColumns.length - 1}
               value={colIndexAction}
               onChange={(e) => setColIndexAction(Number(e.target.value))}
               compressed
@@ -140,7 +152,7 @@ export default () => {
           <EuiButton
             size="s"
             onClick={() =>
-              dataGridRef.current.setFocusedCell({
+              dataGridRef.current!.setFocusedCell({
                 rowIndex: rowIndexAction,
                 colIndex: colIndexAction,
               })
@@ -153,7 +165,7 @@ export default () => {
           <EuiButton
             size="s"
             onClick={() =>
-              dataGridRef.current.openCellPopover({
+              dataGridRef.current!.openCellPopover({
                 rowIndex: rowIndexAction,
                 colIndex: colIndexAction,
               })
@@ -165,7 +177,7 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiButton
             size="s"
-            onClick={() => dataGridRef.current.setIsFullScreen(true)}
+            onClick={() => dataGridRef.current!.setIsFullScreen(true)}
           >
             Set grid to full screen
           </EuiButton>
@@ -177,14 +189,17 @@ export default () => {
         aria-label="Data grid demo"
         columns={columns}
         columnVisibility={{ visibleColumns, setVisibleColumns }}
+        sorting={{ columns: sortingColumns, onSort }}
+        inMemory={{ level: 'sorting' }}
         rowCount={raw_data.length}
         renderCellValue={({ rowIndex, columnId }) =>
           raw_data[rowIndex][columnId]
         }
         pagination={{
           ...pagination,
-          pageSizeOptions: [25],
+          pageSizeOptions: [25, 50],
           onChangePage: onChangePage,
+          onChangeItemsPerPage: onChangePageSize,
         }}
         height={400}
         ref={dataGridRef}

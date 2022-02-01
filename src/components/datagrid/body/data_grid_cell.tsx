@@ -490,7 +490,7 @@ export class EuiDataGridCell extends Component<
       rowManager,
       ...rest
     } = this.props;
-    const { rowIndex, colIndex } = rest;
+    const { rowIndex, visibleRowIndex, colIndex } = rest;
 
     const popoverIsOpen = this.isPopoverOpen();
     const hasCellButtons = isExpandable || column?.cellActions;
@@ -534,7 +534,7 @@ export class EuiDataGridCell extends Component<
           case keys.ENTER:
           case keys.F2:
             event.preventDefault();
-            openCellPopover({ rowIndex, colIndex });
+            openCellPopover({ rowIndex: visibleRowIndex, colIndex });
             break;
         }
       } else {
@@ -641,7 +641,7 @@ export class EuiDataGridCell extends Component<
                 if (popoverIsOpen) {
                   closeCellPopover();
                 } else {
-                  openCellPopover({ rowIndex, colIndex });
+                  openCellPopover({ rowIndex: visibleRowIndex, colIndex });
                 }
               }}
             />

@@ -179,9 +179,12 @@ export interface EuiDataGridVisibleRows {
 
 export interface DataGridSortingContextShape {
   sorting?: EuiDataGridSorting;
-  sortedRowMap: { [key: number]: number };
-  getCorrectRowIndex: (rowIndex: number) => number;
+  sortedRowMap: number[];
+  getCorrectRowIndex: (visibleRowIndex: number) => number;
 }
+
+// An array of [x,y] coordinates. Note that the `y` value expected internally is a `visibleRowIndex`
+export type EuiDataGridFocusedCell = [number, number];
 
 export interface DataGridFocusContextShape {
   focusedCell?: EuiDataGridFocusedCell;
@@ -196,6 +199,7 @@ export interface DataGridFocusContextShape {
 
 export interface DataGridCellPopoverContextShape {
   popoverIsOpen: boolean;
+  // Note that the rowIndex used to locate cells internally is a `visibleRowIndex`
   cellLocation: { rowIndex: number; colIndex: number };
   openCellPopover(args: { rowIndex: number; colIndex: number }): void;
   closeCellPopover(): void;
@@ -763,8 +767,6 @@ export interface EuiDataGridInMemory {
    */
   skipColumns?: string[];
 }
-
-export type EuiDataGridFocusedCell = [number, number];
 
 export interface EuiDataGridInMemoryValues {
   [rowIndex: string]: { [columnId: string]: string };
