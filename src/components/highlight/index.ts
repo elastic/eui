@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiHighlight, EuiHighlightProps } from './highlight';
+export type { EuiHighlightProps } from './highlight';
+export { EuiHighlight } from './highlight';

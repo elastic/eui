@@ -6,13 +6,11 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiSelectableList,
+export type {
   EuiSelectableListProps,
   EuiSelectableOptionsListProps,
   EuiSelectableOptionsListVirtualizedProps,
 } from './selectable_list';
-export {
-  EuiSelectableListItem,
-  EuiSelectableListItemProps,
-} from './selectable_list_item';
+export { EuiSelectableList } from './selectable_list';
+export type { EuiSelectableListItemProps } from './selectable_list_item';
+export { EuiSelectableListItem } from './selectable_list_item';

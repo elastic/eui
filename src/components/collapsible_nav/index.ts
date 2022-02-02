@@ -6,9 +6,8 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiCollapsibleNavGroup,
-  EuiCollapsibleNavGroupProps,
-} from './collapsible_nav_group';
+export type { EuiCollapsibleNavGroupProps } from './collapsible_nav_group';
+export { EuiCollapsibleNavGroup } from './collapsible_nav_group';
 
-export { EuiCollapsibleNav, EuiCollapsibleNavProps } from './collapsible_nav';
+export type { EuiCollapsibleNavProps } from './collapsible_nav';
+export { EuiCollapsibleNav } from './collapsible_nav';

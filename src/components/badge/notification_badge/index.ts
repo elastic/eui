@@ -6,7 +6,5 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiNotificationBadge,
-  EuiNotificationBadgeProps,
-} from './badge_notification';
+export type { EuiNotificationBadgeProps } from './badge_notification';
+export { EuiNotificationBadge } from './badge_notification';

@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiFieldNumber, EuiFieldNumberProps } from './field_number';
+export type { EuiFieldNumberProps } from './field_number';
+export { EuiFieldNumber } from './field_number';

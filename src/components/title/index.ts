@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiTitle, EuiTitleProps, EuiTitleSize } from './title';
+export type { EuiTitleProps, EuiTitleSize } from './title';
+export { EuiTitle } from './title';

@@ -6,11 +6,13 @@
  * Side Public License, v 1.
  */
 
-export { EuiInputPopover, EuiInputPopoverProps } from './input_popover';
-export { EuiPopover, EuiPopoverProps, PopoverAnchorPosition } from './popover';
-export { EuiPopoverTitle, EuiPopoverTitleProps } from './popover_title';
-export { EuiPopoverFooter, EuiPopoverFooterProps } from './popover_footer';
-export {
-  EuiWrappingPopover,
-  EuiWrappingPopoverProps,
-} from './wrapping_popover';
+export type { EuiInputPopoverProps } from './input_popover';
+export { EuiInputPopover } from './input_popover';
+export type { EuiPopoverProps, PopoverAnchorPosition } from './popover';
+export { EuiPopover } from './popover';
+export type { EuiPopoverTitleProps } from './popover_title';
+export { EuiPopoverTitle } from './popover_title';
+export type { EuiPopoverFooterProps } from './popover_footer';
+export { EuiPopoverFooter } from './popover_footer';
+export type { EuiWrappingPopoverProps } from './wrapping_popover';
+export { EuiWrappingPopover } from './wrapping_popover';

@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiTabbedContent,
+export type {
   EuiTabbedContentTab,
   EuiTabbedContentProps,
 } from './tabbed_content';
+export { EuiTabbedContent } from './tabbed_content';

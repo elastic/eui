@@ -6,10 +6,14 @@
  * Side Public License, v 1.
  */
 
-export { EuiFlyout, EuiFlyoutProps, EuiFlyoutSize } from './flyout';
+export type { EuiFlyoutProps, EuiFlyoutSize } from './flyout';
+export { EuiFlyout } from './flyout';
 
-export { EuiFlyoutBody, EuiFlyoutBodyProps } from './flyout_body';
+export type { EuiFlyoutBodyProps } from './flyout_body';
+export { EuiFlyoutBody } from './flyout_body';
 
-export { EuiFlyoutFooter, EuiFlyoutFooterProps } from './flyout_footer';
+export type { EuiFlyoutFooterProps } from './flyout_footer';
+export { EuiFlyoutFooter } from './flyout_footer';
 
-export { EuiFlyoutHeader, EuiFlyoutHeaderProps } from './flyout_header';
+export type { EuiFlyoutHeaderProps } from './flyout_header';
+export { EuiFlyoutHeader } from './flyout_header';
