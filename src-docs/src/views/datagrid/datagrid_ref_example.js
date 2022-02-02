@@ -38,7 +38,8 @@ export const DataGridRefExample = {
             For advanced use cases, and particularly for data grids that manage
             associated modals/flyouts and need to manually control their grid
             cell popovers & focus states, we expose certain internal methods via
-            the <EuiCode>ref</EuiCode> prop of EuiDataGrid. These methods are:
+            the <EuiCode>ref</EuiCode> prop of <strong>EuiDataGrid</strong>.
+            These methods are:
           </p>
           <ul>
             <li>
@@ -56,6 +57,7 @@ export const DataGridRefExample = {
                 iconType="accessibility"
                 title="Using this method is an accessibility requirement if your data
                 grid toggles a modal or flyout."
+                color="warning"
               >
                 Your modal or flyout should restore focus into the grid on close
                 to prevent keyboard or screen reader users from being stranded.
@@ -65,27 +67,6 @@ export const DataGridRefExample = {
             <li>
               <EuiCode>openCellPopover({'{ rowIndex, colIndex }'})</EuiCode> -
               opens the specified cell&apos;s popover contents.
-              <EuiSpacer size="s" />
-              <EuiCallOut iconType="mapMarker" title="Handling cell location">
-                When using <EuiCode>setFocusedCell</EuiCode> or{' '}
-                <EuiCode>openCellPopover</EuiCode>, keep in mind:
-                <ul>
-                  <li>
-                    colIndex is affected by the user reordering or hiding
-                    columns.
-                  </li>
-                  <li>
-                    If the passed cell indices are outside the data grid&apos;s
-                    total row count or visible column count, an error will be
-                    thrown.
-                  </li>
-                  <li>
-                    If the data grid is paginated or sorted, the grid will
-                    handle automatically finding specified row index&apos;s
-                    correct location for you.
-                  </li>
-                </ul>
-              </EuiCallOut>
               <EuiSpacer size="m" />
             </li>
             <li>
@@ -95,6 +76,32 @@ export const DataGridRefExample = {
               </p>
             </li>
           </ul>
+
+          <EuiSpacer size="s" />
+
+          <EuiCallOut title="Handling cell location">
+            When using <EuiCode>setFocusedCell</EuiCode> or{' '}
+            <EuiCode>openCellPopover</EuiCode>, keep in mind:
+            <ul>
+              <li>
+                <EuiCode>colIndex</EuiCode> is affected by the user reordering
+                or hiding columns.
+              </li>
+              <li>
+                If the passed cell indices are outside the data grid&apos;s
+                total row count or visible column count, an error will be
+                thrown.
+              </li>
+              <li>
+                If the data grid is paginated or sorted, the grid will handle
+                automatically finding specified row index&apos;s correct
+                location for you.
+              </li>
+            </ul>
+          </EuiCallOut>
+
+          <EuiSpacer />
+
           <p>
             The below example shows how to use the internal APIs for a data grid
             that opens a modal via cell actions.
