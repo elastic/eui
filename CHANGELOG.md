@@ -2,6 +2,10 @@
 
 - Added the ability to control internal `EuiDataGrid` fullscreen, cell focus, and cell popover state via the `ref` prop ([#5590](https://github.com/elastic/eui/pull/5590))
 
+**Bug fixes**
+
+- Fixed `EuiInMemoryTable`'s `onTableChange` callback not returning the correct `sort.field` value on pagination ([#5588](https://github.com/elastic/eui/pull/5588))
+
 ## [`46.2.0`](https://github.com/elastic/eui/tree/v46.2.0)
 
 - Updated `EuiDataGrid`s with scrolling content to always have a border around the grid body and any scrollbars ([#5563](https://github.com/elastic/eui/pull/5563))
