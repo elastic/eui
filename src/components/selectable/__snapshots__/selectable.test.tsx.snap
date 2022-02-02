@@ -115,6 +115,12 @@ exports[`EuiSelectable errorMessage prop can render an element as the message 1`
 <div
   class="euiSelectable"
 >
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id-instructions"
+  >
+    Filter options
+  </p>
   <div
     class="euiText euiText--extraSmall euiSelectableMessage"
     id="generated-id_messageContent"
@@ -246,6 +252,12 @@ exports[`EuiSelectable errorMessage prop does renders the message when defined 1
 <div
   class="euiSelectable"
 >
+  <p
+    class="euiScreenReaderOnly"
+    id="generated-id-instructions"
+  >
+    Filter options
+  </p>
   <div
     class="euiText euiText--extraSmall euiSelectableMessage"
     id="generated-id_messageContent"

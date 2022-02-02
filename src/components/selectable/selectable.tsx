@@ -634,25 +634,17 @@ export class EuiSelectable<T = {}> extends Component<
       </EuiI18n>
     ) : undefined;
 
-    let listScreenReaderStatus: ReactNode = null;
     const resultsLength = visibleOptions.filter((option) => !option.disabled)
       .length;
-    if (resultsLength === 0) {
-      listScreenReaderStatus = (
-        <EuiI18n
-          token="euiSelectable.noSearchResults"
-          default="No search results"
-        />
-      );
-    } else {
-      listScreenReaderStatus = (
-        <EuiI18n
-          token="euiSelectable.searchResults"
-          default="{resultsLength} result(s) available"
-          values={{ resultsLength }}
-        />
-      );
-    }
+    const listScreenReaderStatus = (
+      <EuiI18n
+        token="euiSelectable.searchResults"
+        default={({ resultsLength }) =>
+          `${resultsLength} result${resultsLength === 1 ? '' : 's'} available`
+        }
+        values={{ resultsLength }}
+      />
+    );
 
     const listAriaDescribedbyId = `${this.listId}-instructions`;
     const listAccessibleName = getAccessibleName(
@@ -662,14 +654,7 @@ export class EuiSelectable<T = {}> extends Component<
     const listHasAccessibleName = Boolean(
       Object.keys(listAccessibleName).length
     );
-    const list = messageContent ? (
-      <EuiSelectableMessage
-        id={this.messageContentId}
-        bordered={listProps && listProps.bordered}
-      >
-        {messageContent}
-      </EuiSelectableMessage>
-    ) : (
+    const list = (
       <EuiI18n
         tokens={[
           'euiSelectable.screenReaderInstructions',
@@ -683,37 +668,50 @@ export class EuiSelectable<T = {}> extends Component<
         {([placeholderName, screenReaderInstructions]: string[]) => (
           <>
             {searchable && (
-              <EuiScreenReaderLive isActive={activeOptionIndex != null}>
-                {listScreenReaderStatus}
+              <EuiScreenReaderLive
+                isActive={messageContent != null || activeOptionIndex != null}
+              >
+                {messageContent || listScreenReaderStatus}
               </EuiScreenReaderLive>
             )}
+
             <EuiScreenReaderOnly>
               <p id={listAriaDescribedbyId}>{screenReaderInstructions}</p>
             </EuiScreenReaderOnly>
-            <EuiSelectableList<T>
-              key="list"
-              options={options}
-              visibleOptions={visibleOptions}
-              searchValue={searchValue}
-              activeOptionIndex={activeOptionIndex}
-              setActiveOptionIndex={(index, cb) => {
-                this.setState({ activeOptionIndex: index }, cb);
-              }}
-              onOptionClick={this.onOptionClick}
-              singleSelection={singleSelection}
-              ref={this.optionsListRef}
-              renderOption={renderOption}
-              height={height}
-              allowExclusions={allowExclusions}
-              searchable={searchable}
-              makeOptionId={this.makeOptionId}
-              listId={this.listId}
-              {...(listHasAccessibleName
-                ? listAccessibleName
-                : searchable && { 'aria-label': placeholderName })}
-              {...cleanedListProps}
-              {...virtualizedProps}
-            />
+
+            {messageContent ? (
+              <EuiSelectableMessage
+                id={this.messageContentId}
+                bordered={listProps && listProps.bordered}
+              >
+                {messageContent}
+              </EuiSelectableMessage>
+            ) : (
+              <EuiSelectableList<T>
+                key="list"
+                options={options}
+                visibleOptions={visibleOptions}
+                searchValue={searchValue}
+                activeOptionIndex={activeOptionIndex}
+                setActiveOptionIndex={(index, cb) => {
+                  this.setState({ activeOptionIndex: index }, cb);
+                }}
+                onOptionClick={this.onOptionClick}
+                singleSelection={singleSelection}
+                ref={this.optionsListRef}
+                renderOption={renderOption}
+                height={height}
+                allowExclusions={allowExclusions}
+                searchable={searchable}
+                makeOptionId={this.makeOptionId}
+                listId={this.listId}
+                {...(listHasAccessibleName
+                  ? listAccessibleName
+                  : searchable && { 'aria-label': placeholderName })}
+                {...cleanedListProps}
+                {...virtualizedProps}
+              />
+            )}
           </>
         )}
       </EuiI18n>
