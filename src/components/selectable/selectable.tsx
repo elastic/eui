@@ -295,7 +295,15 @@ export class EuiSelectable<T = {}> extends Component<
 
       case keys.ENTER:
       case keys.SPACE:
-        if (event.key === keys.SPACE && this.props.searchable) return;
+        if (event.key === keys.SPACE && this.props.searchable) {
+          // For non-searchable instances, SPACE interaction should align with
+          // the user expectation of selection toggling (e.g., input[type=checkbox]).
+          // ENTER is also a valid selection mechanism in this case.
+          //
+          // For searchable instances, SPACE is reserved as a character for filtering
+          // via the input box, and as such only ENTER will toggle selection.
+          return;
+        }
         event.preventDefault();
         event.stopPropagation();
         if (this.state.activeOptionIndex != null && optionsList) {
