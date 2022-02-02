@@ -6,6 +6,7 @@ import React, {
   createContext,
   useContext,
   useRef,
+  createRef,
 } from 'react';
 import { Link } from 'react-router-dom';
 import { fake } from 'faker';
@@ -32,8 +33,9 @@ import {
   EuiText,
   EuiTitle,
 } from '../../../../src/components/';
-const DataContext = createContext();
 
+const gridRef = createRef();
+const DataContext = createContext();
 const raw_data = [];
 
 for (let i = 1; i < 100; i++) {
@@ -217,12 +219,15 @@ const trailingControlColumns = [
     id: 'actions',
     width: 40,
     headerCellRender: () => null,
-    rowCellRender: function RowCellRender() {
+    rowCellRender: function RowCellRender({ rowIndex, colIndex }) {
       const [isPopoverVisible, setIsPopoverVisible] = useState(false);
       const closePopover = () => setIsPopoverVisible(false);
 
       const [isModalVisible, setIsModalVisible] = useState(false);
-      const closeModal = () => setIsModalVisible(false);
+      const closeModal = () => {
+        setIsModalVisible(false);
+        gridRef.current.setFocusedCell({ rowIndex, colIndex });
+      };
       const showModal = () => {
         closePopover();
         setIsModalVisible(true);
@@ -263,7 +268,10 @@ const trailingControlColumns = [
       }
 
       const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
-      const closeFlyout = () => setIsFlyoutVisible(false);
+      const closeFlyout = () => {
+        setIsFlyoutVisible(false);
+        gridRef.current.setFocusedCell({ rowIndex, colIndex });
+      };
       const showFlyout = () => {
         closePopover();
         setIsFlyoutVisible(true);
@@ -415,6 +423,7 @@ export default () => {
           onChangePage: onChangePage,
         }}
         onColumnResize={onColumnResize.current}
+        ref={gridRef}
       />
     </DataContext.Provider>
   );
