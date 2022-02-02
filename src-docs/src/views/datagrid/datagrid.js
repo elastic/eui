@@ -30,6 +30,7 @@ import {
   EuiModalHeader,
   EuiModalHeaderTitle,
   EuiPopover,
+  EuiScreenReaderOnly,
   EuiText,
   EuiTitle,
 } from '../../../../src/components/';
@@ -218,7 +219,11 @@ const trailingControlColumns = [
   {
     id: 'actions',
     width: 40,
-    headerCellRender: () => null,
+    headerCellRender: () => (
+      <EuiScreenReaderOnly>
+        <span>Controls</span>
+      </EuiScreenReaderOnly>
+    ),
     rowCellRender: function RowCellRender({ rowIndex, colIndex }) {
       const [isPopoverVisible, setIsPopoverVisible] = useState(false);
       const closePopover = () => setIsPopoverVisible(false);
