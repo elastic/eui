@@ -6,10 +6,8 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiDescriptionList,
-  EuiDescriptionListProps,
-} from './description_list';
+export type { EuiDescriptionListProps } from './description_list';
+export { EuiDescriptionList } from './description_list';
 
 export { EuiDescriptionListTitle } from './description_list_title';
 

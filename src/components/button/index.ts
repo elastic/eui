@@ -6,30 +6,25 @@
  * Side Public License, v 1.
  */
 
-export {
-  COLORS,
-  ButtonColor,
-  ButtonSize,
-  EuiButton,
-  EuiButtonProps,
-} from './button';
+export type { ButtonColor, ButtonSize, EuiButtonProps } from './button';
+export { COLORS, EuiButton } from './button';
 
-export {
-  EuiButtonEmpty,
+export type {
   EuiButtonEmptyColor,
   EuiButtonEmptyProps,
   EuiButtonEmptySizes,
 } from './button_empty';
+export { EuiButtonEmpty } from './button_empty';
 
-export {
-  EuiButtonIcon,
+export type {
   EuiButtonIconColor,
   EuiButtonIconProps,
   EuiButtonIconPropsForButton,
 } from './button_icon';
+export { EuiButtonIcon } from './button_icon';
 
-export {
-  EuiButtonGroup,
+export type {
   EuiButtonGroupOptionProps,
   EuiButtonGroupProps,
 } from './button_group';
+export { EuiButtonGroup } from './button_group';

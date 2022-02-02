@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiErrorBoundary, EuiErrorBoundaryProps } from './error_boundary';
+export type { EuiErrorBoundaryProps } from './error_boundary';
+export { EuiErrorBoundary } from './error_boundary';

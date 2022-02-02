@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiProgress, EuiProgressProps } from './progress';
+export type { EuiProgressProps } from './progress';
+export { EuiProgress } from './progress';

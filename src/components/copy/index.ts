@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiCopy, EuiCopyProps } from './copy';
+export type { EuiCopyProps } from './copy';
+export { EuiCopy } from './copy';

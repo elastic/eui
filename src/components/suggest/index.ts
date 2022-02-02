@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
-export { EuiSuggestItem, EuiSuggestItemProps } from './suggest_item';
+export type { EuiSuggestItemProps } from './suggest_item';
+export { EuiSuggestItem } from './suggest_item';
 
-export { EuiSuggest, EuiSuggestProps, EuiSuggestionProps } from './suggest';
+export type { EuiSuggestProps, EuiSuggestionProps } from './suggest';
+export { EuiSuggest } from './suggest';

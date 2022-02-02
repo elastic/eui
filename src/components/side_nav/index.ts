@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
-export { EuiSideNav, EuiSideNavProps } from './side_nav';
+export type { EuiSideNavProps } from './side_nav';
+export { EuiSideNav } from './side_nav';
 
 export * from './side_nav_types';

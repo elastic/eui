@@ -6,15 +6,12 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiAutoRefresh,
+export type {
   EuiAutoRefreshProps,
-  EuiAutoRefreshButton,
   EuiAutoRefreshButtonProps,
   EuiAutoRefreshSharedProps,
 } from './auto_refresh';
+export { EuiAutoRefresh, EuiAutoRefreshButton } from './auto_refresh';
 
-export {
-  EuiRefreshInterval,
-  EuiRefreshIntervalProps,
-} from './refresh_interval';
+export type { EuiRefreshIntervalProps } from './refresh_interval';
+export { EuiRefreshInterval } from './refresh_interval';

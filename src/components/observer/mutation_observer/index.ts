@@ -6,8 +6,5 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiMutationObserver,
-  EuiMutationObserverProps,
-  useMutationObserver,
-} from './mutation_observer';
+export type { EuiMutationObserverProps } from './mutation_observer';
+export { EuiMutationObserver, useMutationObserver } from './mutation_observer';

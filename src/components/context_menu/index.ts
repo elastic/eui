@@ -6,21 +6,19 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiContextMenu,
+export type {
   EuiContextMenuProps,
   EuiContextMenuPanelDescriptor,
   EuiContextMenuPanelItemDescriptor,
 } from './context_menu';
+export { EuiContextMenu } from './context_menu';
 
-export {
-  EuiContextMenuPanel,
-  EuiContextMenuPanelProps,
-} from './context_menu_panel';
+export type { EuiContextMenuPanelProps } from './context_menu_panel';
+export { EuiContextMenuPanel } from './context_menu_panel';
 
-export {
-  EuiContextMenuItem,
+export type {
   EuiContextMenuItemProps,
   EuiContextMenuItemIcon,
   EuiContextMenuItemLayoutAlignment,
 } from './context_menu_item';
+export { EuiContextMenuItem } from './context_menu_item';
