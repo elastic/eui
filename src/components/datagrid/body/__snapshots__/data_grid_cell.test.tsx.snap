@@ -131,6 +131,7 @@ exports[`EuiDataGridCell renders 1`] = `
             style={Object {}}
           >
             <renderCellValue
+              colIndex={0}
               columnId="someColumn"
               data-test-subj="cell-content"
               isDetails={false}

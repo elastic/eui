@@ -88,6 +88,7 @@ const EuiDataGridCellContent: FunctionComponent<
             isDetails={false}
             data-test-subj="cell-content"
             rowIndex={rowIndex}
+            colIndex={colIndex}
             {...rest}
           />
         </div>
@@ -456,6 +457,7 @@ export class EuiDataGridCell extends Component<
           <PopoverContent cellContentsElement={this.cellContentsRef!}>
             <CellElement
               rowIndex={rowIndex}
+              colIndex={colIndex}
               columnId={columnId}
               isExpandable={true}
               isExpanded={true}

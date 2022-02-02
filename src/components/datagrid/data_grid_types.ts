@@ -381,6 +381,12 @@ export interface EuiDataGridCellValueElementProps {
    */
   rowIndex: number;
   /**
+   * index of the column being rendered, 0 represents the first column. This index accounts
+   * for columns that have been hidden or reordered by the user, so take care if you need
+   * to adjust the colIndex to fit your data
+   */
+  colIndex: number;
+  /**
    * id of the column being rendered, the value comes from the #EuiDataGridColumn `id`
    */
   columnId: string;
