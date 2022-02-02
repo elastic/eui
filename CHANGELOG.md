@@ -4,6 +4,10 @@
 - Added `errorMessage` prop to `EuiSelectable` ([#5581](https://github.com/elastic/eui/pull/5581))
 - Refactored `EuiSelectable` accessibility ([#5581](https://github.com/elastic/eui/pull/5581))
 
+**Bug fixes**
+
+- Fixed `EuiInMemoryTable`'s `onTableChange` callback not returning the correct `sort.field` value on pagination ([#5588](https://github.com/elastic/eui/pull/5588))
+
 ## [`46.2.0`](https://github.com/elastic/eui/tree/v46.2.0)
 
 - Updated `EuiDataGrid`s with scrolling content to always have a border around the grid body and any scrollbars ([#5563](https://github.com/elastic/eui/pull/5563))
