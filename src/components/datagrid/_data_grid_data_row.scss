@@ -37,7 +37,7 @@
 
   // Only add the transition effect on hover, so that it is instantaneous on focus
   // Long delays on hover to mitigate the accordion effect
-  &:hover:not(:focus) {
+  &:hover {
     .euiDataGridRowCell__actionButtonIcon {
       animation-duration: $euiAnimSpeedExtraFast;
       animation-name: euiDataGridCellActionsSlideIn;
@@ -47,18 +47,14 @@
     }
   }
 
-  &:not(:hover),
+  // On focus, directly show action buttons (without animation)
+  &:focus,
+  // Prevent the animation from flickering after cell popover close when focus is restored the expansion button
+  &:focus-within,
+  // Always make the cell actions visible when the cell popover is open
   &.euiDataGridRowCell--open {
     .euiDataGridRowCell__actionButtonIcon {
       animation: none;
-      margin-left: $euiDataGridCellPaddingM;
-      width: $euiSizeM;
-    }
-  }
-
-  // on focus, directly show action buttons (without animation), but still slide in the open popover button
-  &:focus {
-    .euiDataGridRowCell__actionButtonIcon {
       margin-left: $euiDataGridCellPaddingM;
       width: $euiSizeM;
     }

@@ -506,7 +506,7 @@ export class EuiDataGridCell extends Component<
       'euiDataGridRowCell',
       {
         [`euiDataGridRowCell--${columnType}`]: columnType,
-        ['euiDataGridRowCell--open']: popoverIsOpen,
+        'euiDataGridRowCell--open': popoverIsOpen,
       },
       className
     );
