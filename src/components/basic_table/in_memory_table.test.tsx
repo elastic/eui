@@ -1015,13 +1015,14 @@ describe('EuiInMemoryTable', () => {
       };
 
       const component = mount(<EuiInMemoryTable {...props} />);
-
       expect(props.onTableChange).toHaveBeenCalledTimes(0);
+
+      // Pagination change
       component
         .find('EuiButtonEmpty[data-test-subj="pagination-button-1"]')
         .simulate('click');
       expect(props.onTableChange).toHaveBeenCalledTimes(1);
-      expect(props.onTableChange).toHaveBeenCalledWith({
+      expect(props.onTableChange).toHaveBeenLastCalledWith({
         sort: {},
         page: {
           index: 1,
@@ -1029,20 +1030,36 @@ describe('EuiInMemoryTable', () => {
         },
       });
 
-      (props.onTableChange as jest.Mock).mockClear();
+      // Sorting change
       component
         .find(
           '[data-test-subj*="tableHeaderCell_name_0"] [data-test-subj="tableHeaderSortButton"]'
         )
         .simulate('click');
-      expect(props.onTableChange).toHaveBeenCalledTimes(1);
-      expect(props.onTableChange).toHaveBeenCalledWith({
+      expect(props.onTableChange).toHaveBeenCalledTimes(2);
+      expect(props.onTableChange).toHaveBeenLastCalledWith({
         sort: {
           direction: SortDirection.ASC,
           field: 'name',
         },
         page: {
           index: 0,
+          size: 2,
+        },
+      });
+
+      // Sorted pagination change
+      component
+        .find('EuiButtonEmpty[data-test-subj="pagination-button-1"]')
+        .simulate('click');
+      expect(props.onTableChange).toHaveBeenCalledTimes(3);
+      expect(props.onTableChange).toHaveBeenLastCalledWith({
+        sort: {
+          direction: SortDirection.ASC,
+          field: 'name',
+        },
+        page: {
+          index: 1,
           size: 2,
         },
       });
