@@ -15,6 +15,8 @@ import React, {
   ReactNode,
 } from 'react';
 import { VariableSizeGrid as Grid } from 'react-window';
+
+import { DataGridCellPopoverContext } from '../body/data_grid_cell_popover';
 import { EuiDataGridStyle } from '../data_grid_types';
 import { DataGridFocusContext } from './focus';
 
@@ -51,6 +53,18 @@ export const useScroll = (args: Dependencies) => {
     }
   }, [focusedCell, scrollCellIntoView]);
 
+  const { popoverIsOpen, cellLocation } = useContext(
+    DataGridCellPopoverContext
+  );
+  useEffect(() => {
+    if (popoverIsOpen) {
+      scrollCellIntoView({
+        rowIndex: cellLocation.rowIndex,
+        colIndex: cellLocation.colIndex,
+      });
+    }
+  }, [popoverIsOpen, cellLocation, scrollCellIntoView]);
+
   return { scrollCellIntoView };
 };
 
@@ -68,6 +82,9 @@ export const useScrollCellIntoView = ({
   hasStickyFooter,
 }: Dependencies) => {
   const scrollCellIntoView = useCallback(
+    // Note: in order for this UX to work correctly with react-window's APIs,
+    // the `rowIndex` arg expected is actually our internal `visibleRowIndex`,
+    // not the `rowIndex` from the raw unsorted/unpaginated user data
     async ({ rowIndex, colIndex }: ScrollCellIntoView) => {
       if (!gridRef.current || !outerGridRef.current) {
         return; // Grid isn't rendered yet or is empty
