@@ -44,6 +44,14 @@ type OptionalEuiSelectableOptionsListProps = Omit<
 type EuiSelectableOptionsListPropsWithDefaults = RequiredEuiSelectableOptionsListProps &
   Partial<OptionalEuiSelectableOptionsListProps>;
 
+// The `searchable` prop has significant implications for a11y.
+// When present, we effectively change from adhering
+// to the ARIA `listbox` spec (https://www.w3.org/TR/wai-aria-practices-1.2/#Listbox)
+// to the ARIA `combobox` spec (https://www.w3.org/TR/wai-aria-practices-1.2/#combobox)
+// and (re)implement all relevant attributes and keyboard interactions.
+// Take note of logic that relies on `searchable` to ensure that any
+// modifications remain in alignment.
+//
 // `searchProps` can only be specified when `searchable` is true
 type EuiSelectableSearchableProps<T> = ExclusiveUnion<
   {
