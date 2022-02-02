@@ -6,11 +6,11 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiLink,
+export type {
   EuiLinkColor,
   EuiLinkProps,
   EuiLinkType,
   EuiLinkAnchorProps,
   EuiLinkButtonProps,
 } from './link';
+export { EuiLink } from './link';

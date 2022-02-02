@@ -6,5 +6,7 @@
  * Side Public License, v 1.
  */
 
-export { EuiCard, EuiCardProps } from './card';
-export { EuiCheckableCard, EuiCheckableCardProps } from './checkable_card';
+export type { EuiCardProps } from './card';
+export { EuiCard } from './card';
+export type { EuiCheckableCardProps } from './checkable_card';
+export { EuiCheckableCard } from './checkable_card';

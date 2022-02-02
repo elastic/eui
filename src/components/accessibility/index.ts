@@ -6,12 +6,9 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiScreenReaderLive,
-  EuiScreenReaderLiveProps,
-} from './screen_reader_live';
-export {
-  EuiScreenReaderOnly,
-  EuiScreenReaderOnlyProps,
-} from './screen_reader_only';
-export { EuiSkipLink, EuiSkipLinkProps } from './skip_link';
+export { EuiScreenReaderLive } from './screen_reader_live';
+export type { EuiScreenReaderLiveProps } from './screen_reader_live';
+export { EuiScreenReaderOnly } from './screen_reader_only';
+export type { EuiScreenReaderOnlyProps } from './screen_reader_only';
+export { EuiSkipLink } from './skip_link';
+export type { EuiSkipLinkProps } from './skip_link';

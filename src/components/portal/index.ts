@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiPortal, EuiPortalProps } from './portal';
+export type { EuiPortalProps } from './portal';
+export { EuiPortal } from './portal';

@@ -6,5 +6,7 @@
  * Side Public License, v 1.
  */
 
-export { EuiCode, EuiCodeProps } from './code';
-export { EuiCodeBlock, EuiCodeBlockProps } from './code_block';
+export type { EuiCodeProps } from './code';
+export { EuiCode } from './code';
+export type { EuiCodeBlockProps } from './code_block';
+export { EuiCodeBlock } from './code_block';

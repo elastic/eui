@@ -6,5 +6,6 @@
  * Side Public License, v 1.
  */
 
-export { createFilter, SearchFilterConfig } from './filters';
-export { FieldValueOptionType } from './field_value_selection_filter';
+export type { SearchFilterConfig } from './filters';
+export { createFilter } from './filters';
+export type { FieldValueOptionType } from './field_value_selection_filter';

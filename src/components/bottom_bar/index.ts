@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiBottomBar, EuiBottomBarProps } from './bottom_bar';
+export type { EuiBottomBarProps } from './bottom_bar';
+export { EuiBottomBar } from './bottom_bar';

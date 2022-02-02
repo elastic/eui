@@ -6,5 +6,7 @@
  * Side Public License, v 1.
  */
 
-export { EuiHideFor, EuiHideForProps } from './hide_for';
-export { EuiShowFor, EuiShowForProps } from './show_for';
+export type { EuiHideForProps } from './hide_for';
+export { EuiHideFor } from './hide_for';
+export type { EuiShowForProps } from './show_for';
+export { EuiShowFor } from './show_for';

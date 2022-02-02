@@ -6,30 +6,38 @@
  * Side Public License, v 1.
  */
 
-export { EuiPage, EuiPageProps } from './page';
+export type { EuiPageProps } from './page';
+export { EuiPage } from './page';
 
-export { EuiPageBody, EuiPageBodyProps } from './page_body';
+export type { EuiPageBodyProps } from './page_body';
+export { EuiPageBody } from './page_body';
 
-export {
-  EuiPageContent,
+export type {
   EuiPageContentProps,
-  EuiPageContentBody,
   EuiPageContentBodyProps,
-  EuiPageContentHeader,
   EuiPageContentHeaderProps,
-  EuiPageContentHeaderSection,
   EuiPageContentHeaderSectionProps,
 } from './page_content';
+export {
+  EuiPageContent,
+  EuiPageContentBody,
+  EuiPageContentHeader,
+  EuiPageContentHeaderSection,
+} from './page_content';
 
+export type {
+  EuiPageHeaderContentProps,
+  EuiPageHeaderProps,
+  EuiPageHeaderSectionProps,
+} from './page_header';
 export {
   EuiPageHeader,
   EuiPageHeaderContent,
-  EuiPageHeaderContentProps,
-  EuiPageHeaderProps,
   EuiPageHeaderSection,
-  EuiPageHeaderSectionProps,
 } from './page_header';
 
-export { EuiPageSideBar, EuiPageSideBarProps } from './page_side_bar';
+export type { EuiPageSideBarProps } from './page_side_bar';
+export { EuiPageSideBar } from './page_side_bar';
 
-export { EuiPageTemplate, EuiPageTemplateProps } from './page_template';
+export type { EuiPageTemplateProps } from './page_template';
+export { EuiPageTemplate } from './page_template';

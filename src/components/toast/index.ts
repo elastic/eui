@@ -8,13 +8,11 @@
 
 export { EuiToast } from './toast';
 
-export {
-  EuiGlobalToastList,
+export type {
   EuiGlobalToastListProps,
   Toast as EuiGlobalToastListToast,
 } from './global_toast_list';
+export { EuiGlobalToastList } from './global_toast_list';
 
-export {
-  EuiGlobalToastListItem,
-  EuiGlobalToastListItemProps,
-} from './global_toast_list_item';
+export type { EuiGlobalToastListItemProps } from './global_toast_list_item';
+export { EuiGlobalToastListItem } from './global_toast_list_item';
