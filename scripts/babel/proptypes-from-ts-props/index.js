@@ -1300,9 +1300,6 @@ const buildPropTypes = babelTemplate('COMPONENT_NAME.propTypes = PROP_TYPES');
 function processComponentDeclaration(typeDefinition, path, state) {
   const types = state.get('types');
 
-  // Do not generate propTypes 
-  if (state.opts.generatePropTypes === false) return;
-
   const propTypesAST = getPropTypesForNode(typeDefinition, false, state);
 
   // if the resulting proptype is PropTypes.any don't bother setting the proptypes
@@ -1429,56 +1426,6 @@ module.exports = function propTypesFromTypeScript({ types }) {
               }
             }
           }
-        },
-        exit: function exitProgram(programPath, state) {
-          // only process typescript files
-          if (
-            path.extname(state.file.opts.filename) !== '.ts' &&
-            path.extname(state.file.opts.filename) !== '.tsx'
-          )
-            return;
-
-          const types = state.get('types');
-          const typeDefinitions = state.get('typeDefinitions');
-
-          // remove any exported identifiers that are TS types or interfaces
-          // this prevents TS-only identifiers from leaking into ES code
-          programPath.traverse({
-            ExportNamedDeclaration: path => {
-              const specifiers = path.get('specifiers');
-              const source = path.get('source');
-              specifiers.forEach(specifierPath => {
-                if (types.isExportSpecifier(specifierPath)) {
-                  const {
-                    node: { local },
-                  } = specifierPath;
-                  if (types.isIdentifier(local)) {
-                    const { name } = local;
-                    if (typeDefinitions.hasOwnProperty(name)) {
-                      // this is a locally-known value
-                      const def = typeDefinitions[name];
-                      if (isTSType(def)) {
-                        specifierPath.remove();
-                      }
-                    } else if (types.isStringLiteral(source)) {
-                      const libraryName = source.get('value').node;
-                      const isRelativeSource = libraryName.startsWith('.');
-                      if (isRelativeSource === false) {
-                        // comes from a 3rd-party library
-                        // best way to reliably check if this is
-                        // a type or value is to require the
-                        // library and check its exports
-                        const library = require(libraryName);
-                        if (library.hasOwnProperty(name) === false) {
-                          specifierPath.remove();
-                        }
-                      }
-                    }
-                  }
-                }
-              });
-            },
-          });
         },
       },
 

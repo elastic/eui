@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiAccordion, EuiAccordionProps } from './accordion';
+export type { EuiAccordionProps } from './accordion';
+export { EuiAccordion } from './accordion';

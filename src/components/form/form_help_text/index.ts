@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiFormHelpText, EuiFormHelpTextProps } from './form_help_text';
+export type { EuiFormHelpTextProps } from './form_help_text';
+export { EuiFormHelpText } from './form_help_text';

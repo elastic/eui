@@ -6,11 +6,7 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiFormControlLayout,
-  EuiFormControlLayoutProps,
-} from './form_control_layout';
-export {
-  EuiFormControlLayoutDelimited,
-  EuiFormControlLayoutDelimitedProps,
-} from './form_control_layout_delimited';
+export type { EuiFormControlLayoutProps } from './form_control_layout';
+export { EuiFormControlLayout } from './form_control_layout';
+export type { EuiFormControlLayoutDelimitedProps } from './form_control_layout_delimited';
+export { EuiFormControlLayoutDelimited } from './form_control_layout_delimited';

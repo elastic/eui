@@ -18,13 +18,10 @@ export {
   useGeneratedHtmlId,
 } from './accessibility';
 
-export {
-  HorizontalAlignment,
-  LEFT_ALIGNMENT,
-  RIGHT_ALIGNMENT,
-  CENTER_ALIGNMENT,
-} from './alignment';
+export type { HorizontalAlignment } from './alignment';
+export { LEFT_ALIGNMENT, RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from './alignment';
 
+export type { EuiBreakpointSize } from './breakpoint';
 export {
   BREAKPOINTS,
   BREAKPOINT_KEYS,
@@ -32,9 +29,9 @@ export {
   isWithinBreakpoints,
   isWithinMaxBreakpoint,
   isWithinMinBreakpoint,
-  EuiBreakpointSize,
 } from './breakpoint';
 
+export type { HSV } from './color';
 export {
   isColorDark,
   isValidHex,
@@ -61,7 +58,6 @@ export {
   euiPaletteCool,
   euiPaletteWarm,
   euiPaletteGray,
-  HSV,
   getSteppedGradient,
   transparentize,
   tint,
@@ -73,11 +69,8 @@ export {
   makeDisabledContrastColor,
 } from './color';
 
-export {
-  useColorPickerState,
-  useColorStopsState,
-  EuiSetColorMethod,
-} from './color_picker';
+export type { EuiSetColorMethod } from './color_picker';
+export { useColorPickerState, useColorStopsState } from './color_picker';
 
 export * from './console';
 
@@ -102,12 +95,11 @@ export { getSecureRelForTarget } from './security';
 
 export { toSentenceCase, toInitials, slugify } from './string';
 
+export type { PropertySort, Direction } from './sort';
 export {
   PropertySortType,
-  PropertySort,
   SortDirectionType,
   SortDirection,
-  Direction,
   SortableProperties,
   Comparators,
 } from './sort';

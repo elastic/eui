@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiHeaderAlert, EuiHeaderAlertProps } from './header_alert';
+export type { EuiHeaderAlertProps } from './header_alert';
+export { EuiHeaderAlert } from './header_alert';

@@ -6,9 +6,8 @@
  * Side Public License, v 1.
  */
 
-export { EuiPagination, EuiPaginationProps } from './pagination';
+export type { EuiPaginationProps } from './pagination';
+export { EuiPagination } from './pagination';
 
-export {
-  EuiPaginationButton,
-  EuiPaginationButtonProps,
-} from './pagination_button';
+export type { EuiPaginationButtonProps } from './pagination_button';
+export { EuiPaginationButton } from './pagination_button';

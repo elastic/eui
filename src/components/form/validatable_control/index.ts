@@ -6,7 +6,5 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiValidatableControl,
-  EuiValidatableControlProps,
-} from './validatable_control';
+export type { EuiValidatableControlProps } from './validatable_control';
+export { EuiValidatableControl } from './validatable_control';

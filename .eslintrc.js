@@ -11,6 +11,7 @@ const SSPL_ELASTIC_2_0_LICENSE_HEADER = `
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
+    project: ['./tsconfig.json', './tsconfig-cypress.json'],
     ecmaFeatures: {
       jsx: true,
     },
@@ -109,6 +110,10 @@ module.exports = {
         'ts-ignore': 'allow-with-description',
         'ts-expect-error': 'allow-with-description',
       },
+    ],
+    '@typescript-eslint/consistent-type-exports': [
+      'error',
+      { fixMixedExportsWithInlineTypeSpecifier: false },
     ],
   },
   env: {

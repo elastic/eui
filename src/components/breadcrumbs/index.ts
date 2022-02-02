@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-export {
+export type {
   EuiBreadcrumb,
-  EuiBreadcrumbs,
   EuiBreadcrumbsProps,
   EuiBreadcrumbResponsiveMaxCount,
 } from './breadcrumbs';
+export { EuiBreadcrumbs } from './breadcrumbs';

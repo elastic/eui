@@ -6,14 +6,14 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiSelectableTemplateSitewide,
-  EuiSelectableTemplateSitewideProps,
-} from './selectable_template_sitewide';
+export type { EuiSelectableTemplateSitewideProps } from './selectable_template_sitewide';
+export { EuiSelectableTemplateSitewide } from './selectable_template_sitewide';
 
-export {
+export type {
   EuiSelectableTemplateSitewideOption,
   EuiSelectableTemplateSitewideMetaData,
+} from './selectable_template_sitewide_option';
+export {
   euiSelectableTemplateSitewideFormatOptions,
   euiSelectableTemplateSitewideRenderOptions,
 } from './selectable_template_sitewide_option';
