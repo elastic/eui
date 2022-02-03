@@ -135,7 +135,7 @@ describe('EuiAccordion', () => {
         </EuiAccordion>
       );
       cy.get('button.euiAccordion__button').click();
-      cy.checkA11y('div#__cy_root', {
+      cy.axeCheck(undefined, {
         rules: {
           'color-contrast': { enabled: false },
         },
