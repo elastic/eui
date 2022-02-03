@@ -135,11 +135,7 @@ describe('EuiAccordion', () => {
         </EuiAccordion>
       );
       cy.get('button.euiAccordion__button').click();
-      cy.axeCheck(undefined, {
-        rules: {
-          'color-contrast': { enabled: false },
-        },
-      });
+      cy.axeCheck();
     });
   });
 });
