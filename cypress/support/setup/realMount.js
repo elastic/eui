@@ -9,8 +9,6 @@
 import { React, Fragment } from 'react';
 import './mount';
 
-// This ensures the correct testing window has focus when using Cypress Real Events.
-// @see https://github.com/dmtrKovalenko/cypress-real-events/issues/196
 Cypress.Commands.add('realMount', (children) => {
   cy.mount(
     <Fragment>

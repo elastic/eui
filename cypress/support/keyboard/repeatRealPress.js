@@ -6,12 +6,6 @@
  * Side Public License, v 1.
  */
 
-/**
- * Repeat the Real Events `realPress()` method 2 or more times
- * 
- * @param keyToPress Any valid key or array of keys https://docs.cypress.io/api/commands/type#Arguments
- * @param count Number of times to invoke `realPress()`. Defaults to 2.
- */
  Cypress.Commands.add('repeatRealPress', (keyToPress, count = 2) => {
   for (let i = 0; i < count; i++) {
     cy.realPress(keyToPress);
