@@ -81,6 +81,67 @@ contains `{component name}.tsx`.
 * DON'T depend upon class names or other implementation details for `find`ing nodes, if possible.
 * DON'T extend the `cy.` global namespace - instead prefer to import helper functions directly
 
+### Cypress-axe
+EUI components are tested for accessibility as part of the documentation build, but these do not test changes to the DOM such as accordions being opened, or modal dialogs being triggered. Cypress-axe allows us to interact with components as users would, and run additional axe scans.
+
+#### How to write Cypress-axe tests
+
+Cypress-axe works with component tests and full end-to-end tests. It must be added to a Cypress test in a `beforeEach` block, and is then available to use by calling `cy.axeCheck()` wihin a running test.
+
+```jsx
+beforeEach(() => {
+  cy.injectAxe();
+});
+
+describe('Axe check', () => {
+  it('has zero violations when expanded', () => {
+    cy.mount(
+      <EuiAccordion {...noArrowProps}>
+        <EuiPanel color="subdued">
+          Any content inside of <strong>EuiAccordion</strong> will appear
+          here. We will include <a href="#">a link</a> to confirm focus.
+        </EuiPanel>
+      </EuiAccordion>
+    );
+    cy.get('button.euiAccordion__button').click();
+    cy.axeCheck();
+  });
+});
+```
+
+#### Modifying the cy.axeCheck() helper method
+
+The `cy.axeCheck()` method has two optional parameters:
+ 
+ - `context` - This could be the document or a selector such as a class name, id, or element. The `context` default is `div#__cy_root`.
+ - `axeRunConfig` - The [axe.run API](https://www.deque.com/axe/core-documentation/api-documentation/#api-name-axerun) can be modified for elements to include or exclude, individual rules to exclude, and rulesets to include or exclude. The default config object tests for all [WCAG 2.0](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-20-level-a--aa-rules) and [WCAG 2.1](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules) rules and excludes the [color-contrast rule](https://dequeuniversity.com/rules/axe/4.4/color-contrast?application=RuleDescription) due to high numbers of false positives.
+
+ #### Changing context and configuration
+ 
+ If we want to test the `<main>` tag and all children for required rulesets plus best practices, we would modify the `cy.axeCheck()` call this way:
+
+ ```jsx
+cy.axeCheck('main', {
+  runOnly: {
+    type: 'tag',
+    values: ['section508', 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'],
+  }
+});
+ ```
+
+  #### Changing configuration only
+ 
+ If we want to test the default `div#__cy_root` for required rulesets plus best practices we could pass `undefined` as the first argument.
+
+ ```jsx
+cy.axeCheck(undefined, {
+  runOnly: {
+    type: 'tag',
+    values: ['section508', 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'],
+  }
+});
+ ```
+
 ### Cypress Real Events
 
 > Cypress default events are simulated. That means that all events like `cy.click` or `cy.type` are fired from JavaScript. That's why these events will be untrusted (`event.isTrusted` will be `false`) and they can behave a little different from real native events. But for some cases, it can be impossible to use simulated events, for example, to fill a native alert or copy to the clipboard. This plugin solves this problem.
