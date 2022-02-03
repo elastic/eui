@@ -10,7 +10,7 @@ import { cleanEuiImports } from '../../services';
 export const renderJsSourceCode = (code) => {
   let renderedCode = cleanEuiImports(code.default);
 
-  /* ----- Combine and clean Eui imports ----- */
+  /* ----- Combine and clean EUI imports ----- */
   let elasticImports = [''];
 
   // Find all imports that come from '@elastic/eui'
@@ -33,58 +33,29 @@ export const renderJsSourceCode = (code) => {
   elasticImports = elasticImports.filter((ele) => ele);
 
   let formattedEuiImports = '';
-  if (elasticImports.length === 1) {
-    // Account for and format Eui import statements that only contain one function/utility
-    formattedEuiImports = `import { ${elasticImports} } from '@elastic/eui';`;
-  } else {
+
+  // determine if imports should be wrapped to new lines based on the import statement length
+  if (wrapImportsOnNewLines(elasticImports)) {
     const lineSeparatedImports = elasticImports.join(',\n  ');
     formattedEuiImports = `import {\n  ${lineSeparatedImports},\n} from '@elastic/eui';`;
+  } else {
+    const combinedImports = elasticImports.join(', ');
+    formattedEuiImports = `import { ${combinedImports} } from '@elastic/eui';`;
   }
 
-  /* ----- Combine and clean non-Eui Imports ----- */
-  const nonEuiImports = [];
-
-  // renderedCode at this point will only include non-Eui imports and component code
-  renderedCode = renderedCode.replace(
-    /import\s+([^]+?)\s+from\s+(\'[A-Za-z0-9 _./-]*\'\;)/g,
-    (match, imports) => {
-      // Catches import statements that are only pulling in one function/utility. Examples include:
-      // import React from 'react';
-      // import { fake } from 'faker';
-      if (imports.match(/[a-zA-Z0-9]+/g).length === 1) {
-        nonEuiImports.push(match);
-      } else {
-        // Composes and formats import statements with multiple functions/utilities. Examples inlcude
-        // import React, { Fragment, useState } from 'react';
-        // import { test1, test2 } from 'test-library';
-        let composingImport = '';
-        const namedImports = imports.match(/[a-zA-Z0-9\{\}]+/g);
-        const library = match.match(/from\s\'[A-Za-z0-9_.-]+\';/g);
-
-        namedImports.forEach((ele, index) => {
-          if (ele === '{' && index === 0) {
-            composingImport += `${ele}\n`;
-          } else if (ele === '{' && index !== 0) {
-            composingImport += `${ele}\n`;
-          } else if (ele === '}') {
-            composingImport += `${ele}`;
-          } else {
-            namedImports[index + 1] === '{'
-              ? (composingImport += `${ele},`)
-              : (composingImport += `  ${ele},\n`);
-          }
-        });
-
-        nonEuiImports.push(`import ${composingImport} ${library}`);
-      }
-
-      return '';
-    }
-  );
-  const formattedNonEuiImports = nonEuiImports.join('\n');
-
-  // renderedCode at this point will only include the demo component code
-  const fullyFormattedCode = `${formattedEuiImports}\n${formattedNonEuiImports}\n\n${renderedCode.trim()}`;
+  const fullyFormattedCode = `${formattedEuiImports}\n${renderedCode.trim()}`;
 
   return fullyFormattedCode;
+};
+
+/**
+ * checkForLineWrap is a helper method used to check the line length of import statements before
+ * they are separated by new lines. If the statements are under 81 characters in length, they will
+ * remain on one line. Otherwise, the imports will be broken into new lines.
+ */
+
+const wrapImportsOnNewLines = (importStatement) => {
+  const combinedImports = importStatement.join(', ');
+  const fullStatement = `import { ${combinedImports} } from '@elastic/eui';`;
+  return fullStatement.length > 81 ? true : false;
 };
