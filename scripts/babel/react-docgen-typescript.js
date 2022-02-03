@@ -419,4 +419,4 @@ const reactElementTypeExpanded =
   'ReactElement<any, string | JSXElementConstructor<any>>';
 
 const reactNodeTypeExpanded =
-  'string | number | boolean | {} | ReactElement<any, string | ((props: any) => ReactElement<any, string | ... | (new (props: any) => Component<any, any, any>)>) | (new (props: any) => Component<...>)> | ... 5 more ... | (ReactPortal & string)';
+  'string | number | boolean | {} | ReactElement | ReactNodeArray | ReactPortal | ({} & string) | (ReactElement<...> & string) | (ReactNodeArray & string) | (ReactPortal & string)';
