@@ -416,7 +416,7 @@ const intrinsicValuesRaw = [
  * Replace ReactElement and ReactNode expanded types with ReactElement and ReactNode
  */
 const reactElementTypeExpanded =
-  'ReactElement<any, string | ((props: any) => ReactElement<any, string | ... | (new (props: any) => Component<any, any, any>)>) | (new (props: any) => Component<any, any, any>)>';
+  'ReactElement<any, string | JSXElementConstructor<any>>';
 
 const reactNodeTypeExpanded =
   'string | number | boolean | {} | ReactElement<any, string | ((props: any) => ReactElement<any, string | ... | (new (props: any) => Component<any, any, any>)>) | (new (props: any) => Component<...>)> | ... 5 more ... | (ReactPortal & string)';
