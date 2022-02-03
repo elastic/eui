@@ -140,6 +140,8 @@ describe('EuiDataGridCellPopoverActions', () => {
       <EuiPopoverFooter>
         <EuiFlexGroup
           gutterSize="s"
+          responsive={false}
+          wrap={true}
         >
           <EuiFlexItem
             key="0"

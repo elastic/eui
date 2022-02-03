@@ -107,7 +107,7 @@ export const EuiDataGridCellPopoverActions = ({
 
   return (
     <EuiPopoverFooter>
-      <EuiFlexGroup gutterSize="s">
+      <EuiFlexGroup gutterSize="s" responsive={false} wrap>
         {column.cellActions.map(
           (Action: EuiDataGridColumnCellAction, idx: number) => {
             const ActionButtonElement = Action as JSXElementConstructor<
