@@ -1,5 +1,6 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Added the ability to control internal `EuiDataGrid` fullscreen, cell focus, and cell popover state via the `ref` prop ([#5590](https://github.com/elastic/eui/pull/5590))
 - Added `paddingSize` prop to `EuiSelectableList` ([#5581](https://github.com/elastic/eui/pull/5581))
 - Added `errorMessage` prop to `EuiSelectable` ([#5581](https://github.com/elastic/eui/pull/5581))
 - Refactored `EuiSelectable` accessibility ([#5581](https://github.com/elastic/eui/pull/5581))
