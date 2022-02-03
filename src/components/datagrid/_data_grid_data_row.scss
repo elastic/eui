@@ -159,7 +159,12 @@
   border-radius: $euiBorderRadius / 2;
   width: 0;
   overflow: hidden;
-  transition: none; // Have to take out the generic transition so it is instaneous on focus
+  // Have to take out the generic transition so it is instaneous on focus
+  transition: none;
+  // Disable filled button box-shadows on legacy theme - they're unnecessary when this small in a datagrid
+  box-shadow: none !important; // sass-lint:disable-line no-important
+  // Remove filled button borders on legacy theme - this way we don't need to animate the border
+  border: none;
 }
 
 // Row highlights
