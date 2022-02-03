@@ -6,9 +6,7 @@ const docsPages = async (root, page) => {
   const pagesToSkip = [
     `${root}#/layout/page`, // Has duplicate `<main>` element
     `${root}#/layout/page-header`, // Has duplicate `<header>` element
-    // `${root}#/display/aspect-ratio`,
     `${root}#/forms/combo-box`,
-    // `${root}#/forms/color-selection`,
   ];
 
   return [
@@ -73,16 +71,8 @@ const printResult = (violations) => {
         },
         rules: {
           'color-contrast': { enabled: false },
-          // 'aria-allowed-attr': { enabled: false },
-          // 'nested-interactive': { enabled: false },
-          // 'aria-required-attr': { enabled: false },
-          // 'aria-roles': { enabled: false },
-          // 'label': { enabled: false },
-          // 'aria-input-field-name': { enabled: false },
-          // 'aria-required-children': { enabled: false },
-          // 'duplicate-id': { enabled: false },
           'scrollable-region-focusable': { enabled: false },
-          'frame-title': { enabled: false },
+          // 'frame-title': { enabled: false }, // axe reports 12 page violations, but no <iframe> or <frame> on pages
         },
       })
       .analyze();
