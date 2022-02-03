@@ -1,3 +1,23 @@
+function logViolations(violations) {
+  cy.task(
+    'log',
+    `${violations.length} violation${
+      violations.length === 1 ? '' : 's'
+    } ${violations.length === 1 ? 'was' : 'were'} detected.`
+  );
+
+  // Pop keys off the violations object to create a readable table
+  const violationData = violations.map(({ id, description, impact, nodes }) => ({
+      id,
+      description,
+      impact,
+      nodes: nodes.length
+    })
+  );
+
+  cy.task('table', violationData);
+}
+
 Cypress.Commands.add('axeCheck', (context = 'div#__cy_root', axeRunConfig = {}) => {
   /**
    * Default required ruleset to meet Section 508 compliance.
@@ -22,5 +42,5 @@ Cypress.Commands.add('axeCheck', (context = 'div#__cy_root', axeRunConfig = {}) 
    */
   const axeConfig = Object.assign(axeBuilder, axeRunConfig);
 
-  cy.checkA11y(context, axeConfig);
+  cy.checkA11y(context, axeConfig, logViolations);
 });
