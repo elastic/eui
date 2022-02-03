@@ -84,7 +84,6 @@ module.exports = function ({ types }) {
                     componentExtends
                   ),
                 shouldExtractLiteralValuesFromEnum: true,
-                shouldExtractValuesFromUnion: true,
                 shouldRemoveUndefinedFromOptional: true,
                 savePropValueAsString: true,
               })
