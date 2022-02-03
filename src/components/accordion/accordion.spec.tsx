@@ -124,8 +124,8 @@ describe('EuiAccordion', () => {
     });
   });
 
-  describe('Axe checks', () => {
-    it('has zero axe violations when expanded', () => {
+  describe('Axe check', () => {
+    it('has zero violations when expanded', () => {
       cy.mount(
         <EuiAccordion {...noArrowProps}>
           <EuiPanel color="subdued">
