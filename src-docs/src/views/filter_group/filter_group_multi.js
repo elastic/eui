@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import {
   EuiPopover,
@@ -6,13 +6,28 @@ import {
   EuiFilterGroup,
   EuiFilterButton,
   EuiSelectable,
+  EuiSpacer,
+  EuiSwitch,
 } from '../../../../src/components';
 import { useGeneratedHtmlId } from '../../../../src/services';
 
 export default () => {
+  const timeoutRef = useRef();
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [withLoading, setWithLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    return () => clearTimeout(timeoutRef.current);
+  }, []);
 
   const onButtonClick = () => {
+    if (withLoading && !isPopoverOpen) {
+      setIsLoading(true);
+      timeoutRef.current = setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
+    }
     setIsPopoverOpen(!isPopoverOpen);
   };
 
@@ -59,36 +74,45 @@ export default () => {
   );
 
   return (
-    <EuiFilterGroup>
-      <EuiPopover
-        id={filterGroupPopoverId}
-        button={button}
-        isOpen={isPopoverOpen}
-        closePopover={closePopover}
-        panelPaddingSize="none"
-      >
-        <EuiSelectable
-          allowExclusions
-          searchable
-          searchProps={{
-            placeholder: 'Filter list',
-            compressed: true,
-          }}
-          aria-label="Composers"
-          options={items}
-          onChange={(newOptions) => setItems(newOptions)}
-          loadingMessage="Loading filters"
-          emptyMessage="No filters available"
-          noMatchesMessage="No filters found"
+    <>
+      <EuiSwitch
+        checked={withLoading}
+        onChange={(e) => setWithLoading(e.target.checked)}
+        label="Simulate dynamic loading"
+      />
+      <EuiSpacer />
+      <EuiFilterGroup>
+        <EuiPopover
+          id={filterGroupPopoverId}
+          button={button}
+          isOpen={isPopoverOpen}
+          closePopover={closePopover}
+          panelPaddingSize="none"
         >
-          {(list, search) => (
-            <>
-              <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
-              {list}
-            </>
-          )}
-        </EuiSelectable>
-      </EuiPopover>
-    </EuiFilterGroup>
+          <EuiSelectable
+            allowExclusions
+            searchable
+            searchProps={{
+              placeholder: 'Filter list',
+              compressed: true,
+            }}
+            aria-label="Composers"
+            options={items}
+            onChange={(newOptions) => setItems(newOptions)}
+            isLoading={isLoading}
+            loadingMessage="Loading filters"
+            emptyMessage="No filters available"
+            noMatchesMessage="No filters found"
+          >
+            {(list, search) => (
+              <>
+                <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
+                {list}
+              </>
+            )}
+          </EuiSelectable>
+        </EuiPopover>
+      </EuiFilterGroup>
+    </>
   );
 };
