@@ -86,7 +86,7 @@ EUI components are tested for accessibility as part of the documentation build, 
 
 #### How to write Cypress-axe tests
 
-Cypress-axe works with component tests and full end-to-end tests. It must be added to a Cypress test in a `beforeEach` block, and is then available to use by calling `cy.axeCheck()` wihin a running test.
+Cypress-axe works with component tests and full end-to-end tests. It must be injected into a Cypress test in a `beforeEach` block, then the helper will be available to use by wihin a running test.
 
 ```jsx
 beforeEach(() => {
@@ -131,7 +131,7 @@ cy.axeCheck('main', {
 
   #### Changing configuration only
  
- If we want to test the default `div#__cy_root` for required rulesets plus best practices we could pass `undefined` as the first argument.
+ If we want to test the default `div#__cy_root` for required rulesets plus best practices we could pass `undefined` as the first argument:
 
  ```jsx
 cy.axeCheck(undefined, {
