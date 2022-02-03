@@ -20,6 +20,10 @@ const baseProps: EuiAccordionProps = {
 const noArrow = { arrowDisplay: 'none' };
 const noArrowProps: EuiAccordionProps = Object.assign(baseProps, noArrow);
 
+beforeEach(() => {
+  cy.injectAxe();
+});
+
 describe('EuiAccordion', () => {
   describe('Keyboard and screen reader accessibility', () => {
     it('renders with required props', () => {
@@ -115,6 +119,7 @@ describe('EuiAccordion', () => {
       cy.focused().invoke('attr', 'tabindex').should('not.exist');
       cy.realPress('Tab');
       cy.focused().contains('a link');
+      cy.checkA11y('div#__cy_root');
     });
   });
 });
