@@ -617,6 +617,7 @@ export class EuiSelectable<T = {}> extends Component<
     );
     const list = messageContent ? (
       <EuiSelectableMessage
+        data-test-subj="euiSelectableMessage"
         id={messageContentId}
         bordered={listProps && listProps.bordered}
       >
@@ -626,6 +627,7 @@ export class EuiSelectable<T = {}> extends Component<
       <EuiI18n token="euiSelectable.placeholderName" default="Filter options">
         {(placeholderName: string) => (
           <EuiSelectableList<T>
+            data-test-subj="euiSelectableList"
             key="list"
             options={options}
             visibleOptions={visibleOptions}

@@ -8,15 +8,29 @@
 
 import React from 'react';
 import { requiredProps } from '../../../test';
-import { render } from 'enzyme';
 import {
   FieldValueSelectionFilter,
   FieldValueSelectionFilterProps,
 } from './field_value_selection_filter';
 import { Query } from '../query';
 
+const staticOptions = [
+  {
+    value: 'feature',
+  },
+  {
+    value: 'test',
+    name: 'Text',
+  },
+  {
+    value: 'bug',
+    name: 'Bug',
+    view: <div>bug</div>,
+  },
+];
+
 describe('FieldValueSelectionFilter', () => {
-  test('render - options as a function', () => {
+  it('allows options as a function', () => {
     const props: FieldValueSelectionFilterProps = {
       ...requiredProps,
       index: 0,
@@ -26,16 +40,18 @@ describe('FieldValueSelectionFilter', () => {
         type: 'field_value_selection',
         field: 'tag',
         name: 'Tag',
-        options: () => Promise.resolve([]),
+        options: () => Promise.resolve(staticOptions),
       },
     };
 
-    const component = render(<FieldValueSelectionFilter {...props} />);
-
-    expect(component).toMatchSnapshot();
+    cy.mount(<FieldValueSelectionFilter {...props} />);
+    cy.get('button').click();
+    cy.get('[data-test-subj="euiSelectableList"] li')
+      .first()
+      .should('have.text', 'feature');
   });
 
-  test('render - options as an array', () => {
+  it('allows options as an array', () => {
     const props: FieldValueSelectionFilterProps = {
       ...requiredProps,
       index: 0,
@@ -45,29 +61,18 @@ describe('FieldValueSelectionFilter', () => {
         type: 'field_value_selection',
         field: 'tag',
         name: 'Tag',
-        options: [
-          {
-            value: 'feature',
-          },
-          {
-            value: 'test',
-            name: 'Text',
-          },
-          {
-            value: 'bug',
-            name: 'Bug',
-            view: <div>bug</div>,
-          },
-        ],
+        options: staticOptions,
       },
     };
 
-    const component = render(<FieldValueSelectionFilter {...props} />);
-
-    expect(component).toMatchSnapshot();
+    cy.mount(<FieldValueSelectionFilter {...props} />);
+    cy.get('button').click();
+    cy.get('[data-test-subj="euiSelectableList"] li')
+      .eq(1)
+      .should('have.attr', 'title', 'Text');
   });
 
-  test('render - fields in options', () => {
+  it('allows fields in options', () => {
     const props: FieldValueSelectionFilterProps = {
       ...requiredProps,
       index: 0,
@@ -96,12 +101,14 @@ describe('FieldValueSelectionFilter', () => {
       },
     };
 
-    const component = render(<FieldValueSelectionFilter {...props} />);
-
-    expect(component).toMatchSnapshot();
+    cy.mount(<FieldValueSelectionFilter {...props} />);
+    cy.get('button').click();
+    cy.get('[data-test-subj="euiSelectableList"] li')
+      .eq(2)
+      .should('have.text', 'bug');
   });
 
-  test('render - all configurations', () => {
+  it('allows all configurations', () => {
     const props: FieldValueSelectionFilterProps = {
       ...requiredProps,
       index: 0,
@@ -120,12 +127,15 @@ describe('FieldValueSelectionFilter', () => {
       },
     };
 
-    const component = render(<FieldValueSelectionFilter {...props} />);
-
-    expect(component).toMatchSnapshot();
+    cy.mount(<FieldValueSelectionFilter {...props} />);
+    cy.get('button').click();
+    cy.get('[data-test-subj="euiSelectableMessage"]').should(
+      'have.text',
+      'oops...'
+    );
   });
 
-  test('render - multi-select OR', () => {
+  it('uses multi-select OR', () => {
     const props: FieldValueSelectionFilterProps = {
       ...requiredProps,
       index: 0,
@@ -144,12 +154,15 @@ describe('FieldValueSelectionFilter', () => {
       },
     };
 
-    const component = render(<FieldValueSelectionFilter {...props} />);
-
-    expect(component).toMatchSnapshot();
+    cy.mount(<FieldValueSelectionFilter {...props} />);
+    cy.get('button').click();
+    cy.get('[data-test-subj="euiSelectableMessage"]').should(
+      'have.text',
+      'oops...'
+    );
   });
 
-  test('inactive - field is global', () => {
+  it('has inactive filters, field is global', () => {
     const props: FieldValueSelectionFilterProps = {
       ...requiredProps,
       index: 0,
@@ -159,29 +172,18 @@ describe('FieldValueSelectionFilter', () => {
         type: 'field_value_selection',
         field: 'tag',
         name: 'Tag',
-        options: [
-          {
-            value: 'feature',
-          },
-          {
-            value: 'test',
-            name: 'Text',
-          },
-          {
-            value: 'bug',
-            name: 'Bug',
-            view: <div>bug</div>,
-          },
-        ],
+        options: staticOptions,
       },
     };
 
-    const component = render(<FieldValueSelectionFilter {...props} />);
-
-    expect(component).toMatchSnapshot();
+    cy.mount(<FieldValueSelectionFilter {...props} />);
+    cy.get('button').click();
+    cy.get('[data-test-subj="euiSelectableList"] li')
+      .first()
+      .should('have.text', 'feature');
   });
 
-  test('active - field is global', () => {
+  it('has active filters, field is global', () => {
     const props: FieldValueSelectionFilterProps = {
       ...requiredProps,
       index: 0,
@@ -191,29 +193,19 @@ describe('FieldValueSelectionFilter', () => {
         type: 'field_value_selection',
         field: 'tag',
         name: 'Tag',
-        options: [
-          {
-            value: 'feature',
-          },
-          {
-            value: 'test',
-            name: 'Text',
-          },
-          {
-            value: 'bug',
-            name: 'Bug',
-            view: <div>bug</div>,
-          },
-        ],
+        options: staticOptions,
       },
     };
 
-    const component = render(<FieldValueSelectionFilter {...props} />);
-
-    expect(component).toMatchSnapshot();
+    cy.mount(<FieldValueSelectionFilter {...props} />);
+    cy.get('button').click();
+    cy.get('.euiNotificationBadge').should('not.be.undefined');
+    cy.get('[data-test-subj="euiSelectableList"] li')
+      .first()
+      .should('have.text', 'bug');
   });
 
-  test('inactive - fields in options', () => {
+  it('has inactive filters, fields in options', () => {
     const props: FieldValueSelectionFilterProps = {
       ...requiredProps,
       index: 0,
@@ -242,12 +234,14 @@ describe('FieldValueSelectionFilter', () => {
       },
     };
 
-    const component = render(<FieldValueSelectionFilter {...props} />);
-
-    expect(component).toMatchSnapshot();
+    cy.mount(<FieldValueSelectionFilter {...props} />);
+    cy.get('button').click();
+    cy.get('[data-test-subj="euiSelectableList"] li')
+      .eq(2)
+      .should('have.text', 'bug');
   });
 
-  test('active - fields in options', () => {
+  it('has active filters, fields in options', () => {
     const props: FieldValueSelectionFilterProps = {
       ...requiredProps,
       index: 0,
@@ -276,8 +270,11 @@ describe('FieldValueSelectionFilter', () => {
       },
     };
 
-    const component = render(<FieldValueSelectionFilter {...props} />);
-
-    expect(component).toMatchSnapshot();
+    cy.mount(<FieldValueSelectionFilter {...props} />);
+    cy.get('button').click();
+    cy.get('.euiNotificationBadge').should('not.be.undefined');
+    cy.get('[data-test-subj="euiSelectableList"] li')
+      .eq(0)
+      .should('have.text', 'bug');
   });
 });
