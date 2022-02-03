@@ -33,6 +33,7 @@ import {
   EuiDataGridRowHeightsOptions,
   EuiDataGridCellValueElementProps,
   EuiDataGridSchemaDetector,
+  EuiDataGridRefProps,
 } from '!!prop-loader!../../../../src/components/datagrid/data_grid_types';
 
 const gridSnippet = `
@@ -164,6 +165,8 @@ const gridSnippet = `
         );
       },
     }}
+    // Optional. For advanced control of internal data grid popover/focus state, passes back an object of API methods
+    ref={dataGridRef}
   />
 `;
 
@@ -323,6 +326,19 @@ const gridConcepts = [
       </span>
     ),
   },
+  {
+    title: 'ref',
+    description: (
+      <span>
+        Passes back an object of internal <strong>EuiDataGridRefProps</strong>{' '}
+        methods for advanced control of data grid popover/focus state. See{' '}
+        <Link to="/tabular-content/data-grid-ref-methods">
+          Data grid ref methods
+        </Link>{' '}
+        for more details and examples.
+      </span>
+    ),
+  },
 ];
 
 export const DataGridExample = {
@@ -414,6 +430,7 @@ export const DataGridExample = {
         EuiDataGridToolBarAdditionalControlsLeftOptions,
         EuiDataGridPopoverContentProps,
         EuiDataGridRowHeightsOptions,
+        EuiDataGridRefProps,
       },
       demo: (
         <Fragment>

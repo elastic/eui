@@ -49,7 +49,7 @@ describe('EuiDataGridHeaderCell', () => {
         <DataGridSortingContext.Provider
           value={{
             sorting: { ...sortingContext, ...sorting },
-            sortedRowMap: {},
+            sortedRowMap: [],
             getCorrectRowIndex: jest.fn(),
           }}
         >

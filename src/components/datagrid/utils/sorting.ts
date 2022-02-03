@@ -21,7 +21,7 @@ export const DataGridSortingContext = createContext<
   DataGridSortingContextShape
 >({
   sorting: undefined,
-  sortedRowMap: {},
+  sortedRowMap: [],
   getCorrectRowIndex: (number) => number,
 });
 
@@ -43,7 +43,7 @@ export const useSorting = ({
   const sortingColumns = sorting?.columns;
 
   const sortedRowMap = useMemo(() => {
-    const rowMap: DataGridSortingContextShape['sortedRowMap'] = {};
+    const rowMap: DataGridSortingContextShape['sortedRowMap'] = [];
 
     if (
       inMemory?.level === 'sorting' &&
@@ -103,19 +103,21 @@ export const useSorting = ({
     schemaDetectors,
   ]);
 
+  // Given a visible row index, obtain the unpaginated & unsorted
+  // row index from the passed cell data
   const getCorrectRowIndex = useCallback(
-    (rowIndex: number) => {
-      let rowIndexWithOffset = rowIndex;
+    (visibleRowIndex: number) => {
+      const isPaginated = visibleRowIndex - startRow < 0;
+      const unpaginatedRowIndex = isPaginated
+        ? visibleRowIndex + startRow
+        : visibleRowIndex;
 
-      if (rowIndex - startRow < 0) {
-        rowIndexWithOffset = rowIndex + startRow;
-      }
+      const unsortedRowIndex =
+        unpaginatedRowIndex in sortedRowMap
+          ? sortedRowMap[unpaginatedRowIndex]
+          : unpaginatedRowIndex;
 
-      const correctRowIndex = sortedRowMap.hasOwnProperty(rowIndexWithOffset)
-        ? sortedRowMap[rowIndexWithOffset]
-        : rowIndexWithOffset;
-
-      return correctRowIndex;
+      return unsortedRowIndex;
     },
     [startRow, sortedRowMap]
   );
