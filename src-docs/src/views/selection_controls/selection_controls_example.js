@@ -199,6 +199,13 @@ export const SelectionControlsExample = {
       text: (
         <>
           <p>
+            Find writing guidelines and examples in the{' '}
+            <Link to="/forms/selection-controls/guidelines">
+              Guidelines tab
+            </Link>
+            .
+          </p>
+          <p>
             If the switch is described in some other manner, like when using an{' '}
             <Link to="/forms/form-layouts#form-and-form-rows">
               <strong>EuiFormRow</strong>
