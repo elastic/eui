@@ -68,9 +68,7 @@ exports[`EuiSelectableListItem props checked is off 1`] = `
       <div
         class="euiScreenReaderOnly"
       >
-        <span>
-          Checked option.
-        </span>
+        Checked option.
       </div>
     </span>
   </span>
@@ -97,9 +95,7 @@ exports[`EuiSelectableListItem props checked is on 1`] = `
       <div
         class="euiScreenReaderOnly"
       >
-        <span>
-          Checked option.
-        </span>
+        Checked option.
       </div>
     </span>
   </span>

@@ -126,66 +126,52 @@ export class EuiSelectableListItem extends Component<
     let instruction: React.ReactNode;
     if (allowExclusions && checked === 'on') {
       state = (
-        <span>
-          <EuiI18n
-            token="euiSelectableListItem.includedOption"
-            default="Selected option."
-          />
-        </span>
+        <EuiI18n
+          token="euiSelectableListItem.includedOption"
+          default="Selected option."
+        />
       );
       instruction = (
-        <span>
-          <EuiI18n
-            token="euiSelectableListItem.includedOptionInstructions"
-            default="To exclude this option, press enter."
-          />
-        </span>
+        <EuiI18n
+          token="euiSelectableListItem.includedOptionInstructions"
+          default="To exclude this option, press enter."
+        />
       );
     } else if (allowExclusions && checked === 'off') {
       state = (
-        <span>
-          <EuiI18n
-            token="euiSelectableListItem.excludedOption"
-            default="Excluded option."
-          />
-        </span>
+        <EuiI18n
+          token="euiSelectableListItem.excludedOption"
+          default="Excluded option."
+        />
       );
       instruction = (
-        <span>
-          <EuiI18n
-            token="euiSelectableListItem.excludedOptionInstructions"
-            default="To uncheck this option, press enter."
-          />
-        </span>
+        <EuiI18n
+          token="euiSelectableListItem.excludedOptionInstructions"
+          default="To uncheck this option, press enter."
+        />
       );
     } else if (allowExclusions && !checked) {
       instruction = (
-        <span>
-          <EuiI18n
-            token="euiSelectableListItem.unckeckedOptionInstructions"
-            default="To select this option, press enter."
-          />
-        </span>
+        <EuiI18n
+          token="euiSelectableListItem.unckeckedOptionInstructions"
+          default="To select this option, press enter."
+        />
       );
     }
 
     const isChecked = !disabled && typeof checked === 'string';
     if (!allowExclusions && isChecked) {
       state = (
-        <span>
-          <EuiI18n
-            token="euiSelectableListItem.checkedOption"
-            default="Checked option."
-          />
-        </span>
+        <EuiI18n
+          token="euiSelectableListItem.checkedOption"
+          default="Checked option."
+        />
       );
       instruction = searchable ? (
-        <span>
-          <EuiI18n
-            token="euiSelectableListItem.checkedOptionInstructions"
-            default="To uncheck this option, press enter."
-          />
-        </span>
+        <EuiI18n
+          token="euiSelectableListItem.checkedOptionInstructions"
+          default="To uncheck this option, press enter."
+        />
       ) : undefined;
     }
 
