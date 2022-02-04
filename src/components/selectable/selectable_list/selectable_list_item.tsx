@@ -64,8 +64,8 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
     paddingSize?: EuiSelectablePaddingSize;
     /**
      * Whether the `EuiSelectable` instance is searchable.
-     * When false, allows SPACE to toggle item selection.
-     * Enables the correct screen reader instructions for selection.
+     * When true, the Space key will not toggle selection, as it will type into the search box instead. Screen reader instructions will be added instructing users to use the Enter key to select items.
+     * When false, the Space key will toggle item selection. No extra screen reader instructions will be added, as Space to toggle is a generally standard for most select/checked elements.
      */
     searchable?: boolean;
   };
