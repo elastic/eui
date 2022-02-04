@@ -68,6 +68,12 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
      * When false, the Space key will toggle item selection. No extra screen reader instructions will be added, as Space to toggle is a generally standard for most select/checked elements.
      */
     searchable?: boolean;
+    /**
+     * Attribute applied the option `<li>`.
+     * If configured to something besides the default value of `option`,
+     * other ARIA attributes such as `aria-checked` will not be automatically configured.
+     */
+    role?: LiHTMLAttributes<HTMLLIElement>['role'];
   };
 
 // eslint-disable-next-line react/prefer-stateless-function
