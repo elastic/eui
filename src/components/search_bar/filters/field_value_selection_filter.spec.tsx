@@ -48,7 +48,7 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('button').click();
     cy.get('[data-test-subj="euiSelectableList"] li')
       .first()
-      .should('have.text', 'feature');
+      .should('have.attr', 'title', 'feature');
   });
 
   it('allows options as an array', () => {
@@ -105,7 +105,7 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('button').click();
     cy.get('[data-test-subj="euiSelectableList"] li')
       .eq(2)
-      .should('have.text', 'bug');
+      .should('have.attr', 'title', 'Bug');
   });
 
   it('allows all configurations', () => {
@@ -180,7 +180,7 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('button').click();
     cy.get('[data-test-subj="euiSelectableList"] li')
       .first()
-      .should('have.text', 'feature');
+      .should('have.attr', 'title', 'feature');
   });
 
   it('has active filters, field is global', () => {
@@ -202,7 +202,7 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('.euiNotificationBadge').should('not.be.undefined');
     cy.get('[data-test-subj="euiSelectableList"] li')
       .first()
-      .should('have.text', 'bug');
+      .should('have.attr', 'title', 'Bug');
   });
 
   it('has inactive filters, fields in options', () => {
@@ -238,7 +238,7 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('button').click();
     cy.get('[data-test-subj="euiSelectableList"] li')
       .eq(2)
-      .should('have.text', 'bug');
+      .should('have.attr', 'title', 'Bug');
   });
 
   it('has active filters, fields in options', () => {
@@ -275,6 +275,6 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('.euiNotificationBadge').should('not.be.undefined');
     cy.get('[data-test-subj="euiSelectableList"] li')
       .eq(0)
-      .should('have.text', 'bug');
+      .should('have.attr', 'title', 'Bug');
   });
 });
