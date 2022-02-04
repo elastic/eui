@@ -43,8 +43,21 @@ export const renderJsSourceCode = (code) => {
     formattedEuiImports = `import { ${combinedImports} } from '@elastic/eui';`;
   }
 
-  const fullyFormattedCode = `${formattedEuiImports}\n${renderedCode.trim()}`;
+  // Find any non-EUI imports and join them with new lines between each import for uniformity
+  const nonEuiImports = [];
 
+  renderedCode = renderedCode.replace(
+    /import\s+([^]+?)\s+from\s+(\'[A-Za-z0-9 _./-]*\'\;)/g,
+    (match) => {
+      nonEuiImports.push(match);
+      return '';
+    }
+  );
+
+  const formattedNonEuiImports = nonEuiImports.join('\n');
+
+  const fullyFormattedCode = `${formattedEuiImports}\n${formattedNonEuiImports}\n\n${renderedCode.trim()}`;
+  console.log(renderedCode);
   return fullyFormattedCode;
 };
 
