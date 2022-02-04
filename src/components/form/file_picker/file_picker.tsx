@@ -175,7 +175,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
             clearButton = (
               <EuiLoadingSpinner className="euiFilePicker__loadingSpinner" />
             );
-          } else if (isOverridingInitialPrompt) {
+          } else if (isOverridingInitialPrompt && !disabled) {
             if (normalFormControl) {
               clearButton = (
                 <button
@@ -183,7 +183,6 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
                   aria-label={clearSelectedFiles}
                   className="euiFilePicker__clearButton"
                   onClick={this.removeFiles}
-                  disabled={disabled}
                 >
                   <EuiIcon className="euiFilePicker__clearIcon" type="cross" />
                 </button>
@@ -195,7 +194,6 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
                   className="euiFilePicker__clearButton"
                   size="xs"
                   onClick={this.removeFiles}
-                  disabled={disabled}
                 >
                   <EuiI18n
                     token="euiFilePicker.removeSelected"
