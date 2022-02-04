@@ -57,7 +57,6 @@ export const renderJsSourceCode = (code) => {
   const formattedNonEuiImports = nonEuiImports.join('\n');
 
   const fullyFormattedCode = `${formattedEuiImports}\n${formattedNonEuiImports}\n\n${renderedCode.trim()}`;
-  console.log(renderedCode);
   return fullyFormattedCode;
 };
 
