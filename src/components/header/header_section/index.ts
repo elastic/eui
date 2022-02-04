@@ -6,14 +6,11 @@
  * Side Public License, v 1.
  */
 
-export { EuiHeaderSection, EuiHeaderSectionProps } from './header_section';
+export type { EuiHeaderSectionProps } from './header_section';
+export { EuiHeaderSection } from './header_section';
 
-export {
-  EuiHeaderSectionItem,
-  EuiHeaderSectionItemProps,
-} from './header_section_item';
+export type { EuiHeaderSectionItemProps } from './header_section_item';
+export { EuiHeaderSectionItem } from './header_section_item';
 
-export {
-  EuiHeaderSectionItemButton,
-  EuiHeaderSectionItemButtonProps,
-} from './header_section_item_button';
+export type { EuiHeaderSectionItemButtonProps } from './header_section_item_button';
+export { EuiHeaderSectionItemButton } from './header_section_item_button';

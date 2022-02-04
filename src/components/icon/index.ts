@@ -6,12 +6,9 @@
  * Side Public License, v 1.
  */
 
+export type { EuiIconProps, IconColor, IconSize, IconType } from './icon';
 export {
   EuiIcon,
-  EuiIconProps,
-  IconColor,
-  IconSize,
-  IconType,
   TYPES as ICON_TYPES,
   SIZES as ICON_SIZES,
   COLORS as ICON_COLORS,

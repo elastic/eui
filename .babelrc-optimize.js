@@ -1,7 +1,7 @@
 // See `wiki/consuming.md` for rationale and consumer requirements.
 
 const baseConfig = require('./.babelrc.js');
-// Skip `propType` generation
+// Skip `propType` generation.
 baseConfig.plugins.splice(
   baseConfig.plugins.indexOf(
     './scripts/babel/proptypes-from-ts-props'

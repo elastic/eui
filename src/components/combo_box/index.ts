@@ -6,10 +6,11 @@
  * Side Public License, v 1.
  */
 
-export { EuiComboBox, EuiComboBoxProps } from './combo_box';
+export type { EuiComboBoxProps } from './combo_box';
+export { EuiComboBox } from './combo_box';
 export * from './combo_box_input';
 export * from './combo_box_options_list';
-export {
+export type {
   EuiComboBoxOptionOption,
   EuiComboBoxOptionsListPosition,
   EuiComboBoxSingleSelectionShape,

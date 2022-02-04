@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiBeacon, EuiBeaconProps } from './beacon';
+export type { EuiBeaconProps } from './beacon';
+export { EuiBeacon } from './beacon';

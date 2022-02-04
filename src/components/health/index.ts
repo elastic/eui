@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiHealth, EuiHealthProps } from './health';
+export type { EuiHealthProps } from './health';
+export { EuiHealth } from './health';

@@ -677,6 +677,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                     aria-invalid={true}
                     className="euiFormRow__label"
                     htmlFor="generated-id"
+                    id="generated-id-label"
                     isFocused={false}
                     isInvalid={true}
                     type="label"
@@ -685,6 +686,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
                       aria-invalid={true}
                       className="euiFormLabel euiFormRow__label euiFormLabel-isInvalid"
                       htmlFor="generated-id"
+                      id="generated-id-label"
                     >
                       Label
                     </label>

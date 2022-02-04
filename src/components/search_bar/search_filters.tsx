@@ -11,7 +11,7 @@ import { createFilter, SearchFilterConfig } from './filters';
 import { Query } from './query';
 import { EuiFilterGroup } from '../filter_group';
 
-export { SearchFilterConfig } from './filters';
+export type { SearchFilterConfig } from './filters';
 
 interface EuiSearchFiltersProps {
   query: Query;

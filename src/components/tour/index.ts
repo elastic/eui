@@ -6,11 +6,12 @@
  * Side Public License, v 1.
  */
 
-export { EuiTour, EuiTourProps } from './tour';
-export { EuiTourStep, EuiTourStepProps } from './tour_step';
-export {
-  EuiTourStepIndicator,
-  EuiTourStepIndicatorProps,
-} from './tour_step_indicator';
-export { useEuiTour, EuiStatelessTourStep } from './useEuiTour';
+export type { EuiTourProps } from './tour';
+export { EuiTour } from './tour';
+export type { EuiTourStepProps } from './tour_step';
+export { EuiTourStep } from './tour_step';
+export type { EuiTourStepIndicatorProps } from './tour_step_indicator';
+export { EuiTourStepIndicator } from './tour_step_indicator';
+export type { EuiStatelessTourStep } from './useEuiTour';
+export { useEuiTour } from './useEuiTour';
 export * from './types';

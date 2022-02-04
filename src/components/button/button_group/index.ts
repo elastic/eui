@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiButtonGroup,
+export type {
   EuiButtonGroupOptionProps,
   EuiButtonGroupProps,
 } from './button_group';
+export { EuiButtonGroup } from './button_group';

@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiFieldSearch, EuiFieldSearchProps } from './field_search';
+export type { EuiFieldSearchProps } from './field_search';
+export { EuiFieldSearch } from './field_search';
