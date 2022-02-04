@@ -228,7 +228,7 @@ export class EuiSelectableListItem extends Component<
     const instructions = (instruction || state) && (
       <EuiScreenReaderOnly>
         <div>
-          {state || instruction ? ' - ' : null} // Adds a breath/screen reader break between reading out the item name and state
+          {state || instruction ? ' - ' : null}
           {state}
           {state && instruction ? ' ' : null}
           {instruction}
@@ -239,8 +239,8 @@ export class EuiSelectableListItem extends Component<
     return (
       <li
         role={role}
-        aria-checked={role === 'option' ? isChecked : undefined}
-        aria-selected={!disabled && isFocused}
+        aria-checked={role === 'option' ? isChecked : undefined} // Whether the item is "checked"
+        aria-selected={!disabled && isFocused} // Whether the item has keybord focus
         className={classes}
         aria-disabled={disabled}
         {...rest}

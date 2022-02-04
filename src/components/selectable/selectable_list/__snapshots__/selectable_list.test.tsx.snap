@@ -430,7 +430,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="euiScreenReaderOnly"
               >
-                To select this option, press enter.
+                 - To select this option, press enter.
               </div>
             </span>
           </span>
@@ -462,7 +462,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="euiScreenReaderOnly"
               >
-                To select this option, press enter.
+                 - To select this option, press enter.
               </div>
             </span>
           </span>
@@ -494,7 +494,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="euiScreenReaderOnly"
               >
-                To select this option, press enter.
+                 - To select this option, press enter.
               </div>
             </span>
           </span>
@@ -526,7 +526,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="euiScreenReaderOnly"
               >
-                To select this option, press enter.
+                 - To select this option, press enter.
               </div>
             </span>
           </span>
@@ -558,7 +558,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="euiScreenReaderOnly"
               >
-                To select this option, press enter.
+                 - To select this option, press enter.
               </div>
             </span>
           </span>
@@ -590,7 +590,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="euiScreenReaderOnly"
               >
-                To select this option, press enter.
+                 - To select this option, press enter.
               </div>
             </span>
           </span>
