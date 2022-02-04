@@ -1,11 +1,15 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
 - Added the ability to control internal `EuiDataGrid` fullscreen, cell focus, and cell popover state via the `ref` prop ([#5590](https://github.com/elastic/eui/pull/5590))
+- Added `paddingSize` prop to `EuiSelectableList` ([#5581](https://github.com/elastic/eui/pull/5581))
+- Added `errorMessage` prop to `EuiSelectable` ([#5581](https://github.com/elastic/eui/pull/5581))
+- Refactored `EuiSelectable` accessibility ([#5581](https://github.com/elastic/eui/pull/5581))
 - Converted `FieldValueSelectionFilter` in `EuiSearchBar` to use `EuiSelectable` ([#5387](https://github.com/elastic/eui/issues/5387))
 
 **Bug fixes**
 
 - Fixed `EuiInMemoryTable`'s `onTableChange` callback not returning the correct `sort.field` value on pagination ([#5588](https://github.com/elastic/eui/pull/5588))
+- Fixed `EuiFilePicker` allowing files to be removed when `disabled` ([#5603](https://github.com/elastic/eui/pull/5603))
 
 ## [`46.2.0`](https://github.com/elastic/eui/tree/v46.2.0)
 
