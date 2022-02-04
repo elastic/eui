@@ -5,6 +5,7 @@
 **Bug fixes**
 
 - Fixed `EuiInMemoryTable`'s `onTableChange` callback not returning the correct `sort.field` value on pagination ([#5588](https://github.com/elastic/eui/pull/5588))
+- Fixed `EuiFilePicker` allowing files to be removed when `disabled` ([#5603](https://github.com/elastic/eui/pull/5603))
 
 ## [`46.2.0`](https://github.com/elastic/eui/tree/v46.2.0)
 
