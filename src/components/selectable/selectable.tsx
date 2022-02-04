@@ -724,31 +724,17 @@ export class EuiSelectable<T = {}> extends Component<
     );
 
     return (
-      <>
-        <div
-          ref={this.containerRef}
-          className={classes}
-          onKeyDown={this.onKeyDown}
-          onBlur={this.onContainerBlur}
-          onFocus={this.onFocus}
-          onMouseDown={this.onMouseDown}
-          {...rest}
-        >
-          {children && children(list, search)}
-        </div>
-        {this.optionsListRef.current && (
-          <EuiI18n
-            token="euiSelectable.screenReaderInstructions"
-            default="'Use up and down arrows to move focus over options. Enter to select. Escape to collapse options.'"
-          >
-            {(screenReaderInstructions: string) => (
-              <EuiScreenReaderOnly>
-                <p id={listAriaDescribedbyId}>{screenReaderInstructions}</p>
-              </EuiScreenReaderOnly>
-            )}
-          </EuiI18n>
-        )}
-      </>
+      <div
+        ref={this.containerRef}
+        className={classes}
+        onKeyDown={this.onKeyDown}
+        onBlur={this.onContainerBlur}
+        onFocus={this.onFocus}
+        onMouseDown={this.onMouseDown}
+        {...rest}
+      >
+        {children && children(list, search)}
+      </div>
     );
   }
 }

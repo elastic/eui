@@ -165,23 +165,7 @@ export class EuiSelectableListItem extends Component<
       );
     }
 
-    let isChecked = !disabled && typeof checked === 'string';
-    if (!allowExclusions && isChecked) {
-      state = (
-        <EuiI18n
-          token="euiSelectableListItem.checkedOption"
-          default="Checked option."
-        />
-      );
-      instruction = searchable ? (
-        <EuiI18n
-          token="euiSelectableListItem.checkedOptionInstructions"
-          default="To uncheck this option, press enter."
-        />
-      ) : undefined;
-    }
-
-    isChecked = !disabled && typeof checked === 'string';
+    const isChecked = !disabled && typeof checked === 'string';
     if (!allowExclusions && isChecked) {
       state = (
         <EuiI18n
