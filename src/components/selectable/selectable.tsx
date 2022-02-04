@@ -642,7 +642,7 @@ export class EuiSelectable<T = {}> extends Component<
 
     const resultsLength = visibleOptions.filter((option) => !option.disabled)
       .length;
-    const listScreenReaderStatus = (
+    const listScreenReaderStatus = searchable && (
       <EuiI18n
         token="euiSelectable.searchResults"
         default={({ resultsLength }) =>
