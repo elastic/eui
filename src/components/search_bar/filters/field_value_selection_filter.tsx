@@ -11,8 +11,6 @@ import { isArray, isNil } from '../../../services/predicate';
 import { ExclusiveUnion } from '../../common';
 import { EuiPopover, EuiPopoverTitle } from '../../popover';
 import { EuiFilterButton } from '../../filter_group';
-import { EuiSpacer } from '../../spacer';
-import { EuiIcon } from '../../icon';
 import { EuiSelectable, EuiSelectableProps } from '../../selectable';
 import { Query } from '../query';
 import { Clause, Operator, OperatorType, Value } from '../query/ast';
@@ -399,6 +397,7 @@ export class FieldValueSelectionFilter extends Component<
           emptyMessage={
             config.noOptionsMessage || defaults.config.noOptionsMessage
           }
+          errorMessage={this.state.error}
           noMatchesMessage={
             config.noOptionsMessage || defaults.config.noOptionsMessage
           }
@@ -424,17 +423,7 @@ export class FieldValueSelectionFilter extends Component<
               {isOverSearchThreshold && (
                 <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
               )}
-              {this.state.error ? (
-                <div className="euiFilterSelect__note">
-                  <div className="euiFilterSelect__noteContent">
-                    <EuiIcon size="m" type="faceSad" color="danger" />
-                    <EuiSpacer size="xs" />
-                    <p>{this.state.error}</p>
-                  </div>
-                </div>
-              ) : (
-                list
-              )}
+              {list}
             </>
           )}
         </EuiSelectable>
