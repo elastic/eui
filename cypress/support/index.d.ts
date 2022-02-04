@@ -1,14 +1,21 @@
 declare namespace Cypress {
+  type ElementContext = import('axe-core').ElementContext;
   type MountReturn = import('@cypress/react').MountReturn;
+  type RunOptions = import('axe-core').RunOptions;
 
   interface Chainable<Subject> {
+    /**
+     * We are adding `/// <reference types="../../../cypress/support"/>` to Cypress
+     * specs so VSCode will recognize custom command types.
+     */
+
     /**
      * Run the axe-core accessibility scanner
      * @param context Any valid node or CSS selector. Defaults to the Cypress containing `<div>`.
      * @param axeRunConfig Add or change rules in the `axe.run` config object
      * @see https://www.deque.com/axe/core-documentation/api-documentation/#api-name-axerun
      */
-    axeCheck(context?: String, axeRunConfig?: Object): void;
+    checkAxe(context?: ElementContext, axeRunConfig?: RunOptions): void;
 
     /**
      * Provide global cy.mount() shortcut that includes required providers

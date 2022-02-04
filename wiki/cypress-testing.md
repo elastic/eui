@@ -81,19 +81,13 @@ contains `{component name}.tsx`.
 * DON'T depend upon class names or other implementation details for `find`ing nodes, if possible.
 * DON'T extend the `cy.` global namespace - instead prefer to import helper functions directly
 
-### Cypress-axe
-EUI components are tested for accessibility as part of the documentation build, but these do not test changes to the DOM such as accordions being opened, or modal dialogs being triggered. Cypress-axe allows us to interact with components as users would, and run additional axe scans.
+### Cypress Axe
+EUI components are tested for accessibility as part of the documentation build, but these do not test changes to the DOM such as accordions being opened, or modal dialogs being triggered. [cypress-axe](https://github.com/component-driven/cypress-axe) allows us to interact with components as users would, and run additional automatic axe scans.
 
-#### How to write Cypress-axe tests
-
-Cypress-axe works with component tests and full end-to-end tests. It must be injected into a Cypress test in a `beforeEach` block, then the helper will be available to use by wihin a running test.
+#### How to write cypress-axe tests
 
 ```jsx
-beforeEach(() => {
-  cy.injectAxe();
-});
-
-describe('Axe check', () => {
+describe('Automated accessibility check', () => {
   it('has zero violations when expanded', () => {
     cy.mount(
       <EuiAccordion {...noArrowProps}>
@@ -104,42 +98,31 @@ describe('Axe check', () => {
       </EuiAccordion>
     );
     cy.get('button.euiAccordion__button').click();
-    cy.axeCheck();
+    cy.checkAxe();
   });
 });
 ```
 
-#### Modifying the cy.axeCheck() helper method
+#### Configuring the cy.checkAxe() helper method
 
-The `cy.axeCheck()` method has two optional parameters:
+The `cy.checkAxe()` method has two optional parameters:
  
  - `context` - This could be the document or a selector such as a class name, id, or element. The `context` default is `div#__cy_root`.
- - `axeRunConfig` - The [axe.run API](https://www.deque.com/axe/core-documentation/api-documentation/#api-name-axerun) can be modified for elements to include or exclude, individual rules to exclude, and rulesets to include or exclude. The default config object tests for all [WCAG 2.0](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-20-level-a--aa-rules) and [WCAG 2.1](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md#wcag-21-level-a--aa-rules) rules and excludes the [color-contrast rule](https://dequeuniversity.com/rules/axe/4.4/color-contrast?application=RuleDescription) due to high numbers of false positives.
-
- #### Changing context and configuration
+ - `axeRunConfig` - The [axe.run API](https://www.deque.com/axe/core-documentation/api-documentation/#api-name-axerun) can be modified for elements to include or exclude, individual rules to exclude, and rulesets to include or exclude.
  
- If we want to test the `<main>` tag and all children for required rulesets plus best practices, we would modify the `cy.axeCheck()` call this way:
-
  ```jsx
-cy.axeCheck('main', {
+import { defaultAxeConfig } from '../../cypress/support/a11y/axeCheck';
+
+const customAxeConfig = {
+  ...defaultAxeConfig,
   runOnly: {
     type: 'tag',
-    values: ['section508', 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'],
-  }
-});
- ```
+    // Add best-practices to existing rulesets
+    values: [...defaultAxeConfig.runOnly.values, 'best-practices'],
+  },
+};
 
-  #### Changing configuration only
- 
- If we want to test the default `div#__cy_root` for required rulesets plus best practices we could pass `undefined` as the first argument:
-
- ```jsx
-cy.axeCheck(undefined, {
-  runOnly: {
-    type: 'tag',
-    values: ['section508', 'wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'],
-  }
-});
+cy.checkAxe(undefined, customAxeConfig);
  ```
 
 ### Cypress Real Events

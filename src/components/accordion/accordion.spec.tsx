@@ -22,10 +22,6 @@ const baseProps: EuiAccordionProps = {
 const noArrow = { arrowDisplay: 'none' };
 const noArrowProps: EuiAccordionProps = Object.assign(baseProps, noArrow);
 
-beforeEach(() => {
-  cy.injectAxe();
-});
-
 describe('EuiAccordion', () => {
   describe('Keyboard and screen reader accessibility', () => {
     it('renders with required props', () => {
@@ -124,7 +120,7 @@ describe('EuiAccordion', () => {
     });
   });
 
-  describe('Axe check', () => {
+  describe('Automated accessibility check', () => {
     it('has zero violations when expanded', () => {
       cy.mount(
         <EuiAccordion {...noArrowProps}>
@@ -135,7 +131,7 @@ describe('EuiAccordion', () => {
         </EuiAccordion>
       );
       cy.get('button.euiAccordion__button').click();
-      cy.axeCheck();
+      cy.checkAxe();
     });
   });
 });
