@@ -569,8 +569,6 @@ export class EuiSelectable<T = {}> extends Component<
           ...emptyMessage.props,
         });
       }
-    } else {
-      this.messageContentId = '';
     }
 
     /**
