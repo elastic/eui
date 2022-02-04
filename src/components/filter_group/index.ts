@@ -6,12 +6,14 @@
  * Side Public License, v 1.
  */
 
-export { EuiFilterGroup, EuiFilterGroupProps } from './filter_group';
+export type { EuiFilterGroupProps } from './filter_group';
+export { EuiFilterGroup } from './filter_group';
 
-export { EuiFilterButton, EuiFilterButtonProps } from './filter_button';
+export type { EuiFilterButtonProps } from './filter_button';
+export { EuiFilterButton } from './filter_button';
 
-export {
-  EuiFilterSelectItem,
+export type {
   EuiFilterSelectItemProps,
   FilterChecked,
 } from './filter_select_item';
+export { EuiFilterSelectItem } from './filter_select_item';

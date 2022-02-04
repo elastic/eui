@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
-export { EuiHeaderLink, EuiHeaderLinkProps } from './header_link';
+export type { EuiHeaderLinkProps } from './header_link';
+export { EuiHeaderLink } from './header_link';
 
-export { EuiHeaderLinks, EuiHeaderLinksProps } from './header_links';
+export type { EuiHeaderLinksProps } from './header_links';
+export { EuiHeaderLinks } from './header_links';

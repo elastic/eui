@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiOverlayMask, EuiOverlayMaskProps } from './overlay_mask';
+export type { EuiOverlayMaskProps } from './overlay_mask';
+export { EuiOverlayMask } from './overlay_mask';

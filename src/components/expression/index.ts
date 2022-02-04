@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiExpression, EuiExpressionProps } from './expression';
+export type { EuiExpressionProps } from './expression';
+export { EuiExpression } from './expression';

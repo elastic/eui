@@ -63,7 +63,11 @@ export default () => {
         <EuiPanel color="subdued">Sidebar</EuiPanel>
       </EuiFlexItem>
       <EuiFlexItem style={{ minWidth: 0 }}>
-        <EuiPanel style={{ height: 300 }} hasBorder paddingSize="none">
+        <EuiPanel
+          style={{ height: 300, overflow: 'hidden' }}
+          hasBorder
+          paddingSize="none"
+        >
           <EuiDataGrid
             aria-label="Container constrained data grid demo"
             columns={columns}

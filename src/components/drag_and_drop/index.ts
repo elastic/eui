@@ -6,12 +6,12 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiDragDropContext,
-  EuiDragDropContextProps,
-} from './drag_drop_context';
-export { EuiDraggable, EuiDraggableProps } from './draggable';
-export { EuiDroppable, EuiDroppableProps } from './droppable';
+export type { EuiDragDropContextProps } from './drag_drop_context';
+export { EuiDragDropContext } from './drag_drop_context';
+export type { EuiDraggableProps } from './draggable';
+export { EuiDraggable } from './draggable';
+export type { EuiDroppableProps } from './droppable';
+export { EuiDroppable } from './droppable';
 export {
   euiDragDropCopy,
   euiDragDropMove,
@@ -20,7 +20,7 @@ export {
 
 // Interfaces in react-beautiful-dnd that EUI abstracts over
 // allows consumers to pull these from EUI instead of react-beautiful-dnd
-export {
+export type {
   DraggableLocation,
   DraggableProps,
   DraggableProvidedDragHandleProps,

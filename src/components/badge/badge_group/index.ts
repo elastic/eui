@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiBadgeGroup, EuiBadgeGroupProps } from './badge_group';
+export type { EuiBadgeGroupProps } from './badge_group';
+export { EuiBadgeGroup } from './badge_group';

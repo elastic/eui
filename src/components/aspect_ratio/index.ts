@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiAspectRatio, EuiAspectRatioProps } from './aspect_ratio';
+export type { EuiAspectRatioProps } from './aspect_ratio';
+export { EuiAspectRatio } from './aspect_ratio';

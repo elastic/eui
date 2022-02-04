@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiPageSideBar, EuiPageSideBarProps } from './page_side_bar';
+export type { EuiPageSideBarProps } from './page_side_bar';
+export { EuiPageSideBar } from './page_side_bar';

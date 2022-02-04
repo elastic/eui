@@ -2,13 +2,11 @@
 
 const baseConfig = require('./.babelrc.js');
 // Skip `propType` generation.
-// Still removes type exports for the es builds
 baseConfig.plugins.splice(
   baseConfig.plugins.indexOf(
     './scripts/babel/proptypes-from-ts-props'
   ),
-  1,
-  ['./scripts/babel/proptypes-from-ts-props', { generatePropTypes: false }]
+  1
 );
 // Transform runtimes using babel plugin.
 // Requires consuming applications to use `@babel/runtime`.

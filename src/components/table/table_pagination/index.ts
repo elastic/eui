@@ -6,7 +6,5 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiTablePagination,
-  EuiTablePaginationProps,
-} from './table_pagination';
+export type { EuiTablePaginationProps } from './table_pagination';
+export { EuiTablePagination } from './table_pagination';

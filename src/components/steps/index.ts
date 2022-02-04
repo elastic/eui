@@ -6,21 +6,19 @@
  * Side Public License, v 1.
  */
 
-export { EuiStep, EuiStepProps } from './step';
+export type { EuiStepProps } from './step';
+export { EuiStep } from './step';
 
-export { EuiSteps, EuiStepsProps } from './steps';
+export type { EuiStepsProps } from './steps';
+export { EuiSteps } from './steps';
 
-export { EuiSubSteps, EuiSubStepsProps } from './sub_steps';
+export type { EuiSubStepsProps } from './sub_steps';
+export { EuiSubSteps } from './sub_steps';
 
 export { EuiStepHorizontal } from './step_horizontal';
 
-export {
-  EuiStepsHorizontal,
-  EuiStepsHorizontalProps,
-} from './steps_horizontal';
+export type { EuiStepsHorizontalProps } from './steps_horizontal';
+export { EuiStepsHorizontal } from './steps_horizontal';
 
-export {
-  EuiStepStatus,
-  EuiStepNumber,
-  EuiStepNumberProps,
-} from './step_number';
+export type { EuiStepStatus, EuiStepNumberProps } from './step_number';
+export { EuiStepNumber } from './step_number';

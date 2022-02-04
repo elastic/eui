@@ -6,10 +6,9 @@
  * Side Public License, v 1.
  */
 
-export {
-  COLORS,
-  EuiButtonEmpty,
+export type {
   EuiButtonEmptyColor,
   EuiButtonEmptyProps,
   EuiButtonEmptySizes,
 } from './button_empty';
+export { COLORS, EuiButtonEmpty } from './button_empty';

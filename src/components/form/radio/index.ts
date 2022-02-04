@@ -6,9 +6,7 @@
  * Side Public License, v 1.
  */
 
-export { EuiRadio, EuiRadioProps } from './radio';
-export {
-  EuiRadioGroup,
-  EuiRadioGroupProps,
-  EuiRadioGroupOption,
-} from './radio_group';
+export type { EuiRadioProps } from './radio';
+export { EuiRadio } from './radio';
+export type { EuiRadioGroupProps, EuiRadioGroupOption } from './radio_group';
+export { EuiRadioGroup } from './radio_group';
