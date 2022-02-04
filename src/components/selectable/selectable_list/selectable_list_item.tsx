@@ -64,10 +64,16 @@ export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
     paddingSize?: EuiSelectablePaddingSize;
     /**
      * Whether the `EuiSelectable` instance is searchable.
-     * When false, allows SPACE to toggle item selection.
-     * Enables the correct screen reader instructions for selection.
+     * When true, the Space key will not toggle selection, as it will type into the search box instead. Screen reader instructions will be added instructing users to use the Enter key to select items.
+     * When false, the Space key will toggle item selection. No extra screen reader instructions will be added, as Space to toggle is a generally standard for most select/checked elements.
      */
     searchable?: boolean;
+    /**
+     * Attribute applied the option `<li>`.
+     * If configured to something besides the default value of `option`,
+     * other ARIA attributes such as `aria-checked` will not be automatically configured.
+     */
+    role?: LiHTMLAttributes<HTMLLIElement>['role'];
   };
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -126,66 +132,68 @@ export class EuiSelectableListItem extends Component<
     let instruction: React.ReactNode;
     if (allowExclusions && checked === 'on') {
       state = (
-        <span>
-          <EuiI18n
-            token="euiSelectableListItem.includedOption"
-            default="Selected option."
-          />
-        </span>
+        <EuiI18n
+          token="euiSelectableListItem.includedOption"
+          default="Selected option."
+        />
       );
       instruction = (
-        <span>
-          <EuiI18n
-            token="euiSelectableListItem.includedOptionInstructions"
-            default="To exclude this option, press enter."
-          />
-        </span>
+        <EuiI18n
+          token="euiSelectableListItem.includedOptionInstructions"
+          default="To exclude this option, press enter."
+        />
       );
     } else if (allowExclusions && checked === 'off') {
       state = (
-        <span>
-          <EuiI18n
-            token="euiSelectableListItem.excludedOption"
-            default="Excluded option."
-          />
-        </span>
+        <EuiI18n
+          token="euiSelectableListItem.excludedOption"
+          default="Excluded option."
+        />
       );
       instruction = (
-        <span>
-          <EuiI18n
-            token="euiSelectableListItem.excludedOptionInstructions"
-            default="To uncheck this option, press enter."
-          />
-        </span>
+        <EuiI18n
+          token="euiSelectableListItem.excludedOptionInstructions"
+          default="To uncheck this option, press enter."
+        />
       );
     } else if (allowExclusions && !checked) {
       instruction = (
-        <span>
-          <EuiI18n
-            token="euiSelectableListItem.unckeckedOptionInstructions"
-            default="To select this option, press enter."
-          />
-        </span>
+        <EuiI18n
+          token="euiSelectableListItem.unckeckedOptionInstructions"
+          default="To select this option, press enter."
+        />
       );
     }
 
-    const isChecked = !disabled && typeof checked === 'string';
+    let isChecked = !disabled && typeof checked === 'string';
     if (!allowExclusions && isChecked) {
       state = (
-        <span>
-          <EuiI18n
-            token="euiSelectableListItem.checkedOption"
-            default="Checked option."
-          />
-        </span>
+        <EuiI18n
+          token="euiSelectableListItem.checkedOption"
+          default="Checked option."
+        />
       );
       instruction = searchable ? (
-        <span>
-          <EuiI18n
-            token="euiSelectableListItem.checkedOptionInstructions"
-            default="To uncheck this option, press enter."
-          />
-        </span>
+        <EuiI18n
+          token="euiSelectableListItem.checkedOptionInstructions"
+          default="To uncheck this option, press enter."
+        />
+      ) : undefined;
+    }
+
+    isChecked = !disabled && typeof checked === 'string';
+    if (!allowExclusions && isChecked) {
+      state = (
+        <EuiI18n
+          token="euiSelectableListItem.checkedOption"
+          default="Checked option."
+        />
+      );
+      instruction = searchable ? (
+        <EuiI18n
+          token="euiSelectableListItem.checkedOptionInstructions"
+          default="To uncheck this option, press enter."
+        />
       ) : undefined;
     }
 
@@ -242,7 +250,9 @@ export class EuiSelectableListItem extends Component<
     const instructions = (instruction || state) && (
       <EuiScreenReaderOnly>
         <div>
+          {state || instruction ? ' - ' : null}
           {state}
+          {state && instruction ? ' ' : null}
           {instruction}
         </div>
       </EuiScreenReaderOnly>
@@ -251,8 +261,8 @@ export class EuiSelectableListItem extends Component<
     return (
       <li
         role={role}
-        aria-checked={role === 'option' ? isChecked : undefined}
-        aria-selected={!disabled && isFocused}
+        aria-checked={role === 'option' ? isChecked : undefined} // Whether the item is "checked"
+        aria-selected={!disabled && isFocused} // Whether the item has keybord focus
         className={classes}
         aria-disabled={disabled}
         {...rest}

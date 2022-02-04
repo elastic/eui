@@ -283,10 +283,11 @@ export const SelectableExample = {
           <p>
             The component comes with pre-composed messages for loading, empty,
             and no search result states. To display your own messages, pass{' '}
-            <EuiCode>loadingMessage</EuiCode>, <EuiCode>emptyMessage</EuiCode>,
-            or <EuiCode>noMatchesMessage</EuiCode> respectively. Alternatively,
-            you can replace the entire <EuiCode>list</EuiCode> display with your
-            own message for any state. In which case, we recommend wrapping your
+            <EuiCode>loadingMessage</EuiCode>, <EuiCode>emptyMessage</EuiCode>,{' '}
+            <EuiCode>errorMessage</EuiCode>, or{' '}
+            <EuiCode>noMatchesMessage</EuiCode> respectively. Alternatively, you
+            can replace the entire <EuiCode>list</EuiCode> display with your own
+            message for any state. In which case, we recommend wrapping your
             custom message in an <strong>EuiSelectableMessage</strong>{' '}
             component.
           </p>
@@ -302,6 +303,7 @@ export const SelectableExample = {
   isLoading={isLoading}
   loadingMessage={customLoadingMessage}
   emptyMessage={customEmptyMessage}
+  errorMessage={hasError ? errorMessage : undefined}
   noMatchesMessage={customNoMatchesMessage}>
   {list => list}
 </EuiSelectable>`,

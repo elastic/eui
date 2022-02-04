@@ -430,9 +430,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="euiScreenReaderOnly"
               >
-                <span>
-                  To select this option, press enter.
-                </span>
+                 - To select this option, press enter.
               </div>
             </span>
           </span>
@@ -464,9 +462,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="euiScreenReaderOnly"
               >
-                <span>
-                  To select this option, press enter.
-                </span>
+                 - To select this option, press enter.
               </div>
             </span>
           </span>
@@ -498,9 +494,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="euiScreenReaderOnly"
               >
-                <span>
-                  To select this option, press enter.
-                </span>
+                 - To select this option, press enter.
               </div>
             </span>
           </span>
@@ -532,9 +526,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="euiScreenReaderOnly"
               >
-                <span>
-                  To select this option, press enter.
-                </span>
+                 - To select this option, press enter.
               </div>
             </span>
           </span>
@@ -566,9 +558,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="euiScreenReaderOnly"
               >
-                <span>
-                  To select this option, press enter.
-                </span>
+                 - To select this option, press enter.
               </div>
             </span>
           </span>
@@ -600,9 +590,7 @@ exports[`EuiSelectableListItem props allowExclusions 1`] = `
               <div
                 class="euiScreenReaderOnly"
               >
-                <span>
-                  To select this option, press enter.
-                </span>
+                 - To select this option, press enter.
               </div>
             </span>
           </span>

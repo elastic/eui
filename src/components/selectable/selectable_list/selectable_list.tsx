@@ -82,6 +82,9 @@ export type EuiSelectableOptionsListProps = CommonProps &
      * The default content when `true` is `↩ to select/deselect/include/exclude`
      */
     onFocusBadge?: EuiSelectableListItemProps['onFocusBadge'];
+    /**
+     * See #EuiSelectableListItemProps
+     */
     paddingSize?: EuiSelectableListItemProps['paddingSize'];
   } & EuiSelectableOptionsListVirtualizedProps;
 
