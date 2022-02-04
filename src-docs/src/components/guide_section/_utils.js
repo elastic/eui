@@ -35,12 +35,14 @@ export const renderJsSourceCode = (code) => {
   let formattedEuiImports = '';
 
   // determine if imports should be wrapped to new lines based on the import statement length
-  if (wrapImportsOnNewLines(elasticImports)) {
+  const combinedImports = elasticImports.join(', ');
+  const singleLineImports = `import { ${combinedImports} } from '@elastic/eui';`;
+
+  if (singleLineImports.length <= 81) {
+    formattedEuiImports = singleLineImports;
+  } else {
     const lineSeparatedImports = elasticImports.join(',\n  ');
     formattedEuiImports = `import {\n  ${lineSeparatedImports},\n} from '@elastic/eui';`;
-  } else {
-    const combinedImports = elasticImports.join(', ');
-    formattedEuiImports = `import { ${combinedImports} } from '@elastic/eui';`;
   }
 
   // Find any non-EUI imports and join them with new lines between each import for uniformity
@@ -58,16 +60,4 @@ export const renderJsSourceCode = (code) => {
 
   const fullyFormattedCode = `${formattedEuiImports}\n${formattedNonEuiImports}\n\n${renderedCode.trim()}`;
   return fullyFormattedCode;
-};
-
-/**
- * checkForLineWrap is a helper method used to check the line length of import statements before
- * they are separated by new lines. If the statements are under 81 characters in length, they will
- * remain on one line. Otherwise, the imports will be broken into new lines.
- */
-
-const wrapImportsOnNewLines = (importStatement) => {
-  const combinedImports = importStatement.join(', ');
-  const fullStatement = `import { ${combinedImports} } from '@elastic/eui';`;
-  return fullStatement.length > 81 ? true : false;
 };
