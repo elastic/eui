@@ -228,7 +228,9 @@ export class EuiSelectableListItem extends Component<
     const instructions = (instruction || state) && (
       <EuiScreenReaderOnly>
         <div>
+          {state || instruction ? ' - ' : null} // Adds a breath/screen reader break between reading out the item name and state
           {state}
+          {state && instruction ? ' ' : null}
           {instruction}
         </div>
       </EuiScreenReaderOnly>
