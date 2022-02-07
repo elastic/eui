@@ -14,85 +14,85 @@ import {
 } from '../../../../src/components';
 
 export default () => {
-  const checkboxesDo = [
+  const accessDo = [
     {
-      id: 'option_do_one',
-      label: 'Option one',
-      'data-test-sub': 'dts_test',
+      id: 'access_do_one',
+      label: 'Read access',
     },
     {
-      id: 'option_do_two',
-      label: 'Option two',
-      className: 'classNameTest',
+      id: 'access_do_two',
+      label: 'Write access',
     },
     {
-      id: 'option_do_three',
-      label: 'Option three',
-    },
-  ];
-
-  const checkboxesDont = [
-    {
-      id: 'option_dont_one',
-      label: 'Option one',
-      'data-test-sub': 'dts_test',
+      id: 'access_do_three',
+      label: 'Create access',
     },
     {
-      id: 'option_dont_two',
-      label: 'Option two is checked by default',
-      className: 'classNameTest',
-    },
-    {
-      id: 'option_dont_three',
-      label: 'Option three is disabled',
+      id: 'access_do_four',
+      label: 'Delete access',
     },
   ];
 
-  const radiosDo = [
+  const accessDont = [
     {
-      id: 'option_do_one',
-      label: 'Option one',
+      id: 'access_dont_one',
+      label: 'Read Access',
       'data-test-sub': 'dts_test',
     },
     {
-      id: 'option_do_two',
-      label: 'Option two',
-      className: 'classNameTest',
+      id: 'access_dont_two',
+      label: 'Write Access',
     },
     {
-      id: 'option_do_three',
-      label: 'Option three',
+      id: 'access_dont_three',
+      label: 'Create Access',
+    },
+    {
+      id: 'access_dont_four',
+      label: 'Delete Access',
     },
   ];
 
-  const radiosDont = [
+  const easyScanDo = [
     {
-      id: 'option_dont_one',
-      label: 'Option one',
-      'data-test-sub': 'dts_test',
+      id: 'easy_scan_do_one',
+      label: 'Canceled',
     },
     {
-      id: 'option_dont_two',
-      label: 'Option Two',
-      className: 'classNameTest',
+      id: 'easy_scan_do_two',
+      label: 'In progress',
     },
     {
-      id: 'option_dont_three',
-      label: 'option three',
+      id: 'easy_scan_do_three',
+      label: 'On Hold',
+    },
+    {
+      id: 'easy_scan_do_four',
+      label: 'Resolved',
+    },
+  ];
+
+  const easyScanDont = [
+    {
+      id: 'easy_scan_dontnt_one',
+      label: 'Case is canceled',
+    },
+    {
+      id: 'easy_scan_dont_two',
+      label: 'Case is in progress',
+    },
+    {
+      id: 'easy_scan_dont_three',
+      label: 'Case is on Hold',
+    },
+    {
+      id: 'easy_scan_dont_four',
+      label: 'Case is resolved',
     },
   ];
 
   return (
     <>
-      <EuiText grow={false}>
-        <p>
-          This page documents writing guidelines and examples for various
-          components.
-        </p>
-      </EuiText>
-
-      <EuiSpacer size="xl" />
-
       <EuiTitle>
         <h2>Checkbox and radio labels</h2>
       </EuiTitle>
@@ -110,14 +110,22 @@ export default () => {
           type="do"
           text="A label should be succinct, short, and descriptive with one to two words."
         >
-          <EuiCheckboxGroup options={checkboxesDo} onChange={() => {}} />
+          <EuiRadioGroup
+            options={easyScanDo}
+            onChange={() => {}}
+            name="radio group"
+          />
         </GuideRuleExample>
 
         <GuideRuleExample
           type="dont"
-          text="Title case can feel more cluttered."
+          text="Long labels makes it difficult to scan."
         >
-          <EuiCheckboxGroup options={checkboxesDont} onChange={() => {}} />
+          <EuiRadioGroup
+            options={easyScanDont}
+            onChange={() => {}}
+            name="radio group"
+          />
         </GuideRuleExample>
       </GuideRule>
 
@@ -130,22 +138,14 @@ export default () => {
           type="do"
           text="Sentence case makes titles easier to read."
         >
-          <EuiRadioGroup
-            options={radiosDo}
-            onChange={() => {}}
-            name="radio group"
-          />
+          <EuiCheckboxGroup options={accessDo} onChange={() => {}} />
         </GuideRuleExample>
 
         <GuideRuleExample
           type="dont"
           text="Title case can feel more cluttered."
         >
-          <EuiRadioGroup
-            options={radiosDont}
-            onChange={() => {}}
-            name="radio group"
-          />
+          <EuiCheckboxGroup options={accessDont} onChange={() => {}} />
         </GuideRuleExample>
       </GuideRule>
 
@@ -214,7 +214,7 @@ export default () => {
         </GuideRuleExample>
       </GuideRule>
 
-      <GuideRule
+      {/* <GuideRule
         description={
           <p>
             Use past tense only when labelling a list of previously created
@@ -247,7 +247,7 @@ export default () => {
             />
           </div>
         </GuideRuleExample>
-      </GuideRule>
+      </GuideRule> */}
     </>
   );
 };

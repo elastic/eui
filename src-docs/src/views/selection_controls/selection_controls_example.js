@@ -83,8 +83,21 @@ export const SelectionControlsExample = {
   intro: (
     <EuiText>
       <p>
+        EUI provides three types of selection controls: checkboxes, toggle
+        switches and radio buttons. These controls allow users to select options
+        among a list or switch a setting on/off. They are ideal for small list
+        of options.
+      </p>
+      <p>
+        To deal with medium lists of options, consider using a{' '}
+        <Link to="/form-controls#select">EuiSelect</Link> or{' '}
+        <Link to="/forms/super-select">EuiSuperSelect</Link>. For longer lists
+        and to be able to search the options, consider using a{' '}
+        <Link to="/forms/combo-box">EuiComboBox</Link>.
+      </p>
+      <p>
         Be sure to read the{' '}
-        <Link to="/forms//selection-controls/guidelines">
+        <Link to="/forms/selection-controls/guidelines">
           selection controls usage guidelines
         </Link>
         .
@@ -120,7 +133,7 @@ export const SelectionControlsExample = {
             ensure that screen readers will read out the label when the user is
             focused on the input. To learn more about labels usage, go to the{' '}
             <Link to="/forms/selection-controls/guidelines">
-              Guidelines tab
+              guidelines tab
             </Link>
             .
           </p>
@@ -197,7 +210,7 @@ export const SelectionControlsExample = {
             ensure that screen readers will read out the label when the user is
             focused on the input. To learn more about labels usage, go to the{' '}
             <Link to="/forms/selection-controls/guidelines">
-              Guidelines tab
+              guidelines tab
             </Link>
             .
           </p>
@@ -281,7 +294,7 @@ export const SelectionControlsExample = {
             ensure that screen readers will read out the label when the user is
             focused on the input. You can find more about labels usage in the{' '}
             <Link to="/forms/selection-controls/guidelines">
-              Guidelines tab
+              guidelines tab
             </Link>
             .
           </p>
