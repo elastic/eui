@@ -7,7 +7,7 @@
  */
 
 import { ReactElement, ReactNode, TdHTMLAttributes } from 'react';
-import { Direction, HorizontalAlignment } from '../../services';
+import { HorizontalAlignment } from '../../services';
 import { Pagination } from './pagination_bar';
 import { Action } from './action_types';
 import { Primitive } from '../../services/sort/comparators';
@@ -147,7 +147,7 @@ export interface EuiTableSortingType<T> {
    */
   sort?: {
     field: keyof T;
-    direction: Direction;
+    direction: 'asc' | 'desc';
   };
   /**
    * Enables/disables unsorting of table columns. Supported by EuiInMemoryTable.

@@ -13,25 +13,76 @@ import React, {
   useEffect,
   useMemo,
   useState,
+  useRef,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { enqueueStateChange } from '../../services/react';
-import { EuiMutationObserver } from '../observer/mutation_observer';
+import { enqueueStateChange } from '../../../services/react';
+import { EuiMutationObserver } from '../../observer/mutation_observer';
 import {
-  EuiDataGridCellValueElementProps,
+  EuiDataGridInMemory,
+  EuiDataGridInMemoryValues,
   EuiDataGridInMemoryRendererProps,
-} from './data_grid_types';
+  EuiDataGridCellValueElementProps,
+} from '../data_grid_types';
 
-function noop() {}
+/**
+ * inMemory values hook
+ */
+export const useInMemoryValues = (
+  inMemory: EuiDataGridInMemory | undefined,
+  rowCount: number
+): [
+  EuiDataGridInMemoryValues,
+  (rowIndex: number, columnId: string, value: string) => void
+] => {
+  /**
+   * For performance, `onCellRender` below mutates the inMemoryValues object
+   * instead of cloning. If this operation were done in a setState call
+   * React would ignore the update as the object itself has not changed.
+   * So, we keep a dual record: the in-memory values themselves and a "version" counter.
+   * When the object is mutated, the version is incremented triggering a re-render, and
+   * the returned `inMemoryValues` object is re-created (cloned) from the mutated version.
+   * The version updates are batched, so only one clone happens per batch.
+   **/
+  const _inMemoryValues = useRef<EuiDataGridInMemoryValues>({});
+  const [inMemoryValuesVersion, setInMemoryValuesVersion] = useState(0);
 
-function getElementText(element: HTMLElement) {
-  return 'innerText' in element
-    ? element.innerText
-    : // (this line left here to satisfy Prettier since a ts-ignore is used on the next line)
-      // @ts-ignore TypeScript thinks element.innerText always exists, however it doesn't in jest/jsdom environment
-      element.textContent || undefined;
-}
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const inMemoryValues = useMemo(() => ({ ..._inMemoryValues.current }), [
+    inMemoryValuesVersion,
+  ]);
 
+  const onCellRender = useCallback((rowIndex, columnId, value) => {
+    const nextInMemoryValues = _inMemoryValues.current;
+    nextInMemoryValues[rowIndex] = nextInMemoryValues[rowIndex] || {};
+    if (nextInMemoryValues[rowIndex][columnId] !== value) {
+      nextInMemoryValues[rowIndex][columnId] = value;
+      setInMemoryValuesVersion((version) => version + 1);
+    }
+  }, []);
+
+  // if `inMemory.level` or `rowCount` changes reset the values
+  const inMemoryLevel = inMemory && inMemory.level;
+  const resetRunCount = useRef(0);
+  useEffect(() => {
+    if (resetRunCount.current++ > 0) {
+      // this has to delete "overflow" keys from the object instead of resetting to an empty one,
+      // as the internal inmemoryrenderer component's useEffect which sets the values
+      // executes before this outer, wrapping useEffect
+      const existingRowKeyCount = Object.keys(_inMemoryValues.current).length;
+      for (let i = rowCount; i < existingRowKeyCount; i++) {
+        delete _inMemoryValues.current[i];
+      }
+      setInMemoryValuesVersion((version) => version + 1);
+    }
+  }, [inMemoryLevel, rowCount]);
+
+  return [inMemoryValues, onCellRender];
+};
+
+/**
+ * InMemory renderer
+ */
 export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryRendererProps> = ({
   inMemory,
   columns,
@@ -51,7 +102,7 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryR
     for (let i = 0; i < rowCount; i++) {
       cells.push(
         columns
-          .map((column) => {
+          .map((column, j) => {
             const skipThisColumn =
               inMemory.skipColumns &&
               inMemory.skipColumns.indexOf(column.id) !== -1;
@@ -71,6 +122,7 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryR
               >
                 <CellElement
                   rowIndex={i}
+                  colIndex={j}
                   columnId={column.id}
                   setCellProps={noop}
                   isExpandable={isExpandable}
@@ -143,3 +195,13 @@ export const EuiDataGridInMemoryRenderer: FunctionComponent<EuiDataGridInMemoryR
     (documentFragment as unknown) as Element
   );
 };
+
+function noop() {}
+
+function getElementText(element: HTMLElement) {
+  return 'innerText' in element
+    ? element.innerText
+    : // (this line left here to satisfy Prettier since a ts-ignore is used on the next line)
+      // @ts-ignore TypeScript thinks element.innerText always exists, however it doesn't in jest/jsdom environment
+      element.textContent || '';
+}

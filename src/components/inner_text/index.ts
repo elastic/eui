@@ -6,5 +6,6 @@
  * Side Public License, v 1.
  */
 
-export { useInnerText, EuiInnerText, EuiInnerTextProps } from './inner_text';
+export type { EuiInnerTextProps } from './inner_text';
+export { useInnerText, EuiInnerText } from './inner_text';
 export { useRenderToText } from './render_to_text';

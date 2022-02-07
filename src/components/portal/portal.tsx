@@ -25,18 +25,18 @@ export const insertPositions: InsertPositionsMap = {
   before: 'beforebegin',
 };
 
+type EuiPortalInsertPosition = keyof typeof insertPositions;
+
 export const INSERT_POSITIONS: EuiPortalInsertPosition[] = keysOf(
   insertPositions
 );
-
-type EuiPortalInsertPosition = keyof typeof insertPositions;
 
 export interface EuiPortalProps {
   /**
    * ReactNode to render as this component's content
    */
   children: ReactNode;
-  insert?: { sibling: HTMLElement; position: EuiPortalInsertPosition };
+  insert?: { sibling: HTMLElement; position: 'before' | 'after' };
   portalRef?: (ref: HTMLDivElement | null) => void;
 }
 

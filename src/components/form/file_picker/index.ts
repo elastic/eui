@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiFilePicker, EuiFilePickerProps } from './file_picker';
+export type { EuiFilePickerProps } from './file_picker';
+export { EuiFilePicker } from './file_picker';

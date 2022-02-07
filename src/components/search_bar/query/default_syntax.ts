@@ -146,9 +146,9 @@ containsValue
   / word
 
 phrase
-  = '"' space? phrase:(
-  	(phraseWord+)? (space phraseWord+)* { return unescapePhraseValue(text()); }
-  ) space? '"' { return Exp.string(phrase, location()); }
+  = '"' phrase:(
+  	space? (phraseWord+)? (space phraseWord+)* space? { return unescapePhraseValue(text()); }
+  ) '"' { return Exp.string(phrase, location()); }
 
 phraseWord
   // not a backslash, quote, or space
@@ -331,8 +331,9 @@ const validateFieldValue = (
     try {
       schemaField.validate(value);
     } catch (e) {
+      const message = e instanceof Error ? e.message : e;
       error(
-        `Invalid value \`${expression}\` set for field \`${field}\` - ${e.message}`,
+        `Invalid value \`${expression}\` set for field \`${field}\` - ${message}`,
         location
       );
     }

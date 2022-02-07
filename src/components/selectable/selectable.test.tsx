@@ -208,5 +208,83 @@ describe('EuiSelectable', () => {
         (component.find('EuiSelectableList').props() as any).visibleOptions
       ).toEqual(options);
     });
+
+    test('with data', () => {
+      type WithData = {
+        numeral?: string;
+      };
+      const options = [
+        {
+          label: 'Titan',
+          data: {
+            numeral: 'VI',
+          },
+        },
+        {
+          label: 'Enceladus',
+          data: {
+            numeral: 'II',
+          },
+        },
+        {
+          label:
+            "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+          data: {
+            numeral: 'XVII',
+          },
+        },
+      ];
+      const component = render(
+        <EuiSelectable<WithData>
+          options={options}
+          renderOption={(option) => {
+            return (
+              <span>
+                {option.numeral}: {option.label}
+              </span>
+            );
+          }}
+        >
+          {(list) => list}
+        </EuiSelectable>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+  });
+
+  describe('errorMessage prop', () => {
+    it('does not render the message when not defined', () => {
+      const component = render(
+        <EuiSelectable options={options} errorMessage={null}>
+          {(list) => list}
+        </EuiSelectable>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    it('does renders the message when defined', () => {
+      const component = render(
+        <EuiSelectable options={options} errorMessage="Error!">
+          {(list) => list}
+        </EuiSelectable>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
+
+    it('can render an element as the message', () => {
+      const component = render(
+        <EuiSelectable
+          options={options}
+          errorMessage={<span>Element error!</span>}
+        >
+          {(list) => list}
+        </EuiSelectable>
+      );
+
+      expect(component).toMatchSnapshot();
+    });
   });
 });

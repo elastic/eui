@@ -6,10 +6,12 @@
  * Side Public License, v 1.
  */
 
-export { EuiListGroup, EuiListGroupProps } from './list_group';
-export { EuiListGroupItem, EuiListGroupItemProps } from './list_group_item';
-export {
-  EuiPinnableListGroup,
+export type { EuiListGroupProps } from './list_group';
+export { EuiListGroup } from './list_group';
+export type { EuiListGroupItemProps } from './list_group_item';
+export { EuiListGroupItem } from './list_group_item';
+export type {
   EuiPinnableListGroupProps,
   EuiPinnableListGroupItemProps,
 } from './pinnable_list_group';
+export { EuiPinnableListGroup } from './pinnable_list_group';

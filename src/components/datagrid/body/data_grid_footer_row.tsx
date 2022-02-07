@@ -7,8 +7,9 @@
  */
 
 import classnames from 'classnames';
-import React, { forwardRef, memo } from 'react';
+import React, { forwardRef, memo, useContext } from 'react';
 import { EuiDataGridCell } from './data_grid_cell';
+import { DataGridCellPopoverContext } from './data_grid_cell_popover';
 import { DefaultColumnFormatter } from './popover_utils';
 import { EuiDataGridFooterRowProps } from '../data_grid_types';
 
@@ -44,11 +45,13 @@ const EuiDataGridFooterRow = memo(
         _dataTestSubj
       );
 
+      const popoverContext = useContext(DataGridCellPopoverContext);
       const sharedCellProps = {
         rowIndex,
         visibleRowIndex,
         interactiveCellId,
         isExpandable: true,
+        popoverContext,
       };
 
       return (

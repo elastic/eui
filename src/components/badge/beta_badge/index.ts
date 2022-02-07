@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiBetaBadge, EuiBetaBadgeProps } from './beta_badge';
+export type { EuiBetaBadgeProps } from './beta_badge';
+export { EuiBetaBadge } from './beta_badge';

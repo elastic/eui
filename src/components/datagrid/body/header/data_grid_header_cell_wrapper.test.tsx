@@ -11,7 +11,8 @@ import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 
 import { keys } from '../../../../services';
-import { DataGridFocusContext } from '../../data_grid_context';
+import { DataGridFocusContext } from '../../utils/focus';
+import { mockFocusContext } from '../../utils/__mocks__/focus_context';
 
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 
@@ -23,16 +24,12 @@ describe('EuiDataGridHeaderCellWrapper', () => {
     children: <button />,
   };
 
-  const focusContext = {
-    setFocusedCell: jest.fn(),
-    onFocusUpdate: jest.fn(),
-  };
   const mountWithContext = (props = {}, isFocused = true) => {
-    (focusContext.onFocusUpdate as jest.Mock).mockImplementation(
+    (mockFocusContext.onFocusUpdate as jest.Mock).mockImplementation(
       (_, callback) => callback(isFocused) // allows us to mock isFocused state
     );
     return mount(
-      <DataGridFocusContext.Provider value={focusContext}>
+      <DataGridFocusContext.Provider value={mockFocusContext}>
         <EuiDataGridHeaderCellWrapper {...requiredProps} {...props} />
       </DataGridFocusContext.Provider>
     );
@@ -52,6 +49,10 @@ describe('EuiDataGridHeaderCellWrapper', () => {
       >
         <div
           className="euiDataGridHeaderCell"
+          data-gridcell-column-id="someColumn"
+          data-gridcell-column-index={0}
+          data-gridcell-row-index="-1"
+          data-gridcell-visible-row-index="-1"
           data-test-subj="dataGridHeaderCell-someColumn"
           role="columnheader"
           style={Object {}}
@@ -74,6 +75,10 @@ describe('EuiDataGridHeaderCellWrapper', () => {
       <div
         aria-label="test"
         className="euiDataGridHeaderCell euiDataGridHeaderCell--test"
+        data-gridcell-column-id="someColumn"
+        data-gridcell-column-index={0}
+        data-gridcell-row-index="-1"
+        data-gridcell-visible-row-index="-1"
         data-test-subj="dataGridHeaderCell-someColumn"
         role="columnheader"
         style={
@@ -186,7 +191,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
               act(() => {
                 headerCell.dispatchEvent(new FocusEvent('focusin'));
               });
-              expect(focusContext.setFocusedCell).toHaveBeenCalled();
+              expect(mockFocusContext.setFocusedCell).toHaveBeenCalled();
             });
 
             it('re-enables and focuses cell interactives when already focused', () => {

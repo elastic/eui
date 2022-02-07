@@ -6,16 +6,17 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { useEuiI18n } from '../i18n';
-import { EuiTablePagination } from '../table/table_pagination';
-import { EuiDataGridPaginationRendererProps } from './data_grid_types';
+import React, { useCallback, useContext } from 'react';
+import { useEuiI18n } from '../../i18n'; // Note: this file must be named data_grid_pagination to match i18n tokens
+import { EuiTablePagination } from '../../table/table_pagination';
+import { EuiDataGridPaginationRendererProps } from '../data_grid_types';
+import { DataGridFocusContext } from './focus';
 
 export const EuiDataGridPaginationRenderer = ({
   pageIndex,
   pageSize,
   pageSizeOptions,
-  onChangePage,
+  onChangePage: _onChangePage,
   onChangeItemsPerPage,
   rowCount,
   controls,
@@ -29,6 +30,16 @@ export const EuiDataGridPaginationRenderer = ({
   const paginationLabel = useEuiI18n(
     'euiDataGridPagination.paginationLabel',
     'Pagination for preceding grid'
+  );
+
+  // Focus the first data cell & scroll back to the top of the grid whenever paginating to a new page
+  const { setFocusedCell } = useContext(DataGridFocusContext);
+  const onChangePage = useCallback(
+    (pageIndex) => {
+      _onChangePage(pageIndex);
+      setFocusedCell([0, 0]);
+    },
+    [setFocusedCell, _onChangePage]
   );
 
   const pageCount = Math.ceil(rowCount / pageSize);

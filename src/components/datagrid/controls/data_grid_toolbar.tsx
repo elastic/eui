@@ -17,9 +17,7 @@ import {
   EuiDataGridToolBarAdditionalControlsOptions,
   EuiDataGridToolBarAdditionalControlsLeftOptions,
 } from '../data_grid_types';
-
-// Used to simplify some sizing logic which is difficult to account for in tests
-const IS_JEST_ENVIRONMENT = global.hasOwnProperty('_isJest');
+import { IS_JEST_ENVIRONMENT } from '../../../test';
 
 // When below this number the grid only shows the full screen button
 const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
@@ -36,7 +34,6 @@ export const EuiDataGridToolbar = ({
   displaySelector,
   columnSelector,
   columnSorting,
-  setRef,
   setIsFullScreen,
 }: EuiDataGridToolbarProps) => {
   const [fullScreenButton, fullScreenButtonActive] = useEuiI18n(
@@ -46,6 +43,7 @@ export const EuiDataGridToolbar = ({
     ],
     ['Full screen', 'Exit full screen']
   );
+  // Enables/disables grid controls based on available width
   const hasRoomForGridControls = IS_JEST_ENVIRONMENT
     ? true
     : gridWidth > minSizeForControls || isFullScreen;
@@ -87,11 +85,7 @@ export const EuiDataGridToolbar = ({
   );
 
   return (
-    <div
-      ref={setRef}
-      className="euiDataGrid__controls"
-      data-test-sub="dataGridControls"
-    >
+    <div className="euiDataGrid__controls" data-test-sub="dataGridControls">
       {hasRoomForGridControls && (
         <div className="euiDataGrid__leftControls">
           {renderAdditionalControls(toolbarVisibility, 'left.prepend')}

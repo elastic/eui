@@ -172,7 +172,7 @@ export interface Criteria<T> {
    */
   sort?: {
     field: keyof T;
-    direction: Direction;
+    direction: 'asc' | 'desc';
   };
 }
 

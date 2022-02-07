@@ -9,7 +9,7 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
 
-import { schemaDetectors } from '../data_grid_schema';
+import { schemaDetectors } from '../utils/data_grid_schema';
 
 import { EuiDataGridColumnSortingDraggable } from './column_sorting_draggable';
 

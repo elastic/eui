@@ -10,7 +10,9 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 
 import { EuiDataGridSorting } from '../../data_grid_types';
-import { DataGridSortingContext } from '../../data_grid_context';
+import { DataGridSortingContext } from '../../utils/sorting';
+import { DataGridFocusContext } from '../../utils/focus';
+import { mockFocusContext } from '../../utils/__mocks__/focus_context';
 
 import { EuiDataGridHeaderCell } from './data_grid_header_cell';
 
@@ -45,7 +47,11 @@ describe('EuiDataGridHeaderCell', () => {
     const mountWithContext = (props = {}, sorting = {}) => {
       return mount(
         <DataGridSortingContext.Provider
-          value={{ ...sortingContext, ...sorting }}
+          value={{
+            sorting: { ...sortingContext, ...sorting },
+            sortedRowMap: [],
+            getCorrectRowIndex: jest.fn(),
+          }}
         >
           <EuiDataGridHeaderCell {...requiredProps} {...props} />
         </DataGridSortingContext.Provider>
@@ -141,10 +147,15 @@ describe('EuiDataGridHeaderCell', () => {
     });
 
     it('handles popover open', () => {
-      const component = mount(<EuiDataGridHeaderCell {...requiredProps} />);
+      const component = mount(
+        <DataGridFocusContext.Provider value={mockFocusContext}>
+          <EuiDataGridHeaderCell {...requiredProps} />
+        </DataGridFocusContext.Provider>
+      );
       component.find('.euiDataGridHeaderCell__button').simulate('click');
 
       expect(component.find('EuiPopover').prop('isOpen')).toEqual(true);
+      expect(mockFocusContext.setFocusedCell).toHaveBeenCalledWith([0, -1]);
     });
 
     it('handles popover close', () => {
