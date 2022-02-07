@@ -147,7 +147,7 @@ export const SelectionControlsExample = {
             Use a <strong>EuiCheckboxGroup</strong> when you want to generate a
             group of checkboxes by passing an array of objects with an ID and
             label for each object. Use the <EuiCode>idToSelectedMap</EuiCode> to
-            indicate the ids of the selected items.
+            indicate the IDs of the selected items.
           </p>
           <p>
             When the individual labels for each radio do not provide a
@@ -186,7 +186,7 @@ export const SelectionControlsExample = {
         <Fragment>
           <p>
             This component renders a basic HTML{' '}
-            <EuiCode>{'<input type="checkbox">'}</EuiCode> element. Use radio
+            <EuiCode>{'<input type="radio">'}</EuiCode> element. Use radio
             buttons when you want to allow users to select one option per group.
             Each input should have the same name to ensure a group is
             established. This way when you select a radio button in that group,
@@ -224,10 +224,12 @@ export const SelectionControlsExample = {
             Use a <strong>EuiRadioGroup</strong> when you want to generate a
             group of radio buttons by passing an array of objects with an ID and
             label for each object. Use the name property to define a name to the
-            group. Each of the radio buttons will inherit the name. Pass an
-            array of objects to the options prop with an ID and label for each
-            radio. When the individual labels for each radio do not provide a
-            sufficient description, pass a legend to the group.
+            group. Each of the radio buttons will inherit the name.
+          </p>
+          <p>
+            Pass an array of objects to the options prop with an ID and label
+            for each radio. When the individual labels for each radio do not
+            provide a sufficient description, pass a legend to the group.
           </p>
         </Fragment>
       ),
@@ -253,12 +255,10 @@ export const SelectionControlsExample = {
     {
       title: 'Switch',
       text: (
-        <>
-          <p>
-            A switch can be substituted for a checkbox when the semantics of the
-            label dictate a true on/off state.
-          </p>
-        </>
+        <p>
+          A switch can be substituted for a checkbox when the semantics of the
+          label dictate a true on/off state.
+        </p>
       ),
       source: [
         {
