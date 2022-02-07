@@ -36,7 +36,6 @@ describe('EuiDataGridPaginationRenderer', () => {
           activePage={0}
           aria-controls="data-grid-id"
           aria-label="Pagination for preceding grid"
-          hidePerPageOptions={false}
           itemsPerPage={25}
           itemsPerPageOptions={
             Array [
@@ -46,6 +45,7 @@ describe('EuiDataGridPaginationRenderer', () => {
           onChangeItemsPerPage={[MockFunction]}
           onChangePage={[Function]}
           pageCount={4}
+          showPerPageOptions={true}
         />
       </div>
     `);
@@ -63,7 +63,6 @@ describe('EuiDataGridPaginationRenderer', () => {
           activePage={0}
           aria-controls="data-grid-id"
           aria-label="Pagination for preceding grid: Test Grid"
-          hidePerPageOptions={false}
           itemsPerPage={25}
           itemsPerPageOptions={
             Array [
@@ -73,6 +72,7 @@ describe('EuiDataGridPaginationRenderer', () => {
           onChangeItemsPerPage={[MockFunction]}
           onChangePage={[Function]}
           pageCount={4}
+          showPerPageOptions={true}
         />
       </div>
     `);
@@ -90,12 +90,12 @@ describe('EuiDataGridPaginationRenderer', () => {
           activePage={0}
           aria-controls="data-grid-id"
           aria-label="Pagination for preceding grid"
-          hidePerPageOptions={true}
           itemsPerPage={25}
           itemsPerPageOptions={Array []}
           onChangeItemsPerPage={[MockFunction]}
           onChangePage={[Function]}
           pageCount={4}
+          showPerPageOptions={false}
         />
       </div>
     `);
