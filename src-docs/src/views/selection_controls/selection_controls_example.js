@@ -94,12 +94,38 @@ export const SelectionControlsExample = {
   sections: [
     {
       title: 'Checkbox',
+
       source: [
         {
           type: GuideSectionTypes.JS,
           code: checkboxSource,
         },
       ],
+      text: (
+        <Fragment>
+          <p>
+            This component renders a basic HTML{' '}
+            <EuiCode>{'<input type="checkbox">'}</EuiCode> element. Use
+            checkboxes to allow users to select multiple options per group.
+          </p>
+          <p>
+            Use the <EuiCode>checked</EuiCode> prop to handle the checked and
+            unchecked state. You can also use the{' '}
+            <EuiCode>indeterminate</EuiCode> prop to set an indeterminate state.
+            This state is commonly used in hierarchical checkboxes to indicate
+            that only some of the checkbox&apos;s descendants are checked.
+          </p>
+          <p>
+            Make sure to pass a label to ensure a larger clickable area and
+            ensure that screen readers will read out the label when the user is
+            focused on the input. To learn more about labels usage, go to the{' '}
+            <Link to="/forms/selection-controls/guidelines">
+              Guidelines tab
+            </Link>
+            .
+          </p>
+        </Fragment>
+      ),
       snippet: checkboxSnippet,
       props: {
         EuiCheckbox,
@@ -115,6 +141,24 @@ export const SelectionControlsExample = {
           code: checkboxGroupSource,
         },
       ],
+      text: (
+        <Fragment>
+          <p>
+            Use a <strong>EuiCheckboxGroup</strong> when you want to generate a
+            group of checkboxes by passing an array of objects with an ID and
+            label for each object. Use the <EuiCode>idToSelectedMap</EuiCode> to
+            indicate the ids of the selected items.
+          </p>
+          <p>
+            When the individual labels for each radio do not provide a
+            sufficient description, pass a legend to the group.
+          </p>
+          <p>
+            Use the <EuiCode>compressed</EuiCode> prop to tighten up the spacing
+            between checkbox rows.
+          </p>
+        </Fragment>
+      ),
       props: {
         EuiCheckboxGroup,
       },
@@ -138,6 +182,27 @@ export const SelectionControlsExample = {
           code: radioSource,
         },
       ],
+      text: (
+        <Fragment>
+          <p>
+            This component renders a basic HTML{' '}
+            <EuiCode>{'<input type="checkbox">'}</EuiCode> element. Use radio
+            buttons when you want to allow users to select one option per group.
+            Each input should have the same name to ensure a group is
+            established. This way when you select a radio button in that group,
+            the previously selected button is automatically deselected.
+          </p>
+          <p>
+            Make sure to pass a label to ensure a larger clickable area and
+            ensure that screen readers will read out the label when the user is
+            focused on the input. To learn more about labels usage, go to the{' '}
+            <Link to="/forms/selection-controls/guidelines">
+              Guidelines tab
+            </Link>
+            .
+          </p>
+        </Fragment>
+      ),
       snippet: radioSnippet,
       props: {
         EuiRadio,
@@ -153,6 +218,19 @@ export const SelectionControlsExample = {
           code: radioGroupSource,
         },
       ],
+      text: (
+        <Fragment>
+          <p>
+            Use a <strong>EuiRadioGroup</strong> when you want to generate a
+            group of radio buttons by passing an array of objects with an ID and
+            label for each object. Use the name property to define a name to the
+            group. Each of the radio buttons will inherit the name. Pass an
+            array of objects to the options prop with an ID and label for each
+            radio. When the individual labels for each radio do not provide a
+            sufficient description, pass a legend to the group.
+          </p>
+        </Fragment>
+      ),
       props: {
         EuiRadioGroup,
       },
@@ -199,7 +277,9 @@ export const SelectionControlsExample = {
       text: (
         <>
           <p>
-            Find writing guidelines and examples in the{' '}
+            Make sure to pass a label to ensure a larger clickable area and
+            ensure that screen readers will read out the label when the user is
+            focused on the input. You can find more about labels usage in the{' '}
             <Link to="/forms/selection-controls/guidelines">
               Guidelines tab
             </Link>
