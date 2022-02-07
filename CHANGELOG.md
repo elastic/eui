@@ -13,6 +13,7 @@
 
 **Breaking changes**
 
+- Upgraded TypeScript version to ~4.5.3 ([#5591](https://github.com/elastic/eui/pull/5591))
 - Removed `EuiSuggestInput` ([#5157](https://github.com/elastic/eui/pull/5157))
 - Required `aria-label` or `aria-labelledby` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
 - Renamed `sendValue` prop to `onSearchChange` for `EuiSuggest` ([#5157](https://github.com/elastic/eui/pull/5157))
