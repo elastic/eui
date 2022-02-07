@@ -8,8 +8,7 @@
 // in EUI and the potential for false positives in Cypress.
 // See https://github.com/component-driven/cypress-axe/issues/98
 
-export const context = 'div#__cy_root';
-
+export const defaultContext = 'div#__cy_root';
 export const defaultAxeConfig = {
   runOnly: {
     type: 'tag',

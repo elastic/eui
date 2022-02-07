@@ -15,7 +15,7 @@ declare namespace Cypress {
      * @param axeRunConfig Add or change rules in the `axe.run` config object
      * @see https://www.deque.com/axe/core-documentation/api-documentation/#api-name-axerun
      */
-    checkAxe(context?: ElementContext, axeRunConfig?: RunOptions): void;
+    checkAxe(context?: ElementContext, axeConfig?: RunOptions): void;
 
     /**
      * Provide global cy.mount() shortcut that includes required providers
