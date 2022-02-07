@@ -94,7 +94,7 @@ export default () => {
     );
   };
 
-  const [visibleColumns, setVisibleColumns] = useState(() =>
+  const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
   );
 

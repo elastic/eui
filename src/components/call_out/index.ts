@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiCallOut, EuiCallOutProps } from './call_out';
+export type { EuiCallOutProps } from './call_out';
+export { EuiCallOut } from './call_out';

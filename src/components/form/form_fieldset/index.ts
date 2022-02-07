@@ -6,5 +6,7 @@
  * Side Public License, v 1.
  */
 
-export { EuiFormFieldset, EuiFormFieldsetProps } from './form_fieldset';
-export { EuiFormLegend, EuiFormLegendProps } from './form_legend';
+export type { EuiFormFieldsetProps } from './form_fieldset';
+export { EuiFormFieldset } from './form_fieldset';
+export type { EuiFormLegendProps } from './form_legend';
+export { EuiFormLegend } from './form_legend';

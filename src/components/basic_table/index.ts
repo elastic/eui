@@ -6,19 +6,16 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiBasicTable,
+export type {
   EuiBasicTableProps,
   EuiBasicTableColumn,
   Criteria,
   CriteriaWithPagination,
 } from './basic_table';
-export {
-  EuiInMemoryTable,
-  EuiInMemoryTableProps,
-  Search,
-} from './in_memory_table';
-export {
+export { EuiBasicTable } from './basic_table';
+export type { EuiInMemoryTableProps, Search } from './in_memory_table';
+export { EuiInMemoryTable } from './in_memory_table';
+export type {
   EuiTableDataType,
   EuiTableFooterProps,
   EuiTableFieldDataColumnType,
@@ -27,5 +24,5 @@ export {
   EuiTableSelectionType,
   EuiTableSortingType,
 } from './table_types';
-export { Pagination } from './pagination_bar';
-export { DefaultItemAction, CustomItemAction } from './action_types';
+export type { Pagination } from './pagination_bar';
+export type { DefaultItemAction, CustomItemAction } from './action_types';

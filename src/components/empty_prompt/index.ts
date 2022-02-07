@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiEmptyPrompt, EuiEmptyPromptProps } from './empty_prompt';
+export type { EuiEmptyPromptProps } from './empty_prompt';
+export { EuiEmptyPrompt } from './empty_prompt';

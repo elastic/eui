@@ -34,7 +34,6 @@ export const EuiDataGridToolbar = ({
   displaySelector,
   columnSelector,
   columnSorting,
-  setRef,
   setIsFullScreen,
 }: EuiDataGridToolbarProps) => {
   const [fullScreenButton, fullScreenButtonActive] = useEuiI18n(
@@ -86,11 +85,7 @@ export const EuiDataGridToolbar = ({
   );
 
   return (
-    <div
-      ref={setRef}
-      className="euiDataGrid__controls"
-      data-test-sub="dataGridControls"
-    >
+    <div className="euiDataGrid__controls" data-test-sub="dataGridControls">
       {hasRoomForGridControls && (
         <div className="euiDataGrid__leftControls">
           {renderAdditionalControls(toolbarVisibility, 'left.prepend')}

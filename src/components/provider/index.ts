@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiProvider, EuiProviderProps } from './provider';
+export type { EuiProviderProps } from './provider';
+export { EuiProvider } from './provider';

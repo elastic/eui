@@ -9,7 +9,7 @@
 import React from 'react';
 import { render } from 'enzyme';
 
-import { EuiScreenReaderOnly } from './screen_reader';
+import { EuiScreenReaderOnly } from './screen_reader_only';
 
 describe('EuiScreenReaderOnly', () => {
   describe('adds an accessibility class to a child element', () => {

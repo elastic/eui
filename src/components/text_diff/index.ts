@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { useEuiTextDiff, EuiTextDiffProps } from './text_diff';
+export type { EuiTextDiffProps } from './text_diff';
+export { useEuiTextDiff } from './text_diff';

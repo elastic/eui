@@ -137,7 +137,13 @@ export const EuiTablePagination: FunctionComponent<EuiTablePaginationProps> = ({
   );
 
   return (
-    <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
+    <EuiFlexGroup
+      justifyContent="spaceBetween"
+      alignItems="center"
+      responsive={false}
+      gutterSize="s"
+      className="eui-xScroll"
+    >
       <EuiFlexItem grow={false}>
         {showPerPageOptions && itemsPerPagePopover}
       </EuiFlexItem>

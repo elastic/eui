@@ -357,6 +357,7 @@ const typeToPathMap = {
   storage: 'storage',
   string: 'string',
   submodule: 'submodule',
+  sun: 'sun',
   swatchInput: 'swatch_input', // Undocumented on purpose. Has an extra stroke for EuiColorPicker
   symlink: 'symlink',
   tableDensityCompact: 'table_density_compact',

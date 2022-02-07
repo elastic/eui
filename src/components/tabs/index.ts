@@ -6,10 +6,12 @@
  * Side Public License, v 1.
  */
 
-export { EuiTab, EuiTabProps } from './tab';
-export { EuiTabs, EuiTabsProps } from './tabs';
-export {
-  EuiTabbedContent,
+export type { EuiTabProps } from './tab';
+export { EuiTab } from './tab';
+export type { EuiTabsProps } from './tabs';
+export { EuiTabs } from './tabs';
+export type {
   EuiTabbedContentTab,
   EuiTabbedContentProps,
 } from './tabbed_content';
+export { EuiTabbedContent } from './tabbed_content';

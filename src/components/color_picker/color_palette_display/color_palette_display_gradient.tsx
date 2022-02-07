@@ -9,7 +9,7 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import { CommonProps } from '../../common';
 import { getLinearGradient } from '../utils';
-import { EuiScreenReaderOnly } from '../../accessibility/screen_reader';
+import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiColorPaletteDisplayShared } from './color_palette_display';
 
 export interface EuiColorPaletteDisplayGradientProps
