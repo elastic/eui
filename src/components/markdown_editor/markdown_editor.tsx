@@ -254,7 +254,7 @@ export const EuiMarkdownEditor = forwardRef<
         const parsed = parser.processSync(value);
         return [parsed, null];
       } catch (e) {
-        return [null, e];
+        return [null, e as EuiMarkdownParseError];
       }
     }, [parser, value]);
 
