@@ -1,9 +1,12 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
+- Added support for React 17 (this is a backwards compatible change - React 16.12+ is still supported for consuming applications) ([#5584](https://github.com/elastic/eui/pull/5584))
 - Added the ability to control internal `EuiDataGrid` fullscreen, cell focus, and cell popover state via the `ref` prop ([#5590](https://github.com/elastic/eui/pull/5590))
 - Added `paddingSize` prop to `EuiSelectableList` ([#5581](https://github.com/elastic/eui/pull/5581))
 - Added `errorMessage` prop to `EuiSelectable` ([#5581](https://github.com/elastic/eui/pull/5581))
 - Refactored `EuiSelectable` accessibility ([#5581](https://github.com/elastic/eui/pull/5581))
+- Updated `tokenTag` design to look more like a tag ([#5553](https://github.com/elastic/eui/pull/5553))
+- Lowered border radius of `.euiToken--square` to look more like a square ([#5553](https://github.com/elastic/eui/pull/5553))
 - Converted `FieldValueSelectionFilter` in `EuiSearchBar` to use `EuiSelectable` ([#5387](https://github.com/elastic/eui/issues/5387))
 
 **Bug fixes**
