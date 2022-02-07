@@ -28,6 +28,7 @@ import { EuiDataGridCell } from './data_grid_cell';
 import { EuiDataGridFooterRow } from './data_grid_footer_row';
 import { EuiDataGridHeaderRow } from './header';
 import { DefaultColumnFormatter } from './popover_utils';
+import { DataGridCellPopoverContext } from './data_grid_cell_popover';
 import {
   EuiDataGridBodyProps,
   EuiDataGridRowManager,
@@ -70,6 +71,7 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     rowHeightUtils,
     rowManager,
   } = data;
+  const popoverContext = useContext(DataGridCellPopoverContext);
   const { headerRowHeight } = useContext(DataGridWrapperRowsContext);
   const { getCorrectRowIndex } = useContext(DataGridSortingContext);
 
@@ -118,7 +120,8 @@ export const Cell: FunctionComponent<GridChildComponentProps> = ({
     rowHeightsOptions,
     rowHeightUtils,
     setRowHeight: isFirstColumn ? setRowHeight : undefined,
-    rowManager: rowManager,
+    rowManager,
+    popoverContext,
   };
 
   if (isLeadingControlColumn) {
@@ -239,6 +242,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     onColumnResize,
     rowHeightsOptions,
     virtualizationOptions,
+    isFullScreen,
     gridStyles,
     gridWidth,
     gridRef,
@@ -424,6 +428,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = (
     unconstrainedWidth: 0, // unable to determine this until the container's size is known
     wrapperDimensions,
     wrapperRef,
+    isFullScreen,
     rowCount,
   });
 

@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiHorizontalRule, EuiHorizontalRuleProps } from './horizontal_rule';
+export type { EuiHorizontalRuleProps } from './horizontal_rule';
+export { EuiHorizontalRule } from './horizontal_rule';

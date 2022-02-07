@@ -7,9 +7,11 @@ import { EuiSpacer } from '../../../../src/components/spacer';
 export default () => {
   const [useCustomMessage, setUseCustomMessage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const emptyMessage = 'You have no spice';
   const loadingMessage = "Hey, I'm loading here!";
+  const errorMessage = 'Error!';
 
   return (
     <Fragment>
@@ -24,6 +26,12 @@ export default () => {
         onChange={(e) => setIsLoading(e.target.checked)}
         checked={isLoading}
       />
+      &emsp;
+      <EuiSwitch
+        label="Show error"
+        onChange={(e) => setHasError(e.target.checked)}
+        checked={hasError}
+      />
       <EuiSpacer />
       <EuiSelectable
         aria-label="Messaging example"
@@ -33,6 +41,7 @@ export default () => {
         isLoading={isLoading}
         loadingMessage={useCustomMessage ? loadingMessage : undefined}
         emptyMessage={useCustomMessage ? emptyMessage : undefined}
+        errorMessage={hasError ? errorMessage : undefined}
       >
         {(list) => list}
       </EuiSelectable>

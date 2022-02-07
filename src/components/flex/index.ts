@@ -6,12 +6,11 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiFlexGroup,
-  EuiFlexGroupProps,
-  EuiFlexGroupGutterSize,
-} from './flex_group';
+export type { EuiFlexGroupProps, EuiFlexGroupGutterSize } from './flex_group';
+export { EuiFlexGroup } from './flex_group';
 
-export { EuiFlexGrid, EuiFlexGridProps } from './flex_grid';
+export type { EuiFlexGridProps } from './flex_grid';
+export { EuiFlexGrid } from './flex_grid';
 
-export { EuiFlexItem, EuiFlexItemProps } from './flex_item';
+export type { EuiFlexItemProps } from './flex_item';
+export { EuiFlexItem } from './flex_item';

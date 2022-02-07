@@ -31,7 +31,7 @@
   overflow: hidden;
   z-index: 1; // Sits below the controls above it and pagination below it
   position: relative;
-  background: $euiColorEmptyShade;
+  background: $euiPageBackgroundColor;
   font-feature-settings: 'tnum' 1; // Tabular numbers
 }
 
@@ -49,14 +49,6 @@
   .euiHeader {
     z-index: $euiZHeaderBelowDataGrid;
   }
-}
-
-
-.euiDataGrid__controlScroll {
-  @include euiYScrollWithShadows;
-  max-height: $euiDataGridPopoverMaxHeight;
-  padding: $euiSizeS;
-  margin: -$euiSizeS; // Offset against the panel to make the scrollbar flush scrollbars
 }
 
 .euiDataGrid__focusWrap {

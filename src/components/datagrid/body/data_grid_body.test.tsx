@@ -42,6 +42,7 @@ describe('EuiDataGridBody', () => {
     schemaDetectors,
     popoverContents: providedPopoverContents,
     rowHeightUtils: mockRowHeightUtils,
+    isFullScreen: false,
     gridStyles: {},
     gridWidth: 300,
     gridRef: {

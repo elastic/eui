@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiTreeView, EuiTreeViewProps } from './tree_view';
+export type { EuiTreeViewProps } from './tree_view';
+export { EuiTreeView } from './tree_view';

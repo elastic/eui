@@ -6,8 +6,5 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiResizeObserver,
-  EuiResizeObserverProps,
-  useResizeObserver,
-} from './resize_observer';
+export type { EuiResizeObserverProps } from './resize_observer';
+export { EuiResizeObserver, useResizeObserver } from './resize_observer';

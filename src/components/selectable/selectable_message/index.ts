@@ -6,7 +6,5 @@
  * Side Public License, v 1.
  */
 
-export {
-  EuiSelectableMessage,
-  EuiSelectableMessageProps,
-} from './selectable_message';
+export type { EuiSelectableMessageProps } from './selectable_message';
+export { EuiSelectableMessage } from './selectable_message';

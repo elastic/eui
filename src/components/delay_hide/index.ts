@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { EuiDelayHide, EuiDelayHideProps } from './delay_hide';
+export type { EuiDelayHideProps } from './delay_hide';
+export { EuiDelayHide } from './delay_hide';
