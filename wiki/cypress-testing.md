@@ -108,7 +108,7 @@ describe('Automated accessibility check', () => {
 The `cy.checkAxe()` method has two optional parameters:
  
  - `context` - This could be the document or a selector such as a class name, id, or element. The `context` default is `div#__cy_root`.
- - `axeRunConfig` - The [axe.run API](https://www.deque.com/axe/core-documentation/api-documentation/#api-name-axerun) can be modified for elements to include or exclude, individual rules to exclude, and rulesets to include or exclude.
+ - `axeConfig` - The [axe.run API](https://www.deque.com/axe/core-documentation/api-documentation/#api-name-axerun) can be modified for elements to include or exclude, individual rules to exclude, and rulesets to include or exclude.
  
  ```jsx
 import { defaultAxeConfig } from '../../cypress/support/a11y/axeCheck';
