@@ -1,9 +1,6 @@
 import React from 'react';
-
 import { GuideRule, GuideRuleExample } from '../../components';
-
 import {
-  EuiText,
   EuiSpacer,
   EuiFormRow,
   EuiSwitch,
@@ -11,6 +8,7 @@ import {
   EuiCheckboxGroup,
   EuiRadioGroup,
   EuiHorizontalRule,
+  EuiBasicTable,
 } from '../../../../src/components';
 
 export default () => {
@@ -91,6 +89,41 @@ export default () => {
     },
   ];
 
+  const items = [
+    {
+      id: '1',
+      name: 'Log created',
+      enabled: true,
+    },
+    {
+      id: '2',
+      name: 'Log deleted',
+      enabled: false,
+    },
+    {
+      id: '3',
+      name: 'Log suspended',
+      enabled: true,
+    },
+    {
+      id: '4',
+      name: 'Log updated',
+      enabled: false,
+    },
+  ];
+
+  const columns = [
+    {
+      field: 'enabled',
+      name: 'Enabled',
+      render: (enabled) => <EuiSwitch checked={enabled} onChange={() => {}} />,
+    },
+    {
+      field: 'name',
+      name: 'Name',
+    },
+  ];
+
   return (
     <>
       <EuiTitle>
@@ -158,7 +191,7 @@ export default () => {
       </EuiTitle>
 
       <GuideRule
-        heading="Action oriented"
+        heading="Always action-oriented"
         description={
           <p>
             The label should be static, action-oriented, and describe the
@@ -170,51 +203,51 @@ export default () => {
           type="do"
           text="Use a static noun describing the setting to turn on or off."
         >
-          <div style={{ width: 400 }}>
-            <EuiSwitch
-              checked={false}
-              onChange={() => {}}
-              label="Malware protection"
-            />
-          </div>
+          <EuiSwitch
+            checked={false}
+            onChange={() => {}}
+            label="Malware protection"
+          />
         </GuideRuleExample>
         <GuideRuleExample
           type="dont"
           text='Start with statements such as "If true" or "If
               enabled".'
         >
-          <div style={{ width: 400 }}>
-            <EuiSwitch
-              checked={false}
-              onChange={() => {}}
-              label="If enabled, uses malware protection"
-            />
-          </div>
+          <EuiSwitch
+            checked={false}
+            onChange={() => {}}
+            label="If enabled, uses malware protection"
+          />
         </GuideRuleExample>
+      </GuideRule>
+
+      <GuideRule>
         <GuideRuleExample
           type="do"
           text='If
               relevant, start with a verb ("Use A",
               "Show B") and add help text to provide more info.'
+          minHeight={80}
         >
-          <div style={{ width: 400 }}>
-            <EuiFormRow helpText="Rollover when an index is 30 days old or reaches 50 gigabytes.">
-              <EuiSwitch
-                checked={false}
-                onChange={() => {}}
-                label="Use recommended defaults"
-              />
-            </EuiFormRow>
-          </div>
+          <EuiFormRow helpText="Rollover when an index is 30 days old or reaches 50 gigabytes.">
+            <EuiSwitch
+              checked={false}
+              onChange={() => {}}
+              label="Use recommended defaults"
+            />
+          </EuiFormRow>
         </GuideRuleExample>
-        <GuideRuleExample type="dont" text='Use only a verb, such as "Enable".'>
-          <div style={{ width: 400 }}>
-            <EuiSwitch checked={false} onChange={() => {}} label="Enable" />
-          </div>
+        <GuideRuleExample
+          type="dont"
+          text='Use only a verb, such as "Enable".'
+          minHeight={80}
+        >
+          <EuiSwitch checked={false} onChange={() => {}} label="Enable" />
         </GuideRuleExample>
       </GuideRule>
 
-      {/* <GuideRule
+      <GuideRule
         description={
           <p>
             Use past tense only when labelling a list of previously created
@@ -224,30 +257,20 @@ export default () => {
       >
         <GuideRuleExample
           type="do"
-          text="Sentence case makes titles easier to read."
+          text="In a list of already created items, use the past tense."
+          minHeight={234}
         >
-          <div style={{ width: 400 }}>
-            <EuiSwitch
-              checked={false}
-              onChange={() => {}}
-              label="Malware protection"
-            />
-          </div>
+          <EuiBasicTable columns={columns} items={items} tableLayout="auto" />
         </GuideRuleExample>
 
         <GuideRuleExample
           type="dont"
-          text="Title case can feel more cluttered."
+          text="Use the past tense in a single form."
+          minHeight={234}
         >
-          <div style={{ width: 400 }}>
-            <EuiSwitch
-              checked={false}
-              onChange={() => {}}
-              label="Malware protection"
-            />
-          </div>
+          <EuiSwitch checked={false} onChange={() => {}} label="Log enabled" />
         </GuideRuleExample>
-      </GuideRule> */}
+      </GuideRule>
     </>
   );
 };
