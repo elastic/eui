@@ -110,6 +110,82 @@ export interface EuiButtonProps extends EuiButtonContentProps, CommonProps {
   style?: CSSProperties;
 }
 
+export type EuiButtonPropsForAnchor = PropsForAnchor<
+  EuiButtonProps,
+  {
+    buttonRef?: Ref<HTMLAnchorElement>;
+  }
+>;
+
+export type EuiButtonPropsForButton = PropsForButton<
+  EuiButtonProps,
+  {
+    buttonRef?: Ref<HTMLButtonElement>;
+  }
+>;
+
+export type Props = ExclusiveUnion<
+  EuiButtonPropsForAnchor,
+  EuiButtonPropsForButton
+>;
+
+/**
+ * EuiButton is largely responsible for providing relevant props
+ * and the logic for element-specific attributes
+ */
+export const EuiButton: FunctionComponent<Props> = ({
+  isDisabled: _isDisabled,
+  disabled: _disabled,
+  href,
+  target,
+  rel,
+  type = 'button',
+  buttonRef,
+  ...rest
+}) => {
+  const isHrefValid = !href || validateHref(href);
+  const disabled = _disabled || !isHrefValid;
+  const isDisabled = _isDisabled || !isHrefValid;
+
+  const buttonIsDisabled = rest.isLoading || isDisabled || disabled;
+  const element = href && !isDisabled ? 'a' : 'button';
+
+  let elementProps = {};
+  // Props for all elements
+  elementProps = { ...elementProps, isDisabled: buttonIsDisabled };
+  // Element-specific attributes
+  if (element === 'button') {
+    elementProps = { ...elementProps, disabled: buttonIsDisabled };
+  }
+
+  const relObj: {
+    rel?: string;
+    href?: string;
+    type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
+    target?: string;
+  } = {};
+
+  if (href && !buttonIsDisabled) {
+    relObj.href = href;
+    relObj.rel = getSecureRelForTarget({ href, target, rel });
+    relObj.target = target;
+  } else {
+    relObj.type = type as ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  }
+
+  return (
+    <EuiButtonDisplay
+      element={element}
+      baseClassName="euiButton"
+      ref={buttonRef}
+      {...elementProps}
+      {...relObj}
+      {...rest}
+    />
+  );
+};
+EuiButton.displayName = 'EuiButton';
+
 export type EuiButtonDisplayProps = EuiButtonProps &
   HTMLAttributes<HTMLElement> & {
     /**
@@ -123,12 +199,13 @@ export type EuiButtonDisplayProps = EuiButtonProps &
   };
 
 /**
- * *INTERNAL ONLY*
- * Component for displaying any element as a button
- * EuiButton is largely responsible for providing relevant props
- * and the logic for element-specific attributes
+ * EuiButtonDisplay is an internal-only component used for displaying
+ * any element as a button.
+ * NOTE: This component *must* be below EuiButton in the file and
+ * EuiButton must also set a displayName for react-docgen-typescript
+ * to correctly set EuiButton's docgenInfo and display a props table.
  */
-const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
+export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
   (
     {
       element = 'button',
@@ -218,77 +295,4 @@ const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
     );
   }
 );
-
 EuiButtonDisplay.displayName = 'EuiButtonDisplay';
-export { EuiButtonDisplay };
-
-export type EuiButtonPropsForAnchor = PropsForAnchor<
-  EuiButtonProps,
-  {
-    buttonRef?: Ref<HTMLAnchorElement>;
-  }
->;
-
-export type EuiButtonPropsForButton = PropsForButton<
-  EuiButtonProps,
-  {
-    buttonRef?: Ref<HTMLButtonElement>;
-  }
->;
-
-export type Props = ExclusiveUnion<
-  EuiButtonPropsForAnchor,
-  EuiButtonPropsForButton
->;
-
-export const EuiButton: FunctionComponent<Props> = ({
-  isDisabled: _isDisabled,
-  disabled: _disabled,
-  href,
-  target,
-  rel,
-  type = 'button',
-  buttonRef,
-  ...rest
-}) => {
-  const isHrefValid = !href || validateHref(href);
-  const disabled = _disabled || !isHrefValid;
-  const isDisabled = _isDisabled || !isHrefValid;
-
-  const buttonIsDisabled = rest.isLoading || isDisabled || disabled;
-  const element = href && !isDisabled ? 'a' : 'button';
-
-  let elementProps = {};
-  // Props for all elements
-  elementProps = { ...elementProps, isDisabled: buttonIsDisabled };
-  // Element-specific attributes
-  if (element === 'button') {
-    elementProps = { ...elementProps, disabled: buttonIsDisabled };
-  }
-
-  const relObj: {
-    rel?: string;
-    href?: string;
-    type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
-    target?: string;
-  } = {};
-
-  if (href && !buttonIsDisabled) {
-    relObj.href = href;
-    relObj.rel = getSecureRelForTarget({ href, target, rel });
-    relObj.target = target;
-  } else {
-    relObj.type = type as ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  }
-
-  return (
-    <EuiButtonDisplay
-      element={element}
-      baseClassName="euiButton"
-      ref={buttonRef}
-      {...elementProps}
-      {...relObj}
-      {...rest}
-    />
-  );
-};

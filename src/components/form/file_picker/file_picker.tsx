@@ -175,7 +175,7 @@ export class EuiFilePicker extends Component<EuiFilePickerProps> {
             clearButton = (
               <EuiLoadingSpinner className="euiFilePicker__loadingSpinner" />
             );
-          } else if (isOverridingInitialPrompt) {
+          } else if (isOverridingInitialPrompt && !disabled) {
             if (normalFormControl) {
               clearButton = (
                 <button

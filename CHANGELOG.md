@@ -1,11 +1,20 @@
 ## [`main`](https://github.com/elastic/eui/tree/main)
 
 - Added the ability to control internal `EuiDataGrid` fullscreen, cell focus, and cell popover state via the `ref` prop ([#5590](https://github.com/elastic/eui/pull/5590))
+- Added `paddingSize` prop to `EuiSelectableList` ([#5581](https://github.com/elastic/eui/pull/5581))
+- Added `errorMessage` prop to `EuiSelectable` ([#5581](https://github.com/elastic/eui/pull/5581))
+- Refactored `EuiSelectable` accessibility ([#5581](https://github.com/elastic/eui/pull/5581))
 - Updated `tokenTag` design to look more like a tag ([#5553](https://github.com/elastic/eui/pull/5553))
+- Lowered border radius of `.euiToken--square` to look more like a square ([#5553](https://github.com/elastic/eui/pull/5553))
 
 **Bug fixes**
 
 - Fixed `EuiInMemoryTable`'s `onTableChange` callback not returning the correct `sort.field` value on pagination ([#5588](https://github.com/elastic/eui/pull/5588))
+- Fixed `EuiFilePicker` allowing files to be removed when `disabled` ([#5603](https://github.com/elastic/eui/pull/5603))
+
+**Breaking changes**
+
+- Upgraded TypeScript version to ~4.5.3 ([#5591](https://github.com/elastic/eui/pull/5591))
 
 ## [`46.2.0`](https://github.com/elastic/eui/tree/v46.2.0)
 
