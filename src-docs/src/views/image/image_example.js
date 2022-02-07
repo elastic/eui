@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiImage } from '../../../../src/components';
+import { EuiCode, EuiCallOut, EuiImage } from '../../../../src/components';
 EuiImage.__docgenInfo.props.src.required = true;
 
 import imageConfig from './playground';
@@ -34,8 +34,6 @@ const imageZoomSnippet = `<EuiImage
 `;
 
 import ImageFloat from './float';
-import { EuiCallOut } from '../../../../src/components/call_out';
-import { Fragment } from 'react-is';
 const imageFloatSource = require('!!raw-loader!./float');
 const imageFloatSnippet = `<EuiImage
   alt={description}
