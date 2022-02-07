@@ -3,7 +3,6 @@
   display: inline-flex; // Necessary to make sure it doesn't force the whole popover to be too wide
   width: 100%;
   text-align: left;
-  color: $euiTextColor;
   cursor: pointer;
   overflow: hidden;
 
@@ -25,10 +24,15 @@
     color: $euiColorMediumShade;
     cursor: not-allowed;
   }
+
+  &--paddingSmall {
+    .euiSelectableListItem__content {
+      padding: $euiSelectableListItemPadding;
+    }
+  }
 }
 
 .euiSelectableListItem__content {
-  padding: $euiSelectableListItemPadding;
   width: 100%;
   display: flex;
   align-items: center;

@@ -53,7 +53,7 @@ Refer to the [testing guide](testing.md) for guidelines on writing and designing
 
 Refer to the [Cypress testing guide](cypress-testing.md) for guidelines on when and how to write Cypress tests.
 
-Refer to the [automated accessibility testing guide](automated-accessibility-testing.md) for info more info on those.
+Refer to the [automated accessibility testing guide](automated-accessibility-testing.md) for more info on those.
 
 ### Testing dev features in local Kibana
 
@@ -97,6 +97,12 @@ Refer to the [SASS page][sass] of our documentation site for a guide to writing 
 
 ## TypeScript definitions
 
+### Generated props docs
+
+We use [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript/) combined with some custom [props filters](../scripts/babel/react-docgen-typescript.js) to automatically generate our Props tab/table from our Typescript component types.
+
+> :warning: [react-docgen-typescript currently has a bug](https://github.com/styleguidist/react-docgen-typescript/issues/395) that does not correctly generate props for all components if a file has multiple components that set a `displayName`. To avoid this bug and broken props tables, keep your component files atomic / limited to 1 major component per file.
+
 ### Pass-through props
 
 Many of our components use `rest parameters` and the `spread` operator to pass props through to an underlying DOM element. In those instances the component's TypeScript definition needs to properly include the target DOM element's props.
@@ -130,10 +136,10 @@ interface FooProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElem
 
 ### forwardRef
 
-React's `forwardRef` should be used to provide access to the component's outermost element. We impose two additional requirements when using `forwardRef`:
+React's [`forwardRef`](https://reactjs.org/docs/forwarding-refs.html) should be used to provide access to the component's outermost element. We impose two additional requirements when using `forwardRef`:
 
-1. use `forwardRef` instead of `React.forwardRef`, otherwise [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript/) does not understand it and the component's props will not be rendered in our documentation
-2. the resulting component must have a `displayName`, this is useful when the component is included in a snapshot or when inspected in devtools. There is an eslint rule which checks for this.
+1. Use `forwardRef` instead of `React.forwardRef`, otherwise [react-docgen-typescript](https://github.com/styleguidist/react-docgen-typescript/) does not understand it and the component's props table will error in our documentation
+2. The resulting component must have a `displayName`, which is useful when the component is included in a snapshot or when inspected in devtools. There is an eslint rule which checks for this.
 
 #### Simple forward/pass-through
 
