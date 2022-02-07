@@ -1,6 +1,7 @@
 .euiDataGridRow {
   // needed for footer cells to correctly position
   display: flex;
+  background-color: $euiColorEmptyShade;
 }
 
 @include euiDataGridRowCell {
