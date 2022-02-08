@@ -1,5 +1,9 @@
+import type {ElementContext} from 'axe-core';
+import { realPress } from 'cypress-real-events/commands/realPress';
+
+type KeyOrShortcut = Parameters<typeof realPress>[0]
+
 declare namespace Cypress {
-  type ElementContext = import('axe-core').ElementContext;
   type MountReturn = import('@cypress/react').MountReturn;
   type RunOptions = import('axe-core').RunOptions;
 
@@ -38,6 +42,6 @@ declare namespace Cypress {
      * @param keyToPress Any valid key or array of keys https://docs.cypress.io/api/commands/type#Arguments
      * @param count Number of times to invoke `realPress()`. Defaults to 2.
      */
-    repeatRealPress(keyToPress: string | string[], count?: number): void;
+    repeatRealPress(keyToPress: KeyOrShortcut, count?: number): void;
   }
 }

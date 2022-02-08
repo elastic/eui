@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "include": [
+    "./cypress/support/index.d.ts",
     "./src/**/*.spec.tsx",
   ],
   "compilerOptions": {
